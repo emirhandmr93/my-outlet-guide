@@ -8,6 +8,8 @@ import { SavingsScreen } from "../screens/SavingsScreen";
 import { FavoritesScreen } from "../screens/FavoritesScreen";
 import { ProfileScreen } from "../screens/ProfileScreen";
 import { OutletDetailScreen } from "../screens/OutletDetailScreen";
+import { MyTripsScreen } from "../screens/MyTripsScreen";
+import { CreateTripScreen } from "../screens/CreateTripScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -37,9 +39,38 @@ borderTopColor: "#E5E5E5",
 export function AppNavigator() {
 return (
 <NavigationContainer>
-<Stack.Navigator screenOptions={{ headerShown: false }}>
-<Stack.Screen name="MainTabs" component={MainTabs} />
-<Stack.Screen name="OutletDetail" component={OutletDetailScreen} />
+<Stack.Navigator
+screenOptions={{
+headerShown: true,
+headerTintColor: "#0B1F3A",
+headerTitleStyle: {
+fontWeight: "800",
+},
+headerStyle: {
+backgroundColor: "#FFFFFF",
+},
+}}
+>
+<Stack.Screen
+name="MainTabs"
+component={MainTabs}
+options={{ headerShown: false }}
+/>
+<Stack.Screen
+name="OutletDetail"
+component={OutletDetailScreen}
+options={{ title: "Outlet Detail" }}
+/>
+<Stack.Screen
+name="MyTrips"
+component={MyTripsScreen}
+options={{ title: "My Trips" }}
+/>
+<Stack.Screen
+name="CreateTrip"
+component={CreateTripScreen}
+options={{ title: "Create Trip" }}
+/>
 </Stack.Navigator>
 </NavigationContainer>
 );

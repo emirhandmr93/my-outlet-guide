@@ -1,23 +1,58 @@
+import { useMemo, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+ScrollView,
+StyleSheet,
+Text,
+TextInput,
+TouchableOpacity,
+View,
+} from "react-native";
+
 import { outlets } from "../constants/outlets";
 
 export function ExploreScreen() {
 const navigation = useNavigation<any>();
+const [search, setSearch] = useState("");
+
+const filteredOutlets = useMemo(() => {
+if (!search.trim()) return outlets;
+
+return outlets.filter((outlet) => {
+const value = search.toLowerCase();
 
 return (
-<ScrollView style={styles.container} contentContainerStyle={styles.content}>
+outlet.name.toLowerCase().includes(value) ||
+outlet.city.toLowerCase().includes(value) ||
+outlet.country.toLowerCase().includes(value)
+);
+});
+}, [search]);
+
+return (
+<ScrollView
+style={styles.container}
+contentContainerStyle={styles.content}
+>
 <Text style={styles.pageTitle}>Explore</Text>
 
 <TextInput
 style={styles.searchInput}
 placeholder="Search cities, outlets, brands..."
 placeholderTextColor="#8A8A8A"
+value={search}
+onChangeText={setSearch}
 />
+
+{search.length > 0 && (
+<Text style={styles.resultText}>
+{filteredOutlets.length} result found
+</Text>
+)}
 
 <Text style={styles.sectionTitle}>Trending Outlets</Text>
 
-{outlets.map((outlet) => (
+{filteredOutlets.map((outlet) => (
 <TouchableOpacity
 key={outlet.id}
 activeOpacity={0.85}
@@ -39,6 +74,15 @@ outletId: outlet.id,
 <Text style={styles.tapText}>View details →</Text>
 </TouchableOpacity>
 ))}
+
+{filteredOutlets.length === 0 && (
+<View style={styles.emptyCard}>
+<Text style={styles.emptyTitle}>No Results Found</Text>
+<Text style={styles.emptyText}>
+Try searching for another outlet, city or country.
+</Text>
+</View>
+)}
 </ScrollView>
 );
 }
@@ -70,7 +114,12 @@ paddingVertical: 14,
 fontSize: 16,
 borderWidth: 1,
 borderColor: "#E5E7EB",
-marginBottom: 24,
+marginBottom: 14,
+},
+
+resultText: {
+color: "#666666",
+marginBottom: 14,
 },
 
 sectionTitle: {
@@ -110,5 +159,25 @@ tapText: {
 marginTop: 10,
 color: "#0B1F3A",
 fontWeight: "800",
+},
+
+emptyCard: {
+backgroundColor: "#FFFFFF",
+borderRadius: 20,
+padding: 22,
+borderWidth: 1,
+borderColor: "#E5E7EB",
+},
+
+emptyTitle: {
+fontSize: 20,
+fontWeight: "800",
+color: "#0B1F3A",
+marginBottom: 8,
+},
+
+emptyText: {
+color: "#666666",
+lineHeight: 20,
 },
 });

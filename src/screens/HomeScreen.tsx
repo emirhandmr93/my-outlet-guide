@@ -1,6 +1,28 @@
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import {
+ScrollView,
+StyleSheet,
+Text,
+TextInput,
+TouchableOpacity,
+View,
+} from "react-native";
+
+import { useTrips } from "../contexts/TripsContext";
+import { useFavorites } from "../contexts/FavoritesContext";
+import { outlets } from "../constants/outlets";
 
 export function HomeScreen() {
+const navigation = useNavigation<any>();
+const { trips } = useTrips();
+const { favoriteIds } = useFavorites();
+
+const latestTrip = trips[0];
+const favoriteOutlets = outlets.filter((outlet) =>
+favoriteIds.includes(outlet.id)
+);
+const firstFavorite = favoriteOutlets[0];
+
 return (
 <ScrollView style={styles.container} contentContainerStyle={styles.content}>
 <View style={styles.header}>
@@ -8,7 +30,7 @@ return (
 <Text style={styles.appName}>My Outlet Guide</Text>
 <Text style={styles.tagline}>Shop Smarter. Travel Better.</Text>
 </View>
-<Text style={styles.icon}>🌍</Text>
+<Text style={styles.icon}>🔔</Text>
 </View>
 
 <TextInput
@@ -25,22 +47,39 @@ Discover premium outlet deals near Paris.
 </Text>
 </View>
 
-<View style={styles.card}>
+<TouchableOpacity
+style={styles.card}
+onPress={() => navigation.navigate("MyTrips")}
+activeOpacity={0.85}
+>
 <Text style={styles.cardLabel}>My Shopping Trip</Text>
-<Text style={styles.cardTitle}>Paris & Milan</Text>
-<Text style={styles.cardText}>
-15 Aug - 22 Aug • Upcoming Trip
+<Text style={styles.cardTitle}>
+{latestTrip ? latestTrip.tripName : "No Trip Yet"}
 </Text>
-</View>
+<Text style={styles.cardText}>
+{latestTrip
+? `${latestTrip.city} • ${latestTrip.startDate} - ${latestTrip.endDate}`
+: "Create your first shopping trip to track deals and Tax Free reminders."}
+</Text>
+</TouchableOpacity>
 
-<View style={styles.card}>
+<TouchableOpacity
+style={styles.card}
+onPress={() => navigation.navigate("Favorites")}
+activeOpacity={0.85}
+>
 <Text style={styles.cardLabel}>Favorite Updates</Text>
-<Text style={styles.cardTitle}>La Vallée Village</Text>
-<Text style={styles.cardText}>
-Summer Sale starts tomorrow. Major promotion alert for your favorite outlet.
+<Text style={styles.cardTitle}>
+{favoriteIds.length > 0
+? `${favoriteIds.length} Favorite Outlet${favoriteIds.length > 1 ? "s" : ""}`
+: "No Favorites Yet"}
 </Text>
-</View>
-
+<Text style={styles.cardText}>
+{firstFavorite
+? `${firstFavorite.name} is saved. Major promotion alerts will appear here.`
+: "Save outlets to get major promotion updates."}
+</Text>
+</TouchableOpacity>
 
 <Text style={styles.sectionTitle}>Popular Cities</Text>
 
@@ -58,13 +97,21 @@ Summer Sale starts tomorrow. Major promotion alert for your favorite outlet.
 
 <Text style={styles.sectionTitle}>Recommended Outlets</Text>
 
-<View style={styles.card}>
+<TouchableOpacity
+style={styles.card}
+onPress={() =>
+navigation.navigate("OutletDetail", {
+outletId: "la-vallee-village",
+})
+}
+activeOpacity={0.85}
+>
 <Text style={styles.cardLabel}>Near Paris</Text>
 <Text style={styles.cardTitle}>La Vallée Village</Text>
 <Text style={styles.cardText}>
 Luxury outlet shopping destination close to Disneyland Paris.
 </Text>
-</View>
+</TouchableOpacity>
 </ScrollView>
 );
 }
@@ -73,11 +120,11 @@ const styles = StyleSheet.create({
 container: {
 flex: 1,
 backgroundColor: "#F7F8FA",
+},
 content: {
-    padding: 20,
-    paddingTop: 60,
-    paddingBottom: 120,
-}
+padding: 20,
+paddingTop: 80,
+paddingBottom: 120,
 },
 header: {
 flexDirection: "row",
@@ -96,7 +143,7 @@ color: "#C9A227",
 marginTop: 4,
 },
 icon: {
-fontSize: 28,
+fontSize: 26,
 },
 searchInput: {
 backgroundColor: "#FFFFFF",
