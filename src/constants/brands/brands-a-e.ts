@@ -2,6 +2,17 @@ import type { Brand } from "../../types/brand";
 
 export const brandsAE: Brand[] = [
   {
+    brandId: "883-police-milano",
+    brandName: "883 Police Milano",
+    aliases: ["883 Police"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "fashion",
+    rankingWeight: 68,
+    brandStatus: "active",
+  },
+  {
     brandId: "7-for-all-mankind",
     brandName: "7 For All Mankind",
     aliases: ["7 For All Mankind®"],

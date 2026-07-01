@@ -77,6 +77,18 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "fantastica",
+    brandName: "Fantastica",
+    aliases: [],
+    categoryId: "food-confectionery",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 55,
+    brandStatus: "active",
+  },
+
+  {
     brandId: "fendi",
     brandName: "Fendi",
     aliases: [],
@@ -2514,5 +2526,5 @@ export const brandsFK: Brand[] = [
     luxuryLevel: "premium",
     rankingWeight: 68,
     brandStatus: "active",
-  }
+  },
 ];
