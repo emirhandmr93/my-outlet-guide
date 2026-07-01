@@ -360,63 +360,33 @@ export const italyRestaurants = [
     "displayOrder": "2"
   },
   {
-    "restaurantId": "firenze-bistro",
+    "restaurantId": "firenze-toscanino-bistro",
     "outletId": "the-mall-firenze",
-    "restaurantName": "Bistro",
-    "category": "Italian • Casual dining",
+    "restaurantName": "ToscaNino Bistrò",
+    "category": "Tuscan • Bistro",
     "priceLevel": "€€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "3"
-  },
-  {
-    "restaurantId": "firenze-caffe-la-corte",
-    "outletId": "the-mall-firenze",
-    "restaurantName": "Caffè La Corte",
-    "category": "Cafe • Coffee",
-    "priceLevel": "€€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "4"
-  },
-  {
-    "restaurantId": "firenze-food-lounge",
-    "outletId": "the-mall-firenze",
-    "restaurantName": "Food Lounge",
-    "category": "Food Hall",
-    "priceLevel": "€€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "5"
-  },
-  {
-    "restaurantId": "firenze-gelateria",
-    "outletId": "the-mall-firenze",
-    "restaurantName": "Gelateria",
-    "category": "Dessert • Gelato",
-    "priceLevel": "€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "6"
-  },
-  {
-    "restaurantId": "firenze-gucci-caffe",
-    "outletId": "the-mall-firenze",
-    "restaurantName": "Gucci Caffè",
-    "category": "Italian • Cafe",
-    "priceLevel": "€€€",
-    "website": "https://",
+    "website": "https://firenze.themall.it/en/restaurants",
     "status": "active",
     "displayOrder": "1"
   },
   {
-    "restaurantId": "firenze-toscanino",
+    "restaurantId": "firenze-toscanino-restaurant-bottega",
     "outletId": "the-mall-firenze",
-    "restaurantName": "ToscaNino",
-    "category": "Tuscan • Restaurant",
+    "restaurantName": "ToscaNino Restaurant&Bottega",
+    "category": "Tuscan • Restaurant & bottega",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://firenze.themall.it/en/restaurants",
     "status": "active",
     "displayOrder": "2"
+  },
+  {
+    "restaurantId": "firenze-toscapino",
+    "outletId": "the-mall-firenze",
+    "restaurantName": "Toscapino",
+    "category": "Street food • Food truck",
+    "priceLevel": "€",
+    "website": "https://firenze.themall.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "3"
   }
 ];

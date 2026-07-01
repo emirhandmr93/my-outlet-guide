@@ -3345,6 +3345,12 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "the-mall-firenze",
+    brandId: "ermenegildo-zegna",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-mall-firenze",
     brandId: "fendi",
     featured: true,
     relationStatus: "active",
@@ -3394,6 +3400,12 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "the-mall-firenze",
     brandId: "loro-piana",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-mall-firenze",
+    brandId: "marni",
     featured: false,
     relationStatus: "active",
   },

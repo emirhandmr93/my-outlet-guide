@@ -487,35 +487,31 @@ export const italyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "40+ Boutiques",
+    storesCountText: "30+ Boutiques",
     rating: 4.6,
     reviewCount: 0,
     services: [
-      "Parking",
-      "Tax Free",
-      "Guest Services",
-      "Restaurants & Cafes",
+      "Booking a table",
       "Direct Bus",
-      "Wi-Fi",
-      "Gift Cards",
-      "Accessibility",
-      "Personal Shopping",
-      "VIP Services"
+      "Download Map",
+      "In-store appointment",
+      "Mail Order",
+      "Parking",
+      "Tax Free Lounge",
+      "The Mall Club",
+      "VIP Lounge by Poltrona Frau"
     ],
     restaurants: [
-      "Gucci Caffè",
-      "ToscaNino",
-      "Bistro",
-      "Caffè La Corte",
-      "Food Lounge",
-      "Gelateria"
+      "ToscaNino Bistrò",
+      "ToscaNino Restaurant&Bottega",
+      "Toscapino"
     ],
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
-    minimumTaxFreeSpend: "70.01 EUR",
-    taxFreeOperator: "EU customs validation / tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating boutiques when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    minimumTaxFreeSpend: "Over 70 EUR",
+    taxFreeOperator: "The Mall Firenze Tax Free Lounge",
+    taxFreeOfficeInfo: "Guests from non-EU countries can request an immediate refund of part of the VAT on purchases over €70 made at The Mall Firenze or elsewhere in Italy. The Tax Free Lounge requires store-issued Tax Free forms, passport or eligible Swiss identity card, and a valid credit card in the applicant's name. The airport customs validation step is still required when leaving the European Union.",
     cityCenterDistanceKm: 35,
     airportDistanceKm: 45,
     airports: [
@@ -550,9 +546,9 @@ export const italyOutlets = [
         distanceKm: 35
       }
     ],
-    websiteUrl: "https://firenze.themall.it/en",
+    websiteUrl: "https://firenze.themall.it/en/visit-us",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=The+Mall+Firenze",
+    googleMapsUrl: "https://www.google.it/maps/dir//The+Mall+Firenze,+Via+Europa+8,+50066+Leccio+Reggello+FI",
     appleMapsUrl: "http://maps.apple.com/?q=The+Mall+Firenze",
     yandexMapsUrl: "https://yandex.com/maps/?text=The%20Mall%20Firenze"
   }
