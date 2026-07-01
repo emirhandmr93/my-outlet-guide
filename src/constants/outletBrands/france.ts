@@ -894,7 +894,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-provence",
     brandId: "adidas",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -923,6 +923,18 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-provence",
+    brandId: "birkenstock",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "boggi-milano",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
     brandId: "boss",
     featured: true,
     relationStatus: "active",
@@ -930,7 +942,13 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-provence",
     brandId: "calvin-klein",
-    featured: true,
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "clarins",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -942,7 +960,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-provence",
     brandId: "coach",
-    featured: false,
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -1014,13 +1032,13 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-provence",
     brandId: "maje",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-provence",
     brandId: "michael-kors",
-    featured: false,
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -1037,8 +1055,14 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-provence",
+    brandId: "new-era",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
     brandId: "nike",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1086,7 +1110,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-provence",
     brandId: "sandro",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1110,6 +1134,12 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-provence",
     brandId: "the-kooples",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "the-north-face",
     featured: false,
     relationStatus: "active",
   },
