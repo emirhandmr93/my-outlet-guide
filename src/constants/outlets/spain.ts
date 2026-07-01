@@ -8,7 +8,7 @@ export const spainOutlets = [
     address: "Calle Juan Ramón Jiménez 3, 28232 Las Rozas, Madrid, Spain",
     latitude: 40.5037,
     longitude: -3.8968,
-    openingHours: "10:00 - 21:00",
+    openingHours: "10:00 - 22:00",
     heroImage: "",
     galleryImages: [],
     storesCountText: "100+ Boutiques",
@@ -29,8 +29,7 @@ export const spainOutlets = [
     restaurants: [
       "Cristina Oria",
       "Starbucks",
-      "Joselito's",
-      "Ham! Fresh Burger",
+      "Mentidero Sal y Brasas",
       "Lindt",
       "Restaurant & Café"
     ],
@@ -76,7 +75,7 @@ export const spainOutlets = [
     slug: "designer-outlet-malaga",
     countryId: "spain",
     cityId: "malaga",
-    address: "Calle Alfonso Ponce de León 3, 29004 Málaga, Spain",
+    address: "Calle Alfonso Ponce de León 6, 29004 Málaga, Spain",
     latitude: 36.6738,
     longitude: -4.4899,
     openingHours: "10:00 - 22:00",
@@ -101,7 +100,6 @@ export const spainOutlets = [
     restaurants: [
       "Starbucks",
       "Five Guys",
-      "Gusto",
       "Lindt",
       "Dunkin'",
       "Restaurant & Café"

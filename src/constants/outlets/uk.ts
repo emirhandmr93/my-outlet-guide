@@ -84,7 +84,7 @@ export const ukOutlets = [
     address: "Kinsey Road, Ellesmere Port, Cheshire CH65 9JJ, United Kingdom",
     latitude: 53.2654,
     longitude: -2.8842,
-    openingHours: "10:00 - 20:00",
+    openingHours: "Mon-Fri 10:00 - 20:00; Sat 09:00 - 21:00; Sun 10:00 - 19:00",
     heroImage: "",
     galleryImages: [],
     storesCountText: "140+ Stores",
