@@ -1,4 +1,4 @@
-import type { OutletBrand } from "../outletBrands";
+import type { OutletBrand } from "./index";
 
 export const austriaOutletBrands: OutletBrand[] = [
   {

@@ -1,5 +1,5 @@
 import { brands } from "../constants/brands/index";
-import { outletBrands } from "../constants/outletBrands";
+import { outletBrands } from "../constants/outletBrands/index";
 import { outlets } from "../constants/outlets";
 import {
   buildSearchIndex,

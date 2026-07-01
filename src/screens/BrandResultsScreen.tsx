@@ -2,7 +2,7 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { brands } from "../constants/brands/index";
-import { outletBrands } from "../constants/outletBrands";
+import { outletBrands } from "../constants/outletBrands/index";
 import { outlets } from "../constants/outlets";
 import { countries } from "../constants/countries";
 import { getCityName, getCountryName } from "../services/locationService";
