@@ -14,14 +14,16 @@ export type OutletBrand = {
   relationStatus: string;
 };
 
-export { austriaOutletBrands } from "./austria";
-export { belgiumOutletBrands } from "./belgium";
-export { franceOutletBrands } from "./france";
-export { germanyOutletBrands } from "./germany";
-export { italyOutletBrands } from "./italy";
-export { netherlandsOutletBrands } from "./netherlands";
-export { spainOutletBrands } from "./spain";
-export { ukOutletBrands } from "./uk";
+export {
+  austriaOutletBrands,
+  belgiumOutletBrands,
+  franceOutletBrands,
+  germanyOutletBrands,
+  italyOutletBrands,
+  netherlandsOutletBrands,
+  spainOutletBrands,
+  ukOutletBrands,
+};
 
 export const outletBrands: OutletBrand[] = [
   ...italyOutletBrands,

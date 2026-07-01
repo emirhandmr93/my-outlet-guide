@@ -1,20 +1,22 @@
-import { italyTransportation } from "./italy";
-import { germanyTransportation } from "./germany";
-import { franceTransportation } from "./france";
-import { ukTransportation } from "./uk";
-import { spainTransportation } from "./spain";
-import { netherlandsTransportation } from "./netherlands";
-import { belgiumTransportation } from "./belgium";
 import { austriaTransportation } from "./austria";
+import { belgiumTransportation } from "./belgium";
+import { franceTransportation } from "./france";
+import { germanyTransportation } from "./germany";
+import { italyTransportation } from "./italy";
+import { netherlandsTransportation } from "./netherlands";
+import { spainTransportation } from "./spain";
+import { ukTransportation } from "./uk";
 
-export { italyTransportation } from "./italy";
-export { germanyTransportation } from "./germany";
-export { franceTransportation } from "./france";
-export { ukTransportation } from "./uk";
-export { spainTransportation } from "./spain";
-export { netherlandsTransportation } from "./netherlands";
-export { belgiumTransportation } from "./belgium";
-export { austriaTransportation } from "./austria";
+export {
+  austriaTransportation,
+  belgiumTransportation,
+  franceTransportation,
+  germanyTransportation,
+  italyTransportation,
+  netherlandsTransportation,
+  spainTransportation,
+  ukTransportation,
+};
 
 export const transportation = [
   ...italyTransportation,
