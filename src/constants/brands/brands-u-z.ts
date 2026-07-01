@@ -1121,4 +1121,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
+  {
+    brandId: "weird-fish",
+    brandName: "Weird Fish",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
