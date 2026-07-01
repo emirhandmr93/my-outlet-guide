@@ -147,6 +147,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
+    brandId: "colmar",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
     brandId: "columbia",
     featured: false,
     relationStatus: "active",
@@ -207,6 +213,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
+    brandId: "fratelli-rossetti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
     brandId: "fred-perry",
     featured: false,
     relationStatus: "active",
@@ -220,6 +232,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-roermond",
     brandId: "g-star-raw",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
+    brandId: "gallo",
     featured: false,
     relationStatus: "active",
   },
@@ -249,7 +267,19 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
+    brandId: "gutteridge",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
     brandId: "haribo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
+    brandId: "harmont-and-blaine",
     featured: false,
     relationStatus: "active",
   },
@@ -435,6 +465,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
+    brandId: "north-sails",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
     brandId: "oakley",
     featured: false,
     relationStatus: "active",
@@ -489,6 +525,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
+    brandId: "pollini",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
     brandId: "polo-ralph-lauren",
     featured: true,
     relationStatus: "active",
@@ -508,6 +550,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-roermond",
     brandId: "puma",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
+    brandId: "refrigiwear",
     featured: false,
     relationStatus: "active",
   },
@@ -543,6 +591,18 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
+    brandId: "save-the-duck",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
+    brandId: "skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
     brandId: "sunglass-hut",
     featured: false,
     relationStatus: "active",
@@ -550,6 +610,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-roermond",
     brandId: "swarovski",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
+    brandId: "swatch",
     featured: false,
     relationStatus: "active",
   },
@@ -597,6 +663,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
+    brandId: "vans",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roermond",
     brandId: "villeroy-and-boch",
     featured: false,
     relationStatus: "active",
@@ -607,7 +679,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
-
+  {
+    outletId: "designer-outlet-roermond",
+    brandId: "woolrich",
+    featured: false,
+    relationStatus: "active",
+  },
   {
     outletId: "designer-outlet-roosendaal",
     brandId: "adidas",
@@ -618,6 +695,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
     outletId: "designer-outlet-roosendaal",
     brandId: "armani",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
+    brandId: "armani-exchange",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -653,6 +736,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-roosendaal",
     brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
+    brandId: "colmar",
     featured: false,
     relationStatus: "active",
   },
@@ -694,7 +783,19 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
+    brandId: "fratelli-rossetti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
     brandId: "g-star-raw",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
+    brandId: "gallo",
     featured: false,
     relationStatus: "active",
   },
@@ -718,7 +819,19 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
+    brandId: "gutteridge",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
     brandId: "haribo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
+    brandId: "harmont-and-blaine",
     featured: false,
     relationStatus: "active",
   },
@@ -796,6 +909,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
+    brandId: "napapijri",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
     brandId: "new-balance",
     featured: false,
     relationStatus: "active",
@@ -803,6 +922,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-roosendaal",
     brandId: "nike",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
+    brandId: "north-sails",
     featured: false,
     relationStatus: "active",
   },
@@ -826,6 +951,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
+    brandId: "pollini",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
     brandId: "polo-ralph-lauren",
     featured: true,
     relationStatus: "active",
@@ -844,6 +975,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
+    brandId: "refrigiwear",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
     brandId: "rituals",
     featured: false,
     relationStatus: "active",
@@ -856,7 +993,19 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
+    brandId: "salomon",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
     brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
+    brandId: "save-the-duck",
     featured: false,
     relationStatus: "active",
   },
@@ -892,7 +1041,19 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
+    brandId: "swatch",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
     brandId: "tefal",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
+    brandId: "the-cosmetics-company-store",
     featured: false,
     relationStatus: "active",
   },
@@ -934,6 +1095,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
+    brandId: "vans",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
     brandId: "villeroy-and-boch",
     featured: false,
     relationStatus: "active",
@@ -941,6 +1108,12 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-roosendaal",
     brandId: "wmf",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-roosendaal",
+    brandId: "woolrich",
     featured: false,
     relationStatus: "active",
   },
