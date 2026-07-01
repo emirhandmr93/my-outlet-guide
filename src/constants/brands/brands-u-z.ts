@@ -1,7 +1,18 @@
 import type { Brand } from "../../types/brand";
 
 export const brandsUZ: Brand[] = [
-  {
+{
+    brandId: "the-white-company",
+    brandName: "The White Company",
+    aliases: [],
+    categoryId: "home-lifestyle",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "premium",
+    rankingWeight: 80,
+    brandStatus: "active",
+  },
+{
     brandId: "u-s-polo-assn",
     brandName: "U.S. Polo Assn.",
     aliases: ["US Polo Assn", "U S Polo Assn"],
@@ -12,7 +23,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ufc",
     brandName: "UFC",
     aliases: ["Ultimate Fighting Championship"],
@@ -23,7 +34,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ugg",
     brandName: "UGG",
     aliases: ["UGG Australia", "UGG Outlet"],
@@ -34,7 +45,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ulla-popken",
     brandName: "Ulla Popken",
     aliases: [],
@@ -45,7 +56,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ulta-beauty",
     brandName: "Ulta Beauty",
     aliases: ["Ulta"],
@@ -56,7 +67,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "umbro",
     brandName: "Umbro",
     aliases: [],
@@ -67,7 +78,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "under-armour",
     brandName: "Under Armour",
     aliases: ["Under Armour Factory House", "Under Armour Outlet"],
@@ -78,7 +89,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 92,
     brandStatus: "active",
   },
-  {
+{
     brandId: "unisa",
     brandName: "Unisa",
     aliases: [],
@@ -89,7 +100,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "united-arrows",
     brandName: "United Arrows",
     aliases: ["UNITED ARROWS"],
@@ -100,7 +111,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "uppercut-deluxe",
     brandName: "Uppercut Deluxe",
     aliases: [],
@@ -111,7 +122,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "urban-research",
     brandName: "Urban Research",
     aliases: ["URBAN RESEARCH"],
@@ -122,7 +133,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "valentino",
     brandName: "Valentino",
     aliases: ["Maison Valentino", "Valentino Garavani"],
@@ -133,7 +144,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 94,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vanessa-bruno",
     brandName: "Vanessa Bruno",
     aliases: [],
@@ -144,7 +155,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vans",
     brandName: "Vans",
     aliases: ["Vans Outlet"],
@@ -155,7 +166,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vera-bradley",
     brandName: "Vera Bradley",
     aliases: ["Vera Bradley Factory Outlet"],
@@ -166,7 +177,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vera-wang",
     brandName: "Vera Wang",
     aliases: [],
@@ -177,7 +188,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "versace",
     brandName: "Versace",
     aliases: [],
@@ -189,6 +200,16 @@ export const brandsUZ: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "vicolo",
+    brandName: "Vicolo",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "victoria-s-secret",
     brandName: "Victoria's Secret",
     aliases: ["Victorias Secret", "Victoria’s Secret Outlet"],
@@ -199,7 +220,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "victorinox",
     brandName: "Victorinox",
     aliases: [],
@@ -210,7 +231,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vilebrequin",
     brandName: "Vilebrequin",
     aliases: [],
@@ -221,7 +242,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "villeroy-and-boch",
     brandName: "Villeroy & Boch",
     aliases: ["Villeroy and Boch"],
@@ -232,7 +253,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vince",
     brandName: "Vince",
     aliases: [],
@@ -243,7 +264,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vince-camuto",
     brandName: "Vince Camuto",
     aliases: [],
@@ -254,7 +275,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vineyard-vines",
     brandName: "Vineyard Vines",
     aliases: [],
@@ -265,7 +286,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vionic",
     brandName: "Vionic",
     aliases: [],
@@ -276,7 +297,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vivienne-westwood",
     brandName: "Vivienne Westwood",
     aliases: [],
@@ -287,7 +308,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "volcom",
     brandName: "Volcom",
     aliases: [],
@@ -298,7 +319,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "volvik",
     brandName: "Volvik",
     aliases: [],
@@ -309,7 +330,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "von-dutch",
     brandName: "Von Dutch",
     aliases: [],
@@ -320,7 +341,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 66,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vov",
     brandName: "VOV",
     aliases: [],
@@ -331,7 +352,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "vuori",
     brandName: "Vuori",
     aliases: [],
@@ -342,7 +363,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "w-closet",
     brandName: "w closet",
     aliases: ["W Closet"],
@@ -353,7 +374,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 66,
     brandStatus: "active",
   },
-  {
+{
     brandId: "waac",
     brandName: "WAAC",
     aliases: [],
@@ -364,7 +385,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wacoal",
     brandName: "Wacoal",
     aliases: ["WACOAL"],
@@ -375,7 +396,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "watch-and-see",
     brandName: "Watch & See",
     aliases: ["Watch and See"],
@@ -386,7 +407,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "watch-station-international",
     brandName: "Watch Station International",
     aliases: ["Watch Station"],
@@ -397,7 +418,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "watchfinder-and-co",
     brandName: "Watchfinder & Co.",
     aliases: ["Watchfinder and Co", "Watchfinder"],
@@ -408,7 +429,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "waterdrop",
     brandName: "waterdrop",
     aliases: ["Waterdrop"],
@@ -419,7 +440,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "waterford",
     brandName: "Waterford",
     aliases: [],
@@ -430,7 +451,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wedgwood",
     brandName: "Wedgwood",
     aliases: [],
@@ -441,7 +462,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wego",
     brandName: "WEGO",
     aliases: ["Wego"],
@@ -452,7 +473,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wellensteyn",
     brandName: "Wellensteyn",
     aliases: [],
@@ -463,7 +484,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wellmade",
     brandName: "Wellmade",
     aliases: [],
@@ -474,7 +495,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wenger",
     brandName: "Wenger",
     aliases: [],
@@ -485,7 +506,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "west-elm-outlet",
     brandName: "West Elm Outlet",
     aliases: ["West Elm"],
@@ -496,7 +517,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "what-it-isnt",
     brandName: "What it isn't",
     aliases: ["What It Isnt"],
@@ -507,18 +528,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
-    brandId: "the-white-company",
-    brandName: "The White Company",
-    aliases: [],
-    categoryId: "home-lifestyle",
-    logo: "",
-    originCountryId: "united-kingdom",
-    luxuryLevel: "premium",
-    rankingWeight: 80,
-    brandStatus: "active",
-  },
-  {
+{
     brandId: "white-house-black-market",
     brandName: "White House Black Market",
     aliases: ["WHBM"],
@@ -529,7 +539,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wide-angle",
     brandName: "Wide Angle",
     aliases: [],
@@ -540,7 +550,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "williams-sonoma-outlet",
     brandName: "Williams-Sonoma Outlet",
     aliases: ["Williams Sonoma"],
@@ -551,7 +561,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wilson",
     brandName: "Wilson",
     aliases: ["Wilson Sporting Goods"],
@@ -562,7 +572,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wilsons-leather",
     brandName: "Wilsons Leather",
     aliases: [],
@@ -573,7 +583,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "windsor",
     brandName: "Windsor",
     aliases: [],
@@ -584,7 +594,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "winky-lux",
     brandName: "Winky Lux",
     aliases: [],
@@ -595,7 +605,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wmf",
     brandName: "WMF",
     aliases: [],
@@ -606,7 +616,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wolford",
     brandName: "Wolford",
     aliases: [],
@@ -617,7 +627,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wonder-play",
     brandName: "Wonder Play",
     aliases: [],
@@ -628,7 +638,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "woolrich",
     brandName: "Woolrich",
     aliases: [],
@@ -639,7 +649,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wooyoungmi",
     brandName: "Wooyoungmi",
     aliases: [],
@@ -650,7 +660,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wrangler",
     brandName: "Wrangler",
     aliases: [],
@@ -661,7 +671,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "wusthof",
     brandName: "Wüsthof",
     aliases: ["Wusthof"],
@@ -672,7 +682,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "x-bionic",
     brandName: "X-Bionic",
     aliases: ["XBionic"],
@@ -683,7 +693,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "x-girl",
     brandName: "X-girl",
     aliases: ["Xgirl"],
@@ -694,7 +704,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "xti",
     brandName: "Xti",
     aliases: [],
@@ -705,7 +715,18 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
+    brandId: "ys",
+    brandName: "Y’s",
+    aliases: ["Y's", "Ys"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "japan",
+    luxuryLevel: "luxury",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+{
     brandId: "y-3",
     brandName: "Y-3",
     aliases: ["Y3", "adidas Y-3"],
@@ -716,7 +737,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "y-concept",
     brandName: "Y-concept",
     aliases: ["Y Concept"],
@@ -728,17 +749,16 @@ export const brandsUZ: Brand[] = [
     brandStatus: "active",
   },
   {
-    brandId: "ys",
-    brandName: "Y’s",
-    aliases: ["Y's", "Ys"],
+    brandId: "yamamay",
+    brandName: "Yamamay",
+    aliases: [],
     categoryId: "fashion",
     logo: "",
-    originCountryId: "japan",
-    luxuryLevel: "luxury",
-    rankingWeight: 78,
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
     brandStatus: "active",
   },
-  {
+{
     brandId: "yankee-candle",
     brandName: "Yankee Candle",
     aliases: [],
@@ -749,7 +769,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "yellow-box",
     brandName: "Yellow Box",
     aliases: [],
@@ -760,7 +780,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "yeti",
     brandName: "YETI",
     aliases: ["Yeti"],
@@ -771,7 +791,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "yohji-yamamoto",
     brandName: "Yohji Yamamoto",
     aliases: [],
@@ -782,7 +802,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "yonex",
     brandName: "YONEX",
     aliases: ["Yonex"],
@@ -793,7 +813,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "young-and-reckless",
     brandName: "Young & Reckless",
     aliases: ["Young and Reckless"],
@@ -804,7 +824,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "yves-rocher",
     brandName: "Yves Rocher",
     aliases: [],
@@ -815,7 +835,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zadig-and-voltaire",
     brandName: "Zadig & Voltaire",
     aliases: ["Zadig and Voltaire"],
@@ -826,7 +846,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zales",
     brandName: "Zales",
     aliases: ["Zales Outlet", "Zales The Diamond Store"],
@@ -837,7 +857,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zero",
     brandName: "zero",
     aliases: ["Zero"],
@@ -848,7 +868,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zero-halliburton",
     brandName: "Zero Halliburton",
     aliases: [],
@@ -859,7 +879,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zimmermann",
     brandName: "Zimmermann",
     aliases: [],
@@ -870,7 +890,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ziosongzio",
     brandName: "Ziosongzio",
     aliases: [],
@@ -881,7 +901,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ziozia",
     brandName: "ZIOZIA",
     aliases: ["Ziozia"],
@@ -892,7 +912,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zippy",
     brandName: "Zippy",
     aliases: [],
@@ -903,7 +923,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zoff",
     brandName: "Zoff",
     aliases: [],
@@ -914,7 +934,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zojirushi",
     brandName: "Zojirushi",
     aliases: [],
@@ -925,7 +945,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zooc",
     brandName: "ZOOC",
     aliases: ["Zooc"],
@@ -936,7 +956,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zumiez",
     brandName: "Zumiez",
     aliases: [],
@@ -947,7 +967,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "zwilling-ja-henckels",
     brandName: "Zwilling J.A. Henckels",
     aliases: ["Zwilling", "Zwilling Henckels"],
@@ -957,5 +977,5 @@ export const brandsUZ: Brand[] = [
     luxuryLevel: "premium",
     rankingWeight: 84,
     brandStatus: "active",
-  },
+  }
 ];

@@ -5,19 +5,49 @@ export const italyRestaurants = [
     "restaurantName": "Antica Focacceria San Francesco",
     "category": "Italian • Sicilian",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.barberinooutlet.com/en/store/antica-focacceria/",
     "status": "active",
     "displayOrder": "1"
   },
   {
-    "restaurantId": "barberino-caffe",
+    "restaurantId": "barberino-caffe-mediceo",
     "outletId": "barberino",
-    "restaurantName": "Caffè",
+    "restaurantName": "Caffè Mediceo",
     "category": "Cafe • Coffee",
     "priceLevel": "€",
-    "website": "https://",
+    "website": "https://www.barberinooutlet.com/en/store/caffe-mediceo/",
     "status": "active",
-    "displayOrder": "6"
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "barberino-farinella",
+    "outletId": "barberino",
+    "restaurantName": "Farinella",
+    "category": "Italian • Pizza",
+    "priceLevel": "€€",
+    "website": "https://www.barberinooutlet.com/en/store/farinella/",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "barberino-hamericas",
+    "outletId": "barberino",
+    "restaurantName": "Hamerica's",
+    "category": "Burgers • American",
+    "priceLevel": "€€",
+    "website": "https://www.barberinooutlet.com/en/store/hamericas/",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "barberino-il-torracchione",
+    "outletId": "barberino",
+    "restaurantName": "Il Torracchione",
+    "category": "Italian • Tuscan",
+    "priceLevel": "€€",
+    "website": "https://www.barberinooutlet.com/en/store/il-torracchione/",
+    "status": "active",
+    "displayOrder": "5"
   },
   {
     "restaurantId": "barberino-la-piadineria",
@@ -25,9 +55,9 @@ export const italyRestaurants = [
     "restaurantName": "La Piadineria",
     "category": "Quick Service",
     "priceLevel": "€",
-    "website": "https://",
+    "website": "https://www.barberinooutlet.com/en/store/la-piadineria/",
     "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "6"
   },
   {
     "restaurantId": "barberino-lindt",
@@ -35,19 +65,9 @@ export const italyRestaurants = [
     "restaurantName": "Lindt",
     "category": "Chocolate • Cafe",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.barberinooutlet.com/en/store/lindt/",
     "status": "active",
-    "displayOrder": "3"
-  },
-  {
-    "restaurantId": "barberino-mcdonalds",
-    "outletId": "barberino",
-    "restaurantName": "McDonald's",
-    "category": "Fast Food",
-    "priceLevel": "€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "7"
   },
   {
     "restaurantId": "barberino-poke-house",
@@ -55,9 +75,9 @@ export const italyRestaurants = [
     "restaurantName": "Poke House",
     "category": "Healthy • Bowl",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.barberinooutlet.com/en/store/poke-house/",
     "status": "active",
-    "displayOrder": "4"
+    "displayOrder": "8"
   },
   {
     "restaurantId": "caffe-castel-romano",

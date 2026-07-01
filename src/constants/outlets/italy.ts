@@ -11,7 +11,7 @@ export const italyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "130+ Stores",
+    storesCountText: "128 Stores",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -20,6 +20,8 @@ export const italyOutlets = [
       "Guest Services",
       "Restaurants & Cafes",
       "Shuttle / Transport Info",
+      "Private Transfer",
+      "Camper Parking Area",
       "Wi-Fi",
       "Gift Cards",
       "Accessibility",
@@ -29,25 +31,27 @@ export const italyOutlets = [
     ],
     restaurants: [
       "Antica Focacceria San Francesco",
+      "Caffè Mediceo",
+      "Farinella",
+      "Hamerica's",
+      "Il Torracchione",
       "La Piadineria",
       "Lindt",
-      "Poke House",
-      "McDonald's",
-      "Caffè"
+      "Poke House"
     ],
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "70.01 EUR",
-    taxFreeOperator: "EU customs validation / tax refund operators",
+    taxFreeOperator: "Participating stores / EU customs validation",
     taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
     cityCenterDistanceKm: 30,
-    airportDistanceKm: 30,
+    airportDistanceKm: 20,
     airports: [
       {
         code: "FLR",
         name: "Florence Airport",
-        distanceKm: 30
+        distanceKm: 20
       },
       {
         code: "BLQ",
