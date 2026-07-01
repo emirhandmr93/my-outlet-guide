@@ -308,5 +308,765 @@ export const ukRestaurants = [
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/food-drink/",
     "status": "active",
     "displayOrder": "31"
-  }
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-costa-coffee",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-starbucks",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-wagamama",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-pizza-express",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-costa-coffee",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-starbucks",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-wagamama",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-pizza-express",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "caledonia-park-costa-coffee",
+    "outletId": "caledonia-park",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "caledonia-park-starbucks",
+    "outletId": "caledonia-park",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "caledonia-park-wagamama",
+    "outletId": "caledonia-park",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "caledonia-park-pizza-express",
+    "outletId": "caledonia-park",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "clarks-village-costa-coffee",
+    "outletId": "clarks-village",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "clarks-village-starbucks",
+    "outletId": "clarks-village",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "clarks-village-wagamama",
+    "outletId": "clarks-village",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "clarks-village-pizza-express",
+    "outletId": "clarks-village",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "dalton-park-costa-coffee",
+    "outletId": "dalton-park",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "dalton-park-starbucks",
+    "outletId": "dalton-park",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "dalton-park-wagamama",
+    "outletId": "dalton-park",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "dalton-park-pizza-express",
+    "outletId": "dalton-park",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-costa-coffee",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-starbucks",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-wagamama",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-pizza-express",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "gloucester-quays-costa-coffee",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "gloucester-quays-starbucks",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "gloucester-quays-wagamama",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "gloucester-quays-pizza-express",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "gretna-gateway-outlet-village-costa-coffee",
+    "outletId": "gretna-gateway-outlet-village",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "gretna-gateway-outlet-village-starbucks",
+    "outletId": "gretna-gateway-outlet-village",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "gretna-gateway-outlet-village-wagamama",
+    "outletId": "gretna-gateway-outlet-village",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "gretna-gateway-outlet-village-pizza-express",
+    "outletId": "gretna-gateway-outlet-village",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "gunwharf-quays-costa-coffee",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "gunwharf-quays-starbucks",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "gunwharf-quays-wagamama",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "gunwharf-quays-pizza-express",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-costa-coffee",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-starbucks",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-wagamama",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-pizza-express",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "junction-32-outlet-costa-coffee",
+    "outletId": "junction-32-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "junction-32-outlet-starbucks",
+    "outletId": "junction-32-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "junction-32-outlet-wagamama",
+    "outletId": "junction-32-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "junction-32-outlet-pizza-express",
+    "outletId": "junction-32-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "lakeside-village-costa-coffee",
+    "outletId": "lakeside-village",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "lakeside-village-starbucks",
+    "outletId": "lakeside-village",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "lakeside-village-wagamama",
+    "outletId": "lakeside-village",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "lakeside-village-pizza-express",
+    "outletId": "lakeside-village",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "london-designer-outlet-costa-coffee",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "london-designer-outlet-starbucks",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "london-designer-outlet-wagamama",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "london-designer-outlet-pizza-express",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "springfields-outlet-costa-coffee",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "springfields-outlet-starbucks",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "springfields-outlet-wagamama",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "springfields-outlet-pizza-express",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-costa-coffee",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-starbucks",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-wagamama",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-pizza-express",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-costa-coffee",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-starbucks",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-wagamama",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-pizza-express",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-costa-coffee",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-starbucks",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-wagamama",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-pizza-express",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-costa-coffee",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-starbucks",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-wagamama",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-pizza-express",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "york-designer-outlet-costa-coffee",
+    "outletId": "york-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "york-designer-outlet-starbucks",
+    "outletId": "york-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "york-designer-outlet-wagamama",
+    "outletId": "york-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "york-designer-outlet-pizza-express",
+    "outletId": "york-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "",
+    "status": "active",
+    "displayOrder": "104"
+  },
 ];
