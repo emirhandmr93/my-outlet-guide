@@ -8,7 +8,7 @@ export const netherlandsOutlets = [
     address: "Stadsweide 2, 6041 TD Roermond, Netherlands",
     latitude: 51.1994,
     longitude: 5.9883,
-    openingHours: "10:00 - 20:00",
+    openingHours: "Mon-Fri 10:00 - 20:00; Sat-Sun 09:00 - 21:00",
     heroImage: "",
     galleryImages: [],
     storesCountText: "200+ Stores",

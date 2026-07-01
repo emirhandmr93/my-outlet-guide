@@ -8,7 +8,7 @@ export const austriaOutlets = [
     address: "Designer-Outlet-Straße 1, 7111 Parndorf, Austria",
     latitude: 47.9807,
     longitude: 16.8425,
-    openingHours: "09:00 - 21:00",
+    openingHours: "Mon-Fri 09:00 - 21:00; Sat 09:00 - 18:00; Sun closed",
     heroImage: "",
     galleryImages: [],
     storesCountText: "160+ Stores",
