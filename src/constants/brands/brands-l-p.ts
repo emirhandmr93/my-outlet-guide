@@ -1,7 +1,18 @@
 import type { Brand } from "../../types/brand";
 
 export const brandsLP: Brand[] = [
-{
+  {
+    brandId: "l-artisan-parfumeur",
+    brandName: "L'Artisan Parfumeur",
+    aliases: [],
+    categoryId: "beauty",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "l-occitane",
     brandName: "L'Occitane",
     aliases: ["LOccitane", "L Occitane", "L'Occitane en Provence"],
@@ -10,6 +21,17 @@ export const brandsLP: Brand[] = [
     originCountryId: "france",
     luxuryLevel: "premium",
     rankingWeight: 88,
+    brandStatus: "active",
+  },
+  {
+    brandId: "l-occitane-en-provence",
+    brandName: "L'Occitane en Provence",
+    aliases: [],
+    categoryId: "beauty",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
     brandStatus: "active",
   },
   {
@@ -22,7 +44,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "l-oreal-paris",
     brandName: "L'Oréal Paris",
     aliases: ["LOreal Paris", "L Oreal Paris", "L'Oréal"],
@@ -43,7 +65,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "la-martina",
     brandName: "La Martina",
     aliases: [],
@@ -54,7 +76,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "la-perla",
     brandName: "La Perla",
     aliases: [],
@@ -75,7 +97,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "lacoste",
     brandName: "Lacoste",
     aliases: [],
@@ -86,7 +108,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 90,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "laderach",
+    brandName: "Läderach",
+    aliases: ["Laderach", "Läderach Chocolatier Suisse"],
+    categoryId: "food-chocolate",
+    logo: "",
+    originCountryId: "switzerland",
+    luxuryLevel: "premium",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+  {
     brandId: "laduree",
     brandName: "Ladurée",
     aliases: ["Laduree"],
@@ -97,7 +130,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
     brandId: "lagostina",
     brandName: "Lagostina",
     aliases: [],
@@ -108,7 +141,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "lalique",
     brandName: "Lalique",
     aliases: [],
@@ -119,7 +152,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "lancel",
+    brandName: "Lancel",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "lanvin",
     brandName: "Lanvin",
     aliases: [],
@@ -130,7 +174,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-{
+  {
     brandId: "laura-ashley",
     brandName: "Laura Ashley",
     aliases: [],
@@ -141,7 +185,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "le-coq-sportif",
     brandName: "Le Coq Sportif",
     aliases: [],
@@ -152,7 +196,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "le-creuset",
     brandName: "Le Creuset",
     aliases: [],
@@ -163,7 +207,40 @@ export const brandsLP: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "le-sportsac",
+    brandName: "LeSportsac",
+    aliases: ["Le Sportsac"],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "fashion",
+    rankingWeight: 74,
+    brandStatus: "active",
+  },
+  {
+    brandId: "le-tanneur",
+    brandName: "Le Tanneur",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
+    brandId: "le-temps-des-cerises",
+    brandName: "Le Temps des Cerises",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "lee",
     brandName: "Lee",
     aliases: ["Lee Jeans"],
@@ -172,6 +249,17 @@ export const brandsLP: Brand[] = [
     originCountryId: "united-states",
     luxuryLevel: "lifestyle",
     rankingWeight: 82,
+    brandStatus: "active",
+  },
+  {
+    brandId: "lee-cooper",
+    brandName: "Lee Cooper",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
     brandStatus: "active",
   },
   {
@@ -184,7 +272,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "lego",
     brandName: "LEGO",
     aliases: ["Lego", "The LEGO Store"],
@@ -195,18 +283,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-{
-    brandId: "le-sportsac",
-    brandName: "LeSportsac",
-    aliases: ["Le Sportsac"],
-    categoryId: "shoes-bags",
+  {
+    brandId: "les-georgettes",
+    brandName: "Les Georgettes",
+    aliases: [],
+    categoryId: "jewelry",
     logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "fashion",
-    rankingWeight: 74,
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "levis",
     brandName: "Levi's",
     aliases: ["Levis", "Levi Strauss", "Levi's Outlet"],
@@ -217,7 +305,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 90,
     brandStatus: "active",
   },
-{
+  {
     brandId: "lindt",
     brandName: "Lindt",
     aliases: ["Lindt & Sprüngli", "Lindt and Sprungli"],
@@ -228,7 +316,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "lipault",
+    brandName: "Lipault",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "liu-jo",
     brandName: "Liu Jo",
     aliases: ["Liu.Jo"],
@@ -259,7 +358,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "lladro",
     brandName: "Lladró",
     aliases: ["Lladro"],
@@ -270,7 +369,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "lloyd",
+    brandName: "LLOYD",
+    aliases: ["Lloyd Shoes"],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "germany",
+    luxuryLevel: "premium",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+  {
     brandId: "loewe",
     brandName: "Loewe",
     aliases: [],
@@ -281,7 +391,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 92,
     brandStatus: "active",
   },
-{
+  {
     brandId: "loft",
     brandName: "LOFT",
     aliases: ["Ann Taylor LOFT", "LOFT Outlet"],
@@ -292,7 +402,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "longchamp",
     brandName: "Longchamp",
     aliases: [],
@@ -303,7 +413,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 90,
     brandStatus: "active",
   },
-{
+  {
     brandId: "longines",
     brandName: "Longines",
     aliases: [],
@@ -314,7 +424,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "loreal",
+    brandName: "L'Oréal",
+    aliases: [],
+    categoryId: "beauty",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "loro-piana",
     brandName: "Loro Piana",
     aliases: [],
@@ -325,7 +446,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 94,
     brandStatus: "active",
   },
-{
+  {
     brandId: "lotto",
     brandName: "Lotto",
     aliases: ["Lotto Sport"],
@@ -336,7 +457,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "loungefly",
     brandName: "Loungefly",
     aliases: [],
@@ -357,18 +478,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
-    brandId: "lloyd",
-    brandName: "LLOYD",
-    aliases: ["Lloyd Shoes"],
-    categoryId: "shoes-bags",
-    logo: "",
-    originCountryId: "germany",
-    luxuryLevel: "premium",
-    rankingWeight: 78,
-    brandStatus: "active",
-  },
-{
+  {
     brandId: "lowrys-farm",
     brandName: "LOWRYS FARM",
     aliases: ["Lowrys Farm"],
@@ -379,7 +489,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "lpb-woman",
+    brandName: "LPB Woman",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "lucky-brand",
     brandName: "Lucky Brand",
     aliases: ["Lucky Brand Jeans"],
@@ -411,7 +532,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "lululemon",
     brandName: "lululemon",
     aliases: ["Lululemon Athletica"],
@@ -422,18 +543,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-{
-    brandId: "laderach",
-    brandName: "Läderach",
-    aliases: ["Laderach", "Läderach Chocolatier Suisse"],
-    categoryId: "food-chocolate",
-    logo: "",
-    originCountryId: "switzerland",
-    luxuryLevel: "premium",
-    rankingWeight: 78,
-    brandStatus: "active",
-  },
-{
+  {
     brandId: "mackage",
     brandName: "Mackage",
     aliases: [],
@@ -444,7 +554,29 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "maison-123",
+    brandName: "Maison 123",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
+    brandId: "maison-caffet",
+    brandName: "Maison Caffet",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "maison-margiela",
     brandName: "Maison Margiela",
     aliases: ["Maison Martin Margiela"],
@@ -455,7 +587,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "maison-yellow",
+    brandName: "Maison Yellow",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "maje",
     brandName: "Maje",
     aliases: [],
@@ -466,7 +609,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-{
+  {
     brandId: "majestic-legon",
     brandName: "Majestic Legon",
     aliases: [],
@@ -477,7 +620,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
+  {
     brandId: "malbon-golf",
     brandName: "Malbon Golf",
     aliases: [],
@@ -488,7 +631,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "malo",
     brandName: "Malo",
     aliases: [],
@@ -499,7 +642,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mammut",
     brandName: "Mammut",
     aliases: [],
@@ -510,7 +653,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mandarina-duck",
     brandName: "Mandarina Duck",
     aliases: [],
@@ -521,7 +664,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "manfield",
+    brandName: "Manfield",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "mango",
     brandName: "Mango",
     aliases: ["Mango Outlet"],
@@ -542,7 +696,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "manner",
     brandName: "Manner",
     aliases: ["Josef Manner"],
@@ -553,7 +707,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
     brandId: "manolo-blahnik",
     brandName: "Manolo Blahnik",
     aliases: [],
@@ -564,7 +718,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-{
+  {
     brandId: "marc-cain",
     brandName: "Marc Cain",
     aliases: [],
@@ -575,7 +729,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "marc-jacobs",
     brandName: "Marc Jacobs",
     aliases: [],
@@ -586,7 +740,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-{
+  {
     brandId: "marc-o-polo",
     brandName: "Marc O'Polo",
     aliases: ["Marc OPolo", "Marc O Polo"],
@@ -597,7 +751,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mardi-mercredi",
     brandName: "Mardi Mercredi",
     aliases: [],
@@ -608,7 +762,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "marimekko",
     brandName: "Marimekko",
     aliases: [],
@@ -629,7 +783,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "marina-rinaldi",
     brandName: "Marina Rinaldi",
     aliases: [],
@@ -640,7 +794,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-{
+  {
     brandId: "marine-layer",
     brandName: "Marine Layer",
     aliases: [],
@@ -651,7 +805,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "marithe-francois-girbaud",
     brandName: "Marithé François Girbaud",
     aliases: ["Marithe Francois Girbaud"],
@@ -662,7 +816,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mark-and-lona",
     brandName: "MARK & LONA",
     aliases: ["Mark and Lona", "Mark & Lona"],
@@ -673,7 +827,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "marks-and-spencer",
     brandName: "Marks & Spencer",
     aliases: ["Marks and Spencer", "M&S"],
@@ -684,7 +838,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "marni",
     brandName: "Marni",
     aliases: [],
@@ -695,7 +849,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-{
+  {
     brandId: "master-bunny-edition",
     brandName: "Master Bunny Edition",
     aliases: ["Master Bunny"],
@@ -706,18 +860,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
-    brandId: "max-mara",
-    brandName: "Max Mara",
-    aliases: [],
-    categoryId: "luxury",
-    logo: "",
-    originCountryId: "italy",
-    luxuryLevel: "luxury",
-    rankingWeight: 88,
-    brandStatus: "active",
-  },
-{
+  {
     brandId: "max-and-co",
     brandName: "MAX&Co.",
     aliases: ["MAX and Co", "Max&Co"],
@@ -728,7 +871,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "max-mara",
+    brandName: "Max Mara",
+    aliases: [],
+    categoryId: "luxury",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "luxury",
+    rankingWeight: 88,
+    brandStatus: "active",
+  },
+  {
     brandId: "mcm",
     brandName: "MCM",
     aliases: [],
@@ -739,7 +893,29 @@ export const brandsLP: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "mcqueen",
+    brandName: "McQueen",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "luxury",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
+    brandId: "mephisto",
+    brandName: "Mephisto",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "merrell",
     brandName: "Merrell",
     aliases: [],
@@ -750,7 +926,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "michael-kors",
     brandName: "Michael Kors",
     aliases: ["Michael Kors Outlet"],
@@ -761,7 +937,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 92,
     brandStatus: "active",
   },
-{
+  {
     brandId: "miki-house",
     brandName: "Miki House",
     aliases: ["MIKI HOUSE"],
@@ -772,7 +948,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mila-owen",
     brandName: "Mila Owen",
     aliases: [],
@@ -783,7 +959,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "millet",
     brandName: "Millet",
     aliases: [],
@@ -794,7 +970,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mind-bridge",
     brandName: "Mind Bridge",
     aliases: [],
@@ -805,7 +981,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "miss-sixty",
     brandName: "Miss Sixty",
     aliases: [],
@@ -816,7 +992,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "missoni",
     brandName: "Missoni",
     aliases: [],
@@ -827,7 +1003,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mitsumine",
     brandName: "Mitsumine",
     aliases: [],
@@ -838,7 +1014,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
+  {
     brandId: "miu-miu",
     brandName: "Miu Miu",
     aliases: [],
@@ -849,7 +1025,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 92,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mizuno",
     brandName: "Mizuno",
     aliases: [],
@@ -860,7 +1036,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mlb-korea",
     brandName: "MLB Korea",
     aliases: ["MLB"],
@@ -871,7 +1047,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "molton-brown",
     brandName: "Molton Brown",
     aliases: [],
@@ -882,7 +1058,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-{
+  {
     brandId: "moncler",
     brandName: "Moncler",
     aliases: [],
@@ -893,7 +1069,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 94,
     brandStatus: "active",
   },
-{
+  {
     brandId: "moncler-grenoble",
     brandName: "Moncler Grenoble",
     aliases: [],
@@ -904,7 +1080,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-{
+  {
     brandId: "monica-vinader",
     brandName: "Monica Vinader",
     aliases: [],
@@ -915,7 +1091,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-{
+  {
     brandId: "monnalisa",
     brandName: "Monnalisa",
     aliases: [],
@@ -926,7 +1102,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "montblanc",
     brandName: "Montblanc",
     aliases: [],
@@ -947,7 +1123,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "moorer",
     brandName: "Moorer",
     aliases: [],
@@ -958,7 +1134,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "moose-knuckles",
     brandName: "Moose Knuckles",
     aliases: [],
@@ -969,7 +1145,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "moschino",
     brandName: "Moschino",
     aliases: [],
@@ -980,7 +1156,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mothercare",
     brandName: "Mothercare",
     aliases: [],
@@ -1001,7 +1177,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mountain-warehouse",
     brandName: "Mountain Warehouse",
     aliases: [],
@@ -1012,7 +1188,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "moussy",
     brandName: "MOUSSY",
     aliases: ["Moussy"],
@@ -1023,7 +1199,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "movado",
     brandName: "Movado",
     aliases: [],
@@ -1034,7 +1210,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mulberry",
     brandName: "Mulberry",
     aliases: [],
@@ -1045,7 +1221,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-{
+  {
     brandId: "munsingwear",
     brandName: "Munsingwear",
     aliases: [],
@@ -1056,7 +1232,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
+  {
     brandId: "murua",
     brandName: "MURUA",
     aliases: ["Murua"],
@@ -1067,7 +1243,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
+  {
     brandId: "musinsa-standard",
     brandName: "Musinsa Standard",
     aliases: [],
@@ -1078,7 +1254,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
     brandId: "mustang",
     brandName: "Mustang",
     aliases: ["Mustang Jeans"],
@@ -1089,7 +1265,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "my-kare",
+    brandName: "MY-KARE",
+    aliases: [],
+    categoryId: "beauty",
+    logo: "",
+    originCountryId: "south-korea",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "n-natural-beauty-basic",
     brandName: "N. Natural Beauty Basic",
     aliases: ["Natural Beauty Basic"],
@@ -1100,7 +1287,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "n-peal",
     brandName: "N.Peal",
     aliases: ["N Peal"],
@@ -1111,249 +1298,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
-    brandId: "name-it",
-    brandName: "Name It",
-    aliases: ["NAME IT"],
-    categoryId: "kids",
-    logo: "",
-    originCountryId: "denmark",
-    luxuryLevel: "fashion",
-    rankingWeight: 74,
-    brandStatus: "active",
-  },
-{
-    brandId: "nano-universe",
-    brandName: "Nano Universe",
-    aliases: ["nano・universe", "nano universe"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "japan",
-    luxuryLevel: "premium",
-    rankingWeight: 76,
-    brandStatus: "active",
-  },
-{
-    brandId: "napapijri",
-    brandName: "Napapijri",
-    aliases: [],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "italy",
-    luxuryLevel: "premium",
-    rankingWeight: 82,
-    brandStatus: "active",
-  },
-{
-    brandId: "national-geographic-apparel",
-    brandName: "National Geographic Apparel",
-    aliases: ["National Geographic"],
-    categoryId: "sportswear",
-    logo: "",
-    originCountryId: "south-korea",
-    luxuryLevel: "premium",
-    rankingWeight: 74,
-    brandStatus: "active",
-  },
-{
-    brandId: "nautica",
-    brandName: "Nautica",
-    aliases: ["Nautica Factory Store"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "lifestyle",
-    rankingWeight: 82,
-    brandStatus: "active",
-  },
-{
-    brandId: "nba-style",
-    brandName: "NBA Style",
-    aliases: ["NBA"],
-    categoryId: "sportswear",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "lifestyle",
-    rankingWeight: 72,
-    brandStatus: "active",
-  },
-{
-    brandId: "neom",
-    brandName: "NEOM",
-    aliases: ["Neom Organics"],
-    categoryId: "beauty",
-    logo: "",
-    originCountryId: "united-kingdom",
-    luxuryLevel: "premium",
-    rankingWeight: 76,
-    brandStatus: "active",
-  },
-{
-    brandId: "nepa",
-    brandName: "NEPA",
-    aliases: ["Nepa"],
-    categoryId: "sportswear",
-    logo: "",
-    originCountryId: "south-korea",
-    luxuryLevel: "sports",
-    rankingWeight: 76,
-    brandStatus: "active",
-  },
-{
-    brandId: "nepa-kids",
-    brandName: "NEPA Kids",
-    aliases: ["Nepa Kids"],
-    categoryId: "kids",
-    logo: "",
-    originCountryId: "south-korea",
-    luxuryLevel: "sports",
-    rankingWeight: 68,
-    brandStatus: "active",
-  },
-{
-    brandId: "new-balance",
-    brandName: "New Balance",
-    aliases: ["New Balance Factory Store"],
-    categoryId: "sportswear",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "sports",
-    rankingWeight: 92,
-    brandStatus: "active",
-  },
-{
-    brandId: "new-era",
-    brandName: "New Era",
-    aliases: ["New Era Cap"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "lifestyle",
-    rankingWeight: 76,
-    brandStatus: "active",
-  },
-{
-    brandId: "next",
-    brandName: "Next",
-    aliases: [],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "united-kingdom",
-    luxuryLevel: "lifestyle",
-    rankingWeight: 80,
-    brandStatus: "active",
-  },
-{
-    brandId: "nice-claup",
-    brandName: "NICE CLAUP",
-    aliases: ["Nice Claup"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "japan",
-    luxuryLevel: "fashion",
-    rankingWeight: 68,
-    brandStatus: "active",
-  },
-{
-    brandId: "nike",
-    brandName: "Nike",
-    aliases: ["Nike Factory Store", "Nike Unite", "Nike Outlet"],
-    categoryId: "sportswear",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "sports",
-    rankingWeight: 98,
-    brandStatus: "active",
-  },
-{
-    brandId: "nike-golf",
-    brandName: "Nike Golf",
-    aliases: [],
-    categoryId: "sportswear",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "sports",
-    rankingWeight: 82,
-    brandStatus: "active",
-  },
-{
-    brandId: "nine-west",
-    brandName: "Nine West",
-    aliases: [],
-    categoryId: "shoes-bags",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "fashion",
-    rankingWeight: 80,
-    brandStatus: "active",
-  },
-{
-    brandId: "nobis",
-    brandName: "Nobis",
-    aliases: [],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "canada",
-    luxuryLevel: "premium",
-    rankingWeight: 78,
-    brandStatus: "active",
-  },
-{
-    brandId: "nolley-s",
-    brandName: "NOLLEY'S",
-    aliases: ["Nolley's", "Nolleys"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "japan",
-    luxuryLevel: "premium",
-    rankingWeight: 70,
-    brandStatus: "active",
-  },
-{
-    brandId: "nordisk",
-    brandName: "Nordisk",
-    aliases: [],
-    categoryId: "sportswear",
-    logo: "",
-    originCountryId: "denmark",
-    luxuryLevel: "premium",
-    rankingWeight: 72,
-    brandStatus: "active",
-  },
-{
-    brandId: "noritake",
-    brandName: "Noritake",
-    aliases: [],
-    categoryId: "home-lifestyle",
-    logo: "",
-    originCountryId: "japan",
-    luxuryLevel: "premium",
-    rankingWeight: 74,
-    brandStatus: "active",
-  },
-{
-    brandId: "north-sails",
-    brandName: "North Sails",
-    aliases: [],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "premium",
-    rankingWeight: 78,
-    brandStatus: "active",
-  },
-{
-    brandId: "nudie-jeans",
-    brandName: "Nudie Jeans",
-    aliases: [],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "sweden",
-    luxuryLevel: "premium",
-    rankingWeight: 74,
-    brandStatus: "active",
-  },
-{
+  {
     brandId: "n21",
     brandName: "N°21",
     aliases: ["N21", "Numero Ventuno"],
@@ -1364,7 +1309,282 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "name-it",
+    brandName: "Name It",
+    aliases: ["NAME IT"],
+    categoryId: "kids",
+    logo: "",
+    originCountryId: "denmark",
+    luxuryLevel: "fashion",
+    rankingWeight: 74,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nano-universe",
+    brandName: "Nano Universe",
+    aliases: ["nano・universe", "nano universe"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "japan",
+    luxuryLevel: "premium",
+    rankingWeight: 76,
+    brandStatus: "active",
+  },
+  {
+    brandId: "napapijri",
+    brandName: "Napapijri",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "premium",
+    rankingWeight: 82,
+    brandStatus: "active",
+  },
+  {
+    brandId: "narciso-rodriguez",
+    brandName: "Narciso Rodriguez",
+    aliases: [],
+    categoryId: "beauty",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nars",
+    brandName: "NARS",
+    aliases: [],
+    categoryId: "beauty",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
+    brandId: "national-geographic-apparel",
+    brandName: "National Geographic Apparel",
+    aliases: ["National Geographic"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "south-korea",
+    luxuryLevel: "premium",
+    rankingWeight: 74,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nautica",
+    brandName: "Nautica",
+    aliases: ["Nautica Factory Store"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 82,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nba-style",
+    brandName: "NBA Style",
+    aliases: ["NBA"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 72,
+    brandStatus: "active",
+  },
+  {
+    brandId: "neom",
+    brandName: "NEOM",
+    aliases: ["Neom Organics"],
+    categoryId: "beauty",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "premium",
+    rankingWeight: 76,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nepa",
+    brandName: "NEPA",
+    aliases: ["Nepa"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "south-korea",
+    luxuryLevel: "sports",
+    rankingWeight: 76,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nepa-kids",
+    brandName: "NEPA Kids",
+    aliases: ["Nepa Kids"],
+    categoryId: "kids",
+    logo: "",
+    originCountryId: "south-korea",
+    luxuryLevel: "sports",
+    rankingWeight: 68,
+    brandStatus: "active",
+  },
+  {
+    brandId: "new-balance",
+    brandName: "New Balance",
+    aliases: ["New Balance Factory Store"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "sports",
+    rankingWeight: 92,
+    brandStatus: "active",
+  },
+  {
+    brandId: "new-era",
+    brandName: "New Era",
+    aliases: ["New Era Cap"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 76,
+    brandStatus: "active",
+  },
+  {
+    brandId: "next",
+    brandName: "Next",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 80,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nice-claup",
+    brandName: "NICE CLAUP",
+    aliases: ["Nice Claup"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "japan",
+    luxuryLevel: "fashion",
+    rankingWeight: 68,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nike",
+    brandName: "Nike",
+    aliases: ["Nike Factory Store", "Nike Unite", "Nike Outlet"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "sports",
+    rankingWeight: 98,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nike-golf",
+    brandName: "Nike Golf",
+    aliases: [],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "sports",
+    rankingWeight: 82,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nine-west",
+    brandName: "Nine West",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "fashion",
+    rankingWeight: 80,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nobis",
+    brandName: "Nobis",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "canada",
+    luxuryLevel: "premium",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nolley-s",
+    brandName: "NOLLEY'S",
+    aliases: ["Nolley's", "Nolleys"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "japan",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nordisk",
+    brandName: "Nordisk",
+    aliases: [],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "denmark",
+    luxuryLevel: "premium",
+    rankingWeight: 72,
+    brandStatus: "active",
+  },
+  {
+    brandId: "noritake",
+    brandName: "Noritake",
+    aliases: [],
+    categoryId: "home-lifestyle",
+    logo: "",
+    originCountryId: "japan",
+    luxuryLevel: "premium",
+    rankingWeight: 74,
+    brandStatus: "active",
+  },
+  {
+    brandId: "north-sails",
+    brandName: "North Sails",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "premium",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+  {
+    brandId: "not-shy",
+    brandName: "Not Shy",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nudie-jeans",
+    brandName: "Nudie Jeans",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "sweden",
+    luxuryLevel: "premium",
+    rankingWeight: 74,
+    brandStatus: "active",
+  },
+  {
     brandId: "o-bag",
     brandName: "O bag",
     aliases: ["O Bag"],
@@ -1375,18 +1595,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
-    brandId: "oneill",
-    brandName: "O'Neill",
-    aliases: ["ONeill", "O Neill"],
-    categoryId: "sportswear",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "sports",
-    rankingWeight: 78,
-    brandStatus: "active",
-  },
-{
+  {
     brandId: "oak-and-fort",
     brandName: "Oak + Fort",
     aliases: ["Oak and Fort"],
@@ -1397,7 +1606,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
     brandId: "oakley",
     brandName: "Oakley",
     aliases: [],
@@ -1408,7 +1617,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-{
+  {
     brandId: "odlo",
     brandName: "Odlo",
     aliases: [],
@@ -1419,7 +1628,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "off-broadway-shoe-warehouse",
     brandName: "Off Broadway Shoe Warehouse",
     aliases: [],
@@ -1430,7 +1639,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "off-white",
     brandName: "Off-White",
     aliases: ["Off White"],
@@ -1441,7 +1650,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 90,
     brandStatus: "active",
   },
-{
+  {
     brandId: "old-navy",
     brandName: "Old Navy",
     aliases: ["Old Navy Outlet"],
@@ -1452,7 +1661,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "olive-des-olive",
     brandName: "Olive des Olive",
     aliases: [],
@@ -1463,7 +1672,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "on",
+    brandName: "On",
+    aliases: [],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "switzerland",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "on-running",
     brandName: "On",
     aliases: ["On Running"],
@@ -1474,7 +1694,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "oneill",
+    brandName: "O'Neill",
+    aliases: ["ONeill", "O Neill"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "sports",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+  {
     brandId: "onitsuka-tiger",
     brandName: "Onitsuka Tiger",
     aliases: [],
@@ -1495,7 +1726,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "only-and-sons",
     brandName: "Only & Sons",
     aliases: ["Only&Sons"],
@@ -1506,7 +1737,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "original-penguin",
     brandName: "Original Penguin",
     aliases: ["Penguin"],
@@ -1517,7 +1748,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "orlebar-brown",
     brandName: "Orlebar Brown",
     aliases: [],
@@ -1528,7 +1759,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "oroton",
     brandName: "Oroton",
     aliases: [],
@@ -1539,7 +1770,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "osprey-london",
     brandName: "OSPREY LONDON",
     aliases: ["Osprey London"],
@@ -1550,7 +1781,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
     brandId: "otterbox",
     brandName: "OtterBox",
     aliases: [],
@@ -1561,7 +1792,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "ottolenghi",
     brandName: "Ottolenghi",
     aliases: [],
@@ -1572,7 +1803,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "outdoor-products",
     brandName: "Outdoor Products",
     aliases: [],
@@ -1593,7 +1824,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "oxbow",
+    brandName: "Oxbow",
+    aliases: [],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "oysho",
     brandName: "Oysho",
     aliases: [],
@@ -1604,7 +1846,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "p-s-paul-smith",
+    brandName: "PS Paul Smith",
+    aliases: ["P.S. Paul Smith"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "premium",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+  {
     brandId: "pacific-sunwear",
     brandName: "PacSun",
     aliases: ["Pacific Sunwear"],
@@ -1615,7 +1868,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pageboy",
     brandName: "PAGEBOY",
     aliases: ["Pageboy"],
@@ -1626,7 +1879,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
+  {
     brandId: "paige",
     brandName: "PAIGE",
     aliases: ["Paige"],
@@ -1637,7 +1890,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "palais-des-thes",
+    brandName: "Palais des Thés",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "pandora",
     brandName: "Pandora",
     aliases: [],
@@ -1658,7 +1922,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "parfois",
     brandName: "Parfois",
     aliases: [],
@@ -1669,7 +1933,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "patagonia",
     brandName: "Patagonia",
     aliases: [],
@@ -1690,7 +1954,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "paul-and-shark",
     brandName: "Paul & Shark",
     aliases: ["Paul and Shark"],
@@ -1701,7 +1965,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "paul-costelloe",
     brandName: "Paul Costelloe",
     aliases: [],
@@ -1712,7 +1976,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
     brandId: "paul-smith",
     brandName: "Paul Smith",
     aliases: [],
@@ -1723,7 +1987,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-{
+  {
     brandId: "peach-john",
     brandName: "Peach John",
     aliases: [],
@@ -1734,7 +1998,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pearly-gates",
     brandName: "Pearly Gates",
     aliases: [],
@@ -1745,7 +2009,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "penhaligons",
     brandName: "Penhaligon's",
     aliases: ["Penhaligons"],
@@ -1756,7 +2020,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pepe-jeans",
     brandName: "Pepe Jeans",
     aliases: [],
@@ -1767,7 +2031,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-{
+  {
     brandId: "perfect-suit-factory",
     brandName: "Perfect Suit Factory",
     aliases: ["P.S.FA", "PSFA"],
@@ -1778,7 +2042,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
+  {
     brandId: "perfumania",
     brandName: "Perfumania",
     aliases: [],
@@ -1789,7 +2053,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
     brandId: "perry-ellis",
     brandName: "Perry Ellis",
     aliases: [],
@@ -1800,7 +2064,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "peserico",
     brandName: "Peserico",
     aliases: [],
@@ -1811,7 +2075,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "peter-thomas-roth",
     brandName: "Peter Thomas Roth",
     aliases: [],
@@ -1822,7 +2086,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "petit-bateau",
     brandName: "Petit Bateau",
     aliases: [],
@@ -1833,7 +2097,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "petrol-industries",
     brandName: "Petrol Industries",
     aliases: [],
@@ -1844,7 +2108,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
+  {
     brandId: "peuterey",
     brandName: "Peuterey",
     aliases: [],
@@ -1855,7 +2119,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-{
+  {
     brandId: "philipp-plein",
     brandName: "Philipp Plein",
     aliases: [],
@@ -1866,7 +2130,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pierre-cardin",
     brandName: "Pierre Cardin",
     aliases: [],
@@ -1887,7 +2151,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pink-victorias-secret",
     brandName: "PINK",
     aliases: ["Victoria’s Secret PINK", "Victoria Secret PINK"],
@@ -1898,7 +2162,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pinko",
     brandName: "Pinko",
     aliases: [],
@@ -1919,7 +2183,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "playmobil",
     brandName: "Playmobil",
     aliases: [],
@@ -1930,7 +2194,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-{
+  {
     brandId: "plaza",
     brandName: "PLAZA",
     aliases: ["Plaza"],
@@ -1941,7 +2205,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pleats-mama",
     brandName: "Pleats Mama",
     aliases: [],
@@ -1962,7 +2226,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "polham",
     brandName: "POLHAM",
     aliases: ["Polham"],
@@ -1973,7 +2237,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
     brandId: "police",
     brandName: "Police",
     aliases: [],
@@ -1984,7 +2248,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pollini",
     brandName: "Pollini",
     aliases: [],
@@ -1995,7 +2259,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-{
+  {
     brandId: "polo-ralph-lauren",
     brandName: "Polo Ralph Lauren",
     aliases: ["Polo Ralph Lauren Factory Store", "Ralph Lauren"],
@@ -2006,7 +2270,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 92,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pomellato",
     brandName: "Pomellato",
     aliases: [],
@@ -2017,7 +2281,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pop-mart",
     brandName: "Pop Mart",
     aliases: ["POP MART"],
@@ -2028,7 +2292,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
     brandId: "porsche-design",
     brandName: "Porsche Design",
     aliases: [],
@@ -2039,7 +2303,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pottery-barn-outlet",
     brandName: "Pottery Barn Outlet",
     aliases: ["Pottery Barn"],
@@ -2050,7 +2314,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "prada",
     brandName: "Prada",
     aliases: [],
@@ -2061,7 +2325,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 98,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pretty-ballerinas",
     brandName: "Pretty Ballerinas",
     aliases: [],
@@ -2072,7 +2336,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "printemps",
+    brandName: "Printemps",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "pro-image-sports",
     brandName: "Pro Image Sports",
     aliases: [],
@@ -2083,7 +2358,18 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-{
+  {
+    brandId: "project-x-paris",
+    brandName: "Project X Paris",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "prospecs",
     brandName: "Prospecs",
     aliases: [],
@@ -2094,18 +2380,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-{
-    brandId: "p-s-paul-smith",
-    brandName: "PS Paul Smith",
-    aliases: ["P.S. Paul Smith"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "united-kingdom",
-    luxuryLevel: "premium",
-    rankingWeight: 78,
-    brandStatus: "active",
-  },
-{
+  {
     brandId: "psycho-bunny",
     brandName: "Psycho Bunny",
     aliases: [],
@@ -2116,7 +2391,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-{
+  {
     brandId: "puma",
     brandName: "PUMA",
     aliases: ["Puma", "PUMA Outlet"],
@@ -2125,6 +2400,17 @@ export const brandsLP: Brand[] = [
     originCountryId: "germany",
     luxuryLevel: "sports",
     rankingWeight: 92,
+    brandStatus: "active",
+  },
+  {
+    brandId: "pupa",
+    brandName: "Pupa",
+    aliases: [],
+    categoryId: "beauty",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
     brandStatus: "active",
   },
   {
@@ -2137,7 +2423,7 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-{
+  {
     brandId: "pushbutton",
     brandName: "Pushbutton",
     aliases: [],
@@ -2147,5 +2433,5 @@ export const brandsLP: Brand[] = [
     luxuryLevel: "premium",
     rankingWeight: 72,
     brandStatus: "active",
-  }
+  },
 ];
