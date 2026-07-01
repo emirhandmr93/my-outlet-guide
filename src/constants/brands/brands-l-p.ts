@@ -508,6 +508,17 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "marni",
+    brandName: "Marni",
+    aliases: [],
+    categoryId: "luxury",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "luxury",
+    rankingWeight: 84,
+    brandStatus: "active",
+  },
+  {
     brandId: "marina-rinaldi",
     brandName: "Marina Rinaldi",
     aliases: [],
