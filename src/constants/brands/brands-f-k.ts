@@ -1,7 +1,7 @@
 import type { Brand } from "../../types/brand";
 
 export const brandsFK: Brand[] = [
-  {
+{
     brandId: "fabiana-filippi",
     brandName: "Fabiana Filippi",
     aliases: [],
@@ -12,7 +12,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "fabletics",
     brandName: "Fabletics",
     aliases: [],
@@ -24,17 +24,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
-    brandId: "faconnable",
-    brandName: "Façonnable",
-    aliases: ["Faconnable"],
+    brandId: "facis",
+    brandName: "Facis",
+    aliases: [],
     categoryId: "fashion",
     logo: "",
-    originCountryId: "france",
-    luxuryLevel: "premium",
-    rankingWeight: 78,
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
     brandStatus: "active",
   },
-  {
+{
     brandId: "falke",
     brandName: "FALKE",
     aliases: ["Falke"],
@@ -45,7 +44,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "famous-footwear",
     brandName: "Famous Footwear",
     aliases: ["Famous Footwear Outlet"],
@@ -57,6 +56,27 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "farinella",
+    brandName: "Farinella",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
+    brandId: "faconnable",
+    brandName: "Façonnable",
+    aliases: ["Faconnable"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+{
     brandId: "fendi",
     brandName: "Fendi",
     aliases: [],
@@ -67,7 +87,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 96,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ferragamo",
     brandName: "Ferragamo",
     aliases: ["Salvatore Ferragamo"],
@@ -78,7 +98,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 94,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ferrari",
     brandName: "Ferrari",
     aliases: ["Ferrari Store"],
@@ -89,7 +109,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "fila",
     brandName: "FILA",
     aliases: ["Fila"],
@@ -100,7 +120,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "find-kapoor",
     brandName: "Find Kapoor",
     aliases: ["FIND KAPOOR"],
@@ -111,7 +131,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "fissler",
     brandName: "Fissler",
     aliases: [],
@@ -122,7 +142,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "fjallraven",
     brandName: "Fjällräven",
     aliases: ["Fjallraven"],
@@ -134,6 +154,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "flavio-castellani",
+    brandName: "Flavio Castellani",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "flik-flak",
     brandName: "Flik Flak",
     aliases: [],
@@ -144,7 +174,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 66,
     brandStatus: "active",
   },
-  {
+{
     brandId: "folli-follie",
     brandName: "Folli Follie",
     aliases: [],
@@ -155,7 +185,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 66,
     brandStatus: "active",
   },
-  {
+{
     brandId: "foot-locker",
     brandName: "Foot Locker",
     aliases: [],
@@ -166,7 +196,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "forever-21",
     brandName: "Forever 21",
     aliases: [],
@@ -177,7 +207,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "fortnum-and-mason",
     brandName: "Fortnum & Mason",
     aliases: ["Fortnum and Mason"],
@@ -188,7 +218,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "fossil",
     brandName: "Fossil",
     aliases: [],
@@ -199,7 +229,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "francescas",
     brandName: "Francesca’s",
     aliases: ["Francesca's", "francesca’s"],
@@ -210,7 +240,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "francfranc",
     brandName: "Francfranc",
     aliases: [],
@@ -221,7 +251,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "fratelli-rossetti",
     brandName: "Fratelli Rossetti",
     aliases: [],
@@ -232,7 +262,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "freaks-store",
     brandName: "FREAK'S STORE",
     aliases: ["Freak's Store"],
@@ -244,6 +274,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "fred-mello",
+    brandName: "Fred Mello",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "fred-perry",
     brandName: "Fred Perry",
     aliases: [],
@@ -254,18 +294,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
-    brandId: "frederique-constant",
-    brandName: "Frédérique Constant",
-    aliases: ["Frederique Constant"],
-    categoryId: "jewelry-watches",
-    logo: "",
-    originCountryId: "switzerland",
-    luxuryLevel: "luxury",
-    rankingWeight: 78,
-    brandStatus: "active",
-  },
-  {
+{
     brandId: "free-people",
     brandName: "Free People",
     aliases: [],
@@ -276,7 +305,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "frette",
     brandName: "Frette",
     aliases: [],
@@ -287,7 +316,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "frey-wille",
     brandName: "Frey Wille",
     aliases: ["FREYWILLE"],
@@ -298,7 +327,18 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
+    brandId: "frederique-constant",
+    brandName: "Frédérique Constant",
+    aliases: ["Frederique Constant"],
+    categoryId: "jewelry-watches",
+    logo: "",
+    originCountryId: "switzerland",
+    luxuryLevel: "luxury",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+{
     brandId: "fukuske",
     brandName: "Fukuske",
     aliases: ["Fukuske Outlet"],
@@ -309,7 +349,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 66,
     brandStatus: "active",
   },
-  {
+{
     brandId: "furla",
     brandName: "Furla",
     aliases: [],
@@ -320,18 +360,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-  {
-    brandId: "g-h-bass",
-    brandName: "G.H. Bass",
-    aliases: ["GH Bass", "Bass"],
-    categoryId: "shoes-bags",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "lifestyle",
-    rankingWeight: 74,
-    brandStatus: "active",
-  },
-  {
+{
     brandId: "g-star-raw",
     brandName: "G-Star RAW",
     aliases: ["G-Star", "G Star Raw"],
@@ -342,7 +371,18 @@ export const brandsFK: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
+    brandId: "g-h-bass",
+    brandName: "G.H. Bass",
+    aliases: ["GH Bass", "Bass"],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 74,
+    brandStatus: "active",
+  },
+{
     brandId: "gallo",
     brandName: "Gallo",
     aliases: [],
@@ -353,7 +393,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ganni",
     brandName: "Ganni",
     aliases: [],
@@ -364,7 +404,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gant",
     brandName: "GANT",
     aliases: ["Gant"],
@@ -375,7 +415,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gap",
     brandName: "Gap",
     aliases: ["Gap Factory", "Gap Outlet"],
@@ -386,7 +426,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "garage",
     brandName: "Garage",
     aliases: [],
@@ -397,7 +437,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gas",
     brandName: "Gas",
     aliases: ["GAS Jeans"],
@@ -409,6 +449,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "gaudi",
+    brandName: "Gaudì",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "gazzarrini",
     brandName: "Gazzarrini",
     aliases: [],
@@ -419,7 +469,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gelato-pique",
     brandName: "gelato pique",
     aliases: ["Gelato Pique"],
@@ -430,7 +480,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "genten",
     brandName: "genten",
     aliases: ["Genten"],
@@ -441,7 +491,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gentle-monster",
     brandName: "Gentle Monster",
     aliases: [],
@@ -452,7 +502,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "geox",
     brandName: "Geox",
     aliases: [],
@@ -463,18 +513,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
-    brandId: "gerard-darel",
-    brandName: "Gérard Darel",
-    aliases: ["Gerard Darel"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "france",
-    luxuryLevel: "premium",
-    rankingWeight: 76,
-    brandStatus: "active",
-  },
-  {
+{
     brandId: "gerry-st-weber",
     brandName: "Gerry St. Weber",
     aliases: ["Gerry Weber"],
@@ -485,7 +524,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gianvito-rossi",
     brandName: "Gianvito Rossi",
     aliases: [],
@@ -496,7 +535,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "giesswein",
     brandName: "Giesswein",
     aliases: [],
@@ -507,7 +546,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gina",
     brandName: "Gina",
     aliases: ["Gina Shoes"],
@@ -518,7 +557,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "giordano",
     brandName: "Giordano",
     aliases: [],
@@ -530,6 +569,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "giunti-al-punto-librerie",
+    brandName: "Giunti al Punto Librerie",
+    aliases: [],
+    categoryId: "books-toys",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "giuseppe-zanotti",
     brandName: "Giuseppe Zanotti",
     aliases: [],
@@ -540,7 +589,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "givenchy",
     brandName: "Givenchy",
     aliases: [],
@@ -551,7 +600,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 94,
     brandStatus: "active",
   },
-  {
+{
     brandId: "global-work",
     brandName: "Global Work",
     aliases: ["GLOBAL WORK"],
@@ -562,7 +611,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gnc",
     brandName: "GNC",
     aliases: ["General Nutrition Centers"],
@@ -573,7 +622,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gobik",
     brandName: "Gobik",
     aliases: [],
@@ -584,7 +633,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 66,
     brandStatus: "active",
   },
-  {
+{
     brandId: "godiva",
     brandName: "Godiva",
     aliases: [],
@@ -595,7 +644,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "golden-bear",
     brandName: "Golden Bear",
     aliases: [],
@@ -606,7 +655,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "golden-goose",
     brandName: "Golden Goose",
     aliases: [],
@@ -617,7 +666,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "goldenpoint",
     brandName: "Goldenpoint",
     aliases: [],
@@ -628,7 +677,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "goldwin",
     brandName: "Goldwin",
     aliases: [],
@@ -639,7 +688,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "golf-5",
     brandName: "Golf 5",
     aliases: ["Golf5"],
@@ -650,7 +699,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "golf-apparel",
     brandName: "Golf Apparel",
     aliases: [],
@@ -661,7 +710,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 64,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gong-cha",
     brandName: "Gong Cha",
     aliases: [],
@@ -672,7 +721,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 66,
     brandStatus: "active",
   },
-  {
+{
     brandId: "graniph",
     brandName: "Graniph",
     aliases: ["Design Tshirts Store Graniph"],
@@ -683,7 +732,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "green-parks",
     brandName: "Green Parks",
     aliases: [],
@@ -694,7 +743,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gucci",
     brandName: "Gucci",
     aliases: [],
@@ -705,7 +754,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 98,
     brandStatus: "active",
   },
-  {
+{
     brandId: "guerlain",
     brandName: "Guerlain",
     aliases: [],
@@ -716,7 +765,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-  {
+{
     brandId: "guess",
     brandName: "GUESS",
     aliases: ["Guess", "GUESS Factory"],
@@ -728,6 +777,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "guess-accessories",
+    brandName: "Guess Accessories",
+    aliases: [],
+    categoryId: "accessories",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "gutteridge",
     brandName: "Gutteridge",
     aliases: [],
@@ -738,7 +797,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "gymshark",
     brandName: "Gymshark",
     aliases: [],
@@ -749,18 +808,18 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
-    brandId: "haagen-dazs",
-    brandName: "Häagen-Dazs",
-    aliases: ["Haagen-Dazs"],
-    categoryId: "food-chocolate",
+{
+    brandId: "gerard-darel",
+    brandName: "Gérard Darel",
+    aliases: ["Gerard Darel"],
+    categoryId: "fashion",
     logo: "",
-    originCountryId: "united-states",
+    originCountryId: "france",
     luxuryLevel: "premium",
-    rankingWeight: 74,
+    rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hackett",
     brandName: "Hackett",
     aliases: ["Hackett London"],
@@ -771,7 +830,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "haggar",
     brandName: "Haggar",
     aliases: ["Haggar Clothing Co."],
@@ -782,7 +841,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "haglofs",
     brandName: "Haglöfs",
     aliases: ["Haglofs"],
@@ -793,7 +852,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hallmark",
     brandName: "Hallmark",
     aliases: [],
@@ -805,6 +864,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "hamericas",
+    brandName: "Hamerica's",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "hanes",
     brandName: "Hanes",
     aliases: [],
@@ -815,7 +884,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hanro",
     brandName: "Hanro",
     aliases: [],
@@ -826,7 +895,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "haribo",
     brandName: "HARIBO",
     aliases: ["Haribo"],
@@ -837,7 +906,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "harmont-and-blaine",
     brandName: "Harmont & Blaine",
     aliases: ["Harmont and Blaine"],
@@ -849,6 +918,26 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "harmont-e-blaine",
+    brandName: "Harmont & Blaine",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
+    brandId: "harmont-e-blaine-junior",
+    brandName: "Harmont & Blaine Junior",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "hartmann",
     brandName: "Hartmann",
     aliases: [],
@@ -859,7 +948,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "havaianas",
     brandName: "Havaianas",
     aliases: [],
@@ -870,7 +959,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hazzys",
     brandName: "Hazzys",
     aliases: ["HAZZYS"],
@@ -881,7 +970,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "helly-hansen",
     brandName: "Helly Hansen",
     aliases: [],
@@ -892,7 +981,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "helzberg-diamonds",
     brandName: "Helzberg Diamonds",
     aliases: ["Helzberg"],
@@ -903,7 +992,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "henri-lloyd",
     brandName: "Henri Lloyd",
     aliases: [],
@@ -914,7 +1003,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "henry-cottons",
     brandName: "Henry Cotton’s",
     aliases: ["Henry Cotton's"],
@@ -926,6 +1015,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "hermitage",
+    brandName: "Hermitage",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "herno",
     brandName: "Herno",
     aliases: [],
@@ -936,7 +1035,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "herschel",
     brandName: "Herschel",
     aliases: ["Herschel Supply Co."],
@@ -947,7 +1046,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hickey-freeman",
     brandName: "Hickey Freeman",
     aliases: [],
@@ -958,7 +1057,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hobbs-london",
     brandName: "Hobbs London",
     aliases: ["Hobbs"],
@@ -969,7 +1068,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hogan",
     brandName: "Hogan",
     aliases: [],
@@ -980,7 +1079,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hogan-at-tods",
     brandName: "Hogan at Tod's",
     aliases: ["Hogan at Tods", "Hogan"],
@@ -991,18 +1090,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
-    brandId: "hogl",
-    brandName: "Högl",
-    aliases: ["Hoegl", "Hogl"],
-    categoryId: "shoes-bags",
-    logo: "",
-    originCountryId: "austria",
-    luxuryLevel: "premium",
-    rankingWeight: 76,
-    brandStatus: "active",
-  },
-  {
+{
     brandId: "holland-and-barrett",
     brandName: "Holland & Barrett",
     aliases: ["Holland and Barrett"],
@@ -1013,7 +1101,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "holland-cooper",
     brandName: "Holland Cooper",
     aliases: [],
@@ -1024,7 +1112,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hollister",
     brandName: "Hollister",
     aliases: ["Hollister Co."],
@@ -1036,6 +1124,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "home-and-cook",
+    brandName: "Home & Cook",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "honeys",
     brandName: "Honeys",
     aliases: [],
@@ -1046,7 +1144,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hotel-chocolat",
     brandName: "Hotel Chocolat",
     aliases: [],
@@ -1057,7 +1155,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hour-passion",
     brandName: "Hour Passion",
     aliases: [],
@@ -1068,7 +1166,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hugo",
     brandName: "HUGO",
     aliases: ["Hugo Boss HUGO"],
@@ -1079,7 +1177,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hugo-kids",
     brandName: "HUGO Kids",
     aliases: [],
@@ -1090,7 +1188,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "human-woman",
     brandName: "Human Woman",
     aliases: ["HUMAN WOMAN"],
@@ -1101,7 +1199,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hunkemoller",
     brandName: "Hunkemöller",
     aliases: ["Hunkemoller"],
@@ -1112,7 +1210,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hunter",
     brandName: "Hunter",
     aliases: ["Hunter Boots"],
@@ -1123,7 +1221,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hurley",
     brandName: "Hurley",
     aliases: [],
@@ -1134,7 +1232,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "hush-puppies",
     brandName: "Hush Puppies",
     aliases: [],
@@ -1145,7 +1243,29 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
+    brandId: "haagen-dazs",
+    brandName: "Häagen-Dazs",
+    aliases: ["Haagen-Dazs"],
+    categoryId: "food-chocolate",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "premium",
+    rankingWeight: 74,
+    brandStatus: "active",
+  },
+{
+    brandId: "hogl",
+    brandName: "Högl",
+    aliases: ["Hoegl", "Hogl"],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "austria",
+    luxuryLevel: "premium",
+    rankingWeight: 76,
+    brandStatus: "active",
+  },
+{
     brandId: "iceberg",
     brandName: "Iceberg",
     aliases: [],
@@ -1156,7 +1276,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "iena",
     brandName: "IENA",
     aliases: ["Iena"],
@@ -1167,7 +1287,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "iittala",
     brandName: "Iittala",
     aliases: [],
@@ -1178,7 +1298,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "il-bisonte",
     brandName: "Il Bisonte",
     aliases: [],
@@ -1189,7 +1309,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "il-lanificio",
     brandName: "Il Lanificio",
     aliases: [],
@@ -1201,6 +1321,26 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "il-torracchione",
+    brandName: "Il Torracchione",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
+    brandId: "imperial",
+    brandName: "Imperial",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "indivi",
     brandName: "INDIVI",
     aliases: ["Indivi"],
@@ -1211,7 +1351,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ingni",
     brandName: "INGNI",
     aliases: ["Ingni"],
@@ -1222,7 +1362,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "intimissimi",
     brandName: "Intimissimi",
     aliases: [],
@@ -1233,7 +1373,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "invicta",
     brandName: "Invicta",
     aliases: [],
@@ -1244,7 +1384,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "iris-galerie",
     brandName: "Iris Galerie",
     aliases: [],
@@ -1255,7 +1395,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 64,
     brandStatus: "active",
   },
-  {
+{
     brandId: "iro",
     brandName: "IRO",
     aliases: ["Iro Paris"],
@@ -1266,7 +1406,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "isabel-marant",
     brandName: "Isabel Marant",
     aliases: [],
@@ -1277,7 +1417,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "isaia",
     brandName: "Isaia",
     aliases: [],
@@ -1288,7 +1428,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "issey-miyake",
     brandName: "Issey Miyake",
     aliases: [],
@@ -1299,7 +1439,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "ixos",
     brandName: "Ixos",
     aliases: [],
@@ -1310,7 +1450,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "izipizi",
     brandName: "IZIPIZI",
     aliases: ["Izipizi"],
@@ -1321,7 +1461,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "izod",
     brandName: "IZOD",
     aliases: ["Izod"],
@@ -1332,7 +1472,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "izzue",
     brandName: "Izzue",
     aliases: [],
@@ -1343,7 +1483,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "j-crew",
     brandName: "J.Crew",
     aliases: ["J Crew", "J.Crew Factory"],
@@ -1354,7 +1494,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "j-estina",
     brandName: "J.ESTINA",
     aliases: ["J Estina", "J. Estina"],
@@ -1365,7 +1505,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "j-press",
     brandName: "J.Press",
     aliases: ["J Press"],
@@ -1376,7 +1516,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jacadi",
     brandName: "Jacadi",
     aliases: ["Jacadi Paris"],
@@ -1387,7 +1527,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jack-and-jones",
     brandName: "Jack & Jones",
     aliases: ["Jack and Jones"],
@@ -1399,6 +1539,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "jack-jones",
+    brandName: "Jack & Jones",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "jack-wolfskin",
     brandName: "Jack Wolfskin",
     aliases: [],
@@ -1409,7 +1559,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jacob-cohen",
     brandName: "Jacob Cohën",
     aliases: ["Jacob Cohen"],
@@ -1420,7 +1570,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jaeger",
     brandName: "Jaeger",
     aliases: [],
@@ -1431,7 +1581,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "janie-and-jack",
     brandName: "Janie and Jack",
     aliases: [],
@@ -1442,7 +1592,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jbl",
     brandName: "JBL",
     aliases: [],
@@ -1453,7 +1603,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jd-sports",
     brandName: "JD Sports",
     aliases: ["JD"],
@@ -1465,6 +1615,16 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "jeckerson",
+    brandName: "Jeckerson",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+{
     brandId: "jigsaw",
     brandName: "Jigsaw",
     aliases: [],
@@ -1475,7 +1635,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jil-sander",
     brandName: "Jil Sander",
     aliases: [],
@@ -1486,7 +1646,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jill-stuart",
     brandName: "Jill Stuart",
     aliases: [],
@@ -1497,7 +1657,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jimmy-choo",
     brandName: "Jimmy Choo",
     aliases: [],
@@ -1508,7 +1668,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 92,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jins",
     brandName: "JINS",
     aliases: ["Jins"],
@@ -1519,7 +1679,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jo-malone-london",
     brandName: "Jo Malone London",
     aliases: ["Jo Malone"],
@@ -1530,7 +1690,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jockey",
     brandName: "Jockey",
     aliases: [],
@@ -1541,7 +1701,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "joe-s-jeans",
     brandName: "Joe's Jeans",
     aliases: ["Joes Jeans"],
@@ -1552,7 +1712,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "john-smedley",
     brandName: "John Smedley",
     aliases: [],
@@ -1563,7 +1723,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "john-varvatos",
     brandName: "John Varvatos",
     aliases: [],
@@ -1574,7 +1734,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "johnston-and-murphy",
     brandName: "Johnston & Murphy",
     aliases: ["Johnston and Murphy"],
@@ -1585,7 +1745,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "joop",
     brandName: "JOOP!",
     aliases: ["Joop", "Joop! Men", "Joop! Women"],
@@ -1596,7 +1756,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jos-a-bank",
     brandName: "Jos. A. Bank",
     aliases: ["Jos A Bank", "Jos. A Bank"],
@@ -1607,7 +1767,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "joseph",
     brandName: "Joseph",
     aliases: [],
@@ -1618,7 +1778,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jott",
     brandName: "JOTT",
     aliases: ["Just Over The Top"],
@@ -1629,7 +1789,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "joules",
     brandName: "Joules",
     aliases: [],
@@ -1640,7 +1800,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "journal-standard",
     brandName: "Journal Standard",
     aliases: [],
@@ -1651,7 +1811,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "journeys",
     brandName: "Journeys",
     aliases: [],
@@ -1662,7 +1822,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "juicy-couture",
     brandName: "Juicy Couture",
     aliases: [],
@@ -1673,7 +1833,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "jun",
     brandName: "JUN",
     aliases: ["Jun"],
@@ -1684,18 +1844,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
-    brandId: "junn-j",
-    brandName: "Juun.J",
-    aliases: ["Juun J", "JuunJ"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "south-korea",
-    luxuryLevel: "luxury",
-    rankingWeight: 80,
-    brandStatus: "active",
-  },
-  {
+{
     brandId: "junred",
     brandName: "JunRed",
     aliases: ["JUNRed"],
@@ -1706,7 +1855,18 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
+    brandId: "junn-j",
+    brandName: "Juun.J",
+    aliases: ["Juun J", "JuunJ"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "south-korea",
+    luxuryLevel: "luxury",
+    rankingWeight: 80,
+    brandStatus: "active",
+  },
+{
     brandId: "k-swiss",
     brandName: "K-Swiss",
     aliases: ["K Swiss"],
@@ -1717,7 +1877,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "k-way",
     brandName: "K-Way",
     aliases: ["K Way"],
@@ -1728,7 +1888,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "k2",
     brandName: "K2",
     aliases: ["K2 Korea"],
@@ -1739,7 +1899,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kangol",
     brandName: "Kangol",
     aliases: [],
@@ -1750,7 +1910,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kangra",
     brandName: "Kangra",
     aliases: [],
@@ -1761,7 +1921,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kappa",
     brandName: "Kappa",
     aliases: [],
@@ -1772,7 +1932,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "karen-millen",
     brandName: "Karen Millen",
     aliases: [],
@@ -1783,7 +1943,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "karl-lagerfeld",
     brandName: "Karl Lagerfeld",
     aliases: [],
@@ -1794,7 +1954,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 86,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kate-spade-new-york",
     brandName: "Kate Spade New York",
     aliases: ["Kate Spade", "Kate Spade Outlet"],
@@ -1805,7 +1965,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 90,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kathmandu",
     brandName: "Kathmandu",
     aliases: [],
@@ -1816,7 +1976,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kay-jewelers",
     brandName: "Kay Jewelers",
     aliases: ["Kay"],
@@ -1827,7 +1987,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "keds",
     brandName: "Keds",
     aliases: [],
@@ -1838,7 +1998,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "keen",
     brandName: "KEEN",
     aliases: ["Keen"],
@@ -1849,7 +2009,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kendra-scott",
     brandName: "Kendra Scott",
     aliases: [],
@@ -1860,7 +2020,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kenneth-cole",
     brandName: "Kenneth Cole",
     aliases: [],
@@ -1871,7 +2031,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kenzo",
     brandName: "Kenzo",
     aliases: [],
@@ -1882,7 +2042,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kenzo-kids",
     brandName: "KENZO Kids",
     aliases: [],
@@ -1893,18 +2053,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
-    brandId: "kerastase",
-    brandName: "Kérastase",
-    aliases: ["Kerastase"],
-    categoryId: "beauty",
-    logo: "",
-    originCountryId: "france",
-    luxuryLevel: "premium",
-    rankingWeight: 80,
-    brandStatus: "active",
-  },
-  {
+{
     brandId: "kid-blue",
     brandName: "Kid Blue",
     aliases: ["KID BLUE"],
@@ -1915,7 +2064,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kids-around",
     brandName: "Kids Around",
     aliases: [],
@@ -1926,7 +2075,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kids-foot-locker",
     brandName: "Kids Foot Locker",
     aliases: ["Kid's Foot Locker"],
@@ -1937,7 +2086,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kiehls",
     brandName: "Kiehl’s Since 1851",
     aliases: ["Kiehl's", "Kiehls", "Kiehl’s"],
@@ -1948,7 +2097,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kiko-milano",
     brandName: "KIKO Milano",
     aliases: ["Kiko"],
@@ -1959,7 +2108,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kipling",
     brandName: "Kipling",
     aliases: [],
@@ -1970,7 +2119,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 82,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kirsh",
     brandName: "KIRSH",
     aliases: ["Kirsh"],
@@ -1981,7 +2130,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kitchen-aid",
     brandName: "KitchenAid",
     aliases: ["Kitchen Aid"],
@@ -1992,7 +2141,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 80,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kiton",
     brandName: "Kiton",
     aliases: [],
@@ -2003,7 +2152,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 88,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kizik",
     brandName: "Kizik",
     aliases: [],
@@ -2014,7 +2163,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "klattermusen",
     brandName: "Klättermusen",
     aliases: ["Klattermusen"],
@@ -2025,7 +2174,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kneipp",
     brandName: "Kneipp",
     aliases: [],
@@ -2036,7 +2185,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "knirps",
     brandName: "Knirps",
     aliases: [],
@@ -2047,7 +2196,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 66,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kocca",
     brandName: "Kocca",
     aliases: [],
@@ -2058,7 +2207,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kolon-sport",
     brandName: "Kolon Sport",
     aliases: ["KOLON SPORT"],
@@ -2069,7 +2218,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kookai",
     brandName: "Kookaï",
     aliases: ["Kookai"],
@@ -2080,7 +2229,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 72,
     brandStatus: "active",
   },
-  {
+{
     brandId: "korres",
     brandName: "Korres",
     aliases: [],
@@ -2091,7 +2240,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
-  {
+{
     brandId: "koton",
     brandName: "Koton",
     aliases: [],
@@ -2102,7 +2251,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kuho",
     brandName: "KUHO",
     aliases: ["Kuho"],
@@ -2113,7 +2262,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 76,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kumkang",
     brandName: "Kumkang",
     aliases: [],
@@ -2124,7 +2273,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kurt-geiger",
     brandName: "Kurt Geiger",
     aliases: [],
@@ -2135,7 +2284,7 @@ export const brandsFK: Brand[] = [
     rankingWeight: 78,
     brandStatus: "active",
   },
-  {
+{
     brandId: "kusmi-tea",
     brandName: "Kusmi Tea",
     aliases: [],
@@ -2146,4 +2295,15 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
+{
+    brandId: "kerastase",
+    brandName: "Kérastase",
+    aliases: ["Kerastase"],
+    categoryId: "beauty",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 80,
+    brandStatus: "active",
+  }
 ];
