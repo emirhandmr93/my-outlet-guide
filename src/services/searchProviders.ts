@@ -1,4 +1,4 @@
-import { brands } from "../constants/brands";
+import { brands } from "../constants/brands/index";
 import { categories } from "../constants/categories";
 import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
