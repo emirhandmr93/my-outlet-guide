@@ -1110,4 +1110,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 84,
     brandStatus: "active",
   },
+  {
+    brandId: "whittard",
+    brandName: "Whittard",
+    aliases: [],
+    categoryId: "food-chocolate",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
 ];
