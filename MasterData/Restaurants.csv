@@ -1,0 +1,7 @@
+restaurantId,outletId,restaurantName,category,priceLevel,website,status,displayOrder
+art-cafe,la-vallee-village,Art Café,Cafe,€€,https://,active,1
+wild-and-the-moon,la-vallee-village,Wild & The Moon,Healthy,€€,https://,active,2
+amorino,la-vallee-village,Amorino,Ice Cream,€,https://,active,3
+laduree,la-vallee-village,Ladurée,Desserts,€€€,https://,active,4
+momus,la-vallee-village,Momus,Restaurant,€€€,https://,active,5
+pierre-herme,la-vallee-village,Pierre Hermé Paris,Desserts,€€€,https://,active,6

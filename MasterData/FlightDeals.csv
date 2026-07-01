@@ -1,0 +1,4 @@
+﻿dealId,departureAirportId,destinationCityId,airline,averagePrice,detectedPrice,discountPercent,level,currency,lastUpdatedMinutesAgo,status
+esb-paris-1,esb,paris,Wizz Air,6000,4500,25,opportunity,TRY,10,active
+esb-milan-1,esb,milan,Pegasus,6500,4300,34,great_opportunity,TRY,22,active
+ist-london-1,ist,london,British Airways,9000,7200,20,opportunity,TRY,35,active

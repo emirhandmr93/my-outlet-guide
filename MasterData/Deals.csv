@@ -1,0 +1,5 @@
+﻿dealId,brandId,cityId,outletId,title,description,startDate,endDate,dealType,status
+gucci-paris-summer-sale,gucci,paris,la-vallee-village,Gucci Summer Sale,Selected Gucci products are available with seasonal discounts.,2026-06-20,2026-06-23,sale,active
+gucci-paris-tax-free,gucci,paris,la-vallee-village,Gucci Tax Free Shopping,Remember to request your Tax Free form for eligible Gucci purchases.,2026-06-20,2026-06-24,tax_free,active
+prada-serravalle-extra-discount,prada,milan,serravalle,Prada Extra Outlet Discount,Extra savings available on selected Prada items.,2026-06-24,2026-06-26,extra_discount,active
+nike-bicester-weekend-offer,nike,london,bicester-village,Nike Weekend Shopping Offer,Weekend promotion available on selected Nike products.,2026-06-22,2026-06-24,sale,active

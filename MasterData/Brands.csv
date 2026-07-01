@@ -1,0 +1,181 @@
+﻿brandId,brandName,aliases,categoryId,logo,website,originCountryId,luxuryLevel,description,rankingWeight,brandStatus
+sephora,Sephora,,beauty,,,france,premium,,95,active
+guerlain,Guerlain,,beauty,,,france,luxury,,92,active
+clarins,Clarins,,beauty,,,france,premium,,90,active
+estee-lauder,Estée Lauder,estee lauder,beauty,,,united-states,premium,,90,active
+loccitane,L'Occitane,loccitane;l occitane,beauty,,,france,premium,,90,active
+loreal-paris,L'Oréal Paris,loreal;l oreal,beauty,,,france,lifestyle,,90,active
+lancome,Lancôme,lancome,beauty,,,france,premium,,90,active
+mac-cosmetics,MAC Cosmetics,mac,beauty,,,united-states,premium,,88,active
+shiseido,Shiseido,,beauty,,,japan,premium,,88,active
+clinique,Clinique,,beauty,,,united-states,premium,,85,active
+diptyque,Diptyque,,beauty,,,france,premium,,85,active
+kiehls,Kiehl's,kiehls,beauty,,,united-states,premium,,85,active
+byredo,BYREDO,,beauty,,,sweden,premium,,82,active
+rituals,Rituals,,beauty,,,netherlands,premium,,82,active
+the-body-shop,The Body Shop,body shop,beauty,,,united-kingdom,lifestyle,,82,active
+yves-rocher,Yves Rocher,,beauty,,,france,lifestyle,,82,active
+beaute-prestige-international,Beauté Prestige International,bpi;beaute prestige international,beauty,,,france,premium,,55,active
+polo-ralph-lauren,Polo Ralph Lauren,ralph lauren;polo,fashion,,,united-states,premium,,95,active
+boss,BOSS,hugo boss;boss,fashion,,,germany,premium,,90,active
+calvin-klein,Calvin Klein,ck,fashion,,,united-states,fashion,,90,active
+lacoste,Lacoste,,fashion,,,france,fashion,,90,active
+levis,Levi's,levis;levi strauss,fashion,,,united-states,fashion,,90,active
+tommy-hilfiger,Tommy Hilfiger,tommy,fashion,,,united-states,fashion,,90,active
+uniqlo,Uniqlo,,fashion,,,japan,lifestyle,,90,active
+off-white,Off-White,off white,fashion,,,italy,premium,,88,active
+armani-exchange,Armani Exchange,a|x;ax,fashion,,,italy,fashion,,82,active
+moschino,Moschino,,fashion,,,italy,premium,,82,active
+tommy-jeans,Tommy Jeans,,fashion,,,united-states,fashion,,82,active
+a-bathing-ape,A Bathing Ape,bape,fashion,,,japan,fashion,,80,active
+diesel,Diesel,,fashion,,,italy,fashion,,80,active
+guess,Guess,,fashion,,,united-states,fashion,,80,active
+hugo,HUGO,hugo boss,fashion,,,germany,fashion,,80,active
+karl-lagerfeld,KARL LAGERFELD,karl,fashion,,,france,premium,,80,active
+kenzo,Kenzo,,fashion,,,france,fashion,,80,active
+max-mara,Max Mara,,fashion,,,italy,premium,,80,active
+dsquared2,Dsquared2,dsquared,fashion,,,italy,premium,,78,active
+g-star-raw,G-Star RAW,g-star;g star,fashion,,,netherlands,fashion,,78,active
+gant,GANT,,fashion,,,united-states,fashion,,78,active
+superdry,Superdry,,fashion,,,united-kingdom,fashion,,78,active
+ami-paris,Ami Paris,ami,fashion,,,france,fashion,,75,active
+fred-perry,Fred Perry,,fashion,,,united-kingdom,fashion,,75,active
+isabel-marant,Isabel Marant,,fashion,,,france,premium,,75,active
+maje,Maje,,fashion,,,france,fashion,,75,active
+marni,Marni,,fashion,,,italy,fashion,,75,active
+massimo-dutti,Massimo Dutti,,fashion,,,spain,fashion,,75,active
+sandro,Sandro,,fashion,,,france,fashion,,75,active
+liu-jo,Liu Jo,,fashion,,,italy,fashion,,72,active
+napapijri,Napapijri,,fashion,,,italy,lifestyle,,72,active
+replay,Replay,,fashion,,,italy,fashion,,72,active
+ted-baker,Ted Baker,,fashion,,,united-kingdom,fashion,,72,active
+acne-studios,Acne Studios,,fashion,,,sweden,fashion,,70,active
+evisu,Evisu,,fashion,,,japan,fashion,,70,active
+marc-opolo,Marc O'Polo,marc opolo,fashion,,,germany,fashion,,70,active
+mlb-korea,MLB Korea,mlb,fashion,,,south-korea,fashion,,70,active
+scotch-and-soda,Scotch & Soda,scotch and soda,fashion,,,netherlands,fashion,,70,active
+the-kooples,The Kooples,,fashion,,,france,fashion,,70,active
+zadig-and-voltaire,Zadig & Voltaire,zadig,fashion,,,france,fashion,,70,active
+bash,ba&sh,bash,fashion,,,france,fashion,,65,active
+k-way,K-Way,kway,fashion,,,france,fashion,,65,active
+anne-fontaine,Anne Fontaine,,fashion,,,france,fashion,,60,active
+bompard,Bompard,eric bompard,fashion,,,france,premium,,60,active
+claudie-pierlot,Claudie Pierlot,,fashion,,,france,fashion,,60,active
+fusalp,Fusalp,,fashion,,,france,premium,,60,active
+hackett-london,Hackett London,hackett,fashion,,,united-kingdom,fashion,,60,active
+berenice,Berenice,,fashion,,,france,fashion,,55,active
+charles-tyrwhitt,Charles Tyrwhitt,,fashion,,,united-kingdom,fashion,,55,active
+gerard-darel,Gerard Darel,gérard darel,fashion,,,france,fashion,,55,active
+ikks,IKKS,,fashion,,,france,fashion,,55,active
+figaret,Figaret,,fashion,,,france,fashion,,50,active
+lindt,Lindt,,food-chocolate,,,switzerland,premium,,90,active
+haribo,Haribo,,food-chocolate,,,germany,lifestyle,,85,active
+laduree,Ladurée,laduree,food-chocolate,,,france,premium,,85,active
+pierre-herme-paris,Pierre Hermé Paris,pierre herme,food-chocolate,,,france,premium,,80,active
+venchi,Venchi,,food-chocolate,,,italy,premium,,75,active
+bose,Bose,,home-lifestyle,,,united-states,premium,,85,active
+le-creuset,Le Creuset,,home-lifestyle,,,france,premium,,85,active
+muji,Muji,mujirushi,home-lifestyle,,,japan,lifestyle,,85,active
+baccarat,Baccarat,,home-lifestyle,,,france,luxury,,80,active
+tefal,Tefal,,home-lifestyle,,,france,lifestyle,,80,active
+villeroy-and-boch,Villeroy & Boch,villeroy boch,home-lifestyle,,,germany,premium,,80,active
+zwilling,Zwilling,,home-lifestyle,,,germany,premium,,80,active
+wmf,WMF,,home-lifestyle,,,germany,premium,,78,active
+fissler,Fissler,,home-lifestyle,,,germany,premium,,70,active
+rolex,Rolex,,jewelry-watches,,,switzerland,luxury,,100,active
+omega,Omega,,jewelry-watches,,,switzerland,luxury,,95,active
+breitling,Breitling,,jewelry-watches,,,switzerland,luxury,,90,active
+pandora,Pandora,,jewelry-watches,,,denmark,premium,,90,active
+swarovski,Swarovski,,jewelry-watches,,,austria,premium,,90,active
+tag-heuer,TAG Heuer,tag heuer,jewelry-watches,,,switzerland,luxury,,90,active
+longines,Longines,,jewelry-watches,,,switzerland,luxury,,88,active
+montblanc,Montblanc,,jewelry-watches,,,germany,premium,,85,active
+seiko,Seiko,,jewelry-watches,,,japan,premium,,85,active
+swatch,Swatch,,jewelry-watches,,,switzerland,lifestyle,,85,active
+tissot,Tissot,,jewelry-watches,,,switzerland,premium,,85,active
+citizen,Citizen,,jewelry-watches,,,japan,premium,,82,active
+fossil,Fossil,,jewelry-watches,,,united-states,lifestyle,,80,active
+hour-passion,Hour Passion,,jewelry-watches,,,switzerland,premium,,65,active
+lego,Lego,lego,kids,,,denmark,lifestyle,,95,active
+disney-store,Disney Store,disney,kids,,,united-states,lifestyle,,90,active
+petit-bateau,Petit Bateau,,kids,,,france,lifestyle,,80,active
+chicco,Chicco,,kids,,,italy,lifestyle,,75,active
+mayoral,Mayoral,,kids,,,spain,lifestyle,,70,active
+bonpoint,Bonpoint,,kids,,,france,premium,,65,active
+jacadi,Jacadi,,kids,,,france,premium,,65,active
+kids-around,Kids around,kids around,kids,,,france,lifestyle,,55,active
+dior,Dior,christian dior,luxury,,,france,luxury,,100,active
+gucci,Gucci,,luxury,,,italy,luxury,,100,active
+hermes,Hermès,hermes,luxury,,,france,luxury,,100,active
+louis-vuitton,Louis Vuitton,lv,luxury,,,france,luxury,,100,active
+prada,Prada,,luxury,,,italy,luxury,,100,active
+saint-laurent,Saint Laurent,ysl;yves saint laurent,luxury,,,france,luxury,,100,active
+balenciaga,Balenciaga,,luxury,,,france,luxury,,95,active
+bottega-veneta,Bottega Veneta,,luxury,,,italy,luxury,,95,active
+burberry,Burberry,,luxury,,,united-kingdom,luxury,,95,active
+celine,Celine,céline,luxury,,,france,luxury,,95,active
+dolce-and-gabbana,Dolce & Gabbana,dolce gabbana;d&g,luxury,,,italy,luxury,,95,active
+fendi,Fendi,,luxury,,,italy,luxury,,95,active
+moncler,Moncler,,luxury,,,italy,luxury,,95,active
+valentino,Valentino,,luxury,,,italy,luxury,,95,active
+versace,Versace,,luxury,,,italy,luxury,,95,active
+armani,Armani,giorgio armani,luxury,,,italy,luxury,,90,active
+givenchy,Givenchy,,luxury,,,france,luxury,,90,active
+loewe,Loewe,,luxury,,,spain,luxury,,90,active
+miu-miu,Miu Miu,,luxury,,,italy,luxury,,90,active
+ferragamo,Ferragamo,salvatore ferragamo,luxury,,,italy,luxury,,88,active
+balmain,Balmain,,luxury,,,france,luxury,,85,active
+chloe,Chloé,chloe,luxury,,,france,luxury,,85,active
+emporio-armani,Emporio Armani,ea,luxury,,,italy,premium,,85,active
+brunello-cucinelli,Brunello Cucinelli,,luxury,,,italy,luxury,,80,active
+etro,Etro,,luxury,,,italy,luxury,,80,active
+zegna,Zegna,ermenegildo zegna,luxury,,,italy,luxury,,80,active
+rabanne,Rabanne,paco rabanne,luxury,,,france,luxury,,75,active
+christian-louboutin,Christian Louboutin,louboutin,shoes-bags,,,france,luxury,,95,active
+michael-kors,Michael Kors,mk,shoes-bags,,,united-states,premium,,95,active
+jimmy-choo,Jimmy Choo,,shoes-bags,,,united-kingdom,luxury,,94,active
+birkenstock,BIRKENSTOCK,birkenstock,shoes-bags,,,germany,lifestyle,,92,active
+coach,Coach,,shoes-bags,,,united-states,premium,,92,active
+longchamp,Longchamp,,shoes-bags,,,france,premium,,92,active
+golden-goose,Golden Goose,,shoes-bags,,,italy,premium,,90,active
+dr-martens,Dr. Martens,dr martens;doc martens,shoes-bags,,,united-kingdom,lifestyle,,88,active
+furla,Furla,,shoes-bags,,,italy,premium,,88,active
+timberland,Timberland,,shoes-bags,,,united-states,lifestyle,,88,active
+tods,Tod's,tods,shoes-bags,,,italy,luxury,,88,active
+ugg,UGG,,shoes-bags,,,united-states,lifestyle,,86,active
+kate-spade,Kate Spade,kate spade new york,shoes-bags,,,united-states,premium,,85,active
+samsonite,Samsonite,,shoes-bags,,,united-states,lifestyle,,85,active
+bally,Bally,,shoes-bags,,,switzerland,luxury,,82,active
+clarks,Clarks,,shoes-bags,,,united-kingdom,lifestyle,,82,active
+hogan,Hogan,,shoes-bags,,,italy,premium,,82,active
+mcm,MCM,,shoes-bags,,,germany,premium,,82,active
+tumi,TUMI,,shoes-bags,,,united-states,premium,,82,active
+churchs,Church's,churchs,shoes-bags,,,united-kingdom,luxury,,80,active
+geox,Geox,,shoes-bags,,,italy,lifestyle,,80,active
+axel-arigato,Axel Arigato,,shoes-bags,,,sweden,premium,,78,active
+camper,Camper,,shoes-bags,,,spain,lifestyle,,75,active
+coccinelle,Coccinelle,,shoes-bags,,,italy,premium,,72,active
+jm-weston,J.M. Weston,jm weston,shoes-bags,,,france,luxury,,72,active
+claris-virot,Claris Virot,,shoes-bags,,,france,premium,,60,active
+adidas,Adidas,,sportswear,,,germany,sports,,100,active
+nike,Nike,,sportswear,,,united-states,sports,,100,active
+new-balance,New Balance,nb,sportswear,,,united-states,sports,,95,active
+puma,Puma,,sportswear,,,germany,sports,,95,active
+the-north-face,The North Face,north face;tnf,sportswear,,,united-states,sports,,92,active
+converse,Converse,,sportswear,,,united-states,sports,,90,active
+vans,Vans,,sportswear,,,united-states,lifestyle,,90,active
+lululemon,lululemon,,sportswear,,,canada,premium,,88,active
+skechers,Skechers,,sportswear,,,united-states,lifestyle,,88,active
+under-armour,Under Armour,ua,sportswear,,,united-states,sports,,88,active
+on,On,,sportswear,,,switzerland,premium,,86,active
+asics,ASICS,,sportswear,,,japan,sports,,85,active
+fila,Fila,,sportswear,,,italy,sports,,82,active
+hoka,HOKA,,sportswear,,,france,sports,,82,active
+onitsuka-tiger,Onitsuka Tiger,,sportswear,,,japan,sports,,82,active
+salomon,Salomon,,sportswear,,,france,sports,,82,active
+columbia,Columbia,,sportswear,,,united-states,sports,,80,active
+mizuno,Mizuno,,sportswear,,,japan,sports,,80,active
+reebok,Reebok,,sportswear,,,united-states,sports,,80,active
+anta,Anta,,sportswear,,,china,sports,,75,active
+li-ning,Li-Ning,lining,sportswear,,,china,sports,,75,active
+descente,Descente,,sportswear,,,japan,sports,,72,active

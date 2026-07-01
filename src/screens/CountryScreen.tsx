@@ -1,0 +1,131 @@
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+import { countries } from "../constants/countries";
+import { outlets } from "../constants/outlets";
+import { taxFreeRules } from "../constants/taxFreeRules";
+import { getCityName } from "../services/locationService";
+
+type RouteParams = {
+  Country: {
+    countryId?: string;
+  };
+};
+
+type OutletItem = (typeof outlets)[number];
+
+function hasTaxFree(value: unknown) {
+  return value === true || value === "TRUE" || value === "true";
+}
+
+function InfoCard({ title, value }: { title: string; value: string }) {
+  return (
+    <View style={styles.infoCard}>
+      <Text style={styles.infoTitle}>{title}</Text>
+      <Text style={styles.infoValue}>{value}</Text>
+    </View>
+  );
+}
+
+function OutletCard({ outlet, onPress }: { outlet: OutletItem; onPress: () => void }) {
+  return (
+    <TouchableOpacity style={styles.outletCard} activeOpacity={0.9} onPress={onPress}>
+      {outlet.heroImage ? (
+        <Image source={{ uri: outlet.heroImage }} style={styles.outletImage} />
+      ) : (
+        <View style={styles.outletImagePlaceholder}>
+          <Text style={styles.outletImageIcon}>🛍️</Text>
+        </View>
+      )}
+
+      <View style={styles.outletContent}>
+        <View style={styles.cardTopRow}>
+          <Text style={styles.cardBadge}>{hasTaxFree(outlet.taxFreeAvailable) ? "Tax Free" : "Limited"}</Text>
+          <Text style={styles.rating}>★ {outlet.rating}</Text>
+        </View>
+        <Text style={styles.cardTitle}>{outlet.name}</Text>
+        <Text style={styles.cardText}>{getCityName(outlet.cityId)} • {outlet.storesCountText}</Text>
+        <Text style={styles.tapText}>View outlet →</Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
+
+export function CountryScreen() {
+  const navigation = useNavigation<any>();
+  const route = useRoute<RouteProp<RouteParams, "Country">>();
+
+  const countryId = route.params?.countryId || "france";
+  const country = countries.find((item) => item.countryId === countryId) || countries[0];
+  const rule = taxFreeRules.find((item) => item.countryId === country.countryId) || taxFreeRules[0];
+  const countryOutlets = outlets.filter((outlet) => outlet.countryId === country.countryId);
+  const shoppingCities = Array.from(new Set(countryOutlets.map((outlet) => outlet.cityId)));
+
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <View style={styles.heroCard}>
+        <Text style={styles.heroFlag}>{country.countryFlag}</Text>
+        <Text style={styles.heroTitle}>{country.countryName}</Text>
+        <Text style={styles.heroText}>Outlet shopping, Tax Free basics and city destinations in {country.countryName}.</Text>
+      </View>
+
+      <View style={styles.infoGrid}>
+        <InfoCard title="Currency" value={country.currency} />
+        <InfoCard title="Tax Free" value={hasTaxFree(country.taxFreeAvailable) ? "Yes" : "Limited"} />
+        <InfoCard title="VAT Rate" value={`${rule.vatRate}%`} />
+        <InfoCard title="Minimum" value={`${rule.currency} ${rule.minimumSpend}`} />
+      </View>
+
+      <Text style={styles.sectionTitle}>Shopping cities</Text>
+      {shoppingCities.map((cityId) => (
+        <TouchableOpacity key={cityId} style={styles.card} activeOpacity={0.9} onPress={() => navigation.navigate("CityResults", { cityId })}>
+          <Text style={styles.cardTitle}>{getCityName(cityId)}</Text>
+          <Text style={styles.cardText}>View outlets in this city</Text>
+        </TouchableOpacity>
+      ))}
+
+      <Text style={styles.sectionTitle}>{countryOutlets.length} outlets available</Text>
+      {countryOutlets.map((outlet) => (
+        <OutletCard key={outlet.outletId} outlet={outlet} onPress={() => navigation.navigate("OutletDetail", { outletId: outlet.outletId })} />
+      ))}
+
+      <Text style={styles.sectionTitle}>Quick access</Text>
+      <TouchableOpacity style={styles.actionButton} activeOpacity={0.9} onPress={() => navigation.navigate("TaxFreeCalculator")}>
+        <Text style={styles.actionButtonText}>Tax Free Calculator</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.actionButtonSecondary} activeOpacity={0.9} onPress={() => navigation.navigate("TaxFreeGuide")}>
+        <Text style={styles.actionButtonSecondaryText}>Tax Free Guide</Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#F7F8FA" },
+  content: { padding: 20, paddingTop: 64, paddingBottom: 120 },
+  heroCard: { backgroundColor: "#0B1F3A", borderRadius: 30, padding: 24, marginBottom: 16 },
+  heroFlag: { fontSize: 38, marginBottom: 10 },
+  heroTitle: { color: "#FFFFFF", fontSize: 32, fontWeight: "900", marginBottom: 8 },
+  heroText: { color: "#D8DEE9", fontSize: 15, lineHeight: 22 },
+  infoGrid: { flexDirection: "row", flexWrap: "wrap", gap: 10, marginBottom: 18 },
+  infoCard: { width: "48%", backgroundColor: "#FFFFFF", borderRadius: 22, padding: 16, borderWidth: 1, borderColor: "#E5E7EB" },
+  infoTitle: { color: "#666666", fontSize: 13, fontWeight: "800" },
+  infoValue: { marginTop: 6, fontSize: 18, fontWeight: "900", color: "#0B1F3A" },
+  sectionTitle: { marginTop: 10, marginBottom: 12, fontSize: 21, fontWeight: "900", color: "#0B1F3A" },
+  card: { backgroundColor: "#FFFFFF", borderRadius: 22, padding: 18, borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 12 },
+  outletCard: { backgroundColor: "#FFFFFF", borderRadius: 24, overflow: "hidden", borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 12 },
+  outletImage: { width: "100%", height: 150, backgroundColor: "#E5E7EB" },
+  outletImagePlaceholder: { height: 140, backgroundColor: "#0B1F3A", alignItems: "center", justifyContent: "center" },
+  outletImageIcon: { fontSize: 40 },
+  outletContent: { padding: 18 },
+  cardTopRow: { flexDirection: "row", justifyContent: "space-between", marginBottom: 10 },
+  cardBadge: { backgroundColor: "#FFF8E1", color: "#0B1F3A", borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6, fontSize: 12, fontWeight: "900", overflow: "hidden" },
+  rating: { color: "#C9A227", fontWeight: "900" },
+  cardTitle: { fontSize: 18, fontWeight: "900", color: "#0B1F3A" },
+  cardText: { marginTop: 6, color: "#666666", lineHeight: 21, fontWeight: "600" },
+  tapText: { marginTop: 12, color: "#0B1F3A", fontWeight: "900" },
+  actionButton: { backgroundColor: "#0B1F3A", borderRadius: 18, padding: 16, marginBottom: 10 },
+  actionButtonText: { color: "#FFFFFF", textAlign: "center", fontWeight: "900" },
+  actionButtonSecondary: { backgroundColor: "#FFFFFF", borderRadius: 18, padding: 16, borderWidth: 1, borderColor: "#E5E7EB" },
+  actionButtonSecondaryText: { color: "#0B1F3A", textAlign: "center", fontWeight: "900" },
+});

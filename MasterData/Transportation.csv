@@ -1,0 +1,3 @@
+transportationId,outletId,transportType,title,duration,cost,tip,status,displayOrder
+la-vallee-metro,la-vallee-village,metro,Metro / Train,40 min,€2.50,Use public transportation whenever possible.,active,1
+la-vallee-shuttle,la-vallee-village,shuttle,Shuttle Bus,50 min,€10,Reservation may be required.,active,2

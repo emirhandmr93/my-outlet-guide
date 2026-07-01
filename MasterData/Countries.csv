@@ -1,0 +1,18 @@
+﻿countryId,countryName,countryFlag,continent,currency,taxFreeAvailable
+austria,Austria,🇦🇹,Europe,EUR,TRUE
+canada,Canada,🇨🇦,North America,CAD,TRUE
+china,China,🇨🇳,Asia,CNY,TRUE
+denmark,Denmark,🇩🇰,Europe,DKK,TRUE
+france,France,🇫🇷,Europe,EUR,TRUE
+germany,Germany,🇩🇪,Europe,EUR,TRUE
+italy,Italy,🇮🇹,Europe,EUR,TRUE
+japan,Japan,🇯🇵,Asia,JPY,TRUE
+netherlands,Netherlands,🇳🇱,Europe,EUR,TRUE
+south-korea,South Korea,🇰🇷,Asia,KRW,TRUE
+spain,Spain,🇪🇸,Europe,EUR,TRUE
+sweden,Sweden,🇸🇪,Europe,SEK,TRUE
+switzerland,Switzerland,🇨🇭,Europe,CHF,TRUE
+thailand,Thailand,🇹🇭,Asia,THB,TRUE
+united-arab-emirates,United Arab Emirates,🇦🇪,Asia,AED,TRUE
+united-kingdom,United Kingdom,🇬🇧,Europe,GBP,TRUE
+united-states,United States,🇺🇸,North America,USD,FALSE

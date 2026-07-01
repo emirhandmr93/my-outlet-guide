@@ -1,0 +1,31 @@
+export type OutletStatus = "active" | "inactive" | "coming-soon";
+
+export type Outlet = {
+  outletId: string;
+  name: string;
+  slug?: string;
+  countryId: string;
+  cityId: string;
+  address: string;
+  latitude: number | string;
+  longitude: number | string;
+  openingHours: string;
+  heroImage?: string;
+  galleryImages: string[];
+  storesCountText: string;
+  rating: number;
+  reviewCount: number;
+  services: string[];
+  restaurants?: string[];
+  taxFreeAvailable: boolean;
+  vatRate?: number;
+  minimumTaxFreeSpend?: string;
+  taxFreeOfficeInfo?: string;
+  cityCenterDistanceKm?: number;
+  airportDistanceKm?: number;
+  websiteUrl?: string;
+  googleMapsUrl?: string;
+  appleMapsUrl?: string;
+  yandexMapsUrl?: string;
+  status: OutletStatus | string;
+};

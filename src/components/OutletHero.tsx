@@ -1,0 +1,167 @@
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+
+import { colors } from "../theme/colors";
+import { radius } from "../theme/radius";
+import { spacing } from "../theme/spacing";
+import { typography } from "../theme/typography";
+
+const fallbackImage =
+  "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1400&auto=format&fit=crop";
+
+function getImageSource(image: any) {
+  return typeof image === "string" ? { uri: image } : image;
+}
+
+type OutletHeroProps = {
+  name: string;
+  location: string;
+  selectedImage: string;
+  galleryImages: string[];
+  favoriteButtonText?: string;
+  onPressHeroImage: () => void;
+  onPressGalleryImage: (image: string) => void;
+  onPressFavorite?: () => void;
+};
+
+export function OutletHero({
+  name,
+  location,
+  selectedImage,
+  galleryImages,
+  onPressHeroImage,
+  onPressGalleryImage,
+}: OutletHeroProps) {
+  const images = galleryImages.length > 0 ? galleryImages : [selectedImage || fallbackImage];
+
+  return (
+    <View style={styles.wrapper}>
+      <TouchableOpacity activeOpacity={0.9} onPress={onPressHeroImage}>
+        <View style={styles.heroWrap}>
+          <Image
+            source={getImageSource(selectedImage || fallbackImage)}
+            style={styles.heroImage}
+          />
+          <View style={styles.overlay} />
+
+          <View style={styles.kickerPill}>
+            <Text style={styles.kickerText}>PREMIUM OUTLET</Text>
+          </View>
+
+          <View style={styles.heroTextBlock}>
+            <Text style={styles.title}>{name}</Text>
+            <Text style={styles.location}>{location}</Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+
+      {images.length > 1 ? (
+        <FlatList
+          data={images}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item, index) => `${item}-${index}`}
+          contentContainerStyle={styles.galleryContent}
+          renderItem={({ item }) => (
+            <TouchableOpacity activeOpacity={0.82} onPress={() => onPressGalleryImage(item)}>
+              <Image
+                source={getImageSource(item)}
+                style={[
+                  styles.galleryImage,
+                  selectedImage === item && styles.galleryImageActive,
+                ]}
+              />
+            </TouchableOpacity>
+          )}
+        />
+      ) : null}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  wrapper: {
+    marginBottom: spacing.md,
+  },
+
+  heroWrap: {
+    height: 318,
+    borderRadius: radius.hero,
+    overflow: "hidden",
+    backgroundColor: colors.primary,
+  },
+
+  heroImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: "100%",
+    height: "100%",
+  },
+
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(11,31,58,0.42)",
+  },
+
+  kickerPill: {
+    position: "absolute",
+    top: spacing.lg,
+    left: spacing.lg,
+    backgroundColor: "rgba(255,255,255,0.92)",
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.sm,
+  },
+
+  kickerText: {
+    color: colors.gold,
+    fontSize: typography.small,
+    fontWeight: typography.weightBlack,
+    letterSpacing: 1.2,
+  },
+
+  heroTextBlock: {
+    position: "absolute",
+    left: spacing.lg,
+    right: spacing.lg,
+    bottom: spacing.xl,
+  },
+
+  title: {
+    color: colors.textInverse,
+    fontSize: typography.h1,
+    lineHeight: typography.lineH1,
+    fontWeight: typography.weightBlack,
+    letterSpacing: -0.8,
+  },
+
+  location: {
+    color: colors.textInverse,
+    fontSize: typography.bodyLarge,
+    fontWeight: typography.weightBlack,
+    marginTop: spacing.xs,
+  },
+
+  galleryContent: {
+    gap: spacing.sm,
+    paddingTop: spacing.md,
+  },
+
+  galleryImage: {
+    width: 92,
+    height: 72,
+    borderRadius: radius.lg,
+    backgroundColor: colors.surfaceSoft,
+    borderWidth: 2,
+    borderColor: "transparent",
+  },
+
+  galleryImageActive: {
+    borderColor: colors.gold,
+  },
+});
