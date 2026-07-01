@@ -1297,6 +1297,19 @@ export const germanyOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+
+  {
+    outletId: "ingolstadt-village",
+    brandId: "david-clulow-sunglasses",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "ingolstadt-village",
+    brandId: "douglas",
+    featured: false,
+    relationStatus: "active",
+  },
   {
     outletId: "ingolstadt-village",
     brandId: "diesel",
@@ -1441,6 +1454,13 @@ export const germanyOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+
+  {
+    outletId: "ingolstadt-village",
+    brandId: "lloyd",
+    featured: false,
+    relationStatus: "active",
+  },
   {
     outletId: "ingolstadt-village",
     brandId: "lindt",
@@ -1456,6 +1476,13 @@ export const germanyOutletBrands: OutletBrand[] = [
   {
     outletId: "ingolstadt-village",
     brandId: "longchamp",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "ingolstadt-village",
+    brandId: "luisa-cerano",
     featured: false,
     relationStatus: "active",
   },
@@ -1492,6 +1519,13 @@ export const germanyOutletBrands: OutletBrand[] = [
   {
     outletId: "ingolstadt-village",
     brandId: "marc-jacobs",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "ingolstadt-village",
+    brandId: "marc-o-polo",
     featured: false,
     relationStatus: "active",
   },
@@ -1540,6 +1574,13 @@ export const germanyOutletBrands: OutletBrand[] = [
   {
     outletId: "ingolstadt-village",
     brandId: "pandora",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "ingolstadt-village",
+    brandId: "pepe-jeans",
     featured: false,
     relationStatus: "active",
   },
