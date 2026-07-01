@@ -1,20 +1,22 @@
-import { italyOutlets } from "./italy";
-import { germanyOutlets } from "./germany";
-import { franceOutlets } from "./france";
-import { ukOutlets } from "./uk";
-import { spainOutlets } from "./spain";
-import { netherlandsOutlets } from "./netherlands";
-import { belgiumOutlets } from "./belgium";
 import { austriaOutlets } from "./austria";
+import { belgiumOutlets } from "./belgium";
+import { franceOutlets } from "./france";
+import { germanyOutlets } from "./germany";
+import { italyOutlets } from "./italy";
+import { netherlandsOutlets } from "./netherlands";
+import { spainOutlets } from "./spain";
+import { ukOutlets } from "./uk";
 
-export { italyOutlets } from "./italy";
-export { germanyOutlets } from "./germany";
-export { franceOutlets } from "./france";
-export { ukOutlets } from "./uk";
-export { spainOutlets } from "./spain";
-export { netherlandsOutlets } from "./netherlands";
-export { belgiumOutlets } from "./belgium";
-export { austriaOutlets } from "./austria";
+export {
+  austriaOutlets,
+  belgiumOutlets,
+  franceOutlets,
+  germanyOutlets,
+  italyOutlets,
+  netherlandsOutlets,
+  spainOutlets,
+  ukOutlets,
+};
 
 export const outlets = [
   ...italyOutlets,
