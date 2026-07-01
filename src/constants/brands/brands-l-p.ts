@@ -1,0 +1,1893 @@
+import type { Brand } from "../../types/brand";
+
+export const brandsLP: Brand[] = [
+  {
+    "brandId": "l-occitane",
+    "brandName": "L'Occitane",
+    "aliases": [
+      "LOccitane",
+      "L Occitane",
+      "L'Occitane en Provence"
+    ],
+    "categoryId": "beauty",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "l-oreal-paris",
+    "brandName": "L'Oréal Paris",
+    "aliases": [
+      "LOreal Paris",
+      "L Oreal Paris",
+      "L'Oréal"
+    ],
+    "categoryId": "beauty",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "la-martina",
+    "brandName": "La Martina",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "argentina",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "la-perla",
+    "brandName": "La Perla",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lacoste",
+    "brandName": "Lacoste",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 90,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "laderach",
+    "brandName": "Läderach",
+    "aliases": [
+      "Laderach",
+      "Läderach Chocolatier Suisse"
+    ],
+    "categoryId": "food-chocolate",
+    "logo": "",
+    "originCountryId": "switzerland",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "laduree",
+    "brandName": "Ladurée",
+    "aliases": [
+      "Laduree"
+    ],
+    "categoryId": "food-chocolate",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lagostina",
+    "brandName": "Lagostina",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lanvin",
+    "brandName": "Lanvin",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "laura-ashley",
+    "brandName": "Laura Ashley",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "le-coq-sportif",
+    "brandName": "Le Coq Sportif",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "sports",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "le-creuset",
+    "brandName": "Le Creuset",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lee",
+    "brandName": "Lee",
+    "aliases": [
+      "Lee Jeans"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lego",
+    "brandName": "LEGO",
+    "aliases": [
+      "Lego",
+      "The LEGO Store"
+    ],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "denmark",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "le-sportsac",
+    "brandName": "LeSportsac",
+    "aliases": [
+      "Le Sportsac"
+    ],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "levis",
+    "brandName": "Levi's",
+    "aliases": [
+      "Levis",
+      "Levi Strauss",
+      "Levi's Outlet"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 90,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lindt",
+    "brandName": "Lindt",
+    "aliases": [
+      "Lindt & Sprüngli",
+      "Lindt and Sprungli"
+    ],
+    "categoryId": "food-chocolate",
+    "logo": "",
+    "originCountryId": "switzerland",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "liu-jo",
+    "brandName": "Liu Jo",
+    "aliases": [
+      "Liu.Jo"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lladro",
+    "brandName": "Lladró",
+    "aliases": [
+      "Lladro"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "spain",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "loewe",
+    "brandName": "Loewe",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "spain",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 92,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "loft",
+    "brandName": "LOFT",
+    "aliases": [
+      "Ann Taylor LOFT",
+      "LOFT Outlet"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "longchamp",
+    "brandName": "Longchamp",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 90,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "longines",
+    "brandName": "Longines",
+    "aliases": [],
+    "categoryId": "jewelry-watches",
+    "logo": "",
+    "originCountryId": "switzerland",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 86,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "loro-piana",
+    "brandName": "Loro Piana",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 94,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lotto",
+    "brandName": "Lotto",
+    "aliases": [
+      "Lotto Sport"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "sports",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "loungefly",
+    "brandName": "Loungefly",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lowrys-farm",
+    "brandName": "LOWRYS FARM",
+    "aliases": [
+      "Lowrys Farm"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lucky-brand",
+    "brandName": "Lucky Brand",
+    "aliases": [
+      "Lucky Brand Jeans"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "lululemon",
+    "brandName": "lululemon",
+    "aliases": [
+      "Lululemon Athletica"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "canada",
+    "luxuryLevel": "premium",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mackage",
+    "brandName": "Mackage",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "canada",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "maje",
+    "brandName": "Maje",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 86,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "majestic-legon",
+    "brandName": "Majestic Legon",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "malbon-golf",
+    "brandName": "Malbon Golf",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "malo",
+    "brandName": "Malo",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mammut",
+    "brandName": "Mammut",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "switzerland",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mandarina-duck",
+    "brandName": "Mandarina Duck",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mango",
+    "brandName": "Mango",
+    "aliases": [
+      "Mango Outlet"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "spain",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "manner",
+    "brandName": "Manner",
+    "aliases": [
+      "Josef Manner"
+    ],
+    "categoryId": "food-chocolate",
+    "logo": "",
+    "originCountryId": "austria",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "marc-cain",
+    "brandName": "Marc Cain",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "marc-jacobs",
+    "brandName": "Marc Jacobs",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "marc-o-polo",
+    "brandName": "Marc O'Polo",
+    "aliases": [
+      "Marc OPolo",
+      "Marc O Polo"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mardi-mercredi",
+    "brandName": "Mardi Mercredi",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "marimekko",
+    "brandName": "Marimekko",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "finland",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "marina-rinaldi",
+    "brandName": "Marina Rinaldi",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "marine-layer",
+    "brandName": "Marine Layer",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "marithe-francois-girbaud",
+    "brandName": "Marithé François Girbaud",
+    "aliases": [
+      "Marithe Francois Girbaud"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mark-and-lona",
+    "brandName": "MARK & LONA",
+    "aliases": [
+      "Mark and Lona",
+      "Mark & Lona"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "marks-and-spencer",
+    "brandName": "Marks & Spencer",
+    "aliases": [
+      "Marks and Spencer",
+      "M&S"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "master-bunny-edition",
+    "brandName": "Master Bunny Edition",
+    "aliases": [
+      "Master Bunny"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "max-mara",
+    "brandName": "Max Mara",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "max-and-co",
+    "brandName": "MAX&Co.",
+    "aliases": [
+      "MAX and Co",
+      "Max&Co"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mcm",
+    "brandName": "MCM",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 86,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "merrell",
+    "brandName": "Merrell",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "michael-kors",
+    "brandName": "Michael Kors",
+    "aliases": [
+      "Michael Kors Outlet"
+    ],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 92,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "miki-house",
+    "brandName": "Miki House",
+    "aliases": [
+      "MIKI HOUSE"
+    ],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mila-owen",
+    "brandName": "Mila Owen",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "millet",
+    "brandName": "Millet",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mind-bridge",
+    "brandName": "Mind Bridge",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "miss-sixty",
+    "brandName": "Miss Sixty",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "missoni",
+    "brandName": "Missoni",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 86,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mitsumine",
+    "brandName": "Mitsumine",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "miu-miu",
+    "brandName": "Miu Miu",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 92,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mizuno",
+    "brandName": "Mizuno",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "sports",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mlb-korea",
+    "brandName": "MLB Korea",
+    "aliases": [
+      "MLB"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "moncler",
+    "brandName": "Moncler",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 94,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "moncler-grenoble",
+    "brandName": "Moncler Grenoble",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 86,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "monnalisa",
+    "brandName": "Monnalisa",
+    "aliases": [],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "montblanc",
+    "brandName": "Montblanc",
+    "aliases": [],
+    "categoryId": "jewelry-watches",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 90,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "moorer",
+    "brandName": "Moorer",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "moose-knuckles",
+    "brandName": "Moose Knuckles",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "canada",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "moschino",
+    "brandName": "Moschino",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mothercare",
+    "brandName": "Mothercare",
+    "aliases": [],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mountain-warehouse",
+    "brandName": "Mountain Warehouse",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "sports",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "moussy",
+    "brandName": "MOUSSY",
+    "aliases": [
+      "Moussy"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "movado",
+    "brandName": "Movado",
+    "aliases": [],
+    "categoryId": "jewelry-watches",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "munsingwear",
+    "brandName": "Munsingwear",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "murua",
+    "brandName": "MURUA",
+    "aliases": [
+      "Murua"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "musinsa-standard",
+    "brandName": "Musinsa Standard",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "mustang",
+    "brandName": "Mustang",
+    "aliases": [
+      "Mustang Jeans"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "n-natural-beauty-basic",
+    "brandName": "N. Natural Beauty Basic",
+    "aliases": [
+      "Natural Beauty Basic"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "n21",
+    "brandName": "N°21",
+    "aliases": [
+      "N21",
+      "Numero Ventuno"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "name-it",
+    "brandName": "Name It",
+    "aliases": [
+      "NAME IT"
+    ],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "denmark",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nano-universe",
+    "brandName": "Nano Universe",
+    "aliases": [
+      "nano・universe",
+      "nano universe"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "napapijri",
+    "brandName": "Napapijri",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "national-geographic-apparel",
+    "brandName": "National Geographic Apparel",
+    "aliases": [
+      "National Geographic"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nautica",
+    "brandName": "Nautica",
+    "aliases": [
+      "Nautica Factory Store"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nba-style",
+    "brandName": "NBA Style",
+    "aliases": [
+      "NBA"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nepa",
+    "brandName": "NEPA",
+    "aliases": [
+      "Nepa"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "sports",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nepa-kids",
+    "brandName": "NEPA Kids",
+    "aliases": [
+      "Nepa Kids"
+    ],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "sports",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "new-balance",
+    "brandName": "New Balance",
+    "aliases": [
+      "New Balance Factory Store"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 92,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "new-era",
+    "brandName": "New Era",
+    "aliases": [
+      "New Era Cap"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "next",
+    "brandName": "Next",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nice-claup",
+    "brandName": "NICE CLAUP",
+    "aliases": [
+      "Nice Claup"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nike",
+    "brandName": "Nike",
+    "aliases": [
+      "Nike Factory Store",
+      "Nike Unite",
+      "Nike Outlet"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 98,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nike-golf",
+    "brandName": "Nike Golf",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nine-west",
+    "brandName": "Nine West",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nobis",
+    "brandName": "Nobis",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "canada",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nolley-s",
+    "brandName": "NOLLEY'S",
+    "aliases": [
+      "Nolley's",
+      "Nolleys"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nordisk",
+    "brandName": "Nordisk",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "denmark",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "noritake",
+    "brandName": "Noritake",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "north-sails",
+    "brandName": "North Sails",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "nudie-jeans",
+    "brandName": "Nudie Jeans",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "sweden",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "o-bag",
+    "brandName": "O bag",
+    "aliases": [
+      "O Bag"
+    ],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "oneill",
+    "brandName": "O'Neill",
+    "aliases": [
+      "ONeill",
+      "O Neill"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "oak-and-fort",
+    "brandName": "Oak + Fort",
+    "aliases": [
+      "Oak and Fort"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "canada",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "oakley",
+    "brandName": "Oakley",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 86,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "odlo",
+    "brandName": "Odlo",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "norway",
+    "luxuryLevel": "sports",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "off-broadway-shoe-warehouse",
+    "brandName": "Off Broadway Shoe Warehouse",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "off-white",
+    "brandName": "Off-White",
+    "aliases": [
+      "Off White"
+    ],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 90,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "old-navy",
+    "brandName": "Old Navy",
+    "aliases": [
+      "Old Navy Outlet"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "olive-des-olive",
+    "brandName": "Olive des Olive",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "on-running",
+    "brandName": "On",
+    "aliases": [
+      "On Running"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "switzerland",
+    "luxuryLevel": "sports",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "onitsuka-tiger",
+    "brandName": "Onitsuka Tiger",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "original-penguin",
+    "brandName": "Original Penguin",
+    "aliases": [
+      "Penguin"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "orlebar-brown",
+    "brandName": "Orlebar Brown",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "premium",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "oroton",
+    "brandName": "Oroton",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "australia",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "otterbox",
+    "brandName": "OtterBox",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "outdoor-products",
+    "brandName": "Outdoor Products",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "oysho",
+    "brandName": "Oysho",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "spain",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pacific-sunwear",
+    "brandName": "PacSun",
+    "aliases": [
+      "Pacific Sunwear"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pageboy",
+    "brandName": "PAGEBOY",
+    "aliases": [
+      "Pageboy"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pandora",
+    "brandName": "Pandora",
+    "aliases": [],
+    "categoryId": "jewelry-watches",
+    "logo": "",
+    "originCountryId": "denmark",
+    "luxuryLevel": "premium",
+    "rankingWeight": 86,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "parfois",
+    "brandName": "Parfois",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "portugal",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "patagonia",
+    "brandName": "Patagonia",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 86,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "paul-and-shark",
+    "brandName": "Paul & Shark",
+    "aliases": [
+      "Paul and Shark"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "paul-smith",
+    "brandName": "Paul Smith",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "peach-john",
+    "brandName": "Peach John",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pearly-gates",
+    "brandName": "Pearly Gates",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pepe-jeans",
+    "brandName": "Pepe Jeans",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "perfect-suit-factory",
+    "brandName": "Perfect Suit Factory",
+    "aliases": [
+      "P.S.FA",
+      "PSFA"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "perfumania",
+    "brandName": "Perfumania",
+    "aliases": [],
+    "categoryId": "beauty",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "perry-ellis",
+    "brandName": "Perry Ellis",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "peserico",
+    "brandName": "Peserico",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "peter-thomas-roth",
+    "brandName": "Peter Thomas Roth",
+    "aliases": [],
+    "categoryId": "beauty",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "petit-bateau",
+    "brandName": "Petit Bateau",
+    "aliases": [],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "peuterey",
+    "brandName": "Peuterey",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "philipp-plein",
+    "brandName": "Philipp Plein",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "switzerland",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pierre-cardin",
+    "brandName": "Pierre Cardin",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pink-victorias-secret",
+    "brandName": "PINK",
+    "aliases": [
+      "Victoria’s Secret PINK",
+      "Victoria Secret PINK"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pinko",
+    "brandName": "Pinko",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "playmobil",
+    "brandName": "Playmobil",
+    "aliases": [],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "plaza",
+    "brandName": "PLAZA",
+    "aliases": [
+      "Plaza"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pleats-mama",
+    "brandName": "Pleats Mama",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "polham",
+    "brandName": "POLHAM",
+    "aliases": [
+      "Polham"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pollini",
+    "brandName": "Pollini",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "polo-ralph-lauren",
+    "brandName": "Polo Ralph Lauren",
+    "aliases": [
+      "Polo Ralph Lauren Factory Store",
+      "Ralph Lauren"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 92,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pomellato",
+    "brandName": "Pomellato",
+    "aliases": [],
+    "categoryId": "jewelry-watches",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pop-mart",
+    "brandName": "Pop Mart",
+    "aliases": [
+      "POP MART"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "china",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "porsche-design",
+    "brandName": "Porsche Design",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pottery-barn-outlet",
+    "brandName": "Pottery Barn Outlet",
+    "aliases": [
+      "Pottery Barn"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "prada",
+    "brandName": "Prada",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 98,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pretty-ballerinas",
+    "brandName": "Pretty Ballerinas",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "spain",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pro-image-sports",
+    "brandName": "Pro Image Sports",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "prospecs",
+    "brandName": "Prospecs",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "sports",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "p-s-paul-smith",
+    "brandName": "PS Paul Smith",
+    "aliases": [
+      "P.S. Paul Smith"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "psycho-bunny",
+    "brandName": "Psycho Bunny",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "puma",
+    "brandName": "PUMA",
+    "aliases": [
+      "Puma",
+      "PUMA Outlet"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "sports",
+    "rankingWeight": 92,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "pushbutton",
+    "brandName": "Pushbutton",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  }
+]
+;
