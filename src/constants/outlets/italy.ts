@@ -1,0 +1,559 @@
+export const italyOutlets = [
+  {
+    outletId: "barberino",
+    name: "Barberino Designer Outlet",
+    slug: "barberino",
+    countryId: "italy",
+    cityId: "florence",
+    address: "Via Meucci, 50031 Barberino di Mugello FI, Italy",
+    latitude: 44.0069,
+    longitude: 11.2141,
+    openingHours: "10:00 - 20:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "130+ Stores",
+    rating: 4.5,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Shuttle / Transport Info",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "ATM",
+      "Kids Area",
+      "Personal Shopping"
+    ],
+    restaurants: [
+      "Antica Focacceria San Francesco",
+      "La Piadineria",
+      "Lindt",
+      "Poke House",
+      "McDonald's",
+      "Caffè"
+    ],
+    taxFreeAvailable: true,
+    vatRate: 22,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "70.01 EUR",
+    taxFreeOperator: "EU customs validation / tax refund operators",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    cityCenterDistanceKm: 30,
+    airportDistanceKm: 30,
+    airports: [
+      {
+        code: "FLR",
+        name: "Florence Airport",
+        distanceKm: 30
+      },
+      {
+        code: "BLQ",
+        name: "Bologna Airport",
+        distanceKm: 75
+      },
+      {
+        code: "PSA",
+        name: "Pisa International Airport",
+        distanceKm: 105
+      }
+    ],
+    cityCenterInfo: {
+      name: "Florence City Center",
+      distanceKm: 30,
+      recommendedRoute: "Shuttle or car via A1"
+    },
+    nearby: [
+      {
+        name: "Barberino di Mugello",
+        distanceKm: 4
+      },
+      {
+        name: "Florence",
+        distanceKm: 30
+      }
+    ],
+    websiteUrl: "https://www.barberinooutlet.com/en/",
+    status: "active",
+    googleMapsUrl: "https://maps.google.com/?q=Barberino+Designer+Outlet",
+    appleMapsUrl: "http://maps.apple.com/?q=Barberino+Designer+Outlet",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Barberino%20Designer%20Outlet"
+  },
+  {
+    outletId: "castel-romano",
+    name: "Castel Romano Designer Outlet",
+    slug: "castel-romano",
+    countryId: "italy",
+    cityId: "rome",
+    address: "Via Ponte di Piscina Cupa 64, 00128 Castel Romano, Roma, Italy",
+    latitude: 41.7169,
+    longitude: 12.4446,
+    openingHours: "10:00 - 20:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "150+ Stores",
+    rating: 4.5,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Shuttle / Transport Info",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "ATM",
+      "Kids Area",
+      "Personal Shopping"
+    ],
+    restaurants: [
+      "Obicà",
+      "Wagamama",
+      "Lindt",
+      "McDonald's",
+      "Farinella",
+      "Caffè"
+    ],
+    taxFreeAvailable: true,
+    vatRate: 22,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "70.01 EUR",
+    taxFreeOperator: "Forexchange / Global Blue / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €70.01 in the same store on the same day. Castel Romano has an onsite Forexchange Tax Refund Office where eligible visitors can receive assistance before customs validation when leaving the EU.",
+    cityCenterDistanceKm: 25,
+    airportDistanceKm: 25,
+    airports: [
+      {
+        code: "FCO",
+        name: "Rome Fiumicino Airport",
+        distanceKm: 25
+      },
+      {
+        code: "CIA",
+        name: "Rome Ciampino Airport",
+        distanceKm: 25
+      }
+    ],
+    cityCenterInfo: {
+      name: "Rome City Center",
+      distanceKm: 25,
+      recommendedRoute: "Shuttle bus from Rome Termini or car via Via Pontina"
+    },
+    nearby: [
+      {
+        name: "Rome EUR",
+        distanceKm: 18
+      },
+      {
+        name: "Pomezia",
+        distanceKm: 10
+      }
+    ],
+    websiteUrl: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/",
+    status: "active",
+    googleMapsUrl: "https://maps.google.com/?q=Castel+Romano+Designer+Outlet",
+    appleMapsUrl: "http://maps.apple.com/?q=Castel+Romano+Designer+Outlet",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Castel%20Romano%20Designer%20Outlet"
+  },
+  {
+    outletId: "fidenza-village",
+    name: "Fidenza Village",
+    slug: "fidenza-village",
+    countryId: "italy",
+    cityId: "milan",
+    address: "Via San Michele Campagna, 43036 Fidenza PR, Italy",
+    latitude: 44.8637,
+    longitude: 10.0616,
+    openingHours: "10:00 - 20:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "120+ Boutiques",
+    rating: 4.6,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Shuttle / Transport Info",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "Hands-free Shopping",
+      "Personal Shopping",
+      "VIP Lounge"
+    ],
+    restaurants: [
+      "Ca'puccino",
+      "Obicà",
+      "Parma Menù",
+      "Bistrò Fidenza",
+      "Lindt Café",
+      "Venchi"
+    ],
+    taxFreeAvailable: true,
+    vatRate: 22,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "70.01 EUR",
+    taxFreeOperator: "EU customs validation / tax refund operators",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating boutiques when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    cityCenterDistanceKm: 110,
+    airportDistanceKm: 110,
+    airports: [
+      {
+        code: "LIN",
+        name: "Milan Linate Airport",
+        distanceKm: 110
+      },
+      {
+        code: "MXP",
+        name: "Milan Malpensa Airport",
+        distanceKm: 150
+      },
+      {
+        code: "BLQ",
+        name: "Bologna Guglielmo Marconi Airport",
+        distanceKm: 115
+      }
+    ],
+    cityCenterInfo: {
+      name: "Milan City Center",
+      distanceKm: 110,
+      recommendedRoute: "Train to Fidenza + local transfer"
+    },
+    nearby: [
+      {
+        name: "Parma",
+        distanceKm: 30
+      },
+      {
+        name: "Bologna",
+        distanceKm: 115
+      }
+    ],
+    websiteUrl: "https://www.thebicestercollection.com/fidenza-village/en",
+    status: "active",
+    googleMapsUrl: "https://maps.google.com/?q=Fidenza+Village",
+    appleMapsUrl: "http://maps.apple.com/?q=Fidenza+Village",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Fidenza%20Village"
+  },
+  {
+    outletId: "la-reggia",
+    name: "La Reggia Designer Outlet",
+    slug: "la-reggia",
+    countryId: "italy",
+    cityId: "naples",
+    address: "S.S. Sannitica 87, 81025 Marcianise (CE), Italy",
+    latitude: 41.0286,
+    longitude: 14.3092,
+    openingHours: "10:00 - 20:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "140+ Stores",
+    rating: 4.6,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Shuttle / Transport Info",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "ATM",
+      "Kids Area",
+      "Personal Shopping"
+    ],
+    restaurants: [
+      "Rossopomodoro",
+      "McDonald's",
+      "Lindt",
+      "Caffè Vergnano",
+      "Spicchio Pizza",
+      "La Piadineria"
+    ],
+    taxFreeAvailable: true,
+    vatRate: 22,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "70.01 EUR",
+    taxFreeOperator: "Forexchange / Global Blue / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €70.01 in the same store on the same day. Tax refund services are available at the outlet before customs validation when leaving the EU.",
+    cityCenterDistanceKm: 30,
+    airportDistanceKm: 20,
+    airports: [
+      {
+        code: "NAP",
+        name: "Naples International Airport",
+        distanceKm: 20
+      }
+    ],
+    cityCenterInfo: {
+      name: "Naples City Center",
+      distanceKm: 30,
+      recommendedRoute: "Shuttle bus or car via A1"
+    },
+    nearby: [
+      {
+        name: "Caserta",
+        distanceKm: 10
+      },
+      {
+        name: "Naples",
+        distanceKm: 30
+      }
+    ],
+    websiteUrl: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-la-reggia/",
+    status: "active",
+    googleMapsUrl: "https://maps.google.com/?q=La+Reggia+Designer+Outlet",
+    appleMapsUrl: "http://maps.apple.com/?q=La+Reggia+Designer+Outlet",
+    yandexMapsUrl: "https://yandex.com/maps/?text=La%20Reggia%20Designer%20Outlet"
+  },
+  {
+    outletId: "noventa",
+    name: "Noventa di Piave Designer Outlet",
+    slug: "noventa",
+    countryId: "italy",
+    cityId: "venice",
+    address: "Via Marco Polo 1, 30020 Noventa di Piave VE, Italy",
+    latitude: 45.6734,
+    longitude: 12.5446,
+    openingHours: "10:00 - 20:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "170+ Stores",
+    rating: 4.6,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Shuttle / Transport Info",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "ATM",
+      "Kids Area",
+      "Personal Shopping"
+    ],
+    restaurants: [
+      "Sutto Caffè",
+      "Signorvino",
+      "Venchi",
+      "Baccalà Divino",
+      "McDonald's",
+      "Poke House"
+    ],
+    taxFreeAvailable: true,
+    vatRate: 22,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "70.01 EUR",
+    taxFreeOperator: "EU customs validation / tax refund operators",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    cityCenterDistanceKm: 45,
+    airportDistanceKm: 30,
+    airports: [
+      {
+        code: "VCE",
+        name: "Venice Marco Polo Airport",
+        distanceKm: 30
+      },
+      {
+        code: "TSF",
+        name: "Treviso Airport",
+        distanceKm: 35
+      },
+      {
+        code: "VRN",
+        name: "Verona Airport",
+        distanceKm: 145
+      }
+    ],
+    cityCenterInfo: {
+      name: "Venice City Center",
+      distanceKm: 45,
+      recommendedRoute: "Shuttle, bus, or car via A4"
+    },
+    nearby: [
+      {
+        name: "Noventa di Piave",
+        distanceKm: 2
+      },
+      {
+        name: "Venice",
+        distanceKm: 45
+      }
+    ],
+    websiteUrl: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/",
+    status: "active",
+    googleMapsUrl: "https://maps.google.com/?q=Noventa+di+Piave+Designer+Outlet",
+    appleMapsUrl: "http://maps.apple.com/?q=Noventa+di+Piave+Designer+Outlet",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Noventa%20di%20Piave%20Designer%20Outlet"
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    name: "Serravalle Designer Outlet",
+    slug: "serravalle-designer-outlet",
+    countryId: "italy",
+    cityId: "milan",
+    address: "Via della Moda 1, 15069 Serravalle Scrivia AL, Italy",
+    latitude: 44.7359,
+    longitude: 8.8367,
+    openingHours: "10:00 - 20:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "230+ Stores",
+    rating: 4.6,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Shuttle / Transport Info",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "ATM",
+      "Personal Shopping"
+    ],
+    restaurants: [
+      "Eataly",
+      "Obicà",
+      "Bonetti",
+      "Farinella",
+      "La Piadineria",
+      "McDonald's"
+    ],
+    taxFreeAvailable: true,
+    vatRate: 22,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "70.01 EUR",
+    taxFreeOperator: "EU customs validation / tax refund operators",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    cityCenterDistanceKm: 95,
+    airportDistanceKm: 95,
+    airports: [
+      {
+        code: "LIN",
+        name: "Milan Linate Airport",
+        distanceKm: 95
+      },
+      {
+        code: "MXP",
+        name: "Milan Malpensa Airport",
+        distanceKm: 120
+      },
+      {
+        code: "GOA",
+        name: "Genoa Cristoforo Colombo Airport",
+        distanceKm: 55
+      }
+    ],
+    cityCenterInfo: {
+      name: "Milan City Center",
+      distanceKm: 95,
+      recommendedRoute: "Shuttle or train + bus via Serravalle Scrivia"
+    },
+    nearby: [
+      {
+        name: "Genoa",
+        distanceKm: 55
+      },
+      {
+        name: "Novi Ligure",
+        distanceKm: 7
+      }
+    ],
+    websiteUrl: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/",
+    status: "active",
+    googleMapsUrl: "https://maps.google.com/?q=Serravalle+Designer+Outlet",
+    appleMapsUrl: "http://maps.apple.com/?q=Serravalle+Designer+Outlet",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Serravalle%20Designer%20Outlet"
+  },
+  {
+    outletId: "the-mall-firenze",
+    name: "The Mall Firenze",
+    slug: "the-mall-firenze",
+    countryId: "italy",
+    cityId: "florence",
+    address: "Via Europa 8, 50066 Leccio Reggello FI, Italy",
+    latitude: 43.6936,
+    longitude: 11.4656,
+    openingHours: "10:00 - 20:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "40+ Boutiques",
+    rating: 4.6,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Direct Bus",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "Personal Shopping",
+      "VIP Services"
+    ],
+    restaurants: [
+      "Gucci Caffè",
+      "ToscaNino",
+      "Bistro",
+      "Caffè La Corte",
+      "Food Lounge",
+      "Gelateria"
+    ],
+    taxFreeAvailable: true,
+    vatRate: 22,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "70.01 EUR",
+    taxFreeOperator: "EU customs validation / tax refund operators",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating boutiques when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    cityCenterDistanceKm: 35,
+    airportDistanceKm: 45,
+    airports: [
+      {
+        code: "FLR",
+        name: "Florence Airport",
+        distanceKm: 45
+      },
+      {
+        code: "PSA",
+        name: "Pisa International Airport",
+        distanceKm: 120
+      },
+      {
+        code: "BLQ",
+        name: "Bologna Airport",
+        distanceKm: 125
+      }
+    ],
+    cityCenterInfo: {
+      name: "Florence City Center",
+      distanceKm: 35,
+      recommendedRoute: "Direct bus or car via A1"
+    },
+    nearby: [
+      {
+        name: "Reggello",
+        distanceKm: 8
+      },
+      {
+        name: "Florence",
+        distanceKm: 35
+      }
+    ],
+    websiteUrl: "https://firenze.themall.it/en",
+    status: "active",
+    googleMapsUrl: "https://maps.google.com/?q=The+Mall+Firenze",
+    appleMapsUrl: "http://maps.apple.com/?q=The+Mall+Firenze",
+    yandexMapsUrl: "https://yandex.com/maps/?text=The%20Mall%20Firenze"
+  }
+];
