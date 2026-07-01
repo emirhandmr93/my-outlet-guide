@@ -153,7 +153,7 @@ export const germanyOutlets = [
     address: "Oderstraße 10, 24539 Neumünster, Germany",
     latitude: 54.1031,
     longitude: 9.9966,
-    openingHours: "10:00 - 20:00",
+    openingHours: "Mon-Tue 09:00 - 20:00; Wed-Thu 10:00 - 20:00; Fri 09:00 - 24:00; Sat 10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
     storesCountText: "130+ Stores",
@@ -224,7 +224,7 @@ export const germanyOutlets = [
     address: "An der Vorburg 1, 38440 Wolfsburg, Germany",
     latitude: 52.4294,
     longitude: 10.7936,
-    openingHours: "10:00 - 19:00",
+    openingHours: "Mon-Thu 10:00 - 19:00; Fri-Sat 10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
     storesCountText: "90+ Stores",
@@ -450,7 +450,7 @@ export const germanyOutlets = [
     address: "Hugo-Boss-Platz 4, 72555 Metzingen, Germany",
     latitude: 48.5359,
     longitude: 9.2812,
-    openingHours: "10:00 - 20:00",
+    openingHours: "Mon-Fri 10:00 - 20:00; Sat 09:00 - 20:00",
     heroImage: "",
     galleryImages: [],
     storesCountText: "130+ Stores",
@@ -624,7 +624,11 @@ export const germanyOutlets = [
       "Gift Cards",
       "Accessibility",
       "Kids Area",
-      "Personal Shopping"
+      "Personal Shopping",
+      "ATM",
+      "EV Charging",
+      "Wheelchair Rental",
+      "Powerbank"
     ],
     restaurants: [
       "Starbucks",
@@ -639,7 +643,7 @@ export const germanyOutlets = [
     estimatedRefundRate: 11,
     minimumTaxFreeSpend: "50.01 EUR",
     taxFreeOperator: "Global Blue / Planet / EU customs validation",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form when purchases exceed the German minimum spend.",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can use tax-free shopping at participating stores; validate export forms when leaving the EU.",
     cityCenterDistanceKm: 140,
     airportDistanceKm: 35,
     airports: [
@@ -669,7 +673,7 @@ export const germanyOutlets = [
         distanceKm: 35
       }
     ],
-    websiteUrl: "https://www.fashion-outlet-zweibruecken.com/",
+    websiteUrl: "https://www.zweibrueckenfashionoutlet.com/en",
     status: "active",
     googleMapsUrl: "https://maps.google.com/?q=Zweibrucken+Fashion+Outlet",
     appleMapsUrl: "http://maps.apple.com/?q=Zweibrucken+Fashion+Outlet",
