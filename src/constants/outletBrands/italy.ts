@@ -1501,7 +1501,7 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "barberino",
     brandId: "adidas",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1518,8 +1518,14 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
-    brandId: "boss",
+    brandId: "belstaff",
     featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
+    brandId: "boss",
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -1537,6 +1543,12 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "barberino",
     brandId: "coach",
+    featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
+    brandId: "coccinelle",
     featured: false,
     relationStatus: "active",
   },
@@ -1566,7 +1578,19 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
+    brandId: "geox",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
     brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
+    brandId: "haribo",
     featured: false,
     relationStatus: "active",
   },
@@ -1590,8 +1614,20 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
+    brandId: "lindt",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
     brandId: "michael-kors",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
+    brandId: "napapijri",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1603,7 +1639,7 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "barberino",
     brandId: "nike",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1632,7 +1668,37 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
+    brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
+    brandId: "skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
+    brandId: "sunglass-hut",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
+    brandId: "swarovski",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
     brandId: "the-north-face",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
+    brandId: "timberland",
     featured: false,
     relationStatus: "active",
   },
@@ -1645,6 +1711,12 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "barberino",
     brandId: "twinset",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "barberino",
+    brandId: "villeroy-and-boch",
     featured: false,
     relationStatus: "active",
   },
