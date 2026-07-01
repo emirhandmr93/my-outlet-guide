@@ -1,122 +1,122 @@
 export const spainRestaurants = [
   {
-    "restaurantId": "dunkin-malaga",
+    "restaurantId": "designer-outlet-malaga-ben-and-jerrys",
     "outletId": "designer-outlet-malaga",
-    "restaurantName": "Dunkin'",
-    "category": "Cafe",
-    "priceLevel": "€",
-    "website": "https://",
+    "restaurantName": "Ben & Jerry's",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/food-drinks/",
     "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "1"
   },
   {
-    "restaurantId": "five-guys-malaga",
+    "restaurantId": "designer-outlet-malaga-five-guys",
     "outletId": "designer-outlet-malaga",
     "restaurantName": "Five Guys",
-    "category": "Burger",
+    "category": "Fast Food",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/food-drinks/",
     "status": "active",
     "displayOrder": "2"
   },
   {
-    "restaurantId": "gusto-malaga",
+    "restaurantId": "designer-outlet-malaga-la-pecera",
     "outletId": "designer-outlet-malaga",
-    "restaurantName": "Gusto",
-    "category": "Italian",
+    "restaurantName": "La Pecera",
+    "category": "Dessert",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/food-drinks/",
     "status": "active",
     "displayOrder": "3"
   },
   {
-    "restaurantId": "lindt-malaga",
+    "restaurantId": "designer-outlet-malaga-sabor-a-espana",
     "outletId": "designer-outlet-malaga",
-    "restaurantName": "Lindt",
+    "restaurantName": "Sabor a España",
     "category": "Dessert",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/food-drinks/",
     "status": "active",
     "displayOrder": "4"
   },
   {
-    "restaurantId": "restaurant-cafe-malaga",
+    "restaurantId": "designer-outlet-malaga-santo-cielo",
     "outletId": "designer-outlet-malaga",
-    "restaurantName": "Restaurant & Café",
-    "category": "Restaurant",
-    "priceLevel": "€€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "6"
-  },
-  {
-    "restaurantId": "starbucks-malaga",
-    "outletId": "designer-outlet-malaga",
-    "restaurantName": "Starbucks",
-    "category": "Cafe",
-    "priceLevel": "€€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "1"
-  },
-  {
-    "restaurantId": "cristina-oria-las-rozas",
-    "outletId": "las-rozas-village",
-    "restaurantName": "Cristina Oria",
-    "category": "Spanish",
-    "priceLevel": "€€€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "1"
-  },
-  {
-    "restaurantId": "ham-fresh-burger-las-rozas",
-    "outletId": "las-rozas-village",
-    "restaurantName": "Ham! Fresh Burger",
-    "category": "Burger",
-    "priceLevel": "€€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "4"
-  },
-  {
-    "restaurantId": "joselitos-las-rozas",
-    "outletId": "las-rozas-village",
-    "restaurantName": "Joselito's",
-    "category": "Spanish",
-    "priceLevel": "€€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "3"
-  },
-  {
-    "restaurantId": "lindt-las-rozas",
-    "outletId": "las-rozas-village",
-    "restaurantName": "Lindt",
+    "restaurantName": "Santo Cielo",
     "category": "Dessert",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/food-drinks/",
     "status": "active",
     "displayOrder": "5"
   },
   {
-    "restaurantId": "restaurant-cafe-las-rozas",
-    "outletId": "las-rozas-village",
-    "restaurantName": "Restaurant & Café",
-    "category": "Restaurant",
+    "restaurantId": "designer-outlet-malaga-starbucks",
+    "outletId": "designer-outlet-malaga",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/food-drinks/",
     "status": "active",
     "displayOrder": "6"
   },
   {
-    "restaurantId": "starbucks-las-rozas",
+    "restaurantId": "las-rozas-village-cristina-oria",
     "outletId": "las-rozas-village",
-    "restaurantName": "Starbucks",
-    "category": "Cafe",
+    "restaurantName": "Cristina Oria",
+    "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.thebicestercollection.com/las-rozas-village/en/dine/",
     "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "las-rozas-village-joselito-kiosk",
+    "outletId": "las-rozas-village",
+    "restaurantName": "Joselito Kiosk",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/las-rozas-village/en/dine/",
+    "status": "active",
+    "displayOrder": "8"
+  },
+  {
+    "restaurantId": "las-rozas-village-joselitos-restaurant",
+    "outletId": "las-rozas-village",
+    "restaurantName": "Joselito's Restaurant",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/las-rozas-village/en/dine/",
+    "status": "active",
+    "displayOrder": "9"
+  },
+  {
+    "restaurantId": "las-rozas-village-lindt",
+    "outletId": "las-rozas-village",
+    "restaurantName": "Lindt",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/las-rozas-village/en/dine/",
+    "status": "active",
+    "displayOrder": "10"
+  },
+  {
+    "restaurantId": "las-rozas-village-mentidero-sal-y-brasas",
+    "outletId": "las-rozas-village",
+    "restaurantName": "Mentidero Sal y Brasas",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/las-rozas-village/en/dine/",
+    "status": "active",
+    "displayOrder": "11"
+  },
+  {
+    "restaurantId": "las-rozas-village-mistura",
+    "outletId": "las-rozas-village",
+    "restaurantName": "Mistura",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/las-rozas-village/en/dine/",
+    "status": "active",
+    "displayOrder": "12"
   }
 ];

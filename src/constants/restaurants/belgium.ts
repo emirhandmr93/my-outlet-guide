@@ -1,62 +1,72 @@
 export const belgiumRestaurants = [
   {
-    "restaurantId": "ellis-gourmet-burger-maasmechelen",
+    "restaurantId": "maasmechelen-village-chez-lulu",
     "outletId": "maasmechelen-village",
-    "restaurantName": "Ellis Gourmet Burger",
-    "category": "Burger",
+    "restaurantName": "Chez Lulu",
+    "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://",
-    "status": "active",
-    "displayOrder": "2"
-  },
-  {
-    "restaurantId": "le-petit-belge-maasmechelen",
-    "outletId": "maasmechelen-village",
-    "restaurantName": "Le Petit Belge",
-    "category": "Belgian",
-    "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
     "status": "active",
     "displayOrder": "1"
   },
   {
-    "restaurantId": "liu-jo-cafe-maasmechelen",
+    "restaurantId": "maasmechelen-village-cho-gao",
     "outletId": "maasmechelen-village",
-    "restaurantName": "Liu Jo Café",
+    "restaurantName": "Cho Gao",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "maasmechelen-village-churros-and-more",
+    "outletId": "maasmechelen-village",
+    "restaurantName": "Churros & More",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "maasmechelen-village-izy-coffee",
+    "outletId": "maasmechelen-village",
+    "restaurantName": "Izy Coffee",
     "category": "Cafe",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
     "status": "active",
     "displayOrder": "4"
   },
   {
-    "restaurantId": "neuhaus-maasmechelen",
+    "restaurantId": "maasmechelen-village-le-pain-quotidien",
     "outletId": "maasmechelen-village",
-    "restaurantName": "Neuhaus",
-    "category": "Dessert",
+    "restaurantName": "Le Pain Quotidien",
+    "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
     "status": "active",
     "displayOrder": "5"
   },
   {
-    "restaurantId": "restaurant-cafe-maasmechelen",
+    "restaurantId": "maasmechelen-village-le-petit-belge",
     "outletId": "maasmechelen-village",
-    "restaurantName": "Restaurant & Café",
+    "restaurantName": "Le Petit Belge",
     "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
     "status": "active",
     "displayOrder": "6"
   },
   {
-    "restaurantId": "starbucks-maasmechelen",
+    "restaurantId": "maasmechelen-village-le-spritzz",
     "outletId": "maasmechelen-village",
-    "restaurantName": "Starbucks",
-    "category": "Cafe",
+    "restaurantName": "Le Spritzz",
+    "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
     "status": "active",
-    "displayOrder": "3"
+    "displayOrder": "7"
   }
 ];
