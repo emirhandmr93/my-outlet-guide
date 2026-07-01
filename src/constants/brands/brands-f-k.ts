@@ -350,6 +350,17 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "french-connection",
+    brandName: "French Connection",
+    aliases: ["FCUK"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "premium",
+    rankingWeight: 72,
+    brandStatus: "active",
+  },
+  {
     brandId: "frette",
     brandName: "Frette",
     aliases: [],
@@ -1176,6 +1187,17 @@ export const brandsFK: Brand[] = [
     originCountryId: "united-states",
     luxuryLevel: "premium",
     rankingWeight: 72,
+    brandStatus: "active",
+  },
+  {
+    brandId: "hobbs",
+    brandName: "Hobbs",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "premium",
+    rankingWeight: 74,
     brandStatus: "active",
   },
   {
@@ -2492,5 +2514,5 @@ export const brandsFK: Brand[] = [
     luxuryLevel: "premium",
     rankingWeight: 68,
     brandStatus: "active",
-  },
+  }
 ];

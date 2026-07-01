@@ -921,6 +921,18 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "7-for-all-mankind",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "abercrombie-and-fitch",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "adidas",
     featured: false,
     relationStatus: "active",
@@ -975,7 +987,25 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "beauty-outlet",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "bedeck",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "belstaff",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "ben-sherman",
     featured: false,
     relationStatus: "active",
   },
@@ -999,13 +1029,37 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "boss-kids",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "burberry",
     featured: true,
     relationStatus: "active",
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "cadbury",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "carvela",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "castore",
     featured: false,
     relationStatus: "active",
   },
@@ -1035,6 +1089,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "clogau-gold",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "coach",
     featured: true,
     relationStatus: "active",
@@ -1059,7 +1119,25 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "crew-clothing",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "crocs",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "david-clulow",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "designer-exchange",
     featured: false,
     relationStatus: "active",
   },
@@ -1131,6 +1209,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "french-connection",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "gallo",
     featured: false,
     relationStatus: "active",
@@ -1192,6 +1276,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "cheshire-oaks",
     brandId: "havaianas",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "hobbs",
     featured: false,
     relationStatus: "active",
   },
@@ -1269,6 +1359,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "kate-spade-new-york",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "kenzo-kids",
     featured: false,
     relationStatus: "active",
@@ -1282,6 +1378,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "cheshire-oaks",
     brandId: "kurt-geiger",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "l-occitane",
     featured: false,
     relationStatus: "active",
   },
@@ -1578,5 +1680,5 @@ export const ukOutletBrands: OutletBrand[] = [
     brandId: "woolrich",
     featured: false,
     relationStatus: "active",
-  },
+  }
 ];
