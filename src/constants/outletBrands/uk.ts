@@ -9,6 +9,24 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "acqua-di-parma",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "aesop",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "alaia",
+    featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "alexander-mcqueen",
     featured: true,
     relationStatus: "active",
@@ -27,6 +45,18 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "annoushka",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "aquazzura",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "arcteryx",
     featured: false,
     relationStatus: "active",
@@ -35,6 +65,24 @@ export const ukOutletBrands: OutletBrand[] = [
     outletId: "bicester-village",
     brandId: "armani",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "astrid-and-miyu",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "axel-arigato",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "ba-and-sh",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -51,7 +99,31 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "bamford",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "bang-and-olufsen",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "barbour",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "beaute-prestige-international",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "benefit-cosmetics",
     featured: false,
     relationStatus: "active",
   },
@@ -87,6 +159,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "bremont",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "brioni",
     featured: false,
     relationStatus: "active",
@@ -105,7 +183,25 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "byredo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "canada-goose",
+    featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "carolina-herrera",
     featured: false,
     relationStatus: "active",
   },
@@ -118,6 +214,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bicester-village",
     brandId: "charles-tyrwhitt",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "charlotte-tilbury",
     featured: false,
     relationStatus: "active",
   },
@@ -142,6 +244,24 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bicester-village",
     brandId: "coach",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "creed",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "currentbody-skin",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "david-clulow-sunglasses",
     featured: false,
     relationStatus: "active",
   },
@@ -183,6 +303,24 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "elemis",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "eleventy",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "emma-bridgewater",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "ermenegildo-zegna",
     featured: false,
     relationStatus: "active",
@@ -207,7 +345,19 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "fortnum-and-mason",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "ganni",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "gina",
     featured: false,
     relationStatus: "active",
   },
@@ -231,6 +381,18 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "guerlain",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "hackett",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "herno",
     featured: false,
     relationStatus: "active",
@@ -243,6 +405,18 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "hogan-at-tods",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "holland-cooper",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "hour-passion",
     featured: false,
     relationStatus: "active",
@@ -250,6 +424,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bicester-village",
     brandId: "isabel-marant",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "jacob-cohen",
     featured: false,
     relationStatus: "active",
   },
@@ -268,6 +448,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bicester-village",
     brandId: "jo-malone-london",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "kate-spade-new-york",
     featured: false,
     relationStatus: "active",
   },
@@ -297,7 +483,19 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "l-occitane",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "lacoste",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "lalique",
     featured: false,
     relationStatus: "active",
   },
@@ -345,8 +543,20 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "maison-margiela",
+    featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "maje",
     featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "manolo-blahnik",
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -381,8 +591,20 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "molton-brown",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "moncler",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "monica-vinader",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -399,13 +621,49 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "mulberry",
+    featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "n-peal",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "neom",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "new-balance",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "bicester-village",
+    brandId: "on-running",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "orlebar-brown",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "ottolenghi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "paige",
     featured: false,
     relationStatus: "active",
   },
@@ -423,6 +681,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "penhaligons",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "polo-ralph-lauren",
     featured: true,
     relationStatus: "active",
@@ -435,6 +699,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "ralph-lauren-children",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "reiss",
     featured: false,
     relationStatus: "active",
@@ -442,6 +712,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bicester-village",
     brandId: "rituals",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "rixo",
     featured: false,
     relationStatus: "active",
   },
@@ -466,6 +742,18 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bicester-village",
     brandId: "sandro",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "self-portrait",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "shreeji-presents-the-village-news",
     featured: false,
     relationStatus: "active",
   },
@@ -501,6 +789,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "sweaty-betty",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "tag-heuer",
     featured: false,
     relationStatus: "active",
@@ -514,6 +808,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bicester-village",
     brandId: "the-north-face",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "the-white-company",
     featured: false,
     relationStatus: "active",
   },
@@ -538,6 +838,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bicester-village",
     brandId: "tommy-hilfiger",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "tommy-hilfiger-women-and-kids",
     featured: false,
     relationStatus: "active",
   },
@@ -591,7 +897,25 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
+    brandId: "vivienne-westwood",
+    featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "watchfinder-and-co",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
     brandId: "zimmermann",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bicester-village",
+    brandId: "zwilling-ja-henckels",
     featured: false,
     relationStatus: "active",
   },
