@@ -5,9 +5,13 @@ import { brandsQT } from "./brands-q-t";
 import { brandsUZ } from "./brands-u-z";
 import type { Brand } from "../../types/brand";
 
-export type { Brand, BrandLuxuryLevel, BrandStatus } from "../../types/brand";
-
-export { brandsAE, brandsFK, brandsLP, brandsQT, brandsUZ };
+export {
+  brandsAE,
+  brandsFK,
+  brandsLP,
+  brandsQT,
+  brandsUZ,
+};
 
 export const brands: Brand[] = [
   ...brandsAE,
@@ -16,3 +20,5 @@ export const brands: Brand[] = [
   ...brandsQT,
   ...brandsUZ,
 ];
+
+export type { Brand } from "../../types/brand";
