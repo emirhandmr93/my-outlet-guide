@@ -1,68 +1,68 @@
 export const spainTransportation = [
   {
+    "transportationId": "malaga-car",
+    "outletId": "designer-outlet-malaga",
+    "transportType": "taxi",
+    "title": "Car / Free Parking",
+    "duration": "5 min from airport / 15 min from Málaga city centre",
+    "cost": "Free parking",
+    "tip": "Official centre directions state the outlet is a 5-minute car journey from Málaga Airport and 15 minutes from Málaga city centre.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "malaga-airport",
+    "outletId": "designer-outlet-malaga",
+    "transportType": "train",
+    "title": "Airport Train Access",
+    "duration": "One stop from airport",
+    "cost": "Check official timetable",
+    "tip": "Official centre directions state an on-site train links the airport to the centre in one stop.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
     "transportationId": "malaga-train",
     "outletId": "designer-outlet-malaga",
     "transportType": "train",
-    "title": "Train to Plaza Mayor",
-    "duration": "15-20 min",
-    "cost": "€2-4",
-    "tip": "The suburban train stops at Plaza Mayor next to the outlet.",
+    "title": "RENFE Cercanías C1 to Plaza Mayor",
+    "duration": "Check official timetable",
+    "cost": "Check official timetable",
+    "tip": "Official services list RENFE Cercanías C1 to Plaza Mayor station, next to Designer Outlet Málaga.",
     "status": "active",
-    "displayOrder": "1"
+    "displayOrder": "3"
   },
   {
     "transportationId": "malaga-bus",
     "outletId": "designer-outlet-malaga",
     "transportType": "bus",
-    "title": "City Bus",
-    "duration": "20-30 min",
-    "cost": "€2-4",
-    "tip": "Several city buses connect Málaga with Plaza Mayor.",
+    "title": "Bus Access",
+    "duration": "Check official timetable",
+    "cost": "Check official timetable",
+    "tip": "Official centre directions list bus access; verify the current route and timetable with the operator.",
     "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "4"
   },
   {
-    "transportationId": "malaga-car",
+    "transportationId": "malaga-shuttle",
     "outletId": "designer-outlet-malaga",
-    "transportType": "taxi",
-    "title": "Car / Taxi",
-    "duration": "10-15 min",
-    "cost": "€15-25",
-    "tip": "Fastest option from Málaga city centre or airport.",
+    "transportType": "shuttle",
+    "title": "Shuttle Bus",
+    "duration": "Check official timetable",
+    "cost": "Check official timetable",
+    "tip": "Official centre directions list a shuttle bus option; check current availability before travelling.",
     "status": "active",
-    "displayOrder": "3"
-  },
-  {
-    "transportationId": "las-rozas-train",
-    "outletId": "las-rozas-village",
-    "transportType": "train",
-    "title": "Train to Las Rozas",
-    "duration": "25-35 min",
-    "cost": "€2-5",
-    "tip": "Regional train from Madrid with local connection.",
-    "status": "active",
-    "displayOrder": "1"
-  },
-  {
-    "transportationId": "las-rozas-bus",
-    "outletId": "las-rozas-village",
-    "transportType": "bus",
-    "title": "City Bus",
-    "duration": "30-40 min",
-    "cost": "€2-5",
-    "tip": "Direct buses operate from Madrid.",
-    "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "5"
   },
   {
     "transportationId": "las-rozas-car",
     "outletId": "las-rozas-village",
     "transportType": "taxi",
-    "title": "Car / Taxi",
-    "duration": "20-30 min",
-    "cost": "€25-40",
-    "tip": "Fastest option from Madrid city centre.",
+    "title": "Car / Complimentary Parking",
+    "duration": "Confirm with provider",
+    "cost": "Free parking",
+    "tip": "Official Village FAQs confirm complimentary parking for guests.",
     "status": "active",
-    "displayOrder": "3"
+    "displayOrder": "1"
   }
 ];
