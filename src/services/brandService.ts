@@ -1,6 +1,6 @@
 import { brands, Brand } from "../constants/brands/index";
 import { categories } from "../constants/categories";
-import { outletBrands } from "../constants/outletBrands";
+import { outletBrands } from "../constants/outletBrands/index";
 
 export type BrandCategoryGroup = {
   categoryId: string;
