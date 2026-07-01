@@ -1,0 +1,1060 @@
+import type { Brand } from "../../types/brand";
+
+export const brandsUZ: Brand[] = [
+  {
+    "brandId": "u-s-polo-assn",
+    "brandName": "U.S. Polo Assn.",
+    "aliases": [
+      "US Polo Assn",
+      "U S Polo Assn"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "ufc",
+    "brandName": "UFC",
+    "aliases": [
+      "Ultimate Fighting Championship"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "ugg",
+    "brandName": "UGG",
+    "aliases": [
+      "UGG Australia",
+      "UGG Outlet"
+    ],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "ulla-popken",
+    "brandName": "Ulla Popken",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "ulta-beauty",
+    "brandName": "Ulta Beauty",
+    "aliases": [
+      "Ulta"
+    ],
+    "categoryId": "beauty",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "umbro",
+    "brandName": "Umbro",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "sports",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "under-armour",
+    "brandName": "Under Armour",
+    "aliases": [
+      "Under Armour Factory House",
+      "Under Armour Outlet"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 92,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "unisa",
+    "brandName": "Unisa",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "spain",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "united-arrows",
+    "brandName": "United Arrows",
+    "aliases": [
+      "UNITED ARROWS"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "uppercut-deluxe",
+    "brandName": "Uppercut Deluxe",
+    "aliases": [],
+    "categoryId": "beauty",
+    "logo": "",
+    "originCountryId": "australia",
+    "luxuryLevel": "premium",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "urban-research",
+    "brandName": "Urban Research",
+    "aliases": [
+      "URBAN RESEARCH"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "valentino",
+    "brandName": "Valentino",
+    "aliases": [
+      "Maison Valentino",
+      "Valentino Garavani"
+    ],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 94,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vanessa-bruno",
+    "brandName": "Vanessa Bruno",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vans",
+    "brandName": "Vans",
+    "aliases": [
+      "Vans Outlet"
+    ],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 88,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vera-bradley",
+    "brandName": "Vera Bradley",
+    "aliases": [
+      "Vera Bradley Factory Outlet"
+    ],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vera-wang",
+    "brandName": "Vera Wang",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "versace",
+    "brandName": "Versace",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "italy",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 94,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "victoria-s-secret",
+    "brandName": "Victoria's Secret",
+    "aliases": [
+      "Victorias Secret",
+      "Victoria’s Secret Outlet"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "victorinox",
+    "brandName": "Victorinox",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "switzerland",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vilebrequin",
+    "brandName": "Vilebrequin",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "villeroy-and-boch",
+    "brandName": "Villeroy & Boch",
+    "aliases": [
+      "Villeroy and Boch"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vince",
+    "brandName": "Vince",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vince-camuto",
+    "brandName": "Vince Camuto",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vineyard-vines",
+    "brandName": "Vineyard Vines",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vionic",
+    "brandName": "Vionic",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "volcom",
+    "brandName": "Volcom",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "volvik",
+    "brandName": "Volvik",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "sports",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "von-dutch",
+    "brandName": "Von Dutch",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 66,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vov",
+    "brandName": "VOV",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "vuori",
+    "brandName": "Vuori",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "w-closet",
+    "brandName": "w closet",
+    "aliases": [
+      "W Closet"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 66,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "waac",
+    "brandName": "WAAC",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wacoal",
+    "brandName": "Wacoal",
+    "aliases": [
+      "WACOAL"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "watch-and-see",
+    "brandName": "Watch & See",
+    "aliases": [
+      "Watch and See"
+    ],
+    "categoryId": "jewelry-watches",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "watch-station-international",
+    "brandName": "Watch Station International",
+    "aliases": [
+      "Watch Station"
+    ],
+    "categoryId": "jewelry-watches",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "waterdrop",
+    "brandName": "waterdrop",
+    "aliases": [
+      "Waterdrop"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "austria",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "waterford",
+    "brandName": "Waterford",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "ireland",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wedgwood",
+    "brandName": "Wedgwood",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wego",
+    "brandName": "WEGO",
+    "aliases": [
+      "Wego"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "weird-fish",
+    "brandName": "Weird Fish",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wellensteyn",
+    "brandName": "Wellensteyn",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wellmade",
+    "brandName": "Wellmade",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wenger",
+    "brandName": "Wenger",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "switzerland",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "west-elm-outlet",
+    "brandName": "West Elm Outlet",
+    "aliases": [
+      "West Elm"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "what-it-isnt",
+    "brandName": "What it isn't",
+    "aliases": [
+      "What It Isnt"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "whistles",
+    "brandName": "Whistles",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "white-house-black-market",
+    "brandName": "White House Black Market",
+    "aliases": [
+      "WHBM"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "white-stuff",
+    "brandName": "White Stuff",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "whittard",
+    "brandName": "Whittard",
+    "aliases": [
+      "Whittard of Chelsea"
+    ],
+    "categoryId": "food-chocolate",
+    "logo": "",
+    "originCountryId": "united-kingdom",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wide-angle",
+    "brandName": "Wide Angle",
+    "aliases": [],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "sports",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "williams-sonoma-outlet",
+    "brandName": "Williams-Sonoma Outlet",
+    "aliases": [
+      "Williams Sonoma"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wilson",
+    "brandName": "Wilson",
+    "aliases": [
+      "Wilson Sporting Goods"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "sports",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wilsons-leather",
+    "brandName": "Wilsons Leather",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "windsor",
+    "brandName": "Windsor",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "winky-lux",
+    "brandName": "Winky Lux",
+    "aliases": [],
+    "categoryId": "beauty",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wmf",
+    "brandName": "WMF",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wolford",
+    "brandName": "Wolford",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "austria",
+    "luxuryLevel": "premium",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wonder-play",
+    "brandName": "Wonder Play",
+    "aliases": [],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "woolrich",
+    "brandName": "Woolrich",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wooyoungmi",
+    "brandName": "Wooyoungmi",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 80,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wrangler",
+    "brandName": "Wrangler",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "wusthof",
+    "brandName": "Wüsthof",
+    "aliases": [
+      "Wusthof"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "x-bionic",
+    "brandName": "X-Bionic",
+    "aliases": [
+      "XBionic"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "switzerland",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "x-girl",
+    "brandName": "X-girl",
+    "aliases": [
+      "Xgirl"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "xti",
+    "brandName": "Xti",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "spain",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "y-3",
+    "brandName": "Y-3",
+    "aliases": [
+      "Y3",
+      "adidas Y-3"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "y-concept",
+    "brandName": "Y-concept",
+    "aliases": [
+      "Y Concept"
+    ],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 68,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "ys",
+    "brandName": "Y’s",
+    "aliases": [
+      "Y's",
+      "Ys"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "yankee-candle",
+    "brandName": "Yankee Candle",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "yellow-box",
+    "brandName": "Yellow Box",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "yeti",
+    "brandName": "YETI",
+    "aliases": [
+      "Yeti"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "yohji-yamamoto",
+    "brandName": "Yohji Yamamoto",
+    "aliases": [],
+    "categoryId": "luxury",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "yonex",
+    "brandName": "YONEX",
+    "aliases": [
+      "Yonex"
+    ],
+    "categoryId": "sportswear",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "sports",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "young-and-reckless",
+    "brandName": "Young & Reckless",
+    "aliases": [
+      "Young and Reckless"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "yves-rocher",
+    "brandName": "Yves Rocher",
+    "aliases": [],
+    "categoryId": "beauty",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zadig-and-voltaire",
+    "brandName": "Zadig & Voltaire",
+    "aliases": [
+      "Zadig and Voltaire"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "france",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zales",
+    "brandName": "Zales",
+    "aliases": [
+      "Zales Outlet",
+      "Zales The Diamond Store"
+    ],
+    "categoryId": "jewelry-watches",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 78,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zero",
+    "brandName": "zero",
+    "aliases": [
+      "Zero"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zero-halliburton",
+    "brandName": "Zero Halliburton",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "premium",
+    "rankingWeight": 74,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zimmermann",
+    "brandName": "Zimmermann",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "australia",
+    "luxuryLevel": "luxury",
+    "rankingWeight": 82,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "ziosongzio",
+    "brandName": "Ziosongzio",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "ziozia",
+    "brandName": "ZIOZIA",
+    "aliases": [
+      "Ziozia"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zippy",
+    "brandName": "Zippy",
+    "aliases": [],
+    "categoryId": "kids",
+    "logo": "",
+    "originCountryId": "portugal",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zoff",
+    "brandName": "Zoff",
+    "aliases": [],
+    "categoryId": "shoes-bags",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zojirushi",
+    "brandName": "Zojirushi",
+    "aliases": [],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "japan",
+    "luxuryLevel": "premium",
+    "rankingWeight": 72,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zooc",
+    "brandName": "ZOOC",
+    "aliases": [
+      "Zooc"
+    ],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "south-korea",
+    "luxuryLevel": "fashion",
+    "rankingWeight": 70,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zumiez",
+    "brandName": "Zumiez",
+    "aliases": [],
+    "categoryId": "fashion",
+    "logo": "",
+    "originCountryId": "united-states",
+    "luxuryLevel": "lifestyle",
+    "rankingWeight": 76,
+    "brandStatus": "active"
+  },
+  {
+    "brandId": "zwilling-ja-henckels",
+    "brandName": "Zwilling J.A. Henckels",
+    "aliases": [
+      "Zwilling",
+      "Zwilling Henckels"
+    ],
+    "categoryId": "home-lifestyle",
+    "logo": "",
+    "originCountryId": "germany",
+    "luxuryLevel": "premium",
+    "rankingWeight": 84,
+    "brandStatus": "active"
+  }
+]
+;
