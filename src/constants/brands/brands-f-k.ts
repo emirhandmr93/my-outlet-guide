@@ -2559,4 +2559,15 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
+  {
+    brandId: "joe-browns",
+    brandName: "Joe Browns",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 64,
+    brandStatus: "active",
+  },
 ];
