@@ -45,6 +45,12 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
+    brandId: "armani-exchange",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
     brandId: "babor",
     featured: false,
     relationStatus: "active",
@@ -165,6 +171,12 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
+    brandId: "colmar",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
     brandId: "columbia",
     featured: false,
     relationStatus: "active",
@@ -267,6 +279,12 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
+    brandId: "fratelli-rossetti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
     brandId: "furla",
     featured: false,
     relationStatus: "active",
@@ -274,6 +292,12 @@ export const austriaOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-parndorf",
     brandId: "g-star-raw",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
+    brandId: "gallo",
     featured: false,
     relationStatus: "active",
   },
@@ -303,7 +327,19 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
+    brandId: "gutteridge",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
     brandId: "haribo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
+    brandId: "harmont-and-blaine",
     featured: false,
     relationStatus: "active",
   },
@@ -513,6 +549,12 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
+    brandId: "north-sails",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
     brandId: "odlo",
     featured: false,
     relationStatus: "active",
@@ -585,6 +627,12 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
+    brandId: "refrigiwear",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
     brandId: "replay",
     featured: false,
     relationStatus: "active",
@@ -598,6 +646,12 @@ export const austriaOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-parndorf",
     brandId: "rituals",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
+    brandId: "salomon",
     featured: false,
     relationStatus: "active",
   },
@@ -617,6 +671,12 @@ export const austriaOutletBrands: OutletBrand[] = [
     outletId: "designer-outlet-parndorf",
     brandId: "santoni",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
+    brandId: "save-the-duck",
+    featured: false,
     relationStatus: "active",
   },
   {

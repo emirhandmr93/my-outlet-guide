@@ -225,6 +225,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "loro-piana",
+    featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "maje",
     featured: false,
     relationStatus: "active",
@@ -274,6 +280,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "polo-ralph-lauren",
+    featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "prada",
     featured: true,
     relationStatus: "active",
   },
