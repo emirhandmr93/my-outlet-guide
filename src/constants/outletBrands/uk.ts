@@ -933,6 +933,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "animal",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "armani",
     featured: true,
     relationStatus: "active",
@@ -951,6 +957,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "atelier-galleries",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "balmain",
     featured: false,
     relationStatus: "active",
@@ -964,6 +976,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "cheshire-oaks",
     brandId: "belstaff",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "billieblush",
     featured: false,
     relationStatus: "active",
   },
@@ -1053,6 +1071,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "digby-and-champ",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "dior",
     featured: true,
     relationStatus: "active",
@@ -1072,6 +1096,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "cheshire-oaks",
     brandId: "dune-london",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "espa",
     featured: false,
     relationStatus: "active",
   },
@@ -1119,6 +1149,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "golf-apparel",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "gucci",
     featured: true,
     relationStatus: "active",
@@ -1132,6 +1168,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "cheshire-oaks",
     brandId: "gutteridge",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "hallmark",
     featured: false,
     relationStatus: "active",
   },
@@ -1155,6 +1197,18 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "holland-and-barrett",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "hotel-chocolat",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "hour-passion",
     featured: false,
     relationStatus: "active",
@@ -1162,6 +1216,18 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "cheshire-oaks",
     brandId: "hugo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "hugo-kids",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "iris-galerie",
     featured: false,
     relationStatus: "active",
   },
@@ -1198,6 +1264,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "cheshire-oaks",
     brandId: "karl-lagerfeld",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "kenzo-kids",
     featured: false,
     relationStatus: "active",
   },
@@ -1275,6 +1347,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "new-era",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "nike",
     featured: true,
     relationStatus: "active",
@@ -1299,7 +1377,19 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "osprey-london",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "pandora",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "paul-costelloe",
     featured: false,
     relationStatus: "active",
   },
@@ -1312,6 +1402,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "cheshire-oaks",
     brandId: "playmobil",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "police",
     featured: false,
     relationStatus: "active",
   },
@@ -1377,6 +1473,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "cheshire-oaks",
+    brandId: "schuh",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
     brandId: "skechers",
     featured: false,
     relationStatus: "active",
@@ -1432,6 +1534,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "cheshire-oaks",
     brandId: "timberland",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "cheshire-oaks",
+    brandId: "timberland-kids",
     featured: false,
     relationStatus: "active",
   },
