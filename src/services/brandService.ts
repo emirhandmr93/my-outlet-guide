@@ -1,4 +1,4 @@
-import { brands, Brand } from "../constants/brands";
+import { brands, Brand } from "../constants/brands/index";
 import { categories } from "../constants/categories";
 import { outletBrands } from "../constants/outletBrands";
 
