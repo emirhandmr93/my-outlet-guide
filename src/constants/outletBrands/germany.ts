@@ -27,13 +27,37 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "city-outlet-bad-munstereifel",
+    brandId: "bugatti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "city-outlet-bad-munstereifel",
     brandId: "calvin-klein",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "city-outlet-bad-munstereifel",
+    brandId: "camel-active",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "city-outlet-bad-munstereifel",
+    brandId: "camp-david",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "city-outlet-bad-munstereifel",
     brandId: "fossil",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "city-outlet-bad-munstereifel",
+    brandId: "kneipp",
     featured: false,
     relationStatus: "active",
   },
@@ -70,6 +94,12 @@ export const germanyOutletBrands: OutletBrand[] = [
   {
     outletId: "city-outlet-bad-munstereifel",
     brandId: "skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "city-outlet-bad-munstereifel",
+    brandId: "street-one",
     featured: false,
     relationStatus: "active",
   },
@@ -1053,6 +1083,18 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlets-wolfsburg",
+    brandId: "only-and-sons",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlets-wolfsburg",
+    brandId: "petrol-industries",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlets-wolfsburg",
     brandId: "polo-ralph-lauren",
     featured: false,
     relationStatus: "active",
@@ -1762,6 +1804,12 @@ export const germanyOutletBrands: OutletBrand[] = [
   {
     outletId: "montabaur-the-style-outlets",
     brandId: "puma",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "montabaur-the-style-outlets",
+    brandId: "s-oliver",
     featured: false,
     relationStatus: "active",
   },

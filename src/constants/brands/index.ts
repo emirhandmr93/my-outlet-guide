@@ -5,13 +5,7 @@ import { brandsQT } from "./brands-q-t";
 import { brandsUZ } from "./brands-u-z";
 import type { Brand } from "../../types/brand";
 
-export {
-  brandsAE,
-  brandsFK,
-  brandsLP,
-  brandsQT,
-  brandsUZ,
-};
+export { brandsAE, brandsFK, brandsLP, brandsQT, brandsUZ };
 
 export const brands: Brand[] = [
   ...brandsAE,
