@@ -1,4 +1,4 @@
-import { brands } from "./brands";
+import { brands } from "./brands/index";
 import { categories } from "./categories";
 import { countries } from "./countries";
 import { outlets } from "./outlets";
