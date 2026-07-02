@@ -77,7 +77,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
   },
   {
     guideId: "liverpool-to-cheshire-oaks-train-bus",
-    outletId: "cheshire-oaks-designer-outlet",
+    outletId: "cheshire-oaks",
     originType: "city_center",
     originId: "liverpool-city-center",
     transportationType: "train",
@@ -95,7 +95,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
   },
   {
     guideId: "liverpool-airport-to-cheshire-oaks-car",
-    outletId: "cheshire-oaks-designer-outlet",
+    outletId: "cheshire-oaks",
     originType: "airport",
     originId: "liverpool-airport",
     transportationType: "taxi",

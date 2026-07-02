@@ -408,7 +408,7 @@ export const ukOutlets = [
   },
   {
     outletId: "gretna-gateway-outlet-village",
-    name: "Caledonia Park",
+    name: "Gretna Gateway Outlet Village (legacy alias of Caledonia Park)",
     slug: "gretna-gateway-outlet-village",
     countryId: "united-kingdom",
     cityId: "gretna",
@@ -422,7 +422,7 @@ export const ukOutlets = [
     rating: 4.5,
     reviewCount: 0,
     services: ["Free Parking", "Guest Information Hub", "Restaurants & Cafes", "Transport Info", "Accessibility", "Gift Cards", "EV Charging", "Quiet Hours"],
-    restaurants: ["Burger King", "Cadbury", "Churro Loco", "Cornish Bakery", "Costa Coffee", "Drummuir Farm", "Greggs", "Pizza Express", "Starbucks", "Subway", "The Sweet Emporium"],
+    restaurants: [],
     taxFreeAvailable: false,
     vatRate: 20,
     estimatedRefundRate: 0,
@@ -435,7 +435,7 @@ export const ukOutlets = [
     cityCenterInfo: { name: "Gretna City Center", distanceKm: 10, recommendedRoute: "Follow official Caledonia Park getting-here guidance via the Gretna exit from the M6/M74/A75" },
     nearby: [],
     websiteUrl: "https://caledoniapark.com/",
-    status: "active",
+    status: "inactive",
     googleMapsUrl: "https://maps.google.com/?q=Caledonia+Park+Glasgow+Road+Gretna+DG16+5GG",
     appleMapsUrl: "http://maps.apple.com/?q=Caledonia+Park+Glasgow+Road+Gretna+DG16+5GG",
     yandexMapsUrl: "https://yandex.com/maps/?text=Caledonia%20Park%20Glasgow%20Road%20Gretna%20DG16%205GG"
