@@ -403,6 +403,17 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "londis",
+    brandName: "Londis",
+    aliases: ["Londis Post Office Store"],
+    categoryId: "food-confectionery",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 55,
+    brandStatus: "active",
+  },
+  {
     brandId: "longchamp",
     brandName: "Longchamp",
     aliases: [],

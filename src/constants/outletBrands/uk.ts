@@ -8751,13 +8751,37 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "springfields-outlet",
+    brandId: "chapelle",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
     brandId: "clarks",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "springfields-outlet",
+    brandId: "cotton-traders",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "craghoppers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
     brandId: "crew-clothing",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "denby",
     featured: false,
     relationStatus: "active",
   },
@@ -8782,6 +8806,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "springfields-outlet",
     brandId: "gift-company",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "grape-tree",
     featured: false,
     relationStatus: "active",
   },
@@ -8812,6 +8842,18 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "springfields-outlet",
     brandId: "joules",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "julian-charles",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "klass",
     featured: false,
     relationStatus: "active",
   },
@@ -8866,6 +8908,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "springfields-outlet",
     brandId: "procook",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "quba-sails",
     featured: false,
     relationStatus: "active",
   },
@@ -8936,6 +8984,12 @@ export const ukOutletBrands: OutletBrand[] = [
     relationStatus: "active",
   },
   {
+    outletId: "springfields-outlet",
+    brandId: "white-stuff",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
     outletId: "the-galleria-outlet",
     brandId: "baggage-factory",
     featured: false,
@@ -8968,6 +9022,18 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "the-galleria-outlet",
     brandId: "clarks",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "le-creuset",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "londis",
     featured: false,
     relationStatus: "active",
   },
