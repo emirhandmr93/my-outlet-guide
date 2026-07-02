@@ -560,14 +560,14 @@ export const ukRestaurants = [
     "displayOrder": "9"
   },
   {
-    "restaurantId": "ashford-designer-outlet-caff-nero",
+    "restaurantId": "ashford-designer-outlet-caffe-nero",
     "outletId": "ashford-designer-outlet",
-    "restaurantName": "Caffè Nero",
+    "restaurantName": "Caffe Nero",
     "category": "Cafe",
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
     "status": "active",
-    "displayOrder": "10"
+    "displayOrder": "49"
   },
   {
     "restaurantId": "ashford-designer-outlet-churros-time",
@@ -577,7 +577,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
     "status": "active",
-    "displayOrder": "11"
+    "displayOrder": "50"
   },
   {
     "restaurantId": "ashford-designer-outlet-cornish-bakery",
@@ -587,7 +587,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
     "status": "active",
-    "displayOrder": "12"
+    "displayOrder": "51"
   },
   {
     "restaurantId": "ashford-designer-outlet-costa-coffee",
@@ -597,7 +597,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
     "status": "active",
-    "displayOrder": "13"
+    "displayOrder": "52"
   },
   {
     "restaurantId": "ashford-designer-outlet-five-guys",
@@ -607,7 +607,37 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
     "status": "active",
-    "displayOrder": "14"
+    "displayOrder": "53"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-kokoro",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "KOKORO",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "54"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-krispy-kreme",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Krispy Kreme",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "55"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-nandos",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Nando's",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "56"
   },
   {
     "restaurantId": "ashford-designer-outlet-pizza-express",
@@ -617,7 +647,27 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
     "status": "active",
-    "displayOrder": "15"
+    "displayOrder": "57"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-pret-a-manger",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Pret A Manger",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "58"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-slim-chickens",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "59"
   },
   {
     "restaurantId": "ashford-designer-outlet-starbucks",
@@ -627,7 +677,17 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
     "status": "active",
-    "displayOrder": "16"
+    "displayOrder": "60"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-top-dog",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Top Dog",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "61"
   },
   {
     "restaurantId": "ashford-designer-outlet-wagamama",
@@ -637,17 +697,57 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
     "status": "active",
-    "displayOrder": "17"
+    "displayOrder": "62"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-yo-sushi",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "YO! Sushi",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "63"
+  },
+  {
+    "restaurantId": "gloucester-quays-anatolian-palace",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Anatolian Palace",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "57"
+  },
+  {
+    "restaurantId": "gloucester-quays-bakers-and-barista",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Bakers + Barista",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "58"
+  },
+  {
+    "restaurantId": "gloucester-quays-banchina",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Banchina",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "59"
   },
   {
     "restaurantId": "gloucester-quays-bills",
     "outletId": "gloucester-quays",
-    "restaurantName": "Bill's",
+    "restaurantName": "Bill’s",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "18"
+    "displayOrder": "60"
   },
   {
     "restaurantId": "gloucester-quays-brewhouse-and-kitchen",
@@ -655,19 +755,39 @@ export const ukRestaurants = [
     "restaurantName": "Brewhouse & Kitchen",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "19"
+    "displayOrder": "61"
   },
   {
-    "restaurantId": "gloucester-quays-caff-nero",
+    "restaurantId": "gloucester-quays-bubble-citea",
     "outletId": "gloucester-quays",
-    "restaurantName": "Caffè Nero",
+    "restaurantName": "Bubble CiTea",
     "category": "Cafe",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "20"
+    "displayOrder": "62"
+  },
+  {
+    "restaurantId": "gloucester-quays-coal-kitchen",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Coal Kitchen",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "63"
+  },
+  {
+    "restaurantId": "gloucester-quays-cornish-bakery",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Cornish Bakery",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "64"
   },
   {
     "restaurantId": "gloucester-quays-costa-coffee",
@@ -675,9 +795,9 @@ export const ukRestaurants = [
     "restaurantName": "Costa Coffee",
     "category": "Cafe",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "21"
+    "displayOrder": "65"
   },
   {
     "restaurantId": "gloucester-quays-five-guys",
@@ -685,19 +805,29 @@ export const ukRestaurants = [
     "restaurantName": "Five Guys",
     "category": "Fast Food",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "22"
+    "displayOrder": "66"
+  },
+  {
+    "restaurantId": "gloucester-quays-muse-brasserie",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Muse Brasserie",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "67"
   },
   {
     "restaurantId": "gloucester-quays-nandos",
     "outletId": "gloucester-quays",
-    "restaurantName": "Nando's",
+    "restaurantName": "Nando’s",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "23"
+    "displayOrder": "68"
   },
   {
     "restaurantId": "gloucester-quays-pizza-express",
@@ -705,9 +835,9 @@ export const ukRestaurants = [
     "restaurantName": "Pizza Express",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "24"
+    "displayOrder": "69"
   },
   {
     "restaurantId": "gloucester-quays-portivo-lounge",
@@ -715,29 +845,29 @@ export const ukRestaurants = [
     "restaurantName": "Portivo Lounge",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "25"
+    "displayOrder": "70"
   },
   {
-    "restaurantId": "gloucester-quays-starbucks",
+    "restaurantId": "gloucester-quays-pret",
     "outletId": "gloucester-quays",
-    "restaurantName": "Starbucks",
+    "restaurantName": "Pret",
     "category": "Cafe",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "26"
+    "displayOrder": "71"
   },
   {
-    "restaurantId": "gloucester-quays-tgi-fridays",
+    "restaurantId": "gloucester-quays-subway",
     "outletId": "gloucester-quays",
-    "restaurantName": "TGI Fridays",
-    "category": "Restaurant",
+    "restaurantName": "Subway",
+    "category": "Fast Food",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "27"
+    "displayOrder": "72"
   },
   {
     "restaurantId": "gloucester-quays-wagamama",
@@ -745,9 +875,9 @@ export const ukRestaurants = [
     "restaurantName": "Wagamama",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "28"
+    "displayOrder": "73"
   },
   {
     "restaurantId": "gloucester-quays-zizzi",
@@ -755,9 +885,9 @@ export const ukRestaurants = [
     "restaurantName": "Zizzi",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://www.gloucesterquays.co.uk/food-drink/",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "29"
+    "displayOrder": "74"
   },
   {
     "restaurantId": "clarks-village-bills",
@@ -767,27 +897,27 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.clarksvillage.co.uk/en/eat-listing",
     "status": "active",
-    "displayOrder": "30"
+    "displayOrder": "69"
   },
   {
     "restaurantId": "clarks-village-bubble-t",
     "outletId": "clarks-village",
     "restaurantName": "Bubble T",
-    "category": "Dessert",
+    "category": "Cafe",
     "priceLevel": "££",
     "website": "https://www.clarksvillage.co.uk/en/eat-listing",
     "status": "active",
-    "displayOrder": "31"
+    "displayOrder": "70"
   },
   {
-    "restaurantId": "clarks-village-caff-nero",
+    "restaurantId": "clarks-village-caffe-nero",
     "outletId": "clarks-village",
     "restaurantName": "Caffè Nero",
     "category": "Cafe",
     "priceLevel": "££",
     "website": "https://www.clarksvillage.co.uk/en/eat-listing",
     "status": "active",
-    "displayOrder": "32"
+    "displayOrder": "71"
   },
   {
     "restaurantId": "clarks-village-costa-coffee",
@@ -797,7 +927,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.clarksvillage.co.uk/en/eat-listing",
     "status": "active",
-    "displayOrder": "33"
+    "displayOrder": "72"
   },
   {
     "restaurantId": "clarks-village-pizzaexpress",
@@ -807,17 +937,17 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.clarksvillage.co.uk/en/eat-listing",
     "status": "active",
-    "displayOrder": "34"
+    "displayOrder": "73"
   },
   {
     "restaurantId": "clarks-village-pret-a-manger",
     "outletId": "clarks-village",
-    "restaurantName": "Pret a Manger",
+    "restaurantName": "Pret A Manger",
     "category": "Cafe",
     "priceLevel": "££",
     "website": "https://www.clarksvillage.co.uk/en/eat-listing",
     "status": "active",
-    "displayOrder": "35"
+    "displayOrder": "74"
   },
   {
     "restaurantId": "clarks-village-prezzo",
@@ -827,7 +957,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.clarksvillage.co.uk/en/eat-listing",
     "status": "active",
-    "displayOrder": "36"
+    "displayOrder": "75"
   },
   {
     "restaurantId": "clarks-village-slim-chickens",
@@ -837,7 +967,17 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.clarksvillage.co.uk/en/eat-listing",
     "status": "active",
-    "displayOrder": "37"
+    "displayOrder": "76"
+  },
+  {
+    "restaurantId": "clarks-village-the-cornish-bakery",
+    "outletId": "clarks-village",
+    "restaurantName": "The Cornish Bakery",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.clarksvillage.co.uk/en/eat-listing",
+    "status": "active",
+    "displayOrder": "77"
   },
   {
     "restaurantId": "clarks-village-wagamama",
@@ -847,7 +987,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.clarksvillage.co.uk/en/eat-listing",
     "status": "active",
-    "displayOrder": "38"
+    "displayOrder": "78"
   },
   {
     "restaurantId": "dalton-park-bakers-and-baristas",
@@ -857,7 +997,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "39"
+    "displayOrder": "78"
   },
   {
     "restaurantId": "dalton-park-cafebar-1838",
@@ -867,7 +1007,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "40"
+    "displayOrder": "79"
   },
   {
     "restaurantId": "dalton-park-costa-coffee",
@@ -877,7 +1017,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "41"
+    "displayOrder": "80"
   },
   {
     "restaurantId": "dalton-park-dancing-betty",
@@ -887,7 +1027,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "42"
+    "displayOrder": "81"
   },
   {
     "restaurantId": "dalton-park-etto",
@@ -897,17 +1037,17 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "43"
+    "displayOrder": "82"
   },
   {
     "restaurantId": "dalton-park-greggs",
     "outletId": "dalton-park",
     "restaurantName": "Greggs",
-    "category": "Restaurant",
+    "category": "Cafe",
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "44"
+    "displayOrder": "83"
   },
   {
     "restaurantId": "dalton-park-kfc",
@@ -917,7 +1057,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "45"
+    "displayOrder": "84"
   },
   {
     "restaurantId": "dalton-park-love-churros",
@@ -927,7 +1067,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "46"
+    "displayOrder": "85"
   },
   {
     "restaurantId": "dalton-park-mcdonalds",
@@ -937,7 +1077,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "47"
+    "displayOrder": "86"
   },
   {
     "restaurantId": "dalton-park-millies-cookies",
@@ -947,7 +1087,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.dalton-park.co.uk/dine-leisure-at-dalton-park",
     "status": "active",
-    "displayOrder": "48"
+    "displayOrder": "87"
   },
   {
     "restaurantId": "junction-32-200-degrees-coffee",
@@ -1260,14 +1400,64 @@ export const ukRestaurants = [
     "displayOrder": "79"
   },
   {
-    "restaurantId": "gunwharf-quays-carluccios",
+    "restaurantId": "gunwharf-quays-banana-tree",
     "outletId": "gunwharf-quays",
-    "restaurantName": "Carluccio’s",
+    "restaurantName": "Banana Tree",
     "category": "Restaurant",
     "priceLevel": "££",
     "website": "https://www.gunwharf-quays.com/en/eat-listing",
     "status": "active",
-    "displayOrder": "80"
+    "displayOrder": "119"
+  },
+  {
+    "restaurantId": "gunwharf-quays-bella-italia",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Bella Italia",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "120"
+  },
+  {
+    "restaurantId": "gunwharf-quays-brasserie-blanc",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Brasserie Blanc",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "121"
+  },
+  {
+    "restaurantId": "gunwharf-quays-caffe-nero",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Caffè Nero",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "122"
+  },
+  {
+    "restaurantId": "gunwharf-quays-carluccios",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Carluccio's",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "123"
+  },
+  {
+    "restaurantId": "gunwharf-quays-costa-coffee",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "124"
   },
   {
     "restaurantId": "gunwharf-quays-cosy-club",
@@ -1277,7 +1467,17 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.gunwharf-quays.com/en/eat-listing",
     "status": "active",
-    "displayOrder": "81"
+    "displayOrder": "125"
+  },
+  {
+    "restaurantId": "gunwharf-quays-five-guys",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "126"
   },
   {
     "restaurantId": "gunwharf-quays-frankie-and-bennys",
@@ -1287,7 +1487,87 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.gunwharf-quays.com/en/eat-listing",
     "status": "active",
-    "displayOrder": "82"
+    "displayOrder": "127"
+  },
+  {
+    "restaurantId": "gunwharf-quays-giggling-squid",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Giggling Squid",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "128"
+  },
+  {
+    "restaurantId": "gunwharf-quays-maddies",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Maddie's",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "129"
+  },
+  {
+    "restaurantId": "gunwharf-quays-pho",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Pho",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "130"
+  },
+  {
+    "restaurantId": "gunwharf-quays-port-coffee",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Port Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "131"
+  },
+  {
+    "restaurantId": "gunwharf-quays-spinnaker-kitchen-and-bar",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Spinnaker Kitchen and Bar",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "132"
+  },
+  {
+    "restaurantId": "gunwharf-quays-tap-and-tandoor",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Tap & Tandoor",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "133"
+  },
+  {
+    "restaurantId": "gunwharf-quays-the-fossil-thief",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "The Fossil Thief",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "134"
+  },
+  {
+    "restaurantId": "gunwharf-quays-the-slug-and-lettuce",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "The Slug & Lettuce",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "135"
   },
   {
     "restaurantId": "gunwharf-quays-wagamama",
@@ -1297,7 +1577,17 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.gunwharf-quays.com/en/eat-listing",
     "status": "active",
-    "displayOrder": "83"
+    "displayOrder": "136"
+  },
+  {
+    "restaurantId": "gunwharf-quays-zizzi",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Zizzi",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "137"
   },
   {
     "restaurantId": "the-galleria-burger-king",
