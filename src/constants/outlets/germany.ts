@@ -8,10 +8,10 @@ export const germanyOutlets = [
     address: "Orchheimer Straße 1, 53902 Bad Münstereifel, Germany",
     latitude: 50.5557,
     longitude: 6.7646,
-    openingHours: "10:00 - 19:00",
+    openingHours: "Mon-Sat 10:00 - 19:00; Sun closed",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "40+ Stores",
+    storesCountText: "Over 40 fashion and lifestyle stores",
     rating: 4.4,
     reviewCount: 0,
     services: [
@@ -25,19 +25,20 @@ export const germanyOutlets = [
       "Accessibility"
     ],
     restaurants: [
-      "Café",
-      "Restaurant & Café",
-      "Bakery",
-      "Ice Cream",
-      "Coffee Bar",
-      "Snack Bar"
+      "Amigo Grill",
+      "Bitburger Bierhaus",
+      "Café | Bar & Restaurant Marielle",
+      "Khon Thai - Restaurant",
+      "Lemonpie Airstream Food Truck",
+      "Outlet Lounge",
+      "The big Fryup Foodtruck"
     ],
     taxFreeAvailable: true,
     vatRate: 19,
     estimatedRefundRate: 11,
     minimumTaxFreeSpend: "50.01 EUR",
-    taxFreeOperator: "Global Blue / EU customs validation",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free forms in participating stores with Global Blue tax-free shopping signs.",
+    taxFreeOperator: "Participating tax-free shopping providers / EU customs validation",
+    taxFreeOfficeInfo: "Non-EU guests can look for stores with the Tax-Free Shopping sign and request the corresponding cheque at the cash desk, then validate it when leaving the EU.",
     cityCenterDistanceKm: 65,
     airportDistanceKm: 80,
     airports: [
@@ -69,9 +70,9 @@ export const germanyOutlets = [
     ],
     websiteUrl: "https://www.cityoutletbadmuenstereifel.com/en/",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=City+Outlet+Bad+Munstereifel",
-    appleMapsUrl: "http://maps.apple.com/?q=City+Outlet+Bad+Munstereifel",
-    yandexMapsUrl: "https://yandex.com/maps/?text=City%20Outlet%20Bad%20Munstereifel"
+    googleMapsUrl: "https://maps.google.com/?q=City+Outlet+Bad+M%C3%BCnstereifel%2C+Orchheimer+Stra%C3%9Fe+1%2C+53902+Bad+M%C3%BCnstereifel",
+    appleMapsUrl: "http://maps.apple.com/?q=City+Outlet+Bad+M%C3%BCnstereifel&address=Orchheimer%20Stra%C3%9Fe%201%2C%2053902%20Bad%20M%C3%BCnstereifel",
+    yandexMapsUrl: "https://yandex.com/maps/?text=City%20Outlet%20Bad%20M%C3%BCnstereifel%2C%20Orchheimer%20Stra%C3%9Fe%201%2C%2053902%20Bad%20M%C3%BCnstereifel"
   },
   {
     outletId: "designer-outlet-berlin",
@@ -101,12 +102,18 @@ export const germanyOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
+      "Cocos",
+      "Coffee-Bike",
+      "Coniato",
+      "Currypom!",
+      "dean & david",
       "Five Guys",
-      "Starbucks",
-      "Lindt",
+      "Frittenwerk",
+      "Grill-Pavillon",
+      "La Crêperie",
       "Nordsee",
-      "Dean & David",
-      "Restaurant & Café"
+      "Parmera",
+      "Starbucks"
     ],
     taxFreeAvailable: true,
     vatRate: 19,
@@ -153,7 +160,7 @@ export const germanyOutlets = [
     address: "Oderstraße 10, 24539 Neumünster, Germany",
     latitude: 54.1031,
     longitude: 9.9966,
-    openingHours: "Mon-Tue 09:00 - 20:00; Wed-Thu 10:00 - 20:00; Fri 09:00 - 24:00; Sat 10:00 - 20:00",
+    openingHours: "Mon-Wed 09:00 - 20:00; Thu 10:00 - 20:00; Fri 09:00 - 24:00; Sat 10:00 - 20:00; Sun closed",
     heroImage: "",
     galleryImages: [],
     storesCountText: "130+ Stores",
@@ -172,12 +179,15 @@ export const germanyOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "Starbucks",
+      "Asiagourmet",
+      "Bistrot",
+      "Five Guys",
+      "Frittenwerk",
+      "Giovanni L.",
+      "Marché Mövenpick",
       "Nordsee",
-      "Lindt",
-      "Dean & David",
-      "Restaurant & Café",
-      "Caffè"
+      "Starbucks",
+      "Tackmann's Coffee House"
     ],
     taxFreeAvailable: true,
     vatRate: 19,
@@ -224,10 +234,10 @@ export const germanyOutlets = [
     address: "An der Vorburg 1, 38440 Wolfsburg, Germany",
     latitude: 52.4294,
     longitude: 10.7936,
-    openingHours: "Mon-Thu 10:00 - 19:00; Fri-Sat 10:00 - 20:00",
+    openingHours: "Mon-Thu 10:00 - 19:00; Fri-Sat 10:00 - 20:00; Sun closed; Summer Sale 12 Jun-2 Aug 2026 Mon-Sat 10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "90+ Stores",
+    storesCountText: "More than 90 top brands",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -242,12 +252,15 @@ export const germanyOutlets = [
       "Kids Area"
     ],
     restaurants: [
-      "Starbucks",
-      "Dean & David",
-      "Nordsee",
-      "Lindt",
-      "Restaurant & Café",
-      "Coffee Bar"
+      "DEAN & DAVID",
+      "Five Guys",
+      "FRITTENWERK",
+      "Giovanni L.",
+      "Grill-Pavillon",
+      "La Crêperie",
+      "L’Osteria",
+      "Pieroth Weinstand",
+      "Starbucks"
     ],
     taxFreeAvailable: true,
     vatRate: 19,
@@ -302,7 +315,7 @@ export const germanyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "110+ Boutiques",
+    storesCountText: "110 boutiques",
     rating: 4.6,
     reviewCount: 0,
     services: [
@@ -318,19 +331,19 @@ export const germanyOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "Ladurée Salon de Thé",
       "Bollicine&Co. Champagne Bar",
-      "Mancini",
-      "Mr. Smash & Co.",
+      "Coffee Fellows",
       "Indochine",
-      "Coffee Fellows"
+      "Ladurée Salon de Thé",
+      "Mancini",
+      "Mr. Smash & Co."
     ],
     taxFreeAvailable: true,
     vatRate: 19,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "50.01 EUR",
-    taxFreeOperator: "EU customs validation / tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating boutiques when the purchase exceeds the German minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    taxFreeOperator: "Participating tax-free shopping providers / EU customs validation",
+    taxFreeOfficeInfo: "The official services page lists Tax-free Shopping for eligible visitors. Request tax-free paperwork from participating boutiques and validate it when leaving the EU; operator fees can reduce the refund below the full VAT rate.",
     cityCenterDistanceKm: 80,
     airportDistanceKm: 75,
     airports: [
