@@ -306,6 +306,17 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "lifestyle-and-mobility",
+    brandName: "Lifestyle and Mobility",
+    aliases: ["Lifestyle & Mobility"],
+    categoryId: "health-beauty",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 55,
+    brandStatus: "active",
+  },
+  {
     brandId: "lindt",
     brandName: "Lindt",
     aliases: ["Lindt & Sprüngli", "Lindt and Sprungli"],

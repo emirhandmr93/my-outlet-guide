@@ -1112,6 +1112,17 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "stag-london",
+    brandName: "Stag London",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 58,
+    brandStatus: "active",
+  },
+  {
     brandId: "st-john",
     brandName: "St. John",
     aliases: ["St John"],

@@ -1929,6 +1929,17 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "choice",
+    brandName: "Choice",
+    aliases: ["Choice Discount"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 62,
+    brandStatus: "active",
+  },
+  {
     brandId: "chloe",
     brandName: "Chloé",
     aliases: ["Chloe"],

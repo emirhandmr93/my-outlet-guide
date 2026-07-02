@@ -1748,6 +1748,17 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "jaweed-popal",
+    brandName: "Jaweed Popal",
+    aliases: ["JP Fine Tailoring"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 58,
+    brandStatus: "active",
+  },
+  {
     brandId: "jack-and-jones",
     brandName: "Jack & Jones",
     aliases: ["Jack and Jones"],
