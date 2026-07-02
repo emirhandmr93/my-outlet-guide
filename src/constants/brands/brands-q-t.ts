@@ -540,6 +540,17 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "sabor-a-espana",
+    brandName: "Sabor a España",
+    aliases: ["Sabor a Espana"],
+    categoryId: "food",
+    logo: "",
+    originCountryId: "spain",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 65,
+    brandStatus: "active",
+  },
+  {
     brandId: "sacai",
     brandName: "sacai",
     aliases: ["Sacai"],
