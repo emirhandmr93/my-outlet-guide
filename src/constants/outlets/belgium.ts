@@ -30,7 +30,6 @@ export const belgiumOutlets = [
     restaurants: [
       "Cho Gao",
       "Churros & More",
-      "Giuliano",
       "Izy Coffee",
       "Le Pain Quotidien",
       "Le Petit Belge",
