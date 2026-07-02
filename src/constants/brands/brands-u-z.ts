@@ -1154,4 +1154,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "whittard-of-chelsea",
+    brandName: "Whittard of Chelsea",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
 ];
