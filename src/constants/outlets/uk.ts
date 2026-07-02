@@ -174,10 +174,16 @@ export const ukOutlets = [
     minimumTaxFreeSpend: "Not available",
     taxFreeOperator: "UK VAT Retail Export Scheme withdrawn in Great Britain",
     taxFreeOfficeInfo: "Tourist VAT refunds for in-store purchases are generally not available in Great Britain. Check official UK rules and the outlet before planning any tax-free shopping.",
-    cityCenterDistanceKm: 10,
-    airportDistanceKm: 50,
-    airports: [],
-    cityCenterInfo: { name: "Ashford City Center", distanceKm: 10, recommendedRoute: "Check official outlet getting-here guidance" },
+    cityCenterDistanceKm: 1,
+    airportDistanceKm: 95,
+    airports: [
+      {
+        code: "LGW",
+        name: "London Gatwick Airport",
+        distanceKm: 95
+      }
+    ],
+    cityCenterInfo: { name: "Ashford town centre", distanceKm: 1, recommendedRoute: "Follow official outlet getting-here guidance via Kimberley Way" },
     nearby: [],
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/",
     status: "active",
@@ -276,10 +282,16 @@ export const ukOutlets = [
     minimumTaxFreeSpend: "Not available",
     taxFreeOperator: "UK VAT Retail Export Scheme withdrawn in Great Britain",
     taxFreeOfficeInfo: "Tourist VAT refunds for in-store purchases are generally not available in Great Britain. Check official UK rules and the outlet before planning any tax-free shopping.",
-    cityCenterDistanceKm: 10,
-    airportDistanceKm: 50,
-    airports: [],
-    cityCenterInfo: { name: "Street City Center", distanceKm: 10, recommendedRoute: "Check official outlet getting-here guidance" },
+    cityCenterDistanceKm: 1,
+    airportDistanceKm: 40,
+    airports: [
+      {
+        code: "BRS",
+        name: "Bristol Airport",
+        distanceKm: 40
+      }
+    ],
+    cityCenterInfo: { name: "Street town centre", distanceKm: 1, recommendedRoute: "Follow official Clarks Village getting-here and parking guidance" },
     nearby: [],
     websiteUrl: "https://www.clarksvillage.co.uk/en",
     status: "active",
@@ -293,7 +305,7 @@ export const ukOutlets = [
     slug: "dalton-park",
     countryId: "united-kingdom",
     cityId: "durham",
-    address: "Murton, Seaham SR7 9HU, United Kingdom",
+    address: "Church St, Murton, Seaham SR7 9HU, United Kingdom",
     latitude: 54.8194,
     longitude: -1.3722,
     openingHours: "Mon-Fri 10:00 - 18:00; Sat 09:30 - 18:00; Sun 10:30 - 16:30",
@@ -310,10 +322,16 @@ export const ukOutlets = [
     minimumTaxFreeSpend: "Not available",
     taxFreeOperator: "UK VAT Retail Export Scheme withdrawn in Great Britain",
     taxFreeOfficeInfo: "Tourist VAT refunds for in-store purchases are generally not available in Great Britain. Check official UK rules and the outlet before planning any tax-free shopping.",
-    cityCenterDistanceKm: 10,
-    airportDistanceKm: 50,
-    airports: [],
-    cityCenterInfo: { name: "Durham City Center", distanceKm: 10, recommendedRoute: "Check official outlet getting-here guidance" },
+    cityCenterDistanceKm: 15,
+    airportDistanceKm: 35,
+    airports: [
+      {
+        code: "NCL",
+        name: "Newcastle International Airport",
+        distanceKm: 35
+      }
+    ],
+    cityCenterInfo: { name: "Durham city centre", distanceKm: 15, recommendedRoute: "Follow official Dalton Park getting-here guidance via the A19" },
     nearby: [],
     websiteUrl: "https://www.dalton-park.co.uk/",
     status: "active",
@@ -364,10 +382,10 @@ export const ukOutlets = [
     address: "St Ann Way, Gloucester GL1 5SH, United Kingdom",
     latitude: 51.8591,
     longitude: -2.2529,
-    openingHours: "Check official website",
+    openingHours: "Mon-Fri 10:00 - 20:00; Sat 10:00 - 19:00; Sun 10:00 - 17:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "50+ Stores",
+    storesCountText: "50 Stores",
     rating: 4.5,
     reviewCount: 0,
     services: ["Parking", "Guest Services", "Restaurants & Cafes", "Transport Info", "Accessibility", "Gift Cards"],
@@ -378,10 +396,16 @@ export const ukOutlets = [
     minimumTaxFreeSpend: "Not available",
     taxFreeOperator: "UK VAT Retail Export Scheme withdrawn in Great Britain",
     taxFreeOfficeInfo: "Tourist VAT refunds for in-store purchases are generally not available in Great Britain. Check official UK rules and the outlet before planning any tax-free shopping.",
-    cityCenterDistanceKm: 10,
-    airportDistanceKm: 50,
-    airports: [],
-    cityCenterInfo: { name: "Gloucester City Center", distanceKm: 10, recommendedRoute: "Check official outlet getting-here guidance" },
+    cityCenterDistanceKm: 1,
+    airportDistanceKm: 80,
+    airports: [
+      {
+        code: "BHX",
+        name: "Birmingham Airport",
+        distanceKm: 80
+      }
+    ],
+    cityCenterInfo: { name: "Gloucester city centre", distanceKm: 1, recommendedRoute: "10-minute walk from Gloucester city centre per official getting-here guidance" },
     nearby: [],
     websiteUrl: "https://gloucesterquays.co.uk/",
     status: "active",
@@ -432,7 +456,7 @@ export const ukOutlets = [
     address: "Gunwharf Quays House, Portsmouth PO1 3TZ, United Kingdom",
     latitude: 50.7952,
     longitude: -1.105,
-    openingHours: "Mon-Fri 10:00 - 20:00; Sat 10:00 - 19:00; Sun 10:00 - 18:00",
+    openingHours: "Mon-Fri 10:00 - 20:00; Sat 09:00 - 20:00; Sun 10:00 - 18:00",
     heroImage: "",
     galleryImages: [],
     storesCountText: "90+ Stores",
@@ -446,10 +470,16 @@ export const ukOutlets = [
     minimumTaxFreeSpend: "Not available",
     taxFreeOperator: "UK VAT Retail Export Scheme withdrawn in Great Britain",
     taxFreeOfficeInfo: "Tourist VAT refunds for in-store purchases are generally not available in Great Britain. Check official UK rules and the outlet before planning any tax-free shopping.",
-    cityCenterDistanceKm: 10,
-    airportDistanceKm: 50,
-    airports: [],
-    cityCenterInfo: { name: "Portsmouth City Center", distanceKm: 10, recommendedRoute: "Check official outlet getting-here guidance" },
+    cityCenterDistanceKm: 1,
+    airportDistanceKm: 35,
+    airports: [
+      {
+        code: "SOU",
+        name: "Southampton Airport",
+        distanceKm: 35
+      }
+    ],
+    cityCenterInfo: { name: "Portsmouth city centre", distanceKm: 1, recommendedRoute: "Follow official Gunwharf Quays getting-here guidance" },
     nearby: [],
     websiteUrl: "https://gunwharf-quays.com/",
     status: "active",
