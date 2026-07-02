@@ -1122,6 +1122,17 @@ export const brandsUZ: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "weekend-offender",
+    brandName: "Weekend Offender",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 62,
+    brandStatus: "active",
+  },
+  {
     brandId: "weird-fish",
     brandName: "Weird Fish",
     aliases: [],
