@@ -107,6 +107,7 @@ export const switzerlandOutlets = [
     ],
     restaurants: [
       "All about Crêpe",
+      "Coffee Fellows",
       "Five Guys",
       "Gondola Café",
       "Hot Biron",
@@ -170,7 +171,7 @@ export const switzerlandOutlets = [
       "Barrier-Free Toilets",
       "Changing Table"
     ],
-    restaurants: ["Restaurant Grano"],
+    restaurants: ["Restaurant Grano", "Foodtruck"],
     parking: "Outdoor parking and an underground parking garage are available; parking is chargeable across the site. Two EV charging stations are located in front of FASHION FISH base.",
     taxFreeAvailable: true,
     vatRate: 8.1,

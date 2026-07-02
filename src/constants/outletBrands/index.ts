@@ -5,6 +5,7 @@ import { germanyOutletBrands } from "./germany";
 import { italyOutletBrands } from "./italy";
 import { netherlandsOutletBrands } from "./netherlands";
 import { spainOutletBrands } from "./spain";
+import { switzerlandOutletBrands } from "./switzerland";
 import { ukOutletBrands } from "./uk";
 
 export type OutletBrand = {
@@ -22,6 +23,7 @@ export {
   italyOutletBrands,
   netherlandsOutletBrands,
   spainOutletBrands,
+  switzerlandOutletBrands,
   ukOutletBrands,
 };
 
@@ -34,4 +36,5 @@ export const outletBrands: OutletBrand[] = [
   ...netherlandsOutletBrands,
   ...belgiumOutletBrands,
   ...austriaOutletBrands,
+  ...switzerlandOutletBrands,
 ];
