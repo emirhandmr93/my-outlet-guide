@@ -256,34 +256,45 @@ export const italyTransportation = [
     "transportationId": "serravalle-shuttle",
     "outletId": "serravalle-designer-outlet",
     "transportType": "shuttle",
-    "title": "Daily shuttle service",
-    "duration": "≈90 min from Milan; check official timetable",
-    "cost": "≈€20–25 return; confirm official partner fare",
-    "tip": "Official McArthurGlen information lists daily shuttle partners Zani Viaggi and Frigerio Viaggi from Milan; verify the latest timetable, fare and booking channel before travel.",
+    "title": "Daily shuttle from Milan",
+    "duration": "≈80–100 min from Milan (estimated)",
+    "cost": "€25 return; €10 children 4–12; free under 4",
+    "tip": "Official McArthurGlen Bus Connection information lists daily Zani Viaggi and Frigerio Viaggi departures from Milan Centrale, Cairoli, Brera, Cadorna, Buenos Aires and Navigli, with the published return fare; book through the official partner link and confirm the selected departure.",
     "status": "active",
     "displayOrder": "3"
+  },
+  {
+    "transportationId": "serravalle-genoa-bus",
+    "outletId": "serravalle-designer-outlet",
+    "transportType": "bus",
+    "title": "FlixBus from Genoa",
+    "duration": "≈35–50 min from Genoa (estimated)",
+    "cost": "≈€8–15 (estimated)",
+    "tip": "Official McArthurGlen Bus Connection information lists daily FlixBus services from Genova Fanti d’Italia to Serravalle; fare varies by travel date, so book and verify the exact stop with FlixBus.",
+    "status": "active",
+    "displayOrder": "4"
   },
   {
     "transportationId": "serravalle-train-bus",
     "outletId": "serravalle-designer-outlet",
     "transportType": "train",
-    "title": "Trenitalia train + bus Outlet Link",
-    "duration": "≈90–120 min from Milan depending on connection",
+    "title": "Trenitalia train + Outlet Link bus",
+    "duration": "≈90–120 min from Milan depending on connection (estimated)",
     "cost": "Check Trenitalia combined fare",
-    "tip": "Trenitalia and McArthurGlen list Serravalle Outlet as a combined train plus bus destination; select 'Serravalle Outlet' in Trenitalia channels and confirm the current connection.",
-    "status": "active",
-    "displayOrder": "4"
-  },
-  {
-    "transportationId": "serravalle-private-transfer",
-    "outletId": "serravalle-designer-outlet",
-    "transportType": "taxi",
-    "title": "Private transfer",
-    "duration": "≈60–90 min from Milan; confirm when booking",
-    "cost": "Confirm with provider",
-    "tip": "Official McArthurGlen plan-your-visit information lists private transfer as an option for Serravalle; confirm price, pickup point and timing with the provider.",
+    "tip": "McArthurGlen lists the Trenitalia Serravalle Designer Outlet LINK as a combined train plus bus ticket from Serravalle Scrivia, Arquata Scrivia and Novi Ligure stations; select 'Serravalle Outlet' in Trenitalia channels for the current combined itinerary.",
     "status": "active",
     "displayOrder": "5"
+  },
+  {
+    "transportationId": "serravalle-airports",
+    "outletId": "serravalle-designer-outlet",
+    "transportType": "taxi",
+    "title": "Nearby airports by car or transfer",
+    "duration": "≈60–90 min from Milan airports or Genoa Airport (estimated)",
+    "cost": "Confirm with provider",
+    "tip": "Official McArthurGlen plan-your-visit information flags nearby airports and private transfer options, but does not publish airport transfer fares; confirm pickup point, price and timing with the chosen provider.",
+    "status": "active",
+    "displayOrder": "6"
   },
   {
     "transportationId": "firenze-car",
@@ -297,14 +308,47 @@ export const italyTransportation = [
     "displayOrder": "1"
   },
   {
+    "transportationId": "firenze-parking",
+    "outletId": "the-mall-firenze",
+    "transportType": "taxi",
+    "title": "On-site parking",
+    "duration": "On site",
+    "cost": "Free parking",
+    "tip": "The Mall Firenze official visit page lists the outlet address and Google directions; use on-site signage for the customer parking areas when arriving by car.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
     "transportationId": "firenze-direct-bus",
     "outletId": "the-mall-firenze",
     "transportType": "shuttle",
     "title": "The Mall by Bus from Florence",
-    "duration": "≈50–60 min from Florence; check Busitalia timetable",
+    "duration": "≈50–60 min from Florence (estimated)",
     "cost": "€9.50 one-way or €18 return",
-    "tip": "Busitalia officially operates The Mall by Bus from Piazzale Montelungo near Firenze Santa Maria Novella to The Mall Firenze, with published fares; confirm the current timetable before travel.",
+    "tip": "Busitalia officially operates The Mall by Bus from Piazzale Montelungo near Firenze Santa Maria Novella to The Mall Firenze, with published fares and same-day return validity; confirm the current timetable before travel.",
     "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "firenze-train-taxi",
+    "outletId": "the-mall-firenze",
+    "transportType": "train",
+    "title": "Train to Rignano sull'Arno-Reggello + taxi",
+    "duration": "≈35–50 min train and taxi from Florence (estimated)",
+    "cost": "≈€8–15 (estimated)",
+    "tip": "Use official Trenitalia services from Firenze Santa Maria Novella to Rignano sull'Arno-Reggello, then a short local taxi or arranged transfer to The Mall Firenze; confirm taxi availability for the last-mile segment.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "transportationId": "firenze-airport",
+    "outletId": "the-mall-firenze",
+    "transportType": "taxi",
+    "title": "Florence Airport by car or taxi",
+    "duration": "≈35–50 min from Florence Airport (estimated)",
+    "cost": "Confirm with provider",
+    "tip": "The Mall Firenze travel guide places Florence Airport about 45 km from the outlet; use the airport's official taxi or transfer providers and confirm the fare before departure.",
+    "status": "active",
+    "displayOrder": "5"
   }
 ];
