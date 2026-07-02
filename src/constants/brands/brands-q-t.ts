@@ -2077,6 +2077,17 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "regatta-x-craghoppers",
+    brandName: "Regatta x Craghoppers",
+    aliases: ["Regatta x Craghoppers Outlet"],
+    categoryId: "outdoor",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
     brandId: "rodd-and-gunn",
     brandName: "Rodd & Gunn",
     aliases: [],

@@ -21,6 +21,36 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "junction-32-outlet",
+    brandId: "baggage-factory",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "junction-32-outlet",
+    brandId: "barbour",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "junction-32-outlet",
+    brandId: "baytree-interiors",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "junction-32-outlet",
+    brandId: "beauty-outlet",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "junction-32-outlet",
+    brandId: "bedeck",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "junction-32-outlet",
     brandId: "ben-sherman",
     featured: false,
     relationStatus: "active",
@@ -88,12 +118,6 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "junction-32-outlet",
     brandId: "cotton-traders",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "junction-32-outlet",
-    brandId: "craghoppers",
     featured: false,
     relationStatus: "active",
   },
@@ -297,7 +321,7 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "junction-32-outlet",
-    brandId: "regatta",
+    brandId: "regatta-x-craghoppers",
     featured: false,
     relationStatus: "active",
   },
