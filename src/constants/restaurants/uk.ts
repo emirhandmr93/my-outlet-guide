@@ -390,64 +390,184 @@ export const ukRestaurants = [
     "displayOrder": "104"
   },
   {
+    "restaurantId": "springfields-outlet-cadbury-outlet",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Cadbury Outlet",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "40"
+  },
+  {
+    "restaurantId": "springfields-outlet-caffe-nero",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Caffè Nero",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "41"
+  },
+  {
     "restaurantId": "springfields-outlet-costa-coffee",
     "outletId": "springfields-outlet",
     "restaurantName": "Costa Coffee",
-    "category": "Restaurant",
+    "category": "Cafe",
     "priceLevel": "££",
-    "website": "",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "101"
+    "displayOrder": "42"
   },
   {
-    "restaurantId": "springfields-outlet-starbucks",
+    "restaurantId": "springfields-outlet-petalo-lounge",
     "outletId": "springfields-outlet",
-    "restaurantName": "Starbucks",
+    "restaurantName": "Petalo Lounge",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "102"
+    "displayOrder": "43"
   },
   {
-    "restaurantId": "springfields-outlet-wagamama",
+    "restaurantId": "springfields-outlet-springys-american-diner",
     "outletId": "springfields-outlet",
-    "restaurantName": "Wagamama",
+    "restaurantName": "Springy's American Diner",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "103"
+    "displayOrder": "44"
   },
   {
-    "restaurantId": "springfields-outlet-pizza-express",
+    "restaurantId": "springfields-outlet-subway",
     "outletId": "springfields-outlet",
-    "restaurantName": "Pizza Express",
+    "restaurantName": "Subway",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "45"
+  },
+  {
+    "restaurantId": "springfields-outlet-the-noshery-co-cafe-and-restaurant",
+    "outletId": "springfields-outlet",
+    "restaurantName": "The Noshery Co. Cafe & Restaurant",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "46"
+  },
+  {
+    "restaurantId": "springfields-outlet-the-parlour-restaurant",
+    "outletId": "springfields-outlet",
+    "restaurantName": "The Parlour Restaurant",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
     "status": "active",
-    "displayOrder": "104"
+    "displayOrder": "47"
+  },
+  {
+    "restaurantId": "springfields-outlet-the-sweet-emporium",
+    "outletId": "springfields-outlet",
+    "restaurantName": "The Sweet Emporium",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "48"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-bite-and-feast",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Bite & Feast",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "49"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-burger-king",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Burger King",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "50"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-caffe-nero",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Caffè Nero",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "51"
   },
   {
     "restaurantId": "the-galleria-outlet-costa-coffee",
     "outletId": "the-galleria-outlet",
     "restaurantName": "Costa Coffee",
-    "category": "Restaurant",
+    "category": "Cafe",
     "priceLevel": "££",
-    "website": "",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
     "status": "active",
-    "displayOrder": "101"
+    "displayOrder": "52"
   },
   {
-    "restaurantId": "the-galleria-outlet-starbucks",
+    "restaurantId": "the-galleria-outlet-nandos",
     "outletId": "the-galleria-outlet",
-    "restaurantName": "Starbucks",
+    "restaurantName": "Nando's",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
     "status": "active",
-    "displayOrder": "102"
+    "displayOrder": "53"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-pizzaexpress",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "PizzaExpress",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "54"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-prezzo",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Prezzo",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "55"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-sumac-and-saffron",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Sumac and Saffron",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "56"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-the-real-china",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "The Real China",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "57"
   },
   {
     "restaurantId": "the-galleria-outlet-wagamama",
@@ -455,19 +575,9 @@ export const ukRestaurants = [
     "restaurantName": "Wagamama",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
     "status": "active",
-    "displayOrder": "103"
-  },
-  {
-    "restaurantId": "the-galleria-outlet-pizza-express",
-    "outletId": "the-galleria-outlet",
-    "restaurantName": "Pizza Express",
-    "category": "Restaurant",
-    "priceLevel": "££",
-    "website": "",
-    "status": "active",
-    "displayOrder": "104"
+    "displayOrder": "58"
   },
   {
     "restaurantId": "york-designer-outlet-200-degrees-coffee",
@@ -1850,14 +1960,24 @@ export const ukRestaurants = [
     "displayOrder": "98"
   },
   {
+    "restaurantId": "the-boulevard-banbridge-bakers-and-baristas",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Bakers & Baristas",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://the-boulevard.co.uk/stores/",
+    "status": "active",
+    "displayOrder": "197"
+  },
+  {
     "restaurantId": "the-boulevard-banbridge-burger-king",
     "outletId": "the-boulevard-banbridge",
     "restaurantName": "Burger King",
     "category": "Fast Food",
     "priceLevel": "££",
-    "website": "https://the-boulevard.co.uk/food-drink/",
+    "website": "https://the-boulevard.co.uk/stores/",
     "status": "active",
-    "displayOrder": "99"
+    "displayOrder": "198"
   },
   {
     "restaurantId": "the-boulevard-banbridge-costa-coffee",
@@ -1865,9 +1985,19 @@ export const ukRestaurants = [
     "restaurantName": "Costa Coffee",
     "category": "Cafe",
     "priceLevel": "££",
-    "website": "https://the-boulevard.co.uk/food-drink/",
+    "website": "https://the-boulevard.co.uk/stores/",
     "status": "active",
-    "displayOrder": "100"
+    "displayOrder": "199"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-mcdonalds",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "McDonald's",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://the-boulevard.co.uk/stores/",
+    "status": "active",
+    "displayOrder": "200"
   },
   {
     "restaurantId": "the-boulevard-banbridge-salt-kitchen",
@@ -1875,9 +2005,9 @@ export const ukRestaurants = [
     "restaurantName": "Salt Kitchen",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://the-boulevard.co.uk/food-drink/",
+    "website": "https://the-boulevard.co.uk/stores/",
     "status": "active",
-    "displayOrder": "101"
+    "displayOrder": "201"
   },
   {
     "restaurantId": "the-boulevard-banbridge-starbucks",
@@ -1885,9 +2015,9 @@ export const ukRestaurants = [
     "restaurantName": "Starbucks",
     "category": "Cafe",
     "priceLevel": "££",
-    "website": "https://the-boulevard.co.uk/food-drink/",
+    "website": "https://the-boulevard.co.uk/stores/",
     "status": "active",
-    "displayOrder": "102"
+    "displayOrder": "202"
   },
   {
     "restaurantId": "bridgend-designer-outlet-chopstix",
@@ -1897,7 +2027,27 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
     "status": "active",
-    "displayOrder": "103"
+    "displayOrder": "203"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-costa-coffee",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "204"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-cwtch-x-crafty-smuggler",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Cwtch X Crafty Smuggler",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "205"
   },
   {
     "restaurantId": "bridgend-designer-outlet-five-guys",
@@ -1907,17 +2057,37 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
     "status": "active",
-    "displayOrder": "104"
+    "displayOrder": "206"
   },
   {
     "restaurantId": "bridgend-designer-outlet-greggs",
     "outletId": "bridgend-designer-outlet",
     "restaurantName": "Greggs",
-    "category": "Restaurant",
+    "category": "Cafe",
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
     "status": "active",
-    "displayOrder": "105"
+    "displayOrder": "207"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-krispy-kreme",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Krispy Kreme",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "208"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-love-churros",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Love Churros",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "209"
   },
   {
     "restaurantId": "bridgend-designer-outlet-mcdonalds",
@@ -1927,7 +2097,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
     "status": "active",
-    "displayOrder": "106"
+    "displayOrder": "210"
   },
   {
     "restaurantId": "bridgend-designer-outlet-mowgli",
@@ -1937,17 +2107,37 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
     "status": "active",
-    "displayOrder": "107"
+    "displayOrder": "211"
   },
   {
     "restaurantId": "bridgend-designer-outlet-nandos",
     "outletId": "bridgend-designer-outlet",
-    "restaurantName": "Nando’s",
+    "restaurantName": "Nando's",
     "category": "Restaurant",
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
     "status": "active",
-    "displayOrder": "108"
+    "displayOrder": "212"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-pogo-bakery",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Pogo Bakery",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "213"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-slim-chickens",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "214"
   },
   {
     "restaurantId": "bridgend-designer-outlet-starbucks",
@@ -1957,7 +2147,17 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
     "status": "active",
-    "displayOrder": "109"
+    "displayOrder": "215"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-the-strawberry-hut",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "The Strawberry Hut",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "216"
   },
   {
     "restaurantId": "bridgend-designer-outlet-wagamama",
@@ -1967,7 +2167,7 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
     "status": "active",
-    "displayOrder": "110"
+    "displayOrder": "217"
   },
   {
     "restaurantId": "bridgend-designer-outlet-zizzi",
@@ -1977,7 +2177,37 @@ export const ukRestaurants = [
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
     "status": "active",
-    "displayOrder": "111"
+    "displayOrder": "218"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-200-degrees-coffee",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "200 Degrees Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "219"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-bbs",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "bb's",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "220"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-burger-bar",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Burger Bar",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "221"
   },
   {
     "restaurantId": "east-midlands-designer-outlet-chopstix",
@@ -1985,9 +2215,29 @@ export const ukRestaurants = [
     "restaurantName": "Chopstix",
     "category": "Fast Food",
     "priceLevel": "££",
-    "website": "https://fraserspluseastmidlands.com/eat/",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
     "status": "active",
-    "displayOrder": "112"
+    "displayOrder": "222"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-costa-coffee",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "223"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-doughnotts",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Doughnotts",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "224"
   },
   {
     "restaurantId": "east-midlands-designer-outlet-five-guys",
@@ -1995,19 +2245,49 @@ export const ukRestaurants = [
     "restaurantName": "Five Guys",
     "category": "Fast Food",
     "priceLevel": "££",
-    "website": "https://fraserspluseastmidlands.com/eat/",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
     "status": "active",
-    "displayOrder": "113"
+    "displayOrder": "225"
   },
   {
-    "restaurantId": "east-midlands-designer-outlet-kfc",
+    "restaurantId": "east-midlands-designer-outlet-fluffy-fluffy",
     "outletId": "east-midlands-designer-outlet",
-    "restaurantName": "KFC",
+    "restaurantName": "Fluffy Fluffy",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "226"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-kouzina-greek",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Kouzina Greek",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "227"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-loaded-fries",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Loaded Fries",
     "category": "Fast Food",
     "priceLevel": "££",
-    "website": "https://fraserspluseastmidlands.com/eat/",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
     "status": "active",
-    "displayOrder": "114"
+    "displayOrder": "228"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-love-churros",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Love Churros",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "229"
   },
   {
     "restaurantId": "east-midlands-designer-outlet-pizza-express",
@@ -2015,9 +2295,29 @@ export const ukRestaurants = [
     "restaurantName": "Pizza Express",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://fraserspluseastmidlands.com/eat/",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
     "status": "active",
-    "displayOrder": "115"
+    "displayOrder": "230"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-rose-deli",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Rose Deli",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "231"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-slim-chickens",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "232"
   },
   {
     "restaurantId": "east-midlands-designer-outlet-starbucks",
@@ -2025,19 +2325,9 @@ export const ukRestaurants = [
     "restaurantName": "Starbucks",
     "category": "Cafe",
     "priceLevel": "££",
-    "website": "https://fraserspluseastmidlands.com/eat/",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
     "status": "active",
-    "displayOrder": "116"
-  },
-  {
-    "restaurantId": "east-midlands-designer-outlet-subway",
-    "outletId": "east-midlands-designer-outlet",
-    "restaurantName": "Subway",
-    "category": "Fast Food",
-    "priceLevel": "££",
-    "website": "https://fraserspluseastmidlands.com/eat/",
-    "status": "active",
-    "displayOrder": "117"
+    "displayOrder": "233"
   },
   {
     "restaurantId": "east-midlands-designer-outlet-wagamama",
@@ -2045,9 +2335,9 @@ export const ukRestaurants = [
     "restaurantName": "Wagamama",
     "category": "Restaurant",
     "priceLevel": "££",
-    "website": "https://fraserspluseastmidlands.com/eat/",
+    "website": "https://prod-www.mcarthurglen.com/en/outlets/uk/designer-outlet-east-midlands/food-drink/",
     "status": "active",
-    "displayOrder": "118"
+    "displayOrder": "234"
   },
   {
     "restaurantId": "swindon-designer-outlet-costa-coffee",
