@@ -1451,4 +1451,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
+  {
+    brandId: "vero-moda",
+    brandName: "Vero Moda",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
