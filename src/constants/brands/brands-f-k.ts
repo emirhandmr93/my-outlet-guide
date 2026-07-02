@@ -1696,7 +1696,7 @@ export const brandsFK: Brand[] = [
     brandId: "izipizi",
     brandName: "IZIPIZI",
     aliases: ["Izipizi"],
-    categoryId: "shoes-bags",
+    categoryId: "eyewear",
     logo: "",
     originCountryId: "france",
     luxuryLevel: "fashion",

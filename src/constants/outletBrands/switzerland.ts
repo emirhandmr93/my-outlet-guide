@@ -2241,7 +2241,7 @@ export const switzerlandOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "landquart-fashion-outlet",
-    brandId: "yves-saint-laurent",
+    brandId: "saint-laurent",
     featured: false,
     relationStatus: "active",
   },
