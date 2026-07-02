@@ -400,24 +400,54 @@ export const germanyRestaurants = [
       "displayOrder": "7"
   },
   {
-      "restaurantId": "pommes-freunde-montabaur",
-      "outletId": "montabaur-the-style-outlets",
-      "restaurantName": "Pommes Freunde",
-      "category": "Street Food • Burgers",
-      "priceLevel": "€€",
-      "website": "https://outlet-montabaur.de/en/brands/pommes-freunde",
-      "status": "active",
-      "displayOrder": "1"
-  },
-  {
       "restaurantId": "dean-david-montabaur",
       "outletId": "montabaur-the-style-outlets",
       "restaurantName": "dean & david",
       "category": "Healthy • Bowls",
       "priceLevel": "€€",
-      "website": "https://deananddavid.com/en/the-style-outlet-montabaur/",
+      "website": "https://outlet-montabaur.de/marken/dean-david",
+      "status": "active",
+      "displayOrder": "1"
+  },
+  {
+      "restaurantId": "olea-montabaur",
+      "outletId": "montabaur-the-style-outlets",
+      "restaurantName": "Olea",
+      "category": "Italian • Restaurant",
+      "priceLevel": "€€",
+      "website": "https://outlet-montabaur.de/marken/dean-david",
       "status": "active",
       "displayOrder": "2"
+  },
+  {
+      "restaurantId": "pano-cafe-montabaur",
+      "outletId": "montabaur-the-style-outlets",
+      "restaurantName": "Pano Café",
+      "category": "Cafe • Bakery",
+      "priceLevel": "€€",
+      "website": "https://outlet-montabaur.de/marken/dean-david",
+      "status": "active",
+      "displayOrder": "3"
+  },
+  {
+      "restaurantId": "pommes-freunde-montabaur",
+      "outletId": "montabaur-the-style-outlets",
+      "restaurantName": "Pommes Freunde",
+      "category": "Street Food • Burgers",
+      "priceLevel": "€€",
+      "website": "https://outlet-montabaur.de/marken/dean-david",
+      "status": "active",
+      "displayOrder": "4"
+  },
+  {
+      "restaurantId": "starbucks-montabaur",
+      "outletId": "montabaur-the-style-outlets",
+      "restaurantName": "Starbucks",
+      "category": "Coffee • Cafe",
+      "priceLevel": "€€",
+      "website": "https://outlet-montabaur.de/marken/dean-david",
+      "status": "active",
+      "displayOrder": "5"
   },
   {
       "restaurantId": "almresi-metzingen",
@@ -530,6 +560,16 @@ export const germanyRestaurants = [
       "displayOrder": "11"
   },
   {
+      "restaurantId": "ochaya-metzingen",
+      "outletId": "outletcity-metzingen",
+      "restaurantName": "Ochaya",
+      "category": "Matcha • Drinks",
+      "priceLevel": "€",
+      "website": "https://www.outletcity.com/en/metzingen/food-and-beverage/",
+      "status": "active",
+      "displayOrder": "12"
+  },
+  {
       "restaurantId": "starbucks-metzingen",
       "outletId": "outletcity-metzingen",
       "restaurantName": "Starbucks",
@@ -537,7 +577,17 @@ export const germanyRestaurants = [
       "priceLevel": "€€",
       "website": "https://www.outletcity.com/en/metzingen/food-and-beverage/",
       "status": "active",
-      "displayOrder": "12"
+      "displayOrder": "13"
+  },
+  {
+      "restaurantId": "tommys-coffee-metzingen",
+      "outletId": "outletcity-metzingen",
+      "restaurantName": "Tommy's Coffee",
+      "category": "Coffee • Cakes",
+      "priceLevel": "€€",
+      "website": "https://www.outletcity.com/en/metzingen/food-and-beverage/",
+      "status": "active",
+      "displayOrder": "14"
   },
   {
       "restaurantId": "zem-zem-coffee-metzingen",
@@ -547,7 +597,17 @@ export const germanyRestaurants = [
       "priceLevel": "€",
       "website": "https://www.outletcity.com/en/metzingen/food-and-beverage/",
       "status": "active",
-      "displayOrder": "13"
+      "displayOrder": "15"
+  },
+  {
+      "restaurantId": "wertheim-cinnamood",
+      "outletId": "wertheim-village",
+      "restaurantName": "CINNAMOOD",
+      "category": "Cinnamon Rolls • Coffee",
+      "priceLevel": "€",
+      "website": "https://www.thebicestercollection.com/wertheim-village/en/dine/",
+      "status": "active",
+      "displayOrder": "1"
   },
   {
       "restaurantId": "wertheim-elaines-takeaway",
@@ -557,24 +617,14 @@ export const germanyRestaurants = [
       "priceLevel": "€€",
       "website": "https://www.thebicestercollection.com/wertheim-village/en/dine/",
       "status": "active",
-      "displayOrder": "1"
-  },
-  {
-      "restaurantId": "wertheim-coffee-corner",
-      "outletId": "wertheim-village",
-      "restaurantName": "The Coffee Corner",
-      "category": "Coffee • Breakfast",
-      "priceLevel": "€€",
-      "website": "https://www.thebicestercollection.com/wertheim-village/en/dine/",
-      "status": "active",
       "displayOrder": "2"
   },
   {
-      "restaurantId": "wertheim-cinnamood",
+      "restaurantId": "wertheim-la-piazza",
       "outletId": "wertheim-village",
-      "restaurantName": "CINNAMOOD",
-      "category": "Cinnamon Rolls • Coffee",
-      "priceLevel": "€",
+      "restaurantName": "La Piazza",
+      "category": "Italian • Restaurant",
+      "priceLevel": "€€",
       "website": "https://www.thebicestercollection.com/wertheim-village/en/dine/",
       "status": "active",
       "displayOrder": "3"
@@ -590,10 +640,10 @@ export const germanyRestaurants = [
       "displayOrder": "4"
   },
   {
-      "restaurantId": "wertheim-la-piazza",
+      "restaurantId": "wertheim-coffee-corner",
       "outletId": "wertheim-village",
-      "restaurantName": "La Piazza",
-      "category": "Italian • Restaurant",
+      "restaurantName": "The Coffee Corner",
+      "category": "Coffee • Breakfast",
       "priceLevel": "€€",
       "website": "https://www.thebicestercollection.com/wertheim-village/en/dine/",
       "status": "active",
@@ -610,54 +660,24 @@ export const germanyRestaurants = [
       "displayOrder": "6"
   },
   {
-      "restaurantId": "dean-david-zweibrucken",
-      "outletId": "zweibrucken-fashion-outlet",
-      "restaurantName": "DEAN & DAVID",
-      "category": "Healthy • Bowls",
-      "priceLevel": "€€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
-      "status": "active",
-      "displayOrder": "1"
-  },
-  {
-      "restaurantId": "grand-cafe-zweibrucken",
-      "outletId": "zweibrucken-fashion-outlet",
-      "restaurantName": "GRAND CAFÉ",
-      "category": "Cafe • Pastry",
-      "priceLevel": "€€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
-      "status": "active",
-      "displayOrder": "2"
-  },
-  {
       "restaurantId": "coffee-bike-zweibrucken",
       "outletId": "zweibrucken-fashion-outlet",
       "restaurantName": "COFFEE-BIKE",
       "category": "Coffee",
       "priceLevel": "€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
       "status": "active",
-      "displayOrder": "3"
+      "displayOrder": "1"
   },
   {
-      "restaurantId": "frittenwerk-zweibrucken",
+      "restaurantId": "dean-david-zweibrucken",
       "outletId": "zweibrucken-fashion-outlet",
-      "restaurantName": "FRITTENWERK",
-      "category": "Poutine • Street Food",
+      "restaurantName": "DEAN & DAVID",
+      "category": "Healthy • Bowls",
       "priceLevel": "€€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
       "status": "active",
-      "displayOrder": "4"
-  },
-  {
-      "restaurantId": "starbucks-zweibrucken",
-      "outletId": "zweibrucken-fashion-outlet",
-      "restaurantName": "STARBUCKS",
-      "category": "Cafe",
-      "priceLevel": "€€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
-      "status": "active",
-      "displayOrder": "5"
+      "displayOrder": "2"
   },
   {
       "restaurantId": "di-piu-zweibrucken",
@@ -665,29 +685,9 @@ export const germanyRestaurants = [
       "restaurantName": "Di Piu",
       "category": "Street Food",
       "priceLevel": "€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
       "status": "active",
-      "displayOrder": "6"
-  },
-  {
-      "restaurantId": "sushi-tomo-zweibrucken",
-      "outletId": "zweibrucken-fashion-outlet",
-      "restaurantName": "SUSHI TOMO",
-      "category": "Sushi • Japanese",
-      "priceLevel": "€€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
-      "status": "active",
-      "displayOrder": "7"
-  },
-  {
-      "restaurantId": "dunkin-donuts-zweibrucken",
-      "outletId": "zweibrucken-fashion-outlet",
-      "restaurantName": "DUNKIN DONUTS",
-      "category": "Donuts • Coffee",
-      "priceLevel": "€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
-      "status": "active",
-      "displayOrder": "8"
+      "displayOrder": "3"
   },
   {
       "restaurantId": "donna-mia-zweibrucken",
@@ -695,9 +695,19 @@ export const germanyRestaurants = [
       "restaurantName": "DONNA MIA",
       "category": "Italian • Pizza",
       "priceLevel": "€€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
       "status": "active",
-      "displayOrder": "9"
+      "displayOrder": "4"
+  },
+  {
+      "restaurantId": "dunkin-donuts-zweibrucken",
+      "outletId": "zweibrucken-fashion-outlet",
+      "restaurantName": "DUNKIN DONUTS",
+      "category": "Donuts • Coffee",
+      "priceLevel": "€",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
+      "status": "active",
+      "displayOrder": "5"
   },
   {
       "restaurantId": "five-guys-zweibrucken",
@@ -705,8 +715,58 @@ export const germanyRestaurants = [
       "restaurantName": "FIVE GUYS",
       "category": "Burgers",
       "priceLevel": "€€",
-      "website": "https://www.zweibrueckenfashionoutlet.com/restaurants",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
+      "status": "active",
+      "displayOrder": "6"
+  },
+  {
+      "restaurantId": "frittenwerk-zweibrucken",
+      "outletId": "zweibrucken-fashion-outlet",
+      "restaurantName": "Frittenwerk",
+      "category": "Poutine • Street Food",
+      "priceLevel": "€€",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
+      "status": "active",
+      "displayOrder": "7"
+  },
+  {
+      "restaurantId": "grand-cafe-zweibrucken",
+      "outletId": "zweibrucken-fashion-outlet",
+      "restaurantName": "GRAND CAFÉ",
+      "category": "Cafe • Pastry",
+      "priceLevel": "€€",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
+      "status": "active",
+      "displayOrder": "8"
+  },
+  {
+      "restaurantId": "gusto-zweibrucken",
+      "outletId": "zweibrucken-fashion-outlet",
+      "restaurantName": "Gusto",
+      "category": "Coffee • Snacks",
+      "priceLevel": "€",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
+      "status": "active",
+      "displayOrder": "9"
+  },
+  {
+      "restaurantId": "starbucks-zweibrucken",
+      "outletId": "zweibrucken-fashion-outlet",
+      "restaurantName": "STARBUCKS",
+      "category": "Cafe",
+      "priceLevel": "€€",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
       "status": "active",
       "displayOrder": "10"
+  },
+  {
+      "restaurantId": "sushi-tomo-zweibrucken",
+      "outletId": "zweibrucken-fashion-outlet",
+      "restaurantName": "SUSHI TOMO",
+      "category": "Sushi • Japanese",
+      "priceLevel": "€€",
+      "website": "https://www.zweibrueckenfashionoutlet.com/en/restaurants",
+      "status": "active",
+      "displayOrder": "11"
   }
 ];
