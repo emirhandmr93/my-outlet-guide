@@ -1526,4 +1526,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "vingino",
+    brandName: "Vingino",
+    aliases: [],
+    categoryId: "children",
+    logo: "",
+    originCountryId: "netherlands",
+    luxuryLevel: "fashion",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
 ];
