@@ -123,7 +123,7 @@ export const ukTransportation = [
   {
       "transportationId": "york-designer-outlet-cycle",
       "outletId": "york-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "walking",
       "title": "Cycle",
       "duration": "≈20-30 min cycle from York city centre (estimated)",
       "cost": "Free",
