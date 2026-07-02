@@ -1515,4 +1515,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "xandres",
+    brandName: "Xandres",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];

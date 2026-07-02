@@ -1,23 +1,13 @@
 export const belgiumRestaurants = [
   {
-    "restaurantId": "maasmechelen-village-chez-lulu",
-    "outletId": "maasmechelen-village",
-    "restaurantName": "Chez Lulu",
-    "category": "Restaurant",
-    "priceLevel": "€€",
-    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
-    "status": "active",
-    "displayOrder": "1"
-  },
-  {
     "restaurantId": "maasmechelen-village-cho-gao",
     "outletId": "maasmechelen-village",
     "restaurantName": "Cho Gao",
     "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/cho-gao/",
     "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "1"
   },
   {
     "restaurantId": "maasmechelen-village-churros-and-more",
@@ -26,6 +16,16 @@ export const belgiumRestaurants = [
     "category": "Dessert",
     "priceLevel": "€€",
     "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "maasmechelen-village-giuliano",
+    "outletId": "maasmechelen-village",
+    "restaurantName": "Giuliano",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/giuliano/",
     "status": "active",
     "displayOrder": "3"
   },
@@ -43,9 +43,9 @@ export const belgiumRestaurants = [
     "restaurantId": "maasmechelen-village-le-pain-quotidien",
     "outletId": "maasmechelen-village",
     "restaurantName": "Le Pain Quotidien",
-    "category": "Restaurant",
+    "category": "Cafe",
     "priceLevel": "€€",
-    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/le-pain-quotidien/",
     "status": "active",
     "displayOrder": "5"
   },
@@ -55,7 +55,7 @@ export const belgiumRestaurants = [
     "restaurantName": "Le Petit Belge",
     "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
+    "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/le-petit-belge/",
     "status": "active",
     "displayOrder": "6"
   },
@@ -63,7 +63,7 @@ export const belgiumRestaurants = [
     "restaurantId": "maasmechelen-village-le-spritzz",
     "outletId": "maasmechelen-village",
     "restaurantName": "Le Spritzz",
-    "category": "Restaurant",
+    "category": "Bar",
     "priceLevel": "€€",
     "website": "https://www.thebicestercollection.com/maasmechelen-village/en/dine/",
     "status": "active",

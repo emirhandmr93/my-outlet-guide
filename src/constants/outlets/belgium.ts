@@ -8,18 +8,19 @@ export const belgiumOutlets = [
     address: "Zetellaan 100, 3630 Maasmechelen, Belgium",
     latitude: 50.9862,
     longitude: 5.6995,
-    openingHours: "10:00 - 19:00",
+    openingHours: "10:00 - 19:00; selected restaurants and special dates may vary",
     heroImage: "",
     galleryImages: [],
     storesCountText: "100+ Boutiques",
     rating: 4.6,
     reviewCount: 0,
     services: [
-      "Parking",
+      "Complimentary Parking",
+      "Electric Car Charging",
       "Tax Free",
       "Guest Services",
       "Restaurants & Cafes",
-      "Shuttle / Transport Info",
+      "Shopping Express",
       "Wi-Fi",
       "Gift Cards",
       "Accessibility",
@@ -27,12 +28,13 @@ export const belgiumOutlets = [
       "Hands-free Shopping"
     ],
     restaurants: [
+      "Cho Gao",
+      "Churros & More",
+      "Giuliano",
+      "Izy Coffee",
+      "Le Pain Quotidien",
       "Le Petit Belge",
-      "Ellis Gourmet Burger",
-      "Starbucks",
-      "Liu Jo Café",
-      "Neuhaus",
-      "Restaurant & Café"
+      "Le Spritzz"
     ],
     taxFreeAvailable: true,
     vatRate: 21,
@@ -57,7 +59,7 @@ export const belgiumOutlets = [
     cityCenterInfo: {
       name: "Brussels City Center",
       distanceKm: 95,
-      recommendedRoute: "Shopping Express or car"
+      recommendedRoute: "Shopping Express, car, or train to Genk plus De Lijn bus 45"
     },
     nearby: [
       {
@@ -71,8 +73,8 @@ export const belgiumOutlets = [
     ],
     websiteUrl: "https://www.thebicestercollection.com/maasmechelen-village/en",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=Maasmechelen+Village",
-    appleMapsUrl: "http://maps.apple.com/?q=Maasmechelen+Village",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Maasmechelen%20Village"
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Maasmechelen+Village+Zetellaan+100+3630+Maasmechelen",
+    appleMapsUrl: "http://maps.apple.com/?q=Maasmechelen+Village%20Zetellaan%20100%203630%20Maasmechelen",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Maasmechelen%20Village%20Zetellaan%20100%203630%20Maasmechelen"
   }
 ];
