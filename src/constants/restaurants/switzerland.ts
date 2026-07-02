@@ -40,6 +40,16 @@ export const switzerlandRestaurants = [
     "displayOrder": "3"
   },
   {
+    "restaurantId": "landquart-coffee-fellows",
+    "outletId": "landquart-fashion-outlet",
+    "restaurantName": "Coffee Fellows",
+    "category": "Coffee & Bagels",
+    "priceLevel": "€€",
+    "website": "https://www.landquartfashionoutlet.ch/en/news-next/new-store-openings-april-2026",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
     "restaurantId": "landquart-five-guys",
     "outletId": "landquart-fashion-outlet",
     "restaurantName": "Five Guys",
@@ -47,7 +57,7 @@ export const switzerlandRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.landquartfashionoutlet.ch/en/restaurants/five-guys",
     "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "3"
   },
   {
     "restaurantId": "landquart-gondola-cafe",
@@ -57,7 +67,7 @@ export const switzerlandRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.landquartfashionoutlet.ch/en/restaurants/eventtrailer-outlet",
     "status": "active",
-    "displayOrder": "3"
+    "displayOrder": "4"
   },
   {
     "restaurantId": "landquart-hot-biron",
@@ -67,7 +77,7 @@ export const switzerlandRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.landquartfashionoutlet.ch/en/restaurants/hot-biron",
     "status": "active",
-    "displayOrder": "4"
+    "displayOrder": "5"
   },
   {
     "restaurantId": "foxtown-il-caffe",
@@ -107,7 +117,7 @@ export const switzerlandRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.landquartfashionoutlet.ch/en/restaurants/margaux-restaurant-outlet",
     "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "6"
   },
   {
     "restaurantId": "foxtown-maui-poke",
@@ -130,6 +140,16 @@ export const switzerlandRestaurants = [
     "displayOrder": "1"
   },
   {
+    "restaurantId": "fashion-fish-saturday-food-truck",
+    "outletId": "fashion-fish-factory-outlet",
+    "restaurantName": "Foodtruck",
+    "category": "Saturday Food Truck",
+    "priceLevel": "€€",
+    "website": "https://www.fashionfish.ch/en/outlet/gastronomie",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
     "restaurantId": "foxtown-spaghetti-store",
     "outletId": "foxtown-factory-stores",
     "restaurantName": "Spaghetti Store",
@@ -147,7 +167,7 @@ export const switzerlandRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.landquartfashionoutlet.ch/en/restaurants/starbucks-outlet",
     "status": "active",
-    "displayOrder": "6"
+    "displayOrder": "7"
   },
   {
     "restaurantId": "landquart-subway",
@@ -157,7 +177,7 @@ export const switzerlandRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.landquartfashionoutlet.ch/en/restaurants/subway-outlet",
     "status": "active",
-    "displayOrder": "7"
+    "displayOrder": "8"
   },
   {
     "restaurantId": "foxtown-the-asian",
