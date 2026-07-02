@@ -335,7 +335,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     originId: "durham-city-center",
     transportationType: "taxi",
     title: "Durham to Dalton Park by Car or Taxi",
-    estimatedDuration: "20 min drive from Durham",
+    estimatedDuration: "≈20 min (estimated)",
     estimatedCost: "Taxi ≈£35–50 (estimated)",
     recommended: false,
     steps: [
