@@ -297,7 +297,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-provence",
-    brandId: "l-occitane-en-provence",
+    brandId: "l-occitane",
     featured: false,
     relationStatus: "active",
   },
@@ -1557,7 +1557,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "la-vallee-village",
-    brandId: "l-occitane-en-provence",
+    brandId: "l-occitane",
     featured: false,
     relationStatus: "active",
   },

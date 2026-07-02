@@ -417,7 +417,7 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
-    brandId: "lindt-and-sprungli",
+    brandId: "lindt",
     featured: false,
     relationStatus: "active",
   },
@@ -747,7 +747,7 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
-    brandId: "the-cosmetics-company",
+    brandId: "the-cosmetics-company-store",
     featured: false,
     relationStatus: "active",
   },

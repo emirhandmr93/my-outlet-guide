@@ -1245,7 +1245,7 @@ export const switzerlandOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "landquart-fashion-outlet",
-    brandId: "boss-kidswear",
+    brandId: "boss-kids",
     featured: false,
     relationStatus: "active",
   },

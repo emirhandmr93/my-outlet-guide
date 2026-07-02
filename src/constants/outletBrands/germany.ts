@@ -2457,7 +2457,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ingolstadt-village",
-    brandId: "loccitane-en-provence",
+    brandId: "l-occitane",
     featured: false,
     relationStatus: "active",
   },

@@ -333,7 +333,7 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
-    brandId: "loccitane-en-provence",
+    brandId: "l-occitane",
     featured: false,
     relationStatus: "active",
   },
