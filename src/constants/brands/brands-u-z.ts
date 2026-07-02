@@ -1548,4 +1548,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 74,
     brandStatus: "active",
   },
+  {
+    brandId: "wutscher-optik",
+    brandName: "Wutscher Optik",
+    aliases: ["sehen!wutscher", "Wutscher"],
+    categoryId: "eyewear",
+    logo: "",
+    originCountryId: "austria",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
 ];
