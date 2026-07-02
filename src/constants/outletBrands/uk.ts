@@ -1485,19 +1485,13 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "clarks-village",
-    brandId: "883-police-milano",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "clarks-village",
-    brandId: "adidas",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "clarks-village",
     brandId: "asics",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
+    brandId: "barbour",
     featured: false,
     relationStatus: "active",
   },
@@ -1564,6 +1558,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "clarks-village",
     brandId: "charles-tyrwhitt",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
+    brandId: "christy",
     featured: false,
     relationStatus: "active",
   },
@@ -1683,6 +1683,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "clarks-village",
+    brandId: "hatley",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
     brandId: "hobbs",
     featured: false,
     relationStatus: "active",
@@ -1791,6 +1797,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "clarks-village",
+    brandId: "mint-velvet",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
     brandId: "molton-brown",
     featured: false,
     relationStatus: "active",
@@ -1857,6 +1869,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "clarks-village",
+    brandId: "phase-eight",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
     brandId: "polo-ralph-lauren",
     featured: false,
     relationStatus: "active",
@@ -1912,6 +1930,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "clarks-village",
     brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
+    brandId: "scamp-and-dude",
     featured: false,
     relationStatus: "active",
   },
@@ -1978,6 +2002,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "clarks-village",
     brandId: "the-north-face",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
+    brandId: "the-works",
     featured: false,
     relationStatus: "active",
   },
@@ -3027,6 +3057,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "gunwharf-quays",
+    brandId: "boots",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "gunwharf-quays",
     brandId: "boss",
     featured: false,
     relationStatus: "active",
@@ -3183,7 +3219,19 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "gunwharf-quays",
+    brandId: "henri-lloyd",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "gunwharf-quays",
     brandId: "hobbs",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "gunwharf-quays",
+    brandId: "hoka",
     featured: false,
     relationStatus: "active",
   },
@@ -3255,7 +3303,19 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "gunwharf-quays",
+    brandId: "loake",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "gunwharf-quays",
     brandId: "lovisa",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "gunwharf-quays",
+    brandId: "lucy-and-yak",
     featured: false,
     relationStatus: "active",
   },
@@ -3316,6 +3376,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "gunwharf-quays",
     brandId: "nike",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "gunwharf-quays",
+    brandId: "oliver-bonas",
     featured: false,
     relationStatus: "active",
   },
@@ -3417,6 +3483,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "gunwharf-quays",
+    brandId: "seasalt",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "gunwharf-quays",
     brandId: "skechers",
     featured: false,
     relationStatus: "active",
@@ -3508,6 +3580,18 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "gunwharf-quays",
     brandId: "tommy-hilfiger",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "gunwharf-quays",
+    brandId: "whistles",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "gunwharf-quays",
+    brandId: "white-stuff",
     featured: false,
     relationStatus: "active",
   },
