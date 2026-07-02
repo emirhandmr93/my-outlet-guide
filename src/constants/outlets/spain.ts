@@ -11,7 +11,7 @@ export const spainOutlets = [
     openingHours: "10:00 - 22:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "100+ Boutiques",
+    storesCountText: "Over 100 boutiques",
     rating: 4.6,
     reviewCount: 0,
     services: [
@@ -24,28 +24,31 @@ export const spainOutlets = [
       "Gift Cards",
       "Accessibility",
       "Hands-free Shopping",
-      "Personal Shopping"
+      "Personal Shopping",
+      "EV Charging",
+      "Baby-changing Facilities"
     ],
     restaurants: [
       "Cristina Oria",
-      "Starbucks",
-      "Mentidero Sal y Brasas",
+      "Joselito Kiosk",
+      "Joselito's Restaurant",
       "Lindt",
-      "Restaurant & Café"
+      "Mentidero Sal y Brasas",
+      "Mistura"
     ],
     taxFreeAvailable: true,
     vatRate: 21,
     estimatedRefundRate: 12,
-    minimumTaxFreeSpend: "90.16 EUR",
+    minimumTaxFreeSpend: "0.01 EUR",
     taxFreeOperator: "Global Blue / Planet",
-    taxFreeOfficeInfo: "Eligible non-EU visitors may request tax-free forms when purchases exceed the Spanish minimum threshold.",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can recover applicable VAT on purchases, up to 21%; ask Concierge for tax-free shopping assistance and complete EU customs validation when leaving the EU.",
     cityCenterDistanceKm: 25,
-    airportDistanceKm: 35,
+    airportDistanceKm: 30,
     airports: [
       {
         code: "MAD",
         name: "Madrid-Barajas Airport",
-        distanceKm: 35
+        distanceKm: 30
       }
     ],
     cityCenterInfo: {
@@ -65,9 +68,9 @@ export const spainOutlets = [
     ],
     websiteUrl: "https://www.thebicestercollection.com/las-rozas-village/en",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=Las+Rozas+Village",
-    appleMapsUrl: "http://maps.apple.com/?q=Las+Rozas+Village",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Las%20Rozas%20Village"
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=40.5037,-3.8968",
+    appleMapsUrl: "http://maps.apple.com/?ll=40.5037,-3.8968&q=Las%20Rozas%20Village",
+    yandexMapsUrl: "https://yandex.com/maps/?ll=-3.8968,40.5037&z=16&text=Las%20Rozas%20Village"
   },
   {
     outletId: "designer-outlet-malaga",
@@ -81,7 +84,7 @@ export const spainOutlets = [
     openingHours: "10:00 - 22:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "100+ Stores",
+    storesCountText: "More than 100 brands",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -98,19 +101,20 @@ export const spainOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "Starbucks",
+      "Ben & Jerry's",
       "Five Guys",
-      "Lindt",
-      "Dunkin'",
-      "Restaurant & Café"
+      "La Pecera",
+      "Sabor a España",
+      "Santo Cielo",
+      "Starbucks"
     ],
     taxFreeAvailable: true,
     vatRate: 21,
     estimatedRefundRate: 12,
-    minimumTaxFreeSpend: "90.16 EUR",
-    taxFreeOperator: "Global Blue / Planet / EU customs validation",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form when purchases exceed the Spanish minimum spend. Tax-free assistance is available at Guest Services before customs validation when leaving the EU.",
-    cityCenterDistanceKm: 8,
+    minimumTaxFreeSpend: "0.01 EUR",
+    taxFreeOperator: "Planet / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free shopping information at Guest Services; Planet lists a refund location at McArthurGlen, Alfonso Ponce de León 6, with EU customs validation required when leaving the EU.",
+    cityCenterDistanceKm: 15,
     airportDistanceKm: 3,
     airports: [
       {
@@ -121,7 +125,7 @@ export const spainOutlets = [
     ],
     cityCenterInfo: {
       name: "Málaga City Center",
-      distanceKm: 8,
+      distanceKm: 15,
       recommendedRoute: "Train, bus or taxi"
     },
     nearby: [
@@ -136,8 +140,8 @@ export const spainOutlets = [
     ],
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=McArthurGlen+Designer+Outlet+Malaga",
-    appleMapsUrl: "http://maps.apple.com/?q=McArthurGlen+Designer+Outlet+Malaga",
-    yandexMapsUrl: "https://yandex.com/maps/?text=McArthurGlen%20Designer%20Outlet%20Malaga"
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=36.6738,-4.4899",
+    appleMapsUrl: "http://maps.apple.com/?ll=36.6738,-4.4899&q=McArthurGlen%20Designer%20Outlet%20Malaga",
+    yandexMapsUrl: "https://yandex.com/maps/?ll=-4.4899,36.6738&z=16&text=McArthurGlen%20Designer%20Outlet%20Malaga"
   }
 ];
