@@ -160,6 +160,21 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "mendrisio",
+    "cityName": "Mendrisio",
+    "countryId": "switzerland"
+  },
+  {
+    "cityId": "landquart",
+    "cityName": "Landquart",
+    "countryId": "switzerland"
+  },
+  {
+    "cityId": "schoenenwerd",
+    "cityName": "Schönenwerd",
+    "countryId": "switzerland"
+  },
+  {
     "cityId": "street",
     "cityName": "Street",
     "countryId": "united-kingdom"
