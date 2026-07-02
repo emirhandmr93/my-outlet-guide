@@ -11,7 +11,7 @@ export const netherlandsOutlets = [
     openingHours: "Mon-Fri 10:00 - 20:00; Sat-Sun 09:00 - 21:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "200+ Stores",
+    storesCountText: "Over 200 designer brands",
     rating: 4.6,
     reviewCount: 0,
     services: [
@@ -27,19 +27,43 @@ export const netherlandsOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "Starbucks",
+      "Chez Margot",
+      "Cinnamood",
+      "Crêpes",
+      "Döner Kebab",
+      "Dunkin'",
+      "Frankie's Churros",
+      "Frites Boutique",
+      "Go To Italiano",
+      "Käfer",
+      "Kamps",
+      "Kamps To Go",
       "La Place",
+      "La Place Cuisine",
+      "La Place Express",
+      "Le Pain Quotidien",
+      "Lindt",
+      "Macarons",
+      "MADAQ",
       "McDonald's",
-      "Wagamama",
+      "MOOD to go",
+      "Oakberry",
+      "Pizzeria Positano On Wheels",
+      "Pommes Frites",
+      "Starbucks",
+      "Starbucks To Go",
+      "Sweet Avenue",
       "The Burger Federation",
-      "Restaurant & Café"
+      "Wagamama",
+      "Wurzt",
+      "YoYo Fresh Tea"
     ],
     taxFreeAvailable: true,
     vatRate: 21,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "50.00 EUR",
     taxFreeOperator: "Global Blue / EU customs validation",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €50 in the same store on the same day. Guest Services can assist with tax-free information before customs validation when leaving the EU.",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €50 in the same store on the same day. Guest Services, next to Polo Ralph Lauren, can assist with refund options before customs validation when leaving the EU.",
     cityCenterDistanceKm: 180,
     airportDistanceKm: 60,
     airports: [
@@ -76,9 +100,9 @@ export const netherlandsOutlets = [
     ],
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=Designer+Outlet+Roermond",
-    appleMapsUrl: "http://maps.apple.com/?q=Designer+Outlet+Roermond",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Roermond"
+    googleMapsUrl: "https://maps.google.com/?q=Designer+Outlet+Roermond%2C+Stadsweide+2%2C+6041+TD+Roermond%2C+Netherlands",
+    appleMapsUrl: "http://maps.apple.com/?q=Designer+Outlet+Roermond&address=Stadsweide+2%2C+6041+TD+Roermond%2C+Netherlands",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Roermond%2C%20Stadsweide%202%2C%206041%20TD%20Roermond%2C%20Netherlands"
   },
   {
     outletId: "designer-outlet-roosendaal",
@@ -89,10 +113,10 @@ export const netherlandsOutlets = [
     address: "Rosada 70, 4703 TB Roosendaal, Netherlands",
     latitude: 51.5365,
     longitude: 4.4777,
-    openingHours: "10:00 - 20:00",
+    openingHours: "Mon-Sun 10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "100+ Stores",
+    storesCountText: "Over 100 brands",
     rating: 4.4,
     reviewCount: 0,
     services: [
@@ -108,19 +132,21 @@ export const netherlandsOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "Starbucks",
+      "Bonton",
+      "Casa del Caffè",
+      "Daan's Churros",
+      "Dunkin'",
+      "Frites Atelier",
       "La Place",
-      "McDonald's",
-      "Restaurant & Café",
-      "Caffè",
-      "Snack Bar"
+      "Lindt",
+      "Per Tutti"
     ],
     taxFreeAvailable: true,
     vatRate: 21,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "50.00 EUR",
     taxFreeOperator: "Global Blue / EU customs validation",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €50 in the same store on the same day. Validate the form when leaving the EU.",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €50 in the same store on the same day. Guest Services can assist with refund options before customs validation when leaving the EU.",
     cityCenterDistanceKm: 65,
     airportDistanceKm: 65,
     airports: [
@@ -157,8 +183,8 @@ export const netherlandsOutlets = [
     ],
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=Designer+Outlet+Roosendaal",
-    appleMapsUrl: "http://maps.apple.com/?q=Designer+Outlet+Roosendaal",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Roosendaal"
+    googleMapsUrl: "https://maps.google.com/?q=Designer+Outlet+Roosendaal%2C+Rosada+70%2C+4703+TB+Roosendaal%2C+Netherlands",
+    appleMapsUrl: "http://maps.apple.com/?q=Designer+Outlet+Roosendaal&address=Rosada+70%2C+4703+TB+Roosendaal%2C+Netherlands",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Roosendaal%2C%20Rosada%2070%2C%204703%20TB%20Roosendaal%2C%20Netherlands"
   }
 ];
