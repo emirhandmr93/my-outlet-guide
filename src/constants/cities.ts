@@ -60,6 +60,11 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "maasmechelen",
+    "cityName": "Maasmechelen",
+    "countryId": "belgium"
+  },
+  {
     "cityId": "milan",
     "cityName": "Milan",
     "countryId": "italy"
