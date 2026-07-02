@@ -5,75 +5,79 @@ export const austriaOutlets = [
     slug: "designer-outlet-parndorf",
     countryId: "austria",
     cityId: "vienna",
-    address: "Designer-Outlet-Straße 1, 7111 Parndorf, Austria",
+    address: "Designer Outlet Straße 1, 7111 Parndorf, Austria",
     latitude: 47.9807,
     longitude: 16.8425,
     openingHours: "Mon-Fri 09:00 - 21:00; Sat 09:00 - 18:00; Sun closed",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "160+ Stores",
+    storesCountText: "160 designer stores",
     rating: 4.6,
     reviewCount: 0,
     services: [
-      "Parking",
-      "Tax Free",
+      "Free Parking",
+      "EV Charging",
+      "Disabled Parking",
       "Guest Services",
-      "Restaurants & Cafes",
-      "Shuttle / Transport Info",
-      "Wi-Fi",
       "Gift Cards",
-      "Accessibility",
+      "Tax Free Shopping",
+      "Free Wi-Fi",
       "ATM",
-      "Personal Shopping",
-      "Luggage Drop-off"
+      "Lockers",
+      "Luggage Drop",
+      "Family Facilities",
+      "Dog Friendly",
+      "Prayer or Quiet Room",
+      "Tailor Service",
+      "Shuttle Bus"
     ],
     restaurants: [
-      "Vapiano",
-      "Starbucks",
-      "Nordsee",
+      "Amici Napoli",
+      "Artner",
+      "Asia Up",
+      "Bistrot Italiano",
       "Burger King",
-      "Café Sacher",
-      "Dean & David"
+      "Cioco Bar",
+      "Döner Bros",
+      "Le Burger",
+      "Leon Street Food",
+      "Lia's",
+      "Lia's Bistrot",
+      "myBurgenland Bistro",
+      "Nannuk",
+      "Nordsee",
+      "Pretzels Paradise",
+      "Sacher Café",
+      "Starbucks",
+      "Tommy's Coffee",
+      "wagamama",
+      "Wurstliebe"
     ],
     taxFreeAvailable: true,
     vatRate: 20,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "75.01 EUR",
-    taxFreeOperator: "EU customs validation / tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when the purchase exceeds the Austrian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    taxFreeOperator: "Interchange / participating tax refund operators",
+    taxFreeOfficeInfo: "Guests visiting from outside the EU can receive a tax refund on eligible purchases. Use the on-site tax-free office or participating stores for the current refund process and validate forms when leaving the EU.",
     cityCenterDistanceKm: 45,
     airportDistanceKm: 40,
     airports: [
-      {
-        code: "VIE",
-        name: "Vienna International Airport",
-        distanceKm: 40
-      },
-      {
-        code: "BTS",
-        name: "Bratislava Airport",
-        distanceKm: 45
-      }
+      { code: "VIE", name: "Vienna International Airport", distanceKm: 40 },
+      { code: "BTS", name: "Bratislava Airport", distanceKm: 45 }
     ],
     cityCenterInfo: {
       name: "Vienna City Center",
       distanceKm: 45,
-      recommendedRoute: "Shuttle bus from Vienna / State Opera"
+      recommendedRoute: "Shuttle bus from Vienna State Opera or train to Parndorf Ort with station bus"
     },
     nearby: [
-      {
-        name: "Bratislava",
-        distanceKm: 35
-      },
-      {
-        name: "Neusiedl am See",
-        distanceKm: 8
-      }
+      { name: "Bratislava", distanceKm: 35 },
+      { name: "Neusiedl am See", distanceKm: 8 }
     ],
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=Designer+Outlet+Parndorf",
-    appleMapsUrl: "http://maps.apple.com/?q=Designer+Outlet+Parndorf",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Parndorf"
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Stra%C3%9Fe%201%2C%207111%20Parndorf%2C%20Austria",
+    appleMapsUrl: "http://maps.apple.com/?q=Designer%20Outlet%20Stra%C3%9Fe%201%2C%207111%20Parndorf%2C%20Austria",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Stra%C3%9Fe%201%2C%207111%20Parndorf%2C%20Austria"
   }
 ];
