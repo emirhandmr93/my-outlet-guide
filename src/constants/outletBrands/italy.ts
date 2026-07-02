@@ -2955,7 +2955,7 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "noventa",
-    brandId: "loreal",
+    brandId: "l-oreal",
     featured: false,
     relationStatus: "active",
   },
@@ -3430,12 +3430,18 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "adidas",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
     brandId: "alberta-ferretti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "aldo-coppola",
     featured: false,
     relationStatus: "active",
   },
@@ -3447,19 +3453,25 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "andre-maurice",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "antony-morato",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "armani",
-    featured: true,
+    brandId: "aquazzura",
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "armani-exchange",
+    brandId: "armani",
     featured: false,
     relationStatus: "active",
   },
@@ -3484,7 +3496,7 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "balenciaga",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -3507,6 +3519,18 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "bialetti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "billionaire",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "birkenstock",
     featured: false,
     relationStatus: "active",
@@ -3519,7 +3543,13 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "boggi-milano",
+    brandId: "boggi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "bomboogie",
     featured: false,
     relationStatus: "active",
   },
@@ -3531,8 +3561,26 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "borsalino",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "boss",
-    featured: true,
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "boxeur-des-rues",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "brave-kid",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -3550,12 +3598,36 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "burberry",
-    featured: true,
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "c-p-company",
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
     brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "calvin-klein-underwear",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "calzedonia",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "camicissima",
     featured: false,
     relationStatus: "active",
   },
@@ -3591,7 +3663,19 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "chicco",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "claudie-pierlot",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "cmp",
     featured: false,
     relationStatus: "active",
   },
@@ -3604,12 +3688,6 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "coccinelle",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "serravalle-designer-outlet",
-    brandId: "colmar",
     featured: false,
     relationStatus: "active",
   },
@@ -3633,6 +3711,24 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "damiani",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "david-naman",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "delsey",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "desigual",
     featured: false,
     relationStatus: "active",
@@ -3651,7 +3747,25 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "dondup",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "dr-martens",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "dsquared2",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "elena-miro",
     featured: false,
     relationStatus: "active",
   },
@@ -3663,7 +3777,13 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "ermenegildo-zegna",
+    brandId: "emilio-pucci",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "ermanno-scervino",
     featured: false,
     relationStatus: "active",
   },
@@ -3681,20 +3801,50 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "facis",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "falconeri",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "falke",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "fay",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "fendi",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
     brandId: "ferragamo",
-    featured: true,
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "flavio-castellani",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "fracomina",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -3754,12 +3904,18 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "gucci",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
     brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "guess-accessories",
     featured: false,
     relationStatus: "active",
   },
@@ -3777,13 +3933,19 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "harmont-and-blaine",
+    brandId: "harmont-e-blaine",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
     brandId: "havaianas",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "hogan",
     featured: false,
     relationStatus: "active",
   },
@@ -3796,6 +3958,12 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "iceberg",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "il-gufo",
     featured: false,
     relationStatus: "active",
   },
@@ -3819,7 +3987,13 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "jack-and-jones",
+    brandId: "jack-jones",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "jacob-cohen",
     featured: false,
     relationStatus: "active",
   },
@@ -3838,6 +4012,12 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "karl-lagerfeld",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "kate-spade",
     featured: false,
     relationStatus: "active",
   },
@@ -3867,6 +4047,12 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "la-casa-italiana",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "la-martina",
     featured: false,
     relationStatus: "active",
@@ -3879,13 +4065,37 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "lagostina-and-rowenta",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "lanvin",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "lardini",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "le-creuset",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "le-silla",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "lee-wrangler",
     featured: false,
     relationStatus: "active",
   },
@@ -3909,7 +4119,31 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "liu-jo-kids",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "liu-jo-uomo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "l-occitane",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "longchamp",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "l-oreal",
     featured: false,
     relationStatus: "active",
   },
@@ -3921,7 +4155,25 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "luisa-spagnoli",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "luxury-zone",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "maje",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "maliparmi",
     featured: false,
     relationStatus: "active",
   },
@@ -3933,7 +4185,25 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "marina-militare",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "mcs",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "michael-kors",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "milano-cortina-2026",
     featured: false,
     relationStatus: "active",
   },
@@ -3951,13 +4221,55 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "momoni",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "moncler",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "monnalisa",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "moorer",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "morellato",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "moschino",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "motivi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "napapijri",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "nespresso",
     featured: false,
     relationStatus: "active",
   },
@@ -3970,7 +4282,7 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "nike",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -3987,7 +4299,37 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "oltre",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "outly",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "pal-zileri",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "pandora",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "paragon",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "patrizia-pepe",
     featured: false,
     relationStatus: "active",
   },
@@ -4023,6 +4365,12 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "piquadro",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "pollini",
     featured: false,
     relationStatus: "active",
@@ -4030,13 +4378,13 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "polo-ralph-lauren",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
     brandId: "prada",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -4047,7 +4395,13 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "refrigiwear",
+    brandId: "pupa",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "refrigue",
     featured: false,
     relationStatus: "active",
   },
@@ -4084,7 +4438,7 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "serravalle-designer-outlet",
     brandId: "saint-laurent",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -4185,13 +4539,13 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "swarovski",
+    brandId: "suns-boards",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "swatch",
+    brandId: "swarovski",
     featured: false,
     relationStatus: "active",
   },
@@ -4245,6 +4599,12 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "toys-con-te",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "trussardi",
     featured: false,
     relationStatus: "active",
@@ -4269,6 +4629,12 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "valditaro",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "valentino",
     featured: false,
     relationStatus: "active",
@@ -4281,7 +4647,19 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "veralab",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "versace",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "victorias-secret",
     featured: false,
     relationStatus: "active",
   },
@@ -4299,13 +4677,37 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "vivienne-westwood",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "woolrich",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "serravalle-designer-outlet",
+    brandId: "yamamay",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "zegna",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
     brandId: "zimmermann",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    brandId: "zwilling",
     featured: false,
     relationStatus: "active",
   },
