@@ -244,6 +244,17 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "rene-caovilla",
+    brandName: "Rene Caovilla",
+    aliases: ["Renè Caovilla", "René Caovilla"],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "luxury",
+    rankingWeight: 84,
+    brandStatus: "active",
+  },
+  {
     brandId: "repetto",
     brandName: "Repetto",
     aliases: [],

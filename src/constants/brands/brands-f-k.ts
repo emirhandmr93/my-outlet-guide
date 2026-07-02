@@ -2252,6 +2252,17 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "kartell",
+    brandName: "Kartell",
+    aliases: [],
+    categoryId: "homeware",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "premium",
+    rankingWeight: 82,
+    brandStatus: "active",
+  },
+  {
     brandId: "kate-spade-new-york",
     brandName: "Kate Spade New York",
     aliases: ["Kate Spade", "Kate Spade Outlet"],
