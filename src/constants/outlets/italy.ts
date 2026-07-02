@@ -11,7 +11,7 @@ export const italyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "130+ Stores",
+    storesCountText: "More than 130 stores",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -43,8 +43,8 @@ export const italyOutlets = [
     vatRate: 22,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "70.01 EUR",
-    taxFreeOperator: "Participating stores / EU customs validation",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    taxFreeOperator: "Participating stores / Tax-Free kiosk at Guest Services / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores for purchases from €70.01 in the same store on the same day. Forms can be validated before departure at airport customs, at the Tax-Free kiosk located at Barberino Outlet Guest Services, or online.",
     cityCenterDistanceKm: 30,
     airportDistanceKm: 20,
     airports: [
@@ -97,7 +97,7 @@ export const italyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "150+ Stores",
+    storesCountText: "Over 150 stores",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -114,19 +114,23 @@ export const italyOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "Obicà",
-      "Wagamama",
-      "Lindt",
-      "McDonald's",
+      "Bollicine&Co",
+      "Bonetti",
+      "Eat Artisti del Gusto - Illy",
       "Farinella",
-      "Caffè"
+      "Ham Holy Burger",
+      "McDonald's",
+      "Obicà",
+      "Signorvino",
+      "Starbucks",
+      "Venchi"
     ],
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "70.01 EUR",
-    taxFreeOperator: "Forexchange / Global Blue / EU customs validation",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €70.01 in the same store on the same day. Castel Romano has an onsite Forexchange Tax Refund Office where eligible visitors can receive assistance before customs validation when leaving the EU.",
+    taxFreeOperator: "Global Blue Tax Free desk / Guest Services self-service kiosks / Forexchange / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €70.01 in the same store on the same day. Castel Romano lists a Global Blue Tax Free desk and self-service kiosks at Guest Services, plus an onsite Forexchange Tax Refund Office for eligible in-centre refund assistance before EU customs validation.",
     cityCenterDistanceKm: 25,
     airportDistanceKm: 25,
     airports: [
@@ -191,19 +195,20 @@ export const italyOutlets = [
       "VIP Lounge"
     ],
     restaurants: [
-      "Ca'puccino",
-      "Obicà",
+      "Koi Sushi",
+      "Lievità",
+      "Lindt",
+      "Panino Giusto",
       "Parma Menù",
-      "Bistrò Fidenza",
-      "Lindt Café",
+      "Signorvino",
       "Venchi"
     ],
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "70.01 EUR",
-    taxFreeOperator: "EU customs validation / tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating boutiques when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    taxFreeOperator: "Global Blue and Planet tax-free kiosks / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a VAT refund form in participating boutiques when spending over €70.01. Fidenza Village lists Global Blue and Planet instant tax-free kiosks located in The Concierge; airport customs validation remains available when leaving the EU.",
     cityCenterDistanceKm: 110,
     airportDistanceKm: 110,
     airports: [
@@ -256,7 +261,7 @@ export const italyOutlets = [
     openingHours: "10:00 - 21:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "140+ Stores",
+    storesCountText: "Over 160 stores",
     rating: 4.6,
     reviewCount: 0,
     services: [
@@ -279,6 +284,7 @@ export const italyOutlets = [
       "La Piadineria",
       "Poke House",
       "Re Nero Caffè",
+      "Rossopomodoro",
       "Starbucks"
     ],
     taxFreeAvailable: true,
@@ -286,7 +292,7 @@ export const italyOutlets = [
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "70.01 EUR",
     taxFreeOperator: "Participating stores / EU customs validation",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a Tax-Free Form in participating stores when spending at least €70.01 in the same store on the same day, then validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
     cityCenterDistanceKm: 30,
     airportDistanceKm: 20,
     airports: [
@@ -329,7 +335,7 @@ export const italyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "170+ Stores",
+    storesCountText: "Over 170 stores",
     rating: 4.6,
     reviewCount: 0,
     services: [
@@ -346,19 +352,27 @@ export const italyOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
+      "Bistrot",
+      "Bollicine&Co.",
+      "Bonetti",
+      "Farinella",
+      "Hamerica's",
+      "Jody's",
+      "La Piadineria",
+      "Lindt",
+      "Panino Giusto",
+      "Starbucks",
       "Sutto Caffè",
-      "Signorvino",
-      "Venchi",
-      "Baccalà Divino",
-      "McDonald's",
-      "Poke House"
+      "Sutto Osteria",
+      "Tramè",
+      "Venchi"
     ],
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "70.01 EUR",
-    taxFreeOperator: "EU customs validation / tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when the purchase exceeds the Italian minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    taxFreeOperator: "Participating stores / in-centre Tax Refund points / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €70.01 in the same store on the same day. Noventa di Piave lists in-centre Tax Refund points for assistance before EU customs validation.",
     cityCenterDistanceKm: 45,
     airportDistanceKm: 30,
     airports: [
