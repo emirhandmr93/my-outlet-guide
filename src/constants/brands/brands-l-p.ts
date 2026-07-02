@@ -1786,7 +1786,7 @@ export const brandsLP: Brand[] = [
     brandId: "oakley",
     brandName: "Oakley",
     aliases: [],
-    categoryId: "shoes-bags",
+    categoryId: "eyewear",
     logo: "",
     originCountryId: "united-states",
     luxuryLevel: "sports",
