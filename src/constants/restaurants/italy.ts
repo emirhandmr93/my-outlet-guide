@@ -513,7 +513,7 @@ export const italyRestaurants = [
     "restaurantId": "serravalle-eataly",
     "outletId": "serravalle-designer-outlet",
     "restaurantName": "Eataly",
-    "category": "Food Market",
+    "category": "Gifting • Food • Food Market",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/food-drink/eataly/",
     "status": "active",
@@ -573,17 +573,17 @@ export const italyRestaurants = [
     "restaurantId": "serravalle-le-dolci-terre",
     "outletId": "serravalle-designer-outlet",
     "restaurantName": "Le Dolci Terre",
-    "category": "Food Market",
+    "category": "Gifting • Food • Food Market",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/food-drink/le-dolci-terre/",
     "status": "active",
     "displayOrder": "11"
   },
   {
-    "restaurantId": "serravalle-mcdonalds",
+    "restaurantId": "serravalle-mc-donalds",
     "outletId": "serravalle-designer-outlet",
-    "restaurantName": "McDonald's",
-    "category": "Fast Food",
+    "restaurantName": "Mc Donald's",
+    "category": "Quick Service • Restaurants & Cafés",
     "priceLevel": "€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/food-drink/mcdonalds/",
     "status": "active",
@@ -598,6 +598,26 @@ export const italyRestaurants = [
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/food-drink/obica/",
     "status": "active",
     "displayOrder": "13"
+  },
+  {
+    "restaurantId": "serravalle-starbucks",
+    "outletId": "serravalle-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Restaurants & Cafés • Café",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/food-drink/starbucks/",
+    "status": "active",
+    "displayOrder": "14"
+  },
+  {
+    "restaurantId": "serravalle-wagamama",
+    "outletId": "serravalle-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurants & Cafés • Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/food-drink/wagamama/",
+    "status": "active",
+    "displayOrder": "15"
   },
   {
     "restaurantId": "firenze-toscanino-bistro",
