@@ -4,7 +4,7 @@ export const belgiumOutlets = [
     name: "Maasmechelen Village",
     slug: "maasmechelen-village",
     countryId: "belgium",
-    cityId: "brussels",
+    cityId: "maasmechelen",
     address: "Zetellaan 100, 3630 Maasmechelen, Belgium",
     latitude: 50.9862,
     longitude: 5.6995,
