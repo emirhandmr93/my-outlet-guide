@@ -140,34 +140,14 @@ export const franceRestaurants = [
     "displayOrder": "1"
   },
   {
-    "restaurantId": "chocolat-bar-lindt-troyes",
+    "restaurantId": "lindt-troyes",
     "outletId": "designer-outlet-troyes",
-    "restaurantName": "Chocolat Bar Lindt",
+    "restaurantName": "Lindt",
     "category": "Confectionery",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-troyes/restaurants/chocolat-bar-lindt/",
     "status": "active",
     "displayOrder": "2"
-  },
-  {
-    "restaurantId": "farinella-troyes",
-    "outletId": "designer-outlet-troyes",
-    "restaurantName": "Farinella",
-    "category": "Food",
-    "priceLevel": "€€",
-    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-troyes/restaurants/farinella/",
-    "status": "active",
-    "displayOrder": "3"
-  },
-  {
-    "restaurantId": "five-guys-troyes",
-    "outletId": "designer-outlet-troyes",
-    "restaurantName": "Five Guys",
-    "category": "Food",
-    "priceLevel": "€€",
-    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-troyes/restaurants/Five-guys/",
-    "status": "active",
-    "displayOrder": "4"
   },
   {
     "restaurantId": "la-fringale-troyes",
@@ -177,7 +157,7 @@ export const franceRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-troyes/restaurants/la-fringale/",
     "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "3"
   },
   {
     "restaurantId": "maison-caffet-troyes",
@@ -187,7 +167,7 @@ export const franceRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-troyes/restaurants/maison-caffet/",
     "status": "active",
-    "displayOrder": "6"
+    "displayOrder": "4"
   },
   {
     "restaurantId": "mezzo-di-pasta-troyes",
@@ -197,17 +177,7 @@ export const franceRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-troyes/restaurants/mezzo-di-pasta/",
     "status": "active",
-    "displayOrder": "7"
-  },
-  {
-    "restaurantId": "palais-des-thes-troyes",
-    "outletId": "designer-outlet-troyes",
-    "restaurantName": "Palais des Thés",
-    "category": "Tea & Coffee",
-    "priceLevel": "€€",
-    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-troyes/restaurants/palais-des-thes/",
-    "status": "active",
-    "displayOrder": "8"
+    "displayOrder": "5"
   },
   {
     "restaurantId": "rosaparks-troyes",
@@ -217,7 +187,7 @@ export const franceRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-troyes/restaurants/rosaparks/",
     "status": "active",
-    "displayOrder": "9"
+    "displayOrder": "6"
   },
   {
     "restaurantId": "starbucks-troyes",
@@ -227,7 +197,7 @@ export const franceRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-troyes/restaurants/starbucks/",
     "status": "active",
-    "displayOrder": "10"
+    "displayOrder": "7"
   },
   {
     "restaurantId": "amorino",
