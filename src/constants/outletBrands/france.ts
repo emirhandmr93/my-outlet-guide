@@ -27,19 +27,25 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-provence",
-    brandId: "armani-exchange",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-provence",
     brandId: "asics",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-provence",
+    brandId: "aubade",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
     brandId: "autrefois",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "ba-and-sh",
     featured: false,
     relationStatus: "active",
   },
@@ -75,19 +81,31 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-provence",
+    brandId: "clarins",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "claudie-pierlot",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
     brandId: "coach",
     featured: true,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-provence",
-    brandId: "converse",
+    brandId: "columbia",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-provence",
-    brandId: "crocs",
+    brandId: "converse",
     featured: false,
     relationStatus: "active",
   },
@@ -111,13 +129,43 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-provence",
-    brandId: "fossil",
+    brandId: "dim",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-provence",
-    brandId: "fratelli-rossetti",
+    brandId: "dodo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "dore-dore",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "eden-park",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "etam-undiz",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "finsbury",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-provence",
+    brandId: "fursac",
     featured: false,
     relationStatus: "active",
   },
@@ -129,7 +177,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-provence",
-    brandId: "gallo",
+    brandId: "garcia",
     featured: false,
     relationStatus: "active",
   },
@@ -159,7 +207,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-provence",
-    brandId: "gutteridge",
+    brandId: "guess-accessories",
     featured: false,
     relationStatus: "active",
   },
@@ -316,12 +364,6 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-provence",
     brandId: "maison-123",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-provence",
-    brandId: "maison-yellow",
     featured: false,
     relationStatus: "active",
   },
@@ -591,12 +633,6 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-troyes",
-    brandId: "armani-exchange",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-troyes",
     brandId: "asics",
     featured: false,
     relationStatus: "active",
@@ -634,7 +670,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-troyes",
     brandId: "calvin-klein",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -658,7 +694,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-troyes",
     brandId: "coach",
-    featured: false,
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -831,12 +867,6 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-troyes",
-    brandId: "iris-galerie",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-troyes",
     brandId: "izac",
     featured: false,
     relationStatus: "active",
@@ -874,7 +904,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-troyes",
     brandId: "lacoste",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -939,12 +969,6 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-troyes",
-    brandId: "maison-caffet",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-troyes",
     brandId: "maje",
     featured: false,
     relationStatus: "active",
@@ -970,7 +994,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-troyes",
     brandId: "michael-kors",
-    featured: false,
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -1006,7 +1030,13 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-troyes",
     brandId: "nike",
-    featured: true,
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-troyes",
+    brandId: "not-only-candles",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1048,7 +1078,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-troyes",
     brandId: "petit-bateau",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1252,7 +1282,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "la-vallee-village",
     brandId: "balenciaga",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1294,7 +1324,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "la-vallee-village",
     brandId: "boss",
-    featured: false,
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -1366,7 +1396,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "la-vallee-village",
     brandId: "coach",
-    featured: false,
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -1390,13 +1420,13 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "la-vallee-village",
     brandId: "fendi",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "la-vallee-village",
     brandId: "ferragamo",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1455,7 +1485,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "la-vallee-village",
-    brandId: "hackett-london",
+    brandId: "hackett",
     featured: false,
     relationStatus: "active",
   },
@@ -1612,7 +1642,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "la-vallee-village",
     brandId: "michael-kors",
-    featured: false,
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -1624,7 +1654,7 @@ export const franceOutletBrands: OutletBrand[] = [
   {
     outletId: "la-vallee-village",
     brandId: "moncler",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1655,6 +1685,12 @@ export const franceOutletBrands: OutletBrand[] = [
     outletId: "la-vallee-village",
     brandId: "polo-ralph-lauren",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "la-vallee-village",
+    brandId: "polo-ralph-lauren-children",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1767,8 +1803,8 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "la-vallee-village",
-    brandId: "valentino",
-    featured: true,
+    brandId: "valentino-garavani",
+    featured: false,
     relationStatus: "active",
   },
   {
