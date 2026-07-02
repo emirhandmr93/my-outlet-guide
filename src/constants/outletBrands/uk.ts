@@ -2012,6 +2012,30 @@ export const ukOutletBrands: OutletBrand[] = [
     relationStatus: "active",
   },
   {
+    outletId: "clarks-village",
+    brandId: "white-stuff",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
+    brandId: "jack-wolfskin",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
+    brandId: "suit-direct",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "clarks-village",
+    brandId: "saltrock",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
     outletId: "dalton-park",
     brandId: "adidas",
     featured: false,

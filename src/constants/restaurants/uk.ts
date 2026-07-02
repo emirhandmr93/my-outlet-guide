@@ -1590,6 +1590,116 @@ export const ukRestaurants = [
     "displayOrder": "137"
   },
   {
+    "restaurantId": "gunwharf-quays-all-bar-one",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "All Bar One",
+    "category": "Bar",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/all-bar-one",
+    "status": "active",
+    "displayOrder": "163"
+  },
+  {
+    "restaurantId": "gunwharf-quays-burger-king",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Burger King",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/burger-king",
+    "status": "active",
+    "displayOrder": "164"
+  },
+  {
+    "restaurantId": "gunwharf-quays-chiquito",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Chiquito",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/chiquito",
+    "status": "active",
+    "displayOrder": "165"
+  },
+  {
+    "restaurantId": "gunwharf-quays-las-iguanas",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Las Iguanas",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/las-iguanas",
+    "status": "active",
+    "displayOrder": "166"
+  },
+  {
+    "restaurantId": "gunwharf-quays-nandos",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Nando's",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/nandos",
+    "status": "active",
+    "displayOrder": "167"
+  },
+  {
+    "restaurantId": "gunwharf-quays-pizzaexpress",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "PizzaExpress",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/pizzaexpress",
+    "status": "active",
+    "displayOrder": "168"
+  },
+  {
+    "restaurantId": "gunwharf-quays-slim-chickens",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/slim-chickens",
+    "status": "active",
+    "displayOrder": "169"
+  },
+  {
+    "restaurantId": "gunwharf-quays-the-liquorist",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "The Liquorist",
+    "category": "Bar",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/the-liquorist",
+    "status": "active",
+    "displayOrder": "170"
+  },
+  {
+    "restaurantId": "gunwharf-quays-krispy-kreme",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Krispy Kreme",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/krispy-kreme",
+    "status": "active",
+    "displayOrder": "171"
+  },
+  {
+    "restaurantId": "gunwharf-quays-the-alchemist",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "The Alchemist",
+    "category": "Bar",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing/the-alchemist",
+    "status": "active",
+    "displayOrder": "172"
+  },
+  {
+    "restaurantId": "gunwharf-quays-rise-by-cornish-bakery",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "RISE by Cornish Bakery",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/",
+    "status": "active",
+    "displayOrder": "173"
+  },
+  {
     "restaurantId": "the-galleria-burger-king",
     "outletId": "the-galleria",
     "restaurantName": "Burger King",
