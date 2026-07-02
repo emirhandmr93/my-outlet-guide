@@ -63,6 +63,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "bobbi-brown",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "boggi-milano",
     featured: false,
     relationStatus: "active",
@@ -82,6 +88,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "calvin-klein-underwear",
     featured: false,
     relationStatus: "active",
   },
@@ -178,6 +190,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "guess-accessories",
     featured: false,
     relationStatus: "active",
   },
@@ -430,6 +448,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "pinko",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "polo-ralph-lauren-children",
     featured: false,
     relationStatus: "active",
   },
