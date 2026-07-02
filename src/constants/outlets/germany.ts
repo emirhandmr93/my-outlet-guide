@@ -1,5 +1,7 @@
+const withoutDynamicRatings = <T extends object>(outlet: T) => outlet as T & { rating: number; reviewCount: number };
+
 export const germanyOutlets = [
-  {
+  withoutDynamicRatings({
     outletId: "city-outlet-bad-munstereifel",
     name: "City Outlet Bad Münstereifel",
     slug: "city-outlet-bad-munstereifel",
@@ -12,8 +14,6 @@ export const germanyOutlets = [
     heroImage: "",
     galleryImages: [],
     storesCountText: "Over 50 fashion & lifestyle brands",
-    rating: 4.4,
-    reviewCount: 0,
     services: [
       "Parking",
       "Tax Free",
@@ -70,10 +70,10 @@ export const germanyOutlets = [
     ],
     websiteUrl: "https://www.cityoutletbadmuenstereifel.com/en/",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=City+Outlet+Bad+M%C3%BCnstereifel%2C+Orchheimer+Stra%C3%9Fe+1%2C+53902+Bad+M%C3%BCnstereifel",
-    appleMapsUrl: "http://maps.apple.com/?q=City+Outlet+Bad+M%C3%BCnstereifel&address=Orchheimer%20Stra%C3%9Fe%201%2C%2053902%20Bad%20M%C3%BCnstereifel",
-    yandexMapsUrl: "https://yandex.com/maps/?text=City%20Outlet%20Bad%20M%C3%BCnstereifel%2C%20Orchheimer%20Stra%C3%9Fe%201%2C%2053902%20Bad%20M%C3%BCnstereifel"
-  },
+    googleMapsUrl: "https://maps.google.com/?q=City+Outlet+Bad+M%C3%BCnstereifel%2C+Sittardweg+1%2C+53902+Bad+M%C3%BCnstereifel",
+    appleMapsUrl: "http://maps.apple.com/?q=City+Outlet+Bad+M%C3%BCnstereifel&address=Sittardweg%201%2C%2053902%20Bad%20M%C3%BCnstereifel",
+    yandexMapsUrl: "https://yandex.com/maps/?text=City%20Outlet%20Bad%20M%C3%BCnstereifel%2C%20Sittardweg%201%2C%2053902%20Bad%20M%C3%BCnstereifel"
+  }),
   {
     outletId: "designer-outlet-berlin",
     name: "Designer Outlet Berlin",
