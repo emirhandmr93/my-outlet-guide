@@ -1537,4 +1537,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
+  {
+    brandId: "unode50",
+    brandName: "UNOde50",
+    aliases: ["UNOde50"],
+    categoryId: "jewelry-watches",
+    logo: "",
+    originCountryId: "spain",
+    luxuryLevel: "premium",
+    rankingWeight: 74,
+    brandStatus: "active",
+  },
 ];
