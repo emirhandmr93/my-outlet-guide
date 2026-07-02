@@ -170,7 +170,7 @@ export const switzerlandOutlets = [
       "Barrier-Free Toilets",
       "Changing Table"
     ],
-    restaurants: [],
+    restaurants: ["Restaurant Grano"],
     parking: "Outdoor parking and an underground parking garage are available; parking is chargeable across the site. Two EV charging stations are located in front of FASHION FISH base.",
     taxFreeAvailable: true,
     vatRate: 8.1,
