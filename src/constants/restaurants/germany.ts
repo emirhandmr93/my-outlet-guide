@@ -32,7 +32,7 @@ export const germanyRestaurants = [
   {
       "restaurantId": "khon-thai-bad-munstereifel",
       "outletId": "city-outlet-bad-munstereifel",
-      "restaurantName": "Khon Thai",
+      "restaurantName": "Khon Thai - Restaurant",
       "category": "Thai",
       "priceLevel": "€€",
       "website": "https://www.cityoutletbadmuenstereifel.com/en/plan-a-visit/gastronomy/",
@@ -58,6 +58,16 @@ export const germanyRestaurants = [
       "website": "https://www.cityoutletbadmuenstereifel.com/en/plan-a-visit/gastronomy/",
       "status": "active",
       "displayOrder": "6"
+  },
+  {
+      "restaurantId": "the-big-fryup-foodtruck-bad-munstereifel",
+      "outletId": "city-outlet-bad-munstereifel",
+      "restaurantName": "The big Fryup Foodtruck",
+      "category": "Burgers • Street Food",
+      "priceLevel": "€",
+      "website": "https://www.cityoutletbadmuenstereifel.com/en/plan-a-visit/gastronomy/",
+      "status": "active",
+      "displayOrder": "7"
   },
   {
       "restaurantId": "cocos-berlin",
@@ -300,21 +310,21 @@ export const germanyRestaurants = [
       "displayOrder": "3"
   },
   {
-      "restaurantId": "losteria-wolfsburg",
+      "restaurantId": "giovanni-l-wolfsburg",
       "outletId": "designer-outlets-wolfsburg",
-      "restaurantName": "L’Osteria",
-      "category": "Italian • Pizza",
-      "priceLevel": "€€",
+      "restaurantName": "Giovanni L.",
+      "category": "Gelato",
+      "priceLevel": "€",
       "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
       "status": "active",
       "displayOrder": "4"
   },
   {
-      "restaurantId": "starbucks-wolfsburg",
+      "restaurantId": "grill-pavillon-wolfsburg",
       "outletId": "designer-outlets-wolfsburg",
-      "restaurantName": "Starbucks",
-      "category": "Cafe",
-      "priceLevel": "€€",
+      "restaurantName": "Grill-Pavillon",
+      "category": "Grill • Snacks",
+      "priceLevel": "€",
       "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
       "status": "active",
       "displayOrder": "5"
@@ -330,6 +340,16 @@ export const germanyRestaurants = [
       "displayOrder": "6"
   },
   {
+      "restaurantId": "losteria-wolfsburg",
+      "outletId": "designer-outlets-wolfsburg",
+      "restaurantName": "L’Osteria",
+      "category": "Italian • Pizza",
+      "priceLevel": "€€",
+      "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
+      "status": "active",
+      "displayOrder": "7"
+  },
+  {
       "restaurantId": "pieroth-weinstand-wolfsburg",
       "outletId": "designer-outlets-wolfsburg",
       "restaurantName": "Pieroth Weinstand",
@@ -337,37 +357,17 @@ export const germanyRestaurants = [
       "priceLevel": "€€",
       "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
       "status": "active",
-      "displayOrder": "7"
-  },
-  {
-      "restaurantId": "grill-pavillon-wolfsburg",
-      "outletId": "designer-outlets-wolfsburg",
-      "restaurantName": "Grill-Pavillon",
-      "category": "Grill • Snacks",
-      "priceLevel": "€",
-      "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
-      "status": "active",
       "displayOrder": "8"
   },
   {
-      "restaurantId": "giovanni-l-wolfsburg",
+      "restaurantId": "starbucks-wolfsburg",
       "outletId": "designer-outlets-wolfsburg",
-      "restaurantName": "Giovanni L.",
-      "category": "Gelato",
-      "priceLevel": "€",
+      "restaurantName": "Starbucks",
+      "category": "Cafe",
+      "priceLevel": "€€",
       "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
       "status": "active",
       "displayOrder": "9"
-  },
-  {
-      "restaurantId": "ingolstadt-laduree",
-      "outletId": "ingolstadt-village",
-      "restaurantName": "Ladurée Salon de Thé",
-      "category": "Macarons • Cafe",
-      "priceLevel": "€€€",
-      "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
-      "status": "active",
-      "displayOrder": "1"
   },
   {
       "restaurantId": "ingolstadt-bollicine-co",
@@ -377,27 +377,17 @@ export const germanyRestaurants = [
       "priceLevel": "€€€",
       "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
       "status": "active",
+      "displayOrder": "1"
+  },
+  {
+      "restaurantId": "ingolstadt-coffee-fellows",
+      "outletId": "ingolstadt-village",
+      "restaurantName": "Coffee Fellows",
+      "category": "Coffee • Snacks",
+      "priceLevel": "€€",
+      "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
+      "status": "active",
       "displayOrder": "2"
-  },
-  {
-      "restaurantId": "ingolstadt-mancini",
-      "outletId": "ingolstadt-village",
-      "restaurantName": "Mancini",
-      "category": "Italian • Pizza",
-      "priceLevel": "€€",
-      "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
-      "status": "active",
-      "displayOrder": "3"
-  },
-  {
-      "restaurantId": "ingolstadt-mr-smash",
-      "outletId": "ingolstadt-village",
-      "restaurantName": "Mr. Smash & Co.",
-      "category": "Burgers • On the go",
-      "priceLevel": "€€",
-      "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
-      "status": "active",
-      "displayOrder": "4"
   },
   {
       "restaurantId": "ingolstadt-indochine",
@@ -407,13 +397,33 @@ export const germanyRestaurants = [
       "priceLevel": "€€",
       "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
       "status": "active",
+      "displayOrder": "3"
+  },
+  {
+      "restaurantId": "ingolstadt-laduree",
+      "outletId": "ingolstadt-village",
+      "restaurantName": "Ladurée Salon de Thé",
+      "category": "Macarons • Cafe",
+      "priceLevel": "€€€",
+      "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
+      "status": "active",
+      "displayOrder": "4"
+  },
+  {
+      "restaurantId": "ingolstadt-mancini",
+      "outletId": "ingolstadt-village",
+      "restaurantName": "Mancini",
+      "category": "Italian • Pizza",
+      "priceLevel": "€€",
+      "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
+      "status": "active",
       "displayOrder": "5"
   },
   {
-      "restaurantId": "ingolstadt-coffee-fellows",
+      "restaurantId": "ingolstadt-mr-smash",
       "outletId": "ingolstadt-village",
-      "restaurantName": "Coffee Fellows",
-      "category": "Coffee • Snacks",
+      "restaurantName": "Mr. Smash & Co.",
+      "category": "Burgers • On the go",
       "priceLevel": "€€",
       "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
       "status": "active",
