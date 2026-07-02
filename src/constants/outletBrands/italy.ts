@@ -69,7 +69,7 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
-    brandId: "boggi",
+    brandId: "boggi-milano",
     featured: false,
     relationStatus: "active",
   },
@@ -1575,7 +1575,7 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "fidenza-village",
-    brandId: "l-occitane-en-provence",
+    brandId: "l-occitane",
     featured: false,
     relationStatus: "active",
   },
@@ -3543,7 +3543,7 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "serravalle-designer-outlet",
-    brandId: "boggi",
+    brandId: "boggi-milano",
     featured: false,
     relationStatus: "active",
   },

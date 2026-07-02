@@ -471,7 +471,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
-    brandId: "loccitane",
+    brandId: "l-occitane",
     featured: false,
     relationStatus: "active",
   },
@@ -1305,7 +1305,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
-    brandId: "loccitane",
+    brandId: "l-occitane",
     featured: false,
     relationStatus: "active",
   },

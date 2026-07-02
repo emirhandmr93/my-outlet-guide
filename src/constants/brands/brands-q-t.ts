@@ -4,7 +4,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "q-pot",
     brandName: "Q-pot.",
-    aliases: ["Q-pot"],
+    aliases: ["Q-pot", "Q pot", "Qpot"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "japan",
@@ -48,7 +48,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rack-room-shoes",
     brandName: "Rack Room Shoes",
-    aliases: [],
+    aliases: ["RackRoomShoes"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -70,7 +70,16 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rag-and-bone",
     brandName: "rag & bone",
-    aliases: ["Rag and Bone", "Rag & Bone"],
+    aliases: [
+      "Rag and Bone",
+      "Rag & Bone",
+      "rag and bone",
+      "rag bone",
+      "ragbone",
+      "RagandBone",
+      "Rag Bone",
+      "RagBone",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -92,7 +101,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rally-house",
     brandName: "Rally House",
-    aliases: [],
+    aliases: ["RallyHouse"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-states",
@@ -103,7 +112,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "ralph-lauren-children",
     brandName: "Ralph Lauren Children",
-    aliases: [],
+    aliases: ["RalphLaurenChildren"],
     categoryId: "kids",
     logo: "",
     originCountryId: "united-states",
@@ -114,7 +123,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rampal-latour",
     brandName: "Rampal Latour",
-    aliases: [],
+    aliases: ["RampalLatour"],
     categoryId: "beauty",
     logo: "",
     originCountryId: "france",
@@ -136,7 +145,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "ray-ban",
     brandName: "Ray-Ban",
-    aliases: ["Ray Ban"],
+    aliases: ["Ray Ban", "RayBan"],
     categoryId: "eyewear",
     logo: "",
     originCountryId: "united-states",
@@ -147,7 +156,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rebecca-minkoff",
     brandName: "Rebecca Minkoff",
-    aliases: [],
+    aliases: ["RebeccaMinkoff"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -158,7 +167,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rebel-queen",
     brandName: "Rebel Queen",
-    aliases: [],
+    aliases: ["RebelQueen"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "italy",
@@ -180,7 +189,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "reebok",
     brandName: "Reebok",
-    aliases: ["Reebok Outlet"],
+    aliases: ["Reebok Outlet", "ReebokOutlet"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-states",
@@ -246,7 +255,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rene-caovilla",
     brandName: "Rene Caovilla",
-    aliases: ["Renè Caovilla", "René Caovilla"],
+    aliases: ["Renè Caovilla", "René Caovilla", "ReneCaovilla"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "italy",
@@ -323,7 +332,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rituals",
     brandName: "Rituals",
-    aliases: ["Rituals Cosmetics"],
+    aliases: ["Rituals Cosmetics", "RitualsCosmetics"],
     categoryId: "beauty",
     logo: "",
     originCountryId: "netherlands",
@@ -345,7 +354,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rm-williams",
     brandName: "R.M.Williams",
-    aliases: ["R.M. Williams", "RM Williams"],
+    aliases: [
+      "R.M. Williams",
+      "RM Williams",
+      "R M Williams",
+      "RMWilliams",
+    ],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "australia",
@@ -356,7 +370,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "robert-graham",
     brandName: "Robert Graham",
-    aliases: [],
+    aliases: ["RobertGraham"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -367,7 +381,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "roberto-cavalli",
     brandName: "Roberto Cavalli",
-    aliases: [],
+    aliases: ["RobertoCavalli"],
     categoryId: "luxury",
     logo: "",
     originCountryId: "italy",
@@ -378,7 +392,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "roberto-coin",
     brandName: "Roberto Coin",
-    aliases: [],
+    aliases: ["RobertoCoin"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "italy",
@@ -400,7 +414,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "roger-vivier",
     brandName: "Roger Vivier",
-    aliases: [],
+    aliases: ["RogerVivier"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "france",
@@ -432,7 +446,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rope-picnic",
     brandName: "Rope Picnic",
-    aliases: ["ROPE PICNIC"],
+    aliases: ["ROPE PICNIC", "RopePicnic", "ROPEPICNIC"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "japan",
@@ -465,7 +479,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "roy-rogers",
     brandName: "Roy Roger’s",
-    aliases: ["Roy Roger's", "Roy Rogers"],
+    aliases: [
+      "Roy Roger's",
+      "Roy Rogers",
+      "Roy Roger s",
+      "RoyRogers",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "italy",
@@ -498,7 +517,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "russell-athletic",
     brandName: "Russell Athletic",
-    aliases: ["Russell"],
+    aliases: ["Russell", "RussellAthletic"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-states",
@@ -531,7 +550,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "s-oliver",
     brandName: "s.Oliver",
-    aliases: ["s Oliver"],
+    aliases: ["s Oliver", "sOliver"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "germany",
@@ -542,7 +561,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sabor-a-espana",
     brandName: "Sabor a España",
-    aliases: ["Sabor a Espana"],
+    aliases: ["Sabor a Espana", "SaboraEspana"],
     categoryId: "food",
     logo: "",
     originCountryId: "spain",
@@ -564,7 +583,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "safety-1st",
     brandName: "Safety 1st",
-    aliases: [],
+    aliases: ["Safety1st"],
     categoryId: "kids",
     logo: "",
     originCountryId: "united-states",
@@ -575,7 +594,13 @@ export const brandsQT: Brand[] = [
   {
     brandId: "saint-laurent",
     brandName: "Saint Laurent",
-    aliases: ["Yves Saint Laurent", "YSL", "Saint Laurent"],
+    aliases: [
+      "Yves Saint Laurent",
+      "YSL",
+      "Saint Laurent",
+      "SaintLaurent",
+      "YvesSaintLaurent",
+    ],
     categoryId: "luxury",
     logo: "",
     originCountryId: "france",
@@ -586,7 +611,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "saks-off-5th",
     brandName: "Saks OFF 5TH",
-    aliases: ["Saks Fifth Avenue OFF 5TH", "Saks Off 5th"],
+    aliases: [
+      "Saks Fifth Avenue OFF 5TH",
+      "Saks Off 5th",
+      "SaksOFF5TH",
+      "SaksOff5th",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -630,7 +660,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sandro-ferrone",
     brandName: "Sandro Ferrone",
-    aliases: [],
+    aliases: ["SandroFerrone"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "italy",
@@ -663,7 +693,13 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sas-factory-shoe-store",
     brandName: "SAS Factory Shoe Store",
-    aliases: ["SAS Shoes", "San Antonio Shoemakers"],
+    aliases: [
+      "SAS Shoes",
+      "San Antonio Shoemakers",
+      "SASFactoryShoeStore",
+      "SASShoes",
+      "SanAntonioShoemakers",
+    ],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -674,7 +710,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sash-and-co",
     brandName: "Sash & Co",
-    aliases: ["Sash and Co"],
+    aliases: [
+      "Sash and Co",
+      "Sash Co",
+      "SashCo",
+      "SashandCo",
+    ],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "united-kingdom",
@@ -696,7 +737,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "save-the-duck",
     brandName: "Save The Duck",
-    aliases: [],
+    aliases: ["SaveTheDuck"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "italy",
@@ -718,7 +759,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "scamp-and-dude",
     brandName: "Scamp & Dude",
-    aliases: ["Scamp and Dude"],
+    aliases: [
+      "Scamp and Dude",
+      "Scamp Dude",
+      "ScampDude",
+      "ScampandDude",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -762,7 +808,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "scotch-and-soda",
     brandName: "Scotch & Soda",
-    aliases: ["Scotch and Soda"],
+    aliases: [
+      "Scotch and Soda",
+      "Scotch Soda",
+      "ScotchSoda",
+      "ScotchandSoda",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "netherlands",
@@ -773,7 +824,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "scotch-grain",
     brandName: "Scotch Grain",
-    aliases: [],
+    aliases: ["ScotchGrain"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "japan",
@@ -784,7 +835,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "seasalt",
     brandName: "Seasalt",
-    aliases: ["Seasalt Cornwall"],
+    aliases: ["Seasalt Cornwall", "SeasaltCornwall"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -806,7 +857,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "self-portrait",
     brandName: "Self-Portrait",
-    aliases: ["Self Portrait"],
+    aliases: ["Self Portrait", "SelfPortrait"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -817,7 +868,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "serge-blanco",
     brandName: "Serge Blanco",
-    aliases: [],
+    aliases: ["SergeBlanco"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "france",
@@ -828,7 +879,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sergio-rossi",
     brandName: "Sergio Rossi",
-    aliases: [],
+    aliases: ["SergioRossi"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "italy",
@@ -839,7 +890,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sessun",
     brandName: "Sessùn",
-    aliases: [],
+    aliases: ["Sessun"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "france",
@@ -894,7 +945,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "shoe-carnival",
     brandName: "Shoe Carnival",
-    aliases: [],
+    aliases: ["ShoeCarnival"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -905,7 +956,15 @@ export const brandsQT: Brand[] = [
   {
     brandId: "shoe-dept",
     brandName: "SHOE DEPT.",
-    aliases: ["Shoe Dept", "SHOE DEPT. ENCORE"],
+    aliases: [
+      "Shoe Dept",
+      "SHOE DEPT. ENCORE",
+      "SHOE DEPT",
+      "SHOEDEPT",
+      "ShoeDept",
+      "SHOE DEPT ENCORE",
+      "SHOEDEPTENCORE",
+    ],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -916,7 +975,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "shoe-palace",
     brandName: "Shoe Palace",
-    aliases: [],
+    aliases: ["ShoePalace"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -927,7 +986,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "shreeji-presents-the-village-news",
     brandName: "Shreeji Presents: The Village News",
-    aliases: ["Shreeji", "The Village News"],
+    aliases: [
+      "Shreeji",
+      "The Village News",
+      "Shreeji Presents The Village News",
+      "TheVillageNews",
+    ],
     categoryId: "home-lifestyle",
     logo: "",
     originCountryId: "united-kingdom",
@@ -949,7 +1013,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "simone-perele",
     brandName: "Simone Pérèle",
-    aliases: [],
+    aliases: ["Simone Perele", "SimonePerele"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "france",
@@ -993,7 +1057,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "skechers",
     brandName: "Skechers",
-    aliases: ["Skechers Outlet"],
+    aliases: ["Skechers Outlet", "SkechersOutlet"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-states",
@@ -1048,7 +1112,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "snow-peak",
     brandName: "Snow Peak",
-    aliases: [],
+    aliases: ["SnowPeak"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "japan",
@@ -1081,7 +1145,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "southern-marsh",
     brandName: "Southern Marsh",
-    aliases: [],
+    aliases: ["SouthernMarsh"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1114,7 +1178,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "spencer-s",
     brandName: "Spencer’s",
-    aliases: ["Spencer's", "Spencers"],
+    aliases: ["Spencer's", "Spencers", "Spencer s"],
     categoryId: "home-lifestyle",
     logo: "",
     originCountryId: "united-states",
@@ -1136,7 +1200,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "spick-and-span",
     brandName: "Spick & Span",
-    aliases: ["Spick and Span"],
+    aliases: [
+      "Spick and Span",
+      "Spick Span",
+      "SpickSpan",
+      "SpickandSpan",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "japan",
@@ -1147,7 +1216,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sports-direct",
     brandName: "Sports Direct",
-    aliases: [],
+    aliases: ["SportsDirect"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1169,7 +1238,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "stag-london",
     brandName: "Stag London",
-    aliases: [],
+    aliases: ["StagLondon"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1180,7 +1249,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "st-john",
     brandName: "St. John",
-    aliases: ["St John"],
+    aliases: ["St John", "StJohn"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1202,7 +1271,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "star-jewelry",
     brandName: "STAR JEWELRY",
-    aliases: ["Star Jewelry"],
+    aliases: ["Star Jewelry", "STARJEWELRY", "StarJewelry"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "japan",
@@ -1213,7 +1282,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "stella-mccartney",
     brandName: "Stella McCartney",
-    aliases: [],
+    aliases: ["StellaMcCartney"],
     categoryId: "luxury",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1224,7 +1293,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "steve-madden",
     brandName: "Steve Madden",
-    aliases: [],
+    aliases: ["SteveMadden"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -1235,7 +1304,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "stone-island",
     brandName: "Stone Island",
-    aliases: [],
+    aliases: ["StoneIsland"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "italy",
@@ -1246,7 +1315,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "street-one",
     brandName: "Street One",
-    aliases: [],
+    aliases: ["StreetOne"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "germany",
@@ -1257,7 +1326,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "stuart-weitzman",
     brandName: "Stuart Weitzman",
-    aliases: [],
+    aliases: ["StuartWeitzman"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -1279,7 +1348,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sun-factory",
     brandName: "Sun Factory",
-    aliases: [],
+    aliases: ["SunFactory"],
     categoryId: "accessories",
     logo: "",
     originCountryId: "france",
@@ -1290,7 +1359,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sun-valley",
     brandName: "Sun Valley",
-    aliases: [],
+    aliases: ["SunValley"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "france",
@@ -1333,7 +1402,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sunglass-hut",
     brandName: "Sunglass Hut",
-    aliases: [],
+    aliases: ["SunglassHut"],
     categoryId: "eyewear",
     logo: "",
     originCountryId: "united-states",
@@ -1366,7 +1435,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "swarovski",
     brandName: "Swarovski",
-    aliases: [],
+    aliases: ["SWAROVSKI"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "austria",
@@ -1388,7 +1457,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sweaty-betty",
     brandName: "Sweaty Betty",
-    aliases: [],
+    aliases: ["SweatyBetty"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1399,7 +1468,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "system-homme",
     brandName: "System Homme",
-    aliases: [],
+    aliases: ["SystemHomme"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "south-korea",
@@ -1421,7 +1490,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tag-heuer",
     brandName: "TAG Heuer",
-    aliases: ["Tag Heuer"],
+    aliases: ["Tag Heuer", "TAGHeuer", "TagHeuer"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "switzerland",
@@ -1432,7 +1501,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "t-m-lewin",
     brandName: "T.M.Lewin",
-    aliases: ["T.M. Lewin", "TM Lewin"],
+    aliases: [
+      "T.M. Lewin",
+      "TM Lewin",
+      "T M Lewin",
+      "TMLewin",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1443,7 +1517,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tailor-club",
     brandName: "Tailor Club",
-    aliases: [],
+    aliases: ["TailorClub"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -1453,7 +1527,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tailor-vintage",
     brandName: "Tailor Vintage",
-    aliases: [],
+    aliases: ["TailorVintage"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1475,7 +1549,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "takeo-kikuchi",
     brandName: "Takeo Kikuchi",
-    aliases: [],
+    aliases: ["TakeoKikuchi"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "japan",
@@ -1486,7 +1560,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "talbots",
     brandName: "Talbots",
-    aliases: ["Talbots Outlet"],
+    aliases: ["Talbots Outlet", "TalbotsOutlet"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1497,7 +1571,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tara-jarmon",
     brandName: "Tara Jarmon",
-    aliases: [],
+    aliases: ["TaraJarmon"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "france",
@@ -1508,7 +1582,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "ted-baker",
     brandName: "Ted Baker",
-    aliases: [],
+    aliases: ["TedBaker"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1519,7 +1593,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tefal",
     brandName: "Tefal",
-    aliases: ["T-fal"],
+    aliases: ["T-fal", "T fal", "Tfal"],
     categoryId: "home-lifestyle",
     logo: "",
     originCountryId: "france",
@@ -1541,7 +1615,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-art-of-shaving",
     brandName: "The Art of Shaving",
-    aliases: [],
+    aliases: ["TheArtofShaving"],
     categoryId: "beauty",
     logo: "",
     originCountryId: "united-states",
@@ -1552,7 +1626,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-body-shop",
     brandName: "The Body Shop",
-    aliases: [],
+    aliases: ["TheBodyShop"],
     categoryId: "beauty",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1563,7 +1637,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-bridge",
     brandName: "The Bridge",
-    aliases: [],
+    aliases: ["TheBridge"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "italy",
@@ -1574,7 +1648,16 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-childrens-place",
     brandName: "The Children's Place",
-    aliases: ["The Childrens Place", "Children's Place Outlet"],
+    aliases: [
+      "The Childrens Place",
+      "Children's Place Outlet",
+      "The Children’s Place",
+      "The Children s Place",
+      "TheChildrensPlace",
+      "Children’s Place Outlet",
+      "Children s Place Outlet",
+      "ChildrensPlaceOutlet",
+    ],
     categoryId: "kids",
     logo: "",
     originCountryId: "united-states",
@@ -1585,7 +1668,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-cosmetics-company-store",
     brandName: "The Cosmetics Company Store",
-    aliases: ["Cosmetics Company Store", "CCS"],
+    aliases: [
+      "Cosmetics Company Store",
+      "CCS",
+      "TCCS",
+      "The Cosmetics Company",
+    ],
     categoryId: "beauty",
     logo: "",
     originCountryId: "united-states",
@@ -1596,7 +1684,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-fragrance-shop",
     brandName: "The Fragrance Shop",
-    aliases: [],
+    aliases: ["TheFragranceShop"],
     categoryId: "beauty",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1607,7 +1695,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-kooples",
     brandName: "The Kooples",
-    aliases: [],
+    aliases: ["TheKooples"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "france",
@@ -1618,7 +1706,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-label-yard",
     brandName: "The Label Yard",
-    aliases: [],
+    aliases: ["TheLabelYard"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1629,7 +1717,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-north-face",
     brandName: "The North Face",
-    aliases: ["The North Face Outlet"],
+    aliases: [
+      "The North Face Outlet",
+      "TheNorthFace",
+      "TheNorthFaceOutlet",
+      "North Face",
+    ],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-states",
@@ -1640,7 +1733,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-potions-cauldron",
     brandName: "The Potions Cauldron",
-    aliases: [],
+    aliases: ["ThePotionsCauldron"],
     categoryId: "gifts",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1651,7 +1744,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-uniform-outlet",
     brandName: "The Uniform Outlet",
-    aliases: [],
+    aliases: ["TheUniformOutlet"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1673,7 +1766,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "theory",
     brandName: "Theory",
-    aliases: ["Theory Outlet"],
+    aliases: ["Theory Outlet", "TheoryOutlet"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1684,7 +1777,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "thom-browne",
     brandName: "Thom Browne",
-    aliases: [],
+    aliases: ["ThomBrowne"],
     categoryId: "luxury",
     logo: "",
     originCountryId: "united-states",
@@ -1716,7 +1809,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "timberland",
     brandName: "Timberland",
-    aliases: ["Timberland Outlet"],
+    aliases: ["Timberland Outlet", "TimberlandOutlet"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-states",
@@ -1727,7 +1820,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "timberland-kids",
     brandName: "Timberland Kids",
-    aliases: [],
+    aliases: ["TimberlandKids"],
     categoryId: "kids",
     logo: "",
     originCountryId: "united-states",
@@ -1738,7 +1831,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "time-homme",
     brandName: "Time Homme",
-    aliases: [],
+    aliases: ["TimeHomme"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "south-korea",
@@ -1760,7 +1853,15 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tods",
     brandName: "TOD'S",
-    aliases: ["Tod's", "Tods"],
+    aliases: [
+      "Tod's",
+      "Tods",
+      "TOD’S",
+      "TOD S",
+      "TODS",
+      "Tod’s",
+      "Tod s",
+    ],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "italy",
@@ -1771,7 +1872,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tokyo-shirts",
     brandName: "Tokyo Shirts",
-    aliases: ["TOKYO SHIRTS"],
+    aliases: ["TOKYO SHIRTS", "TokyoShirts", "TOKYOSHIRTS"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "japan",
@@ -1782,7 +1883,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "toledo-72",
     brandName: "Toledo 72",
-    aliases: [],
+    aliases: ["Toledo72"],
     categoryId: "beauty",
     logo: "",
     originCountryId: "italy",
@@ -1793,7 +1894,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tom-ford",
     brandName: "Tom Ford",
-    aliases: [],
+    aliases: ["TomFord"],
     categoryId: "luxury",
     logo: "",
     originCountryId: "united-states",
@@ -1804,7 +1905,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tom-tailor",
     brandName: "Tom Tailor",
-    aliases: [],
+    aliases: ["TomTailor"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "germany",
@@ -1815,7 +1916,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tommy-bahama",
     brandName: "Tommy Bahama",
-    aliases: ["Tommy Bahama Outlet"],
+    aliases: ["Tommy Bahama Outlet", "TommyBahama", "TommyBahamaOutlet"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1826,7 +1927,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "top-gift",
     brandName: "Top Gift",
-    aliases: [],
+    aliases: ["TopGift"],
     categoryId: "gifts",
     logo: "",
     originCountryId: "united-kingdom",
@@ -1837,7 +1938,12 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tommy-hilfiger",
     brandName: "Tommy Hilfiger",
-    aliases: ["Tommy Hilfiger Outlet"],
+    aliases: [
+      "Tommy Hilfiger Outlet",
+      "TommyHilfiger",
+      "TommyHilfigerOutlet",
+      "Tommy",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1848,7 +1954,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tommy-hilfiger-kids",
     brandName: "Tommy Hilfiger Kids",
-    aliases: [],
+    aliases: ["TommyHilfigerKids"],
     categoryId: "kids",
     logo: "",
     originCountryId: "united-states",
@@ -1859,7 +1965,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tommy-hilfiger-women-and-kids",
     brandName: "Tommy Hilfiger Women & Kids",
-    aliases: [],
+    aliases: ["Tommy Hilfiger Women and Kids", "Tommy Hilfiger Women Kids"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1892,7 +1998,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tory-burch",
     brandName: "Tory Burch",
-    aliases: ["Tory Burch Outlet"],
+    aliases: ["Tory Burch Outlet", "ToryBurch", "ToryBurchOutlet"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -1914,7 +2020,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "toys-n-motion",
     brandName: "Toys N Motion",
-    aliases: [],
+    aliases: ["ToysNMotion"],
     categoryId: "kids",
     logo: "",
     originCountryId: "united-states",
@@ -1925,7 +2031,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tradehome-shoes",
     brandName: "Tradehome Shoes",
-    aliases: [],
+    aliases: ["TradehomeShoes"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -1936,7 +2042,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tradition-des-vosges",
     brandName: "Tradition des Vosges",
-    aliases: [],
+    aliases: ["TraditiondesVosges"],
     categoryId: "home",
     logo: "",
     originCountryId: "france",
@@ -1991,7 +2097,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "true-religion",
     brandName: "True Religion",
-    aliases: ["True Religion Outlet"],
+    aliases: ["True Religion Outlet", "TrueReligion", "TrueReligionOutlet"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -2046,7 +2152,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-perfume-shop",
     brandName: "The Perfume Shop",
-    aliases: [],
+    aliases: ["ThePerfumeShop"],
     categoryId: "beauty",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2057,7 +2163,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-works",
     brandName: "The Works",
-    aliases: [],
+    aliases: ["TheWorks"],
     categoryId: "books-stationery",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2068,7 +2174,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "quba-sails",
     brandName: "Quba Sails",
-    aliases: [],
+    aliases: ["QubaSails"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2079,7 +2185,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "raging-bull",
     brandName: "Raging Bull",
-    aliases: [],
+    aliases: ["RagingBull"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2090,7 +2196,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "regatta-great-outdoors",
     brandName: "Regatta Great Outdoors",
-    aliases: [],
+    aliases: ["RegattaGreatOutdoors"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2101,7 +2207,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "regatta-x-craghoppers",
     brandName: "Regatta x Craghoppers",
-    aliases: ["Regatta x Craghoppers Outlet"],
+    aliases: ["Regatta x Craghoppers Outlet", "RegattaxCraghoppers"],
     categoryId: "outdoor",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2112,7 +2218,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rodd-and-gunn",
     brandName: "Rodd & Gunn",
-    aliases: [],
+    aliases: ["Rodd and Gunn", "Rodd Gunn", "RoddGunn"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2145,7 +2251,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sostrene-grene",
     brandName: "Søstrene Grene",
-    aliases: [],
+    aliases: ["SstreneGrene"],
     categoryId: "home",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2156,7 +2262,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "suit-direct",
     brandName: "Suit Direct",
-    aliases: [],
+    aliases: ["SuitDirect"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2178,7 +2284,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-baggage-factory",
     brandName: "The Baggage Factory",
-    aliases: [],
+    aliases: ["TheBaggageFactory"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2189,7 +2295,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-entertainer",
     brandName: "The Entertainer",
-    aliases: [],
+    aliases: ["TheEntertainer"],
     categoryId: "toys",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2200,7 +2306,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-gift-company",
     brandName: "The Gift Company",
-    aliases: [],
+    aliases: ["TheGiftCompany"],
     categoryId: "gifts",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2211,7 +2317,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-range",
     brandName: "The Range",
-    aliases: [],
+    aliases: ["TheRange"],
     categoryId: "home",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2222,7 +2328,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "thomas-sabo",
     brandName: "Thomas Sabo",
-    aliases: [],
+    aliases: ["ThomasSabo"],
     categoryId: "jewelry",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2266,7 +2372,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tk-maxx",
     brandName: "TK Maxx",
-    aliases: ["TKMaxx", "T.K. Maxx"],
+    aliases: ["TKMaxx", "T.K. Maxx", "T K Maxx"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2299,7 +2405,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "russell-and-bromley",
     brandName: "Russell & Bromley",
-    aliases: [],
+    aliases: ["Russell and Bromley", "Russell Bromley", "RussellBromley"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2321,7 +2427,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sole-trader",
     brandName: "Sole Trader",
-    aliases: [],
+    aliases: ["SoleTrader"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2332,7 +2438,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sony-centre",
     brandName: "Sony Centre",
-    aliases: [],
+    aliases: ["SonyCentre"],
     categoryId: "electronics",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2343,7 +2449,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-sweet-emporium",
     brandName: "The Sweet Emporium",
-    aliases: [],
+    aliases: ["TheSweetEmporium"],
     categoryId: "gifts",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2365,7 +2471,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "suns-boards",
     brandName: "Suns Boards",
-    aliases: [],
+    aliases: ["SunsBoards"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "italy",
@@ -2376,7 +2482,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "toys-con-te",
     brandName: "Toys Con Te",
-    aliases: [],
+    aliases: ["ToysConTe"],
     categoryId: "toys",
     logo: "",
     originCountryId: "italy",
@@ -2387,7 +2493,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "roesle",
     brandName: "Rösle",
-    aliases: [],
+    aliases: ["Rosle"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -2441,7 +2547,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "roy-robson",
     brandName: "Roy Robson",
-    aliases: [],
+    aliases: ["RoyRobson"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -2501,7 +2607,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sunglass-hut-lux",
     brandName: "Sunglass Hut Lux",
-    aliases: [],
+    aliases: ["SunglassHutLux"],
     categoryId: "eyewear",
     logo: "",
     luxuryLevel: "premium",
@@ -2511,7 +2617,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rosle",
     brandName: "Rösle",
-    aliases: [],
+    aliases: ["Rosle"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -2555,7 +2661,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tiger-of-sweden",
     brandName: "Tiger of Sweden",
-    aliases: [],
+    aliases: ["TigerofSweden"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -2566,7 +2672,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tom-tailor-denim",
     brandName: "Tom Tailor Denim",
-    aliases: [],
+    aliases: ["TomTailorDenim"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -2577,7 +2683,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tom-tailor-kids",
     brandName: "Tom Tailor Kids",
-    aliases: [],
+    aliases: ["TomTailorKids"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -2588,7 +2694,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "too-faced",
     brandName: "Too Faced",
-    aliases: [],
+    aliases: ["TooFaced"],
     categoryId: "beauty",
     logo: "",
     originCountryId: "unknown",
@@ -2599,7 +2705,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "river-woods",
     brandName: "River Woods",
-    aliases: [],
+    aliases: ["RiverWoods"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -2621,7 +2727,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-society-shop",
     brandName: "The Society Shop",
-    aliases: [],
+    aliases: ["TheSocietyShop"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -2643,7 +2749,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "salvatore-ferragamo",
     brandName: "Salvatore Ferragamo",
-    aliases: [],
+    aliases: ["SalvatoreFerragamo"],
     categoryId: "luxury",
     logo: "",
     originCountryId: "italy",
@@ -2676,7 +2782,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "siebel-diamonds",
     brandName: "Siebel Diamonds",
-    aliases: [],
+    aliases: ["SiebelDiamonds"],
     categoryId: "watches-jewelry",
     logo: "",
     originCountryId: "netherlands",
@@ -2687,7 +2793,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sissy-boy",
     brandName: "Sissy Boy",
-    aliases: [],
+    aliases: ["SissyBoy"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "netherlands",
@@ -2698,7 +2804,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "state-of-art",
     brandName: "State of Art",
-    aliases: [],
+    aliases: ["StateofArt"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "netherlands",
@@ -2720,7 +2826,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "superdry-and-co",
     brandName: "Superdry & Co",
-    aliases: [],
+    aliases: ["Superdry and Co", "Superdry Co", "SuperdryCo"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2731,7 +2837,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "topmerk-schoenen",
     brandName: "Topmerk Schoenen",
-    aliases: [],
+    aliases: ["TopmerkSchoenen"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "netherlands",
@@ -2742,7 +2848,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "roberto-verino",
     brandName: "Roberto Verino",
-    aliases: [],
+    aliases: ["RobertoVerino"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "spain",
@@ -2753,7 +2859,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "scalpers-woman",
     brandName: "Scalpers Woman",
-    aliases: [],
+    aliases: ["ScalpersWoman"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "spain",
@@ -2786,7 +2892,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "simorra",
     brandName: "Simorra",
-    aliases: ["Javier Simorra"],
+    aliases: ["Javier Simorra", "JavierSimorra"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "spain",
@@ -2797,7 +2903,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sita-murt",
     brandName: "Sita Murt",
-    aliases: [],
+    aliases: ["SitaMurt"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "spain",
@@ -2808,7 +2914,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "red-bull-world",
     brandName: "Red Bull World",
-    aliases: ["Red Bull"],
+    aliases: ["Red Bull", "RedBullWorld", "RedBull"],
     categoryId: "sports",
     logo: "",
     originCountryId: "austria",
@@ -2817,20 +2923,9 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
   {
-    brandId: "the-cosmetics-company",
-    brandName: "The Cosmetics Company",
-    aliases: ["The Cosmetics Company Store"],
-    categoryId: "beauty",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "premium",
-    rankingWeight: 76,
-    brandStatus: "active",
-  },
-  {
     brandId: "rh-plus",
     brandName: "Rh+",
-    aliases: ["Rh+"],
+    aliases: ["Rh+", "Rh"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -2840,7 +2935,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rukka",
     brandName: "Rukka",
-    aliases: ["Rukka Outlet"],
+    aliases: ["Rukka Outlet", "RukkaOutlet"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -2860,7 +2955,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "schlossberg",
     brandName: "Schlossberg",
-    aliases: ["Schlossberg Outlet"],
+    aliases: ["Schlossberg Outlet", "SchlossbergOutlet"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -2870,7 +2965,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "skiny",
     brandName: "Skiny Hanro",
-    aliases: ["Skiny Hanro Outlet"],
+    aliases: ["Skiny Hanro Outlet", "SkinyHanro", "SkinyHanroOutlet"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -2880,7 +2975,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tefal-official-store",
     brandName: "Tefal Official Store",
-    aliases: [],
+    aliases: ["TefalOfficialStore"],
     categoryId: "home-lifestyle",
     logo: "",
     luxuryLevel: "premium",
@@ -2900,7 +2995,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rich-and-royal",
     brandName: "Rich & Royal",
-    aliases: [],
+    aliases: ["Rich and Royal", "Rich Royal", "RichRoyal"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "premium",
@@ -2910,7 +3005,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "schoffel",
     brandName: "Schöffel",
-    aliases: [],
+    aliases: ["Schoffel"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "premium",
@@ -2920,7 +3015,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "ralph-lauren-home",
     brandName: "Ralph Lauren Home",
-    aliases: [],
+    aliases: ["RalphLaurenHome"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "premium",
@@ -2930,7 +3025,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rene-lezard",
     brandName: "Rene Lezard",
-    aliases: [],
+    aliases: ["ReneLezard"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "premium",
@@ -2970,7 +3065,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tommy-jeans",
     brandName: "Tommy Jeans",
-    aliases: [],
+    aliases: ["TommyJeans", "Tommy Hilfiger Jeans"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "premium",
