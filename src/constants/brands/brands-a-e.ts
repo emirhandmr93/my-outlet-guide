@@ -1275,6 +1275,17 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "boots",
+    brandName: "Boots",
+    aliases: ["Boots Pharmacy"],
+    categoryId: "health-beauty",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 78,
+    brandStatus: "active",
+  },
+  {
     brandId: "borbonese",
     brandName: "Borbonese",
     aliases: [],
