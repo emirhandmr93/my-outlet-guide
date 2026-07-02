@@ -80,6 +80,14 @@ export const countries = [
     "taxFreeAvailable": "TRUE"
   },
   {
+    "countryId": "portugal",
+    "countryName": "Portugal",
+    "countryFlag": "🇵🇹",
+    "continent": "Europe",
+    "currency": "EUR",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
     "countryId": "south-korea",
     "countryName": "South Korea",
     "countryFlag": "🇰🇷",

@@ -85,6 +85,11 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "lisbon",
+    "cityName": "Lisbon",
+    "countryId": "portugal"
+  },
+  {
     "cityId": "liverpool",
     "cityName": "Liverpool",
     "countryId": "united-kingdom"
@@ -140,9 +145,19 @@ export const cities = [
     "countryId": "france"
   },
   {
+    "cityId": "porto",
+    "cityName": "Porto",
+    "countryId": "portugal"
+  },
+  {
     "cityId": "portsmouth",
     "cityName": "Portsmouth",
     "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "ringsted",
+    "cityName": "Ringsted",
+    "countryId": "denmark"
   },
   {
     "cityId": "rome",
