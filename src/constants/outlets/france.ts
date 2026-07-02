@@ -11,7 +11,7 @@ export const franceOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "110+ Stores",
+    storesCountText: "More than 110 stores",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -27,12 +27,19 @@ export const franceOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "Starbucks",
-      "Columbus Café",
-      "Maison Caffet",
-      "La Croissanterie",
-      "McDonald's",
-      "Restaurant & Café"
+      "Amorino",
+      "Bagelstein",
+      "Farinella",
+      "Five Guys",
+      "Illy Café",
+      "Jeff de Bruges",
+      "L'Emporthé",
+      "Lindt",
+      "Ma Première Cantine",
+      "Maison Yellow",
+      "Olivadors",
+      "Pokabowl",
+      "Starbucks"
     ],
     taxFreeAvailable: true,
     vatRate: 20,
@@ -87,7 +94,7 @@ export const franceOutlets = [
     openingHours: "09:30 - 19:30",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "110+ Stores",
+    storesCountText: "Over 110 designer brands",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -103,12 +110,16 @@ export const franceOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "Columbus Café",
-      "La Croissanterie",
-      "Il Ristorante",
+      "Amorino",
+      "Chocolat Bar Lindt",
+      "Farinella",
+      "Five Guys",
+      "La Fring'ale",
       "Maison Caffet",
-      "McDonald's",
-      "Paul"
+      "Mezzo di Pasta",
+      "Palais des Thés",
+      "Rosaparks",
+      "Starbucks"
     ],
     taxFreeAvailable: true,
     vatRate: 20,
@@ -163,7 +174,7 @@ export const franceOutlets = [
     openingHours: "10:00 - 20:30",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "110+ Boutiques",
+    storesCountText: "More than 110 boutiques",
     rating: 4.6,
     reviewCount: 0,
     services: [
@@ -179,12 +190,12 @@ export const franceOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "Art Café",
-      "Wild & The Moon",
       "Amorino",
+      "Art café",
       "Ladurée",
       "Momus",
-      "Pierre Hermé Paris"
+      "Pierre Hermé Paris",
+      "Wild & The Moon"
     ],
     taxFreeAvailable: true,
     vatRate: 20,
