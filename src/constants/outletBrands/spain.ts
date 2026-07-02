@@ -15,6 +15,12 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
+    brandId: "alvaro-moreno",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
     brandId: "american-vintage",
     featured: false,
     relationStatus: "active",
@@ -27,14 +33,14 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "armani",
-    featured: true,
+    brandId: "aristocrazy",
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "armani-exchange",
-    featured: false,
+    brandId: "armani",
+    featured: true,
     relationStatus: "active",
   },
   {
@@ -51,13 +57,37 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
+    brandId: "beatriz-furest",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "bimba-y-lola",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
     brandId: "birkenstock",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
+    brandId: "blue-banana",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
     brandId: "boss",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "boss-kids",
     featured: false,
     relationStatus: "active",
   },
@@ -70,6 +100,12 @@ export const spainOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-malaga",
     brandId: "camper",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "ch-carolina-herrera",
     featured: false,
     relationStatus: "active",
   },
@@ -94,12 +130,6 @@ export const spainOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-malaga",
     brandId: "coach",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-malaga",
-    brandId: "colmar",
     featured: false,
     relationStatus: "active",
   },
@@ -141,12 +171,6 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "fratelli-rossetti",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-malaga",
     brandId: "furla",
     featured: false,
     relationStatus: "active",
@@ -154,12 +178,6 @@ export const spainOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-malaga",
     brandId: "g-star-raw",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-malaga",
-    brandId: "gallo",
     featured: false,
     relationStatus: "active",
   },
@@ -177,7 +195,7 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "givenchy",
+    brandId: "givenchy-kids",
     featured: false,
     relationStatus: "active",
   },
@@ -189,19 +207,13 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "gutteridge",
+    brandId: "guess-men",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
     brandId: "hackett",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-malaga",
-    brandId: "haribo",
     featured: false,
     relationStatus: "active",
   },
@@ -219,7 +231,37 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
+    brandId: "hawkers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "hoff",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "home-and-cook",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
     brandId: "hugo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "hugo-kids",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "intrend",
     featured: false,
     relationStatus: "active",
   },
@@ -231,13 +273,31 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "kenzo",
+    brandId: "karl-lagerfeld-kids",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "kenzo-kids",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
     brandId: "kids-around",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "krups",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "l-occitane",
     featured: false,
     relationStatus: "active",
   },
@@ -261,13 +321,13 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "lindt",
+    brandId: "liu-jo",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "liu-jo",
+    brandId: "lola-casademunt",
     featured: false,
     relationStatus: "active",
   },
@@ -279,7 +339,19 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
+    brandId: "marc-jacobs-kids",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
     brandId: "michael-kors",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "michael-kors-kids",
     featured: false,
     relationStatus: "active",
   },
@@ -291,7 +363,7 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "napapijri",
+    brandId: "moulinex",
     featured: false,
     relationStatus: "active",
   },
@@ -309,13 +381,25 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "nike",
+    brandId: "outly",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "north-sails",
+    brandId: "pal-zileri",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "pdpaola",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "pedro-del-hierro",
     featured: false,
     relationStatus: "active",
   },
@@ -333,12 +417,6 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "pollini",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-malaga",
     brandId: "polo-ralph-lauren",
     featured: true,
     relationStatus: "active",
@@ -351,13 +429,13 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "ray-ban",
+    brandId: "purificacion-garcia",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "refrigiwear",
+    brandId: "ray-ban",
     featured: false,
     relationStatus: "active",
   },
@@ -369,7 +447,13 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "salomon",
+    brandId: "roberto-verino",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "rowenta",
     featured: false,
     relationStatus: "active",
   },
@@ -387,25 +471,31 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "save-the-duck",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-malaga",
     brandId: "scalpers",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "skechers",
+    brandId: "silbon",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "sunglass-hut",
+    brandId: "simone-perele",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "simorra",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "sita-murt",
     featured: false,
     relationStatus: "active",
   },
@@ -417,19 +507,13 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "swatch",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-malaga",
     brandId: "tefal",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "the-cosmetics-company-store",
+    brandId: "the-body-shop",
     featured: false,
     relationStatus: "active",
   },
@@ -442,6 +526,12 @@ export const spainOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-malaga",
     brandId: "timberland",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "timberland-kids",
     featured: false,
     relationStatus: "active",
   },
@@ -489,13 +579,19 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
+    brandId: "volcom",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
     brandId: "wmf",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-malaga",
-    brandId: "woolrich",
+    brandId: "zwilling",
     featured: false,
     relationStatus: "active",
   },
@@ -513,8 +609,32 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "aristocrazy",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "armani",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "ba-sh",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "bimani",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "bimba-y-lola",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -537,6 +657,12 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "brownie",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "burberry",
     featured: true,
     relationStatus: "active",
@@ -544,6 +670,12 @@ export const spainOutletBrands: OutletBrand[] = [
   {
     outletId: "las-rozas-village",
     brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "ch-carolina-herrera",
     featured: false,
     relationStatus: "active",
   },
@@ -597,6 +729,18 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "ecoalf",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "el-ganso",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "elisabetta-franchi",
     featured: false,
     relationStatus: "active",
@@ -611,6 +755,12 @@ export const spainOutletBrands: OutletBrand[] = [
     outletId: "las-rozas-village",
     brandId: "ferragamo",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "flabelus",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -633,7 +783,19 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "hackett",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "herno",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "hoff",
     featured: false,
     relationStatus: "active",
   },
@@ -669,6 +831,12 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "l-occitane",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "lacoste",
     featured: false,
     relationStatus: "active",
@@ -687,12 +855,6 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
-    brandId: "lindt",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "las-rozas-village",
     brandId: "liu-jo",
     featured: false,
     relationStatus: "active",
@@ -705,19 +867,13 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
-    brandId: "longchamp",
+    brandId: "loewe-perfumes",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "las-rozas-village",
-    brandId: "loro-piana",
-    featured: true,
-    relationStatus: "active",
-  },
-  {
-    outletId: "las-rozas-village",
-    brandId: "lululemon",
+    brandId: "longchamp",
     featured: false,
     relationStatus: "active",
   },
@@ -759,7 +915,19 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "nude-project",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "pandora",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "pdpaola",
     featured: false,
     relationStatus: "active",
   },
@@ -789,6 +957,12 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "purificacion-garcia",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "rituals",
     featured: false,
     relationStatus: "active",
@@ -813,7 +987,25 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "scalpers-woman",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "scuffers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "shiseido",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "silbon",
     featured: false,
     relationStatus: "active",
   },
@@ -891,6 +1083,18 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "unode50",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "valentino-garavani",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "vans",
     featured: false,
     relationStatus: "active",
@@ -904,6 +1108,12 @@ export const spainOutletBrands: OutletBrand[] = [
   {
     outletId: "las-rozas-village",
     brandId: "zadig-and-voltaire",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "zwilling-ja-henckels",
     featured: false,
     relationStatus: "active",
   },
