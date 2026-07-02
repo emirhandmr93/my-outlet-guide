@@ -1132,4 +1132,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "us-polo-assn",
+    brandName: "U.S. Polo Assn.",
+    aliases: ["US Polo Assn"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-states",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
