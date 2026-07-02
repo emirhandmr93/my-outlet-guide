@@ -30,20 +30,20 @@ export const netherlandsRestaurants = [
     "displayOrder": "3"
   },
   {
-    "restaurantId": "designer-outlet-roermond-dunkin",
+    "restaurantId": "designer-outlet-roermond-doner-kebab",
     "outletId": "designer-outlet-roermond",
-    "restaurantName": "Dunkin'",
-    "category": "Restaurant",
+    "restaurantName": "Döner Kebab",
+    "category": "Fast Food",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
     "displayOrder": "4"
   },
   {
-    "restaurantId": "designer-outlet-roermond-doner-kebab",
+    "restaurantId": "designer-outlet-roermond-dunkin",
     "outletId": "designer-outlet-roermond",
-    "restaurantName": "Döner Kebab",
-    "category": "Fast Food",
+    "restaurantName": "Dunkin'",
+    "category": "Restaurant",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
@@ -80,6 +80,16 @@ export const netherlandsRestaurants = [
     "displayOrder": "8"
   },
   {
+    "restaurantId": "designer-outlet-roermond-kafer",
+    "outletId": "designer-outlet-roermond",
+    "restaurantName": "Käfer",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
+    "status": "active",
+    "displayOrder": "9"
+  },
+  {
     "restaurantId": "designer-outlet-roermond-kamps",
     "outletId": "designer-outlet-roermond",
     "restaurantName": "Kamps",
@@ -87,23 +97,13 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
-    "displayOrder": "9"
+    "displayOrder": "10"
   },
   {
     "restaurantId": "designer-outlet-roermond-kamps-to-go",
     "outletId": "designer-outlet-roermond",
     "restaurantName": "Kamps To Go",
     "category": "Cafe",
-    "priceLevel": "€€",
-    "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
-    "status": "active",
-    "displayOrder": "10"
-  },
-  {
-    "restaurantId": "designer-outlet-roermond-kafer",
-    "outletId": "designer-outlet-roermond",
-    "restaurantName": "Käfer",
-    "category": "Restaurant",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
@@ -143,7 +143,7 @@ export const netherlandsRestaurants = [
     "restaurantId": "designer-outlet-roermond-le-pain-quotidien",
     "outletId": "designer-outlet-roermond",
     "restaurantName": "Le Pain Quotidien",
-    "category": "Restaurant",
+    "category": "Cafe",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
@@ -173,7 +173,7 @@ export const netherlandsRestaurants = [
     "restaurantId": "designer-outlet-roermond-madaq",
     "outletId": "designer-outlet-roermond",
     "restaurantName": "MADAQ",
-    "category": "Restaurant",
+    "category": "Dessert",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
@@ -210,6 +210,26 @@ export const netherlandsRestaurants = [
     "displayOrder": "21"
   },
   {
+    "restaurantId": "designer-outlet-roermond-pizzeria-positano-on-wheels",
+    "outletId": "designer-outlet-roermond",
+    "restaurantName": "Pizzeria Positano On Wheels",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
+    "status": "active",
+    "displayOrder": "22"
+  },
+  {
+    "restaurantId": "designer-outlet-roermond-pommes-frites",
+    "outletId": "designer-outlet-roermond",
+    "restaurantName": "Pommes Frites",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
+    "status": "active",
+    "displayOrder": "23"
+  },
+  {
     "restaurantId": "designer-outlet-roermond-starbucks",
     "outletId": "designer-outlet-roermond",
     "restaurantName": "Starbucks",
@@ -217,7 +237,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
-    "displayOrder": "22"
+    "displayOrder": "24"
   },
   {
     "restaurantId": "designer-outlet-roermond-starbucks-to-go",
@@ -227,7 +247,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
-    "displayOrder": "23"
+    "displayOrder": "25"
   },
   {
     "restaurantId": "designer-outlet-roermond-sweet-avenue",
@@ -237,7 +257,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
-    "displayOrder": "24"
+    "displayOrder": "26"
   },
   {
     "restaurantId": "designer-outlet-roermond-the-burger-federation",
@@ -247,7 +267,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
-    "displayOrder": "25"
+    "displayOrder": "27"
   },
   {
     "restaurantId": "designer-outlet-roermond-wagamama",
@@ -257,7 +277,27 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
     "status": "active",
-    "displayOrder": "26"
+    "displayOrder": "28"
+  },
+  {
+    "restaurantId": "designer-outlet-roermond-wurzt",
+    "outletId": "designer-outlet-roermond",
+    "restaurantName": "Wurzt",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
+    "status": "active",
+    "displayOrder": "29"
+  },
+  {
+    "restaurantId": "designer-outlet-roermond-yoyo-fresh-tea",
+    "outletId": "designer-outlet-roermond",
+    "restaurantName": "YoYo Fresh Tea",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/food-drink/",
+    "status": "active",
+    "displayOrder": "30"
   },
   {
     "restaurantId": "designer-outlet-roosendaal-bonton",
@@ -267,7 +307,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/food-drink/",
     "status": "active",
-    "displayOrder": "27"
+    "displayOrder": "31"
   },
   {
     "restaurantId": "designer-outlet-roosendaal-casa-del-caffe",
@@ -277,7 +317,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/food-drink/",
     "status": "active",
-    "displayOrder": "28"
+    "displayOrder": "32"
   },
   {
     "restaurantId": "designer-outlet-roosendaal-daans-churros",
@@ -287,7 +327,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/food-drink/",
     "status": "active",
-    "displayOrder": "29"
+    "displayOrder": "33"
   },
   {
     "restaurantId": "designer-outlet-roosendaal-dunkin",
@@ -297,7 +337,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/food-drink/",
     "status": "active",
-    "displayOrder": "30"
+    "displayOrder": "34"
   },
   {
     "restaurantId": "designer-outlet-roosendaal-frites-atelier",
@@ -307,7 +347,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/food-drink/",
     "status": "active",
-    "displayOrder": "31"
+    "displayOrder": "35"
   },
   {
     "restaurantId": "designer-outlet-roosendaal-la-place",
@@ -317,7 +357,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/food-drink/",
     "status": "active",
-    "displayOrder": "32"
+    "displayOrder": "36"
   },
   {
     "restaurantId": "designer-outlet-roosendaal-lindt",
@@ -327,7 +367,7 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/food-drink/",
     "status": "active",
-    "displayOrder": "33"
+    "displayOrder": "37"
   },
   {
     "restaurantId": "designer-outlet-roosendaal-per-tutti",
@@ -337,6 +377,6 @@ export const netherlandsRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/food-drink/",
     "status": "active",
-    "displayOrder": "34"
+    "displayOrder": "38"
   }
 ];
