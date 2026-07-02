@@ -43,7 +43,7 @@ export const spainRestaurants = [
     "restaurantId": "designer-outlet-malaga-santo-cielo",
     "outletId": "designer-outlet-malaga",
     "restaurantName": "Santo Cielo",
-    "category": "Dessert",
+    "category": "Cafe",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/food-drinks/",
     "status": "active",
