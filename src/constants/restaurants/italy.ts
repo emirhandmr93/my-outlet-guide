@@ -1,6 +1,6 @@
 export const italyRestaurants = [
   {
-    "restaurantId": "barberino-antica-focacceria",
+    "restaurantId": "barberino-antica-focacceria-san-francesco",
     "outletId": "barberino",
     "restaurantName": "Antica Focacceria San Francesco",
     "category": "Italian • Sicilian",
@@ -14,7 +14,7 @@ export const italyRestaurants = [
     "outletId": "barberino",
     "restaurantName": "Caffè Mediceo",
     "category": "Cafe • Coffee",
-    "priceLevel": "€",
+    "priceLevel": "€€",
     "website": "https://www.barberinooutlet.com/en/store/caffe-mediceo/",
     "status": "active",
     "displayOrder": "2"
@@ -54,7 +54,7 @@ export const italyRestaurants = [
     "outletId": "barberino",
     "restaurantName": "La Piadineria",
     "category": "Quick Service",
-    "priceLevel": "€",
+    "priceLevel": "€€",
     "website": "https://www.barberinooutlet.com/en/store/la-piadineria/",
     "status": "active",
     "displayOrder": "6"
@@ -80,7 +80,7 @@ export const italyRestaurants = [
     "displayOrder": "8"
   },
   {
-    "restaurantId": "castel-romano-bollicine-co",
+    "restaurantId": "castel-romano-bollicineandco",
     "outletId": "castel-romano",
     "restaurantName": "Bollicine&Co",
     "category": "Restaurants & Cafés",
@@ -93,19 +93,19 @@ export const italyRestaurants = [
     "restaurantId": "castel-romano-bonetti",
     "outletId": "castel-romano",
     "restaurantName": "Bonetti",
-    "category": "Restaurants & Cafés • Food • Coffee",
+    "category": "Restaurants & Cafés • Food • Tea & Coffee",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/food-drink/bonetti/",
     "status": "active",
     "displayOrder": "2"
   },
   {
-    "restaurantId": "castel-romano-eat-artisti-del-gusto-llly",
+    "restaurantId": "castel-romano-eat-artisti-del-gusto-illy",
     "outletId": "castel-romano",
     "restaurantName": "Eat Artisti del Gusto - Illy",
     "category": "Restaurants & Cafés",
     "priceLevel": "€€",
-    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/food-drink/eat-artisti-del-gusto-llly/",
+    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/food-drink/eat-artisti-del-gusto-illy/",
     "status": "active",
     "displayOrder": "3"
   },
@@ -133,8 +133,8 @@ export const italyRestaurants = [
     "restaurantId": "castel-romano-mcdonalds",
     "outletId": "castel-romano",
     "restaurantName": "McDonald's",
-    "category": "Fast Food",
-    "priceLevel": "€",
+    "category": "Restaurants & Cafés",
+    "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/food-drink/mcdonalds/",
     "status": "active",
     "displayOrder": "6"
@@ -153,7 +153,7 @@ export const italyRestaurants = [
     "restaurantId": "castel-romano-signorvino",
     "outletId": "castel-romano",
     "restaurantName": "Signorvino",
-    "category": "Food Market • Wine",
+    "category": "Food • Food Market",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/food-drink/signorvino/",
     "status": "active",
@@ -173,61 +173,71 @@ export const italyRestaurants = [
     "restaurantId": "castel-romano-venchi",
     "outletId": "castel-romano",
     "restaurantName": "Venchi",
-    "category": "Ice cream • Confectionery",
+    "category": "Restaurants & Cafés • Ice cream",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/food-drink/venchi/",
     "status": "active",
     "displayOrder": "10"
   },
   {
-    "restaurantId": "fidenza-capuccino",
+    "restaurantId": "fidenza-koi-sushi",
     "outletId": "fidenza-village",
-    "restaurantName": "Ca'puccino",
-    "category": "Cafe • Italian",
+    "restaurantName": "Koi Sushi",
+    "category": "Sushi",
     "priceLevel": "€€",
-    "website": "https://www.fidenzavillage.com/en/visit/eat-drink",
+    "website": "https://www.thebicestercollection.com/fidenza-village/en/dine/koi-sushi/",
     "status": "active",
     "displayOrder": "1"
   },
   {
-    "restaurantId": "fidenza-obica",
+    "restaurantId": "fidenza-lievita",
     "outletId": "fidenza-village",
-    "restaurantName": "Obicà",
-    "category": "Italian • Mozzarella Bar",
+    "restaurantName": "Lievità",
+    "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://www.fidenzavillage.com/en/visit/eat-drink",
+    "website": "https://www.thebicestercollection.com/fidenza-village/en/dine/lievita/",
     "status": "active",
     "displayOrder": "2"
+  },
+  {
+    "restaurantId": "fidenza-lindt",
+    "outletId": "fidenza-village",
+    "restaurantName": "Lindt",
+    "category": "Chocolate • Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/fidenza-village/en/dine/lindt/",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "fidenza-panino-giusto",
+    "outletId": "fidenza-village",
+    "restaurantName": "Panino Giusto",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/fidenza-village/en/dine/panino-giusto/",
+    "status": "active",
+    "displayOrder": "4"
   },
   {
     "restaurantId": "fidenza-parma-menu",
     "outletId": "fidenza-village",
     "restaurantName": "Parma Menù",
-    "category": "Italian • Local food",
+    "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://www.fidenzavillage.com/en/visit/eat-drink",
-    "status": "active",
-    "displayOrder": "3"
-  },
-  {
-    "restaurantId": "fidenza-bistro",
-    "outletId": "fidenza-village",
-    "restaurantName": "Bistrò Fidenza",
-    "category": "Restaurant • Casual dining",
-    "priceLevel": "€€",
-    "website": "https://www.fidenzavillage.com/en/visit/eat-drink",
-    "status": "active",
-    "displayOrder": "4"
-  },
-  {
-    "restaurantId": "fidenza-lindt-cafe",
-    "outletId": "fidenza-village",
-    "restaurantName": "Lindt Café",
-    "category": "Chocolate • Cafe",
-    "priceLevel": "€€",
-    "website": "https://www.fidenzavillage.com/en/visit/eat-drink",
+    "website": "https://www.thebicestercollection.com/fidenza-village/en/dine/parma-menu/",
     "status": "active",
     "displayOrder": "5"
+  },
+  {
+    "restaurantId": "fidenza-signorvino",
+    "outletId": "fidenza-village",
+    "restaurantName": "Signorvino",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/fidenza-village/en/dine/signorvino/",
+    "status": "active",
+    "displayOrder": "6"
   },
   {
     "restaurantId": "fidenza-venchi",
@@ -235,9 +245,9 @@ export const italyRestaurants = [
     "restaurantName": "Venchi",
     "category": "Chocolate • Gelato",
     "priceLevel": "€€",
-    "website": "https://www.fidenzavillage.com/en/visit/eat-drink",
+    "website": "https://www.thebicestercollection.com/fidenza-village/en/dine/venchi/",
     "status": "active",
-    "displayOrder": "6"
+    "displayOrder": "7"
   },
   {
     "restaurantId": "la-reggia-artisti-del-gusto",
@@ -253,8 +263,8 @@ export const italyRestaurants = [
     "restaurantId": "la-reggia-burger-king",
     "outletId": "la-reggia",
     "restaurantName": "Burger King",
-    "category": "Fast Food",
-    "priceLevel": "€",
+    "category": "Restaurants & Cafés",
+    "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-la-reggia/food-drink/burger-king/",
     "status": "active",
     "displayOrder": "2"
@@ -293,7 +303,7 @@ export const italyRestaurants = [
     "restaurantId": "la-reggia-re-nero-caffe",
     "outletId": "la-reggia",
     "restaurantName": "Re Nero Caffè",
-    "category": "Restaurants & Cafés • Café",
+    "category": "Restaurants & Cafés • Food • Café",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-la-reggia/food-drink/re-nero-caffe/",
     "status": "active",
@@ -320,14 +330,34 @@ export const italyRestaurants = [
     "displayOrder": "8"
   },
   {
-    "restaurantId": "noventa-bollicine-co",
+    "restaurantId": "noventa-bistrot",
+    "outletId": "noventa",
+    "restaurantName": "Bistrot",
+    "category": "Restaurants & Cafés",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/bistrot/",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "noventa-bollicineandco",
     "outletId": "noventa",
     "restaurantName": "Bollicine&Co.",
     "category": "Restaurants & Cafés • Café",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/bollicine-co/",
     "status": "active",
-    "displayOrder": "1"
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "noventa-bonetti",
+    "outletId": "noventa",
+    "restaurantName": "Bonetti",
+    "category": "Restaurants & Cafés • Café • Ice cream",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/bonetti/",
+    "status": "active",
+    "displayOrder": "3"
   },
   {
     "restaurantId": "noventa-farinella",
@@ -337,7 +367,7 @@ export const italyRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/farinella/",
     "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "4"
   },
   {
     "restaurantId": "noventa-hamericas",
@@ -347,7 +377,47 @@ export const italyRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/hamericas/",
     "status": "active",
-    "displayOrder": "3"
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "noventa-jodys",
+    "outletId": "noventa",
+    "restaurantName": "Jody's",
+    "category": "Restaurants & Cafés • Café",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/jodys/",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "noventa-la-piadineria",
+    "outletId": "noventa",
+    "restaurantName": "La Piadineria",
+    "category": "Quick Service • Restaurants & Cafés",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/la-piadineria/",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "noventa-lindt",
+    "outletId": "noventa",
+    "restaurantName": "Lindt",
+    "category": "Restaurants & Cafés • Confectionery",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/lindt/",
+    "status": "active",
+    "displayOrder": "8"
+  },
+  {
+    "restaurantId": "noventa-panino-giusto",
+    "outletId": "noventa",
+    "restaurantName": "Panino Giusto",
+    "category": "Restaurants & Cafés",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/panino-giusto/",
+    "status": "active",
+    "displayOrder": "9"
   },
   {
     "restaurantId": "noventa-starbucks",
@@ -357,7 +427,7 @@ export const italyRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/starbucks/",
     "status": "active",
-    "displayOrder": "4"
+    "displayOrder": "10"
   },
   {
     "restaurantId": "noventa-sutto-caffe",
@@ -367,7 +437,7 @@ export const italyRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/sutto-caffe/",
     "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "11"
   },
   {
     "restaurantId": "noventa-sutto-osteria",
@@ -377,7 +447,7 @@ export const italyRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/sutto-osteria/",
     "status": "active",
-    "displayOrder": "6"
+    "displayOrder": "12"
   },
   {
     "restaurantId": "noventa-trame",
@@ -387,17 +457,17 @@ export const italyRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/trame/",
     "status": "active",
-    "displayOrder": "7"
+    "displayOrder": "13"
   },
   {
     "restaurantId": "noventa-venchi",
     "outletId": "noventa",
     "restaurantName": "Venchi",
-    "category": "Restaurants & Cafés • Ice cream",
+    "category": "Restaurants & Cafés • Café • Confectionery • Ice cream",
     "priceLevel": "€€",
     "website": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/food-drink/venchi/",
     "status": "active",
-    "displayOrder": "8"
+    "displayOrder": "14"
   },
   {
     "restaurantId": "serravalle-bollicine-co",
@@ -559,4 +629,4 @@ export const italyRestaurants = [
     "status": "active",
     "displayOrder": "3"
   }
-];
+]
