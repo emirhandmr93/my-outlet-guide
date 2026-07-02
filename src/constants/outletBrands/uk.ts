@@ -4515,6 +4515,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "icon-outlet-at-the-o2",
+    brandId: "kate-spade-new-york",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
     brandId: "kurt-geiger",
     featured: false,
     relationStatus: "active",
@@ -4551,6 +4557,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "icon-outlet-at-the-o2",
+    brandId: "lovisa",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
     brandId: "luke-1977",
     featured: false,
     relationStatus: "active",
@@ -4564,6 +4576,18 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "icon-outlet-at-the-o2",
     brandId: "murmur",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "new-balance",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "new-era",
     featured: false,
     relationStatus: "active",
   },
@@ -4593,6 +4617,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "icon-outlet-at-the-o2",
+    brandId: "pop-mart",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
     brandId: "procook",
     featured: false,
     relationStatus: "active",
@@ -4611,6 +4641,36 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "icon-outlet-at-the-o2",
+    brandId: "reiss",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "rituals",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "skopes",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "sole-trader",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
     brandId: "sostrene-grene",
     featured: false,
     relationStatus: "active",
@@ -4624,6 +4684,24 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "icon-outlet-at-the-o2",
     brandId: "sunglass-hut",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "superdry",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "t-m-lewin",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "the-body-shop",
     featured: false,
     relationStatus: "active",
   },
@@ -4648,6 +4726,42 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "icon-outlet-at-the-o2",
     brandId: "tommy-hilfiger",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "top-gift",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "under-armour",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "v12-ultimate-racing-store",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "villa-valentina",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "whittard-of-chelsea",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "icon-outlet-at-the-o2",
+    brandId: "whsmith",
     featured: false,
     relationStatus: "active",
   },
