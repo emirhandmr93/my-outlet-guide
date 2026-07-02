@@ -331,6 +331,7 @@ export const germanyOutlets = [
       "Coffee Fellows",
       "Indochine",
       "Ladurée Salon de Thé",
+      "Lindt Café",
       "Mancini",
       "Mr. Smash & Co."
     ],

@@ -370,6 +370,16 @@ export const germanyRestaurants = [
       "displayOrder": "4"
   },
   {
+      "restaurantId": "ingolstadt-lindt-cafe",
+      "outletId": "ingolstadt-village",
+      "restaurantName": "Lindt Café",
+      "category": "Coffee • Sweets",
+      "priceLevel": "€€",
+      "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
+      "status": "active",
+      "displayOrder": "5"
+  },
+  {
       "restaurantId": "ingolstadt-mancini",
       "outletId": "ingolstadt-village",
       "restaurantName": "Mancini",
@@ -377,7 +387,7 @@ export const germanyRestaurants = [
       "priceLevel": "€€",
       "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
       "status": "active",
-      "displayOrder": "5"
+      "displayOrder": "6"
   },
   {
       "restaurantId": "ingolstadt-mr-smash",
@@ -387,7 +397,7 @@ export const germanyRestaurants = [
       "priceLevel": "€€",
       "website": "https://www.thebicestercollection.com/ingolstadt-village/en/dine/",
       "status": "active",
-      "displayOrder": "6"
+      "displayOrder": "7"
   },
   {
       "restaurantId": "pommes-freunde-montabaur",
