@@ -378,7 +378,7 @@ export const germanyOutlets = [
   },
   {
     outletId: "montabaur-the-style-outlets",
-    name: "Montabaur The Style Outlets",
+    name: "Outlet Montabaur",
     slug: "montabaur-the-style-outlets",
     countryId: "germany",
     cityId: "frankfurt",
@@ -388,7 +388,7 @@ export const germanyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "70+ Stores",
+    storesCountText: "Over 70 international top brands",
     rating: 4.4,
     reviewCount: 0,
     services: [
@@ -403,19 +403,18 @@ export const germanyOutlets = [
       "Kids Area"
     ],
     restaurants: [
-      "Starbucks",
-      "Dean & David",
-      "Lindt",
-      "Restaurant & Café",
-      "BackWerk",
-      "Coffee Bar"
+      "dean & david",
+      "Olea",
+      "Pano Café",
+      "Pommes Freunde",
+      "Starbucks"
     ],
     taxFreeAvailable: true,
     vatRate: 19,
     estimatedRefundRate: 11,
     minimumTaxFreeSpend: "50.01 EUR",
-    taxFreeOperator: "Global Blue / Planet / EU customs validation",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form when purchases exceed the German minimum spend.",
+    taxFreeOperator: "EU customs validation / tax refund operators",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when purchases exceed the German minimum spend, then validate it when leaving the EU.",
     cityCenterDistanceKm: 90,
     airportDistanceKm: 95,
     airports: [
@@ -445,11 +444,11 @@ export const germanyOutlets = [
         distanceKm: 25
       }
     ],
-    websiteUrl: "https://www.montabaurthestyleoutlets.com/",
+    websiteUrl: "https://outlet-montabaur.de/en",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=Montabaur+The+Style+Outlets",
-    appleMapsUrl: "http://maps.apple.com/?q=Montabaur+The+Style+Outlets",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Montabaur%20The%20Style%20Outlets"
+    googleMapsUrl: "https://maps.google.com/?q=Outlet+Montabaur%2C+Am+Fashion+Outlet+72%2C+56410+Montabaur",
+    appleMapsUrl: "http://maps.apple.com/?q=Outlet%20Montabaur&address=Am%20Fashion%20Outlet%2072%2C%2056410%20Montabaur",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Outlet%20Montabaur%2C%20Am%20Fashion%20Outlet%2072%2C%2056410%20Montabaur"
   },
   {
     outletId: "outletcity-metzingen",
@@ -463,7 +462,7 @@ export const germanyOutlets = [
     openingHours: "Mon-Fri 10:00 - 20:00; Sat 09:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "130+ Stores",
+    storesCountText: "Over 170 brands have a store at Outletcity Metzingen",
     rating: 4.6,
     reviewCount: 0,
     services: [
@@ -479,12 +478,21 @@ export const germanyOutlets = [
       "Personal Shopping"
     ],
     restaurants: [
-      "L'Osteria",
-      "Marché Mövenpick",
-      "Starbucks",
-      "Amorino",
+      "Almresi",
+      "Bäckerei-Keim - Café & Snacks",
+      "Bollicine&Co. Champagne Bar",
+      "BOSS Café",
+      "Champa Sushi & Bowl",
+      "Cinnamood",
       "Frittenwerk",
-      "Brauwerk"
+      "Keladam's Kebab",
+      "L'Osteria",
+      "McDonald's",
+      "Moxy Bistro",
+      "Ochaya",
+      "Starbucks",
+      "Tommy's Coffee",
+      "Zem Zem Coffee"
     ],
     taxFreeAvailable: true,
     vatRate: 19,
@@ -528,9 +536,9 @@ export const germanyOutlets = [
     ],
     websiteUrl: "https://www.outletcity.com/en/metzingen/",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=Outletcity+Metzingen",
-    appleMapsUrl: "http://maps.apple.com/?q=Outletcity+Metzingen",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Outletcity%20Metzingen"
+    googleMapsUrl: "https://maps.google.com/?q=Outletcity+Metzingen%2C+Hugo-Boss-Platz+4%2C+72555+Metzingen",
+    appleMapsUrl: "http://maps.apple.com/?q=Outletcity%20Metzingen&address=Hugo-Boss-Platz%204%2C%2072555%20Metzingen",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Outletcity%20Metzingen%2C%20Hugo-Boss-Platz%204%2C%2072555%20Metzingen"
   },
   {
     outletId: "wertheim-village",
@@ -544,7 +552,7 @@ export const germanyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "110+ Boutiques",
+    storesCountText: "110 boutiques",
     rating: 4.6,
     reviewCount: 0,
     services: [
@@ -561,19 +569,19 @@ export const germanyOutlets = [
       "VIP Parking"
     ],
     restaurants: [
-      "The Coffee Corner",
+      "CINNAMOOD",
       "Elaine's TakeAway",
-      "Mon Amour",
       "La Piazza",
-      "Lindt Café",
-      "Gardens Café"
+      "Saigon Social Club",
+      "The Coffee Corner",
+      "The Waffle"
     ],
     taxFreeAvailable: true,
     vatRate: 19,
     estimatedRefundRate: 11,
     minimumTaxFreeSpend: "50.01 EUR",
-    taxFreeOperator: "EU customs validation / tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating boutiques when the purchase exceeds the German minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    taxFreeOperator: "Global Blue / Planet / EU customs validation",
+    taxFreeOfficeInfo: "Non-EU guests can request a tax refund form at participating boutiques, with refunds available on purchases over €50.00. Wertheim Village directs guests to Global Blue or Planet Tax Refund for more information.",
     cityCenterDistanceKm: 80,
     airportDistanceKm: 90,
     airports: [
@@ -605,9 +613,9 @@ export const germanyOutlets = [
     ],
     websiteUrl: "https://www.thebicestercollection.com/wertheim-village/en",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=Wertheim+Village",
-    appleMapsUrl: "http://maps.apple.com/?q=Wertheim+Village",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Wertheim%20Village"
+    googleMapsUrl: "https://maps.google.com/?q=Wertheim+Village%2C+Almosenberg%2C+97877+Wertheim",
+    appleMapsUrl: "http://maps.apple.com/?q=Wertheim%20Village&address=Almosenberg%2C%2097877%20Wertheim",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Wertheim%20Village%2C%20Almosenberg%2C%2097877%20Wertheim"
   },
   {
     outletId: "zweibrucken-fashion-outlet",
@@ -641,18 +649,23 @@ export const germanyOutlets = [
       "Powerbank"
     ],
     restaurants: [
-      "Starbucks",
-      "Pizza Hut",
-      "Nordsee",
-      "Lindt",
-      "Restaurant & Café",
-      "Coffee Bar"
+      "COFFEE-BIKE",
+      "DEAN & DAVID",
+      "Di Piu",
+      "DONNA MIA",
+      "DUNKIN DONUTS",
+      "FIVE GUYS",
+      "Frittenwerk",
+      "GRAND CAFÉ",
+      "Gusto",
+      "STARBUCKS",
+      "SUSHI TOMO"
     ],
     taxFreeAvailable: true,
     vatRate: 19,
     estimatedRefundRate: 11,
     minimumTaxFreeSpend: "50.01 EUR",
-    taxFreeOperator: "Global Blue / Planet / EU customs validation",
+    taxFreeOperator: "EU customs validation / tax refund operators",
     taxFreeOfficeInfo: "Eligible non-EU visitors can use tax-free shopping at participating stores; validate export forms when leaving the EU.",
     cityCenterDistanceKm: 140,
     airportDistanceKm: 35,
@@ -685,8 +698,8 @@ export const germanyOutlets = [
     ],
     websiteUrl: "https://www.zweibrueckenfashionoutlet.com/en",
     status: "active",
-    googleMapsUrl: "https://maps.google.com/?q=Zweibrucken+Fashion+Outlet",
-    appleMapsUrl: "http://maps.apple.com/?q=Zweibrucken+Fashion+Outlet",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Zweibrucken%20Fashion%20Outlet"
+    googleMapsUrl: "https://maps.google.com/?q=Zweibr%C3%BCcken+Fashion+Outlet%2C+Londoner+Bogen+10-90%2C+66482+Zweibr%C3%BCcken",
+    appleMapsUrl: "http://maps.apple.com/?q=Zweibr%C3%BCcken%20Fashion%20Outlet&address=Londoner%20Bogen%2010-90%2C%2066482%20Zweibr%C3%BCcken",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Zweibr%C3%BCcken%20Fashion%20Outlet%2C%20Londoner%20Bogen%2010-90%2C%2066482%20Zweibr%C3%BCcken"
   }
 ];
