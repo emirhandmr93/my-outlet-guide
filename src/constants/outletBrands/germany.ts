@@ -543,6 +543,12 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "adenauer-and-co",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "adidas",
     featured: false,
     relationStatus: "active",
@@ -562,12 +568,6 @@ export const germanyOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-neumunster",
     brandId: "armani",
-    featured: true,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-neumunster",
-    brandId: "armani-exchange",
     featured: false,
     relationStatus: "active",
   },
@@ -580,6 +580,12 @@ export const germanyOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-neumunster",
     brandId: "bally",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "bassetti",
     featured: false,
     relationStatus: "active",
   },
@@ -609,7 +615,25 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "boss-orange",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "brax",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "bruno-banani",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "calida",
     featured: false,
     relationStatus: "active",
   },
@@ -621,14 +645,44 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "camel-active",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "carhartt-wip",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "cecil",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "change-lingerie",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "cinque",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "closed",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "coach",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -639,7 +693,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "colmar",
+    brandId: "coeur-de-lion",
     featured: false,
     relationStatus: "active",
   },
@@ -651,13 +705,43 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "comma",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "converse",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "copenhagen",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "crocs",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "derbe",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "didriksons",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "estella",
     featured: false,
     relationStatus: "active",
   },
@@ -675,12 +759,6 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "fratelli-rossetti",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-neumunster",
     brandId: "fred-perry",
     featured: false,
     relationStatus: "active",
@@ -693,13 +771,13 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "g-star-raw",
+    brandId: "g-k-mayer",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "gallo",
+    brandId: "g-star-raw",
     featured: false,
     relationStatus: "active",
   },
@@ -717,13 +795,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "gutteridge",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-neumunster",
-    brandId: "harmont-and-blaine",
+    brandId: "hechter-paris",
     featured: false,
     relationStatus: "active",
   },
@@ -753,13 +825,37 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "jdy",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "joop",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "kapten-and-son",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "karl-lagerfeld",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "kennel-and-schmenger",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "kneipp",
     featured: false,
     relationStatus: "active",
   },
@@ -777,7 +873,19 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "lee-wrangler",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "levis",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "liebeskind-berlin",
     featured: false,
     relationStatus: "active",
   },
@@ -789,8 +897,38 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "marc-aurel",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "marc-o-polo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "mey",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "michael-kors",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "moeve",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "motel-a-miio",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -801,7 +939,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "napapijri",
+    brandId: "name-it",
     featured: false,
     relationStatus: "active",
   },
@@ -813,13 +951,43 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "new-zealand-auckland",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "nike",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "north-sails",
+    brandId: "odlo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "oneill",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "only",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "only-and-sons",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "opus",
     featured: false,
     relationStatus: "active",
   },
@@ -831,7 +999,19 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "pollini",
+    brandId: "pegador",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "petrol-industries",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "pme-legend",
     featured: false,
     relationStatus: "active",
   },
@@ -849,19 +1029,19 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "refrigiwear",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-neumunster",
     brandId: "rituals",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "salomon",
+    brandId: "roesle",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "s-oliver",
     featured: false,
     relationStatus: "active",
   },
@@ -873,7 +1053,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "save-the-duck",
+    brandId: "schiesser",
     featured: false,
     relationStatus: "active",
   },
@@ -885,13 +1065,25 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "seidensticker",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "sigikid",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "skechers",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "sunglass-hut",
+    brandId: "street-one",
     featured: false,
     relationStatus: "active",
   },
@@ -909,25 +1101,25 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "swatch",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "designer-outlet-neumunster",
     brandId: "tefal",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "the-cosmetics-company-store",
+    brandId: "the-label-yard",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
     brandId: "the-north-face",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "thomas-sabo",
     featured: false,
     relationStatus: "active",
   },
@@ -951,6 +1143,12 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "triumph",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "ugg",
     featured: false,
     relationStatus: "active",
@@ -963,14 +1161,20 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
-    brandId: "vans",
+    brandId: "vero-moda",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-neumunster",
     brandId: "versace",
-    featured: true,
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "vila",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -981,7 +1185,49 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-neumunster",
+    brandId: "watch-and-see",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "waterdrop",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "wellensteyn",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "windsor",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "wmf",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
     brandId: "woolrich",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "zero",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-neumunster",
+    brandId: "zwilling",
     featured: false,
     relationStatus: "active",
   },
@@ -1293,26 +1539,25 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ingolstadt-village",
-    brandId: "desigual",
-    featured: false,
-    relationStatus: "active",
-  },
-
-  {
-    outletId: "ingolstadt-village",
     brandId: "david-clulow-sunglasses",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "ingolstadt-village",
-    brandId: "douglas",
+    brandId: "desigual",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "ingolstadt-village",
     brandId: "diesel",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "ingolstadt-village",
+    brandId: "douglas",
     featured: false,
     relationStatus: "active",
   },
@@ -1454,16 +1699,15 @@ export const germanyOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
-
   {
     outletId: "ingolstadt-village",
-    brandId: "lloyd",
+    brandId: "lindt",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "ingolstadt-village",
-    brandId: "lindt",
+    brandId: "lloyd",
     featured: false,
     relationStatus: "active",
   },
@@ -1479,17 +1723,16 @@ export const germanyOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
-
-  {
-    outletId: "ingolstadt-village",
-    brandId: "luisa-cerano",
-    featured: false,
-    relationStatus: "active",
-  },
   {
     outletId: "ingolstadt-village",
     brandId: "loro-piana",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "ingolstadt-village",
+    brandId: "luisa-cerano",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -1522,7 +1765,6 @@ export const germanyOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
-
   {
     outletId: "ingolstadt-village",
     brandId: "marc-o-polo",
@@ -1577,16 +1819,15 @@ export const germanyOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
-
   {
     outletId: "ingolstadt-village",
-    brandId: "pepe-jeans",
+    brandId: "paul-and-shark",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "ingolstadt-village",
-    brandId: "paul-and-shark",
+    brandId: "pepe-jeans",
     featured: false,
     relationStatus: "active",
   },
