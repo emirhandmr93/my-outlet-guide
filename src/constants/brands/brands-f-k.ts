@@ -963,6 +963,17 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "gutteridge-accessories",
+    brandName: "Gutteridge Accessories",
+    aliases: [],
+    categoryId: "accessories",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "fashion",
+    rankingWeight: 66,
+    brandStatus: "active",
+  },
+  {
     brandId: "gymshark",
     brandName: "Gymshark",
     aliases: [],
