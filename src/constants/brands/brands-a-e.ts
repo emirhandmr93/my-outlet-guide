@@ -2388,6 +2388,17 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "cristina-oria",
+    brandName: "Cristina Oria",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    originCountryId: "spain",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "crocs",
     brandName: "Crocs",
     aliases: [],

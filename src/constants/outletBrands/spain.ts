@@ -219,6 +219,12 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-malaga",
+    brandId: "haribo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
     brandId: "harmont-and-blaine",
     featured: false,
     relationStatus: "active",
@@ -316,6 +322,12 @@ export const spainOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-malaga",
     brandId: "levis",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "lindt",
     featured: false,
     relationStatus: "active",
   },
@@ -454,6 +466,12 @@ export const spainOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-malaga",
     brandId: "rowenta",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-malaga",
+    brandId: "sabor-a-espana",
     featured: false,
     relationStatus: "active",
   },
@@ -675,6 +693,18 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "calvin-klein-jeans",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "calvin-klein-underwear",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "ch-carolina-herrera",
     featured: false,
     relationStatus: "active",
@@ -700,6 +730,12 @@ export const spainOutletBrands: OutletBrand[] = [
   {
     outletId: "las-rozas-village",
     brandId: "columbia",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "cristina-oria",
     featured: false,
     relationStatus: "active",
   },
@@ -855,6 +891,12 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
+    brandId: "lindt",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
     brandId: "liu-jo",
     featured: false,
     relationStatus: "active",
@@ -947,6 +989,24 @@ export const spainOutletBrands: OutletBrand[] = [
     outletId: "las-rozas-village",
     brandId: "polo-ralph-lauren",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "polo-ralph-lauren-children",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "polo-ralph-lauren-men",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "las-rozas-village",
+    brandId: "polo-ralph-lauren-women",
+    featured: false,
     relationStatus: "active",
   },
   {
