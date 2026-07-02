@@ -1,5 +1,10 @@
 export const cities = [
   {
+    "cityId": "amsterdam",
+    "cityName": "Amsterdam",
+    "countryId": "netherlands"
+  },
+  {
     "cityId": "ashford",
     "cityName": "Ashford",
     "countryId": "united-kingdom"
@@ -8,6 +13,11 @@ export const cities = [
     "cityId": "banbridge",
     "cityName": "Banbridge",
     "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "berlin",
+    "cityName": "Berlin",
+    "countryId": "germany"
   },
   {
     "cityId": "birmingham",
@@ -20,6 +30,11 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "cologne",
+    "cityName": "Cologne",
+    "countryId": "germany"
+  },
+  {
     "cityId": "doncaster",
     "cityName": "Doncaster",
     "countryId": "united-kingdom"
@@ -30,6 +45,16 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "florence",
+    "cityName": "Florence",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "frankfurt",
+    "cityName": "Frankfurt",
+    "countryId": "germany"
+  },
+  {
     "cityId": "gloucester",
     "cityName": "Gloucester",
     "countryId": "united-kingdom"
@@ -38,6 +63,16 @@ export const cities = [
     "cityId": "gretna",
     "cityName": "Gretna",
     "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "hamburg",
+    "cityName": "Hamburg",
+    "countryId": "germany"
+  },
+  {
+    "cityId": "hannover",
+    "cityName": "Hannover",
+    "countryId": "germany"
   },
   {
     "cityId": "hatfield",
@@ -65,8 +100,33 @@ export const cities = [
     "countryId": "belgium"
   },
   {
+    "cityId": "madrid",
+    "cityName": "Madrid",
+    "countryId": "spain"
+  },
+  {
+    "cityId": "malaga",
+    "cityName": "Malaga",
+    "countryId": "spain"
+  },
+  {
+    "cityId": "marseille",
+    "cityName": "Marseille",
+    "countryId": "france"
+  },
+  {
     "cityId": "milan",
     "cityName": "Milan",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "munich",
+    "cityName": "Munich",
+    "countryId": "germany"
+  },
+  {
+    "cityId": "naples",
+    "cityName": "Naples",
     "countryId": "italy"
   },
   {
@@ -83,6 +143,16 @@ export const cities = [
     "cityId": "portsmouth",
     "cityName": "Portsmouth",
     "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "rome",
+    "cityName": "Rome",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "rotterdam",
+    "cityName": "Rotterdam",
+    "countryId": "netherlands"
   },
   {
     "cityId": "spalding",
@@ -103,6 +173,16 @@ export const cities = [
     "cityId": "swindon",
     "cityName": "Swindon",
     "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "venice",
+    "cityName": "Venice",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "vienna",
+    "cityName": "Vienna",
+    "countryId": "austria"
   },
   {
     "cityId": "york",
