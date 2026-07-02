@@ -111,13 +111,10 @@ export const franceOutlets = [
     ],
     restaurants: [
       "Amorino",
-      "Chocolat Bar Lindt",
-      "Farinella",
-      "Five Guys",
+      "Lindt",
       "La Fring'ale",
       "Maison Caffet",
       "Mezzo di Pasta",
-      "Palais des Thés",
       "Rosaparks",
       "Starbucks"
     ],
@@ -174,7 +171,7 @@ export const franceOutlets = [
     openingHours: "10:00 - 20:30",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "More than 110 boutiques",
+    storesCountText: "110 boutiques",
     rating: 4.6,
     reviewCount: 0,
     services: [
