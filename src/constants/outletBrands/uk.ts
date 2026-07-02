@@ -8745,6 +8745,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "springfields-outlet",
+    brandId: "blue-diamond-garden-centre",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
     brandId: "cadbury",
     featured: false,
     relationStatus: "active",
@@ -8781,13 +8787,31 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "springfields-outlet",
+    brandId: "david-barry",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
     brandId: "denby",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "springfields-outlet",
+    brandId: "double-two",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
     brandId: "ernest-jones",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "famous-store",
     featured: false,
     relationStatus: "active",
   },
@@ -8859,7 +8883,19 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "springfields-outlet",
+    brandId: "leading-labels",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
     brandId: "levis",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "maidenhead-aquatics",
     featured: false,
     relationStatus: "active",
   },
@@ -8890,6 +8926,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "springfields-outlet",
     brandId: "nike",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "original-factory-shop",
     featured: false,
     relationStatus: "active",
   },
@@ -8956,6 +8998,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "springfields-outlet",
     brandId: "skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "skopes",
     featured: false,
     relationStatus: "active",
   },
@@ -9513,6 +9561,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "armani",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "asics",
     featured: false,
     relationStatus: "active",
@@ -9537,6 +9591,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "boss",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "cadbury",
     featured: false,
     relationStatus: "active",
@@ -9544,6 +9604,18 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bridgend-designer-outlet",
     brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "card-centre",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "carvela",
     featured: false,
     relationStatus: "active",
   },
@@ -9591,7 +9663,19 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "dolce-and-gabbana",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "dune-london",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "eden",
     featured: false,
     relationStatus: "active",
   },
@@ -9615,6 +9699,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "gucci",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "guess",
     featured: false,
     relationStatus: "active",
@@ -9627,7 +9717,19 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "helly-hansen",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "holland-and-barrett",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "hotel-chocolat",
     featured: false,
     relationStatus: "active",
   },
@@ -9723,6 +9825,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "prada",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "procook",
     featured: false,
     relationStatus: "active",
@@ -9747,7 +9855,19 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "ray-ban",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "regatta-great-outdoors",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "regis",
     featured: false,
     relationStatus: "active",
   },
@@ -9759,7 +9879,25 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "rohan",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "roman",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "saltrock",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "sash-and-co",
     featured: false,
     relationStatus: "active",
   },
@@ -9772,6 +9910,18 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bridgend-designer-outlet",
     brandId: "skopes",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "sports-direct",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "suit-direct",
     featured: false,
     relationStatus: "active",
   },
@@ -9795,6 +9945,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "tempur",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "the-body-shop",
     featured: false,
     relationStatus: "active",
@@ -9808,6 +9964,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bridgend-designer-outlet",
     brandId: "the-label-yard",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "the-north-face",
     featured: false,
     relationStatus: "active",
   },
@@ -9843,7 +10005,43 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bridgend-designer-outlet",
+    brandId: "trespass",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
     brandId: "under-armour",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "vans",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "weekend-offender",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "white-stuff",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "whittard",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "bridgend-designer-outlet",
+    brandId: "yankee-candle",
     featured: false,
     relationStatus: "active",
   },
@@ -9957,6 +10155,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "east-midlands-designer-outlet",
+    brandId: "krups",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "east-midlands-designer-outlet",
     brandId: "kurt-geiger",
     featured: false,
     relationStatus: "active",
@@ -10060,6 +10264,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "east-midlands-designer-outlet",
     brandId: "roman",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "east-midlands-designer-outlet",
+    brandId: "rowenta",
     featured: false,
     relationStatus: "active",
   },
