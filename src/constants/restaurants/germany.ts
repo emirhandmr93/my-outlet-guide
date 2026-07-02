@@ -310,36 +310,6 @@ export const germanyRestaurants = [
       "displayOrder": "3"
   },
   {
-      "restaurantId": "giovanni-l-wolfsburg",
-      "outletId": "designer-outlets-wolfsburg",
-      "restaurantName": "Giovanni L.",
-      "category": "Gelato",
-      "priceLevel": "€",
-      "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
-      "status": "active",
-      "displayOrder": "4"
-  },
-  {
-      "restaurantId": "grill-pavillon-wolfsburg",
-      "outletId": "designer-outlets-wolfsburg",
-      "restaurantName": "Grill-Pavillon",
-      "category": "Grill • Snacks",
-      "priceLevel": "€",
-      "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
-      "status": "active",
-      "displayOrder": "5"
-  },
-  {
-      "restaurantId": "la-creperie-wolfsburg",
-      "outletId": "designer-outlets-wolfsburg",
-      "restaurantName": "La Crêperie",
-      "category": "Crepes",
-      "priceLevel": "€",
-      "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
-      "status": "active",
-      "displayOrder": "6"
-  },
-  {
       "restaurantId": "losteria-wolfsburg",
       "outletId": "designer-outlets-wolfsburg",
       "restaurantName": "L’Osteria",
@@ -347,17 +317,7 @@ export const germanyRestaurants = [
       "priceLevel": "€€",
       "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
       "status": "active",
-      "displayOrder": "7"
-  },
-  {
-      "restaurantId": "pieroth-weinstand-wolfsburg",
-      "outletId": "designer-outlets-wolfsburg",
-      "restaurantName": "Pieroth Weinstand",
-      "category": "Wine Stand",
-      "priceLevel": "€€",
-      "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
-      "status": "active",
-      "displayOrder": "8"
+      "displayOrder": "4"
   },
   {
       "restaurantId": "starbucks-wolfsburg",
@@ -367,7 +327,7 @@ export const germanyRestaurants = [
       "priceLevel": "€€",
       "website": "https://www.designeroutlets-wolfsburg.de/gastronomie/",
       "status": "active",
-      "displayOrder": "9"
+      "displayOrder": "5"
   },
   {
       "restaurantId": "ingolstadt-bollicine-co",
