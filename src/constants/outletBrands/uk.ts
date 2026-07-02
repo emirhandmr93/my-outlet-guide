@@ -8895,6 +8895,12 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "springfields-outlet",
+    brandId: "osprey-london",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
     brandId: "pavers",
     featured: false,
     relationStatus: "active",
@@ -8925,7 +8931,25 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "springfields-outlet",
+    brandId: "raging-bull",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
     brandId: "regatta-great-outdoors",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "roman",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "springfields-outlet",
+    brandId: "saltrock",
     featured: false,
     relationStatus: "active",
   },
@@ -9027,7 +9051,31 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "the-galleria-outlet",
+    brandId: "choice",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "holland-and-barrett",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "jaweed-popal",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
     brandId: "le-creuset",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "lifestyle-and-mobility",
     featured: false,
     relationStatus: "active",
   },
@@ -9045,6 +9093,18 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "the-galleria-outlet",
+    brandId: "moss",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "mountain-warehouse",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
     brandId: "next",
     featured: false,
     relationStatus: "active",
@@ -9057,7 +9117,31 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "the-galleria-outlet",
+    brandId: "sports-direct",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "stag-london",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
     brandId: "the-entertainer",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "the-fragrance-shop",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "the-works",
     featured: false,
     relationStatus: "active",
   },
