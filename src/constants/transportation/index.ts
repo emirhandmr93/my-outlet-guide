@@ -5,6 +5,7 @@ import { germanyTransportation } from "./germany";
 import { italyTransportation } from "./italy";
 import { netherlandsTransportation } from "./netherlands";
 import { spainTransportation } from "./spain";
+import { switzerlandTransportation } from "./switzerland";
 import { ukTransportation } from "./uk";
 
 export {
@@ -15,6 +16,7 @@ export {
   italyTransportation,
   netherlandsTransportation,
   spainTransportation,
+  switzerlandTransportation,
   ukTransportation,
 };
 
@@ -24,6 +26,7 @@ export const transportation = [
   ...franceTransportation,
   ...ukTransportation,
   ...spainTransportation,
+  ...switzerlandTransportation,
   ...netherlandsTransportation,
   ...belgiumTransportation,
   ...austriaTransportation,

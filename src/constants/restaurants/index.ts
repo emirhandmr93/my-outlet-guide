@@ -5,6 +5,7 @@ import { germanyRestaurants } from "./germany";
 import { italyRestaurants } from "./italy";
 import { netherlandsRestaurants } from "./netherlands";
 import { spainRestaurants } from "./spain";
+import { switzerlandRestaurants } from "./switzerland";
 import { ukRestaurants } from "./uk";
 
 export {
@@ -15,6 +16,7 @@ export {
   italyRestaurants,
   netherlandsRestaurants,
   spainRestaurants,
+  switzerlandRestaurants,
   ukRestaurants,
 };
 
@@ -26,5 +28,6 @@ export const restaurants = [
   ...italyRestaurants,
   ...netherlandsRestaurants,
   ...spainRestaurants,
+  ...switzerlandRestaurants,
   ...ukRestaurants,
 ];
