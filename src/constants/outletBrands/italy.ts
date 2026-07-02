@@ -21,12 +21,6 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
-    brandId: "antica-focacceria",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "barberino",
     brandId: "antologia",
     featured: false,
     relationStatus: "active",
@@ -459,12 +453,6 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
-    brandId: "lindt",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "barberino",
     brandId: "liu-jo",
     featured: false,
     relationStatus: "active",
@@ -769,3148 +757,4078 @@ export const italyOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "adidas",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "alberta-ferretti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "antony-morato",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "aquascutum",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "armani",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "armani-exchange",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "asics",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "aspesi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "baldinini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "benetton",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "blumarine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "boggi-milano",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "boss",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "brooks-brothers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "burberry",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "calvin-klein",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "coach",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "coccinelle",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "colmar",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "desigual",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "diesel",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "dolce-and-gabbana",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "elisabetta-franchi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "etro",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "ferragamo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "fratelli-rossetti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "furla",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "gallo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "gas",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "gazzarrini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "geox",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "guess",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "gutteridge",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "harmont-and-blaine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "havaianas",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "il-lanificio",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "ixos",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "kappa",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "karl-lagerfeld",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "kocca",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "lacoste",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "liu-jo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "michael-kors",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "monnalisa",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "moschino",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "napapijri",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "new-balance",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "nike",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "north-sails",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "paul-and-shark",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "peserico",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "peuterey",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "philipp-plein",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "pinko",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "pollini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "polo-ralph-lauren",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "puma",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "refrigiwear",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "replay",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "rituals",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "roberto-cavalli",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "roy-rogers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "salomon",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "sandro-ferrone",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "save-the-duck",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "sergio-rossi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "sisley",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "skechers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "spada",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "stone-island",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "sunglass-hut",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "swarovski",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "swatch",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "the-bridge",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "the-cosmetics-company-store",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "the-north-face",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "tommy-hilfiger",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "trussardi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "under-armour",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "valentino",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "vans",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "versace",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "villeroy-and-boch",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "castel-romano",
     brandId: "woolrich",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "adidas",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "armani",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "aspesi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "baldinini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "blumarine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "boggi-milano",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "borbonese",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "boss",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "brooks-brothers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "calvin-klein",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "coach",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "coccinelle",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "crocs",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "diesel",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "dolce-and-gabbana",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "elisabetta-franchi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "ermenegildo-zegna",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "etro",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "fabiana-filippi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "ferragamo",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "ferrari",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "fratelli-rossetti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "frette",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "furla",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "gallo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "givenchy",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "guess",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "gutteridge",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "hogan",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "hugo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "ixos",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "jil-sander",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "jimmy-choo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "k-way",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "karl-lagerfeld",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "kids-around",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "kiton",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "lacoste",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
-{
-    outletId: "fidenza-village",
-    brandId: "lindt",
-    featured: false,
-    relationStatus: "active",
-  },
-{
+  {
     outletId: "fidenza-village",
     brandId: "liu-jo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "loro-piana",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "lululemon",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "mandarina-duck",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "michael-kors",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "missoni",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "miu-miu",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "monnalisa",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "moorer",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "napapijri",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "new-balance",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "nike",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "north-sails",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "pandora",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "paul-smith",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "peserico",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "peuterey",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "pinko",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "pollini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "polo-ralph-lauren",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "prada",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "puma",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "rituals",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "roy-rogers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "salomon",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "samsonite",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "stella-mccartney",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "sunglass-hut",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "swarovski",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "the-bridge",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "the-north-face",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "timberland",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "tommy-hilfiger",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "trussardi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "twinset",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "under-armour",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "valentino",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "versace",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "fidenza-village",
     brandId: "vilebrequin",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "adidas",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "alberta-ferretti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "antony-morato",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "armani",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "armani-exchange",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "benetton",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "blumarine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "boggi-milano",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "boss",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "brics",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "brooks-brothers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "calvin-klein",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "coach",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "coccinelle",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "colmar",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "columbia",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "crocs",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "desigual",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "diesel",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "elisabetta-franchi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "ferragamo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "fratelli-rossetti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "frette",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "furla",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "gallo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "gas",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "gazzarrini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "geox",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "guess",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "gutteridge",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "harmont-and-blaine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "havaianas",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "il-lanificio",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "ixos",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "kappa",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "karl-lagerfeld",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "kocca",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "lacoste",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "liu-jo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "michael-kors",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "monnalisa",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "moschino",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "napapijri",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "new-balance",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "nike",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "north-sails",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "paul-and-shark",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "peserico",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "philipp-plein",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "pinko",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "pollini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "polo-ralph-lauren",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "puma",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "refrigiwear",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "replay",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "rituals",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "roberto-cavalli",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "roy-rogers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "salomon",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "sandro-ferrone",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "saucony",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "save-the-duck",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "sisley",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "skechers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "spada",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "sunglass-hut",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "swarovski",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "swatch",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "the-bridge",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "the-cosmetics-company-store",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "timberland",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "tommy-hilfiger",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "trussardi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "twinset",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "under-armour",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "vans",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "versace",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "villeroy-and-boch",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "la-reggia",
     brandId: "woolrich",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "adidas",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "alberta-ferretti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "antony-morato",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "armani",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "armani-exchange",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "asics",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "baldinini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "balenciaga",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "birkenstock",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "blumarine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "boggi-milano",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "borbonese",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "boss",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "bottega-veneta",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "burberry",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "calvin-klein",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "coach",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "coccinelle",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "colmar",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "columbia",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "desigual",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "diesel",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "dolce-and-gabbana",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "dr-martens",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "elisabetta-franchi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "ermenegildo-zegna",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "etro",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "fendi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "ferragamo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "fratelli-rossetti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "frette",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "furla",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "gallo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "gas",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "geox",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "givenchy",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "gucci",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "guess",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "gutteridge",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "haribo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "harmont-and-blaine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "havaianas",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "hogan",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "hugo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "iceberg",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "il-lanificio",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "isaia",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "ixos",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "karl-lagerfeld",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "lacoste",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "lindt",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "liu-jo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "loro-piana",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "michael-kors",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "missoni",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "miu-miu",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "moncler",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "moorer",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "moschino",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "napapijri",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "new-balance",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "nike",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "north-sails",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "off-white",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "paul-and-shark",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "paul-smith",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "peserico",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "peuterey",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "philipp-plein",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "pinko",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "pollini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "polo-ralph-lauren",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "prada",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "puma",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "refrigiwear",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "replay",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "rituals",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "roberto-cavalli",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "salomon",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "samsonite",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "sandro",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "save-the-duck",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "skechers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "sunglass-hut",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "swarovski",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "swatch",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "the-cosmetics-company-store",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "the-north-face",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "tods",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "tommy-hilfiger",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "tumi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "under-armour",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "valentino",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "vans",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "versace",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "villeroy-and-boch",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "noventa",
     brandId: "woolrich",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "acne-studios",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "adidas",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "alberta-ferretti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "ami-paris",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "antony-morato",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "armani",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "armani-exchange",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "asics",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "aspesi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "baldinini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "balenciaga",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "bally",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "balmain",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "benetton",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "birkenstock",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "blumarine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "boggi-milano",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "bonpoint",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "boss",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "brioni",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "brooks-brothers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "burberry",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "calvin-klein",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "canali",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "carhartt-wip",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "casadei",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "celine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "champion",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "claudie-pierlot",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "coach",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "coccinelle",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "colmar",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "columbia",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "converse",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "corneliani",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "desigual",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "diesel",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "dolce-and-gabbana",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "dr-martens",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "elisabetta-franchi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "ermenegildo-zegna",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "etro",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "fabiana-filippi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "falke",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "fendi",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "ferragamo",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "fratelli-rossetti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "frette",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "furla",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "gallo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "gap",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "gas",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "gazzarrini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "geox",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "givenchy",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "gucci",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "guess",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "gutteridge",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "haribo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "harmont-and-blaine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "havaianas",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "hour-passion",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "iceberg",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "il-lanificio",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "isaia",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "ixos",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "jimmy-choo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "k-way",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "karl-lagerfeld",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "kenzo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "kids-around",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "kiton",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "kocca",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "la-martina",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "lacoste",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "lanvin",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "le-creuset",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "lindt",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "liu-jo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "longchamp",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "loro-piana",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "maje",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "marc-jacobs",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "michael-kors",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "missoni",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "miu-miu",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "moschino",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "napapijri",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "new-balance",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "nike",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "north-sails",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "off-white",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "pandora",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "paul-and-shark",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "peserico",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "peuterey",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "philipp-plein",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "pinko",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "pollini",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "polo-ralph-lauren",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "prada",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "puma",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "refrigiwear",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "replay",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "rituals",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "roberto-cavalli",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "rossignol",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "roy-rogers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "saint-laurent",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "salomon",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "samsonite",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "sandro",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "sandro-ferrone",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "santoni",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "saucony",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "save-the-duck",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "sergio-rossi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "simonetta",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "skechers",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "slowear",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "sorbino",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "spada",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "stella-mccartney",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "stone-island",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "sunglass-hut",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "swarovski",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "swatch",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "tag-heuer",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "the-bridge",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "the-cosmetics-company-store",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "the-north-face",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "timberland",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "tods",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "tommy-hilfiger",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "tory-burch",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "trussardi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "tumi",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "twinset",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "under-armour",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "valentino",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "vans",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "versace",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "vilebrequin",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "villeroy-and-boch",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "woolrich",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "serravalle-designer-outlet",
     brandId: "zimmermann",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "alberta-ferretti",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "alexander-mcqueen",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "armani",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "balenciaga",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "balmain",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "bottega-veneta",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "burberry",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "celine",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "coach",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "corneliani",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "dolce-and-gabbana",
     featured: true,
     relationStatus: "active",
   },
-{
-    outletId: "the-mall-firenze",
-    brandId: "etro",
-    featured: false,
-    relationStatus: "active",
-  },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "ermenegildo-zegna",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
+    outletId: "the-mall-firenze",
+    brandId: "etro",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
     outletId: "the-mall-firenze",
     brandId: "fendi",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "ferragamo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "givenchy",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "gucci",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "hogan",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "jil-sander",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "jimmy-choo",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "kids-around",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "loro-piana",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "marni",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "moschino",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "off-white",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "prada",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "roberto-cavalli",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "saint-laurent",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "tods",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "tom-ford",
     featured: false,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "valentino",
     featured: true,
     relationStatus: "active",
   },
-{
+  {
     outletId: "the-mall-firenze",
     brandId: "versace",
     featured: true,
     relationStatus: "active",
-  }
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "adidas",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "alberta-ferretti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "alcott",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "amina-rubinacci",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "antony-morato",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "armani",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "armani-exchange",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "asics",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "baldinini",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "benetton",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "bialetti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "birkenstock",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "blumarine",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "boggi-milano",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "bomboogie",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "borbonese",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "boss",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "bottega-del-sarto",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "boxeur-des-rues-malloy",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "brave-kid",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "burberry",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "c-p-company",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "caleffi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "casadei",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "churchs",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "cmp-campagnolo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "coach",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "coccinelle",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "columbia",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "corneliani",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "crocs",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "desigual",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "diesel",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "dolce-and-gabbana",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "dondup",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "dr-martens",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "dsquared2",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "elena-miro",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "elisabetta-franchi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "eredi-pisano",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "erika-cavallini",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "etro",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "fendi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "ferragamo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "flavio-castellani",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "fratelli-rossetti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "frette",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "furla",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "gallo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "gas",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "geox",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "givenchy",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "gucci",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "guess-accessories",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "gutteridge",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "gutteridge-accessories",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "harmont-and-blaine",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "havaianas",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "hogan",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "hugo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "iceberg",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "il-lanificio",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "isabel-marant",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "isaia",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "ixos",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "jimmy-choo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "jo-malone-london",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "k-way",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "karl-lagerfeld",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "kenzo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "kids-around",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "kiton",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "l-occitane",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "lacoste",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "lagostina-home-cook",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "le-creuset",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "le-silla",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "levis",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "liu-jo-uomo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "liviana-conti",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "loreal",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "loro-piana",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "luisa-spagnoli",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "luxury-zone",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "maje",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "marni",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "michael-kors",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "missoni",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "miu-miu",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "momoni",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "moorer",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "moschino",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "motivi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "msgm",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "nanan",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "napapijri",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "new-balance",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "nike",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "north-sails",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "off-white",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "outly",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "pal-zileri",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "patrizia-pepe",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "paul-and-shark",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "paul-smith",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "peserico",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "peuterey",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "philipp-plein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "pinalli",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "pinko",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "piquadro",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "plein-sport",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "pollini",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "polo-ralph-lauren",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "prada",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "puma",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "pupa",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "rebel-queen",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "refrigiwear",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "replay",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "rituals",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "roberto-cavalli",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "rossignol",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "roy-rogers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "salomon",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "sandro",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "sergio-rossi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "seventy",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "simonetta",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "sisley",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "slowear",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "spada",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "sunglass-hut",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "swarovski",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "the-bridge",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "the-cosmetics-company-store",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "the-north-face",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "timberland",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "tods",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "tommy-hilfiger",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "trussardi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "tumi",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "twinset",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "valentino",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "vans",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "versace",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "victorias-secret",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "vilebrequin",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "villeroy-and-boch",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "watch-and-see",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "woolrich",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "noventa-di-piave",
+    brandId: "zegna",
+    featured: false,
+    relationStatus: "active",
+  },
 ];
