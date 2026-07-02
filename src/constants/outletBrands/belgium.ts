@@ -3,8 +3,14 @@ import type { OutletBrand } from "./index";
 export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
+    brandId: "7-for-all-mankind",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "adidas",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -15,13 +21,43 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "anne-de-solene",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "aquanova",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "armani",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
     outletId: "maasmechelen-village",
     brandId: "asics",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "ba-and-sh",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "biotherm",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "bjorn-borg",
     featured: false,
     relationStatus: "active",
   },
@@ -46,7 +82,7 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "calvin-klein",
-    featured: true,
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -75,6 +111,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "demeyere",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "diesel",
     featured: false,
     relationStatus: "active",
@@ -82,6 +124,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "dkny",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "essentiel-antwerp",
     featured: false,
     relationStatus: "active",
   },
@@ -117,6 +165,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "garcia",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "geox",
     featured: false,
     relationStatus: "active",
@@ -124,6 +178,24 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "hackett-london",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "hoff",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "home-and-cook",
     featured: false,
     relationStatus: "active",
   },
@@ -154,6 +226,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "karl-lagerfeld",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "kate-spade-new-york",
     featured: false,
     relationStatus: "active",
   },
@@ -195,7 +273,25 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "lancome",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "le-creuset",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "leonidas",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "les-soeurs",
     featured: false,
     relationStatus: "active",
   },
@@ -219,14 +315,26 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "loccitane-en-provence",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "longchamp",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "maasmechelen-village",
-    brandId: "loro-piana",
-    featured: true,
+    brandId: "loreal",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "mac-cosmetics",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -249,6 +357,18 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "marc-opolo",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "marlies-dekkers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "max-mara",
     featured: false,
     relationStatus: "active",
@@ -261,7 +381,31 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "my-jewellery",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "neuhaus",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "new-balance",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "new-zealand-auckland",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "nik-and-nik",
     featured: false,
     relationStatus: "active",
   },
@@ -269,6 +413,18 @@ export const belgiumOutletBrands: OutletBrand[] = [
     outletId: "maasmechelen-village",
     brandId: "nike",
     featured: true,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "nikkie",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "outly",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -285,8 +441,8 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
-    brandId: "prada",
-    featured: true,
+    brandId: "protest",
+    featured: false,
     relationStatus: "active",
   },
   {
@@ -303,6 +459,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "river-woods",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "samsonite",
     featured: false,
     relationStatus: "active",
@@ -310,6 +472,18 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "sandro",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "schiesser",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "selected",
     featured: false,
     relationStatus: "active",
   },
@@ -340,6 +514,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "maasmechelen-village",
     brandId: "the-north-face",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "the-society-shop",
     featured: false,
     relationStatus: "active",
   },
@@ -387,13 +567,31 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "watch-station",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "waterdrop",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "maasmechelen-village",
+    brandId: "xandres",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
     brandId: "zadig-and-voltaire",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "maasmechelen-village",
+    brandId: "zwilling",
     featured: false,
     relationStatus: "active",
   },

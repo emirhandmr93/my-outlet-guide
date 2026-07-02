@@ -2995,4 +2995,15 @@ export const brandsFK: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "hoff",
+    brandName: "HOFF",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
