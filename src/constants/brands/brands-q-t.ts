@@ -3338,4 +3338,37 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
 
+
+  {
+    brandId: "skomax",
+    brandName: "Skomax",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "norway",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 55,
+    brandStatus: "active",
+  },
+  {
+    brandId: "stadium",
+    brandName: "Stadium",
+    aliases: [],
+    categoryId: "sports",
+    logo: "",
+    originCountryId: "sweden",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 62,
+    brandStatus: "active",
+  },
+  {
+    brandId: "the-brands-outlet",
+    brandName: "The Brands Outlet",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 55,
+    brandStatus: "active",
+  },
 ];

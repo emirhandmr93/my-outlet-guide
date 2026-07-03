@@ -5060,4 +5060,27 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
 
+
+  {
+    brandId: "bik-bok",
+    brandName: "Bik Bok",
+    aliases: ["BikBok"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "norway",
+    luxuryLevel: "fashion",
+    rankingWeight: 64,
+    brandStatus: "active",
+  },
+  {
+    brandId: "budget-sport",
+    brandName: "Budget Sport",
+    aliases: ["BudgetSport"],
+    categoryId: "sports",
+    logo: "",
+    originCountryId: "finland",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];

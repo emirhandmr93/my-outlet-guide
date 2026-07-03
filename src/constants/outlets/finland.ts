@@ -1,47 +1,44 @@
 export const finlandOutlets = [
   {
-    outletId: "zsar-outlet-village",
-    name: "Zsar Outlet Village",
-    slug: "zsar-outlet-village",
+    outletId: "ideapark-lempaala-outlet",
+    name: "Ideapark Lempäälä Outlet",
+    slug: "ideapark-lempaala-outlet",
     countryId: "finland",
-    cityId: "vaalimaa",
-    address: "Rouvanmäentie 3, 49930 Vaalimaa, Finland",
-    latitude: 60.6040,
-    longitude: 27.8590,
-    openingHours: "Closed; no current opening hours are published by the official outlet/operator source",
+    cityId: "lempaala",
+    address: "Ideaparkinkatu 4, 37570 Lempäälä, Finland",
+    latitude: 61.3586,
+    longitude: 23.7960,
+    openingHours: "Most stores: Monday - Friday 10:00 - 20:00; Saturday 10:00 - 18:00; Sunday 12:00 - 18:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "c. 110 premium and luxury fashion, jewellery, cosmetics and homewear brand stores, restaurants, coffee shops and other leisure services",
+    storesCountText: "150 shops and services",
     rating: 0,
     reviewCount: 0,
-    services: [],
-    restaurants: [],
-    parking: "Parking could not be verified from a current official outlet/operator source.",
-    taxFreeAvailable: false,
+    services: [
+      "Information desk",
+      "Free parking",
+      "Shops and services",
+      "Restaurants and cafés",
+      "Entertainment and leisure",
+      "Bus access"
+    ],
+    restaurants: ["Bella Roma & Daddy's Diner & Beefking", "Burger King", "Espresso House", "Friends & Brgrs", "Hesburger", "Kotipizza", "Pancho Villa", "Pizza Hut", "Rax Pizzabuffet", "Seoul Good Ideapark", "Subway"],
+    parking: "Free customer parking is available around Ideapark Lempäälä; follow on-site signs for the closest entrance and parking area.",
+    taxFreeAvailable: true,
     vatRate: 25.5,
     estimatedRefundRate: 13,
     minimumTaxFreeSpend: "40 EUR",
-    taxFreeOperator: "Not available",
-    taxFreeOfficeInfo: "No active tax-free office information could be verified from a current official outlet/operator source.",
-    cityCenterDistanceKm: 190,
-    airportDistanceKm: 195,
-    airports: [
-      {
-        code: "HEL",
-        name: "Helsinki Airport",
-        distanceKm: 195
-      }
-    ],
-    cityCenterInfo: {
-      name: "Helsinki city centre",
-      distanceKm: 190,
-      recommendedRoute: "Drive east from Helsinki toward Vaalimaa via E18."
-    },
+    taxFreeOperator: "Participating Finnish tax-free operators",
+    taxFreeOfficeInfo: "Ask participating stores and the Ideapark information desk for current tax-free shopping support.",
+    cityCenterDistanceKm: 18,
+    airportDistanceKm: 22,
+    airports: [{ code: "TMP", name: "Tampere-Pirkkala Airport", distanceKm: 22 }],
+    cityCenterInfo: { name: "Tampere city centre", distanceKm: 18, recommendedRoute: "Drive south from Tampere on E12/Highway 3, or use regional bus connections toward Ideapark Lempäälä." },
     nearby: [],
-    websiteUrl: "https://www.zsar.fi/",
-    status: "inactive",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Rouvanm%C3%A4entie%203%2C%2049930%20Vaalimaa%2C%20Finland",
-    appleMapsUrl: "http://maps.apple.com/?ll=60.6040,27.8590&q=Zsar%20Outlet%20Village",
-    yandexMapsUrl: "https://yandex.com/maps/?ll=27.8590,60.6040&z=16&text=Zsar%20Outlet%20Village"
+    websiteUrl: "https://lempaala.ideapark.fi/en/",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Ideaparkinkatu%204%2C%2037570%20Lemp%C3%A4%C3%A4l%C3%A4%2C%20Finland",
+    appleMapsUrl: "http://maps.apple.com/?ll=61.3586,23.7960&q=Ideapark%20Lemp%C3%A4%C3%A4l%C3%A4%20Outlet",
+    yandexMapsUrl: "https://yandex.com/maps/?ll=23.7960,61.3586&z=16&text=Ideapark%20Lemp%C3%A4%C3%A4l%C3%A4%20Outlet"
   }
 ];
