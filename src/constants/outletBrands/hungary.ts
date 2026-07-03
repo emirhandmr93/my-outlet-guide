@@ -1,0 +1,28 @@
+import type { OutletBrand } from "./index";
+
+export const hungaryOutletBrands: OutletBrand[] = [
+  { outletId: "premier-outlet-budapest", brandId: "adidas", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "boss", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "calvin-klein", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "desigual", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "ecco", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "gant", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "geox", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "guess", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "helly-hansen", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "intimissimi", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "karl-lagerfeld", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "lacoste", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "levis", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "liu-jo", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "mustang", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "new-balance", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "nike", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "pepe-jeans", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "puma", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "samsonite", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "skechers", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "tom-tailor", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "tommy-hilfiger", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "under-armour", featured: false, relationStatus: "active" },
+];
