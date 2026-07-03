@@ -234,5 +234,26 @@ export const franceOutlets = [
     googleMapsUrl: "https://maps.google.com/?q=La+Vallee+Village",
     appleMapsUrl: "http://maps.apple.com/?q=La+Vallee+Village",
     yandexMapsUrl: "https://yandex.com/maps/?text=La%20Vallee%20Village"
-  }
+  },
+  {
+    outletId: "roppenheim-the-style-outlets",
+    name: "Roppenheim The Style Outlets",
+    slug: "roppenheim-the-style-outlets",
+    countryId: "france",
+    cityId: "roppenheim",
+    address: "1 Route de l’Europe, F-67480 Roppenheim, France",
+    latitude: 48.8431,
+    longitude: 8.0526,
+    openingHours: "10:00 - 19:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "over 100 international brand",
+    rating: 0,
+    reviewCount: 0,
+    websiteUrl: "https://roppenheim.thestyleoutlets.fr/en",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Roppenheim+The+Style+Outlets",
+    appleMapsUrl: "http://maps.apple.com/?q=Roppenheim%20The%20Style%20Outlets",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Roppenheim%20The%20Style%20Outlets"
+  } as any
 ];

@@ -278,5 +278,30 @@ export const cities = [
     "cityId": "york",
     "cityName": "York",
     "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "bucharest",
+    "cityName": "Bucharest",
+    "countryId": "romania"
+  },
+  {
+    "cityId": "palmanova",
+    "cityName": "Palmanova",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "roppenheim",
+    "cityName": "Roppenheim",
+    "countryId": "france"
+  },
+  {
+    "cityId": "sofia",
+    "cityName": "Sofia",
+    "countryId": "bulgaria"
+  },
+  {
+    "cityId": "tallinn",
+    "cityName": "Tallinn",
+    "countryId": "estonia"
   }
 ];

@@ -64,6 +64,30 @@ export const countries = [
     "taxFreeAvailable": "TRUE"
   },
   {
+    "countryId": "bulgaria",
+    "countryName": "Bulgaria",
+    "countryFlag": "🇧🇬",
+    "continent": "Europe",
+    "currency": "BGN",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
+    "countryId": "estonia",
+    "countryName": "Estonia",
+    "countryFlag": "🇪🇪",
+    "continent": "Europe",
+    "currency": "EUR",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
+    "countryId": "romania",
+    "countryName": "Romania",
+    "countryFlag": "🇷🇴",
+    "continent": "Europe",
+    "currency": "RON",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
     "countryId": "france",
     "countryName": "France",
     "countryFlag": "🇫🇷",

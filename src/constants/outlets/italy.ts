@@ -667,5 +667,26 @@ export const italyOutlets = [
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Valdichiana+Village+Via+Enzo+Ferrari+5+52045+Foiano+della+Chiana",
     appleMapsUrl: "http://maps.apple.com/?q=Valdichiana%20Village&address=Via%20Enzo%20Ferrari%205%2C%2052045%20Foiano%20della%20Chiana%20AR%2C%20Italy",
     yandexMapsUrl: "https://yandex.com/maps/?text=Valdichiana%20Village%2C%20Via%20Enzo%20Ferrari%205%2C%2052045%20Foiano%20della%20Chiana"
+  } as any,
+  {
+    outletId: "palmanova-designer-village",
+    name: "Palmanova Designer Village",
+    slug: "palmanova-designer-village",
+    countryId: "italy",
+    cityId: "palmanova",
+    address: "SP 126 Km 1,6, 33041 Joannis di Aiello del Friuli (UD), Italy",
+    latitude: 45.8786,
+    longitude: 13.3308,
+    openingHours: "Shops Monday - Sunday 10:00 - 20:00; Restaurants & Café Monday - Sunday 09:00 - 21:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "More than 90 FASHION & LIFESTYLE BRANDS",
+    rating: 0,
+    reviewCount: 0,
+    websiteUrl: "https://www.palmanovadesignervillage.com/en",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Palmanova+Designer+Village",
+    appleMapsUrl: "http://maps.apple.com/?q=Palmanova%20Designer%20Village",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Palmanova%20Designer%20Village"
   } as any
 ];
