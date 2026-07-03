@@ -29,6 +29,7 @@ export type TransportationType =
   | "shuttle"
   | "taxi"
   | "uber"
+  | "ferry"
   | "walking";
 
 export type TransportationStep = {
