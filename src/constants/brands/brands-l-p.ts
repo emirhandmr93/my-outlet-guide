@@ -4294,6 +4294,17 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "mass",
+    brandName: "Mass",
+    aliases: ["Mass Shoes", "Mass Store"],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "slovenia",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 58,
+    brandStatus: "active",
+  },
+  {
     brandId: "morris",
     brandName: "Morris",
     aliases: ["Morris Stockholm", "Morris Outlet"],
