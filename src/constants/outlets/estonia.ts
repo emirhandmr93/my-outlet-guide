@@ -11,7 +11,7 @@ export const estoniaOutlets = [
     openingHours: "Shops Mon–Sun: 10-20",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet 16 poodi",
+    storesCountText: "16 outlet shops",
     rating: 0,
     reviewCount: 0,
     services: [
