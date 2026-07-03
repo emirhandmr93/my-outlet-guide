@@ -250,6 +250,26 @@ export const franceRestaurants = [
     "displayOrder": "5"
   },
   {
+    "restaurantId": "pret-a-manger",
+    "outletId": "la-vallee-village",
+    "restaurantName": "Pret A Manger",
+    "category": "Lunch",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/la-vallee-village/fr/restaurant/pret-a-manger",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "ralphs-coffee",
+    "outletId": "la-vallee-village",
+    "restaurantName": "Ralph's Coffee",
+    "category": "Coffee",
+    "priceLevel": "€€",
+    "website": "https://www.thebicestercollection.com/la-vallee-village/en/dine/ralphs-coffee/",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
     "restaurantId": "wild-and-the-moon",
     "outletId": "la-vallee-village",
     "restaurantName": "Wild & The Moon",
@@ -257,7 +277,7 @@ export const franceRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.thebicestercollection.com/la-vallee-village/fr/restaurant/wild-and-the-moon/",
     "status": "active",
-    "displayOrder": "6"
+    "displayOrder": "8"
   },
   {
     "restaurantId": "roppenheim-amorino",

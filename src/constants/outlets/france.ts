@@ -194,6 +194,8 @@ export const franceOutlets = [
       "Ladurée",
       "Momus",
       "Pierre Hermé Paris",
+      "Pret A Manger",
+      "Ralph's Coffee",
       "Wild & The Moon"
     ],
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
