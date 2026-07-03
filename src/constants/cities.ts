@@ -25,6 +25,11 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "budapest",
+    "cityName": "Budapest",
+    "countryId": "hungary"
+  },
+  {
     "cityId": "cardiff",
     "cityName": "Cardiff",
     "countryId": "united-kingdom"
@@ -235,9 +240,19 @@ export const cities = [
     "countryId": "austria"
   },
   {
+    "cityId": "voderady",
+    "cityName": "Voderady",
+    "countryId": "slovakia"
+  },
+  {
     "cityId": "warsaw",
     "cityName": "Warsaw",
     "countryId": "poland"
+  },
+  {
+    "cityId": "zagreb",
+    "cityName": "Zagreb",
+    "countryId": "croatia"
   },
   {
     "cityId": "york",

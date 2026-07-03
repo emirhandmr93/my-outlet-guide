@@ -1,0 +1,40 @@
+export const slovakiaOutlets = [
+  {
+    outletId: "voderady-designer-outlet",
+    name: "Voderady Designer Outlet",
+    slug: "voderady-designer-outlet",
+    countryId: "slovakia",
+    cityId: "voderady",
+    address: "Voderady 440, 919 42 Voderady, Slovakia",
+    latitude: 48.2726,
+    longitude: 17.5777,
+    openingHours: "Monday-Sunday 10:00 - 21:00",
+    heroImage: "",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
+    services: [],
+    restaurants: [],
+    taxFreeAvailable: true,
+    vatRate: 0,
+    estimatedRefundRate: 0,
+    minimumTaxFreeSpend: "",
+    taxFreeOperator: "",
+    taxFreeOfficeInfo: "",
+    cityCenterDistanceKm: 0,
+    airportDistanceKm: 0,
+    airports: [],
+    cityCenterInfo: {
+      name: "",
+      distanceKm: 0,
+      recommendedRoute: ""
+    },
+    nearby: [],
+    storesCountText: "more than 70 shops",
+    websiteUrl: "http://www.onefashionoutlet.sk",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Voderady%20Designer%20Outlet%2C%20Voderady%20440%2C%20919%2042%20Voderady%2C%20Slovakia",
+    appleMapsUrl: "http://maps.apple.com/?q=Voderady%20Designer%20Outlet%2C%20Voderady%20440%2C%20919%2042%20Voderady%2C%20Slovakia",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Voderady%20Designer%20Outlet%2C%20Voderady%20440%2C%20919%2042%20Voderady%2C%20Slovakia"
+  }
+];
