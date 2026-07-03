@@ -2275,4 +2275,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "upgreat",
+    brandName: "Upgreat",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
