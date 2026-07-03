@@ -670,7 +670,19 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-luxembourg",
+    brandId: "dim",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
     brandId: "gant",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "garcia",
     featured: false,
     relationStatus: "active",
   },
