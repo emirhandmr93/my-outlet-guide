@@ -88,7 +88,7 @@ export const belgiumOutlets = [
     openingHours: "Mon-Thu 10:00 - 19:00; Fri-Sat 10:00 - 20:00; Sundays 5 and 12 July 10:00 - 19:00; closed Sunday and bank holidays otherwise; Hoppy restaurant Mon-Thu until 22:00 and Fri-Sat until midnight",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "21 Official Brands",
+    storesCountText: "23 Official Brands",
     rating: 4.3,
     reviewCount: 0,
     services: [

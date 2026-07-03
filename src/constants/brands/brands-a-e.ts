@@ -1988,6 +1988,17 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "carpisa",
+    brandName: "Carpisa",
+    aliases: ["Carpisa Outlet", "Carpisa Store", "Carpisa Valdichiana"],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 68,
+    brandStatus: "active",
+  },
+  {
     brandId: "carlo-pignatelli",
     brandName: "Carlo Pignatelli",
     aliases: ["CarloPignatelli"],
