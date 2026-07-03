@@ -10,6 +10,7 @@ const makeOutletBrands = (outletId: string, brandIds: string[]): OutletBrand[] =
 
 const norwegianOutletBrandIds = [
   "adidas",
+  "allsport-fashion",
   "bergans",
   "bjorn-borg",
   "boss",
@@ -25,6 +26,8 @@ const norwegianOutletBrandIds = [
   "j-lindeberg",
   "jack-and-jones",
   "kari-traa",
+  "le-creuset",
+  "lee",
   "lexington",
   "lindt",
   "lyko",
@@ -36,6 +39,7 @@ const norwegianOutletBrandIds = [
   "samsonite",
   "skechers",
   "skomax",
+  "stormberg",
   "swix",
   "tommy-hilfiger",
   "viking-of-norway",
