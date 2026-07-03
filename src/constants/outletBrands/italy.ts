@@ -4903,4 +4903,77 @@ export const italyOutletBrands: OutletBrand[] = [
     featured: true,
     relationStatus: "active",
   },
+
+  {
+    outletId: "valdichiana-village",
+    brandId: "adidas",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "borbonese",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "harmont-and-blaine",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "levis",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "napapijri",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "nike",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "puma",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "salewa",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "under-armour",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "vicolo",
+    featured: false,
+    relationStatus: "active",
+  },
 ];
