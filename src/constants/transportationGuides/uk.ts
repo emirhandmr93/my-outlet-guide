@@ -526,6 +526,25 @@ export const ukTransportationGuides: TransportationGuide[] = [
     ],
     updatedAt: "2026-07-01",
   },
+
+  {
+    guideId: "gosport-to-gunwharf-quays-ferry",
+    outletId: "gunwharf-quays",
+    originType: "city_center",
+    originId: "gosport-city-center",
+    transportationType: "ferry",
+    title: "Gosport to Gunwharf Quays by Ferry",
+    estimatedDuration: "≈5 min Gosport Ferry crossing to Portsmouth Harbour; check the official timetable before travel",
+    estimatedCost: "Check official Gosport Ferry fares before travel",
+    recommended: true,
+    steps: [
+      { order: 1, description: "Review the official Gunwharf Quays getting-here page and the Gosport Ferry timetable and fares before travel." },
+      { order: 2, description: "Board the Gosport Ferry from Gosport for the short crossing to Portsmouth Harbour." },
+      { order: 3, description: "From Portsmouth Harbour, follow the signed pedestrian route to Gunwharf Quays." },
+      { order: 4, description: "Before shopping, confirm the last suitable return sailing and current ticket options with Gosport Ferry." },
+    ],
+    updatedAt: "2026-07-03",
+  },
   {
     guideId: "airport-to-gunwharf-quays-transfer",
     outletId: "gunwharf-quays",
@@ -961,6 +980,25 @@ export const ukTransportationGuides: TransportationGuide[] = [
       { order: 4, description: "Before shopping, confirm the last Jubilee line, bus or boat departure for your return journey." },
     ],
     updatedAt: "2026-07-02",
+  },
+
+  {
+    guideId: "central-london-to-icon-outlet-at-the-o2-uber-boat",
+    outletId: "icon-outlet-at-the-o2",
+    originType: "city_center",
+    originId: "london-city-center",
+    transportationType: "ferry",
+    title: "Central London to Outlet Shopping at The O2 by Uber Boat",
+    estimatedDuration: "North Greenwich Pier is about a 5 min walk from The O2; check the official Uber Boat timetable for live journey times",
+    estimatedCost: "Check official Uber Boat by Thames Clippers fares before travel",
+    recommended: true,
+    steps: [
+      { order: 1, description: "Review The O2 official river bus access page plus the Uber Boat by Thames Clippers timetable and fares before travel." },
+      { order: 2, description: "Use an Uber Boat by Thames Clippers service from a suitable central London pier to North Greenwich Pier." },
+      { order: 3, description: "From North Greenwich Pier, follow signs for The O2 and Outlet Shopping at The O2." },
+      { order: 4, description: "Before shopping, confirm the last suitable return boat and current ticket/payment options with Uber Boat by Thames Clippers." },
+    ],
+    updatedAt: "2026-07-03",
   },
   {
     guideId: "airport-to-icon-outlet-at-the-o2-transfer",
