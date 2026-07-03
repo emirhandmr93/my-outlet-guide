@@ -1,9 +1,11 @@
 import { austriaTransportationGuides } from "./austria";
 import { belgiumTransportationGuides } from "./belgium";
+import { denmarkTransportationGuides } from "./denmark";
 import { franceTransportationGuides } from "./france";
 import { germanyTransportationGuides } from "./germany";
 import { italyTransportationGuides } from "./italy";
 import { netherlandsTransportationGuides } from "./netherlands";
+import { portugalTransportationGuides } from "./portugal";
 import { spainTransportationGuides } from "./spain";
 import { switzerlandTransportationGuides } from "./switzerland";
 import { ukTransportationGuides } from "./uk";
@@ -39,10 +41,12 @@ export type TransportationGuide = {
 export {
   austriaTransportationGuides,
   belgiumTransportationGuides,
+  denmarkTransportationGuides,
   franceTransportationGuides,
   germanyTransportationGuides,
   italyTransportationGuides,
   netherlandsTransportationGuides,
+  portugalTransportationGuides,
   spainTransportationGuides,
   switzerlandTransportationGuides,
   ukTransportationGuides,
@@ -57,5 +61,7 @@ export const transportationGuides: TransportationGuide[] = [
   ...switzerlandTransportationGuides,
   ...netherlandsTransportationGuides,
   ...belgiumTransportationGuides,
+  ...portugalTransportationGuides,
+  ...denmarkTransportationGuides,
   ...austriaTransportationGuides,
 ];
