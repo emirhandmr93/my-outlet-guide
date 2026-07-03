@@ -600,7 +600,7 @@ export const italyOutlets = [
     openingHours: "Shops daily 10:00 - 20:00; restaurants & cafés Mon-Thu 09:00 - 21:00; Fri-Sun and public holidays 09:00 - 22:00; special summer opening hours may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "49 Official Brands",
+    storesCountText: "130+ Fashion & Lifestyle Brands",
     rating: 4.5,
     reviewCount: 0,
     services: [

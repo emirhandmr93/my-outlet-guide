@@ -11,7 +11,7 @@ export const greeceOutlets = [
     openingHours: "Department stores Mon-Fri 10:00 - 21:00; Sat 10:00 - 20:00; Sun 11:00 - 20:00; coffee shops daily 09:00 - 22:00; restaurants Mon-Sat 12:00 - 22:00; Sun 12:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "30 Official Brands",
+    storesCountText: "100+ Brands",
     rating: 4.5,
     reviewCount: 0,
     services: [

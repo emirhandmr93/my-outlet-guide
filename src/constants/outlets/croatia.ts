@@ -60,7 +60,7 @@ export const croatiaOutlets = [
         distanceKm: 22
       }
     ],
-    storesCountText: "26 Official Brands",
+    storesCountText: "Over 100 Fashion & Lifestyle Brands",
     websiteUrl: "https://www.designeroutletcroatia.com/en/",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=45.7875,16.1690",
