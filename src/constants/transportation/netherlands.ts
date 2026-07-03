@@ -97,5 +97,16 @@ export const netherlandsTransportation = [
     "tip": "Official centre services note frequent Nederlandse Spoorwegen services from across the country and a 5-minute bus connection from Roosendaal station; train fare and duration depend on origin and departure time.",
     "status": "active",
     "displayOrder": "3"
+  },
+  {
+    "transportationId": "roosendaal-airports",
+    "outletId": "designer-outlet-roosendaal",
+    "transportType": "airport",
+    "title": "Rotterdam or Antwerp airport via rail/bus or car",
+    "duration": "≈45-60 min by car from Rotterdam The Hague or Antwerp airports (estimated)",
+    "cost": "Confirm airport rail/bus, taxi or rental-car fare",
+    "tip": "Use official airport ground transport to Rotterdam, Antwerp or Roosendaal rail/bus connections, then local bus to the outlet; no dedicated airport shuttle is published.",
+    "status": "active",
+    "displayOrder": "4"
   }
 ];

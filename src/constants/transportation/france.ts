@@ -44,6 +44,17 @@ export const franceTransportation = [
     "displayOrder": "4"
   },
   {
+    "transportationId": "la-vallee-airport",
+    "outletId": "la-vallee-village",
+    "transportType": "airport",
+    "title": "Paris Charles de Gaulle / Orly airport access",
+    "duration": "≈10-20 min by TGV from CDG to Marne-la-Vallée-Chessy + local transfer; ≈35-50 min by car (estimated)",
+    "cost": "Check official TGV, airport shuttle, taxi or transfer fare",
+    "tip": "Use official Paris airport ground transport or TGV to Marne-la-Vallée-Chessy/Val d’Europe connections before the Village transfer; no dedicated airport-to-village shuttle is published.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
     "transportationId": "troyes-car-parking",
     "outletId": "designer-outlet-troyes",
     "transportType": "car",
@@ -75,6 +86,17 @@ export const franceTransportation = [
     "tip": "McArthurGlen states the centre is about 20 minutes from central Troyes by bus; take TCAT lines 1 or 12 toward Pont-Sainte-Marie or Creney and get off at Magasins.",
     "status": "active",
     "displayOrder": "3"
+  },
+  {
+    "transportationId": "troyes-airport",
+    "outletId": "designer-outlet-troyes",
+    "transportType": "airport",
+    "title": "Paris airports via rail to Troyes + local bus/taxi",
+    "duration": "≈2-3 hr via Paris rail connections + Troyes local transfer (estimated)",
+    "cost": "Check official SNCF/airport transit fare",
+    "tip": "Use official Paris airport ground transport into Paris, SNCF services to Troyes, then TCAT bus or taxi; no dedicated airport-to-outlet shuttle is published.",
+    "status": "active",
+    "displayOrder": "4"
   },
   {
     "transportationId": "provence-shuttle",
