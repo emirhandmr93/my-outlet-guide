@@ -14,14 +14,18 @@ const fashionArenaPragueOutletBrandIds = [
   "calvin-klein",
   "celio",
   "crocs",
+  "furla",
   "gant",
   "lacoste",
   "nike",
   "only",
+  "outly",
   "pepe-jeans",
   "puma",
+  "regatta",
   "salomon",
   "swarovski",
+  "the-brands-outlet",
   "tommy-hilfiger",
 ].sort();
 

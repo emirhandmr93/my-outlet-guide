@@ -4260,4 +4260,27 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
+
+  {
+    brandId: "lindex",
+    brandName: "Lindex",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "sweden",
+    luxuryLevel: "fashion",
+    rankingWeight: 65,
+    brandStatus: "active",
+  },
+  {
+    brandId: "nanso",
+    brandName: "Nanso",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "finland",
+    luxuryLevel: "fashion",
+    rankingWeight: 58,
+    brandStatus: "active",
+  },
 ];

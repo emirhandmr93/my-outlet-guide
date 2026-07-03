@@ -215,8 +215,8 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
-    "cityId": "vaalimaa",
-    "cityName": "Vaalimaa",
+    "cityId": "lempaala",
+    "cityName": "Lempäälä",
     "countryId": "finland"
   },
   {

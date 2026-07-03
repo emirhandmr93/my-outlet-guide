@@ -1866,4 +1866,16 @@ export const brandsUZ: Brand[] = [
     brandStatus: "active",
   },
 
+
+  {
+    brandId: "zizzi",
+    brandName: "Zizzi",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "denmark",
+    luxuryLevel: "fashion",
+    rankingWeight: 58,
+    brandStatus: "active",
+  },
 ];

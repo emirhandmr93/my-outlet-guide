@@ -3709,4 +3709,27 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
 
+
+  {
+    brandId: "familon",
+    brandName: "Familon",
+    aliases: ["Familon Brand Store"],
+    categoryId: "home-lifestyle",
+    logo: "",
+    originCountryId: "finland",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 58,
+    brandStatus: "active",
+  },
+  {
+    brandId: "finlayson",
+    brandName: "Finlayson",
+    aliases: [],
+    categoryId: "home-lifestyle",
+    logo: "",
+    originCountryId: "finland",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
