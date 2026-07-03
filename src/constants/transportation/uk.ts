@@ -77,6 +77,17 @@ export const ukTransportation = [
     "displayOrder": "2"
   },
   {
+    "transportationId": "cheshire-oaks-bus",
+    "outletId": "cheshire-oaks",
+    "transportType": "bus",
+    "title": "Local bus to Cheshire Oaks",
+    "duration": "≈15–30 min from Ellesmere Port or Chester rail/bus gateways (estimated)",
+    "cost": "Check official local bus fare",
+    "tip": "Official McArthurGlen directions state Cheshire Oaks is accessible by public transport via bus as well as train. Use official local bus operators for current services to the outlet before travelling.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
     "transportationId": "cheshire-oaks-plane",
     "outletId": "cheshire-oaks",
     "transportType": "airport",
@@ -85,7 +96,7 @@ export const ukTransportation = [
     "cost": "Taxi/transfer ≈£45-90 (estimated)",
     "tip": "Official McArthurGlen directions include plane access; use the airport or chosen transfer provider to confirm live travel times and fares.",
     "status": "active",
-    "displayOrder": "3"
+    "displayOrder": "4"
   },
   {
       "transportationId": "york-designer-outlet-car-parking",
