@@ -68,7 +68,7 @@ export const germanyTransportation = [
   {
     "transportationId": "ingolstadt-shopping-express",
     "outletId": "ingolstadt-village",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Shopping Express from Munich",
     "duration": "Check official timetable",
     "cost": "Check official booking page",
@@ -123,7 +123,7 @@ export const germanyTransportation = [
   {
     "transportationId": "wertheim-shopping-express",
     "outletId": "wertheim-village",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Shopping Express from Frankfurt",
     "duration": "Check official timetable",
     "cost": "Check official booking page",
@@ -198,6 +198,17 @@ export const germanyTransportation = [
     "displayOrder": "3"
   },
   {
+    "transportationId": "berlin-train",
+    "outletId": "designer-outlet-berlin",
+    "transportType": "train",
+    "title": "Regional train to Elstal + local bus",
+    "duration": "≈25 min by regional train from Berlin Hbf to Elstal, then local bus/short transfer (estimated)",
+    "cost": "Check official VBB/DB fare",
+    "tip": "Designer Outlet Berlin officially lists public transport access; use VBB or DB for regional trains toward Elstal/Wustermark and the official local connection to the centre.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
     "transportationId": "berlin-airport",
     "outletId": "designer-outlet-berlin",
     "transportType": "airport",
@@ -206,7 +217,7 @@ export const germanyTransportation = [
     "cost": "Confirm VBB/DB fare or airport taxi/transfer fare",
     "tip": "Use official BER ground transport and VBB/DB connections via Berlin toward Elstal/Wustermark before the outlet connection; no dedicated airport-to-outlet shuttle is published.",
     "status": "active",
-    "displayOrder": "4"
+    "displayOrder": "5"
   },
   {
     "transportationId": "neumunster-car-parking",
@@ -242,6 +253,17 @@ export const germanyTransportation = [
     "displayOrder": "3"
   },
   {
+    "transportationId": "neumunster-train",
+    "outletId": "designer-outlet-neumunster",
+    "transportType": "train",
+    "title": "Train to Neumünster + local connection",
+    "duration": "≈45–60 min train from Hamburg Hbf to Neumünster, then local bus/taxi (estimated)",
+    "cost": "Check official NAH.SH/HVV/DB fare",
+    "tip": "Official centre information lists public transport as an arrival option. Use official rail to Neumünster station, then confirm the current local bus or taxi connection to Oderstraße before travel.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
     "transportationId": "neumunster-airport",
     "outletId": "designer-outlet-neumunster",
     "transportType": "airport",
@@ -250,7 +272,7 @@ export const germanyTransportation = [
     "cost": "Confirm HVV/DB fare or airport taxi/transfer fare",
     "tip": "Use official Hamburg Airport ground transport to Hamburg Hbf, then rail to Neumünster with local onward transport; no dedicated airport shuttle is published.",
     "status": "active",
-    "displayOrder": "4"
+    "displayOrder": "5"
   },
   {
     "transportationId": "wolfsburg-car-parking",
@@ -453,7 +475,7 @@ export const germanyTransportation = [
   {
     "transportationId": "halle-leipzig-style-outlets-shuttle",
     "outletId": "halle-leipzig-the-style-outlets",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Free Saturday shuttle from Leipzig and Halle",
     "duration": "≈25–40 min from Leipzig Hbf or Halle bus station (estimated)",
     "cost": "Free; booking required where offered",

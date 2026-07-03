@@ -2,7 +2,7 @@ export const franceTransportation = [
   {
     "transportationId": "la-vallee-shuttle-paris",
     "outletId": "la-vallee-village",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Shopping Express® Shuttle from Paris",
     "duration": "≈40-50 min (estimated)",
     "cost": "Confirm with provider",
@@ -35,7 +35,7 @@ export const franceTransportation = [
   {
     "transportationId": "la-vallee-disney-shuttle",
     "outletId": "la-vallee-village",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Disney® Resort Hotels Shuttle",
     "duration": "≈10 min (estimated)",
     "cost": "€6 adult return / €3 child return",

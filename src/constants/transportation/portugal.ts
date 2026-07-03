@@ -13,7 +13,7 @@ export const portugalTransportation = [
   {
     "transportationId": "freeport-lisboa-shuttle",
     "outletId": "freeport-lisboa-fashion-outlet",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Official Freeport Outlet Shuttle from Lisbon",
     "duration": "≈30 min from Lisbon (estimated)",
     "cost": "€14 return; free for children under 12",
@@ -79,7 +79,7 @@ export const portugalTransportation = [
   {
     "transportationId": "vila-do-conde-shuttle",
     "outletId": "vila-do-conde-porto-fashion-outlet",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Official Shuttle Service",
     "duration": "Check official timetable",
     "cost": "Check official timetable",

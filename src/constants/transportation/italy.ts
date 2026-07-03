@@ -24,7 +24,7 @@ export const italyTransportation = [
   {
     "transportationId": "barberino-shuttle",
     "outletId": "barberino",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Shuttle from Firenze Santa Maria Novella",
     "duration": "30 min from Firenze Santa Maria Novella",
     "cost": "From €13 one-way; check official ticket details",
@@ -90,7 +90,7 @@ export const italyTransportation = [
   {
     "transportationId": "castel-romano-shuttle",
     "outletId": "castel-romano",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Shuttle from Termini or EUR Fermi",
     "duration": "≈30–45 min from Rome (estimated)",
     "cost": "€18 return from Termini or €13 return from EUR Fermi",
@@ -123,7 +123,7 @@ export const italyTransportation = [
   {
     "transportationId": "fidenza-coach",
     "outletId": "fidenza-village",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "Coach service from Milan",
     "duration": "1 hr 30 min from Milan Piazza della Repubblica",
     "cost": "€10 adult; €5 children 5–11; free infants 0–4",
@@ -154,6 +154,17 @@ export const italyTransportation = [
     "displayOrder": "3"
   },
   {
+    "transportationId": "fidenza-train",
+    "outletId": "fidenza-village",
+    "transportType": "train",
+    "title": "Train to Fidenza station + local transfer",
+    "duration": "≈60–90 min from Milan or Bologna by rail; last-mile transfer varies (estimated)",
+    "cost": "Check official Trenitalia fare; last-mile fare varies",
+    "tip": "Use official Trenitalia services to Fidenza station, then confirm the current local bus, taxi or Village transfer option with official local transport or Concierge before travelling.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
     "transportationId": "fidenza-private-transfer",
     "outletId": "fidenza-village",
     "transportType": "taxi",
@@ -162,7 +173,7 @@ export const italyTransportation = [
     "cost": "Confirm with Concierge",
     "tip": "Fidenza Village officially offers chauffeur booking via Concierge with at least 24 hours' notice; provide transfer details when reserving.",
     "status": "active",
-    "displayOrder": "4"
+    "displayOrder": "5"
   },
   {
     "transportationId": "fidenza-airport",
@@ -173,7 +184,7 @@ export const italyTransportation = [
     "cost": "Confirm airport rail, coach, taxi or transfer fare",
     "tip": "Use official airport ground transport to reach Milan for the official Shopping Express or continue by rail/car; no dedicated airport-to-village shuttle is published.",
     "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "6"
   },
   {
     "transportationId": "la-reggia-car",
@@ -220,6 +231,17 @@ export const italyTransportation = [
     "displayOrder": "4"
   },
   {
+    "transportationId": "la-reggia-train-bus",
+    "outletId": "la-reggia",
+    "transportType": "train",
+    "title": "Train to Caserta + official outlet bus link",
+    "duration": "≈75–90 min from Naples by train + bus (estimated)",
+    "cost": "Check Trenitalia/official local transport fare",
+    "tip": "Use official rail to Caserta and the officially referenced public-transport/Outlet Link connection toward La Reggia; verify current bus departures and ticketing before travel.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
     "transportationId": "la-reggia-airport",
     "outletId": "la-reggia",
     "transportType": "airport",
@@ -228,7 +250,7 @@ export const italyTransportation = [
     "cost": "Confirm airport taxi, rental-car or transfer fare",
     "tip": "Use official Naples Airport ground transport for taxi, rental car or bus into Naples before onward outlet transport; no dedicated airport-to-outlet shuttle is published.",
     "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "6"
   },
   {
     "transportationId": "noventa-car",
@@ -264,6 +286,17 @@ export const italyTransportation = [
     "displayOrder": "3"
   },
   {
+    "transportationId": "noventa-train-bus",
+    "outletId": "noventa",
+    "transportType": "train",
+    "title": "Train to Venezia Mestre + ATVO/Outlet Link bus",
+    "duration": "Train to Mestre + under 1 hr bus to the outlet",
+    "cost": "Check Trenitalia combined fare or ATVO fare",
+    "tip": "Trenitalia officially sells Noventa di Piave Designer Outlet Link as train plus bus via Venezia Mestre; ATVO also lists Mestre Railway Station as a direct-bus stop. Verify the current timetable before travel.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
     "transportationId": "noventa-airport-bus",
     "outletId": "noventa",
     "transportType": "bus",
@@ -272,7 +305,7 @@ export const italyTransportation = [
     "cost": "€9.20 return on outlet service; confirm airport fare rules with ATVO",
     "tip": "ATVO official outlet service information lists Marco Polo Airport as an intermediate stop; confirm current airport stops, times and ticket validity with ATVO.",
     "status": "active",
-    "displayOrder": "4"
+    "displayOrder": "5"
   },
   {
     "transportationId": "noventa-airport",
@@ -283,7 +316,7 @@ export const italyTransportation = [
     "cost": "Check official ATVO fare or airport taxi/transfer fare",
     "tip": "ATVO and the outlet officially list airport bus access serving Noventa di Piave; verify current airport stop, dates and timetable before travel.",
     "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "6"
   },
   {
     "transportationId": "serravalle-car",
@@ -376,7 +409,7 @@ export const italyTransportation = [
   {
     "transportationId": "firenze-direct-bus",
     "outletId": "the-mall-firenze",
-    "transportType": "shuttle",
+    "transportType": "bus",
     "title": "The Mall by Bus from Florence",
     "duration": "≈50–60 min from Florence (estimated)",
     "cost": "€9.50 one-way or €18 return",
