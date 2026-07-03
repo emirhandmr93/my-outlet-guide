@@ -1854,4 +1854,16 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "viking-of-norway",
+    brandName: "Viking of Norway",
+    aliases: ["Viking Garn", "Viking", "VikingOfNorway", "Viking of Norway Viking Garn"],
+    categoryId: "home-lifestyle",
+    logo: "",
+    originCountryId: "norway",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+
 ];
