@@ -32,11 +32,27 @@ export const countries = [
     "taxFreeAvailable": "TRUE"
   },
   {
+    "countryId": "czech-republic",
+    "countryName": "Czech Republic",
+    "countryFlag": "🇨🇿",
+    "continent": "Europe",
+    "currency": "CZK",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
     "countryId": "denmark",
     "countryName": "Denmark",
     "countryFlag": "🇩🇰",
     "continent": "Europe",
     "currency": "DKK",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
+    "countryId": "finland",
+    "countryName": "Finland",
+    "countryFlag": "🇫🇮",
+    "continent": "Europe",
+    "currency": "EUR",
     "taxFreeAvailable": "TRUE"
   },
   {
@@ -77,6 +93,14 @@ export const countries = [
     "countryFlag": "🇳🇱",
     "continent": "Europe",
     "currency": "EUR",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
+    "countryId": "norway",
+    "countryName": "Norway",
+    "countryFlag": "🇳🇴",
+    "continent": "Europe",
+    "currency": "NOK",
     "taxFreeAvailable": "TRUE"
   },
   {

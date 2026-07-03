@@ -35,6 +35,11 @@ export const cities = [
     "countryId": "germany"
   },
   {
+    "cityId": "prague",
+    "cityName": "Prague",
+    "countryId": "czech-republic"
+  },
+  {
     "cityId": "doncaster",
     "cityName": "Doncaster",
     "countryId": "united-kingdom"
@@ -210,9 +215,19 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "vaalimaa",
+    "cityName": "Vaalimaa",
+    "countryId": "finland"
+  },
+  {
     "cityId": "venice",
     "cityName": "Venice",
     "countryId": "italy"
+  },
+  {
+    "cityId": "vestby",
+    "cityName": "Vestby",
+    "countryId": "norway"
   },
   {
     "cityId": "vienna",
