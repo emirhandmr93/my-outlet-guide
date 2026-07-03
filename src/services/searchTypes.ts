@@ -15,5 +15,6 @@ export type SearchResult = {
   type: SearchResultType;
   routeName: string;
   routeParams?: SearchRouteParams;
+  keywords?: string[];
   score: number;
 };

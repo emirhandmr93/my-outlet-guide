@@ -17,6 +17,7 @@ export function searchApp(query: string, limit = 12): SearchResult[] {
         item.subtitle,
         item.type,
         item.id,
+        ...(item.keywords || []),
       ]);
 
       return {

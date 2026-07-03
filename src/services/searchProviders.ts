@@ -17,6 +17,7 @@ export function getSearchProviderItems(): SearchResult[] {
     routeParams: {
       outletId: outlet.outletId,
     },
+    keywords: Array.isArray(outlet.aliases) ? outlet.aliases : [],
     score: 0,
   }));
 

@@ -24,6 +24,10 @@ function compactKeywords(values: Array<string | undefined | null>) {
   return values.filter((value): value is string => Boolean(value));
 }
 
+function getOutletAliases(outlet: { aliases?: string[]; [key: string]: unknown }) {
+  return Array.isArray(outlet.aliases) ? outlet.aliases : [];
+}
+
 export function buildSearchIndex(): SearchIndexItem[] {
   const outletItems: SearchIndexItem[] = outlets.map((outlet) => ({
     id: outlet.outletId,
@@ -32,6 +36,7 @@ export function buildSearchIndex(): SearchIndexItem[] {
     type: "outlet",
     keywords: compactKeywords([
       outlet.name,
+      ...getOutletAliases(outlet),
       getCityName(outlet.cityId),
       getCountryName(outlet.countryId),
       outlet.countryId,
