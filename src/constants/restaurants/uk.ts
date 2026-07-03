@@ -712,7 +712,7 @@ export const ukRestaurants = [
   {
     "restaurantId": "ashford-designer-outlet-caffe-nero",
     "outletId": "ashford-designer-outlet",
-    "restaurantName": "Caffe Nero",
+    "restaurantName": "Caffè Nero",
     "category": "Cafe",
     "priceLevel": "££",
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
@@ -1442,7 +1442,7 @@ export const ukRestaurants = [
   {
     "restaurantId": "gunwharf-quays-wagamama",
     "outletId": "gunwharf-quays",
-    "restaurantName": "wagamama",
+    "restaurantName": "Wagamama",
     "category": "Restaurant",
     "priceLevel": "££",
     "website": "https://www.gunwharf-quays.com/en/eat-listing",
@@ -2402,7 +2402,7 @@ export const ukRestaurants = [
   {
     "restaurantId": "the-galleria-outlet-sumac-and-saffron",
     "outletId": "the-galleria-outlet",
-    "restaurantName": "Sumac and Saffron",
+    "restaurantName": "Sumac & Saffron",
     "category": "Restaurant",
     "priceLevel": "££",
     "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
@@ -2528,5 +2528,145 @@ export const ukRestaurants = [
     "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
     "status": "active",
     "displayOrder": "253"
+  },
+  {
+    "restaurantId": "clarks-village-caffe-nero",
+    "outletId": "clarks-village",
+    "restaurantName": "Caffè Nero",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.clarksvillage.co.uk/en/eat-listing",
+    "status": "active",
+    "displayOrder": "900"
+  },
+  {
+    "restaurantId": "clarks-village-slim-chickens",
+    "outletId": "clarks-village",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.clarksvillage.co.uk/en/eat-listing/slim-chickens",
+    "status": "active",
+    "displayOrder": "901"
+  },
+  {
+    "restaurantId": "dalton-park-dancing-betty",
+    "outletId": "dalton-park",
+    "restaurantName": "Dancing Betty",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.dalton-park.co.uk/",
+    "status": "active",
+    "displayOrder": "902"
+  },
+  {
+    "restaurantId": "dalton-park-kfc",
+    "outletId": "dalton-park",
+    "restaurantName": "KFC",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.dalton-park.co.uk/",
+    "status": "active",
+    "displayOrder": "903"
+  },
+  {
+    "restaurantId": "gunwharf-quays-giggling-squid",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Giggling Squid",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "904"
+  },
+  {
+    "restaurantId": "gunwharf-quays-nandos",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Nando's",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "905"
+  },
+  {
+    "restaurantId": "gunwharf-quays-pizzaexpress",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "PizzaExpress",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "906"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-burger-king",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Burger King",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://the-boulevard.co.uk/plan-your-visit/",
+    "status": "active",
+    "displayOrder": "907"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-costa-coffee",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://the-boulevard.co.uk/plan-your-visit/",
+    "status": "active",
+    "displayOrder": "908"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-costa-coffee",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/",
+    "status": "active",
+    "displayOrder": "909"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-nandos",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Nando's",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/",
+    "status": "active",
+    "displayOrder": "910"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-pizzaexpress",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "PizzaExpress",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/",
+    "status": "active",
+    "displayOrder": "911"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-wagamama",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/",
+    "status": "active",
+    "displayOrder": "912"
+  },
+  {
+    "restaurantId": "london-designer-outlet-mowchi",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Mowchi",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "913"
   }
 ];
