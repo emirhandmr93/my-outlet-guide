@@ -6,6 +6,7 @@ export const croatiaOutletBrands: OutletBrand[] = [
   { outletId: "ros-designer-outlet", brandId: "bugatti", featured: false, relationStatus: "active" },
   { outletId: "ros-designer-outlet", brandId: "calvin-klein", featured: true, relationStatus: "active" },
   { outletId: "ros-designer-outlet", brandId: "desigual", featured: true, relationStatus: "active" },
+  { outletId: "ros-designer-outlet", brandId: "fashion-and-friends-xyz", featured: true, relationStatus: "active" },
   { outletId: "ros-designer-outlet", brandId: "fred-perry", featured: false, relationStatus: "active" },
   { outletId: "ros-designer-outlet", brandId: "gap", featured: true, relationStatus: "active" },
   { outletId: "ros-designer-outlet", brandId: "guess", featured: true, relationStatus: "active" },

@@ -4912,6 +4912,12 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "valdichiana-village",
+    brandId: "boggi-milano",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
     brandId: "borbonese",
     featured: false,
     relationStatus: "active",
@@ -4961,6 +4967,12 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "valdichiana-village",
     brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "valdichiana-village",
+    brandId: "tommy-hilfiger",
     featured: false,
     relationStatus: "active",
   },

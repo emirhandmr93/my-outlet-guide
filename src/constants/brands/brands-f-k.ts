@@ -89,6 +89,22 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "fashion-and-friends-xyz",
+    brandName: "Fashion&Friends / XYZ",
+    aliases: [
+      "Fashion & Friends",
+      "Fashion and Friends",
+      "Fashion&Friends",
+      "XYZ",
+    ],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "serbia",
+    luxuryLevel: "fashion",
+    rankingWeight: 68,
+    brandStatus: "active",
+  },
+  {
     brandId: "farinella",
     brandName: "Farinella",
     aliases: [],
