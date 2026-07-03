@@ -735,12 +735,6 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
-    brandId: "cristina-oria",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "las-rozas-village",
     brandId: "diesel",
     featured: false,
     relationStatus: "active",

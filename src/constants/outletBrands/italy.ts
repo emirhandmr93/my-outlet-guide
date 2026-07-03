@@ -129,12 +129,6 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
-    brandId: "caffe-mediceo",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "barberino",
     brandId: "calvin-klein",
     featured: false,
     relationStatus: "active",
@@ -250,12 +244,6 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "barberino",
     brandId: "facis",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "barberino",
-    brandId: "farinella",
     featured: false,
     relationStatus: "active",
   },
@@ -381,12 +369,6 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
-    brandId: "il-torracchione",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "barberino",
     brandId: "imperial",
     featured: false,
     relationStatus: "active",
@@ -424,12 +406,6 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "barberino",
     brandId: "la-casa-italiana",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "barberino",
-    brandId: "la-piadineria",
     featured: false,
     relationStatus: "active",
   },
@@ -586,12 +562,6 @@ export const italyOutletBrands: OutletBrand[] = [
   {
     outletId: "barberino",
     brandId: "piquadro",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "barberino",
-    brandId: "poke-house",
     featured: false,
     relationStatus: "active",
   },
