@@ -11,7 +11,7 @@ export const portugalOutlets = [
     openingHours: "Monday - Sunday 10:00 - 23:00; special dates may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores, restaurants and services",
+    storesCountText: "150+ Brands",
     rating: 0,
     reviewCount: 0,
     services: [
@@ -87,7 +87,7 @@ export const portugalOutlets = [
     openingHours: "Monday - Sunday 10:00 - 23:00; special dates may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores, restaurants and services",
+    storesCountText: "150+ Brands",
     rating: 0,
     reviewCount: 0,
     services: [

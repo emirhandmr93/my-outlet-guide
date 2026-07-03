@@ -11,7 +11,7 @@ export const polandOutlets = [
     openingHours: "Monday - Saturday 10:00 - 21:00; selected shopping Sundays 10:00 - 20:00; holidays may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores, restaurants and services",
+    storesCountText: "Over 100 outlet stores",
     rating: 0,
     reviewCount: 0,
     services: [
@@ -70,7 +70,7 @@ export const polandOutlets = [
     openingHours: "Monday - Saturday 10:00 - 21:00; selected shopping Sundays 10:00 - 20:00; holidays may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores, restaurants and services",
+    storesCountText: "More than 100 outlet stores",
     rating: 0,
     reviewCount: 0,
     services: [

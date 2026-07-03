@@ -11,7 +11,7 @@ export const switzerlandOutlets = [
     openingHours: "Daily 11:00 - 19:00; closed 1 Jan, Easter Sunday, 1 Aug, 25-26 Dec",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores, restaurants and services",
+    storesCountText: "Over 160 stores and 250 brands",
     rating: 0,
     reviewCount: 0,
     services: [
