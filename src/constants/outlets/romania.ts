@@ -11,7 +11,7 @@ export const romaniaOutlets = [
     openingHours: "L-S: 10:00-21:00; D: 10:00-20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "APROAPE 60 DE MAGAZINE OUTLET",
+    storesCountText: "Almost 60 outlet stores",
     rating: 0,
     reviewCount: 0,
     services: [

@@ -86,7 +86,7 @@ export const germanyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "100+ Stores",
+    storesCountText: "100+ stores",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -163,7 +163,7 @@ export const germanyOutlets = [
     openingHours: "Mon-Wed 09:00 - 20:00; Thu 10:00 - 20:00; Fri 09:00 - 24:00; Sat 10:00 - 20:00; Sun closed",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "130+ Stores",
+    storesCountText: "130+ stores",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -714,7 +714,7 @@ export const germanyOutlets = [
     openingHours: "Mon-Sat 10:00 - 20:00; Sun closed; special opening hours may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Top brands",
+    storesCountText: "Top outlet brands",
     rating: 4.3,
     reviewCount: 0,
     services: [
