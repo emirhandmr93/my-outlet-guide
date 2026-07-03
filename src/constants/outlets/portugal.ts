@@ -11,7 +11,7 @@ export const portugalOutlets = [
     openingHours: "Monday - Sunday 10:00 - 23:00; special dates may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Best brands, offers and restaurants",
+    storesCountText: "150+ brands",
     rating: 0,
     reviewCount: 0,
     services: [
@@ -87,7 +87,7 @@ export const portugalOutlets = [
     openingHours: "Monday - Sunday 10:00 - 23:00; special dates may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Best brands, irresistible flavors and excellent service",
+    storesCountText: "150+ brands",
     rating: 0,
     reviewCount: 0,
     services: [
@@ -105,15 +105,10 @@ export const portugalOutlets = [
       "Delfina",
       "Duforno",
       "H3",
-      "Lindt",
-      "McDonald's",
       "Pappa'Lab",
       "Sibuya",
       "Starbucks",
-      "Tavi",
-      "Tomatino",
       "Vila 953",
-      "Vila Grill",
       "Vitaminas"
     ],
     parking: "Official services list car parking; official accessibility information includes car parking.",

@@ -11,7 +11,7 @@ export const denmarkOutlets = [
     openingHours: "Monday - Sunday 10:00 - 19:00; public holidays and special dates may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "38 brand outlets and 3 restaurants",
+    storesCountText: "52 flagship outlets and 3 restaurants",
     rating: 0,
     reviewCount: 0,
     services: [
@@ -31,7 +31,7 @@ export const denmarkOutlets = [
       "McDonald's",
       "The Burger"
     ],
-    parking: "More than 850 free parking spaces without time limit in front of the outlet village; official about page also notes more than 1000 free parking spaces.",
+    parking: "872 parking spaces.",
     taxFreeAvailable: true,
     vatRate: 25,
     estimatedRefundRate: 12,
