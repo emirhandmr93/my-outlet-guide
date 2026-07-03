@@ -37,7 +37,6 @@ export const greeceOutlets = [
       "Petite Fleur",
       "Starbucks®"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Everest Exclusive, Goody's Burger House, Il Barretto, and more.",
     taxFreeAvailable: true,
     vatRate: 24,
     estimatedRefundRate: 12,

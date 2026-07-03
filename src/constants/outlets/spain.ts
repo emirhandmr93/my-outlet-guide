@@ -36,7 +36,6 @@ export const spainOutlets = [
       "Mentidero Sal y Brasas",
       "Mistura"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Cristina Oria, Joselito Kiosk, Joselito's Restaurant, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 21,
@@ -110,7 +109,6 @@ export const spainOutlets = [
       "Santo Cielo",
       "Starbucks"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Ben & Jerry's, Five Guys, La Pecera, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 21,

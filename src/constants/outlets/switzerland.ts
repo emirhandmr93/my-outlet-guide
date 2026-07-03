@@ -41,7 +41,6 @@ export const switzerlandOutlets = [
       "Spaghetti Store",
       "The Asian"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Braceria Elvetica Bistrot, Chalet Suisse, Fashion Caffe, and more.",
     parking: "1,800 parking spaces; EV charging available.",
     taxFreeAvailable: true,
     vatRate: 8.1,
@@ -116,7 +115,6 @@ export const switzerlandOutlets = [
       "Starbucks",
       "Subway"
     ],
-    restaurantSummary: "Dining options listed in outlet data include All about Crêpe, Coffee Fellows, Five Guys, and more.",
     parking: "1,550 parking spaces directly at the centre, including EV charging stations and parking for motorhomes and campers.",
     taxFreeAvailable: true,
     vatRate: 8.1,
@@ -174,7 +172,6 @@ export const switzerlandOutlets = [
       "Changing Table"
     ],
     restaurants: ["Restaurant Grano", "Foodtruck"],
-    restaurantSummary: "Dining options listed in outlet data: Restaurant Grano and Foodtruck.",
     parking: "Outdoor parking and an underground parking garage are available; parking is chargeable across the site. Two EV charging stations are located in front of FASHION FISH base.",
     taxFreeAvailable: true,
     vatRate: 8.1,

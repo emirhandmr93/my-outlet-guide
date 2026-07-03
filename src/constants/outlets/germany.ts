@@ -33,7 +33,6 @@ export const germanyOutlets = [
       "Outlet Lounge",
       "The big Fryup Foodtruck"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Amigo Grill, Bitburger Bierhaus, Café | Bar & Restaurant Marielle, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 19,
@@ -117,7 +116,6 @@ export const germanyOutlets = [
       "Parmera",
       "Starbucks"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Cocos, Coffee-Bike, Coniato, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 19,
@@ -193,7 +191,6 @@ export const germanyOutlets = [
       "Starbucks",
       "Tackmann's Coffee House"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Asiagourmet, Bistrot, Five Guys, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 19,
@@ -264,7 +261,6 @@ export const germanyOutlets = [
       "L’Osteria",
       "Starbucks"
     ],
-    restaurantSummary: "Dining options listed in outlet data include DEAN & DAVID, Five Guys, FRITTENWERK, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 19,
@@ -343,7 +339,6 @@ export const germanyOutlets = [
       "Mancini",
       "Mr. Smash & Co."
     ],
-    restaurantSummary: "Dining options listed in outlet data include Bollicine&Co. Champagne Bar, Coffee Fellows, Indochine, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 19,
@@ -419,7 +414,6 @@ export const germanyOutlets = [
       "Pommes Freunde",
       "Starbucks"
     ],
-    restaurantSummary: "Dining options listed in outlet data include dean & david, Olea, Pano Café, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 19,
@@ -506,7 +500,6 @@ export const germanyOutlets = [
       "Tommy's Coffee",
       "Zem Zem Coffee"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Almresi, Bäckerei-Keim - Café & Snacks, Bollicine&Co. Champagne Bar, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 19,
@@ -590,7 +583,6 @@ export const germanyOutlets = [
       "The Coffee Corner",
       "The Waffle"
     ],
-    restaurantSummary: "Dining options listed in outlet data include CINNAMOOD, Elaine's TakeAway, La Piazza, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 19,
@@ -677,7 +669,6 @@ export const germanyOutlets = [
       "STARBUCKS",
       "SUSHI TOMO"
     ],
-    restaurantSummary: "Dining options listed in outlet data include COFFEE-BIKE, DEAN & DAVID, Di Piu, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 19,
@@ -747,7 +738,6 @@ export const germanyOutlets = [
       "Centre Plan"
     ],
     restaurants: ["COFFEE FELLOWS", "FRITTENWERK", "GLOBAL DÖNER", "MAMALICIOUS", "STARBUCKS"],
-    restaurantSummary: "Dining options listed in outlet data include COFFEE FELLOWS, FRITTENWERK, GLOBAL DÖNER, and more.",
     taxFreeAvailable: true,
     vatRate: 19,
     estimatedRefundRate: 11,

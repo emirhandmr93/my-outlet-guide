@@ -29,7 +29,6 @@ export const croatiaOutlets = [
     restaurants: [
       "Mlinar caffe"
     ],
-    restaurantSummary: "Dining option listed in outlet data: Mlinar caffe.",
     parking: "FREE PARKING",
     taxFreeAvailable: true,
     vatRate: 25,

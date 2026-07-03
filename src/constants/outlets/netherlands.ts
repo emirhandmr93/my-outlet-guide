@@ -58,7 +58,6 @@ export const netherlandsOutlets = [
       "Wurzt",
       "YoYo Fresh Tea"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Chez Margot, Cinnamood, Crêpes, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 21,
@@ -143,7 +142,6 @@ export const netherlandsOutlets = [
       "Lindt",
       "Per Tutti"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Bonton, Casa del Caffè, Daan's Churros, and more.",
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 21,

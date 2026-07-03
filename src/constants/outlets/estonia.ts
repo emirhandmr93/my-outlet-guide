@@ -26,7 +26,6 @@ export const estoniaOutlets = [
       "Bicycle Storage"
     ],
     restaurants: ["Bad Habits", "Boost Juice Bar", "Claudz – family restaurant and café", "Crudo Pizza & Pasta", "Döner HeseKebab® & Gyros", "Garage Sushi & Burger", "Hesburger", "Monk Restoran", "MUMM Lounge baar", "OSAY Bubble Tea", "Pann & Kook", "Panorama Lounge", "Pelm Deli", "Pelmen Käsitöö Kohvik", "Puffid Bakery", "Restoran Pelm", "Restoran RIBI", "Robert’s Coffee", "SÜSI Grill & Chill", "TOKUMARU", "Zumin Lounge resto"],
-    restaurantSummary: "Dining options listed in outlet data include Bad Habits, Boost Juice Bar, Claudz – family restaurant and café, and more.",
     taxFreeAvailable: false,
     vatRate: 24,
     estimatedRefundRate: 0,
