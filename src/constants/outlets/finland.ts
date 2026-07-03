@@ -23,7 +23,6 @@ export const finlandOutlets = [
       "Bus access"
     ],
     restaurants: ["Bella Roma & Daddy's Diner & Beefking", "Burger King", "Espresso House", "Friends & Brgrs", "Hesburger", "Kotipizza", "Pancho Villa", "Pizza Hut", "Rax Pizzabuffet", "Seoul Good Ideapark", "Subway"],
-    restaurantSummary: "Dining options listed in outlet data include Bella Roma & Daddy's Diner & Beefking, Burger King, Espresso House, and more.",
     parking: "Free customer parking is available around Ideapark Lempäälä; follow on-site signs for the closest entrance and parking area.",
     taxFreeAvailable: true,
     vatRate: 25.5,

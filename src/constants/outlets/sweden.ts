@@ -31,7 +31,6 @@ export const swedenOutlets = [
       "Mena Mano",
       "Triumfglass - Ice Cream Truck"
     ],
-    restaurantSummary: "Dining options listed in outlet data include Diné, Espresso House, Mena Mano, and more.",
     parking: "Parking and route information is available on the official centre website.",
     taxFreeAvailable: true,
     vatRate: 25,

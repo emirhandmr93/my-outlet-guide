@@ -28,7 +28,6 @@ export const norwayOutlets = [
       "Shuttle bus"
     ],
     restaurants: ["Jærbakeren Arne Johannesen"],
-    restaurantSummary: "Dining option listed in outlet data: Jærbakeren Arne Johannesen.",
     parking: "Free parking is available at the centre; electric car chargers are also listed among the centre facilities.",
     taxFreeAvailable: true,
     vatRate: 25,
