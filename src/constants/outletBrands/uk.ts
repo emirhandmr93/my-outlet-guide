@@ -501,12 +501,6 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "caledonia-park",
-    brandId: "drummuir-farm",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "caledonia-park",
     brandId: "dune-london",
     featured: false,
     relationStatus: "active",
