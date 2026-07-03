@@ -240,11 +240,6 @@ export const cities = [
     "countryId": "austria"
   },
   {
-    "cityId": "voderady",
-    "cityName": "Voderady",
-    "countryId": "slovakia"
-  },
-  {
     "cityId": "warsaw",
     "cityName": "Warsaw",
     "countryId": "poland"
