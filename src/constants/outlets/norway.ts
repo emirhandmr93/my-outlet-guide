@@ -1,22 +1,34 @@
 export const norwayOutlets = [
   {
     outletId: "norwegian-outlet",
-    name: "Norwegian Outlet",
+    name: "Oslo Fashion Outlet",
     slug: "norwegian-outlet",
     countryId: "norway",
     cityId: "vestby",
-    address: "Vestbyveien 155, 1540 Vestby, Norway",
+    address: "Vestbyveien 155, 1543 Vestby, Norway",
     latitude: 59.6009,
     longitude: 10.7507,
     openingHours: "Monday - Friday 10:00 - 21:00; Saturday 10:00 - 19:00; Sunday closed",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Norway's largest brand outlet",
+    storesCountText: "60 of the biggest Scandinavian and international fashion and lifestyle brands",
     rating: 0,
     reviewCount: 0,
-    services: [],
-    restaurants: [],
-    parking: "Parking information is available on the official outlet website.",
+    services: [
+      "Special opening hours",
+      "Parking",
+      "Electric car charger",
+      "Tourist Information Centre",
+      "Gift Card",
+      "Public transport",
+      "Accessibility",
+      "Tax Free",
+      "Free WI-FI",
+      "Umbrella",
+      "Shuttle bus"
+    ],
+    restaurants: ["Jærbakeren Arne Johannesen"],
+    parking: "Free parking is available at the centre; electric car chargers are also listed among the centre facilities.",
     taxFreeAvailable: true,
     vatRate: 25,
     estimatedRefundRate: 12,
@@ -38,10 +50,10 @@ export const norwayOutlets = [
       recommendedRoute: "Drive south from Oslo via E6 toward Vestby, or use regional public transport to Vestby and local onward connections."
     },
     nearby: [],
-    websiteUrl: "https://www.oslofashionoutlet.no/",
+    websiteUrl: "https://www.oslofashionoutlet.no/en",
     status: "active",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Vestbyveien%20155%2C%201540%20Vestby%2C%20Norway",
-    appleMapsUrl: "http://maps.apple.com/?ll=59.6009,10.7507&q=Norwegian%20Outlet",
-    yandexMapsUrl: "https://yandex.com/maps/?ll=10.7507,59.6009&z=16&text=Norwegian%20Outlet"
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Vestbyveien%20155%2C%201543%20Vestby%2C%20Norway",
+    appleMapsUrl: "http://maps.apple.com/?ll=59.6009,10.7507&q=Oslo%20Fashion%20Outlet",
+    yandexMapsUrl: "https://yandex.com/maps/?ll=10.7507,59.6009&z=16&text=Oslo%20Fashion%20Outlet"
   }
 ];
