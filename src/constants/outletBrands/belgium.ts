@@ -688,6 +688,12 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-luxembourg",
+    brandId: "geox",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
     brandId: "guess",
     featured: false,
     relationStatus: "active",
@@ -695,6 +701,18 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-luxembourg",
     brandId: "home-and-cook",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "jack-and-jones",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "le-creuset",
     featured: false,
     relationStatus: "active",
   },
@@ -712,6 +730,18 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-luxembourg",
+    brandId: "mustang",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "name-it",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
     brandId: "new-balance",
     featured: false,
     relationStatus: "active",
@@ -724,13 +754,37 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-luxembourg",
+    brandId: "oneill",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "only",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
     brandId: "puma",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "designer-outlet-luxembourg",
+    brandId: "replay",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
     brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "skechers",
     featured: false,
     relationStatus: "active",
   },
@@ -743,6 +797,24 @@ export const belgiumOutletBrands: OutletBrand[] = [
   {
     outletId: "designer-outlet-luxembourg",
     brandId: "tommy-hilfiger",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "trespass",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "vero-moda",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "vila",
     featured: false,
     relationStatus: "active",
   },
