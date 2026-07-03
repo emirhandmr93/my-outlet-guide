@@ -32,12 +32,12 @@ export const denmarkOutlets = [
       "The Burger"
     ],
     parking: "872 parking spaces.",
-    taxFreeAvailable: true,
+    taxFreeAvailable: false,
     vatRate: 25,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "300.00 DKK",
-    taxFreeOperator: "Participating tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free shopping assistance at participating stores and validate documents when leaving the EU.",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 65,
     airportDistanceKm: 65,
     airports: [

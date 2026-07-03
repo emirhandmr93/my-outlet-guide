@@ -32,12 +32,12 @@ export const swedenOutlets = [
       "Triumfglass - Ice Cream Truck"
     ],
     parking: "Parking and route information is available on the official centre website.",
-    taxFreeAvailable: true,
+    taxFreeAvailable: false,
     vatRate: 25,
     estimatedRefundRate: 14,
     minimumTaxFreeSpend: "200 SEK",
-    taxFreeOperator: "Participating tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free shopping assistance at participating stores and validate documents when leaving the EU.",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 25,
     airportDistanceKm: 48,
     airports: [

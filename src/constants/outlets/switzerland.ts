@@ -116,12 +116,12 @@ export const switzerlandOutlets = [
       "Subway"
     ],
     parking: "1,550 parking spaces directly at the centre, including EV charging stations and parking for motorhomes and campers.",
-    taxFreeAvailable: true,
+    taxFreeAvailable: false,
     vatRate: 8.1,
     estimatedRefundRate: 5.5,
     minimumTaxFreeSpend: "300 CHF",
-    taxFreeOperator: "Participating stores / Swiss customs validation",
-    taxFreeOfficeInfo: "Shop Tax Free is listed as a centre amenity. Eligible non-Swiss residents can request tax-free forms at participating stores for purchases of at least CHF 300 and validate export documents with Swiss customs.",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 1,
     airportDistanceKm: 110,
     airports: [

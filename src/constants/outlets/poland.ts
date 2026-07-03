@@ -31,12 +31,12 @@ export const polandOutlets = [
       "So Coffee"
     ],
     parking: "888 car parking spaces and 28 bicycle parking spaces.",
-    taxFreeAvailable: true,
+    taxFreeAvailable: false,
     vatRate: 23,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "200 PLN",
-    taxFreeOperator: "Participating tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free shopping assistance at participating stores and validate documents when leaving the EU.",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 10,
     airportDistanceKm: 8,
     airports: [
@@ -90,12 +90,12 @@ export const polandOutlets = [
       "Sphinx"
     ],
     parking: "800 car parking spaces, 52 bicycle parking spaces and a Veturilo station.",
-    taxFreeAvailable: true,
+    taxFreeAvailable: false,
     vatRate: 23,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "200 PLN",
-    taxFreeOperator: "Participating tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free shopping assistance at participating stores and validate documents when leaving the EU.",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 11,
     airportDistanceKm: 18,
     airports: [

@@ -39,12 +39,12 @@ export const portugalOutlets = [
       "Starbucks"
     ],
     parking: "Official services list parking; official practical information shows 2 parking locations.",
-    taxFreeAvailable: true,
+    taxFreeAvailable: false,
     vatRate: 23,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "0.01 EUR",
-    taxFreeOperator: "Participating tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free shopping assistance at participating stores and validate documents when leaving the EU.",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 30,
     airportDistanceKm: 25,
     airports: [
@@ -112,12 +112,12 @@ export const portugalOutlets = [
       "Vitaminas"
     ],
     parking: "Official services list car parking; official accessibility information includes car parking.",
-    taxFreeAvailable: true,
+    taxFreeAvailable: false,
     vatRate: 23,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "0.01 EUR",
-    taxFreeOperator: "Participating tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free shopping assistance at participating stores and validate documents when leaving the EU.",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 30,
     airportDistanceKm: 15,
     airports: [

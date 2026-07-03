@@ -42,12 +42,12 @@ export const franceOutlets = [
       "Starbucks"
     ],
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
-    taxFreeAvailable: true,
+    taxFreeAvailable: false,
     vatRate: 20,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "100.01 EUR",
-    taxFreeOperator: "EU customs validation / tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund when spending at least €100.01 in participating stores on the same day. The refund can be processed through the Guest Services desk and validated when leaving the EU.",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 55,
     airportDistanceKm: 35,
     airports: [
@@ -120,12 +120,12 @@ export const franceOutlets = [
       "Starbucks"
     ],
     parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
-    taxFreeAvailable: true,
+    taxFreeAvailable: false,
     vatRate: 20,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "100.01 EUR",
-    taxFreeOperator: "EU customs validation / tax refund operators",
-    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when the purchase exceeds the French minimum spend. Validate the form when leaving the EU. Estimated refunds are usually lower than the full VAT rate because operator fees may apply.",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 170,
     airportDistanceKm: 165,
     airports: [
