@@ -1,7 +1,7 @@
 export const denmarkOutlets = [
   {
     outletId: "ringsted-outlet",
-    name: "Ringsted Outlet",
+    name: "Ringsted Designer Outlet",
     slug: "ringsted-outlet",
     countryId: "denmark",
     cityId: "ringsted",
@@ -14,8 +14,24 @@ export const denmarkOutlets = [
     storesCountText: "38 brand outlets and 3 restaurants",
     rating: 0,
     reviewCount: 0,
-    services: [],
-    restaurants: [],
+    services: [
+      "Free parking",
+      "EV charging station",
+      "Restaurant/Café",
+      "Activities for children",
+      "Coach parking",
+      "Accessible toilets",
+      "Baby Lounge",
+      "Defibrillator",
+      "Lost & found",
+      "Dogs welcome in common areas"
+    ],
+    restaurants: [
+      "Espresso House",
+      "McDonald's",
+      "The Burger"
+    ],
+    parking: "More than 850 free parking spaces without time limit in front of the outlet village; official about page also notes more than 1000 free parking spaces.",
     taxFreeAvailable: true,
     vatRate: 25,
     estimatedRefundRate: 12,
@@ -49,7 +65,7 @@ export const denmarkOutlets = [
     websiteUrl: "https://ringsteddesigneroutlet.dk/en/",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=55.4530,11.7874",
-    appleMapsUrl: "http://maps.apple.com/?ll=55.4530,11.7874&q=Ringsted%20Outlet",
-    yandexMapsUrl: "https://yandex.com/maps/?ll=11.7874,55.4530&z=16&text=Ringsted%20Outlet"
+    appleMapsUrl: "http://maps.apple.com/?ll=55.4530,11.7874&q=Ringsted%20Designer%20Outlet",
+    yandexMapsUrl: "https://yandex.com/maps/?ll=11.7874,55.4530&z=16&text=Ringsted%20Designer%20Outlet"
   }
 ];
