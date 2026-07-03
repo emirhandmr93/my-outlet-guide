@@ -2,7 +2,7 @@ export const netherlandsTransportation = [
   {
     "transportationId": "roermond-car",
     "outletId": "designer-outlet-roermond",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Parking",
     "duration": "45 min from Eindhoven or Maastricht",
     "cost": "First 30 minutes free; full day €7; premium parking €12.50",
@@ -46,7 +46,7 @@ export const netherlandsTransportation = [
   {
     "transportationId": "roermond-airports",
     "outletId": "designer-outlet-roermond",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Nearby Airports",
     "duration": "≈45-60 min from Eindhoven, Maastricht, or Düsseldorf airports (estimated)",
     "cost": "Confirm with provider",
@@ -68,7 +68,7 @@ export const netherlandsTransportation = [
   {
     "transportationId": "roosendaal-car",
     "outletId": "designer-outlet-roosendaal",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Parking",
     "duration": "30 min from Rotterdam or Antwerp",
     "cost": "Full day €5",

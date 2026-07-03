@@ -2,7 +2,7 @@ export const greeceTransportation = [
   {
     "transportationId": "designer-outlet-athens-car-parking",
     "outletId": "designer-outlet-athens",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car via Attiki Odos",
     "duration": "30 min from Athens downtown; 15 min from Athens International Airport",
     "cost": "Parking available; fuel and tolls vary",
@@ -24,7 +24,7 @@ export const greeceTransportation = [
   {
     "transportationId": "designer-outlet-athens-airport",
     "outletId": "designer-outlet-athens",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Athens International Airport access",
     "duration": "15 min from Athens International Airport by car",
     "cost": "Confirm taxi or transfer fare",
