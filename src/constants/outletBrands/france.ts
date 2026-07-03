@@ -2253,12 +2253,6 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "roppenheim-the-style-outlets",
-    brandId: "paul-le-cafe",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "roppenheim-the-style-outlets",
     brandId: "pepe-jeans",
     featured: false,
     relationStatus: "active",

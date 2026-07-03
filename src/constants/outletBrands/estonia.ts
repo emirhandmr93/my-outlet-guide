@@ -9,7 +9,6 @@ const makeOutletBrands = (outletId: string, brandIds: string[]): OutletBrand[] =
   }));
 
 const t1TallinnOutletBrandIds = [
-  "aanda-tally-weijl",
   "denim-dream-outlet",
   "halfprice",
   "hc-pro-outlet",
@@ -18,12 +17,10 @@ const t1TallinnOutletBrandIds = [
   "pere-optika-outlet",
   "premium-sneaker-outlet",
   "rademar-outlet",
-  "rahva-raamat",
   "salamander-outlet",
   "sokisahtel-outlet",
   "sportland-outlet",
   "sportplus-outlet",
-  "terranova",
   "upgreat"
 ];
 

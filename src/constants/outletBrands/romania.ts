@@ -11,18 +11,26 @@ const makeOutletBrands = (outletId: string, brandIds: string[]): OutletBrand[] =
 const fashionHouseOutletCentreBucharestBrandIds = [
   "acandco",
   "adidas",
+  "boss",
   "brands-hub",
   "bsb",
   "calvin-klein",
+  "diesel",
   "dika",
+  "gap",
   "guess",
+  "guess-accessories",
+  "hervis",
   "kenvelo",
   "levi-s",
+  "liujo",
   "marc-opolo",
   "numero-uno",
   "randr-boutique",
   "sofiaman",
-  "the-cosmetics-company-store"
+  "the-cosmetics-company-store",
+  "tom-tailor",
+  "under-armour"
 ];
 
 export const romaniaOutletBrands: OutletBrand[] = [

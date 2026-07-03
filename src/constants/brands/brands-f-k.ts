@@ -1348,6 +1348,17 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "hervis",
+    brandName: "Hervis",
+    aliases: ["Hervis Sports", "Hervis Sport"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "austria",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 66,
+    brandStatus: "active",
+  },
+  {
     brandId: "hickey-freeman",
     brandName: "Hickey Freeman",
     aliases: ["HickeyFreeman"],
