@@ -3685,4 +3685,28 @@ export const brandsFK: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
+  {
+    brandId: "follestad",
+    brandName: "Follestad",
+    aliases: ["Follestad Outlet"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "norway",
+    luxuryLevel: "premium",
+    rankingWeight: 62,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "hoyer",
+    brandName: "Høyer",
+    aliases: ["Hoyer", "Høyer Outlet", "Hoyer Outlet"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "norway",
+    luxuryLevel: "premium",
+    rankingWeight: 62,
+    brandStatus: "active",
+  },
+
 ];

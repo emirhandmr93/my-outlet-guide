@@ -3314,4 +3314,28 @@ export const brandsQT: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "swix",
+    brandName: "Swix",
+    aliases: ["Swix Outlet"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "norway",
+    luxuryLevel: "sports",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "reima",
+    brandName: "Reima",
+    aliases: ["Reima Outlet"],
+    categoryId: "kids",
+    logo: "",
+    originCountryId: "finland",
+    luxuryLevel: "sports",
+    rankingWeight: 68,
+    brandStatus: "active",
+  },
+
 ];
