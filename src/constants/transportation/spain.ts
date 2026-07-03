@@ -2,7 +2,7 @@ export const spainTransportation = [
   {
     "transportationId": "las-rozas-car",
     "outletId": "las-rozas-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Complimentary Parking",
     "duration": "30 min from Madrid",
     "cost": "Free parking",
@@ -46,7 +46,7 @@ export const spainTransportation = [
   {
     "transportationId": "malaga-car",
     "outletId": "designer-outlet-malaga",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Free Parking",
     "duration": "5 min from airport / 15 min from Málaga city centre / 35 min from Marbella",
     "cost": "Free parking",

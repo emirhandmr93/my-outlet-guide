@@ -2,7 +2,7 @@ export const germanyTransportation = [
   {
     "transportationId": "metzingen-car-parking",
     "outletId": "outletcity-metzingen",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car + Outletcity parking",
     "duration": "30 min from Stuttgart",
     "cost": "Free parking at P4/P4.1; paid garage rates not published",
@@ -46,7 +46,7 @@ export const germanyTransportation = [
   {
     "transportationId": "ingolstadt-car-parking",
     "outletId": "ingolstadt-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car + complimentary parking",
     "duration": "45 min from Munich",
     "cost": "Complimentary parking; check EV charging fees",
@@ -90,7 +90,7 @@ export const germanyTransportation = [
   {
     "transportationId": "wertheim-car-parking",
     "outletId": "wertheim-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car + complimentary parking",
     "duration": "Just under 1 hour from Frankfurt",
     "cost": "Complimentary parking; check EV charging fees",
@@ -134,7 +134,7 @@ export const germanyTransportation = [
   {
     "transportationId": "berlin-car-parking",
     "outletId": "designer-outlet-berlin",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car + free parking",
     "duration": "30 min from downtown Berlin; 25 min from Potsdam",
     "cost": "Free parking; check EV charging terms",
@@ -167,7 +167,7 @@ export const germanyTransportation = [
   {
     "transportationId": "neumunster-car-parking",
     "outletId": "designer-outlet-neumunster",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car + centre parking",
     "duration": "30 min from Hamburg north or Kiel",
     "cost": "Parking €5 per day; first hour free; Premium Parking €10",
@@ -200,7 +200,7 @@ export const germanyTransportation = [
   {
     "transportationId": "wolfsburg-car-parking",
     "outletId": "designer-outlets-wolfsburg",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car + paid outlet parking",
     "duration": "≈60–75 min from Hannover by car (estimated)",
     "cost": "First 20 min free; 20-120 min €1; 2-4 hours €0.50/hour; from 5th hour €1.50/hour; from 8th hour €5/hour",
@@ -233,7 +233,7 @@ export const germanyTransportation = [
   {
     "transportationId": "bad-munstereifel-car-parking",
     "outletId": "city-outlet-bad-munstereifel",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car + town parking",
     "duration": "≈50–70 min from Cologne by car (estimated)",
     "cost": "Free spaces in Im Goldenen Tal; paid spaces in Trierer Straße, Kölner Straße, and under Schleidtalstraße",
@@ -266,7 +266,7 @@ export const germanyTransportation = [
   {
     "transportationId": "montabaur-car-parking",
     "outletId": "montabaur-the-style-outlets",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car via A3",
     "duration": "≈35–50 min from Koblenz or Limburg by car (estimated)",
     "cost": "Free parking; check EV charging fees",
@@ -299,7 +299,7 @@ export const germanyTransportation = [
   {
     "transportationId": "zweibrucken-car-parking",
     "outletId": "zweibrucken-fashion-outlet",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car + outlet parking",
     "duration": "≈35–50 min from Saarbrücken by car (estimated)",
     "cost": "Parking available; confirm EV charging fees",
@@ -332,7 +332,7 @@ export const germanyTransportation = [
   {
     "transportationId": "halle-leipzig-style-outlets-car-parking",
     "outletId": "halle-leipzig-the-style-outlets",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car via A9 + outlet parking",
     "duration": "≈25–35 min from Leipzig or Halle by car (estimated)",
     "cost": "Free parking; fuel varies",
@@ -365,7 +365,7 @@ export const germanyTransportation = [
   {
     "transportationId": "halle-leipzig-style-outlets-airport",
     "outletId": "halle-leipzig-the-style-outlets",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Leipzig/Halle Airport by car or S-Bahn",
     "duration": "≈20–30 min by car from Leipzig/Halle Airport (estimated)",
     "cost": "Confirm taxi, rental car or MDV/DB fare",

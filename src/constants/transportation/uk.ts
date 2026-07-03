@@ -13,7 +13,7 @@ export const ukTransportation = [
   {
     "transportationId": "bicester-car",
     "outletId": "bicester-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Parking",
     "duration": "Less than 1 hour from Heathrow or Birmingham International by car; 2 hours from Gatwick or Stansted",
     "cost": "Free parking; reserved parking available",
@@ -46,7 +46,7 @@ export const ukTransportation = [
   {
     "transportationId": "cheshire-oaks-car",
     "outletId": "cheshire-oaks",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Parking",
     "duration": "Under 1 hour from Chester, Liverpool and Manchester",
     "cost": "Free parking",
@@ -68,7 +68,7 @@ export const ukTransportation = [
   {
     "transportationId": "cheshire-oaks-plane",
     "outletId": "cheshire-oaks",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Airport Access",
     "duration": "≈35-50 min by road from Liverpool John Lennon Airport; ≈40-60 min from Manchester Airport (estimated)",
     "cost": "Taxi/transfer ≈£45-90 (estimated)",
@@ -79,7 +79,7 @@ export const ukTransportation = [
   {
       "transportationId": "york-designer-outlet-car-parking",
       "outletId": "york-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "15 minutes from York; 40 minutes from Leeds; 45 minutes from Leeds Bradford Airport",
       "cost": "Free parking",
@@ -112,7 +112,7 @@ export const ukTransportation = [
   {
       "transportationId": "york-designer-outlet-airport-access",
       "outletId": "york-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "airport",
       "title": "Airport Access",
       "duration": "45 minutes from Leeds Bradford Airport by road",
       "cost": "Taxi/transfer ≈£70-110 (estimated)",
@@ -134,7 +134,7 @@ export const ukTransportation = [
   {
       "transportationId": "ashford-designer-outlet-car-parking",
       "outletId": "ashford-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "Easy access from M20 Junctions 9, 10 or 10a",
       "cost": "£3 every four hours",
@@ -167,7 +167,7 @@ export const ukTransportation = [
   {
       "transportationId": "ashford-designer-outlet-cycle-walking",
       "outletId": "ashford-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "walking",
       "title": "Cycling / Walking",
       "duration": "Under 5 minutes' walk from Ashford International",
       "cost": "Free",
@@ -178,7 +178,7 @@ export const ukTransportation = [
   {
       "transportationId": "gloucester-quays-car-parking",
       "outletId": "gloucester-quays",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "10 minutes' walk from Gloucester city centre",
       "cost": "£3 for 0-2 hours; £5.50 for 2-4 hours; £8 for 4-6 hours; £15 for 6-24 hours",
@@ -211,7 +211,7 @@ export const ukTransportation = [
   {
       "transportationId": "gloucester-quays-cycle-walk",
       "outletId": "gloucester-quays",
-      "transportType": "taxi",
+      "transportType": "walking",
       "title": "Cycling / Walking",
       "duration": "10 minutes' walk from Gloucester city centre",
       "cost": "Free",
@@ -222,7 +222,7 @@ export const ukTransportation = [
   {
       "transportationId": "clarks-village-car-parking",
       "outletId": "clarks-village",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈45-70 min from Bristol or Bath by car (estimated)",
       "cost": "Official council car park: £1.20 for 1 hour; £3.50 for 5 hours; £5.80 all day",
@@ -255,7 +255,7 @@ export const ukTransportation = [
   {
       "transportationId": "dalton-park-car-parking",
       "outletId": "dalton-park",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "5 minutes from Seaham; 20 minutes from Sunderland and Durham; 30 minutes from Newcastle and Middlesbrough",
       "cost": "Free parking; EV charging 25p per kWh",
@@ -299,7 +299,7 @@ export const ukTransportation = [
   {
       "transportationId": "dalton-park-bike",
       "outletId": "dalton-park",
-      "transportType": "taxi",
+      "transportType": "walking",
       "title": "Bike",
       "duration": "≈15-25 min cycle from Seaham; longer routes vary (estimated)",
       "cost": "Free",
@@ -310,7 +310,7 @@ export const ukTransportation = [
   {
       "transportationId": "dalton-park-airport-access",
       "outletId": "dalton-park",
-      "transportType": "taxi",
+      "transportType": "airport",
       "title": "Airport Access",
       "duration": "25 miles from Newcastle International Airport; 29 miles from Teesside International Airport; ≈35-55 min by car (estimated)",
       "cost": "Taxi/transfer ≈£55-90 (estimated)",
@@ -321,7 +321,7 @@ export const ukTransportation = [
   {
       "transportationId": "junction-32-car-parking",
       "outletId": "junction-32-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "2 minutes from M62 Junction 32",
       "cost": "Free parking",
@@ -354,7 +354,7 @@ export const ukTransportation = [
   {
       "transportationId": "caledonia-park-car-parking",
       "outletId": "caledonia-park",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "1 minute from M6/M74/A75 Gretna exit",
       "cost": "Free parking; 5 hour maximum stay",
@@ -387,7 +387,7 @@ export const ukTransportation = [
   {
       "transportationId": "gretna-gateway-car-coach-parking",
       "outletId": "gretna-gateway-outlet-village",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Coach Parking",
       "duration": "≈5 minutes from M6/M74 Gretna exits (estimated)",
       "cost": "Free car/coach parking",
@@ -420,7 +420,7 @@ export const ukTransportation = [
   {
       "transportationId": "gunwharf-quays-car-parking",
       "outletId": "gunwharf-quays",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈5-10 min from M275 Junction 1 after reaching Portsmouth (estimated)",
       "cost": "Official tariff: £3.50-£3.70 up to 2 hours; £9.40-£9.70 up to 7 hours; £28 up to 24 hours; premium parking £14 for up to 6 hours",
@@ -464,7 +464,7 @@ export const ukTransportation = [
   {
       "transportationId": "gunwharf-quays-ferry",
       "outletId": "gunwharf-quays",
-      "transportType": "taxi",
+      "transportType": "ferry",
       "title": "Ferry",
       "duration": "≈5 min Gosport Ferry crossing; sailings generally every 15 min (check official timetable)",
       "cost": "Official Gosport Ferry adult 10-trip £22.40; combined daily return bus & ferry £6.10",
@@ -475,7 +475,7 @@ export const ukTransportation = [
   {
       "transportationId": "gunwharf-quays-bike",
       "outletId": "gunwharf-quays",
-      "transportType": "taxi",
+      "transportType": "walking",
       "title": "Bike",
       "duration": "≈10-20 min cycle from central Portsmouth areas (estimated)",
       "cost": "Free",
@@ -486,7 +486,7 @@ export const ukTransportation = [
   {
       "transportationId": "the-galleria-outlet-car-parking",
       "outletId": "the-galleria-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈5-15 min from central Hatfield; ≈25-45 min from central London by car (estimated)",
       "cost": "Check official parking tariffs",
@@ -519,7 +519,7 @@ export const ukTransportation = [
   {
       "transportationId": "springfields-outlet-car-parking",
       "outletId": "springfields-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈5-10 min from Spalding town centre; access via A16/Camel Gate (estimated)",
       "cost": "Confirm with provider",
@@ -552,7 +552,7 @@ export const ukTransportation = [
   {
       "transportationId": "springfields-outlet-foot-cycle",
       "outletId": "springfields-outlet",
-      "transportType": "taxi",
+      "transportType": "walking",
       "title": "Foot / Cycle",
       "duration": "≈20-30 min walk or ≈5-10 min cycle from Spalding town centre / station (estimated)",
       "cost": "Free",
@@ -563,7 +563,7 @@ export const ukTransportation = [
   {
       "transportationId": "the-boulevard-banbridge-car-parking",
       "outletId": "the-boulevard-banbridge",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈30-40 min from Belfast; ≈80-100 min from Dublin (estimated)",
       "cost": "Free parking",
@@ -596,7 +596,7 @@ export const ukTransportation = [
   {
       "transportationId": "bridgend-designer-outlet-car-parking",
       "outletId": "bridgend-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "30 minutes from Cardiff and Swansea",
       "cost": "Free parking",
@@ -629,7 +629,7 @@ export const ukTransportation = [
   {
       "transportationId": "bridgend-designer-outlet-airport-access",
       "outletId": "bridgend-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "airport",
       "title": "Airport Access",
       "duration": "≈30-45 min from Cardiff Airport by car/taxi (estimated)",
       "cost": "≈£45-70 taxi (estimated)",
@@ -640,7 +640,7 @@ export const ukTransportation = [
   {
       "transportationId": "east-midlands-designer-outlet-car-parking",
       "outletId": "east-midlands-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈5 min from M1 Junction 28; ≈20-35 min from Nottingham/Derby/Chesterfield by car (estimated)",
       "cost": "Free parking",
@@ -673,7 +673,7 @@ export const ukTransportation = [
   {
       "transportationId": "swindon-designer-outlet-car-parking",
       "outletId": "swindon-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈10-20 min from M4 Junction 16 (estimated)",
       "cost": "Free 15 min; £2.50 for first 5 hours; £12 longer; free with £100+ spend",
@@ -706,7 +706,7 @@ export const ukTransportation = [
   {
       "transportationId": "swindon-designer-outlet-foot-cycle",
       "outletId": "swindon-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "walking",
       "title": "Foot / Cycle",
       "duration": "15 minutes walk from Swindon station and town centre",
       "cost": "Free",
@@ -717,7 +717,7 @@ export const ukTransportation = [
   {
       "transportationId": "west-midlands-designer-outlet-car-parking",
       "outletId": "west-midlands-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "30 minutes from Birmingham City Centre",
       "cost": "Free parking",
@@ -728,7 +728,7 @@ export const ukTransportation = [
   {
       "transportationId": "west-midlands-designer-outlet-electric-charge-points",
       "outletId": "west-midlands-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Electric Charge Points",
       "duration": "On site",
       "cost": "Confirm with provider",
@@ -794,7 +794,7 @@ export const ukTransportation = [
   {
       "transportationId": "icon-outlet-at-the-o2-car-parking",
       "outletId": "icon-outlet-at-the-o2",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈20-45 min from central London (estimated)",
       "cost": "4 hours free with £35+ outlet spend validation; otherwise confirm with provider",
@@ -805,7 +805,7 @@ export const ukTransportation = [
   {
       "transportationId": "icon-outlet-at-the-o2-boat",
       "outletId": "icon-outlet-at-the-o2",
-      "transportType": "taxi",
+      "transportType": "ferry",
       "title": "Boat via North Greenwich Pier",
       "duration": "North Greenwich Pier is 5 minutes from main entrance; boats every 10-20 minutes",
       "cost": "Check official boat fare",
@@ -816,7 +816,7 @@ export const ukTransportation = [
   {
       "transportationId": "icon-outlet-at-the-o2-airport-access",
       "outletId": "icon-outlet-at-the-o2",
-      "transportType": "taxi",
+      "transportType": "airport",
       "title": "Airport Access",
       "duration": "≈45-90 min from major London airports (estimated)",
       "cost": "≈£8-15 by public transport from London airports (estimated)",
@@ -827,7 +827,7 @@ export const ukTransportation = [
   {
       "transportationId": "lakeside-village-car-parking",
       "outletId": "lakeside-village",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈5-10 min from Doncaster town centre (estimated)",
       "cost": "Free parking",
@@ -860,7 +860,7 @@ export const ukTransportation = [
   {
       "transportationId": "london-designer-outlet-car-parking",
       "outletId": "london-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "car",
       "title": "Car / Parking",
       "duration": "≈30-60 min from central London (estimated)",
       "cost": "Non-event Red/Pink parking £2.50 for 0-1h; £6.50 for 4-5h; £28 for 12-24h",
@@ -904,7 +904,7 @@ export const ukTransportation = [
   {
       "transportationId": "london-designer-outlet-cycle-walking",
       "outletId": "london-designer-outlet",
-      "transportType": "taxi",
+      "transportType": "walking",
       "title": "Cycle / Walking",
       "duration": "10 minutes walk from Wembley Park or Wembley Stadium stations",
       "cost": "Free",

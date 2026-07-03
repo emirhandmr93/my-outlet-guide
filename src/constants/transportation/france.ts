@@ -24,7 +24,7 @@ export const franceTransportation = [
   {
     "transportationId": "la-vallee-car-parking",
     "outletId": "la-vallee-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Parking",
     "duration": "40 min",
     "cost": "Free parking",
@@ -46,7 +46,7 @@ export const franceTransportation = [
   {
     "transportationId": "troyes-car-parking",
     "outletId": "designer-outlet-troyes",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Motorcycle / Free Parking",
     "duration": "≈15-25 min (estimated)",
     "cost": "Free parking",
@@ -90,7 +90,7 @@ export const franceTransportation = [
   {
     "transportationId": "provence-car-parking",
     "outletId": "designer-outlet-provence",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Free Parking",
     "duration": "45 min",
     "cost": "Free parking",
@@ -123,7 +123,7 @@ export const franceTransportation = [
   {
     "transportationId": "provence-airports",
     "outletId": "designer-outlet-provence",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Nearby Airports",
     "duration": "≈35-50 min (estimated)",
     "cost": "Confirm with provider",

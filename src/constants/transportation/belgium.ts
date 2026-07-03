@@ -2,7 +2,7 @@ export const belgiumTransportation = [
   {
     "transportationId": "maasmechelen-car",
     "outletId": "maasmechelen-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car / Free Parking",
     "duration": "About 1 hr from Brussels; travel times vary by origin and traffic",
     "cost": "Free parking; fuel/tolls vary",
@@ -46,7 +46,7 @@ export const belgiumTransportation = [
   {
     "transportationId": "maasmechelen-airport",
     "outletId": "maasmechelen-village",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Airport Access",
     "duration": "≈1 hr from Brussels Airport; ≈25 min from Maastricht Aachen Airport; ≈90 min from Düsseldorf Airport",
     "cost": "Confirm with provider",
@@ -57,7 +57,7 @@ export const belgiumTransportation = [
   {
     "transportationId": "designer-outlet-luxembourg-car-parking",
     "outletId": "designer-outlet-luxembourg",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car via E411 / N81 + free parking",
     "duration": "≈30 min from Luxembourg City; ≈15 min from Arlon (estimated)",
     "cost": "Free parking; fuel and tolls vary",
@@ -90,7 +90,7 @@ export const belgiumTransportation = [
   {
     "transportationId": "designer-outlet-luxembourg-airport",
     "outletId": "designer-outlet-luxembourg",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Luxembourg Airport by car or train/bus connection",
     "duration": "≈30–45 min from Luxembourg Airport by car (estimated)",
     "cost": "Confirm taxi, rental car or public transport fares",

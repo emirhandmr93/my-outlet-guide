@@ -2,7 +2,7 @@ export const italyTransportation = [
   {
     "transportationId": "barberino-car",
     "outletId": "barberino",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car via A1 motorway",
     "duration": "≈30–40 min from Florence by car",
     "cost": "Varies by route and provider",
@@ -13,7 +13,7 @@ export const italyTransportation = [
   {
     "transportationId": "barberino-parking",
     "outletId": "barberino",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Free parking at the outlet",
     "duration": "On site",
     "cost": "Free parking",
@@ -57,7 +57,7 @@ export const italyTransportation = [
   {
     "transportationId": "castel-romano-car",
     "outletId": "castel-romano",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car from Rome",
     "duration": "About 30 min from Rome",
     "cost": "Varies by route and provider",
@@ -68,7 +68,7 @@ export const italyTransportation = [
   {
     "transportationId": "castel-romano-parking",
     "outletId": "castel-romano",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Free parking at the outlet",
     "duration": "On site",
     "cost": "Free parking",
@@ -112,7 +112,7 @@ export const italyTransportation = [
   {
     "transportationId": "fidenza-car",
     "outletId": "fidenza-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car via A1 motorway",
     "duration": "About 60 min from Milan or Bologna; about 20 min from Parma",
     "cost": "Varies by route and provider",
@@ -123,7 +123,7 @@ export const italyTransportation = [
   {
     "transportationId": "fidenza-parking",
     "outletId": "fidenza-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "On-site parking",
     "duration": "On site",
     "cost": "Free parking",
@@ -145,7 +145,7 @@ export const italyTransportation = [
   {
     "transportationId": "la-reggia-car",
     "outletId": "la-reggia",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car via A1 Caserta Sud",
     "duration": "≈20–30 min from Naples; ≈15 min from Caserta",
     "cost": "Varies by route and provider",
@@ -156,7 +156,7 @@ export const italyTransportation = [
   {
     "transportationId": "la-reggia-parking",
     "outletId": "la-reggia",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Free parking at the outlet",
     "duration": "On site",
     "cost": "Free parking",
@@ -189,7 +189,7 @@ export const italyTransportation = [
   {
     "transportationId": "noventa-car",
     "outletId": "noventa",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car to Noventa di Piave",
     "duration": "30 min from Venice by car",
     "cost": "Varies by route and provider",
@@ -200,7 +200,7 @@ export const italyTransportation = [
   {
     "transportationId": "noventa-parking",
     "outletId": "noventa",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Outlet parking",
     "duration": "On site",
     "cost": "Free parking",
@@ -233,7 +233,7 @@ export const italyTransportation = [
   {
     "transportationId": "serravalle-car",
     "outletId": "serravalle-designer-outlet",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car from Milan, Genoa or Turin",
     "duration": "About 1 hr from Milan, 45 min from Genoa, under 90 min from Turin",
     "cost": "Varies by route and provider",
@@ -244,7 +244,7 @@ export const italyTransportation = [
   {
     "transportationId": "serravalle-parking",
     "outletId": "serravalle-designer-outlet",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Free parking at the outlet",
     "duration": "On site",
     "cost": "Free parking",
@@ -288,7 +288,7 @@ export const italyTransportation = [
   {
     "transportationId": "serravalle-airports",
     "outletId": "serravalle-designer-outlet",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Nearby airports by car or transfer",
     "duration": "≈60–90 min from Milan airports or Genoa Airport (estimated)",
     "cost": "Confirm with provider",
@@ -299,7 +299,7 @@ export const italyTransportation = [
   {
     "transportationId": "firenze-car",
     "outletId": "the-mall-firenze",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car via A1 Incisa-Reggello",
     "duration": "≈30–45 min from Florence by car",
     "cost": "Varies by route and provider",
@@ -310,7 +310,7 @@ export const italyTransportation = [
   {
     "transportationId": "firenze-parking",
     "outletId": "the-mall-firenze",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "On-site parking",
     "duration": "On site",
     "cost": "Free parking",
@@ -343,7 +343,7 @@ export const italyTransportation = [
   {
     "transportationId": "firenze-airport",
     "outletId": "the-mall-firenze",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Florence Airport by car or taxi",
     "duration": "≈35–50 min from Florence Airport (estimated)",
     "cost": "Confirm with provider",
@@ -354,7 +354,7 @@ export const italyTransportation = [
   {
     "transportationId": "valdichiana-village-car-parking",
     "outletId": "valdichiana-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car to Foiano della Chiana",
     "duration": "≈60–75 min from Florence; ≈35–45 min from Arezzo (estimated)",
     "cost": "Parking available; fuel and tolls vary",
@@ -387,7 +387,7 @@ export const italyTransportation = [
   {
     "transportationId": "valdichiana-village-airports",
     "outletId": "valdichiana-village",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Florence or Perugia airport access",
     "duration": "≈70–90 min from Florence Airport; ≈60–80 min from Perugia Airport (estimated)",
     "cost": "Confirm rental car, taxi or transfer fare",

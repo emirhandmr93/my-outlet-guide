@@ -2,7 +2,7 @@ export const irelandTransportation = [
   {
     "transportationId": "kildare-village-car-parking",
     "outletId": "kildare-village",
-    "transportType": "taxi",
+    "transportType": "car",
     "title": "Car via M7 + free parking",
     "duration": "≈40–55 min from Dublin by car (estimated)",
     "cost": "Free parking; fuel and tolls vary",
@@ -46,7 +46,7 @@ export const irelandTransportation = [
   {
     "transportationId": "kildare-village-dublin-airport",
     "outletId": "kildare-village",
-    "transportType": "taxi",
+    "transportType": "airport",
     "title": "Dublin Airport by car or rail connection",
     "duration": "≈50–70 min by car from Dublin Airport (estimated)",
     "cost": "Confirm taxi, transfer, rail or coach fare",
