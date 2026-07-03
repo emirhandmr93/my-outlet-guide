@@ -1,7 +1,11 @@
+import { categories } from "../constants/categories";
+import { cities } from "../constants/cities";
+import { countries } from "../constants/countries";
 import { brands } from "../constants/brands";
 import { outletBrands } from "../constants/outletBrands";
 import { restaurants } from "../constants/restaurants";
 import { outlets } from "../constants/outlets";
+import { transportation } from "../constants/transportation";
 import { transportationGuides } from "../constants/transportationGuides";
 
 export type MasterDataValidationIssue = {
@@ -31,9 +35,137 @@ const normalizeBusinessName = (value: string): string =>
 const brandNamesById = new Map(
   brands.map((brand) => [
     brand.brandId,
-    [brand.brandName, ...brand.aliases].map(normalizeBusinessName),
+    [brand.brandName, ...(Array.isArray(brand.aliases) ? brand.aliases : [])].map(
+      normalizeBusinessName
+    ),
   ])
 );
+
+
+const validLuxuryLevels = new Set([
+  "luxury",
+  "premium",
+  "fashion",
+  "sports",
+  "lifestyle",
+]);
+
+const pushIssue = (
+  issues: MasterDataValidationIssue[],
+  code: string,
+  message: string,
+  fields: Partial<MasterDataValidationIssue> = {}
+): void => {
+  issues.push({
+    code,
+    outletId: fields.outletId ?? "GLOBAL",
+    brandId: fields.brandId,
+    guideId: fields.guideId,
+    businessName: fields.businessName ?? fields.brandId ?? fields.outletId ?? "GLOBAL",
+    message,
+  });
+};
+
+const findDuplicates = <T>(items: T[], getId: (item: T) => string): Map<string, number> => {
+  const counts = new Map<string, number>();
+  items.forEach((item) => {
+    const id = getId(item);
+    if (id) counts.set(id, (counts.get(id) ?? 0) + 1);
+  });
+  return new Map([...counts].filter(([, count]) => count > 1));
+};
+
+const validateCoreReferences = (issues: MasterDataValidationIssue[]): void => {
+  const countryIds = new Set(countries.map((country) => String(country.countryId ?? "").trim()).filter(Boolean));
+  const cityIds = new Set(cities.map((city) => String(city.cityId ?? "").trim()).filter(Boolean));
+  const outletIds = new Set(outlets.map((outlet) => String(outlet.outletId ?? "").trim()).filter(Boolean));
+  const categoryIds = new Set(categories.map((category) => String(category.categoryId ?? "").trim()).filter(Boolean));
+  const brandIds = new Set(brands.map((brand) => String(brand.brandId ?? "").trim()).filter(Boolean));
+
+  findDuplicates(countries, (country) => String(country.countryId ?? "").trim()).forEach((count, countryId) =>
+    pushIssue(issues, "DUPLICATE_COUNTRY_ID", `countryId ${countryId} appears ${count} times.`, { businessName: countryId })
+  );
+
+  findDuplicates(cities, (city) => String(city.cityId ?? "").trim()).forEach((count, cityId) =>
+    pushIssue(issues, "DUPLICATE_CITY_ID", `cityId ${cityId} appears ${count} times.`, { businessName: cityId })
+  );
+
+  cities.forEach((city) => {
+    const countryId = String(city.countryId ?? "").trim();
+    if (!countryId || !countryIds.has(countryId)) {
+      pushIssue(issues, "INVALID_CITY_COUNTRY", `City ${city.cityId ?? "UNKNOWN_CITY"} references invalid countryId ${countryId || "UNKNOWN_COUNTRY"}.`, { businessName: String(city.cityName ?? city.cityId ?? "UNKNOWN_CITY") });
+    }
+  });
+
+  findDuplicates(outlets, (outlet) => String(outlet.outletId ?? "").trim()).forEach((count, outletId) =>
+    pushIssue(issues, "DUPLICATE_OUTLET_ID", `outletId ${outletId} appears ${count} times.`, { outletId, businessName: outletId })
+  );
+
+  outlets.forEach((outlet) => {
+    const outletId = String(outlet.outletId ?? "").trim();
+    const countryId = String(outlet.countryId ?? "").trim();
+    const cityId = String(outlet.cityId ?? "").trim();
+    if (!countryId || !countryIds.has(countryId)) {
+      pushIssue(issues, "INVALID_OUTLET_COUNTRY", `Outlet ${outletId || "UNKNOWN_OUTLET"} references invalid countryId ${countryId || "UNKNOWN_COUNTRY"}.`, { outletId, businessName: String(outlet.outletName ?? outletId) });
+    }
+    if (!cityId || !cityIds.has(cityId)) {
+      pushIssue(issues, "INVALID_OUTLET_CITY", `Outlet ${outletId || "UNKNOWN_OUTLET"} references invalid cityId ${cityId || "UNKNOWN_CITY"}.`, { outletId, businessName: String(outlet.outletName ?? outletId) });
+    }
+  });
+
+  findDuplicates(brands, (brand) => String(brand.brandId ?? "").trim()).forEach((count, brandId) =>
+    pushIssue(issues, "DUPLICATE_BRAND_ID", `brandId ${brandId} appears ${count} times.`, { brandId, businessName: brandId })
+  );
+
+  brands.forEach((brand) => {
+    const brandId = String(brand.brandId ?? "").trim();
+    const brandName = String(brand.brandName ?? "").trim();
+    const categoryId = String(brand.categoryId ?? "").trim();
+    const luxuryLevel = String(brand.luxuryLevel ?? "").trim();
+    if (!brandId || !brandName || !categoryId || brand.rankingWeight === undefined || !String(brand.brandStatus ?? "").trim()) {
+      pushIssue(issues, "MISSING_REQUIRED_BRAND_FIELD", `Brand ${brandId || "UNKNOWN_BRAND"} is missing a required field.`, { brandId, businessName: brandName || brandId });
+    }
+    if (!categoryId || !categoryIds.has(categoryId)) {
+      pushIssue(issues, "INVALID_BRAND_CATEGORY", `Brand ${brandId || "UNKNOWN_BRAND"} references invalid categoryId ${categoryId || "UNKNOWN_CATEGORY"}.`, { brandId, businessName: brandName || brandId });
+    }
+    if (luxuryLevel && !validLuxuryLevels.has(luxuryLevel)) {
+      pushIssue(issues, "INVALID_BRAND_LUXURY_LEVEL", `Brand ${brandId || "UNKNOWN_BRAND"} uses invalid luxuryLevel ${luxuryLevel}.`, { brandId, businessName: brandName || brandId });
+    }
+  });
+
+  findDuplicates(outletBrands, (relation) => `${relation.outletId ?? ""}::${relation.brandId ?? ""}`).forEach((count, key) =>
+    pushIssue(issues, "DUPLICATE_OUTLET_BRAND_RELATION", `outletBrand relation ${key} appears ${count} times.`, { businessName: key })
+  );
+
+  outletBrands.forEach((relation) => {
+    const outletId = String(relation.outletId ?? "").trim();
+    const brandId = String(relation.brandId ?? "").trim();
+    if (!brandId || !brandIds.has(brandId)) {
+      pushIssue(issues, "MISSING_OUTLET_BRAND_BRAND_ID", `Outlet brand relation for outlet ${outletId || "UNKNOWN_OUTLET"} references missing brandId ${brandId || "UNKNOWN_BRAND"}.`, { outletId, brandId, businessName: brandId || outletId });
+    }
+    if (!outletId || !outletIds.has(outletId)) {
+      pushIssue(issues, "INVALID_OUTLET_BRAND_OUTLET", `Outlet brand relation for brand ${brandId || "UNKNOWN_BRAND"} references invalid outletId ${outletId || "UNKNOWN_OUTLET"}.`, { outletId, brandId, businessName: brandId || outletId });
+    }
+  });
+
+  findDuplicates(restaurants, (restaurant) => String(restaurant.restaurantId ?? "").trim()).forEach((count, restaurantId) =>
+    pushIssue(issues, "DUPLICATE_RESTAURANT_ID", `restaurantId ${restaurantId} appears ${count} times.`, { businessName: restaurantId })
+  );
+  restaurants.forEach((restaurant) => {
+    if (!outletIds.has(String(restaurant.outletId ?? "").trim())) {
+      pushIssue(issues, "INVALID_RESTAURANT_OUTLET", `Restaurant ${restaurant.restaurantId ?? "UNKNOWN_RESTAURANT"} references invalid outletId ${restaurant.outletId ?? "UNKNOWN_OUTLET"}.`, { outletId: String(restaurant.outletId ?? ""), businessName: String(restaurant.restaurantName ?? restaurant.restaurantId ?? "UNKNOWN_RESTAURANT") });
+    }
+  });
+
+  findDuplicates(transportation, (item) => String(item.transportationId ?? "").trim()).forEach((count, transportationId) =>
+    pushIssue(issues, "DUPLICATE_TRANSPORTATION_ID", `transportationId ${transportationId} appears ${count} times.`, { businessName: transportationId })
+  );
+  transportation.forEach((item) => {
+    if (!outletIds.has(String(item.outletId ?? "").trim())) {
+      pushIssue(issues, "INVALID_TRANSPORTATION_OUTLET", `Transportation ${item.transportationId ?? "UNKNOWN_TRANSPORTATION"} references invalid outletId ${item.outletId ?? "UNKNOWN_OUTLET"}.`, { outletId: String(item.outletId ?? ""), businessName: String(item.title ?? item.transportationId ?? "UNKNOWN_TRANSPORTATION") });
+    }
+  });
+};
 
 const getRestaurantNamesByOutlet = (): Map<string, Set<string>> => {
   const restaurantNamesByOutlet = new Map<string, Set<string>>();
@@ -231,6 +363,7 @@ export function validateGlobalSnapshot(): MasterDataValidationResult {
   const issues: MasterDataValidationIssue[] = [];
   let allowedDualClassifications = 0;
 
+  validateCoreReferences(issues);
   validateTransportationGuides(issues);
 
   outletBrands.forEach((outletBrand) => {

@@ -2200,7 +2200,7 @@ export const brandsQT: Brand[] = [
     categoryId: "books-stationery",
     logo: "",
     originCountryId: "united-kingdom",
-    luxuryLevel: "value",
+    luxuryLevel: "lifestyle",
     rankingWeight: 58,
     brandStatus: "active",
   },

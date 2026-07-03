@@ -5,9 +5,9 @@ export type BrandLuxuryLevel = "luxury" | "premium" | "fashion" | "sports" | "li
 export type Brand = {
   brandId: string;
   brandName: string;
-  aliases: string[];
+  aliases?: string[];
   categoryId: string;
-  logo: string;
+  logo?: string;
   website?: string;
   originCountryId?: string;
   luxuryLevel?: BrandLuxuryLevel | string;
