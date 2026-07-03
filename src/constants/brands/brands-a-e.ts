@@ -5281,4 +5281,15 @@ export const brandsAE: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "allsport-fashion",
+    brandName: "Allsport & Fashion",
+    aliases: ["Allsport&Fashion", "Allsport and Fashion"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "norway",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];

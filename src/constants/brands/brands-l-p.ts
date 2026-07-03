@@ -4437,4 +4437,15 @@ export const brandsLP: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "milano-brands",
+    brandName: "MILANO THE ITALIAN BRANDS",
+    aliases: ["Milano the Italian Brands", "MILANO THE ITALIAN BRANDS"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];

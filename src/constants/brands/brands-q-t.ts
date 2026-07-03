@@ -3503,4 +3503,15 @@ export const brandsQT: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "stormberg",
+    brandName: "Stormberg",
+    aliases: ["Stormberg Outlet"],
+    categoryId: "outdoor",
+    logo: "",
+    originCountryId: "norway",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
