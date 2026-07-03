@@ -462,50 +462,6 @@ export const ukTransportation = [
       "displayOrder": "4"
   },
   {
-      "transportationId": "gretna-gateway-car-coach-parking",
-      "outletId": "gretna-gateway-outlet-village",
-      "transportType": "car",
-      "title": "Car / Coach Parking",
-      "duration": "≈5 minutes from M6/M74 Gretna exits (estimated)",
-      "cost": "Free car/coach parking",
-      "tip": "Official Gretna Green getting-here page lists on-site ample free car and coach parking; use the Gretna Green/Gretna road access routes and confirm live traffic before travel.",
-      "status": "active",
-      "displayOrder": "1"
-  },
-  {
-      "transportationId": "gretna-gateway-train",
-      "outletId": "gretna-gateway-outlet-village",
-      "transportType": "train",
-      "title": "Train",
-      "duration": "≈10-15 min walk from Gretna Green station (estimated)",
-      "cost": "Check official timetable",
-      "tip": "Official Gretna Green getting-here page lists Gretna Green Railway Station served by ScotRail with direct trains from Carlisle and other destinations; check ScotRail/National Rail for live fares and times.",
-      "status": "active",
-      "displayOrder": "2"
-  },
-  {
-      "transportationId": "gretna-gateway-bus-coach",
-      "outletId": "gretna-gateway-outlet-village",
-      "transportType": "bus",
-      "title": "Bus / Coach",
-      "duration": "≈10-30 min from local Gretna/Carlisle bus links (estimated)",
-      "cost": "≈£2-8 single/local fare (estimated); coach fares vary",
-      "tip": "Official Gretna Green getting-here page lists coach/public transport access and free coach parking; confirm current bus or coach provider timetable before travelling.",
-      "status": "active",
-      "displayOrder": "3"
-  },
-  {
-      "transportationId": "gretna-gateway-airport",
-      "outletId": "gretna-gateway-outlet-village",
-      "transportType": "airport",
-      "title": "Newcastle or Glasgow airports by car/rail connection",
-      "duration": "≈80-110 min by car from Newcastle or Glasgow airports (estimated)",
-      "cost": "Confirm airport rail, taxi or rental-car fare",
-      "tip": "Use official airport ground transport to Carlisle, Glasgow or Newcastle rail/bus connections, then continue to Gretna Green; no dedicated airport shuttle is published.",
-      "status": "active",
-      "displayOrder": "4"
-  },
-  {
       "transportationId": "gunwharf-quays-car-parking",
       "outletId": "gunwharf-quays",
       "transportType": "car",

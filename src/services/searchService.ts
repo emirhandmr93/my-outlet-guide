@@ -63,8 +63,11 @@ export function searchOutlets(query: string) {
         return brand?.brandName || "";
       });
 
+    const outletAliases = Array.isArray(outlet.aliases) ? outlet.aliases : [];
+
     return (
       outlet.name.toLowerCase().includes(value) ||
+      outletAliases.some((alias) => alias.toLowerCase().includes(value)) ||
       cityName.toLowerCase().includes(value) ||
       countryName.toLowerCase().includes(value) ||
       outletBrandNames.some((brandName) =>

@@ -4,6 +4,7 @@ export type Outlet = {
   outletId: string;
   name: string;
   slug?: string;
+  aliases?: string[];
   countryId: string;
   cityId: string;
   address: string;
