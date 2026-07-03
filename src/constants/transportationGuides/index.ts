@@ -4,7 +4,9 @@ import { denmarkTransportationGuides } from "./denmark";
 import { czechRepublicTransportationGuides } from "./czech-republic";
 import { franceTransportationGuides } from "./france";
 import { germanyTransportationGuides } from "./germany";
+import { greeceTransportationGuides } from "./greece";
 import { hungaryTransportationGuides } from "./hungary";
+import { irelandTransportationGuides } from "./ireland";
 import { croatiaTransportationGuides } from "./croatia";
 import { italyTransportationGuides } from "./italy";
 import { netherlandsTransportationGuides } from "./netherlands";
@@ -53,7 +55,9 @@ export {
   czechRepublicTransportationGuides,
   franceTransportationGuides,
   germanyTransportationGuides,
+  greeceTransportationGuides,
   hungaryTransportationGuides,
+  irelandTransportationGuides,
   croatiaTransportationGuides,
   italyTransportationGuides,
   netherlandsTransportationGuides,
@@ -71,6 +75,7 @@ export {
 export const transportationGuides: TransportationGuide[] = [
   ...italyTransportationGuides,
   ...germanyTransportationGuides,
+  ...greeceTransportationGuides,
   ...franceTransportationGuides,
   ...ukTransportationGuides,
   ...spainTransportationGuides,
@@ -86,6 +91,7 @@ export const transportationGuides: TransportationGuide[] = [
   ...finlandTransportationGuides,
   ...czechRepublicTransportationGuides,
   ...hungaryTransportationGuides,
+  ...irelandTransportationGuides,
   ...slovakiaTransportationGuides,
   ...croatiaTransportationGuides,
 ];
