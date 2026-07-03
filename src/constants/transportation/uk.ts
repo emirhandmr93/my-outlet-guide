@@ -44,6 +44,17 @@ export const ukTransportation = [
     "displayOrder": "4"
   },
   {
+      "transportationId": "bicester-airport",
+      "outletId": "bicester-village",
+      "transportType": "airport",
+      "title": "Heathrow / Birmingham airport road access",
+      "duration": "Less than 1 hour by car from Heathrow or Birmingham International; about 2 hours from Gatwick or Stansted",
+      "cost": "Confirm airport taxi, rail or transfer fare",
+      "tip": "Official Bicester Village directions include airport driving access; use official airport ground transport or rail to London/Oxford/Bicester for onward travel.",
+      "status": "active",
+      "displayOrder": "5"
+  },
+  {
     "transportationId": "cheshire-oaks-car",
     "outletId": "cheshire-oaks",
     "transportType": "car",
@@ -176,6 +187,17 @@ export const ukTransportation = [
       "displayOrder": "4"
   },
   {
+      "transportationId": "ashford-airport",
+      "outletId": "ashford-designer-outlet",
+      "transportType": "airport",
+      "title": "London airports via rail to Ashford International",
+      "duration": "≈1h 30-2h 30 via London rail connections from major London airports (estimated)",
+      "cost": "Check official airport rail and National Rail fare",
+      "tip": "Use official airport rail/coach links into London, then National Rail high-speed services to Ashford International; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "5"
+  },
+  {
       "transportationId": "gloucester-quays-car-parking",
       "outletId": "gloucester-quays",
       "transportType": "car",
@@ -220,6 +242,17 @@ export const ukTransportation = [
       "displayOrder": "4"
   },
   {
+      "transportationId": "gloucester-quays-airport",
+      "outletId": "gloucester-quays",
+      "transportType": "airport",
+      "title": "Bristol or Birmingham airports via rail/road",
+      "duration": "≈60-80 min by car from Bristol or Birmingham airports (estimated)",
+      "cost": "Confirm airport rail, coach, taxi or rental-car fare",
+      "tip": "Use official airport ground transport to Bristol/Birmingham rail stations, then National Rail to Gloucester with local walk/bus; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "5"
+  },
+  {
       "transportationId": "clarks-village-car-parking",
       "outletId": "clarks-village",
       "transportType": "car",
@@ -251,6 +284,17 @@ export const ukTransportation = [
       "tip": "Official getting-here page links to National Rail train updates; Castle Cary is the nearest practical rail gateway, with onward bus/taxi connections to Street that should be checked before travelling.",
       "status": "active",
       "displayOrder": "3"
+  },
+  {
+      "transportationId": "clarks-village-airport",
+      "outletId": "clarks-village",
+      "transportType": "airport",
+      "title": "Bristol Airport by road or bus connection",
+      "duration": "≈45-65 min by car from Bristol Airport (estimated)",
+      "cost": "Confirm airport bus, taxi or transfer fare",
+      "tip": "Use official Bristol Airport ground transport to Bristol or onward regional bus/taxi connections toward Street; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "4"
   },
   {
       "transportationId": "dalton-park-car-parking",
@@ -352,6 +396,17 @@ export const ukTransportation = [
       "displayOrder": "3"
   },
   {
+      "transportationId": "junction-32-airport",
+      "outletId": "junction-32-outlet",
+      "transportType": "airport",
+      "title": "Leeds Bradford Airport via road or Leeds rail/bus",
+      "duration": "≈35-55 min by car from Leeds Bradford Airport (estimated)",
+      "cost": "Confirm airport bus, rail, taxi or transfer fare",
+      "tip": "Use official Leeds Bradford Airport ground transport to Leeds for rail/bus toward Glasshoughton/Castleford, or arrange a road transfer; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "4"
+  },
+  {
       "transportationId": "caledonia-park-car-parking",
       "outletId": "caledonia-park",
       "transportType": "car",
@@ -385,6 +440,17 @@ export const ukTransportation = [
       "displayOrder": "3"
   },
   {
+      "transportationId": "caledonia-park-airport",
+      "outletId": "caledonia-park",
+      "transportType": "airport",
+      "title": "Newcastle or Glasgow airports by car/rail connection",
+      "duration": "≈80-110 min by car from Newcastle or Glasgow airports (estimated)",
+      "cost": "Confirm airport rail, taxi or rental-car fare",
+      "tip": "Use official airport ground transport to Carlisle, Glasgow or Newcastle rail/bus connections, then continue to Gretna Green; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "4"
+  },
+  {
       "transportationId": "gretna-gateway-car-coach-parking",
       "outletId": "gretna-gateway-outlet-village",
       "transportType": "car",
@@ -416,6 +482,17 @@ export const ukTransportation = [
       "tip": "Official Gretna Green getting-here page lists coach/public transport access and free coach parking; confirm current bus or coach provider timetable before travelling.",
       "status": "active",
       "displayOrder": "3"
+  },
+  {
+      "transportationId": "gretna-gateway-airport",
+      "outletId": "gretna-gateway-outlet-village",
+      "transportType": "airport",
+      "title": "Newcastle or Glasgow airports by car/rail connection",
+      "duration": "≈80-110 min by car from Newcastle or Glasgow airports (estimated)",
+      "cost": "Confirm airport rail, taxi or rental-car fare",
+      "tip": "Use official airport ground transport to Carlisle, Glasgow or Newcastle rail/bus connections, then continue to Gretna Green; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "4"
   },
   {
       "transportationId": "gunwharf-quays-car-parking",
@@ -484,6 +561,17 @@ export const ukTransportation = [
       "displayOrder": "6"
   },
   {
+      "transportationId": "gunwharf-quays-airport",
+      "outletId": "gunwharf-quays",
+      "transportType": "airport",
+      "title": "Southampton or Gatwick airports via rail/road",
+      "duration": "≈30-45 min by car from Southampton Airport; rail via Portsmouth Harbour check official timetable",
+      "cost": "Check official rail fare or airport taxi/transfer fare",
+      "tip": "Use official Southampton or Gatwick airport rail links to Portsmouth Harbour or Portsmouth & Southsea, then walk or use local transport; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "7"
+  },
+  {
       "transportationId": "the-galleria-outlet-car-parking",
       "outletId": "the-galleria-outlet",
       "transportType": "car",
@@ -515,6 +603,17 @@ export const ukTransportation = [
       "tip": "Official and Uno operator information list buses stopping at The Galleria; check the operator timetable for current services and fares.",
       "status": "active",
       "displayOrder": "3"
+  },
+  {
+      "transportationId": "galleria-airport",
+      "outletId": "the-galleria-outlet",
+      "transportType": "airport",
+      "title": "Luton / Stansted / Heathrow airport access",
+      "duration": "≈30-45 min by car from Luton Airport; longer from Stansted or Heathrow (estimated)",
+      "cost": "Confirm airport bus, rail, taxi or transfer fare",
+      "tip": "Use official airport ground transport to Hatfield rail/bus connections or a road transfer; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "4"
   },
   {
       "transportationId": "springfields-outlet-car-parking",
@@ -561,6 +660,17 @@ export const ukTransportation = [
       "displayOrder": "4"
   },
   {
+      "transportationId": "springfields-airport",
+      "outletId": "springfields-outlet",
+      "transportType": "airport",
+      "title": "East Midlands or Stansted airports by road/rail",
+      "duration": "≈80-110 min by car from East Midlands or Stansted airports (estimated)",
+      "cost": "Confirm airport rail, coach, taxi or rental-car fare",
+      "tip": "Use official airport ground transport to rail connections for Spalding, then local bus/taxi to Springfields; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "5"
+  },
+  {
       "transportationId": "the-boulevard-banbridge-car-parking",
       "outletId": "the-boulevard-banbridge",
       "transportType": "car",
@@ -592,6 +702,17 @@ export const ukTransportation = [
       "tip": "Official page says to use Translink and select 'Banbridge, Outlet Park (The Boulevard)' as the destination, and also links Bus Éireann for Republic of Ireland journeys.",
       "status": "active",
       "displayOrder": "3"
+  },
+  {
+      "transportationId": "banbridge-airport",
+      "outletId": "the-boulevard-banbridge",
+      "transportType": "airport",
+      "title": "Belfast airports via road or bus connection",
+      "duration": "≈30-45 min by car from Belfast International or Belfast City Airport (estimated)",
+      "cost": "Confirm airport bus, taxi or transfer fare",
+      "tip": "Use official Belfast airport ground transport to Belfast, then coach/bus or road transfer toward Banbridge; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "4"
   },
   {
       "transportationId": "bridgend-designer-outlet-car-parking",
@@ -671,6 +792,17 @@ export const ukTransportation = [
       "displayOrder": "3"
   },
   {
+      "transportationId": "east-midlands-airport",
+      "outletId": "east-midlands-designer-outlet",
+      "transportType": "airport",
+      "title": "East Midlands Airport by road or regional bus/taxi",
+      "duration": "≈25-40 min by car from East Midlands Airport (estimated)",
+      "cost": "Confirm airport bus, taxi or rental-car fare",
+      "tip": "Use official East Midlands Airport ground transport and regional bus/taxi connections toward South Normanton; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "4"
+  },
+  {
       "transportationId": "swindon-designer-outlet-car-parking",
       "outletId": "swindon-designer-outlet",
       "transportType": "car",
@@ -713,6 +845,17 @@ export const ukTransportation = [
       "tip": "Official Designer Outlet Swindon page says the outlet is a 15-minute walk from Swindon train station and the town centre, with cycle parking in the North A Car Park.",
       "status": "active",
       "displayOrder": "4"
+  },
+  {
+      "transportationId": "swindon-airport",
+      "outletId": "swindon-designer-outlet",
+      "transportType": "airport",
+      "title": "Heathrow or Bristol airports by road/rail",
+      "duration": "≈60-75 min by car from Heathrow or Bristol airports (estimated)",
+      "cost": "Confirm airport coach, rail, taxi or rental-car fare",
+      "tip": "Use official airport coach/rail links to Swindon station, then local bus/walk/taxi to the outlet; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "5"
   },
   {
       "transportationId": "west-midlands-designer-outlet-car-parking",
@@ -768,6 +911,17 @@ export const ukTransportation = [
       "tip": "Official plan-your-visit page lists coach and group bookings; confirm trip timings, drop-off and group rates with the centre or coach provider.",
       "status": "active",
       "displayOrder": "5"
+  },
+  {
+      "transportationId": "west-midlands-airport",
+      "outletId": "west-midlands-designer-outlet",
+      "transportType": "airport",
+      "title": "Birmingham Airport via rail/road",
+      "duration": "≈35-50 min by car from Birmingham Airport; rail via Birmingham/Cannock check official timetable",
+      "cost": "Check official rail fare or airport taxi/transfer fare",
+      "tip": "Use official Birmingham Airport rail access to Birmingham International, then rail/bus via Birmingham and Cannock or a road transfer; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "6"
   },
   {
       "transportationId": "icon-outlet-at-the-o2-tube",
@@ -858,6 +1012,17 @@ export const ukTransportation = [
       "displayOrder": "3"
   },
   {
+      "transportationId": "lakeside-village-airport",
+      "outletId": "lakeside-village",
+      "transportType": "airport",
+      "title": "Doncaster Sheffield-area airport alternatives via rail/road",
+      "duration": "≈60-90 min by car from Leeds Bradford, East Midlands or Manchester airports (estimated)",
+      "cost": "Confirm airport rail, coach, taxi or rental-car fare",
+      "tip": "Use official airport ground transport to Doncaster rail/bus connections, then local bus/taxi to Lakeside Village; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "4"
+  },
+  {
       "transportationId": "london-designer-outlet-car-parking",
       "outletId": "london-designer-outlet",
       "transportType": "car",
@@ -911,5 +1076,16 @@ export const ukTransportation = [
       "tip": "Official London Designer Outlet homepage lists the centre as 10 minutes walk from Wembley Park or Wembley Stadium stations and the getting-here page lists walking and bicycle access.",
       "status": "active",
       "displayOrder": "5"
+  },
+  {
+      "transportationId": "london-designer-outlet-airport",
+      "outletId": "london-designer-outlet",
+      "transportType": "airport",
+      "title": "Heathrow / London airports via rail or Underground",
+      "duration": "≈30-45 min by car from Heathrow; Underground/rail via central London check official timetable",
+      "cost": "Check official TfL/rail fare or airport taxi fare",
+      "tip": "Use official London airport ground transport and TfL/National Rail connections to Wembley Park or Wembley Stadium; no dedicated airport shuttle is published.",
+      "status": "active",
+      "displayOrder": "6"
   }
 ];

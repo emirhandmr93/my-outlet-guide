@@ -44,6 +44,17 @@ export const spainTransportation = [
     "displayOrder": "4"
   },
   {
+    "transportationId": "las-rozas-airport",
+    "outletId": "las-rozas-village",
+    "transportType": "airport",
+    "title": "Madrid Airport via Madrid public transport or road transfer",
+    "duration": "≈30-45 min by car from Madrid Airport; metro/train/bus via Madrid check official timetable",
+    "cost": "Confirm CRTM/Renfe fare or airport taxi/transfer fare",
+    "tip": "Use official Madrid Airport transport into Madrid for bus 625/628/629 or Cercanías connections, or arrange a taxi/transfer; no dedicated airport-to-village shuttle is published.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
     "transportationId": "malaga-car",
     "outletId": "designer-outlet-malaga",
     "transportType": "car",
@@ -86,5 +97,16 @@ export const spainTransportation = [
     "tip": "Official services list Line 5 towards Plaza Mayor and stop #2267/Plaza Mayor beside the centre; confirm current EMT Málaga times before travelling.",
     "status": "active",
     "displayOrder": "4"
+  },
+  {
+    "transportationId": "malaga-airport-access",
+    "outletId": "designer-outlet-malaga",
+    "transportType": "airport",
+    "title": "Málaga Airport one-stop train or road access",
+    "duration": "One Cercanías stop from Málaga Airport; 5 min by car",
+    "cost": "€1.80 train fare; taxi/transfer varies",
+    "tip": "Official centre directions list Málaga Airport one stop away by RENFE Cercanías C1 and about five minutes by car; confirm current Renfe times before travel.",
+    "status": "active",
+    "displayOrder": "5"
   }
 ];

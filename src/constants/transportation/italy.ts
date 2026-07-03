@@ -55,6 +55,17 @@ export const italyTransportation = [
     "displayOrder": "5"
   },
   {
+    "transportationId": "barberino-airport",
+    "outletId": "barberino",
+    "transportType": "airport",
+    "title": "Florence Airport via Florence SMN shuttle",
+    "duration": "≈15-25 min airport to Firenze SMN + 30 min outlet shuttle (estimated)",
+    "cost": "Airport tram/bus fare + official shuttle fare",
+    "tip": "Use official Florence Airport ground transport to reach Firenze Santa Maria Novella, then use the official Barberino shuttle/Outlet Link; no dedicated airport-to-outlet shuttle is published.",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
     "transportationId": "castel-romano-car",
     "outletId": "castel-romano",
     "transportType": "car",
@@ -97,6 +108,17 @@ export const italyTransportation = [
     "tip": "Trenitalia officially lists Castel Romano Designer Outlet Link as a train plus bus service from Roma Termini, with buses departing from Via Giolitti 48.",
     "status": "active",
     "displayOrder": "4"
+  },
+  {
+    "transportationId": "castel-romano-airport",
+    "outletId": "castel-romano",
+    "transportType": "airport",
+    "title": "Rome airports via Termini/EUR or road transfer",
+    "duration": "≈25-40 min by car from Fiumicino or Ciampino; airport rail/bus + outlet shuttle via Rome (estimated)",
+    "cost": "Confirm airport train/bus plus outlet shuttle or taxi fare",
+    "tip": "Use official Rome airport ground transport to reach Termini/EUR for the official outlet shuttle, or book an airport taxi/transfer; no dedicated airport-to-outlet shuttle is published.",
+    "status": "active",
+    "displayOrder": "5"
   },
   {
     "transportationId": "fidenza-coach",
@@ -143,6 +165,17 @@ export const italyTransportation = [
     "displayOrder": "4"
   },
   {
+    "transportationId": "fidenza-airport",
+    "outletId": "fidenza-village",
+    "transportType": "airport",
+    "title": "Milan/Bologna airports by car or rail + coach",
+    "duration": "≈60-90 min by car from Milan Linate, Malpensa or Bologna airports (estimated)",
+    "cost": "Confirm airport rail, coach, taxi or transfer fare",
+    "tip": "Use official airport ground transport to reach Milan for the official Shopping Express or continue by rail/car; no dedicated airport-to-village shuttle is published.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
     "transportationId": "la-reggia-car",
     "outletId": "la-reggia",
     "transportType": "car",
@@ -187,6 +220,17 @@ export const italyTransportation = [
     "displayOrder": "4"
   },
   {
+    "transportationId": "la-reggia-airport",
+    "outletId": "la-reggia",
+    "transportType": "airport",
+    "title": "Naples Airport road transfer or city connection",
+    "duration": "≈20-35 min by car from Naples Airport (estimated)",
+    "cost": "Confirm airport taxi, rental-car or transfer fare",
+    "tip": "Use official Naples Airport ground transport for taxi, rental car or bus into Naples before onward outlet transport; no dedicated airport-to-outlet shuttle is published.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
     "transportationId": "noventa-car",
     "outletId": "noventa",
     "transportType": "car",
@@ -229,6 +273,17 @@ export const italyTransportation = [
     "tip": "ATVO official outlet service information lists Marco Polo Airport as an intermediate stop; confirm current airport stops, times and ticket validity with ATVO.",
     "status": "active",
     "displayOrder": "4"
+  },
+  {
+    "transportationId": "noventa-airport",
+    "outletId": "noventa",
+    "transportType": "airport",
+    "title": "Venice Marco Polo / Treviso airport ATVO access",
+    "duration": "≈30-45 min from Venice Marco Polo or Treviso Airport by car; ATVO bus check official timetable",
+    "cost": "Check official ATVO fare or airport taxi/transfer fare",
+    "tip": "ATVO and the outlet officially list airport bus access serving Noventa di Piave; verify current airport stop, dates and timetable before travel.",
+    "status": "active",
+    "displayOrder": "5"
   },
   {
     "transportationId": "serravalle-car",

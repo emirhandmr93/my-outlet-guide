@@ -44,6 +44,17 @@ export const germanyTransportation = [
     "displayOrder": "4"
   },
   {
+    "transportationId": "metzingen-airport",
+    "outletId": "outletcity-metzingen",
+    "transportType": "airport",
+    "title": "Stuttgart Airport via eXpresso bus or shuttle",
+    "duration": "≈20-30 min by road from Stuttgart Airport; eXpresso bus check official timetable",
+    "cost": "Check official eXpresso/Shopping Shuttle fare or airport taxi fare",
+    "tip": "Official Outletcity access includes the Stuttgart Airport area and eXpresso regional bus connections; verify current airport-area stop and timetable before travel.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
     "transportationId": "ingolstadt-car-parking",
     "outletId": "ingolstadt-village",
     "transportType": "car",
@@ -86,6 +97,17 @@ export const germanyTransportation = [
     "tip": "The official getting-here page lists a Chauffeur Service for private transfer arrivals; retain provider confirmation because pricing and pickup details depend on the requested transfer.",
     "status": "active",
     "displayOrder": "4"
+  },
+  {
+    "transportationId": "ingolstadt-airport",
+    "outletId": "ingolstadt-village",
+    "transportType": "airport",
+    "title": "Munich Airport by car or rail/bus",
+    "duration": "≈45-60 min by car from Munich Airport; rail/bus via Munich or Ingolstadt check official timetable",
+    "cost": "Confirm MVV/DB fare or airport taxi/transfer fare",
+    "tip": "Use official Munich Airport ground transport, then DB/local bus connections to Ingolstadt Village or an airport road transfer; no dedicated airport shuttle is published.",
+    "status": "active",
+    "displayOrder": "5"
   },
   {
     "transportationId": "wertheim-car-parking",
@@ -132,6 +154,17 @@ export const germanyTransportation = [
     "displayOrder": "4"
   },
   {
+    "transportationId": "wertheim-airport",
+    "outletId": "wertheim-village",
+    "transportType": "airport",
+    "title": "Frankfurt Airport by car or Frankfurt coach connection",
+    "duration": "≈55-75 min by car from Frankfurt Airport; airport rail to Frankfurt + Shopping Express check official timetable",
+    "cost": "Confirm airport rail, Shopping Express, taxi or transfer fare",
+    "tip": "Use official Frankfurt Airport ground transport to Frankfurt city for the official Shopping Express, or arrange a road transfer; no dedicated airport-to-village shuttle is published.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
     "transportationId": "berlin-car-parking",
     "outletId": "designer-outlet-berlin",
     "transportType": "car",
@@ -163,6 +196,17 @@ export const germanyTransportation = [
     "tip": "Official directions confirm public-transport access; use the official rail/VBB provider for current Berlin-Elstal/Wustermark connections and fares before travel.",
     "status": "active",
     "displayOrder": "3"
+  },
+  {
+    "transportationId": "berlin-airport",
+    "outletId": "designer-outlet-berlin",
+    "transportType": "airport",
+    "title": "Berlin Brandenburg Airport via Berlin public transport or car",
+    "duration": "≈45-70 min by car; rail/bus via Berlin-Elstal/Wustermark check official timetable",
+    "cost": "Confirm VBB/DB fare or airport taxi/transfer fare",
+    "tip": "Use official BER ground transport and VBB/DB connections via Berlin toward Elstal/Wustermark before the outlet connection; no dedicated airport-to-outlet shuttle is published.",
+    "status": "active",
+    "displayOrder": "4"
   },
   {
     "transportationId": "neumunster-car-parking",
@@ -198,6 +242,17 @@ export const germanyTransportation = [
     "displayOrder": "3"
   },
   {
+    "transportationId": "neumunster-airport",
+    "outletId": "designer-outlet-neumunster",
+    "transportType": "airport",
+    "title": "Hamburg Airport via train or car",
+    "duration": "≈45-60 min by car; S-Bahn/train via Hamburg Hbf and Neumünster check official timetable",
+    "cost": "Confirm HVV/DB fare or airport taxi/transfer fare",
+    "tip": "Use official Hamburg Airport ground transport to Hamburg Hbf, then rail to Neumünster with local onward transport; no dedicated airport shuttle is published.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
     "transportationId": "wolfsburg-car-parking",
     "outletId": "designer-outlets-wolfsburg",
     "transportType": "car",
@@ -229,6 +284,17 @@ export const germanyTransportation = [
     "tip": "Official directions say all local public transport bus lines serve Wolfsburg ZOB, a few metres from the centre toward Porschestraße.",
     "status": "active",
     "displayOrder": "3"
+  },
+  {
+    "transportationId": "wolfsburg-airport",
+    "outletId": "designer-outlets-wolfsburg",
+    "transportType": "airport",
+    "title": "Hannover Airport via rail or car",
+    "duration": "≈60-80 min by car; S-Bahn/ICE via Hannover Hbf to Wolfsburg check official timetable",
+    "cost": "Confirm GVH/DB fare or airport taxi/transfer fare",
+    "tip": "Use official Hannover Airport rail access to Hannover Hbf, then DB services to Wolfsburg Hauptbahnhof; the outlet is a short walk from the station.",
+    "status": "active",
+    "displayOrder": "4"
   },
   {
     "transportationId": "bad-munstereifel-car-parking",
@@ -264,6 +330,17 @@ export const germanyTransportation = [
     "displayOrder": "3"
   },
   {
+    "transportationId": "bad-munstereifel-airport",
+    "outletId": "city-outlet-bad-munstereifel",
+    "transportType": "airport",
+    "title": "Cologne Bonn Airport via rail or car",
+    "duration": "≈55-75 min by car; rail via Cologne/Euskirchen check official timetable",
+    "cost": "Confirm airport rail, taxi or rental-car fare",
+    "tip": "Use official Cologne Bonn Airport ground transport and DB/VRS rail connections via Cologne and Euskirchen to Bad Münstereifel; no dedicated airport shuttle is published.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
     "transportationId": "montabaur-car-parking",
     "outletId": "montabaur-the-style-outlets",
     "transportType": "car",
@@ -297,6 +374,17 @@ export const germanyTransportation = [
     "displayOrder": "3"
   },
   {
+    "transportationId": "montabaur-airport",
+    "outletId": "montabaur-the-style-outlets",
+    "transportType": "airport",
+    "title": "Frankfurt Airport ICE access",
+    "duration": "≈30-45 min by ICE to Montabaur + short walk; ≈55-75 min by car (estimated)",
+    "cost": "Check official DB fare or airport taxi/transfer fare",
+    "tip": "Frankfurt Airport has an official long-distance rail station; use DB ICE services to Montabaur station next to the outlet, or official airport road transport.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
     "transportationId": "zweibrucken-car-parking",
     "outletId": "zweibrucken-fashion-outlet",
     "transportType": "car",
@@ -328,6 +416,17 @@ export const germanyTransportation = [
     "tip": "Use official rail and local bus planners for connections via Zweibrücken, then continue by the official hourly city bus connection to the outlet.",
     "status": "active",
     "displayOrder": "3"
+  },
+  {
+    "transportationId": "zweibrucken-airport",
+    "outletId": "zweibrucken-fashion-outlet",
+    "transportType": "airport",
+    "title": "Saarbrücken Airport by road or rail/bus connection",
+    "duration": "≈25-40 min by car from Saarbrücken Airport (estimated)",
+    "cost": "Confirm airport taxi, rental-car or regional transit fare",
+    "tip": "Use official Saarbrücken Airport ground transport to Saarbrücken, then rail/local bus via Zweibrücken or a road transfer; no dedicated airport shuttle is published.",
+    "status": "active",
+    "displayOrder": "4"
   },
   {
     "transportationId": "halle-leipzig-style-outlets-car-parking",
