@@ -708,5 +708,835 @@ export const ukRestaurants = [
     "website": "https://caledoniapark.com/brand_categories/food-drink/",
     "status": "active",
     "displayOrder": "71"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-caffe-nero",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Caffe Nero",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "72"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-churros-time",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Churros Time",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "73"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-cornish-bakery",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Cornish Bakery",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "74"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-costa-coffee",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "75"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-five-guys",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "76"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-kokoro",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "KOKORO",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "77"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-krispy-kreme",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Krispy Kreme",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "78"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-nandos",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Nando's",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "79"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-pizza-express",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "80"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-pret-a-manger",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Pret A Manger",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "81"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-slim-chickens",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "82"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-starbucks",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "83"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-top-dog",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Top Dog",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "84"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-wagamama",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "85"
+  },
+  {
+    "restaurantId": "ashford-designer-outlet-yo-sushi",
+    "outletId": "ashford-designer-outlet",
+    "restaurantName": "YO! Sushi",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/food-drink/",
+    "status": "active",
+    "displayOrder": "86"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-chopstix",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Chopstix",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "87"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-costa-coffee",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "88"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-cwtch-x-crafty-smuggler",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Cwtch X Crafty Smuggler",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "89"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-five-guys",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "90"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-greggs",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Greggs",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "91"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-krispy-kreme",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Krispy Kreme",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "92"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-love-churros",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Love Churros",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "93"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-mcdonalds",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "McDonald's",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "94"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-mowgli",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Mowgli",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "95"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-nandos",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Nando's",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "96"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-pogo-bakery",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Pogo Bakery",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "97"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-slim-chickens",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "98"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-starbucks",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "99"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-wagamama",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "100"
+  },
+  {
+    "restaurantId": "bridgend-designer-outlet-zizzi",
+    "outletId": "bridgend-designer-outlet",
+    "restaurantName": "Zizzi",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/food-drink/",
+    "status": "active",
+    "displayOrder": "101"
+  },
+  {
+    "restaurantId": "clarks-village-bills",
+    "outletId": "clarks-village",
+    "restaurantName": "Bill's",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.clarksvillage.co.uk/en/eat-listing",
+    "status": "active",
+    "displayOrder": "102"
+  },
+  {
+    "restaurantId": "clarks-village-pizzaexpress",
+    "outletId": "clarks-village",
+    "restaurantName": "PizzaExpress",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.clarksvillage.co.uk/en/eat-listing",
+    "status": "active",
+    "displayOrder": "103"
+  },
+  {
+    "restaurantId": "clarks-village-the-cornish-bakery",
+    "outletId": "clarks-village",
+    "restaurantName": "The Cornish Bakery",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.clarksvillage.co.uk/en/eat-listing",
+    "status": "active",
+    "displayOrder": "104"
+  },
+  {
+    "restaurantId": "clarks-village-wagamama",
+    "outletId": "clarks-village",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.clarksvillage.co.uk/en/eat-listing",
+    "status": "active",
+    "displayOrder": "105"
+  },
+  {
+    "restaurantId": "dalton-park-cafebar-1838",
+    "outletId": "dalton-park",
+    "restaurantName": "Cafebar 1838",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.dalton-park.co.uk/stores/cafe-bar-1838",
+    "status": "active",
+    "displayOrder": "106"
+  },
+  {
+    "restaurantId": "dalton-park-bakers-baristas",
+    "outletId": "dalton-park",
+    "restaurantName": "Bakers + Baristas",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.dalton-park.co.uk/stores/cafe-bar-1838",
+    "status": "active",
+    "displayOrder": "107"
+  },
+  {
+    "restaurantId": "dalton-park-costa-coffee",
+    "outletId": "dalton-park",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.dalton-park.co.uk/stores/cafe-bar-1838",
+    "status": "active",
+    "displayOrder": "108"
+  },
+  {
+    "restaurantId": "dalton-park-etto",
+    "outletId": "dalton-park",
+    "restaurantName": "Etto",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.dalton-park.co.uk/stores/cafe-bar-1838",
+    "status": "active",
+    "displayOrder": "109"
+  },
+  {
+    "restaurantId": "dalton-park-greggs",
+    "outletId": "dalton-park",
+    "restaurantName": "Greggs",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.dalton-park.co.uk/stores/cafe-bar-1838",
+    "status": "active",
+    "displayOrder": "110"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-starbucks",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "111"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-doughnotts",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Doughnotts",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "112"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-pizza-express",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "113"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-costa-coffee",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "114"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-five-guys",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "115"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-love-churros",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Love Churros",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "116"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-bb-s",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "BB’s",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "117"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-200-degrees-coffee",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "200 Degrees Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "118"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-wagamama",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "119"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-fluffy-fluffy",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Fluffy Fluffy",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "120"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-rose-deli",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Rose Deli",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "121"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-kouzina-greek",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Kouzina Greek",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "122"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-slim-chickens",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "123"
+  },
+  {
+    "restaurantId": "east-midlands-designer-outlet-chopstix",
+    "outletId": "east-midlands-designer-outlet",
+    "restaurantName": "Chopstix",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://fraserspluseastmidlands.com/",
+    "status": "active",
+    "displayOrder": "124"
+  },
+  {
+    "restaurantId": "gloucester-quays-bubble-citea",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Bubble CiTea",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "125"
+  },
+  {
+    "restaurantId": "gloucester-quays-costa-coffee",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "126"
+  },
+  {
+    "restaurantId": "gloucester-quays-anatolian-palace",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Anatolian Palace",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "127"
+  },
+  {
+    "restaurantId": "gloucester-quays-subway",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Subway",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "128"
+  },
+  {
+    "restaurantId": "gloucester-quays-bill-s",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Bill’s",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "129"
+  },
+  {
+    "restaurantId": "gloucester-quays-pret",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Pret",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "130"
+  },
+  {
+    "restaurantId": "gloucester-quays-bakers-barista",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Bakers + Barista",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "131"
+  },
+  {
+    "restaurantId": "gloucester-quays-muse-brasserie",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Muse Brasserie",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "132"
+  },
+  {
+    "restaurantId": "gloucester-quays-pizza-express",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "133"
+  },
+  {
+    "restaurantId": "gloucester-quays-zizzi",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Zizzi",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "134"
+  },
+  {
+    "restaurantId": "gloucester-quays-portivo-lounge",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Portivo Lounge",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "135"
+  },
+  {
+    "restaurantId": "gloucester-quays-brewhouse-and-kitchen",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Brewhouse & Kitchen",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "136"
+  },
+  {
+    "restaurantId": "gloucester-quays-wagamama",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "137"
+  },
+  {
+    "restaurantId": "gloucester-quays-coal-kitchen",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Coal Kitchen",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "138"
+  },
+  {
+    "restaurantId": "gloucester-quays-banchina",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Banchina",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "139"
+  },
+  {
+    "restaurantId": "gloucester-quays-nando-s",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Nando’s",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "140"
+  },
+  {
+    "restaurantId": "gloucester-quays-five-guys",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "141"
+  },
+  {
+    "restaurantId": "gloucester-quays-cornish-bakery",
+    "outletId": "gloucester-quays",
+    "restaurantName": "Cornish Bakery",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://gloucesterquays.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "142"
+  },
+  {
+    "restaurantId": "gunwharf-quays-carluccio-s",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Carluccio’s",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "143"
+  },
+  {
+    "restaurantId": "gunwharf-quays-frankie-and-benny-s",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Frankie & Benny’s",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "144"
+  },
+  {
+    "restaurantId": "gunwharf-quays-wagamama",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "145"
+  },
+  {
+    "restaurantId": "gunwharf-quays-cosy-club",
+    "outletId": "gunwharf-quays",
+    "restaurantName": "Cosy Club",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.gunwharf-quays.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "146"
+  },
+  {
+    "restaurantId": "lakeside-village-costa-coffee",
+    "outletId": "lakeside-village",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://lakeside-village.co.uk/store-category/food-drink/",
+    "status": "active",
+    "displayOrder": "147"
+  },
+  {
+    "restaurantId": "lakeside-village-costa-drive-thru",
+    "outletId": "lakeside-village",
+    "restaurantName": "Costa Drive Thru",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://lakeside-village.co.uk/store-category/food-drink/",
+    "status": "active",
+    "displayOrder": "148"
+  },
+  {
+    "restaurantId": "lakeside-village-etto",
+    "outletId": "lakeside-village",
+    "restaurantName": "Etto",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://lakeside-village.co.uk/store-category/food-drink/",
+    "status": "active",
+    "displayOrder": "149"
+  },
+  {
+    "restaurantId": "lakeside-village-greggs",
+    "outletId": "lakeside-village",
+    "restaurantName": "Greggs",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://lakeside-village.co.uk/store-category/food-drink/",
+    "status": "active",
+    "displayOrder": "150"
+  },
+  {
+    "restaurantId": "lakeside-village-jamaica-blue",
+    "outletId": "lakeside-village",
+    "restaurantName": "Jamaica Blue",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://lakeside-village.co.uk/store-category/food-drink/",
+    "status": "active",
+    "displayOrder": "151"
+  },
+  {
+    "restaurantId": "lakeside-village-kfc",
+    "outletId": "lakeside-village",
+    "restaurantName": "KFC",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://lakeside-village.co.uk/store-category/food-drink/",
+    "status": "active",
+    "displayOrder": "152"
+  },
+  {
+    "restaurantId": "lakeside-village-mcdonald-s",
+    "outletId": "lakeside-village",
+    "restaurantName": "McDonald’s",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://lakeside-village.co.uk/store-category/food-drink/",
+    "status": "active",
+    "displayOrder": "153"
+  },
+  {
+    "restaurantId": "lakeside-village-pizza-hut",
+    "outletId": "lakeside-village",
+    "restaurantName": "Pizza Hut",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://lakeside-village.co.uk/store-category/food-drink/",
+    "status": "active",
+    "displayOrder": "154"
   }
 ];
