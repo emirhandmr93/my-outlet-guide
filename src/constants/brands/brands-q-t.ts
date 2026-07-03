@@ -592,6 +592,17 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "sail-racing",
+    brandName: "Sail Racing",
+    aliases: ["SailRacing", "Sail Racing International", "Sail Racing Sportswear"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "sweden",
+    luxuryLevel: "sports",
+    rankingWeight: 76,
+    brandStatus: "active",
+  },
+  {
     brandId: "saint-laurent",
     brandName: "Saint Laurent",
     aliases: [
@@ -644,6 +655,17 @@ export const brandsQT: Brand[] = [
     originCountryId: "united-states",
     luxuryLevel: "premium",
     rankingWeight: 86,
+    brandStatus: "active",
+  },
+  {
+    brandId: "sand-copenhagen",
+    brandName: "Sand Copenhagen",
+    aliases: ["SAND", "Sand", "SAND Copenhagen", "SandCopenhagen"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "denmark",
+    luxuryLevel: "premium",
+    rankingWeight: 76,
     brandStatus: "active",
   },
   {
@@ -803,6 +825,17 @@ export const brandsQT: Brand[] = [
     originCountryId: "united-kingdom",
     luxuryLevel: "lifestyle",
     rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
+    brandId: "scorett",
+    brandName: "Scorett",
+    aliases: ["Scorett Shoes", "Scorett Footwear", "Scorett Outlet"],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "sweden",
+    luxuryLevel: "fashion",
+    rankingWeight: 72,
     brandStatus: "active",
   },
   {
