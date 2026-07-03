@@ -258,5 +258,85 @@ export const franceRestaurants = [
     "website": "https://www.thebicestercollection.com/la-vallee-village/fr/restaurant/wild-and-the-moon/",
     "status": "active",
     "displayOrder": "6"
+  },
+  {
+    "restaurantId": "roppenheim-amorino",
+    "outletId": "roppenheim-the-style-outlets",
+    "restaurantName": "AMORINO",
+    "category": "Ice Cream",
+    "priceLevel": "€€",
+    "website": "https://roppenheim.thestyleoutlets.fr/en/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "roppenheim-corner-nstreet",
+    "outletId": "roppenheim-the-style-outlets",
+    "restaurantName": "CORNER N'STREET",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://roppenheim.thestyleoutlets.fr/en/restaurants",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "roppenheim-kaimug",
+    "outletId": "roppenheim-the-style-outlets",
+    "restaurantName": "KAIMUG",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://roppenheim.thestyleoutlets.fr/en/restaurants",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "roppenheim-le-bretz",
+    "outletId": "roppenheim-the-style-outlets",
+    "restaurantName": "LE BRETZ",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://roppenheim.thestyleoutlets.fr/en/restaurants",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "roppenheim-macarons-inspirations",
+    "outletId": "roppenheim-the-style-outlets",
+    "restaurantName": "MACARONS & INSPIRATIONS",
+    "category": "Macarons",
+    "priceLevel": "€€",
+    "website": "https://roppenheim.thestyleoutlets.fr/en/restaurants",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "roppenheim-paul-le-cafe",
+    "outletId": "roppenheim-the-style-outlets",
+    "restaurantName": "PAUL LE CAFÉ",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://roppenheim.thestyleoutlets.fr/en/restaurants",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "roppenheim-ruffs-burger",
+    "outletId": "roppenheim-the-style-outlets",
+    "restaurantName": "RUFF'S BURGER",
+    "category": "Burgers",
+    "priceLevel": "€€",
+    "website": "https://roppenheim.thestyleoutlets.fr/en/restaurants",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "roppenheim-segafredo-zanetti",
+    "outletId": "roppenheim-the-style-outlets",
+    "restaurantName": "SEGAFREDO ZANETTI",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://roppenheim.thestyleoutlets.fr/en/restaurants",
+    "status": "active",
+    "displayOrder": "8"
   }
 ];

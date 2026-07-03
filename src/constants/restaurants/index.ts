@@ -5,6 +5,7 @@ import { greeceRestaurants } from "./greece";
 import { hungaryRestaurants } from "./hungary";
 import { slovakiaRestaurants } from "./slovakia";
 import { denmarkRestaurants } from "./denmark";
+import { estoniaRestaurants } from "./estonia";
 import { czechRepublicRestaurants } from "./czech-republic";
 import { finlandRestaurants } from "./finland";
 import { franceRestaurants } from "./france";
@@ -15,6 +16,7 @@ import { netherlandsRestaurants } from "./netherlands";
 import { norwayRestaurants } from "./norway";
 import { polandRestaurants } from "./poland";
 import { portugalRestaurants } from "./portugal";
+import { romaniaRestaurants } from "./romania";
 import { spainRestaurants } from "./spain";
 import { swedenRestaurants } from "./sweden";
 import { switzerlandRestaurants } from "./switzerland";
@@ -26,6 +28,7 @@ export {
   czechRepublicRestaurants,
   croatiaRestaurants,
   denmarkRestaurants,
+  estoniaRestaurants,
   finlandRestaurants,
   franceRestaurants,
   germanyRestaurants,
@@ -37,6 +40,7 @@ export {
   norwayRestaurants,
   polandRestaurants,
   portugalRestaurants,
+  romaniaRestaurants,
   spainRestaurants,
   slovakiaRestaurants,
   swedenRestaurants,
@@ -50,6 +54,7 @@ export const restaurants = [
   ...czechRepublicRestaurants,
   ...croatiaRestaurants,
   ...denmarkRestaurants,
+  ...estoniaRestaurants,
   ...finlandRestaurants,
   ...franceRestaurants,
   ...germanyRestaurants,
@@ -61,6 +66,7 @@ export const restaurants = [
   ...norwayRestaurants,
   ...polandRestaurants,
   ...portugalRestaurants,
+  ...romaniaRestaurants,
   ...spainRestaurants,
   ...slovakiaRestaurants,
   ...swedenRestaurants,
