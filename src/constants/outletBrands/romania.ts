@@ -15,6 +15,7 @@ const fashionHouseOutletCentreBucharestBrandIds = [
   "brands-hub",
   "bsb",
   "calvin-klein",
+  "crocs",
   "diesel",
   "dika",
   "gap",
@@ -26,11 +27,16 @@ const fashionHouseOutletCentreBucharestBrandIds = [
   "liujo",
   "marc-opolo",
   "numero-uno",
+  "oltre",
+  "puma",
   "randr-boutique",
   "sofiaman",
+  "sport-vision",
   "the-cosmetics-company-store",
   "tom-tailor",
-  "under-armour"
+  "tommy-hilfiger",
+  "under-armour",
+  "wittchen"
 ];
 
 export const romaniaOutletBrands: OutletBrand[] = [
