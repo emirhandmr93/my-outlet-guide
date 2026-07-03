@@ -60,6 +60,11 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "gothenburg",
+    "cityName": "Gothenburg",
+    "countryId": "sweden"
+  },
+  {
     "cityId": "gretna",
     "cityName": "Gretna",
     "countryId": "united-kingdom"
@@ -213,6 +218,11 @@ export const cities = [
     "cityId": "vienna",
     "cityName": "Vienna",
     "countryId": "austria"
+  },
+  {
+    "cityId": "warsaw",
+    "cityName": "Warsaw",
+    "countryId": "poland"
   },
   {
     "cityId": "york",
