@@ -29,6 +29,7 @@ export const czechRepublicOutlets = [
       "Other Services"
     ],
     restaurants: ["Červené jablko", "Costa Coffee", "Fruitisimo", "Regal Burger", "Satyam", "Starbucks", "Wrap'N Roll"],
+    restaurantSummary: "Dining options listed in outlet data include Červené jablko, Costa Coffee, Fruitisimo, and more.",
     parking: "Free parking is available at the centre; e-car charging stations are listed among the centre amenities.",
     taxFreeAvailable: true,
     vatRate: 21,

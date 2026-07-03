@@ -31,6 +31,7 @@ export const denmarkOutlets = [
       "McDonald's",
       "The Burger"
     ],
+    restaurantSummary: "Dining options listed in outlet data: Espresso House, McDonald's, and The Burger.",
     parking: "872 parking spaces.",
     taxFreeAvailable: true,
     vatRate: 25,

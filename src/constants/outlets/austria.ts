@@ -53,6 +53,8 @@ export const austriaOutlets = [
       "wagamama",
       "Wurstliebe"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Amici Napoli, Artner, Asia Up, and more.",
+    parking: "Official outlet services list free parking for visitors.",
     taxFreeAvailable: true,
     vatRate: 20,
     estimatedRefundRate: 12,

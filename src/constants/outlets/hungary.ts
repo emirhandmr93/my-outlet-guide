@@ -32,6 +32,7 @@ export const hungaryOutlets = [
       "Vicino",
       "Wok Bar"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Chimichanga, Churros Banditos, KFC, and more.",
     parking: "Free customer parking is available on site.",
     taxFreeAvailable: true,
     vatRate: 27,

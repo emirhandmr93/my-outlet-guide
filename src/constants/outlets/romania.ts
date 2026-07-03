@@ -20,6 +20,7 @@ export const romaniaOutlets = [
       "Transport Info"
     ],
     restaurants: ["5 To Go", "Maroon", "Shan-Xi Food & Coffee", "TED’s Coffee CO"],
+    restaurantSummary: "Dining options listed in outlet data include 5 To Go, Maroon, Shan-Xi Food & Coffee, and more.",
     taxFreeAvailable: false,
     vatRate: 19,
     estimatedRefundRate: 0,
