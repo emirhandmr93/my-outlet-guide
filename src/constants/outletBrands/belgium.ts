@@ -619,4 +619,53 @@ export const belgiumOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "adidas",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "american-vintage",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "boss",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "loreal",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "levis",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "tommy-hilfiger",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    brandId: "zadig-and-voltaire",
+    featured: false,
+    relationStatus: "active",
+  },
 ];
