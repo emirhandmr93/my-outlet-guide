@@ -6,7 +6,9 @@ import { denmarkOutlets } from "./denmark";
 import { finlandOutlets } from "./finland";
 import { franceOutlets } from "./france";
 import { germanyOutlets } from "./germany";
+import { greeceOutlets } from "./greece";
 import { hungaryOutlets } from "./hungary";
+import { irelandOutlets } from "./ireland";
 import { italyOutlets } from "./italy";
 import { netherlandsOutlets } from "./netherlands";
 import { norwayOutlets } from "./norway";
@@ -27,7 +29,9 @@ export {
   finlandOutlets,
   franceOutlets,
   germanyOutlets,
+  greeceOutlets,
   hungaryOutlets,
+  irelandOutlets,
   italyOutlets,
   netherlandsOutlets,
   norwayOutlets,
@@ -40,7 +44,10 @@ export {
   ukOutlets,
 };
 
-export const outlets = [
+type OutletAirport = { code: string; name: string; distanceKm: number };
+type Outlet = { airports?: OutletAirport[]; [key: string]: any };
+
+export const outlets: Outlet[] = [
   ...italyOutlets,
   ...germanyOutlets,
   ...franceOutlets,
@@ -53,6 +60,8 @@ export const outlets = [
   ...belgiumOutlets,
   ...croatiaOutlets,
   ...hungaryOutlets,
+  ...greeceOutlets,
+  ...irelandOutlets,
   ...slovakiaOutlets,
   ...norwayOutlets,
   ...finlandOutlets,

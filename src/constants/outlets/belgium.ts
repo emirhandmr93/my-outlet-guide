@@ -75,5 +75,22 @@ export const belgiumOutlets = [
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Maasmechelen+Village+Zetellaan+100+3630+Maasmechelen",
     appleMapsUrl: "http://maps.apple.com/?q=Maasmechelen+Village%20Zetellaan%20100%203630%20Maasmechelen",
     yandexMapsUrl: "https://yandex.com/maps/?text=Maasmechelen%20Village%20Zetellaan%20100%203630%20Maasmechelen"
-  }
+  },
+  {
+    outletId: "designer-outlet-luxembourg",
+    name: "Designer Outlet Luxembourg",
+    slug: "designer-outlet-luxembourg",
+    countryId: "belgium",
+    cityId: "messancy",
+    address: "Route d'Arlon 199, 6780 Messancy, Belgium",
+    latitude: 49.6083,
+    longitude: 5.81,
+    openingHours: "Mon-Thu 10:00 - 19:00; Fri-Sat 10:00 - 20:00; Sun 10:00 - 19:00 on selected dates; public holidays may vary",
+    storesCountText: "More than 60 designer brands",
+    websiteUrl: "https://www.designeroutletluxembourg.com/en/",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer+Outlet+Luxembourg+Route+d%27Arlon+199+6780+Messancy",
+    appleMapsUrl: "http://maps.apple.com/?q=Designer%20Outlet%20Luxembourg&address=Route%20d%27Arlon%20199%2C%206780%20Messancy%2C%20Belgium",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Luxembourg%2C%20Route%20d%27Arlon%20199%2C%206780%20Messancy"
+  } as any
 ];

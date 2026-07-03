@@ -701,5 +701,22 @@ export const germanyOutlets = [
     googleMapsUrl: "https://maps.google.com/?q=Zweibr%C3%BCcken+Fashion+Outlet%2C+Londoner+Bogen+10-90%2C+66482+Zweibr%C3%BCcken",
     appleMapsUrl: "http://maps.apple.com/?q=Zweibr%C3%BCcken%20Fashion%20Outlet&address=Londoner%20Bogen%2010-90%2C%2066482%20Zweibr%C3%BCcken",
     yandexMapsUrl: "https://yandex.com/maps/?text=Zweibr%C3%BCcken%20Fashion%20Outlet%2C%20Londoner%20Bogen%2010-90%2C%2066482%20Zweibr%C3%BCcken"
-  }
+  },
+  {
+    outletId: "halle-leipzig-the-style-outlets",
+    name: "Halle Leipzig The Style Outlets",
+    slug: "halle-leipzig-the-style-outlets",
+    countryId: "germany",
+    cityId: "halle-leipzig",
+    address: "Berliner Straße 1, 06796 Sandersdorf-Brehna, Germany",
+    latitude: 51.5576,
+    longitude: 12.1975,
+    openingHours: "Mon-Sat 10:00 - 20:00; Sun closed; special opening hours may vary",
+    storesCountText: "Over 80 international top brands",
+    websiteUrl: "https://halle.leipzig.thestyleoutlets.de/en",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Halle+Leipzig+The+Style+Outlets+Berliner+Stra%C3%9Fe+1+06796+Sandersdorf-Brehna",
+    appleMapsUrl: "http://maps.apple.com/?q=Halle%20Leipzig%20The%20Style%20Outlets&address=Berliner%20Stra%C3%9Fe%201%2C%2006796%20Sandersdorf-Brehna%2C%20Germany",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Halle%20Leipzig%20The%20Style%20Outlets%2C%20Berliner%20Stra%C3%9Fe%201%2C%2006796%20Sandersdorf-Brehna"
+  } as any
 ];

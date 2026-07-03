@@ -587,5 +587,22 @@ export const italyOutlets = [
     googleMapsUrl: "https://www.google.it/maps/dir//The+Mall+Firenze,+Via+Europa+8,+50066+Leccio+Reggello+FI",
     appleMapsUrl: "http://maps.apple.com/?q=The+Mall+Firenze",
     yandexMapsUrl: "https://yandex.com/maps/?text=The%20Mall%20Firenze"
-  }
+  },
+  {
+    outletId: "valdichiana-village",
+    name: "Valdichiana Village",
+    slug: "valdichiana-village",
+    countryId: "italy",
+    cityId: "foiano-della-chiana",
+    address: "Via Enzo Ferrari 5, 52045 Foiano della Chiana AR, Italy",
+    latitude: 43.2669,
+    longitude: 11.8147,
+    openingHours: "Mon-Sun 10:00 - 20:00; special event hours may vary",
+    storesCountText: "More than 140 premium fashion and lifestyle brands",
+    websiteUrl: "https://www.valdichianavillage.it/",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Valdichiana+Village+Via+Enzo+Ferrari+5+52045+Foiano+della+Chiana",
+    appleMapsUrl: "http://maps.apple.com/?q=Valdichiana%20Village&address=Via%20Enzo%20Ferrari%205%2C%2052045%20Foiano%20della%20Chiana%20AR%2C%20Italy",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Valdichiana%20Village%2C%20Via%20Enzo%20Ferrari%205%2C%2052045%20Foiano%20della%20Chiana"
+  } as any
 ];
