@@ -2,6 +2,8 @@ import type { OutletBrand } from "./index";
 
 export const hungaryOutletBrands: OutletBrand[] = [
   { outletId: "premier-outlet-budapest", brandId: "adidas", featured: true, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "american-tourister", featured: false, relationStatus: "active" },
+  { outletId: "premier-outlet-budapest", brandId: "amnesia", featured: false, relationStatus: "active" },
   { outletId: "premier-outlet-budapest", brandId: "boss", featured: true, relationStatus: "active" },
   { outletId: "premier-outlet-budapest", brandId: "calvin-klein", featured: true, relationStatus: "active" },
   { outletId: "premier-outlet-budapest", brandId: "desigual", featured: true, relationStatus: "active" },

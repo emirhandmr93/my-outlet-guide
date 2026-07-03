@@ -9,6 +9,12 @@ export const croatiaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ros-designer-outlet",
+    brandId: "argentum",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "ros-designer-outlet",
     brandId: "boss",
     featured: false,
     relationStatus: "active",
@@ -52,6 +58,12 @@ export const croatiaOutletBrands: OutletBrand[] = [
   {
     outletId: "ros-designer-outlet",
     brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "ros-designer-outlet",
+    brandId: "intrend",
     featured: false,
     relationStatus: "active",
   },
