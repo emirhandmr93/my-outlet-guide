@@ -1678,4 +1678,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
+  {
+    brandId: "zadig-voltaire",
+    brandName: "Zadig & Voltaire",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "fashion",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
 ];

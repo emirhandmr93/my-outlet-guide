@@ -4631,4 +4631,15 @@ export const brandsAE: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
+  {
+    brandId: "ambitious",
+    brandName: "Ambitious",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "portugal",
+    luxuryLevel: "fashion",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
 ];
