@@ -350,5 +350,49 @@ export const italyTransportation = [
     "tip": "The Mall Firenze travel guide places Florence Airport about 45 km from the outlet; use the airport's official taxi or transfer providers and confirm the fare before departure.",
     "status": "active",
     "displayOrder": "5"
+  },
+  {
+    "transportationId": "valdichiana-village-car-parking",
+    "outletId": "valdichiana-village",
+    "transportType": "taxi",
+    "title": "Car to Foiano della Chiana",
+    "duration": "≈60–75 min from Florence; ≈35–45 min from Arezzo (estimated)",
+    "cost": "Parking available; fuel and tolls vary",
+    "tip": "Official Valdichiana Designer Village information lists the centre at Via Enzo Ferrari 5, Foiano della Chiana; use the official directions link and local signage for parking.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "valdichiana-village-train-bus",
+    "outletId": "valdichiana-village",
+    "transportType": "train",
+    "title": "Train to Arezzo + LS5 bus",
+    "duration": "50 min bus from Arezzo Terminal Tiemme to Valdichiana Designer Village",
+    "cost": "Check Trenitalia and Autolinee Toscane fares",
+    "tip": "Official directions list train access to Arezzo station, then Tiemme/Autolinee Toscane LS5 bus from Arezzo Terminal to Valdichiana Designer Village.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "valdichiana-village-bus",
+    "outletId": "valdichiana-village",
+    "transportType": "bus",
+    "title": "Autolinee Toscane LS5 bus",
+    "duration": "50 min from Arezzo Terminal Tiemme",
+    "cost": "Check Autolinee Toscane fare",
+    "tip": "Official directions identify LS5 Arezzo-Foiano-Bettolle as the public bus route serving Valdichiana Designer Village; verify current departure times before travelling.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "valdichiana-village-airports",
+    "outletId": "valdichiana-village",
+    "transportType": "taxi",
+    "title": "Florence or Perugia airport access",
+    "duration": "≈70–90 min from Florence Airport; ≈60–80 min from Perugia Airport (estimated)",
+    "cost": "Confirm rental car, taxi or transfer fare",
+    "tip": "Use official airport ground transport or rental car channels, then drive to Foiano della Chiana; no official dedicated airport shuttle is published on the outlet directions page.",
+    "status": "active",
+    "displayOrder": "4"
   }
 ];

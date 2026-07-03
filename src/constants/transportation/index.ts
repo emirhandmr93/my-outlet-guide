@@ -6,7 +6,9 @@ import { croatiaTransportation } from "./croatia";
 import { finlandTransportation } from "./finland";
 import { franceTransportation } from "./france";
 import { germanyTransportation } from "./germany";
+import { greeceTransportation } from "./greece";
 import { hungaryTransportation } from "./hungary";
+import { irelandTransportation } from "./ireland";
 import { italyTransportation } from "./italy";
 import { slovakiaTransportation } from "./slovakia";
 import { netherlandsTransportation } from "./netherlands";
@@ -27,7 +29,9 @@ export {
   finlandTransportation,
   franceTransportation,
   germanyTransportation,
+  greeceTransportation,
   hungaryTransportation,
+  irelandTransportation,
   italyTransportation,
   slovakiaTransportation,
   netherlandsTransportation,
@@ -42,6 +46,8 @@ export {
 
 export const transportation = [
   ...italyTransportation,
+  ...irelandTransportation,
+  ...greeceTransportation,
   ...germanyTransportation,
   ...franceTransportation,
   ...ukTransportation,
