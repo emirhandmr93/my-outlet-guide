@@ -3483,12 +3483,6 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "dalton-park",
-    brandId: "dancing-betty",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "dalton-park",
     brandId: "denby",
     featured: false,
     relationStatus: "active",
@@ -5769,12 +5763,6 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "lakeside-village",
-    brandId: "etto",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "lakeside-village",
     brandId: "gift-company",
     featured: false,
     relationStatus: "active",
@@ -6874,12 +6862,6 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "bicester-village",
     brandId: "orlebar-brown",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "bicester-village",
-    brandId: "ottolenghi",
     featured: false,
     relationStatus: "active",
   },
