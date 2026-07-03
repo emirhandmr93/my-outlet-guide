@@ -394,5 +394,50 @@ export const italyTransportation = [
     "tip": "Use official airport ground transport or rental car channels, then drive to Foiano della Chiana; no official dedicated airport shuttle is published on the outlet directions page.",
     "status": "active",
     "displayOrder": "4"
+  },
+
+  {
+    "transportationId": "palmanova-car-parking",
+    "outletId": "palmanova-designer-village",
+    "transportType": "car",
+    "title": "Car via A4 Palmanova exit",
+    "duration": "25 min from Udine; ≈35-45 min from Trieste; ≈75-90 min from Venice (estimated)",
+    "cost": "Parking available; fuel and tolls vary",
+    "tip": "The official directions page says Palmanova Designer Village is just 25 minutes from Udine and sits near the A4 Palmanova exit linking Venice, Trieste and Austria.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "palmanova-train-cervignano",
+    "outletId": "palmanova-designer-village",
+    "transportType": "train",
+    "title": "Train to Cervignano-Aquileia-Grado + taxi/car",
+    "duration": "Train varies + 13 min / 12 km by car from station",
+    "cost": "Check Trenitalia fare; taxi/transfer extra",
+    "tip": "The official directions page lists public transport by train to Cervignano-Aquileia-Grado station, then continuing 12 km / 13 minutes by car to the Village; verify Trenitalia times before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "palmanova-bus-fvg",
+    "outletId": "palmanova-designer-village",
+    "transportType": "bus",
+    "title": "TPL FVG regional bus toward Palmanova/Aiello del Friuli",
+    "duration": "Check official timetable",
+    "cost": "Check official TPL FVG fare",
+    "tip": "Use official TPL FVG journey planning for regional buses serving Palmanova or Aiello del Friuli, then complete the last mile by local taxi or on foot where practical; services vary by route and day.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "palmanova-airports",
+    "outletId": "palmanova-designer-village",
+    "transportType": "airport",
+    "title": "Trieste or Venice airport access",
+    "duration": "≈20-30 min from Trieste Airport; ≈75-90 min from Venice Airport by car (estimated)",
+    "cost": "Confirm with airport taxi, rental-car or transfer provider",
+    "tip": "Use official Trieste Airport or Venice Airport ground-transport channels for rental cars, taxis or transfers; no official dedicated outlet airport shuttle is published.",
+    "status": "active",
+    "displayOrder": "4"
   }
 ];

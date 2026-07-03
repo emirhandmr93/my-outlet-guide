@@ -130,5 +130,61 @@ export const franceTransportation = [
     "tip": "The official outlet page lists nearby airports as an access category; Marseille Provence Airport is a realistic road transfer, but fares depend on the chosen taxi, ride-hail or transfer provider.",
     "status": "active",
     "displayOrder": "5"
+  },
+
+  {
+    "transportationId": "roppenheim-car-parking",
+    "outletId": "roppenheim-the-style-outlets",
+    "transportType": "car",
+    "title": "Car / on-site parking",
+    "duration": "≈30-40 min from Strasbourg; ≈25-35 min from Baden-Baden (estimated)",
+    "cost": "Free parking",
+    "tip": "The official Roppenheim access page lists the centre at 1 Route de L’Europe and provides car directions; the official parking page lists 1,713 car spaces, 21 motorcycle spaces and 62 bicycle spaces.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "roppenheim-strasbourg-shuttle",
+    "outletId": "roppenheim-the-style-outlets",
+    "transportType": "shuttle",
+    "title": "Free shuttle from Strasbourg",
+    "duration": "≈40-50 min (estimated)",
+    "cost": "Free with reservation",
+    "tip": "Roppenheim's official booking partner page lists a Strasbourg shuttle with compulsory outbound and return reservation, bookable until 1 hour before departure; confirm current operating days before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "roppenheim-bus-231",
+    "outletId": "roppenheim-the-style-outlets",
+    "transportType": "bus",
+    "title": "Cross-border bus 231 Soufflenheim - Rastatt",
+    "duration": "Check official timetable",
+    "cost": "Check official fare",
+    "tip": "Official accessibility information for the centre references cross-border bus line 231 between Soufflenheim and Rastatt running during outlet opening hours; verify the current timetable and stop before travelling.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "roppenheim-train-taxi",
+    "outletId": "roppenheim-the-style-outlets",
+    "transportType": "train",
+    "title": "Train to Roppenheim or nearby stations + taxi/bus",
+    "duration": "≈35-60 min from Strasbourg with last-mile transfer (estimated)",
+    "cost": "Check SNCF/TER or DB fare",
+    "tip": "Use official SNCF/TER Grand Est or DB channels to reach Roppenheim, Baden-Baden or Rastatt, then continue by local bus, shuttle or taxi; rail schedules and last-mile options vary by day.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "transportationId": "roppenheim-airports",
+    "outletId": "roppenheim-the-style-outlets",
+    "transportType": "airport",
+    "title": "Baden-Airpark or Strasbourg Airport access",
+    "duration": "≈25-45 min by car/taxi from Baden-Airpark; ≈45-60 min from Strasbourg Airport (estimated)",
+    "cost": "Confirm with airport taxi, rental-car or transfer provider",
+    "tip": "For airport arrivals, use official airport ground-transport services to arrange a taxi, rental car or transfer; no official dedicated airport shuttle to the outlet is published.",
+    "status": "active",
+    "displayOrder": "5"
   }
 ];
