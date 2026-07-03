@@ -11,7 +11,7 @@ export const swedenOutlets = [
     openingHours: "Monday - Sunday 10:00 - 19:00; special opening hours may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores, restaurants and services",
+    storesCountText: "Over 150 fashion and lifestyle brands",
     rating: 0,
     reviewCount: 0,
     services: [

@@ -97,7 +97,7 @@ export const italyOutlets = [
     openingHours: "Generally 10:00 - 20:00; summer special openings may extend to 21:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores and services",
+    storesCountText: "Over 150 designer brands",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -261,7 +261,7 @@ export const italyOutlets = [
     openingHours: "10:00 - 21:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores and services",
+    storesCountText: "Over 160 designer brands",
     rating: 4.6,
     reviewCount: 0,
     services: [

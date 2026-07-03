@@ -237,7 +237,7 @@ export const germanyOutlets = [
     openingHours: "Mon-Thu 10:00 - 19:00; Fri-Sat 10:00 - 20:00; Sun closed; Summer Sale 12 Jun-2 Aug 2026 Mon-Sat 10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores and services",
+    storesCountText: "Over 100 international top brands",
     rating: 4.5,
     reviewCount: 0,
     services: [
@@ -388,7 +388,7 @@ export const germanyOutlets = [
     openingHours: "10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores and services",
+    storesCountText: "Over 70 international top brands in 60 shops",
     rating: 4.4,
     reviewCount: 0,
     services: [
@@ -462,7 +462,7 @@ export const germanyOutlets = [
     openingHours: "Mon-Fri 10:00 - 20:00; Sat 09:00 - 20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores and services",
+    storesCountText: "Over 170 premium and luxury brands",
     rating: 4.6,
     reviewCount: 0,
     services: [
@@ -629,7 +629,7 @@ export const germanyOutlets = [
     openingHours: "10:00 - 19:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet stores and services",
+    storesCountText: "More than 120 premium brands",
     rating: 4.5,
     reviewCount: 0,
     services: [
