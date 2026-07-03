@@ -2,6 +2,8 @@ import { austriaOutletBrands } from "./austria";
 import { belgiumOutletBrands } from "./belgium";
 import { croatiaOutletBrands } from "./croatia";
 import { denmarkOutletBrands } from "./denmark";
+import { romaniaOutletBrands } from "./romania";
+import { estoniaOutletBrands } from "./estonia";
 import { franceOutletBrands } from "./france";
 import { czechRepublicOutletBrands } from "./czech-republic";
 import { finlandOutletBrands } from "./finland";
@@ -31,6 +33,8 @@ export {
   austriaOutletBrands,
   belgiumOutletBrands,
   denmarkOutletBrands,
+  romaniaOutletBrands,
+  estoniaOutletBrands,
   franceOutletBrands,
   croatiaOutletBrands,
   czechRepublicOutletBrands,
@@ -63,6 +67,8 @@ export const outletBrands: OutletBrand[] = [
   ...switzerlandOutletBrands,
   ...portugalOutletBrands,
   ...denmarkOutletBrands,
+  ...romaniaOutletBrands,
+  ...estoniaOutletBrands,
   ...polandOutletBrands,
   ...swedenOutletBrands,
   ...czechRepublicOutletBrands,
