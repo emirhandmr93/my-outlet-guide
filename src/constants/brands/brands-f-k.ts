@@ -3346,7 +3346,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "intrend",
     brandName: "Intrend",
-    aliases: [],
+    aliases: ["Intrend Max Mara", "In Trend"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "italy",
