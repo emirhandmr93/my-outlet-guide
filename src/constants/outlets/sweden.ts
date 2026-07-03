@@ -11,25 +11,46 @@ export const swedenOutlets = [
     openingHours: "Monday - Sunday 10:00 - 19:00; special opening hours may vary",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "70 stores",
+    storesCountText: "Outlet stores, restaurants and services",
     rating: 0,
     reviewCount: 0,
-    services: [],
-    restaurants: [],
-    parking: "",
+    services: [
+      "Parking",
+      "Public transport",
+      "Tourist Information Centre",
+      "Electric car charger",
+      "Accessibility",
+      "Gift cards",
+      "Tax Free",
+      "Pets",
+      "Umbrella"
+    ],
+    restaurants: [
+      "Diné",
+      "Espresso House",
+      "Mena Mano",
+      "Triumfglass - Ice Cream Truck"
+    ],
+    parking: "Parking and route information is available on the official centre website.",
     taxFreeAvailable: true,
     vatRate: 25,
-    estimatedRefundRate: 0,
+    estimatedRefundRate: 14,
     minimumTaxFreeSpend: "200 SEK",
     taxFreeOperator: "Participating tax refund operators",
     taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free shopping assistance at participating stores and validate documents when leaving the EU.",
     cityCenterDistanceKm: 25,
-    airportDistanceKm: 0,
-    airports: [],
+    airportDistanceKm: 48,
+    airports: [
+      {
+        code: "GOT",
+        name: "Gothenburg Landvetter Airport",
+        distanceKm: 48
+      }
+    ],
     cityCenterInfo: {
       name: "Gothenburg city centre",
       distanceKm: 25,
-      recommendedRoute: "See official centre website for directions."
+      recommendedRoute: "Use Västtrafik rail to Hede Station plus a short walk, the official seasonal shuttle when operating, or drive via E6."
     },
     nearby: [],
     websiteUrl: "https://www.hedefashionoutlet.se/en",
