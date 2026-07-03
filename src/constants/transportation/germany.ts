@@ -328,5 +328,49 @@ export const germanyTransportation = [
     "tip": "Use official rail and local bus planners for connections via Zweibrücken, then continue by the official hourly city bus connection to the outlet.",
     "status": "active",
     "displayOrder": "3"
+  },
+  {
+    "transportationId": "halle-leipzig-style-outlets-car-parking",
+    "outletId": "halle-leipzig-the-style-outlets",
+    "transportType": "taxi",
+    "title": "Car via A9 + outlet parking",
+    "duration": "≈25–35 min from Leipzig or Halle by car (estimated)",
+    "cost": "Free parking; fuel varies",
+    "tip": "Official outlet information lists Berliner Straße 1 in Sandersdorf-Brehna and parking; regional tourism information notes convenient A9 access and about 1,800 parking spaces.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "halle-leipzig-style-outlets-train",
+    "outletId": "halle-leipzig-the-style-outlets",
+    "transportType": "train",
+    "title": "S-Bahn S8 to Brehna",
+    "duration": "13 min from Halle by train, then local walk or taxi",
+    "cost": "Check MDV/DB fare",
+    "tip": "Official directions list S-Bahn S8 from Halle toward Lutherstadt Wittenberg, Bitterfeld or Dessau to Brehna, with an approximate 13-minute train journey from Halle.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "halle-leipzig-style-outlets-shuttle",
+    "outletId": "halle-leipzig-the-style-outlets",
+    "transportType": "shuttle",
+    "title": "Free Saturday shuttle from Leipzig and Halle",
+    "duration": "≈25–40 min from Leipzig Hbf or Halle bus station (estimated)",
+    "cost": "Free; booking required where offered",
+    "tip": "Official directions advertise a free shuttle bus every Saturday from Leipzig main station and Halle bus station; check the official booking page for current departure times.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "halle-leipzig-style-outlets-airport",
+    "outletId": "halle-leipzig-the-style-outlets",
+    "transportType": "taxi",
+    "title": "Leipzig/Halle Airport by car or S-Bahn",
+    "duration": "≈20–30 min by car from Leipzig/Halle Airport (estimated)",
+    "cost": "Confirm taxi, rental car or MDV/DB fare",
+    "tip": "Leipzig/Halle Airport officially has its own rail station below check-in with Deutsche Bahn connections; connect by rail via Halle/Leipzig or use the outlet's A9-area road access.",
+    "status": "active",
+    "displayOrder": "4"
   }
 ];

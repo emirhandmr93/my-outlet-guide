@@ -53,5 +53,49 @@ export const belgiumTransportation = [
     "tip": "Official Village directions list Brussels Airport, Maastricht Aachen Airport, and Düsseldorf Airport driving access; confirm taxi, rental car, or transfer pricing before departure.",
     "status": "active",
     "displayOrder": "5"
+  },
+  {
+    "transportationId": "designer-outlet-luxembourg-car-parking",
+    "outletId": "designer-outlet-luxembourg",
+    "transportType": "taxi",
+    "title": "Car via E411 / N81 + free parking",
+    "duration": "≈30 min from Luxembourg City; ≈15 min from Arlon (estimated)",
+    "cost": "Free parking; fuel and tolls vary",
+    "tip": "Official directions list access from Belgium, France, Luxembourg and Germany via E411/A6/E25 and N81, plus free car and bus parking at the centre.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "designer-outlet-luxembourg-bus",
+    "outletId": "designer-outlet-luxembourg",
+    "transportType": "bus",
+    "title": "TEC bus 16 or 20 to Messancy Outlet",
+    "duration": "≈15–25 min from Arlon station (estimated)",
+    "cost": "Check TEC fare",
+    "tip": "Official directions list TEC bus 16 from Arlon/Virton/Athus and TEC bus 20 from Châtillon/Rachecourt/Arlon to the Messancy Outlet stop in front of the centre.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "designer-outlet-luxembourg-train-bus",
+    "outletId": "designer-outlet-luxembourg",
+    "transportType": "train",
+    "title": "Train to Arlon + TEC bus",
+    "duration": "≈45–70 min from Luxembourg City via Arlon (estimated)",
+    "cost": "Check SNCB/CFL and TEC fares",
+    "tip": "Official directions advise travellers from France or Luxembourg to take the train to Arlon station, then TEC bus 16 or 20 to Messancy Outlet.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "designer-outlet-luxembourg-airport",
+    "outletId": "designer-outlet-luxembourg",
+    "transportType": "taxi",
+    "title": "Luxembourg Airport by car or train/bus connection",
+    "duration": "≈30–45 min from Luxembourg Airport by car (estimated)",
+    "cost": "Confirm taxi, rental car or public transport fares",
+    "tip": "Use official Luxembourg Airport ground transport to Luxembourg City, then rail to Arlon plus TEC bus, or drive via the A6/E25 and N81 route listed by the outlet.",
+    "status": "active",
+    "displayOrder": "4"
   }
 ];
