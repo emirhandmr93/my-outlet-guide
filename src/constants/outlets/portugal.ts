@@ -38,6 +38,7 @@ export const portugalOutlets = [
       "Selfish with a Twist",
       "Starbucks"
     ],
+    restaurantSummary: "Dining options listed in outlet data include 28, Basílico, Cañas y Tapas, and more.",
     parking: "Official services list parking; official practical information shows 2 parking locations.",
     taxFreeAvailable: true,
     vatRate: 23,
@@ -111,6 +112,7 @@ export const portugalOutlets = [
       "Vila 953",
       "Vitaminas"
     ],
+    restaurantSummary: "Dining options listed in outlet data include AndiAmo, Delfina, Duforno, and more.",
     parking: "Official services list car parking; official accessibility information includes car parking.",
     taxFreeAvailable: true,
     vatRate: 23,

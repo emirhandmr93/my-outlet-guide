@@ -41,6 +41,8 @@ export const franceOutlets = [
       "Pokabowl",
       "Starbucks"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Amorino, Bagelstein, Farinella, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 20,
     estimatedRefundRate: 12,
@@ -118,6 +120,8 @@ export const franceOutlets = [
       "Rosaparks",
       "Starbucks"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Amorino, Lindt, La Fring'ale, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 20,
     estimatedRefundRate: 12,
@@ -194,6 +198,8 @@ export const franceOutlets = [
       "Pierre Hermé Paris",
       "Wild & The Moon"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Amorino, Art café, Ladurée, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 20,
     estimatedRefundRate: 12,
@@ -262,6 +268,7 @@ export const franceOutlets = [
       "Water Refill"
     ],
     restaurants: ["AMORINO", "CORNER N'STREET", "KAIMUG", "LE BRETZ", "MACARONS & INSPIRATIONS", "PAUL LE CAFÉ", "RUFF'S BURGER", "SEGAFREDO ZANETTI"],
+    restaurantSummary: "Dining options listed in outlet data include AMORINO, CORNER N'STREET, KAIMUG, and more.",
     taxFreeAvailable: true,
     vatRate: 20,
     estimatedRefundRate: 12,

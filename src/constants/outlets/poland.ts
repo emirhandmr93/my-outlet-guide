@@ -30,6 +30,7 @@ export const polandOutlets = [
       "Love It",
       "So Coffee"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Costa Coffee, Gorąco Polecam, Love It, and more.",
     parking: "888 car parking spaces and 28 bicycle parking spaces.",
     taxFreeAvailable: true,
     vatRate: 23,
@@ -89,6 +90,7 @@ export const polandOutlets = [
       "So Coffee",
       "Sphinx"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Grycan Lody od Pokoleń, Popolo Pizza i Pasta, So Coffee, and more.",
     parking: "800 car parking spaces, 52 bicycle parking spaces and a Veturilo station.",
     taxFreeAvailable: true,
     vatRate: 23,

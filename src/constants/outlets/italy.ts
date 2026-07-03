@@ -39,6 +39,8 @@ export const italyOutlets = [
       "Lindt",
       "Poke House"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Antica Focacceria San Francesco, Caffè Mediceo, Farinella, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
@@ -125,6 +127,8 @@ export const italyOutlets = [
       "Starbucks",
       "Venchi"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Bollicine&Co, Bonetti, Eat Artisti del Gusto - Illy, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
@@ -203,6 +207,8 @@ export const italyOutlets = [
       "Signorvino",
       "Venchi"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Koi Sushi, Lievità, Lindt, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
@@ -287,6 +293,8 @@ export const italyOutlets = [
       "Rossopomodoro",
       "Starbucks"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Artisti del Gusto, Burger King, Farinella, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
@@ -367,6 +375,8 @@ export const italyOutlets = [
       "Tramè",
       "Venchi"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Bistrot, Bollicine&Co., Bonetti, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
@@ -463,6 +473,8 @@ export const italyOutlets = [
       "Starbucks",
       "Wagamama"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Bollicine&Co, Bomaki, Bonetti, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
@@ -542,6 +554,8 @@ export const italyOutlets = [
       "ToscaNino Restaurant&Bottega",
       "Toscapino"
     ],
+    restaurantSummary: "Dining options listed in outlet data: ToscaNino Bistrò, ToscaNino Restaurant&Bottega, and Toscapino.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
@@ -626,6 +640,7 @@ export const italyOutlets = [
       "Poke House",
       "Terre di Masaccio"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Badiani, Billi's, Da Michele, and more.",
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,
@@ -694,6 +709,7 @@ export const italyOutlets = [
       "Transport Info"
     ],
     restaurants: ["Antica Pizzeria Da Michele", "Dall'Ava Italian Excellence", "Dall’Ava Italian Excellence – Caffetteria Bakery", "Hamerica's", "La Piadineria"],
+    restaurantSummary: "Dining options listed in outlet data include Antica Pizzeria Da Michele, Dall'Ava Italian Excellence, Dall’Ava Italian Excellence – Caffetteria Bakery, and more.",
     taxFreeAvailable: true,
     vatRate: 22,
     estimatedRefundRate: 12,

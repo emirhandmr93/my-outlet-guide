@@ -35,6 +35,8 @@ export const belgiumOutlets = [
       "Le Petit Belge",
       "Le Spritzz"
     ],
+    restaurantSummary: "Dining options listed in outlet data include Cho Gao, Churros & More, Izy Coffee, and more.",
+    parking: "Official outlet services list visitor parking; check the official outlet website for current parking details.",
     taxFreeAvailable: true,
     vatRate: 21,
     estimatedRefundRate: 12,
@@ -102,6 +104,7 @@ export const belgiumOutlets = [
       "Accessibility"
     ],
     restaurants: ["Crêpes & Co", "El Pepper", "Hoppy restaurant"],
+    restaurantSummary: "Dining options listed in outlet data: Crêpes & Co, El Pepper, and Hoppy restaurant.",
     taxFreeAvailable: true,
     vatRate: 21,
     estimatedRefundRate: 12,

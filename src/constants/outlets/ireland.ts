@@ -31,6 +31,7 @@ export const irelandOutlets = [
       "Children's Playground"
     ],
     restaurants: ["Mani Pizza", "Oakberry", "Pret A Manger", "Saba", "Sprout & Co."],
+    restaurantSummary: "Dining options listed in outlet data include Mani Pizza, Oakberry, Pret A Manger, and more.",
     taxFreeAvailable: true,
     vatRate: 23,
     estimatedRefundRate: 12,
