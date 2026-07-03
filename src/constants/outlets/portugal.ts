@@ -55,7 +55,7 @@ export const portugalOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Lisbon City Center",
+      name: "Lisbon City Centre",
       distanceKm: 30,
       recommendedRoute: "Car or outlet shuttle"
     },
@@ -128,7 +128,7 @@ export const portugalOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Porto City Center",
+      name: "Porto City Centre",
       distanceKm: 30,
       recommendedRoute: "Metro, car or taxi"
     },

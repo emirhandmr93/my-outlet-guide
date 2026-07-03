@@ -65,7 +65,7 @@ export const italyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Florence City Center",
+      name: "Florence City Centre",
       distanceKm: 30,
       recommendedRoute: "Shuttle or car via A1"
     },
@@ -146,7 +146,7 @@ export const italyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Rome City Center",
+      name: "Rome City Centre",
       distanceKm: 25,
       recommendedRoute: "Shuttle bus from Rome Termini or car via Via Pontina"
     },
@@ -229,7 +229,7 @@ export const italyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Milan City Center",
+      name: "Milan City Centre",
       distanceKm: 110,
       recommendedRoute: "Train to Fidenza + local transfer"
     },
@@ -303,7 +303,7 @@ export const italyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Naples City Center",
+      name: "Naples City Centre",
       distanceKm: 30,
       recommendedRoute: "Shuttle bus or car via A1"
     },
@@ -393,7 +393,7 @@ export const italyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Venice City Center",
+      name: "Venice City Centre",
       distanceKm: 45,
       recommendedRoute: "Shuttle, bus, or car via A4"
     },
@@ -489,7 +489,7 @@ export const italyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Milan City Center",
+      name: "Milan City Centre",
       distanceKm: 95,
       recommendedRoute: "Shuttle or train + bus via Serravalle Scrivia"
     },
@@ -568,7 +568,7 @@ export const italyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Florence City Center",
+      name: "Florence City Centre",
       distanceKm: 35,
       recommendedRoute: "Direct bus or car via A1"
     },
@@ -648,7 +648,7 @@ export const italyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Arezzo City Center",
+      name: "Arezzo City Centre",
       distanceKm: 30,
       recommendedRoute: "Car via A1 / Valdichiana exit"
     },
@@ -677,7 +677,7 @@ export const italyOutlets = [
     address: "SP 126 Km 1,6, 33041 Joannis di Aiello del Friuli (UD), Italy",
     latitude: 45.8786,
     longitude: 13.3308,
-    openingHours: "Shops Monday - Sunday 10:00 - 20:00; Restaurants & Café Monday - Sunday 09:00 - 21:00",
+    openingHours: "Monday - Sunday 10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
     storesCountText: "More than 90 FASHION & LIFESTYLE BRANDS",
@@ -703,6 +703,14 @@ export const italyOutlets = [
     parking: "ROS lists 2,500 parking spaces for Palmanova Designer Village.",
     cityCenterDistanceKm: 30,
     airportDistanceKm: 20,
+    airports: [
+      { code: "TRS", name: "Trieste Airport", distanceKm: 20 }
+    ],
+    cityCenterInfo: {
+      name: "Udine City Centre",
+      distanceKm: 30,
+      recommendedRoute: "Follow official Palmanova Designer Village directions to SP 126 Km 1,6."
+    },
     websiteUrl: "https://www.palmanovadesignervillage.com/en",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Palmanova+Designer+Village",

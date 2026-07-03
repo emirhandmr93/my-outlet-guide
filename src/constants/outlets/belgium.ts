@@ -56,7 +56,7 @@ export const belgiumOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Brussels City Center",
+      name: "Brussels City Centre",
       distanceKm: 95,
       recommendedRoute: "Shopping Express, car, or train to Genk plus De Lijn bus 45"
     },
@@ -119,7 +119,7 @@ export const belgiumOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Luxembourg City Center",
+      name: "Luxembourg City Centre",
       distanceKm: 25,
       recommendedRoute: "Car via the A6/E25 toward Messancy"
     },

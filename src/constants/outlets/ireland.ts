@@ -48,7 +48,7 @@ export const irelandOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Dublin City Center",
+      name: "Dublin City Centre",
       distanceKm: 60,
       recommendedRoute: "Car via the M7 or Shopping Express / coach connections"
     },

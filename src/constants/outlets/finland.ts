@@ -33,7 +33,7 @@ export const finlandOutlets = [
     cityCenterDistanceKm: 18,
     airportDistanceKm: 22,
     airports: [{ code: "TMP", name: "Tampere-Pirkkala Airport", distanceKm: 22 }],
-    cityCenterInfo: { name: "Tampere city centre", distanceKm: 18, recommendedRoute: "Drive south from Tampere on E12/Highway 3, or use regional bus connections toward Ideapark Lempäälä." },
+    cityCenterInfo: { name: "Tampere City Centre", distanceKm: 18, recommendedRoute: "Drive south from Tampere on E12/Highway 3, or use regional bus connections toward Ideapark Lempäälä." },
     nearby: [],
     websiteUrl: "https://lempaala.ideapark.fi/en/",
     status: "active",

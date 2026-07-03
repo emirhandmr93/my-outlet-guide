@@ -8,10 +8,10 @@ export const romaniaOutlets = [
     address: "Strada Comerțului nr. 7-13, Domnești, Ilfov, Romania",
     latitude: 44.4364,
     longitude: 25.9531,
-    openingHours: "Mon-Sat 10:00-21:00; Sun 10:00-20:00",
+    openingHours: "L-S: 10:00-21:00; D: 10:00-20:00",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Aproape 60 de magazine outlet",
+    storesCountText: "APROAPE 60 DE MAGAZINE OUTLET",
     rating: 0,
     reviewCount: 0,
     services: [
@@ -29,6 +29,14 @@ export const romaniaOutlets = [
     parking: "Parking is available at FASHION HOUSE Outlet Centre Militari; official/operator wording for capacity was not verified.",
     cityCenterDistanceKm: 13,
     airportDistanceKm: 25,
+    airports: [
+      { code: "OTP", name: "Henri Coandă International Airport", distanceKm: 25 }
+    ],
+    cityCenterInfo: {
+      name: "Bucharest City Centre",
+      distanceKm: 13,
+      recommendedRoute: "Drive west from Bucharest toward West Park Retail Militari on the A1 corridor."
+    },
     websiteUrl: "https://fashionhouse.ro/militari/",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=FASHION+HOUSE+Outlet+Centre+Militari",

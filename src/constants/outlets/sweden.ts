@@ -48,7 +48,7 @@ export const swedenOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Gothenburg city centre",
+      name: "Gothenburg City Centre",
       distanceKm: 25,
       recommendedRoute: "Use Västtrafik rail to Hede Station plus a short walk, the official seasonal shuttle when operating, or drive via E6."
     },

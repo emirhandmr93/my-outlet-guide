@@ -54,7 +54,7 @@ export const greeceOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Athens City Center",
+      name: "Athens City Centre",
       distanceKm: 25,
       recommendedRoute: "Car or public transport via Spata / Smart Park area"
     },

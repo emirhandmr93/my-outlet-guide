@@ -84,13 +84,13 @@ export const netherlandsOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Amsterdam City Center",
+      name: "Amsterdam City Centre",
       distanceKm: 180,
       recommendedRoute: "Train to Roermond, then walk 10-15 minutes"
     },
     nearby: [
       {
-        name: "Roermond City Center",
+        name: "Roermond City Centre",
         distanceKm: 1
       },
       {
@@ -167,13 +167,13 @@ export const netherlandsOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Rotterdam City Center",
+      name: "Rotterdam City Centre",
       distanceKm: 65,
       recommendedRoute: "Train to Roosendaal, then local bus or taxi"
     },
     nearby: [
       {
-        name: "Roosendaal City Center",
+        name: "Roosendaal City Centre",
         distanceKm: 3
       },
       {

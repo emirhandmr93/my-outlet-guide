@@ -8,10 +8,10 @@ export const estoniaOutlets = [
     address: "Peterburi tee 2, 11415 Tallinn, Estonia",
     latitude: 59.4215,
     longitude: 24.7936,
-    openingHours: "Mon-Sun 10:00 - 20:00",
+    openingHours: "Shops Mon–Sun: 10-20",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "Outlet",
+    storesCountText: "Outlet 16 poodi",
     rating: 0,
     reviewCount: 0,
     services: [
@@ -35,6 +35,14 @@ export const estoniaOutlets = [
     parking: "T1 provides visitor parking information from its official Parking page; the centre also lists underground bicycle storage and 51 paid electric car charging points.",
     cityCenterDistanceKm: 4,
     airportDistanceKm: 2,
+    airports: [
+      { code: "TLL", name: "Tallinn Airport", distanceKm: 2 }
+    ],
+    cityCenterInfo: {
+      name: "Tallinn City Centre",
+      distanceKm: 4,
+      recommendedRoute: "Follow official T1 how-to-get-here guidance via Peterburi tee."
+    },
     websiteUrl: "https://t1tallinn.com/en/shop-category/outlet-en/",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=T1+Tallinn+Outlet",

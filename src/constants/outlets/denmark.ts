@@ -48,7 +48,7 @@ export const denmarkOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Copenhagen City Center",
+      name: "Copenhagen City Centre",
       distanceKm: 65,
       recommendedRoute: "Train to Ringsted or car via E20"
     },
