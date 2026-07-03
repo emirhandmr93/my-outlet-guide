@@ -327,12 +327,6 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "barberino",
-    brandId: "hamericas",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "barberino",
     brandId: "harmont-e-blaine",
     featured: false,
     relationStatus: "active",
