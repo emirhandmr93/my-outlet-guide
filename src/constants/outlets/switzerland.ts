@@ -63,7 +63,7 @@ export const switzerlandOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Mendrisio city centre",
+      name: "Mendrisio City Centre",
       distanceKm: 1,
       recommendedRoute: "Walk or take local transport from Mendrisio station; FoxTown is directly connected to the station and close to the Mendrisio motorway exit."
     },

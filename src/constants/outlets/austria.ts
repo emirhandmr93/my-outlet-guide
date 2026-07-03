@@ -66,7 +66,7 @@ export const austriaOutlets = [
       { code: "BTS", name: "Bratislava Airport", distanceKm: 45 }
     ],
     cityCenterInfo: {
-      name: "Vienna City Center",
+      name: "Vienna City Centre",
       distanceKm: 45,
       recommendedRoute: "Shuttle bus from Vienna State Opera or train to Parndorf Ort with station bus"
     },

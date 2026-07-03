@@ -47,7 +47,7 @@ export const polandOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Warsaw city centre",
+      name: "Warsaw City Centre",
       distanceKm: 10,
       recommendedRoute: "Use official Warsaw public transport or drive via live map directions to Plac Czerwca 1976 r. 6."
     },
@@ -111,7 +111,7 @@ export const polandOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Warsaw city centre",
+      name: "Warsaw City Centre",
       distanceKm: 11,
       recommendedRoute: "Use Metro M2 toward Bródno plus a short walk or local tram/bus, or drive via live map directions to Annopol 2."
     },

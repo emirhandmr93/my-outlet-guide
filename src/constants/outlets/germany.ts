@@ -54,7 +54,7 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Cologne City Center",
+      name: "Cologne City Centre",
       distanceKm: 65,
       recommendedRoute: "Train to Bad Münstereifel via Euskirchen"
     },
@@ -131,7 +131,7 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Berlin City Center",
+      name: "Berlin City Centre",
       distanceKm: 30,
       recommendedRoute: "Shuttle bus, regional train, or car via B5"
     },
@@ -205,13 +205,13 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Hamburg City Center",
+      name: "Hamburg City Centre",
       distanceKm: 65,
       recommendedRoute: "Train to Neumünster, then local bus or taxi"
     },
     nearby: [
       {
-        name: "Neumünster City Center",
+        name: "Neumünster City Centre",
         distanceKm: 5
       },
       {
@@ -279,7 +279,7 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Hannover City Center",
+      name: "Hannover City Centre",
       distanceKm: 90,
       recommendedRoute: "Train to Wolfsburg Hbf, then walk 2 minutes"
     },
@@ -356,13 +356,13 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Munich City Center",
+      name: "Munich City Centre",
       distanceKm: 80,
       recommendedRoute: "Shopping Express or train via Ingolstadt Hbf"
     },
     nearby: [
       {
-        name: "Ingolstadt City Center",
+        name: "Ingolstadt City Centre",
         distanceKm: 6
       },
       {
@@ -430,7 +430,7 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Frankfurt City Center",
+      name: "Frankfurt City Centre",
       distanceKm: 90,
       recommendedRoute: "ICE to Montabaur + taxi"
     },
@@ -520,7 +520,7 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Stuttgart City Center",
+      name: "Stuttgart City Centre",
       distanceKm: 35,
       recommendedRoute: "Shopping Shuttle, train via Metzingen, or car via B27/B312"
     },
@@ -597,7 +597,7 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Frankfurt City Center",
+      name: "Frankfurt City Centre",
       distanceKm: 80,
       recommendedRoute: "Shopping Express or train + local transfer via Wertheim"
     },
@@ -682,7 +682,7 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Frankfurt City Center",
+      name: "Frankfurt City Centre",
       distanceKm: 140,
       recommendedRoute: "Train + regional transfer"
     },
@@ -746,7 +746,7 @@ export const germanyOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Leipzig City Center",
+      name: "Leipzig City Centre",
       distanceKm: 30,
       recommendedRoute: "Car via A9/A14 or outlet shuttle / regional public transport"
     },

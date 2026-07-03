@@ -55,7 +55,7 @@ export const ukOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "London City Center",
+      name: "London City Centre",
       distanceKm: 95,
       recommendedRoute: "Train from London Marylebone to Bicester Village"
     },
@@ -124,7 +124,7 @@ export const ukOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Liverpool City Center",
+      name: "Liverpool City Centre",
       distanceKm: 25,
       recommendedRoute: "Train to Ellesmere Port or bus via Chester / Liverpool"
     },
@@ -176,7 +176,7 @@ export const ukOutlets = [
         distanceKm: 95
       }
     ],
-    cityCenterInfo: { name: "Ashford town centre", distanceKm: 1, recommendedRoute: "Follow official outlet getting-here guidance via Kimberley Way" },
+    cityCenterInfo: { name: "Ashford Town Centre", distanceKm: 1, recommendedRoute: "Follow official outlet getting-here guidance via Kimberley Way" },
     nearby: [],
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/",
     status: "active",
@@ -210,7 +210,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 30,
     airportDistanceKm: 50,
     airports: [],
-    cityCenterInfo: { name: "Cardiff city centre", distanceKm: 30, recommendedRoute: "Follow official outlet getting-here guidance from Cardiff or Swansea" },
+    cityCenterInfo: { name: "Cardiff City Centre", distanceKm: 30, recommendedRoute: "Follow official outlet getting-here guidance from Cardiff or Swansea" },
     nearby: [],
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/",
     status: "active",
@@ -244,7 +244,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 10,
     airportDistanceKm: 50,
     airports: [],
-    cityCenterInfo: { name: "Gretna City Center", distanceKm: 10, recommendedRoute: "Follow official Caledonia Park getting-here guidance via the Gretna exit from the M6/M74/A75" },
+    cityCenterInfo: { name: "Gretna City Centre", distanceKm: 10, recommendedRoute: "Follow official Caledonia Park getting-here guidance via the Gretna exit from the M6/M74/A75" },
     nearby: [],
     websiteUrl: "https://caledoniapark.com/",
     status: "active",
@@ -284,7 +284,7 @@ export const ukOutlets = [
         distanceKm: 40
       }
     ],
-    cityCenterInfo: { name: "Street town centre", distanceKm: 1, recommendedRoute: "Follow official Clarks Village getting-here and parking guidance" },
+    cityCenterInfo: { name: "Street Town Centre", distanceKm: 1, recommendedRoute: "Follow official Clarks Village getting-here and parking guidance" },
     nearby: [],
     websiteUrl: "https://www.clarksvillage.co.uk/en",
     status: "active",
@@ -324,7 +324,7 @@ export const ukOutlets = [
         distanceKm: 35
       }
     ],
-    cityCenterInfo: { name: "Durham city centre", distanceKm: 15, recommendedRoute: "Follow official Dalton Park getting-here guidance via the A19" },
+    cityCenterInfo: { name: "Durham City Centre", distanceKm: 15, recommendedRoute: "Follow official Dalton Park getting-here guidance via the A19" },
     nearby: [],
     websiteUrl: "https://www.dalton-park.co.uk/",
     status: "active",
@@ -358,7 +358,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 30,
     airportDistanceKm: 35,
     airports: [],
-    cityCenterInfo: { name: "Nottingham city centre", distanceKm: 30, recommendedRoute: "Follow official outlet guidance from Junction 28 of the M1" },
+    cityCenterInfo: { name: "Nottingham City Centre", distanceKm: 30, recommendedRoute: "Follow official outlet guidance from Junction 28 of the M1" },
     nearby: [],
     websiteUrl: "https://fraserspluseastmidlands.com/",
     status: "active",
@@ -398,7 +398,7 @@ export const ukOutlets = [
         distanceKm: 80
       }
     ],
-    cityCenterInfo: { name: "Gloucester city centre", distanceKm: 1, recommendedRoute: "10-minute walk from Gloucester city centre per official getting-here guidance" },
+    cityCenterInfo: { name: "Gloucester City Centre", distanceKm: 1, recommendedRoute: "10-minute walk from Gloucester City Centre per official getting-here guidance" },
     nearby: [],
     websiteUrl: "https://gloucesterquays.co.uk/",
     status: "active",
@@ -432,7 +432,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 10,
     airportDistanceKm: 50,
     airports: [],
-    cityCenterInfo: { name: "Gretna City Center", distanceKm: 10, recommendedRoute: "Follow official Caledonia Park getting-here guidance via the Gretna exit from the M6/M74/A75" },
+    cityCenterInfo: { name: "Gretna City Centre", distanceKm: 10, recommendedRoute: "Follow official Caledonia Park getting-here guidance via the Gretna exit from the M6/M74/A75" },
     nearby: [],
     websiteUrl: "https://caledoniapark.com/",
     status: "inactive",
@@ -472,7 +472,7 @@ export const ukOutlets = [
         distanceKm: 35
       }
     ],
-    cityCenterInfo: { name: "Portsmouth city centre", distanceKm: 1, recommendedRoute: "Follow official Gunwharf Quays getting-here guidance" },
+    cityCenterInfo: { name: "Portsmouth City Centre", distanceKm: 1, recommendedRoute: "Follow official Gunwharf Quays getting-here guidance" },
     nearby: [],
     websiteUrl: "https://gunwharf-quays.com/",
     status: "active",
@@ -512,7 +512,7 @@ export const ukOutlets = [
         distanceKm: 6
       }
     ],
-    cityCenterInfo: { name: "Central London", distanceKm: 10, recommendedRoute: "Follow official The O2 tube and rail guidance to North Greenwich" },
+    cityCenterInfo: { name: "London City Centre", distanceKm: 10, recommendedRoute: "Follow official The O2 tube and rail guidance to North Greenwich" },
     nearby: [],
     websiteUrl: "https://www.theo2.co.uk/icon-outlet",
     status: "active",
@@ -546,7 +546,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 16,
     airportDistanceKm: 50,
     airports: [],
-    cityCenterInfo: { name: "Leeds city centre", distanceKm: 16, recommendedRoute: "Follow official outlet directions to Tomahawk Trail, Glasshoughton, Castleford" },
+    cityCenterInfo: { name: "Leeds City Centre", distanceKm: 16, recommendedRoute: "Follow official outlet directions to Tomahawk Trail, Glasshoughton, Castleford" },
     nearby: [],
     websiteUrl: "https://frasersplusleeds.co.uk/",
     status: "active",
@@ -580,7 +580,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 3,
     airportDistanceKm: 50,
     airports: [],
-    cityCenterInfo: { name: "Doncaster city centre", distanceKm: 3, recommendedRoute: "Follow official directions to White Rose Way, just off Junction 3 of the M18" },
+    cityCenterInfo: { name: "Doncaster City Centre", distanceKm: 3, recommendedRoute: "Follow official directions to White Rose Way, just off Junction 3 of the M18" },
     nearby: [],
     websiteUrl: "https://lakeside-village.co.uk/",
     status: "active",
@@ -620,7 +620,7 @@ export const ukOutlets = [
         distanceKm: 20
       }
     ],
-    cityCenterInfo: { name: "Central London", distanceKm: 10, recommendedRoute: "Train from London Marylebone to Wembley Stadium" },
+    cityCenterInfo: { name: "London City Centre", distanceKm: 10, recommendedRoute: "Train from London Marylebone to Wembley Stadium" },
     nearby: [],
     websiteUrl: "https://www.londondesigneroutlet.com/",
     status: "active",
@@ -654,7 +654,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 2,
     airportDistanceKm: 100,
     airports: [],
-    cityCenterInfo: { name: "Spalding town centre", distanceKm: 2, recommendedRoute: "Follow official directions to Camelgate via the A16" },
+    cityCenterInfo: { name: "Spalding Town Centre", distanceKm: 2, recommendedRoute: "Follow official directions to Camelgate via the A16" },
     nearby: [],
     websiteUrl: "https://springfieldsoutlet.co.uk/",
     status: "active",
@@ -694,7 +694,7 @@ export const ukOutlets = [
         distanceKm: 75
       }
     ],
-    cityCenterInfo: { name: "Swindon town centre", distanceKm: 1.5, recommendedRoute: "15 minute walk from Swindon Town Centre per official outlet guidance" },
+    cityCenterInfo: { name: "Swindon Town Centre", distanceKm: 1.5, recommendedRoute: "15 minute walk from Swindon Town Centre per official outlet guidance" },
     nearby: [],
     websiteUrl: "https://designeroutletswindon.com/",
     status: "active",
@@ -728,7 +728,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 2,
     airportDistanceKm: 50,
     airports: [],
-    cityCenterInfo: { name: "Banbridge town centre", distanceKm: 2, recommendedRoute: "Follow official directions via the main A1 Belfast to Dublin road" },
+    cityCenterInfo: { name: "Banbridge Town Centre", distanceKm: 2, recommendedRoute: "Follow official directions via the main A1 Belfast to Dublin road" },
     nearby: [],
     websiteUrl: "https://the-boulevard.co.uk/",
     status: "active",
@@ -762,7 +762,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 1.5,
     airportDistanceKm: 50,
     airports: [],
-    cityCenterInfo: { name: "Hatfield town centre", distanceKm: 1.5, recommendedRoute: "Use A1(M) junction 3 or 4 and follow the A1001; use AL10 9TF for satnav parking access" },
+    cityCenterInfo: { name: "Hatfield Town Centre", distanceKm: 1.5, recommendedRoute: "Use A1(M) junction 3 or 4 and follow the A1001; use AL10 9TF for satnav parking access" },
     nearby: [],
     websiteUrl: "https://thegalleria.co.uk/",
     status: "active",
@@ -802,7 +802,7 @@ export const ukOutlets = [
         distanceKm: 45
       }
     ],
-    cityCenterInfo: { name: "Birmingham city centre", distanceKm: 30, recommendedRoute: "30 minute drive from Birmingham City Centre per official outlet guidance" },
+    cityCenterInfo: { name: "Birmingham City Centre", distanceKm: 30, recommendedRoute: "30 minute drive from Birmingham City Centre per official outlet guidance" },
     nearby: [],
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/",
     status: "active",
@@ -836,7 +836,7 @@ export const ukOutlets = [
     cityCenterDistanceKm: 6,
     airportDistanceKm: 50,
     airports: [],
-    cityCenterInfo: { name: "York city centre", distanceKm: 6, recommendedRoute: "Approximately 15 minutes from York per official McArthurGlen plan-your-visit guidance" },
+    cityCenterInfo: { name: "York City Centre", distanceKm: 6, recommendedRoute: "Approximately 15 minutes from York per official McArthurGlen plan-your-visit guidance" },
     nearby: [],
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-york/",
     status: "active",

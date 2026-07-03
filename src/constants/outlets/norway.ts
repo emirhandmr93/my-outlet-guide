@@ -45,7 +45,7 @@ export const norwayOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Oslo city centre",
+      name: "Oslo City Centre",
       distanceKm: 40,
       recommendedRoute: "Drive south from Oslo via E6 toward Vestby, or use regional public transport to Vestby and local onward connections."
     },

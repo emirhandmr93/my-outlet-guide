@@ -52,7 +52,7 @@ export const spainOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Madrid City Center",
+      name: "Madrid City Centre",
       distanceKm: 25,
       recommendedRoute: "Bus, taxi or car"
     },
@@ -124,7 +124,7 @@ export const spainOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Málaga City Center",
+      name: "Málaga City Centre",
       distanceKm: 15,
       recommendedRoute: "Train, bus or taxi"
     },

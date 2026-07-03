@@ -46,7 +46,7 @@ export const czechRepublicOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Prague city centre",
+      name: "Prague City Centre",
       distanceKm: 12,
       recommendedRoute: "Use the Fashion Arena shuttle or public transport toward Praha-Štěrboholy, or drive from central Prague."
     },

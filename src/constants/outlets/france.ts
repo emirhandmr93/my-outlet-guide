@@ -62,7 +62,7 @@ export const franceOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Marseille City Center",
+      name: "Marseille City Centre",
       distanceKm: 55,
       recommendedRoute: "Car, train via Miramas, or regional bus"
     },
@@ -139,13 +139,13 @@ export const franceOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Paris City Center",
+      name: "Paris City Centre",
       distanceKm: 170,
       recommendedRoute: "Train to Troyes + local bus or taxi"
     },
     nearby: [
       {
-        name: "Troyes City Center",
+        name: "Troyes City Centre",
         distanceKm: 5
       },
       {
@@ -215,7 +215,7 @@ export const franceOutlets = [
       }
     ],
     cityCenterInfo: {
-      name: "Paris City Center",
+      name: "Paris City Centre",
       distanceKm: 40,
       recommendedRoute: "RER A to Val d'Europe"
     },
@@ -241,7 +241,7 @@ export const franceOutlets = [
     slug: "roppenheim-the-style-outlets",
     countryId: "france",
     cityId: "roppenheim",
-    address: "1 Route de l’Europe, F-67480 Roppenheim, France",
+    address: "1 Route de L’Europe, F-67480 Roppenheim, France",
     latitude: 48.8431,
     longitude: 8.0526,
     openingHours: "10:00 - 19:00",
@@ -271,6 +271,14 @@ export const franceOutlets = [
     parking: "Official centre navigation includes Parking and How to get there pages for visitor access at 1 Route de L’Europe, F-67480 Roppenheim.",
     cityCenterDistanceKm: 40,
     airportDistanceKm: 20,
+    airports: [
+      { code: "FKB", name: "Karlsruhe/Baden-Baden Airport", distanceKm: 20 }
+    ],
+    cityCenterInfo: {
+      name: "Strasbourg City Centre",
+      distanceKm: 40,
+      recommendedRoute: "Follow official centre directions to 1 Route de L’Europe, Roppenheim."
+    },
     websiteUrl: "https://roppenheim.thestyleoutlets.fr/en",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Roppenheim+The+Style+Outlets",
