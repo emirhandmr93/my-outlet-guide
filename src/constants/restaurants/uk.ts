@@ -1538,5 +1538,995 @@ export const ukRestaurants = [
     "website": "https://lakeside-village.co.uk/store-category/food-drink/",
     "status": "active",
     "displayOrder": "154"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-ask-italian",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "ASK Italian",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "155"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-afrikana",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Afrikana",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "156"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-all-bar-one",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "All Bar One",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "157"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-busaba",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Busaba",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "158"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-cabana",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Cabana",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "159"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-cafe-mint",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Cafe Mint",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "160"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-chipotle",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Chipotle",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "161"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-costa-coffee",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "162"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-five-guys",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "163"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-frankie-and-bennys",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Frankie & Benny’s",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "164"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-gaucho",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Gaucho",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "165"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-german-doner-kebab",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "German Doner Kebab",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "166"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-gordon-ramsay-street-burger",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Gordon Ramsay Street Burger",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "167"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-haidilao-hot-pot",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Haidilao Hot Pot",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "168"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-haute-dolci",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Haute Dolci",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "169"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-jimmys-world-grill-and-bar",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Jimmy’s World Grill & Bar",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "170"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-kfc",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "KFC",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "171"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-kitchen-pizzeria",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Kitchen Pizzeria",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "172"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-las-iguanas",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Las Iguanas",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "173"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-maki-and-ramen",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Maki & Ramen",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "174"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-marugame-udon",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Marugame Udon",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "175"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-nandos",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Nando’s",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "176"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-pizzaexpress",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "PizzaExpress",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "177"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-rodizio-rico",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Rodizio Rico",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "178"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-scarlet-rasoi",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Scarlet Rasoi",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "179"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-slim-chickens",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "180"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-slug-and-lettuce",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Slug & Lettuce",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "181"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-snowflake-luxury-gelato",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Snowflake Luxury Gelato",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "182"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-starbucks",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "183"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-tgi-fridays",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "TGI Fridays™",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "184"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-the-observatory",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "The Observatory",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "185"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-thunderbird-fried-chicken",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Thunderbird Fried Chicken",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "186"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-wasabi",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Wasabi",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "187"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-wetherspoon",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Wetherspoon",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "188"
+  },
+  {
+    "restaurantId": "icon-outlet-at-the-o2-zizzi",
+    "outletId": "icon-outlet-at-the-o2",
+    "restaurantName": "Zizzi",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.theo2.co.uk/restaurants-and-bars",
+    "status": "active",
+    "displayOrder": "189"
+  },
+  {
+    "restaurantId": "london-designer-outlet-afrikana",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Afrikana",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "190"
+  },
+  {
+    "restaurantId": "london-designer-outlet-amorino",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Amorino",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "191"
+  },
+  {
+    "restaurantId": "london-designer-outlet-beirut-wonders-lebanese-street-food",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Beirut Wonders – Lebanese Street Food",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "192"
+  },
+  {
+    "restaurantId": "london-designer-outlet-big-moes",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Big Moe’s",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "193"
+  },
+  {
+    "restaurantId": "london-designer-outlet-chaboba-bubble-tea",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Chaboba Bubble Tea",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "194"
+  },
+  {
+    "restaurantId": "london-designer-outlet-churros-buenos",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Churros Buenos",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "195"
+  },
+  {
+    "restaurantId": "london-designer-outlet-costa-coffee",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "196"
+  },
+  {
+    "restaurantId": "london-designer-outlet-dumdum-donutterie",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "DumDum Donutterie",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "197"
+  },
+  {
+    "restaurantId": "london-designer-outlet-frankie-and-bennys",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Frankie & Benny’s",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "198"
+  },
+  {
+    "restaurantId": "london-designer-outlet-jrc-global-buffet",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "JRC Global Buffet",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "199"
+  },
+  {
+    "restaurantId": "london-designer-outlet-las-iguanas",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Las Iguanas",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "200"
+  },
+  {
+    "restaurantId": "london-designer-outlet-nandos",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Nando’s",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "201"
+  },
+  {
+    "restaurantId": "london-designer-outlet-opa-greek-bakery-and-patisserie",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Opa! Greek Bakery & Patisserie",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "202"
+  },
+  {
+    "restaurantId": "london-designer-outlet-pizzaexpress",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "PizzaExpress",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "203"
+  },
+  {
+    "restaurantId": "london-designer-outlet-pret-a-manger",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Pret A Manger",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "204"
+  },
+  {
+    "restaurantId": "london-designer-outlet-tandoori-fusion",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Tandoori Fusion",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "205"
+  },
+  {
+    "restaurantId": "london-designer-outlet-wagamama",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "206"
+  },
+  {
+    "restaurantId": "london-designer-outlet-wenzels-the-bakers",
+    "outletId": "london-designer-outlet",
+    "restaurantName": "Wenzel’s the Bakers",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
+    "status": "active",
+    "displayOrder": "207"
+  },
+  {
+    "restaurantId": "springfields-outlet-the-parlour-restaurant",
+    "outletId": "springfields-outlet",
+    "restaurantName": "The Parlour Restaurant",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "208"
+  },
+  {
+    "restaurantId": "springfields-outlet-the-noshery-co-cafe-and-restaurant",
+    "outletId": "springfields-outlet",
+    "restaurantName": "The Noshery Co. Cafe & Restaurant",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "209"
+  },
+  {
+    "restaurantId": "springfields-outlet-petalo-lounge",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Petalo Lounge",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "210"
+  },
+  {
+    "restaurantId": "springfields-outlet-springys-american-diner",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Springy’s American Diner",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "211"
+  },
+  {
+    "restaurantId": "springfields-outlet-caff-nero",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Caffè Nero",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "212"
+  },
+  {
+    "restaurantId": "springfields-outlet-costa-coffee",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "213"
+  },
+  {
+    "restaurantId": "springfields-outlet-subway",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Subway",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "214"
+  },
+  {
+    "restaurantId": "springfields-outlet-cadbury-outlet",
+    "outletId": "springfields-outlet",
+    "restaurantName": "Cadbury Outlet",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "215"
+  },
+  {
+    "restaurantId": "springfields-outlet-the-sweet-emporium",
+    "outletId": "springfields-outlet",
+    "restaurantName": "The Sweet Emporium",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://springfieldsoutlet.co.uk/food-drink/",
+    "status": "active",
+    "displayOrder": "216"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-auntie-annes",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Auntie Anne’s",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "217"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-bubbleology",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Bubbleology",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "218"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-costa-coffee",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "219"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-don-churro",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Don Churro",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "220"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-el-mexicana",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "El Mexicana",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "221"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-five-guys",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "222"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-greggs",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Greggs",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "223"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-kfc",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "KFC",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "224"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-kouzina-greek",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Kouzina Greek",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "225"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-krispy-kreme-doughnuts",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Krispy Kreme Doughnuts",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "226"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-pizza-express",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "227"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-slim-chickens",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "228"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-soho-coffee",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "SOHO Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "229"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-starbucks",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "230"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-subway",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Subway",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "231"
+  },
+  {
+    "restaurantId": "swindon-designer-outlet-wagamama",
+    "outletId": "swindon-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://designeroutletswindon.com/eat/",
+    "status": "active",
+    "displayOrder": "232"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-bakers-and-baristas",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Baker’s & Barista’s",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://the-boulevard.co.uk/stores/",
+    "status": "active",
+    "displayOrder": "233"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-mcdonalds",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "McDonald's",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://the-boulevard.co.uk/stores/",
+    "status": "active",
+    "displayOrder": "234"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-salt-kitchen",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Salt Kitchen",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://the-boulevard.co.uk/stores/",
+    "status": "active",
+    "displayOrder": "235"
+  },
+  {
+    "restaurantId": "the-boulevard-banbridge-starbucks",
+    "outletId": "the-boulevard-banbridge",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://the-boulevard.co.uk/stores/",
+    "status": "active",
+    "displayOrder": "236"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-bite-and-feast",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Bite & Feast",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "237"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-burger-king",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Burger King",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "238"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-caff-nero",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Caffè Nero",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "239"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-prezzo",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Prezzo",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "240"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-sumac-and-saffron",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "Sumac and Saffron",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "241"
+  },
+  {
+    "restaurantId": "the-galleria-outlet-the-real-china",
+    "outletId": "the-galleria-outlet",
+    "restaurantName": "The Real China",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://thegalleria.co.uk/blogs/stores?category=Food+and+Drink&sort=az",
+    "status": "active",
+    "displayOrder": "242"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-200-degrees-coffee",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "200 Degrees Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "243"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-doughnotts",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Doughnotts",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "244"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-five-guys",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "245"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-kouzina-greek",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Kouzina Greek",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "246"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-love-churros",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Love Churros",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "247"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-meli-caf-and-patisserie",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Meli Café & Patisserie",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "248"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-phata-phat",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Phata Phat",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "249"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-pizza-express",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "250"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-slim-chickens",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Slim Chickens",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "251"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-starbucks",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "252"
+  },
+  {
+    "restaurantId": "west-midlands-designer-outlet-wagamama",
+    "outletId": "west-midlands-designer-outlet",
+    "restaurantName": "Wagamama",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/food-drink/",
+    "status": "active",
+    "displayOrder": "253"
   }
 ];
