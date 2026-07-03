@@ -8,8 +8,60 @@ export const irelandOutlets = [
     address: "Nurney Road, Kildare Town, Co. Kildare, R51 R265, Ireland",
     latitude: 53.1548,
     longitude: -6.9149,
-    openingHours: "Mon-Wed 10:00 - 20:00; Thu-Sun 09:00 - 20:00",
-    storesCountText: "100 boutiques",
+    openingHours: "Daily 09:00 - 20:00; special dates may vary",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "100+ leading luxury boutiques",
+    rating: 4.6,
+    reviewCount: 0,
+    services: [
+      "Complimentary Parking",
+      "Valet Parking",
+      "Electric Car Charging",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Shopping Express",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "Hands-free Shopping",
+      "Personal Shopping",
+      "Dog Kennels",
+      "Children's Playground"
+    ],
+    restaurants: ["Mani Pizza", "Oakberry", "Pret A Manger", "Saba", "Sprout & Co."],
+    taxFreeAvailable: true,
+    vatRate: 23,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "75.00 EUR",
+    taxFreeOperator: "Participating boutiques / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free documentation in participating boutiques and validate export documents when leaving the EU.",
+    parking: "All parking at Kildare Village is complimentary. Pre-booking or reserved parking is not available to guests at this time.",
+    cityCenterDistanceKm: 60,
+    airportDistanceKm: 65,
+    airports: [
+      {
+        code: "DUB",
+        name: "Dublin Airport",
+        distanceKm: 65
+      }
+    ],
+    cityCenterInfo: {
+      name: "Dublin City Center",
+      distanceKm: 60,
+      recommendedRoute: "Car via the M7 or Shopping Express / coach connections"
+    },
+    nearby: [
+      {
+        name: "Kildare Town",
+        distanceKm: 1
+      },
+      {
+        name: "Dublin",
+        distanceKm: 60
+      }
+    ],
     websiteUrl: "https://www.thebicestercollection.com/kildare-village/en/",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Kildare+Village+Nurney+Road+Kildare+Town+Co.+Kildare+R51+R265",

@@ -85,8 +85,54 @@ export const belgiumOutlets = [
     address: "Route d'Arlon 199, 6780 Messancy, Belgium",
     latitude: 49.6083,
     longitude: 5.81,
-    openingHours: "Mon-Thu 10:00 - 19:00; Fri-Sat 10:00 - 20:00; Sun 10:00 - 19:00 on selected dates; public holidays may vary",
+    openingHours: "Mon-Thu 10:00 - 19:00; Fri-Sat 10:00 - 20:00; Sundays 5 and 12 July 10:00 - 19:00; closed Sunday and bank holidays otherwise; Hoppy restaurant Mon-Thu until 22:00 and Fri-Sat until midnight",
+    heroImage: "",
+    galleryImages: [],
     storesCountText: "More than 60 designer brands",
+    rating: 4.3,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Transport Info",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility"
+    ],
+    restaurants: ["Crêpes & Co", "El Pepper", "Hoppy restaurant"],
+    taxFreeAvailable: true,
+    vatRate: 21,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "125.00 EUR",
+    taxFreeOperator: "Participating stores / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free documentation in participating stores and validate export documents when leaving the EU.",
+    parking: "Official centre navigation includes parking information for visitors at the Messancy outlet.",
+    cityCenterDistanceKm: 25,
+    airportDistanceKm: 30,
+    airports: [
+      {
+        code: "LUX",
+        name: "Luxembourg Airport",
+        distanceKm: 30
+      }
+    ],
+    cityCenterInfo: {
+      name: "Luxembourg City Center",
+      distanceKm: 25,
+      recommendedRoute: "Car via the A6/E25 toward Messancy"
+    },
+    nearby: [
+      {
+        name: "Messancy",
+        distanceKm: 2
+      },
+      {
+        name: "Arlon",
+        distanceKm: 8
+      }
+    ],
     websiteUrl: "https://www.designeroutletluxembourg.com/en/",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer+Outlet+Luxembourg+Route+d%27Arlon+199+6780+Messancy",

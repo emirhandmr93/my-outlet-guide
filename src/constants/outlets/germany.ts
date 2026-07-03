@@ -712,7 +712,54 @@ export const germanyOutlets = [
     latitude: 51.5576,
     longitude: 12.1975,
     openingHours: "Mon-Sat 10:00 - 20:00; Sun closed; special opening hours may vary",
-    storesCountText: "Over 80 international top brands",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "Top brands",
+    rating: 4.3,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Free Shuttle Bus",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "Centre Plan"
+    ],
+    restaurants: ["COFFEE FELLOWS", "FRITTENWERK", "GLOBAL DÖNER", "MAMALICIOUS", "STARBUCKS"],
+    taxFreeAvailable: true,
+    vatRate: 19,
+    estimatedRefundRate: 11,
+    minimumTaxFreeSpend: "50.01 EUR",
+    taxFreeOperator: "Participating stores / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free documentation in participating stores when the purchase exceeds the German minimum spend, then validate export documents when leaving the EU.",
+    parking: "Official visitor navigation includes Parking for the centre at Berliner Straße 1.",
+    cityCenterDistanceKm: 30,
+    airportDistanceKm: 25,
+    airports: [
+      {
+        code: "LEJ",
+        name: "Leipzig/Halle Airport",
+        distanceKm: 25
+      }
+    ],
+    cityCenterInfo: {
+      name: "Leipzig City Center",
+      distanceKm: 30,
+      recommendedRoute: "Car via A9/A14 or outlet shuttle / regional public transport"
+    },
+    nearby: [
+      {
+        name: "Halle (Saale)",
+        distanceKm: 25
+      },
+      {
+        name: "Leipzig",
+        distanceKm: 30
+      }
+    ],
     websiteUrl: "https://halle.leipzig.thestyleoutlets.de/en",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Halle+Leipzig+The+Style+Outlets+Berliner+Stra%C3%9Fe+1+06796+Sandersdorf-Brehna",

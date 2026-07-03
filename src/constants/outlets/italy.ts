@@ -597,9 +597,72 @@ export const italyOutlets = [
     address: "Via Enzo Ferrari 5, 52045 Foiano della Chiana AR, Italy",
     latitude: 43.2669,
     longitude: 11.8147,
-    openingHours: "Mon-Sun 10:00 - 20:00; special event hours may vary",
-    storesCountText: "More than 140 premium fashion and lifestyle brands",
-    websiteUrl: "https://www.valdichianavillage.it/",
+    openingHours: "Shops daily 10:00 - 20:00; restaurants & cafés Mon-Thu 09:00 - 21:00; Fri-Sun and public holidays 09:00 - 22:00; special summer opening hours may vary",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "Shopping with 30-70 % off. Always.",
+    rating: 4.5,
+    reviewCount: 0,
+    services: [
+      "Parking",
+      "Tax Free",
+      "Guest Services",
+      "Restaurants & Cafes",
+      "Transport Info",
+      "Wi-Fi",
+      "Gift Cards",
+      "Accessibility",
+      "ATM",
+      "Kids Area",
+      "Premium CLUB"
+    ],
+    restaurants: [
+      "Badiani",
+      "Billi's",
+      "Da Michele",
+      "Ice Village",
+      "La Piadineria - Yoyogurt",
+      "Old Wild West",
+      "Poke House",
+      "Terre di Masaccio"
+    ],
+    taxFreeAvailable: true,
+    vatRate: 22,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "70.01 EUR",
+    taxFreeOperator: "Participating stores / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request a tax refund form in participating stores when spending at least €70.01 in the same store on the same day, then validate export documents when leaving the EU.",
+    parking: "Official directions and village pages provide visitor access to Valdichiana Designer Village at Via Enzo Ferrari 5; parking availability should be confirmed on arrival.",
+    cityCenterDistanceKm: 30,
+    airportDistanceKm: 75,
+    airports: [
+      {
+        code: "FLR",
+        name: "Florence Airport",
+        distanceKm: 95
+      },
+      {
+        code: "PEG",
+        name: "Perugia San Francesco d'Assisi Airport",
+        distanceKm: 75
+      }
+    ],
+    cityCenterInfo: {
+      name: "Arezzo City Center",
+      distanceKm: 30,
+      recommendedRoute: "Car via A1 / Valdichiana exit"
+    },
+    nearby: [
+      {
+        name: "Foiano della Chiana",
+        distanceKm: 4
+      },
+      {
+        name: "Arezzo",
+        distanceKm: 30
+      }
+    ],
+    websiteUrl: "https://www.valdichianadesignervillage.com/en/",
     status: "active",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Valdichiana+Village+Via+Enzo+Ferrari+5+52045+Foiano+della+Chiana",
     appleMapsUrl: "http://maps.apple.com/?q=Valdichiana%20Village&address=Via%20Enzo%20Ferrari%205%2C%2052045%20Foiano%20della%20Chiana%20AR%2C%20Italy",
