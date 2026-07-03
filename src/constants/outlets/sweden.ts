@@ -1,0 +1,41 @@
+export const swedenOutlets = [
+  {
+    outletId: "hede-fashion-outlet",
+    name: "Hede Fashion Outlet",
+    slug: "hede-fashion-outlet",
+    countryId: "sweden",
+    cityId: "gothenburg",
+    address: "Kungsparksvägen 80, 434 39 Kungsbacka, Sweden",
+    latitude: 57.5146,
+    longitude: 12.0766,
+    openingHours: "Monday - Sunday 10:00 - 19:00; special opening hours may vary",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "70 stores",
+    rating: 0,
+    reviewCount: 0,
+    services: [],
+    restaurants: [],
+    parking: "",
+    taxFreeAvailable: true,
+    vatRate: 25,
+    estimatedRefundRate: 0,
+    minimumTaxFreeSpend: "200 SEK",
+    taxFreeOperator: "Participating tax refund operators",
+    taxFreeOfficeInfo: "Eligible non-EU visitors can request tax-free shopping assistance at participating stores and validate documents when leaving the EU.",
+    cityCenterDistanceKm: 25,
+    airportDistanceKm: 0,
+    airports: [],
+    cityCenterInfo: {
+      name: "Gothenburg city centre",
+      distanceKm: 25,
+      recommendedRoute: "See official centre website for directions."
+    },
+    nearby: [],
+    websiteUrl: "https://www.hedefashionoutlet.se/en",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Hede%20Fashion%20Outlet%2C%20Kungsparksv%C3%A4gen%2080%2C%20434%2039%20Kungsbacka%2C%20Sweden",
+    appleMapsUrl: "http://maps.apple.com/?q=Hede%20Fashion%20Outlet%2C%20Kungsparksv%C3%A4gen%2080%2C%20434%2039%20Kungsbacka%2C%20Sweden",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Hede%20Fashion%20Outlet%2C%20Kungsparksv%C3%A4gen%2080%2C%20434%2039%20Kungsbacka%2C%20Sweden"
+  }
+];
