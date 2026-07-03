@@ -5,6 +5,7 @@ import { czechRepublicTransportation } from "./czech-republic";
 import { croatiaTransportation } from "./croatia";
 import { finlandTransportation } from "./finland";
 import { franceTransportation } from "./france";
+import { estoniaTransportation } from "./estonia";
 import { germanyTransportation } from "./germany";
 import { greeceTransportation } from "./greece";
 import { hungaryTransportation } from "./hungary";
@@ -15,6 +16,7 @@ import { netherlandsTransportation } from "./netherlands";
 import { norwayTransportation } from "./norway";
 import { polandTransportation } from "./poland";
 import { portugalTransportation } from "./portugal";
+import { romaniaTransportation } from "./romania";
 import { spainTransportation } from "./spain";
 import { swedenTransportation } from "./sweden";
 import { switzerlandTransportation } from "./switzerland";
@@ -28,6 +30,7 @@ export {
   denmarkTransportation,
   finlandTransportation,
   franceTransportation,
+  estoniaTransportation,
   germanyTransportation,
   greeceTransportation,
   hungaryTransportation,
@@ -38,6 +41,7 @@ export {
   norwayTransportation,
   polandTransportation,
   portugalTransportation,
+  romaniaTransportation,
   spainTransportation,
   swedenTransportation,
   switzerlandTransportation,
@@ -50,6 +54,7 @@ export const transportation = [
   ...greeceTransportation,
   ...germanyTransportation,
   ...franceTransportation,
+  ...estoniaTransportation,
   ...ukTransportation,
   ...spainTransportation,
   ...switzerlandTransportation,
@@ -57,6 +62,7 @@ export const transportation = [
   ...belgiumTransportation,
   ...austriaTransportation,
   ...portugalTransportation,
+  ...romaniaTransportation,
   ...denmarkTransportation,
   ...polandTransportation,
   ...swedenTransportation,
