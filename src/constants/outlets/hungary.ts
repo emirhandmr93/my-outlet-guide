@@ -8,33 +8,66 @@ export const hungaryOutlets = [
     address: "Budaörsi út 4, 2051 Biatorbágy, Hungary",
     latitude: 47.4599,
     longitude: 18.9028,
-    openingHours: "Monday-Sunday 10:00 - 20:00",
+    openingHours: "Monday - Sunday 10:00 - 20:00",
     heroImage: "",
     galleryImages: [],
     rating: 0,
     reviewCount: 0,
-    services: [],
-    restaurants: [],
+    services: [
+      "WC",
+      "Free Wifi",
+      "Lockers",
+      "Café",
+      "Kids Playground",
+      "Infopoint"
+    ],
+    restaurants: [
+      "Chimichanga",
+      "Churros Banditos",
+      "KFC",
+      "La Petite Anna",
+      "Ropogó",
+      "Starbucks",
+      "Subway",
+      "Vicino",
+      "Wok Bar"
+    ],
+    parking: "Free customer parking is available on site.",
     taxFreeAvailable: true,
-    vatRate: 0,
-    estimatedRefundRate: 0,
-    minimumTaxFreeSpend: "",
-    taxFreeOperator: "",
-    taxFreeOfficeInfo: "",
-    cityCenterDistanceKm: 0,
-    airportDistanceKm: 0,
-    airports: [],
+    vatRate: 27,
+    estimatedRefundRate: 15,
+    minimumTaxFreeSpend: "HUF 68,001",
+    taxFreeOperator: "Global Blue",
+    taxFreeOfficeInfo: "Request a Global Blue Tax-Free Form at participating stores; get customs validation when leaving the EU and claim the refund at Global Blue refund offices or Interchange at Budapest Airport.",
+    cityCenterDistanceKm: 20,
+    airportDistanceKm: 37,
+    airports: [
+      {
+        code: "BUD",
+        name: "Budapest Ferenc Liszt International Airport",
+        distanceKm: 37
+      }
+    ],
     cityCenterInfo: {
-      name: "",
-      distanceKm: 0,
-      recommendedRoute: ""
+      name: "Budapest City Centre",
+      distanceKm: 20,
+      recommendedRoute: "Car via M1/M7 or regional bus connections from Kelenföld"
     },
-    nearby: [],
-    storesCountText: "more than 100 shops",
+    nearby: [
+      {
+        name: "Biatorbágy",
+        distanceKm: 3
+      },
+      {
+        name: "Budapest",
+        distanceKm: 20
+      }
+    ],
+    storesCountText: "over 150 fashion brands up to 70% off",
     websiteUrl: "https://www.premieroutlet.hu/en/",
     status: "active",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Premier%20Outlet%20Budapest%2C%20Buda%C3%B6rsi%20%C3%BAt%204%2C%202051%20Biatorb%C3%A1gy%2C%20Hungary",
-    appleMapsUrl: "http://maps.apple.com/?q=Premier%20Outlet%20Budapest%2C%20Buda%C3%B6rsi%20%C3%BAt%204%2C%202051%20Biatorb%C3%A1gy%2C%20Hungary",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Premier%20Outlet%20Budapest%2C%20Buda%C3%B6rsi%20%C3%BAt%204%2C%202051%20Biatorb%C3%A1gy%2C%20Hungary"
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=47.4599,18.9028",
+    appleMapsUrl: "http://maps.apple.com/?ll=47.4599,18.9028&q=Premier%20Outlet%20Budapest",
+    yandexMapsUrl: "https://yandex.com/maps/?ll=18.9028,47.4599&z=16&text=Premier%20Outlet%20Budapest"
   }
 ];
