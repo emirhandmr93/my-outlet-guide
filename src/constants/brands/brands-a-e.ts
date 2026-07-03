@@ -719,6 +719,17 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "arcadia",
+    brandName: "Arcádia",
+    aliases: ["Arcadia", "Arcadia Chocolates", "Arcádia Chocolates", "Arcadia Chocolates Outlet"],
+    categoryId: "food-chocolate",
+    logo: "",
+    originCountryId: "portugal",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "armani-exchange",
     brandName: "Armani Exchange",
     aliases: [
@@ -4308,6 +4319,22 @@ export const brandsAE: Brand[] = [
     originCountryId: "spain",
     luxuryLevel: "premium",
     rankingWeight: 78,
+    brandStatus: "active",
+  },
+  {
+    brandId: "boutique-dos-relogios",
+    brandName: "Boutique dos Relógios",
+    aliases: [
+      "Boutique dos Relogios",
+      "Boutique dos Relógios Outlet",
+      "Boutique dos Relogios Outlet",
+      "BoutiquedosRelogios",
+    ],
+    categoryId: "jewelry-watches",
+    logo: "",
+    originCountryId: "portugal",
+    luxuryLevel: "premium",
+    rankingWeight: 72,
     brandStatus: "active",
   },
   {

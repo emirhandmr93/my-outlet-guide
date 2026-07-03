@@ -123,6 +123,12 @@ export const denmarkOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ringsted-outlet",
+    brandId: "lego-wear",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "ringsted-outlet",
     brandId: "lindt",
     featured: false,
     relationStatus: "active",

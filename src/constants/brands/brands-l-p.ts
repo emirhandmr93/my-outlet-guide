@@ -334,6 +334,17 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "lego-wear",
+    brandName: "LEGO Wear",
+    aliases: ["Lego Wear", "LEGOWear", "LegoWear", "LEGO Wear Outlet"],
+    categoryId: "kids",
+    logo: "",
+    originCountryId: "denmark",
+    luxuryLevel: "premium",
+    rankingWeight: 76,
+    brandStatus: "active",
+  },
+  {
     brandId: "les-georgettes",
     brandName: "Les Georgettes",
     aliases: ["LesGeorgettes"],
