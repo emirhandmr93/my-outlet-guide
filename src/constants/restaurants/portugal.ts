@@ -35,7 +35,7 @@ export const portugalRestaurants = [
     "restaurantName": "Hamburgueria Portuguesa by Farnel",
     "category": "Fast Food",
     "priceLevel": "€€",
-    "website": "https://www.freeportfashionoutlet.pt/en/restaurants/o-farnel",
+    "website": "https://www.freeportfashionoutlet.pt/en/restaurants/hamburgueria-portuguesa-by-farnel",
     "status": "active",
     "displayOrder": "4"
   },
@@ -55,7 +55,7 @@ export const portugalRestaurants = [
     "restaurantName": "Nairóbi",
     "category": "Cafe",
     "priceLevel": "€€",
-    "website": "https://www.freeportfashionoutlet.pt/en/restaurants/lindt",
+    "website": "https://www.freeportfashionoutlet.pt/en/restaurants/nairobi",
     "status": "active",
     "displayOrder": "6"
   },
@@ -75,7 +75,7 @@ export const portugalRestaurants = [
     "restaurantName": "Portela",
     "category": "Cafe",
     "priceLevel": "€€",
-    "website": "https://www.freeportfashionoutlet.pt/en/restaurants/lindt",
+    "website": "https://www.freeportfashionoutlet.pt/en/restaurants/portela",
     "status": "active",
     "displayOrder": "8"
   },
@@ -115,7 +115,7 @@ export const portugalRestaurants = [
     "restaurantName": "AndiAmo",
     "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/delfina",
+    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/andi-amo",
     "status": "active",
     "displayOrder": "12"
   },
@@ -150,26 +150,6 @@ export const portugalRestaurants = [
     "displayOrder": "15"
   },
   {
-    "restaurantId": "vila-do-conde-porto-fashion-outlet-lindt",
-    "outletId": "vila-do-conde-porto-fashion-outlet",
-    "restaurantName": "Lindt",
-    "category": "Dessert",
-    "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/lindt",
-    "status": "active",
-    "displayOrder": "16"
-  },
-  {
-    "restaurantId": "vila-do-conde-porto-fashion-outlet-mcdonalds",
-    "outletId": "vila-do-conde-porto-fashion-outlet",
-    "restaurantName": "McDonald's",
-    "category": "Fast Food",
-    "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants",
-    "status": "active",
-    "displayOrder": "17"
-  },
-  {
     "restaurantId": "vila-do-conde-porto-fashion-outlet-pappa-lab",
     "outletId": "vila-do-conde-porto-fashion-outlet",
     "restaurantName": "Pappa'Lab",
@@ -185,7 +165,7 @@ export const portugalRestaurants = [
     "restaurantName": "Sibuya",
     "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/h3",
+    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/sibuya",
     "status": "active",
     "displayOrder": "19"
   },
@@ -195,29 +175,9 @@ export const portugalRestaurants = [
     "restaurantName": "Starbucks",
     "category": "Cafe",
     "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/pappa-lab",
+    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/starbucks",
     "status": "active",
     "displayOrder": "20"
-  },
-  {
-    "restaurantId": "vila-do-conde-porto-fashion-outlet-tavi",
-    "outletId": "vila-do-conde-porto-fashion-outlet",
-    "restaurantName": "Tavi",
-    "category": "Cafe",
-    "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants",
-    "status": "active",
-    "displayOrder": "21"
-  },
-  {
-    "restaurantId": "vila-do-conde-porto-fashion-outlet-tomatino",
-    "outletId": "vila-do-conde-porto-fashion-outlet",
-    "restaurantName": "Tomatino",
-    "category": "Restaurant",
-    "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/tomatino",
-    "status": "active",
-    "displayOrder": "22"
   },
   {
     "restaurantId": "vila-do-conde-porto-fashion-outlet-vila-953",
@@ -225,19 +185,9 @@ export const portugalRestaurants = [
     "restaurantName": "Vila 953",
     "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/duforno",
+    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/vila-953",
     "status": "active",
     "displayOrder": "23"
-  },
-  {
-    "restaurantId": "vila-do-conde-porto-fashion-outlet-vila-grill",
-    "outletId": "vila-do-conde-porto-fashion-outlet",
-    "restaurantName": "Vila Grill",
-    "category": "Restaurant",
-    "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/vila-grill",
-    "status": "active",
-    "displayOrder": "24"
   },
   {
     "restaurantId": "vila-do-conde-porto-fashion-outlet-vitaminas",
@@ -245,7 +195,7 @@ export const portugalRestaurants = [
     "restaurantName": "Vitaminas",
     "category": "Restaurant",
     "priceLevel": "€€",
-    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/delfina",
+    "website": "https://www.viladocondefashionoutlet.pt/en/restaurants/vitaminas",
     "status": "active",
     "displayOrder": "25"
   }

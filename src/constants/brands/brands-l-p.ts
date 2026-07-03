@@ -4007,4 +4007,15 @@ export const brandsLP: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
+  {
+    brandId: "lemon-jelly",
+    brandName: "Lemon Jelly",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "portugal",
+    luxuryLevel: "fashion",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
 ];
