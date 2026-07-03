@@ -60,6 +60,11 @@ export const cities = [
     "countryId": "italy"
   },
   {
+    "cityId": "foiano-della-chiana",
+    "cityName": "Foiano della Chiana",
+    "countryId": "italy"
+  },
+  {
     "cityId": "frankfurt",
     "cityName": "Frankfurt",
     "countryId": "germany"
@@ -90,9 +95,19 @@ export const cities = [
     "countryId": "germany"
   },
   {
+    "cityId": "halle-leipzig",
+    "cityName": "Halle-Leipzig",
+    "countryId": "germany"
+  },
+  {
     "cityId": "hatfield",
     "cityName": "Hatfield",
     "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "kildare",
+    "cityName": "Kildare",
+    "countryId": "ireland"
   },
   {
     "cityId": "leeds",
@@ -117,6 +132,11 @@ export const cities = [
   {
     "cityId": "maasmechelen",
     "cityName": "Maasmechelen",
+    "countryId": "belgium"
+  },
+  {
+    "cityId": "messancy",
+    "cityName": "Messancy",
     "countryId": "belgium"
   },
   {
@@ -203,6 +223,11 @@ export const cities = [
     "cityId": "schoenenwerd",
     "cityName": "Schönenwerd",
     "countryId": "switzerland"
+  },
+  {
+    "cityId": "spata",
+    "cityName": "Spata",
+    "countryId": "greece"
   },
   {
     "cityId": "street",
