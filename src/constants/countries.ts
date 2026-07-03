@@ -32,6 +32,14 @@ export const countries = [
     "taxFreeAvailable": "TRUE"
   },
   {
+    "countryId": "croatia",
+    "countryName": "Croatia",
+    "countryFlag": "🇭🇷",
+    "continent": "Europe",
+    "currency": "EUR",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
     "countryId": "czech-republic",
     "countryName": "Czech Republic",
     "countryFlag": "🇨🇿",
@@ -69,6 +77,14 @@ export const countries = [
     "countryFlag": "🇩🇪",
     "continent": "Europe",
     "currency": "EUR",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
+    "countryId": "hungary",
+    "countryName": "Hungary",
+    "countryFlag": "🇭🇺",
+    "continent": "Europe",
+    "currency": "HUF",
     "taxFreeAvailable": "TRUE"
   },
   {
@@ -115,6 +131,14 @@ export const countries = [
     "countryId": "portugal",
     "countryName": "Portugal",
     "countryFlag": "🇵🇹",
+    "continent": "Europe",
+    "currency": "EUR",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
+    "countryId": "slovakia",
+    "countryName": "Slovakia",
+    "countryFlag": "🇸🇰",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"

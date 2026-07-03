@@ -1,15 +1,18 @@
 import { austriaOutlets } from "./austria";
 import { belgiumOutlets } from "./belgium";
+import { croatiaOutlets } from "./croatia";
 import { czechRepublicOutlets } from "./czech-republic";
 import { denmarkOutlets } from "./denmark";
 import { finlandOutlets } from "./finland";
 import { franceOutlets } from "./france";
 import { germanyOutlets } from "./germany";
+import { hungaryOutlets } from "./hungary";
 import { italyOutlets } from "./italy";
 import { netherlandsOutlets } from "./netherlands";
 import { norwayOutlets } from "./norway";
 import { polandOutlets } from "./poland";
 import { portugalOutlets } from "./portugal";
+import { slovakiaOutlets } from "./slovakia";
 import { spainOutlets } from "./spain";
 import { swedenOutlets } from "./sweden";
 import { switzerlandOutlets } from "./switzerland";
@@ -18,16 +21,19 @@ import { ukOutlets } from "./uk";
 export {
   austriaOutlets,
   belgiumOutlets,
+  croatiaOutlets,
   czechRepublicOutlets,
   denmarkOutlets,
   finlandOutlets,
   franceOutlets,
   germanyOutlets,
+  hungaryOutlets,
   italyOutlets,
   netherlandsOutlets,
   norwayOutlets,
   polandOutlets,
   portugalOutlets,
+  slovakiaOutlets,
   spainOutlets,
   swedenOutlets,
   switzerlandOutlets,
@@ -45,6 +51,9 @@ export const outlets = [
   ...portugalOutlets,
   ...denmarkOutlets,
   ...belgiumOutlets,
+  ...croatiaOutlets,
+  ...hungaryOutlets,
+  ...slovakiaOutlets,
   ...norwayOutlets,
   ...finlandOutlets,
   ...czechRepublicOutlets,

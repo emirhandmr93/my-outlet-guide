@@ -1,0 +1,40 @@
+export const croatiaOutlets = [
+  {
+    outletId: "ros-designer-outlet",
+    name: "ROS Designer Outlet",
+    slug: "ros-designer-outlet",
+    countryId: "croatia",
+    cityId: "zagreb",
+    address: "Alfreda Nobela 4, Sop, 10361 Sesvete - Kraljevec, Croatia",
+    latitude: 45.7875,
+    longitude: 16.1690,
+    openingHours: "Monday-Sunday 10:00 - 21:00",
+    heroImage: "",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
+    services: [],
+    restaurants: [],
+    taxFreeAvailable: true,
+    vatRate: 0,
+    estimatedRefundRate: 0,
+    minimumTaxFreeSpend: "",
+    taxFreeOperator: "",
+    taxFreeOfficeInfo: "",
+    cityCenterDistanceKm: 0,
+    airportDistanceKm: 0,
+    airports: [],
+    cityCenterInfo: {
+      name: "",
+      distanceKm: 0,
+      recommendedRoute: ""
+    },
+    nearby: [],
+    storesCountText: "approx. 115 shops",
+    websiteUrl: "https://www.designeroutletcroatia.com/en/",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Croatia%2C%20Alfreda%20Nobela%204%2C%20Sop%2C%2010361%20Sesvete%20-%20Kraljevec%2C%20Croatia",
+    appleMapsUrl: "http://maps.apple.com/?q=Designer%20Outlet%20Croatia%2C%20Alfreda%20Nobela%204%2C%20Sop%2C%2010361%20Sesvete%20-%20Kraljevec%2C%20Croatia",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Croatia%2C%20Alfreda%20Nobela%204%2C%20Sop%2C%2010361%20Sesvete%20-%20Kraljevec%2C%20Croatia"
+  }
+];
