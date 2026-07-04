@@ -108,5 +108,38 @@ export const polandTransportation = [
     "tip": "From central Warsaw, compare Metro M2 plus tram/bus via ZTM with road travel to the official Factory Annopol address. Public transport can be preferable when S8 or Trasa Toruńska traffic is heavy.",
     "status": "active",
     "displayOrder": "5"
+  },
+  {
+    "transportationId": "wroclaw-fashion-outlet-car-parking",
+    "outletId": "wroclaw-fashion-outlet",
+    "transportType": "car",
+    "title": "By Car / Parking",
+    "duration": "About 15 min west of Wrocław centre",
+    "cost": "Check official parking terms",
+    "tip": "Official Wrocław Fashion Outlet FAQ includes parking information and public-transport access; VIA Outlets describes the centre as west of the city and near the airport. Check current parking terms before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "wroclaw-fashion-outlet-tram",
+    "outletId": "wroclaw-fashion-outlet",
+    "transportType": "bus",
+    "title": "Wrocław public transport",
+    "duration": "Check official MPK/Wrocław timetable",
+    "cost": "Check official fare",
+    "tip": "Official centre FAQ lists public-transport access, and VIA Outlets notes a direct tram line from the city. Use official MPK/Wrocław journey planning and check the timetable/fare before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "wroclaw-fashion-outlet-airport",
+    "outletId": "wroclaw-fashion-outlet",
+    "transportType": "airport",
+    "title": "Wrocław Airport nearby",
+    "duration": "About 5 min from Wrocław Airport",
+    "cost": "Check onward transport fare",
+    "tip": "VIA Outlets describes Wrocław Fashion Outlet as about five minutes from Wrocław Airport. Continue by official public transport, car, or taxi/confirmed transfer and check current fares before travel.",
+    "status": "active",
+    "displayOrder": "3"
   }
 ];

@@ -86,5 +86,38 @@ export const austriaTransportation = [
     "tip": "Use Vienna International Airport or Bratislava Airport, then continue by rental car, taxi, transfer, or public transport according to the latest official schedules.",
     "status": "active",
     "displayOrder": "8"
+  },
+  {
+    "transportationId": "salzburg-car-parking",
+    "outletId": "designer-outlet-salzburg",
+    "transportType": "car",
+    "title": "By Car / Outlet Parking",
+    "duration": "About 10 min drive from Salzburg city",
+    "cost": "Check official parking information",
+    "tip": "Use Kasernenstraße 1, Wals-Himmelreich. The official centre says it is a short drive from Salzburg and accessible by public transport; Salzburg's official P+R page lists the Designer Outlet car park for city access, so check current parking terms before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "salzburg-bus-2-10-27",
+    "outletId": "designer-outlet-salzburg",
+    "transportType": "bus",
+    "title": "Salzburg trolleybus / bus",
+    "duration": "Check Salzburg Verkehr timetable",
+    "cost": "Check official Salzburg Verkehr fare",
+    "tip": "Official Salzburg P+R information lists Obus lines 2 and 10, plus line 27, serving the Designer Outlet/Himmelreich area. Check the official timetable and fare before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "salzburg-airport",
+    "outletId": "designer-outlet-salzburg",
+    "transportType": "airport",
+    "title": "Salzburg Airport nearby",
+    "duration": "About 1 km from Salzburg Airport",
+    "cost": "Check onward transport fare",
+    "tip": "The outlet is next to Salzburg Airport; use official airport ground transport, taxi, local bus, or car directions and confirm current fares before travel.",
+    "status": "active",
+    "displayOrder": "3"
   }
 ];

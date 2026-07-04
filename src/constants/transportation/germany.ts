@@ -493,5 +493,49 @@ export const germanyTransportation = [
     "tip": "Leipzig/Halle Airport officially has its own rail station below check-in with Deutsche Bahn connections; connect by rail via Halle/Leipzig or use the outlet's A9-area road access.",
     "status": "active",
     "displayOrder": "4"
+  },
+  {
+    "transportationId": "ochtrup-car-parking",
+    "outletId": "designer-outlet-ochtrup",
+    "transportType": "car",
+    "title": "By Car / Parking",
+    "duration": "Use Laurenzstraße 51-55, Ochtrup",
+    "cost": "Check official parking information",
+    "tip": "McArthurGlen's official Ochtrup service information points visitors to the How to Get Here page for car, train, bike, public-transport, and parking details. Check current parking terms before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "ochtrup-train-bahnhof",
+    "outletId": "designer-outlet-ochtrup",
+    "transportType": "train",
+    "title": "Train to Ochtrup Bahnhof",
+    "duration": "Check official DB / regional timetable",
+    "cost": "Check official rail fare",
+    "tip": "Official centre information says the outlet is reachable by train. Use DB or the regional operator to Ochtrup Bahnhof, then walk or use local transport; check timetable/fare before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "ochtrup-local-bus",
+    "outletId": "designer-outlet-ochtrup",
+    "transportType": "bus",
+    "title": "Local bus to the outlet area",
+    "duration": "Check official regional bus timetable",
+    "cost": "Check official fare",
+    "tip": "Use official NRW/regional journey planning for buses serving central Ochtrup and the outlet area. Verify the exact stop, timetable, and fare before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "ochtrup-airports",
+    "outletId": "designer-outlet-ochtrup",
+    "transportType": "airport",
+    "title": "Regional airports",
+    "duration": "Check official road/rail route",
+    "cost": "Check onward transport fare",
+    "tip": "For air arrivals, use nearby regional airports such as Münster/Osnabrück or Düsseldorf and continue by official rail/bus, car, or confirmed transfer. No dedicated airport shuttle was verified.",
+    "status": "active",
+    "displayOrder": "4"
   }
 ];
