@@ -2438,4 +2438,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "venchi",
+    brandName: "Venchi",
+    aliases: [],
+    categoryId: "food-chocolate",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "premium",
+    rankingWeight: 66,
+    brandStatus: "active",
+  },
 ];
