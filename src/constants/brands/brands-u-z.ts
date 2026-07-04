@@ -37,12 +37,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "ugg",
     brandName: "UGG",
-    aliases: [
-      "UGG Australia",
-      "UGG Outlet",
-      "UGGAustralia",
-      "UGGOutlet",
-    ],
+    aliases: ["UGG Australia", "UGG Outlet", "UGGAustralia", "UGGOutlet"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -504,12 +499,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "watch-and-see",
     brandName: "Watch & See",
-    aliases: [
-      "Watch and See",
-      "Watch See",
-      "WatchSee",
-      "WatchandSee",
-    ],
+    aliases: ["Watch and See", "Watch See", "WatchSee", "WatchandSee"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "germany",
@@ -891,13 +881,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "y-3",
     brandName: "Y-3",
-    aliases: [
-      "Y3",
-      "adidas Y-3",
-      "Y 3",
-      "adidas Y 3",
-      "adidasY3",
-    ],
+    aliases: ["Y3", "adidas Y-3", "Y 3", "adidas Y 3", "adidasY3"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "japan",
@@ -908,12 +892,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "y-concept",
     brandName: "Y-concept",
-    aliases: [
-      "Y Concept",
-      "Y concept",
-      "Yconcept",
-      "YConcept",
-    ],
+    aliases: ["Y Concept", "Y concept", "Yconcept", "YConcept"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "south-korea",
@@ -1635,12 +1614,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "wutscher-optik",
     brandName: "Wutscher Optik",
-    aliases: [
-      "sehen!wutscher",
-      "Wutscher",
-      "WutscherOptik",
-      "sehenwutscher",
-    ],
+    aliases: ["sehen!wutscher", "Wutscher", "WutscherOptik", "sehenwutscher"],
     categoryId: "eyewear",
     logo: "",
     originCountryId: "austria",
@@ -1857,7 +1831,12 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "viking-of-norway",
     brandName: "Viking of Norway",
-    aliases: ["Viking Garn", "Viking", "VikingOfNorway", "Viking of Norway Viking Garn"],
+    aliases: [
+      "Viking Garn",
+      "Viking",
+      "VikingOfNorway",
+      "Viking of Norway Viking Garn",
+    ],
     categoryId: "home",
     logo: "",
     originCountryId: "norway",
@@ -1865,7 +1844,6 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
-
 
   {
     brandId: "zizzi",
@@ -2494,6 +2472,17 @@ export const brandsUZ: Brand[] = [
     originCountryId: "lithuania",
     luxuryLevel: "lifestyle",
     rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "vip-collection",
+    brandName: "VIP Collection",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    originCountryId: "poland",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 56,
     brandStatus: "active",
   },
 ];

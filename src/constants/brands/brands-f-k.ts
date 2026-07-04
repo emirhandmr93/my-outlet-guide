@@ -69,7 +69,11 @@ export const brandsFK: Brand[] = [
   {
     brandId: "famous-footwear",
     brandName: "Famous Footwear",
-    aliases: ["Famous Footwear Outlet", "FamousFootwear", "FamousFootwearOutlet"],
+    aliases: [
+      "Famous Footwear Outlet",
+      "FamousFootwear",
+      "FamousFootwearOutlet",
+    ],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -499,12 +503,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "g-h-bass",
     brandName: "G.H. Bass",
-    aliases: [
-      "GH Bass",
-      "Bass",
-      "G H Bass",
-      "GHBass",
-    ],
+    aliases: ["GH Bass", "Bass", "G H Bass", "GHBass"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -578,12 +577,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "gap",
     brandName: "Gap",
-    aliases: [
-      "Gap Factory",
-      "Gap Outlet",
-      "GapFactory",
-      "GapOutlet",
-    ],
+    aliases: ["Gap Factory", "Gap Outlet", "GapFactory", "GapOutlet"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -714,12 +708,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "gerry-st-weber",
     brandName: "Gerry St. Weber",
-    aliases: [
-      "Gerry Weber",
-      "Gerry St Weber",
-      "GerryStWeber",
-      "GerryWeber",
-    ],
+    aliases: ["Gerry Weber", "Gerry St Weber", "GerryStWeber", "GerryWeber"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "germany",
@@ -1058,12 +1047,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "haagen-dazs",
     brandName: "Häagen-Dazs",
-    aliases: [
-      "Haagen-Dazs",
-      "Häagen Dazs",
-      "Haagen Dazs",
-      "HaagenDazs",
-    ],
+    aliases: ["Haagen-Dazs", "Häagen Dazs", "Haagen Dazs", "HaagenDazs"],
     categoryId: "food-confectionery",
     logo: "",
     originCountryId: "united-states",
@@ -1074,7 +1058,13 @@ export const brandsFK: Brand[] = [
   {
     brandId: "h-and-m",
     brandName: "H&M",
-    aliases: ["H and M", "Hennes & Mauritz", "Hennes and Mauritz", "HM", "H&M Outlet"],
+    aliases: [
+      "H and M",
+      "Hennes & Mauritz",
+      "Hennes and Mauritz",
+      "HM",
+      "H&M Outlet",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "sweden",
@@ -1220,7 +1210,11 @@ export const brandsFK: Brand[] = [
   {
     brandId: "harmont-e-blaine-junior",
     brandName: "Harmont & Blaine Junior",
-    aliases: ["Harmont and Blaine Junior", "Harmont Blaine Junior", "HarmontBlaineJunior"],
+    aliases: [
+      "Harmont and Blaine Junior",
+      "Harmont Blaine Junior",
+      "HarmontBlaineJunior",
+    ],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -1536,12 +1530,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "hugo",
     brandName: "HUGO",
-    aliases: [
-      "Hugo Boss HUGO",
-      "HugoBossHUGO",
-      "Hugo Boss",
-      "Hugo",
-    ],
+    aliases: ["Hugo Boss HUGO", "HugoBossHUGO", "Hugo Boss", "Hugo"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "germany",
@@ -1897,13 +1886,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "j-estina",
     brandName: "J.ESTINA",
-    aliases: [
-      "J Estina",
-      "J. Estina",
-      "J ESTINA",
-      "JESTINA",
-      "JEstina",
-    ],
+    aliases: ["J Estina", "J. Estina", "J ESTINA", "JESTINA", "JEstina"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "south-korea",
@@ -1947,12 +1930,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "jack-and-jones",
     brandName: "Jack & Jones",
-    aliases: [
-      "Jack and Jones",
-      "Jack Jones",
-      "JackJones",
-      "JackandJones",
-    ],
+    aliases: ["Jack and Jones", "Jack Jones", "JackJones", "JackandJones"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "denmark",
@@ -2170,12 +2148,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "joe-s-jeans",
     brandName: "Joe's Jeans",
-    aliases: [
-      "Joes Jeans",
-      "Joe’s Jeans",
-      "Joe s Jeans",
-      "JoesJeans",
-    ],
+    aliases: ["Joes Jeans", "Joe’s Jeans", "Joe s Jeans", "JoesJeans"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -3802,7 +3775,6 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
 
-
   {
     brandId: "familon",
     brandName: "Familon",
@@ -4342,6 +4314,28 @@ export const brandsFK: Brand[] = [
     logo: "",
     luxuryLevel: "fashion",
     rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "himountain",
+    brandName: "HiMountain",
+    aliases: ["Hi Mountain"],
+    categoryId: "outdoor",
+    logo: "",
+    originCountryId: "poland",
+    luxuryLevel: "sports",
+    rankingWeight: 58,
+    brandStatus: "active",
+  },
+  {
+    brandId: "itaka",
+    brandName: "Itaka",
+    aliases: ["ITAKA"],
+    categoryId: "travel",
+    logo: "",
+    originCountryId: "poland",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 55,
     brandStatus: "active",
   },
 ];

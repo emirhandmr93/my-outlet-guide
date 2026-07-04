@@ -4,7 +4,11 @@ export const brandsLP: Brand[] = [
   {
     brandId: "l-artisan-parfumeur",
     brandName: "L'Artisan Parfumeur",
-    aliases: ["L’Artisan Parfumeur", "L Artisan Parfumeur", "LArtisanParfumeur"],
+    aliases: [
+      "L’Artisan Parfumeur",
+      "L Artisan Parfumeur",
+      "LArtisanParfumeur",
+    ],
     categoryId: "beauty",
     logo: "",
     originCountryId: "france",
@@ -35,13 +39,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "l-oreal",
     brandName: "L'Oréal",
-    aliases: [
-      "L'Oreal",
-      "L’Oréal",
-      "L Oréal",
-      "L Oreal",
-      "LOreal",
-    ],
+    aliases: ["L'Oreal", "L’Oréal", "L Oréal", "L Oreal", "LOreal"],
     categoryId: "beauty",
     logo: "",
     luxuryLevel: "fashion",
@@ -128,7 +126,11 @@ export const brandsLP: Brand[] = [
   {
     brandId: "laderach",
     brandName: "Läderach",
-    aliases: ["Laderach", "Läderach Chocolatier Suisse", "Laderach Chocolatier Suisse"],
+    aliases: [
+      "Laderach",
+      "Läderach Chocolatier Suisse",
+      "Laderach Chocolatier Suisse",
+    ],
     categoryId: "food-confectionery",
     logo: "",
     originCountryId: "switzerland",
@@ -161,7 +163,11 @@ export const brandsLP: Brand[] = [
   {
     brandId: "lagostina-home-cook",
     brandName: "Lagostina Home & Cook",
-    aliases: ["Lagostina Home and Cook", "Lagostina Home Cook", "LagostinaHomeCook"],
+    aliases: [
+      "Lagostina Home and Cook",
+      "Lagostina Home Cook",
+      "LagostinaHomeCook",
+    ],
     categoryId: "home",
     logo: "",
     originCountryId: "italy",
@@ -395,7 +401,12 @@ export const brandsLP: Brand[] = [
   {
     brandId: "lexington",
     brandName: "Lexington",
-    aliases: ["Lexington Company", "The Lexington Company", "LexingtonCompany", "Lexington Home"],
+    aliases: [
+      "Lexington Company",
+      "The Lexington Company",
+      "LexingtonCompany",
+      "Lexington Home",
+    ],
     categoryId: "home",
     logo: "",
     originCountryId: "sweden",
@@ -503,12 +514,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "loft",
     brandName: "LOFT",
-    aliases: [
-      "Ann Taylor LOFT",
-      "LOFT Outlet",
-      "AnnTaylorLOFT",
-      "LOFTOutlet",
-    ],
+    aliases: ["Ann Taylor LOFT", "LOFT Outlet", "AnnTaylorLOFT", "LOFTOutlet"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -552,13 +558,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "loreal",
     brandName: "L'Oréal",
-    aliases: [
-      "L'Oreal",
-      "L’Oréal",
-      "L Oréal",
-      "L Oreal",
-      "LOreal",
-    ],
+    aliases: ["L'Oreal", "L’Oréal", "L Oréal", "L Oreal", "LOreal"],
     categoryId: "beauty",
     logo: "",
     originCountryId: "france",
@@ -645,12 +645,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "lucy-and-yak",
     brandName: "Lucy & Yak",
-    aliases: [
-      "Lucy and Yak",
-      "Lucy Yak",
-      "LucyYak",
-      "LucyandYak",
-    ],
+    aliases: ["Lucy and Yak", "Lucy Yak", "LucyYak", "LucyandYak"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-kingdom",
@@ -759,7 +754,11 @@ export const brandsLP: Brand[] = [
   {
     brandId: "maison-margiela",
     brandName: "Maison Margiela",
-    aliases: ["Maison Martin Margiela", "MaisonMargiela", "MaisonMartinMargiela"],
+    aliases: [
+      "Maison Martin Margiela",
+      "MaisonMargiela",
+      "MaisonMartinMargiela",
+    ],
     categoryId: "luxury",
     logo: "",
     originCountryId: "france",
@@ -945,12 +944,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "marc-o-polo",
     brandName: "Marc O'Polo",
-    aliases: [
-      "Marc OPolo",
-      "Marc O Polo",
-      "Marc O’Polo",
-      "MarcOPolo",
-    ],
+    aliases: ["Marc OPolo", "Marc O Polo", "Marc O’Polo", "MarcOPolo"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "germany",
@@ -1165,12 +1159,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "michael-kors",
     brandName: "Michael Kors",
-    aliases: [
-      "Michael Kors Outlet",
-      "MichaelKors",
-      "MichaelKorsOutlet",
-      "MK",
-    ],
+    aliases: ["Michael Kors Outlet", "MichaelKors", "MichaelKorsOutlet", "MK"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -1875,7 +1864,13 @@ export const brandsLP: Brand[] = [
   {
     brandId: "norrona",
     brandName: "Norrøna",
-    aliases: ["Norrona", "Norröna", "Norroena", "Norrøna Outdoor", "Norrona Outdoor"],
+    aliases: [
+      "Norrona",
+      "Norröna",
+      "Norroena",
+      "Norrøna Outdoor",
+      "Norrona Outdoor",
+    ],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "norway",
@@ -2150,7 +2145,13 @@ export const brandsLP: Brand[] = [
   {
     brandId: "orrefors-kosta-boda",
     brandName: "Orrefors Kosta Boda",
-    aliases: ["Orrefors", "Kosta Boda", "Orrefors & Kosta Boda", "OrreforsKostaBoda", "KostaBoda"],
+    aliases: [
+      "Orrefors",
+      "Kosta Boda",
+      "Orrefors & Kosta Boda",
+      "OrreforsKostaBoda",
+      "KostaBoda",
+    ],
     categoryId: "home",
     logo: "",
     originCountryId: "sweden",
@@ -2183,7 +2184,11 @@ export const brandsLP: Brand[] = [
   {
     brandId: "oscar-jacobson",
     brandName: "Oscar Jacobson",
-    aliases: ["OscarJacobson", "Oscar Jacobson Menswear", "Oscar Jacobson Golf"],
+    aliases: [
+      "OscarJacobson",
+      "Oscar Jacobson Menswear",
+      "Oscar Jacobson Golf",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "sweden",
@@ -2357,7 +2362,11 @@ export const brandsLP: Brand[] = [
   {
     brandId: "partioaitta",
     brandName: "Partioaitta",
-    aliases: ["Partioaitta Outlet", "Partioaitta Outdoor", "Partioaitta Retkeily"],
+    aliases: [
+      "Partioaitta Outlet",
+      "Partioaitta Outdoor",
+      "Partioaitta Retkeily",
+    ],
     categoryId: "outdoor",
     logo: "",
     originCountryId: "finland",
@@ -2411,12 +2420,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "paul-and-shark",
     brandName: "Paul & Shark",
-    aliases: [
-      "Paul and Shark",
-      "Paul Shark",
-      "PaulShark",
-      "PaulandShark",
-    ],
+    aliases: ["Paul and Shark", "Paul Shark", "PaulShark", "PaulandShark"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "italy",
@@ -2515,12 +2519,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "perfect-suit-factory",
     brandName: "Perfect Suit Factory",
-    aliases: [
-      "P.S.FA",
-      "PSFA",
-      "PerfectSuitFactory",
-      "P S FA",
-    ],
+    aliases: ["P.S.FA", "PSFA", "PerfectSuitFactory", "P S FA"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "japan",
@@ -3061,7 +3060,11 @@ export const brandsLP: Brand[] = [
   {
     brandId: "matinique",
     brandName: "Matinique",
-    aliases: ["Matinique Copenhagen", "Matinique menswear", "MatiniqueMenswear"],
+    aliases: [
+      "Matinique Copenhagen",
+      "Matinique menswear",
+      "MatiniqueMenswear",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "denmark",
@@ -4032,12 +4035,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "levi-s",
     brandName: "Levi's",
-    aliases: [
-      "Levi’s",
-      "Levi s",
-      "Levis",
-      "Levi Strauss",
-    ],
+    aliases: ["Levi’s", "Levi s", "Levis", "Levi Strauss"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "premium",
@@ -4208,7 +4206,11 @@ export const brandsLP: Brand[] = [
   {
     brandId: "mastersport-reebok",
     brandName: "Mastersport-Reebok",
-    aliases: ["Mastersport-Reebok", "Mastersport-Reebok", "Mastersport-Reebok Outlet"],
+    aliases: [
+      "Mastersport-Reebok",
+      "Mastersport-Reebok",
+      "Mastersport-Reebok Outlet",
+    ],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "poland",
@@ -5227,6 +5229,16 @@ export const brandsLP: Brand[] = [
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "premium",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "marshal",
+    brandName: "Marshal",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
     rankingWeight: 50,
     brandStatus: "active",
   },
