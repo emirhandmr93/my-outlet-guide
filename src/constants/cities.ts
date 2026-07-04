@@ -368,5 +368,45 @@ export const cities = [
     "cityId": "ochtrup",
     "cityName": "Ochtrup",
     "countryId": "germany"
-  }
+  },
+  {
+    "cityId": "marratxi",
+    "cityName": "Marratxí",
+    "countryId": "spain"
+  },
+  {
+    "cityId": "seville",
+    "cityName": "Seville",
+    "countryId": "spain"
+  },
+  {
+    "cityId": "getafe",
+    "cityName": "Getafe",
+    "countryId": "spain"
+  },
+  {
+    "cityId": "san-sebastian-de-los-reyes",
+    "cityName": "San Sebastián de los Reyes",
+    "countryId": "spain"
+  },
+  {
+    "cityId": "gdansk",
+    "cityName": "Gdańsk",
+    "countryId": "poland"
+  },
+  {
+    "cityId": "sosnowiec",
+    "cityName": "Sosnowiec",
+    "countryId": "poland"
+  },
+  {
+    "cityId": "piaseczno",
+    "cityName": "Piaseczno",
+    "countryId": "poland"
+  },
+  {
+    "cityId": "les-clayes-sous-bois",
+    "cityName": "Les Clayes-sous-Bois",
+    "countryId": "france"
+  },
 ];

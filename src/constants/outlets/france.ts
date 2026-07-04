@@ -324,4 +324,33 @@ export const franceOutlets = [
     appleMapsUrl: "http://maps.apple.com/?q=Paris-Giverny%20Designer%20Outlet",
     yandexMapsUrl: "https://yandex.com/maps/?text=Paris-Giverny%20Designer%20Outlet"
   } as any
+,
+  {
+    outletId: "one-nation-paris",
+    outletName: "One Nation Paris",
+    name: "One Nation Paris",
+    slug: "one-nation-paris",
+    countryId: "france",
+    cityId: "les-clayes-sous-bois",
+    officialWebsite: "https://www.onenation.fr/en/",
+    websiteUrl: "https://www.onenation.fr/en/",
+    address: "1 Avenue du Président John Fitzgerald Kennedy, 78340 Les Clayes-sous-Bois, France",
+    latitude: 48.8175,
+    longitude: 1.9868,
+    openingHours: "Mon-Sun 10:00 - 20:00",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
+    storesCountText: "90 boutiques and 400 fashion, outdoor, home and gourmet brands on the official website",
+    status: "active",
+    airportDistanceKm: 35,
+    airportInfoText: "Paris Orly Airport • 35 km",
+    airports: [{ code: "ORY", name: "Paris Orly Airport", distanceKm: 35 }, { code: "CDG", name: "Paris Charles de Gaulle Airport", distanceKm: 50 }],
+    cityCenterDistanceKm: 30,
+    cityCenterInfoText: "Paris City Centre • 30 km",
+    cityCenterInfo: { name: "Paris City Centre", distanceKm: 30, recommendedRoute: "Use current official access directions to One Nation Paris." },
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=One%20Nation%20Paris%2C%201%20Avenue%20du%20Pr%C3%A9sident%20John%20Fitzgerald%20Kennedy%2C%2078340%20Les%20Clayes-sous-Bois%2C%20France",
+    appleMapsUrl: "http://maps.apple.com/?q=One%20Nation%20Paris&address=1%20Avenue%20du%20Pr%C3%A9sident%20John%20Fitzgerald%20Kennedy%2C%2078340%20Les%20Clayes-sous-Bois%2C%20France",
+    yandexMapsUrl: "https://yandex.com/maps/?text=One%20Nation%20Paris%2C%201%20Avenue%20du%20Pr%C3%A9sident%20John%20Fitzgerald%20Kennedy%2C%2078340%20Les%20Clayes-sous-Bois%2C%20France"
+  } as any
 ];
