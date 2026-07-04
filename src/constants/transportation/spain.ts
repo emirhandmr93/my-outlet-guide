@@ -108,5 +108,61 @@ export const spainTransportation = [
     "tip": "Official centre directions list Málaga Airport one stop away by RENFE Cercanías C1 and about five minutes by car; confirm current Renfe times before travel.",
     "status": "active",
     "displayOrder": "5"
-  }
+  },
+  {
+    "transportationId": "viladecans-car",
+    "outletId": "viladecans-the-style-outlets",
+    "transportType": "car",
+    "title": "Car to Ctra. de la Vila",
+    "duration": "≈10-15 min from Barcelona-El Prat Airport or central Barcelona depending on traffic",
+    "cost": "Fuel, tolls and provider costs vary",
+    "tip": "Use the official Viladecans The Style Outlets directions to Ctra. de la Vila 90, Viladecans; check traffic before departure.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "viladecans-parking",
+    "outletId": "viladecans-the-style-outlets",
+    "transportType": "car",
+    "title": "Centre parking",
+    "duration": "On site",
+    "cost": "Check official parking page",
+    "tip": "The centre publishes an official parking page; follow on-site signs and confirm current parking rules before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "viladecans-train",
+    "outletId": "viladecans-the-style-outlets",
+    "transportType": "train",
+    "title": "Rodalies train to Viladecans",
+    "duration": "Station is near the centre; train timing varies",
+    "cost": "Check official Rodalies/Renfe fare",
+    "tip": "Use official Rodalies/Renfe services to Viladecans station, then follow the signed short walk to the outlet; verify current line and timetable before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "viladecans-bus",
+    "outletId": "viladecans-the-style-outlets",
+    "transportType": "bus",
+    "title": "Metropolitan bus to Viladecans",
+    "duration": "Check official AMB/ATM timetable",
+    "cost": "Check official AMB/ATM fare",
+    "tip": "Plan bus access with the official Barcelona metropolitan transport operators for stops serving Ctra. de la Vila and Viladecans station; verify the current route before travel.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "transportationId": "viladecans-airport",
+    "outletId": "viladecans-the-style-outlets",
+    "transportType": "airport",
+    "title": "Barcelona-El Prat Airport access",
+    "duration": "≈10 min by car/taxi; public transport via official Barcelona-area services varies",
+    "cost": "Check official airport transport or taxi/transfer fare",
+    "tip": "The outlet is close to Barcelona-El Prat Airport; use official airport ground transport, taxi or Barcelona-area public transport and confirm the route before travel.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+
 ];
