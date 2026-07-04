@@ -460,6 +460,26 @@ export const franceRestaurants = [
     "displayOrder": "10"
   },
   {
+    "restaurantId": "one-nation-paris-casa-de-nata",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Casa de Nata",
+    "category": "Portuguese pastries",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "one-nation-paris-crepa-go-go",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Crêp'a Go-Go",
+    "category": "Crepes",
+    "priceLevel": "€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
     "restaurantId": "one-nation-paris-eat-sushi",
     "outletId": "one-nation-paris",
     "restaurantName": "Eat Sushi",
@@ -467,27 +487,57 @@ export const franceRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
     "status": "active",
-    "displayOrder": "1"
+    "displayOrder": "3"
   },
   {
-    "restaurantId": "one-nation-paris-illy-caffe",
+    "restaurantId": "one-nation-paris-haribo",
     "outletId": "one-nation-paris",
-    "restaurantName": "Illy Caffé",
+    "restaurantName": "Haribo",
+    "category": "Confectionery",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "one-nation-paris-illy",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Illy",
     "category": "Cafe",
     "priceLevel": "€€",
     "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
     "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "one-nation-paris-kusmi-tea",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Kusmi Tea",
+    "category": "Tea",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "one-nation-paris-lindt",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Lindt",
+    "category": "Chocolate • Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "7"
   },
   {
     "restaurantId": "one-nation-paris-lou-licious",
     "outletId": "one-nation-paris",
     "restaurantName": "Lou-Licious",
-    "category": "Restaurant",
+    "category": "Lebanese",
     "priceLevel": "€€",
     "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
     "status": "active",
-    "displayOrder": "3"
+    "displayOrder": "8"
   },
   {
     "restaurantId": "one-nation-paris-maison-foude",
@@ -497,16 +547,26 @@ export const franceRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
     "status": "active",
-    "displayOrder": "4"
+    "displayOrder": "9"
   },
   {
-    "restaurantId": "one-nation-paris-trattoria-locale",
+    "restaurantId": "one-nation-paris-oliviers-and-co",
     "outletId": "one-nation-paris",
-    "restaurantName": "Trattoria Locale",
+    "restaurantName": "Oliviers & Co",
+    "category": "Fine foods",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "10"
+  },
+  {
+    "restaurantId": "one-nation-paris-pizza-trattoria",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Pizza Trattoria",
     "category": "Italian",
     "priceLevel": "€€",
     "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
     "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "11"
   }
 ];
