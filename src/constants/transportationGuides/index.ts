@@ -9,6 +9,8 @@ import { hungaryTransportationGuides } from "./hungary";
 import { irelandTransportationGuides } from "./ireland";
 import { croatiaTransportationGuides } from "./croatia";
 import { italyTransportationGuides } from "./italy";
+import { latviaTransportationGuides } from "./latvia";
+import { lithuaniaTransportationGuides } from "./lithuania";
 import { romaniaTransportationGuides } from "./romania";
 import { estoniaTransportationGuides } from "./estonia";
 import { netherlandsTransportationGuides } from "./netherlands";
@@ -63,6 +65,8 @@ export {
   irelandTransportationGuides,
   croatiaTransportationGuides,
   italyTransportationGuides,
+  latviaTransportationGuides,
+  lithuaniaTransportationGuides,
   romaniaTransportationGuides,
   estoniaTransportationGuides,
   netherlandsTransportationGuides,
@@ -79,6 +83,8 @@ export {
 
 export const transportationGuides: TransportationGuide[] = [
   ...italyTransportationGuides,
+  ...latviaTransportationGuides,
+  ...lithuaniaTransportationGuides,
   ...germanyTransportationGuides,
   ...greeceTransportationGuides,
   ...franceTransportationGuides,
