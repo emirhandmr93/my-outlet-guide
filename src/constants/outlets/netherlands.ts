@@ -254,15 +254,15 @@ export const netherlandsOutlets = [
     countryId: "netherlands",
     cityId: "lelystad",
     restaurants: [
-      "Âme Fashion Café",
       "Coffeecompany",
       "De Ruyter Vis",
-      "Dunkin' Donuts",
-      "Dutch Originals",
+      "Dunkin'",
       "Ekmekci",
+      "Fashion Café",
       "La Place",
       "McDonald's",
       "Salsa Shop",
+      "Starbucks",
       "Subway",
       "Twelve12"
     ],
