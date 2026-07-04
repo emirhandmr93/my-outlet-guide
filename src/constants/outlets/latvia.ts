@@ -1,0 +1,40 @@
+export const latviaOutlets = [
+  {
+    outletId: "via-jurmala-outlet-village",
+    name: "Via Jurmala Outlet Village",
+    slug: "via-jurmala-outlet-village",
+    countryId: "latvia",
+    cityId: "pinki",
+    address: "Jaunā iela 12, Piņķi, Babīte Parish, Mārupe Municipality, Latvia",
+    latitude: 56.9415,
+    longitude: 23.9116,
+    openingHours: "09:00 - 20:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "Outlet stores for fashion, lifestyle and necessities",
+    rating: 0,
+    reviewCount: 0,
+    services: ["Parking", "Restaurants & Cafes", "Gastro Market", "Transport Info", "Accessibility"],
+    restaurants: ["Kafijas Banka"],
+    parking: "Official map and visitor pages list Via Jurmala Outlet Village at Jaunā iela 12 in Piņķi; confirm current parking details on the official website before visiting.",
+    taxFreeAvailable: true,
+    vatRate: 21,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "44.00 EUR",
+    taxFreeOperator: "Participating stores / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors should confirm tax-free availability with participating stores and validate export documents when leaving the EU.",
+    cityCenterDistanceKm: 17,
+    airportDistanceKm: 12,
+    airports: [{ code: "RIX", name: "Riga International Airport", distanceKm: 12 }],
+    cityCenterInfo: {
+      name: "Riga City Centre",
+      distanceKm: 17,
+      recommendedRoute: "Use car, taxi, or regional transport toward Piņķi / Jūrmala."
+    },
+    websiteUrl: "https://viajurmala.com/en/",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Via+Jurmala+Outlet+Village",
+    appleMapsUrl: "http://maps.apple.com/?q=Via%20Jurmala%20Outlet%20Village",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Via%20Jurmala%20Outlet%20Village"
+  } as any
+];

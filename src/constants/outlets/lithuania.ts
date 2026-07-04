@@ -1,0 +1,40 @@
+export const lithuaniaOutlets = [
+  {
+    outletId: "outlet-park-vilnius",
+    name: "Outlet Park Vilnius",
+    slug: "outlet-park-vilnius",
+    countryId: "lithuania",
+    cityId: "vilnius",
+    address: "Verkių g. 29, LT-09108 Vilnius, Lithuania",
+    latitude: 54.7127,
+    longitude: 25.2996,
+    openingHours: "10:00 - 20:00",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "More than 40 branded stores",
+    rating: 0,
+    reviewCount: 0,
+    services: ["Parking", "Restaurants & Cafes", "Leisure Terrace", "Gym", "Beauty Services", "Transport Info"],
+    restaurants: [],
+    parking: "Official Outlet Park pages list the centre at Ogmios, Verkių g. 29 in Vilnius; confirm current parking details on the official website before visiting.",
+    taxFreeAvailable: true,
+    vatRate: 21,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "40.00 EUR",
+    taxFreeOperator: "Participating stores / EU customs validation",
+    taxFreeOfficeInfo: "Eligible non-EU visitors should confirm tax-free availability with participating stores and validate export documents when leaving the EU.",
+    cityCenterDistanceKm: 6,
+    airportDistanceKm: 12,
+    airports: [{ code: "VNO", name: "Vilnius Airport", distanceKm: 12 }],
+    cityCenterInfo: {
+      name: "Vilnius City Centre",
+      distanceKm: 6,
+      recommendedRoute: "Use local public transport, taxi, or car to Ogmios, Verkių g. 29."
+    },
+    websiteUrl: "https://outletpark.lt/en/",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Outlet+Park+Vilnius",
+    appleMapsUrl: "http://maps.apple.com/?q=Outlet%20Park%20Vilnius",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Outlet%20Park%20Vilnius"
+  } as any
+];
