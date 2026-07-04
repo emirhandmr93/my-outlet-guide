@@ -177,6 +177,9 @@ export const polandOutlets = [
     slug: "designer-outlet-gdansk",
     countryId: "poland",
     cityId: "gdansk",
+    restaurants: [
+      "Papa Gyros"
+    ],
     officialWebsite: "https://www.designeroutletgdansk.pl/en/",
     websiteUrl: "https://www.designeroutletgdansk.pl/en/",
     address: "ul. Przywidzka 8, 80-174 Gdańsk, Poland",
@@ -205,6 +208,9 @@ export const polandOutlets = [
     slug: "designer-outlet-sosnowiec",
     countryId: "poland",
     cityId: "sosnowiec",
+    restaurants: [
+      "Carte D`or"
+    ],
     officialWebsite: "https://www.designeroutletsosnowiec.pl/en/",
     websiteUrl: "https://www.designeroutletsosnowiec.pl/en/",
     address: "Orląt Lwowskich 138, 41-208 Sosnowiec, Poland",
@@ -233,6 +239,9 @@ export const polandOutlets = [
     slug: "designer-outlet-warszawa",
     countryId: "poland",
     cityId: "piaseczno",
+    restaurants: [
+      "Green Caffe Nero"
+    ],
     officialWebsite: "https://www.designeroutletwarszawa.pl/en/",
     websiteUrl: "https://www.designeroutletwarszawa.pl/en/",
     address: "Puławska 42E, 05-500 Piaseczno, Poland",

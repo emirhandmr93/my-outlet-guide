@@ -78,5 +78,35 @@ export const polandRestaurants = [
     "website": "https://annopol.factory.pl/en/restaurants/restaurants",
     "status": "active",
     "displayOrder": "4"
+  },
+  {
+    "restaurantId": "designer-outlet-gdansk-papa-gyros",
+    "outletId": "designer-outlet-gdansk",
+    "restaurantName": "Papa Gyros",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.designeroutletgdansk.pl/en/shopping/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "designer-outlet-sosnowiec-carte-dor",
+    "outletId": "designer-outlet-sosnowiec",
+    "restaurantName": "Carte D`or",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.designeroutletsosnowiec.pl/en/centre/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "designer-outlet-warszawa-green-caffe-nero",
+    "outletId": "designer-outlet-warszawa",
+    "restaurantName": "Green Caffe Nero",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.designeroutletwarszawa.pl/en/discover/food-drink",
+    "status": "active",
+    "displayOrder": "1"
   }
 ];

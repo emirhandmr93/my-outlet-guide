@@ -278,5 +278,305 @@ export const spainRestaurants = [
     "website": "https://www.larocavillage.com/en/food-and-drink/",
     "status": "active",
     "displayOrder": "18"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-amorino",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Amorino",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-block-house",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Block House",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-coffee-fellows",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Coffee Fellows",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-diablito",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Diablito",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-dont-cry-for-me",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Don't Cry For Me",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-dumpling-hub",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Dumpling Hub",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-fosters-hollywood",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Foster's Hollywood",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-ginos",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Ginos",
+    "category": "Italian",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "8"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-haagen-dazs",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Häagen Dazs",
+    "category": "Ice Cream",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "9"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-lindt",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Lindt",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "10"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-mcdonalds",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "McDonald's",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "11"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-skalop",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Skalop",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "12"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-starbucks",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "13"
+  },
+  {
+    "restaurantId": "sevilla-fashion-outlet-100-montaditos",
+    "outletId": "sevilla-fashion-outlet",
+    "restaurantName": "100 Montaditos",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.sevillafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "sevilla-fashion-outlet-belros",
+    "outletId": "sevilla-fashion-outlet",
+    "restaurantName": "Belros",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.sevillafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "sevilla-fashion-outlet-five-guys",
+    "outletId": "sevilla-fashion-outlet",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://www.sevillafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "sevilla-fashion-outlet-miro-tapas",
+    "outletId": "sevilla-fashion-outlet",
+    "restaurantName": "Miro tapas",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.sevillafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "sevilla-fashion-outlet-mito",
+    "outletId": "sevilla-fashion-outlet",
+    "restaurantName": "MITO",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.sevillafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "sevilla-fashion-outlet-pinsere",
+    "outletId": "sevilla-fashion-outlet",
+    "restaurantName": "Pinsere",
+    "category": "Italian",
+    "priceLevel": "€€",
+    "website": "https://www.sevillafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "sevilla-fashion-outlet-santagloria",
+    "outletId": "sevilla-fashion-outlet",
+    "restaurantName": "Santagloria",
+    "category": "Bakery • Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.sevillafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "sevilla-fashion-outlet-starbucks",
+    "outletId": "sevilla-fashion-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.sevillafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "8"
+  },
+  {
+    "restaurantId": "getafe-the-style-outlets-cafe-y-te",
+    "outletId": "getafe-the-style-outlets",
+    "restaurantName": "CAFÉ Y TE",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://getafe.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "getafe-the-style-outlets-five-guys",
+    "outletId": "getafe-the-style-outlets",
+    "restaurantName": "FIVE GUYS",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://getafe.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "getafe-the-style-outlets-harry-the-coffee-collective",
+    "outletId": "getafe-the-style-outlets",
+    "restaurantName": "HARRY THE COFFEE COLLECTIVE",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://getafe.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "getafe-the-style-outlets-rodilla",
+    "outletId": "getafe-the-style-outlets",
+    "restaurantName": "RODILLA",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://getafe.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "getafe-the-style-outlets-the-chatter-cafe",
+    "outletId": "getafe-the-style-outlets",
+    "restaurantName": "THE CHATTER CAFÉ",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://getafe.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "san-sebastian-de-los-reyes-the-style-outlets-five-guys",
+    "outletId": "san-sebastian-de-los-reyes-the-style-outlets",
+    "restaurantName": "FIVE GUYS",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://ss-de-los-reyes.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "san-sebastian-de-los-reyes-the-style-outlets-grosso-napoletano",
+    "outletId": "san-sebastian-de-los-reyes-the-style-outlets",
+    "restaurantName": "GROSSO NAPOLETANO",
+    "category": "Italian",
+    "priceLevel": "€€",
+    "website": "https://ss-de-los-reyes.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "san-sebastian-de-los-reyes-the-style-outlets-starbucks-coffee",
+    "outletId": "san-sebastian-de-los-reyes-the-style-outlets",
+    "restaurantName": "STARBUCKS COFFEE",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://ss-de-los-reyes.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "san-sebastian-de-los-reyes-the-style-outlets-the-chatter-cafe",
+    "outletId": "san-sebastian-de-los-reyes-the-style-outlets",
+    "restaurantName": "THE CHATTER CAFÉ",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://ss-de-los-reyes.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "4"
   }
 ];

@@ -458,5 +458,55 @@ export const franceRestaurants = [
     "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
     "status": "active",
     "displayOrder": "10"
+  },
+  {
+    "restaurantId": "one-nation-paris-eat-sushi",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Eat Sushi",
+    "category": "Sushi",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "one-nation-paris-illy-caffe",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Illy Caffé",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "one-nation-paris-lou-licious",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Lou-Licious",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "one-nation-paris-maison-foude",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Maison Foude",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "one-nation-paris-trattoria-locale",
+    "outletId": "one-nation-paris",
+    "restaurantName": "Trattoria Locale",
+    "category": "Italian",
+    "priceLevel": "€€",
+    "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
+    "status": "active",
+    "displayOrder": "5"
   }
 ];
