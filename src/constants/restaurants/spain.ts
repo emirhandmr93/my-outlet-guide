@@ -440,20 +440,20 @@ export const spainRestaurants = [
     "displayOrder": "1"
   },
   {
-    "restaurantId": "sevilla-fashion-outlet-belros",
+    "restaurantId": "sevilla-fashion-outlet-five-guys",
     "outletId": "sevilla-fashion-outlet",
-    "restaurantName": "Belros",
-    "category": "Dessert",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
     "priceLevel": "€€",
     "website": "https://www.sevillafashionoutlet.com/en/restaurants",
     "status": "active",
     "displayOrder": "2"
   },
   {
-    "restaurantId": "sevilla-fashion-outlet-five-guys",
+    "restaurantId": "sevilla-fashion-outlet-mito",
     "outletId": "sevilla-fashion-outlet",
-    "restaurantName": "Five Guys",
-    "category": "Fast Food",
+    "restaurantName": "Mito",
+    "category": "Dessert",
     "priceLevel": "€€",
     "website": "https://www.sevillafashionoutlet.com/en/restaurants",
     "status": "active",
@@ -462,22 +462,12 @@ export const spainRestaurants = [
   {
     "restaurantId": "sevilla-fashion-outlet-miro-tapas",
     "outletId": "sevilla-fashion-outlet",
-    "restaurantName": "Miro tapas",
+    "restaurantName": "Miro Tapas",
     "category": "Restaurant",
     "priceLevel": "€€",
     "website": "https://www.sevillafashionoutlet.com/en/restaurants",
     "status": "active",
     "displayOrder": "4"
-  },
-  {
-    "restaurantId": "sevilla-fashion-outlet-mito",
-    "outletId": "sevilla-fashion-outlet",
-    "restaurantName": "MITO",
-    "category": "Dessert",
-    "priceLevel": "€€",
-    "website": "https://www.sevillafashionoutlet.com/en/restaurants",
-    "status": "active",
-    "displayOrder": "5"
   },
   {
     "restaurantId": "sevilla-fashion-outlet-pinsere",
@@ -487,17 +477,17 @@ export const spainRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.sevillafashionoutlet.com/en/restaurants",
     "status": "active",
-    "displayOrder": "6"
+    "displayOrder": "5"
   },
   {
-    "restaurantId": "sevilla-fashion-outlet-santagloria",
+    "restaurantId": "sevilla-fashion-outlet-santa-gloria",
     "outletId": "sevilla-fashion-outlet",
-    "restaurantName": "Santagloria",
+    "restaurantName": "Santa Gloria",
     "category": "Bakery • Cafe",
     "priceLevel": "€€",
     "website": "https://www.sevillafashionoutlet.com/en/restaurants",
     "status": "active",
-    "displayOrder": "7"
+    "displayOrder": "6"
   },
   {
     "restaurantId": "sevilla-fashion-outlet-starbucks",
@@ -507,7 +497,7 @@ export const spainRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.sevillafashionoutlet.com/en/restaurants",
     "status": "active",
-    "displayOrder": "8"
+    "displayOrder": "7"
   },
   {
     "restaurantId": "getafe-the-style-outlets-cafe-y-te",
