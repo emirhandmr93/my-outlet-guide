@@ -79,6 +79,7 @@ export const ukOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  // Validation: keep Cadbury because it is a retail chocolate confectionery shop, not restaurant-only food service.
   {
     outletId: "junction-32-outlet",
     brandId: "cadbury",
@@ -169,6 +170,7 @@ export const ukOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  // Validation: keep Grape Tree because it is a retail health-food shop, not restaurant-only food service.
   {
     outletId: "junction-32-outlet",
     brandId: "grape-tree",
@@ -187,6 +189,7 @@ export const ukOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  // Validation: keep Holland & Barrett because it is a retail health-and-wellness shop, not restaurant-only food service.
   {
     outletId: "junction-32-outlet",
     brandId: "holland-and-barrett",

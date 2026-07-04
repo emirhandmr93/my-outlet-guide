@@ -259,6 +259,7 @@ export const franceOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  // Validation: keep Jeff de Bruges because it is a retail chocolate confectionery shop, not restaurant-only food service.
   {
     outletId: "designer-outlet-provence",
     brandId: "jeff-de-bruges",
@@ -343,6 +344,7 @@ export const franceOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  // Validation: keep Lindt because it is a retail chocolate confectionery shop, not restaurant-only food service.
   {
     outletId: "designer-outlet-provence",
     brandId: "lindt",
