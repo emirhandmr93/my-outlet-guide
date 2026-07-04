@@ -196,6 +196,13 @@ export const netherlandsOutlets = [
     slug: "amsterdam-the-style-outlets",
     countryId: "netherlands",
     cityId: "amsterdam",
+    restaurants: [
+      "COFFEE FELLOWS",
+      "POMMES FRITES",
+      "SELVA ORO",
+      "STARBUCKS",
+      "THE BURGER FEDERATION"
+    ],
     officialWebsite: "https://amsterdam.thestyleoutlets.nl/en",
     websiteUrl: "https://amsterdam.thestyleoutlets.nl/en",
     address: "SugarCity Ring 1, 1165 PB Halfweg, Netherlands",
@@ -221,6 +228,19 @@ export const netherlandsOutlets = [
     slug: "batavia-stad-fashion-outlet",
     countryId: "netherlands",
     cityId: "lelystad",
+    restaurants: [
+      "Âme Fashion Café",
+      "Coffeecompany",
+      "De Ruyter Vis",
+      "Dunkin' Donuts",
+      "Dutch Originals",
+      "Ekmekci",
+      "La Place",
+      "McDonald's",
+      "Salsa Shop",
+      "Subway",
+      "Twelve12"
+    ],
     officialWebsite: "https://www.bataviastad.nl/en",
     websiteUrl: "https://www.bataviastad.nl/en",
     address: "Bataviaplein 60, 8242 PN Lelystad, Netherlands",

@@ -187,6 +187,14 @@ export const spainOutlets = [
     slug: "la-roca-village",
     countryId: "spain",
     cityId: "barcelona",
+    restaurants: [
+      "Andreu",
+      "Atmósferas Mordisco",
+      "Corso Iluzione",
+      "Cèntric",
+      "Dino",
+      "Farggi 1957"
+    ],
     officialWebsite: "https://www.thebicestercollection.com/la-roca-village/en/",
     websiteUrl: "https://www.thebicestercollection.com/la-roca-village/en/",
     address: "La Roca Village s/n, Santa Agnès de Malanyanes, 08430 Barcelona, Spain",

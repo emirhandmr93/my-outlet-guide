@@ -969,5 +969,275 @@ export const italyRestaurants = [
     website: "https://www.mantovavillage.it/en/shop-and-brands-by-category/mJqXvmZz",
     status: "active",
     displayOrder: "2",
+  },,
+  {
+    "restaurantId": "vicolungo-the-style-outlets-alice-pizza",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "ALICE PIZZA",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "16"
   },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-antonino-il-banco-di-cannavacciuolo",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "ANTONINO, IL BANCO DI CANNAVACCIUOLO",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "17"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-artandfood-wow-vicolungo",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "ART&FOOD WOW VICOLUNGO",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "18"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-befed",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "BEFED",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "19"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-billy-tacos",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "BILLY TACOS",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "20"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-botega-caffe-cacao",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "BOTEGA CAFFE CACAO",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "21"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-calavera",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "CALAVERA",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "22"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-emozioni-ditalia",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "EMOZIONI D'ITALIA",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "23"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-la-piadineria",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "LA PIADINERIA",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "24"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-lindt",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "LINDT",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "25"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-linos-coffee",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "LINO'S COFFEE",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "26"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-miscusi",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "MISCUSI",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "27"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-old-wild-west",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "OLD WILD WEST",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "28"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-parma-menu",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "PARMA MENÙ",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "29"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-pasticceria-pariani",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "PASTICCERIA PARIANI",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "30"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-poke-house",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "POKE HOUSE",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "31"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-popeyes",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "POPEYES",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "32"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-roadhouse-meatery",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "ROADHOUSE MEATERY",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "33"
+  },
+  {
+    "restaurantId": "vicolungo-the-style-outlets-signorvino",
+    "outletId": "vicolungo-the-style-outlets",
+    "restaurantName": "SIGNORVINO",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://vicolungo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "34"
+  },
+  {
+    "restaurantId": "castel-guelfo-the-style-outlets-alice-pizza",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "restaurantName": "ALICE PIZZA",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://castel-guelfo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "35"
+  },
+  {
+    "restaurantId": "castel-guelfo-the-style-outlets-billy-tacos",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "restaurantName": "BILLY TACOS",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://castel-guelfo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "36"
+  },
+  {
+    "restaurantId": "castel-guelfo-the-style-outlets-botega-caffe-cacao",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "restaurantName": "BOTEGA CAFFE CACAO",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://castel-guelfo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "37"
+  },
+  {
+    "restaurantId": "castel-guelfo-the-style-outlets-farinella-bakery-e-coffee",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "restaurantName": "FARINELLA BAKERY E COFFEE",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://castel-guelfo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "38"
+  },
+  {
+    "restaurantId": "castel-guelfo-the-style-outlets-i-love-poke",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "restaurantName": "I LOVE POKE",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://castel-guelfo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "39"
+  },
+  {
+    "restaurantId": "castel-guelfo-the-style-outlets-la-piadineria",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "restaurantName": "LA PIADINERIA",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://castel-guelfo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "40"
+  },
+  {
+    "restaurantId": "castel-guelfo-the-style-outlets-lindt",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "restaurantName": "LINDT",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://castel-guelfo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "41"
+  },
+  {
+    "restaurantId": "castel-guelfo-the-style-outlets-roadhouse-meatery",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "restaurantName": "ROADHOUSE MEATERY",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://castel-guelfo.thestyleoutlets.it/en/restaurants",
+    "status": "active",
+    "displayOrder": "42"
+  }
 ];

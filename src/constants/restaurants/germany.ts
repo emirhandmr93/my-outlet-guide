@@ -841,5 +841,75 @@ export const germanyRestaurants = [
     website: "https://halle.leipzig.thestyleoutlets.de/en/restaurants",
     status: "active",
     displayOrder: "5",
+  },,
+  {
+    "restaurantId": "designer-outlet-ochtrup-alice-premium-doner",
+    "outletId": "designer-outlet-ochtrup",
+    "restaurantName": "Alice Premium Döner",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/food-drink/",
+    "status": "active",
+    "displayOrder": "16"
   },
+  {
+    "restaurantId": "designer-outlet-ochtrup-beltmans",
+    "outletId": "designer-outlet-ochtrup",
+    "restaurantName": "Beltman's",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/food-drink/",
+    "status": "active",
+    "displayOrder": "17"
+  },
+  {
+    "restaurantId": "designer-outlet-ochtrup-frittenwerk",
+    "outletId": "designer-outlet-ochtrup",
+    "restaurantName": "Frittenwerk",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/food-drink/",
+    "status": "active",
+    "displayOrder": "18"
+  },
+  {
+    "restaurantId": "designer-outlet-ochtrup-frooters",
+    "outletId": "designer-outlet-ochtrup",
+    "restaurantName": "Frooters",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/food-drink/",
+    "status": "active",
+    "displayOrder": "19"
+  },
+  {
+    "restaurantId": "designer-outlet-ochtrup-la-passione",
+    "outletId": "designer-outlet-ochtrup",
+    "restaurantName": "La Passione",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/food-drink/",
+    "status": "active",
+    "displayOrder": "20"
+  },
+  {
+    "restaurantId": "designer-outlet-ochtrup-pick-nick",
+    "outletId": "designer-outlet-ochtrup",
+    "restaurantName": "Pick Nick",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/food-drink/",
+    "status": "active",
+    "displayOrder": "21"
+  },
+  {
+    "restaurantId": "designer-outlet-ochtrup-starbucks",
+    "outletId": "designer-outlet-ochtrup",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/food-drink/",
+    "status": "active",
+    "displayOrder": "22"
+  }
 ];

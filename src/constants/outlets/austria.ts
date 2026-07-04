@@ -88,6 +88,16 @@ export const austriaOutlets = [
     slug: "designer-outlet-salzburg",
     countryId: "austria",
     cityId: "salzburg",
+    restaurants: [
+      "Asia Cocos",
+      "Burger Lounge",
+      "Café Caprice",
+      "Frozen Yoghurt",
+      "Kaiten Asia",
+      "Mama's Deli",
+      "McDonald's",
+      "Rossopomodoro"
+    ],
     officialWebsite: "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/",
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/",
     address: "Kasernenstraße 1, 5073 Wals-Himmelreich, Austria",
