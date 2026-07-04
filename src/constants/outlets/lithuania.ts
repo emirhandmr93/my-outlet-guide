@@ -15,7 +15,7 @@ export const lithuaniaOutlets = [
     rating: 0,
     reviewCount: 0,
     services: ["Parking", "Restaurants & Cafes", "Leisure Terrace", "Gym", "Beauty Services", "Transport Info"],
-    restaurants: [],
+    restaurants: ["Caif Cafe", "Candy Pop", "Soprano Gelato"],
     parking: "Official Outlet Park pages list the centre at Ogmios, Verkių g. 29 in Vilnius; confirm current parking details on the official website before visiting.",
     taxFreeAvailable: true,
     vatRate: 21,

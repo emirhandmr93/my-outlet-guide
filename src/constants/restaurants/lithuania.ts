@@ -1,1 +1,32 @@
-export const lithuaniaRestaurants = [];
+export const lithuaniaRestaurants = [
+  {
+    restaurantId: "outlet-park-vilnius-caif-cafe",
+    outletId: "outlet-park-vilnius",
+    restaurantName: "Caif Cafe",
+    category: "Cafe",
+    priceLevel: "€€",
+    website: "https://outletpark.lt/en/parduotuves",
+    status: "active",
+    displayOrder: "1",
+  },
+  {
+    restaurantId: "outlet-park-vilnius-candy-pop",
+    outletId: "outlet-park-vilnius",
+    restaurantName: "Candy Pop",
+    category: "Food & Sweets",
+    priceLevel: "€€",
+    website: "https://outletpark.lt/en/parduotuves",
+    status: "active",
+    displayOrder: "2",
+  },
+  {
+    restaurantId: "outlet-park-vilnius-soprano-gelato",
+    outletId: "outlet-park-vilnius",
+    restaurantName: "Soprano Gelato",
+    category: "Dessert",
+    priceLevel: "€€",
+    website: "https://outletpark.lt/en/parduotuves",
+    status: "active",
+    displayOrder: "3",
+  },
+];
