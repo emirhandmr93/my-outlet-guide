@@ -2143,6 +2143,17 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "optyk-mikulscy",
+    brandName: "Optyk Mikulscy",
+    aliases: ["Optyk Mikulscy Outlet"],
+    categoryId: "eyewear",
+    logo: "",
+    originCountryId: "poland",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
     brandId: "orrefors-kosta-boda",
     brandName: "Orrefors Kosta Boda",
     aliases: [
