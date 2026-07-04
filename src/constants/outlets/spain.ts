@@ -249,6 +249,8 @@ export const spainOutlets = [
       "Diablito",
       "Don't Cry For Me",
       "Dumpling Hub",
+      "Enrique Tomás",
+      "L'Osteria",
       "Foster's Hollywood",
       "Ginos",
       "Häagen Dazs",
