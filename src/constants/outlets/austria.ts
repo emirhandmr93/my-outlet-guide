@@ -104,6 +104,9 @@ export const austriaOutlets = [
     latitude: 47.7947,
     longitude: 12.9876,
     openingHours: "Mon-Fri 09:00 - 19:00; Sat 09:00 - 18:00; Sun closed",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
     storesCountText: "Over 100 stores",
     services: [
       "Parking",

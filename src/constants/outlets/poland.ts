@@ -135,6 +135,9 @@ export const polandOutlets = [
     latitude: 51.1090,
     longitude: 16.8870,
     openingHours: "Mon-Fri 10:00 - 21:00; Sat 09:00 - 21:00; selected Sundays closed",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
     storesCountText: "100+ brands",
     services: [
       "Free WIFI",
