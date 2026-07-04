@@ -410,6 +410,26 @@ export const spainRestaurants = [
     "displayOrder": "13"
   },
   {
+    "restaurantId": "mallorca-fashion-outlet-enrique-tomas",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "Enrique Tomás",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "14"
+  },
+  {
+    "restaurantId": "mallorca-fashion-outlet-losteria",
+    "outletId": "mallorca-fashion-outlet",
+    "restaurantName": "L'Osteria",
+    "category": "Italian",
+    "priceLevel": "€€",
+    "website": "https://www.mallorcafashionoutlet.com/en/restaurants",
+    "status": "active",
+    "displayOrder": "15"
+  },
+  {
     "restaurantId": "sevilla-fashion-outlet-100-montaditos",
     "outletId": "sevilla-fashion-outlet",
     "restaurantName": "100 Montaditos",

@@ -4313,4 +4313,15 @@ export const brandsFK: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "game",
+    brandName: "GAME",
+    aliases: ["Game"],
+    categoryId: "electronics",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
