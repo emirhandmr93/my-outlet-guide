@@ -207,5 +207,94 @@ export const spainTransportation = [
     "tip": "Use Barcelona-El Prat Airport, then continue by car, official coach/bus connections via Barcelona, or a confirmed transfer. No dedicated airport shuttle was verified; check official fares before travel.",
     "status": "active",
     "displayOrder": "4"
+  },
+
+  {
+    "transportationId": "mallorca-fashion-outlet-car-parking",
+    "outletId": "mallorca-fashion-outlet",
+    "transportType": "car",
+    "title": "Car / Free Parking",
+    "duration": "About 10 min from Palma",
+    "cost": "Free parking",
+    "tip": "Official Mallorca Fashion Outlet information places the centre on Autovía Palma-Inca, km 7.1, exit 8 and states it is just 10 minutes from Palma with free parking; check live road conditions before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "mallorca-fashion-outlet-train",
+    "outletId": "mallorca-fashion-outlet",
+    "transportType": "train",
+    "title": "SFM Train Access",
+    "duration": "Check official SFM timetable",
+    "cost": "Check official SFM fare",
+    "tip": "The official centre services list a train station. Use official SFM Mallorca rail information for the current stop, timetable and fare before travelling.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "sevilla-fashion-outlet-car-parking",
+    "outletId": "sevilla-fashion-outlet",
+    "transportType": "car",
+    "title": "Car / Free Parking",
+    "duration": "About 15 min from Sevilla",
+    "cost": "Free parking",
+    "tip": "Official Sevilla Fashion Outlet information places the centre at Polígono Industrial Los Espartales by the A-4, km 531 and states it is only 15 minutes from Sevilla with free parking.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "sevilla-fashion-outlet-airport",
+    "outletId": "sevilla-fashion-outlet",
+    "transportType": "airport",
+    "title": "Sevilla Airport Road Access",
+    "duration": "Short road transfer; timing varies by traffic",
+    "cost": "Taxi, ride-hail or car costs vary",
+    "tip": "The official outlet homepage describes the centre as next to the airport. Use official Sevilla Airport ground transport plus taxi, ride-hail or rental car for the last-mile road transfer; no dedicated airport shuttle was verified.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "getafe-the-style-outlets-car",
+    "outletId": "getafe-the-style-outlets",
+    "transportType": "car",
+    "title": "Car to Avenida Río Guadalquivir",
+    "duration": "Check live traffic",
+    "cost": "Road costs vary; check centre parking terms",
+    "tip": "The official Getafe The Style Outlets access page lists car access and the centre address at Avenida Río Guadalquivir 15, Getafe; follow the official route and current road conditions.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "getafe-the-style-outlets-public-transport",
+    "outletId": "getafe-the-style-outlets",
+    "transportType": "bus",
+    "title": "Public Transport to Getafe",
+    "duration": "Check official Madrid transport planner",
+    "cost": "Check official CRTM fare",
+    "tip": "The official access page lists public-transport access for Getafe The Style Outlets. Plan the current bus or rail connection with official Madrid transport operators before travelling.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "san-sebastian-de-los-reyes-the-style-outlets-car",
+    "outletId": "san-sebastian-de-los-reyes-the-style-outlets",
+    "transportType": "car",
+    "title": "Car to Calle Salvador de Madariaga",
+    "duration": "Check live traffic",
+    "cost": "Road costs vary; check centre parking terms",
+    "tip": "The official San Sebastián de los Reyes The Style Outlets access page lists car access and the centre address at Calle Salvador de Madariaga s/n; follow the official route and current road conditions.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "san-sebastian-de-los-reyes-the-style-outlets-public-transport",
+    "outletId": "san-sebastian-de-los-reyes-the-style-outlets",
+    "transportType": "bus",
+    "title": "Public Transport to San Sebastián de los Reyes",
+    "duration": "Check official Madrid transport planner",
+    "cost": "Check official CRTM fare",
+    "tip": "The official access page lists public-transport access for San Sebastián de los Reyes The Style Outlets. Plan the current bus, metro or rail connection with official Madrid transport operators before travelling.",
+    "status": "active",
+    "displayOrder": "2"
   }
 ];

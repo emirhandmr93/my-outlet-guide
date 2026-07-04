@@ -141,5 +141,83 @@ export const polandTransportation = [
     "tip": "VIA Outlets describes Wrocław Fashion Outlet as about five minutes from Wrocław Airport. Continue by official public transport, car, or taxi/confirmed transfer and check current fares before travel.",
     "status": "active",
     "displayOrder": "3"
+  },
+
+  {
+    "transportationId": "designer-outlet-gdansk-car-parking",
+    "outletId": "designer-outlet-gdansk",
+    "transportType": "car",
+    "title": "Car / Free Parking",
+    "duration": "Check live traffic",
+    "cost": "Free parking",
+    "tip": "Official Designer Outlet Gdańsk directions list access from Gdańsk Główny via Kartuska or Armii Krajowej to Jabłoniowa, or from the S6 bypass via Szadółki/Otomin, with more than 1,000 free parking spaces.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "designer-outlet-gdansk-bus",
+    "outletId": "designer-outlet-gdansk",
+    "transportType": "bus",
+    "title": "Gdańsk Public Transport",
+    "duration": "Check official ZTM Gdańsk planner",
+    "cost": "Check official ZTM Gdańsk fare",
+    "tip": "Use official ZTM Gdańsk journey planning for bus connections to the Przywidzka / Szadółki area, then confirm the current stop and walking route to Designer Outlet Gdańsk.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "designer-outlet-sosnowiec-car",
+    "outletId": "designer-outlet-sosnowiec",
+    "transportType": "car",
+    "title": "Car to Designer Outlet Sosnowiec",
+    "duration": "Check live traffic",
+    "cost": "Check centre parking terms",
+    "tip": "Official Designer Outlet Sosnowiec directions provide the centre GPS coordinates 50.2283076, 19.1770165 for car access; check live traffic before travelling.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "designer-outlet-sosnowiec-bus",
+    "outletId": "designer-outlet-sosnowiec",
+    "transportType": "bus",
+    "title": "Bus from Sosnowiec or Katowice",
+    "duration": "Check official operator timetable",
+    "cost": "Check official fare",
+    "tip": "Official Designer Outlet Sosnowiec directions list buses S and 26 from central Sosnowiec and buses A, E and J from central Katowice, alighting at Sosnowiec Jęzor Centrum Handlowe.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "designer-outlet-sosnowiec-train",
+    "outletId": "designer-outlet-sosnowiec",
+    "transportType": "train",
+    "title": "Train to Sosnowiec Jęzor Południowy",
+    "duration": "Check official rail timetable",
+    "cost": "Check official rail fare",
+    "tip": "Official Designer Outlet Sosnowiec directions list train access from Katowice, Sosnowiec and Jaworzno to Sosnowiec Jęzor Południowy station; verify current rail times before travelling.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "designer-outlet-warszawa-car",
+    "outletId": "designer-outlet-warszawa",
+    "transportType": "car",
+    "title": "Car via Puławska and Energetyczna",
+    "duration": "Check live traffic",
+    "cost": "Road costs vary; check centre parking terms",
+    "tip": "Official Designer Outlet Warszawa directions advise driving from Warsaw along Puławska toward Piaseczno, then turning left into Energetyczna near the Amic Energy petrol station, where the centre is visible on the right.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "designer-outlet-warszawa-bus",
+    "outletId": "designer-outlet-warszawa",
+    "transportType": "bus",
+    "title": "ZTM Bus 709 or 727 to Energetyczna",
+    "duration": "Check official ZTM timetable",
+    "cost": "Check official ZTM fare",
+    "tip": "Official Designer Outlet Warszawa directions list bus lines 709 and 727 and instruct visitors to alight at Energetyczna; verify current ZTM Warszawa times before travelling.",
+    "status": "active",
+    "displayOrder": "2"
   }
 ];

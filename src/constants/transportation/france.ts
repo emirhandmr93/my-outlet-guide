@@ -265,4 +265,37 @@ export const franceTransportation = [
     "displayOrder": "5"
   },
 
+  {
+    "transportationId": "one-nation-paris-car-parking",
+    "outletId": "one-nation-paris",
+    "transportType": "car",
+    "title": "Car / Free Parking",
+    "duration": "About 30 min from Paris",
+    "cost": "Free parking",
+    "tip": "Official One Nation Paris access information lists free parking and car access from Paris via A13, A12 and N12 toward Dreux, exiting at Plaisir / Centre Commercial Régional and following One Nation Paris signs.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "one-nation-paris-train-line-n",
+    "outletId": "one-nation-paris",
+    "transportType": "train",
+    "title": "Transilien Line N to Villepreux-les-Clayes",
+    "duration": "Train time varies; about 10 min walk or short bus connection from station",
+    "cost": "Check official Transilien fare",
+    "tip": "Official One Nation Paris access information says to take Transilien Line N from Paris Montparnasse toward Plaisir Grignon or Mantes-la-Jolie and alight at Villepreux-les-Clayes, then walk about 10 minutes or connect by bus.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "one-nation-paris-bus-5101",
+    "outletId": "one-nation-paris",
+    "transportType": "bus",
+    "title": "Bus 5101 from Villepreux-les-Clayes",
+    "duration": "First stop from Villepreux-les-Clayes station",
+    "cost": "Check official Île-de-France Mobilités fare",
+    "tip": "Official One Nation Paris access information lists bus line 5101 from Villepreux-les-Clayes station, with One Nation Paris Outlet as the first stop; confirm the current timetable before travelling.",
+    "status": "active",
+    "displayOrder": "3"
+  }
 ];
