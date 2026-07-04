@@ -178,7 +178,13 @@ export const polandOutlets = [
     countryId: "poland",
     cityId: "gdansk",
     restaurants: [
-      "Papa Gyros"
+      "Da Mere",
+      "Gorąco Polecam",
+      "Kebaya",
+      "Kuchnia Smaku",
+      "Papa Gyros",
+      "So Coffee",
+      "Thai Express"
     ],
     officialWebsite: "https://www.designeroutletgdansk.pl/en/",
     websiteUrl: "https://www.designeroutletgdansk.pl/en/",

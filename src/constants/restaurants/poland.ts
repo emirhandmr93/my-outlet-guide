@@ -80,6 +80,46 @@ export const polandRestaurants = [
     "displayOrder": "4"
   },
   {
+    "restaurantId": "designer-outlet-gdansk-da-mere",
+    "outletId": "designer-outlet-gdansk",
+    "restaurantName": "Da Mere",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.designeroutletgdansk.pl/en/shopping/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "designer-outlet-gdansk-goraco-polecam",
+    "outletId": "designer-outlet-gdansk",
+    "restaurantName": "Gorąco Polecam",
+    "category": "Bakery • Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.designeroutletgdansk.pl/en/shopping/restaurants",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "designer-outlet-gdansk-kebaya",
+    "outletId": "designer-outlet-gdansk",
+    "restaurantName": "Kebaya",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.designeroutletgdansk.pl/en/shopping/restaurants",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "designer-outlet-gdansk-kuchnia-smaku",
+    "outletId": "designer-outlet-gdansk",
+    "restaurantName": "Kuchnia Smaku",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.designeroutletgdansk.pl/en/shopping/restaurants",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
     "restaurantId": "designer-outlet-gdansk-papa-gyros",
     "outletId": "designer-outlet-gdansk",
     "restaurantName": "Papa Gyros",
@@ -87,7 +127,27 @@ export const polandRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.designeroutletgdansk.pl/en/shopping/restaurants",
     "status": "active",
-    "displayOrder": "1"
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "designer-outlet-gdansk-so-coffee",
+    "outletId": "designer-outlet-gdansk",
+    "restaurantName": "So Coffee",
+    "category": "Coffee • Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.designeroutletgdansk.pl/en/shopping/restaurants",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "designer-outlet-gdansk-thai-express",
+    "outletId": "designer-outlet-gdansk",
+    "restaurantName": "Thai Express",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.designeroutletgdansk.pl/en/shopping/restaurants",
+    "status": "active",
+    "displayOrder": "7"
   },
   {
     "restaurantId": "designer-outlet-sosnowiec-carte-dor",
