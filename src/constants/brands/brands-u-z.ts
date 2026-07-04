@@ -2449,4 +2449,16 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 66,
     brandStatus: "active",
   },
+
+  {
+    brandId: "wp-lavori-in-corso",
+    brandName: "WP Lavori in Corso",
+    aliases: ["WP Store", "WP Lavori", "WPLavoriinCorso"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "premium",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
