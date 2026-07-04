@@ -4207,4 +4207,15 @@ export const brandsFK: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "feltrinelli-librerie",
+    brandName: "Feltrinelli Librerie",
+    aliases: ["Feltrinelli"],
+    categoryId: "books-stationery",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 65,
+    brandStatus: "active",
+  },
 ];

@@ -4982,4 +4982,15 @@ export const brandsLP: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
+  {
+    brandId: "legami",
+    brandName: "Legami",
+    aliases: [],
+    categoryId: "books-stationery",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 58,
+    brandStatus: "active",
+  },
 ];
