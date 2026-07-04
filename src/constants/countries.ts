@@ -144,6 +144,22 @@ export const countries = [
     "taxFreeAvailable": "TRUE"
   },
   {
+    "countryId": "latvia",
+    "countryName": "Latvia",
+    "countryFlag": "🇱🇻",
+    "continent": "Europe",
+    "currency": "EUR",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
+    "countryId": "lithuania",
+    "countryName": "Lithuania",
+    "countryFlag": "🇱🇹",
+    "continent": "Europe",
+    "currency": "EUR",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
     "countryId": "netherlands",
     "countryName": "Netherlands",
     "countryFlag": "🇳🇱",

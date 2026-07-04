@@ -303,5 +303,35 @@ export const cities = [
     "cityId": "tallinn",
     "cityName": "Tallinn",
     "countryId": "estonia"
+  },
+  {
+    "cityId": "bagnolo-san-vito",
+    "cityName": "Bagnolo San Vito",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "douains",
+    "cityName": "Douains",
+    "countryId": "france"
+  },
+  {
+    "cityId": "pinki",
+    "cityName": "Piņķi",
+    "countryId": "latvia"
+  },
+  {
+    "cityId": "rodengo-saiano",
+    "cityName": "Rodengo Saiano",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "viladecans",
+    "cityName": "Viladecans",
+    "countryId": "spain"
+  },
+  {
+    "cityId": "vilnius",
+    "cityName": "Vilnius",
+    "countryId": "lithuania"
   }
 ];
