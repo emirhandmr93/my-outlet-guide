@@ -1,0 +1,58 @@
+import type { TransportationGuide } from "./index";
+
+export const lithuaniaTransportationGuides: TransportationGuide[] = [
+  {
+    guideId: "vilnius-center-to-outlet-park-vilnius-bus",
+    outletId: "outlet-park-vilnius",
+    originType: "city_center",
+    originId: "vilnius-city-center",
+    transportationType: "bus",
+    title: "Vilnius City Centre to Outlet Park by Public Bus",
+    estimatedDuration: "check official timetable",
+    estimatedCost: "check official fare",
+    recommended: true,
+    steps: [
+      { order: 1, description: "Open the official JUDU journey planner and set the destination near Outlet Park / Ogmios Miestas before leaving central Vilnius." },
+      { order: 2, description: "Choose a JUDU bus or trolleybus itinerary to the closest operating stop and check the official timetable for the shopping date." },
+      { order: 3, description: "Ride to the confirmed stop, then follow the signed pedestrian route into the Outlet Park / Ogmios Miestas shopping area." },
+      { order: 4, description: "Before shopping, check official return departures in JUDU so you know which stop and line to use back to the city centre." },
+    ],
+    updatedAt: "2026-07-04",
+  },
+  {
+    guideId: "vilnius-airport-to-outlet-park-vilnius-bus",
+    outletId: "outlet-park-vilnius",
+    originType: "airport",
+    originId: "vilnius-airport",
+    transportationType: "bus",
+    title: "Vilnius Airport to Outlet Park by Public Transport",
+    estimatedDuration: "check official timetable",
+    estimatedCost: "check official fare",
+    recommended: false,
+    steps: [
+      { order: 1, description: "At Vilnius Airport, use the official airport and JUDU information to choose the current public-transport connection toward Outlet Park / Ogmios Miestas." },
+      { order: 2, description: "If the planner requires a transfer in central Vilnius, confirm both legs and the official timetable before boarding." },
+      { order: 3, description: "Travel to the closest confirmed stop for Outlet Park and complete the last-mile walk on marked pedestrian routes." },
+      { order: 4, description: "For the return to the airport, check official JUDU times and allow a flight check-in buffer." },
+    ],
+    updatedAt: "2026-07-04",
+  },
+  {
+    guideId: "outlet-park-vilnius-car-parking-guide",
+    outletId: "outlet-park-vilnius",
+    originType: "city_center",
+    originId: "vilnius-city-center",
+    transportationType: "taxi",
+    title: "Outlet Park Vilnius by Car or Taxi",
+    estimatedDuration: "check traffic",
+    estimatedCost: "check official parking terms; taxi fare confirm with provider",
+    recommended: false,
+    steps: [
+      { order: 1, description: "Set the destination to Outlet Park / Ogmios Miestas and confirm the active vehicle entrance before departure." },
+      { order: 2, description: "For self-drive parking, use the official parking operator information for the Outlet Park / V. Pociūno area and check the current free-time and payment rules." },
+      { order: 3, description: "If using a taxi or ride-hail, agree the pickup point near the shopping area before entering the centre." },
+      { order: 4, description: "Before leaving, pay or validate parking as required by the official parking operator and confirm the exit route." },
+    ],
+    updatedAt: "2026-07-04",
+  },
+];
