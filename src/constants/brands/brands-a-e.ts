@@ -3316,6 +3316,17 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "essa-trends",
+    brandName: "Essa Trends",
+    aliases: ["ESSA Trends", "Essa Trends Outlet"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "poland",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
     brandId: "etro",
     brandName: "Etro",
     aliases: [],
