@@ -11,6 +11,8 @@ import { greeceTransportation } from "./greece";
 import { hungaryTransportation } from "./hungary";
 import { irelandTransportation } from "./ireland";
 import { italyTransportation } from "./italy";
+import { latviaTransportation } from "./latvia";
+import { lithuaniaTransportation } from "./lithuania";
 import { slovakiaTransportation } from "./slovakia";
 import { netherlandsTransportation } from "./netherlands";
 import { norwayTransportation } from "./norway";
@@ -36,6 +38,8 @@ export {
   hungaryTransportation,
   irelandTransportation,
   italyTransportation,
+  latviaTransportation,
+  lithuaniaTransportation,
   slovakiaTransportation,
   netherlandsTransportation,
   norwayTransportation,
@@ -50,6 +54,8 @@ export {
 
 export const transportation = [
   ...italyTransportation,
+  ...latviaTransportation,
+  ...lithuaniaTransportation,
   ...irelandTransportation,
   ...greeceTransportation,
   ...germanyTransportation,

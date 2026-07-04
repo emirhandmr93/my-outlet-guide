@@ -527,5 +527,116 @@ export const italyTransportation = [
     "tip": "Use official Trieste Airport or Venice Airport ground-transport channels for rental cars, taxis or transfers; no official dedicated outlet airport shuttle is published.",
     "status": "active",
     "displayOrder": "4"
-  }
+  },
+  {
+    "transportationId": "franciacorta-car",
+    "outletId": "franciacorta-designer-village",
+    "transportType": "car",
+    "title": "Car to Rodengo Saiano",
+    "duration": "≈15-25 min from Brescia; traffic varies",
+    "cost": "Fuel, tolls and provider costs vary",
+    "tip": "Use the official Franciacorta Designer Village directions to Via del Borgo 1, Rodengo Saiano; check traffic before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "franciacorta-parking",
+    "outletId": "franciacorta-designer-village",
+    "transportType": "car",
+    "title": "On-site parking",
+    "duration": "On site",
+    "cost": "Check centre parking information",
+    "tip": "Arrive by car using the official Village directions and follow on-site parking signage; confirm any parking restrictions on the official page before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "franciacorta-train-brescia",
+    "outletId": "franciacorta-designer-village",
+    "transportType": "train",
+    "title": "Train to Brescia + LS029 bus",
+    "duration": "46 min from Milano Centrale or 30 min from Verona Porta Nuova to Brescia, then 25 min by bus",
+    "cost": "Check official Trenitalia and bus fares",
+    "tip": "The official directions page lists trains to Brescia from Milano Centrale, Verona Porta Nuova and Iseo, then bus line LS029 from Brescia SIA Station; verify current timetables before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "franciacorta-bus-ls029",
+    "outletId": "franciacorta-designer-village",
+    "transportType": "bus",
+    "title": "Brescia SIA Station bus LS029",
+    "duration": "25 min from Brescia SIA Station",
+    "cost": "Check official bus fare",
+    "tip": "Use the officially listed LS029 Brescia - Ome - Monticelli - Brusati bus from Brescia SIA Station; check operator timetable and stop details before travel.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "transportationId": "franciacorta-airport",
+    "outletId": "franciacorta-designer-village",
+    "transportType": "airport",
+    "title": "Bergamo, Milan or Verona airport access",
+    "duration": "Airport rail/bus via Brescia or road transfer; timing varies",
+    "cost": "Check official airport, rail, bus or transfer fare",
+    "tip": "Use official airport ground transport to reach Brescia/Milan/Verona rail or bus connections, then continue with the official train plus LS029 route; no dedicated airport-to-village shuttle was verified.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "transportationId": "mantova-car",
+    "outletId": "mantova-village",
+    "transportType": "car",
+    "title": "Car via SP 413 or A22",
+    "duration": "13 km / 15 min from Mantova station without traffic; 48 km / 31 min from Verona Porta Nuova without traffic",
+    "cost": "Fuel, tolls and provider costs vary",
+    "tip": "Official Mantova Village directions list SP 413 from Mantova and the A22 toll motorway from Verona; check traffic before departure.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "mantova-parking",
+    "outletId": "mantova-village",
+    "transportType": "car",
+    "title": "Village parking",
+    "duration": "On site",
+    "cost": "Check centre parking information",
+    "tip": "Use official Mantova Village directions to arrive by car and follow on-site parking signage; confirm parking details with the centre before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "mantova-train-car",
+    "outletId": "mantova-village",
+    "transportType": "train",
+    "title": "Train to Mantova or Verona + road transfer",
+    "duration": "Train varies + 13 km from Mantova station or 48 km from Verona Porta Nuova",
+    "cost": "Check Trenitalia fare; taxi/car cost varies",
+    "tip": "The official directions page lists Trenitalia to Mantova station or Verona Porta Nuova, then continuing by SP 413/A22 by car or taxi; verify rail and transfer availability before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "mantova-train-bus",
+    "outletId": "mantova-village",
+    "transportType": "bus",
+    "title": "Train + Bus from Mantova station",
+    "duration": "Check official APAM/rail timetable",
+    "cost": "Check official APAM and Trenitalia fares",
+    "tip": "Mantova Village's official page includes a Train + Bus option from Mantova station; use official APAM and Trenitalia timetables for current lines, times and fares before travel.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "transportationId": "mantova-airport",
+    "outletId": "mantova-village",
+    "transportType": "airport",
+    "title": "Verona Airport via Verona or road transfer",
+    "duration": "Airport bus/rail via Verona + road transfer; timing varies",
+    "cost": "Check official airport, rail, bus or transfer fare",
+    "tip": "Use official Verona Airport ground transport toward Verona Porta Nuova, then continue by the official Mantova Village Verona route; no dedicated airport-to-village shuttle was verified.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+
 ];

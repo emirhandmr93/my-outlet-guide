@@ -208,5 +208,61 @@ export const franceTransportation = [
     "tip": "For airport arrivals, use official airport ground-transport services to arrange a taxi, rental car or transfer; no official dedicated airport shuttle to the outlet is published.",
     "status": "active",
     "displayOrder": "5"
-  }
+  },
+  {
+    "transportationId": "paris-giverny-shuttle",
+    "outletId": "paris-giverny-designer-outlet",
+    "transportType": "shuttle",
+    "title": "Direct shuttle from Paris",
+    "duration": "Runs Friday to Sunday; check official schedule",
+    "cost": "Check official shuttle fare and promotions",
+    "tip": "Official McArthurGlen information advertises a direct shuttle from Paris departing Pullman Tour Eiffel to Paris-Giverny Designer Outlet; reserve and verify current operating dates before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "paris-giverny-car",
+    "outletId": "paris-giverny-designer-outlet",
+    "transportType": "car",
+    "title": "Car via A13 exit 16",
+    "duration": "45 min from Paris, Versailles or Rouen",
+    "cost": "Fuel, tolls and provider costs vary",
+    "tip": "Official McArthurGlen directions state the centre is directly at Exit 16 of the A13 and about 45 minutes from Paris, Versailles and Rouen; check traffic before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "paris-giverny-parking",
+    "outletId": "paris-giverny-designer-outlet",
+    "transportType": "car",
+    "title": "Free parking and EV charging",
+    "duration": "On site",
+    "cost": "Free parking; EV charging fees may apply",
+    "tip": "Official services list free parking with no time limits and more than 120 electric-car charging stations subject to availability, with fees applicable for charging.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "paris-giverny-train",
+    "outletId": "paris-giverny-designer-outlet",
+    "transportType": "train",
+    "title": "Train to Vernon-Giverny + local transfer",
+    "duration": "45 min from Paris or 40 min from Rouen to Vernon-Giverny, then local transfer",
+    "cost": "Check official SNCF/TER fare",
+    "tip": "Official McArthurGlen information lists Vernon-Giverny station as 45 minutes from Paris and 40 minutes from Rouen; confirm the onward shuttle, bus or taxi option and rail timetable before travel.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "transportationId": "paris-giverny-airport",
+    "outletId": "paris-giverny-designer-outlet",
+    "transportType": "airport",
+    "title": "Paris airports via Paris rail/shuttle or road transfer",
+    "duration": "Airport transfer to Paris + shuttle/train; road timing varies",
+    "cost": "Check official airport transport, SNCF, shuttle or transfer fare",
+    "tip": "Use official Paris airport ground transport into Paris for the McArthurGlen shuttle or rail via Vernon-Giverny, or arrange a taxi/transfer; no dedicated airport-to-outlet shuttle was verified.",
+    "status": "active",
+    "displayOrder": "5"
+  },
+
 ];
