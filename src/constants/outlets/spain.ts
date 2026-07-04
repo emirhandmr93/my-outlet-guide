@@ -179,5 +179,31 @@ export const spainOutlets = [
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Viladecans+The+Style+Outlets",
     appleMapsUrl: "http://maps.apple.com/?q=Viladecans%20The%20Style%20Outlets",
     yandexMapsUrl: "https://yandex.com/maps/?text=Viladecans%20The%20Style%20Outlets"
-  } as any
+  } as any,
+  {
+    outletId: "la-roca-village",
+    outletName: "La Roca Village",
+    name: "La Roca Village",
+    slug: "la-roca-village",
+    countryId: "spain",
+    cityId: "barcelona",
+    officialWebsite: "https://www.thebicestercollection.com/la-roca-village/en/",
+    websiteUrl: "https://www.thebicestercollection.com/la-roca-village/en/",
+    address: "La Roca Village s/n, Santa Agnès de Malanyanes, 08430 Barcelona, Spain",
+    latitude: 41.6105,
+    longitude: 2.3436,
+    openingHours: "Mon-Sun 10:00 - 22:00",
+    storesCountText: "More than 150 boutiques",
+    status: "active",
+    airportDistanceKm: 40,
+    airportInfoText: "Barcelona-El Prat Airport • 40 km",
+    airports: [{ code: "BCN", name: "Barcelona-El Prat Airport", distanceKm: 40 }],
+    cityCenterDistanceKm: 40,
+    cityCenterInfoText: "Barcelona City Centre • 40 km",
+    cityCenterInfo: { name: "Barcelona City Centre", distanceKm: 40, recommendedRoute: "Use Shopping Express from Estació del Nord or current official map directions." },
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=La%20Roca%20Village%2C%20Santa%20Agn%C3%A8s%20de%20Malanyanes%2C%2008430%20Barcelona%2C%20Spain",
+    appleMapsUrl: "http://maps.apple.com/?q=La%20Roca%20Village&address=Santa%20Agn%C3%A8s%20de%20Malanyanes%2C%2008430%20Barcelona%2C%20Spain",
+    yandexMapsUrl: "https://yandex.com/maps/?text=La%20Roca%20Village%2C%20Santa%20Agn%C3%A8s%20de%20Malanyanes%2C%2008430%20Barcelona%2C%20Spain"
+  }
+
 ];

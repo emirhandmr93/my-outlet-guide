@@ -333,5 +333,40 @@ export const cities = [
     "cityId": "vilnius",
     "cityName": "Vilnius",
     "countryId": "lithuania"
+  },
+  {
+    "cityId": "salzburg",
+    "cityName": "Salzburg",
+    "countryId": "austria"
+  },
+  {
+    "cityId": "barcelona",
+    "cityName": "Barcelona",
+    "countryId": "spain"
+  },
+  {
+    "cityId": "lelystad",
+    "cityName": "Lelystad",
+    "countryId": "netherlands"
+  },
+  {
+    "cityId": "vicolungo",
+    "cityName": "Vicolungo",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "castel-guelfo-di-bologna",
+    "cityName": "Castel Guelfo di Bologna",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "wroclaw",
+    "cityName": "Wrocław",
+    "countryId": "poland"
+  },
+  {
+    "cityId": "ochtrup",
+    "cityName": "Ochtrup",
+    "countryId": "germany"
   }
 ];

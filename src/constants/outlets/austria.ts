@@ -80,5 +80,31 @@ export const austriaOutlets = [
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Stra%C3%9Fe%201%2C%207111%20Parndorf%2C%20Austria",
     appleMapsUrl: "http://maps.apple.com/?q=Designer%20Outlet%20Stra%C3%9Fe%201%2C%207111%20Parndorf%2C%20Austria",
     yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Stra%C3%9Fe%201%2C%207111%20Parndorf%2C%20Austria"
+  },
+  {
+    outletId: "designer-outlet-salzburg",
+    outletName: "Designer Outlet Salzburg",
+    name: "Designer Outlet Salzburg",
+    slug: "designer-outlet-salzburg",
+    countryId: "austria",
+    cityId: "salzburg",
+    officialWebsite: "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/",
+    websiteUrl: "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/",
+    address: "Kasernenstraße 1, 5073 Wals-Himmelreich, Austria",
+    latitude: 47.7947,
+    longitude: 12.9876,
+    openingHours: "Mon-Fri 09:00 - 19:00; Sat 09:00 - 18:00; Sun closed",
+    storesCountText: "Over 100 stores",
+    status: "active",
+    airportDistanceKm: 1,
+    airportInfoText: "Salzburg Airport • 1 km",
+    airports: [{ code: "SZG", name: "Salzburg Airport", distanceKm: 1 }],
+    cityCenterDistanceKm: 6,
+    cityCenterInfoText: "Salzburg City Centre • 6 km",
+    cityCenterInfo: { name: "Salzburg City Centre", distanceKm: 6, recommendedRoute: "Use current official map directions." },
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Salzburg%2C%20Kasernenstra%C3%9Fe%201%2C%205073%20Wals-Himmelreich%2C%20Austria",
+    appleMapsUrl: "http://maps.apple.com/?q=Designer%20Outlet%20Salzburg&address=Kasernenstra%C3%9Fe%201%2C%205073%20Wals-Himmelreich%2C%20Austria",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Salzburg%2C%20Kasernenstra%C3%9Fe%201%2C%205073%20Wals-Himmelreich%2C%20Austria"
   }
+
 ];
