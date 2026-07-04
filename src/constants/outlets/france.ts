@@ -341,7 +341,7 @@ export const franceOutlets = [
     ],
     officialWebsite: "https://www.onenation.fr/en/",
     websiteUrl: "https://www.onenation.fr/en/",
-    address: "1 Avenue du Président John Fitzgerald Kennedy, 78340 Les Clayes-sous-Bois, France",
+    address: "1 rue du Président J.F Kennedy, 78340 Les Clayes-sous-Bois, France",
     latitude: 48.8175,
     longitude: 1.9868,
     openingHours: "Mon-Sun 10:00 - 20:00",
@@ -349,6 +349,27 @@ export const franceOutlets = [
     rating: 0,
     reviewCount: 0,
     storesCountText: "90 boutiques and 400 fashion, outdoor, home and gourmet brands on the official website",
+    services: [
+      "Centralized Tax Removal",
+      "Gift Card",
+      "Phone Battery Station",
+      "Donate Your Clothes",
+      "Hands-free Shopping",
+      "Stroller Loan",
+      "Reduced-Mobility Access",
+      "Express Touch-ups",
+      "Free Parking",
+      "Ecological Car Wash",
+      "Mobile Repair and Repurchase"
+    ],
+    parking: "Official services page says free parking with 1,250 spaces on 2 levels and electric-car charging points.",
+    taxFreeAvailable: true,
+    vatRate: 20,
+    estimatedRefundRate: 0,
+    minimumTaxFreeSpend: "Not officially verified",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "Official services list centralized tax removal; confirm qualifying purchases, refund provider, minimum spend, and customs process at the centre.",
+    aliases: ["One Nation Paris", "One Nation Paris Outlet"],
     status: "active",
     airportDistanceKm: 35,
     airportInfoText: "Paris Orly Airport • 35 km",
@@ -356,8 +377,8 @@ export const franceOutlets = [
     cityCenterDistanceKm: 30,
     cityCenterInfoText: "Paris City Centre • 30 km",
     cityCenterInfo: { name: "Paris City Centre", distanceKm: 30, recommendedRoute: "Use current official access directions to One Nation Paris." },
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=One%20Nation%20Paris%2C%201%20Avenue%20du%20Pr%C3%A9sident%20John%20Fitzgerald%20Kennedy%2C%2078340%20Les%20Clayes-sous-Bois%2C%20France",
-    appleMapsUrl: "http://maps.apple.com/?q=One%20Nation%20Paris&address=1%20Avenue%20du%20Pr%C3%A9sident%20John%20Fitzgerald%20Kennedy%2C%2078340%20Les%20Clayes-sous-Bois%2C%20France",
-    yandexMapsUrl: "https://yandex.com/maps/?text=One%20Nation%20Paris%2C%201%20Avenue%20du%20Pr%C3%A9sident%20John%20Fitzgerald%20Kennedy%2C%2078340%20Les%20Clayes-sous-Bois%2C%20France"
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=One%20Nation%20Paris%2C%201%20rue%20du%20Pr%C3%A9sident%20J.F%20Kennedy%2C%2078340%20Les%20Clayes-sous-Bois%2C%20France",
+    appleMapsUrl: "http://maps.apple.com/?q=One%20Nation%20Paris&address=1%20rue%20du%20Pr%C3%A9sident%20J.F%20Kennedy%2C%2078340%20Les%20Clayes-sous-Bois%2C%20France",
+    yandexMapsUrl: "https://yandex.com/maps/?text=One%20Nation%20Paris%2C%201%20rue%20du%20Pr%C3%A9sident%20J.F%20Kennedy%2C%2078340%20Les%20Clayes-sous-Bois%2C%20France"
   } as any
 ];
