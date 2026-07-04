@@ -118,5 +118,105 @@ export const spainRestaurants = [
     "website": "https://www.thebicestercollection.com/las-rozas-village/en/dine/",
     "status": "active",
     "displayOrder": "12"
+  },
+  {
+    "restaurantId": "viladecans-burger-king",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "BURGER KING",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "viladecans-casa-carmen",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "CASA CARMEN",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "viladecans-chalito",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "CHALITO",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "viladecans-five-guys",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "FIVE GUYS",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "viladecans-grosso-napoletano",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "GROSSO NAPOLETANO",
+    "category": "Pizza",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "viladecans-harry",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "HARRY",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "viladecans-llaollao",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "LLAOLLAO",
+    "category": "Frozen Yogurt",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "viladecans-starbucks",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "STARBUCKS",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "8"
+  },
+  {
+    "restaurantId": "viladecans-sushisom",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "SUSHISOM",
+    "category": "Sushi",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "9"
+  },
+  {
+    "restaurantId": "viladecans-udon",
+    "outletId": "viladecans-the-style-outlets",
+    "restaurantName": "UDON",
+    "category": "Asian",
+    "priceLevel": "€€",
+    "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "10"
   }
 ];

@@ -306,7 +306,7 @@ export const franceOutlets = [
     rating: 0,
     reviewCount: 0,
     services: ["Parking", "Guest Services", "Restaurants & Cafes", "Tourism", "Gift Card", "Shuttle", "The Second Life", "Transport Info"],
-    restaurants: [],
+    restaurants: ["Amorino", "As du Pick", "Bollicine&Co.", "Five Guys", "La Ruche", "Ladurée", "Les Hortensias", "Lindt", "Obicà", "YUMI"],
     parking: "Official McArthurGlen pages list visitor planning information for Paris-Giverny Designer Outlet; confirm current parking details on the official website before visiting.",
     taxFreeAvailable: true,
     vatRate: 20,

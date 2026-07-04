@@ -3,6 +3,8 @@ import { belgiumRestaurants } from "./belgium";
 import { croatiaRestaurants } from "./croatia";
 import { greeceRestaurants } from "./greece";
 import { hungaryRestaurants } from "./hungary";
+import { latviaRestaurants } from "./latvia";
+import { lithuaniaRestaurants } from "./lithuania";
 import { slovakiaRestaurants } from "./slovakia";
 import { denmarkRestaurants } from "./denmark";
 import { estoniaRestaurants } from "./estonia";
@@ -35,6 +37,8 @@ export {
   greeceRestaurants,
   hungaryRestaurants,
   irelandRestaurants,
+  latviaRestaurants,
+  lithuaniaRestaurants,
   italyRestaurants,
   netherlandsRestaurants,
   norwayRestaurants,
@@ -61,6 +65,8 @@ export const restaurants = [
   ...greeceRestaurants,
   ...hungaryRestaurants,
   ...irelandRestaurants,
+  ...latviaRestaurants,
+  ...lithuaniaRestaurants,
   ...italyRestaurants,
   ...netherlandsRestaurants,
   ...norwayRestaurants,

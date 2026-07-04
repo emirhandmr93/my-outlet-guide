@@ -162,7 +162,7 @@ export const spainOutlets = [
     rating: 0,
     reviewCount: 0,
     services: ["Parking", "Tax Free", "Restaurants & Cafes", "Pet Friendly", "Free Wi-Fi", "Personal Shopper", "Luggage Lockers", "Transport Info"],
-    restaurants: [],
+    restaurants: ["BURGER KING", "CASA CARMEN", "CHALITO", "FIVE GUYS", "GROSSO NAPOLETANO", "HARRY", "LLAOLLAO", "STARBUCKS", "SUSHISOM", "UDON"],
     parking: "Official address is Ctra. de la Vila, 90, Viladecans; confirm current parking details on the official website before visiting.",
     taxFreeAvailable: true,
     vatRate: 21,
