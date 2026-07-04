@@ -774,5 +774,31 @@ export const germanyOutlets = [
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Halle+Leipzig+The+Style+Outlets+Berliner+Stra%C3%9Fe+1+06796+Sandersdorf-Brehna",
     appleMapsUrl: "http://maps.apple.com/?q=Halle%20Leipzig%20The%20Style%20Outlets&address=Berliner%20Stra%C3%9Fe%201%2C%2006796%20Sandersdorf-Brehna%2C%20Germany",
     yandexMapsUrl: "https://yandex.com/maps/?text=Halle%20Leipzig%20The%20Style%20Outlets%2C%20Berliner%20Stra%C3%9Fe%201%2C%2006796%20Sandersdorf-Brehna"
+  } as any,
+  {
+    outletId: "designer-outlet-ochtrup",
+    outletName: "Designer Outlet Ochtrup",
+    name: "Designer Outlet Ochtrup",
+    slug: "designer-outlet-ochtrup",
+    countryId: "germany",
+    cityId: "ochtrup",
+    officialWebsite: "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/",
+    websiteUrl: "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/",
+    address: "Laurenzstraße 55, 48607 Ochtrup, Germany",
+    latitude: 52.2093,
+    longitude: 7.1849,
+    openingHours: "Mon-Sat 10:00 - 20:00; Sun closed",
+    storesCountText: "Over 70 stores",
+    status: "active",
+    airportDistanceKm: 50,
+    airportInfoText: "Münster Osnabrück International Airport • 50 km",
+    airports: [{ code: "FMO", name: "Münster Osnabrück International Airport", distanceKm: 50 }],
+    cityCenterDistanceKm: 2,
+    cityCenterInfoText: "Ochtrup City Centre • 2 km",
+    cityCenterInfo: { name: "Ochtrup City Centre", distanceKm: 2, recommendedRoute: "Use current official map directions." },
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Ochtrup%2C%20Laurenzstra%C3%9Fe%2055%2C%2048607%20Ochtrup%2C%20Germany",
+    appleMapsUrl: "http://maps.apple.com/?q=Designer%20Outlet%20Ochtrup&address=Laurenzstra%C3%9Fe%2055%2C%2048607%20Ochtrup%2C%20Germany",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Ochtrup%2C%20Laurenzstra%C3%9Fe%2055%2C%2048607%20Ochtrup%2C%20Germany"
   } as any
+
 ];

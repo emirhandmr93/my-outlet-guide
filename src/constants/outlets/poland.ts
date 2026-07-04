@@ -121,5 +121,31 @@ export const polandOutlets = [
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Factory%20Annopol%2C%20Annopol%202%2C%2003-236%20Warszawa%2C%20Poland",
     appleMapsUrl: "http://maps.apple.com/?q=Factory%20Annopol%2C%20Annopol%202%2C%2003-236%20Warszawa%2C%20Poland",
     yandexMapsUrl: "https://yandex.com/maps/?text=Factory%20Annopol%2C%20Annopol%202%2C%2003-236%20Warszawa%2C%20Poland"
+  },
+  {
+    outletId: "wroclaw-fashion-outlet",
+    outletName: "Wrocław Fashion Outlet",
+    name: "Wrocław Fashion Outlet",
+    slug: "wroclaw-fashion-outlet",
+    countryId: "poland",
+    cityId: "wroclaw",
+    officialWebsite: "https://www.wroclawfashionoutlet.com/en",
+    websiteUrl: "https://www.wroclawfashionoutlet.com/en",
+    address: "Graniczna 2, 54-610 Wrocław, Poland",
+    latitude: 51.1090,
+    longitude: 16.8870,
+    openingHours: "Mon-Fri 10:00 - 21:00; Sat 09:00 - 21:00; selected Sundays closed",
+    storesCountText: "100+ brands",
+    status: "active",
+    airportDistanceKm: 4,
+    airportInfoText: "Wrocław Airport • 4 km",
+    airports: [{ code: "WRO", name: "Wrocław Airport", distanceKm: 4 }],
+    cityCenterDistanceKm: 9,
+    cityCenterInfoText: "Wrocław City Centre • 9 km",
+    cityCenterInfo: { name: "Wrocław City Centre", distanceKm: 9, recommendedRoute: "Use direct tram or current official map directions." },
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Wroc%C5%82aw%20Fashion%20Outlet%2C%20Graniczna%202%2C%2054-610%20Wroc%C5%82aw%2C%20Poland",
+    appleMapsUrl: "http://maps.apple.com/?q=Wroc%C5%82aw%20Fashion%20Outlet&address=Graniczna%202%2C%2054-610%20Wroc%C5%82aw%2C%20Poland",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Wroc%C5%82aw%20Fashion%20Outlet%2C%20Graniczna%202%2C%2054-610%20Wroc%C5%82aw%2C%20Poland"
   }
+
 ];
