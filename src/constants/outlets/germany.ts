@@ -782,6 +782,15 @@ export const germanyOutlets = [
     slug: "designer-outlet-ochtrup",
     countryId: "germany",
     cityId: "ochtrup",
+    restaurants: [
+      "Alice Premium Döner",
+      "Beltman's",
+      "Frittenwerk",
+      "Frooters",
+      "La Passione",
+      "Pick Nick",
+      "Starbucks"
+    ],
     officialWebsite: "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/",
     websiteUrl: "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/",
     address: "Laurenzstraße 55, 48607 Ochtrup, Germany",

@@ -378,5 +378,165 @@ export const netherlandsRestaurants = [
     "website": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/food-drink/",
     "status": "active",
     "displayOrder": "38"
+  },
+  {
+    "restaurantId": "amsterdam-the-style-outlets-coffee-fellows",
+    "outletId": "amsterdam-the-style-outlets",
+    "restaurantName": "COFFEE FELLOWS",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://amsterdam.thestyleoutlets.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "39"
+  },
+  {
+    "restaurantId": "amsterdam-the-style-outlets-pommes-frites",
+    "outletId": "amsterdam-the-style-outlets",
+    "restaurantName": "POMMES FRITES",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://amsterdam.thestyleoutlets.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "40"
+  },
+  {
+    "restaurantId": "amsterdam-the-style-outlets-selva-oro",
+    "outletId": "amsterdam-the-style-outlets",
+    "restaurantName": "SELVA ORO",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://amsterdam.thestyleoutlets.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "41"
+  },
+  {
+    "restaurantId": "amsterdam-the-style-outlets-starbucks",
+    "outletId": "amsterdam-the-style-outlets",
+    "restaurantName": "STARBUCKS",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://amsterdam.thestyleoutlets.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "42"
+  },
+  {
+    "restaurantId": "amsterdam-the-style-outlets-the-burger-federation",
+    "outletId": "amsterdam-the-style-outlets",
+    "restaurantName": "THE BURGER FEDERATION",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://amsterdam.thestyleoutlets.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "43"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-ame-fashion-cafe",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "Âme Fashion Café",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "44"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-coffeecompany",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "Coffeecompany",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "45"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-de-ruyter-vis",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "De Ruyter Vis",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "46"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-dunkin-donuts",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "Dunkin' Donuts",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "47"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-dutch-originals",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "Dutch Originals",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "48"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-ekmekci",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "Ekmekci",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "49"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-la-place",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "La Place",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "50"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-mcdonalds",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "McDonald's",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "51"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-salsa-shop",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "Salsa Shop",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "52"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-subway",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "Subway",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "53"
+  },
+  {
+    "restaurantId": "batavia-stad-fashion-outlet-twelve12",
+    "outletId": "batavia-stad-fashion-outlet",
+    "restaurantName": "Twelve12",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.bataviastad.nl/en/restaurants",
+    "status": "active",
+    "displayOrder": "54"
   }
 ];

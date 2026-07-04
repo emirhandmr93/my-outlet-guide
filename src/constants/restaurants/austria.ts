@@ -198,5 +198,85 @@ export const austriaRestaurants = [
     "website": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/food-drink/",
     "status": "active",
     "displayOrder": "20"
+  },
+  {
+    "restaurantId": "designer-outlet-salzburg-asia-cocos",
+    "outletId": "designer-outlet-salzburg",
+    "restaurantName": "Asia Cocos",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/food-drink/",
+    "status": "active",
+    "displayOrder": "21"
+  },
+  {
+    "restaurantId": "designer-outlet-salzburg-burger-lounge",
+    "outletId": "designer-outlet-salzburg",
+    "restaurantName": "Burger Lounge",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/food-drink/",
+    "status": "active",
+    "displayOrder": "22"
+  },
+  {
+    "restaurantId": "designer-outlet-salzburg-cafe-caprice",
+    "outletId": "designer-outlet-salzburg",
+    "restaurantName": "Café Caprice",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/food-drink/",
+    "status": "active",
+    "displayOrder": "23"
+  },
+  {
+    "restaurantId": "designer-outlet-salzburg-frozen-yoghurt",
+    "outletId": "designer-outlet-salzburg",
+    "restaurantName": "Frozen Yoghurt",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/food-drink/",
+    "status": "active",
+    "displayOrder": "24"
+  },
+  {
+    "restaurantId": "designer-outlet-salzburg-kaiten-asia",
+    "outletId": "designer-outlet-salzburg",
+    "restaurantName": "Kaiten Asia",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/food-drink/",
+    "status": "active",
+    "displayOrder": "25"
+  },
+  {
+    "restaurantId": "designer-outlet-salzburg-mamas-deli",
+    "outletId": "designer-outlet-salzburg",
+    "restaurantName": "Mama's Deli",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/food-drink/",
+    "status": "active",
+    "displayOrder": "26"
+  },
+  {
+    "restaurantId": "designer-outlet-salzburg-mcdonalds",
+    "outletId": "designer-outlet-salzburg",
+    "restaurantName": "McDonald's",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/food-drink/",
+    "status": "active",
+    "displayOrder": "27"
+  },
+  {
+    "restaurantId": "designer-outlet-salzburg-rossopomodoro",
+    "outletId": "designer-outlet-salzburg",
+    "restaurantName": "Rossopomodoro",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/food-drink/",
+    "status": "active",
+    "displayOrder": "28"
   }
 ];

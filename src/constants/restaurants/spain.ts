@@ -218,5 +218,65 @@ export const spainRestaurants = [
     "website": "https://viladecans.thestyleoutlets.es/en/restaurants",
     "status": "active",
     "displayOrder": "10"
+  },
+  {
+    "restaurantId": "la-roca-village-andreu",
+    "outletId": "la-roca-village",
+    "restaurantName": "Andreu",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.larocavillage.com/en/food-and-drink/",
+    "status": "active",
+    "displayOrder": "13"
+  },
+  {
+    "restaurantId": "la-roca-village-atmosferas-mordisco",
+    "outletId": "la-roca-village",
+    "restaurantName": "Atmósferas Mordisco",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.larocavillage.com/en/food-and-drink/",
+    "status": "active",
+    "displayOrder": "14"
+  },
+  {
+    "restaurantId": "la-roca-village-corso-iluzione",
+    "outletId": "la-roca-village",
+    "restaurantName": "Corso Iluzione",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.larocavillage.com/en/food-and-drink/",
+    "status": "active",
+    "displayOrder": "15"
+  },
+  {
+    "restaurantId": "la-roca-village-centric",
+    "outletId": "la-roca-village",
+    "restaurantName": "Cèntric",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.larocavillage.com/en/food-and-drink/",
+    "status": "active",
+    "displayOrder": "16"
+  },
+  {
+    "restaurantId": "la-roca-village-dino",
+    "outletId": "la-roca-village",
+    "restaurantName": "Dino",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.larocavillage.com/en/food-and-drink/",
+    "status": "active",
+    "displayOrder": "17"
+  },
+  {
+    "restaurantId": "la-roca-village-farggi-1957",
+    "outletId": "la-roca-village",
+    "restaurantName": "Farggi 1957",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://www.larocavillage.com/en/food-and-drink/",
+    "status": "active",
+    "displayOrder": "18"
   }
 ];
