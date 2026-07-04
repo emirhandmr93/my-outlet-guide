@@ -332,6 +332,13 @@ export const franceOutlets = [
     slug: "one-nation-paris",
     countryId: "france",
     cityId: "les-clayes-sous-bois",
+    restaurants: [
+      "Eat Sushi",
+      "Illy Caffé",
+      "Lou-Licious",
+      "Maison Foude",
+      "Trattoria Locale"
+    ],
     officialWebsite: "https://www.onenation.fr/en/",
     websiteUrl: "https://www.onenation.fr/en/",
     address: "1 Avenue du Président John Fitzgerald Kennedy, 78340 Les Clayes-sous-Bois, France",
