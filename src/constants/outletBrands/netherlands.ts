@@ -2107,4 +2107,40 @@ export const netherlandsOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  {
+    outletId: "batavia-stad-fashion-outlet",
+    brandId: "american-vintage",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "batavia-stad-fashion-outlet",
+    brandId: "columbia",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "batavia-stad-fashion-outlet",
+    brandId: "crocs",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "batavia-stad-fashion-outlet",
+    brandId: "karl-lagerfeld",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "batavia-stad-fashion-outlet",
+    brandId: "garcia",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "batavia-stad-fashion-outlet",
+    brandId: "brunotti",
+    featured: false,
+    relationStatus: "active",
+  },
 ];

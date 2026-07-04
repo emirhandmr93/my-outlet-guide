@@ -3373,4 +3373,52 @@ export const spainOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  {
+    outletId: "mallorca-fashion-outlet",
+    brandId: "kids-around",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "mallorca-fashion-outlet",
+    brandId: "simorra",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "mallorca-fashion-outlet",
+    brandId: "levi-s",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "sevilla-fashion-outlet",
+    brandId: "the-body-shop",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "sevilla-fashion-outlet",
+    brandId: "new-era",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "sevilla-fashion-outlet",
+    brandId: "bullpadel",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "sevilla-fashion-outlet",
+    brandId: "encuentro-moda",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "sevilla-fashion-outlet",
+    brandId: "hackett-london",
+    featured: false,
+    relationStatus: "active",
+  },
 ];
