@@ -457,6 +457,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  // Validation: keep Lindt because it is a retail chocolate confectionery shop, not restaurant-only food service.
   {
     outletId: "designer-outlet-roermond",
     brandId: "lindt",

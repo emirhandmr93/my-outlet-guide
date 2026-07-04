@@ -325,6 +325,7 @@ export const spainOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  // Validation: keep Lindt because it is a retail chocolate confectionery shop, not restaurant-only food service.
   {
     outletId: "designer-outlet-malaga",
     brandId: "lindt",
