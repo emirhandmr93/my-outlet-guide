@@ -638,5 +638,81 @@ export const italyTransportation = [
     "status": "active",
     "displayOrder": "5"
   },
-
+  {
+    "transportationId": "vicolungo-car-parking",
+    "outletId": "vicolungo-the-style-outlets",
+    "transportType": "car",
+    "title": "By Car / Parking",
+    "duration": "Use A4/A26 Biandrate-Vicolungo area",
+    "cost": "Check official parking information",
+    "tip": "The official outlet page lists car access to Piazza S. Caterina / Via Papa Giovanni XXIII. Follow official directions and check current parking information before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "vicolungo-cavourese-shuttle",
+    "outletId": "vicolungo-the-style-outlets",
+    "transportType": "shuttle",
+    "title": "Cavourese shuttle from Milan / Novara",
+    "duration": "Check official Cavourese timetable",
+    "cost": "Check official Cavourese fare",
+    "tip": "Official operator Cavourese publishes Vicolungo Outlet Bus service from Milan and Novara on selected days. Book ahead and check the official timetable/fare before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "vicolungo-airport-malpensa",
+    "outletId": "vicolungo-the-style-outlets",
+    "transportType": "airport",
+    "title": "Milan Malpensa Airport",
+    "duration": "About 33 km by road",
+    "cost": "Check onward transport fare",
+    "tip": "Milan Malpensa is the nearest major airport listed for this outlet; continue by car, taxi/confirmed transfer, or official rail/bus via Novara/Milan. No dedicated airport shuttle was verified.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "castel-guelfo-car-parking",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "transportType": "car",
+    "title": "By Car / Parking",
+    "duration": "A14 exit Castel San Pietro Terme",
+    "cost": "Check official parking information",
+    "tip": "The official outlet pages list Via del Commercio 4/2 and A14 Bologna-Ancona, exit Castel San Pietro Terme. Follow official directions and check current parking information before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "castel-guelfo-train-shuttle",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "transportType": "train",
+    "title": "Train to Castel San Pietro Terme + shuttle",
+    "duration": "Check Trenitalia and shuttle timetable",
+    "cost": "Check official train fare; shuttle terms may vary",
+    "tip": "Use Trenitalia to Castel San Pietro Terme, then only use a current official outlet/operator shuttle if published for your travel date. Check official timetable/fare before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "castel-guelfo-bus-205",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "transportType": "bus",
+    "title": "TPER regional bus",
+    "duration": "Check official TPER timetable",
+    "cost": "Check official TPER fare",
+    "tip": "Use official TPER journey planning for buses serving the Castel Guelfo outlet area; verify the route, stop, timetable, and fare before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "castel-guelfo-airport-bologna",
+    "outletId": "castel-guelfo-the-style-outlets",
+    "transportType": "airport",
+    "title": "Bologna Airport",
+    "duration": "About 35 km by road",
+    "cost": "Check onward transport fare",
+    "tip": "From Bologna Airport, continue by car, taxi/confirmed transfer, or official public transport via Bologna and Castel San Pietro Terme. No dedicated airport shuttle was verified.",
+    "status": "active",
+    "displayOrder": "4"
+  }
 ];

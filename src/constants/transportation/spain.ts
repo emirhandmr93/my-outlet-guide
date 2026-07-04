@@ -164,5 +164,48 @@ export const spainTransportation = [
     "status": "active",
     "displayOrder": "5"
   },
-
+  {
+    "transportationId": "la-roca-car-parking",
+    "outletId": "la-roca-village",
+    "transportType": "car",
+    "title": "By Car / Free Parking",
+    "duration": "About 40 min from Barcelona",
+    "cost": "Free parking; check EV charging terms",
+    "tip": "The official Village getting-here page lists free parking and electric car charging points at La Roca Village, Santa Agnès de Malanyanes. Check current access information before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "la-roca-shopping-express",
+    "outletId": "la-roca-village",
+    "transportType": "shuttle",
+    "title": "Shopping Express from Barcelona",
+    "duration": "Check official Shopping Express timetable",
+    "cost": "Check official Shopping Express fare",
+    "tip": "La Roca Village's official Shopping Express coach runs from Barcelona Estació del Nord direct to the Village. Book ahead and check the official timetable/fare before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "la-roca-sagales-bus",
+    "outletId": "la-roca-village",
+    "transportType": "bus",
+    "title": "Sagalés regional bus",
+    "duration": "Check official Sagalés timetable",
+    "cost": "Check official Sagalés fare",
+    "tip": "Use official Sagalés route planning for regional bus service to the La Roca Village / Centro Comercial area; confirm the exact stop, timetable, and fare before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "la-roca-airport",
+    "outletId": "la-roca-village",
+    "transportType": "airport",
+    "title": "Barcelona-El Prat Airport",
+    "duration": "About 40 km by road",
+    "cost": "Check onward transport fare",
+    "tip": "Use Barcelona-El Prat Airport, then continue by car, official coach/bus connections via Barcelona, or a confirmed transfer. No dedicated airport shuttle was verified; check official fares before travel.",
+    "status": "active",
+    "displayOrder": "4"
+  }
 ];

@@ -108,5 +108,93 @@ export const netherlandsTransportation = [
     "tip": "Use official airport ground transport to Rotterdam, Antwerp or Roosendaal rail/bus connections, then local bus to the outlet; no dedicated airport shuttle is published.",
     "status": "active",
     "displayOrder": "4"
+  },
+  {
+    "transportationId": "amsterdam-style-outlets-car-parking",
+    "outletId": "amsterdam-the-style-outlets",
+    "transportType": "car",
+    "title": "By Car / Outlet Parking",
+    "duration": "Use SugarCity Ring 1, Halfweg",
+    "cost": "Check official parking rate",
+    "tip": "The official outlet page gives SugarCity Ring 1 as the address, and official SugarCity parking information says outlet visitors can use the car park under the outlet with overflow parking at peak times. Check current parking terms before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "amsterdam-style-outlets-train-halfweg",
+    "outletId": "amsterdam-the-style-outlets",
+    "transportType": "train",
+    "title": "Train to Halfweg-Zwanenburg",
+    "duration": "Check official NS timetable",
+    "cost": "Check official NS fare",
+    "tip": "Use official NS journey planning to Halfweg-Zwanenburg station, then walk to Amsterdam The Style Outlets. Check the official timetable/fare before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "amsterdam-style-outlets-bus-halfweg",
+    "outletId": "amsterdam-the-style-outlets",
+    "transportType": "bus",
+    "title": "Local bus to Halfweg-Zwanenburg",
+    "duration": "Check official 9292 / Connexxion timetable",
+    "cost": "Check official operator fare",
+    "tip": "Use official Dutch public-transport planning for buses serving Station Halfweg-Zwanenburg / Halfweg near the outlet; confirm stop, timetable, and fare before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "amsterdam-style-outlets-airport",
+    "outletId": "amsterdam-the-style-outlets",
+    "transportType": "airport",
+    "title": "Amsterdam Schiphol Airport",
+    "duration": "Check official train/bus or road route",
+    "cost": "Check official fare",
+    "tip": "From Schiphol, use official NS/9292 planning to Halfweg-Zwanenburg or travel by car/taxi. No dedicated airport shuttle was verified; check official timetable/fare before travel.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "transportationId": "batavia-stad-car-parking",
+    "outletId": "batavia-stad-fashion-outlet",
+    "transportType": "car",
+    "title": "By Car / Parking",
+    "duration": "Use Bataviaplein 60, Lelystad",
+    "cost": "Check official parking rate",
+    "tip": "The official practical-information page lists Parking & Route at Bataviaplein 60, Lelystad. Follow official route signs and check current parking terms before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "batavia-stad-train-bus",
+    "outletId": "batavia-stad-fashion-outlet",
+    "transportType": "train",
+    "title": "Train to Lelystad Centrum + bus",
+    "duration": "Check official NS / 9292 timetable",
+    "cost": "Check official fare",
+    "tip": "Use NS to Lelystad Centrum, then official local bus planning to Batavia Stad / Bataviaplein. Check the current bus route, timetable, and fare before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "batavia-stad-bus-lelystad",
+    "outletId": "batavia-stad-fashion-outlet",
+    "transportType": "bus",
+    "title": "Local bus from Lelystad",
+    "duration": "Check official 9292 timetable",
+    "cost": "Check official operator fare",
+    "tip": "Official Dutch public-transport planners list local bus options between Lelystad Centrum and the Batavia Stad area; verify the exact stop, route, timetable, and fare before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "batavia-stad-airport",
+    "outletId": "batavia-stad-fashion-outlet",
+    "transportType": "airport",
+    "title": "Amsterdam Schiphol Airport",
+    "duration": "Check official rail/bus or road route",
+    "cost": "Check official fare",
+    "tip": "From Schiphol, use official NS/9292 planning via Lelystad Centrum or continue by car/confirmed transfer. No dedicated official airport shuttle was verified.",
+    "status": "active",
+    "displayOrder": "4"
   }
 ];
