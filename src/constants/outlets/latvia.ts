@@ -15,7 +15,7 @@ export const latviaOutlets = [
     rating: 0,
     reviewCount: 0,
     services: ["Parking", "Restaurants & Cafes", "Gastro Market", "Transport Info", "Accessibility"],
-    restaurants: ["Kafijas Banka"],
+    restaurants: ["Casa Mia", "Gan Bei", "Kafijas Banka", "VANDAL"],
     parking: "Official map and visitor pages list Via Jurmala Outlet Village at Jaunā iela 12 in Piņķi; confirm current parking details on the official website before visiting.",
     taxFreeAvailable: true,
     vatRate: 21,

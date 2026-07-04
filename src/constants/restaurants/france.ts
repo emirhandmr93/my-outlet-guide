@@ -358,5 +358,105 @@ export const franceRestaurants = [
     "website": "https://roppenheim.thestyleoutlets.fr/en/restaurants",
     "status": "active",
     "displayOrder": "8"
+  },
+  {
+    "restaurantId": "paris-giverny-amorino",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "Amorino",
+    "category": "Ice Cream",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "paris-giverny-as-du-pick",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "As du Pick",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "paris-giverny-bollicineandco",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "Bollicine&Co.",
+    "category": "Champagne Bar",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "paris-giverny-five-guys",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "Five Guys",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "paris-giverny-la-ruche",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "La Ruche",
+    "category": "Cafe • Bakery",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "paris-giverny-laduree",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "Ladurée",
+    "category": "Cafe • Confectionery",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "paris-giverny-les-hortensias",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "Les Hortensias",
+    "category": "Brasserie • Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "paris-giverny-lindt",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "Lindt",
+    "category": "Chocolate • Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "8"
+  },
+  {
+    "restaurantId": "paris-giverny-obica",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "Obicà",
+    "category": "Italian • Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "9"
+  },
+  {
+    "restaurantId": "paris-giverny-yumi",
+    "outletId": "paris-giverny-designer-outlet",
+    "restaurantName": "YUMI",
+    "category": "Japanese • Cafe",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-paris-giverny/restaurants/",
+    "status": "active",
+    "displayOrder": "10"
   }
 ];
