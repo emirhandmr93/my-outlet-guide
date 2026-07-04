@@ -280,7 +280,7 @@ export function OutletDetailScreen() {
       return localImages;
     }
 
-    const images = [outlet.heroImage, ...outlet.galleryImages].filter(Boolean);
+    const images = [outlet.heroImage, ...(outlet.galleryImages ?? [])].filter(Boolean);
 
     if (images.length > 0) {
       return images;

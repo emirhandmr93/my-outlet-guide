@@ -826,6 +826,9 @@ export const italyOutlets = [
     latitude: 45.4677,
     longitude: 8.4612,
     openingHours: "Daily 09:00 - 21:00",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
     storesCountText: "150 boutiques with over 300 brands",
     services: [
       "Tax Free",
@@ -881,6 +884,9 @@ export const italyOutlets = [
     latitude: 44.4414,
     longitude: 11.6690,
     openingHours: "Daily 10:00 - 21:00",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
     storesCountText: "110 boutiques with over 200 brands",
     services: [
       "Tax free",

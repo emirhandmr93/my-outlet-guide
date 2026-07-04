@@ -209,6 +209,9 @@ export const netherlandsOutlets = [
     latitude: 52.3842,
     longitude: 4.7511,
     openingHours: "Mon-Thu 10:00 - 18:00; Fri-Sun 10:00 - 20:00",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
     storesCountText: "Over 80 brands",
     services: [
       "Tax refund",
@@ -269,6 +272,9 @@ export const netherlandsOutlets = [
     latitude: 52.5226,
     longitude: 5.4397,
     openingHours: "Mon-Fri 10:00 - 18:00; Sat-Sun 10:00 - 20:00; special opening hours may apply",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
     storesCountText: "250+ brands",
     services: [
       "Tax Refund",

@@ -797,6 +797,9 @@ export const germanyOutlets = [
     latitude: 52.2093,
     longitude: 7.1849,
     openingHours: "Mon-Sat 10:00 - 20:00; Sun closed",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
     storesCountText: "Over 70 stores",
     services: [
       "Parking",

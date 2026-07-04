@@ -201,6 +201,9 @@ export const spainOutlets = [
     latitude: 41.6105,
     longitude: 2.3436,
     openingHours: "Mon-Sun 10:00 - 22:00",
+    galleryImages: [],
+    rating: 0,
+    reviewCount: 0,
     storesCountText: "More than 150 boutiques",
     services: [
       "Tax-Free Shopping",
