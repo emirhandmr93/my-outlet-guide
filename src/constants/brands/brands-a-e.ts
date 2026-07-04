@@ -442,12 +442,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "alviero-martini-1a-classe",
     brandName: "Alviero Martini 1A Classe",
-    aliases: [
-      "Alviero Martini",
-      "1A Classe",
-      "AlvieroMartini",
-      "1AClasse",
-    ],
+    aliases: ["Alviero Martini", "1A Classe", "AlvieroMartini", "1AClasse"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "italy",
@@ -743,7 +738,12 @@ export const brandsAE: Brand[] = [
   {
     brandId: "arcadia",
     brandName: "Arcádia",
-    aliases: ["Arcadia", "Arcadia Chocolates", "Arcádia Chocolates", "Arcadia Chocolates Outlet"],
+    aliases: [
+      "Arcadia",
+      "Arcadia Chocolates",
+      "Arcádia Chocolates",
+      "Arcadia Chocolates Outlet",
+    ],
     categoryId: "food-confectionery",
     logo: "",
     originCountryId: "portugal",
@@ -818,12 +818,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "astrid-and-miyu",
     brandName: "Astrid & Miyu",
-    aliases: [
-      "Astrid and Miyu",
-      "Astrid Miyu",
-      "AstridMiyu",
-      "AstridandMiyu",
-    ],
+    aliases: ["Astrid and Miyu", "Astrid Miyu", "AstridMiyu", "AstridandMiyu"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "united-kingdom",
@@ -878,13 +873,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "ba-and-sh",
     brandName: "ba&sh",
-    aliases: [
-      "ba and sh",
-      "bash",
-      "baandsh",
-      "ba sh",
-      "ba & sh",
-    ],
+    aliases: ["ba and sh", "bash", "baandsh", "ba sh", "ba & sh"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "france",
@@ -2401,12 +2390,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "coach",
     brandName: "Coach",
-    aliases: [
-      "Coach Outlet",
-      "Coach New York",
-      "CoachOutlet",
-      "CoachNewYork",
-    ],
+    aliases: ["Coach Outlet", "Coach New York", "CoachOutlet", "CoachNewYork"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-states",
@@ -2789,12 +2773,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "digby-and-champ",
     brandName: "Digby & Champ",
-    aliases: [
-      "Digby and Champ",
-      "Digby Champ",
-      "DigbyChamp",
-      "DigbyandChamp",
-    ],
+    aliases: ["Digby and Champ", "Digby Champ", "DigbyChamp", "DigbyandChamp"],
     categoryId: "home",
     logo: "",
     originCountryId: "united-kingdom",
@@ -2972,12 +2951,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "dr-martens",
     brandName: "Dr. Martens",
-    aliases: [
-      "Doc Martens",
-      "Dr Martens",
-      "DrMartens",
-      "DocMartens",
-    ],
+    aliases: ["Doc Martens", "Dr Martens", "DrMartens", "DocMartens"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "united-kingdom",
@@ -4308,12 +4282,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "ba-sh",
     brandName: "ba&sh",
-    aliases: [
-      "baandsh",
-      "ba sh",
-      "bash",
-      "ba and sh",
-    ],
+    aliases: ["baandsh", "ba sh", "bash", "ba and sh"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "france",
@@ -4914,7 +4883,11 @@ export const brandsAE: Brand[] = [
   {
     brandId: "brand-collection-for-ladies",
     brandName: "Brand Collection for Ladies",
-    aliases: ["Brand Collection for Ladies", "BrandCollectionforLadies", "Brand Collection for Ladies Outlet"],
+    aliases: [
+      "Brand Collection for Ladies",
+      "BrandCollectionforLadies",
+      "Brand Collection for Ladies Outlet",
+    ],
     categoryId: "fashion",
     logo: "",
     originCountryId: "poland",
@@ -4968,8 +4941,8 @@ export const brandsAE: Brand[] = [
   },
   {
     brandId: "d-s-damat",
-    brandName: "D\"S Damat",
-    aliases: ["D\"S Damat", "DSDamat", "D\"S Damat Outlet"],
+    brandName: 'D"S Damat',
+    aliases: ['D"S Damat', "DSDamat", 'D"S Damat Outlet'],
     categoryId: "fashion",
     logo: "",
     originCountryId: "poland",
@@ -5057,7 +5030,12 @@ export const brandsAE: Brand[] = [
   {
     brandId: "adventure-sports-rossignol",
     brandName: "Adventure Sports/Rossignol",
-    aliases: ["Adventure Sports", "Rossignol", "Adventure Sports Rossignol", "Adventure Sports/Rossignol"],
+    aliases: [
+      "Adventure Sports",
+      "Rossignol",
+      "Adventure Sports Rossignol",
+      "Adventure Sports/Rossignol",
+    ],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "france",
@@ -5147,7 +5125,6 @@ export const brandsAE: Brand[] = [
     rankingWeight: 68,
     brandStatus: "active",
   },
-
 
   {
     brandId: "bik-bok",
@@ -6357,6 +6334,49 @@ export const brandsAE: Brand[] = [
   {
     brandId: "esotiq",
     brandName: "Esotiq",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "bergson",
+    brandName: "Bergson",
+    aliases: [],
+    categoryId: "outdoor",
+    logo: "",
+    originCountryId: "poland",
+    luxuryLevel: "sports",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
+    brandId: "dajar-home-and-garden",
+    brandName: "Dajar Home & Garden",
+    aliases: ["Dajar Home and Garden", "Dajar"],
+    categoryId: "home-lifestyle",
+    logo: "",
+    originCountryId: "poland",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 58,
+    brandStatus: "active",
+  },
+  {
+    brandId: "deni-cler",
+    brandName: "Deni Cler",
+    aliases: ["Deni Cler Milano"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "poland",
+    luxuryLevel: "premium",
+    rankingWeight: 64,
+    brandStatus: "active",
+  },
+  {
+    brandId: "ellman",
+    brandName: "Ellman",
     aliases: [],
     categoryId: "fashion",
     logo: "",

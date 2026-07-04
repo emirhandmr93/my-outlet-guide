@@ -8,7 +8,8 @@ export const polandOutlets = [
     address: "Plac Czerwca 1976 r. 6, 02-495 Warszawa, Poland",
     latitude: 52.1955,
     longitude: 20.8842,
-    openingHours: "Monday - Saturday 10:00 - 21:00; selected shopping Sundays 10:00 - 20:00; holidays may vary",
+    openingHours:
+      "Monday - Saturday 10:00 - 21:00; selected shopping Sundays 10:00 - 20:00; holidays may vary",
     heroImage: "",
     galleryImages: [],
     storesCountText: "Over 100 outlet stores",
@@ -22,41 +23,41 @@ export const polandOutlets = [
       "Playground",
       "Parent and child room",
       "Centre map",
-      "Tourist information"
+      "Tourist information",
     ],
-    restaurants: [
-      "Costa Coffee",
-      "Gorąco Polecam",
-      "Love It",
-      "So Coffee"
-    ],
+    restaurants: ["Costa Coffee", "Gorąco Polecam", "Love It", "So Coffee"],
     parking: "888 car parking spaces and 28 bicycle parking spaces.",
     taxFreeAvailable: false,
     vatRate: 23,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "200 PLN",
     taxFreeOperator: "Not officially verified",
-    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
+    taxFreeOfficeInfo:
+      "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 10,
     airportDistanceKm: 8,
     airports: [
       {
         code: "WAW",
         name: "Warsaw Chopin Airport",
-        distanceKm: 8
-      }
+        distanceKm: 8,
+      },
     ],
     cityCenterInfo: {
       name: "Warsaw City Centre",
       distanceKm: 10,
-      recommendedRoute: "Use official Warsaw public transport or drive via live map directions to Plac Czerwca 1976 r. 6."
+      recommendedRoute:
+        "Use official Warsaw public transport or drive via live map directions to Plac Czerwca 1976 r. 6.",
     },
     nearby: [],
     websiteUrl: "https://ursus.factory.pl/en",
     status: "active",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Factory%20Ursus%2C%20Plac%20Czerwca%201976%20r.%206%2C%2002-495%20Warszawa%2C%20Poland",
-    appleMapsUrl: "http://maps.apple.com/?q=Factory%20Ursus%2C%20Plac%20Czerwca%201976%20r.%206%2C%2002-495%20Warszawa%2C%20Poland",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Factory%20Ursus%2C%20Plac%20Czerwca%201976%20r.%206%2C%2002-495%20Warszawa%2C%20Poland"
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Factory%20Ursus%2C%20Plac%20Czerwca%201976%20r.%206%2C%2002-495%20Warszawa%2C%20Poland",
+    appleMapsUrl:
+      "http://maps.apple.com/?q=Factory%20Ursus%2C%20Plac%20Czerwca%201976%20r.%206%2C%2002-495%20Warszawa%2C%20Poland",
+    yandexMapsUrl:
+      "https://yandex.com/maps/?text=Factory%20Ursus%2C%20Plac%20Czerwca%201976%20r.%206%2C%2002-495%20Warszawa%2C%20Poland",
   },
   {
     outletId: "factory-annopol",
@@ -67,7 +68,8 @@ export const polandOutlets = [
     address: "Annopol 2, 03-236 Warszawa, Poland",
     latitude: 52.3038,
     longitude: 21.0232,
-    openingHours: "Monday - Saturday 10:00 - 21:00; selected shopping Sundays 10:00 - 20:00; holidays may vary",
+    openingHours:
+      "Monday - Saturday 10:00 - 21:00; selected shopping Sundays 10:00 - 20:00; holidays may vary",
     heroImage: "",
     galleryImages: [],
     storesCountText: "More than 100 outlet stores",
@@ -81,46 +83,52 @@ export const polandOutlets = [
       "Tax free",
       "Playground",
       "Parent and child room",
-      "Centre map"
+      "Centre map",
     ],
     restaurants: [
       "Grycan Lody od Pokoleń",
       "Popolo Pizza i Pasta",
       "So Coffee",
-      "Sphinx"
+      "Sphinx",
     ],
-    parking: "800 car parking spaces, 52 bicycle parking spaces and a Veturilo station.",
+    parking:
+      "800 car parking spaces, 52 bicycle parking spaces and a Veturilo station.",
     taxFreeAvailable: false,
     vatRate: 23,
     estimatedRefundRate: 12,
     minimumTaxFreeSpend: "200 PLN",
     taxFreeOperator: "Not officially verified",
-    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
+    taxFreeOfficeInfo:
+      "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
     cityCenterDistanceKm: 11,
     airportDistanceKm: 18,
     airports: [
       {
         code: "WAW",
         name: "Warsaw Chopin Airport",
-        distanceKm: 18
+        distanceKm: 18,
       },
       {
         code: "WMI",
         name: "Warsaw Modlin Airport",
-        distanceKm: 35
-      }
+        distanceKm: 35,
+      },
     ],
     cityCenterInfo: {
       name: "Warsaw City Centre",
       distanceKm: 11,
-      recommendedRoute: "Use Metro M2 toward Bródno plus a short walk or local tram/bus, or drive via live map directions to Annopol 2."
+      recommendedRoute:
+        "Use Metro M2 toward Bródno plus a short walk or local tram/bus, or drive via live map directions to Annopol 2.",
     },
     nearby: [],
     websiteUrl: "https://annopol.factory.pl/en",
     status: "active",
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Factory%20Annopol%2C%20Annopol%202%2C%2003-236%20Warszawa%2C%20Poland",
-    appleMapsUrl: "http://maps.apple.com/?q=Factory%20Annopol%2C%20Annopol%202%2C%2003-236%20Warszawa%2C%20Poland",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Factory%20Annopol%2C%20Annopol%202%2C%2003-236%20Warszawa%2C%20Poland"
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Factory%20Annopol%2C%20Annopol%202%2C%2003-236%20Warszawa%2C%20Poland",
+    appleMapsUrl:
+      "http://maps.apple.com/?q=Factory%20Annopol%2C%20Annopol%202%2C%2003-236%20Warszawa%2C%20Poland",
+    yandexMapsUrl:
+      "https://yandex.com/maps/?text=Factory%20Annopol%2C%20Annopol%202%2C%2003-236%20Warszawa%2C%20Poland",
   },
   {
     outletId: "wroclaw-fashion-outlet",
@@ -132,9 +140,10 @@ export const polandOutlets = [
     officialWebsite: "https://www.wroclawfashionoutlet.com/en",
     websiteUrl: "https://www.wroclawfashionoutlet.com/en",
     address: "Graniczna 2, 54-610 Wrocław, Poland",
-    latitude: 51.1090,
-    longitude: 16.8870,
-    openingHours: "Mon-Fri 10:00 - 21:00; Sat 09:00 - 21:00; selected Sundays closed",
+    latitude: 51.109,
+    longitude: 16.887,
+    openingHours:
+      "Mon-Fri 10:00 - 21:00; Sat 09:00 - 21:00; selected Sundays closed",
     galleryImages: [],
     rating: 0,
     reviewCount: 0,
@@ -148,28 +157,35 @@ export const polandOutlets = [
       "Nearby parking spots",
       "Dog Friendly",
       "Parent and child room",
-      "Wheelchair friendly"
+      "Wheelchair friendly",
     ],
-    parking: "Official practical information lists Parking & Route at Graniczna 2 and nearby parking spots.",
+    parking:
+      "Official practical information lists Parking & Route at Graniczna 2 and nearby parking spots.",
     taxFreeAvailable: true,
     vatRate: 23,
     estimatedRefundRate: 14,
     minimumTaxFreeSpend: "200 PLN",
     taxFreeOperator: "Not officially verified",
-    taxFreeOfficeInfo: "Official centre amenities list Shop TAX FREE; no specific refund operator or outlet desk process was verified from official outlet/operator sources.",
+    taxFreeOfficeInfo:
+      "Official centre amenities list Shop TAX FREE; no specific refund operator or outlet desk process was verified from official outlet/operator sources.",
     status: "active",
     airportDistanceKm: 4,
     airportInfoText: "Wrocław Airport • 4 km",
     airports: [{ code: "WRO", name: "Wrocław Airport", distanceKm: 4 }],
     cityCenterDistanceKm: 9,
     cityCenterInfoText: "Wrocław City Centre • 9 km",
-    cityCenterInfo: { name: "Wrocław City Centre", distanceKm: 9, recommendedRoute: "Use direct tram or current official map directions." },
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Wroc%C5%82aw%20Fashion%20Outlet%2C%20Graniczna%202%2C%2054-610%20Wroc%C5%82aw%2C%20Poland",
-    appleMapsUrl: "http://maps.apple.com/?q=Wroc%C5%82aw%20Fashion%20Outlet&address=Graniczna%202%2C%2054-610%20Wroc%C5%82aw%2C%20Poland",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Wroc%C5%82aw%20Fashion%20Outlet%2C%20Graniczna%202%2C%2054-610%20Wroc%C5%82aw%2C%20Poland"
-  }
-
-,
+    cityCenterInfo: {
+      name: "Wrocław City Centre",
+      distanceKm: 9,
+      recommendedRoute: "Use direct tram or current official map directions.",
+    },
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Wroc%C5%82aw%20Fashion%20Outlet%2C%20Graniczna%202%2C%2054-610%20Wroc%C5%82aw%2C%20Poland",
+    appleMapsUrl:
+      "http://maps.apple.com/?q=Wroc%C5%82aw%20Fashion%20Outlet&address=Graniczna%202%2C%2054-610%20Wroc%C5%82aw%2C%20Poland",
+    yandexMapsUrl:
+      "https://yandex.com/maps/?text=Wroc%C5%82aw%20Fashion%20Outlet%2C%20Graniczna%202%2C%2054-610%20Wroc%C5%82aw%2C%20Poland",
+  },
   {
     outletId: "designer-outlet-gdansk",
     outletName: "Designer Outlet Gdańsk",
@@ -184,37 +200,50 @@ export const polandOutlets = [
       "Kuchnia Smaku",
       "Papa Gyros",
       "So Coffee",
-      "Thai Express"
+      "Thai Express",
     ],
     officialWebsite: "https://www.designeroutletgdansk.pl/en/",
     websiteUrl: "https://www.designeroutletgdansk.pl/en/",
     address: "ul. Przywidzka 8, 80-174 Gdańsk, Poland",
-    latitude: 54.3330,
+    latitude: 54.333,
     longitude: 18.5753,
     openingHours: "Mon-Sat 09:00 - 21:00; shopping Sundays 09:00 - 20:00",
     galleryImages: [],
     rating: 0,
     reviewCount: 0,
-    storesCountText: "Official centre plan states 100 stores; operator reports more than 110 shops after the latest extension",
+    storesCountText:
+      "Official centre plan states 100 stores; operator reports more than 110 shops after the latest extension",
     services: ["Tax Free", "Disabled Services", "Parking", "Visitor Services"],
-    parking: "Official outlet access/service pages provide visitor parking information; check the official centre page for current details.",
+    parking:
+      "Official outlet access/service pages provide visitor parking information; check the official centre page for current details.",
     taxFreeAvailable: true,
     vatRate: 23,
     estimatedRefundRate: 0,
     minimumTaxFreeSpend: "200 PLN incl. VAT",
     taxFreeOperator: "Not officially verified",
-    taxFreeOfficeInfo: "Official tax-refund page says eligible non-EU tourists must spend at least 200 PLN including VAT, request a TAX FREE form from participating stores, and validate export with Customs; refunds may be handled by a tax-refund operator.",
+    taxFreeOfficeInfo:
+      "Official tax-refund page says eligible non-EU tourists must spend at least 200 PLN including VAT, request a TAX FREE form from participating stores, and validate export with Customs; refunds may be handled by a tax-refund operator.",
     aliases: ["Designer Outlet Gdańsk", "Designer Outlet Gdansk"],
     status: "active",
     airportDistanceKm: 10,
     airportInfoText: "Gdańsk Lech Wałęsa Airport • 10 km",
-    airports: [{ code: "GDN", name: "Gdańsk Lech Wałęsa Airport", distanceKm: 10 }],
+    airports: [
+      { code: "GDN", name: "Gdańsk Lech Wałęsa Airport", distanceKm: 10 },
+    ],
     cityCenterDistanceKm: 9,
     cityCenterInfoText: "Gdańsk City Centre • 9 km",
-    cityCenterInfo: { name: "Gdańsk City Centre", distanceKm: 9, recommendedRoute: "Use current official map directions to ul. Przywidzka 8." },
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Gda%C5%84sk%2C%20ul.%20Przywidzka%208%2C%20Gda%C5%84sk%2C%20Poland",
-    appleMapsUrl: "http://maps.apple.com/?q=Designer%20Outlet%20Gda%C5%84sk&address=ul.%20Przywidzka%208%2C%2080-174%20Gda%C5%84sk%2C%20Poland",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Gda%C5%84sk%2C%20ul.%20Przywidzka%208%2C%20Gda%C5%84sk%2C%20Poland"
+    cityCenterInfo: {
+      name: "Gdańsk City Centre",
+      distanceKm: 9,
+      recommendedRoute:
+        "Use current official map directions to ul. Przywidzka 8.",
+    },
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Gda%C5%84sk%2C%20ul.%20Przywidzka%208%2C%20Gda%C5%84sk%2C%20Poland",
+    appleMapsUrl:
+      "http://maps.apple.com/?q=Designer%20Outlet%20Gda%C5%84sk&address=ul.%20Przywidzka%208%2C%2080-174%20Gda%C5%84sk%2C%20Poland",
+    yandexMapsUrl:
+      "https://yandex.com/maps/?text=Designer%20Outlet%20Gda%C5%84sk%2C%20ul.%20Przywidzka%208%2C%20Gda%C5%84sk%2C%20Poland",
   } as any,
   {
     outletId: "designer-outlet-sosnowiec",
@@ -224,7 +253,13 @@ export const polandOutlets = [
     countryId: "poland",
     cityId: "sosnowiec",
     restaurants: [
-      "Carte D`or"
+      "Thai Express",
+      "Kuchnia Smaku",
+      "So Coffee",
+      "Gorąco Polecam",
+      "Kebaya Kebab",
+      "Carte d'Or",
+      "Big Beef Burger",
     ],
     officialWebsite: "https://www.designeroutletsosnowiec.pl/en/",
     websiteUrl: "https://www.designeroutletsosnowiec.pl/en/",
@@ -235,15 +270,28 @@ export const polandOutlets = [
     galleryImages: [],
     rating: 0,
     reviewCount: 0,
-    storesCountText: "More than 100 fashion brands on the official outlet website",
-    services: ["ATM", "Play Area", "Free Wi-Fi", "Restaurants and Cafes", "Parent and Child Facilities", "Information Point", "Barrier-free Toilets", "Tax Free", "Electric Charging Stations"],
-    parking: "Official outlet access/service pages provide visitor parking information; check the official centre page for current details.",
+    storesCountText:
+      "More than 100 fashion brands on the official outlet website",
+    services: [
+      "ATM",
+      "Play Area",
+      "Free Wi-Fi",
+      "Restaurants and Cafes",
+      "Parent and Child Facilities",
+      "Information Point",
+      "Barrier-free Toilets",
+      "Tax Free",
+      "Electric Charging Stations",
+    ],
+    parking:
+      "Official outlet access/service pages provide visitor parking information; check the official centre page for current details.",
     taxFreeAvailable: true,
     vatRate: 23,
     estimatedRefundRate: 0,
     minimumTaxFreeSpend: "200 PLN incl. VAT",
     taxFreeOperator: "Not officially verified",
-    taxFreeOfficeInfo: "Official tax-refund page says eligible non-EU tourists must spend at least 200 PLN including VAT, request a TAX FREE form from participating stores, and validate export with Customs; refunds may be handled by a tax-refund operator.",
+    taxFreeOfficeInfo:
+      "Official tax-refund page says eligible non-EU tourists must spend at least 200 PLN including VAT, request a TAX FREE form from participating stores, and validate export with Customs; refunds may be handled by a tax-refund operator.",
     aliases: ["Designer Outlet Sosnowiec"],
     status: "active",
     airportDistanceKm: 30,
@@ -251,10 +299,18 @@ export const polandOutlets = [
     airports: [{ code: "KTW", name: "Katowice Airport", distanceKm: 30 }],
     cityCenterDistanceKm: 10,
     cityCenterInfoText: "Sosnowiec City Centre • 10 km",
-    cityCenterInfo: { name: "Sosnowiec City Centre", distanceKm: 10, recommendedRoute: "Use current official map directions to Orląt Lwowskich 138." },
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Sosnowiec%2C%20Orl%C4%85t%20Lwowskich%20138%2C%20Sosnowiec%2C%20Poland",
-    appleMapsUrl: "http://maps.apple.com/?q=Designer%20Outlet%20Sosnowiec&address=Orl%C4%85t%20Lwowskich%20138%2C%2041-208%20Sosnowiec%2C%20Poland",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Sosnowiec%2C%20Orl%C4%85t%20Lwowskich%20138%2C%20Sosnowiec%2C%20Poland"
+    cityCenterInfo: {
+      name: "Sosnowiec City Centre",
+      distanceKm: 10,
+      recommendedRoute:
+        "Use current official map directions to Orląt Lwowskich 138.",
+    },
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Sosnowiec%2C%20Orl%C4%85t%20Lwowskich%20138%2C%20Sosnowiec%2C%20Poland",
+    appleMapsUrl:
+      "http://maps.apple.com/?q=Designer%20Outlet%20Sosnowiec&address=Orl%C4%85t%20Lwowskich%20138%2C%2041-208%20Sosnowiec%2C%20Poland",
+    yandexMapsUrl:
+      "https://yandex.com/maps/?text=Designer%20Outlet%20Sosnowiec%2C%20Orl%C4%85t%20Lwowskich%20138%2C%20Sosnowiec%2C%20Poland",
   } as any,
   {
     outletId: "designer-outlet-warszawa",
@@ -263,9 +319,7 @@ export const polandOutlets = [
     slug: "designer-outlet-warszawa",
     countryId: "poland",
     cityId: "piaseczno",
-    restaurants: [
-      "Green Caffe Nero"
-    ],
+    restaurants: ["Green Caffe Nero"],
     officialWebsite: "https://www.designeroutletwarszawa.pl/en/",
     websiteUrl: "https://www.designeroutletwarszawa.pl/en/",
     address: "Puławska 42E, 05-500 Piaseczno, Poland",
@@ -275,15 +329,23 @@ export const polandOutlets = [
     galleryImages: [],
     rating: 0,
     reviewCount: 0,
-    storesCountText: "Official centre plan states 130 stores; official website says more than 130 fashion brands",
-    services: ["Tax Free Refund", "Shopping Cart Strollers", "Parking", "Visitor Services"],
-    parking: "Official outlet news/service pages mention free parking; check the official centre page for current details.",
+    storesCountText:
+      "Official centre plan states 130 stores; official website says more than 130 fashion brands",
+    services: [
+      "Tax Free Refund",
+      "Shopping Cart Strollers",
+      "Parking",
+      "Visitor Services",
+    ],
+    parking:
+      "Official outlet news/service pages mention free parking; check the official centre page for current details.",
     taxFreeAvailable: true,
     vatRate: 23,
     estimatedRefundRate: 0,
     minimumTaxFreeSpend: "200 PLN incl. VAT",
     taxFreeOperator: "Global Blue / Planet (examples named by official page)",
-    taxFreeOfficeInfo: "Official tax-refund page says eligible non-EU tourists must spend at least 200 PLN including VAT, request hard-copy or electronic tax-free documentation from participating stores, validate with Customs, and may receive refunds through providers such as Global Blue or Planet.",
+    taxFreeOfficeInfo:
+      "Official tax-refund page says eligible non-EU tourists must spend at least 200 PLN including VAT, request hard-copy or electronic tax-free documentation from participating stores, validate with Customs, and may receive refunds through providers such as Global Blue or Planet.",
     aliases: ["Designer Outlet Warszawa", "Designer Outlet Warsaw"],
     status: "active",
     airportDistanceKm: 15,
@@ -291,9 +353,16 @@ export const polandOutlets = [
     airports: [{ code: "WAW", name: "Warsaw Chopin Airport", distanceKm: 15 }],
     cityCenterDistanceKm: 20,
     cityCenterInfoText: "Warsaw City Centre • 20 km",
-    cityCenterInfo: { name: "Warsaw City Centre", distanceKm: 20, recommendedRoute: "Use current official map directions to Puławska 42E." },
-    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Warszawa%2C%20Pu%C5%82awska%2042E%2C%20Piaseczno%2C%20Poland",
-    appleMapsUrl: "http://maps.apple.com/?q=Designer%20Outlet%20Warszawa&address=Pu%C5%82awska%2042E%2C%2005-500%20Piaseczno%2C%20Poland",
-    yandexMapsUrl: "https://yandex.com/maps/?text=Designer%20Outlet%20Warszawa%2C%20Pu%C5%82awska%2042E%2C%20Piaseczno%2C%20Poland"
-  } as any
+    cityCenterInfo: {
+      name: "Warsaw City Centre",
+      distanceKm: 20,
+      recommendedRoute: "Use current official map directions to Puławska 42E.",
+    },
+    googleMapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Designer%20Outlet%20Warszawa%2C%20Pu%C5%82awska%2042E%2C%20Piaseczno%2C%20Poland",
+    appleMapsUrl:
+      "http://maps.apple.com/?q=Designer%20Outlet%20Warszawa&address=Pu%C5%82awska%2042E%2C%2005-500%20Piaseczno%2C%20Poland",
+    yandexMapsUrl:
+      "https://yandex.com/maps/?text=Designer%20Outlet%20Warszawa%2C%20Pu%C5%82awska%2042E%2C%20Piaseczno%2C%20Poland",
+  } as any,
 ];
