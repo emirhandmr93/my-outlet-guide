@@ -309,12 +309,11 @@ export const spainOutlets = [
     cityId: "seville",
     restaurants: [
       "100 Montaditos",
-      "Belros",
       "Five Guys",
-      "Miro tapas",
-      "MITO",
+      "Mito",
+      "Miro Tapas",
       "Pinsere",
-      "Santagloria",
+      "Santa Gloria",
       "Starbucks"
     ],
     officialWebsite: "https://www.sevillafashionoutlet.com/en",

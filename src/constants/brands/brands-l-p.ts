@@ -1895,6 +1895,17 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "noon",
+    brandName: "Noon",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "spain",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
     brandId: "north-sails",
     brandName: "North Sails",
     aliases: ["NorthSails"],
