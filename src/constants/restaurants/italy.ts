@@ -969,7 +969,7 @@ export const italyRestaurants = [
     website: "https://www.mantovavillage.it/en/shop-and-brands-by-category/mJqXvmZz",
     status: "active",
     displayOrder: "2",
-  },,
+  },
   {
     "restaurantId": "vicolungo-the-style-outlets-alice-pizza",
     "outletId": "vicolungo-the-style-outlets",

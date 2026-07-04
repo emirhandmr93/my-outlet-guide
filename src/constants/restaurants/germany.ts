@@ -841,7 +841,7 @@ export const germanyRestaurants = [
     website: "https://halle.leipzig.thestyleoutlets.de/en/restaurants",
     status: "active",
     displayOrder: "5",
-  },,
+  },
   {
     "restaurantId": "designer-outlet-ochtrup-alice-premium-doner",
     "outletId": "designer-outlet-ochtrup",
