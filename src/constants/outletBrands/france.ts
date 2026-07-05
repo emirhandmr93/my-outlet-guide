@@ -3411,4 +3411,493 @@ export const franceOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "aigle",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "american-vintage",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "anne-de-solene",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "aubade",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "armani",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "balibaris",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "berenice",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "boss",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "caroll",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "charles-le-golf",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "claudie-pierlot",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "crocs",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "dim",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "eden-park",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "etam-undiz",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "figaret",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "fursac",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "fusalp",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "gant",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "garcia",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "geox",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "hardrige",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "haribo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "home-and-cook",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "ikks",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "izac",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "jacadi",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "jack-and-jones",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "jott",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "kusmi-tea",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "l-oreal",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "lacoste",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "le-coq-sportif",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "le-creuset",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "les-georgettes",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "les-petites-bombes",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "levi-s",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "lindt",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "maison-123",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "maje",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "millet",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "name-it",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "new-balance",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "only",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "only-and-sons",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "outly",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "pepe-jeans",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "petit-bateau",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "pierre-cardin",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "puma",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "ravensburger",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "river-woods",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "sandro",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "schott",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "sergent-major",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "sessun",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "simone-perele",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "sud-express",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "suncoo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "superdry-and-co",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "swarovski",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "tara-jarmon",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "the-kooples",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "tommy-hilfiger",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "vila",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "yves-delorme",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "roubaix-designer-outlet",
+    brandId: "zadig-and-voltaire",
+    featured: false,
+    relationStatus: "active",
+  },
 ];
