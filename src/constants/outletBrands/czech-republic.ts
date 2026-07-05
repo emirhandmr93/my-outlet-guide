@@ -89,6 +89,12 @@ const fashionArenaPragueOutletBrandIds = [
   "tommy-hilfiger",
   "under-armour",
   "united-colors-of-benetton",
+  "volcom",
+  "wellensteyn",
+  "why-so-serious",
+  "wittchen",
+  "wrangler",
+  "yankee-candle",
 ].sort();
 
 export const czechRepublicOutletBrands: OutletBrand[] = [
