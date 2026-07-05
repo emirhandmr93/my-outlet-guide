@@ -2472,7 +2472,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "zwilling",
     brandName: "Zwilling",
-    aliases: [],
+    aliases: ["ZWILLING"],
     categoryId: "home",
     logo: "",
     originCountryId: "germany",

@@ -1977,8 +1977,8 @@ export const brandsLP: Brand[] = [
   },
   {
     brandId: "masai",
-    brandName: "Masai",
-    aliases: [],
+    brandName: "Masai Copenhagen",
+    aliases: ["Masai"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "denmark",
@@ -3432,7 +3432,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "nike-factory-store",
     brandName: "Nike Factory Store",
-    aliases: [],
+    aliases: ["Nike Outlet"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "sports",

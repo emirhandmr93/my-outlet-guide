@@ -3158,6 +3158,7 @@ export const brandsFK: Brand[] = [
     aliases: [
       "Jack and Jones",
       "Jack Jones",
+      "JACK&JONES",
       "Jack&Jones",
       "JackandJones",
       "JackJones",
@@ -3182,7 +3183,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "jack-and-jones-kids",
     brandName: "Jack & Jones Kids",
-    aliases: ["Jack and Jones Kids", "Jack Jones Kids", "JackJonesKids"],
+    aliases: ["JACK&JONES Kids", "Jack and Jones Kids", "Jack Jones Kids", "JackJonesKids"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -3734,7 +3735,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "julie-sandlau",
     brandName: "Julie Sandlau",
-    aliases: [],
+    aliases: ["JulieSandlau"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "denmark",
@@ -4359,7 +4360,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "kitchen-living-dining",
     brandName: "Kitchen Living Dining",
-    aliases: [],
+    aliases: ["KLD"],
     categoryId: "home",
     logo: "",
     originCountryId: "denmark",
