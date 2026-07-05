@@ -1774,6 +1774,17 @@ export const brandsUZ: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "why-so-serious",
+    brandName: "Why So Serious",
+    aliases: ["WhySoSerious", "Why So Serious Outlet"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "czech-republic",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
     brandId: "willsoor",
     brandName: "Willsoor",
     aliases: ["Willsoor", "Willsoor", "Willsoor Outlet"],
