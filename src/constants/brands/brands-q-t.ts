@@ -4660,4 +4660,15 @@ export const brandsQT: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "toy-planet",
+    brandName: "Toy Planet",
+    aliases: [],
+    categoryId: "kids",
+    logo: "",
+    originCountryId: "spain",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 55,
+    brandStatus: "active",
+  },
 ];

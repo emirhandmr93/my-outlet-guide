@@ -1,6 +1,29 @@
 import type { OutletBrand } from "./index";
 
+const makeOutletBrands = (outletId: string, brandIds: string[]): OutletBrand[] =>
+  brandIds.map((brandId) => ({
+    outletId,
+    brandId,
+    featured: false,
+    relationStatus: "active",
+  }));
+
+const sambilMadridBrandIds = [
+  "benetton",
+  "biker-outlet",
+  "decimas",
+  "drippblue",
+  "fifty-factory",
+  "fk-donna-uomo",
+  "gold-princess",
+  "joma",
+  "outlet-sport",
+  "pepco",
+  "toy-planet",
+];
+
 export const spainOutletBrands: OutletBrand[] = [
+  ...makeOutletBrands("sambil-madrid", sambilMadridBrandIds),
   {
     outletId: "designer-outlet-malaga",
     brandId: "adidas",

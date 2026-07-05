@@ -62,6 +62,23 @@ const fashionHouseOutletCentreBucharestBrandIds = [
   "wittchen",
 ];
 
+const fashionHouseOutletCentrePalladyBrandIds = [
+  "acandco",
+  "adidas",
+  "brands-hub",
+  "bsb",
+  "calvin-klein",
+  "colins",
+  "d-s-damat",
+  "guess",
+  "nike",
+  "samsonite",
+  "sizeer",
+  "tom-tailor",
+  "wittchen",
+];
+
 export const romaniaOutletBrands: OutletBrand[] = [
   ...makeOutletBrands("fashion-house-outlet-centre-bucharest", fashionHouseOutletCentreBucharestBrandIds),
+  ...makeOutletBrands("fashion-house-outlet-centre-pallady", fashionHouseOutletCentrePalladyBrandIds),
 ];
