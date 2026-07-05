@@ -5559,6 +5559,17 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "diadora",
+    brandName: "Diadora",
+    aliases: [],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "sports",
+    rankingWeight: 72,
+    brandStatus: "active",
+  },
+  {
     brandId: "diesel",
     brandName: "Diesel",
     aliases: [],
