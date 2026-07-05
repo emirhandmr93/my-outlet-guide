@@ -404,6 +404,27 @@ export const cities = [
     "cityName": "Piaseczno",
     "countryId": "poland"
   },
+
+  {
+    "cityId": "villefontaine",
+    "cityName": "Villefontaine",
+    "countryId": "france"
+  },
+  {
+    "cityId": "roubaix",
+    "cityName": "Roubaix",
+    "countryId": "france"
+  },
+  {
+    "cityId": "a-coruna",
+    "cityName": "A Coruña",
+    "countryId": "spain"
+  },
+  {
+    "cityId": "las-rozas",
+    "cityName": "Las Rozas",
+    "countryId": "spain"
+  },
   {
     "cityId": "les-clayes-sous-bois",
     "cityName": "Les Clayes-sous-Bois",
