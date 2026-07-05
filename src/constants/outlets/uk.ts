@@ -943,7 +943,7 @@ export const ukOutlets = [
     rating: 0,
     reviewCount: 0,
     services: ["Free Parking", "Guest Services", "Centre Map", "Access and Mobility", "PLUS+ Membership", "Dog Friendly", "Personal Styling"],
-    restaurants: [],
+    restaurants: ["Bill's", "Brick Lane Bagel Co", "Churros", "Cornish Bakery", "Costa Coffee", "Gelato è Ciambella", "PizzaExpress", "Pret A Manger", "SMÄSHED", "The Real Greek", "Thick or Thin? Piadina", "Top Dog", "Wildwood"],
     parking: "Official centre pages list free parking for up to 6 hours, two car parks, more than 1,660 spaces, accessible bays, family bays, and coach spaces.",
     taxFreeAvailable: false,
     vatRate: 20,

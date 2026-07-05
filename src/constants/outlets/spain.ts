@@ -525,7 +525,7 @@ export const spainOutlets = [
     rating: 0,
     reviewCount: 0,
     services: ["Parking", "Restaurants & Cafes", "Leisure", "Cinema", "Accessibility"],
-    restaurants: [],
+    restaurants: ["100 Montaditos", "Acadios Kebab", "Anubis Coctelería", "Burger King", "Candy Candy", "El Reino Asador", "Pure & Bowl"],
     parking: "Official centre pages include visitor information for the centre; confirm current parking details on the official website before visiting.",
     taxFreeAvailable: false,
     vatRate: 21,

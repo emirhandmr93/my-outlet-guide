@@ -2868,6 +2868,135 @@ export const ukRestaurants = [
     "website": "https://livingston-designer-outlet.co.uk/store-directory",
     "status": "active",
     "displayOrder": "933"
+  },
+  {
+    "restaurantId": "braintree-village-bills",
+    "outletId": "braintree-village",
+    "restaurantName": "Bill's",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "braintree-village-brick-lane-bagel-co",
+    "outletId": "braintree-village",
+    "restaurantName": "Brick Lane Bagel Co",
+    "category": "Bagels",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "braintree-village-churros",
+    "outletId": "braintree-village",
+    "restaurantName": "Churros",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "braintree-village-cornish-bakery",
+    "outletId": "braintree-village",
+    "restaurantName": "Cornish Bakery",
+    "category": "Bakery Cafe",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "braintree-village-costa-coffee",
+    "outletId": "braintree-village",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "braintree-village-gelato-e-ciambella",
+    "outletId": "braintree-village",
+    "restaurantName": "Gelato è Ciambella",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "braintree-village-pizzaexpress",
+    "outletId": "braintree-village",
+    "restaurantName": "PizzaExpress",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "braintree-village-pret-a-manger",
+    "outletId": "braintree-village",
+    "restaurantName": "Pret A Manger",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "8"
+  },
+  {
+    "restaurantId": "braintree-village-smashed",
+    "outletId": "braintree-village",
+    "restaurantName": "SMÄSHED",
+    "category": "Burgers",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "9"
+  },
+  {
+    "restaurantId": "braintree-village-the-real-greek",
+    "outletId": "braintree-village",
+    "restaurantName": "The Real Greek",
+    "category": "Greek",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "10"
+  },
+  {
+    "restaurantId": "braintree-village-thick-or-thin-piadina",
+    "outletId": "braintree-village",
+    "restaurantName": "Thick or Thin? Piadina",
+    "category": "Piadina",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "11"
+  },
+  {
+    "restaurantId": "braintree-village-top-dog",
+    "outletId": "braintree-village",
+    "restaurantName": "Top Dog",
+    "category": "Street Food",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "12"
+  },
+  {
+    "restaurantId": "braintree-village-wildwood",
+    "outletId": "braintree-village",
+    "restaurantName": "Wildwood",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://www.braintree-village.com/en/eat-listing",
+    "status": "active",
+    "displayOrder": "13"
   }
-
 ];
