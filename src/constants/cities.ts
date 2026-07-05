@@ -430,4 +430,29 @@ export const cities = [
     "cityName": "Les Clayes-sous-Bois",
     "countryId": "france"
   },
+  {
+    "cityId": "molfetta",
+    "cityName": "Molfetta",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "agira",
+    "cityName": "Agira",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "locate-triulzi",
+    "cityName": "Locate di Triulzi",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "settimo-torinese",
+    "cityName": "Settimo Torinese",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "mondovi",
+    "cityName": "Mondovì",
+    "countryId": "italy"
+  },
 ];
