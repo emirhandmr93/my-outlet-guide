@@ -17,11 +17,11 @@ the-body-shop,The Body Shop,body shop,beauty,,,united-kingdom,lifestyle,,82,acti
 yves-rocher,Yves Rocher,,beauty,,,france,lifestyle,,82,active
 beaute-prestige-international,Beauté Prestige International,bpi;beaute prestige international,beauty,,,france,premium,,55,active
 polo-ralph-lauren,Polo Ralph Lauren,ralph lauren;polo,fashion,,,united-states,premium,,95,active
-boss,BOSS,hugo boss;boss,fashion,,,germany,premium,,90,active
+boss,BOSS,boss;hugo boss,fashion,,,germany,premium,,90,active
 calvin-klein,Calvin Klein,ck,fashion,,,united-states,fashion,,90,active
 lacoste,Lacoste,,fashion,,,france,fashion,,90,active
-levis,Levi's,levis;levi strauss,fashion,,,united-states,fashion,,90,active
-tommy-hilfiger,Tommy Hilfiger,tommy,fashion,,,united-states,fashion,,90,active
+levis,Levi's,levi strauss;levis;Levi’s,fashion,,,united-states,fashion,,90,active
+tommy-hilfiger,Tommy Hilfiger,tommy;TOMMY HILFIGER,fashion,,,united-states,fashion,,90,active
 uniqlo,Uniqlo,,fashion,,,japan,lifestyle,,90,active
 off-white,Off-White,off white,fashion,,,italy,premium,,88,active
 armani-exchange,Armani Exchange,a|x;ax,fashion,,,italy,fashion,,82,active
@@ -29,14 +29,14 @@ moschino,Moschino,,fashion,,,italy,premium,,82,active
 tommy-jeans,Tommy Jeans,,fashion,,,united-states,fashion,,82,active
 a-bathing-ape,A Bathing Ape,bape,fashion,,,japan,fashion,,80,active
 diesel,Diesel,,fashion,,,italy,fashion,,80,active
-guess,Guess,,fashion,,,united-states,fashion,,80,active
-hugo,HUGO,hugo boss,fashion,,,germany,fashion,,80,active
+guess,Guess,GUESS,fashion,,,united-states,fashion,,80,active
+hugo,HUGO,Hugo;hugo boss,fashion,,,germany,fashion,,80,active
 karl-lagerfeld,KARL LAGERFELD,karl,fashion,,,france,premium,,80,active
 kenzo,Kenzo,,fashion,,,france,fashion,,80,active
 max-mara,Max Mara,,fashion,,,italy,premium,,80,active
 dsquared2,Dsquared2,dsquared,fashion,,,italy,premium,,78,active
 g-star-raw,G-Star RAW,g-star;g star,fashion,,,netherlands,fashion,,78,active
-gant,GANT,,fashion,,,united-states,fashion,,78,active
+gant,GANT,Gant,fashion,,,united-states,fashion,,78,active
 superdry,Superdry,,fashion,,,united-kingdom,fashion,,78,active
 ami-paris,Ami Paris,ami,fashion,,,france,fashion,,75,active
 fred-perry,Fred Perry,,fashion,,,united-kingdom,fashion,,75,active
@@ -51,11 +51,11 @@ replay,Replay,,fashion,,,italy,fashion,,72,active
 ted-baker,Ted Baker,,fashion,,,united-kingdom,fashion,,72,active
 acne-studios,Acne Studios,,fashion,,,sweden,fashion,,70,active
 evisu,Evisu,,fashion,,,japan,fashion,,70,active
-marc-opolo,Marc O'Polo,marc opolo,fashion,,,germany,fashion,,70,active
+marc-opolo,Marc O’Polo,Marc O'Polo;marc opolo,fashion,,,germany,fashion,,70,active
 mlb-korea,MLB Korea,mlb,fashion,,,south-korea,fashion,,70,active
 scotch-and-soda,Scotch & Soda,scotch and soda,fashion,,,netherlands,fashion,,70,active
-the-kooples,The Kooples,,fashion,,,france,fashion,,70,active
-zadig-and-voltaire,Zadig & Voltaire,zadig,fashion,,,france,fashion,,70,active
+the-kooples,The Kooples,KOOPLES,fashion,,,france,fashion,,70,active
+zadig-and-voltaire,Zadig & Voltaire,zadig;Zadig and Voltaire,fashion,,,france,fashion,,70,active
 bash,ba&sh,bash,fashion,,,france,fashion,,65,active
 k-way,K-Way,kway,fashion,,,france,fashion,,65,active
 anne-fontaine,Anne Fontaine,,fashion,,,france,fashion,,60,active
@@ -74,7 +74,7 @@ laduree,Ladurée,laduree,food-chocolate,,,france,premium,,85,active
 pierre-herme-paris,Pierre Hermé Paris,pierre herme,food-chocolate,,,france,premium,,80,active
 venchi,Venchi,,food-chocolate,,,italy,premium,,75,active
 bose,Bose,,home-lifestyle,,,united-states,premium,,85,active
-le-creuset,Le Creuset,,home-lifestyle,,,france,premium,,85,active
+le-creuset,Le Creuset,LE CREUSET,home-lifestyle,,,france,premium,,85,active
 muji,Muji,mujirushi,home-lifestyle,,,japan,lifestyle,,85,active
 baccarat,Baccarat,,home-lifestyle,,,france,luxury,,80,active
 tefal,Tefal,,home-lifestyle,,,france,lifestyle,,80,active
@@ -179,3 +179,44 @@ reebok,Reebok,,sportswear,,,united-states,sports,,80,active
 anta,Anta,,sportswear,,,china,sports,,75,active
 li-ning,Li-Ning,lining,sportswear,,,china,sports,,75,active
 descente,Descente,,sportswear,,,japan,sports,,72,active
+american-vintage,American Vintage,,fashion,,,,mid,,50,active
+betty-barclay,Betty Barclay,,fashion,,,,mid,,50,active
+boss-orange,Boss Orange,BOSS Orange,fashion,,,,mid,,50,active
+calvin-klein-underwear,Calvin Klein Underwear,CK Underwear,fashion,,,,mid,,50,active
+desigual,Desigual,,fashion,,,,mid,,50,active
+dim-outlet,DIM Outlet,DIM,fashion,,,,mid,,50,active
+essie,Essie,,beauty,,,,mid,,50,active
+garcia,Garcia,,fashion,,,,mid,,50,active
+garnier,Garnier,,beauty,,,,mid,,50,active
+geographical-norway,Geographical Norway,,fashion,,,,mid,,50,active
+gil-bret,Gil Bret,,fashion,,,,mid,,50,active
+home-and-cook,Home & Cook,,home-lifestyle,,,,mid,,50,active
+hunkemoller,Hunkemöller,Hunkemoller,fashion,,,,mid,,50,active
+jack-and-jones,Jack & Jones,Jack and Jones;JACK&JONES,fashion,,,,mid,,50,active
+jerem-paris,Jerem Paris,,fashion,,,,mid,,50,active
+jjxx,JJXX,Jjxx,fashion,,,,mid,,50,active
+krups,Krups,,home-lifestyle,,,,mid,,50,active
+l-oreal,L'Oréal,Loreal,beauty,,,,mid,,50,active
+lagostina,Lagostina,,home-lifestyle,,,,mid,,50,active
+maybelline-new-york,Maybelline New York,Maybelline,beauty,,,,mid,,50,active
+moulinex,Moulinex,,home-lifestyle,,,,mid,,50,active
+mustang,Mustang,,fashion,,,,mid,,50,active
+name-it,Name It,name it,kids,,,,mid,,50,active
+nyx-professional-makeup,NYX Professional Makeup,NYX,beauty,,,,mid,,50,active
+o-neill,O'Neill,,sportswear,,,,mid,,50,active
+desforges,Desforges,,home-lifestyle,,,,mid,,50,active
+only,Only,ONLY,fashion,,,,mid,,50,active
+only-and-sons,Only & Sons,ONLY & SONS,fashion,,,,mid,,50,active
+peluches-a-gogo,Peluches à Gogo,,kids,,,,mid,,50,active
+petrol-industries,Petrol Industries,,fashion,,,,mid,,50,active
+rowenta,Rowenta,,home-lifestyle,,,,mid,,50,active
+schiesser,Schiesser,,fashion,,,,mid,,50,active
+state-of-art-menswear,State of Art Menswear,State of Art,fashion,,,,mid,,50,active
+the-kooples-sport,The Kooples Sport,Sport The Kooples,fashion,,,,mid,,50,active
+tradition-des-vosges,Tradition des Vosges,,home-lifestyle,,,,mid,,50,active
+trespass,Trespass,,sportswear,,,,mid,,50,active
+vera-mont,Vera Mont,,fashion,,,,mid,,50,active
+vero-moda,Vero Moda,VERO MODA,fashion,,,,mid,,50,active
+vila,Vila,,fashion,,,,mid,,50,active
+wonderbra,Wonderbra,,fashion,,,,mid,,50,active
+yves-delorme-outlet,Yves Delorme Outlet,Yves Delorme,home-lifestyle,,,,mid,,50,active
