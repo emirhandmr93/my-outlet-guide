@@ -2,6 +2,39 @@ import type { Brand } from "../../types/brand";
 
 export const brandsFK: Brand[] = [
   {
+    brandId: "falcons",
+    brandName: "Falcon's",
+    aliases: ["Falcons"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "hungary",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
+    brandId: "hervis-sports",
+    brandName: "Hervis Sports",
+    aliases: ["Hervis"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "austria",
+    luxuryLevel: "sports",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
+    brandId: "kocka-store",
+    brandName: "Kocka Store",
+    aliases: ["Kocka"],
+    categoryId: "toys",
+    logo: "",
+    originCountryId: "hungary",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
     brandId: "faberge",
     brandName: "Faberge",
     aliases: ["Faberge"],
@@ -1014,7 +1047,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "gant",
     brandName: "GANT",
-    aliases: ["Gant"],
+    aliases: ["Gant", "GANT Man", "GANT Woman"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
@@ -1599,7 +1632,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "guess",
     brandName: "GUESS",
-    aliases: ["Guess", "GUESS Factory", "GUESSFactory"],
+    aliases: ["Guess", "GUESS Accessories", "GUESS Factory", "GUESS Kids", "GUESSAccessories", "GUESSFactory", "GUESSKids"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",
