@@ -436,7 +436,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "le-creuset",
     brandName: "Le Creuset",
-    aliases: ["LeCreuset"],
+    aliases: ["LE CREUSET", "LeCreuset"],
     categoryId: "home",
     logo: "",
     originCountryId: "france",
@@ -535,7 +535,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "lee-wrangler",
     brandName: "Lee Wrangler",
-    aliases: ["LeeWrangler"],
+    aliases: ["Lee & WRANGLER", "Lee & Wrangler", "LeeWrangler"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -3337,7 +3337,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "new-balance",
     brandName: "New Balance",
-    aliases: ["New Balance Factory Store", "NewBalance"],
+    aliases: ["NB", "New Balance Factory Store", "NewBalance"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "united-states",
@@ -4986,12 +4986,23 @@ export const brandsLP: Brand[] = [
   {
     brandId: "pierre-cardin",
     brandName: "Pierre Cardin",
-    aliases: ["PierreCardin"],
+    aliases: ["pierre cardin", "PierreCardin"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "france",
     luxuryLevel: "premium",
     rankingWeight: 76,
+    brandStatus: "active",
+  },
+  {
+    brandId: "pitbull",
+    brandName: "Pitbull",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "poland",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
     brandStatus: "active",
   },
   {
