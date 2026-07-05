@@ -9,22 +9,31 @@ const makeOutletBrands = (outletId: string, brandIds: string[]): OutletBrand[] =
   }));
 
 const t1TallinnOutletBrandIds = [
-  "aanda-tally-weijl",
+  "aanda",
+  "cotton-box",
   "denim-dream-outlet",
+  "easy-travel",
+  "flambrex",
+  "froddo",
   "halfprice",
   "hc-pro-outlet",
+  "mandarina-duck",
   "ns-king-bonus-outlet",
   "ohoo-outlet",
-  "pere-optika-outlet",
+  "petroff",
   "premium-sneaker-outlet",
   "rademar-outlet",
-  "rahva-raamat",
   "salamander-outlet",
+  "sinsay",
   "sokisahtel-outlet",
   "sportland-outlet",
   "sportplus-outlet",
+  "tally-weijl",
   "terranova",
-  "upgreat"
+  "tomas-gold",
+  "upgreat",
+  "xs-manguasjad",
+  "yves-rocher",
 ];
 
 export const estoniaOutletBrands: OutletBrand[] = [
