@@ -6077,4 +6077,15 @@ export const brandsLP: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "luke-boys",
+    brandName: "LUKE Boys",
+    aliases: ["Luke Boys"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
 ];

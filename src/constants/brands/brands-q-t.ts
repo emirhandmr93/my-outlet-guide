@@ -3604,6 +3604,17 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "the-rangers-store",
+    brandName: "The Rangers Store",
+    aliases: ["Rangers Store"],
+    categoryId: "sportswear",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
     brandId: "the-range",
     brandName: "The Range",
     aliases: ["TheRange"],

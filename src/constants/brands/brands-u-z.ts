@@ -2656,4 +2656,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "yajihula-anime",
+    brandName: "Yajihula Anime",
+    aliases: ["Yajihula"],
+    categoryId: "accessories",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
 ];
