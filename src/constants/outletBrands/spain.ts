@@ -16,10 +16,18 @@ const sambilMadridBrandIds = [
   "fifty-factory",
   "fk-donna-uomo",
   "gold-princess",
+  "jack-jones",
   "joma",
+  "outlet-el-corte-ingles",
   "outlet-sport",
   "pepco",
+  "promise",
+  "sergio-y-cano",
+  "spagnolo",
+  "sqrups",
+  "tantrend",
   "toy-planet",
+  "tuc-tuc",
 ];
 
 export const spainOutletBrands: OutletBrand[] = [
