@@ -1093,7 +1093,41 @@ export const italyOutlets = [
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Mondovicino%20Outlet%20Village%2C%20Mondov%C3%AC%20CN%2C%20Italy",
     appleMapsUrl: "http://maps.apple.com/?q=Mondovicino%20Outlet%20Village&address=Mondov%C3%AC%20CN%2C%20Italy",
     yandexMapsUrl: "https://yandex.com/maps/?text=Mondovicino%20Outlet%20Village%2C%20Mondov%C3%AC%20CN%2C%20Italy"
+  } as any,
+  {
+    outletId: "brugnato-5terre-outlet-village",
+    name: "Brugnato 5Terre Outlet Village",
+    slug: "brugnato-5terre-outlet-village",
+    aliases: ["Brugnato 5Terre Outlet Village", "Brugnato 5 Terre Outlet Village", "5Terre Outlet Village", "Brugnato Outlet"],
+    countryId: "italy",
+    cityId: "brugnato",
+    address: "Via Nuova Antica Romana snc, 19020 Brugnato SP, Italy",
+    latitude: 44.2365,
+    longitude: 9.7287,
+    openingHours: "Mon-Sun 10:00 - 21:00; seasonal Summer Nights may vary",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "Over 70 brands",
+    rating: 0,
+    reviewCount: 0,
+    services: ["Parking", "Info Point", "Gift Card", "Shuttle / Transport Info", "VIP Club", "App"],
+    restaurants: [],
+    parking: "Official visit pages include parking/visitor information; confirm current parking details on the official website before visiting.",
+    taxFreeAvailable: false,
+    vatRate: 22,
+    estimatedRefundRate: 12,
+    minimumTaxFreeSpend: "70.01 EUR",
+    taxFreeOperator: "Not officially verified",
+    taxFreeOfficeInfo: "No official outlet/operator tax-free desk or specific tax-free operator information was verified for this outlet. Eligible visitors should confirm directly with individual stores before purchase.",
+    cityCenterDistanceKm: 1,
+    airportDistanceKm: 85,
+    airports: [{ code: "PSA", name: "Pisa International Airport", distanceKm: 85 }, { code: "GOA", name: "Genoa Cristoforo Colombo Airport", distanceKm: 90 }],
+    cityCenterInfo: { name: "Brugnato Town Centre", distanceKm: 1, recommendedRoute: "Use current official map directions to Via Nuova Antica Romana." },
+    nearby: [],
+    websiteUrl: "https://www.brugnato5terreoutletvillage.it/it/",
+    status: "active",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Brugnato%205Terre%20Outlet%20Village%2C%20Via%20Nuova%20Antica%20Romana%2C%20Brugnato%2C%20Italy",
+    appleMapsUrl: "http://maps.apple.com/?q=Brugnato%205Terre%20Outlet%20Village&address=Via%20Nuova%20Antica%20Romana%2C%20Brugnato%2C%20Italy",
+    yandexMapsUrl: "https://yandex.com/maps/?text=Brugnato%205Terre%20Outlet%20Village%2C%20Via%20Nuova%20Antica%20Romana%2C%20Brugnato%2C%20Italy"
   } as any
-
-
 ];

@@ -460,4 +460,14 @@ export const cities = [
     "cityName": "Mondovì",
     "countryId": "italy"
   },
+  {
+    "cityId": "brugnato",
+    "cityName": "Brugnato",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "braintree",
+    "cityName": "Braintree",
+    "countryId": "united-kingdom"
+  }
 ];
