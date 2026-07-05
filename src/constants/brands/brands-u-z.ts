@@ -740,7 +740,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "united-colors-of-benetton",
     brandName: "United Colors of Benetton",
-    aliases: ["United Colours of Benetton"],
+    aliases: ["Benetton", "United Colours of Benetton"],
     categoryId: "sportswear",
     logo: "",
     luxuryLevel: "premium",
@@ -1828,7 +1828,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "wmf",
     brandName: "WMF",
-    aliases: [],
+    aliases: ["W.M.F."],
     categoryId: "home",
     logo: "",
     originCountryId: "germany",
@@ -2097,8 +2097,8 @@ export const brandsUZ: Brand[] = [
   },
   {
     brandId: "yes-zee",
-    brandName: "YES ZEE",
-    aliases: [],
+    brandName: "Yes Zee",
+    aliases: ["YES ZEE", "YES-ZEE"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
