@@ -4594,4 +4594,15 @@ export const brandsQT: Brand[] = [
     rankingWeight: 62,
     brandStatus: "active",
   },
+  {
+    brandId: "soeur",
+    brandName: "Soeur",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
 ];

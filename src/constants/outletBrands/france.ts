@@ -3900,4 +3900,858 @@ export const franceOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "adidas",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "adj-paris",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "aigle",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "american-vintage",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "anne-de-solene",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "armani",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "asics",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "aubade",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "ba-and-sh",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "balibaris",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "birkenstock",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "blanc-des-vosges",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "boggi-milano",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "boss",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "cacharel",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "calvin-klein",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "caroll",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "charles-le-golf",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "clarins",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "claudie-pierlot",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "coach",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "colmar",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "columbia",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "converse",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "crocs",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "cyrillus",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "des-petits-hauts",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "desigual",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "diesel",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "dim",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "dimension-stores",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "dodo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "eden-park",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "eric-bompard",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "etam",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "faguo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "figaret",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "finsbury",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "from-future",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "furla",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "fursac",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "fusalp",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "g-star",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "galeries-lafayette-outlet",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "gant",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "garcia",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "geox",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "gerard-darel",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "gertrude",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "hackett",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "hardrige",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "haribo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "heschung",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "home-and-cook",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "hugo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "ikks",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "iris-galerie",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "iro",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "izac",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "jott",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "karl-lagerfeld",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "kids-around",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "kujten",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "kusmi-tea",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "lacoste",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "lacroix",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "lancaster",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "lancel",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "le-coq-sportif",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "le-creuset",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "le-tanneur",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "le-temps-des-cerises",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "les-petites-bombes",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "levis",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "lindt",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "loccitane-en-provence",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "loreal",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "maison-123",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "maje",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "millet",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "new-balance",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "nike",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "notshy",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "odlo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "pandora",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "pepe-jeans",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "petit-bateau",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "polo-ralph-lauren",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "puma",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "pyrenex",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "quiksilver",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "rituals",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "salomon",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "sandro",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "schott",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "serge-blanco",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "simone-perele",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "soeur",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "st-dupont",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "sud-express",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "sun-valley",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "sunglass-hut",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "superdry",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "tara-jarmon",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "the-cosmetics-company-store",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "the-kooples",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "the-north-face",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "timberland",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "tommy-hilfiger",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "triumph",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "under-armour",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "ungaro",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "vanessa-bruno",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "villeroy-and-boch",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "wmf",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "yves-delorme",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "zadig-and-voltaire",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "zapa",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "the-village-outlet",
+    brandId: "zwilling",
+    featured: false,
+    relationStatus: "active",
+  },
 ];
