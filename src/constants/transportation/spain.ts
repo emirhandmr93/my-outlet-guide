@@ -323,40 +323,6 @@ export const spainTransportation = [
   },
 
   {
-    "transportationId": "las-rozas-the-style-outlets-car",
-    "outletId": "las-rozas-the-style-outlets",
-    "transportType": "car",
-    "title": "Car to Avenida del Noroeste",
-    "duration": "Check live traffic",
-    "cost": "Road costs vary; parking is free",
-    "tip": "The official directions page lists car access and places Las Rozas The Style Outlets at Avenida del Noroeste s/n, 28232 Las Rozas; check live traffic before travel.",
-    "status": "active",
-    "displayOrder": "1"
-  },
-  {
-    "transportationId": "las-rozas-the-style-outlets-parking",
-    "outletId": "las-rozas-the-style-outlets",
-    "transportType": "car",
-    "title": "Free Centre Parking",
-    "duration": "On site",
-    "cost": "Free parking",
-    "tip": "The official parking page states Las Rozas The Style Outlets has free customer parking with 345 car spaces and also shares free covered parking with Leroy Merlin.",
-    "status": "active",
-    "displayOrder": "2"
-  },
-  {
-    "transportationId": "las-rozas-the-style-outlets-public-transport",
-    "outletId": "las-rozas-the-style-outlets",
-    "transportType": "bus",
-    "title": "Public Transport to Las Rozas",
-    "duration": "Check official Madrid transport timetable",
-    "cost": "Check official CRTM fare",
-    "tip": "The official directions page lists public-transport access for Las Rozas The Style Outlets. Plan current bus or rail access with official Madrid transport operators before travelling.",
-    "status": "active",
-    "displayOrder": "3"
-  },
-
-  {
     "transportationId": "san-sebastian-de-los-reyes-the-style-outlets-car",
     "outletId": "san-sebastian-de-los-reyes-the-style-outlets",
     "transportType": "car",

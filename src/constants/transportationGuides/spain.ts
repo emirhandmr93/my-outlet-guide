@@ -366,43 +366,6 @@ export const spainTransportationGuides: TransportationGuide[] = [
     updatedAt: "2026-07-05",
   },
   {
-    guideId: "las-rozas-the-style-outlets-car-parking-guide",
-    outletId: "las-rozas-the-style-outlets",
-    originType: "city_center",
-    originId: "madrid-city-center",
-    transportationType: "taxi",
-    title: "Madrid to Las Rozas The Style Outlets by Car or Taxi",
-    estimatedDuration: "check live traffic",
-    estimatedCost: "free parking; taxi/private-transfer fare confirm with provider",
-    recommended: true,
-    steps: [
-      { order: 1, description: "Set navigation to Las Rozas The Style Outlets, Avenida del Noroeste s/n, 28232 Las Rozas, Madrid." },
-      { order: 2, description: "Use the official directions page and live traffic to approach the centre by car or licensed taxi." },
-      { order: 3, description: "Park in the official free customer parking; the centre lists 345 car spaces and free covered parking shared with Leroy Merlin." },
-      { order: 4, description: "If using a taxi or private transfer, confirm the return pickup point and fare before entering the centre." },
-    ],
-    updatedAt: "2026-07-05",
-  },
-  {
-    guideId: "madrid-to-las-rozas-style-outlets-public-transport",
-    outletId: "las-rozas-the-style-outlets",
-    originType: "city_center",
-    originId: "madrid-city-center",
-    transportationType: "bus",
-    title: "Madrid to Las Rozas The Style Outlets by Public Transport",
-    estimatedDuration: "check official Madrid transport timetable",
-    estimatedCost: "check official CRTM fare before travel",
-    recommended: false,
-    steps: [
-      { order: 1, description: "Use the official CRTM or Madrid transport planner for Las Rozas The Style Outlets, Avenida del Noroeste s/n, before travelling." },
-      { order: 2, description: "Travel only on the bus, rail, or combined route confirmed by the official operator or the centre's public-transport access page." },
-      { order: 3, description: "After alighting, follow signed pedestrian access to Las Rozas The Style Outlets." },
-      { order: 4, description: "Before shopping, check the official return timetable to Madrid and the correct fare zone." },
-    ],
-    updatedAt: "2026-07-05",
-  },
-
-  {
     guideId: "madrid-to-getafe-style-outlets-public-transport",
     outletId: "getafe-the-style-outlets",
     originType: "city_center",
@@ -473,5 +436,5 @@ export const spainTransportationGuides: TransportationGuide[] = [
       { order: 4, description: "If using a taxi, confirm the return pickup point and fare method before shopping." },
     ],
     updatedAt: "2026-07-04",
-  },
+  }
 ];
