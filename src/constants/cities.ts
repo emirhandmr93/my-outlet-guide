@@ -55,6 +55,11 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "fleetwood",
+    "cityName": "Fleetwood",
+    "countryId": "united-kingdom"
+  },
+  {
     "cityId": "florence",
     "cityName": "Florence",
     "countryId": "italy"
@@ -122,6 +127,11 @@ export const cities = [
   {
     "cityId": "liverpool",
     "cityName": "Liverpool",
+    "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "livingston",
+    "cityName": "Livingston",
     "countryId": "united-kingdom"
   },
   {
