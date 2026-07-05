@@ -2618,4 +2618,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 70,
     brandStatus: "active",
   },
+  {
+    brandId: "ungaro",
+    brandName: "Ungaro",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "france",
+    luxuryLevel: "premium",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
 ];
