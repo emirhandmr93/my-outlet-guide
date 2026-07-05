@@ -75,4 +75,21 @@ export const romaniaTransportationGuides: TransportationGuide[] = [
     ],
     updatedAt: "2026-07-03",
   },
+  {
+    guideId: "bucharest-to-fashion-house-pallady-car-a2-cernica",
+    outletId: "fashion-house-outlet-centre-pallady",
+    originType: "city_center",
+    originId: "bucharest-city-center",
+    transportationType: "taxi",
+    title: "Bucharest to Fashion House Outlet Centre Pallady by Car",
+    estimatedDuration: "Check current map directions",
+    estimatedCost: "Not specified by official source",
+    recommended: true,
+    steps: [
+      { order: 1, description: "Set the destination to Fashion House Outlet Centre Pallady, Intrarea pe A2, km 15, Cernica, Ilfov." },
+      { order: 2, description: "Travel toward Autostrada Soarelui A2 and use the Cernica exit area identified by the official Pallady page." },
+      { order: 3, description: "Follow current road signs and map navigation for the final approach to the outlet entrance." },
+    ],
+    updatedAt: "2026-07-05",
+  }
 ];

@@ -42,5 +42,16 @@ export const romaniaTransportation = [
     "tip": "From Bucharest Henri Coandă Airport, the simplest route is by car, official airport taxi, ride-hail or rental car via the northern ring-road/A1 approaches; no official dedicated outlet airport shuttle is published.",
     "status": "active",
     "displayOrder": "4"
+  },
+  {
+    "transportationId": "fashion-house-pallady-car-a2-cernica",
+    "outletId": "fashion-house-outlet-centre-pallady",
+    "transportType": "car",
+    "title": "Car via Autostrada Soarelui A2 / Cernica exit",
+    "duration": "Official source verifies the location on A2, km 15; check current map directions before departure",
+    "cost": "Not specified by official source",
+    "tip": "Fashion House identifies Pallady at the entrance to A2, km 15, Cernica, Ilfov, and describes it as opened on Autostrada Soarelui A2, km 15 at the Cernica exit. Use current official map navigation for the final approach.",
+    "status": "active",
+    "displayOrder": "1"
   }
 ];
