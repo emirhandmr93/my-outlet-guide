@@ -2,6 +2,17 @@ import type { Brand } from "../../types/brand";
 
 export const brandsQT: Brand[] = [
   {
+    brandId: "terraces",
+    brandName: "Terraces",
+    aliases: ["Terraces Outlet", "Terraces Menswear"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "fashion",
+    rankingWeight: 45,
+    brandStatus: "active",
+  },
+  {
     brandId: "q-pot",
     brandName: "Q-pot.",
     aliases: ["Q-pot", "Q pot", "Qpot"],
@@ -3639,8 +3650,8 @@ export const brandsQT: Brand[] = [
   {
     brandId: "the-sweet-emporium",
     brandName: "The Sweet Emporium",
-    aliases: ["TheSweetEmporium"],
-    categoryId: "accessories",
+    aliases: ["TheSweetEmporium", "Peggy Annes Sweet Emporium"],
+    categoryId: "food-confectionery",
     logo: "",
     originCountryId: "united-kingdom",
     luxuryLevel: "lifestyle",
