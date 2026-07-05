@@ -431,11 +431,6 @@ export const cities = [
     "countryId": "spain"
   },
   {
-    "cityId": "las-rozas",
-    "cityName": "Las Rozas",
-    "countryId": "spain"
-  },
-  {
     "cityId": "les-clayes-sous-bois",
     "cityName": "Les Clayes-sous-Bois",
     "countryId": "france"
