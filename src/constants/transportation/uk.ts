@@ -374,6 +374,94 @@ export const ukTransportation = [
       "displayOrder": "6"
   },
   {
+      "transportationId": "fleetwood-outlet-car-parking",
+      "outletId": "fleetwood-outlet",
+      "transportType": "car",
+      "title": "Car / Parking",
+      "duration": "Exit M55 at Junction 3, then take the A585 to Fleetwood",
+      "cost": "Free parking",
+      "tip": "Official Affinity Lancashire directions list Anchorage Road, Fleetwood FY7 6AE, M55 Junction 3 then A585 access, over 700 free car parking spaces and 10 free coach parking spaces on site.",
+      "status": "active",
+      "displayOrder": "1"
+  },
+  {
+      "transportationId": "fleetwood-outlet-train-bus",
+      "outletId": "fleetwood-outlet",
+      "transportType": "train",
+      "title": "Train via Poulton-le-Fylde, then bus",
+      "duration": "Poulton-le-Fylde station is 7 miles from the outlet",
+      "cost": "Check official rail and bus fares",
+      "tip": "Official Affinity Lancashire directions say Poulton-le-Fylde is the nearest station, 7 miles from the outlet, with onward buses 14, 74 or 75 to the centre.",
+      "status": "active",
+      "displayOrder": "2"
+  },
+  {
+      "transportationId": "fleetwood-outlet-tram",
+      "outletId": "fleetwood-outlet",
+      "transportType": "train",
+      "title": "Blackpool Tramway",
+      "duration": "Fisherman's Walk tram stop is a short 5-minute walk away",
+      "cost": "Check official tram fare",
+      "tip": "Official Affinity Lancashire directions list the Blackpool to Fleetwood tramway, with Fisherman's Walk tram stop a short five-minute walk from the outlet.",
+      "status": "active",
+      "displayOrder": "3"
+  },
+  {
+      "transportationId": "fleetwood-outlet-bus",
+      "outletId": "fleetwood-outlet",
+      "transportType": "bus",
+      "title": "Bus",
+      "duration": "Services stop at the front door or nearby stops",
+      "cost": "Check official bus fare",
+      "tip": "Official Affinity Lancashire directions list Blackpool Transport bus 1 from Blackpool to Fleetwood stopping at the front door, Archway Travel 74 at the centre entrance, and nearby services 75, 14 and 24.",
+      "status": "active",
+      "displayOrder": "4"
+  },
+  {
+      "transportationId": "livingston-designer-outlet-car-parking",
+      "outletId": "livingston-designer-outlet",
+      "transportType": "car",
+      "title": "Car / Parking",
+      "duration": "Follow signs for Designer Outlet Centre or Designer Outlet 2",
+      "cost": "Pay and display or pay on foot; free from 6pm to 8am",
+      "tip": "Official Livingston Designer Outlet directions list EH54 6QX, car parks that are pay and display or pay on foot, and free parking from 6pm to 8am with charges outside those times.",
+      "status": "active",
+      "displayOrder": "1"
+  },
+  {
+      "transportationId": "livingston-designer-outlet-bus",
+      "outletId": "livingston-designer-outlet",
+      "transportType": "bus",
+      "title": "Bus",
+      "duration": "Bus terminal located in front of the outlet",
+      "cost": "Check official Traveline Scotland fare",
+      "tip": "Official Livingston Designer Outlet directions state that a bus terminal is located in front of the outlet and direct travellers to Traveline Scotland for regular services from Glasgow and Edinburgh.",
+      "status": "active",
+      "displayOrder": "2"
+  },
+  {
+      "transportationId": "livingston-designer-outlet-train-taxi",
+      "outletId": "livingston-designer-outlet",
+      "transportType": "train",
+      "title": "Train via Livingston North or Livingston South",
+      "duration": "Short taxi ride from Livingston South Station",
+      "cost": "Check official ScotRail fare; confirm taxi fare locally",
+      "tip": "Official Livingston Designer Outlet directions say ScotRail runs regular trains from Edinburgh to Livingston North and from Glasgow to Livingston South, and the outlet is a short taxi distance from Livingston South Station.",
+      "status": "active",
+      "displayOrder": "3"
+  },
+  {
+      "transportationId": "livingston-designer-outlet-airport",
+      "outletId": "livingston-designer-outlet",
+      "transportType": "airport",
+      "title": "Edinburgh / Glasgow Airport Access",
+      "duration": "Approximately 30 minutes from Edinburgh Airport; approximately 60 minutes from Glasgow Airport",
+      "cost": "Confirm airport bus, rail, taxi or transfer fare",
+      "tip": "Official Livingston Designer Outlet directions list both Edinburgh and Glasgow airports for air access, with Edinburgh Airport approximately 30 minutes away and Glasgow Airport approximately 60 minutes away.",
+      "status": "active",
+      "displayOrder": "4"
+  },
+  {
       "transportationId": "junction-32-car-parking",
       "outletId": "junction-32-outlet",
       "transportType": "car",
