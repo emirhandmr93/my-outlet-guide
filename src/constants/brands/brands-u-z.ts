@@ -1372,8 +1372,8 @@ export const brandsUZ: Brand[] = [
   },
   {
     brandId: "w-kruk",
-    brandName: "W. Kruk",
-    aliases: ["W. Kruk", "WKruk", "W. Kruk Outlet"],
+    brandName: "W.Kruk",
+    aliases: ["W Kruk", "W. Kruk", "W.KRUK", "WKruk", "W. Kruk Outlet"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "poland",
@@ -2087,7 +2087,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "yes",
     brandName: "YES",
-    aliases: ["YES", "YES", "YES Outlet"],
+    aliases: ["Yes", "YES Outlet"],
     categoryId: "jewelry-watches",
     logo: "",
     originCountryId: "poland",
@@ -2351,7 +2351,7 @@ export const brandsUZ: Brand[] = [
   },
   {
     brandId: "ziaja",
-    brandName: "Ziaja dla Ciebie",
+    brandName: "Ziaja",
     aliases: ["Ziaja dla Ciebie", "ZiajadlaCiebie", "Ziaja dla Ciebie Outlet"],
     categoryId: "beauty",
     logo: "",

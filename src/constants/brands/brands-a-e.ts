@@ -3631,6 +3631,17 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "calzedonia-intimissimi-tezenis",
+    brandName: "Calzedonia Intimissimi Tezenis",
+    aliases: ["Calzedonia", "Intimissimi", "Tezenis"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "fashion",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "calzedonia-intimissimi",
     brandName: "Calzedonia Intimissimi",
     aliases: [],
@@ -6073,8 +6084,8 @@ export const brandsAE: Brand[] = [
   },
   {
     brandId: "ecco",
-    brandName: "ECCO",
-    aliases: ["Ecco", "ECCO Outlet", "ECCOOutlet"],
+    brandName: "Ecco",
+    aliases: ["ECCO", "ECCO Outlet", "ECCOOutlet"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "denmark",
