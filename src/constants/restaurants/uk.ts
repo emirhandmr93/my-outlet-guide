@@ -2668,5 +2668,206 @@ export const ukRestaurants = [
     "website": "https://www.londondesigneroutlet.com/store-category/food-films/",
     "status": "active",
     "displayOrder": "913"
+  },
+  {
+    "restaurantId": "fleetwood-outlet-costa-coffee",
+    "outletId": "fleetwood-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://affinitylancashire.com/dog-policy/",
+    "status": "active",
+    "displayOrder": "914"
+  },
+  {
+    "restaurantId": "fleetwood-outlet-katies",
+    "outletId": "fleetwood-outlet",
+    "restaurantName": "Katie's",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://affinitylancashire.com/stores/katies/",
+    "status": "active",
+    "displayOrder": "915"
+  },
+  {
+    "restaurantId": "fleetwood-outlet-poppies-tearoom",
+    "outletId": "fleetwood-outlet",
+    "restaurantName": "Poppies Tearoom",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://affinitylancashire.com/dog-policy/",
+    "status": "active",
+    "displayOrder": "916"
+  },
+  {
+    "restaurantId": "fleetwood-outlet-the-coffee-box-and-bistro",
+    "outletId": "fleetwood-outlet",
+    "restaurantName": "The Coffee Box & Bistro",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://affinitylancashire.com/dog-policy/",
+    "status": "active",
+    "displayOrder": "917"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-bakers-and-baristas",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Bakers and Baristas",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "918"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-cafebar-1962",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Cafebar 1962",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/stores/cafebar-1962",
+    "status": "active",
+    "displayOrder": "919"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-caffe-nero",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Caffe Nero",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "920"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-chopstix-noodle-bar",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Chopstix Noodle Bar",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "921"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-costa-coffee",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Costa Coffee",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "922"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-hamilton-and-brown",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Hamilton and Brown",
+    "category": "Food",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/stores/hamilton-and-brown",
+    "status": "active",
+    "displayOrder": "923"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-hot-flame",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Hot Flame",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/stores/hot-flame",
+    "status": "active",
+    "displayOrder": "924"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-kastriots-gyros-2-go",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Kastriot’s Gyros 2 Go",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "925"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-mcdonalds",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "McDonald’s",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "926"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-millies-cookies",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Millie’s Cookies",
+    "category": "Dessert",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "927"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-pizza-express",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Pizza Express",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "928"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-pizza-hut",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Pizza Hut",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "929"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-starbucks",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "930"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-subway",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Subway",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "931"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-tikka-nation",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Tikka Nation",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "932"
+  },
+  {
+    "restaurantId": "livingston-designer-outlet-wetherspoon",
+    "outletId": "livingston-designer-outlet",
+    "restaurantName": "Wetherspoon",
+    "category": "Restaurant",
+    "priceLevel": "££",
+    "website": "https://livingston-designer-outlet.co.uk/store-directory",
+    "status": "active",
+    "displayOrder": "933"
   }
+
 ];
