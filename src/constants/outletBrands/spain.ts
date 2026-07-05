@@ -3938,4 +3938,570 @@ export const spainOutletBrands: OutletBrand[] = [
     featured: false,
     relationStatus: "active",
   },
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "adidas",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "adolfo-dominguez",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "alvaro-moreno",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "belros",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "callaghan-gorila",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "crocs",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "decimas",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "desigual",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "dockers",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "druni",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "duldi",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "el-pulpo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "festina-group",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "fifty-outlet",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "florentino",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "geox",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "guess",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "hawkers",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "home-and-cook",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "jack-and-jones",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "joma",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "kiko",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "krack",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "la-casa-de-las-carcasas",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "lamford",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "lindt",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "mango",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "mayoral",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "munich",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "nike",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "north-sails",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "nunez-de-arenas",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "oh-gar",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "oro-vivo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "parfois",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "puma",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "punto-blanco",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "roberto-verino",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "salsa-jeans",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "soloptical",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "suits-inc",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "sunglass-hut",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "the-body-shop",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "ulanka",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "visionlab",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "coruna-the-style-outlets",
+    brandId: "volcom",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "adidas",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "adolfo-dominguez",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "asics",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "converse",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "crocs",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "desigual",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "druni",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "duldi",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "farrutx",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "festina-group",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "fifty-outlet",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "home-and-cook",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "jack-and-jones",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "kiko",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "la-casa-de-las-carcasas",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "lindt",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "massimo-dutti",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "munich",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "nike",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "oro-vivo",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "parfois",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "pedro-del-hierro",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "pepe-jeans",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "pikolinos",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "puma",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "quiksilver",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "salsa-jeans",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "samsonite",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "simorra",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "sunglass-hut",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "the-north-face",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "u-s-polo-assn",
+    featured: false,
+    relationStatus: "active",
+  },
+
+  {
+    outletId: "las-rozas-the-style-outlets",
+    brandId: "valecuatro",
+    featured: false,
+    relationStatus: "active",
+  },
 ];
