@@ -930,7 +930,7 @@ export const ukOutlets = [
     outletId: "braintree-village",
     name: "Braintree Village",
     slug: "braintree-village",
-    aliases: ["Braintree Village", "Braintree Outlet", "Braintree Freeport", "Braintree Village Outlet Shopping"],
+    aliases: ["Braintree Outlet", "Braintree Freeport", "Braintree Village Outlet Shopping"],
     countryId: "united-kingdom",
     cityId: "braintree",
     address: "Braintree Village, Charter Way, Chapel Hill, Braintree, Essex CM77 8YH, United Kingdom",
