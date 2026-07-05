@@ -1459,5 +1459,25 @@ export const italyRestaurants = [
     website: "https://mondovicino.it/en/food/",
     status: "active",
     displayOrder: "5",
+  },
+  {
+    restaurantId: "brugnato-5terre-outlet-village-la-friggitoria-della-luna-blu",
+    outletId: "brugnato-5terre-outlet-village",
+    restaurantName: "La Friggitoria della Luna Blu",
+    category: "Fritti • Bakery • Cafe",
+    priceLevel: "€€",
+    website: "https://www.brugnato5terreoutletvillage.it/it/page/68/la-friggitoria-della-luna-blu",
+    status: "active",
+    displayOrder: "1",
+  },
+  {
+    restaurantId: "brugnato-5terre-outlet-village-la-piadineria",
+    outletId: "brugnato-5terre-outlet-village",
+    restaurantName: "La Piadineria",
+    category: "Fast Casual • Piadina",
+    priceLevel: "€€",
+    website: "https://www.brugnato5terreoutletvillage.it/it/page/69/la-piadineria",
+    status: "active",
+    displayOrder: "2",
   }
 ];

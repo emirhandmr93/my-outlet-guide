@@ -1110,6 +1110,7 @@ export const italyOutlets = [
     storesCountText: "Over 70 brands",
     rating: 0,
     reviewCount: 0,
+    restaurants: ["La Friggitoria della Luna Blu", "La Piadineria"],
     services: ["Parking", "Info Point", "Gift Card", "Shuttle / Transport Info", "VIP Club", "App"],
     parking: "Official visit pages include parking/visitor information; confirm current parking details on the official website before visiting.",
     taxFreeAvailable: false,
