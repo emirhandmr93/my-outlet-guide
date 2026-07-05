@@ -7734,13 +7734,25 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "the-galleria-outlet",
+    brandId: "choice",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
     brandId: "clarks",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "the-galleria-outlet",
-    brandId: "choice",
+    brandId: "fashion-on-trend",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "grape-tree",
     featured: false,
     relationStatus: "active",
   },
@@ -7764,19 +7776,13 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "the-galleria-outlet",
-    brandId: "lifestyle-and-mobility",
+    brandId: "m-and-s-outlet",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "the-galleria-outlet",
-    brandId: "londis",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "the-galleria-outlet",
-    brandId: "marks-and-spencer",
+    brandId: "milano",
     featured: false,
     relationStatus: "active",
   },
@@ -7794,13 +7800,25 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "the-galleria-outlet",
-    brandId: "next",
+    brandId: "nipas-beauty",
     featured: false,
     relationStatus: "active",
   },
   {
     outletId: "the-galleria-outlet",
-    brandId: "nike",
+    brandId: "pavers-skechers",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "regatta-great-outdoors",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "shoeaholics",
     featured: false,
     relationStatus: "active",
   },
@@ -7818,7 +7836,7 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "the-galleria-outlet",
-    brandId: "the-entertainer",
+    brandId: "superdrug",
     featured: false,
     relationStatus: "active",
   },
@@ -7830,7 +7848,7 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "the-galleria-outlet",
-    brandId: "the-works",
+    brandId: "the-sweet-emporium",
     featured: false,
     relationStatus: "active",
   },
@@ -7843,6 +7861,12 @@ export const ukOutletBrands: OutletBrand[] = [
   {
     outletId: "the-galleria-outlet",
     brandId: "trespass",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "the-galleria-outlet",
+    brandId: "waterstones",
     featured: false,
     relationStatus: "active",
   },

@@ -2607,4 +2607,15 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "waterstones",
+    brandName: "Waterstones",
+    aliases: ["Waterstone's"],
+    categoryId: "books-stationery",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
 ];
