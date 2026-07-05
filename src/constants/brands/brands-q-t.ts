@@ -2127,8 +2127,8 @@ export const brandsQT: Brand[] = [
   },
   {
     brandId: "skomax",
-    brandName: "Skomax",
-    aliases: [],
+    brandName: "SKOMAX",
+    aliases: ["Skomax"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "norway",

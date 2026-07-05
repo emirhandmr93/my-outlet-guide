@@ -2087,7 +2087,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "helly-hansen",
     brandName: "Helly Hansen",
-    aliases: ["HellyHansen"],
+    aliases: ["HH", "HellyHansen"],
     categoryId: "sportswear",
     logo: "",
     originCountryId: "norway",
