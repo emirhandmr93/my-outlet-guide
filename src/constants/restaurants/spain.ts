@@ -588,5 +588,55 @@ export const spainRestaurants = [
     "website": "https://ss-de-los-reyes.thestyleoutlets.es/en/restaurants",
     "status": "active",
     "displayOrder": "4"
+  },
+  {
+    "restaurantId": "coruna-the-style-outlets-llaollao",
+    "outletId": "coruna-the-style-outlets",
+    "restaurantName": "LLAOLLAO",
+    "category": "Frozen Yogurt",
+    "priceLevel": "€€",
+    "website": "https://coruna.thestyleoutlets.es/en/restaurants/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "coruna-the-style-outlets-burger-king",
+    "outletId": "coruna-the-style-outlets",
+    "restaurantName": "BURGER KING",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://coruna.thestyleoutlets.es/en/restaurants/restaurants",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "coruna-the-style-outlets-panaria",
+    "outletId": "coruna-the-style-outlets",
+    "restaurantName": "PANARIA",
+    "category": "Bakery Cafe",
+    "priceLevel": "€€",
+    "website": "https://coruna.thestyleoutlets.es/en/restaurants/restaurants",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "las-rozas-the-style-outlets-santa-gloria",
+    "outletId": "las-rozas-the-style-outlets",
+    "restaurantName": "SANTA GLORIA",
+    "category": "Bakery Cafe",
+    "priceLevel": "€€",
+    "website": "https://las-rozas.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "las-rozas-the-style-outlets-the-chatter-cafe",
+    "outletId": "las-rozas-the-style-outlets",
+    "restaurantName": "THE CHATTER CAFÉ",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://las-rozas.thestyleoutlets.es/en/restaurants",
+    "status": "active",
+    "displayOrder": "2"
   }
 ];
