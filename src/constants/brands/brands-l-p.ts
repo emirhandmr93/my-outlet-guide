@@ -2,6 +2,28 @@ import type { Brand } from "../../types/brand";
 
 export const brandsLP: Brand[] = [
   {
+    brandId: "lavendergirls-boutique",
+    brandName: "Lavendergirls Boutique",
+    aliases: ["Lavendergirls"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "fashion",
+    rankingWeight: 45,
+    brandStatus: "active",
+  },
+  {
+    brandId: "london-leathers-direct",
+    brandName: "London Leathers Direct",
+    aliases: ["London Leathers"],
+    categoryId: "accessories",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "fashion",
+    rankingWeight: 45,
+    brandStatus: "active",
+  },
+  {
     brandId: "land-mobile",
     brandName: "Land Mobile",
     aliases: [],

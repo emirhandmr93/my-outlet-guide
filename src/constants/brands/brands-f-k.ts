@@ -2,6 +2,28 @@ import type { Brand } from "../../types/brand";
 
 export const brandsFK: Brand[] = [
   {
+    brandId: "fleetwood-garden-world",
+    brandName: "Fleetwood Garden World",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 45,
+    brandStatus: "active",
+  },
+  {
+    brandId: "home-bargains",
+    brandName: "Home Bargains",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
     brandId: "faberge",
     brandName: "Faberge",
     aliases: ["Faberge"],
