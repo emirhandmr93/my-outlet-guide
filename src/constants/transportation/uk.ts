@@ -1142,5 +1142,49 @@ export const ukTransportation = [
       "tip": "Use official London airport ground transport and TfL/National Rail connections to Wembley Park or Wembley Stadium; no dedicated airport shuttle is published.",
       "status": "active",
       "displayOrder": "6"
+  },
+  {
+      "transportationId": "braintree-village-car",
+      "outletId": "braintree-village",
+      "transportType": "car",
+      "title": "Car to Charter Way, Chapel Hill",
+      "duration": "Check live traffic",
+      "cost": "Road costs vary; parking terms apply",
+      "tip": "Official Braintree Village pages list the address as Charter Way, Chapel Hill, Braintree, Essex CM77 8YH and provide live traffic updates from the getting-here page.",
+      "status": "active",
+      "displayOrder": "1"
+  },
+  {
+      "transportationId": "braintree-village-parking",
+      "outletId": "braintree-village",
+      "transportType": "car",
+      "title": "Free outlet shopper parking",
+      "duration": "On site",
+      "cost": "Free for up to 6 hours for outlet shoppers",
+      "tip": "Official parking information says Braintree Village has two car parks with over 1,660 spaces, including accessible, family and coach spaces; shoppers staying over 6 hours should validate parking at Guest Services.",
+      "status": "active",
+      "displayOrder": "2"
+  },
+  {
+      "transportationId": "braintree-village-train",
+      "outletId": "braintree-village",
+      "transportType": "train",
+      "title": "Train updates via National Rail",
+      "duration": "Check official National Rail timetable",
+      "cost": "Check official rail fare",
+      "tip": "The official getting-here page includes train access and links to National Rail train updates; verify the current rail route to Braintree before travel.",
+      "status": "active",
+      "displayOrder": "3"
+  },
+  {
+      "transportationId": "braintree-village-bus",
+      "outletId": "braintree-village",
+      "transportType": "bus",
+      "title": "Bus updates via Stephensons of Essex",
+      "duration": "Check official bus timetable",
+      "cost": "Check official bus fare",
+      "tip": "The official getting-here page includes bus access and links to Stephensons of Essex bus times; confirm the current route and stop before travel.",
+      "status": "active",
+      "displayOrder": "4"
   }
 ];

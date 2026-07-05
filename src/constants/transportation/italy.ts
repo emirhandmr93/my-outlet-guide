@@ -967,5 +967,49 @@ export const italyTransportation = [
     "tip": "The official directions page lists car access from Cuneo, Turin, Genoa, Milan Malpensa and Nice airports; no dedicated airport shuttle was verified.",
     "status": "active",
     "displayOrder": "3"
+  },
+  {
+    "transportationId": "brugnato-5terre-outlet-village-car",
+    "outletId": "brugnato-5terre-outlet-village",
+    "transportType": "car",
+    "title": "Car via A12 Brugnato exit",
+    "duration": "Timing varies by origin",
+    "cost": "Fuel, tolls and provider costs vary",
+    "tip": "Official directions list the Brugnato motorway exit on the A12 Genova-Livorno, with approaches from Milan via A1-A15/E33, Parma via A15/E33, and Genova or La Spezia via A12/E80.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "brugnato-5terre-outlet-village-airport",
+    "outletId": "brugnato-5terre-outlet-village",
+    "transportType": "airport",
+    "title": "Pisa or Genoa airports",
+    "duration": "Check official airport ground transport and road conditions",
+    "cost": "Confirm airport rail, taxi, rental-car or transfer fare",
+    "tip": "The official access page lists Pisa and Genoa as the nearest airports; no dedicated airport shuttle details were verified, so continue by official ground transport, taxi, rental car or confirmed transfer.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "brugnato-5terre-outlet-village-train-taxi",
+    "outletId": "brugnato-5terre-outlet-village",
+    "transportType": "train",
+    "title": "Train to La Spezia or Levanto + taxi",
+    "duration": "Rail timing varies by origin; onward taxi required",
+    "cost": "Check official rail fare and taxi fare",
+    "tip": "Official directions list La Spezia and Levanto as the nearest railway stations, with taxi service onward to the Outlet Village; verify current train times and taxi availability before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "brugnato-5terre-outlet-village-shuttle",
+    "outletId": "brugnato-5terre-outlet-village",
+    "transportType": "shuttle",
+    "title": "Outlet shuttle from Liguria and Tuscany departure points",
+    "duration": "Check current shuttle dates with the outlet",
+    "cost": "Confirm when booking",
+    "tip": "The official page says the shuttle service is available from main departure locations in Liguria and Tuscany; check upcoming dates and reserve through the official phone/WhatsApp channel before travel.",
+    "status": "active",
+    "displayOrder": "4"
   }
 ];

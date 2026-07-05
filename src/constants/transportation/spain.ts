@@ -343,5 +343,38 @@ export const spainTransportation = [
     "tip": "The official access page lists public-transport access for San Sebastián de los Reyes The Style Outlets. Plan the current bus, metro or rail connection with official Madrid transport operators before travelling.",
     "status": "active",
     "displayOrder": "2"
+  },
+  {
+    "transportationId": "sambil-madrid-car",
+    "outletId": "sambil-madrid",
+    "transportType": "car",
+    "title": "Car via M-40 exit 30",
+    "duration": "Check live traffic",
+    "cost": "Road costs vary; check centre parking terms",
+    "tip": "The official Sambil Madrid contact page lists car access from exit 30 of the M-40 to C/ de Mondragón s/n, Leganés.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "sambil-madrid-metro",
+    "outletId": "sambil-madrid",
+    "transportType": "train",
+    "title": "Metro Line 11 to La Fortuna",
+    "duration": "Check official Metro/CRTM timetable",
+    "cost": "Check official CRTM fare for zone B1",
+    "tip": "The official Sambil Madrid contact page lists Metro line 11 to La Fortuna; CRTM confirms La Fortuna is in fare zone B1 and connects with Metro 11.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "sambil-madrid-bus",
+    "outletId": "sambil-madrid",
+    "transportType": "bus",
+    "title": "Bus 1 / 486 / 487 / N802",
+    "duration": "Check official CRTM timetable",
+    "cost": "Check official CRTM fare",
+    "tip": "The official Sambil Madrid contact page lists bus 1, 486, 487 and N802, and CRTM lists these routes as La Fortuna station correspondences; verify the current stop and timetable before travel.",
+    "status": "active",
+    "displayOrder": "3"
   }
 ];
