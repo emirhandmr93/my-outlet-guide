@@ -568,5 +568,205 @@ export const franceRestaurants = [
     "website": "https://www.onenation.fr/en/restaurant-plaisir-outlet/",
     "status": "active",
     "displayOrder": "11"
+  },
+  {
+    "restaurantId": "the-village-outlet-angelina",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Angelina",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/angelina",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "the-village-outlet-bouillon-colette",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Bouillon Colette",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/bouillon-colette",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "the-village-outlet-giardino",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Giardino",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/giardino",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "the-village-outlet-bistrot-colette",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Bistrot Colette",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/bistrot-colette",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "the-village-outlet-rendez-vous-bocuse",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Rendez-vous Bocuse",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/rdv-bocuse",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "the-village-outlet-pokawa",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Pokawa",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/pokawa",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "the-village-outlet-lindt",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Lindt",
+    "category": "Confectionery",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/lindt",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "the-village-outlet-pierre-herme",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Pierre Hermé",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/pierre-herme",
+    "status": "active",
+    "displayOrder": "8"
+  },
+  {
+    "restaurantId": "the-village-outlet-la-crepe-au-carre",
+    "outletId": "the-village-outlet",
+    "restaurantName": "La Crêpe au Carré",
+    "category": "Creperie",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/la-crepe-au-carre",
+    "status": "active",
+    "displayOrder": "9"
+  },
+  {
+    "restaurantId": "the-village-outlet-starbucks",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Starbucks",
+    "category": "Cafe",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/starbucks",
+    "status": "active",
+    "displayOrder": "10"
+  },
+  {
+    "restaurantId": "the-village-outlet-amorino",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Amorino",
+    "category": "Ice Cream",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/amorino",
+    "status": "active",
+    "displayOrder": "11"
+  },
+  {
+    "restaurantId": "the-village-outlet-vegas-kitchen",
+    "outletId": "the-village-outlet",
+    "restaurantName": "Vegas Kitchen",
+    "category": "Restaurant",
+    "priceLevel": "€€",
+    "website": "https://thevillageoutlet.com/page/vegas-kitchen",
+    "status": "active",
+    "displayOrder": "12"
+  },
+  {
+    "restaurantId": "roubaix-designer-outlet-belga-queen",
+    "outletId": "roubaix-designer-outlet",
+    "restaurantName": "Belga Queen",
+    "category": "Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-roubaix/food-drink/belga-queen2/",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "roubaix-designer-outlet-creperie-ted",
+    "outletId": "roubaix-designer-outlet",
+    "restaurantName": "Crêperie Ted",
+    "category": "Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-roubaix/food-drink/",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "roubaix-designer-outlet-friterie-sam",
+    "outletId": "roubaix-designer-outlet",
+    "restaurantName": "Friterie Sam",
+    "category": "Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-roubaix/food-drink/",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "roubaix-designer-outlet-gusto",
+    "outletId": "roubaix-designer-outlet",
+    "restaurantName": "Gusto",
+    "category": "Food",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-roubaix/food-drink/",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "roubaix-designer-outlet-la-mie-caline",
+    "outletId": "roubaix-designer-outlet",
+    "restaurantName": "La Mie Câline",
+    "category": "Restaurants & Cafés",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-roubaix/food-drink/",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "roubaix-designer-outlet-leocorno",
+    "outletId": "roubaix-designer-outlet",
+    "restaurantName": "Leocorno",
+    "category": "Restaurants & Cafés",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-roubaix/food-drink/",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "roubaix-designer-outlet-lindt",
+    "outletId": "roubaix-designer-outlet",
+    "restaurantName": "Lindt",
+    "category": "Confectionery",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-roubaix/food-drink/lindt/",
+    "status": "active",
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "roubaix-designer-outlet-mcpie",
+    "outletId": "roubaix-designer-outlet",
+    "restaurantName": "McPie",
+    "category": "Restaurants & Cafés",
+    "priceLevel": "€€",
+    "website": "https://www.mcarthurglen.com/en/outlets/fr/designer-outlet-roubaix/food-drink/mcpie/",
+    "status": "active",
+    "displayOrder": "8"
   }
 ];
