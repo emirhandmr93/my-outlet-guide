@@ -618,5 +618,75 @@ export const spainRestaurants = [
     "website": "https://coruna.thestyleoutlets.es/en/restaurants/restaurants",
     "status": "active",
     "displayOrder": "3"
+  },
+  {
+    "restaurantId": "sambil-madrid-100-montaditos",
+    "outletId": "sambil-madrid",
+    "restaurantName": "100 Montaditos",
+    "category": "Tapas • Bar",
+    "priceLevel": "€€",
+    "website": "https://sambilmadrid.es/restauracion/",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "sambil-madrid-acadios-kebab",
+    "outletId": "sambil-madrid",
+    "restaurantName": "Acadios Kebab",
+    "category": "Kebab",
+    "priceLevel": "€€",
+    "website": "https://sambilmadrid.es/restauracion/",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "sambil-madrid-anubis-cocteleria",
+    "outletId": "sambil-madrid",
+    "restaurantName": "Anubis Coctelería",
+    "category": "Bar • Cocktails",
+    "priceLevel": "€€",
+    "website": "https://sambilmadrid.es/restauracion/",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "sambil-madrid-burger-king",
+    "outletId": "sambil-madrid",
+    "restaurantName": "Burger King",
+    "category": "Fast Food",
+    "priceLevel": "€€",
+    "website": "https://sambilmadrid.es/restauracion/",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "sambil-madrid-candy-candy",
+    "outletId": "sambil-madrid",
+    "restaurantName": "Candy Candy",
+    "category": "Dessert",
+    "priceLevel": "€€",
+    "website": "https://sambilmadrid.es/restauracion/",
+    "status": "active",
+    "displayOrder": "5"
+  },
+  {
+    "restaurantId": "sambil-madrid-el-reino-asador",
+    "outletId": "sambil-madrid",
+    "restaurantName": "El Reino Asador",
+    "category": "Buffet • Asian",
+    "priceLevel": "€€",
+    "website": "https://sambilmadrid.es/marcas-restauracion/reino-asador/",
+    "status": "active",
+    "displayOrder": "6"
+  },
+  {
+    "restaurantId": "sambil-madrid-pure-and-bowl",
+    "outletId": "sambil-madrid",
+    "restaurantName": "Pure & Bowl",
+    "category": "Healthy • Bowls",
+    "priceLevel": "€€",
+    "website": "https://sambilmadrid.es/marcas-restauracion/purebowl/",
+    "status": "active",
+    "displayOrder": "7"
   }
 ];

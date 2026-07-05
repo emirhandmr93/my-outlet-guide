@@ -60,7 +60,7 @@ export const romaniaOutlets = [
     rating: 0,
     reviewCount: 0,
     services: ["Parking", "Restaurants & Cafes", "Transport Info"],
-    restaurants: [],
+    restaurants: ["FORNETTI", "Maroon Restaurant"],
     taxFreeAvailable: false,
     vatRate: 19,
     estimatedRefundRate: 0,
