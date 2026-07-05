@@ -51,11 +51,11 @@ replay,Replay,,fashion,,,italy,fashion,,72,active
 ted-baker,Ted Baker,,fashion,,,united-kingdom,fashion,,72,active
 acne-studios,Acne Studios,,fashion,,,sweden,fashion,,70,active
 evisu,Evisu,,fashion,,,japan,fashion,,70,active
-marc-opolo,Marc O’Polo,Marc O'Polo;marc opolo,fashion,,,germany,fashion,,70,active
+marc-opolo,Marc O'Polo,Marc O’Polo;marc opolo,fashion,,,germany,fashion,,70,active
 mlb-korea,MLB Korea,mlb,fashion,,,south-korea,fashion,,70,active
 scotch-and-soda,Scotch & Soda,scotch and soda,fashion,,,netherlands,fashion,,70,active
 the-kooples,The Kooples,KOOPLES,fashion,,,france,fashion,,70,active
-zadig-and-voltaire,Zadig & Voltaire,zadig;Zadig and Voltaire,fashion,,,france,fashion,,70,active
+zadig-and-voltaire,Zadig&Voltaire,Zadig & Voltaire;zadig;Zadig and Voltaire,fashion,,,france,fashion,,70,active
 bash,ba&sh,bash,fashion,,,france,fashion,,65,active
 k-way,K-Way,kway,fashion,,,france,fashion,,65,active
 anne-fontaine,Anne Fontaine,,fashion,,,france,fashion,,60,active
@@ -181,7 +181,7 @@ li-ning,Li-Ning,lining,sportswear,,,china,sports,,75,active
 descente,Descente,,sportswear,,,japan,sports,,72,active
 american-vintage,American Vintage,,fashion,,,,mid,,50,active
 betty-barclay,Betty Barclay,,fashion,,,,mid,,50,active
-boss-orange,Boss Orange,BOSS Orange,fashion,,,,mid,,50,active
+boss-orange,BOSS Orange,,fashion,,,,mid,,50,active
 calvin-klein-underwear,Calvin Klein Underwear,CK Underwear,fashion,,,,mid,,50,active
 desigual,Desigual,,fashion,,,,mid,,50,active
 dim-outlet,DIM Outlet,DIM,fashion,,,,mid,,50,active
@@ -219,4 +219,4 @@ vera-mont,Vera Mont,,fashion,,,,mid,,50,active
 vero-moda,Vero Moda,VERO MODA,fashion,,,,mid,,50,active
 vila,Vila,,fashion,,,,mid,,50,active
 wonderbra,Wonderbra,,fashion,,,,mid,,50,active
-yves-delorme-outlet,Yves Delorme Outlet,Yves Delorme,home-lifestyle,,,,mid,,50,active
+yves-delorme,Yves Delorme,Yves Delorme Outlet,home-lifestyle,,,,mid,,50,active
