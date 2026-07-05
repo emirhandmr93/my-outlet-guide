@@ -512,7 +512,7 @@ export const spainOutlets = [
     outletId: "sambil-madrid",
     name: "Sambil Madrid",
     slug: "sambil-madrid",
-    aliases: ["Sambil Outlet", "Sambil Outlet Madrid", "Sambil Madrid", "Centro Comercial Sambil Leganés"],
+    aliases: ["Sambil Outlet", "Sambil Outlet Madrid", "Centro Comercial Sambil Leganés"],
     countryId: "spain",
     cityId: "madrid",
     address: "Calle de Mondragón s/n, 28917 Leganés, Madrid, Spain",
