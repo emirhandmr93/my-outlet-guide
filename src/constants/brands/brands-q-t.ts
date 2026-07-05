@@ -803,7 +803,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "rosendahl-design-group",
     brandName: "Rosendahl Design Group",
-    aliases: [],
+    aliases: ["Rosendahl"],
     categoryId: "home",
     logo: "",
     originCountryId: "denmark",
@@ -889,7 +889,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "royal-copenhagen",
     brandName: "Royal Copenhagen",
-    aliases: [],
+    aliases: ["Royal Copenhagen Outlet"],
     categoryId: "home",
     logo: "",
     originCountryId: "denmark",
@@ -1263,7 +1263,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "samsoe-samsoe",
     brandName: "Samsøe Samsøe",
-    aliases: [],
+    aliases: ["Samsoe Samsoe"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "denmark",
@@ -1911,7 +1911,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "signal",
     brandName: "Signal",
-    aliases: [],
+    aliases: ["SIGNAL"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "denmark",

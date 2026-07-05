@@ -93,6 +93,12 @@ export const denmarkOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ringsted-outlet",
+    brandId: "jack-and-jones-kids",
+    featured: false,
+    relationStatus: "active",
+  },
+  {
+    outletId: "ringsted-outlet",
     brandId: "julie-sandlau",
     featured: false,
     relationStatus: "active",
@@ -123,12 +129,6 @@ export const denmarkOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ringsted-outlet",
-    brandId: "lego-wear",
-    featured: false,
-    relationStatus: "active",
-  },
-  {
-    outletId: "ringsted-outlet",
     brandId: "lindt",
     featured: false,
     relationStatus: "active",
@@ -153,7 +153,7 @@ export const denmarkOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ringsted-outlet",
-    brandId: "nike",
+    brandId: "nike-factory-store",
     featured: true,
     relationStatus: "active",
   },
