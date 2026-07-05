@@ -1,6 +1,44 @@
 import type { OutletBrand } from "./index";
 
+const makeOutletBrands = (outletId: string, brandIds: string[]): OutletBrand[] =>
+  brandIds.map((brandId) => ({
+    outletId,
+    brandId,
+    featured: false,
+    relationStatus: "active",
+  }));
+
+const brugnato5TerreOutletVillageBrandIds = [
+  "adidas",
+  "asics",
+  "bassetti",
+  "bialetti",
+  "boggi-milano",
+  "borbonese",
+  "calzedonia",
+  "camomilla-italia",
+  "champion",
+  "desigual",
+  "dockers",
+  "fratelli-rossetti",
+  "geox",
+  "guess",
+  "kappa",
+  "levi-s",
+  "liu-jo",
+  "motivi",
+  "napapijri",
+  "nike",
+  "puma",
+  "samsonite",
+  "skechers",
+  "timberland",
+  "triumph",
+  "under-armour",
+];
+
 export const italyOutletBrands: OutletBrand[] = [
+  ...makeOutletBrands("brugnato-5terre-outlet-village", brugnato5TerreOutletVillageBrandIds),
   {
     outletId: "barberino",
     brandId: "adidas",
