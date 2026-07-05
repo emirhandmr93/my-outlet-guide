@@ -1593,7 +1593,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "mandarina-duck",
     brandName: "Mandarina Duck",
-    aliases: ["MandarinaDuck"],
+    aliases: ["MANDARINA DUCK", "MandarinaDuck"],
     categoryId: "shoes-bags",
     logo: "",
     originCountryId: "italy",
@@ -3642,7 +3642,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "ns-king-bonus-outlet",
     brandName: "NS King BONUS Outlet",
-    aliases: [],
+    aliases: ["NS King Bonus"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -3920,7 +3920,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "ohoo-outlet",
     brandName: "Ohoo Outlet",
-    aliases: [],
+    aliases: ["OHOO Outlet"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -5328,7 +5328,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "premium-sneaker-outlet",
     brandName: "Premium Sneaker Outlet",
-    aliases: [],
+    aliases: ["Premium Sneaker"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -5809,6 +5809,17 @@ export const brandsLP: Brand[] = [
     brandName: "Pirex Papír",
     aliases: ["Pirex Papir"],
     categoryId: "home-lifestyle",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "petroff",
+    brandName: "Petroff",
+    aliases: [],
+    categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
     luxuryLevel: "fashion",
