@@ -587,7 +587,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "us-polo-assn",
     brandName: "U.S. Polo Assn.",
-    aliases: ["U S Polo Assn","US Polo Assn","USPoloAssn"],
+    aliases: ["U S Polo Assn", "US Polo Assn", "USPoloAssn"],
     categoryId: "fashion",
     logo: "",
     originCountryId: "united-states",

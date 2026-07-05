@@ -2,6 +2,28 @@ import type { Brand } from "../../types/brand";
 
 export const brandsAE: Brand[] = [
   {
+    brandId: "cavaliere",
+    brandName: "Cavaliere",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "colins",
+    brandName: "Colin’s",
+    aliases: ["Colin's", "Colins"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
     brandId: "d-s-damat",
     brandName: 'D"S Damat',
     aliases: ['D"S Damat', "DSDamat", 'D"S Damat Outlet'],
@@ -208,8 +230,8 @@ export const brandsAE: Brand[] = [
   },
   {
     brandId: "acandco",
-    brandName: "AC&Co",
-    aliases: [],
+    brandName: "AC&co.",
+    aliases: ["AC & Co", "AC&Co", "Altınyıldız Classics AC&co."],
     categoryId: "fashion",
     logo: "",
     originCountryId: "unknown",
@@ -5107,8 +5129,8 @@ export const brandsAE: Brand[] = [
   },
   {
     brandId: "ds-damat",
-    brandName: "D'S DAMAT",
-    aliases: [],
+    brandName: "D’S Damat",
+    aliases: ["DS Damat", "D'S DAMAT", "D'S Damat"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
