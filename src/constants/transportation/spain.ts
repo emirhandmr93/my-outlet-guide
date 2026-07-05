@@ -253,6 +253,52 @@ export const spainTransportation = [
     "status": "active",
     "displayOrder": "2"
   },
+
+  {
+    "transportationId": "coruna-the-style-outlets-car",
+    "outletId": "coruna-the-style-outlets",
+    "transportType": "car",
+    "title": "Car to Avenida de Alvedro",
+    "duration": "Check live traffic",
+    "cost": "Road costs vary; parking is free",
+    "tip": "The official directions page lists car access and places Coruña The Style Outlets at Avenida de Alvedro 5, Nacional 550 km 9.5, beside the airport in Culleredo; check live traffic before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "coruna-the-style-outlets-parking",
+    "outletId": "coruna-the-style-outlets",
+    "transportType": "car",
+    "title": "Free Centre Parking",
+    "duration": "On site",
+    "cost": "Free parking",
+    "tip": "The official parking page states Coruña The Style Outlets has free customer parking with more than 1,000 car spaces, plus motorcycle and bicycle parking areas.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "coruna-the-style-outlets-public-transport",
+    "outletId": "coruna-the-style-outlets",
+    "transportType": "bus",
+    "title": "Public Transport to Culleredo",
+    "duration": "Check official operator timetable",
+    "cost": "Check official operator fare",
+    "tip": "The official directions page lists public-transport access for Coruña The Style Outlets. Plan current bus or rail access with official A Coruña-area transport operators before travelling.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "coruna-the-style-outlets-airport",
+    "outletId": "coruna-the-style-outlets",
+    "transportType": "airport",
+    "title": "A Coruña Airport Access",
+    "duration": "Beside the airport; last-mile timing varies",
+    "cost": "Check official airport transport or taxi fare",
+    "tip": "The official directions page describes Coruña The Style Outlets as beside the airport. Use official A Coruña Airport ground transport, taxi or car access for the last mile.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+
   {
     "transportationId": "getafe-the-style-outlets-car",
     "outletId": "getafe-the-style-outlets",
@@ -275,6 +321,41 @@ export const spainTransportation = [
     "status": "active",
     "displayOrder": "2"
   },
+
+  {
+    "transportationId": "las-rozas-the-style-outlets-car",
+    "outletId": "las-rozas-the-style-outlets",
+    "transportType": "car",
+    "title": "Car to Avenida del Noroeste",
+    "duration": "Check live traffic",
+    "cost": "Road costs vary; parking is free",
+    "tip": "The official directions page lists car access and places Las Rozas The Style Outlets at Avenida del Noroeste s/n, 28232 Las Rozas; check live traffic before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "las-rozas-the-style-outlets-parking",
+    "outletId": "las-rozas-the-style-outlets",
+    "transportType": "car",
+    "title": "Free Centre Parking",
+    "duration": "On site",
+    "cost": "Free parking",
+    "tip": "The official parking page states Las Rozas The Style Outlets has free customer parking with 345 car spaces and also shares free covered parking with Leroy Merlin.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "las-rozas-the-style-outlets-public-transport",
+    "outletId": "las-rozas-the-style-outlets",
+    "transportType": "bus",
+    "title": "Public Transport to Las Rozas",
+    "duration": "Check official Madrid transport timetable",
+    "cost": "Check official CRTM fare",
+    "tip": "The official directions page lists public-transport access for Las Rozas The Style Outlets. Plan current bus or rail access with official Madrid transport operators before travelling.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+
   {
     "transportationId": "san-sebastian-de-los-reyes-the-style-outlets-car",
     "outletId": "san-sebastian-de-los-reyes-the-style-outlets",

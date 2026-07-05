@@ -155,6 +155,95 @@ export const franceTransportation = [
   },
 
   {
+    "transportationId": "the-village-outlet-car-parking",
+    "outletId": "the-village-outlet",
+    "transportType": "car",
+    "title": "Car via A43 Exit 6 / Free Parking",
+    "duration": "About 30 min from Lyon",
+    "cost": "Free parking",
+    "tip": "The official access information places The Village Outlet at Parc du Couvent in Villefontaine, accessible via the A43 motorway Exit 6 Villefontaine, and official site copy references free parking; check live traffic before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "the-village-outlet-bus",
+    "outletId": "the-village-outlet",
+    "transportType": "bus",
+    "title": "Lyon / Villefontaine Bus Access",
+    "duration": "Check official operator timetable",
+    "cost": "Check official operator fare",
+    "tip": "The official access page lists bus access between Lyon and Villefontaine using Express 5 to The Village stop, and line 2990; verify the current route, stop and timetable with the official operator before travelling.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "the-village-outlet-train",
+    "outletId": "the-village-outlet",
+    "transportType": "train",
+    "title": "TER to La Verpillière",
+    "duration": "About 12 min walk from La Verpillière station",
+    "cost": "Check official TER/SNCF fare",
+    "tip": "The official opening/access information lists access from Gare La Verpillière as a 12-minute walk; use official SNCF/TER channels for current train times and fares.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "the-village-outlet-shuttle",
+    "outletId": "the-village-outlet",
+    "transportType": "shuttle",
+    "title": "Free Event Shuttle",
+    "duration": "Runs only during selected commercial and event periods",
+    "cost": "Free",
+    "tip": "The official shuttle page states free shuttles are provided for visitors during The Village Outlet's commercial and event highlights; confirm current dates, pickup points and reservations before travel.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "transportationId": "roubaix-designer-outlet-car",
+    "outletId": "roubaix-designer-outlet",
+    "transportType": "car",
+    "title": "Car from Lille / Belgium",
+    "duration": "15 min from Lille city centre",
+    "cost": "Road and parking costs vary",
+    "tip": "McArthurGlen states Roubaix Designer Outlet is a 15-minute drive from Lille city centre and is conveniently accessible from Lille, Arras and Belgium; check live traffic before travel.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "roubaix-designer-outlet-parking",
+    "outletId": "roubaix-designer-outlet",
+    "transportType": "car",
+    "title": "Centre Parking",
+    "duration": "On site",
+    "cost": "1 hr 30 min free with qualifying purchase",
+    "tip": "The official McArthurGlen search result for Roubaix states visitors can enjoy 1 hour 30 minutes of free parking with a purchase of €30 or more; confirm current parking validation terms before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "roubaix-designer-outlet-public-transport",
+    "outletId": "roubaix-designer-outlet",
+    "transportType": "bus",
+    "title": "Public Transport from Lille and Surrounding Areas",
+    "duration": "Check official public transport timetable",
+    "cost": "Check official operator fare",
+    "tip": "McArthurGlen states the centre is easily accessible by public transport and lists tramway, metro and bus access categories, including bus services from Lille and surrounding areas; verify the current route with the official operator before travelling.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "roubaix-designer-outlet-airport",
+    "outletId": "roubaix-designer-outlet",
+    "transportType": "airport",
+    "title": "Airport Access via Official Ground Transport",
+    "duration": "Check official airport and local transport timetable",
+    "cost": "Check official operator or taxi fare",
+    "tip": "McArthurGlen lists plane access as a getting-here category for Roubaix; use official airport ground transport and local public transport, taxi or rental-car options for the last mile.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+
+  {
     "transportationId": "roppenheim-car-parking",
     "outletId": "roppenheim-the-style-outlets",
     "transportType": "car",
