@@ -1,5 +1,15 @@
 export const hungaryRestaurants = [
   {
+    "restaurantId": "premier-outlet-budapest-black-coffee",
+    "outletId": "premier-outlet-budapest",
+    "restaurantName": "Black Coffee",
+    "category": "Coffee Shop",
+    "priceLevel": "€€",
+    "website": "https://www.premieroutlet.hu/en/center/restaurants",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
     "restaurantId": "premier-outlet-budapest-chimichanga",
     "outletId": "premier-outlet-budapest",
     "restaurantName": "Chimichanga",
@@ -7,7 +17,7 @@ export const hungaryRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.premieroutlet.hu/en/center/restaurants",
     "status": "active",
-    "displayOrder": "1"
+    "displayOrder": "2"
   },
   {
     "restaurantId": "premier-outlet-budapest-churros-banditos",
@@ -17,7 +27,27 @@ export const hungaryRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.premieroutlet.hu/en/center/restaurants",
     "status": "active",
-    "displayOrder": "2"
+    "displayOrder": "3"
+  },
+  {
+    "restaurantId": "premier-outlet-budapest-coffee-and-pleasure",
+    "outletId": "premier-outlet-budapest",
+    "restaurantName": "Coffee & Pleasure",
+    "category": "Coffee Shop",
+    "priceLevel": "€€",
+    "website": "https://www.premieroutlet.hu/en/center/restaurants",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "restaurantId": "premier-outlet-budapest-kato-neni-finomsagai",
+    "outletId": "premier-outlet-budapest",
+    "restaurantName": "Kató Néni Finomságai",
+    "category": "Dessert Shop",
+    "priceLevel": "€€",
+    "website": "https://www.premieroutlet.hu/en/center/restaurants",
+    "status": "active",
+    "displayOrder": "5"
   },
   {
     "restaurantId": "premier-outlet-budapest-kfc",
@@ -27,7 +57,7 @@ export const hungaryRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.premieroutlet.hu/en/center/restaurants",
     "status": "active",
-    "displayOrder": "3"
+    "displayOrder": "6"
   },
   {
     "restaurantId": "premier-outlet-budapest-la-petite-anna",
@@ -37,7 +67,17 @@ export const hungaryRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.premieroutlet.hu/en/center/restaurants",
     "status": "active",
-    "displayOrder": "4"
+    "displayOrder": "7"
+  },
+  {
+    "restaurantId": "premier-outlet-budapest-lindt",
+    "outletId": "premier-outlet-budapest",
+    "restaurantName": "Lindt",
+    "category": "Dessert Shop",
+    "priceLevel": "€€",
+    "website": "https://www.premieroutlet.hu/en/center/restaurants",
+    "status": "active",
+    "displayOrder": "8"
   },
   {
     "restaurantId": "premier-outlet-budapest-ropogo",
@@ -47,7 +87,7 @@ export const hungaryRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.premieroutlet.hu/en/center/restaurants",
     "status": "active",
-    "displayOrder": "5"
+    "displayOrder": "9"
   },
   {
     "restaurantId": "premier-outlet-budapest-starbucks",
@@ -57,7 +97,7 @@ export const hungaryRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.premieroutlet.hu/en/center/restaurants",
     "status": "active",
-    "displayOrder": "6"
+    "displayOrder": "10"
   },
   {
     "restaurantId": "premier-outlet-budapest-subway",
@@ -67,7 +107,7 @@ export const hungaryRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.premieroutlet.hu/en/center/restaurants",
     "status": "active",
-    "displayOrder": "7"
+    "displayOrder": "11"
   },
   {
     "restaurantId": "premier-outlet-budapest-vicino",
@@ -77,7 +117,7 @@ export const hungaryRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.premieroutlet.hu/en/center/restaurants",
     "status": "active",
-    "displayOrder": "8"
+    "displayOrder": "12"
   },
   {
     "restaurantId": "premier-outlet-budapest-wok-bar",
@@ -87,6 +127,6 @@ export const hungaryRestaurants = [
     "priceLevel": "€€",
     "website": "https://www.premieroutlet.hu/en/center/restaurants",
     "status": "active",
-    "displayOrder": "9"
+    "displayOrder": "13"
   }
 ];
