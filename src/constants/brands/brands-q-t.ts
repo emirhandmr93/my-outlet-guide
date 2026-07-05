@@ -605,6 +605,17 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "rinascimento",
+    brandName: "Rinascimento",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "fashion",
+    rankingWeight: 70,
+    brandStatus: "active",
+  },
+  {
     brandId: "rituals",
     brandName: "Rituals",
     aliases: ["Rituals Cosmetics", "RitualsCosmetics"],
