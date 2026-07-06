@@ -1,12 +1,21 @@
-export type TranslationLanguage =
-| "en"
-| "tr"
-| "es"
-| "fr"
-| "de"
-| "ar"
-| "ru"
-| "zh";
+export const supportedLanguageCodes = [
+  "en",
+  "tr",
+  "es",
+  "fr",
+  "de",
+  "ar",
+  "ru",
+  "zh",
+] as const;
+
+export type TranslationLanguage = (typeof supportedLanguageCodes)[number];
+
+export function isTranslationLanguage(
+  languageCode: string | null | undefined
+): languageCode is TranslationLanguage {
+  return supportedLanguageCodes.includes(languageCode as TranslationLanguage);
+}
 
 export const translations: Record<TranslationLanguage, Record<string, string>> = {
 en: {
@@ -367,6 +376,7 @@ en: {
 "login.appleComingSoon": "Apple Login will be connected next.",
 
 "common.error": "Error",
+"common.notAvailable": "Not available",
 
 "profile.signedIn": "Signed In",
 "profile.guestUser": "Guest User",
@@ -757,6 +767,7 @@ tr: {
 "login.appleComingSoon": "Apple Girişi yakında aktif olacak.",
 
 "common.error": "Hata",
+"common.notAvailable": "Mevcut değil",
 
 "profile.signedIn": "Giriş Yapıldı",
 "profile.guestUser": "Misafir Kullanıcı",
