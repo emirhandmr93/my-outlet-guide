@@ -5122,4 +5122,15 @@ export const brandsFK: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "general-store-outdoor",
+    brandName: "General Store Outdoor",
+    aliases: [],
+    categoryId: "sports",
+    logo: "",
+    originCountryId: "italy",
+    luxuryLevel: "sports",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
 ];
