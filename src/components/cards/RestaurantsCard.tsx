@@ -8,6 +8,8 @@ import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { motion } from "../../theme/motion";
+import { useTranslation } from "../../hooks/useTranslation";
+import { formatRestaurantCategoryLabel } from "../../utils/restaurantCategoryFormatter";
 
 type RestaurantsCardProps = {
   title: string;
@@ -20,6 +22,7 @@ export function RestaurantsCard({
   restaurants,
   notAvailableText,
 }: RestaurantsCardProps) {
+  const { t } = useTranslation();
   const [showAll, setShowAll] = useState(false);
   const visibleRestaurants = showAll ? restaurants : restaurants.slice(0, 3);
 
@@ -28,7 +31,7 @@ export function RestaurantsCard({
       <View style={styles.headerRow}>
         <SectionTitle title={title} />
         {restaurants.length > 0 ? (
-          <Text style={styles.countText}>{restaurants.length} places</Text>
+          <Text style={styles.countText}>{`${restaurants.length} ${t("restaurants.places")}`}</Text>
         ) : null}
       </View>
 
@@ -42,7 +45,7 @@ export function RestaurantsCard({
 
               <View style={styles.restaurantContent}>
                 <Text style={styles.restaurantTitle}>{restaurant.restaurantName}</Text>
-                <Text style={styles.restaurantCategory}>{restaurant.category}</Text>
+                <Text style={styles.restaurantCategory}>{formatRestaurantCategoryLabel(restaurant.category, t)}</Text>
                 <Text style={styles.restaurantPrice}>{restaurant.priceLevel}</Text>
               </View>
             </View>
@@ -54,7 +57,7 @@ export function RestaurantsCard({
               style={styles.viewAllButton}
               onPress={() => setShowAll((value) => !value)}
             >
-              <Text style={styles.viewAllText}>{showAll ? "Show less" : "View all restaurants"}</Text>
+              <Text style={styles.viewAllText}>{showAll ? t("common.showLess") : t("restaurants.viewAll")}</Text>
             </TouchableOpacity>
           ) : null}
         </>

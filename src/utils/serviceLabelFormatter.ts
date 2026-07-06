@@ -1,0 +1,50 @@
+const serviceLabelKeys: Record<string, string> = {
+  "access and mobility": "service.label.accessibility",
+  accessibility: "service.label.accessibility",
+  "accessible toilets": "service.label.accessibleToilets",
+  "baby changing": "service.label.babyChanging",
+  "baby-changing facilities": "service.label.babyChanging",
+  "bag storage": "service.label.bagStorage",
+  "barrier-free toilets": "service.label.accessibleToilets",
+  "bike parking": "service.label.bikeParking",
+  "bus services": "service.label.busServices",
+  "car parking": "service.label.parking",
+  "centre information": "service.label.information",
+  "centre map": "service.label.map",
+  "click & collect": "service.label.clickCollect",
+  cloakroom: "service.label.cloakroom",
+  "coach parking": "service.label.coachParking",
+  "currency exchange": "service.label.currencyExchange",
+  "disabled parking": "service.label.disabledParking",
+  "dog friendly": "service.label.dogFriendly",
+  "dogs welcome": "service.label.dogFriendly",
+  "ev charging": "service.label.evCharging",
+  "ev charging station": "service.label.evCharging",
+  "electric car charging": "service.label.evCharging",
+  "electric car charging stations": "service.label.evCharging",
+  "family services": "service.label.familyServices",
+  "free parking": "service.label.freeParking",
+  "gift card": "service.label.giftCard",
+  "gift cards": "service.label.giftCard",
+  information: "service.label.information",
+  "kids area": "service.label.kidsArea",
+  lockers: "service.label.lockers",
+  map: "service.label.map",
+  parking: "service.label.parking",
+  pharmacy: "service.label.pharmacy",
+  playground: "service.label.kidsArea",
+  "prayer room": "service.label.prayerRoom",
+  restaurants: "service.label.restaurants",
+  "tax free": "service.label.taxFree",
+  toilets: "service.label.toilets",
+  "tourist information": "service.label.touristInfo",
+  wifi: "service.label.wifi",
+  "wi-fi": "service.label.wifi",
+};
+
+export function formatServiceLabel(service: string, t: (key: string) => string) {
+  const normalizedService = service.trim().toLowerCase();
+  const translationKey = serviceLabelKeys[normalizedService];
+
+  return translationKey ? t(translationKey) : service;
+}

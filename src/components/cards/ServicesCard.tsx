@@ -5,6 +5,8 @@ import { colors } from "../../theme/colors";
 import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
+import { useTranslation } from "../../hooks/useTranslation";
+import { formatServiceLabel } from "../../utils/serviceLabelFormatter";
 
 export type ServicesCardProps = {
   title: string;
@@ -17,6 +19,8 @@ export function ServicesCard({
   services,
   notAvailableText,
 }: ServicesCardProps) {
+  const { t } = useTranslation();
+
   return (
     <Card>
       <SectionTitle title={title} />
@@ -26,7 +30,7 @@ export function ServicesCard({
           {services.map((service) => (
             <View key={service} style={styles.pill}>
               <Text style={styles.icon}>✓</Text>
-              <Text style={styles.text}>{service}</Text>
+              <Text style={styles.text}>{formatServiceLabel(service, t)}</Text>
             </View>
           ))}
         </View>
