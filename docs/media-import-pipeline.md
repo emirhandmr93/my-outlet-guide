@@ -1,6 +1,6 @@
 # Automated outlet media import pipeline
 
-Media Phase 3D adds Wikimedia Commons original-file URL auto-resolution to the import scaffold. The importer downloads and converts image files only from an explicit manifest. It does not update outlet data, MasterData, media metadata, `sourceStatus` values, i18n, Reviews & Ratings, outlet-atlas, or media resolver behavior.
+Media Phase 3K adds a safe metadata promotion step after the image import has succeeded. The importer still downloads and converts image files only from an explicit manifest, and the promotion tool updates only `src/media/outletMedia.ts` local requires plus `src/media/outletMediaMetadata.ts` records from that same manifest. It does not update outlet data, MasterData, i18n, Reviews & Ratings, outlet-atlas, route params, navigation, search behavior, or the data model.
 
 ## Preferred path: GitHub Actions import
 
@@ -12,12 +12,13 @@ Use the manual GitHub Actions workflow when local ImageMagick installation is no
 4. Click **Run workflow**.
 5. Keep or change the inputs:
    - `manifestPath`: defaults to `media-sources/batch-a-parndorf.sample.json`. Use the path to the manifest that should be imported.
-   - `commitChanges`: defaults to `true`. Keep `true` to commit imported media files to the current branch, or set `false` to leave the diff in workflow logs and upload the changed outlet image files as an artifact.
+   - `commitChanges`: defaults to `true`. Keep `true` to commit imported media files and any promoted metadata/local-require changes to the current branch, or set `false` to leave the diff in workflow logs and upload changed files as an artifact.
+   - `promoteMetadata`: defaults to `true`. Keep `true` for manifests that add new target files so imported WebP assets are referenced and described immediately after import validation. Set `false` only for advanced image-only imports where metadata/local require updates will be handled separately.
 6. Start the workflow and wait for validation to finish.
 
-The expected changed files are imported or replaced WebP files under `assets/outlet-images/...` that are listed by the manifest. The workflow intentionally does not edit metadata, mark anything production-cleared, or run strict media validation as a required success while unknown legacy assets remain.
+With `promoteMetadata: true`, the expected changed files are imported or replaced WebP files under `assets/outlet-images/...` plus `src/media/outletMedia.ts` and `src/media/outletMediaMetadata.ts` when the manifest introduces new assets or updates existing metadata. The promotion step is manifest-driven, runs only after the real import succeeds, refuses `sourceStatus: "unknown"`, verifies every target file exists, verifies each target is a real WebP, and checks requested width/height when those fields are present. If import, promotion, or validation fails, the workflow stops before committing.
 
-After the workflow succeeds, the next step is a separate metadata update task: ask Codex to update `src/media/outletMediaMetadata.ts` from the reviewed manifest/import output. Do not mark an image production-cleared until source, credit, license, and alt text have been reviewed.
+For manifests that add new target files, use `promoteMetadata: true`; otherwise metadata validation will fail because the imported files would be orphan assets. For existing target-file replacements only, `promoteMetadata: true` should be harmless: existing local requires are skipped, and metadata records are refreshed from the reviewed manifest. Use `promoteMetadata: false` only for advanced image-only imports where metadata/local require updates are intentionally handled in a separate reviewed change. Do not mark an image production-cleared until source, credit, license, and alt text have been reviewed in the manifest.
 
 ## Optional local prerequisites
 
@@ -49,6 +50,14 @@ Dry-run validates the manifest and prints the planned import plus metadata summa
 npx tsx tools/importOutletMedia.ts media-sources/batch-a-parndorf.sample.json --dry-run
 ```
 
+After files have been imported, preview manifest-driven metadata promotion without writing files:
+
+```sh
+npx tsx tools/promoteImportedOutletMedia.ts media-sources/batch-a-parndorf.sample.json --dry-run
+```
+
+The promotion dry-run is intentionally strict about existing target files. If a manifest describes new assets that have not been imported yet, the dry-run fails with a clear missing-target message and makes no changes.
+
 ## Run a local import
 
 Run the importer locally only if ImageMagick is available. Wikimedia Commons `File:` page entries do not require manual `downloadUrl` values; existing image targets are protected unless `--overwrite` is explicit:
@@ -58,6 +67,14 @@ npx tsx tools/importOutletMedia.ts media-sources/batch-a-parndorf.sample.json --
 ```
 
 The importer keeps using an explicit `downloadUrl` when one is provided. If it is omitted, empty, or a placeholder and `sourceUrl` is a Wikimedia Commons `File:` page, the importer first resolves the original file URL through Wikimedia, then downloads the source image, converts/resizes/crops it to WebP via ImageMagick, and writes only to the requested `assets/outlet-images/...` target.
+
+After a successful local import, promote metadata from the same manifest:
+
+```sh
+npx tsx tools/promoteImportedOutletMedia.ts media-sources/batch-a-parndorf.sample.json
+```
+
+Then run metadata validation. Promotion is all-or-nothing from the tool's perspective: it validates manifest fields, rejects unknown or unsupported source statuses, confirms files exist under `assets/outlet-images`, verifies true WebP output and requested dimensions, prepares both source-file updates in memory, and only writes after those checks pass.
 
 ## Validation after metadata work
 
