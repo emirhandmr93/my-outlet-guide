@@ -68,6 +68,17 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "music-spot",
+    brandName: "Music Spot",
+    aliases: [],
+    categoryId: "books-stationery",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 45,
+    brandStatus: "active",
+  },
+  {
     brandId: "not-only-candles",
     brandName: "(Not Only) Candles",
     aliases: ["Not Only Candles", "NotOnlyCandles"],
