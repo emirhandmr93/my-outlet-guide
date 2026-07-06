@@ -7,6 +7,7 @@ import { CurrencySelector } from "../components/CurrencySelector";
 import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
 import { useSavings } from "../contexts/SavingsContext";
+import { useTranslation } from "../hooks/useTranslation";
 
 type SavingsTool = {
   id: string;
@@ -18,47 +19,9 @@ type SavingsTool = {
   highlight?: string;
 };
 
-const tools: SavingsTool[] = [
-  {
-    id: "smart-shopping",
-    icon: "🛍️",
-    title: "Smart Shopping Calculator",
-    description: "Estimate your final outlet price after discount, currency and tax-free refund.",
-    routeName: "SmartShoppingCalculator",
-    badge: "Best for basket",
-    highlight: "Final price",
-  },
-  {
-    id: "price-advantage",
-    icon: "↘️",
-    title: "Price Advantage",
-    description: "Compare outlet prices with your home-country price before you buy.",
-    routeName: "PriceAdvantageCalculator",
-    badge: "Compare",
-    highlight: "Savings gap",
-  },
-  {
-    id: "tax-free-calculator",
-    icon: "🧾",
-    title: "Tax Free Calculator",
-    description: "Estimate your refund, net cost and key tax-free steps in one place.",
-    routeName: "TaxFreeCalculator",
-    badge: "Refund",
-    highlight: "Estimated refund",
-  },
-  {
-    id: "flight-deals",
-    icon: "✈️",
-    title: "Flight Deals",
-    description: "Create route alerts and get notified when fares drop 15%, 30% or 45%.",
-    routeName: "FlightDeals",
-    badge: "Alerts",
-    highlight: "90-day average",
-  }
-];
-
 export function SavingsScreen() {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const [settingsOpen, setSettingsOpen] = useState(false);
   const {
     selectedCountryId,
@@ -66,6 +29,45 @@ export function SavingsScreen() {
     setSelectedCountryId,
     setSelectedCurrency,
   } = useSavings();
+
+  const tools: SavingsTool[] = [
+    {
+      id: "smart-shopping",
+      icon: "🛍️",
+      title: t("savings.smartTitle"),
+      description: t("savings.smartDescription"),
+      routeName: "SmartShoppingCalculator",
+      badge: t("savings.smartBadge"),
+      highlight: t("savings.smartHighlight"),
+    },
+    {
+      id: "price-advantage",
+      icon: "↘️",
+      title: t("savings.priceTitleShort"),
+      description: t("savings.priceDescription"),
+      routeName: "PriceAdvantageCalculator",
+      badge: t("savings.priceBadge"),
+      highlight: t("savings.priceHighlight"),
+    },
+    {
+      id: "tax-free-calculator",
+      icon: "🧾",
+      title: t("savings.taxCalcTitle"),
+      description: t("savings.taxCalcDescription"),
+      routeName: "TaxFreeCalculator",
+      badge: t("savings.taxCalcBadge"),
+      highlight: t("savings.taxCalcHighlight"),
+    },
+    {
+      id: "flight-deals",
+      icon: "✈️",
+      title: t("savings.flightTitle"),
+      description: t("savings.flightDescription"),
+      routeName: "FlightDeals",
+      badge: t("savings.flightBadge"),
+      highlight: t("savings.flightHighlight"),
+    },
+  ];
 
   const selectedCountry =
     countries.find((country) => country.countryId === selectedCountryId) || countries[0];
@@ -76,10 +78,10 @@ export function SavingsScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.heroLabel}>SAVINGS CENTER</Text>
-        <Text style={styles.pageTitle}>Plan smarter. Save better.</Text>
+        <Text style={styles.heroLabel}>{t("savings.heroLabel")}</Text>
+        <Text style={styles.pageTitle}>{t("savings.heroTitle")}</Text>
         <Text style={styles.pageSubtitle}>
-          Compare prices, estimate tax-free refunds and prepare your outlet shopping budget before you travel.
+          {t("savings.heroSubtitle")}
         </Text>
       </View>
 
@@ -87,8 +89,8 @@ export function SavingsScreen() {
       <View style={styles.settingsCard}>
         <View style={styles.settingsHeaderRow}>
           <View>
-            <Text style={styles.settingsKicker}>SHOPPING SETTINGS</Text>
-            <Text style={styles.settingsTitle}>Use one country and currency across Savings.</Text>
+            <Text style={styles.settingsKicker}>{t("savings.settingsKicker")}</Text>
+            <Text style={styles.settingsTitle}>{t("savings.settingsTitle")}</Text>
           </View>
 
           <TouchableOpacity
@@ -96,7 +98,7 @@ export function SavingsScreen() {
             style={styles.changeButton}
             onPress={() => setSettingsOpen((current) => !current)}
           >
-            <Text style={styles.changeButtonText}>{settingsOpen ? "Done" : "Change"}</Text>
+            <Text style={styles.changeButtonText}>{settingsOpen ? t("common.done") : t("common.change")}</Text>
           </TouchableOpacity>
         </View>
 
@@ -104,7 +106,7 @@ export function SavingsScreen() {
           <View style={styles.settingsSummaryItem}>
             <Text style={styles.settingsFlag}>{selectedCountry.countryFlag}</Text>
             <View>
-              <Text style={styles.settingsLabel}>Country</Text>
+              <Text style={styles.settingsLabel}>{t("common.country")}</Text>
               <Text style={styles.settingsValue}>{selectedCountry.countryName}</Text>
             </View>
           </View>
@@ -114,7 +116,7 @@ export function SavingsScreen() {
           <View style={styles.settingsSummaryItem}>
             <Text style={styles.settingsFlag}>{selectedCurrencyInfo.currencyFlag}</Text>
             <View>
-              <Text style={styles.settingsLabel}>Currency</Text>
+              <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
               <Text style={styles.settingsValue}>{selectedCurrency}</Text>
                 <Text style={styles.settingsSubvalue}>{selectedCurrencyInfo.currencyName}</Text>
             </View>
@@ -123,13 +125,13 @@ export function SavingsScreen() {
 
         {settingsOpen ? (
           <View style={styles.settingsSelectors}>
-            <Text style={styles.settingsSelectorTitle}>Country</Text>
+            <Text style={styles.settingsSelectorTitle}>{t("common.country")}</Text>
             <CountrySelector
               selectedCountryId={selectedCountryId}
               onSelectCountry={setSelectedCountryId}
             />
 
-            <Text style={styles.settingsSelectorTitle}>Currency</Text>
+            <Text style={styles.settingsSelectorTitle}>{t("common.currency")}</Text>
             <CurrencySelector
               selectedCurrency={selectedCurrency}
               onSelectCurrency={setSelectedCurrency}
@@ -140,24 +142,24 @@ export function SavingsScreen() {
 
       <View style={styles.snapshotCard}>
         <View style={styles.snapshotItem}>
-          <Text style={styles.snapshotValue}>Refund</Text>
-          <Text style={styles.snapshotLabel}>Tax Free estimate</Text>
+          <Text style={styles.snapshotValue}>{t("savings.snapshotRefund")}</Text>
+          <Text style={styles.snapshotLabel}>{t("savings.snapshotRefundLabel")}</Text>
         </View>
         <View style={styles.snapshotDivider} />
         <View style={styles.snapshotItem}>
-          <Text style={styles.snapshotValue}>Compare</Text>
-          <Text style={styles.snapshotLabel}>Outlet advantage</Text>
+          <Text style={styles.snapshotValue}>{t("savings.snapshotCompare")}</Text>
+          <Text style={styles.snapshotLabel}>{t("savings.snapshotCompareLabel")}</Text>
         </View>
         <View style={styles.snapshotDivider} />
         <View style={styles.snapshotItem}>
-          <Text style={styles.snapshotValue}>Alerts</Text>
-          <Text style={styles.snapshotLabel}>Flight drops</Text>
+          <Text style={styles.snapshotValue}>{t("savings.snapshotAlerts")}</Text>
+          <Text style={styles.snapshotLabel}>{t("savings.snapshotAlertsLabel")}</Text>
         </View>
       </View>
 
       <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>Money tools</Text>
-        <Text style={styles.sectionSubtitle}>Choose the right calculator for your shopping decision.</Text>
+        <Text style={styles.sectionTitle}>{t("savings.toolsTitle")}</Text>
+        <Text style={styles.sectionSubtitle}>{t("savings.toolsSubtitle")}</Text>
       </View>
 
       {tools.map((tool, index) => (
@@ -187,17 +189,17 @@ export function SavingsScreen() {
           ) : null}
 
           <View style={styles.actionRow}>
-            <Text style={styles.cardAction}>Open tool</Text>
+            <Text style={styles.cardAction}>{t("savings.openTool")}</Text>
             <Text style={styles.arrow}>→</Text>
           </View>
         </TouchableOpacity>
       ))}
 
       <View style={styles.tipsCard}>
-        <Text style={styles.tipsKicker}>BEFORE YOU SHOP</Text>
-        <Text style={styles.tipsTitle}>Use one final price, not the shelf price.</Text>
+        <Text style={styles.tipsKicker}>{t("savings.tipsKicker")}</Text>
+        <Text style={styles.tipsTitle}>{t("savings.tipsTitle")}</Text>
         <Text style={styles.tipsText}>
-          Outlet discount, local currency, tax-free refund and flight cost can change the real value of a purchase. Use Savings Center before you decide.
+          {t("savings.tipsText")}
         </Text>
       </View>
     </ScrollView>

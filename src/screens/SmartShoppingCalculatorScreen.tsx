@@ -38,21 +38,21 @@ export function SmartShoppingCalculatorScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.heroLabel}>SMART SHOPPING</Text>
+        <Text style={styles.heroLabel}>{t("smartCalc.heroLabel")}</Text>
         <Text style={styles.pageTitle}>{t("smartCalc.title")}</Text>
         <Text style={styles.pageSubtitle}>{t("smartCalc.subtitle")}</Text>
       </View>
 
       <View style={styles.card}>
         <View style={styles.settingsPanel}>
-          <Text style={styles.settingsKicker}>SHOPPING SETTINGS</Text>
-          <Text style={styles.settingsTitle}>Country and currency are shared across all Savings tools.</Text>
+          <Text style={styles.settingsKicker}>{t("savings.settingsKicker")}</Text>
+          <Text style={styles.settingsTitle}>{t("savings.settingsSharedTitle")}</Text>
 
           <View style={styles.settingsSummaryRow}>
             <View style={styles.settingsSummaryItem}>
               <Text style={styles.settingsFlag}>{selectedCountry.countryFlag}</Text>
               <View>
-                <Text style={styles.settingsLabel}>Country</Text>
+                <Text style={styles.settingsLabel}>{t("common.country")}</Text>
                 <Text style={styles.settingsValue}>{selectedCountry.countryName}</Text>
               </View>
             </View>
@@ -62,20 +62,20 @@ export function SmartShoppingCalculatorScreen() {
             <View style={styles.settingsSummaryItem}>
               <Text style={styles.settingsFlag}>{selectedCurrencyInfo.currencyFlag}</Text>
               <View>
-                <Text style={styles.settingsLabel}>Currency</Text>
+                <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
                 <Text style={styles.settingsValue}>{selectedCurrency}</Text>
                 <Text style={styles.settingsSubvalue}>{selectedCurrencyInfo.currencyName}</Text>
               </View>
             </View>
           </View>
 
-          <Text style={styles.sectionTitle}>Country</Text>
+          <Text style={styles.sectionTitle}>{t("common.country")}</Text>
           <CountrySelector
             selectedCountryId={selectedCountryId}
             onSelectCountry={setSelectedCountryId}
           />
 
-          <Text style={styles.sectionTitle}>Currency</Text>
+          <Text style={styles.sectionTitle}>{t("common.currency")}</Text>
           <CurrencySelector
             selectedCurrency={selectedCurrency}
             onSelectCurrency={setSelectedCurrency}
