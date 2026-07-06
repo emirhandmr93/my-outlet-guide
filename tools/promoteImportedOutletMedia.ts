@@ -36,6 +36,7 @@ type ManifestEntry = {
 type Options = {
   dryRun: boolean;
   manifestPath: string;
+  simulateTypecheck: boolean;
 };
 
 type MetadataRecord = {
@@ -53,7 +54,7 @@ type MetadataRecord = {
 
 function usage(): never {
   console.error(
-    "Usage: npx tsx tools/promoteImportedOutletMedia.ts <manifest.json> [--dry-run]",
+    "Usage: npx tsx tools/promoteImportedOutletMedia.ts <manifest.json> [--dry-run] [--simulate-typecheck]",
   );
   process.exit(1);
 }
@@ -72,13 +73,17 @@ function parseArgs(): Options {
   }
 
   for (const arg of args.filter((value) => value.startsWith("--"))) {
-    if (arg !== "--dry-run") {
+    if (arg !== "--dry-run" && arg !== "--simulate-typecheck") {
       console.error(`Unknown flag: ${arg}`);
       usage();
     }
   }
 
-  return { manifestPath, dryRun: args.includes("--dry-run") };
+  return {
+    manifestPath,
+    dryRun: args.includes("--dry-run"),
+    simulateTypecheck: args.includes("--simulate-typecheck"),
+  };
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -135,6 +140,7 @@ function validateEntry(entry: ManifestEntry, index: number): string {
     "sourceUrl",
     "credit",
     "license",
+    "licenseUrl",
     "alt",
   ];
 
@@ -154,10 +160,6 @@ function validateEntry(entry: ManifestEntry, index: number): string {
 
   if (!allowedStatuses.has(entry.sourceStatus)) {
     throw new Error(`${label}: unsupported sourceStatus "${entry.sourceStatus}".`);
-  }
-
-  if (entry.sourceStatus !== "project-owned" && !hasText(entry.licenseUrl)) {
-    throw new Error(`${label}: licenseUrl is required for non-project-owned promotion.`);
   }
 
   if (entry.width !== undefined && (!Number.isInteger(entry.width) || entry.width < 1)) {
@@ -218,6 +220,10 @@ function metadataObject(record: MetadataRecord): string {
 }
 
 function entryToRecord(entry: ManifestEntry, assetPath: string): MetadataRecord {
+  if (!hasText(entry.licenseUrl)) {
+    throw new Error(`${assetPath}: generated metadata is missing licenseUrl.`);
+  }
+
   return {
     outletId: entry.outletId,
     role: entry.role,
@@ -285,6 +291,7 @@ function updateMetadataSource(source: string, records: MetadataRecord[]): { sour
     } else {
       added.push(record.assetPath);
       const markers = [
+        "\n] as const;\n\nexport const outletMediaMetadata: readonly OutletMediaAssetMetadata[] =",
         "\n] as const satisfies readonly OutletMediaAssetMetadata[];",
         "\n] as const).filter(isOutletMediaAssetMetadata) satisfies readonly OutletMediaAssetMetadata[];",
       ];
@@ -331,17 +338,76 @@ function updateMediaSource(source: string, entries: Array<{ outletId: string; as
   return { source: nextSource, added, skipped };
 }
 
+function findSimulationSourceAsset(): string {
+  const candidates = [
+    path.join(outletImagesRoot, "parndorf", "gallery1.webp"),
+    path.join(outletImagesRoot, "parndorf", "hero.webp"),
+  ];
+
+  const source = candidates.find((candidate) => {
+    const inspection = inspectMediaFile(candidate);
+    return (
+      inspection.exists &&
+      inspection.format === "webp" &&
+      inspection.width === 1600 &&
+      inspection.height === 900
+    );
+  });
+
+  if (!source) {
+    throw new Error("Could not locate a valid 1600x900 WebP asset for simulation stubs.");
+  }
+
+  return source;
+}
+
+function createSimulationAssets(assetPaths: string[]): string[] {
+  const sourceAsset = findSimulationSourceAsset();
+  const created: string[] = [];
+
+  for (const assetPath of assetPaths) {
+    const absolutePath = path.join(repoRoot, assetPath);
+    if (fs.existsSync(absolutePath)) {
+      continue;
+    }
+
+    fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
+    fs.copyFileSync(sourceAsset, absolutePath);
+    created.push(absolutePath);
+  }
+
+  return created;
+}
+
+function removeSimulationAssets(createdAssets: string[]): void {
+  for (const assetPath of createdAssets.reverse()) {
+    if (fs.existsSync(assetPath)) {
+      fs.rmSync(assetPath);
+    }
+  }
+}
+
 function runTypecheck(): void {
   execFileSync("npx", ["tsc", "--noEmit"], { cwd: repoRoot, stdio: "inherit" });
 }
 
 function main(): void {
   const options = parseArgs();
+  if (options.dryRun && options.simulateTypecheck) {
+    throw new Error("Use either --dry-run or --simulate-typecheck, not both.");
+  }
+
   const entries = readManifest(options.manifestPath);
 
   if (entries.length === 0) {
     throw new Error("Manifest has no images to promote.");
   }
+
+  const simulationAssets = options.simulateTypecheck
+    ? createSimulationAssets(
+        entries.map((entry) => normalizeTargetPath(entry.targetAssetPath)),
+      )
+    : [];
 
   const seenTargets = new Set<string>();
   const normalizedEntries = entries.map((entry, index) => {
@@ -390,11 +456,20 @@ function main(): void {
   } catch (error) {
     fs.writeFileSync(metadataPath, previousMetadataSource);
     fs.writeFileSync(outletMediaPath, previousMediaSource);
+    removeSimulationAssets(simulationAssets);
     throw new Error(
       `Promotion output failed typecheck; reverted generated source files. ${
         error instanceof Error ? error.message : String(error)
       }`,
     );
+  }
+
+  if (options.simulateTypecheck) {
+    fs.writeFileSync(metadataPath, previousMetadataSource);
+    fs.writeFileSync(outletMediaPath, previousMediaSource);
+    removeSimulationAssets(simulationAssets);
+    console.log("Simulation typecheck complete; restored generated source and temporary assets.");
+    return;
   }
 
   console.log("Promotion complete.");

@@ -20,16 +20,43 @@ export type OutletMediaAssetMetadata = {
   notes?: string;
 };
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function isOutletMediaSourceStatus(
+  value: unknown,
+): value is OutletMediaSourceStatus {
+  return (
+    value === "project-owned" ||
+    value === "licensed" ||
+    value === "public-domain" ||
+    value === "permission-granted" ||
+    value === "unknown"
+  );
+}
+
+function isOutletMediaAssetRole(value: unknown): value is OutletMediaAssetRole {
+  return value === "hero" || value === "gallery";
+}
+
 function isOutletMediaAssetMetadata(
-  metadata: OutletMediaAssetMetadata | undefined,
+  metadata: unknown,
 ): metadata is OutletMediaAssetMetadata {
-  return metadata !== undefined;
+  return (
+    isRecord(metadata) &&
+    typeof metadata.outletId === "string" &&
+    isOutletMediaAssetRole(metadata.role) &&
+    typeof metadata.assetPath === "string" &&
+    isOutletMediaSourceStatus(metadata.sourceStatus) &&
+    typeof metadata.alt === "string"
+  );
 }
 
 // Phase 1C provenance inventory scaffold. Unknown-provenance assets are
 // inventory-tracked here, but they are not production-cleared until source,
 // credit, and license details are documented and validated.
-export const outletMediaMetadata = ([
+const outletMediaMetadataRaw: readonly unknown[] = [
   {
     outletId: "la-vallee-village",
     role: "hero",
@@ -952,4 +979,7 @@ export const outletMediaMetadata = ([
     notes:
       "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
   },
-] as const).filter(isOutletMediaAssetMetadata) satisfies readonly OutletMediaAssetMetadata[];
+] as const;
+
+export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] =
+  outletMediaMetadataRaw.filter(isOutletMediaAssetMetadata);
