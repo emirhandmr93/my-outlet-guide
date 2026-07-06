@@ -356,14 +356,22 @@ function validateEntry(
   return absoluteTargetPath;
 }
 
-function ensureMagick(): void {
-  const check = spawnSync("magick", ["-version"], { encoding: "utf8" });
+function getImageMagickCommand(): "magick" | "convert" {
+  const magickCheck = spawnSync("magick", ["-version"], { encoding: "utf8" });
 
-  if (check.error || check.status !== 0) {
-    throw new Error(
-      "ImageMagick 'magick' command was not found. Install ImageMagick locally and ensure 'magick' is on PATH.",
-    );
+  if (!magickCheck.error && magickCheck.status === 0) {
+    return "magick";
   }
+
+  const convertCheck = spawnSync("convert", ["-version"], { encoding: "utf8" });
+
+  if (!convertCheck.error && convertCheck.status === 0) {
+    return "convert";
+  }
+
+  throw new Error(
+    "ImageMagick command was not found. Install ImageMagick locally and ensure 'magick' or 'convert' is on PATH.",
+  );
 }
 
 async function downloadToTemp(url: string): Promise<string> {
@@ -411,7 +419,8 @@ function convertToWebp(
 
   args.push("-strip", "-quality", String(entry.quality ?? 82), targetPath);
 
-  const result = spawnSync("magick", args, { encoding: "utf8" });
+  const imageMagickCommand = getImageMagickCommand();
+  const result = spawnSync(imageMagickCommand, args, { encoding: "utf8" });
 
   if (result.error || result.status !== 0) {
     throw new Error(
@@ -464,7 +473,6 @@ async function main(): Promise<void> {
       continue;
     }
 
-    ensureMagick();
     const tempPath = await downloadToTemp(downloadUrl);
     try {
       convertToWebp(tempPath, targets[index], entry);
