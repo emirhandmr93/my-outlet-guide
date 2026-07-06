@@ -13,10 +13,13 @@ import {
 } from "react-native";
 
 import { useAuth } from "../contexts/AuthContext";
+import { useTranslation } from "../hooks/useTranslation";
 
 export function LoginScreen() {
   const navigation = useNavigation<any>();
-  const { loginWithEmail, registerWithEmail, loginWithGoogle, loginWithApple } = useAuth();
+  const { t } = useTranslation();
+  const { loginWithEmail, registerWithEmail, loginWithGoogle, loginWithApple } =
+    useAuth();
 
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState("");
@@ -25,7 +28,7 @@ export function LoginScreen() {
 
   async function handleLogin() {
     if (!email.trim() || !password) {
-      Alert.alert("Missing information", "Please enter your email and password.");
+      Alert.alert(t("auth.missingTitle"), t("auth.missingMessage"));
       return;
     }
 
@@ -34,7 +37,7 @@ export function LoginScreen() {
       await loginWithEmail(email.trim(), password);
       navigation.goBack();
     } catch {
-      Alert.alert("Sign in failed", "Please check your email and password.");
+      Alert.alert(t("auth.signInFailedTitle"), t("auth.signInFailedMessage"));
     } finally {
       setLoading(false);
     }
@@ -42,7 +45,7 @@ export function LoginScreen() {
 
   async function handleRegister() {
     if (!email.trim() || password.length < 6) {
-      Alert.alert("Check your details", "Use a valid email and at least 6 characters for password.");
+      Alert.alert(t("auth.checkDetailsTitle"), t("auth.checkDetailsMessage"));
       return;
     }
 
@@ -51,7 +54,7 @@ export function LoginScreen() {
       await registerWithEmail(email.trim(), password);
       navigation.goBack();
     } catch {
-      Alert.alert("Account could not be created", "Please try again with another email.");
+      Alert.alert(t("auth.createFailedTitle"), t("auth.createFailedMessage"));
     } finally {
       setLoading(false);
     }
@@ -63,7 +66,7 @@ export function LoginScreen() {
       await loginWithGoogle();
       navigation.goBack();
     } catch {
-      Alert.alert("Google Sign-In", "Google sign-in will be connected in the next release.");
+      Alert.alert(t("auth.googleTitle"), t("auth.googleMessage"));
     } finally {
       setLoading(false);
     }
@@ -75,7 +78,7 @@ export function LoginScreen() {
       await loginWithApple();
       navigation.goBack();
     } catch {
-      Alert.alert("Apple Sign-In", "Apple sign-in will be connected in the next release.");
+      Alert.alert(t("auth.appleTitle"), t("auth.appleMessage"));
     } finally {
       setLoading(false);
     }
@@ -86,21 +89,32 @@ export function LoginScreen() {
       style={styles.flex}
       behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
-      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.content}
+      >
         <View style={styles.heroCard}>
-          <Text style={styles.kicker}>MY OUTLET GUIDE</Text>
-          <Text style={styles.title}>Sign in to sync your shopping world.</Text>
-          <Text style={styles.subtitle}>
-            Save trips, favorites, reviews and flight deal preferences across devices.
-          </Text>
+          <Text style={styles.kicker}>{t("auth.kicker")}</Text>
+          <Text style={styles.title}>{t("auth.title")}</Text>
+          <Text style={styles.subtitle}>{t("auth.subtitle")}</Text>
         </View>
 
-        <TouchableOpacity style={styles.appleButton} activeOpacity={0.86} onPress={handleApple}>
-          <Text style={styles.appleButtonText}> Continue with Apple</Text>
+        <TouchableOpacity
+          style={styles.appleButton}
+          activeOpacity={0.86}
+          onPress={handleApple}
+        >
+          <Text style={styles.appleButtonText}>{t("auth.continueApple")}</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.socialButton} activeOpacity={0.86} onPress={handleGoogle}>
-          <Text style={styles.socialButtonText}>Continue with Google</Text>
+        <TouchableOpacity
+          style={styles.socialButton}
+          activeOpacity={0.86}
+          onPress={handleGoogle}
+        >
+          <Text style={styles.socialButtonText}>
+            {t("auth.continueGoogle")}
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -109,16 +123,16 @@ export function LoginScreen() {
           onPress={() => setShowEmailForm((current) => !current)}
         >
           <Text style={styles.emailButtonText}>
-            {showEmailForm ? "Hide email sign in" : "Continue with email"}
+            {showEmailForm ? t("auth.hideEmail") : t("auth.continueEmail")}
           </Text>
         </TouchableOpacity>
 
         {showEmailForm && (
           <View style={styles.emailCard}>
-            <Text style={styles.label}>Email</Text>
+            <Text style={styles.label}>{t("auth.emailLabel")}</Text>
             <TextInput
               style={styles.input}
-              placeholder="you@example.com"
+              placeholder={t("auth.emailPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={email}
               onChangeText={setEmail}
@@ -126,10 +140,10 @@ export function LoginScreen() {
               keyboardType="email-address"
             />
 
-            <Text style={styles.label}>Password</Text>
+            <Text style={styles.label}>{t("auth.passwordLabel")}</Text>
             <TextInput
               style={styles.input}
-              placeholder="Minimum 6 characters"
+              placeholder={t("auth.passwordPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={password}
               onChangeText={setPassword}
@@ -142,7 +156,9 @@ export function LoginScreen() {
               onPress={handleLogin}
               disabled={loading}
             >
-              <Text style={styles.primaryButtonText}>{loading ? "Please wait..." : "Sign in"}</Text>
+              <Text style={styles.primaryButtonText}>
+                {loading ? t("auth.pleaseWait") : t("auth.signIn")}
+              </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -151,14 +167,14 @@ export function LoginScreen() {
               onPress={handleRegister}
               disabled={loading}
             >
-              <Text style={styles.secondaryButtonText}>Create account</Text>
+              <Text style={styles.secondaryButtonText}>
+                {t("auth.createAccount")}
+              </Text>
             </TouchableOpacity>
           </View>
         )}
 
-        <Text style={styles.termsText}>
-          By continuing, you agree to the Terms of Use and Privacy Policy.
-        </Text>
+        <Text style={styles.termsText}>{t("auth.termsText")}</Text>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -199,7 +215,12 @@ const styles = StyleSheet.create({
     padding: 17,
     marginBottom: 12,
   },
-  appleButtonText: { color: "#FFFFFF", fontWeight: "900", textAlign: "center", fontSize: 15 },
+  appleButtonText: {
+    color: "#FFFFFF",
+    fontWeight: "900",
+    textAlign: "center",
+    fontSize: 15,
+  },
   socialButton: {
     backgroundColor: "#FFFFFF",
     borderRadius: 20,
@@ -208,7 +229,12 @@ const styles = StyleSheet.create({
     borderColor: "#E5E7EB",
     marginBottom: 12,
   },
-  socialButtonText: { color: "#0B1F3A", fontWeight: "900", textAlign: "center", fontSize: 15 },
+  socialButtonText: {
+    color: "#0B1F3A",
+    fontWeight: "900",
+    textAlign: "center",
+    fontSize: 15,
+  },
   emailButton: {
     backgroundColor: "#FFF8E1",
     borderRadius: 20,
@@ -217,7 +243,12 @@ const styles = StyleSheet.create({
     borderColor: "#C9A227",
     marginBottom: 16,
   },
-  emailButtonText: { color: "#0B1F3A", fontWeight: "900", textAlign: "center", fontSize: 15 },
+  emailButtonText: {
+    color: "#0B1F3A",
+    fontWeight: "900",
+    textAlign: "center",
+    fontSize: 15,
+  },
   emailCard: {
     backgroundColor: "#FFFFFF",
     borderRadius: 26,
@@ -237,9 +268,18 @@ const styles = StyleSheet.create({
     color: "#0B1F3A",
     fontWeight: "700",
   },
-  primaryButton: { backgroundColor: "#0B1F3A", borderRadius: 17, padding: 16, marginTop: 2 },
+  primaryButton: {
+    backgroundColor: "#0B1F3A",
+    borderRadius: 17,
+    padding: 16,
+    marginTop: 2,
+  },
   disabledButton: { opacity: 0.65 },
-  primaryButtonText: { color: "#FFFFFF", fontWeight: "900", textAlign: "center" },
+  primaryButtonText: {
+    color: "#FFFFFF",
+    fontWeight: "900",
+    textAlign: "center",
+  },
   secondaryButton: {
     backgroundColor: "#FFFFFF",
     borderRadius: 17,
@@ -248,6 +288,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E5E7EB",
   },
-  secondaryButtonText: { color: "#0B1F3A", fontWeight: "900", textAlign: "center" },
-  termsText: { color: "#666666", textAlign: "center", lineHeight: 20, marginTop: 4 },
+  secondaryButtonText: {
+    color: "#0B1F3A",
+    fontWeight: "900",
+    textAlign: "center",
+  },
+  termsText: {
+    color: "#666666",
+    textAlign: "center",
+    lineHeight: 20,
+    marginTop: 4,
+  },
 });
