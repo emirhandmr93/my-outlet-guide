@@ -30,8 +30,16 @@ function isCurrencyCode(value: string) {
   return /^[A-Z]{3}$/.test(value);
 }
 
+function isEmailPlaceholder(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 function isAllowedIdenticalValue(value: string) {
-  return identicalAllowedValues.has(value) || isCurrencyCode(value);
+  return (
+    identicalAllowedValues.has(value) ||
+    isCurrencyCode(value) ||
+    isEmailPlaceholder(value)
+  );
 }
 
 for (const languageCode of supportedLanguageCodes) {
