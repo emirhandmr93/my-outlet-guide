@@ -37,7 +37,7 @@ type HomeRouteItem = {
 id: string;
 title: string;
 country: string;
-text: string;
+textKey: string;
 image: ImageSourcePropType;
 route: string;
 params: Record<string, string>;
@@ -45,10 +45,10 @@ params: Record<string, string>;
 
 type FeaturedSlide = {
 id: string;
-kicker: string;
-title: string;
-subtitle: string;
-cta: string;
+kickerKey: string;
+titleKey: string;
+subtitleKey: string;
+ctaKey: string;
 image: ImageSourcePropType;
 route: string;
 params?: Record<string, string>;
@@ -57,10 +57,10 @@ params?: Record<string, string>;
 const featuredSlides: FeaturedSlide[] = [
 {
 id: "featured-outlet",
-kicker: "FEATURED DEAL",
-title: "Luxury Shopping in Europe",
-subtitle: "Discover today's featured outlet destination.",
-cta: "Explore Now",
+kickerKey: "home.featured.outlet.kicker",
+titleKey: "home.featured.outlet.title",
+subtitleKey: "home.featured.outlet.subtitle",
+ctaKey: "home.featured.outlet.cta",
 image: require("../../assets/outlet-images/bicester/hero.webp"),
 route: "OutletDetail",
 params: { outletId: "bicester-village" },
@@ -68,20 +68,20 @@ params: { outletId: "bicester-village" },
 
 {
 id: "flight-alert",
-kicker: "FLIGHT DEAL",
-title: "Never Miss the Best Fares",
-subtitle: "Create route alerts for your next shopping trip.",
-cta: "Create Alert",
+kickerKey: "home.featured.flight.kicker",
+titleKey: "home.featured.flight.title",
+subtitleKey: "home.featured.flight.subtitle",
+ctaKey: "home.featured.flight.cta",
 image: require("../../assets/city-images/Paris.webp"),
 route: "FlightDeals",
 },
 
 {
 id: "shopping-event",
-kicker: "SHOPPING EVENT",
-title: "Summer Shopping Festival",
-subtitle: "Exclusive events and seasonal experiences.",
-cta: "View Event",
+kickerKey: "home.featured.event.kicker",
+titleKey: "home.featured.event.title",
+subtitleKey: "home.featured.event.subtitle",
+ctaKey: "home.featured.event.cta",
 image: require("../../assets/outlet-images/the-mall-firenze/hero.webp"),
 route: "OutletDetail",
 params: { outletId: "the-mall-firenze" },
@@ -90,20 +90,20 @@ params: { outletId: "the-mall-firenze" },
 
 {
 id: "shopping-guide",
-kicker: "SHOPPING GUIDE",
-title: "Everything You Need Before Shopping",
-subtitle: "Tax Free • Tips • Savings",
-cta: "Open Guide",
+kickerKey: "home.featured.guide.kicker",
+titleKey: "home.featured.guide.title",
+subtitleKey: "home.featured.guide.subtitle",
+ctaKey: "home.featured.guide.cta",
 image: require("../../assets/outlet-images/la-vallee/gallery1.webp"),
 route: "TaxFreeCalculator",
 },
 
 {
 id: "flash-sale",
-kicker: "FLASH SALE",
-title: "Limited-Time Outlet Offers",
-subtitle: "Don't miss today's best deals.",
-cta: "See Deals",
+kickerKey: "home.featured.flash.kicker",
+titleKey: "home.featured.flash.title",
+subtitleKey: "home.featured.flash.subtitle",
+ctaKey: "home.featured.flash.cta",
 image: require("../../assets/outlet-images/serravalle/hero.webp"),
 route: "OutletDetail",
 params: { outletId: "serravalle-designer-outlet" },
@@ -115,32 +115,32 @@ const shoppingTools = [
 {
 id: "savings",
 icon: "%",
-title: "Savings",
-text: "Tax Free and smart shopping tools.",
+titleKey: "home.tools.savings.title",
+textKey: "home.tools.savings.text",
 route: "Savings",
 tone: "#EAF7EF",
 },
 {
 id: "flights",
 icon: "✈️",
-title: "Flight Deals",
-text: "Get notified when fares drop 15%, 30% or 45%.",
+titleKey: "home.tools.flights.title",
+textKey: "home.tools.flights.text",
 route: "FlightDeals",
 tone: "#F1ECFF",
 },
 {
 id: "taxfree",
 icon: "€",
-title: "Tax Free",
-text: "Estimate your refund and check minimum spend.",
+titleKey: "home.tools.taxfree.title",
+textKey: "home.tools.taxfree.text",
 route: "TaxFreeCalculator",
 tone: "#FFF7E0",
 },
 {
 id: "offline",
 icon: "↓",
-title: "Offline",
-text: "Save guides for your trip.",
+titleKey: "home.tools.offline.title",
+textKey: "home.tools.offline.text",
 route: "OfflinePacks",
 tone: "#EAF3FF",
 },
@@ -151,7 +151,7 @@ const popularCities: HomeRouteItem[] = [
 id: "paris",
 title: "Paris",
 country: "France",
-text: "Luxury outlet routes",
+textKey: "home.cities.paris.text",
 image: require("../../assets/city-images/Paris.webp"),
 route: "CityResults",
 params: { cityId: "paris" },
@@ -160,7 +160,7 @@ params: { cityId: "paris" },
 id: "milan",
 title: "Milan",
 country: "Italy",
-text: "Designer outlet access",
+textKey: "home.cities.milan.text",
 image: require("../../assets/city-images/Milano.webp"),
 route: "CityResults",
 params: { cityId: "milan" },
@@ -169,7 +169,7 @@ params: { cityId: "milan" },
 id: "london",
 title: "London",
 country: "United Kingdom",
-text: "Premium shopping trips",
+textKey: "home.cities.london.text",
 image: require("../../assets/city-images/London.webp"),
 route: "CityResults",
 params: { cityId: "london" },
@@ -178,7 +178,7 @@ params: { cityId: "london" },
 id: "munich",
 title: "Munich",
 country: "Germany",
-text: "Bavarian shopping routes",
+textKey: "home.cities.munich.text",
 image: require("../../assets/city-images/Munich.webp"),
 route: "Country",
 params: { countryId: "germany" },
@@ -187,7 +187,7 @@ params: { countryId: "germany" },
 id: "vienna",
 title: "Vienna",
 country: "Austria",
-text: "Elegant outlet escapes",
+textKey: "home.cities.vienna.text",
 image: require("../../assets/city-images/Vienna.webp"),
 route: "Country",
 params: { countryId: "austria" },
@@ -199,44 +199,44 @@ const recommendedOutlets = [
 id: "la-vallee-village",
 title: "La Vallée Village",
 location: "Paris, France",
-text: "Luxury shopping near Disneyland Paris.",
+textKey: "home.outlets.laVallee.text",
 image: require("../../assets/outlet-images/la-vallee/hero.webp"),
 },
 {
 id: "bicester-village",
 title: "Bicester Village",
 location: "London, UK",
-text: "One of Europe’s most iconic luxury outlets.",
+textKey: "home.outlets.bicester.text",
 image: require("../../assets/outlet-images/bicester/hero.webp"),
 },
 {
 id: "serravalle-designer-outlet",
 title: "Serravalle",
 location: "Milan, Italy",
-text: "Large designer outlet village in Italy.",
+textKey: "home.outlets.serravalle.text",
 image: require("../../assets/outlet-images/serravalle/hero.webp"),
 },
 {
 id: "the-mall-firenze",
 title: "The Mall Firenze",
 location: "Florence, Italy",
-text: "Premium fashion destination in Tuscany.",
+textKey: "home.outlets.theMall.text",
 image: require("../../assets/outlet-images/the-mall-firenze/hero.webp"),
 },
 {
 id: "parndorf-designer-outlet",
 title: "Parndorf",
 location: "Vienna, Austria",
-text: "Popular outlet route near Vienna.",
+textKey: "home.outlets.parndorf.text",
 image: require("../../assets/outlet-images/parndorf/hero.webp"),
 },
 ];
 
 const quickMenuItems = [
-{ id: "browse", title: "Browse Outlets", icon: "🏬", route: "Explore" },
-{ id: "flights", title: "Flight Deals", icon: "✈️", route: "FlightDeals" },
-{ id: "taxfree", title: "Tax Free Center", icon: "💰", route: "TaxFreeCalculator" },
-{ id: "offline", title: "Offline Packs", icon: "📥", route: "OfflinePacks" },
+{ id: "browse", titleKey: "home.quick.browse", icon: "🏬", route: "Explore" },
+{ id: "flights", titleKey: "home.quick.flights", icon: "✈️", route: "FlightDeals" },
+{ id: "taxfree", titleKey: "home.quick.taxfree", icon: "💰", route: "TaxFreeCalculator" },
+{ id: "offline", titleKey: "home.quick.offline", icon: "📥", route: "OfflinePacks" },
 ];
 
 export function HomeScreen() {
@@ -300,12 +300,12 @@ navigateTo(slide.route, slide.params);
 
 async function shareApp() {
 await Share.share({
-message: "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
+message: t("home.shareMessage"),
 });
 }
 
 function rateApp() {
-Alert.alert("Rate My Outlet Guide", "App Store rating will be connected before launch.");
+Alert.alert(t("home.rateApp.title"), t("home.rateApp.message"));
 }
 
 return (
@@ -320,14 +320,14 @@ onPressLanguage={() => navigation.navigate("LanguageSettings")}
 
 <SearchBar
 value={searchQuery}
-placeholder={t("home.search") === "home.search" ? "Search and explore cities, outlets, brands..." : t("home.search")}
+placeholder={t("home.searchFallback")}
 onChangeText={setSearchQuery}
 onSubmitEditing={handleQuickSearch}
 />
 
 <DashboardSectionHeader
-title="Featured"
-subtitle="Handpicked deals, trips and shopping updates."
+title={t("home.sections.featured.title")}
+subtitle={t("home.sections.featured.subtitle")}
 />
 
 <View style={styles.carouselWrap}>
@@ -355,11 +355,11 @@ imageStyle={styles.slideImageRadius}
 >
 <View style={styles.slideOverlay} />
 <View style={styles.slideContent}>
-<Text style={styles.slideKicker}>{slide.kicker}</Text>
-<Text style={styles.slideTitle}>{slide.title}</Text>
-<Text style={styles.slideSubtitle}>{slide.subtitle}</Text>
+<Text style={styles.slideKicker}>{t(slide.kickerKey)}</Text>
+<Text style={styles.slideTitle}>{t(slide.titleKey)}</Text>
+<Text style={styles.slideSubtitle}>{t(slide.subtitleKey)}</Text>
 <View style={styles.slideAction}>
-<Text style={styles.slideActionText}>{slide.cta}</Text>
+<Text style={styles.slideActionText}>{t(slide.ctaKey)}</Text>
 <Text style={styles.slideActionArrow}>→</Text>
 </View>
 </View>
@@ -378,7 +378,7 @@ style={[styles.dot, index === activeSlideIndex && styles.dotActive]}
 </View>
 </View>
 
-<DashboardSectionHeader title="Shopping tools" subtitle="Plan your savings before you shop." />
+<DashboardSectionHeader title={t("home.sections.tools.title")} subtitle={t("home.sections.tools.subtitle")} />
 
 <View style={styles.toolsGrid}>
 {shoppingTools.map((tool) => (
@@ -389,21 +389,21 @@ activeOpacity={0.88}
 onPress={() => navigateTo(tool.route)}
 >
 <Text style={styles.toolIcon}>{tool.icon}</Text>
-<Text style={styles.toolTitle}>{tool.title}</Text>
-<Text style={styles.toolText}>{tool.text}</Text>
+<Text style={styles.toolTitle}>{t(tool.titleKey)}</Text>
+<Text style={styles.toolText}>{t(tool.textKey)}</Text>
 </TouchableOpacity>
 ))}
 </View>
 
-<DashboardSectionHeader title="Your activity" subtitle="Fast access to your saved shopping plans." />
+<DashboardSectionHeader title={t("home.sections.activity.title")} subtitle={t("home.sections.activity.subtitle")} />
 
 <View style={styles.activityCard}>
 <View style={styles.activityColumn}>
 <Text style={styles.activityIcon}>🧳</Text>
-<Text style={styles.activityLabel}>Shopping trip</Text>
-<Text style={styles.activityValue}>{latestTrip ? latestTrip.tripName : "No trip yet"}</Text>
+<Text style={styles.activityLabel}>{t("home.activity.tripLabel")}</Text>
+<Text style={styles.activityValue}>{latestTrip ? latestTrip.tripName : t("home.activity.noTrip")}</Text>
 <Text style={styles.activityText}>
-{latestTrip ? `${latestTrip.startDate} - ${latestTrip.endDate}` : "Create a trip to unlock reminders."}
+{latestTrip ? `${latestTrip.startDate} - ${latestTrip.endDate}` : t("home.activity.createTripReminder")}
 </Text>
 </View>
 
@@ -411,17 +411,17 @@ onPress={() => navigateTo(tool.route)}
 
 <View style={styles.activityColumn}>
 <Text style={styles.activityIcon}>♡</Text>
-<Text style={styles.activityLabel}>Favorites</Text>
+<Text style={styles.activityLabel}>{t("home.activity.favoritesLabel")}</Text>
 <Text style={styles.activityValue}>
-{favoriteIds.length > 0 ? favoriteIds.length : "No favorite outlets yet"}
+{favoriteIds.length > 0 ? favoriteIds.length : t("home.activity.noFavorites")}
 </Text>
 <Text style={styles.activityText}>
-{firstFavorite ? firstFavorite.name : "Save outlets you want to follow."}
+{firstFavorite ? firstFavorite.name : t("home.activity.saveOutlets")}
 </Text>
 </View>
 </View>
 
-<DashboardSectionHeader title="Popular cities" subtitle="Start with the most loved shopping destinations." />
+<DashboardSectionHeader title={t("home.sections.cities.title")} subtitle={t("home.sections.cities.subtitle")} />
 
 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
 {popularCities.map((city) => (
@@ -436,14 +436,14 @@ onPress={() => navigateTo(city.route, city.params)}
 <View style={styles.cityContent}>
 <Text style={styles.cityKicker}>{city.country}</Text>
 <Text style={styles.cityTitle}>{city.title}</Text>
-<Text style={styles.cityText}>{city.text}</Text>
+<Text style={styles.cityText}>{t(city.textKey)}</Text>
 </View>
 </ImageBackground>
 </TouchableOpacity>
 ))}
 </ScrollView>
 
-<DashboardSectionHeader title="Recommended outlets" subtitle="Premium destinations to start exploring." />
+<DashboardSectionHeader title={t("home.sections.outlets.title")} subtitle={t("home.sections.outlets.subtitle")} />
 
 <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.horizontalList}>
 {recommendedOutlets.map((outlet) => (
@@ -456,15 +456,15 @@ onPress={() => navigateTo("OutletDetail", { outletId: outlet.id })}
 <ImageBackground source={outlet.image} style={styles.outletImage} imageStyle={styles.outletImageRadius}>
 <View style={styles.outletOverlay} />
 <View style={styles.outletBadge}>
-<Text style={styles.outletBadgeText}>Recommended</Text>
+<Text style={styles.outletBadgeText}>{t("home.recommended")}</Text>
 </View>
 </ImageBackground>
 
 <View style={styles.outletBody}>
 <Text style={styles.outletLocation}>{outlet.location}</Text>
 <Text style={styles.outletTitle}>{outlet.title}</Text>
-<Text style={styles.outletText}>{outlet.text}</Text>
-<Text style={styles.tapText}>View outlet →</Text>
+<Text style={styles.outletText}>{t(outlet.textKey)}</Text>
+<Text style={styles.tapText}>{t("home.viewOutlet")}</Text>
 </View>
 </TouchableOpacity>
 ))}
@@ -478,7 +478,7 @@ activeOpacity={1}
 onPress={() => setIsQuickMenuOpen(false)}
 >
 <View style={styles.quickMenu}>
-<Text style={styles.quickMenuTitle}>Quick Menu</Text>
+<Text style={styles.quickMenuTitle}>{t("home.quick.title")}</Text>
 
 {quickMenuItems.map((item) => (
 <TouchableOpacity
@@ -488,20 +488,20 @@ activeOpacity={0.84}
 onPress={() => navigateTo(item.route)}
 >
 <Text style={styles.quickMenuIcon}>{item.icon}</Text>
-<Text style={styles.quickMenuText}>{item.title}</Text>
+<Text style={styles.quickMenuText}>{t(item.titleKey)}</Text>
 <Text style={styles.quickMenuArrow}>→</Text>
 </TouchableOpacity>
 ))}
 
 <TouchableOpacity style={styles.quickMenuItem} activeOpacity={0.84} onPress={rateApp}>
 <Text style={styles.quickMenuIcon}>⭐</Text>
-<Text style={styles.quickMenuText}>Rate App</Text>
+<Text style={styles.quickMenuText}>{t("home.quick.rateApp")}</Text>
 <Text style={styles.quickMenuArrow}>→</Text>
 </TouchableOpacity>
 
 <TouchableOpacity style={styles.quickMenuItemLast} activeOpacity={0.84} onPress={shareApp}>
 <Text style={styles.quickMenuIcon}>📤</Text>
-<Text style={styles.quickMenuText}>Share App</Text>
+<Text style={styles.quickMenuText}>{t("home.quick.shareApp")}</Text>
 <Text style={styles.quickMenuArrow}>→</Text>
 </TouchableOpacity>
 </View>

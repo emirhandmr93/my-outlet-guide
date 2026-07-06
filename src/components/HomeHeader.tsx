@@ -1,4 +1,5 @@
 import { Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useTranslation } from "../hooks/useTranslation";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
@@ -13,22 +14,22 @@ onPressNotifications?: () => void;
 onPressLanguage?: () => void;
 };
 
-function getGreeting(userName?: string, isGuest?: boolean) {
+function getGreeting(t: (key: string) => string, userName?: string, isGuest?: boolean) {
 if (isGuest || !userName) {
-return "Welcome to My Outlet Guide";
+return t("home.header.welcome");
 }
 
 const hour = new Date().getHours();
 
 if (hour < 12) {
-return `Good Morning,\n${userName}`;
+return `${t("home.header.goodMorning")},\n${userName}`;
 }
 
 if (hour < 18) {
-return `Good Afternoon,\n${userName}`;
+return `${t("home.header.goodAfternoon")},\n${userName}`;
 }
 
-return `Good Evening,\n${userName}`;
+return `${t("home.header.goodEvening")},\n${userName}`;
 }
 
 export function HomeHeader({
@@ -38,11 +39,12 @@ onPressMenu,
 onPressNotifications,
 onPressLanguage,
 }: HomeHeaderProps) {
-const title = getGreeting(userName, isGuest);
+const { t } = useTranslation();
+const title = getGreeting(t, userName, isGuest);
 const subtitle =
 isGuest || !userName
-? "Discover premium outlets, save more, and plan your next shopping trip."
-: "Plan smarter outlet trips, track savings, and discover premium shopping destinations.";
+? t("home.header.guestSubtitle")
+: t("home.header.userSubtitle");
 
 return (
 <View style={styles.wrapper}>
