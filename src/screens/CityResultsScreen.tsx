@@ -1,9 +1,17 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import { deals } from "../constants/deals";
 import { events } from "../constants/events";
 import { outlets } from "../constants/outlets";
+import { useTranslation } from "../hooks/useTranslation";
 import { getCountryName } from "../services/locationService";
 
 type RouteParams = {
@@ -33,9 +41,20 @@ function StatCard({ value, label }: { value: string | number; label: string }) {
   );
 }
 
-function OutletResultCard({ outlet, onPress }: { outlet: OutletItem; onPress: () => void }) {
+function OutletResultCard({
+  outlet,
+  onPress,
+}: {
+  outlet: OutletItem;
+  onPress: () => void;
+}) {
+  const { t } = useTranslation();
   return (
-    <TouchableOpacity style={styles.outletCard} activeOpacity={0.9} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.outletCard}
+      activeOpacity={0.9}
+      onPress={onPress}
+    >
       {outlet.heroImage ? (
         <Image source={{ uri: outlet.heroImage }} style={styles.outletImage} />
       ) : (
@@ -46,19 +65,33 @@ function OutletResultCard({ outlet, onPress }: { outlet: OutletItem; onPress: ()
 
       <View style={styles.outletContent}>
         <View style={styles.cardTopRow}>
-          <Text style={styles.cardBadge}>{hasTaxFree(outlet.taxFreeAvailable) ? "Tax Free" : "Limited"}</Text>
+          <Text style={styles.cardBadge}>
+            {hasTaxFree(outlet.taxFreeAvailable)
+              ? t("city.taxFree")
+              : t("city.limited")}
+          </Text>
           <Text style={styles.rating}>★ {outlet.rating}</Text>
         </View>
 
         <Text style={styles.cardTitle}>{outlet.name}</Text>
-        <Text style={styles.cardText}>{getCountryName(outlet.countryId)} • {outlet.storesCountText}</Text>
-        <Text style={styles.tapText}>View outlet →</Text>
+        <Text style={styles.cardText}>
+          {getCountryName(outlet.countryId)} • {outlet.storesCountText}
+        </Text>
+        <Text style={styles.tapText}>{t("city.viewOutlet")}</Text>
       </View>
     </TouchableOpacity>
   );
 }
 
-function InfoCard({ title, text, date }: { title: string; text: string; date?: string }) {
+function InfoCard({
+  title,
+  text,
+  date,
+}: {
+  title: string;
+  text: string;
+  date?: string;
+}) {
   return (
     <View style={styles.card}>
       <Text style={styles.cardTitle}>{title}</Text>
@@ -78,6 +111,7 @@ function EmptyCard({ text }: { text: string }) {
 
 export function CityResultsScreen() {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const route = useRoute<RouteProp<RouteParams, "CityResults">>();
 
   const cityId = route.params?.cityId || "paris";
@@ -89,38 +123,54 @@ export function CityResultsScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.heroLabel}>CITY GUIDE</Text>
+        <Text style={styles.heroLabel}>{t("city.heroLabel")}</Text>
         <Text style={styles.heroTitle}>{cityName}</Text>
-        <Text style={styles.heroText}>Outlets, shopping events and active deals in one premium city guide.</Text>
+        <Text style={styles.heroText}>{t("city.heroText")}</Text>
       </View>
 
       <View style={styles.statsRow}>
-        <StatCard value={cityOutlets.length} label="Outlets" />
-        <StatCard value={cityDeals.length} label="Deals" />
-        <StatCard value={cityEvents.length} label="Events" />
+        <StatCard value={cityOutlets.length} label={t("city.outlets")} />
+        <StatCard value={cityDeals.length} label={t("city.deals")} />
+        <StatCard value={cityEvents.length} label={t("city.events")} />
       </View>
 
-      <Text style={styles.sectionTitle}>Available outlets</Text>
+      <Text style={styles.sectionTitle}>{t("city.availableOutlets")}</Text>
       {cityOutlets.map((outlet) => (
-        <OutletResultCard key={outlet.outletId} outlet={outlet} onPress={() => navigation.navigate("OutletDetail", { outletId: outlet.outletId })} />
+        <OutletResultCard
+          key={outlet.outletId}
+          outlet={outlet}
+          onPress={() =>
+            navigation.navigate("OutletDetail", { outletId: outlet.outletId })
+          }
+        />
       ))}
 
-      <Text style={styles.sectionTitle}>Current deals</Text>
+      <Text style={styles.sectionTitle}>{t("city.currentDeals")}</Text>
       {cityDeals.length > 0 ? (
         cityDeals.map((deal) => (
-          <InfoCard key={deal.dealId} title={deal.title} text={deal.description} date={`${deal.startDate} - ${deal.endDate}`} />
+          <InfoCard
+            key={deal.dealId}
+            title={deal.title}
+            text={deal.description}
+            date={`${deal.startDate} - ${deal.endDate}`}
+          />
         ))
       ) : (
-        <EmptyCard text="No active city deals yet." />
+        <EmptyCard text={t("city.noActiveDeals")} />
       )}
 
-      <Text style={styles.sectionTitle}>Events</Text>
+      <Text style={styles.sectionTitle}>{t("city.events")}</Text>
       {cityEvents.length > 0 ? (
         cityEvents.map((event) => (
-          <InfoCard key={event.eventId} title={event.title} text={event.description} date={`${event.startDate} - ${event.endDate}`} />
+          <InfoCard
+            key={event.eventId}
+            title={event.title}
+            text={event.description}
+            date={`${event.startDate} - ${event.endDate}`}
+          />
         ))
       ) : (
-        <EmptyCard text="No upcoming events yet." />
+        <EmptyCard text={t("city.noUpcomingEvents")} />
       )}
     </ScrollView>
   );
@@ -129,28 +179,106 @@ export function CityResultsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20, paddingTop: 64, paddingBottom: 120 },
-  heroCard: { backgroundColor: "#0B1F3A", borderRadius: 30, padding: 24, marginBottom: 16 },
-  heroLabel: { color: "#C9A227", fontWeight: "900", fontSize: 12, letterSpacing: 1.2, marginBottom: 10 },
-  heroTitle: { color: "#FFFFFF", fontSize: 32, fontWeight: "900", marginBottom: 8 },
+  heroCard: {
+    backgroundColor: "#0B1F3A",
+    borderRadius: 30,
+    padding: 24,
+    marginBottom: 16,
+  },
+  heroLabel: {
+    color: "#C9A227",
+    fontWeight: "900",
+    fontSize: 12,
+    letterSpacing: 1.2,
+    marginBottom: 10,
+  },
+  heroTitle: {
+    color: "#FFFFFF",
+    fontSize: 32,
+    fontWeight: "900",
+    marginBottom: 8,
+  },
   heroText: { color: "#D8DEE9", fontSize: 15, lineHeight: 22 },
   statsRow: { flexDirection: "row", gap: 10, marginBottom: 18 },
-  statCard: { flex: 1, backgroundColor: "#FFFFFF", borderRadius: 20, padding: 14, borderWidth: 1, borderColor: "#E5E7EB" },
+  statCard: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 20,
+    padding: 14,
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+  },
   statNumber: { color: "#0B1F3A", fontSize: 18, fontWeight: "900" },
-  statLabel: { color: "#C9A227", fontSize: 12, fontWeight: "900", marginTop: 4 },
-  sectionTitle: { fontSize: 21, fontWeight: "900", color: "#0B1F3A", marginTop: 10, marginBottom: 12 },
-  outletCard: { backgroundColor: "#FFFFFF", borderRadius: 24, overflow: "hidden", borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 12 },
+  statLabel: {
+    color: "#C9A227",
+    fontSize: 12,
+    fontWeight: "900",
+    marginTop: 4,
+  },
+  sectionTitle: {
+    fontSize: 21,
+    fontWeight: "900",
+    color: "#0B1F3A",
+    marginTop: 10,
+    marginBottom: 12,
+  },
+  outletCard: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 24,
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    marginBottom: 12,
+  },
   outletImage: { width: "100%", height: 150, backgroundColor: "#E5E7EB" },
-  outletImagePlaceholder: { height: 140, backgroundColor: "#0B1F3A", alignItems: "center", justifyContent: "center" },
+  outletImagePlaceholder: {
+    height: 140,
+    backgroundColor: "#0B1F3A",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   outletImageIcon: { fontSize: 40 },
   outletContent: { padding: 18 },
-  card: { backgroundColor: "#FFFFFF", borderRadius: 22, padding: 18, borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 12 },
-  cardTopRow: { flexDirection: "row", justifyContent: "space-between", marginBottom: 10 },
-  cardBadge: { backgroundColor: "#FFF8E1", color: "#0B1F3A", borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6, fontSize: 12, fontWeight: "900", overflow: "hidden" },
+  card: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 22,
+    padding: 18,
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    marginBottom: 12,
+  },
+  cardTopRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  cardBadge: {
+    backgroundColor: "#FFF8E1",
+    color: "#0B1F3A",
+    borderRadius: 999,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    fontSize: 12,
+    fontWeight: "900",
+    overflow: "hidden",
+  },
   rating: { color: "#C9A227", fontWeight: "900" },
-  cardTitle: { fontSize: 19, fontWeight: "900", color: "#0B1F3A", marginBottom: 6 },
+  cardTitle: {
+    fontSize: 19,
+    fontWeight: "900",
+    color: "#0B1F3A",
+    marginBottom: 6,
+  },
   cardText: { color: "#666666", lineHeight: 21, fontWeight: "600" },
   dateText: { marginTop: 10, color: "#C9A227", fontWeight: "900" },
   tapText: { marginTop: 12, color: "#0B1F3A", fontWeight: "900" },
-  emptyCard: { backgroundColor: "#FFFFFF", borderRadius: 22, padding: 18, borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 12 },
+  emptyCard: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 22,
+    padding: 18,
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+    marginBottom: 12,
+  },
   emptyText: { color: "#666666", lineHeight: 21 },
 });
