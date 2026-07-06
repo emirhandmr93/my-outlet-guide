@@ -14,6 +14,8 @@ export const germanyOutlets = [
     heroImage: "",
     galleryImages: [],
     storesCountText: "Over 50 fashion & lifestyle brands",
+    rating: 0,
+    reviewCount: 0,
     services: [
       "Parking",
       "Tax Free",
