@@ -16,6 +16,7 @@ import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
 import { getPopularBrands } from "../services/brandService";
 import { getCityName, getCountryName } from "../services/locationService";
+import { useTranslation } from "../hooks/useTranslation";
 
 type ExploreFilter = "country" | "city" | "outlet" | "brand";
 
@@ -30,29 +31,27 @@ type BrandCategoryId =
   | "homeLifestyle"
   | "foodChocolate";
 
-const filters: { id: ExploreFilter; label: string }[] = [
-  { id: "country", label: "Countries" },
-  { id: "city", label: "Cities" },
-  { id: "outlet", label: "Outlets" },
-  { id: "brand", label: "Brands" },
+const filters: { id: ExploreFilter; labelKey: string }[] = [
+  { id: "country", labelKey: "explore.filters.countries" },
+  { id: "city", labelKey: "explore.filters.cities" },
+  { id: "outlet", labelKey: "explore.filters.outlets" },
+  { id: "brand", labelKey: "explore.filters.brands" },
 ];
-
-
 
 const popularSearches = ["Paris", "Nike", "La Vallée", "Italy", "Gucci"];
 
 const brandCategories: {
   id: BrandCategoryId;
   icon: string;
-  title: string;
-  subtitle: string;
+  titleKey: string;
+  subtitleKey: string;
   keywords: string[];
 }[] = [
   {
     id: "luxury",
     icon: "💎",
-    title: "Luxury",
-    subtitle: "Designer houses",
+    titleKey: "explore.categories.luxury.title",
+    subtitleKey: "explore.categories.luxury.subtitle",
     keywords: [
       "gucci",
       "prada",
@@ -74,8 +73,8 @@ const brandCategories: {
   {
     id: "fashion",
     icon: "👗",
-    title: "Fashion",
-    subtitle: "Ready-to-wear",
+    titleKey: "explore.categories.fashion.title",
+    subtitleKey: "explore.categories.fashion.subtitle",
     keywords: [
       "ami",
       "acne",
@@ -93,8 +92,8 @@ const brandCategories: {
   {
     id: "sportswear",
     icon: "👟",
-    title: "Sportswear",
-    subtitle: "Sneakers & activewear",
+    titleKey: "explore.categories.sportswear.title",
+    subtitleKey: "explore.categories.sportswear.subtitle",
     keywords: [
       "nike",
       "adidas",
@@ -112,8 +111,8 @@ const brandCategories: {
   {
     id: "shoesBags",
     icon: "👜",
-    title: "Shoes & Bags",
-    subtitle: "Shoes, bags & leather goods",
+    titleKey: "explore.categories.shoesBags.title",
+    subtitleKey: "explore.categories.shoesBags.subtitle",
     keywords: [
       "coach",
       "furla",
@@ -131,8 +130,8 @@ const brandCategories: {
   {
     id: "beauty",
     icon: "💄",
-    title: "Beauty",
-    subtitle: "Beauty, cosmetics & fragrance",
+    titleKey: "explore.categories.beauty.title",
+    subtitleKey: "explore.categories.beauty.subtitle",
     keywords: [
       "sephora",
       "l'occitane",
@@ -147,8 +146,8 @@ const brandCategories: {
   {
     id: "jewelryWatches",
     icon: "💍",
-    title: "Jewelry & Watches",
-    subtitle: "Watches, jewelry & accessories",
+    titleKey: "explore.categories.jewelryWatches.title",
+    subtitleKey: "explore.categories.jewelryWatches.subtitle",
     keywords: [
       "rolex",
       "omega",
@@ -162,15 +161,15 @@ const brandCategories: {
   {
     id: "kids",
     icon: "🧸",
-    title: "Kids",
-    subtitle: "Kidswear, toys & family",
+    titleKey: "explore.categories.kids.title",
+    subtitleKey: "explore.categories.kids.subtitle",
     keywords: ["lego", "kids", "baby", "chicco", "disney", "name it"],
   },
   {
     id: "homeLifestyle",
     icon: "🏡",
-    title: "Home & Lifestyle",
-    subtitle: "Home, living & travel",
+    titleKey: "explore.categories.homeLifestyle.title",
+    subtitleKey: "explore.categories.homeLifestyle.subtitle",
     keywords: [
       "home",
       "lifestyle",
@@ -184,8 +183,8 @@ const brandCategories: {
   {
     id: "foodChocolate",
     icon: "🍫",
-    title: "Food & Chocolate",
-    subtitle: "Chocolate, cafes & gourmet",
+    titleKey: "explore.categories.foodChocolate.title",
+    subtitleKey: "explore.categories.foodChocolate.subtitle",
     keywords: [
       "lindt",
       "godiva",
@@ -213,22 +212,26 @@ function getResultIcon(type: string) {
   return "🛍️";
 }
 
-function getResultLabel(type: string) {
-  if (type === "country") return "Country";
-  if (type === "city") return "City";
-  if (type === "brand") return "Brand";
-  return "Outlet";
+function getResultLabel(type: string, t: (key: string) => string) {
+  if (type === "country") return t("searchResult.country");
+  if (type === "city") return t("searchResult.city");
+  if (type === "brand") return t("searchResult.brand");
+  return t("searchResult.outlet");
 }
 
-function formatCountryOutletText(countryId: string) {
+function formatCountryOutletText(
+  countryId: string,
+  t: (key: string) => string,
+) {
   const count = outlets.filter(
     (outlet) => outlet?.countryId === countryId,
   ).length;
-  if (count <= 1) return "Explore all outlet →";
-  return "Explore all outlets →";
+  if (count <= 1) return t("explore.countryCtaSingular");
+  return t("explore.countryCtaPlural");
 }
 
 export function ExploreScreen() {
+  const { t } = useTranslation();
   const [outletSearch, setOutletSearch] = useState("");
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
@@ -240,10 +243,11 @@ export function ExploreScreen() {
   const [selectedBrandCategory, setSelectedBrandCategory] =
     useState<BrandCategoryId | null>(null);
 
-    const [outletCountryFilterId, setOutletCountryFilterId] =
-useState<string | null>(null);
-const [isOutletCountryPickerOpen, setIsOutletCountryPickerOpen] =
-useState(false);
+  const [outletCountryFilterId, setOutletCountryFilterId] = useState<
+    string | null
+  >(null);
+  const [isOutletCountryPickerOpen, setIsOutletCountryPickerOpen] =
+    useState(false);
 
   useEffect(() => {
     const initialQuery = route.params?.initialQuery;
@@ -260,29 +264,34 @@ useState(false);
   const hasTypeFilters = activeFilters.length > 0;
 
   const availableCityIds = useMemo(
-    () => Array.from(new Set(outlets.filter(Boolean).map((outlet) => outlet.cityId))),
+    () =>
+      Array.from(
+        new Set(outlets.filter(Boolean).map((outlet) => outlet.cityId)),
+      ),
     [],
   );
 
   const availableCountryIds = useMemo(
-    () => Array.from(new Set(outlets.filter(Boolean).map((outlet) => outlet.countryId))),
+    () =>
+      Array.from(
+        new Set(outlets.filter(Boolean).map((outlet) => outlet.countryId)),
+      ),
     [],
   );
 
   const shoppingCities = useMemo(() => {
-return cities
-.filter((city) => availableCityIds.includes(city.cityId))
-.sort((a, b) => a.cityName.localeCompare(b.cityName));
-}, [availableCityIds]);
-
+    return cities
+      .filter((city) => availableCityIds.includes(city.cityId))
+      .sort((a, b) => a.cityName.localeCompare(b.cityName));
+  }, [availableCityIds]);
 
   const availableCountries = useMemo(
-() =>
-countries
-.filter((country) => availableCountryIds.includes(country.countryId))
-.sort((a, b) => a.countryName.localeCompare(b.countryName)),
-[availableCountryIds],
-);
+    () =>
+      countries
+        .filter((country) => availableCountryIds.includes(country.countryId))
+        .sort((a, b) => a.countryName.localeCompare(b.countryName)),
+    [availableCountryIds],
+  );
 
   const allBrands = useMemo(() => getPopularBrands().slice(0, 28), []);
 
@@ -348,28 +357,31 @@ countries
   }, [activeFilters, hasStrongBrandMatch, normalizedSearch, selectedCountryId]);
 
   const outletListResults = useMemo(() => {
-return outlets
-.filter(Boolean)
-.filter((outlet) => {
-if (outletCountryFilterId && outlet.countryId !== outletCountryFilterId) {
-return false;
-}
+    return outlets
+      .filter(Boolean)
+      .filter((outlet) => {
+        if (
+          outletCountryFilterId &&
+          outlet.countryId !== outletCountryFilterId
+        ) {
+          return false;
+        }
 
-if (!outletSearch.trim()) return true;
+        if (!outletSearch.trim()) return true;
 
-const query = outletSearch.trim().toLowerCase();
-const outletName = outlet.name.toLowerCase();
-const cityName = getCityName(outlet.cityId).toLowerCase();
-const countryName = getCountryName(outlet.countryId).toLowerCase();
+        const query = outletSearch.trim().toLowerCase();
+        const outletName = outlet.name.toLowerCase();
+        const cityName = getCityName(outlet.cityId).toLowerCase();
+        const countryName = getCountryName(outlet.countryId).toLowerCase();
 
-return (
-outletName.includes(query) ||
-cityName.includes(query) ||
-countryName.includes(query)
-);
-})
-.sort((a, b) => a.name.localeCompare(b.name));
-}, [outletSearch, outletCountryFilterId]);
+        return (
+          outletName.includes(query) ||
+          cityName.includes(query) ||
+          countryName.includes(query)
+        );
+      })
+      .sort((a, b) => a.name.localeCompare(b.name));
+  }, [outletSearch, outletCountryFilterId]);
 
   const showPopularSearches =
     !isSearching && !hasTypeFilters && !selectedCountryId;
@@ -379,8 +391,7 @@ countryName.includes(query)
     !isSearching && (!hasTypeFilters || activeFilters.includes("city"));
   const showOutletResults = !isSearching && activeFilters.includes("outlet");
   const showOutletHint = false;
-  const showBrands =
-!isSearching && activeFilters.includes("brand");
+  const showBrands = !isSearching && activeFilters.includes("brand");
 
   function toggleFilter(filterId: ExploreFilter) {
     setActiveFilters((current) => {
@@ -391,12 +402,12 @@ countryName.includes(query)
   }
 
   function clearContext() {
-setSelectedCountryId(null);
-setOutletCountryFilterId(null);
-setIsOutletCountryPickerOpen(false);
-setSelectedBrandCategory(null);
-setActiveFilters([]);
-}
+    setSelectedCountryId(null);
+    setOutletCountryFilterId(null);
+    setIsOutletCountryPickerOpen(false);
+    setSelectedBrandCategory(null);
+    setActiveFilters([]);
+  }
 
   function selectCountry(countryId: string) {
     setSelectedCountryId(countryId);
@@ -442,19 +453,16 @@ setActiveFilters([]);
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.heroKicker}>EXPLORE</Text>
-        <Text style={styles.heroTitle}>Find what you have in mind</Text>
-        <Text style={styles.heroText}>
-          Search countries, cities, outlets and brands in one premium discovery
-          hub.
-        </Text>
+        <Text style={styles.heroKicker}>{t("explore.heroKicker")}</Text>
+        <Text style={styles.heroTitle}>{t("explore.heroTitle")}</Text>
+        <Text style={styles.heroText}>{t("explore.heroSubtitle")}</Text>
       </View>
 
       <View style={styles.searchBox}>
         <Text style={styles.searchIcon}>⌕</Text>
         <TextInput
           style={styles.searchInput}
-          placeholder="Search countries, cities, outlets, brands..."
+          placeholder={t("explore.searchPlaceholder")}
           placeholderTextColor="#8B94A3"
           value={search}
           onChangeText={setSearch}
@@ -487,7 +495,7 @@ setActiveFilters([]);
               <Text
                 style={[styles.filterText, isActive && styles.filterTextActive]}
               >
-                {filter.label}
+                {t(filter.labelKey)}
               </Text>
             </TouchableOpacity>
           );
@@ -497,10 +505,10 @@ setActiveFilters([]);
       {selectedCountryName ? (
         <View style={styles.contextBar}>
           <Text style={styles.contextText}>
-            {`Showing outlets in ${selectedCountryName}`}
+            {t("explore.showingOutletsIn")} {selectedCountryName}
           </Text>
           <TouchableOpacity activeOpacity={0.82} onPress={clearContext}>
-            <Text style={styles.contextClear}>Clear</Text>
+            <Text style={styles.contextClear}>{t("explore.clear")}</Text>
           </TouchableOpacity>
         </View>
       ) : null}
@@ -508,9 +516,11 @@ setActiveFilters([]);
       {isSearching ? (
         <>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Search results</Text>
+            <Text style={styles.sectionTitle}>
+              {t("explore.searchResults")}
+            </Text>
             <Text style={styles.sectionSubtitle}>
-              Results for “{normalizedSearch}”
+              {t("explore.resultsFor")} “{normalizedSearch}”
             </Text>
           </View>
 
@@ -529,7 +539,7 @@ setActiveFilters([]);
 
               <View style={styles.resultContent}>
                 <Text style={styles.resultTypeInline}>
-                  {getResultLabel(item.type)}
+                  {getResultLabel(item.type, t)}
                 </Text>
                 <Text style={styles.resultTitle}>{item.title}</Text>
                 <Text style={styles.resultSubtitle}>{item.subtitle}</Text>
@@ -551,7 +561,9 @@ setActiveFilters([]);
               </View>
 
               <View style={styles.resultContent}>
-                <Text style={styles.resultTypeInline}>Outlet</Text>
+                <Text style={styles.resultTypeInline}>
+                  {t("searchResult.outlet")}
+                </Text>
                 <Text style={styles.resultTitle}>{outlet.name}</Text>
                 <Text style={styles.resultSubtitle}>
                   {getCityName(outlet.cityId)},{" "}
@@ -565,10 +577,8 @@ setActiveFilters([]);
 
           {visibleSuggestions.length === 0 && filteredOutlets.length === 0 ? (
             <View style={styles.emptyCard}>
-              <Text style={styles.emptyTitle}>No results found</Text>
-              <Text style={styles.emptyText}>
-                Try searching for a country, city, outlet or brand name.
-              </Text>
+              <Text style={styles.emptyTitle}>{t("explore.noResults")}</Text>
+              <Text style={styles.emptyText}>{t("explore.noResultsText")}</Text>
             </View>
           ) : null}
         </>
@@ -577,9 +587,11 @@ setActiveFilters([]);
           {showPopularSearches ? (
             <>
               <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>Popular searches</Text>
+                <Text style={styles.sectionTitle}>
+                  {t("explore.popularSearches")}
+                </Text>
                 <Text style={styles.sectionSubtitle}>
-                  Start with what travelers search most.
+                  {t("explore.popularSearchesSubtitle")}
                 </Text>
               </View>
 
@@ -601,9 +613,11 @@ setActiveFilters([]);
           {showCountries ? (
             <>
               <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>Countries</Text>
+                <Text style={styles.sectionTitle}>
+                  {t("explore.filters.countries")}
+                </Text>
                 <Text style={styles.sectionSubtitle}>
-                  Choose a country and continue exploring.
+                  {t("explore.countriesSubtitle")}
                 </Text>
               </View>
 
@@ -630,7 +644,7 @@ setActiveFilters([]);
                           {country.countryName}
                         </Text>
                         <Text style={styles.countryMeta}>
-                          {formatCountryOutletText(country.countryId)}
+                          {formatCountryOutletText(country.countryId, t)}
                         </Text>
                       </View>
 
@@ -645,9 +659,11 @@ setActiveFilters([]);
           {showCities ? (
             <>
               <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>Popular cities</Text>
+                <Text style={styles.sectionTitle}>
+                  {t("explore.popularCities")}
+                </Text>
                 <Text style={styles.sectionSubtitle}>
-                  Explore cities with premium outlet access.
+                  {t("explore.popularCitiesSubtitle")}
                 </Text>
               </View>
 
@@ -688,120 +704,137 @@ setActiveFilters([]);
           ) : null}
 
           {!isSearching && activeFilters.includes("outlet") ? (
-<>
-<View style={styles.sectionHeader}>
-<Text style={styles.sectionTitle}>Outlets</Text>
-<Text style={styles.sectionSubtitle}>
-Search or filter outlet destinations by country.
-</Text>
-</View>
+            <>
+              <View style={styles.sectionHeader}>
+                <Text style={styles.sectionTitle}>
+                  {t("explore.filters.outlets")}
+                </Text>
+                <Text style={styles.sectionSubtitle}>
+                  {t("explore.outletsSubtitle")}
+                </Text>
+              </View>
 
-<View style={styles.searchBox}>
-<Text style={styles.searchIcon}>⌕</Text>
-<TextInput
-style={styles.searchInput}
-placeholder="Search outlets, cities, countries..."
-placeholderTextColor="#8B94A3"
-value={outletSearch}
-onChangeText={setOutletSearch}
-returnKeyType="search"
-autoCorrect={false}
-/>
-{outletSearch.length > 0 ? (
-<TouchableOpacity activeOpacity={0.82} onPress={() => setOutletSearch("")}>
-<Text style={styles.clearIcon}>×</Text>
-</TouchableOpacity>
-) : null}
-</View>
+              <View style={styles.searchBox}>
+                <Text style={styles.searchIcon}>⌕</Text>
+                <TextInput
+                  style={styles.searchInput}
+                  placeholder={t("explore.outletSearchPlaceholder")}
+                  placeholderTextColor="#8B94A3"
+                  value={outletSearch}
+                  onChangeText={setOutletSearch}
+                  returnKeyType="search"
+                  autoCorrect={false}
+                />
+                {outletSearch.length > 0 ? (
+                  <TouchableOpacity
+                    activeOpacity={0.82}
+                    onPress={() => setOutletSearch("")}
+                  >
+                    <Text style={styles.clearIcon}>×</Text>
+                  </TouchableOpacity>
+                ) : null}
+              </View>
 
-<TouchableOpacity
-activeOpacity={0.86}
-style={styles.countryPickerButton}
-onPress={() => setIsOutletCountryPickerOpen((value) => !value)}
->
-<Text style={styles.countryPickerText}>
-{outletCountryFilterId
-? `${availableCountries.find((country) => country.countryId === outletCountryFilterId)?.countryFlag || ""} ${
-availableCountries.find((country) => country.countryId === outletCountryFilterId)?.countryName || "Country"
-}`
-: "🌍 All Countries"}
-</Text>
-<Text style={styles.countryPickerArrow}>
-{isOutletCountryPickerOpen ? "▲" : "▼"}
-</Text>
-</TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.86}
+                style={styles.countryPickerButton}
+                onPress={() => setIsOutletCountryPickerOpen((value) => !value)}
+              >
+                <Text style={styles.countryPickerText}>
+                  {outletCountryFilterId
+                    ? `${availableCountries.find((country) => country.countryId === outletCountryFilterId)?.countryFlag || ""} ${
+                        availableCountries.find(
+                          (country) =>
+                            country.countryId === outletCountryFilterId,
+                        )?.countryName || t("searchResult.country")
+                      }`
+                    : `🌍 ${t("explore.allCountries")}`}
+                </Text>
+                <Text style={styles.countryPickerArrow}>
+                  {isOutletCountryPickerOpen ? "▲" : "▼"}
+                </Text>
+              </TouchableOpacity>
 
-{isOutletCountryPickerOpen ? (
-<View style={styles.countryPickerList}>
-<TouchableOpacity
-activeOpacity={0.86}
-style={styles.countryPickerOption}
-onPress={() => {
-setOutletCountryFilterId(null);
-setIsOutletCountryPickerOpen(false);
-}}
->
-<Text style={styles.countryPickerOptionText}>🌍 All Countries</Text>
-</TouchableOpacity>
+              {isOutletCountryPickerOpen ? (
+                <View style={styles.countryPickerList}>
+                  <TouchableOpacity
+                    activeOpacity={0.86}
+                    style={styles.countryPickerOption}
+                    onPress={() => {
+                      setOutletCountryFilterId(null);
+                      setIsOutletCountryPickerOpen(false);
+                    }}
+                  >
+                    <Text style={styles.countryPickerOptionText}>
+                      🌍 {t("explore.allCountries")}
+                    </Text>
+                  </TouchableOpacity>
 
-{availableCountries.map((country) => (
-<TouchableOpacity
-key={country.countryId}
-activeOpacity={0.86}
-style={styles.countryPickerOption}
-onPress={() => {
-setOutletCountryFilterId(country.countryId);
-setIsOutletCountryPickerOpen(false);
-}}
->
-<Text style={styles.countryPickerOptionText}>
-{country.countryFlag} {country.countryName}
-</Text>
-</TouchableOpacity>
-))}
-</View>
-) : null}
+                  {availableCountries.map((country) => (
+                    <TouchableOpacity
+                      key={country.countryId}
+                      activeOpacity={0.86}
+                      style={styles.countryPickerOption}
+                      onPress={() => {
+                        setOutletCountryFilterId(country.countryId);
+                        setIsOutletCountryPickerOpen(false);
+                      }}
+                    >
+                      <Text style={styles.countryPickerOptionText}>
+                        {country.countryFlag} {country.countryName}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              ) : null}
 
-{outletListResults.map((outlet) => (
-<TouchableOpacity
-key={outlet.outletId}
-activeOpacity={0.88}
-style={styles.resultCard}
-onPress={() => openOutlet(outlet.outletId)}
->
-<View style={styles.resultIconWrap}>
-<Text style={styles.resultIcon}>🛍️</Text>
-</View>
+              {outletListResults.map((outlet) => (
+                <TouchableOpacity
+                  key={outlet.outletId}
+                  activeOpacity={0.88}
+                  style={styles.resultCard}
+                  onPress={() => openOutlet(outlet.outletId)}
+                >
+                  <View style={styles.resultIconWrap}>
+                    <Text style={styles.resultIcon}>🛍️</Text>
+                  </View>
 
-<View style={styles.resultContent}>
-<Text style={styles.resultTypeInline}>Outlet</Text>
-<Text style={styles.resultTitle}>{outlet.name}</Text>
-<Text style={styles.resultSubtitle}>
-{getCityName(outlet.cityId)}, {getCountryName(outlet.countryId)}
-</Text>
-</View>
+                  <View style={styles.resultContent}>
+                    <Text style={styles.resultTypeInline}>
+                      {t("searchResult.outlet")}
+                    </Text>
+                    <Text style={styles.resultTitle}>{outlet.name}</Text>
+                    <Text style={styles.resultSubtitle}>
+                      {getCityName(outlet.cityId)},{" "}
+                      {getCountryName(outlet.countryId)}
+                    </Text>
+                  </View>
 
-<Text style={styles.resultArrow}>→</Text>
-</TouchableOpacity>
-))}
+                  <Text style={styles.resultArrow}>→</Text>
+                </TouchableOpacity>
+              ))}
 
-{outletListResults.length === 0 ? (
-<View style={styles.emptyCard}>
-<Text style={styles.emptyTitle}>No outlets found</Text>
-<Text style={styles.emptyText}>
-Try another country or search term.
-</Text>
-</View>
-) : null}
-</>
-) : null}
+              {outletListResults.length === 0 ? (
+                <View style={styles.emptyCard}>
+                  <Text style={styles.emptyTitle}>
+                    {t("explore.noOutletsFound")}
+                  </Text>
+                  <Text style={styles.emptyText}>
+                    {t("explore.noOutletsText")}
+                  </Text>
+                </View>
+              ) : null}
+            </>
+          ) : null}
 
           {showBrands ? (
             <>
               <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>Brand categories</Text>
+                <Text style={styles.sectionTitle}>
+                  {t("explore.brandCategories")}
+                </Text>
                 <Text style={styles.sectionSubtitle}>
-                  Choose a category, then pick a brand.
+                  {t("explore.brandCategoriesSubtitle")}
                 </Text>
               </View>
 
@@ -809,7 +842,8 @@ Try another country or search term.
                 {brandCategories.map((category) => {
                   const isActive = selectedBrandCategory === category.id;
                   const categoryBrands = getBrandsForCategory(category.id);
-                  const count = categoryBrands.length || category.keywords.length;
+                  const count =
+                    categoryBrands.length || category.keywords.length;
 
                   return (
                     <View key={category.id}>
@@ -823,9 +857,7 @@ Try another country or search term.
                           setSelectedBrandCategory(
                             isActive ? null : category.id,
                           )
-                          
                         }
-                        
                       >
                         <Text style={styles.brandCategoryIcon}>
                           {category.icon}
@@ -837,7 +869,7 @@ Try another country or search term.
                               isActive && styles.brandCategoryTitleActive,
                             ]}
                           >
-                            {category.title} ({count})
+                            {t(category.titleKey)} ({count})
                           </Text>
                           <Text
                             style={[
@@ -845,7 +877,7 @@ Try another country or search term.
                               isActive && styles.brandCategorySubtitleActive,
                             ]}
                           >
-                            {category.subtitle}
+                            {t(category.subtitleKey)}
                           </Text>
                         </View>
                         <Text
@@ -866,11 +898,11 @@ Try another country or search term.
                               activeOpacity={0.86}
                               style={styles.brandChip}
                               onPress={() =>
-                            navigation.navigate("BrandResults", {
-                            brandId: brand.brandId,
-                            mode: "chooseCountry",
-                           })
-                            }
+                                navigation.navigate("BrandResults", {
+                                  brandId: brand.brandId,
+                                  mode: "chooseCountry",
+                                })
+                              }
                             >
                               <Text style={styles.brandText}>
                                 🏷️ {brand.brandName}
@@ -1403,50 +1435,49 @@ const styles = StyleSheet.create({
   },
 
   countryPickerButton: {
-backgroundColor: "#FFFFFF",
-borderRadius: 999,
-paddingHorizontal: 18,
-paddingVertical: 15,
-borderWidth: 1,
-borderColor: "#E0E5EC",
-marginBottom: 12,
-flexDirection: "row",
-alignItems: "center",
-justifyContent: "space-between",
-},
+    backgroundColor: "#FFFFFF",
+    borderRadius: 999,
+    paddingHorizontal: 18,
+    paddingVertical: 15,
+    borderWidth: 1,
+    borderColor: "#E0E5EC",
+    marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
 
-countryPickerText: {
-color: "#0B1F3A",
-fontSize: 15,
-fontWeight: "900",
-},
+  countryPickerText: {
+    color: "#0B1F3A",
+    fontSize: 15,
+    fontWeight: "900",
+  },
 
-countryPickerArrow: {
-color: "#C9A227",
-fontSize: 14,
-fontWeight: "900",
-},
+  countryPickerArrow: {
+    color: "#C9A227",
+    fontSize: 14,
+    fontWeight: "900",
+  },
 
-countryPickerList: {
-backgroundColor: "#FFFFFF",
-borderRadius: 22,
-borderWidth: 1,
-borderColor: "#E0E5EC",
-overflow: "hidden",
-marginBottom: 12,
-},
+  countryPickerList: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 22,
+    borderWidth: 1,
+    borderColor: "#E0E5EC",
+    overflow: "hidden",
+    marginBottom: 12,
+  },
 
-countryPickerOption: {
-paddingHorizontal: 16,
-paddingVertical: 14,
-borderBottomWidth: StyleSheet.hairlineWidth,
-borderBottomColor: "#E0E5EC",
-},
+  countryPickerOption: {
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: "#E0E5EC",
+  },
 
-countryPickerOptionText: {
-color: "#0B1F3A",
-fontSize: 15,
-fontWeight: "800",
-},
-
+  countryPickerOptionText: {
+    color: "#0B1F3A",
+    fontSize: 15,
+    fontWeight: "800",
+  },
 });
