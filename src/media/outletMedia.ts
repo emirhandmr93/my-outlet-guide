@@ -42,20 +42,14 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
   "bicester-village": [
     require("../../assets/outlet-images/bicester/hero.webp"),
     require("../../assets/outlet-images/bicester/gallery1.webp"),
-    require("../../assets/outlet-images/bicester/gallery2.webp"),
-    require("../../assets/outlet-images/bicester/gallery3.webp"),
   ],
   "serravalle-designer-outlet": [
     require("../../assets/outlet-images/serravalle/hero.webp"),
     require("../../assets/outlet-images/serravalle/gallery1.webp"),
-    require("../../assets/outlet-images/serravalle/gallery2.webp"),
-    require("../../assets/outlet-images/serravalle/gallery3.webp"),
   ],
   "designer-outlet-parndorf": [
     require("../../assets/outlet-images/parndorf/hero.webp"),
     require("../../assets/outlet-images/parndorf/gallery1.webp"),
-    require("../../assets/outlet-images/parndorf/gallery2.webp"),
-    require("../../assets/outlet-images/parndorf/gallery3.webp"),
   ],
   "fidenza-village": [
     require("../../assets/outlet-images/fidenza/hero.webp"),
@@ -97,8 +91,6 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
   "outletcity-metzingen": [
     require("../../assets/outlet-images/metzingen/hero.webp"),
     require("../../assets/outlet-images/metzingen/gallery1.webp"),
-    require("../../assets/outlet-images/metzingen/gallery2.webp"),
-    require("../../assets/outlet-images/metzingen/gallery3.webp"),
   ],
 
   "designer-outlet-troyes": [
@@ -117,8 +109,6 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
   "designer-outlet-roermond": [
     require("../../assets/outlet-images/roermond/hero.webp"),
     require("../../assets/outlet-images/roermond/gallery1.webp"),
-    require("../../assets/outlet-images/roermond/gallery2.webp"),
-    require("../../assets/outlet-images/roermond/gallery3.webp"),
   ],
   "castel-romano": [
     require("../../assets/outlet-images/castel-romano/hero.webp"),
