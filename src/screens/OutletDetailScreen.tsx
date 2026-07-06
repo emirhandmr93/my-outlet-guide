@@ -422,8 +422,8 @@ export function OutletDetailScreen() {
   }
 
   function getWeatherBadgeText() {
-    if (weatherLoading) return "Weather";
-    if (weatherError || !weather) return "Weather unavailable";
+    if (weatherLoading) return t("weather.title");
+    if (weatherError || !weather) return t("weather.unavailable");
     return `${weather.icon || "⛅"} ${weather.temperature}°C`;
   }
 
@@ -484,7 +484,7 @@ export function OutletDetailScreen() {
             style={styles.galleryCloseButton}
             onPress={() => setIsGalleryOpen(false)}
           >
-            <Text style={styles.galleryCloseText}>Close</Text>
+            <Text style={styles.galleryCloseText}>{t("outlet.galleryClose")}</Text>
           </TouchableOpacity>
 
           <View style={styles.galleryModalImageWrapper}>
@@ -533,7 +533,7 @@ export function OutletDetailScreen() {
           }}
         >
           <Text style={styles.ctaIcon}>{favorite ? "♥" : "♡"}</Text>
-          <Text style={styles.ctaText}>{favorite ? "Saved" : "Favorite"}</Text>
+          <Text style={styles.ctaText}>{favorite ? t("outlet.saved") : t("outlet.favorite")}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -542,7 +542,7 @@ export function OutletDetailScreen() {
           onPress={() => navigation.navigate("CreateTrip", { outletId: outlet.outletId })}
         >
           <Text style={styles.ctaIcon}>🧳</Text>
-          <Text style={styles.ctaText}>Create Trip</Text>
+          <Text style={styles.ctaText}>{t("outlet.createTrip")}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -551,25 +551,25 @@ export function OutletDetailScreen() {
           onPress={() => Linking.openURL(outlet.googleMapsUrl)}
         >
           <Text style={styles.ctaIcon}>📍</Text>
-          <Text style={styles.ctaText}>Directions</Text>
+          <Text style={styles.ctaText}>{t("outlet.directions")}</Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.anchorRow}>
         <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("overview")}>
-          <Text style={styles.anchorPill}>Overview</Text>
+          <Text style={styles.anchorPill}>{t("outlet.anchorOverview")}</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("brands")}>
-          <Text style={styles.anchorPill}>Brands</Text>
+          <Text style={styles.anchorPill}>{t("outlet.anchorBrands")}</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("transport")}>
-          <Text style={styles.anchorPill}>Transport</Text>
+          <Text style={styles.anchorPill}>{t("outlet.anchorTransport")}</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("food")}>
-          <Text style={styles.anchorPill}>Food</Text>
+          <Text style={styles.anchorPill}>{t("outlet.anchorFood")}</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("reviews")}>
-          <Text style={styles.anchorPill}>Reviews</Text>
+          <Text style={styles.anchorPill}>{t("outlet.anchorReviews")}</Text>
         </TouchableOpacity>
       </View>
 
@@ -602,12 +602,12 @@ export function OutletDetailScreen() {
 
       <View onLayout={(event) => setSectionPosition("taxFree", event.nativeEvent.layout.y)}>
       <TaxFreeCard
-title="Tax Free"
+title={t("outlet.taxFree")}
 vatRate={outlet.vatRate}
 refundRate={
 (outlet as any).estimatedRefundRate > 0
 ? `≈${(outlet as any).estimatedRefundRate}%`
-: "Not Available"
+: t("outlet.notAvailable")
 }
 minimumSpend={outlet.minimumTaxFreeSpend}
 officeInfo={outlet.taxFreeOfficeInfo}
