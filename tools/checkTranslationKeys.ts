@@ -15,6 +15,8 @@ const identicalAllowedValues = new Set([
   "Error",
   "Google Maps",
   "My Outlet Guide",
+  "MY OUTLET GUIDE",
+  "Instagram",
   "ON",
   "OFF",
   "Outlet",
