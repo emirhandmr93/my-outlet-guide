@@ -1,5 +1,6 @@
 import { ImageSourcePropType } from "react-native";
 
+import { outlets } from "../constants/outlets";
 import {
   outletMediaMetadata,
   type OutletMediaAssetMetadata,
@@ -11,6 +12,10 @@ export type OutletMediaResolverMode = "inventory" | "production";
 
 export type OutletMediaResolverOptions = {
   mode?: OutletMediaResolverMode;
+};
+
+export type OutletMediaCredit = OutletMediaAssetMetadata & {
+  displayName: string;
 };
 
 type OutletMediaOutlet = {
@@ -257,6 +262,25 @@ function getProductionSafeLocalImages(outletId?: string): OutletMediaImage[] {
   return getOutletLocalImageEntries(outletId)
     .filter((entry) => isMediaAssetProductionCleared(entry.metadata))
     .map((entry) => entry.image);
+}
+
+function getOutletDisplayName(outletId: string): string {
+  return outlets.find((outlet) => outlet.outletId === outletId)?.name ?? outletId;
+}
+
+export function getProductionMediaCredits(): OutletMediaCredit[] {
+  return outletMediaMetadata
+    .filter(isMediaAssetProductionCleared)
+    .map((metadata) => ({
+      ...metadata,
+      displayName: getOutletDisplayName(metadata.outletId),
+    }));
+}
+
+export function getMediaCreditsForOutlet(outletId: string): OutletMediaCredit[] {
+  return getProductionMediaCredits().filter(
+    (credit) => credit.outletId === outletId,
+  );
 }
 
 export function countLocalMediaAssets(): number {

@@ -20,6 +20,7 @@ import { HelpFaqScreen } from "../screens/HelpFaqScreen";
 import { HomeScreen } from "../screens/HomeScreen";
 import { LanguageSettingsScreen } from "../screens/LanguageSettingsScreen";
 import { LoginScreen } from "../screens/LoginScreen";
+import { MediaCreditsScreen } from "../screens/MediaCreditsScreen";
 import { MyReviewsScreen } from "../screens/MyReviewsScreen";
 import { MyTripsScreen } from "../screens/MyTripsScreen";
 import { NotificationSettingsScreen } from "../screens/NotificationSettingsScreen";
@@ -176,6 +177,7 @@ backgroundColor: "#FFFFFF",
 <Stack.Screen name="ContactUs" component={ContactUsScreen} options={{ title: t("nav.contactUs") }} />
 <Stack.Screen name="HelpFaq" component={HelpFaqScreen} options={{ title: t("nav.helpFaq") }} />
 <Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} options={{ title: t("nav.deleteAccount") }} />
+<Stack.Screen name="MediaCredits" component={MediaCreditsScreen} options={{ title: t("nav.mediaCredits") }} />
 </Stack.Navigator>
 </NavigationContainer>
 );

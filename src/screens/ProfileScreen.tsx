@@ -29,7 +29,8 @@ type ProfileRouteName =
   | "ContactUs"
   | "PrivacyPolicy"
   | "TermsConditions"
-  | "DeleteAccount";
+  | "DeleteAccount"
+  | "MediaCredits";
 
 function getInitials(value: string) {
   const cleanValue = value.trim();
@@ -242,6 +243,12 @@ export function ProfileScreen() {
         title={t("profile.termsConditions")}
         subtitle={t("profile.subtitles.termsConditions")}
         onPress={() => goTo("TermsConditions")}
+      />
+      <ProfileRow
+        icon="🖼️"
+        title={t("profile.mediaCredits")}
+        subtitle={t("profile.subtitles.mediaCredits")}
+        onPress={() => goTo("MediaCredits")}
       />
       <ProfileRow
         icon="🗑️"
