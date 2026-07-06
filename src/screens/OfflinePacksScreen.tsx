@@ -21,7 +21,7 @@ export function OfflinePacksScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>OFFLINE</Text>
+        <Text style={styles.kicker}>{t("offline.kicker")}</Text>
         <Text style={styles.pageTitle}>{t("offline.title")}</Text>
         <Text style={styles.pageSubtitle}>{t("offline.subtitle")}</Text>
       </View>
@@ -29,12 +29,12 @@ export function OfflinePacksScreen() {
       <View style={styles.statsRow}>
         <View style={styles.statCard}>
           <Text style={styles.statValue}>{downloadedCount}</Text>
-          <Text style={styles.statLabel}>Downloaded</Text>
+          <Text style={styles.statLabel}>{t("offline.downloadedStat")}</Text>
         </View>
 
         <View style={styles.statCard}>
           <Text style={styles.statValue}>{totalSize} MB</Text>
-          <Text style={styles.statLabel}>Storage</Text>
+          <Text style={styles.statLabel}>{t("offline.storage")}</Text>
         </View>
       </View>
 

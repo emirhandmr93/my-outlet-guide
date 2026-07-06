@@ -3,30 +3,32 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 
 import { departureAirports, flightDealCities } from "../constants/flightDealCities";
 import { useFlightDealPreferences } from "../contexts/FlightDealPreferencesContext";
+import { useTranslation } from "../hooks/useTranslation";
 
 const alertThresholds = [
   {
     id: "good",
-    title: "Good Deal",
+    titleKey: "flightDeals.threshold.good",
+    descriptionKey: "flightDeals.threshold.goodDesc",
     percent: "15%",
-    description: "Useful fare drops below the usual route average.",
   },
   {
     id: "great",
-    title: "Great Deal",
+    titleKey: "flightDeals.threshold.great",
+    descriptionKey: "flightDeals.threshold.greatDesc",
     percent: "30%",
-    description: "Strong savings worth checking quickly.",
   },
   {
     id: "exceptional",
-    title: "Exceptional Deal",
+    titleKey: "flightDeals.threshold.exceptional",
+    descriptionKey: "flightDeals.threshold.exceptionalDesc",
     percent: "45%",
-    description: "Rare fares that may disappear fast.",
   },
 ];
 
 export function FlightDealSettingsScreen() {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const {
     departureAirportId,
     setDepartureAirportId,
@@ -52,37 +54,37 @@ export function FlightDealSettingsScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>FLIGHT ALERTS</Text>
-        <Text style={styles.title}>Create fare drop alerts</Text>
+        <Text style={styles.kicker}>{t("flightDeals.settingsKicker")}</Text>
+        <Text style={styles.title}>{t("flightDeals.settingsHeroTitle")}</Text>
         <Text style={styles.subtitle}>
-          Select departure, shopping destinations and the discount levels you want to follow.
+          {t("flightDeals.settingsHeroSubtitle")}
         </Text>
       </View>
 
       <View style={styles.infoCard}>
-        <Text style={styles.infoTitle}>How it works</Text>
+        <Text style={styles.infoTitle}>{t("flightDeals.howItWorks")}</Text>
         <Text style={styles.infoText}>
-          We compare fares with the last 90-day route average. You choose 15%, 30% or 45% drops — no unrealistic budget limits.
+          {t("flightDeals.howItWorksText")}
         </Text>
       </View>
 
       <View style={styles.summaryCard}>
-        <Text style={styles.summaryTitle}>Current setup</Text>
+        <Text style={styles.summaryTitle}>{t("flightDeals.currentSetup")}</Text>
         <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Departure</Text>
-          <Text style={styles.summaryValue}>{selectedAirport?.cityName || "Not selected"}</Text>
+          <Text style={styles.summaryLabel}>{t("flightDeals.departure")}</Text>
+          <Text style={styles.summaryValue}>{selectedAirport?.cityName || t("flightDeals.notSelected")}</Text>
         </View>
         <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Cities</Text>
+          <Text style={styles.summaryLabel}>{t("flightDeals.cities")}</Text>
           <Text style={styles.summaryValue}>{selectedCityIds.length}</Text>
         </View>
         <View style={styles.summaryRow}>
-          <Text style={styles.summaryLabel}>Alert levels</Text>
+          <Text style={styles.summaryLabel}>{t("flightDeals.alertLevels")}</Text>
           <Text style={styles.summaryValue}>{selectedThresholds.length}</Text>
         </View>
       </View>
 
-      <Text style={styles.sectionTitle}>Departure airport</Text>
+      <Text style={styles.sectionTitle}>{t("flightDeals.departureAirport")}</Text>
       {departureAirports.map((airport) => {
         const selected = departureAirportId === airport.airportId;
 
@@ -96,7 +98,7 @@ export function FlightDealSettingsScreen() {
             <View style={styles.optionTopRow}>
               <Text style={styles.optionTitle}>{airport.cityName}</Text>
               <Text style={[styles.statusPill, selected && styles.statusPillActive]}>
-                {selected ? "Selected" : airport.airportId.toUpperCase()}
+                {selected ? t("common.selected") : airport.airportId.toUpperCase()}
               </Text>
             </View>
             <Text style={styles.optionText}>{airport.airportName}</Text>
@@ -105,7 +107,7 @@ export function FlightDealSettingsScreen() {
         );
       })}
 
-      <Text style={styles.sectionTitle}>Shopping cities</Text>
+      <Text style={styles.sectionTitle}>{t("flightDeals.shoppingCities")}</Text>
       {flightDealCities.map((city) => {
         const selected = selectedCityIds.includes(city.cityId);
 
@@ -119,7 +121,7 @@ export function FlightDealSettingsScreen() {
             <View style={styles.optionTopRow}>
               <Text style={styles.optionTitle}>{city.cityName}</Text>
               <Text style={[styles.statusPill, selected && styles.statusPillActive]}>
-                {selected ? "Selected" : "Add"}
+                {selected ? t("common.selected") : t("common.add")}
               </Text>
             </View>
             <Text style={styles.optionText}>{city.countryName}</Text>
@@ -127,7 +129,7 @@ export function FlightDealSettingsScreen() {
         );
       })}
 
-      <Text style={styles.sectionTitle}>Alert levels</Text>
+      <Text style={styles.sectionTitle}>{t("flightDeals.alertLevels")}</Text>
       {alertThresholds.map((threshold) => {
         const selected = selectedThresholds.includes(threshold.id);
 
@@ -139,12 +141,12 @@ export function FlightDealSettingsScreen() {
             onPress={() => handleThresholdPress(threshold.id)}
           >
             <View style={styles.optionTopRow}>
-              <Text style={styles.optionTitle}>{threshold.title}</Text>
+              <Text style={styles.optionTitle}>{t(threshold.titleKey)}</Text>
               <Text style={[styles.statusPill, selected && styles.statusPillActive]}>
                 {threshold.percent}
               </Text>
             </View>
-            <Text style={styles.optionText}>{threshold.description}</Text>
+            <Text style={styles.optionText}>{t(threshold.descriptionKey)}</Text>
           </TouchableOpacity>
         );
       })}
@@ -154,7 +156,7 @@ export function FlightDealSettingsScreen() {
         activeOpacity={0.86}
         onPress={() => navigation.navigate("FlightDeals")}
       >
-        <Text style={styles.primaryButtonText}>Save alert and view deals →</Text>
+        <Text style={styles.primaryButtonText}>{t("flightDeals.saveAlertViewDeals")}</Text>
       </TouchableOpacity>
     </ScrollView>
   );

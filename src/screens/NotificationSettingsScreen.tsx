@@ -28,22 +28,22 @@ export function NotificationSettingsScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>NOTIFICATIONS</Text>
+        <Text style={styles.kicker}>{t("notifications.kicker")}</Text>
         <Text style={styles.pageTitle}>{t("notifications.title")}</Text>
         <Text style={styles.pageSubtitle}>{t("notifications.subtitle")}</Text>
       </View>
 
       <View style={styles.infoBox}>
-        <Text style={styles.infoTitle}>Smart alerts only</Text>
+        <Text style={styles.infoTitle}>{t("notifications.smartAlertsOnly")}</Text>
         <Text style={styles.infoText}>{t("notifications.info")}</Text>
       </View>
 
-      <Text style={styles.groupTitle}>Travel alerts</Text>
+      <Text style={styles.groupTitle}>{t("notifications.travelAlerts")}</Text>
 
       <NotificationRow
         icon="✈️"
-        title="Flight Deals"
-        description="Receive price-drop alerts for selected routes."
+        title={t("notifications.flightDeals")}
+        description={t("notifications.flightDealsDesc")}
         enabled={flightDeals}
         onPress={() => setFlightDeals(!flightDeals)}
       />
@@ -64,7 +64,7 @@ export function NotificationSettingsScreen() {
         onPress={() => setTaxFreeReminders(!taxFreeReminders)}
       />
 
-      <Text style={styles.groupTitle}>Shopping alerts</Text>
+      <Text style={styles.groupTitle}>{t("notifications.shoppingAlerts")}</Text>
 
       <NotificationRow
         icon="🏷️"

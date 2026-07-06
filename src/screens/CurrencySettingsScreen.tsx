@@ -2,18 +2,20 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 
 import { currencies } from "../constants/currencies";
 import { useSavings } from "../contexts/SavingsContext";
+import { useTranslation } from "../hooks/useTranslation";
 import type { CurrencyCode } from "../services/exchangeRateService";
 
 export function CurrencySettingsScreen() {
   const { selectedCurrency, setSelectedCurrency } = useSavings();
+  const { t } = useTranslation();
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>CURRENCY</Text>
-        <Text style={styles.pageTitle}>Preferred currency</Text>
+        <Text style={styles.kicker}>{t("currency.kicker")}</Text>
+        <Text style={styles.pageTitle}>{t("currency.title")}</Text>
         <Text style={styles.pageSubtitle}>
-          Calculators and shopping tools will use this currency by default.
+          {t("currency.subtitle")}
         </Text>
       </View>
 

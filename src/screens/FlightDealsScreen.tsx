@@ -5,6 +5,7 @@ import { flightDeals } from "../constants/flightDeals";
 import { departureAirports, flightDealCities } from "../constants/flightDealCities";
 import { useFlightDealPreferences } from "../contexts/FlightDealPreferencesContext";
 import { getBestFlightDealAlertLevel } from "../utils/flightDealEngine";
+import { useTranslation } from "../hooks/useTranslation";
 
 function getThresholdText(selectedThresholds: string[]) {
   const labels: Record<string, string> = {
@@ -18,6 +19,7 @@ function getThresholdText(selectedThresholds: string[]) {
 
 export function FlightDealsScreen() {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const { departureAirportId, selectedCityIds, selectedThresholds } = useFlightDealPreferences();
 
   const selectedAirport = departureAirports.find(
@@ -44,19 +46,19 @@ export function FlightDealsScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>FLIGHT DEALS</Text>
-        <Text style={styles.title}>Track fares for outlet trips</Text>
+        <Text style={styles.kicker}>{t("flightDeals.kicker")}</Text>
+        <Text style={styles.title}>{t("flightDeals.heroTitle")}</Text>
         <Text style={styles.subtitle}>
-          Get notified when flights drop 15%, 30% or 45% below the 90-day route average.
+          {t("flightDeals.heroSubtitle")}
         </Text>
       </View>
 
       <View style={styles.setupCard}>
         <View style={styles.setupHeader}>
           <View>
-            <Text style={styles.setupKicker}>Current alert</Text>
+            <Text style={styles.setupKicker}>{t("flightDeals.currentAlert")}</Text>
             <Text style={styles.setupTitle}>
-              {selectedAirport?.cityName || "Choose departure"}
+              {selectedAirport?.cityName || t("flightDeals.chooseDeparture")}
               {selectedCities.length > 0 ? ` → ${selectedCities.map((city) => city.cityName).join(", ")}` : ""}
             </Text>
           </View>
@@ -66,22 +68,22 @@ export function FlightDealsScreen() {
             style={styles.setupButton}
             onPress={() => navigation.navigate("FlightDealSettings")}
           >
-            <Text style={styles.setupButtonText}>{hasActiveAlert ? "Manage" : "Create"}</Text>
+            <Text style={styles.setupButtonText}>{hasActiveAlert ? t("common.manage") : t("common.create")}</Text>
           </TouchableOpacity>
         </View>
 
         <Text style={styles.setupText}>
           {hasActiveAlert
-            ? `Monitoring ${getThresholdText(selectedThresholds)} fare drops based on the last 90-day average fare.`
-            : "Create a route alert and choose which discount levels you want to follow."}
+            ? `${t("flightDeals.monitoringPrefix")} ${getThresholdText(selectedThresholds)} ${t("flightDeals.monitoringSuffix")}`
+            : t("flightDeals.createRouteAlertText")}
         </Text>
       </View>
 
       {filteredDeals.length > 0 ? (
         <>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>Deals found</Text>
-            <Text style={styles.sectionSubtitle}>Current fares below your selected alert levels.</Text>
+            <Text style={styles.sectionTitle}>{t("flightDeals.dealsFound")}</Text>
+            <Text style={styles.sectionSubtitle}>{t("flightDeals.dealsFoundSubtitle")}</Text>
           </View>
 
           {filteredDeals.map((deal) => {
@@ -105,7 +107,7 @@ export function FlightDealsScreen() {
                 onPress={() => navigation.navigate("FlightDealDetail", { dealId: deal.dealId })}
               >
                 <Text style={styles.badge}>
-                  {icon} {alertLevel?.title || "Deal Found"}
+                  {icon} {alertLevel ? t(`flightDeals.threshold.${alertLevel.id}`) : t("flightDeals.dealFound")}
                 </Text>
 
                 <Text style={styles.route}>
@@ -116,8 +118,8 @@ export function FlightDealsScreen() {
 
                 <View style={styles.dealFooter}>
                   <View>
-                    <Text style={styles.discount}>{deal.discountPercent}% below average</Text>
-                    <Text style={styles.updated}>Updated {deal.lastUpdatedMinutesAgo} min ago</Text>
+                    <Text style={styles.discount}>{deal.discountPercent}% {t("flightDeals.belowAverage")}</Text>
+                    <Text style={styles.updated}>{t("flightDeals.updated")} {deal.lastUpdatedMinutesAgo} {t("flightDeals.minAgo")}</Text>
                   </View>
 
                   <Text style={styles.price}>
@@ -130,14 +132,14 @@ export function FlightDealsScreen() {
         </>
       ) : (
         <View style={styles.emptyCard}>
-          <Text style={styles.emptyKicker}>{hasActiveAlert ? "ALERT ACTIVE" : "NO ALERT YET"}</Text>
+          <Text style={styles.emptyKicker}>{hasActiveAlert ? t("flightDeals.alertActive") : t("flightDeals.noAlertYet")}</Text>
           <Text style={styles.emptyTitle}>
-            {hasActiveAlert ? "We are monitoring your route" : "Create your first flight alert"}
+            {hasActiveAlert ? t("flightDeals.monitoringRoute") : t("flightDeals.createFirstAlert")}
           </Text>
           <Text style={styles.emptyText}>
             {hasActiveAlert
-              ? "No matching fare drop has been found yet. Your selected route and discount levels stay active."
-              : "Choose your departure city, shopping destination and discount levels to start tracking fares."}
+              ? t("flightDeals.noMatchingDrop")
+              : t("flightDeals.chooseRouteStart")}
           </Text>
 
           <TouchableOpacity
@@ -145,7 +147,7 @@ export function FlightDealsScreen() {
             style={styles.primaryButton}
             onPress={() => navigation.navigate("FlightDealSettings")}
           >
-            <Text style={styles.primaryButtonText}>{hasActiveAlert ? "Manage Alert" : "Create Alert"}</Text>
+            <Text style={styles.primaryButtonText}>{hasActiveAlert ? t("flightDeals.manageAlert") : t("flightDeals.createAlert")}</Text>
           </TouchableOpacity>
         </View>
       )}

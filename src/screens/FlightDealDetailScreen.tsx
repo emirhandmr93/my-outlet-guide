@@ -4,6 +4,7 @@ import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "r
 import { outlets } from "../constants/outlets";
 import { flightDeals } from "../constants/flightDeals";
 import { departureAirports, flightDealCities } from "../constants/flightDealCities";
+import { useTranslation } from "../hooks/useTranslation";
 
 const SKYSCANNER_URL = "https://www.skyscanner.com/";
 
@@ -15,6 +16,7 @@ type RouteParams = {
 
 export function FlightDealDetailScreen() {
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const route = useRoute<RouteProp<RouteParams, "FlightDealDetail">>();
 
   const deal = flightDeals.find((item) => item.dealId === route.params?.dealId) || flightDeals[0];
@@ -36,39 +38,39 @@ export function FlightDealDetailScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>FLIGHT DEAL FOUND</Text>
+        <Text style={styles.kicker}>{t("flightDeals.detailKicker")}</Text>
         <Text style={styles.title}>
           {departure?.cityName || deal.departureAirportId} → {destination?.cityName || deal.destinationCityId}
         </Text>
         <Text style={styles.subtitle}>
-          {deal.discountPercent}% below the 90-day average route fare.
+          {deal.discountPercent}% {t("flightDeals.below90DayFare")}
         </Text>
       </View>
 
       <View style={styles.priceCard}>
-        <Text style={styles.cardKicker}>Current fare</Text>
+        <Text style={styles.cardKicker}>{t("flightDeals.currentFare")}</Text>
         <Text style={styles.price}>
           {deal.detectedPrice} {deal.currency}
         </Text>
         <Text style={styles.airline}>{deal.airline}</Text>
-        <Text style={styles.updated}>Updated {deal.lastUpdatedMinutesAgo} min ago</Text>
+        <Text style={styles.updated}>{t("flightDeals.updated")} {deal.lastUpdatedMinutesAgo} {t("flightDeals.minAgo")}</Text>
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>Why this alert matters</Text>
+        <Text style={styles.sectionTitle}>{t("flightDeals.whyMatters")}</Text>
         <View style={styles.factRow}>
-          <Text style={styles.factLabel}>Route</Text>
+          <Text style={styles.factLabel}>{t("flightDeals.route")}</Text>
           <Text style={styles.factValue}>
             {departure?.airportId?.toUpperCase?.() || deal.departureAirportId.toUpperCase()} → {destination?.cityName || deal.destinationCityId}
           </Text>
         </View>
         <View style={styles.factRow}>
-          <Text style={styles.factLabel}>Discount</Text>
-          <Text style={styles.factValue}>{deal.discountPercent}% below average</Text>
+          <Text style={styles.factLabel}>{t("flightDeals.discount")}</Text>
+          <Text style={styles.factValue}>{deal.discountPercent}% {t("flightDeals.belowAverage")}</Text>
         </View>
         <View style={styles.factRow}>
-          <Text style={styles.factLabel}>Average basis</Text>
-          <Text style={styles.factValue}>Last 90 days</Text>
+          <Text style={styles.factLabel}>{t("flightDeals.averageBasis")}</Text>
+          <Text style={styles.factValue}>{t("flightDeals.last90Days")}</Text>
         </View>
       </View>
 
@@ -77,20 +79,20 @@ export function FlightDealDetailScreen() {
         activeOpacity={0.85}
         onPress={() => navigation.navigate("OutletDetail", { outletId: recommendedOutlet.outletId })}
       >
-        <Text style={styles.sectionTitle}>Recommended outlet nearby</Text>
+        <Text style={styles.sectionTitle}>{t("flightDeals.recommendedOutletNearby")}</Text>
         <Text style={styles.outletTitle}>{recommendedOutlet.name}</Text>
         <Text style={styles.outletText}>
-          Pair this route with a premium outlet shopping trip.
+          {t("flightDeals.pairRouteOutlet")}
         </Text>
-        <Text style={styles.outletLink}>View outlet →</Text>
+        <Text style={styles.outletLink}>{t("flightDeals.viewOutlet")}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.button} activeOpacity={0.86} onPress={openFlights}>
-        <Text style={styles.buttonText}>Check current flights →</Text>
+        <Text style={styles.buttonText}>{t("flightDeals.checkFlightsArrow")}</Text>
       </TouchableOpacity>
 
       <Text style={styles.note}>
-        Prices can change quickly. My Outlet Guide shows fare alert information and redirects you to a travel search partner to check current availability.
+        {t("flightDeals.priceNotice")}
       </Text>
     </ScrollView>
   );
