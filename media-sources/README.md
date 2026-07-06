@@ -11,7 +11,7 @@ Each manifest is JSON with an `images` array. Every image entry must include:
 - `targetAssetPath`: WebP output path under `assets/outlet-images`.
 - `sourceStatus`: production-cleared status such as `public-domain`, `licensed`, `permission-granted`, or `project-owned`; `unknown` is refused by the importer.
 - `sourceUrl`: human-reviewable source page for provenance.
-- `downloadUrl`: direct file URL used by the importer. Fill this locally from the verified source page.
+- `downloadUrl`: optional direct file URL used by the importer. Keep this for non-Wikimedia sources or when you want to pin an explicit original-file URL. It may be omitted, empty, or a `TODO` placeholder when `sourceUrl` is a Wikimedia Commons `File:` page because the importer can resolve the original file URL automatically.
 - `credit`: required credit text.
 - `license`: license label.
 - `licenseUrl`: required for non-project-owned sources.
@@ -27,4 +27,4 @@ Each manifest is JSON with an `images` array. Every image entry must include:
 - `File:Parndorf_Designer_Outlet_(1).jpg`
 - `File:Parndorf_Designer_Outlet_(3).jpg`
 
-The sample intentionally uses `TODO` placeholders for `downloadUrl` values because this Codex environment must not download images and may not reliably derive final Wikimedia original-file URLs. Before a real local import, open each `sourceUrl`, copy the original-file download URL from Wikimedia Commons, and replace the matching `downloadUrl` placeholder.
+The sample intentionally omits `downloadUrl` values. In dry-run mode, the importer validates that each `sourceUrl` is a Wikimedia Commons `File:` page and reports that the original file URL would be auto-resolved. During a real local import, the importer calls the Wikimedia/MediaWiki API `imageinfo` endpoint to resolve the original file URL before downloading and converting. You may still provide an explicit `downloadUrl` to bypass auto-resolution.

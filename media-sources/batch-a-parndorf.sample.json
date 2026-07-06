@@ -1,7 +1,7 @@
 {
   "version": 1,
   "batchName": "batch-a-parndorf-sample",
-  "notes": "Scaffold only. Do not commit downloaded images from Codex; fill downloadUrl values locally after verifying the exact Wikimedia original-file URLs.",
+  "notes": "Scaffold only. Do not commit downloaded images from Codex; Wikimedia sourceUrl values can be resolved automatically by the importer during a real local import.",
   "images": [
     {
       "outletId": "designer-outlet-parndorf",
@@ -9,12 +9,11 @@
       "targetAssetPath": "assets/outlet-images/parndorf/hero.webp",
       "sourceStatus": "public-domain",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parndorf_Designer_Outlet_(1).jpg",
-      "downloadUrl": "TODO: paste the verified Wikimedia Commons original-file download URL for File:Parndorf_Designer_Outlet_(1).jpg",
       "credit": "Wikimedia Commons contributor; see sourceUrl file page",
       "license": "Public domain",
       "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain",
       "alt": "Designer Outlet Parndorf exterior walkway and storefronts",
-      "notes": "Verified public-domain Wikimedia candidate. Replace TODO downloadUrl locally from the file page's original file link before running the non-dry import.",
+      "notes": "Verified public-domain Wikimedia candidate. downloadUrl is intentionally omitted because the importer can resolve the Wikimedia original file URL from sourceUrl.",
       "width": 1600,
       "height": 900,
       "quality": 82
@@ -25,12 +24,11 @@
       "targetAssetPath": "assets/outlet-images/parndorf/gallery1.webp",
       "sourceStatus": "public-domain",
       "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parndorf_Designer_Outlet_(3).jpg",
-      "downloadUrl": "TODO: paste the verified Wikimedia Commons original-file download URL for File:Parndorf_Designer_Outlet_(3).jpg",
       "credit": "Wikimedia Commons contributor; see sourceUrl file page",
       "license": "Public domain",
       "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain",
       "alt": "Designer Outlet Parndorf storefronts and pedestrian shopping street",
-      "notes": "Verified public-domain Wikimedia candidate. Replace TODO downloadUrl locally from the file page's original file link before running the non-dry import.",
+      "notes": "Verified public-domain Wikimedia candidate. downloadUrl is intentionally omitted because the importer can resolve the Wikimedia original file URL from sourceUrl.",
       "width": 1600,
       "height": 900,
       "quality": 82

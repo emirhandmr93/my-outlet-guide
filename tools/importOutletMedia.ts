@@ -23,7 +23,7 @@ type ManifestEntry = {
   targetAssetPath: string;
   sourceStatus: string;
   sourceUrl: string;
-  downloadUrl: string;
+  downloadUrl?: string;
   credit: string;
   license: string;
   licenseUrl?: string;
@@ -106,6 +106,129 @@ function looksLikePlaceholder(value: string): boolean {
   return /TODO|REPLACE_ME|example\.invalid/i.test(value);
 }
 
+function getUsableDownloadUrl(entry: ManifestEntry): string | undefined {
+  if (!hasText(entry.downloadUrl)) {
+    return undefined;
+  }
+
+  if (looksLikePlaceholder(entry.downloadUrl)) {
+    return undefined;
+  }
+
+  return entry.downloadUrl.trim();
+}
+
+function getWikimediaFileTitle(sourceUrl: string): string | undefined {
+  let parsed: URL;
+
+  try {
+    parsed = new URL(sourceUrl);
+  } catch {
+    return undefined;
+  }
+
+  if (parsed.protocol !== "https:") {
+    return undefined;
+  }
+
+  if (parsed.hostname !== "commons.wikimedia.org") {
+    return undefined;
+  }
+
+  const wikiPrefix = "/wiki/";
+  if (!parsed.pathname.startsWith(wikiPrefix)) {
+    return undefined;
+  }
+
+  const title = decodeURIComponent(parsed.pathname.slice(wikiPrefix.length));
+  if (!title.startsWith("File:") || title.length <= "File:".length) {
+    return undefined;
+  }
+
+  return title;
+}
+
+function getWikimediaApiUrl(fileTitle: string): string {
+  const params = new URLSearchParams({
+    action: "query",
+    format: "json",
+    formatversion: "2",
+    origin: "*",
+    prop: "imageinfo",
+    iiprop: "url",
+    titles: fileTitle,
+  });
+
+  return `https://commons.wikimedia.org/w/api.php?${params.toString()}`;
+}
+
+type WikimediaImageInfoResponse = {
+  query?: {
+    pages?: Array<{
+      missing?: boolean;
+      imageinfo?: Array<{
+        url?: unknown;
+      }>;
+    }>;
+  };
+};
+
+async function resolveWikimediaDownloadUrl(sourceUrl: string): Promise<string> {
+  const fileTitle = getWikimediaFileTitle(sourceUrl);
+
+  if (!fileTitle) {
+    throw new Error(
+      `${sourceUrl}: sourceUrl is not a Wikimedia Commons File page.`,
+    );
+  }
+
+  const response = await fetch(getWikimediaApiUrl(fileTitle), {
+    headers: { "User-Agent": "my-outlet-guide-media-import/1.0" },
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Wikimedia URL resolution failed for ${sourceUrl}: ${response.status} ${response.statusText}`,
+    );
+  }
+
+  const data = (await response.json()) as WikimediaImageInfoResponse;
+  const page = data.query?.pages?.[0];
+  const resolvedUrl = page?.imageinfo?.[0]?.url;
+
+  if (page?.missing || !hasText(resolvedUrl)) {
+    throw new Error(
+      `Wikimedia URL resolution did not return an original file URL for ${sourceUrl}.`,
+    );
+  }
+
+  return resolvedUrl;
+}
+
+async function resolveDownloadUrl(
+  entry: ManifestEntry,
+  options: Options,
+): Promise<string> {
+  const explicitDownloadUrl = getUsableDownloadUrl(entry);
+
+  if (explicitDownloadUrl) {
+    return explicitDownloadUrl;
+  }
+
+  const wikimediaFileTitle = getWikimediaFileTitle(entry.sourceUrl);
+  if (!wikimediaFileTitle) {
+    throw new Error(
+      `${entry.sourceUrl}: downloadUrl is required unless sourceUrl is a Wikimedia Commons File page.`,
+    );
+  }
+
+  if (options.dryRun) {
+    return `[auto-resolve Wikimedia original via API for ${wikimediaFileTitle}]`;
+  }
+
+  return resolveWikimediaDownloadUrl(entry.sourceUrl);
+}
+
 function assertTargetPath(targetAssetPath: string): string {
   const normalizedRelative = targetAssetPath.split(path.win32.sep).join("/");
 
@@ -143,7 +266,6 @@ function validateEntry(
     "targetAssetPath",
     "sourceStatus",
     "sourceUrl",
-    "downloadUrl",
     "credit",
     "license",
     "alt",
@@ -175,9 +297,12 @@ function validateEntry(
     );
   }
 
-  if (!options.dryRun && looksLikePlaceholder(entry.downloadUrl)) {
+  const explicitDownloadUrl = getUsableDownloadUrl(entry);
+  const wikimediaFileTitle = getWikimediaFileTitle(entry.sourceUrl);
+
+  if (!explicitDownloadUrl && !wikimediaFileTitle) {
     throw new Error(
-      `${label}: replace placeholder downloadUrl before running import.`,
+      `${label}: downloadUrl is required unless sourceUrl is a Wikimedia Commons File page.`,
     );
   }
 
@@ -330,8 +455,9 @@ async function main(): Promise<void> {
   console.log(`Validated ${entries.length} manifest image(s).`);
 
   for (const [index, entry] of entries.entries()) {
+    const downloadUrl = await resolveDownloadUrl(entry, options);
     console.log(
-      `${options.dryRun ? "Would import" : "Importing"} ${entry.downloadUrl} -> ${entry.targetAssetPath}`,
+      `${options.dryRun ? "Would import" : "Importing"} ${downloadUrl} -> ${entry.targetAssetPath}`,
     );
 
     if (options.dryRun) {
@@ -339,7 +465,7 @@ async function main(): Promise<void> {
     }
 
     ensureMagick();
-    const tempPath = await downloadToTemp(entry.downloadUrl);
+    const tempPath = await downloadToTemp(downloadUrl);
     try {
       convertToWebp(tempPath, targets[index], entry);
     } finally {

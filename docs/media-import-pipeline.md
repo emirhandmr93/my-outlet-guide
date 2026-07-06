@@ -1,6 +1,6 @@
 # Automated outlet media import pipeline
 
-Media Phase 3C revised adds a local-only import scaffold. It does not download, add, remove, or edit image files by itself in this repository state, and it does not update outlet data or media metadata automatically.
+Media Phase 3D adds Wikimedia Commons original-file URL auto-resolution to the local-only import scaffold. It does not download, add, remove, or edit image files by itself in this repository state, and it does not update outlet data or media metadata automatically.
 
 ## Prerequisites
 
@@ -18,9 +18,9 @@ magick -version
 
 ## Fill a manifest
 
-Create or edit a JSON manifest under `media-sources/`. For each image, provide the existing outlet id, image role, target WebP path under `assets/outlet-images`, source status, source page URL, direct download URL, credit, license, alt text, and optional resize settings.
+Create or edit a JSON manifest under `media-sources/`. For each image, provide the existing outlet id, image role, target WebP path under `assets/outlet-images`, source status, source page URL, credit, license, alt text, and optional resize settings. Provide `downloadUrl` for non-Wikimedia sources or when you want to pin an explicit direct file URL.
 
-For Wikimedia Commons, use the file page as `sourceUrl`, then copy the original-file URL into `downloadUrl`. Leave no `TODO` placeholders before running a real import.
+For Wikimedia Commons, use the file page as `sourceUrl`, for example `https://commons.wikimedia.org/wiki/File:Example.jpg`. `downloadUrl` may be omitted, empty, or left as a `TODO` placeholder for Wikimedia Commons `File:` pages. In real import mode, the importer resolves the original file URL with the Wikimedia/MediaWiki API `imageinfo` endpoint before downloading. For non-Wikimedia sources, provide an explicit direct `downloadUrl`.
 
 ## Dry-run validation
 
@@ -32,13 +32,13 @@ npx tsx tools/importOutletMedia.ts media-sources/batch-a-parndorf.sample.json --
 
 ## Run a local import
 
-After replacing placeholder `downloadUrl` values, run the importer locally. Existing image targets are protected unless `--overwrite` is explicit:
+Run the importer locally. Wikimedia Commons `File:` page entries do not require manual `downloadUrl` values; existing image targets are protected unless `--overwrite` is explicit:
 
 ```sh
 npx tsx tools/importOutletMedia.ts media-sources/batch-a-parndorf.sample.json --overwrite
 ```
 
-The importer downloads each source image, converts/resizes/crops it to WebP via ImageMagick, and writes only to the requested `assets/outlet-images/...` target.
+The importer keeps using an explicit `downloadUrl` when one is provided. If it is omitted, empty, or a placeholder and `sourceUrl` is a Wikimedia Commons `File:` page, the importer first resolves the original file URL through Wikimedia, then downloads the source image, converts/resizes/crops it to WebP via ImageMagick, and writes only to the requested `assets/outlet-images/...` target.
 
 ## Metadata follow-up
 
