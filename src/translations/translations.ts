@@ -568,6 +568,12 @@ const enTranslations = {
   "outlet.edited": "Edited",
   "outlet.editReview": "Edit Review",
 
+  "myReviews.title": "My Reviews",
+  "myReviews.subtitle": "Reviews you have written.",
+  "myReviews.emptyTitle": "No Reviews Yet",
+  "myReviews.emptyText": "Your reviews will appear here.",
+  "myReviews.viewOutlet": "View Outlet →",
+
   "writeReview.title": "Write Review",
   "writeReview.editTitle": "Edit Review",
   "writeReview.overall": "Overall Experience",
@@ -581,6 +587,7 @@ const enTranslations = {
   "writeReview.update": "Update Review",
   "writeReview.note":
     "Review submission is a demo action for now. Later this will require user login and save the review to the database.",
+  "writeReview.defaultUserName": "My Outlet Guide User",
 
   "outlet.previousComment": "Previous Comment",
 
@@ -1632,6 +1639,12 @@ export const translations: Record<
     "outlet.edited": "Düzenlendi",
     "outlet.editReview": "Yorumu Düzenle",
 
+    "myReviews.title": "Yorumlarım",
+    "myReviews.subtitle": "Yazdığın yorumlar.",
+    "myReviews.emptyTitle": "Henüz Yorum Yok",
+    "myReviews.emptyText": "Yorumların burada görünür.",
+    "myReviews.viewOutlet": "Outlet'i Gör →",
+
     "writeReview.title": "Yorum Yaz",
     "writeReview.editTitle": "Yorumu Düzenle",
     "writeReview.overall": "Genel Deneyim",
@@ -1645,6 +1658,7 @@ export const translations: Record<
     "writeReview.update": "Yorumu Güncelle",
     "writeReview.note":
       "Yorumun hesabına bağlı olarak kaydedilir. Yayınlanan yorumlar diğer kullanıcılar tarafından görülebilir.",
+    "writeReview.defaultUserName": "My Outlet Guide Kullanıcısı",
 
     "outlet.previousComment": "Önceki Yorum",
 
@@ -2677,6 +2691,12 @@ export const translations: Record<
     "outlet.edited": "Editado",
     "outlet.editReview": "Editar reseña",
 
+    "myReviews.title": "Mis reseñas",
+    "myReviews.subtitle": "Reseñas que escribiste.",
+    "myReviews.emptyTitle": "Sin reseñas aún",
+    "myReviews.emptyText": "Tus reseñas aparecerán aquí.",
+    "myReviews.viewOutlet": "Ver outlet →",
+
     "writeReview.title": "Escribir reseña",
     "writeReview.editTitle": "Editar reseña",
     "writeReview.overall": "Experiencia general",
@@ -2690,6 +2710,7 @@ export const translations: Record<
     "writeReview.update": "Actualizar reseña",
     "writeReview.note":
       "El envío de reseñas es una acción de demo por ahora. Más adelante requerirá iniciar sesión y guardará la reseña en la base de datos.",
+    "writeReview.defaultUserName": "Usuario de My Outlet Guide",
 
     "outlet.previousComment": "Comentario anterior",
 
@@ -3738,6 +3759,12 @@ export const translations: Record<
     "outlet.edited": "Modifié",
     "outlet.editReview": "Modifier l'avis",
 
+    "myReviews.title": "Mes avis",
+    "myReviews.subtitle": "Avis que vous avez écrits.",
+    "myReviews.emptyTitle": "Aucun avis",
+    "myReviews.emptyText": "Vos avis apparaîtront ici.",
+    "myReviews.viewOutlet": "Voir l'outlet →",
+
     "writeReview.title": "Écrire un avis",
     "writeReview.editTitle": "Modifier l'avis",
     "writeReview.overall": "Expérience globale",
@@ -3751,6 +3778,7 @@ export const translations: Record<
     "writeReview.update": "Mettre à jour l'avis",
     "writeReview.note":
       "L'envoi d'avis est une action démo pour le moment. Plus tard, une connexion sera requise et l'avis sera enregistré en base de données.",
+    "writeReview.defaultUserName": "Utilisateur My Outlet Guide",
 
     "outlet.previousComment": "Commentaire précédent",
 
@@ -4779,6 +4807,12 @@ export const translations: Record<
     "outlet.recent": "Neueste",
     "outlet.edited": "Bearbeitet",
     "outlet.editReview": "Bewertung bearbeiten",
+
+    "myReviews.title": "Meine Bewertungen",
+    "myReviews.subtitle": "Bewertungen, die du geschrieben hast.",
+    "myReviews.emptyTitle": "Noch keine Bewertungen",
+    "myReviews.emptyText": "Deine Bewertungen erscheinen hier.",
+    "myReviews.viewOutlet": "Outlet ansehen →",
     "writeReview.title": "Bewertung schreiben",
     "writeReview.editTitle": "Bewertung bearbeiten",
     "writeReview.overall": "Gesamterlebnis",
@@ -4792,6 +4826,7 @@ export const translations: Record<
     "writeReview.update": "Bewertung aktualisieren",
     "writeReview.note":
       "Das Einreichen von Bewertungen ist vorerst eine Demo-Aktion. Später ist ein Login erforderlich und die Bewertung wird in der Datenbank gespeichert.",
+    "writeReview.defaultUserName": "My Outlet Guide Nutzer",
     "outlet.previousComment": "Vorheriger Kommentar",
     "notifications.title": "Benachrichtigungen",
     "notifications.subtitle":
@@ -5783,6 +5818,12 @@ export const translations: Record<
     "outlet.recent": "الأحدث",
     "outlet.edited": "تم التعديل",
     "outlet.editReview": "تعديل المراجعة",
+
+    "myReviews.title": "مراجعاتي",
+    "myReviews.subtitle": "المراجعات التي كتبتها.",
+    "myReviews.emptyTitle": "لا توجد مراجعات بعد",
+    "myReviews.emptyText": "ستظهر مراجعاتك هنا.",
+    "myReviews.viewOutlet": "عرض الأوتلت →",
     "writeReview.title": "اكتب مراجعة",
     "writeReview.editTitle": "تعديل المراجعة",
     "writeReview.overall": "التجربة العامة",
@@ -5796,6 +5837,7 @@ export const translations: Record<
     "writeReview.update": "تحديث المراجعة",
     "writeReview.note":
       "إرسال المراجعة إجراء تجريبي حالياً. لاحقاً سيتطلب تسجيل الدخول وسيُحفظ في قاعدة البيانات.",
+    "writeReview.defaultUserName": "مستخدم My Outlet Guide",
     "outlet.previousComment": "التعليق السابق",
     "notifications.title": "الإشعارات",
     "notifications.subtitle": "تحكم في تذكيرات السفر والتسوق التي تصلك.",
@@ -6778,6 +6820,12 @@ export const translations: Record<
     "outlet.edited": "Изменено",
     "outlet.editReview": "Редактировать отзыв",
 
+    "myReviews.title": "Мои отзывы",
+    "myReviews.subtitle": "Отзывы, которые вы написали.",
+    "myReviews.emptyTitle": "Пока нет отзывов",
+    "myReviews.emptyText": "Ваши отзывы появятся здесь.",
+    "myReviews.viewOutlet": "Открыть аутлет →",
+
     "writeReview.title": "Написать отзыв",
     "writeReview.editTitle": "Редактировать отзыв",
     "writeReview.overall": "Общее впечатление",
@@ -6791,6 +6839,7 @@ export const translations: Record<
     "writeReview.update": "Обновить отзыв",
     "writeReview.note":
       "Отправка отзыва пока работает в демо-режиме. Позже потребуется вход, и отзыв будет сохранен в базе данных.",
+    "writeReview.defaultUserName": "Пользователь My Outlet Guide",
 
     "outlet.previousComment": "Предыдущий комментарий",
 
@@ -7794,6 +7843,12 @@ export const translations: Record<
     "outlet.edited": "已编辑",
     "outlet.editReview": "编辑评价",
 
+    "myReviews.title": "我的评价",
+    "myReviews.subtitle": "你写过的评价。",
+    "myReviews.emptyTitle": "暂无评价",
+    "myReviews.emptyText": "你的评价会显示在这里。",
+    "myReviews.viewOutlet": "查看奥莱 →",
+
     "writeReview.title": "写评价",
     "writeReview.editTitle": "编辑评价",
     "writeReview.overall": "整体体验",
@@ -7807,6 +7862,7 @@ export const translations: Record<
     "writeReview.update": "更新评价",
     "writeReview.note":
       "评价提交目前为演示功能。之后将需要用户登录，并把评价保存到数据库。",
+    "writeReview.defaultUserName": "My Outlet Guide 用户",
 
     "outlet.previousComment": "上一条评论",
 

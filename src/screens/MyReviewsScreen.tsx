@@ -10,11 +10,13 @@ import { outlets } from "../constants/outlets";
 
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
+import { useTranslation } from "../hooks/useTranslation";
 
 export function MyReviewsScreen() {
 const { reviews } = useReviews();
 const { currentUser } = useUser();
 const navigation = useNavigation<any>();
+const { t } = useTranslation();
 
 function getReviewAverage(review: any) {
 return (
@@ -37,20 +39,20 @@ return (
 style={styles.container}
 contentContainerStyle={styles.content}
 >
-<Text style={styles.pageTitle}>My Reviews</Text>
+<Text style={styles.pageTitle}>{t("myReviews.title")}</Text>
 
 <Text style={styles.pageSubtitle}>
-Reviews you have written.
+{t("myReviews.subtitle")}
 </Text>
 
 {myReviews.length === 0 ? (
 <View style={styles.emptyCard}>
 <Text style={styles.emptyTitle}>
-No Reviews Yet
+{t("myReviews.emptyTitle")}
 </Text>
 
 <Text style={styles.emptyText}>
-Your reviews will appear here.
+{t("myReviews.emptyText")}
 </Text>
 </View>
 ) : (
@@ -88,7 +90,7 @@ outletId: review.outletId,
 }
 >
 <Text style={styles.viewOutletButtonText}>
-View Outlet →
+{t("myReviews.viewOutlet")}
 </Text>
 </TouchableOpacity>
 </View>
