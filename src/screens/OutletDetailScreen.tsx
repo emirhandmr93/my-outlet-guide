@@ -31,6 +31,11 @@ import { useReviewHelpful } from "../contexts/ReviewHelpfulContext";
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import {
+  getImageSource,
+  getOutletMediaImages,
+  outletMediaFallbackImages,
+} from "../media/outletMedia";
 import { getBrandCategoryGroupsForOutlet } from "../services/brandService";
 import { getRestaurantsForOutlet } from "../services/restaurantService";
 import { getTransportationForOutlet } from "../services/transportationService";
@@ -44,183 +49,8 @@ import { typography } from "../theme/typography";
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const fallbackImage =
-  "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1400&auto=format&fit=crop";
+const fallbackImage = outletMediaFallbackImages[0];
 
-const outletLocalImages: Record<string, any[]> = {
-  "la-vallee-village": [
-    require("../../assets/outlet-images/la-vallee/hero.webp"),
-    require("../../assets/outlet-images/la-vallee/gallery1.webp"),
-    require("../../assets/outlet-images/la-vallee/gallery2.webp"),
-    require("../../assets/outlet-images/la-vallee/gallery3.webp"),
-  ],
-  "bicester-village": [
-    require("../../assets/outlet-images/bicester/hero.webp"),
-    require("../../assets/outlet-images/bicester/gallery1.webp"),
-    require("../../assets/outlet-images/bicester/gallery2.webp"),
-    require("../../assets/outlet-images/bicester/gallery3.webp"),
-  ],
-  "serravalle-designer-outlet": [
-    require("../../assets/outlet-images/serravalle/hero.webp"),
-    require("../../assets/outlet-images/serravalle/gallery1.webp"),
-    require("../../assets/outlet-images/serravalle/gallery2.webp"),
-    require("../../assets/outlet-images/serravalle/gallery3.webp"),
-  ],
-  "designer-outlet-parndorf": [
-    require("../../assets/outlet-images/parndorf/hero.webp"),
-    require("../../assets/outlet-images/parndorf/gallery1.webp"),
-    require("../../assets/outlet-images/parndorf/gallery2.webp"),
-    require("../../assets/outlet-images/parndorf/gallery3.webp"),
-  ],
-  "fidenza-village": [
-    require("../../assets/outlet-images/fidenza/hero.webp"),
-    require("../../assets/outlet-images/fidenza/gallery1.webp"),
-    require("../../assets/outlet-images/fidenza/gallery2.webp"),
-    require("../../assets/outlet-images/fidenza/gallery3.webp"),
-  ],
-  "ingolstadt-village": [
-    require("../../assets/outlet-images/ingolstadt/hero.webp"),
-    require("../../assets/outlet-images/ingolstadt/gallery1.webp"),
-    require("../../assets/outlet-images/ingolstadt/gallery2.webp"),
-    require("../../assets/outlet-images/ingolstadt/gallery3.webp"),
-  ],
-  "wertheim-village": [
-    require("../../assets/outlet-images/wertheim/hero.webp"),
-    require("../../assets/outlet-images/wertheim/gallery1.webp"),
-    require("../../assets/outlet-images/wertheim/gallery2.webp"),
-    require("../../assets/outlet-images/wertheim/gallery3.webp"),
-  ],
-  "the-mall-firenze": [
-    require("../../assets/outlet-images/the-mall-firenze/hero.webp"),
-    require("../../assets/outlet-images/the-mall-firenze/gallery1.webp"),
-    require("../../assets/outlet-images/the-mall-firenze/gallery2.webp"),
-    require("../../assets/outlet-images/the-mall-firenze/gallery3.webp"),
-  ],
-  "barberino": [
-    require("../../assets/outlet-images/barberino/hero.webp"),
-    require("../../assets/outlet-images/barberino/gallery1.webp"),
-    require("../../assets/outlet-images/barberino/gallery2.webp"),
-    require("../../assets/outlet-images/barberino/gallery3.webp"),
-  ],
-  "noventa": [
-    require("../../assets/outlet-images/noventa/hero.webp"),
-    require("../../assets/outlet-images/noventa/gallery1.webp"),
-    require("../../assets/outlet-images/noventa/gallery2.webp"),
-    require("../../assets/outlet-images/noventa/gallery3.webp"),
-  ],
-
-  "outletcity-metzingen": [
-    require("../../assets/outlet-images/metzingen/hero.webp"),
-    require("../../assets/outlet-images/metzingen/gallery1.webp"),
-    require("../../assets/outlet-images/metzingen/gallery2.webp"),
-    require("../../assets/outlet-images/metzingen/gallery3.webp"),
-  ],
-
-  "designer-outlet-troyes": [
-require("../../assets/outlet-images/troyes/hero.webp"),
-require("../../assets/outlet-images/troyes/gallery1.webp"),
-require("../../assets/outlet-images/troyes/gallery2.webp"),
-require("../../assets/outlet-images/troyes/gallery3.webp"),
-],
-
-"designer-outlet-provence": [
-require("../../assets/outlet-images/provence/hero.webp"),
-require("../../assets/outlet-images/provence/gallery1.webp"),
-require("../../assets/outlet-images/provence/gallery2.webp"),
-require("../../assets/outlet-images/provence/gallery3.webp"),
-],
-"designer-outlet-roermond": [
-require("../../assets/outlet-images/roermond/hero.webp"),
-require("../../assets/outlet-images/roermond/gallery1.webp"),
-require("../../assets/outlet-images/roermond/gallery2.webp"),
-require("../../assets/outlet-images/roermond/gallery3.webp"),
-],
-"castel-romano": [
-require("../../assets/outlet-images/castel-romano/hero.webp"),
-require("../../assets/outlet-images/castel-romano/gallery1.webp"),
-require("../../assets/outlet-images/castel-romano/gallery2.webp"),
-require("../../assets/outlet-images/castel-romano/gallery3.webp"),
-],
-"cheshire-oaks": [
-require("../../assets/outlet-images/cheshire-oaks/hero.webp"),
-require("../../assets/outlet-images/cheshire-oaks/gallery1.webp"),
-require("../../assets/outlet-images/cheshire-oaks/gallery2.webp"),
-require("../../assets/outlet-images/cheshire-oaks/gallery3.webp"),
-],
-"designer-outlet-berlin": [
-require("../../assets/outlet-images/berlin/hero.webp"),
-require("../../assets/outlet-images/berlin/gallery1.webp"),
-require("../../assets/outlet-images/berlin/gallery2.webp"),
-require("../../assets/outlet-images/berlin/gallery3.webp"),
-],
-"designer-outlet-neumunster": [
-require("../../assets/outlet-images/neumunster/hero.webp"),
-require("../../assets/outlet-images/neumunster/gallery1.webp"),
-require("../../assets/outlet-images/neumunster/gallery2.webp"),
-require("../../assets/outlet-images/neumunster/gallery3.webp"),
-],
-"designer-outlet-roosendaal": [
-require("../../assets/outlet-images/roosendaal/hero.webp"),
-require("../../assets/outlet-images/roosendaal/gallery1.webp"),
-require("../../assets/outlet-images/roosendaal/gallery2.webp"),
-require("../../assets/outlet-images/roosendaal/gallery3.webp"),
-],
-"la-reggia": [
-require("../../assets/outlet-images/la-reggia/hero.webp"),
-require("../../assets/outlet-images/la-reggia/gallery1.webp"),
-require("../../assets/outlet-images/la-reggia/gallery2.webp"),
-require("../../assets/outlet-images/la-reggia/gallery3.webp"),
-],
-"designer-outlet-malaga": [
-require("../../assets/outlet-images/malaga/hero.webp"),
-require("../../assets/outlet-images/malaga/gallery1.webp"),
-require("../../assets/outlet-images/malaga/gallery2.webp"),
-require("../../assets/outlet-images/malaga/gallery3.webp"),
-],
-"montabaur-the-style-outlets": [
-require("../../assets/outlet-images/montabaur/hero.webp"),
-require("../../assets/outlet-images/montabaur/gallery1.webp"),
-require("../../assets/outlet-images/montabaur/gallery2.webp"),
-require("../../assets/outlet-images/montabaur/gallery3.webp"),
-],
-
-"zweibrucken-fashion-outlet": [
-require("../../assets/outlet-images/zweibrucken/hero.webp"),
-require("../../assets/outlet-images/zweibrucken/gallery1.webp"),
-require("../../assets/outlet-images/zweibrucken/gallery2.webp"),
-require("../../assets/outlet-images/zweibrucken/gallery3.webp"),
-],
-"maasmechelen-village": [
-require("../../assets/outlet-images/maasmechelen/hero.webp"),
-require("../../assets/outlet-images/maasmechelen/gallery1.webp"),
-require("../../assets/outlet-images/maasmechelen/gallery2.webp"),
-require("../../assets/outlet-images/maasmechelen/gallery3.webp"),
-],
-
-"las-rozas-village": [
-require("../../assets/outlet-images/las-rozas/hero.webp"),
-require("../../assets/outlet-images/las-rozas/gallery1.webp"),
-require("../../assets/outlet-images/las-rozas/gallery2.webp"),
-require("../../assets/outlet-images/las-rozas/gallery3.webp"),
-],
-"city-outlet-bad-munstereifel": [
-require("../../assets/outlet-images/bad-munstereifel/hero.webp"),
-require("../../assets/outlet-images/bad-munstereifel/gallery1.webp"),
-require("../../assets/outlet-images/bad-munstereifel/gallery2.webp"),
-require("../../assets/outlet-images/bad-munstereifel/gallery3.webp"),
-],
-
-"designer-outlets-wolfsburg": [
-require("../../assets/outlet-images/wolfsburg/hero.webp"),
-require("../../assets/outlet-images/wolfsburg/gallery1.webp"),
-require("../../assets/outlet-images/wolfsburg/gallery2.webp"),
-require("../../assets/outlet-images/wolfsburg/gallery3.webp"),
-],
-};
-
-function getImageSource(image: any) {
-  return typeof image === "string" ? { uri: image } : image;
-}
 
 type RouteParams = {
   OutletDetail: {
@@ -274,24 +104,7 @@ export function OutletDetailScreen() {
     outlets.find((item) => item?.outletId === route.params?.outletId) || outlets.find((item) => Boolean(item)) || outlets[0];
 
   const safeGalleryImages = useMemo(() => {
-    const localImages = outletLocalImages[outlet.outletId];
-
-    if (localImages?.length) {
-      return localImages;
-    }
-
-    const images = [outlet.heroImage, ...(outlet.galleryImages ?? [])].filter(Boolean);
-
-    if (images.length > 0) {
-      return images;
-    }
-
-    return [
-      fallbackImage,
-      "https://images.unsplash.com/photo-1481437156560-3205f6a55735?q=80&w=1400&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1400&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1400&auto=format&fit=crop",
-    ];
+    return getOutletMediaImages(outlet);
   }, [outlet.galleryImages, outlet.heroImage, outlet.outletId]);
 
   const [selectedImage, setSelectedImage] = useState(

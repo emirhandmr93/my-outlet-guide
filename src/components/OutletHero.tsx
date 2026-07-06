@@ -7,26 +7,20 @@ import {
   View,
 } from "react-native";
 
+import { getImageSource, type OutletMediaImage } from "../media/outletMedia";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 
-const fallbackImage =
-  "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1400&auto=format&fit=crop";
-
-function getImageSource(image: any) {
-  return typeof image === "string" ? { uri: image } : image;
-}
-
 type OutletHeroProps = {
   name: string;
   location: string;
-  selectedImage: string;
-  galleryImages: string[];
+  selectedImage: OutletMediaImage;
+  galleryImages: OutletMediaImage[];
   favoriteButtonText?: string;
   onPressHeroImage: () => void;
-  onPressGalleryImage: (image: string) => void;
+  onPressGalleryImage: (image: OutletMediaImage) => void;
   onPressFavorite?: () => void;
 };
 
@@ -38,14 +32,14 @@ export function OutletHero({
   onPressHeroImage,
   onPressGalleryImage,
 }: OutletHeroProps) {
-  const images = galleryImages.length > 0 ? galleryImages : [selectedImage || fallbackImage];
+  const images = galleryImages.length > 0 ? galleryImages : [selectedImage];
 
   return (
     <View style={styles.wrapper}>
       <TouchableOpacity activeOpacity={0.9} onPress={onPressHeroImage}>
         <View style={styles.heroWrap}>
           <Image
-            source={getImageSource(selectedImage || fallbackImage)}
+            source={getImageSource(selectedImage)}
             style={styles.heroImage}
           />
           <View style={styles.overlay} />

@@ -12,6 +12,7 @@ import { deals } from "../constants/deals";
 import { events } from "../constants/events";
 import { outlets } from "../constants/outlets";
 import { useTranslation } from "../hooks/useTranslation";
+import { getImageSource, getOutletHeroImage } from "../media/outletMedia";
 import { getCountryName } from "../services/locationService";
 
 type RouteParams = {
@@ -49,14 +50,16 @@ function OutletResultCard({
   onPress: () => void;
 }) {
   const { t } = useTranslation();
+  const heroImage = getOutletHeroImage(outlet);
+
   return (
     <TouchableOpacity
       style={styles.outletCard}
       activeOpacity={0.9}
       onPress={onPress}
     >
-      {outlet.heroImage ? (
-        <Image source={{ uri: outlet.heroImage }} style={styles.outletImage} />
+      {heroImage ? (
+        <Image source={getImageSource(heroImage)} style={styles.outletImage} />
       ) : (
         <View style={styles.outletImagePlaceholder}>
           <Text style={styles.outletImageIcon}>🛍️</Text>
