@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-nati
 
 import { languages } from "../constants/languages";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useTranslation } from "../hooks/useTranslation";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
@@ -10,15 +11,14 @@ import { typography } from "../theme/typography";
 
 export function LanguageSettingsScreen() {
   const { language, setLanguage } = useLanguage();
+  const { t } = useTranslation();
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.headerCard}>
-        <Text style={styles.kicker}>APP LANGUAGE</Text>
-        <Text style={styles.pageTitle}>Choose your language</Text>
-        <Text style={styles.pageSubtitle}>
-          My Outlet Guide will use this language across shopping, travel and savings tools.
-        </Text>
+        <Text style={styles.kicker}>{t("languageSettings.kicker")}</Text>
+        <Text style={styles.pageTitle}>{t("languageSettings.title")}</Text>
+        <Text style={styles.pageSubtitle}>{t("languageSettings.subtitle")}</Text>
       </View>
 
       <View style={styles.sectionCard}>
