@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 import { assertVerifiedWebp, inspectMediaFile } from "./mediaFileInspection";
@@ -45,7 +46,7 @@ type MetadataRecord = {
   sourceUrl: string;
   credit: string;
   license: string;
-  licenseUrl?: string;
+  licenseUrl: string;
   alt: string;
   notes?: string;
 };
@@ -225,7 +226,7 @@ function entryToRecord(entry: ManifestEntry, assetPath: string): MetadataRecord 
     sourceUrl: entry.sourceUrl,
     credit: entry.credit,
     license: entry.license,
-    licenseUrl: entry.licenseUrl,
+    licenseUrl: entry.licenseUrl.trim(),
     alt: entry.alt,
     notes: entry.notes,
   };
@@ -249,12 +250,33 @@ function replaceMetadataRecord(source: string, assetPath: string, replacement: s
   };
 }
 
+function assertCompleteMetadataRecord(record: MetadataRecord): void {
+  const requiredFields: Array<keyof MetadataRecord> = [
+    "outletId",
+    "role",
+    "assetPath",
+    "sourceStatus",
+    "sourceUrl",
+    "credit",
+    "license",
+    "licenseUrl",
+    "alt",
+  ];
+
+  for (const field of requiredFields) {
+    if (!hasText(record[field])) {
+      throw new Error(`${record.assetPath}: generated metadata is missing ${field}.`);
+    }
+  }
+}
+
 function updateMetadataSource(source: string, records: MetadataRecord[]): { source: string; added: string[]; updated: string[] } {
   const added: string[] = [];
   const updated: string[] = [];
   let nextSource = source;
 
   for (const record of records) {
+    assertCompleteMetadataRecord(record);
     const rendered = metadataObject(record);
     const result = replaceMetadataRecord(nextSource, record.assetPath, rendered);
     nextSource = result.source;
@@ -262,11 +284,15 @@ function updateMetadataSource(source: string, records: MetadataRecord[]): { sour
       updated.push(record.assetPath);
     } else {
       added.push(record.assetPath);
-      const marker = "\n] as const satisfies readonly OutletMediaAssetMetadata[];";
-      const markerIndex = nextSource.lastIndexOf(marker);
-      if (markerIndex < 0) {
+      const markers = [
+        "\n] as const satisfies readonly OutletMediaAssetMetadata[];",
+        "\n] as const).filter(isOutletMediaAssetMetadata) satisfies readonly OutletMediaAssetMetadata[];",
+      ];
+      const marker = markers.find((candidate) => nextSource.includes(candidate));
+      if (!marker) {
         throw new Error("Could not safely locate outletMediaMetadata array terminator.");
       }
+      const markerIndex = nextSource.lastIndexOf(marker);
       nextSource = `${nextSource.slice(0, markerIndex)},\n${rendered}${nextSource.slice(markerIndex)}`;
     }
   }
@@ -303,6 +329,10 @@ function updateMediaSource(source: string, entries: Array<{ outletId: string; as
   }
 
   return { source: nextSource, added, skipped };
+}
+
+function runTypecheck(): void {
+  execFileSync("npx", ["tsc", "--noEmit"], { cwd: repoRoot, stdio: "inherit" });
 }
 
 function main(): void {
@@ -349,8 +379,24 @@ function main(): void {
     return;
   }
 
+  const previousMetadataSource = metadataSource;
+  const previousMediaSource = mediaSource;
+
   fs.writeFileSync(metadataPath, metadataUpdate.source);
   fs.writeFileSync(outletMediaPath, mediaUpdate.source);
+
+  try {
+    runTypecheck();
+  } catch (error) {
+    fs.writeFileSync(metadataPath, previousMetadataSource);
+    fs.writeFileSync(outletMediaPath, previousMediaSource);
+    throw new Error(
+      `Promotion output failed typecheck; reverted generated source files. ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+    );
+  }
+
   console.log("Promotion complete.");
 }
 

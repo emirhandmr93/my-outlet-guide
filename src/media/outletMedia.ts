@@ -18,6 +18,13 @@ export type OutletMediaCredit = OutletMediaAssetMetadata & {
   displayName: string;
 };
 
+type CompleteProductionCreditMetadata = OutletMediaAssetMetadata & {
+  sourceUrl: string;
+  credit: string;
+  license: string;
+  licenseUrl: string;
+};
+
 type OutletMediaOutlet = {
   outletId?: string;
   heroImage?: string;
@@ -219,11 +226,27 @@ function isProductionMode(
 }
 
 export function isMediaAssetProductionCleared(
-  metadata: Pick<OutletMediaAssetMetadata, "sourceStatus"> | undefined,
-): boolean {
+  metadata: OutletMediaAssetMetadata | undefined,
+): metadata is OutletMediaAssetMetadata {
   return metadata
     ? productionClearedSourceStatuses.has(metadata.sourceStatus)
     : false;
+}
+
+function hasText(value: string | undefined): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function isCompleteProductionCreditMetadata(
+  metadata: OutletMediaAssetMetadata | undefined,
+): metadata is CompleteProductionCreditMetadata {
+  return (
+    isMediaAssetProductionCleared(metadata) &&
+    hasText(metadata.sourceUrl) &&
+    hasText(metadata.credit) &&
+    hasText(metadata.license) &&
+    hasText(metadata.licenseUrl)
+  );
 }
 
 function getOutletLocalImageEntries(
@@ -260,7 +283,7 @@ function getOutletDisplayName(outletId: string): string {
 
 export function getProductionMediaCredits(): OutletMediaCredit[] {
   return outletMediaMetadata
-    .filter(isMediaAssetProductionCleared)
+    .filter(isCompleteProductionCreditMetadata)
     .map((metadata) => ({
       ...metadata,
       displayName: getOutletDisplayName(metadata.outletId),
