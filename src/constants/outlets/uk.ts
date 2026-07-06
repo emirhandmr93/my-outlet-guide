@@ -979,7 +979,7 @@ export const ukOutlets = [
     rating: 0,
     reviewCount: 0,
     services: ["Centre Map", "Facilities and Parents", "Gift Cards", "Mills+", "Wheelchair Accessibility", "Coach Trips", "Click & Collect"],
-    restaurants: [],
+    restaurants: ["Bakers + Baristas", "Costa", "Greggs"],
     parking: "Official centre pages include visitor facilities and location information; confirm current parking details on the official website before visiting.",
     taxFreeAvailable: false,
     vatRate: 20,
