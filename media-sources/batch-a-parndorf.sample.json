@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "batchName": "batch-a-parndorf-sample",
+  "notes": "Scaffold only. Do not commit downloaded images from Codex; fill downloadUrl values locally after verifying the exact Wikimedia original-file URLs.",
+  "images": [
+    {
+      "outletId": "designer-outlet-parndorf",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/parndorf/hero.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parndorf_Designer_Outlet_(1).jpg",
+      "downloadUrl": "TODO: paste the verified Wikimedia Commons original-file download URL for File:Parndorf_Designer_Outlet_(1).jpg",
+      "credit": "Wikimedia Commons contributor; see sourceUrl file page",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain",
+      "alt": "Designer Outlet Parndorf exterior walkway and storefronts",
+      "notes": "Verified public-domain Wikimedia candidate. Replace TODO downloadUrl locally from the file page's original file link before running the non-dry import.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "designer-outlet-parndorf",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/parndorf/gallery1.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Parndorf_Designer_Outlet_(3).jpg",
+      "downloadUrl": "TODO: paste the verified Wikimedia Commons original-file download URL for File:Parndorf_Designer_Outlet_(3).jpg",
+      "credit": "Wikimedia Commons contributor; see sourceUrl file page",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Public_domain",
+      "alt": "Designer Outlet Parndorf storefronts and pedestrian shopping street",
+      "notes": "Verified public-domain Wikimedia candidate. Replace TODO downloadUrl locally from the file page's original file link before running the non-dry import.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    }
+  ]
+}
