@@ -23,8 +23,10 @@ const allowedStatuses = new Set([
 const allowedRoles = new Set(["hero", "gallery"]);
 const userAgent =
   "my-outlet-guide-media-import/1.0 (https://github.com/emirhandmr93/my-outlet-guide; contact: media import)";
-const downloadRetryCount = 3;
+const downloadRetryCount = 4;
 const retryDelayMs = 750;
+const defaultWikimediaRequestDelayMs = 4000;
+const wikimediaRateLimitBackoffMs = [30_000, 60_000, 120_000];
 
 type ManifestEntry = {
   outletId: string;
@@ -53,24 +55,41 @@ type Options = {
   dryRun: boolean;
   overwrite: boolean;
   manifestPath: string;
+  requestDelayMs: number;
 };
 
 function usage(): never {
   console.error(
-    "Usage: npx tsx tools/importOutletMedia.ts <manifest.json> [--dry-run] [--overwrite]",
+    "Usage: npx tsx tools/importOutletMedia.ts <manifest.json> [--dry-run] [--overwrite] [--request-delay-ms <ms>]",
   );
   process.exit(1);
 }
 
 function parseArgs(): Options {
   const args = process.argv.slice(2);
-  const manifestPath = args.find((arg) => !arg.startsWith("--"));
+  const requestDelayIndex = args.indexOf("--request-delay-ms");
+  const requestDelayValue =
+    requestDelayIndex >= 0 ? args[requestDelayIndex + 1] : undefined;
+  const positionalArgs = args.filter(
+    (arg, index) =>
+      !arg.startsWith("--") &&
+      (requestDelayIndex < 0 || index !== requestDelayIndex + 1),
+  );
+  const manifestPath = positionalArgs[0];
 
   if (!manifestPath || args.includes("--help") || args.includes("-h")) {
     usage();
   }
 
-  const allowedFlags = new Set(["--dry-run", "--overwrite"]);
+  if (positionalArgs.length !== 1) {
+    usage();
+  }
+
+  const allowedFlags = new Set([
+    "--dry-run",
+    "--overwrite",
+    "--request-delay-ms",
+  ]);
   for (const arg of args.filter((value) => value.startsWith("--"))) {
     if (!allowedFlags.has(arg)) {
       console.error(`Unknown flag: ${arg}`);
@@ -78,10 +97,23 @@ function parseArgs(): Options {
     }
   }
 
+  const requestDelaySource =
+    requestDelayValue ?? process.env.WIKIMEDIA_REQUEST_DELAY_MS;
+  const requestDelayMs = requestDelaySource
+    ? Number(requestDelaySource)
+    : defaultWikimediaRequestDelayMs;
+
+  if (!Number.isFinite(requestDelayMs) || requestDelayMs < 0) {
+    throw new Error(
+      `Wikimedia request delay must be a non-negative number of milliseconds: ${requestDelaySource}`,
+    );
+  }
+
   return {
     manifestPath,
     dryRun: args.includes("--dry-run"),
     overwrite: args.includes("--overwrite"),
+    requestDelayMs,
   };
 }
 
@@ -182,7 +214,10 @@ type WikimediaImageInfoResponse = {
   };
 };
 
-async function resolveWikimediaDownloadUrl(sourceUrl: string): Promise<string> {
+async function resolveWikimediaDownloadUrl(
+  sourceUrl: string,
+  options: Options,
+): Promise<string> {
   const fileTitle = getWikimediaFileTitle(sourceUrl);
 
   if (!fileTitle) {
@@ -191,17 +226,15 @@ async function resolveWikimediaDownloadUrl(sourceUrl: string): Promise<string> {
     );
   }
 
-  const response = await fetch(getWikimediaApiUrl(fileTitle), {
-    headers: { "User-Agent": userAgent },
-  });
+  const response = await fetchWithRetries(
+    getWikimediaApiUrl(fileTitle),
+    options,
+    { label: sourceUrl, parseJson: true },
+  );
 
-  if (!response.ok) {
-    throw new Error(
-      `Wikimedia URL resolution failed for ${sourceUrl}: ${response.status} ${response.statusText}`,
-    );
-  }
-
-  const data = (await response.json()) as WikimediaImageInfoResponse;
+  const data = JSON.parse(
+    Buffer.from(response).toString("utf8"),
+  ) as WikimediaImageInfoResponse;
   const page = data.query?.pages?.[0];
   const resolvedUrl = page?.imageinfo?.[0]?.url;
 
@@ -245,7 +278,7 @@ async function resolveDownloadUrl(
     return `[auto-resolve Wikimedia original via API for ${wikimediaFileTitle}]`;
   }
 
-  return resolveWikimediaDownloadUrl(entry.sourceUrl);
+  return resolveWikimediaDownloadUrl(entry.sourceUrl, options);
 }
 
 function assertTargetPath(targetAssetPath: string): string {
@@ -397,22 +430,70 @@ function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function assertDownloadable(url: string): Promise<void> {
-  await fetchWithRetries(url, { method: "GET" });
+function isWikimediaNetworkUrl(url: string): boolean {
+  try {
+    const hostname = new URL(url).hostname;
+    return (
+      hostname === "commons.wikimedia.org" ||
+      hostname === "upload.wikimedia.org"
+    );
+  } catch {
+    return false;
+  }
+}
+
+function getRetryAfterMs(response: Response): number | undefined {
+  const retryAfter = response.headers.get("Retry-After");
+  if (!retryAfter) {
+    return undefined;
+  }
+
+  const seconds = Number(retryAfter);
+  if (Number.isFinite(seconds)) {
+    return Math.max(0, seconds * 1000);
+  }
+
+  const dateMs = Date.parse(retryAfter);
+  if (Number.isFinite(dateMs)) {
+    return Math.max(0, dateMs - Date.now());
+  }
+
+  return undefined;
+}
+
+type FetchOptions = {
+  label?: string;
+  parseJson?: boolean;
+};
+
+async function waitBeforeWikimediaRequest(
+  url: string,
+  options: Options,
+): Promise<void> {
+  if (!isWikimediaNetworkUrl(url) || options.requestDelayMs === 0) {
+    return;
+  }
+
+  console.log(
+    `Waiting ${options.requestDelayMs}ms before Wikimedia request: ${url}`,
+  );
+  await sleep(options.requestDelayMs);
 }
 
 async function fetchWithRetries(
   url: string,
-  init: RequestInit = {},
+  options: Options,
+  fetchOptions: FetchOptions = {},
 ): Promise<ArrayBuffer> {
   let lastError: string | undefined;
 
   for (let attempt = 1; attempt <= downloadRetryCount; attempt += 1) {
+    await waitBeforeWikimediaRequest(url, options);
+
     try {
       const response = await fetch(url, {
-        ...init,
         headers: {
-          ...init.headers,
+          Accept: fetchOptions.parseJson ? "application/json" : "image/*,*/*",
           "User-Agent": userAgent,
         },
       });
@@ -422,28 +503,45 @@ async function fetchWithRetries(
       }
 
       lastError = `${response.status} ${response.statusText}`;
+      const sourceUrl = fetchOptions.label ?? url;
+      const waitMs =
+        response.status === 429
+          ? getRetryAfterMs(response) ??
+            wikimediaRateLimitBackoffMs[
+              Math.min(attempt - 1, wikimediaRateLimitBackoffMs.length - 1)
+            ]
+          : retryDelayMs * attempt;
       console.error(
-        `Download check failed for ${url} (attempt ${attempt}/${downloadRetryCount}): ${lastError}`,
+        `Network request failed (attempt ${attempt}/${downloadRetryCount}, status ${response.status}, wait ${waitMs}ms): ${sourceUrl}`,
       );
+
+      if (attempt < downloadRetryCount) {
+        await sleep(waitMs);
+      }
     } catch (error) {
       lastError = error instanceof Error ? error.message : String(error);
+      const waitMs = retryDelayMs * attempt;
       console.error(
-        `Download check failed for ${url} (attempt ${attempt}/${downloadRetryCount}): ${lastError}`,
+        `Network request failed (attempt ${attempt}/${downloadRetryCount}, status network-error, wait ${waitMs}ms): ${fetchOptions.label ?? url} - ${lastError}`,
       );
-    }
 
-    if (attempt < downloadRetryCount) {
-      await sleep(retryDelayMs * attempt);
+      if (attempt < downloadRetryCount) {
+        await sleep(waitMs);
+      }
     }
   }
 
   throw new Error(
-    `Download failed for ${url} after ${downloadRetryCount} attempt(s): ${lastError}`,
+    `Download failed for ${fetchOptions.label ?? url} after ${downloadRetryCount} attempt(s): ${lastError}`,
   );
 }
 
-async function downloadToTemp(url: string, tempDir: string): Promise<string> {
-  const arrayBuffer = await fetchWithRetries(url);
+async function downloadToTemp(
+  url: string,
+  tempDir: string,
+  options: Options,
+): Promise<string> {
+  const arrayBuffer = await fetchWithRetries(url, options);
   const tempPath = path.join(
     tempDir,
     `source-${Date.now()}-${Math.random().toString(16).slice(2)}`,
@@ -556,15 +654,19 @@ async function main(): Promise<void> {
     return;
   }
 
-  console.log("Preflighting all downloads before writing any target files...");
-  for (const item of resolvedImports) {
-    await assertDownloadable(item.downloadUrl);
-    console.log(`  Downloadable: ${item.downloadUrl}`);
-  }
+  console.log(
+    "Downloading each source once to temporary originals before conversion...",
+  );
 
   const tempRoot = fs.mkdtempSync(
     path.join(os.tmpdir(), "outlet-media-import-"),
   );
+  const downloadedSources: Array<{
+    entry: ManifestEntry;
+    targetPath: string;
+    downloadUrl: string;
+    tempPath: string;
+  }> = [];
   const stagedOutputs: Array<{
     targetPath: string;
     targetAssetPath: string;
@@ -574,12 +676,21 @@ async function main(): Promise<void> {
 
   try {
     for (const item of resolvedImports) {
-      const tempPath = await downloadToTemp(item.downloadUrl, tempRoot);
+      const tempPath = await downloadToTemp(
+        item.downloadUrl,
+        tempRoot,
+        options,
+      );
+      downloadedSources.push({ ...item, tempPath });
+      console.log(`Downloaded original once: ${item.downloadUrl}`);
+    }
+
+    for (const item of downloadedSources) {
       const tempOutputPath = path.join(
         tempRoot,
         `converted-${stagedOutputs.length}-${path.basename(item.targetPath)}`,
       );
-      convertToWebp(tempPath, tempOutputPath, item.entry);
+      convertToWebp(item.tempPath, tempOutputPath, item.entry);
       const inspection = assertVerifiedWebp(tempOutputPath, item.entry);
       stagedOutputs.push({
         targetPath: item.targetPath,
