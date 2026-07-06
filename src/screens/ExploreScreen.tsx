@@ -216,7 +216,19 @@ function getResultLabel(type: string, t: (key: string) => string) {
   if (type === "country") return t("searchResult.country");
   if (type === "city") return t("searchResult.city");
   if (type === "brand") return t("searchResult.brand");
+  if (type === "category") return t("searchResult.category");
   return t("searchResult.outlet");
+}
+
+function getResultSubtitle(
+  item: { subtitle: string; type: string },
+  t: (key: string) => string,
+) {
+  if (item.type === "country") return t("searchResult.country");
+  if (item.type === "city") return t("searchResult.city");
+  if (item.type === "brand") return t("searchResult.brand");
+  if (item.type === "category") return t("searchResult.category");
+  return item.subtitle;
 }
 
 function formatCountryOutletText(
@@ -542,7 +554,9 @@ export function ExploreScreen() {
                   {getResultLabel(item.type, t)}
                 </Text>
                 <Text style={styles.resultTitle}>{item.title}</Text>
-                <Text style={styles.resultSubtitle}>{item.subtitle}</Text>
+                <Text style={styles.resultSubtitle}>
+                  {getResultSubtitle(item, t)}
+                </Text>
               </View>
 
               <Text style={styles.resultArrow}>→</Text>
