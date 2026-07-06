@@ -21,6 +21,10 @@ const allowedStatuses = new Set([
   "permission-granted",
 ]);
 const allowedRoles = new Set(["hero", "gallery"]);
+const userAgent =
+  "my-outlet-guide-media-import/1.0 (https://github.com/emirhandmr93/my-outlet-guide; contact: media import)";
+const downloadRetryCount = 3;
+const retryDelayMs = 750;
 
 type ManifestEntry = {
   outletId: string;
@@ -188,7 +192,7 @@ async function resolveWikimediaDownloadUrl(sourceUrl: string): Promise<string> {
   }
 
   const response = await fetch(getWikimediaApiUrl(fileTitle), {
-    headers: { "User-Agent": "my-outlet-guide-media-import/1.0" },
+    headers: { "User-Agent": userAgent },
   });
 
   if (!response.ok) {
@@ -207,7 +211,17 @@ async function resolveWikimediaDownloadUrl(sourceUrl: string): Promise<string> {
     );
   }
 
-  return resolvedUrl;
+  return normalizeDownloadUrl(resolvedUrl);
+}
+
+function normalizeDownloadUrl(downloadUrl: string): string {
+  try {
+    return new URL(downloadUrl).toString();
+  } catch (error) {
+    throw new Error(
+      `Resolved download URL is not usable: ${downloadUrl} (${error instanceof Error ? error.message : String(error)})`,
+    );
+  }
 }
 
 async function resolveDownloadUrl(
@@ -217,7 +231,7 @@ async function resolveDownloadUrl(
   const explicitDownloadUrl = getUsableDownloadUrl(entry);
 
   if (explicitDownloadUrl) {
-    return explicitDownloadUrl;
+    return normalizeDownloadUrl(explicitDownloadUrl);
   }
 
   const wikimediaFileTitle = getWikimediaFileTitle(entry.sourceUrl);
@@ -379,21 +393,60 @@ function getImageMagickCommand(): "magick" | "convert" {
   );
 }
 
-async function downloadToTemp(url: string): Promise<string> {
-  const response = await fetch(url, {
-    headers: { "User-Agent": "my-outlet-guide-media-import/1.0" },
-  });
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-  if (!response.ok) {
-    throw new Error(
-      `Download failed for ${url}: ${response.status} ${response.statusText}`,
-    );
+async function assertDownloadable(url: string): Promise<void> {
+  await fetchWithRetries(url, { method: "GET" });
+}
+
+async function fetchWithRetries(
+  url: string,
+  init: RequestInit = {},
+): Promise<ArrayBuffer> {
+  let lastError: string | undefined;
+
+  for (let attempt = 1; attempt <= downloadRetryCount; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        ...init,
+        headers: {
+          ...init.headers,
+          "User-Agent": userAgent,
+        },
+      });
+
+      if (response.ok) {
+        return response.arrayBuffer();
+      }
+
+      lastError = `${response.status} ${response.statusText}`;
+      console.error(
+        `Download check failed for ${url} (attempt ${attempt}/${downloadRetryCount}): ${lastError}`,
+      );
+    } catch (error) {
+      lastError = error instanceof Error ? error.message : String(error);
+      console.error(
+        `Download check failed for ${url} (attempt ${attempt}/${downloadRetryCount}): ${lastError}`,
+      );
+    }
+
+    if (attempt < downloadRetryCount) {
+      await sleep(retryDelayMs * attempt);
+    }
   }
 
-  const arrayBuffer = await response.arrayBuffer();
+  throw new Error(
+    `Download failed for ${url} after ${downloadRetryCount} attempt(s): ${lastError}`,
+  );
+}
+
+async function downloadToTemp(url: string, tempDir: string): Promise<string> {
+  const arrayBuffer = await fetchWithRetries(url);
   const tempPath = path.join(
-    os.tmpdir(),
-    `outlet-media-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    tempDir,
+    `source-${Date.now()}-${Math.random().toString(16).slice(2)}`,
   );
   fs.writeFileSync(tempPath, Buffer.from(arrayBuffer));
   return tempPath;
@@ -484,32 +537,66 @@ async function main(): Promise<void> {
   );
   console.log(`Validated ${entries.length} manifest image(s).`);
 
+  const resolvedImports: Array<{
+    entry: ManifestEntry;
+    targetPath: string;
+    downloadUrl: string;
+  }> = [];
   for (const [index, entry] of entries.entries()) {
     const downloadUrl = await resolveDownloadUrl(entry, options);
+    resolvedImports.push({ entry, targetPath: targets[index], downloadUrl });
     console.log(
-      `${options.dryRun ? "Would import" : "Importing"} ${downloadUrl} -> ${entry.targetAssetPath}`,
+      `${options.dryRun ? "Would import" : "Resolved"} ${downloadUrl} -> ${entry.targetAssetPath}`,
     );
+  }
 
-    if (options.dryRun) {
-      continue;
+  if (options.dryRun) {
+    printMetadataSummary(entries);
+    console.log("Dry run complete; no files were downloaded or written.");
+    return;
+  }
+
+  console.log("Preflighting all downloads before writing any target files...");
+  for (const item of resolvedImports) {
+    await assertDownloadable(item.downloadUrl);
+    console.log(`  Downloadable: ${item.downloadUrl}`);
+  }
+
+  const tempRoot = fs.mkdtempSync(
+    path.join(os.tmpdir(), "outlet-media-import-"),
+  );
+  const stagedOutputs: Array<{
+    targetPath: string;
+    targetAssetPath: string;
+    tempOutputPath: string;
+    inspection: MediaFileInspection;
+  }> = [];
+
+  try {
+    for (const item of resolvedImports) {
+      const tempPath = await downloadToTemp(item.downloadUrl, tempRoot);
+      const tempOutputPath = path.join(
+        tempRoot,
+        `converted-${stagedOutputs.length}-${path.basename(item.targetPath)}`,
+      );
+      convertToWebp(tempPath, tempOutputPath, item.entry);
+      const inspection = assertVerifiedWebp(tempOutputPath, item.entry);
+      stagedOutputs.push({
+        targetPath: item.targetPath,
+        targetAssetPath: item.entry.targetAssetPath,
+        tempOutputPath,
+        inspection,
+      });
     }
 
-    const tempPath = await downloadToTemp(downloadUrl);
-    const targetPath = targets[index];
-    const tempOutputDir = fs.mkdtempSync(
-      path.join(path.dirname(targetPath), ".import-"),
-    );
-    const tempOutputPath = path.join(tempOutputDir, path.basename(targetPath));
-
-    try {
-      convertToWebp(tempPath, tempOutputPath, entry);
-      const inspection = assertVerifiedWebp(tempOutputPath, entry);
-      fs.renameSync(tempOutputPath, targetPath);
-      printImportInspection(entry.targetAssetPath, inspection);
-    } finally {
-      fs.rmSync(tempPath, { force: true });
-      fs.rmSync(tempOutputDir, { force: true, recursive: true });
+    console.log("All staged outputs validated; replacing target files...");
+    for (const output of stagedOutputs) {
+      fs.mkdirSync(path.dirname(output.targetPath), { recursive: true });
+      fs.renameSync(output.tempOutputPath, output.targetPath);
+      printImportInspection(output.targetAssetPath, output.inspection);
     }
+  } finally {
+    fs.rmSync(tempRoot, { force: true, recursive: true });
   }
 
   printMetadataSummary(entries);
