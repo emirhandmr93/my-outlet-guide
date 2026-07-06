@@ -8,6 +8,33 @@ const makeOutletBrands = (outletId: string, brandIds: string[]): OutletBrand[] =
     relationStatus: "active",
   }));
 
+const affinitySterlingMillsBrandIds = [
+  "adidas",
+  "beauty-outlet",
+  "bonmarche",
+  "card-factory",
+  "castore",
+  "craghoppers",
+  "holland-and-barrett",
+  "home-bargains",
+  "julian-charles",
+  "klass",
+  "mountain-warehouse",
+  "music-spot",
+  "next",
+  "nike",
+  "pavers",
+  "peacocks",
+  "regatta",
+  "roman",
+  "skechers",
+  "skopes",
+  "tesco-express",
+  "the-fragrance-shop",
+  "the-works",
+  "trespass",
+];
+
 const braintreeVillageBrandIds = [
   "adidas",
   "barbour",
@@ -55,6 +82,7 @@ const braintreeVillageBrandIds = [
 ];
 
 export const ukOutletBrands: OutletBrand[] = [
+  ...makeOutletBrands("affinity-sterling-mills", affinitySterlingMillsBrandIds),
   ...makeOutletBrands("braintree-village", braintreeVillageBrandIds),
   {
     outletId: "fleetwood-outlet",

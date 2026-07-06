@@ -3520,6 +3520,17 @@ export const brandsQT: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "tesco-express",
+    brandName: "Tesco Express",
+    aliases: ["Tesco"],
+    categoryId: "food",
+    logo: "",
+    originCountryId: "united-kingdom",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 65,
+    brandStatus: "active",
+  },
+  {
     brandId: "the-fragrance-shop",
     brandName: "The Fragrance Shop",
     aliases: ["Fragrance Shop", "TheFragranceShop"],
