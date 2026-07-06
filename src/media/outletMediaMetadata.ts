@@ -20,10 +20,16 @@ export type OutletMediaAssetMetadata = {
   notes?: string;
 };
 
+function isOutletMediaAssetMetadata(
+  metadata: OutletMediaAssetMetadata | undefined,
+): metadata is OutletMediaAssetMetadata {
+  return metadata !== undefined;
+}
+
 // Phase 1C provenance inventory scaffold. Unknown-provenance assets are
 // inventory-tracked here, but they are not production-cleared until source,
 // credit, and license details are documented and validated.
-export const outletMediaMetadata = [
+export const outletMediaMetadata = ([
   {
     outletId: "la-vallee-village",
     role: "hero",
@@ -946,4 +952,4 @@ export const outletMediaMetadata = [
     notes:
       "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
   },
-] as const satisfies readonly OutletMediaAssetMetadata[];
+] as const).filter(isOutletMediaAssetMetadata) satisfies readonly OutletMediaAssetMetadata[];
