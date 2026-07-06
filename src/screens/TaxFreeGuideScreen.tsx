@@ -20,7 +20,7 @@ export function TaxFreeGuideScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.heroLabel}>TAX FREE GUIDE</Text>
+        <Text style={styles.heroLabel}>{t("taxGuide.heroLabel")}</Text>
         <Text style={styles.pageTitle}>{t("taxGuide.title")}</Text>
         <Text style={styles.pageSubtitle}>{t("taxGuide.subtitle")}</Text>
       </View>
@@ -67,7 +67,7 @@ export function TaxFreeGuideScreen() {
       </View>
 
       <View style={styles.noteCard}>
-        <Text style={styles.noteTitle}>Important</Text>
+        <Text style={styles.noteTitle}>{t("common.important")}</Text>
         <Text style={styles.note}>{t("taxGuide.note")}</Text>
       </View>
     </ScrollView>

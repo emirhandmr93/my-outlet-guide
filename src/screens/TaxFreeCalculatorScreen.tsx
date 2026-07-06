@@ -41,21 +41,21 @@ export function TaxFreeCalculatorScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.heroLabel}>TAX FREE</Text>
+        <Text style={styles.heroLabel}>{t("taxCalc.heroLabel")}</Text>
         <Text style={styles.pageTitle}>{t("taxCalc.title")}</Text>
         <Text style={styles.pageSubtitle}>{t("taxCalc.subtitle")}</Text>
       </View>
 
       <View style={styles.card}>
         <View style={styles.settingsPanel}>
-          <Text style={styles.settingsKicker}>SHOPPING SETTINGS</Text>
-          <Text style={styles.settingsTitle}>Country and currency are shared across all Savings tools.</Text>
+          <Text style={styles.settingsKicker}>{t("savings.settingsKicker")}</Text>
+          <Text style={styles.settingsTitle}>{t("savings.settingsSharedTitle")}</Text>
 
           <View style={styles.settingsSummaryRow}>
             <View style={styles.settingsSummaryItem}>
               <Text style={styles.settingsFlag}>{selectedCountry.countryFlag}</Text>
               <View>
-                <Text style={styles.settingsLabel}>Country</Text>
+                <Text style={styles.settingsLabel}>{t("common.country")}</Text>
                 <Text style={styles.settingsValue}>{selectedCountry.countryName}</Text>
               </View>
             </View>
@@ -65,20 +65,20 @@ export function TaxFreeCalculatorScreen() {
             <View style={styles.settingsSummaryItem}>
               <Text style={styles.settingsFlag}>{selectedCurrencyInfo.currencyFlag}</Text>
               <View>
-                <Text style={styles.settingsLabel}>Currency</Text>
+                <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
                 <Text style={styles.settingsValue}>{selectedCurrency}</Text>
                 <Text style={styles.settingsSubvalue}>{selectedCurrencyInfo.currencyName}</Text>
               </View>
             </View>
           </View>
 
-          <Text style={styles.sectionTitle}>Country</Text>
+          <Text style={styles.sectionTitle}>{t("common.country")}</Text>
           <CountrySelector
             selectedCountryId={selectedCountryId}
             onSelectCountry={setSelectedCountryId}
           />
 
-          <Text style={styles.sectionTitle}>Currency</Text>
+          <Text style={styles.sectionTitle}>{t("common.currency")}</Text>
           <CurrencySelector
             selectedCurrency={selectedCurrency}
             onSelectCurrency={setSelectedCurrency}
@@ -130,18 +130,18 @@ export function TaxFreeCalculatorScreen() {
         </View>
 
         <View style={styles.metaBox}>
-          <Text style={styles.metaTitle}>Tax Free guide</Text>
+          <Text style={styles.metaTitle}>{t("taxCalc.guideTitle")}</Text>
           <Text style={styles.metaText}>
-            Estimated refund: {rule.estimatedRefundRate}% of your eligible shopping amount.
+            {t("taxCalc.guideRefundPrefix")} {rule.estimatedRefundRate}% {t("taxCalc.guideRefundSuffix")}
           </Text>
           <Text style={styles.metaText}>
-            Minimum spend: {selectedCountry.currency} {rule.minimumSpend} in {selectedCountry.countryName}.
+            {t("taxCalc.guideMinimumPrefix")} {selectedCountry.currency} {rule.minimumSpend} {t("taxCalc.guideMinimumIn")} {selectedCountry.countryName}.
           </Text>
           <Text style={styles.metaText}>
-            Keep invoices, validate your form before leaving the country and collect your refund by card or cash where available.
+            {t("taxCalc.guideSteps")}
           </Text>
           <Text style={styles.metaNote}>
-            Actual refund can vary by operator fees, store policy and local rules.
+            {t("taxCalc.guideNote")}
           </Text>
         </View>
       </View>
