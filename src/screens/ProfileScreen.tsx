@@ -54,7 +54,9 @@ export function ProfileScreen() {
   const [displayName, setDisplayName] = useState("");
 
   const accountName =
-    currentUser?.displayName || currentUser?.email?.split("@")[0] || "Guest Shopper";
+    currentUser?.displayName ||
+    currentUser?.email?.split("@")[0] ||
+    t("profile.guestShopper");
 
   useEffect(() => {
     if (currentUser) {
@@ -104,7 +106,7 @@ export function ProfileScreen() {
         </View>
 
         <View style={styles.heroContent}>
-          <Text style={styles.kicker}>PROFILE</Text>
+          <Text style={styles.kicker}>{t("profile.kicker")}</Text>
           <Text style={styles.pageTitle}>{accountName}</Text>
           <Text style={styles.pageSubtitle}>
             {isAuthenticated ? t("profile.syncedText") : t("profile.signInText")}
@@ -115,22 +117,24 @@ export function ProfileScreen() {
       <View style={styles.statsRow}>
         <View style={styles.statCard}>
           <Text style={styles.statValue}>{trips.length}</Text>
-          <Text style={styles.statLabel}>Trips</Text>
+          <Text style={styles.statLabel}>{t("profile.stats.trips")}</Text>
         </View>
 
         <View style={styles.statCard}>
           <Text style={styles.statValue}>{favoriteIds.length}</Text>
-          <Text style={styles.statLabel}>Favorites</Text>
+          <Text style={styles.statLabel}>{t("profile.stats.favorites")}</Text>
         </View>
 
         <View style={styles.statCard}>
-          <Text style={styles.statValue}>{isAuthenticated ? "Sync" : "Guest"}</Text>
-          <Text style={styles.statLabel}>Status</Text>
+          <Text style={styles.statValue}>
+            {isAuthenticated ? t("profile.status.sync") : t("profile.status.guest")}
+          </Text>
+          <Text style={styles.statLabel}>{t("profile.stats.status")}</Text>
         </View>
       </View>
 
       <View style={styles.authCard}>
-        <Text style={styles.sectionTitle}>Account</Text>
+        <Text style={styles.sectionTitle}>{t("profile.account")}</Text>
 
         <Text style={styles.authTitle}>
           {isAuthenticated ? currentUser?.email || t("profile.signedIn") : t("profile.guestUser")}
@@ -165,26 +169,87 @@ export function ProfileScreen() {
         )}
       </View>
 
-      <Text style={styles.groupTitle}>Travel & shopping</Text>
+      <Text style={styles.groupTitle}>{t("profile.groups.travelShopping")}</Text>
 
-      <ProfileRow icon="🧳" title={t("profile.myTrips")} subtitle="Saved shopping trips" onPress={() => goTo("MyTrips")} />
-      <ProfileRow icon="✈️" title={t("profile.flightDeals")} subtitle="Routes, budgets and fare alerts" onPress={() => goTo("FlightDealSettings")} />
-      <ProfileRow icon="💾" title={t("profile.offlinePacks")} subtitle="Downloaded city and outlet packs" onPress={() => goTo("OfflinePacks")} />
-      <ProfileRow icon="⭐" title={t("profile.myReviews")} subtitle="Your outlet reviews and ratings" onPress={() => goTo("MyReviews")} />
+      <ProfileRow
+        icon="🧳"
+        title={t("profile.myTrips")}
+        subtitle={t("profile.subtitles.myTrips")}
+        onPress={() => goTo("MyTrips")}
+      />
+      <ProfileRow
+        icon="✈️"
+        title={t("profile.flightDeals")}
+        subtitle={t("profile.subtitles.flightDeals")}
+        onPress={() => goTo("FlightDealSettings")}
+      />
+      <ProfileRow
+        icon="💾"
+        title={t("profile.offlinePacks")}
+        subtitle={t("profile.subtitles.offlinePacks")}
+        onPress={() => goTo("OfflinePacks")}
+      />
+      <ProfileRow
+        icon="⭐"
+        title={t("profile.myReviews")}
+        subtitle={t("profile.subtitles.myReviews")}
+        onPress={() => goTo("MyReviews")}
+      />
 
-      <Text style={styles.groupTitle}>Preferences</Text>
+      <Text style={styles.groupTitle}>{t("profile.groups.preferences")}</Text>
 
-      <ProfileRow icon="🌍" title={t("profile.language")} subtitle="App language" onPress={() => goTo("LanguageSettings")} />
-      <ProfileRow icon="💱" title={t("profile.currency")} subtitle="Default shopping currency" onPress={() => goTo("CurrencySettings")} />
-      <ProfileRow icon="🔔" title={t("profile.notifications")} subtitle="Trips, deals, events and Tax Free" onPress={() => goTo("NotificationSettings")} />
+      <ProfileRow
+        icon="🌍"
+        title={t("profile.language")}
+        subtitle={t("profile.subtitles.language")}
+        onPress={() => goTo("LanguageSettings")}
+      />
+      <ProfileRow
+        icon="💱"
+        title={t("profile.currency")}
+        subtitle={t("profile.subtitles.currency")}
+        onPress={() => goTo("CurrencySettings")}
+      />
+      <ProfileRow
+        icon="🔔"
+        title={t("profile.notifications")}
+        subtitle={t("profile.subtitles.notifications")}
+        onPress={() => goTo("NotificationSettings")}
+      />
 
-      <Text style={styles.groupTitle}>Support & legal</Text>
+      <Text style={styles.groupTitle}>{t("profile.groups.supportLegal")}</Text>
 
-      <ProfileRow icon="❓" title={t("profile.helpFaq")} subtitle="Common questions" onPress={() => goTo("HelpFaq")} />
-      <ProfileRow icon="✉️" title={t("profile.contactUs")} subtitle="Contact My Outlet Guide" onPress={() => goTo("ContactUs")} />
-      <ProfileRow icon="🔒" title={t("profile.privacyPolicy")} subtitle="Privacy details" onPress={() => goTo("PrivacyPolicy")} />
-      <ProfileRow icon="📄" title={t("profile.termsConditions")} subtitle="Terms and conditions" onPress={() => goTo("TermsConditions")} />
-      <ProfileRow icon="🗑️" title={t("profile.deleteAccount")} subtitle="Delete your account" danger onPress={() => goTo("DeleteAccount")} />
+      <ProfileRow
+        icon="❓"
+        title={t("profile.helpFaq")}
+        subtitle={t("profile.subtitles.helpFaq")}
+        onPress={() => goTo("HelpFaq")}
+      />
+      <ProfileRow
+        icon="✉️"
+        title={t("profile.contactUs")}
+        subtitle={t("profile.subtitles.contactUs")}
+        onPress={() => goTo("ContactUs")}
+      />
+      <ProfileRow
+        icon="🔒"
+        title={t("profile.privacyPolicy")}
+        subtitle={t("profile.subtitles.privacyPolicy")}
+        onPress={() => goTo("PrivacyPolicy")}
+      />
+      <ProfileRow
+        icon="📄"
+        title={t("profile.termsConditions")}
+        subtitle={t("profile.subtitles.termsConditions")}
+        onPress={() => goTo("TermsConditions")}
+      />
+      <ProfileRow
+        icon="🗑️"
+        title={t("profile.deleteAccount")}
+        subtitle={t("profile.subtitles.deleteAccount")}
+        danger
+        onPress={() => goTo("DeleteAccount")}
+      />
 
       <Text style={styles.versionText}>My Outlet Guide v1.0</Text>
     </ScrollView>
