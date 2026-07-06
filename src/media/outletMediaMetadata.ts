@@ -87,24 +87,6 @@ export const outletMediaMetadata = [
       "For assets/outlet-images/bicester/gallery1.webp. Wikimedia source File:Bicester_Village_Shopping_-_geograph.org.uk_-_2517805.jpg is licensed CC BY-SA 2.0; attribute Ian Rob / Geograph / Wikimedia Commons, link the license, indicate changes made during import, and preserve share-alike requirements.",
   },
   {
-    outletId: "bicester-village",
-    role: "gallery",
-    assetPath: "assets/outlet-images/bicester/gallery2.webp",
-    sourceStatus: "unknown",
-    alt: "Bicester Village gallery image 2",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
-  },
-  {
-    outletId: "bicester-village",
-    role: "gallery",
-    assetPath: "assets/outlet-images/bicester/gallery3.webp",
-    sourceStatus: "unknown",
-    alt: "Bicester Village gallery image 3",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
-  },
-  {
     outletId: "serravalle-designer-outlet",
     role: "hero",
     assetPath: "assets/outlet-images/serravalle/hero.webp",
@@ -131,24 +113,6 @@ export const outletMediaMetadata = [
       "For assets/outlet-images/serravalle/gallery1.webp. Wikimedia source File:Designer_Outlet_Serravalle_-_panoramio_(2).jpg is licensed CC BY 3.0; attribute qwesy qwesy / Wikimedia Commons, link the license, and indicate changes made during import.",
   },
   {
-    outletId: "serravalle-designer-outlet",
-    role: "gallery",
-    assetPath: "assets/outlet-images/serravalle/gallery2.webp",
-    sourceStatus: "unknown",
-    alt: "Serravalle Designer Outlet gallery image 2",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
-  },
-  {
-    outletId: "serravalle-designer-outlet",
-    role: "gallery",
-    assetPath: "assets/outlet-images/serravalle/gallery3.webp",
-    sourceStatus: "unknown",
-    alt: "Serravalle Designer Outlet gallery image 3",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
-  },
-  {
     outletId: "designer-outlet-parndorf",
     role: "hero",
     assetPath: "assets/outlet-images/parndorf/hero.webp",
@@ -173,24 +137,6 @@ export const outletMediaMetadata = [
     alt: "Designer Outlet Parndorf storefronts",
     notes:
       "Verified Wikimedia Commons public-domain / PD-self source; local WebP was imported from the source file.",
-  },
-  {
-    outletId: "designer-outlet-parndorf",
-    role: "gallery",
-    assetPath: "assets/outlet-images/parndorf/gallery2.webp",
-    sourceStatus: "unknown",
-    alt: "Designer Outlet Parndorf gallery image 2",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
-  },
-  {
-    outletId: "designer-outlet-parndorf",
-    role: "gallery",
-    assetPath: "assets/outlet-images/parndorf/gallery3.webp",
-    sourceStatus: "unknown",
-    alt: "Designer Outlet Parndorf gallery image 3",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
   },
   {
     outletId: "fidenza-village",
@@ -435,24 +381,6 @@ export const outletMediaMetadata = [
       "For assets/outlet-images/metzingen/gallery1.webp. Wikimedia source File:Outletcity_Metzingen_IMG_4508.jpg is licensed CC BY-SA 4.0; attribute Tresckow / Wikimedia Commons, link the license, indicate changes made during import, and preserve share-alike requirements.",
   },
   {
-    outletId: "outletcity-metzingen",
-    role: "gallery",
-    assetPath: "assets/outlet-images/metzingen/gallery2.webp",
-    sourceStatus: "unknown",
-    alt: "Outletcity Metzingen gallery image 2",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
-  },
-  {
-    outletId: "outletcity-metzingen",
-    role: "gallery",
-    assetPath: "assets/outlet-images/metzingen/gallery3.webp",
-    sourceStatus: "unknown",
-    alt: "Outletcity Metzingen gallery image 3",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
-  },
-  {
     outletId: "designer-outlet-troyes",
     role: "hero",
     assetPath: "assets/outlet-images/troyes/hero.webp",
@@ -549,24 +477,6 @@ export const outletMediaMetadata = [
     alt: "Designer Outlet Roermond storefronts along a pedestrian walkway",
     notes:
       "For assets/outlet-images/roermond/gallery1.webp. Wikimedia source File:Designer_Outlet_Roermond_-_panoramio_(5).jpg is licensed CC BY 3.0; attribute qwesy qwesy / Wikimedia Commons, link the license, and indicate changes made during import.",
-  },
-  {
-    outletId: "designer-outlet-roermond",
-    role: "gallery",
-    assetPath: "assets/outlet-images/roermond/gallery2.webp",
-    sourceStatus: "unknown",
-    alt: "Designer Outlet Roermond gallery image 2",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
-  },
-  {
-    outletId: "designer-outlet-roermond",
-    role: "gallery",
-    assetPath: "assets/outlet-images/roermond/gallery3.webp",
-    sourceStatus: "unknown",
-    alt: "Designer Outlet Roermond gallery image 3",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
   },
   {
     outletId: "castel-romano",
