@@ -6,6 +6,7 @@ import { colors } from "../../theme/colors";
 import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export type QuickFactsCardProps = {
   title: string;
@@ -78,6 +79,7 @@ export function QuickFactsCard({
   onPressAirport,
   onPressRating,
 }: QuickFactsCardProps) {
+  const { t } = useTranslation();
   const airportText =
     airportSummary ||
     (nearestAirportName
@@ -91,12 +93,12 @@ export function QuickFactsCard({
       <SectionTitle title={title} />
 
       <View style={styles.grid}>
-        <FactTile icon="🕒" label="Hours" value={openingHours} />
-        <FactTile icon="🛍️" label="Stores" value={storesCountText} onPress={onPressStores} />
-        <FactTile icon="💰" label="Tax Free" value="Available" onPress={onPressTaxFree} />
-        <FactTile icon="✈️" label="Airports" value={airportText} onPress={onPressAirport} />
-        <FactTile icon="🚗" label="City Center" value={`${cityCenterDistanceKm} km`} />
-        <FactTile icon="⭐" label="Rating" value={ratingText} onPress={onPressRating} />
+        <FactTile icon="🕒" label={t("sharedCards.quickFacts.hours")} value={openingHours} />
+        <FactTile icon="🛍️" label={t("sharedCards.quickFacts.stores")} value={storesCountText} onPress={onPressStores} />
+        <FactTile icon="💰" label={t("sharedCards.quickFacts.taxFree")} value={t("sharedCards.quickFacts.available")} onPress={onPressTaxFree} />
+        <FactTile icon="✈️" label={t("sharedCards.quickFacts.airports")} value={airportText} onPress={onPressAirport} />
+        <FactTile icon="🚗" label={t("sharedCards.quickFacts.cityCenter")} value={`${cityCenterDistanceKm} km`} />
+        <FactTile icon="⭐" label={t("sharedCards.quickFacts.rating")} value={ratingText} onPress={onPressRating} />
       </View>
     </Card>
   );

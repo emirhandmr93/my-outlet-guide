@@ -6,6 +6,7 @@ import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { useTranslation } from "../hooks/useTranslation";
 
 type WeatherCardProps = {
   weather: WeatherForecast;
@@ -26,13 +27,14 @@ function formatForecastDate(date: string) {
 }
 
 export function WeatherCard({ weather }: WeatherCardProps) {
+  const { t } = useTranslation();
   const firstForecast = weather.forecasts[0];
 
   return (
     <View style={styles.card}>
       <View style={styles.headerRow}>
         <View>
-          <Text style={styles.kicker}>WEATHER</Text>
+          <Text style={styles.kicker}>{t("sharedCards.weather.kicker")}</Text>
           <Text style={styles.cityName}>{weather.cityName}</Text>
         </View>
 
