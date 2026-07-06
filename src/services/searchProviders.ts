@@ -7,7 +7,11 @@ import { getCityName, getCountryName } from "./locationService";
 import { searchFeatureIndex } from "./searchFeatureIndex";
 import type { SearchResult } from "./searchTypes";
 
-export function getSearchProviderItems(): SearchResult[] {
+type SearchProviderTranslator = (key: string) => string;
+
+export function getSearchProviderItems(
+  t?: SearchProviderTranslator,
+): SearchResult[] {
   const outletResults: SearchResult[] = outlets.map((outlet) => ({
     id: outlet.outletId,
     title: outlet.name,
@@ -73,8 +77,8 @@ export function getSearchProviderItems(): SearchResult[] {
 
   const featureResults: SearchResult[] = searchFeatureIndex.map((feature) => ({
     id: feature.id,
-    title: feature.title,
-    subtitle: feature.subtitle,
+    title: t ? t(feature.titleKey) : feature.title,
+    subtitle: t ? t(feature.subtitleKey) : feature.subtitle,
     type: "feature",
     routeName: feature.routeName,
     score: 0,
