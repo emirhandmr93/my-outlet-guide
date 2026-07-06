@@ -94,7 +94,7 @@ addReview({
 reviewId: `${outlet.outletId}-${Date.now()}`,
 outletId: outlet.outletId,
 userId: currentUser?.userId,
-userName: currentUser?.name || "My Outlet Guide User",
+userName: currentUser?.name || t("writeReview.defaultUserName"),
 overallRating,
 transportationRating,
 brandVarietyRating,
