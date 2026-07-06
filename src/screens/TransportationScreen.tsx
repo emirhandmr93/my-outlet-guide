@@ -4,71 +4,94 @@ import { useTranslation } from "../hooks/useTranslation";
 import { getTransportationLabel } from "../utils/transportationFormatter";
 import { transportationGuides } from "../constants/transportationGuides";
 
-function getFallbackSteps(guide: any) {
+function getFallbackSteps(guide: any, t: (key: string) => string) {
   const title = String(guide.title || "").toLowerCase();
   const type = String(guide.transportationType || "").toLowerCase();
 
   if (title.includes("charles de gaulle") || title.includes("cdg")) {
     return [
-      { order: 1, description: "Follow airport signs to the RER/TGV train area." },
-      { order: 2, description: "Take a train connection towards central Paris or Marne-la-Vallée." },
-      { order: 3, description: "Change where required for Val d'Europe station." },
-      { order: 4, description: "Get off at Val d'Europe and follow signs towards La Vallée Village." },
-      { order: 5, description: "Walk approximately 5 minutes to the outlet entrance." },
+      { order: 1, description: t("transportation.fallback.cdg.step1") },
+      { order: 2, description: t("transportation.fallback.cdg.step2") },
+      { order: 3, description: t("transportation.fallback.cdg.step3") },
+      { order: 4, description: t("transportation.fallback.cdg.step4") },
+      {
+        order: 5,
+        description: t("transportation.fallback.common.walkOutletEntrance"),
+      },
     ];
   }
 
   if (title.includes("orly")) {
     return [
-      { order: 1, description: "Follow airport signs to the public transport connection." },
-      { order: 2, description: "Travel towards central Paris and connect to the RER A line." },
-      { order: 3, description: "Take RER A towards Marne-la-Vallée Chessy." },
-      { order: 4, description: "Get off at Val d'Europe station." },
-      { order: 5, description: "Walk approximately 5 minutes to La Vallée Village." },
+      { order: 1, description: t("transportation.fallback.orly.step1") },
+      { order: 2, description: t("transportation.fallback.orly.step2") },
+      { order: 3, description: t("transportation.fallback.common.takeRerA") },
+      {
+        order: 4,
+        description: t("transportation.fallback.common.valDEuropeStation"),
+      },
+      {
+        order: 5,
+        description: t("transportation.fallback.common.walkLaVallee"),
+      },
     ];
   }
 
   if (title.includes("disney")) {
     return [
-      { order: 1, description: "Start from the Disneyland Paris / Val d'Europe area." },
-      { order: 2, description: "Follow pedestrian signs towards Centre Commercial Val d'Europe." },
-      { order: 3, description: "Continue towards La Vallée Village entrance." },
+      { order: 1, description: t("transportation.fallback.disney.step1") },
+      { order: 2, description: t("transportation.fallback.disney.step2") },
+      { order: 3, description: t("transportation.fallback.disney.step3") },
     ];
   }
 
-  if (type.includes("taxi") || title.includes("taxi") || title.includes("uber")) {
+  if (
+    type.includes("taxi") ||
+    title.includes("taxi") ||
+    title.includes("uber")
+  ) {
     return [
-      { order: 1, description: "Open your preferred ride-hailing or taxi app." },
-      { order: 2, description: "Set La Vallée Village, Serris as the destination." },
-      { order: 3, description: "Confirm the estimated fare and pickup point before starting the ride." },
-      { order: 4, description: "Ask to be dropped near the main entrance or guest services area." },
-      { order: 5, description: "For the return trip, check vehicle availability before outlet closing time." },
+      { order: 1, description: t("transportation.fallback.taxi.step1") },
+      { order: 2, description: t("transportation.fallback.taxi.step2") },
+      { order: 3, description: t("transportation.fallback.taxi.step3") },
+      { order: 4, description: t("transportation.fallback.taxi.step4") },
+      { order: 5, description: t("transportation.fallback.taxi.step5") },
     ];
   }
 
   if (type.includes("shuttle") || title.includes("shuttle")) {
     return [
-      { order: 1, description: "Check the latest shuttle timetable before departure." },
-      { order: 2, description: "Arrive at the pickup point at least 10 minutes early." },
-      { order: 3, description: "Confirm that the shuttle goes to La Vallée Village / Val d'Europe." },
-      { order: 4, description: "Keep the return schedule saved before you start shopping." },
+      { order: 1, description: t("transportation.fallback.shuttle.step1") },
+      { order: 2, description: t("transportation.fallback.shuttle.step2") },
+      { order: 3, description: t("transportation.fallback.shuttle.step3") },
+      { order: 4, description: t("transportation.fallback.shuttle.step4") },
     ];
   }
 
-  if (type.includes("train") || title.includes("rer") || title.includes("paris")) {
+  if (
+    type.includes("train") ||
+    title.includes("rer") ||
+    title.includes("paris")
+  ) {
     return [
-      { order: 1, description: "Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation." },
-      { order: 2, description: "Take RER A towards Marne-la-Vallée Chessy." },
-      { order: 3, description: "Get off at Val d'Europe station." },
-      { order: 4, description: "Follow signs towards Centre Commercial Val d'Europe / La Vallée Village." },
-      { order: 5, description: "Walk approximately 5 minutes to the outlet entrance." },
+      { order: 1, description: t("transportation.fallback.train.step1") },
+      { order: 2, description: t("transportation.fallback.common.takeRerA") },
+      {
+        order: 3,
+        description: t("transportation.fallback.common.valDEuropeStation"),
+      },
+      { order: 4, description: t("transportation.fallback.train.step4") },
+      {
+        order: 5,
+        description: t("transportation.fallback.common.walkOutletEntrance"),
+      },
     ];
   }
 
   return [
-    { order: 1, description: "Check the latest route and schedule before departure." },
-    { order: 2, description: "Follow the indicated transport option towards Val d'Europe / Serris." },
-    { order: 3, description: "Use maps or station signs for the final walking section to La Vallée Village." },
+    { order: 1, description: t("transportation.fallback.default.step1") },
+    { order: 2, description: t("transportation.fallback.default.step2") },
+    { order: 3, description: t("transportation.fallback.default.step3") },
   ];
 }
 
@@ -78,21 +101,34 @@ type RouteParams = {
   };
 };
 
-function RouteGuideCard({ guide, isRecommended }: { guide: any; isRecommended?: boolean }) {
-  const sortedSteps = (guide.steps?.length ? [...guide.steps] : getFallbackSteps(guide)).sort((a, b) => a.order - b.order);
+function RouteGuideCard({
+  guide,
+  isRecommended,
+}: {
+  guide: any;
+  isRecommended?: boolean;
+}) {
+  const { t } = useTranslation();
+  const sortedSteps = (
+    guide.steps?.length ? [...guide.steps] : getFallbackSteps(guide, t)
+  ).sort((a, b) => a.order - b.order);
 
   return (
     <View style={styles.card}>
-      {isRecommended ? <Text style={styles.badge}>Recommended Route</Text> : null}
+      {isRecommended ? (
+        <Text style={styles.badge}>{t("transportation.recommendedRoute")}</Text>
+      ) : null}
       <Text style={styles.routeTitle}>{guide.title}</Text>
 
       <View style={styles.infoRow}>
-        <Text style={styles.infoBox}>{getTransportationLabel(guide.transportationType)}</Text>
+        <Text style={styles.infoBox}>
+          {getTransportationLabel(guide.transportationType, t)}
+        </Text>
         <Text style={styles.infoBox}>⏱️ {guide.estimatedDuration}</Text>
         <Text style={styles.infoBox}>💰 {guide.estimatedCost}</Text>
       </View>
 
-      <Text style={styles.sectionTitle}>Step-by-step guide</Text>
+      <Text style={styles.sectionTitle}>{t("transportation.stepByStep")}</Text>
       {sortedSteps.map((step) => (
         <View key={`${guide.guideId}-${step.order}`} style={styles.stepRow}>
           <Text style={styles.stepNumber}>{step.order}</Text>
@@ -108,16 +144,21 @@ export function TransportationScreen() {
   const outletId = route.params?.outletId;
   const { t } = useTranslation();
 
-  const guides = transportationGuides.filter((guide) => guide.outletId === outletId);
-  const recommendedGuide = guides.find((guide) => guide.recommended) || guides[0];
+  const guides = transportationGuides.filter(
+    (guide) => guide.outletId === outletId,
+  );
+  const recommendedGuide =
+    guides.find((guide) => guide.recommended) || guides[0];
   const otherGuides = guides.filter(
-    (guide) => guide.guideId !== recommendedGuide?.guideId
+    (guide) => guide.guideId !== recommendedGuide?.guideId,
   );
 
   if (!recommendedGuide) {
     return (
       <View style={styles.emptyContainer}>
-        <Text style={styles.emptyTitle}>{t("transportation.notAvailable")}</Text>
+        <Text style={styles.emptyTitle}>
+          {t("transportation.notAvailable")}
+        </Text>
       </View>
     );
   }
@@ -131,7 +172,9 @@ export function TransportationScreen() {
 
       {otherGuides.length > 0 ? (
         <>
-          <Text style={styles.sectionTitleOutside}>{t("transportation.otherOptions")}</Text>
+          <Text style={styles.sectionTitleOutside}>
+            {t("transportation.otherOptions")}
+          </Text>
           {otherGuides.map((guide) => (
             <RouteGuideCard key={guide.guideId} guide={guide} />
           ))}

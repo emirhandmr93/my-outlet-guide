@@ -1,44 +1,52 @@
 import { StyleSheet, Text } from "react-native";
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
+import { useTranslation } from "../../hooks/useTranslation";
 
 type TaxFreeCardProps = {
-title: string;
-vatRate: number;
-refundRate?: string;
-minimumSpend: string;
-officeInfo: string;
+  title: string;
+  vatRate: number;
+  refundRate?: string;
+  minimumSpend: string;
+  officeInfo: string;
 };
 
 export function TaxFreeCard({
-title,
-vatRate,
-refundRate,
-minimumSpend,
-officeInfo,
+  title,
+  vatRate,
+  refundRate,
+  minimumSpend,
+  officeInfo,
 }: TaxFreeCardProps) {
-return (
-<Card>
-<SectionTitle title={title} />
+  const { t } = useTranslation();
 
-<Text style={styles.text}>VAT Rate: {vatRate}%</Text>
+  return (
+    <Card>
+      <SectionTitle title={title} />
 
-<Text style={styles.text}>
-Estimated Refund: {refundRate ?? `≈${Math.round(vatRate * 0.6)}%`}
-</Text>
+      <Text style={styles.text}>
+        {t("taxCalc.vatRate")}: {vatRate}%
+      </Text>
 
-<Text style={styles.text}>Minimum Spend: {minimumSpend}</Text>
+      <Text style={styles.text}>
+        {t("taxCalc.estimatedRefund")}:{" "}
+        {refundRate ?? `≈${Math.round(vatRate * 0.6)}%`}
+      </Text>
 
-<Text style={styles.text}>{officeInfo}</Text>
-</Card>
-);
+      <Text style={styles.text}>
+        {t("taxCalc.minimumSpend")}: {minimumSpend}
+      </Text>
+
+      <Text style={styles.text}>{officeInfo}</Text>
+    </Card>
+  );
 }
 
 const styles = StyleSheet.create({
-text: {
-fontSize: 15,
-color: "#666666",
-lineHeight: 22,
-marginBottom: 6,
-},
+  text: {
+    fontSize: 15,
+    color: "#666666",
+    lineHeight: 22,
+    marginBottom: 6,
+  },
 });
