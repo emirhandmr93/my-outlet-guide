@@ -638,6 +638,128 @@ export const italyTransportation = [
     "status": "active",
     "displayOrder": "5"
   },
+
+  {
+    "transportationId": "valmontone-outlet-car",
+    "outletId": "valmontone-outlet",
+    "transportType": "car",
+    "title": "Car via A1 Valmontone or Colleferro",
+    "duration": "Check live traffic",
+    "cost": "Fuel, tolls and provider costs vary",
+    "tip": "Official Valmontone Outlet directions say to take the A1 south from Rome and exit at Valmontone, or take the A1 north from Naples and exit at Colleferro, then continue to Via della Pace.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "valmontone-outlet-shuttle",
+    "outletId": "valmontone-outlet",
+    "transportType": "shuttle",
+    "title": "Valmontone station shuttle",
+    "duration": "Station departures 11:15, 14:00 and 16:40; outlet returns 14:15, 17:00 and 19:15",
+    "cost": "€1.50",
+    "tip": "Official Valmontone Outlet Link information lists the shuttle from Valmontone train station to the outlet, available Wednesday through Sunday and on holidays; verify current service before travel.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "valmontone-outlet-train-shuttle",
+    "outletId": "valmontone-outlet",
+    "transportType": "train",
+    "title": "Train to Valmontone + outlet shuttle",
+    "duration": "Train to Valmontone station + official shuttle",
+    "cost": "Check Trenitalia fare plus €1.50 shuttle unless included in a combined ticket",
+    "tip": "Official Valmontone Outlet information references a Trenitalia partnership and combined train plus shuttle ticket for travel to Valmontone station and onward outlet shuttle.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "cilento-outlet-village-car",
+    "outletId": "cilento-outlet-village",
+    "transportType": "car",
+    "title": "Car via Battipaglia exit / SS18",
+    "duration": "20 minutes by car from the Amalfi Coast area",
+    "cost": "Fuel, tolls and provider costs vary",
+    "tip": "Official Cilento Outlet directions list the Salerno-Reggio Calabria motorway, Battipaglia exit, and SS18 Salerno-Paestum km 79+250 at San Nicola Varco, Eboli.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "cilento-outlet-village-parking",
+    "outletId": "cilento-outlet-village",
+    "transportType": "car",
+    "title": "Outlet parking",
+    "duration": "On site",
+    "cost": "Check centre parking information",
+    "tip": "Official Cilento Outlet centre information says the outlet has over 4,500 parking spaces and comfortable areas reserved for tourist buses.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "cilento-outlet-village-train",
+    "outletId": "cilento-outlet-village",
+    "transportType": "train",
+    "title": "Train to Battipaglia station",
+    "duration": "Battipaglia station is 10 km from the Village",
+    "cost": "Check official rail fare; onward transport extra",
+    "tip": "Official Cilento Outlet directions list Battipaglia station as 10 km from the Village; arrange onward official taxi, local transport or pickup before travelling.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "cilento-outlet-village-airport",
+    "outletId": "cilento-outlet-village",
+    "transportType": "airport",
+    "title": "Naples Capodichino Airport",
+    "duration": "Naples Capodichino Airport is 90 km from the Village",
+    "cost": "Confirm airport ground transport, rental-car, taxi or transfer fare",
+    "tip": "Official Cilento Outlet directions list Naples Capodichino Airport as 90 km from the Village; no dedicated airport shuttle was verified.",
+    "status": "active",
+    "displayOrder": "4"
+  },
+  {
+    "transportationId": "santangelo-outlet-village-car",
+    "outletId": "santangelo-outlet-village",
+    "transportType": "car",
+    "title": "Car via Pescara Nord exit",
+    "duration": "Check live traffic",
+    "cost": "Fuel, tolls and provider costs vary",
+    "tip": "Official Santangelo Outlet Village directions list motorway access via A24, A25 and A14 with the Pescara Nord exit.",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "transportationId": "santangelo-outlet-village-train",
+    "outletId": "santangelo-outlet-village",
+    "transportType": "train",
+    "title": "Train to Pescara Centrale",
+    "duration": "15 minutes from Pescara Centrale station",
+    "cost": "Check official Trenitalia fare; onward transport extra",
+    "tip": "Official Santangelo Outlet Village directions list Pescara Centrale station and link to Trenitalia, with the outlet 15 minutes from the station.",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "transportationId": "santangelo-outlet-village-bus",
+    "outletId": "santangelo-outlet-village",
+    "transportType": "bus",
+    "title": "Pescara - Città Sant'Angelo line",
+    "duration": "Check official TUA Abruzzo timetable",
+    "cost": "Check official bus fare",
+    "tip": "Official Santangelo Outlet Village directions link to TUA Abruzzo timetables for the Pescara - Città Sant'Angelo line; verify the current route, stop and fare before travel.",
+    "status": "active",
+    "displayOrder": "3"
+  },
+  {
+    "transportationId": "santangelo-outlet-village-airport-pescara",
+    "outletId": "santangelo-outlet-village",
+    "transportType": "airport",
+    "title": "Pescara or Ancona airport access",
+    "duration": "15 minutes from Pescara Airport; 60 minutes from Ancona Airport",
+    "cost": "Confirm airport ground transport, rental-car, taxi or transfer fare",
+    "tip": "Official Santangelo Outlet Village directions list Pescara Airport 15 minutes away and Ancona Airport 60 minutes away, with links to the official airport sites.",
+    "status": "active",
+    "displayOrder": "4"
+  },
   {
     "transportationId": "vicolungo-car-parking",
     "outletId": "vicolungo-the-style-outlets",

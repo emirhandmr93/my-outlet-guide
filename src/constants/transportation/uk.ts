@@ -1,4 +1,38 @@
 export const ukTransportation = [
+
+  {
+      "transportationId": "affinity-sterling-mills-car-parking",
+      "outletId": "affinity-sterling-mills",
+      "transportType": "car",
+      "title": "Car / Free parking",
+      "duration": "Check live traffic",
+      "cost": "Free parking with no time limit",
+      "tip": "Official Affinity Sterling Mills directions list car access to Devon Vale, Tillicoultry FK13 6HQ and state that parking is free with no time limit; follow the brown tourist signs from the A908.",
+      "status": "active",
+      "displayOrder": "1"
+  },
+  {
+      "transportationId": "affinity-sterling-mills-bus",
+      "outletId": "affinity-sterling-mills",
+      "transportType": "bus",
+      "title": "Bus to Tillicoultry",
+      "duration": "Check official timetable",
+      "cost": "Check official bus fare",
+      "tip": "Official Affinity Sterling Mills directions say regular bus services run to and from Tillicoultry from Glasgow, Stirling, Alloa and St Andrews, and that an hourly service stops just outside Mountain Warehouse; verify current operator timetables before travel.",
+      "status": "active",
+      "displayOrder": "2"
+  },
+  {
+      "transportationId": "affinity-sterling-mills-train-bus",
+      "outletId": "affinity-sterling-mills",
+      "transportType": "train",
+      "title": "Train to Alloa + local bus",
+      "duration": "Alloa station is 3 miles away; onward bus timing varies",
+      "cost": "Check ScotRail and bus fares",
+      "tip": "Official Affinity Sterling Mills directions identify Alloa as the nearest railway station, 3 miles from the outlet, with mainline rail links connecting to local bus timetables.",
+      "status": "active",
+      "displayOrder": "3"
+  },
   {
     "transportationId": "bicester-train",
     "outletId": "bicester-village",
