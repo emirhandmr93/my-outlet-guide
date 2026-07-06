@@ -13,6 +13,9 @@ export type NotificationItem = {
   category: NotificationCategory;
   title: string;
   message: string;
+  titleKey: string;
+  messageKey: string;
+  messageParams?: Record<string, string>;
   priority: NotificationPriority;
   createdAt: string;
   read: boolean;
@@ -41,6 +44,13 @@ const mockNotifications: NotificationItem[] = [
     category: "flightDeal",
     title: "Flight deal found",
     message: "Wizz Air deal: Ankara → Paris • 5.900 TL",
+    titleKey: "notifications.mock.flightDeal.title",
+    messageKey: "notifications.mock.flightDeal.message",
+    messageParams: {
+      airline: "Wizz Air",
+      route: "Ankara → Paris",
+      price: "5.900 TL",
+    },
     priority: "high",
     createdAt: new Date().toISOString(),
     read: false,

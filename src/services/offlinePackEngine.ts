@@ -4,6 +4,8 @@ export type OfflinePack = {
   packId: string;
   title: string;
   description: string;
+  titleKey: string;
+  descriptionKey: string;
   cityIds: string[];
   outletIds: string[];
   sizeMb: number;
@@ -16,6 +18,8 @@ const mockOfflinePacks: OfflinePack[] = [
     packId: "paris-shopping-pack",
     title: "Paris Shopping Pack",
     description: "Offline outlet details, transport tips, Tax Free notes and saved trip basics for Paris.",
+    titleKey: "offline.packs.parisShopping.title",
+    descriptionKey: "offline.packs.parisShopping.description",
     cityIds: ["paris"],
     outletIds: ["la-vallee-village"],
     sizeMb: 24,
@@ -25,6 +29,8 @@ const mockOfflinePacks: OfflinePack[] = [
     packId: "milan-shopping-pack",
     title: "Milan Shopping Pack",
     description: "Offline shopping guide for Milan area outlets.",
+    titleKey: "offline.packs.milanShopping.title",
+    descriptionKey: "offline.packs.milanShopping.description",
     cityIds: ["milan"],
     outletIds: [],
     sizeMb: 28,

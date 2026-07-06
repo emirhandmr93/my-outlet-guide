@@ -4,6 +4,8 @@ export type SearchFeatureItem = {
   id: string;
   title: string;
   subtitle: string;
+  titleKey: string;
+  subtitleKey: string;
   type: SearchFeatureType;
   routeName: string;
   keywords: string[];
@@ -14,6 +16,8 @@ export const searchFeatureIndex: SearchFeatureItem[] = [
     id: "tax-free-guide",
     title: "Tax Free Guide",
     subtitle: "Guide",
+    titleKey: "search.features.taxFreeGuide.title",
+    subtitleKey: "search.features.subtitle.guide",
     type: "guide",
     routeName: "TaxFreeGuide",
     keywords: ["tax", "free", "tax free", "vat", "refund"],
@@ -22,6 +26,8 @@ export const searchFeatureIndex: SearchFeatureItem[] = [
     id: "tax-free-calculator",
     title: "Tax Free Calculator",
     subtitle: "Shopping Tool",
+    titleKey: "search.features.taxFreeCalculator.title",
+    subtitleKey: "search.features.subtitle.shoppingTool",
     type: "tool",
     routeName: "TaxFreeCalculator",
     keywords: ["tax", "free", "calculator", "vat", "refund"],
@@ -30,6 +36,8 @@ export const searchFeatureIndex: SearchFeatureItem[] = [
     id: "smart-shopping-calculator",
     title: "Smart Shopping Calculator",
     subtitle: "Shopping Tool",
+    titleKey: "search.features.smartShoppingCalculator.title",
+    subtitleKey: "search.features.subtitle.shoppingTool",
     type: "tool",
     routeName: "SmartShoppingCalculator",
     keywords: ["smart", "shopping", "calculator", "savings"],
@@ -38,6 +46,8 @@ export const searchFeatureIndex: SearchFeatureItem[] = [
     id: "price-advantage-calculator",
     title: "Price Advantage Calculator",
     subtitle: "Shopping Tool",
+    titleKey: "search.features.priceAdvantageCalculator.title",
+    subtitleKey: "search.features.subtitle.shoppingTool",
     type: "tool",
     routeName: "PriceAdvantageCalculator",
     keywords: ["price", "advantage", "calculator", "compare", "savings"],
@@ -46,6 +56,8 @@ export const searchFeatureIndex: SearchFeatureItem[] = [
     id: "offline-packs",
     title: "Offline Packs",
     subtitle: "Travel Tool",
+    titleKey: "search.features.offlinePacks.title",
+    subtitleKey: "search.features.subtitle.travelTool",
     type: "tool",
     routeName: "OfflinePacks",
     keywords: ["offline", "pack", "download", "travel"],
@@ -54,6 +66,8 @@ export const searchFeatureIndex: SearchFeatureItem[] = [
     id: "my-trips",
     title: "My Trips",
     subtitle: "Trip Planner",
+    titleKey: "search.features.myTrips.title",
+    subtitleKey: "search.features.subtitle.tripPlanner",
     type: "screen",
     routeName: "MyTrips",
     keywords: ["trip", "travel", "planner", "shopping trip"],
@@ -62,6 +76,8 @@ export const searchFeatureIndex: SearchFeatureItem[] = [
     id: "flight-deals",
     title: "Flight Deals",
     subtitle: "Travel Deals",
+    titleKey: "search.features.flightDeals.title",
+    subtitleKey: "search.features.subtitle.travelDeals",
     type: "screen",
     routeName: "FlightDeals",
     keywords: ["flight", "deal", "ticket", "airline", "cheap flight"],

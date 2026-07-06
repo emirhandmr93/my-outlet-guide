@@ -1,22 +1,28 @@
 import type { TransportationType } from "../constants/transportationGuides";
 
-export function getTransportationLabel(type: TransportationType | string) {
+type TransportationTranslator = (key: string) => string;
+
+function withIcon(icon: string, key: string, fallback: string, t?: TransportationTranslator) {
+  return `${icon} ${t ? t(key) : fallback}`;
+}
+
+export function getTransportationLabel(type: TransportationType | string, t?: TransportationTranslator) {
   switch (type) {
     case "train":
-      return "🚆 Train";
+      return withIcon("🚆", "transportation.type.train", "Train", t);
     case "metro":
-      return "🚇 Metro";
+      return withIcon("🚇", "transportation.type.metro", "Metro", t);
     case "bus":
-      return "🚌 Bus";
+      return withIcon("🚌", "transportation.type.bus", "Bus", t);
     case "shuttle":
-      return "🚐 Shuttle";
+      return withIcon("🚐", "transportation.type.shuttle", "Shuttle", t);
     case "taxi":
-      return "🚖 Taxi";
+      return withIcon("🚖", "transportation.type.taxi", "Taxi", t);
     case "uber":
-      return "🚘 Uber";
+      return withIcon("🚘", "transportation.type.uber", "Uber", t);
     case "walking":
-      return "🚶 Walking";
+      return withIcon("🚶", "transportation.type.walking", "Walking", t);
     default:
-      return "🚗 Transport";
+      return withIcon("🚗", "transportation.type.transport", "Transport", t);
   }
 }

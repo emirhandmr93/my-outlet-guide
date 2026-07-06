@@ -2,35 +2,36 @@ export type CurrentWeather = {
   temperature: number;
   weatherCode: number;
   condition: string;
+  conditionKey: string;
   icon: string;
 };
 
 function getWeatherCondition(weatherCode: number) {
   if (weatherCode === 0) {
-    return { condition: "Clear", icon: "☀️" };
+    return { condition: "Clear", conditionKey: "weather.condition.clear", icon: "☀️" };
   }
 
   if ([1, 2, 3].includes(weatherCode)) {
-    return { condition: "Cloudy", icon: "⛅" };
+    return { condition: "Cloudy", conditionKey: "weather.condition.cloudy", icon: "⛅" };
   }
 
   if ([45, 48].includes(weatherCode)) {
-    return { condition: "Foggy", icon: "🌫️" };
+    return { condition: "Foggy", conditionKey: "weather.condition.foggy", icon: "🌫️" };
   }
 
   if ([51, 53, 55, 61, 63, 65, 80, 81, 82].includes(weatherCode)) {
-    return { condition: "Rainy", icon: "🌧️" };
+    return { condition: "Rainy", conditionKey: "weather.condition.rainy", icon: "🌧️" };
   }
 
   if ([71, 73, 75, 85, 86].includes(weatherCode)) {
-    return { condition: "Snowy", icon: "❄️" };
+    return { condition: "Snowy", conditionKey: "weather.condition.snowy", icon: "❄️" };
   }
 
   if ([95, 96, 99].includes(weatherCode)) {
-    return { condition: "Stormy", icon: "⛈️" };
+    return { condition: "Stormy", conditionKey: "weather.condition.stormy", icon: "⛈️" };
   }
 
-  return { condition: "Weather", icon: "🌤️" };
+  return { condition: "Weather", conditionKey: "weather.condition.weather", icon: "🌤️" };
 }
 
 export async function getCurrentWeather(
@@ -63,6 +64,7 @@ export async function getCurrentWeather(
     temperature,
     weatherCode,
     condition: weatherInfo.condition,
+    conditionKey: weatherInfo.conditionKey,
     icon: weatherInfo.icon,
   };
 }
