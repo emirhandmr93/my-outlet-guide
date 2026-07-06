@@ -8,8 +8,30 @@ const strictLanguages = new Set<TranslationLanguage>(["en", "tr"]);
 const englishKeys = new Set(Object.keys(translations.en));
 let hasStrictParityError = false;
 
+const identicalAllowedValues = new Set([
+  "Apple",
+  "Apple Maps",
+  "Email",
+  "Error",
+  "Google Maps",
+  "My Outlet Guide",
+  "ON",
+  "OFF",
+  "Outlet",
+  "Tax Free",
+  "Yandex Maps",
+]);
+
 function getSortedDifference(source: Set<string>, target: Set<string>) {
   return [...source].filter((key) => !target.has(key)).sort();
+}
+
+function isCurrencyCode(value: string) {
+  return /^[A-Z]{3}$/.test(value);
+}
+
+function isAllowedIdenticalValue(value: string) {
+  return identicalAllowedValues.has(value) || isCurrencyCode(value);
 }
 
 for (const languageCode of supportedLanguageCodes) {
@@ -21,23 +43,46 @@ for (const languageCode of supportedLanguageCodes) {
 
   if (!hasMissingKeys && !hasExtraKeys) {
     console.log(`${languageCode}: OK (${languageKeys.size} keys)`);
+  } else {
+    console.log(
+      `${languageCode}: ${missingKeys.length} missing, ${extraKeys.length} extra (${languageKeys.size}/${englishKeys.size} English keys)`
+    );
+
+    if (hasMissingKeys) {
+      console.log(`  Missing: ${missingKeys.join(", ")}`);
+    }
+
+    if (hasExtraKeys) {
+      console.log(`  Extra: ${extraKeys.join(", ")}`);
+    }
+
+    if (strictLanguages.has(languageCode)) {
+      hasStrictParityError = true;
+    }
+  }
+
+  if (languageCode === "en") {
     continue;
   }
 
-  console.log(
-    `${languageCode}: ${missingKeys.length} missing, ${extraKeys.length} extra (${languageKeys.size}/${englishKeys.size} English keys)`
+  const identicalValues = [...englishKeys]
+    .filter((key) => translations[languageCode][key] === translations.en[key])
+    .sort();
+  const unexpectedIdenticalValues = identicalValues.filter(
+    (key) => !isAllowedIdenticalValue(translations.en[key])
+  );
+  const allowedIdenticalValues = identicalValues.filter((key) =>
+    isAllowedIdenticalValue(translations.en[key])
   );
 
-  if (hasMissingKeys) {
-    console.log(`  Missing: ${missingKeys.join(", ")}`);
-  }
+  console.log(
+    `${languageCode}: ${identicalValues.length} values identical to English (${allowedIdenticalValues.length} allowed, ${unexpectedIdenticalValues.length} warning)`
+  );
 
-  if (hasExtraKeys) {
-    console.log(`  Extra: ${extraKeys.join(", ")}`);
-  }
-
-  if (strictLanguages.has(languageCode)) {
-    hasStrictParityError = true;
+  if (unexpectedIdenticalValues.length > 0) {
+    console.warn(
+      `  Warning identical values: ${unexpectedIdenticalValues.join(", ")}`
+    );
   }
 }
 
