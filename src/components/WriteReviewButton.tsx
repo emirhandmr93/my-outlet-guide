@@ -1,4 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useTranslation } from "../hooks/useTranslation";
 
 type WriteReviewButtonProps = {
   title: string;
@@ -6,6 +7,8 @@ type WriteReviewButtonProps = {
 };
 
 export function WriteReviewButton({ title, onPress }: WriteReviewButtonProps) {
+  const { t } = useTranslation();
+
   return (
     <TouchableOpacity
       style={styles.button}
@@ -18,7 +21,7 @@ export function WriteReviewButton({ title, onPress }: WriteReviewButtonProps) {
 
       <View style={styles.textWrap}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.subtitle}>Share your outlet shopping experience</Text>
+        <Text style={styles.subtitle}>{t("sharedCards.writeReview.subtitle")}</Text>
       </View>
 
       <Text style={styles.arrow}>→</Text>

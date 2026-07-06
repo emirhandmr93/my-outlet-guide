@@ -6,6 +6,7 @@ import { colors } from "../../theme/colors";
 import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
+import { useTranslation } from "../../hooks/useTranslation";
 
 type BrandsCardProps = {
   title: string;
@@ -53,6 +54,7 @@ export function BrandsCard({
   setOpenCategory,
   brandCategoryGroups,
 }: BrandsCardProps) {
+  const { t } = useTranslation();
   const totalBrandCount = brandCategoryGroups.reduce(
     (total, category) => total + category.brands.length,
     0
@@ -62,12 +64,12 @@ export function BrandsCard({
     <Card>
       <View style={styles.headerRow}>
         <SectionTitle title={title} />
-        <Text style={styles.countText}>{totalBrandCount} brands</Text>
+        <Text style={styles.countText}>{`${totalBrandCount} ${t("sharedCards.brands.countSuffix")}`}</Text>
       </View>
 
       <TextInput
         style={styles.searchInput}
-        placeholder="Search brands..."
+        placeholder={t("sharedCards.brands.searchPlaceholder")}
         placeholderTextColor={colors.textMuted}
         value={brandSearch}
         onChangeText={setBrandSearch}
@@ -96,7 +98,7 @@ export function BrandsCard({
                 <Text style={styles.categoryIcon}>{category.icon}</Text>
                 <View style={styles.categoryTextBlock}>
                   <Text style={styles.categoryTitle}>{category.categoryName}</Text>
-                  <Text style={styles.categoryMeta}>{filteredBrands.length} brands</Text>
+                  <Text style={styles.categoryMeta}>{`${filteredBrands.length} ${t("sharedCards.brands.countSuffix")}`}</Text>
                 </View>
               </View>
 

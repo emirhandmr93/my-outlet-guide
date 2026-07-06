@@ -6,6 +6,7 @@ import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { motion } from "../../theme/motion";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export type MapsCardProps = {
   title: string;
@@ -26,11 +27,13 @@ export function MapsCard({
   onPressApple,
   onPressYandex,
 }: MapsCardProps) {
+  const { t } = useTranslation();
+
   return (
     <Card>
       <SectionTitle title={title} />
 
-      <Text style={styles.description}>Open navigation with your preferred map app.</Text>
+      <Text style={styles.description}>{t("sharedCards.maps.description")}</Text>
 
       <View style={styles.buttonStack}>
         <TouchableOpacity
@@ -41,7 +44,7 @@ export function MapsCard({
           <Text style={styles.primaryIcon}>🗺️</Text>
           <View style={styles.buttonTextWrap}>
             <Text style={styles.primaryButtonText}>{googleText}</Text>
-            <Text style={styles.primaryButtonSubtext}>Recommended route</Text>
+            <Text style={styles.primaryButtonSubtext}>{t("sharedCards.maps.recommendedRoute")}</Text>
           </View>
           <Text style={styles.primaryArrow}>→</Text>
         </TouchableOpacity>

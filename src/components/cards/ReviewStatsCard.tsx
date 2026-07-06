@@ -3,6 +3,7 @@ import { colors } from "../../theme/colors";
 import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
+import { useTranslation } from "../../hooks/useTranslation";
 
 export type ReviewStatsCardProps = {
   summaryText: string;
@@ -27,10 +28,12 @@ export function ReviewStatsCard({
   servicesTitle,
   servicesValue,
 }: ReviewStatsCardProps) {
+  const { t } = useTranslation();
+
   return (
     <View style={styles.container}>
       <View style={styles.summaryBox}>
-        <Text style={styles.summaryLabel}>Guest Rating</Text>
+        <Text style={styles.summaryLabel}>{t("sharedCards.reviews.guestRating")}</Text>
         <Text style={styles.summaryText}>{summaryText}</Text>
       </View>
 
