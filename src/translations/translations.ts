@@ -17,8 +17,7 @@ export function isTranslationLanguage(
   return supportedLanguageCodes.includes(languageCode as TranslationLanguage);
 }
 
-export const translations: Record<TranslationLanguage, Record<string, string>> = {
-en: {
+const enTranslations = {
 "home.welcome": "Welcome back",
 "home.title": "My Outlet Guide",
 "home.search": "Search outlets, cities, brands...",
@@ -405,8 +404,10 @@ en: {
 "outlet.brands": "Brands",
 "outlet.restaurantsCafes": "Restaurants & Cafes",
 
-},
+};
 
+export const translations: Record<TranslationLanguage, Record<string, string>> = {
+en: enTranslations,
 tr: {
 "home.welcome": "Tekrar hoş geldin",
 "home.title": "My Outlet Guide",
@@ -800,15 +801,14 @@ tr: {
 },
 
 es: {
+...enTranslations,
 "home.welcome": "Bienvenido de nuevo",
 "home.title": "My Outlet Guide",
 "home.search": "Buscar outlets, ciudades, marcas...",
 "home.heroLabel": "Asistente premium de compras y viajes",
 "home.heroTitle": "Compra mejor. Viaja mejor.",
-"home.heroText":
-"Planifica viajes de outlet, calcula ahorros Tax Free, sigue ofertas y organiza tu experiencia de compras.",
+"home.heroText": "Planifica viajes de outlet, calcula ahorros Tax Free, sigue ofertas y organiza tu experiencia de compras.",
 "home.createTrip": "Crear viaje de compras",
-
 "profile.title": "Perfil",
 "profile.subtitle": "Gestiona tus preferencias.",
 "profile.myTrips": "Mis viajes",
@@ -819,11 +819,39 @@ es: {
 },
 
 fr: {
-"home.title": "My Outlet Guide"
+...enTranslations,
+"home.welcome": "Bon retour",
+"home.title": "My Outlet Guide",
+"home.search": "Rechercher outlets, villes, marques...",
+"home.heroLabel": "Assistant shopping voyage premium",
+"home.heroTitle": "Achetez mieux. Voyagez mieux.",
+"home.heroText": "Planifiez vos sorties outlet, estimez vos économies Tax Free, suivez les offres et organisez votre shopping.",
+"home.createTrip": "Créer un voyage shopping",
+"profile.title": "Profil",
+"profile.subtitle": "Gérez vos préférences.",
+"profile.myTrips": "Mes voyages",
+"profile.language": "Langue",
+"profile.currency": "Devise",
+"profile.notifications": "Notifications",
+"profile.offlinePacks": "Packs hors ligne",
 },
 
 de: {
-"home.title": "My Outlet Guide"
+...enTranslations,
+"home.welcome": "Willkommen zurück",
+"home.title": "My Outlet Guide",
+"home.search": "Outlets, Städte, Marken suchen...",
+"home.heroLabel": "Premium Shopping-Reiseassistent",
+"home.heroTitle": "Smarter shoppen. Besser reisen.",
+"home.heroText": "Plane Outlet-Trips, schätze Tax Free Ersparnisse, folge Angeboten und organisiere deine Shopping-Reise.",
+"home.createTrip": "Shopping-Trip erstellen",
+"profile.title": "Profil",
+"profile.subtitle": "Verwalte deine App-Einstellungen.",
+"profile.myTrips": "Meine Reisen",
+"profile.language": "Sprache",
+"profile.currency": "Währung",
+"profile.notifications": "Benachrichtigungen",
+"profile.offlinePacks": "Offline-Pakete",
 },
 
 ar: {
