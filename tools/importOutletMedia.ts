@@ -4,6 +4,11 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import {
+  assertVerifiedWebp,
+  type MediaFileInspection,
+} from "./mediaFileInspection";
+
 const repoRoot = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
   "..",
@@ -394,12 +399,23 @@ async function downloadToTemp(url: string): Promise<string> {
   return tempPath;
 }
 
+function printImportInspection(
+  targetAssetPath: string,
+  inspection: MediaFileInspection,
+): void {
+  console.log(`Imported ${targetAssetPath}`);
+  console.log(`  detected format: ${inspection.format}`);
+  console.log(
+    `  dimensions: ${inspection.width ?? "unknown"}x${inspection.height ?? "unknown"}`,
+  );
+  console.log(`  file size: ${inspection.fileSizeBytes} bytes`);
+}
+
 function convertToWebp(
   sourcePath: string,
-  targetPath: string,
+  outputPath: string,
   entry: ManifestEntry,
 ): void {
-  fs.mkdirSync(path.dirname(targetPath), { recursive: true });
   const args = [sourcePath, "-auto-orient"];
 
   if (entry.width && entry.height) {
@@ -417,7 +433,12 @@ function convertToWebp(
     args.push("-resize", `x${entry.height}`);
   }
 
-  args.push("-strip", "-quality", String(entry.quality ?? 82), targetPath);
+  args.push(
+    "-strip",
+    "-quality",
+    String(entry.quality ?? 82),
+    `webp:${outputPath}`,
+  );
 
   const imageMagickCommand = getImageMagickCommand();
   const result = spawnSync(imageMagickCommand, args, { encoding: "utf8" });
@@ -474,10 +495,20 @@ async function main(): Promise<void> {
     }
 
     const tempPath = await downloadToTemp(downloadUrl);
+    const targetPath = targets[index];
+    const tempOutputDir = fs.mkdtempSync(
+      path.join(path.dirname(targetPath), ".import-"),
+    );
+    const tempOutputPath = path.join(tempOutputDir, path.basename(targetPath));
+
     try {
-      convertToWebp(tempPath, targets[index], entry);
+      convertToWebp(tempPath, tempOutputPath, entry);
+      const inspection = assertVerifiedWebp(tempOutputPath, entry);
+      fs.renameSync(tempOutputPath, targetPath);
+      printImportInspection(entry.targetAssetPath, inspection);
     } finally {
       fs.rmSync(tempPath, { force: true });
+      fs.rmSync(tempOutputDir, { force: true, recursive: true });
     }
   }
 
