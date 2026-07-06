@@ -13,6 +13,7 @@ import { events } from "../constants/events";
 import { outlets } from "../constants/outlets";
 import { useTranslation } from "../hooks/useTranslation";
 import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
+import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getCountryName } from "../services/locationService";
 
 type RouteParams = {
@@ -50,7 +51,9 @@ function OutletResultCard({
   onPress: () => void;
 }) {
   const { t } = useTranslation();
-  const heroImage = getOutletCardHeroImage(outlet);
+  const heroImage = getOutletCardHeroImage(outlet, {
+    mode: getConfiguredOutletMediaMode(),
+  });
 
   return (
     <TouchableOpacity
