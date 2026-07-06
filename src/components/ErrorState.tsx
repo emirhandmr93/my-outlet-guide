@@ -3,6 +3,7 @@ import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { useTranslation } from "../hooks/useTranslation";
 import { PremiumIconButton } from "./PremiumIconButton";
 
 type ErrorStateProps = {
@@ -12,13 +13,16 @@ type ErrorStateProps = {
   onPressAction?: () => void;
 };
 
-export function ErrorState({ title = "Something went wrong", message, actionText, onPressAction }: ErrorStateProps) {
+export function ErrorState({ title, message, actionText, onPressAction }: ErrorStateProps) {
+  const { t } = useTranslation();
+  const displayTitle = title ?? t("common.somethingWentWrong");
+
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
         <Text style={styles.icon}>!</Text>
       </View>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{displayTitle}</Text>
       <Text style={styles.message}>{message}</Text>
 
       {actionText && onPressAction ? (

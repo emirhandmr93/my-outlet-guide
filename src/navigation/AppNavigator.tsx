@@ -35,6 +35,7 @@ import { TermsConditionsScreen } from "../screens/TermsConditionsScreen";
 import { TransportationScreen } from "../screens/TransportationScreen";
 import { TripDetailScreen } from "../screens/TripDetailScreen";
 import { WriteReviewScreen } from "../screens/WriteReviewScreen";
+import { useTranslation } from "../hooks/useTranslation";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -70,6 +71,16 @@ return <Ionicons name={focused ? "person" : "person-outline"} size={size} color=
 }
 
 function MainTabs() {
+const { t } = useTranslation();
+
+const tabLabels: Record<string, string> = {
+Home: t("nav.home"),
+Explore: t("nav.explore"),
+Savings: t("nav.savings"),
+Favorites: t("nav.favorites"),
+Profile: t("nav.profile"),
+};
+
 return (
 <Tab.Navigator
 screenOptions={({ route }) => ({
@@ -79,6 +90,7 @@ tabBarInactiveTintColor: "rgba(255,255,255,0.72)",
 tabBarIcon: ({ color, focused }) => (
 <TabIcon routeName={route.name} color={color} focused={focused} />
 ),
+tabBarLabel: tabLabels[route.name] ?? route.name,
 tabBarLabelStyle: {
 fontSize: 11,
 fontWeight: "900",
@@ -113,12 +125,14 @@ elevation: 14,
 }
 
 export function AppNavigator() {
+const { t } = useTranslation();
+
 return (
 <NavigationContainer>
 <Stack.Navigator
 screenOptions={{
 headerShown: true,
-headerBackTitle: "Back",
+headerBackTitle: t("nav.back"),
 headerTintColor: "#0B1F3A",
 headerTitleStyle: {
 color: "#0B1F3A",
@@ -131,37 +145,37 @@ backgroundColor: "#FFFFFF",
 >
 <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
 
-<Stack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: "Outlet" }} />
-<Stack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: "Brand" }} />
-<Stack.Screen name="Transportation" component={TransportationScreen} options={{ title: "Transportation" }} />
-<Stack.Screen name="Country" component={CountryScreen} options={{ title: "Country" }} />
-<Stack.Screen name="CityResults" component={CityResultsScreen} options={{ title: "City" }} />
+<Stack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: t("nav.outlet") }} />
+<Stack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: t("nav.brand") }} />
+<Stack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
+<Stack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
+<Stack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
 
-<Stack.Screen name="MyTrips" component={MyTripsScreen} options={{ title: "My Trips" }} />
-<Stack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: "Create Trip" }} />
-<Stack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: "Trip Detail" }} />
+<Stack.Screen name="MyTrips" component={MyTripsScreen} options={{ title: t("nav.myTrips") }} />
+<Stack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
+<Stack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: t("nav.tripDetail") }} />
 
-<Stack.Screen name="Savings" component={SavingsScreen} options={{ title: "Savings" }} />
-<Stack.Screen name="SmartShoppingCalculator" component={SmartShoppingCalculatorScreen} options={{ title: "Smart Shopping" }} />
-<Stack.Screen name="PriceAdvantageCalculator" component={PriceAdvantageCalculatorScreen} options={{ title: "Price Advantage" }} />
-<Stack.Screen name="TaxFreeCalculator" component={TaxFreeCalculatorScreen} options={{ title: "Tax Free Calculator" }} />
-<Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} options={{ title: "Language" }} />
-<Stack.Screen name="CurrencySettings" component={CurrencySettingsScreen} options={{ title: "Currency" }} />
-<Stack.Screen name="NotificationSettings" component={NotificationSettingsScreen} options={{ title: "Notifications" }} />
-<Stack.Screen name="OfflinePacks" component={OfflinePacksScreen} options={{ title: "Offline Packs" }} />
+<Stack.Screen name="Savings" component={SavingsScreen} options={{ title: t("nav.savings") }} />
+<Stack.Screen name="SmartShoppingCalculator" component={SmartShoppingCalculatorScreen} options={{ title: t("nav.smartShopping") }} />
+<Stack.Screen name="PriceAdvantageCalculator" component={PriceAdvantageCalculatorScreen} options={{ title: t("nav.priceAdvantage") }} />
+<Stack.Screen name="TaxFreeCalculator" component={TaxFreeCalculatorScreen} options={{ title: t("nav.taxFreeCalculator") }} />
+<Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} options={{ title: t("nav.language") }} />
+<Stack.Screen name="CurrencySettings" component={CurrencySettingsScreen} options={{ title: t("nav.currency") }} />
+<Stack.Screen name="NotificationSettings" component={NotificationSettingsScreen} options={{ title: t("nav.notifications") }} />
+<Stack.Screen name="OfflinePacks" component={OfflinePacksScreen} options={{ title: t("nav.offlinePacks") }} />
 
-<Stack.Screen name="WriteReview" component={WriteReviewScreen} options={{ title: "Write Review" }} />
-<Stack.Screen name="FlightDealSettings" component={FlightDealSettingsScreen} options={{ title: "Flight Deals" }} />
-<Stack.Screen name="FlightDeals" component={FlightDealsScreen} options={{ title: "Flight Deals" }} />
-<Stack.Screen name="FlightDealDetail" component={FlightDealDetailScreen} options={{ title: "Flight Deal" }} />
+<Stack.Screen name="WriteReview" component={WriteReviewScreen} options={{ title: t("nav.writeReview") }} />
+<Stack.Screen name="FlightDealSettings" component={FlightDealSettingsScreen} options={{ title: t("nav.flightDeals") }} />
+<Stack.Screen name="FlightDeals" component={FlightDealsScreen} options={{ title: t("nav.flightDeals") }} />
+<Stack.Screen name="FlightDealDetail" component={FlightDealDetailScreen} options={{ title: t("nav.flightDeal") }} />
 
-<Stack.Screen name="Login" component={LoginScreen} options={{ title: "Sign In" }} />
-<Stack.Screen name="MyReviews" component={MyReviewsScreen} options={{ title: "My Reviews" }} />
-<Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} options={{ title: "Privacy Policy" }} />
-<Stack.Screen name="TermsConditions" component={TermsConditionsScreen} options={{ title: "Terms & Conditions" }} />
-<Stack.Screen name="ContactUs" component={ContactUsScreen} options={{ title: "Contact Us" }} />
-<Stack.Screen name="HelpFaq" component={HelpFaqScreen} options={{ title: "Help & FAQ" }} />
-<Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} options={{ title: "Delete Account" }} />
+<Stack.Screen name="Login" component={LoginScreen} options={{ title: t("nav.signIn") }} />
+<Stack.Screen name="MyReviews" component={MyReviewsScreen} options={{ title: t("nav.myReviews") }} />
+<Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} options={{ title: t("nav.privacyPolicy") }} />
+<Stack.Screen name="TermsConditions" component={TermsConditionsScreen} options={{ title: t("nav.termsConditions") }} />
+<Stack.Screen name="ContactUs" component={ContactUsScreen} options={{ title: t("nav.contactUs") }} />
+<Stack.Screen name="HelpFaq" component={HelpFaqScreen} options={{ title: t("nav.helpFaq") }} />
+<Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} options={{ title: t("nav.deleteAccount") }} />
 </Stack.Navigator>
 </NavigationContainer>
 );

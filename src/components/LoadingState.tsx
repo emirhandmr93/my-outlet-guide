@@ -3,17 +3,21 @@ import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { useTranslation } from "../hooks/useTranslation";
 
 type LoadingStateProps = {
   title?: string;
   message?: string;
 };
 
-export function LoadingState({ title = "Loading", message }: LoadingStateProps) {
+export function LoadingState({ title, message }: LoadingStateProps) {
+  const { t } = useTranslation();
+  const displayTitle = title ?? t("common.loading");
+
   return (
     <View style={styles.container}>
       <ActivityIndicator color={colors.gold} size="small" />
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{displayTitle}</Text>
       {message ? <Text style={styles.message}>{message}</Text> : null}
     </View>
   );
