@@ -43,7 +43,9 @@ function getDaysUntil(date: string) {
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
-function createTripDashboardCard(trips: Trip[]): DashboardCard | null {
+type DashboardTranslator = (key: string) => string;
+
+function createTripDashboardCard(trips: Trip[], t: DashboardTranslator): DashboardCard | null {
   const upcomingTrips = trips
     .filter((trip) => trip.status === "Upcoming")
     .sort(
@@ -67,17 +69,18 @@ function createTripDashboardCard(trips: Trip[]): DashboardCard | null {
     id: `trip-${nextTrip.id}`,
     type: "trip",
     priority: 1,
-    title: `${nextTrip.tripName} is coming up`,
-    description: `Your shopping trip starts in ${daysUntilTrip} day${
-      daysUntilTrip === 1 ? "" : "s"
-    }. Check outlets, Tax Free details, transportation and offline packs before you go.`,
-    actionText: "View trip",
+    title: t("dashboard.trip.title").replace("{tripName}", nextTrip.tripName),
+    description: t(daysUntilTrip === 1 ? "dashboard.trip.descriptionOne" : "dashboard.trip.descriptionOther").replace(
+      "{days}",
+      String(daysUntilTrip),
+    ),
+    actionText: t("dashboard.trip.action"),
     actionRoute: "MyTrips",
-    badge: "Trip Reminder",
+    badge: t("dashboard.trip.badge"),
   };
 }
 
-function createFlightDashboardCard(): DashboardCard | null {
+function createFlightDashboardCard(t: DashboardTranslator): DashboardCard | null {
   const flightDeal = getPrimaryFlightDeal();
 
   if (!flightDeal) {
@@ -89,10 +92,10 @@ function createFlightDashboardCard(): DashboardCard | null {
     type: "flight",
     priority: 2,
     title: flightDeal.airline,
-    description: `${flightDeal.routeText} • ${flightDeal.currentPrice} • Updated ${flightDeal.lastUpdatedText}`,
-    actionText: "View flight deal",
+    description: `${flightDeal.routeText} • ${flightDeal.currentPrice} • ${t("dashboard.card.updated")} ${flightDeal.lastUpdatedText}`,
+    actionText: t("dashboard.flight.action"),
     actionRoute: "FlightDealDetail",
-    badge: "Flight Deal",
+    badge: t("dashboard.flight.badge"),
     metadata: {
       airline: flightDeal.airline,
       route: flightDeal.routeText,
@@ -103,28 +106,27 @@ function createFlightDashboardCard(): DashboardCard | null {
   };
 }
 
-function createRecommendationCard(): DashboardCard {
+function createRecommendationCard(t: DashboardTranslator): DashboardCard {
   return {
     id: "recommendation-create-trip",
     type: "recommendation",
     priority: 6,
-    title: "Plan your next outlet trip",
-    description:
-      "Create a shopping trip to unlock personalized outlet suggestions, Tax Free reminders, transportation tips and offline packs.",
-    actionText: "Create trip",
+    title: t("dashboard.recommendation.title"),
+    description: t("dashboard.recommendation.description"),
+    actionText: t("dashboard.recommendation.action"),
     actionRoute: "CreateTrip",
-    badge: "Recommended",
+    badge: t("dashboard.recommendation.badge"),
     metadata: {
-      focus: "Shopping Trip",
+      focus: t("dashboard.recommendation.focus"),
     },
   };
 }
 
-export function getDashboardCards(trips: Trip[]): DashboardCard[] {
+export function getDashboardCards(trips: Trip[], t: DashboardTranslator): DashboardCard[] {
   const cards = [
-    createTripDashboardCard(trips),
-    createFlightDashboardCard(),
-    createRecommendationCard(),
+    createTripDashboardCard(trips, t),
+    createFlightDashboardCard(t),
+    createRecommendationCard(t),
   ].filter((card): card is DashboardCard => Boolean(card));
 
   return cards.sort((a, b) => a.priority - b.priority);

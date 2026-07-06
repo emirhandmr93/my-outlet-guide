@@ -1,4 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useTranslation } from "../hooks/useTranslation";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
@@ -15,10 +16,10 @@ type DashboardUpdateCardProps = {
   onPress: () => void;
 };
 
-const dealLabels: Record<string, string> = {
-  good: "Good Deal",
-  great: "Great Deal",
-  amazing: "Amazing Deal",
+const dealLabelKeys: Record<string, string> = {
+  good: "dashboard.card.deal.good",
+  great: "dashboard.card.deal.great",
+  amazing: "dashboard.card.deal.amazing",
 };
 
 export function DashboardUpdateCard({
@@ -30,8 +31,9 @@ export function DashboardUpdateCard({
   metadata,
   onPress,
 }: DashboardUpdateCardProps) {
+  const { t } = useTranslation();
   const dealLevel = metadata?.dealLevel
-    ? dealLabels[metadata.dealLevel] || metadata.dealLevel
+    ? t(dealLabelKeys[metadata.dealLevel] || metadata.dealLevel)
     : undefined;
   const route = metadata?.route;
   const price = metadata?.price;
@@ -56,7 +58,7 @@ export function DashboardUpdateCard({
       )}
 
       {route || price ? (
-        <Text style={styles.description}>{updated ? `Updated ${updated}` : description}</Text>
+        <Text style={styles.description}>{updated ? `${t("dashboard.card.updated")} ${updated}` : description}</Text>
       ) : null}
 
       <View style={styles.actionRow}>
