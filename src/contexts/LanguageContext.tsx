@@ -1,67 +1,78 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
-createContext,
-ReactNode,
-useContext,
-useEffect,
-useState,
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
 } from "react";
 
+import {
+  isTranslationLanguage,
+  TranslationLanguage,
+} from "../translations/translations";
+
 type LanguageContextType = {
-language: string;
-setLanguage: (languageCode: string) => void;
+  language: TranslationLanguage;
+  setLanguage: (languageCode: TranslationLanguage) => Promise<void>;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
-undefined
+  undefined
 );
 
 const STORAGE_KEY = "my_outlet_guide_language";
+const DEFAULT_LANGUAGE: TranslationLanguage = "en";
 
 export function LanguageProvider({
-children,
+  children,
 }: {
-children: ReactNode;
+  children: ReactNode;
 }) {
-const [language, setLanguageState] = useState("en");
+  const [language, setLanguageState] = useState<TranslationLanguage>(
+    DEFAULT_LANGUAGE
+  );
 
-useEffect(() => {
-loadLanguage();
-}, []);
+  useEffect(() => {
+    loadLanguage();
+  }, []);
 
-async function loadLanguage() {
-const savedLanguage = await AsyncStorage.getItem(STORAGE_KEY);
+  async function loadLanguage() {
+    const savedLanguage = await AsyncStorage.getItem(STORAGE_KEY);
 
-if (savedLanguage) {
-setLanguageState(savedLanguage);
-}
-}
+    if (isTranslationLanguage(savedLanguage)) {
+      setLanguageState(savedLanguage);
+      return;
+    }
 
-async function setLanguage(languageCode: string) {
-setLanguageState(languageCode);
-await AsyncStorage.setItem(STORAGE_KEY, languageCode);
-}
+    setLanguageState(DEFAULT_LANGUAGE);
+  }
 
-return (
-<LanguageContext.Provider
-value={{
-language,
-setLanguage,
-}}
->
-{children}
-</LanguageContext.Provider>
-);
+  async function setLanguage(languageCode: TranslationLanguage) {
+    setLanguageState(languageCode);
+    await AsyncStorage.setItem(STORAGE_KEY, languageCode);
+  }
+
+  return (
+    <LanguageContext.Provider
+      value={{
+        language,
+        setLanguage,
+      }}
+    >
+      {children}
+    </LanguageContext.Provider>
+  );
 }
 
 export function useLanguage() {
-const context = useContext(LanguageContext);
+  const context = useContext(LanguageContext);
 
-if (!context) {
-throw new Error(
-"useLanguage must be used inside LanguageProvider"
-);
-}
+  if (!context) {
+    throw new Error(
+      "useLanguage must be used inside LanguageProvider"
+    );
+  }
 
-return context;
+  return context;
 }
