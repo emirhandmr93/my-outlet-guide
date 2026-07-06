@@ -469,5 +469,25 @@ export const cities = [
     "cityId": "braintree",
     "cityName": "Braintree",
     "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "tillicoultry",
+    "cityName": "Tillicoultry",
+    "countryId": "united-kingdom"
+  },
+  {
+    "cityId": "valmontone",
+    "cityName": "Valmontone",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "eboli",
+    "cityName": "Eboli",
+    "countryId": "italy"
+  },
+  {
+    "cityId": "citta-sant-angelo",
+    "cityName": "Città Sant'Angelo",
+    "countryId": "italy"
   }
 ];
