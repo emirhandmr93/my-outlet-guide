@@ -16,7 +16,7 @@ import { typography } from "../theme/typography";
 type OutletHeroProps = {
   name: string;
   location: string;
-  selectedImage: OutletMediaImage;
+  selectedImage?: OutletMediaImage | null;
   galleryImages: OutletMediaImage[];
   favoriteButtonText?: string;
   onPressHeroImage: () => void;
@@ -32,16 +32,31 @@ export function OutletHero({
   onPressHeroImage,
   onPressGalleryImage,
 }: OutletHeroProps) {
-  const images = galleryImages.length > 0 ? galleryImages : [selectedImage];
+  const hasSelectedImage = Boolean(selectedImage);
+  const images = galleryImages.length > 0
+    ? galleryImages
+    : selectedImage
+      ? [selectedImage]
+      : [];
 
   return (
     <View style={styles.wrapper}>
-      <TouchableOpacity activeOpacity={0.9} onPress={onPressHeroImage}>
+      <TouchableOpacity
+        activeOpacity={hasSelectedImage ? 0.9 : 1}
+        disabled={!hasSelectedImage}
+        onPress={onPressHeroImage}
+      >
         <View style={styles.heroWrap}>
-          <Image
-            source={getImageSource(selectedImage)}
-            style={styles.heroImage}
-          />
+          {selectedImage ? (
+            <Image
+              source={getImageSource(selectedImage)}
+              style={styles.heroImage}
+            />
+          ) : (
+            <View style={styles.noImagePlaceholder}>
+              <Text style={styles.noImageIcon}>🛍️</Text>
+            </View>
+          )}
           <View style={styles.overlay} />
 
           <View style={styles.kickerPill}>
@@ -95,6 +110,17 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     width: "100%",
     height: "100%",
+  },
+
+  noImagePlaceholder: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.primary,
+  },
+
+  noImageIcon: {
+    fontSize: 48,
   },
 
   overlay: {

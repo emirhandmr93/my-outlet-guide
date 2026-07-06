@@ -34,8 +34,9 @@ import { useTranslation } from "../hooks/useTranslation";
 import {
   getImageSource,
   getOutletMediaImages,
-  outletMediaFallbackImages,
+  type OutletMediaImage,
 } from "../media/outletMedia";
+import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getBrandCategoryGroupsForOutlet } from "../services/brandService";
 import { getRestaurantsForOutlet } from "../services/restaurantService";
 import { getTransportationForOutlet } from "../services/transportationService";
@@ -49,7 +50,7 @@ import { typography } from "../theme/typography";
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
-const fallbackImage = outletMediaFallbackImages[0];
+const outletMediaMode = getConfiguredOutletMediaMode();
 
 
 type RouteParams = {
@@ -104,11 +105,11 @@ export function OutletDetailScreen() {
     outlets.find((item) => item?.outletId === route.params?.outletId) || outlets.find((item) => Boolean(item)) || outlets[0];
 
   const safeGalleryImages = useMemo(() => {
-    return getOutletMediaImages(outlet);
+    return getOutletMediaImages(outlet, { mode: outletMediaMode });
   }, [outlet.galleryImages, outlet.heroImage, outlet.outletId]);
 
-  const [selectedImage, setSelectedImage] = useState(
-    safeGalleryImages[0] || fallbackImage
+  const [selectedImage, setSelectedImage] = useState<OutletMediaImage | null>(
+    safeGalleryImages[0] ?? null
   );
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [brandSearch, setBrandSearch] = useState("");
@@ -121,7 +122,7 @@ export function OutletDetailScreen() {
   const [sectionPositions, setSectionPositions] = useState<Record<string, number>>({});
 
   useEffect(() => {
-    setSelectedImage(safeGalleryImages[0] || fallbackImage);
+    setSelectedImage(safeGalleryImages[0] ?? null);
   }, [safeGalleryImages]);
 
   useEffect(() => {
@@ -217,7 +218,9 @@ export function OutletDetailScreen() {
     );
   });
 
-  const currentGalleryIndex = safeGalleryImages.indexOf(selectedImage);
+  const currentGalleryIndex = selectedImage
+    ? safeGalleryImages.indexOf(selectedImage)
+    : -1;
 
   const airportSummary = Array.isArray(outlet.airports) && outlet.airports.length > 0
     ? outlet.airports
@@ -242,7 +245,6 @@ export function OutletDetailScreen() {
 
   function showPreviousImage() {
     if (safeGalleryImages.length === 0) {
-      setSelectedImage(fallbackImage);
       return;
     }
 
@@ -256,7 +258,6 @@ export function OutletDetailScreen() {
 
   function showNextImage() {
     if (safeGalleryImages.length === 0) {
-      setSelectedImage(fallbackImage);
       return;
     }
 
@@ -280,7 +281,11 @@ export function OutletDetailScreen() {
         favoriteButtonText={
           favorite ? t("outlet.removeFavorite") : t("outlet.addFavorite")
         }
-        onPressHeroImage={() => setIsGalleryOpen(true)}
+        onPressHeroImage={() => {
+          if (selectedImage) {
+            setIsGalleryOpen(true);
+          }
+        }}
         onPressGalleryImage={setSelectedImage}
         onPressFavorite={() => {
           if (!requireAuth({ isLoggedIn, navigation })) {
@@ -313,11 +318,17 @@ export function OutletDetailScreen() {
               showsHorizontalScrollIndicator={false}
               showsVerticalScrollIndicator={false}
             >
-              <Image
-                source={getImageSource(selectedImage || fallbackImage)}
-                style={styles.galleryModalImage}
-                resizeMode="contain"
-              />
+              {selectedImage ? (
+                <Image
+                  source={getImageSource(selectedImage)}
+                  style={styles.galleryModalImage}
+                  resizeMode="contain"
+                />
+              ) : (
+                <View style={styles.galleryNoImagePlaceholder}>
+                  <Text style={styles.galleryNoImageIcon}>🛍️</Text>
+                </View>
+              )}
             </ScrollView>
 
             <TouchableOpacity style={styles.galleryArrowRight} onPress={showNextImage}>
@@ -595,6 +606,18 @@ const styles = StyleSheet.create({
   galleryModalImage: {
     width: screenWidth,
     height: screenHeight * 0.75,
+  },
+
+  galleryNoImagePlaceholder: {
+    width: screenWidth,
+    height: screenHeight * 0.75,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.primary,
+  },
+
+  galleryNoImageIcon: {
+    fontSize: 56,
   },
 
   galleryCloseButton: {
