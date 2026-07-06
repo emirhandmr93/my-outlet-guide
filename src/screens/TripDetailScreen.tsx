@@ -6,6 +6,8 @@ import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "
 import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
 import { useTrips } from "../contexts/TripsContext";
+import { useTranslation } from "../hooks/useTranslation";
+import { getTripStatusLabel } from "../utils/getTripStatusLabel";
 
 type RouteParams = {
   TripDetail: {
@@ -28,6 +30,7 @@ export function TripDetailScreen() {
   const route = useRoute<RouteProp<RouteParams, "TripDetail">>();
   const navigation = useNavigation<any>();
   const { trips, addCityToTrip } = useTrips();
+  const { t } = useTranslation();
 
   const trip = trips.find((item) => item.id === route.params?.tripId);
 
@@ -39,9 +42,9 @@ export function TripDetailScreen() {
   if (!trip) {
     return (
       <View style={styles.centerState}>
-        <Text style={styles.emptyTitle}>Trip not found</Text>
+        <Text style={styles.emptyTitle}>{t("tripDetail.notFound")}</Text>
         <TouchableOpacity style={styles.primaryButton} onPress={() => navigation.goBack()}>
-          <Text style={styles.primaryButtonText}>Go back</Text>
+          <Text style={styles.primaryButtonText}>{t("tripDetail.goBack")}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -52,12 +55,12 @@ export function TripDetailScreen() {
 
   function handleAddCity() {
     if (!selectedCity || !arrivalDate || !departureDate) {
-      alert("Please select a city and travel dates.");
+      alert(t("tripDetail.alertCityDates"));
       return;
     }
 
     if (departureDate < arrivalDate) {
-      alert("Departure date cannot be before arrival date.");
+      alert(t("tripDetail.alertDeparture"));
       return;
     }
 
@@ -67,7 +70,7 @@ export function TripDetailScreen() {
     tripEnd.setHours(23, 59, 59, 999);
 
     if (arrivalDate < tripStart || departureDate > tripEnd) {
-      alert("City dates must be inside your trip dates.");
+      alert(t("tripDetail.alertInsideTrip"));
       return;
     }
 
@@ -85,40 +88,40 @@ export function TripDetailScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>SHOPPING TRIP</Text>
+        <Text style={styles.kicker}>{t("tripDetail.heroKicker")}</Text>
         <Text style={styles.title}>{activeTrip.tripName}</Text>
         <Text style={styles.subtitle}>{activeTrip.startDate} → {activeTrip.endDate}</Text>
       </View>
 
       <View style={styles.summaryRow}>
         <View style={styles.summaryBox}>
-          <Text style={styles.summaryValue}>{activeTrip.status}</Text>
-          <Text style={styles.summaryLabel}>Status</Text>
+          <Text style={styles.summaryValue}>{getTripStatusLabel(activeTrip.status, t)}</Text>
+          <Text style={styles.summaryLabel}>{t("tripDetail.statusSummary")}</Text>
         </View>
         <View style={styles.summaryBox}>
           <Text style={styles.summaryValue}>{activeTrip.tripCities.length}</Text>
-          <Text style={styles.summaryLabel}>Cities</Text>
+          <Text style={styles.summaryLabel}>{t("trips.cities")}</Text>
         </View>
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>Flight</Text>
-        <Text style={styles.detailLabel}>Flight number</Text>
-        <Text style={styles.detailValue}>{activeTrip.flightNumber || "Not added"}</Text>
-        <Text style={styles.detailLabel}>Departure airport</Text>
-        <Text style={styles.detailValue}>{activeTrip.departureAirport || "Not added"}</Text>
-        <Text style={styles.detailLabel}>Departure time</Text>
-        <Text style={styles.detailValue}>{activeTrip.departureTime || "Not added"}</Text>
+        <Text style={styles.sectionTitle}>{t("tripDetail.flight")}</Text>
+        <Text style={styles.detailLabel}>{t("tripDetail.flightNumber")}</Text>
+        <Text style={styles.detailValue}>{activeTrip.flightNumber || t("tripDetail.notAdded")}</Text>
+        <Text style={styles.detailLabel}>{t("tripDetail.departureAirport")}</Text>
+        <Text style={styles.detailValue}>{activeTrip.departureAirport || t("tripDetail.notAdded")}</Text>
+        <Text style={styles.detailLabel}>{t("tripDetail.departureTime")}</Text>
+        <Text style={styles.detailValue}>{activeTrip.departureTime || t("tripDetail.notAdded")}</Text>
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>Trip cities</Text>
+        <Text style={styles.sectionTitle}>{t("tripDetail.tripCities")}</Text>
 
         {activeTrip.tripCities.length === 0 ? (
           <View style={styles.emptyCityBox}>
-            <Text style={styles.emptyCityTitle}>No city added yet</Text>
+            <Text style={styles.emptyCityTitle}>{t("tripDetail.emptyCityTitle")}</Text>
             <Text style={styles.emptyCityText}>
-              Add cities to unlock local outlet suggestions, Tax Free reminders and offline packs.
+              {t("tripDetail.emptyCityTextLong")}
             </Text>
           </View>
         ) : (
@@ -132,7 +135,7 @@ export function TripDetailScreen() {
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>Add city</Text>
+        <Text style={styles.sectionTitle}>{t("tripDetail.addCityTitle")}</Text>
 
         <View style={styles.cityGrid}>
           {cities.map((city) => {
@@ -156,7 +159,7 @@ export function TripDetailScreen() {
           })}
         </View>
 
-        <Text style={styles.detailLabel}>Arrival date</Text>
+        <Text style={styles.detailLabel}>{t("tripDetail.arrivalDate")}</Text>
         <TouchableOpacity
           style={styles.inputBox}
           activeOpacity={0.86}
@@ -166,11 +169,11 @@ export function TripDetailScreen() {
           }}
         >
           <Text style={arrivalDate ? styles.inputText : styles.placeholderText}>
-            {arrivalDate ? formatDate(arrivalDate) : "Select arrival date"}
+            {arrivalDate ? formatDate(arrivalDate) : t("tripDetail.selectArrivalDate")}
           </Text>
         </TouchableOpacity>
 
-        <Text style={styles.detailLabel}>Departure date</Text>
+        <Text style={styles.detailLabel}>{t("tripDetail.departureDate")}</Text>
         <TouchableOpacity
           style={styles.inputBox}
           activeOpacity={0.86}
@@ -180,7 +183,7 @@ export function TripDetailScreen() {
           }}
         >
           <Text style={departureDate ? styles.inputText : styles.placeholderText}>
-            {departureDate ? formatDate(departureDate) : "Select departure date"}
+            {departureDate ? formatDate(departureDate) : t("tripDetail.selectDepartureDate")}
           </Text>
         </TouchableOpacity>
 
@@ -207,14 +210,14 @@ export function TripDetailScreen() {
             />
             {Platform.OS === "ios" && (
               <TouchableOpacity style={styles.doneButton} onPress={() => setPickerType(null)}>
-                <Text style={styles.doneButtonText}>Done</Text>
+                <Text style={styles.doneButtonText}>{t("tripDetail.done")}</Text>
               </TouchableOpacity>
             )}
           </View>
         )}
 
         <TouchableOpacity style={styles.primaryButton} activeOpacity={0.86} onPress={handleAddCity}>
-          <Text style={styles.primaryButtonText}>Add city →</Text>
+          <Text style={styles.primaryButtonText}>{t("tripDetail.addCityCta")}</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
