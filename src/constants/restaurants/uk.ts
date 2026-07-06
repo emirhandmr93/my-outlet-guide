@@ -2998,5 +2998,36 @@ export const ukRestaurants = [
     "website": "https://www.braintree-village.com/en/eat-listing",
     "status": "active",
     "displayOrder": "13"
+  },
+  {
+    "restaurantId": "affinity-sterling-mills-bakers-and-baristas",
+    "outletId": "affinity-sterling-mills",
+    "restaurantName": "Bakers + Baristas",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.sterlingmills.com/stores-at-sterling-mills/bbs-coffee-and-muffins",
+    "status": "active",
+    "displayOrder": "1"
+  },
+  {
+    "restaurantId": "affinity-sterling-mills-costa",
+    "outletId": "affinity-sterling-mills",
+    "restaurantName": "Costa",
+    "category": "Cafe",
+    "priceLevel": "££",
+    "website": "https://www.sterlingmills.com/stores-at-sterling-mills/costa",
+    "status": "active",
+    "displayOrder": "2"
+  },
+  {
+    "restaurantId": "affinity-sterling-mills-greggs",
+    "outletId": "affinity-sterling-mills",
+    "restaurantName": "Greggs",
+    "category": "Fast Food",
+    "priceLevel": "££",
+    "website": "https://www.sterlingmills.com/stores-at-sterling-mills/greggs",
+    "status": "active",
+    "displayOrder": "3"
+
   }
 ];
