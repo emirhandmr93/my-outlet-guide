@@ -282,12 +282,18 @@ function getOutletDisplayName(outletId: string): string {
 }
 
 export function getProductionMediaCredits(): OutletMediaCredit[] {
-  return outletMediaMetadata
-    .filter(isCompleteProductionCreditMetadata)
-    .map((metadata) => ({
-      ...metadata,
-      displayName: getOutletDisplayName(metadata.outletId),
-    }));
+  return outletMediaMetadata.flatMap((metadata): OutletMediaCredit[] => {
+    if (!isCompleteProductionCreditMetadata(metadata)) {
+      return [];
+    }
+
+    return [
+      {
+        ...metadata,
+        displayName: getOutletDisplayName(metadata.outletId),
+      },
+    ];
+  });
 }
 
 export function getMediaCreditsForOutlet(outletId: string): OutletMediaCredit[] {
