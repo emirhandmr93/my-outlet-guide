@@ -2,38 +2,40 @@ import { useNavigation } from "@react-navigation/native";
 import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { Trip, useTrips } from "../contexts/TripsContext";
+import { useTranslation } from "../hooks/useTranslation";
+import { getTripStatusLabel } from "../utils/getTripStatusLabel";
 
-function formatCities(trip: Trip) {
+function formatCities(trip: Trip, t: (key: string) => string) {
   if (trip.tripCities.length === 0) {
-    return "No cities added yet";
+    return t("trips.noCitiesYet");
   }
 
   return trip.tripCities.map((city) => city.cityName).join(" • ");
 }
 
-function TripCard({ trip, onPress, onDelete }: { trip: Trip; onPress: () => void; onDelete: () => void }) {
+function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => void; onDelete: () => void; t: (key: string) => string }) {
   return (
     <TouchableOpacity style={styles.tripCard} activeOpacity={0.86} onPress={onPress}>
       <View style={styles.cardTopRow}>
-        <Text style={styles.statusPill}>{trip.status}</Text>
+        <Text style={styles.statusPill}>{getTripStatusLabel(trip.status, t)}</Text>
         <Text style={styles.dateText}>{trip.startDate} → {trip.endDate}</Text>
       </View>
 
-      <Text style={styles.tripTitle}>{trip.tripName || "Shopping Trip"}</Text>
-      <Text style={styles.tripCities}>{formatCities(trip)}</Text>
+      <Text style={styles.tripTitle}>{trip.tripName || t("trips.defaultTripName")}</Text>
+      <Text style={styles.tripCities}>{formatCities(trip, t)}</Text>
 
       <View style={styles.tripMetaRow}>
         <View style={styles.metaBox}>
           <Text style={styles.metaValue}>{trip.tripCities.length}</Text>
-          <Text style={styles.metaLabel}>Cities</Text>
+          <Text style={styles.metaLabel}>{t("trips.cities")}</Text>
         </View>
         <View style={styles.metaBox}>
-          <Text style={styles.metaValue}>{trip.flightNumber ? "Added" : "—"}</Text>
-          <Text style={styles.metaLabel}>Flight</Text>
+          <Text style={styles.metaValue}>{trip.flightNumber ? t("trips.added") : "—"}</Text>
+          <Text style={styles.metaLabel}>{t("trips.flight")}</Text>
         </View>
         <View style={styles.metaBox}>
-          <Text style={styles.metaValue}>Ready</Text>
-          <Text style={styles.metaLabel}>Tax Free</Text>
+          <Text style={styles.metaValue}>{t("trips.ready")}</Text>
+          <Text style={styles.metaLabel}>{t("trips.taxFree")}</Text>
         </View>
       </View>
 
@@ -41,13 +43,13 @@ function TripCard({ trip, onPress, onDelete }: { trip: Trip; onPress: () => void
         style={styles.deleteButton}
         onPress={(event) => {
           event.stopPropagation();
-          Alert.alert("Delete trip", "Remove this shopping trip?", [
-            { text: "Cancel", style: "cancel" },
-            { text: "Delete", style: "destructive", onPress: onDelete },
+          Alert.alert(t("trips.deleteConfirmTitle"), t("trips.deleteConfirmMessage"), [
+            { text: t("common.cancel"), style: "cancel" },
+            { text: t("common.delete"), style: "destructive", onPress: onDelete },
           ]);
         }}
       >
-        <Text style={styles.deleteButtonText}>Delete</Text>
+        <Text style={styles.deleteButtonText}>{t("common.delete")}</Text>
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -56,6 +58,7 @@ function TripCard({ trip, onPress, onDelete }: { trip: Trip; onPress: () => void
 export function MyTripsScreen() {
   const navigation = useNavigation<any>();
   const { trips, deleteTrip } = useTrips();
+  const { t } = useTranslation();
 
   const activeCount = trips.filter((trip) => trip.status === "Active").length;
   const upcomingCount = trips.filter((trip) => trip.status === "Upcoming").length;
@@ -63,25 +66,25 @@ export function MyTripsScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>SHOPPING TRIPS</Text>
-        <Text style={styles.title}>Plan smarter outlet days.</Text>
+        <Text style={styles.kicker}>{t("trips.heroKicker")}</Text>
+        <Text style={styles.title}>{t("trips.heroTitle")}</Text>
         <Text style={styles.subtitle}>
-          Save your cities, travel dates, flight details and Tax Free reminders in one place.
+          {t("trips.heroSubtitle")}
         </Text>
       </View>
 
       <View style={styles.summaryRow}>
         <View style={styles.summaryBox}>
           <Text style={styles.summaryValue}>{trips.length}</Text>
-          <Text style={styles.summaryLabel}>Trips</Text>
+          <Text style={styles.summaryLabel}>{t("trips.summaryTrips")}</Text>
         </View>
         <View style={styles.summaryBox}>
           <Text style={styles.summaryValue}>{activeCount}</Text>
-          <Text style={styles.summaryLabel}>Active</Text>
+          <Text style={styles.summaryLabel}>{t("status.active")}</Text>
         </View>
         <View style={styles.summaryBox}>
           <Text style={styles.summaryValue}>{upcomingCount}</Text>
-          <Text style={styles.summaryLabel}>Upcoming</Text>
+          <Text style={styles.summaryLabel}>{t("status.upcoming")}</Text>
         </View>
       </View>
 
@@ -90,15 +93,15 @@ export function MyTripsScreen() {
         activeOpacity={0.86}
         onPress={() => navigation.navigate("CreateTrip")}
       >
-        <Text style={styles.primaryButtonText}>Create shopping trip →</Text>
+        <Text style={styles.primaryButtonText}>{t("trips.createShoppingTripCta")}</Text>
       </TouchableOpacity>
 
       {trips.length === 0 ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyIcon}>🧳</Text>
-          <Text style={styles.emptyTitle}>No trip planned yet</Text>
+          <Text style={styles.emptyTitle}>{t("trips.emptyTitle")}</Text>
           <Text style={styles.emptyText}>
-            Create your first trip to unlock travel reminders, offline packs and Tax Free alerts.
+            {t("trips.emptyText")}
           </Text>
         </View>
       ) : (
@@ -108,6 +111,7 @@ export function MyTripsScreen() {
             trip={trip}
             onDelete={() => deleteTrip(trip.id)}
             onPress={() => navigation.navigate("TripDetail", { tripId: trip.id })}
+            t={t}
           />
         ))
       )}

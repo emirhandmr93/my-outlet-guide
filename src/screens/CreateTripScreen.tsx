@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { useTrips } from "../contexts/TripsContext";
+import { useTranslation } from "../hooks/useTranslation";
 import { useUser } from "../contexts/UserContext";
 import { requireAuth } from "../utils/requireAuth";
 
@@ -18,6 +19,7 @@ export function CreateTripScreen() {
   const navigation = useNavigation<any>();
   const { isLoggedIn } = useUser();
   const { addTrip } = useTrips();
+  const { t } = useTranslation();
 
   const [tripName, setTripName] = useState("");
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -33,17 +35,17 @@ export function CreateTripScreen() {
     }
 
     if (!startDate || !endDate) {
-      alert("Please select start and end dates.");
+      alert(t("createTrip.alertDates"));
       return;
     }
 
     if (endDate < startDate) {
-      alert("End date cannot be before start date.");
+      alert(t("createTrip.alertEndDate"));
       return;
     }
 
     const newTripId = addTrip({
-      tripName: tripName.trim() || "Shopping Trip",
+      tripName: tripName.trim() || t("trips.defaultTripName"),
       startDate: formatDate(startDate),
       endDate: formatDate(endDate),
       tripCities: [],
@@ -60,26 +62,26 @@ export function CreateTripScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>NEW SHOPPING TRIP</Text>
-        <Text style={styles.title}>Build your outlet plan.</Text>
+        <Text style={styles.kicker}>{t("createTrip.heroKicker")}</Text>
+        <Text style={styles.title}>{t("createTrip.heroTitle")}</Text>
         <Text style={styles.subtitle}>
-          Add travel dates and flight details first. Cities can be added after creating the trip.
+          {t("createTrip.heroSubtitle")}
         </Text>
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>Trip details</Text>
+        <Text style={styles.sectionTitle}>{t("createTrip.tripDetails")}</Text>
 
-        <Text style={styles.label}>Trip name</Text>
+        <Text style={styles.label}>{t("createTrip.tripName")}</Text>
         <TextInput
           style={styles.input}
-          placeholder="Paris & Milan shopping trip"
+          placeholder={t("createTrip.tripNamePlaceholder")}
           placeholderTextColor="#8A8A8A"
           value={tripName}
           onChangeText={setTripName}
         />
 
-        <Text style={styles.label}>Start date</Text>
+        <Text style={styles.label}>{t("createTrip.startDate")}</Text>
         <TouchableOpacity
           style={styles.inputBox}
           activeOpacity={0.86}
@@ -89,11 +91,11 @@ export function CreateTripScreen() {
           }}
         >
           <Text style={startDate ? styles.inputText : styles.placeholderText}>
-            {startDate ? formatDate(startDate) : "Select start date"}
+            {startDate ? formatDate(startDate) : t("createTrip.selectStartDate")}
           </Text>
         </TouchableOpacity>
 
-        <Text style={styles.label}>End date</Text>
+        <Text style={styles.label}>{t("createTrip.endDate")}</Text>
         <TouchableOpacity
           style={styles.inputBox}
           activeOpacity={0.86}
@@ -103,18 +105,18 @@ export function CreateTripScreen() {
           }}
         >
           <Text style={endDate ? styles.inputText : styles.placeholderText}>
-            {endDate ? formatDate(endDate) : "Select end date"}
+            {endDate ? formatDate(endDate) : t("createTrip.selectEndDate")}
           </Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.card}>
-        <Text style={styles.sectionTitle}>Flight details</Text>
-        <Text style={styles.helperText}>Optional, but useful for reminders and dashboard updates.</Text>
+        <Text style={styles.sectionTitle}>{t("createTrip.flightDetails")}</Text>
+        <Text style={styles.helperText}>{t("createTrip.flightHelper")}</Text>
 
         <TextInput
           style={styles.input}
-          placeholder="Flight number, e.g. TK1821"
+          placeholder={t("createTrip.flightNumberPlaceholder")}
           placeholderTextColor="#8A8A8A"
           value={flightNumber}
           onChangeText={setFlightNumber}
@@ -123,7 +125,7 @@ export function CreateTripScreen() {
 
         <TextInput
           style={styles.input}
-          placeholder="Departure airport, e.g. ESB"
+          placeholder={t("createTrip.departureAirportPlaceholder")}
           placeholderTextColor="#8A8A8A"
           value={departureAirport}
           onChangeText={setDepartureAirport}
@@ -138,7 +140,7 @@ export function CreateTripScreen() {
           <Text style={departureTime ? styles.inputText : styles.placeholderText}>
             {departureTime
               ? departureTime.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-              : "Select departure time"}
+              : t("createTrip.departureTime")}
           </Text>
         </TouchableOpacity>
       </View>
@@ -171,14 +173,14 @@ export function CreateTripScreen() {
           />
           {Platform.OS === "ios" && (
             <TouchableOpacity style={styles.doneButton} onPress={() => setPickerType(null)}>
-              <Text style={styles.doneButtonText}>Done</Text>
+              <Text style={styles.doneButtonText}>{t("createTrip.done")}</Text>
             </TouchableOpacity>
           )}
         </View>
       )}
 
       <TouchableOpacity style={styles.primaryButton} activeOpacity={0.86} onPress={saveTrip}>
-        <Text style={styles.primaryButtonText}>Create trip →</Text>
+        <Text style={styles.primaryButtonText}>{t("createTrip.createCta")}</Text>
       </TouchableOpacity>
     </ScrollView>
   );
