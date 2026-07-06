@@ -76,7 +76,13 @@ function addIssue(issues: Issue[], level: IssueLevel, message: string): void {
 const referencedAssets = collectReferencedAssets();
 const diskAssets = collectDiskAssets();
 const metadataAssetCounts = new Map<string, number>();
+const strictMode =
+  process.argv.includes("--strict") || process.env.MEDIA_STRICT === "1";
 const issues: Issue[] = [];
+
+function hasValue(value: string | undefined): boolean {
+  return typeof value === "string" && value.trim().length > 0;
+}
 
 for (const metadata of outletMediaMetadata) {
   metadataAssetCounts.set(
@@ -123,15 +129,56 @@ for (const metadata of outletMediaMetadata) {
   if (metadata.sourceStatus === "unknown") {
     addIssue(
       issues,
-      "warning",
+      strictMode ? "error" : "warning",
       `${metadata.assetPath}: sourceStatus is unknown; asset is inventory-tracked but not production-cleared`,
     );
 
-    if (!metadata.sourceUrl || !metadata.credit || !metadata.license) {
+    if (
+      !hasValue(metadata.sourceUrl) ||
+      !hasValue(metadata.credit) ||
+      !hasValue(metadata.license)
+    ) {
       addIssue(
         issues,
         "warning",
         `${metadata.assetPath}: unknown-provenance entry is missing optional sourceUrl/credit/license`,
+      );
+    }
+  } else if (strictMode) {
+    const hasSourceUrl = hasValue(metadata.sourceUrl);
+    const hasProjectOwnedNote =
+      metadata.sourceStatus === "project-owned" &&
+      hasValue(metadata.notes) &&
+      /project-owned|project owned|internal/i.test(metadata.notes ?? "");
+
+    if (!hasSourceUrl && !hasProjectOwnedNote) {
+      addIssue(
+        issues,
+        "error",
+        `${metadata.assetPath}: production-cleared metadata requires sourceUrl or an explicit project-owned/internal note`,
+      );
+    }
+
+    if (
+      metadata.sourceStatus !== "project-owned" &&
+      !hasValue(metadata.license)
+    ) {
+      addIssue(
+        issues,
+        "error",
+        `${metadata.assetPath}: production-cleared metadata requires license`,
+      );
+    }
+
+    if (
+      (metadata.sourceStatus === "licensed" ||
+        metadata.sourceStatus === "permission-granted") &&
+      !hasValue(metadata.credit)
+    ) {
+      addIssue(
+        issues,
+        "error",
+        `${metadata.assetPath}: production-cleared metadata requires credit for licensed or permission-granted assets`,
       );
     }
   }
@@ -177,7 +224,11 @@ const statusCounts = outletMediaMetadata.reduce<Record<string, number>>(
 const errors = issues.filter((issue) => issue.level === "error");
 const warnings = issues.filter((issue) => issue.level === "warning");
 
-console.log("Outlet media metadata validation");
+console.log(
+  `Outlet media metadata validation (${
+    strictMode ? "strict production" : "default inventory"
+  } mode)`,
+);
 console.log(`Referenced local assets: ${referencedAssets.size}`);
 console.log(`Metadata records: ${outletMediaMetadata.length}`);
 console.log(`Disk assets: ${diskAssets.size}`);
@@ -195,5 +246,20 @@ console.log(`Warnings: ${warnings.length}`);
 console.log(`Errors: ${errors.length}`);
 
 if (errors.length > 0) {
+  console.error(
+    strictMode
+      ? "Production validation failed; resolve unknown or incomplete provenance before release."
+      : "Inventory validation failed with structural errors.",
+  );
   process.exit(1);
 }
+
+console.log(
+  warnings.length > 0
+    ? strictMode
+      ? "Production validation passed with warnings."
+      : "Inventory validation passed with warnings."
+    : strictMode
+      ? "Production validation passed."
+      : "Inventory validation passed.",
+);
