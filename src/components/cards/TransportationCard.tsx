@@ -7,6 +7,8 @@ import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { motion } from "../../theme/motion";
+import { useTranslation } from "../../hooks/useTranslation";
+import { formatTransportationTypeLabel } from "../../utils/transportationLabelFormatter";
 
 export type TransportationCardProps = {
   title: string;
@@ -41,6 +43,8 @@ export function TransportationCard({
   buttonText,
   onPressGuide,
 }: TransportationCardProps) {
+  const { t } = useTranslation();
+
   return (
     <Card>
       <SectionTitle title={title} />
@@ -55,20 +59,20 @@ export function TransportationCard({
 
               <View style={styles.headerText}>
                 <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.type}>{item.transportType}</Text>
+                <Text style={styles.type}>{formatTransportationTypeLabel(item.transportType, t)}</Text>
               </View>
             </View>
 
             <View style={styles.metaRow}>
               <View style={styles.metaBox}>
-                <Text style={styles.metaLabel}>Duration</Text>
+                <Text style={styles.metaLabel}>{t("transportation.duration")}</Text>
                 <Text style={styles.metaValue}>{item.duration}</Text>
               </View>
 
               <View style={styles.metaDivider} />
 
               <View style={styles.metaBox}>
-                <Text style={styles.metaLabel}>Cost</Text>
+                <Text style={styles.metaLabel}>{t("transportation.cost")}</Text>
                 <Text style={styles.metaValueGold}>{item.cost}</Text>
               </View>
             </View>
