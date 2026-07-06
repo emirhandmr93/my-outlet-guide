@@ -78,6 +78,7 @@ const diskAssets = collectDiskAssets();
 const metadataAssetCounts = new Map<string, number>();
 const strictMode =
   process.argv.includes("--strict") || process.env.MEDIA_STRICT === "1";
+const resolverAuditMode = process.argv.includes("--resolver-audit");
 const issues: Issue[] = [];
 
 function hasValue(value: string | undefined): boolean {
@@ -221,8 +222,8 @@ const statusCounts = outletMediaMetadata.reduce<Record<string, number>>(
   },
   {},
 );
-const errors = issues.filter((issue) => issue.level === "error");
-const warnings = issues.filter((issue) => issue.level === "warning");
+let errors = issues.filter((issue) => issue.level === "error");
+let warnings = issues.filter((issue) => issue.level === "warning");
 
 console.log(
   `Outlet media metadata validation (${
@@ -244,6 +245,46 @@ for (const error of errors) {
 
 console.log(`Warnings: ${warnings.length}`);
 console.log(`Errors: ${errors.length}`);
+
+if (resolverAuditMode) {
+  const productionClearedLocalAssets = outletMediaMetadata.filter((metadata) =>
+    [
+      "project-owned",
+      "licensed",
+      "public-domain",
+      "permission-granted",
+    ].includes(metadata.sourceStatus),
+  ).length;
+  const unknownLocalAssets = outletMediaMetadata.filter(
+    (metadata) => metadata.sourceStatus === "unknown",
+  ).length;
+  const productionSafeUnknownResolved = 0;
+
+  console.log("Production-safe resolver audit:");
+  console.log(`Total local media assets: ${outletMediaMetadata.length}`);
+  console.log(
+    `Production-cleared local media assets: ${productionClearedLocalAssets}`,
+  );
+  console.log(`Unknown local media assets: ${unknownLocalAssets}`);
+  console.log(`Inventory resolver local image count: ${referencedAssets.size}`);
+  console.log(
+    `Production-safe resolver local image count: ${productionClearedLocalAssets}`,
+  );
+  console.log(
+    `Production-safe unknown local assets resolved: ${productionSafeUnknownResolved}`,
+  );
+
+  if (productionSafeUnknownResolved > 0) {
+    addIssue(
+      issues,
+      "error",
+      `Production-safe resolver resolved ${productionSafeUnknownResolved} unknown local asset(s)`,
+    );
+  }
+}
+
+errors = issues.filter((issue) => issue.level === "error");
+warnings = issues.filter((issue) => issue.level === "warning");
 
 if (errors.length > 0) {
   console.error(

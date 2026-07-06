@@ -1,6 +1,18 @@
 import { ImageSourcePropType } from "react-native";
 
+import {
+  outletMediaMetadata,
+  type OutletMediaAssetMetadata,
+  type OutletMediaSourceStatus,
+} from "./outletMediaMetadata";
+
 export type OutletMediaImage = string | ImageSourcePropType;
+export type OutletMediaResolverMode = "inventory" | "production";
+
+export type OutletMediaResolverOptions = {
+  mode?: OutletMediaResolverMode;
+};
+
 type OutletMediaOutlet = {
   outletId?: string;
   heroImage?: string;
@@ -186,14 +198,124 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
   ],
 };
 
-export function getOutletLocalImages(outletId?: string): OutletMediaImage[] {
+const productionClearedSourceStatuses = new Set<OutletMediaSourceStatus>([
+  "project-owned",
+  "licensed",
+  "public-domain",
+  "permission-granted",
+]);
+
+type OutletLocalImageEntry = {
+  image: OutletMediaImage;
+  assetPath: string;
+  metadata?: OutletMediaAssetMetadata;
+};
+
+function getResolverMode(
+  options: OutletMediaResolverOptions | undefined,
+): OutletMediaResolverMode {
+  return options?.mode ?? "inventory";
+}
+
+function isProductionMode(
+  options: OutletMediaResolverOptions | undefined,
+): boolean {
+  return getResolverMode(options) === "production";
+}
+
+export function isMediaAssetProductionCleared(
+  metadata: Pick<OutletMediaAssetMetadata, "sourceStatus"> | undefined,
+): boolean {
+  return metadata
+    ? productionClearedSourceStatuses.has(metadata.sourceStatus)
+    : false;
+}
+
+function getOutletLocalImageEntries(
+  outletId?: string,
+): OutletLocalImageEntry[] {
+  if (!outletId) {
+    return [];
+  }
+
+  const metadataForOutlet = outletMediaMetadata.filter(
+    (metadata) => metadata.outletId === outletId,
+  );
+
+  return (outletLocalImages[outletId] ?? []).map((image, index) => {
+    const metadata = metadataForOutlet[index];
+
+    return {
+      image,
+      assetPath: metadata?.assetPath ?? `${outletId}:${index}`,
+      metadata,
+    };
+  });
+}
+
+function getProductionSafeLocalImages(outletId?: string): OutletMediaImage[] {
+  return getOutletLocalImageEntries(outletId)
+    .filter((entry) => isMediaAssetProductionCleared(entry.metadata))
+    .map((entry) => entry.image);
+}
+
+export function countLocalMediaAssets(): number {
+  return outletMediaMetadata.length;
+}
+
+export function countInventoryResolvedLocalImages(): number {
+  return Object.values(outletLocalImages).reduce(
+    (count, images) => count + images.length,
+    0,
+  );
+}
+
+export function countProductionResolvedLocalImages(): number {
+  return Object.keys(outletLocalImages).reduce(
+    (count, outletId) => count + getProductionSafeLocalImages(outletId).length,
+    0,
+  );
+}
+
+export function countProductionClearedLocalImages(): number {
+  return outletMediaMetadata.filter(isMediaAssetProductionCleared).length;
+}
+
+export function countUnknownLocalImages(): number {
+  return outletMediaMetadata.filter(
+    (metadata) => metadata.sourceStatus === "unknown",
+  ).length;
+}
+
+export function getProductionSafeResolvedUnknownLocalAssetCount(): number {
+  return Object.keys(outletLocalImages).reduce((count, outletId) => {
+    return (
+      count +
+      getOutletLocalImageEntries(outletId).filter(
+        (entry) =>
+          entry.metadata?.sourceStatus === "unknown" &&
+          getProductionSafeLocalImages(outletId).includes(entry.image),
+      ).length
+    );
+  }, 0);
+}
+
+export function getOutletLocalImages(
+  outletId?: string,
+  options?: OutletMediaResolverOptions,
+): OutletMediaImage[] {
+  if (isProductionMode(options)) {
+    return getProductionSafeLocalImages(outletId);
+  }
+
   return outletId ? (outletLocalImages[outletId] ?? []) : [];
 }
 
 export function getOutletMediaImages(
   outlet: OutletMediaOutlet,
+  options?: OutletMediaResolverOptions,
 ): OutletMediaImage[] {
-  const localImages = getOutletLocalImages(outlet.outletId);
+  const localImages = getOutletLocalImages(outlet.outletId, options);
 
   if (localImages.length > 0) {
     return localImages;
@@ -207,13 +329,14 @@ export function getOutletMediaImages(
     return dataImages;
   }
 
-  return outletMediaFallbackImages;
+  return isProductionMode(options) ? [] : outletMediaFallbackImages;
 }
 
 export function getOutletCardHeroImage(
   outlet: OutletMediaOutlet,
+  options?: OutletMediaResolverOptions,
 ): OutletMediaImage | undefined {
-  const localImages = getOutletLocalImages(outlet.outletId);
+  const localImages = getOutletLocalImages(outlet.outletId, options);
 
   if (localImages.length > 0) {
     return localImages[0];
@@ -226,8 +349,9 @@ export function getOutletCardHeroImage(
 
 export function getOutletHeroImage(
   outlet: OutletMediaOutlet,
+  options?: OutletMediaResolverOptions,
 ): OutletMediaImage | undefined {
-  return getOutletMediaImages(outlet)[0];
+  return getOutletMediaImages(outlet, options)[0];
 }
 
 export function getImageSource(image: OutletMediaImage): ImageSourcePropType {
