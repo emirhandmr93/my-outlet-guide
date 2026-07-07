@@ -1,0 +1,19 @@
+{
+  "templateOnly": true,
+  "version": 1,
+  "batchName": "official-operator-template",
+  "images": [
+    {
+      "outletId": "example-outlet-id",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/example-outlet/hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.official-operator.example/media-page",
+      "downloadUrl": "https://www.official-operator.example/media/image.jpg",
+      "width": 1600,
+      "height": 1000,
+      "quality": 82,
+      "alt": "Exact official/operator image of the outlet"
+    }
+  ]
+}
