@@ -91,8 +91,6 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
   barberino: [
     require("../../assets/outlet-images/barberino/hero.webp"),
     require("../../assets/outlet-images/barberino/gallery1.webp"),
-    require("../../assets/outlet-images/barberino/gallery2.webp"),
-    require("../../assets/outlet-images/barberino/gallery3.webp"),
   ],
   noventa: [
     require("../../assets/outlet-images/noventa/hero.webp"),
