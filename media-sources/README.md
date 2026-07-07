@@ -10,14 +10,14 @@ Each manifest is JSON with an `images` array. Every image entry must include:
 - `role`: `hero` or `gallery`.
 - `targetAssetPath`: WebP output path under `assets/outlet-images`.
 - `sourceStatus`: production-cleared status such as `public-domain`, `licensed`, `permission-granted`, or `project-owned`; `unknown` is refused by the importer.
-- `sourceUrl`: human-reviewable source page for provenance. For project-owned generated images this may be omitted when `notes` clearly state project-owned/generated/non-documentary provenance.
+- `sourceUrl`: human-reviewable source page for provenance. This may be omitted only for valid project-owned exact manual photos whose required notes document the manual exception.
 - `downloadUrl`: optional direct file URL used by the importer. Keep this for non-Wikimedia sources or when you want to pin an explicit original-file URL. It may be omitted, empty, or a `TODO` placeholder when `sourceUrl` is a Wikimedia Commons `File:` page because the importer can resolve the original file URL automatically.
-- `localSourcePath`: optional local generated-source path for project-owned generated media. It must stay under `media-sources/generated-inputs/`, must not escape the repo, and must not point into `assets/outlet-images`. Use either `localSourcePath` or remote download/Wikimedia fields, not both.
+- `manualSourcePath` / `localSourcePath`: optional local exact manual photo source path. It must stay under `media-sources/manual-inputs/`, must not escape the repo, must not use `media-sources/generated-inputs/`, and must not point into `assets/outlet-images`. Use either a manual/local source path or remote download/Wikimedia fields, not both.
 - `credit`: required credit text.
 - `license`: license label.
-- `licenseUrl`: required for non-project-owned sources.
+- `licenseUrl`: required except for valid project-owned exact manual photos whose required notes document the manual exception.
 - `alt`: app-ready alt text.
-- `notes`: optional review notes.
+- `notes`: review notes. Required for project-owned exact manual photos and must state exact outlet photo, project-owned or user-provided with rights, not AI-generated, not generic, and not downloaded from an unknown web source.
 - `width`, `height`: optional resize/crop dimensions. When both are present, the importer center-crops to the exact size.
 - `quality`: optional WebP quality from 1 to 100.
 
@@ -30,36 +30,12 @@ Each manifest is JSON with an `images` array. Every image entry must include:
 
 The sample intentionally omits `downloadUrl` values. In dry-run mode, the importer validates that each `sourceUrl` is a Wikimedia Commons `File:` page and reports that the original file URL would be auto-resolved. During a real local import, the importer calls the Wikimedia/MediaWiki API `imageinfo` endpoint to resolve the original file URL before downloading and converting. You may still provide an explicit `downloadUrl` to bypass auto-resolution.
 
-## Batch F generic starter status
+## Batch F exact manual review status
 
-`batch-f-generic-starter-core.json` is intentionally not committed. The Media Phase 3Y generic-source review did not retain any importable entries because the candidate set depended on visually unsuitable or misleading generic media categories: icons/SVG/PNG symbols, isolated shopping or grocery bags, dry-cleaning racks, clothing piles, product-only imagery, person-focused retail photos, recognizable unrelated storefronts or named malls/outlets, official/operator imagery without documented permission, and unknown-provenance web images.
+`batch-f-wikimedia-exact-manual-core.json`, if present with zero entries, is review-only and must not be treated as an importable manual manifest. Do not create an importable manual manifest until a specific exact-photo batch has been reviewed.
 
-Deferred full-unknown outlets for project-owned, generated, or licensed generic outlet-atmosphere production:
+## Disabled generated/generic status
 
-- `noventa`
-- `designer-outlet-provence`
-- `castel-romano`
-- `designer-outlet-berlin`
-- `designer-outlet-roosendaal`
-- `la-reggia`
-- `designer-outlet-malaga`
-- `montabaur-the-style-outlets`
-- `maasmechelen-village`
+AI/generated/generic outlet media imports are disabled. Generic placeholders, generated generic outlet-atmosphere imagery, non-documentary stand-ins, and unrelated-outlet photos are not allowed. `generic-generated-template.json`, `batch-g-generated-pilot.template.json`, and files under `generated-inputs/` are historical planning or audit context only and must not be passed to the importer or promoter.
 
-
-## Generated generic template status
-
-`generic-generated-template.json` is a non-importable Phase 4A planning template, not a reviewed production source manifest. It intentionally uses placeholders and `templateOnly: true` so it must not be passed to the importer or promoter as real source inventory.
-
-Future project-owned generated generic manifests should use `sourceStatus: "project-owned"`, `localSourcePath` under `media-sources/generated-inputs/`, credit `My Outlet Guide / generated project-owned media`, license `Project-owned`, and notes that explicitly say the image is generated generic, project-owned, non-documentary, and not an exact depiction of the named outlet. The template remains non-importable because it has `templateOnly: true` and placeholder paths.
-
-## Batch G generated pilot status
-
-`generated-inputs/batch-g-pilot-prompts.md` is the Media Phase 4C prompt pack and batch plan for the first small generated-media pilot. It plans four future project-owned generic source PNGs only:
-
-- `media-sources/generated-inputs/noventa/hero.png` -> `assets/outlet-images/noventa/hero.webp`
-- `media-sources/generated-inputs/noventa/gallery1.png` -> `assets/outlet-images/noventa/gallery1.webp`
-- `media-sources/generated-inputs/provence/hero.png` -> `assets/outlet-images/provence/hero.webp`
-- `media-sources/generated-inputs/provence/gallery1.png` -> `assets/outlet-images/provence/gallery1.webp`
-
-`batch-g-generated-pilot.template.json` is intentionally non-importable because it has `templateOnly: true` and the planned local source files are not committed. Do not pass it to the importer or promoter until a reviewed, importable manifest is created after the PNG sources exist.
+Future exact manual photo imports must use reviewed source files under `media-sources/manual-inputs/`, `sourceStatus: "project-owned"` only when the project owns the photo or the user provided it with rights, `license: "Project-owned"`, required credit/alt, and notes that explicitly say the source is an exact outlet photo, project-owned or user-provided with rights, not AI-generated, not generic, and not downloaded from an unknown web source. Licensed or permission-granted manual files still require the applicable source/license/permission metadata.

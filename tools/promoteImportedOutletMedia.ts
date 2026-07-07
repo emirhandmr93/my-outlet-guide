@@ -33,6 +33,7 @@ type ManifestEntry = {
   sourceStatus: string;
   sourceUrl?: string;
   localSourcePath?: string;
+  manualSourcePath?: string;
   credit: string;
   license: string;
   licenseUrl?: string;
@@ -126,13 +127,35 @@ function hasText(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
 }
 
-function hasProjectOwnedGeneratedProvenance(entry: ManifestEntry): boolean {
+function hasValidManualExactPhotoMetadata(entry: ManifestEntry): boolean {
+  const notes = entry.notes ?? "";
   return (
     entry.sourceStatus === "project-owned" &&
+    entry.license.trim() === "Project-owned" &&
+    hasText(entry.credit) &&
+    hasText(entry.alt) &&
     hasText(entry.notes) &&
-    /project-owned|project owned/i.test(entry.notes) &&
-    /generated/i.test(entry.notes) &&
-    /non-documentary|non documentary/i.test(entry.notes)
+    /exact outlet photo/i.test(notes) &&
+    /project-owned|project owned|user-provided with rights|user provided with rights/i.test(
+      notes,
+    ) &&
+    /not AI-generated|not AI generated/i.test(notes) &&
+    /not generic/i.test(notes) &&
+    /not downloaded from an unknown web source/i.test(notes)
+  );
+}
+
+function hasDisallowedMediaClaim(entry: ManifestEntry): boolean {
+  const searchable = `${entry.sourceUrl ?? ""} ${entry.localSourcePath ?? ""} ${
+    entry.manualSourcePath ?? ""
+  } ${entry.credit ?? ""} ${entry.license ?? ""} ${entry.alt ?? ""} ${
+    entry.notes ?? ""
+  }`
+    .replace(/not AI-generated|not AI generated/gi, "")
+    .replace(/not generic/gi, "")
+    .replace(/not downloaded from an unknown web source/gi, "");
+  return /\b(generated|AI|generic|non-documentary|non documentary|placeholder|unrelated outlet)\b/i.test(
+    searchable,
   );
 }
 
@@ -195,16 +218,23 @@ function validateEntry(entry: ManifestEntry, index: number): string {
     );
   }
 
-  const hasGeneratedProvenance = hasProjectOwnedGeneratedProvenance(entry);
-  if (!hasText(entry.sourceUrl) && !hasGeneratedProvenance) {
+  const hasValidManualMetadata = hasValidManualExactPhotoMetadata(entry);
+
+  if (hasDisallowedMediaClaim(entry) && !hasValidManualMetadata) {
     throw new Error(
-      `${label}: sourceUrl is required unless project-owned generated media notes clearly state project-owned/generated/non-documentary provenance.`,
+      `${label}: promotion refuses generated, AI, generic, non-documentary, placeholder, or unrelated-outlet media unless it is explicitly documented as a valid exact manual photo.`,
     );
   }
 
-  if (!hasText(entry.licenseUrl) && !hasGeneratedProvenance) {
+  if (!hasText(entry.sourceUrl) && !hasValidManualMetadata) {
     throw new Error(
-      `${label}: licenseUrl is required unless project-owned generated media notes clearly state project-owned/generated/non-documentary provenance.`,
+      `${label}: sourceUrl is required unless this is a valid project-owned exact manual photo.`,
+    );
+  }
+
+  if (!hasText(entry.licenseUrl) && !hasValidManualMetadata) {
+    throw new Error(
+      `${label}: licenseUrl is required unless this is a valid project-owned exact manual photo.`,
     );
   }
 
@@ -339,23 +369,26 @@ function assertCompleteMetadataRecord(record: MetadataRecord): void {
     }
   }
 
-  const hasGeneratedProvenance =
+  const hasValidManualMetadata =
     record.sourceStatus === "project-owned" &&
+    record.license.trim() === "Project-owned" &&
+    hasText(record.credit) &&
+    hasText(record.alt) &&
     hasText(record.notes) &&
-    /project-owned|project owned/i.test(record.notes) &&
-    /generated/i.test(record.notes) &&
-    /non-documentary|non documentary/i.test(record.notes);
+    /exact outlet photo/i.test(record.notes) &&
+    /project-owned|project owned|user-provided with rights|user provided with rights/i.test(
+      record.notes,
+    ) &&
+    /not AI-generated|not AI generated/i.test(record.notes) &&
+    /not generic/i.test(record.notes) &&
+    /not downloaded from an unknown web source/i.test(record.notes);
 
-  if (!hasText(record.sourceUrl) && !hasGeneratedProvenance) {
-    throw new Error(
-      `${record.assetPath}: generated metadata is missing sourceUrl.`,
-    );
+  if (!hasText(record.sourceUrl) && !hasValidManualMetadata) {
+    throw new Error(`${record.assetPath}: metadata is missing sourceUrl.`);
   }
 
-  if (!hasText(record.licenseUrl) && !hasGeneratedProvenance) {
-    throw new Error(
-      `${record.assetPath}: generated metadata is missing licenseUrl.`,
-    );
+  if (!hasText(record.licenseUrl) && !hasValidManualMetadata) {
+    throw new Error(`${record.assetPath}: metadata is missing licenseUrl.`);
   }
 }
 
