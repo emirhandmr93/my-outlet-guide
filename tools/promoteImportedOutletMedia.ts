@@ -45,6 +45,7 @@ type ManifestEntry = {
 };
 
 type Options = {
+  allowEmpty: boolean;
   dryRun: boolean;
   manifestPath: string;
   simulateTypecheck: boolean;
@@ -65,7 +66,7 @@ type MetadataRecord = {
 
 function usage(): never {
   console.error(
-    "Usage: npx tsx tools/promoteImportedOutletMedia.ts <manifest.json> [--dry-run] [--simulate-typecheck]",
+    "Usage: npx tsx tools/promoteImportedOutletMedia.ts <manifest.json> [--dry-run] [--simulate-typecheck] [--allow-empty]",
   );
   process.exit(1);
 }
@@ -84,7 +85,11 @@ function parseArgs(): Options {
   }
 
   for (const arg of args.filter((value) => value.startsWith("--"))) {
-    if (arg !== "--dry-run" && arg !== "--simulate-typecheck") {
+    if (
+      arg !== "--dry-run" &&
+      arg !== "--simulate-typecheck" &&
+      arg !== "--allow-empty"
+    ) {
       console.error(`Unknown flag: ${arg}`);
       usage();
     }
@@ -92,6 +97,7 @@ function parseArgs(): Options {
 
   return {
     manifestPath,
+    allowEmpty: args.includes("--allow-empty"),
     dryRun: args.includes("--dry-run"),
     simulateTypecheck: args.includes("--simulate-typecheck"),
   };
@@ -739,6 +745,11 @@ function main(): void {
   const entries = readManifest(options.manifestPath);
 
   if (entries.length === 0) {
+    if (options.allowEmpty) {
+      console.log("Manifest has no images to promote; treating as an allowed no-op.");
+      return;
+    }
+
     throw new Error("Manifest has no images to promote.");
   }
 

@@ -83,8 +83,20 @@ jobs:
           fi
           npx tsx tools/importOutletMedia.ts "$MANIFEST_PATH" --overwrite $EXTRA_ARGS
 
+      - name: Detect empty successful official import
+        id: imported
+        run: |
+          if [ "${{ steps.manifest.outputs.best_effort_official }}" = "true" ] && [ -f "${{ steps.manifest.outputs.promote_manifest }}" ]; then
+            if node -e "const fs=require('fs'); const p=process.argv[1]; const m=JSON.parse(fs.readFileSync(p,'utf8')); process.exit(m.bestEffortOfficial === true && Array.isArray(m.images) && m.images.length === 0 ? 0 : 1)" "${{ steps.manifest.outputs.promote_manifest }}"; then
+              echo "empty_best_effort_official=true" >> "$GITHUB_OUTPUT"
+              echo "Best-effort official import produced no successful images; metadata promotion will be skipped."
+              exit 0
+            fi
+          fi
+          echo "empty_best_effort_official=false" >> "$GITHUB_OUTPUT"
+
       - name: Promote imported outlet media metadata
-        if: ${{ inputs.promoteMetadata == true }}
+        if: ${{ inputs.promoteMetadata == true && steps.imported.outputs.empty_best_effort_official != 'true' }}
         run: npx tsx tools/promoteImportedOutletMedia.ts "${{ steps.manifest.outputs.promote_manifest }}"
 
       - name: Typecheck
@@ -125,16 +137,16 @@ jobs:
       - name: Commit imported media
         if: ${{ inputs.commitChanges == true }}
         run: |
+          if [ -f .tmp/skipped-official-media.json ]; then
+            mkdir -p media-sources/official-operator/reports
+            cp .tmp/skipped-official-media.json media-sources/official-operator/reports/skipped-official-media.json
+          fi
           if [ -z "$(git status --porcelain)" ]; then
             echo "No changed files to commit; outlet media import produced no diff."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -f .tmp/skipped-official-media.json ]; then
-            mkdir -p media-sources/official-operator/reports
-            cp .tmp/skipped-official-media.json media-sources/official-operator/reports/skipped-official-media.json
-          fi
           git add assets/outlet-images src/media/outletMedia.ts src/media/outletMediaMetadata.ts
           if [ -d media-sources/official-operator/reports ]; then
             git add media-sources/official-operator/reports
