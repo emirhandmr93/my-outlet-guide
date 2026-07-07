@@ -214,6 +214,30 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/la-roca-village/hero.webp"),
     require("../../assets/outlet-images/la-roca-village/gallery1.webp"),
   ],
+  "ashford-designer-outlet": [
+    require("../../assets/outlet-images/ashford-designer-outlet/hero.webp"),
+    require("../../assets/outlet-images/ashford-designer-outlet/gallery1.webp"),
+    require("../../assets/outlet-images/ashford-designer-outlet/gallery2.webp"),
+    require("../../assets/outlet-images/ashford-designer-outlet/gallery3.webp"),
+  ],
+  "clarks-village": [
+    require("../../assets/outlet-images/clarks-village/hero.webp"),
+    require("../../assets/outlet-images/clarks-village/gallery1.webp"),
+    require("../../assets/outlet-images/clarks-village/gallery2.webp"),
+    require("../../assets/outlet-images/clarks-village/gallery3.webp"),
+  ],
+  "gunwharf-quays": [
+    require("../../assets/outlet-images/gunwharf-quays/hero.webp"),
+    require("../../assets/outlet-images/gunwharf-quays/gallery1.webp"),
+    require("../../assets/outlet-images/gunwharf-quays/gallery2.webp"),
+    require("../../assets/outlet-images/gunwharf-quays/gallery3.webp"),
+  ],
+  "swindon-designer-outlet": [
+    require("../../assets/outlet-images/swindon-designer-outlet/hero.webp"),
+    require("../../assets/outlet-images/swindon-designer-outlet/gallery1.webp"),
+    require("../../assets/outlet-images/swindon-designer-outlet/gallery2.webp"),
+    require("../../assets/outlet-images/swindon-designer-outlet/gallery3.webp"),
+  ],
 };
 
 const productionClearedSourceStatuses = new Set<OutletMediaSourceStatus>([
