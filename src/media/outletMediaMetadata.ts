@@ -1275,6 +1275,30 @@ const outletMediaMetadataRaw: readonly unknown[] = [
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
     alt: "Sicilia Outlet Village exact outlet view",
     notes: "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies Sicilia Outlet Village or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
+  },
+  {
+    outletId: "la-roca-village",
+    role: "hero",
+    assetPath: "assets/outlet-images/la-roca-village/hero.webp",
+    sourceStatus: "licensed",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:La_Roca_Village_Chic_Outlet_Shopping_(15275455890).jpg",
+    credit: "Jorge Franganillo / Wikimedia Commons",
+    license: "CC BY 2.0",
+    licenseUrl: "https://creativecommons.org/licenses/by/2.0/",
+    alt: "La Roca Village exact outlet view",
+    notes: "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies La Roca Village or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
+  },
+  {
+    outletId: "la-roca-village",
+    role: "gallery",
+    assetPath: "assets/outlet-images/la-roca-village/gallery1.webp",
+    sourceStatus: "licensed",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:La_Roca_Village_-_panoramio.jpg",
+    credit: "Jorge Franganillo / Wikimedia Commons",
+    license: "CC BY 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by/3.0/",
+    alt: "La Roca Village exact outlet view",
+    notes: "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies La Roca Village or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
   }
 ] as const;
 

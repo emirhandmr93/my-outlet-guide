@@ -210,6 +210,10 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/sicilia-outlet-village/gallery2.webp"),
     require("../../assets/outlet-images/sicilia-outlet-village/gallery3.webp"),
   ],
+  "la-roca-village": [
+    require("../../assets/outlet-images/la-roca-village/hero.webp"),
+    require("../../assets/outlet-images/la-roca-village/gallery1.webp"),
+  ],
 };
 
 const productionClearedSourceStatuses = new Set<OutletMediaSourceStatus>([
