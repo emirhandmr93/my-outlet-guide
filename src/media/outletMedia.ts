@@ -51,6 +51,7 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/bicester/gallery3.webp"),
   ],
   "serravalle-designer-outlet": [
+    require("../../assets/outlet-images/serravalle/official-hero.webp"),
     require("../../assets/outlet-images/serravalle/hero.webp"),
     require("../../assets/outlet-images/serravalle/gallery1.webp"),
     require("../../assets/outlet-images/serravalle/gallery2.webp"),
@@ -87,10 +88,12 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/the-mall-firenze/gallery3.webp"),
   ],
   barberino: [
+    require("../../assets/outlet-images/barberino/official-hero.webp"),
     require("../../assets/outlet-images/barberino/hero.webp"),
     require("../../assets/outlet-images/barberino/gallery1.webp"),
   ],
   noventa: [
+    require("../../assets/outlet-images/noventa/official-hero.webp"),
     require("../../assets/outlet-images/noventa/hero.webp"),
     require("../../assets/outlet-images/noventa/gallery1.webp"),
     require("../../assets/outlet-images/noventa/gallery2.webp"),
@@ -124,6 +127,7 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/roermond/gallery3.webp"),
   ],
   "castel-romano": [
+    require("../../assets/outlet-images/castel-romano/official-hero.webp"),
     require("../../assets/outlet-images/castel-romano/hero.webp"),
     require("../../assets/outlet-images/castel-romano/gallery1.webp"),
     require("../../assets/outlet-images/castel-romano/gallery2.webp"),
@@ -154,6 +158,7 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/roosendaal/gallery3.webp"),
   ],
   "la-reggia": [
+    require("../../assets/outlet-images/la-reggia/official-hero.webp"),
     require("../../assets/outlet-images/la-reggia/hero.webp"),
     require("../../assets/outlet-images/la-reggia/gallery1.webp"),
     require("../../assets/outlet-images/la-reggia/gallery2.webp"),
@@ -239,12 +244,15 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/swindon-designer-outlet/gallery3.webp"),
   ],
   "valdichiana-village": [
+    require("../../assets/outlet-images/valdichiana-village/official-hero.webp"),
     require("../../assets/outlet-images/valdichiana-village/hero.webp"),
   ],
   "palmanova-designer-village": [
+    require("../../assets/outlet-images/palmanova-designer-village/official-hero.webp"),
     require("../../assets/outlet-images/palmanova-designer-village/hero.webp"),
   ],
   "franciacorta-designer-village": [
+    require("../../assets/outlet-images/franciacorta-designer-village/official-hero.webp"),
     require("../../assets/outlet-images/franciacorta-designer-village/hero.webp"),
   ],
 };

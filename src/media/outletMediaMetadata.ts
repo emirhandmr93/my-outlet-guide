@@ -136,6 +136,14 @@ const outletMediaMetadataRaw: readonly unknown[] = [
   {
     outletId: "serravalle-designer-outlet",
     role: "hero",
+    assetPath: "assets/outlet-images/serravalle/official-hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.mcarthurglen.com/en/outlets/it/serravalle-designer-outlet/",
+    alt: "Official McArthurGlen Serravalle Designer Outlet image showing shoppers in an outdoor outlet street.",
+  },
+  {
+    outletId: "serravalle-designer-outlet",
+    role: "hero",
     assetPath: "assets/outlet-images/serravalle/hero.webp",
     sourceStatus: "licensed",
     sourceUrl: "https://commons.wikimedia.org/wiki/File:Designer_Outlet_Serravalle_-_panoramio.jpg",
@@ -380,6 +388,14 @@ const outletMediaMetadataRaw: readonly unknown[] = [
   {
     outletId: "barberino",
     role: "hero",
+    assetPath: "assets/outlet-images/barberino/official-hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.barberinooutlet.com/en/sales/",
+    alt: "Official Barberino Designer Outlet image showing shoppers and outdoor outlet seating.",
+  },
+  {
+    outletId: "barberino",
+    role: "hero",
     assetPath: "assets/outlet-images/barberino/hero.webp",
     sourceStatus: "official-operator",
     sourceUrl: "https://www.barberinooutlet.com/en/sales/",
@@ -396,6 +412,14 @@ const outletMediaMetadataRaw: readonly unknown[] = [
     licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
     alt: "Piazza Muratori at Barberino Designer Outlet",
     notes: "Exact Barberino Designer Outlet source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+  },
+  {
+    outletId: "noventa",
+    role: "hero",
+    assetPath: "assets/outlet-images/noventa/official-hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/",
+    alt: "Official McArthurGlen Noventa di Piave Designer Outlet image showing shoppers walking through the outlet village.",
   },
   {
     outletId: "noventa",
@@ -568,6 +592,14 @@ const outletMediaMetadataRaw: readonly unknown[] = [
     alt: "Designer Outlet Roermond storefronts along a pedestrian walkway",
     notes:
       "For assets/outlet-images/roermond/gallery1.webp. Wikimedia source File:Designer_Outlet_Roermond_-_panoramio_(5).jpg is licensed CC BY 3.0; attribute qwesy qwesy / Wikimedia Commons, link the license, and indicate changes made during import.",
+  },
+  {
+    outletId: "castel-romano",
+    role: "hero",
+    assetPath: "assets/outlet-images/castel-romano/official-hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/",
+    alt: "Official McArthurGlen Castel Romano Designer Outlet image showing shoppers walking through an outdoor outlet street.",
   },
   {
     outletId: "castel-romano",
@@ -772,6 +804,14 @@ const outletMediaMetadataRaw: readonly unknown[] = [
     alt: "Designer Outlet Roosendaal gallery image 3",
     notes:
       "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
+  },
+  {
+    outletId: "la-reggia",
+    role: "hero",
+    assetPath: "assets/outlet-images/la-reggia/official-hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-la-reggia/",
+    alt: "Official McArthurGlen La Reggia Designer Outlet image showing shoppers in an outdoor outlet setting.",
   },
   {
     outletId: "la-reggia",
@@ -1499,6 +1539,14 @@ const outletMediaMetadataRaw: readonly unknown[] = [
   {
     outletId: "valdichiana-village",
     role: "hero",
+    assetPath: "assets/outlet-images/valdichiana-village/official-hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.valdichianadesignervillage.com/en/village/about-us",
+    alt: "Official Valdichiana Village image showing arched storefront entrances and landscaped walkways.",
+  },
+  {
+    outletId: "valdichiana-village",
+    role: "hero",
     assetPath: "assets/outlet-images/valdichiana-village/hero.webp",
     sourceStatus: "official-operator",
     sourceUrl: "https://www.valdichianadesignervillage.com/en/village/about-us",
@@ -1507,10 +1555,26 @@ const outletMediaMetadataRaw: readonly unknown[] = [
   {
     outletId: "palmanova-designer-village",
     role: "hero",
+    assetPath: "assets/outlet-images/palmanova-designer-village/official-hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.palmanovadesignervillage.com/en/village/about-us",
+    alt: "Official Palmanova Designer Village image showing the outlet village environment.",
+  },
+  {
+    outletId: "palmanova-designer-village",
+    role: "hero",
     assetPath: "assets/outlet-images/palmanova-designer-village/hero.webp",
     sourceStatus: "official-operator",
     sourceUrl: "https://www.palmanovadesignervillage.com/en/village/about-us",
     alt: "Official Palmanova Designer Village about page image for the outlet village.",
+  },
+  {
+    outletId: "franciacorta-designer-village",
+    role: "hero",
+    assetPath: "assets/outlet-images/franciacorta-designer-village/official-hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.franciacortadesignervillage.com/en/village/about-us",
+    alt: "Official Franciacorta Designer Village image showing shoppers by arched outlet storefronts.",
   },
   {
     outletId: "franciacorta-designer-village",

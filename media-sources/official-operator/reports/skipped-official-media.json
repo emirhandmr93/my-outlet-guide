@@ -1,0 +1,11 @@
+{
+  "skipped": [
+    {
+      "outletId": "fidenza-village",
+      "targetAssetPath": "assets/outlet-images/fidenza/official-hero.webp",
+      "sourceUrl": "https://www.thebicestercollection.com/fidenza-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/fidenza-village/en/-/media/village/fidenza-village/homepage/fidenza-village-homepage-hero.jpg",
+      "reason": "Download failed for https://www.thebicestercollection.com/fidenza-village/en/-/media/village/fidenza-village/homepage/fidenza-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
+    }
+  ]
+}
