@@ -1,11 +1,25 @@
 {
   "skipped": [
     {
-      "outletId": "fidenza-village",
-      "targetAssetPath": "assets/outlet-images/fidenza/official-hero.webp",
-      "sourceUrl": "https://www.thebicestercollection.com/fidenza-village/en",
-      "downloadUrl": "https://www.thebicestercollection.com/fidenza-village/en/-/media/village/fidenza-village/homepage/fidenza-village-homepage-hero.jpg",
-      "reason": "Download failed for https://www.thebicestercollection.com/fidenza-village/en/-/media/village/fidenza-village/homepage/fidenza-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
+      "outletId": "bicester-village",
+      "targetAssetPath": "assets/outlet-images/bicester/official-hero.webp",
+      "sourceUrl": "https://www.thebicestercollection.com/bicester-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/bicester-village/en/-/media/village/bicester-village/homepage/bicester-village-homepage-hero.jpg",
+      "reason": "Download failed for https://www.thebicestercollection.com/bicester-village/en/-/media/village/bicester-village/homepage/bicester-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
+    },
+    {
+      "outletId": "cheshire-oaks",
+      "targetAssetPath": "assets/outlet-images/cheshire-oaks/official-hero.webp",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/cheshire-oaks/cheshire-oaks-designer-outlet.jpg",
+      "reason": "Download failed for https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/cheshire-oaks/cheshire-oaks-designer-outlet.jpg after 4 attempt(s): 404 Not Found"
+    },
+    {
+      "outletId": "york-designer-outlet",
+      "targetAssetPath": "assets/outlet-images/york-designer-outlet/official-hero.webp",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-york/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/york/york-designer-outlet.jpg",
+      "reason": "Download failed for https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/york/york-designer-outlet.jpg after 4 attempt(s): 404 Not Found"
     }
   ]
 }
