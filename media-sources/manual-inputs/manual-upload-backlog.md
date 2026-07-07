@@ -1,4 +1,4 @@
-# Media Phase 5C manual exact photo upload checklist
+# Media Phase 5C final manual media upload backlog
 
 This backlog is documentation only. It is not an importable manifest, does not add image files, and does not change outlet data, MasterData, media metadata statuses, or media resolver behavior.
 
