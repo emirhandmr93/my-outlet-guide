@@ -14,6 +14,7 @@ const validSourceStatuses = new Set<OutletMediaSourceStatus>([
   "licensed",
   "public-domain",
   "permission-granted",
+  "official-operator",
   "unknown",
 ]);
 
@@ -208,6 +209,7 @@ for (const metadata of outletMediaMetadata) {
 
     if (
       metadata.sourceStatus !== "project-owned" &&
+      metadata.sourceStatus !== "official-operator" &&
       !hasValue(metadata.license)
     ) {
       addIssue(
@@ -299,6 +301,7 @@ if (resolverAuditMode) {
       "licensed",
       "public-domain",
       "permission-granted",
+      "official-operator",
     ].includes(metadata.sourceStatus),
   ).length;
   const unknownLocalAssets = outletMediaMetadata.filter(

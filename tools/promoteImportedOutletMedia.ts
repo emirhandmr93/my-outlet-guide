@@ -23,6 +23,7 @@ const allowedStatuses = new Set([
   "licensed",
   "public-domain",
   "permission-granted",
+  "official-operator",
 ]);
 const allowedRoles = new Set(["hero", "gallery"]);
 
@@ -34,8 +35,8 @@ type ManifestEntry = {
   sourceUrl?: string;
   localSourcePath?: string;
   manualSourcePath?: string;
-  credit: string;
-  license: string;
+  credit?: string;
+  license?: string;
   licenseUrl?: string;
   alt: string;
   notes?: string;
@@ -55,8 +56,8 @@ type MetadataRecord = {
   assetPath: string;
   sourceStatus: string;
   sourceUrl?: string;
-  credit: string;
-  license: string;
+  credit?: string;
+  license?: string;
   licenseUrl?: string;
   alt: string;
   notes?: string;
@@ -131,7 +132,7 @@ function hasValidManualExactPhotoMetadata(entry: ManifestEntry): boolean {
   const notes = entry.notes ?? "";
   return (
     entry.sourceStatus === "project-owned" &&
-    entry.license.trim() === "Project-owned" &&
+    entry.license?.trim() === "Project-owned" &&
     hasText(entry.credit) &&
     hasText(entry.alt) &&
     hasText(entry.notes) &&
@@ -201,8 +202,6 @@ function validateEntry(entry: ManifestEntry, index: number): string {
     "role",
     "targetAssetPath",
     "sourceStatus",
-    "credit",
-    "license",
     "alt",
   ];
 
@@ -236,13 +235,23 @@ function validateEntry(entry: ManifestEntry, index: number): string {
     );
   }
 
-  if (!hasText(entry.sourceUrl) && !hasValidManualMetadata) {
+  const isOfficialOperator = entry.sourceStatus === "official-operator";
+
+  if (
+    !hasText(entry.sourceUrl) &&
+    !hasValidManualMetadata &&
+    !isOfficialOperator
+  ) {
     throw new Error(
       `${label}: sourceUrl is required unless this is a valid project-owned exact manual photo.`,
     );
   }
 
-  if (!hasText(entry.licenseUrl) && !hasValidManualMetadata) {
+  if (
+    !hasText(entry.licenseUrl) &&
+    !hasValidManualMetadata &&
+    !isOfficialOperator
+  ) {
     throw new Error(
       `${label}: licenseUrl is required unless this is a valid project-owned exact manual photo.`,
     );
@@ -299,9 +308,13 @@ function metadataObject(record: MetadataRecord): string {
     `    role: ${JSON.stringify(record.role)},`,
     `    assetPath: ${JSON.stringify(record.assetPath)},`,
     `    sourceStatus: ${JSON.stringify(record.sourceStatus)},`,
-    `    sourceUrl: ${JSON.stringify(record.sourceUrl)},`,
-    `    credit: ${JSON.stringify(record.credit)},`,
-    `    license: ${JSON.stringify(record.license)},`,
+    ...(record.sourceUrl
+      ? [`    sourceUrl: ${JSON.stringify(record.sourceUrl)},`]
+      : []),
+    ...(record.credit ? [`    credit: ${JSON.stringify(record.credit)},`] : []),
+    ...(record.license
+      ? [`    license: ${JSON.stringify(record.license)},`]
+      : []),
   ];
 
   if (record.licenseUrl) {
@@ -366,8 +379,6 @@ function assertCompleteMetadataRecord(record: MetadataRecord): void {
     "role",
     "assetPath",
     "sourceStatus",
-    "credit",
-    "license",
     "alt",
   ];
 
@@ -381,7 +392,7 @@ function assertCompleteMetadataRecord(record: MetadataRecord): void {
 
   const hasValidManualMetadata =
     record.sourceStatus === "project-owned" &&
-    record.license.trim() === "Project-owned" &&
+    record.license?.trim() === "Project-owned" &&
     hasText(record.credit) &&
     hasText(record.alt) &&
     hasText(record.notes) &&
@@ -393,11 +404,21 @@ function assertCompleteMetadataRecord(record: MetadataRecord): void {
     /not generic/i.test(record.notes) &&
     /not downloaded from an unknown web source/i.test(record.notes);
 
-  if (!hasText(record.sourceUrl) && !hasValidManualMetadata) {
+  const isOfficialOperator = record.sourceStatus === "official-operator";
+
+  if (
+    !hasText(record.sourceUrl) &&
+    !hasValidManualMetadata &&
+    !isOfficialOperator
+  ) {
     throw new Error(`${record.assetPath}: metadata is missing sourceUrl.`);
   }
 
-  if (!hasText(record.licenseUrl) && !hasValidManualMetadata) {
+  if (
+    !hasText(record.licenseUrl) &&
+    !hasValidManualMetadata &&
+    !isOfficialOperator
+  ) {
     throw new Error(`${record.assetPath}: metadata is missing licenseUrl.`);
   }
 }
@@ -663,7 +684,10 @@ function removeSimulationAssets(backups: SimulationAssetBackup[]): void {
   }
 
   for (const backupRoot of backupRoots) {
-    fs.rmSync(path.join(repoRoot, backupRoot), { recursive: true, force: true });
+    fs.rmSync(path.join(repoRoot, backupRoot), {
+      recursive: true,
+      force: true,
+    });
   }
 }
 

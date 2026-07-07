@@ -245,6 +245,7 @@ const productionClearedSourceStatuses = new Set<OutletMediaSourceStatus>([
   "licensed",
   "public-domain",
   "permission-granted",
+  "official-operator",
 ]);
 
 type OutletLocalImageEntry = {
@@ -282,6 +283,7 @@ function isCompleteProductionCreditMetadata(
 ): metadata is CompleteProductionCreditMetadata {
   return (
     isMediaAssetProductionCleared(metadata) &&
+    metadata.sourceStatus !== "official-operator" &&
     hasText(metadata.credit) &&
     hasText(metadata.license) &&
     (metadata.sourceStatus === "project-owned" ||

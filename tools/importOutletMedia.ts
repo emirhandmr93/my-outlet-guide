@@ -20,6 +20,7 @@ const allowedStatuses = new Set([
   "licensed",
   "public-domain",
   "permission-granted",
+  "official-operator",
 ]);
 const allowedRoles = new Set(["hero", "gallery"]);
 const userAgent =
@@ -38,8 +39,8 @@ type ManifestEntry = {
   downloadUrl?: string;
   localSourcePath?: string;
   manualSourcePath?: string;
-  credit: string;
-  license: string;
+  credit?: string;
+  license?: string;
   licenseUrl?: string;
   alt: string;
   notes?: string;
@@ -364,7 +365,7 @@ function hasValidManualExactPhotoMetadata(entry: ManifestEntry): boolean {
   const notes = entry.notes ?? "";
   return (
     entry.sourceStatus === "project-owned" &&
-    entry.license.trim() === "Project-owned" &&
+    entry.license?.trim() === "Project-owned" &&
     hasText(entry.credit) &&
     hasText(entry.alt) &&
     hasText(entry.notes) &&
@@ -375,6 +376,31 @@ function hasValidManualExactPhotoMetadata(entry: ManifestEntry): boolean {
     /not AI-generated|not AI generated/i.test(notes) &&
     /not generic/i.test(notes) &&
     /not downloaded from an unknown web source/i.test(notes)
+  );
+}
+
+function textWithoutNegatedSafetyPhrases(value: string): string {
+  return value
+    .replace(/\b(?:not|non|no)\s+AI[-\s]?generated\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+generated\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+generic\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+non[-\s]+documentary\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+(?:a\s+)?placeholder\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+(?:an?\s+)?unrelated[-\s]+outlet\b/gi, "")
+    .replace(/\bnot\s+downloaded\s+from\s+an\s+unknown\s+web\s+source\b/gi, "");
+}
+
+function hasDisallowedMediaClaim(entry: ManifestEntry): boolean {
+  const searchable = textWithoutNegatedSafetyPhrases(
+    `${entry.sourceUrl ?? ""} ${entry.downloadUrl ?? ""} ${entry.localSourcePath ?? ""} ${
+      entry.manualSourcePath ?? ""
+    } ${entry.credit ?? ""} ${entry.license ?? ""} ${entry.alt ?? ""} ${
+      entry.notes ?? ""
+    }`,
+  );
+
+  return /\b(generated|AI|generic|non-documentary|non documentary|placeholder|unrelated[-\s]+outlet)\b/i.test(
+    searchable,
   );
 }
 
@@ -414,8 +440,6 @@ function validateEntry(
     "role",
     "targetAssetPath",
     "sourceStatus",
-    "credit",
-    "license",
     "alt",
   ];
 
@@ -442,13 +466,29 @@ function validateEntry(
   const localSourcePath = getUsableLocalSourcePath(entry);
   const hasValidManualMetadata = hasValidManualExactPhotoMetadata(entry);
 
-  if (!hasText(entry.sourceUrl) && !hasValidManualMetadata) {
+  if (hasDisallowedMediaClaim(entry) && !hasValidManualMetadata) {
+    throw new Error(
+      `${label}: import refuses generated, AI, generic, non-documentary, placeholder, or unrelated-outlet media unless it is explicitly documented as a valid exact manual photo.`,
+    );
+  }
+
+  const isOfficialOperator = entry.sourceStatus === "official-operator";
+
+  if (
+    !hasText(entry.sourceUrl) &&
+    !hasValidManualMetadata &&
+    !isOfficialOperator
+  ) {
     throw new Error(
       `${label}: sourceUrl is required unless this is a valid project-owned exact manual photo.`,
     );
   }
 
-  if (!hasText(entry.licenseUrl) && !hasValidManualMetadata) {
+  if (
+    !hasText(entry.licenseUrl) &&
+    !hasValidManualMetadata &&
+    !isOfficialOperator
+  ) {
     throw new Error(
       `${label}: licenseUrl is required unless this is a valid project-owned exact manual photo.`,
     );

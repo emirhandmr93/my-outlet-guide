@@ -3,6 +3,7 @@ export type OutletMediaSourceStatus =
   | "licensed"
   | "public-domain"
   | "permission-granted"
+  | "official-operator"
   | "unknown";
 
 export type OutletMediaAssetRole = "hero" | "gallery";
@@ -32,6 +33,7 @@ function isOutletMediaSourceStatus(
     value === "licensed" ||
     value === "public-domain" ||
     value === "permission-granted" ||
+    value === "official-operator" ||
     value === "unknown"
   );
 }
