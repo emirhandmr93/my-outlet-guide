@@ -1,0 +1,303 @@
+{
+  "version": 1,
+  "batchName": "batch-e-remaining-exact-core",
+  "notes": "Reviewed exact Wikimedia Commons/Public Domain/CC source manifest for Media Phase 3W remaining unresolved legacy outlet media. Do not download images in this task; Wikimedia File sourceUrl values intentionally omit downloadUrl so the importer can auto-resolve originals. No generic images are included. Outlets with fewer than two exact safe sources are recorded in reviewSummary only and deferred for future documented generic production-safe fill.",
+  "images": [
+    {
+      "outletId": "ingolstadt-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/ingolstadt/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:FOC_Ingolstadt_Village_Stores_2013.jpg",
+      "credit": "Henk Bekker / Wikimedia Commons",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "alt": "Factory outlet stores at Ingolstadt Village in Ingolstadt, Germany",
+      "notes": "Exact Wikimedia Commons source; file description identifies factory outlet stores at Ingolstadt Village. Flickr-origin file was reviewed by FlickreviewR 2 as CC BY-SA 2.0. No downloadUrl is included so the importer can auto-resolve the original.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "ingolstadt-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/ingolstadt/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:GER_Ingolstadt_Village_001.jpg",
+      "credit": "-wuppertaler / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "View inside Ingolstadt Village in Ingolstadt, Germany",
+      "notes": "Exact Wikimedia Commons source from the Ingolstadt Village category; own-work file licensed CC BY-SA 4.0. Distinct source from the selected hero and gallery slots.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "ingolstadt-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/ingolstadt/gallery2.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:FOC_Ingolstadt_Village_Restaurants_2013.jpg",
+      "credit": "Henk Bekker / Wikimedia Commons",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "alt": "Restaurants at Ingolstadt Village outlet center in Ingolstadt, Germany",
+      "notes": "Exact Wikimedia Commons source; file description identifies restaurants at Ingolstadt Village factory outlet center. Flickr-origin file was reviewed by FlickreviewR 2 as CC BY-SA 2.0.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "ingolstadt-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/ingolstadt/gallery3.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:FOC_Ingolstadtvillage.jpg",
+      "credit": "Marom / Wikimedia Commons",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Copyright_tags/General_public_domain",
+      "alt": "Factory Outlet Center Ingolstadt Village shortly after opening",
+      "notes": "Exact Wikimedia Commons source; uploader/copyright holder released the work into the public domain. Distinct older exterior outlet-center source.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "city-outlet-bad-munstereifel",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/bad-munstereifel/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:City_Outlet_Shops,_Trierer_Stra%C3%9Fe,_Bad_M%C3%BCnstereifel-2442.jpg",
+      "credit": "Raimond Spekking / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "City Outlet shops on Trierer Straße in Bad Münstereifel",
+      "notes": "Exact Wikimedia Commons source; title and image metadata identify City Outlet shops on Trierer Straße, Bad Münstereifel. Distinct from the selected gallery sources.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "city-outlet-bad-munstereifel",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/bad-munstereifel/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bad_M%C3%BCnstereifel_City_Outlet.jpg",
+      "credit": "Zairon / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "City Outlet storefronts in Bad Münstereifel",
+      "notes": "Exact Wikimedia Commons source from Category:City Outlet Bad Münstereifel; own-work Commons file licensed CC BY-SA 4.0.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "city-outlet-bad-munstereifel",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/bad-munstereifel/gallery2.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Robert_Ley_Outlet,_Trierer_Stra%C3%9Fe_1,_Bad_M%C3%BCnstereifel._-9886.jpg",
+      "credit": "Raimond Spekking / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Robert Ley Outlet at Trierer Straße 1 in City Outlet Bad Münstereifel",
+      "notes": "Exact Wikimedia Commons source; title and metadata identify Robert Ley Outlet at Trierer Straße 1, Bad Münstereifel, within the City Outlet Commons category.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "city-outlet-bad-munstereifel",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/bad-munstereifel/gallery3.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Erweiterungsbau_City_Outlet,_Trierer_Stra%C3%9Fe_31-39,_Bad_M%C3%BCnstereifel-4401.jpg",
+      "credit": "Raimond Spekking / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "City Outlet extension building on Trierer Straße 31-39 in Bad Münstereifel",
+      "notes": "Exact Wikimedia Commons source; title and metadata identify the City Outlet extension building at Trierer Straße 31-39, Bad Münstereifel. Distinct from other Bad Münstereifel selected sources.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    }
+  ],
+  "reviewSummary": {
+    "sourcesFoundPerOutlet": {
+      "ingolstadt-village": {
+        "exactSafeSources": 4,
+        "genericSources": 0,
+        "status": "exact-ready",
+        "deferredSlots": []
+      },
+      "city-outlet-bad-munstereifel": {
+        "exactSafeSources": 4,
+        "genericSources": 0,
+        "status": "exact-ready",
+        "deferredSlots": []
+      },
+      "noventa": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "designer-outlet-provence": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "castel-romano": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "designer-outlet-berlin": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "designer-outlet-roosendaal": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "la-reggia": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "designer-outlet-malaga": {
+        "exactSafeSources": 1,
+        "genericSources": 0,
+        "status": "needs-generic-fill-before-import",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "montabaur-the-style-outlets": {
+        "exactSafeSources": 1,
+        "genericSources": 0,
+        "status": "needs-generic-fill-before-import",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "maasmechelen-village": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "las-rozas-village": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "unchanged-no-new-distinct-source",
+        "deferredSlots": [
+          "gallery3"
+        ]
+      },
+      "barberino": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "unchanged-no-new-distinct-source",
+        "deferredSlots": [
+          "gallery2",
+          "gallery3"
+        ]
+      }
+    },
+    "excludedSources": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fuego,_Nic_Fiddian_Green.jpg",
+        "reason": "Previously verified exact Designer Outlet Málaga sculpture source, but still excluded because it is a single sculpture-focused source and the full outlet has fewer than two exact safe sources."
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fashion-Outlet-Center_in_Montabaur.jpg",
+        "reason": "Previously verified exact Montabaur source, but still excluded because it is the only exact safe source found for the outlet."
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Barberino_Designer_Outlet",
+        "reason": "Only already production-cleared Barberino sources were found; no distinct non-duplicate exact source was added for gallery2 or gallery3."
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Las_Rozas_Village",
+        "reason": "No distinct safe exact source was found for Las Rozas Village gallery3 beyond sources already used in prior cleared slots."
+      },
+      {
+        "sourceUrl": "Official/operator media pages for unresolved outlet brands",
+        "reason": "Excluded because official/operator images require documented permission and this batch only accepts Wikimedia/Public Domain/CC sources."
+      },
+      {
+        "sourceUrl": "General city, transit, mall, brand, or unrelated Commons categories for Noventa, Provence, Castel Romano, Berlin, Roosendaal, La Reggia, Maasmechelen, Málaga, and Montabaur",
+        "reason": "Excluded where candidates did not clearly depict the named outlet, were not production-safe exact outlet sources, or would duplicate prior reviewed exclusions."
+      }
+    ],
+    "duplicateSourceExclusions": [
+      {
+        "outletId": "las-rozas-village",
+        "slots": [
+          "gallery3"
+        ],
+        "reason": "No additional Commons source distinct from the three already production-cleared Las Rozas Village slots was verified."
+      },
+      {
+        "outletId": "barberino",
+        "slots": [
+          "gallery2",
+          "gallery3"
+        ],
+        "reason": "No additional Commons source distinct from existing Barberino hero/gallery1 was verified."
+      }
+    ],
+    "manifestDecision": "Create entries only for ingolstadt-village and city-outlet-bad-munstereifel because each has at least two verified exact production-safe Wikimedia/Public Domain/CC sources. All other reviewed full outlets remain deferred for a future project-owned/generated/licensed generic replacement phase or later exact-source discovery. No generic images are included."
+  }
+}
