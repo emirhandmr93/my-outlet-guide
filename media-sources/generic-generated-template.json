@@ -1,0 +1,68 @@
+{
+  "templateOnly": true,
+  "version": 1,
+  "batchName": "generated-generic-template-phase-4a-not-importable",
+  "status": "Template only. Placeholder entries are not reviewed sources and must not be imported or promoted.",
+  "images": [
+    {
+      "outletId": "noventa",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/noventa/hero.webp",
+      "sourceStatus": "project-owned",
+      "sourceUrl": "internal:generated-generic/noventa/hero-placeholder",
+      "localSourcePath": "TODO_LOCAL_GENERATED_SOURCE_PATH_DO_NOT_IMPORT",
+      "credit": "My Outlet Guide / generated project-owned media",
+      "license": "Project-owned",
+      "alt": "Generic premium open-air outlet shopping street with neutral storefronts",
+      "notes": "TEMPLATE ONLY: future generated generic media must be non-documentary, not an exact image of Noventa, and reviewed for no real outlet/operator names, logos, brands, readable text, or recognizable real locations.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "noventa",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/noventa/gallery1.webp",
+      "sourceStatus": "project-owned",
+      "sourceUrl": "internal:generated-generic/noventa/gallery1-placeholder",
+      "localSourcePath": "TODO_LOCAL_GENERATED_SOURCE_PATH_DO_NOT_IMPORT",
+      "credit": "My Outlet Guide / generated project-owned media",
+      "license": "Project-owned",
+      "alt": "Generic upscale outlet walkway with neutral boutique facades",
+      "notes": "TEMPLATE ONLY: future generated generic media must be non-documentary, not an exact image of Noventa, and reviewed for no real outlet/operator names, logos, brands, readable text, or recognizable real locations.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "designer-outlet-provence",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/designer-outlet-provence/hero.webp",
+      "sourceStatus": "project-owned",
+      "sourceUrl": "internal:generated-generic/designer-outlet-provence/hero-placeholder",
+      "localSourcePath": "TODO_LOCAL_GENERATED_SOURCE_PATH_DO_NOT_IMPORT",
+      "credit": "My Outlet Guide / generated project-owned media",
+      "license": "Project-owned",
+      "alt": "Generic premium open-air outlet shopping street with neutral storefronts",
+      "notes": "TEMPLATE ONLY: future generated generic media must be non-documentary, not an exact image of Designer Outlet Provence, and reviewed for no real outlet/operator names, logos, brands, readable text, or recognizable real locations.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "designer-outlet-provence",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/designer-outlet-provence/gallery1.webp",
+      "sourceStatus": "project-owned",
+      "sourceUrl": "internal:generated-generic/designer-outlet-provence/gallery1-placeholder",
+      "localSourcePath": "TODO_LOCAL_GENERATED_SOURCE_PATH_DO_NOT_IMPORT",
+      "credit": "My Outlet Guide / generated project-owned media",
+      "license": "Project-owned",
+      "alt": "Generic upscale outlet walkway with neutral boutique facades",
+      "notes": "TEMPLATE ONLY: future generated generic media must be non-documentary, not an exact image of Designer Outlet Provence, and reviewed for no real outlet/operator names, logos, brands, readable text, or recognizable real locations.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    }
+  ]
+}
