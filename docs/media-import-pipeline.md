@@ -88,21 +88,19 @@ npx tsx tools/checkOutletMediaMetadata.ts --strict
 npx tsx tools/checkOutletMediaMetadata.ts --resolver-audit
 ```
 
-Strict media validation is still expected to fail while the legacy 108 local assets remain `sourceStatus: "unknown"`, or until those unknown assets are cleared or excluded. Resolver behavior is intentionally unchanged by this pipeline.
+Strict media validation is still expected to fail while the legacy 37 unknown local assets remain `sourceStatus: "unknown"`, or until those unknown assets are cleared or excluded. Resolver behavior is intentionally unchanged by this pipeline.
 
-## Project-owned generated generic manifests: Phase 4A compatibility notes
+## Project-owned generated generic local imports
 
-Phase 4A defines the policy and template shape for generated generic media, but it does not add images, production metadata, or importable generated-source manifests. Current tooling remains oriented around remote-source imports:
+Phase 4B adds tooling support for reviewed local generated/project-owned source files without changing resolver behavior or promoting any metadata by default.
 
-- `tools/importOutletMedia.ts` requires each manifest entry to include `sourceUrl`; it can omit `downloadUrl` only when `sourceUrl` is a Wikimedia Commons `File:` page. Non-Wikimedia entries require an explicit usable `downloadUrl`, so local generated source files are not importable yet.
-- `tools/promoteImportedOutletMedia.ts` requires `sourceUrl`, `credit`, `license`, `licenseUrl`, and an existing target WebP for every promoted record. It therefore does not yet support omitting `licenseUrl` for project-owned generated media, even though the importer validation is looser for project-owned imports.
-- `tools/checkOutletMediaMetadata.ts --strict` allows production-cleared `project-owned` metadata to satisfy provenance with either `sourceUrl` or an explicit project-owned/internal note, and it does not require license or licenseUrl for project-owned records. Default validation accepts `project-owned` as a valid source status.
-- `src/media/outletMediaMetadata.ts` already includes `project-owned` in `OutletMediaSourceStatus`, and `sourceUrl`, `credit`, `license`, `licenseUrl`, and `notes` are optional at the type level.
+For generated generic imports:
 
-Minimal future tool changes needed to import local generated source files:
+1. Put the reviewed source image under `media-sources/generated-inputs/` (temporary batch subfolders are fine).
+2. Create a real batch manifest under `media-sources/` by copying, not editing in place, `generic-generated-template.json`.
+3. Remove `templateOnly`, replace every placeholder, and set `localSourcePath` to the reviewed local source file.
+4. Use `sourceStatus: "project-owned"`, credit `My Outlet Guide / generated project-owned media`, license `Project-owned`, and notes that clearly state the asset is project-owned/generated/non-documentary and not an exact outlet depiction.
+5. Run the importer. It reads the local file, converts it to WebP, validates true WebP output, requested dimensions, and file size, and stages all outputs before replacing any target.
+6. Promote metadata only after the real import succeeds and after human review. Promotion may omit `sourceUrl` and `licenseUrl` for project-owned generated records only when the notes clearly state project-owned/generated/non-documentary provenance.
 
-1. Extend the manifest schema with a local generated-source field, for example `localSourcePath`, constrained to a reviewed project staging folder and never to `assets/outlet-images` output paths.
-2. Update `tools/importOutletMedia.ts` so `sourceStatus: "project-owned"` can use a local source file instead of remote `downloadUrl`/Wikimedia resolution, while preserving WebP conversion, dimension checks, overwrite protection, and target path validation.
-3. Update `tools/promoteImportedOutletMedia.ts` so project-owned records may omit `licenseUrl` when `notes` include an explicit project-owned/internal non-documentary statement, matching strict metadata validation.
-4. Decide and document whether generated project-owned records should use an internal `sourceUrl` convention such as `internal:generated-generic/<outletId>/<role>` or rely on notes only; then align importer, promoter, and validator messages with that convention.
-5. Keep generated template manifests non-importable until those changes are implemented and reviewed.
+The importer refuses `sourceStatus: "unknown"`, refuses `templateOnly` manifests, refuses local paths outside `media-sources/generated-inputs/`, refuses repo escapes, and refuses local paths that point into `assets/outlet-images`. Existing Wikimedia and remote-download behavior is unchanged.

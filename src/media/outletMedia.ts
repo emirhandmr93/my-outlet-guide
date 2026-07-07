@@ -19,10 +19,8 @@ export type OutletMediaCredit = OutletMediaAssetMetadata & {
 };
 
 type CompleteProductionCreditMetadata = OutletMediaAssetMetadata & {
-  sourceUrl: string;
   credit: string;
   license: string;
-  licenseUrl: string;
 };
 
 type OutletMediaOutlet = {
@@ -250,10 +248,11 @@ function isCompleteProductionCreditMetadata(
 ): metadata is CompleteProductionCreditMetadata {
   return (
     isMediaAssetProductionCleared(metadata) &&
-    hasText(metadata.sourceUrl) &&
     hasText(metadata.credit) &&
     hasText(metadata.license) &&
-    hasText(metadata.licenseUrl)
+    (metadata.sourceStatus === "project-owned" ||
+      hasText(metadata.sourceUrl)) &&
+    (metadata.sourceStatus === "project-owned" || hasText(metadata.licenseUrl))
   );
 }
 
@@ -286,7 +285,9 @@ function getProductionSafeLocalImages(outletId?: string): OutletMediaImage[] {
 }
 
 function getOutletDisplayName(outletId: string): string {
-  return outlets.find((outlet) => outlet.outletId === outletId)?.name ?? outletId;
+  return (
+    outlets.find((outlet) => outlet.outletId === outletId)?.name ?? outletId
+  );
 }
 
 export function getProductionMediaCredits(): OutletMediaCredit[] {
@@ -304,7 +305,9 @@ export function getProductionMediaCredits(): OutletMediaCredit[] {
   });
 }
 
-export function getMediaCreditsForOutlet(outletId: string): OutletMediaCredit[] {
+export function getMediaCreditsForOutlet(
+  outletId: string,
+): OutletMediaCredit[] {
   return getProductionMediaCredits().filter(
     (credit) => credit.outletId === outletId,
   );

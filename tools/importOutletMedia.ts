@@ -14,6 +14,11 @@ const repoRoot = path.resolve(
   "..",
 );
 const outletImagesRoot = path.join(repoRoot, "assets", "outlet-images");
+const generatedInputsRoot = path.join(
+  repoRoot,
+  "media-sources",
+  "generated-inputs",
+);
 const allowedStatuses = new Set([
   "project-owned",
   "licensed",
@@ -33,8 +38,9 @@ type ManifestEntry = {
   role: "hero" | "gallery";
   targetAssetPath: string;
   sourceStatus: string;
-  sourceUrl: string;
+  sourceUrl?: string;
   downloadUrl?: string;
+  localSourcePath?: string;
   credit: string;
   license: string;
   licenseUrl?: string;
@@ -46,6 +52,7 @@ type ManifestEntry = {
 };
 
 type Manifest = {
+  templateOnly?: boolean;
   version?: number;
   batchName?: string;
   images?: ManifestEntry[];
@@ -130,6 +137,12 @@ function readManifest(manifestPath: string): ManifestEntry[] {
     return parsed as ManifestEntry[];
   }
 
+  if (isRecord(parsed) && parsed.templateOnly === true) {
+    throw new Error(
+      "Manifest is marked templateOnly and is not importable. Copy it to a reviewed batch manifest and replace all placeholders first.",
+    );
+  }
+
   if (isRecord(parsed) && Array.isArray(parsed.images)) {
     return parsed.images as ManifestEntry[];
   }
@@ -147,6 +160,17 @@ function looksLikePlaceholder(value: string): boolean {
   return /TODO|REPLACE_ME|example\.invalid/i.test(value);
 }
 
+function getUsableLocalSourcePath(entry: ManifestEntry): string | undefined {
+  if (
+    !hasText(entry.localSourcePath) ||
+    looksLikePlaceholder(entry.localSourcePath)
+  ) {
+    return undefined;
+  }
+
+  return entry.localSourcePath.trim();
+}
+
 function getUsableDownloadUrl(entry: ManifestEntry): string | undefined {
   if (!hasText(entry.downloadUrl)) {
     return undefined;
@@ -159,7 +183,12 @@ function getUsableDownloadUrl(entry: ManifestEntry): string | undefined {
   return entry.downloadUrl.trim();
 }
 
-function getWikimediaFileTitle(sourceUrl: string): string | undefined {
+function getWikimediaFileTitle(
+  sourceUrl: string | undefined,
+): string | undefined {
+  if (!hasText(sourceUrl)) {
+    return undefined;
+  }
   let parsed: URL;
 
   try {
@@ -278,7 +307,62 @@ async function resolveDownloadUrl(
     return `[auto-resolve Wikimedia original via API for ${wikimediaFileTitle}]`;
   }
 
-  return resolveWikimediaDownloadUrl(entry.sourceUrl, options);
+  return resolveWikimediaDownloadUrl(entry.sourceUrl!, options);
+}
+
+function assertLocalSourcePath(localSourcePath: string, label: string): string {
+  const normalizedRelative = localSourcePath.split(path.win32.sep).join("/");
+
+  if (!normalizedRelative.startsWith("media-sources/generated-inputs/")) {
+    throw new Error(
+      `${label}: localSourcePath must be under media-sources/generated-inputs/.`,
+    );
+  }
+
+  if (normalizedRelative.includes("\0")) {
+    throw new Error(`${label}: localSourcePath contains an invalid null byte.`);
+  }
+
+  const absolutePath = path.resolve(repoRoot, normalizedRelative);
+  const relativeFromGeneratedInputs = path.relative(
+    generatedInputsRoot,
+    absolutePath,
+  );
+  const relativeFromOutletImages = path.relative(
+    outletImagesRoot,
+    absolutePath,
+  );
+  const relativeFromRepo = path.relative(repoRoot, absolutePath);
+
+  if (relativeFromRepo.startsWith("..") || path.isAbsolute(relativeFromRepo)) {
+    throw new Error(`${label}: localSourcePath escapes the repository.`);
+  }
+
+  if (
+    relativeFromGeneratedInputs.startsWith("..") ||
+    path.isAbsolute(relativeFromGeneratedInputs)
+  ) {
+    throw new Error(
+      `${label}: localSourcePath must stay inside media-sources/generated-inputs/.`,
+    );
+  }
+
+  if (
+    !relativeFromOutletImages.startsWith("..") &&
+    !path.isAbsolute(relativeFromOutletImages)
+  ) {
+    throw new Error(
+      `${label}: localSourcePath must not point into assets/outlet-images.`,
+    );
+  }
+
+  if (!fs.existsSync(absolutePath) || !fs.statSync(absolutePath).isFile()) {
+    throw new Error(
+      `${label}: localSourcePath file does not exist: ${localSourcePath}`,
+    );
+  }
+
+  return absolutePath;
 }
 
 function assertTargetPath(targetAssetPath: string): string {
@@ -317,7 +401,6 @@ function validateEntry(
     "role",
     "targetAssetPath",
     "sourceStatus",
-    "sourceUrl",
     "credit",
     "license",
     "alt",
@@ -349,16 +432,34 @@ function validateEntry(
     );
   }
 
+  const localSourcePath = getUsableLocalSourcePath(entry);
   const explicitDownloadUrl = getUsableDownloadUrl(entry);
   const wikimediaFileTitle = getWikimediaFileTitle(entry.sourceUrl);
 
-  if (!explicitDownloadUrl && !wikimediaFileTitle) {
+  if (localSourcePath && (explicitDownloadUrl || wikimediaFileTitle)) {
     throw new Error(
-      `${label}: downloadUrl is required unless sourceUrl is a Wikimedia Commons File page.`,
+      `${label}: use either localSourcePath or remote download/Wikimedia source fields, not both.`,
     );
   }
 
-  if (!options.dryRun && looksLikePlaceholder(entry.sourceUrl)) {
+  if (localSourcePath) {
+    assertLocalSourcePath(localSourcePath, label);
+    if (entry.sourceStatus !== "project-owned") {
+      throw new Error(
+        `${label}: localSourcePath imports must use sourceStatus "project-owned".`,
+      );
+    }
+  } else if (!explicitDownloadUrl && !wikimediaFileTitle) {
+    throw new Error(
+      `${label}: localSourcePath, downloadUrl, or a Wikimedia Commons File sourceUrl is required.`,
+    );
+  }
+
+  if (
+    hasText(entry.sourceUrl) &&
+    !options.dryRun &&
+    looksLikePlaceholder(entry.sourceUrl)
+  ) {
     throw new Error(
       `${label}: replace placeholder sourceUrl before running import.`,
     );
@@ -506,10 +607,10 @@ async function fetchWithRetries(
       const sourceUrl = fetchOptions.label ?? url;
       const waitMs =
         response.status === 429
-          ? getRetryAfterMs(response) ??
+          ? (getRetryAfterMs(response) ??
             wikimediaRateLimitBackoffMs[
               Math.min(attempt - 1, wikimediaRateLimitBackoffMs.length - 1)
-            ]
+            ])
           : retryDelayMs * attempt;
       console.error(
         `Network request failed (attempt ${attempt}/${downloadRetryCount}, status ${response.status}, wait ${waitMs}ms): ${sourceUrl}`,
@@ -638,14 +739,38 @@ async function main(): Promise<void> {
   const resolvedImports: Array<{
     entry: ManifestEntry;
     targetPath: string;
-    downloadUrl: string;
+    sourceLabel: string;
+    sourcePath?: string;
+    downloadUrl?: string;
   }> = [];
   for (const [index, entry] of entries.entries()) {
-    const downloadUrl = await resolveDownloadUrl(entry, options);
-    resolvedImports.push({ entry, targetPath: targets[index], downloadUrl });
-    console.log(
-      `${options.dryRun ? "Would import" : "Resolved"} ${downloadUrl} -> ${entry.targetAssetPath}`,
-    );
+    const localSourcePath = getUsableLocalSourcePath(entry);
+    if (localSourcePath) {
+      const sourcePath = assertLocalSourcePath(
+        localSourcePath,
+        `images[${index}]`,
+      );
+      resolvedImports.push({
+        entry,
+        targetPath: targets[index],
+        sourceLabel: localSourcePath,
+        sourcePath,
+      });
+      console.log(
+        `${options.dryRun ? "Would import" : "Resolved"} ${localSourcePath} -> ${entry.targetAssetPath}`,
+      );
+    } else {
+      const downloadUrl = await resolveDownloadUrl(entry, options);
+      resolvedImports.push({
+        entry,
+        targetPath: targets[index],
+        sourceLabel: downloadUrl,
+        downloadUrl,
+      });
+      console.log(
+        `${options.dryRun ? "Would import" : "Resolved"} ${downloadUrl} -> ${entry.targetAssetPath}`,
+      );
+    }
   }
 
   if (options.dryRun) {
@@ -676,13 +801,26 @@ async function main(): Promise<void> {
 
   try {
     for (const item of resolvedImports) {
-      const tempPath = await downloadToTemp(
-        item.downloadUrl,
-        tempRoot,
-        options,
-      );
-      downloadedSources.push({ ...item, tempPath });
-      console.log(`Downloaded original once: ${item.downloadUrl}`);
+      if (item.sourcePath) {
+        downloadedSources.push({
+          ...item,
+          downloadUrl: item.sourceLabel,
+          tempPath: item.sourcePath,
+        });
+        console.log(`Using local generated source once: ${item.sourceLabel}`);
+      } else if (item.downloadUrl) {
+        const tempPath = await downloadToTemp(
+          item.downloadUrl,
+          tempRoot,
+          options,
+        );
+        downloadedSources.push({ ...item, tempPath });
+        console.log(`Downloaded original once: ${item.downloadUrl}`);
+      } else {
+        throw new Error(
+          `No source path or download URL resolved for ${item.entry.targetAssetPath}.`,
+        );
+      }
     }
 
     for (const item of downloadedSources) {

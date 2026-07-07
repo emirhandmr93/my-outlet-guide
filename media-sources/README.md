@@ -10,8 +10,9 @@ Each manifest is JSON with an `images` array. Every image entry must include:
 - `role`: `hero` or `gallery`.
 - `targetAssetPath`: WebP output path under `assets/outlet-images`.
 - `sourceStatus`: production-cleared status such as `public-domain`, `licensed`, `permission-granted`, or `project-owned`; `unknown` is refused by the importer.
-- `sourceUrl`: human-reviewable source page for provenance.
+- `sourceUrl`: human-reviewable source page for provenance. For project-owned generated images this may be omitted when `notes` clearly state project-owned/generated/non-documentary provenance.
 - `downloadUrl`: optional direct file URL used by the importer. Keep this for non-Wikimedia sources or when you want to pin an explicit original-file URL. It may be omitted, empty, or a `TODO` placeholder when `sourceUrl` is a Wikimedia Commons `File:` page because the importer can resolve the original file URL automatically.
+- `localSourcePath`: optional local generated-source path for project-owned generated media. It must stay under `media-sources/generated-inputs/`, must not escape the repo, and must not point into `assets/outlet-images`. Use either `localSourcePath` or remote download/Wikimedia fields, not both.
 - `credit`: required credit text.
 - `license`: license label.
 - `licenseUrl`: required for non-project-owned sources.
@@ -50,4 +51,4 @@ Deferred full-unknown outlets for project-owned, generated, or licensed generic 
 
 `generic-generated-template.json` is a non-importable Phase 4A planning template, not a reviewed production source manifest. It intentionally uses placeholders and `templateOnly: true` so it must not be passed to the importer or promoter as real source inventory.
 
-Future project-owned generated generic manifests should use `sourceStatus: "project-owned"`, credit `My Outlet Guide / generated project-owned media`, license `Project-owned`, and notes that explicitly say the image is generated generic, non-documentary, and not an exact depiction of the named outlet. Do not add generated images or production metadata until the local-generated-source import path and promotion rules are updated.
+Future project-owned generated generic manifests should use `sourceStatus: "project-owned"`, `localSourcePath` under `media-sources/generated-inputs/`, credit `My Outlet Guide / generated project-owned media`, license `Project-owned`, and notes that explicitly say the image is generated generic, project-owned, non-documentary, and not an exact depiction of the named outlet. The template remains non-importable because it has `templateOnly: true` and placeholder paths.

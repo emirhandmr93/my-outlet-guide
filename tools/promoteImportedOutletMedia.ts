@@ -5,10 +5,18 @@ import { fileURLToPath } from "node:url";
 
 import { assertVerifiedWebp, inspectMediaFile } from "./mediaFileInspection";
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const repoRoot = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+);
 const outletImagesRoot = path.join(repoRoot, "assets", "outlet-images");
 const outletMediaPath = path.join(repoRoot, "src", "media", "outletMedia.ts");
-const metadataPath = path.join(repoRoot, "src", "media", "outletMediaMetadata.ts");
+const metadataPath = path.join(
+  repoRoot,
+  "src",
+  "media",
+  "outletMediaMetadata.ts",
+);
 
 const allowedStatuses = new Set([
   "project-owned",
@@ -23,7 +31,8 @@ type ManifestEntry = {
   role: "hero" | "gallery";
   targetAssetPath: string;
   sourceStatus: string;
-  sourceUrl: string;
+  sourceUrl?: string;
+  localSourcePath?: string;
   credit: string;
   license: string;
   licenseUrl?: string;
@@ -44,10 +53,10 @@ type MetadataRecord = {
   role: "hero" | "gallery";
   assetPath: string;
   sourceStatus: string;
-  sourceUrl: string;
+  sourceUrl?: string;
   credit: string;
   license: string;
-  licenseUrl: string;
+  licenseUrl?: string;
   alt: string;
   notes?: string;
 };
@@ -98,22 +107,42 @@ function readManifest(manifestPath: string): ManifestEntry[] {
     return parsed as ManifestEntry[];
   }
 
+  if (isRecord(parsed) && parsed.templateOnly === true) {
+    throw new Error(
+      "Manifest is marked templateOnly and is not promotable. Copy it to a reviewed batch manifest and replace all placeholders first.",
+    );
+  }
+
   if (isRecord(parsed) && Array.isArray(parsed.images)) {
     return parsed.images as ManifestEntry[];
   }
 
-  throw new Error("Manifest must be a JSON array or an object with an images array.");
+  throw new Error(
+    "Manifest must be a JSON array or an object with an images array.",
+  );
 }
 
 function hasText(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
 }
 
+function hasProjectOwnedGeneratedProvenance(entry: ManifestEntry): boolean {
+  return (
+    entry.sourceStatus === "project-owned" &&
+    hasText(entry.notes) &&
+    /project-owned|project owned/i.test(entry.notes) &&
+    /generated/i.test(entry.notes) &&
+    /non-documentary|non documentary/i.test(entry.notes)
+  );
+}
+
 function normalizeTargetPath(targetAssetPath: string): string {
   const normalizedRelative = targetAssetPath.split(path.win32.sep).join("/");
 
   if (!normalizedRelative.startsWith("assets/outlet-images/")) {
-    throw new Error(`${targetAssetPath}: targetAssetPath must be under assets/outlet-images.`);
+    throw new Error(
+      `${targetAssetPath}: targetAssetPath must be under assets/outlet-images.`,
+    );
   }
 
   if (!normalizedRelative.endsWith(".webp")) {
@@ -124,7 +153,9 @@ function normalizeTargetPath(targetAssetPath: string): string {
   const relativeFromRoot = path.relative(outletImagesRoot, absolutePath);
 
   if (relativeFromRoot.startsWith("..") || path.isAbsolute(relativeFromRoot)) {
-    throw new Error(`${targetAssetPath}: targetAssetPath escapes assets/outlet-images.`);
+    throw new Error(
+      `${targetAssetPath}: targetAssetPath escapes assets/outlet-images.`,
+    );
   }
 
   return normalizedRelative;
@@ -137,10 +168,8 @@ function validateEntry(entry: ManifestEntry, index: number): string {
     "role",
     "targetAssetPath",
     "sourceStatus",
-    "sourceUrl",
     "credit",
     "license",
-    "licenseUrl",
     "alt",
   ];
 
@@ -155,19 +184,46 @@ function validateEntry(entry: ManifestEntry, index: number): string {
   }
 
   if (entry.sourceStatus === "unknown") {
-    throw new Error(`${label}: sourceStatus "unknown" is refused for promotion.`);
+    throw new Error(
+      `${label}: sourceStatus "unknown" is refused for promotion.`,
+    );
   }
 
   if (!allowedStatuses.has(entry.sourceStatus)) {
-    throw new Error(`${label}: unsupported sourceStatus "${entry.sourceStatus}".`);
+    throw new Error(
+      `${label}: unsupported sourceStatus "${entry.sourceStatus}".`,
+    );
   }
 
-  if (entry.width !== undefined && (!Number.isInteger(entry.width) || entry.width < 1)) {
-    throw new Error(`${label}: width must be a positive integer when provided.`);
+  const hasGeneratedProvenance = hasProjectOwnedGeneratedProvenance(entry);
+  if (!hasText(entry.sourceUrl) && !hasGeneratedProvenance) {
+    throw new Error(
+      `${label}: sourceUrl is required unless project-owned generated media notes clearly state project-owned/generated/non-documentary provenance.`,
+    );
   }
 
-  if (entry.height !== undefined && (!Number.isInteger(entry.height) || entry.height < 1)) {
-    throw new Error(`${label}: height must be a positive integer when provided.`);
+  if (!hasText(entry.licenseUrl) && !hasGeneratedProvenance) {
+    throw new Error(
+      `${label}: licenseUrl is required unless project-owned generated media notes clearly state project-owned/generated/non-documentary provenance.`,
+    );
+  }
+
+  if (
+    entry.width !== undefined &&
+    (!Number.isInteger(entry.width) || entry.width < 1)
+  ) {
+    throw new Error(
+      `${label}: width must be a positive integer when provided.`,
+    );
+  }
+
+  if (
+    entry.height !== undefined &&
+    (!Number.isInteger(entry.height) || entry.height < 1)
+  ) {
+    throw new Error(
+      `${label}: height must be a positive integer when provided.`,
+    );
   }
 
   const normalizedPath = normalizeTargetPath(entry.targetAssetPath);
@@ -180,7 +236,10 @@ function validateEntry(entry: ManifestEntry, index: number): string {
     );
   }
 
-  assertVerifiedWebp(absolutePath, { ...entry, targetAssetPath: normalizedPath });
+  assertVerifiedWebp(absolutePath, {
+    ...entry,
+    targetAssetPath: normalizedPath,
+  });
 
   return normalizedPath;
 }
@@ -219,26 +278,29 @@ function metadataObject(record: MetadataRecord): string {
   return lines.join("\n");
 }
 
-function entryToRecord(entry: ManifestEntry, assetPath: string): MetadataRecord {
-  if (!hasText(entry.licenseUrl)) {
-    throw new Error(`${assetPath}: generated metadata is missing licenseUrl.`);
-  }
-
+function entryToRecord(
+  entry: ManifestEntry,
+  assetPath: string,
+): MetadataRecord {
   return {
     outletId: entry.outletId,
     role: entry.role,
     assetPath,
     sourceStatus: entry.sourceStatus,
-    sourceUrl: entry.sourceUrl,
+    sourceUrl: entry.sourceUrl?.trim(),
     credit: entry.credit,
     license: entry.license,
-    licenseUrl: entry.licenseUrl.trim(),
+    licenseUrl: entry.licenseUrl?.trim(),
     alt: entry.alt,
     notes: entry.notes,
   };
 }
 
-function replaceMetadataRecord(source: string, assetPath: string, replacement: string): { source: string; changed: boolean } {
+function replaceMetadataRecord(
+  source: string,
+  assetPath: string,
+  replacement: string,
+): { source: string; changed: boolean } {
   const assetIndex = source.indexOf(`assetPath: ${JSON.stringify(assetPath)}`);
   if (assetIndex < 0) {
     return { source, changed: false };
@@ -247,7 +309,9 @@ function replaceMetadataRecord(source: string, assetPath: string, replacement: s
   const start = source.lastIndexOf("  {", assetIndex);
   const end = source.indexOf("\n  }", assetIndex);
   if (start < 0 || end < 0) {
-    throw new Error(`${assetPath}: could not safely locate existing metadata object.`);
+    throw new Error(
+      `${assetPath}: could not safely locate existing metadata object.`,
+    );
   }
 
   return {
@@ -262,21 +326,43 @@ function assertCompleteMetadataRecord(record: MetadataRecord): void {
     "role",
     "assetPath",
     "sourceStatus",
-    "sourceUrl",
     "credit",
     "license",
-    "licenseUrl",
     "alt",
   ];
 
   for (const field of requiredFields) {
     if (!hasText(record[field])) {
-      throw new Error(`${record.assetPath}: generated metadata is missing ${field}.`);
+      throw new Error(
+        `${record.assetPath}: generated metadata is missing ${field}.`,
+      );
     }
+  }
+
+  const hasGeneratedProvenance =
+    record.sourceStatus === "project-owned" &&
+    hasText(record.notes) &&
+    /project-owned|project owned/i.test(record.notes) &&
+    /generated/i.test(record.notes) &&
+    /non-documentary|non documentary/i.test(record.notes);
+
+  if (!hasText(record.sourceUrl) && !hasGeneratedProvenance) {
+    throw new Error(
+      `${record.assetPath}: generated metadata is missing sourceUrl.`,
+    );
+  }
+
+  if (!hasText(record.licenseUrl) && !hasGeneratedProvenance) {
+    throw new Error(
+      `${record.assetPath}: generated metadata is missing licenseUrl.`,
+    );
   }
 }
 
-function updateMetadataSource(source: string, records: MetadataRecord[]): { source: string; added: string[]; updated: string[] } {
+function updateMetadataSource(
+  source: string,
+  records: MetadataRecord[],
+): { source: string; added: string[]; updated: string[] } {
   const added: string[] = [];
   const updated: string[] = [];
   let nextSource = source;
@@ -284,7 +370,11 @@ function updateMetadataSource(source: string, records: MetadataRecord[]): { sour
   for (const record of records) {
     assertCompleteMetadataRecord(record);
     const rendered = metadataObject(record);
-    const result = replaceMetadataRecord(nextSource, record.assetPath, rendered);
+    const result = replaceMetadataRecord(
+      nextSource,
+      record.assetPath,
+      rendered,
+    );
     nextSource = result.source;
     if (result.changed) {
       updated.push(record.assetPath);
@@ -295,9 +385,13 @@ function updateMetadataSource(source: string, records: MetadataRecord[]): { sour
         "\n] as const satisfies readonly OutletMediaAssetMetadata[];",
         "\n] as const).filter(isOutletMediaAssetMetadata) satisfies readonly OutletMediaAssetMetadata[];",
       ];
-      const marker = markers.find((candidate) => nextSource.includes(candidate));
+      const marker = markers.find((candidate) =>
+        nextSource.includes(candidate),
+      );
       if (!marker) {
-        throw new Error("Could not safely locate outletMediaMetadata array terminator.");
+        throw new Error(
+          "Could not safely locate outletMediaMetadata array terminator.",
+        );
       }
       const markerIndex = nextSource.lastIndexOf(marker);
       nextSource = `${nextSource.slice(0, markerIndex)},\n${rendered}${nextSource.slice(markerIndex)}`;
@@ -311,7 +405,10 @@ function requireLine(assetPath: string): string {
   return `    require("../../${assetPath}"),`;
 }
 
-function updateMediaSource(source: string, entries: Array<{ outletId: string; assetPath: string }>): { source: string; added: string[]; skipped: string[] } {
+function updateMediaSource(
+  source: string,
+  entries: Array<{ outletId: string; assetPath: string }>,
+): { source: string; added: string[]; skipped: string[] } {
   let nextSource = source;
   const added: string[] = [];
   const skipped: string[] = [];
@@ -324,10 +421,14 @@ function updateMediaSource(source: string, entries: Array<{ outletId: string; as
     }
 
     const key = quoteKey(entry.outletId);
-    const outletPattern = new RegExp(`${escapeRegExp(key)}: \\[([\\s\\S]*?)\\n  \\]`);
+    const outletPattern = new RegExp(
+      `${escapeRegExp(key)}: \\[([\\s\\S]*?)\\n  \\]`,
+    );
     const match = nextSource.match(outletPattern);
     if (!match || match.index === undefined) {
-      throw new Error(`${entry.outletId}: could not safely locate outletLocalImages entry.`);
+      throw new Error(
+        `${entry.outletId}: could not safely locate outletLocalImages entry.`,
+      );
     }
 
     const insertIndex = match.index + match[0].lastIndexOf("\n  ]");
@@ -355,7 +456,9 @@ function findSimulationSourceAsset(): string {
   });
 
   if (!source) {
-    throw new Error("Could not locate a valid 1600x900 WebP asset for simulation stubs.");
+    throw new Error(
+      "Could not locate a valid 1600x900 WebP asset for simulation stubs.",
+    );
   }
 
   return source;
@@ -421,26 +524,38 @@ function main(): void {
 
   const metadataSource = fs.readFileSync(metadataPath, "utf8");
   const mediaSource = fs.readFileSync(outletMediaPath, "utf8");
-  const records = normalizedEntries.map(({ entry, assetPath }) => entryToRecord(entry, assetPath));
+  const records = normalizedEntries.map(({ entry, assetPath }) =>
+    entryToRecord(entry, assetPath),
+  );
   const metadataUpdate = updateMetadataSource(metadataSource, records);
   const mediaUpdate = updateMediaSource(
     mediaSource,
-    normalizedEntries.map(({ entry, assetPath }) => ({ outletId: entry.outletId, assetPath })),
+    normalizedEntries.map(({ entry, assetPath }) => ({
+      outletId: entry.outletId,
+      assetPath,
+    })),
   );
 
-  console.log(`Validated ${entries.length} imported media asset(s) for promotion.`);
+  console.log(
+    `Validated ${entries.length} imported media asset(s) for promotion.`,
+  );
   for (const { assetPath } of normalizedEntries) {
     console.log(`Verified existing WebP asset: ${assetPath}`);
   }
   console.log(`Metadata records to add: ${metadataUpdate.added.length}`);
   console.log(`Metadata records to update: ${metadataUpdate.updated.length}`);
   console.log(`Local require entries to add: ${mediaUpdate.added.length}`);
-  console.log(`Local require entries already present: ${mediaUpdate.skipped.length}`);
+  console.log(
+    `Local require entries already present: ${mediaUpdate.skipped.length}`,
+  );
 
   if (options.dryRun) {
-    for (const assetPath of metadataUpdate.added) console.log(`Would add metadata: ${assetPath}`);
-    for (const assetPath of metadataUpdate.updated) console.log(`Would update metadata: ${assetPath}`);
-    for (const assetPath of mediaUpdate.added) console.log(`Would add local require: ${assetPath}`);
+    for (const assetPath of metadataUpdate.added)
+      console.log(`Would add metadata: ${assetPath}`);
+    for (const assetPath of metadataUpdate.updated)
+      console.log(`Would update metadata: ${assetPath}`);
+    for (const assetPath of mediaUpdate.added)
+      console.log(`Would add local require: ${assetPath}`);
     console.log("Dry run complete; no files were written.");
     return;
   }
@@ -468,13 +583,14 @@ function main(): void {
     fs.writeFileSync(metadataPath, previousMetadataSource);
     fs.writeFileSync(outletMediaPath, previousMediaSource);
     removeSimulationAssets(simulationAssets);
-    console.log("Simulation typecheck complete; restored generated source and temporary assets.");
+    console.log(
+      "Simulation typecheck complete; restored generated source and temporary assets.",
+    );
     return;
   }
 
   console.log("Promotion complete.");
 }
-
 
 try {
   main();

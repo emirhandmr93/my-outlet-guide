@@ -38,10 +38,10 @@ Generated generic media must follow these rules before it can be promoted as pro
 Recommended metadata conventions for project-owned generated generic images:
 
 - `sourceStatus`: `"project-owned"`
-- `sourceUrl`: use an internal, non-remote convention such as `internal:generated-generic/<outletId>/<role>` only after the importer/promoter support internal source identifiers, or omit it only when validation accepts an explicit project-owned/internal note.
+- `sourceUrl`: optional for project-owned generated records when metadata notes clearly state project-owned/generated/non-documentary provenance; an internal convention such as `internal:generated-generic/<outletId>/<role>` may be used when helpful.
 - `credit`: `My Outlet Guide / generated project-owned media`
 - `license`: `Project-owned`
-- `licenseUrl`: omit for project-owned records when tooling allows it; until promotion tooling is updated, any importable manifest will need either a validator-compatible internal source convention or a promotion-tool change because current promotion requires `licenseUrl` in generated metadata.
+- `licenseUrl`: optional for project-owned generated records when the license is project-owned and notes clearly document project-owned/generated/non-documentary provenance.
 - `notes`: include the generation batch, human review status, and the required non-documentary disclaimer.
 
 ## Required metadata for production-cleared images
