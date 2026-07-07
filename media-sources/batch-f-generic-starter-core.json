@@ -1,0 +1,433 @@
+{
+  "version": 1,
+  "batchName": "batch-f-generic-starter-core",
+  "notes": "Media Phase 3Y starter manifest only. Adds two production-safe generic non-documentary shopping/outlet/retail atmosphere source entries per remaining full-unknown outlet for hero.webp and gallery1.webp. No images are downloaded by this manifest creation task; Wikimedia File sourceUrl values intentionally omit downloadUrl so the importer can auto-resolve originals. Existing unknown legacy image files remain untouched until a later import/replace step.",
+  "images": [
+    {
+      "outletId": "noventa",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/noventa/hero.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Plastic_bags.jpg",
+      "credit": "Evrik / Wikimedia Commons",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Copyright_tags/General_public_domain",
+      "alt": "Generic non-documentary shopping visual for Noventa: Reusable shopping bags on a neutral background",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Noventa. Generic shopping-bag object photo with no outlet, mall, operator, or location-specific signage.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "noventa",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/noventa/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Interior_of_clothing_store_mall.jpg",
+      "credit": "Suyash.dwivedi / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Generic non-documentary shopping visual for Noventa: Generic clothing store interior with apparel displays",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Noventa. Generic retail interior; reviewed as non-outlet/non-mall-specific and not used as documentary evidence for any outlet.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "designer-outlet-provence",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/provence/hero.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Window_of_old_shop_Vienna.jpg",
+      "credit": "Jmabel / Wikimedia Commons",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "alt": "Generic non-documentary shopping visual for Designer Outlet Provence: Neutral shop-window retail detail",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Designer Outlet Provence. Shop-window atmosphere detail with no outlet/operator branding and no outlet-location claim.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "designer-outlet-provence",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/provence/gallery1.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shops_and_crosswalks_(Unsplash).jpg",
+      "credit": "Soroush Karimi / Wikimedia Commons",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "alt": "Generic non-documentary shopping visual for Designer Outlet Provence: Urban storefronts and pedestrian crossing",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Designer Outlet Provence. Generic storefront streetscape; not an outlet or mall placeholder and no named outlet/operator signage is presented as the subject.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "castel-romano",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/castel-romano/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dry_clean_rack.jpg",
+      "credit": "sfllaw / Wikimedia Commons",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "alt": "Generic non-documentary shopping visual for Castel Romano: Clothing rack retail atmosphere detail",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Castel Romano. Clothing-rack detail suitable as generic retail atmosphere with no named outlet/operator subject.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "castel-romano",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/castel-romano/gallery1.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_Front_Shopping_Window_of_an_Art_Glass_Shop_in_High_Street_Armadale.jpg",
+      "credit": "Biatch / Wikimedia Commons",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Copyright_tags/General_public_domain",
+      "alt": "Generic non-documentary shopping visual for Castel Romano: Generic shop window display",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Castel Romano. Shop-window detail released to public domain; no outlet/mall signage or location-specific outlet branding.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "designer-outlet-berlin",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/berlin/hero.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shopping-cart-icon-with-bags-symbol-only.png",
+      "credit": "Videoplasty.com / Wikimedia Commons",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "alt": "Generic non-documentary shopping visual for Designer Outlet Berlin: Shopping cart and bags icon",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Designer Outlet Berlin. Non-documentary shopping visual; icon source avoids depicting any real outlet, mall, or operator.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "designer-outlet-berlin",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/berlin/gallery1.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:White_paper_bag.svg",
+      "credit": "Marsupilami / Wikimedia Commons",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Copyright_tags/General_public_domain",
+      "alt": "Generic non-documentary shopping visual for Designer Outlet Berlin: Plain white paper shopping bag illustration",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Designer Outlet Berlin. Non-documentary retail object illustration with no branding or recognizable location.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "designer-outlet-roosendaal",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/roosendaal/hero.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shopping_bag.svg",
+      "credit": "Paul Robinson / Wikimedia Commons",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Copyright_tags/General_public_domain",
+      "alt": "Generic non-documentary shopping visual for Designer Outlet Roosendaal: Plain orange shopping bag illustration",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Designer Outlet Roosendaal. Non-documentary shopping-bag illustration with no outlet, mall, or operator identity.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "designer-outlet-roosendaal",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/roosendaal/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Man_examines_a_white_storage_box_while_shopping_in_a_modern_home_goods_store.jpg",
+      "credit": "Science History Institute / Wikimedia Commons",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "alt": "Generic non-documentary shopping visual for Designer Outlet Roosendaal: Person shopping for home goods in a generic retail aisle",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Designer Outlet Roosendaal. Generic retail-shopping atmosphere; source subject is not an outlet or mall and contains no outlet/operator branding.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "la-reggia",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/la-reggia/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Inside_the_second_hand_shop,_clothing_racks.jpg",
+      "credit": "MAKY.OREL / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Generic non-documentary shopping visual for La Reggia: Clothing racks inside a second-hand shop",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict La Reggia. Generic apparel racks; not an outlet/mall depiction and not used as exact outlet evidence.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "la-reggia",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/la-reggia/gallery1.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bags_of_sorted_secondhand_clothing.jpg",
+      "credit": "MAKY.OREL / Wikimedia Commons",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "alt": "Generic non-documentary shopping visual for La Reggia: Sorted clothing bags for resale",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict La Reggia. Retail inventory atmosphere detail with no outlet, mall, or operator branding.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "designer-outlet-malaga",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/malaga/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shopping_bag_with_rupee_Pinhead_icon.svg",
+      "credit": "Quincy Morgan / Wikimedia Commons",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "alt": "Generic non-documentary shopping visual for Designer Outlet Málaga: Plain shopping bag map icon",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Designer Outlet Málaga. Non-documentary shopping icon; no real outlet, mall, signage, or location-specific branding.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "designer-outlet-malaga",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/malaga/gallery1.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Grocery_bag_of_healthy_foods.jpg",
+      "credit": "Peggy Greb, USDA Agricultural Research Service / Wikimedia Commons",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Copyright_tags/General_public_domain",
+      "alt": "Generic non-documentary shopping visual for Designer Outlet Málaga: Full shopping bag with groceries",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Designer Outlet Málaga. Generic shopping-bag still life; no outlet/mall/operator branding and no location claim.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "montabaur-the-style-outlets",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/montabaur/hero.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Reusable_Bag_4.jpg",
+      "credit": "Tanacollins / Wikimedia Commons",
+      "license": "Public domain",
+      "licenseUrl": "https://commons.wikimedia.org/wiki/Commons:Copyright_tags/General_public_domain",
+      "alt": "Generic non-documentary shopping visual for Montabaur The Style Outlets: Reusable shopping bag product-style view",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Montabaur The Style Outlets. Generic shopping bag visual selected as non-documentary retail atmosphere, not an outlet depiction.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "montabaur-the-style-outlets",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/montabaur/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shop_window_Pelikaanstraat_jewelry_store.jpg",
+      "credit": "Paul Hermans / Wikimedia Commons",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Generic non-documentary shopping visual for Montabaur The Style Outlets: Jewelry shop window retail display",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Montabaur The Style Outlets. Shop-window retail detail; no outlet/operator identity and not used as location-specific evidence.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "maasmechelen-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/maasmechelen/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Window_display_of_prom_dress_shop.jpg",
+      "credit": "BrokenSphere / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Generic non-documentary shopping visual for Maasmechelen Village: Prom dress shop window display",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Maasmechelen Village. Generic apparel window display; not another outlet and no operator/outlet signage selected as subject.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "maasmechelen-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/maasmechelen/gallery1.webp",
+      "sourceStatus": "public-domain",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shopping_freak_(Unsplash).jpg",
+      "credit": "freestocks.org / Wikimedia Commons",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "alt": "Generic non-documentary shopping visual for Maasmechelen Village: Person carrying unbranded shopping bags",
+      "notes": "Generic non-documentary outlet/shopping visual; does not depict Maasmechelen Village. Pre-2017 Unsplash CC0 file on Commons showing generic shopping bags; no outlet, mall, or operator identity is used as the subject.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    }
+  ],
+  "reviewSummary": {
+    "sourcesSelectedPerOutlet": {
+      "noventa": {
+        "displayName": "Noventa",
+        "genericSources": 2,
+        "targetSlots": [
+          "hero.webp",
+          "gallery1.webp"
+        ],
+        "selectedSourceUrls": [
+          "https://commons.wikimedia.org/wiki/File:Plastic_bags.jpg",
+          "https://commons.wikimedia.org/wiki/File:Interior_of_clothing_store_mall.jpg"
+        ],
+        "safetyRationale": "Generic non-documentary shopping/retail visual; does not depict the named outlet; no official/operator source; no unknown-provenance web image."
+      },
+      "designer-outlet-provence": {
+        "displayName": "Designer Outlet Provence",
+        "genericSources": 2,
+        "targetSlots": [
+          "hero.webp",
+          "gallery1.webp"
+        ],
+        "selectedSourceUrls": [
+          "https://commons.wikimedia.org/wiki/File:Window_of_old_shop_Vienna.jpg",
+          "https://commons.wikimedia.org/wiki/File:Shops_and_crosswalks_(Unsplash).jpg"
+        ],
+        "safetyRationale": "Generic non-documentary shopping/retail visual; does not depict the named outlet; no official/operator source; no unknown-provenance web image."
+      },
+      "castel-romano": {
+        "displayName": "Castel Romano",
+        "genericSources": 2,
+        "targetSlots": [
+          "hero.webp",
+          "gallery1.webp"
+        ],
+        "selectedSourceUrls": [
+          "https://commons.wikimedia.org/wiki/File:Dry_clean_rack.jpg",
+          "https://commons.wikimedia.org/wiki/File:A_Front_Shopping_Window_of_an_Art_Glass_Shop_in_High_Street_Armadale.jpg"
+        ],
+        "safetyRationale": "Generic non-documentary shopping/retail visual; does not depict the named outlet; no official/operator source; no unknown-provenance web image."
+      },
+      "designer-outlet-berlin": {
+        "displayName": "Designer Outlet Berlin",
+        "genericSources": 2,
+        "targetSlots": [
+          "hero.webp",
+          "gallery1.webp"
+        ],
+        "selectedSourceUrls": [
+          "https://commons.wikimedia.org/wiki/File:Shopping-cart-icon-with-bags-symbol-only.png",
+          "https://commons.wikimedia.org/wiki/File:White_paper_bag.svg"
+        ],
+        "safetyRationale": "Generic non-documentary shopping/retail visual; does not depict the named outlet; no official/operator source; no unknown-provenance web image."
+      },
+      "designer-outlet-roosendaal": {
+        "displayName": "Designer Outlet Roosendaal",
+        "genericSources": 2,
+        "targetSlots": [
+          "hero.webp",
+          "gallery1.webp"
+        ],
+        "selectedSourceUrls": [
+          "https://commons.wikimedia.org/wiki/File:Shopping_bag.svg",
+          "https://commons.wikimedia.org/wiki/File:Man_examines_a_white_storage_box_while_shopping_in_a_modern_home_goods_store.jpg"
+        ],
+        "safetyRationale": "Generic non-documentary shopping/retail visual; does not depict the named outlet; no official/operator source; no unknown-provenance web image."
+      },
+      "la-reggia": {
+        "displayName": "La Reggia",
+        "genericSources": 2,
+        "targetSlots": [
+          "hero.webp",
+          "gallery1.webp"
+        ],
+        "selectedSourceUrls": [
+          "https://commons.wikimedia.org/wiki/File:Inside_the_second_hand_shop,_clothing_racks.jpg",
+          "https://commons.wikimedia.org/wiki/File:Bags_of_sorted_secondhand_clothing.jpg"
+        ],
+        "safetyRationale": "Generic non-documentary shopping/retail visual; does not depict the named outlet; no official/operator source; no unknown-provenance web image."
+      },
+      "designer-outlet-malaga": {
+        "displayName": "Designer Outlet Málaga",
+        "genericSources": 2,
+        "targetSlots": [
+          "hero.webp",
+          "gallery1.webp"
+        ],
+        "selectedSourceUrls": [
+          "https://commons.wikimedia.org/wiki/File:Shopping_bag_with_rupee_Pinhead_icon.svg",
+          "https://commons.wikimedia.org/wiki/File:Grocery_bag_of_healthy_foods.jpg"
+        ],
+        "safetyRationale": "Generic non-documentary shopping/retail visual; does not depict the named outlet; no official/operator source; no unknown-provenance web image."
+      },
+      "montabaur-the-style-outlets": {
+        "displayName": "Montabaur The Style Outlets",
+        "genericSources": 2,
+        "targetSlots": [
+          "hero.webp",
+          "gallery1.webp"
+        ],
+        "selectedSourceUrls": [
+          "https://commons.wikimedia.org/wiki/File:Reusable_Bag_4.jpg",
+          "https://commons.wikimedia.org/wiki/File:Shop_window_Pelikaanstraat_jewelry_store.jpg"
+        ],
+        "safetyRationale": "Generic non-documentary shopping/retail visual; does not depict the named outlet; no official/operator source; no unknown-provenance web image."
+      },
+      "maasmechelen-village": {
+        "displayName": "Maasmechelen Village",
+        "genericSources": 2,
+        "targetSlots": [
+          "hero.webp",
+          "gallery1.webp"
+        ],
+        "selectedSourceUrls": [
+          "https://commons.wikimedia.org/wiki/File:Window_display_of_prom_dress_shop.jpg",
+          "https://commons.wikimedia.org/wiki/File:Shopping_freak_(Unsplash).jpg"
+        ],
+        "safetyRationale": "Generic non-documentary shopping/retail visual; does not depict the named outlet; no official/operator source; no unknown-provenance web image."
+      }
+    },
+    "sourceSafetyRationale": "Selected only Wikimedia Commons File pages with public-domain, CC0, or Creative Commons licenses. Sources are generic retail/shopping atmosphere, retail object, storefront, or icon/illustration visuals and are not presented as documentary photos of the target outlets. Selections avoid official/operator media and avoid recognizable named outlet placeholders.",
+    "deferredOutlets": [],
+    "deferredSlots": {
+      "allPhase3YOutlets": [
+        "gallery2.webp",
+        "gallery3.webp"
+      ],
+      "las-rozas-village": [
+        "gallery3.webp"
+      ],
+      "barberino": [
+        "gallery2.webp",
+        "gallery3.webp"
+      ]
+    },
+    "excludedSources": [
+      {
+        "sourceUrl": "Official/operator image libraries and outlet brand pages",
+        "reason": "Excluded because official/operator images require documented permission and this starter batch is limited to production-safe public-domain/CC/project-safe generic sources."
+      },
+      {
+        "sourceUrl": "Exact-source candidates already deferred in Media Phase 3W/3X for Noventa, Provence, Castel Romano, Berlin, Roosendaal, La Reggia, Málaga, Montabaur, and Maasmechelen",
+        "reason": "Excluded from this generic starter manifest because exact outlet-source search had already deferred these full-unknown outlets and this batch intentionally uses generic non-documentary sources only."
+      },
+      {
+        "sourceUrl": "Commons files depicting named outlet centers, recognizable malls, operator signage, or branded outlet architecture unrelated to the target outlet",
+        "reason": "Excluded because generic placeholders must not depict another identifiable outlet or mall and must not imply a false location-specific documentary image."
+      },
+      {
+        "sourceUrl": "Unknown-provenance web images and non-CC stock/social images",
+        "reason": "Excluded because the product media rule forbids unknown-provenance web images and requires production-safe licensing or ownership."
+      }
+    ],
+    "sourceReuseRationale": "No exact sourceUrl is reused in this starter manifest. Icon/object-style generic sources were mixed with retail-atmosphere sources to avoid repeating one visual across many outlets while keeping the batch non-documentary and production-safe.",
+    "manifestDecision": "Manifest created with 18 entries: hero.webp and gallery1.webp for each of the 9 remaining full-unknown outlets. gallery2.webp and gallery3.webp remain deferred for later production-safe sourcing."
+  }
+}
