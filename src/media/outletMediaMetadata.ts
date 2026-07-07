@@ -1086,6 +1086,18 @@ const outletMediaMetadataRaw: readonly unknown[] = [
     licenseUrl: "https://creativecommons.org/licenses/by/3.0/",
     alt: "Outletcity Metzingen shopping street",
     notes: "Wikimedia Commons file page identifies OUTLETCITY METZINGEN as the subject and licenses the qwesy qwesy Panoramio source under CC BY 3.0. Use for assets/outlet-images/metzingen/gallery3.webp; attribute the author, link the license, and indicate changes made during import.",
+  },
+  {
+    outletId: "designer-outlet-parndorf",
+    role: "gallery",
+    assetPath: "assets/outlet-images/parndorf/gallery3.webp",
+    sourceStatus: "licensed",
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Outlet_Parndorf_-_panoramio.jpg",
+    credit: "qwesy qwesy / Wikimedia Commons",
+    license: "CC BY 3.0",
+    licenseUrl: "https://creativecommons.org/licenses/by/3.0/",
+    alt: "Designer Outlet Parndorf exterior with outlet storefronts and walkways",
+    notes: "Wikimedia Commons file page describes Outlet Parndorf, places the file in Category:Outletcenter Parndorf, identifies the author as qwesy qwesy, and records the reviewed Panoramio source as licensed under CC BY 3.0. Use for assets/outlet-images/parndorf/gallery3.webp; attribute the author, link the license, and indicate changes made during import.",
   }
 ] as const;
 

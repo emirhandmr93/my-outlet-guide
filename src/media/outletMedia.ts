@@ -62,6 +62,7 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/parndorf/hero.webp"),
     require("../../assets/outlet-images/parndorf/gallery1.webp"),
     require("../../assets/outlet-images/parndorf/gallery2.webp"),
+    require("../../assets/outlet-images/parndorf/gallery3.webp"),
   ],
   "fidenza-village": [
     require("../../assets/outlet-images/fidenza/hero.webp"),
