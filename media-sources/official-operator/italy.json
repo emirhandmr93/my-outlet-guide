@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "batchName": "official-operator-italy-phase-6b",
+  "images": [
+    {
+      "outletId": "barberino",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/barberino/hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.barberinooutlet.com/en/sales/",
+      "downloadUrl": "https://www.barberinooutlet.com/wp-content/uploads/2026/07/Saldi-estivi-26-ENG_header-desk-ENG.jpg",
+      "alt": "Official Barberino Designer Outlet summer sale image with outlet shopping bags and outdoor seating.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "valdichiana-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/valdichiana-village/hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.valdichianadesignervillage.com/en/village/about-us",
+      "downloadUrl": "https://www.valdichianadesignervillage.com/fileadmin/user_upload/ros/pages/AboutUs_header_2340x585.jpg",
+      "alt": "Official Valdichiana Village image showing the outlet's arched store entrances.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "palmanova-designer-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/palmanova-designer-village/hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.palmanovadesignervillage.com/en/village/about-us",
+      "downloadUrl": "https://www.palmanovadesignervillage.com/fileadmin/user_upload/ros/pages/header_pav_who_we_are.jpg",
+      "alt": "Official Palmanova Designer Village about page image for the outlet village.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "franciacorta-designer-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/franciacorta-designer-village/hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.franciacortadesignervillage.com/en/village/about-us",
+      "downloadUrl": "https://www.franciacortadesignervillage.com/fileadmin/user_upload/ros/pages/Sito_2340x585_FDV7.jpg",
+      "alt": "Official Franciacorta Designer Village image showing shoppers at the outlet's arched storefronts.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    }
+  ],
+  "reviewSummary": {
+    "coveredOutlets": [
+      "barberino",
+      "valdichiana-village",
+      "palmanova-designer-village",
+      "franciacorta-designer-village"
+    ],
+    "entryCountByOutlet": {
+      "barberino": 1,
+      "valdichiana-village": 1,
+      "palmanova-designer-village": 1,
+      "franciacorta-designer-village": 1
+    },
+    "blockedDeferredOutlets": [
+      {
+        "outletId": "castel-romano",
+        "reason": "Deferred: the official operator site displays a sitewide notice that images across the website may have been modified or generated using AI technology, so direct image URLs were not added under the no-AI source rule."
+      },
+      {
+        "outletId": "fidenza-village",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "la-reggia",
+        "reason": "Deferred: the official operator site displays a sitewide notice that images across the website may have been modified or generated using AI technology, so direct image URLs were not added under the no-AI source rule."
+      },
+      {
+        "outletId": "noventa",
+        "reason": "Deferred: the official operator site displays a sitewide notice that images across the website may have been modified or generated using AI technology, so direct image URLs were not added under the no-AI source rule."
+      },
+      {
+        "outletId": "serravalle-designer-outlet",
+        "reason": "Deferred: the official operator site displays a sitewide notice that images across the website may have been modified or generated using AI technology, so direct image URLs were not added under the no-AI source rule."
+      },
+      {
+        "outletId": "the-mall-firenze",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "mantova-village",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "vicolungo-the-style-outlets",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "castel-guelfo-the-style-outlets",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "puglia-village",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "sicilia-outlet-village",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "scalo-milano-outlet-more",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "torino-outlet-village",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "mondovicino-outlet-village",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "brugnato-5terre-outlet-village",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "valmontone-outlet",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "cilento-outlet-village",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      },
+      {
+        "outletId": "santangelo-outlet-village",
+        "reason": "Deferred: a direct downloadable official/operator outlet image URL was not safely confirmed during this pass."
+      }
+    ],
+    "sourcePagesUsed": [
+      "https://www.barberinooutlet.com/en/sales/",
+      "https://www.valdichianadesignervillage.com/en/village/about-us",
+      "https://www.palmanovadesignervillage.com/en/village/about-us",
+      "https://www.franciacortadesignervillage.com/en/village/about-us"
+    ],
+    "sourceStrategy": "Only official/operator website pages were reviewed. Entries were added only when the official page exposed a direct downloadable image URL. No Google Images, random web, social media, third-party blog/news, generic unrelated outlet, or AI/generated sources were used. No images were downloaded or imported in this task."
+  }
+}
