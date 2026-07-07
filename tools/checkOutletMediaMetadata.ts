@@ -86,6 +86,18 @@ function hasValue(value: string | undefined): boolean {
   return typeof value === "string" && value.trim().length > 0;
 }
 
+function isAllowedOutletImageFilename(assetPath: string): boolean {
+  return [
+    "official-hero.webp",
+    "official-gallery1.webp",
+    "official-gallery2.webp",
+    "hero.webp",
+    "gallery1.webp",
+    "gallery2.webp",
+    "gallery3.webp",
+  ].includes(path.posix.basename(assetPath));
+}
+
 for (const metadata of outletMediaMetadata) {
   metadataAssetCounts.set(
     metadata.assetPath,
@@ -117,6 +129,14 @@ for (const metadata of outletMediaMetadata) {
       issues,
       "error",
       `${metadata.assetPath}: assetPath must be under assets/outlet-images`,
+    );
+  }
+
+  if (!isAllowedOutletImageFilename(metadata.assetPath)) {
+    addIssue(
+      issues,
+      "error",
+      `${metadata.assetPath}: asset filename must be an approved production slot or official overlay slot`,
     );
   }
 
