@@ -352,27 +352,6 @@ const outletMediaMetadataRaw: readonly unknown[] = [
     notes: "Exact Barberino Designer Outlet source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
   },
   {
-    outletId: "barberino",
-    role: "gallery",
-    assetPath: "assets/outlet-images/barberino/gallery2.webp",
-    sourceStatus: "licensed",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:GEST_1007_piazza_Muratori_Barberino_Outlet_20240426.jpg",
-    credit: "Sailko / Wikimedia Commons",
-    license: "CC BY-SA 4.0",
-    licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/",
-    alt: "Piazza Muratori at Barberino Designer Outlet",
-    notes: "Exact Barberino Designer Outlet source from Wikimedia Commons. The Commons category for Barberino Designer Outlet lists this file as one of only two category files, and the file page identifies the author as Sailko with CC BY-SA 4.0 licensing. Use for assets/outlet-images/barberino/gallery2.webp; attribute the author, link the license, indicate import crop/resize changes, and preserve share-alike requirements.",
-  },
-  {
-    outletId: "barberino",
-    role: "gallery",
-    assetPath: "assets/outlet-images/barberino/gallery3.webp",
-    sourceStatus: "unknown",
-    alt: "Barberino Designer Outlet gallery image 3",
-    notes:
-      "Inventory-tracked local asset with unknown provenance; not production-cleared until source, credit, and license are documented.",
-  },
-  {
     outletId: "noventa",
     role: "hero",
     assetPath: "assets/outlet-images/noventa/hero.webp",
