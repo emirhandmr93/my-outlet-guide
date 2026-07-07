@@ -1,25 +1,25 @@
 {
   "skipped": [
     {
-      "outletId": "las-rozas-village",
-      "targetAssetPath": "assets/outlet-images/las-rozas/official-hero.webp",
-      "sourceUrl": "https://www.thebicestercollection.com/las-rozas-village/en",
-      "downloadUrl": "https://www.thebicestercollection.com/las-rozas-village/en/-/media/village/las-rozas-village/homepage/las-rozas-village-homepage-hero.jpg",
-      "reason": "Download failed for https://www.thebicestercollection.com/las-rozas-village/en/-/media/village/las-rozas-village/homepage/las-rozas-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
+      "outletId": "roermond",
+      "targetAssetPath": "assets/outlet-images/roermond/official-hero.webp",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/nl/centre-pages/roermond/designer-outlet-roermond.jpg",
+      "reason": "Download failed for https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/nl/centre-pages/roermond/designer-outlet-roermond.jpg after 4 attempt(s): 404 Not Found"
     },
     {
-      "outletId": "la-roca-village",
-      "targetAssetPath": "assets/outlet-images/la-roca/official-hero.webp",
-      "sourceUrl": "https://www.thebicestercollection.com/la-roca-village/en",
-      "downloadUrl": "https://www.thebicestercollection.com/la-roca-village/en/-/media/village/la-roca-village/homepage/la-roca-village-homepage-hero.jpg",
-      "reason": "Download failed for https://www.thebicestercollection.com/la-roca-village/en/-/media/village/la-roca-village/homepage/la-roca-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
+      "outletId": "metzingen",
+      "targetAssetPath": "assets/outlet-images/metzingen/official-hero.webp",
+      "sourceUrl": "https://www.outletcity.com/en/metzingen/",
+      "downloadUrl": "https://www.outletcity.com/fileadmin/user_upload/teaser/outletcity-metzingen-shopping.jpg",
+      "reason": "Download failed for https://www.outletcity.com/fileadmin/user_upload/teaser/outletcity-metzingen-shopping.jpg after 4 attempt(s): 406 Not Acceptable"
     },
     {
-      "outletId": "malaga-designer-outlet",
-      "targetAssetPath": "assets/outlet-images/malaga-designer-outlet/official-hero.webp",
-      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/",
-      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/es/centre-pages/malaga/designer-outlet-malaga.jpg",
-      "reason": "Download failed for https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/es/centre-pages/malaga/designer-outlet-malaga.jpg after 4 attempt(s): 404 Not Found"
+      "outletId": "la-vallee-village",
+      "targetAssetPath": "assets/outlet-images/la-vallee-village/official-hero.webp",
+      "sourceUrl": "https://www.thebicestercollection.com/la-vallee-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/la-vallee-village/en/-/media/village/la-vallee-village/homepage/la-vallee-village-homepage-hero.jpg",
+      "reason": "Download failed for https://www.thebicestercollection.com/la-vallee-village/en/-/media/village/la-vallee-village/homepage/la-vallee-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
     }
   ]
 }
