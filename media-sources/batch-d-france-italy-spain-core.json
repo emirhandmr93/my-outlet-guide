@@ -1,0 +1,353 @@
+{
+  "version": 1,
+  "batchName": "batch-d-france-italy-spain-core",
+  "notes": "Reviewed exact Wikimedia Commons source manifest for Media Phase 3U France/Italy/Spain core legacy folders. Do not download images in this task; Wikimedia File sourceUrl values are intentionally provided without downloadUrl so the importer can auto-resolve originals. No generic images are included. Outlets with fewer than two exact safe sources are recorded in reviewSummary only and deferred for future documented generic production-safe fill.",
+  "images": [
+    {
+      "outletId": "la-vallee-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/la-vallee/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:La_Vall%C3%A9e_Village,_f%C3%A9vrier_2025_2.jpg",
+      "credit": "Artvill / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "La Vallée Village pedestrian shopping street in February 2025",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "la-vallee-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/la-vallee/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:La_Vall%C3%A9e_Village,_f%C3%A9vrier_2025_1.jpg",
+      "credit": "Artvill / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "La Vallée Village storefronts and walkway in February 2025",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "la-vallee-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/la-vallee/gallery2.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vall%C3%A9e_Village_(Serris)_(1).jpg",
+      "credit": "Gzen92 / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "La Vallée Village at Serris exterior walkway",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "la-vallee-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/la-vallee/gallery3.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:France_-_Val_d%27Europe_-_La_vall%C3%A9e.JPG",
+      "credit": "Pinpin / Wikimedia Commons",
+      "license": "CC BY-SA 2.5",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.5/",
+      "alt": "La Vallée outlet shopping village at Val d'Europe",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "fidenza-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/fidenza/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fidenza_village_-_panoramio.jpg",
+      "credit": "qwesy qwesy / Panoramio / Wikimedia Commons",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "alt": "Fidenza Village outlet exterior view hero",
+      "notes": "Exact Fidenza Village source from Wikimedia Commons/Panoramio; preserve attribution, link license, and indicate import crop/resize changes.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "fidenza-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/fidenza/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fidenza_village_-_panoramio_(1).jpg",
+      "credit": "qwesy qwesy / Panoramio / Wikimedia Commons",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "alt": "Fidenza Village outlet exterior view gallery1",
+      "notes": "Exact Fidenza Village source from Wikimedia Commons/Panoramio; preserve attribution, link license, and indicate import crop/resize changes.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "fidenza-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/fidenza/gallery2.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fidenza_village_-_panoramio_(2).jpg",
+      "credit": "qwesy qwesy / Panoramio / Wikimedia Commons",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "alt": "Fidenza Village outlet exterior view gallery2",
+      "notes": "Exact Fidenza Village source from Wikimedia Commons/Panoramio; preserve attribution, link license, and indicate import crop/resize changes.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "fidenza-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/fidenza/gallery3.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fidenza_village_-_panoramio_(3).jpg",
+      "credit": "qwesy qwesy / Panoramio / Wikimedia Commons",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "alt": "Fidenza Village outlet exterior view gallery3",
+      "notes": "Exact Fidenza Village source from Wikimedia Commons/Panoramio; preserve attribution, link license, and indicate import crop/resize changes.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "designer-outlet-troyes",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/troyes/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Village_Marques_McArthurGlen_-_Pont-Sainte-Marie_(FR10)_-_2026-02-27_-_1.jpg",
+      "credit": "Chabe01 / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "McArthurGlen Troyes outlet village exterior view 1",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "designer-outlet-troyes",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/troyes/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Village_Marques_McArthurGlen_-_Pont-Sainte-Marie_(FR10)_-_2026-02-27_-_2.jpg",
+      "credit": "Chabe01 / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "McArthurGlen Troyes outlet village exterior view 2",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "designer-outlet-troyes",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/troyes/gallery2.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Village_Marques_McArthurGlen_-_Pont-Sainte-Marie_(FR10)_-_2026-02-27_-_3.jpg",
+      "credit": "Chabe01 / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "McArthurGlen Troyes outlet village exterior view 3",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "designer-outlet-troyes",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/troyes/gallery3.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Village_Marques_McArthurGlen_-_Pont-Sainte-Marie_(FR10)_-_2026-02-27_-_4.jpg",
+      "credit": "Chabe01 / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "McArthurGlen Troyes outlet village exterior view 4",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "las-rozas-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/las-rozas/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Restaurante_-_Las_Rozas_Village_-_Chic_outlet_shopping_(6926664573).jpg",
+      "credit": "jacilluch / Flickr / Wikimedia Commons",
+      "license": "CC BY-SA 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "alt": "Restaurant terrace at Las Rozas Village",
+      "notes": "Exact Las Rozas Village source from Wikimedia Commons/Flickr; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "las-rozas-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/las-rozas/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Alumbrado_de_Navidad.jpg",
+      "credit": "Dcarolina.2000 / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Christmas lights at Las Rozas Village",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "las-rozas-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/las-rozas/gallery2.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Venado_Las_Rozas_Village.jpg",
+      "credit": "Dcarolina.2000 / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Holiday deer decoration at Las Rozas Village",
+      "notes": "Exact source from Wikimedia Commons; preserve attribution, link license, indicate import crop/resize changes, and comply with share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    }
+  ],
+  "reviewSummary": {
+    "sourcesFoundPerOutlet": {
+      "la-vallee-village": {
+        "exactSafeSources": 4,
+        "genericSources": 0,
+        "status": "exact-ready",
+        "deferredSlots": []
+      },
+      "fidenza-village": {
+        "exactSafeSources": 4,
+        "genericSources": 0,
+        "status": "exact-ready",
+        "deferredSlots": []
+      },
+      "noventa": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "la-reggia": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "castel-romano": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "designer-outlet-provence": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "needs-generic-fill",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "designer-outlet-troyes": {
+        "exactSafeSources": 4,
+        "genericSources": 0,
+        "status": "exact-ready",
+        "deferredSlots": []
+      },
+      "las-rozas-village": {
+        "exactSafeSources": 3,
+        "genericSources": 0,
+        "status": "partial-exact-ready",
+        "deferredSlots": [
+          "gallery3"
+        ]
+      },
+      "designer-outlet-malaga": {
+        "exactSafeSources": 1,
+        "genericSources": 0,
+        "status": "needs-generic-fill-before-import",
+        "deferredSlots": [
+          "hero",
+          "gallery1",
+          "gallery2",
+          "gallery3"
+        ]
+      },
+      "barberino": {
+        "exactSafeSources": 0,
+        "genericSources": 0,
+        "status": "unchanged-no-new-distinct-source",
+        "deferredSlots": [
+          "gallery2",
+          "gallery3"
+        ]
+      }
+    },
+    "excludedSources": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fuego,_Nic_Fiddian_Green.jpg",
+        "reason": "Verified licensed exact Designer Outlet Málaga sculpture source, but not added because it remains a single sculpture-focused exact source and the task requires deferring outlets with fewer than two exact safe sources."
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elephant,_Swindon_Designer_Outlet,_Swindon_-_geograph.org.uk_-_814457.jpg",
+        "reason": "Excluded because it depicts Swindon Designer Outlet, not Castel Romano; the description only references intended relocation to Castel Romano."
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vaporetto_stop_Stazione_di_Venezia_Santa_Lucia_07_2017_4036.jpg",
+        "reason": "Excluded because it depicts Venice transit infrastructure, not Noventa di Piave Designer Outlet."
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Barberino_Designer_Outlet",
+        "reason": "Only the two already production-cleared Barberino sources were found; no distinct non-duplicate exact Barberino source was added for gallery2 or gallery3."
+      },
+      {
+        "sourceUrl": "Official/operator media pages for Value Retail/McArthurGlen outlets",
+        "reason": "Excluded because official/operator images require documented permission and this batch only accepts Wikimedia/Public Domain/CC sources."
+      },
+      {
+        "sourceUrl": "General city, airport, or retail brand Commons categories for Provence, La Reggia, Noventa, Castel Romano, and Málaga",
+        "reason": "Excluded because available candidates did not clearly depict the named outlet or would depict unrelated locations/brands."
+      }
+    ],
+    "manifestDecision": "Create manifest entries only for outlets with two or more verified exact production-safe Wikimedia/Public Domain/CC sources: la-vallee-village, fidenza-village, designer-outlet-troyes, and las-rozas-village. Defer noventa, la-reggia, castel-romano, designer-outlet-provence, designer-outlet-malaga, and Barberino gallery2/gallery3 to future generic production-safe fill or additional exact-source discovery. No generic images are included."
+  }
+}
