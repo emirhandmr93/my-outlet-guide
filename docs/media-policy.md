@@ -15,6 +15,7 @@ This policy defines when outlet media can be considered production-cleared and h
 - Unknown-provenance local images should be replaced, documented, or excluded before final public production release.
 - Exact outlet photos are preferred and must be used only when sourced and verified for the named outlet.
 - Exact Wikimedia Commons source pages remain allowed when the metadata documents source, author/credit, license or public-domain terms, and the exact-outlet review context.
+- Automatic import may proceed with one or more verified exact safe outlet sources: 1 source maps to `hero.webp`; 2 sources map to `hero.webp` and `gallery1.webp`; 3 sources add `gallery2.webp`; 4 sources add `gallery3.webp`. Outlets with zero exact safe sources remain manual upload needed.
 - Manual user-provided exact outlet photos are allowed only when they are project-owned, licensed, or permission-granted.
 - Official/operator images still require documented permission before use.
 - Do not direct-hotlink random remote images or official outlet images.
