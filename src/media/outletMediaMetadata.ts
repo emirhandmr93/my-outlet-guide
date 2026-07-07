@@ -381,13 +381,9 @@ const outletMediaMetadataRaw: readonly unknown[] = [
     outletId: "barberino",
     role: "hero",
     assetPath: "assets/outlet-images/barberino/hero.webp",
-    sourceStatus: "licensed",
-    sourceUrl: "https://commons.wikimedia.org/wiki/File:Barberino_outlet.JPG",
-    credit: "Sailko / Wikimedia Commons",
-    license: "CC BY 2.5",
-    licenseUrl: "https://creativecommons.org/licenses/by/2.5/",
-    alt: "Barberino Designer Outlet exterior village-style walkway",
-    notes: "Exact Barberino Designer Outlet source from Wikimedia Commons; selected CC BY 2.5 from available licenses; preserve attribution, link license, and indicate import crop/resize changes.",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.barberinooutlet.com/en/sales/",
+    alt: "Official Barberino Designer Outlet summer sale image with outlet shopping bags and outdoor seating.",
   },
   {
     outletId: "barberino",
@@ -1499,6 +1495,30 @@ const outletMediaMetadataRaw: readonly unknown[] = [
     licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/",
     alt: "Swindon Designer Outlet exact outlet view",
     notes: "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies Swindon Designer Outlet or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
+  },
+  {
+    outletId: "valdichiana-village",
+    role: "hero",
+    assetPath: "assets/outlet-images/valdichiana-village/hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.valdichianadesignervillage.com/en/village/about-us",
+    alt: "Official Valdichiana Village image showing the outlet's arched store entrances.",
+  },
+  {
+    outletId: "palmanova-designer-village",
+    role: "hero",
+    assetPath: "assets/outlet-images/palmanova-designer-village/hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.palmanovadesignervillage.com/en/village/about-us",
+    alt: "Official Palmanova Designer Village about page image for the outlet village.",
+  },
+  {
+    outletId: "franciacorta-designer-village",
+    role: "hero",
+    assetPath: "assets/outlet-images/franciacorta-designer-village/hero.webp",
+    sourceStatus: "official-operator",
+    sourceUrl: "https://www.franciacortadesignervillage.com/en/village/about-us",
+    alt: "Official Franciacorta Designer Village image showing shoppers at the outlet's arched storefronts.",
   }
 ] as const;
 

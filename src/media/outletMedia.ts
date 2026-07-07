@@ -238,6 +238,15 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/swindon-designer-outlet/gallery2.webp"),
     require("../../assets/outlet-images/swindon-designer-outlet/gallery3.webp"),
   ],
+  "valdichiana-village": [
+    require("../../assets/outlet-images/valdichiana-village/hero.webp"),
+  ],
+  "palmanova-designer-village": [
+    require("../../assets/outlet-images/palmanova-designer-village/hero.webp"),
+  ],
+  "franciacorta-designer-village": [
+    require("../../assets/outlet-images/franciacorta-designer-village/hero.webp"),
+  ],
 };
 
 const productionClearedSourceStatuses = new Set<OutletMediaSourceStatus>([
