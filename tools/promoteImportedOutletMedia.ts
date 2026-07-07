@@ -475,12 +475,15 @@ function updateMetadataSource(
     } else {
       added.push(record.assetPath);
       const insertIndex = findMetadataInsertIndex(nextSource, record);
+      const before = nextSource.slice(0, insertIndex);
+      const after = nextSource.slice(insertIndex);
+      const hasPreviousElement = /}\s*$/.test(before);
+      const previousElementHasComma = /},\s*$/.test(before);
+      const insertingBeforeElement = /^\s*{/.test(after);
       const prefix =
-        insertIndex > 0 &&
-        nextSource.slice(insertIndex - 2, insertIndex) === ",\n"
-          ? ""
-          : ",\n";
-      nextSource = `${nextSource.slice(0, insertIndex)}${prefix}${rendered}${nextSource.slice(insertIndex)}`;
+        hasPreviousElement && !previousElementHasComma ? ",\n" : "";
+      const suffix = insertingBeforeElement ? ",\n" : "";
+      nextSource = `${before}${prefix}${rendered}${suffix}${after}`;
     }
   }
 
