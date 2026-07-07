@@ -3,18 +3,6 @@
   "batchName": "official-operator-italy-phase-6b",
   "images": [
     {
-      "outletId": "barberino",
-      "role": "hero",
-      "targetAssetPath": "assets/outlet-images/barberino/hero.webp",
-      "sourceStatus": "official-operator",
-      "sourceUrl": "https://www.barberinooutlet.com/en/sales/",
-      "downloadUrl": "https://www.barberinooutlet.com/wp-content/uploads/2026/07/Saldi-estivi-26-ENG_header-desk-ENG.jpg",
-      "alt": "Official Barberino Designer Outlet summer sale image with outlet shopping bags and outdoor seating.",
-      "width": 1600,
-      "height": 900,
-      "quality": 82
-    },
-    {
       "outletId": "valdichiana-village",
       "role": "hero",
       "targetAssetPath": "assets/outlet-images/valdichiana-village/hero.webp",
@@ -53,13 +41,11 @@
   ],
   "reviewSummary": {
     "coveredOutlets": [
-      "barberino",
       "valdichiana-village",
       "palmanova-designer-village",
       "franciacorta-designer-village"
     ],
     "entryCountByOutlet": {
-      "barberino": 1,
       "valdichiana-village": 1,
       "palmanova-designer-village": 1,
       "franciacorta-designer-village": 1
@@ -139,7 +125,6 @@
       }
     ],
     "sourcePagesUsed": [
-      "https://www.barberinooutlet.com/en/sales/",
       "https://www.valdichianadesignervillage.com/en/village/about-us",
       "https://www.palmanovadesignervillage.com/en/village/about-us",
       "https://www.franciacortadesignervillage.com/en/village/about-us"
