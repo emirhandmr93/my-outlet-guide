@@ -28,3 +28,19 @@ Each manifest is JSON with an `images` array. Every image entry must include:
 - `File:Parndorf_Designer_Outlet_(3).jpg`
 
 The sample intentionally omits `downloadUrl` values. In dry-run mode, the importer validates that each `sourceUrl` is a Wikimedia Commons `File:` page and reports that the original file URL would be auto-resolved. During a real local import, the importer calls the Wikimedia/MediaWiki API `imageinfo` endpoint to resolve the original file URL before downloading and converting. You may still provide an explicit `downloadUrl` to bypass auto-resolution.
+
+## Batch F generic starter status
+
+`batch-f-generic-starter-core.json` is intentionally not committed. The Media Phase 3Y generic-source review did not retain any importable entries because the candidate set depended on visually unsuitable or misleading generic media categories: icons/SVG/PNG symbols, isolated shopping or grocery bags, dry-cleaning racks, clothing piles, product-only imagery, person-focused retail photos, recognizable unrelated storefronts or named malls/outlets, official/operator imagery without documented permission, and unknown-provenance web images.
+
+Deferred full-unknown outlets for project-owned, generated, or licensed generic outlet-atmosphere production:
+
+- `noventa`
+- `designer-outlet-provence`
+- `castel-romano`
+- `designer-outlet-berlin`
+- `designer-outlet-roosendaal`
+- `la-reggia`
+- `designer-outlet-malaga`
+- `montabaur-the-style-outlets`
+- `maasmechelen-village`
