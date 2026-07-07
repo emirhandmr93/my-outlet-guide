@@ -151,12 +151,52 @@ for (const metadata of outletMediaMetadata) {
       metadata.sourceStatus === "project-owned" &&
       hasValue(metadata.notes) &&
       /project-owned|project owned|internal/i.test(metadata.notes ?? "");
+    const hasProjectOwnedGeneratedNote =
+      metadata.sourceStatus === "project-owned" &&
+      hasValue(metadata.notes) &&
+      /project-owned|project owned/i.test(metadata.notes ?? "") &&
+      /generated/i.test(metadata.notes ?? "") &&
+      /non-documentary|non documentary/i.test(metadata.notes ?? "");
 
     if (!hasSourceUrl && !hasProjectOwnedNote) {
       addIssue(
         issues,
         "error",
         `${metadata.assetPath}: production-cleared metadata requires sourceUrl or an explicit project-owned/internal note`,
+      );
+    }
+
+    if (
+      metadata.sourceStatus === "project-owned" &&
+      !hasValue(metadata.credit)
+    ) {
+      addIssue(
+        issues,
+        "error",
+        `${metadata.assetPath}: project-owned metadata requires credit`,
+      );
+    }
+
+    if (
+      metadata.sourceStatus === "project-owned" &&
+      !hasValue(metadata.license)
+    ) {
+      addIssue(
+        issues,
+        "error",
+        `${metadata.assetPath}: project-owned metadata requires license`,
+      );
+    }
+
+    if (
+      metadata.sourceStatus === "project-owned" &&
+      !hasSourceUrl &&
+      !hasProjectOwnedGeneratedNote
+    ) {
+      addIssue(
+        issues,
+        "error",
+        `${metadata.assetPath}: project-owned generated metadata without sourceUrl requires notes that state project-owned/generated/non-documentary provenance`,
       );
     }
 

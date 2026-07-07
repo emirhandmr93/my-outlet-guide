@@ -32,4 +32,5 @@ Recommended metadata values:
 - `sourceStatus`: `project-owned`
 - `credit`: `My Outlet Guide / generated project-owned media`
 - `license`: `Project-owned`
-- `sourceUrl`: use the approved internal convention after tooling supports it, or rely on explicit project-owned/internal notes if validator rules allow that path.
+- `sourceUrl`: optional when notes clearly document project-owned/generated/non-documentary provenance; use an internal convention if useful for traceability.
+- `localSourcePath`: for imports, point to a reviewed source under `media-sources/generated-inputs/`.
