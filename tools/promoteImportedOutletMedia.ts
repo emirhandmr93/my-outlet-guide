@@ -438,35 +438,140 @@ function requireLine(assetPath: string): string {
   return `    require("../../${assetPath}"),`;
 }
 
+const slotOrder = new Map([
+  ["hero.webp", 0],
+  ["gallery1.webp", 1],
+  ["gallery2.webp", 2],
+  ["gallery3.webp", 3],
+]);
+
+type MediaPromotionEntry = { outletId: string; assetPath: string };
+
+type OutletMediaGroup = {
+  outletId: string;
+  entries: MediaPromotionEntry[];
+  folderPath: string;
+};
+
+function getAssetFolderPath(assetPath: string): string {
+  const normalized = normalizeTargetPath(assetPath);
+  const parts = normalized.split("/");
+
+  if (parts.length !== 4) {
+    throw new Error(
+      `${assetPath}: targetAssetPath must be directly under assets/outlet-images/<folder>/.`,
+    );
+  }
+
+  const fileName = parts[3];
+  if (!slotOrder.has(fileName)) {
+    throw new Error(
+      `${assetPath}: targetAssetPath file name must be hero.webp, gallery1.webp, gallery2.webp, or gallery3.webp.`,
+    );
+  }
+
+  return `${parts[0]}/${parts[1]}/${parts[2]}/`;
+}
+
+function compareMediaSlots(
+  a: MediaPromotionEntry,
+  b: MediaPromotionEntry,
+): number {
+  const aSlot = path.posix.basename(a.assetPath);
+  const bSlot = path.posix.basename(b.assetPath);
+  return (
+    (slotOrder.get(aSlot) ?? Number.MAX_SAFE_INTEGER) -
+    (slotOrder.get(bSlot) ?? Number.MAX_SAFE_INTEGER)
+  );
+}
+
+function groupMediaEntries(entries: MediaPromotionEntry[]): OutletMediaGroup[] {
+  const groups = new Map<string, OutletMediaGroup>();
+
+  for (const entry of entries) {
+    const folderPath = getAssetFolderPath(entry.assetPath);
+    const existing = groups.get(entry.outletId);
+
+    if (existing) {
+      if (existing.folderPath !== folderPath) {
+        throw new Error(
+          `${entry.outletId}: targetAssetPath values must all live under the same assets/outlet-images/<folder>/ directory.`,
+        );
+      }
+      existing.entries.push(entry);
+      continue;
+    }
+
+    groups.set(entry.outletId, {
+      outletId: entry.outletId,
+      entries: [entry],
+      folderPath,
+    });
+  }
+
+  return [...groups.values()].map((group) => ({
+    ...group,
+    entries: [...group.entries].sort(compareMediaSlots),
+  }));
+}
+
+function renderOutletLocalImagesEntry(group: OutletMediaGroup): string {
+  const lines = [
+    `  ${quoteKey(group.outletId)}: [`,
+    ...group.entries.map((entry) => requireLine(entry.assetPath)),
+    "  ],",
+  ];
+  return lines.join("\n");
+}
+
 function updateMediaSource(
   source: string,
-  entries: Array<{ outletId: string; assetPath: string }>,
+  entries: MediaPromotionEntry[],
 ): { source: string; added: string[]; skipped: string[] } {
   let nextSource = source;
   const added: string[] = [];
   const skipped: string[] = [];
 
-  for (const entry of entries) {
-    const line = requireLine(entry.assetPath);
-    if (nextSource.includes(line.trim())) {
-      skipped.push(entry.assetPath);
-      continue;
-    }
-
-    const key = quoteKey(entry.outletId);
+  for (const group of groupMediaEntries(entries)) {
+    const key = quoteKey(group.outletId);
     const outletPattern = new RegExp(
       `${escapeRegExp(key)}: \\[([\\s\\S]*?)\\n  \\]`,
     );
     const match = nextSource.match(outletPattern);
+
     if (!match || match.index === undefined) {
-      throw new Error(
-        `${entry.outletId}: could not safely locate outletLocalImages entry.`,
-      );
+      const insertMarker = "\n};\n\nconst productionClearedSourceStatuses";
+      const insertIndex = nextSource.indexOf(insertMarker);
+      if (insertIndex < 0) {
+        throw new Error(
+          `${group.outletId}: could not safely locate outletLocalImages terminator.`,
+        );
+      }
+
+      nextSource = `${nextSource.slice(0, insertIndex)}\n${renderOutletLocalImagesEntry(group)}${nextSource.slice(insertIndex)}`;
+      added.push(...group.entries.map((entry) => entry.assetPath));
+      continue;
     }
 
-    const insertIndex = match.index + match[0].lastIndexOf("\n  ]");
-    nextSource = `${nextSource.slice(0, insertIndex)}\n${line}${nextSource.slice(insertIndex)}`;
-    added.push(entry.assetPath);
+    for (const entry of group.entries) {
+      const line = requireLine(entry.assetPath);
+      if (nextSource.includes(line.trim())) {
+        skipped.push(entry.assetPath);
+        continue;
+      }
+
+      const currentMatch = nextSource.match(outletPattern);
+      if (!currentMatch || currentMatch.index === undefined) {
+        throw new Error(
+          `${entry.outletId}: could not safely locate outletLocalImages entry.`,
+        );
+      }
+
+      const insertIndex =
+        currentMatch.index + currentMatch[0].lastIndexOf("\n  ]");
+      nextSource = `${nextSource.slice(0, insertIndex)}\n${line}${nextSource.slice(insertIndex)}`;
+      added.push(entry.assetPath);
+    }
   }
 
   return { source: nextSource, added, skipped };
