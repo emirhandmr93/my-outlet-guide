@@ -151,12 +151,18 @@ for (const metadata of outletMediaMetadata) {
       metadata.sourceStatus === "project-owned" &&
       hasValue(metadata.notes) &&
       /project-owned|project owned|internal/i.test(metadata.notes ?? "");
-    const hasProjectOwnedGeneratedNote =
+    const hasProjectOwnedManualExactPhotoNote =
       metadata.sourceStatus === "project-owned" &&
+      metadata.license === "Project-owned" &&
+      hasValue(metadata.credit) &&
       hasValue(metadata.notes) &&
-      /project-owned|project owned/i.test(metadata.notes ?? "") &&
-      /generated/i.test(metadata.notes ?? "") &&
-      /non-documentary|non documentary/i.test(metadata.notes ?? "");
+      /exact outlet photo/i.test(metadata.notes ?? "") &&
+      /project-owned|project owned|user-provided with rights|user provided with rights/i.test(
+        metadata.notes ?? "",
+      ) &&
+      /not AI-generated|not AI generated/i.test(metadata.notes ?? "") &&
+      /not generic/i.test(metadata.notes ?? "") &&
+      /not downloaded from an unknown web source/i.test(metadata.notes ?? "");
 
     if (!hasSourceUrl && !hasProjectOwnedNote) {
       addIssue(
@@ -191,12 +197,12 @@ for (const metadata of outletMediaMetadata) {
     if (
       metadata.sourceStatus === "project-owned" &&
       !hasSourceUrl &&
-      !hasProjectOwnedGeneratedNote
+      !hasProjectOwnedManualExactPhotoNote
     ) {
       addIssue(
         issues,
         "error",
-        `${metadata.assetPath}: project-owned generated metadata without sourceUrl requires notes that state project-owned/generated/non-documentary provenance`,
+        `${metadata.assetPath}: project-owned metadata without sourceUrl requires notes that state exact outlet photo, project-owned or user-provided with rights, not AI-generated, not generic, and not downloaded from an unknown web source`,
       );
     }
 

@@ -14,11 +14,7 @@ const repoRoot = path.resolve(
   "..",
 );
 const outletImagesRoot = path.join(repoRoot, "assets", "outlet-images");
-const generatedInputsRoot = path.join(
-  repoRoot,
-  "media-sources",
-  "generated-inputs",
-);
+const manualInputsRoot = path.join(repoRoot, "media-sources", "manual-inputs");
 const allowedStatuses = new Set([
   "project-owned",
   "licensed",
@@ -41,6 +37,7 @@ type ManifestEntry = {
   sourceUrl?: string;
   downloadUrl?: string;
   localSourcePath?: string;
+  manualSourcePath?: string;
   credit: string;
   license: string;
   licenseUrl?: string;
@@ -161,14 +158,12 @@ function looksLikePlaceholder(value: string): boolean {
 }
 
 function getUsableLocalSourcePath(entry: ManifestEntry): string | undefined {
-  if (
-    !hasText(entry.localSourcePath) ||
-    looksLikePlaceholder(entry.localSourcePath)
-  ) {
+  const candidate = entry.manualSourcePath ?? entry.localSourcePath;
+  if (!hasText(candidate) || looksLikePlaceholder(candidate)) {
     return undefined;
   }
 
-  return entry.localSourcePath.trim();
+  return candidate.trim();
 }
 
 function getUsableDownloadUrl(entry: ManifestEntry): string | undefined {
@@ -313,9 +308,9 @@ async function resolveDownloadUrl(
 function assertLocalSourcePath(localSourcePath: string, label: string): string {
   const normalizedRelative = localSourcePath.split(path.win32.sep).join("/");
 
-  if (!normalizedRelative.startsWith("media-sources/generated-inputs/")) {
+  if (!normalizedRelative.startsWith("media-sources/manual-inputs/")) {
     throw new Error(
-      `${label}: localSourcePath must be under media-sources/generated-inputs/.`,
+      `${label}: manual/local source paths must be exact manual photos under media-sources/manual-inputs/.`,
     );
   }
 
@@ -324,8 +319,8 @@ function assertLocalSourcePath(localSourcePath: string, label: string): string {
   }
 
   const absolutePath = path.resolve(repoRoot, normalizedRelative);
-  const relativeFromGeneratedInputs = path.relative(
-    generatedInputsRoot,
+  const relativeFromManualInputs = path.relative(
+    manualInputsRoot,
     absolutePath,
   );
   const relativeFromOutletImages = path.relative(
@@ -339,11 +334,11 @@ function assertLocalSourcePath(localSourcePath: string, label: string): string {
   }
 
   if (
-    relativeFromGeneratedInputs.startsWith("..") ||
-    path.isAbsolute(relativeFromGeneratedInputs)
+    relativeFromManualInputs.startsWith("..") ||
+    path.isAbsolute(relativeFromManualInputs)
   ) {
     throw new Error(
-      `${label}: localSourcePath must stay inside media-sources/generated-inputs/.`,
+      `${label}: manual/local source paths must stay inside media-sources/manual-inputs/.`,
     );
   }
 
@@ -363,6 +358,24 @@ function assertLocalSourcePath(localSourcePath: string, label: string): string {
   }
 
   return absolutePath;
+}
+
+function hasValidManualExactPhotoMetadata(entry: ManifestEntry): boolean {
+  const notes = entry.notes ?? "";
+  return (
+    entry.sourceStatus === "project-owned" &&
+    entry.license.trim() === "Project-owned" &&
+    hasText(entry.credit) &&
+    hasText(entry.alt) &&
+    hasText(entry.notes) &&
+    /exact outlet photo/i.test(notes) &&
+    /project-owned|project owned|user-provided with rights|user provided with rights/i.test(
+      notes,
+    ) &&
+    /not AI-generated|not AI generated/i.test(notes) &&
+    /not generic/i.test(notes) &&
+    /not downloaded from an unknown web source/i.test(notes)
+  );
 }
 
 function assertTargetPath(targetAssetPath: string): string {
@@ -426,13 +439,21 @@ function validateEntry(
     );
   }
 
-  if (entry.sourceStatus !== "project-owned" && !hasText(entry.licenseUrl)) {
+  const localSourcePath = getUsableLocalSourcePath(entry);
+  const hasValidManualMetadata = hasValidManualExactPhotoMetadata(entry);
+
+  if (!hasText(entry.sourceUrl) && !hasValidManualMetadata) {
     throw new Error(
-      `${label}: licenseUrl is required for non-project-owned imports.`,
+      `${label}: sourceUrl is required unless this is a valid project-owned exact manual photo.`,
     );
   }
 
-  const localSourcePath = getUsableLocalSourcePath(entry);
+  if (!hasText(entry.licenseUrl) && !hasValidManualMetadata) {
+    throw new Error(
+      `${label}: licenseUrl is required unless this is a valid project-owned exact manual photo.`,
+    );
+  }
+
   const explicitDownloadUrl = getUsableDownloadUrl(entry);
   const wikimediaFileTitle = getWikimediaFileTitle(entry.sourceUrl);
 
@@ -446,7 +467,12 @@ function validateEntry(
     assertLocalSourcePath(localSourcePath, label);
     if (entry.sourceStatus !== "project-owned") {
       throw new Error(
-        `${label}: localSourcePath imports must use sourceStatus "project-owned".`,
+        `${label}: manual/local imports must use sourceStatus "project-owned".`,
+      );
+    }
+    if (!hasValidManualMetadata) {
+      throw new Error(
+        `${label}: project-owned manual imports require license "Project-owned" and notes that state exact outlet photo, project-owned or user-provided with rights, not AI-generated, not generic, and not downloaded from an unknown web source.`,
       );
     }
   } else if (!explicitDownloadUrl && !wikimediaFileTitle) {
@@ -807,7 +833,9 @@ async function main(): Promise<void> {
           downloadUrl: item.sourceLabel,
           tempPath: item.sourcePath,
         });
-        console.log(`Using local generated source once: ${item.sourceLabel}`);
+        console.log(
+          `Using local exact manual source once: ${item.sourceLabel}`,
+        );
       } else if (item.downloadUrl) {
         const tempPath = await downloadToTemp(
           item.downloadUrl,
