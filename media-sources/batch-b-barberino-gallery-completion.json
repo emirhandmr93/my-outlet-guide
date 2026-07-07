@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "batchName": "batch-b-barberino-gallery-completion",
+  "notes": "Revised Media Phase 3Q Barberino gallery completion manifest. Do not download images in this task; Wikimedia sourceUrl values intentionally omit downloadUrl so the importer resolves originals during real import. This revision keeps only the verified exact Barberino Designer Outlet source for gallery2 and defers gallery3 rather than using an identifiable different-outlet generic image.",
+  "images": [
+    {
+      "outletId": "barberino",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/barberino/gallery2.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:GEST_1007_piazza_Muratori_Barberino_Outlet_20240426.jpg",
+      "credit": "Sailko / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Piazza Muratori at Barberino Designer Outlet",
+      "notes": "Exact Barberino Designer Outlet source from Wikimedia Commons. The Commons category for Barberino Designer Outlet lists this file as one of only two category files, and the file page identifies the author as Sailko with CC BY-SA 4.0 licensing. Use for assets/outlet-images/barberino/gallery2.webp; attribute the author, link the license, indicate import crop/resize changes, and preserve share-alike requirements.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    }
+  ],
+  "reviewSummary": {
+    "exactSourcesFound": {
+      "barberino": [
+        "gallery2"
+      ]
+    },
+    "genericSourceDecision": "No generic image is used for Barberino gallery3 in this revision. A safe generic replacement must be truly non-documentary and must not depict a different named outlet or recognizable specific mall/outlet.",
+    "deferredSlots": [
+      {
+        "outletId": "barberino",
+        "targetAssetPath": "assets/outlet-images/barberino/gallery3.webp",
+        "reason": "Deferred for future project-owned, generated, licensed, public-domain, or permission-granted generic replacement because no additional exact Barberino Designer Outlet source or truly generic non-documentary shopping/outlet visual was safely selected for this pass."
+      }
+    ],
+    "excludedSources": [
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/Category:Barberino_Designer_Outlet",
+        "reason": "Reviewed as exact-source verification; the category lists only Barberino outlet.JPG and GEST_1007_piazza_Muratori_Barberino_Outlet_20240426.jpg, so no additional exact Barberino gallery3 source was selected from this category."
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Woodbury_Common_Premium_Outlets.jpg",
+        "reason": "Excluded because it depicts Woodbury Common Premium Outlets, a real identifiable different outlet. Using it as a generic Barberino gallery image could mislead users into assuming it depicts Barberino."
+      },
+      {
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Woodbury_Common_Premium_Outlets_Entrance.jpg",
+        "reason": "Excluded because any real photo of a named Woodbury Common outlet property is unsuitable as a Barberino generic placeholder, regardless of compatible licensing or non-documentary notes."
+      }
+    ]
+  }
+}
