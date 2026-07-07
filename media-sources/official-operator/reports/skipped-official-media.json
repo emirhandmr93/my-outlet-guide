@@ -1,25 +1,25 @@
 {
   "skipped": [
     {
-      "outletId": "bicester-village",
-      "targetAssetPath": "assets/outlet-images/bicester/official-hero.webp",
-      "sourceUrl": "https://www.thebicestercollection.com/bicester-village/en",
-      "downloadUrl": "https://www.thebicestercollection.com/bicester-village/en/-/media/village/bicester-village/homepage/bicester-village-homepage-hero.jpg",
-      "reason": "Download failed for https://www.thebicestercollection.com/bicester-village/en/-/media/village/bicester-village/homepage/bicester-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
+      "outletId": "las-rozas-village",
+      "targetAssetPath": "assets/outlet-images/las-rozas/official-hero.webp",
+      "sourceUrl": "https://www.thebicestercollection.com/las-rozas-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/las-rozas-village/en/-/media/village/las-rozas-village/homepage/las-rozas-village-homepage-hero.jpg",
+      "reason": "Download failed for https://www.thebicestercollection.com/las-rozas-village/en/-/media/village/las-rozas-village/homepage/las-rozas-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
     },
     {
-      "outletId": "cheshire-oaks",
-      "targetAssetPath": "assets/outlet-images/cheshire-oaks/official-hero.webp",
-      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/",
-      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/cheshire-oaks/cheshire-oaks-designer-outlet.jpg",
-      "reason": "Download failed for https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/cheshire-oaks/cheshire-oaks-designer-outlet.jpg after 4 attempt(s): 404 Not Found"
+      "outletId": "la-roca-village",
+      "targetAssetPath": "assets/outlet-images/la-roca/official-hero.webp",
+      "sourceUrl": "https://www.thebicestercollection.com/la-roca-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/la-roca-village/en/-/media/village/la-roca-village/homepage/la-roca-village-homepage-hero.jpg",
+      "reason": "Download failed for https://www.thebicestercollection.com/la-roca-village/en/-/media/village/la-roca-village/homepage/la-roca-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
     },
     {
-      "outletId": "york-designer-outlet",
-      "targetAssetPath": "assets/outlet-images/york-designer-outlet/official-hero.webp",
-      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-york/",
-      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/york/york-designer-outlet.jpg",
-      "reason": "Download failed for https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/york/york-designer-outlet.jpg after 4 attempt(s): 404 Not Found"
+      "outletId": "malaga-designer-outlet",
+      "targetAssetPath": "assets/outlet-images/malaga-designer-outlet/official-hero.webp",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/es/centre-pages/malaga/designer-outlet-malaga.jpg",
+      "reason": "Download failed for https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/es/centre-pages/malaga/designer-outlet-malaga.jpg after 4 attempt(s): 404 Not Found"
     }
   ]
 }
