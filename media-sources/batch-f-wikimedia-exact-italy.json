@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "batchName": "batch-f-wikimedia-exact-italy",
+  "notes": "Corrected Media Phase 5A exact-source discovery manifest. Contains only outlets with at least two verified exact production-safe Wikimedia/Geograph-on-Commons sources. Do not download images in this audit task; importer dry-run only.",
+  "images": [
+    {
+      "outletId": "sicilia-outlet-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/sicilia-outlet-village/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sicilia_outlet_village,_Agira,_Province_of_Enna,_Sicily,_Italy_-_panoramio.jpg",
+      "credit": "trolvag / Wikimedia Commons",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Sicilia Outlet Village exact outlet view",
+      "notes": "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies Sicilia Outlet Village or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "sicilia-outlet-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/sicilia-outlet-village/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sicilia_outlet_village_-_panoramio_(1).jpg",
+      "credit": "trolvag / Wikimedia Commons",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Sicilia Outlet Village exact outlet view",
+      "notes": "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies Sicilia Outlet Village or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "sicilia-outlet-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/sicilia-outlet-village/gallery2.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sicilia_outlet_village_-_panoramio_(2).jpg",
+      "credit": "trolvag / Wikimedia Commons",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "alt": "Sicilia Outlet Village exact outlet view",
+      "notes": "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies Sicilia Outlet Village or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "sicilia-outlet-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/sicilia-outlet-village/gallery3.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sicilia_Outlet_Village_2025-07-03_001.jpg",
+      "credit": "Antonino Faro / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Sicilia Outlet Village exact outlet view",
+      "notes": "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies Sicilia Outlet Village or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    }
+  ]
+}

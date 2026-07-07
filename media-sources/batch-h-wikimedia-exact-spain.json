@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "batchName": "batch-h-wikimedia-exact-spain",
+  "notes": "Corrected Media Phase 5A exact-source discovery manifest. Contains only outlets with at least two verified exact production-safe Wikimedia/Geograph-on-Commons sources. Do not download images in this audit task; importer dry-run only.",
+  "images": [
+    {
+      "outletId": "la-roca-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/la-roca-village/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:La_Roca_Village_Chic_Outlet_Shopping_(15275455890).jpg",
+      "credit": "Jorge Franganillo / Wikimedia Commons",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "alt": "La Roca Village exact outlet view",
+      "notes": "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies La Roca Village or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "la-roca-village",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/la-roca-village/gallery1.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:La_Roca_Village_-_panoramio.jpg",
+      "credit": "Jorge Franganillo / Wikimedia Commons",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "alt": "La Roca Village exact outlet view",
+      "notes": "Exact Wikimedia Commons/Geograph-on-Commons source found during corrected Media Phase 5A active audit; title/description identifies La Roca Village or its clearly identified outlet/shopping precinct location. No image download or metadata edit in this task.",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    }
+  ]
+}
