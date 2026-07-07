@@ -4,7 +4,9 @@ This folder stores reviewed source manifests for local outlet-image imports. A m
 
 ## Manifest format
 
-Each manifest is JSON with an `images` array. Every image entry must include:
+Each manifest is JSON with an `images` array. Automatic exact-source coverage may use a hero-only batch when exactly one verified exact safe source exists; additional verified exact safe sources fill `gallery1.webp`, `gallery2.webp`, and `gallery3.webp` in order. Outlets with zero exact safe sources remain manual upload needed.
+
+Each image entry must include:
 
 - `outletId`: existing outlet id that will receive the image.
 - `role`: `hero` or `gallery`.

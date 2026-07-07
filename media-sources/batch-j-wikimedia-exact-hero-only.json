@@ -1,0 +1,45 @@
+{
+  "batch": "batch-j-wikimedia-exact-hero-only",
+  "notes": "Policy revision manifest for outlets that previously had exactly one verified exact safe Wikimedia/Commons source. New threshold allows one exact safe source for automatic hero-only import. Do not download images in this task; importer dry-run only. No generic, AI/generated, random web, unrelated outlet, or official/operator unpermitted sources are included.",
+  "reviewSummary": {
+    "policy": "One exact safe Wikimedia/Wikipedia/Commons/licensed/permission-granted outlet source is sufficient for automatic hero.webp import. Outlets with zero exact safe sources remain manual upload needed.",
+    "movedToHeroOnlyAutomatic": [
+      "designer-outlet-malaga",
+      "montabaur-the-style-outlets"
+    ],
+    "manualNeededRemainingCount": 82,
+    "notImported": "This manifest is for dry-run validation only in this task; image import and metadata status promotion are intentionally deferred."
+  },
+  "images": [
+    {
+      "outletId": "designer-outlet-malaga",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/malaga/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fuego,_Nic_Fiddian_Green.jpg",
+      "credit": "Jl FilpoC / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Fuego sculpture at McArthurGlen Designer Outlet Málaga.",
+      "notes": "Verified exact Wikimedia Commons source for McArthurGlen Designer Outlet Málaga. The source page describes Fuego by Nic Fiddian Green as a 2022 sculpture for McArthurGlen Designer Outlet, Málaga. Hero-only candidate under the revised one exact safe source threshold; no generic, AI/generated, random web, unrelated outlet, or operator-unpermitted source used.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "montabaur-the-style-outlets",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/montabaur/hero.webp",
+      "sourceStatus": "licensed",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fashion-Outlet-Center_in_Montabaur.jpg",
+      "credit": "Christian Pulfrich / Wikimedia Commons",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "alt": "Fashion Outlet Center in Montabaur.",
+      "notes": "Verified exact Wikimedia Commons source for Fashion Outlet Center in Montabaur / Montabaur The Style Outlets. Hero-only candidate under the revised one exact safe source threshold; no generic, AI/generated, random web, unrelated outlet, or operator-unpermitted source used.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    }
+  ]
+}

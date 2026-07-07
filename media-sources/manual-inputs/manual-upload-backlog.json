@@ -1,15 +1,18 @@
 {
-  "phase": "Media Phase 5C final manual media upload backlog",
+  "phase": "Media Phase 5D manual media upload backlog after hero-only policy revision",
   "importableManifest": false,
   "summaryCounts": {
-    "manualOutletsRequiringMinimumPhotos": 84,
-    "minimumRequiredManualImages": 168,
-    "optionalAdditionalManualImagesFor84OutletsIfCompletingFourEach": 168,
+    "manualOutletsRequiringMinimumPhotos": 82,
+    "minimumRequiredManualImages": 164,
     "optionalPartialCompletionImages": {
       "las-rozas-village": 1,
       "barberino": 2,
       "la-roca-village": 2
-    }
+    },
+    "optionalAdditionalManualImagesFor82OutletsIfCompletingFourEach": 164,
+    "heroOnlyAutomaticCandidates": 2,
+    "heroOnlyAutomaticManifest": "media-sources/batch-j-wikimedia-exact-hero-only.json",
+    "policyRevision": "One verified exact safe source now qualifies for automatic hero-only import; outlets with zero exact safe sources remain manual upload needed."
   },
   "acceptanceRules": {
     "accepted": [
@@ -713,27 +716,8 @@
     },
     {
       "batch": "Spain remaining",
-      "count": 8,
+      "count": 7,
       "outlets": [
-        {
-          "outletId": "designer-outlet-malaga",
-          "displayName": "McArthurGlen Designer Outlet Málaga",
-          "country": "spain",
-          "minimumRequiredManualFiles": [
-            "media-sources/manual-inputs/designer-outlet-malaga/hero.jpg",
-            "media-sources/manual-inputs/designer-outlet-malaga/gallery1.jpg"
-          ],
-          "optionalFiles": [
-            "media-sources/manual-inputs/designer-outlet-malaga/gallery2.jpg",
-            "media-sources/manual-inputs/designer-outlet-malaga/gallery3.jpg"
-          ],
-          "targetOutputFiles": [
-            "assets/outlet-images/malaga/hero.webp",
-            "assets/outlet-images/malaga/gallery1.webp",
-            "assets/outlet-images/malaga/gallery2.webp",
-            "assets/outlet-images/malaga/gallery3.webp"
-          ]
-        },
         {
           "outletId": "viladecans-the-style-outlets",
           "displayName": "Viladecans The Style Outlets",
@@ -871,7 +855,7 @@
     },
     {
       "batch": "Germany/France/Benelux leftovers",
-      "count": 15,
+      "count": 14,
       "outlets": [
         {
           "outletId": "designer-outlet-berlin",
@@ -890,25 +874,6 @@
             "assets/outlet-images/berlin/gallery1.webp",
             "assets/outlet-images/berlin/gallery2.webp",
             "assets/outlet-images/berlin/gallery3.webp"
-          ]
-        },
-        {
-          "outletId": "montabaur-the-style-outlets",
-          "displayName": "Outlet Montabaur",
-          "country": "germany",
-          "minimumRequiredManualFiles": [
-            "media-sources/manual-inputs/montabaur-the-style-outlets/hero.jpg",
-            "media-sources/manual-inputs/montabaur-the-style-outlets/gallery1.jpg"
-          ],
-          "optionalFiles": [
-            "media-sources/manual-inputs/montabaur-the-style-outlets/gallery2.jpg",
-            "media-sources/manual-inputs/montabaur-the-style-outlets/gallery3.jpg"
-          ],
-          "targetOutputFiles": [
-            "assets/outlet-images/montabaur/hero.webp",
-            "assets/outlet-images/montabaur/gallery1.webp",
-            "assets/outlet-images/montabaur/gallery2.webp",
-            "assets/outlet-images/montabaur/gallery3.webp"
           ]
         },
         {
@@ -1675,9 +1640,7 @@
       "optionalFiles": [
         "media-sources/manual-inputs/las-rozas-village/gallery3.jpg"
       ],
-      "targetOutputFiles": [
-        "assets/outlet-images/las-rozas/gallery3.webp"
-      ]
+      "targetOutputFiles": ["assets/outlet-images/las-rozas/gallery3.webp"]
     },
     {
       "outletId": "barberino",
@@ -1703,6 +1666,32 @@
       "targetOutputFiles": [
         "assets/outlet-images/la-roca-village/gallery2.webp",
         "assets/outlet-images/la-roca-village/gallery3.webp"
+      ]
+    }
+  ],
+  "heroOnlyAutomaticCandidates": [
+    {
+      "outletId": "designer-outlet-malaga",
+      "displayName": "McArthurGlen Designer Outlet Málaga",
+      "country": "spain",
+      "manifest": "media-sources/batch-j-wikimedia-exact-hero-only.json",
+      "targetOutputFile": "assets/outlet-images/malaga/hero.webp",
+      "remainingManualSlots": [
+        "assets/outlet-images/malaga/gallery1.webp",
+        "assets/outlet-images/malaga/gallery2.webp",
+        "assets/outlet-images/malaga/gallery3.webp"
+      ]
+    },
+    {
+      "outletId": "montabaur-the-style-outlets",
+      "displayName": "Outlet Montabaur",
+      "country": "germany",
+      "manifest": "media-sources/batch-j-wikimedia-exact-hero-only.json",
+      "targetOutputFile": "assets/outlet-images/montabaur/hero.webp",
+      "remainingManualSlots": [
+        "assets/outlet-images/montabaur/gallery1.webp",
+        "assets/outlet-images/montabaur/gallery2.webp",
+        "assets/outlet-images/montabaur/gallery3.webp"
       ]
     }
   ]

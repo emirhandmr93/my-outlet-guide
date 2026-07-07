@@ -1,12 +1,12 @@
-# Media Phase 5C final manual media upload backlog
+# Media Phase 5D manual media upload backlog after hero-only policy revision
 
 This backlog is documentation only. It is not an importable manifest, does not add image files, and does not change outlet data, MasterData, media metadata statuses, or media resolver behavior.
 
 ## Summary counts
 
-- Manual outlets requiring minimum photos: **84**
-- Minimum required manual images: **168** (hero + gallery1 for each of 84 outlets)
-- Optional additional manual images for those 84 outlets if completing 4 each: **168** (gallery2 + gallery3 for each outlet)
+- Manual outlets requiring minimum photos after moving 1-source outlets to automatic hero-only candidates: **82**
+- Minimum required manual images: **164** (hero + gallery1 for each of 82 zero-source outlets)
+- Optional additional manual images for those 82 outlets if completing 4 each: **164** (gallery2 + gallery3 for each outlet)
 - Optional partial completion images:
   - las-rozas-village: **1**
   - barberino: **2**
@@ -27,6 +27,16 @@ Not accepted:
 - Generic images.
 - Unrelated outlet photos.
 - Official/operator images without permission.
+
+
+## Hero-only automatic candidates under revised 1-source threshold
+
+These outlets previously had exactly one verified exact safe Wikimedia/Commons source. Under the revised policy, they move out of full manual-needed status for `hero.webp` and into `media-sources/batch-j-wikimedia-exact-hero-only.json`. Remaining gallery slots still need exact accepted sources if future gallery completion is required.
+
+| outletId | display name | country | automatic target output file | remaining manual/gallery slots |
+|---|---|---|---|---|
+| `designer-outlet-malaga` | McArthurGlen Designer Outlet Málaga | spain | `assets/outlet-images/malaga/hero.webp` | `assets/outlet-images/malaga/gallery1.webp`<br>`assets/outlet-images/malaga/gallery2.webp`<br>`assets/outlet-images/malaga/gallery3.webp` |
+| `montabaur-the-style-outlets` | Outlet Montabaur | germany | `assets/outlet-images/montabaur/hero.webp` | `assets/outlet-images/montabaur/gallery1.webp`<br>`assets/outlet-images/montabaur/gallery2.webp`<br>`assets/outlet-images/montabaur/gallery3.webp` |
 
 ## Upload order
 
@@ -84,11 +94,10 @@ Not accepted:
 | `braintree-village` | Braintree Village | united-kingdom | `media-sources/manual-inputs/braintree-village/hero.jpg`<br>`media-sources/manual-inputs/braintree-village/gallery1.jpg` | `media-sources/manual-inputs/braintree-village/gallery2.jpg`<br>`media-sources/manual-inputs/braintree-village/gallery3.jpg` | `assets/outlet-images/braintree-village/hero.webp`<br>`assets/outlet-images/braintree-village/gallery1.webp`<br>`assets/outlet-images/braintree-village/gallery2.webp`<br>`assets/outlet-images/braintree-village/gallery3.webp` |
 | `affinity-sterling-mills` | Affinity Sterling Mills Outlet Shopping | united-kingdom | `media-sources/manual-inputs/affinity-sterling-mills/hero.jpg`<br>`media-sources/manual-inputs/affinity-sterling-mills/gallery1.jpg` | `media-sources/manual-inputs/affinity-sterling-mills/gallery2.jpg`<br>`media-sources/manual-inputs/affinity-sterling-mills/gallery3.jpg` | `assets/outlet-images/affinity-sterling-mills/hero.webp`<br>`assets/outlet-images/affinity-sterling-mills/gallery1.webp`<br>`assets/outlet-images/affinity-sterling-mills/gallery2.webp`<br>`assets/outlet-images/affinity-sterling-mills/gallery3.webp` |
 
-### Spain remaining (8)
+### Spain remaining (7)
 
 | outletId | display name | country | minimum required manual files | optional files | target output files |
 |---|---|---|---|---|---|
-| `designer-outlet-malaga` | McArthurGlen Designer Outlet Málaga | spain | `media-sources/manual-inputs/designer-outlet-malaga/hero.jpg`<br>`media-sources/manual-inputs/designer-outlet-malaga/gallery1.jpg` | `media-sources/manual-inputs/designer-outlet-malaga/gallery2.jpg`<br>`media-sources/manual-inputs/designer-outlet-malaga/gallery3.jpg` | `assets/outlet-images/malaga/hero.webp`<br>`assets/outlet-images/malaga/gallery1.webp`<br>`assets/outlet-images/malaga/gallery2.webp`<br>`assets/outlet-images/malaga/gallery3.webp` |
 | `viladecans-the-style-outlets` | Viladecans The Style Outlets | spain | `media-sources/manual-inputs/viladecans-the-style-outlets/hero.jpg`<br>`media-sources/manual-inputs/viladecans-the-style-outlets/gallery1.jpg` | `media-sources/manual-inputs/viladecans-the-style-outlets/gallery2.jpg`<br>`media-sources/manual-inputs/viladecans-the-style-outlets/gallery3.jpg` | `assets/outlet-images/viladecans-the-style-outlets/hero.webp`<br>`assets/outlet-images/viladecans-the-style-outlets/gallery1.webp`<br>`assets/outlet-images/viladecans-the-style-outlets/gallery2.webp`<br>`assets/outlet-images/viladecans-the-style-outlets/gallery3.webp` |
 | `mallorca-fashion-outlet` | Mallorca Fashion Outlet | spain | `media-sources/manual-inputs/mallorca-fashion-outlet/hero.jpg`<br>`media-sources/manual-inputs/mallorca-fashion-outlet/gallery1.jpg` | `media-sources/manual-inputs/mallorca-fashion-outlet/gallery2.jpg`<br>`media-sources/manual-inputs/mallorca-fashion-outlet/gallery3.jpg` | `assets/outlet-images/mallorca-fashion-outlet/hero.webp`<br>`assets/outlet-images/mallorca-fashion-outlet/gallery1.webp`<br>`assets/outlet-images/mallorca-fashion-outlet/gallery2.webp`<br>`assets/outlet-images/mallorca-fashion-outlet/gallery3.webp` |
 | `sevilla-fashion-outlet` | Sevilla Fashion Outlet | spain | `media-sources/manual-inputs/sevilla-fashion-outlet/hero.jpg`<br>`media-sources/manual-inputs/sevilla-fashion-outlet/gallery1.jpg` | `media-sources/manual-inputs/sevilla-fashion-outlet/gallery2.jpg`<br>`media-sources/manual-inputs/sevilla-fashion-outlet/gallery3.jpg` | `assets/outlet-images/sevilla-fashion-outlet/hero.webp`<br>`assets/outlet-images/sevilla-fashion-outlet/gallery1.webp`<br>`assets/outlet-images/sevilla-fashion-outlet/gallery2.webp`<br>`assets/outlet-images/sevilla-fashion-outlet/gallery3.webp` |
@@ -97,12 +106,11 @@ Not accepted:
 | `coruna-the-style-outlets` | Coruña The Style Outlets | spain | `media-sources/manual-inputs/coruna-the-style-outlets/hero.jpg`<br>`media-sources/manual-inputs/coruna-the-style-outlets/gallery1.jpg` | `media-sources/manual-inputs/coruna-the-style-outlets/gallery2.jpg`<br>`media-sources/manual-inputs/coruna-the-style-outlets/gallery3.jpg` | `assets/outlet-images/coruna-the-style-outlets/hero.webp`<br>`assets/outlet-images/coruna-the-style-outlets/gallery1.webp`<br>`assets/outlet-images/coruna-the-style-outlets/gallery2.webp`<br>`assets/outlet-images/coruna-the-style-outlets/gallery3.webp` |
 | `sambil-madrid` | Sambil Madrid | spain | `media-sources/manual-inputs/sambil-madrid/hero.jpg`<br>`media-sources/manual-inputs/sambil-madrid/gallery1.jpg` | `media-sources/manual-inputs/sambil-madrid/gallery2.jpg`<br>`media-sources/manual-inputs/sambil-madrid/gallery3.jpg` | `assets/outlet-images/sambil-madrid/hero.webp`<br>`assets/outlet-images/sambil-madrid/gallery1.webp`<br>`assets/outlet-images/sambil-madrid/gallery2.webp`<br>`assets/outlet-images/sambil-madrid/gallery3.webp` |
 
-### Germany/France/Benelux leftovers (15)
+### Germany/France/Benelux leftovers (14)
 
 | outletId | display name | country | minimum required manual files | optional files | target output files |
 |---|---|---|---|---|---|
 | `designer-outlet-berlin` | Designer Outlet Berlin | germany | `media-sources/manual-inputs/designer-outlet-berlin/hero.jpg`<br>`media-sources/manual-inputs/designer-outlet-berlin/gallery1.jpg` | `media-sources/manual-inputs/designer-outlet-berlin/gallery2.jpg`<br>`media-sources/manual-inputs/designer-outlet-berlin/gallery3.jpg` | `assets/outlet-images/berlin/hero.webp`<br>`assets/outlet-images/berlin/gallery1.webp`<br>`assets/outlet-images/berlin/gallery2.webp`<br>`assets/outlet-images/berlin/gallery3.webp` |
-| `montabaur-the-style-outlets` | Outlet Montabaur | germany | `media-sources/manual-inputs/montabaur-the-style-outlets/hero.jpg`<br>`media-sources/manual-inputs/montabaur-the-style-outlets/gallery1.jpg` | `media-sources/manual-inputs/montabaur-the-style-outlets/gallery2.jpg`<br>`media-sources/manual-inputs/montabaur-the-style-outlets/gallery3.jpg` | `assets/outlet-images/montabaur/hero.webp`<br>`assets/outlet-images/montabaur/gallery1.webp`<br>`assets/outlet-images/montabaur/gallery2.webp`<br>`assets/outlet-images/montabaur/gallery3.webp` |
 | `halle-leipzig-the-style-outlets` | Halle Leipzig The Style Outlets | germany | `media-sources/manual-inputs/halle-leipzig-the-style-outlets/hero.jpg`<br>`media-sources/manual-inputs/halle-leipzig-the-style-outlets/gallery1.jpg` | `media-sources/manual-inputs/halle-leipzig-the-style-outlets/gallery2.jpg`<br>`media-sources/manual-inputs/halle-leipzig-the-style-outlets/gallery3.jpg` | `assets/outlet-images/halle-leipzig-the-style-outlets/hero.webp`<br>`assets/outlet-images/halle-leipzig-the-style-outlets/gallery1.webp`<br>`assets/outlet-images/halle-leipzig-the-style-outlets/gallery2.webp`<br>`assets/outlet-images/halle-leipzig-the-style-outlets/gallery3.webp` |
 | `designer-outlet-ochtrup` | Designer Outlet Ochtrup | germany | `media-sources/manual-inputs/designer-outlet-ochtrup/hero.jpg`<br>`media-sources/manual-inputs/designer-outlet-ochtrup/gallery1.jpg` | `media-sources/manual-inputs/designer-outlet-ochtrup/gallery2.jpg`<br>`media-sources/manual-inputs/designer-outlet-ochtrup/gallery3.jpg` | `assets/outlet-images/designer-outlet-ochtrup/hero.webp`<br>`assets/outlet-images/designer-outlet-ochtrup/gallery1.webp`<br>`assets/outlet-images/designer-outlet-ochtrup/gallery2.webp`<br>`assets/outlet-images/designer-outlet-ochtrup/gallery3.webp` |
 | `designer-outlet-provence` | Designer Outlet Provence | france | `media-sources/manual-inputs/designer-outlet-provence/hero.jpg`<br>`media-sources/manual-inputs/designer-outlet-provence/gallery1.jpg` | `media-sources/manual-inputs/designer-outlet-provence/gallery2.jpg`<br>`media-sources/manual-inputs/designer-outlet-provence/gallery3.jpg` | `assets/outlet-images/provence/hero.webp`<br>`assets/outlet-images/provence/gallery1.webp`<br>`assets/outlet-images/provence/gallery2.webp`<br>`assets/outlet-images/provence/gallery3.webp` |
@@ -155,7 +163,7 @@ Not accepted:
 
 ## Partial production-safe outlets: optional completion only
 
-These outlets are not part of the 84 full manual-needed outlets. Only the listed optional slots remain available if exact, accepted manual photos are provided.
+These outlets are not part of the 82 full manual-needed outlets. Only the listed optional slots remain available if exact, accepted manual photos are provided.
 
 | outletId | display name | country | optional manual files | target output files |
 |---|---|---|---|---|
