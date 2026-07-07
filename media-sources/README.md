@@ -52,3 +52,14 @@ Deferred full-unknown outlets for project-owned, generated, or licensed generic 
 `generic-generated-template.json` is a non-importable Phase 4A planning template, not a reviewed production source manifest. It intentionally uses placeholders and `templateOnly: true` so it must not be passed to the importer or promoter as real source inventory.
 
 Future project-owned generated generic manifests should use `sourceStatus: "project-owned"`, `localSourcePath` under `media-sources/generated-inputs/`, credit `My Outlet Guide / generated project-owned media`, license `Project-owned`, and notes that explicitly say the image is generated generic, project-owned, non-documentary, and not an exact depiction of the named outlet. The template remains non-importable because it has `templateOnly: true` and placeholder paths.
+
+## Batch G generated pilot status
+
+`generated-inputs/batch-g-pilot-prompts.md` is the Media Phase 4C prompt pack and batch plan for the first small generated-media pilot. It plans four future project-owned generic source PNGs only:
+
+- `media-sources/generated-inputs/noventa/hero.png` -> `assets/outlet-images/noventa/hero.webp`
+- `media-sources/generated-inputs/noventa/gallery1.png` -> `assets/outlet-images/noventa/gallery1.webp`
+- `media-sources/generated-inputs/provence/hero.png` -> `assets/outlet-images/provence/hero.webp`
+- `media-sources/generated-inputs/provence/gallery1.png` -> `assets/outlet-images/provence/gallery1.webp`
+
+`batch-g-generated-pilot.template.json` is intentionally non-importable because it has `templateOnly: true` and the planned local source files are not committed. Do not pass it to the importer or promoter until a reviewed, importable manifest is created after the PNG sources exist.

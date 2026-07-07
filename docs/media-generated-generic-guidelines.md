@@ -34,3 +34,14 @@ Recommended metadata values:
 - `license`: `Project-owned`
 - `sourceUrl`: optional when notes clearly document project-owned/generated/non-documentary provenance; use an internal convention if useful for traceability.
 - `localSourcePath`: for imports, point to a reviewed source under `media-sources/generated-inputs/`.
+
+## Phase 4C pilot batch planning
+
+Batch G is the first small generated-media pilot plan. It is planning-only until source PNGs are generated outside the repo, placed under `media-sources/generated-inputs/`, and human-reviewed. Do not add real image files or an importable manifest while any planned `localSourcePath` file is missing.
+
+Pilot outlets and slots:
+
+- `noventa`: hero and gallery1.
+- `designer-outlet-provence`: hero and gallery1.
+
+The prompt pack is `media-sources/generated-inputs/batch-g-pilot-prompts.md`. The optional JSON scaffold is `media-sources/batch-g-generated-pilot.template.json`; it is intentionally marked `templateOnly: true` and must not be imported as source inventory.
