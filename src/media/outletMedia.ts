@@ -204,6 +204,12 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/wolfsburg/gallery2.webp"),
     require("../../assets/outlet-images/wolfsburg/gallery3.webp"),
   ],
+  "sicilia-outlet-village": [
+    require("../../assets/outlet-images/sicilia-outlet-village/hero.webp"),
+    require("../../assets/outlet-images/sicilia-outlet-village/gallery1.webp"),
+    require("../../assets/outlet-images/sicilia-outlet-village/gallery2.webp"),
+    require("../../assets/outlet-images/sicilia-outlet-village/gallery3.webp"),
+  ],
 };
 
 const productionClearedSourceStatuses = new Set<OutletMediaSourceStatus>([
