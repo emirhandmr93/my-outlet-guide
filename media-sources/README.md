@@ -44,3 +44,10 @@ Deferred full-unknown outlets for project-owned, generated, or licensed generic 
 - `designer-outlet-malaga`
 - `montabaur-the-style-outlets`
 - `maasmechelen-village`
+
+
+## Generated generic template status
+
+`generic-generated-template.json` is a non-importable Phase 4A planning template, not a reviewed production source manifest. It intentionally uses placeholders and `templateOnly: true` so it must not be passed to the importer or promoter as real source inventory.
+
+Future project-owned generated generic manifests should use `sourceStatus: "project-owned"`, credit `My Outlet Guide / generated project-owned media`, license `Project-owned`, and notes that explicitly say the image is generated generic, non-documentary, and not an exact depiction of the named outlet. Do not add generated images or production metadata until the local-generated-source import path and promotion rules are updated.
