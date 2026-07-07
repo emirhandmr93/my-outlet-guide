@@ -1,25 +1,25 @@
 {
   "skipped": [
     {
-      "outletId": "roermond",
-      "targetAssetPath": "assets/outlet-images/roermond/official-hero.webp",
-      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/",
-      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/nl/centre-pages/roermond/designer-outlet-roermond.jpg",
-      "reason": "Download failed for https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/nl/centre-pages/roermond/designer-outlet-roermond.jpg after 4 attempt(s): 404 Not Found"
+      "outletId": "parndorf",
+      "targetAssetPath": "assets/outlet-images/parndorf/official-hero.webp",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/at/centre-pages/parndorf/designer-outlet-parndorf.jpg",
+      "reason": "Download failed for https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/at/centre-pages/parndorf/designer-outlet-parndorf.jpg after 4 attempt(s): 404 Not Found"
     },
     {
-      "outletId": "metzingen",
-      "targetAssetPath": "assets/outlet-images/metzingen/official-hero.webp",
-      "sourceUrl": "https://www.outletcity.com/en/metzingen/",
-      "downloadUrl": "https://www.outletcity.com/fileadmin/user_upload/teaser/outletcity-metzingen-shopping.jpg",
-      "reason": "Download failed for https://www.outletcity.com/fileadmin/user_upload/teaser/outletcity-metzingen-shopping.jpg after 4 attempt(s): 406 Not Acceptable"
+      "outletId": "pandorf-fashion-outlet",
+      "targetAssetPath": "assets/outlet-images/pandorf-fashion-outlet/official-hero.webp",
+      "sourceUrl": "https://parndorffashionoutlet.com/",
+      "downloadUrl": "https://parndorffashionoutlet.com/wp-content/uploads/2024/06/parndorf-fashion-outlet.jpg",
+      "reason": "Download failed for https://parndorffashionoutlet.com/wp-content/uploads/2024/06/parndorf-fashion-outlet.jpg after 4 attempt(s): 404 Not Found"
     },
     {
-      "outletId": "la-vallee-village",
-      "targetAssetPath": "assets/outlet-images/la-vallee-village/official-hero.webp",
-      "sourceUrl": "https://www.thebicestercollection.com/la-vallee-village/en",
-      "downloadUrl": "https://www.thebicestercollection.com/la-vallee-village/en/-/media/village/la-vallee-village/homepage/la-vallee-village-homepage-hero.jpg",
-      "reason": "Download failed for https://www.thebicestercollection.com/la-vallee-village/en/-/media/village/la-vallee-village/homepage/la-vallee-village-homepage-hero.jpg after 4 attempt(s): 404 Not Found"
+      "outletId": "freeport-fashion-outlet",
+      "targetAssetPath": "assets/outlet-images/freeport-fashion-outlet/official-hero.webp",
+      "sourceUrl": "https://www.freeportfashionoutlet.cz/en/",
+      "downloadUrl": "https://www.freeportfashionoutlet.cz/wp-content/uploads/2023/08/freeport-fashion-outlet.jpg",
+      "reason": "Download failed for https://www.freeportfashionoutlet.cz/wp-content/uploads/2023/08/freeport-fashion-outlet.jpg after 4 attempt(s): fetch failed"
     }
   ]
 }
