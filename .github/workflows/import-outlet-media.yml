@@ -131,6 +131,17 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/outlet-images src/media/outletMedia.ts src/media/outletMediaMetadata.ts media-sources/official-operator/reports
+          if [ -f .tmp/skipped-official-media.json ]; then
+            mkdir -p media-sources/official-operator/reports
+            cp .tmp/skipped-official-media.json media-sources/official-operator/reports/skipped-official-media.json
+          fi
+          git add assets/outlet-images src/media/outletMedia.ts src/media/outletMediaMetadata.ts
+          if [ -d media-sources/official-operator/reports ]; then
+            git add media-sources/official-operator/reports
+          fi
+          if git diff --cached --quiet; then
+            echo "No matching outlet media changes to commit after staging."
+            exit 0
+          fi
           git commit -m "Import outlet media from manifest"
           git push
