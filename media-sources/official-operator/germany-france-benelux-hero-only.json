@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "batchName": "germany-france-benelux-hero-only",
+  "bestEffortOfficial": true,
+  "images": [
+    {
+      "outletId": "roermond",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/roermond/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/nl/centre-pages/roermond/designer-outlet-roermond.jpg",
+      "alt": "Official Designer Outlet Roermond image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "metzingen",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/metzingen/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.outletcity.com/en/metzingen/",
+      "downloadUrl": "https://www.outletcity.com/fileadmin/user_upload/teaser/outletcity-metzingen-shopping.jpg",
+      "alt": "Official Outletcity Metzingen image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "la-vallee-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/la-vallee-village/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.thebicestercollection.com/la-vallee-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/la-vallee-village/en/-/media/village/la-vallee-village/homepage/la-vallee-village-homepage-hero.jpg",
+      "alt": "Official La Vall\u00e9e Village image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    }
+  ],
+  "reviewSummary": {
+    "totalCandidateEntries": 3,
+    "deferredOutletsWithNoCandidateOfficialImageUrl": [],
+    "importNote": "Broken or temporarily unreachable official/operator URLs will be skipped at import time in best-effort mode instead of failing the entire batch.",
+    "targeting": "official-hero.webp overlay only.",
+    "overwriteConfirmation": "No existing hero.webp or gallery target paths are overwritten; every targetAssetPath ends with official-hero.webp."
+  }
+}

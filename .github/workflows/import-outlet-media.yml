@@ -56,15 +56,36 @@ jobs:
             convert -version
           fi
 
+      - name: Detect best-effort official manifest
+        id: manifest
+        run: |
+          if node -e "const fs=require('fs'); const p=process.env.MANIFEST_PATH; const m=JSON.parse(fs.readFileSync(p,'utf8')); process.exit(m.bestEffortOfficial === true ? 0 : 1)"; then
+            echo "best_effort_official=true" >> "$GITHUB_OUTPUT"
+            echo "promote_manifest=.tmp/imported-official-manifest.json" >> "$GITHUB_OUTPUT"
+          else
+            echo "best_effort_official=false" >> "$GITHUB_OUTPUT"
+            echo "promote_manifest=$MANIFEST_PATH" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Dry-run outlet media import
-        run: npx tsx tools/importOutletMedia.ts "$MANIFEST_PATH" --dry-run
+        run: |
+          EXTRA_ARGS=""
+          if [ "${{ steps.manifest.outputs.best_effort_official }}" = "true" ]; then
+            EXTRA_ARGS="--best-effort-official"
+          fi
+          npx tsx tools/importOutletMedia.ts "$MANIFEST_PATH" --dry-run $EXTRA_ARGS
 
       - name: Import outlet media
-        run: npx tsx tools/importOutletMedia.ts "$MANIFEST_PATH" --overwrite
+        run: |
+          EXTRA_ARGS=""
+          if [ "${{ steps.manifest.outputs.best_effort_official }}" = "true" ]; then
+            EXTRA_ARGS="--best-effort-official"
+          fi
+          npx tsx tools/importOutletMedia.ts "$MANIFEST_PATH" --overwrite $EXTRA_ARGS
 
       - name: Promote imported outlet media metadata
         if: ${{ inputs.promoteMetadata == true }}
-        run: npx tsx tools/promoteImportedOutletMedia.ts "$MANIFEST_PATH"
+        run: npx tsx tools/promoteImportedOutletMedia.ts "${{ steps.manifest.outputs.promote_manifest }}"
 
       - name: Typecheck
         run: npx tsc --noEmit
@@ -98,6 +119,7 @@ jobs:
             assets/outlet-images/**
             src/media/outletMedia.ts
             src/media/outletMediaMetadata.ts
+            media-sources/official-operator/reports/**
           if-no-files-found: ignore
 
       - name: Commit imported media
@@ -109,6 +131,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/outlet-images src/media/outletMedia.ts src/media/outletMediaMetadata.ts
+          git add assets/outlet-images src/media/outletMedia.ts src/media/outletMediaMetadata.ts media-sources/official-operator/reports
           git commit -m "Import outlet media from manifest"
           git push

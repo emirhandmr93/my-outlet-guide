@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "batchName": "italy-hero-only",
+  "bestEffortOfficial": true,
+  "images": [
+    {
+      "outletId": "barberino",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/barberino/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.barberinooutlet.com/en/sales/",
+      "downloadUrl": "https://www.barberinooutlet.com/wp-content/uploads/2026/07/Saldi-estivi-26-ENG_header-desk-ENG.jpg",
+      "alt": "Official Barberino Designer Outlet image showing shoppers and outdoor outlet seating.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "castel-romano",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/castel-romano/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/ita/campaign/2026/ss26/sale/assets/1080x1080-magss26-img-7-a-it-localisation-ss26-localised-italy.jpg",
+      "alt": "Official McArthurGlen Castel Romano Designer Outlet image showing shoppers walking through an outdoor outlet street.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "fidenza-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/fidenza/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.thebicestercollection.com/fidenza-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/fidenza-village/en/-/media/village/fidenza-village/homepage/fidenza-village-homepage-hero.jpg",
+      "alt": "Official Fidenza Village image showing the open-air outlet village environment.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "la-reggia",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/la-reggia/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-la-reggia/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/ita/campaign/2026/ss26/sale/assets/1080x1080-magss26-img-7-a-it-localisation-ss26-localised-italy.jpg",
+      "alt": "Official McArthurGlen La Reggia Designer Outlet image showing shoppers in an outdoor outlet setting.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "noventa",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/noventa/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/ita/campaign/2026/ss26/sale/assets/1080x1080-magss26-img-7-a-it-localisation-ss26-localised-italy.jpg",
+      "alt": "Official McArthurGlen Noventa di Piave Designer Outlet image showing shoppers walking through the outlet village.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "serravalle-designer-outlet",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/serravalle/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/it/serravalle-designer-outlet/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/ita/campaign/2026/ss26/sale/assets/1080x1080-magss26-img-7-a-it-localisation-ss26-localised-italy.jpg",
+      "alt": "Official McArthurGlen Serravalle Designer Outlet image showing shoppers in an outdoor outlet street.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "valdichiana-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/valdichiana-village/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.valdichianadesignervillage.com/en/village/about-us",
+      "downloadUrl": "https://www.valdichianadesignervillage.com/fileadmin/user_upload/ros/pages/AboutUs_header_2340x585.jpg",
+      "alt": "Official Valdichiana Village image showing arched storefront entrances and landscaped walkways.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "palmanova-designer-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/palmanova-designer-village/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.palmanovadesignervillage.com/en/village/about-us",
+      "downloadUrl": "https://www.palmanovadesignervillage.com/fileadmin/user_upload/ros/pages/header_pav_who_we_are.jpg",
+      "alt": "Official Palmanova Designer Village image showing the outlet village environment.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "franciacorta-designer-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/franciacorta-designer-village/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.franciacortadesignervillage.com/en/village/about-us",
+      "downloadUrl": "https://www.franciacortadesignervillage.com/fileadmin/user_upload/ros/pages/Sito_2340x585_FDV7.jpg",
+      "alt": "Official Franciacorta Designer Village image showing shoppers by arched outlet storefronts.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    }
+  ],
+  "reviewSummary": {
+    "totalCandidateEntries": 9,
+    "deferredOutletsWithNoCandidateOfficialImageUrl": [],
+    "importNote": "Broken or temporarily unreachable official/operator URLs will be skipped at import time in best-effort mode instead of failing the entire batch.",
+    "targeting": "official-hero.webp overlay only.",
+    "overwriteConfirmation": "No existing hero.webp or gallery target paths are overwritten; every targetAssetPath ends with official-hero.webp."
+  }
+}

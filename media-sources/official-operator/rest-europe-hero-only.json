@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "batchName": "rest-europe-hero-only",
+  "bestEffortOfficial": true,
+  "images": [
+    {
+      "outletId": "parndorf",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/parndorf/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/at/centre-pages/parndorf/designer-outlet-parndorf.jpg",
+      "alt": "Official Designer Outlet Parndorf image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "pandorf-fashion-outlet",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/pandorf-fashion-outlet/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://parndorffashionoutlet.com/",
+      "downloadUrl": "https://parndorffashionoutlet.com/wp-content/uploads/2024/06/parndorf-fashion-outlet.jpg",
+      "alt": "Official Parndorf Fashion Outlet image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "freeport-fashion-outlet",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/freeport-fashion-outlet/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.freeportfashionoutlet.cz/en/",
+      "downloadUrl": "https://www.freeportfashionoutlet.cz/wp-content/uploads/2023/08/freeport-fashion-outlet.jpg",
+      "alt": "Official Freeport Fashion Outlet image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    }
+  ],
+  "reviewSummary": {
+    "totalCandidateEntries": 3,
+    "deferredOutletsWithNoCandidateOfficialImageUrl": [],
+    "importNote": "Broken or temporarily unreachable official/operator URLs will be skipped at import time in best-effort mode instead of failing the entire batch.",
+    "targeting": "official-hero.webp overlay only.",
+    "overwriteConfirmation": "No existing hero.webp or gallery target paths are overwritten; every targetAssetPath ends with official-hero.webp."
+  }
+}

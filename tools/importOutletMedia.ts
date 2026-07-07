@@ -53,6 +53,7 @@ type Manifest = {
   templateOnly?: boolean;
   version?: number;
   batchName?: string;
+  bestEffortOfficial?: boolean;
   images?: ManifestEntry[];
 };
 
@@ -61,11 +62,12 @@ type Options = {
   overwrite: boolean;
   manifestPath: string;
   requestDelayMs: number;
+  bestEffortOfficial: boolean;
 };
 
 function usage(): never {
   console.error(
-    "Usage: npx tsx tools/importOutletMedia.ts <manifest.json> [--dry-run] [--overwrite] [--request-delay-ms <ms>]",
+    "Usage: npx tsx tools/importOutletMedia.ts <manifest.json> [--dry-run] [--overwrite] [--best-effort-official] [--request-delay-ms <ms>]",
   );
   process.exit(1);
 }
@@ -94,6 +96,7 @@ function parseArgs(): Options {
     "--dry-run",
     "--overwrite",
     "--request-delay-ms",
+    "--best-effort-official",
   ]);
   for (const arg of args.filter((value) => value.startsWith("--"))) {
     if (!allowedFlags.has(arg)) {
@@ -119,6 +122,7 @@ function parseArgs(): Options {
     dryRun: args.includes("--dry-run"),
     overwrite: args.includes("--overwrite"),
     requestDelayMs,
+    bestEffortOfficial: args.includes("--best-effort-official"),
   };
 }
 
@@ -126,13 +130,13 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function readManifest(manifestPath: string): ManifestEntry[] {
+function readManifest(manifestPath: string): { entries: ManifestEntry[]; bestEffortOfficial: boolean } {
   const absolutePath = path.resolve(repoRoot, manifestPath);
   const raw = fs.readFileSync(absolutePath, "utf8");
   const parsed: unknown = JSON.parse(raw);
 
   if (Array.isArray(parsed)) {
-    return parsed as ManifestEntry[];
+    return { entries: parsed as ManifestEntry[], bestEffortOfficial: false };
   }
 
   if (isRecord(parsed) && parsed.templateOnly === true) {
@@ -142,7 +146,10 @@ function readManifest(manifestPath: string): ManifestEntry[] {
   }
 
   if (isRecord(parsed) && Array.isArray(parsed.images)) {
-    return parsed.images as ManifestEntry[];
+    return {
+      entries: parsed.images as ManifestEntry[],
+      bestEffortOfficial: parsed.bestEffortOfficial === true,
+    };
   }
 
   throw new Error(
@@ -633,6 +640,14 @@ type FetchOptions = {
   parseJson?: boolean;
 };
 
+type SkippedImport = {
+  outletId: string;
+  targetAssetPath: string;
+  sourceUrl?: string;
+  downloadUrl?: string;
+  reason: string;
+};
+
 async function waitBeforeWikimediaRequest(
   url: string,
   options: Options,
@@ -700,6 +715,55 @@ async function fetchWithRetries(
 
   throw new Error(
     `Download failed for ${fetchOptions.label ?? url} after ${downloadRetryCount} attempt(s): ${lastError}`,
+  );
+}
+
+async function checkReachableWithGetFallback(url: string): Promise<string> {
+  try {
+    const head = await fetch(url, {
+      method: "HEAD",
+      headers: { "User-Agent": userAgent, Accept: "image/*,*/*" },
+    });
+    if (head.ok) {
+      return `reachable via HEAD (${head.status})`;
+    }
+    if (![403, 405, 501].includes(head.status)) {
+      return `broken via HEAD (${head.status} ${head.statusText})`;
+    }
+  } catch {
+    // Some official/CDN URLs reject HEAD or proxy HEAD oddly; try GET below.
+  }
+
+  try {
+    const get = await fetch(url, {
+      method: "GET",
+      headers: {
+        "User-Agent": userAgent,
+        Accept: "image/*,*/*",
+        Range: "bytes=0-0",
+      },
+    });
+    return get.ok
+      ? `reachable via GET fallback (${get.status})`
+      : `broken via GET fallback (${get.status} ${get.statusText})`;
+  } catch (error) {
+    return `broken via GET fallback (${error instanceof Error ? error.message : String(error)})`;
+  }
+}
+
+function writeBestEffortReports(
+  successfulEntries: ManifestEntry[],
+  skipped: SkippedImport[],
+): void {
+  const tmpDir = path.join(repoRoot, ".tmp");
+  fs.mkdirSync(tmpDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(tmpDir, "imported-official-manifest.json"),
+    `${JSON.stringify({ bestEffortOfficial: true, images: successfulEntries }, null, 2)}\n`,
+  );
+  fs.writeFileSync(
+    path.join(tmpDir, "skipped-official-media.json"),
+    `${JSON.stringify({ skipped }, null, 2)}\n`,
   );
 }
 
@@ -791,10 +855,28 @@ function printMetadataSummary(entries: ManifestEntry[]): void {
 
 async function main(): Promise<void> {
   const options = parseArgs();
-  const entries = readManifest(options.manifestPath);
+  const manifest = readManifest(options.manifestPath);
+  const entries = manifest.entries;
+  options.bestEffortOfficial =
+    options.bestEffortOfficial || manifest.bestEffortOfficial;
 
   if (entries.length === 0) {
     throw new Error("Manifest has no images to import.");
+  }
+
+  const bestEffortOfficial = options.bestEffortOfficial;
+  if (bestEffortOfficial) {
+    const invalidEntry = entries.find(
+      (entry) =>
+        entry.sourceStatus !== "official-operator" ||
+        entry.role !== "hero" ||
+        !entry.targetAssetPath.endsWith("/official-hero.webp"),
+    );
+    if (invalidEntry) {
+      throw new Error(
+        `Best-effort official mode only accepts official-operator hero entries targeting official-hero.webp: ${invalidEntry.targetAssetPath}`,
+      );
+    }
   }
 
   const targets = entries.map((entry, index) =>
@@ -833,6 +915,14 @@ async function main(): Promise<void> {
         sourceLabel: downloadUrl,
         downloadUrl,
       });
+      if (
+        options.dryRun &&
+        bestEffortOfficial &&
+        !downloadUrl.startsWith("[auto-resolve")
+      ) {
+        const status = await checkReachableWithGetFallback(downloadUrl);
+        console.log(`${entry.targetAssetPath}: ${status}`);
+      }
       console.log(
         `${options.dryRun ? "Would import" : "Resolved"} ${downloadUrl} -> ${entry.targetAssetPath}`,
       );
@@ -852,6 +942,8 @@ async function main(): Promise<void> {
   const tempRoot = fs.mkdtempSync(
     path.join(os.tmpdir(), "outlet-media-import-"),
   );
+  const successfulEntries: ManifestEntry[] = [];
+  const skippedImports: SkippedImport[] = [];
   const downloadedSources: Array<{
     entry: ManifestEntry;
     targetPath: string;
@@ -877,13 +969,30 @@ async function main(): Promise<void> {
           `Using local exact manual source once: ${item.sourceLabel}`,
         );
       } else if (item.downloadUrl) {
-        const tempPath = await downloadToTemp(
-          item.downloadUrl,
-          tempRoot,
-          options,
-        );
-        downloadedSources.push({ ...item, tempPath });
-        console.log(`Downloaded original once: ${item.downloadUrl}`);
+        try {
+          const tempPath = await downloadToTemp(
+            item.downloadUrl,
+            tempRoot,
+            options,
+          );
+          downloadedSources.push({ ...item, tempPath });
+          console.log(`Downloaded original once: ${item.downloadUrl}`);
+        } catch (error) {
+          if (!bestEffortOfficial) {
+            throw error;
+          }
+          const reason = error instanceof Error ? error.message : String(error);
+          skippedImports.push({
+            outletId: item.entry.outletId,
+            targetAssetPath: item.entry.targetAssetPath,
+            sourceUrl: item.entry.sourceUrl,
+            downloadUrl: item.downloadUrl,
+            reason,
+          });
+          console.error(
+            `Skipping official image: ${item.entry.targetAssetPath} - ${reason}`,
+          );
+        }
       } else {
         throw new Error(
           `No source path or download URL resolved for ${item.entry.targetAssetPath}.`,
@@ -896,14 +1005,32 @@ async function main(): Promise<void> {
         tempRoot,
         `converted-${stagedOutputs.length}-${path.basename(item.targetPath)}`,
       );
-      convertToWebp(item.tempPath, tempOutputPath, item.entry);
-      const inspection = assertVerifiedWebp(tempOutputPath, item.entry);
-      stagedOutputs.push({
-        targetPath: item.targetPath,
-        targetAssetPath: item.entry.targetAssetPath,
-        tempOutputPath,
-        inspection,
-      });
+      try {
+        convertToWebp(item.tempPath, tempOutputPath, item.entry);
+        const inspection = assertVerifiedWebp(tempOutputPath, item.entry);
+        stagedOutputs.push({
+          targetPath: item.targetPath,
+          targetAssetPath: item.entry.targetAssetPath,
+          tempOutputPath,
+          inspection,
+        });
+        successfulEntries.push(item.entry);
+      } catch (error) {
+        if (!bestEffortOfficial) {
+          throw error;
+        }
+        const reason = error instanceof Error ? error.message : String(error);
+        skippedImports.push({
+          outletId: item.entry.outletId,
+          targetAssetPath: item.entry.targetAssetPath,
+          sourceUrl: item.entry.sourceUrl,
+          downloadUrl: item.downloadUrl,
+          reason,
+        });
+        console.error(
+          `Skipping official image: ${item.entry.targetAssetPath} - ${reason}`,
+        );
+      }
     }
 
     console.log("All staged outputs validated; replacing target files...");
@@ -916,12 +1043,15 @@ async function main(): Promise<void> {
     fs.rmSync(tempRoot, { force: true, recursive: true });
   }
 
-  printMetadataSummary(entries);
-  console.log(
-    options.dryRun
-      ? "Dry run complete; no files were downloaded or written."
-      : "Import complete.",
-  );
+  if (bestEffortOfficial) {
+    writeBestEffortReports(successfulEntries, skippedImports);
+    console.log(
+      `Best-effort official import wrote ${successfulEntries.length} successful entr${successfulEntries.length === 1 ? "y" : "ies"} and ${skippedImports.length} skipped entr${skippedImports.length === 1 ? "y" : "ies"} to .tmp/.`,
+    );
+  }
+
+  printMetadataSummary(bestEffortOfficial ? successfulEntries : entries);
+  console.log("Import complete.");
 }
 
 main().catch((error: unknown) => {
