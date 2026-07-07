@@ -145,16 +145,26 @@ function hasValidManualExactPhotoMetadata(entry: ManifestEntry): boolean {
   );
 }
 
+function textWithoutNegatedSafetyPhrases(value: string): string {
+  return value
+    .replace(/\b(?:not|non|no)\s+AI[-\s]?generated\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+generated\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+generic\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+non[-\s]+documentary\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+(?:a\s+)?placeholder\b/gi, "")
+    .replace(/\b(?:not|non|no)\s+(?:an?\s+)?unrelated[-\s]+outlet\b/gi, "")
+    .replace(/\bnot\s+downloaded\s+from\s+an\s+unknown\s+web\s+source\b/gi, "");
+}
+
 function hasDisallowedMediaClaim(entry: ManifestEntry): boolean {
-  const searchable = `${entry.sourceUrl ?? ""} ${entry.localSourcePath ?? ""} ${
-    entry.manualSourcePath ?? ""
-  } ${entry.credit ?? ""} ${entry.license ?? ""} ${entry.alt ?? ""} ${
-    entry.notes ?? ""
-  }`
-    .replace(/not AI-generated|not AI generated/gi, "")
-    .replace(/not generic/gi, "")
-    .replace(/not downloaded from an unknown web source/gi, "");
-  return /\b(generated|AI|generic|non-documentary|non documentary|placeholder|unrelated outlet)\b/i.test(
+  const searchable = textWithoutNegatedSafetyPhrases(
+    `${entry.sourceUrl ?? ""} ${entry.localSourcePath ?? ""} ${
+      entry.manualSourcePath ?? ""
+    } ${entry.credit ?? ""} ${entry.license ?? ""} ${entry.alt ?? ""} ${
+      entry.notes ?? ""
+    }`,
+  );
+  return /\b(generated|AI|generic|non-documentary|non documentary|placeholder|unrelated[-\s]+outlet)\b/i.test(
     searchable,
   );
 }
@@ -602,29 +612,58 @@ function findSimulationSourceAsset(): string {
   return source;
 }
 
-function createSimulationAssets(assetPaths: string[]): string[] {
+type SimulationAssetBackup = {
+  assetPath: string;
+  backupPath?: string;
+};
+
+function createSimulationAssets(assetPaths: string[]): SimulationAssetBackup[] {
   const sourceAsset = findSimulationSourceAsset();
-  const created: string[] = [];
+  const backups: SimulationAssetBackup[] = [];
+  const simulationBackupRoot = fs.mkdtempSync(
+    path.join(repoRoot, ".tmp-promotion-simulation-"),
+  );
 
   for (const assetPath of assetPaths) {
     const absolutePath = path.join(repoRoot, assetPath);
+    const backup: SimulationAssetBackup = { assetPath: absolutePath };
+
     if (fs.existsSync(absolutePath)) {
-      continue;
+      const backupPath = path.join(
+        simulationBackupRoot,
+        path.relative(repoRoot, absolutePath),
+      );
+      fs.mkdirSync(path.dirname(backupPath), { recursive: true });
+      fs.copyFileSync(absolutePath, backupPath);
+      backup.backupPath = backupPath;
     }
 
     fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
     fs.copyFileSync(sourceAsset, absolutePath);
-    created.push(absolutePath);
+    backups.push(backup);
   }
 
-  return created;
+  return backups;
 }
 
-function removeSimulationAssets(createdAssets: string[]): void {
-  for (const assetPath of createdAssets.reverse()) {
-    if (fs.existsSync(assetPath)) {
-      fs.rmSync(assetPath);
+function removeSimulationAssets(backups: SimulationAssetBackup[]): void {
+  const backupRoots = new Set<string>();
+
+  for (const backup of backups.reverse()) {
+    if (backup.backupPath) {
+      fs.copyFileSync(backup.backupPath, backup.assetPath);
+      const relativeBackup = path.relative(repoRoot, backup.backupPath);
+      backupRoots.add(relativeBackup.split(path.sep)[0]);
+      continue;
     }
+
+    if (fs.existsSync(backup.assetPath)) {
+      fs.rmSync(backup.assetPath);
+    }
+  }
+
+  for (const backupRoot of backupRoots) {
+    fs.rmSync(path.join(repoRoot, backupRoot), { recursive: true, force: true });
   }
 }
 
@@ -649,85 +688,99 @@ function main(): void {
         entries.map((entry) => normalizeTargetPath(entry.targetAssetPath)),
       )
     : [];
-
-  const seenTargets = new Set<string>();
-  const normalizedEntries = entries.map((entry, index) => {
-    const assetPath = validateEntry(entry, index);
-    if (seenTargets.has(assetPath)) {
-      throw new Error(`${assetPath}: duplicate targetAssetPath in manifest.`);
+  let simulationAssetsRestored = false;
+  const restoreSimulationAssets = (): void => {
+    if (simulationAssetsRestored) {
+      return;
     }
-    seenTargets.add(assetPath);
-    return { entry, assetPath };
-  });
 
-  const metadataSource = fs.readFileSync(metadataPath, "utf8");
-  const mediaSource = fs.readFileSync(outletMediaPath, "utf8");
-  const records = normalizedEntries.map(({ entry, assetPath }) =>
-    entryToRecord(entry, assetPath),
-  );
-  const metadataUpdate = updateMetadataSource(metadataSource, records);
-  const mediaUpdate = updateMediaSource(
-    mediaSource,
-    normalizedEntries.map(({ entry, assetPath }) => ({
-      outletId: entry.outletId,
-      assetPath,
-    })),
-  );
-
-  console.log(
-    `Validated ${entries.length} imported media asset(s) for promotion.`,
-  );
-  for (const { assetPath } of normalizedEntries) {
-    console.log(`Verified existing WebP asset: ${assetPath}`);
-  }
-  console.log(`Metadata records to add: ${metadataUpdate.added.length}`);
-  console.log(`Metadata records to update: ${metadataUpdate.updated.length}`);
-  console.log(`Local require entries to add: ${mediaUpdate.added.length}`);
-  console.log(
-    `Local require entries already present: ${mediaUpdate.skipped.length}`,
-  );
-
-  if (options.dryRun) {
-    for (const assetPath of metadataUpdate.added)
-      console.log(`Would add metadata: ${assetPath}`);
-    for (const assetPath of metadataUpdate.updated)
-      console.log(`Would update metadata: ${assetPath}`);
-    for (const assetPath of mediaUpdate.added)
-      console.log(`Would add local require: ${assetPath}`);
-    console.log("Dry run complete; no files were written.");
-    return;
-  }
-
-  const previousMetadataSource = metadataSource;
-  const previousMediaSource = mediaSource;
-
-  fs.writeFileSync(metadataPath, metadataUpdate.source);
-  fs.writeFileSync(outletMediaPath, mediaUpdate.source);
+    removeSimulationAssets(simulationAssets);
+    simulationAssetsRestored = true;
+  };
 
   try {
-    runTypecheck();
-  } catch (error) {
-    fs.writeFileSync(metadataPath, previousMetadataSource);
-    fs.writeFileSync(outletMediaPath, previousMediaSource);
-    removeSimulationAssets(simulationAssets);
-    throw new Error(
-      `Promotion output failed typecheck; reverted generated source files. ${
-        error instanceof Error ? error.message : String(error)
-      }`,
-    );
-  }
+    const seenTargets = new Set<string>();
+    const normalizedEntries = entries.map((entry, index) => {
+      const assetPath = validateEntry(entry, index);
+      if (seenTargets.has(assetPath)) {
+        throw new Error(`${assetPath}: duplicate targetAssetPath in manifest.`);
+      }
+      seenTargets.add(assetPath);
+      return { entry, assetPath };
+    });
 
-  if (options.simulateTypecheck) {
-    fs.writeFileSync(metadataPath, previousMetadataSource);
-    fs.writeFileSync(outletMediaPath, previousMediaSource);
-    removeSimulationAssets(simulationAssets);
+    const metadataSource = fs.readFileSync(metadataPath, "utf8");
+    const mediaSource = fs.readFileSync(outletMediaPath, "utf8");
+    const records = normalizedEntries.map(({ entry, assetPath }) =>
+      entryToRecord(entry, assetPath),
+    );
+    const metadataUpdate = updateMetadataSource(metadataSource, records);
+    const mediaUpdate = updateMediaSource(
+      mediaSource,
+      normalizedEntries.map(({ entry, assetPath }) => ({
+        outletId: entry.outletId,
+        assetPath,
+      })),
+    );
+
     console.log(
-      "Simulation typecheck complete; restored generated source and temporary assets.",
+      `Validated ${entries.length} imported media asset(s) for promotion.`,
     );
-    return;
-  }
+    for (const { assetPath } of normalizedEntries) {
+      console.log(`Verified existing WebP asset: ${assetPath}`);
+    }
+    console.log(`Metadata records to add: ${metadataUpdate.added.length}`);
+    console.log(`Metadata records to update: ${metadataUpdate.updated.length}`);
+    console.log(`Local require entries to add: ${mediaUpdate.added.length}`);
+    console.log(
+      `Local require entries already present: ${mediaUpdate.skipped.length}`,
+    );
 
-  console.log("Promotion complete.");
+    if (options.dryRun) {
+      for (const assetPath of metadataUpdate.added)
+        console.log(`Would add metadata: ${assetPath}`);
+      for (const assetPath of metadataUpdate.updated)
+        console.log(`Would update metadata: ${assetPath}`);
+      for (const assetPath of mediaUpdate.added)
+        console.log(`Would add local require: ${assetPath}`);
+      console.log("Dry run complete; no files were written.");
+      return;
+    }
+
+    const previousMetadataSource = metadataSource;
+    const previousMediaSource = mediaSource;
+
+    fs.writeFileSync(metadataPath, metadataUpdate.source);
+    fs.writeFileSync(outletMediaPath, mediaUpdate.source);
+
+    try {
+      runTypecheck();
+    } catch (error) {
+      fs.writeFileSync(metadataPath, previousMetadataSource);
+      fs.writeFileSync(outletMediaPath, previousMediaSource);
+      restoreSimulationAssets();
+      throw new Error(
+        `Promotion output failed typecheck; reverted generated source files. ${
+          error instanceof Error ? error.message : String(error)
+        }`,
+      );
+    }
+
+    if (options.simulateTypecheck) {
+      fs.writeFileSync(metadataPath, previousMetadataSource);
+      fs.writeFileSync(outletMediaPath, previousMediaSource);
+      restoreSimulationAssets();
+      console.log(
+        "Simulation typecheck complete; restored generated source and temporary assets.",
+      );
+      return;
+    }
+
+    console.log("Promotion complete.");
+  } catch (error) {
+    restoreSimulationAssets();
+    throw error;
+  }
 }
 
 try {
