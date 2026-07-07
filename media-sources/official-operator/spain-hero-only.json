@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "batchName": "spain-hero-only",
+  "bestEffortOfficial": true,
+  "images": [
+    {
+      "outletId": "las-rozas-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/las-rozas/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.thebicestercollection.com/las-rozas-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/las-rozas-village/en/-/media/village/las-rozas-village/homepage/las-rozas-village-homepage-hero.jpg",
+      "alt": "Official Las Rozas Village image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "la-roca-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/la-roca/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.thebicestercollection.com/la-roca-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/la-roca-village/en/-/media/village/la-roca-village/homepage/la-roca-village-homepage-hero.jpg",
+      "alt": "Official La Roca Village image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "malaga-designer-outlet",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/malaga-designer-outlet/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/es/designer-outlet-malaga/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/es/centre-pages/malaga/designer-outlet-malaga.jpg",
+      "alt": "Official McArthurGlen Designer Outlet Malaga image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    }
+  ],
+  "reviewSummary": {
+    "totalCandidateEntries": 3,
+    "deferredOutletsWithNoCandidateOfficialImageUrl": [],
+    "importNote": "Broken or temporarily unreachable official/operator URLs will be skipped at import time in best-effort mode instead of failing the entire batch.",
+    "targeting": "official-hero.webp overlay only.",
+    "overwriteConfirmation": "No existing hero.webp or gallery target paths are overwritten; every targetAssetPath ends with official-hero.webp."
+  }
+}

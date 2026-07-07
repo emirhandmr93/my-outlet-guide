@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "batchName": "uk-hero-only",
+  "bestEffortOfficial": true,
+  "images": [
+    {
+      "outletId": "bicester-village",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/bicester/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.thebicestercollection.com/bicester-village/en",
+      "downloadUrl": "https://www.thebicestercollection.com/bicester-village/en/-/media/village/bicester-village/homepage/bicester-village-homepage-hero.jpg",
+      "alt": "Official Bicester Village image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "cheshire-oaks",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/cheshire-oaks/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/cheshire-oaks/cheshire-oaks-designer-outlet.jpg",
+      "alt": "Official Cheshire Oaks Designer Outlet image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "york-designer-outlet",
+      "role": "hero",
+      "targetAssetPath": "assets/outlet-images/york-designer-outlet/official-hero.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-york/",
+      "downloadUrl": "https://www.mcarthurglen.com/cdn-cgi/image/fit%3Dcover%2Cformat%3Dwebp%2Cheight%3D1920%2Cquality%3D65%2Cwidth%3D1920/globalassets-v12/uk/centre-pages/york/york-designer-outlet.jpg",
+      "alt": "Official York Designer Outlet image showing the outlet destination.",
+      "width": 1600,
+      "height": 900,
+      "quality": 82
+    }
+  ],
+  "reviewSummary": {
+    "totalCandidateEntries": 3,
+    "deferredOutletsWithNoCandidateOfficialImageUrl": [],
+    "importNote": "Broken or temporarily unreachable official/operator URLs will be skipped at import time in best-effort mode instead of failing the entire batch.",
+    "targeting": "official-hero.webp overlay only.",
+    "overwriteConfirmation": "No existing hero.webp or gallery target paths are overwritten; every targetAssetPath ends with official-hero.webp."
+  }
+}
