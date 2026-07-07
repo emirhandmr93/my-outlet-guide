@@ -1,0 +1,698 @@
+{
+  "templateOnly": true,
+  "importable": false,
+  "phase": "Media Phase 4C",
+  "purpose": "Non-importable planning template for exact manual outlet photo uploads. Do not feed this file to import tooling.",
+  "rules": [
+    "Random web photos are not accepted.",
+    "Provide only exact outlet photos that are project-owned, licensed, or permission-granted.",
+    "If only two exact photos are available for a full outlet, provide hero and gallery1 only.",
+    "Third and fourth photos are optional when available as gallery2 and gallery3.",
+    "Do not include sourceUrl or licenseUrl unless a licensed or permission-granted source requires it."
+  ],
+  "requiredMetadataFields": [
+    "sourceStatus",
+    "credit",
+    "license",
+    "alt",
+    "notes"
+  ],
+  "manualUploads": [
+    {
+      "outletId": "noventa",
+      "displayName": "Noventa di Piave Designer Outlet",
+      "requiredMinimumSlots": [
+        "hero",
+        "gallery1"
+      ],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/noventa/",
+      "targetAssetFolder": "assets/outlet-images/noventa/",
+      "slots": [
+        {
+          "slot": "hero",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/noventa/hero.jpg",
+          "targetOutputPath": "assets/outlet-images/noventa/hero.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Noventa di Piave Designer Outlet (hero)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery1",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/noventa/gallery1.jpg",
+          "targetOutputPath": "assets/outlet-images/noventa/gallery1.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Noventa di Piave Designer Outlet (gallery1)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/noventa/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/noventa/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Noventa di Piave Designer Outlet (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/noventa/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/noventa/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Noventa di Piave Designer Outlet (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "designer-outlet-provence",
+      "displayName": "Designer Outlet Provence",
+      "requiredMinimumSlots": [
+        "hero",
+        "gallery1"
+      ],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/designer-outlet-provence/",
+      "targetAssetFolder": "assets/outlet-images/provence/",
+      "slots": [
+        {
+          "slot": "hero",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-provence/hero.jpg",
+          "targetOutputPath": "assets/outlet-images/provence/hero.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Provence (hero)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery1",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-provence/gallery1.jpg",
+          "targetOutputPath": "assets/outlet-images/provence/gallery1.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Provence (gallery1)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-provence/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/provence/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Provence (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-provence/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/provence/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Provence (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "castel-romano",
+      "displayName": "Castel Romano Designer Outlet",
+      "requiredMinimumSlots": [
+        "hero",
+        "gallery1"
+      ],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/castel-romano/",
+      "targetAssetFolder": "assets/outlet-images/castel-romano/",
+      "slots": [
+        {
+          "slot": "hero",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/castel-romano/hero.jpg",
+          "targetOutputPath": "assets/outlet-images/castel-romano/hero.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Castel Romano Designer Outlet (hero)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery1",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/castel-romano/gallery1.jpg",
+          "targetOutputPath": "assets/outlet-images/castel-romano/gallery1.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Castel Romano Designer Outlet (gallery1)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/castel-romano/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/castel-romano/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Castel Romano Designer Outlet (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/castel-romano/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/castel-romano/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Castel Romano Designer Outlet (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "designer-outlet-berlin",
+      "displayName": "Designer Outlet Berlin",
+      "requiredMinimumSlots": [
+        "hero",
+        "gallery1"
+      ],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/designer-outlet-berlin/",
+      "targetAssetFolder": "assets/outlet-images/berlin/",
+      "slots": [
+        {
+          "slot": "hero",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-berlin/hero.jpg",
+          "targetOutputPath": "assets/outlet-images/berlin/hero.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Berlin (hero)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery1",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-berlin/gallery1.jpg",
+          "targetOutputPath": "assets/outlet-images/berlin/gallery1.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Berlin (gallery1)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-berlin/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/berlin/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Berlin (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-berlin/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/berlin/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Berlin (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "designer-outlet-roosendaal",
+      "displayName": "Designer Outlet Roosendaal",
+      "requiredMinimumSlots": [
+        "hero",
+        "gallery1"
+      ],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/designer-outlet-roosendaal/",
+      "targetAssetFolder": "assets/outlet-images/roosendaal/",
+      "slots": [
+        {
+          "slot": "hero",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-roosendaal/hero.jpg",
+          "targetOutputPath": "assets/outlet-images/roosendaal/hero.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Roosendaal (hero)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery1",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-roosendaal/gallery1.jpg",
+          "targetOutputPath": "assets/outlet-images/roosendaal/gallery1.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Roosendaal (gallery1)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-roosendaal/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/roosendaal/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Roosendaal (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-roosendaal/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/roosendaal/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Roosendaal (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "la-reggia",
+      "displayName": "La Reggia Designer Outlet",
+      "requiredMinimumSlots": [
+        "hero",
+        "gallery1"
+      ],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/la-reggia/",
+      "targetAssetFolder": "assets/outlet-images/la-reggia/",
+      "slots": [
+        {
+          "slot": "hero",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/la-reggia/hero.jpg",
+          "targetOutputPath": "assets/outlet-images/la-reggia/hero.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of La Reggia Designer Outlet (hero)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery1",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/la-reggia/gallery1.jpg",
+          "targetOutputPath": "assets/outlet-images/la-reggia/gallery1.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of La Reggia Designer Outlet (gallery1)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/la-reggia/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/la-reggia/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of La Reggia Designer Outlet (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/la-reggia/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/la-reggia/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of La Reggia Designer Outlet (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "designer-outlet-malaga",
+      "displayName": "Designer Outlet Málaga",
+      "requiredMinimumSlots": [
+        "hero",
+        "gallery1"
+      ],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/designer-outlet-malaga/",
+      "targetAssetFolder": "assets/outlet-images/malaga/",
+      "slots": [
+        {
+          "slot": "hero",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-malaga/hero.jpg",
+          "targetOutputPath": "assets/outlet-images/malaga/hero.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Málaga (hero)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery1",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-malaga/gallery1.jpg",
+          "targetOutputPath": "assets/outlet-images/malaga/gallery1.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Málaga (gallery1)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-malaga/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/malaga/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Málaga (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/designer-outlet-malaga/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/malaga/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Designer Outlet Málaga (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "montabaur-the-style-outlets",
+      "displayName": "Montabaur The Style Outlets",
+      "requiredMinimumSlots": [
+        "hero",
+        "gallery1"
+      ],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/montabaur-the-style-outlets/",
+      "targetAssetFolder": "assets/outlet-images/montabaur/",
+      "slots": [
+        {
+          "slot": "hero",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/montabaur-the-style-outlets/hero.jpg",
+          "targetOutputPath": "assets/outlet-images/montabaur/hero.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Montabaur The Style Outlets (hero)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery1",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/montabaur-the-style-outlets/gallery1.jpg",
+          "targetOutputPath": "assets/outlet-images/montabaur/gallery1.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Montabaur The Style Outlets (gallery1)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/montabaur-the-style-outlets/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/montabaur/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Montabaur The Style Outlets (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/montabaur-the-style-outlets/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/montabaur/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Montabaur The Style Outlets (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "maasmechelen-village",
+      "displayName": "Maasmechelen Village",
+      "requiredMinimumSlots": [
+        "hero",
+        "gallery1"
+      ],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/maasmechelen-village/",
+      "targetAssetFolder": "assets/outlet-images/maasmechelen/",
+      "slots": [
+        {
+          "slot": "hero",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/maasmechelen-village/hero.jpg",
+          "targetOutputPath": "assets/outlet-images/maasmechelen/hero.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Maasmechelen Village (hero)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery1",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/maasmechelen-village/gallery1.jpg",
+          "targetOutputPath": "assets/outlet-images/maasmechelen/gallery1.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Maasmechelen Village (gallery1)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/maasmechelen-village/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/maasmechelen/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Maasmechelen Village (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/maasmechelen-village/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/maasmechelen/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Maasmechelen Village (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "las-rozas-village",
+      "displayName": "Las Rozas Village",
+      "requiredMinimumSlots": [
+        "gallery3"
+      ],
+      "optionalSlots": [],
+      "localSourceFolder": "media-sources/manual-inputs/las-rozas-village/",
+      "targetAssetFolder": "assets/outlet-images/las-rozas/",
+      "slots": [
+        {
+          "slot": "gallery3",
+          "required": true,
+          "manualSourcePath": "media-sources/manual-inputs/las-rozas-village/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/las-rozas/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Las Rozas Village (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    },
+    {
+      "outletId": "barberino",
+      "displayName": "Barberino Designer Outlet",
+      "requiredMinimumSlots": [],
+      "optionalSlots": [
+        "gallery2",
+        "gallery3"
+      ],
+      "localSourceFolder": "media-sources/manual-inputs/barberino/",
+      "targetAssetFolder": "assets/outlet-images/barberino/",
+      "slots": [
+        {
+          "slot": "gallery2",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/barberino/gallery2.jpg",
+          "targetOutputPath": "assets/outlet-images/barberino/gallery2.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Barberino Designer Outlet (gallery2)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        },
+        {
+          "slot": "gallery3",
+          "required": false,
+          "manualSourcePath": "media-sources/manual-inputs/barberino/gallery3.jpg",
+          "targetOutputPath": "assets/outlet-images/barberino/gallery3.webp",
+          "metadata": {
+            "sourceStatus": "project-owned",
+            "credit": "TODO: project/user/provider credit",
+            "license": "Project-owned or TODO: permission-granted license",
+            "alt": "TODO: Exact manual photo of Barberino Designer Outlet (gallery3)",
+            "notes": "exact outlet photo; user-provided/project-owned or permission-granted; not AI-generated; not generic; not downloaded from unknown web source"
+          }
+        }
+      ]
+    }
+  ]
+}
