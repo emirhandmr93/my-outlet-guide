@@ -323,8 +323,30 @@ function getOutletLocalImageEntries(
   });
 }
 
+function compareOfficialOverlayFirst(
+  a: OutletLocalImageEntry,
+  b: OutletLocalImageEntry,
+): number {
+  const aIsOfficial = a.metadata?.sourceStatus === "official-operator";
+  const bIsOfficial = b.metadata?.sourceStatus === "official-operator";
+
+  if (aIsOfficial === bIsOfficial) {
+    return 0;
+  }
+
+  return aIsOfficial ? -1 : 1;
+}
+
+function getSortedOutletLocalImageEntries(
+  outletId?: string,
+): OutletLocalImageEntry[] {
+  return [...getOutletLocalImageEntries(outletId)].sort(
+    compareOfficialOverlayFirst,
+  );
+}
+
 function getProductionSafeLocalImages(outletId?: string): OutletMediaImage[] {
-  return getOutletLocalImageEntries(outletId)
+  return getSortedOutletLocalImageEntries(outletId)
     .filter((entry) => isMediaAssetProductionCleared(entry.metadata))
     .map((entry) => entry.image);
 }
@@ -407,7 +429,7 @@ export function getOutletLocalImages(
     return getProductionSafeLocalImages(outletId);
   }
 
-  return outletId ? (outletLocalImages[outletId] ?? []) : [];
+  return getSortedOutletLocalImageEntries(outletId).map((entry) => entry.image);
 }
 
 export function getOutletMediaImages(

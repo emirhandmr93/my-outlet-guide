@@ -9,7 +9,7 @@ This policy defines when outlet media can be considered production-cleared and h
 - Random web images are not allowed.
 - Real photos of unrelated outlets must not be used as generic replacements.
 - Generic placeholders are not allowed.
-- Official/operator website media is production-cleared when it is an exact outlet image and covered by project-owner permission.
+- Official/operator website media is production-cleared when it is an exact outlet image covered by project-owner permission and imported into controlled local assets as a separate overlay layer.
 - AI-generated, generated, generic, non-documentary, placeholder, random-web, Google Images, hotlinked runtime, or unrelated-outlet media is not production-cleared and must not be imported or promoted.
 - New images must have provenance metadata before being added to the repository or referenced by outlet media.
 - `sourceStatus: "unknown"` is acceptable only for legacy inventory tracking. It is not acceptable for new production-cleared additions.
@@ -18,7 +18,7 @@ This policy defines when outlet media can be considered production-cleared and h
 - Exact Wikimedia Commons source pages remain allowed when the metadata documents source, author/credit, license or public-domain terms, and the exact-outlet review context.
 - Automatic import may proceed with one or more verified exact safe outlet sources: 1 source maps to `hero.webp`; 2 sources map to `hero.webp` and `gallery1.webp`; 3 sources add `gallery2.webp`; 4 sources add `gallery3.webp`. Outlets with zero exact safe sources remain manual upload needed.
 - Manual user-provided exact outlet photos are allowed only when they are project-owned, licensed, or permission-granted.
-- Official/operator images still require documented permission before use.
+- Official/operator images still require project-owner permission before use and must use `official-hero.webp`, `official-gallery1.webp`, and `official-gallery2.webp` target names when they are part of the overlay layer.
 - Do not direct-hotlink random remote images or official outlet images.
 - Do not delete old unknown local images for an outlet until safe replacements exist for that outlet; once safe replacements exist for a processed outlet, remove the unknown legacy images for that outlet.
 

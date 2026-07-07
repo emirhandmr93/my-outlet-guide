@@ -6,14 +6,38 @@
     {
       "outletId": "example-outlet-id",
       "role": "hero",
-      "targetAssetPath": "assets/outlet-images/example-outlet/hero.webp",
+      "targetAssetPath": "assets/outlet-images/example-outlet/official-hero.webp",
       "sourceStatus": "official-operator",
-      "sourceUrl": "https://www.official-operator.example/media-page",
-      "downloadUrl": "https://www.official-operator.example/media/image.jpg",
+      "sourceUrl": "https://www.official-operator.example/example-outlet/media-page",
+      "downloadUrl": "https://www.official-operator.example/example-outlet/official-hero.jpg",
+      "alt": "Official operator image of Example Outlet exterior",
       "width": 1600,
-      "height": 1000,
-      "quality": 82,
-      "alt": "Exact official/operator image of the outlet"
+      "height": 900,
+      "quality": 82
+    },
+    {
+      "outletId": "example-outlet-id",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/example-outlet/official-gallery1.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.official-operator.example/example-outlet/media-page",
+      "downloadUrl": "https://www.official-operator.example/example-outlet/official-gallery1.jpg",
+      "alt": "Official operator image of Example Outlet walkway",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
+    },
+    {
+      "outletId": "example-outlet-id",
+      "role": "gallery",
+      "targetAssetPath": "assets/outlet-images/example-outlet/official-gallery2.webp",
+      "sourceStatus": "official-operator",
+      "sourceUrl": "https://www.official-operator.example/example-outlet/media-page",
+      "downloadUrl": "https://www.official-operator.example/example-outlet/official-gallery2.jpg",
+      "alt": "Official operator image of Example Outlet storefront environment",
+      "width": 1600,
+      "height": 900,
+      "quality": 78
     }
   ]
 }

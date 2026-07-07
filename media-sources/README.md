@@ -4,7 +4,7 @@ This folder stores reviewed source manifests for local outlet-image imports. A m
 
 ## Manifest format
 
-Each manifest is JSON with an `images` array. Automatic exact-source coverage may use a hero-only batch when exactly one verified exact safe source exists; additional verified exact safe sources fill `gallery1.webp`, `gallery2.webp`, and `gallery3.webp` in order. Outlets with zero exact safe sources remain manual upload needed.
+Each manifest is JSON with an `images` array. Official/operator overlay manifests use exactly the controlled target names `official-hero.webp`, `official-gallery1.webp`, and `official-gallery2.webp` for each outlet batch. Automatic exact-source coverage may use a hero-only batch when exactly one verified exact safe source exists; additional verified exact safe sources fill `gallery1.webp`, `gallery2.webp`, and `gallery3.webp` in order. Outlets with zero exact safe sources remain manual upload needed.
 
 Each image entry must include:
 
@@ -41,3 +41,7 @@ The sample intentionally omits `downloadUrl` values. In dry-run mode, the import
 AI/generated/generic outlet media imports are disabled. Generic placeholders, generated generic outlet-atmosphere imagery, non-documentary stand-ins, and unrelated-outlet photos are not allowed. `generic-generated-template.json`, `batch-g-generated-pilot.template.json`, and files under `generated-inputs/` are historical planning or audit context only and must not be passed to the importer or promoter.
 
 Future exact manual photo imports must use reviewed source files under `media-sources/manual-inputs/`, `sourceStatus: "project-owned"` only when the project owns the photo or the user provided it with rights, `license: "Project-owned"`, required credit/alt, and notes that explicitly say the source is an exact outlet photo, project-owned or user-provided with rights, not AI-generated, not generic, and not downloaded from an unknown web source. Licensed or permission-granted manual files still require the applicable source/license/permission metadata.
+
+## Official/operator overlay status
+
+`official-operator-template.json` is a template-only scaffold for the Phase 6B overlay architecture. It shows the three official/operator entries expected per outlet and intentionally contains no real manifest data. The all-108 rollout will be prepared in batches: Italy, UK, Spain, Germany / France / Benelux, and Rest of Europe.

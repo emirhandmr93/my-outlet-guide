@@ -423,6 +423,36 @@ function assertCompleteMetadataRecord(record: MetadataRecord): void {
   }
 }
 
+function findMetadataInsertIndex(
+  source: string,
+  record: MetadataRecord,
+): number {
+  if (isOfficialOverlayAssetPath(record.assetPath)) {
+    const outletIndex = source.indexOf(
+      `outletId: ${JSON.stringify(record.outletId)}`,
+    );
+    if (outletIndex >= 0) {
+      const objectStart = source.lastIndexOf("  {", outletIndex);
+      if (objectStart >= 0) {
+        return objectStart;
+      }
+    }
+  }
+
+  const markers = [
+    "\n] as const;\n\nexport const outletMediaMetadata: readonly OutletMediaAssetMetadata[] =",
+    "\n] as const satisfies readonly OutletMediaAssetMetadata[];",
+    "\n] as const).filter(isOutletMediaAssetMetadata) satisfies readonly OutletMediaAssetMetadata[];",
+  ];
+  const marker = markers.find((candidate) => source.includes(candidate));
+  if (!marker) {
+    throw new Error(
+      "Could not safely locate outletMediaMetadata array terminator.",
+    );
+  }
+  return source.lastIndexOf(marker);
+}
+
 function updateMetadataSource(
   source: string,
   records: MetadataRecord[],
@@ -444,21 +474,13 @@ function updateMetadataSource(
       updated.push(record.assetPath);
     } else {
       added.push(record.assetPath);
-      const markers = [
-        "\n] as const;\n\nexport const outletMediaMetadata: readonly OutletMediaAssetMetadata[] =",
-        "\n] as const satisfies readonly OutletMediaAssetMetadata[];",
-        "\n] as const).filter(isOutletMediaAssetMetadata) satisfies readonly OutletMediaAssetMetadata[];",
-      ];
-      const marker = markers.find((candidate) =>
-        nextSource.includes(candidate),
-      );
-      if (!marker) {
-        throw new Error(
-          "Could not safely locate outletMediaMetadata array terminator.",
-        );
-      }
-      const markerIndex = nextSource.lastIndexOf(marker);
-      nextSource = `${nextSource.slice(0, markerIndex)},\n${rendered}${nextSource.slice(markerIndex)}`;
+      const insertIndex = findMetadataInsertIndex(nextSource, record);
+      const prefix =
+        insertIndex > 0 &&
+        nextSource.slice(insertIndex - 2, insertIndex) === ",\n"
+          ? ""
+          : ",\n";
+      nextSource = `${nextSource.slice(0, insertIndex)}${prefix}${rendered}${nextSource.slice(insertIndex)}`;
     }
   }
 
@@ -470,11 +492,18 @@ function requireLine(assetPath: string): string {
 }
 
 const slotOrder = new Map([
-  ["hero.webp", 0],
-  ["gallery1.webp", 1],
-  ["gallery2.webp", 2],
-  ["gallery3.webp", 3],
+  ["official-hero.webp", 0],
+  ["official-gallery1.webp", 1],
+  ["official-gallery2.webp", 2],
+  ["hero.webp", 10],
+  ["gallery1.webp", 11],
+  ["gallery2.webp", 12],
+  ["gallery3.webp", 13],
 ]);
+
+function isOfficialOverlayAssetPath(assetPath: string): boolean {
+  return path.posix.basename(assetPath).startsWith("official-");
+}
 
 type MediaPromotionEntry = { outletId: string; assetPath: string };
 
@@ -497,7 +526,7 @@ function getAssetFolderPath(assetPath: string): string {
   const fileName = parts[3];
   if (!slotOrder.has(fileName)) {
     throw new Error(
-      `${assetPath}: targetAssetPath file name must be hero.webp, gallery1.webp, gallery2.webp, or gallery3.webp.`,
+      `${assetPath}: targetAssetPath file name must be official-hero.webp, official-gallery1.webp, official-gallery2.webp, hero.webp, gallery1.webp, gallery2.webp, or gallery3.webp.`,
     );
   }
 
@@ -598,9 +627,12 @@ function updateMediaSource(
         );
       }
 
-      const insertIndex =
-        currentMatch.index + currentMatch[0].lastIndexOf("\n  ]");
-      nextSource = `${nextSource.slice(0, insertIndex)}\n${line}${nextSource.slice(insertIndex)}`;
+      const insertIndex = isOfficialOverlayAssetPath(entry.assetPath)
+        ? currentMatch.index + currentMatch[0].indexOf("\n") + 1
+        : currentMatch.index + currentMatch[0].lastIndexOf("\n  ]");
+      nextSource = isOfficialOverlayAssetPath(entry.assetPath)
+        ? `${nextSource.slice(0, insertIndex)}${line}\n${nextSource.slice(insertIndex)}`
+        : `${nextSource.slice(0, insertIndex)}\n${line}${nextSource.slice(insertIndex)}`;
       added.push(entry.assetPath);
     }
   }

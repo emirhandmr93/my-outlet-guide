@@ -15,7 +15,7 @@ The media import pipeline downloads or converts image files only from an explici
 
 ## Fill a manifest
 
-Create or edit a JSON manifest under `media-sources/`. For each image, provide the existing outlet id, image role, target WebP path under `assets/outlet-images`, source status, alt text, and optional resize settings. Provide `downloadUrl` for non-Wikimedia sources or when you want to pin an explicit direct file URL. Wikimedia/CC/public-domain records still need public credit/license fields. Official/operator manifests may contain `sourceUrl` and `downloadUrl` for technical import only and must not include user-facing permission, credit, license, source, or long permission-note text.
+Create or edit a JSON manifest under `media-sources/`. For each image, provide the existing outlet id, image role, target WebP path under `assets/outlet-images`, source status, alt text, and optional resize settings. Provide `downloadUrl` for non-Wikimedia sources or when you want to pin an explicit direct file URL. Wikimedia/CC/public-domain records still need public credit/license fields. Official/operator manifests may contain `sourceUrl` and `downloadUrl` for technical import only and must not include user-facing permission, credit, license, source, or long permission-note text. Overlay targets use `official-hero.webp`, `official-gallery1.webp`, and `official-gallery2.webp`; promotion preserves existing local media and places official overlay entries first for resolver priority.
 
 For Wikimedia Commons, use the file page as `sourceUrl`, for example `https://commons.wikimedia.org/wiki/File:Example.jpg`. `downloadUrl` may be omitted, empty, or left as a `TODO` placeholder for Wikimedia Commons `File:` pages. In real import mode, the importer resolves the original file URL with the Wikimedia/MediaWiki API `imageinfo` endpoint before downloading. For non-Wikimedia sources, provide an explicit direct `downloadUrl`.
 
@@ -68,7 +68,7 @@ npx tsx tools/checkOutletMediaMetadata.ts
 npx tsx tools/checkOutletMediaMetadata.ts --resolver-audit
 ```
 
-Production resolver behavior treats `official-operator` as production-safe while public credit collection hides that status by default. Strict media validation should pass official/operator records without public credit/license text and valid project-owned exact manual photos, but still fail unknown assets when strict mode is used.
+Production resolver behavior treats `official-operator` as production-safe while public credit collection hides that status by default. The resolver audit must report zero production-safe unknown local assets resolved. Strict media validation should pass official/operator records without public credit/license text and valid project-owned exact manual photos, but still fail unknown assets when strict mode is used.
 
 ## Generated inputs status
 
