@@ -30,6 +30,7 @@ type NotificationSettingsContextType = {
   registrationError: string | null;
   settings: NotificationSettings | null;
   setNotificationsEnabled: (enabled: boolean) => Promise<void>;
+  setTripRemindersEnabled: (enabled: boolean) => Promise<void>;
   refreshSettings: () => Promise<void>;
 };
 
@@ -174,6 +175,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
         platform: Platform.OS,
         createdAt: now,
         updatedAt: now,
+        disabledAt: null,
         firestoreCreatedAt: serverTimestamp(),
         firestoreUpdatedAt: serverTimestamp(),
       },
@@ -209,7 +211,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     setTokenRegistrationStatus(snapshot.empty ? "not_registered" : "disabled");
   }
 
-  async function setNotificationsEnabled(enabled: boolean) {
+  async function saveSettingsPatch(patch: Partial<NotificationSettings>) {
     if (!currentUser?.userId) {
       return;
     }
@@ -217,30 +219,51 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     const now = new Date().toISOString();
     const nextSettings = {
       ...(settings ?? defaultSettingsForUser(currentUser.userId)),
-      enabled,
+      ...patch,
       userId: currentUser.userId,
     };
 
     setSettings(nextSettings);
+
+    await setDoc(
+      doc(db, "userNotificationSettings", currentUser.userId),
+      {
+        ...nextSettings,
+        updatedAt: now,
+        disabledAt: nextSettings.enabled ? null : now,
+        firestoreUpdatedAt: serverTimestamp(),
+      },
+      { merge: true }
+    );
+
+    return nextSettings;
+  }
+
+  async function setNotificationsEnabled(enabled: boolean) {
+    if (!currentUser?.userId) {
+      return;
+    }
+
     setIsSaving(true);
 
     try {
-      await setDoc(
-        doc(db, "userNotificationSettings", currentUser.userId),
-        {
-          ...nextSettings,
-          updatedAt: now,
-          disabledAt: enabled ? null : now,
-          firestoreUpdatedAt: serverTimestamp(),
-        },
-        { merge: true }
-      );
+      await saveSettingsPatch({ enabled });
 
       if (enabled) {
         await registerPushToken(currentUser.userId);
       } else {
         await disableRegisteredTokens(currentUser.userId);
       }
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
+  async function setTripRemindersEnabled(enabled: boolean) {
+    setIsSaving(true);
+
+    try {
+      await saveSettingsPatch({ tripRemindersEnabled: enabled });
     } finally {
       setIsSaving(false);
     }
@@ -258,6 +281,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
       registrationError,
       settings,
       setNotificationsEnabled,
+      setTripRemindersEnabled,
       refreshSettings,
     }),
     [isLoggedIn, isLoading, isSaving, permissionStatus, pushSupported, tokenRegistrationStatus, registeredToken, registrationError, settings]
