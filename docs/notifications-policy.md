@@ -125,13 +125,13 @@ Before sending, the function creates the delivery document in a Firestore transa
 
 ## Deployment steps
 
-1. Install Functions dependencies in an environment with npm registry access and a committed `functions/package-lock.json`:
+1. Install root and Functions dependencies in an environment with npm registry access and committed lockfiles (`package-lock.json` and `functions/package-lock.json`):
 
    ```sh
    npm --prefix functions ci
    ```
 
-   If the lockfile is missing, generate it once with `npm --prefix functions install` in an environment that can read the npm registry, then commit `functions/package-lock.json`.
+   If either lockfile is missing or stale, run the manual GitHub Actions workflow **Generate Functions lockfile**. It uses `npm install` at the repository root to refresh `package-lock.json`, then `npm --prefix functions install` to refresh `functions/package-lock.json`, builds Functions, validates the root app, and commits only those lockfiles when they change. Root `package-lock.json` may need regeneration after app dependency changes, such as adding or updating Expo SDK packages.
 
 2. Build the Functions bundle:
 
@@ -152,8 +152,8 @@ Before sending, the function creates the delivery document in a Firestore transa
 ## Phase 1D build/deploy readiness status
 
 - Standard Firebase TypeScript Functions practice is source-controlled TypeScript plus a committed npm lockfile, with generated `functions/lib/` output produced during build/deploy instead of committed.
-- `functions/package-lock.json` is required before release/CI can use `npm --prefix functions ci`. It could not be generated in this Codex environment because `npm --prefix functions install` was blocked by an npm registry `403 Forbidden` response for `firebase-admin`.
-- CI should validate the root app typecheck and Functions build after `functions/package-lock.json` is committed. Until the lockfile exists, a Functions CI job that uses `npm --prefix functions ci` would fail before reaching the build.
+- `package-lock.json` and `functions/package-lock.json` are required before release/CI can use deterministic installs. App dependency changes may require regenerating the root lockfile, and Functions dependency changes may require regenerating the Functions lockfile. The manual **Generate Functions lockfile** workflow updates both lockfiles and commits only those files when they change.
+- CI should validate the root app typecheck and Functions build after lockfile changes are committed. Until the Functions lockfile exists, a Functions CI job that uses `npm --prefix functions ci` would fail before reaching the build.
 
 ## Remaining unsupported categories
 
