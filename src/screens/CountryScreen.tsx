@@ -11,11 +11,14 @@ import {
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
 import { taxFreeRules } from "../constants/taxFreeRules";
+import { useFavorites } from "../contexts/FavoritesContext";
+import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getCityName } from "../services/locationService";
 import { formatRating } from "../services/reviewsRatingsService";
+import { requireAuth } from "../utils/requireAuth";
 
 type RouteParams = {
   Country: {
@@ -40,10 +43,14 @@ function InfoCard({ title, value }: { title: string; value: string }) {
 
 function OutletCard({
   outlet,
+  isFavorite,
   onPress,
+  onToggleFavorite,
 }: {
   outlet: OutletItem;
+  isFavorite: boolean;
   onPress: () => void;
+  onToggleFavorite: () => void;
 }) {
   const { t } = useTranslation();
   const heroImage = getOutletCardHeroImage(outlet, {
@@ -72,7 +79,22 @@ function OutletCard({
               ? t("country.taxFree")
               : t("country.limited")}
           </Text>
-          {displayRating ? <Text style={styles.rating}>★ {displayRating}</Text> : null}
+          <View style={styles.cardActions}>
+            {displayRating ? <Text style={styles.rating}>★ {displayRating}</Text> : null}
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel={
+                isFavorite ? t("outlet.removeFavorite") : t("outlet.addFavorite")
+              }
+              style={[styles.favoriteButton, isFavorite && styles.favoriteButtonActive]}
+              onPress={(event) => {
+                event.stopPropagation();
+                onToggleFavorite();
+              }}
+            >
+              <Text style={styles.favoriteButtonText}>{isFavorite ? "♥" : "♡"}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
         <Text style={styles.cardTitle}>{outlet.name}</Text>
         <Text style={styles.cardText}>
@@ -88,6 +110,8 @@ export function CountryScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const route = useRoute<RouteProp<RouteParams, "Country">>();
+  const { isLoggedIn } = useUser();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const countryId = route.params?.countryId || "france";
   const country =
@@ -149,9 +173,15 @@ export function CountryScreen() {
         <OutletCard
           key={outlet.outletId}
           outlet={outlet}
+          isFavorite={isFavorite(outlet.outletId)}
           onPress={() =>
             navigation.navigate("OutletDetail", { outletId: outlet.outletId })
           }
+          onToggleFavorite={() => {
+            if (requireAuth({ isLoggedIn, navigation })) {
+              toggleFavorite(outlet.outletId);
+            }
+          }}
         />
       ))}
 
@@ -264,6 +294,22 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   rating: { color: "#C9A227", fontWeight: "900" },
+  cardActions: { flexDirection: "row", alignItems: "center", gap: 10 },
+  favoriteButton: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    backgroundColor: "#F7F8FA",
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+  },
+  favoriteButtonActive: {
+    backgroundColor: "#FFF8E1",
+    borderColor: "#C9A227",
+  },
+  favoriteButtonText: { color: "#C9A227", fontSize: 20, fontWeight: "900" },
   cardTitle: { fontSize: 18, fontWeight: "900", color: "#0B1F3A" },
   cardText: {
     marginTop: 6,

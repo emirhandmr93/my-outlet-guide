@@ -11,8 +11,11 @@ import { brands } from "../constants/brands/index";
 import { outletBrands } from "../constants/outletBrands/index";
 import { outlets } from "../constants/outlets";
 import { countries } from "../constants/countries";
+import { useFavorites } from "../contexts/FavoritesContext";
+import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getCityName, getCountryName } from "../services/locationService";
+import { requireAuth } from "../utils/requireAuth";
 
 type RouteParams = {
   BrandResults: {
@@ -25,16 +28,35 @@ type OutletItem = (typeof outlets)[number];
 
 function OutletCard({
   outlet,
+  isFavorite,
   onPress,
+  onToggleFavorite,
 }: {
   outlet: OutletItem;
+  isFavorite: boolean;
   onPress: () => void;
+  onToggleFavorite: () => void;
 }) {
   const { t } = useTranslation();
   return (
     <TouchableOpacity style={styles.card} activeOpacity={0.9} onPress={onPress}>
       <View style={styles.outletContent}>
-        <Text style={styles.outletName}>{outlet.name}</Text>
+        <View style={styles.outletHeaderRow}>
+          <Text style={styles.outletName}>{outlet.name}</Text>
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel={
+              isFavorite ? t("outlet.removeFavorite") : t("outlet.addFavorite")
+            }
+            style={[styles.favoriteButton, isFavorite && styles.favoriteButtonActive]}
+            onPress={(event) => {
+              event.stopPropagation();
+              onToggleFavorite();
+            }}
+          >
+            <Text style={styles.favoriteButtonText}>{isFavorite ? "♥" : "♡"}</Text>
+          </TouchableOpacity>
+        </View>
         <Text style={styles.outletLocation}>
           {getCityName(outlet.cityId)}, {getCountryName(outlet.countryId)}
         </Text>
@@ -57,6 +79,8 @@ export function BrandResultsScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const route = useRoute<RouteProp<RouteParams, "BrandResults">>();
+  const { isLoggedIn } = useUser();
+  const { isFavorite, toggleFavorite } = useFavorites();
 
   const brand =
     brands.find((item) => item.brandId === route.params?.brandId) || brands[0];
@@ -152,11 +176,17 @@ export function BrandResultsScreen() {
             <OutletCard
               key={outlet.outletId}
               outlet={outlet}
+              isFavorite={isFavorite(outlet.outletId)}
               onPress={() =>
                 navigation.navigate("OutletDetail", {
                   outletId: outlet.outletId,
                 })
               }
+              onToggleFavorite={() => {
+                if (requireAuth({ isLoggedIn, navigation })) {
+                  toggleFavorite(outlet.outletId);
+                }
+              }}
             />
           ))}
 
@@ -277,12 +307,34 @@ const styles = StyleSheet.create({
   },
 
   outletContent: { padding: 18 },
+  outletHeaderRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 12,
+  },
 
   outletName: {
+    flex: 1,
     fontSize: 18,
     fontWeight: "900",
     color: "#0B1F3A",
   },
+  favoriteButton: {
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    backgroundColor: "#F7F8FA",
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+    borderColor: "#E5E7EB",
+  },
+  favoriteButtonActive: {
+    backgroundColor: "#FFF8E1",
+    borderColor: "#C9A227",
+  },
+  favoriteButtonText: { color: "#C9A227", fontSize: 20, fontWeight: "900" },
 
   outletLocation: {
     marginTop: 6,
