@@ -11,7 +11,7 @@ import { outlets } from "../constants/outlets";
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
-import { getReviewAverage } from "../services/reviewsRatingsService";
+
 
 export function MyReviewsScreen() {
 const { reviews } = useReviews();
@@ -59,7 +59,7 @@ outlets.find(
 </Text>
 
 <Text style={styles.reviewRating}>
-⭐ {getReviewAverage(review) ?? "-"}
+⭐ {review.rating}
 </Text>
 
 <Text style={styles.reviewComment}>
@@ -80,6 +80,20 @@ outletId: review.outletId,
 >
 <Text style={styles.viewOutletButtonText}>
 {t("myReviews.viewOutlet")}
+</Text>
+</TouchableOpacity>
+
+<TouchableOpacity
+style={styles.editButton}
+onPress={() =>
+navigation.navigate("WriteReview", {
+outletId: review.outletId,
+reviewId: review.reviewId,
+})
+}
+>
+<Text style={styles.editButtonText}>
+{t("common.edit")}
 </Text>
 </TouchableOpacity>
 </View>
@@ -174,6 +188,21 @@ marginTop: 12,
 
 viewOutletButtonText: {
 color: "#FFFFFF",
+fontWeight: "800",
+textAlign: "center",
+},
+
+editButton: {
+backgroundColor: "#FFFFFF",
+borderRadius: 14,
+padding: 12,
+marginTop: 8,
+borderWidth: 1,
+borderColor: "#E5E7EB",
+},
+
+editButtonText: {
+color: "#0B1F3A",
 fontWeight: "800",
 textAlign: "center",
 },

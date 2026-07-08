@@ -1,16 +1,31 @@
+export type ReviewStatus = "published" | "deleted";
+
 export type OutletReview = {
   reviewId: string;
   outletId: string;
-  userId?: string;
-  userName: string;
-  overallRating: number;
-  transportationRating: number;
-  brandVarietyRating: number;
-  restaurantsRating: number;
-  servicesRating: number;
+  userId?: string | null;
+  userDisplayName: string;
+  userName?: string;
+  rating: number;
+  title?: string;
   comment: string;
   createdAt: string;
+  updatedAt: string;
+  status: ReviewStatus;
+  deletedAt?: string | null;
+  helpfulCount?: number;
+  helpfulUserIds?: string[];
   isEdited?: boolean;
-  updatedAt?: string;
   previousComment?: string;
 };
+
+export type ReviewInput = {
+  outletId: string;
+  userId: string;
+  userDisplayName: string;
+  rating: number;
+  title?: string;
+  comment: string;
+};
+
+export type ReviewReportReason = "spam" | "abuse" | "off_topic" | "other";
