@@ -1,104 +1,107 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import {
-collection,
-doc,
-getDocs,
-setDoc,
-} from "firebase/firestore";
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
 
-import { db } from "../firebase/config";
 import { outlets } from "../constants/outlets";
-import type { OutletReview } from "../types/review";
+import {
+  deleteReview as deleteReviewRecord,
+  fetchPublishedReviewsForOutlet,
+  reportReview as reportReviewRecord,
+  setReviewHelpful,
+  upsertReview,
+} from "../services/reviewsRatingsService";
+import type { OutletReview, ReviewInput, ReviewReportReason } from "../types/review";
+
+const ANONYMOUS_SHOPPER = "Anonymous Shopper";
 
 type ReviewsContextType = {
-anonymizeUserReviews: (userId: string) => Promise<void>;
-reviews: OutletReview[];
+  anonymizeUserReviews: (userId: string) => Promise<void>;
+  createOrUpdateReview: (input: ReviewInput) => Promise<void>;
+  deleteReview: (outletId: string, reviewId: string, userId: string) => Promise<void>;
+  getOutletReviews: (outletId: string) => OutletReview[];
+  loadReviews: () => Promise<void>;
+  reportReview: (outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason) => Promise<void>;
+  toggleHelpful: (review: OutletReview, userId: string) => Promise<void>;
+  reviews: OutletReview[];
 };
 
 const ReviewsContext = createContext<ReviewsContextType | undefined>(undefined);
 
 export function ReviewsProvider({ children }: { children: ReactNode }) {
-const [reviews, setReviews] = useState<OutletReview[]>([]);
+  const [reviews, setReviews] = useState<OutletReview[]>([]);
 
-useEffect(() => {
-loadReviews();
-}, []);
+  const loadReviews = useCallback(async () => {
+    try {
+      const allReviews = await Promise.all(
+        outlets.map((outlet) => fetchPublishedReviewsForOutlet(outlet.outletId)),
+      );
+      setReviews(allReviews.flat());
+    } catch (error) {
+      console.log("Reviews load error", error);
+    }
+  }, []);
 
-async function loadReviews() {
-try {
-const allReviews: OutletReview[] = [];
+  useEffect(() => {
+    loadReviews();
+  }, [loadReviews]);
 
-const outletIds = outlets.map((outlet) => outlet.outletId);
+  async function createOrUpdateReview(input: ReviewInput) {
+    await upsertReview(input);
+    await loadReviews();
+  }
 
-for (const outletId of outletIds) {
-const snapshot = await getDocs(
-collection(db, "reviews", outletId, "items")
-);
+  async function deleteReview(outletId: string, reviewId: string, userId: string) {
+    await deleteReviewRecord(outletId, reviewId, userId);
+    await loadReviews();
+  }
 
-snapshot.forEach((reviewDoc) => {
-allReviews.push(reviewDoc.data() as OutletReview);
-});
-}
+  async function toggleHelpful(review: OutletReview, userId: string) {
+    if (!review.userId || review.userId === userId) return;
+    const hasHelpful = review.helpfulUserIds?.includes(userId) ?? false;
+    await setReviewHelpful(review.outletId, review.reviewId, userId, !hasHelpful);
+    await loadReviews();
+  }
 
-setReviews(allReviews);
-} catch (error) {
-console.log("Reviews load error", error);
-}
-}
-async function anonymizeUserReviews(userId: string) {
-const userReviews = reviews.filter(
-(review) => review.userId === userId
-);
+  async function reportReview(outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason) {
+    await reportReviewRecord(outletId, reviewId, reporterUserId, reason);
+  }
 
-const updatedReviews = reviews.map((review) =>
-review.userId === userId
-? {
-...review,
-userId: undefined,
-userName: "Anonymous Shopper",
-isEdited: review.isEdited || false,
-updatedAt: new Date().toISOString().slice(0, 10),
-}
-: review
-);
+  async function anonymizeUserReviews(userId: string) {
+    const userReviews = reviews.filter((review) => review.userId === userId);
+    for (const review of userReviews) {
+      await createOrUpdateReview({
+        outletId: review.outletId,
+        userId,
+        userDisplayName: ANONYMOUS_SHOPPER,
+        rating: review.rating,
+        title: review.title,
+        comment: review.comment,
+      });
+    }
+  }
 
-setReviews(updatedReviews);
+  function getOutletReviews(outletId: string) {
+    return reviews.filter((review) => review.outletId === outletId);
+  }
 
-try {
-for (const review of userReviews) {
-await setDoc(
-doc(db, "reviews", review.outletId, "items", review.reviewId),
-{
-...review,
-userId: null,
-userName: "Anonymous Shopper",
-updatedAt: new Date().toISOString().slice(0, 10),
-}
-);
-}
-} catch (error) {
-console.log("Reviews anonymize error", error);
-}
-}
-
-return (
-<ReviewsContext.Provider
-value={{
-reviews,
-anonymizeUserReviews,
-}}
->
-{children}
-</ReviewsContext.Provider>
-);
+  return (
+    <ReviewsContext.Provider
+      value={{
+        reviews,
+        loadReviews,
+        getOutletReviews,
+        createOrUpdateReview,
+        deleteReview,
+        toggleHelpful,
+        reportReview,
+        anonymizeUserReviews,
+      }}
+    >
+      {children}
+    </ReviewsContext.Provider>
+  );
 }
 
 export function useReviews() {
-const context = useContext(ReviewsContext);
-
-if (!context) {
-throw new Error("useReviews must be used inside ReviewsProvider");
-}
-
-return context;
+  const context = useContext(ReviewsContext);
+  if (!context) throw new Error("useReviews must be used inside ReviewsProvider");
+  return context;
 }

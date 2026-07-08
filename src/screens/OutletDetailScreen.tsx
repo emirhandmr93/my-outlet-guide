@@ -39,9 +39,8 @@ import { getRestaurantsForOutlet } from "../services/restaurantService";
 import { getTransportationForOutlet } from "../services/transportationService";
 import { CurrentWeather, getCurrentWeather } from "../services/weatherService";
 import {
-  formatRating,
   getAverageReviewRating,
-  getReviewAverage,
+  getPublishedReviews,
 } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 import { colors } from "../theme/colors";
@@ -84,8 +83,8 @@ export function OutletDetailScreen() {
   const route = useRoute<RouteProp<RouteParams, "OutletDetail">>();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const { reviews } = useReviews();
-  const { isLoggedIn } = useUser();
+  const { reviews, deleteReview, reportReview, toggleHelpful } = useReviews();
+  const { currentUser, isLoggedIn } = useUser();
   const { toggleFavorite, isFavorite } = useFavorites();
 
   const outlet =
@@ -142,27 +141,10 @@ export function OutletDetailScreen() {
   const brandCategoryGroups = getBrandCategoryGroupsForOutlet(outlet.outletId);
   const transportationItems = getTransportationForOutlet(outlet.outletId);
   const restaurantItems = getRestaurantsForOutlet(outlet.outletId);
-  const outletReviews = reviews.filter(
-    (review) => review.outletId === outlet.outletId,
+  const outletReviews = getPublishedReviews(
+    reviews.filter((review) => review.outletId === outlet.outletId),
   );
-  const displayRating = formatRating(outlet.rating);
-  const averageRating = getAverageReviewRating(outletReviews, "overallRating");
-  const averageTransportationRating = getAverageReviewRating(
-    outletReviews,
-    "transportationRating",
-  );
-  const averageBrandVarietyRating = getAverageReviewRating(
-    outletReviews,
-    "brandVarietyRating",
-  );
-  const averageRestaurantsRating = getAverageReviewRating(
-    outletReviews,
-    "restaurantsRating",
-  );
-  const averageServicesRating = getAverageReviewRating(
-    outletReviews,
-    "servicesRating",
-  );
+  const averageRating = getAverageReviewRating(outletReviews);
 
   const sortedReviews = [...outletReviews].sort((a, b) =>
     b.createdAt.localeCompare(a.createdAt),
@@ -304,8 +286,8 @@ export function OutletDetailScreen() {
       <View style={styles.badgeRow}>
         <Text style={styles.badge}>{getWeatherBadgeText()}</Text>
         <Text style={styles.badge}>{outlet.status}</Text>
-        {displayRating ? (
-          <Text style={styles.badge}>⭐ {displayRating}</Text>
+        {averageRating ? (
+          <Text style={styles.badge}>⭐ {averageRating}</Text>
         ) : null}
       </View>
 
@@ -403,7 +385,7 @@ export function OutletDetailScreen() {
           airportDistanceKm={outlet.airportDistanceKm}
           reviewCountLabel={t("outlet.reviewCount")}
           reviewCount={outletReviews.length}
-          rating={averageRating ?? displayRating ?? undefined}
+          rating={averageRating ?? undefined}
           airportSummary={airportSummary}
           onPressStores={() => scrollToSection("brands")}
           onPressTaxFree={() => scrollToSection("taxFree")}
@@ -506,6 +488,18 @@ export function OutletDetailScreen() {
       >
         <Text style={styles.sectionTitle}>{t("outlet.reviews")}</Text>
 
+        <TouchableOpacity
+          activeOpacity={0.86}
+          style={styles.writeReviewButton}
+          onPress={() => {
+            if (requireAuth({ isLoggedIn, navigation })) {
+              navigation.navigate("WriteReview", { outletId: outlet.outletId });
+            }
+          }}
+        >
+          <Text style={styles.writeReviewButtonText}>{t("writeReview.title")}</Text>
+        </TouchableOpacity>
+
         {outletReviews.length > 0 && averageRating ? (
           <>
             <ReviewStatsCard
@@ -513,13 +507,13 @@ export function OutletDetailScreen() {
                 "outlet.reviewLabel",
               )})`}
               transportationTitle={t("outlet.transportationRating")}
-              transportationValue={averageTransportationRating ?? "-"}
+              transportationValue={averageRating ?? "-"}
               brandsTitle={t("outlet.brandsRating")}
-              brandsValue={averageBrandVarietyRating ?? "-"}
+              brandsValue={averageRating ?? "-"}
               restaurantsTitle={t("outlet.restaurantsRating")}
-              restaurantsValue={averageRestaurantsRating ?? "-"}
+              restaurantsValue={averageRating ?? "-"}
               servicesTitle={t("outlet.servicesRating")}
-              servicesValue={averageServicesRating ?? "-"}
+              servicesValue={averageRating ?? "-"}
             />
           </>
         ) : null}
@@ -528,15 +522,28 @@ export function OutletDetailScreen() {
           sortedReviews.map((review) => (
             <ReviewItem
               key={review.reviewId}
-              userName={review.userName}
-              rating={getReviewAverage(review) ?? "-"}
-              comment={review.comment}
-              createdAt={review.createdAt}
-              isEdited={review.isEdited}
-              updatedAt={review.updatedAt}
-              previousComment={review.previousComment}
+              review={review}
+              currentUserId={currentUser?.userId}
               editedText={t("outlet.edited")}
-              previousCommentTitle={t("outlet.previousComment")}
+              helpfulText={t("review.helpful")}
+              helpfulActiveText={t("review.helpfulActive")}
+              editText={t("common.edit")}
+              deleteText={t("common.delete")}
+              reportText={t("review.report")}
+              onHelpful={() => {
+                if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
+                  toggleHelpful(review, currentUser.userId);
+                }
+              }}
+              onEdit={() => navigation.navigate("WriteReview", { outletId: outlet.outletId, reviewId: review.reviewId })}
+              onDelete={() => {
+                if (currentUser) deleteReview(outlet.outletId, review.reviewId, currentUser.userId);
+              }}
+              onReport={() => {
+                if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
+                  reportReview(outlet.outletId, review.reviewId, currentUser.userId, "other");
+                }
+              }}
             />
           ))
         ) : (
@@ -734,5 +741,20 @@ const styles = StyleSheet.create({
     fontSize: typography.body,
     color: colors.textSecondary,
     lineHeight: 22,
+  },
+
+  writeReviewButton: {
+    alignSelf: "flex-start",
+    backgroundColor: colors.primary,
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+    marginBottom: spacing.md,
+  },
+
+  writeReviewButtonText: {
+    color: colors.textInverse,
+    fontSize: typography.body,
+    fontWeight: "900",
   },
 });
