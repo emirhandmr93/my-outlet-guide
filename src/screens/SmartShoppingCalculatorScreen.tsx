@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
@@ -8,7 +8,7 @@ import { currencies } from "../constants/currencies";
 import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
 import {
-  convertFromEur,
+  convertCurrency,
   CurrencyCode,
   formatCurrency,
 } from "../services/exchangeRateService";
@@ -43,7 +43,32 @@ export function SmartShoppingCalculatorScreen() {
       : undefined;
   const refund = estimate?.vatPortion ?? 0;
   const netCost = numericPrice - refund;
-  const convertedNetCost = convertFromEur(netCost, selectedCurrency);
+  const [convertedNetCost, setConvertedNetCost] = useState<number | null>(null);
+
+  useEffect(() => {
+    let active = true;
+
+    if (!rule || netCost <= 0) {
+      setConvertedNetCost(null);
+      return;
+    }
+
+    convertCurrency(netCost, rule.currency as CurrencyCode, selectedCurrency)
+      .then((result) => {
+        if (active) {
+          setConvertedNetCost(result.convertedAmount);
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setConvertedNetCost(null);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [netCost, rule, selectedCurrency]);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -145,7 +170,9 @@ export function SmartShoppingCalculatorScreen() {
             {t("smartCalc.yourCurrency")}
           </Text>
           <Text style={styles.highlightValue}>
-            {formatCurrency(convertedNetCost, selectedCurrency)}
+            {convertedNetCost === null
+              ? t("currency.unavailableShort")
+              : formatCurrency(convertedNetCost, selectedCurrency)}
           </Text>
         </View>
 

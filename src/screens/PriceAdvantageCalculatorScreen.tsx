@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -15,7 +15,7 @@ import { currencies } from "../constants/currencies";
 import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
 import {
-  convertFromEur,
+  convertCurrency,
   CurrencyCode,
   formatCurrency,
 } from "../services/exchangeRateService";
@@ -53,8 +53,34 @@ export function PriceAdvantageCalculatorScreen() {
       : undefined;
   const refund = includeTaxFree ? (estimate?.vatPortion ?? 0) : 0;
   const netEuropeCost = numericEuropePrice - refund;
-  const convertedEuropeCost = convertFromEur(netEuropeCost, selectedCurrency);
-  const savings = numericLocalPrice - convertedEuropeCost;
+  const [convertedEuropeCost, setConvertedEuropeCost] = useState<number | null>(null);
+
+  useEffect(() => {
+    let active = true;
+
+    if (!rule || netEuropeCost <= 0) {
+      setConvertedEuropeCost(null);
+      return;
+    }
+
+    convertCurrency(netEuropeCost, rule.currency as CurrencyCode, selectedCurrency)
+      .then((result) => {
+        if (active) {
+          setConvertedEuropeCost(result.convertedAmount);
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setConvertedEuropeCost(null);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [netEuropeCost, rule, selectedCurrency]);
+
+  const savings = convertedEuropeCost === null ? 0 : numericLocalPrice - convertedEuropeCost;
   const hasSavings = savings > 0;
 
   return (
@@ -156,7 +182,9 @@ export function PriceAdvantageCalculatorScreen() {
         <View style={styles.resultBox}>
           <Text style={styles.resultLabel}>{t("priceCalc.europeNetCost")}</Text>
           <Text style={styles.resultValue}>
-            {formatCurrency(convertedEuropeCost, selectedCurrency)}
+            {convertedEuropeCost === null
+            ? t("currency.unavailableShort")
+            : formatCurrency(convertedEuropeCost, selectedCurrency)}
           </Text>
         </View>
 

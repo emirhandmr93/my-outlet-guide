@@ -12,7 +12,7 @@ const SavingsContext = createContext<SavingsContextType | undefined>(undefined);
 
 export function SavingsProvider({ children }: { children: ReactNode }) {
 const [selectedCountryId, setSelectedCountryId] = useState("france");
-const [selectedCurrency, setSelectedCurrency] = useState<CurrencyCode>("TRY");
+const [selectedCurrency, setSelectedCurrency] = useState<CurrencyCode>("USD");
 
 return (
 <SavingsContext.Provider
