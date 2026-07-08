@@ -15,6 +15,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getCountryName } from "../services/locationService";
+import { formatRating } from "../services/reviewsRatingsService";
 
 type RouteParams = {
   CityResults: {
@@ -54,6 +55,7 @@ function OutletResultCard({
   const heroImage = getOutletCardHeroImage(outlet, {
     mode: getConfiguredOutletMediaMode(),
   });
+  const displayRating = formatRating(outlet.rating);
 
   return (
     <TouchableOpacity
@@ -76,7 +78,7 @@ function OutletResultCard({
               ? t("city.taxFree")
               : t("city.limited")}
           </Text>
-          <Text style={styles.rating}>★ {outlet.rating}</Text>
+          {displayRating ? <Text style={styles.rating}>★ {displayRating}</Text> : null}
         </View>
 
         <Text style={styles.cardTitle}>{outlet.name}</Text>

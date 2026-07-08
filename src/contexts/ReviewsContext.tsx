@@ -7,8 +7,8 @@ setDoc,
 } from "firebase/firestore";
 
 import { db } from "../firebase/config";
-import { useUser } from "./UserContext";
-import { OutletReview, reviews as initialReviews } from "../constants/reviews";
+import { outlets } from "../constants/outlets";
+import type { OutletReview } from "../types/review";
 
 type ReviewsContextType = {
 addReview: (review: OutletReview) => void;
@@ -24,8 +24,7 @@ updatedReview: Partial<OutletReview>
 const ReviewsContext = createContext<ReviewsContextType | undefined>(undefined);
 
 export function ReviewsProvider({ children }: { children: ReactNode }) {
-const { currentUser } = useUser();
-const [reviews, setReviews] = useState<OutletReview[]>(initialReviews);
+const [reviews, setReviews] = useState<OutletReview[]>([]);
 
 useEffect(() => {
 loadReviews();
@@ -35,9 +34,7 @@ async function loadReviews() {
 try {
 const allReviews: OutletReview[] = [];
 
-const outletIds = Array.from(
-new Set(initialReviews.map((review) => review.outletId))
-);
+const outletIds = outlets.map((outlet) => outlet.outletId);
 
 for (const outletId of outletIds) {
 const snapshot = await getDocs(
@@ -49,25 +46,15 @@ allReviews.push(reviewDoc.data() as OutletReview);
 });
 }
 
-if (allReviews.length > 0) {
 setReviews(allReviews);
-}
 } catch (error) {
 console.log("Reviews load error", error);
 }
 }
-async function addReview(review: OutletReview) {
-setReviews((currentReviews) => [review, ...currentReviews]);
+function addReview(_review: OutletReview) {
+console.warn("Review submission is disabled until production moderation and storage are available.");
+}
 
-try {
-await setDoc(
-doc(db, "reviews", review.outletId, "items", review.reviewId),
-review
-);
-} catch (error) {
-console.log("Reviews add error", error);
-}
-}
 
 async function anonymizeUserReviews(userId: string) {
 const userReviews = reviews.filter(
@@ -105,45 +92,13 @@ console.log("Reviews anonymize error", error);
 }
 }
 
-async function updateReview(
-reviewId: string,
-updatedReview: Partial<OutletReview>
+function updateReview(
+_reviewId: string,
+_updatedReview: Partial<OutletReview>
 ) {
-const existingReview = reviews.find(
-(review) => review.reviewId === reviewId
-);
-
-if (!existingReview) {
-return;
+console.warn("Review editing is disabled until production moderation and storage are available.");
 }
 
-const nextReview: OutletReview = {
-...existingReview,
-previousComment: existingReview.comment,
-...updatedReview,
-userName:
-currentUser?.name ||
-existingReview.userName ||
-"My Outlet Guide User",
-isEdited: true,
-updatedAt: new Date().toISOString().slice(0, 10),
-};
-
-setReviews((currentReviews) =>
-currentReviews.map((review) =>
-review.reviewId === reviewId ? nextReview : review
-)
-);
-
-try {
-await setDoc(
-doc(db, "reviews", nextReview.outletId, "items", nextReview.reviewId),
-nextReview
-);
-} catch (error) {
-console.log("Reviews save error", error);
-}
-}
 
 return (
 <ReviewsContext.Provider

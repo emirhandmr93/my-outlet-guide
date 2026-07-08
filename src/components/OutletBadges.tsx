@@ -3,14 +3,17 @@ import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { formatRating } from "../services/reviewsRatingsService";
 
 type OutletBadgesProps = {
   taxFreeText: string;
   status: string;
-  rating: number;
+  rating?: number | null;
 };
 
 export function OutletBadges({ taxFreeText, status, rating }: OutletBadgesProps) {
+  const displayRating = formatRating(rating);
+
   return (
     <View style={styles.badgeRow}>
       <View style={styles.badgePrimary}>
@@ -21,9 +24,11 @@ export function OutletBadges({ taxFreeText, status, rating }: OutletBadgesProps)
         <Text style={styles.badgeText}>{status}</Text>
       </View>
 
-      <View style={styles.badge}>
-        <Text style={styles.badgeText}>⭐ {rating}</Text>
-      </View>
+      {displayRating ? (
+        <View style={styles.badge}>
+          <Text style={styles.badgeText}>⭐ {displayRating}</Text>
+        </View>
+      ) : null}
     </View>
   );
 }
