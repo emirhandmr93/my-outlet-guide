@@ -12,9 +12,14 @@ import { CountrySelector } from "../components/CountrySelector";
 import { CurrencySelector } from "../components/CurrencySelector";
 import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
-import { taxFreeRules } from "../constants/taxFreeRules";
+import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
-import { convertFromEur, formatCurrency } from "../services/exchangeRateService";
+import {
+  convertFromEur,
+  CurrencyCode,
+  formatCurrency,
+} from "../services/exchangeRateService";
+import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function PriceAdvantageCalculatorScreen() {
@@ -31,19 +36,22 @@ export function PriceAdvantageCalculatorScreen() {
   } = useSavings();
 
   const selectedCountry =
-    countries.find((country) => country.countryId === selectedCountryId) || countries[0];
+    countries.find((country) => country.countryId === selectedCountryId) ||
+    countries[0];
 
   const selectedCurrencyInfo =
-    currencies.find((currency) => currency.currencyCode === selectedCurrency) || currencies[0];
+    currencies.find((currency) => currency.currencyCode === selectedCurrency) ||
+    currencies[0];
 
-  const rule =
-    taxFreeRules.find((item) => item.countryId === selectedCountryId) || taxFreeRules[0];
+  const rule = getTaxFreeRule(selectedCountryId);
 
   const numericEuropePrice = Number(europePrice) || 0;
   const numericLocalPrice = Number(localPrice) || 0;
-  const refund = includeTaxFree
-    ? numericEuropePrice * (rule.estimatedRefundRate / 100)
-    : 0;
+  const estimate =
+    rule && numericEuropePrice > 0
+      ? calculateTaxFreeEstimate(numericEuropePrice, rule)
+      : undefined;
+  const refund = includeTaxFree ? (estimate?.vatPortion ?? 0) : 0;
   const netEuropeCost = numericEuropePrice - refund;
   const convertedEuropeCost = convertFromEur(netEuropeCost, selectedCurrency);
   const savings = numericLocalPrice - convertedEuropeCost;
@@ -59,26 +67,38 @@ export function PriceAdvantageCalculatorScreen() {
 
       <View style={styles.card}>
         <View style={styles.settingsPanel}>
-          <Text style={styles.settingsKicker}>{t("savings.settingsKicker")}</Text>
-          <Text style={styles.settingsTitle}>{t("savings.settingsSharedTitle")}</Text>
+          <Text style={styles.settingsKicker}>
+            {t("savings.settingsKicker")}
+          </Text>
+          <Text style={styles.settingsTitle}>
+            {t("savings.settingsSharedTitle")}
+          </Text>
 
           <View style={styles.settingsSummaryRow}>
             <View style={styles.settingsSummaryItem}>
-              <Text style={styles.settingsFlag}>{selectedCountry.countryFlag}</Text>
+              <Text style={styles.settingsFlag}>
+                {selectedCountry.countryFlag}
+              </Text>
               <View>
                 <Text style={styles.settingsLabel}>{t("common.country")}</Text>
-                <Text style={styles.settingsValue}>{selectedCountry.countryName}</Text>
+                <Text style={styles.settingsValue}>
+                  {selectedCountry.countryName}
+                </Text>
               </View>
             </View>
 
             <View style={styles.settingsSummaryDivider} />
 
             <View style={styles.settingsSummaryItem}>
-              <Text style={styles.settingsFlag}>{selectedCurrencyInfo.currencyFlag}</Text>
+              <Text style={styles.settingsFlag}>
+                {selectedCurrencyInfo.currencyFlag}
+              </Text>
               <View>
                 <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
                 <Text style={styles.settingsValue}>{selectedCurrency}</Text>
-                <Text style={styles.settingsSubvalue}>{selectedCurrencyInfo.currencyName}</Text>
+                <Text style={styles.settingsSubvalue}>
+                  {selectedCurrencyInfo.currencyName}
+                </Text>
               </View>
             </View>
           </View>
@@ -121,7 +141,10 @@ export function PriceAdvantageCalculatorScreen() {
         />
 
         <TouchableOpacity
-          style={[styles.toggleButton, includeTaxFree && styles.toggleButtonActive]}
+          style={[
+            styles.toggleButton,
+            includeTaxFree && styles.toggleButtonActive,
+          ]}
           onPress={() => setIncludeTaxFree((current) => !current)}
           activeOpacity={0.85}
         >
@@ -137,7 +160,9 @@ export function PriceAdvantageCalculatorScreen() {
           </Text>
         </View>
 
-        <View style={[styles.highlightBox, !hasSavings && styles.highlightBoxMuted]}>
+        <View
+          style={[styles.highlightBox, !hasSavings && styles.highlightBoxMuted]}
+        >
           <Text style={styles.highlightLabel}>
             {hasSavings ? t("priceCalc.youSave") : t("priceCalc.noSavings")}
           </Text>
@@ -147,7 +172,11 @@ export function PriceAdvantageCalculatorScreen() {
         </View>
 
         <Text style={styles.note}>
-          {includeTaxFree ? t("priceCalc.taxFreeIncluded") : t("priceCalc.taxFreeNotIncluded")} {t("priceCalc.refundRate")}: {rule.estimatedRefundRate}%.
+          {includeTaxFree && rule
+            ? `${t("taxCalc.estimatedVatPortion")}: ${formatCurrency(refund, rule.currency as CurrencyCode)}. ${t("taxCalc.providerFeesUnknown")}`
+            : includeTaxFree
+              ? t("taxCalc.unsupportedCountry")
+              : t("priceCalc.taxFreeNotIncluded")}
         </Text>
       </View>
     </ScrollView>

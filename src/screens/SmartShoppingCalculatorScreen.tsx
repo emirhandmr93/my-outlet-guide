@@ -5,9 +5,14 @@ import { CountrySelector } from "../components/CountrySelector";
 import { CurrencySelector } from "../components/CurrencySelector";
 import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
-import { taxFreeRules } from "../constants/taxFreeRules";
+import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
-import { convertFromEur, formatCurrency } from "../services/exchangeRateService";
+import {
+  convertFromEur,
+  CurrencyCode,
+  formatCurrency,
+} from "../services/exchangeRateService";
+import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function SmartShoppingCalculatorScreen() {
@@ -22,16 +27,21 @@ export function SmartShoppingCalculatorScreen() {
   } = useSavings();
 
   const selectedCountry =
-    countries.find((country) => country.countryId === selectedCountryId) || countries[0];
+    countries.find((country) => country.countryId === selectedCountryId) ||
+    countries[0];
 
   const selectedCurrencyInfo =
-    currencies.find((currency) => currency.currencyCode === selectedCurrency) || currencies[0];
+    currencies.find((currency) => currency.currencyCode === selectedCurrency) ||
+    currencies[0];
 
-  const rule =
-    taxFreeRules.find((item) => item.countryId === selectedCountryId) || taxFreeRules[0];
+  const rule = getTaxFreeRule(selectedCountryId);
 
   const numericPrice = Number(price) || 0;
-  const refund = numericPrice * (rule.estimatedRefundRate / 100);
+  const estimate =
+    rule && numericPrice > 0
+      ? calculateTaxFreeEstimate(numericPrice, rule)
+      : undefined;
+  const refund = estimate?.vatPortion ?? 0;
   const netCost = numericPrice - refund;
   const convertedNetCost = convertFromEur(netCost, selectedCurrency);
 
@@ -45,26 +55,38 @@ export function SmartShoppingCalculatorScreen() {
 
       <View style={styles.card}>
         <View style={styles.settingsPanel}>
-          <Text style={styles.settingsKicker}>{t("savings.settingsKicker")}</Text>
-          <Text style={styles.settingsTitle}>{t("savings.settingsSharedTitle")}</Text>
+          <Text style={styles.settingsKicker}>
+            {t("savings.settingsKicker")}
+          </Text>
+          <Text style={styles.settingsTitle}>
+            {t("savings.settingsSharedTitle")}
+          </Text>
 
           <View style={styles.settingsSummaryRow}>
             <View style={styles.settingsSummaryItem}>
-              <Text style={styles.settingsFlag}>{selectedCountry.countryFlag}</Text>
+              <Text style={styles.settingsFlag}>
+                {selectedCountry.countryFlag}
+              </Text>
               <View>
                 <Text style={styles.settingsLabel}>{t("common.country")}</Text>
-                <Text style={styles.settingsValue}>{selectedCountry.countryName}</Text>
+                <Text style={styles.settingsValue}>
+                  {selectedCountry.countryName}
+                </Text>
               </View>
             </View>
 
             <View style={styles.settingsSummaryDivider} />
 
             <View style={styles.settingsSummaryItem}>
-              <Text style={styles.settingsFlag}>{selectedCurrencyInfo.currencyFlag}</Text>
+              <Text style={styles.settingsFlag}>
+                {selectedCurrencyInfo.currencyFlag}
+              </Text>
               <View>
                 <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
                 <Text style={styles.settingsValue}>{selectedCurrency}</Text>
-                <Text style={styles.settingsSubvalue}>{selectedCurrencyInfo.currencyName}</Text>
+                <Text style={styles.settingsSubvalue}>
+                  {selectedCurrencyInfo.currencyName}
+                </Text>
               </View>
             </View>
           </View>
@@ -96,25 +118,41 @@ export function SmartShoppingCalculatorScreen() {
 
         <View style={styles.resultGrid}>
           <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>{t("smartCalc.estimatedRefund")}</Text>
-            <Text style={styles.resultValue}>€ {refund.toFixed(2)}</Text>
+            <Text style={styles.resultLabel}>
+              {t("taxCalc.estimatedVatPortion")}
+            </Text>
+            <Text style={styles.resultValue}>
+              {rule
+                ? formatCurrency(refund, rule.currency as CurrencyCode)
+                : "—"}
+            </Text>
           </View>
 
           <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>{t("smartCalc.estimatedNetCost")}</Text>
-            <Text style={styles.resultValue}>€ {netCost.toFixed(2)}</Text>
+            <Text style={styles.resultLabel}>
+              {t("smartCalc.estimatedNetCost")}
+            </Text>
+            <Text style={styles.resultValue}>
+              {rule
+                ? formatCurrency(netCost, rule.currency as CurrencyCode)
+                : "—"}
+            </Text>
           </View>
         </View>
 
         <View style={styles.highlightBox}>
-          <Text style={styles.highlightLabel}>{t("smartCalc.yourCurrency")}</Text>
+          <Text style={styles.highlightLabel}>
+            {t("smartCalc.yourCurrency")}
+          </Text>
           <Text style={styles.highlightValue}>
             {formatCurrency(convertedNetCost, selectedCurrency)}
           </Text>
         </View>
 
         <Text style={styles.note}>
-          {t("smartCalc.refundRate")}: {rule.estimatedRefundRate}% • {t("smartCalc.minimumSpend")}: {selectedCountry.currency} {rule.minimumSpend}
+          {rule
+            ? `${t("taxCalc.vatRate")}: ${rule.vatRate}% • ${t("taxCalc.providerFeesUnknown")}`
+            : t("taxCalc.unsupportedCountry")}
         </Text>
       </View>
     </ScrollView>

@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
 import { countries } from "../constants/countries";
-import { taxFreeRules } from "../constants/taxFreeRules";
+import { getTaxFreeRule, taxFreeRules } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
 
@@ -11,11 +11,10 @@ export function TaxFreeGuideScreen() {
   const { t } = useTranslation();
 
   const selectedCountry =
-    countries.find((country) => country.countryId === selectedCountryId) || countries[0];
+    countries.find((country) => country.countryId === selectedCountryId) ||
+    countries[0];
 
-  const rule =
-    taxFreeRules.find((item) => item.countryId === selectedCountry.countryId) ||
-    taxFreeRules[0];
+  const rule = getTaxFreeRule(selectedCountry.countryId) || taxFreeRules[0];
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -40,15 +39,17 @@ export function TaxFreeGuideScreen() {
         </View>
 
         <View style={styles.statBox}>
-          <Text style={styles.statLabel}>{t("taxGuide.refundRate")}</Text>
-          <Text style={styles.statValue}>{rule.estimatedRefundRate}%</Text>
+          <Text style={styles.statLabel}>
+            {t("taxCalc.estimatedVatPortion")}
+          </Text>
+          <Text style={styles.statValue}>{rule.vatRate}%</Text>
         </View>
       </View>
 
       <View style={styles.highlightCard}>
         <Text style={styles.highlightLabel}>{t("taxGuide.minimumSpend")}</Text>
         <Text style={styles.highlightValue}>
-          {rule.currency} {rule.minimumSpend}
+          {rule.currency} {rule.minimumPurchaseAmount ?? 0}
         </Text>
         <Text style={styles.highlightText}>{selectedCountry.countryName}</Text>
       </View>
@@ -56,7 +57,7 @@ export function TaxFreeGuideScreen() {
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>{t("taxGuide.refundProcess")}</Text>
 
-        {rule.refundProcessSteps.map((step, index) => (
+        {[rule.notes, t("taxCalc.finalDisclaimer")].map((step, index) => (
           <View key={`${step}-${index}`} style={styles.stepRow}>
             <View style={styles.stepNumberBox}>
               <Text style={styles.stepNumber}>{index + 1}</Text>

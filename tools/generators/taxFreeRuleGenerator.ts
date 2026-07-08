@@ -1,19 +1,24 @@
-import { generateConstantFromCsv } from "./baseCsvGenerator";
+import { createGenerator } from "./createGenerator";
 
-export function generateTaxFreeRules(): void {
-  generateConstantFromCsv({
-    csvFileName: "TaxFreeRules.csv",
-    outputFileName: "taxFreeRules.ts",
-    exportName: "taxFreeRules",
-    mapRow: (row) => ({
-      countryId: row.countryId,
-      countryName: row.countryName,
-      vatRate: Number(row.vatRate || 0),
-      minimumSpend: row.minimumSpend,
-      refundRate: row.refundRate ? Number(row.refundRate) : undefined,
-      currency: row.currency || "EUR",
-      note: row.note,
-      status: row.status || "active",
-    }),
-  });
-}
+export const generateTaxFreeRules = createGenerator({
+  sourceFileName: "TaxFreeRules.csv",
+  outputFileName: "taxFreeRules.ts",
+  exportName: "taxFreeRules",
+  rowMapper: (row) => ({
+    countryCode: row.countryCode,
+    countryName: row.countryName,
+    countryId: row.countryId,
+    currency: row.currency,
+    vatRate: Number(row.vatRate),
+    minimumPurchaseAmount: row.minimumPurchaseAmount
+      ? Number(row.minimumPurchaseAmount)
+      : undefined,
+    providerFeeRate: row.providerFeeRate
+      ? Number(row.providerFeeRate)
+      : undefined,
+    sourceUrl: row.sourceUrl,
+    sourceName: row.sourceName,
+    effectiveDate: row.effectiveDate,
+    notes: row.notes,
+  }),
+});

@@ -155,7 +155,9 @@ export function OutletDetailScreen() {
     console.log("Review action error", error);
     Alert.alert(
       t("review.actionErrorTitle"),
-      isFirestorePermissionDenied(error) ? t("review.actionPermissionErrorText") : t("common.error"),
+      isFirestorePermissionDenied(error)
+        ? t("review.actionPermissionErrorText")
+        : t("common.error"),
     );
   };
 
@@ -415,11 +417,6 @@ export function OutletDetailScreen() {
         <TaxFreeCard
           title={t("outlet.taxFree")}
           vatRate={outlet.vatRate}
-          refundRate={
-            (outlet as any).estimatedRefundRate > 0
-              ? `≈${(outlet as any).estimatedRefundRate}%`
-              : t("outlet.notAvailable")
-          }
           minimumSpend={outlet.minimumTaxFreeSpend}
           officeInfo={outlet.taxFreeOfficeInfo}
         />
@@ -510,7 +507,9 @@ export function OutletDetailScreen() {
             }
           }}
         >
-          <Text style={styles.writeReviewButtonText}>{t("writeReview.title")}</Text>
+          <Text style={styles.writeReviewButtonText}>
+            {t("writeReview.title")}
+          </Text>
         </TouchableOpacity>
 
         {outletReviews.length > 0 && averageRating ? (
@@ -552,11 +551,20 @@ export function OutletDetailScreen() {
                   }
                 }
               }}
-              onEdit={() => navigation.navigate("WriteReview", { outletId: outlet.outletId, reviewId: review.reviewId })}
+              onEdit={() =>
+                navigation.navigate("WriteReview", {
+                  outletId: outlet.outletId,
+                  reviewId: review.reviewId,
+                })
+              }
               onDelete={async () => {
                 if (currentUser) {
                   try {
-                    await deleteReview(outlet.outletId, review.reviewId, currentUser.userId);
+                    await deleteReview(
+                      outlet.outletId,
+                      review.reviewId,
+                      currentUser.userId,
+                    );
                   } catch (error) {
                     showReviewActionError(error);
                   }
@@ -565,7 +573,12 @@ export function OutletDetailScreen() {
               onReport={async () => {
                 if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
                   try {
-                    await reportReview(outlet.outletId, review.reviewId, currentUser.userId, "other");
+                    await reportReview(
+                      outlet.outletId,
+                      review.reviewId,
+                      currentUser.userId,
+                      "other",
+                    );
                   } catch (error) {
                     showReviewActionError(error);
                   }
