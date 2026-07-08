@@ -84,7 +84,7 @@ Fields:
 
 ## Backend sender architecture
 
-Firebase Functions source lives in `functions/`. `firebase.json` points Functions deployment at that source tree and continues to configure Firestore rules and indexes.
+Firebase Functions source lives in `functions/`. `firebase.json` points Functions deployment at that source tree, runs the Functions TypeScript build as a predeploy step, and continues to configure Firestore rules and indexes. Generated Functions JavaScript output in `functions/lib/` is build output and is intentionally ignored rather than committed.
 
 The scheduled function `sendTripReminderNotifications` runs once per day at 09:00 UTC. It:
 
@@ -125,11 +125,13 @@ Before sending, the function creates the delivery document in a Firestore transa
 
 ## Deployment steps
 
-1. Install Functions dependencies in an environment with npm registry access:
+1. Install Functions dependencies in an environment with npm registry access and a committed `functions/package-lock.json`:
 
    ```sh
-   npm --prefix functions install
+   npm --prefix functions ci
    ```
+
+   If the lockfile is missing, generate it once with `npm --prefix functions install` in an environment that can read the npm registry, then commit `functions/package-lock.json`.
 
 2. Build the Functions bundle:
 
@@ -137,7 +139,7 @@ Before sending, the function creates the delivery document in a Firestore transa
    npm --prefix functions run build
    ```
 
-3. Deploy Firestore rules and Functions:
+3. Deploy Firestore rules and Functions. Firebase deploy also runs `npm --prefix "$RESOURCE_DIR" run build` before deploying Functions:
 
    ```sh
    firebase deploy --only firestore:rules,functions
@@ -146,6 +148,12 @@ Before sending, the function creates the delivery document in a Firestore transa
 4. Confirm the Firebase project has Cloud Scheduler/Cloud Functions permissions enabled and billing configured if required by the selected Firebase plan.
 
 5. Confirm production native builds have valid Expo/FCM/APNs push credentials for Expo push delivery.
+
+## Phase 1D build/deploy readiness status
+
+- Standard Firebase TypeScript Functions practice is source-controlled TypeScript plus a committed npm lockfile, with generated `functions/lib/` output produced during build/deploy instead of committed.
+- `functions/package-lock.json` is required before release/CI can use `npm --prefix functions ci`. It could not be generated in this Codex environment because `npm --prefix functions install` was blocked by an npm registry `403 Forbidden` response for `firebase-admin`.
+- CI should validate the root app typecheck and Functions build after `functions/package-lock.json` is committed. Until the lockfile exists, a Functions CI job that uses `npm --prefix functions ci` would fail before reaching the build.
 
 ## Remaining unsupported categories
 
