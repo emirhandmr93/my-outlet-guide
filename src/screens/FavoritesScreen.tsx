@@ -1,14 +1,18 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import { deals } from "../constants/deals";
 import { events } from "../constants/events";
 import { outlets } from "../constants/outlets";
 import { useFavorites } from "../contexts/FavoritesContext";
+import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function FavoritesScreen() {
 const { favoriteIds, toggleFavorite } = useFavorites();
+const { isLoggedIn } = useUser();
 const { t } = useTranslation();
+const navigation = useNavigation<any>();
 
 const favoriteOutlets = outlets.filter((outlet) =>
 favoriteIds.includes(outlet.outletId)
@@ -19,7 +23,22 @@ return (
 <Text style={styles.pageTitle}>{t("favorites.title")}</Text>
 <Text style={styles.pageSubtitle}>{t("favorites.subtitle")}</Text>
 
-{favoriteOutlets.length === 0 ? (
+{!isLoggedIn ? (
+<View style={styles.emptyCard}>
+<Text style={styles.emptyTitle}>{t("favorites.signInTitle")}</Text>
+
+<Text style={styles.emptyText}>
+{t("favorites.signInText")}
+</Text>
+
+<TouchableOpacity
+style={styles.signInButton}
+onPress={() => navigation.navigate("Login")}
+>
+<Text style={styles.signInButtonText}>{t("profile.signIn")}</Text>
+</TouchableOpacity>
+</View>
+) : favoriteOutlets.length === 0 ? (
 <View style={styles.emptyCard}>
 <Text style={styles.emptyTitle}>{t("favorites.emptyTitle")}</Text>
 
@@ -180,5 +199,18 @@ emptyText: {
 fontSize: 14,
 color: "#666666",
 lineHeight: 20,
+},
+
+signInButton: {
+backgroundColor: "#0B1F3A",
+borderRadius: 999,
+paddingVertical: 14,
+alignItems: "center",
+marginTop: 16,
+},
+
+signInButtonText: {
+color: "#C9A227",
+fontWeight: "900",
 },
 });

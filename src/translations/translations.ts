@@ -543,6 +543,9 @@ const enTranslations = {
   "favorites.emptyTitle": "No Favorite Outlets Yet",
   "favorites.emptyText":
     "Explore outlets and save your favorites to stay updated.",
+  "favorites.signInTitle": "Sign in to save favorites",
+  "favorites.signInText":
+    "Favorites are saved to your account so they stay available across devices.",
   "favorites.cardLabel": "Favorite Outlet",
   "favorites.deals": "Deals",
   "favorites.events": "Events",
@@ -1733,6 +1736,9 @@ export const translations: Record<
     "favorites.emptyTitle": "Henüz Favori Outlet Yok",
     "favorites.emptyText":
       "Outletleri keşfet ve güncel kalmak için favorilerine ekle.",
+    "favorites.signInTitle": "Favorileri kaydetmek için giriş yap",
+    "favorites.signInText":
+      "Favoriler hesabına kaydedilir ve cihazların arasında kullanılabilir kalır.",
     "favorites.cardLabel": "Favori Outlet",
     "favorites.deals": "Fırsatlar",
     "favorites.events": "Etkinlikler",
@@ -2906,6 +2912,9 @@ export const translations: Record<
     "favorites.emptyTitle": "Aún no hay outlets favoritos",
     "favorites.emptyText":
       "Explora outlets y guarda favoritos para estar al día.",
+    "favorites.signInTitle": "Inicia sesión para guardar favoritos",
+    "favorites.signInText":
+      "Los favoritos se guardan en tu cuenta para estar disponibles en tus dispositivos.",
     "favorites.cardLabel": "Outlet favorito",
     "favorites.deals": "Ofertas",
     "favorites.events": "Eventos",
@@ -4097,6 +4106,9 @@ export const translations: Record<
     "favorites.emptyTitle": "Aucun outlet favori",
     "favorites.emptyText":
       "Explorez les outlets et enregistrez vos favoris pour rester informé.",
+    "favorites.signInTitle": "Connectez-vous pour enregistrer des favoris",
+    "favorites.signInText":
+      "Les favoris sont enregistrés dans votre compte pour rester disponibles sur vos appareils.",
     "favorites.cardLabel": "Outlet favori",
     "favorites.deals": "Offres",
     "favorites.events": "Événements",
@@ -5272,6 +5284,9 @@ export const translations: Record<
     "favorites.emptyTitle": "Noch keine Lieblings-Outlets",
     "favorites.emptyText":
       "Entdecke Outlets und speichere Favoriten, um auf dem Laufenden zu bleiben.",
+    "favorites.signInTitle": "Melde dich an, um Favoriten zu speichern",
+    "favorites.signInText":
+      "Favoriten werden in deinem Konto gespeichert und bleiben auf deinen Geräten verfügbar.",
     "favorites.cardLabel": "Lieblings-Outlet",
     "favorites.deals": "Angebote",
     "favorites.events": "Veranstaltungen",
@@ -6409,6 +6424,9 @@ export const translations: Record<
     "favorites.subtitle": "وجهات الأوتلت المحفوظة لديك.",
     "favorites.emptyTitle": "لا توجد أوتلت مفضلة بعد",
     "favorites.emptyText": "استكشف الأوتلت واحفظ المفضلة لتبقى على اطلاع.",
+    "favorites.signInTitle": "سجّل الدخول لحفظ المفضلة",
+    "favorites.signInText":
+      "تُحفظ المفضلة في حسابك لتبقى متاحة على أجهزتك.",
     "favorites.cardLabel": "أوتلت مفضل",
     "favorites.deals": "العروض",
     "favorites.events": "الفعاليات",
@@ -7527,6 +7545,9 @@ export const translations: Record<
     "favorites.emptyTitle": "Пока нет избранных аутлетов",
     "favorites.emptyText":
       "Изучайте аутлеты и сохраняйте избранные, чтобы быть в курсе.",
+    "favorites.signInTitle": "Войдите, чтобы сохранять избранное",
+    "favorites.signInText":
+      "Избранное сохраняется в вашем аккаунте и доступно на ваших устройствах.",
     "favorites.cardLabel": "Избранный аутлет",
     "favorites.deals": "Предложения",
     "favorites.events": "События",
@@ -8676,6 +8697,9 @@ export const translations: Record<
     "favorites.subtitle": "你收藏的奥特莱斯目的地。",
     "favorites.emptyTitle": "暂无收藏奥特莱斯",
     "favorites.emptyText": "探索奥特莱斯并收藏喜欢的地点，随时掌握更新。",
+    "favorites.signInTitle": "登录以保存收藏",
+    "favorites.signInText":
+      "收藏会保存到你的账号，并可在你的设备上使用。",
     "favorites.cardLabel": "收藏奥特莱斯",
     "favorites.deals": "优惠",
     "favorites.events": "活动",

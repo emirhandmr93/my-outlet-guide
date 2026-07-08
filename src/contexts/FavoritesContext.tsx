@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -7,13 +6,11 @@ import { useUser } from "./UserContext";
 
 type FavoritesContextType = {
 favoriteIds: string[];
-toggleFavorite: (outletId: string) => void;
+toggleFavorite: (outletId: string) => Promise<void>;
 isFavorite: (outletId: string) => boolean;
 };
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
-
-const STORAGE_KEY = "my_outlet_guide_favorites";
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
 const { currentUser } = useUser();
@@ -34,7 +31,11 @@ return ids.filter(
 }
 
 async function loadFavorites() {
-if (currentUser?.userId) {
+if (!currentUser?.userId) {
+setFavoriteIds([]);
+return;
+}
+
 try {
 const snapshot = await getDoc(
 doc(db, "favorites", currentUser.userId)
@@ -48,26 +49,14 @@ return;
 } catch (error) {
 console.log("Firestore favorites load error", error);
 }
-}
 
-const savedFavorites = await AsyncStorage.getItem(STORAGE_KEY);
-
-if (savedFavorites) {
-setFavoriteIds(cleanIds(JSON.parse(savedFavorites)));
-} else {
 setFavoriteIds([]);
-}
 }
 
 async function saveFavorites(nextFavorites: string[]) {
 const cleanFavoriteIds = cleanIds(nextFavorites);
 
 setFavoriteIds(cleanFavoriteIds);
-
-await AsyncStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(cleanFavoriteIds)
-);
 
 if (!currentUser?.userId) {
 return;
@@ -85,12 +74,17 @@ console.log("Firestore favorites save error", error);
 }
 }
 
-function toggleFavorite(outletId: string) {
+async function toggleFavorite(outletId: string) {
+if (!currentUser?.userId) {
+setFavoriteIds([]);
+return;
+}
+
 const nextFavorites = favoriteIds.includes(outletId)
 ? favoriteIds.filter((id) => id !== outletId)
 : [...favoriteIds, outletId];
 
-saveFavorites(nextFavorites);
+await saveFavorites(nextFavorites);
 }
 
 function isFavorite(outletId: string) {
