@@ -125,6 +125,54 @@ service cloud.firestore {
         && request.resource.data.status == 'open';
     }
 
+
+    function hasValidTripData(userId, tripId) {
+      return request.resource.data.keys().hasOnly([
+          'tripId',
+          'userId',
+          'outletId',
+          'outletName',
+          'tripName',
+          'destination',
+          'country',
+          'city',
+          'visitDate',
+          'travelerCount',
+          'notes',
+          'status',
+          'createdAt',
+          'updatedAt',
+          'firestoreCreatedAt',
+          'firestoreUpdatedAt'
+        ])
+        && request.resource.data.userId == request.auth.uid
+        && userId == request.auth.uid
+        && (request.resource.data.tripId == tripId || request.resource.data.tripId == null)
+        && isNonEmptyString(request.resource.data.outletId)
+        && request.resource.data.outletId.size() <= 160
+        && isNonEmptyString(request.resource.data.outletName)
+        && request.resource.data.outletName.size() <= 240
+        && isNonEmptyString(request.resource.data.tripName)
+        && request.resource.data.tripName.size() <= 240
+        && isOptionalStringOrNull(request.resource.data.destination, 240)
+        && isOptionalStringOrNull(request.resource.data.country, 120)
+        && isOptionalStringOrNull(request.resource.data.city, 120)
+        && isOptionalStringOrNull(request.resource.data.visitDate, 40)
+        && (request.resource.data.travelerCount == null || (request.resource.data.travelerCount is number && request.resource.data.travelerCount >= 1 && request.resource.data.travelerCount <= 50))
+        && isOptionalStringOrNull(request.resource.data.notes, 2000)
+        && request.resource.data.status == 'active'
+        && isNonEmptyString(request.resource.data.createdAt)
+        && isNonEmptyString(request.resource.data.updatedAt);
+    }
+
+    function keepsTripOwnership(userId, tripId) {
+      return resource.data.userId == request.auth.uid
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.tripId == resource.data.tripId
+        && request.resource.data.tripId == tripId
+        && userId == request.auth.uid;
+    }
+
     match /favorites/{userId} {
       allow read: if isOwnerDocument(userId);
       allow create, update: if isOwnerDocument(userId) && hasValidFavoritesData();
@@ -149,6 +197,14 @@ service cloud.firestore {
         allow delete: if isSignedIn() && userId == request.auth.uid && resource.data.userId == request.auth.uid;
         allow update: if false;
       }
+    }
+
+
+    match /userTrips/{userId}/items/{tripId} {
+      allow read: if isOwnerDocument(userId);
+      allow create: if isSignedIn() && hasValidTripData(userId, tripId);
+      allow update: if isSignedIn() && keepsTripOwnership(userId, tripId) && hasValidTripData(userId, tripId);
+      allow delete: if isSignedIn() && userId == request.auth.uid && resource.data.userId == request.auth.uid;
     }
 
     match /reviewReports/{reportId} {

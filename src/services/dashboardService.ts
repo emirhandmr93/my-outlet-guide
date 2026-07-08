@@ -47,10 +47,10 @@ type DashboardTranslator = (key: string) => string;
 
 function createTripDashboardCard(trips: Trip[], t: DashboardTranslator): DashboardCard | null {
   const upcomingTrips = trips
-    .filter((trip) => trip.status === "Upcoming")
+    .filter((trip) => Boolean(trip.visitDate))
     .sort(
       (a, b) =>
-        new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+        new Date(a.visitDate || "").getTime() - new Date(b.visitDate || "").getTime()
     );
 
   const nextTrip = upcomingTrips[0];
@@ -59,7 +59,7 @@ function createTripDashboardCard(trips: Trip[], t: DashboardTranslator): Dashboa
     return null;
   }
 
-  const daysUntilTrip = getDaysUntil(nextTrip.startDate);
+  const daysUntilTrip = getDaysUntil(nextTrip.visitDate || "");
 
   if (daysUntilTrip > 7) {
     return null;

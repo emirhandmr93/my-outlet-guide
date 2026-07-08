@@ -5,37 +5,30 @@ import { Trip, useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getTripStatusLabel } from "../utils/getTripStatusLabel";
 
-function formatCities(trip: Trip, t: (key: string) => string) {
-  if (trip.tripCities.length === 0) {
-    return t("trips.noCitiesYet");
-  }
-
-  return trip.tripCities.map((city) => city.cityName).join(" • ");
-}
-
 function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => void; onDelete: () => void; t: (key: string) => string }) {
   return (
     <TouchableOpacity style={styles.tripCard} activeOpacity={0.86} onPress={onPress}>
       <View style={styles.cardTopRow}>
         <Text style={styles.statusPill}>{getTripStatusLabel(trip.status, t)}</Text>
-        <Text style={styles.dateText}>{trip.startDate} → {trip.endDate}</Text>
+        <Text style={styles.dateText}>{trip.visitDate || t("trips.dateNotSet")}</Text>
       </View>
 
       <Text style={styles.tripTitle}>{trip.tripName || t("trips.defaultTripName")}</Text>
-      <Text style={styles.tripCities}>{formatCities(trip, t)}</Text>
+      <Text style={styles.tripCities}>{trip.outletName}</Text>
+      <Text style={styles.tripCities}>{trip.destination || t("trips.destinationNotSet")}</Text>
 
       <View style={styles.tripMetaRow}>
         <View style={styles.metaBox}>
-          <Text style={styles.metaValue}>{trip.tripCities.length}</Text>
-          <Text style={styles.metaLabel}>{t("trips.cities")}</Text>
+          <Text style={styles.metaValue}>{trip.city || "—"}</Text>
+          <Text style={styles.metaLabel}>{t("trips.city")}</Text>
         </View>
         <View style={styles.metaBox}>
-          <Text style={styles.metaValue}>{trip.flightNumber ? t("trips.added") : "—"}</Text>
-          <Text style={styles.metaLabel}>{t("trips.flight")}</Text>
+          <Text style={styles.metaValue}>{trip.country || "—"}</Text>
+          <Text style={styles.metaLabel}>{t("trips.country")}</Text>
         </View>
         <View style={styles.metaBox}>
-          <Text style={styles.metaValue}>{t("trips.ready")}</Text>
-          <Text style={styles.metaLabel}>{t("trips.taxFree")}</Text>
+          <Text style={styles.metaValue}>{trip.notes ? t("trips.added") : "—"}</Text>
+          <Text style={styles.metaLabel}>{t("trips.notes")}</Text>
         </View>
       </View>
 
@@ -57,11 +50,11 @@ function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => v
 
 export function MyTripsScreen() {
   const navigation = useNavigation<any>();
-  const { trips, deleteTrip } = useTrips();
+  const { trips, deleteTrip, loading } = useTrips();
   const { t } = useTranslation();
 
-  const activeCount = trips.filter((trip) => trip.status === "Active").length;
-  const upcomingCount = trips.filter((trip) => trip.status === "Upcoming").length;
+  const activeCount = trips.filter((trip) => trip.status === "active").length;
+  const datedCount = trips.filter((trip) => Boolean(trip.visitDate)).length;
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -83,8 +76,8 @@ export function MyTripsScreen() {
           <Text style={styles.summaryLabel}>{t("status.active")}</Text>
         </View>
         <View style={styles.summaryBox}>
-          <Text style={styles.summaryValue}>{upcomingCount}</Text>
-          <Text style={styles.summaryLabel}>{t("status.upcoming")}</Text>
+          <Text style={styles.summaryValue}>{datedCount}</Text>
+          <Text style={styles.summaryLabel}>{t("trips.dated")}</Text>
         </View>
       </View>
 
@@ -96,7 +89,11 @@ export function MyTripsScreen() {
         <Text style={styles.primaryButtonText}>{t("trips.createShoppingTripCta")}</Text>
       </TouchableOpacity>
 
-      {trips.length === 0 ? (
+      {loading ? (
+        <View style={styles.emptyCard}>
+          <Text style={styles.emptyTitle}>{t("trips.loading")}</Text>
+        </View>
+      ) : trips.length === 0 ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyIcon}>🧳</Text>
           <Text style={styles.emptyTitle}>{t("trips.emptyTitle")}</Text>
