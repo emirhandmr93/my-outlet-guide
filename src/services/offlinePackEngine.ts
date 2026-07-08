@@ -1,63 +1,74 @@
-export type OfflinePackStatus = "notDownloaded" | "downloading" | "downloaded" | "updateAvailable";
+import { brands } from "../constants/brands";
+import { outlets } from "../constants/outlets";
+import { restaurants } from "../constants/restaurants";
+import { taxFreeRules } from "../constants/taxFreeRules";
+import { transportation } from "../constants/transportation";
+import { countProductionResolvedLocalImages } from "../media/outletMedia";
 
-export type OfflinePack = {
-  packId: string;
+export type OfflineAvailabilityItem = {
   title: string;
   description: string;
-  titleKey: string;
-  descriptionKey: string;
-  cityIds: string[];
-  outletIds: string[];
-  sizeMb: number;
-  status: OfflinePackStatus;
-  lastUpdatedAt?: string;
 };
 
-const mockOfflinePacks: OfflinePack[] = [
-  {
-    packId: "paris-shopping-pack",
-    title: "Paris Shopping Pack",
-    description: "Offline outlet details, transport tips, Tax Free notes and saved trip basics for Paris.",
-    titleKey: "offline.packs.parisShopping.title",
-    descriptionKey: "offline.packs.parisShopping.description",
-    cityIds: ["paris"],
-    outletIds: ["la-vallee-village"],
-    sizeMb: 24,
-    status: "notDownloaded",
-  },
-  {
-    packId: "milan-shopping-pack",
-    title: "Milan Shopping Pack",
-    description: "Offline shopping guide for Milan area outlets.",
-    titleKey: "offline.packs.milanShopping.title",
-    descriptionKey: "offline.packs.milanShopping.description",
-    cityIds: ["milan"],
-    outletIds: [],
-    sizeMb: 28,
-    status: "notDownloaded",
-  },
-];
+export type OfflineAvailabilitySummary = {
+  outletCount: number;
+  countryCount: number;
+  brandCount: number;
+  restaurantRecordCount: number;
+  transportationRecordCount: number;
+  taxFreeRuleCount: number;
+  localMediaAssetCount: number;
+  availableOffline: OfflineAvailabilityItem[];
+  requiresInternet: OfflineAvailabilityItem[];
+};
 
-export function getOfflinePacks(): OfflinePack[] {
-  return mockOfflinePacks;
-}
+export function getOfflineAvailabilitySummary(): OfflineAvailabilitySummary {
+  const countryCount = new Set(outlets.map((outlet) => outlet.countryId)).size;
+  const localMediaAssetCount = countProductionResolvedLocalImages();
 
-export function getOfflinePackById(packId: string): OfflinePack | null {
-  return mockOfflinePacks.find((pack) => pack.packId === packId) || null;
-}
-
-export function getOfflinePacksForCity(cityId: string): OfflinePack[] {
-  return mockOfflinePacks.filter((pack) => pack.cityIds.includes(cityId));
-}
-
-export function getDownloadedOfflinePacks(): OfflinePack[] {
-  return mockOfflinePacks.filter((pack) => pack.status === "downloaded" || pack.status === "updateAvailable");
-}
-
-export function formatOfflinePackSize(sizeMb: number): string {
-  if (sizeMb < 1024) {
-    return `${sizeMb} MB`;
-  }
-
-  return `${(sizeMb / 1024).toFixed(1)} GB`;
+  return {
+    outletCount: outlets.length,
+    countryCount,
+    brandCount: brands.length,
+    restaurantRecordCount: restaurants.length,
+    transportationRecordCount: transportation.length,
+    taxFreeRuleCount: taxFreeRules.length,
+    localMediaAssetCount,
+    availableOffline: [
+      {
+        title: "Outlet guide data",
+        description: `${outlets.length} outlets across ${countryCount} countries are bundled in the app for offline browsing.`,
+      },
+      {
+        title: "Brands, restaurants and transportation notes",
+        description: `${brands.length} brand records, ${restaurants.length} restaurant records and ${transportation.length} transportation records are bundled locally.`,
+      },
+      {
+        title: "Local outlet photos",
+        description: `${localMediaAssetCount} production-safe outlet image assets are packaged with the app and do not require a network request.`,
+      },
+      {
+        title: "Tax Free rules",
+        description: `${taxFreeRules.length} source-backed tax-free rule records are bundled for supported countries. Unsupported countries still show the existing unsupported-country state.`,
+      },
+    ],
+    requiresInternet: [
+      {
+        title: "Reviews and ratings",
+        description: "Review lists, review writes, helpful votes and reports are Firestore-backed and require network access.",
+      },
+      {
+        title: "Favorites and trips sync",
+        description: "Favorites and saved trips are Firestore-backed. This release does not create a local offline sync queue.",
+      },
+      {
+        title: "Notifications and flight alerts",
+        description: "Push token registration, reminder settings and release-gated flight alert services require network-backed infrastructure.",
+      },
+      {
+        title: "Currency converter",
+        description: "Exchange rates are live Frankfurter rates. No offline exchange-rate fallback is claimed unless a dated cached rate is implemented later.",
+      },
+    ],
+  };
 }

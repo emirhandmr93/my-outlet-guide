@@ -78,7 +78,7 @@ const enTranslations = {
   "home.tools.taxfree.title": "Tax Free",
   "home.tools.taxfree.text": "Estimate your refund and check minimum spend.",
   "home.tools.offline.title": "Offline",
-  "home.tools.offline.text": "Save guides for your trip.",
+  "home.tools.offline.text": "See what works without internet.",
   "home.activity.tripLabel": "Shopping trip",
   "home.activity.noTrip": "No trip yet",
   "home.activity.createTripReminder": "Create a trip to unlock reminders.",
@@ -594,9 +594,9 @@ const enTranslations = {
   "favorites.permissionDenied":
     "We could not update favorites right now. Please sign in again and try later.",
 
-  "offline.title": "Offline Packs",
-  "offline.subtitle": "Download your trip essentials for offline use.",
-  "offline.tripPacks": "Trip Offline Packs",
+  "offline.title": "Offline Availability",
+  "offline.subtitle": "Core guide data is bundled with the app; separate trip pack downloads are not available.",
+  "offline.tripPacks": "Bundled Offline Data",
   "offline.noTrips": "No Trips Yet",
   "offline.noTripsText":
     "Create a shopping trip first. Your offline pack will be generated from your trip cities.",
@@ -612,7 +612,7 @@ const enTranslations = {
   "offline.taxFreeChecklist": "Tax Free checklist",
   "offline.exchangeRates": "Last saved exchange rates",
   "offline.downloaded": "Downloaded",
-  "offline.downloadPack": "Download Trip Pack",
+  "offline.downloadPack": "Unavailable in this release",
   "offline.travelTools": "Offline Travel Tools",
   "offline.checklistTitle": "Tax Free Checklist",
   "offline.checklistText":
@@ -620,9 +620,9 @@ const enTranslations = {
   "offline.notesTitle": "Shopping Notes",
   "offline.notesText":
     "Save products, prices and shopping ideas during your trip.",
-  "offline.exchangeTitle": "Offline Exchange Rate Cache",
+  "offline.exchangeTitle": "Currency Requires Internet",
   "offline.exchangeText":
-    "Calculators can use the last saved exchange rates when offline.",
+    "Live exchange rates require internet; no offline rate fallback is claimed.",
   "outlet.edited": "Edited",
 
   "myReviews.title": "My Reviews",
@@ -970,7 +970,7 @@ const enTranslations = {
   "profile.groups.supportLegal": "Support & legal",
   "profile.subtitles.myTrips": "Saved shopping trips",
   "profile.subtitles.flightDeals": "Routes, budgets and fare alerts",
-  "profile.subtitles.offlinePacks": "Downloaded city and outlet packs",
+  "profile.subtitles.offlinePacks": "Bundled data and online-required features",
   "profile.subtitles.myReviews":
     "Existing outlet reviews linked to your account",
   "profile.subtitles.language": "App language",
@@ -1124,9 +1124,9 @@ const enTranslations = {
   "help.taxQuestion": "How does Tax Free information work?",
   "help.taxAnswer":
     "Tax Free information is a guide and may vary by country rules and purchase conditions.",
-  "help.offlineQuestion": "What is included in Offline Packs?",
+  "help.offlineQuestion": "What works offline?",
   "help.offlineAnswer":
-    "Offline Packs may include outlet info, transportation guides, tax free tools, brand lists, shopping notes and travel checklists.",
+    "Bundled outlet guide data, local outlet photos, brands, restaurants, transportation notes and supported Tax Free rules work offline. Reviews, favorites, trips, notifications and live currency rates require internet.",
   "help.reviewQuestion": "Can I edit my review?",
   "help.reviewAnswer":
     "Yes. You can update your review and rating after submitting it. Previous comments may be shown for transparency.",
@@ -1211,14 +1211,14 @@ const enTranslations = {
   "notifications.travelAlerts": "Travel alerts",
   "notifications.shoppingAlerts": "Shopping alerts",
   "offline.kicker": "Offline",
-  "offline.downloadedStat": "Downloaded",
-  "offline.storage": "Storage",
+  "offline.downloadedStat": "Bundled",
+  "offline.storage": "No downloads",
   "offline.packs.parisShopping.title": "Paris Shopping Pack",
   "offline.packs.parisShopping.description":
-    "Offline outlet details, transport tips, Tax Free notes and saved trip basics for Paris.",
+    "Legacy mock pack removed; Paris uses bundled guide data only.",
   "offline.packs.milanShopping.title": "Milan Shopping Pack",
   "offline.packs.milanShopping.description":
-    "Offline shopping guide for Milan area outlets.",
+    "Legacy mock pack removed; Milan uses bundled guide data only.",
   "weather.condition.clear": "Clear",
   "weather.condition.cloudy": "Cloudy",
   "weather.condition.foggy": "Foggy",
