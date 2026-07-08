@@ -1,3 +1,5 @@
+import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 import {
   Alert,
   ScrollView,
@@ -7,15 +9,52 @@ import {
   View,
 } from "react-native";
 
+import { useAuth } from "../contexts/AuthContext";
+import { deleteAccountAndUserData, isRecentLoginRequired } from "../services/accountDeletionService";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function DeleteAccountScreen() {
+  const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const { currentUser } = useAuth();
+  const [deleting, setDeleting] = useState(false);
+
+  async function handleConfirmedDelete() {
+    if (!currentUser) {
+      navigation.navigate("Login");
+      return;
+    }
+
+    try {
+      setDeleting(true);
+      await deleteAccountAndUserData(currentUser);
+      Alert.alert(t("deleteAccount.deletedTitle"), t("deleteAccount.deletedMessage"));
+      navigation.navigate("MainTabs", { screen: "Profile" });
+    } catch (error) {
+      if (isRecentLoginRequired(error)) {
+        Alert.alert(t("deleteAccount.reauthTitle"), t("deleteAccount.reauthMessage"));
+        navigation.navigate("Login");
+        return;
+      }
+
+      Alert.alert(t("deleteAccount.failedTitle"), t("deleteAccount.failedMessage"));
+    } finally {
+      setDeleting(false);
+    }
+  }
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.pageTitle}>{t("deleteAccount.title")}</Text>
 
       <Text style={styles.pageSubtitle}>{t("deleteAccount.subtitle")}</Text>
+
+      {!currentUser && (
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>{t("deleteAccount.signInRequiredTitle")}</Text>
+          <Text style={styles.cardText}>{t("deleteAccount.signInRequiredMessage")}</Text>
+        </View>
+      )}
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>{t("deleteAccount.whatDeleted")}</Text>
@@ -36,7 +75,8 @@ export function DeleteAccountScreen() {
       </View>
 
       <TouchableOpacity
-        style={styles.deleteButton}
+        style={[styles.deleteButton, (!currentUser || deleting) && styles.disabledButton]}
+        disabled={!currentUser || deleting}
         onPress={() =>
           Alert.alert(
             t("deleteAccount.title"),
@@ -49,18 +89,13 @@ export function DeleteAccountScreen() {
               {
                 text: t("common.delete"),
                 style: "destructive",
-                onPress: () => {
-                  Alert.alert(
-                    t("deleteAccount.comingSoonTitle"),
-                    t("deleteAccount.comingSoonMessage"),
-                  );
-                },
+                onPress: handleConfirmedDelete,
               },
             ],
           )
         }
       >
-        <Text style={styles.deleteButtonText}>{t("deleteAccount.button")}</Text>
+        <Text style={styles.deleteButtonText}>{deleting ? t("deleteAccount.deleting") : t("deleteAccount.button")}</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -109,6 +144,10 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     marginTop: 12,
+  },
+
+  disabledButton: {
+    opacity: 0.55,
   },
 
   deleteButtonText: {

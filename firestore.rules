@@ -107,6 +107,18 @@ service cloud.firestore {
         && request.resource.data.favoriteIds is list;
     }
 
+    function hasValidFlightDealPreferencesData(userId) {
+      return request.resource.data.keys().hasOnly([
+          'departureAirportId',
+          'selectedCityIds',
+          'selectedThresholds'
+        ])
+        && userId == request.auth.uid
+        && isNonEmptyString(request.resource.data.departureAirportId)
+        && request.resource.data.selectedCityIds is list
+        && request.resource.data.selectedThresholds is list;
+    }
+
     function isValidReviewReportCreate() {
       return request.resource.data.keys().hasOnly([
           'reportId',
@@ -230,7 +242,13 @@ service cloud.firestore {
     match /favorites/{userId} {
       allow read: if isOwnerDocument(userId);
       allow create, update: if isOwnerDocument(userId) && hasValidFavoritesData();
-      allow delete: if false;
+      allow delete: if isOwnerDocument(userId);
+    }
+
+    match /flightDealPreferences/{userId} {
+      allow read: if isOwnerDocument(userId);
+      allow create, update: if isSignedIn() && hasValidFlightDealPreferencesData(userId);
+      allow delete: if isOwnerDocument(userId);
     }
 
     match /reviews/{outletId}/items/{reviewId} {
@@ -265,7 +283,7 @@ service cloud.firestore {
     match /userNotificationSettings/{userId} {
       allow read: if isOwnerDocument(userId);
       allow create, update: if isSignedIn() && hasValidNotificationSettingsData(userId);
-      allow delete: if false;
+      allow delete: if isOwnerDocument(userId);
 
       match /tokens/{tokenId} {
         allow read: if isOwnerDocument(userId);
@@ -273,7 +291,7 @@ service cloud.firestore {
         allow update: if isSignedIn()
           && keepsNotificationTokenOwnership(userId)
           && hasValidNotificationTokenData(userId);
-        allow delete: if false;
+        allow delete: if isOwnerDocument(userId);
       }
     }
 

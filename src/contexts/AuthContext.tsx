@@ -35,8 +35,6 @@ password: string
 
 loginWithGoogle: () => Promise<void>;
 
-loginWithApple: () => Promise<void>;
-
 logout: () => Promise<void>;
 };
 
@@ -108,12 +106,6 @@ credential
 );
 }
 
-async function loginWithApple() {
-throw new Error(
-"Apple Login will be connected next."
-);
-}
-
 async function logout() {
 await signOut(auth);
 }
@@ -127,7 +119,6 @@ loading,
 loginWithEmail,
 registerWithEmail,
 loginWithGoogle,
-loginWithApple,
 logout,
 }}
 >
