@@ -10,12 +10,8 @@ type ReviewItemProps = {
   previousComment?: string;
   editedText: string;
   previousCommentTitle: string;
-  helpfulText: string;
-  helpfulCount: number;
-  isHelpfulByCurrentUser: boolean;
   canEdit: boolean;
   editText: string;
-  onPressHelpful: () => void;
   onPressEdit: () => void;
 };
 
@@ -29,12 +25,8 @@ export function ReviewItem({
   previousComment,
   editedText,
   previousCommentTitle,
-  helpfulText,
-  helpfulCount,
-  isHelpfulByCurrentUser,
   canEdit,
   editText,
-  onPressHelpful,
   onPressEdit,
 }: ReviewItemProps) {
   const initial = userName.trim().charAt(0).toUpperCase() || "U";
@@ -66,27 +58,14 @@ export function ReviewItem({
 
       {previousComment && (
         <View style={styles.previousCommentBox}>
-          <Text style={styles.previousCommentTitle}>{previousCommentTitle}</Text>
+          <Text style={styles.previousCommentTitle}>
+            {previousCommentTitle}
+          </Text>
           <Text style={styles.previousCommentText}>{previousComment}</Text>
         </View>
       )}
 
       <View style={styles.actionsRow}>
-        <TouchableOpacity
-          style={[styles.helpfulButton, isHelpfulByCurrentUser && styles.helpfulButtonActive]}
-          activeOpacity={0.86}
-          onPress={onPressHelpful}
-        >
-          <Text
-            style={[
-              styles.helpfulTextStyle,
-              isHelpfulByCurrentUser && styles.helpfulTextActive,
-            ]}
-          >
-            {isHelpfulByCurrentUser ? "👍" : "👍🏻"} {helpfulText} ({helpfulCount})
-          </Text>
-        </TouchableOpacity>
-
         {canEdit && (
           <TouchableOpacity
             style={styles.editButton}
@@ -206,30 +185,6 @@ const styles = StyleSheet.create({
     gap: 10,
     marginTop: 12,
     flexWrap: "wrap",
-  },
-
-  helpfulButton: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 999,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: "#E5E7EB",
-  },
-
-  helpfulButtonActive: {
-    backgroundColor: "#0B1F3A",
-    borderColor: "#0B1F3A",
-  },
-
-  helpfulTextStyle: {
-    color: "#0B1F3A",
-    fontSize: 13,
-    fontWeight: "900",
-  },
-
-  helpfulTextActive: {
-    color: "#FFFFFF",
   },
 
   editButton: {
