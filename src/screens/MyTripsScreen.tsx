@@ -50,11 +50,24 @@ function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => v
 
 export function MyTripsScreen() {
   const navigation = useNavigation<any>();
-  const { trips, deleteTrip, loading } = useTrips();
+  const { trips, deleteTrip, loading, tripsError } = useTrips();
   const { t } = useTranslation();
 
   const activeCount = trips.filter((trip) => trip.status === "active").length;
   const datedCount = trips.filter((trip) => Boolean(trip.visitDate)).length;
+
+  async function handleDeleteTrip(tripId: string) {
+    try {
+      await deleteTrip(tripId);
+    } catch (error) {
+      console.log("Delete trip error", error);
+      const isPermissionDenied = (error as { code?: unknown }).code === "permission-denied";
+      Alert.alert(
+        t("trips.deleteFailedTitle"),
+        t(isPermissionDenied ? "trips.permissionDeniedMessage" : "trips.deleteFailedMessage"),
+      );
+    }
+  }
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -93,6 +106,13 @@ export function MyTripsScreen() {
         <View style={styles.emptyCard}>
           <Text style={styles.emptyTitle}>{t("trips.loading")}</Text>
         </View>
+      ) : tripsError ? (
+        <View style={styles.emptyCard}>
+          <Text style={styles.emptyTitle}>{t("trips.loadFailedTitle")}</Text>
+          <Text style={styles.emptyText}>
+            {t(tripsError === "permission-denied" ? "trips.permissionDeniedMessage" : "trips.loadFailedMessage")}
+          </Text>
+        </View>
       ) : trips.length === 0 ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyIcon}>🧳</Text>
@@ -106,7 +126,7 @@ export function MyTripsScreen() {
           <TripCard
             key={trip.id}
             trip={trip}
-            onDelete={() => deleteTrip(trip.id)}
+            onDelete={() => handleDeleteTrip(trip.id)}
             onPress={() => navigation.navigate("TripDetail", { tripId: trip.id })}
             t={t}
           />

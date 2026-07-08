@@ -37,9 +37,16 @@ export type TripInput = {
   notes?: string;
 };
 
+type TripsError = "permission-denied" | "load-failed" | null;
+
+function getTripsError(error: unknown): TripsError {
+  return (error as { code?: unknown }).code === "permission-denied" ? "permission-denied" : "load-failed";
+}
+
 type TripsContextType = {
   trips: Trip[];
   loading: boolean;
+  tripsError: TripsError;
   addTrip: (trip: TripInput) => Promise<string>;
   deleteTrip: (tripId: string) => Promise<void>;
   refreshTrips: () => Promise<void>;
@@ -51,19 +58,23 @@ export function TripsProvider({ children }: { children: ReactNode }) {
   const { currentUser } = useUser();
   const [trips, setTrips] = useState<Trip[]>([]);
   const [loading, setLoading] = useState(false);
+  const [tripsError, setTripsError] = useState<TripsError>(null);
 
   const refreshTrips = useCallback(async () => {
     if (!currentUser?.userId) {
       setTrips([]);
+      setTripsError(null);
       return;
     }
 
     setLoading(true);
     try {
       setTrips(await getUserTrips(currentUser.userId));
+      setTripsError(null);
     } catch (error) {
       console.log("Firestore trips load error", error);
       setTrips([]);
+      setTripsError(getTripsError(error));
     } finally {
       setLoading(false);
     }
@@ -93,7 +104,7 @@ export function TripsProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <TripsContext.Provider value={{ trips, loading, addTrip, deleteTrip, refreshTrips }}>
+    <TripsContext.Provider value={{ trips, loading, tripsError, addTrip, deleteTrip, refreshTrips }}>
       {children}
     </TripsContext.Provider>
   );
