@@ -5,25 +5,17 @@ import { useTranslation } from "../hooks/useTranslation";
 
 export function NotificationSettingsScreen() {
   const { t } = useTranslation();
-
   const {
-    flightDeals,
-    setFlightDeals,
-    flightReminders,
-    setFlightReminders,
-    taxFreeReminders,
-    setTaxFreeReminders,
-    dealReminders,
-    setDealReminders,
-    eventReminders,
-    setEventReminders,
-    favoriteOutletAlerts,
-    setFavoriteOutletAlerts,
-    favoriteBrandAlerts,
-    setFavoriteBrandAlerts,
-    majorPromotionsOnly,
-    setMajorPromotionsOnly,
+    isLoggedIn,
+    isLoading,
+    isSaving,
+    permissionStatus,
+    pushSupported,
+    settings,
+    setNotificationsEnabled,
   } = useNotificationSettings();
+
+  const enabled = settings?.enabled === true;
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -33,114 +25,64 @@ export function NotificationSettingsScreen() {
         <Text style={styles.pageSubtitle}>{t("notifications.subtitle")}</Text>
       </View>
 
-      <View style={styles.infoBox}>
-        <Text style={styles.infoTitle}>{t("notifications.smartAlertsOnly")}</Text>
-        <Text style={styles.infoText}>{t("notifications.info")}</Text>
-      </View>
+      {!isLoggedIn ? (
+        <StatusCard
+          title={t("notifications.signInRequiredTitle")}
+          body={t("notifications.signInRequiredBody")}
+        />
+      ) : (
+        <>
+          <StatusCard
+            title={pushSupported ? t("notifications.deviceStatusTitle") : t("notifications.pushUnavailableTitle")}
+            body={
+              pushSupported
+                ? t(`notifications.permission.${permissionStatus}`)
+                : t("notifications.pushUnavailableBody")
+            }
+          />
 
-      <Text style={styles.groupTitle}>{t("notifications.travelAlerts")}</Text>
+          <TouchableOpacity
+            style={[styles.row, (isLoading || isSaving) && styles.rowDisabled]}
+            activeOpacity={0.86}
+            disabled={isLoading || isSaving}
+            onPress={() => setNotificationsEnabled(!enabled)}
+          >
+            <View style={styles.iconBox}>
+              <Text style={styles.icon}>🔔</Text>
+            </View>
 
-      <NotificationRow
-        icon="✈️"
-        title={t("notifications.flightDeals")}
-        description={t("notifications.flightDealsDesc")}
-        enabled={flightDeals}
-        onPress={() => setFlightDeals(!flightDeals)}
-      />
+            <View style={styles.rowContent}>
+              <Text style={styles.rowTitle}>{t("notifications.cloudPreferences")}</Text>
+              <Text style={styles.rowDescription}>
+                {pushSupported
+                  ? t("notifications.cloudPreferencesDesc")
+                  : t("notifications.cloudPreferencesUnavailableDesc")}
+              </Text>
+            </View>
 
-      <NotificationRow
-        icon="🧳"
-        title={t("notifications.flightReminders")}
-        description={t("notifications.flightRemindersDesc")}
-        enabled={flightReminders}
-        onPress={() => setFlightReminders(!flightReminders)}
-      />
+            <View style={[styles.toggle, enabled && styles.toggleActive]}>
+              <Text style={[styles.toggleText, enabled && styles.toggleTextActive]}>
+                {enabled ? t("common.on") : t("common.off")}
+              </Text>
+            </View>
+          </TouchableOpacity>
 
-      <NotificationRow
-        icon="🧾"
-        title={t("notifications.taxFree")}
-        description={t("notifications.taxFreeDesc")}
-        enabled={taxFreeReminders}
-        onPress={() => setTaxFreeReminders(!taxFreeReminders)}
-      />
-
-      <Text style={styles.groupTitle}>{t("notifications.shoppingAlerts")}</Text>
-
-      <NotificationRow
-        icon="🏷️"
-        title={t("notifications.deals")}
-        description={t("notifications.dealsDesc")}
-        enabled={dealReminders}
-        onPress={() => setDealReminders(!dealReminders)}
-      />
-
-      <NotificationRow
-        icon="🎪"
-        title={t("notifications.events")}
-        description={t("notifications.eventsDesc")}
-        enabled={eventReminders}
-        onPress={() => setEventReminders(!eventReminders)}
-      />
-
-      <NotificationRow
-        icon="⭐"
-        title={t("notifications.favoriteOutlet")}
-        description={t("notifications.favoriteOutletDesc")}
-        enabled={favoriteOutletAlerts}
-        onPress={() => setFavoriteOutletAlerts(!favoriteOutletAlerts)}
-      />
-
-      <NotificationRow
-        icon="🛍️"
-        title={t("notifications.favoriteBrand")}
-        description={t("notifications.favoriteBrandDesc")}
-        enabled={favoriteBrandAlerts}
-        onPress={() => setFavoriteBrandAlerts(!favoriteBrandAlerts)}
-      />
-
-      <NotificationRow
-        icon="✨"
-        title={t("notifications.majorPromotions")}
-        description={t("notifications.majorPromotionsDesc")}
-        enabled={majorPromotionsOnly}
-        onPress={() => setMajorPromotionsOnly(!majorPromotionsOnly)}
-      />
+          <View style={styles.infoBox}>
+            <Text style={styles.infoTitle}>{t("notifications.categoriesUnavailableTitle")}</Text>
+            <Text style={styles.infoText}>{t("notifications.categoriesUnavailableBody")}</Text>
+          </View>
+        </>
+      )}
     </ScrollView>
   );
 }
 
-function NotificationRow({
-  icon,
-  title,
-  description,
-  enabled,
-  onPress,
-}: {
-  icon: string;
-  title: string;
-  description: string;
-  enabled: boolean;
-  onPress: () => void;
-}) {
-  const { t } = useTranslation();
-
+function StatusCard({ title, body }: { title: string; body: string }) {
   return (
-    <TouchableOpacity style={styles.row} activeOpacity={0.86} onPress={onPress}>
-      <View style={styles.iconBox}>
-        <Text style={styles.icon}>{icon}</Text>
-      </View>
-
-      <View style={styles.rowContent}>
-        <Text style={styles.rowTitle}>{title}</Text>
-        <Text style={styles.rowDescription}>{description}</Text>
-      </View>
-
-      <View style={[styles.toggle, enabled && styles.toggleActive]}>
-        <Text style={[styles.toggleText, enabled && styles.toggleTextActive]}>
-          {enabled ? t("common.on") : t("common.off")}
-        </Text>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.infoBox}>
+      <Text style={styles.infoTitle}>{title}</Text>
+      <Text style={styles.infoText}>{body}</Text>
+    </View>
   );
 }
 
@@ -206,14 +148,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
 
-  groupTitle: {
-    color: "#0B1F3A",
-    fontSize: 18,
-    fontWeight: "900",
-    marginTop: 10,
-    marginBottom: 10,
-  },
-
   row: {
     backgroundColor: "#FFFFFF",
     borderRadius: 22,
@@ -223,6 +157,10 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     flexDirection: "row",
     alignItems: "center",
+  },
+
+  rowDisabled: {
+    opacity: 0.6,
   },
 
   iconBox: {

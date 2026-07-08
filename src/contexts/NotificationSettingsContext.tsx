@@ -1,241 +1,139 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 
 import { db } from "../firebase/config";
 import { useUser } from "./UserContext";
 
+export type NotificationPermissionStatus = "unsupported" | "not_requested" | "granted" | "denied";
+
+export type NotificationSettings = {
+  userId: string;
+  enabled: boolean;
+  tripRemindersEnabled: boolean;
+  favoriteOutletUpdatesEnabled: boolean;
+  reviewUpdatesEnabled: boolean;
+  marketingEnabled: boolean;
+};
+
 type NotificationSettingsContextType = {
-flightDeals: boolean;
-setFlightDeals: (value: boolean) => void;
-
-flightReminders: boolean;
-setFlightReminders: (value: boolean) => void;
-
-taxFreeReminders: boolean;
-setTaxFreeReminders: (value: boolean) => void;
-
-dealReminders: boolean;
-setDealReminders: (value: boolean) => void;
-
-eventReminders: boolean;
-setEventReminders: (value: boolean) => void;
-
-favoriteOutletAlerts: boolean;
-setFavoriteOutletAlerts: (value: boolean) => void;
-
-favoriteBrandAlerts: boolean;
-setFavoriteBrandAlerts: (value: boolean) => void;
-
-majorPromotionsOnly: boolean;
-setMajorPromotionsOnly: (value: boolean) => void;
+  isLoggedIn: boolean;
+  isLoading: boolean;
+  isSaving: boolean;
+  permissionStatus: NotificationPermissionStatus;
+  pushSupported: boolean;
+  settings: NotificationSettings | null;
+  setNotificationsEnabled: (enabled: boolean) => Promise<void>;
+  refreshSettings: () => Promise<void>;
 };
 
-const NotificationSettingsContext =
-createContext<NotificationSettingsContextType | undefined>(undefined);
+const NotificationSettingsContext = createContext<NotificationSettingsContextType | undefined>(undefined);
 
-const STORAGE_KEY = "my_outlet_guide_notification_settings";
+const defaultSettingsForUser = (userId: string): NotificationSettings => ({
+  userId,
+  enabled: false,
+  tripRemindersEnabled: false,
+  favoriteOutletUpdatesEnabled: false,
+  reviewUpdatesEnabled: false,
+  marketingEnabled: false,
+});
 
-export function NotificationSettingsProvider({
-children,
-}: {
-children: ReactNode;
-}) {
-const { currentUser } = useUser();
+export function NotificationSettingsProvider({ children }: { children: ReactNode }) {
+  const { currentUser, isLoggedIn } = useUser();
+  const [settings, setSettings] = useState<NotificationSettings | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
-const [flightDeals, setFlightDealsState] = useState(true);
-const [flightReminders, setFlightRemindersState] = useState(true);
-const [taxFreeReminders, setTaxFreeRemindersState] = useState(true);
-const [dealReminders, setDealRemindersState] = useState(true);
-const [eventReminders, setEventRemindersState] = useState(true);
-const [favoriteOutletAlerts, setFavoriteOutletAlertsState] =
-useState(true);
-const [favoriteBrandAlerts, setFavoriteBrandAlertsState] =
-useState(true);
-const [majorPromotionsOnly, setMajorPromotionsOnlyState] =
-useState(true);
+  const pushSupported = false;
+  const permissionStatus: NotificationPermissionStatus = "unsupported";
 
-useEffect(() => {
-loadSettings();
-}, [currentUser?.userId]);
+  useEffect(() => {
+    refreshSettings();
+  }, [currentUser?.userId]);
 
-async function loadSettings() {
-if (currentUser?.userId) {
-try {
-const snapshot = await getDoc(
-doc(db, "notificationSettings", currentUser.userId)
-);
+  async function refreshSettings() {
+    if (!currentUser?.userId) {
+      setSettings(null);
+      return;
+    }
 
-if (snapshot.exists()) {
-const data = snapshot.data();
+    setIsLoading(true);
 
-setFlightDealsState(data.flightDeals ?? true);
-setFlightRemindersState(data.flightReminders ?? true);
-setTaxFreeRemindersState(data.taxFreeReminders ?? true);
-setDealRemindersState(data.dealReminders ?? true);
-setEventRemindersState(data.eventReminders ?? true);
-setFavoriteOutletAlertsState(
-data.favoriteOutletAlerts ?? true
-);
-setFavoriteBrandAlertsState(
-data.favoriteBrandAlerts ?? true
-);
-setMajorPromotionsOnlyState(
-data.majorPromotionsOnly ?? true
-);
+    try {
+      const snapshot = await getDoc(doc(db, "userNotificationSettings", currentUser.userId));
+      const fallback = defaultSettingsForUser(currentUser.userId);
 
-return;
-}
-} catch (error) {
-console.log(
-"Notification settings load error",
-error
-);
-}
-}
+      if (!snapshot.exists()) {
+        setSettings(fallback);
+        return;
+      }
 
-const saved = await AsyncStorage.getItem(STORAGE_KEY);
+      const data = snapshot.data();
 
-if (saved) {
-const data = JSON.parse(saved);
+      setSettings({
+        userId: currentUser.userId,
+        enabled: data.enabled === true,
+        tripRemindersEnabled: data.tripRemindersEnabled === true,
+        favoriteOutletUpdatesEnabled: data.favoriteOutletUpdatesEnabled === true,
+        reviewUpdatesEnabled: data.reviewUpdatesEnabled === true,
+        marketingEnabled: data.marketingEnabled === true,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
-setFlightDealsState(data.flightDeals ?? true);
-setFlightRemindersState(data.flightReminders ?? true);
-setTaxFreeRemindersState(data.taxFreeReminders ?? true);
-setDealRemindersState(data.dealReminders ?? true);
-setEventRemindersState(data.eventReminders ?? true);
-setFavoriteOutletAlertsState(
-data.favoriteOutletAlerts ?? true
-);
-setFavoriteBrandAlertsState(
-data.favoriteBrandAlerts ?? true
-);
-setMajorPromotionsOnlyState(
-data.majorPromotionsOnly ?? true
-);
-}
-}
+  async function setNotificationsEnabled(enabled: boolean) {
+    if (!currentUser?.userId) {
+      return;
+    }
 
-async function saveSettings(nextData: any) {
-await AsyncStorage.setItem(
-STORAGE_KEY,
-JSON.stringify(nextData)
-);
+    const nextSettings = {
+      ...(settings ?? defaultSettingsForUser(currentUser.userId)),
+      enabled,
+      userId: currentUser.userId,
+    };
 
-if (!currentUser?.userId) {
-return;
-}
+    setSettings(nextSettings);
+    setIsSaving(true);
 
-try {
-await setDoc(
-doc(db, "notificationSettings", currentUser.userId),
-nextData
-);
-} catch (error) {
-console.log(
-"Notification settings save error",
-error
-);
-}
-}
+    try {
+      await setDoc(
+        doc(db, "userNotificationSettings", currentUser.userId),
+        {
+          ...nextSettings,
+          updatedAt: new Date().toISOString(),
+          firestoreUpdatedAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+    } finally {
+      setIsSaving(false);
+    }
+  }
 
-function updateSettings(changes: any) {
-const nextData = {
-flightDeals,
-flightReminders,
-taxFreeReminders,
-dealReminders,
-eventReminders,
-favoriteOutletAlerts,
-favoriteBrandAlerts,
-majorPromotionsOnly,
-...changes,
-};
+  const value = useMemo(
+    () => ({
+      isLoggedIn,
+      isLoading,
+      isSaving,
+      permissionStatus,
+      pushSupported,
+      settings,
+      setNotificationsEnabled,
+      refreshSettings,
+    }),
+    [isLoggedIn, isLoading, isSaving, permissionStatus, pushSupported, settings]
+  );
 
-saveSettings(nextData);
-}
-
-const setFlightDeals = (value: boolean) => {
-setFlightDealsState(value);
-updateSettings({ flightDeals: value });
-};
-
-const setFlightReminders = (value: boolean) => {
-setFlightRemindersState(value);
-updateSettings({ flightReminders: value });
-};
-
-const setTaxFreeReminders = (value: boolean) => {
-setTaxFreeRemindersState(value);
-updateSettings({ taxFreeReminders: value });
-};
-
-const setDealReminders = (value: boolean) => {
-setDealRemindersState(value);
-updateSettings({ dealReminders: value });
-};
-
-const setEventReminders = (value: boolean) => {
-setEventRemindersState(value);
-updateSettings({ eventReminders: value });
-};
-
-const setFavoriteOutletAlerts = (value: boolean) => {
-setFavoriteOutletAlertsState(value);
-updateSettings({ favoriteOutletAlerts: value });
-};
-
-const setFavoriteBrandAlerts = (value: boolean) => {
-setFavoriteBrandAlertsState(value);
-updateSettings({ favoriteBrandAlerts: value });
-};
-
-const setMajorPromotionsOnly = (value: boolean) => {
-setMajorPromotionsOnlyState(value);
-updateSettings({ majorPromotionsOnly: value });
-};
-
-return (
-<NotificationSettingsContext.Provider
-value={{
-flightDeals,
-setFlightDeals,
-
-flightReminders,
-setFlightReminders,
-
-taxFreeReminders,
-setTaxFreeReminders,
-
-dealReminders,
-setDealReminders,
-
-eventReminders,
-setEventReminders,
-
-favoriteOutletAlerts,
-setFavoriteOutletAlerts,
-
-favoriteBrandAlerts,
-setFavoriteBrandAlerts,
-
-majorPromotionsOnly,
-setMajorPromotionsOnly,
-}}
->
-{children}
-</NotificationSettingsContext.Provider>
-);
+  return <NotificationSettingsContext.Provider value={value}>{children}</NotificationSettingsContext.Provider>;
 }
 
 export function useNotificationSettings() {
-const context = useContext(NotificationSettingsContext);
+  const context = useContext(NotificationSettingsContext);
 
-if (!context) {
-throw new Error(
-"useNotificationSettings must be used inside NotificationSettingsProvider"
-);
-}
+  if (!context) {
+    throw new Error("useNotificationSettings must be used inside NotificationSettingsProvider");
+  }
 
-return context;
+  return context;
 }
