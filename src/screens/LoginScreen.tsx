@@ -18,8 +18,7 @@ import { useTranslation } from "../hooks/useTranslation";
 export function LoginScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const { loginWithEmail, registerWithEmail, loginWithGoogle, loginWithApple } =
-    useAuth();
+  const { loginWithEmail, registerWithEmail, loginWithGoogle } = useAuth();
 
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState("");
@@ -72,17 +71,6 @@ export function LoginScreen() {
     }
   }
 
-  async function handleApple() {
-    try {
-      setLoading(true);
-      await loginWithApple();
-      navigation.goBack();
-    } catch {
-      Alert.alert(t("auth.appleTitle"), t("auth.appleMessage"));
-    } finally {
-      setLoading(false);
-    }
-  }
 
   return (
     <KeyboardAvoidingView
@@ -99,13 +87,6 @@ export function LoginScreen() {
           <Text style={styles.subtitle}>{t("auth.subtitle")}</Text>
         </View>
 
-        <TouchableOpacity
-          style={styles.appleButton}
-          activeOpacity={0.86}
-          onPress={handleApple}
-        >
-          <Text style={styles.appleButtonText}>{t("auth.continueApple")}</Text>
-        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.socialButton}
