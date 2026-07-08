@@ -39,7 +39,8 @@ service cloud.firestore {
           'updatedAt',
           'status',
           'deletedAt',
-          'firestoreUpdatedAt'
+          'firestoreUpdatedAt',
+          'disabledAt'
         ])
         && request.resource.data.reviewId == reviewId
         && request.resource.data.outletId == outletId
@@ -136,7 +137,8 @@ service cloud.firestore {
           'reviewUpdatesEnabled',
           'marketingEnabled',
           'updatedAt',
-          'firestoreUpdatedAt'
+          'firestoreUpdatedAt',
+          'disabledAt'
         ])
         && request.resource.data.userId == request.auth.uid
         && userId == request.auth.uid
@@ -145,7 +147,37 @@ service cloud.firestore {
         && request.resource.data.favoriteOutletUpdatesEnabled is bool
         && request.resource.data.reviewUpdatesEnabled is bool
         && request.resource.data.marketingEnabled is bool
-        && isNonEmptyString(request.resource.data.updatedAt);
+        && isNonEmptyString(request.resource.data.updatedAt)
+        && (request.resource.data.disabledAt == null || isNonEmptyString(request.resource.data.disabledAt));
+    }
+    function hasValidNotificationTokenData(userId) {
+      return request.resource.data.keys().hasOnly([
+          'userId',
+          'token',
+          'platform',
+          'createdAt',
+          'updatedAt',
+          'disabledAt',
+          'firestoreCreatedAt',
+          'firestoreUpdatedAt'
+        ])
+        && userId == request.auth.uid
+        && request.resource.data.userId == request.auth.uid
+        && isNonEmptyString(request.resource.data.token)
+        && request.resource.data.token.size() <= 512
+        && request.resource.data.platform in ['ios', 'android', 'web', 'windows', 'macos']
+        && isNonEmptyString(request.resource.data.createdAt)
+        && isNonEmptyString(request.resource.data.updatedAt)
+        && (request.resource.data.disabledAt == null || isNonEmptyString(request.resource.data.disabledAt));
+    }
+
+    function keepsNotificationTokenOwnership(userId) {
+      return userId == request.auth.uid
+        && resource.data.userId == request.auth.uid
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.token == resource.data.token
+        && request.resource.data.platform == resource.data.platform
+        && request.resource.data.createdAt == resource.data.createdAt;
     }
 
     function hasValidTripData(userId, tripId) {
@@ -236,7 +268,12 @@ service cloud.firestore {
       allow delete: if false;
 
       match /tokens/{tokenId} {
-        allow read, write: if false;
+        allow read: if isOwnerDocument(userId);
+        allow create: if isSignedIn() && hasValidNotificationTokenData(userId);
+        allow update: if isSignedIn()
+          && keepsNotificationTokenOwnership(userId)
+          && hasValidNotificationTokenData(userId);
+        allow delete: if false;
       }
     }
 
