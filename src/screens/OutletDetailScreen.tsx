@@ -537,9 +537,6 @@ export function OutletDetailScreen() {
               previousComment={review.previousComment}
               editedText={t("outlet.edited")}
               previousCommentTitle={t("outlet.previousComment")}
-              canEdit={false}
-              editText={t("outlet.editReview")}
-              onPressEdit={() => {}}
             />
           ))
         ) : (

@@ -8,3 +8,7 @@ Reviews & Ratings V1 must be production-safe:
 - When real review data is missing, show the final empty state: “No reviews yet.” / “Henüz yorum yok.”
 - Do not allow users to create or edit outlet reviews until production-ready backend storage, moderation, abuse reporting, and operational review handling are available.
 - Review counts must come from real loaded review records or a trusted production source; do not invent counts.
+
+## Phase 1C route guard note
+
+The `WriteReview` route may remain registered only as a guarded unavailable screen so stale deep links or older navigation state do not crash. It must not render review form fields or trigger submission/editing side effects.

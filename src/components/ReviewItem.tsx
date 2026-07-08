@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 type ReviewItemProps = {
   userName: string;
@@ -10,9 +10,6 @@ type ReviewItemProps = {
   previousComment?: string;
   editedText: string;
   previousCommentTitle: string;
-  canEdit: boolean;
-  editText: string;
-  onPressEdit: () => void;
 };
 
 export function ReviewItem({
@@ -25,9 +22,6 @@ export function ReviewItem({
   previousComment,
   editedText,
   previousCommentTitle,
-  canEdit,
-  editText,
-  onPressEdit,
 }: ReviewItemProps) {
   const initial = userName.trim().charAt(0).toUpperCase() || "U";
 
@@ -64,18 +58,6 @@ export function ReviewItem({
           <Text style={styles.previousCommentText}>{previousComment}</Text>
         </View>
       )}
-
-      <View style={styles.actionsRow}>
-        {canEdit && (
-          <TouchableOpacity
-            style={styles.editButton}
-            activeOpacity={0.86}
-            onPress={onPressEdit}
-          >
-            <Text style={styles.editButtonText}>{editText}</Text>
-          </TouchableOpacity>
-        )}
-      </View>
     </View>
   );
 }
@@ -179,26 +161,4 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
 
-  actionsRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10,
-    marginTop: 12,
-    flexWrap: "wrap",
-  },
-
-  editButton: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 999,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderColor: "#E5E7EB",
-  },
-
-  editButtonText: {
-    color: "#0B1F3A",
-    fontSize: 13,
-    fontWeight: "900",
-  },
 });

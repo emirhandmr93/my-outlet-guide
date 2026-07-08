@@ -5,7 +5,6 @@ import { LanguageProvider } from "./src/contexts/LanguageContext";
 import { FavoritesProvider } from "./src/contexts/FavoritesContext";
 import { TripsProvider } from "./src/contexts/TripsContext";
 import { SavingsProvider } from "./src/contexts/SavingsContext";
-import { ReviewHelpfulProvider } from "./src/contexts/ReviewHelpfulContext";
 import { ReviewsProvider } from "./src/contexts/ReviewsContext";
 import { NotificationSettingsProvider } from "./src/contexts/NotificationSettingsContext";
 import { UserProvider } from "./src/contexts/UserContext";
@@ -23,10 +22,8 @@ return (
 <FlightDealPreferencesProvider>
 <NotificationSettingsProvider>
 <ReviewsProvider>
-<ReviewHelpfulProvider>
 <AppNavigator />
 <StatusBar style="auto" />
-</ReviewHelpfulProvider>
 </ReviewsProvider>
 </NotificationSettingsProvider>
 </FlightDealPreferencesProvider>
