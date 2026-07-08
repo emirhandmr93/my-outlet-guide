@@ -403,7 +403,7 @@ onPress={() => navigateTo(tool.route)}
 <Text style={styles.activityLabel}>{t("home.activity.tripLabel")}</Text>
 <Text style={styles.activityValue}>{latestTrip ? latestTrip.tripName : t("home.activity.noTrip")}</Text>
 <Text style={styles.activityText}>
-{latestTrip ? `${latestTrip.startDate} - ${latestTrip.endDate}` : t("home.activity.createTripReminder")}
+{latestTrip ? latestTrip.visitDate || latestTrip.outletName : t("home.activity.createTripReminder")}
 </Text>
 </View>
 

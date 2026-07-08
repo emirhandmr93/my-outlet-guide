@@ -60,16 +60,13 @@ export function OfflinePacksScreen() {
                 <View style={styles.cardHeaderContent}>
                   <Text style={styles.cardTitle}>{trip.tripName}</Text>
                   <Text style={styles.cardText}>
-                    {trip.startDate} - {trip.endDate}
+                    {trip.visitDate || t("trips.dateNotSet")}
                   </Text>
                 </View>
               </View>
 
               <Text style={styles.cardText}>
-                {t("offline.cities")}: {" "}
-                {trip.tripCities.length > 0
-                  ? trip.tripCities.map((city) => city.cityName).join(", ")
-                  : t("offline.addCitiesFirst")}
+                {t("offline.cities")}: {trip.city || t("offline.addCitiesFirst")}
               </Text>
 
               <View style={styles.includesBox}>

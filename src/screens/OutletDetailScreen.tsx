@@ -321,9 +321,13 @@ export function OutletDetailScreen() {
         <TouchableOpacity
           activeOpacity={0.86}
           style={styles.ctaButton}
-          onPress={() =>
-            navigation.navigate("CreateTrip", { outletId: outlet.outletId })
-          }
+          onPress={() => {
+            if (!requireAuth({ isLoggedIn, navigation })) {
+              return;
+            }
+
+            navigation.navigate("CreateTrip", { outletId: outlet.outletId });
+          }}
         >
           <Text style={styles.ctaIcon}>🧳</Text>
           <Text style={styles.ctaText}>{t("outlet.createTrip")}</Text>
