@@ -142,12 +142,22 @@ Before sending, the function creates the delivery document in a Firestore transa
 3. Deploy Firestore rules and Functions. Firebase deploy also runs `npm --prefix "$RESOURCE_DIR" run build` before deploying Functions:
 
    ```sh
-   firebase deploy --only firestore:rules,functions
+   firebase deploy --only firestore:rules,firestore:indexes,functions
    ```
 
 4. Confirm the Firebase project has Cloud Scheduler/Cloud Functions permissions enabled and billing configured if required by the selected Firebase plan.
 
 5. Confirm production native builds have valid Expo/FCM/APNs push credentials for Expo push delivery.
+
+## Release build verification
+
+Notifications Phase 1F/1G release build verification must pass on Node 22 before the phase is closed. Use the manual GitHub Actions workflow **Verify release build** for authoritative release verification because it runs deterministic root and Functions installs, the Functions build, app validations, media metadata validation, and repository cleanliness checks in the same Node major version targeted by Firebase Functions.
+
+This workflow is verification only: it does not commit, deploy, send notifications, add mock notifications, or simulate push delivery. After the workflow passes, Firebase deployment still requires:
+
+```sh
+firebase deploy --only firestore:rules,firestore:indexes,functions
+```
 
 ## Phase 1D build/deploy readiness status
 
