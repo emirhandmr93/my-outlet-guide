@@ -22,7 +22,6 @@ type ProfileRouteName =
   | "LanguageSettings"
   | "CurrencySettings"
   | "NotificationSettings"
-  | "FlightDealSettings"
   | "OfflinePacks"
   | "MyReviews"
   | "HelpFaq"
@@ -177,12 +176,6 @@ export function ProfileScreen() {
         title={t("profile.myTrips")}
         subtitle={t("profile.subtitles.myTrips")}
         onPress={() => goTo("MyTrips")}
-      />
-      <ProfileRow
-        icon="✈️"
-        title={t("profile.flightDeals")}
-        subtitle={t("profile.subtitles.flightDeals")}
-        onPress={() => goTo("FlightDealSettings")}
       />
       <ProfileRow
         icon="💾"

@@ -58,15 +58,6 @@ export function SavingsScreen() {
       badge: t("savings.taxCalcBadge"),
       highlight: t("savings.taxCalcHighlight"),
     },
-    {
-      id: "flight-deals",
-      icon: "✈️",
-      title: t("savings.flightTitle"),
-      description: t("savings.flightDescription"),
-      routeName: "FlightDeals",
-      badge: t("savings.flightBadge"),
-      highlight: t("savings.flightHighlight"),
-    },
   ];
 
   const selectedCountry =

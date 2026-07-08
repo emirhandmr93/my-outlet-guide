@@ -72,14 +72,4 @@ export const searchFeatureIndex: SearchFeatureItem[] = [
     routeName: "MyTrips",
     keywords: ["trip", "travel", "planner", "shopping trip"],
   },
-  {
-    id: "flight-deals",
-    title: "Flight Deals",
-    subtitle: "Travel Deals",
-    titleKey: "search.features.flightDeals.title",
-    subtitleKey: "search.features.subtitle.travelDeals",
-    type: "screen",
-    routeName: "FlightDeals",
-    keywords: ["flight", "deal", "ticket", "airline", "cheap flight"],
-  },
 ];

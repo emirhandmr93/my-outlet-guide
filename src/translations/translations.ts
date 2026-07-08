@@ -733,6 +733,12 @@ const enTranslations = {
   "transportation.fallback.default.step3":
     "Use maps or station signs for the final walking section to La Vallée Village.",
 
+
+  "flightDeals.unavailableKicker": "Flight Alerts",
+  "flightDeals.unavailableTitle": "Flight alerts are not available yet",
+  "flightDeals.unavailableBody": "Live fare alerts are disabled until a production flight price provider and trusted backend price checker are connected.",
+  "flightDeals.unavailableStatusTitle": "Production provider required",
+  "flightDeals.unavailableStatusBody": "We do not show mock fares or create fake alerts. When real fare monitoring is available, alerts will be saved for signed-in users and checked by the backend.",
   "flightDeals.settingsTitle": "Flight Deal Alerts",
   "flightDeals.settingsSubtitle":
     "Select your departure city and shopping cities.",
@@ -1978,6 +1984,12 @@ export const translations: Record<
     "transportation.fallback.default.step3":
       "TR: Use maps or station signs for the final walking section to La Vallée Village.",
 
+
+    "flightDeals.unavailableKicker": "Uçuş Uyarıları",
+    "flightDeals.unavailableTitle": "Uçuş uyarıları henüz kullanılamıyor",
+    "flightDeals.unavailableBody": "Canlı ücret uyarıları, üretim ortamına uygun bir uçuş fiyat sağlayıcısı ve güvenilir arka uç fiyat denetleyicisi bağlanana kadar devre dışıdır.",
+    "flightDeals.unavailableStatusTitle": "Üretim sağlayıcısı gerekli",
+    "flightDeals.unavailableStatusBody": "Sahte ücret göstermiyor veya sahte uyarı oluşturmuyoruz. Gerçek ücret izleme hazır olduğunda uyarılar oturum açmış kullanıcılar için kaydedilecek ve arka uç tarafından denetlenecek.",
     "flightDeals.settingsTitle": "Uçuş Fırsatları",
     "flightDeals.settingsSubtitle":
       "Kalkış şehrini ve ilgilendiğin şehirleri seç.",
@@ -3204,6 +3216,7 @@ export const translations: Record<
       "ES: Follow the indicated transport option towards Val d'Europe / Serris.",
     "transportation.fallback.default.step3":
       "ES: Use maps or station signs for the final walking section to La Vallée Village.",
+
 
     "flightDeals.settingsTitle": "Alertas de vuelos baratos",
     "flightDeals.settingsSubtitle":

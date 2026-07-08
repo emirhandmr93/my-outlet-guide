@@ -66,15 +66,6 @@ route: "OutletDetail",
 params: { outletId: "bicester-village" },
 },
 
-{
-id: "flight-alert",
-kickerKey: "home.featured.flight.kicker",
-titleKey: "home.featured.flight.title",
-subtitleKey: "home.featured.flight.subtitle",
-ctaKey: "home.featured.flight.cta",
-image: require("../../assets/city-images/Paris.webp"),
-route: "FlightDeals",
-},
 
 {
 id: "shopping-event",
@@ -119,14 +110,6 @@ titleKey: "home.tools.savings.title",
 textKey: "home.tools.savings.text",
 route: "Savings",
 tone: "#EAF7EF",
-},
-{
-id: "flights",
-icon: "✈️",
-titleKey: "home.tools.flights.title",
-textKey: "home.tools.flights.text",
-route: "FlightDeals",
-tone: "#F1ECFF",
 },
 {
 id: "taxfree",
@@ -234,7 +217,6 @@ image: require("../../assets/outlet-images/parndorf/hero.webp"),
 
 const quickMenuItems = [
 { id: "browse", titleKey: "home.quick.browse", icon: "🏬", route: "Explore" },
-{ id: "flights", titleKey: "home.quick.flights", icon: "✈️", route: "FlightDeals" },
 { id: "taxfree", titleKey: "home.quick.taxfree", icon: "💰", route: "TaxFreeCalculator" },
 { id: "offline", titleKey: "home.quick.offline", icon: "📥", route: "OfflinePacks" },
 ];
