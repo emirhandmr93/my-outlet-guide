@@ -126,6 +126,28 @@ service cloud.firestore {
     }
 
 
+
+    function hasValidNotificationSettingsData(userId) {
+      return request.resource.data.keys().hasOnly([
+          'userId',
+          'enabled',
+          'tripRemindersEnabled',
+          'favoriteOutletUpdatesEnabled',
+          'reviewUpdatesEnabled',
+          'marketingEnabled',
+          'updatedAt',
+          'firestoreUpdatedAt'
+        ])
+        && request.resource.data.userId == request.auth.uid
+        && userId == request.auth.uid
+        && request.resource.data.enabled is bool
+        && request.resource.data.tripRemindersEnabled is bool
+        && request.resource.data.favoriteOutletUpdatesEnabled is bool
+        && request.resource.data.reviewUpdatesEnabled is bool
+        && request.resource.data.marketingEnabled is bool
+        && isNonEmptyString(request.resource.data.updatedAt);
+    }
+
     function hasValidTripData(userId, tripId) {
       return request.resource.data.keys().hasOnly([
           'tripId',
@@ -205,6 +227,17 @@ service cloud.firestore {
       allow create: if isSignedIn() && hasValidTripData(userId, tripId);
       allow update: if isSignedIn() && keepsTripOwnership(userId, tripId) && hasValidTripData(userId, tripId);
       allow delete: if isSignedIn() && userId == request.auth.uid && resource.data.userId == request.auth.uid;
+    }
+
+
+    match /userNotificationSettings/{userId} {
+      allow read: if isOwnerDocument(userId);
+      allow create, update: if isSignedIn() && hasValidNotificationSettingsData(userId);
+      allow delete: if false;
+
+      match /tokens/{tokenId} {
+        allow read, write: if false;
+      }
     }
 
     match /reviewReports/{reportId} {
