@@ -1,6 +1,7 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  Alert,
   Dimensions,
   Image,
   Linking,
@@ -41,6 +42,7 @@ import { CurrentWeather, getCurrentWeather } from "../services/weatherService";
 import {
   getAverageReviewRating,
   getPublishedReviews,
+  isFirestorePermissionDenied,
 } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 import { colors } from "../theme/colors";
@@ -149,6 +151,13 @@ export function OutletDetailScreen() {
   const sortedReviews = [...outletReviews].sort((a, b) =>
     b.createdAt.localeCompare(a.createdAt),
   );
+  const showReviewActionError = (error: unknown) => {
+    console.log("Review action error", error);
+    Alert.alert(
+      t("review.actionErrorTitle"),
+      isFirestorePermissionDenied(error) ? t("review.actionPermissionErrorText") : t("common.error"),
+    );
+  };
 
   const currentGalleryIndex = selectedImage
     ? safeGalleryImages.indexOf(selectedImage)
@@ -530,18 +539,32 @@ export function OutletDetailScreen() {
               editText={t("common.edit")}
               deleteText={t("common.delete")}
               reportText={t("review.report")}
-              onHelpful={() => {
+              onHelpful={async () => {
                 if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
-                  toggleHelpful(review, currentUser.userId);
+                  try {
+                    await toggleHelpful(review, currentUser.userId);
+                  } catch (error) {
+                    showReviewActionError(error);
+                  }
                 }
               }}
               onEdit={() => navigation.navigate("WriteReview", { outletId: outlet.outletId, reviewId: review.reviewId })}
-              onDelete={() => {
-                if (currentUser) deleteReview(outlet.outletId, review.reviewId, currentUser.userId);
+              onDelete={async () => {
+                if (currentUser) {
+                  try {
+                    await deleteReview(outlet.outletId, review.reviewId, currentUser.userId);
+                  } catch (error) {
+                    showReviewActionError(error);
+                  }
+                }
               }}
-              onReport={() => {
+              onReport={async () => {
                 if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
-                  reportReview(outlet.outletId, review.reviewId, currentUser.userId, "other");
+                  try {
+                    await reportReview(outlet.outletId, review.reviewId, currentUser.userId, "other");
+                  } catch (error) {
+                    showReviewActionError(error);
+                  }
                 }
               }}
             />
