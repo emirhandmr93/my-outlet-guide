@@ -145,7 +145,6 @@ const enTranslations = {
   "outlet.removeFavorite": "❤️ Remove from Favorites",
   "outlet.taxFree": "Tax Free",
   "outlet.limitedTaxFree": "Limited Tax Free",
-  "outlet.writeReview": "Write Review",
   "outlet.reviewLabel": "Reviews",
   "outlet.transportationRating": "Transportation",
   "outlet.brandsRating": "Brands",
@@ -164,7 +163,6 @@ const enTranslations = {
   "outlet.anchorFood": "Food",
   "outlet.anchorReviews": "Reviews",
   "outlet.notAvailable": "Not Available",
-  "outlet.helpful": "Helpful",
   "sharedCards.brands.countSuffix": "brands",
   "sharedCards.brands.searchPlaceholder": "Search brands...",
   "sharedCards.maps.description":
@@ -179,7 +177,6 @@ const enTranslations = {
   "sharedCards.quickFacts.rating": "Rating",
   "sharedCards.quickFacts.noRating": "No rating yet",
   "sharedCards.reviews.guestRating": "Guest Rating",
-  "sharedCards.writeReview.subtitle": "Share your outlet shopping experience",
   "sharedCards.weather.kicker": "Weather",
 
   "profile.title": "Profile",
@@ -579,32 +576,13 @@ const enTranslations = {
   "offline.exchangeTitle": "Offline Exchange Rate Cache",
   "offline.exchangeText":
     "Calculators can use the last saved exchange rates when offline.",
-
-  "outlet.mostHelpful": "Most Helpful",
-  "outlet.recent": "Recent",
   "outlet.edited": "Edited",
-  "outlet.editReview": "Edit Review",
 
   "myReviews.title": "My Reviews",
   "myReviews.subtitle": "Your existing outlet reviews.",
   "myReviews.emptyTitle": "No Reviews Yet",
   "myReviews.emptyText": "No reviews are linked to your account.",
   "myReviews.viewOutlet": "View Outlet →",
-
-  "writeReview.title": "Reviews Unavailable",
-  "writeReview.editTitle": "Reviews Unavailable",
-  "writeReview.overall": "Overall Experience",
-  "writeReview.transportation": "Transportation",
-  "writeReview.brandVariety": "Brand Variety",
-  "writeReview.restaurants": "Restaurants & Cafes",
-  "writeReview.services": "Services & Facilities",
-  "writeReview.comment": "Your Comment",
-  "writeReview.placeholder": "Share your shopping experience...",
-  "writeReview.submit": "Submit Review",
-  "writeReview.update": "Update Review",
-  "writeReview.note":
-    "Review submission is disabled until production storage, moderation, abuse reporting, and operational handling are ready.",
-  "writeReview.defaultUserName": "My Outlet Guide User",
   "writeReview.unavailableTitle": "Reviews are not open yet",
   "writeReview.unavailableText":
     "Outlet review submission will open only after production storage, moderation and abuse reporting are ready.",
@@ -1336,7 +1314,6 @@ export const translations: Record<
     "outlet.removeFavorite": "❤️ Favorilerden Çıkar",
     "outlet.taxFree": "Tax Free",
     "outlet.limitedTaxFree": "Sınırlı Tax Free",
-    "outlet.writeReview": "Yorum Yaz",
     "outlet.reviewLabel": "Yorum",
     "outlet.transportationRating": "Ulaşım",
     "outlet.brandsRating": "Markalar",
@@ -1355,7 +1332,6 @@ export const translations: Record<
     "outlet.anchorFood": "Yemek",
     "outlet.anchorReviews": "Yorumlar",
     "outlet.notAvailable": "Mevcut Değil",
-    "outlet.helpful": "Faydalı",
     "sharedCards.brands.countSuffix": "marka",
     "sharedCards.brands.searchPlaceholder": "Marka ara...",
     "sharedCards.maps.description":
@@ -1370,7 +1346,6 @@ export const translations: Record<
     "sharedCards.quickFacts.rating": "Puan",
     "sharedCards.quickFacts.noRating": "Henüz puan yok",
     "sharedCards.reviews.guestRating": "Misafir puanı",
-    "sharedCards.writeReview.subtitle": "Outlet alışveriş deneyimini paylaş",
     "sharedCards.weather.kicker": "Hava",
 
     "profile.title": "Profil",
@@ -1776,32 +1751,13 @@ export const translations: Record<
     "offline.exchangeTitle": "Çevrimdışı Kur Önbelleği",
     "offline.exchangeText":
       "Hesaplayıcılar çevrimdışıyken son kaydedilen kurları kullanabilir.",
-
-    "outlet.mostHelpful": "En Faydalı",
-    "outlet.recent": "En Yeni",
     "outlet.edited": "Düzenlendi",
-    "outlet.editReview": "Yorumu Düzenle",
 
     "myReviews.title": "Yorumlarım",
     "myReviews.subtitle": "Mevcut outlet yorumların.",
     "myReviews.emptyTitle": "Henüz Yorum Yok",
     "myReviews.emptyText": "Hesabına bağlı yorum yok.",
     "myReviews.viewOutlet": "Outlet'i Gör →",
-
-    "writeReview.title": "Yorumlar Kullanılamıyor",
-    "writeReview.editTitle": "Yorumlar Kullanılamıyor",
-    "writeReview.overall": "Genel Deneyim",
-    "writeReview.transportation": "Ulaşım",
-    "writeReview.brandVariety": "Marka Çeşitliliği",
-    "writeReview.restaurants": "Restoranlar ve Kafeler",
-    "writeReview.services": "Hizmetler ve Olanaklar",
-    "writeReview.comment": "Yorumun",
-    "writeReview.placeholder": "Alışveriş deneyimini paylaş...",
-    "writeReview.submit": "Yorumu Gönder",
-    "writeReview.update": "Yorumu Güncelle",
-    "writeReview.note":
-      "Yorum gönderimi; üretim depolaması, moderasyon, kötüye kullanım bildirimi ve operasyonel süreçler hazır olana kadar kapalıdır.",
-    "writeReview.defaultUserName": "My Outlet Guide Kullanıcısı",
     "writeReview.unavailableTitle": "Yorumlar henüz açık değil",
     "writeReview.unavailableText":
       "Outlet yorumu gönderimi yalnızca üretim depolaması, moderasyon ve kötüye kullanım bildirimi hazır olduğunda açılacaktır.",
@@ -2519,7 +2475,6 @@ export const translations: Record<
     "outlet.removeFavorite": "❤️ Quitar de favoritos",
     "outlet.taxFree": "Tax Free",
     "outlet.limitedTaxFree": "Tax Free limitado",
-    "outlet.writeReview": "Escribir reseña",
     "outlet.reviewLabel": "Reseñas",
     "outlet.transportationRating": "Transporte",
     "outlet.brandsRating": "Marcas",
@@ -2538,7 +2493,6 @@ export const translations: Record<
     "outlet.anchorFood": "Comida",
     "outlet.anchorReviews": "Reseñas",
     "outlet.notAvailable": "No disponible",
-    "outlet.helpful": "Útil",
     "sharedCards.brands.countSuffix": "marcas",
     "sharedCards.brands.searchPlaceholder": "Buscar marcas...",
     "sharedCards.maps.description":
@@ -2553,8 +2507,6 @@ export const translations: Record<
     "sharedCards.quickFacts.rating": "Valoración",
     "sharedCards.quickFacts.noRating": "Sin valoración todavía",
     "sharedCards.reviews.guestRating": "Valoración de visitantes",
-    "sharedCards.writeReview.subtitle":
-      "Comparte tu experiencia de compras outlet",
     "sharedCards.weather.kicker": "Clima",
 
     "profile.title": "Perfil",
@@ -2956,32 +2908,13 @@ export const translations: Record<
     "offline.exchangeTitle": "Caché de cambio sin conexión",
     "offline.exchangeText":
       "Las calculadoras pueden usar los últimos tipos guardados sin conexión.",
-
-    "outlet.mostHelpful": "Más útil",
-    "outlet.recent": "Reciente",
     "outlet.edited": "Editado",
-    "outlet.editReview": "Editar reseña",
 
     "myReviews.title": "Mis reseñas",
     "myReviews.subtitle": "Reseñas que escribiste.",
     "myReviews.emptyTitle": "Sin reseñas aún",
     "myReviews.emptyText": "Tus reseñas aparecerán aquí.",
     "myReviews.viewOutlet": "Ver outlet →",
-
-    "writeReview.title": "Escribir reseña",
-    "writeReview.editTitle": "Editar reseña",
-    "writeReview.overall": "Experiencia general",
-    "writeReview.transportation": "Transporte",
-    "writeReview.brandVariety": "Variedad de marcas",
-    "writeReview.restaurants": "Restaurantes y cafeterías",
-    "writeReview.services": "Servicios e instalaciones",
-    "writeReview.comment": "Tu comentario",
-    "writeReview.placeholder": "Comparte tu experiencia de compras...",
-    "writeReview.submit": "Enviar reseña",
-    "writeReview.update": "Actualizar reseña",
-    "writeReview.note":
-      "El envío de reseñas es una acción de demo por ahora. Más adelante requerirá iniciar sesión y guardará la reseña en la base de datos.",
-    "writeReview.defaultUserName": "Usuario de My Outlet Guide",
     "writeReview.unavailableTitle": "Las reseñas aún no están disponibles",
     "writeReview.unavailableText":
       "El envío de reseñas de outlets se activará solo cuando el almacenamiento de producción, la moderación y los reportes de abuso estén listos.",
@@ -3712,7 +3645,6 @@ export const translations: Record<
     "outlet.removeFavorite": "❤️ Retirer des favoris",
     "outlet.taxFree": "Tax Free",
     "outlet.limitedTaxFree": "Tax Free limité",
-    "outlet.writeReview": "Écrire un avis",
     "outlet.reviewLabel": "Avis",
     "outlet.transportationRating": "Transport",
     "outlet.brandsRating": "Marques",
@@ -3731,7 +3663,6 @@ export const translations: Record<
     "outlet.anchorFood": "Repas",
     "outlet.anchorReviews": "Avis",
     "outlet.notAvailable": "Non disponible",
-    "outlet.helpful": "Utile",
     "sharedCards.brands.countSuffix": "marques",
     "sharedCards.brands.searchPlaceholder": "Rechercher des marques...",
     "sharedCards.maps.description":
@@ -3746,8 +3677,6 @@ export const translations: Record<
     "sharedCards.quickFacts.rating": "Note",
     "sharedCards.quickFacts.noRating": "Pas encore de note",
     "sharedCards.reviews.guestRating": "Note des visiteurs",
-    "sharedCards.writeReview.subtitle":
-      "Partagez votre expérience shopping outlet",
     "sharedCards.weather.kicker": "Météo",
 
     "profile.title": "Profil",
@@ -4154,32 +4083,13 @@ export const translations: Record<
     "offline.exchangeTitle": "Cache de taux hors ligne",
     "offline.exchangeText":
       "Les calculateurs peuvent utiliser les derniers taux enregistrés hors ligne.",
-
-    "outlet.mostHelpful": "Les plus utiles",
-    "outlet.recent": "Récents",
     "outlet.edited": "Modifié",
-    "outlet.editReview": "Modifier l'avis",
 
     "myReviews.title": "Mes avis",
     "myReviews.subtitle": "Avis que vous avez écrits.",
     "myReviews.emptyTitle": "Aucun avis",
     "myReviews.emptyText": "Vos avis apparaîtront ici.",
     "myReviews.viewOutlet": "Voir l'outlet →",
-
-    "writeReview.title": "Écrire un avis",
-    "writeReview.editTitle": "Modifier l'avis",
-    "writeReview.overall": "Expérience globale",
-    "writeReview.transportation": "Transport",
-    "writeReview.brandVariety": "Variété de marques",
-    "writeReview.restaurants": "Restaurants et cafés",
-    "writeReview.services": "Services et équipements",
-    "writeReview.comment": "Votre commentaire",
-    "writeReview.placeholder": "Partagez votre expérience shopping...",
-    "writeReview.submit": "Envoyer l'avis",
-    "writeReview.update": "Mettre à jour l'avis",
-    "writeReview.note":
-      "L'envoi d'avis est une action démo pour le moment. Plus tard, une connexion sera requise et l'avis sera enregistré en base de données.",
-    "writeReview.defaultUserName": "Utilisateur My Outlet Guide",
     "writeReview.unavailableTitle": "Les avis ne sont pas encore ouverts",
     "writeReview.unavailableText":
       "L’envoi d’avis sur les outlets ouvrira uniquement lorsque le stockage de production, la modération et le signalement des abus seront prêts.",
@@ -4910,7 +4820,6 @@ export const translations: Record<
     "outlet.removeFavorite": "❤️ Aus Favoriten entfernen",
     "outlet.taxFree": "Tax Free",
     "outlet.limitedTaxFree": "Tax Free eingeschränkt",
-    "outlet.writeReview": "Bewertung schreiben",
     "outlet.reviewLabel": "Bewertungen",
     "outlet.transportationRating": "Anfahrt",
     "outlet.brandsRating": "Marken",
@@ -4929,7 +4838,6 @@ export const translations: Record<
     "outlet.anchorFood": "Essen",
     "outlet.anchorReviews": "Bewertungen",
     "outlet.notAvailable": "Nicht verfügbar",
-    "outlet.helpful": "Hilfreich",
     "sharedCards.brands.countSuffix": "Marken",
     "sharedCards.brands.searchPlaceholder": "Marken suchen...",
     "sharedCards.maps.description":
@@ -4944,7 +4852,6 @@ export const translations: Record<
     "sharedCards.quickFacts.rating": "Bewertung",
     "sharedCards.quickFacts.noRating": "Noch keine Bewertung",
     "sharedCards.reviews.guestRating": "Gästebewertung",
-    "sharedCards.writeReview.subtitle": "Teile dein Outlet-Shopping-Erlebnis",
     "sharedCards.weather.kicker": "Wetter",
 
     "profile.title": "Profil",
@@ -5334,30 +5241,13 @@ export const translations: Record<
     "offline.exchangeTitle": "Offline-Wechselkurs-Cache",
     "offline.exchangeText":
       "Rechner können offline die zuletzt gespeicherten Wechselkurse nutzen.",
-    "outlet.mostHelpful": "Am hilfreichsten",
-    "outlet.recent": "Neueste",
     "outlet.edited": "Bearbeitet",
-    "outlet.editReview": "Bewertung bearbeiten",
 
     "myReviews.title": "Meine Bewertungen",
     "myReviews.subtitle": "Bewertungen, die du geschrieben hast.",
     "myReviews.emptyTitle": "Noch keine Bewertungen",
     "myReviews.emptyText": "Deine Bewertungen erscheinen hier.",
     "myReviews.viewOutlet": "Outlet ansehen →",
-    "writeReview.title": "Bewertung schreiben",
-    "writeReview.editTitle": "Bewertung bearbeiten",
-    "writeReview.overall": "Gesamterlebnis",
-    "writeReview.transportation": "Anfahrt",
-    "writeReview.brandVariety": "Markenauswahl",
-    "writeReview.restaurants": "Restaurants & Cafés",
-    "writeReview.services": "Services & Ausstattung",
-    "writeReview.comment": "Dein Kommentar",
-    "writeReview.placeholder": "Teile dein Shopping-Erlebnis...",
-    "writeReview.submit": "Bewertung senden",
-    "writeReview.update": "Bewertung aktualisieren",
-    "writeReview.note":
-      "Das Einreichen von Bewertungen ist vorerst eine Demo-Aktion. Später ist ein Login erforderlich und die Bewertung wird in der Datenbank gespeichert.",
-    "writeReview.defaultUserName": "My Outlet Guide Nutzer",
     "writeReview.unavailableTitle": "Bewertungen sind noch nicht geöffnet",
     "writeReview.unavailableText":
       "Outlet-Bewertungen werden erst aktiviert, wenn produktionsreife Speicherung, Moderation und Missbrauchsmeldungen verfügbar sind.",
@@ -6061,7 +5951,6 @@ export const translations: Record<
     "outlet.removeFavorite": "❤️ إزالة من المفضلة",
     "outlet.taxFree": "Tax Free",
     "outlet.limitedTaxFree": "Tax Free محدود",
-    "outlet.writeReview": "اكتب مراجعة",
     "outlet.reviewLabel": "المراجعات",
     "outlet.transportationRating": "المواصلات",
     "outlet.brandsRating": "العلامات",
@@ -6080,7 +5969,6 @@ export const translations: Record<
     "outlet.anchorFood": "الطعام",
     "outlet.anchorReviews": "المراجعات",
     "outlet.notAvailable": "غير متاح",
-    "outlet.helpful": "مفيد",
     "sharedCards.brands.countSuffix": "علامة",
     "sharedCards.brands.searchPlaceholder": "ابحث عن العلامات...",
     "sharedCards.maps.description": "افتح الملاحة بتطبيق الخرائط المفضل لديك.",
@@ -6094,7 +5982,6 @@ export const translations: Record<
     "sharedCards.quickFacts.rating": "التقييم",
     "sharedCards.quickFacts.noRating": "لا يوجد تقييم بعد",
     "sharedCards.reviews.guestRating": "تقييم الزوار",
-    "sharedCards.writeReview.subtitle": "شارك تجربة التسوق في الأوتليت",
     "sharedCards.weather.kicker": "الطقس",
 
     "profile.title": "الملف الشخصي",
@@ -6472,30 +6359,13 @@ export const translations: Record<
     "offline.exchangeTitle": "ذاكرة أسعار الصرف دون اتصال",
     "offline.exchangeText":
       "يمكن للحاسبات استخدام آخر أسعار صرف محفوظة عند عدم الاتصال.",
-    "outlet.mostHelpful": "الأكثر فائدة",
-    "outlet.recent": "الأحدث",
     "outlet.edited": "تم التعديل",
-    "outlet.editReview": "تعديل المراجعة",
 
     "myReviews.title": "مراجعاتي",
     "myReviews.subtitle": "المراجعات التي كتبتها.",
     "myReviews.emptyTitle": "لا توجد مراجعات بعد",
     "myReviews.emptyText": "ستظهر مراجعاتك هنا.",
     "myReviews.viewOutlet": "عرض الأوتلت →",
-    "writeReview.title": "اكتب مراجعة",
-    "writeReview.editTitle": "تعديل المراجعة",
-    "writeReview.overall": "التجربة العامة",
-    "writeReview.transportation": "المواصلات",
-    "writeReview.brandVariety": "تنوع العلامات",
-    "writeReview.restaurants": "المطاعم والمقاهي",
-    "writeReview.services": "الخدمات والمرافق",
-    "writeReview.comment": "تعليقك",
-    "writeReview.placeholder": "شارك تجربة التسوق...",
-    "writeReview.submit": "إرسال المراجعة",
-    "writeReview.update": "تحديث المراجعة",
-    "writeReview.note":
-      "إرسال المراجعة إجراء تجريبي حالياً. لاحقاً سيتطلب تسجيل الدخول وسيُحفظ في قاعدة البيانات.",
-    "writeReview.defaultUserName": "مستخدم My Outlet Guide",
     "writeReview.unavailableTitle": "المراجعات غير متاحة بعد",
     "writeReview.unavailableText":
       "سيتم فتح إرسال مراجعات المنافذ فقط بعد جاهزية التخزين الإنتاجي والإشراف والإبلاغ عن إساءة الاستخدام.",
@@ -7160,7 +7030,6 @@ export const translations: Record<
     "outlet.removeFavorite": "❤️ Убрать из избранного",
     "outlet.taxFree": "Tax Free",
     "outlet.limitedTaxFree": "Ограниченный Tax Free",
-    "outlet.writeReview": "Написать отзыв",
     "outlet.reviewLabel": "Отзывы",
     "outlet.transportationRating": "Транспорт",
     "outlet.brandsRating": "Бренды",
@@ -7179,7 +7048,6 @@ export const translations: Record<
     "outlet.anchorFood": "Еда",
     "outlet.anchorReviews": "Отзывы",
     "outlet.notAvailable": "Недоступно",
-    "outlet.helpful": "Полезно",
     "sharedCards.brands.countSuffix": "брендов",
     "sharedCards.brands.searchPlaceholder": "Искать бренды...",
     "sharedCards.maps.description":
@@ -7194,7 +7062,6 @@ export const translations: Record<
     "sharedCards.quickFacts.rating": "Рейтинг",
     "sharedCards.quickFacts.noRating": "Пока нет рейтинга",
     "sharedCards.reviews.guestRating": "Оценка гостей",
-    "sharedCards.writeReview.subtitle": "Поделитесь опытом outlet-шопинга",
     "sharedCards.weather.kicker": "Погода",
 
     "profile.title": "Профиль",
@@ -7596,32 +7463,13 @@ export const translations: Record<
     "offline.exchangeTitle": "Офлайн-кеш курсов валют",
     "offline.exchangeText":
       "Калькуляторы могут использовать последние сохраненные курсы без интернета.",
-
-    "outlet.mostHelpful": "Самые полезные",
-    "outlet.recent": "Недавние",
     "outlet.edited": "Изменено",
-    "outlet.editReview": "Редактировать отзыв",
 
     "myReviews.title": "Мои отзывы",
     "myReviews.subtitle": "Отзывы, которые вы написали.",
     "myReviews.emptyTitle": "Пока нет отзывов",
     "myReviews.emptyText": "Ваши отзывы появятся здесь.",
     "myReviews.viewOutlet": "Открыть аутлет →",
-
-    "writeReview.title": "Написать отзыв",
-    "writeReview.editTitle": "Редактировать отзыв",
-    "writeReview.overall": "Общее впечатление",
-    "writeReview.transportation": "Транспорт",
-    "writeReview.brandVariety": "Выбор брендов",
-    "writeReview.restaurants": "Рестораны и кафе",
-    "writeReview.services": "Сервисы и удобства",
-    "writeReview.comment": "Ваш комментарий",
-    "writeReview.placeholder": "Поделитесь опытом шопинга...",
-    "writeReview.submit": "Отправить отзыв",
-    "writeReview.update": "Обновить отзыв",
-    "writeReview.note":
-      "Отправка отзыва пока работает в демо-режиме. Позже потребуется вход, и отзыв будет сохранен в базе данных.",
-    "writeReview.defaultUserName": "Пользователь My Outlet Guide",
     "writeReview.unavailableTitle": "Отзывы пока недоступны",
     "writeReview.unavailableText":
       "Отправка отзывов об аутлетах будет открыта только после готовности продакшен-хранилища, модерации и жалоб на нарушения.",
@@ -8333,7 +8181,6 @@ export const translations: Record<
     "outlet.removeFavorite": "❤️ 取消收藏",
     "outlet.taxFree": "Tax Free",
     "outlet.limitedTaxFree": "有限 Tax Free",
-    "outlet.writeReview": "写评价",
     "outlet.reviewLabel": "评价",
     "outlet.transportationRating": "交通",
     "outlet.brandsRating": "品牌",
@@ -8352,7 +8199,6 @@ export const translations: Record<
     "outlet.anchorFood": "餐饮",
     "outlet.anchorReviews": "评价",
     "outlet.notAvailable": "不可用",
-    "outlet.helpful": "有帮助",
     "sharedCards.brands.countSuffix": "品牌",
     "sharedCards.brands.searchPlaceholder": "搜索品牌...",
     "sharedCards.maps.description": "用你偏好的地图 App 打开导航。",
@@ -8366,7 +8212,6 @@ export const translations: Record<
     "sharedCards.quickFacts.rating": "评分",
     "sharedCards.quickFacts.noRating": "暂无评分",
     "sharedCards.reviews.guestRating": "访客评分",
-    "sharedCards.writeReview.subtitle": "分享你的奥特莱斯购物体验",
     "sharedCards.weather.kicker": "天气",
 
     "profile.title": "个人资料",
@@ -8746,32 +8591,13 @@ export const translations: Record<
     "offline.notesText": "旅行中保存商品、价格和购物想法。",
     "offline.exchangeTitle": "离线汇率缓存",
     "offline.exchangeText": "离线时计算器可使用上次保存的汇率。",
-
-    "outlet.mostHelpful": "最有帮助",
-    "outlet.recent": "最新",
     "outlet.edited": "已编辑",
-    "outlet.editReview": "编辑评价",
 
     "myReviews.title": "我的评价",
     "myReviews.subtitle": "你写过的评价。",
     "myReviews.emptyTitle": "暂无评价",
     "myReviews.emptyText": "你的评价会显示在这里。",
     "myReviews.viewOutlet": "查看奥莱 →",
-
-    "writeReview.title": "写评价",
-    "writeReview.editTitle": "编辑评价",
-    "writeReview.overall": "整体体验",
-    "writeReview.transportation": "交通",
-    "writeReview.brandVariety": "品牌丰富度",
-    "writeReview.restaurants": "餐厅与咖啡馆",
-    "writeReview.services": "服务与设施",
-    "writeReview.comment": "你的评价",
-    "writeReview.placeholder": "分享你的购物体验...",
-    "writeReview.submit": "提交评价",
-    "writeReview.update": "更新评价",
-    "writeReview.note":
-      "评价提交目前为演示功能。之后将需要用户登录，并把评价保存到数据库。",
-    "writeReview.defaultUserName": "My Outlet Guide 用户",
     "writeReview.unavailableTitle": "评论尚未开放",
     "writeReview.unavailableText":
       "只有在生产存储、审核和滥用举报准备就绪后，才会开放奥莱评论提交。",

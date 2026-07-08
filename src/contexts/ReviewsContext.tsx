@@ -11,14 +11,8 @@ import { outlets } from "../constants/outlets";
 import type { OutletReview } from "../types/review";
 
 type ReviewsContextType = {
-addReview: (review: OutletReview) => void;
 anonymizeUserReviews: (userId: string) => Promise<void>;
 reviews: OutletReview[];
-
-updateReview: (
-reviewId: string,
-updatedReview: Partial<OutletReview>
-) => void;
 };
 
 const ReviewsContext = createContext<ReviewsContextType | undefined>(undefined);
@@ -51,11 +45,6 @@ setReviews(allReviews);
 console.log("Reviews load error", error);
 }
 }
-function addReview(_review: OutletReview) {
-console.warn("Review submission is disabled until production moderation and storage are available.");
-}
-
-
 async function anonymizeUserReviews(userId: string) {
 const userReviews = reviews.filter(
 (review) => review.userId === userId
@@ -92,21 +81,11 @@ console.log("Reviews anonymize error", error);
 }
 }
 
-function updateReview(
-_reviewId: string,
-_updatedReview: Partial<OutletReview>
-) {
-console.warn("Review editing is disabled until production moderation and storage are available.");
-}
-
-
 return (
 <ReviewsContext.Provider
 value={{
 reviews,
-addReview,
 anonymizeUserReviews,
-updateReview,
 }}
 >
 {children}

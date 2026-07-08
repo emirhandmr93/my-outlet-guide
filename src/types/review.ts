@@ -14,10 +14,3 @@ export type OutletReview = {
   updatedAt?: string;
   previousComment?: string;
 };
-
-export type ReviewHelpfulItem = {
-  reviewId: string;
-  helpfulCount: number;
-  userIds?: string[];
-  isHelpfulByCurrentUser?: boolean;
-};
