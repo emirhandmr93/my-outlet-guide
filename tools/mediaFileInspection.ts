@@ -2,7 +2,7 @@ import fs from "node:fs";
 
 export type MediaFileInspection = {
   exists: boolean;
-  format: "webp" | "jpeg" | "avif" | "unknown";
+  format: "webp" | "jpeg" | "png" | "avif" | "unknown";
   width?: number;
   height?: number;
   fileSizeBytes: number;
@@ -128,6 +128,29 @@ function inspectJpeg(
   return { format: "jpeg" };
 }
 
+function inspectPng(
+  buffer: Buffer,
+): Pick<MediaFileInspection, "format" | "width" | "height"> | undefined {
+  if (
+    buffer.length < 24 ||
+    buffer[0] !== 0x89 ||
+    buffer.subarray(1, 4).toString("ascii") !== "PNG" ||
+    buffer[4] !== 0x0d ||
+    buffer[5] !== 0x0a ||
+    buffer[6] !== 0x1a ||
+    buffer[7] !== 0x0a ||
+    buffer.subarray(12, 16).toString("ascii") !== "IHDR"
+  ) {
+    return undefined;
+  }
+
+  return {
+    format: "png",
+    width: buffer.readUInt32BE(16),
+    height: buffer.readUInt32BE(20),
+  };
+}
+
 function inspectAvif(
   buffer: Buffer,
 ): Pick<MediaFileInspection, "format" | "width" | "height"> | undefined {
@@ -151,6 +174,7 @@ export function inspectMediaFile(filePath: string): MediaFileInspection {
   const buffer = fs.readFileSync(filePath);
   const inspection = inspectWebp(buffer) ??
     inspectJpeg(buffer) ??
+    inspectPng(buffer) ??
     inspectAvif(buffer) ?? { format: "unknown" as const };
 
   return { exists: true, fileSizeBytes, ...inspection };
