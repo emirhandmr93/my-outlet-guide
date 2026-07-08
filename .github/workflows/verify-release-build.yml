@@ -1,0 +1,65 @@
+name: Verify release build
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-release-build:
+    name: Verify release build on Node 22
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install root dependencies cleanly
+        run: npm ci
+
+      - name: Install Functions dependencies cleanly
+        run: npm --prefix functions ci
+
+      - name: Build Functions
+        run: npm --prefix functions run build
+
+      - name: Validate TypeScript
+        run: npx tsc --noEmit
+
+      - name: Validate master data
+        run: npx tsx src/services/masterDataValidator.ts
+
+      - name: Validate translation keys
+        run: npx tsx tools/checkTranslationKeys.ts
+
+      - name: Validate outlet media metadata
+        run: npx tsx tools/checkOutletMediaMetadata.ts
+
+      - name: Audit outlet media metadata resolver
+        run: npx tsx tools/checkOutletMediaMetadata.ts --resolver-audit
+
+      - name: Confirm Functions build output is untracked
+        run: |
+          tracked_files="$(git ls-files functions/lib)"
+          if [ -n "$tracked_files" ]; then
+            echo "functions/lib must not be tracked:"
+            echo "$tracked_files"
+            exit 1
+          fi
+          echo "functions/lib is not tracked."
+
+      - name: Confirm working tree has no uncommitted generated files
+        run: |
+          status="$(git status --short)"
+          if [ -n "$status" ]; then
+            echo "Working tree has uncommitted changes:"
+            echo "$status"
+            exit 1
+          fi
+          echo "Working tree is clean."
