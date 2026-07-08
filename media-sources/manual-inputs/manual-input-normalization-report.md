@@ -1,111 +1,660 @@
 # Manual Input Normalization Report
 
-Generated: 2026-07-08T17:10:44.270Z
-Updated: 2026-07-08T18:05:00.000Z
-Phase: Media Final Phase M1C manual blocker review
+Generated: 2026-07-08T18:01:05.626Z
+Phase: Media Final Phase M1E final manual input blocker audit after M1C merge
 
 Canonical outlet count: 108
 Outlet folders visible: yes
-Folders normalized: 22
-Renamed file count: 36
-Extra images moved: 0
-Placeholder files removed: 0
-Unsupported file count: 5
-Non-JPG source count: 25
-Remaining missing required files: 7
-Ready outlet count: 102
-Blocked outlet count: 6
-Total accepted manual input image count: 390
+Missing outlet folders: 0
+Safe rename count: 42
+Remaining missing required files: 2
+Invalid/unsupported required files: 11
+Optional invalid/unsupported files: 3
+Ready outlet count: 99
+Blocked outlet count: 9
+Total accepted manual input image count: 389
 
-Required manual slots are satisfied by any valid source file named hero, gallery1, or gallery2 with one of these extensions: .jpg, .jpeg, .png, or .webp. gallery3 is optional and accepts the same extensions. Accepted .png and .webp files remain in source format for the later import phase, which will convert accepted source formats to final WebP output.
+Blocked outlets:
+- east-midlands-designer-outlet
+- foxtown-factory-stores
+- halle-leipzig-the-style-outlets
+- icon-outlet-at-the-o2
+- london-designer-outlet
+- outletcity-metzingen
+- valmontone-outlet
+- vila-do-conde-porto-fashion-outlet
+- zweibrucken-fashion-outlet
+Required image dimensions decoded: 311
+Required images below 1600x900: 232
+Required image types: webp=53, jpeg=253, png=5
 
-## Flattened nested folders
-- None
+## M1C merge verification
+- designer-outlet-gdansk/gallery1.png: present, detected png 1300x867
+- designer-outlet-parndorf/gallery2.png: present, detected png 1000x667
 
-## Normalized folders
-- affinity-sterling-mills
-- ashford-designer-outlet
-- barberino
-- braintree-village
-- caledonia-park
-- castel-romano
-- cheshire-oaks
-- clarks-village
-- designer-outlet-luxembourg
-- designer-outlet-malaga
-- designer-outlet-ochtrup
-- designer-outlet-parndorf
-- designer-outlet-roermond
-- designer-outlet-roosendaal
-- designer-outlet-sosnowiec
-- factory-annopol
-- factory-ursus
-- fashion-fish-factory-outlet
-- fidenza-village
-- lakeside-village
-- torino-outlet-village
-- wroclaw-fashion-outlet
-
-## M1C safe renames
-- designer-outlet-gdansk/gallery1.jpeg -> designer-outlet-gdansk/gallery1.png (valid PNG)
-- designer-outlet-parndorf/gallery2.jpeg -> designer-outlet-parndorf/gallery2.png (valid PNG)
-
-## Unsupported or blocked files
-- barberino/gallery3.jpeg (invalid JPEG-labeled file; detected AVIF; unsupported for M1C accepted source coverage)
-- cheshire-oaks/hero.jpeg (invalid JPEG-labeled file; detected AVIF; unsupported for M1C accepted source coverage)
-- city-outlet-bad-munstereifel/gallery2.jpeg (invalid JPEG-labeled file; detected AVIF; unsupported for M1C accepted source coverage)
-- east-midlands-designer-outlet/gallery1.jpeg (invalid JPEG-labeled file; detected AVIF; unsupported for M1C accepted source coverage)
-- east-midlands-designer-outlet/gallery2.jpeg (invalid JPEG-labeled file; detected AVIF; unsupported for M1C accepted source coverage)
-
-## M1C invalid JPEG-labeled file inspection
-- barberino/gallery3.jpeg: detected AVIF; unsupported for M1C accepted source coverage; optional gallery3 remains blocked only for replacement if desired.
-- cheshire-oaks/hero.jpeg: detected AVIF; unsupported for M1C accepted source coverage; required hero still needs user replacement.
-- city-outlet-bad-munstereifel/gallery2.jpeg: detected AVIF; unsupported for M1C accepted source coverage; required gallery2 still needs user replacement.
-- designer-outlet-gdansk/gallery1.jpeg: detected PNG; safely renamed to designer-outlet-gdansk/gallery1.png.
-- designer-outlet-parndorf/gallery2.jpeg: detected PNG; safely renamed to designer-outlet-parndorf/gallery2.png.
-- east-midlands-designer-outlet/gallery1.jpeg: detected AVIF; unsupported for M1C accepted source coverage; required gallery1 still needs user replacement.
-- east-midlands-designer-outlet/gallery2.jpeg: detected AVIF; unsupported for M1C accepted source coverage; required gallery2 still needs user replacement.
-
-## Non-JPG sources left in source format
-- affinity-sterling-mills/hero.webp
-- amsterdam-the-style-outlets/gallery1.webp
-- ashford-designer-outlet/hero.webp
-- barberino/hero.webp
-- braintree-village/gallery2.webp
-- braintree-village/gallery3.webp
-- caledonia-park/gallery1.webp
-- caledonia-park/gallery3.webp
-- caledonia-park/hero.webp
-- castel-romano/hero.webp
-- cheshire-oaks/gallery2.webp
-- clarks-village/gallery1.webp
-- designer-outlet-gdansk/gallery1.png
-- designer-outlet-luxembourg/gallery1.webp
-- designer-outlet-malaga/gallery2.webp
-- designer-outlet-ochtrup/hero.webp
-- designer-outlet-parndorf/gallery1.webp
-- designer-outlet-parndorf/gallery2.png
-- designer-outlet-parndorf/hero.webp
-- designer-outlet-roermond/gallery2.webp
-- designer-outlet-roosendaal/hero.webp
-- designer-outlet-sosnowiec/gallery1.webp
-- fashion-fish-factory-outlet/gallery1.webp
-- fashion-fish-factory-outlet/hero.webp
-- fidenza-village/gallery2.webp
+## Files safely renamed in M1E
+- cheshire-oaks/hero.jpg -> cheshire-oaks/hero.webp (valid WEBP)
+- fleetwood-outlet/hero.jpg -> fleetwood-outlet/hero.webp (valid WEBP)
+- foxtown-factory-stores/gallery2.jpg -> foxtown-factory-stores/gallery2.webp (valid WEBP)
+- getafe-the-style-outlets/gallery1.jpg -> getafe-the-style-outlets/gallery1.webp (valid WEBP)
+- getafe-the-style-outlets/gallery2.jpg -> getafe-the-style-outlets/gallery2.webp (valid WEBP)
+- hede-fashion-outlet/hero.jpg -> hede-fashion-outlet/hero.webp (valid WEBP)
+- hede-fashion-outlet/gallery2.jpg -> hede-fashion-outlet/gallery2.png (valid PNG)
+- ideapark-lempaala-outlet/gallery1.jpg -> ideapark-lempaala-outlet/gallery1.webp (valid WEBP)
+- junction-32-outlet/gallery3.jpg -> junction-32-outlet/gallery3.webp (valid WEBP)
+- kildare-village/gallery1.jpg -> kildare-village/gallery1.webp (valid WEBP)
+- la-reggia/gallery1.jpg -> la-reggia/gallery1.webp (valid WEBP)
+- la-reggia/gallery2.jpg -> la-reggia/gallery2.webp (valid WEBP)
+- la-roca-village/hero.jpg -> la-roca-village/hero.webp (valid WEBP)
+- la-roca-village/gallery1.jpg -> la-roca-village/gallery1.webp (valid WEBP)
+- la-vallee-village/gallery3.jpg -> la-vallee-village/gallery3.png (valid PNG)
+- landquart-fashion-outlet/gallery2.jpg -> landquart-fashion-outlet/gallery2.webp (valid WEBP)
+- london-designer-outlet/gallery1.jpg -> london-designer-outlet/gallery1.webp (valid WEBP)
+- maasmechelen-village/gallery2.jpg -> maasmechelen-village/gallery2.webp (valid WEBP)
+- noventa/hero.jpg -> noventa/hero.webp (valid WEBP)
+- noventa/gallery1.jpg -> noventa/gallery1.webp (valid WEBP)
+- outletcity-metzingen/gallery2.jpg -> outletcity-metzingen/gallery2.webp (valid WEBP)
+- paris-giverny-designer-outlet/hero.jpg -> paris-giverny-designer-outlet/hero.webp (valid WEBP)
+- puglia-village/gallery3.jpg -> puglia-village/gallery3.webp (valid WEBP)
+- ringsted-outlet/gallery2.jpg -> ringsted-outlet/gallery2.webp (valid WEBP)
+- ros-designer-outlet/hero.jpg -> ros-designer-outlet/hero.webp (valid WEBP)
+- ros-designer-outlet/gallery1.jpg -> ros-designer-outlet/gallery1.webp (valid WEBP)
+- ros-designer-outlet/gallery3.jpg -> ros-designer-outlet/gallery3.webp (valid WEBP)
+- roubaix-designer-outlet/gallery1.jpg -> roubaix-designer-outlet/gallery1.webp (valid WEBP)
+- sambil-madrid/gallery1.jpg -> sambil-madrid/gallery1.webp (valid WEBP)
+- scalo-milano-outlet-more/gallery3.jpg -> scalo-milano-outlet-more/gallery3.webp (valid WEBP)
+- serravalle-designer-outlet/gallery1.jpg -> serravalle-designer-outlet/gallery1.png (valid PNG)
+- serravalle-designer-outlet/gallery3.jpg -> serravalle-designer-outlet/gallery3.webp (valid WEBP)
+- sevilla-fashion-outlet/gallery2.jpg -> sevilla-fashion-outlet/gallery2.png (valid PNG)
+- swindon-designer-outlet/hero.jpg -> swindon-designer-outlet/hero.webp (valid WEBP)
+- the-boulevard-banbridge/gallery2.jpg -> the-boulevard-banbridge/gallery2.webp (valid WEBP)
+- the-boulevard-banbridge/gallery3.jpg -> the-boulevard-banbridge/gallery3.webp (valid WEBP)
+- the-mall-firenze/gallery2.jpg -> the-mall-firenze/gallery2.webp (valid WEBP)
+- the-village-outlet/gallery2.jpg -> the-village-outlet/gallery2.webp (valid WEBP)
+- valdichiana-village/gallery2.jpg -> valdichiana-village/gallery2.webp (valid WEBP)
+- via-jurmala-outlet-village/gallery2.jpg -> via-jurmala-outlet-village/gallery2.webp (valid WEBP)
+- york-designer-outlet/hero.jpg -> york-designer-outlet/hero.webp (valid WEBP)
+- york-designer-outlet/gallery1.jpg -> york-designer-outlet/gallery1.webp (valid WEBP)
 
 ## Remaining missing required files
-- affinity-sterling-mills: missing gallery2
-- cheshire-oaks: missing hero
-- city-outlet-bad-munstereifel: missing gallery2
-- coruna-the-style-outlets: missing gallery2
-- dalton-park: missing gallery2
-- east-midlands-designer-outlet: missing gallery1, gallery2
-- fashion-fish-factory-outlet: missing gallery2
+- east-midlands-designer-outlet: missing gallery1
+- east-midlands-designer-outlet: missing gallery2
 
-## M1C completion status
-- Media Final Phase M1C cannot be marked complete yet because 6 outlets still have missing required source coverage.
-- Media Final Phase M1 audit can be rerun after the remaining replacement files are supplied.
-- It is not safe to proceed later to destructive M2 reset/import until all 108 outlets are ready.
+## Invalid or unsupported required files
+- foxtown-factory-stores/hero.jpg: detected avif
+- foxtown-factory-stores/gallery1.jpg: detected avif
+- halle-leipzig-the-style-outlets/gallery2.jpg: detected avif
+- icon-outlet-at-the-o2/gallery1.jpg: detected avif
+- london-designer-outlet/hero.jpg: detected avif
+- outletcity-metzingen/hero.jpg: detected avif
+- valmontone-outlet/gallery1.jpg: detected avif
+- vila-do-conde-porto-fashion-outlet/hero.jpg: detected avif
+- vila-do-conde-porto-fashion-outlet/gallery1.jpg: detected avif
+- zweibrucken-fashion-outlet/hero.jpg: detected avif
+- zweibrucken-fashion-outlet/gallery1.jpg: detected avif
 
-## Skipped safe-move operations
-- None
+## Invalid or unsupported optional files
+- outletcity-metzingen/gallery3.jpg: detected avif
+- vicolungo-the-style-outlets/gallery3.jpg: detected avif
+- west-midlands-designer-outlet/gallery3.jpg: detected avif
+
+## Previously blocked file verification
+- affinity-sterling-mills/gallery2.jpg: detected jpeg 547x365
+- coruna-the-style-outlets/gallery2.jpg: detected jpeg 595x336
+- dalton-park/gallery2.jpg: detected jpeg 386x518
+- fashion-fish-factory-outlet/gallery2.jpg: detected jpeg 3118x2339
+- cheshire-oaks/hero.webp: detected webp 5295x4024
+- city-outlet-bad-munstereifel/gallery2.jpg: detected jpeg 1000x667
+- east-midlands-designer-outlet/gallery1: still missing
+- east-midlands-designer-outlet/gallery2: still missing
+
+## Small required images below 1600x900
+- affinity-sterling-mills/gallery1.jpg 1200x800
+- affinity-sterling-mills/gallery2.jpg 547x365
+- amsterdam-the-style-outlets/gallery1.webp 1198x677
+- amsterdam-the-style-outlets/gallery2.jpg 1200x1152
+- ashford-designer-outlet/gallery1.jpg 1280x1280
+- ashford-designer-outlet/gallery2.jpg 703x436
+- barberino/hero.webp 1920x700
+- batavia-stad-fashion-outlet/hero.jpg 547x365
+- batavia-stad-fashion-outlet/gallery1.jpg 1200x800
+- batavia-stad-fashion-outlet/gallery2.jpg 1200x630
+- bicester-village/gallery1.jpg 739x415
+- bridgend-designer-outlet/hero.jpg 1068x790
+- bridgend-designer-outlet/gallery1.jpg 1051x700
+- bridgend-designer-outlet/gallery2.jpg 1100x1100
+- brugnato-5terre-outlet-village/hero.jpg 1280x960
+- brugnato-5terre-outlet-village/gallery1.jpg 1200x800
+- caledonia-park/gallery2.jpg 1506x1080
+- castel-guelfo-the-style-outlets/hero.jpg 1340x894
+- castel-guelfo-the-style-outlets/gallery1.jpg 1200x1200
+- castel-guelfo-the-style-outlets/gallery2.jpg 1340x894
+- castel-romano/hero.webp 1120x1120
+- castel-romano/gallery1.jpg 1360x1020
+- castel-romano/gallery2.jpg 960x480
+- cheshire-oaks/gallery1.jpg 554x554
+- cheshire-oaks/gallery2.webp 1310x1300
+- cilento-outlet-village/hero.jpg 731x419
+- cilento-outlet-village/gallery1.jpg 679x452
+- cilento-outlet-village/gallery2.jpg 992x668
+- city-outlet-bad-munstereifel/hero.jpg 983x1000
+- city-outlet-bad-munstereifel/gallery2.jpg 1000x667
+- clarks-village/hero.jpg 1200x1200
+- clarks-village/gallery2.jpg 1100x733
+- coruna-the-style-outlets/gallery1.jpg 900x500
+- coruna-the-style-outlets/gallery2.jpg 595x336
+- dalton-park/hero.jpg 1200x900
+- dalton-park/gallery1.jpg 1220x822
+- dalton-park/gallery2.jpg 386x518
+- designer-outlet-athens/hero.jpg 1164x450
+- designer-outlet-athens/gallery2.jpg 547x365
+- designer-outlet-berlin/hero.jpg 1200x1200
+- designer-outlet-berlin/gallery2.jpg 1295x971
+- designer-outlet-gdansk/gallery1.png 1300x867
+- designer-outlet-gdansk/gallery2.jpg 399x501
+- designer-outlet-luxembourg/hero.jpg 970x728
+- designer-outlet-luxembourg/gallery2.jpg 1280x960
+- designer-outlet-malaga/hero.jpg 1200x900
+- designer-outlet-malaga/gallery1.jpg 678x452
+- designer-outlet-malaga/gallery2.webp 1550x1056
+- designer-outlet-neumunster/hero.jpg 638x480
+- designer-outlet-neumunster/gallery1.jpg 1200x799
+- designer-outlet-neumunster/gallery2.jpg 1200x900
+- designer-outlet-ochtrup/hero.webp 1080x1080
+- designer-outlet-ochtrup/gallery1.jpg 800x800
+- designer-outlet-ochtrup/gallery2.jpg 1100x1100
+- designer-outlet-parndorf/gallery2.png 1000x667
+- designer-outlet-provence/hero.jpg 1200x606
+- designer-outlet-provence/gallery1.jpg 1100x1100
+- designer-outlet-provence/gallery2.jpg 1200x1200
+- designer-outlet-roermond/hero.jpg 640x480
+- designer-outlet-roermond/gallery2.webp 1200x793
+- designer-outlet-roosendaal/hero.webp 1199x799
+- designer-outlet-roosendaal/gallery2.jpg 1200x1200
+- designer-outlet-salzburg/hero.jpg 596x335
+- designer-outlet-salzburg/gallery1.jpg 900x500
+- designer-outlet-salzburg/gallery2.jpg 1100x1100
+- designer-outlet-sosnowiec/hero.jpg 547x365
+- designer-outlet-sosnowiec/gallery2.jpg 1300x867
+- designer-outlet-troyes/hero.jpg 547x365
+- designer-outlet-troyes/gallery1.jpg 679x452
+- designer-outlet-troyes/gallery2.jpg 678x452
+- designer-outlet-warszawa/hero.jpg 554x554
+- designer-outlet-warszawa/gallery2.jpg 1024x683
+- designer-outlets-wolfsburg/hero.jpg 525x380
+- designer-outlets-wolfsburg/gallery1.jpg 1000x700
+- designer-outlets-wolfsburg/gallery2.jpg 1088x816
+- east-midlands-designer-outlet/hero.jpg 1220x713
+- factory-annopol/hero.jpg 1500x1000
+- factory-annopol/gallery2.jpg 1500x1000
+- factory-ursus/gallery1.jpg 1333x2000
+- factory-ursus/gallery2.jpg 1010x631
+- fashion-arena-prague-outlet/hero.jpg 1280x853
+- fashion-arena-prague-outlet/gallery1.jpg 547x365
+- fashion-arena-prague-outlet/gallery2.jpg 1115x716
+- fashion-house-outlet-centre-bucharest/hero.jpg 1085x723
+- fashion-house-outlet-centre-bucharest/gallery1.jpg 900x500
+- fashion-house-outlet-centre-bucharest/gallery2.jpg 900x500
+- fashion-house-outlet-centre-pallady/hero.jpg 1085x723
+- fashion-house-outlet-centre-pallady/gallery1.jpg 1200x800
+- fashion-house-outlet-centre-pallady/gallery2.jpg 738x415
+- fidenza-village/hero.jpg 1280x853
+- fidenza-village/gallery1.jpg 1160x772
+- fidenza-village/gallery2.webp 1280x720
+- fleetwood-outlet/gallery1.jpg 499x400
+- fleetwood-outlet/gallery2.jpg 1080x810
+- foxtown-factory-stores/gallery2.webp 1080x1350
+- franciacorta-designer-village/hero.jpg 566x542
+- freeport-lisboa-fashion-outlet/hero.jpg 1440x810
+- freeport-lisboa-fashion-outlet/gallery1.jpg 1200x975
+- freeport-lisboa-fashion-outlet/gallery2.jpg 1200x975
+- getafe-the-style-outlets/hero.jpg 554x554
+- getafe-the-style-outlets/gallery2.webp 720x480
+- gloucester-quays/hero.jpg 554x554
+- gloucester-quays/gallery1.jpg 765x401
+- gloucester-quays/gallery2.jpg 1200x1152
+- gunwharf-quays/hero.jpg 1200x1200
+- gunwharf-quays/gallery1.jpg 900x500
+- gunwharf-quays/gallery2.jpg 1220x715
+- halle-leipzig-the-style-outlets/hero.jpg 1024x683
+- hede-fashion-outlet/gallery1.jpg 900x506
+- hede-fashion-outlet/gallery2.png 800x533
+- icon-outlet-at-the-o2/hero.jpg 547x365
+- icon-outlet-at-the-o2/gallery2.jpg 1200x661
+- ideapark-lempaala-outlet/hero.jpg 1200x900
+- ideapark-lempaala-outlet/gallery1.webp 1000x1000
+- ingolstadt-village/gallery1.jpg 900x500
+- junction-32-outlet/hero.jpg 622x493
+- junction-32-outlet/gallery1.jpg 1500x1000
+- junction-32-outlet/gallery2.jpg 1200x800
+- kildare-village/hero.jpg 1200x800
+- kildare-village/gallery1.webp 1366x768
+- kildare-village/gallery2.jpg 1024x683
+- la-reggia/hero.jpg 1400x1050
+- la-roca-village/gallery2.jpg 800x800
+- la-vallee-village/gallery1.jpg 1200x1200
+- la-vallee-village/gallery2.jpg 1080x1080
+- lakeside-village/hero.jpg 1035x690
+- lakeside-village/gallery1.jpg 835x626
+- lakeside-village/gallery2.jpg 399x501
+- landquart-fashion-outlet/hero.jpg 1200x800
+- las-rozas-village/hero.jpg 1080x1080
+- las-rozas-village/gallery1.jpg 848x1024
+- las-rozas-village/gallery2.jpg 1002x1002
+- livingston-designer-outlet/hero.jpg 1200x800
+- livingston-designer-outlet/gallery1.jpg 678x452
+- london-designer-outlet/gallery2.jpg 1024x683
+- maasmechelen-village/hero.jpg 1050x1220
+- maasmechelen-village/gallery1.jpg 1920x864
+- mallorca-fashion-outlet/hero.jpg 1020x694
+- mallorca-fashion-outlet/gallery2.jpg 783x391
+- mantova-village/hero.jpg 1030x773
+- mantova-village/gallery1.jpg 1280x720
+- mantova-village/gallery2.jpg 1200x675
+- mondovicino-outlet-village/gallery1.jpg 1200x900
+- montabaur-the-style-outlets/hero.jpg 1200x1200
+- montabaur-the-style-outlets/gallery1.jpg 1200x900
+- montabaur-the-style-outlets/gallery2.jpg 1196x797
+- norwegian-outlet/hero.jpg 545x366
+- norwegian-outlet/gallery2.jpg 960x414
+- noventa/gallery2.jpg 1365x768
+- one-nation-paris/hero.jpg 678x452
+- one-nation-paris/gallery1.jpg 1200x675
+- one-nation-paris/gallery2.jpg 900x500
+- outlet-park-vilnius/hero.jpg 900x500
+- outlet-park-vilnius/gallery1.jpg 990x660
+- outlet-park-vilnius/gallery2.jpg 1200x1200
+- outletcity-metzingen/gallery1.jpg 1200x800
+- outletcity-metzingen/gallery2.webp 1900x800
+- palmanova-designer-village/hero.jpg 554x554
+- palmanova-designer-village/gallery2.jpg 1000x667
+- paris-giverny-designer-outlet/hero.webp 1120x1120
+- paris-giverny-designer-outlet/gallery2.jpg 1200x1200
+- premier-outlet-budapest/hero.jpg 1300x867
+- premier-outlet-budapest/gallery1.jpg 1175x985
+- puglia-village/gallery1.jpg 1200x1200
+- puglia-village/gallery2.jpg 1200x800
+- ringsted-outlet/gallery1.jpg 1200x1200
+- ringsted-outlet/gallery2.webp 1472x1424
+- roppenheim-the-style-outlets/hero.jpg 1068x710
+- roppenheim-the-style-outlets/gallery1.jpg 1200x1200
+- roppenheim-the-style-outlets/gallery2.jpg 900x500
+- ros-designer-outlet/hero.webp 1200x600
+- ros-designer-outlet/gallery1.webp 1368x770
+- roubaix-designer-outlet/hero.jpg 1200x1199
+- roubaix-designer-outlet/gallery2.jpg 1024x683
+- sambil-madrid/hero.jpg 1200x799
+- sambil-madrid/gallery1.webp 720x470
+- san-sebastian-de-los-reyes-the-style-outlets/hero.jpg 1200x800
+- san-sebastian-de-los-reyes-the-style-outlets/gallery1.jpg 983x1000
+- san-sebastian-de-los-reyes-the-style-outlets/gallery2.jpg 1280x960
+- santangelo-outlet-village/hero.jpg 1024x768
+- santangelo-outlet-village/gallery2.jpg 364x549
+- scalo-milano-outlet-more/hero.jpg 1200x1200
+- scalo-milano-outlet-more/gallery2.jpg 1200x990
+- serravalle-designer-outlet/hero.jpg 1400x1050
+- serravalle-designer-outlet/gallery1.png 1000x667
+- serravalle-designer-outlet/gallery2.jpg 678x452
+- sevilla-fashion-outlet/hero.jpg 1200x800
+- sevilla-fashion-outlet/gallery2.png 800x450
+- sicilia-outlet-village/hero.jpg 900x468
+- sicilia-outlet-village/gallery1.jpg 960x640
+- sicilia-outlet-village/gallery2.jpg 800x560
+- springfields-outlet/hero.jpg 1278x718
+- springfields-outlet/gallery1.jpg 1573x1080
+- springfields-outlet/gallery2.jpg 1024x506
+- swindon-designer-outlet/hero.webp 1238x825
+- swindon-designer-outlet/gallery1.jpg 900x500
+- swindon-designer-outlet/gallery2.jpg 1000x879
+- t1-tallinn-outlet/gallery1.jpg 1200x600
+- t1-tallinn-outlet/gallery2.jpg 961x721
+- the-boulevard-banbridge/hero.jpg 500x400
+- the-boulevard-banbridge/gallery1.jpg 1200x801
+- the-galleria-outlet/gallery1.jpg 1200x1200
+- the-galleria-outlet/gallery2.jpg 399x501
+- the-mall-firenze/hero.jpg 1200x800
+- the-mall-firenze/gallery1.jpg 678x452
+- the-mall-firenze/gallery2.webp 1200x800
+- the-village-outlet/gallery1.jpg 900x500
+- the-village-outlet/gallery2.webp 900x600
+- torino-outlet-village/gallery1.jpg 900x500
+- torino-outlet-village/gallery2.jpg 750x1000
+- valdichiana-village/hero.jpg 1400x1400
+- valdichiana-village/gallery1.jpg 900x500
+- valdichiana-village/gallery2.webp 1500x844
+- valmontone-outlet/gallery2.jpg 1152x768
+- via-jurmala-outlet-village/hero.jpg 676x453
+- via-jurmala-outlet-village/gallery1.jpg 547x365
+- via-jurmala-outlet-village/gallery2.webp 900x1200
+- vicolungo-the-style-outlets/hero.jpg 1200x812
+- vicolungo-the-style-outlets/gallery1.jpg 1140x1140
+- vicolungo-the-style-outlets/gallery2.jpg 1500x1035
+- viladecans-the-style-outlets/hero.jpg 1400x933
+- viladecans-the-style-outlets/gallery1.jpg 1200x800
+- wertheim-village/hero.jpg 640x480
+- wertheim-village/gallery1.jpg 1008x756
+- west-midlands-designer-outlet/hero.jpg 1000x733
+- west-midlands-designer-outlet/gallery1.jpg 1200x1200
+- west-midlands-designer-outlet/gallery2.jpg 866x700
+- wroclaw-fashion-outlet/hero.jpg 1200x1200
+- wroclaw-fashion-outlet/gallery1.jpg 900x500
+- wroclaw-fashion-outlet/gallery2.jpg 940x529
+- york-designer-outlet/gallery2.jpg 1200x900
+- zweibrucken-fashion-outlet/gallery2.jpg 840x840
+
+## Required image dimension summary
+- affinity-sterling-mills/gallery1.jpg: 1200x800 (jpeg) — below 1600x900
+- affinity-sterling-mills/gallery2.jpg: 547x365 (jpeg) — below 1600x900
+- affinity-sterling-mills/hero.webp: 1920x1080 (webp)
+- amsterdam-the-style-outlets/gallery1.webp: 1198x677 (webp) — below 1600x900
+- amsterdam-the-style-outlets/gallery2.jpg: 1200x1152 (jpeg) — below 1600x900
+- amsterdam-the-style-outlets/hero.jpg: 2560x1160 (jpeg)
+- ashford-designer-outlet/gallery1.jpg: 1280x1280 (jpeg) — below 1600x900
+- ashford-designer-outlet/gallery2.jpg: 703x436 (jpeg) — below 1600x900
+- ashford-designer-outlet/hero.webp: 2048x1366 (webp)
+- barberino/gallery1.jpg: 6924x3304 (jpeg)
+- barberino/gallery2.jpg: 2100x1182 (jpeg)
+- barberino/hero.webp: 1920x700 (webp) — below 1600x900
+- batavia-stad-fashion-outlet/gallery1.jpg: 1200x800 (jpeg) — below 1600x900
+- batavia-stad-fashion-outlet/gallery2.jpg: 1200x630 (jpeg) — below 1600x900
+- batavia-stad-fashion-outlet/hero.jpg: 547x365 (jpeg) — below 1600x900
+- bicester-village/gallery1.jpg: 739x415 (jpeg) — below 1600x900
+- bicester-village/gallery2.jpg: 3024x4032 (jpeg)
+- bicester-village/hero.jpg: 2048x1536 (jpeg)
+- braintree-village/gallery1.jpg: 5490x3992 (jpeg)
+- braintree-village/gallery2.webp: 1920x1323 (webp)
+- braintree-village/hero.jpg: 6000x3992 (jpeg)
+- bridgend-designer-outlet/gallery1.jpg: 1051x700 (jpeg) — below 1600x900
+- bridgend-designer-outlet/gallery2.jpg: 1100x1100 (jpeg) — below 1600x900
+- bridgend-designer-outlet/hero.jpg: 1068x790 (jpeg) — below 1600x900
+- brugnato-5terre-outlet-village/gallery1.jpg: 1200x800 (jpeg) — below 1600x900
+- brugnato-5terre-outlet-village/gallery2.jpg: 1920x1005 (jpeg)
+- brugnato-5terre-outlet-village/hero.jpg: 1280x960 (jpeg) — below 1600x900
+- caledonia-park/gallery1.webp: 2560x1088 (webp)
+- caledonia-park/gallery2.jpg: 1506x1080 (jpeg) — below 1600x900
+- caledonia-park/hero.webp: 2560x1707 (webp)
+- castel-guelfo-the-style-outlets/gallery1.jpg: 1200x1200 (jpeg) — below 1600x900
+- castel-guelfo-the-style-outlets/gallery2.jpg: 1340x894 (jpeg) — below 1600x900
+- castel-guelfo-the-style-outlets/hero.jpg: 1340x894 (jpeg) — below 1600x900
+- castel-romano/gallery1.jpg: 1360x1020 (jpeg) — below 1600x900
+- castel-romano/gallery2.jpg: 960x480 (jpeg) — below 1600x900
+- castel-romano/hero.webp: 1120x1120 (webp) — below 1600x900
+- cheshire-oaks/gallery1.jpg: 554x554 (jpeg) — below 1600x900
+- cheshire-oaks/gallery2.webp: 1310x1300 (webp) — below 1600x900
+- cheshire-oaks/hero.webp: 5295x4024 (webp)
+- cilento-outlet-village/gallery1.jpg: 679x452 (jpeg) — below 1600x900
+- cilento-outlet-village/gallery2.jpg: 992x668 (jpeg) — below 1600x900
+- cilento-outlet-village/hero.jpg: 731x419 (jpeg) — below 1600x900
+- city-outlet-bad-munstereifel/gallery1.jpg: 2560x1707 (jpeg)
+- city-outlet-bad-munstereifel/gallery2.jpg: 1000x667 (jpeg) — below 1600x900
+- city-outlet-bad-munstereifel/hero.jpg: 983x1000 (jpeg) — below 1600x900
+- clarks-village/gallery1.webp: 1920x1439 (webp)
+- clarks-village/gallery2.jpg: 1100x733 (jpeg) — below 1600x900
+- clarks-village/hero.jpg: 1200x1200 (jpeg) — below 1600x900
+- coruna-the-style-outlets/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- coruna-the-style-outlets/gallery2.jpg: 595x336 (jpeg) — below 1600x900
+- coruna-the-style-outlets/hero.jpg: 6000x4000 (jpeg)
+- dalton-park/gallery1.jpg: 1220x822 (jpeg) — below 1600x900
+- dalton-park/gallery2.jpg: 386x518 (jpeg) — below 1600x900
+- dalton-park/hero.jpg: 1200x900 (jpeg) — below 1600x900
+- designer-outlet-athens/gallery1.jpg: 1760x2200 (jpeg)
+- designer-outlet-athens/gallery2.jpg: 547x365 (jpeg) — below 1600x900
+- designer-outlet-athens/hero.jpg: 1164x450 (jpeg) — below 1600x900
+- designer-outlet-berlin/gallery1.jpg: 2250x1266 (jpeg)
+- designer-outlet-berlin/gallery2.jpg: 1295x971 (jpeg) — below 1600x900
+- designer-outlet-berlin/hero.jpg: 1200x1200 (jpeg) — below 1600x900
+- designer-outlet-gdansk/gallery1.png: 1300x867 (png) — below 1600x900
+- designer-outlet-gdansk/gallery2.jpg: 399x501 (jpeg) — below 1600x900
+- designer-outlet-gdansk/hero.jpg: 2000x1333 (jpeg)
+- designer-outlet-luxembourg/gallery1.webp: 2500x1668 (webp)
+- designer-outlet-luxembourg/gallery2.jpg: 1280x960 (jpeg) — below 1600x900
+- designer-outlet-luxembourg/hero.jpg: 970x728 (jpeg) — below 1600x900
+- designer-outlet-malaga/gallery1.jpg: 678x452 (jpeg) — below 1600x900
+- designer-outlet-malaga/gallery2.webp: 1550x1056 (webp) — below 1600x900
+- designer-outlet-malaga/hero.jpg: 1200x900 (jpeg) — below 1600x900
+- designer-outlet-neumunster/gallery1.jpg: 1200x799 (jpeg) — below 1600x900
+- designer-outlet-neumunster/gallery2.jpg: 1200x900 (jpeg) — below 1600x900
+- designer-outlet-neumunster/hero.jpg: 638x480 (jpeg) — below 1600x900
+- designer-outlet-ochtrup/gallery1.jpg: 800x800 (jpeg) — below 1600x900
+- designer-outlet-ochtrup/gallery2.jpg: 1100x1100 (jpeg) — below 1600x900
+- designer-outlet-ochtrup/hero.webp: 1080x1080 (webp) — below 1600x900
+- designer-outlet-parndorf/gallery1.webp: 1920x1920 (webp)
+- designer-outlet-parndorf/gallery2.png: 1000x667 (png) — below 1600x900
+- designer-outlet-parndorf/hero.webp: 1920x1920 (webp)
+- designer-outlet-provence/gallery1.jpg: 1100x1100 (jpeg) — below 1600x900
+- designer-outlet-provence/gallery2.jpg: 1200x1200 (jpeg) — below 1600x900
+- designer-outlet-provence/hero.jpg: 1200x606 (jpeg) — below 1600x900
+- designer-outlet-roermond/gallery1.jpg: 1800x1200 (jpeg)
+- designer-outlet-roermond/gallery2.webp: 1200x793 (webp) — below 1600x900
+- designer-outlet-roermond/hero.jpg: 640x480 (jpeg) — below 1600x900
+- designer-outlet-roosendaal/gallery1.jpg: 5797x3865 (jpeg)
+- designer-outlet-roosendaal/gallery2.jpg: 1200x1200 (jpeg) — below 1600x900
+- designer-outlet-roosendaal/hero.webp: 1199x799 (webp) — below 1600x900
+- designer-outlet-salzburg/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- designer-outlet-salzburg/gallery2.jpg: 1100x1100 (jpeg) — below 1600x900
+- designer-outlet-salzburg/hero.jpg: 596x335 (jpeg) — below 1600x900
+- designer-outlet-sosnowiec/gallery1.webp: 2500x1667 (webp)
+- designer-outlet-sosnowiec/gallery2.jpg: 1300x867 (jpeg) — below 1600x900
+- designer-outlet-sosnowiec/hero.jpg: 547x365 (jpeg) — below 1600x900
+- designer-outlet-troyes/gallery1.jpg: 679x452 (jpeg) — below 1600x900
+- designer-outlet-troyes/gallery2.jpg: 678x452 (jpeg) — below 1600x900
+- designer-outlet-troyes/hero.jpg: 547x365 (jpeg) — below 1600x900
+- designer-outlet-warszawa/gallery1.jpg: 2000x1333 (jpeg)
+- designer-outlet-warszawa/gallery2.jpg: 1024x683 (jpeg) — below 1600x900
+- designer-outlet-warszawa/hero.jpg: 554x554 (jpeg) — below 1600x900
+- designer-outlets-wolfsburg/gallery1.jpg: 1000x700 (jpeg) — below 1600x900
+- designer-outlets-wolfsburg/gallery2.jpg: 1088x816 (jpeg) — below 1600x900
+- designer-outlets-wolfsburg/hero.jpg: 525x380 (jpeg) — below 1600x900
+- east-midlands-designer-outlet/hero.jpg: 1220x713 (jpeg) — below 1600x900
+- factory-annopol/gallery1.jpg: 3840x2560 (jpeg)
+- factory-annopol/gallery2.jpg: 1500x1000 (jpeg) — below 1600x900
+- factory-annopol/hero.jpg: 1500x1000 (jpeg) — below 1600x900
+- factory-ursus/gallery1.jpg: 1333x2000 (jpeg) — below 1600x900
+- factory-ursus/gallery2.jpg: 1010x631 (jpeg) — below 1600x900
+- factory-ursus/hero.jpg: 1780x1186 (jpeg)
+- fashion-arena-prague-outlet/gallery1.jpg: 547x365 (jpeg) — below 1600x900
+- fashion-arena-prague-outlet/gallery2.jpg: 1115x716 (jpeg) — below 1600x900
+- fashion-arena-prague-outlet/hero.jpg: 1280x853 (jpeg) — below 1600x900
+- fashion-fish-factory-outlet/gallery1.webp: 1920x1080 (webp)
+- fashion-fish-factory-outlet/gallery2.jpg: 3118x2339 (jpeg)
+- fashion-fish-factory-outlet/hero.webp: 1920x1080 (webp)
+- fashion-house-outlet-centre-bucharest/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- fashion-house-outlet-centre-bucharest/gallery2.jpg: 900x500 (jpeg) — below 1600x900
+- fashion-house-outlet-centre-bucharest/hero.jpg: 1085x723 (jpeg) — below 1600x900
+- fashion-house-outlet-centre-pallady/gallery1.jpg: 1200x800 (jpeg) — below 1600x900
+- fashion-house-outlet-centre-pallady/gallery2.jpg: 738x415 (jpeg) — below 1600x900
+- fashion-house-outlet-centre-pallady/hero.jpg: 1085x723 (jpeg) — below 1600x900
+- fidenza-village/gallery1.jpg: 1160x772 (jpeg) — below 1600x900
+- fidenza-village/gallery2.webp: 1280x720 (webp) — below 1600x900
+- fidenza-village/hero.jpg: 1280x853 (jpeg) — below 1600x900
+- fleetwood-outlet/gallery1.jpg: 499x400 (jpeg) — below 1600x900
+- fleetwood-outlet/gallery2.jpg: 1080x810 (jpeg) — below 1600x900
+- fleetwood-outlet/hero.webp: 1920x1440 (webp)
+- foxtown-factory-stores/gallery2.webp: 1080x1350 (webp) — below 1600x900
+- franciacorta-designer-village/gallery1.jpg: 1800x1200 (jpeg)
+- franciacorta-designer-village/gallery2.jpg: 2000x1000 (jpeg)
+- franciacorta-designer-village/hero.jpg: 566x542 (jpeg) — below 1600x900
+- freeport-lisboa-fashion-outlet/gallery1.jpg: 1200x975 (jpeg) — below 1600x900
+- freeport-lisboa-fashion-outlet/gallery2.jpg: 1200x975 (jpeg) — below 1600x900
+- freeport-lisboa-fashion-outlet/hero.jpg: 1440x810 (jpeg) — below 1600x900
+- getafe-the-style-outlets/gallery1.webp: 1772x1181 (webp)
+- getafe-the-style-outlets/gallery2.webp: 720x480 (webp) — below 1600x900
+- getafe-the-style-outlets/hero.jpg: 554x554 (jpeg) — below 1600x900
+- gloucester-quays/gallery1.jpg: 765x401 (jpeg) — below 1600x900
+- gloucester-quays/gallery2.jpg: 1200x1152 (jpeg) — below 1600x900
+- gloucester-quays/hero.jpg: 554x554 (jpeg) — below 1600x900
+- gunwharf-quays/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- gunwharf-quays/gallery2.jpg: 1220x715 (jpeg) — below 1600x900
+- gunwharf-quays/hero.jpg: 1200x1200 (jpeg) — below 1600x900
+- halle-leipzig-the-style-outlets/gallery1.jpg: 2560x1440 (jpeg)
+- halle-leipzig-the-style-outlets/hero.jpg: 1024x683 (jpeg) — below 1600x900
+- hede-fashion-outlet/gallery1.jpg: 900x506 (jpeg) — below 1600x900
+- hede-fashion-outlet/gallery2.png: 800x533 (png) — below 1600x900
+- hede-fashion-outlet/hero.webp: 4096x2305 (webp)
+- icon-outlet-at-the-o2/gallery2.jpg: 1200x661 (jpeg) — below 1600x900
+- icon-outlet-at-the-o2/hero.jpg: 547x365 (jpeg) — below 1600x900
+- ideapark-lempaala-outlet/gallery1.webp: 1000x1000 (webp) — below 1600x900
+- ideapark-lempaala-outlet/gallery2.jpg: 1920x1188 (jpeg)
+- ideapark-lempaala-outlet/hero.jpg: 1200x900 (jpeg) — below 1600x900
+- ingolstadt-village/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- ingolstadt-village/gallery2.jpg: 1920x1080 (jpeg)
+- ingolstadt-village/hero.jpg: 2400x1600 (jpeg)
+- junction-32-outlet/gallery1.jpg: 1500x1000 (jpeg) — below 1600x900
+- junction-32-outlet/gallery2.jpg: 1200x800 (jpeg) — below 1600x900
+- junction-32-outlet/hero.jpg: 622x493 (jpeg) — below 1600x900
+- kildare-village/gallery1.webp: 1366x768 (webp) — below 1600x900
+- kildare-village/gallery2.jpg: 1024x683 (jpeg) — below 1600x900
+- kildare-village/hero.jpg: 1200x800 (jpeg) — below 1600x900
+- la-reggia/gallery1.webp: 1920x1920 (webp)
+- la-reggia/gallery2.webp: 1920x1920 (webp)
+- la-reggia/hero.jpg: 1400x1050 (jpeg) — below 1600x900
+- la-roca-village/gallery1.webp: 1920x1080 (webp)
+- la-roca-village/gallery2.jpg: 800x800 (jpeg) — below 1600x900
+- la-roca-village/hero.webp: 2560x1440 (webp)
+- la-vallee-village/gallery1.jpg: 1200x1200 (jpeg) — below 1600x900
+- la-vallee-village/gallery2.jpg: 1080x1080 (jpeg) — below 1600x900
+- la-vallee-village/hero.jpg: 1600x1200 (jpeg)
+- lakeside-village/gallery1.jpg: 835x626 (jpeg) — below 1600x900
+- lakeside-village/gallery2.jpg: 399x501 (jpeg) — below 1600x900
+- lakeside-village/hero.jpg: 1035x690 (jpeg) — below 1600x900
+- landquart-fashion-outlet/gallery1.jpg: 1700x1082 (jpeg)
+- landquart-fashion-outlet/gallery2.webp: 2246x1498 (webp)
+- landquart-fashion-outlet/hero.jpg: 1200x800 (jpeg) — below 1600x900
+- las-rozas-village/gallery1.jpg: 848x1024 (jpeg) — below 1600x900
+- las-rozas-village/gallery2.jpg: 1002x1002 (jpeg) — below 1600x900
+- las-rozas-village/hero.jpg: 1080x1080 (jpeg) — below 1600x900
+- livingston-designer-outlet/gallery1.jpg: 678x452 (jpeg) — below 1600x900
+- livingston-designer-outlet/gallery2.jpg: 1600x1067 (jpeg)
+- livingston-designer-outlet/hero.jpg: 1200x800 (jpeg) — below 1600x900
+- london-designer-outlet/gallery1.webp: 1800x1000 (webp)
+- london-designer-outlet/gallery2.jpg: 1024x683 (jpeg) — below 1600x900
+- maasmechelen-village/gallery1.jpg: 1920x864 (jpeg) — below 1600x900
+- maasmechelen-village/gallery2.webp: 2448x1633 (webp)
+- maasmechelen-village/hero.jpg: 1050x1220 (jpeg) — below 1600x900
+- mallorca-fashion-outlet/gallery1.jpg: 1713x1080 (jpeg)
+- mallorca-fashion-outlet/gallery2.jpg: 783x391 (jpeg) — below 1600x900
+- mallorca-fashion-outlet/hero.jpg: 1020x694 (jpeg) — below 1600x900
+- mantova-village/gallery1.jpg: 1280x720 (jpeg) — below 1600x900
+- mantova-village/gallery2.jpg: 1200x675 (jpeg) — below 1600x900
+- mantova-village/hero.jpg: 1030x773 (jpeg) — below 1600x900
+- mondovicino-outlet-village/gallery1.jpg: 1200x900 (jpeg) — below 1600x900
+- mondovicino-outlet-village/gallery2.jpg: 1920x1080 (jpeg)
+- mondovicino-outlet-village/hero.jpg: 2560x1707 (jpeg)
+- montabaur-the-style-outlets/gallery1.jpg: 1200x900 (jpeg) — below 1600x900
+- montabaur-the-style-outlets/gallery2.jpg: 1196x797 (jpeg) — below 1600x900
+- montabaur-the-style-outlets/hero.jpg: 1200x1200 (jpeg) — below 1600x900
+- norwegian-outlet/gallery1.jpg: 4000x3000 (jpeg)
+- norwegian-outlet/gallery2.jpg: 960x414 (jpeg) — below 1600x900
+- norwegian-outlet/hero.jpg: 545x366 (jpeg) — below 1600x900
+- noventa/gallery1.webp: 1920x1080 (webp)
+- noventa/gallery2.jpg: 1365x768 (jpeg) — below 1600x900
+- noventa/hero.webp: 5926x3951 (webp)
+- one-nation-paris/gallery1.jpg: 1200x675 (jpeg) — below 1600x900
+- one-nation-paris/gallery2.jpg: 900x500 (jpeg) — below 1600x900
+- one-nation-paris/hero.jpg: 678x452 (jpeg) — below 1600x900
+- outlet-park-vilnius/gallery1.jpg: 990x660 (jpeg) — below 1600x900
+- outlet-park-vilnius/gallery2.jpg: 1200x1200 (jpeg) — below 1600x900
+- outlet-park-vilnius/hero.jpg: 900x500 (jpeg) — below 1600x900
+- outletcity-metzingen/gallery1.jpg: 1200x800 (jpeg) — below 1600x900
+- outletcity-metzingen/gallery2.webp: 1900x800 (webp) — below 1600x900
+- palmanova-designer-village/gallery1.jpg: 1920x1080 (jpeg)
+- palmanova-designer-village/gallery2.jpg: 1000x667 (jpeg) — below 1600x900
+- palmanova-designer-village/hero.jpg: 554x554 (jpeg) — below 1600x900
+- paris-giverny-designer-outlet/gallery1.jpg: 1999x1333 (jpeg)
+- paris-giverny-designer-outlet/gallery2.jpg: 1200x1200 (jpeg) — below 1600x900
+- paris-giverny-designer-outlet/hero.webp: 1120x1120 (webp) — below 1600x900
+- premier-outlet-budapest/gallery1.jpg: 1175x985 (jpeg) — below 1600x900
+- premier-outlet-budapest/gallery2.jpg: 1920x1282 (jpeg)
+- premier-outlet-budapest/hero.jpg: 1300x867 (jpeg) — below 1600x900
+- puglia-village/gallery1.jpg: 1200x1200 (jpeg) — below 1600x900
+- puglia-village/gallery2.jpg: 1200x800 (jpeg) — below 1600x900
+- puglia-village/hero.jpg: 2000x1333 (jpeg)
+- ringsted-outlet/gallery1.jpg: 1200x1200 (jpeg) — below 1600x900
+- ringsted-outlet/gallery2.webp: 1472x1424 (webp) — below 1600x900
+- ringsted-outlet/hero.jpg: 2560x1706 (jpeg)
+- roppenheim-the-style-outlets/gallery1.jpg: 1200x1200 (jpeg) — below 1600x900
+- roppenheim-the-style-outlets/gallery2.jpg: 900x500 (jpeg) — below 1600x900
+- roppenheim-the-style-outlets/hero.jpg: 1068x710 (jpeg) — below 1600x900
+- ros-designer-outlet/gallery1.webp: 1368x770 (webp) — below 1600x900
+- ros-designer-outlet/gallery2.jpg: 2000x1334 (jpeg)
+- ros-designer-outlet/hero.webp: 1200x600 (webp) — below 1600x900
+- roubaix-designer-outlet/gallery1.webp: 1920x960 (webp)
+- roubaix-designer-outlet/gallery2.jpg: 1024x683 (jpeg) — below 1600x900
+- roubaix-designer-outlet/hero.jpg: 1200x1199 (jpeg) — below 1600x900
+- sambil-madrid/gallery1.webp: 720x470 (webp) — below 1600x900
+- sambil-madrid/gallery2.jpg: 1600x900 (jpeg)
+- sambil-madrid/hero.jpg: 1200x799 (jpeg) — below 1600x900
+- san-sebastian-de-los-reyes-the-style-outlets/gallery1.jpg: 983x1000 (jpeg) — below 1600x900
+- san-sebastian-de-los-reyes-the-style-outlets/gallery2.jpg: 1280x960 (jpeg) — below 1600x900
+- san-sebastian-de-los-reyes-the-style-outlets/hero.jpg: 1200x800 (jpeg) — below 1600x900
+- santangelo-outlet-village/gallery1.jpg: 2560x1703 (jpeg)
+- santangelo-outlet-village/gallery2.jpg: 364x549 (jpeg) — below 1600x900
+- santangelo-outlet-village/hero.jpg: 1024x768 (jpeg) — below 1600x900
+- scalo-milano-outlet-more/gallery1.jpg: 2560x1708 (jpeg)
+- scalo-milano-outlet-more/gallery2.jpg: 1200x990 (jpeg) — below 1600x900
+- scalo-milano-outlet-more/hero.jpg: 1200x1200 (jpeg) — below 1600x900
+- serravalle-designer-outlet/gallery1.png: 1000x667 (png) — below 1600x900
+- serravalle-designer-outlet/gallery2.jpg: 678x452 (jpeg) — below 1600x900
+- serravalle-designer-outlet/hero.jpg: 1400x1050 (jpeg) — below 1600x900
+- sevilla-fashion-outlet/gallery1.jpg: 2560x1707 (jpeg)
+- sevilla-fashion-outlet/gallery2.png: 800x450 (png) — below 1600x900
+- sevilla-fashion-outlet/hero.jpg: 1200x800 (jpeg) — below 1600x900
+- sicilia-outlet-village/gallery1.jpg: 960x640 (jpeg) — below 1600x900
+- sicilia-outlet-village/gallery2.jpg: 800x560 (jpeg) — below 1600x900
+- sicilia-outlet-village/hero.jpg: 900x468 (jpeg) — below 1600x900
+- springfields-outlet/gallery1.jpg: 1573x1080 (jpeg) — below 1600x900
+- springfields-outlet/gallery2.jpg: 1024x506 (jpeg) — below 1600x900
+- springfields-outlet/hero.jpg: 1278x718 (jpeg) — below 1600x900
+- swindon-designer-outlet/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- swindon-designer-outlet/gallery2.jpg: 1000x879 (jpeg) — below 1600x900
+- swindon-designer-outlet/hero.webp: 1238x825 (webp) — below 1600x900
+- t1-tallinn-outlet/gallery1.jpg: 1200x600 (jpeg) — below 1600x900
+- t1-tallinn-outlet/gallery2.jpg: 961x721 (jpeg) — below 1600x900
+- t1-tallinn-outlet/hero.jpg: 3936x2624 (jpeg)
+- the-boulevard-banbridge/gallery1.jpg: 1200x801 (jpeg) — below 1600x900
+- the-boulevard-banbridge/gallery2.webp: 1920x1280 (webp)
+- the-boulevard-banbridge/hero.jpg: 500x400 (jpeg) — below 1600x900
+- the-galleria-outlet/gallery1.jpg: 1200x1200 (jpeg) — below 1600x900
+- the-galleria-outlet/gallery2.jpg: 399x501 (jpeg) — below 1600x900
+- the-galleria-outlet/hero.jpg: 4000x2250 (jpeg)
+- the-mall-firenze/gallery1.jpg: 678x452 (jpeg) — below 1600x900
+- the-mall-firenze/gallery2.webp: 1200x800 (webp) — below 1600x900
+- the-mall-firenze/hero.jpg: 1200x800 (jpeg) — below 1600x900
+- the-village-outlet/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- the-village-outlet/gallery2.webp: 900x600 (webp) — below 1600x900
+- the-village-outlet/hero.jpg: 4912x3278 (jpeg)
+- torino-outlet-village/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- torino-outlet-village/gallery2.jpg: 750x1000 (jpeg) — below 1600x900
+- torino-outlet-village/hero.jpg: 1800x1417 (jpeg)
+- valdichiana-village/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- valdichiana-village/gallery2.webp: 1500x844 (webp) — below 1600x900
+- valdichiana-village/hero.jpg: 1400x1400 (jpeg) — below 1600x900
+- valmontone-outlet/gallery2.jpg: 1152x768 (jpeg) — below 1600x900
+- valmontone-outlet/hero.jpg: 1920x1280 (jpeg)
+- via-jurmala-outlet-village/gallery1.jpg: 547x365 (jpeg) — below 1600x900
+- via-jurmala-outlet-village/gallery2.webp: 900x1200 (webp) — below 1600x900
+- via-jurmala-outlet-village/hero.jpg: 676x453 (jpeg) — below 1600x900
+- vicolungo-the-style-outlets/gallery1.jpg: 1140x1140 (jpeg) — below 1600x900
+- vicolungo-the-style-outlets/gallery2.jpg: 1500x1035 (jpeg) — below 1600x900
+- vicolungo-the-style-outlets/hero.jpg: 1200x812 (jpeg) — below 1600x900
+- vila-do-conde-porto-fashion-outlet/gallery2.jpg: 2119x1413 (jpeg)
+- viladecans-the-style-outlets/gallery1.jpg: 1200x800 (jpeg) — below 1600x900
+- viladecans-the-style-outlets/gallery2.jpg: 2000x1125 (jpeg)
+- viladecans-the-style-outlets/hero.jpg: 1400x933 (jpeg) — below 1600x900
+- wertheim-village/gallery1.jpg: 1008x756 (jpeg) — below 1600x900
+- wertheim-village/gallery2.jpg: 4030x2485 (jpeg)
+- wertheim-village/hero.jpg: 640x480 (jpeg) — below 1600x900
+- west-midlands-designer-outlet/gallery1.jpg: 1200x1200 (jpeg) — below 1600x900
+- west-midlands-designer-outlet/gallery2.jpg: 866x700 (jpeg) — below 1600x900
+- west-midlands-designer-outlet/hero.jpg: 1000x733 (jpeg) — below 1600x900
+- wroclaw-fashion-outlet/gallery1.jpg: 900x500 (jpeg) — below 1600x900
+- wroclaw-fashion-outlet/gallery2.jpg: 940x529 (jpeg) — below 1600x900
+- wroclaw-fashion-outlet/hero.jpg: 1200x1200 (jpeg) — below 1600x900
+- york-designer-outlet/gallery1.webp: 1920x1920 (webp)
+- york-designer-outlet/gallery2.jpg: 1200x900 (jpeg) — below 1600x900
+- york-designer-outlet/hero.webp: 1920x1920 (webp)
+- zweibrucken-fashion-outlet/gallery2.jpg: 840x840 (jpeg) — below 1600x900
+
+## Completion status
+- Media Final Phase M1E cannot be marked complete.
+- It is not safe to proceed to destructive M2 reset/import.
