@@ -5,7 +5,7 @@ Authentication uses Firebase Authentication. The app-level `currentUser.userId` 
 ## Enabled providers
 
 - Email/password is implemented through Firebase Auth.
-- Google sign-in is not enabled for this release and is not presented in the sign-in UI until production native Google Sign-In configuration is provided.
+- Google sign-in is disabled for this release until production native Google Sign-In configuration is provided; the release does not ship the inactive Google Sign-In package or config plugin.
 - Apple sign-in is not enabled in this release and is not presented in the sign-in UI.
 - Anonymous/local-only authentication is not implemented.
 
