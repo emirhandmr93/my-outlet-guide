@@ -58,105 +58,32 @@ export type FlightNotification = {
   createdAt: string;
 };
 
-const mockFlightProviders: FlightProvider[] = [
-  {
-    providerId: "mock",
-    providerName: "Mock Flight Data",
-    providerType: "mock",
-    status: "active",
-  },
-];
-
-const mockFlightAirports: FlightAirport[] = [
-  {
-    airportId: "esb",
-    airportCode: "ESB",
-    airportName: "Ankara Esenboğa Airport",
-    cityId: "ankara",
-    countryId: "turkey",
-    status: "active",
-  },
-  {
-    airportId: "cdg",
-    airportCode: "CDG",
-    airportName: "Paris Charles de Gaulle Airport",
-    cityId: "paris",
-    countryId: "france",
-    status: "active",
-  },
-  {
-    airportId: "ory",
-    airportCode: "ORY",
-    airportName: "Paris Orly Airport",
-    cityId: "paris",
-    countryId: "france",
-    status: "active",
-  },
-  {
-    airportId: "bva",
-    airportCode: "BVA",
-    airportName: "Paris Beauvais Airport",
-    cityId: "paris",
-    countryId: "france",
-    status: "active",
-  },
-];
-
-const mockFlightRoutes: FlightRoute[] = [
-  {
-    routeId: "esb-paris",
-    originAirportId: "esb",
-    destinationCityId: "paris",
-    destinationAirportIds: ["cdg", "ory", "bva"],
-    status: "active",
-  },
-];
-
-const mockFlightDeals: FlightDeal[] = [
-  {
-    dealId: "ankara-paris-wizz-001",
-    providerId: "mock",
-    routeId: "esb-paris",
-    airline: "Wizz Air",
-    routeText: "Ankara → Paris",
-    currentPrice: "5.900 TL",
-    lastUpdatedText: "10 min ago",
-    flightDateText: "Fri, 18 Oct • 14:20",
-    dealLevel: "great",
-    status: "active",
-  },
-];
-
 export function getFlightProviders(): FlightProvider[] {
-  return mockFlightProviders.filter((provider) => provider.status === "active");
+  return [];
 }
 
 export function getFlightAirports(): FlightAirport[] {
-  return mockFlightAirports.filter((airport) => airport.status === "active");
+  return [];
 }
 
 export function getFlightRoutes(): FlightRoute[] {
-  return mockFlightRoutes.filter((route) => route.status === "active");
+  return [];
 }
 
 export function getActiveFlightDeals(): FlightDeal[] {
-  return mockFlightDeals.filter((deal) => deal.status === "active");
+  return [];
 }
 
 export function getPrimaryFlightDeal(): FlightDeal | null {
-  return getActiveFlightDeals()[0] || null;
+  return null;
 }
 
-export function getFlightDealById(dealId: string): FlightDeal | null {
-  return getActiveFlightDeals().find((deal) => deal.dealId === dealId) || null;
+export function getFlightDealById(_dealId: string): FlightDeal | null {
+  return null;
 }
 
-export function getFlightDealsForDestination(destinationCityId: string): FlightDeal[] {
-  const activeRouteIds = getFlightRoutes()
-    .filter((route) => route.destinationCityId === destinationCityId)
-    .map((route) => route.routeId);
-
-  return getActiveFlightDeals().filter((deal) => activeRouteIds.includes(deal.routeId));
+export function getFlightDealsForDestination(_destinationCityId: string): FlightDeal[] {
+  return [];
 }
 
 export function getFlightDealLevelLabel(level: FlightDealLevel): string {
