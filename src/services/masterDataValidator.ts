@@ -7,6 +7,7 @@ import { restaurants } from "../constants/restaurants";
 import { outlets } from "../constants/outlets";
 import { transportation } from "../constants/transportation";
 import { transportationGuides } from "../constants/transportationGuides";
+import { taxFreeRules } from "../constants/taxFreeRules";
 
 export type MasterDataValidationIssue = {
   code: string;
@@ -350,6 +351,83 @@ const validateTransportationGuides = (
   });
 };
 
+const supportedTaxFreeCountryIds = new Set([
+  "france",
+  "italy",
+  "germany",
+  "spain",
+  "switzerland",
+  "united-arab-emirates",
+  "japan",
+]);
+
+const validateTaxFreeRules = (issues: MasterDataValidationIssue[]): void => {
+  findDuplicates(taxFreeRules, (rule) => String(rule.countryId ?? "").trim()).forEach(
+    (count, countryId) =>
+      pushIssue(
+        issues,
+        "DUPLICATE_TAX_FREE_RULE_COUNTRY",
+        `Tax-free countryId ${countryId} appears ${count} times.`,
+        { businessName: countryId },
+      ),
+  );
+
+  taxFreeRules.forEach((rule) => {
+    const countryId = String(rule.countryId ?? "").trim();
+    const requiredFields = [
+      rule.countryCode,
+      rule.countryName,
+      rule.currency,
+      rule.sourceUrl,
+      rule.sourceName,
+      rule.effectiveDate,
+      rule.notes,
+    ];
+
+    if (!countryId || !supportedTaxFreeCountryIds.has(countryId)) {
+      pushIssue(
+        issues,
+        "UNSUPPORTED_TAX_FREE_RULE_COUNTRY",
+        `Tax-free rule ${countryId || "UNKNOWN_COUNTRY"} is not in the source-backed Phase 1A allowlist.`,
+        { businessName: countryId || "UNKNOWN_COUNTRY" },
+      );
+    }
+
+    if (requiredFields.some((field) => !String(field ?? "").trim())) {
+      pushIssue(
+        issues,
+        "MISSING_TAX_FREE_RULE_SOURCE_FIELD",
+        `Tax-free rule ${countryId || "UNKNOWN_COUNTRY"} is missing a source, effective date, or required identity field.`,
+        { businessName: countryId || "UNKNOWN_COUNTRY" },
+      );
+    }
+
+    if (typeof rule.vatRate !== "number" || !Number.isFinite(rule.vatRate) || rule.vatRate <= 0) {
+      pushIssue(
+        issues,
+        "INVALID_TAX_FREE_RULE_VAT_RATE",
+        `Tax-free rule ${countryId || "UNKNOWN_COUNTRY"} has an invalid VAT rate.`,
+        { businessName: countryId || "UNKNOWN_COUNTRY" },
+      );
+    }
+
+    if (
+      rule.providerFeeRate !== undefined &&
+      (typeof rule.providerFeeRate !== "number" ||
+        !Number.isFinite(rule.providerFeeRate) ||
+        rule.providerFeeRate < 0 ||
+        rule.providerFeeRate >= 1)
+    ) {
+      pushIssue(
+        issues,
+        "INVALID_TAX_FREE_RULE_PROVIDER_FEE",
+        `Tax-free rule ${countryId || "UNKNOWN_COUNTRY"} has an invalid provider fee rate.`,
+        { businessName: countryId || "UNKNOWN_COUNTRY" },
+      );
+    }
+  });
+};
+
 const officiallyDiningOnlyOutletBrandKeys = new Set<string>();
 
 const getOutletBrandKey = (outletId: string, brandId: string): string =>
@@ -365,6 +443,7 @@ export function validateGlobalSnapshot(): MasterDataValidationResult {
 
   validateCoreReferences(issues);
   validateTransportationGuides(issues);
+  validateTaxFreeRules(issues);
 
   outletBrands.forEach((outletBrand) => {
     const hasDiningClassification = hasRestaurantClassificationAtOutlet(
