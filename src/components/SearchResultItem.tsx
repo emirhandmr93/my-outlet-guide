@@ -21,7 +21,13 @@ const icons: Record<SearchResult["type"], string> = {
 
 export function SearchResultItem({ item, onPress }: SearchResultItemProps) {
   return (
-    <TouchableOpacity style={styles.container} activeOpacity={0.88} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.container}
+      activeOpacity={0.88}
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={`${item.title}, ${item.subtitle}`}
+    >
       <View style={styles.iconBox}>
         <Text style={styles.icon}>{icons[item.type]}</Text>
       </View>
@@ -47,6 +53,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     flexDirection: "row",
     alignItems: "center",
+    minHeight: 76,
   },
 
   iconBox: {
@@ -65,12 +72,15 @@ const styles = StyleSheet.create({
 
   content: {
     flex: 1,
+    minWidth: 0,
   },
 
   type: {
     color: colors.gold,
     fontSize: typography.small,
     fontWeight: typography.weightBlack,
+    lineHeight: typography.lineCaption,
+    flexShrink: 1,
     textTransform: "uppercase",
     marginBottom: spacing.xs,
   },
@@ -86,6 +96,8 @@ const styles = StyleSheet.create({
     fontSize: typography.caption,
     marginTop: spacing.xs,
     fontWeight: typography.weightBold,
+    lineHeight: typography.lineCaption,
+    flexShrink: 1,
   },
 
   arrow: {

@@ -44,10 +44,12 @@ const styles = StyleSheet.create({
   badge: {
     backgroundColor: colors.surface,
     borderRadius: radius.pill,
+    minHeight: 36,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderWidth: 1,
     borderColor: colors.border,
+    justifyContent: "center",
   },
 
   badgePrimary: {
@@ -57,18 +59,23 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderWidth: 1,
     borderColor: colors.gold,
+    justifyContent: "center",
   },
 
   badgeText: {
     color: colors.textPrimary,
     fontSize: typography.caption,
-    fontWeight: "800",
+    fontWeight: typography.weightExtraBold,
+    lineHeight: typography.lineCaption,
+    flexShrink: 1,
     textTransform: "capitalize",
   },
 
   badgePrimaryText: {
     color: colors.primary,
     fontSize: typography.caption,
-    fontWeight: "900",
+    fontWeight: typography.weightBlack,
+    lineHeight: typography.lineCaption,
+    flexShrink: 1,
   },
 });

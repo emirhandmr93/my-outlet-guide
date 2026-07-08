@@ -45,12 +45,15 @@ export function OutletHero({
         activeOpacity={hasSelectedImage ? 0.9 : 1}
         disabled={!hasSelectedImage}
         onPress={onPressHeroImage}
+        accessibilityRole="imagebutton"
+        accessibilityLabel={`${name} gallery hero image`}
       >
         <View style={styles.heroWrap}>
           {selectedImage ? (
             <Image
               source={getImageSource(selectedImage)}
               style={styles.heroImage}
+              resizeMode="cover"
             />
           ) : (
             <View style={styles.noImagePlaceholder}>
@@ -78,13 +81,19 @@ export function OutletHero({
           keyExtractor={(item, index) => `${item}-${index}`}
           contentContainerStyle={styles.galleryContent}
           renderItem={({ item }) => (
-            <TouchableOpacity activeOpacity={0.82} onPress={() => onPressGalleryImage(item)}>
+            <TouchableOpacity
+              activeOpacity={0.82}
+              onPress={() => onPressGalleryImage(item)}
+              accessibilityRole="imagebutton"
+              accessibilityLabel={`${name} gallery thumbnail`}
+            >
               <Image
                 source={getImageSource(item)}
                 style={[
                   styles.galleryImage,
                   selectedImage === item && styles.galleryImageActive,
                 ]}
+                resizeMode="cover"
               />
             </TouchableOpacity>
           )}
@@ -142,6 +151,7 @@ const styles = StyleSheet.create({
     color: colors.gold,
     fontSize: typography.small,
     fontWeight: typography.weightBlack,
+    flexShrink: 1,
     letterSpacing: 1.2,
   },
 
@@ -157,6 +167,7 @@ const styles = StyleSheet.create({
     fontSize: typography.h1,
     lineHeight: typography.lineH1,
     fontWeight: typography.weightBlack,
+    flexShrink: 1,
     letterSpacing: -0.8,
   },
 
@@ -164,6 +175,8 @@ const styles = StyleSheet.create({
     color: colors.textInverse,
     fontSize: typography.bodyLarge,
     fontWeight: typography.weightBlack,
+    lineHeight: typography.lineBody,
+    flexShrink: 1,
     marginTop: spacing.xs,
   },
 
