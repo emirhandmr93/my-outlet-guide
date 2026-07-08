@@ -13,6 +13,9 @@ export function NotificationSettingsScreen() {
     pushSupported,
     settings,
     setNotificationsEnabled,
+    tokenRegistrationStatus,
+    registeredToken,
+    registrationError,
   } = useNotificationSettings();
 
   const enabled = settings?.enabled === true;
@@ -39,6 +42,21 @@ export function NotificationSettingsScreen() {
                 ? t(`notifications.permission.${permissionStatus}`)
                 : t("notifications.pushUnavailableBody")
             }
+          />
+
+          <StatusCard
+            title={t("notifications.tokenStatusTitle")}
+            body={
+              registrationError ??
+              (registeredToken
+                ? `${t(`notifications.token.${tokenRegistrationStatus}`)} ${registeredToken.slice(0, 18)}…`
+                : t(`notifications.token.${tokenRegistrationStatus}`))
+            }
+          />
+
+          <StatusCard
+            title={t("notifications.deliveryStatusTitle")}
+            body={t("notifications.deliveryStatusBody")}
           />
 
           <TouchableOpacity
