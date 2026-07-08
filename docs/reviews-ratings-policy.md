@@ -23,9 +23,10 @@ Published review records include:
 - `createdAt`
 - `updatedAt`
 - `status: "published"`
-- optional `deletedAt`
+- `deletedAt: null`
+- `firestoreUpdatedAt`
 
-Deleted reviews are soft-deleted by setting `status: "deleted"` and `deletedAt`. Deleted reviews must not be included in outlet rating averages, review counts, My Reviews, or public lists.
+Deleted reviews are soft-deleted by updating the author-owned review record to `status: "deleted"`, setting a non-empty string `deletedAt`, updating `updatedAt`, and refreshing `firestoreUpdatedAt`. Deleted reviews must not be included in outlet rating averages, review counts, My Reviews, or public lists.
 
 ## Rating and count rules
 
@@ -43,7 +44,7 @@ Authors can edit or delete only their own review. Other users can mark a review 
 
 ## Helpful votes
 
-Helpful is Firestore-backed only. Each helpful vote uses one deterministic document per user per review at `reviews/{outletId}/items/{reviewId}/helpful/{userId}`. Helpful count is derived from Firestore helpful documents, not from seeded constants or local-only state. Users can undo helpful by deleting their helpful document.
+Helpful is Firestore-backed only. Each helpful vote uses one deterministic document per user per review at `reviews/{outletId}/items/{reviewId}/helpful/{userId}` with `userId`, `createdAt`, and `firestoreCreatedAt`. Helpful count is derived from Firestore helpful documents, not from seeded constants or local-only state. Users can undo helpful by deleting their helpful document.
 
 ## Reporting
 
@@ -56,5 +57,6 @@ Reports are real Firestore records at `reviewReports/{reportId}` with:
 - `reason`
 - `createdAt`
 - `status: "open"`
+- `firestoreCreatedAt`
 
-Report actions require auth and are available for reviews written by other users.
+Allowed report reasons are `spam`, `abuse`, `off_topic`, and `other`. Report actions require auth and are available for reviews written by other users.

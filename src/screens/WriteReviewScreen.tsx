@@ -5,6 +5,7 @@ import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View 
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { isFirestorePermissionDenied } from "../services/reviewsRatingsService";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
@@ -52,7 +53,10 @@ export function WriteReviewScreen() {
       navigation.navigate("OutletDetail", { outletId });
     } catch (error) {
       console.log("Review save error", error);
-      Alert.alert(t("writeReview.saveErrorTitle"), t("writeReview.saveErrorText"));
+      Alert.alert(
+        t("writeReview.saveErrorTitle"),
+        isFirestorePermissionDenied(error) ? t("writeReview.saveErrorText") : t("common.error"),
+      );
     } finally {
       setSaving(false);
     }

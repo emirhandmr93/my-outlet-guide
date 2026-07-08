@@ -51,6 +51,16 @@ export function getPublishedReviews(reviews: OutletReview[]) {
   return reviews.filter(isPublishedReview);
 }
 
+
+export function isFirestorePermissionDenied(error: unknown) {
+  return Boolean(
+    error &&
+      typeof error === "object" &&
+      "code" in error &&
+      (error as { code?: unknown }).code === "permission-denied",
+  );
+}
+
 export function getReviewDocRef(outletId: string, reviewId: string) {
   return doc(db, REVIEW_COLLECTION, outletId, REVIEW_ITEMS_COLLECTION, reviewId);
 }
