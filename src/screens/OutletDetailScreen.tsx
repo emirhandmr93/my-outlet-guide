@@ -23,10 +23,8 @@ import { TransportationCard } from "../components/cards/TransportationCard";
 import { WebsiteCard } from "../components/cards/WebsiteCard";
 import { OutletHero } from "../components/OutletHero";
 import { ReviewItem } from "../components/ReviewItem";
-import { ReviewTabs } from "../components/ReviewTabs";
 import { outlets } from "../constants/outlets";
 import { useFavorites } from "../contexts/FavoritesContext";
-import { useReviewHelpful } from "../contexts/ReviewHelpfulContext";
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -40,7 +38,11 @@ import { getBrandCategoryGroupsForOutlet } from "../services/brandService";
 import { getRestaurantsForOutlet } from "../services/restaurantService";
 import { getTransportationForOutlet } from "../services/transportationService";
 import { CurrentWeather, getCurrentWeather } from "../services/weatherService";
-import { formatRating, getAverageReviewRating, getReviewAverage } from "../services/reviewsRatingsService";
+import {
+  formatRating,
+  getAverageReviewRating,
+  getReviewAverage,
+} from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
@@ -51,7 +53,6 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 const outletMediaMode = getConfiguredOutletMediaMode();
-
 
 type RouteParams = {
   OutletDetail: {
@@ -79,8 +80,6 @@ const countryNames: Record<string, string> = {
   germany: "Germany",
 };
 
-
-
 export function OutletDetailScreen() {
   const route = useRoute<RouteProp<RouteParams, "OutletDetail">>();
   const navigation = useNavigation<any>();
@@ -88,27 +87,29 @@ export function OutletDetailScreen() {
   const { reviews } = useReviews();
   const { isLoggedIn } = useUser();
   const { toggleFavorite, isFavorite } = useFavorites();
-  const { toggleHelpful, getHelpfulItem } = useReviewHelpful();
 
   const outlet =
-    outlets.find((item) => item?.outletId === route.params?.outletId) || outlets.find((item) => Boolean(item)) || outlets[0];
+    outlets.find((item) => item?.outletId === route.params?.outletId) ||
+    outlets.find((item) => Boolean(item)) ||
+    outlets[0];
 
   const safeGalleryImages = useMemo(() => {
     return getOutletMediaImages(outlet, { mode: outletMediaMode });
   }, [outlet.galleryImages, outlet.heroImage, outlet.outletId]);
 
   const [selectedImage, setSelectedImage] = useState<OutletMediaImage | null>(
-    safeGalleryImages[0] ?? null
+    safeGalleryImages[0] ?? null,
   );
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [brandSearch, setBrandSearch] = useState("");
   const [openCategory, setOpenCategory] = useState<string | null>(null);
-  const [reviewSort, setReviewSort] = useState<"helpful" | "recent">("helpful");
   const [weather, setWeather] = useState<CurrentWeather | null>(null);
   const [weatherError, setWeatherError] = useState(false);
   const [weatherLoading, setWeatherLoading] = useState(true);
   const scrollRef = useRef<ScrollView>(null);
-  const [sectionPositions, setSectionPositions] = useState<Record<string, number>>({});
+  const [sectionPositions, setSectionPositions] = useState<
+    Record<string, number>
+  >({});
 
   useEffect(() => {
     setSelectedImage(safeGalleryImages[0] ?? null);
@@ -122,7 +123,7 @@ export function OutletDetailScreen() {
 
         const result = await getCurrentWeather(
           Number(outlet.latitude),
-          Number(outlet.longitude)
+          Number(outlet.longitude),
         );
 
         setWeather(result);
@@ -141,34 +142,42 @@ export function OutletDetailScreen() {
   const brandCategoryGroups = getBrandCategoryGroupsForOutlet(outlet.outletId);
   const transportationItems = getTransportationForOutlet(outlet.outletId);
   const restaurantItems = getRestaurantsForOutlet(outlet.outletId);
-  const outletReviews = reviews.filter((review) => review.outletId === outlet.outletId);
+  const outletReviews = reviews.filter(
+    (review) => review.outletId === outlet.outletId,
+  );
   const displayRating = formatRating(outlet.rating);
   const averageRating = getAverageReviewRating(outletReviews, "overallRating");
-  const averageTransportationRating = getAverageReviewRating(outletReviews, "transportationRating");
-  const averageBrandVarietyRating = getAverageReviewRating(outletReviews, "brandVarietyRating");
-  const averageRestaurantsRating = getAverageReviewRating(outletReviews, "restaurantsRating");
-  const averageServicesRating = getAverageReviewRating(outletReviews, "servicesRating");
+  const averageTransportationRating = getAverageReviewRating(
+    outletReviews,
+    "transportationRating",
+  );
+  const averageBrandVarietyRating = getAverageReviewRating(
+    outletReviews,
+    "brandVarietyRating",
+  );
+  const averageRestaurantsRating = getAverageReviewRating(
+    outletReviews,
+    "restaurantsRating",
+  );
+  const averageServicesRating = getAverageReviewRating(
+    outletReviews,
+    "servicesRating",
+  );
 
-  const sortedReviews = [...outletReviews].sort((a, b) => {
-    if (reviewSort === "recent") {
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-    }
-
-    return (
-      getHelpfulItem(b.reviewId).helpfulCount -
-      getHelpfulItem(a.reviewId).helpfulCount
-    );
-  });
+  const sortedReviews = [...outletReviews].sort((a, b) =>
+    b.createdAt.localeCompare(a.createdAt),
+  );
 
   const currentGalleryIndex = selectedImage
     ? safeGalleryImages.indexOf(selectedImage)
     : -1;
 
-  const airportSummary = Array.isArray(outlet.airports) && outlet.airports.length > 0
-    ? outlet.airports
-        .map((airport) => `${airport.code} • ${airport.distanceKm} km`)
-        .join("\n")
-    : `${outlet.airportDistanceKm} km`;
+  const airportSummary =
+    Array.isArray(outlet.airports) && outlet.airports.length > 0
+      ? outlet.airports
+          .map((airport) => `${airport.code} • ${airport.distanceKm} km`)
+          .join("\n")
+      : `${outlet.airportDistanceKm} km`;
 
   function setSectionPosition(section: string, y: number) {
     setSectionPositions((current) => ({ ...current, [section]: y }));
@@ -212,7 +221,11 @@ export function OutletDetailScreen() {
   }
 
   return (
-    <ScrollView ref={scrollRef} style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      ref={scrollRef}
+      style={styles.container}
+      contentContainerStyle={styles.content}
+    >
       <OutletHero
         name={outlet.name}
         location={`${cityNames[outlet.cityId] || outlet.cityId}, ${
@@ -244,11 +257,16 @@ export function OutletDetailScreen() {
             style={styles.galleryCloseButton}
             onPress={() => setIsGalleryOpen(false)}
           >
-            <Text style={styles.galleryCloseText}>{t("outlet.galleryClose")}</Text>
+            <Text style={styles.galleryCloseText}>
+              {t("outlet.galleryClose")}
+            </Text>
           </TouchableOpacity>
 
           <View style={styles.galleryModalImageWrapper}>
-            <TouchableOpacity style={styles.galleryArrowLeft} onPress={showPreviousImage}>
+            <TouchableOpacity
+              style={styles.galleryArrowLeft}
+              onPress={showPreviousImage}
+            >
               <Text style={styles.galleryArrowText}>‹</Text>
             </TouchableOpacity>
 
@@ -273,7 +291,10 @@ export function OutletDetailScreen() {
               )}
             </ScrollView>
 
-            <TouchableOpacity style={styles.galleryArrowRight} onPress={showNextImage}>
+            <TouchableOpacity
+              style={styles.galleryArrowRight}
+              onPress={showNextImage}
+            >
               <Text style={styles.galleryArrowText}>›</Text>
             </TouchableOpacity>
           </View>
@@ -283,7 +304,9 @@ export function OutletDetailScreen() {
       <View style={styles.badgeRow}>
         <Text style={styles.badge}>{getWeatherBadgeText()}</Text>
         <Text style={styles.badge}>{outlet.status}</Text>
-        {displayRating ? <Text style={styles.badge}>⭐ {displayRating}</Text> : null}
+        {displayRating ? (
+          <Text style={styles.badge}>⭐ {displayRating}</Text>
+        ) : null}
       </View>
 
       <View style={styles.ctaRow}>
@@ -299,13 +322,17 @@ export function OutletDetailScreen() {
           }}
         >
           <Text style={styles.ctaIcon}>{favorite ? "♥" : "♡"}</Text>
-          <Text style={styles.ctaText}>{favorite ? t("outlet.saved") : t("outlet.favorite")}</Text>
+          <Text style={styles.ctaText}>
+            {favorite ? t("outlet.saved") : t("outlet.favorite")}
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           activeOpacity={0.86}
           style={styles.ctaButton}
-          onPress={() => navigation.navigate("CreateTrip", { outletId: outlet.outletId })}
+          onPress={() =>
+            navigation.navigate("CreateTrip", { outletId: outlet.outletId })
+          }
         >
           <Text style={styles.ctaIcon}>🧳</Text>
           <Text style={styles.ctaText}>{t("outlet.createTrip")}</Text>
@@ -322,87 +349,118 @@ export function OutletDetailScreen() {
       </View>
 
       <View style={styles.anchorRow}>
-        <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("overview")}>
+        <TouchableOpacity
+          activeOpacity={0.86}
+          onPress={() => scrollToSection("overview")}
+        >
           <Text style={styles.anchorPill}>{t("outlet.anchorOverview")}</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("brands")}>
+        <TouchableOpacity
+          activeOpacity={0.86}
+          onPress={() => scrollToSection("brands")}
+        >
           <Text style={styles.anchorPill}>{t("outlet.anchorBrands")}</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("transport")}>
+        <TouchableOpacity
+          activeOpacity={0.86}
+          onPress={() => scrollToSection("transport")}
+        >
           <Text style={styles.anchorPill}>{t("outlet.anchorTransport")}</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("food")}>
+        <TouchableOpacity
+          activeOpacity={0.86}
+          onPress={() => scrollToSection("food")}
+        >
           <Text style={styles.anchorPill}>{t("outlet.anchorFood")}</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.86} onPress={() => scrollToSection("reviews")}>
+        <TouchableOpacity
+          activeOpacity={0.86}
+          onPress={() => scrollToSection("reviews")}
+        >
           <Text style={styles.anchorPill}>{t("outlet.anchorReviews")}</Text>
         </TouchableOpacity>
       </View>
 
-      <View onLayout={(event) => setSectionPosition("overview", event.nativeEvent.layout.y)}>
-      <QuickFactsCard
-        title={t("outlet.quickFacts")}
-        weather={weather}
-        weatherLoading={weatherLoading}
-        weatherError={weatherError}
-        weatherLoadingText={t("weather.loading")}
-        weatherUnavailableText={t("weather.unavailable")}
-        cityName={cityNames[outlet.cityId] || outlet.cityId}
-        openingHoursLabel={t("outlet.openingHours")}
-        openingHours={outlet.openingHours}
-        addressLabel={t("outlet.address")}
-        address={outlet.address}
-        storesCountText={outlet.storesCountText}
-        cityCenterDistanceKm={outlet.cityCenterDistanceKm}
-        airportDistanceKm={outlet.airportDistanceKm}
-        reviewCountLabel={t("outlet.reviewCount")}
-        reviewCount={outletReviews.length}
-        rating={averageRating ?? displayRating ?? undefined}
-        airportSummary={airportSummary}
-        onPressStores={() => scrollToSection("brands")}
-        onPressTaxFree={() => scrollToSection("taxFree")}
-        onPressAirport={() => scrollToSection("transport")}
-        onPressRating={() => scrollToSection("reviews")}
-      />
-      </View>
-
-      <View onLayout={(event) => setSectionPosition("taxFree", event.nativeEvent.layout.y)}>
-      <TaxFreeCard
-title={t("outlet.taxFree")}
-vatRate={outlet.vatRate}
-refundRate={
-(outlet as any).estimatedRefundRate > 0
-? `≈${(outlet as any).estimatedRefundRate}%`
-: t("outlet.notAvailable")
-}
-minimumSpend={outlet.minimumTaxFreeSpend}
-officeInfo={outlet.taxFreeOfficeInfo}
-/>
-      </View>
-
-      <View onLayout={(event) => setSectionPosition("brands", event.nativeEvent.layout.y)}>
-      <BrandsCard
-        title={t("outlet.brands")}
-        brandSearch={brandSearch}
-        setBrandSearch={setBrandSearch}
-        openCategory={openCategory}
-        setOpenCategory={setOpenCategory}
-        brandCategoryGroups={brandCategoryGroups}
-      />
-      </View>
-
-      <View onLayout={(event) => setSectionPosition("transport", event.nativeEvent.layout.y)}>
-      <TransportationCard
-        title={t("outlet.transportation")}
-        transportationItems={transportationItems}
-        notAvailableText={t("common.notAvailable")}
-        buttonText={t("outlet.viewTransportationGuide")}
-        onPressGuide={() =>
-          navigation.navigate("Transportation", {
-            outletId: outlet.outletId,
-          })
+      <View
+        onLayout={(event) =>
+          setSectionPosition("overview", event.nativeEvent.layout.y)
         }
-      />
+      >
+        <QuickFactsCard
+          title={t("outlet.quickFacts")}
+          weather={weather}
+          weatherLoading={weatherLoading}
+          weatherError={weatherError}
+          weatherLoadingText={t("weather.loading")}
+          weatherUnavailableText={t("weather.unavailable")}
+          cityName={cityNames[outlet.cityId] || outlet.cityId}
+          openingHoursLabel={t("outlet.openingHours")}
+          openingHours={outlet.openingHours}
+          addressLabel={t("outlet.address")}
+          address={outlet.address}
+          storesCountText={outlet.storesCountText}
+          cityCenterDistanceKm={outlet.cityCenterDistanceKm}
+          airportDistanceKm={outlet.airportDistanceKm}
+          reviewCountLabel={t("outlet.reviewCount")}
+          reviewCount={outletReviews.length}
+          rating={averageRating ?? displayRating ?? undefined}
+          airportSummary={airportSummary}
+          onPressStores={() => scrollToSection("brands")}
+          onPressTaxFree={() => scrollToSection("taxFree")}
+          onPressAirport={() => scrollToSection("transport")}
+          onPressRating={() => scrollToSection("reviews")}
+        />
+      </View>
+
+      <View
+        onLayout={(event) =>
+          setSectionPosition("taxFree", event.nativeEvent.layout.y)
+        }
+      >
+        <TaxFreeCard
+          title={t("outlet.taxFree")}
+          vatRate={outlet.vatRate}
+          refundRate={
+            (outlet as any).estimatedRefundRate > 0
+              ? `≈${(outlet as any).estimatedRefundRate}%`
+              : t("outlet.notAvailable")
+          }
+          minimumSpend={outlet.minimumTaxFreeSpend}
+          officeInfo={outlet.taxFreeOfficeInfo}
+        />
+      </View>
+
+      <View
+        onLayout={(event) =>
+          setSectionPosition("brands", event.nativeEvent.layout.y)
+        }
+      >
+        <BrandsCard
+          title={t("outlet.brands")}
+          brandSearch={brandSearch}
+          setBrandSearch={setBrandSearch}
+          openCategory={openCategory}
+          setOpenCategory={setOpenCategory}
+          brandCategoryGroups={brandCategoryGroups}
+        />
+      </View>
+
+      <View
+        onLayout={(event) =>
+          setSectionPosition("transport", event.nativeEvent.layout.y)
+        }
+      >
+        <TransportationCard
+          title={t("outlet.transportation")}
+          transportationItems={transportationItems}
+          notAvailableText={t("common.notAvailable")}
+          buttonText={t("outlet.viewTransportationGuide")}
+          onPressGuide={() =>
+            navigation.navigate("Transportation", {
+              outletId: outlet.outletId,
+            })
+          }
+        />
       </View>
 
       <MapsCard
@@ -422,12 +480,16 @@ officeInfo={outlet.taxFreeOfficeInfo}
         onPress={() => Linking.openURL(outlet.websiteUrl)}
       />
 
-      <View onLayout={(event) => setSectionPosition("food", event.nativeEvent.layout.y)}>
-      <RestaurantsCard
-        title={t("outlet.restaurantsCafes")}
-        restaurants={restaurantItems}
-        notAvailableText={t("common.notAvailable")}
-      />
+      <View
+        onLayout={(event) =>
+          setSectionPosition("food", event.nativeEvent.layout.y)
+        }
+      >
+        <RestaurantsCard
+          title={t("outlet.restaurantsCafes")}
+          restaurants={restaurantItems}
+          notAvailableText={t("common.notAvailable")}
+        />
       </View>
 
       <ServicesCard
@@ -436,14 +498,19 @@ officeInfo={outlet.taxFreeOfficeInfo}
         notAvailableText={t("common.notAvailable")}
       />
 
-      <View style={styles.reviewCard} onLayout={(event) => setSectionPosition("reviews", event.nativeEvent.layout.y)}>
+      <View
+        style={styles.reviewCard}
+        onLayout={(event) =>
+          setSectionPosition("reviews", event.nativeEvent.layout.y)
+        }
+      >
         <Text style={styles.sectionTitle}>{t("outlet.reviews")}</Text>
 
         {outletReviews.length > 0 && averageRating ? (
           <>
             <ReviewStatsCard
               summaryText={`⭐ ${averageRating} (${outletReviews.length} ${t(
-                "outlet.reviewLabel"
+                "outlet.reviewLabel",
               )})`}
               transportationTitle={t("outlet.transportationRating")}
               transportationValue={averageTransportationRating ?? "-"}
@@ -454,42 +521,27 @@ officeInfo={outlet.taxFreeOfficeInfo}
               servicesTitle={t("outlet.servicesRating")}
               servicesValue={averageServicesRating ?? "-"}
             />
-
-            <ReviewTabs
-              activeTab={reviewSort}
-              helpfulText={t("outlet.mostHelpful")}
-              recentText={t("outlet.recent")}
-              onChangeTab={setReviewSort}
-            />
           </>
         ) : null}
 
         {outletReviews.length > 0 ? (
-          sortedReviews.map((review) => {
-            const helpfulItem = getHelpfulItem(review.reviewId);
-
-            return (
-              <ReviewItem
-                key={review.reviewId}
-                userName={review.userName}
-                rating={getReviewAverage(review) ?? "-"}
-                comment={review.comment}
-                createdAt={review.createdAt}
-                isEdited={review.isEdited}
-                updatedAt={review.updatedAt}
-                previousComment={review.previousComment}
-                editedText={t("outlet.edited")}
-                previousCommentTitle={t("outlet.previousComment")}
-                helpfulText={t("outlet.helpful")}
-                helpfulCount={helpfulItem.helpfulCount}
-                isHelpfulByCurrentUser={helpfulItem.isHelpfulByCurrentUser}
-                canEdit={false}
-                editText={t("outlet.editReview")}
-                onPressHelpful={() => toggleHelpful(review.reviewId)}
-                onPressEdit={() => {}}
-              />
-            );
-          })
+          sortedReviews.map((review) => (
+            <ReviewItem
+              key={review.reviewId}
+              userName={review.userName}
+              rating={getReviewAverage(review) ?? "-"}
+              comment={review.comment}
+              createdAt={review.createdAt}
+              isEdited={review.isEdited}
+              updatedAt={review.updatedAt}
+              previousComment={review.previousComment}
+              editedText={t("outlet.edited")}
+              previousCommentTitle={t("outlet.previousComment")}
+              canEdit={false}
+              editText={t("outlet.editReview")}
+              onPressEdit={() => {}}
+            />
+          ))
         ) : (
           <Text style={styles.emptyText}>{t("outlet.noReviews")}</Text>
         )}

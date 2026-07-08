@@ -167,7 +167,8 @@ const enTranslations = {
   "outlet.helpful": "Helpful",
   "sharedCards.brands.countSuffix": "brands",
   "sharedCards.brands.searchPlaceholder": "Search brands...",
-  "sharedCards.maps.description": "Open navigation with your preferred map app.",
+  "sharedCards.maps.description":
+    "Open navigation with your preferred map app.",
   "sharedCards.maps.recommendedRoute": "Recommended route",
   "sharedCards.quickFacts.hours": "Hours",
   "sharedCards.quickFacts.stores": "Stores",
@@ -180,7 +181,6 @@ const enTranslations = {
   "sharedCards.reviews.guestRating": "Guest Rating",
   "sharedCards.writeReview.subtitle": "Share your outlet shopping experience",
   "sharedCards.weather.kicker": "Weather",
-
 
   "profile.title": "Profile",
   "profile.subtitle": "Manage your app preferences.",
@@ -586,13 +586,13 @@ const enTranslations = {
   "outlet.editReview": "Edit Review",
 
   "myReviews.title": "My Reviews",
-  "myReviews.subtitle": "Reviews you have written.",
+  "myReviews.subtitle": "Your existing outlet reviews.",
   "myReviews.emptyTitle": "No Reviews Yet",
-  "myReviews.emptyText": "Your reviews will appear here.",
+  "myReviews.emptyText": "No reviews are linked to your account.",
   "myReviews.viewOutlet": "View Outlet →",
 
-  "writeReview.title": "Write Review",
-  "writeReview.editTitle": "Edit Review",
+  "writeReview.title": "Reviews Unavailable",
+  "writeReview.editTitle": "Reviews Unavailable",
   "writeReview.overall": "Overall Experience",
   "writeReview.transportation": "Transportation",
   "writeReview.brandVariety": "Brand Variety",
@@ -603,10 +603,11 @@ const enTranslations = {
   "writeReview.submit": "Submit Review",
   "writeReview.update": "Update Review",
   "writeReview.note":
-    "Review submission is a demo action for now. Later this will require user login and save the review to the database.",
+    "Review submission is disabled until production storage, moderation, abuse reporting, and operational handling are ready.",
   "writeReview.defaultUserName": "My Outlet Guide User",
   "writeReview.unavailableTitle": "Reviews are not open yet",
-  "writeReview.unavailableText": "Outlet review submission will open only after production storage, moderation and abuse reporting are ready.",
+  "writeReview.unavailableText":
+    "Outlet review submission will open only after production storage, moderation and abuse reporting are ready.",
 
   "outlet.previousComment": "Previous Comment",
 
@@ -653,33 +654,60 @@ const enTranslations = {
   "transportation.stepByStep": "Step-by-step guide",
   "transportation.otherOptions": "Other Options",
 
-  "transportation.fallback.cdg.step1": "Follow airport signs to the RER/TGV train area.",
-  "transportation.fallback.cdg.step2": "Take a train connection towards central Paris or Marne-la-Vallée.",
-  "transportation.fallback.cdg.step3": "Change where required for Val d'Europe station.",
-  "transportation.fallback.cdg.step4": "Get off at Val d'Europe and follow signs towards La Vallée Village.",
-  "transportation.fallback.common.walkOutletEntrance": "Walk approximately 5 minutes to the outlet entrance.",
-  "transportation.fallback.orly.step1": "Follow airport signs to the public transport connection.",
-  "transportation.fallback.orly.step2": "Travel towards central Paris and connect to the RER A line.",
-  "transportation.fallback.common.takeRerA": "Take RER A towards Marne-la-Vallée Chessy.",
-  "transportation.fallback.common.valDEuropeStation": "Get off at Val d'Europe station.",
-  "transportation.fallback.common.walkLaVallee": "Walk approximately 5 minutes to La Vallée Village.",
-  "transportation.fallback.disney.step1": "Start from the Disneyland Paris / Val d'Europe area.",
-  "transportation.fallback.disney.step2": "Follow pedestrian signs towards Centre Commercial Val d'Europe.",
-  "transportation.fallback.disney.step3": "Continue towards La Vallée Village entrance.",
-  "transportation.fallback.taxi.step1": "Open your preferred ride-hailing or taxi app.",
-  "transportation.fallback.taxi.step2": "Set La Vallée Village, Serris as the destination.",
-  "transportation.fallback.taxi.step3": "Confirm the estimated fare and pickup point before starting the ride.",
-  "transportation.fallback.taxi.step4": "Ask to be dropped near the main entrance or guest services area.",
-  "transportation.fallback.taxi.step5": "For the return trip, check vehicle availability before outlet closing time.",
-  "transportation.fallback.shuttle.step1": "Check the latest shuttle timetable before departure.",
-  "transportation.fallback.shuttle.step2": "Arrive at the pickup point at least 10 minutes early.",
-  "transportation.fallback.shuttle.step3": "Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
-  "transportation.fallback.shuttle.step4": "Keep the return schedule saved before you start shopping.",
-  "transportation.fallback.train.step1": "Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
-  "transportation.fallback.train.step4": "Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
-  "transportation.fallback.default.step1": "Check the latest route and schedule before departure.",
-  "transportation.fallback.default.step2": "Follow the indicated transport option towards Val d'Europe / Serris.",
-  "transportation.fallback.default.step3": "Use maps or station signs for the final walking section to La Vallée Village.",
+  "transportation.fallback.cdg.step1":
+    "Follow airport signs to the RER/TGV train area.",
+  "transportation.fallback.cdg.step2":
+    "Take a train connection towards central Paris or Marne-la-Vallée.",
+  "transportation.fallback.cdg.step3":
+    "Change where required for Val d'Europe station.",
+  "transportation.fallback.cdg.step4":
+    "Get off at Val d'Europe and follow signs towards La Vallée Village.",
+  "transportation.fallback.common.walkOutletEntrance":
+    "Walk approximately 5 minutes to the outlet entrance.",
+  "transportation.fallback.orly.step1":
+    "Follow airport signs to the public transport connection.",
+  "transportation.fallback.orly.step2":
+    "Travel towards central Paris and connect to the RER A line.",
+  "transportation.fallback.common.takeRerA":
+    "Take RER A towards Marne-la-Vallée Chessy.",
+  "transportation.fallback.common.valDEuropeStation":
+    "Get off at Val d'Europe station.",
+  "transportation.fallback.common.walkLaVallee":
+    "Walk approximately 5 minutes to La Vallée Village.",
+  "transportation.fallback.disney.step1":
+    "Start from the Disneyland Paris / Val d'Europe area.",
+  "transportation.fallback.disney.step2":
+    "Follow pedestrian signs towards Centre Commercial Val d'Europe.",
+  "transportation.fallback.disney.step3":
+    "Continue towards La Vallée Village entrance.",
+  "transportation.fallback.taxi.step1":
+    "Open your preferred ride-hailing or taxi app.",
+  "transportation.fallback.taxi.step2":
+    "Set La Vallée Village, Serris as the destination.",
+  "transportation.fallback.taxi.step3":
+    "Confirm the estimated fare and pickup point before starting the ride.",
+  "transportation.fallback.taxi.step4":
+    "Ask to be dropped near the main entrance or guest services area.",
+  "transportation.fallback.taxi.step5":
+    "For the return trip, check vehicle availability before outlet closing time.",
+  "transportation.fallback.shuttle.step1":
+    "Check the latest shuttle timetable before departure.",
+  "transportation.fallback.shuttle.step2":
+    "Arrive at the pickup point at least 10 minutes early.",
+  "transportation.fallback.shuttle.step3":
+    "Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
+  "transportation.fallback.shuttle.step4":
+    "Keep the return schedule saved before you start shopping.",
+  "transportation.fallback.train.step1":
+    "Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
+  "transportation.fallback.train.step4":
+    "Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
+  "transportation.fallback.default.step1":
+    "Check the latest route and schedule before departure.",
+  "transportation.fallback.default.step2":
+    "Follow the indicated transport option towards Val d'Europe / Serris.",
+  "transportation.fallback.default.step3":
+    "Use maps or station signs for the final walking section to La Vallée Village.",
 
   "flightDeals.settingsTitle": "Flight Deal Alerts",
   "flightDeals.settingsSubtitle":
@@ -859,7 +887,7 @@ const enTranslations = {
   "nav.currency": "Currency",
   "nav.notifications": "Notifications",
   "nav.offlinePacks": "Offline Packs",
-  "nav.writeReview": "Write Review",
+  "nav.writeReview": "Reviews Unavailable",
   "nav.flightDeals": "Flight Deals",
   "nav.flightDeal": "Flight Deal",
   "nav.signIn": "Sign In",
@@ -894,7 +922,8 @@ const enTranslations = {
   "profile.subtitles.myTrips": "Saved shopping trips",
   "profile.subtitles.flightDeals": "Routes, budgets and fare alerts",
   "profile.subtitles.offlinePacks": "Downloaded city and outlet packs",
-  "profile.subtitles.myReviews": "Your outlet reviews and ratings",
+  "profile.subtitles.myReviews":
+    "Existing outlet reviews linked to your account",
   "profile.subtitles.language": "App language",
   "profile.subtitles.currency": "Default shopping currency",
   "profile.subtitles.notifications": "Trips, deals, events and Tax Free",
@@ -923,9 +952,11 @@ const enTranslations = {
 
   "mediaCredits.kicker": "Media Attribution",
   "mediaCredits.title": "Image Credits",
-  "mediaCredits.subtitle": "Production-cleared outlet images and their attribution details appear here.",
+  "mediaCredits.subtitle":
+    "Production-cleared outlet images and their attribution details appear here.",
   "mediaCredits.emptyTitle": "No production-cleared image credits yet",
-  "mediaCredits.emptyText": "Current local outlet images are inventory-only until source, credit, and license details are documented.",
+  "mediaCredits.emptyText":
+    "Current local outlet images are inventory-only until source, credit, and license details are documented.",
   "mediaCredits.role": "Role",
   "mediaCredits.alt": "Alt text",
   "mediaCredits.credit": "Credit",
@@ -1072,9 +1103,11 @@ const enTranslations = {
   "offline.downloadedStat": "Downloaded",
   "offline.storage": "Storage",
   "offline.packs.parisShopping.title": "Paris Shopping Pack",
-  "offline.packs.parisShopping.description": "Offline outlet details, transport tips, Tax Free notes and saved trip basics for Paris.",
+  "offline.packs.parisShopping.description":
+    "Offline outlet details, transport tips, Tax Free notes and saved trip basics for Paris.",
   "offline.packs.milanShopping.title": "Milan Shopping Pack",
-  "offline.packs.milanShopping.description": "Offline shopping guide for Milan area outlets.",
+  "offline.packs.milanShopping.description":
+    "Offline shopping guide for Milan area outlets.",
   "weather.condition.clear": "Clear",
   "weather.condition.cloudy": "Cloudy",
   "weather.condition.foggy": "Foggy",
@@ -1087,7 +1120,8 @@ const enTranslations = {
   "search.features.taxFreeGuide.title": "Tax Free Guide",
   "search.features.taxFreeCalculator.title": "Tax Free Calculator",
   "search.features.smartShoppingCalculator.title": "Smart Shopping Calculator",
-  "search.features.priceAdvantageCalculator.title": "Price Advantage Calculator",
+  "search.features.priceAdvantageCalculator.title":
+    "Price Advantage Calculator",
   "search.features.offlinePacks.title": "Offline Packs",
   "search.features.myTrips.title": "My Trips",
   "search.features.flightDeals.title": "Flight Deals",
@@ -1324,7 +1358,8 @@ export const translations: Record<
     "outlet.helpful": "Faydalı",
     "sharedCards.brands.countSuffix": "marka",
     "sharedCards.brands.searchPlaceholder": "Marka ara...",
-    "sharedCards.maps.description": "Navigasyonu tercih ettiğin harita uygulamasıyla aç.",
+    "sharedCards.maps.description":
+      "Navigasyonu tercih ettiğin harita uygulamasıyla aç.",
     "sharedCards.maps.recommendedRoute": "Önerilen rota",
     "sharedCards.quickFacts.hours": "Saatler",
     "sharedCards.quickFacts.stores": "Mağazalar",
@@ -1337,7 +1372,6 @@ export const translations: Record<
     "sharedCards.reviews.guestRating": "Misafir puanı",
     "sharedCards.writeReview.subtitle": "Outlet alışveriş deneyimini paylaş",
     "sharedCards.weather.kicker": "Hava",
-
 
     "profile.title": "Profil",
     "profile.subtitle": "Uygulama tercihlerini yönet.",
@@ -1749,13 +1783,13 @@ export const translations: Record<
     "outlet.editReview": "Yorumu Düzenle",
 
     "myReviews.title": "Yorumlarım",
-    "myReviews.subtitle": "Yazdığın yorumlar.",
+    "myReviews.subtitle": "Mevcut outlet yorumların.",
     "myReviews.emptyTitle": "Henüz Yorum Yok",
-    "myReviews.emptyText": "Yorumların burada görünür.",
+    "myReviews.emptyText": "Hesabına bağlı yorum yok.",
     "myReviews.viewOutlet": "Outlet'i Gör →",
 
-    "writeReview.title": "Yorum Yaz",
-    "writeReview.editTitle": "Yorumu Düzenle",
+    "writeReview.title": "Yorumlar Kullanılamıyor",
+    "writeReview.editTitle": "Yorumlar Kullanılamıyor",
     "writeReview.overall": "Genel Deneyim",
     "writeReview.transportation": "Ulaşım",
     "writeReview.brandVariety": "Marka Çeşitliliği",
@@ -1766,10 +1800,11 @@ export const translations: Record<
     "writeReview.submit": "Yorumu Gönder",
     "writeReview.update": "Yorumu Güncelle",
     "writeReview.note":
-      "Yorumun hesabına bağlı olarak kaydedilir. Yayınlanan yorumlar diğer kullanıcılar tarafından görülebilir.",
+      "Yorum gönderimi; üretim depolaması, moderasyon, kötüye kullanım bildirimi ve operasyonel süreçler hazır olana kadar kapalıdır.",
     "writeReview.defaultUserName": "My Outlet Guide Kullanıcısı",
     "writeReview.unavailableTitle": "Yorumlar henüz açık değil",
-    "writeReview.unavailableText": "Outlet yorumu gönderimi yalnızca üretim depolaması, moderasyon ve kötüye kullanım bildirimi hazır olduğunda açılacaktır.",
+    "writeReview.unavailableText":
+      "Outlet yorumu gönderimi yalnızca üretim depolaması, moderasyon ve kötüye kullanım bildirimi hazır olduğunda açılacaktır.",
 
     "outlet.previousComment": "Önceki Yorum",
 
@@ -1816,33 +1851,60 @@ export const translations: Record<
     "transportation.stepByStep": "Adım adım rehber",
     "transportation.otherOptions": "Diğer Seçenekler",
 
-    "transportation.fallback.cdg.step1": "TR: Follow airport signs to the RER/TGV train area.",
-    "transportation.fallback.cdg.step2": "TR: Take a train connection towards central Paris or Marne-la-Vallée.",
-    "transportation.fallback.cdg.step3": "TR: Change where required for Val d'Europe station.",
-    "transportation.fallback.cdg.step4": "TR: Get off at Val d'Europe and follow signs towards La Vallée Village.",
-    "transportation.fallback.common.walkOutletEntrance": "TR: Walk approximately 5 minutes to the outlet entrance.",
-    "transportation.fallback.orly.step1": "TR: Follow airport signs to the public transport connection.",
-    "transportation.fallback.orly.step2": "TR: Travel towards central Paris and connect to the RER A line.",
-    "transportation.fallback.common.takeRerA": "TR: Take RER A towards Marne-la-Vallée Chessy.",
-    "transportation.fallback.common.valDEuropeStation": "TR: Get off at Val d'Europe station.",
-    "transportation.fallback.common.walkLaVallee": "TR: Walk approximately 5 minutes to La Vallée Village.",
-    "transportation.fallback.disney.step1": "TR: Start from the Disneyland Paris / Val d'Europe area.",
-    "transportation.fallback.disney.step2": "TR: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
-    "transportation.fallback.disney.step3": "TR: Continue towards La Vallée Village entrance.",
-    "transportation.fallback.taxi.step1": "TR: Open your preferred ride-hailing or taxi app.",
-    "transportation.fallback.taxi.step2": "TR: Set La Vallée Village, Serris as the destination.",
-    "transportation.fallback.taxi.step3": "TR: Confirm the estimated fare and pickup point before starting the ride.",
-    "transportation.fallback.taxi.step4": "TR: Ask to be dropped near the main entrance or guest services area.",
-    "transportation.fallback.taxi.step5": "TR: For the return trip, check vehicle availability before outlet closing time.",
-    "transportation.fallback.shuttle.step1": "TR: Check the latest shuttle timetable before departure.",
-    "transportation.fallback.shuttle.step2": "TR: Arrive at the pickup point at least 10 minutes early.",
-    "transportation.fallback.shuttle.step3": "TR: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
-    "transportation.fallback.shuttle.step4": "TR: Keep the return schedule saved before you start shopping.",
-    "transportation.fallback.train.step1": "TR: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
-    "transportation.fallback.train.step4": "TR: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
-    "transportation.fallback.default.step1": "TR: Check the latest route and schedule before departure.",
-    "transportation.fallback.default.step2": "TR: Follow the indicated transport option towards Val d'Europe / Serris.",
-    "transportation.fallback.default.step3": "TR: Use maps or station signs for the final walking section to La Vallée Village.",
+    "transportation.fallback.cdg.step1":
+      "TR: Follow airport signs to the RER/TGV train area.",
+    "transportation.fallback.cdg.step2":
+      "TR: Take a train connection towards central Paris or Marne-la-Vallée.",
+    "transportation.fallback.cdg.step3":
+      "TR: Change where required for Val d'Europe station.",
+    "transportation.fallback.cdg.step4":
+      "TR: Get off at Val d'Europe and follow signs towards La Vallée Village.",
+    "transportation.fallback.common.walkOutletEntrance":
+      "TR: Walk approximately 5 minutes to the outlet entrance.",
+    "transportation.fallback.orly.step1":
+      "TR: Follow airport signs to the public transport connection.",
+    "transportation.fallback.orly.step2":
+      "TR: Travel towards central Paris and connect to the RER A line.",
+    "transportation.fallback.common.takeRerA":
+      "TR: Take RER A towards Marne-la-Vallée Chessy.",
+    "transportation.fallback.common.valDEuropeStation":
+      "TR: Get off at Val d'Europe station.",
+    "transportation.fallback.common.walkLaVallee":
+      "TR: Walk approximately 5 minutes to La Vallée Village.",
+    "transportation.fallback.disney.step1":
+      "TR: Start from the Disneyland Paris / Val d'Europe area.",
+    "transportation.fallback.disney.step2":
+      "TR: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
+    "transportation.fallback.disney.step3":
+      "TR: Continue towards La Vallée Village entrance.",
+    "transportation.fallback.taxi.step1":
+      "TR: Open your preferred ride-hailing or taxi app.",
+    "transportation.fallback.taxi.step2":
+      "TR: Set La Vallée Village, Serris as the destination.",
+    "transportation.fallback.taxi.step3":
+      "TR: Confirm the estimated fare and pickup point before starting the ride.",
+    "transportation.fallback.taxi.step4":
+      "TR: Ask to be dropped near the main entrance or guest services area.",
+    "transportation.fallback.taxi.step5":
+      "TR: For the return trip, check vehicle availability before outlet closing time.",
+    "transportation.fallback.shuttle.step1":
+      "TR: Check the latest shuttle timetable before departure.",
+    "transportation.fallback.shuttle.step2":
+      "TR: Arrive at the pickup point at least 10 minutes early.",
+    "transportation.fallback.shuttle.step3":
+      "TR: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
+    "transportation.fallback.shuttle.step4":
+      "TR: Keep the return schedule saved before you start shopping.",
+    "transportation.fallback.train.step1":
+      "TR: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
+    "transportation.fallback.train.step4":
+      "TR: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
+    "transportation.fallback.default.step1":
+      "TR: Check the latest route and schedule before departure.",
+    "transportation.fallback.default.step2":
+      "TR: Follow the indicated transport option towards Val d'Europe / Serris.",
+    "transportation.fallback.default.step3":
+      "TR: Use maps or station signs for the final walking section to La Vallée Village.",
 
     "flightDeals.settingsTitle": "Uçuş Fırsatları",
     "flightDeals.settingsSubtitle":
@@ -2024,7 +2086,7 @@ export const translations: Record<
     "nav.currency": "Para Birimi",
     "nav.notifications": "Bildirimler",
     "nav.offlinePacks": "Çevrimdışı Paketler",
-    "nav.writeReview": "Yorum Yaz",
+    "nav.writeReview": "Yorumlar Kullanılamıyor",
     "nav.flightDeals": "Uçuş Fırsatları",
     "nav.flightDeal": "Uçuş Fırsatı",
     "nav.signIn": "Giriş Yap",
@@ -2059,7 +2121,7 @@ export const translations: Record<
     "profile.subtitles.myTrips": "Kayıtlı alışveriş gezileri",
     "profile.subtitles.flightDeals": "Rotalar, bütçeler ve ücret uyarıları",
     "profile.subtitles.offlinePacks": "İndirilen şehir ve outlet paketleri",
-    "profile.subtitles.myReviews": "Outlet yorumların ve puanların",
+    "profile.subtitles.myReviews": "Hesabına bağlı mevcut outlet yorumları",
     "profile.subtitles.language": "Uygulama dili",
     "profile.subtitles.currency": "Varsayılan alışveriş para birimi",
     "profile.subtitles.notifications":
@@ -2090,9 +2152,11 @@ export const translations: Record<
 
     "mediaCredits.kicker": "Medya Atfı",
     "mediaCredits.title": "Görsel Kredileri",
-    "mediaCredits.subtitle": "Üretim için onaylı outlet görselleri ve atıf ayrıntıları burada görünür.",
+    "mediaCredits.subtitle":
+      "Üretim için onaylı outlet görselleri ve atıf ayrıntıları burada görünür.",
     "mediaCredits.emptyTitle": "Henüz üretim için onaylı görsel kredisi yok",
-    "mediaCredits.emptyText": "Mevcut yerel outlet görselleri kaynak, kredi ve lisans ayrıntıları belgelenene kadar yalnızca envanter içindir.",
+    "mediaCredits.emptyText":
+      "Mevcut yerel outlet görselleri kaynak, kredi ve lisans ayrıntıları belgelenene kadar yalnızca envanter içindir.",
     "mediaCredits.role": "Rol",
     "mediaCredits.alt": "Alternatif metin",
     "mediaCredits.credit": "Kredi",
@@ -2220,9 +2284,11 @@ export const translations: Record<
     "offline.downloadedStat": "İndirilen",
     "offline.storage": "Depolama",
     "offline.packs.parisShopping.title": "Paris Alışveriş Paketi",
-    "offline.packs.parisShopping.description": "Paris için çevrimdışı outlet bilgileri, ulaşım ipuçları, Tax Free notları ve kayıtlı seyahat temelleri.",
+    "offline.packs.parisShopping.description":
+      "Paris için çevrimdışı outlet bilgileri, ulaşım ipuçları, Tax Free notları ve kayıtlı seyahat temelleri.",
     "offline.packs.milanShopping.title": "Milan Alışveriş Paketi",
-    "offline.packs.milanShopping.description": "Milan bölgesi outletleri için çevrimdışı alışveriş rehberi.",
+    "offline.packs.milanShopping.description":
+      "Milan bölgesi outletleri için çevrimdışı alışveriş rehberi.",
     "weather.condition.clear": "Açık",
     "weather.condition.cloudy": "Bulutlu",
     "weather.condition.foggy": "Sisli",
@@ -2231,11 +2297,14 @@ export const translations: Record<
     "weather.condition.stormy": "Fırtınalı",
     "weather.condition.weather": "Hava",
     "notifications.mock.flightDeal.title": "Uçuş fırsatı bulundu",
-    "notifications.mock.flightDeal.message": "{airline} fırsatı: {route} • {price}",
+    "notifications.mock.flightDeal.message":
+      "{airline} fırsatı: {route} • {price}",
     "search.features.taxFreeGuide.title": "Tax Free Rehberi",
     "search.features.taxFreeCalculator.title": "Tax Free Hesaplayıcı",
-    "search.features.smartShoppingCalculator.title": "Akıllı Alışveriş Hesaplayıcı",
-    "search.features.priceAdvantageCalculator.title": "Fiyat Avantajı Hesaplayıcı",
+    "search.features.smartShoppingCalculator.title":
+      "Akıllı Alışveriş Hesaplayıcı",
+    "search.features.priceAdvantageCalculator.title":
+      "Fiyat Avantajı Hesaplayıcı",
     "search.features.offlinePacks.title": "Çevrimdışı Paketler",
     "search.features.myTrips.title": "Seyahatlerim",
     "search.features.flightDeals.title": "Uçuş Fırsatları",
@@ -2472,7 +2541,8 @@ export const translations: Record<
     "outlet.helpful": "Útil",
     "sharedCards.brands.countSuffix": "marcas",
     "sharedCards.brands.searchPlaceholder": "Buscar marcas...",
-    "sharedCards.maps.description": "Abre la navegación con tu app de mapas preferida.",
+    "sharedCards.maps.description":
+      "Abre la navegación con tu app de mapas preferida.",
     "sharedCards.maps.recommendedRoute": "Ruta recomendada",
     "sharedCards.quickFacts.hours": "Horario",
     "sharedCards.quickFacts.stores": "Tiendas",
@@ -2483,9 +2553,9 @@ export const translations: Record<
     "sharedCards.quickFacts.rating": "Valoración",
     "sharedCards.quickFacts.noRating": "Sin valoración todavía",
     "sharedCards.reviews.guestRating": "Valoración de visitantes",
-    "sharedCards.writeReview.subtitle": "Comparte tu experiencia de compras outlet",
+    "sharedCards.writeReview.subtitle":
+      "Comparte tu experiencia de compras outlet",
     "sharedCards.weather.kicker": "Clima",
-
 
     "profile.title": "Perfil",
     "profile.subtitle": "Gestiona tus preferencias de la app.",
@@ -2913,7 +2983,8 @@ export const translations: Record<
       "El envío de reseñas es una acción de demo por ahora. Más adelante requerirá iniciar sesión y guardará la reseña en la base de datos.",
     "writeReview.defaultUserName": "Usuario de My Outlet Guide",
     "writeReview.unavailableTitle": "Las reseñas aún no están disponibles",
-    "writeReview.unavailableText": "El envío de reseñas de outlets se activará solo cuando el almacenamiento de producción, la moderación y los reportes de abuso estén listos.",
+    "writeReview.unavailableText":
+      "El envío de reseñas de outlets se activará solo cuando el almacenamiento de producción, la moderación y los reportes de abuso estén listos.",
 
     "outlet.previousComment": "Comentario anterior",
 
@@ -2962,33 +3033,60 @@ export const translations: Record<
     "transportation.stepByStep": "Guía paso a paso",
     "transportation.otherOptions": "Otras opciones",
 
-    "transportation.fallback.cdg.step1": "ES: Follow airport signs to the RER/TGV train area.",
-    "transportation.fallback.cdg.step2": "ES: Take a train connection towards central Paris or Marne-la-Vallée.",
-    "transportation.fallback.cdg.step3": "ES: Change where required for Val d'Europe station.",
-    "transportation.fallback.cdg.step4": "ES: Get off at Val d'Europe and follow signs towards La Vallée Village.",
-    "transportation.fallback.common.walkOutletEntrance": "ES: Walk approximately 5 minutes to the outlet entrance.",
-    "transportation.fallback.orly.step1": "ES: Follow airport signs to the public transport connection.",
-    "transportation.fallback.orly.step2": "ES: Travel towards central Paris and connect to the RER A line.",
-    "transportation.fallback.common.takeRerA": "ES: Take RER A towards Marne-la-Vallée Chessy.",
-    "transportation.fallback.common.valDEuropeStation": "ES: Get off at Val d'Europe station.",
-    "transportation.fallback.common.walkLaVallee": "ES: Walk approximately 5 minutes to La Vallée Village.",
-    "transportation.fallback.disney.step1": "ES: Start from the Disneyland Paris / Val d'Europe area.",
-    "transportation.fallback.disney.step2": "ES: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
-    "transportation.fallback.disney.step3": "ES: Continue towards La Vallée Village entrance.",
-    "transportation.fallback.taxi.step1": "ES: Open your preferred ride-hailing or taxi app.",
-    "transportation.fallback.taxi.step2": "ES: Set La Vallée Village, Serris as the destination.",
-    "transportation.fallback.taxi.step3": "ES: Confirm the estimated fare and pickup point before starting the ride.",
-    "transportation.fallback.taxi.step4": "ES: Ask to be dropped near the main entrance or guest services area.",
-    "transportation.fallback.taxi.step5": "ES: For the return trip, check vehicle availability before outlet closing time.",
-    "transportation.fallback.shuttle.step1": "ES: Check the latest shuttle timetable before departure.",
-    "transportation.fallback.shuttle.step2": "ES: Arrive at the pickup point at least 10 minutes early.",
-    "transportation.fallback.shuttle.step3": "ES: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
-    "transportation.fallback.shuttle.step4": "ES: Keep the return schedule saved before you start shopping.",
-    "transportation.fallback.train.step1": "ES: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
-    "transportation.fallback.train.step4": "ES: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
-    "transportation.fallback.default.step1": "ES: Check the latest route and schedule before departure.",
-    "transportation.fallback.default.step2": "ES: Follow the indicated transport option towards Val d'Europe / Serris.",
-    "transportation.fallback.default.step3": "ES: Use maps or station signs for the final walking section to La Vallée Village.",
+    "transportation.fallback.cdg.step1":
+      "ES: Follow airport signs to the RER/TGV train area.",
+    "transportation.fallback.cdg.step2":
+      "ES: Take a train connection towards central Paris or Marne-la-Vallée.",
+    "transportation.fallback.cdg.step3":
+      "ES: Change where required for Val d'Europe station.",
+    "transportation.fallback.cdg.step4":
+      "ES: Get off at Val d'Europe and follow signs towards La Vallée Village.",
+    "transportation.fallback.common.walkOutletEntrance":
+      "ES: Walk approximately 5 minutes to the outlet entrance.",
+    "transportation.fallback.orly.step1":
+      "ES: Follow airport signs to the public transport connection.",
+    "transportation.fallback.orly.step2":
+      "ES: Travel towards central Paris and connect to the RER A line.",
+    "transportation.fallback.common.takeRerA":
+      "ES: Take RER A towards Marne-la-Vallée Chessy.",
+    "transportation.fallback.common.valDEuropeStation":
+      "ES: Get off at Val d'Europe station.",
+    "transportation.fallback.common.walkLaVallee":
+      "ES: Walk approximately 5 minutes to La Vallée Village.",
+    "transportation.fallback.disney.step1":
+      "ES: Start from the Disneyland Paris / Val d'Europe area.",
+    "transportation.fallback.disney.step2":
+      "ES: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
+    "transportation.fallback.disney.step3":
+      "ES: Continue towards La Vallée Village entrance.",
+    "transportation.fallback.taxi.step1":
+      "ES: Open your preferred ride-hailing or taxi app.",
+    "transportation.fallback.taxi.step2":
+      "ES: Set La Vallée Village, Serris as the destination.",
+    "transportation.fallback.taxi.step3":
+      "ES: Confirm the estimated fare and pickup point before starting the ride.",
+    "transportation.fallback.taxi.step4":
+      "ES: Ask to be dropped near the main entrance or guest services area.",
+    "transportation.fallback.taxi.step5":
+      "ES: For the return trip, check vehicle availability before outlet closing time.",
+    "transportation.fallback.shuttle.step1":
+      "ES: Check the latest shuttle timetable before departure.",
+    "transportation.fallback.shuttle.step2":
+      "ES: Arrive at the pickup point at least 10 minutes early.",
+    "transportation.fallback.shuttle.step3":
+      "ES: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
+    "transportation.fallback.shuttle.step4":
+      "ES: Keep the return schedule saved before you start shopping.",
+    "transportation.fallback.train.step1":
+      "ES: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
+    "transportation.fallback.train.step4":
+      "ES: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
+    "transportation.fallback.default.step1":
+      "ES: Check the latest route and schedule before departure.",
+    "transportation.fallback.default.step2":
+      "ES: Follow the indicated transport option towards Val d'Europe / Serris.",
+    "transportation.fallback.default.step3":
+      "ES: Use maps or station signs for the final walking section to La Vallée Village.",
 
     "flightDeals.settingsTitle": "Alertas de vuelos baratos",
     "flightDeals.settingsSubtitle":
@@ -3215,7 +3313,8 @@ export const translations: Record<
     "profile.subtitles.privacyPolicy": "Detalles de privacidad",
     "profile.subtitles.termsConditions": "Términos y condiciones",
     "profile.subtitles.deleteAccount": "Elimina tu cuenta",
-    "profile.subtitles.mediaCredits": "Créditos de imágenes aprobadas para producción",
+    "profile.subtitles.mediaCredits":
+      "Créditos de imágenes aprobadas para producción",
     "profile.syncedText":
       "Tus viajes, favoritos y preferencias están sincronizados.",
     "profile.signInText":
@@ -3236,9 +3335,12 @@ export const translations: Record<
 
     "mediaCredits.kicker": "Atribución de medios",
     "mediaCredits.title": "Créditos de imágenes",
-    "mediaCredits.subtitle": "Las imágenes de outlets aprobadas para producción y sus detalles de atribución aparecen aquí.",
-    "mediaCredits.emptyTitle": "Aún no hay créditos de imágenes aprobadas para producción",
-    "mediaCredits.emptyText": "Las imágenes locales actuales de outlets son solo de inventario hasta documentar fuente, crédito y licencia.",
+    "mediaCredits.subtitle":
+      "Las imágenes de outlets aprobadas para producción y sus detalles de atribución aparecen aquí.",
+    "mediaCredits.emptyTitle":
+      "Aún no hay créditos de imágenes aprobadas para producción",
+    "mediaCredits.emptyText":
+      "Las imágenes locales actuales de outlets son solo de inventario hasta documentar fuente, crédito y licencia.",
     "mediaCredits.role": "Rol",
     "mediaCredits.alt": "Texto alternativo",
     "mediaCredits.credit": "Crédito",
@@ -3375,9 +3477,11 @@ export const translations: Record<
     "offline.downloadedStat": "Descargados",
     "offline.storage": "Almacenamiento",
     "offline.packs.parisShopping.title": "Paquete de compras de París",
-    "offline.packs.parisShopping.description": "Detalles de outlets, consejos de transporte, notas Tax Free y básicos del viaje guardados para París.",
+    "offline.packs.parisShopping.description":
+      "Detalles de outlets, consejos de transporte, notas Tax Free y básicos del viaje guardados para París.",
     "offline.packs.milanShopping.title": "Paquete de compras de Milán",
-    "offline.packs.milanShopping.description": "Guía de compras sin conexión para outlets de la zona de Milán.",
+    "offline.packs.milanShopping.description":
+      "Guía de compras sin conexión para outlets de la zona de Milán.",
     "weather.condition.clear": "Despejado",
     "weather.condition.cloudy": "Nublado",
     "weather.condition.foggy": "Con niebla",
@@ -3386,11 +3490,14 @@ export const translations: Record<
     "weather.condition.stormy": "Tormenta",
     "weather.condition.weather": "Clima",
     "notifications.mock.flightDeal.title": "Oferta de vuelo encontrada",
-    "notifications.mock.flightDeal.message": "Oferta de {airline}: {route} • {price}",
+    "notifications.mock.flightDeal.message":
+      "Oferta de {airline}: {route} • {price}",
     "search.features.taxFreeGuide.title": "Guía Tax Free",
     "search.features.taxFreeCalculator.title": "Calculadora Tax Free",
-    "search.features.smartShoppingCalculator.title": "Calculadora de compras inteligentes",
-    "search.features.priceAdvantageCalculator.title": "Calculadora de ventaja de precio",
+    "search.features.smartShoppingCalculator.title":
+      "Calculadora de compras inteligentes",
+    "search.features.priceAdvantageCalculator.title":
+      "Calculadora de ventaja de precio",
     "search.features.offlinePacks.title": "Paquetes sin conexión",
     "search.features.myTrips.title": "Mis viajes",
     "search.features.flightDeals.title": "Ofertas de vuelos",
@@ -3627,7 +3734,8 @@ export const translations: Record<
     "outlet.helpful": "Utile",
     "sharedCards.brands.countSuffix": "marques",
     "sharedCards.brands.searchPlaceholder": "Rechercher des marques...",
-    "sharedCards.maps.description": "Ouvrez l’itinéraire avec votre app de cartes préférée.",
+    "sharedCards.maps.description":
+      "Ouvrez l’itinéraire avec votre app de cartes préférée.",
     "sharedCards.maps.recommendedRoute": "Itinéraire conseillé",
     "sharedCards.quickFacts.hours": "Horaires",
     "sharedCards.quickFacts.stores": "Boutiques",
@@ -3638,9 +3746,9 @@ export const translations: Record<
     "sharedCards.quickFacts.rating": "Note",
     "sharedCards.quickFacts.noRating": "Pas encore de note",
     "sharedCards.reviews.guestRating": "Note des visiteurs",
-    "sharedCards.writeReview.subtitle": "Partagez votre expérience shopping outlet",
+    "sharedCards.writeReview.subtitle":
+      "Partagez votre expérience shopping outlet",
     "sharedCards.weather.kicker": "Météo",
-
 
     "profile.title": "Profil",
     "profile.subtitle": "Gérez vos préférences.",
@@ -4073,7 +4181,8 @@ export const translations: Record<
       "L'envoi d'avis est une action démo pour le moment. Plus tard, une connexion sera requise et l'avis sera enregistré en base de données.",
     "writeReview.defaultUserName": "Utilisateur My Outlet Guide",
     "writeReview.unavailableTitle": "Les avis ne sont pas encore ouverts",
-    "writeReview.unavailableText": "L’envoi d’avis sur les outlets ouvrira uniquement lorsque le stockage de production, la modération et le signalement des abus seront prêts.",
+    "writeReview.unavailableText":
+      "L’envoi d’avis sur les outlets ouvrira uniquement lorsque le stockage de production, la modération et le signalement des abus seront prêts.",
 
     "outlet.previousComment": "Commentaire précédent",
 
@@ -4122,33 +4231,60 @@ export const translations: Record<
     "transportation.stepByStep": "Guide étape par étape",
     "transportation.otherOptions": "Autres options",
 
-    "transportation.fallback.cdg.step1": "FR: Follow airport signs to the RER/TGV train area.",
-    "transportation.fallback.cdg.step2": "FR: Take a train connection towards central Paris or Marne-la-Vallée.",
-    "transportation.fallback.cdg.step3": "FR: Change where required for Val d'Europe station.",
-    "transportation.fallback.cdg.step4": "FR: Get off at Val d'Europe and follow signs towards La Vallée Village.",
-    "transportation.fallback.common.walkOutletEntrance": "FR: Walk approximately 5 minutes to the outlet entrance.",
-    "transportation.fallback.orly.step1": "FR: Follow airport signs to the public transport connection.",
-    "transportation.fallback.orly.step2": "FR: Travel towards central Paris and connect to the RER A line.",
-    "transportation.fallback.common.takeRerA": "FR: Take RER A towards Marne-la-Vallée Chessy.",
-    "transportation.fallback.common.valDEuropeStation": "FR: Get off at Val d'Europe station.",
-    "transportation.fallback.common.walkLaVallee": "FR: Walk approximately 5 minutes to La Vallée Village.",
-    "transportation.fallback.disney.step1": "FR: Start from the Disneyland Paris / Val d'Europe area.",
-    "transportation.fallback.disney.step2": "FR: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
-    "transportation.fallback.disney.step3": "FR: Continue towards La Vallée Village entrance.",
-    "transportation.fallback.taxi.step1": "FR: Open your preferred ride-hailing or taxi app.",
-    "transportation.fallback.taxi.step2": "FR: Set La Vallée Village, Serris as the destination.",
-    "transportation.fallback.taxi.step3": "FR: Confirm the estimated fare and pickup point before starting the ride.",
-    "transportation.fallback.taxi.step4": "FR: Ask to be dropped near the main entrance or guest services area.",
-    "transportation.fallback.taxi.step5": "FR: For the return trip, check vehicle availability before outlet closing time.",
-    "transportation.fallback.shuttle.step1": "FR: Check the latest shuttle timetable before departure.",
-    "transportation.fallback.shuttle.step2": "FR: Arrive at the pickup point at least 10 minutes early.",
-    "transportation.fallback.shuttle.step3": "FR: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
-    "transportation.fallback.shuttle.step4": "FR: Keep the return schedule saved before you start shopping.",
-    "transportation.fallback.train.step1": "FR: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
-    "transportation.fallback.train.step4": "FR: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
-    "transportation.fallback.default.step1": "FR: Check the latest route and schedule before departure.",
-    "transportation.fallback.default.step2": "FR: Follow the indicated transport option towards Val d'Europe / Serris.",
-    "transportation.fallback.default.step3": "FR: Use maps or station signs for the final walking section to La Vallée Village.",
+    "transportation.fallback.cdg.step1":
+      "FR: Follow airport signs to the RER/TGV train area.",
+    "transportation.fallback.cdg.step2":
+      "FR: Take a train connection towards central Paris or Marne-la-Vallée.",
+    "transportation.fallback.cdg.step3":
+      "FR: Change where required for Val d'Europe station.",
+    "transportation.fallback.cdg.step4":
+      "FR: Get off at Val d'Europe and follow signs towards La Vallée Village.",
+    "transportation.fallback.common.walkOutletEntrance":
+      "FR: Walk approximately 5 minutes to the outlet entrance.",
+    "transportation.fallback.orly.step1":
+      "FR: Follow airport signs to the public transport connection.",
+    "transportation.fallback.orly.step2":
+      "FR: Travel towards central Paris and connect to the RER A line.",
+    "transportation.fallback.common.takeRerA":
+      "FR: Take RER A towards Marne-la-Vallée Chessy.",
+    "transportation.fallback.common.valDEuropeStation":
+      "FR: Get off at Val d'Europe station.",
+    "transportation.fallback.common.walkLaVallee":
+      "FR: Walk approximately 5 minutes to La Vallée Village.",
+    "transportation.fallback.disney.step1":
+      "FR: Start from the Disneyland Paris / Val d'Europe area.",
+    "transportation.fallback.disney.step2":
+      "FR: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
+    "transportation.fallback.disney.step3":
+      "FR: Continue towards La Vallée Village entrance.",
+    "transportation.fallback.taxi.step1":
+      "FR: Open your preferred ride-hailing or taxi app.",
+    "transportation.fallback.taxi.step2":
+      "FR: Set La Vallée Village, Serris as the destination.",
+    "transportation.fallback.taxi.step3":
+      "FR: Confirm the estimated fare and pickup point before starting the ride.",
+    "transportation.fallback.taxi.step4":
+      "FR: Ask to be dropped near the main entrance or guest services area.",
+    "transportation.fallback.taxi.step5":
+      "FR: For the return trip, check vehicle availability before outlet closing time.",
+    "transportation.fallback.shuttle.step1":
+      "FR: Check the latest shuttle timetable before departure.",
+    "transportation.fallback.shuttle.step2":
+      "FR: Arrive at the pickup point at least 10 minutes early.",
+    "transportation.fallback.shuttle.step3":
+      "FR: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
+    "transportation.fallback.shuttle.step4":
+      "FR: Keep the return schedule saved before you start shopping.",
+    "transportation.fallback.train.step1":
+      "FR: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
+    "transportation.fallback.train.step4":
+      "FR: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
+    "transportation.fallback.default.step1":
+      "FR: Check the latest route and schedule before departure.",
+    "transportation.fallback.default.step2":
+      "FR: Follow the indicated transport option towards Val d'Europe / Serris.",
+    "transportation.fallback.default.step3":
+      "FR: Use maps or station signs for the final walking section to La Vallée Village.",
 
     "flightDeals.settingsTitle": "Alertes vols avantageux",
     "flightDeals.settingsSubtitle":
@@ -4376,7 +4512,8 @@ export const translations: Record<
     "profile.subtitles.privacyPolicy": "Détails de confidentialité",
     "profile.subtitles.termsConditions": "Conditions générales",
     "profile.subtitles.deleteAccount": "Supprimer votre compte",
-    "profile.subtitles.mediaCredits": "Crédits des images validées pour la production",
+    "profile.subtitles.mediaCredits":
+      "Crédits des images validées pour la production",
     "profile.syncedText":
       "Vos voyages, favoris et préférences sont synchronisés.",
     "profile.signInText":
@@ -4397,9 +4534,12 @@ export const translations: Record<
 
     "mediaCredits.kicker": "Attribution des médias",
     "mediaCredits.title": "Crédits des images",
-    "mediaCredits.subtitle": "Les images d’outlets validées pour la production et leurs détails d’attribution apparaissent ici.",
-    "mediaCredits.emptyTitle": "Aucun crédit d’image validée pour la production pour le moment",
-    "mediaCredits.emptyText": "Les images locales actuelles des outlets restent réservées à l’inventaire tant que la source, le crédit et la licence ne sont pas documentés.",
+    "mediaCredits.subtitle":
+      "Les images d’outlets validées pour la production et leurs détails d’attribution apparaissent ici.",
+    "mediaCredits.emptyTitle":
+      "Aucun crédit d’image validée pour la production pour le moment",
+    "mediaCredits.emptyText":
+      "Les images locales actuelles des outlets restent réservées à l’inventaire tant que la source, le crédit et la licence ne sont pas documentés.",
     "mediaCredits.role": "Rôle",
     "mediaCredits.alt": "Texte alternatif",
     "mediaCredits.credit": "Crédit",
@@ -4536,9 +4676,11 @@ export const translations: Record<
     "offline.downloadedStat": "Téléchargés",
     "offline.storage": "Stockage",
     "offline.packs.parisShopping.title": "Pack shopping Paris",
-    "offline.packs.parisShopping.description": "Détails outlet hors ligne, conseils transport, notes Tax Free et essentiels de voyage enregistrés pour Paris.",
+    "offline.packs.parisShopping.description":
+      "Détails outlet hors ligne, conseils transport, notes Tax Free et essentiels de voyage enregistrés pour Paris.",
     "offline.packs.milanShopping.title": "Pack shopping Milan",
-    "offline.packs.milanShopping.description": "Guide shopping hors ligne pour les outlets de la région de Milan.",
+    "offline.packs.milanShopping.description":
+      "Guide shopping hors ligne pour les outlets de la région de Milan.",
     "weather.condition.clear": "Dégagé",
     "weather.condition.cloudy": "Nuageux",
     "weather.condition.foggy": "Brumeux",
@@ -4547,11 +4689,14 @@ export const translations: Record<
     "weather.condition.stormy": "Orageux",
     "weather.condition.weather": "Météo",
     "notifications.mock.flightDeal.title": "Offre de vol trouvée",
-    "notifications.mock.flightDeal.message": "Offre {airline} : {route} • {price}",
+    "notifications.mock.flightDeal.message":
+      "Offre {airline} : {route} • {price}",
     "search.features.taxFreeGuide.title": "Guide Tax Free",
     "search.features.taxFreeCalculator.title": "Calculateur Tax Free",
-    "search.features.smartShoppingCalculator.title": "Calculateur shopping malin",
-    "search.features.priceAdvantageCalculator.title": "Calculateur avantage prix",
+    "search.features.smartShoppingCalculator.title":
+      "Calculateur shopping malin",
+    "search.features.priceAdvantageCalculator.title":
+      "Calculateur avantage prix",
     "search.features.offlinePacks.title": "Packs hors ligne",
     "search.features.myTrips.title": "Mes voyages",
     "search.features.flightDeals.title": "Offres de vols",
@@ -4787,7 +4932,8 @@ export const translations: Record<
     "outlet.helpful": "Hilfreich",
     "sharedCards.brands.countSuffix": "Marken",
     "sharedCards.brands.searchPlaceholder": "Marken suchen...",
-    "sharedCards.maps.description": "Öffne die Navigation mit deiner bevorzugten Karten-App.",
+    "sharedCards.maps.description":
+      "Öffne die Navigation mit deiner bevorzugten Karten-App.",
     "sharedCards.maps.recommendedRoute": "Empfohlene Route",
     "sharedCards.quickFacts.hours": "Zeiten",
     "sharedCards.quickFacts.stores": "Geschäfte",
@@ -5213,7 +5359,8 @@ export const translations: Record<
       "Das Einreichen von Bewertungen ist vorerst eine Demo-Aktion. Später ist ein Login erforderlich und die Bewertung wird in der Datenbank gespeichert.",
     "writeReview.defaultUserName": "My Outlet Guide Nutzer",
     "writeReview.unavailableTitle": "Bewertungen sind noch nicht geöffnet",
-    "writeReview.unavailableText": "Outlet-Bewertungen werden erst aktiviert, wenn produktionsreife Speicherung, Moderation und Missbrauchsmeldungen verfügbar sind.",
+    "writeReview.unavailableText":
+      "Outlet-Bewertungen werden erst aktiviert, wenn produktionsreife Speicherung, Moderation und Missbrauchsmeldungen verfügbar sind.",
     "outlet.previousComment": "Vorheriger Kommentar",
     "notifications.title": "Benachrichtigungen",
     "notifications.subtitle":
@@ -5249,33 +5396,60 @@ export const translations: Record<
     "transportation.stepByStep": "Schritt-für-Schritt-Guide",
     "transportation.otherOptions": "Weitere Optionen",
 
-    "transportation.fallback.cdg.step1": "DE: Follow airport signs to the RER/TGV train area.",
-    "transportation.fallback.cdg.step2": "DE: Take a train connection towards central Paris or Marne-la-Vallée.",
-    "transportation.fallback.cdg.step3": "DE: Change where required for Val d'Europe station.",
-    "transportation.fallback.cdg.step4": "DE: Get off at Val d'Europe and follow signs towards La Vallée Village.",
-    "transportation.fallback.common.walkOutletEntrance": "DE: Walk approximately 5 minutes to the outlet entrance.",
-    "transportation.fallback.orly.step1": "DE: Follow airport signs to the public transport connection.",
-    "transportation.fallback.orly.step2": "DE: Travel towards central Paris and connect to the RER A line.",
-    "transportation.fallback.common.takeRerA": "DE: Take RER A towards Marne-la-Vallée Chessy.",
-    "transportation.fallback.common.valDEuropeStation": "DE: Get off at Val d'Europe station.",
-    "transportation.fallback.common.walkLaVallee": "DE: Walk approximately 5 minutes to La Vallée Village.",
-    "transportation.fallback.disney.step1": "DE: Start from the Disneyland Paris / Val d'Europe area.",
-    "transportation.fallback.disney.step2": "DE: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
-    "transportation.fallback.disney.step3": "DE: Continue towards La Vallée Village entrance.",
-    "transportation.fallback.taxi.step1": "DE: Open your preferred ride-hailing or taxi app.",
-    "transportation.fallback.taxi.step2": "DE: Set La Vallée Village, Serris as the destination.",
-    "transportation.fallback.taxi.step3": "DE: Confirm the estimated fare and pickup point before starting the ride.",
-    "transportation.fallback.taxi.step4": "DE: Ask to be dropped near the main entrance or guest services area.",
-    "transportation.fallback.taxi.step5": "DE: For the return trip, check vehicle availability before outlet closing time.",
-    "transportation.fallback.shuttle.step1": "DE: Check the latest shuttle timetable before departure.",
-    "transportation.fallback.shuttle.step2": "DE: Arrive at the pickup point at least 10 minutes early.",
-    "transportation.fallback.shuttle.step3": "DE: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
-    "transportation.fallback.shuttle.step4": "DE: Keep the return schedule saved before you start shopping.",
-    "transportation.fallback.train.step1": "DE: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
-    "transportation.fallback.train.step4": "DE: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
-    "transportation.fallback.default.step1": "DE: Check the latest route and schedule before departure.",
-    "transportation.fallback.default.step2": "DE: Follow the indicated transport option towards Val d'Europe / Serris.",
-    "transportation.fallback.default.step3": "DE: Use maps or station signs for the final walking section to La Vallée Village.",
+    "transportation.fallback.cdg.step1":
+      "DE: Follow airport signs to the RER/TGV train area.",
+    "transportation.fallback.cdg.step2":
+      "DE: Take a train connection towards central Paris or Marne-la-Vallée.",
+    "transportation.fallback.cdg.step3":
+      "DE: Change where required for Val d'Europe station.",
+    "transportation.fallback.cdg.step4":
+      "DE: Get off at Val d'Europe and follow signs towards La Vallée Village.",
+    "transportation.fallback.common.walkOutletEntrance":
+      "DE: Walk approximately 5 minutes to the outlet entrance.",
+    "transportation.fallback.orly.step1":
+      "DE: Follow airport signs to the public transport connection.",
+    "transportation.fallback.orly.step2":
+      "DE: Travel towards central Paris and connect to the RER A line.",
+    "transportation.fallback.common.takeRerA":
+      "DE: Take RER A towards Marne-la-Vallée Chessy.",
+    "transportation.fallback.common.valDEuropeStation":
+      "DE: Get off at Val d'Europe station.",
+    "transportation.fallback.common.walkLaVallee":
+      "DE: Walk approximately 5 minutes to La Vallée Village.",
+    "transportation.fallback.disney.step1":
+      "DE: Start from the Disneyland Paris / Val d'Europe area.",
+    "transportation.fallback.disney.step2":
+      "DE: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
+    "transportation.fallback.disney.step3":
+      "DE: Continue towards La Vallée Village entrance.",
+    "transportation.fallback.taxi.step1":
+      "DE: Open your preferred ride-hailing or taxi app.",
+    "transportation.fallback.taxi.step2":
+      "DE: Set La Vallée Village, Serris as the destination.",
+    "transportation.fallback.taxi.step3":
+      "DE: Confirm the estimated fare and pickup point before starting the ride.",
+    "transportation.fallback.taxi.step4":
+      "DE: Ask to be dropped near the main entrance or guest services area.",
+    "transportation.fallback.taxi.step5":
+      "DE: For the return trip, check vehicle availability before outlet closing time.",
+    "transportation.fallback.shuttle.step1":
+      "DE: Check the latest shuttle timetable before departure.",
+    "transportation.fallback.shuttle.step2":
+      "DE: Arrive at the pickup point at least 10 minutes early.",
+    "transportation.fallback.shuttle.step3":
+      "DE: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
+    "transportation.fallback.shuttle.step4":
+      "DE: Keep the return schedule saved before you start shopping.",
+    "transportation.fallback.train.step1":
+      "DE: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
+    "transportation.fallback.train.step4":
+      "DE: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
+    "transportation.fallback.default.step1":
+      "DE: Check the latest route and schedule before departure.",
+    "transportation.fallback.default.step2":
+      "DE: Follow the indicated transport option towards Val d'Europe / Serris.",
+    "transportation.fallback.default.step3":
+      "DE: Use maps or station signs for the final walking section to La Vallée Village.",
     "flightDeals.settingsTitle": "Flugangebots-Hinweise",
     "flightDeals.settingsSubtitle":
       "Wähle deine Abflugstadt und Shopping-Städte.",
@@ -5485,7 +5659,8 @@ export const translations: Record<
     "profile.subtitles.privacyPolicy": "Datenschutzdetails",
     "profile.subtitles.termsConditions": "Allgemeine Geschäftsbedingungen",
     "profile.subtitles.deleteAccount": "Dein Konto löschen",
-    "profile.subtitles.mediaCredits": "Nachweise für produktionsfreigegebene Bilder",
+    "profile.subtitles.mediaCredits":
+      "Nachweise für produktionsfreigegebene Bilder",
     "profile.syncedText":
       "Deine Reisen, Favoriten und Einstellungen sind synchronisiert.",
     "profile.signInText":
@@ -5506,9 +5681,12 @@ export const translations: Record<
 
     "mediaCredits.kicker": "Medienzuordnung",
     "mediaCredits.title": "Bildnachweise",
-    "mediaCredits.subtitle": "Produktionsfreigegebene Outlet-Bilder und ihre Zuordnungsdetails erscheinen hier.",
-    "mediaCredits.emptyTitle": "Noch keine produktionsfreigegebenen Bildnachweise",
-    "mediaCredits.emptyText": "Aktuelle lokale Outlet-Bilder bleiben nur Inventar, bis Quelle, Credit und Lizenz dokumentiert sind.",
+    "mediaCredits.subtitle":
+      "Produktionsfreigegebene Outlet-Bilder und ihre Zuordnungsdetails erscheinen hier.",
+    "mediaCredits.emptyTitle":
+      "Noch keine produktionsfreigegebenen Bildnachweise",
+    "mediaCredits.emptyText":
+      "Aktuelle lokale Outlet-Bilder bleiben nur Inventar, bis Quelle, Credit und Lizenz dokumentiert sind.",
     "mediaCredits.role": "Rolle",
     "mediaCredits.alt": "Alt-Text",
     "mediaCredits.credit": "Credit",
@@ -5644,9 +5822,11 @@ export const translations: Record<
     "offline.downloadedStat": "Geladen",
     "offline.storage": "Speicher",
     "offline.packs.parisShopping.title": "Paris Shopping-Paket",
-    "offline.packs.parisShopping.description": "Offline-Outletdetails, Transporttipps, Tax Free-Hinweise und gespeicherte Reisebasics für Paris.",
+    "offline.packs.parisShopping.description":
+      "Offline-Outletdetails, Transporttipps, Tax Free-Hinweise und gespeicherte Reisebasics für Paris.",
     "offline.packs.milanShopping.title": "Mailand Shopping-Paket",
-    "offline.packs.milanShopping.description": "Offline-Shoppingguide für Outlets im Raum Mailand.",
+    "offline.packs.milanShopping.description":
+      "Offline-Shoppingguide für Outlets im Raum Mailand.",
     "weather.condition.clear": "Klar",
     "weather.condition.cloudy": "Bewölkt",
     "weather.condition.foggy": "Neblig",
@@ -5655,7 +5835,8 @@ export const translations: Record<
     "weather.condition.stormy": "Stürmisch",
     "weather.condition.weather": "Wetter",
     "notifications.mock.flightDeal.title": "Flugangebot gefunden",
-    "notifications.mock.flightDeal.message": "{airline}-Angebot: {route} • {price}",
+    "notifications.mock.flightDeal.message":
+      "{airline}-Angebot: {route} • {price}",
     "search.features.taxFreeGuide.title": "Tax Free-Ratgeber",
     "search.features.taxFreeCalculator.title": "Tax Free Rechner",
     "search.features.smartShoppingCalculator.title": "Smart-Shopping-Rechner",
@@ -6316,7 +6497,8 @@ export const translations: Record<
       "إرسال المراجعة إجراء تجريبي حالياً. لاحقاً سيتطلب تسجيل الدخول وسيُحفظ في قاعدة البيانات.",
     "writeReview.defaultUserName": "مستخدم My Outlet Guide",
     "writeReview.unavailableTitle": "المراجعات غير متاحة بعد",
-    "writeReview.unavailableText": "سيتم فتح إرسال مراجعات المنافذ فقط بعد جاهزية التخزين الإنتاجي والإشراف والإبلاغ عن إساءة الاستخدام.",
+    "writeReview.unavailableText":
+      "سيتم فتح إرسال مراجعات المنافذ فقط بعد جاهزية التخزين الإنتاجي والإشراف والإبلاغ عن إساءة الاستخدام.",
     "outlet.previousComment": "التعليق السابق",
     "notifications.title": "الإشعارات",
     "notifications.subtitle": "تحكم في تذكيرات السفر والتسوق التي تصلك.",
@@ -6349,33 +6531,60 @@ export const translations: Record<
     "transportation.stepByStep": "دليل خطوة بخطوة",
     "transportation.otherOptions": "خيارات أخرى",
 
-    "transportation.fallback.cdg.step1": "ترجمة عربية: Follow airport signs to the RER/TGV train area.",
-    "transportation.fallback.cdg.step2": "ترجمة عربية: Take a train connection towards central Paris or Marne-la-Vallée.",
-    "transportation.fallback.cdg.step3": "ترجمة عربية: Change where required for Val d'Europe station.",
-    "transportation.fallback.cdg.step4": "ترجمة عربية: Get off at Val d'Europe and follow signs towards La Vallée Village.",
-    "transportation.fallback.common.walkOutletEntrance": "ترجمة عربية: Walk approximately 5 minutes to the outlet entrance.",
-    "transportation.fallback.orly.step1": "ترجمة عربية: Follow airport signs to the public transport connection.",
-    "transportation.fallback.orly.step2": "ترجمة عربية: Travel towards central Paris and connect to the RER A line.",
-    "transportation.fallback.common.takeRerA": "ترجمة عربية: Take RER A towards Marne-la-Vallée Chessy.",
-    "transportation.fallback.common.valDEuropeStation": "ترجمة عربية: Get off at Val d'Europe station.",
-    "transportation.fallback.common.walkLaVallee": "ترجمة عربية: Walk approximately 5 minutes to La Vallée Village.",
-    "transportation.fallback.disney.step1": "ترجمة عربية: Start from the Disneyland Paris / Val d'Europe area.",
-    "transportation.fallback.disney.step2": "ترجمة عربية: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
-    "transportation.fallback.disney.step3": "ترجمة عربية: Continue towards La Vallée Village entrance.",
-    "transportation.fallback.taxi.step1": "ترجمة عربية: Open your preferred ride-hailing or taxi app.",
-    "transportation.fallback.taxi.step2": "ترجمة عربية: Set La Vallée Village, Serris as the destination.",
-    "transportation.fallback.taxi.step3": "ترجمة عربية: Confirm the estimated fare and pickup point before starting the ride.",
-    "transportation.fallback.taxi.step4": "ترجمة عربية: Ask to be dropped near the main entrance or guest services area.",
-    "transportation.fallback.taxi.step5": "ترجمة عربية: For the return trip, check vehicle availability before outlet closing time.",
-    "transportation.fallback.shuttle.step1": "ترجمة عربية: Check the latest shuttle timetable before departure.",
-    "transportation.fallback.shuttle.step2": "ترجمة عربية: Arrive at the pickup point at least 10 minutes early.",
-    "transportation.fallback.shuttle.step3": "ترجمة عربية: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
-    "transportation.fallback.shuttle.step4": "ترجمة عربية: Keep the return schedule saved before you start shopping.",
-    "transportation.fallback.train.step1": "ترجمة عربية: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
-    "transportation.fallback.train.step4": "ترجمة عربية: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
-    "transportation.fallback.default.step1": "ترجمة عربية: Check the latest route and schedule before departure.",
-    "transportation.fallback.default.step2": "ترجمة عربية: Follow the indicated transport option towards Val d'Europe / Serris.",
-    "transportation.fallback.default.step3": "ترجمة عربية: Use maps or station signs for the final walking section to La Vallée Village.",
+    "transportation.fallback.cdg.step1":
+      "ترجمة عربية: Follow airport signs to the RER/TGV train area.",
+    "transportation.fallback.cdg.step2":
+      "ترجمة عربية: Take a train connection towards central Paris or Marne-la-Vallée.",
+    "transportation.fallback.cdg.step3":
+      "ترجمة عربية: Change where required for Val d'Europe station.",
+    "transportation.fallback.cdg.step4":
+      "ترجمة عربية: Get off at Val d'Europe and follow signs towards La Vallée Village.",
+    "transportation.fallback.common.walkOutletEntrance":
+      "ترجمة عربية: Walk approximately 5 minutes to the outlet entrance.",
+    "transportation.fallback.orly.step1":
+      "ترجمة عربية: Follow airport signs to the public transport connection.",
+    "transportation.fallback.orly.step2":
+      "ترجمة عربية: Travel towards central Paris and connect to the RER A line.",
+    "transportation.fallback.common.takeRerA":
+      "ترجمة عربية: Take RER A towards Marne-la-Vallée Chessy.",
+    "transportation.fallback.common.valDEuropeStation":
+      "ترجمة عربية: Get off at Val d'Europe station.",
+    "transportation.fallback.common.walkLaVallee":
+      "ترجمة عربية: Walk approximately 5 minutes to La Vallée Village.",
+    "transportation.fallback.disney.step1":
+      "ترجمة عربية: Start from the Disneyland Paris / Val d'Europe area.",
+    "transportation.fallback.disney.step2":
+      "ترجمة عربية: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
+    "transportation.fallback.disney.step3":
+      "ترجمة عربية: Continue towards La Vallée Village entrance.",
+    "transportation.fallback.taxi.step1":
+      "ترجمة عربية: Open your preferred ride-hailing or taxi app.",
+    "transportation.fallback.taxi.step2":
+      "ترجمة عربية: Set La Vallée Village, Serris as the destination.",
+    "transportation.fallback.taxi.step3":
+      "ترجمة عربية: Confirm the estimated fare and pickup point before starting the ride.",
+    "transportation.fallback.taxi.step4":
+      "ترجمة عربية: Ask to be dropped near the main entrance or guest services area.",
+    "transportation.fallback.taxi.step5":
+      "ترجمة عربية: For the return trip, check vehicle availability before outlet closing time.",
+    "transportation.fallback.shuttle.step1":
+      "ترجمة عربية: Check the latest shuttle timetable before departure.",
+    "transportation.fallback.shuttle.step2":
+      "ترجمة عربية: Arrive at the pickup point at least 10 minutes early.",
+    "transportation.fallback.shuttle.step3":
+      "ترجمة عربية: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
+    "transportation.fallback.shuttle.step4":
+      "ترجمة عربية: Keep the return schedule saved before you start shopping.",
+    "transportation.fallback.train.step1":
+      "ترجمة عربية: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
+    "transportation.fallback.train.step4":
+      "ترجمة عربية: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
+    "transportation.fallback.default.step1":
+      "ترجمة عربية: Check the latest route and schedule before departure.",
+    "transportation.fallback.default.step2":
+      "ترجمة عربية: Follow the indicated transport option towards Val d'Europe / Serris.",
+    "transportation.fallback.default.step3":
+      "ترجمة عربية: Use maps or station signs for the final walking section to La Vallée Village.",
     "flightDeals.settingsTitle": "تنبيهات عروض الرحلات",
     "flightDeals.settingsSubtitle": "اختر مدينة المغادرة ومدن التسوق.",
     "flightDeals.currentSetup": "الإعداد الحالي",
@@ -6598,9 +6807,11 @@ export const translations: Record<
 
     "mediaCredits.kicker": "إسناد الوسائط",
     "mediaCredits.title": "اعتمادات الصور",
-    "mediaCredits.subtitle": "تظهر هنا صور المنافذ المعتمدة للإنتاج وتفاصيل الإسناد الخاصة بها.",
+    "mediaCredits.subtitle":
+      "تظهر هنا صور المنافذ المعتمدة للإنتاج وتفاصيل الإسناد الخاصة بها.",
     "mediaCredits.emptyTitle": "لا توجد اعتمادات صور معتمدة للإنتاج بعد",
-    "mediaCredits.emptyText": "صور المنافذ المحلية الحالية مخصصة للجرد فقط حتى يتم توثيق المصدر والاعتماد والترخيص.",
+    "mediaCredits.emptyText":
+      "صور المنافذ المحلية الحالية مخصصة للجرد فقط حتى يتم توثيق المصدر والاعتماد والترخيص.",
     "mediaCredits.role": "الدور",
     "mediaCredits.alt": "النص البديل",
     "mediaCredits.credit": "الاعتماد",
@@ -6725,9 +6936,11 @@ export const translations: Record<
     "offline.downloadedStat": "تم التنزيل",
     "offline.storage": "التخزين",
     "offline.packs.parisShopping.title": "حزمة تسوق باريس",
-    "offline.packs.parisShopping.description": "تفاصيل أوتلت دون اتصال، نصائح مواصلات، ملاحظات Tax Free وأساسيات رحلة محفوظة لباريس.",
+    "offline.packs.parisShopping.description":
+      "تفاصيل أوتلت دون اتصال، نصائح مواصلات، ملاحظات Tax Free وأساسيات رحلة محفوظة لباريس.",
     "offline.packs.milanShopping.title": "حزمة تسوق ميلانو",
-    "offline.packs.milanShopping.description": "دليل تسوق دون اتصال لأوتلت منطقة ميلانو.",
+    "offline.packs.milanShopping.description":
+      "دليل تسوق دون اتصال لأوتلت منطقة ميلانو.",
     "weather.condition.clear": "صافٍ",
     "weather.condition.cloudy": "غائم",
     "weather.condition.foggy": "ضبابي",
@@ -6969,7 +7182,8 @@ export const translations: Record<
     "outlet.helpful": "Полезно",
     "sharedCards.brands.countSuffix": "брендов",
     "sharedCards.brands.searchPlaceholder": "Искать бренды...",
-    "sharedCards.maps.description": "Откройте навигацию в любимом приложении карт.",
+    "sharedCards.maps.description":
+      "Откройте навигацию в любимом приложении карт.",
     "sharedCards.maps.recommendedRoute": "Рекомендуемый маршрут",
     "sharedCards.quickFacts.hours": "Часы",
     "sharedCards.quickFacts.stores": "Магазины",
@@ -6982,7 +7196,6 @@ export const translations: Record<
     "sharedCards.reviews.guestRating": "Оценка гостей",
     "sharedCards.writeReview.subtitle": "Поделитесь опытом outlet-шопинга",
     "sharedCards.weather.kicker": "Погода",
-
 
     "profile.title": "Профиль",
     "profile.subtitle": "Управляйте настройками приложения.",
@@ -7410,7 +7623,8 @@ export const translations: Record<
       "Отправка отзыва пока работает в демо-режиме. Позже потребуется вход, и отзыв будет сохранен в базе данных.",
     "writeReview.defaultUserName": "Пользователь My Outlet Guide",
     "writeReview.unavailableTitle": "Отзывы пока недоступны",
-    "writeReview.unavailableText": "Отправка отзывов об аутлетах будет открыта только после готовности продакшен-хранилища, модерации и жалоб на нарушения.",
+    "writeReview.unavailableText":
+      "Отправка отзывов об аутлетах будет открыта только после готовности продакшен-хранилища, модерации и жалоб на нарушения.",
 
     "outlet.previousComment": "Предыдущий комментарий",
 
@@ -7456,33 +7670,60 @@ export const translations: Record<
     "transportation.stepByStep": "Пошаговый гид",
     "transportation.otherOptions": "Другие варианты",
 
-    "transportation.fallback.cdg.step1": "RU: Follow airport signs to the RER/TGV train area.",
-    "transportation.fallback.cdg.step2": "RU: Take a train connection towards central Paris or Marne-la-Vallée.",
-    "transportation.fallback.cdg.step3": "RU: Change where required for Val d'Europe station.",
-    "transportation.fallback.cdg.step4": "RU: Get off at Val d'Europe and follow signs towards La Vallée Village.",
-    "transportation.fallback.common.walkOutletEntrance": "RU: Walk approximately 5 minutes to the outlet entrance.",
-    "transportation.fallback.orly.step1": "RU: Follow airport signs to the public transport connection.",
-    "transportation.fallback.orly.step2": "RU: Travel towards central Paris and connect to the RER A line.",
-    "transportation.fallback.common.takeRerA": "RU: Take RER A towards Marne-la-Vallée Chessy.",
-    "transportation.fallback.common.valDEuropeStation": "RU: Get off at Val d'Europe station.",
-    "transportation.fallback.common.walkLaVallee": "RU: Walk approximately 5 minutes to La Vallée Village.",
-    "transportation.fallback.disney.step1": "RU: Start from the Disneyland Paris / Val d'Europe area.",
-    "transportation.fallback.disney.step2": "RU: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
-    "transportation.fallback.disney.step3": "RU: Continue towards La Vallée Village entrance.",
-    "transportation.fallback.taxi.step1": "RU: Open your preferred ride-hailing or taxi app.",
-    "transportation.fallback.taxi.step2": "RU: Set La Vallée Village, Serris as the destination.",
-    "transportation.fallback.taxi.step3": "RU: Confirm the estimated fare and pickup point before starting the ride.",
-    "transportation.fallback.taxi.step4": "RU: Ask to be dropped near the main entrance or guest services area.",
-    "transportation.fallback.taxi.step5": "RU: For the return trip, check vehicle availability before outlet closing time.",
-    "transportation.fallback.shuttle.step1": "RU: Check the latest shuttle timetable before departure.",
-    "transportation.fallback.shuttle.step2": "RU: Arrive at the pickup point at least 10 minutes early.",
-    "transportation.fallback.shuttle.step3": "RU: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
-    "transportation.fallback.shuttle.step4": "RU: Keep the return schedule saved before you start shopping.",
-    "transportation.fallback.train.step1": "RU: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
-    "transportation.fallback.train.step4": "RU: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
-    "transportation.fallback.default.step1": "RU: Check the latest route and schedule before departure.",
-    "transportation.fallback.default.step2": "RU: Follow the indicated transport option towards Val d'Europe / Serris.",
-    "transportation.fallback.default.step3": "RU: Use maps or station signs for the final walking section to La Vallée Village.",
+    "transportation.fallback.cdg.step1":
+      "RU: Follow airport signs to the RER/TGV train area.",
+    "transportation.fallback.cdg.step2":
+      "RU: Take a train connection towards central Paris or Marne-la-Vallée.",
+    "transportation.fallback.cdg.step3":
+      "RU: Change where required for Val d'Europe station.",
+    "transportation.fallback.cdg.step4":
+      "RU: Get off at Val d'Europe and follow signs towards La Vallée Village.",
+    "transportation.fallback.common.walkOutletEntrance":
+      "RU: Walk approximately 5 minutes to the outlet entrance.",
+    "transportation.fallback.orly.step1":
+      "RU: Follow airport signs to the public transport connection.",
+    "transportation.fallback.orly.step2":
+      "RU: Travel towards central Paris and connect to the RER A line.",
+    "transportation.fallback.common.takeRerA":
+      "RU: Take RER A towards Marne-la-Vallée Chessy.",
+    "transportation.fallback.common.valDEuropeStation":
+      "RU: Get off at Val d'Europe station.",
+    "transportation.fallback.common.walkLaVallee":
+      "RU: Walk approximately 5 minutes to La Vallée Village.",
+    "transportation.fallback.disney.step1":
+      "RU: Start from the Disneyland Paris / Val d'Europe area.",
+    "transportation.fallback.disney.step2":
+      "RU: Follow pedestrian signs towards Centre Commercial Val d'Europe.",
+    "transportation.fallback.disney.step3":
+      "RU: Continue towards La Vallée Village entrance.",
+    "transportation.fallback.taxi.step1":
+      "RU: Open your preferred ride-hailing or taxi app.",
+    "transportation.fallback.taxi.step2":
+      "RU: Set La Vallée Village, Serris as the destination.",
+    "transportation.fallback.taxi.step3":
+      "RU: Confirm the estimated fare and pickup point before starting the ride.",
+    "transportation.fallback.taxi.step4":
+      "RU: Ask to be dropped near the main entrance or guest services area.",
+    "transportation.fallback.taxi.step5":
+      "RU: For the return trip, check vehicle availability before outlet closing time.",
+    "transportation.fallback.shuttle.step1":
+      "RU: Check the latest shuttle timetable before departure.",
+    "transportation.fallback.shuttle.step2":
+      "RU: Arrive at the pickup point at least 10 minutes early.",
+    "transportation.fallback.shuttle.step3":
+      "RU: Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
+    "transportation.fallback.shuttle.step4":
+      "RU: Keep the return schedule saved before you start shopping.",
+    "transportation.fallback.train.step1":
+      "RU: Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
+    "transportation.fallback.train.step4":
+      "RU: Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
+    "transportation.fallback.default.step1":
+      "RU: Check the latest route and schedule before departure.",
+    "transportation.fallback.default.step2":
+      "RU: Follow the indicated transport option towards Val d'Europe / Serris.",
+    "transportation.fallback.default.step3":
+      "RU: Use maps or station signs for the final walking section to La Vallée Village.",
 
     "flightDeals.settingsTitle": "Оповещения о выгодных рейсах",
     "flightDeals.settingsSubtitle":
@@ -7708,7 +7949,8 @@ export const translations: Record<
     "profile.subtitles.privacyPolicy": "Детали конфиденциальности",
     "profile.subtitles.termsConditions": "Условия использования",
     "profile.subtitles.deleteAccount": "Удалить аккаунт",
-    "profile.subtitles.mediaCredits": "Кредиты изображений, разрешенных для продакшена",
+    "profile.subtitles.mediaCredits":
+      "Кредиты изображений, разрешенных для продакшена",
     "profile.syncedText":
       "Ваши поездки, избранное и настройки синхронизированы.",
     "profile.signInText":
@@ -7729,9 +7971,12 @@ export const translations: Record<
 
     "mediaCredits.kicker": "Атрибуция медиа",
     "mediaCredits.title": "Кредиты изображений",
-    "mediaCredits.subtitle": "Здесь отображаются изображения аутлетов, разрешенные для продакшена, и сведения об атрибуции.",
-    "mediaCredits.emptyTitle": "Пока нет кредитов изображений, разрешенных для продакшена",
-    "mediaCredits.emptyText": "Текущие локальные изображения аутлетов предназначены только для инвентаря, пока источник, кредит и лицензия не задокументированы.",
+    "mediaCredits.subtitle":
+      "Здесь отображаются изображения аутлетов, разрешенные для продакшена, и сведения об атрибуции.",
+    "mediaCredits.emptyTitle":
+      "Пока нет кредитов изображений, разрешенных для продакшена",
+    "mediaCredits.emptyText":
+      "Текущие локальные изображения аутлетов предназначены только для инвентаря, пока источник, кредит и лицензия не задокументированы.",
     "mediaCredits.role": "Роль",
     "mediaCredits.alt": "Альтернативный текст",
     "mediaCredits.credit": "Кредит",
@@ -7861,9 +8106,11 @@ export const translations: Record<
     "offline.downloadedStat": "Скачано",
     "offline.storage": "Память",
     "offline.packs.parisShopping.title": "Пакет шопинга в Париже",
-    "offline.packs.parisShopping.description": "Офлайн-данные об аутлетах, советы по транспорту, заметки Tax Free и основы поездки для Парижа.",
+    "offline.packs.parisShopping.description":
+      "Офлайн-данные об аутлетах, советы по транспорту, заметки Tax Free и основы поездки для Парижа.",
     "offline.packs.milanShopping.title": "Пакет шопинга в Милане",
-    "offline.packs.milanShopping.description": "Офлайн-гид по аутлетам района Милана.",
+    "offline.packs.milanShopping.description":
+      "Офлайн-гид по аутлетам района Милана.",
     "weather.condition.clear": "Ясно",
     "weather.condition.cloudy": "Облачно",
     "weather.condition.foggy": "Туманно",
@@ -7872,10 +8119,12 @@ export const translations: Record<
     "weather.condition.stormy": "Гроза",
     "weather.condition.weather": "Погода",
     "notifications.mock.flightDeal.title": "Найдено предложение рейса",
-    "notifications.mock.flightDeal.message": "Предложение {airline}: {route} • {price}",
+    "notifications.mock.flightDeal.message":
+      "Предложение {airline}: {route} • {price}",
     "search.features.taxFreeGuide.title": "Гид Tax Free",
     "search.features.taxFreeCalculator.title": "Калькулятор Tax Free",
-    "search.features.smartShoppingCalculator.title": "Калькулятор умного шопинга",
+    "search.features.smartShoppingCalculator.title":
+      "Калькулятор умного шопинга",
     "search.features.priceAdvantageCalculator.title": "Калькулятор выгоды цены",
     "search.features.offlinePacks.title": "Офлайн-пакеты",
     "search.features.myTrips.title": "Мои поездки",
@@ -8119,7 +8368,6 @@ export const translations: Record<
     "sharedCards.reviews.guestRating": "访客评分",
     "sharedCards.writeReview.subtitle": "分享你的奥特莱斯购物体验",
     "sharedCards.weather.kicker": "天气",
-
 
     "profile.title": "个人资料",
     "profile.subtitle": "管理你的应用偏好。",
@@ -8525,7 +8773,8 @@ export const translations: Record<
       "评价提交目前为演示功能。之后将需要用户登录，并把评价保存到数据库。",
     "writeReview.defaultUserName": "My Outlet Guide 用户",
     "writeReview.unavailableTitle": "评论尚未开放",
-    "writeReview.unavailableText": "只有在生产存储、审核和滥用举报准备就绪后，才会开放奥莱评论提交。",
+    "writeReview.unavailableText":
+      "只有在生产存储、审核和滥用举报准备就绪后，才会开放奥莱评论提交。",
 
     "outlet.previousComment": "上一条评论",
 
@@ -8558,33 +8807,60 @@ export const translations: Record<
     "transportation.stepByStep": "分步指南",
     "transportation.otherOptions": "其他选择",
 
-    "transportation.fallback.cdg.step1": "中文翻译：Follow airport signs to the RER/TGV train area.",
-    "transportation.fallback.cdg.step2": "中文翻译：Take a train connection towards central Paris or Marne-la-Vallée.",
-    "transportation.fallback.cdg.step3": "中文翻译：Change where required for Val d'Europe station.",
-    "transportation.fallback.cdg.step4": "中文翻译：Get off at Val d'Europe and follow signs towards La Vallée Village.",
-    "transportation.fallback.common.walkOutletEntrance": "中文翻译：Walk approximately 5 minutes to the outlet entrance.",
-    "transportation.fallback.orly.step1": "中文翻译：Follow airport signs to the public transport connection.",
-    "transportation.fallback.orly.step2": "中文翻译：Travel towards central Paris and connect to the RER A line.",
-    "transportation.fallback.common.takeRerA": "中文翻译：Take RER A towards Marne-la-Vallée Chessy.",
-    "transportation.fallback.common.valDEuropeStation": "中文翻译：Get off at Val d'Europe station.",
-    "transportation.fallback.common.walkLaVallee": "中文翻译：Walk approximately 5 minutes to La Vallée Village.",
-    "transportation.fallback.disney.step1": "中文翻译：Start from the Disneyland Paris / Val d'Europe area.",
-    "transportation.fallback.disney.step2": "中文翻译：Follow pedestrian signs towards Centre Commercial Val d'Europe.",
-    "transportation.fallback.disney.step3": "中文翻译：Continue towards La Vallée Village entrance.",
-    "transportation.fallback.taxi.step1": "中文翻译：Open your preferred ride-hailing or taxi app.",
-    "transportation.fallback.taxi.step2": "中文翻译：Set La Vallée Village, Serris as the destination.",
-    "transportation.fallback.taxi.step3": "中文翻译：Confirm the estimated fare and pickup point before starting the ride.",
-    "transportation.fallback.taxi.step4": "中文翻译：Ask to be dropped near the main entrance or guest services area.",
-    "transportation.fallback.taxi.step5": "中文翻译：For the return trip, check vehicle availability before outlet closing time.",
-    "transportation.fallback.shuttle.step1": "中文翻译：Check the latest shuttle timetable before departure.",
-    "transportation.fallback.shuttle.step2": "中文翻译：Arrive at the pickup point at least 10 minutes early.",
-    "transportation.fallback.shuttle.step3": "中文翻译：Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
-    "transportation.fallback.shuttle.step4": "中文翻译：Keep the return schedule saved before you start shopping.",
-    "transportation.fallback.train.step1": "中文翻译：Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
-    "transportation.fallback.train.step4": "中文翻译：Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
-    "transportation.fallback.default.step1": "中文翻译：Check the latest route and schedule before departure.",
-    "transportation.fallback.default.step2": "中文翻译：Follow the indicated transport option towards Val d'Europe / Serris.",
-    "transportation.fallback.default.step3": "中文翻译：Use maps or station signs for the final walking section to La Vallée Village.",
+    "transportation.fallback.cdg.step1":
+      "中文翻译：Follow airport signs to the RER/TGV train area.",
+    "transportation.fallback.cdg.step2":
+      "中文翻译：Take a train connection towards central Paris or Marne-la-Vallée.",
+    "transportation.fallback.cdg.step3":
+      "中文翻译：Change where required for Val d'Europe station.",
+    "transportation.fallback.cdg.step4":
+      "中文翻译：Get off at Val d'Europe and follow signs towards La Vallée Village.",
+    "transportation.fallback.common.walkOutletEntrance":
+      "中文翻译：Walk approximately 5 minutes to the outlet entrance.",
+    "transportation.fallback.orly.step1":
+      "中文翻译：Follow airport signs to the public transport connection.",
+    "transportation.fallback.orly.step2":
+      "中文翻译：Travel towards central Paris and connect to the RER A line.",
+    "transportation.fallback.common.takeRerA":
+      "中文翻译：Take RER A towards Marne-la-Vallée Chessy.",
+    "transportation.fallback.common.valDEuropeStation":
+      "中文翻译：Get off at Val d'Europe station.",
+    "transportation.fallback.common.walkLaVallee":
+      "中文翻译：Walk approximately 5 minutes to La Vallée Village.",
+    "transportation.fallback.disney.step1":
+      "中文翻译：Start from the Disneyland Paris / Val d'Europe area.",
+    "transportation.fallback.disney.step2":
+      "中文翻译：Follow pedestrian signs towards Centre Commercial Val d'Europe.",
+    "transportation.fallback.disney.step3":
+      "中文翻译：Continue towards La Vallée Village entrance.",
+    "transportation.fallback.taxi.step1":
+      "中文翻译：Open your preferred ride-hailing or taxi app.",
+    "transportation.fallback.taxi.step2":
+      "中文翻译：Set La Vallée Village, Serris as the destination.",
+    "transportation.fallback.taxi.step3":
+      "中文翻译：Confirm the estimated fare and pickup point before starting the ride.",
+    "transportation.fallback.taxi.step4":
+      "中文翻译：Ask to be dropped near the main entrance or guest services area.",
+    "transportation.fallback.taxi.step5":
+      "中文翻译：For the return trip, check vehicle availability before outlet closing time.",
+    "transportation.fallback.shuttle.step1":
+      "中文翻译：Check the latest shuttle timetable before departure.",
+    "transportation.fallback.shuttle.step2":
+      "中文翻译：Arrive at the pickup point at least 10 minutes early.",
+    "transportation.fallback.shuttle.step3":
+      "中文翻译：Confirm that the shuttle goes to La Vallée Village / Val d'Europe.",
+    "transportation.fallback.shuttle.step4":
+      "中文翻译：Keep the return schedule saved before you start shopping.",
+    "transportation.fallback.train.step1":
+      "中文翻译：Go to a central Paris RER A station such as Châtelet–Les Halles, Auber, Charles de Gaulle–Étoile, or Nation.",
+    "transportation.fallback.train.step4":
+      "中文翻译：Follow signs towards Centre Commercial Val d'Europe / La Vallée Village.",
+    "transportation.fallback.default.step1":
+      "中文翻译：Check the latest route and schedule before departure.",
+    "transportation.fallback.default.step2":
+      "中文翻译：Follow the indicated transport option towards Val d'Europe / Serris.",
+    "transportation.fallback.default.step3":
+      "中文翻译：Use maps or station signs for the final walking section to La Vallée Village.",
 
     "flightDeals.settingsTitle": "机票优惠提醒",
     "flightDeals.settingsSubtitle": "选择出发城市和购物城市。",
@@ -8810,9 +9086,11 @@ export const translations: Record<
 
     "mediaCredits.kicker": "媒体归属",
     "mediaCredits.title": "图片署名",
-    "mediaCredits.subtitle": "已获生产许可的奥特莱斯图片及其归属详情会显示在这里。",
+    "mediaCredits.subtitle":
+      "已获生产许可的奥特莱斯图片及其归属详情会显示在这里。",
     "mediaCredits.emptyTitle": "暂无已获生产许可的图片署名",
-    "mediaCredits.emptyText": "当前本地奥特莱斯图片仅用于库存，直到来源、署名和许可详情完成记录。",
+    "mediaCredits.emptyText":
+      "当前本地奥特莱斯图片仅用于库存，直到来源、署名和许可详情完成记录。",
     "mediaCredits.role": "角色",
     "mediaCredits.alt": "替代文本",
     "mediaCredits.credit": "署名",
@@ -8935,7 +9213,8 @@ export const translations: Record<
     "offline.downloadedStat": "已下载",
     "offline.storage": "存储",
     "offline.packs.parisShopping.title": "巴黎购物包",
-    "offline.packs.parisShopping.description": "巴黎离线奥特莱斯详情、交通提示、Tax Free 备注和已保存行程基础信息。",
+    "offline.packs.parisShopping.description":
+      "巴黎离线奥特莱斯详情、交通提示、Tax Free 备注和已保存行程基础信息。",
     "offline.packs.milanShopping.title": "米兰购物包",
     "offline.packs.milanShopping.description": "米兰地区奥特莱斯离线购物指南。",
     "weather.condition.clear": "晴朗",
@@ -8946,7 +9225,8 @@ export const translations: Record<
     "weather.condition.stormy": "暴风雨",
     "weather.condition.weather": "天气",
     "notifications.mock.flightDeal.title": "发现航班优惠",
-    "notifications.mock.flightDeal.message": "{airline} 优惠：{route} • {price}",
+    "notifications.mock.flightDeal.message":
+      "{airline} 优惠：{route} • {price}",
     "search.features.taxFreeGuide.title": "Tax Free 指南",
     "search.features.taxFreeCalculator.title": "Tax Free 计算器",
     "search.features.smartShoppingCalculator.title": "智能购物计算器",
