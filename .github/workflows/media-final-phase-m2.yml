@@ -1,0 +1,58 @@
+name: Media Final Phase M2
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  finalize-manual-outlet-media:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Finalize manual outlet media
+        run: npx tsx tools/finalizeManualOutletMediaM2.ts
+
+      - name: Validate TypeScript
+        run: npx tsc --noEmit
+
+      - name: Validate master data
+        run: npx tsx src/services/masterDataValidator.ts
+
+      - name: Validate translation keys
+        run: npx tsx tools/checkTranslationKeys.ts
+
+      - name: Validate media metadata
+        run: npx tsx tools/checkOutletMediaMetadata.ts
+
+      - name: Audit media resolver
+        run: npx tsx tools/checkOutletMediaMetadata.ts --resolver-audit
+
+      - name: Strict media validation
+        run: npx tsx tools/checkOutletMediaMetadata.ts --strict
+
+      - name: Check diff formatting
+        run: git diff --check
+
+      - name: Commit finalized media reset
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/outlet-images media-sources/manual-inputs src/media/outletMedia.ts src/media/outletMediaMetadata.ts
+          git commit -m "Finalize manual outlet media M2" || echo "No media changes to commit"
+          git push
