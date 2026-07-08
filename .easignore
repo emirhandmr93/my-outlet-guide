@@ -1,0 +1,36 @@
+# EAS Build archive size policy:
+# Keep runtime application code/config/assets in the upload; exclude only local,
+# source-only, generated, or server/tooling files that are not needed by the
+# React Native client build.
+
+# Runtime media is intentionally NOT ignored:
+# !assets/outlet-images/**
+
+# Client build source-only inputs and project documentation
+media-sources/**
+docs/**
+tools/**
+MasterData/**
+.github/**
+functions/**
+coverage/**
+.tmp/**
+
+# Local dependencies and repository/editor metadata
+node_modules/**
+.git/**
+.vscode/**
+.idea/**
+
+# Local temp files, caches, and logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tmp
+*.temp
+tmp/**
+temp/**
+.DS_Store
+Thumbs.db
