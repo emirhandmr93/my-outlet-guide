@@ -30,6 +30,9 @@ export function PremiumIconButton({
       activeOpacity={0.84}
       onPress={onPress}
       disabled={disabled}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ disabled }}
     >
       <Text style={[styles.label, styles[`${variant}Text`], disabled && styles.disabledText]}>
         {label}
@@ -41,7 +44,7 @@ export function PremiumIconButton({
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: 48,
+    minHeight: 52,
     borderRadius: radius.lg,
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
@@ -70,10 +73,14 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: typography.body,
+    lineHeight: typography.lineBody,
     fontWeight: typography.weightBlack,
+    textAlign: "center",
+    flexShrink: 1,
   },
   icon: {
     fontSize: typography.bodyLarge,
+    lineHeight: typography.lineBody,
     fontWeight: typography.weightBlack,
   },
   primaryText: {

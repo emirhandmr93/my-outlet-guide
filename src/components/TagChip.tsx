@@ -29,6 +29,9 @@ export function TagChip({ label, icon, active = false, muted = false, onPress, s
         style={[styles.chip, active && styles.chipActive, muted && styles.chipMuted, style]}
         activeOpacity={0.84}
         onPress={onPress}
+        accessibilityRole="button"
+        accessibilityLabel={label}
+        accessibilityState={{ selected: active }}
       >
         {content}
       </TouchableOpacity>
@@ -45,6 +48,7 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     backgroundColor: colors.surfaceSoft,
     borderRadius: radius.pill,
+    minHeight: 40,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     borderWidth: 1,
@@ -67,6 +71,8 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: typography.caption,
     fontWeight: typography.weightBold,
+    lineHeight: typography.lineCaption,
+    flexShrink: 1,
   },
   textActive: {
     color: colors.primary,

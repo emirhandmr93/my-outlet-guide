@@ -18,13 +18,21 @@ export function FilterChip({ label, icon, onRemove, onPress }: FilterChipProps) 
         style={styles.chip}
         activeOpacity={onPress ? 0.84 : 1}
         onPress={onPress}
+        accessibilityRole={onPress ? "button" : undefined}
+        accessibilityLabel={label}
       >
         {icon ? <Text style={styles.icon}>{icon}</Text> : null}
         <Text style={styles.label}>{label}</Text>
       </TouchableOpacity>
 
       {onRemove ? (
-        <TouchableOpacity style={styles.removeButton} activeOpacity={0.78} onPress={onRemove}>
+        <TouchableOpacity
+          style={styles.removeButton}
+          activeOpacity={0.78}
+          onPress={onRemove}
+          accessibilityRole="button"
+          accessibilityLabel={`Remove ${label}`}
+        >
           <Text style={styles.removeText}>×</Text>
         </TouchableOpacity>
       ) : null}
@@ -41,7 +49,7 @@ const styles = StyleSheet.create({
     marginBottom: spacing.sm,
   },
   chip: {
-    minHeight: 38,
+    minHeight: 40,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: colors.goldSoft,
@@ -62,10 +70,12 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: typography.caption,
     fontWeight: typography.weightBlack,
+    lineHeight: typography.lineCaption,
+    flexShrink: 1,
   },
   removeButton: {
-    width: 30,
-    height: 30,
+    minWidth: 40,
+    minHeight: 40,
     borderRadius: radius.pill,
     backgroundColor: colors.primary,
     alignItems: "center",
