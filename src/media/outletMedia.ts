@@ -18,7 +18,7 @@ export type OutletMediaCredit = OutletMediaAssetMetadata & {
   displayName: string;
 };
 
-type CompleteProductionCreditMetadata = OutletMediaAssetMetadata & {
+type PublicMediaCreditMetadata = OutletMediaAssetMetadata & {
   credit: string;
   license: string;
 };
@@ -295,17 +295,17 @@ function hasText(value: string | undefined): value is string {
   return typeof value === "string" && value.trim().length > 0;
 }
 
-function isCompleteProductionCreditMetadata(
+function isPublicMediaCreditMetadata(
   metadata: OutletMediaAssetMetadata | undefined,
-): metadata is CompleteProductionCreditMetadata {
+): metadata is PublicMediaCreditMetadata {
   return (
     isMediaAssetProductionCleared(metadata) &&
+    metadata.sourceStatus !== "project-owned" &&
     metadata.sourceStatus !== "official-operator" &&
     hasText(metadata.credit) &&
     hasText(metadata.license) &&
-    (metadata.sourceStatus === "project-owned" ||
-      hasText(metadata.sourceUrl)) &&
-    (metadata.sourceStatus === "project-owned" || hasText(metadata.licenseUrl))
+    hasText(metadata.sourceUrl) &&
+    hasText(metadata.licenseUrl)
   );
 }
 
@@ -367,7 +367,7 @@ function getOutletDisplayName(outletId: string): string {
 
 export function getProductionMediaCredits(): OutletMediaCredit[] {
   return outletMediaMetadata.flatMap((metadata): OutletMediaCredit[] => {
-    if (!isCompleteProductionCreditMetadata(metadata)) {
+    if (!isPublicMediaCreditMetadata(metadata)) {
       return [];
     }
 
@@ -378,6 +378,10 @@ export function getProductionMediaCredits(): OutletMediaCredit[] {
       },
     ];
   });
+}
+
+export function getOutletMediaCredits(): OutletMediaCredit[] {
+  return getProductionMediaCredits();
 }
 
 export function getMediaCreditsForOutlet(
