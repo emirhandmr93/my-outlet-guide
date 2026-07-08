@@ -24,7 +24,6 @@ import { WebsiteCard } from "../components/cards/WebsiteCard";
 import { OutletHero } from "../components/OutletHero";
 import { ReviewItem } from "../components/ReviewItem";
 import { ReviewTabs } from "../components/ReviewTabs";
-import { WriteReviewButton } from "../components/WriteReviewButton";
 import { outlets } from "../constants/outlets";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useReviewHelpful } from "../contexts/ReviewHelpfulContext";
@@ -41,6 +40,7 @@ import { getBrandCategoryGroupsForOutlet } from "../services/brandService";
 import { getRestaurantsForOutlet } from "../services/restaurantService";
 import { getTransportationForOutlet } from "../services/transportationService";
 import { CurrentWeather, getCurrentWeather } from "../services/weatherService";
+import { formatRating, getAverageReviewRating, getReviewAverage } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
@@ -79,17 +79,7 @@ const countryNames: Record<string, string> = {
   germany: "Germany",
 };
 
-function getReviewAverage(review: any) {
-  return (
-    (
-      review.overallRating +
-      review.transportationRating +
-      review.brandVarietyRating +
-      review.restaurantsRating +
-      review.servicesRating
-    ) / 5
-  ).toFixed(1);
-}
+
 
 export function OutletDetailScreen() {
   const route = useRoute<RouteProp<RouteParams, "OutletDetail">>();
@@ -97,7 +87,6 @@ export function OutletDetailScreen() {
   const { t } = useTranslation();
   const { reviews } = useReviews();
   const { isLoggedIn } = useUser();
-  const { currentUser } = useUser();
   const { toggleFavorite, isFavorite } = useFavorites();
   const { toggleHelpful, getHelpfulItem } = useReviewHelpful();
 
@@ -153,59 +142,12 @@ export function OutletDetailScreen() {
   const transportationItems = getTransportationForOutlet(outlet.outletId);
   const restaurantItems = getRestaurantsForOutlet(outlet.outletId);
   const outletReviews = reviews.filter((review) => review.outletId === outlet.outletId);
-  const currentUserReview = outletReviews.find(
-    (review) => review.userId === currentUser?.userId
-  );
-
-  const averageRating =
-    outletReviews.length > 0
-      ? (
-          outletReviews.reduce(
-            (sum, review) => sum + Number(getReviewAverage(review)),
-            0
-          ) / outletReviews.length
-        ).toFixed(1)
-      : "0.0";
-
-  const averageTransportationRating =
-    outletReviews.length > 0
-      ? (
-          outletReviews.reduce(
-            (sum, review) => sum + review.transportationRating,
-            0
-          ) / outletReviews.length
-        ).toFixed(1)
-      : "0.0";
-
-  const averageBrandVarietyRating =
-    outletReviews.length > 0
-      ? (
-          outletReviews.reduce(
-            (sum, review) => sum + review.brandVarietyRating,
-            0
-          ) / outletReviews.length
-        ).toFixed(1)
-      : "0.0";
-
-  const averageRestaurantsRating =
-    outletReviews.length > 0
-      ? (
-          outletReviews.reduce(
-            (sum, review) => sum + review.restaurantsRating,
-            0
-          ) / outletReviews.length
-        ).toFixed(1)
-      : "0.0";
-
-  const averageServicesRating =
-    outletReviews.length > 0
-      ? (
-          outletReviews.reduce(
-            (sum, review) => sum + review.servicesRating,
-            0
-          ) / outletReviews.length
-        ).toFixed(1)
-      : "0.0";
+  const displayRating = formatRating(outlet.rating);
+  const averageRating = getAverageReviewRating(outletReviews, "overallRating");
+  const averageTransportationRating = getAverageReviewRating(outletReviews, "transportationRating");
+  const averageBrandVarietyRating = getAverageReviewRating(outletReviews, "brandVarietyRating");
+  const averageRestaurantsRating = getAverageReviewRating(outletReviews, "restaurantsRating");
+  const averageServicesRating = getAverageReviewRating(outletReviews, "servicesRating");
 
   const sortedReviews = [...outletReviews].sort((a, b) => {
     if (reviewSort === "recent") {
@@ -341,7 +283,7 @@ export function OutletDetailScreen() {
       <View style={styles.badgeRow}>
         <Text style={styles.badge}>{getWeatherBadgeText()}</Text>
         <Text style={styles.badge}>{outlet.status}</Text>
-        <Text style={styles.badge}>⭐ {outlet.rating}</Text>
+        {displayRating ? <Text style={styles.badge}>⭐ {displayRating}</Text> : null}
       </View>
 
       <View style={styles.ctaRow}>
@@ -414,8 +356,8 @@ export function OutletDetailScreen() {
         cityCenterDistanceKm={outlet.cityCenterDistanceKm}
         airportDistanceKm={outlet.airportDistanceKm}
         reviewCountLabel={t("outlet.reviewCount")}
-        reviewCount={outletReviews.length || outlet.reviewCount}
-        rating={outlet.rating}
+        reviewCount={outletReviews.length}
+        rating={averageRating ?? displayRating ?? undefined}
         airportSummary={airportSummary}
         onPressStores={() => scrollToSection("brands")}
         onPressTaxFree={() => scrollToSection("taxFree")}
@@ -497,41 +439,30 @@ officeInfo={outlet.taxFreeOfficeInfo}
       <View style={styles.reviewCard} onLayout={(event) => setSectionPosition("reviews", event.nativeEvent.layout.y)}>
         <Text style={styles.sectionTitle}>{t("outlet.reviews")}</Text>
 
-        <ReviewStatsCard
-          summaryText={`⭐ ${averageRating} (${outletReviews.length} ${t(
-            "outlet.reviewLabel"
-          )})`}
-          transportationTitle={t("outlet.transportationRating")}
-          transportationValue={averageTransportationRating}
-          brandsTitle={t("outlet.brandsRating")}
-          brandsValue={averageBrandVarietyRating}
-          restaurantsTitle={t("outlet.restaurantsRating")}
-          restaurantsValue={averageRestaurantsRating}
-          servicesTitle={t("outlet.servicesRating")}
-          servicesValue={averageServicesRating}
-        />
+        {outletReviews.length > 0 && averageRating ? (
+          <>
+            <ReviewStatsCard
+              summaryText={`⭐ ${averageRating} (${outletReviews.length} ${t(
+                "outlet.reviewLabel"
+              )})`}
+              transportationTitle={t("outlet.transportationRating")}
+              transportationValue={averageTransportationRating ?? "-"}
+              brandsTitle={t("outlet.brandsRating")}
+              brandsValue={averageBrandVarietyRating ?? "-"}
+              restaurantsTitle={t("outlet.restaurantsRating")}
+              restaurantsValue={averageRestaurantsRating ?? "-"}
+              servicesTitle={t("outlet.servicesRating")}
+              servicesValue={averageServicesRating ?? "-"}
+            />
 
-        <ReviewTabs
-          activeTab={reviewSort}
-          helpfulText={t("outlet.mostHelpful")}
-          recentText={t("outlet.recent")}
-          onChangeTab={setReviewSort}
-        />
-
-        {!currentUserReview && (
-          <WriteReviewButton
-            title={t("outlet.writeReview")}
-            onPress={() => {
-              if (!requireAuth({ isLoggedIn, navigation })) {
-                return;
-              }
-
-              navigation.navigate("WriteReview", {
-                outletId: outlet.outletId,
-              });
-            }}
-          />
-        )}
+            <ReviewTabs
+              activeTab={reviewSort}
+              helpfulText={t("outlet.mostHelpful")}
+              recentText={t("outlet.recent")}
+              onChangeTab={setReviewSort}
+            />
+          </>
+        ) : null}
 
         {outletReviews.length > 0 ? (
           sortedReviews.map((review) => {
@@ -541,7 +472,7 @@ officeInfo={outlet.taxFreeOfficeInfo}
               <ReviewItem
                 key={review.reviewId}
                 userName={review.userName}
-                rating={getReviewAverage(review)}
+                rating={getReviewAverage(review) ?? "-"}
                 comment={review.comment}
                 createdAt={review.createdAt}
                 isEdited={review.isEdited}
@@ -552,19 +483,10 @@ officeInfo={outlet.taxFreeOfficeInfo}
                 helpfulText={t("outlet.helpful")}
                 helpfulCount={helpfulItem.helpfulCount}
                 isHelpfulByCurrentUser={helpfulItem.isHelpfulByCurrentUser}
-                canEdit={currentUser?.userId === review.userId}
+                canEdit={false}
                 editText={t("outlet.editReview")}
                 onPressHelpful={() => toggleHelpful(review.reviewId)}
-                onPressEdit={() => {
-                  if (!requireAuth({ isLoggedIn, navigation })) {
-                    return;
-                  }
-
-                  navigation.navigate("WriteReview", {
-                    outletId: outlet.outletId,
-                    reviewId: review.reviewId,
-                  });
-                }}
+                onPressEdit={() => {}}
               />
             );
           })

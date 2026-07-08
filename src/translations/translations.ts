@@ -176,6 +176,7 @@ const enTranslations = {
   "sharedCards.quickFacts.airports": "Airports",
   "sharedCards.quickFacts.cityCenter": "City Center",
   "sharedCards.quickFacts.rating": "Rating",
+  "sharedCards.quickFacts.noRating": "No rating yet",
   "sharedCards.reviews.guestRating": "Guest Rating",
   "sharedCards.writeReview.subtitle": "Share your outlet shopping experience",
   "sharedCards.weather.kicker": "Weather",
@@ -604,6 +605,8 @@ const enTranslations = {
   "writeReview.note":
     "Review submission is a demo action for now. Later this will require user login and save the review to the database.",
   "writeReview.defaultUserName": "My Outlet Guide User",
+  "writeReview.unavailableTitle": "Reviews are not open yet",
+  "writeReview.unavailableText": "Outlet review submission will open only after production storage, moderation and abuse reporting are ready.",
 
   "outlet.previousComment": "Previous Comment",
 
@@ -1330,6 +1333,7 @@ export const translations: Record<
     "sharedCards.quickFacts.airports": "Havalimanları",
     "sharedCards.quickFacts.cityCenter": "Şehir merkezi",
     "sharedCards.quickFacts.rating": "Puan",
+    "sharedCards.quickFacts.noRating": "Henüz puan yok",
     "sharedCards.reviews.guestRating": "Misafir puanı",
     "sharedCards.writeReview.subtitle": "Outlet alışveriş deneyimini paylaş",
     "sharedCards.weather.kicker": "Hava",
@@ -1764,6 +1768,8 @@ export const translations: Record<
     "writeReview.note":
       "Yorumun hesabına bağlı olarak kaydedilir. Yayınlanan yorumlar diğer kullanıcılar tarafından görülebilir.",
     "writeReview.defaultUserName": "My Outlet Guide Kullanıcısı",
+    "writeReview.unavailableTitle": "Yorumlar henüz açık değil",
+    "writeReview.unavailableText": "Outlet yorumu gönderimi yalnızca üretim depolaması, moderasyon ve kötüye kullanım bildirimi hazır olduğunda açılacaktır.",
 
     "outlet.previousComment": "Önceki Yorum",
 
@@ -2475,6 +2481,7 @@ export const translations: Record<
     "sharedCards.quickFacts.airports": "Aeropuertos",
     "sharedCards.quickFacts.cityCenter": "Centro",
     "sharedCards.quickFacts.rating": "Valoración",
+    "sharedCards.quickFacts.noRating": "Sin valoración todavía",
     "sharedCards.reviews.guestRating": "Valoración de visitantes",
     "sharedCards.writeReview.subtitle": "Comparte tu experiencia de compras outlet",
     "sharedCards.weather.kicker": "Clima",
@@ -2905,6 +2912,8 @@ export const translations: Record<
     "writeReview.note":
       "El envío de reseñas es una acción de demo por ahora. Más adelante requerirá iniciar sesión y guardará la reseña en la base de datos.",
     "writeReview.defaultUserName": "Usuario de My Outlet Guide",
+    "writeReview.unavailableTitle": "Las reseñas aún no están disponibles",
+    "writeReview.unavailableText": "El envío de reseñas de outlets se activará solo cuando el almacenamiento de producción, la moderación y los reportes de abuso estén listos.",
 
     "outlet.previousComment": "Comentario anterior",
 
@@ -3627,6 +3636,7 @@ export const translations: Record<
     "sharedCards.quickFacts.airports": "Aéroports",
     "sharedCards.quickFacts.cityCenter": "Centre-ville",
     "sharedCards.quickFacts.rating": "Note",
+    "sharedCards.quickFacts.noRating": "Pas encore de note",
     "sharedCards.reviews.guestRating": "Note des visiteurs",
     "sharedCards.writeReview.subtitle": "Partagez votre expérience shopping outlet",
     "sharedCards.weather.kicker": "Météo",
@@ -4062,6 +4072,8 @@ export const translations: Record<
     "writeReview.note":
       "L'envoi d'avis est une action démo pour le moment. Plus tard, une connexion sera requise et l'avis sera enregistré en base de données.",
     "writeReview.defaultUserName": "Utilisateur My Outlet Guide",
+    "writeReview.unavailableTitle": "Les avis ne sont pas encore ouverts",
+    "writeReview.unavailableText": "L’envoi d’avis sur les outlets ouvrira uniquement lorsque le stockage de production, la modération et le signalement des abus seront prêts.",
 
     "outlet.previousComment": "Commentaire précédent",
 
@@ -4784,6 +4796,7 @@ export const translations: Record<
     "sharedCards.quickFacts.airports": "Flughäfen",
     "sharedCards.quickFacts.cityCenter": "Stadtzentrum",
     "sharedCards.quickFacts.rating": "Bewertung",
+    "sharedCards.quickFacts.noRating": "Noch keine Bewertung",
     "sharedCards.reviews.guestRating": "Gästebewertung",
     "sharedCards.writeReview.subtitle": "Teile dein Outlet-Shopping-Erlebnis",
     "sharedCards.weather.kicker": "Wetter",
@@ -5199,6 +5212,8 @@ export const translations: Record<
     "writeReview.note":
       "Das Einreichen von Bewertungen ist vorerst eine Demo-Aktion. Später ist ein Login erforderlich und die Bewertung wird in der Datenbank gespeichert.",
     "writeReview.defaultUserName": "My Outlet Guide Nutzer",
+    "writeReview.unavailableTitle": "Bewertungen sind noch nicht geöffnet",
+    "writeReview.unavailableText": "Outlet-Bewertungen werden erst aktiviert, wenn produktionsreife Speicherung, Moderation und Missbrauchsmeldungen verfügbar sind.",
     "outlet.previousComment": "Vorheriger Kommentar",
     "notifications.title": "Benachrichtigungen",
     "notifications.subtitle":
@@ -5896,6 +5911,7 @@ export const translations: Record<
     "sharedCards.quickFacts.airports": "المطارات",
     "sharedCards.quickFacts.cityCenter": "وسط المدينة",
     "sharedCards.quickFacts.rating": "التقييم",
+    "sharedCards.quickFacts.noRating": "لا يوجد تقييم بعد",
     "sharedCards.reviews.guestRating": "تقييم الزوار",
     "sharedCards.writeReview.subtitle": "شارك تجربة التسوق في الأوتليت",
     "sharedCards.weather.kicker": "الطقس",
@@ -6299,6 +6315,8 @@ export const translations: Record<
     "writeReview.note":
       "إرسال المراجعة إجراء تجريبي حالياً. لاحقاً سيتطلب تسجيل الدخول وسيُحفظ في قاعدة البيانات.",
     "writeReview.defaultUserName": "مستخدم My Outlet Guide",
+    "writeReview.unavailableTitle": "المراجعات غير متاحة بعد",
+    "writeReview.unavailableText": "سيتم فتح إرسال مراجعات المنافذ فقط بعد جاهزية التخزين الإنتاجي والإشراف والإبلاغ عن إساءة الاستخدام.",
     "outlet.previousComment": "التعليق السابق",
     "notifications.title": "الإشعارات",
     "notifications.subtitle": "تحكم في تذكيرات السفر والتسوق التي تصلك.",
@@ -6960,6 +6978,7 @@ export const translations: Record<
     "sharedCards.quickFacts.airports": "Аэропорты",
     "sharedCards.quickFacts.cityCenter": "Центр",
     "sharedCards.quickFacts.rating": "Рейтинг",
+    "sharedCards.quickFacts.noRating": "Пока нет рейтинга",
     "sharedCards.reviews.guestRating": "Оценка гостей",
     "sharedCards.writeReview.subtitle": "Поделитесь опытом outlet-шопинга",
     "sharedCards.weather.kicker": "Погода",
@@ -7390,6 +7409,8 @@ export const translations: Record<
     "writeReview.note":
       "Отправка отзыва пока работает в демо-режиме. Позже потребуется вход, и отзыв будет сохранен в базе данных.",
     "writeReview.defaultUserName": "Пользователь My Outlet Guide",
+    "writeReview.unavailableTitle": "Отзывы пока недоступны",
+    "writeReview.unavailableText": "Отправка отзывов об аутлетах будет открыта только после готовности продакшен-хранилища, модерации и жалоб на нарушения.",
 
     "outlet.previousComment": "Предыдущий комментарий",
 
@@ -8094,6 +8115,7 @@ export const translations: Record<
     "sharedCards.quickFacts.airports": "机场",
     "sharedCards.quickFacts.cityCenter": "市中心",
     "sharedCards.quickFacts.rating": "评分",
+    "sharedCards.quickFacts.noRating": "暂无评分",
     "sharedCards.reviews.guestRating": "访客评分",
     "sharedCards.writeReview.subtitle": "分享你的奥特莱斯购物体验",
     "sharedCards.weather.kicker": "天气",
@@ -8502,6 +8524,8 @@ export const translations: Record<
     "writeReview.note":
       "评价提交目前为演示功能。之后将需要用户登录，并把评价保存到数据库。",
     "writeReview.defaultUserName": "My Outlet Guide 用户",
+    "writeReview.unavailableTitle": "评论尚未开放",
+    "writeReview.unavailableText": "只有在生产存储、审核和滥用举报准备就绪后，才会开放奥莱评论提交。",
 
     "outlet.previousComment": "上一条评论",
 

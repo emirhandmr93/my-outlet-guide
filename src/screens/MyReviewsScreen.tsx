@@ -11,24 +11,13 @@ import { outlets } from "../constants/outlets";
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { getReviewAverage } from "../services/reviewsRatingsService";
 
 export function MyReviewsScreen() {
 const { reviews } = useReviews();
 const { currentUser } = useUser();
 const navigation = useNavigation<any>();
 const { t } = useTranslation();
-
-function getReviewAverage(review: any) {
-return (
-(
-review.overallRating +
-review.transportationRating +
-review.brandVarietyRating +
-review.restaurantsRating +
-review.servicesRating
-) / 5
-).toFixed(1);
-}
 
 const myReviews = reviews.filter(
 (review) => review.userId === currentUser?.userId
@@ -70,7 +59,7 @@ outlets.find(
 </Text>
 
 <Text style={styles.reviewRating}>
-⭐ {getReviewAverage(review)}
+⭐ {getReviewAverage(review) ?? "-"}
 </Text>
 
 <Text style={styles.reviewComment}>

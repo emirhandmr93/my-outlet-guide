@@ -7,6 +7,7 @@ import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { useTranslation } from "../../hooks/useTranslation";
+import { formatReviewCount } from "../../services/reviewsRatingsService";
 
 export type QuickFactsCardProps = {
   title: string;
@@ -86,7 +87,8 @@ export function QuickFactsCard({
       ? `${nearestAirportName} • ${airportDistanceKm} km`
       : `${airportDistanceKm} km`);
 
-  const ratingText = rating ? `${rating} (${reviewCount})` : `${reviewCount}`;
+  const reviewCountText = formatReviewCount(reviewCount);
+  const ratingText = rating ? `${rating}${reviewCountText ? ` (${reviewCountText})` : ""}` : t("sharedCards.quickFacts.noRating");
 
   return (
     <Card>
