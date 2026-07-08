@@ -277,6 +277,10 @@ service cloud.firestore {
       }
     }
 
+    match /notificationDeliveries/{deliveryId} {
+      allow read, write: if false;
+    }
+
     match /reviewReports/{reportId} {
       allow create: if isSignedIn()
         && request.resource.data.reportId == reportId

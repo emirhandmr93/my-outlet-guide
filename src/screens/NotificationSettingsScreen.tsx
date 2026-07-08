@@ -13,6 +13,7 @@ export function NotificationSettingsScreen() {
     pushSupported,
     settings,
     setNotificationsEnabled,
+    setTripRemindersEnabled,
     tokenRegistrationStatus,
     registeredToken,
     registrationError,
@@ -85,13 +86,72 @@ export function NotificationSettingsScreen() {
             </View>
           </TouchableOpacity>
 
+
+          <CategoryRow
+            icon="🗓️"
+            title={t("notifications.tripRemindersCategory")}
+            description={t("notifications.tripRemindersCategoryDesc")}
+            status={t("notifications.categoryActive")}
+            enabled={settings?.tripRemindersEnabled === true}
+            disabled={isLoading || isSaving || !enabled}
+            onLabel={t("common.on")}
+            offLabel={t("common.off")}
+            onPress={() => setTripRemindersEnabled(settings?.tripRemindersEnabled !== true)}
+          />
+
           <View style={styles.infoBox}>
-            <Text style={styles.infoTitle}>{t("notifications.categoriesUnavailableTitle")}</Text>
-            <Text style={styles.infoText}>{t("notifications.categoriesUnavailableBody")}</Text>
+            <Text style={styles.infoTitle}>{t("notifications.unsupportedCategoriesTitle")}</Text>
+            <Text style={styles.infoText}>{t("notifications.unsupportedCategoriesBody")}</Text>
           </View>
+
         </>
       )}
     </ScrollView>
+  );
+}
+
+function CategoryRow({
+  icon,
+  title,
+  description,
+  status,
+  enabled,
+  disabled,
+  onLabel,
+  offLabel,
+  onPress,
+}: {
+  icon: string;
+  title: string;
+  description: string;
+  status: string;
+  enabled: boolean;
+  disabled: boolean;
+  onLabel: string;
+  offLabel: string;
+  onPress: () => void;
+}) {
+  return (
+    <TouchableOpacity
+      style={[styles.row, disabled && styles.rowDisabled]}
+      activeOpacity={0.86}
+      disabled={disabled}
+      onPress={onPress}
+    >
+      <View style={styles.iconBox}>
+        <Text style={styles.icon}>{icon}</Text>
+      </View>
+
+      <View style={styles.rowContent}>
+        <Text style={styles.rowTitle}>{title}</Text>
+        <Text style={styles.rowDescription}>{description}</Text>
+        <Text style={styles.statusText}>{status}</Text>
+      </View>
+
+      <View style={[styles.toggle, enabled && styles.toggleActive]}>
+        <Text style={[styles.toggleText, enabled && styles.toggleTextActive]}>{enabled ? onLabel : offLabel}</Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
@@ -210,6 +270,13 @@ const styles = StyleSheet.create({
     color: "#666666",
     lineHeight: 18,
     fontSize: 13,
+  },
+
+  statusText: {
+    marginTop: 6,
+    color: "#0B1F3A",
+    fontSize: 12,
+    fontWeight: "900",
   },
 
   toggle: {
