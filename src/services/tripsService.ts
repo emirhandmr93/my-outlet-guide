@@ -1,5 +1,4 @@
 import {
-  addDoc,
   collection,
   deleteDoc,
   doc,
@@ -7,7 +6,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
-  updateDoc,
+  setDoc,
 } from "firebase/firestore";
 
 import { db } from "../firebase/config";
@@ -53,7 +52,10 @@ export async function getUserTrips(userId: string): Promise<Trip[]> {
 
 export async function createUserTrip(userId: string, trip: TripInput): Promise<string> {
   const now = new Date().toISOString();
-  const docRef = await addDoc(getUserTripsCollection(userId), {
+  const docRef = doc(getUserTripsCollection(userId));
+
+  await setDoc(docRef, {
+    tripId: docRef.id,
     userId,
     outletId: trip.outletId,
     outletName: trip.outletName,
@@ -70,8 +72,6 @@ export async function createUserTrip(userId: string, trip: TripInput): Promise<s
     firestoreCreatedAt: serverTimestamp(),
     firestoreUpdatedAt: serverTimestamp(),
   });
-
-  await updateDoc(docRef, { tripId: docRef.id });
 
   return docRef.id;
 }

@@ -62,7 +62,11 @@ export function CreateTripScreen() {
       navigation.navigate("TripDetail", { tripId: newTripId });
     } catch (error) {
       console.log("Create trip error", error);
-      Alert.alert(t("createTrip.saveFailedTitle"), t("createTrip.saveFailedMessage"));
+      const isPermissionDenied = (error as { code?: unknown }).code === "permission-denied";
+      Alert.alert(
+        t("createTrip.saveFailedTitle"),
+        t(isPermissionDenied ? "createTrip.permissionDeniedMessage" : "createTrip.saveFailedMessage"),
+      );
     } finally {
       setSaving(false);
     }
