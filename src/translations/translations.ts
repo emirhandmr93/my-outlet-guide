@@ -550,6 +550,8 @@ const enTranslations = {
   "favorites.deals": "Deals",
   "favorites.events": "Events",
   "favorites.remove": "Remove from Favorites",
+  "favorites.permissionDenied":
+    "We could not update favorites right now. Please sign in again and try later.",
 
   "offline.title": "Offline Packs",
   "offline.subtitle": "Download your trip essentials for offline use.",
@@ -1743,6 +1745,8 @@ export const translations: Record<
     "favorites.deals": "Fırsatlar",
     "favorites.events": "Etkinlikler",
     "favorites.remove": "Favorilerden Çıkar",
+    "favorites.permissionDenied":
+      "Favoriler şu anda güncellenemedi. Lütfen tekrar giriş yapıp daha sonra deneyin.",
 
     "offline.title": "Çevrimdışı Paketler",
     "offline.subtitle":
@@ -2919,6 +2923,8 @@ export const translations: Record<
     "favorites.deals": "Ofertas",
     "favorites.events": "Eventos",
     "favorites.remove": "Quitar de favoritos",
+    "favorites.permissionDenied":
+      "No pudimos actualizar tus favoritos ahora. Inicia sesión de nuevo e inténtalo más tarde.",
 
     "offline.title": "Paquetes sin conexión",
     "offline.subtitle":
@@ -4113,6 +4119,8 @@ export const translations: Record<
     "favorites.deals": "Offres",
     "favorites.events": "Événements",
     "favorites.remove": "Retirer des favoris",
+    "favorites.permissionDenied":
+      "Impossible de mettre à jour vos favoris pour le moment. Reconnectez-vous et réessayez plus tard.",
 
     "offline.title": "Packs hors ligne",
     "offline.subtitle":
@@ -5291,6 +5299,8 @@ export const translations: Record<
     "favorites.deals": "Angebote",
     "favorites.events": "Veranstaltungen",
     "favorites.remove": "Aus Favoriten entfernen",
+    "favorites.permissionDenied":
+      "Favoriten konnten gerade nicht aktualisiert werden. Melde dich bitte erneut an und versuche es später wieder.",
     "offline.title": "Offline-Pakete",
     "offline.subtitle":
       "Lade wichtige Reiseinfos für die Offline-Nutzung herunter.",
@@ -6431,6 +6441,8 @@ export const translations: Record<
     "favorites.deals": "العروض",
     "favorites.events": "الفعاليات",
     "favorites.remove": "إزالة من المفضلة",
+    "favorites.permissionDenied":
+      "تعذر تحديث المفضلة الآن. يُرجى تسجيل الدخول مرة أخرى والمحاولة لاحقًا.",
     "offline.title": "حزم دون اتصال",
     "offline.subtitle": "نزّل أساسيات رحلتك لاستخدامها دون إنترنت.",
     "offline.tripPacks": "حزم الرحلات دون اتصال",
@@ -7552,6 +7564,8 @@ export const translations: Record<
     "favorites.deals": "Предложения",
     "favorites.events": "События",
     "favorites.remove": "Убрать из избранного",
+    "favorites.permissionDenied":
+      "Не удалось обновить избранное. Войдите снова и повторите попытку позже.",
 
     "offline.title": "Офлайн-пакеты",
     "offline.subtitle":
@@ -8704,6 +8718,8 @@ export const translations: Record<
     "favorites.deals": "优惠",
     "favorites.events": "活动",
     "favorites.remove": "取消收藏",
+    "favorites.permissionDenied":
+      "暂时无法更新收藏。请重新登录后稍后再试。",
 
     "offline.title": "离线包",
     "offline.subtitle": "下载旅行必备内容，离线也可使用。",
