@@ -1,0 +1,145 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isNonEmptyString(value) {
+      return value is string && value.size() > 0;
+    }
+
+    function isOptionalStringOrNull(value, maxLength) {
+      return value == null || (value is string && value.size() <= maxLength);
+    }
+
+    function isValidRating(value) {
+      return value is number && value >= 1 && value <= 5;
+    }
+
+    function hasValidReviewContent(data) {
+      return isValidRating(data.rating)
+        && isNonEmptyString(data.comment)
+        && data.comment.size() <= 4000
+        && isOptionalStringOrNull(data.title, 120)
+        && isNonEmptyString(data.userDisplayName)
+        && data.userDisplayName.size() <= 120;
+    }
+
+    function hasValidReviewCreateData(outletId, reviewId) {
+      return request.resource.data.keys().hasOnly([
+          'reviewId',
+          'outletId',
+          'userId',
+          'userDisplayName',
+          'rating',
+          'title',
+          'comment',
+          'createdAt',
+          'updatedAt',
+          'status',
+          'deletedAt',
+          'firestoreUpdatedAt'
+        ])
+        && request.resource.data.reviewId == reviewId
+        && request.resource.data.outletId == outletId
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.status == 'published'
+        && request.resource.data.deletedAt == null
+        && hasValidReviewContent(request.resource.data);
+    }
+
+    function keepsReviewOwnership(outletId, reviewId) {
+      return request.resource.data.reviewId == resource.data.reviewId
+        && request.resource.data.reviewId == reviewId
+        && request.resource.data.outletId == resource.data.outletId
+        && request.resource.data.outletId == outletId
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.userId == request.auth.uid;
+    }
+
+    function hasValidReviewUpdateData() {
+      return request.resource.data.keys().hasOnly([
+          'reviewId',
+          'outletId',
+          'userId',
+          'userDisplayName',
+          'rating',
+          'title',
+          'comment',
+          'createdAt',
+          'updatedAt',
+          'status',
+          'deletedAt',
+          'firestoreUpdatedAt'
+        ]);
+    }
+
+    function isPublishedReviewUpdate() {
+      return request.resource.data.status == 'published'
+        && request.resource.data.deletedAt == null
+        && hasValidReviewContent(request.resource.data);
+    }
+
+    function isSoftDeleteReviewUpdate() {
+      return request.resource.data.status == 'deleted'
+        && request.resource.data.deletedAt != null
+        && request.resource.data.deletedAt is string
+        && request.resource.data.deletedAt.size() > 0;
+    }
+
+    function isValidHelpfulCreate(outletId, reviewId, userId) {
+      return request.resource.data.keys().hasOnly(['userId', 'createdAt', 'firestoreCreatedAt'])
+        && userId == request.auth.uid
+        && request.resource.data.userId == request.auth.uid
+        && exists(/databases/$(database)/documents/reviews/$(outletId)/items/$(reviewId))
+        && get(/databases/$(database)/documents/reviews/$(outletId)/items/$(reviewId)).data.userId != request.auth.uid;
+    }
+
+    function isValidReviewReportCreate() {
+      return request.resource.data.keys().hasOnly([
+          'reportId',
+          'outletId',
+          'reviewId',
+          'reporterUserId',
+          'reason',
+          'createdAt',
+          'status',
+          'firestoreCreatedAt'
+        ])
+        && isNonEmptyString(request.resource.data.reportId)
+        && isNonEmptyString(request.resource.data.outletId)
+        && isNonEmptyString(request.resource.data.reviewId)
+        && request.resource.data.reporterUserId == request.auth.uid
+        && request.resource.data.reason in ['spam', 'abuse', 'off_topic', 'other']
+        && request.resource.data.status == 'open';
+    }
+
+    match /reviews/{outletId}/items/{reviewId} {
+      allow read: if resource.data.status == 'published';
+      allow create: if isSignedIn()
+        && reviewId == request.auth.uid
+        && hasValidReviewCreateData(outletId, reviewId);
+      allow update: if isSignedIn()
+        && resource.data.userId == request.auth.uid
+        && keepsReviewOwnership(outletId, reviewId)
+        && hasValidReviewUpdateData()
+        && (isPublishedReviewUpdate() || isSoftDeleteReviewUpdate());
+      allow delete: if false;
+
+      match /helpful/{userId} {
+        allow read: if true;
+        allow create: if isSignedIn() && isValidHelpfulCreate(outletId, reviewId, userId);
+        allow delete: if isSignedIn() && userId == request.auth.uid && resource.data.userId == request.auth.uid;
+        allow update: if false;
+      }
+    }
+
+    match /reviewReports/{reportId} {
+      allow create: if isSignedIn()
+        && request.resource.data.reportId == reportId
+        && isValidReviewReportCreate();
+      allow read, update, delete: if false;
+    }
+  }
+}
