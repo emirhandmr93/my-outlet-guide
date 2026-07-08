@@ -6,7 +6,6 @@ import { useTranslation } from "../../hooks/useTranslation";
 type TaxFreeCardProps = {
   title: string;
   vatRate: number;
-  refundRate?: string;
   minimumSpend: string;
   officeInfo: string;
 };
@@ -14,7 +13,6 @@ type TaxFreeCardProps = {
 export function TaxFreeCard({
   title,
   vatRate,
-  refundRate,
   minimumSpend,
   officeInfo,
 }: TaxFreeCardProps) {
@@ -28,10 +26,7 @@ export function TaxFreeCard({
         {t("taxCalc.vatRate")}: {vatRate}%
       </Text>
 
-      <Text style={styles.text}>
-        {t("taxCalc.estimatedRefund")}:{" "}
-        {refundRate ?? `≈${Math.round(vatRate * 0.6)}%`}
-      </Text>
+      <Text style={styles.text}>{t("taxCalc.finalDisclaimer")}</Text>
 
       <Text style={styles.text}>
         {t("taxCalc.minimumSpend")}: {minimumSpend}

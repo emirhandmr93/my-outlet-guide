@@ -10,7 +10,7 @@ import {
 
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
-import { taxFreeRules } from "../constants/taxFreeRules";
+import { getTaxFreeRule, taxFreeRules } from "../constants/taxFreeRules";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -80,19 +80,28 @@ function OutletCard({
               : t("country.limited")}
           </Text>
           <View style={styles.cardActions}>
-            {displayRating ? <Text style={styles.rating}>★ {displayRating}</Text> : null}
+            {displayRating ? (
+              <Text style={styles.rating}>★ {displayRating}</Text>
+            ) : null}
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityLabel={
-                isFavorite ? t("outlet.removeFavorite") : t("outlet.addFavorite")
+                isFavorite
+                  ? t("outlet.removeFavorite")
+                  : t("outlet.addFavorite")
               }
-              style={[styles.favoriteButton, isFavorite && styles.favoriteButtonActive]}
+              style={[
+                styles.favoriteButton,
+                isFavorite && styles.favoriteButtonActive,
+              ]}
               onPress={(event) => {
                 event.stopPropagation();
                 onToggleFavorite();
               }}
             >
-              <Text style={styles.favoriteButtonText}>{isFavorite ? "♥" : "♡"}</Text>
+              <Text style={styles.favoriteButtonText}>
+                {isFavorite ? "♥" : "♡"}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -116,9 +125,7 @@ export function CountryScreen() {
   const countryId = route.params?.countryId || "france";
   const country =
     countries.find((item) => item.countryId === countryId) || countries[0];
-  const rule =
-    taxFreeRules.find((item) => item.countryId === country.countryId) ||
-    taxFreeRules[0];
+  const rule = getTaxFreeRule(country.countryId) || taxFreeRules[0];
   const countryOutlets = outlets.filter(
     (outlet) => outlet.countryId === country.countryId,
   );
@@ -149,7 +156,7 @@ export function CountryScreen() {
         <InfoCard title={t("country.vatRate")} value={`${rule.vatRate}%`} />
         <InfoCard
           title={t("country.minimum")}
-          value={`${rule.currency} ${rule.minimumSpend}`}
+          value={`${rule.currency} ${rule.minimumPurchaseAmount ?? 0}`}
         />
       </View>
 

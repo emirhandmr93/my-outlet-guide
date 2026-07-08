@@ -217,7 +217,8 @@ const enTranslations = {
   "trips.deleteConfirmMessage": "Remove this shopping trip?",
   "trips.loadFailedTitle": "Trips could not be loaded",
   "trips.loadFailedMessage": "Please check your connection and try again.",
-  "trips.permissionDeniedMessage": "We couldn’t verify permission for your trips. Please sign in again and try once more.",
+  "trips.permissionDeniedMessage":
+    "We couldn’t verify permission for your trips. Please sign in again and try once more.",
   "trips.deleteFailedTitle": "Trip could not be deleted",
   "trips.deleteFailedMessage": "Please check your connection and try again.",
   "common.cancel": "Cancel",
@@ -263,14 +264,17 @@ const enTranslations = {
   "createTrip.visitDate": "Visit date (optional)",
   "createTrip.selectVisitDate": "Select a visit date",
   "createTrip.notes": "Notes (optional)",
-  "createTrip.notesPlaceholder": "Add reservation notes, shopping priorities or accessibility needs.",
+  "createTrip.notesPlaceholder":
+    "Add reservation notes, shopping priorities or accessibility needs.",
   "createTrip.saving": "Saving trip...",
   "createTrip.outletDestination": "Outlet destination",
   "createTrip.missingOutletTitle": "Outlet required",
-  "createTrip.missingOutletMessage": "Open Create Trip from an outlet detail page so the destination can be saved.",
+  "createTrip.missingOutletMessage":
+    "Open Create Trip from an outlet detail page so the destination can be saved.",
   "createTrip.saveFailedTitle": "Trip could not be saved",
   "createTrip.saveFailedMessage": "Please check your connection and try again.",
-  "createTrip.permissionDeniedMessage": "We couldn’t verify permission to save this trip. Please sign in again and try once more.",
+  "createTrip.permissionDeniedMessage":
+    "We couldn’t verify permission to save this trip. Please sign in again and try once more.",
   "trips.dateNotSet": "Date not set",
   "trips.destinationNotSet": "Destination not set",
   "trips.city": "City",
@@ -470,6 +474,18 @@ const enTranslations = {
   "taxCalc.vatRate": "VAT rate",
   "taxCalc.refundRate": "Estimated refund rate",
   "taxCalc.minimumSpend": "Minimum spend",
+  "taxCalc.estimatedVatPortion": "Estimated VAT portion",
+  "taxCalc.estimatedNetBeforeVat": "Net amount before VAT",
+  "taxCalc.providerFeesUnknown": "Provider/store fees not included",
+  "taxCalc.noGuaranteedRefund": "No guaranteed refund",
+  "taxCalc.unsupportedCountry":
+    "Tax Free calculation is unavailable for this country because reliable source-backed data is not bundled in the app.",
+  "taxCalc.invalidAmount": "Enter a valid purchase amount greater than zero.",
+  "taxCalc.currencyMismatch":
+    "Use the selected country's listed currency for this estimate.",
+  "taxCalc.sourceTitle": "Source and estimate basis",
+  "taxCalc.finalDisclaimer":
+    "The refund is an estimate. Actual refund depends on store, operator/provider, country rules, fees, and eligibility.",
 
   "savings.title": "Savings",
   "savings.subtitle": "Save more. Shop smarter.",
@@ -626,9 +642,11 @@ const enTranslations = {
   "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
   "writeReview.commentRequired": "Write at least 10 characters.",
   "writeReview.saveErrorTitle": "Could not save review",
-  "writeReview.saveErrorText": "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+  "writeReview.saveErrorText":
+    "We couldn’t verify permission to save this review. Please sign in again and try once more.",
   "review.actionErrorTitle": "Review action failed",
-  "review.actionPermissionErrorText": "We couldn’t verify permission for this review action. Please sign in again and try once more.",
+  "review.actionPermissionErrorText":
+    "We couldn’t verify permission for this review action. Please sign in again and try once more.",
   "review.helpful": "Helpful",
   "review.helpfulActive": "Helpful ✓",
   "review.report": "Report",
@@ -733,12 +751,13 @@ const enTranslations = {
   "transportation.fallback.default.step3":
     "Use maps or station signs for the final walking section to La Vallée Village.",
 
-
   "flightDeals.unavailableKicker": "Flight Alerts",
   "flightDeals.unavailableTitle": "Flight alerts are not available yet",
-  "flightDeals.unavailableBody": "Live fare alerts are disabled until a production flight price provider and trusted backend price checker are connected.",
+  "flightDeals.unavailableBody":
+    "Live fare alerts are disabled until a production flight price provider and trusted backend price checker are connected.",
   "flightDeals.unavailableStatusTitle": "Production provider required",
-  "flightDeals.unavailableStatusBody": "We do not show mock fares or create fake alerts. When real fare monitoring is available, alerts will be saved for signed-in users and checked by the backend.",
+  "flightDeals.unavailableStatusBody":
+    "We do not show mock fares or create fake alerts. When real fare monitoring is available, alerts will be saved for signed-in users and checked by the backend.",
   "flightDeals.settingsTitle": "Flight Deal Alerts",
   "flightDeals.settingsSubtitle":
     "Select your departure city and shopping cities.",
@@ -1128,31 +1147,50 @@ const enTranslations = {
   "notifications.kicker": "Notifications",
 
   "notifications.signInRequiredTitle": "Sign in required",
-  "notifications.signInRequiredBody": "Sign in to save cloud notification preferences for your account.",
+  "notifications.signInRequiredBody":
+    "Sign in to save cloud notification preferences for your account.",
   "notifications.deviceStatusTitle": "Device notification status",
-  "notifications.pushUnavailableTitle": "Push notifications are not enabled in this build",
-  "notifications.pushUnavailableBody": "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
+  "notifications.pushUnavailableTitle":
+    "Push notifications are not enabled in this build",
+  "notifications.pushUnavailableBody":
+    "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
   "notifications.cloudPreferences": "Cloud notification preferences",
-  "notifications.cloudPreferencesDesc": "Save whether your account should receive supported production notifications.",
-  "notifications.cloudPreferencesUnavailableDesc": "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
-  "notifications.categoriesUnavailableTitle": "Notification categories are not active yet",
-  "notifications.categoriesUnavailableBody": "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
-  "notifications.permission.unsupported": "Device push permission is unavailable in this build.",
-  "notifications.permission.not_requested": "Notification permission has not been requested yet.",
-  "notifications.permission.granted": "Device notification permission is granted.",
-  "notifications.permission.denied": "Device notification permission is denied. You can change this in system settings.",
+  "notifications.cloudPreferencesDesc":
+    "Save whether your account should receive supported production notifications.",
+  "notifications.cloudPreferencesUnavailableDesc":
+    "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
+  "notifications.categoriesUnavailableTitle":
+    "Notification categories are not active yet",
+  "notifications.categoriesUnavailableBody":
+    "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
+  "notifications.permission.unsupported":
+    "Device push permission is unavailable in this build.",
+  "notifications.permission.not_requested":
+    "Notification permission has not been requested yet.",
+  "notifications.permission.granted":
+    "Device notification permission is granted.",
+  "notifications.permission.denied":
+    "Device notification permission is denied. You can change this in system settings.",
   "notifications.tokenStatusTitle": "Push token registration",
-  "notifications.token.not_registered": "No device push token is registered for this account on this device.",
-  "notifications.token.registered": "A real Expo push token is registered for this account:",
-  "notifications.token.disabled": "Device push tokens for this account were marked disabled.",
-  "notifications.token.failed": "Push token registration failed. Check the app build and notification credentials.",
+  "notifications.token.not_registered":
+    "No device push token is registered for this account on this device.",
+  "notifications.token.registered":
+    "A real Expo push token is registered for this account:",
+  "notifications.token.disabled":
+    "Device push tokens for this account were marked disabled.",
+  "notifications.token.failed":
+    "Push token registration failed. Check the app build and notification credentials.",
   "notifications.deliveryStatusTitle": "Production delivery status",
-  "notifications.deliveryStatusBody": "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
+  "notifications.deliveryStatusBody":
+    "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
   "notifications.tripRemindersCategory": "Trip reminders",
-  "notifications.tripRemindersCategoryDesc": "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
+  "notifications.tripRemindersCategoryDesc":
+    "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
   "notifications.categoryActive": "Production sender active",
-  "notifications.unsupportedCategoriesTitle": "Unsupported categories remain inactive",
-  "notifications.unsupportedCategoriesBody": "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
+  "notifications.unsupportedCategoriesTitle":
+    "Unsupported categories remain inactive",
+  "notifications.unsupportedCategoriesBody":
+    "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
   "notifications.smartAlertsOnly": "Smart alerts only",
   "notifications.travelAlerts": "Travel alerts",
   "notifications.shoppingAlerts": "Shopping alerts",
@@ -1461,10 +1499,13 @@ export const translations: Record<
     "trips.deleteConfirmTitle": "Seyahati sil",
     "trips.deleteConfirmMessage": "Bu alışveriş seyahati kaldırılsın mı?",
     "trips.loadFailedTitle": "Seyahatler yüklenemedi",
-    "trips.loadFailedMessage": "Lütfen bağlantınızı kontrol edip tekrar deneyin.",
-    "trips.permissionDeniedMessage": "Seyahatleriniz için izni doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
+    "trips.loadFailedMessage":
+      "Lütfen bağlantınızı kontrol edip tekrar deneyin.",
+    "trips.permissionDeniedMessage":
+      "Seyahatleriniz için izni doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
     "trips.deleteFailedTitle": "Seyahat silinemedi",
-    "trips.deleteFailedMessage": "Lütfen bağlantınızı kontrol edip tekrar deneyin.",
+    "trips.deleteFailedMessage":
+      "Lütfen bağlantınızı kontrol edip tekrar deneyin.",
     "common.cancel": "İptal",
     "common.delete": "Sil",
     "common.edit": "Düzenle",
@@ -1512,14 +1553,18 @@ export const translations: Record<
     "createTrip.visitDate": "Ziyaret tarihi (opsiyonel)",
     "createTrip.selectVisitDate": "Ziyaret tarihi seç",
     "createTrip.notes": "Notlar (opsiyonel)",
-    "createTrip.notesPlaceholder": "Rezervasyon notları, alışveriş öncelikleri veya erişilebilirlik ihtiyaçları ekleyin.",
+    "createTrip.notesPlaceholder":
+      "Rezervasyon notları, alışveriş öncelikleri veya erişilebilirlik ihtiyaçları ekleyin.",
     "createTrip.saving": "Seyahat kaydediliyor...",
     "createTrip.outletDestination": "Outlet destinasyonu",
     "createTrip.missingOutletTitle": "Outlet gerekli",
-    "createTrip.missingOutletMessage": "Destinasyonun kaydedilmesi için Seyahat Oluştur’u outlet detay sayfasından açın.",
+    "createTrip.missingOutletMessage":
+      "Destinasyonun kaydedilmesi için Seyahat Oluştur’u outlet detay sayfasından açın.",
     "createTrip.saveFailedTitle": "Seyahat kaydedilemedi",
-    "createTrip.saveFailedMessage": "Lütfen bağlantınızı kontrol edip tekrar deneyin.",
-    "createTrip.permissionDeniedMessage": "Bu seyahati kaydetme iznini doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
+    "createTrip.saveFailedMessage":
+      "Lütfen bağlantınızı kontrol edip tekrar deneyin.",
+    "createTrip.permissionDeniedMessage":
+      "Bu seyahati kaydetme iznini doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
     "trips.dateNotSet": "Tarih yok",
     "trips.destinationNotSet": "Destinasyon yok",
     "trips.city": "Ville",
@@ -1719,6 +1764,19 @@ export const translations: Record<
     "taxCalc.vatRate": "KDV oranı",
     "taxCalc.refundRate": "Tahmini iade oranı",
     "taxCalc.minimumSpend": "Minimum harcama",
+    "taxCalc.estimatedVatPortion": "Tahmini KDV tutarı",
+    "taxCalc.estimatedNetBeforeVat": "KDV öncesi net tutar",
+    "taxCalc.providerFeesUnknown": "Sağlayıcı/mağaza ücretleri dahil değildir",
+    "taxCalc.noGuaranteedRefund": "Garanti edilen iade yok",
+    "taxCalc.unsupportedCountry":
+      "Bu ülke için güvenilir ve kaynaklı veri uygulamaya eklenmediği için Tax Free hesaplama kullanılamaz.",
+    "taxCalc.invalidAmount":
+      "Sıfırdan büyük geçerli bir alışveriş tutarı girin.",
+    "taxCalc.currencyMismatch":
+      "Bu tahmin için seçili ülkenin kayıtlı para birimini kullanın.",
+    "taxCalc.sourceTitle": "Kaynak ve tahmin temeli",
+    "taxCalc.finalDisclaimer":
+      "İade bir tahmindir. Gerçek iade mağazaya, operatöre/sağlayıcıya, ülke kurallarına, ücretlere ve uygunluğa bağlıdır.",
 
     "savings.title": "Tasarruf",
     "savings.subtitle": "Daha fazla tasarruf et. Daha akıllı alışveriş yap.",
@@ -1871,15 +1929,18 @@ export const translations: Record<
     "writeReview.titleLabel": "Title (optional)",
     "writeReview.titlePlaceholder": "Short summary",
     "writeReview.commentLabel": "Review",
-    "writeReview.commentPlaceholder": "Share what was useful for other shoppers.",
+    "writeReview.commentPlaceholder":
+      "Share what was useful for other shoppers.",
     "writeReview.submit": "Save Review",
     "writeReview.validationTitle": "Review needs attention",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Write at least 10 characters.",
     "writeReview.saveErrorTitle": "Could not save review",
-    "writeReview.saveErrorText": "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+    "writeReview.saveErrorText":
+      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
     "review.actionErrorTitle": "Review action failed",
-    "review.actionPermissionErrorText": "We couldn’t verify permission for this review action. Please sign in again and try once more.",
+    "review.actionPermissionErrorText":
+      "We couldn’t verify permission for this review action. Please sign in again and try once more.",
     "review.helpful": "Helpful",
     "review.helpfulActive": "Helpful ✓",
     "review.report": "Report",
@@ -1984,12 +2045,13 @@ export const translations: Record<
     "transportation.fallback.default.step3":
       "TR: Use maps or station signs for the final walking section to La Vallée Village.",
 
-
     "flightDeals.unavailableKicker": "Uçuş Uyarıları",
     "flightDeals.unavailableTitle": "Uçuş uyarıları henüz kullanılamıyor",
-    "flightDeals.unavailableBody": "Canlı ücret uyarıları, üretim ortamına uygun bir uçuş fiyat sağlayıcısı ve güvenilir arka uç fiyat denetleyicisi bağlanana kadar devre dışıdır.",
+    "flightDeals.unavailableBody":
+      "Canlı ücret uyarıları, üretim ortamına uygun bir uçuş fiyat sağlayıcısı ve güvenilir arka uç fiyat denetleyicisi bağlanana kadar devre dışıdır.",
     "flightDeals.unavailableStatusTitle": "Üretim sağlayıcısı gerekli",
-    "flightDeals.unavailableStatusBody": "Sahte ücret göstermiyor veya sahte uyarı oluşturmuyoruz. Gerçek ücret izleme hazır olduğunda uyarılar oturum açmış kullanıcılar için kaydedilecek ve arka uç tarafından denetlenecek.",
+    "flightDeals.unavailableStatusBody":
+      "Sahte ücret göstermiyor veya sahte uyarı oluşturmuyoruz. Gerçek ücret izleme hazır olduğunda uyarılar oturum açmış kullanıcılar için kaydedilecek ve arka uç tarafından denetlenecek.",
     "flightDeals.settingsTitle": "Uçuş Fırsatları",
     "flightDeals.settingsSubtitle":
       "Kalkış şehrini ve ilgilendiğin şehirleri seç.",
@@ -2362,31 +2424,50 @@ export const translations: Record<
       "Hesaplayıcılar ve alışveriş araçları varsayılan olarak bunu kullanır.",
     "notifications.kicker": "Bildirimler",
     "notifications.signInRequiredTitle": "Sign in required",
-    "notifications.signInRequiredBody": "Sign in to save cloud notification preferences for your account.",
+    "notifications.signInRequiredBody":
+      "Sign in to save cloud notification preferences for your account.",
     "notifications.deviceStatusTitle": "Device notification status",
-    "notifications.pushUnavailableTitle": "Push notifications are not enabled in this build",
-    "notifications.pushUnavailableBody": "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
+    "notifications.pushUnavailableTitle":
+      "Push notifications are not enabled in this build",
+    "notifications.pushUnavailableBody":
+      "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
     "notifications.cloudPreferences": "Cloud notification preferences",
-    "notifications.cloudPreferencesDesc": "Save whether your account should receive supported production notifications.",
-    "notifications.cloudPreferencesUnavailableDesc": "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
-    "notifications.categoriesUnavailableTitle": "Notification categories are not active yet",
-    "notifications.categoriesUnavailableBody": "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
-    "notifications.permission.unsupported": "Device push permission is unavailable in this build.",
-    "notifications.permission.not_requested": "Notification permission has not been requested yet.",
-    "notifications.permission.granted": "Device notification permission is granted.",
-    "notifications.permission.denied": "Device notification permission is denied. You can change this in system settings.",
+    "notifications.cloudPreferencesDesc":
+      "Save whether your account should receive supported production notifications.",
+    "notifications.cloudPreferencesUnavailableDesc":
+      "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
+    "notifications.categoriesUnavailableTitle":
+      "Notification categories are not active yet",
+    "notifications.categoriesUnavailableBody":
+      "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
+    "notifications.permission.unsupported":
+      "Device push permission is unavailable in this build.",
+    "notifications.permission.not_requested":
+      "Notification permission has not been requested yet.",
+    "notifications.permission.granted":
+      "Device notification permission is granted.",
+    "notifications.permission.denied":
+      "Device notification permission is denied. You can change this in system settings.",
     "notifications.tokenStatusTitle": "Push token registration",
-    "notifications.token.not_registered": "No device push token is registered for this account on this device.",
-    "notifications.token.registered": "A real Expo push token is registered for this account:",
-    "notifications.token.disabled": "Device push tokens for this account were marked disabled.",
-    "notifications.token.failed": "Push token registration failed. Check the app build and notification credentials.",
+    "notifications.token.not_registered":
+      "No device push token is registered for this account on this device.",
+    "notifications.token.registered":
+      "A real Expo push token is registered for this account:",
+    "notifications.token.disabled":
+      "Device push tokens for this account were marked disabled.",
+    "notifications.token.failed":
+      "Push token registration failed. Check the app build and notification credentials.",
     "notifications.deliveryStatusTitle": "Production delivery status",
-    "notifications.deliveryStatusBody": "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
-  "notifications.tripRemindersCategory": "Trip reminders",
-  "notifications.tripRemindersCategoryDesc": "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
-  "notifications.categoryActive": "Production sender active",
-  "notifications.unsupportedCategoriesTitle": "Unsupported categories remain inactive",
-  "notifications.unsupportedCategoriesBody": "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
+    "notifications.deliveryStatusBody":
+      "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
+    "notifications.tripRemindersCategory": "Trip reminders",
+    "notifications.tripRemindersCategoryDesc":
+      "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
+    "notifications.categoryActive": "Production sender active",
+    "notifications.unsupportedCategoriesTitle":
+      "Unsupported categories remain inactive",
+    "notifications.unsupportedCategoriesBody":
+      "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
     "notifications.smartAlertsOnly": "Yalnızca akıllı uyarılar",
     "notifications.travelAlerts": "Seyahat uyarıları",
     "notifications.shoppingAlerts": "Alışveriş uyarıları",
@@ -2697,7 +2778,8 @@ export const translations: Record<
     "trips.deleteConfirmMessage": "Supprimer ce voyage shopping ?",
     "trips.loadFailedTitle": "No se pudieron cargar los viajes",
     "trips.loadFailedMessage": "Comprueba tu conexión e inténtalo de nuevo.",
-    "trips.permissionDeniedMessage": "No pudimos verificar el permiso para tus viajes. Inicia sesión de nuevo e inténtalo otra vez.",
+    "trips.permissionDeniedMessage":
+      "No pudimos verificar el permiso para tus viajes. Inicia sesión de nuevo e inténtalo otra vez.",
     "trips.deleteFailedTitle": "No se pudo eliminar el viaje",
     "trips.deleteFailedMessage": "Comprueba tu conexión e inténtalo de nuevo.",
     "common.cancel": "Abbrechen",
@@ -2743,14 +2825,18 @@ export const translations: Record<
     "createTrip.visitDate": "Fecha de visita (opcional)",
     "createTrip.selectVisitDate": "Selecciona una fecha de visita",
     "createTrip.notes": "Notas (opcional)",
-    "createTrip.notesPlaceholder": "Añade notas de reserva, prioridades de compras o necesidades de accesibilidad.",
+    "createTrip.notesPlaceholder":
+      "Añade notas de reserva, prioridades de compras o necesidades de accesibilidad.",
     "createTrip.saving": "Guardando viaje...",
     "createTrip.outletDestination": "Destino outlet",
     "createTrip.missingOutletTitle": "Outlet requerido",
-    "createTrip.missingOutletMessage": "Abre Crear viaje desde la página de detalle del outlet para guardar el destino.",
+    "createTrip.missingOutletMessage":
+      "Abre Crear viaje desde la página de detalle del outlet para guardar el destino.",
     "createTrip.saveFailedTitle": "No se pudo guardar el viaje",
-    "createTrip.saveFailedMessage": "Comprueba tu conexión e inténtalo de nuevo.",
-    "createTrip.permissionDeniedMessage": "No pudimos verificar el permiso para guardar este viaje. Inicia sesión de nuevo e inténtalo otra vez.",
+    "createTrip.saveFailedMessage":
+      "Comprueba tu conexión e inténtalo de nuevo.",
+    "createTrip.permissionDeniedMessage":
+      "No pudimos verificar el permiso para guardar este viaje. Inicia sesión de nuevo e inténtalo otra vez.",
     "trips.dateNotSet": "Fecha sin definir",
     "trips.destinationNotSet": "Destino sin definir",
     "trips.city": "Stadt",
@@ -3102,15 +3188,18 @@ export const translations: Record<
     "writeReview.titleLabel": "Title (optional)",
     "writeReview.titlePlaceholder": "Short summary",
     "writeReview.commentLabel": "Review",
-    "writeReview.commentPlaceholder": "Share what was useful for other shoppers.",
+    "writeReview.commentPlaceholder":
+      "Share what was useful for other shoppers.",
     "writeReview.submit": "Save Review",
     "writeReview.validationTitle": "Review needs attention",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Write at least 10 characters.",
     "writeReview.saveErrorTitle": "Could not save review",
-    "writeReview.saveErrorText": "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+    "writeReview.saveErrorText":
+      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
     "review.actionErrorTitle": "Review action failed",
-    "review.actionPermissionErrorText": "We couldn’t verify permission for this review action. Please sign in again and try once more.",
+    "review.actionPermissionErrorText":
+      "We couldn’t verify permission for this review action. Please sign in again and try once more.",
     "review.helpful": "Helpful",
     "review.helpfulActive": "Helpful ✓",
     "review.report": "Report",
@@ -3216,7 +3305,6 @@ export const translations: Record<
       "ES: Follow the indicated transport option towards Val d'Europe / Serris.",
     "transportation.fallback.default.step3":
       "ES: Use maps or station signs for the final walking section to La Vallée Village.",
-
 
     "flightDeals.settingsTitle": "Alertas de vuelos baratos",
     "flightDeals.settingsSubtitle":
@@ -3601,31 +3689,50 @@ export const translations: Record<
       "Las calculadoras y herramientas de compra la usan de forma predeterminada.",
     "notifications.kicker": "Notificaciones",
     "notifications.signInRequiredTitle": "Sign in required",
-    "notifications.signInRequiredBody": "Sign in to save cloud notification preferences for your account.",
+    "notifications.signInRequiredBody":
+      "Sign in to save cloud notification preferences for your account.",
     "notifications.deviceStatusTitle": "Device notification status",
-    "notifications.pushUnavailableTitle": "Push notifications are not enabled in this build",
-    "notifications.pushUnavailableBody": "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
+    "notifications.pushUnavailableTitle":
+      "Push notifications are not enabled in this build",
+    "notifications.pushUnavailableBody":
+      "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
     "notifications.cloudPreferences": "Cloud notification preferences",
-    "notifications.cloudPreferencesDesc": "Save whether your account should receive supported production notifications.",
-    "notifications.cloudPreferencesUnavailableDesc": "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
-    "notifications.categoriesUnavailableTitle": "Notification categories are not active yet",
-    "notifications.categoriesUnavailableBody": "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
-    "notifications.permission.unsupported": "Device push permission is unavailable in this build.",
-    "notifications.permission.not_requested": "Notification permission has not been requested yet.",
-    "notifications.permission.granted": "Device notification permission is granted.",
-    "notifications.permission.denied": "Device notification permission is denied. You can change this in system settings.",
+    "notifications.cloudPreferencesDesc":
+      "Save whether your account should receive supported production notifications.",
+    "notifications.cloudPreferencesUnavailableDesc":
+      "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
+    "notifications.categoriesUnavailableTitle":
+      "Notification categories are not active yet",
+    "notifications.categoriesUnavailableBody":
+      "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
+    "notifications.permission.unsupported":
+      "Device push permission is unavailable in this build.",
+    "notifications.permission.not_requested":
+      "Notification permission has not been requested yet.",
+    "notifications.permission.granted":
+      "Device notification permission is granted.",
+    "notifications.permission.denied":
+      "Device notification permission is denied. You can change this in system settings.",
     "notifications.tokenStatusTitle": "Push token registration",
-    "notifications.token.not_registered": "No device push token is registered for this account on this device.",
-    "notifications.token.registered": "A real Expo push token is registered for this account:",
-    "notifications.token.disabled": "Device push tokens for this account were marked disabled.",
-    "notifications.token.failed": "Push token registration failed. Check the app build and notification credentials.",
+    "notifications.token.not_registered":
+      "No device push token is registered for this account on this device.",
+    "notifications.token.registered":
+      "A real Expo push token is registered for this account:",
+    "notifications.token.disabled":
+      "Device push tokens for this account were marked disabled.",
+    "notifications.token.failed":
+      "Push token registration failed. Check the app build and notification credentials.",
     "notifications.deliveryStatusTitle": "Production delivery status",
-    "notifications.deliveryStatusBody": "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
-  "notifications.tripRemindersCategory": "Trip reminders",
-  "notifications.tripRemindersCategoryDesc": "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
-  "notifications.categoryActive": "Production sender active",
-  "notifications.unsupportedCategoriesTitle": "Unsupported categories remain inactive",
-  "notifications.unsupportedCategoriesBody": "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
+    "notifications.deliveryStatusBody":
+      "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
+    "notifications.tripRemindersCategory": "Trip reminders",
+    "notifications.tripRemindersCategoryDesc":
+      "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
+    "notifications.categoryActive": "Production sender active",
+    "notifications.unsupportedCategoriesTitle":
+      "Unsupported categories remain inactive",
+    "notifications.unsupportedCategoriesBody":
+      "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
     "notifications.smartAlertsOnly": "Solo alertas inteligentes",
     "notifications.travelAlerts": "Alertas de viaje",
     "notifications.shoppingAlerts": "Alertas de compras",
@@ -3936,7 +4043,8 @@ export const translations: Record<
     "trips.deleteConfirmMessage": "Supprimer ce voyage shopping ?",
     "trips.loadFailedTitle": "Les voyages n’ont pas pu être chargés",
     "trips.loadFailedMessage": "Vérifiez votre connexion puis réessayez.",
-    "trips.permissionDeniedMessage": "Nous n’avons pas pu vérifier l’autorisation pour vos voyages. Reconnectez-vous puis réessayez.",
+    "trips.permissionDeniedMessage":
+      "Nous n’avons pas pu vérifier l’autorisation pour vos voyages. Reconnectez-vous puis réessayez.",
     "trips.deleteFailedTitle": "Le voyage n’a pas pu être supprimé",
     "trips.deleteFailedMessage": "Vérifiez votre connexion puis réessayez.",
     "common.cancel": "Abbrechen",
@@ -3982,14 +4090,17 @@ export const translations: Record<
     "createTrip.visitDate": "Date de visite (facultative)",
     "createTrip.selectVisitDate": "Choisir une date de visite",
     "createTrip.notes": "Notes (facultatif)",
-    "createTrip.notesPlaceholder": "Ajoutez des notes de réservation, priorités shopping ou besoins d’accessibilité.",
+    "createTrip.notesPlaceholder":
+      "Ajoutez des notes de réservation, priorités shopping ou besoins d’accessibilité.",
     "createTrip.saving": "Enregistrement du voyage...",
     "createTrip.outletDestination": "Destination outlet",
     "createTrip.missingOutletTitle": "Outlet requis",
-    "createTrip.missingOutletMessage": "Ouvrez Créer un voyage depuis la fiche outlet afin d’enregistrer la destination.",
+    "createTrip.missingOutletMessage":
+      "Ouvrez Créer un voyage depuis la fiche outlet afin d’enregistrer la destination.",
     "createTrip.saveFailedTitle": "Le voyage n’a pas pu être enregistré",
     "createTrip.saveFailedMessage": "Vérifiez votre connexion puis réessayez.",
-    "createTrip.permissionDeniedMessage": "Nous n’avons pas pu vérifier l’autorisation d’enregistrer ce voyage. Reconnectez-vous puis réessayez.",
+    "createTrip.permissionDeniedMessage":
+      "Nous n’avons pas pu vérifier l’autorisation d’enregistrer ce voyage. Reconnectez-vous puis réessayez.",
     "trips.dateNotSet": "Date non définie",
     "trips.destinationNotSet": "Destination non définie",
     "trips.city": "المدينة",
@@ -4346,15 +4457,18 @@ export const translations: Record<
     "writeReview.titleLabel": "Title (optional)",
     "writeReview.titlePlaceholder": "Short summary",
     "writeReview.commentLabel": "Review",
-    "writeReview.commentPlaceholder": "Share what was useful for other shoppers.",
+    "writeReview.commentPlaceholder":
+      "Share what was useful for other shoppers.",
     "writeReview.submit": "Save Review",
     "writeReview.validationTitle": "Review needs attention",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Write at least 10 characters.",
     "writeReview.saveErrorTitle": "Could not save review",
-    "writeReview.saveErrorText": "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+    "writeReview.saveErrorText":
+      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
     "review.actionErrorTitle": "Review action failed",
-    "review.actionPermissionErrorText": "We couldn’t verify permission for this review action. Please sign in again and try once more.",
+    "review.actionPermissionErrorText":
+      "We couldn’t verify permission for this review action. Please sign in again and try once more.",
     "review.helpful": "Helpful",
     "review.helpfulActive": "Helpful ✓",
     "review.report": "Report",
@@ -4845,31 +4959,50 @@ export const translations: Record<
       "Les calculateurs et outils shopping l’utilisent par défaut.",
     "notifications.kicker": "Alertes",
     "notifications.signInRequiredTitle": "Sign in required",
-    "notifications.signInRequiredBody": "Sign in to save cloud notification preferences for your account.",
+    "notifications.signInRequiredBody":
+      "Sign in to save cloud notification preferences for your account.",
     "notifications.deviceStatusTitle": "Device notification status",
-    "notifications.pushUnavailableTitle": "Push notifications are not enabled in this build",
-    "notifications.pushUnavailableBody": "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
+    "notifications.pushUnavailableTitle":
+      "Push notifications are not enabled in this build",
+    "notifications.pushUnavailableBody":
+      "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
     "notifications.cloudPreferences": "Cloud notification preferences",
-    "notifications.cloudPreferencesDesc": "Save whether your account should receive supported production notifications.",
-    "notifications.cloudPreferencesUnavailableDesc": "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
-    "notifications.categoriesUnavailableTitle": "Notification categories are not active yet",
-    "notifications.categoriesUnavailableBody": "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
-    "notifications.permission.unsupported": "Device push permission is unavailable in this build.",
-    "notifications.permission.not_requested": "Notification permission has not been requested yet.",
-    "notifications.permission.granted": "Device notification permission is granted.",
-    "notifications.permission.denied": "Device notification permission is denied. You can change this in system settings.",
+    "notifications.cloudPreferencesDesc":
+      "Save whether your account should receive supported production notifications.",
+    "notifications.cloudPreferencesUnavailableDesc":
+      "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
+    "notifications.categoriesUnavailableTitle":
+      "Notification categories are not active yet",
+    "notifications.categoriesUnavailableBody":
+      "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
+    "notifications.permission.unsupported":
+      "Device push permission is unavailable in this build.",
+    "notifications.permission.not_requested":
+      "Notification permission has not been requested yet.",
+    "notifications.permission.granted":
+      "Device notification permission is granted.",
+    "notifications.permission.denied":
+      "Device notification permission is denied. You can change this in system settings.",
     "notifications.tokenStatusTitle": "Push token registration",
-    "notifications.token.not_registered": "No device push token is registered for this account on this device.",
-    "notifications.token.registered": "A real Expo push token is registered for this account:",
-    "notifications.token.disabled": "Device push tokens for this account were marked disabled.",
-    "notifications.token.failed": "Push token registration failed. Check the app build and notification credentials.",
+    "notifications.token.not_registered":
+      "No device push token is registered for this account on this device.",
+    "notifications.token.registered":
+      "A real Expo push token is registered for this account:",
+    "notifications.token.disabled":
+      "Device push tokens for this account were marked disabled.",
+    "notifications.token.failed":
+      "Push token registration failed. Check the app build and notification credentials.",
     "notifications.deliveryStatusTitle": "Production delivery status",
-    "notifications.deliveryStatusBody": "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
-  "notifications.tripRemindersCategory": "Trip reminders",
-  "notifications.tripRemindersCategoryDesc": "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
-  "notifications.categoryActive": "Production sender active",
-  "notifications.unsupportedCategoriesTitle": "Unsupported categories remain inactive",
-  "notifications.unsupportedCategoriesBody": "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
+    "notifications.deliveryStatusBody":
+      "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
+    "notifications.tripRemindersCategory": "Trip reminders",
+    "notifications.tripRemindersCategoryDesc":
+      "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
+    "notifications.categoryActive": "Production sender active",
+    "notifications.unsupportedCategoriesTitle":
+      "Unsupported categories remain inactive",
+    "notifications.unsupportedCategoriesBody":
+      "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
     "notifications.smartAlertsOnly": "Alertes intelligentes uniquement",
     "notifications.travelAlerts": "Alertes de voyage",
     "notifications.shoppingAlerts": "Alertes shopping",
@@ -5178,9 +5311,11 @@ export const translations: Record<
     "trips.deleteConfirmMessage": "Supprimer ce voyage shopping ?",
     "trips.loadFailedTitle": "Reisen konnten nicht geladen werden",
     "trips.loadFailedMessage": "Bitte Verbindung prüfen und erneut versuchen.",
-    "trips.permissionDeniedMessage": "Wir konnten die Berechtigung für deine Reisen nicht prüfen. Bitte melde dich erneut an und versuche es noch einmal.",
+    "trips.permissionDeniedMessage":
+      "Wir konnten die Berechtigung für deine Reisen nicht prüfen. Bitte melde dich erneut an und versuche es noch einmal.",
     "trips.deleteFailedTitle": "Reise konnte nicht gelöscht werden",
-    "trips.deleteFailedMessage": "Bitte Verbindung prüfen und erneut versuchen.",
+    "trips.deleteFailedMessage":
+      "Bitte Verbindung prüfen und erneut versuchen.",
     "common.cancel": "Abbrechen",
     "common.delete": "Löschen",
     "common.edit": "Edit",
@@ -5223,14 +5358,18 @@ export const translations: Record<
     "createTrip.visitDate": "Besuchsdatum (optional)",
     "createTrip.selectVisitDate": "Besuchsdatum auswählen",
     "createTrip.notes": "Notizen (optional)",
-    "createTrip.notesPlaceholder": "Füge Reservierungsnotizen, Shopping-Prioritäten oder Barrierefreiheitsbedarf hinzu.",
+    "createTrip.notesPlaceholder":
+      "Füge Reservierungsnotizen, Shopping-Prioritäten oder Barrierefreiheitsbedarf hinzu.",
     "createTrip.saving": "Reise wird gespeichert...",
     "createTrip.outletDestination": "Outlet-Ziel",
     "createTrip.missingOutletTitle": "Outlet erforderlich",
-    "createTrip.missingOutletMessage": "Öffne Reise erstellen über eine Outlet-Detailseite, damit das Ziel gespeichert wird.",
+    "createTrip.missingOutletMessage":
+      "Öffne Reise erstellen über eine Outlet-Detailseite, damit das Ziel gespeichert wird.",
     "createTrip.saveFailedTitle": "Reise konnte nicht gespeichert werden",
-    "createTrip.saveFailedMessage": "Bitte Verbindung prüfen und erneut versuchen.",
-    "createTrip.permissionDeniedMessage": "Wir konnten die Berechtigung zum Speichern dieser Reise nicht prüfen. Bitte melde dich erneut an und versuche es noch einmal.",
+    "createTrip.saveFailedMessage":
+      "Bitte Verbindung prüfen und erneut versuchen.",
+    "createTrip.permissionDeniedMessage":
+      "Wir konnten die Berechtigung zum Speichern dieser Reise nicht prüfen. Bitte melde dich erneut an und versuche es noch einmal.",
     "trips.dateNotSet": "Kein Datum",
     "trips.destinationNotSet": "Kein Ziel",
     "trips.city": "Город",
@@ -5573,19 +5712,22 @@ export const translations: Record<
     "writeReview.titleLabel": "Title (optional)",
     "writeReview.titlePlaceholder": "Short summary",
     "writeReview.commentLabel": "Review",
-    "writeReview.commentPlaceholder": "Share what was useful for other shoppers.",
+    "writeReview.commentPlaceholder":
+      "Share what was useful for other shoppers.",
     "writeReview.submit": "Save Review",
     "writeReview.validationTitle": "Review needs attention",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Write at least 10 characters.",
     "writeReview.saveErrorTitle": "Could not save review",
-    "writeReview.saveErrorText": "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+    "writeReview.saveErrorText":
+      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
     "review.actionErrorTitle": "Review action failed",
-    "review.actionPermissionErrorText": "We couldn’t verify permission for this review action. Please sign in again and try once more.",
+    "review.actionPermissionErrorText":
+      "We couldn’t verify permission for this review action. Please sign in again and try once more.",
     "review.helpful": "Helpful",
     "review.helpfulActive": "Helpful ✓",
     "review.report": "Report",
-"outlet.previousComment": "Vorheriger Kommentar",
+    "outlet.previousComment": "Vorheriger Kommentar",
     "notifications.title": "Benachrichtigungen",
     "notifications.subtitle":
       "Steuere, welche Reise- und Shopping-Erinnerungen du erhältst.",
@@ -6040,31 +6182,50 @@ export const translations: Record<
       "Rechner und Shopping-Tools verwenden sie standardmäßig.",
     "notifications.kicker": "Mitteilungen",
     "notifications.signInRequiredTitle": "Sign in required",
-    "notifications.signInRequiredBody": "Sign in to save cloud notification preferences for your account.",
+    "notifications.signInRequiredBody":
+      "Sign in to save cloud notification preferences for your account.",
     "notifications.deviceStatusTitle": "Device notification status",
-    "notifications.pushUnavailableTitle": "Push notifications are not enabled in this build",
-    "notifications.pushUnavailableBody": "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
+    "notifications.pushUnavailableTitle":
+      "Push notifications are not enabled in this build",
+    "notifications.pushUnavailableBody":
+      "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
     "notifications.cloudPreferences": "Cloud notification preferences",
-    "notifications.cloudPreferencesDesc": "Save whether your account should receive supported production notifications.",
-    "notifications.cloudPreferencesUnavailableDesc": "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
-    "notifications.categoriesUnavailableTitle": "Notification categories are not active yet",
-    "notifications.categoriesUnavailableBody": "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
-    "notifications.permission.unsupported": "Device push permission is unavailable in this build.",
-    "notifications.permission.not_requested": "Notification permission has not been requested yet.",
-    "notifications.permission.granted": "Device notification permission is granted.",
-    "notifications.permission.denied": "Device notification permission is denied. You can change this in system settings.",
+    "notifications.cloudPreferencesDesc":
+      "Save whether your account should receive supported production notifications.",
+    "notifications.cloudPreferencesUnavailableDesc":
+      "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
+    "notifications.categoriesUnavailableTitle":
+      "Notification categories are not active yet",
+    "notifications.categoriesUnavailableBody":
+      "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
+    "notifications.permission.unsupported":
+      "Device push permission is unavailable in this build.",
+    "notifications.permission.not_requested":
+      "Notification permission has not been requested yet.",
+    "notifications.permission.granted":
+      "Device notification permission is granted.",
+    "notifications.permission.denied":
+      "Device notification permission is denied. You can change this in system settings.",
     "notifications.tokenStatusTitle": "Push token registration",
-    "notifications.token.not_registered": "No device push token is registered for this account on this device.",
-    "notifications.token.registered": "A real Expo push token is registered for this account:",
-    "notifications.token.disabled": "Device push tokens for this account were marked disabled.",
-    "notifications.token.failed": "Push token registration failed. Check the app build and notification credentials.",
+    "notifications.token.not_registered":
+      "No device push token is registered for this account on this device.",
+    "notifications.token.registered":
+      "A real Expo push token is registered for this account:",
+    "notifications.token.disabled":
+      "Device push tokens for this account were marked disabled.",
+    "notifications.token.failed":
+      "Push token registration failed. Check the app build and notification credentials.",
     "notifications.deliveryStatusTitle": "Production delivery status",
-    "notifications.deliveryStatusBody": "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
-  "notifications.tripRemindersCategory": "Trip reminders",
-  "notifications.tripRemindersCategoryDesc": "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
-  "notifications.categoryActive": "Production sender active",
-  "notifications.unsupportedCategoriesTitle": "Unsupported categories remain inactive",
-  "notifications.unsupportedCategoriesBody": "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
+    "notifications.deliveryStatusBody":
+      "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
+    "notifications.tripRemindersCategory": "Trip reminders",
+    "notifications.tripRemindersCategoryDesc":
+      "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
+    "notifications.categoryActive": "Production sender active",
+    "notifications.unsupportedCategoriesTitle":
+      "Unsupported categories remain inactive",
+    "notifications.unsupportedCategoriesBody":
+      "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
     "notifications.smartAlertsOnly": "Nur intelligente Benachrichtigungen",
     "notifications.travelAlerts": "Reisebenachrichtigungen",
     "notifications.shoppingAlerts": "Shopping-Benachrichtigungen",
@@ -6377,7 +6538,8 @@ export const translations: Record<
     "trips.deleteConfirmMessage": "Supprimer ce voyage shopping ?",
     "trips.loadFailedTitle": "تعذر تحميل الرحلات",
     "trips.loadFailedMessage": "يرجى التحقق من الاتصال والمحاولة مرة أخرى.",
-    "trips.permissionDeniedMessage": "تعذر التحقق من إذن رحلاتك. يرجى تسجيل الدخول مرة أخرى ثم المحاولة.",
+    "trips.permissionDeniedMessage":
+      "تعذر التحقق من إذن رحلاتك. يرجى تسجيل الدخول مرة أخرى ثم المحاولة.",
     "trips.deleteFailedTitle": "تعذر حذف الرحلة",
     "trips.deleteFailedMessage": "يرجى التحقق من الاتصال والمحاولة مرة أخرى.",
     "common.cancel": "Abbrechen",
@@ -6422,14 +6584,18 @@ export const translations: Record<
     "createTrip.visitDate": "تاريخ الزيارة (اختياري)",
     "createTrip.selectVisitDate": "اختر تاريخ الزيارة",
     "createTrip.notes": "ملاحظات (اختياري)",
-    "createTrip.notesPlaceholder": "أضف ملاحظات الحجز أو أولويات التسوق أو احتياجات الوصول.",
+    "createTrip.notesPlaceholder":
+      "أضف ملاحظات الحجز أو أولويات التسوق أو احتياجات الوصول.",
     "createTrip.saving": "جارٍ حفظ الرحلة...",
     "createTrip.outletDestination": "وجهة الأوتlet",
     "createTrip.missingOutletTitle": "يلزم اختيار أوتلت",
-    "createTrip.missingOutletMessage": "افتح إنشاء رحلة من صفحة تفاصيل الأوتلت حتى يتم حفظ الوجهة.",
+    "createTrip.missingOutletMessage":
+      "افتح إنشاء رحلة من صفحة تفاصيل الأوتلت حتى يتم حفظ الوجهة.",
     "createTrip.saveFailedTitle": "تعذر حفظ الرحلة",
-    "createTrip.saveFailedMessage": "يرجى التحقق من الاتصال والمحاولة مرة أخرى.",
-    "createTrip.permissionDeniedMessage": "تعذر التحقق من إذن حفظ هذه الرحلة. يرجى تسجيل الدخول مرة أخرى ثم المحاولة.",
+    "createTrip.saveFailedMessage":
+      "يرجى التحقق من الاتصال والمحاولة مرة أخرى.",
+    "createTrip.permissionDeniedMessage":
+      "تعذر التحقق من إذن حفظ هذه الرحلة. يرجى تسجيل الدخول مرة أخرى ثم المحاولة.",
     "trips.dateNotSet": "لم يتم تحديد التاريخ",
     "trips.destinationNotSet": "لم يتم تحديد الوجهة",
     "trips.city": "城市",
@@ -6710,8 +6876,7 @@ export const translations: Record<
     "favorites.emptyTitle": "لا توجد أوتلت مفضلة بعد",
     "favorites.emptyText": "استكشف الأوتلت واحفظ المفضلة لتبقى على اطلاع.",
     "favorites.signInTitle": "سجّل الدخول لحفظ المفضلة",
-    "favorites.signInText":
-      "تُحفظ المفضلة في حسابك لتبقى متاحة على أجهزتك.",
+    "favorites.signInText": "تُحفظ المفضلة في حسابك لتبقى متاحة على أجهزتك.",
     "favorites.cardLabel": "أوتلت مفضل",
     "favorites.deals": "العروض",
     "favorites.events": "الفعاليات",
@@ -6760,19 +6925,22 @@ export const translations: Record<
     "writeReview.titleLabel": "Title (optional)",
     "writeReview.titlePlaceholder": "Short summary",
     "writeReview.commentLabel": "Review",
-    "writeReview.commentPlaceholder": "Share what was useful for other shoppers.",
+    "writeReview.commentPlaceholder":
+      "Share what was useful for other shoppers.",
     "writeReview.submit": "Save Review",
     "writeReview.validationTitle": "Review needs attention",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Write at least 10 characters.",
     "writeReview.saveErrorTitle": "Could not save review",
-    "writeReview.saveErrorText": "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+    "writeReview.saveErrorText":
+      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
     "review.actionErrorTitle": "Review action failed",
-    "review.actionPermissionErrorText": "We couldn’t verify permission for this review action. Please sign in again and try once more.",
+    "review.actionPermissionErrorText":
+      "We couldn’t verify permission for this review action. Please sign in again and try once more.",
     "review.helpful": "Helpful",
     "review.helpfulActive": "Helpful ✓",
     "review.report": "Report",
-"outlet.previousComment": "التعليق السابق",
+    "outlet.previousComment": "التعليق السابق",
     "notifications.title": "الإشعارات",
     "notifications.subtitle": "تحكم في تذكيرات السفر والتسوق التي تصلك.",
     "notifications.info":
@@ -7203,31 +7371,50 @@ export const translations: Record<
     "currency.subtitle": "تستخدمها الحاسبات وأدوات التسوق بشكل افتراضي.",
     "notifications.kicker": "الإشعارات",
     "notifications.signInRequiredTitle": "Sign in required",
-    "notifications.signInRequiredBody": "Sign in to save cloud notification preferences for your account.",
+    "notifications.signInRequiredBody":
+      "Sign in to save cloud notification preferences for your account.",
     "notifications.deviceStatusTitle": "Device notification status",
-    "notifications.pushUnavailableTitle": "Push notifications are not enabled in this build",
-    "notifications.pushUnavailableBody": "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
+    "notifications.pushUnavailableTitle":
+      "Push notifications are not enabled in this build",
+    "notifications.pushUnavailableBody":
+      "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
     "notifications.cloudPreferences": "Cloud notification preferences",
-    "notifications.cloudPreferencesDesc": "Save whether your account should receive supported production notifications.",
-    "notifications.cloudPreferencesUnavailableDesc": "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
-    "notifications.categoriesUnavailableTitle": "Notification categories are not active yet",
-    "notifications.categoriesUnavailableBody": "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
-    "notifications.permission.unsupported": "Device push permission is unavailable in this build.",
-    "notifications.permission.not_requested": "Notification permission has not been requested yet.",
-    "notifications.permission.granted": "Device notification permission is granted.",
-    "notifications.permission.denied": "Device notification permission is denied. You can change this in system settings.",
+    "notifications.cloudPreferencesDesc":
+      "Save whether your account should receive supported production notifications.",
+    "notifications.cloudPreferencesUnavailableDesc":
+      "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
+    "notifications.categoriesUnavailableTitle":
+      "Notification categories are not active yet",
+    "notifications.categoriesUnavailableBody":
+      "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
+    "notifications.permission.unsupported":
+      "Device push permission is unavailable in this build.",
+    "notifications.permission.not_requested":
+      "Notification permission has not been requested yet.",
+    "notifications.permission.granted":
+      "Device notification permission is granted.",
+    "notifications.permission.denied":
+      "Device notification permission is denied. You can change this in system settings.",
     "notifications.tokenStatusTitle": "Push token registration",
-    "notifications.token.not_registered": "No device push token is registered for this account on this device.",
-    "notifications.token.registered": "A real Expo push token is registered for this account:",
-    "notifications.token.disabled": "Device push tokens for this account were marked disabled.",
-    "notifications.token.failed": "Push token registration failed. Check the app build and notification credentials.",
+    "notifications.token.not_registered":
+      "No device push token is registered for this account on this device.",
+    "notifications.token.registered":
+      "A real Expo push token is registered for this account:",
+    "notifications.token.disabled":
+      "Device push tokens for this account were marked disabled.",
+    "notifications.token.failed":
+      "Push token registration failed. Check the app build and notification credentials.",
     "notifications.deliveryStatusTitle": "Production delivery status",
-    "notifications.deliveryStatusBody": "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
-  "notifications.tripRemindersCategory": "Trip reminders",
-  "notifications.tripRemindersCategoryDesc": "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
-  "notifications.categoryActive": "Production sender active",
-  "notifications.unsupportedCategoriesTitle": "Unsupported categories remain inactive",
-  "notifications.unsupportedCategoriesBody": "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
+    "notifications.deliveryStatusBody":
+      "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
+    "notifications.tripRemindersCategory": "Trip reminders",
+    "notifications.tripRemindersCategoryDesc":
+      "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
+    "notifications.categoryActive": "Production sender active",
+    "notifications.unsupportedCategoriesTitle":
+      "Unsupported categories remain inactive",
+    "notifications.unsupportedCategoriesBody":
+      "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
     "notifications.smartAlertsOnly": "التنبيهات الذكية فقط",
     "notifications.travelAlerts": "تنبيهات السفر",
     "notifications.shoppingAlerts": "تنبيهات التسوق",
@@ -7528,7 +7715,8 @@ export const translations: Record<
     "trips.deleteConfirmMessage": "Supprimer ce voyage shopping ?",
     "trips.loadFailedTitle": "Не удалось загрузить поездки",
     "trips.loadFailedMessage": "Проверьте подключение и повторите попытку.",
-    "trips.permissionDeniedMessage": "Не удалось проверить разрешение для ваших поездок. Войдите снова и повторите попытку.",
+    "trips.permissionDeniedMessage":
+      "Не удалось проверить разрешение для ваших поездок. Войдите снова и повторите попытку.",
     "trips.deleteFailedTitle": "Не удалось удалить поездку",
     "trips.deleteFailedMessage": "Проверьте подключение и повторите попытку.",
     "common.cancel": "Abbrechen",
@@ -7574,14 +7762,18 @@ export const translations: Record<
     "createTrip.visitDate": "Дата посещения (необязательно)",
     "createTrip.selectVisitDate": "Выберите дату посещения",
     "createTrip.notes": "Заметки (необязательно)",
-    "createTrip.notesPlaceholder": "Добавьте заметки о бронировании, приоритеты покупок или потребности доступности.",
+    "createTrip.notesPlaceholder":
+      "Добавьте заметки о бронировании, приоритеты покупок или потребности доступности.",
     "createTrip.saving": "Поездка сохраняется...",
     "createTrip.outletDestination": "Аутлет-направление",
     "createTrip.missingOutletTitle": "Требуется аутлет",
-    "createTrip.missingOutletMessage": "Откройте создание поездки со страницы аутлета, чтобы сохранить направление.",
+    "createTrip.missingOutletMessage":
+      "Откройте создание поездки со страницы аутлета, чтобы сохранить направление.",
     "createTrip.saveFailedTitle": "Не удалось сохранить поездку",
-    "createTrip.saveFailedMessage": "Проверьте подключение и повторите попытку.",
-    "createTrip.permissionDeniedMessage": "Не удалось проверить разрешение на сохранение этой поездки. Войдите снова и повторите попытку.",
+    "createTrip.saveFailedMessage":
+      "Проверьте подключение и повторите попытку.",
+    "createTrip.permissionDeniedMessage":
+      "Не удалось проверить разрешение на сохранение этой поездки. Войдите снова и повторите попытку.",
     "trips.dateNotSet": "Дата не указана",
     "trips.destinationNotSet": "Направление не указано",
     "trips.city": "City",
@@ -7933,15 +8125,18 @@ export const translations: Record<
     "writeReview.titleLabel": "Title (optional)",
     "writeReview.titlePlaceholder": "Short summary",
     "writeReview.commentLabel": "Review",
-    "writeReview.commentPlaceholder": "Share what was useful for other shoppers.",
+    "writeReview.commentPlaceholder":
+      "Share what was useful for other shoppers.",
     "writeReview.submit": "Save Review",
     "writeReview.validationTitle": "Review needs attention",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Write at least 10 characters.",
     "writeReview.saveErrorTitle": "Could not save review",
-    "writeReview.saveErrorText": "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+    "writeReview.saveErrorText":
+      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
     "review.actionErrorTitle": "Review action failed",
-    "review.actionPermissionErrorText": "We couldn’t verify permission for this review action. Please sign in again and try once more.",
+    "review.actionPermissionErrorText":
+      "We couldn’t verify permission for this review action. Please sign in again and try once more.",
     "review.helpful": "Helpful",
     "review.helpfulActive": "Helpful ✓",
     "review.report": "Report",
@@ -8420,31 +8615,50 @@ export const translations: Record<
       "Калькуляторы и инструменты для покупок используют её по умолчанию.",
     "notifications.kicker": "Уведомления",
     "notifications.signInRequiredTitle": "Sign in required",
-    "notifications.signInRequiredBody": "Sign in to save cloud notification preferences for your account.",
+    "notifications.signInRequiredBody":
+      "Sign in to save cloud notification preferences for your account.",
     "notifications.deviceStatusTitle": "Device notification status",
-    "notifications.pushUnavailableTitle": "Push notifications are not enabled in this build",
-    "notifications.pushUnavailableBody": "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
+    "notifications.pushUnavailableTitle":
+      "Push notifications are not enabled in this build",
+    "notifications.pushUnavailableBody":
+      "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
     "notifications.cloudPreferences": "Cloud notification preferences",
-    "notifications.cloudPreferencesDesc": "Save whether your account should receive supported production notifications.",
-    "notifications.cloudPreferencesUnavailableDesc": "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
-    "notifications.categoriesUnavailableTitle": "Notification categories are not active yet",
-    "notifications.categoriesUnavailableBody": "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
-    "notifications.permission.unsupported": "Device push permission is unavailable in this build.",
-    "notifications.permission.not_requested": "Notification permission has not been requested yet.",
-    "notifications.permission.granted": "Device notification permission is granted.",
-    "notifications.permission.denied": "Device notification permission is denied. You can change this in system settings.",
+    "notifications.cloudPreferencesDesc":
+      "Save whether your account should receive supported production notifications.",
+    "notifications.cloudPreferencesUnavailableDesc":
+      "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
+    "notifications.categoriesUnavailableTitle":
+      "Notification categories are not active yet",
+    "notifications.categoriesUnavailableBody":
+      "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
+    "notifications.permission.unsupported":
+      "Device push permission is unavailable in this build.",
+    "notifications.permission.not_requested":
+      "Notification permission has not been requested yet.",
+    "notifications.permission.granted":
+      "Device notification permission is granted.",
+    "notifications.permission.denied":
+      "Device notification permission is denied. You can change this in system settings.",
     "notifications.tokenStatusTitle": "Push token registration",
-    "notifications.token.not_registered": "No device push token is registered for this account on this device.",
-    "notifications.token.registered": "A real Expo push token is registered for this account:",
-    "notifications.token.disabled": "Device push tokens for this account were marked disabled.",
-    "notifications.token.failed": "Push token registration failed. Check the app build and notification credentials.",
+    "notifications.token.not_registered":
+      "No device push token is registered for this account on this device.",
+    "notifications.token.registered":
+      "A real Expo push token is registered for this account:",
+    "notifications.token.disabled":
+      "Device push tokens for this account were marked disabled.",
+    "notifications.token.failed":
+      "Push token registration failed. Check the app build and notification credentials.",
     "notifications.deliveryStatusTitle": "Production delivery status",
-    "notifications.deliveryStatusBody": "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
-  "notifications.tripRemindersCategory": "Trip reminders",
-  "notifications.tripRemindersCategoryDesc": "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
-  "notifications.categoryActive": "Production sender active",
-  "notifications.unsupportedCategoriesTitle": "Unsupported categories remain inactive",
-  "notifications.unsupportedCategoriesBody": "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
+    "notifications.deliveryStatusBody":
+      "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
+    "notifications.tripRemindersCategory": "Trip reminders",
+    "notifications.tripRemindersCategoryDesc":
+      "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
+    "notifications.categoryActive": "Production sender active",
+    "notifications.unsupportedCategoriesTitle":
+      "Unsupported categories remain inactive",
+    "notifications.unsupportedCategoriesBody":
+      "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
     "notifications.smartAlertsOnly": "Только умные уведомления",
     "notifications.travelAlerts": "Уведомления о поездках",
     "notifications.shoppingAlerts": "Уведомления о покупках",
@@ -8795,10 +9009,12 @@ export const translations: Record<
     "createTrip.saving": "正在保存行程...",
     "createTrip.outletDestination": "奥莱目的地",
     "createTrip.missingOutletTitle": "需要奥莱",
-    "createTrip.missingOutletMessage": "请从奥莱详情页打开创建行程，以便保存目的地。",
+    "createTrip.missingOutletMessage":
+      "请从奥莱详情页打开创建行程，以便保存目的地。",
     "createTrip.saveFailedTitle": "无法保存行程",
     "createTrip.saveFailedMessage": "请检查网络连接后重试。",
-    "createTrip.permissionDeniedMessage": "无法验证保存此行程的权限。请重新登录后再试。",
+    "createTrip.permissionDeniedMessage":
+      "无法验证保存此行程的权限。请重新登录后再试。",
     "trips.dateNotSet": "未设置日期",
     "trips.destinationNotSet": "未设置目的地",
     "trips.city": "City",
@@ -9082,14 +9298,12 @@ export const translations: Record<
     "favorites.emptyTitle": "暂无收藏奥特莱斯",
     "favorites.emptyText": "探索奥特莱斯并收藏喜欢的地点，随时掌握更新。",
     "favorites.signInTitle": "登录以保存收藏",
-    "favorites.signInText":
-      "收藏会保存到你的账号，并可在你的设备上使用。",
+    "favorites.signInText": "收藏会保存到你的账号，并可在你的设备上使用。",
     "favorites.cardLabel": "收藏奥特莱斯",
     "favorites.deals": "优惠",
     "favorites.events": "活动",
     "favorites.remove": "取消收藏",
-    "favorites.permissionDenied":
-      "暂时无法更新收藏。请重新登录后稍后再试。",
+    "favorites.permissionDenied": "暂时无法更新收藏。请重新登录后稍后再试。",
 
     "offline.title": "离线包",
     "offline.subtitle": "下载旅行必备内容，离线也可使用。",
@@ -9124,26 +9338,28 @@ export const translations: Record<
     "myReviews.emptyText": "你的评价会显示在这里。",
     "myReviews.viewOutlet": "查看奥莱 →",
 
-
     "writeReview.title": "Write Review",
     "writeReview.editTitle": "Edit Review",
     "writeReview.ratingLabel": "Rating",
     "writeReview.titleLabel": "Title (optional)",
     "writeReview.titlePlaceholder": "Short summary",
     "writeReview.commentLabel": "Review",
-    "writeReview.commentPlaceholder": "Share what was useful for other shoppers.",
+    "writeReview.commentPlaceholder":
+      "Share what was useful for other shoppers.",
     "writeReview.submit": "Save Review",
     "writeReview.validationTitle": "Review needs attention",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Write at least 10 characters.",
     "writeReview.saveErrorTitle": "Could not save review",
-    "writeReview.saveErrorText": "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+    "writeReview.saveErrorText":
+      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
     "review.actionErrorTitle": "Review action failed",
-    "review.actionPermissionErrorText": "We couldn’t verify permission for this review action. Please sign in again and try once more.",
+    "review.actionPermissionErrorText":
+      "We couldn’t verify permission for this review action. Please sign in again and try once more.",
     "review.helpful": "Helpful",
     "review.helpfulActive": "Helpful ✓",
     "review.report": "Report",
-"outlet.previousComment": "上一条评论",
+    "outlet.previousComment": "上一条评论",
 
     "notifications.title": "通知",
     "notifications.subtitle": "管理你想接收的旅行和购物提醒。",
@@ -9574,31 +9790,50 @@ export const translations: Record<
     "currency.subtitle": "计算器和购物工具默认使用此货币。",
     "notifications.kicker": "通知",
     "notifications.signInRequiredTitle": "Sign in required",
-    "notifications.signInRequiredBody": "Sign in to save cloud notification preferences for your account.",
+    "notifications.signInRequiredBody":
+      "Sign in to save cloud notification preferences for your account.",
     "notifications.deviceStatusTitle": "Device notification status",
-    "notifications.pushUnavailableTitle": "Push notifications are not enabled in this build",
-    "notifications.pushUnavailableBody": "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
+    "notifications.pushUnavailableTitle":
+      "Push notifications are not enabled in this build",
+    "notifications.pushUnavailableBody":
+      "This app build does not include the native Expo Notifications module, so it cannot request device notification permission or register a push token yet.",
     "notifications.cloudPreferences": "Cloud notification preferences",
-    "notifications.cloudPreferencesDesc": "Save whether your account should receive supported production notifications.",
-    "notifications.cloudPreferencesUnavailableDesc": "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
-    "notifications.categoriesUnavailableTitle": "Notification categories are not active yet",
-    "notifications.categoriesUnavailableBody": "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
-    "notifications.permission.unsupported": "Device push permission is unavailable in this build.",
-    "notifications.permission.not_requested": "Notification permission has not been requested yet.",
-    "notifications.permission.granted": "Device notification permission is granted.",
-    "notifications.permission.denied": "Device notification permission is denied. You can change this in system settings.",
+    "notifications.cloudPreferencesDesc":
+      "Save whether your account should receive supported production notifications.",
+    "notifications.cloudPreferencesUnavailableDesc":
+      "Save your account-level opt-in now. Device push delivery remains disabled until a production notifications build and backend sender are available.",
+    "notifications.categoriesUnavailableTitle":
+      "Notification categories are not active yet",
+    "notifications.categoriesUnavailableBody":
+      "Trip reminders, favorite outlet updates, review updates and marketing messages are stored as disabled preferences until real delivery support exists. No fake inbox or simulated alerts are shown.",
+    "notifications.permission.unsupported":
+      "Device push permission is unavailable in this build.",
+    "notifications.permission.not_requested":
+      "Notification permission has not been requested yet.",
+    "notifications.permission.granted":
+      "Device notification permission is granted.",
+    "notifications.permission.denied":
+      "Device notification permission is denied. You can change this in system settings.",
     "notifications.tokenStatusTitle": "Push token registration",
-    "notifications.token.not_registered": "No device push token is registered for this account on this device.",
-    "notifications.token.registered": "A real Expo push token is registered for this account:",
-    "notifications.token.disabled": "Device push tokens for this account were marked disabled.",
-    "notifications.token.failed": "Push token registration failed. Check the app build and notification credentials.",
+    "notifications.token.not_registered":
+      "No device push token is registered for this account on this device.",
+    "notifications.token.registered":
+      "A real Expo push token is registered for this account:",
+    "notifications.token.disabled":
+      "Device push tokens for this account were marked disabled.",
+    "notifications.token.failed":
+      "Push token registration failed. Check the app build and notification credentials.",
     "notifications.deliveryStatusTitle": "Production delivery status",
-    "notifications.deliveryStatusBody": "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
-  "notifications.tripRemindersCategory": "Trip reminders",
-  "notifications.tripRemindersCategoryDesc": "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
-  "notifications.categoryActive": "Production sender active",
-  "notifications.unsupportedCategoriesTitle": "Unsupported categories remain inactive",
-  "notifications.unsupportedCategoriesBody": "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
+    "notifications.deliveryStatusBody":
+      "Trip reminder delivery is implemented by a scheduled production backend sender. Favorite outlet updates, review updates and marketing remain inactive.",
+    "notifications.tripRemindersCategory": "Trip reminders",
+    "notifications.tripRemindersCategoryDesc":
+      "Real backend push reminders for active trips with a YYYY-MM-DD visit date.",
+    "notifications.categoryActive": "Production sender active",
+    "notifications.unsupportedCategoriesTitle":
+      "Unsupported categories remain inactive",
+    "notifications.unsupportedCategoriesBody":
+      "Favorite outlet updates, review updates and marketing do not have backend senders yet. No fake inbox, mock history or simulated delivery is shown.",
     "notifications.smartAlertsOnly": "仅智能提醒",
     "notifications.travelAlerts": "旅行提醒",
     "notifications.shoppingAlerts": "购物提醒",

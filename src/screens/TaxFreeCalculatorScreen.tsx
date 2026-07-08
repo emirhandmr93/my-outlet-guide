@@ -5,9 +5,14 @@ import { CountrySelector } from "../components/CountrySelector";
 import { CurrencySelector } from "../components/CurrencySelector";
 import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
-import { taxFreeRules } from "../constants/taxFreeRules";
+import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
-import { convertFromEur, formatCurrency } from "../services/exchangeRateService";
+import { CurrencyCode, formatCurrency } from "../services/exchangeRateService";
+import {
+  calculateTaxFreeEstimate,
+  isBelowMinimumPurchase,
+  parsePurchaseAmount,
+} from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function TaxFreeCalculatorScreen() {
@@ -22,22 +27,27 @@ export function TaxFreeCalculatorScreen() {
   } = useSavings();
 
   const selectedCountry =
-    countries.find((country) => country.countryId === selectedCountryId) || countries[0];
+    countries.find((country) => country.countryId === selectedCountryId) ||
+    countries[0];
 
   const selectedCurrencyInfo =
-    currencies.find((currency) => currency.currencyCode === selectedCurrency) || currencies[0];
+    currencies.find((currency) => currency.currencyCode === selectedCurrency) ||
+    currencies[0];
 
-  const rule =
-    taxFreeRules.find((item) => item.countryId === selectedCountryId) || taxFreeRules[0];
+  const rule = getTaxFreeRule(selectedCountryId);
+  const parsedAmount = parsePurchaseAmount(amount);
+  const hasAmount = typeof parsedAmount === "number";
+  const isInvalidAmount =
+    hasAmount && (!Number.isFinite(parsedAmount) || parsedAmount <= 0);
+  const estimate =
+    rule && hasAmount && !isInvalidAmount
+      ? calculateTaxFreeEstimate(parsedAmount, rule)
+      : undefined;
 
-  const numericAmount = Number(amount) || 0;
-  const estimatedRefund = numericAmount * (rule.estimatedRefundRate / 100);
-  const netCost = numericAmount - estimatedRefund;
-  const convertedNetCost = convertFromEur(netCost, selectedCurrency);
-
+  const isCurrencyMismatch =
+    !!rule && selectedCountry.currency !== rule.currency;
   const isBelowMinimum =
-    rule.minimumSpend > 0 && numericAmount > 0 && numericAmount < rule.minimumSpend;
-
+    !!rule && !!estimate && isBelowMinimumPurchase(estimate.grossAmount, rule);
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
@@ -48,26 +58,38 @@ export function TaxFreeCalculatorScreen() {
 
       <View style={styles.card}>
         <View style={styles.settingsPanel}>
-          <Text style={styles.settingsKicker}>{t("savings.settingsKicker")}</Text>
-          <Text style={styles.settingsTitle}>{t("savings.settingsSharedTitle")}</Text>
+          <Text style={styles.settingsKicker}>
+            {t("savings.settingsKicker")}
+          </Text>
+          <Text style={styles.settingsTitle}>
+            {t("savings.settingsSharedTitle")}
+          </Text>
 
           <View style={styles.settingsSummaryRow}>
             <View style={styles.settingsSummaryItem}>
-              <Text style={styles.settingsFlag}>{selectedCountry.countryFlag}</Text>
+              <Text style={styles.settingsFlag}>
+                {selectedCountry.countryFlag}
+              </Text>
               <View>
                 <Text style={styles.settingsLabel}>{t("common.country")}</Text>
-                <Text style={styles.settingsValue}>{selectedCountry.countryName}</Text>
+                <Text style={styles.settingsValue}>
+                  {selectedCountry.countryName}
+                </Text>
               </View>
             </View>
 
             <View style={styles.settingsSummaryDivider} />
 
             <View style={styles.settingsSummaryItem}>
-              <Text style={styles.settingsFlag}>{selectedCurrencyInfo.currencyFlag}</Text>
+              <Text style={styles.settingsFlag}>
+                {selectedCurrencyInfo.currencyFlag}
+              </Text>
               <View>
                 <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
                 <Text style={styles.settingsValue}>{selectedCurrency}</Text>
-                <Text style={styles.settingsSubvalue}>{selectedCurrencyInfo.currencyName}</Text>
+                <Text style={styles.settingsSubvalue}>
+                  {selectedCurrencyInfo.currencyName}
+                </Text>
               </View>
             </View>
           </View>
@@ -86,7 +108,8 @@ export function TaxFreeCalculatorScreen() {
         </View>
 
         <Text style={styles.label}>
-          {t("taxCalc.shoppingAmount")} ({selectedCountry.currency})
+          {t("taxCalc.shoppingAmount")} (
+          {rule?.currency ?? selectedCountry.currency})
         </Text>
 
         <TextInput
@@ -98,52 +121,102 @@ export function TaxFreeCalculatorScreen() {
           onChangeText={setAmount}
         />
 
-        {isBelowMinimum && (
+        {!rule && (
           <View style={styles.warningBox}>
             <Text style={styles.warningText}>
-              {t("taxCalc.belowMinimum")} {selectedCountry.countryName}.
+              {t("taxCalc.unsupportedCountry")}
             </Text>
           </View>
         )}
 
-        <View style={styles.resultGrid}>
-          <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>{t("taxCalc.estimatedRefund")}</Text>
-            <Text style={styles.resultValue}>
-              {selectedCountry.currency} {estimatedRefund.toFixed(2)}
+        {isCurrencyMismatch && (
+          <View style={styles.warningBox}>
+            <Text style={styles.warningText}>
+              {t("taxCalc.currencyMismatch")}
             </Text>
           </View>
+        )}
 
-          <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>{t("taxCalc.estimatedNetCost")}</Text>
-            <Text style={styles.resultValue}>
-              {selectedCountry.currency} {netCost.toFixed(2)}
+        {isInvalidAmount && (
+          <View style={styles.warningBox}>
+            <Text style={styles.warningText}>{t("taxCalc.invalidAmount")}</Text>
+          </View>
+        )}
+
+        {isBelowMinimum && (
+          <View style={styles.warningBox}>
+            <Text style={styles.warningText}>
+              {t("taxCalc.belowMinimum")}{" "}
+              {formatCurrency(
+                rule.minimumPurchaseAmount ?? 0,
+                rule.currency as CurrencyCode,
+              )}
+              .
             </Text>
           </View>
-        </View>
+        )}
 
-        <View style={styles.highlightBox}>
-          <Text style={styles.highlightLabel}>{t("taxCalc.netCostCurrency")}</Text>
-          <Text style={styles.highlightValue}>
-            {formatCurrency(convertedNetCost, selectedCurrency)}
-          </Text>
-        </View>
+        {rule && estimate && !isBelowMinimum && (
+          <>
+            <View style={styles.resultGrid}>
+              <View style={styles.resultBox}>
+                <Text style={styles.resultLabel}>
+                  {t("taxCalc.estimatedVatPortion")}
+                </Text>
+                <Text style={styles.resultValue}>
+                  {formatCurrency(
+                    estimate.vatPortion,
+                    rule.currency as CurrencyCode,
+                  )}
+                </Text>
+              </View>
 
-        <View style={styles.metaBox}>
-          <Text style={styles.metaTitle}>{t("taxCalc.guideTitle")}</Text>
-          <Text style={styles.metaText}>
-            {t("taxCalc.guideRefundPrefix")} {rule.estimatedRefundRate}% {t("taxCalc.guideRefundSuffix")}
-          </Text>
-          <Text style={styles.metaText}>
-            {t("taxCalc.guideMinimumPrefix")} {selectedCountry.currency} {rule.minimumSpend} {t("taxCalc.guideMinimumIn")} {selectedCountry.countryName}.
-          </Text>
-          <Text style={styles.metaText}>
-            {t("taxCalc.guideSteps")}
-          </Text>
-          <Text style={styles.metaNote}>
-            {t("taxCalc.guideNote")}
-          </Text>
-        </View>
+              <View style={styles.resultBox}>
+                <Text style={styles.resultLabel}>
+                  {t("taxCalc.estimatedNetBeforeVat")}
+                </Text>
+                <Text style={styles.resultValue}>
+                  {formatCurrency(
+                    estimate.netAmount,
+                    rule.currency as CurrencyCode,
+                  )}
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.highlightBox}>
+              <Text style={styles.highlightLabel}>
+                {t("taxCalc.providerFeesUnknown")}
+              </Text>
+              <Text style={styles.highlightValue}>
+                {t("taxCalc.noGuaranteedRefund")}
+              </Text>
+            </View>
+          </>
+        )}
+
+        {rule && (
+          <View style={styles.metaBox}>
+            <Text style={styles.metaTitle}>{t("taxCalc.sourceTitle")}</Text>
+            <Text style={styles.metaText}>
+              {rule.sourceName} • {rule.effectiveDate}
+            </Text>
+            <Text style={styles.metaText}>
+              {t("taxCalc.vatRate")}: {rule.vatRate}%
+            </Text>
+            {typeof rule.minimumPurchaseAmount === "number" && (
+              <Text style={styles.metaText}>
+                {t("taxCalc.minimumSpend")}:{" "}
+                {formatCurrency(
+                  rule.minimumPurchaseAmount,
+                  rule.currency as CurrencyCode,
+                )}
+              </Text>
+            )}
+            <Text style={styles.metaText}>{rule.notes}</Text>
+            <Text style={styles.metaNote}>{t("taxCalc.finalDisclaimer")}</Text>
+          </View>
+        )}
       </View>
     </ScrollView>
   );
