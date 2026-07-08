@@ -18,7 +18,7 @@ import { useTranslation } from "../hooks/useTranslation";
 export function LoginScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const { loginWithEmail, registerWithEmail, loginWithGoogle } = useAuth();
+  const { loginWithEmail, registerWithEmail } = useAuth();
 
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState("");
@@ -59,19 +59,6 @@ export function LoginScreen() {
     }
   }
 
-  async function handleGoogle() {
-    try {
-      setLoading(true);
-      await loginWithGoogle();
-      navigation.goBack();
-    } catch {
-      Alert.alert(t("auth.googleTitle"), t("auth.googleMessage"));
-    } finally {
-      setLoading(false);
-    }
-  }
-
-
   return (
     <KeyboardAvoidingView
       style={styles.flex}
@@ -86,17 +73,6 @@ export function LoginScreen() {
           <Text style={styles.title}>{t("auth.title")}</Text>
           <Text style={styles.subtitle}>{t("auth.subtitle")}</Text>
         </View>
-
-
-        <TouchableOpacity
-          style={styles.socialButton}
-          activeOpacity={0.86}
-          onPress={handleGoogle}
-        >
-          <Text style={styles.socialButtonText}>
-            {t("auth.continueGoogle")}
-          </Text>
-        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.emailButton}
@@ -189,32 +165,6 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 22,
     marginTop: 12,
-  },
-  appleButton: {
-    backgroundColor: "#111111",
-    borderRadius: 20,
-    padding: 17,
-    marginBottom: 12,
-  },
-  appleButtonText: {
-    color: "#FFFFFF",
-    fontWeight: "900",
-    textAlign: "center",
-    fontSize: 15,
-  },
-  socialButton: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 20,
-    padding: 17,
-    borderWidth: 1,
-    borderColor: "#E5E7EB",
-    marginBottom: 12,
-  },
-  socialButtonText: {
-    color: "#0B1F3A",
-    fontWeight: "900",
-    textAlign: "center",
-    fontSize: 15,
   },
   emailButton: {
     backgroundColor: "#FFF8E1",
