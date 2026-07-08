@@ -1,0 +1,52 @@
+name: Generate Functions lockfile
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-functions-lockfile:
+    name: Generate and validate Functions lockfile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install root dependencies
+        run: npm ci
+
+      - name: Install Functions dependencies
+        run: npm --prefix functions install
+
+      - name: Build Functions
+        run: npm --prefix functions run build
+
+      - name: Validate TypeScript
+        run: npx tsc --noEmit
+
+      - name: Validate master data
+        run: npx tsx src/services/masterDataValidator.ts
+
+      - name: Validate translation keys
+        run: npx tsx tools/checkTranslationKeys.ts
+
+      - name: Commit Functions lockfile if changed
+        run: |
+          if [ -z "$(git status --porcelain -- functions/package-lock.json)" ]; then
+            echo "No Functions lockfile changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add functions/package-lock.json
+          git commit -m "chore(functions): generate package lockfile"
+          git push origin HEAD:${{ github.ref_name }}
