@@ -6,15 +6,26 @@ import { useUser } from "./UserContext";
 
 type FavoritesContextType = {
 favoriteIds: string[];
+favoritesError: "permission-denied" | null;
 toggleFavorite: (outletId: string) => Promise<void>;
 isFavorite: (outletId: string) => boolean;
 };
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
+function isFirestorePermissionDenied(error: unknown) {
+return Boolean(
+error &&
+typeof error === "object" &&
+"code" in error &&
+(error as { code?: unknown }).code === "permission-denied"
+);
+}
+
 export function FavoritesProvider({ children }: { children: ReactNode }) {
 const { currentUser } = useUser();
 const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
+const [favoritesError, setFavoritesError] = useState<"permission-denied" | null>(null);
 
 useEffect(() => {
 loadFavorites();
@@ -33,6 +44,7 @@ return ids.filter(
 async function loadFavorites() {
 if (!currentUser?.userId) {
 setFavoriteIds([]);
+setFavoritesError(null);
 return;
 }
 
@@ -41,6 +53,8 @@ const snapshot = await getDoc(
 doc(db, "favorites", currentUser.userId)
 );
 
+setFavoritesError(null);
+
 if (snapshot.exists()) {
 const data = snapshot.data();
 setFavoriteIds(cleanIds(data.favoriteIds));
@@ -48,6 +62,9 @@ return;
 }
 } catch (error) {
 console.log("Firestore favorites load error", error);
+if (isFirestorePermissionDenied(error)) {
+setFavoritesError("permission-denied");
+}
 }
 
 setFavoriteIds([]);
@@ -55,10 +72,13 @@ setFavoriteIds([]);
 
 async function saveFavorites(nextFavorites: string[]) {
 const cleanFavoriteIds = cleanIds(nextFavorites);
+const previousFavoriteIds = favoriteIds;
 
 setFavoriteIds(cleanFavoriteIds);
 
 if (!currentUser?.userId) {
+setFavoriteIds([]);
+setFavoritesError(null);
 return;
 }
 
@@ -69,14 +89,20 @@ doc(db, "favorites", currentUser.userId),
 favoriteIds: cleanFavoriteIds,
 }
 );
+setFavoritesError(null);
 } catch (error) {
+setFavoriteIds(previousFavoriteIds);
 console.log("Firestore favorites save error", error);
+if (isFirestorePermissionDenied(error)) {
+setFavoritesError("permission-denied");
+}
 }
 }
 
 async function toggleFavorite(outletId: string) {
 if (!currentUser?.userId) {
 setFavoriteIds([]);
+setFavoritesError(null);
 return;
 }
 
@@ -92,7 +118,7 @@ return favoriteIds.includes(outletId);
 }
 
 return (
-<FavoritesContext.Provider value={{ favoriteIds, toggleFavorite, isFavorite }}>
+<FavoritesContext.Provider value={{ favoriteIds, favoritesError, toggleFavorite, isFavorite }}>
 {children}
 </FavoritesContext.Provider>
 );

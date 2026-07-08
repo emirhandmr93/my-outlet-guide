@@ -9,7 +9,7 @@ import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function FavoritesScreen() {
-const { favoriteIds, toggleFavorite } = useFavorites();
+const { favoriteIds, favoritesError, toggleFavorite } = useFavorites();
 const { isLoggedIn } = useUser();
 const { t } = useTranslation();
 const navigation = useNavigation<any>();
@@ -23,7 +23,22 @@ return (
 <Text style={styles.pageTitle}>{t("favorites.title")}</Text>
 <Text style={styles.pageSubtitle}>{t("favorites.subtitle")}</Text>
 
-{!isLoggedIn ? (
+{favoritesError === "permission-denied" ? (
+<View style={styles.emptyCard}>
+<Text style={styles.emptyTitle}>{t("favorites.signInTitle")}</Text>
+
+<Text style={styles.emptyText}>
+{t("favorites.permissionDenied")}
+</Text>
+
+<TouchableOpacity
+style={styles.signInButton}
+onPress={() => navigation.navigate("Login")}
+>
+<Text style={styles.signInButtonText}>{t("profile.signIn")}</Text>
+</TouchableOpacity>
+</View>
+) : !isLoggedIn ? (
 <View style={styles.emptyCard}>
 <Text style={styles.emptyTitle}>{t("favorites.signInTitle")}</Text>
 

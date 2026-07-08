@@ -96,6 +96,16 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/reviews/$(outletId)/items/$(reviewId)).data.userId != request.auth.uid;
     }
 
+
+    function isOwnerDocument(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function hasValidFavoritesData() {
+      return request.resource.data.keys().hasOnly(['favoriteIds'])
+        && request.resource.data.favoriteIds is list;
+    }
+
     function isValidReviewReportCreate() {
       return request.resource.data.keys().hasOnly([
           'reportId',
@@ -113,6 +123,12 @@ service cloud.firestore {
         && request.resource.data.reporterUserId == request.auth.uid
         && request.resource.data.reason in ['spam', 'abuse', 'off_topic', 'other']
         && request.resource.data.status == 'open';
+    }
+
+    match /favorites/{userId} {
+      allow read: if isOwnerDocument(userId);
+      allow create, update: if isOwnerDocument(userId) && hasValidFavoritesData();
+      allow delete: if false;
     }
 
     match /reviews/{outletId}/items/{reviewId} {
