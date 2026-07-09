@@ -1,3 +1,5 @@
+import { getLocalizedLocationSearchValues } from "../utils/locationDisplay";
+
 const localizedSearchAliasEntries: Array<[string, string[]]> = [
   ["France", ["fransa"]],
   ["Germany", ["almanya"]],
@@ -40,7 +42,7 @@ export function getLocalizedSearchAliases(value: string): string[] {
 }
 
 export function expandSearchValues(value: string): string[] {
-  return Array.from(new Set([value, ...getLocalizedSearchAliases(value)]));
+  return Array.from(new Set([value, ...getLocalizedSearchAliases(value), ...getLocalizedLocationSearchValues(value)]));
 }
 
 export function getStrongLocalizedCountryMatch(value: string): string | null {

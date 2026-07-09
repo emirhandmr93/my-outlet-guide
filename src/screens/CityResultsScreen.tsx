@@ -21,6 +21,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getCountryName } from "../services/locationService";
+import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
 import { formatRating } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 
@@ -62,7 +63,7 @@ function OutletResultCard({
   onPress: () => void;
   onToggleFavorite: () => void;
 }) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const heroImage = getOutletCardHeroImage(outlet, {
     mode: getConfiguredOutletMediaMode(),
   });
@@ -118,7 +119,7 @@ function OutletResultCard({
 
         <Text style={styles.cardTitle}>{outlet.name}</Text>
         <Text style={styles.cardText}>
-          {getCountryName(outlet.countryId)} • {outlet.storesCountText}
+          {formatCountryDisplayName(outlet.countryId, language)} • {outlet.storesCountText}
         </Text>
         <Text style={styles.tapText}>{t("city.viewOutlet")}</Text>
       </View>
@@ -128,14 +129,14 @@ function OutletResultCard({
 
 export function CityResultsScreen() {
   const navigation = useNavigation<any>();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp<RouteParams, "CityResults">>();
   const { isLoggedIn } = useUser();
   const { isFavorite, toggleFavorite } = useFavorites();
 
   const cityId = route.params?.cityId || "paris";
-  const cityName = cityNames[cityId] || cityId;
+  const cityName = formatCityDisplayName(cityId, language) || cityNames[cityId] || cityId;
   const cityOutlets = outlets.filter((outlet) => outlet.cityId === cityId);
 
   return (
@@ -163,7 +164,7 @@ export function CityResultsScreen() {
         <StatCard value={cityOutlets.length} label={t("city.outlets")} />
         <StatCard
           value={
-            cityOutlets[0] ? getCountryName(cityOutlets[0].countryId) : "—"
+            cityOutlets[0] ? formatCountryDisplayName(cityOutlets[0].countryId, language) : "—"
           }
           label={t("city.country")}
         />

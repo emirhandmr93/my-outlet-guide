@@ -24,8 +24,10 @@ import {
 import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
-import { getCityName, getCountryName } from "../services/locationService";
+import { getCountryFlag } from "../services/locationService";
 import { useTranslation } from "../hooks/useTranslation";
+import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
+import type { TranslationLanguage } from "../translations/translations";
 
 type ExploreFilter = "country" | "city" | "outlet";
 const filters: { id: ExploreFilter; labelKey: string; icon: string }[] = [
@@ -83,15 +85,16 @@ function citySearchHaystack(city: {
   cityId: string;
   cityName: string;
   countryId: string;
-}) {
+}, language: TranslationLanguage) {
   return normalizeSearchText(
     [
       city.cityName,
       city.cityId,
-      getCountryName(city.countryId),
+      formatCountryDisplayName(city.countryId, language),
       city.countryId,
-      ...expandSearchValues(getCountryName(city.countryId)),
+      ...expandSearchValues(formatCountryDisplayName(city.countryId, language)),
       ...expandSearchValues(city.countryId.replace(/-/g, " ")),
+      formatCityDisplayName(city.cityId, language),
       ...(localizedCityAliases[city.cityId] ?? []),
     ].join(" "),
   );
@@ -117,8 +120,27 @@ function resultLabel(type: string, t: (key: string) => string) {
   );
 }
 
+function formatResultTitle(item: any, language: TranslationLanguage) {
+  if (item.type === "country") return formatCountryDisplayName(item.id, language);
+  if (item.type === "city") return formatCityDisplayName(item.id, language);
+  return item.title;
+}
+
+function formatResultSubtitle(item: any, t: (key: string) => string, language: TranslationLanguage) {
+  if (item.type === "outlet" && item.routeParams?.outletId) {
+    const outlet = outlets.find((entry) => entry.outletId === item.routeParams.outletId || entry.outletId === item.id);
+    if (outlet) return `${formatCityDisplayName(outlet.cityId, language)}, ${formatCountryDisplayName(outlet.countryId, language)}`;
+  }
+  if (item.type === "city") {
+    const city = cities.find((entry) => entry.cityId === item.id);
+    if (city) return `${formatCountryDisplayName(city.countryId, language)} · ${formatOutletCount(outletCount(undefined, city.cityId), t)}`;
+  }
+  if (item.type === "country") return formatOutletCount(outletCount(item.id), t);
+  return ["Brand", "City", "Country", "Category"].includes(item.subtitle) ? resultLabel(item.type, t) : item.subtitle;
+}
+
 export function ExploreScreen() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
@@ -148,8 +170,8 @@ export function ExploreScreen() {
     () =>
       countries
         .filter((c) => availableCountryIds.includes(c.countryId))
-        .sort((a, b) => a.countryName.localeCompare(b.countryName)),
-    [availableCountryIds],
+        .sort((a, b) => formatCountryDisplayName(a.countryId, language).localeCompare(formatCountryDisplayName(b.countryId, language))),
+    [availableCountryIds, language],
   );
   const availableCities = useMemo(() => {
     const order = new Map(
@@ -160,9 +182,9 @@ export function ExploreScreen() {
       .sort(
         (a, b) =>
           (order.get(a.cityId) ?? 999) - (order.get(b.cityId) ?? 999) ||
-          a.cityName.localeCompare(b.cityName),
+          formatCityDisplayName(a.cityId, language).localeCompare(formatCityDisplayName(b.cityId, language)),
       );
-  }, [availableCityIds]);
+  }, [availableCityIds, language]);
   const suggestions = useMemo(
     () => getExploreVisibleSearchResults(search, activeTab ? [activeTab] : []),
     [search, activeTab],
@@ -171,12 +193,12 @@ export function ExploreScreen() {
   const filteredCountries = availableCountries.filter(
     (c) =>
       !countryQuery.trim() ||
-      normalizeSearchText(`${c.countryName} ${c.countryId}`).includes(
+      normalizeSearchText([c.countryName, c.countryId, formatCountryDisplayName(c.countryId, language), ...expandSearchValues(c.countryName)].join(" ")).includes(
         normalizeSearchText(countryQuery),
       ),
   );
   const filteredCities = availableCities.filter((c) => {
-    const hay = citySearchHaystack(c);
+    const hay = citySearchHaystack(c, language);
     return (
       (!cityQuery.trim() || hay.includes(normalizeSearchText(cityQuery))) &&
       (!countryFilter || c.countryId === countryFilter)
@@ -246,7 +268,8 @@ export function ExploreScreen() {
           <Text style={styles.heroTitle}>{t("explore.heroTitle")}</Text>
           <Text style={styles.heroText}>{t("explore.heroSubtitle")}</Text>
         </View>
-        <View style={styles.searchBox}>
+        {activeTab === null ? (
+          <View style={styles.searchBox}>
           <Text style={styles.searchIcon}>⌕</Text>
           <TextInput
             style={styles.searchInput}
@@ -264,11 +287,8 @@ export function ExploreScreen() {
             </TouchableOpacity>
           ) : null}
         </View>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.filterRowPadded}
-        >
+        ) : null}
+        <View style={styles.primaryTabRow}>
           {filters.map((f) => (
             <TouchableOpacity
               key={f.id}
@@ -288,7 +308,7 @@ export function ExploreScreen() {
               </Text>
             </TouchableOpacity>
           ))}
-        </ScrollView>
+        </View>
         {q ? (
           <>
             <View style={styles.sectionHeader}>
@@ -312,13 +332,9 @@ export function ExploreScreen() {
                   <Text style={styles.resultTypeInline}>
                     {resultLabel(item.type, t)}
                   </Text>
-                  <Text style={styles.resultTitle}>{item.title}</Text>
+                  <Text style={styles.resultTitle}>{formatResultTitle(item, language)}</Text>
                   <Text style={styles.resultSubtitle}>
-                    {["Brand", "City", "Country", "Category"].includes(
-                      item.subtitle,
-                    )
-                      ? resultLabel(item.type, t)
-                      : item.subtitle}
+                    {formatResultSubtitle(item, t, language)}
                   </Text>
                 </View>
                 <Text style={styles.resultArrow}>›</Text>
@@ -333,6 +349,7 @@ export function ExploreScreen() {
             runSearch={setSearch}
             cities={compactCities}
             navigation={navigation}
+            language={language}
           />
         ) : null}
         {activeTab === "country" && !q ? (
@@ -346,6 +363,7 @@ export function ExploreScreen() {
               setValue={setCountryQuery}
               placeholder={t("explore.countrySearchPlaceholder")}
               t={t}
+              language={language}
             />
             <Text style={styles.resultCount}>
               {filteredCountries.length} {t("explore.resultCount")}
@@ -361,7 +379,7 @@ export function ExploreScreen() {
                 >
                   <Text style={styles.countryFlag}>{c.countryFlag}</Text>
                   <View style={styles.countryContent}>
-                    <Text style={styles.countryName}>{c.countryName}</Text>
+                    <Text style={styles.countryName}>{formatCountryDisplayName(c.countryId, language)}</Text>
                     <Text style={styles.countryMeta}>
                       {formatOutletCount(outletCount(c.countryId), t)}
                     </Text>
@@ -384,6 +402,7 @@ export function ExploreScreen() {
               setValue={setCityQuery}
               placeholder={t("explore.citySearchPlaceholder")}
               t={t}
+              language={language}
             />
             <FilterRail
               countries={availableCountries}
@@ -391,12 +410,13 @@ export function ExploreScreen() {
               setCountry={setCountryFilter}
               reset={hasCityFilters ? resetFilters : undefined}
               t={t}
+              language={language}
             />
             <Text style={styles.resultCount}>
               {filteredCities.length} {t("explore.resultCount")}
             </Text>
             {filteredCities.map((c) => (
-              <CityRow key={c.cityId} city={c} t={t} navigation={navigation} />
+              <CityRow key={c.cityId} city={c} t={t} language={language} navigation={navigation} compact />
             ))}
           </>
         ) : null}
@@ -411,6 +431,7 @@ export function ExploreScreen() {
               setValue={setOutletQuery}
               placeholder={t("explore.outletSearchPlaceholder")}
               t={t}
+              language={language}
             />
             <FilterRail
               countries={availableCountries}
@@ -421,6 +442,7 @@ export function ExploreScreen() {
               setCity={setCityFilter}
               reset={hasOutletFilters ? resetFilters : undefined}
               t={t}
+              language={language}
             />
             <Text style={styles.resultCount}>
               {outletResults.length} {t("explore.resultCount")}
@@ -442,7 +464,7 @@ export function ExploreScreen() {
                   </Text>
                   <Text style={styles.resultTitle}>{o.name}</Text>
                   <Text style={styles.resultSubtitle}>
-                    {getCityName(o.cityId)}, {getCountryName(o.countryId)}
+                    {formatCityDisplayName(o.cityId, language)}, {formatCountryDisplayName(o.countryId, language)}
                   </Text>
                 </View>
                 <Text style={styles.resultArrow}>›</Text>
@@ -489,7 +511,7 @@ function Empty({ t }: any) {
     </View>
   );
 }
-function DefaultHub({ t, setTab, runSearch, cities, navigation }: any) {
+function DefaultHub({ t, setTab, runSearch, cities, navigation, language }: any) {
   const cards: Array<[ExploreFilter, string, string, string]> = [
     [
       "outlet",
@@ -554,12 +576,12 @@ function DefaultHub({ t, setTab, runSearch, cities, navigation }: any) {
         subtitle={t("explore.popularCitiesSubtitle")}
       />
       {cities.map((c: any) => (
-        <CityRow key={c.cityId} city={c} t={t} navigation={navigation} />
+        <CityRow key={c.cityId} city={c} t={t} language={language} navigation={navigation} />
       ))}
     </>
   );
 }
-function CityRow({ city, t, navigation }: any) {
+function CityRow({ city, t, navigation, language, compact }: any) {
   const img = cityImageMap[city.cityId];
   return (
     <TouchableOpacity
@@ -568,17 +590,17 @@ function CityRow({ city, t, navigation }: any) {
         navigation.navigate("CityResults", { cityId: city.cityId })
       }
     >
-      {img ? (
+      {!compact && img ? (
         <Image source={img} style={styles.cityThumb} />
       ) : (
-        <View style={styles.cityNoImage}>
-          <Text style={styles.cityNoImageText}>✦</Text>
+        <View style={styles.cityAvatar}>
+          <Text style={styles.cityAvatarText}>{getCountryFlag(city.countryId)}</Text>
         </View>
       )}
       <View style={styles.resultContent}>
-        <Text style={styles.resultTitle}>{city.cityName}</Text>
+        <Text style={styles.resultTitle}>{formatCityDisplayName(city.cityId, language)}</Text>
         <Text style={styles.resultSubtitle}>
-          {getCountryName(city.countryId)} ·{" "}
+          {formatCountryDisplayName(city.countryId, language)} ·{" "}
           {formatOutletCount(outletCount(undefined, city.cityId), t)}
         </Text>
       </View>
@@ -595,6 +617,7 @@ function FilterRail({
   setCity,
   reset,
   t,
+  language,
 }: any) {
   return (
     <ScrollView
@@ -624,7 +647,7 @@ function FilterRail({
               activeCountry === c.countryId && styles.filterTextActive,
             ]}
           >
-            {c.countryFlag} {c.countryName}
+            {c.countryFlag} {formatCountryDisplayName(c.countryId, language)}
           </Text>
         </TouchableOpacity>
       ))}
@@ -643,7 +666,7 @@ function FilterRail({
               activeCity === c.cityId && styles.filterTextActive,
             ]}
           >
-            {c.cityName}
+            {formatCityDisplayName(c.cityId, language)}
           </Text>
         </TouchableOpacity>
       ))}
@@ -697,7 +720,7 @@ const styles = StyleSheet.create({
   },
   heroKicker: {
     color: "#C9A227",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "900",
     letterSpacing: 1.5,
     marginBottom: 8,
@@ -777,16 +800,21 @@ const styles = StyleSheet.create({
   },
   clearSmall: { color: "#C9A227", fontWeight: "900" },
   filterRow: { gap: 10, paddingRight: 20, marginBottom: 8 },
+  primaryTabRow: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: 8,
+  },
   filterRowPadded: {
     gap: 10,
-    paddingLeft: 2,
+    paddingLeft: 20,
     paddingRight: 24,
     marginBottom: 8,
   },
   filterChip: {
     backgroundColor: "#fff",
     borderRadius: 999,
-    paddingHorizontal: 14,
+    paddingHorizontal: 12,
     paddingVertical: 11,
     borderWidth: 1,
     borderColor: "#E0E5EC",
@@ -797,7 +825,7 @@ const styles = StyleSheet.create({
   filterText: {
     color: "#677083",
     fontWeight: "900",
-    fontSize: 13,
+    fontSize: 12,
     flexShrink: 1,
   },
   filterTextActive: { color: "#C9A227" },
@@ -845,7 +873,7 @@ const styles = StyleSheet.create({
   discoveryTitle: { color: "#0B1F3A", fontSize: 16, fontWeight: "900" },
   discoveryText: {
     color: "#687386",
-    fontSize: 13,
+    fontSize: 12,
     lineHeight: 18,
     fontWeight: "700",
     marginTop: 6,
@@ -874,7 +902,7 @@ const styles = StyleSheet.create({
   },
   countryMeta: {
     color: "#8A6A09",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "800",
     marginTop: 3,
   },
@@ -890,16 +918,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   cityThumb: { width: 58, height: 58, borderRadius: 17, marginRight: 12 },
-  cityNoImage: {
-    width: 58,
-    height: 58,
-    borderRadius: 17,
+  cityAvatar: {
+    width: 44,
+    height: 44,
+    borderRadius: 999,
     marginRight: 12,
-    backgroundColor: "#F5EBC8",
+    backgroundColor: "#F2F5F9",
     alignItems: "center",
     justifyContent: "center",
   },
-  cityNoImageText: { color: "#C9A227", fontSize: 22, fontWeight: "900" },
+  cityAvatarText: { fontSize: 22 },
   resultCard: {
     flexDirection: "row",
     alignItems: "center",
@@ -936,7 +964,7 @@ const styles = StyleSheet.create({
   },
   resultSubtitle: {
     color: "#687386",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "700",
     marginTop: 4,
     flexShrink: 1,
@@ -949,7 +977,7 @@ const styles = StyleSheet.create({
   },
   resultCount: {
     color: "#687386",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "900",
     marginBottom: 10,
   },
@@ -983,7 +1011,7 @@ const styles = StyleSheet.create({
   brandCategoryTitle: { color: "#0B1F3A", fontSize: 17, fontWeight: "900" },
   brandCategorySubtitle: {
     color: "#687386",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: "700",
     marginTop: 3,
   },

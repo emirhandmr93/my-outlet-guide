@@ -5,6 +5,8 @@ import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
 import { getCityName, getCountryName } from "./locationService";
 import { getLocalizedSearchAliases } from "./searchAliases";
+import { getBrandSearchAliases } from "./brandAliases";
+import { getLocalizedLocationSearchValues } from "../utils/locationDisplay";
 
 export type SearchItemType =
   | "outlet"
@@ -41,6 +43,7 @@ export function buildSearchIndex(): SearchIndexItem[] {
       getCityName(outlet.cityId),
       getCountryName(outlet.countryId),
       ...getLocalizedSearchAliases(getCountryName(outlet.countryId)),
+      ...getLocalizedLocationSearchValues(getCityName(outlet.cityId)),
       outlet.countryId,
       outlet.cityId,
       outlet.status,
@@ -55,7 +58,12 @@ export function buildSearchIndex(): SearchIndexItem[] {
       title: brand.brandName,
       subtitle: "Brand",
       type: "brand",
-      keywords: compactKeywords([brand.brandName, brand.categoryId]),
+      keywords: compactKeywords([
+        brand.brandName,
+        ...(Array.isArray(brand.aliases) ? brand.aliases : []),
+        ...getBrandSearchAliases(brand),
+        brand.categoryId,
+      ]),
     }));
 
   const cityItems: SearchIndexItem[] = cities.map((city) => ({
@@ -67,6 +75,7 @@ export function buildSearchIndex(): SearchIndexItem[] {
       city.cityName,
       city.countryId,
       ...getLocalizedSearchAliases(getCountryName(city.countryId)),
+      ...getLocalizedLocationSearchValues(city.cityName),
     ]),
   }));
 

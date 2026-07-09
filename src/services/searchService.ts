@@ -8,6 +8,7 @@ import {
 } from "./searchIndex";
 import { getCityName, getCountryName } from "./locationService";
 import { expandSearchValues, normalizeSearchText } from "./searchAliases";
+import { getBrandSearchAliases } from "./brandAliases";
 
 function normalizeSearchValue(value: string) {
   return normalizeSearchText(value);
@@ -69,7 +70,7 @@ export function searchOutlets(query: string) {
               brand.brandId === item.brandId && brand.brandStatus === "active"
           );
 
-          return brand?.brandName || "";
+          return brand ? [brand.brandName, ...(Array.isArray(brand.aliases) ? brand.aliases : []), ...getBrandSearchAliases(brand)].join(" ") : "";
         });
 
       const outletAliases = Array.isArray(outlet.aliases) ? outlet.aliases : [];

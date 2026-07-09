@@ -10,6 +10,7 @@ import {
   expandSearchValues,
   normalizeSearchText,
 } from "../src/services/searchAliases";
+import { formatCityDisplayName, formatCountryDisplayName } from "../src/utils/locationDisplay";
 
 function assert(condition: boolean, message: string) {
   if (!condition) throw new Error(message);
@@ -22,6 +23,17 @@ function titles(query: string) {
 }
 
 const primaryExploreTabs = ["Countries", "Cities", "Outlets"];
+
+assert(formatCountryDisplayName("france", "tr") === "Fransa", "France should display as Fransa in Turkish");
+assert(formatCountryDisplayName("germany", "tr") === "Almanya", "Germany should display as Almanya in Turkish");
+assert(formatCountryDisplayName("italy", "tr") === "İtalya", "Italy should display as İtalya in Turkish");
+assert(formatCountryDisplayName("united-kingdom", "tr") === "Birleşik Krallık", "United Kingdom should display as Birleşik Krallık in Turkish");
+assert(formatCityDisplayName("munich", "tr") === "Münih", "Munich should display as Münih in Turkish");
+assert(formatCityDisplayName("vienna", "tr") === "Viyana", "Vienna should display as Viyana in Turkish");
+assert(formatCityDisplayName("london", "tr") === "Londra", "London should display as Londra in Turkish");
+assert(formatCityDisplayName("rome", "tr") === "Roma", "Rome should display as Roma in Turkish");
+assert(formatCityDisplayName("florence", "tr") === "Floransa", "Florence should display as Floransa in Turkish");
+
 assert(
   primaryExploreTabs.length === 3 && !primaryExploreTabs.includes("Brands"),
   "Explore primary tabs should be Countries, Cities, and Outlets only",
@@ -98,6 +110,12 @@ assertOutletCountryFirst("almanya", "germany", /Athens|Paris|Amsterdam/i);
 assertOutletCountryFirst("Italy", "italy", /Athens|Paris|Amsterdam|Berlin/i);
 assertOutletCountryFirst("İtalya", "italy", /Athens|Paris|Amsterdam|Berlin/i);
 
+const ysl = getExploreVisibleSearchResults("ysl", []);
+const hasYslSource = getActiveBrands().some((brand) => /^(Yves Saint Laurent|Saint Laurent)$/i.test(brand.brandName));
+if (hasYslSource) {
+  assert(ysl.some((item) => item.type === "brand" && /^(Yves Saint Laurent|Saint Laurent)$/i.test(item.title)), "ysl should return Yves Saint Laurent or Saint Laurent when present");
+}
+
 const burber = getExploreVisibleSearchResults("burber", []);
 assert(
   burber.some((item) => item.type === "brand" && /burberry/i.test(item.title)),
@@ -145,6 +163,7 @@ console.log("Explore search ranking checks passed", {
   almanyaTop: titles("almanya"),
   italyTop: titles("Italy"),
   localizedItalyaTop: titles("İtalya"),
+  yslTop: ysl.slice(0, 5).map((item) => `${item.type}:${item.title}`),
   burberTop: burber.slice(0, 5).map((item) => `${item.type}:${item.title}`),
   burberryTop: burberry.slice(0, 5).map((item) => `${item.type}:${item.title}`),
   cityAliasChecks: {
