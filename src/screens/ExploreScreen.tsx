@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { searchAll, searchOutlets } from "../services/searchService";
 import { cities } from "../constants/cities";
@@ -244,6 +245,7 @@ function formatCountryOutletText(
 
 export function ExploreScreen() {
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const [outletSearch, setOutletSearch] = useState("");
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
@@ -397,19 +399,18 @@ export function ExploreScreen() {
 
   const showPopularSearches =
     !isSearching && !hasTypeFilters && !selectedCountryId;
-  const showCountries =
-    !isSearching && (!hasTypeFilters || activeFilters.includes("country"));
   const showCities =
     !isSearching && (!hasTypeFilters || activeFilters.includes("city"));
+  const showCountries =
+    !isSearching && (!hasTypeFilters || activeFilters.includes("country"));
   const showOutletResults = !isSearching && activeFilters.includes("outlet");
   const showOutletHint = false;
   const showBrands = !isSearching && activeFilters.includes("brand");
 
   function toggleFilter(filterId: ExploreFilter) {
     setActiveFilters((current) => {
-      if (current.includes(filterId))
-        return current.filter((id) => id !== filterId);
-      return [...current, filterId];
+      if (current.includes(filterId)) return [];
+      return [filterId];
     });
   }
 
@@ -424,12 +425,7 @@ export function ExploreScreen() {
   function selectCountry(countryId: string) {
     setSelectedCountryId(countryId);
     setOutletCountryFilterId(countryId);
-    setActiveFilters(["country", "outlet"]);
-    setActiveFilters((current) => {
-      const next = new Set(current);
-      next.add("outlet");
-      return Array.from(next);
-    });
+    setActiveFilters(["outlet"]);
   }
 
   function openResult(item: any) {
@@ -463,7 +459,14 @@ export function ExploreScreen() {
     : null;
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[
+        styles.content,
+        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+      ]}
+      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.heroKicker}>{t("explore.heroKicker")}</Text>
         <Text style={styles.heroTitle}>{t("explore.heroTitle")}</Text>
@@ -624,52 +627,6 @@ export function ExploreScreen() {
             </>
           ) : null}
 
-          {showCountries ? (
-            <>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>
-                  {t("explore.filters.countries")}
-                </Text>
-                <Text style={styles.sectionSubtitle}>
-                  {t("explore.countriesSubtitle")}
-                </Text>
-              </View>
-
-              <View style={styles.countryList}>
-                {availableCountries.map((country) => {
-                  const isSelected = selectedCountryId === country.countryId;
-
-                  return (
-                    <TouchableOpacity
-                      key={country.countryId}
-                      activeOpacity={0.88}
-                      style={[
-                        styles.countryRow,
-                        isSelected && styles.countryRowSelected,
-                      ]}
-                      onPress={() => selectCountry(country.countryId)}
-                    >
-                      <Text style={styles.countryFlag}>
-                        {country.countryFlag}
-                      </Text>
-
-                      <View style={styles.countryContent}>
-                        <Text style={styles.countryName}>
-                          {country.countryName}
-                        </Text>
-                        <Text style={styles.countryMeta}>
-                          {formatCountryOutletText(country.countryId, t)}
-                        </Text>
-                      </View>
-
-                      <Text style={styles.countryArrow}>→</Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-            </>
-          ) : null}
-
           {showCities ? (
             <>
               <View style={styles.sectionHeader}>
@@ -714,6 +671,52 @@ export function ExploreScreen() {
                   );
                 })}
               </ScrollView>
+            </>
+          ) : null}
+
+          {showCountries ? (
+            <>
+              <View style={styles.sectionHeader}>
+                <Text style={styles.sectionTitle}>
+                  {t("explore.filters.countries")}
+                </Text>
+                <Text style={styles.sectionSubtitle}>
+                  {t("explore.countriesSubtitle")}
+                </Text>
+              </View>
+
+              <View style={styles.countryList}>
+                {availableCountries.map((country) => {
+                  const isSelected = selectedCountryId === country.countryId;
+
+                  return (
+                    <TouchableOpacity
+                      key={country.countryId}
+                      activeOpacity={0.88}
+                      style={[
+                        styles.countryRow,
+                        isSelected && styles.countryRowSelected,
+                      ]}
+                      onPress={() => selectCountry(country.countryId)}
+                    >
+                      <Text style={styles.countryFlag}>
+                        {country.countryFlag}
+                      </Text>
+
+                      <View style={styles.countryContent}>
+                        <Text style={styles.countryName}>
+                          {country.countryName}
+                        </Text>
+                        <Text style={styles.countryMeta}>
+                          {formatCountryOutletText(country.countryId, t)}
+                        </Text>
+                      </View>
+
+                      <Text style={styles.countryArrow}>→</Text>
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
             </>
           ) : null}
 

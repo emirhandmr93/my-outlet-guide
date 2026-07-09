@@ -1,10 +1,13 @@
 import { parseSearchQuery } from "./searchParser";
 import { getSearchProviderItems } from "./searchProviders";
 import { calculateSearchScore } from "./searchRanking";
+import { expandSearchValues } from "./searchAliases";
 import type { SearchResult } from "./searchTypes";
 
 export function searchApp(query: string, limit = 12): SearchResult[] {
-  const tokens = parseSearchQuery(query);
+  const tokens = Array.from(
+    new Set(expandSearchValues(query).flatMap((value) => parseSearchQuery(value))),
+  );
 
   if (tokens.length === 0) {
     return [];

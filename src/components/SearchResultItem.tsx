@@ -4,6 +4,7 @@ import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { useTranslation } from "../hooks/useTranslation";
 
 type SearchResultItemProps = {
   item: SearchResult;
@@ -19,7 +20,20 @@ const icons: Record<SearchResult["type"], string> = {
   feature: "⚙️",
 };
 
+function getTypeLabel(type: SearchResult["type"], t: (key: string) => string) {
+  if (type === "feature") return t("searchResult.category");
+  return t(`searchResult.${type}`);
+}
+
+function getSubtitle(item: SearchResult, t: (key: string) => string) {
+  const genericSubtitles = new Set(["Brand", "City", "Country", "Category"]);
+  if (genericSubtitles.has(item.subtitle)) return getTypeLabel(item.type, t);
+  return item.subtitle;
+}
+
 export function SearchResultItem({ item, onPress }: SearchResultItemProps) {
+  const { t } = useTranslation();
+
   return (
     <TouchableOpacity
       style={styles.container}
@@ -33,9 +47,9 @@ export function SearchResultItem({ item, onPress }: SearchResultItemProps) {
       </View>
 
       <View style={styles.content}>
-        <Text style={styles.type}>{item.type}</Text>
+        <Text style={styles.type}>{getTypeLabel(item.type, t)}</Text>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.subtitle}</Text>
+        <Text style={styles.subtitle}>{getSubtitle(item, t)}</Text>
       </View>
 
       <Text style={styles.arrow}>›</Text>

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { brands } from "../constants/brands/index";
 import { outletBrands } from "../constants/outletBrands/index";
@@ -92,6 +93,7 @@ function EmptyCard({ title, text }: { title: string; text: string }) {
 export function BrandResultsScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp<RouteParams, "BrandResults">>();
   const { isLoggedIn } = useUser();
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -137,7 +139,14 @@ export function BrandResultsScreen() {
   );
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[
+        styles.content,
+        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+      ]}
+      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.heroLabel}>{t("brand.heroLabel")}</Text>
         <Text style={styles.heroTitle}>{brand.brandName}</Text>

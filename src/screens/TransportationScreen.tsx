@@ -1,5 +1,6 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTranslation } from "../hooks/useTranslation";
 import { getTransportationLabel } from "../utils/transportationFormatter";
 import { transportationGuides } from "../constants/transportationGuides";
@@ -121,11 +122,20 @@ function RouteGuideCard({
       <Text style={styles.routeTitle}>{guide.title}</Text>
 
       <View style={styles.infoRow}>
-        <Text style={styles.infoBox}>
-          {getTransportationLabel(guide.transportationType, t)}
-        </Text>
-        <Text style={styles.infoBox}>⏱️ {guide.estimatedDuration}</Text>
-        <Text style={styles.infoBox}>💰 {guide.estimatedCost}</Text>
+        <View style={styles.infoBox}>
+          <Text style={styles.infoLabel}>{t("transportation.service")}</Text>
+          <Text style={styles.infoValue}>
+            {getTransportationLabel(guide.transportationType, t)}
+          </Text>
+        </View>
+        <View style={styles.infoBox}>
+          <Text style={styles.infoLabel}>{t("transportation.duration")}</Text>
+          <Text style={styles.infoValue}>⏱️ {guide.estimatedDuration}</Text>
+        </View>
+        <View style={styles.infoBoxFull}>
+          <Text style={styles.infoLabel}>{t("transportation.cost")}</Text>
+          <Text style={styles.infoValue}>💰 {guide.estimatedCost}</Text>
+        </View>
       </View>
 
       <Text style={styles.sectionTitle}>{t("transportation.stepByStep")}</Text>
@@ -143,6 +153,7 @@ export function TransportationScreen() {
   const route = useRoute<RouteProp<RouteParams, "Transportation">>();
   const outletId = route.params?.outletId;
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   const guides = transportationGuides.filter(
     (guide) => guide.outletId === outletId,
@@ -164,7 +175,14 @@ export function TransportationScreen() {
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[
+        styles.content,
+        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+      ]}
+      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+    >
       <Text style={styles.pageTitle}>{t("transportation.title")}</Text>
       <Text style={styles.pageSubtitle}>{t("transportation.subtitle")}</Text>
 
@@ -232,15 +250,35 @@ const styles = StyleSheet.create({
     marginBottom: 14,
   },
   infoRow: {
-    gap: 8,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
     marginBottom: 18,
   },
   infoBox: {
+    flexGrow: 1,
+    flexBasis: "47%",
     backgroundColor: "#F7F8FA",
     borderRadius: 14,
     padding: 12,
+  },
+  infoBoxFull: {
+    width: "100%",
+    backgroundColor: "#F7F8FA",
+    borderRadius: 14,
+    padding: 12,
+  },
+  infoLabel: {
+    color: "#7A8494",
+    fontSize: 12,
+    fontWeight: "800",
+    marginBottom: 4,
+    textTransform: "uppercase",
+  },
+  infoValue: {
     color: "#0B1F3A",
     fontWeight: "800",
+    lineHeight: 20,
   },
   sectionTitle: {
     fontSize: 18,

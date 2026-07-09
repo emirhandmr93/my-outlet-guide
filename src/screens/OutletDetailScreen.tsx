@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { BrandsCard } from "../components/cards/BrandsCard";
 import { MapsCard } from "../components/cards/MapsCard";
@@ -85,6 +86,7 @@ export function OutletDetailScreen() {
   const route = useRoute<RouteProp<RouteParams, "OutletDetail">>();
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const { reviews, deleteReview, reportReview, toggleHelpful } = useReviews();
   const { currentUser, isLoggedIn } = useUser();
   const { toggleFavorite, isFavorite } = useFavorites();
@@ -217,7 +219,11 @@ export function OutletDetailScreen() {
     <ScrollView
       ref={scrollRef}
       style={styles.container}
-      contentContainerStyle={styles.content}
+      contentContainerStyle={[
+        styles.content,
+        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+      ]}
+      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
     >
       <OutletHero
         name={outlet.name}
