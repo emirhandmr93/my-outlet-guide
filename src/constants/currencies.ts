@@ -19,4 +19,5 @@ export const currencies: Currency[] = [
 { currencyCode: "CZK", currencyName: "Czech Koruna", symbol: "Kč", currencyFlag: "🇨🇿" },
 { currencyCode: "HUF", currencyName: "Hungarian Forint", symbol: "Ft", currencyFlag: "🇭🇺" },
 { currencyCode: "RON", currencyName: "Romanian Leu", symbol: "lei", currencyFlag: "🇷🇴" },
+{ currencyCode: "TRY", currencyName: "Turkish Lira", symbol: "₺", currencyFlag: "🇹🇷" },
 ];

@@ -11,7 +11,8 @@ export type CurrencyCode =
   | "NOK"
   | "CZK"
   | "HUF"
-  | "RON";
+  | "RON"
+  | "TRY";
 
 export type ExchangeRates = {
   baseCurrency: "EUR";
@@ -45,6 +46,7 @@ export const supportedCurrencyCodes: CurrencyCode[] = [
   "CZK",
   "HUF",
   "RON",
+  "TRY",
 ];
 
 const apiBaseUrl = "https://api.frankfurter.dev";
