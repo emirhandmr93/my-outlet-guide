@@ -42,7 +42,7 @@ const outletCardWidth = carouselWidth;
 const cityCardWidth = Math.round(screenWidth * 0.42);
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
-const homeBottomBreathingRoom = 72;
+const homeTabBarClearanceGap = 72;
 
 type HomeRouteItem = {
   id: string;
@@ -287,7 +287,7 @@ export function HomeScreen() {
     floatingTabBarHeight + floatingTabBarBottomOffset,
   );
   const homeBottomSpacer =
-    insets.bottom + floatingTabBarFootprint + homeBottomBreathingRoom;
+    insets.bottom + floatingTabBarFootprint + homeTabBarClearanceGap;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -368,7 +368,7 @@ export function HomeScreen() {
           styles.content,
           {
             paddingTop: insets.top + spacing.md,
-            paddingBottom: homeBottomSpacer,
+            paddingBottom: 0,
           },
         ]}
       >
@@ -617,6 +617,8 @@ export function HomeScreen() {
             );
           })}
         </ScrollView>
+
+        <View style={[styles.bottomTabSpacer, { height: homeBottomSpacer }]} />
       </ScrollView>
 
       <View
@@ -685,10 +687,11 @@ const styles = StyleSheet.create({
   content: {
     padding: spacing.xl,
     paddingTop: spacing.md,
-    paddingBottom:
-      floatingTabBarHeight +
-      floatingTabBarBottomOffset +
-      homeBottomBreathingRoom,
+    paddingBottom: 0,
+  },
+
+  bottomTabSpacer: {
+    flexShrink: 0,
   },
 
   statusBarScrim: {
