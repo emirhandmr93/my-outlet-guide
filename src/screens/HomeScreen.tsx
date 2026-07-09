@@ -1,3 +1,4 @@
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -9,6 +10,7 @@ import {
   Modal,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  Platform,
   ScrollView,
   Share,
   StyleSheet,
@@ -39,8 +41,8 @@ const carouselWidth = screenWidth - spacing.xl * 2;
 const outletCardWidth = carouselWidth;
 const cityCardWidth = Math.round(screenWidth * 0.42);
 const floatingTabBarHeight = 76;
-const floatingTabBarBottomOffset = 18;
-const homeBottomBreathingRoom = 64;
+const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
+const homeBottomBreathingRoom = 72;
 
 type HomeRouteItem = {
   id: string;
@@ -254,6 +256,7 @@ function getOutletCardImageSource(
 
 export function HomeScreen() {
   const navigation = useNavigation<any>();
+  const tabBarHeight = useBottomTabBarHeight();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { trips } = useTrips();
@@ -279,6 +282,12 @@ export function HomeScreen() {
     return searchApp(normalizedQuery, 6);
   }, [searchQuery]);
   const showSearchSuggestions = searchQuery.trim().length >= 2;
+  const floatingTabBarFootprint = Math.max(
+    tabBarHeight,
+    floatingTabBarHeight + floatingTabBarBottomOffset,
+  );
+  const homeBottomSpacer =
+    insets.bottom + floatingTabBarFootprint + homeBottomBreathingRoom;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -353,18 +362,13 @@ export function HomeScreen() {
         contentInsetAdjustmentBehavior="never"
         scrollIndicatorInsets={{
           top: insets.top,
-          bottom:
-            insets.bottom + floatingTabBarHeight + floatingTabBarBottomOffset,
+          bottom: homeBottomSpacer,
         }}
         contentContainerStyle={[
           styles.content,
           {
             paddingTop: insets.top + spacing.md,
-            paddingBottom:
-              insets.bottom +
-              floatingTabBarHeight +
-              floatingTabBarBottomOffset +
-              homeBottomBreathingRoom,
+            paddingBottom: homeBottomSpacer,
           },
         ]}
       >
