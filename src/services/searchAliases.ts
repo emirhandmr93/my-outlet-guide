@@ -1,3 +1,4 @@
+import { countries } from "../constants/countries";
 import { getLocalizedLocationSearchValues } from "../utils/locationDisplay";
 
 const localizedSearchAliasEntries: Array<[string, string[]]> = [
@@ -28,6 +29,14 @@ export function normalizeSearchText(value: string) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+export function normalizeExactCountryAlias(value: string) {
+  return normalizeSearchText(value)
+    .replace(/[’'`´]/g, " ")
+    .replace(/[\p{P}\p{S}]+/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export function getLocalizedSearchAliases(value: string): string[] {
   const normalizedValue = normalizeSearchText(value);
   const matches = localizedSearchAliasEntries
@@ -45,14 +54,36 @@ export function expandSearchValues(value: string): string[] {
   return Array.from(new Set([value, ...getLocalizedSearchAliases(value), ...getLocalizedLocationSearchValues(value)]));
 }
 
-export function getStrongLocalizedCountryMatch(value: string): string | null {
-  const normalizedValue = normalizeSearchText(value);
+export type ExactCountryIntent = {
+  countryId: string;
+  countryName: string;
+};
+
+function getCountryIdForCanonicalName(canonicalName: string) {
+  const normalizedCanonical = normalizeExactCountryAlias(canonicalName);
+  return countries.find(
+    (country) => normalizeExactCountryAlias(country.countryName) === normalizedCanonical,
+  )?.countryId ?? normalizedCanonical.replace(/\s+/g, "-");
+}
+
+export function getExactLocalizedCountryIntent(value: string): ExactCountryIntent | null {
+  const normalizedValue = normalizeExactCountryAlias(value);
+  if (!normalizedValue) return null;
 
   const match = localizedSearchAliasEntries.find(
     ([canonical, aliases]) =>
-      normalizeSearchText(canonical) === normalizedValue ||
-      aliases.some((alias) => normalizeSearchText(alias) === normalizedValue),
+      normalizeExactCountryAlias(canonical) === normalizedValue ||
+      aliases.some((alias) => normalizeExactCountryAlias(alias) === normalizedValue),
   );
 
-  return match?.[0] ?? null;
+  if (!match) return null;
+
+  return {
+    countryId: getCountryIdForCanonicalName(match[0]),
+    countryName: match[0],
+  };
+}
+
+export function getStrongLocalizedCountryMatch(value: string): string | null {
+  return getExactLocalizedCountryIntent(value)?.countryName ?? null;
 }
