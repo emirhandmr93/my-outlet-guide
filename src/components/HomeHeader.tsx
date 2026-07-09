@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 import { outlets } from "../constants/outlets";
+import { languages } from "../constants/languages";
 import { useTranslation } from "../hooks/useTranslation";
 import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
@@ -62,7 +63,9 @@ export function HomeHeader({
   onPressNotifications,
   onPressLanguage,
 }: HomeHeaderProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const selectedLanguage =
+    languages.find((item) => item.languageCode === language) ?? languages[0];
   const title = getGreeting(t, userName, isGuest);
   const subtitle =
     isGuest || !userName
@@ -103,7 +106,9 @@ export function HomeHeader({
             activeOpacity={0.84}
             onPress={onPressLanguage}
           >
-            <Text style={styles.languageText}>🇬🇧 EN</Text>
+            <Text style={styles.languageText}>
+              {selectedLanguage.flag} {selectedLanguage.languageCode.toUpperCase()}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
