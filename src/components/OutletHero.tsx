@@ -33,11 +33,12 @@ export function OutletHero({
   onPressGalleryImage,
 }: OutletHeroProps) {
   const hasSelectedImage = Boolean(selectedImage);
-  const images = galleryImages.length > 0
-    ? galleryImages
-    : selectedImage
-      ? [selectedImage]
-      : [];
+  const images =
+    galleryImages.length > 0
+      ? galleryImages
+      : selectedImage
+        ? [selectedImage]
+        : [];
 
   return (
     <View style={styles.wrapper}>
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
   },
 
   heroWrap: {
-    height: 318,
+    minHeight: 318,
     borderRadius: radius.hero,
     overflow: "hidden",
     backgroundColor: colors.primary,
@@ -134,7 +135,7 @@ const styles = StyleSheet.create({
 
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(11,31,58,0.42)",
+    backgroundColor: "rgba(11,31,58,0.52)",
   },
 
   kickerPill: {
@@ -160,6 +161,7 @@ const styles = StyleSheet.create({
     left: spacing.lg,
     right: spacing.lg,
     bottom: spacing.xl,
+    maxWidth: "92%",
   },
 
   title: {
@@ -169,6 +171,7 @@ const styles = StyleSheet.create({
     fontWeight: typography.weightBlack,
     flexShrink: 1,
     letterSpacing: -0.8,
+    flexWrap: "wrap",
   },
 
   location: {
@@ -177,12 +180,14 @@ const styles = StyleSheet.create({
     fontWeight: typography.weightBlack,
     lineHeight: typography.lineBody,
     flexShrink: 1,
+    flexWrap: "wrap",
     marginTop: spacing.xs,
   },
 
   galleryContent: {
     gap: spacing.sm,
     paddingTop: spacing.md,
+    paddingRight: spacing.xl,
   },
 
   galleryImage: {

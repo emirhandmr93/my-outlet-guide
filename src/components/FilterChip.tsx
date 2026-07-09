@@ -11,7 +11,12 @@ type FilterChipProps = {
   onPress?: () => void;
 };
 
-export function FilterChip({ label, icon, onRemove, onPress }: FilterChipProps) {
+export function FilterChip({
+  label,
+  icon,
+  onRemove,
+  onPress,
+}: FilterChipProps) {
   return (
     <View style={styles.wrapper}>
       <TouchableOpacity
@@ -59,6 +64,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: radius.pill,
     paddingLeft: spacing.md,
     paddingRight: spacing.lg,
+    maxWidth: "100%",
     borderWidth: 1,
     borderColor: colors.gold,
   },
@@ -72,6 +78,7 @@ const styles = StyleSheet.create({
     fontWeight: typography.weightBlack,
     lineHeight: typography.lineCaption,
     flexShrink: 1,
+    flexWrap: "wrap",
   },
   removeButton: {
     minWidth: 40,

@@ -1,4 +1,11 @@
-import { StyleProp, StyleSheet, Text, TouchableOpacity, View, ViewStyle } from "react-native";
+import {
+  StyleProp,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
@@ -13,11 +20,24 @@ type TagChipProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-export function TagChip({ label, icon, active = false, muted = false, onPress, style }: TagChipProps) {
+export function TagChip({
+  label,
+  icon,
+  active = false,
+  muted = false,
+  onPress,
+  style,
+}: TagChipProps) {
   const content = (
     <>
       {icon ? <Text style={styles.icon}>{icon}</Text> : null}
-      <Text style={[styles.text, active && styles.textActive, muted && styles.textMuted]}>
+      <Text
+        style={[
+          styles.text,
+          active && styles.textActive,
+          muted && styles.textMuted,
+        ]}
+      >
         {label}
       </Text>
     </>
@@ -26,7 +46,12 @@ export function TagChip({ label, icon, active = false, muted = false, onPress, s
   if (onPress) {
     return (
       <TouchableOpacity
-        style={[styles.chip, active && styles.chipActive, muted && styles.chipMuted, style]}
+        style={[
+          styles.chip,
+          active && styles.chipActive,
+          muted && styles.chipMuted,
+          style,
+        ]}
         activeOpacity={0.84}
         onPress={onPress}
         accessibilityRole="button"
@@ -38,7 +63,18 @@ export function TagChip({ label, icon, active = false, muted = false, onPress, s
     );
   }
 
-  return <View style={[styles.chip, active && styles.chipActive, muted && styles.chipMuted, style]}>{content}</View>;
+  return (
+    <View
+      style={[
+        styles.chip,
+        active && styles.chipActive,
+        muted && styles.chipMuted,
+        style,
+      ]}
+    >
+      {content}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -55,6 +91,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     marginRight: spacing.sm,
     marginBottom: spacing.sm,
+    maxWidth: "100%",
   },
   chipActive: {
     backgroundColor: colors.goldSoft,
@@ -73,6 +110,7 @@ const styles = StyleSheet.create({
     fontWeight: typography.weightBold,
     lineHeight: typography.lineCaption,
     flexShrink: 1,
+    flexWrap: "wrap",
   },
   textActive: {
     color: colors.primary,

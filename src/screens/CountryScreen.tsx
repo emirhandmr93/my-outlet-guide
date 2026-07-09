@@ -217,7 +217,7 @@ export function CountryScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
-  content: { padding: 20, paddingTop: 64, paddingBottom: 120 },
+  content: { padding: 20, paddingTop: 64, paddingBottom: 152 },
   heroCard: {
     backgroundColor: "#0B1F3A",
     borderRadius: 30,
@@ -276,9 +276,9 @@ const styles = StyleSheet.create({
     borderColor: "#E5E7EB",
     marginBottom: 12,
   },
-  outletImage: { width: "100%", height: 150, backgroundColor: "#E5E7EB" },
+  outletImage: { width: "100%", height: 168, backgroundColor: "#E5E7EB" },
   outletImagePlaceholder: {
-    height: 140,
+    height: 168,
     backgroundColor: "#0B1F3A",
     alignItems: "center",
     justifyContent: "center",
@@ -288,6 +288,8 @@ const styles = StyleSheet.create({
   cardTopRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "flex-start",
+    gap: 12,
     marginBottom: 10,
   },
   cardBadge: {
@@ -299,13 +301,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "900",
     overflow: "hidden",
+    flexShrink: 1,
+    maxWidth: "62%",
   },
-  rating: { color: "#C9A227", fontWeight: "900" },
+  rating: { color: "#C9A227", fontWeight: "900", flexShrink: 0 },
   cardActions: { flexDirection: "row", alignItems: "center", gap: 10 },
   favoriteButton: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: "#F7F8FA",
     alignItems: "center",
     justifyContent: "center",
@@ -317,12 +321,19 @@ const styles = StyleSheet.create({
     borderColor: "#C9A227",
   },
   favoriteButtonText: { color: "#C9A227", fontSize: 20, fontWeight: "900" },
-  cardTitle: { fontSize: 18, fontWeight: "900", color: "#0B1F3A" },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: "900",
+    color: "#0B1F3A",
+    lineHeight: 23,
+    flexShrink: 1,
+  },
   cardText: {
     marginTop: 6,
     color: "#666666",
     lineHeight: 21,
     fontWeight: "600",
+    flexShrink: 1,
   },
   tapText: { marginTop: 12, color: "#0B1F3A", fontWeight: "900" },
   actionButton: {

@@ -603,7 +603,7 @@ const styles = StyleSheet.create({
   content: {
     padding: spacing.xl,
     paddingTop: 64,
-    paddingBottom: 120,
+    paddingBottom: 168,
   },
 
   galleryModal: {
@@ -704,16 +704,20 @@ const styles = StyleSheet.create({
     fontSize: 13,
     textTransform: "capitalize",
     overflow: "hidden",
+    flexShrink: 1,
   },
 
   ctaRow: {
     flexDirection: "row",
+    flexWrap: "wrap",
     gap: spacing.sm,
     marginBottom: spacing.md,
   },
 
   ctaButton: {
-    flex: 1,
+    flexGrow: 1,
+    flexBasis: "30%",
+    minWidth: 104,
     backgroundColor: colors.primary,
     borderRadius: radius.xl,
     paddingVertical: spacing.md,
@@ -739,6 +743,7 @@ const styles = StyleSheet.create({
     fontSize: typography.caption,
     fontWeight: typography.weightBlack,
     textAlign: "center",
+    flexShrink: 1,
   },
 
   anchorRow: {
@@ -759,6 +764,7 @@ const styles = StyleSheet.create({
     fontSize: typography.caption,
     fontWeight: typography.weightBlack,
     overflow: "hidden",
+    flexShrink: 1,
   },
 
   reviewCard: {

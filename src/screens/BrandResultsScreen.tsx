@@ -1,5 +1,6 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -14,6 +15,8 @@ import { countries } from "../constants/countries";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
+import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getCityName, getCountryName } from "../services/locationService";
 import { requireAuth } from "../utils/requireAuth";
 
@@ -38,8 +41,14 @@ function OutletCard({
   onToggleFavorite: () => void;
 }) {
   const { t } = useTranslation();
+  const heroImage = getOutletCardHeroImage(outlet, {
+    mode: getConfiguredOutletMediaMode(),
+  });
   return (
     <TouchableOpacity style={styles.card} activeOpacity={0.9} onPress={onPress}>
+      {heroImage ? (
+        <Image source={getImageSource(heroImage)} style={styles.outletImage} />
+      ) : null}
       <View style={styles.outletContent}>
         <View style={styles.outletHeaderRow}>
           <Text style={styles.outletName}>{outlet.name}</Text>
@@ -48,13 +57,18 @@ function OutletCard({
             accessibilityLabel={
               isFavorite ? t("outlet.removeFavorite") : t("outlet.addFavorite")
             }
-            style={[styles.favoriteButton, isFavorite && styles.favoriteButtonActive]}
+            style={[
+              styles.favoriteButton,
+              isFavorite && styles.favoriteButtonActive,
+            ]}
             onPress={(event) => {
               event.stopPropagation();
               onToggleFavorite();
             }}
           >
-            <Text style={styles.favoriteButtonText}>{isFavorite ? "♥" : "♡"}</Text>
+            <Text style={styles.favoriteButtonText}>
+              {isFavorite ? "♥" : "♡"}
+            </Text>
           </TouchableOpacity>
         </View>
         <Text style={styles.outletLocation}>
@@ -219,7 +233,7 @@ export function BrandResultsScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
-  content: { padding: 20, paddingTop: 64, paddingBottom: 120 },
+  content: { padding: 20, paddingTop: 64, paddingBottom: 152 },
 
   heroCard: {
     backgroundColor: "#0B1F3A",
@@ -276,12 +290,15 @@ const styles = StyleSheet.create({
 
   countryContent: {
     flex: 1,
+    minWidth: 0,
   },
 
   countryName: {
     color: "#0B1F3A",
     fontSize: 18,
     fontWeight: "900",
+    lineHeight: 23,
+    flexShrink: 1,
   },
 
   countryMeta: {
@@ -306,6 +323,8 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
 
+  outletImage: { width: "100%", height: 156, backgroundColor: "#E5E7EB" },
+
   outletContent: { padding: 18 },
   outletHeaderRow: {
     flexDirection: "row",
@@ -316,14 +335,16 @@ const styles = StyleSheet.create({
 
   outletName: {
     flex: 1,
+    minWidth: 0,
     fontSize: 18,
     fontWeight: "900",
     color: "#0B1F3A",
+    lineHeight: 23,
   },
   favoriteButton: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: "#F7F8FA",
     alignItems: "center",
     justifyContent: "center",
@@ -340,6 +361,8 @@ const styles = StyleSheet.create({
     marginTop: 6,
     color: "#666666",
     fontWeight: "700",
+    lineHeight: 20,
+    flexShrink: 1,
   },
 
   tapText: {

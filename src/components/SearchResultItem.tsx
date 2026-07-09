@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border,
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
     minHeight: 76,
   },
 
@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginRight: spacing.md,
+    marginTop: 2,
   },
 
   icon: {
@@ -89,6 +90,8 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: typography.bodyLarge,
     fontWeight: typography.weightBlack,
+    lineHeight: typography.lineBody,
+    flexShrink: 1,
   },
 
   subtitle: {
@@ -105,5 +108,6 @@ const styles = StyleSheet.create({
     fontSize: typography.h2,
     fontWeight: typography.weightBold,
     marginLeft: spacing.sm,
+    marginTop: 10,
   },
 });

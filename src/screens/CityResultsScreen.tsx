@@ -86,19 +86,28 @@ function OutletResultCard({
               : t("city.limited")}
           </Text>
           <View style={styles.cardActions}>
-            {displayRating ? <Text style={styles.rating}>★ {displayRating}</Text> : null}
+            {displayRating ? (
+              <Text style={styles.rating}>★ {displayRating}</Text>
+            ) : null}
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityLabel={
-                isFavorite ? t("outlet.removeFavorite") : t("outlet.addFavorite")
+                isFavorite
+                  ? t("outlet.removeFavorite")
+                  : t("outlet.addFavorite")
               }
-              style={[styles.favoriteButton, isFavorite && styles.favoriteButtonActive]}
+              style={[
+                styles.favoriteButton,
+                isFavorite && styles.favoriteButtonActive,
+              ]}
               onPress={(event) => {
                 event.stopPropagation();
                 onToggleFavorite();
               }}
             >
-              <Text style={styles.favoriteButtonText}>{isFavorite ? "♥" : "♡"}</Text>
+              <Text style={styles.favoriteButtonText}>
+                {isFavorite ? "♥" : "♡"}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -216,7 +225,7 @@ export function CityResultsScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
-  content: { padding: 20, paddingTop: 64, paddingBottom: 120 },
+  content: { padding: 20, paddingTop: 64, paddingBottom: 152 },
   heroCard: {
     backgroundColor: "#0B1F3A",
     borderRadius: 30,
@@ -237,9 +246,16 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   heroText: { color: "#D8DEE9", fontSize: 15, lineHeight: 22 },
-  statsRow: { flexDirection: "row", gap: 10, marginBottom: 18 },
+  statsRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
+    marginBottom: 18,
+  },
   statCard: {
-    flex: 1,
+    flexGrow: 1,
+    flexBasis: "30%",
+    minWidth: 96,
     backgroundColor: "#FFFFFF",
     borderRadius: 20,
     padding: 14,
@@ -268,9 +284,9 @@ const styles = StyleSheet.create({
     borderColor: "#E5E7EB",
     marginBottom: 12,
   },
-  outletImage: { width: "100%", height: 150, backgroundColor: "#E5E7EB" },
+  outletImage: { width: "100%", height: 168, backgroundColor: "#E5E7EB" },
   outletImagePlaceholder: {
-    height: 140,
+    height: 168,
     backgroundColor: "#0B1F3A",
     alignItems: "center",
     justifyContent: "center",
@@ -288,6 +304,8 @@ const styles = StyleSheet.create({
   cardTopRow: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "flex-start",
+    gap: 12,
     marginBottom: 10,
   },
   cardBadge: {
@@ -299,13 +317,15 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "900",
     overflow: "hidden",
+    flexShrink: 1,
+    maxWidth: "62%",
   },
-  rating: { color: "#C9A227", fontWeight: "900" },
+  rating: { color: "#C9A227", fontWeight: "900", flexShrink: 0 },
   cardActions: { flexDirection: "row", alignItems: "center", gap: 10 },
   favoriteButton: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: "#F7F8FA",
     alignItems: "center",
     justifyContent: "center",
@@ -322,8 +342,15 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     color: "#0B1F3A",
     marginBottom: 6,
+    lineHeight: 24,
+    flexShrink: 1,
   },
-  cardText: { color: "#666666", lineHeight: 21, fontWeight: "600" },
+  cardText: {
+    color: "#666666",
+    lineHeight: 21,
+    fontWeight: "600",
+    flexShrink: 1,
+  },
   dateText: { marginTop: 10, color: "#C9A227", fontWeight: "900" },
   tapText: { marginTop: 12, color: "#0B1F3A", fontWeight: "900" },
   emptyCard: {
