@@ -101,6 +101,65 @@ function getFallbackSteps(guide: any, t: (key: string) => string) {
   ];
 }
 
+function isLikelyEnglishProse(value: string) {
+  return /\b(check|confirm|official|provider|parking|free|fare|timetable|arrival|follow|shuttle|station|return|guest services)\b/i.test(
+    value,
+  );
+}
+
+function formatTransportationValue(
+  value: string,
+  t: (key: string) => string,
+  language: string,
+) {
+  if (language !== "tr") return value;
+  const normalized = String(value || "")
+    .trim()
+    .toLowerCase();
+  if (!normalized) return value;
+  if (normalized === "free" || normalized === "free parking")
+    return t("service.label.freeParking");
+  if (
+    normalized.includes("confirm") ||
+    normalized.includes("provider") ||
+    normalized.includes("timetable")
+  )
+    return t("transportation.safeInstruction");
+  if (normalized.includes("parking free"))
+    return t("transportation.safeInstruction");
+  return value;
+}
+
+function formatRouteTitle(
+  title: string,
+  type: string,
+  t: (key: string) => string,
+  language: string,
+) {
+  if (language !== "tr") return title;
+  return String(title || "")
+    .replace(/Cologne city center to/gi, "Köln şehir merkezinden")
+    .replace(/city center to/gi, "şehir merkezinden")
+    .replace(/ by Car/gi, " araçla")
+    .replace(/ by Train/gi, " trenle")
+    .replace(/ by Shuttle Bus/gi, " servisle")
+    .replace(/^Car to /i, "Araçla ")
+    .replace(/^Train to /i, "Trenle ")
+    .replace(/^Shuttle bus to /i, "Servisle ");
+}
+
+function formatStepDescription(
+  description: string,
+  t: (key: string) => string,
+  language: string,
+) {
+  const value = String(description || "");
+  if (language === "tr" && (value.length > 90 || isLikelyEnglishProse(value))) {
+    return t("transportation.safeInstruction");
+  }
+  return value;
+}
+
 type RouteParams = {
   Transportation: {
     outletId: string;
@@ -124,7 +183,9 @@ function RouteGuideCard({
       {isRecommended ? (
         <Text style={styles.badge}>{t("transportation.recommendedRoute")}</Text>
       ) : null}
-      <Text style={styles.routeTitle}>{guide.title}</Text>
+      <Text style={styles.routeTitle}>
+        {formatRouteTitle(guide.title, guide.transportationType, t, language)}
+      </Text>
 
       <View style={styles.infoRow}>
         <View style={styles.infoBox}>
@@ -135,11 +196,15 @@ function RouteGuideCard({
         </View>
         <View style={styles.infoBox}>
           <Text style={styles.infoLabel}>{t("transportation.duration")}</Text>
-          <Text style={styles.infoValue}>⏱️ {guide.estimatedDuration}</Text>
+          <Text style={styles.infoValue}>
+            ⏱️ {formatTransportationValue(guide.estimatedDuration, t, language)}
+          </Text>
         </View>
         <View style={styles.infoBoxFull}>
           <Text style={styles.infoLabel}>{t("transportation.cost")}</Text>
-          <Text style={styles.infoValue}>💰 {guide.estimatedCost}</Text>
+          <Text style={styles.infoValue}>
+            💰 {formatTransportationValue(guide.estimatedCost, t, language)}
+          </Text>
         </View>
       </View>
 
@@ -148,9 +213,7 @@ function RouteGuideCard({
         <View key={`${guide.guideId}-${step.order}`} style={styles.stepRow}>
           <Text style={styles.stepNumber}>{step.order}</Text>
           <Text style={styles.stepText}>
-            {language === "tr" && String(step.description || "").length > 90
-              ? t("transportation.safeInstruction")
-              : step.description}
+            {formatStepDescription(step.description, t, language)}
           </Text>
         </View>
       ))}
@@ -184,40 +247,55 @@ export function TransportationScreen() {
   }
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={[
-        styles.content,
-        {
-          paddingTop: getScreenTopInset(insets.top),
-          paddingBottom: getFloatingTabClearance(insets.bottom),
-        },
-      ]}
-      scrollIndicatorInsets={{
-        top: getScreenTopInset(insets.top),
-        bottom: getScrollIndicatorBottomInset(insets.bottom),
-      }}
-    >
-      <Text style={styles.pageTitle}>{t("transportation.title")}</Text>
-      <Text style={styles.pageSubtitle}>{t("transportation.subtitle")}</Text>
+    <View style={styles.screenRoot}>
+      <View
+        pointerEvents="none"
+        style={[styles.topSafeScrim, { height: insets.top }]}
+      />
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={[
+          styles.content,
+          {
+            paddingTop: getScreenTopInset(insets.top),
+            paddingBottom: getFloatingTabClearance(insets.bottom),
+          },
+        ]}
+        scrollIndicatorInsets={{
+          top: getScreenTopInset(insets.top),
+          bottom: getScrollIndicatorBottomInset(insets.bottom),
+        }}
+      >
+        <Text style={styles.pageTitle}>{t("transportation.title")}</Text>
+        <Text style={styles.pageSubtitle}>{t("transportation.subtitle")}</Text>
 
-      <RouteGuideCard guide={recommendedGuide} isRecommended />
+        <RouteGuideCard guide={recommendedGuide} isRecommended />
 
-      {otherGuides.length > 0 ? (
-        <>
-          <Text style={styles.sectionTitleOutside}>
-            {t("transportation.otherOptions")}
-          </Text>
-          {otherGuides.map((guide) => (
-            <RouteGuideCard key={guide.guideId} guide={guide} />
-          ))}
-        </>
-      ) : null}
-    </ScrollView>
+        {otherGuides.length > 0 ? (
+          <>
+            <Text style={styles.sectionTitleOutside}>
+              {t("transportation.otherOptions")}
+            </Text>
+            {otherGuides.map((guide) => (
+              <RouteGuideCard key={guide.guideId} guide={guide} />
+            ))}
+          </>
+        ) : null}
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  screenRoot: { flex: 1, backgroundColor: "#F7F8FA" },
+  topSafeScrim: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "#F7F8FA",
+    zIndex: 10,
+  },
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20, paddingTop: 60, paddingBottom: 120 },
   emptyContainer: {

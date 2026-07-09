@@ -1,9 +1,9 @@
 export const floatingTabBarHeight = 76;
 export const floatingTabBarBottomOffset = 18;
-export const floatingTabBarBreathingGap = 28;
+export const floatingTabBarBreathingGap = 44;
 
 export function getScreenTopInset(topInset: number) {
-  return topInset + 16;
+  return topInset + 24;
 }
 
 export function getFloatingTabClearance(bottomInset: number) {
@@ -16,5 +16,10 @@ export function getFloatingTabClearance(bottomInset: number) {
 }
 
 export function getScrollIndicatorBottomInset(bottomInset: number) {
-  return bottomInset + floatingTabBarBottomOffset + floatingTabBarHeight;
+  return (
+    bottomInset +
+    floatingTabBarBottomOffset +
+    floatingTabBarHeight +
+    floatingTabBarBreathingGap
+  );
 }

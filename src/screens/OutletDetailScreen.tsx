@@ -229,427 +229,442 @@ export function OutletDetailScreen() {
   }
 
   return (
-    <ScrollView
-      ref={scrollRef}
-      style={styles.container}
-      contentContainerStyle={[
-        styles.content,
-        {
-          paddingTop: getScreenTopInset(insets.top),
-          paddingBottom: getFloatingTabClearance(insets.bottom),
-        },
-      ]}
-      scrollIndicatorInsets={{
-        top: getScreenTopInset(insets.top),
-        bottom: getScrollIndicatorBottomInset(insets.bottom),
-      }}
-    >
-      <OutletHero
-        name={outlet.name}
-        location={`${cityNames[outlet.cityId] || outlet.cityId}, ${
-          countryNames[outlet.countryId] || outlet.countryId
-        }`}
-        selectedImage={selectedImage}
-        galleryImages={safeGalleryImages}
-        favoriteButtonText={
-          favorite ? t("outlet.removeFavorite") : t("outlet.addFavorite")
-        }
-        onPressHeroImage={() => {
-          if (selectedImage) {
-            setIsGalleryOpen(true);
-          }
-        }}
-        onPressGalleryImage={setSelectedImage}
-        onPressFavorite={() => {
-          if (!requireAuth({ isLoggedIn, navigation })) {
-            return;
-          }
-
-          toggleFavorite(outlet.outletId);
-        }}
+    <View style={styles.screenRoot}>
+      <View
+        pointerEvents="none"
+        style={[styles.topSafeScrim, { height: insets.top }]}
       />
-
-      <Modal visible={isGalleryOpen} animationType="fade">
-        <View style={styles.galleryModal}>
-          <TouchableOpacity
-            style={styles.galleryCloseButton}
-            onPress={() => setIsGalleryOpen(false)}
-          >
-            <Text style={styles.galleryCloseText}>
-              {t("outlet.galleryClose")}
-            </Text>
-          </TouchableOpacity>
-
-          <View style={styles.galleryModalImageWrapper}>
-            <TouchableOpacity
-              style={styles.galleryArrowLeft}
-              onPress={showPreviousImage}
-            >
-              <Text style={styles.galleryArrowText}>‹</Text>
-            </TouchableOpacity>
-
-            <ScrollView
-              style={styles.galleryZoomScroll}
-              contentContainerStyle={styles.galleryZoomContent}
-              maximumZoomScale={3}
-              minimumZoomScale={1}
-              showsHorizontalScrollIndicator={false}
-              showsVerticalScrollIndicator={false}
-            >
-              {selectedImage ? (
-                <Image
-                  source={getImageSource(selectedImage)}
-                  style={styles.galleryModalImage}
-                  resizeMode="contain"
-                />
-              ) : (
-                <View style={styles.galleryNoImagePlaceholder}>
-                  <Text style={styles.galleryNoImageIcon}>🛍️</Text>
-                </View>
-              )}
-            </ScrollView>
-
-            <TouchableOpacity
-              style={styles.galleryArrowRight}
-              onPress={showNextImage}
-            >
-              <Text style={styles.galleryArrowText}>›</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
-
-      <View style={styles.badgeRow}>
-        <Text style={styles.badge}>{getWeatherBadgeText()}</Text>
-        <Text style={styles.badge}>{outlet.status}</Text>
-        {averageRating ? (
-          <Text style={styles.badge}>⭐ {averageRating}</Text>
-        ) : null}
-      </View>
-
-      <View style={styles.ctaRow}>
-        <TouchableOpacity
-          activeOpacity={0.86}
-          style={[styles.ctaButton, favorite && styles.ctaButtonActive]}
-          onPress={() => {
+      <ScrollView
+        ref={scrollRef}
+        style={styles.container}
+        contentContainerStyle={[
+          styles.content,
+          {
+            paddingTop: getScreenTopInset(insets.top),
+            paddingBottom: getFloatingTabClearance(insets.bottom),
+          },
+        ]}
+        scrollIndicatorInsets={{
+          top: getScreenTopInset(insets.top),
+          bottom: getScrollIndicatorBottomInset(insets.bottom),
+        }}
+      >
+        <OutletHero
+          name={outlet.name}
+          location={`${cityNames[outlet.cityId] || outlet.cityId}, ${
+            countryNames[outlet.countryId] || outlet.countryId
+          }`}
+          selectedImage={selectedImage}
+          galleryImages={safeGalleryImages}
+          favoriteButtonText={
+            favorite ? t("outlet.removeFavorite") : t("outlet.addFavorite")
+          }
+          onPressHeroImage={() => {
+            if (selectedImage) {
+              setIsGalleryOpen(true);
+            }
+          }}
+          onPressGalleryImage={setSelectedImage}
+          onPressFavorite={() => {
             if (!requireAuth({ isLoggedIn, navigation })) {
               return;
             }
 
             toggleFavorite(outlet.outletId);
           }}
-        >
-          <Text style={styles.ctaIcon}>{favorite ? "♥" : "♡"}</Text>
-          <Text style={styles.ctaText}>
-            {favorite ? t("outlet.saved") : t("outlet.favorite")}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          activeOpacity={0.86}
-          style={styles.ctaButton}
-          onPress={() => {
-            if (!requireAuth({ isLoggedIn, navigation })) {
-              return;
-            }
-
-            navigation.navigate("CreateTrip", { outletId: outlet.outletId });
-          }}
-        >
-          <Text style={styles.ctaIcon}>🧳</Text>
-          <Text style={styles.ctaText}>{t("outlet.createTrip")}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          activeOpacity={0.86}
-          style={styles.ctaButton}
-          onPress={() => Linking.openURL(outlet.googleMapsUrl)}
-        >
-          <Text style={styles.ctaIcon}>📍</Text>
-          <Text style={styles.ctaText}>{t("outlet.directions")}</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.anchorRow}>
-        <TouchableOpacity
-          activeOpacity={0.86}
-          onPress={() => scrollToSection("overview")}
-        >
-          <Text style={styles.anchorPill}>{t("outlet.anchorOverview")}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.86}
-          onPress={() => scrollToSection("brands")}
-        >
-          <Text style={styles.anchorPill}>{t("outlet.anchorBrands")}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.86}
-          onPress={() => scrollToSection("transport")}
-        >
-          <Text style={styles.anchorPill}>{t("outlet.anchorTransport")}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.86}
-          onPress={() => scrollToSection("food")}
-        >
-          <Text style={styles.anchorPill}>{t("outlet.anchorFood")}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.86}
-          onPress={() => scrollToSection("reviews")}
-        >
-          <Text style={styles.anchorPill}>{t("outlet.anchorReviews")}</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View
-        onLayout={(event) =>
-          setSectionPosition("overview", event.nativeEvent.layout.y)
-        }
-      >
-        <QuickFactsCard
-          title={t("outlet.quickFacts")}
-          weather={weather}
-          weatherLoading={weatherLoading}
-          weatherError={weatherError}
-          weatherLoadingText={t("weather.loading")}
-          weatherUnavailableText={t("weather.unavailable")}
-          cityName={cityNames[outlet.cityId] || outlet.cityId}
-          openingHoursLabel={t("outlet.openingHours")}
-          openingHours={outlet.openingHours}
-          addressLabel={t("outlet.address")}
-          address={outlet.address}
-          storesCountText={outlet.storesCountText}
-          cityCenterDistanceKm={outlet.cityCenterDistanceKm}
-          airportDistanceKm={outlet.airportDistanceKm}
-          reviewCountLabel={t("outlet.reviewCount")}
-          reviewCount={outletReviews.length}
-          rating={averageRating ?? undefined}
-          airportSummary={airportSummary}
-          onPressStores={() => scrollToSection("brands")}
-          onPressTaxFree={() => scrollToSection("taxFree")}
-          onPressAirport={() => scrollToSection("transport")}
-          onPressRating={() => scrollToSection("reviews")}
         />
-      </View>
 
-      <View
-        onLayout={(event) =>
-          setSectionPosition("taxFree", event.nativeEvent.layout.y)
-        }
-      >
-        <TaxFreeCard
-          title={t("outlet.taxFree")}
-          vatRate={outlet.vatRate}
-          minimumSpend={outlet.minimumTaxFreeSpend}
-          officeInfo={outlet.taxFreeOfficeInfo}
-        />
-      </View>
+        <Modal visible={isGalleryOpen} animationType="fade">
+          <View style={styles.galleryModal}>
+            <TouchableOpacity
+              style={styles.galleryCloseButton}
+              onPress={() => setIsGalleryOpen(false)}
+            >
+              <Text style={styles.galleryCloseText}>
+                {t("outlet.galleryClose")}
+              </Text>
+            </TouchableOpacity>
 
-      <View
-        onLayout={(event) =>
-          setSectionPosition("brands", event.nativeEvent.layout.y)
-        }
-      >
-        <BrandsCard
-          title={t("outlet.brands")}
-          brandSearch={brandSearch}
-          setBrandSearch={setBrandSearch}
-          openCategory={openCategory}
-          setOpenCategory={setOpenCategory}
-          brandCategoryGroups={brandCategoryGroups}
-        />
-      </View>
+            <View style={styles.galleryModalImageWrapper}>
+              <TouchableOpacity
+                style={styles.galleryArrowLeft}
+                onPress={showPreviousImage}
+              >
+                <Text style={styles.galleryArrowText}>‹</Text>
+              </TouchableOpacity>
 
-      <View
-        onLayout={(event) =>
-          setSectionPosition("transport", event.nativeEvent.layout.y)
-        }
-      >
-        <TransportationCard
-          title={t("outlet.transportation")}
-          transportationItems={transportationItems}
-          notAvailableText={t("common.notAvailable")}
-          buttonText={t("outlet.viewTransportationGuide")}
-          onPressGuide={() =>
-            navigation.navigate("Transportation", {
-              outletId: outlet.outletId,
-            })
-          }
-        />
-      </View>
+              <ScrollView
+                style={styles.galleryZoomScroll}
+                contentContainerStyle={styles.galleryZoomContent}
+                maximumZoomScale={3}
+                minimumZoomScale={1}
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+              >
+                {selectedImage ? (
+                  <Image
+                    source={getImageSource(selectedImage)}
+                    style={styles.galleryModalImage}
+                    resizeMode="contain"
+                  />
+                ) : (
+                  <View style={styles.galleryNoImagePlaceholder}>
+                    <Text style={styles.galleryNoImageIcon}>🛍️</Text>
+                  </View>
+                )}
+              </ScrollView>
 
-      <MapsCard
-        title={t("outlet.maps")}
-        googleText={t("outlet.googleMaps")}
-        appleText={t("outlet.appleMaps")}
-        yandexText={t("outlet.yandexMaps")}
-        onPressGoogle={() => Linking.openURL(outlet.googleMapsUrl)}
-        onPressApple={() => Linking.openURL(outlet.appleMapsUrl)}
-        onPressYandex={() => Linking.openURL(outlet.yandexMapsUrl)}
-      />
-
-      <WebsiteCard
-        title={t("website.title")}
-        description={t("website.description")}
-        buttonText={t("website.visit")}
-        onPress={() => Linking.openURL(outlet.websiteUrl)}
-      />
-
-      <View
-        onLayout={(event) =>
-          setSectionPosition("food", event.nativeEvent.layout.y)
-        }
-      >
-        <RestaurantsCard
-          title={t("outlet.restaurantsCafes")}
-          restaurants={restaurantItems}
-          notAvailableText={t("common.notAvailable")}
-        />
-      </View>
-
-      <ServicesCard
-        title={t("outlet.services")}
-        services={outlet.services}
-        notAvailableText={t("common.notAvailable")}
-      />
-
-      <View
-        style={styles.reviewCard}
-        onLayout={(event) =>
-          setSectionPosition("reviews", event.nativeEvent.layout.y)
-        }
-      >
-        <View style={styles.reviewHeaderRow}>
-          <View style={styles.reviewHeaderText}>
-            <Text style={styles.sectionTitle}>{t("outlet.reviews")}</Text>
-            <Text style={styles.reviewSubtitle}>
-              {t("outlet.reviewSharePrompt")}
-            </Text>
+              <TouchableOpacity
+                style={styles.galleryArrowRight}
+                onPress={showNextImage}
+              >
+                <Text style={styles.galleryArrowText}>›</Text>
+              </TouchableOpacity>
+            </View>
           </View>
+        </Modal>
+
+        <View style={styles.badgeRow}>
+          <Text style={styles.badge}>{getWeatherBadgeText()}</Text>
+          <Text style={styles.badge}>{outlet.status}</Text>
+          {averageRating ? (
+            <Text style={styles.badge}>⭐ {averageRating}</Text>
+          ) : null}
+        </View>
+
+        <View style={styles.ctaRow}>
           <TouchableOpacity
             activeOpacity={0.86}
-            style={styles.writeReviewButton}
+            style={[styles.ctaButton, favorite && styles.ctaButtonActive]}
             onPress={() => {
-              if (requireAuth({ isLoggedIn, navigation })) {
-                navigation.navigate("WriteReview", {
-                  outletId: outlet.outletId,
-                });
+              if (!requireAuth({ isLoggedIn, navigation })) {
+                return;
               }
+
+              toggleFavorite(outlet.outletId);
             }}
           >
-            <Text style={styles.writeReviewButtonText}>
-              {t("writeReview.title")}
+            <Text style={styles.ctaIcon}>{favorite ? "♥" : "♡"}</Text>
+            <Text style={styles.ctaText}>
+              {favorite ? t("outlet.saved") : t("outlet.favorite")}
             </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.86}
+            style={styles.ctaButton}
+            onPress={() => {
+              if (!requireAuth({ isLoggedIn, navigation })) {
+                return;
+              }
+
+              navigation.navigate("CreateTrip", { outletId: outlet.outletId });
+            }}
+          >
+            <Text style={styles.ctaIcon}>🧳</Text>
+            <Text style={styles.ctaText}>{t("outlet.createTrip")}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.86}
+            style={styles.ctaButton}
+            onPress={() => Linking.openURL(outlet.googleMapsUrl)}
+          >
+            <Text style={styles.ctaIcon}>📍</Text>
+            <Text style={styles.ctaText}>{t("outlet.directions")}</Text>
           </TouchableOpacity>
         </View>
 
-        <ReviewStatsCard
-          summaryText={`⭐ ${averageRating || "0.0"} (${outletReviews.length} ${t(
-            "outlet.reviewLabel",
-          )})`}
-          transportationTitle={t("outlet.transportationRating")}
-          transportationValue={averageRating || "0.0"}
-          brandsTitle={t("outlet.brandsRating")}
-          brandsValue={averageRating || "0.0"}
-          restaurantsTitle={t("outlet.restaurantsRating")}
-          restaurantsValue={averageRating || "0.0"}
-          servicesTitle={t("outlet.servicesRating")}
-          servicesValue={averageRating || "0.0"}
-        />
-
-        <View style={styles.reviewSortRow}>
-          {[
-            { key: "helpful" as const, label: t("outlet.reviewSortHelpful") },
-            { key: "recent" as const, label: t("outlet.reviewSortRecent") },
-          ].map((item) => (
-            <TouchableOpacity
-              key={item.key}
-              activeOpacity={0.84}
-              style={[
-                styles.reviewSortPill,
-                reviewSort === item.key && styles.reviewSortPillActive,
-              ]}
-              onPress={() => setReviewSort(item.key)}
-            >
-              <Text
-                style={[
-                  styles.reviewSortText,
-                  reviewSort === item.key && styles.reviewSortTextActive,
-                ]}
-              >
-                {item.label}
-              </Text>
-            </TouchableOpacity>
-          ))}
+        <View style={styles.anchorRow}>
+          <TouchableOpacity
+            activeOpacity={0.86}
+            onPress={() => scrollToSection("overview")}
+          >
+            <Text style={styles.anchorPill}>{t("outlet.anchorOverview")}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.86}
+            onPress={() => scrollToSection("brands")}
+          >
+            <Text style={styles.anchorPill}>{t("outlet.anchorBrands")}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.86}
+            onPress={() => scrollToSection("transport")}
+          >
+            <Text style={styles.anchorPill}>{t("outlet.anchorTransport")}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.86}
+            onPress={() => scrollToSection("food")}
+          >
+            <Text style={styles.anchorPill}>{t("outlet.anchorFood")}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.86}
+            onPress={() => scrollToSection("reviews")}
+          >
+            <Text style={styles.anchorPill}>{t("outlet.anchorReviews")}</Text>
+          </TouchableOpacity>
         </View>
 
-        {outletReviews.length > 0 ? (
-          sortedReviews.map((review) => (
-            <ReviewItem
-              key={review.reviewId}
-              review={review}
-              currentUserId={currentUser?.userId}
-              editedText={t("outlet.edited")}
-              helpfulText={t("review.helpful")}
-              helpfulActiveText={t("review.helpfulActive")}
-              editText={t("common.edit")}
-              deleteText={t("common.delete")}
-              reportText={t("review.report")}
-              onHelpful={async () => {
-                if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
-                  try {
-                    await toggleHelpful(review, currentUser.userId);
-                  } catch (error) {
-                    showReviewActionError(error);
-                  }
+        <View
+          onLayout={(event) =>
+            setSectionPosition("overview", event.nativeEvent.layout.y)
+          }
+        >
+          <QuickFactsCard
+            title={t("outlet.quickFacts")}
+            weather={weather}
+            weatherLoading={weatherLoading}
+            weatherError={weatherError}
+            weatherLoadingText={t("weather.loading")}
+            weatherUnavailableText={t("weather.unavailable")}
+            cityName={cityNames[outlet.cityId] || outlet.cityId}
+            openingHoursLabel={t("outlet.openingHours")}
+            openingHours={outlet.openingHours}
+            addressLabel={t("outlet.address")}
+            address={outlet.address}
+            storesCountText={outlet.storesCountText}
+            cityCenterDistanceKm={outlet.cityCenterDistanceKm}
+            airportDistanceKm={outlet.airportDistanceKm}
+            reviewCountLabel={t("outlet.reviewCount")}
+            reviewCount={outletReviews.length}
+            rating={averageRating ?? undefined}
+            airportSummary={airportSummary}
+            onPressStores={() => scrollToSection("brands")}
+            onPressTaxFree={() => scrollToSection("taxFree")}
+            onPressAirport={() => scrollToSection("transport")}
+            onPressRating={() => scrollToSection("reviews")}
+          />
+        </View>
+
+        <View
+          onLayout={(event) =>
+            setSectionPosition("taxFree", event.nativeEvent.layout.y)
+          }
+        >
+          <TaxFreeCard
+            title={t("outlet.taxFree")}
+            vatRate={outlet.vatRate}
+            minimumSpend={outlet.minimumTaxFreeSpend}
+            officeInfo={outlet.taxFreeOfficeInfo}
+          />
+        </View>
+
+        <View
+          onLayout={(event) =>
+            setSectionPosition("brands", event.nativeEvent.layout.y)
+          }
+        >
+          <BrandsCard
+            title={t("outlet.brands")}
+            brandSearch={brandSearch}
+            setBrandSearch={setBrandSearch}
+            openCategory={openCategory}
+            setOpenCategory={setOpenCategory}
+            brandCategoryGroups={brandCategoryGroups}
+          />
+        </View>
+
+        <View
+          onLayout={(event) =>
+            setSectionPosition("transport", event.nativeEvent.layout.y)
+          }
+        >
+          <TransportationCard
+            title={t("outlet.transportation")}
+            transportationItems={transportationItems}
+            notAvailableText={t("common.notAvailable")}
+            buttonText={t("outlet.viewTransportationGuide")}
+            onPressGuide={() =>
+              navigation.navigate("Transportation", {
+                outletId: outlet.outletId,
+              })
+            }
+          />
+        </View>
+
+        <MapsCard
+          title={t("outlet.maps")}
+          googleText={t("outlet.googleMaps")}
+          appleText={t("outlet.appleMaps")}
+          yandexText={t("outlet.yandexMaps")}
+          onPressGoogle={() => Linking.openURL(outlet.googleMapsUrl)}
+          onPressApple={() => Linking.openURL(outlet.appleMapsUrl)}
+          onPressYandex={() => Linking.openURL(outlet.yandexMapsUrl)}
+        />
+
+        <WebsiteCard
+          title={t("website.title")}
+          description={t("website.description")}
+          buttonText={t("website.visit")}
+          onPress={() => Linking.openURL(outlet.websiteUrl)}
+        />
+
+        <View
+          onLayout={(event) =>
+            setSectionPosition("food", event.nativeEvent.layout.y)
+          }
+        >
+          <RestaurantsCard
+            title={t("outlet.restaurantsCafes")}
+            restaurants={restaurantItems}
+            notAvailableText={t("common.notAvailable")}
+          />
+        </View>
+
+        <ServicesCard
+          title={t("outlet.services")}
+          services={outlet.services}
+          notAvailableText={t("common.notAvailable")}
+        />
+
+        <View
+          style={styles.reviewCard}
+          onLayout={(event) =>
+            setSectionPosition("reviews", event.nativeEvent.layout.y)
+          }
+        >
+          <View style={styles.reviewHeaderRow}>
+            <View style={styles.reviewHeaderText}>
+              <Text style={styles.sectionTitle}>{t("outlet.reviews")}</Text>
+              <Text style={styles.reviewSubtitle}>
+                {t("outlet.reviewSharePrompt")}
+              </Text>
+            </View>
+            <TouchableOpacity
+              activeOpacity={0.86}
+              style={styles.writeReviewButton}
+              onPress={() => {
+                if (requireAuth({ isLoggedIn, navigation })) {
+                  navigation.navigate("WriteReview", {
+                    outletId: outlet.outletId,
+                  });
                 }
               }}
-              onEdit={() =>
-                navigation.navigate("WriteReview", {
-                  outletId: outlet.outletId,
-                  reviewId: review.reviewId,
-                })
-              }
-              onDelete={async () => {
-                if (currentUser) {
-                  try {
-                    await deleteReview(
-                      outlet.outletId,
-                      review.reviewId,
-                      currentUser.userId,
-                    );
-                  } catch (error) {
-                    showReviewActionError(error);
+            >
+              <Text style={styles.writeReviewButtonText}>
+                {t("writeReview.title")}
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <ReviewStatsCard
+            summaryText={`⭐ ${averageRating || "0.0"} (${outletReviews.length} ${t(
+              "outlet.reviewLabel",
+            )})`}
+            transportationTitle={t("outlet.transportationRating")}
+            transportationValue={averageRating || "0.0"}
+            brandsTitle={t("outlet.brandsRating")}
+            brandsValue={averageRating || "0.0"}
+            restaurantsTitle={t("outlet.restaurantsRating")}
+            restaurantsValue={averageRating || "0.0"}
+            servicesTitle={t("outlet.servicesRating")}
+            servicesValue={averageRating || "0.0"}
+          />
+
+          <View style={styles.reviewSortRow}>
+            {[
+              { key: "helpful" as const, label: t("outlet.reviewSortHelpful") },
+              { key: "recent" as const, label: t("outlet.reviewSortRecent") },
+            ].map((item) => (
+              <TouchableOpacity
+                key={item.key}
+                activeOpacity={0.84}
+                style={[
+                  styles.reviewSortPill,
+                  reviewSort === item.key && styles.reviewSortPillActive,
+                ]}
+                onPress={() => setReviewSort(item.key)}
+              >
+                <Text
+                  style={[
+                    styles.reviewSortText,
+                    reviewSort === item.key && styles.reviewSortTextActive,
+                  ]}
+                >
+                  {item.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
+          {outletReviews.length > 0 ? (
+            sortedReviews.map((review) => (
+              <ReviewItem
+                key={review.reviewId}
+                review={review}
+                currentUserId={currentUser?.userId}
+                editedText={t("outlet.edited")}
+                helpfulText={t("review.helpful")}
+                helpfulActiveText={t("review.helpfulActive")}
+                editText={t("common.edit")}
+                deleteText={t("common.delete")}
+                reportText={t("review.report")}
+                onHelpful={async () => {
+                  if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
+                    try {
+                      await toggleHelpful(review, currentUser.userId);
+                    } catch (error) {
+                      showReviewActionError(error);
+                    }
                   }
+                }}
+                onEdit={() =>
+                  navigation.navigate("WriteReview", {
+                    outletId: outlet.outletId,
+                    reviewId: review.reviewId,
+                  })
                 }
-              }}
-              onReport={async () => {
-                if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
-                  try {
-                    await reportReview(
-                      outlet.outletId,
-                      review.reviewId,
-                      currentUser.userId,
-                      "other",
-                    );
-                  } catch (error) {
-                    showReviewActionError(error);
+                onDelete={async () => {
+                  if (currentUser) {
+                    try {
+                      await deleteReview(
+                        outlet.outletId,
+                        review.reviewId,
+                        currentUser.userId,
+                      );
+                    } catch (error) {
+                      showReviewActionError(error);
+                    }
                   }
-                }
-              }}
-            />
-          ))
-        ) : (
-          <Text style={styles.emptyText}>{t("outlet.noReviews")}</Text>
-        )}
-      </View>
-    </ScrollView>
+                }}
+                onReport={async () => {
+                  if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
+                    try {
+                      await reportReview(
+                        outlet.outletId,
+                        review.reviewId,
+                        currentUser.userId,
+                        "other",
+                      );
+                    } catch (error) {
+                      showReviewActionError(error);
+                    }
+                  }
+                }}
+              />
+            ))
+          ) : (
+            <Text style={styles.emptyText}>{t("outlet.noReviews")}</Text>
+          )}
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  screenRoot: { flex: 1, backgroundColor: colors.background },
+  topSafeScrim: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: colors.background,
+    zIndex: 10,
+  },
   container: {
     flex: 1,
     backgroundColor: colors.background,

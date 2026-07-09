@@ -7,6 +7,7 @@ import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { useTranslation } from "../../hooks/useTranslation";
+import { formatBrandCategoryLabel } from "../../utils/brandCategoryLabelFormatter";
 
 type BrandsCardProps = {
   title: string;
@@ -97,7 +98,7 @@ export function BrandsCard({
               <View style={styles.categoryTitleRow}>
                 <Text style={styles.categoryIcon}>{category.icon}</Text>
                 <View style={styles.categoryTextBlock}>
-                  <Text style={styles.categoryTitle}>{category.categoryName}</Text>
+                  <Text style={styles.categoryTitle}>{formatBrandCategoryLabel(category.categoryName, t)}</Text>
                   <Text style={styles.categoryMeta}>{`${filteredBrands.length} ${t("sharedCards.brands.countSuffix")}`}</Text>
                 </View>
               </View>
