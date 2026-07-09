@@ -4,6 +4,8 @@ import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
 import { getCityName, getCountryName } from "./locationService";
+import { getBrandSearchAliases } from "./brandAliases";
+import { getLocalizedLocationSearchValues } from "../utils/locationDisplay";
 import { searchFeatureIndex } from "./searchFeatureIndex";
 import { getLocalizedSearchAliases } from "./searchAliases";
 import type { SearchResult } from "./searchTypes";
@@ -27,6 +29,7 @@ export function getSearchProviderItems(
       getCityName(outlet.cityId),
       getCountryName(outlet.countryId),
       ...getLocalizedSearchAliases(getCountryName(outlet.countryId)),
+      ...getLocalizedLocationSearchValues(getCityName(outlet.cityId)),
     ],
     score: 0,
   }));
@@ -42,6 +45,7 @@ export function getSearchProviderItems(
       routeParams: {
         brandId: brand.brandId,
       },
+      keywords: [brand.brandName, ...(Array.isArray(brand.aliases) ? brand.aliases : []), ...getBrandSearchAliases(brand)],
       score: 0,
     }));
 
@@ -58,6 +62,7 @@ export function getSearchProviderItems(
       city.cityName,
       getCountryName(city.countryId),
       ...getLocalizedSearchAliases(getCountryName(city.countryId)),
+      ...getLocalizedLocationSearchValues(city.cityName),
     ],
     score: 0,
   }));

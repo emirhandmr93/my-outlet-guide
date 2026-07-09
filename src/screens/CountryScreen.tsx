@@ -23,6 +23,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getCityName } from "../services/locationService";
+import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
 import { formatRating } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 
@@ -58,7 +59,7 @@ function OutletCard({
   onPress: () => void;
   onToggleFavorite: () => void;
 }) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const heroImage = getOutletCardHeroImage(outlet, {
     mode: getConfiguredOutletMediaMode(),
   });
@@ -113,7 +114,7 @@ function OutletCard({
         </View>
         <Text style={styles.cardTitle}>{outlet.name}</Text>
         <Text style={styles.cardText}>
-          {getCityName(outlet.cityId)} • {outlet.storesCountText}
+          {formatCityDisplayName(outlet.cityId, language)} • {outlet.storesCountText}
         </Text>
         <Text style={styles.tapText}>{t("country.viewOutlet")}</Text>
       </View>
@@ -123,7 +124,7 @@ function OutletCard({
 
 export function CountryScreen() {
   const navigation = useNavigation<any>();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp<RouteParams, "Country">>();
   const { isLoggedIn } = useUser();
@@ -162,9 +163,9 @@ export function CountryScreen() {
       >
         <View style={styles.heroCard}>
           <Text style={styles.heroFlag}>{country.countryFlag}</Text>
-          <Text style={styles.heroTitle}>{country.countryName}</Text>
+          <Text style={styles.heroTitle}>{formatCountryDisplayName(country.countryId, language)}</Text>
           <Text style={styles.heroText}>
-            {t("country.heroPrefix")} {country.countryName}.
+            {t("country.heroPrefix")} {formatCountryDisplayName(country.countryId, language)}.
           </Text>
         </View>
 
@@ -193,7 +194,7 @@ export function CountryScreen() {
             activeOpacity={0.9}
             onPress={() => navigation.navigate("CityResults", { cityId })}
           >
-            <Text style={styles.cardTitle}>{getCityName(cityId)}</Text>
+            <Text style={styles.cardTitle}>{formatCityDisplayName(cityId, language)}</Text>
             <Text style={styles.cardText}>
               {t("country.viewOutletsInCity")}
             </Text>
