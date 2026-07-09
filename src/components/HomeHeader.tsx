@@ -1,30 +1,17 @@
 import {
   Image,
-  ImageBackground,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import { outlets } from "../constants/outlets";
 import { languages } from "../constants/languages";
 import { useTranslation } from "../hooks/useTranslation";
-import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
-import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
-
-const headerOutlet = outlets.find(
-  (outlet) => outlet.outletId === "la-vallee-village",
-);
-const headerHeroImage = headerOutlet
-  ? getOutletCardHeroImage(headerOutlet, {
-      mode: getConfiguredOutletMediaMode(),
-    })
-  : undefined;
 
 type HomeHeaderProps = {
   userName?: string;
@@ -113,18 +100,27 @@ export function HomeHeader({
         </View>
       </View>
 
-      {headerHeroImage ? (
-        <ImageBackground
-          source={getImageSource(headerHeroImage)}
-          style={styles.hero}
-          imageStyle={styles.heroImage}
-        >
-          <View style={styles.overlay}>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subtitle}>{subtitle}</Text>
+      <View style={styles.hero}>
+        <View style={styles.heroGlowTop} />
+        <View style={styles.heroGlowBottom} />
+        <View style={styles.heroPatternRow}>
+          <View style={styles.patternDot} />
+          <View style={styles.patternLine} />
+          <View style={styles.patternDotMuted} />
+        </View>
+        <View style={styles.overlay}>
+          <View style={styles.heroBrandMark}>
+            <Image
+              source={require("../../assets/brand/app-icon.png")}
+              style={styles.heroBrandIcon}
+              resizeMode="contain"
+            />
+            <Text style={styles.heroLabel}>{t("home.heroLabel")}</Text>
           </View>
-        </ImageBackground>
-      ) : null}
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.subtitle}>{subtitle}</Text>
+        </View>
+      </View>
     </View>
   );
 }
@@ -217,23 +213,93 @@ const styles = StyleSheet.create({
   },
 
   hero: {
-    minHeight: 280,
+    minHeight: 260,
     borderRadius: radius.hero,
     overflow: "hidden",
     backgroundColor: colors.primary,
     ...shadows.premium,
   },
 
-  heroImage: {
-    borderRadius: radius.hero,
+  heroGlowTop: {
+    position: "absolute",
+    top: -70,
+    right: -44,
+    width: 190,
+    height: 190,
+    borderRadius: 95,
+    backgroundColor: "rgba(201,162,39,0.22)",
+  },
+
+  heroGlowBottom: {
+    position: "absolute",
+    bottom: -90,
+    left: -60,
+    width: 210,
+    height: 210,
+    borderRadius: 105,
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
+
+  heroPatternRow: {
+    position: "absolute",
+    top: spacing.xl,
+    right: spacing.xl,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.sm,
+  },
+
+  patternDot: {
+    width: 8,
+    height: 8,
+    borderRadius: radius.pill,
+    backgroundColor: colors.gold,
+  },
+
+  patternLine: {
+    width: 54,
+    height: 2,
+    borderRadius: radius.pill,
+    backgroundColor: "rgba(255,255,255,0.34)",
+  },
+
+  patternDotMuted: {
+    width: 8,
+    height: 8,
+    borderRadius: radius.pill,
+    backgroundColor: "rgba(255,255,255,0.42)",
   },
 
   overlay: {
     flex: 1,
-    minHeight: 280,
+    minHeight: 260,
     padding: spacing.xxl,
     justifyContent: "flex-end",
-    backgroundColor: "rgba(11,31,58,0.64)",
+  },
+
+  heroBrandMark: {
+    alignSelf: "flex-start",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "rgba(255,255,255,0.12)",
+    borderRadius: radius.pill,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    marginBottom: spacing.lg,
+  },
+
+  heroBrandIcon: {
+    width: 22,
+    height: 22,
+    marginRight: spacing.sm,
+  },
+
+  heroLabel: {
+    color: colors.gold,
+    fontSize: typography.small,
+    fontWeight: typography.weightBlack,
+    letterSpacing: 1,
+    textTransform: "uppercase",
   },
 
   title: {
