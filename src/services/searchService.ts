@@ -53,34 +53,44 @@ export function searchOutlets(query: string) {
     return outlets;
   }
 
-  return outlets.filter((outlet) => {
-    const cityName = getCityName(outlet.cityId);
-    const countryName = getCountryName(outlet.countryId);
+  return outlets
+    .map((outlet) => {
+      const cityName = getCityName(outlet.cityId);
+      const countryName = getCountryName(outlet.countryId);
 
-    const outletBrandNames = outletBrands
-      .filter(
-        (item) =>
-          item.outletId === outlet.outletId && item.relationStatus === "active"
-      )
-      .map((item) => {
-        const brand = brands.find(
-          (brand) =>
-            brand.brandId === item.brandId && brand.brandStatus === "active"
-        );
+      const outletBrandNames = outletBrands
+        .filter(
+          (item) =>
+            item.outletId === outlet.outletId && item.relationStatus === "active"
+        )
+        .map((item) => {
+          const brand = brands.find(
+            (brand) =>
+              brand.brandId === item.brandId && brand.brandStatus === "active"
+          );
 
-        return brand?.brandName || "";
-      });
+          return brand?.brandName || "";
+        });
 
-    const outletAliases = Array.isArray(outlet.aliases) ? outlet.aliases : [];
+      const outletAliases = Array.isArray(outlet.aliases) ? outlet.aliases : [];
+      const countryAliases = expandSearchValues(countryName);
+      const cityAliases = expandSearchValues(cityName);
+      const scoreParts = [
+        { values: [outlet.name, ...outletAliases], score: 900 },
+        { values: [cityName, ...cityAliases], score: 800 },
+        { values: [countryName, ...countryAliases], score: 700 },
+        { values: outletBrandNames, score: 350 },
+      ];
+      const score = scoreParts.reduce((total, part) => {
+        if (part.values.some((entry) => matchesSearchValue(entry, queryValues))) {
+          return total + part.score;
+        }
+        return total;
+      }, 0);
 
-    return (
-      matchesSearchValue(outlet.name, queryValues) ||
-      outletAliases.some((alias) => matchesSearchValue(alias, queryValues)) ||
-      matchesSearchValue(cityName, queryValues) ||
-      matchesSearchValue(countryName, queryValues) ||
-      outletBrandNames.some((brandName) =>
-        matchesSearchValue(brandName, queryValues)
-      )
-    );
-  });
+      return { outlet, score };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.outlet.name.localeCompare(b.outlet.name))
+    .map((item) => item.outlet);
 }
