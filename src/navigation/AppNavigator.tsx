@@ -72,7 +72,7 @@ return <Ionicons name={focused ? "person" : "person-outline"} size={size} color=
 }
 
 function MainTabs() {
-const { t } = useTranslation();
+const { t, language } = useTranslation();
 
 const tabLabels: Record<string, string> = {
 Home: t("nav.home"),
@@ -84,6 +84,7 @@ Profile: t("nav.profile"),
 
 return (
 <Tab.Navigator
+key={language}
 screenOptions={({ route }) => ({
 headerShown: false,
 tabBarActiveTintColor: "#C9A227",

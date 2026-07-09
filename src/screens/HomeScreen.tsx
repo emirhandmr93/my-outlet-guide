@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
@@ -32,7 +33,7 @@ import { typography } from "../theme/typography";
 
 const screenWidth = Dimensions.get("window").width;
 const carouselWidth = screenWidth - spacing.xl * 2;
-const outletCardWidth = Math.round(screenWidth * 0.64);
+const outletCardWidth = carouselWidth;
 const cityCardWidth = Math.round(screenWidth * 0.42);
 
 type HomeRouteItem = {
@@ -240,6 +241,7 @@ function getOutletCardImageSource(
 export function HomeScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const { trips } = useTrips();
   const { favoriteIds } = useFavorites();
   const [searchQuery, setSearchQuery] = useState("");
@@ -319,7 +321,15 @@ export function HomeScreen() {
     <>
       <ScrollView
         style={styles.container}
-        contentContainerStyle={styles.content}
+        contentInsetAdjustmentBehavior="never"
+        scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 120 }}
+        contentContainerStyle={[
+          styles.content,
+          {
+            paddingTop: Math.max(insets.top + spacing.md, 58),
+            paddingBottom: Math.max(insets.bottom + 188, 188),
+          },
+        ]}
       >
         <HomeHeader
           userName="Emirhan"
@@ -509,7 +519,10 @@ export function HomeScreen() {
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.horizontalList}
+          contentContainerStyle={styles.recommendedList}
+          snapToInterval={outletCardWidth + spacing.md}
+          snapToAlignment="start"
+          decelerationRate="fast"
         >
           {recommendedOutlets.map((outlet) => {
             const imageSource = getOutletCardImageSource(outlet.id);
@@ -610,8 +623,8 @@ const styles = StyleSheet.create({
 
   content: {
     padding: spacing.xl,
-    paddingTop: 70,
-    paddingBottom: 168,
+    paddingTop: 58,
+    paddingBottom: 188,
   },
 
   carouselWrap: {
@@ -810,6 +823,12 @@ const styles = StyleSheet.create({
   },
 
   horizontalList: {
+    paddingRight: spacing.xl,
+    gap: spacing.md,
+    marginBottom: spacing.lg,
+  },
+
+  recommendedList: {
     paddingRight: spacing.xl,
     gap: spacing.md,
     marginBottom: spacing.lg,
