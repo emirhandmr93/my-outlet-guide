@@ -14,8 +14,6 @@ import {
   getScrollIndicatorBottomInset,
 } from "../utils/safeAreaLayout";
 
-import { deals } from "../constants/deals";
-import { events } from "../constants/events";
 import { outlets } from "../constants/outlets";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
@@ -128,32 +126,6 @@ function OutletResultCard({
   );
 }
 
-function InfoCard({
-  title,
-  text,
-  date,
-}: {
-  title: string;
-  text: string;
-  date?: string;
-}) {
-  return (
-    <View style={styles.card}>
-      <Text style={styles.cardTitle}>{title}</Text>
-      <Text style={styles.cardText}>{text}</Text>
-      {date ? <Text style={styles.dateText}>{date}</Text> : null}
-    </View>
-  );
-}
-
-function EmptyCard({ text }: { text: string }) {
-  return (
-    <View style={styles.emptyCard}>
-      <Text style={styles.emptyText}>{text}</Text>
-    </View>
-  );
-}
-
 export function CityResultsScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
@@ -165,8 +137,6 @@ export function CityResultsScreen() {
   const cityId = route.params?.cityId || "paris";
   const cityName = cityNames[cityId] || cityId;
   const cityOutlets = outlets.filter((outlet) => outlet.cityId === cityId);
-  const cityDeals = deals.filter((deal) => deal.cityId === cityId);
-  const cityEvents = events.filter((event) => event.cityId === cityId);
 
   return (
     <ScrollView
@@ -191,8 +161,12 @@ export function CityResultsScreen() {
 
       <View style={styles.statsRow}>
         <StatCard value={cityOutlets.length} label={t("city.outlets")} />
-        <StatCard value={cityDeals.length} label={t("city.deals")} />
-        <StatCard value={cityEvents.length} label={t("city.events")} />
+        <StatCard
+          value={
+            cityOutlets[0] ? getCountryName(cityOutlets[0].countryId) : "—"
+          }
+          label={t("city.country")}
+        />
       </View>
 
       <Text style={styles.sectionTitle}>{t("city.availableOutlets")}</Text>
@@ -211,34 +185,6 @@ export function CityResultsScreen() {
           }}
         />
       ))}
-
-      <Text style={styles.sectionTitle}>{t("city.currentDeals")}</Text>
-      {cityDeals.length > 0 ? (
-        cityDeals.map((deal) => (
-          <InfoCard
-            key={deal.dealId}
-            title={deal.title}
-            text={deal.description}
-            date={`${deal.startDate} - ${deal.endDate}`}
-          />
-        ))
-      ) : (
-        <EmptyCard text={t("city.noActiveDeals")} />
-      )}
-
-      <Text style={styles.sectionTitle}>{t("city.events")}</Text>
-      {cityEvents.length > 0 ? (
-        cityEvents.map((event) => (
-          <InfoCard
-            key={event.eventId}
-            title={event.title}
-            text={event.description}
-            date={`${event.startDate} - ${event.endDate}`}
-          />
-        ))
-      ) : (
-        <EmptyCard text={t("city.noUpcomingEvents")} />
-      )}
     </ScrollView>
   );
 }

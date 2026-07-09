@@ -33,7 +33,13 @@ const filters: { id: ExploreFilter; labelKey: string; icon: string }[] = [
   { id: "city", labelKey: "explore.filters.cities", icon: "📍" },
   { id: "outlet", labelKey: "explore.filters.outlets", icon: "🛍️" },
 ];
-const popularSearches = ["Paris", "Burberry", "France", "Italy", "Nike"];
+const popularSearches = [
+  { query: "Paris", labelKey: "explore.popularSearch.paris" },
+  { query: "Burberry", labelKey: "explore.popularSearch.burberry" },
+  { query: "France", labelKey: "explore.popularSearch.france" },
+  { query: "Italy", labelKey: "explore.popularSearch.italy" },
+  { query: "Nike", labelKey: "explore.popularSearch.nike" },
+];
 const preferredCityOrder = [
   "paris",
   "milan",
@@ -486,16 +492,16 @@ function Empty({ t }: any) {
 function DefaultHub({ t, setTab, runSearch, cities, navigation }: any) {
   const cards: Array<[ExploreFilter, string, string, string]> = [
     [
-      "country",
-      "🌍",
-      "explore.discoverByCountryTitle",
-      "explore.discoverByCountrySubtitle",
-    ],
-    [
       "outlet",
       "🛍️",
       "explore.discoverOutletsTitle",
       "explore.discoverOutletsSubtitle",
+    ],
+    [
+      "country",
+      "🌍",
+      "explore.discoverByCountryTitle",
+      "explore.discoverByCountrySubtitle",
     ],
     [
       "city",
@@ -513,11 +519,11 @@ function DefaultHub({ t, setTab, runSearch, cities, navigation }: any) {
       <View style={styles.popularSearchGrid}>
         {popularSearches.map((p) => (
           <TouchableOpacity
-            key={p}
+            key={p.query}
             style={styles.popularSearchChip}
-            onPress={() => runSearch(p)}
+            onPress={() => runSearch(p.query)}
           >
-            <Text style={styles.popularSearchText}>{p}</Text>
+            <Text style={styles.popularSearchText}>{t(p.labelKey)}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -529,7 +535,12 @@ function DefaultHub({ t, setTab, runSearch, cities, navigation }: any) {
         {cards.map(([tab, icon, title, sub]) => (
           <TouchableOpacity
             key={tab}
-            style={styles.discoveryCard}
+            style={[
+              styles.discoveryCard,
+              tab === "outlet"
+                ? styles.discoveryCardPrimary
+                : styles.discoveryCardSecondary,
+            ]}
             onPress={() => setTab(tab)}
           >
             <Text style={styles.discoveryIcon}>{icon}</Text>
@@ -821,7 +832,6 @@ const styles = StyleSheet.create({
   popularSearchText: { color: "#0B1F3A", fontSize: 14, fontWeight: "900" },
   discoveryGrid: { flexDirection: "row", flexWrap: "wrap", gap: 12 },
   discoveryCard: {
-    width: "48%",
     minHeight: 128,
     backgroundColor: "#fff",
     borderRadius: 24,
@@ -829,6 +839,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E0E5EC",
   },
+  discoveryCardPrimary: { width: "100%" },
+  discoveryCardSecondary: { flex: 1, minWidth: "46%" },
   discoveryIcon: { fontSize: 24, marginBottom: 10 },
   discoveryTitle: { color: "#0B1F3A", fontSize: 16, fontWeight: "900" },
   discoveryText: {
