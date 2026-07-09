@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { deals } from "../constants/deals";
 import { events } from "../constants/events";
@@ -151,6 +152,7 @@ function EmptyCard({ text }: { text: string }) {
 export function CityResultsScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp<RouteParams, "CityResults">>();
   const { isLoggedIn } = useUser();
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -162,7 +164,14 @@ export function CityResultsScreen() {
   const cityEvents = events.filter((event) => event.cityId === cityId);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[
+        styles.content,
+        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+      ]}
+      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.heroLabel}>{t("city.heroLabel")}</Text>
         <Text style={styles.heroTitle}>{cityName}</Text>

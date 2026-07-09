@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
@@ -118,6 +119,7 @@ function OutletCard({
 export function CountryScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp<RouteParams, "Country">>();
   const { isLoggedIn } = useUser();
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -134,7 +136,14 @@ export function CountryScreen() {
   );
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[
+        styles.content,
+        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+      ]}
+      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.heroFlag}>{country.countryFlag}</Text>
         <Text style={styles.heroTitle}>{country.countryName}</Text>

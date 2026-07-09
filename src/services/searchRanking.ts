@@ -1,9 +1,7 @@
+import { normalizeSearchText } from "./searchAliases";
+
 function normalizeSearchValue(value: string) {
-  return value
-    .trim()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+  return normalizeSearchText(value);
 }
 
 export function calculateSearchScore(

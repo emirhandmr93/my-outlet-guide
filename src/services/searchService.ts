@@ -7,13 +7,20 @@ import {
   type SearchItemType,
 } from "./searchIndex";
 import { getCityName, getCountryName } from "./locationService";
+import { expandSearchValues, normalizeSearchText } from "./searchAliases";
 
 function normalizeSearchValue(value: string) {
-  return value.trim().toLowerCase();
+  return normalizeSearchText(value);
+}
+
+function matchesSearchValue(value: string, queries: string[]) {
+  const normalizedValue = normalizeSearchValue(value);
+  return queries.some((query) => normalizedValue.includes(query));
 }
 
 export function searchAll(query: string, limit = 10): SearchIndexItem[] {
   const value = normalizeSearchValue(query);
+  const queryValues = expandSearchValues(query).map(normalizeSearchValue);
 
   if (!value) {
     return [];
@@ -22,7 +29,7 @@ export function searchAll(query: string, limit = 10): SearchIndexItem[] {
   return buildSearchIndex()
     .filter((item) =>
       [item.title, item.subtitle, ...item.keywords].some((keyword) =>
-        keyword.toLowerCase().includes(value)
+        matchesSearchValue(keyword, queryValues)
       )
     )
     .slice(0, limit);
@@ -40,6 +47,7 @@ export function searchByType(
 
 export function searchOutlets(query: string) {
   const value = normalizeSearchValue(query);
+  const queryValues = expandSearchValues(query).map(normalizeSearchValue);
 
   if (!value) {
     return outlets;
@@ -66,12 +74,12 @@ export function searchOutlets(query: string) {
     const outletAliases = Array.isArray(outlet.aliases) ? outlet.aliases : [];
 
     return (
-      outlet.name.toLowerCase().includes(value) ||
-      outletAliases.some((alias) => alias.toLowerCase().includes(value)) ||
-      cityName.toLowerCase().includes(value) ||
-      countryName.toLowerCase().includes(value) ||
+      matchesSearchValue(outlet.name, queryValues) ||
+      outletAliases.some((alias) => matchesSearchValue(alias, queryValues)) ||
+      matchesSearchValue(cityName, queryValues) ||
+      matchesSearchValue(countryName, queryValues) ||
       outletBrandNames.some((brandName) =>
-        brandName.toLowerCase().includes(value)
+        matchesSearchValue(brandName, queryValues)
       )
     );
   });

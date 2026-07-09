@@ -5,6 +5,7 @@ import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
 import { getCityName, getCountryName } from "./locationService";
 import { searchFeatureIndex } from "./searchFeatureIndex";
+import { getLocalizedSearchAliases } from "./searchAliases";
 import type { SearchResult } from "./searchTypes";
 
 type SearchProviderTranslator = (key: string) => string;
@@ -21,7 +22,12 @@ export function getSearchProviderItems(
     routeParams: {
       outletId: outlet.outletId,
     },
-    keywords: Array.isArray(outlet.aliases) ? outlet.aliases : [],
+    keywords: [
+      ...(Array.isArray(outlet.aliases) ? outlet.aliases : []),
+      getCityName(outlet.cityId),
+      getCountryName(outlet.countryId),
+      ...getLocalizedSearchAliases(getCountryName(outlet.countryId)),
+    ],
     score: 0,
   }));
 
@@ -48,6 +54,11 @@ export function getSearchProviderItems(
     routeParams: {
       cityId: city.cityId,
     },
+    keywords: [
+      city.cityName,
+      getCountryName(city.countryId),
+      ...getLocalizedSearchAliases(getCountryName(city.countryId)),
+    ],
     score: 0,
   }));
 
@@ -60,6 +71,7 @@ export function getSearchProviderItems(
     routeParams: {
       countryId: country.countryId,
     },
+    keywords: [country.countryName, ...getLocalizedSearchAliases(country.countryName)],
     score: 0,
   }));
 
