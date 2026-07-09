@@ -47,6 +47,8 @@ const criticalHomeKeys = [
 
 const visiblePrefixPattern = /^(?:[A-Z]{2}: |ترجمة عربية: |中文翻译：)/;
 
+const intentionallyUniversalCriticalValues = new Set(["Tax Free", "Offline"]);
+
 function cleanValue(key: string, value: string | undefined) {
   if (!value) {
     return undefined;
@@ -83,6 +85,12 @@ for (const languageCode of supportedLanguageCodes) {
       continue;
     }
 
+    if (languageCode !== "en" && languageCode !== "tr" && value === translations.en[key] &&
+      !intentionallyUniversalCriticalValues.has(value)
+    ) {
+      console.error(`${languageCode}: critical key still matches English fallback ${key}`);
+      hasError = true;
+    }
   }
 }
 
