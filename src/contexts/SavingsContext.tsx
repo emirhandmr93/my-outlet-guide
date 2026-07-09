@@ -1,18 +1,53 @@
-import { createContext, ReactNode, useContext, useState } from "react";
-import type { CurrencyCode } from "../services/exchangeRateService";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+
+import { CurrencyCode, isSupportedCurrency } from "../services/exchangeRateService";
 
 type SavingsContextType = {
 selectedCountryId: string;
 selectedCurrency: CurrencyCode;
 setSelectedCountryId: (countryId: string) => void;
-setSelectedCurrency: (currency: CurrencyCode) => void;
+setSelectedCurrency: (currency: CurrencyCode) => Promise<void>;
 };
 
 const SavingsContext = createContext<SavingsContextType | undefined>(undefined);
 
+const DEFAULT_CURRENCY: CurrencyCode = "USD";
+const STORAGE_KEY = "my_outlet_guide_preferred_currency";
+
 export function SavingsProvider({ children }: { children: ReactNode }) {
 const [selectedCountryId, setSelectedCountryId] = useState("france");
-const [selectedCurrency, setSelectedCurrency] = useState<CurrencyCode>("USD");
+const [selectedCurrency, setSelectedCurrencyState] = useState<CurrencyCode>(DEFAULT_CURRENCY);
+
+useEffect(() => {
+loadPreferredCurrency();
+}, []);
+
+async function loadPreferredCurrency() {
+const savedCurrency = await AsyncStorage.getItem(STORAGE_KEY);
+
+if (savedCurrency && isSupportedCurrency(savedCurrency)) {
+setSelectedCurrencyState(savedCurrency);
+return;
+}
+
+if (savedCurrency) {
+await AsyncStorage.setItem(STORAGE_KEY, DEFAULT_CURRENCY);
+}
+
+setSelectedCurrencyState(DEFAULT_CURRENCY);
+}
+
+async function setSelectedCurrency(currency: CurrencyCode) {
+if (!isSupportedCurrency(currency)) {
+setSelectedCurrencyState(DEFAULT_CURRENCY);
+await AsyncStorage.setItem(STORAGE_KEY, DEFAULT_CURRENCY);
+return;
+}
+
+setSelectedCurrencyState(currency);
+await AsyncStorage.setItem(STORAGE_KEY, currency);
+}
 
 return (
 <SavingsContext.Provider
