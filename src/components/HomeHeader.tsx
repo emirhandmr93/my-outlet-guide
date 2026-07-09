@@ -97,7 +97,8 @@ export function HomeHeader({
             onPress={onPressLanguage}
           >
             <Text style={styles.languageText}>
-              {selectedLanguage.flag} {selectedLanguage.languageCode.toUpperCase()}
+              {selectedLanguage.flag}{" "}
+              {selectedLanguage.languageCode.toUpperCase()}
             </Text>
           </TouchableOpacity>
         </View>
@@ -111,6 +112,8 @@ export function HomeHeader({
       >
         <View style={styles.heroScrim} />
         <View style={styles.heroTextScrim} />
+        <View style={styles.heroTextScrimDeep} />
+        <View style={styles.heroTextScrimAnchor} />
         <View style={styles.heroGlowTop} />
         <View style={styles.heroGlowBottom} />
         <View style={styles.heroPatternRow}>
@@ -236,16 +239,34 @@ const styles = StyleSheet.create({
 
   heroScrim: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(6,18,34,0.18)",
+    backgroundColor: "rgba(6,18,34,0.08)",
   },
 
   heroTextScrim: {
     position: "absolute",
     left: 0,
-    right: 0,
     bottom: 0,
-    height: "72%",
+    width: "78%",
+    height: "88%",
     backgroundColor: "rgba(6,18,34,0.34)",
+  },
+
+  heroTextScrimDeep: {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+    width: "64%",
+    height: "76%",
+    backgroundColor: "rgba(5,15,30,0.38)",
+  },
+
+  heroTextScrimAnchor: {
+    position: "absolute",
+    left: 0,
+    right: "28%",
+    bottom: 0,
+    height: "48%",
+    backgroundColor: "rgba(4,12,24,0.34)",
   },
 
   heroGlowTop: {
@@ -309,8 +330,10 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.12)",
+    backgroundColor: "rgba(7,22,42,0.76)",
     borderRadius: radius.pill,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.18)",
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     marginBottom: spacing.lg,
@@ -323,7 +346,7 @@ const styles = StyleSheet.create({
   },
 
   heroLabel: {
-    color: colors.gold,
+    color: "#F6D86A",
     fontSize: typography.small,
     fontWeight: typography.weightBlack,
     letterSpacing: 1,
@@ -332,6 +355,9 @@ const styles = StyleSheet.create({
 
   title: {
     color: colors.textInverse,
+    textShadowColor: "rgba(0,0,0,0.42)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
     fontSize: typography.h1,
     lineHeight: typography.lineH1,
     fontWeight: typography.weightBlack,
@@ -340,7 +366,10 @@ const styles = StyleSheet.create({
   },
 
   subtitle: {
-    color: "#EEF2F7",
+    color: "#F7FAFF",
+    textShadowColor: "rgba(0,0,0,0.36)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
     fontSize: typography.body,
     lineHeight: typography.lineBody,
     fontWeight: typography.weightMedium,

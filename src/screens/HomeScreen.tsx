@@ -237,9 +237,7 @@ const quickMenuItems = [
 ];
 
 const outletMediaMode = getConfiguredOutletMediaMode();
-const recommendedOutletFallbackImage = require(
-  "../../assets/home/recommended-outlet-generic.png",
-);
+const recommendedOutletFallbackImage = require("../../assets/home/recommended-outlet-generic.png");
 
 function getOutletCardImageSource(
   outletId: string,
@@ -350,12 +348,12 @@ export function HomeScreen() {
       <ScrollView
         style={styles.container}
         contentInsetAdjustmentBehavior="never"
-        scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 156 }}
+        scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 176 }}
         contentContainerStyle={[
           styles.content,
           {
             paddingTop: Math.max(insets.top + spacing.md, 58),
-            paddingBottom: Math.max(insets.bottom + 232, 232),
+            paddingBottom: Math.max(insets.bottom + 276, 276),
           },
         ]}
       >
@@ -386,7 +384,9 @@ export function HomeScreen() {
                   />
                 ))
               ) : (
-                <Text style={styles.noResultsText}>{t("home.search.noResults")}</Text>
+                <Text style={styles.noResultsText}>
+                  {t("home.search.noResults")}
+                </Text>
               )}
             </View>
           ) : null}
@@ -423,14 +423,20 @@ export function HomeScreen() {
                 >
                   <View style={styles.slideScrim} />
                   <View style={styles.slideTextScrim} />
+                  <View style={styles.slideTextScrimDeep} />
+                  <View style={styles.slideTextScrimAnchor} />
                   <View style={styles.slideGlow} />
                   <View style={styles.slideContent}>
                     <Text style={styles.slideIcon}>{slide.icon}</Text>
                     <Text style={styles.slideKicker}>{t(slide.kickerKey)}</Text>
                     <Text style={styles.slideTitle}>{t(slide.titleKey)}</Text>
-                    <Text style={styles.slideSubtitle}>{t(slide.subtitleKey)}</Text>
+                    <Text style={styles.slideSubtitle}>
+                      {t(slide.subtitleKey)}
+                    </Text>
                     <View style={styles.slideAction}>
-                      <Text style={styles.slideActionText}>{t(slide.ctaKey)}</Text>
+                      <Text style={styles.slideActionText}>
+                        {t(slide.ctaKey)}
+                      </Text>
                       <Text style={styles.slideActionArrow}>→</Text>
                     </View>
                   </View>
@@ -659,7 +665,7 @@ const styles = StyleSheet.create({
   content: {
     padding: spacing.xl,
     paddingTop: 58,
-    paddingBottom: 232,
+    paddingBottom: 276,
   },
 
   searchBlock: {
@@ -685,7 +691,7 @@ const styles = StyleSheet.create({
   },
 
   carouselWrap: {
-    marginBottom: spacing.lg,
+    marginBottom: spacing.xxl,
   },
 
   slideOuter: {
@@ -708,16 +714,34 @@ const styles = StyleSheet.create({
 
   slideScrim: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(6,18,34,0.16)",
+    backgroundColor: "rgba(6,18,34,0.08)",
   },
 
   slideTextScrim: {
     position: "absolute",
     left: 0,
-    right: 0,
     bottom: 0,
-    height: "78%",
-    backgroundColor: "rgba(6,18,34,0.38)",
+    width: "86%",
+    height: "86%",
+    backgroundColor: "rgba(6,18,34,0.44)",
+  },
+
+  slideTextScrimDeep: {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+    width: "72%",
+    height: "72%",
+    backgroundColor: "rgba(4,12,24,0.42)",
+  },
+
+  slideTextScrimAnchor: {
+    position: "absolute",
+    left: 0,
+    right: "20%",
+    bottom: 0,
+    height: "44%",
+    backgroundColor: "rgba(4,12,24,0.34)",
   },
 
   slideGlow: {
@@ -733,7 +757,8 @@ const styles = StyleSheet.create({
   slideContent: {
     paddingHorizontal: spacing.xl,
     paddingTop: spacing.xl,
-    paddingBottom: spacing.xxl,
+    paddingBottom: spacing.xxxl,
+    maxWidth: carouselWidth - spacing.lg,
   },
 
   slideIcon: {
@@ -752,7 +777,10 @@ const styles = StyleSheet.create({
   },
 
   slideKicker: {
-    color: colors.gold,
+    color: "#F6D86A",
+    textShadowColor: "rgba(0,0,0,0.38)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
     fontSize: typography.caption,
     fontWeight: typography.weightBlack,
     letterSpacing: 1.2,
@@ -762,6 +790,9 @@ const styles = StyleSheet.create({
 
   slideTitle: {
     color: colors.textInverse,
+    textShadowColor: "rgba(0,0,0,0.44)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 3,
     fontSize: typography.h1,
     lineHeight: typography.lineH1,
     fontWeight: typography.weightBlack,
@@ -770,7 +801,10 @@ const styles = StyleSheet.create({
   },
 
   slideSubtitle: {
-    color: "#EEF2F7",
+    color: "#F7FAFF",
+    textShadowColor: "rgba(0,0,0,0.36)",
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
     fontSize: typography.body,
     lineHeight: typography.lineBody,
     fontWeight: typography.weightMedium,
@@ -786,6 +820,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     maxWidth: carouselWidth - spacing.xl * 2,
+    minHeight: 40,
   },
 
   slideActionText: {
