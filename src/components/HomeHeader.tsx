@@ -111,9 +111,9 @@ export function HomeHeader({
         resizeMode="cover"
       >
         <View style={styles.heroScrim} />
-        <View style={styles.heroTextScrim} />
-        <View style={styles.heroTextScrimDeep} />
-        <View style={styles.heroTextScrimAnchor} />
+        <View style={styles.heroGradientLeft} />
+        <View style={styles.heroGradientBottom} />
+        <View style={styles.heroGradientAnchor} />
         <View style={styles.heroGlowTop} />
         <View style={styles.heroGlowBottom} />
         <View style={styles.heroPatternRow}>
@@ -239,34 +239,38 @@ const styles = StyleSheet.create({
 
   heroScrim: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(6,18,34,0.08)",
+    backgroundColor: "rgba(6,18,34,0.03)",
   },
 
-  heroTextScrim: {
+  heroGradientLeft: {
     position: "absolute",
-    left: 0,
-    bottom: 0,
-    width: "78%",
-    height: "88%",
-    backgroundColor: "rgba(6,18,34,0.34)",
+    left: -150,
+    bottom: -96,
+    width: 430,
+    height: 380,
+    borderRadius: 220,
+    backgroundColor: "rgba(4,12,24,0.48)",
+    transform: [{ scaleX: 1.22 }],
   },
 
-  heroTextScrimDeep: {
+  heroGradientBottom: {
     position: "absolute",
-    left: 0,
-    bottom: 0,
-    width: "64%",
-    height: "76%",
-    backgroundColor: "rgba(5,15,30,0.38)",
+    left: -42,
+    right: -42,
+    bottom: -130,
+    height: 260,
+    borderRadius: 150,
+    backgroundColor: "rgba(4,12,24,0.30)",
   },
 
-  heroTextScrimAnchor: {
+  heroGradientAnchor: {
     position: "absolute",
-    left: 0,
-    right: "28%",
-    bottom: 0,
-    height: "48%",
-    backgroundColor: "rgba(4,12,24,0.34)",
+    left: -82,
+    bottom: -34,
+    width: 330,
+    height: 230,
+    borderRadius: 150,
+    backgroundColor: "rgba(4,12,24,0.20)",
   },
 
   heroGlowTop: {
@@ -330,10 +334,10 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "rgba(7,22,42,0.76)",
+    backgroundColor: "rgba(7,22,42,0.42)",
     borderRadius: radius.pill,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.18)",
+    borderColor: "rgba(255,255,255,0.26)",
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
     marginBottom: spacing.lg,

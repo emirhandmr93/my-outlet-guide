@@ -38,6 +38,9 @@ const screenWidth = Dimensions.get("window").width;
 const carouselWidth = screenWidth - spacing.xl * 2;
 const outletCardWidth = carouselWidth;
 const cityCardWidth = Math.round(screenWidth * 0.42);
+const floatingTabBarHeight = 76;
+const floatingTabBarBottomOffset = 18;
+const homeBottomBreathingRoom = 64;
 
 type HomeRouteItem = {
   id: string;
@@ -348,12 +351,20 @@ export function HomeScreen() {
       <ScrollView
         style={styles.container}
         contentInsetAdjustmentBehavior="never"
-        scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 176 }}
+        scrollIndicatorInsets={{
+          top: insets.top,
+          bottom:
+            insets.bottom + floatingTabBarHeight + floatingTabBarBottomOffset,
+        }}
         contentContainerStyle={[
           styles.content,
           {
-            paddingTop: Math.max(insets.top + spacing.md, 58),
-            paddingBottom: Math.max(insets.bottom + 276, 276),
+            paddingTop: insets.top + spacing.md,
+            paddingBottom:
+              insets.bottom +
+              floatingTabBarHeight +
+              floatingTabBarBottomOffset +
+              homeBottomBreathingRoom,
           },
         ]}
       >
@@ -422,9 +433,9 @@ export function HomeScreen() {
                   resizeMode="cover"
                 >
                   <View style={styles.slideScrim} />
-                  <View style={styles.slideTextScrim} />
-                  <View style={styles.slideTextScrimDeep} />
-                  <View style={styles.slideTextScrimAnchor} />
+                  <View style={styles.slideGradientLeft} />
+                  <View style={styles.slideGradientBottom} />
+                  <View style={styles.slideGradientAnchor} />
                   <View style={styles.slideGlow} />
                   <View style={styles.slideContent}>
                     <Text style={styles.slideIcon}>{slide.icon}</Text>
@@ -604,6 +615,11 @@ export function HomeScreen() {
         </ScrollView>
       </ScrollView>
 
+      <View
+        pointerEvents="none"
+        style={[styles.statusBarScrim, { height: insets.top }]}
+      />
+
       <Modal visible={isQuickMenuOpen} transparent animationType="fade">
         <TouchableOpacity
           style={styles.menuBackdrop}
@@ -664,8 +680,20 @@ const styles = StyleSheet.create({
 
   content: {
     padding: spacing.xl,
-    paddingTop: 58,
-    paddingBottom: 276,
+    paddingTop: spacing.md,
+    paddingBottom:
+      floatingTabBarHeight +
+      floatingTabBarBottomOffset +
+      homeBottomBreathingRoom,
+  },
+
+  statusBarScrim: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 20,
+    backgroundColor: colors.background,
   },
 
   searchBlock: {
@@ -700,7 +728,7 @@ const styles = StyleSheet.create({
   },
 
   slideImage: {
-    minHeight: 250,
+    minHeight: 268,
     overflow: "hidden",
     justifyContent: "flex-end",
     borderRadius: radius.hero,
@@ -714,34 +742,38 @@ const styles = StyleSheet.create({
 
   slideScrim: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(6,18,34,0.08)",
+    backgroundColor: "rgba(6,18,34,0.04)",
   },
 
-  slideTextScrim: {
+  slideGradientLeft: {
     position: "absolute",
-    left: 0,
-    bottom: 0,
-    width: "86%",
-    height: "86%",
-    backgroundColor: "rgba(6,18,34,0.44)",
+    left: -carouselWidth * 0.42,
+    bottom: -90,
+    width: carouselWidth * 1.08,
+    height: 360,
+    borderRadius: 220,
+    backgroundColor: "rgba(4,12,24,0.54)",
+    transform: [{ scaleX: 1.18 }],
   },
 
-  slideTextScrimDeep: {
+  slideGradientBottom: {
     position: "absolute",
-    left: 0,
-    bottom: 0,
-    width: "72%",
-    height: "72%",
-    backgroundColor: "rgba(4,12,24,0.42)",
-  },
-
-  slideTextScrimAnchor: {
-    position: "absolute",
-    left: 0,
-    right: "20%",
-    bottom: 0,
-    height: "44%",
+    left: -40,
+    right: -40,
+    bottom: -126,
+    height: 260,
+    borderRadius: 150,
     backgroundColor: "rgba(4,12,24,0.34)",
+  },
+
+  slideGradientAnchor: {
+    position: "absolute",
+    left: -90,
+    bottom: -44,
+    width: carouselWidth * 0.82,
+    height: 232,
+    borderRadius: 150,
+    backgroundColor: "rgba(4,12,24,0.24)",
   },
 
   slideGlow: {
@@ -757,7 +789,7 @@ const styles = StyleSheet.create({
   slideContent: {
     paddingHorizontal: spacing.xl,
     paddingTop: spacing.xl,
-    paddingBottom: spacing.xxxl,
+    paddingBottom: spacing.xxl,
     maxWidth: carouselWidth - spacing.lg,
   },
 
@@ -808,7 +840,7 @@ const styles = StyleSheet.create({
     fontSize: typography.body,
     lineHeight: typography.lineBody,
     fontWeight: typography.weightMedium,
-    marginBottom: spacing.lg,
+    marginBottom: spacing.xl,
   },
 
   slideAction: {
@@ -842,7 +874,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.xs,
-    marginTop: spacing.md,
+    marginTop: spacing.lg,
   },
 
   dot: {
