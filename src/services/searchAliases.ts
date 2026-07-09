@@ -1,13 +1,13 @@
 import { getLocalizedLocationSearchValues } from "../utils/locationDisplay";
 
 const localizedSearchAliasEntries: Array<[string, string[]]> = [
-  ["France", ["fransa"]],
-  ["Germany", ["almanya"]],
-  ["Italy", ["italya"]],
-  ["Spain", ["ispanya"]],
-  ["Austria", ["avusturya"]],
-  ["Switzerland", ["isviçre", "isvicre"]],
-  ["United Kingdom", ["birleşik krallık", "birlesik krallik", "ingiltere"]],
+  ["France", ["fransa", "francia", "frankreich", "франция", "فرنسا", "法国"]],
+  ["Germany", ["almanya", "alemania", "allemagne", "deutschland", "германия", "ألمانيا", "المانيا", "德国"]],
+  ["Italy", ["italya", "italia", "italie", "italien", "италия", "إيطاليا", "ايطاليا", "意大利"]],
+  ["Spain", ["ispanya", "españa", "espagne", "spanien", "испания", "إسبانيا", "西班牙"]],
+  ["Austria", ["avusturya", "austria", "autriche", "österreich", "osterreich", "австрия", "النمسا", "奥地利"]],
+  ["Switzerland", ["isviçre", "isvicre", "suiza", "suisse", "schweiz", "швейцария", "سويسرا", "瑞士"]],
+  ["United Kingdom", ["birleşik krallık", "birlesik krallik", "ingiltere", "reino unido", "royaume-uni", "royaume uni", "vereinigtes königreich", "vereinigtes konigreich", "великобритания", "المملكة المتحدة", "英国"]],
   ["Netherlands", ["hollanda"]],
   ["Greece", ["yunanistan"]],
   ["Czech Republic", ["çekya", "cekya"]],

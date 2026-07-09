@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   Image,
+  ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
@@ -35,6 +36,8 @@ const filters: { id: ExploreFilter; labelKey: string; icon: string }[] = [
   { id: "city", labelKey: "explore.filters.cities", icon: "📍" },
   { id: "outlet", labelKey: "explore.filters.outlets", icon: "🛍️" },
 ];
+const exploreHeroImage = require("../../assets/explore/explore-hero-premium.png");
+
 const popularSearches = [
   { query: "Paris", labelKey: "explore.popularSearch.paris" },
   { query: "Burberry", labelKey: "explore.popularSearch.burberry" },
@@ -261,13 +264,18 @@ export function ExploreScreen() {
           bottom: getScrollIndicatorBottomInset(insets.bottom),
         }}
       >
-        <View style={styles.heroCard}>
-          <View style={styles.heroGlow} />
-          <View style={styles.heroRing} />
-          <Text style={styles.heroKicker}>{t("explore.heroKicker")}</Text>
-          <Text style={styles.heroTitle}>{t("explore.heroTitle")}</Text>
-          <Text style={styles.heroText}>{t("explore.heroSubtitle")}</Text>
-        </View>
+        <ImageBackground
+          source={exploreHeroImage}
+          resizeMode="cover"
+          style={styles.heroCard}
+          imageStyle={styles.heroImage}
+        >
+          <View style={styles.heroTextScrim}>
+            <Text style={styles.heroKicker}>{t("explore.heroKicker")}</Text>
+            <Text style={styles.heroTitle}>{t("explore.heroTitle")}</Text>
+            <Text style={styles.heroText}>{t("explore.heroSubtitle")}</Text>
+          </View>
+        </ImageBackground>
         {activeTab === null ? (
           <View style={styles.searchBox}>
           <Text style={styles.searchIcon}>⌕</Text>
@@ -686,37 +694,30 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F6F7F9" },
   content: { padding: 20 },
   heroCard: {
+    minHeight: 214,
     backgroundColor: "#0B1F3A",
     borderRadius: 30,
-    padding: 26,
     marginBottom: 18,
     overflow: "hidden",
     borderWidth: 1,
-    borderColor: "rgba(201,162,39,.28)",
+    borderColor: "rgba(201,162,39,.30)",
     shadowColor: "#0B1F3A",
     shadowOpacity: 0.18,
     shadowRadius: 22,
     shadowOffset: { width: 0, height: 12 },
     elevation: 6,
   },
-  heroGlow: {
-    position: "absolute",
-    right: -35,
-    top: -45,
-    width: 150,
-    height: 150,
-    borderRadius: 999,
-    backgroundColor: "rgba(201,162,39,.20)",
+  heroImage: {
+    borderRadius: 30,
   },
-  heroRing: {
-    position: "absolute",
-    right: 20,
-    bottom: -55,
-    width: 140,
-    height: 140,
-    borderRadius: 999,
-    borderWidth: 18,
-    borderColor: "rgba(255,255,255,.07)",
+  heroTextScrim: {
+    alignSelf: "stretch",
+    maxWidth: "76%",
+    minHeight: 214,
+    justifyContent: "center",
+    padding: 26,
+    paddingRight: 22,
+    backgroundColor: "rgba(6, 20, 40, .54)",
   },
   heroKicker: {
     color: "#C9A227",
@@ -724,6 +725,7 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     letterSpacing: 1.5,
     marginBottom: 8,
+    flexShrink: 1,
   },
   heroTitle: {
     color: "#fff",
@@ -732,12 +734,14 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     letterSpacing: -0.7,
     marginBottom: 10,
+    flexShrink: 1,
   },
   heroText: {
     color: "#E7EDF5",
     fontSize: 16,
     lineHeight: 24,
     fontWeight: "600",
+    flexShrink: 1,
   },
   searchBox: {
     minHeight: 62,
