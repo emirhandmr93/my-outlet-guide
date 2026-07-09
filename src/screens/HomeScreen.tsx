@@ -203,7 +203,7 @@ const recommendedOutlets = [
     textKey: "home.outlets.theMall.text",
   },
   {
-    id: "parndorf-designer-outlet",
+    id: "designer-outlet-parndorf",
     title: "Parndorf",
     location: "Vienna, Austria",
     textKey: "home.outlets.parndorf.text",
