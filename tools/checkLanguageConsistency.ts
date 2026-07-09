@@ -75,9 +75,26 @@ const criticalHomeKeys = [
   "home.viewOutlet",
 ] as const;
 
+
+const criticalExploreV2Keys = [
+  "explore.heroTitle", "explore.heroSubtitle", "explore.searchPlaceholder",
+  "explore.filters.countries", "explore.filters.cities", "explore.filters.outlets", "explore.filters.brands",
+  "explore.popularSearches", "explore.popularSearchesSubtitle", "explore.discoveryTitle", "explore.discoverySubtitle",
+  "explore.discoverByCountryTitle", "explore.discoverByCountrySubtitle", "explore.discoverOutletsTitle", "explore.discoverOutletsSubtitle",
+  "explore.discoverByBrandTitle", "explore.discoverByBrandSubtitle", "explore.discoverByCityTitle", "explore.discoverByCitySubtitle",
+  "explore.countryTabTitle", "explore.countryTabSubtitle", "explore.countrySearchPlaceholder",
+  "explore.cityTabTitle", "explore.cityTabSubtitle", "explore.citySearchPlaceholder",
+  "explore.outletTabTitle", "explore.outletTabSubtitle", "explore.outletSearchPlaceholder",
+  "explore.brandTabTitle", "explore.brandTabSubtitle", "explore.brandSearchPlaceholder", "explore.brandCategoryHint",
+  "explore.clear", "explore.clearFilters", "explore.resultCount", "explore.noResults", "explore.noResultsText",
+  "explore.countryOutletSingular", "explore.countryOutletPlural"
+] as const;
+
+const criticalKeys = [...criticalHomeKeys, ...criticalExploreV2Keys] as const;
+
 const visiblePrefixPattern = /^(?:[A-Z]{2}: |ترجمة عربية: |中文翻译：)/;
 
-const intentionallyUniversalCriticalValues = new Set(["Tax Free", "Offline"]);
+const intentionallyUniversalCriticalValues = new Set(["Tax Free", "Offline", "Outlet", "outlet", "outlets", "Outlets"]);
 
 function cleanValue(key: string, value: string | undefined) {
   if (!value) {
@@ -104,7 +121,7 @@ for (const languageCode of supportedLanguageCodes) {
     hasError = true;
   }
 
-  for (const key of criticalHomeKeys) {
+  for (const key of criticalKeys) {
     const value =
       cleanValue(key, translations[languageCode][key]) ||
       cleanValue(key, translations.en[key]);
@@ -144,5 +161,5 @@ if (hasError) {
 }
 
 console.log(
-  `Language consistency check passed for ${supportedLanguageCodes.join(", ")} (${criticalHomeKeys.length} critical keys).`,
+  `Language consistency check passed for ${supportedLanguageCodes.join(", ")} (${criticalKeys.length} critical keys).`,
 );
