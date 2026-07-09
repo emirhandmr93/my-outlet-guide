@@ -350,12 +350,12 @@ export function HomeScreen() {
       <ScrollView
         style={styles.container}
         contentInsetAdjustmentBehavior="never"
-        scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 120 }}
+        scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 156 }}
         contentContainerStyle={[
           styles.content,
           {
             paddingTop: Math.max(insets.top + spacing.md, 58),
-            paddingBottom: Math.max(insets.bottom + 188, 188),
+            paddingBottom: Math.max(insets.bottom + 232, 232),
           },
         ]}
       >
@@ -422,6 +422,7 @@ export function HomeScreen() {
                   resizeMode="cover"
                 >
                   <View style={styles.slideScrim} />
+                  <View style={styles.slideTextScrim} />
                   <View style={styles.slideGlow} />
                   <View style={styles.slideContent}>
                     <Text style={styles.slideIcon}>{slide.icon}</Text>
@@ -658,7 +659,7 @@ const styles = StyleSheet.create({
   content: {
     padding: spacing.xl,
     paddingTop: 58,
-    paddingBottom: 188,
+    paddingBottom: 232,
   },
 
   searchBlock: {
@@ -707,7 +708,16 @@ const styles = StyleSheet.create({
 
   slideScrim: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(6,18,34,0.48)",
+    backgroundColor: "rgba(6,18,34,0.16)",
+  },
+
+  slideTextScrim: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: "78%",
+    backgroundColor: "rgba(6,18,34,0.38)",
   },
 
   slideGlow: {
@@ -721,7 +731,9 @@ const styles = StyleSheet.create({
   },
 
   slideContent: {
-    padding: spacing.xl,
+    paddingHorizontal: spacing.xl,
+    paddingTop: spacing.xl,
+    paddingBottom: spacing.xxl,
   },
 
   slideIcon: {
@@ -762,7 +774,7 @@ const styles = StyleSheet.create({
     fontSize: typography.body,
     lineHeight: typography.lineBody,
     fontWeight: typography.weightMedium,
-    marginBottom: spacing.md,
+    marginBottom: spacing.lg,
   },
 
   slideAction: {
@@ -795,7 +807,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: spacing.xs,
-    marginTop: spacing.sm,
+    marginTop: spacing.md,
   },
 
   dot: {

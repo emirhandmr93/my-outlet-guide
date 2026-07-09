@@ -10409,3 +10409,22 @@ for (const languageCode of supportedLanguageCodes) {
 for (const languageCode of supportedLanguageCodes) {
   Object.assign(translations[languageCode], finalPhase1AHomePolish[languageCode] ?? {});
 }
+
+const finalPhase1BHomeFinalPolish: Partial<Record<TranslationLanguage, Record<string, string>>> = {
+  tr: {
+    "home.heroLabel": "Premium alışveriş ve seyahat asistanı",
+    "home.header.userSubtitle": "Outlet seyahatlerini planla, tasarruf araçlarını kullan ve premium alışveriş rotalarını keşfet.",
+    "home.sections.featured.subtitle": "Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar.",
+    "home.featured.offline.kicker": "ÇEVRİMDIŞI ERİŞİM",
+    "home.featured.offline.title": "Çevrimdışı rehber",
+    "home.featured.offline.subtitle": "Hangi rehber özelliklerinin internetsiz çalıştığını gör.",
+    "home.featured.offline.cta": "Çevrimdışı durumu gör",
+    "home.tools.offline.title": "Çevrimdışı",
+    "home.tools.offline.text": "İnternetsiz çalışan rehber özelliklerini gör.",
+    "home.quick.offline": "Çevrimdışı erişim",
+  },
+};
+
+for (const languageCode of supportedLanguageCodes) {
+  Object.assign(translations[languageCode], finalPhase1BHomeFinalPolish[languageCode] ?? {});
+}

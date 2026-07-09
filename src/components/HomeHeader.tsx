@@ -110,6 +110,7 @@ export function HomeHeader({
         resizeMode="cover"
       >
         <View style={styles.heroScrim} />
+        <View style={styles.heroTextScrim} />
         <View style={styles.heroGlowTop} />
         <View style={styles.heroGlowBottom} />
         <View style={styles.heroPatternRow}>
@@ -235,7 +236,16 @@ const styles = StyleSheet.create({
 
   heroScrim: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(6,18,34,0.46)",
+    backgroundColor: "rgba(6,18,34,0.18)",
+  },
+
+  heroTextScrim: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    height: "72%",
+    backgroundColor: "rgba(6,18,34,0.34)",
   },
 
   heroGlowTop: {
