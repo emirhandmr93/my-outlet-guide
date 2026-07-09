@@ -7,7 +7,11 @@ import {
   type SearchItemType,
 } from "./searchIndex";
 import { getCityName, getCountryName } from "./locationService";
-import { expandSearchValues, normalizeSearchText } from "./searchAliases";
+import {
+  expandSearchValues,
+  getExactLocalizedCountryIntent,
+  normalizeSearchText,
+} from "./searchAliases";
 import { getBrandSearchAliases } from "./brandAliases";
 
 function normalizeSearchValue(value: string) {
@@ -22,17 +26,33 @@ function matchesSearchValue(value: string, queries: string[]) {
 export function searchAll(query: string, limit = 10): SearchIndexItem[] {
   const value = normalizeSearchValue(query);
   const queryValues = expandSearchValues(query).map(normalizeSearchValue);
+  const countryIntent = getExactLocalizedCountryIntent(query);
 
   if (!value) {
     return [];
   }
 
   return buildSearchIndex()
-    .filter((item) =>
-      [item.title, item.subtitle, ...item.keywords].some((keyword) =>
+    .map((item) => {
+      const matches = [item.title, item.subtitle, ...item.keywords].some((keyword) =>
         matchesSearchValue(keyword, queryValues)
-      )
-    )
+      );
+      const countryIntentBonus = countryIntent
+        ? item.type === "country" && item.id === countryIntent.countryId
+          ? 5000
+          : item.keywords.some((keyword) => normalizeSearchValue(keyword) === countryIntent.countryId)
+            ? item.type === "city"
+              ? 4000
+              : item.type === "outlet"
+                ? 3000
+                : 0
+            : 0
+        : 0;
+      return { item, score: (matches ? 1 : 0) + countryIntentBonus };
+    })
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .map(({ item }) => item)
     .slice(0, limit);
 }
 
@@ -49,6 +69,7 @@ export function searchByType(
 export function searchOutlets(query: string) {
   const value = normalizeSearchValue(query);
   const queryValues = expandSearchValues(query).map(normalizeSearchValue);
+  const countryIntent = getExactLocalizedCountryIntent(query);
 
   if (!value) {
     return outlets;
@@ -76,6 +97,8 @@ export function searchOutlets(query: string) {
       const outletAliases = Array.isArray(outlet.aliases) ? outlet.aliases : [];
       const countryAliases = expandSearchValues(countryName);
       const cityAliases = expandSearchValues(cityName);
+      const exactCountryIntentBonus =
+        countryIntent && outlet.countryId === countryIntent.countryId ? 5000 : 0;
       const scoreParts = [
         { values: [outlet.name, ...outletAliases], score: 900 },
         { values: [cityName, ...cityAliases], score: 800 },
@@ -87,7 +110,7 @@ export function searchOutlets(query: string) {
           return total + part.score;
         }
         return total;
-      }, 0);
+      }, exactCountryIntentBonus);
 
       return { outlet, score };
     })

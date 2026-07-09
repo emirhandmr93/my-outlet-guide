@@ -28,6 +28,7 @@ export function getSearchProviderItems(
       ...(Array.isArray(outlet.aliases) ? outlet.aliases : []),
       getCityName(outlet.cityId),
       getCountryName(outlet.countryId),
+      outlet.countryId,
       ...getLocalizedSearchAliases(getCountryName(outlet.countryId)),
       ...getLocalizedLocationSearchValues(getCityName(outlet.cityId)),
     ],
@@ -61,6 +62,7 @@ export function getSearchProviderItems(
     keywords: [
       city.cityName,
       getCountryName(city.countryId),
+      city.countryId,
       ...getLocalizedSearchAliases(getCountryName(city.countryId)),
       ...getLocalizedLocationSearchValues(city.cityName),
     ],
@@ -76,7 +78,7 @@ export function getSearchProviderItems(
     routeParams: {
       countryId: country.countryId,
     },
-    keywords: [country.countryName, ...getLocalizedSearchAliases(country.countryName)],
+    keywords: [country.countryName, country.countryId, ...getLocalizedSearchAliases(country.countryName)],
     score: 0,
   }));
 

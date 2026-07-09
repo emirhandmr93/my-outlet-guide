@@ -9,6 +9,7 @@ import { cities } from "../src/constants/cities";
 import { countries } from "../src/constants/countries";
 import {
   expandSearchValues,
+  getExactLocalizedCountryIntent,
   normalizeSearchText,
 } from "../src/services/searchAliases";
 import { formatCityDisplayName, formatCountryDisplayName } from "../src/utils/locationDisplay";
@@ -46,10 +47,11 @@ assert(
   "Explore screen should not include visible debug prefixes",
 );
 
+assert(formatCountryDisplayName("italy", "tr") === "İtalya", "Italy should display as İtalya in Turkish");
 assert(formatCountryDisplayName("france", "tr") === "Fransa", "France should display as Fransa in Turkish");
 assert(formatCountryDisplayName("germany", "tr") === "Almanya", "Germany should display as Almanya in Turkish");
-assert(formatCountryDisplayName("italy", "tr") === "İtalya", "Italy should display as İtalya in Turkish");
 assert(formatCountryDisplayName("united-kingdom", "tr") === "Birleşik Krallık", "United Kingdom should display as Birleşik Krallık in Turkish");
+assert(formatCountryDisplayName("austria", "tr") === "Avusturya", "Austria should display as Avusturya in Turkish");
 assert(formatCityDisplayName("munich", "tr") === "Münih", "Munich should display as Münih in Turkish");
 assert(formatCityDisplayName("vienna", "tr") === "Viyana", "Vienna should display as Viyana in Turkish");
 assert(formatCityDisplayName("london", "tr") === "Londra", "London should display as Londra in Turkish");
@@ -116,8 +118,8 @@ function assertOutletCountryFirst(
   const results = searchOutlets(query).slice(0, 8);
   assert(results.length > 0, `${query} should return outlet results`);
   assert(
-    results.slice(0, 3).some((outlet) => outlet.countryId === countryId),
-    `${query} should include ${countryId} outlets near the top: ${titles(query).join(", ")}`,
+    results.slice(0, 3).every((outlet) => outlet.countryId === countryId),
+    `${query} first 3 outlets should be ${countryId}: ${titles(query).join(", ")}`,
   );
   const firstBlocked = results.findIndex((outlet) => blocked.test(outlet.name));
   const firstCountry = results.findIndex(
@@ -130,12 +132,30 @@ function assertOutletCountryFirst(
   );
 }
 
-assertOutletCountryFirst("fransa", "france", /Athens/i);
+assert(getExactLocalizedCountryIntent("Fransa")?.countryId === "france", "Fransa should map exactly to France country intent");
+assert(getExactLocalizedCountryIntent("Franciacorta") === null, "Franciacorta should not map to France country intent");
+assert(getExactLocalizedCountryIntent("francia")?.countryId === "france", "francia should map exactly to France country intent");
+
+assertOutletCountryFirst("fransa", "france", /Franciacorta/i);
 assertOutletCountryFirst("Fransa", "france", /Athens/i);
 assertOutletCountryFirst("Paris", "france", /Amsterdam|Bicester|Berlin/i);
 assertOutletCountryFirst("almanya", "germany", /Athens|Paris|Amsterdam/i);
 assertOutletCountryFirst("Italy", "italy", /Athens|Paris|Amsterdam|Berlin/i);
 assertOutletCountryFirst("İtalya", "italy", /Athens|Paris|Amsterdam|Berlin/i);
+assertOutletCountryFirst("Birleşik Krallık", "united-kingdom", /Athens|Paris|Amsterdam|Berlin|Franciacorta/i);
+
+
+function assertExploreCountryBeforeBlocked(query: string, countryId: string, blocked: RegExp) {
+  const results = getExploreVisibleSearchResults(query, []);
+  const firstCountryRelated = results.findIndex((item) => item.id === countryId || item.id.includes(countryId) || (item.keywords || []).includes(countryId));
+  const firstBlocked = results.findIndex((item) => blocked.test(item.title));
+  assert(firstCountryRelated >= 0, `${query} should include ${countryId}-related Explore results`);
+  assert(firstBlocked === -1 || firstCountryRelated < firstBlocked, `${query} should rank ${countryId} before blocked substring results: ${results.slice(0, 8).map((item) => `${item.type}:${item.title}`).join(", ")}`);
+}
+
+assertExploreCountryBeforeBlocked("Fransa", "france", /Franciacorta/i);
+assertExploreCountryBeforeBlocked("Almanya", "germany", /Franciacorta|France/i);
+assertExploreCountryBeforeBlocked("İtalya", "italy", /France|Germany/i);
 
 const ysl = getExploreVisibleSearchResults("ysl", []);
 const hasYslSource = getActiveBrands().some((brand) => /^(Yves Saint Laurent|Saint Laurent)$/i.test(brand.brandName));

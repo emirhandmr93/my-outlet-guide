@@ -3,22 +3,23 @@ import { getSearchProviderItems } from "./searchProviders";
 import { calculateSearchScore } from "./searchRanking";
 import {
   expandSearchValues,
-  getStrongLocalizedCountryMatch,
+  getExactLocalizedCountryIntent,
 } from "./searchAliases";
 import type { SearchResult } from "./searchTypes";
 
 function getLocalizedCountryPriority(
   item: SearchResult,
-  matchedCountry: string | null,
+  matchedCountry: ReturnType<typeof getExactLocalizedCountryIntent>,
 ) {
   if (!matchedCountry) return 0;
 
-  const countryValue = matchedCountry.toLowerCase();
-  const values = [item.title, item.subtitle, ...(item.keywords || [])].map(
+  const normalizedCountryId = matchedCountry.countryId.toLowerCase();
+  const countryValue = matchedCountry.countryName.toLowerCase();
+  const values = [item.id, item.title, item.subtitle, ...(item.keywords || [])].map(
     (value) => String(value).toLowerCase(),
   );
-  const belongsToMatchedCountry = values.some((value) =>
-    value.includes(countryValue),
+  const belongsToMatchedCountry = values.some(
+    (value) => value === normalizedCountryId || value.includes(countryValue),
   );
 
   if (!belongsToMatchedCountry) return item.type === "brand" ? -500 : 0;
@@ -30,7 +31,7 @@ function getLocalizedCountryPriority(
 }
 
 export function searchApp(query: string, limit = 12): SearchResult[] {
-  const strongCountryMatch = getStrongLocalizedCountryMatch(query);
+  const strongCountryMatch = getExactLocalizedCountryIntent(query);
   const tokens = Array.from(
     new Set(
       expandSearchValues(query).flatMap((value) => parseSearchQuery(value)),
