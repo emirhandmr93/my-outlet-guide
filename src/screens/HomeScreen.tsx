@@ -56,6 +56,7 @@ type FeaturedSlide = {
   subtitleKey: string;
   ctaKey: string;
   icon: string;
+  image: ImageSourcePropType;
   route: string;
   params?: Record<string, string>;
 };
@@ -68,6 +69,7 @@ const featuredSlides: FeaturedSlide[] = [
     subtitleKey: "home.featured.discover.subtitle",
     ctaKey: "home.featured.discover.cta",
     icon: "⌕",
+    image: require("../../assets/home/featured-discover-outlets.png"),
     route: "Explore",
   },
   {
@@ -77,6 +79,7 @@ const featuredSlides: FeaturedSlide[] = [
     subtitleKey: "home.featured.trip.subtitle",
     ctaKey: "home.featured.trip.cta",
     icon: "✈",
+    image: require("../../assets/home/featured-plan-trip.png"),
     route: "CreateTrip",
   },
   {
@@ -86,6 +89,7 @@ const featuredSlides: FeaturedSlide[] = [
     subtitleKey: "home.featured.savings.subtitle",
     ctaKey: "home.featured.savings.cta",
     icon: "%",
+    image: require("../../assets/home/featured-savings-guide.png"),
     route: "Savings",
   },
   {
@@ -95,6 +99,7 @@ const featuredSlides: FeaturedSlide[] = [
     subtitleKey: "home.featured.offline.subtitle",
     ctaKey: "home.featured.offline.cta",
     icon: "↓",
+    image: require("../../assets/home/featured-offline-availability.png"),
     route: "OfflinePacks",
   },
 ];
@@ -232,6 +237,9 @@ const quickMenuItems = [
 ];
 
 const outletMediaMode = getConfiguredOutletMediaMode();
+const recommendedOutletFallbackImage = require(
+  "../../assets/home/recommended-outlet-generic.png",
+);
 
 function getOutletCardImageSource(
   outletId: string,
@@ -240,7 +248,7 @@ function getOutletCardImageSource(
   if (!outlet) return undefined;
 
   const heroImage = getOutletCardHeroImage(outlet, { mode: outletMediaMode });
-  return heroImage ? getImageSource(heroImage) : undefined;
+  return heroImage ? getImageSource(heroImage) : recommendedOutletFallbackImage;
 }
 
 export function HomeScreen() {
@@ -407,7 +415,13 @@ export function HomeScreen() {
                 style={styles.slideOuter}
                 onPress={() => openSlide(slide)}
               >
-                <View style={styles.slideImage}>
+                <ImageBackground
+                  source={slide.image}
+                  style={styles.slideImage}
+                  imageStyle={styles.slideImageRadius}
+                  resizeMode="cover"
+                >
+                  <View style={styles.slideScrim} />
                   <View style={styles.slideGlow} />
                   <View style={styles.slideContent}>
                     <Text style={styles.slideIcon}>{slide.icon}</Text>
@@ -419,7 +433,7 @@ export function HomeScreen() {
                       <Text style={styles.slideActionArrow}>→</Text>
                     </View>
                   </View>
-                </View>
+                </ImageBackground>
               </TouchableOpacity>
             ))}
           </ScrollView>
@@ -685,6 +699,15 @@ const styles = StyleSheet.create({
     borderRadius: radius.hero,
     backgroundColor: colors.primary,
     ...shadows.premium,
+  },
+
+  slideImageRadius: {
+    borderRadius: radius.hero,
+  },
+
+  slideScrim: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(6,18,34,0.48)",
   },
 
   slideGlow: {

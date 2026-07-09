@@ -1,5 +1,6 @@
 import {
   Image,
+  ImageBackground,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,6 +13,8 @@ import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+
+const homeHeroPremiumImage = require("../../assets/home/home-hero-premium.png");
 
 type HomeHeaderProps = {
   userName?: string;
@@ -100,7 +103,13 @@ export function HomeHeader({
         </View>
       </View>
 
-      <View style={styles.hero}>
+      <ImageBackground
+        source={homeHeroPremiumImage}
+        style={styles.hero}
+        imageStyle={styles.heroImage}
+        resizeMode="cover"
+      >
+        <View style={styles.heroScrim} />
         <View style={styles.heroGlowTop} />
         <View style={styles.heroGlowBottom} />
         <View style={styles.heroPatternRow}>
@@ -120,7 +129,7 @@ export function HomeHeader({
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subtitle}>{subtitle}</Text>
         </View>
-      </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -218,6 +227,15 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: colors.primary,
     ...shadows.premium,
+  },
+
+  heroImage: {
+    borderRadius: radius.hero,
+  },
+
+  heroScrim: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(6,18,34,0.46)",
   },
 
   heroGlowTop: {
