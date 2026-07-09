@@ -611,7 +611,7 @@ const styles = StyleSheet.create({
   content: {
     padding: spacing.xl,
     paddingTop: 70,
-    paddingBottom: 120,
+    paddingBottom: 168,
   },
 
   carouselWrap: {
@@ -624,7 +624,7 @@ const styles = StyleSheet.create({
   },
 
   slideImage: {
-    height: 238,
+    minHeight: 250,
     overflow: "hidden",
     justifyContent: "flex-end",
     ...shadows.premium,
@@ -676,8 +676,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: colors.surface,
     borderRadius: radius.pill,
-    paddingHorizontal: spacing.lg,
+    paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
+    maxWidth: carouselWidth - spacing.xl * 2,
   },
 
   slideActionText: {
@@ -685,6 +686,7 @@ const styles = StyleSheet.create({
     fontSize: typography.caption,
     fontWeight: typography.weightBlack,
     marginRight: spacing.xs,
+    flexShrink: 1,
   },
 
   slideActionArrow: {
@@ -722,8 +724,9 @@ const styles = StyleSheet.create({
 
   toolCard: {
     width: (screenWidth - spacing.xl * 2 - spacing.md) / 2,
+    minHeight: 150,
     borderRadius: radius.xl,
-    padding: spacing.lg,
+    padding: spacing.md,
     borderWidth: 1,
     borderColor: colors.border,
     ...shadows.card,
@@ -770,6 +773,7 @@ const styles = StyleSheet.create({
 
   activityColumn: {
     flex: 1,
+    minWidth: 0,
   },
 
   activityIcon: {
@@ -796,6 +800,7 @@ const styles = StyleSheet.create({
     fontSize: typography.bodyLarge,
     fontWeight: typography.weightBlack,
     marginBottom: spacing.xs,
+    flexShrink: 1,
   },
 
   activityText: {
@@ -901,6 +906,7 @@ const styles = StyleSheet.create({
   },
 
   outletBody: {
+    minHeight: 150,
     padding: spacing.md,
   },
 
@@ -918,12 +924,14 @@ const styles = StyleSheet.create({
     fontWeight: typography.weightBlack,
     letterSpacing: -0.3,
     marginBottom: spacing.xs,
+    flexShrink: 1,
   },
 
   outletText: {
     fontSize: typography.caption,
     color: colors.textSecondary,
     lineHeight: 18,
+    flexShrink: 1,
   },
 
   tapText: {
@@ -981,6 +989,7 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: typography.body,
     fontWeight: typography.weightBold,
+    flexShrink: 1,
   },
 
   quickMenuArrow: {
