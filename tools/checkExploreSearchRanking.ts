@@ -92,8 +92,10 @@ function assertOutletCountryFirst(
 }
 
 assertOutletCountryFirst("fransa", "france", /Athens/i);
+assertOutletCountryFirst("Fransa", "france", /Athens/i);
 assertOutletCountryFirst("Paris", "france", /Amsterdam|Bicester|Berlin/i);
 assertOutletCountryFirst("almanya", "germany", /Athens|Paris|Amsterdam/i);
+assertOutletCountryFirst("Italy", "italy", /Athens|Paris|Amsterdam|Berlin/i);
 assertOutletCountryFirst("İtalya", "italy", /Athens|Paris|Amsterdam|Berlin/i);
 
 const burber = getExploreVisibleSearchResults("burber", []);
@@ -138,9 +140,11 @@ assert(
 
 console.log("Explore search ranking checks passed", {
   fransaTop: titles("fransa"),
+  localizedFransaTop: titles("Fransa"),
   parisTop: titles("Paris"),
   almanyaTop: titles("almanya"),
-  italyaTop: titles("İtalya"),
+  italyTop: titles("Italy"),
+  localizedItalyaTop: titles("İtalya"),
   burberTop: burber.slice(0, 5).map((item) => `${item.type}:${item.title}`),
   burberryTop: burberry.slice(0, 5).map((item) => `${item.type}:${item.title}`),
   cityAliasChecks: {
