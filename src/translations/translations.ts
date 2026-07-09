@@ -101,7 +101,7 @@ const enTranslations = {
   "home.quick.browse": "Browse Outlets",
   "home.quick.flights": "Flight Deals",
   "home.quick.taxfree": "Tax Free Center",
-  "home.quick.offline": "Offline Packs",
+  "home.quick.offline": "Offline Availability",
   "home.quick.rateApp": "Rate App",
   "home.quick.shareApp": "Share App",
   "home.shareMessage":
@@ -1402,7 +1402,7 @@ export const translations: Record<
     "home.quick.browse": "Browse Outlets",
     "home.quick.flights": "Flight Deals",
     "home.quick.taxfree": "Tax Free Center",
-    "home.quick.offline": "Offline Packs",
+    "home.quick.offline": "Offline Availability",
     "home.quick.rateApp": "Rate App",
     "home.quick.shareApp": "Share App",
     "home.shareMessage":
@@ -2698,7 +2698,7 @@ export const translations: Record<
     "home.quick.browse": "Browse Outlets",
     "home.quick.flights": "Flight Deals",
     "home.quick.taxfree": "Tax Free Center",
-    "home.quick.offline": "Offline Packs",
+    "home.quick.offline": "Çevrimdışı Kullanılabilirlik",
     "home.quick.rateApp": "Rate App",
     "home.quick.shareApp": "Share App",
     "home.shareMessage":
@@ -3976,7 +3976,7 @@ export const translations: Record<
     "home.quick.browse": "Browse Outlets",
     "home.quick.flights": "Flight Deals",
     "home.quick.taxfree": "Tax Free Center",
-    "home.quick.offline": "Offline Packs",
+    "home.quick.offline": "Offline Availability",
     "home.quick.rateApp": "Rate App",
     "home.quick.shareApp": "Share App",
     "home.shareMessage":
@@ -5259,7 +5259,7 @@ export const translations: Record<
     "home.quick.browse": "Browse Outlets",
     "home.quick.flights": "Flight Deals",
     "home.quick.taxfree": "Tax Free Center",
-    "home.quick.offline": "Offline Packs",
+    "home.quick.offline": "Offline Availability",
     "home.quick.rateApp": "Rate App",
     "home.quick.shareApp": "Share App",
     "home.shareMessage":
@@ -6500,7 +6500,7 @@ export const translations: Record<
     "home.quick.browse": "Browse Outlets",
     "home.quick.flights": "Flight Deals",
     "home.quick.taxfree": "Tax Free Center",
-    "home.quick.offline": "Offline Packs",
+    "home.quick.offline": "Offline Availability",
     "home.quick.rateApp": "Rate App",
     "home.quick.shareApp": "Share App",
     "home.shareMessage":
@@ -7687,7 +7687,7 @@ export const translations: Record<
     "home.quick.browse": "Browse Outlets",
     "home.quick.flights": "Flight Deals",
     "home.quick.taxfree": "Tax Free Center",
-    "home.quick.offline": "Offline Packs",
+    "home.quick.offline": "Offline Availability",
     "home.quick.rateApp": "Rate App",
     "home.quick.shareApp": "Share App",
     "home.shareMessage":
@@ -8945,7 +8945,7 @@ export const translations: Record<
     "home.quick.browse": "Browse Outlets",
     "home.quick.flights": "Flight Deals",
     "home.quick.taxfree": "Tax Free Center",
-    "home.quick.offline": "Offline Packs",
+    "home.quick.offline": "Offline Availability",
     "home.quick.rateApp": "Rate App",
     "home.quick.shareApp": "Share App",
     "home.shareMessage": "home.shareMessage",
