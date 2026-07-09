@@ -16,7 +16,8 @@ import {
   getScrollIndicatorBottomInset,
 } from "../utils/safeAreaLayout";
 
-import { searchAll, searchOutlets } from "../services/searchService";
+import { searchOutlets } from "../services/searchService";
+import { getExploreVisibleSearchResults } from "../services/exploreSearchResults";
 import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
@@ -333,18 +334,13 @@ export function ExploreScreen() {
   }, [allBrands, selectedBrandCategory]);
 
   const searchSuggestions = useMemo(() => {
-    return searchAll(normalizedSearch, 30).filter(
-      (item) => item.type !== "category",
-    );
+    return getExploreVisibleSearchResults(normalizedSearch);
   }, [normalizedSearch]);
 
   const visibleSuggestions = useMemo(() => {
     return searchSuggestions.filter((item) => {
-      if (activeFilters.length === 0) return item.type !== "outlet";
-      return (
-        activeFilters.includes(item.type as ExploreFilter) &&
-        item.type !== "outlet"
-      );
+      if (activeFilters.length === 0) return true;
+      return activeFilters.includes(item.type as ExploreFilter);
     });
   }, [activeFilters, searchSuggestions]);
 
@@ -445,6 +441,11 @@ export function ExploreScreen() {
 
     if (item.type === "country") {
       navigation.navigate("Country", { countryId: item.id });
+      return;
+    }
+
+    if (item.type === "outlet") {
+      openOutlet(item.id);
     }
   }
 
@@ -463,494 +464,521 @@ export function ExploreScreen() {
     : null;
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={[
-        styles.content,
-        {
-          paddingTop: getScreenTopInset(insets.top),
-          paddingBottom: getFloatingTabClearance(insets.bottom),
-        },
-      ]}
-      scrollIndicatorInsets={{
-        top: getScreenTopInset(insets.top),
-        bottom: getScrollIndicatorBottomInset(insets.bottom),
-      }}
-    >
-      <View style={styles.heroCard}>
-        <Text style={styles.heroKicker}>{t("explore.heroKicker")}</Text>
-        <Text style={styles.heroTitle}>{t("explore.heroTitle")}</Text>
-        <Text style={styles.heroText}>{t("explore.heroSubtitle")}</Text>
-      </View>
-
-      <View style={styles.searchBox}>
-        <Text style={styles.searchIcon}>⌕</Text>
-        <TextInput
-          style={styles.searchInput}
-          placeholder={t("explore.searchPlaceholder")}
-          placeholderTextColor="#8B94A3"
-          value={search}
-          onChangeText={setSearch}
-          returnKeyType="search"
-          autoCorrect={false}
-          autoCapitalize="none"
-        />
-        {search.length > 0 ? (
-          <TouchableOpacity activeOpacity={0.82} onPress={() => setSearch("")}>
-            <Text style={styles.clearIcon}>×</Text>
-          </TouchableOpacity>
-        ) : null}
-      </View>
-
+    <View style={styles.screenRoot}>
+      <View
+        pointerEvents="none"
+        style={[styles.topSafeScrim, { height: insets.top }]}
+      />
       <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.filterRow}
+        style={styles.container}
+        contentContainerStyle={[
+          styles.content,
+          {
+            paddingTop: getScreenTopInset(insets.top),
+            paddingBottom: getFloatingTabClearance(insets.bottom),
+          },
+        ]}
+        scrollIndicatorInsets={{
+          top: getScreenTopInset(insets.top),
+          bottom: getScrollIndicatorBottomInset(insets.bottom),
+        }}
       >
-        {filters.map((filter) => {
-          const isActive = activeFilters.includes(filter.id);
-
-          return (
-            <TouchableOpacity
-              key={filter.id}
-              activeOpacity={0.85}
-              style={[styles.filterChip, isActive && styles.filterChipActive]}
-              onPress={() => toggleFilter(filter.id)}
-            >
-              <Text
-                style={[styles.filterText, isActive && styles.filterTextActive]}
-              >
-                {t(filter.labelKey)}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
-      </ScrollView>
-
-      {selectedCountryName ? (
-        <View style={styles.contextBar}>
-          <Text style={styles.contextText}>
-            {t("explore.showingOutletsIn")} {selectedCountryName}
-          </Text>
-          <TouchableOpacity activeOpacity={0.82} onPress={clearContext}>
-            <Text style={styles.contextClear}>{t("explore.clear")}</Text>
-          </TouchableOpacity>
+        <View style={styles.heroCard}>
+          <Text style={styles.heroKicker}>{t("explore.heroKicker")}</Text>
+          <Text style={styles.heroTitle}>{t("explore.heroTitle")}</Text>
+          <Text style={styles.heroText}>{t("explore.heroSubtitle")}</Text>
         </View>
-      ) : null}
 
-      {isSearching ? (
-        <>
-          <View style={styles.sectionHeader}>
-            <Text style={styles.sectionTitle}>
-              {t("explore.searchResults")}
-            </Text>
-            <Text style={styles.sectionSubtitle}>
-              {t("explore.resultsFor")} “{normalizedSearch}”
-            </Text>
-          </View>
-
-          {visibleSuggestions.map((item) => (
+        <View style={styles.searchBox}>
+          <Text style={styles.searchIcon}>⌕</Text>
+          <TextInput
+            style={styles.searchInput}
+            placeholder={t("explore.searchPlaceholder")}
+            placeholderTextColor="#8B94A3"
+            value={search}
+            onChangeText={setSearch}
+            returnKeyType="search"
+            autoCorrect={false}
+            autoCapitalize="none"
+          />
+          {search.length > 0 ? (
             <TouchableOpacity
-              key={`${item.type}-${item.id}`}
-              style={styles.resultCard}
-              activeOpacity={0.86}
-              onPress={() => openResult(item)}
+              activeOpacity={0.82}
+              onPress={() => setSearch("")}
             >
-              <View style={styles.resultIconWrap}>
-                <Text style={styles.resultIcon}>
-                  {getResultIcon(item.type)}
-                </Text>
-              </View>
-
-              <View style={styles.resultContent}>
-                <Text style={styles.resultTypeInline}>
-                  {getResultLabel(item.type, t)}
-                </Text>
-                <Text style={styles.resultTitle}>{item.title}</Text>
-                <Text style={styles.resultSubtitle}>
-                  {getResultSubtitle(item, t)}
-                </Text>
-              </View>
-
-              <Text style={styles.resultArrow}>→</Text>
+              <Text style={styles.clearIcon}>×</Text>
             </TouchableOpacity>
-          ))}
-
-          {filteredOutlets.map((outlet) => (
-            <TouchableOpacity
-              key={outlet.outletId}
-              style={styles.resultCard}
-              activeOpacity={0.86}
-              onPress={() => openOutlet(outlet.outletId)}
-            >
-              <View style={styles.resultIconWrap}>
-                <Text style={styles.resultIcon}>🛍️</Text>
-              </View>
-
-              <View style={styles.resultContent}>
-                <Text style={styles.resultTypeInline}>
-                  {t("searchResult.outlet")}
-                </Text>
-                <Text style={styles.resultTitle}>{outlet.name}</Text>
-                <Text style={styles.resultSubtitle}>
-                  {getCityName(outlet.cityId)},{" "}
-                  {getCountryName(outlet.countryId)}
-                </Text>
-              </View>
-
-              <Text style={styles.resultArrow}>→</Text>
-            </TouchableOpacity>
-          ))}
-
-          {visibleSuggestions.length === 0 && filteredOutlets.length === 0 ? (
-            <View style={styles.emptyCard}>
-              <Text style={styles.emptyTitle}>{t("explore.noResults")}</Text>
-              <Text style={styles.emptyText}>{t("explore.noResultsText")}</Text>
-            </View>
           ) : null}
-        </>
-      ) : (
-        <>
-          {showPopularSearches ? (
-            <>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>
-                  {t("explore.popularSearches")}
-                </Text>
-                <Text style={styles.sectionSubtitle}>
-                  {t("explore.popularSearchesSubtitle")}
-                </Text>
-              </View>
+        </View>
 
-              <View style={styles.popularSearchGrid}>
-                {popularSearches.map((item) => (
-                  <TouchableOpacity
-                    key={item}
-                    activeOpacity={0.86}
-                    style={styles.popularSearchChip}
-                    onPress={() => runPopularSearch(item)}
-                  >
-                    <Text style={styles.popularSearchText}>{item}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            </>
-          ) : null}
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.filterRow}
+        >
+          {filters.map((filter) => {
+            const isActive = activeFilters.includes(filter.id);
 
-          {showCities ? (
-            <>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>
-                  {t("explore.popularCities")}
-                </Text>
-                <Text style={styles.sectionSubtitle}>
-                  {t("explore.popularCitiesSubtitle")}
-                </Text>
-              </View>
-
-              <ScrollView
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={styles.horizontalList}
-              >
-                {shoppingCities.map((city) => {
-                  const cityImage = cityImageMap[city.cityId];
-
-                  return (
-                    <TouchableOpacity
-                      key={city.cityId}
-                      activeOpacity={0.88}
-                      style={styles.cityCard}
-                      onPress={() =>
-                        navigation.navigate("CityResults", {
-                          cityId: city.cityId,
-                        })
-                      }
-                    >
-                      {cityImage ? (
-                        <Image source={cityImage} style={styles.cityImage} />
-                      ) : null}
-                      <View style={styles.cityOverlay} />
-                      <View style={styles.cityContent}>
-                        <Text style={styles.cityCountry}>
-                          {getCountryName(city.countryId)}
-                        </Text>
-                        <Text style={styles.cityName}>{city.cityName}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  );
-                })}
-              </ScrollView>
-            </>
-          ) : null}
-
-          {showCountries ? (
-            <>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>
-                  {t("explore.filters.countries")}
-                </Text>
-                <Text style={styles.sectionSubtitle}>
-                  {t("explore.countriesSubtitle")}
-                </Text>
-              </View>
-
-              <View style={styles.countryList}>
-                {availableCountries.map((country) => {
-                  const isSelected = selectedCountryId === country.countryId;
-
-                  return (
-                    <TouchableOpacity
-                      key={country.countryId}
-                      activeOpacity={0.88}
-                      style={[
-                        styles.countryRow,
-                        isSelected && styles.countryRowSelected,
-                      ]}
-                      onPress={() => selectCountry(country.countryId)}
-                    >
-                      <Text style={styles.countryFlag}>
-                        {country.countryFlag}
-                      </Text>
-
-                      <View style={styles.countryContent}>
-                        <Text style={styles.countryName}>
-                          {country.countryName}
-                        </Text>
-                        <Text style={styles.countryMeta}>
-                          {formatCountryOutletText(country.countryId, t)}
-                        </Text>
-                      </View>
-
-                      <Text style={styles.countryArrow}>→</Text>
-                    </TouchableOpacity>
-                  );
-                })}
-              </View>
-            </>
-          ) : null}
-
-          {!isSearching && activeFilters.includes("outlet") ? (
-            <>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>
-                  {t("explore.filters.outlets")}
-                </Text>
-                <Text style={styles.sectionSubtitle}>
-                  {t("explore.outletsSubtitle")}
-                </Text>
-              </View>
-
-              <View style={styles.searchBox}>
-                <Text style={styles.searchIcon}>⌕</Text>
-                <TextInput
-                  style={styles.searchInput}
-                  placeholder={t("explore.outletSearchPlaceholder")}
-                  placeholderTextColor="#8B94A3"
-                  value={outletSearch}
-                  onChangeText={setOutletSearch}
-                  returnKeyType="search"
-                  autoCorrect={false}
-                />
-                {outletSearch.length > 0 ? (
-                  <TouchableOpacity
-                    activeOpacity={0.82}
-                    onPress={() => setOutletSearch("")}
-                  >
-                    <Text style={styles.clearIcon}>×</Text>
-                  </TouchableOpacity>
-                ) : null}
-              </View>
-
+            return (
               <TouchableOpacity
-                activeOpacity={0.86}
-                style={styles.countryPickerButton}
-                onPress={() => setIsOutletCountryPickerOpen((value) => !value)}
+                key={filter.id}
+                activeOpacity={0.85}
+                style={[styles.filterChip, isActive && styles.filterChipActive]}
+                onPress={() => toggleFilter(filter.id)}
               >
-                <Text style={styles.countryPickerText}>
-                  {outletCountryFilterId
-                    ? `${availableCountries.find((country) => country.countryId === outletCountryFilterId)?.countryFlag || ""} ${
-                        availableCountries.find(
-                          (country) =>
-                            country.countryId === outletCountryFilterId,
-                        )?.countryName || t("searchResult.country")
-                      }`
-                    : `🌍 ${t("explore.allCountries")}`}
-                </Text>
-                <Text style={styles.countryPickerArrow}>
-                  {isOutletCountryPickerOpen ? "▲" : "▼"}
+                <Text
+                  style={[
+                    styles.filterText,
+                    isActive && styles.filterTextActive,
+                  ]}
+                >
+                  {t(filter.labelKey)}
                 </Text>
               </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
 
-              {isOutletCountryPickerOpen ? (
-                <View style={styles.countryPickerList}>
+        {selectedCountryName ? (
+          <View style={styles.contextBar}>
+            <Text style={styles.contextText}>
+              {t("explore.showingOutletsIn")} {selectedCountryName}
+            </Text>
+            <TouchableOpacity activeOpacity={0.82} onPress={clearContext}>
+              <Text style={styles.contextClear}>{t("explore.clear")}</Text>
+            </TouchableOpacity>
+          </View>
+        ) : null}
+
+        {isSearching ? (
+          <>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>
+                {t("explore.searchResults")}
+              </Text>
+              <Text style={styles.sectionSubtitle}>
+                {t("explore.resultsFor")} “{normalizedSearch}”
+              </Text>
+            </View>
+
+            {visibleSuggestions.map((item) => (
+              <TouchableOpacity
+                key={`${item.type}-${item.id}`}
+                style={styles.resultCard}
+                activeOpacity={0.86}
+                onPress={() => openResult(item)}
+              >
+                <View style={styles.resultIconWrap}>
+                  <Text style={styles.resultIcon}>
+                    {getResultIcon(item.type)}
+                  </Text>
+                </View>
+
+                <View style={styles.resultContent}>
+                  <Text style={styles.resultTypeInline}>
+                    {getResultLabel(item.type, t)}
+                  </Text>
+                  <Text style={styles.resultTitle}>{item.title}</Text>
+                  <Text style={styles.resultSubtitle}>
+                    {getResultSubtitle(item, t)}
+                  </Text>
+                </View>
+
+                <Text style={styles.resultArrow}>→</Text>
+              </TouchableOpacity>
+            ))}
+
+            {visibleSuggestions.some((item) => item.type === "outlet")
+              ? null
+              : filteredOutlets.map((outlet) => (
                   <TouchableOpacity
+                    key={outlet.outletId}
+                    style={styles.resultCard}
                     activeOpacity={0.86}
-                    style={styles.countryPickerOption}
-                    onPress={() => {
-                      setOutletCountryFilterId(null);
-                      setIsOutletCountryPickerOpen(false);
-                    }}
+                    onPress={() => openOutlet(outlet.outletId)}
                   >
-                    <Text style={styles.countryPickerOptionText}>
-                      🌍 {t("explore.allCountries")}
-                    </Text>
-                  </TouchableOpacity>
+                    <View style={styles.resultIconWrap}>
+                      <Text style={styles.resultIcon}>🛍️</Text>
+                    </View>
 
-                  {availableCountries.map((country) => (
+                    <View style={styles.resultContent}>
+                      <Text style={styles.resultTypeInline}>
+                        {t("searchResult.outlet")}
+                      </Text>
+                      <Text style={styles.resultTitle}>{outlet.name}</Text>
+                      <Text style={styles.resultSubtitle}>
+                        {getCityName(outlet.cityId)},{" "}
+                        {getCountryName(outlet.countryId)}
+                      </Text>
+                    </View>
+
+                    <Text style={styles.resultArrow}>→</Text>
+                  </TouchableOpacity>
+                ))}
+
+            {visibleSuggestions.length === 0 && filteredOutlets.length === 0 ? (
+              <View style={styles.emptyCard}>
+                <Text style={styles.emptyTitle}>{t("explore.noResults")}</Text>
+                <Text style={styles.emptyText}>
+                  {t("explore.noResultsText")}
+                </Text>
+              </View>
+            ) : null}
+          </>
+        ) : (
+          <>
+            {showPopularSearches ? (
+              <>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>
+                    {t("explore.popularSearches")}
+                  </Text>
+                  <Text style={styles.sectionSubtitle}>
+                    {t("explore.popularSearchesSubtitle")}
+                  </Text>
+                </View>
+
+                <View style={styles.popularSearchGrid}>
+                  {popularSearches.map((item) => (
                     <TouchableOpacity
-                      key={country.countryId}
+                      key={item}
+                      activeOpacity={0.86}
+                      style={styles.popularSearchChip}
+                      onPress={() => runPopularSearch(item)}
+                    >
+                      <Text style={styles.popularSearchText}>{item}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              </>
+            ) : null}
+
+            {showCities ? (
+              <>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>
+                    {t("explore.popularCities")}
+                  </Text>
+                  <Text style={styles.sectionSubtitle}>
+                    {t("explore.popularCitiesSubtitle")}
+                  </Text>
+                </View>
+
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.horizontalList}
+                >
+                  {shoppingCities.map((city) => {
+                    const cityImage = cityImageMap[city.cityId];
+
+                    return (
+                      <TouchableOpacity
+                        key={city.cityId}
+                        activeOpacity={0.88}
+                        style={styles.cityCard}
+                        onPress={() =>
+                          navigation.navigate("CityResults", {
+                            cityId: city.cityId,
+                          })
+                        }
+                      >
+                        {cityImage ? (
+                          <Image source={cityImage} style={styles.cityImage} />
+                        ) : null}
+                        <View style={styles.cityOverlay} />
+                        <View style={styles.cityContent}>
+                          <Text style={styles.cityCountry}>
+                            {getCountryName(city.countryId)}
+                          </Text>
+                          <Text style={styles.cityName}>{city.cityName}</Text>
+                        </View>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </ScrollView>
+              </>
+            ) : null}
+
+            {showCountries ? (
+              <>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>
+                    {t("explore.filters.countries")}
+                  </Text>
+                  <Text style={styles.sectionSubtitle}>
+                    {t("explore.countriesSubtitle")}
+                  </Text>
+                </View>
+
+                <View style={styles.countryList}>
+                  {availableCountries.map((country) => {
+                    const isSelected = selectedCountryId === country.countryId;
+
+                    return (
+                      <TouchableOpacity
+                        key={country.countryId}
+                        activeOpacity={0.88}
+                        style={[
+                          styles.countryRow,
+                          isSelected && styles.countryRowSelected,
+                        ]}
+                        onPress={() => selectCountry(country.countryId)}
+                      >
+                        <Text style={styles.countryFlag}>
+                          {country.countryFlag}
+                        </Text>
+
+                        <View style={styles.countryContent}>
+                          <Text style={styles.countryName}>
+                            {country.countryName}
+                          </Text>
+                          <Text style={styles.countryMeta}>
+                            {formatCountryOutletText(country.countryId, t)}
+                          </Text>
+                        </View>
+
+                        <Text style={styles.countryArrow}>→</Text>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </>
+            ) : null}
+
+            {!isSearching && activeFilters.includes("outlet") ? (
+              <>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>
+                    {t("explore.filters.outlets")}
+                  </Text>
+                  <Text style={styles.sectionSubtitle}>
+                    {t("explore.outletsSubtitle")}
+                  </Text>
+                </View>
+
+                <View style={styles.searchBox}>
+                  <Text style={styles.searchIcon}>⌕</Text>
+                  <TextInput
+                    style={styles.searchInput}
+                    placeholder={t("explore.outletSearchPlaceholder")}
+                    placeholderTextColor="#8B94A3"
+                    value={outletSearch}
+                    onChangeText={setOutletSearch}
+                    returnKeyType="search"
+                    autoCorrect={false}
+                  />
+                  {outletSearch.length > 0 ? (
+                    <TouchableOpacity
+                      activeOpacity={0.82}
+                      onPress={() => setOutletSearch("")}
+                    >
+                      <Text style={styles.clearIcon}>×</Text>
+                    </TouchableOpacity>
+                  ) : null}
+                </View>
+
+                <TouchableOpacity
+                  activeOpacity={0.86}
+                  style={styles.countryPickerButton}
+                  onPress={() =>
+                    setIsOutletCountryPickerOpen((value) => !value)
+                  }
+                >
+                  <Text style={styles.countryPickerText}>
+                    {outletCountryFilterId
+                      ? `${availableCountries.find((country) => country.countryId === outletCountryFilterId)?.countryFlag || ""} ${
+                          availableCountries.find(
+                            (country) =>
+                              country.countryId === outletCountryFilterId,
+                          )?.countryName || t("searchResult.country")
+                        }`
+                      : `🌍 ${t("explore.allCountries")}`}
+                  </Text>
+                  <Text style={styles.countryPickerArrow}>
+                    {isOutletCountryPickerOpen ? "▲" : "▼"}
+                  </Text>
+                </TouchableOpacity>
+
+                {isOutletCountryPickerOpen ? (
+                  <View style={styles.countryPickerList}>
+                    <TouchableOpacity
                       activeOpacity={0.86}
                       style={styles.countryPickerOption}
                       onPress={() => {
-                        setOutletCountryFilterId(country.countryId);
+                        setOutletCountryFilterId(null);
                         setIsOutletCountryPickerOpen(false);
                       }}
                     >
                       <Text style={styles.countryPickerOptionText}>
-                        {country.countryFlag} {country.countryName}
+                        🌍 {t("explore.allCountries")}
                       </Text>
                     </TouchableOpacity>
-                  ))}
-                </View>
-              ) : null}
 
-              {outletListResults.map((outlet) => (
-                <TouchableOpacity
-                  key={outlet.outletId}
-                  activeOpacity={0.88}
-                  style={styles.resultCard}
-                  onPress={() => openOutlet(outlet.outletId)}
-                >
-                  <View style={styles.resultIconWrap}>
-                    <Text style={styles.resultIcon}>🛍️</Text>
-                  </View>
-
-                  <View style={styles.resultContent}>
-                    <Text style={styles.resultTypeInline}>
-                      {t("searchResult.outlet")}
-                    </Text>
-                    <Text style={styles.resultTitle}>{outlet.name}</Text>
-                    <Text style={styles.resultSubtitle}>
-                      {getCityName(outlet.cityId)},{" "}
-                      {getCountryName(outlet.countryId)}
-                    </Text>
-                  </View>
-
-                  <Text style={styles.resultArrow}>→</Text>
-                </TouchableOpacity>
-              ))}
-
-              {outletListResults.length === 0 ? (
-                <View style={styles.emptyCard}>
-                  <Text style={styles.emptyTitle}>
-                    {t("explore.noOutletsFound")}
-                  </Text>
-                  <Text style={styles.emptyText}>
-                    {t("explore.noOutletsText")}
-                  </Text>
-                </View>
-              ) : null}
-            </>
-          ) : null}
-
-          {showBrands ? (
-            <>
-              <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>
-                  {t("explore.brandCategories")}
-                </Text>
-                <Text style={styles.sectionSubtitle}>
-                  {t("explore.brandCategoriesSubtitle")}
-                </Text>
-              </View>
-
-              <View style={styles.brandCategoryList}>
-                {brandCategories.map((category) => {
-                  const isActive = selectedBrandCategory === category.id;
-                  const categoryBrands = getBrandsForCategory(category.id);
-                  const count =
-                    categoryBrands.length || category.keywords.length;
-
-                  return (
-                    <View key={category.id}>
+                    {availableCountries.map((country) => (
                       <TouchableOpacity
+                        key={country.countryId}
                         activeOpacity={0.86}
-                        style={[
-                          styles.brandCategoryRow,
-                          isActive && styles.brandCategoryRowActive,
-                        ]}
-                        onPress={() =>
-                          setSelectedBrandCategory(
-                            isActive ? null : category.id,
-                          )
-                        }
+                        style={styles.countryPickerOption}
+                        onPress={() => {
+                          setOutletCountryFilterId(country.countryId);
+                          setIsOutletCountryPickerOpen(false);
+                        }}
                       >
-                        <Text style={styles.brandCategoryIcon}>
-                          {category.icon}
-                        </Text>
-                        <View style={styles.brandCategoryContent}>
-                          <Text
-                            style={[
-                              styles.brandCategoryTitle,
-                              isActive && styles.brandCategoryTitleActive,
-                            ]}
-                          >
-                            {t(category.titleKey)} ({count})
-                          </Text>
-                          <Text
-                            style={[
-                              styles.brandCategorySubtitle,
-                              isActive && styles.brandCategorySubtitleActive,
-                            ]}
-                          >
-                            {t(category.subtitleKey)}
-                          </Text>
-                        </View>
-                        <Text
-                          style={[
-                            styles.brandCategoryArrow,
-                            isActive && styles.brandCategoryArrowActive,
-                          ]}
-                        >
-                          {isActive ? "▲" : "▼"}
+                        <Text style={styles.countryPickerOptionText}>
+                          {country.countryFlag} {country.countryName}
                         </Text>
                       </TouchableOpacity>
+                    ))}
+                  </View>
+                ) : null}
 
-                      {isActive ? (
-                        <View style={styles.brandGridInline}>
-                          {categoryBrands.map((brand) => (
-                            <TouchableOpacity
-                              key={brand.brandId}
-                              activeOpacity={0.86}
-                              style={styles.brandChip}
-                              onPress={() =>
-                                navigation.navigate("BrandResults", {
-                                  brandId: brand.brandId,
-                                  mode: "chooseCountry",
-                                })
-                              }
-                            >
-                              <Text style={styles.brandText}>
-                                🏷️ {brand.brandName}
-                              </Text>
-                            </TouchableOpacity>
-                          ))}
-                        </View>
-                      ) : null}
+                {outletListResults.map((outlet) => (
+                  <TouchableOpacity
+                    key={outlet.outletId}
+                    activeOpacity={0.88}
+                    style={styles.resultCard}
+                    onPress={() => openOutlet(outlet.outletId)}
+                  >
+                    <View style={styles.resultIconWrap}>
+                      <Text style={styles.resultIcon}>🛍️</Text>
                     </View>
-                  );
-                })}
-              </View>
-            </>
-          ) : null}
-        </>
-      )}
-    </ScrollView>
+
+                    <View style={styles.resultContent}>
+                      <Text style={styles.resultTypeInline}>
+                        {t("searchResult.outlet")}
+                      </Text>
+                      <Text style={styles.resultTitle}>{outlet.name}</Text>
+                      <Text style={styles.resultSubtitle}>
+                        {getCityName(outlet.cityId)},{" "}
+                        {getCountryName(outlet.countryId)}
+                      </Text>
+                    </View>
+
+                    <Text style={styles.resultArrow}>→</Text>
+                  </TouchableOpacity>
+                ))}
+
+                {outletListResults.length === 0 ? (
+                  <View style={styles.emptyCard}>
+                    <Text style={styles.emptyTitle}>
+                      {t("explore.noOutletsFound")}
+                    </Text>
+                    <Text style={styles.emptyText}>
+                      {t("explore.noOutletsText")}
+                    </Text>
+                  </View>
+                ) : null}
+              </>
+            ) : null}
+
+            {showBrands ? (
+              <>
+                <View style={styles.sectionHeader}>
+                  <Text style={styles.sectionTitle}>
+                    {t("explore.brandCategories")}
+                  </Text>
+                  <Text style={styles.sectionSubtitle}>
+                    {t("explore.brandCategoriesSubtitle")}
+                  </Text>
+                </View>
+
+                <View style={styles.brandCategoryList}>
+                  {brandCategories.map((category) => {
+                    const isActive = selectedBrandCategory === category.id;
+                    const categoryBrands = getBrandsForCategory(category.id);
+                    const count =
+                      categoryBrands.length || category.keywords.length;
+
+                    return (
+                      <View key={category.id}>
+                        <TouchableOpacity
+                          activeOpacity={0.86}
+                          style={[
+                            styles.brandCategoryRow,
+                            isActive && styles.brandCategoryRowActive,
+                          ]}
+                          onPress={() =>
+                            setSelectedBrandCategory(
+                              isActive ? null : category.id,
+                            )
+                          }
+                        >
+                          <Text style={styles.brandCategoryIcon}>
+                            {category.icon}
+                          </Text>
+                          <View style={styles.brandCategoryContent}>
+                            <Text
+                              style={[
+                                styles.brandCategoryTitle,
+                                isActive && styles.brandCategoryTitleActive,
+                              ]}
+                            >
+                              {t(category.titleKey)} ({count})
+                            </Text>
+                            <Text
+                              style={[
+                                styles.brandCategorySubtitle,
+                                isActive && styles.brandCategorySubtitleActive,
+                              ]}
+                            >
+                              {t(category.subtitleKey)}
+                            </Text>
+                          </View>
+                          <Text
+                            style={[
+                              styles.brandCategoryArrow,
+                              isActive && styles.brandCategoryArrowActive,
+                            ]}
+                          >
+                            {isActive ? "▲" : "▼"}
+                          </Text>
+                        </TouchableOpacity>
+
+                        {isActive ? (
+                          <View style={styles.brandGridInline}>
+                            {categoryBrands.map((brand) => (
+                              <TouchableOpacity
+                                key={brand.brandId}
+                                activeOpacity={0.86}
+                                style={styles.brandChip}
+                                onPress={() =>
+                                  navigation.navigate("BrandResults", {
+                                    brandId: brand.brandId,
+                                    mode: "chooseCountry",
+                                  })
+                                }
+                              >
+                                <Text style={styles.brandText}>
+                                  🏷️ {brand.brandName}
+                                </Text>
+                              </TouchableOpacity>
+                            ))}
+                          </View>
+                        ) : null}
+                      </View>
+                    );
+                  })}
+                </View>
+              </>
+            ) : null}
+          </>
+        )}
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  screenRoot: { flex: 1, backgroundColor: "#F7F8FA" },
+  topSafeScrim: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "#F7F8FA",
+    zIndex: 10,
+  },
   container: {
     flex: 1,
     backgroundColor: "#F6F7F9",

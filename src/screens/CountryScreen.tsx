@@ -141,101 +141,118 @@ export function CountryScreen() {
   );
 
   return (
-    <ScrollView
-      style={styles.container}
-      contentContainerStyle={[
-        styles.content,
-        {
-          paddingTop: getScreenTopInset(insets.top),
-          paddingBottom: getFloatingTabClearance(insets.bottom),
-        },
-      ]}
-      scrollIndicatorInsets={{
-        top: getScreenTopInset(insets.top),
-        bottom: getScrollIndicatorBottomInset(insets.bottom),
-      }}
-    >
-      <View style={styles.heroCard}>
-        <Text style={styles.heroFlag}>{country.countryFlag}</Text>
-        <Text style={styles.heroTitle}>{country.countryName}</Text>
-        <Text style={styles.heroText}>
-          {t("country.heroPrefix")} {country.countryName}.
-        </Text>
-      </View>
+    <View style={styles.screenRoot}>
+      <View
+        pointerEvents="none"
+        style={[styles.topSafeScrim, { height: insets.top }]}
+      />
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={[
+          styles.content,
+          {
+            paddingTop: getScreenTopInset(insets.top),
+            paddingBottom: getFloatingTabClearance(insets.bottom),
+          },
+        ]}
+        scrollIndicatorInsets={{
+          top: getScreenTopInset(insets.top),
+          bottom: getScrollIndicatorBottomInset(insets.bottom),
+        }}
+      >
+        <View style={styles.heroCard}>
+          <Text style={styles.heroFlag}>{country.countryFlag}</Text>
+          <Text style={styles.heroTitle}>{country.countryName}</Text>
+          <Text style={styles.heroText}>
+            {t("country.heroPrefix")} {country.countryName}.
+          </Text>
+        </View>
 
-      <View style={styles.infoGrid}>
-        <InfoCard title={t("country.currency")} value={country.currency} />
-        <InfoCard
-          title={t("country.taxFree")}
-          value={
-            hasTaxFree(country.taxFreeAvailable)
-              ? t("country.yes")
-              : t("country.limited")
-          }
-        />
-        <InfoCard title={t("country.vatRate")} value={`${rule.vatRate}%`} />
-        <InfoCard
-          title={t("country.minimum")}
-          value={`${rule.currency} ${rule.minimumPurchaseAmount ?? 0}`}
-        />
-      </View>
-
-      <Text style={styles.sectionTitle}>{t("country.shoppingCities")}</Text>
-      {shoppingCities.map((cityId) => (
-        <TouchableOpacity
-          key={cityId}
-          style={styles.card}
-          activeOpacity={0.9}
-          onPress={() => navigation.navigate("CityResults", { cityId })}
-        >
-          <Text style={styles.cardTitle}>{getCityName(cityId)}</Text>
-          <Text style={styles.cardText}>{t("country.viewOutletsInCity")}</Text>
-        </TouchableOpacity>
-      ))}
-
-      <Text style={styles.sectionTitle}>
-        {countryOutlets.length} {t("country.outletsAvailable")}
-      </Text>
-      {countryOutlets.map((outlet) => (
-        <OutletCard
-          key={outlet.outletId}
-          outlet={outlet}
-          isFavorite={isFavorite(outlet.outletId)}
-          onPress={() =>
-            navigation.navigate("OutletDetail", { outletId: outlet.outletId })
-          }
-          onToggleFavorite={() => {
-            if (requireAuth({ isLoggedIn, navigation })) {
-              toggleFavorite(outlet.outletId);
+        <View style={styles.infoGrid}>
+          <InfoCard title={t("country.currency")} value={country.currency} />
+          <InfoCard
+            title={t("country.taxFree")}
+            value={
+              hasTaxFree(country.taxFreeAvailable)
+                ? t("country.yes")
+                : t("country.limited")
             }
-          }}
-        />
-      ))}
+          />
+          <InfoCard title={t("country.vatRate")} value={`${rule.vatRate}%`} />
+          <InfoCard
+            title={t("country.minimum")}
+            value={`${rule.currency} ${rule.minimumPurchaseAmount ?? 0}`}
+          />
+        </View>
 
-      <Text style={styles.sectionTitle}>{t("country.quickAccess")}</Text>
-      <TouchableOpacity
-        style={styles.actionButton}
-        activeOpacity={0.9}
-        onPress={() => navigation.navigate("TaxFreeCalculator")}
-      >
-        <Text style={styles.actionButtonText}>
-          {t("country.taxFreeCalculator")}
+        <Text style={styles.sectionTitle}>{t("country.shoppingCities")}</Text>
+        {shoppingCities.map((cityId) => (
+          <TouchableOpacity
+            key={cityId}
+            style={styles.card}
+            activeOpacity={0.9}
+            onPress={() => navigation.navigate("CityResults", { cityId })}
+          >
+            <Text style={styles.cardTitle}>{getCityName(cityId)}</Text>
+            <Text style={styles.cardText}>
+              {t("country.viewOutletsInCity")}
+            </Text>
+          </TouchableOpacity>
+        ))}
+
+        <Text style={styles.sectionTitle}>
+          {countryOutlets.length} {t("country.outletsAvailable")}
         </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.actionButtonSecondary}
-        activeOpacity={0.9}
-        onPress={() => navigation.navigate("TaxFreeGuide")}
-      >
-        <Text style={styles.actionButtonSecondaryText}>
-          {t("country.taxFreeGuide")}
-        </Text>
-      </TouchableOpacity>
-    </ScrollView>
+        {countryOutlets.map((outlet) => (
+          <OutletCard
+            key={outlet.outletId}
+            outlet={outlet}
+            isFavorite={isFavorite(outlet.outletId)}
+            onPress={() =>
+              navigation.navigate("OutletDetail", { outletId: outlet.outletId })
+            }
+            onToggleFavorite={() => {
+              if (requireAuth({ isLoggedIn, navigation })) {
+                toggleFavorite(outlet.outletId);
+              }
+            }}
+          />
+        ))}
+
+        <Text style={styles.sectionTitle}>{t("country.quickAccess")}</Text>
+        <TouchableOpacity
+          style={styles.actionButton}
+          activeOpacity={0.9}
+          onPress={() => navigation.navigate("TaxFreeCalculator")}
+        >
+          <Text style={styles.actionButtonText}>
+            {t("country.taxFreeCalculator")}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.actionButtonSecondary}
+          activeOpacity={0.9}
+          onPress={() => navigation.navigate("TaxFreeGuide")}
+        >
+          <Text style={styles.actionButtonSecondaryText}>
+            {t("country.taxFreeGuide")}
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  screenRoot: { flex: 1, backgroundColor: "#F7F8FA" },
+  topSafeScrim: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: "#F7F8FA",
+    zIndex: 10,
+  },
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20, paddingTop: 64, paddingBottom: 152 },
   heroCard: {

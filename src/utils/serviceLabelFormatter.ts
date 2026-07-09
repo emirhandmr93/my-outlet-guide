@@ -1,5 +1,13 @@
 const serviceLabelKeys: Record<string, string> = {
   "access and mobility": "service.label.accessibility",
+  "guest services": "service.label.guestServices",
+  "restaurants & cafes": "service.label.restaurantsCafes",
+  "personal shopping": "service.label.personalShopping",
+  "personal styling": "service.label.personalShopping",
+  "transport info": "service.label.transportInfo",
+  "transport & parking": "service.label.transportInfo",
+  "shopping & visitor services": "service.label.guestServices",
+  "hands-free shopping": "service.label.personalShopping",
   accessibility: "service.label.accessibility",
   "accessible toilets": "service.label.accessibleToilets",
   "baby changing": "service.label.babyChanging",
@@ -42,7 +50,10 @@ const serviceLabelKeys: Record<string, string> = {
   "wi-fi": "service.label.wifi",
 };
 
-export function formatServiceLabel(service: string, t: (key: string) => string) {
+export function formatServiceLabel(
+  service: string,
+  t: (key: string) => string,
+) {
   const normalizedService = service.trim().toLowerCase();
   const translationKey = serviceLabelKeys[normalizedService];
 
