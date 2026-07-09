@@ -19,9 +19,12 @@ import {
 import { DashboardSectionHeader } from "../components/DashboardSectionHeader";
 import { HomeHeader } from "../components/HomeHeader";
 import { SearchBar } from "../components/SearchBar";
+import { SearchResultItem } from "../components/SearchResultItem";
 import { outlets } from "../constants/outlets";
 import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
+import { searchApp } from "../services/searchEngine";
+import type { SearchResult } from "../services/searchTypes";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -52,65 +55,51 @@ type FeaturedSlide = {
   titleKey: string;
   subtitleKey: string;
   ctaKey: string;
-  outletId: string;
+  icon: string;
   route: string;
   params?: Record<string, string>;
 };
 
 const featuredSlides: FeaturedSlide[] = [
   {
-    id: "featured-outlet",
-    kickerKey: "home.featured.outlet.kicker",
-    titleKey: "home.featured.outlet.title",
-    subtitleKey: "home.featured.outlet.subtitle",
-    ctaKey: "home.featured.outlet.cta",
-    outletId: "bicester-village",
-    route: "OutletDetail",
-    params: { outletId: "bicester-village" },
+    id: "discover-outlets",
+    kickerKey: "home.featured.discover.kicker",
+    titleKey: "home.featured.discover.title",
+    subtitleKey: "home.featured.discover.subtitle",
+    ctaKey: "home.featured.discover.cta",
+    icon: "⌕",
+    route: "Explore",
   },
-
   {
-    id: "shopping-event",
-    kickerKey: "home.featured.event.kicker",
-    titleKey: "home.featured.event.title",
-    subtitleKey: "home.featured.event.subtitle",
-    ctaKey: "home.featured.event.cta",
-    outletId: "the-mall-firenze",
-    route: "OutletDetail",
-    params: { outletId: "the-mall-firenze" },
+    id: "plan-trip",
+    kickerKey: "home.featured.trip.kicker",
+    titleKey: "home.featured.trip.title",
+    subtitleKey: "home.featured.trip.subtitle",
+    ctaKey: "home.featured.trip.cta",
+    icon: "✈",
+    route: "CreateTrip",
   },
-
   {
-    id: "shopping-guide",
-    kickerKey: "home.featured.guide.kicker",
-    titleKey: "home.featured.guide.title",
-    subtitleKey: "home.featured.guide.subtitle",
-    ctaKey: "home.featured.guide.cta",
-    outletId: "la-vallee-village",
-    route: "TaxFreeCalculator",
+    id: "savings-guide",
+    kickerKey: "home.featured.savings.kicker",
+    titleKey: "home.featured.savings.title",
+    subtitleKey: "home.featured.savings.subtitle",
+    ctaKey: "home.featured.savings.cta",
+    icon: "%",
+    route: "Savings",
   },
-
   {
-    id: "flash-sale",
-    kickerKey: "home.featured.flash.kicker",
-    titleKey: "home.featured.flash.title",
-    subtitleKey: "home.featured.flash.subtitle",
-    ctaKey: "home.featured.flash.cta",
-    outletId: "serravalle-designer-outlet",
-    route: "OutletDetail",
-    params: { outletId: "serravalle-designer-outlet" },
+    id: "offline-availability",
+    kickerKey: "home.featured.offline.kicker",
+    titleKey: "home.featured.offline.title",
+    subtitleKey: "home.featured.offline.subtitle",
+    ctaKey: "home.featured.offline.cta",
+    icon: "↓",
+    route: "OfflinePacks",
   },
 ];
 
 const shoppingTools = [
-  {
-    id: "savings",
-    icon: "%",
-    titleKey: "home.tools.savings.title",
-    textKey: "home.tools.savings.text",
-    route: "Savings",
-    tone: "#EAF7EF",
-  },
   {
     id: "taxfree",
     icon: "€",
@@ -118,6 +107,22 @@ const shoppingTools = [
     textKey: "home.tools.taxfree.text",
     route: "TaxFreeCalculator",
     tone: "#FFF7E0",
+  },
+  {
+    id: "currency",
+    icon: "$",
+    titleKey: "home.tools.currency.title",
+    textKey: "home.tools.currency.text",
+    route: "CurrencySettings",
+    tone: "#EEF2FF",
+  },
+  {
+    id: "flights",
+    icon: "✈",
+    titleKey: "home.tools.flights.title",
+    textKey: "home.tools.flights.text",
+    route: "FlightDeals",
+    tone: "#EAF7EF",
   },
   {
     id: "offline",
@@ -255,6 +260,16 @@ export function HomeScreen() {
   );
   const firstFavorite = favoriteOutlets[0];
   const slides = useMemo(() => featuredSlides, []);
+  const searchSuggestions = useMemo(() => {
+    const normalizedQuery = searchQuery.trim();
+
+    if (normalizedQuery.length < 2) {
+      return [];
+    }
+
+    return searchApp(normalizedQuery, 6);
+  }, [searchQuery]);
+  const showSearchSuggestions = searchQuery.trim().length >= 2;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -307,6 +322,11 @@ export function HomeScreen() {
     navigateTo(slide.route, slide.params);
   }
 
+  function openSearchSuggestion(item: SearchResult) {
+    setSearchQuery("");
+    navigateTo(item.routeName, item.routeParams);
+  }
+
   async function shareApp() {
     await Share.share({
       message: t("home.shareMessage"),
@@ -340,12 +360,29 @@ export function HomeScreen() {
           onPressLanguage={() => navigation.navigate("LanguageSettings")}
         />
 
-        <SearchBar
-          value={searchQuery}
-          placeholder={t("home.searchFallback")}
-          onChangeText={setSearchQuery}
-          onSubmitEditing={handleQuickSearch}
-        />
+        <View style={styles.searchBlock}>
+          <SearchBar
+            value={searchQuery}
+            placeholder={t("home.searchFallback")}
+            onChangeText={setSearchQuery}
+            onSubmitEditing={handleQuickSearch}
+          />
+          {showSearchSuggestions ? (
+            <View style={styles.suggestionPanel}>
+              {searchSuggestions.length > 0 ? (
+                searchSuggestions.map((item) => (
+                  <SearchResultItem
+                    key={`${item.type}-${item.id}`}
+                    item={item}
+                    onPress={() => openSearchSuggestion(item)}
+                  />
+                ))
+              ) : (
+                <Text style={styles.noResultsText}>{t("home.search.noResults")}</Text>
+              )}
+            </View>
+          ) : null}
+        </View>
 
         <DashboardSectionHeader
           title={t("home.sections.featured.title")}
@@ -363,45 +400,28 @@ export function HomeScreen() {
             snapToAlignment="start"
             onMomentumScrollEnd={handleCarouselScroll}
           >
-            {slides.map((slide) => {
-              const imageSource = getOutletCardImageSource(slide.outletId);
-
-              return (
-                <TouchableOpacity
-                  key={slide.id}
-                  activeOpacity={0.9}
-                  style={styles.slideOuter}
-                  onPress={() => openSlide(slide)}
-                >
-                  {imageSource ? (
-                    <ImageBackground
-                      source={imageSource}
-                      style={styles.slideImage}
-                      imageStyle={styles.slideImageRadius}
-                    >
-                      <View style={styles.slideOverlay} />
-                      <View style={styles.slideContent}>
-                        <Text style={styles.slideKicker}>
-                          {t(slide.kickerKey)}
-                        </Text>
-                        <Text style={styles.slideTitle}>
-                          {t(slide.titleKey)}
-                        </Text>
-                        <Text style={styles.slideSubtitle}>
-                          {t(slide.subtitleKey)}
-                        </Text>
-                        <View style={styles.slideAction}>
-                          <Text style={styles.slideActionText}>
-                            {t(slide.ctaKey)}
-                          </Text>
-                          <Text style={styles.slideActionArrow}>→</Text>
-                        </View>
-                      </View>
-                    </ImageBackground>
-                  ) : null}
-                </TouchableOpacity>
-              );
-            })}
+            {slides.map((slide) => (
+              <TouchableOpacity
+                key={slide.id}
+                activeOpacity={0.9}
+                style={styles.slideOuter}
+                onPress={() => openSlide(slide)}
+              >
+                <View style={styles.slideImage}>
+                  <View style={styles.slideGlow} />
+                  <View style={styles.slideContent}>
+                    <Text style={styles.slideIcon}>{slide.icon}</Text>
+                    <Text style={styles.slideKicker}>{t(slide.kickerKey)}</Text>
+                    <Text style={styles.slideTitle}>{t(slide.titleKey)}</Text>
+                    <Text style={styles.slideSubtitle}>{t(slide.subtitleKey)}</Text>
+                    <View style={styles.slideAction}>
+                      <Text style={styles.slideActionText}>{t(slide.ctaKey)}</Text>
+                      <Text style={styles.slideActionArrow}>→</Text>
+                    </View>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            ))}
           </ScrollView>
 
           <View style={styles.dotsRow}>
@@ -627,6 +647,28 @@ const styles = StyleSheet.create({
     paddingBottom: 188,
   },
 
+  searchBlock: {
+    marginBottom: spacing.md,
+  },
+
+  suggestionPanel: {
+    backgroundColor: colors.surface,
+    borderRadius: radius.xl,
+    padding: spacing.sm,
+    borderWidth: 1,
+    borderColor: colors.border,
+    marginTop: spacing.sm,
+    ...shadows.card,
+  },
+
+  noResultsText: {
+    color: colors.textSecondary,
+    fontSize: typography.body,
+    fontWeight: typography.weightBold,
+    padding: spacing.md,
+    textAlign: "center",
+  },
+
   carouselWrap: {
     marginBottom: spacing.lg,
   },
@@ -640,21 +682,38 @@ const styles = StyleSheet.create({
     minHeight: 250,
     overflow: "hidden",
     justifyContent: "flex-end",
+    borderRadius: radius.hero,
+    backgroundColor: colors.primary,
     ...shadows.premium,
   },
 
-  slideImageRadius: {
-    borderRadius: radius.hero,
-  },
-
-  slideOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0, 0, 0, 0.44)",
-    borderRadius: radius.hero,
+  slideGlow: {
+    position: "absolute",
+    top: -74,
+    right: -48,
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+    backgroundColor: "rgba(201,162,39,0.18)",
   },
 
   slideContent: {
     padding: spacing.xl,
+  },
+
+  slideIcon: {
+    width: 42,
+    height: 42,
+    borderRadius: radius.pill,
+    backgroundColor: "rgba(255,255,255,0.12)",
+    color: colors.gold,
+    textAlign: "center",
+    textAlignVertical: "center",
+    lineHeight: 42,
+    overflow: "hidden",
+    fontSize: typography.h3,
+    fontWeight: typography.weightBlack,
+    marginBottom: spacing.lg,
   },
 
   slideKicker: {
