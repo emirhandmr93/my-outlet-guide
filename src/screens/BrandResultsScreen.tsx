@@ -8,6 +8,11 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  getFloatingTabClearance,
+  getScreenTopInset,
+  getScrollIndicatorBottomInset,
+} from "../utils/safeAreaLayout";
 
 import { brands } from "../constants/brands/index";
 import { outletBrands } from "../constants/outletBrands/index";
@@ -143,9 +148,15 @@ export function BrandResultsScreen() {
       style={styles.container}
       contentContainerStyle={[
         styles.content,
-        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+        {
+          paddingTop: getScreenTopInset(insets.top),
+          paddingBottom: getFloatingTabClearance(insets.bottom),
+        },
       ]}
-      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+      scrollIndicatorInsets={{
+        top: getScreenTopInset(insets.top),
+        bottom: getScrollIndicatorBottomInset(insets.bottom),
+      }}
     >
       <View style={styles.heroCard}>
         <Text style={styles.heroLabel}>{t("brand.heroLabel")}</Text>

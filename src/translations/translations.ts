@@ -48,7 +48,8 @@ const enTranslations = {
   "home.featured.flight.cta": "Create Alert",
   "home.featured.event.kicker": "Trip planning",
   "home.featured.event.title": "Plan your outlet trip",
-  "home.featured.event.subtitle": "Create a shopping trip and keep your destination plan organized.",
+  "home.featured.event.subtitle":
+    "Create a shopping trip and keep your destination plan organized.",
   "home.featured.event.cta": "Create trip",
   "home.featured.guide.kicker": "Shopping Guide",
   "home.featured.guide.title": "Everything You Need Before Shopping",
@@ -56,7 +57,8 @@ const enTranslations = {
   "home.featured.guide.cta": "Open Guide",
   "home.featured.flash.kicker": "Offline availability",
   "home.featured.flash.title": "Offline guide availability",
-  "home.featured.flash.subtitle": "See which bundled guide features are available without internet.",
+  "home.featured.flash.subtitle":
+    "See which bundled guide features are available without internet.",
   "home.featured.flash.cta": "View offline availability",
   "home.featured.discover.kicker": "Outlet discovery",
   "home.featured.discover.title": "Discover outlets",
@@ -174,6 +176,9 @@ const enTranslations = {
   "outlet.restaurantsRating": "Restaurants",
   "outlet.servicesRating": "Services",
   "outlet.noReviews": "No reviews yet.",
+  "outlet.reviewSharePrompt": "Share your outlet shopping experience",
+  "outlet.reviewSortHelpful": "Most Helpful",
+  "outlet.reviewSortRecent": "Recent",
   "outlet.galleryClose": "Close",
   "weather.title": "Weather",
   "outlet.saved": "Saved",
@@ -377,8 +382,10 @@ const enTranslations = {
   "searchResult.brand": "Brand",
   "searchResult.outlet": "Outlet",
   "searchResult.category": "Category",
-  "explore.countryCtaSingular": "Explore all outlet →",
-  "explore.countryCtaPlural": "Explore all outlets →",
+  "explore.countryCtaSingular": "View outlets →",
+  "explore.countryOutletSingular": "outlet",
+  "explore.countryCtaPlural": "View outlets →",
+  "explore.countryOutletPlural": "outlets",
   "explore.showingOutletsIn": "Showing outlets in",
   "explore.clear": "Clear",
   "explore.resultsFor": "Results for",
@@ -618,7 +625,8 @@ const enTranslations = {
     "We could not update favorites right now. Please sign in again and try later.",
 
   "offline.title": "Offline Availability",
-  "offline.subtitle": "Core guide data is bundled with the app; separate trip pack downloads are not available.",
+  "offline.subtitle":
+    "Core guide data is bundled with the app; separate trip pack downloads are not available.",
   "offline.tripPacks": "Bundled Offline Data",
   "offline.noTrips": "No Trips Yet",
   "offline.noTripsText":
@@ -852,7 +860,9 @@ const enTranslations = {
   "restaurants.viewAll": "View all restaurants",
   "transportation.service": "Service",
   "transportation.duration": "Duration",
-  "transportation.cost": "Cost",
+  "transportation.cost": "Fee",
+  "transportation.safeInstruction":
+    "Check current schedule, fee and return details with the official provider.",
   "transportation.type.airport": "Havalimanı",
   "transportation.type.bus": "Otobüs",
   "transportation.type.car": "Car",
@@ -1077,22 +1087,29 @@ const enTranslations = {
   "deleteAccount.itemAccount": "• Your Firebase account",
   "deleteAccount.itemFavorites": "• Favorites saved to your account",
   "deleteAccount.itemTrips": "• Trips saved to your account",
-  "deleteAccount.itemFlightPrefs": "• Flight deal preferences saved to your account",
-  "deleteAccount.itemNotifications": "• Notification settings and device tokens",
+  "deleteAccount.itemFlightPrefs":
+    "• Flight deal preferences saved to your account",
+  "deleteAccount.itemNotifications":
+    "• Notification settings and device tokens",
   "deleteAccount.reviewsTitle": "Reviews",
   "deleteAccount.reviewsText":
     "Your published review text and ratings are retained for outlet integrity, but your display name is replaced with “Deleted account”.",
   "deleteAccount.button": "Delete My Account",
-  "deleteAccount.confirmMessage": "This permanently deletes your account data. This action cannot be undone.",
+  "deleteAccount.confirmMessage":
+    "This permanently deletes your account data. This action cannot be undone.",
   "deleteAccount.deleting": "Deleting account...",
   "deleteAccount.deletedTitle": "Account deleted",
-  "deleteAccount.deletedMessage": "Your account and account-owned data have been deleted.",
+  "deleteAccount.deletedMessage":
+    "Your account and account-owned data have been deleted.",
   "deleteAccount.failedTitle": "Account deletion failed",
-  "deleteAccount.failedMessage": "We could not delete your account. Please try again.",
+  "deleteAccount.failedMessage":
+    "We could not delete your account. Please try again.",
   "deleteAccount.reauthTitle": "Sign in again",
-  "deleteAccount.reauthMessage": "For your security, sign in again before deleting your account.",
+  "deleteAccount.reauthMessage":
+    "For your security, sign in again before deleting your account.",
   "deleteAccount.signInRequiredTitle": "Sign-in required",
-  "deleteAccount.signInRequiredMessage": "Sign in to permanently delete your account.",
+  "deleteAccount.signInRequiredMessage":
+    "Sign in to permanently delete your account.",
   "privacy.title": "Privacy Policy",
   "privacy.subtitle": "How My Outlet Guide handles your data.",
   "privacy.collectTitle": "Information We Collect",
@@ -1172,7 +1189,8 @@ const enTranslations = {
   "currency.title": "Preferred currency",
   "currency.subtitle": "Calculators and shopping tools use this by default.",
   "currency.converterTitle": "Currency converter",
-  "currency.converterCopy": "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
+  "currency.converterCopy":
+    "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
   "currency.preferredTitle": "Preferred shopping currency",
   "currency.amount": "Amount",
   "currency.from": "From",
@@ -1181,9 +1199,11 @@ const enTranslations = {
   "currency.loading": "Loading rate...",
   "currency.source": "Source",
   "currency.lastUpdated": "Last updated",
-  "currency.disclaimer": "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
+  "currency.disclaimer":
+    "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
   "currency.unsupported": "This currency is not supported for live conversion.",
-  "currency.providerUnavailable": "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
+  "currency.providerUnavailable":
+    "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
   "currency.unavailableShort": "Rate unavailable",
   "currency.validation.amountRequired": "Enter an amount to convert.",
   "currency.validation.positiveAmount": "Enter a positive numeric amount.",
@@ -1330,13 +1350,13 @@ const enTranslations = {
   "outlet.restaurantsCafes": "Restaurants & Cafes",
 };
 
-
 const finalPhase1ACriticalTranslations: Partial<
   Record<Exclude<TranslationLanguage, "en">, Record<string, string>>
 > = {
   es: {
     "currency.converterTitle": "Conversor de moneda",
-    "currency.converterCopy": "Las tasas de referencia se cargan desde Frankfurter. La conversión es informativa y puede diferir de tu banco, red de tarjeta o casa de cambio.",
+    "currency.converterCopy":
+      "Las tasas de referencia se cargan desde Frankfurter. La conversión es informativa y puede diferir de tu banco, red de tarjeta o casa de cambio.",
     "currency.preferredTitle": "Moneda de compra preferida",
     "currency.amount": "Importe",
     "currency.from": "De",
@@ -1345,61 +1365,95 @@ const finalPhase1ACriticalTranslations: Partial<
     "currency.loading": "Cargando tasa...",
     "currency.source": "Fuente",
     "currency.lastUpdated": "Última actualización",
-    "currency.disclaimer": "Tasas de cambio solo de referencia. El cargo final puede variar por banco, proveedor de tarjeta, comisiones y momento de la operación.",
+    "currency.disclaimer":
+      "Tasas de cambio solo de referencia. El cargo final puede variar por banco, proveedor de tarjeta, comisiones y momento de la operación.",
     "currency.unsupported": "Esta moneda no admite conversión en vivo.",
-    "currency.providerUnavailable": "Las tasas de cambio en vivo no están disponibles ahora. No se muestra conversión sin respuesta actual del proveedor.",
+    "currency.providerUnavailable":
+      "Las tasas de cambio en vivo no están disponibles ahora. No se muestra conversión sin respuesta actual del proveedor.",
     "currency.unavailableShort": "Tasa no disponible",
-    "currency.validation.amountRequired": "Introduce un importe para convertir.",
-    "currency.validation.positiveAmount": "Introduce un importe numérico positivo.",
+    "currency.validation.amountRequired":
+      "Introduce un importe para convertir.",
+    "currency.validation.positiveAmount":
+      "Introduce un importe numérico positivo.",
     "notifications.signInRequiredTitle": "Inicio de sesión requerido",
-    "notifications.signInRequiredBody": "Inicia sesión para guardar en la nube las preferencias de notificaciones de tu cuenta.",
-    "notifications.deviceStatusTitle": "Estado de notificaciones del dispositivo",
-    "notifications.pushUnavailableTitle": "Las notificaciones push no están activadas en esta versión",
-    "notifications.pushUnavailableBody": "Esta versión de la app no incluye el módulo nativo Expo Notifications, por lo que todavía no puede pedir permisos del dispositivo ni registrar un token push.",
-    "notifications.cloudPreferences": "Preferencias de notificaciones en la nube",
-    "notifications.cloudPreferencesDesc": "Guarda si tu cuenta debe recibir notificaciones de producción compatibles.",
-    "notifications.cloudPreferencesUnavailableDesc": "Guarda ahora la suscripción de tu cuenta. La entrega push del dispositivo seguirá desactivada hasta que estén disponibles una versión de producción con notificaciones y el backend de envío.",
-    "notifications.categoriesUnavailableTitle": "Las categorías de notificación aún no están activas",
-    "notifications.categoriesUnavailableBody": "Los recordatorios de viaje, novedades de outlets favoritos, actualizaciones de reseñas y mensajes de marketing se guardan como preferencias desactivadas hasta que exista soporte real de entrega. No se muestra bandeja ficticia ni alertas simuladas.",
-    "notifications.permission.unsupported": "El permiso push del dispositivo no está disponible en esta versión.",
-    "notifications.permission.not_requested": "Aún no se ha solicitado el permiso de notificaciones.",
-    "notifications.permission.granted": "El permiso de notificaciones del dispositivo está concedido.",
-    "notifications.permission.denied": "El permiso de notificaciones del dispositivo está denegado. Puedes cambiarlo en los ajustes del sistema.",
+    "notifications.signInRequiredBody":
+      "Inicia sesión para guardar en la nube las preferencias de notificaciones de tu cuenta.",
+    "notifications.deviceStatusTitle":
+      "Estado de notificaciones del dispositivo",
+    "notifications.pushUnavailableTitle":
+      "Las notificaciones push no están activadas en esta versión",
+    "notifications.pushUnavailableBody":
+      "Esta versión de la app no incluye el módulo nativo Expo Notifications, por lo que todavía no puede pedir permisos del dispositivo ni registrar un token push.",
+    "notifications.cloudPreferences":
+      "Preferencias de notificaciones en la nube",
+    "notifications.cloudPreferencesDesc":
+      "Guarda si tu cuenta debe recibir notificaciones de producción compatibles.",
+    "notifications.cloudPreferencesUnavailableDesc":
+      "Guarda ahora la suscripción de tu cuenta. La entrega push del dispositivo seguirá desactivada hasta que estén disponibles una versión de producción con notificaciones y el backend de envío.",
+    "notifications.categoriesUnavailableTitle":
+      "Las categorías de notificación aún no están activas",
+    "notifications.categoriesUnavailableBody":
+      "Los recordatorios de viaje, novedades de outlets favoritos, actualizaciones de reseñas y mensajes de marketing se guardan como preferencias desactivadas hasta que exista soporte real de entrega. No se muestra bandeja ficticia ni alertas simuladas.",
+    "notifications.permission.unsupported":
+      "El permiso push del dispositivo no está disponible en esta versión.",
+    "notifications.permission.not_requested":
+      "Aún no se ha solicitado el permiso de notificaciones.",
+    "notifications.permission.granted":
+      "El permiso de notificaciones del dispositivo está concedido.",
+    "notifications.permission.denied":
+      "El permiso de notificaciones del dispositivo está denegado. Puedes cambiarlo en los ajustes del sistema.",
     "notifications.tokenStatusTitle": "Registro de token push",
-    "notifications.token.not_registered": "No hay ningún token push registrado para esta cuenta en este dispositivo.",
-    "notifications.token.registered": "Hay un token push real de Expo registrado para esta cuenta:",
-    "notifications.token.disabled": "Los tokens push de esta cuenta se marcaron como desactivados.",
-    "notifications.token.failed": "Error al registrar el token push. Revisa la versión de la app y las credenciales de notificaciones.",
+    "notifications.token.not_registered":
+      "No hay ningún token push registrado para esta cuenta en este dispositivo.",
+    "notifications.token.registered":
+      "Hay un token push real de Expo registrado para esta cuenta:",
+    "notifications.token.disabled":
+      "Los tokens push de esta cuenta se marcaron como desactivados.",
+    "notifications.token.failed":
+      "Error al registrar el token push. Revisa la versión de la app y las credenciales de notificaciones.",
     "notifications.deliveryStatusTitle": "Estado de entrega en producción",
-    "notifications.deliveryStatusBody": "La entrega de recordatorios de viaje la realiza un backend de producción programado. Las novedades de outlets favoritos, reseñas y marketing siguen inactivas.",
+    "notifications.deliveryStatusBody":
+      "La entrega de recordatorios de viaje la realiza un backend de producción programado. Las novedades de outlets favoritos, reseñas y marketing siguen inactivas.",
     "notifications.tripRemindersCategory": "Recordatorios de viaje",
-    "notifications.tripRemindersCategoryDesc": "Recordatorios push reales del backend para viajes activos con fecha de visita AAAA-MM-DD.",
+    "notifications.tripRemindersCategoryDesc":
+      "Recordatorios push reales del backend para viajes activos con fecha de visita AAAA-MM-DD.",
     "notifications.categoryActive": "Emisor de producción activo",
-    "notifications.unsupportedCategoriesTitle": "Las categorías no compatibles siguen inactivas",
-    "notifications.unsupportedCategoriesBody": "Las novedades de outlets favoritos, reseñas y marketing aún no tienen emisores backend. No se muestra bandeja ficticia, historial simulado ni entrega simulada.",
+    "notifications.unsupportedCategoriesTitle":
+      "Las categorías no compatibles siguen inactivas",
+    "notifications.unsupportedCategoriesBody":
+      "Las novedades de outlets favoritos, reseñas y marketing aún no tienen emisores backend. No se muestra bandeja ficticia, historial simulado ni entrega simulada.",
     "deleteAccount.deletedTitle": "Cuenta eliminada",
-    "deleteAccount.deletedMessage": "Tu cuenta y los datos vinculados se han eliminado.",
+    "deleteAccount.deletedMessage":
+      "Tu cuenta y los datos vinculados se han eliminado.",
     "deleteAccount.deleting": "Eliminando cuenta...",
     "deleteAccount.failedTitle": "No se pudo eliminar la cuenta",
     "deleteAccount.failedMessage": "Vuelve a iniciar sesión y prueba de nuevo.",
     "deleteAccount.reauthTitle": "Vuelve a iniciar sesión",
-    "deleteAccount.reauthMessage": "Por seguridad, inicia sesión otra vez antes de eliminar tu cuenta.",
+    "deleteAccount.reauthMessage":
+      "Por seguridad, inicia sesión otra vez antes de eliminar tu cuenta.",
     "deleteAccount.signInRequiredTitle": "Inicio de sesión requerido",
-    "deleteAccount.signInRequiredMessage": "Inicia sesión para eliminar tu cuenta.",
+    "deleteAccount.signInRequiredMessage":
+      "Inicia sesión para eliminar tu cuenta.",
     "flightDeals.unavailableKicker": "Alertas de vuelos",
     "flightDeals.unavailableTitle": "Proveedor de vuelos no disponible",
-    "flightDeals.unavailableBody": "Las alertas de tarifas reales necesitan un proveedor y un backend de producción. No se muestran alertas falsas.",
+    "flightDeals.unavailableBody":
+      "Las alertas de tarifas reales necesitan un proveedor y un backend de producción. No se muestran alertas falsas.",
     "flightDeals.unavailableStatusTitle": "Estado del backend",
-    "flightDeals.unavailableStatusBody": "El seguimiento de tarifas está desactivado hasta conectar un proveedor de producción.",
+    "flightDeals.unavailableStatusBody":
+      "El seguimiento de tarifas está desactivado hasta conectar un proveedor de producción.",
     "taxCalc.unsupportedCountry": "Este país aún no admite cálculos Tax Free.",
     "taxCalc.invalidAmount": "Introduce un importe válido.",
-    "taxCalc.currencyMismatch": "La moneda seleccionada no coincide con la moneda admitida para este país.",
+    "taxCalc.currencyMismatch":
+      "La moneda seleccionada no coincide con la moneda admitida para este país.",
     "taxCalc.estimatedVatPortion": "IVA estimado incluido",
     "taxCalc.estimatedNetBeforeVat": "Neto estimado antes de IVA",
     "taxCalc.sourceTitle": "Fuente y fecha de vigencia",
-    "taxCalc.providerFeesUnknown": "Las comisiones del proveedor no están incluidas.",
-    "taxCalc.noGuaranteedRefund": "La devolución final no está garantizada y depende del proveedor y de la validación aduanera.",
-    "taxCalc.finalDisclaimer": "Estimación informativa. Consulta siempre al comercio y al proveedor Tax Free.",
+    "taxCalc.providerFeesUnknown":
+      "Las comisiones del proveedor no están incluidas.",
+    "taxCalc.noGuaranteedRefund":
+      "La devolución final no está garantizada y depende del proveedor y de la validación aduanera.",
+    "taxCalc.finalDisclaimer":
+      "Estimación informativa. Consulta siempre al comercio y al proveedor Tax Free.",
   },
   fr: {},
   de: {},
@@ -1407,7 +1461,6 @@ const finalPhase1ACriticalTranslations: Partial<
   ar: {},
   zh: {},
 };
-
 
 export const translations: Record<
   TranslationLanguage,
@@ -1454,7 +1507,8 @@ export const translations: Record<
     "home.featured.guide.cta": "Open Guide",
     "home.featured.flash.kicker": "Offline availability",
     "home.featured.flash.title": "Offline guide availability",
-    "home.featured.flash.subtitle": "See which bundled guide features are available without internet.",
+    "home.featured.flash.subtitle":
+      "See which bundled guide features are available without internet.",
     "home.featured.flash.cta": "View offline availability",
     "home.sections.featured.title": "Öne çıkanlar",
     "home.sections.featured.subtitle":
@@ -1473,19 +1527,16 @@ export const translations: Record<
     "home.tools.savings.title": "Savings",
     "home.tools.savings.text": "Tax Free and smart shopping tools.",
     "home.tools.flights.title": "Flight Alerts",
-    "home.tools.flights.text":
-      "Get notified when fares drop 15%, 30% or 45%.",
+    "home.tools.flights.text": "Get notified when fares drop 15%, 30% or 45%.",
     "home.tools.taxfree.title": "Tax Free Calculator",
-  "home.tools.currency.title": "Currency Converter",
-  "home.tools.currency.text": "Set your shopping currency.",
-    "home.tools.taxfree.text":
-      "Estimate your refund and check minimum spend.",
+    "home.tools.currency.title": "Currency Converter",
+    "home.tools.currency.text": "Set your shopping currency.",
+    "home.tools.taxfree.text": "Estimate your refund and check minimum spend.",
     "home.tools.offline.title": "Offline Availability",
     "home.tools.offline.text": "See what works without internet.",
     "home.activity.tripLabel": "Shopping trip",
     "home.activity.noTrip": "No trip yet",
-    "home.activity.createTripReminder":
-      "Create a trip to unlock reminders.",
+    "home.activity.createTripReminder": "Create a trip to unlock reminders.",
     "home.activity.favoritesLabel": "Favorites",
     "home.activity.noFavorites": "No favorite outlets yet",
     "home.activity.saveOutlets": "Save outlets you want to follow.",
@@ -1495,10 +1546,8 @@ export const translations: Record<
     "home.cities.munich.text": "Bavarian shopping routes",
     "home.cities.vienna.text": "Elegant outlet escapes",
     "home.outlets.laVallee.text": "Luxury shopping near Disneyland Paris.",
-    "home.outlets.bicester.text":
-      "One of Europe’s most iconic luxury outlets.",
-    "home.outlets.serravalle.text":
-      "Large designer outlet village in Italy.",
+    "home.outlets.bicester.text": "One of Europe’s most iconic luxury outlets.",
+    "home.outlets.serravalle.text": "Large designer outlet village in Italy.",
     "home.outlets.theMall.text": "Premium fashion destination in Tuscany.",
     "home.outlets.parndorf.text": "Popular outlet route near Vienna.",
     "home.recommended": "Recommended",
@@ -1513,8 +1562,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message":
-      "App Store rating will be connected before launch.",
+    "home.rateApp.message": "App Store rating will be connected before launch.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -1558,6 +1606,9 @@ export const translations: Record<
     "outlet.restaurantsRating": "Restoranlar",
     "outlet.servicesRating": "Hizmetler",
     "outlet.noReviews": "Henüz yorum yok.",
+    "outlet.reviewSharePrompt": "Outlet alışveriş deneyimini paylaş",
+    "outlet.reviewSortHelpful": "En faydalı",
+    "outlet.reviewSortRecent": "En yeni",
     "outlet.galleryClose": "Kapat",
     "weather.title": "Hava",
     "outlet.saved": "Kayıtlı",
@@ -1766,8 +1817,10 @@ export const translations: Record<
     "searchResult.brand": "Marka",
     "searchResult.outlet": "Outlet",
     "searchResult.category": "Kategori",
-    "explore.countryCtaSingular": "Tüm outleti keşfet →",
-    "explore.countryCtaPlural": "Tüm outletleri keşfet →",
+    "explore.countryCtaSingular": "Outletleri gör →",
+    "explore.countryOutletSingular": "outlet",
+    "explore.countryCtaPlural": "Outletleri gör →",
+    "explore.countryOutletPlural": "outlet",
     "explore.showingOutletsIn": "Gösterilen outletler:",
     "explore.clear": "Temizle",
     "explore.resultsFor": "Sonuçlar",
@@ -2250,6 +2303,8 @@ export const translations: Record<
     "transportation.service": "Servis",
     "transportation.duration": "Süre",
     "transportation.cost": "Ücret",
+    "transportation.safeInstruction":
+      "Güncel saat, ücret ve dönüş bilgilerini resmi sağlayıcıdan kontrol et.",
     "transportation.type.airport": "Havalimanı",
     "transportation.type.bus": "Otobüs",
     "transportation.type.car": "Araba",
@@ -2466,29 +2521,34 @@ export const translations: Record<
     "auth.appleTitle": "Apple ile giriş",
     "auth.appleMessage": "Apple ile giriş bu sürümde etkin değil.",
     "deleteAccount.title": "Hesabı Sil",
-    "deleteAccount.subtitle": "Hesabınızı ve kişisel verilerinizi kalıcı olarak silin.",
+    "deleteAccount.subtitle":
+      "Hesabınızı ve kişisel verilerinizi kalıcı olarak silin.",
     "deleteAccount.whatDeleted": "Neler silinecek?",
     "deleteAccount.itemAccount": "• Firebase hesabınız",
     "deleteAccount.itemFavorites": "• Hesabınıza kaydedilen favoriler",
     "deleteAccount.itemTrips": "• Hesabınıza kaydedilen geziler",
     "deleteAccount.itemFlightPrefs":
       "• Hesabınıza kaydedilen uçuş fırsatı tercihleri",
-    "deleteAccount.itemNotifications":
-      "• Bildirim ayarları ve cihaz tokenları",
+    "deleteAccount.itemNotifications": "• Bildirim ayarları ve cihaz tokenları",
     "deleteAccount.reviewsTitle": "Yorumlar",
-    "deleteAccount.reviewsText": "Yayınlanmış yorum metinleriniz ve puanlarınız outlet bütünlüğü için saklanır, ancak görünen adınız “Silinmiş hesap” olarak değiştirilir.",
+    "deleteAccount.reviewsText":
+      "Yayınlanmış yorum metinleriniz ve puanlarınız outlet bütünlüğü için saklanır, ancak görünen adınız “Silinmiş hesap” olarak değiştirilir.",
     "deleteAccount.button": "Hesabımı Sil",
     "deleteAccount.confirmMessage":
       "Bu işlem hesap verilerinizi kalıcı olarak siler. Bu işlem geri alınamaz.",
     "deleteAccount.deleting": "Hesap siliniyor...",
     "deleteAccount.deletedTitle": "Hesap silindi",
-    "deleteAccount.deletedMessage": "Hesabınız ve hesaba ait verileriniz silindi.",
+    "deleteAccount.deletedMessage":
+      "Hesabınız ve hesaba ait verileriniz silindi.",
     "deleteAccount.failedTitle": "Hesap silinemedi",
-    "deleteAccount.failedMessage": "Hesabınızı silemedik. Lütfen tekrar deneyin.",
+    "deleteAccount.failedMessage":
+      "Hesabınızı silemedik. Lütfen tekrar deneyin.",
     "deleteAccount.reauthTitle": "Tekrar giriş yapın",
-    "deleteAccount.reauthMessage": "Güvenliğiniz için hesabınızı silmeden önce tekrar giriş yapın.",
+    "deleteAccount.reauthMessage":
+      "Güvenliğiniz için hesabınızı silmeden önce tekrar giriş yapın.",
     "deleteAccount.signInRequiredTitle": "Giriş gerekli",
-    "deleteAccount.signInRequiredMessage": "Hesabınızı kalıcı olarak silmek için giriş yapın.",
+    "deleteAccount.signInRequiredMessage":
+      "Hesabınızı kalıcı olarak silmek için giriş yapın.",
     "privacy.title": "Türkçe çeviri: privacy.title",
     "privacy.subtitle": "Türkçe çeviri: privacy.subtitle",
     "privacy.collectTitle": "Türkçe çeviri: privacy.collectTitle",
@@ -2549,22 +2609,26 @@ export const translations: Record<
     "currency.title": "Tercih edilen para birimi",
     "currency.subtitle":
       "Hesaplayıcılar ve alışveriş araçları varsayılan olarak bunu kullanır.",
-      "currency.converterTitle": "Currency converter",
-      "currency.converterCopy": "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
-      "currency.preferredTitle": "Preferred shopping currency",
-      "currency.amount": "Amount",
-      "currency.from": "From",
-      "currency.to": "To",
-      "currency.convert": "Convert",
-      "currency.loading": "Loading rate...",
-      "currency.source": "Source",
-      "currency.lastUpdated": "Last updated",
-      "currency.disclaimer": "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
-      "currency.unsupported": "This currency is not supported for live conversion.",
-      "currency.providerUnavailable": "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
-      "currency.unavailableShort": "Rate unavailable",
-      "currency.validation.amountRequired": "Enter an amount to convert.",
-      "currency.validation.positiveAmount": "Enter a positive numeric amount.",
+    "currency.converterTitle": "Currency converter",
+    "currency.converterCopy":
+      "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
+    "currency.preferredTitle": "Preferred shopping currency",
+    "currency.amount": "Amount",
+    "currency.from": "From",
+    "currency.to": "To",
+    "currency.convert": "Convert",
+    "currency.loading": "Loading rate...",
+    "currency.source": "Source",
+    "currency.lastUpdated": "Last updated",
+    "currency.disclaimer":
+      "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
+    "currency.unsupported":
+      "This currency is not supported for live conversion.",
+    "currency.providerUnavailable":
+      "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
+    "currency.unavailableShort": "Rate unavailable",
+    "currency.validation.amountRequired": "Enter an amount to convert.",
+    "currency.validation.positiveAmount": "Enter a positive numeric amount.",
     "notifications.kicker": "Bildirimler",
     "notifications.signInRequiredTitle": "Sign in required",
     "notifications.signInRequiredBody":
@@ -2753,30 +2817,31 @@ export const translations: Record<
     "home.featured.guide.cta": "Open Guide",
     "home.featured.flash.kicker": "Offline availability",
     "home.featured.flash.title": "Offline guide availability",
-    "home.featured.flash.subtitle": "See which bundled guide features are available without internet.",
+    "home.featured.flash.subtitle":
+      "See which bundled guide features are available without internet.",
     "home.featured.flash.cta": "View offline availability",
     "home.featured.discover.kicker": "Outlet discovery",
-  "home.featured.discover.title": "Discover outlets",
-  "home.featured.discover.subtitle":
-    "Browse real outlet destinations by country, city, and brand.",
-  "home.featured.discover.cta": "Explore outlets",
-  "home.featured.trip.kicker": "Trip planning",
-  "home.featured.trip.title": "Plan your outlet trip",
-  "home.featured.trip.subtitle":
-    "Create a shopping trip and keep your destination plan organized.",
-  "home.featured.trip.cta": "Create trip",
-  "home.featured.savings.kicker": "Savings guide",
-  "home.featured.savings.title": "Savings guide",
-  "home.featured.savings.subtitle":
-    "Use Tax Free and price tools to estimate your shopping budget.",
-  "home.featured.savings.cta": "View savings tools",
-  "home.featured.offline.kicker": "Offline availability",
-  "home.featured.offline.title": "Offline guide availability",
-  "home.featured.offline.subtitle":
-    "See which bundled guide features are available without internet.",
-  "home.featured.offline.cta": "View offline availability",
-  "home.search.noResults": "No results found",
-  "home.sections.featured.title": "Featured",
+    "home.featured.discover.title": "Discover outlets",
+    "home.featured.discover.subtitle":
+      "Browse real outlet destinations by country, city, and brand.",
+    "home.featured.discover.cta": "Explore outlets",
+    "home.featured.trip.kicker": "Trip planning",
+    "home.featured.trip.title": "Plan your outlet trip",
+    "home.featured.trip.subtitle":
+      "Create a shopping trip and keep your destination plan organized.",
+    "home.featured.trip.cta": "Create trip",
+    "home.featured.savings.kicker": "Savings guide",
+    "home.featured.savings.title": "Savings guide",
+    "home.featured.savings.subtitle":
+      "Use Tax Free and price tools to estimate your shopping budget.",
+    "home.featured.savings.cta": "View savings tools",
+    "home.featured.offline.kicker": "Offline availability",
+    "home.featured.offline.title": "Offline guide availability",
+    "home.featured.offline.subtitle":
+      "See which bundled guide features are available without internet.",
+    "home.featured.offline.cta": "View offline availability",
+    "home.search.noResults": "No results found",
+    "home.sections.featured.title": "Featured",
     "home.sections.featured.subtitle":
       "Handpicked deals, trips and shopping updates.",
     "home.sections.tools.title": "Shopping tools",
@@ -2793,19 +2858,16 @@ export const translations: Record<
     "home.tools.savings.title": "Savings",
     "home.tools.savings.text": "Tax Free and smart shopping tools.",
     "home.tools.flights.title": "Flight Alerts",
-    "home.tools.flights.text":
-      "Get notified when fares drop 15%, 30% or 45%.",
+    "home.tools.flights.text": "Get notified when fares drop 15%, 30% or 45%.",
     "home.tools.taxfree.title": "Tax Free Calculator",
-  "home.tools.currency.title": "Currency Converter",
-  "home.tools.currency.text": "Set your shopping currency.",
-    "home.tools.taxfree.text":
-      "Estimate your refund and check minimum spend.",
+    "home.tools.currency.title": "Currency Converter",
+    "home.tools.currency.text": "Set your shopping currency.",
+    "home.tools.taxfree.text": "Estimate your refund and check minimum spend.",
     "home.tools.offline.title": "Offline Availability",
     "home.tools.offline.text": "See what works without internet.",
     "home.activity.tripLabel": "Shopping trip",
     "home.activity.noTrip": "No trip yet",
-    "home.activity.createTripReminder":
-      "Create a trip to unlock reminders.",
+    "home.activity.createTripReminder": "Create a trip to unlock reminders.",
     "home.activity.favoritesLabel": "Favorites",
     "home.activity.noFavorites": "No favorite outlets yet",
     "home.activity.saveOutlets": "Save outlets you want to follow.",
@@ -2815,10 +2877,8 @@ export const translations: Record<
     "home.cities.munich.text": "Bavarian shopping routes",
     "home.cities.vienna.text": "Elegant outlet escapes",
     "home.outlets.laVallee.text": "Luxury shopping near Disneyland Paris.",
-    "home.outlets.bicester.text":
-      "One of Europe’s most iconic luxury outlets.",
-    "home.outlets.serravalle.text":
-      "Large designer outlet village in Italy.",
+    "home.outlets.bicester.text": "One of Europe’s most iconic luxury outlets.",
+    "home.outlets.serravalle.text": "Large designer outlet village in Italy.",
     "home.outlets.theMall.text": "Premium fashion destination in Tuscany.",
     "home.outlets.parndorf.text": "Popular outlet route near Vienna.",
     "home.recommended": "Recommended",
@@ -2833,8 +2893,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message":
-      "App Store rating will be connected before launch.",
+    "home.rateApp.message": "App Store rating will be connected before launch.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -2878,6 +2937,9 @@ export const translations: Record<
     "outlet.restaurantsRating": "Restaurantes",
     "outlet.servicesRating": "Servicios",
     "outlet.noReviews": "Aún no hay reseñas.",
+    "outlet.reviewSharePrompt": "Partagez votre expérience shopping outlet",
+    "outlet.reviewSortHelpful": "Les plus utiles",
+    "outlet.reviewSortRecent": "Récents",
     "outlet.galleryClose": "Cerrar",
     "weather.title": "Clima",
     "outlet.saved": "Guardado",
@@ -3087,6 +3149,8 @@ export const translations: Record<
     "searchResult.category": "Categoría",
     "explore.countryCtaSingular": "Explorar outlet →",
     "explore.countryCtaPlural": "Explorar outlets →",
+    "explore.countryOutletSingular": "outlet",
+    "explore.countryOutletPlural": "outlets",
     "explore.showingOutletsIn": "Mostrando outlets en",
     "explore.clear": "Borrar",
     "explore.resultsFor": "Resultados para",
@@ -3547,6 +3611,8 @@ export const translations: Record<
     "transportation.service": "Servicio",
     "transportation.duration": "Duración",
     "transportation.cost": "Costo",
+    "transportation.safeInstruction":
+      "Vérifiez les horaires, le tarif et le retour actuels auprès du fournisseur officiel.",
     "transportation.type.airport": "Aeropuerto",
     "transportation.type.bus": "Otobüs",
     "transportation.type.car": "Coche",
@@ -3851,22 +3917,26 @@ export const translations: Record<
     "currency.title": "Moneda preferida",
     "currency.subtitle":
       "Las calculadoras y herramientas de compra la usan de forma predeterminada.",
-      "currency.converterTitle": "Currency converter",
-      "currency.converterCopy": "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
-      "currency.preferredTitle": "Preferred shopping currency",
-      "currency.amount": "Amount",
-      "currency.from": "From",
-      "currency.to": "To",
-      "currency.convert": "Convert",
-      "currency.loading": "Loading rate...",
-      "currency.source": "Source",
-      "currency.lastUpdated": "Last updated",
-      "currency.disclaimer": "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
-      "currency.unsupported": "This currency is not supported for live conversion.",
-      "currency.providerUnavailable": "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
-      "currency.unavailableShort": "Rate unavailable",
-      "currency.validation.amountRequired": "Enter an amount to convert.",
-      "currency.validation.positiveAmount": "Enter a positive numeric amount.",
+    "currency.converterTitle": "Currency converter",
+    "currency.converterCopy":
+      "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
+    "currency.preferredTitle": "Preferred shopping currency",
+    "currency.amount": "Amount",
+    "currency.from": "From",
+    "currency.to": "To",
+    "currency.convert": "Convert",
+    "currency.loading": "Loading rate...",
+    "currency.source": "Source",
+    "currency.lastUpdated": "Last updated",
+    "currency.disclaimer":
+      "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
+    "currency.unsupported":
+      "This currency is not supported for live conversion.",
+    "currency.providerUnavailable":
+      "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
+    "currency.unavailableShort": "Rate unavailable",
+    "currency.validation.amountRequired": "Enter an amount to convert.",
+    "currency.validation.positiveAmount": "Enter a positive numeric amount.",
     "notifications.kicker": "Notificaciones",
     "notifications.signInRequiredTitle": "Sign in required",
     "notifications.signInRequiredBody":
@@ -4055,30 +4125,31 @@ export const translations: Record<
     "home.featured.guide.cta": "Open Guide",
     "home.featured.flash.kicker": "Offline availability",
     "home.featured.flash.title": "Offline guide availability",
-    "home.featured.flash.subtitle": "See which bundled guide features are available without internet.",
+    "home.featured.flash.subtitle":
+      "See which bundled guide features are available without internet.",
     "home.featured.flash.cta": "View offline availability",
     "home.featured.discover.kicker": "Outlet discovery",
-  "home.featured.discover.title": "Discover outlets",
-  "home.featured.discover.subtitle":
-    "Browse real outlet destinations by country, city, and brand.",
-  "home.featured.discover.cta": "Explore outlets",
-  "home.featured.trip.kicker": "Trip planning",
-  "home.featured.trip.title": "Plan your outlet trip",
-  "home.featured.trip.subtitle":
-    "Create a shopping trip and keep your destination plan organized.",
-  "home.featured.trip.cta": "Create trip",
-  "home.featured.savings.kicker": "Savings guide",
-  "home.featured.savings.title": "Savings guide",
-  "home.featured.savings.subtitle":
-    "Use Tax Free and price tools to estimate your shopping budget.",
-  "home.featured.savings.cta": "View savings tools",
-  "home.featured.offline.kicker": "Offline availability",
-  "home.featured.offline.title": "Offline guide availability",
-  "home.featured.offline.subtitle":
-    "See which bundled guide features are available without internet.",
-  "home.featured.offline.cta": "View offline availability",
-  "home.search.noResults": "No results found",
-  "home.sections.featured.title": "Featured",
+    "home.featured.discover.title": "Discover outlets",
+    "home.featured.discover.subtitle":
+      "Browse real outlet destinations by country, city, and brand.",
+    "home.featured.discover.cta": "Explore outlets",
+    "home.featured.trip.kicker": "Trip planning",
+    "home.featured.trip.title": "Plan your outlet trip",
+    "home.featured.trip.subtitle":
+      "Create a shopping trip and keep your destination plan organized.",
+    "home.featured.trip.cta": "Create trip",
+    "home.featured.savings.kicker": "Savings guide",
+    "home.featured.savings.title": "Savings guide",
+    "home.featured.savings.subtitle":
+      "Use Tax Free and price tools to estimate your shopping budget.",
+    "home.featured.savings.cta": "View savings tools",
+    "home.featured.offline.kicker": "Offline availability",
+    "home.featured.offline.title": "Offline guide availability",
+    "home.featured.offline.subtitle":
+      "See which bundled guide features are available without internet.",
+    "home.featured.offline.cta": "View offline availability",
+    "home.search.noResults": "No results found",
+    "home.sections.featured.title": "Featured",
     "home.sections.featured.subtitle":
       "Handpicked deals, trips and shopping updates.",
     "home.sections.tools.title": "Shopping tools",
@@ -4095,19 +4166,16 @@ export const translations: Record<
     "home.tools.savings.title": "Savings",
     "home.tools.savings.text": "Tax Free and smart shopping tools.",
     "home.tools.flights.title": "Flight Alerts",
-    "home.tools.flights.text":
-      "Get notified when fares drop 15%, 30% or 45%.",
+    "home.tools.flights.text": "Get notified when fares drop 15%, 30% or 45%.",
     "home.tools.taxfree.title": "Tax Free Calculator",
-  "home.tools.currency.title": "Currency Converter",
-  "home.tools.currency.text": "Set your shopping currency.",
-    "home.tools.taxfree.text":
-      "Estimate your refund and check minimum spend.",
+    "home.tools.currency.title": "Currency Converter",
+    "home.tools.currency.text": "Set your shopping currency.",
+    "home.tools.taxfree.text": "Estimate your refund and check minimum spend.",
     "home.tools.offline.title": "Offline Availability",
     "home.tools.offline.text": "See what works without internet.",
     "home.activity.tripLabel": "Shopping trip",
     "home.activity.noTrip": "No trip yet",
-    "home.activity.createTripReminder":
-      "Create a trip to unlock reminders.",
+    "home.activity.createTripReminder": "Create a trip to unlock reminders.",
     "home.activity.favoritesLabel": "Favorites",
     "home.activity.noFavorites": "No favorite outlets yet",
     "home.activity.saveOutlets": "Save outlets you want to follow.",
@@ -4117,10 +4185,8 @@ export const translations: Record<
     "home.cities.munich.text": "Bavarian shopping routes",
     "home.cities.vienna.text": "Elegant outlet escapes",
     "home.outlets.laVallee.text": "Luxury shopping near Disneyland Paris.",
-    "home.outlets.bicester.text":
-      "One of Europe’s most iconic luxury outlets.",
-    "home.outlets.serravalle.text":
-      "Large designer outlet village in Italy.",
+    "home.outlets.bicester.text": "One of Europe’s most iconic luxury outlets.",
+    "home.outlets.serravalle.text": "Large designer outlet village in Italy.",
     "home.outlets.theMall.text": "Premium fashion destination in Tuscany.",
     "home.outlets.parndorf.text": "Popular outlet route near Vienna.",
     "home.recommended": "Recommended",
@@ -4135,8 +4201,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message":
-      "App Store rating will be connected before launch.",
+    "home.rateApp.message": "App Store rating will be connected before launch.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -4180,6 +4245,9 @@ export const translations: Record<
     "outlet.restaurantsRating": "Restauration",
     "outlet.servicesRating": "Prestations",
     "outlet.noReviews": "Aucun avis pour le moment.",
+    "outlet.reviewSharePrompt": "Teile dein Outlet-Shopping-Erlebnis",
+    "outlet.reviewSortHelpful": "Am hilfreichsten",
+    "outlet.reviewSortRecent": "Neueste",
     "outlet.galleryClose": "Fermer",
     "weather.title": "Météo",
     "outlet.saved": "Enregistré",
@@ -4390,6 +4458,8 @@ export const translations: Record<
     "searchResult.category": "Catégorie",
     "explore.countryCtaSingular": "Explorer l’outlet →",
     "explore.countryCtaPlural": "Explorer les outlets →",
+    "explore.countryOutletSingular": "outlet",
+    "explore.countryOutletPlural": "outlets",
     "explore.showingOutletsIn": "Outlets affichés en",
     "explore.clear": "Effacer",
     "explore.resultsFor": "Résultats pour",
@@ -4852,6 +4922,8 @@ export const translations: Record<
     "transportation.service": "Service",
     "transportation.duration": "Durée",
     "transportation.cost": "Coût",
+    "transportation.safeInstruction":
+      "Prüfe aktuelle Zeiten, Gebühren und Rückfahrt beim offiziellen Anbieter.",
     "transportation.type.airport": "Aéroport",
     "transportation.type.bus": "Otobüs",
     "transportation.type.car": "Voiture",
@@ -5158,22 +5230,26 @@ export const translations: Record<
     "currency.title": "Devise préférée",
     "currency.subtitle":
       "Les calculateurs et outils shopping l’utilisent par défaut.",
-      "currency.converterTitle": "Currency converter",
-      "currency.converterCopy": "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
-      "currency.preferredTitle": "Preferred shopping currency",
-      "currency.amount": "Amount",
-      "currency.from": "From",
-      "currency.to": "To",
-      "currency.convert": "Convert",
-      "currency.loading": "Loading rate...",
-      "currency.source": "Source",
-      "currency.lastUpdated": "Last updated",
-      "currency.disclaimer": "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
-      "currency.unsupported": "This currency is not supported for live conversion.",
-      "currency.providerUnavailable": "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
-      "currency.unavailableShort": "Rate unavailable",
-      "currency.validation.amountRequired": "Enter an amount to convert.",
-      "currency.validation.positiveAmount": "Enter a positive numeric amount.",
+    "currency.converterTitle": "Currency converter",
+    "currency.converterCopy":
+      "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
+    "currency.preferredTitle": "Preferred shopping currency",
+    "currency.amount": "Amount",
+    "currency.from": "From",
+    "currency.to": "To",
+    "currency.convert": "Convert",
+    "currency.loading": "Loading rate...",
+    "currency.source": "Source",
+    "currency.lastUpdated": "Last updated",
+    "currency.disclaimer":
+      "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
+    "currency.unsupported":
+      "This currency is not supported for live conversion.",
+    "currency.providerUnavailable":
+      "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
+    "currency.unavailableShort": "Rate unavailable",
+    "currency.validation.amountRequired": "Enter an amount to convert.",
+    "currency.validation.positiveAmount": "Enter a positive numeric amount.",
     "notifications.kicker": "Alertes",
     "notifications.signInRequiredTitle": "Sign in required",
     "notifications.signInRequiredBody":
@@ -5362,30 +5438,31 @@ export const translations: Record<
     "home.featured.guide.cta": "Open Guide",
     "home.featured.flash.kicker": "Offline availability",
     "home.featured.flash.title": "Offline guide availability",
-    "home.featured.flash.subtitle": "See which bundled guide features are available without internet.",
+    "home.featured.flash.subtitle":
+      "See which bundled guide features are available without internet.",
     "home.featured.flash.cta": "View offline availability",
     "home.featured.discover.kicker": "Outlet discovery",
-  "home.featured.discover.title": "Discover outlets",
-  "home.featured.discover.subtitle":
-    "Browse real outlet destinations by country, city, and brand.",
-  "home.featured.discover.cta": "Explore outlets",
-  "home.featured.trip.kicker": "Trip planning",
-  "home.featured.trip.title": "Plan your outlet trip",
-  "home.featured.trip.subtitle":
-    "Create a shopping trip and keep your destination plan organized.",
-  "home.featured.trip.cta": "Create trip",
-  "home.featured.savings.kicker": "Savings guide",
-  "home.featured.savings.title": "Savings guide",
-  "home.featured.savings.subtitle":
-    "Use Tax Free and price tools to estimate your shopping budget.",
-  "home.featured.savings.cta": "View savings tools",
-  "home.featured.offline.kicker": "Offline availability",
-  "home.featured.offline.title": "Offline guide availability",
-  "home.featured.offline.subtitle":
-    "See which bundled guide features are available without internet.",
-  "home.featured.offline.cta": "View offline availability",
-  "home.search.noResults": "No results found",
-  "home.sections.featured.title": "Featured",
+    "home.featured.discover.title": "Discover outlets",
+    "home.featured.discover.subtitle":
+      "Browse real outlet destinations by country, city, and brand.",
+    "home.featured.discover.cta": "Explore outlets",
+    "home.featured.trip.kicker": "Trip planning",
+    "home.featured.trip.title": "Plan your outlet trip",
+    "home.featured.trip.subtitle":
+      "Create a shopping trip and keep your destination plan organized.",
+    "home.featured.trip.cta": "Create trip",
+    "home.featured.savings.kicker": "Savings guide",
+    "home.featured.savings.title": "Savings guide",
+    "home.featured.savings.subtitle":
+      "Use Tax Free and price tools to estimate your shopping budget.",
+    "home.featured.savings.cta": "View savings tools",
+    "home.featured.offline.kicker": "Offline availability",
+    "home.featured.offline.title": "Offline guide availability",
+    "home.featured.offline.subtitle":
+      "See which bundled guide features are available without internet.",
+    "home.featured.offline.cta": "View offline availability",
+    "home.search.noResults": "No results found",
+    "home.sections.featured.title": "Featured",
     "home.sections.featured.subtitle":
       "Handpicked deals, trips and shopping updates.",
     "home.sections.tools.title": "Shopping tools",
@@ -5402,19 +5479,16 @@ export const translations: Record<
     "home.tools.savings.title": "Savings",
     "home.tools.savings.text": "Tax Free and smart shopping tools.",
     "home.tools.flights.title": "Flight Alerts",
-    "home.tools.flights.text":
-      "Get notified when fares drop 15%, 30% or 45%.",
+    "home.tools.flights.text": "Get notified when fares drop 15%, 30% or 45%.",
     "home.tools.taxfree.title": "Tax Free Calculator",
-  "home.tools.currency.title": "Currency Converter",
-  "home.tools.currency.text": "Set your shopping currency.",
-    "home.tools.taxfree.text":
-      "Estimate your refund and check minimum spend.",
+    "home.tools.currency.title": "Currency Converter",
+    "home.tools.currency.text": "Set your shopping currency.",
+    "home.tools.taxfree.text": "Estimate your refund and check minimum spend.",
     "home.tools.offline.title": "Offline Availability",
     "home.tools.offline.text": "See what works without internet.",
     "home.activity.tripLabel": "Shopping trip",
     "home.activity.noTrip": "No trip yet",
-    "home.activity.createTripReminder":
-      "Create a trip to unlock reminders.",
+    "home.activity.createTripReminder": "Create a trip to unlock reminders.",
     "home.activity.favoritesLabel": "Favorites",
     "home.activity.noFavorites": "No favorite outlets yet",
     "home.activity.saveOutlets": "Save outlets you want to follow.",
@@ -5424,10 +5498,8 @@ export const translations: Record<
     "home.cities.munich.text": "Bavarian shopping routes",
     "home.cities.vienna.text": "Elegant outlet escapes",
     "home.outlets.laVallee.text": "Luxury shopping near Disneyland Paris.",
-    "home.outlets.bicester.text":
-      "One of Europe’s most iconic luxury outlets.",
-    "home.outlets.serravalle.text":
-      "Large designer outlet village in Italy.",
+    "home.outlets.bicester.text": "One of Europe’s most iconic luxury outlets.",
+    "home.outlets.serravalle.text": "Large designer outlet village in Italy.",
     "home.outlets.theMall.text": "Premium fashion destination in Tuscany.",
     "home.outlets.parndorf.text": "Popular outlet route near Vienna.",
     "home.recommended": "Recommended",
@@ -5442,8 +5514,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message":
-      "App Store rating will be connected before launch.",
+    "home.rateApp.message": "App Store rating will be connected before launch.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -5486,6 +5557,9 @@ export const translations: Record<
     "outlet.restaurantsRating": "Gastronomie",
     "outlet.servicesRating": "Service",
     "outlet.noReviews": "Noch keine Bewertungen.",
+    "outlet.reviewSharePrompt": "شارك تجربة التسوق في الأوتلت",
+    "outlet.reviewSortHelpful": "الأكثر فائدة",
+    "outlet.reviewSortRecent": "الأحدث",
     "outlet.galleryClose": "Schließen",
     "weather.title": "Wetter",
     "outlet.saved": "Gespeichert",
@@ -5692,6 +5766,8 @@ export const translations: Record<
     "searchResult.category": "Kategorie",
     "explore.countryCtaSingular": "Outlet entdecken →",
     "explore.countryCtaPlural": "Outlets entdecken →",
+    "explore.countryOutletSingular": "outlet",
+    "explore.countryOutletPlural": "outlets",
     "explore.showingOutletsIn": "Outlets angezeigt in",
     "explore.clear": "Löschen",
     "explore.resultsFor": "Ergebnisse für",
@@ -6115,6 +6191,8 @@ export const translations: Record<
     "transportation.service": "Service",
     "transportation.duration": "Dauer",
     "transportation.cost": "Kosten",
+    "transportation.safeInstruction":
+      "تحقق من الأوقات والرسوم وتفاصيل العودة الحالية لدى المزود الرسمي.",
     "transportation.type.airport": "Flughafen",
     "transportation.type.bus": "Otobüs",
     "transportation.type.car": "Auto",
@@ -6418,22 +6496,26 @@ export const translations: Record<
     "currency.title": "Bevorzugte Währung",
     "currency.subtitle":
       "Rechner und Shopping-Tools verwenden sie standardmäßig.",
-      "currency.converterTitle": "Currency converter",
-      "currency.converterCopy": "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
-      "currency.preferredTitle": "Preferred shopping currency",
-      "currency.amount": "Amount",
-      "currency.from": "From",
-      "currency.to": "To",
-      "currency.convert": "Convert",
-      "currency.loading": "Loading rate...",
-      "currency.source": "Source",
-      "currency.lastUpdated": "Last updated",
-      "currency.disclaimer": "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
-      "currency.unsupported": "This currency is not supported for live conversion.",
-      "currency.providerUnavailable": "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
-      "currency.unavailableShort": "Rate unavailable",
-      "currency.validation.amountRequired": "Enter an amount to convert.",
-      "currency.validation.positiveAmount": "Enter a positive numeric amount.",
+    "currency.converterTitle": "Currency converter",
+    "currency.converterCopy":
+      "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
+    "currency.preferredTitle": "Preferred shopping currency",
+    "currency.amount": "Amount",
+    "currency.from": "From",
+    "currency.to": "To",
+    "currency.convert": "Convert",
+    "currency.loading": "Loading rate...",
+    "currency.source": "Source",
+    "currency.lastUpdated": "Last updated",
+    "currency.disclaimer":
+      "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
+    "currency.unsupported":
+      "This currency is not supported for live conversion.",
+    "currency.providerUnavailable":
+      "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
+    "currency.unavailableShort": "Rate unavailable",
+    "currency.validation.amountRequired": "Enter an amount to convert.",
+    "currency.validation.positiveAmount": "Enter a positive numeric amount.",
     "notifications.kicker": "Mitteilungen",
     "notifications.signInRequiredTitle": "Sign in required",
     "notifications.signInRequiredBody":
@@ -6588,8 +6670,7 @@ export const translations: Record<
     "home.heroText":
       "خطط لرحلات الأوتلت، قدّر توفير Tax Free، تابع العروض ونظّم تجربة التسوق.",
     "home.createTrip": "إنشاء رحلة تسوق",
-    "home.searchFallback":
-      "Search and explore cities, outlets, brands...",
+    "home.searchFallback": "Search and explore cities, outlets, brands...",
     "home.header.welcome": "Welcome to My Outlet Guide",
     "home.header.goodMorning": "Good Morning",
     "home.header.goodAfternoon": "Good Afternoon",
@@ -6614,42 +6695,39 @@ export const translations: Record<
       "Exclusive events and seasonal experiences.",
     "home.featured.event.cta": "Create trip",
     "home.featured.guide.kicker": "Shopping Guide",
-    "home.featured.guide.title":
-      "Everything You Need Before Shopping",
+    "home.featured.guide.title": "Everything You Need Before Shopping",
     "home.featured.guide.subtitle": "Tax Free • Tips • Savings",
     "home.featured.guide.cta": "Open Guide",
     "home.featured.flash.kicker": "Offline availability",
     "home.featured.flash.title": "Offline guide availability",
-    "home.featured.flash.subtitle":
-      "Don't miss today's best deals.",
+    "home.featured.flash.subtitle": "Don't miss today's best deals.",
     "home.featured.flash.cta": "View offline availability",
     "home.featured.discover.kicker": "Outlet discovery",
-  "home.featured.discover.title": "Discover outlets",
-  "home.featured.discover.subtitle":
-    "Browse real outlet destinations by country, city, and brand.",
-  "home.featured.discover.cta": "Explore outlets",
-  "home.featured.trip.kicker": "Trip planning",
-  "home.featured.trip.title": "Plan your outlet trip",
-  "home.featured.trip.subtitle":
-    "Create a shopping trip and keep your destination plan organized.",
-  "home.featured.trip.cta": "Create trip",
-  "home.featured.savings.kicker": "Savings guide",
-  "home.featured.savings.title": "Savings guide",
-  "home.featured.savings.subtitle":
-    "Use Tax Free and price tools to estimate your shopping budget.",
-  "home.featured.savings.cta": "View savings tools",
-  "home.featured.offline.kicker": "Offline availability",
-  "home.featured.offline.title": "Offline guide availability",
-  "home.featured.offline.subtitle":
-    "See which bundled guide features are available without internet.",
-  "home.featured.offline.cta": "View offline availability",
-  "home.search.noResults": "No results found",
-  "home.sections.featured.title": "Featured",
+    "home.featured.discover.title": "Discover outlets",
+    "home.featured.discover.subtitle":
+      "Browse real outlet destinations by country, city, and brand.",
+    "home.featured.discover.cta": "Explore outlets",
+    "home.featured.trip.kicker": "Trip planning",
+    "home.featured.trip.title": "Plan your outlet trip",
+    "home.featured.trip.subtitle":
+      "Create a shopping trip and keep your destination plan organized.",
+    "home.featured.trip.cta": "Create trip",
+    "home.featured.savings.kicker": "Savings guide",
+    "home.featured.savings.title": "Savings guide",
+    "home.featured.savings.subtitle":
+      "Use Tax Free and price tools to estimate your shopping budget.",
+    "home.featured.savings.cta": "View savings tools",
+    "home.featured.offline.kicker": "Offline availability",
+    "home.featured.offline.title": "Offline guide availability",
+    "home.featured.offline.subtitle":
+      "See which bundled guide features are available without internet.",
+    "home.featured.offline.cta": "View offline availability",
+    "home.search.noResults": "No results found",
+    "home.sections.featured.title": "Featured",
     "home.sections.featured.subtitle":
       "Handpicked deals, trips and shopping updates.",
     "home.sections.tools.title": "Shopping tools",
-    "home.sections.tools.subtitle":
-      "Plan your savings before you shop.",
+    "home.sections.tools.subtitle": "Plan your savings before you shop.",
     "home.sections.activity.title": "Your activity",
     "home.sections.activity.subtitle":
       "Fast access to your saved shopping plans.",
@@ -6660,41 +6738,31 @@ export const translations: Record<
     "home.sections.outlets.subtitle":
       "Premium destinations to start exploring.",
     "home.tools.savings.title": "Savings",
-    "home.tools.savings.text":
-      "Tax Free and smart shopping tools.",
+    "home.tools.savings.text": "Tax Free and smart shopping tools.",
     "home.tools.flights.title": "Flight Alerts",
-    "home.tools.flights.text":
-      "Get notified when fares drop 15%, 30% or 45%.",
+    "home.tools.flights.text": "Get notified when fares drop 15%, 30% or 45%.",
     "home.tools.taxfree.title": "Tax Free Calculator",
-  "home.tools.currency.title": "Currency Converter",
-  "home.tools.currency.text": "Set your shopping currency.",
-    "home.tools.taxfree.text":
-      "Estimate your refund and check minimum spend.",
+    "home.tools.currency.title": "Currency Converter",
+    "home.tools.currency.text": "Set your shopping currency.",
+    "home.tools.taxfree.text": "Estimate your refund and check minimum spend.",
     "home.tools.offline.title": "Offline Availability",
     "home.tools.offline.text": "See what works without internet.",
     "home.activity.tripLabel": "Shopping trip",
     "home.activity.noTrip": "No trip yet",
-    "home.activity.createTripReminder":
-      "Create a trip to unlock reminders.",
+    "home.activity.createTripReminder": "Create a trip to unlock reminders.",
     "home.activity.favoritesLabel": "Favorites",
     "home.activity.noFavorites": "No favorite outlets yet",
-    "home.activity.saveOutlets":
-      "Save outlets you want to follow.",
+    "home.activity.saveOutlets": "Save outlets you want to follow.",
     "home.cities.paris.text": "Luxury outlet routes",
     "home.cities.milan.text": "Designer outlet access",
     "home.cities.london.text": "Premium shopping trips",
     "home.cities.munich.text": "Bavarian shopping routes",
     "home.cities.vienna.text": "Elegant outlet escapes",
-    "home.outlets.laVallee.text":
-      "Luxury shopping near Disneyland Paris.",
-    "home.outlets.bicester.text":
-      "One of Europe’s most iconic luxury outlets.",
-    "home.outlets.serravalle.text":
-      "Large designer outlet village in Italy.",
-    "home.outlets.theMall.text":
-      "Premium fashion destination in Tuscany.",
-    "home.outlets.parndorf.text":
-      "Popular outlet route near Vienna.",
+    "home.outlets.laVallee.text": "Luxury shopping near Disneyland Paris.",
+    "home.outlets.bicester.text": "One of Europe’s most iconic luxury outlets.",
+    "home.outlets.serravalle.text": "Large designer outlet village in Italy.",
+    "home.outlets.theMall.text": "Premium fashion destination in Tuscany.",
+    "home.outlets.parndorf.text": "Popular outlet route near Vienna.",
     "home.recommended": "Recommended",
     "home.viewOutlet": "View outlet →",
     "home.quick.title": "Quick Menu",
@@ -6707,8 +6775,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message":
-      "App Store rating will be connected before launch.",
+    "home.rateApp.message": "App Store rating will be connected before launch.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -6751,6 +6818,9 @@ export const translations: Record<
     "outlet.restaurantsRating": "المطاعم",
     "outlet.servicesRating": "الخدمات",
     "outlet.noReviews": "لا توجد مراجعات بعد.",
+    "outlet.reviewSharePrompt": "Поделитесь опытом покупок в аутлете",
+    "outlet.reviewSortHelpful": "Самые полезные",
+    "outlet.reviewSortRecent": "Новые",
     "outlet.galleryClose": "إغلاق",
     "weather.title": "الطقس",
     "outlet.saved": "محفوظ",
@@ -6953,6 +7023,8 @@ export const translations: Record<
     "searchResult.category": "فئة",
     "explore.countryCtaSingular": "استكشف الأوتلت ←",
     "explore.countryCtaPlural": "استكشف كل الأوتلت ←",
+    "explore.countryOutletSingular": "outlet",
+    "explore.countryOutletPlural": "outlets",
     "explore.showingOutletsIn": "الأوتلت المعروضة في",
     "explore.clear": "مسح",
     "explore.resultsFor": "نتائج لـ",
@@ -7356,6 +7428,8 @@ export const translations: Record<
     "transportation.service": "الخدمة",
     "transportation.duration": "المدة",
     "transportation.cost": "التكلفة",
+    "transportation.safeInstruction":
+      "Проверьте актуальное расписание, стоимость и обратный маршрут у официального поставщика.",
     "transportation.type.airport": "المطار",
     "transportation.type.bus": "حافلة",
     "transportation.type.car": "سيارة",
@@ -7574,18 +7648,14 @@ export const translations: Record<
     "deleteAccount.itemAccount": "deleteAccount.itemAccount",
     "deleteAccount.itemFavorites": "deleteAccount.itemFavorites",
     "deleteAccount.itemTrips": "deleteAccount.itemTrips",
-    "deleteAccount.itemFlightPrefs":
-      "deleteAccount.itemFlightPrefs",
-    "deleteAccount.itemNotifications":
-      "deleteAccount.itemNotifications",
+    "deleteAccount.itemFlightPrefs": "deleteAccount.itemFlightPrefs",
+    "deleteAccount.itemNotifications": "deleteAccount.itemNotifications",
     "deleteAccount.reviewsTitle": "deleteAccount.reviewsTitle",
     "deleteAccount.reviewsText": "deleteAccount.reviewsText",
     "deleteAccount.button": "deleteAccount.button",
     "deleteAccount.confirmMessage": "deleteAccount.confirmMessage",
-    "deleteAccount.comingSoonTitle":
-      "deleteAccount.comingSoonTitle",
-    "deleteAccount.comingSoonMessage":
-      "deleteAccount.comingSoonMessage",
+    "deleteAccount.comingSoonTitle": "deleteAccount.comingSoonTitle",
+    "deleteAccount.comingSoonMessage": "deleteAccount.comingSoonMessage",
     "privacy.title": "سياسة الخصوصية",
     "privacy.subtitle": "privacy.subtitle",
     "privacy.collectTitle": "privacy.collectTitle",
@@ -7645,7 +7715,8 @@ export const translations: Record<
     "currency.title": "العملة المفضلة",
     "currency.subtitle": "تستخدمها الحاسبات وأدوات التسوق بشكل افتراضي.",
     "currency.converterTitle": "Currency converter",
-    "currency.converterCopy": "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
+    "currency.converterCopy":
+      "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
     "currency.preferredTitle": "Preferred shopping currency",
     "currency.amount": "Amount",
     "currency.from": "From",
@@ -7654,9 +7725,12 @@ export const translations: Record<
     "currency.loading": "Loading rate...",
     "currency.source": "Source",
     "currency.lastUpdated": "Last updated",
-    "currency.disclaimer": "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
-    "currency.unsupported": "This currency is not supported for live conversion.",
-    "currency.providerUnavailable": "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
+    "currency.disclaimer":
+      "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
+    "currency.unsupported":
+      "This currency is not supported for live conversion.",
+    "currency.providerUnavailable":
+      "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
     "currency.unavailableShort": "Rate unavailable",
     "currency.validation.amountRequired": "Enter an amount to convert.",
     "currency.validation.positiveAmount": "Enter a positive numeric amount.",
@@ -7838,30 +7912,31 @@ export const translations: Record<
     "home.featured.guide.cta": "Open Guide",
     "home.featured.flash.kicker": "Offline availability",
     "home.featured.flash.title": "Offline guide availability",
-    "home.featured.flash.subtitle": "See which bundled guide features are available without internet.",
+    "home.featured.flash.subtitle":
+      "See which bundled guide features are available without internet.",
     "home.featured.flash.cta": "View offline availability",
     "home.featured.discover.kicker": "Outlet discovery",
-  "home.featured.discover.title": "Discover outlets",
-  "home.featured.discover.subtitle":
-    "Browse real outlet destinations by country, city, and brand.",
-  "home.featured.discover.cta": "Explore outlets",
-  "home.featured.trip.kicker": "Trip planning",
-  "home.featured.trip.title": "Plan your outlet trip",
-  "home.featured.trip.subtitle":
-    "Create a shopping trip and keep your destination plan organized.",
-  "home.featured.trip.cta": "Create trip",
-  "home.featured.savings.kicker": "Savings guide",
-  "home.featured.savings.title": "Savings guide",
-  "home.featured.savings.subtitle":
-    "Use Tax Free and price tools to estimate your shopping budget.",
-  "home.featured.savings.cta": "View savings tools",
-  "home.featured.offline.kicker": "Offline availability",
-  "home.featured.offline.title": "Offline guide availability",
-  "home.featured.offline.subtitle":
-    "See which bundled guide features are available without internet.",
-  "home.featured.offline.cta": "View offline availability",
-  "home.search.noResults": "No results found",
-  "home.sections.featured.title": "Featured",
+    "home.featured.discover.title": "Discover outlets",
+    "home.featured.discover.subtitle":
+      "Browse real outlet destinations by country, city, and brand.",
+    "home.featured.discover.cta": "Explore outlets",
+    "home.featured.trip.kicker": "Trip planning",
+    "home.featured.trip.title": "Plan your outlet trip",
+    "home.featured.trip.subtitle":
+      "Create a shopping trip and keep your destination plan organized.",
+    "home.featured.trip.cta": "Create trip",
+    "home.featured.savings.kicker": "Savings guide",
+    "home.featured.savings.title": "Savings guide",
+    "home.featured.savings.subtitle":
+      "Use Tax Free and price tools to estimate your shopping budget.",
+    "home.featured.savings.cta": "View savings tools",
+    "home.featured.offline.kicker": "Offline availability",
+    "home.featured.offline.title": "Offline guide availability",
+    "home.featured.offline.subtitle":
+      "See which bundled guide features are available without internet.",
+    "home.featured.offline.cta": "View offline availability",
+    "home.search.noResults": "No results found",
+    "home.sections.featured.title": "Featured",
     "home.sections.featured.subtitle":
       "Handpicked deals, trips and shopping updates.",
     "home.sections.tools.title": "Shopping tools",
@@ -7878,19 +7953,16 @@ export const translations: Record<
     "home.tools.savings.title": "Savings",
     "home.tools.savings.text": "Tax Free and smart shopping tools.",
     "home.tools.flights.title": "Flight Alerts",
-    "home.tools.flights.text":
-      "Get notified when fares drop 15%, 30% or 45%.",
+    "home.tools.flights.text": "Get notified when fares drop 15%, 30% or 45%.",
     "home.tools.taxfree.title": "Tax Free Calculator",
-  "home.tools.currency.title": "Currency Converter",
-  "home.tools.currency.text": "Set your shopping currency.",
-    "home.tools.taxfree.text":
-      "Estimate your refund and check minimum spend.",
+    "home.tools.currency.title": "Currency Converter",
+    "home.tools.currency.text": "Set your shopping currency.",
+    "home.tools.taxfree.text": "Estimate your refund and check minimum spend.",
     "home.tools.offline.title": "Offline Availability",
     "home.tools.offline.text": "See what works without internet.",
     "home.activity.tripLabel": "Shopping trip",
     "home.activity.noTrip": "No trip yet",
-    "home.activity.createTripReminder":
-      "Create a trip to unlock reminders.",
+    "home.activity.createTripReminder": "Create a trip to unlock reminders.",
     "home.activity.favoritesLabel": "Favorites",
     "home.activity.noFavorites": "No favorite outlets yet",
     "home.activity.saveOutlets": "Save outlets you want to follow.",
@@ -7900,10 +7972,8 @@ export const translations: Record<
     "home.cities.munich.text": "Bavarian shopping routes",
     "home.cities.vienna.text": "Elegant outlet escapes",
     "home.outlets.laVallee.text": "Luxury shopping near Disneyland Paris.",
-    "home.outlets.bicester.text":
-      "One of Europe’s most iconic luxury outlets.",
-    "home.outlets.serravalle.text":
-      "Large designer outlet village in Italy.",
+    "home.outlets.bicester.text": "One of Europe’s most iconic luxury outlets.",
+    "home.outlets.serravalle.text": "Large designer outlet village in Italy.",
     "home.outlets.theMall.text": "Premium fashion destination in Tuscany.",
     "home.outlets.parndorf.text": "Popular outlet route near Vienna.",
     "home.recommended": "Recommended",
@@ -7918,8 +7988,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message":
-      "App Store rating will be connected before launch.",
+    "home.rateApp.message": "App Store rating will be connected before launch.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -7963,6 +8032,9 @@ export const translations: Record<
     "outlet.restaurantsRating": "Рестораны",
     "outlet.servicesRating": "Сервисы",
     "outlet.noReviews": "Пока нет отзывов.",
+    "outlet.reviewSharePrompt": "分享你的奥莱购物体验",
+    "outlet.reviewSortHelpful": "最有帮助",
+    "outlet.reviewSortRecent": "最新",
     "outlet.galleryClose": "Закрыть",
     "weather.title": "Погода",
     "outlet.saved": "Сохранено",
@@ -8173,6 +8245,8 @@ export const translations: Record<
     "searchResult.category": "Категория",
     "explore.countryCtaSingular": "Открыть аутлет →",
     "explore.countryCtaPlural": "Открыть все аутлеты →",
+    "explore.countryOutletSingular": "outlet",
+    "explore.countryOutletPlural": "outlets",
     "explore.showingOutletsIn": "Показаны аутлеты в",
     "explore.clear": "Очистить",
     "explore.resultsFor": "Результаты для",
@@ -8628,6 +8702,8 @@ export const translations: Record<
     "transportation.service": "Сервис",
     "transportation.duration": "Время",
     "transportation.cost": "Стоимость",
+    "transportation.safeInstruction":
+      "请向官方服务提供方确认最新时间、费用和返程信息。",
     "transportation.type.airport": "Аэропорт",
     "transportation.type.bus": "Автобус",
     "transportation.type.car": "Авто",
@@ -8925,22 +9001,26 @@ export const translations: Record<
     "currency.title": "Предпочитаемая валюта",
     "currency.subtitle":
       "Калькуляторы и инструменты для покупок используют её по умолчанию.",
-      "currency.converterTitle": "Currency converter",
-      "currency.converterCopy": "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
-      "currency.preferredTitle": "Preferred shopping currency",
-      "currency.amount": "Amount",
-      "currency.from": "From",
-      "currency.to": "To",
-      "currency.convert": "Convert",
-      "currency.loading": "Loading rate...",
-      "currency.source": "Source",
-      "currency.lastUpdated": "Last updated",
-      "currency.disclaimer": "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
-      "currency.unsupported": "This currency is not supported for live conversion.",
-      "currency.providerUnavailable": "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
-      "currency.unavailableShort": "Rate unavailable",
-      "currency.validation.amountRequired": "Enter an amount to convert.",
-      "currency.validation.positiveAmount": "Enter a positive numeric amount.",
+    "currency.converterTitle": "Currency converter",
+    "currency.converterCopy":
+      "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
+    "currency.preferredTitle": "Preferred shopping currency",
+    "currency.amount": "Amount",
+    "currency.from": "From",
+    "currency.to": "To",
+    "currency.convert": "Convert",
+    "currency.loading": "Loading rate...",
+    "currency.source": "Source",
+    "currency.lastUpdated": "Last updated",
+    "currency.disclaimer":
+      "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
+    "currency.unsupported":
+      "This currency is not supported for live conversion.",
+    "currency.providerUnavailable":
+      "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
+    "currency.unavailableShort": "Rate unavailable",
+    "currency.validation.amountRequired": "Enter an amount to convert.",
+    "currency.validation.positiveAmount": "Enter a positive numeric amount.",
     "notifications.kicker": "Уведомления",
     "notifications.signInRequiredTitle": "Sign in required",
     "notifications.signInRequiredBody":
@@ -9117,7 +9197,8 @@ export const translations: Record<
     "home.featured.flight.cta": "Create Alert",
     "home.featured.event.kicker": "Trip planning",
     "home.featured.event.title": "Plan your outlet trip",
-    "home.featured.event.subtitle": "Create a shopping trip and keep your destination plan organized.",
+    "home.featured.event.subtitle":
+      "Create a shopping trip and keep your destination plan organized.",
     "home.featured.event.cta": "Create trip",
     "home.featured.guide.kicker": "Shopping Guide",
     "home.featured.guide.title": "Everything You Need Before Shopping",
@@ -9125,56 +9206,53 @@ export const translations: Record<
     "home.featured.guide.cta": "Open Guide",
     "home.featured.flash.kicker": "Offline availability",
     "home.featured.flash.title": "Offline guide availability",
-    "home.featured.flash.subtitle": "See which bundled guide features are available without internet.",
+    "home.featured.flash.subtitle":
+      "See which bundled guide features are available without internet.",
     "home.featured.flash.cta": "View offline availability",
     "home.featured.discover.kicker": "Outlet discovery",
-  "home.featured.discover.title": "Discover outlets",
-  "home.featured.discover.subtitle":
-    "Browse real outlet destinations by country, city, and brand.",
-  "home.featured.discover.cta": "Explore outlets",
-  "home.featured.trip.kicker": "Trip planning",
-  "home.featured.trip.title": "Plan your outlet trip",
-  "home.featured.trip.subtitle":
-    "Create a shopping trip and keep your destination plan organized.",
-  "home.featured.trip.cta": "Create trip",
-  "home.featured.savings.kicker": "Savings guide",
-  "home.featured.savings.title": "Savings guide",
-  "home.featured.savings.subtitle":
-    "Use Tax Free and price tools to estimate your shopping budget.",
-  "home.featured.savings.cta": "View savings tools",
-  "home.featured.offline.kicker": "Offline availability",
-  "home.featured.offline.title": "Offline guide availability",
-  "home.featured.offline.subtitle":
-    "See which bundled guide features are available without internet.",
-  "home.featured.offline.cta": "View offline availability",
-  "home.search.noResults": "No results found",
-  "home.sections.featured.title": "Featured",
-    "home.sections.featured.subtitle":
-      "home.sections.featured.subtitle",
+    "home.featured.discover.title": "Discover outlets",
+    "home.featured.discover.subtitle":
+      "Browse real outlet destinations by country, city, and brand.",
+    "home.featured.discover.cta": "Explore outlets",
+    "home.featured.trip.kicker": "Trip planning",
+    "home.featured.trip.title": "Plan your outlet trip",
+    "home.featured.trip.subtitle":
+      "Create a shopping trip and keep your destination plan organized.",
+    "home.featured.trip.cta": "Create trip",
+    "home.featured.savings.kicker": "Savings guide",
+    "home.featured.savings.title": "Savings guide",
+    "home.featured.savings.subtitle":
+      "Use Tax Free and price tools to estimate your shopping budget.",
+    "home.featured.savings.cta": "View savings tools",
+    "home.featured.offline.kicker": "Offline availability",
+    "home.featured.offline.title": "Offline guide availability",
+    "home.featured.offline.subtitle":
+      "See which bundled guide features are available without internet.",
+    "home.featured.offline.cta": "View offline availability",
+    "home.search.noResults": "No results found",
+    "home.sections.featured.title": "Featured",
+    "home.sections.featured.subtitle": "home.sections.featured.subtitle",
     "home.sections.tools.title": "Shopping tools",
     "home.sections.tools.subtitle": "Plan your savings before you shop.",
     "home.sections.activity.title": "Your activity",
-    "home.sections.activity.subtitle":
-      "home.sections.activity.subtitle",
+    "home.sections.activity.subtitle": "home.sections.activity.subtitle",
     "home.sections.cities.title": "Popular cities",
     "home.sections.cities.subtitle": "home.sections.cities.subtitle",
     "home.sections.outlets.title": "Recommended outlets",
-    "home.sections.outlets.subtitle":
-      "home.sections.outlets.subtitle",
+    "home.sections.outlets.subtitle": "home.sections.outlets.subtitle",
     "home.tools.savings.title": "Savings",
     "home.tools.savings.text": "Tax Free and smart shopping tools.",
     "home.tools.flights.title": "Flight Alerts",
     "home.tools.flights.text": "Check flight alert availability.",
     "home.tools.taxfree.title": "Tax Free Calculator",
-  "home.tools.currency.title": "Currency Converter",
-  "home.tools.currency.text": "Set your shopping currency.",
+    "home.tools.currency.title": "Currency Converter",
+    "home.tools.currency.text": "Set your shopping currency.",
     "home.tools.taxfree.text": "Estimate your refund and check minimum spend.",
     "home.tools.offline.title": "Offline Availability",
     "home.tools.offline.text": "See what works without internet.",
     "home.activity.tripLabel": "Shopping trip",
     "home.activity.noTrip": "No trip yet",
-    "home.activity.createTripReminder":
-      "home.activity.createTripReminder",
+    "home.activity.createTripReminder": "home.activity.createTripReminder",
     "home.activity.favoritesLabel": "Favorites",
     "home.activity.noFavorites": "No favorite outlets yet",
     "home.activity.saveOutlets": "Save outlets you want to follow.",
@@ -9206,22 +9284,17 @@ export const translations: Record<
     "dashboard.card.updated": "Updated",
     "dashboard.trip.title": "{tripName} is coming up",
     "dashboard.trip.descriptionOne": "dashboard.trip.descriptionOne",
-    "dashboard.trip.descriptionOther":
-      "dashboard.trip.descriptionOther",
+    "dashboard.trip.descriptionOther": "dashboard.trip.descriptionOther",
     "dashboard.trip.action": "View trip",
     "dashboard.trip.badge": "Trip Reminder",
     "dashboard.flight.action": "View flight deal",
     "dashboard.flight.badge": "Flight Deal",
-    "dashboard.recommendation.title":
-      "dashboard.recommendation.title",
+    "dashboard.recommendation.title": "dashboard.recommendation.title",
     "dashboard.recommendation.description":
       "dashboard.recommendation.description",
-    "dashboard.recommendation.action":
-      "dashboard.recommendation.action",
-    "dashboard.recommendation.badge":
-      "dashboard.recommendation.badge",
-    "dashboard.recommendation.focus":
-      "dashboard.recommendation.focus",
+    "dashboard.recommendation.action": "dashboard.recommendation.action",
+    "dashboard.recommendation.badge": "dashboard.recommendation.badge",
+    "dashboard.recommendation.focus": "dashboard.recommendation.focus",
 
     "outlet.quickFacts": "速览",
     "outlet.services": "服务",
@@ -9246,6 +9319,9 @@ export const translations: Record<
     "outlet.restaurantsRating": "餐厅",
     "outlet.servicesRating": "服务",
     "outlet.noReviews": "暂无评价。",
+    "outlet.reviewSharePrompt": "Share your outlet shopping experience",
+    "outlet.reviewSortHelpful": "Most Helpful",
+    "outlet.reviewSortRecent": "Recent",
     "outlet.galleryClose": "关闭",
     "weather.title": "天气",
     "outlet.saved": "已保存",
@@ -9444,6 +9520,8 @@ export const translations: Record<
     "searchResult.category": "类别",
     "explore.countryCtaSingular": "探索该奥特莱斯 →",
     "explore.countryCtaPlural": "探索所有奥特莱斯 →",
+    "explore.countryOutletSingular": "outlet",
+    "explore.countryOutletPlural": "outlets",
     "explore.showingOutletsIn": "正在显示奥特莱斯：",
     "explore.clear": "清除",
     "explore.resultsFor": "结果：",
@@ -9852,6 +9930,8 @@ export const translations: Record<
     "transportation.service": "服务",
     "transportation.duration": "时长",
     "transportation.cost": "费用",
+    "transportation.safeInstruction":
+      "Check current schedule, fee and return details with the official provider.",
     "transportation.type.airport": "机场",
     "transportation.type.bus": "巴士",
     "transportation.type.car": "汽车",
@@ -10069,16 +10149,16 @@ export const translations: Record<
     "deleteAccount.itemAccount": "• Your Firebase account",
     "deleteAccount.itemFavorites": "• Favorites saved to your account",
     "deleteAccount.itemTrips": "• Trips saved to your account",
-    "deleteAccount.itemFlightPrefs": "• Flight deal preferences saved to your account",
-    "deleteAccount.itemNotifications":
-      "deleteAccount.itemNotifications",
+    "deleteAccount.itemFlightPrefs":
+      "• Flight deal preferences saved to your account",
+    "deleteAccount.itemNotifications": "deleteAccount.itemNotifications",
     "deleteAccount.reviewsTitle": "Reviews",
     "deleteAccount.reviewsText": "deleteAccount.reviewsText",
     "deleteAccount.button": "Delete My Account",
-    "deleteAccount.confirmMessage": "This permanently deletes your account data. This action cannot be undone.",
+    "deleteAccount.confirmMessage":
+      "This permanently deletes your account data. This action cannot be undone.",
     "deleteAccount.comingSoonTitle": "deleteAccount.comingSoonTitle",
-    "deleteAccount.comingSoonMessage":
-      "deleteAccount.comingSoonMessage",
+    "deleteAccount.comingSoonMessage": "deleteAccount.comingSoonMessage",
     "privacy.title": "隐私政策",
     "privacy.subtitle": "How My Outlet Guide handles your data.",
     "privacy.collectTitle": "Information We Collect",
@@ -10138,7 +10218,8 @@ export const translations: Record<
     "currency.title": "首选货币",
     "currency.subtitle": "计算器和购物工具默认使用此货币。",
     "currency.converterTitle": "Currency converter",
-    "currency.converterCopy": "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
+    "currency.converterCopy":
+      "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
     "currency.preferredTitle": "Preferred shopping currency",
     "currency.amount": "Amount",
     "currency.from": "From",
@@ -10147,9 +10228,12 @@ export const translations: Record<
     "currency.loading": "Loading rate...",
     "currency.source": "Source",
     "currency.lastUpdated": "Last updated",
-    "currency.disclaimer": "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
-    "currency.unsupported": "This currency is not supported for live conversion.",
-    "currency.providerUnavailable": "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
+    "currency.disclaimer":
+      "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
+    "currency.unsupported":
+      "This currency is not supported for live conversion.",
+    "currency.providerUnavailable":
+      "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
     "currency.unavailableShort": "Rate unavailable",
     "currency.validation.amountRequired": "Enter an amount to convert.",
     "currency.validation.positiveAmount": "Enter a positive numeric amount.",
@@ -10292,19 +10376,279 @@ const finalPhase1ACriticalLocaleOverlays: Partial<
   Record<Exclude<TranslationLanguage, "en">, Record<string, string>>
 > = {
   fr: {
-    "currency.converterTitle": "Convertisseur de devise", "currency.amount": "Montant", "currency.from": "De", "currency.to": "Vers", "currency.convert": "Convertir", "currency.loading": "Chargement du taux...", "currency.source": "Source", "currency.lastUpdated": "Dernière mise à jour", "currency.unavailableShort": "Taux indisponible", "currency.validation.amountRequired": "Saisissez un montant à convertir.", "currency.validation.positiveAmount": "Saisissez un montant numérique positif.", "notifications.signInRequiredTitle": "Connexion requise", "notifications.deviceStatusTitle": "État des notifications de l’appareil", "notifications.permission.denied": "L’autorisation de notification est refusée. Vous pouvez la modifier dans les réglages système.", "notifications.permission.granted": "L’autorisation de notification de l’appareil est accordée.", "notifications.permission.not_requested": "L’autorisation de notification n’a pas encore été demandée.", "notifications.permission.unsupported": "L’autorisation push n’est pas disponible dans cette version.", "notifications.tripRemindersCategory": "Rappels de voyage", "notifications.categoryActive": "Envoi de production actif", "deleteAccount.deletedTitle": "Compte supprimé", "deleteAccount.deletedMessage": "Votre compte et les données associées ont été supprimés.", "deleteAccount.deleting": "Suppression du compte...", "deleteAccount.failedTitle": "Impossible de supprimer le compte", "deleteAccount.failedMessage": "Reconnectez-vous puis réessayez.", "deleteAccount.reauthTitle": "Reconnectez-vous", "deleteAccount.reauthMessage": "Pour votre sécurité, reconnectez-vous avant de supprimer votre compte.", "deleteAccount.signInRequiredTitle": "Connexion requise", "deleteAccount.signInRequiredMessage": "Connectez-vous pour supprimer votre compte.", "flightDeals.unavailableKicker": "Alertes de vols", "flightDeals.unavailableTitle": "Fournisseur de vols indisponible", "flightDeals.unavailableBody": "Les alertes tarifaires réelles nécessitent un fournisseur et un backend de production. Aucune fausse alerte n’est affichée.", "flightDeals.unavailableStatusTitle": "État du backend", "flightDeals.unavailableStatusBody": "Le suivi des tarifs est désactivé jusqu’à la connexion d’un fournisseur de production.", "taxCalc.unsupportedCountry": "Ce pays n’est pas encore pris en charge pour les calculs Tax Free.", "taxCalc.invalidAmount": "Saisissez un montant valide.", "taxCalc.currencyMismatch": "La devise sélectionnée ne correspond pas à celle prise en charge pour ce pays.", "taxCalc.estimatedVatPortion": "TVA estimée incluse", "taxCalc.estimatedNetBeforeVat": "Net estimé hors TVA", "taxCalc.sourceTitle": "Source et date d’effet", "taxCalc.providerFeesUnknown": "Les frais du fournisseur ne sont pas inclus.", "taxCalc.noGuaranteedRefund": "Le remboursement final n’est pas garanti et dépend du fournisseur et de la validation douanière.", "taxCalc.finalDisclaimer": "Estimation indicative. Vérifiez toujours auprès du magasin et du fournisseur Tax Free."
+    "currency.converterTitle": "Convertisseur de devise",
+    "currency.amount": "Montant",
+    "currency.from": "De",
+    "currency.to": "Vers",
+    "currency.convert": "Convertir",
+    "currency.loading": "Chargement du taux...",
+    "currency.source": "Source",
+    "currency.lastUpdated": "Dernière mise à jour",
+    "currency.unavailableShort": "Taux indisponible",
+    "currency.validation.amountRequired": "Saisissez un montant à convertir.",
+    "currency.validation.positiveAmount":
+      "Saisissez un montant numérique positif.",
+    "notifications.signInRequiredTitle": "Connexion requise",
+    "notifications.deviceStatusTitle": "État des notifications de l’appareil",
+    "notifications.permission.denied":
+      "L’autorisation de notification est refusée. Vous pouvez la modifier dans les réglages système.",
+    "notifications.permission.granted":
+      "L’autorisation de notification de l’appareil est accordée.",
+    "notifications.permission.not_requested":
+      "L’autorisation de notification n’a pas encore été demandée.",
+    "notifications.permission.unsupported":
+      "L’autorisation push n’est pas disponible dans cette version.",
+    "notifications.tripRemindersCategory": "Rappels de voyage",
+    "notifications.categoryActive": "Envoi de production actif",
+    "deleteAccount.deletedTitle": "Compte supprimé",
+    "deleteAccount.deletedMessage":
+      "Votre compte et les données associées ont été supprimés.",
+    "deleteAccount.deleting": "Suppression du compte...",
+    "deleteAccount.failedTitle": "Impossible de supprimer le compte",
+    "deleteAccount.failedMessage": "Reconnectez-vous puis réessayez.",
+    "deleteAccount.reauthTitle": "Reconnectez-vous",
+    "deleteAccount.reauthMessage":
+      "Pour votre sécurité, reconnectez-vous avant de supprimer votre compte.",
+    "deleteAccount.signInRequiredTitle": "Connexion requise",
+    "deleteAccount.signInRequiredMessage":
+      "Connectez-vous pour supprimer votre compte.",
+    "flightDeals.unavailableKicker": "Alertes de vols",
+    "flightDeals.unavailableTitle": "Fournisseur de vols indisponible",
+    "flightDeals.unavailableBody":
+      "Les alertes tarifaires réelles nécessitent un fournisseur et un backend de production. Aucune fausse alerte n’est affichée.",
+    "flightDeals.unavailableStatusTitle": "État du backend",
+    "flightDeals.unavailableStatusBody":
+      "Le suivi des tarifs est désactivé jusqu’à la connexion d’un fournisseur de production.",
+    "taxCalc.unsupportedCountry":
+      "Ce pays n’est pas encore pris en charge pour les calculs Tax Free.",
+    "taxCalc.invalidAmount": "Saisissez un montant valide.",
+    "taxCalc.currencyMismatch":
+      "La devise sélectionnée ne correspond pas à celle prise en charge pour ce pays.",
+    "taxCalc.estimatedVatPortion": "TVA estimée incluse",
+    "taxCalc.estimatedNetBeforeVat": "Net estimé hors TVA",
+    "taxCalc.sourceTitle": "Source et date d’effet",
+    "taxCalc.providerFeesUnknown":
+      "Les frais du fournisseur ne sont pas inclus.",
+    "taxCalc.noGuaranteedRefund":
+      "Le remboursement final n’est pas garanti et dépend du fournisseur et de la validation douanière.",
+    "taxCalc.finalDisclaimer":
+      "Estimation indicative. Vérifiez toujours auprès du magasin et du fournisseur Tax Free.",
   },
   de: {
-    "currency.converterTitle": "Währungsrechner", "currency.amount": "Betrag", "currency.from": "Von", "currency.to": "Nach", "currency.convert": "Umrechnen", "currency.loading": "Kurs wird geladen...", "currency.source": "Quelle", "currency.lastUpdated": "Zuletzt aktualisiert", "currency.unavailableShort": "Kurs nicht verfügbar", "currency.validation.amountRequired": "Gib einen Betrag zur Umrechnung ein.", "currency.validation.positiveAmount": "Gib einen positiven Zahlenbetrag ein.", "notifications.signInRequiredTitle": "Anmeldung erforderlich", "notifications.deviceStatusTitle": "Benachrichtigungsstatus des Geräts", "notifications.permission.denied": "Die Benachrichtigungserlaubnis ist verweigert. Du kannst sie in den Systemeinstellungen ändern.", "notifications.permission.granted": "Die Benachrichtigungserlaubnis des Geräts ist erteilt.", "notifications.permission.not_requested": "Die Benachrichtigungserlaubnis wurde noch nicht angefragt.", "notifications.permission.unsupported": "Push-Berechtigungen sind in diesem Build nicht verfügbar.", "notifications.tripRemindersCategory": "Reiseerinnerungen", "notifications.categoryActive": "Produktionssender aktiv", "deleteAccount.deletedTitle": "Konto gelöscht", "deleteAccount.deletedMessage": "Dein Konto und die verknüpften Daten wurden gelöscht.", "deleteAccount.deleting": "Konto wird gelöscht...", "deleteAccount.failedTitle": "Konto konnte nicht gelöscht werden", "deleteAccount.failedMessage": "Melde dich erneut an und versuche es noch einmal.", "deleteAccount.reauthTitle": "Erneut anmelden", "deleteAccount.reauthMessage": "Melde dich aus Sicherheitsgründen erneut an, bevor du dein Konto löschst.", "deleteAccount.signInRequiredTitle": "Anmeldung erforderlich", "deleteAccount.signInRequiredMessage": "Melde dich an, um dein Konto zu löschen.", "flightDeals.unavailableKicker": "Flugbenachrichtigungen", "flightDeals.unavailableTitle": "Fluganbieter nicht verfügbar", "flightDeals.unavailableBody": "Echte Tarifalarme benötigen einen Anbieter und ein Produktions-Backend. Es werden keine falschen Alarme angezeigt.", "flightDeals.unavailableStatusTitle": "Backend-Status", "flightDeals.unavailableStatusBody": "Die Tarifüberwachung bleibt deaktiviert, bis ein Produktionsanbieter verbunden ist.", "taxCalc.unsupportedCountry": "Dieses Land wird für Tax-Free-Berechnungen noch nicht unterstützt.", "taxCalc.invalidAmount": "Gib einen gültigen Betrag ein.", "taxCalc.currencyMismatch": "Die gewählte Währung passt nicht zur unterstützten Währung dieses Landes.", "taxCalc.estimatedVatPortion": "Geschätzter enthaltene MwSt.", "taxCalc.estimatedNetBeforeVat": "Geschätzter Nettobetrag vor MwSt.", "taxCalc.sourceTitle": "Quelle und Gültigkeitsdatum", "taxCalc.providerFeesUnknown": "Anbietergebühren sind nicht enthalten.", "taxCalc.noGuaranteedRefund": "Die endgültige Erstattung ist nicht garantiert und hängt vom Anbieter und der Zollprüfung ab.", "taxCalc.finalDisclaimer": "Unverbindliche Schätzung. Prüfe immer Händler und Tax-Free-Anbieter."
+    "currency.converterTitle": "Währungsrechner",
+    "currency.amount": "Betrag",
+    "currency.from": "Von",
+    "currency.to": "Nach",
+    "currency.convert": "Umrechnen",
+    "currency.loading": "Kurs wird geladen...",
+    "currency.source": "Quelle",
+    "currency.lastUpdated": "Zuletzt aktualisiert",
+    "currency.unavailableShort": "Kurs nicht verfügbar",
+    "currency.validation.amountRequired":
+      "Gib einen Betrag zur Umrechnung ein.",
+    "currency.validation.positiveAmount":
+      "Gib einen positiven Zahlenbetrag ein.",
+    "notifications.signInRequiredTitle": "Anmeldung erforderlich",
+    "notifications.deviceStatusTitle": "Benachrichtigungsstatus des Geräts",
+    "notifications.permission.denied":
+      "Die Benachrichtigungserlaubnis ist verweigert. Du kannst sie in den Systemeinstellungen ändern.",
+    "notifications.permission.granted":
+      "Die Benachrichtigungserlaubnis des Geräts ist erteilt.",
+    "notifications.permission.not_requested":
+      "Die Benachrichtigungserlaubnis wurde noch nicht angefragt.",
+    "notifications.permission.unsupported":
+      "Push-Berechtigungen sind in diesem Build nicht verfügbar.",
+    "notifications.tripRemindersCategory": "Reiseerinnerungen",
+    "notifications.categoryActive": "Produktionssender aktiv",
+    "deleteAccount.deletedTitle": "Konto gelöscht",
+    "deleteAccount.deletedMessage":
+      "Dein Konto und die verknüpften Daten wurden gelöscht.",
+    "deleteAccount.deleting": "Konto wird gelöscht...",
+    "deleteAccount.failedTitle": "Konto konnte nicht gelöscht werden",
+    "deleteAccount.failedMessage":
+      "Melde dich erneut an und versuche es noch einmal.",
+    "deleteAccount.reauthTitle": "Erneut anmelden",
+    "deleteAccount.reauthMessage":
+      "Melde dich aus Sicherheitsgründen erneut an, bevor du dein Konto löschst.",
+    "deleteAccount.signInRequiredTitle": "Anmeldung erforderlich",
+    "deleteAccount.signInRequiredMessage":
+      "Melde dich an, um dein Konto zu löschen.",
+    "flightDeals.unavailableKicker": "Flugbenachrichtigungen",
+    "flightDeals.unavailableTitle": "Fluganbieter nicht verfügbar",
+    "flightDeals.unavailableBody":
+      "Echte Tarifalarme benötigen einen Anbieter und ein Produktions-Backend. Es werden keine falschen Alarme angezeigt.",
+    "flightDeals.unavailableStatusTitle": "Backend-Status",
+    "flightDeals.unavailableStatusBody":
+      "Die Tarifüberwachung bleibt deaktiviert, bis ein Produktionsanbieter verbunden ist.",
+    "taxCalc.unsupportedCountry":
+      "Dieses Land wird für Tax-Free-Berechnungen noch nicht unterstützt.",
+    "taxCalc.invalidAmount": "Gib einen gültigen Betrag ein.",
+    "taxCalc.currencyMismatch":
+      "Die gewählte Währung passt nicht zur unterstützten Währung dieses Landes.",
+    "taxCalc.estimatedVatPortion": "Geschätzter enthaltene MwSt.",
+    "taxCalc.estimatedNetBeforeVat": "Geschätzter Nettobetrag vor MwSt.",
+    "taxCalc.sourceTitle": "Quelle und Gültigkeitsdatum",
+    "taxCalc.providerFeesUnknown": "Anbietergebühren sind nicht enthalten.",
+    "taxCalc.noGuaranteedRefund":
+      "Die endgültige Erstattung ist nicht garantiert und hängt vom Anbieter und der Zollprüfung ab.",
+    "taxCalc.finalDisclaimer":
+      "Unverbindliche Schätzung. Prüfe immer Händler und Tax-Free-Anbieter.",
   },
   ru: {
-    "currency.converterTitle": "Конвертер валют", "currency.amount": "Сумма", "currency.from": "Из", "currency.to": "В", "currency.convert": "Конвертировать", "currency.loading": "Загрузка курса...", "currency.source": "Источник", "currency.lastUpdated": "Обновлено", "currency.unavailableShort": "Курс недоступен", "currency.validation.amountRequired": "Введите сумму для конвертации.", "currency.validation.positiveAmount": "Введите положительную числовую сумму.", "notifications.signInRequiredTitle": "Требуется вход", "notifications.deviceStatusTitle": "Статус уведомлений устройства", "notifications.permission.denied": "Разрешение на уведомления отклонено. Его можно изменить в настройках системы.", "notifications.permission.granted": "Разрешение на уведомления устройства предоставлено.", "notifications.permission.not_requested": "Разрешение на уведомления ещё не запрашивалось.", "notifications.permission.unsupported": "Push-разрешения недоступны в этой сборке.", "notifications.tripRemindersCategory": "Напоминания о поездках", "notifications.categoryActive": "Рабочая отправка активна", "deleteAccount.deletedTitle": "Аккаунт удалён", "deleteAccount.deletedMessage": "Ваш аккаунт и связанные данные удалены.", "deleteAccount.deleting": "Удаление аккаунта...", "deleteAccount.failedTitle": "Не удалось удалить аккаунт", "deleteAccount.failedMessage": "Войдите снова и повторите попытку.", "deleteAccount.reauthTitle": "Войдите снова", "deleteAccount.reauthMessage": "Для безопасности войдите снова перед удалением аккаунта.", "deleteAccount.signInRequiredTitle": "Требуется вход", "deleteAccount.signInRequiredMessage": "Войдите, чтобы удалить аккаунт.", "flightDeals.unavailableKicker": "Уведомления о рейсах", "flightDeals.unavailableTitle": "Поставщик данных о рейсах недоступен", "flightDeals.unavailableBody": "Реальным уведомлениям о тарифах нужны поставщик и рабочий backend. Фальшивые уведомления не показываются.", "flightDeals.unavailableStatusTitle": "Статус backend", "flightDeals.unavailableStatusBody": "Отслеживание тарифов отключено до подключения рабочего поставщика.", "taxCalc.unsupportedCountry": "Для этой страны расчёт Tax Free пока не поддерживается.", "taxCalc.invalidAmount": "Введите корректную сумму.", "taxCalc.currencyMismatch": "Выбранная валюта не совпадает с валютой, поддерживаемой для этой страны.", "taxCalc.estimatedVatPortion": "Расчётная сумма НДС", "taxCalc.estimatedNetBeforeVat": "Расчётная сумма без НДС", "taxCalc.sourceTitle": "Источник и дата действия", "taxCalc.providerFeesUnknown": "Комиссии провайдера не включены.", "taxCalc.noGuaranteedRefund": "Итоговый возврат не гарантирован и зависит от провайдера и таможенной проверки.", "taxCalc.finalDisclaimer": "Информационная оценка. Всегда уточняйте у магазина и провайдера Tax Free."
+    "currency.converterTitle": "Конвертер валют",
+    "currency.amount": "Сумма",
+    "currency.from": "Из",
+    "currency.to": "В",
+    "currency.convert": "Конвертировать",
+    "currency.loading": "Загрузка курса...",
+    "currency.source": "Источник",
+    "currency.lastUpdated": "Обновлено",
+    "currency.unavailableShort": "Курс недоступен",
+    "currency.validation.amountRequired": "Введите сумму для конвертации.",
+    "currency.validation.positiveAmount":
+      "Введите положительную числовую сумму.",
+    "notifications.signInRequiredTitle": "Требуется вход",
+    "notifications.deviceStatusTitle": "Статус уведомлений устройства",
+    "notifications.permission.denied":
+      "Разрешение на уведомления отклонено. Его можно изменить в настройках системы.",
+    "notifications.permission.granted":
+      "Разрешение на уведомления устройства предоставлено.",
+    "notifications.permission.not_requested":
+      "Разрешение на уведомления ещё не запрашивалось.",
+    "notifications.permission.unsupported":
+      "Push-разрешения недоступны в этой сборке.",
+    "notifications.tripRemindersCategory": "Напоминания о поездках",
+    "notifications.categoryActive": "Рабочая отправка активна",
+    "deleteAccount.deletedTitle": "Аккаунт удалён",
+    "deleteAccount.deletedMessage": "Ваш аккаунт и связанные данные удалены.",
+    "deleteAccount.deleting": "Удаление аккаунта...",
+    "deleteAccount.failedTitle": "Не удалось удалить аккаунт",
+    "deleteAccount.failedMessage": "Войдите снова и повторите попытку.",
+    "deleteAccount.reauthTitle": "Войдите снова",
+    "deleteAccount.reauthMessage":
+      "Для безопасности войдите снова перед удалением аккаунта.",
+    "deleteAccount.signInRequiredTitle": "Требуется вход",
+    "deleteAccount.signInRequiredMessage": "Войдите, чтобы удалить аккаунт.",
+    "flightDeals.unavailableKicker": "Уведомления о рейсах",
+    "flightDeals.unavailableTitle": "Поставщик данных о рейсах недоступен",
+    "flightDeals.unavailableBody":
+      "Реальным уведомлениям о тарифах нужны поставщик и рабочий backend. Фальшивые уведомления не показываются.",
+    "flightDeals.unavailableStatusTitle": "Статус backend",
+    "flightDeals.unavailableStatusBody":
+      "Отслеживание тарифов отключено до подключения рабочего поставщика.",
+    "taxCalc.unsupportedCountry":
+      "Для этой страны расчёт Tax Free пока не поддерживается.",
+    "taxCalc.invalidAmount": "Введите корректную сумму.",
+    "taxCalc.currencyMismatch":
+      "Выбранная валюта не совпадает с валютой, поддерживаемой для этой страны.",
+    "taxCalc.estimatedVatPortion": "Расчётная сумма НДС",
+    "taxCalc.estimatedNetBeforeVat": "Расчётная сумма без НДС",
+    "taxCalc.sourceTitle": "Источник и дата действия",
+    "taxCalc.providerFeesUnknown": "Комиссии провайдера не включены.",
+    "taxCalc.noGuaranteedRefund":
+      "Итоговый возврат не гарантирован и зависит от провайдера и таможенной проверки.",
+    "taxCalc.finalDisclaimer":
+      "Информационная оценка. Всегда уточняйте у магазина и провайдера Tax Free.",
   },
   ar: {
-    "currency.converterTitle": "محوّل العملات", "currency.amount": "المبلغ", "currency.from": "من", "currency.to": "إلى", "currency.convert": "تحويل", "currency.loading": "جارٍ تحميل السعر...", "currency.source": "المصدر", "currency.lastUpdated": "آخر تحديث", "currency.unavailableShort": "السعر غير متاح", "currency.validation.amountRequired": "أدخل مبلغاً للتحويل.", "currency.validation.positiveAmount": "أدخل مبلغاً رقمياً موجباً.", "notifications.signInRequiredTitle": "تسجيل الدخول مطلوب", "notifications.deviceStatusTitle": "حالة إشعارات الجهاز", "notifications.permission.denied": "تم رفض إذن الإشعارات. يمكنك تغييره من إعدادات النظام.", "notifications.permission.granted": "تم منح إذن إشعارات الجهاز.", "notifications.permission.not_requested": "لم يتم طلب إذن الإشعارات بعد.", "notifications.permission.unsupported": "إذن الإشعارات غير متاح في هذا الإصدار.", "notifications.tripRemindersCategory": "تذكيرات الرحلات", "notifications.categoryActive": "مرسل الإنتاج نشط", "deleteAccount.deletedTitle": "تم حذف الحساب", "deleteAccount.deletedMessage": "تم حذف حسابك والبيانات المرتبطة به.", "deleteAccount.deleting": "جارٍ حذف الحساب...", "deleteAccount.failedTitle": "تعذّر حذف الحساب", "deleteAccount.failedMessage": "سجّل الدخول مرة أخرى ثم حاول مجدداً.", "deleteAccount.reauthTitle": "سجّل الدخول مجدداً", "deleteAccount.reauthMessage": "لأمانك، سجّل الدخول مرة أخرى قبل حذف حسابك.", "deleteAccount.signInRequiredTitle": "تسجيل الدخول مطلوب", "deleteAccount.signInRequiredMessage": "سجّل الدخول لحذف حسابك.", "flightDeals.unavailableKicker": "تنبيهات الرحلات", "flightDeals.unavailableTitle": "مزود الرحلات غير متاح", "flightDeals.unavailableBody": "تحتاج تنبيهات الأسعار الحقيقية إلى مزود وواجهة خلفية للإنتاج. لا يتم عرض تنبيهات وهمية.", "flightDeals.unavailableStatusTitle": "حالة الواجهة الخلفية", "flightDeals.unavailableStatusBody": "تتوقف مراقبة الأسعار حتى يتم ربط مزود إنتاج.", "taxCalc.unsupportedCountry": "هذا البلد غير مدعوم بعد في حسابات Tax Free.", "taxCalc.invalidAmount": "أدخل مبلغاً صالحاً.", "taxCalc.currencyMismatch": "العملة المحددة لا تطابق العملة المدعومة لهذا البلد.", "taxCalc.estimatedVatPortion": "القيمة المضافة المقدّرة", "taxCalc.estimatedNetBeforeVat": "الصافي المقدّر قبل الضريبة", "taxCalc.sourceTitle": "المصدر وتاريخ السريان", "taxCalc.providerFeesUnknown": "رسوم المزود غير مشمولة.", "taxCalc.noGuaranteedRefund": "المبلغ النهائي للاسترداد غير مضمون ويعتمد على المزود والتحقق الجمركي.", "taxCalc.finalDisclaimer": "تقدير معلوماتي. تحقق دائماً من المتجر ومزود Tax Free."
+    "currency.converterTitle": "محوّل العملات",
+    "currency.amount": "المبلغ",
+    "currency.from": "من",
+    "currency.to": "إلى",
+    "currency.convert": "تحويل",
+    "currency.loading": "جارٍ تحميل السعر...",
+    "currency.source": "المصدر",
+    "currency.lastUpdated": "آخر تحديث",
+    "currency.unavailableShort": "السعر غير متاح",
+    "currency.validation.amountRequired": "أدخل مبلغاً للتحويل.",
+    "currency.validation.positiveAmount": "أدخل مبلغاً رقمياً موجباً.",
+    "notifications.signInRequiredTitle": "تسجيل الدخول مطلوب",
+    "notifications.deviceStatusTitle": "حالة إشعارات الجهاز",
+    "notifications.permission.denied":
+      "تم رفض إذن الإشعارات. يمكنك تغييره من إعدادات النظام.",
+    "notifications.permission.granted": "تم منح إذن إشعارات الجهاز.",
+    "notifications.permission.not_requested": "لم يتم طلب إذن الإشعارات بعد.",
+    "notifications.permission.unsupported":
+      "إذن الإشعارات غير متاح في هذا الإصدار.",
+    "notifications.tripRemindersCategory": "تذكيرات الرحلات",
+    "notifications.categoryActive": "مرسل الإنتاج نشط",
+    "deleteAccount.deletedTitle": "تم حذف الحساب",
+    "deleteAccount.deletedMessage": "تم حذف حسابك والبيانات المرتبطة به.",
+    "deleteAccount.deleting": "جارٍ حذف الحساب...",
+    "deleteAccount.failedTitle": "تعذّر حذف الحساب",
+    "deleteAccount.failedMessage": "سجّل الدخول مرة أخرى ثم حاول مجدداً.",
+    "deleteAccount.reauthTitle": "سجّل الدخول مجدداً",
+    "deleteAccount.reauthMessage":
+      "لأمانك، سجّل الدخول مرة أخرى قبل حذف حسابك.",
+    "deleteAccount.signInRequiredTitle": "تسجيل الدخول مطلوب",
+    "deleteAccount.signInRequiredMessage": "سجّل الدخول لحذف حسابك.",
+    "flightDeals.unavailableKicker": "تنبيهات الرحلات",
+    "flightDeals.unavailableTitle": "مزود الرحلات غير متاح",
+    "flightDeals.unavailableBody":
+      "تحتاج تنبيهات الأسعار الحقيقية إلى مزود وواجهة خلفية للإنتاج. لا يتم عرض تنبيهات وهمية.",
+    "flightDeals.unavailableStatusTitle": "حالة الواجهة الخلفية",
+    "flightDeals.unavailableStatusBody":
+      "تتوقف مراقبة الأسعار حتى يتم ربط مزود إنتاج.",
+    "taxCalc.unsupportedCountry": "هذا البلد غير مدعوم بعد في حسابات Tax Free.",
+    "taxCalc.invalidAmount": "أدخل مبلغاً صالحاً.",
+    "taxCalc.currencyMismatch":
+      "العملة المحددة لا تطابق العملة المدعومة لهذا البلد.",
+    "taxCalc.estimatedVatPortion": "القيمة المضافة المقدّرة",
+    "taxCalc.estimatedNetBeforeVat": "الصافي المقدّر قبل الضريبة",
+    "taxCalc.sourceTitle": "المصدر وتاريخ السريان",
+    "taxCalc.providerFeesUnknown": "رسوم المزود غير مشمولة.",
+    "taxCalc.noGuaranteedRefund":
+      "المبلغ النهائي للاسترداد غير مضمون ويعتمد على المزود والتحقق الجمركي.",
+    "taxCalc.finalDisclaimer":
+      "تقدير معلوماتي. تحقق دائماً من المتجر ومزود Tax Free.",
   },
   zh: {
-    "currency.converterTitle": "货币转换器", "currency.amount": "金额", "currency.from": "从", "currency.to": "到", "currency.convert": "转换", "currency.loading": "正在加载汇率...", "currency.source": "来源", "currency.lastUpdated": "最后更新", "currency.unavailableShort": "汇率不可用", "currency.validation.amountRequired": "请输入要转换的金额。", "currency.validation.positiveAmount": "请输入正数金额。", "notifications.signInRequiredTitle": "需要登录", "notifications.deviceStatusTitle": "设备通知状态", "notifications.permission.denied": "设备通知权限已拒绝。你可以在系统设置中更改。", "notifications.permission.granted": "设备通知权限已授予。", "notifications.permission.not_requested": "尚未请求通知权限。", "notifications.permission.unsupported": "此版本不支持设备推送权限。", "notifications.tripRemindersCategory": "行程提醒", "notifications.categoryActive": "生产发送器已启用", "deleteAccount.deletedTitle": "账号已删除", "deleteAccount.deletedMessage": "你的账号及关联数据已删除。", "deleteAccount.deleting": "正在删除账号...", "deleteAccount.failedTitle": "无法删除账号", "deleteAccount.failedMessage": "请重新登录后再试。", "deleteAccount.reauthTitle": "请重新登录", "deleteAccount.reauthMessage": "出于安全考虑，请在删除账号前重新登录。", "deleteAccount.signInRequiredTitle": "需要登录", "deleteAccount.signInRequiredMessage": "请登录以删除你的账号。", "flightDeals.unavailableKicker": "航班提醒", "flightDeals.unavailableTitle": "航班提供方不可用", "flightDeals.unavailableBody": "真实票价提醒需要生产提供方和后端。不会显示虚假提醒。", "flightDeals.unavailableStatusTitle": "后端状态", "flightDeals.unavailableStatusBody": "在连接生产提供方之前，票价监控保持关闭。", "taxCalc.unsupportedCountry": "此国家/地区暂不支持 Tax Free 计算。", "taxCalc.invalidAmount": "请输入有效金额。", "taxCalc.currencyMismatch": "所选货币与此国家/地区支持的货币不一致。", "taxCalc.estimatedVatPortion": "估算含税增值税", "taxCalc.estimatedNetBeforeVat": "估算税前净额", "taxCalc.sourceTitle": "来源和生效日期", "taxCalc.providerFeesUnknown": "不包含服务商费用。", "taxCalc.noGuaranteedRefund": "最终退税不保证，取决于服务商和海关验证。", "taxCalc.finalDisclaimer": "仅供参考估算。请始终向商店和 Tax Free 服务商确认。"
+    "currency.converterTitle": "货币转换器",
+    "currency.amount": "金额",
+    "currency.from": "从",
+    "currency.to": "到",
+    "currency.convert": "转换",
+    "currency.loading": "正在加载汇率...",
+    "currency.source": "来源",
+    "currency.lastUpdated": "最后更新",
+    "currency.unavailableShort": "汇率不可用",
+    "currency.validation.amountRequired": "请输入要转换的金额。",
+    "currency.validation.positiveAmount": "请输入正数金额。",
+    "notifications.signInRequiredTitle": "需要登录",
+    "notifications.deviceStatusTitle": "设备通知状态",
+    "notifications.permission.denied":
+      "设备通知权限已拒绝。你可以在系统设置中更改。",
+    "notifications.permission.granted": "设备通知权限已授予。",
+    "notifications.permission.not_requested": "尚未请求通知权限。",
+    "notifications.permission.unsupported": "此版本不支持设备推送权限。",
+    "notifications.tripRemindersCategory": "行程提醒",
+    "notifications.categoryActive": "生产发送器已启用",
+    "deleteAccount.deletedTitle": "账号已删除",
+    "deleteAccount.deletedMessage": "你的账号及关联数据已删除。",
+    "deleteAccount.deleting": "正在删除账号...",
+    "deleteAccount.failedTitle": "无法删除账号",
+    "deleteAccount.failedMessage": "请重新登录后再试。",
+    "deleteAccount.reauthTitle": "请重新登录",
+    "deleteAccount.reauthMessage": "出于安全考虑，请在删除账号前重新登录。",
+    "deleteAccount.signInRequiredTitle": "需要登录",
+    "deleteAccount.signInRequiredMessage": "请登录以删除你的账号。",
+    "flightDeals.unavailableKicker": "航班提醒",
+    "flightDeals.unavailableTitle": "航班提供方不可用",
+    "flightDeals.unavailableBody":
+      "真实票价提醒需要生产提供方和后端。不会显示虚假提醒。",
+    "flightDeals.unavailableStatusTitle": "后端状态",
+    "flightDeals.unavailableStatusBody":
+      "在连接生产提供方之前，票价监控保持关闭。",
+    "taxCalc.unsupportedCountry": "此国家/地区暂不支持 Tax Free 计算。",
+    "taxCalc.invalidAmount": "请输入有效金额。",
+    "taxCalc.currencyMismatch": "所选货币与此国家/地区支持的货币不一致。",
+    "taxCalc.estimatedVatPortion": "估算含税增值税",
+    "taxCalc.estimatedNetBeforeVat": "估算税前净额",
+    "taxCalc.sourceTitle": "来源和生效日期",
+    "taxCalc.providerFeesUnknown": "不包含服务商费用。",
+    "taxCalc.noGuaranteedRefund": "最终退税不保证，取决于服务商和海关验证。",
+    "taxCalc.finalDisclaimer":
+      "仅供参考估算。请始终向商店和 Tax Free 服务商确认。",
   },
 };
 
@@ -10320,112 +10664,923 @@ for (const languageCode of supportedLanguageCodes) {
   );
 }
 
-
-const finalPhase1AHomeOverlays: Partial<Record<Exclude<TranslationLanguage, "en">, Record<string, string>>> = {
-  es: {"home.searchFallback":"Buscar ciudades, outlets, marcas","home.header.welcome":"Bienvenido a My Outlet Guide","home.header.goodMorning":"Buenos días","home.header.goodAfternoon":"Buenas tardes","home.header.goodEvening":"Buenas noches","home.header.guestSubtitle":"Descubre outlets premium, ahorra más y planifica tu próxima ruta de compras.","home.header.userSubtitle":"Planifica mejores visitas a outlets, controla tus ahorros y descubre destinos premium de compras.","home.featured.outlet.kicker":"Oferta destacada","home.featured.outlet.title":"Compras de lujo en Europa","home.featured.outlet.subtitle":"Descubre el outlet destacado de hoy.","home.featured.outlet.cta":"Explorar ahora","home.quick.title":"Menú rápido","home.quick.browse":"Ver outlets","home.quick.flights":"Ofertas de vuelos","home.quick.taxfree":"Centro Tax Free","home.quick.offline":"Disponibilidad offline","home.quick.rateApp":"Valorar app","home.quick.shareApp":"Compartir app","home.sections.featured.title":"Destacado","home.sections.featured.subtitle":"Ofertas, viajes y novedades de compras seleccionadas.","home.sections.tools.title":"Herramientas de compra","home.sections.tools.subtitle":"Planifica tus ahorros antes de comprar.","home.tools.savings.title":"Ahorros","home.tools.flights.title":"Ofertas de vuelos","home.tools.taxfree.title":"Tax Free","home.tools.offline.title":"Offline","home.sections.activity.title":"Tu actividad","home.sections.activity.subtitle":"Acceso rápido a tus planes de compra guardados.","home.activity.tripLabel":"Viaje de compras","home.activity.favoritesLabel":"Favoritos","home.sections.cities.title":"Ciudades populares","home.sections.cities.subtitle":"Empieza por los destinos de compras más queridos.","home.sections.outlets.title":"Outlets recomendados","home.sections.outlets.subtitle":"Destinos premium para empezar a explorar.","home.recommended":"Recomendado","home.viewOutlet":"Ver outlet →"},
-  fr: {"home.searchFallback":"Rechercher villes, outlets, marques","home.header.welcome":"Bienvenue sur My Outlet Guide","home.header.goodMorning":"Bonjour","home.header.goodAfternoon":"Bon après-midi","home.header.goodEvening":"Bonsoir","home.header.guestSubtitle":"Découvrez des outlets premium, économisez plus et planifiez votre prochaine virée shopping.","home.header.userSubtitle":"Planifiez mieux vos visites d’outlets, suivez vos économies et découvrez des destinations shopping premium.","home.featured.outlet.kicker":"Offre à la une","home.featured.outlet.title":"Shopping de luxe en Europe","home.featured.outlet.subtitle":"Découvrez la destination outlet du jour.","home.featured.outlet.cta":"Explorer maintenant","home.quick.title":"Menu rapide","home.quick.browse":"Parcourir les outlets","home.quick.flights":"Offres de vols","home.quick.taxfree":"Centre Tax Free","home.quick.offline":"Disponibilité hors ligne","home.quick.rateApp":"Noter l’app","home.quick.shareApp":"Partager l’app","home.sections.featured.title":"À la une","home.sections.featured.subtitle":"Offres, voyages et actualités shopping sélectionnés.","home.sections.tools.title":"Outils shopping","home.sections.tools.subtitle":"Planifiez vos économies avant d’acheter.","home.tools.savings.title":"Économies","home.tools.flights.title":"Offres de vols","home.tools.taxfree.title":"Tax Free","home.tools.offline.title":"Hors ligne","home.sections.activity.title":"Votre activité","home.sections.activity.subtitle":"Accès rapide à vos plans shopping enregistrés.","home.activity.tripLabel":"Voyage shopping","home.activity.favoritesLabel":"Favoris","home.sections.cities.title":"Villes populaires","home.sections.cities.subtitle":"Commencez par les destinations shopping les plus appréciées.","home.sections.outlets.title":"Outlets recommandés","home.sections.outlets.subtitle":"Destinations premium à explorer.","home.recommended":"Recommandé","home.viewOutlet":"Voir l’outlet →"},
-  de: {"home.searchFallback":"Städte, Outlets, Marken suchen","home.header.welcome":"Willkommen bei My Outlet Guide","home.header.goodMorning":"Guten Morgen","home.header.goodAfternoon":"Guten Tag","home.header.goodEvening":"Guten Abend","home.header.guestSubtitle":"Entdecke Premium-Outlets, spare mehr und plane deinen nächsten Shoppingtrip.","home.header.userSubtitle":"Plane smartere Outlet-Trips, verfolge Ersparnisse und entdecke Premium-Shoppingziele.","home.featured.outlet.kicker":"Top-Angebot","home.featured.outlet.title":"Luxus-Shopping in Europa","home.featured.outlet.subtitle":"Entdecke das heutige Outlet-Ziel.","home.featured.outlet.cta":"Jetzt entdecken","home.quick.title":"Schnellmenü","home.quick.browse":"Outlets ansehen","home.quick.flights":"Flugangebote","home.quick.taxfree":"Tax-Free-Center","home.quick.offline":"Offline-Verfügbarkeit","home.quick.rateApp":"App bewerten","home.quick.shareApp":"App teilen","home.sections.featured.title":"Empfohlen","home.sections.featured.subtitle":"Ausgewählte Angebote, Trips und Shopping-Updates.","home.sections.tools.title":"Shopping-Tools","home.sections.tools.subtitle":"Plane deine Ersparnis vor dem Einkauf.","home.tools.savings.title":"Ersparnisse","home.tools.flights.title":"Flugangebote","home.tools.taxfree.title":"Tax Free","home.tools.offline.title":"Offline","home.sections.activity.title":"Deine Aktivität","home.sections.activity.subtitle":"Schneller Zugriff auf gespeicherte Shoppingpläne.","home.activity.tripLabel":"Shoppingtrip","home.activity.favoritesLabel":"Favoriten","home.sections.cities.title":"Beliebte Städte","home.sections.cities.subtitle":"Starte mit den beliebtesten Shoppingzielen.","home.sections.outlets.title":"Empfohlene Outlets","home.sections.outlets.subtitle":"Premium-Ziele zum Entdecken.","home.recommended":"Empfohlen","home.viewOutlet":"Outlet ansehen →"},
-  ru: {"home.searchFallback":"Искать города, аутлеты, бренды","home.header.welcome":"Добро пожаловать в My Outlet Guide","home.header.goodMorning":"Доброе утро","home.header.goodAfternoon":"Добрый день","home.header.goodEvening":"Добрый вечер","home.header.guestSubtitle":"Открывайте премиальные аутлеты, экономьте больше и планируйте следующую шопинг-поездку.","home.header.userSubtitle":"Планируйте поездки в аутлеты умнее, отслеживайте экономию и открывайте премиальные направления.","home.featured.outlet.kicker":"Избранное предложение","home.featured.outlet.title":"Люксовый шопинг в Европе","home.featured.outlet.subtitle":"Откройте аутлет дня.","home.featured.outlet.cta":"Смотреть","home.quick.title":"Быстрое меню","home.quick.browse":"Смотреть аутлеты","home.quick.flights":"Авиапредложения","home.quick.taxfree":"Центр Tax Free","home.quick.offline":"Офлайн-доступ","home.quick.rateApp":"Оценить приложение","home.quick.shareApp":"Поделиться","home.sections.featured.title":"Избранное","home.sections.featured.subtitle":"Подобранные предложения, поездки и новости шопинга.","home.sections.tools.title":"Инструменты шопинга","home.sections.tools.subtitle":"Планируйте экономию до покупок.","home.tools.savings.title":"Экономия","home.tools.flights.title":"Авиапредложения","home.tools.taxfree.title":"Tax Free","home.tools.offline.title":"Офлайн","home.sections.activity.title":"Ваша активность","home.sections.activity.subtitle":"Быстрый доступ к сохранённым планам шопинга.","home.activity.tripLabel":"Шопинг-поездка","home.activity.favoritesLabel":"Избранное","home.sections.cities.title":"Популярные города","home.sections.cities.subtitle":"Начните с любимых направлений для шопинга.","home.sections.outlets.title":"Рекомендуемые аутлеты","home.sections.outlets.subtitle":"Премиальные места для знакомства.","home.recommended":"Рекомендуем","home.viewOutlet":"Открыть аутлет →"},
-  ar: {"home.searchFallback":"ابحث عن مدن أو أوتلت أو علامات","home.header.welcome":"مرحباً بك في My Outlet Guide","home.header.goodMorning":"صباح الخير","home.header.goodAfternoon":"مساء الخير","home.header.goodEvening":"مساء الخير","home.header.guestSubtitle":"اكتشف أوتلت مميزة، وفّر أكثر، وخطط لرحلة التسوق القادمة.","home.header.userSubtitle":"خطط لرحلات أوتلت أذكى، وتابع التوفير، واكتشف وجهات تسوق مميزة.","home.featured.outlet.kicker":"عرض مميز","home.featured.outlet.title":"تسوق فاخر في أوروبا","home.featured.outlet.subtitle":"اكتشف وجهة الأوتلت المميزة اليوم.","home.featured.outlet.cta":"استكشف الآن","home.quick.title":"قائمة سريعة","home.quick.browse":"تصفح الأوتلت","home.quick.flights":"عروض الرحلات","home.quick.taxfree":"مركز Tax Free","home.quick.offline":"التوفر دون إنترنت","home.quick.rateApp":"قيّم التطبيق","home.quick.shareApp":"شارك التطبيق","home.sections.featured.title":"مميز","home.sections.featured.subtitle":"عروض ورحلات وتحديثات تسوق مختارة.","home.sections.tools.title":"أدوات التسوق","home.sections.tools.subtitle":"خطط لتوفيرك قبل التسوق.","home.tools.savings.title":"التوفير","home.tools.flights.title":"عروض الرحلات","home.tools.taxfree.title":"Tax Free","home.tools.offline.title":"دون إنترنت","home.sections.activity.title":"نشاطك","home.sections.activity.subtitle":"وصول سريع إلى خطط التسوق المحفوظة.","home.activity.tripLabel":"رحلة تسوق","home.activity.favoritesLabel":"المفضلة","home.sections.cities.title":"مدن رائجة","home.sections.cities.subtitle":"ابدأ بأكثر وجهات التسوق شعبية.","home.sections.outlets.title":"أوتلت موصى بها","home.sections.outlets.subtitle":"وجهات مميزة لتبدأ الاستكشاف.","home.recommended":"موصى به","home.viewOutlet":"عرض الأوتلت →"},
-  zh: {"home.searchFallback":"搜索城市、奥特莱斯、品牌","home.header.welcome":"欢迎使用 My Outlet Guide","home.header.goodMorning":"早上好","home.header.goodAfternoon":"下午好","home.header.goodEvening":"晚上好","home.header.guestSubtitle":"探索高端奥特莱斯，节省更多，并规划下一次购物行程。","home.header.userSubtitle":"更聪明地规划奥特莱斯行程，追踪节省，发现高端购物目的地。","home.featured.outlet.kicker":"精选优惠","home.featured.outlet.title":"欧洲奢华购物","home.featured.outlet.subtitle":"发现今日精选奥特莱斯目的地。","home.featured.outlet.cta":"立即探索","home.quick.title":"快捷菜单","home.quick.browse":"浏览奥特莱斯","home.quick.flights":"航班优惠","home.quick.taxfree":"Tax Free 中心","home.quick.offline":"离线可用性","home.quick.rateApp":"评价应用","home.quick.shareApp":"分享应用","home.sections.featured.title":"精选","home.sections.featured.subtitle":"精选优惠、行程和购物动态。","home.sections.tools.title":"购物工具","home.sections.tools.subtitle":"购物前规划你的节省。","home.tools.savings.title":"节省","home.tools.flights.title":"航班优惠","home.tools.taxfree.title":"Tax Free","home.tools.offline.title":"离线","home.sections.activity.title":"你的活动","home.sections.activity.subtitle":"快速访问已保存的购物计划。","home.activity.tripLabel":"购物行程","home.activity.favoritesLabel":"收藏","home.sections.cities.title":"热门城市","home.sections.cities.subtitle":"从最受欢迎的购物目的地开始。","home.sections.outlets.title":"推荐奥特莱斯","home.sections.outlets.subtitle":"值得开始探索的高端目的地。","home.recommended":"推荐","home.viewOutlet":"查看奥特莱斯 →"}
-};
-
-for (const languageCode of supportedLanguageCodes) {
-  if (languageCode !== "en") {
-    Object.assign(translations[languageCode], finalPhase1AHomeOverlays[languageCode] ?? {});
-  }
-}
-
-const finalPhase1BHomeOverlays: Partial<Record<Exclude<TranslationLanguage, "en">, Record<string, string>>> = {
-  tr: {
-    "home.title": "My Outlet Guide", "home.featured.event.kicker": "Alışveriş etkinliği", "home.featured.event.title": "Yaz alışveriş festivali", "home.featured.event.subtitle": "Özel etkinlikler ve sezon deneyimleri.", "home.featured.event.cta": "Etkinliği gör", "home.featured.guide.kicker": "Alışveriş rehberi", "home.featured.guide.title": "Alışverişten önce bilmeniz gerekenler", "home.featured.guide.subtitle": "Tax Free • İpuçları • Tasarruf", "home.featured.guide.cta": "Rehberi aç", "home.featured.flash.kicker": "Flaş indirim", "home.featured.flash.title": "Sınırlı süreli outlet fırsatları", "home.featured.flash.subtitle": "Bugünün en iyi fırsatlarını kaçırmayın.", "home.featured.flash.cta": "Fırsatları gör", "home.tools.savings.text": "Tax Free ve akıllı alışveriş araçları.", "home.tools.taxfree.text": "İadenizi tahmin edin ve minimum harcamayı kontrol edin.", "home.tools.offline.text": "İnternetsiz nelerin çalıştığını görün.", "home.activity.noTrip": "Henüz seyahat yok", "home.activity.createTripReminder": "Hatırlatıcılar için bir seyahat oluşturun.", "home.activity.noFavorites": "Henüz favori outlet yok", "home.activity.saveOutlets": "Takip etmek istediğiniz outletleri kaydedin.", "home.cities.paris.text": "Lüks outlet rotaları", "home.cities.milan.text": "Tasarım outlet erişimi", "home.cities.london.text": "Premium alışveriş gezileri", "home.cities.munich.text": "Bavyera alışveriş rotaları", "home.cities.vienna.text": "Şık outlet kaçamakları", "home.outlets.laVallee.text": "Disneyland Paris yakınında lüks alışveriş.", "home.outlets.bicester.text": "Avrupa’nın en ikonik lüks outletlerinden biri.", "home.outlets.serravalle.text": "İtalya’da büyük tasarım outlet köyü.", "home.outlets.theMall.text": "Toskana’da premium moda destinasyonu.", "home.outlets.parndorf.text": "Viyana yakınında popüler outlet rotası.", "home.shareMessage": "My Outlet Guide ile premium outletleri keşfedin ve alışveriş seyahatlerinizi daha akıllı planlayın.", "home.rateApp.title": "My Outlet Guide’ı değerlendir", "home.rateApp.message": "App Store puanlama bağlantısı lansmandan önce eklenecek."
-  },
+const finalPhase1AHomeOverlays: Partial<
+  Record<Exclude<TranslationLanguage, "en">, Record<string, string>>
+> = {
   es: {
-    "home.title": "My Outlet Guide", "home.featured.event.kicker": "Evento de compras", "home.featured.event.title": "Festival de compras de verano", "home.featured.event.subtitle": "Eventos exclusivos y experiencias de temporada.", "home.featured.event.cta": "Ver evento", "home.featured.guide.kicker": "Guía de compras", "home.featured.guide.title": "Todo antes de ir de compras", "home.featured.guide.subtitle": "Tax Free • Consejos • Ahorros", "home.featured.guide.cta": "Abrir guía", "home.featured.flash.kicker": "Oferta flash", "home.featured.flash.title": "Ofertas outlet por tiempo limitado", "home.featured.flash.subtitle": "No te pierdas las mejores ofertas de hoy.", "home.featured.flash.cta": "Ver ofertas", "home.tools.savings.text": "Tax Free y herramientas inteligentes de compra.", "home.tools.taxfree.text": "Calcula tu devolución y el gasto mínimo.", "home.tools.offline.text": "Consulta qué funciona sin internet.", "home.activity.noTrip": "Aún no hay viaje", "home.activity.createTripReminder": "Crea un viaje para activar recordatorios.", "home.activity.noFavorites": "Aún no hay outlets favoritos", "home.activity.saveOutlets": "Guarda outlets que quieras seguir.", "home.cities.paris.text": "Rutas de outlets de lujo", "home.cities.milan.text": "Acceso a outlets de diseñador", "home.cities.london.text": "Viajes de compras premium", "home.cities.munich.text": "Rutas de compras bávaras", "home.cities.vienna.text": "Escapadas elegantes a outlets", "home.outlets.laVallee.text": "Compras de lujo cerca de Disneyland Paris.", "home.outlets.bicester.text": "Uno de los outlets de lujo más icónicos de Europa.", "home.outlets.serravalle.text": "Gran village outlet de diseñador en Italia.", "home.outlets.theMall.text": "Destino de moda premium en Toscana.", "home.outlets.parndorf.text": "Ruta outlet popular cerca de Viena.", "home.shareMessage": "Descubre outlets premium y planifica compras más inteligentes con My Outlet Guide.", "home.rateApp.title": "Valora My Outlet Guide", "home.rateApp.message": "La valoración en App Store se conectará antes del lanzamiento."
+    "home.searchFallback": "Buscar ciudades, outlets, marcas",
+    "home.header.welcome": "Bienvenido a My Outlet Guide",
+    "home.header.goodMorning": "Buenos días",
+    "home.header.goodAfternoon": "Buenas tardes",
+    "home.header.goodEvening": "Buenas noches",
+    "home.header.guestSubtitle":
+      "Descubre outlets premium, ahorra más y planifica tu próxima ruta de compras.",
+    "home.header.userSubtitle":
+      "Planifica mejores visitas a outlets, controla tus ahorros y descubre destinos premium de compras.",
+    "home.featured.outlet.kicker": "Oferta destacada",
+    "home.featured.outlet.title": "Compras de lujo en Europa",
+    "home.featured.outlet.subtitle": "Descubre el outlet destacado de hoy.",
+    "home.featured.outlet.cta": "Explorar ahora",
+    "home.quick.title": "Menú rápido",
+    "home.quick.browse": "Ver outlets",
+    "home.quick.flights": "Ofertas de vuelos",
+    "home.quick.taxfree": "Centro Tax Free",
+    "home.quick.offline": "Disponibilidad offline",
+    "home.quick.rateApp": "Valorar app",
+    "home.quick.shareApp": "Compartir app",
+    "home.sections.featured.title": "Destacado",
+    "home.sections.featured.subtitle":
+      "Ofertas, viajes y novedades de compras seleccionadas.",
+    "home.sections.tools.title": "Herramientas de compra",
+    "home.sections.tools.subtitle": "Planifica tus ahorros antes de comprar.",
+    "home.tools.savings.title": "Ahorros",
+    "home.tools.flights.title": "Ofertas de vuelos",
+    "home.tools.taxfree.title": "Tax Free",
+    "home.tools.offline.title": "Offline",
+    "home.sections.activity.title": "Tu actividad",
+    "home.sections.activity.subtitle":
+      "Acceso rápido a tus planes de compra guardados.",
+    "home.activity.tripLabel": "Viaje de compras",
+    "home.activity.favoritesLabel": "Favoritos",
+    "home.sections.cities.title": "Ciudades populares",
+    "home.sections.cities.subtitle":
+      "Empieza por los destinos de compras más queridos.",
+    "home.sections.outlets.title": "Outlets recomendados",
+    "home.sections.outlets.subtitle":
+      "Destinos premium para empezar a explorar.",
+    "home.recommended": "Recomendado",
+    "home.viewOutlet": "Ver outlet →",
   },
   fr: {
-    "home.title": "My Outlet Guide", "home.featured.event.kicker": "Événement shopping", "home.featured.event.title": "Festival shopping d’été", "home.featured.event.subtitle": "Événements exclusifs et expériences de saison.", "home.featured.event.cta": "Voir l’événement", "home.featured.guide.kicker": "Guide shopping", "home.featured.guide.title": "Tout savoir avant d’acheter", "home.featured.guide.subtitle": "Tax Free • Conseils • Économies", "home.featured.guide.cta": "Ouvrir le guide", "home.featured.flash.kicker": "Vente flash", "home.featured.flash.title": "Offres outlet à durée limitée", "home.featured.flash.subtitle": "Ne manquez pas les meilleures offres du jour.", "home.featured.flash.cta": "Voir les offres", "home.tools.savings.text": "Tax Free et outils shopping intelligents.", "home.tools.taxfree.text": "Estimez votre remboursement et le minimum d’achat.", "home.tools.offline.text": "Voyez ce qui fonctionne sans internet.", "home.activity.noTrip": "Aucun voyage pour l’instant", "home.activity.createTripReminder": "Créez un voyage pour activer les rappels.", "home.activity.noFavorites": "Aucun outlet favori pour l’instant", "home.activity.saveOutlets": "Enregistrez les outlets à suivre.", "home.cities.paris.text": "Itinéraires outlets de luxe", "home.cities.milan.text": "Accès aux outlets créateurs", "home.cities.london.text": "Virées shopping premium", "home.cities.munich.text": "Routes shopping bavaroises", "home.cities.vienna.text": "Escapades outlet élégantes", "home.outlets.laVallee.text": "Shopping de luxe près de Disneyland Paris.", "home.outlets.bicester.text": "L’un des outlets de luxe les plus iconiques d’Europe.", "home.outlets.serravalle.text": "Grand village outlet de créateurs en Italie.", "home.outlets.theMall.text": "Destination mode premium en Toscane.", "home.outlets.parndorf.text": "Route outlet populaire près de Vienne.", "home.shareMessage": "Découvrez des outlets premium et planifiez vos achats plus intelligemment avec My Outlet Guide.", "home.rateApp.title": "Noter My Outlet Guide", "home.rateApp.message": "La note App Store sera connectée avant le lancement."
+    "home.searchFallback": "Rechercher villes, outlets, marques",
+    "home.header.welcome": "Bienvenue sur My Outlet Guide",
+    "home.header.goodMorning": "Bonjour",
+    "home.header.goodAfternoon": "Bon après-midi",
+    "home.header.goodEvening": "Bonsoir",
+    "home.header.guestSubtitle":
+      "Découvrez des outlets premium, économisez plus et planifiez votre prochaine virée shopping.",
+    "home.header.userSubtitle":
+      "Planifiez mieux vos visites d’outlets, suivez vos économies et découvrez des destinations shopping premium.",
+    "home.featured.outlet.kicker": "Offre à la une",
+    "home.featured.outlet.title": "Shopping de luxe en Europe",
+    "home.featured.outlet.subtitle": "Découvrez la destination outlet du jour.",
+    "home.featured.outlet.cta": "Explorer maintenant",
+    "home.quick.title": "Menu rapide",
+    "home.quick.browse": "Parcourir les outlets",
+    "home.quick.flights": "Offres de vols",
+    "home.quick.taxfree": "Centre Tax Free",
+    "home.quick.offline": "Disponibilité hors ligne",
+    "home.quick.rateApp": "Noter l’app",
+    "home.quick.shareApp": "Partager l’app",
+    "home.sections.featured.title": "À la une",
+    "home.sections.featured.subtitle":
+      "Offres, voyages et actualités shopping sélectionnés.",
+    "home.sections.tools.title": "Outils shopping",
+    "home.sections.tools.subtitle": "Planifiez vos économies avant d’acheter.",
+    "home.tools.savings.title": "Économies",
+    "home.tools.flights.title": "Offres de vols",
+    "home.tools.taxfree.title": "Tax Free",
+    "home.tools.offline.title": "Hors ligne",
+    "home.sections.activity.title": "Votre activité",
+    "home.sections.activity.subtitle":
+      "Accès rapide à vos plans shopping enregistrés.",
+    "home.activity.tripLabel": "Voyage shopping",
+    "home.activity.favoritesLabel": "Favoris",
+    "home.sections.cities.title": "Villes populaires",
+    "home.sections.cities.subtitle":
+      "Commencez par les destinations shopping les plus appréciées.",
+    "home.sections.outlets.title": "Outlets recommandés",
+    "home.sections.outlets.subtitle": "Destinations premium à explorer.",
+    "home.recommended": "Recommandé",
+    "home.viewOutlet": "Voir l’outlet →",
   },
   de: {
-    "home.title": "My Outlet Guide", "home.featured.event.kicker": "Shopping-Event", "home.featured.event.title": "Sommer-Shoppingfestival", "home.featured.event.subtitle": "Exklusive Events und saisonale Erlebnisse.", "home.featured.event.cta": "Event ansehen", "home.featured.guide.kicker": "Shopping-Guide", "home.featured.guide.title": "Alles vor dem Shopping", "home.featured.guide.subtitle": "Tax Free • Tipps • Ersparnis", "home.featured.guide.cta": "Guide öffnen", "home.featured.flash.kicker": "Offline availability", "home.featured.flash.title": "Outlet-Angebote für kurze Zeit", "home.featured.flash.subtitle": "Verpasse die besten Angebote von heute nicht.", "home.featured.flash.cta": "Deals ansehen", "home.tools.savings.text": "Tax Free und smarte Shopping-Tools.", "home.tools.taxfree.text": "Erstattung schätzen und Mindesteinkauf prüfen.", "home.tools.offline.text": "Sieh, was ohne Internet funktioniert.", "home.activity.noTrip": "Noch keine Reise", "home.activity.createTripReminder": "Erstelle eine Reise für Erinnerungen.", "home.activity.noFavorites": "Noch keine favorisierten Outlets", "home.activity.saveOutlets": "Speichere Outlets, denen du folgen möchtest.", "home.cities.paris.text": "Luxus-Outlet-Routen", "home.cities.milan.text": "Designer-Outlet-Zugang", "home.cities.london.text": "Premium-Shoppingtrips", "home.cities.munich.text": "Bayerische Shoppingrouten", "home.cities.vienna.text": "Elegante Outlet-Auszeiten", "home.outlets.laVallee.text": "Luxus-Shopping nahe Disneyland Paris.", "home.outlets.bicester.text": "Eines der ikonischsten Luxus-Outlets Europas.", "home.outlets.serravalle.text": "Großes Designer-Outlet-Village in Italien.", "home.outlets.theMall.text": "Premium-Modedestination in der Toskana.", "home.outlets.parndorf.text": "Beliebte Outlet-Route nahe Wien.", "home.shareMessage": "Entdecke Premium-Outlets und plane smartere Shoppingtrips mit My Outlet Guide.", "home.rateApp.title": "My Outlet Guide bewerten", "home.rateApp.message": "Die App-Store-Bewertung wird vor dem Launch verbunden."
+    "home.searchFallback": "Städte, Outlets, Marken suchen",
+    "home.header.welcome": "Willkommen bei My Outlet Guide",
+    "home.header.goodMorning": "Guten Morgen",
+    "home.header.goodAfternoon": "Guten Tag",
+    "home.header.goodEvening": "Guten Abend",
+    "home.header.guestSubtitle":
+      "Entdecke Premium-Outlets, spare mehr und plane deinen nächsten Shoppingtrip.",
+    "home.header.userSubtitle":
+      "Plane smartere Outlet-Trips, verfolge Ersparnisse und entdecke Premium-Shoppingziele.",
+    "home.featured.outlet.kicker": "Top-Angebot",
+    "home.featured.outlet.title": "Luxus-Shopping in Europa",
+    "home.featured.outlet.subtitle": "Entdecke das heutige Outlet-Ziel.",
+    "home.featured.outlet.cta": "Jetzt entdecken",
+    "home.quick.title": "Schnellmenü",
+    "home.quick.browse": "Outlets ansehen",
+    "home.quick.flights": "Flugangebote",
+    "home.quick.taxfree": "Tax-Free-Center",
+    "home.quick.offline": "Offline-Verfügbarkeit",
+    "home.quick.rateApp": "App bewerten",
+    "home.quick.shareApp": "App teilen",
+    "home.sections.featured.title": "Empfohlen",
+    "home.sections.featured.subtitle":
+      "Ausgewählte Angebote, Trips und Shopping-Updates.",
+    "home.sections.tools.title": "Shopping-Tools",
+    "home.sections.tools.subtitle": "Plane deine Ersparnis vor dem Einkauf.",
+    "home.tools.savings.title": "Ersparnisse",
+    "home.tools.flights.title": "Flugangebote",
+    "home.tools.taxfree.title": "Tax Free",
+    "home.tools.offline.title": "Offline",
+    "home.sections.activity.title": "Deine Aktivität",
+    "home.sections.activity.subtitle":
+      "Schneller Zugriff auf gespeicherte Shoppingpläne.",
+    "home.activity.tripLabel": "Shoppingtrip",
+    "home.activity.favoritesLabel": "Favoriten",
+    "home.sections.cities.title": "Beliebte Städte",
+    "home.sections.cities.subtitle":
+      "Starte mit den beliebtesten Shoppingzielen.",
+    "home.sections.outlets.title": "Empfohlene Outlets",
+    "home.sections.outlets.subtitle": "Premium-Ziele zum Entdecken.",
+    "home.recommended": "Empfohlen",
+    "home.viewOutlet": "Outlet ansehen →",
   },
   ru: {
-    "home.title": "My Outlet Guide", "home.featured.event.kicker": "Шопинг-событие", "home.featured.event.title": "Летний фестиваль покупок", "home.featured.event.subtitle": "Эксклюзивные события и сезонные впечатления.", "home.featured.event.cta": "Открыть событие", "home.featured.guide.kicker": "Гид по шопингу", "home.featured.guide.title": "Всё перед поездкой за покупками", "home.featured.guide.subtitle": "Tax Free • Советы • Экономия", "home.featured.guide.cta": "Открыть гид", "home.featured.flash.kicker": "Флеш-скидка", "home.featured.flash.title": "Предложения аутлетов на короткое время", "home.featured.flash.subtitle": "Не пропустите лучшие предложения дня.", "home.featured.flash.cta": "Смотреть скидки", "home.tools.savings.text": "Tax Free и умные инструменты для покупок.", "home.tools.taxfree.text": "Оцените возврат и минимальную сумму покупки.", "home.tools.offline.text": "Посмотрите, что работает без интернета.", "home.activity.noTrip": "Поездок пока нет", "home.activity.createTripReminder": "Создайте поездку, чтобы включить напоминания.", "home.activity.noFavorites": "Избранных аутлетов пока нет", "home.activity.saveOutlets": "Сохраняйте аутлеты, за которыми хотите следить.", "home.cities.paris.text": "Маршруты люксовых аутлетов", "home.cities.milan.text": "Доступ к дизайнерским аутлетам", "home.cities.london.text": "Премиальные шопинг-поездки", "home.cities.munich.text": "Баварские шопинг-маршруты", "home.cities.vienna.text": "Элегантные поездки в аутлеты", "home.outlets.laVallee.text": "Люксовый шопинг рядом с Disneyland Paris.", "home.outlets.bicester.text": "Один из самых известных люксовых аутлетов Европы.", "home.outlets.serravalle.text": "Большая дизайнерская outlet village в Италии.", "home.outlets.theMall.text": "Премиальное модное направление в Тоскане.", "home.outlets.parndorf.text": "Популярный маршрут в аутлет рядом с Веной.", "home.shareMessage": "Открывайте премиальные аутлеты и планируйте покупки умнее с My Outlet Guide.", "home.rateApp.title": "Оценить My Outlet Guide", "home.rateApp.message": "Оценка в App Store будет подключена перед запуском."
+    "home.searchFallback": "Искать города, аутлеты, бренды",
+    "home.header.welcome": "Добро пожаловать в My Outlet Guide",
+    "home.header.goodMorning": "Доброе утро",
+    "home.header.goodAfternoon": "Добрый день",
+    "home.header.goodEvening": "Добрый вечер",
+    "home.header.guestSubtitle":
+      "Открывайте премиальные аутлеты, экономьте больше и планируйте следующую шопинг-поездку.",
+    "home.header.userSubtitle":
+      "Планируйте поездки в аутлеты умнее, отслеживайте экономию и открывайте премиальные направления.",
+    "home.featured.outlet.kicker": "Избранное предложение",
+    "home.featured.outlet.title": "Люксовый шопинг в Европе",
+    "home.featured.outlet.subtitle": "Откройте аутлет дня.",
+    "home.featured.outlet.cta": "Смотреть",
+    "home.quick.title": "Быстрое меню",
+    "home.quick.browse": "Смотреть аутлеты",
+    "home.quick.flights": "Авиапредложения",
+    "home.quick.taxfree": "Центр Tax Free",
+    "home.quick.offline": "Офлайн-доступ",
+    "home.quick.rateApp": "Оценить приложение",
+    "home.quick.shareApp": "Поделиться",
+    "home.sections.featured.title": "Избранное",
+    "home.sections.featured.subtitle":
+      "Подобранные предложения, поездки и новости шопинга.",
+    "home.sections.tools.title": "Инструменты шопинга",
+    "home.sections.tools.subtitle": "Планируйте экономию до покупок.",
+    "home.tools.savings.title": "Экономия",
+    "home.tools.flights.title": "Авиапредложения",
+    "home.tools.taxfree.title": "Tax Free",
+    "home.tools.offline.title": "Офлайн",
+    "home.sections.activity.title": "Ваша активность",
+    "home.sections.activity.subtitle":
+      "Быстрый доступ к сохранённым планам шопинга.",
+    "home.activity.tripLabel": "Шопинг-поездка",
+    "home.activity.favoritesLabel": "Избранное",
+    "home.sections.cities.title": "Популярные города",
+    "home.sections.cities.subtitle":
+      "Начните с любимых направлений для шопинга.",
+    "home.sections.outlets.title": "Рекомендуемые аутлеты",
+    "home.sections.outlets.subtitle": "Премиальные места для знакомства.",
+    "home.recommended": "Рекомендуем",
+    "home.viewOutlet": "Открыть аутлет →",
   },
   ar: {
-    "home.title": "My Outlet Guide", "home.featured.event.kicker": "فعالية تسوق", "home.featured.event.title": "مهرجان التسوق الصيفي", "home.featured.event.subtitle": "فعاليات حصرية وتجارب موسمية.", "home.featured.event.cta": "عرض الفعالية", "home.featured.guide.kicker": "دليل التسوق", "home.featured.guide.title": "كل ما تحتاجه قبل التسوق", "home.featured.guide.subtitle": "Tax Free • نصائح • توفير", "home.featured.guide.cta": "افتح الدليل", "home.featured.flash.kicker": "تخفيض سريع", "home.featured.flash.title": "عروض أوتلت لفترة محدودة", "home.featured.flash.subtitle": "لا تفوّت أفضل عروض اليوم.", "home.featured.flash.cta": "عرض العروض", "home.tools.savings.text": "Tax Free وأدوات تسوق ذكية.", "home.tools.taxfree.text": "قدّر الاسترداد وتحقق من الحد الأدنى للشراء.", "home.tools.offline.text": "اعرف ما يعمل دون إنترنت.", "home.activity.noTrip": "لا توجد رحلة بعد", "home.activity.createTripReminder": "أنشئ رحلة لتفعيل التذكيرات.", "home.activity.noFavorites": "لا توجد أوتلت مفضلة بعد", "home.activity.saveOutlets": "احفظ الأوتلت التي تريد متابعتها.", "home.cities.paris.text": "مسارات أوتلت فاخرة", "home.cities.milan.text": "وصول إلى أوتلت المصممين", "home.cities.london.text": "رحلات تسوق مميزة", "home.cities.munich.text": "مسارات تسوق بافارية", "home.cities.vienna.text": "رحلات أوتلت أنيقة", "home.outlets.laVallee.text": "تسوق فاخر قرب Disneyland Paris.", "home.outlets.bicester.text": "من أشهر أوتلت الفخامة في أوروبا.", "home.outlets.serravalle.text": "قرية أوتلت كبيرة للمصممين في إيطاليا.", "home.outlets.theMall.text": "وجهة أزياء مميزة في توسكانا.", "home.outlets.parndorf.text": "مسار أوتلت شائع قرب فيينا.", "home.shareMessage": "اكتشف أوتلت مميزة وخطط لتسوق أذكى مع My Outlet Guide.", "home.rateApp.title": "قيّم My Outlet Guide", "home.rateApp.message": "سيتم ربط تقييم App Store قبل الإطلاق."
+    "home.searchFallback": "ابحث عن مدن أو أوتلت أو علامات",
+    "home.header.welcome": "مرحباً بك في My Outlet Guide",
+    "home.header.goodMorning": "صباح الخير",
+    "home.header.goodAfternoon": "مساء الخير",
+    "home.header.goodEvening": "مساء الخير",
+    "home.header.guestSubtitle":
+      "اكتشف أوتلت مميزة، وفّر أكثر، وخطط لرحلة التسوق القادمة.",
+    "home.header.userSubtitle":
+      "خطط لرحلات أوتلت أذكى، وتابع التوفير، واكتشف وجهات تسوق مميزة.",
+    "home.featured.outlet.kicker": "عرض مميز",
+    "home.featured.outlet.title": "تسوق فاخر في أوروبا",
+    "home.featured.outlet.subtitle": "اكتشف وجهة الأوتلت المميزة اليوم.",
+    "home.featured.outlet.cta": "استكشف الآن",
+    "home.quick.title": "قائمة سريعة",
+    "home.quick.browse": "تصفح الأوتلت",
+    "home.quick.flights": "عروض الرحلات",
+    "home.quick.taxfree": "مركز Tax Free",
+    "home.quick.offline": "التوفر دون إنترنت",
+    "home.quick.rateApp": "قيّم التطبيق",
+    "home.quick.shareApp": "شارك التطبيق",
+    "home.sections.featured.title": "مميز",
+    "home.sections.featured.subtitle": "عروض ورحلات وتحديثات تسوق مختارة.",
+    "home.sections.tools.title": "أدوات التسوق",
+    "home.sections.tools.subtitle": "خطط لتوفيرك قبل التسوق.",
+    "home.tools.savings.title": "التوفير",
+    "home.tools.flights.title": "عروض الرحلات",
+    "home.tools.taxfree.title": "Tax Free",
+    "home.tools.offline.title": "دون إنترنت",
+    "home.sections.activity.title": "نشاطك",
+    "home.sections.activity.subtitle": "وصول سريع إلى خطط التسوق المحفوظة.",
+    "home.activity.tripLabel": "رحلة تسوق",
+    "home.activity.favoritesLabel": "المفضلة",
+    "home.sections.cities.title": "مدن رائجة",
+    "home.sections.cities.subtitle": "ابدأ بأكثر وجهات التسوق شعبية.",
+    "home.sections.outlets.title": "أوتلت موصى بها",
+    "home.sections.outlets.subtitle": "وجهات مميزة لتبدأ الاستكشاف.",
+    "home.recommended": "موصى به",
+    "home.viewOutlet": "عرض الأوتلت →",
   },
   zh: {
-    "home.title": "My Outlet Guide", "home.featured.event.kicker": "购物活动", "home.featured.event.title": "夏季购物节", "home.featured.event.subtitle": "专属活动与季节体验。", "home.featured.event.cta": "查看活动", "home.featured.guide.kicker": "购物指南", "home.featured.guide.title": "购物前需要知道的一切", "home.featured.guide.subtitle": "Tax Free • 提示 • 节省", "home.featured.guide.cta": "打开指南", "home.featured.flash.kicker": "限时闪促", "home.featured.flash.title": "限时奥特莱斯优惠", "home.featured.flash.subtitle": "不要错过今天的最佳优惠。", "home.featured.flash.cta": "查看优惠", "home.tools.savings.text": "Tax Free 与智能购物工具。", "home.tools.taxfree.text": "估算退税并查看最低消费。", "home.tools.offline.text": "查看离线时可用的功能。", "home.activity.noTrip": "暂无行程", "home.activity.createTripReminder": "创建行程以开启提醒。", "home.activity.noFavorites": "暂无收藏奥特莱斯", "home.activity.saveOutlets": "保存你想关注的奥特莱斯。", "home.cities.paris.text": "奢华奥特莱斯路线", "home.cities.milan.text": "设计师奥特莱斯交通", "home.cities.london.text": "高端购物行程", "home.cities.munich.text": "巴伐利亚购物路线", "home.cities.vienna.text": "优雅奥特莱斯短途游", "home.outlets.laVallee.text": "Disneyland Paris 附近的奢华购物。", "home.outlets.bicester.text": "欧洲最具代表性的奢华奥特莱斯之一。", "home.outlets.serravalle.text": "意大利大型设计师奥特莱斯村。", "home.outlets.theMall.text": "托斯卡纳高端时尚目的地。", "home.outlets.parndorf.text": "维也纳附近的热门奥特莱斯路线。", "home.shareMessage": "用 My Outlet Guide 发现高端奥特莱斯，规划更聪明的购物行程。", "home.rateApp.title": "评价 My Outlet Guide", "home.rateApp.message": "App Store 评分将在发布前接入。"
+    "home.searchFallback": "搜索城市、奥特莱斯、品牌",
+    "home.header.welcome": "欢迎使用 My Outlet Guide",
+    "home.header.goodMorning": "早上好",
+    "home.header.goodAfternoon": "下午好",
+    "home.header.goodEvening": "晚上好",
+    "home.header.guestSubtitle":
+      "探索高端奥特莱斯，节省更多，并规划下一次购物行程。",
+    "home.header.userSubtitle":
+      "更聪明地规划奥特莱斯行程，追踪节省，发现高端购物目的地。",
+    "home.featured.outlet.kicker": "精选优惠",
+    "home.featured.outlet.title": "欧洲奢华购物",
+    "home.featured.outlet.subtitle": "发现今日精选奥特莱斯目的地。",
+    "home.featured.outlet.cta": "立即探索",
+    "home.quick.title": "快捷菜单",
+    "home.quick.browse": "浏览奥特莱斯",
+    "home.quick.flights": "航班优惠",
+    "home.quick.taxfree": "Tax Free 中心",
+    "home.quick.offline": "离线可用性",
+    "home.quick.rateApp": "评价应用",
+    "home.quick.shareApp": "分享应用",
+    "home.sections.featured.title": "精选",
+    "home.sections.featured.subtitle": "精选优惠、行程和购物动态。",
+    "home.sections.tools.title": "购物工具",
+    "home.sections.tools.subtitle": "购物前规划你的节省。",
+    "home.tools.savings.title": "节省",
+    "home.tools.flights.title": "航班优惠",
+    "home.tools.taxfree.title": "Tax Free",
+    "home.tools.offline.title": "离线",
+    "home.sections.activity.title": "你的活动",
+    "home.sections.activity.subtitle": "快速访问已保存的购物计划。",
+    "home.activity.tripLabel": "购物行程",
+    "home.activity.favoritesLabel": "收藏",
+    "home.sections.cities.title": "热门城市",
+    "home.sections.cities.subtitle": "从最受欢迎的购物目的地开始。",
+    "home.sections.outlets.title": "推荐奥特莱斯",
+    "home.sections.outlets.subtitle": "值得开始探索的高端目的地。",
+    "home.recommended": "推荐",
+    "home.viewOutlet": "查看奥特莱斯 →",
   },
 };
 
 for (const languageCode of supportedLanguageCodes) {
   if (languageCode !== "en") {
-    Object.assign(translations[languageCode], finalPhase1BHomeOverlays[languageCode] ?? {});
+    Object.assign(
+      translations[languageCode],
+      finalPhase1AHomeOverlays[languageCode] ?? {},
+    );
   }
 }
 
-const finalPhase1BHomePatch: Partial<Record<Exclude<TranslationLanguage, "en">, Record<string, string>>> = {
-  tr: { "home.sections.tools.title":"Alışveriş araçları", "home.sections.tools.subtitle":"Alışverişten önce tasarrufunuzu planlayın.", "home.tools.savings.title":"Tasarruf", "home.tools.flights.title":"Uçuş fırsatları", "home.tools.flights.text":"Ücretler %15, %30 veya %45 düştüğünde bildirim alın.", "home.sections.activity.title":"Aktiviteniz", "home.sections.activity.subtitle":"Kayıtlı alışveriş planlarınıza hızlı erişim.", "home.activity.tripLabel":"Alışveriş seyahati", "home.activity.favoritesLabel":"Favoriler", "home.sections.cities.title":"Popüler şehirler", "home.sections.cities.subtitle":"En sevilen alışveriş destinasyonlarıyla başlayın.", "home.sections.outlets.title":"Önerilen outletler", "home.sections.outlets.subtitle":"Keşfetmeye başlamak için premium destinasyonlar.", "home.recommended":"Önerilen", "home.viewOutlet":"Outlet’i gör →", "home.featured.flight.kicker":"Uçuş fırsatı", "home.featured.flight.title":"En iyi ücretleri kaçırmayın", "home.featured.flight.subtitle":"Sonraki alışveriş seyahatiniz için rota uyarıları oluşturun.", "home.featured.flight.cta":"Uyarı oluştur" },
-  es: { "home.featured.flight.kicker":"Oferta de vuelo", "home.featured.flight.title":"No te pierdas las mejores tarifas", "home.featured.flight.subtitle":"Crea alertas de ruta para tu próximo viaje de compras.", "home.featured.flight.cta":"Crear alerta", "home.tools.flights.text":"Recibe avisos cuando las tarifas bajen 15%, 30% o 45%." },
-  fr: { "home.featured.flight.kicker":"Offre de vol", "home.featured.flight.title":"Ne manquez jamais les meilleurs tarifs", "home.featured.flight.subtitle":"Créez des alertes de trajet pour votre prochain voyage shopping.", "home.featured.flight.cta":"Créer une alerte", "home.tools.flights.text":"Recevez une alerte quand les tarifs baissent de 15 %, 30 % ou 45 %." },
-  de: { "home.featured.flash.kicker":"Blitzangebot", "home.featured.flight.kicker":"Flugangebot", "home.featured.flight.title":"Nie die besten Preise verpassen", "home.featured.flight.subtitle":"Erstelle Routenalarme für deinen nächsten Shoppingtrip.", "home.featured.flight.cta":"Alarm erstellen", "home.tools.flights.text":"Erhalte Hinweise, wenn Preise um 15 %, 30 % oder 45 % fallen." },
-  ru: { "home.featured.flight.kicker":"Авиапредложение", "home.featured.flight.title":"Не пропускайте лучшие тарифы", "home.featured.flight.subtitle":"Создавайте маршрутные уведомления для следующей шопинг-поездки.", "home.featured.flight.cta":"Создать уведомление", "home.tools.flights.text":"Получайте уведомления, когда тарифы падают на 15 %, 30 % или 45 %." },
-  ar: { "home.featured.flight.kicker":"عرض رحلة", "home.featured.flight.title":"لا تفوّت أفضل الأسعار", "home.featured.flight.subtitle":"أنشئ تنبيهات مسار لرحلة التسوق القادمة.", "home.featured.flight.cta":"إنشاء تنبيه", "home.tools.flights.text":"احصل على إشعار عند انخفاض الأسعار 15٪ أو 30٪ أو 45٪." },
-  zh: { "home.featured.flight.kicker":"航班优惠", "home.featured.flight.title":"不错过最佳票价", "home.featured.flight.subtitle":"为下一次购物行程创建路线提醒。", "home.featured.flight.cta":"创建提醒", "home.tools.flights.text":"当票价下降 15%、30% 或 45% 时收到通知。" },
+const finalPhase1BHomeOverlays: Partial<
+  Record<Exclude<TranslationLanguage, "en">, Record<string, string>>
+> = {
+  tr: {
+    "home.title": "My Outlet Guide",
+    "home.featured.event.kicker": "Alışveriş etkinliği",
+    "home.featured.event.title": "Yaz alışveriş festivali",
+    "home.featured.event.subtitle": "Özel etkinlikler ve sezon deneyimleri.",
+    "home.featured.event.cta": "Etkinliği gör",
+    "home.featured.guide.kicker": "Alışveriş rehberi",
+    "home.featured.guide.title": "Alışverişten önce bilmeniz gerekenler",
+    "home.featured.guide.subtitle": "Tax Free • İpuçları • Tasarruf",
+    "home.featured.guide.cta": "Rehberi aç",
+    "home.featured.flash.kicker": "Flaş indirim",
+    "home.featured.flash.title": "Sınırlı süreli outlet fırsatları",
+    "home.featured.flash.subtitle": "Bugünün en iyi fırsatlarını kaçırmayın.",
+    "home.featured.flash.cta": "Fırsatları gör",
+    "home.tools.savings.text": "Tax Free ve akıllı alışveriş araçları.",
+    "home.tools.taxfree.text":
+      "İadenizi tahmin edin ve minimum harcamayı kontrol edin.",
+    "home.tools.offline.text": "İnternetsiz nelerin çalıştığını görün.",
+    "home.activity.noTrip": "Henüz seyahat yok",
+    "home.activity.createTripReminder":
+      "Hatırlatıcılar için bir seyahat oluşturun.",
+    "home.activity.noFavorites": "Henüz favori outlet yok",
+    "home.activity.saveOutlets": "Takip etmek istediğiniz outletleri kaydedin.",
+    "home.cities.paris.text": "Lüks outlet rotaları",
+    "home.cities.milan.text": "Tasarım outlet erişimi",
+    "home.cities.london.text": "Premium alışveriş gezileri",
+    "home.cities.munich.text": "Bavyera alışveriş rotaları",
+    "home.cities.vienna.text": "Şık outlet kaçamakları",
+    "home.outlets.laVallee.text": "Disneyland Paris yakınında lüks alışveriş.",
+    "home.outlets.bicester.text":
+      "Avrupa’nın en ikonik lüks outletlerinden biri.",
+    "home.outlets.serravalle.text": "İtalya’da büyük tasarım outlet köyü.",
+    "home.outlets.theMall.text": "Toskana’da premium moda destinasyonu.",
+    "home.outlets.parndorf.text": "Viyana yakınında popüler outlet rotası.",
+    "home.shareMessage":
+      "My Outlet Guide ile premium outletleri keşfedin ve alışveriş seyahatlerinizi daha akıllı planlayın.",
+    "home.rateApp.title": "My Outlet Guide’ı değerlendir",
+    "home.rateApp.message":
+      "App Store puanlama bağlantısı lansmandan önce eklenecek.",
+  },
+  es: {
+    "home.title": "My Outlet Guide",
+    "home.featured.event.kicker": "Evento de compras",
+    "home.featured.event.title": "Festival de compras de verano",
+    "home.featured.event.subtitle":
+      "Eventos exclusivos y experiencias de temporada.",
+    "home.featured.event.cta": "Ver evento",
+    "home.featured.guide.kicker": "Guía de compras",
+    "home.featured.guide.title": "Todo antes de ir de compras",
+    "home.featured.guide.subtitle": "Tax Free • Consejos • Ahorros",
+    "home.featured.guide.cta": "Abrir guía",
+    "home.featured.flash.kicker": "Oferta flash",
+    "home.featured.flash.title": "Ofertas outlet por tiempo limitado",
+    "home.featured.flash.subtitle": "No te pierdas las mejores ofertas de hoy.",
+    "home.featured.flash.cta": "Ver ofertas",
+    "home.tools.savings.text":
+      "Tax Free y herramientas inteligentes de compra.",
+    "home.tools.taxfree.text": "Calcula tu devolución y el gasto mínimo.",
+    "home.tools.offline.text": "Consulta qué funciona sin internet.",
+    "home.activity.noTrip": "Aún no hay viaje",
+    "home.activity.createTripReminder":
+      "Crea un viaje para activar recordatorios.",
+    "home.activity.noFavorites": "Aún no hay outlets favoritos",
+    "home.activity.saveOutlets": "Guarda outlets que quieras seguir.",
+    "home.cities.paris.text": "Rutas de outlets de lujo",
+    "home.cities.milan.text": "Acceso a outlets de diseñador",
+    "home.cities.london.text": "Viajes de compras premium",
+    "home.cities.munich.text": "Rutas de compras bávaras",
+    "home.cities.vienna.text": "Escapadas elegantes a outlets",
+    "home.outlets.laVallee.text": "Compras de lujo cerca de Disneyland Paris.",
+    "home.outlets.bicester.text":
+      "Uno de los outlets de lujo más icónicos de Europa.",
+    "home.outlets.serravalle.text":
+      "Gran village outlet de diseñador en Italia.",
+    "home.outlets.theMall.text": "Destino de moda premium en Toscana.",
+    "home.outlets.parndorf.text": "Ruta outlet popular cerca de Viena.",
+    "home.shareMessage":
+      "Descubre outlets premium y planifica compras más inteligentes con My Outlet Guide.",
+    "home.rateApp.title": "Valora My Outlet Guide",
+    "home.rateApp.message":
+      "La valoración en App Store se conectará antes del lanzamiento.",
+  },
+  fr: {
+    "home.title": "My Outlet Guide",
+    "home.featured.event.kicker": "Événement shopping",
+    "home.featured.event.title": "Festival shopping d’été",
+    "home.featured.event.subtitle":
+      "Événements exclusifs et expériences de saison.",
+    "home.featured.event.cta": "Voir l’événement",
+    "home.featured.guide.kicker": "Guide shopping",
+    "home.featured.guide.title": "Tout savoir avant d’acheter",
+    "home.featured.guide.subtitle": "Tax Free • Conseils • Économies",
+    "home.featured.guide.cta": "Ouvrir le guide",
+    "home.featured.flash.kicker": "Vente flash",
+    "home.featured.flash.title": "Offres outlet à durée limitée",
+    "home.featured.flash.subtitle":
+      "Ne manquez pas les meilleures offres du jour.",
+    "home.featured.flash.cta": "Voir les offres",
+    "home.tools.savings.text": "Tax Free et outils shopping intelligents.",
+    "home.tools.taxfree.text":
+      "Estimez votre remboursement et le minimum d’achat.",
+    "home.tools.offline.text": "Voyez ce qui fonctionne sans internet.",
+    "home.activity.noTrip": "Aucun voyage pour l’instant",
+    "home.activity.createTripReminder":
+      "Créez un voyage pour activer les rappels.",
+    "home.activity.noFavorites": "Aucun outlet favori pour l’instant",
+    "home.activity.saveOutlets": "Enregistrez les outlets à suivre.",
+    "home.cities.paris.text": "Itinéraires outlets de luxe",
+    "home.cities.milan.text": "Accès aux outlets créateurs",
+    "home.cities.london.text": "Virées shopping premium",
+    "home.cities.munich.text": "Routes shopping bavaroises",
+    "home.cities.vienna.text": "Escapades outlet élégantes",
+    "home.outlets.laVallee.text": "Shopping de luxe près de Disneyland Paris.",
+    "home.outlets.bicester.text":
+      "L’un des outlets de luxe les plus iconiques d’Europe.",
+    "home.outlets.serravalle.text":
+      "Grand village outlet de créateurs en Italie.",
+    "home.outlets.theMall.text": "Destination mode premium en Toscane.",
+    "home.outlets.parndorf.text": "Route outlet populaire près de Vienne.",
+    "home.shareMessage":
+      "Découvrez des outlets premium et planifiez vos achats plus intelligemment avec My Outlet Guide.",
+    "home.rateApp.title": "Noter My Outlet Guide",
+    "home.rateApp.message":
+      "La note App Store sera connectée avant le lancement.",
+  },
+  de: {
+    "home.title": "My Outlet Guide",
+    "home.featured.event.kicker": "Shopping-Event",
+    "home.featured.event.title": "Sommer-Shoppingfestival",
+    "home.featured.event.subtitle":
+      "Exklusive Events und saisonale Erlebnisse.",
+    "home.featured.event.cta": "Event ansehen",
+    "home.featured.guide.kicker": "Shopping-Guide",
+    "home.featured.guide.title": "Alles vor dem Shopping",
+    "home.featured.guide.subtitle": "Tax Free • Tipps • Ersparnis",
+    "home.featured.guide.cta": "Guide öffnen",
+    "home.featured.flash.kicker": "Offline availability",
+    "home.featured.flash.title": "Outlet-Angebote für kurze Zeit",
+    "home.featured.flash.subtitle":
+      "Verpasse die besten Angebote von heute nicht.",
+    "home.featured.flash.cta": "Deals ansehen",
+    "home.tools.savings.text": "Tax Free und smarte Shopping-Tools.",
+    "home.tools.taxfree.text": "Erstattung schätzen und Mindesteinkauf prüfen.",
+    "home.tools.offline.text": "Sieh, was ohne Internet funktioniert.",
+    "home.activity.noTrip": "Noch keine Reise",
+    "home.activity.createTripReminder": "Erstelle eine Reise für Erinnerungen.",
+    "home.activity.noFavorites": "Noch keine favorisierten Outlets",
+    "home.activity.saveOutlets": "Speichere Outlets, denen du folgen möchtest.",
+    "home.cities.paris.text": "Luxus-Outlet-Routen",
+    "home.cities.milan.text": "Designer-Outlet-Zugang",
+    "home.cities.london.text": "Premium-Shoppingtrips",
+    "home.cities.munich.text": "Bayerische Shoppingrouten",
+    "home.cities.vienna.text": "Elegante Outlet-Auszeiten",
+    "home.outlets.laVallee.text": "Luxus-Shopping nahe Disneyland Paris.",
+    "home.outlets.bicester.text":
+      "Eines der ikonischsten Luxus-Outlets Europas.",
+    "home.outlets.serravalle.text":
+      "Großes Designer-Outlet-Village in Italien.",
+    "home.outlets.theMall.text": "Premium-Modedestination in der Toskana.",
+    "home.outlets.parndorf.text": "Beliebte Outlet-Route nahe Wien.",
+    "home.shareMessage":
+      "Entdecke Premium-Outlets und plane smartere Shoppingtrips mit My Outlet Guide.",
+    "home.rateApp.title": "My Outlet Guide bewerten",
+    "home.rateApp.message":
+      "Die App-Store-Bewertung wird vor dem Launch verbunden.",
+  },
+  ru: {
+    "home.title": "My Outlet Guide",
+    "home.featured.event.kicker": "Шопинг-событие",
+    "home.featured.event.title": "Летний фестиваль покупок",
+    "home.featured.event.subtitle":
+      "Эксклюзивные события и сезонные впечатления.",
+    "home.featured.event.cta": "Открыть событие",
+    "home.featured.guide.kicker": "Гид по шопингу",
+    "home.featured.guide.title": "Всё перед поездкой за покупками",
+    "home.featured.guide.subtitle": "Tax Free • Советы • Экономия",
+    "home.featured.guide.cta": "Открыть гид",
+    "home.featured.flash.kicker": "Флеш-скидка",
+    "home.featured.flash.title": "Предложения аутлетов на короткое время",
+    "home.featured.flash.subtitle": "Не пропустите лучшие предложения дня.",
+    "home.featured.flash.cta": "Смотреть скидки",
+    "home.tools.savings.text": "Tax Free и умные инструменты для покупок.",
+    "home.tools.taxfree.text": "Оцените возврат и минимальную сумму покупки.",
+    "home.tools.offline.text": "Посмотрите, что работает без интернета.",
+    "home.activity.noTrip": "Поездок пока нет",
+    "home.activity.createTripReminder":
+      "Создайте поездку, чтобы включить напоминания.",
+    "home.activity.noFavorites": "Избранных аутлетов пока нет",
+    "home.activity.saveOutlets":
+      "Сохраняйте аутлеты, за которыми хотите следить.",
+    "home.cities.paris.text": "Маршруты люксовых аутлетов",
+    "home.cities.milan.text": "Доступ к дизайнерским аутлетам",
+    "home.cities.london.text": "Премиальные шопинг-поездки",
+    "home.cities.munich.text": "Баварские шопинг-маршруты",
+    "home.cities.vienna.text": "Элегантные поездки в аутлеты",
+    "home.outlets.laVallee.text": "Люксовый шопинг рядом с Disneyland Paris.",
+    "home.outlets.bicester.text":
+      "Один из самых известных люксовых аутлетов Европы.",
+    "home.outlets.serravalle.text":
+      "Большая дизайнерская outlet village в Италии.",
+    "home.outlets.theMall.text": "Премиальное модное направление в Тоскане.",
+    "home.outlets.parndorf.text": "Популярный маршрут в аутлет рядом с Веной.",
+    "home.shareMessage":
+      "Открывайте премиальные аутлеты и планируйте покупки умнее с My Outlet Guide.",
+    "home.rateApp.title": "Оценить My Outlet Guide",
+    "home.rateApp.message":
+      "Оценка в App Store будет подключена перед запуском.",
+  },
+  ar: {
+    "home.title": "My Outlet Guide",
+    "home.featured.event.kicker": "فعالية تسوق",
+    "home.featured.event.title": "مهرجان التسوق الصيفي",
+    "home.featured.event.subtitle": "فعاليات حصرية وتجارب موسمية.",
+    "home.featured.event.cta": "عرض الفعالية",
+    "home.featured.guide.kicker": "دليل التسوق",
+    "home.featured.guide.title": "كل ما تحتاجه قبل التسوق",
+    "home.featured.guide.subtitle": "Tax Free • نصائح • توفير",
+    "home.featured.guide.cta": "افتح الدليل",
+    "home.featured.flash.kicker": "تخفيض سريع",
+    "home.featured.flash.title": "عروض أوتلت لفترة محدودة",
+    "home.featured.flash.subtitle": "لا تفوّت أفضل عروض اليوم.",
+    "home.featured.flash.cta": "عرض العروض",
+    "home.tools.savings.text": "Tax Free وأدوات تسوق ذكية.",
+    "home.tools.taxfree.text": "قدّر الاسترداد وتحقق من الحد الأدنى للشراء.",
+    "home.tools.offline.text": "اعرف ما يعمل دون إنترنت.",
+    "home.activity.noTrip": "لا توجد رحلة بعد",
+    "home.activity.createTripReminder": "أنشئ رحلة لتفعيل التذكيرات.",
+    "home.activity.noFavorites": "لا توجد أوتلت مفضلة بعد",
+    "home.activity.saveOutlets": "احفظ الأوتلت التي تريد متابعتها.",
+    "home.cities.paris.text": "مسارات أوتلت فاخرة",
+    "home.cities.milan.text": "وصول إلى أوتلت المصممين",
+    "home.cities.london.text": "رحلات تسوق مميزة",
+    "home.cities.munich.text": "مسارات تسوق بافارية",
+    "home.cities.vienna.text": "رحلات أوتلت أنيقة",
+    "home.outlets.laVallee.text": "تسوق فاخر قرب Disneyland Paris.",
+    "home.outlets.bicester.text": "من أشهر أوتلت الفخامة في أوروبا.",
+    "home.outlets.serravalle.text": "قرية أوتلت كبيرة للمصممين في إيطاليا.",
+    "home.outlets.theMall.text": "وجهة أزياء مميزة في توسكانا.",
+    "home.outlets.parndorf.text": "مسار أوتلت شائع قرب فيينا.",
+    "home.shareMessage":
+      "اكتشف أوتلت مميزة وخطط لتسوق أذكى مع My Outlet Guide.",
+    "home.rateApp.title": "قيّم My Outlet Guide",
+    "home.rateApp.message": "سيتم ربط تقييم App Store قبل الإطلاق.",
+  },
+  zh: {
+    "home.title": "My Outlet Guide",
+    "home.featured.event.kicker": "购物活动",
+    "home.featured.event.title": "夏季购物节",
+    "home.featured.event.subtitle": "专属活动与季节体验。",
+    "home.featured.event.cta": "查看活动",
+    "home.featured.guide.kicker": "购物指南",
+    "home.featured.guide.title": "购物前需要知道的一切",
+    "home.featured.guide.subtitle": "Tax Free • 提示 • 节省",
+    "home.featured.guide.cta": "打开指南",
+    "home.featured.flash.kicker": "限时闪促",
+    "home.featured.flash.title": "限时奥特莱斯优惠",
+    "home.featured.flash.subtitle": "不要错过今天的最佳优惠。",
+    "home.featured.flash.cta": "查看优惠",
+    "home.tools.savings.text": "Tax Free 与智能购物工具。",
+    "home.tools.taxfree.text": "估算退税并查看最低消费。",
+    "home.tools.offline.text": "查看离线时可用的功能。",
+    "home.activity.noTrip": "暂无行程",
+    "home.activity.createTripReminder": "创建行程以开启提醒。",
+    "home.activity.noFavorites": "暂无收藏奥特莱斯",
+    "home.activity.saveOutlets": "保存你想关注的奥特莱斯。",
+    "home.cities.paris.text": "奢华奥特莱斯路线",
+    "home.cities.milan.text": "设计师奥特莱斯交通",
+    "home.cities.london.text": "高端购物行程",
+    "home.cities.munich.text": "巴伐利亚购物路线",
+    "home.cities.vienna.text": "优雅奥特莱斯短途游",
+    "home.outlets.laVallee.text": "Disneyland Paris 附近的奢华购物。",
+    "home.outlets.bicester.text": "欧洲最具代表性的奢华奥特莱斯之一。",
+    "home.outlets.serravalle.text": "意大利大型设计师奥特莱斯村。",
+    "home.outlets.theMall.text": "托斯卡纳高端时尚目的地。",
+    "home.outlets.parndorf.text": "维也纳附近的热门奥特莱斯路线。",
+    "home.shareMessage":
+      "用 My Outlet Guide 发现高端奥特莱斯，规划更聪明的购物行程。",
+    "home.rateApp.title": "评价 My Outlet Guide",
+    "home.rateApp.message": "App Store 评分将在发布前接入。",
+  },
 };
 
+for (const languageCode of supportedLanguageCodes) {
+  if (languageCode !== "en") {
+    Object.assign(
+      translations[languageCode],
+      finalPhase1BHomeOverlays[languageCode] ?? {},
+    );
+  }
+}
 
-const finalPhase1AHomePolish: Partial<Record<TranslationLanguage, Record<string, string>>> = {
+const finalPhase1BHomePatch: Partial<
+  Record<Exclude<TranslationLanguage, "en">, Record<string, string>>
+> = {
+  tr: {
+    "home.sections.tools.title": "Alışveriş araçları",
+    "home.sections.tools.subtitle":
+      "Alışverişten önce tasarrufunuzu planlayın.",
+    "home.tools.savings.title": "Tasarruf",
+    "home.tools.flights.title": "Uçuş fırsatları",
+    "home.tools.flights.text":
+      "Ücretler %15, %30 veya %45 düştüğünde bildirim alın.",
+    "home.sections.activity.title": "Aktiviteniz",
+    "home.sections.activity.subtitle":
+      "Kayıtlı alışveriş planlarınıza hızlı erişim.",
+    "home.activity.tripLabel": "Alışveriş seyahati",
+    "home.activity.favoritesLabel": "Favoriler",
+    "home.sections.cities.title": "Popüler şehirler",
+    "home.sections.cities.subtitle":
+      "En sevilen alışveriş destinasyonlarıyla başlayın.",
+    "home.sections.outlets.title": "Önerilen outletler",
+    "home.sections.outlets.subtitle":
+      "Keşfetmeye başlamak için premium destinasyonlar.",
+    "home.recommended": "Önerilen",
+    "home.viewOutlet": "Outlet’i gör →",
+    "home.featured.flight.kicker": "Uçuş fırsatı",
+    "home.featured.flight.title": "En iyi ücretleri kaçırmayın",
+    "home.featured.flight.subtitle":
+      "Sonraki alışveriş seyahatiniz için rota uyarıları oluşturun.",
+    "home.featured.flight.cta": "Uyarı oluştur",
+  },
+  es: {
+    "home.featured.flight.kicker": "Oferta de vuelo",
+    "home.featured.flight.title": "No te pierdas las mejores tarifas",
+    "home.featured.flight.subtitle":
+      "Crea alertas de ruta para tu próximo viaje de compras.",
+    "home.featured.flight.cta": "Crear alerta",
+    "home.tools.flights.text":
+      "Recibe avisos cuando las tarifas bajen 15%, 30% o 45%.",
+  },
+  fr: {
+    "home.featured.flight.kicker": "Offre de vol",
+    "home.featured.flight.title": "Ne manquez jamais les meilleurs tarifs",
+    "home.featured.flight.subtitle":
+      "Créez des alertes de trajet pour votre prochain voyage shopping.",
+    "home.featured.flight.cta": "Créer une alerte",
+    "home.tools.flights.text":
+      "Recevez une alerte quand les tarifs baissent de 15 %, 30 % ou 45 %.",
+  },
+  de: {
+    "home.featured.flash.kicker": "Blitzangebot",
+    "home.featured.flight.kicker": "Flugangebot",
+    "home.featured.flight.title": "Nie die besten Preise verpassen",
+    "home.featured.flight.subtitle":
+      "Erstelle Routenalarme für deinen nächsten Shoppingtrip.",
+    "home.featured.flight.cta": "Alarm erstellen",
+    "home.tools.flights.text":
+      "Erhalte Hinweise, wenn Preise um 15 %, 30 % oder 45 % fallen.",
+  },
+  ru: {
+    "home.featured.flight.kicker": "Авиапредложение",
+    "home.featured.flight.title": "Не пропускайте лучшие тарифы",
+    "home.featured.flight.subtitle":
+      "Создавайте маршрутные уведомления для следующей шопинг-поездки.",
+    "home.featured.flight.cta": "Создать уведомление",
+    "home.tools.flights.text":
+      "Получайте уведомления, когда тарифы падают на 15 %, 30 % или 45 %.",
+  },
+  ar: {
+    "home.featured.flight.kicker": "عرض رحلة",
+    "home.featured.flight.title": "لا تفوّت أفضل الأسعار",
+    "home.featured.flight.subtitle": "أنشئ تنبيهات مسار لرحلة التسوق القادمة.",
+    "home.featured.flight.cta": "إنشاء تنبيه",
+    "home.tools.flights.text":
+      "احصل على إشعار عند انخفاض الأسعار 15٪ أو 30٪ أو 45٪.",
+  },
+  zh: {
+    "home.featured.flight.kicker": "航班优惠",
+    "home.featured.flight.title": "不错过最佳票价",
+    "home.featured.flight.subtitle": "为下一次购物行程创建路线提醒。",
+    "home.featured.flight.cta": "创建提醒",
+    "home.tools.flights.text": "当票价下降 15%、30% 或 45% 时收到通知。",
+  },
+};
+
+const finalPhase1AHomePolish: Partial<
+  Record<TranslationLanguage, Record<string, string>>
+> = {
   en: {
-    "home.header.userSubtitle": "Plan outlet trips, compare savings, and discover premium shopping destinations.",
-    "home.sections.featured.subtitle": "Core app tools for outlet discovery, trip planning, savings, and offline access.",
-    "home.featured.discover.kicker": "Outlet discovery", "home.featured.discover.title": "Discover outlets", "home.featured.discover.subtitle": "Browse real outlet destinations by country, city, and brand.", "home.featured.discover.cta": "Explore outlets",
-    "home.featured.trip.kicker": "Trip planning", "home.featured.trip.title": "Plan your outlet trip", "home.featured.trip.subtitle": "Create a shopping trip and keep your destination plan organized.", "home.featured.trip.cta": "Create trip",
-    "home.featured.savings.kicker": "Savings guide", "home.featured.savings.title": "Savings guide", "home.featured.savings.subtitle": "Use Tax Free and price tools to estimate your shopping budget.", "home.featured.savings.cta": "View savings tools",
-    "home.featured.offline.kicker": "Offline availability", "home.featured.offline.title": "Offline guide availability", "home.featured.offline.subtitle": "See which bundled guide features are available without internet.", "home.featured.offline.cta": "View offline availability",
-    "home.tools.taxfree.title": "Tax Free Calculator", "home.tools.currency.title": "Currency Converter", "home.tools.currency.text": "Set your shopping currency.", "home.tools.flights.title": "Flight Alerts", "home.tools.flights.text": "Check flight alert availability.", "home.tools.offline.title": "Offline Availability", "home.search.noResults": "No results found"
+    "home.header.userSubtitle":
+      "Plan outlet trips, compare savings, and discover premium shopping destinations.",
+    "home.sections.featured.subtitle":
+      "Core app tools for outlet discovery, trip planning, savings, and offline access.",
+    "home.featured.discover.kicker": "Outlet discovery",
+    "home.featured.discover.title": "Discover outlets",
+    "home.featured.discover.subtitle":
+      "Browse real outlet destinations by country, city, and brand.",
+    "home.featured.discover.cta": "Explore outlets",
+    "home.featured.trip.kicker": "Trip planning",
+    "home.featured.trip.title": "Plan your outlet trip",
+    "home.featured.trip.subtitle":
+      "Create a shopping trip and keep your destination plan organized.",
+    "home.featured.trip.cta": "Create trip",
+    "home.featured.savings.kicker": "Savings guide",
+    "home.featured.savings.title": "Savings guide",
+    "home.featured.savings.subtitle":
+      "Use Tax Free and price tools to estimate your shopping budget.",
+    "home.featured.savings.cta": "View savings tools",
+    "home.featured.offline.kicker": "Offline availability",
+    "home.featured.offline.title": "Offline guide availability",
+    "home.featured.offline.subtitle":
+      "See which bundled guide features are available without internet.",
+    "home.featured.offline.cta": "View offline availability",
+    "home.tools.taxfree.title": "Tax Free Calculator",
+    "home.tools.currency.title": "Currency Converter",
+    "home.tools.currency.text": "Set your shopping currency.",
+    "home.tools.flights.title": "Flight Alerts",
+    "home.tools.flights.text": "Check flight alert availability.",
+    "home.tools.offline.title": "Offline Availability",
+    "home.search.noResults": "No results found",
   },
   tr: {
-    "home.header.userSubtitle": "Outlet seyahatlerini planla, tasarruf araçlarını kullan ve premium alışveriş rotalarını keşfet.",
-    "home.sections.featured.subtitle": "Outlet keşfi, seyahat planı, tasarruf ve offline erişim için temel uygulama araçları.",
-    "home.featured.discover.kicker": "Outlet keşfi", "home.featured.discover.title": "Outletleri keşfet", "home.featured.discover.subtitle": "Gerçek outlet destinasyonlarını ülke, şehir ve markaya göre incele.", "home.featured.discover.cta": "Outletleri keşfet",
-    "home.featured.trip.kicker": "Seyahat planı", "home.featured.trip.title": "Outlet seyahatini planla", "home.featured.trip.subtitle": "Alışveriş seyahati oluştur ve destinasyon planını düzenli tut.", "home.featured.trip.cta": "Seyahat oluştur",
-    "home.featured.savings.kicker": "Tasarruf rehberi", "home.featured.savings.title": "Tasarruf rehberi", "home.featured.savings.subtitle": "Alışveriş bütçeni tahmin etmek için Tax Free ve fiyat araçlarını kullan.", "home.featured.savings.cta": "Tasarruf araçlarını gör",
-    "home.featured.offline.kicker": "Offline uygunluk", "home.featured.offline.title": "Offline rehber uygunluğu", "home.featured.offline.subtitle": "Hangi yerleşik rehber özelliklerinin internetsiz çalıştığını gör.", "home.featured.offline.cta": "Offline uygunluğu gör",
-    "home.tools.taxfree.title": "Tax Free Hesaplayıcı", "home.tools.currency.title": "Döviz Çevirici", "home.tools.currency.text": "Alışveriş para birimini ayarla.", "home.tools.flights.title": "Uçuş Alarmı", "home.tools.flights.text": "Uçuş fiyat izleme durumunu gör.", "home.tools.offline.title": "Offline Uygunluk", "home.search.noResults": "Sonuç bulunamadı"
+    "home.header.userSubtitle":
+      "Outlet seyahatlerini planla, tasarruf araçlarını kullan ve premium alışveriş rotalarını keşfet.",
+    "home.sections.featured.subtitle":
+      "Outlet keşfi, seyahat planı, tasarruf ve offline erişim için temel uygulama araçları.",
+    "home.featured.discover.kicker": "Outlet keşfi",
+    "home.featured.discover.title": "Outletleri keşfet",
+    "home.featured.discover.subtitle":
+      "Gerçek outlet destinasyonlarını ülke, şehir ve markaya göre incele.",
+    "home.featured.discover.cta": "Outletleri keşfet",
+    "home.featured.trip.kicker": "Seyahat planı",
+    "home.featured.trip.title": "Outlet seyahatini planla",
+    "home.featured.trip.subtitle":
+      "Alışveriş seyahati oluştur ve destinasyon planını düzenli tut.",
+    "home.featured.trip.cta": "Seyahat oluştur",
+    "home.featured.savings.kicker": "Tasarruf rehberi",
+    "home.featured.savings.title": "Tasarruf rehberi",
+    "home.featured.savings.subtitle":
+      "Alışveriş bütçeni tahmin etmek için Tax Free ve fiyat araçlarını kullan.",
+    "home.featured.savings.cta": "Tasarruf araçlarını gör",
+    "home.featured.offline.kicker": "Offline uygunluk",
+    "home.featured.offline.title": "Offline rehber uygunluğu",
+    "home.featured.offline.subtitle":
+      "Hangi yerleşik rehber özelliklerinin internetsiz çalıştığını gör.",
+    "home.featured.offline.cta": "Offline uygunluğu gör",
+    "home.tools.taxfree.title": "Tax Free Hesaplayıcı",
+    "home.tools.currency.title": "Döviz Çevirici",
+    "home.tools.currency.text": "Alışveriş para birimini ayarla.",
+    "home.tools.flights.title": "Uçuş Alarmı",
+    "home.tools.flights.text": "Uçuş fiyat izleme durumunu gör.",
+    "home.tools.offline.title": "Offline Uygunluk",
+    "home.search.noResults": "Sonuç bulunamadı",
   },
-  es: { "home.search.noResults":"Sin resultados", "home.featured.discover.kicker":"Descubrimiento de outlets", "home.featured.discover.title":"Descubre outlets", "home.featured.discover.subtitle":"Explora destinos outlet reales por país, ciudad y marca.", "home.featured.discover.cta":"Explorar outlets", "home.featured.trip.kicker":"Planificación de viaje", "home.featured.trip.title":"Planifica tu viaje outlet", "home.featured.trip.subtitle":"Crea un viaje de compras y organiza tu destino.", "home.featured.trip.cta":"Crear viaje", "home.featured.savings.kicker":"Guía de ahorro", "home.featured.savings.title":"Guía de ahorro", "home.featured.savings.subtitle":"Usa Tax Free y herramientas de precio para estimar tu presupuesto.", "home.featured.savings.cta":"Ver herramientas", "home.featured.offline.kicker":"Disponibilidad offline", "home.featured.offline.title":"Disponibilidad de guía offline", "home.featured.offline.subtitle":"Consulta qué funciones incluidas funcionan sin internet.", "home.featured.offline.cta":"Ver disponibilidad offline", "home.tools.currency.title":"Conversor de divisas", "home.tools.currency.text":"Configura tu moneda de compra.", "home.tools.flights.title":"Alertas de vuelos", "home.tools.flights.text":"Consulta la disponibilidad de alertas de vuelo.", "home.tools.offline.title":"Disponibilidad offline" },
-  fr: { "home.search.noResults":"Aucun résultat", "home.featured.discover.kicker":"Découverte d’outlets", "home.featured.discover.title":"Découvrir les outlets", "home.featured.discover.subtitle":"Parcourez de vraies destinations par pays, ville et marque.", "home.featured.discover.cta":"Explorer les outlets", "home.featured.trip.kicker":"Planification", "home.featured.trip.title":"Planifier votre visite outlet", "home.featured.trip.subtitle":"Créez un voyage shopping et organisez votre destination.", "home.featured.trip.cta":"Créer un voyage", "home.featured.savings.kicker":"Guide économies", "home.featured.savings.title":"Guide économies", "home.featured.savings.subtitle":"Utilisez Tax Free et les outils de prix pour estimer votre budget.", "home.featured.savings.cta":"Voir les outils", "home.featured.offline.kicker":"Disponibilité hors ligne", "home.featured.offline.title":"Guide disponible hors ligne", "home.featured.offline.subtitle":"Voyez quelles fonctions intégrées marchent sans internet.", "home.featured.offline.cta":"Voir la disponibilité", "home.tools.currency.title":"Convertisseur de devises", "home.tools.currency.text":"Définissez votre devise shopping.", "home.tools.flights.title":"Alertes de vols", "home.tools.flights.text":"Vérifiez la disponibilité des alertes de vol.", "home.tools.offline.title":"Disponibilité hors ligne" },
-  de: { "home.search.noResults":"Keine Ergebnisse", "home.featured.discover.kicker":"Outlet-Suche", "home.featured.discover.title":"Outlets entdecken", "home.featured.discover.subtitle":"Durchsuche echte Outlet-Ziele nach Land, Stadt und Marke.", "home.featured.discover.cta":"Outlets erkunden", "home.featured.trip.kicker":"Reiseplanung", "home.featured.trip.title":"Outlet-Trip planen", "home.featured.trip.subtitle":"Erstelle einen Shoppingtrip und organisiere dein Ziel.", "home.featured.trip.cta":"Trip erstellen", "home.featured.savings.kicker":"Spar-Guide", "home.featured.savings.title":"Spar-Guide", "home.featured.savings.subtitle":"Nutze Tax Free und Preis-Tools zur Budgetschätzung.", "home.featured.savings.cta":"Tools ansehen", "home.featured.offline.kicker":"Offline-Verfügbarkeit", "home.featured.offline.title":"Guide offline verfügbar", "home.featured.offline.subtitle":"Sieh, welche integrierten Guide-Funktionen ohne Internet laufen.", "home.featured.offline.cta":"Offline-Verfügbarkeit", "home.tools.currency.title":"Währungsrechner", "home.tools.currency.text":"Lege deine Shoppingwährung fest.", "home.tools.flights.title":"Flugalarme", "home.tools.flights.text":"Prüfe die Verfügbarkeit von Flugalarmen.", "home.tools.offline.title":"Offline-Verfügbarkeit" },
-  ru: { "home.search.noResults":"Ничего не найдено", "home.featured.discover.kicker":"Поиск аутлетов", "home.featured.discover.title":"Открывайте аутлеты", "home.featured.discover.subtitle":"Просматривайте реальные направления по стране, городу и бренду.", "home.featured.discover.cta":"Смотреть аутлеты", "home.featured.trip.kicker":"Планирование", "home.featured.trip.title":"Планируйте поездку", "home.featured.trip.subtitle":"Создайте шопинг-поездку и держите маршрут под контролем.", "home.featured.trip.cta":"Создать поездку", "home.featured.savings.kicker":"Гид по экономии", "home.featured.savings.title":"Гид по экономии", "home.featured.savings.subtitle":"Используйте Tax Free и ценовые инструменты для оценки бюджета.", "home.featured.savings.cta":"Открыть инструменты", "home.featured.offline.kicker":"Офлайн-доступ", "home.featured.offline.title":"Доступность гида офлайн", "home.featured.offline.subtitle":"Посмотрите, какие встроенные функции работают без интернета.", "home.featured.offline.cta":"Проверить офлайн", "home.tools.currency.title":"Конвертер валют", "home.tools.currency.text":"Настройте валюту покупок.", "home.tools.flights.title":"Авиасигналы", "home.tools.flights.text":"Проверьте доступность авиасигналов.", "home.tools.offline.title":"Офлайн-доступ" },
-  ar: { "home.search.noResults":"لا توجد نتائج", "home.featured.discover.kicker":"اكتشاف الأوتلت", "home.featured.discover.title":"اكتشف الأوتلت", "home.featured.discover.subtitle":"تصفح وجهات أوتلت حقيقية حسب البلد والمدينة والعلامة.", "home.featured.discover.cta":"استكشف الأوتلت", "home.featured.trip.kicker":"تخطيط الرحلة", "home.featured.trip.title":"خطط لرحلة الأوتلت", "home.featured.trip.subtitle":"أنشئ رحلة تسوق ونظّم خطة وجهتك.", "home.featured.trip.cta":"أنشئ رحلة", "home.featured.savings.kicker":"دليل التوفير", "home.featured.savings.title":"دليل التوفير", "home.featured.savings.subtitle":"استخدم Tax Free وأدوات السعر لتقدير ميزانيتك.", "home.featured.savings.cta":"عرض الأدوات", "home.featured.offline.kicker":"التوفر دون إنترنت", "home.featured.offline.title":"توفر الدليل دون إنترنت", "home.featured.offline.subtitle":"اعرف الميزات المضمنة التي تعمل دون إنترنت.", "home.featured.offline.cta":"عرض التوفر", "home.tools.currency.title":"محول العملات", "home.tools.currency.text":"اضبط عملة التسوق.", "home.tools.flights.title":"تنبيهات الرحلات", "home.tools.flights.text":"تحقق من توفر تنبيهات الرحلات.", "home.tools.offline.title":"التوفر دون إنترنت" },
-  zh: { "home.search.noResults":"未找到结果", "home.featured.discover.kicker":"奥特莱斯探索", "home.featured.discover.title":"探索奥特莱斯", "home.featured.discover.subtitle":"按国家、城市和品牌浏览真实奥特莱斯目的地。", "home.featured.discover.cta":"探索奥特莱斯", "home.featured.trip.kicker":"行程规划", "home.featured.trip.title":"规划奥特莱斯行程", "home.featured.trip.subtitle":"创建购物行程并整理目的地计划。", "home.featured.trip.cta":"创建行程", "home.featured.savings.kicker":"省钱指南", "home.featured.savings.title":"省钱指南", "home.featured.savings.subtitle":"使用 Tax Free 和价格工具估算购物预算。", "home.featured.savings.cta":"查看工具", "home.featured.offline.kicker":"离线可用性", "home.featured.offline.title":"离线指南可用性", "home.featured.offline.subtitle":"查看哪些内置指南功能无需网络即可使用。", "home.featured.offline.cta":"查看离线可用性", "home.tools.currency.title":"货币转换器", "home.tools.currency.text":"设置你的购物货币。", "home.tools.flights.title":"航班提醒", "home.tools.flights.text":"检查航班提醒可用性。", "home.tools.offline.title":"离线可用性" }
+  es: {
+    "home.search.noResults": "Sin resultados",
+    "home.featured.discover.kicker": "Descubrimiento de outlets",
+    "home.featured.discover.title": "Descubre outlets",
+    "home.featured.discover.subtitle":
+      "Explora destinos outlet reales por país, ciudad y marca.",
+    "home.featured.discover.cta": "Explorar outlets",
+    "home.featured.trip.kicker": "Planificación de viaje",
+    "home.featured.trip.title": "Planifica tu viaje outlet",
+    "home.featured.trip.subtitle":
+      "Crea un viaje de compras y organiza tu destino.",
+    "home.featured.trip.cta": "Crear viaje",
+    "home.featured.savings.kicker": "Guía de ahorro",
+    "home.featured.savings.title": "Guía de ahorro",
+    "home.featured.savings.subtitle":
+      "Usa Tax Free y herramientas de precio para estimar tu presupuesto.",
+    "home.featured.savings.cta": "Ver herramientas",
+    "home.featured.offline.kicker": "Disponibilidad offline",
+    "home.featured.offline.title": "Disponibilidad de guía offline",
+    "home.featured.offline.subtitle":
+      "Consulta qué funciones incluidas funcionan sin internet.",
+    "home.featured.offline.cta": "Ver disponibilidad offline",
+    "home.tools.currency.title": "Conversor de divisas",
+    "home.tools.currency.text": "Configura tu moneda de compra.",
+    "home.tools.flights.title": "Alertas de vuelos",
+    "home.tools.flights.text":
+      "Consulta la disponibilidad de alertas de vuelo.",
+    "home.tools.offline.title": "Disponibilidad offline",
+  },
+  fr: {
+    "home.search.noResults": "Aucun résultat",
+    "home.featured.discover.kicker": "Découverte d’outlets",
+    "home.featured.discover.title": "Découvrir les outlets",
+    "home.featured.discover.subtitle":
+      "Parcourez de vraies destinations par pays, ville et marque.",
+    "home.featured.discover.cta": "Explorer les outlets",
+    "home.featured.trip.kicker": "Planification",
+    "home.featured.trip.title": "Planifier votre visite outlet",
+    "home.featured.trip.subtitle":
+      "Créez un voyage shopping et organisez votre destination.",
+    "home.featured.trip.cta": "Créer un voyage",
+    "home.featured.savings.kicker": "Guide économies",
+    "home.featured.savings.title": "Guide économies",
+    "home.featured.savings.subtitle":
+      "Utilisez Tax Free et les outils de prix pour estimer votre budget.",
+    "home.featured.savings.cta": "Voir les outils",
+    "home.featured.offline.kicker": "Disponibilité hors ligne",
+    "home.featured.offline.title": "Guide disponible hors ligne",
+    "home.featured.offline.subtitle":
+      "Voyez quelles fonctions intégrées marchent sans internet.",
+    "home.featured.offline.cta": "Voir la disponibilité",
+    "home.tools.currency.title": "Convertisseur de devises",
+    "home.tools.currency.text": "Définissez votre devise shopping.",
+    "home.tools.flights.title": "Alertes de vols",
+    "home.tools.flights.text": "Vérifiez la disponibilité des alertes de vol.",
+    "home.tools.offline.title": "Disponibilité hors ligne",
+  },
+  de: {
+    "home.search.noResults": "Keine Ergebnisse",
+    "home.featured.discover.kicker": "Outlet-Suche",
+    "home.featured.discover.title": "Outlets entdecken",
+    "home.featured.discover.subtitle":
+      "Durchsuche echte Outlet-Ziele nach Land, Stadt und Marke.",
+    "home.featured.discover.cta": "Outlets erkunden",
+    "home.featured.trip.kicker": "Reiseplanung",
+    "home.featured.trip.title": "Outlet-Trip planen",
+    "home.featured.trip.subtitle":
+      "Erstelle einen Shoppingtrip und organisiere dein Ziel.",
+    "home.featured.trip.cta": "Trip erstellen",
+    "home.featured.savings.kicker": "Spar-Guide",
+    "home.featured.savings.title": "Spar-Guide",
+    "home.featured.savings.subtitle":
+      "Nutze Tax Free und Preis-Tools zur Budgetschätzung.",
+    "home.featured.savings.cta": "Tools ansehen",
+    "home.featured.offline.kicker": "Offline-Verfügbarkeit",
+    "home.featured.offline.title": "Guide offline verfügbar",
+    "home.featured.offline.subtitle":
+      "Sieh, welche integrierten Guide-Funktionen ohne Internet laufen.",
+    "home.featured.offline.cta": "Offline-Verfügbarkeit",
+    "home.tools.currency.title": "Währungsrechner",
+    "home.tools.currency.text": "Lege deine Shoppingwährung fest.",
+    "home.tools.flights.title": "Flugalarme",
+    "home.tools.flights.text": "Prüfe die Verfügbarkeit von Flugalarmen.",
+    "home.tools.offline.title": "Offline-Verfügbarkeit",
+  },
+  ru: {
+    "home.search.noResults": "Ничего не найдено",
+    "home.featured.discover.kicker": "Поиск аутлетов",
+    "home.featured.discover.title": "Открывайте аутлеты",
+    "home.featured.discover.subtitle":
+      "Просматривайте реальные направления по стране, городу и бренду.",
+    "home.featured.discover.cta": "Смотреть аутлеты",
+    "home.featured.trip.kicker": "Планирование",
+    "home.featured.trip.title": "Планируйте поездку",
+    "home.featured.trip.subtitle":
+      "Создайте шопинг-поездку и держите маршрут под контролем.",
+    "home.featured.trip.cta": "Создать поездку",
+    "home.featured.savings.kicker": "Гид по экономии",
+    "home.featured.savings.title": "Гид по экономии",
+    "home.featured.savings.subtitle":
+      "Используйте Tax Free и ценовые инструменты для оценки бюджета.",
+    "home.featured.savings.cta": "Открыть инструменты",
+    "home.featured.offline.kicker": "Офлайн-доступ",
+    "home.featured.offline.title": "Доступность гида офлайн",
+    "home.featured.offline.subtitle":
+      "Посмотрите, какие встроенные функции работают без интернета.",
+    "home.featured.offline.cta": "Проверить офлайн",
+    "home.tools.currency.title": "Конвертер валют",
+    "home.tools.currency.text": "Настройте валюту покупок.",
+    "home.tools.flights.title": "Авиасигналы",
+    "home.tools.flights.text": "Проверьте доступность авиасигналов.",
+    "home.tools.offline.title": "Офлайн-доступ",
+  },
+  ar: {
+    "home.search.noResults": "لا توجد نتائج",
+    "home.featured.discover.kicker": "اكتشاف الأوتلت",
+    "home.featured.discover.title": "اكتشف الأوتلت",
+    "home.featured.discover.subtitle":
+      "تصفح وجهات أوتلت حقيقية حسب البلد والمدينة والعلامة.",
+    "home.featured.discover.cta": "استكشف الأوتلت",
+    "home.featured.trip.kicker": "تخطيط الرحلة",
+    "home.featured.trip.title": "خطط لرحلة الأوتلت",
+    "home.featured.trip.subtitle": "أنشئ رحلة تسوق ونظّم خطة وجهتك.",
+    "home.featured.trip.cta": "أنشئ رحلة",
+    "home.featured.savings.kicker": "دليل التوفير",
+    "home.featured.savings.title": "دليل التوفير",
+    "home.featured.savings.subtitle":
+      "استخدم Tax Free وأدوات السعر لتقدير ميزانيتك.",
+    "home.featured.savings.cta": "عرض الأدوات",
+    "home.featured.offline.kicker": "التوفر دون إنترنت",
+    "home.featured.offline.title": "توفر الدليل دون إنترنت",
+    "home.featured.offline.subtitle":
+      "اعرف الميزات المضمنة التي تعمل دون إنترنت.",
+    "home.featured.offline.cta": "عرض التوفر",
+    "home.tools.currency.title": "محول العملات",
+    "home.tools.currency.text": "اضبط عملة التسوق.",
+    "home.tools.flights.title": "تنبيهات الرحلات",
+    "home.tools.flights.text": "تحقق من توفر تنبيهات الرحلات.",
+    "home.tools.offline.title": "التوفر دون إنترنت",
+  },
+  zh: {
+    "home.search.noResults": "未找到结果",
+    "home.featured.discover.kicker": "奥特莱斯探索",
+    "home.featured.discover.title": "探索奥特莱斯",
+    "home.featured.discover.subtitle":
+      "按国家、城市和品牌浏览真实奥特莱斯目的地。",
+    "home.featured.discover.cta": "探索奥特莱斯",
+    "home.featured.trip.kicker": "行程规划",
+    "home.featured.trip.title": "规划奥特莱斯行程",
+    "home.featured.trip.subtitle": "创建购物行程并整理目的地计划。",
+    "home.featured.trip.cta": "创建行程",
+    "home.featured.savings.kicker": "省钱指南",
+    "home.featured.savings.title": "省钱指南",
+    "home.featured.savings.subtitle": "使用 Tax Free 和价格工具估算购物预算。",
+    "home.featured.savings.cta": "查看工具",
+    "home.featured.offline.kicker": "离线可用性",
+    "home.featured.offline.title": "离线指南可用性",
+    "home.featured.offline.subtitle": "查看哪些内置指南功能无需网络即可使用。",
+    "home.featured.offline.cta": "查看离线可用性",
+    "home.tools.currency.title": "货币转换器",
+    "home.tools.currency.text": "设置你的购物货币。",
+    "home.tools.flights.title": "航班提醒",
+    "home.tools.flights.text": "检查航班提醒可用性。",
+    "home.tools.offline.title": "离线可用性",
+  },
 };
 
 for (const languageCode of supportedLanguageCodes) {
-  Object.assign(translations[languageCode], finalPhase1AHomePolish[languageCode] ?? {});
+  Object.assign(
+    translations[languageCode],
+    finalPhase1AHomePolish[languageCode] ?? {},
+  );
 }
 
 for (const languageCode of supportedLanguageCodes) {
   if (languageCode !== "en") {
-    Object.assign(translations[languageCode], finalPhase1BHomePatch[languageCode] ?? {});
+    Object.assign(
+      translations[languageCode],
+      finalPhase1BHomePatch[languageCode] ?? {},
+    );
   }
 }
 
 for (const languageCode of supportedLanguageCodes) {
-  Object.assign(translations[languageCode], finalPhase1AHomePolish[languageCode] ?? {});
+  Object.assign(
+    translations[languageCode],
+    finalPhase1AHomePolish[languageCode] ?? {},
+  );
 }
 
-const finalPhase1BHomeFinalPolish: Partial<Record<TranslationLanguage, Record<string, string>>> = {
+const finalPhase1BHomeFinalPolish: Partial<
+  Record<TranslationLanguage, Record<string, string>>
+> = {
   tr: {
     "home.heroLabel": "Premium alışveriş ve seyahat asistanı",
-    "home.header.userSubtitle": "Outlet seyahatlerini planla, tasarruf araçlarını kullan ve premium alışveriş rotalarını keşfet.",
-    "home.sections.featured.subtitle": "Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar.",
+    "home.header.userSubtitle":
+      "Outlet seyahatlerini planla, tasarruf araçlarını kullan ve premium alışveriş rotalarını keşfet.",
+    "home.sections.featured.subtitle":
+      "Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar.",
     "home.featured.offline.kicker": "ÇEVRİMDIŞI ERİŞİM",
     "home.featured.offline.title": "Çevrimdışı rehber",
-    "home.featured.offline.subtitle": "Hangi rehber özelliklerinin internetsiz çalıştığını gör.",
+    "home.featured.offline.subtitle":
+      "Hangi rehber özelliklerinin internetsiz çalıştığını gör.",
     "home.featured.offline.cta": "Çevrimdışı durumu gör",
     "home.tools.offline.title": "Çevrimdışı",
     "home.tools.offline.text": "İnternetsiz çalışan rehber özelliklerini gör.",
@@ -10434,5 +11589,8 @@ const finalPhase1BHomeFinalPolish: Partial<Record<TranslationLanguage, Record<st
 };
 
 for (const languageCode of supportedLanguageCodes) {
-  Object.assign(translations[languageCode], finalPhase1BHomeFinalPolish[languageCode] ?? {});
+  Object.assign(
+    translations[languageCode],
+    finalPhase1BHomeFinalPolish[languageCode] ?? {},
+  );
 }

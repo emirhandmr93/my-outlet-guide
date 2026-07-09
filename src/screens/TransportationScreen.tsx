@@ -1,6 +1,11 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  getFloatingTabClearance,
+  getScreenTopInset,
+  getScrollIndicatorBottomInset,
+} from "../utils/safeAreaLayout";
 import { useTranslation } from "../hooks/useTranslation";
 import { getTransportationLabel } from "../utils/transportationFormatter";
 import { transportationGuides } from "../constants/transportationGuides";
@@ -109,7 +114,7 @@ function RouteGuideCard({
   guide: any;
   isRecommended?: boolean;
 }) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const sortedSteps = (
     guide.steps?.length ? [...guide.steps] : getFallbackSteps(guide, t)
   ).sort((a, b) => a.order - b.order);
@@ -142,7 +147,11 @@ function RouteGuideCard({
       {sortedSteps.map((step) => (
         <View key={`${guide.guideId}-${step.order}`} style={styles.stepRow}>
           <Text style={styles.stepNumber}>{step.order}</Text>
-          <Text style={styles.stepText}>{step.description}</Text>
+          <Text style={styles.stepText}>
+            {language === "tr" && String(step.description || "").length > 90
+              ? t("transportation.safeInstruction")
+              : step.description}
+          </Text>
         </View>
       ))}
     </View>
@@ -179,9 +188,15 @@ export function TransportationScreen() {
       style={styles.container}
       contentContainerStyle={[
         styles.content,
-        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+        {
+          paddingTop: getScreenTopInset(insets.top),
+          paddingBottom: getFloatingTabClearance(insets.bottom),
+        },
       ]}
-      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+      scrollIndicatorInsets={{
+        top: getScreenTopInset(insets.top),
+        bottom: getScrollIndicatorBottomInset(insets.bottom),
+      }}
     >
       <Text style={styles.pageTitle}>{t("transportation.title")}</Text>
       <Text style={styles.pageSubtitle}>{t("transportation.subtitle")}</Text>

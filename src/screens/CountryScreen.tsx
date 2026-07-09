@@ -8,6 +8,11 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  getFloatingTabClearance,
+  getScreenTopInset,
+  getScrollIndicatorBottomInset,
+} from "../utils/safeAreaLayout";
 
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
@@ -140,9 +145,15 @@ export function CountryScreen() {
       style={styles.container}
       contentContainerStyle={[
         styles.content,
-        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+        {
+          paddingTop: getScreenTopInset(insets.top),
+          paddingBottom: getFloatingTabClearance(insets.bottom),
+        },
       ]}
-      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+      scrollIndicatorInsets={{
+        top: getScreenTopInset(insets.top),
+        bottom: getScrollIndicatorBottomInset(insets.bottom),
+      }}
     >
       <View style={styles.heroCard}>
         <Text style={styles.heroFlag}>{country.countryFlag}</Text>

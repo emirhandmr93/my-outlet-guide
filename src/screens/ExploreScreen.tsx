@@ -10,6 +10,11 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  getFloatingTabClearance,
+  getScreenTopInset,
+  getScrollIndicatorBottomInset,
+} from "../utils/safeAreaLayout";
 
 import { searchAll, searchOutlets } from "../services/searchService";
 import { cities } from "../constants/cities";
@@ -239,8 +244,7 @@ function formatCountryOutletText(
   const count = outlets.filter(
     (outlet) => outlet?.countryId === countryId,
   ).length;
-  if (count <= 1) return t("explore.countryCtaSingular");
-  return t("explore.countryCtaPlural");
+  return `${count} ${t(count === 1 ? "explore.countryOutletSingular" : "explore.countryOutletPlural")}`;
 }
 
 export function ExploreScreen() {
@@ -463,9 +467,15 @@ export function ExploreScreen() {
       style={styles.container}
       contentContainerStyle={[
         styles.content,
-        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+        {
+          paddingTop: getScreenTopInset(insets.top),
+          paddingBottom: getFloatingTabClearance(insets.bottom),
+        },
       ]}
-      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+      scrollIndicatorInsets={{
+        top: getScreenTopInset(insets.top),
+        bottom: getScrollIndicatorBottomInset(insets.bottom),
+      }}
     >
       <View style={styles.heroCard}>
         <Text style={styles.heroKicker}>{t("explore.heroKicker")}</Text>
