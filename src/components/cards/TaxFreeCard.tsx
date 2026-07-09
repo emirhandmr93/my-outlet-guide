@@ -16,7 +16,8 @@ export function TaxFreeCard({
   minimumSpend,
   officeInfo,
 }: TaxFreeCardProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const shouldShowOfficeInfo = language !== "tr" || officeInfo.length <= 90;
 
   return (
     <Card>
@@ -32,7 +33,9 @@ export function TaxFreeCard({
         {t("taxCalc.minimumSpend")}: {minimumSpend}
       </Text>
 
-      <Text style={styles.text}>{officeInfo}</Text>
+      {shouldShowOfficeInfo ? (
+        <Text style={styles.text}>{officeInfo}</Text>
+      ) : null}
     </Card>
   );
 }

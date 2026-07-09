@@ -29,9 +29,10 @@ export function normalizeSearchText(value: string) {
 export function getLocalizedSearchAliases(value: string): string[] {
   const normalizedValue = normalizeSearchText(value);
   const matches = localizedSearchAliasEntries
-    .filter(([canonical, aliases]) =>
-      normalizeSearchText(canonical) === normalizedValue ||
-      aliases.some((alias) => normalizeSearchText(alias) === normalizedValue),
+    .filter(
+      ([canonical, aliases]) =>
+        normalizeSearchText(canonical) === normalizedValue ||
+        aliases.some((alias) => normalizeSearchText(alias) === normalizedValue),
     )
     .flatMap(([canonical, aliases]) => [canonical, ...aliases]);
 
@@ -40,4 +41,16 @@ export function getLocalizedSearchAliases(value: string): string[] {
 
 export function expandSearchValues(value: string): string[] {
   return Array.from(new Set([value, ...getLocalizedSearchAliases(value)]));
+}
+
+export function getStrongLocalizedCountryMatch(value: string): string | null {
+  const normalizedValue = normalizeSearchText(value);
+
+  const match = localizedSearchAliasEntries.find(
+    ([canonical, aliases]) =>
+      normalizeSearchText(canonical) === normalizedValue ||
+      aliases.some((alias) => normalizeSearchText(alias) === normalizedValue),
+  );
+
+  return match?.[0] ?? null;
 }

@@ -13,6 +13,11 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  getFloatingTabClearance,
+  getScreenTopInset,
+  getScrollIndicatorBottomInset,
+} from "../utils/safeAreaLayout";
 
 import { BrandsCard } from "../components/cards/BrandsCard";
 import { MapsCard } from "../components/cards/MapsCard";
@@ -105,6 +110,7 @@ export function OutletDetailScreen() {
   );
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [brandSearch, setBrandSearch] = useState("");
+  const [reviewSort, setReviewSort] = useState<"helpful" | "recent">("helpful");
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [weather, setWeather] = useState<CurrentWeather | null>(null);
   const [weatherError, setWeatherError] = useState(false);
@@ -150,9 +156,16 @@ export function OutletDetailScreen() {
   );
   const averageRating = getAverageReviewRating(outletReviews);
 
-  const sortedReviews = [...outletReviews].sort((a, b) =>
-    b.createdAt.localeCompare(a.createdAt),
-  );
+  const sortedReviews = [...outletReviews].sort((a, b) => {
+    if (reviewSort === "helpful") {
+      return (
+        (b.helpfulCount || 0) - (a.helpfulCount || 0) ||
+        b.createdAt.localeCompare(a.createdAt)
+      );
+    }
+
+    return b.createdAt.localeCompare(a.createdAt);
+  });
   const showReviewActionError = (error: unknown) => {
     console.log("Review action error", error);
     Alert.alert(
@@ -221,9 +234,15 @@ export function OutletDetailScreen() {
       style={styles.container}
       contentContainerStyle={[
         styles.content,
-        { paddingTop: insets.top + 16, paddingBottom: insets.bottom + 132 },
+        {
+          paddingTop: getScreenTopInset(insets.top),
+          paddingBottom: getFloatingTabClearance(insets.bottom),
+        },
       ]}
-      scrollIndicatorInsets={{ top: insets.top, bottom: insets.bottom + 96 }}
+      scrollIndicatorInsets={{
+        top: getScreenTopInset(insets.top),
+        bottom: getScrollIndicatorBottomInset(insets.bottom),
+      }}
     >
       <OutletHero
         name={outlet.name}
@@ -502,39 +521,69 @@ export function OutletDetailScreen() {
           setSectionPosition("reviews", event.nativeEvent.layout.y)
         }
       >
-        <Text style={styles.sectionTitle}>{t("outlet.reviews")}</Text>
+        <View style={styles.reviewHeaderRow}>
+          <View style={styles.reviewHeaderText}>
+            <Text style={styles.sectionTitle}>{t("outlet.reviews")}</Text>
+            <Text style={styles.reviewSubtitle}>
+              {t("outlet.reviewSharePrompt")}
+            </Text>
+          </View>
+          <TouchableOpacity
+            activeOpacity={0.86}
+            style={styles.writeReviewButton}
+            onPress={() => {
+              if (requireAuth({ isLoggedIn, navigation })) {
+                navigation.navigate("WriteReview", {
+                  outletId: outlet.outletId,
+                });
+              }
+            }}
+          >
+            <Text style={styles.writeReviewButtonText}>
+              {t("writeReview.title")}
+            </Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity
-          activeOpacity={0.86}
-          style={styles.writeReviewButton}
-          onPress={() => {
-            if (requireAuth({ isLoggedIn, navigation })) {
-              navigation.navigate("WriteReview", { outletId: outlet.outletId });
-            }
-          }}
-        >
-          <Text style={styles.writeReviewButtonText}>
-            {t("writeReview.title")}
-          </Text>
-        </TouchableOpacity>
+        <ReviewStatsCard
+          summaryText={`⭐ ${averageRating || "0.0"} (${outletReviews.length} ${t(
+            "outlet.reviewLabel",
+          )})`}
+          transportationTitle={t("outlet.transportationRating")}
+          transportationValue={averageRating || "0.0"}
+          brandsTitle={t("outlet.brandsRating")}
+          brandsValue={averageRating || "0.0"}
+          restaurantsTitle={t("outlet.restaurantsRating")}
+          restaurantsValue={averageRating || "0.0"}
+          servicesTitle={t("outlet.servicesRating")}
+          servicesValue={averageRating || "0.0"}
+        />
 
-        {outletReviews.length > 0 && averageRating ? (
-          <>
-            <ReviewStatsCard
-              summaryText={`⭐ ${averageRating} (${outletReviews.length} ${t(
-                "outlet.reviewLabel",
-              )})`}
-              transportationTitle={t("outlet.transportationRating")}
-              transportationValue={averageRating ?? "-"}
-              brandsTitle={t("outlet.brandsRating")}
-              brandsValue={averageRating ?? "-"}
-              restaurantsTitle={t("outlet.restaurantsRating")}
-              restaurantsValue={averageRating ?? "-"}
-              servicesTitle={t("outlet.servicesRating")}
-              servicesValue={averageRating ?? "-"}
-            />
-          </>
-        ) : null}
+        <View style={styles.reviewSortRow}>
+          {[
+            { key: "helpful" as const, label: t("outlet.reviewSortHelpful") },
+            { key: "recent" as const, label: t("outlet.reviewSortRecent") },
+          ].map((item) => (
+            <TouchableOpacity
+              key={item.key}
+              activeOpacity={0.84}
+              style={[
+                styles.reviewSortPill,
+                reviewSort === item.key && styles.reviewSortPillActive,
+              ]}
+              onPress={() => setReviewSort(item.key)}
+            >
+              <Text
+                style={[
+                  styles.reviewSortText,
+                  reviewSort === item.key && styles.reviewSortTextActive,
+                ]}
+              >
+                {item.label}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
 
         {outletReviews.length > 0 ? (
           sortedReviews.map((review) => (
@@ -787,6 +836,55 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     color: colors.textPrimary,
     marginBottom: spacing.md,
+  },
+
+  reviewHeaderRow: {
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
+    gap: spacing.md,
+    marginBottom: spacing.md,
+  },
+
+  reviewHeaderText: {
+    flex: 1,
+  },
+
+  reviewSubtitle: {
+    color: colors.textSecondary,
+    fontSize: typography.body,
+    fontWeight: typography.weightBold,
+    lineHeight: 21,
+  },
+
+  reviewSortRow: {
+    flexDirection: "row",
+    gap: spacing.sm,
+    marginBottom: spacing.md,
+  },
+
+  reviewSortPill: {
+    borderRadius: radius.pill,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    backgroundColor: colors.surfaceSoft,
+  },
+
+  reviewSortPillActive: {
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
+  },
+
+  reviewSortText: {
+    color: colors.textSecondary,
+    fontSize: typography.small,
+    fontWeight: typography.weightBlack,
+  },
+
+  reviewSortTextActive: {
+    color: colors.textInverse,
   },
 
   emptyText: {
