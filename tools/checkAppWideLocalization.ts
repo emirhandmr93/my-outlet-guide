@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import { resolveTranslation } from "../src/hooks/useTranslation";
 import {
   supportedLanguageCodes,
   translations,
@@ -86,7 +87,9 @@ const requiredKeys = [
   "auth.continueEmail",
   "auth.hideEmail",
   "auth.emailLabel",
+  "auth.emailPlaceholder",
   "auth.passwordLabel",
+  "auth.passwordPlaceholder",
   "auth.signIn",
   "auth.createAccount",
   "auth.pleaseWait",
@@ -114,6 +117,8 @@ const expectedTurkishTabs: Record<string, string> = {
 };
 
 const debugPrefix = /(?:^|[\s"'`])(?:TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:)/;
+const dirtyResolvedValuePattern = /(?:çeviri:|translation:|auth\.|undefined|missing)/i;
+const visibleTranslationDebugTextPattern = /(?:Türkçe çeviri|çeviri:|translation:|English translation:)/i;
 const sourceFiles = [
   "src/screens/HomeScreen.tsx",
   "src/components/HomeHeader.tsx",
@@ -125,6 +130,11 @@ const sourceFiles = [
   "src/screens/FavoritesScreen.tsx",
   "src/screens/ProfileScreen.tsx",
   "src/screens/LoginScreen.tsx",
+];
+const authRenderPathFiles = [
+  "src/screens/LoginScreen.tsx",
+  "src/screens/ProfileScreen.tsx",
+  "src/navigation/AppNavigator.tsx",
 ];
 
 let hasError = false;
@@ -143,6 +153,31 @@ for (const languageCode of supportedLanguageCodes) {
       );
     if (value && debugPrefix.test(value))
       fail(`${languageCode}: debug locale prefix in ${key}`);
+  }
+}
+
+const runtimeAuthKeys = [
+  "auth.title",
+  "auth.subtitle",
+  "auth.continueEmail",
+  "auth.hideEmail",
+  "auth.emailLabel",
+  "auth.emailPlaceholder",
+  "auth.passwordLabel",
+  "auth.passwordPlaceholder",
+  "auth.signIn",
+  "auth.createAccount",
+  "auth.termsText",
+] as const;
+
+for (const languageCode of supportedLanguageCodes) {
+  for (const key of runtimeAuthKeys) {
+    const resolvedValue = resolveTranslation(languageCode, key);
+    if (!resolvedValue.trim() || dirtyResolvedValuePattern.test(resolvedValue)) {
+      fail(
+        `${languageCode}: runtime auth resolver returned dirty value for ${key}: ${resolvedValue}`,
+      );
+    }
   }
 }
 
@@ -214,6 +249,8 @@ for (const file of sourceFiles) {
   const source = readFileSync(join(process.cwd(), file), "utf8");
   if (debugPrefix.test(source))
     fail(`${file}: visible debug locale prefix found`);
+  if (visibleTranslationDebugTextPattern.test(source))
+    fail(`${file}: visible translation fallback/debug text found`);
   if (visibleKeyLiteralPattern.test(source))
     fail(`${file}: visible translation key literal rendered in Text`);
   if (fakePattern.test(source))
@@ -269,6 +306,14 @@ for (const languageCode of ["tr", "ar", "ru", "zh"] as const) {
         `${languageCode}: auth term ${key} is missing or still English/key literal`,
       );
     }
+  }
+}
+
+
+for (const file of authRenderPathFiles) {
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  if (visibleTranslationDebugTextPattern.test(source)) {
+    fail(`${file}: auth/profile render path contains visible fallback/debug translation text`);
   }
 }
 
