@@ -6,7 +6,6 @@ import { Trip, useTrips } from "../contexts/TripsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getTripStatusLabel } from "../utils/getTripStatusLabel";
-import { navigateToTripOutletSelection } from "../navigation/tripOutletSelection";
 import type { RootStackParamList } from "../navigation/types";
 import { requireAuth } from "../utils/requireAuth";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
@@ -16,12 +15,11 @@ function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => v
     <TouchableOpacity style={styles.tripCard} activeOpacity={0.86} onPress={onPress}>
       <View style={styles.cardTopRow}>
         <Text style={styles.statusPill}>{getTripStatusLabel(trip.status, t)}</Text>
-        <Text style={styles.dateText}>{trip.visitDate || t("trips.dateNotSet")}</Text>
+        <Text style={styles.dateText}>{trip.startDate && trip.endDate ? `${trip.startDate} – ${trip.endDate}` : t("trips.dateNotSet")}</Text>
       </View>
 
       <Text style={styles.tripTitle}>{trip.tripName || t("trips.defaultTripName")}</Text>
-      <Text style={styles.tripCities}>{trip.outletName}</Text>
-      <Text style={styles.tripCities}>{trip.destination || t("trips.destinationNotSet")}</Text>
+      <Text style={styles.tripCities}>{trip.segments?.[0]?.outletName || trip.segments?.[0]?.cityName || trip.destination || t("trips.destinationNotSet")}</Text>
 
       <View style={styles.tripMetaRow}>
         <View style={styles.metaBox}>
@@ -62,7 +60,7 @@ export function MyTripsScreen() {
   const insets = useSafeAreaInsets();
 
   const activeCount = trips.filter((trip) => trip.status === "active").length;
-  const datedCount = trips.filter((trip) => Boolean(trip.visitDate)).length;
+  const datedCount = trips.filter((trip) => Boolean(trip.startDate && trip.endDate)).length;
 
   async function handleDeleteTrip(tripId: string) {
     try {
@@ -111,11 +109,11 @@ export function MyTripsScreen() {
         activeOpacity={0.86}
         onPress={() => {
           if (requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") })) {
-            navigateToTripOutletSelection(navigation);
+            navigation.navigate("CreateTrip");
           }
         }}
       >
-        <Text style={styles.primaryButtonText}>{t(isLoggedIn ? "trips.createFromOutletCta" : "auth.signIn")}</Text>
+        <Text style={styles.primaryButtonText}>{t(isLoggedIn ? "trips.createTripCta" : "auth.signIn")}</Text>
       </TouchableOpacity>
 
       {!isLoggedIn ? (

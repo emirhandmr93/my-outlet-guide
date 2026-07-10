@@ -3,11 +3,11 @@ export function getTripStatusLabel(status: string, t: (key: string) => string) {
     return t("status.active");
   }
 
-  if (status === "Upcoming") {
+  if (status === "upcoming" || status === "Upcoming") {
     return t("status.upcoming");
   }
 
-  if (status === "Completed") {
+  if (status === "past" || status === "Completed") {
     return t("status.completed");
   }
 

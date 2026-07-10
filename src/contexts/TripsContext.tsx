@@ -3,15 +3,47 @@ import { createContext, ReactNode, useCallback, useContext, useEffect, useState 
 import { createUserTrip, deleteUserTrip, getUserTrips } from "../services/tripsService";
 import { useUser } from "./UserContext";
 
-export type TripStatus = "active";
+export type TripStatus = "upcoming" | "active" | "past";
+
+export type TripSegment = {
+  id: string;
+  cityId?: string;
+  cityName?: string;
+  countryName?: string;
+  countryCode?: string;
+  outletId?: string;
+  outletName?: string;
+  startDate: string;
+  endDate: string;
+  notes?: string;
+};
+
+export type TripFlightDetails = {
+  airline?: string;
+  flightNumber?: string;
+  departureAirport?: string;
+  returnAirport?: string;
+  outboundDateTime?: string;
+  returnDateTime?: string;
+};
+
+export type TripReminderPlanItem = {
+  id: string;
+  type: "tripStartReminder" | "segmentStartReminder" | "taxFreeReminder" | "flightReminder" | "dealEventReminder";
+  date: string;
+  titleKey: string;
+  messageKey: string;
+  messageParams?: Record<string, string>;
+  source: "trip" | "segment" | "flight" | "dealEvent";
+};
 
 export type Trip = {
   id: string;
   tripId: string;
   userId: string;
   tripName: string;
-  outletId: string;
-  outletName: string;
+  outletId?: string;
+  outletName?: string;
   destination?: string;
   country?: string;
   city?: string;
@@ -21,20 +53,27 @@ export type Trip = {
   createdAt: string;
   updatedAt: string;
   status: TripStatus;
-  startDate?: string;
-  endDate?: string;
+  startDate: string;
+  endDate: string;
+  segments: TripSegment[];
+  flightDetails?: TripFlightDetails;
+  reminderPlan: TripReminderPlanItem[];
 };
 
 export type TripInput = {
   tripName: string;
-  outletId: string;
-  outletName: string;
+  startDate: string;
+  endDate: string;
+  outletId?: string;
+  outletName?: string;
   destination?: string;
   country?: string;
   city?: string;
   visitDate?: string;
   travelerCount?: number;
   notes?: string;
+  segments?: TripSegment[];
+  flightDetails?: TripFlightDetails;
 };
 
 type TripsError = "permission-denied" | "load-failed" | null;
@@ -103,11 +142,7 @@ export function TripsProvider({ children }: { children: ReactNode }) {
     await refreshTrips();
   }
 
-  return (
-    <TripsContext.Provider value={{ trips, loading, tripsError, addTrip, deleteTrip, refreshTrips }}>
-      {children}
-    </TripsContext.Provider>
-  );
+  return <TripsContext.Provider value={{ trips, loading, tripsError, addTrip, deleteTrip, refreshTrips }}>{children}</TripsContext.Provider>;
 }
 
 export function useTrips() {
