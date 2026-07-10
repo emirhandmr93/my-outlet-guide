@@ -1060,8 +1060,7 @@ const enTranslations = {
 
   "auth.kicker": "MY OUTLET GUIDE",
   "auth.title": "Sign in to your account",
-  "auth.subtitle":
-    "Sync your favorites, trips, and preferences.",
+  "auth.subtitle": "Sync your favorites, trips, and preferences.",
   "auth.continueApple": "\uf8ff Continue with Apple",
   "auth.hideEmail": "Hide email sign in",
   "auth.continueEmail": "Continue with email",
@@ -1072,6 +1071,16 @@ const enTranslations = {
   "auth.pleaseWait": "Please wait...",
   "auth.signIn": "Sign in",
   "auth.createAccount": "Create account",
+  "auth.forgotPassword": "Forgot password?",
+  "auth.resetPassword": "Reset password",
+  "auth.resetPasswordTitle": "Reset your password",
+  "auth.resetPasswordSubtitle": "Enter your email",
+  "auth.resetPasswordEmailRequired": "Enter your email",
+  "auth.resetPasswordInvalidEmail": "Enter a valid email address",
+  "auth.resetPasswordSending": "Sending password reset link",
+  "auth.resetPasswordSent":
+    "If the email is registered, a password reset link has been sent.",
+  "auth.resetPasswordFailed": "Password reset link could not be sent.",
   "auth.termsText":
     "By continuing, you agree to the Terms of Use and Privacy Policy.",
   "auth.missingTitle": "Missing information",
@@ -2519,13 +2528,26 @@ export const translations: Record<
     "auth.pleaseWait": "Lütfen bekle...",
     "auth.signIn": "Giriş Yap",
     "auth.createAccount": "Hesap Oluştur",
-    "auth.termsText": "Devam ederek kullanım koşullarını ve gizlilik politikasını kabul etmiş olursun.",
+    "auth.forgotPassword": "Şifremi unuttum?",
+    "auth.resetPassword": "Şifreyi sıfırla",
+    "auth.resetPasswordTitle": "Şifreni sıfırla",
+    "auth.resetPasswordSubtitle": "E-postanı gir",
+    "auth.resetPasswordEmailRequired": "E-postanı gir",
+    "auth.resetPasswordInvalidEmail": "Geçerli bir e-posta adresi gir",
+    "auth.resetPasswordSending": "Şifre sıfırlama bağlantısı gönderiliyor",
+    "auth.resetPasswordSent":
+      "E-posta kayıtlıysa şifre sıfırlama bağlantısı gönderildi.",
+    "auth.resetPasswordFailed": "Şifre sıfırlama bağlantısı gönderilemedi.",
+    "auth.termsText":
+      "Devam ederek kullanım koşullarını ve gizlilik politikasını kabul etmiş olursun.",
     "auth.missingTitle": "Eksik bilgi",
     "auth.missingMessage": "Lütfen e-posta adresini ve şifreni gir.",
     "auth.signInFailedTitle": "Giriş başarısız",
-    "auth.signInFailedMessage": "Lütfen e-posta adresini ve şifreni kontrol et.",
+    "auth.signInFailedMessage":
+      "Lütfen e-posta adresini ve şifreni kontrol et.",
     "auth.checkDetailsTitle": "Bilgilerini kontrol et",
-    "auth.checkDetailsMessage": "Geçerli bir e-posta ve en az 6 karakterli şifre kullan.",
+    "auth.checkDetailsMessage":
+      "Geçerli bir e-posta ve en az 6 karakterli şifre kullan.",
     "auth.createFailedTitle": "Hesap oluşturulamadı",
     "auth.createFailedMessage": "Lütfen başka bir e-posta ile tekrar dene.",
     "auth.appleTitle": "Apple ile giriş",
@@ -2562,54 +2584,73 @@ export const translations: Record<
     "privacy.title": "Privacy Policy",
     "privacy.subtitle": "How My Outlet Guide handles your data.",
     "privacy.collectTitle": "Information We Collect",
-    "privacy.collectText": "We may collect account information, saved trips, favorites, notification preferences, flight deal preferences and reviews you submit.",
+    "privacy.collectText":
+      "We may collect account information, saved trips, favorites, notification preferences, flight deal preferences and reviews you submit.",
     "privacy.useTitle": "How We Use Information",
-    "privacy.useText": "We use your information to sync your account, show saved trips and favorites, personalize notifications and improve the app experience.",
+    "privacy.useText":
+      "We use your information to sync your account, show saved trips and favorites, personalize notifications and improve the app experience.",
     "privacy.reviewsTitle": "Reviews",
-    "privacy.reviewsText": "Reviews you publish may be visible to other users together with your display name.",
+    "privacy.reviewsText":
+      "Reviews you publish may be visible to other users together with your display name.",
     "privacy.securityTitle": "Data Security",
-    "privacy.securityText": "We use Firebase services and security rules to help protect user data.",
+    "privacy.securityText":
+      "We use Firebase services and security rules to help protect user data.",
     "privacy.contactTitle": "Contact",
     "privacy.contactText":
       "Gizlilik soruları için iletişim: info@myoutletguide.com",
     "terms.title": "Terms & Conditions",
     "terms.subtitle": "Rules for using My Outlet Guide.",
     "terms.useTitle": "Use of the App",
-    "terms.useText": "My Outlet Guide provides outlet shopping, travel, tax free and flight deal information for planning purposes.",
+    "terms.useText":
+      "My Outlet Guide provides outlet shopping, travel, tax free and flight deal information for planning purposes.",
     "terms.accuracyTitle": "Information Accuracy",
-    "terms.accuracyText": "Outlet details, prices, promotions, transport information and flight deal data may change. Always confirm final details with official providers.",
+    "terms.accuracyText":
+      "Outlet details, prices, promotions, transport information and flight deal data may change. Always confirm final details with official providers.",
     "terms.reviewsTitle": "User Reviews",
-    "terms.reviewsText": "Users are responsible for the reviews and comments they submit. We may remove inappropriate or misleading content.",
+    "terms.reviewsText":
+      "Users are responsible for the reviews and comments they submit. We may remove inappropriate or misleading content.",
     "terms.thirdPartyTitle": "Third-Party Services",
-    "terms.thirdPartyText": "The app may link to maps, airline, travel or outlet websites. We are not responsible for third-party services.",
+    "terms.thirdPartyText":
+      "The app may link to maps, airline, travel or outlet websites. We are not responsible for third-party services.",
     "terms.accountTitle": "Account",
-    "terms.accountText": "You are responsible for keeping your account secure and for activity under your account.",
+    "terms.accountText":
+      "You are responsible for keeping your account secure and for activity under your account.",
     "contact.title": "Contact Us",
     "contact.subtitle": "Need help or want to share feedback?",
     "contact.emailTitle": "Email Support",
-    "contact.emailText": "Contact our support team for questions, feedback or technical issues.",
+    "contact.emailText":
+      "Contact our support team for questions, feedback or technical issues.",
     "contact.instagramTitle": "Instagram",
-    "contact.instagramText": "Follow us for outlet news, shopping tips and updates.",
+    "contact.instagramText":
+      "Follow us for outlet news, shopping tips and updates.",
     "contact.websiteTitle": "Website",
     "contact.websiteText": "Visit our official website.",
     "contact.featureTitle": "Suggest a Feature",
-    "contact.featureText": "Have an idea that could improve My Outlet Guide? We'd love to hear from you.",
+    "contact.featureText":
+      "Have an idea that could improve My Outlet Guide? We'd love to hear from you.",
     "contact.problemTitle": "Report a Problem",
-    "contact.problemText": "Found incorrect information or a bug? Please contact us and include as much detail as possible.",
+    "contact.problemText":
+      "Found incorrect information or a bug? Please contact us and include as much detail as possible.",
     "help.title": "Help & FAQ",
     "help.subtitle": "Frequently asked questions.",
     "help.flightQuestion": "How do Flight Deal notifications work?",
-    "help.flightAnswer": "Flight Deal alerts are based on the average fare over the last 90 days. You can choose notifications when fares are far below average.",
+    "help.flightAnswer":
+      "Flight Deal alerts are based on the average fare over the last 90 days. You can choose notifications when fares are far below average.",
     "help.taxQuestion": "How does Tax Free information work?",
-    "help.taxAnswer": "Tax Free information is a guide and may vary by country rules and purchase conditions.",
+    "help.taxAnswer":
+      "Tax Free information is a guide and may vary by country rules and purchase conditions.",
     "help.offlineQuestion": "What works offline?",
-    "help.offlineAnswer": "Bundled outlet guide data, local outlet photos, brands, restaurants, transportation notes and supported Tax Free rules work offline. Reviews, favorites, trips, notifications and live currency rates require internet.",
+    "help.offlineAnswer":
+      "Bundled outlet guide data, local outlet photos, brands, restaurants, transportation notes and supported Tax Free rules work offline. Reviews, favorites, trips, notifications and live currency rates require internet.",
     "help.reviewQuestion": "Can I edit my review?",
-    "help.reviewAnswer": "Yes. You can update your review and rating after submitting it. Previous comments may be shown for transparency.",
+    "help.reviewAnswer":
+      "Yes. You can update your review and rating after submitting it. Previous comments may be shown for transparency.",
     "help.accountQuestion": "Do I need an account?",
-    "help.accountAnswer": "No. Most information is available without an account. An account is required for favorites, trips, reviews and personalized notifications.",
+    "help.accountAnswer":
+      "No. Most information is available without an account. An account is required for favorites, trips, reviews and personalized notifications.",
     "help.deleteQuestion": "How do I delete my account?",
-    "help.deleteAnswer": "You can request account deletion from the Profile section.",
+    "help.deleteAnswer":
+      "You can request account deletion from the Profile section.",
 
     "common.selected": "Seçili",
     "common.add": "Ekle",
@@ -3834,18 +3875,17 @@ export const translations: Record<
     "auth.pleaseWait": "Espera, por favor...",
     "auth.signIn": "Iniciar sesión",
     "auth.createAccount": "Crear cuenta",
-    "auth.termsText": "Al continuar, aceptas los Términos de uso y la Política de privacidad.",
+    "auth.termsText":
+      "Al continuar, aceptas los Términos de uso y la Política de privacidad.",
     "auth.missingTitle": "Información faltante",
     "auth.missingMessage": "Introduce tu email y contraseña.",
     "auth.signInFailedTitle": "No se pudo iniciar sesión",
-    "auth.signInFailedMessage":
-      "Comprueba tu email y contraseña.",
+    "auth.signInFailedMessage": "Comprueba tu email y contraseña.",
     "auth.checkDetailsTitle": "Revisa tus datos",
     "auth.checkDetailsMessage":
       "Usa un email válido y una contraseña de al menos 6 caracteres.",
     "auth.createFailedTitle": "No se pudo crear la cuenta",
-    "auth.createFailedMessage":
-      "Inténtalo con otro email.",
+    "auth.createFailedMessage": "Inténtalo con otro email.",
     "auth.appleTitle": "Inicio de sesión con Apple",
     "auth.appleMessage": "Traducción al español: auth.appleMessage",
     "deleteAccount.title": "Eliminar cuenta",
@@ -5152,18 +5192,17 @@ export const translations: Record<
     "auth.pleaseWait": "Veuillez patienter...",
     "auth.signIn": "Se connecter",
     "auth.createAccount": "Créer un compte",
-    "auth.termsText": "En continuant, vous acceptez les Conditions d’utilisation et la Politique de confidentialité.",
+    "auth.termsText":
+      "En continuant, vous acceptez les Conditions d’utilisation et la Politique de confidentialité.",
     "auth.missingTitle": "Informations manquantes",
     "auth.missingMessage": "Saisissez votre email et votre mot de passe.",
     "auth.signInFailedTitle": "Échec de la connexion",
-    "auth.signInFailedMessage":
-      "Vérifiez votre email et votre mot de passe.",
+    "auth.signInFailedMessage": "Vérifiez votre email et votre mot de passe.",
     "auth.checkDetailsTitle": "Vérifiez vos informations",
     "auth.checkDetailsMessage":
       "Utilisez un email valide et un mot de passe d’au moins 6 caractères.",
     "auth.createFailedTitle": "Impossible de créer le compte",
-    "auth.createFailedMessage":
-      "Réessayez avec un autre email.",
+    "auth.createFailedMessage": "Réessayez avec un autre email.",
     "auth.appleTitle": "Connexion avec Apple",
     "auth.appleMessage": "Traduction française : auth.appleMessage",
     "deleteAccount.title": "Supprimer le compte",
@@ -6423,9 +6462,11 @@ export const translations: Record<
     "auth.pleaseWait": "Bitte warten...",
     "auth.signIn": "Anmelden",
     "auth.createAccount": "Konto erstellen",
-    "auth.termsText": "Wenn du fortfährst, akzeptierst du die Nutzungsbedingungen und die Datenschutzerklärung.",
+    "auth.termsText":
+      "Wenn du fortfährst, akzeptierst du die Nutzungsbedingungen und die Datenschutzerklärung.",
     "auth.missingTitle": "Fehlende Informationen",
-    "auth.missingMessage": "Bitte gib deine E-Mail-Adresse und dein Passwort ein.",
+    "auth.missingMessage":
+      "Bitte gib deine E-Mail-Adresse und dein Passwort ein.",
     "auth.signInFailedTitle": "Anmeldung fehlgeschlagen",
     "auth.signInFailedMessage":
       "Bitte überprüfe deine E-Mail-Adresse und dein Passwort.",
@@ -7661,17 +7702,21 @@ export const translations: Record<
     "auth.pleaseWait": "يرجى الانتظار...",
     "auth.signIn": "تسجيل الدخول",
     "auth.createAccount": "إنشاء حساب",
-    "auth.termsText": "بالمتابعة، فإنك توافق على شروط الاستخدام وسياسة الخصوصية.",
+    "auth.termsText":
+      "بالمتابعة، فإنك توافق على شروط الاستخدام وسياسة الخصوصية.",
     "auth.missingTitle": "معلومات ناقصة",
     "auth.missingMessage": "يرجى إدخال بريدك الإلكتروني وكلمة المرور.",
     "auth.signInFailedTitle": "فشل تسجيل الدخول",
     "auth.signInFailedMessage": "يرجى التحقق من بريدك الإلكتروني وكلمة المرور.",
     "auth.checkDetailsTitle": "تحقق من بياناتك",
-    "auth.checkDetailsMessage": "استخدم بريداً إلكترونياً صالحاً وكلمة مرور من 6 أحرف على الأقل.",
+    "auth.checkDetailsMessage":
+      "استخدم بريداً إلكترونياً صالحاً وكلمة مرور من 6 أحرف على الأقل.",
     "auth.createFailedTitle": "تعذر إنشاء الحساب",
-    "auth.createFailedMessage": "يرجى المحاولة مرة أخرى باستخدام بريد إلكتروني آخر.",
+    "auth.createFailedMessage":
+      "يرجى المحاولة مرة أخرى باستخدام بريد إلكتروني آخر.",
     "auth.appleTitle": "تسجيل الدخول باستخدام Apple",
-    "auth.appleMessage": "تسجيل الدخول باستخدام Apple غير مفعّل في هذا الإصدار.",
+    "auth.appleMessage":
+      "تسجيل الدخول باستخدام Apple غير مفعّل في هذا الإصدار.",
     "deleteAccount.title": "حذف الحساب",
     "deleteAccount.subtitle": "deleteAccount.subtitle",
     "deleteAccount.whatDeleted": "deleteAccount.whatDeleted",
@@ -8945,13 +8990,15 @@ export const translations: Record<
     "auth.pleaseWait": "Пожалуйста, подождите...",
     "auth.signIn": "Войти",
     "auth.createAccount": "Создать аккаунт",
-    "auth.termsText": "Продолжая, вы соглашаетесь с Условиями использования и Политикой конфиденциальности.",
+    "auth.termsText":
+      "Продолжая, вы соглашаетесь с Условиями использования и Политикой конфиденциальности.",
     "auth.missingTitle": "Не хватает данных",
     "auth.missingMessage": "Введите email и пароль.",
     "auth.signInFailedTitle": "Не удалось войти",
     "auth.signInFailedMessage": "Проверьте email и пароль.",
     "auth.checkDetailsTitle": "Проверьте данные",
-    "auth.checkDetailsMessage": "Используйте действительный email и пароль не короче 6 символов.",
+    "auth.checkDetailsMessage":
+      "Используйте действительный email и пароль не короче 6 символов.",
     "auth.createFailedTitle": "Не удалось создать аккаунт",
     "auth.createFailedMessage": "Попробуйте другой email.",
     "auth.appleTitle": "Вход через Apple",
@@ -12614,6 +12661,18 @@ for (const languageCode of supportedLanguageCodes) {
 const phase1BAppWideLocalizationTranslations: Partial<
   Record<TranslationLanguage, Record<string, string>>
 > = {
+  en: {
+    "auth.forgotPassword": "Forgot password?",
+    "auth.resetPassword": "Reset password",
+    "auth.resetPasswordTitle": "Reset your password",
+    "auth.resetPasswordSubtitle": "Enter your email",
+    "auth.resetPasswordEmailRequired": "Enter your email",
+    "auth.resetPasswordInvalidEmail": "Enter a valid email address",
+    "auth.resetPasswordSending": "Sending password reset link",
+    "auth.resetPasswordSent":
+      "If the email is registered, a password reset link has been sent.",
+    "auth.resetPasswordFailed": "Password reset link could not be sent.",
+  },
   tr: {
     "auth.missingTitle": "Eksik bilgi",
     "auth.missingMessage": "Lütfen e-posta adresinizi ve şifrenizi girin.",
@@ -12648,6 +12707,57 @@ const phase1BAppWideLocalizationTranslations: Partial<
     "notifications.signInRequiredTitle": "Giriş gerekli",
     "notifications.signInRequiredBody":
       "Hesabın için bulut bildirim tercihlerini kaydetmek üzere giriş yap.",
+    "auth.forgotPassword": "Şifremi unuttum?",
+    "auth.resetPassword": "Şifreyi sıfırla",
+    "auth.resetPasswordTitle": "Şifreni sıfırla",
+    "auth.resetPasswordSubtitle": "E-postanı gir",
+    "auth.resetPasswordEmailRequired": "E-postanı gir",
+    "auth.resetPasswordInvalidEmail": "Geçerli bir e-posta adresi gir",
+    "auth.resetPasswordSending": "Şifre sıfırlama bağlantısı gönderiliyor",
+    "auth.resetPasswordSent":
+      "E-posta kayıtlıysa şifre sıfırlama bağlantısı gönderildi.",
+    "auth.resetPasswordFailed": "Şifre sıfırlama bağlantısı gönderilemedi.",
+  },
+  es: {
+    "auth.forgotPassword": "¿Olvidaste tu contraseña?",
+    "auth.resetPassword": "Restablecer contraseña",
+    "auth.resetPasswordTitle": "Restablece tu contraseña",
+    "auth.resetPasswordSubtitle": "Introduce tu email",
+    "auth.resetPasswordEmailRequired": "Introduce tu email",
+    "auth.resetPasswordInvalidEmail": "Introduce una dirección de email válida",
+    "auth.resetPasswordSending":
+      "Enviando enlace para restablecer la contraseña",
+    "auth.resetPasswordSent":
+      "Si el email está registrado, se ha enviado un enlace para restablecer la contraseña.",
+    "auth.resetPasswordFailed":
+      "No se pudo enviar el enlace para restablecer la contraseña.",
+  },
+  fr: {
+    "auth.forgotPassword": "Mot de passe oublié ?",
+    "auth.resetPassword": "Réinitialiser le mot de passe",
+    "auth.resetPasswordTitle": "Réinitialisez votre mot de passe",
+    "auth.resetPasswordSubtitle": "Saisissez votre email",
+    "auth.resetPasswordEmailRequired": "Saisissez votre email",
+    "auth.resetPasswordInvalidEmail": "Saisissez une adresse email valide",
+    "auth.resetPasswordSending": "Envoi du lien de réinitialisation",
+    "auth.resetPasswordSent":
+      "Si l’email est enregistré, un lien de réinitialisation a été envoyé.",
+    "auth.resetPasswordFailed":
+      "Impossible d’envoyer le lien de réinitialisation.",
+  },
+  de: {
+    "auth.forgotPassword": "Passwort vergessen?",
+    "auth.resetPassword": "Passwort zurücksetzen",
+    "auth.resetPasswordTitle": "Setze dein Passwort zurück",
+    "auth.resetPasswordSubtitle": "Gib deine E-Mail-Adresse ein",
+    "auth.resetPasswordEmailRequired": "Gib deine E-Mail-Adresse ein",
+    "auth.resetPasswordInvalidEmail": "Gib eine gültige E-Mail-Adresse ein",
+    "auth.resetPasswordSending":
+      "Link zum Zurücksetzen des Passworts wird gesendet",
+    "auth.resetPasswordSent":
+      "Wenn die E-Mail registriert ist, wurde ein Link zum Zurücksetzen des Passworts gesendet.",
+    "auth.resetPasswordFailed":
+      "Der Link zum Zurücksetzen des Passworts konnte nicht gesendet werden.",
   },
   ar: {
     "auth.missingTitle": "معلومات ناقصة",
@@ -12662,6 +12772,16 @@ const phase1BAppWideLocalizationTranslations: Partial<
     "auth.createFailedMessage":
       "يرجى المحاولة مرة أخرى باستخدام بريد إلكتروني آخر.",
     "auth.appleMessage": "تسجيل الدخول عبر Apple غير مفعّل في هذا الإصدار.",
+    "auth.forgotPassword": "هل نسيت كلمة المرور؟",
+    "auth.resetPassword": "إعادة تعيين كلمة المرور",
+    "auth.resetPasswordTitle": "إعادة تعيين كلمة المرور",
+    "auth.resetPasswordSubtitle": "أدخل بريدك الإلكتروني",
+    "auth.resetPasswordEmailRequired": "أدخل بريدك الإلكتروني",
+    "auth.resetPasswordInvalidEmail": "أدخل عنوان بريد إلكتروني صالحاً",
+    "auth.resetPasswordSending": "جارٍ إرسال رابط إعادة تعيين كلمة المرور",
+    "auth.resetPasswordSent":
+      "إذا كان البريد الإلكتروني مسجلاً، فقد تم إرسال رابط إعادة تعيين كلمة المرور.",
+    "auth.resetPasswordFailed": "تعذر إرسال رابط إعادة تعيين كلمة المرور.",
   },
   ru: {
     "auth.missingTitle": "Не хватает данных",
@@ -12674,6 +12794,17 @@ const phase1BAppWideLocalizationTranslations: Partial<
     "auth.createFailedTitle": "Не удалось создать аккаунт",
     "auth.createFailedMessage": "Попробуйте другой email.",
     "auth.appleMessage": "Вход через Apple в этом выпуске не включен.",
+    "auth.forgotPassword": "Забыли пароль?",
+    "auth.resetPassword": "Сбросить пароль",
+    "auth.resetPasswordTitle": "Сброс пароля",
+    "auth.resetPasswordSubtitle": "Введите email",
+    "auth.resetPasswordEmailRequired": "Введите email",
+    "auth.resetPasswordInvalidEmail": "Введите действительный email",
+    "auth.resetPasswordSending": "Отправляем ссылку для сброса пароля",
+    "auth.resetPasswordSent":
+      "Если email зарегистрирован, ссылка для сброса пароля отправлена.",
+    "auth.resetPasswordFailed":
+      "Не удалось отправить ссылку для сброса пароля.",
   },
   zh: {
     "auth.missingTitle": "信息不完整",
@@ -12685,6 +12816,15 @@ const phase1BAppWideLocalizationTranslations: Partial<
     "auth.createFailedTitle": "无法创建账户",
     "auth.createFailedMessage": "请使用其他电子邮箱重试。",
     "auth.appleMessage": "此版本未启用 Apple 登录。",
+    "auth.forgotPassword": "忘记密码？",
+    "auth.resetPassword": "重置密码",
+    "auth.resetPasswordTitle": "重置你的密码",
+    "auth.resetPasswordSubtitle": "输入你的电子邮件",
+    "auth.resetPasswordEmailRequired": "输入你的电子邮件",
+    "auth.resetPasswordInvalidEmail": "请输入有效的电子邮件地址",
+    "auth.resetPasswordSending": "正在发送密码重置链接",
+    "auth.resetPasswordSent": "如果该电子邮件已注册，密码重置链接已发送。",
+    "auth.resetPasswordFailed": "无法发送密码重置链接。",
   },
 };
 
