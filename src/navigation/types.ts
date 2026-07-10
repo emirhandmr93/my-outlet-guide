@@ -2,7 +2,7 @@ import type { NavigatorScreenParams } from "@react-navigation/native";
 
 export type MainTabParamList = {
   Home: undefined;
-  Explore: { initialQuery?: string; initialTab?: "country" | "city" | "outlet"; tripPrompt?: boolean } | undefined;
+  Explore: { initialQuery?: string; initialTab?: "country" | "city" | "outlet" } | undefined;
   Savings: undefined;
   Favorites: undefined;
   Profile: undefined;
@@ -18,6 +18,7 @@ export type RootStackParamList = {
   MyTrips: undefined;
   CreateTrip: { outletId?: string } | undefined;
   TripDetail: { tripId: string };
+  TripSegmentEditor: { tripId: string; segmentId?: string };
   Savings: undefined;
   SmartShoppingCalculator: undefined;
   PriceAdvantageCalculator: undefined;
