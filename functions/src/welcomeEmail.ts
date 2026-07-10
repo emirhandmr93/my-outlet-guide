@@ -1,4 +1,4 @@
-import { FieldValue, getFirestore } from "firebase-admin/firestore";
+import { FieldValue, Timestamp, getFirestore } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { logger } from "firebase-functions";
 
@@ -107,13 +107,7 @@ function getEmailConfig(): EmailConfig {
   return null;
 }
 
-async function sendEmail(to: string, content: WelcomeEmailContent) {
-  const config = getEmailConfig();
-  if (!config) {
-    logger.info("Welcome email config missing; no email was sent.");
-    return { sent: false, provider: "not_configured" };
-  }
-
+async function sendEmail(to: string, content: WelcomeEmailContent, config: Exclude<EmailConfig, null>) {
   const html = renderHtml(content);
   const text = renderText(content);
   const request =
@@ -140,6 +134,24 @@ async function sendEmail(to: string, content: WelcomeEmailContent) {
   return { sent: true, provider: config.provider };
 }
 
+const WELCOME_EMAIL_RESERVATION_TTL_MS = 10 * 60 * 1000;
+
+type WelcomeEmailGuardStatus = "sent" | "sending" | "reserved" | "skipped_missing_config" | "failed";
+
+function getTimestampMillis(value: unknown) {
+  return value instanceof Timestamp ? value.toMillis() : null;
+}
+
+function isRecentGuard(status: unknown, createdAt: unknown, updatedAt: unknown, nowMillis: number) {
+  if (status !== "sending" && status !== "reserved") return false;
+  const guardMillis = getTimestampMillis(updatedAt) ?? getTimestampMillis(createdAt);
+  return guardMillis !== null && nowMillis - guardMillis < WELCOME_EMAIL_RESERVATION_TTL_MS;
+}
+
+function safeErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message.slice(0, 240) : "Welcome email send failed.";
+}
+
 export const sendWelcomeEmail = onCall({ region: "us-central1" }, async (request) => {
   const uid = request.auth?.uid;
   const email = request.auth?.token.email;
@@ -148,37 +160,91 @@ export const sendWelcomeEmail = onCall({ region: "us-central1" }, async (request
   }
 
   const locale = resolveLocale(request.data?.locale);
+  const config = getEmailConfig();
   const eventRef = db.collection("mailEvents").doc(`welcome_${uid}`);
 
-  return db.runTransaction(async (transaction) => {
-    const snapshot = await transaction.get(eventRef);
-    if (snapshot.exists) return { status: "already_sent" };
-    transaction.create(eventRef, {
-      type: "welcomeEmail",
-      uid,
-      locale,
-      status: "reserved",
-      createdAt: FieldValue.serverTimestamp(),
-    });
-    return { status: "reserved" };
-  }).then(async (reservation) => {
-    if (reservation.status === "already_sent") return reservation;
-    try {
-      const result = await sendEmail(email, welcomeEmailContent[locale]);
-      await eventRef.set(
+  if (!config) {
+    logger.info("Welcome email config missing; no email was sent.");
+    return db.runTransaction(async (transaction) => {
+      const snapshot = await transaction.get(eventRef);
+      const data = snapshot.data();
+      if (data?.status === "sent") return { status: "already_sent" };
+
+      transaction.set(
+        eventRef,
         {
-          status: result.sent ? "sent" : "skipped_missing_config",
-          provider: result.provider,
-          welcomeEmailSentAt: result.sent ? FieldValue.serverTimestamp() : null,
+          type: "welcomeEmail",
+          uid,
+          locale,
+          status: "skipped_missing_config" satisfies WelcomeEmailGuardStatus,
+          provider: "not_configured",
+          reason: "missing_provider_config",
+          checkedAt: FieldValue.serverTimestamp(),
           updatedAt: FieldValue.serverTimestamp(),
         },
         { merge: true }
       );
-      await db.collection("users").doc(uid).set({ welcomeEmailSentAt: result.sent ? FieldValue.serverTimestamp() : null, preferredLanguage: locale }, { merge: true });
-      return { status: result.sent ? "sent" : "skipped_missing_config" };
-    } catch (error) {
-      await eventRef.set({ status: "failed", error: error instanceof Error ? error.message : "Welcome email send failed.", updatedAt: FieldValue.serverTimestamp() }, { merge: true });
-      throw new HttpsError("internal", "Welcome email could not be sent.");
-    }
+      return { status: "skipped_missing_config" };
+    });
+  }
+
+  const reservation = await db.runTransaction(async (transaction) => {
+    const snapshot = await transaction.get(eventRef);
+    const data = snapshot.data();
+    const status = data?.status;
+    const nowMillis = Date.now();
+
+    if (status === "sent") return { status: "already_sent" };
+    if (isRecentGuard(status, data?.createdAt, data?.updatedAt, nowMillis)) return { status: "already_sending" };
+
+    transaction.set(
+      eventRef,
+      {
+        type: "welcomeEmail",
+        uid,
+        locale,
+        status: "sending" satisfies WelcomeEmailGuardStatus,
+        provider: config.provider,
+        reservedAt: FieldValue.serverTimestamp(),
+        updatedAt: FieldValue.serverTimestamp(),
+      },
+      { merge: true }
+    );
+    return { status: "reserved" };
   });
+
+  if (reservation.status !== "reserved") return reservation;
+
+  try {
+    const result = await sendEmail(email.trim(), welcomeEmailContent[locale], config);
+    const sentAt = FieldValue.serverTimestamp();
+    await eventRef.set(
+      {
+        status: "sent" satisfies WelcomeEmailGuardStatus,
+        sentAt,
+        provider: result.provider,
+        locale,
+        uid,
+        metadata: { contentVersion: "phase1b", providerAccepted: true },
+        updatedAt: FieldValue.serverTimestamp(),
+      },
+      { merge: true }
+    );
+    await db.collection("users").doc(uid).set({ welcomeEmailSentAt: sentAt, preferredLanguage: locale }, { merge: true });
+    return { status: "sent" };
+  } catch (error) {
+    logger.error("Welcome email provider send failed.", { uid, provider: config.provider, error: safeErrorMessage(error) });
+    await eventRef.set(
+      {
+        status: "failed" satisfies WelcomeEmailGuardStatus,
+        provider: config.provider,
+        failedAt: FieldValue.serverTimestamp(),
+        errorCode: "provider_send_failed",
+        errorMessage: safeErrorMessage(error),
+        updatedAt: FieldValue.serverTimestamp(),
+      },
+      { merge: true }
+    );
+    throw new HttpsError("internal", "Welcome email could not be sent.");
+  }
 });
