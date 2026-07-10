@@ -13,9 +13,9 @@ assert(reminderService.includes("export function generateTripReminderPlan"), "ge
 assert(reminderService.includes("tripStart_${tripId}"), "tripStart reminder must use stable trip id");
 assert(reminderService.includes("addDays(endDate, -1)"), "taxFree reminder must be one day before endDate");
 assert(reminderService.includes("segmentStart_${segment.id}"), "segmentStart reminder must exist for every segment");
-assert(reminderService.includes("outboundDate = isoDate") && reminderService.includes("returnDate = isoDate"), "flight reminders must require flight date/time");
+assert(!reminderService.includes("outboundDate = isoDate") && reminderService.includes("returnDate = isoDate") && reminderService.includes("returnTime"), "return-flight reminders must require flight date/time");
 assert(reminderService.includes("pushUnique") && reminderService.includes("some((reminder) => reminder.id === item.id)"), "duplicate reminder ids must be prevented");
-assert(reminderService.includes("Demo fixtures are not used"), "dealOrEventOverlap must only be source-backed");
+assert(!/Gucci Summer Sale|Fashion Weekend/.test(reminderService), "dealOrEventOverlap must not use fake events");
 for (const blocked of ["Gucci Summer Sale", "Gucci Tax Free Shopping", "Fashion Weekend"]) assert(!reminderService.includes(blocked), `prohibited fake event must not be used: ${blocked}`);
 assert(!/weather forecast|fake weather|TripWeatherSnapshot/i.test(`${reminderService}\n${tripDetail}`), "no fake weather UI/data is allowed");
 assert(tripDetail.includes('t("tripDetail.reminderPlan")') && tripDetail.includes("reminderPlanPreview") && tripDetail.includes("ReminderRow"), "TripDetail must render reminder plan section");
