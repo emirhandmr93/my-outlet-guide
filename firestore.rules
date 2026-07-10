@@ -209,15 +209,18 @@ service cloud.firestore {
           'createdAt',
           'updatedAt',
           'firestoreCreatedAt',
-          'firestoreUpdatedAt'
+          'firestoreUpdatedAt',
+          'startDate',
+          'endDate',
+          'segments',
+          'flightDetails',
+          'reminderPlan'
         ])
         && request.resource.data.userId == request.auth.uid
         && userId == request.auth.uid
         && (request.resource.data.tripId == tripId || request.resource.data.tripId == null)
-        && isNonEmptyString(request.resource.data.outletId)
-        && request.resource.data.outletId.size() <= 160
-        && isNonEmptyString(request.resource.data.outletName)
-        && request.resource.data.outletName.size() <= 240
+        && isOptionalStringOrNull(request.resource.data.outletId, 160)
+        && isOptionalStringOrNull(request.resource.data.outletName, 240)
         && isNonEmptyString(request.resource.data.tripName)
         && request.resource.data.tripName.size() <= 240
         && isOptionalStringOrNull(request.resource.data.destination, 240)
@@ -226,7 +229,12 @@ service cloud.firestore {
         && isOptionalStringOrNull(request.resource.data.visitDate, 40)
         && (request.resource.data.travelerCount == null || (request.resource.data.travelerCount is number && request.resource.data.travelerCount >= 1 && request.resource.data.travelerCount <= 50))
         && isOptionalStringOrNull(request.resource.data.notes, 2000)
-        && request.resource.data.status == 'active'
+        && request.resource.data.status in ['upcoming', 'active', 'past']
+        && isOptionalStringOrNull(request.resource.data.startDate, 40)
+        && isOptionalStringOrNull(request.resource.data.endDate, 40)
+        && request.resource.data.segments is list
+        && (request.resource.data.flightDetails == null || request.resource.data.flightDetails is map)
+        && request.resource.data.reminderPlan is list
         && isNonEmptyString(request.resource.data.createdAt)
         && isNonEmptyString(request.resource.data.updatedAt);
     }

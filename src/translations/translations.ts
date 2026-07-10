@@ -11,7 +11,6 @@ export const supportedLanguageCodes = [
 
 export type TranslationLanguage = (typeof supportedLanguageCodes)[number];
 
-
 export function isTranslationLanguage(
   languageCode: string | null | undefined,
 ): languageCode is TranslationLanguage {
@@ -234,8 +233,7 @@ const enTranslations = {
   "trips.createShoppingTripCta": "Create shopping trip →",
   "trips.createFromOutletCta": "Choose an outlet to create a trip",
   "trips.emptyTitle": "No trips yet",
-  "trips.emptyText":
-    "Choose an outlet to create your first shopping trip.",
+  "trips.emptyText": "Choose an outlet to create your first shopping trip.",
   "trips.noCitiesYet": "No cities added yet",
   "trips.defaultTripName": "Shopping Trip",
   "trips.cities": "Cities",
@@ -299,8 +297,7 @@ const enTranslations = {
   "createTrip.saving": "Saving trip...",
   "createTrip.outletDestination": "Outlet destination",
   "createTrip.missingOutletTitle": "Choose an outlet",
-  "createTrip.missingOutletMessage":
-    "Choose an outlet before creating a trip.",
+  "createTrip.missingOutletMessage": "Choose an outlet before creating a trip.",
   "createTrip.chooseOutletCta": "Choose outlet",
   "createTrip.saveFailedTitle": "Trip could not be saved",
   "createTrip.saveFailedMessage": "Please check your connection and try again.",
@@ -1680,8 +1677,7 @@ export const translations: Record<
     "trips.createShoppingTripCta": "Alışveriş seyahati oluştur →",
     "trips.createFromOutletCta": "Outlet seçerek seyahat oluştur",
     "trips.emptyTitle": "Henüz seyahat yok",
-    "trips.emptyText":
-      "Outlet seçerek ilk alışveriş seyahatini oluştur.",
+    "trips.emptyText": "Outlet seçerek ilk alışveriş seyahatini oluştur.",
     "trips.noCitiesYet": "Henüz şehir eklenmedi",
     "trips.defaultTripName": "Alışveriş Seyahati",
     "trips.cities": "Şehirler",
@@ -12840,113 +12836,154 @@ for (const languageCode of supportedLanguageCodes) {
   );
 }
 
-const tripsFlowPhase1ATranslations: Record<TranslationLanguage, Record<string, string>> = {
+const tripsFlowPhase1ATranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
   en: {
-    "trips.authRequiredCreateMessage": "Sign in to create and save real shopping trips to your account.",
+    "trips.authRequiredCreateMessage":
+      "Sign in to create and save real shopping trips to your account.",
     "trips.signInTitle": "Sign in to see your trips",
-    "trips.signInText": "Your saved shopping trips appear here after you sign in.",
+    "trips.signInText":
+      "Your saved shopping trips appear here after you sign in.",
     "createTrip.validationTitle": "Check trip details",
     "createTrip.tripNameRequired": "Enter a trip name before saving.",
   },
   tr: {
-    "trips.authRequiredCreateMessage": "Gerçek alışveriş seyahatleri oluşturup hesabına kaydetmek için giriş yap.",
+    "trips.authRequiredCreateMessage":
+      "Gerçek alışveriş seyahatleri oluşturup hesabına kaydetmek için giriş yap.",
     "trips.signInTitle": "Seyahatlerini görmek için giriş yap",
-    "trips.signInText": "Giriş yaptıktan sonra kayıtlı alışveriş seyahatlerin burada görünür.",
+    "trips.signInText":
+      "Giriş yaptıktan sonra kayıtlı alışveriş seyahatlerin burada görünür.",
     "createTrip.validationTitle": "Seyahat bilgilerini kontrol et",
     "createTrip.tripNameRequired": "Kaydetmeden önce seyahat adı gir.",
   },
   es: {
-    "trips.authRequiredCreateMessage": "Inicia sesión para crear y guardar viajes de compras reales en tu cuenta.",
+    "trips.authRequiredCreateMessage":
+      "Inicia sesión para crear y guardar viajes de compras reales en tu cuenta.",
     "trips.signInTitle": "Inicia sesión para ver tus viajes",
-    "trips.signInText": "Tus viajes guardados aparecerán aquí después de iniciar sesión. Los invitados solo ven una invitación para iniciar sesión.",
+    "trips.signInText":
+      "Tus viajes guardados aparecerán aquí después de iniciar sesión. Los invitados solo ven una invitación para iniciar sesión.",
     "createTrip.validationTitle": "Revisa los datos del viaje",
-    "createTrip.tripNameRequired": "Introduce un nombre de viaje antes de guardar.",
+    "createTrip.tripNameRequired":
+      "Introduce un nombre de viaje antes de guardar.",
   },
   fr: {
-    "trips.authRequiredCreateMessage": "Connectez-vous pour créer et enregistrer de vrais voyages shopping dans votre compte.",
+    "trips.authRequiredCreateMessage":
+      "Connectez-vous pour créer et enregistrer de vrais voyages shopping dans votre compte.",
     "trips.signInTitle": "Connectez-vous pour voir vos voyages",
-    "trips.signInText": "Vos voyages enregistrés s’affichent ici après connexion. Les invités voient seulement une invitation à se connecter.",
+    "trips.signInText":
+      "Vos voyages enregistrés s’affichent ici après connexion. Les invités voient seulement une invitation à se connecter.",
     "createTrip.validationTitle": "Vérifiez les détails du voyage",
-    "createTrip.tripNameRequired": "Saisissez un nom de voyage avant d’enregistrer.",
+    "createTrip.tripNameRequired":
+      "Saisissez un nom de voyage avant d’enregistrer.",
   },
   de: {
-    "trips.authRequiredCreateMessage": "Melde dich an, um echte Shopping-Reisen in deinem Konto zu erstellen und zu speichern.",
+    "trips.authRequiredCreateMessage":
+      "Melde dich an, um echte Shopping-Reisen in deinem Konto zu erstellen und zu speichern.",
     "trips.signInTitle": "Anmelden, um deine Reisen zu sehen",
-    "trips.signInText": "Deine gespeicherten Reisen erscheinen hier nach der Anmeldung. Gäste sehen nur eine Anmeldeaufforderung.",
+    "trips.signInText":
+      "Deine gespeicherten Reisen erscheinen hier nach der Anmeldung. Gäste sehen nur eine Anmeldeaufforderung.",
     "createTrip.validationTitle": "Reisedetails prüfen",
-    "createTrip.tripNameRequired": "Gib vor dem Speichern einen Reisenamen ein.",
+    "createTrip.tripNameRequired":
+      "Gib vor dem Speichern einen Reisenamen ein.",
   },
   ar: {
-    "trips.authRequiredCreateMessage": "سجّل الدخول لإنشاء رحلات تسوق حقيقية وحفظها في حسابك.",
+    "trips.authRequiredCreateMessage":
+      "سجّل الدخول لإنشاء رحلات تسوق حقيقية وحفظها في حسابك.",
     "trips.signInTitle": "سجّل الدخول لعرض رحلاتك",
-    "trips.signInText": "تظهر رحلاتك المحفوظة هنا بعد تسجيل الدخول. لا يرى الضيوف سوى دعوة لتسجيل الدخول.",
+    "trips.signInText":
+      "تظهر رحلاتك المحفوظة هنا بعد تسجيل الدخول. لا يرى الضيوف سوى دعوة لتسجيل الدخول.",
     "createTrip.validationTitle": "تحقق من تفاصيل الرحلة",
     "createTrip.tripNameRequired": "أدخل اسم الرحلة قبل الحفظ.",
   },
   ru: {
-    "trips.authRequiredCreateMessage": "Войдите, чтобы создавать и сохранять реальные шопинг-поездки в аккаунте.",
+    "trips.authRequiredCreateMessage":
+      "Войдите, чтобы создавать и сохранять реальные шопинг-поездки в аккаунте.",
     "trips.signInTitle": "Войдите, чтобы увидеть свои поездки",
-    "trips.signInText": "Сохранённые поездки появятся здесь после входа. Гости видят только предложение войти.",
+    "trips.signInText":
+      "Сохранённые поездки появятся здесь после входа. Гости видят только предложение войти.",
     "createTrip.validationTitle": "Проверьте данные поездки",
-    "createTrip.tripNameRequired": "Введите название поездки перед сохранением.",
+    "createTrip.tripNameRequired":
+      "Введите название поездки перед сохранением.",
   },
   zh: {
-    "trips.authRequiredCreateMessage": "请登录，以在账户中创建并保存真实的购物行程。",
+    "trips.authRequiredCreateMessage":
+      "请登录，以在账户中创建并保存真实的购物行程。",
     "trips.signInTitle": "登录后查看你的行程",
-    "trips.signInText": "登录后，你保存的行程会显示在这里。访客只会看到登录提示。",
+    "trips.signInText":
+      "登录后，你保存的行程会显示在这里。访客只会看到登录提示。",
     "createTrip.validationTitle": "请检查行程信息",
     "createTrip.tripNameRequired": "保存前请输入行程名称。",
   },
 };
 
 for (const languageCode of supportedLanguageCodes) {
-  Object.assign(translations[languageCode], tripsFlowPhase1ATranslations[languageCode]);
+  Object.assign(
+    translations[languageCode],
+    tripsFlowPhase1ATranslations[languageCode],
+  );
 }
 
-const tripsGuestOutletFlowTranslations: Record<TranslationLanguage, Record<string, string>> = {
+const tripsGuestOutletFlowTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
   en: {
-    "trips.signInText": "Your saved shopping trips appear here after you sign in.",
+    "trips.signInText":
+      "Your saved shopping trips appear here after you sign in.",
     "trips.emptyTitle": "No trips yet",
     "trips.emptyText": "Choose an outlet to create your first shopping trip.",
     "trips.createFromOutletCta": "Choose an outlet to create a trip",
     "createTrip.missingOutletTitle": "Choose an outlet",
-    "createTrip.missingOutletMessage": "Choose an outlet before creating a trip.",
+    "createTrip.missingOutletMessage":
+      "Choose an outlet before creating a trip.",
     "createTrip.chooseOutletCta": "Choose outlet",
   },
   tr: {
-    "trips.signInText": "Giriş yaptıktan sonra kayıtlı alışveriş seyahatlerin burada görünür.",
+    "trips.signInText":
+      "Giriş yaptıktan sonra kayıtlı alışveriş seyahatlerin burada görünür.",
     "trips.emptyTitle": "Henüz seyahat yok",
     "trips.emptyText": "Outlet seçerek ilk alışveriş seyahatini oluştur.",
     "trips.createFromOutletCta": "Outlet seçerek seyahat oluştur",
     "createTrip.missingOutletTitle": "Outlet seç",
-    "createTrip.missingOutletMessage": "Seyahat oluşturmak için önce bir outlet seç.",
+    "createTrip.missingOutletMessage":
+      "Seyahat oluşturmak için önce bir outlet seç.",
     "createTrip.chooseOutletCta": "Outlet seç",
   },
   es: {
-    "trips.signInText": "Tus viajes de compras guardados aparecerán aquí después de iniciar sesión.",
+    "trips.signInText":
+      "Tus viajes de compras guardados aparecerán aquí después de iniciar sesión.",
     "trips.emptyTitle": "Aún no hay viajes",
     "trips.emptyText": "Elige un outlet para crear tu primer viaje de compras.",
     "trips.createFromOutletCta": "Crear viaje eligiendo un outlet",
     "createTrip.missingOutletTitle": "Elige un outlet",
-    "createTrip.missingOutletMessage": "Elige un outlet antes de crear un viaje.",
+    "createTrip.missingOutletMessage":
+      "Elige un outlet antes de crear un viaje.",
     "createTrip.chooseOutletCta": "Elegir outlet",
   },
   fr: {
-    "trips.signInText": "Vos voyages shopping enregistrés s’affichent ici après connexion.",
+    "trips.signInText":
+      "Vos voyages shopping enregistrés s’affichent ici après connexion.",
     "trips.emptyTitle": "Aucun voyage pour le moment",
-    "trips.emptyText": "Choisissez un outlet pour créer votre premier voyage shopping.",
+    "trips.emptyText":
+      "Choisissez un outlet pour créer votre premier voyage shopping.",
     "trips.createFromOutletCta": "Créer un voyage en choisissant un outlet",
     "createTrip.missingOutletTitle": "Choisissez un outlet",
-    "createTrip.missingOutletMessage": "Choisissez d’abord un outlet pour créer un voyage.",
+    "createTrip.missingOutletMessage":
+      "Choisissez d’abord un outlet pour créer un voyage.",
     "createTrip.chooseOutletCta": "Choisir un outlet",
   },
   de: {
-    "trips.signInText": "Deine gespeicherten Shopping-Reisen erscheinen hier nach der Anmeldung.",
+    "trips.signInText":
+      "Deine gespeicherten Shopping-Reisen erscheinen hier nach der Anmeldung.",
     "trips.emptyTitle": "Noch keine Reisen",
-    "trips.emptyText": "Wähle ein Outlet, um deine erste Shopping-Reise zu erstellen.",
+    "trips.emptyText":
+      "Wähle ein Outlet, um deine erste Shopping-Reise zu erstellen.",
     "trips.createFromOutletCta": "Mit Outlet-Auswahl Reise erstellen",
     "createTrip.missingOutletTitle": "Outlet auswählen",
-    "createTrip.missingOutletMessage": "Wähle zuerst ein Outlet, um eine Reise zu erstellen.",
+    "createTrip.missingOutletMessage":
+      "Wähle zuerst ein Outlet, um eine Reise zu erstellen.",
     "createTrip.chooseOutletCta": "Outlet auswählen",
   },
   ar: {
@@ -12959,12 +12996,14 @@ const tripsGuestOutletFlowTranslations: Record<TranslationLanguage, Record<strin
     "createTrip.chooseOutletCta": "اختر أوتلت",
   },
   ru: {
-    "trips.signInText": "Сохранённые шопинг-поездки появятся здесь после входа.",
+    "trips.signInText":
+      "Сохранённые шопинг-поездки появятся здесь после входа.",
     "trips.emptyTitle": "Поездок пока нет",
     "trips.emptyText": "Выберите аутлет, чтобы создать первую шопинг-поездку.",
     "trips.createFromOutletCta": "Создать поездку, выбрав аутлет",
     "createTrip.missingOutletTitle": "Выберите аутлет",
-    "createTrip.missingOutletMessage": "Сначала выберите аутлет, чтобы создать поездку.",
+    "createTrip.missingOutletMessage":
+      "Сначала выберите аутлет, чтобы создать поездку.",
     "createTrip.chooseOutletCta": "Выбрать аутлет",
   },
   zh: {
@@ -12979,84 +13018,1744 @@ const tripsGuestOutletFlowTranslations: Record<TranslationLanguage, Record<strin
 };
 
 for (const languageCode of supportedLanguageCodes) {
-  Object.assign(translations[languageCode], tripsGuestOutletFlowTranslations[languageCode]);
+  Object.assign(
+    translations[languageCode],
+    tripsGuestOutletFlowTranslations[languageCode],
+  );
 }
 
-const tripPlanningFlowTranslations: Record<TranslationLanguage, Record<string, string>> = {"en": {"trips.createTripCta": "Create trip", "trips.emptyTitle": "No trips yet", "trips.emptyText": "Create your first shopping trip with dates.", "createTrip.heroTitle": "Create a shopping trip", "createTrip.heroSubtitle": "Plan outlet days smartly.", "createTrip.tripName": "Trip name", "createTrip.startDate": "Start date", "createTrip.endDate": "End date", "createTrip.visitDates": "Visit dates", "createTrip.flightInfo": "Flight details (optional)", "createTrip.flightHelper": "If you add flight details, Tax Free and airport reminders are prepared.", "createTrip.notes": "Notes (optional)", "createTrip.addCityOutlet": "Add city/outlet", "tripDetail.addRouteCta": "Add route", "tripDetail.emptyRouteTitle": "No route added yet", "tripDetail.emptyRouteText": "Complete your trip plan by adding a city or outlet.", "tripDetail.reminderPlan": "Reminder plan", "tripDetail.taxFreeReminder": "Tax Free reminder", "tripDetail.flightReminder": "Flight reminder", "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.", "tripDetail.segmentOutletReminderMessage": "Today is your {{outlet}} outlet day.", "tripDetail.taxFreeReminderMessage": "Remember to check your Tax Free documents.", "tripDetail.flightReminderMessage": "Check your flight and airport Tax Free steps.", "createTrip.saveFailedTitle": "Trip could not be saved", "createTrip.saveFailedMessage": "Please check your connection and try again.", "createTrip.endDateBeforeStart": "End date cannot be before start date.", "createTrip.tripNameRequired": "Trip name is required.", "createTrip.dateRangeRequired": "Select trip start and end dates.", "createTrip.destinations": "Destinations", "createTrip.destinationsOptional": "Destinations are optional now and editable after creation.", "createTrip.airline": "Airline", "createTrip.returnAirport": "Return airport", "createTrip.outboundDateTime": "Outbound flight date/time", "createTrip.returnDateTime": "Return flight date/time", "tripDetail.destinationSegments": "Destination segments", "tripDetail.tripStartReminder": "Trip start reminder", "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.", "tripDetail.segmentStartReminder": "Destination reminder"}, "tr": {"trips.createTripCta": "Seyahat oluştur", "trips.emptyTitle": "Henüz seyahat yok", "trips.emptyText": "İlk alışveriş seyahatini tarihleriyle oluştur.", "createTrip.heroTitle": "Alışveriş seyahati oluştur", "createTrip.heroSubtitle": "Outlet günlerini akıllıca planla.", "createTrip.tripName": "Seyahat adı", "createTrip.startDate": "Başlangıç tarihi", "createTrip.endDate": "Bitiş tarihi", "createTrip.visitDates": "Ziyaret tarihleri", "createTrip.flightInfo": "Uçuş bilgileri (opsiyonel)", "createTrip.flightHelper": "Uçuş bilgisi eklersen Tax Free ve havaalanı hatırlatmaları hazırlanır.", "createTrip.notes": "Notlar (opsiyonel)", "createTrip.addCityOutlet": "Şehir/outlet ekle", "tripDetail.addRouteCta": "Rota ekle", "tripDetail.emptyRouteTitle": "Henüz rota eklenmedi", "tripDetail.emptyRouteText": "Şehir veya outlet ekleyerek seyahat planını tamamla.", "tripDetail.reminderPlan": "Hatırlatma planı", "tripDetail.taxFreeReminder": "Tax Free hatırlatması", "tripDetail.flightReminder": "Uçuş hatırlatması", "tripDetail.segmentCityReminderMessage": "Bugün {{city}} planın başlıyor.", "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} outlet günün.", "tripDetail.taxFreeReminderMessage": "Tax Free belgelerini kontrol etmeyi unutma.", "tripDetail.flightReminderMessage": "Uçuş ve havaalanı Tax Free işlemlerini kontrol et.", "createTrip.saveFailedTitle": "Seyahat kaydedilemedi", "createTrip.saveFailedMessage": "Lütfen bağlantını kontrol edip tekrar dene.", "createTrip.endDateBeforeStart": "Bitiş tarihi başlangıç tarihinden önce olamaz.", "createTrip.tripNameRequired": "Seyahat adı gerekli.", "createTrip.dateRangeRequired": "Seyahat başlangıç ve bitiş tarihlerini seç.", "createTrip.destinations": "Rota", "createTrip.destinationsOptional": "Rota ilk kayıtta opsiyoneldir; seyahatten sonra düzenlenebilir.", "createTrip.airline": "Havayolu", "createTrip.returnAirport": "Dönüş havaalanı", "createTrip.outboundDateTime": "Gidiş uçuş tarihi/saati", "createTrip.returnDateTime": "Dönüş uçuş tarihi/saati", "tripDetail.destinationSegments": "Rota bölümleri", "tripDetail.tripStartReminder": "Seyahat başlangıç hatırlatması", "tripDetail.tripStartReminderMessage": "Alışveriş seyahatin bugün başlıyor.", "tripDetail.segmentStartReminder": "Rota hatırlatması"}, "es": {"trips.createTripCta": "Create trip", "trips.emptyTitle": "No trips yet", "trips.emptyText": "Create your first shopping trip with dates.", "createTrip.heroTitle": "Create a shopping trip", "createTrip.heroSubtitle": "Plan outlet days smartly.", "createTrip.tripName": "Trip name", "createTrip.startDate": "Start date", "createTrip.endDate": "End date", "createTrip.visitDates": "Visit dates", "createTrip.flightInfo": "Flight details (optional)", "createTrip.flightHelper": "If you add flight details, Tax Free and airport reminders are prepared.", "createTrip.notes": "Notes (optional)", "createTrip.addCityOutlet": "Add city/outlet", "tripDetail.addRouteCta": "Add route", "tripDetail.emptyRouteTitle": "No route added yet", "tripDetail.emptyRouteText": "Complete your trip plan by adding a city or outlet.", "tripDetail.reminderPlan": "Reminder plan", "tripDetail.taxFreeReminder": "Tax Free reminder", "tripDetail.flightReminder": "Flight reminder", "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.", "tripDetail.segmentOutletReminderMessage": "Today is your {{outlet}} outlet day.", "tripDetail.taxFreeReminderMessage": "Remember to check your Tax Free documents.", "tripDetail.flightReminderMessage": "Check your flight and airport Tax Free steps.", "createTrip.saveFailedTitle": "Trip could not be saved", "createTrip.saveFailedMessage": "Please check your connection and try again.", "createTrip.endDateBeforeStart": "End date cannot be before start date.", "createTrip.tripNameRequired": "Trip name is required.", "createTrip.dateRangeRequired": "Select trip start and end dates.", "createTrip.destinations": "Destinations", "createTrip.destinationsOptional": "Destinations are optional now and editable after creation.", "createTrip.airline": "Airline", "createTrip.returnAirport": "Return airport", "createTrip.outboundDateTime": "Outbound flight date/time", "createTrip.returnDateTime": "Return flight date/time", "tripDetail.destinationSegments": "Destination segments", "tripDetail.tripStartReminder": "Trip start reminder", "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.", "tripDetail.segmentStartReminder": "Destination reminder"}, "fr": {"trips.createTripCta": "Create trip", "trips.emptyTitle": "No trips yet", "trips.emptyText": "Create your first shopping trip with dates.", "createTrip.heroTitle": "Create a shopping trip", "createTrip.heroSubtitle": "Plan outlet days smartly.", "createTrip.tripName": "Trip name", "createTrip.startDate": "Start date", "createTrip.endDate": "End date", "createTrip.visitDates": "Visit dates", "createTrip.flightInfo": "Flight details (optional)", "createTrip.flightHelper": "If you add flight details, Tax Free and airport reminders are prepared.", "createTrip.notes": "Notes (optional)", "createTrip.addCityOutlet": "Add city/outlet", "tripDetail.addRouteCta": "Add route", "tripDetail.emptyRouteTitle": "No route added yet", "tripDetail.emptyRouteText": "Complete your trip plan by adding a city or outlet.", "tripDetail.reminderPlan": "Reminder plan", "tripDetail.taxFreeReminder": "Tax Free reminder", "tripDetail.flightReminder": "Flight reminder", "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.", "tripDetail.segmentOutletReminderMessage": "Today is your {{outlet}} outlet day.", "tripDetail.taxFreeReminderMessage": "Remember to check your Tax Free documents.", "tripDetail.flightReminderMessage": "Check your flight and airport Tax Free steps.", "createTrip.saveFailedTitle": "Trip could not be saved", "createTrip.saveFailedMessage": "Please check your connection and try again.", "createTrip.endDateBeforeStart": "End date cannot be before start date.", "createTrip.tripNameRequired": "Trip name is required.", "createTrip.dateRangeRequired": "Select trip start and end dates.", "createTrip.destinations": "Destinations", "createTrip.destinationsOptional": "Destinations are optional now and editable after creation.", "createTrip.airline": "Airline", "createTrip.returnAirport": "Return airport", "createTrip.outboundDateTime": "Outbound flight date/time", "createTrip.returnDateTime": "Return flight date/time", "tripDetail.destinationSegments": "Destination segments", "tripDetail.tripStartReminder": "Trip start reminder", "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.", "tripDetail.segmentStartReminder": "Destination reminder"}, "de": {"trips.createTripCta": "Create trip", "trips.emptyTitle": "No trips yet", "trips.emptyText": "Create your first shopping trip with dates.", "createTrip.heroTitle": "Create a shopping trip", "createTrip.heroSubtitle": "Plan outlet days smartly.", "createTrip.tripName": "Trip name", "createTrip.startDate": "Start date", "createTrip.endDate": "End date", "createTrip.visitDates": "Visit dates", "createTrip.flightInfo": "Flight details (optional)", "createTrip.flightHelper": "If you add flight details, Tax Free and airport reminders are prepared.", "createTrip.notes": "Notes (optional)", "createTrip.addCityOutlet": "Add city/outlet", "tripDetail.addRouteCta": "Add route", "tripDetail.emptyRouteTitle": "No route added yet", "tripDetail.emptyRouteText": "Complete your trip plan by adding a city or outlet.", "tripDetail.reminderPlan": "Reminder plan", "tripDetail.taxFreeReminder": "Tax Free reminder", "tripDetail.flightReminder": "Flight reminder", "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.", "tripDetail.segmentOutletReminderMessage": "Today is your {{outlet}} outlet day.", "tripDetail.taxFreeReminderMessage": "Remember to check your Tax Free documents.", "tripDetail.flightReminderMessage": "Check your flight and airport Tax Free steps.", "createTrip.saveFailedTitle": "Trip could not be saved", "createTrip.saveFailedMessage": "Please check your connection and try again.", "createTrip.endDateBeforeStart": "End date cannot be before start date.", "createTrip.tripNameRequired": "Trip name is required.", "createTrip.dateRangeRequired": "Select trip start and end dates.", "createTrip.destinations": "Destinations", "createTrip.destinationsOptional": "Destinations are optional now and editable after creation.", "createTrip.airline": "Airline", "createTrip.returnAirport": "Return airport", "createTrip.outboundDateTime": "Outbound flight date/time", "createTrip.returnDateTime": "Return flight date/time", "tripDetail.destinationSegments": "Destination segments", "tripDetail.tripStartReminder": "Trip start reminder", "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.", "tripDetail.segmentStartReminder": "Destination reminder"}, "ar": {"trips.createTripCta": "Create trip", "trips.emptyTitle": "No trips yet", "trips.emptyText": "Create your first shopping trip with dates.", "createTrip.heroTitle": "Create a shopping trip", "createTrip.heroSubtitle": "Plan outlet days smartly.", "createTrip.tripName": "Trip name", "createTrip.startDate": "Start date", "createTrip.endDate": "End date", "createTrip.visitDates": "Visit dates", "createTrip.flightInfo": "Flight details (optional)", "createTrip.flightHelper": "If you add flight details, Tax Free and airport reminders are prepared.", "createTrip.notes": "Notes (optional)", "createTrip.addCityOutlet": "Add city/outlet", "tripDetail.addRouteCta": "Add route", "tripDetail.emptyRouteTitle": "No route added yet", "tripDetail.emptyRouteText": "Complete your trip plan by adding a city or outlet.", "tripDetail.reminderPlan": "Reminder plan", "tripDetail.taxFreeReminder": "Tax Free reminder", "tripDetail.flightReminder": "Flight reminder", "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.", "tripDetail.segmentOutletReminderMessage": "Today is your {{outlet}} outlet day.", "tripDetail.taxFreeReminderMessage": "Remember to check your Tax Free documents.", "tripDetail.flightReminderMessage": "Check your flight and airport Tax Free steps.", "createTrip.saveFailedTitle": "Trip could not be saved", "createTrip.saveFailedMessage": "Please check your connection and try again.", "createTrip.endDateBeforeStart": "End date cannot be before start date.", "createTrip.tripNameRequired": "Trip name is required.", "createTrip.dateRangeRequired": "Select trip start and end dates.", "createTrip.destinations": "Destinations", "createTrip.destinationsOptional": "Destinations are optional now and editable after creation.", "createTrip.airline": "Airline", "createTrip.returnAirport": "Return airport", "createTrip.outboundDateTime": "Outbound flight date/time", "createTrip.returnDateTime": "Return flight date/time", "tripDetail.destinationSegments": "Destination segments", "tripDetail.tripStartReminder": "Trip start reminder", "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.", "tripDetail.segmentStartReminder": "Destination reminder"}, "ru": {"trips.createTripCta": "Create trip", "trips.emptyTitle": "No trips yet", "trips.emptyText": "Create your first shopping trip with dates.", "createTrip.heroTitle": "Create a shopping trip", "createTrip.heroSubtitle": "Plan outlet days smartly.", "createTrip.tripName": "Trip name", "createTrip.startDate": "Start date", "createTrip.endDate": "End date", "createTrip.visitDates": "Visit dates", "createTrip.flightInfo": "Flight details (optional)", "createTrip.flightHelper": "If you add flight details, Tax Free and airport reminders are prepared.", "createTrip.notes": "Notes (optional)", "createTrip.addCityOutlet": "Add city/outlet", "tripDetail.addRouteCta": "Add route", "tripDetail.emptyRouteTitle": "No route added yet", "tripDetail.emptyRouteText": "Complete your trip plan by adding a city or outlet.", "tripDetail.reminderPlan": "Reminder plan", "tripDetail.taxFreeReminder": "Tax Free reminder", "tripDetail.flightReminder": "Flight reminder", "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.", "tripDetail.segmentOutletReminderMessage": "Today is your {{outlet}} outlet day.", "tripDetail.taxFreeReminderMessage": "Remember to check your Tax Free documents.", "tripDetail.flightReminderMessage": "Check your flight and airport Tax Free steps.", "createTrip.saveFailedTitle": "Trip could not be saved", "createTrip.saveFailedMessage": "Please check your connection and try again.", "createTrip.endDateBeforeStart": "End date cannot be before start date.", "createTrip.tripNameRequired": "Trip name is required.", "createTrip.dateRangeRequired": "Select trip start and end dates.", "createTrip.destinations": "Destinations", "createTrip.destinationsOptional": "Destinations are optional now and editable after creation.", "createTrip.airline": "Airline", "createTrip.returnAirport": "Return airport", "createTrip.outboundDateTime": "Outbound flight date/time", "createTrip.returnDateTime": "Return flight date/time", "tripDetail.destinationSegments": "Destination segments", "tripDetail.tripStartReminder": "Trip start reminder", "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.", "tripDetail.segmentStartReminder": "Destination reminder"}, "zh": {"trips.createTripCta": "Create trip", "trips.emptyTitle": "No trips yet", "trips.emptyText": "Create your first shopping trip with dates.", "createTrip.heroTitle": "Create a shopping trip", "createTrip.heroSubtitle": "Plan outlet days smartly.", "createTrip.tripName": "Trip name", "createTrip.startDate": "Start date", "createTrip.endDate": "End date", "createTrip.visitDates": "Visit dates", "createTrip.flightInfo": "Flight details (optional)", "createTrip.flightHelper": "If you add flight details, Tax Free and airport reminders are prepared.", "createTrip.notes": "Notes (optional)", "createTrip.addCityOutlet": "Add city/outlet", "tripDetail.addRouteCta": "Add route", "tripDetail.emptyRouteTitle": "No route added yet", "tripDetail.emptyRouteText": "Complete your trip plan by adding a city or outlet.", "tripDetail.reminderPlan": "Reminder plan", "tripDetail.taxFreeReminder": "Tax Free reminder", "tripDetail.flightReminder": "Flight reminder", "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.", "tripDetail.segmentOutletReminderMessage": "Today is your {{outlet}} outlet day.", "tripDetail.taxFreeReminderMessage": "Remember to check your Tax Free documents.", "tripDetail.flightReminderMessage": "Check your flight and airport Tax Free steps.", "createTrip.saveFailedTitle": "Trip could not be saved", "createTrip.saveFailedMessage": "Please check your connection and try again.", "createTrip.endDateBeforeStart": "End date cannot be before start date.", "createTrip.tripNameRequired": "Trip name is required.", "createTrip.dateRangeRequired": "Select trip start and end dates.", "createTrip.destinations": "Destinations", "createTrip.destinationsOptional": "Destinations are optional now and editable after creation.", "createTrip.airline": "Airline", "createTrip.returnAirport": "Return airport", "createTrip.outboundDateTime": "Outbound flight date/time", "createTrip.returnDateTime": "Return flight date/time", "tripDetail.destinationSegments": "Destination segments", "tripDetail.tripStartReminder": "Trip start reminder", "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.", "tripDetail.segmentStartReminder": "Destination reminder"}};
+const tripPlanningFlowTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "trips.createTripCta": "Create trip",
+    "trips.emptyTitle": "No trips yet",
+    "trips.emptyText": "Create your first shopping trip with dates.",
+    "createTrip.heroTitle": "Create a shopping trip",
+    "createTrip.heroSubtitle": "Plan outlet days smartly.",
+    "createTrip.tripName": "Trip name",
+    "createTrip.startDate": "Start date",
+    "createTrip.endDate": "End date",
+    "createTrip.visitDates": "Visit dates",
+    "createTrip.flightInfo": "Flight details (optional)",
+    "createTrip.flightHelper":
+      "If you add flight details, Tax Free and airport reminders are prepared.",
+    "createTrip.notes": "Notes (optional)",
+    "createTrip.addCityOutlet": "Add city/outlet",
+    "tripDetail.addRouteCta": "Add route",
+    "tripDetail.emptyRouteTitle": "No route added yet",
+    "tripDetail.emptyRouteText":
+      "Complete your trip plan by adding a city or outlet.",
+    "tripDetail.reminderPlan": "Reminder plan",
+    "tripDetail.taxFreeReminder": "Tax Free reminder",
+    "tripDetail.flightReminder": "Flight reminder",
+    "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Today is your {{outlet}} outlet day.",
+    "tripDetail.taxFreeReminderMessage":
+      "Remember to check your Tax Free documents.",
+    "tripDetail.flightReminderMessage":
+      "Check your flight and airport Tax Free steps.",
+    "createTrip.saveFailedTitle": "Trip could not be saved",
+    "createTrip.saveFailedMessage":
+      "Please check your connection and try again.",
+    "createTrip.endDateBeforeStart": "End date cannot be before start date.",
+    "createTrip.tripNameRequired": "Trip name is required.",
+    "createTrip.dateRangeRequired": "Select trip start and end dates.",
+    "createTrip.destinations": "Destinations",
+    "createTrip.destinationsOptional":
+      "Destinations are optional now and editable after creation.",
+    "createTrip.airline": "Airline",
+    "createTrip.returnAirport": "Return airport",
+    "createTrip.outboundDateTime": "Outbound flight date/time",
+    "createTrip.returnDateTime": "Return flight date/time",
+    "tripDetail.destinationSegments": "Destination segments",
+    "tripDetail.tripStartReminder": "Trip start reminder",
+    "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.",
+    "tripDetail.segmentStartReminder": "Destination reminder",
+  },
+  tr: {
+    "trips.createTripCta": "Seyahat oluştur",
+    "trips.emptyTitle": "Henüz seyahat yok",
+    "trips.emptyText": "İlk alışveriş seyahatini tarihleriyle oluştur.",
+    "createTrip.heroTitle": "Alışveriş seyahati oluştur",
+    "createTrip.heroSubtitle": "Outlet günlerini akıllıca planla.",
+    "createTrip.tripName": "Seyahat adı",
+    "createTrip.startDate": "Başlangıç tarihi",
+    "createTrip.endDate": "Bitiş tarihi",
+    "createTrip.visitDates": "Ziyaret tarihleri",
+    "createTrip.flightInfo": "Uçuş bilgileri (opsiyonel)",
+    "createTrip.flightHelper":
+      "Uçuş bilgisi eklersen Tax Free ve havaalanı hatırlatmaları hazırlanır.",
+    "createTrip.notes": "Notlar (opsiyonel)",
+    "createTrip.addCityOutlet": "Şehir/outlet ekle",
+    "tripDetail.addRouteCta": "Rota ekle",
+    "tripDetail.emptyRouteTitle": "Henüz rota eklenmedi",
+    "tripDetail.emptyRouteText":
+      "Şehir veya outlet ekleyerek seyahat planını tamamla.",
+    "tripDetail.reminderPlan": "Hatırlatma planı",
+    "tripDetail.taxFreeReminder": "Tax Free hatırlatması",
+    "tripDetail.flightReminder": "Uçuş hatırlatması",
+    "tripDetail.segmentCityReminderMessage": "Bugün {{city}} planın başlıyor.",
+    "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} outlet günün.",
+    "tripDetail.taxFreeReminderMessage":
+      "Tax Free belgelerini kontrol etmeyi unutma.",
+    "tripDetail.flightReminderMessage":
+      "Uçuş ve havaalanı Tax Free işlemlerini kontrol et.",
+    "createTrip.saveFailedTitle": "Seyahat kaydedilemedi",
+    "createTrip.saveFailedMessage":
+      "Lütfen bağlantını kontrol edip tekrar dene.",
+    "createTrip.endDateBeforeStart":
+      "Bitiş tarihi başlangıç tarihinden önce olamaz.",
+    "createTrip.tripNameRequired": "Seyahat adı gerekli.",
+    "createTrip.dateRangeRequired":
+      "Seyahat başlangıç ve bitiş tarihlerini seç.",
+    "createTrip.destinations": "Rota",
+    "createTrip.destinationsOptional":
+      "Rota ilk kayıtta opsiyoneldir; seyahatten sonra düzenlenebilir.",
+    "createTrip.airline": "Havayolu",
+    "createTrip.returnAirport": "Dönüş havaalanı",
+    "createTrip.outboundDateTime": "Gidiş uçuş tarihi/saati",
+    "createTrip.returnDateTime": "Dönüş uçuş tarihi/saati",
+    "tripDetail.destinationSegments": "Rota bölümleri",
+    "tripDetail.tripStartReminder": "Seyahat başlangıç hatırlatması",
+    "tripDetail.tripStartReminderMessage":
+      "Alışveriş seyahatin bugün başlıyor.",
+    "tripDetail.segmentStartReminder": "Rota hatırlatması",
+  },
+  es: {
+    "trips.createTripCta": "Create trip",
+    "trips.emptyTitle": "No trips yet",
+    "trips.emptyText": "Create your first shopping trip with dates.",
+    "createTrip.heroTitle": "Create a shopping trip",
+    "createTrip.heroSubtitle": "Plan outlet days smartly.",
+    "createTrip.tripName": "Trip name",
+    "createTrip.startDate": "Start date",
+    "createTrip.endDate": "End date",
+    "createTrip.visitDates": "Visit dates",
+    "createTrip.flightInfo": "Flight details (optional)",
+    "createTrip.flightHelper":
+      "If you add flight details, Tax Free and airport reminders are prepared.",
+    "createTrip.notes": "Notes (optional)",
+    "createTrip.addCityOutlet": "Add city/outlet",
+    "tripDetail.addRouteCta": "Add route",
+    "tripDetail.emptyRouteTitle": "No route added yet",
+    "tripDetail.emptyRouteText":
+      "Complete your trip plan by adding a city or outlet.",
+    "tripDetail.reminderPlan": "Reminder plan",
+    "tripDetail.taxFreeReminder": "Tax Free reminder",
+    "tripDetail.flightReminder": "Flight reminder",
+    "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Today is your {{outlet}} outlet day.",
+    "tripDetail.taxFreeReminderMessage":
+      "Remember to check your Tax Free documents.",
+    "tripDetail.flightReminderMessage":
+      "Check your flight and airport Tax Free steps.",
+    "createTrip.saveFailedTitle": "Trip could not be saved",
+    "createTrip.saveFailedMessage":
+      "Please check your connection and try again.",
+    "createTrip.endDateBeforeStart": "End date cannot be before start date.",
+    "createTrip.tripNameRequired": "Trip name is required.",
+    "createTrip.dateRangeRequired": "Select trip start and end dates.",
+    "createTrip.destinations": "Destinations",
+    "createTrip.destinationsOptional":
+      "Destinations are optional now and editable after creation.",
+    "createTrip.airline": "Airline",
+    "createTrip.returnAirport": "Return airport",
+    "createTrip.outboundDateTime": "Outbound flight date/time",
+    "createTrip.returnDateTime": "Return flight date/time",
+    "tripDetail.destinationSegments": "Destination segments",
+    "tripDetail.tripStartReminder": "Trip start reminder",
+    "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.",
+    "tripDetail.segmentStartReminder": "Destination reminder",
+  },
+  fr: {
+    "trips.createTripCta": "Create trip",
+    "trips.emptyTitle": "No trips yet",
+    "trips.emptyText": "Create your first shopping trip with dates.",
+    "createTrip.heroTitle": "Create a shopping trip",
+    "createTrip.heroSubtitle": "Plan outlet days smartly.",
+    "createTrip.tripName": "Trip name",
+    "createTrip.startDate": "Start date",
+    "createTrip.endDate": "End date",
+    "createTrip.visitDates": "Visit dates",
+    "createTrip.flightInfo": "Flight details (optional)",
+    "createTrip.flightHelper":
+      "If you add flight details, Tax Free and airport reminders are prepared.",
+    "createTrip.notes": "Notes (optional)",
+    "createTrip.addCityOutlet": "Add city/outlet",
+    "tripDetail.addRouteCta": "Add route",
+    "tripDetail.emptyRouteTitle": "No route added yet",
+    "tripDetail.emptyRouteText":
+      "Complete your trip plan by adding a city or outlet.",
+    "tripDetail.reminderPlan": "Reminder plan",
+    "tripDetail.taxFreeReminder": "Tax Free reminder",
+    "tripDetail.flightReminder": "Flight reminder",
+    "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Today is your {{outlet}} outlet day.",
+    "tripDetail.taxFreeReminderMessage":
+      "Remember to check your Tax Free documents.",
+    "tripDetail.flightReminderMessage":
+      "Check your flight and airport Tax Free steps.",
+    "createTrip.saveFailedTitle": "Trip could not be saved",
+    "createTrip.saveFailedMessage":
+      "Please check your connection and try again.",
+    "createTrip.endDateBeforeStart": "End date cannot be before start date.",
+    "createTrip.tripNameRequired": "Trip name is required.",
+    "createTrip.dateRangeRequired": "Select trip start and end dates.",
+    "createTrip.destinations": "Destinations",
+    "createTrip.destinationsOptional":
+      "Destinations are optional now and editable after creation.",
+    "createTrip.airline": "Airline",
+    "createTrip.returnAirport": "Return airport",
+    "createTrip.outboundDateTime": "Outbound flight date/time",
+    "createTrip.returnDateTime": "Return flight date/time",
+    "tripDetail.destinationSegments": "Destination segments",
+    "tripDetail.tripStartReminder": "Trip start reminder",
+    "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.",
+    "tripDetail.segmentStartReminder": "Destination reminder",
+  },
+  de: {
+    "trips.createTripCta": "Create trip",
+    "trips.emptyTitle": "No trips yet",
+    "trips.emptyText": "Create your first shopping trip with dates.",
+    "createTrip.heroTitle": "Create a shopping trip",
+    "createTrip.heroSubtitle": "Plan outlet days smartly.",
+    "createTrip.tripName": "Trip name",
+    "createTrip.startDate": "Start date",
+    "createTrip.endDate": "End date",
+    "createTrip.visitDates": "Visit dates",
+    "createTrip.flightInfo": "Flight details (optional)",
+    "createTrip.flightHelper":
+      "If you add flight details, Tax Free and airport reminders are prepared.",
+    "createTrip.notes": "Notes (optional)",
+    "createTrip.addCityOutlet": "Add city/outlet",
+    "tripDetail.addRouteCta": "Add route",
+    "tripDetail.emptyRouteTitle": "No route added yet",
+    "tripDetail.emptyRouteText":
+      "Complete your trip plan by adding a city or outlet.",
+    "tripDetail.reminderPlan": "Reminder plan",
+    "tripDetail.taxFreeReminder": "Tax Free reminder",
+    "tripDetail.flightReminder": "Flight reminder",
+    "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Today is your {{outlet}} outlet day.",
+    "tripDetail.taxFreeReminderMessage":
+      "Remember to check your Tax Free documents.",
+    "tripDetail.flightReminderMessage":
+      "Check your flight and airport Tax Free steps.",
+    "createTrip.saveFailedTitle": "Trip could not be saved",
+    "createTrip.saveFailedMessage":
+      "Please check your connection and try again.",
+    "createTrip.endDateBeforeStart": "End date cannot be before start date.",
+    "createTrip.tripNameRequired": "Trip name is required.",
+    "createTrip.dateRangeRequired": "Select trip start and end dates.",
+    "createTrip.destinations": "Destinations",
+    "createTrip.destinationsOptional":
+      "Destinations are optional now and editable after creation.",
+    "createTrip.airline": "Airline",
+    "createTrip.returnAirport": "Return airport",
+    "createTrip.outboundDateTime": "Outbound flight date/time",
+    "createTrip.returnDateTime": "Return flight date/time",
+    "tripDetail.destinationSegments": "Destination segments",
+    "tripDetail.tripStartReminder": "Trip start reminder",
+    "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.",
+    "tripDetail.segmentStartReminder": "Destination reminder",
+  },
+  ar: {
+    "trips.createTripCta": "Create trip",
+    "trips.emptyTitle": "No trips yet",
+    "trips.emptyText": "Create your first shopping trip with dates.",
+    "createTrip.heroTitle": "Create a shopping trip",
+    "createTrip.heroSubtitle": "Plan outlet days smartly.",
+    "createTrip.tripName": "Trip name",
+    "createTrip.startDate": "Start date",
+    "createTrip.endDate": "End date",
+    "createTrip.visitDates": "Visit dates",
+    "createTrip.flightInfo": "Flight details (optional)",
+    "createTrip.flightHelper":
+      "If you add flight details, Tax Free and airport reminders are prepared.",
+    "createTrip.notes": "Notes (optional)",
+    "createTrip.addCityOutlet": "Add city/outlet",
+    "tripDetail.addRouteCta": "Add route",
+    "tripDetail.emptyRouteTitle": "No route added yet",
+    "tripDetail.emptyRouteText":
+      "Complete your trip plan by adding a city or outlet.",
+    "tripDetail.reminderPlan": "Reminder plan",
+    "tripDetail.taxFreeReminder": "Tax Free reminder",
+    "tripDetail.flightReminder": "Flight reminder",
+    "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Today is your {{outlet}} outlet day.",
+    "tripDetail.taxFreeReminderMessage":
+      "Remember to check your Tax Free documents.",
+    "tripDetail.flightReminderMessage":
+      "Check your flight and airport Tax Free steps.",
+    "createTrip.saveFailedTitle": "Trip could not be saved",
+    "createTrip.saveFailedMessage":
+      "Please check your connection and try again.",
+    "createTrip.endDateBeforeStart": "End date cannot be before start date.",
+    "createTrip.tripNameRequired": "Trip name is required.",
+    "createTrip.dateRangeRequired": "Select trip start and end dates.",
+    "createTrip.destinations": "Destinations",
+    "createTrip.destinationsOptional":
+      "Destinations are optional now and editable after creation.",
+    "createTrip.airline": "Airline",
+    "createTrip.returnAirport": "Return airport",
+    "createTrip.outboundDateTime": "Outbound flight date/time",
+    "createTrip.returnDateTime": "Return flight date/time",
+    "tripDetail.destinationSegments": "Destination segments",
+    "tripDetail.tripStartReminder": "Trip start reminder",
+    "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.",
+    "tripDetail.segmentStartReminder": "Destination reminder",
+  },
+  ru: {
+    "trips.createTripCta": "Create trip",
+    "trips.emptyTitle": "No trips yet",
+    "trips.emptyText": "Create your first shopping trip with dates.",
+    "createTrip.heroTitle": "Create a shopping trip",
+    "createTrip.heroSubtitle": "Plan outlet days smartly.",
+    "createTrip.tripName": "Trip name",
+    "createTrip.startDate": "Start date",
+    "createTrip.endDate": "End date",
+    "createTrip.visitDates": "Visit dates",
+    "createTrip.flightInfo": "Flight details (optional)",
+    "createTrip.flightHelper":
+      "If you add flight details, Tax Free and airport reminders are prepared.",
+    "createTrip.notes": "Notes (optional)",
+    "createTrip.addCityOutlet": "Add city/outlet",
+    "tripDetail.addRouteCta": "Add route",
+    "tripDetail.emptyRouteTitle": "No route added yet",
+    "tripDetail.emptyRouteText":
+      "Complete your trip plan by adding a city or outlet.",
+    "tripDetail.reminderPlan": "Reminder plan",
+    "tripDetail.taxFreeReminder": "Tax Free reminder",
+    "tripDetail.flightReminder": "Flight reminder",
+    "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Today is your {{outlet}} outlet day.",
+    "tripDetail.taxFreeReminderMessage":
+      "Remember to check your Tax Free documents.",
+    "tripDetail.flightReminderMessage":
+      "Check your flight and airport Tax Free steps.",
+    "createTrip.saveFailedTitle": "Trip could not be saved",
+    "createTrip.saveFailedMessage":
+      "Please check your connection and try again.",
+    "createTrip.endDateBeforeStart": "End date cannot be before start date.",
+    "createTrip.tripNameRequired": "Trip name is required.",
+    "createTrip.dateRangeRequired": "Select trip start and end dates.",
+    "createTrip.destinations": "Destinations",
+    "createTrip.destinationsOptional":
+      "Destinations are optional now and editable after creation.",
+    "createTrip.airline": "Airline",
+    "createTrip.returnAirport": "Return airport",
+    "createTrip.outboundDateTime": "Outbound flight date/time",
+    "createTrip.returnDateTime": "Return flight date/time",
+    "tripDetail.destinationSegments": "Destination segments",
+    "tripDetail.tripStartReminder": "Trip start reminder",
+    "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.",
+    "tripDetail.segmentStartReminder": "Destination reminder",
+  },
+  zh: {
+    "trips.createTripCta": "Create trip",
+    "trips.emptyTitle": "No trips yet",
+    "trips.emptyText": "Create your first shopping trip with dates.",
+    "createTrip.heroTitle": "Create a shopping trip",
+    "createTrip.heroSubtitle": "Plan outlet days smartly.",
+    "createTrip.tripName": "Trip name",
+    "createTrip.startDate": "Start date",
+    "createTrip.endDate": "End date",
+    "createTrip.visitDates": "Visit dates",
+    "createTrip.flightInfo": "Flight details (optional)",
+    "createTrip.flightHelper":
+      "If you add flight details, Tax Free and airport reminders are prepared.",
+    "createTrip.notes": "Notes (optional)",
+    "createTrip.addCityOutlet": "Add city/outlet",
+    "tripDetail.addRouteCta": "Add route",
+    "tripDetail.emptyRouteTitle": "No route added yet",
+    "tripDetail.emptyRouteText":
+      "Complete your trip plan by adding a city or outlet.",
+    "tripDetail.reminderPlan": "Reminder plan",
+    "tripDetail.taxFreeReminder": "Tax Free reminder",
+    "tripDetail.flightReminder": "Flight reminder",
+    "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Today is your {{outlet}} outlet day.",
+    "tripDetail.taxFreeReminderMessage":
+      "Remember to check your Tax Free documents.",
+    "tripDetail.flightReminderMessage":
+      "Check your flight and airport Tax Free steps.",
+    "createTrip.saveFailedTitle": "Trip could not be saved",
+    "createTrip.saveFailedMessage":
+      "Please check your connection and try again.",
+    "createTrip.endDateBeforeStart": "End date cannot be before start date.",
+    "createTrip.tripNameRequired": "Trip name is required.",
+    "createTrip.dateRangeRequired": "Select trip start and end dates.",
+    "createTrip.destinations": "Destinations",
+    "createTrip.destinationsOptional":
+      "Destinations are optional now and editable after creation.",
+    "createTrip.airline": "Airline",
+    "createTrip.returnAirport": "Return airport",
+    "createTrip.outboundDateTime": "Outbound flight date/time",
+    "createTrip.returnDateTime": "Return flight date/time",
+    "tripDetail.destinationSegments": "Destination segments",
+    "tripDetail.tripStartReminder": "Trip start reminder",
+    "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.",
+    "tripDetail.segmentStartReminder": "Destination reminder",
+  },
+};
 for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], tripPlanningFlowTranslations[locale]);
 }
 
-const tripSegmentEditorTranslations: Record<TranslationLanguage, Record<string, string>> = {
-  en: { "tripDetail.routeSection": "Trip route", "tripDetail.editRouteCta": "Edit route", "tripDetail.deleteRouteCta": "Delete route", "tripSegment.selectCityOrOutlet": "Select city or outlet", "tripSegment.citySearch": "Search city", "tripSegment.outletSearch": "Search outlet", "tripSegment.startDate": "Start date", "tripSegment.endDate": "End date", "tripSegment.notes": "Route note (optional)", "tripSegment.saveRoute": "Save route", "tripSegment.deleteTitle": "Delete route?", "tripSegment.deleteBody": "This route will be removed from the trip.", "tripSegment.cityOrOutletRequired": "Select at least one city or outlet.", "tripSegment.datesOutsideTrip": "Route dates must be inside trip dates.", "tripSegment.endBeforeStart": "Route end date cannot be before start date.", "tripSegment.overlap": "These dates overlap another route.", "tripDetail.dealEventReminder": "Event / campaign", "tripDetail.dealEventReminderMessage": "There is a relevant event or campaign on these dates." },
-  tr: { "tripDetail.routeSection": "Seyahat rotası", "tripDetail.editRouteCta": "Rotayı düzenle", "tripDetail.deleteRouteCta": "Rotayı sil", "tripSegment.selectCityOrOutlet": "Şehir veya outlet seç", "tripSegment.citySearch": "Şehir ara", "tripSegment.outletSearch": "Outlet ara", "tripSegment.startDate": "Başlangıç tarihi", "tripSegment.endDate": "Bitiş tarihi", "tripSegment.notes": "Rota notu (opsiyonel)", "tripSegment.saveRoute": "Rota kaydet", "tripSegment.deleteTitle": "Rota silinsin mi?", "tripSegment.deleteBody": "Bu rota seyahatten kaldırılacak.", "tripSegment.cityOrOutletRequired": "En az bir şehir veya outlet seç.", "tripSegment.datesOutsideTrip": "Rota tarihleri seyahat tarihleri içinde olmalı.", "tripSegment.endBeforeStart": "Rota bitiş tarihi başlangıç tarihinden önce olamaz.", "tripSegment.overlap": "Bu tarihler başka bir rota ile çakışıyor.", "tripDetail.tripStartReminder": "Seyahat başlangıcı", "tripDetail.segmentStartReminder": "Rota başlangıcı", "tripDetail.dealEventReminder": "Etkinlik / kampanya", "tripDetail.dealEventReminderMessage": "Bu tarihlerde ilgili etkinlik veya kampanya var." },
-  es: { "tripDetail.routeSection": "Ruta del viaje", "tripDetail.editRouteCta": "Editar ruta", "tripDetail.deleteRouteCta": "Eliminar ruta", "tripSegment.selectCityOrOutlet": "Selecciona ciudad u outlet", "tripSegment.citySearch": "Buscar ciudad", "tripSegment.outletSearch": "Buscar outlet", "tripSegment.startDate": "Fecha de inicio", "tripSegment.endDate": "Fecha de fin", "tripSegment.notes": "Nota de ruta (opcional)", "tripSegment.saveRoute": "Guardar ruta", "tripSegment.deleteTitle": "¿Eliminar ruta?", "tripSegment.deleteBody": "Esta ruta se quitará del viaje.", "tripSegment.cityOrOutletRequired": "Selecciona al menos una ciudad u outlet.", "tripSegment.datesOutsideTrip": "Las fechas de ruta deben estar dentro del viaje.", "tripSegment.endBeforeStart": "La fecha final no puede ser anterior a la inicial.", "tripSegment.overlap": "Estas fechas se solapan con otra ruta.", "tripDetail.dealEventReminder": "Evento / campaña", "tripDetail.dealEventReminderMessage": "Hay un evento o campaña relevante en estas fechas." },
-  fr: { "tripDetail.routeSection": "Itinéraire du voyage", "tripDetail.editRouteCta": "Modifier l’itinéraire", "tripDetail.deleteRouteCta": "Supprimer l’itinéraire", "tripSegment.selectCityOrOutlet": "Choisir une ville ou un outlet", "tripSegment.citySearch": "Rechercher une ville", "tripSegment.outletSearch": "Rechercher un outlet", "tripSegment.startDate": "Date de début", "tripSegment.endDate": "Date de fin", "tripSegment.notes": "Note d’itinéraire (facultatif)", "tripSegment.saveRoute": "Enregistrer l’itinéraire", "tripSegment.deleteTitle": "Supprimer l’itinéraire ?", "tripSegment.deleteBody": "Cet itinéraire sera retiré du voyage.", "tripSegment.cityOrOutletRequired": "Choisissez au moins une ville ou un outlet.", "tripSegment.datesOutsideTrip": "Les dates doivent être dans les dates du voyage.", "tripSegment.endBeforeStart": "La date de fin ne peut pas précéder le début.", "tripSegment.overlap": "Ces dates chevauchent un autre itinéraire.", "tripDetail.dealEventReminder": "Événement / campagne", "tripDetail.dealEventReminderMessage": "Un événement ou une campagne pertinente existe à ces dates." },
-  de: { "tripDetail.routeSection": "Reiseroute", "tripDetail.editRouteCta": "Route bearbeiten", "tripDetail.deleteRouteCta": "Route löschen", "tripSegment.selectCityOrOutlet": "Stadt oder Outlet wählen", "tripSegment.citySearch": "Stadt suchen", "tripSegment.outletSearch": "Outlet suchen", "tripSegment.startDate": "Startdatum", "tripSegment.endDate": "Enddatum", "tripSegment.notes": "Routennotiz (optional)", "tripSegment.saveRoute": "Route speichern", "tripSegment.deleteTitle": "Route löschen?", "tripSegment.deleteBody": "Diese Route wird aus der Reise entfernt.", "tripSegment.cityOrOutletRequired": "Wähle mindestens eine Stadt oder ein Outlet.", "tripSegment.datesOutsideTrip": "Routendaten müssen innerhalb der Reisedaten liegen.", "tripSegment.endBeforeStart": "Enddatum darf nicht vor dem Startdatum liegen.", "tripSegment.overlap": "Diese Daten überschneiden sich mit einer anderen Route.", "tripDetail.dealEventReminder": "Event / Kampagne", "tripDetail.dealEventReminderMessage": "Für diese Daten gibt es ein relevantes Event oder eine Kampagne." },
-  ar: { "tripDetail.routeSection": "مسار الرحلة", "tripDetail.editRouteCta": "تعديل المسار", "tripDetail.deleteRouteCta": "حذف المسار", "tripSegment.selectCityOrOutlet": "اختر مدينة أو أوتلت", "tripSegment.citySearch": "ابحث عن مدينة", "tripSegment.outletSearch": "ابحث عن أوتلت", "tripSegment.startDate": "تاريخ البداية", "tripSegment.endDate": "تاريخ النهاية", "tripSegment.notes": "ملاحظة المسار (اختياري)", "tripSegment.saveRoute": "حفظ المسار", "tripSegment.deleteTitle": "حذف المسار؟", "tripSegment.deleteBody": "سيتم حذف هذا المسار من الرحلة.", "tripSegment.cityOrOutletRequired": "اختر مدينة أو أوتلت واحدًا على الأقل.", "tripSegment.datesOutsideTrip": "يجب أن تكون تواريخ المسار ضمن تواريخ الرحلة.", "tripSegment.endBeforeStart": "لا يمكن أن يسبق تاريخ النهاية تاريخ البداية.", "tripSegment.overlap": "هذه التواريخ تتداخل مع مسار آخر.", "tripDetail.dealEventReminder": "فعالية / حملة", "tripDetail.dealEventReminderMessage": "توجد فعالية أو حملة ذات صلة في هذه التواريخ." },
-  ru: { "tripDetail.routeSection": "Маршрут поездки", "tripDetail.editRouteCta": "Изменить маршрут", "tripDetail.deleteRouteCta": "Удалить маршрут", "tripSegment.selectCityOrOutlet": "Выберите город или аутлет", "tripSegment.citySearch": "Поиск города", "tripSegment.outletSearch": "Поиск аутлета", "tripSegment.startDate": "Дата начала", "tripSegment.endDate": "Дата окончания", "tripSegment.notes": "Заметка маршрута (необязательно)", "tripSegment.saveRoute": "Сохранить маршрут", "tripSegment.deleteTitle": "Удалить маршрут?", "tripSegment.deleteBody": "Этот маршрут будет удалён из поездки.", "tripSegment.cityOrOutletRequired": "Выберите хотя бы город или аутлет.", "tripSegment.datesOutsideTrip": "Даты маршрута должны быть внутри дат поездки.", "tripSegment.endBeforeStart": "Дата окончания не может быть раньше начала.", "tripSegment.overlap": "Эти даты пересекаются с другим маршрутом.", "tripDetail.dealEventReminder": "Событие / акция", "tripDetail.dealEventReminderMessage": "В эти даты есть связанное событие или акция." },
-  zh: { "tripDetail.routeSection": "旅行路线", "tripDetail.editRouteCta": "编辑路线", "tripDetail.deleteRouteCta": "删除路线", "tripSegment.selectCityOrOutlet": "选择城市或奥莱", "tripSegment.citySearch": "搜索城市", "tripSegment.outletSearch": "搜索奥莱", "tripSegment.startDate": "开始日期", "tripSegment.endDate": "结束日期", "tripSegment.notes": "路线备注（可选）", "tripSegment.saveRoute": "保存路线", "tripSegment.deleteTitle": "删除路线？", "tripSegment.deleteBody": "此路线将从行程中移除。", "tripSegment.cityOrOutletRequired": "至少选择一个城市或奥莱。", "tripSegment.datesOutsideTrip": "路线日期必须在行程日期内。", "tripSegment.endBeforeStart": "结束日期不能早于开始日期。", "tripSegment.overlap": "这些日期与另一条路线重叠。", "tripDetail.dealEventReminder": "活动 / 优惠", "tripDetail.dealEventReminderMessage": "这些日期有相关活动或优惠。" },
+const tripSegmentEditorTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "tripDetail.routeSection": "Trip route",
+    "tripDetail.editRouteCta": "Edit route",
+    "tripDetail.deleteRouteCta": "Delete route",
+    "tripSegment.selectCityOrOutlet": "Select city or outlet",
+    "tripSegment.citySearch": "Search city",
+    "tripSegment.outletSearch": "Search outlet",
+    "tripSegment.startDate": "Start date",
+    "tripSegment.endDate": "End date",
+    "tripSegment.notes": "Route note (optional)",
+    "tripSegment.saveRoute": "Save route",
+    "tripSegment.deleteTitle": "Delete route?",
+    "tripSegment.deleteBody": "This route will be removed from the trip.",
+    "tripSegment.cityOrOutletRequired": "Select at least one city or outlet.",
+    "tripSegment.datesOutsideTrip": "Route dates must be inside trip dates.",
+    "tripSegment.endBeforeStart": "Route end date cannot be before start date.",
+    "tripSegment.overlap": "These dates overlap another route.",
+    "tripDetail.dealEventReminder": "Event / campaign",
+    "tripDetail.dealEventReminderMessage":
+      "There is a relevant event or campaign on these dates.",
+  },
+  tr: {
+    "tripDetail.routeSection": "Seyahat rotası",
+    "tripDetail.editRouteCta": "Rotayı düzenle",
+    "tripDetail.deleteRouteCta": "Rotayı sil",
+    "tripSegment.selectCityOrOutlet": "Şehir veya outlet seç",
+    "tripSegment.citySearch": "Şehir ara",
+    "tripSegment.outletSearch": "Outlet ara",
+    "tripSegment.startDate": "Başlangıç tarihi",
+    "tripSegment.endDate": "Bitiş tarihi",
+    "tripSegment.notes": "Rota notu (opsiyonel)",
+    "tripSegment.saveRoute": "Rota kaydet",
+    "tripSegment.deleteTitle": "Rota silinsin mi?",
+    "tripSegment.deleteBody": "Bu rota seyahatten kaldırılacak.",
+    "tripSegment.cityOrOutletRequired": "En az bir şehir veya outlet seç.",
+    "tripSegment.datesOutsideTrip":
+      "Rota tarihleri seyahat tarihleri içinde olmalı.",
+    "tripSegment.endBeforeStart":
+      "Rota bitiş tarihi başlangıç tarihinden önce olamaz.",
+    "tripSegment.overlap": "Bu tarihler başka bir rota ile çakışıyor.",
+    "tripDetail.tripStartReminder": "Seyahat başlangıcı",
+    "tripDetail.segmentStartReminder": "Rota başlangıcı",
+    "tripDetail.dealEventReminder": "Etkinlik / kampanya",
+    "tripDetail.dealEventReminderMessage":
+      "Bu tarihlerde ilgili etkinlik veya kampanya var.",
+  },
+  es: {
+    "tripDetail.routeSection": "Ruta del viaje",
+    "tripDetail.editRouteCta": "Editar ruta",
+    "tripDetail.deleteRouteCta": "Eliminar ruta",
+    "tripSegment.selectCityOrOutlet": "Selecciona ciudad u outlet",
+    "tripSegment.citySearch": "Buscar ciudad",
+    "tripSegment.outletSearch": "Buscar outlet",
+    "tripSegment.startDate": "Fecha de inicio",
+    "tripSegment.endDate": "Fecha de fin",
+    "tripSegment.notes": "Nota de ruta (opcional)",
+    "tripSegment.saveRoute": "Guardar ruta",
+    "tripSegment.deleteTitle": "¿Eliminar ruta?",
+    "tripSegment.deleteBody": "Esta ruta se quitará del viaje.",
+    "tripSegment.cityOrOutletRequired":
+      "Selecciona al menos una ciudad u outlet.",
+    "tripSegment.datesOutsideTrip":
+      "Las fechas de ruta deben estar dentro del viaje.",
+    "tripSegment.endBeforeStart":
+      "La fecha final no puede ser anterior a la inicial.",
+    "tripSegment.overlap": "Estas fechas se solapan con otra ruta.",
+    "tripDetail.dealEventReminder": "Evento / campaña",
+    "tripDetail.dealEventReminderMessage":
+      "Hay un evento o campaña relevante en estas fechas.",
+  },
+  fr: {
+    "tripDetail.routeSection": "Itinéraire du voyage",
+    "tripDetail.editRouteCta": "Modifier l’itinéraire",
+    "tripDetail.deleteRouteCta": "Supprimer l’itinéraire",
+    "tripSegment.selectCityOrOutlet": "Choisir une ville ou un outlet",
+    "tripSegment.citySearch": "Rechercher une ville",
+    "tripSegment.outletSearch": "Rechercher un outlet",
+    "tripSegment.startDate": "Date de début",
+    "tripSegment.endDate": "Date de fin",
+    "tripSegment.notes": "Note d’itinéraire (facultatif)",
+    "tripSegment.saveRoute": "Enregistrer l’itinéraire",
+    "tripSegment.deleteTitle": "Supprimer l’itinéraire ?",
+    "tripSegment.deleteBody": "Cet itinéraire sera retiré du voyage.",
+    "tripSegment.cityOrOutletRequired":
+      "Choisissez au moins une ville ou un outlet.",
+    "tripSegment.datesOutsideTrip":
+      "Les dates doivent être dans les dates du voyage.",
+    "tripSegment.endBeforeStart":
+      "La date de fin ne peut pas précéder le début.",
+    "tripSegment.overlap": "Ces dates chevauchent un autre itinéraire.",
+    "tripDetail.dealEventReminder": "Événement / campagne",
+    "tripDetail.dealEventReminderMessage":
+      "Un événement ou une campagne pertinente existe à ces dates.",
+  },
+  de: {
+    "tripDetail.routeSection": "Reiseroute",
+    "tripDetail.editRouteCta": "Route bearbeiten",
+    "tripDetail.deleteRouteCta": "Route löschen",
+    "tripSegment.selectCityOrOutlet": "Stadt oder Outlet wählen",
+    "tripSegment.citySearch": "Stadt suchen",
+    "tripSegment.outletSearch": "Outlet suchen",
+    "tripSegment.startDate": "Startdatum",
+    "tripSegment.endDate": "Enddatum",
+    "tripSegment.notes": "Routennotiz (optional)",
+    "tripSegment.saveRoute": "Route speichern",
+    "tripSegment.deleteTitle": "Route löschen?",
+    "tripSegment.deleteBody": "Diese Route wird aus der Reise entfernt.",
+    "tripSegment.cityOrOutletRequired":
+      "Wähle mindestens eine Stadt oder ein Outlet.",
+    "tripSegment.datesOutsideTrip":
+      "Routendaten müssen innerhalb der Reisedaten liegen.",
+    "tripSegment.endBeforeStart":
+      "Enddatum darf nicht vor dem Startdatum liegen.",
+    "tripSegment.overlap":
+      "Diese Daten überschneiden sich mit einer anderen Route.",
+    "tripDetail.dealEventReminder": "Event / Kampagne",
+    "tripDetail.dealEventReminderMessage":
+      "Für diese Daten gibt es ein relevantes Event oder eine Kampagne.",
+  },
+  ar: {
+    "tripDetail.routeSection": "مسار الرحلة",
+    "tripDetail.editRouteCta": "تعديل المسار",
+    "tripDetail.deleteRouteCta": "حذف المسار",
+    "tripSegment.selectCityOrOutlet": "اختر مدينة أو أوتلت",
+    "tripSegment.citySearch": "ابحث عن مدينة",
+    "tripSegment.outletSearch": "ابحث عن أوتلت",
+    "tripSegment.startDate": "تاريخ البداية",
+    "tripSegment.endDate": "تاريخ النهاية",
+    "tripSegment.notes": "ملاحظة المسار (اختياري)",
+    "tripSegment.saveRoute": "حفظ المسار",
+    "tripSegment.deleteTitle": "حذف المسار؟",
+    "tripSegment.deleteBody": "سيتم حذف هذا المسار من الرحلة.",
+    "tripSegment.cityOrOutletRequired": "اختر مدينة أو أوتلت واحدًا على الأقل.",
+    "tripSegment.datesOutsideTrip":
+      "يجب أن تكون تواريخ المسار ضمن تواريخ الرحلة.",
+    "tripSegment.endBeforeStart":
+      "لا يمكن أن يسبق تاريخ النهاية تاريخ البداية.",
+    "tripSegment.overlap": "هذه التواريخ تتداخل مع مسار آخر.",
+    "tripDetail.dealEventReminder": "فعالية / حملة",
+    "tripDetail.dealEventReminderMessage":
+      "توجد فعالية أو حملة ذات صلة في هذه التواريخ.",
+  },
+  ru: {
+    "tripDetail.routeSection": "Маршрут поездки",
+    "tripDetail.editRouteCta": "Изменить маршрут",
+    "tripDetail.deleteRouteCta": "Удалить маршрут",
+    "tripSegment.selectCityOrOutlet": "Выберите город или аутлет",
+    "tripSegment.citySearch": "Поиск города",
+    "tripSegment.outletSearch": "Поиск аутлета",
+    "tripSegment.startDate": "Дата начала",
+    "tripSegment.endDate": "Дата окончания",
+    "tripSegment.notes": "Заметка маршрута (необязательно)",
+    "tripSegment.saveRoute": "Сохранить маршрут",
+    "tripSegment.deleteTitle": "Удалить маршрут?",
+    "tripSegment.deleteBody": "Этот маршрут будет удалён из поездки.",
+    "tripSegment.cityOrOutletRequired": "Выберите хотя бы город или аутлет.",
+    "tripSegment.datesOutsideTrip":
+      "Даты маршрута должны быть внутри дат поездки.",
+    "tripSegment.endBeforeStart": "Дата окончания не может быть раньше начала.",
+    "tripSegment.overlap": "Эти даты пересекаются с другим маршрутом.",
+    "tripDetail.dealEventReminder": "Событие / акция",
+    "tripDetail.dealEventReminderMessage":
+      "В эти даты есть связанное событие или акция.",
+  },
+  zh: {
+    "tripDetail.routeSection": "旅行路线",
+    "tripDetail.editRouteCta": "编辑路线",
+    "tripDetail.deleteRouteCta": "删除路线",
+    "tripSegment.selectCityOrOutlet": "选择城市或奥莱",
+    "tripSegment.citySearch": "搜索城市",
+    "tripSegment.outletSearch": "搜索奥莱",
+    "tripSegment.startDate": "开始日期",
+    "tripSegment.endDate": "结束日期",
+    "tripSegment.notes": "路线备注（可选）",
+    "tripSegment.saveRoute": "保存路线",
+    "tripSegment.deleteTitle": "删除路线？",
+    "tripSegment.deleteBody": "此路线将从行程中移除。",
+    "tripSegment.cityOrOutletRequired": "至少选择一个城市或奥莱。",
+    "tripSegment.datesOutsideTrip": "路线日期必须在行程日期内。",
+    "tripSegment.endBeforeStart": "结束日期不能早于开始日期。",
+    "tripSegment.overlap": "这些日期与另一条路线重叠。",
+    "tripDetail.dealEventReminder": "活动 / 优惠",
+    "tripDetail.dealEventReminderMessage": "这些日期有相关活动或优惠。",
+  },
 };
 
 for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], tripSegmentEditorTranslations[locale]);
 }
 
-const tripReminderPlanV2Translations: Record<TranslationLanguage, Record<string, string>> = {
-  en: { "tripDetail.reminderPlan": "Reminder plan", "tripDetail.reminderPlanPreview": "Notification-ready reminder preview.", "tripDetail.tripStartReminder": "Trip start", "tripDetail.segmentStartReminder": "Route start", "tripDetail.taxFreeReminder": "Tax Free preparation", "tripDetail.flightReminder": "Flight reminder", "tripDetail.returnFlightReminder": "Return flight", "tripDetail.dealEventReminder": "Event / campaign", "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.", "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.", "tripDetail.segmentOutletReminderMessage": "Today is your {{outlet}} outlet day.", "tripDetail.segmentStartReminderBody": "Check route details and transportation information.", "tripDetail.taxFreeReminderMessage": "Remember to check your documents, passport, and shopping receipts.", "tripDetail.outboundFlightReminderMessage": "Check your flight details{{airport}}.", "tripDetail.returnFlightReminderMessage": "Check your flight and airport Tax Free steps{{airport}}.", "tripDetail.dealEventReminderMessage": "There is a relevant event or campaign on these dates.", "tripDetail.noRemindersTitle": "No reminders", "tripDetail.noRemindersText": "When you add trip dates or a route, the reminder preview appears here." },
-  tr: { "tripDetail.reminderPlan": "Hatırlatma planı", "tripDetail.reminderPlanPreview": "Bildirim altyapısına hazır hatırlatma önizlemesi.", "tripDetail.tripStartReminder": "Seyahat başlangıcı", "tripDetail.segmentStartReminder": "Rota başlangıcı", "tripDetail.taxFreeReminder": "Tax Free hazırlığı", "tripDetail.flightReminder": "Uçuş hatırlatması", "tripDetail.returnFlightReminder": "Dönüş uçuşu", "tripDetail.dealEventReminder": "Etkinlik / kampanya", "tripDetail.tripStartReminderMessage": "Alışveriş seyahatin bugün başlıyor.", "tripDetail.segmentCityReminderMessage": "Bugün {{city}} planın başlıyor.", "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} outlet günün.", "tripDetail.segmentStartReminderBody": "Rota detaylarını ve ulaşım bilgilerini kontrol et.", "tripDetail.taxFreeReminderMessage": "Belgelerini, pasaportunu ve alışveriş fişlerini kontrol etmeyi unutma.", "tripDetail.outboundFlightReminderMessage": "Uçuş bilgilerini kontrol et{{airport}}.", "tripDetail.returnFlightReminderMessage": "Uçuş ve havaalanı Tax Free işlemlerini kontrol et{{airport}}.", "tripDetail.dealEventReminderMessage": "Bu tarihlerde ilgili etkinlik veya kampanya var.", "tripDetail.noRemindersTitle": "Hatırlatma yok", "tripDetail.noRemindersText": "Seyahat tarihleri veya rota eklediğinde hatırlatma önizlemesi burada görünür." },
-  es: { "tripDetail.reminderPlan": "Plan de recordatorios", "tripDetail.reminderPlanPreview": "Vista previa de recordatorios lista para notificaciones.", "tripDetail.tripStartReminder": "Inicio del viaje", "tripDetail.segmentStartReminder": "Inicio de ruta", "tripDetail.taxFreeReminder": "Preparación Tax Free", "tripDetail.flightReminder": "Recordatorio de vuelo", "tripDetail.returnFlightReminder": "Vuelo de regreso", "tripDetail.dealEventReminder": "Evento / campaña", "tripDetail.tripStartReminderMessage": "Tu viaje de compras empieza hoy.", "tripDetail.segmentCityReminderMessage": "Tu plan en {{city}} empieza hoy.", "tripDetail.segmentOutletReminderMessage": "Hoy es tu día de outlet en {{outlet}}.", "tripDetail.segmentStartReminderBody": "Revisa los detalles de ruta y transporte.", "tripDetail.taxFreeReminderMessage": "Recuerda revisar documentos, pasaporte y recibos de compra.", "tripDetail.outboundFlightReminderMessage": "Revisa los detalles de tu vuelo{{airport}}.", "tripDetail.returnFlightReminderMessage": "Revisa el vuelo y los trámites Tax Free del aeropuerto{{airport}}.", "tripDetail.dealEventReminderMessage": "Hay un evento o campaña relevante en estas fechas.", "tripDetail.noRemindersTitle": "Sin recordatorios", "tripDetail.noRemindersText": "Cuando añadas fechas o ruta, la vista previa aparecerá aquí." },
-  fr: { "tripDetail.reminderPlan": "Plan de rappels", "tripDetail.reminderPlanPreview": "Aperçu de rappels prêt pour les notifications.", "tripDetail.tripStartReminder": "Début du voyage", "tripDetail.segmentStartReminder": "Début d’itinéraire", "tripDetail.taxFreeReminder": "Préparation Tax Free", "tripDetail.flightReminder": "Rappel de vol", "tripDetail.returnFlightReminder": "Vol retour", "tripDetail.dealEventReminder": "Événement / campagne", "tripDetail.tripStartReminderMessage": "Votre voyage shopping commence aujourd’hui.", "tripDetail.segmentCityReminderMessage": "Votre programme à {{city}} commence aujourd’hui.", "tripDetail.segmentOutletReminderMessage": "Aujourd’hui est votre journée outlet à {{outlet}}.", "tripDetail.segmentStartReminderBody": "Vérifiez les détails d’itinéraire et de transport.", "tripDetail.taxFreeReminderMessage": "Pensez à vérifier vos documents, passeport et reçus d’achat.", "tripDetail.outboundFlightReminderMessage": "Vérifiez les détails de votre vol{{airport}}.", "tripDetail.returnFlightReminderMessage": "Vérifiez le vol et les démarches Tax Free à l’aéroport{{airport}}.", "tripDetail.dealEventReminderMessage": "Un événement ou une campagne pertinente existe à ces dates.", "tripDetail.noRemindersTitle": "Aucun rappel", "tripDetail.noRemindersText": "Quand vous ajoutez des dates ou un itinéraire, l’aperçu apparaît ici." },
-  de: { "tripDetail.reminderPlan": "Erinnerungsplan", "tripDetail.reminderPlanPreview": "Benachrichtigungsbereite Erinnerungsvorschau.", "tripDetail.tripStartReminder": "Reisebeginn", "tripDetail.segmentStartReminder": "Routenbeginn", "tripDetail.taxFreeReminder": "Tax-Free-Vorbereitung", "tripDetail.flightReminder": "Flugerinnerung", "tripDetail.returnFlightReminder": "Rückflug", "tripDetail.dealEventReminder": "Event / Kampagne", "tripDetail.tripStartReminderMessage": "Deine Shopping-Reise beginnt heute.", "tripDetail.segmentCityReminderMessage": "Dein Plan für {{city}} beginnt heute.", "tripDetail.segmentOutletReminderMessage": "Heute ist dein Outlet-Tag in {{outlet}}.", "tripDetail.segmentStartReminderBody": "Prüfe Routendetails und Verkehrsinformationen.", "tripDetail.taxFreeReminderMessage": "Denk daran, Dokumente, Pass und Einkaufsbelege zu prüfen.", "tripDetail.outboundFlightReminderMessage": "Prüfe deine Flugdaten{{airport}}.", "tripDetail.returnFlightReminderMessage": "Prüfe Flug und Tax-Free-Schritte am Flughafen{{airport}}.", "tripDetail.dealEventReminderMessage": "Für diese Daten gibt es ein relevantes Event oder eine Kampagne.", "tripDetail.noRemindersTitle": "Keine Erinnerungen", "tripDetail.noRemindersText": "Wenn du Reisedaten oder eine Route hinzufügst, erscheint die Vorschau hier." },
-  ar: { "tripDetail.reminderPlan": "خطة التذكيرات", "tripDetail.reminderPlanPreview": "معاينة تذكيرات جاهزة للبنية الخاصة بالإشعارات.", "tripDetail.tripStartReminder": "بداية الرحلة", "tripDetail.segmentStartReminder": "بداية المسار", "tripDetail.taxFreeReminder": "تحضير Tax Free", "tripDetail.flightReminder": "تذكير الرحلة الجوية", "tripDetail.returnFlightReminder": "رحلة العودة", "tripDetail.dealEventReminder": "فعالية / حملة", "tripDetail.tripStartReminderMessage": "تبدأ رحلة التسوق الخاصة بك اليوم.", "tripDetail.segmentCityReminderMessage": "تبدأ خطتك في {{city}} اليوم.", "tripDetail.segmentOutletReminderMessage": "اليوم هو يوم الأوتلت في {{outlet}}.", "tripDetail.segmentStartReminderBody": "راجع تفاصيل المسار ومعلومات النقل.", "tripDetail.taxFreeReminderMessage": "لا تنسَ التحقق من مستنداتك وجواز سفرك وإيصالات التسوق.", "tripDetail.outboundFlightReminderMessage": "راجع تفاصيل رحلتك{{airport}}.", "tripDetail.returnFlightReminderMessage": "راجع إجراءات الرحلة و Tax Free في المطار{{airport}}.", "tripDetail.dealEventReminderMessage": "توجد فعالية أو حملة ذات صلة في هذه التواريخ.", "tripDetail.noRemindersTitle": "لا توجد تذكيرات", "tripDetail.noRemindersText": "عند إضافة تواريخ الرحلة أو المسار ستظهر معاينة التذكيرات هنا." },
-  ru: { "tripDetail.reminderPlan": "План напоминаний", "tripDetail.reminderPlanPreview": "Предпросмотр напоминаний, готовый к уведомлениям.", "tripDetail.tripStartReminder": "Начало поездки", "tripDetail.segmentStartReminder": "Начало маршрута", "tripDetail.taxFreeReminder": "Подготовка Tax Free", "tripDetail.flightReminder": "Напоминание о рейсе", "tripDetail.returnFlightReminder": "Обратный рейс", "tripDetail.dealEventReminder": "Событие / акция", "tripDetail.tripStartReminderMessage": "Ваша шопинг-поездка начинается сегодня.", "tripDetail.segmentCityReminderMessage": "Ваш план в {{city}} начинается сегодня.", "tripDetail.segmentOutletReminderMessage": "Сегодня день аутлета {{outlet}}.", "tripDetail.segmentStartReminderBody": "Проверьте детали маршрута и транспорта.", "tripDetail.taxFreeReminderMessage": "Не забудьте проверить документы, паспорт и чеки покупок.", "tripDetail.outboundFlightReminderMessage": "Проверьте данные рейса{{airport}}.", "tripDetail.returnFlightReminderMessage": "Проверьте рейс и аэропортовые шаги Tax Free{{airport}}.", "tripDetail.dealEventReminderMessage": "В эти даты есть связанное событие или акция.", "tripDetail.noRemindersTitle": "Нет напоминаний", "tripDetail.noRemindersText": "Когда вы добавите даты поездки или маршрут, предпросмотр появится здесь." },
-  zh: { "tripDetail.reminderPlan": "提醒计划", "tripDetail.reminderPlanPreview": "可接入通知的提醒预览。", "tripDetail.tripStartReminder": "行程开始", "tripDetail.segmentStartReminder": "路线开始", "tripDetail.taxFreeReminder": "退税准备", "tripDetail.flightReminder": "航班提醒", "tripDetail.returnFlightReminder": "返程航班", "tripDetail.dealEventReminder": "活动 / 优惠", "tripDetail.tripStartReminderMessage": "你的购物行程今天开始。", "tripDetail.segmentCityReminderMessage": "你的 {{city}} 计划今天开始。", "tripDetail.segmentOutletReminderMessage": "今天是你的 {{outlet}} 奥莱日。", "tripDetail.segmentStartReminderBody": "检查路线详情和交通信息。", "tripDetail.taxFreeReminderMessage": "别忘了检查文件、护照和购物小票。", "tripDetail.outboundFlightReminderMessage": "检查你的航班信息{{airport}}。", "tripDetail.returnFlightReminderMessage": "检查航班和机场退税流程{{airport}}。", "tripDetail.dealEventReminderMessage": "这些日期有相关活动或优惠。", "tripDetail.noRemindersTitle": "没有提醒", "tripDetail.noRemindersText": "添加行程日期或路线后，提醒预览会显示在这里。" },
+const tripReminderPlanV2Translations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "tripDetail.reminderPlan": "Reminder plan",
+    "tripDetail.reminderPlanPreview": "Notification-ready reminder preview.",
+    "tripDetail.tripStartReminder": "Trip start",
+    "tripDetail.segmentStartReminder": "Route start",
+    "tripDetail.taxFreeReminder": "Tax Free preparation",
+    "tripDetail.flightReminder": "Flight reminder",
+    "tripDetail.returnFlightReminder": "Return flight",
+    "tripDetail.dealEventReminder": "Event / campaign",
+    "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.",
+    "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Today is your {{outlet}} outlet day.",
+    "tripDetail.segmentStartReminderBody":
+      "Check route details and transportation information.",
+    "tripDetail.taxFreeReminderMessage":
+      "Remember to check your documents, passport, and shopping receipts.",
+    "tripDetail.outboundFlightReminderMessage":
+      "Check your flight details{{airport}}.",
+    "tripDetail.returnFlightReminderMessage":
+      "Check your flight and airport Tax Free steps{{airport}}.",
+    "tripDetail.dealEventReminderMessage":
+      "There is a relevant event or campaign on these dates.",
+    "tripDetail.noRemindersTitle": "No reminders",
+    "tripDetail.noRemindersText":
+      "When you add trip dates or a route, the reminder preview appears here.",
+  },
+  tr: {
+    "tripDetail.reminderPlan": "Hatırlatma planı",
+    "tripDetail.reminderPlanPreview":
+      "Bildirim altyapısına hazır hatırlatma önizlemesi.",
+    "tripDetail.tripStartReminder": "Seyahat başlangıcı",
+    "tripDetail.segmentStartReminder": "Rota başlangıcı",
+    "tripDetail.taxFreeReminder": "Tax Free hazırlığı",
+    "tripDetail.flightReminder": "Uçuş hatırlatması",
+    "tripDetail.returnFlightReminder": "Dönüş uçuşu",
+    "tripDetail.dealEventReminder": "Etkinlik / kampanya",
+    "tripDetail.tripStartReminderMessage":
+      "Alışveriş seyahatin bugün başlıyor.",
+    "tripDetail.segmentCityReminderMessage": "Bugün {{city}} planın başlıyor.",
+    "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} outlet günün.",
+    "tripDetail.segmentStartReminderBody":
+      "Rota detaylarını ve ulaşım bilgilerini kontrol et.",
+    "tripDetail.taxFreeReminderMessage":
+      "Belgelerini, pasaportunu ve alışveriş fişlerini kontrol etmeyi unutma.",
+    "tripDetail.outboundFlightReminderMessage":
+      "Uçuş bilgilerini kontrol et{{airport}}.",
+    "tripDetail.returnFlightReminderMessage":
+      "Uçuş ve havaalanı Tax Free işlemlerini kontrol et{{airport}}.",
+    "tripDetail.dealEventReminderMessage":
+      "Bu tarihlerde ilgili etkinlik veya kampanya var.",
+    "tripDetail.noRemindersTitle": "Hatırlatma yok",
+    "tripDetail.noRemindersText":
+      "Seyahat tarihleri veya rota eklediğinde hatırlatma önizlemesi burada görünür.",
+  },
+  es: {
+    "tripDetail.reminderPlan": "Plan de recordatorios",
+    "tripDetail.reminderPlanPreview":
+      "Vista previa de recordatorios lista para notificaciones.",
+    "tripDetail.tripStartReminder": "Inicio del viaje",
+    "tripDetail.segmentStartReminder": "Inicio de ruta",
+    "tripDetail.taxFreeReminder": "Preparación Tax Free",
+    "tripDetail.flightReminder": "Recordatorio de vuelo",
+    "tripDetail.returnFlightReminder": "Vuelo de regreso",
+    "tripDetail.dealEventReminder": "Evento / campaña",
+    "tripDetail.tripStartReminderMessage": "Tu viaje de compras empieza hoy.",
+    "tripDetail.segmentCityReminderMessage": "Tu plan en {{city}} empieza hoy.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Hoy es tu día de outlet en {{outlet}}.",
+    "tripDetail.segmentStartReminderBody":
+      "Revisa los detalles de ruta y transporte.",
+    "tripDetail.taxFreeReminderMessage":
+      "Recuerda revisar documentos, pasaporte y recibos de compra.",
+    "tripDetail.outboundFlightReminderMessage":
+      "Revisa los detalles de tu vuelo{{airport}}.",
+    "tripDetail.returnFlightReminderMessage":
+      "Revisa el vuelo y los trámites Tax Free del aeropuerto{{airport}}.",
+    "tripDetail.dealEventReminderMessage":
+      "Hay un evento o campaña relevante en estas fechas.",
+    "tripDetail.noRemindersTitle": "Sin recordatorios",
+    "tripDetail.noRemindersText":
+      "Cuando añadas fechas o ruta, la vista previa aparecerá aquí.",
+  },
+  fr: {
+    "tripDetail.reminderPlan": "Plan de rappels",
+    "tripDetail.reminderPlanPreview":
+      "Aperçu de rappels prêt pour les notifications.",
+    "tripDetail.tripStartReminder": "Début du voyage",
+    "tripDetail.segmentStartReminder": "Début d’itinéraire",
+    "tripDetail.taxFreeReminder": "Préparation Tax Free",
+    "tripDetail.flightReminder": "Rappel de vol",
+    "tripDetail.returnFlightReminder": "Vol retour",
+    "tripDetail.dealEventReminder": "Événement / campagne",
+    "tripDetail.tripStartReminderMessage":
+      "Votre voyage shopping commence aujourd’hui.",
+    "tripDetail.segmentCityReminderMessage":
+      "Votre programme à {{city}} commence aujourd’hui.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Aujourd’hui est votre journée outlet à {{outlet}}.",
+    "tripDetail.segmentStartReminderBody":
+      "Vérifiez les détails d’itinéraire et de transport.",
+    "tripDetail.taxFreeReminderMessage":
+      "Pensez à vérifier vos documents, passeport et reçus d’achat.",
+    "tripDetail.outboundFlightReminderMessage":
+      "Vérifiez les détails de votre vol{{airport}}.",
+    "tripDetail.returnFlightReminderMessage":
+      "Vérifiez le vol et les démarches Tax Free à l’aéroport{{airport}}.",
+    "tripDetail.dealEventReminderMessage":
+      "Un événement ou une campagne pertinente existe à ces dates.",
+    "tripDetail.noRemindersTitle": "Aucun rappel",
+    "tripDetail.noRemindersText":
+      "Quand vous ajoutez des dates ou un itinéraire, l’aperçu apparaît ici.",
+  },
+  de: {
+    "tripDetail.reminderPlan": "Erinnerungsplan",
+    "tripDetail.reminderPlanPreview":
+      "Benachrichtigungsbereite Erinnerungsvorschau.",
+    "tripDetail.tripStartReminder": "Reisebeginn",
+    "tripDetail.segmentStartReminder": "Routenbeginn",
+    "tripDetail.taxFreeReminder": "Tax-Free-Vorbereitung",
+    "tripDetail.flightReminder": "Flugerinnerung",
+    "tripDetail.returnFlightReminder": "Rückflug",
+    "tripDetail.dealEventReminder": "Event / Kampagne",
+    "tripDetail.tripStartReminderMessage":
+      "Deine Shopping-Reise beginnt heute.",
+    "tripDetail.segmentCityReminderMessage":
+      "Dein Plan für {{city}} beginnt heute.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Heute ist dein Outlet-Tag in {{outlet}}.",
+    "tripDetail.segmentStartReminderBody":
+      "Prüfe Routendetails und Verkehrsinformationen.",
+    "tripDetail.taxFreeReminderMessage":
+      "Denk daran, Dokumente, Pass und Einkaufsbelege zu prüfen.",
+    "tripDetail.outboundFlightReminderMessage":
+      "Prüfe deine Flugdaten{{airport}}.",
+    "tripDetail.returnFlightReminderMessage":
+      "Prüfe Flug und Tax-Free-Schritte am Flughafen{{airport}}.",
+    "tripDetail.dealEventReminderMessage":
+      "Für diese Daten gibt es ein relevantes Event oder eine Kampagne.",
+    "tripDetail.noRemindersTitle": "Keine Erinnerungen",
+    "tripDetail.noRemindersText":
+      "Wenn du Reisedaten oder eine Route hinzufügst, erscheint die Vorschau hier.",
+  },
+  ar: {
+    "tripDetail.reminderPlan": "خطة التذكيرات",
+    "tripDetail.reminderPlanPreview":
+      "معاينة تذكيرات جاهزة للبنية الخاصة بالإشعارات.",
+    "tripDetail.tripStartReminder": "بداية الرحلة",
+    "tripDetail.segmentStartReminder": "بداية المسار",
+    "tripDetail.taxFreeReminder": "تحضير Tax Free",
+    "tripDetail.flightReminder": "تذكير الرحلة الجوية",
+    "tripDetail.returnFlightReminder": "رحلة العودة",
+    "tripDetail.dealEventReminder": "فعالية / حملة",
+    "tripDetail.tripStartReminderMessage": "تبدأ رحلة التسوق الخاصة بك اليوم.",
+    "tripDetail.segmentCityReminderMessage": "تبدأ خطتك في {{city}} اليوم.",
+    "tripDetail.segmentOutletReminderMessage":
+      "اليوم هو يوم الأوتلت في {{outlet}}.",
+    "tripDetail.segmentStartReminderBody": "راجع تفاصيل المسار ومعلومات النقل.",
+    "tripDetail.taxFreeReminderMessage":
+      "لا تنسَ التحقق من مستنداتك وجواز سفرك وإيصالات التسوق.",
+    "tripDetail.outboundFlightReminderMessage": "راجع تفاصيل رحلتك{{airport}}.",
+    "tripDetail.returnFlightReminderMessage":
+      "راجع إجراءات الرحلة و Tax Free في المطار{{airport}}.",
+    "tripDetail.dealEventReminderMessage":
+      "توجد فعالية أو حملة ذات صلة في هذه التواريخ.",
+    "tripDetail.noRemindersTitle": "لا توجد تذكيرات",
+    "tripDetail.noRemindersText":
+      "عند إضافة تواريخ الرحلة أو المسار ستظهر معاينة التذكيرات هنا.",
+  },
+  ru: {
+    "tripDetail.reminderPlan": "План напоминаний",
+    "tripDetail.reminderPlanPreview":
+      "Предпросмотр напоминаний, готовый к уведомлениям.",
+    "tripDetail.tripStartReminder": "Начало поездки",
+    "tripDetail.segmentStartReminder": "Начало маршрута",
+    "tripDetail.taxFreeReminder": "Подготовка Tax Free",
+    "tripDetail.flightReminder": "Напоминание о рейсе",
+    "tripDetail.returnFlightReminder": "Обратный рейс",
+    "tripDetail.dealEventReminder": "Событие / акция",
+    "tripDetail.tripStartReminderMessage":
+      "Ваша шопинг-поездка начинается сегодня.",
+    "tripDetail.segmentCityReminderMessage":
+      "Ваш план в {{city}} начинается сегодня.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Сегодня день аутлета {{outlet}}.",
+    "tripDetail.segmentStartReminderBody":
+      "Проверьте детали маршрута и транспорта.",
+    "tripDetail.taxFreeReminderMessage":
+      "Не забудьте проверить документы, паспорт и чеки покупок.",
+    "tripDetail.outboundFlightReminderMessage":
+      "Проверьте данные рейса{{airport}}.",
+    "tripDetail.returnFlightReminderMessage":
+      "Проверьте рейс и аэропортовые шаги Tax Free{{airport}}.",
+    "tripDetail.dealEventReminderMessage":
+      "В эти даты есть связанное событие или акция.",
+    "tripDetail.noRemindersTitle": "Нет напоминаний",
+    "tripDetail.noRemindersText":
+      "Когда вы добавите даты поездки или маршрут, предпросмотр появится здесь.",
+  },
+  zh: {
+    "tripDetail.reminderPlan": "提醒计划",
+    "tripDetail.reminderPlanPreview": "可接入通知的提醒预览。",
+    "tripDetail.tripStartReminder": "行程开始",
+    "tripDetail.segmentStartReminder": "路线开始",
+    "tripDetail.taxFreeReminder": "退税准备",
+    "tripDetail.flightReminder": "航班提醒",
+    "tripDetail.returnFlightReminder": "返程航班",
+    "tripDetail.dealEventReminder": "活动 / 优惠",
+    "tripDetail.tripStartReminderMessage": "你的购物行程今天开始。",
+    "tripDetail.segmentCityReminderMessage": "你的 {{city}} 计划今天开始。",
+    "tripDetail.segmentOutletReminderMessage": "今天是你的 {{outlet}} 奥莱日。",
+    "tripDetail.segmentStartReminderBody": "检查路线详情和交通信息。",
+    "tripDetail.taxFreeReminderMessage": "别忘了检查文件、护照和购物小票。",
+    "tripDetail.outboundFlightReminderMessage": "检查你的航班信息{{airport}}。",
+    "tripDetail.returnFlightReminderMessage":
+      "检查航班和机场退税流程{{airport}}。",
+    "tripDetail.dealEventReminderMessage": "这些日期有相关活动或优惠。",
+    "tripDetail.noRemindersTitle": "没有提醒",
+    "tripDetail.noRemindersText":
+      "添加行程日期或路线后，提醒预览会显示在这里。",
+  },
 };
 
 for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], tripReminderPlanV2Translations[locale]);
 }
 
-const notificationsV1Translations: Record<TranslationLanguage, Record<string, string>> = {
-  en: { "notifications.title": "Notifications", "notifications.tripRemindersCategory": "Trip reminders", "notifications.tripRemindersCategoryDesc": "Enable notifications for trip, Tax Free, and flight reminders.", "notifications.tripRemindersEnabled": "Notifications enabled", "notifications.permission.denied": "Notification permission is off", "notifications.permission.deniedHelp": "You can enable notifications in device settings.", "notifications.notConfigured": "Notification infrastructure is not configured yet.", "tripDetail.notificationsScheduled": "Notifications scheduled", "tripDetail.notificationsPartial": "Some notifications could not be scheduled", "notifications.remindersPreviewOnly": "Reminders are shown as a preview inside the trip." },
-  tr: { "notifications.title": "Bildirimler", "notifications.tripRemindersCategory": "Seyahat hatırlatmaları", "notifications.tripRemindersCategoryDesc": "Seyahat, Tax Free ve uçuş hatırlatmaları için bildirimleri aç.", "notifications.tripRemindersEnabled": "Bildirimler açık", "notifications.permission.denied": "Bildirim izni kapalı", "notifications.permission.deniedHelp": "Bildirimleri cihaz ayarlarından açabilirsin.", "notifications.notConfigured": "Bildirim altyapısı henüz yapılandırılmadı.", "tripDetail.notificationsScheduled": "Bildirimler planlandı", "tripDetail.notificationsPartial": "Bazı bildirimler planlanamadı", "notifications.remindersPreviewOnly": "Hatırlatmalar seyahat içinde önizleme olarak gösterilir." },
-  es: { "notifications.title": "Notificaciones", "notifications.tripRemindersCategory": "Recordatorios de viaje", "notifications.tripRemindersCategoryDesc": "Activa notificaciones para recordatorios de viaje, Tax Free y vuelos.", "notifications.tripRemindersEnabled": "Notificaciones activadas", "notifications.permission.denied": "El permiso de notificaciones está desactivado", "notifications.permission.deniedHelp": "Puedes activar las notificaciones en los ajustes del dispositivo.", "notifications.notConfigured": "La infraestructura de notificaciones aún no está configurada.", "tripDetail.notificationsScheduled": "Notificaciones programadas", "tripDetail.notificationsPartial": "No se pudieron programar algunas notificaciones", "notifications.remindersPreviewOnly": "Los recordatorios se muestran como vista previa dentro del viaje." },
-  fr: { "notifications.title": "Notifications", "notifications.tripRemindersCategory": "Rappels de voyage", "notifications.tripRemindersCategoryDesc": "Activez les notifications pour les rappels de voyage, Tax Free et vols.", "notifications.tripRemindersEnabled": "Notifications activées", "notifications.permission.denied": "L’autorisation des notifications est désactivée", "notifications.permission.deniedHelp": "Vous pouvez activer les notifications dans les réglages de l’appareil.", "notifications.notConfigured": "L’infrastructure de notifications n’est pas encore configurée.", "tripDetail.notificationsScheduled": "Notifications programmées", "tripDetail.notificationsPartial": "Certaines notifications n’ont pas pu être programmées", "notifications.remindersPreviewOnly": "Les rappels sont affichés en aperçu dans le voyage." },
-  de: { "notifications.title": "Benachrichtigungen", "notifications.tripRemindersCategory": "Reiseerinnerungen", "notifications.tripRemindersCategoryDesc": "Aktiviere Benachrichtigungen für Reise-, Tax-Free- und Flugerinnerungen.", "notifications.tripRemindersEnabled": "Benachrichtigungen aktiviert", "notifications.permission.denied": "Benachrichtigungsberechtigung ist deaktiviert", "notifications.permission.deniedHelp": "Du kannst Benachrichtigungen in den Geräteeinstellungen aktivieren.", "notifications.notConfigured": "Die Benachrichtigungsinfrastruktur ist noch nicht konfiguriert.", "tripDetail.notificationsScheduled": "Benachrichtigungen geplant", "tripDetail.notificationsPartial": "Einige Benachrichtigungen konnten nicht geplant werden", "notifications.remindersPreviewOnly": "Erinnerungen werden in der Reise als Vorschau angezeigt." },
-  ar: { "notifications.title": "الإشعارات", "notifications.tripRemindersCategory": "تذكيرات الرحلة", "notifications.tripRemindersCategoryDesc": "فعّل الإشعارات لتذكيرات الرحلة و Tax Free والرحلات الجوية.", "notifications.tripRemindersEnabled": "الإشعارات مفعلة", "notifications.permission.denied": "إذن الإشعارات مغلق", "notifications.permission.deniedHelp": "يمكنك تفعيل الإشعارات من إعدادات الجهاز.", "notifications.notConfigured": "لم يتم إعداد بنية الإشعارات بعد.", "tripDetail.notificationsScheduled": "تمت جدولة الإشعارات", "tripDetail.notificationsPartial": "تعذرت جدولة بعض الإشعارات", "notifications.remindersPreviewOnly": "تظهر التذكيرات كمعاينة داخل الرحلة." },
-  ru: { "notifications.title": "Уведомления", "notifications.tripRemindersCategory": "Напоминания о поездке", "notifications.tripRemindersCategoryDesc": "Включите уведомления для напоминаний о поездке, Tax Free и рейсах.", "notifications.tripRemindersEnabled": "Уведомления включены", "notifications.permission.denied": "Разрешение на уведомления отключено", "notifications.permission.deniedHelp": "Вы можете включить уведомления в настройках устройства.", "notifications.notConfigured": "Инфраструктура уведомлений ещё не настроена.", "tripDetail.notificationsScheduled": "Уведомления запланированы", "tripDetail.notificationsPartial": "Некоторые уведомления не удалось запланировать", "notifications.remindersPreviewOnly": "Напоминания отображаются как предпросмотр внутри поездки." },
-  zh: { "notifications.title": "通知", "notifications.tripRemindersCategory": "行程提醒", "notifications.tripRemindersCategoryDesc": "开启行程、退税和航班提醒通知。", "notifications.tripRemindersEnabled": "通知已开启", "notifications.permission.denied": "通知权限已关闭", "notifications.permission.deniedHelp": "你可以在设备设置中开启通知。", "notifications.notConfigured": "通知基础设施尚未配置。", "tripDetail.notificationsScheduled": "通知已计划", "tripDetail.notificationsPartial": "部分通知无法计划", "notifications.remindersPreviewOnly": "提醒会在行程内以预览形式显示。" },
+const notificationsV1Translations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "notifications.title": "Notifications",
+    "notifications.tripRemindersCategory": "Trip reminders",
+    "notifications.tripRemindersCategoryDesc":
+      "Enable notifications for trip, Tax Free, and flight reminders.",
+    "notifications.tripRemindersEnabled": "Notifications enabled",
+    "notifications.permission.denied": "Notification permission is off",
+    "notifications.permission.deniedHelp":
+      "You can enable notifications in device settings.",
+    "notifications.notConfigured":
+      "Notification infrastructure is not configured yet.",
+    "tripDetail.notificationsScheduled": "Notifications scheduled",
+    "tripDetail.notificationsPartial":
+      "Some notifications could not be scheduled",
+    "notifications.remindersPreviewOnly":
+      "Reminders are shown as a preview inside the trip.",
+  },
+  tr: {
+    "notifications.title": "Bildirimler",
+    "notifications.tripRemindersCategory": "Seyahat hatırlatmaları",
+    "notifications.tripRemindersCategoryDesc":
+      "Seyahat, Tax Free ve uçuş hatırlatmaları için bildirimleri aç.",
+    "notifications.tripRemindersEnabled": "Bildirimler açık",
+    "notifications.permission.denied": "Bildirim izni kapalı",
+    "notifications.permission.deniedHelp":
+      "Bildirimleri cihaz ayarlarından açabilirsin.",
+    "notifications.notConfigured": "Bildirim altyapısı henüz yapılandırılmadı.",
+    "tripDetail.notificationsScheduled": "Bildirimler planlandı",
+    "tripDetail.notificationsPartial": "Bazı bildirimler planlanamadı",
+    "notifications.remindersPreviewOnly":
+      "Hatırlatmalar seyahat içinde önizleme olarak gösterilir.",
+  },
+  es: {
+    "notifications.title": "Notificaciones",
+    "notifications.tripRemindersCategory": "Recordatorios de viaje",
+    "notifications.tripRemindersCategoryDesc":
+      "Activa notificaciones para recordatorios de viaje, Tax Free y vuelos.",
+    "notifications.tripRemindersEnabled": "Notificaciones activadas",
+    "notifications.permission.denied":
+      "El permiso de notificaciones está desactivado",
+    "notifications.permission.deniedHelp":
+      "Puedes activar las notificaciones en los ajustes del dispositivo.",
+    "notifications.notConfigured":
+      "La infraestructura de notificaciones aún no está configurada.",
+    "tripDetail.notificationsScheduled": "Notificaciones programadas",
+    "tripDetail.notificationsPartial":
+      "No se pudieron programar algunas notificaciones",
+    "notifications.remindersPreviewOnly":
+      "Los recordatorios se muestran como vista previa dentro del viaje.",
+  },
+  fr: {
+    "notifications.title": "Notifications",
+    "notifications.tripRemindersCategory": "Rappels de voyage",
+    "notifications.tripRemindersCategoryDesc":
+      "Activez les notifications pour les rappels de voyage, Tax Free et vols.",
+    "notifications.tripRemindersEnabled": "Notifications activées",
+    "notifications.permission.denied":
+      "L’autorisation des notifications est désactivée",
+    "notifications.permission.deniedHelp":
+      "Vous pouvez activer les notifications dans les réglages de l’appareil.",
+    "notifications.notConfigured":
+      "L’infrastructure de notifications n’est pas encore configurée.",
+    "tripDetail.notificationsScheduled": "Notifications programmées",
+    "tripDetail.notificationsPartial":
+      "Certaines notifications n’ont pas pu être programmées",
+    "notifications.remindersPreviewOnly":
+      "Les rappels sont affichés en aperçu dans le voyage.",
+  },
+  de: {
+    "notifications.title": "Benachrichtigungen",
+    "notifications.tripRemindersCategory": "Reiseerinnerungen",
+    "notifications.tripRemindersCategoryDesc":
+      "Aktiviere Benachrichtigungen für Reise-, Tax-Free- und Flugerinnerungen.",
+    "notifications.tripRemindersEnabled": "Benachrichtigungen aktiviert",
+    "notifications.permission.denied":
+      "Benachrichtigungsberechtigung ist deaktiviert",
+    "notifications.permission.deniedHelp":
+      "Du kannst Benachrichtigungen in den Geräteeinstellungen aktivieren.",
+    "notifications.notConfigured":
+      "Die Benachrichtigungsinfrastruktur ist noch nicht konfiguriert.",
+    "tripDetail.notificationsScheduled": "Benachrichtigungen geplant",
+    "tripDetail.notificationsPartial":
+      "Einige Benachrichtigungen konnten nicht geplant werden",
+    "notifications.remindersPreviewOnly":
+      "Erinnerungen werden in der Reise als Vorschau angezeigt.",
+  },
+  ar: {
+    "notifications.title": "الإشعارات",
+    "notifications.tripRemindersCategory": "تذكيرات الرحلة",
+    "notifications.tripRemindersCategoryDesc":
+      "فعّل الإشعارات لتذكيرات الرحلة و Tax Free والرحلات الجوية.",
+    "notifications.tripRemindersEnabled": "الإشعارات مفعلة",
+    "notifications.permission.denied": "إذن الإشعارات مغلق",
+    "notifications.permission.deniedHelp":
+      "يمكنك تفعيل الإشعارات من إعدادات الجهاز.",
+    "notifications.notConfigured": "لم يتم إعداد بنية الإشعارات بعد.",
+    "tripDetail.notificationsScheduled": "تمت جدولة الإشعارات",
+    "tripDetail.notificationsPartial": "تعذرت جدولة بعض الإشعارات",
+    "notifications.remindersPreviewOnly": "تظهر التذكيرات كمعاينة داخل الرحلة.",
+  },
+  ru: {
+    "notifications.title": "Уведомления",
+    "notifications.tripRemindersCategory": "Напоминания о поездке",
+    "notifications.tripRemindersCategoryDesc":
+      "Включите уведомления для напоминаний о поездке, Tax Free и рейсах.",
+    "notifications.tripRemindersEnabled": "Уведомления включены",
+    "notifications.permission.denied": "Разрешение на уведомления отключено",
+    "notifications.permission.deniedHelp":
+      "Вы можете включить уведомления в настройках устройства.",
+    "notifications.notConfigured":
+      "Инфраструктура уведомлений ещё не настроена.",
+    "tripDetail.notificationsScheduled": "Уведомления запланированы",
+    "tripDetail.notificationsPartial":
+      "Некоторые уведомления не удалось запланировать",
+    "notifications.remindersPreviewOnly":
+      "Напоминания отображаются как предпросмотр внутри поездки.",
+  },
+  zh: {
+    "notifications.title": "通知",
+    "notifications.tripRemindersCategory": "行程提醒",
+    "notifications.tripRemindersCategoryDesc": "开启行程、退税和航班提醒通知。",
+    "notifications.tripRemindersEnabled": "通知已开启",
+    "notifications.permission.denied": "通知权限已关闭",
+    "notifications.permission.deniedHelp": "你可以在设备设置中开启通知。",
+    "notifications.notConfigured": "通知基础设施尚未配置。",
+    "tripDetail.notificationsScheduled": "通知已计划",
+    "tripDetail.notificationsPartial": "部分通知无法计划",
+    "notifications.remindersPreviewOnly": "提醒会在行程内以预览形式显示。",
+  },
 };
 
 for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], notificationsV1Translations[locale]);
 }
 
-const flightAlertsV1Translations: Record<TranslationLanguage, Record<string, string>> = {
-  en: { "flightAlerts.flightInfo": "Flight details", "flightAlerts.outboundFlight": "Outbound flight", "flightAlerts.returnFlight": "Return flight", "flightAlerts.airline": "Airline", "flightAlerts.flightNumber": "Flight number", "flightAlerts.departureAirport": "Departure airport", "flightAlerts.arrivalAirport": "Arrival airport", "flightAlerts.departureDate": "Departure date", "flightAlerts.departureTime": "Departure time", "flightAlerts.noFlightInfo": "No flight details added", "flightAlerts.title": "Flight Reminders", "flightAlerts.subtitle": "Flight reminders from your saved trips.", "flightAlerts.emptyState": "No flight reminders yet", "flightAlerts.guestState": "Sign in for flight reminders", "createTrip.flightHelper": "Add flight details to prepare flight and airport Tax Free reminders.", "createTrip.flightDateTimeInvalid": "Use date format YYYY-MM-DD and time format HH:mm for entered flight details.", "tripDetail.returnFlightReminderMessage": "Your return flight is today. Check your Tax Free documents and purchase receipts before going to the airport.", "flightAlerts.reminderReady": "Reminder ready" },
-  tr: { "flightAlerts.flightInfo": "Uçuş bilgileri", "flightAlerts.outboundFlight": "Gidiş uçuşu", "flightAlerts.returnFlight": "Dönüş uçuşu", "flightAlerts.airline": "Havayolu", "flightAlerts.flightNumber": "Uçuş numarası", "flightAlerts.departureAirport": "Kalkış havalimanı", "flightAlerts.arrivalAirport": "Varış havalimanı", "flightAlerts.departureDate": "Kalkış tarihi", "flightAlerts.departureTime": "Kalkış saati", "flightAlerts.noFlightInfo": "Uçuş bilgisi eklenmedi", "flightAlerts.title": "Uçuş Hatırlatmaları", "flightAlerts.subtitle": "Kayıtlı seyahatlerindeki uçuş hatırlatmaları.", "flightAlerts.emptyState": "Henüz uçuş hatırlatması yok", "flightAlerts.guestState": "Uçuş hatırlatmaları için giriş yap", "createTrip.flightHelper": "Uçuş bilgilerini eklersen uçuş ve havalimanı Tax Free hatırlatmaları hazırlanır.", "createTrip.flightDateTimeInvalid": "Girilen uçuş bilgileri için tarihi YYYY-AA-GG, saati SS:dd biçiminde yaz.", "tripDetail.returnFlightReminderMessage": "Dönüş uçuşun bugün. Tax Free belgelerini ve satın alma fişlerini havalimanına gitmeden önce kontrol et.", "flightAlerts.reminderReady": "Hatırlatma hazır" },
-  es: { "flightAlerts.flightInfo": "Datos del vuelo", "flightAlerts.outboundFlight": "Vuelo de ida", "flightAlerts.returnFlight": "Vuelo de regreso", "flightAlerts.airline": "Aerolínea", "flightAlerts.flightNumber": "Número de vuelo", "flightAlerts.departureAirport": "Aeropuerto de salida", "flightAlerts.arrivalAirport": "Aeropuerto de llegada", "flightAlerts.departureDate": "Fecha de salida", "flightAlerts.departureTime": "Hora de salida", "flightAlerts.noFlightInfo": "No se añadieron datos de vuelo", "flightAlerts.title": "Recordatorios de vuelo", "flightAlerts.subtitle": "Recordatorios de vuelo de tus viajes guardados.", "flightAlerts.emptyState": "Aún no hay recordatorios de vuelo", "flightAlerts.guestState": "Inicia sesión para recordatorios de vuelo", "createTrip.flightHelper": "Añade datos de vuelo para preparar recordatorios de vuelo y Tax Free en el aeropuerto.", "createTrip.flightDateTimeInvalid": "Usa el formato AAAA-MM-DD y HH:mm para los datos de vuelo introducidos.", "tripDetail.returnFlightReminderMessage": "Tu vuelo de regreso es hoy. Revisa tus documentos Tax Free y recibos antes de ir al aeropuerto.", "flightAlerts.reminderReady": "Recordatorio listo" },
-  fr: { "flightAlerts.flightInfo": "Informations de vol", "flightAlerts.outboundFlight": "Vol aller", "flightAlerts.returnFlight": "Vol retour", "flightAlerts.airline": "Compagnie aérienne", "flightAlerts.flightNumber": "Numéro de vol", "flightAlerts.departureAirport": "Aéroport de départ", "flightAlerts.arrivalAirport": "Aéroport d’arrivée", "flightAlerts.departureDate": "Date de départ", "flightAlerts.departureTime": "Heure de départ", "flightAlerts.noFlightInfo": "Aucune information de vol ajoutée", "flightAlerts.title": "Rappels de vol", "flightAlerts.subtitle": "Rappels de vol de vos voyages enregistrés.", "flightAlerts.emptyState": "Aucun rappel de vol pour le moment", "flightAlerts.guestState": "Connectez-vous pour les rappels de vol", "createTrip.flightHelper": "Ajoutez des informations de vol pour préparer les rappels de vol et Tax Free à l’aéroport.", "createTrip.flightDateTimeInvalid": "Utilisez le format AAAA-MM-JJ et HH:mm pour les informations de vol saisies.", "tripDetail.returnFlightReminderMessage": "Votre vol retour est aujourd’hui. Vérifiez vos documents Tax Free et reçus avant d’aller à l’aéroport.", "flightAlerts.reminderReady": "Rappel prêt" },
-  de: { "flightAlerts.flightInfo": "Flugdaten", "flightAlerts.outboundFlight": "Hinflug", "flightAlerts.returnFlight": "Rückflug", "flightAlerts.airline": "Fluggesellschaft", "flightAlerts.flightNumber": "Flugnummer", "flightAlerts.departureAirport": "Abflughafen", "flightAlerts.arrivalAirport": "Ankunftsflughafen", "flightAlerts.departureDate": "Abflugdatum", "flightAlerts.departureTime": "Abflugzeit", "flightAlerts.noFlightInfo": "Keine Flugdaten hinzugefügt", "flightAlerts.title": "Flugerinnerungen", "flightAlerts.subtitle": "Flugerinnerungen aus deinen gespeicherten Reisen.", "flightAlerts.emptyState": "Noch keine Flugerinnerungen", "flightAlerts.guestState": "Für Flugerinnerungen anmelden", "createTrip.flightHelper": "Füge Flugdaten hinzu, um Flug- und Flughafen-Tax-Free-Erinnerungen vorzubereiten.", "createTrip.flightDateTimeInvalid": "Nutze für eingegebene Flugdaten das Format JJJJ-MM-TT und HH:mm.", "tripDetail.returnFlightReminderMessage": "Dein Rückflug ist heute. Prüfe deine Tax-Free-Dokumente und Einkaufsbelege, bevor du zum Flughafen fährst.", "flightAlerts.reminderReady": "Erinnerung bereit" },
-  ar: { "flightAlerts.flightInfo": "تفاصيل الرحلة الجوية", "flightAlerts.outboundFlight": "رحلة الذهاب", "flightAlerts.returnFlight": "رحلة العودة", "flightAlerts.airline": "شركة الطيران", "flightAlerts.flightNumber": "رقم الرحلة", "flightAlerts.departureAirport": "مطار المغادرة", "flightAlerts.arrivalAirport": "مطار الوصول", "flightAlerts.departureDate": "تاريخ المغادرة", "flightAlerts.departureTime": "وقت المغادرة", "flightAlerts.noFlightInfo": "لم تتم إضافة تفاصيل رحلة", "flightAlerts.title": "تذكيرات الرحلات الجوية", "flightAlerts.subtitle": "تذكيرات الرحلات من رحلاتك المحفوظة.", "flightAlerts.emptyState": "لا توجد تذكيرات رحلات بعد", "flightAlerts.guestState": "سجّل الدخول لتذكيرات الرحلات", "createTrip.flightHelper": "أضف تفاصيل الرحلة لإعداد تذكيرات الرحلة و Tax Free في المطار.", "createTrip.flightDateTimeInvalid": "استخدم تنسيق YYYY-MM-DD و HH:mm لتفاصيل الرحلة المدخلة.", "tripDetail.returnFlightReminderMessage": "رحلة عودتك اليوم. تحقق من مستندات Tax Free وإيصالات الشراء قبل الذهاب إلى المطار.", "flightAlerts.reminderReady": "التذكير جاهز" },
-  ru: { "flightAlerts.flightInfo": "Данные рейса", "flightAlerts.outboundFlight": "Рейс туда", "flightAlerts.returnFlight": "Обратный рейс", "flightAlerts.airline": "Авиакомпания", "flightAlerts.flightNumber": "Номер рейса", "flightAlerts.departureAirport": "Аэропорт вылета", "flightAlerts.arrivalAirport": "Аэропорт прибытия", "flightAlerts.departureDate": "Дата вылета", "flightAlerts.departureTime": "Время вылета", "flightAlerts.noFlightInfo": "Данные рейса не добавлены", "flightAlerts.title": "Напоминания о рейсах", "flightAlerts.subtitle": "Напоминания о рейсах из сохранённых поездок.", "flightAlerts.emptyState": "Напоминаний о рейсах пока нет", "flightAlerts.guestState": "Войдите для напоминаний о рейсах", "createTrip.flightHelper": "Добавьте данные рейса, чтобы подготовить напоминания о рейсе и Tax Free в аэропорту.", "createTrip.flightDateTimeInvalid": "Используйте формат ГГГГ-ММ-ДД и HH:mm для введённых данных рейса.", "tripDetail.returnFlightReminderMessage": "Ваш обратный рейс сегодня. Проверьте документы Tax Free и чеки перед поездкой в аэропорт.", "flightAlerts.reminderReady": "Напоминание готово" },
-  zh: { "flightAlerts.flightInfo": "航班信息", "flightAlerts.outboundFlight": "去程航班", "flightAlerts.returnFlight": "返程航班", "flightAlerts.airline": "航空公司", "flightAlerts.flightNumber": "航班号", "flightAlerts.departureAirport": "出发机场", "flightAlerts.arrivalAirport": "到达机场", "flightAlerts.departureDate": "出发日期", "flightAlerts.departureTime": "出发时间", "flightAlerts.noFlightInfo": "未添加航班信息", "flightAlerts.title": "航班提醒", "flightAlerts.subtitle": "来自已保存行程的航班提醒。", "flightAlerts.emptyState": "还没有航班提醒", "flightAlerts.guestState": "登录以使用航班提醒", "createTrip.flightHelper": "添加航班信息后，会准备航班和机场 Tax Free 提醒。", "createTrip.flightDateTimeInvalid": "已输入的航班信息请使用 YYYY-MM-DD 和 HH:mm 格式。", "tripDetail.returnFlightReminderMessage": "你的返程航班是今天。前往机场前请检查 Tax Free 文件和购物小票。", "flightAlerts.reminderReady": "提醒已准备" },
+const flightAlertsV1Translations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "flightAlerts.flightInfo": "Flight details",
+    "flightAlerts.outboundFlight": "Outbound flight",
+    "flightAlerts.returnFlight": "Return flight",
+    "flightAlerts.airline": "Airline",
+    "flightAlerts.flightNumber": "Flight number",
+    "flightAlerts.departureAirport": "Departure airport",
+    "flightAlerts.arrivalAirport": "Arrival airport",
+    "flightAlerts.departureDate": "Departure date",
+    "flightAlerts.departureTime": "Departure time",
+    "flightAlerts.noFlightInfo": "No flight details added",
+    "flightAlerts.title": "Flight Reminders",
+    "flightAlerts.subtitle": "Flight reminders from your saved trips.",
+    "flightAlerts.emptyState": "No flight reminders yet",
+    "flightAlerts.guestState": "Sign in for flight reminders",
+    "createTrip.flightHelper":
+      "Add flight details to prepare flight and airport Tax Free reminders.",
+    "createTrip.flightDateTimeInvalid":
+      "Use date format YYYY-MM-DD and time format HH:mm for entered flight details.",
+    "tripDetail.returnFlightReminderMessage":
+      "Your return flight is today. Check your Tax Free documents and purchase receipts before going to the airport.",
+    "flightAlerts.reminderReady": "Reminder ready",
+  },
+  tr: {
+    "flightAlerts.flightInfo": "Uçuş bilgileri",
+    "flightAlerts.outboundFlight": "Gidiş uçuşu",
+    "flightAlerts.returnFlight": "Dönüş uçuşu",
+    "flightAlerts.airline": "Havayolu",
+    "flightAlerts.flightNumber": "Uçuş numarası",
+    "flightAlerts.departureAirport": "Kalkış havalimanı",
+    "flightAlerts.arrivalAirport": "Varış havalimanı",
+    "flightAlerts.departureDate": "Kalkış tarihi",
+    "flightAlerts.departureTime": "Kalkış saati",
+    "flightAlerts.noFlightInfo": "Uçuş bilgisi eklenmedi",
+    "flightAlerts.title": "Uçuş Hatırlatmaları",
+    "flightAlerts.subtitle": "Kayıtlı seyahatlerindeki uçuş hatırlatmaları.",
+    "flightAlerts.emptyState": "Henüz uçuş hatırlatması yok",
+    "flightAlerts.guestState": "Uçuş hatırlatmaları için giriş yap",
+    "createTrip.flightHelper":
+      "Uçuş bilgilerini eklersen uçuş ve havalimanı Tax Free hatırlatmaları hazırlanır.",
+    "createTrip.flightDateTimeInvalid":
+      "Girilen uçuş bilgileri için tarihi YYYY-AA-GG, saati SS:dd biçiminde yaz.",
+    "tripDetail.returnFlightReminderMessage":
+      "Dönüş uçuşun bugün. Tax Free belgelerini ve satın alma fişlerini havalimanına gitmeden önce kontrol et.",
+    "flightAlerts.reminderReady": "Hatırlatma hazır",
+  },
+  es: {
+    "flightAlerts.flightInfo": "Datos del vuelo",
+    "flightAlerts.outboundFlight": "Vuelo de ida",
+    "flightAlerts.returnFlight": "Vuelo de regreso",
+    "flightAlerts.airline": "Aerolínea",
+    "flightAlerts.flightNumber": "Número de vuelo",
+    "flightAlerts.departureAirport": "Aeropuerto de salida",
+    "flightAlerts.arrivalAirport": "Aeropuerto de llegada",
+    "flightAlerts.departureDate": "Fecha de salida",
+    "flightAlerts.departureTime": "Hora de salida",
+    "flightAlerts.noFlightInfo": "No se añadieron datos de vuelo",
+    "flightAlerts.title": "Recordatorios de vuelo",
+    "flightAlerts.subtitle": "Recordatorios de vuelo de tus viajes guardados.",
+    "flightAlerts.emptyState": "Aún no hay recordatorios de vuelo",
+    "flightAlerts.guestState": "Inicia sesión para recordatorios de vuelo",
+    "createTrip.flightHelper":
+      "Añade datos de vuelo para preparar recordatorios de vuelo y Tax Free en el aeropuerto.",
+    "createTrip.flightDateTimeInvalid":
+      "Usa el formato AAAA-MM-DD y HH:mm para los datos de vuelo introducidos.",
+    "tripDetail.returnFlightReminderMessage":
+      "Tu vuelo de regreso es hoy. Revisa tus documentos Tax Free y recibos antes de ir al aeropuerto.",
+    "flightAlerts.reminderReady": "Recordatorio listo",
+  },
+  fr: {
+    "flightAlerts.flightInfo": "Informations de vol",
+    "flightAlerts.outboundFlight": "Vol aller",
+    "flightAlerts.returnFlight": "Vol retour",
+    "flightAlerts.airline": "Compagnie aérienne",
+    "flightAlerts.flightNumber": "Numéro de vol",
+    "flightAlerts.departureAirport": "Aéroport de départ",
+    "flightAlerts.arrivalAirport": "Aéroport d’arrivée",
+    "flightAlerts.departureDate": "Date de départ",
+    "flightAlerts.departureTime": "Heure de départ",
+    "flightAlerts.noFlightInfo": "Aucune information de vol ajoutée",
+    "flightAlerts.title": "Rappels de vol",
+    "flightAlerts.subtitle": "Rappels de vol de vos voyages enregistrés.",
+    "flightAlerts.emptyState": "Aucun rappel de vol pour le moment",
+    "flightAlerts.guestState": "Connectez-vous pour les rappels de vol",
+    "createTrip.flightHelper":
+      "Ajoutez des informations de vol pour préparer les rappels de vol et Tax Free à l’aéroport.",
+    "createTrip.flightDateTimeInvalid":
+      "Utilisez le format AAAA-MM-JJ et HH:mm pour les informations de vol saisies.",
+    "tripDetail.returnFlightReminderMessage":
+      "Votre vol retour est aujourd’hui. Vérifiez vos documents Tax Free et reçus avant d’aller à l’aéroport.",
+    "flightAlerts.reminderReady": "Rappel prêt",
+  },
+  de: {
+    "flightAlerts.flightInfo": "Flugdaten",
+    "flightAlerts.outboundFlight": "Hinflug",
+    "flightAlerts.returnFlight": "Rückflug",
+    "flightAlerts.airline": "Fluggesellschaft",
+    "flightAlerts.flightNumber": "Flugnummer",
+    "flightAlerts.departureAirport": "Abflughafen",
+    "flightAlerts.arrivalAirport": "Ankunftsflughafen",
+    "flightAlerts.departureDate": "Abflugdatum",
+    "flightAlerts.departureTime": "Abflugzeit",
+    "flightAlerts.noFlightInfo": "Keine Flugdaten hinzugefügt",
+    "flightAlerts.title": "Flugerinnerungen",
+    "flightAlerts.subtitle":
+      "Flugerinnerungen aus deinen gespeicherten Reisen.",
+    "flightAlerts.emptyState": "Noch keine Flugerinnerungen",
+    "flightAlerts.guestState": "Für Flugerinnerungen anmelden",
+    "createTrip.flightHelper":
+      "Füge Flugdaten hinzu, um Flug- und Flughafen-Tax-Free-Erinnerungen vorzubereiten.",
+    "createTrip.flightDateTimeInvalid":
+      "Nutze für eingegebene Flugdaten das Format JJJJ-MM-TT und HH:mm.",
+    "tripDetail.returnFlightReminderMessage":
+      "Dein Rückflug ist heute. Prüfe deine Tax-Free-Dokumente und Einkaufsbelege, bevor du zum Flughafen fährst.",
+    "flightAlerts.reminderReady": "Erinnerung bereit",
+  },
+  ar: {
+    "flightAlerts.flightInfo": "تفاصيل الرحلة الجوية",
+    "flightAlerts.outboundFlight": "رحلة الذهاب",
+    "flightAlerts.returnFlight": "رحلة العودة",
+    "flightAlerts.airline": "شركة الطيران",
+    "flightAlerts.flightNumber": "رقم الرحلة",
+    "flightAlerts.departureAirport": "مطار المغادرة",
+    "flightAlerts.arrivalAirport": "مطار الوصول",
+    "flightAlerts.departureDate": "تاريخ المغادرة",
+    "flightAlerts.departureTime": "وقت المغادرة",
+    "flightAlerts.noFlightInfo": "لم تتم إضافة تفاصيل رحلة",
+    "flightAlerts.title": "تذكيرات الرحلات الجوية",
+    "flightAlerts.subtitle": "تذكيرات الرحلات من رحلاتك المحفوظة.",
+    "flightAlerts.emptyState": "لا توجد تذكيرات رحلات بعد",
+    "flightAlerts.guestState": "سجّل الدخول لتذكيرات الرحلات",
+    "createTrip.flightHelper":
+      "أضف تفاصيل الرحلة لإعداد تذكيرات الرحلة و Tax Free في المطار.",
+    "createTrip.flightDateTimeInvalid":
+      "استخدم تنسيق YYYY-MM-DD و HH:mm لتفاصيل الرحلة المدخلة.",
+    "tripDetail.returnFlightReminderMessage":
+      "رحلة عودتك اليوم. تحقق من مستندات Tax Free وإيصالات الشراء قبل الذهاب إلى المطار.",
+    "flightAlerts.reminderReady": "التذكير جاهز",
+  },
+  ru: {
+    "flightAlerts.flightInfo": "Данные рейса",
+    "flightAlerts.outboundFlight": "Рейс туда",
+    "flightAlerts.returnFlight": "Обратный рейс",
+    "flightAlerts.airline": "Авиакомпания",
+    "flightAlerts.flightNumber": "Номер рейса",
+    "flightAlerts.departureAirport": "Аэропорт вылета",
+    "flightAlerts.arrivalAirport": "Аэропорт прибытия",
+    "flightAlerts.departureDate": "Дата вылета",
+    "flightAlerts.departureTime": "Время вылета",
+    "flightAlerts.noFlightInfo": "Данные рейса не добавлены",
+    "flightAlerts.title": "Напоминания о рейсах",
+    "flightAlerts.subtitle": "Напоминания о рейсах из сохранённых поездок.",
+    "flightAlerts.emptyState": "Напоминаний о рейсах пока нет",
+    "flightAlerts.guestState": "Войдите для напоминаний о рейсах",
+    "createTrip.flightHelper":
+      "Добавьте данные рейса, чтобы подготовить напоминания о рейсе и Tax Free в аэропорту.",
+    "createTrip.flightDateTimeInvalid":
+      "Используйте формат ГГГГ-ММ-ДД и HH:mm для введённых данных рейса.",
+    "tripDetail.returnFlightReminderMessage":
+      "Ваш обратный рейс сегодня. Проверьте документы Tax Free и чеки перед поездкой в аэропорт.",
+    "flightAlerts.reminderReady": "Напоминание готово",
+  },
+  zh: {
+    "flightAlerts.flightInfo": "航班信息",
+    "flightAlerts.outboundFlight": "去程航班",
+    "flightAlerts.returnFlight": "返程航班",
+    "flightAlerts.airline": "航空公司",
+    "flightAlerts.flightNumber": "航班号",
+    "flightAlerts.departureAirport": "出发机场",
+    "flightAlerts.arrivalAirport": "到达机场",
+    "flightAlerts.departureDate": "出发日期",
+    "flightAlerts.departureTime": "出发时间",
+    "flightAlerts.noFlightInfo": "未添加航班信息",
+    "flightAlerts.title": "航班提醒",
+    "flightAlerts.subtitle": "来自已保存行程的航班提醒。",
+    "flightAlerts.emptyState": "还没有航班提醒",
+    "flightAlerts.guestState": "登录以使用航班提醒",
+    "createTrip.flightHelper":
+      "添加航班信息后，会准备航班和机场 Tax Free 提醒。",
+    "createTrip.flightDateTimeInvalid":
+      "已输入的航班信息请使用 YYYY-MM-DD 和 HH:mm 格式。",
+    "tripDetail.returnFlightReminderMessage":
+      "你的返程航班是今天。前往机场前请检查 Tax Free 文件和购物小票。",
+    "flightAlerts.reminderReady": "提醒已准备",
+  },
 };
 
-for (const locale of Object.keys(flightAlertsV1Translations) as TranslationLanguage[]) {
+for (const locale of Object.keys(
+  flightAlertsV1Translations,
+) as TranslationLanguage[]) {
   Object.assign(translations[locale], flightAlertsV1Translations[locale]);
 }
 
-const tripPlannerV2FinalTranslations: Record<TranslationLanguage, Record<string, string>> = {
-  en: { "trips.heroTitle": "Shopping Trips", "trips.heroSubtitle": "Plan outlet days smartly.", "trips.summaryTrips": "Trips", "status.active": "Active", "trips.dated": "Dated", "trips.createTripCta": "Create trip", "trips.emptyTitle": "No trips yet", "trips.emptyText": "Create your first shopping trip and plan your city and outlet route.", "trips.loadFailedTitle": "Trips could not be loaded", "createTrip.heroTitle": "Create a shopping trip", "createTrip.heroSubtitle": "Add trip dates.", "createTrip.tripDetails": "Trip details", "createTrip.tripName": "Trip name", "createTrip.tripNamePlaceholder": "Trip name", "createTrip.startDate": "Start date", "createTrip.selectStartDate": "Select start date", "createTrip.endDate": "End date", "createTrip.selectEndDate": "Select end date", "createTrip.notes": "Notes (optional)", "createTrip.notesPlaceholder": "Add booking notes, shopping priorities, or accessibility needs.", "createTrip.createCta": "Save Trip", "createTrip.routeInfoTitle": "Route", "createTrip.routeInfoBody": "You can add your city and outlet route after creating the trip.", "createTrip.selectStartDateTitle": "Select start date", "createTrip.selectEndDateTitle": "Select end date", "createTrip.done": "OK", "createTrip.cancel": "Cancel", "createTrip.pastDateBlocked": "A past date cannot be selected.", "createTrip.returnFlightReminderTitle": "Return flight reminder (optional)", "createTrip.returnFlightReminderHelper": "If you add your return flight, a flight-day and airport Tax Free reminder is prepared.", "createTrip.returnFlightDate": "Return flight date", "createTrip.selectReturnDate": "Select return date", "createTrip.returnFlightTime": "Return flight time", "createTrip.selectTime": "Select time", "createTrip.returnDepartureAirport": "Departure airport (optional)", "createTrip.returnDepartureAirportPlaceholder": "E.g. MXP, CDG, VIE", "createTrip.returnFlightNumber": "Flight number (optional)", "createTrip.returnFlightNumberPlaceholder": "E.g. TK123", "createTrip.returnFlightDatePickerTitle": "Select return date", "createTrip.returnFlightDateTimeRequired": "Enter both return flight date and time.", "tripDetail.routeSection": "Trip route", "tripDetail.emptyRouteTitle": "No route yet", "tripDetail.emptyRouteText": "Plan your trip days by adding a city or outlet.", "tripDetail.addRouteCta": "Add route", "tripSegment.selectCityOrOutlet": "Select city or outlet", "tripSegment.datesOutsideTrip": "Segment date must be within trip dates.", "tripSegment.overlap": "This date range overlaps another route.", "status.upcoming": "Upcoming", "status.past": "Completed", "status.completed": "Completed", "flightAlerts.title": "Flight Reminders" },
-  tr: { "trips.heroTitle": "Alışveriş Seyahatleri", "trips.heroSubtitle": "Outlet günlerini akıllıca planla.", "trips.summaryTrips": "Seyahatler", "status.active": "Aktif", "trips.dated": "Tarihli", "trips.createTripCta": "Seyahat oluştur", "trips.emptyTitle": "Henüz seyahat yok", "trips.emptyText": "İlk alışveriş seyahatini oluşturarak şehir ve outlet rotanı planla.", "trips.loadFailedTitle": "Seyahatler yüklenemedi", "createTrip.heroTitle": "Alışveriş seyahati oluştur", "createTrip.heroSubtitle": "Seyahat tarihlerini ekle.", "createTrip.tripDetails": "Seyahat detayları", "createTrip.tripName": "Seyahat adı", "createTrip.tripNamePlaceholder": "Seyahat adı", "createTrip.startDate": "Başlangıç tarihi", "createTrip.selectStartDate": "Başlangıç tarihi seç", "createTrip.endDate": "Bitiş tarihi", "createTrip.selectEndDate": "Bitiş tarihi seç", "createTrip.notes": "Notlar (opsiyonel)", "createTrip.notesPlaceholder": "Rezervasyon notları, alışveriş öncelikleri veya erişilebilirlik ihtiyaçları ekleyin.", "createTrip.createCta": "Seyahati Kaydet", "createTrip.routeInfoTitle": "Rota", "createTrip.routeInfoBody": "Şehir ve outlet rotanı seyahati oluşturduktan sonra ekleyebilirsin.", "createTrip.selectStartDateTitle": "Başlangıç tarihini seç", "createTrip.selectEndDateTitle": "Bitiş tarihini seç", "createTrip.done": "Tamam", "createTrip.cancel": "Vazgeç", "createTrip.pastDateBlocked": "Geçmiş bir tarih seçilemez.", "createTrip.returnFlightReminderTitle": "Dönüş uçuşu hatırlatması (opsiyonel)", "createTrip.returnFlightReminderHelper": "Dönüş uçuşunu eklersen uçuş günü ve havalimanı Tax Free hatırlatması hazırlanır.", "createTrip.returnFlightDate": "Dönüş uçuş tarihi", "createTrip.selectReturnDate": "Dönüş tarihi seç", "createTrip.returnFlightTime": "Dönüş uçuş saati", "createTrip.selectTime": "Saat seç", "createTrip.returnDepartureAirport": "Kalkış havalimanı (opsiyonel)", "createTrip.returnDepartureAirportPlaceholder": "Örn. MXP, CDG, VIE", "createTrip.returnFlightNumber": "Uçuş numarası (opsiyonel)", "createTrip.returnFlightNumberPlaceholder": "Örn. TK123", "createTrip.returnFlightDatePickerTitle": "Dönüş tarihini seç", "createTrip.returnFlightDateTimeRequired": "Dönüş uçuş tarihi ve saati birlikte girilmeli.", "tripDetail.routeSection": "Seyahat rotası", "tripDetail.emptyRouteTitle": "Henüz rota yok", "tripDetail.emptyRouteText": "Şehir veya outlet ekleyerek seyahat günlerini planla.", "tripDetail.addRouteCta": "Rota ekle", "tripSegment.selectCityOrOutlet": "Şehir veya outlet seç", "tripSegment.datesOutsideTrip": "Segment tarihi seyahat tarihleri içinde olmalı.", "tripSegment.overlap": "Bu tarih aralığı başka bir rota ile çakışıyor.", "status.upcoming": "Yaklaşan", "status.past": "Tamamlandı", "status.completed": "Tamamlandı", "flightAlerts.title": "Uçuş Hatırlatmaları" },
-  es: { "trips.heroTitle": "Viajes de compras", "trips.heroSubtitle": "Planifica inteligentemente tus días de outlet.", "trips.summaryTrips": "Viajes", "trips.dated": "Con fechas", "trips.createTripCta": "Crear viaje", "trips.emptyTitle": "Aún no hay viajes", "trips.emptyText": "Crea tu primer viaje de compras y planifica tu ruta de ciudades y outlets.", "trips.loadFailedTitle": "No se pudieron cargar los viajes", "createTrip.heroTitle": "Crear un viaje de compras", "createTrip.heroSubtitle": "Añade las fechas del viaje.", "createTrip.tripDetails": "Detalles del viaje", "createTrip.tripName": "Nombre del viaje", "createTrip.tripNamePlaceholder": "Nombre del viaje", "createTrip.startDate": "Fecha de inicio", "createTrip.selectStartDate": "Seleccionar fecha de inicio", "createTrip.endDate": "Fecha de fin", "createTrip.selectEndDate": "Seleccionar fecha de fin", "createTrip.notes": "Notas (opcional)", "createTrip.notesPlaceholder": "Añade notas de reserva, prioridades de compra o necesidades de accesibilidad.", "createTrip.createCta": "Guardar viaje", "createTrip.routeInfoTitle": "Ruta", "createTrip.routeInfoBody": "Puedes añadir tu ruta de ciudades y outlets después de crear el viaje.", "createTrip.selectStartDateTitle": "Selecciona la fecha de inicio", "createTrip.selectEndDateTitle": "Selecciona la fecha de fin", "createTrip.done": "Aceptar", "createTrip.cancel": "Cancelar", "createTrip.pastDateBlocked": "No se puede seleccionar una fecha pasada.", "createTrip.returnFlightReminderTitle": "Recordatorio de vuelo de regreso (opcional)", "createTrip.returnFlightReminderHelper": "Si añades tu vuelo de regreso, se preparará un recordatorio del día del vuelo y Tax Free del aeropuerto.", "createTrip.returnFlightDate": "Fecha del vuelo de regreso", "createTrip.selectReturnDate": "Seleccionar fecha de regreso", "createTrip.returnFlightTime": "Hora del vuelo de regreso", "createTrip.selectTime": "Seleccionar hora", "createTrip.returnDepartureAirport": "Aeropuerto de salida (opcional)", "createTrip.returnDepartureAirportPlaceholder": "Ej. MXP, CDG, VIE", "createTrip.returnFlightNumber": "Número de vuelo (opcional)", "createTrip.returnFlightNumberPlaceholder": "Ej. TK123", "createTrip.returnFlightDatePickerTitle": "Selecciona la fecha de regreso", "createTrip.returnFlightDateTimeRequired": "Introduce juntos la fecha y la hora del vuelo de regreso.", "tripDetail.routeSection": "Ruta del viaje", "tripDetail.emptyRouteTitle": "Aún no hay ruta", "tripDetail.emptyRouteText": "Planifica los días del viaje añadiendo una ciudad o outlet.", "tripDetail.addRouteCta": "Añadir ruta", "tripSegment.selectCityOrOutlet": "Selecciona ciudad u outlet", "tripSegment.datesOutsideTrip": "La fecha del segmento debe estar dentro de las fechas del viaje.", "tripSegment.overlap": "Este rango de fechas se solapa con otra ruta.", "status.upcoming": "Próximo", "status.active": "Activo", "status.past": "Completado", "status.completed": "Completado", "flightAlerts.title": "Recordatorios de vuelo" },
-  fr: { "trips.heroTitle": "Voyages shopping", "trips.heroSubtitle": "Planifiez intelligemment vos journées outlet.", "trips.summaryTrips": "Voyages", "trips.dated": "Datés", "trips.createTripCta": "Créer un voyage", "trips.emptyTitle": "Aucun voyage pour le moment", "trips.emptyText": "Créez votre premier voyage shopping et planifiez votre itinéraire ville et outlet.", "trips.loadFailedTitle": "Impossible de charger les voyages", "createTrip.heroTitle": "Créer un voyage shopping", "createTrip.heroSubtitle": "Ajoutez les dates du voyage.", "createTrip.tripDetails": "Détails du voyage", "createTrip.tripName": "Nom du voyage", "createTrip.tripNamePlaceholder": "Nom du voyage", "createTrip.startDate": "Date de début", "createTrip.selectStartDate": "Sélectionner la date de début", "createTrip.endDate": "Date de fin", "createTrip.selectEndDate": "Sélectionner la date de fin", "createTrip.notes": "Notes (optionnel)", "createTrip.notesPlaceholder": "Ajoutez des notes de réservation, priorités shopping ou besoins d’accessibilité.", "createTrip.createCta": "Enregistrer le voyage", "createTrip.routeInfoTitle": "Itinéraire", "createTrip.routeInfoBody": "Vous pourrez ajouter votre itinéraire ville et outlet après la création du voyage.", "createTrip.selectStartDateTitle": "Choisir la date de début", "createTrip.selectEndDateTitle": "Choisir la date de fin", "createTrip.done": "OK", "createTrip.cancel": "Annuler", "createTrip.pastDateBlocked": "Une date passée ne peut pas être sélectionnée.", "createTrip.returnFlightReminderTitle": "Rappel de vol retour (optionnel)", "createTrip.returnFlightReminderHelper": "Si vous ajoutez votre vol retour, un rappel du jour du vol et Tax Free à l’aéroport sera préparé.", "createTrip.returnFlightDate": "Date du vol retour", "createTrip.selectReturnDate": "Sélectionner la date retour", "createTrip.returnFlightTime": "Heure du vol retour", "createTrip.selectTime": "Sélectionner l’heure", "createTrip.returnDepartureAirport": "Aéroport de départ (optionnel)", "createTrip.returnDepartureAirportPlaceholder": "Ex. MXP, CDG, VIE", "createTrip.returnFlightNumber": "Numéro de vol (optionnel)", "createTrip.returnFlightNumberPlaceholder": "Ex. TK123", "createTrip.returnFlightDatePickerTitle": "Choisir la date retour", "createTrip.returnFlightDateTimeRequired": "Saisissez à la fois la date et l’heure du vol retour.", "tripDetail.routeSection": "Itinéraire du voyage", "tripDetail.emptyRouteTitle": "Aucun itinéraire", "tripDetail.emptyRouteText": "Planifiez vos journées en ajoutant une ville ou un outlet.", "tripDetail.addRouteCta": "Ajouter un itinéraire", "tripSegment.selectCityOrOutlet": "Sélectionner ville ou outlet", "tripSegment.datesOutsideTrip": "La date du segment doit être dans les dates du voyage.", "tripSegment.overlap": "Cette période chevauche un autre itinéraire.", "status.upcoming": "À venir", "status.active": "Actif", "status.past": "Terminé", "status.completed": "Terminé", "flightAlerts.title": "Rappels de vol" },
-  de: { "trips.heroTitle": "Shopping-Reisen", "trips.heroSubtitle": "Plane Outlet-Tage intelligent.", "trips.summaryTrips": "Reisen", "trips.dated": "Datiert", "trips.createTripCta": "Reise erstellen", "trips.emptyTitle": "Noch keine Reisen", "trips.emptyText": "Erstelle deine erste Shopping-Reise und plane deine Städte- und Outlet-Route.", "trips.loadFailedTitle": "Reisen konnten nicht geladen werden", "createTrip.heroTitle": "Shopping-Reise erstellen", "createTrip.heroSubtitle": "Reisedaten hinzufügen.", "createTrip.tripDetails": "Reisedetails", "createTrip.tripName": "Reisename", "createTrip.tripNamePlaceholder": "Reisename", "createTrip.startDate": "Startdatum", "createTrip.selectStartDate": "Startdatum auswählen", "createTrip.endDate": "Enddatum", "createTrip.selectEndDate": "Enddatum auswählen", "createTrip.notes": "Notizen (optional)", "createTrip.notesPlaceholder": "Füge Buchungsnotizen, Shopping-Prioritäten oder Barrierefreiheitswünsche hinzu.", "createTrip.createCta": "Reise speichern", "createTrip.routeInfoTitle": "Route", "createTrip.routeInfoBody": "Du kannst deine Städte- und Outlet-Route nach dem Erstellen der Reise hinzufügen.", "createTrip.selectStartDateTitle": "Startdatum auswählen", "createTrip.selectEndDateTitle": "Enddatum auswählen", "createTrip.done": "OK", "createTrip.cancel": "Abbrechen", "createTrip.pastDateBlocked": "Ein vergangenes Datum kann nicht ausgewählt werden.", "createTrip.returnFlightReminderTitle": "Rückflug-Erinnerung (optional)", "createTrip.returnFlightReminderHelper": "Wenn du deinen Rückflug hinzufügst, wird eine Erinnerung für Flugtag und Flughafen-Tax-Free vorbereitet.", "createTrip.returnFlightDate": "Rückflugdatum", "createTrip.selectReturnDate": "Rückflugdatum auswählen", "createTrip.returnFlightTime": "Rückflugzeit", "createTrip.selectTime": "Uhrzeit auswählen", "createTrip.returnDepartureAirport": "Abflughafen (optional)", "createTrip.returnDepartureAirportPlaceholder": "Z. B. MXP, CDG, VIE", "createTrip.returnFlightNumber": "Flugnummer (optional)", "createTrip.returnFlightNumberPlaceholder": "Z. B. TK123", "createTrip.returnFlightDatePickerTitle": "Rückflugdatum auswählen", "createTrip.returnFlightDateTimeRequired": "Gib Rückflugdatum und -zeit zusammen ein.", "tripDetail.routeSection": "Reiseroute", "tripDetail.emptyRouteTitle": "Noch keine Route", "tripDetail.emptyRouteText": "Plane Reisetage, indem du eine Stadt oder ein Outlet hinzufügst.", "tripDetail.addRouteCta": "Route hinzufügen", "tripSegment.selectCityOrOutlet": "Stadt oder Outlet auswählen", "tripSegment.datesOutsideTrip": "Das Segmentdatum muss innerhalb der Reisedaten liegen.", "tripSegment.overlap": "Dieser Zeitraum überschneidet sich mit einer anderen Route.", "status.upcoming": "Bevorstehend", "status.active": "Aktiv", "status.past": "Abgeschlossen", "status.completed": "Abgeschlossen", "flightAlerts.title": "Flugerinnerungen" },
-  ar: { "trips.heroTitle": "رحلات التسوق", "trips.heroSubtitle": "خطط لأيام الأوتلت بذكاء.", "trips.summaryTrips": "الرحلات", "trips.dated": "بتواريخ", "trips.createTripCta": "إنشاء رحلة", "trips.emptyTitle": "لا توجد رحلات بعد", "trips.emptyText": "أنشئ أول رحلة تسوق وخطط لمسار المدن والأوتلت.", "trips.loadFailedTitle": "تعذر تحميل الرحلات", "createTrip.heroTitle": "إنشاء رحلة تسوق", "createTrip.heroSubtitle": "أضف تواريخ الرحلة.", "createTrip.tripDetails": "تفاصيل الرحلة", "createTrip.tripName": "اسم الرحلة", "createTrip.tripNamePlaceholder": "اسم الرحلة", "createTrip.startDate": "تاريخ البداية", "createTrip.selectStartDate": "اختر تاريخ البداية", "createTrip.endDate": "تاريخ النهاية", "createTrip.selectEndDate": "اختر تاريخ النهاية", "createTrip.notes": "ملاحظات (اختياري)", "createTrip.notesPlaceholder": "أضف ملاحظات الحجز أو أولويات التسوق أو احتياجات الوصول.", "createTrip.createCta": "حفظ الرحلة", "createTrip.routeInfoTitle": "المسار", "createTrip.routeInfoBody": "يمكنك إضافة مسار المدينة والأوتلت بعد إنشاء الرحلة.", "createTrip.selectStartDateTitle": "اختر تاريخ البداية", "createTrip.selectEndDateTitle": "اختر تاريخ النهاية", "createTrip.done": "تم", "createTrip.cancel": "إلغاء", "createTrip.pastDateBlocked": "لا يمكن اختيار تاريخ سابق.", "createTrip.returnFlightReminderTitle": "تذكير رحلة العودة (اختياري)", "createTrip.returnFlightReminderHelper": "إذا أضفت رحلة العودة، سيتم إعداد تذكير يوم الرحلة و Tax Free في المطار.", "createTrip.returnFlightDate": "تاريخ رحلة العودة", "createTrip.selectReturnDate": "اختر تاريخ العودة", "createTrip.returnFlightTime": "وقت رحلة العودة", "createTrip.selectTime": "اختر الوقت", "createTrip.returnDepartureAirport": "مطار المغادرة (اختياري)", "createTrip.returnDepartureAirportPlaceholder": "مثال: MXP, CDG, VIE", "createTrip.returnFlightNumber": "رقم الرحلة (اختياري)", "createTrip.returnFlightNumberPlaceholder": "مثال: TK123", "createTrip.returnFlightDatePickerTitle": "اختر تاريخ العودة", "createTrip.returnFlightDateTimeRequired": "أدخل تاريخ ووقت رحلة العودة معًا.", "tripDetail.routeSection": "مسار الرحلة", "tripDetail.emptyRouteTitle": "لا يوجد مسار بعد", "tripDetail.emptyRouteText": "خطط لأيام الرحلة بإضافة مدينة أو أوتلت.", "tripDetail.addRouteCta": "إضافة مسار", "tripSegment.selectCityOrOutlet": "اختر مدينة أو أوتلت", "tripSegment.datesOutsideTrip": "يجب أن يكون تاريخ المقطع ضمن تواريخ الرحلة.", "tripSegment.overlap": "يتداخل هذا النطاق الزمني مع مسار آخر.", "status.upcoming": "قادمة", "status.active": "نشطة", "status.past": "مكتملة", "status.completed": "مكتملة", "flightAlerts.title": "تذكيرات الرحلات الجوية" },
-  ru: { "trips.heroTitle": "Шопинг-поездки", "trips.heroSubtitle": "Планируйте дни в аутлетах с умом.", "trips.summaryTrips": "Поездки", "trips.dated": "С датами", "trips.createTripCta": "Создать поездку", "trips.emptyTitle": "Поездок пока нет", "trips.emptyText": "Создайте первую шопинг-поездку и спланируйте маршрут по городам и аутлетам.", "trips.loadFailedTitle": "Не удалось загрузить поездки", "createTrip.heroTitle": "Создать шопинг-поездку", "createTrip.heroSubtitle": "Добавьте даты поездки.", "createTrip.tripDetails": "Детали поездки", "createTrip.tripName": "Название поездки", "createTrip.tripNamePlaceholder": "Название поездки", "createTrip.startDate": "Дата начала", "createTrip.selectStartDate": "Выбрать дату начала", "createTrip.endDate": "Дата окончания", "createTrip.selectEndDate": "Выбрать дату окончания", "createTrip.notes": "Заметки (необязательно)", "createTrip.notesPlaceholder": "Добавьте заметки о бронировании, приоритеты покупок или потребности доступности.", "createTrip.createCta": "Сохранить поездку", "createTrip.routeInfoTitle": "Маршрут", "createTrip.routeInfoBody": "Маршрут по городам и аутлетам можно добавить после создания поездки.", "createTrip.selectStartDateTitle": "Выберите дату начала", "createTrip.selectEndDateTitle": "Выберите дату окончания", "createTrip.done": "ОК", "createTrip.cancel": "Отмена", "createTrip.pastDateBlocked": "Нельзя выбрать прошедшую дату.", "createTrip.returnFlightReminderTitle": "Напоминание об обратном рейсе (необязательно)", "createTrip.returnFlightReminderHelper": "Если добавить обратный рейс, будет подготовлено напоминание на день рейса и Tax Free в аэропорту.", "createTrip.returnFlightDate": "Дата обратного рейса", "createTrip.selectReturnDate": "Выбрать дату возвращения", "createTrip.returnFlightTime": "Время обратного рейса", "createTrip.selectTime": "Выбрать время", "createTrip.returnDepartureAirport": "Аэропорт вылета (необязательно)", "createTrip.returnDepartureAirportPlaceholder": "Напр. MXP, CDG, VIE", "createTrip.returnFlightNumber": "Номер рейса (необязательно)", "createTrip.returnFlightNumberPlaceholder": "Напр. TK123", "createTrip.returnFlightDatePickerTitle": "Выберите дату возвращения", "createTrip.returnFlightDateTimeRequired": "Введите дату и время обратного рейса вместе.", "tripDetail.routeSection": "Маршрут поездки", "tripDetail.emptyRouteTitle": "Маршрута пока нет", "tripDetail.emptyRouteText": "Планируйте дни поездки, добавляя город или аутлет.", "tripDetail.addRouteCta": "Добавить маршрут", "tripSegment.selectCityOrOutlet": "Выберите город или аутлет", "tripSegment.datesOutsideTrip": "Дата сегмента должна быть в пределах дат поездки.", "tripSegment.overlap": "Этот диапазон дат пересекается с другим маршрутом.", "status.upcoming": "Предстоящая", "status.active": "Активная", "status.past": "Завершена", "status.completed": "Завершена", "flightAlerts.title": "Напоминания о рейсах" },
-  zh: { "trips.heroTitle": "购物行程", "trips.heroSubtitle": "智能规划奥莱日。", "trips.summaryTrips": "行程", "trips.dated": "有日期", "trips.createTripCta": "创建行程", "trips.emptyTitle": "还没有行程", "trips.emptyText": "创建你的第一个购物行程，并规划城市和奥莱路线。", "trips.loadFailedTitle": "无法加载行程", "createTrip.heroTitle": "创建购物行程", "createTrip.heroSubtitle": "添加行程日期。", "createTrip.tripDetails": "行程详情", "createTrip.tripName": "行程名称", "createTrip.tripNamePlaceholder": "行程名称", "createTrip.startDate": "开始日期", "createTrip.selectStartDate": "选择开始日期", "createTrip.endDate": "结束日期", "createTrip.selectEndDate": "选择结束日期", "createTrip.notes": "备注（可选）", "createTrip.notesPlaceholder": "添加预订备注、购物优先级或无障碍需求。", "createTrip.createCta": "保存行程", "createTrip.routeInfoTitle": "路线", "createTrip.routeInfoBody": "创建行程后，你可以添加城市和奥莱路线。", "createTrip.selectStartDateTitle": "选择开始日期", "createTrip.selectEndDateTitle": "选择结束日期", "createTrip.done": "确定", "createTrip.cancel": "取消", "createTrip.pastDateBlocked": "不能选择过去的日期。", "createTrip.returnFlightReminderTitle": "返程航班提醒（可选）", "createTrip.returnFlightReminderHelper": "添加返程航班后，会准备航班当天和机场 Tax Free 提醒。", "createTrip.returnFlightDate": "返程航班日期", "createTrip.selectReturnDate": "选择返程日期", "createTrip.returnFlightTime": "返程航班时间", "createTrip.selectTime": "选择时间", "createTrip.returnDepartureAirport": "出发机场（可选）", "createTrip.returnDepartureAirportPlaceholder": "例如 MXP、CDG、VIE", "createTrip.returnFlightNumber": "航班号（可选）", "createTrip.returnFlightNumberPlaceholder": "例如 TK123", "createTrip.returnFlightDatePickerTitle": "选择返程日期", "createTrip.returnFlightDateTimeRequired": "请同时输入返程航班日期和时间。", "tripDetail.routeSection": "行程路线", "tripDetail.emptyRouteTitle": "还没有路线", "tripDetail.emptyRouteText": "添加城市或奥莱来规划行程天数。", "tripDetail.addRouteCta": "添加路线", "tripSegment.selectCityOrOutlet": "选择城市或奥莱", "tripSegment.datesOutsideTrip": "分段日期必须在行程日期范围内。", "tripSegment.overlap": "此日期范围与另一条路线重叠。", "status.upcoming": "即将开始", "status.active": "进行中", "status.past": "已完成", "status.completed": "已完成", "flightAlerts.title": "航班提醒" }
+const tripPlannerV2FinalTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "trips.heroTitle": "Shopping Trips",
+    "trips.heroSubtitle": "Plan outlet days smartly.",
+    "trips.summaryTrips": "Trips",
+    "status.active": "Active",
+    "trips.dated": "Dated",
+    "trips.createTripCta": "Create trip",
+    "trips.emptyTitle": "No trips yet",
+    "trips.emptyText":
+      "Create your first shopping trip and plan your city and outlet route.",
+    "trips.loadFailedTitle": "Trips could not be loaded",
+    "createTrip.heroTitle": "Create a shopping trip",
+    "createTrip.heroSubtitle": "Add trip dates.",
+    "createTrip.tripDetails": "Trip details",
+    "createTrip.tripName": "Trip name",
+    "createTrip.tripNamePlaceholder": "Trip name",
+    "createTrip.startDate": "Start date",
+    "createTrip.selectStartDate": "Select start date",
+    "createTrip.endDate": "End date",
+    "createTrip.selectEndDate": "Select end date",
+    "createTrip.notes": "Notes (optional)",
+    "createTrip.notesPlaceholder":
+      "Add booking notes, shopping priorities, or accessibility needs.",
+    "createTrip.createCta": "Save Trip",
+    "createTrip.routeInfoTitle": "Route",
+    "createTrip.routeInfoBody":
+      "You can add your city and outlet route after creating the trip.",
+    "createTrip.selectStartDateTitle": "Select start date",
+    "createTrip.selectEndDateTitle": "Select end date",
+    "createTrip.done": "OK",
+    "createTrip.cancel": "Cancel",
+    "createTrip.pastDateBlocked": "A past date cannot be selected.",
+    "createTrip.returnFlightReminderTitle": "Return flight reminder (optional)",
+    "createTrip.returnFlightReminderHelper":
+      "If you add your return flight, a flight-day and airport Tax Free reminder is prepared.",
+    "createTrip.returnFlightDate": "Return flight date",
+    "createTrip.selectReturnDate": "Select return date",
+    "createTrip.returnFlightTime": "Return flight time",
+    "createTrip.selectTime": "Select time",
+    "createTrip.returnDepartureAirport": "Departure airport (optional)",
+    "createTrip.returnDepartureAirportPlaceholder": "E.g. MXP, CDG, VIE",
+    "createTrip.returnFlightNumber": "Flight number (optional)",
+    "createTrip.returnFlightNumberPlaceholder": "E.g. TK123",
+    "createTrip.returnFlightDatePickerTitle": "Select return date",
+    "createTrip.returnFlightDateTimeRequired":
+      "Enter both return flight date and time.",
+    "tripDetail.routeSection": "Trip route",
+    "tripDetail.emptyRouteTitle": "No route yet",
+    "tripDetail.emptyRouteText":
+      "Plan your trip days by adding a city or outlet.",
+    "tripDetail.addRouteCta": "Add route",
+    "tripSegment.selectCityOrOutlet": "Select city or outlet",
+    "tripSegment.datesOutsideTrip": "Segment date must be within trip dates.",
+    "tripSegment.overlap": "This date range overlaps another route.",
+    "status.upcoming": "Upcoming",
+    "status.past": "Completed",
+    "status.completed": "Completed",
+    "flightAlerts.title": "Flight Reminders",
+  },
+  tr: {
+    "trips.heroTitle": "Alışveriş Seyahatleri",
+    "trips.heroSubtitle": "Outlet günlerini akıllıca planla.",
+    "trips.summaryTrips": "Seyahatler",
+    "status.active": "Aktif",
+    "trips.dated": "Tarihli",
+    "trips.createTripCta": "Seyahat oluştur",
+    "trips.emptyTitle": "Henüz seyahat yok",
+    "trips.emptyText":
+      "İlk alışveriş seyahatini oluşturarak şehir ve outlet rotanı planla.",
+    "trips.loadFailedTitle": "Seyahatler yüklenemedi",
+    "createTrip.heroTitle": "Alışveriş seyahati oluştur",
+    "createTrip.heroSubtitle": "Seyahat tarihlerini ekle.",
+    "createTrip.tripDetails": "Seyahat detayları",
+    "createTrip.tripName": "Seyahat adı",
+    "createTrip.tripNamePlaceholder": "Seyahat adı",
+    "createTrip.startDate": "Başlangıç tarihi",
+    "createTrip.selectStartDate": "Başlangıç tarihi seç",
+    "createTrip.endDate": "Bitiş tarihi",
+    "createTrip.selectEndDate": "Bitiş tarihi seç",
+    "createTrip.notes": "Notlar (opsiyonel)",
+    "createTrip.notesPlaceholder":
+      "Rezervasyon notları, alışveriş öncelikleri veya erişilebilirlik ihtiyaçları ekleyin.",
+    "createTrip.createCta": "Seyahati Kaydet",
+    "createTrip.routeInfoTitle": "Rota",
+    "createTrip.routeInfoBody":
+      "Şehir ve outlet rotanı seyahati oluşturduktan sonra ekleyebilirsin.",
+    "createTrip.selectStartDateTitle": "Başlangıç tarihini seç",
+    "createTrip.selectEndDateTitle": "Bitiş tarihini seç",
+    "createTrip.done": "Tamam",
+    "createTrip.cancel": "Vazgeç",
+    "createTrip.pastDateBlocked": "Geçmiş bir tarih seçilemez.",
+    "createTrip.returnFlightReminderTitle":
+      "Dönüş uçuşu hatırlatması (opsiyonel)",
+    "createTrip.returnFlightReminderHelper":
+      "Dönüş uçuşunu eklersen uçuş günü ve havalimanı Tax Free hatırlatması hazırlanır.",
+    "createTrip.returnFlightDate": "Dönüş uçuş tarihi",
+    "createTrip.selectReturnDate": "Dönüş tarihi seç",
+    "createTrip.returnFlightTime": "Dönüş uçuş saati",
+    "createTrip.selectTime": "Saat seç",
+    "createTrip.returnDepartureAirport": "Kalkış havalimanı (opsiyonel)",
+    "createTrip.returnDepartureAirportPlaceholder": "Örn. MXP, CDG, VIE",
+    "createTrip.returnFlightNumber": "Uçuş numarası (opsiyonel)",
+    "createTrip.returnFlightNumberPlaceholder": "Örn. TK123",
+    "createTrip.returnFlightDatePickerTitle": "Dönüş tarihini seç",
+    "createTrip.returnFlightDateTimeRequired":
+      "Dönüş uçuş tarihi ve saati birlikte girilmeli.",
+    "tripDetail.routeSection": "Seyahat rotası",
+    "tripDetail.emptyRouteTitle": "Henüz rota yok",
+    "tripDetail.emptyRouteText":
+      "Şehir veya outlet ekleyerek seyahat günlerini planla.",
+    "tripDetail.addRouteCta": "Rota ekle",
+    "tripSegment.selectCityOrOutlet": "Şehir veya outlet seç",
+    "tripSegment.datesOutsideTrip":
+      "Segment tarihi seyahat tarihleri içinde olmalı.",
+    "tripSegment.overlap": "Bu tarih aralığı başka bir rota ile çakışıyor.",
+    "status.upcoming": "Yaklaşan",
+    "status.past": "Tamamlandı",
+    "status.completed": "Tamamlandı",
+    "flightAlerts.title": "Uçuş Hatırlatmaları",
+  },
+  es: {
+    "trips.heroTitle": "Viajes de compras",
+    "trips.heroSubtitle": "Planifica inteligentemente tus días de outlet.",
+    "trips.summaryTrips": "Viajes",
+    "trips.dated": "Con fechas",
+    "trips.createTripCta": "Crear viaje",
+    "trips.emptyTitle": "Aún no hay viajes",
+    "trips.emptyText":
+      "Crea tu primer viaje de compras y planifica tu ruta de ciudades y outlets.",
+    "trips.loadFailedTitle": "No se pudieron cargar los viajes",
+    "createTrip.heroTitle": "Crear un viaje de compras",
+    "createTrip.heroSubtitle": "Añade las fechas del viaje.",
+    "createTrip.tripDetails": "Detalles del viaje",
+    "createTrip.tripName": "Nombre del viaje",
+    "createTrip.tripNamePlaceholder": "Nombre del viaje",
+    "createTrip.startDate": "Fecha de inicio",
+    "createTrip.selectStartDate": "Seleccionar fecha de inicio",
+    "createTrip.endDate": "Fecha de fin",
+    "createTrip.selectEndDate": "Seleccionar fecha de fin",
+    "createTrip.notes": "Notas (opcional)",
+    "createTrip.notesPlaceholder":
+      "Añade notas de reserva, prioridades de compra o necesidades de accesibilidad.",
+    "createTrip.createCta": "Guardar viaje",
+    "createTrip.routeInfoTitle": "Ruta",
+    "createTrip.routeInfoBody":
+      "Puedes añadir tu ruta de ciudades y outlets después de crear el viaje.",
+    "createTrip.selectStartDateTitle": "Selecciona la fecha de inicio",
+    "createTrip.selectEndDateTitle": "Selecciona la fecha de fin",
+    "createTrip.done": "Aceptar",
+    "createTrip.cancel": "Cancelar",
+    "createTrip.pastDateBlocked": "No se puede seleccionar una fecha pasada.",
+    "createTrip.returnFlightReminderTitle":
+      "Recordatorio de vuelo de regreso (opcional)",
+    "createTrip.returnFlightReminderHelper":
+      "Si añades tu vuelo de regreso, se preparará un recordatorio del día del vuelo y Tax Free del aeropuerto.",
+    "createTrip.returnFlightDate": "Fecha del vuelo de regreso",
+    "createTrip.selectReturnDate": "Seleccionar fecha de regreso",
+    "createTrip.returnFlightTime": "Hora del vuelo de regreso",
+    "createTrip.selectTime": "Seleccionar hora",
+    "createTrip.returnDepartureAirport": "Aeropuerto de salida (opcional)",
+    "createTrip.returnDepartureAirportPlaceholder": "Ej. MXP, CDG, VIE",
+    "createTrip.returnFlightNumber": "Número de vuelo (opcional)",
+    "createTrip.returnFlightNumberPlaceholder": "Ej. TK123",
+    "createTrip.returnFlightDatePickerTitle": "Selecciona la fecha de regreso",
+    "createTrip.returnFlightDateTimeRequired":
+      "Introduce juntos la fecha y la hora del vuelo de regreso.",
+    "tripDetail.routeSection": "Ruta del viaje",
+    "tripDetail.emptyRouteTitle": "Aún no hay ruta",
+    "tripDetail.emptyRouteText":
+      "Planifica los días del viaje añadiendo una ciudad o outlet.",
+    "tripDetail.addRouteCta": "Añadir ruta",
+    "tripSegment.selectCityOrOutlet": "Selecciona ciudad u outlet",
+    "tripSegment.datesOutsideTrip":
+      "La fecha del segmento debe estar dentro de las fechas del viaje.",
+    "tripSegment.overlap": "Este rango de fechas se solapa con otra ruta.",
+    "status.upcoming": "Próximo",
+    "status.active": "Activo",
+    "status.past": "Completado",
+    "status.completed": "Completado",
+    "flightAlerts.title": "Recordatorios de vuelo",
+  },
+  fr: {
+    "trips.heroTitle": "Voyages shopping",
+    "trips.heroSubtitle": "Planifiez intelligemment vos journées outlet.",
+    "trips.summaryTrips": "Voyages",
+    "trips.dated": "Datés",
+    "trips.createTripCta": "Créer un voyage",
+    "trips.emptyTitle": "Aucun voyage pour le moment",
+    "trips.emptyText":
+      "Créez votre premier voyage shopping et planifiez votre itinéraire ville et outlet.",
+    "trips.loadFailedTitle": "Impossible de charger les voyages",
+    "createTrip.heroTitle": "Créer un voyage shopping",
+    "createTrip.heroSubtitle": "Ajoutez les dates du voyage.",
+    "createTrip.tripDetails": "Détails du voyage",
+    "createTrip.tripName": "Nom du voyage",
+    "createTrip.tripNamePlaceholder": "Nom du voyage",
+    "createTrip.startDate": "Date de début",
+    "createTrip.selectStartDate": "Sélectionner la date de début",
+    "createTrip.endDate": "Date de fin",
+    "createTrip.selectEndDate": "Sélectionner la date de fin",
+    "createTrip.notes": "Notes (optionnel)",
+    "createTrip.notesPlaceholder":
+      "Ajoutez des notes de réservation, priorités shopping ou besoins d’accessibilité.",
+    "createTrip.createCta": "Enregistrer le voyage",
+    "createTrip.routeInfoTitle": "Itinéraire",
+    "createTrip.routeInfoBody":
+      "Vous pourrez ajouter votre itinéraire ville et outlet après la création du voyage.",
+    "createTrip.selectStartDateTitle": "Choisir la date de début",
+    "createTrip.selectEndDateTitle": "Choisir la date de fin",
+    "createTrip.done": "OK",
+    "createTrip.cancel": "Annuler",
+    "createTrip.pastDateBlocked":
+      "Une date passée ne peut pas être sélectionnée.",
+    "createTrip.returnFlightReminderTitle": "Rappel de vol retour (optionnel)",
+    "createTrip.returnFlightReminderHelper":
+      "Si vous ajoutez votre vol retour, un rappel du jour du vol et Tax Free à l’aéroport sera préparé.",
+    "createTrip.returnFlightDate": "Date du vol retour",
+    "createTrip.selectReturnDate": "Sélectionner la date retour",
+    "createTrip.returnFlightTime": "Heure du vol retour",
+    "createTrip.selectTime": "Sélectionner l’heure",
+    "createTrip.returnDepartureAirport": "Aéroport de départ (optionnel)",
+    "createTrip.returnDepartureAirportPlaceholder": "Ex. MXP, CDG, VIE",
+    "createTrip.returnFlightNumber": "Numéro de vol (optionnel)",
+    "createTrip.returnFlightNumberPlaceholder": "Ex. TK123",
+    "createTrip.returnFlightDatePickerTitle": "Choisir la date retour",
+    "createTrip.returnFlightDateTimeRequired":
+      "Saisissez à la fois la date et l’heure du vol retour.",
+    "tripDetail.routeSection": "Itinéraire du voyage",
+    "tripDetail.emptyRouteTitle": "Aucun itinéraire",
+    "tripDetail.emptyRouteText":
+      "Planifiez vos journées en ajoutant une ville ou un outlet.",
+    "tripDetail.addRouteCta": "Ajouter un itinéraire",
+    "tripSegment.selectCityOrOutlet": "Sélectionner ville ou outlet",
+    "tripSegment.datesOutsideTrip":
+      "La date du segment doit être dans les dates du voyage.",
+    "tripSegment.overlap": "Cette période chevauche un autre itinéraire.",
+    "status.upcoming": "À venir",
+    "status.active": "Actif",
+    "status.past": "Terminé",
+    "status.completed": "Terminé",
+    "flightAlerts.title": "Rappels de vol",
+  },
+  de: {
+    "trips.heroTitle": "Shopping-Reisen",
+    "trips.heroSubtitle": "Plane Outlet-Tage intelligent.",
+    "trips.summaryTrips": "Reisen",
+    "trips.dated": "Datiert",
+    "trips.createTripCta": "Reise erstellen",
+    "trips.emptyTitle": "Noch keine Reisen",
+    "trips.emptyText":
+      "Erstelle deine erste Shopping-Reise und plane deine Städte- und Outlet-Route.",
+    "trips.loadFailedTitle": "Reisen konnten nicht geladen werden",
+    "createTrip.heroTitle": "Shopping-Reise erstellen",
+    "createTrip.heroSubtitle": "Reisedaten hinzufügen.",
+    "createTrip.tripDetails": "Reisedetails",
+    "createTrip.tripName": "Reisename",
+    "createTrip.tripNamePlaceholder": "Reisename",
+    "createTrip.startDate": "Startdatum",
+    "createTrip.selectStartDate": "Startdatum auswählen",
+    "createTrip.endDate": "Enddatum",
+    "createTrip.selectEndDate": "Enddatum auswählen",
+    "createTrip.notes": "Notizen (optional)",
+    "createTrip.notesPlaceholder":
+      "Füge Buchungsnotizen, Shopping-Prioritäten oder Barrierefreiheitswünsche hinzu.",
+    "createTrip.createCta": "Reise speichern",
+    "createTrip.routeInfoTitle": "Route",
+    "createTrip.routeInfoBody":
+      "Du kannst deine Städte- und Outlet-Route nach dem Erstellen der Reise hinzufügen.",
+    "createTrip.selectStartDateTitle": "Startdatum auswählen",
+    "createTrip.selectEndDateTitle": "Enddatum auswählen",
+    "createTrip.done": "OK",
+    "createTrip.cancel": "Abbrechen",
+    "createTrip.pastDateBlocked":
+      "Ein vergangenes Datum kann nicht ausgewählt werden.",
+    "createTrip.returnFlightReminderTitle": "Rückflug-Erinnerung (optional)",
+    "createTrip.returnFlightReminderHelper":
+      "Wenn du deinen Rückflug hinzufügst, wird eine Erinnerung für Flugtag und Flughafen-Tax-Free vorbereitet.",
+    "createTrip.returnFlightDate": "Rückflugdatum",
+    "createTrip.selectReturnDate": "Rückflugdatum auswählen",
+    "createTrip.returnFlightTime": "Rückflugzeit",
+    "createTrip.selectTime": "Uhrzeit auswählen",
+    "createTrip.returnDepartureAirport": "Abflughafen (optional)",
+    "createTrip.returnDepartureAirportPlaceholder": "Z. B. MXP, CDG, VIE",
+    "createTrip.returnFlightNumber": "Flugnummer (optional)",
+    "createTrip.returnFlightNumberPlaceholder": "Z. B. TK123",
+    "createTrip.returnFlightDatePickerTitle": "Rückflugdatum auswählen",
+    "createTrip.returnFlightDateTimeRequired":
+      "Gib Rückflugdatum und -zeit zusammen ein.",
+    "tripDetail.routeSection": "Reiseroute",
+    "tripDetail.emptyRouteTitle": "Noch keine Route",
+    "tripDetail.emptyRouteText":
+      "Plane Reisetage, indem du eine Stadt oder ein Outlet hinzufügst.",
+    "tripDetail.addRouteCta": "Route hinzufügen",
+    "tripSegment.selectCityOrOutlet": "Stadt oder Outlet auswählen",
+    "tripSegment.datesOutsideTrip":
+      "Das Segmentdatum muss innerhalb der Reisedaten liegen.",
+    "tripSegment.overlap":
+      "Dieser Zeitraum überschneidet sich mit einer anderen Route.",
+    "status.upcoming": "Bevorstehend",
+    "status.active": "Aktiv",
+    "status.past": "Abgeschlossen",
+    "status.completed": "Abgeschlossen",
+    "flightAlerts.title": "Flugerinnerungen",
+  },
+  ar: {
+    "trips.heroTitle": "رحلات التسوق",
+    "trips.heroSubtitle": "خطط لأيام الأوتلت بذكاء.",
+    "trips.summaryTrips": "الرحلات",
+    "trips.dated": "بتواريخ",
+    "trips.createTripCta": "إنشاء رحلة",
+    "trips.emptyTitle": "لا توجد رحلات بعد",
+    "trips.emptyText": "أنشئ أول رحلة تسوق وخطط لمسار المدن والأوتلت.",
+    "trips.loadFailedTitle": "تعذر تحميل الرحلات",
+    "createTrip.heroTitle": "إنشاء رحلة تسوق",
+    "createTrip.heroSubtitle": "أضف تواريخ الرحلة.",
+    "createTrip.tripDetails": "تفاصيل الرحلة",
+    "createTrip.tripName": "اسم الرحلة",
+    "createTrip.tripNamePlaceholder": "اسم الرحلة",
+    "createTrip.startDate": "تاريخ البداية",
+    "createTrip.selectStartDate": "اختر تاريخ البداية",
+    "createTrip.endDate": "تاريخ النهاية",
+    "createTrip.selectEndDate": "اختر تاريخ النهاية",
+    "createTrip.notes": "ملاحظات (اختياري)",
+    "createTrip.notesPlaceholder":
+      "أضف ملاحظات الحجز أو أولويات التسوق أو احتياجات الوصول.",
+    "createTrip.createCta": "حفظ الرحلة",
+    "createTrip.routeInfoTitle": "المسار",
+    "createTrip.routeInfoBody":
+      "يمكنك إضافة مسار المدينة والأوتلت بعد إنشاء الرحلة.",
+    "createTrip.selectStartDateTitle": "اختر تاريخ البداية",
+    "createTrip.selectEndDateTitle": "اختر تاريخ النهاية",
+    "createTrip.done": "تم",
+    "createTrip.cancel": "إلغاء",
+    "createTrip.pastDateBlocked": "لا يمكن اختيار تاريخ سابق.",
+    "createTrip.returnFlightReminderTitle": "تذكير رحلة العودة (اختياري)",
+    "createTrip.returnFlightReminderHelper":
+      "إذا أضفت رحلة العودة، سيتم إعداد تذكير يوم الرحلة و Tax Free في المطار.",
+    "createTrip.returnFlightDate": "تاريخ رحلة العودة",
+    "createTrip.selectReturnDate": "اختر تاريخ العودة",
+    "createTrip.returnFlightTime": "وقت رحلة العودة",
+    "createTrip.selectTime": "اختر الوقت",
+    "createTrip.returnDepartureAirport": "مطار المغادرة (اختياري)",
+    "createTrip.returnDepartureAirportPlaceholder": "مثال: MXP, CDG, VIE",
+    "createTrip.returnFlightNumber": "رقم الرحلة (اختياري)",
+    "createTrip.returnFlightNumberPlaceholder": "مثال: TK123",
+    "createTrip.returnFlightDatePickerTitle": "اختر تاريخ العودة",
+    "createTrip.returnFlightDateTimeRequired":
+      "أدخل تاريخ ووقت رحلة العودة معًا.",
+    "tripDetail.routeSection": "مسار الرحلة",
+    "tripDetail.emptyRouteTitle": "لا يوجد مسار بعد",
+    "tripDetail.emptyRouteText": "خطط لأيام الرحلة بإضافة مدينة أو أوتلت.",
+    "tripDetail.addRouteCta": "إضافة مسار",
+    "tripSegment.selectCityOrOutlet": "اختر مدينة أو أوتلت",
+    "tripSegment.datesOutsideTrip":
+      "يجب أن يكون تاريخ المقطع ضمن تواريخ الرحلة.",
+    "tripSegment.overlap": "يتداخل هذا النطاق الزمني مع مسار آخر.",
+    "status.upcoming": "قادمة",
+    "status.active": "نشطة",
+    "status.past": "مكتملة",
+    "status.completed": "مكتملة",
+    "flightAlerts.title": "تذكيرات الرحلات الجوية",
+  },
+  ru: {
+    "trips.heroTitle": "Шопинг-поездки",
+    "trips.heroSubtitle": "Планируйте дни в аутлетах с умом.",
+    "trips.summaryTrips": "Поездки",
+    "trips.dated": "С датами",
+    "trips.createTripCta": "Создать поездку",
+    "trips.emptyTitle": "Поездок пока нет",
+    "trips.emptyText":
+      "Создайте первую шопинг-поездку и спланируйте маршрут по городам и аутлетам.",
+    "trips.loadFailedTitle": "Не удалось загрузить поездки",
+    "createTrip.heroTitle": "Создать шопинг-поездку",
+    "createTrip.heroSubtitle": "Добавьте даты поездки.",
+    "createTrip.tripDetails": "Детали поездки",
+    "createTrip.tripName": "Название поездки",
+    "createTrip.tripNamePlaceholder": "Название поездки",
+    "createTrip.startDate": "Дата начала",
+    "createTrip.selectStartDate": "Выбрать дату начала",
+    "createTrip.endDate": "Дата окончания",
+    "createTrip.selectEndDate": "Выбрать дату окончания",
+    "createTrip.notes": "Заметки (необязательно)",
+    "createTrip.notesPlaceholder":
+      "Добавьте заметки о бронировании, приоритеты покупок или потребности доступности.",
+    "createTrip.createCta": "Сохранить поездку",
+    "createTrip.routeInfoTitle": "Маршрут",
+    "createTrip.routeInfoBody":
+      "Маршрут по городам и аутлетам можно добавить после создания поездки.",
+    "createTrip.selectStartDateTitle": "Выберите дату начала",
+    "createTrip.selectEndDateTitle": "Выберите дату окончания",
+    "createTrip.done": "ОК",
+    "createTrip.cancel": "Отмена",
+    "createTrip.pastDateBlocked": "Нельзя выбрать прошедшую дату.",
+    "createTrip.returnFlightReminderTitle":
+      "Напоминание об обратном рейсе (необязательно)",
+    "createTrip.returnFlightReminderHelper":
+      "Если добавить обратный рейс, будет подготовлено напоминание на день рейса и Tax Free в аэропорту.",
+    "createTrip.returnFlightDate": "Дата обратного рейса",
+    "createTrip.selectReturnDate": "Выбрать дату возвращения",
+    "createTrip.returnFlightTime": "Время обратного рейса",
+    "createTrip.selectTime": "Выбрать время",
+    "createTrip.returnDepartureAirport": "Аэропорт вылета (необязательно)",
+    "createTrip.returnDepartureAirportPlaceholder": "Напр. MXP, CDG, VIE",
+    "createTrip.returnFlightNumber": "Номер рейса (необязательно)",
+    "createTrip.returnFlightNumberPlaceholder": "Напр. TK123",
+    "createTrip.returnFlightDatePickerTitle": "Выберите дату возвращения",
+    "createTrip.returnFlightDateTimeRequired":
+      "Введите дату и время обратного рейса вместе.",
+    "tripDetail.routeSection": "Маршрут поездки",
+    "tripDetail.emptyRouteTitle": "Маршрута пока нет",
+    "tripDetail.emptyRouteText":
+      "Планируйте дни поездки, добавляя город или аутлет.",
+    "tripDetail.addRouteCta": "Добавить маршрут",
+    "tripSegment.selectCityOrOutlet": "Выберите город или аутлет",
+    "tripSegment.datesOutsideTrip":
+      "Дата сегмента должна быть в пределах дат поездки.",
+    "tripSegment.overlap": "Этот диапазон дат пересекается с другим маршрутом.",
+    "status.upcoming": "Предстоящая",
+    "status.active": "Активная",
+    "status.past": "Завершена",
+    "status.completed": "Завершена",
+    "flightAlerts.title": "Напоминания о рейсах",
+  },
+  zh: {
+    "trips.heroTitle": "购物行程",
+    "trips.heroSubtitle": "智能规划奥莱日。",
+    "trips.summaryTrips": "行程",
+    "trips.dated": "有日期",
+    "trips.createTripCta": "创建行程",
+    "trips.emptyTitle": "还没有行程",
+    "trips.emptyText": "创建你的第一个购物行程，并规划城市和奥莱路线。",
+    "trips.loadFailedTitle": "无法加载行程",
+    "createTrip.heroTitle": "创建购物行程",
+    "createTrip.heroSubtitle": "添加行程日期。",
+    "createTrip.tripDetails": "行程详情",
+    "createTrip.tripName": "行程名称",
+    "createTrip.tripNamePlaceholder": "行程名称",
+    "createTrip.startDate": "开始日期",
+    "createTrip.selectStartDate": "选择开始日期",
+    "createTrip.endDate": "结束日期",
+    "createTrip.selectEndDate": "选择结束日期",
+    "createTrip.notes": "备注（可选）",
+    "createTrip.notesPlaceholder": "添加预订备注、购物优先级或无障碍需求。",
+    "createTrip.createCta": "保存行程",
+    "createTrip.routeInfoTitle": "路线",
+    "createTrip.routeInfoBody": "创建行程后，你可以添加城市和奥莱路线。",
+    "createTrip.selectStartDateTitle": "选择开始日期",
+    "createTrip.selectEndDateTitle": "选择结束日期",
+    "createTrip.done": "确定",
+    "createTrip.cancel": "取消",
+    "createTrip.pastDateBlocked": "不能选择过去的日期。",
+    "createTrip.returnFlightReminderTitle": "返程航班提醒（可选）",
+    "createTrip.returnFlightReminderHelper":
+      "添加返程航班后，会准备航班当天和机场 Tax Free 提醒。",
+    "createTrip.returnFlightDate": "返程航班日期",
+    "createTrip.selectReturnDate": "选择返程日期",
+    "createTrip.returnFlightTime": "返程航班时间",
+    "createTrip.selectTime": "选择时间",
+    "createTrip.returnDepartureAirport": "出发机场（可选）",
+    "createTrip.returnDepartureAirportPlaceholder": "例如 MXP、CDG、VIE",
+    "createTrip.returnFlightNumber": "航班号（可选）",
+    "createTrip.returnFlightNumberPlaceholder": "例如 TK123",
+    "createTrip.returnFlightDatePickerTitle": "选择返程日期",
+    "createTrip.returnFlightDateTimeRequired": "请同时输入返程航班日期和时间。",
+    "tripDetail.routeSection": "行程路线",
+    "tripDetail.emptyRouteTitle": "还没有路线",
+    "tripDetail.emptyRouteText": "添加城市或奥莱来规划行程天数。",
+    "tripDetail.addRouteCta": "添加路线",
+    "tripSegment.selectCityOrOutlet": "选择城市或奥莱",
+    "tripSegment.datesOutsideTrip": "分段日期必须在行程日期范围内。",
+    "tripSegment.overlap": "此日期范围与另一条路线重叠。",
+    "status.upcoming": "即将开始",
+    "status.active": "进行中",
+    "status.past": "已完成",
+    "status.completed": "已完成",
+    "flightAlerts.title": "航班提醒",
+  },
 };
 for (const locale of supportedLanguageCodes) {
-  Object.assign(translations[locale], tripPlannerV2FinalTranslations.en, tripPlannerV2FinalTranslations[locale]);
+  Object.assign(
+    translations[locale],
+    tripPlannerV2FinalTranslations.en,
+    tripPlannerV2FinalTranslations[locale],
+  );
+}
+
+const tripPlannerV2UxPatchTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "createTrip.returnFlightTimePickerTitle": "Select return flight time",
+    "createTrip.returnFlightDateTimeRequired":
+      "Return flight date and time must be entered together.",
+    "createTrip.selectTime": "Select time",
+    "createTrip.done": "OK",
+    "createTrip.cancel": "Cancel",
+    "profile.flightDeals": "Flight Deals",
+    "profile.subtitles.flightDeals":
+      "Flight reminders and deal settings tied to your trips",
+  },
+  tr: {
+    "createTrip.returnFlightTimePickerTitle": "Dönüş uçuş saatini seç",
+    "createTrip.returnFlightDateTimeRequired":
+      "Dönüş uçuş tarihi ve saati birlikte girilmeli.",
+    "createTrip.selectTime": "Saat seç",
+    "createTrip.done": "Tamam",
+    "createTrip.cancel": "Vazgeç",
+    "profile.flightDeals": "Uçuş Fırsatları",
+    "profile.subtitles.flightDeals":
+      "Seyahatlerine bağlı uçuş hatırlatmaları ve fırsat ayarları",
+  },
+  es: {
+    "createTrip.returnFlightTimePickerTitle":
+      "Selecciona la hora del vuelo de regreso",
+    "createTrip.returnFlightDateTimeRequired":
+      "La fecha y la hora del vuelo de regreso deben introducirse juntas.",
+    "createTrip.selectTime": "Seleccionar hora",
+    "createTrip.done": "Aceptar",
+    "createTrip.cancel": "Cancelar",
+    "profile.flightDeals": "Ofertas de vuelos",
+    "profile.subtitles.flightDeals":
+      "Recordatorios de vuelos y ajustes de ofertas vinculados a tus viajes",
+  },
+  fr: {
+    "createTrip.returnFlightTimePickerTitle": "Choisir l’heure du vol retour",
+    "createTrip.returnFlightDateTimeRequired":
+      "La date et l’heure du vol retour doivent être saisies ensemble.",
+    "createTrip.selectTime": "Choisir l’heure",
+    "createTrip.done": "OK",
+    "createTrip.cancel": "Annuler",
+    "profile.flightDeals": "Offres de vols",
+    "profile.subtitles.flightDeals":
+      "Rappels de vol et réglages d’offres liés à vos voyages",
+  },
+  de: {
+    "createTrip.returnFlightTimePickerTitle": "Rückflugzeit auswählen",
+    "createTrip.returnFlightDateTimeRequired":
+      "Rückflugdatum und -zeit müssen zusammen eingegeben werden.",
+    "createTrip.selectTime": "Uhrzeit auswählen",
+    "createTrip.done": "OK",
+    "createTrip.cancel": "Abbrechen",
+    "profile.flightDeals": "Flugangebote",
+    "profile.subtitles.flightDeals":
+      "Flugerinnerungen und Angebots-Einstellungen passend zu deinen Reisen",
+  },
+  ar: {
+    "createTrip.returnFlightTimePickerTitle": "اختر وقت رحلة العودة",
+    "createTrip.returnFlightDateTimeRequired":
+      "يجب إدخال تاريخ ووقت رحلة العودة معًا.",
+    "createTrip.selectTime": "اختر الوقت",
+    "createTrip.done": "تم",
+    "createTrip.cancel": "إلغاء",
+    "profile.flightDeals": "عروض الرحلات",
+    "profile.subtitles.flightDeals":
+      "تذكيرات الرحلات وإعدادات العروض المرتبطة برحلاتك",
+  },
+  ru: {
+    "createTrip.returnFlightTimePickerTitle": "Выберите время обратного рейса",
+    "createTrip.returnFlightDateTimeRequired":
+      "Дата и время обратного рейса должны быть указаны вместе.",
+    "createTrip.selectTime": "Выбрать время",
+    "createTrip.done": "ОК",
+    "createTrip.cancel": "Отмена",
+    "profile.flightDeals": "Предложения авиабилетов",
+    "profile.subtitles.flightDeals":
+      "Напоминания о рейсах и настройки предложений по вашим поездкам",
+  },
+  zh: {
+    "createTrip.returnFlightTimePickerTitle": "选择返程航班时间",
+    "createTrip.returnFlightDateTimeRequired":
+      "返程航班日期和时间必须一起填写。",
+    "createTrip.selectTime": "选择时间",
+    "createTrip.done": "确定",
+    "createTrip.cancel": "取消",
+    "profile.flightDeals": "航班优惠",
+    "profile.subtitles.flightDeals": "与你的行程相关的航班提醒和优惠设置",
+  },
+};
+
+for (const locale of supportedLanguageCodes) {
+  Object.assign(translations[locale], tripPlannerV2UxPatchTranslations[locale]);
 }
