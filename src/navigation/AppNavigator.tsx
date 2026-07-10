@@ -35,6 +35,7 @@ import { TaxFreeCalculatorScreen } from "../screens/TaxFreeCalculatorScreen";
 import { TermsConditionsScreen } from "../screens/TermsConditionsScreen";
 import { TransportationScreen } from "../screens/TransportationScreen";
 import { TripDetailScreen } from "../screens/TripDetailScreen";
+import { TripSegmentEditorScreen } from "../screens/TripSegmentEditorScreen";
 import { WriteReviewScreen } from "../screens/WriteReviewScreen";
 import { useTranslation } from "../hooks/useTranslation";
 
@@ -158,6 +159,7 @@ backgroundColor: "#FFFFFF",
 <Stack.Screen name="MyTrips" component={MyTripsScreen} options={{ title: t("nav.myTrips") }} />
 <Stack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
 <Stack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: t("nav.tripDetail") }} />
+<Stack.Screen name="TripSegmentEditor" component={TripSegmentEditorScreen} options={{ title: t("tripDetail.addRouteCta") }} />
 
 <Stack.Screen name="Savings" component={SavingsScreen} options={{ title: t("nav.savings") }} />
 <Stack.Screen name="SmartShoppingCalculator" component={SmartShoppingCalculatorScreen} options={{ title: t("nav.smartShopping") }} />

@@ -7,6 +7,6 @@ export function navigateToTripOutletSelection(
 ) {
   navigation.navigate("MainTabs", {
     screen: "Explore",
-    params: { initialTab: "outlet", tripPrompt: true },
+    params: { initialTab: "outlet" },
   });
 }

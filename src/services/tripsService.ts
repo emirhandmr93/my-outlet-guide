@@ -1,7 +1,8 @@
-import { collection, deleteDoc, doc, getDocs, orderBy, query, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, orderBy, query, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 
 import { db } from "../firebase/config";
-import type { Trip, TripFlightDetails, TripInput, TripReminderPlanItem, TripSegment, TripStatus } from "../contexts/TripsContext";
+import type { Trip, TripFlightDetails, TripInput, TripSegment, TripStatus } from "../contexts/TripsContext";
+import { generateTripReminderPlan, sortTripSegments } from "./tripReminderPlan";
 
 const USER_TRIPS_COLLECTION = "userTrips";
 const USER_TRIP_ITEMS_COLLECTION = "items";
@@ -46,6 +47,7 @@ function normalizeSegments(value: any): TripSegment[] {
   return value
     .map((segment, index) => stripUndefined({
       id: normalizeOptionalString(segment?.id) || `segment-${index + 1}`,
+      title: normalizeOptionalString(segment?.title),
       cityId: normalizeOptionalString(segment?.cityId),
       cityName: normalizeOptionalString(segment?.cityName),
       countryName: normalizeOptionalString(segment?.countryName),
@@ -58,34 +60,6 @@ function normalizeSegments(value: any): TripSegment[] {
     }))
     .filter((segment) => segment.startDate && segment.endDate)
     .sort((a, b) => a.startDate.localeCompare(b.startDate));
-}
-
-function createReminderPlan(trip: Pick<TripInput, "startDate" | "endDate" | "segments" | "flightDetails">): TripReminderPlanItem[] {
-  const reminders: TripReminderPlanItem[] = [
-    { id: "trip-start", type: "tripStartReminder", date: trip.startDate, titleKey: "tripDetail.tripStartReminder", messageKey: "tripDetail.tripStartReminderMessage", source: "trip" },
-  ];
-  const taxFreeDate = new Date(`${trip.endDate}T00:00:00.000Z`);
-  taxFreeDate.setUTCDate(taxFreeDate.getUTCDate() - 1);
-  reminders.push({ id: "tax-free", type: "taxFreeReminder", date: taxFreeDate.toISOString().slice(0, 10), titleKey: "tripDetail.taxFreeReminder", messageKey: "tripDetail.taxFreeReminderMessage", source: "trip" });
-  for (const segment of trip.segments || []) {
-    const label = segment.outletName || segment.cityName || segment.countryName || "";
-    reminders.push({
-      id: `segment-${segment.id}`,
-      type: "segmentStartReminder",
-      date: segment.startDate,
-      titleKey: "tripDetail.segmentStartReminder",
-      messageKey: segment.outletName ? "tripDetail.segmentOutletReminderMessage" : "tripDetail.segmentCityReminderMessage",
-      messageParams: segment.outletName ? { outlet: label } : { city: label },
-      source: "segment",
-    });
-  }
-  if (trip.flightDetails?.outboundDateTime) {
-    reminders.push({ id: "flight-outbound", type: "flightReminder", date: trip.flightDetails.outboundDateTime.slice(0, 10), titleKey: "tripDetail.flightReminder", messageKey: "tripDetail.flightReminderMessage", source: "flight" });
-  }
-  if (trip.flightDetails?.returnDateTime) {
-    reminders.push({ id: "flight-return", type: "flightReminder", date: trip.flightDetails.returnDateTime.slice(0, 10), titleKey: "tripDetail.flightReminder", messageKey: "tripDetail.flightReminderMessage", source: "flight" });
-  }
-  return reminders.sort((a, b) => a.date.localeCompare(b.date));
 }
 
 function normalizeTrip(id: string, data: any): Trip {
@@ -111,7 +85,7 @@ function normalizeTrip(id: string, data: any): Trip {
     travelerCount: typeof data.travelerCount === "number" ? data.travelerCount : undefined,
     segments,
     flightDetails,
-    reminderPlan: Array.isArray(data.reminderPlan) ? data.reminderPlan : createReminderPlan({ startDate, endDate, segments, flightDetails }),
+    reminderPlan: generateTripReminderPlan({ startDate, endDate, segments, flightDetails }),
     createdAt: data.createdAt || "",
     updatedAt: data.updatedAt || "",
   };
@@ -125,9 +99,9 @@ export async function getUserTrips(userId: string): Promise<Trip[]> {
 export async function createUserTrip(userId: string, trip: TripInput): Promise<string> {
   const now = new Date().toISOString();
   const docRef = doc(getUserTripsCollection(userId));
-  const segments = normalizeSegments(trip.segments);
+  const segments = sortTripSegments(normalizeSegments(trip.segments));
   const flightDetails = normalizeFlightDetails(trip.flightDetails);
-  const reminderPlan = createReminderPlan({ startDate: trip.startDate, endDate: trip.endDate, segments, flightDetails });
+  const reminderPlan = generateTripReminderPlan({ startDate: trip.startDate, endDate: trip.endDate, segments, flightDetails });
 
   await setDoc(docRef, stripUndefined({
     tripId: docRef.id,
@@ -158,4 +132,27 @@ export async function createUserTrip(userId: string, trip: TripInput): Promise<s
 
 export async function deleteUserTrip(userId: string, tripId: string) {
   await deleteDoc(doc(db, USER_TRIPS_COLLECTION, userId, USER_TRIP_ITEMS_COLLECTION, tripId));
+}
+
+
+export async function updateUserTrip(userId: string, tripId: string, trip: Partial<TripInput>): Promise<void> {
+  const existing = (await getUserTrips(userId)).find((item) => item.id === tripId || item.tripId === tripId);
+  const startDate = trip.startDate || existing?.startDate || "";
+  const endDate = trip.endDate || existing?.endDate || startDate;
+  const segments = sortTripSegments(normalizeSegments(trip.segments ?? existing?.segments ?? []));
+  const flightDetails = normalizeFlightDetails(trip.flightDetails ?? existing?.flightDetails);
+  const reminderPlan = generateTripReminderPlan({ startDate, endDate, segments, flightDetails });
+  await updateDoc(doc(db, USER_TRIPS_COLLECTION, userId, USER_TRIP_ITEMS_COLLECTION, tripId), stripUndefined({
+    ...trip,
+    userId,
+    startDate,
+    endDate,
+    visitDate: startDate,
+    segments,
+    flightDetails: flightDetails || null,
+    reminderPlan,
+    status: getTripStatus(startDate, endDate),
+    updatedAt: new Date().toISOString(),
+    firestoreUpdatedAt: serverTimestamp(),
+  }));
 }

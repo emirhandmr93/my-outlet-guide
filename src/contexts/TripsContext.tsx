@@ -1,12 +1,13 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
 
-import { createUserTrip, deleteUserTrip, getUserTrips } from "../services/tripsService";
+import { createUserTrip, deleteUserTrip, getUserTrips, updateUserTrip } from "../services/tripsService";
 import { useUser } from "./UserContext";
 
 export type TripStatus = "upcoming" | "active" | "past";
 
 export type TripSegment = {
   id: string;
+  title?: string;
   cityId?: string;
   cityName?: string;
   countryName?: string;
@@ -29,12 +30,15 @@ export type TripFlightDetails = {
 
 export type TripReminderPlanItem = {
   id: string;
-  type: "tripStartReminder" | "segmentStartReminder" | "taxFreeReminder" | "flightReminder" | "dealEventReminder";
+  type: "tripStart" | "segmentStart" | "taxFreeOneDayBeforeEnd" | "outboundFlight" | "returnFlight" | "dealOrEventOverlap";
   date: string;
-  titleKey: string;
-  messageKey: string;
+  title: string;
+  body: string;
   messageParams?: Record<string, string>;
-  source: "trip" | "segment" | "flight" | "dealEvent";
+  relatedSegmentId?: string;
+  outletId?: string;
+  cityName?: string;
+  source?: string;
 };
 
 export type Trip = {
@@ -87,6 +91,7 @@ type TripsContextType = {
   loading: boolean;
   tripsError: TripsError;
   addTrip: (trip: TripInput) => Promise<string>;
+  updateTrip: (tripId: string, trip: Partial<TripInput>) => Promise<void>;
   deleteTrip: (tripId: string) => Promise<void>;
   refreshTrips: () => Promise<void>;
 };
@@ -133,6 +138,15 @@ export function TripsProvider({ children }: { children: ReactNode }) {
     return tripId;
   }
 
+  async function updateTrip(tripId: string, trip: Partial<TripInput>) {
+    if (!currentUser?.userId) {
+      throw new Error("Authentication is required to update a trip.");
+    }
+
+    await updateUserTrip(currentUser.userId, tripId, trip);
+    await refreshTrips();
+  }
+
   async function deleteTrip(tripId: string) {
     if (!currentUser?.userId) {
       throw new Error("Authentication is required to delete a trip.");
@@ -142,7 +156,7 @@ export function TripsProvider({ children }: { children: ReactNode }) {
     await refreshTrips();
   }
 
-  return <TripsContext.Provider value={{ trips, loading, tripsError, addTrip, deleteTrip, refreshTrips }}>{children}</TripsContext.Provider>;
+  return <TripsContext.Provider value={{ trips, loading, tripsError, addTrip, updateTrip, deleteTrip, refreshTrips }}>{children}</TripsContext.Provider>;
 }
 
 export function useTrips() {
