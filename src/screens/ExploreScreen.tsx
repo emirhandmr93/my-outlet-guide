@@ -27,7 +27,11 @@ import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
 import { getCountryFlag } from "../services/locationService";
 import { useTranslation } from "../hooks/useTranslation";
-import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
+import {
+  formatCityDisplayName,
+  formatCountryDisplayName,
+  formatOutletLocationSubtitle,
+} from "../utils/locationDisplay";
 import type { TranslationLanguage } from "../translations/translations";
 
 type ExploreFilter = "country" | "city" | "outlet";
@@ -84,11 +88,14 @@ const localizedCityAliases: Record<string, string[]> = {
   amsterdam: ["amsterdam"],
 };
 
-function citySearchHaystack(city: {
-  cityId: string;
-  cityName: string;
-  countryId: string;
-}, language: TranslationLanguage) {
+function citySearchHaystack(
+  city: {
+    cityId: string;
+    cityName: string;
+    countryId: string;
+  },
+  language: TranslationLanguage,
+) {
   return normalizeSearchText(
     [
       city.cityName,
@@ -124,22 +131,40 @@ function resultLabel(type: string, t: (key: string) => string) {
 }
 
 function formatResultTitle(item: any, language: TranslationLanguage) {
-  if (item.type === "country") return formatCountryDisplayName(item.id, language);
+  if (item.type === "country")
+    return formatCountryDisplayName(item.id, language);
   if (item.type === "city") return formatCityDisplayName(item.id, language);
   return item.title;
 }
 
-function formatResultSubtitle(item: any, t: (key: string) => string, language: TranslationLanguage) {
+function formatResultSubtitle(
+  item: any,
+  t: (key: string) => string,
+  language: TranslationLanguage,
+) {
   if (item.type === "outlet" && item.routeParams?.outletId) {
-    const outlet = outlets.find((entry) => entry.outletId === item.routeParams.outletId || entry.outletId === item.id);
-    if (outlet) return `${formatCityDisplayName(outlet.cityId, language)}, ${formatCountryDisplayName(outlet.countryId, language)}`;
+    const outlet = outlets.find(
+      (entry) =>
+        entry.outletId === item.routeParams.outletId ||
+        entry.outletId === item.id,
+    );
+    if (outlet)
+      return formatOutletLocationSubtitle(
+        outlet.cityId,
+        outlet.countryId,
+        language,
+      );
   }
   if (item.type === "city") {
     const city = cities.find((entry) => entry.cityId === item.id);
-    if (city) return `${formatCountryDisplayName(city.countryId, language)} · ${formatOutletCount(outletCount(undefined, city.cityId), t)}`;
+    if (city)
+      return `${formatCountryDisplayName(city.countryId, language)} · ${formatOutletCount(outletCount(undefined, city.cityId), t)}`;
   }
-  if (item.type === "country") return formatOutletCount(outletCount(item.id), t);
-  return ["Brand", "City", "Country", "Category"].includes(item.subtitle) ? resultLabel(item.type, t) : item.subtitle;
+  if (item.type === "country")
+    return formatOutletCount(outletCount(item.id), t);
+  return ["Brand", "City", "Country", "Category"].includes(item.subtitle)
+    ? resultLabel(item.type, t)
+    : item.subtitle;
 }
 
 export function ExploreScreen() {
@@ -173,7 +198,11 @@ export function ExploreScreen() {
     () =>
       countries
         .filter((c) => availableCountryIds.includes(c.countryId))
-        .sort((a, b) => formatCountryDisplayName(a.countryId, language).localeCompare(formatCountryDisplayName(b.countryId, language))),
+        .sort((a, b) =>
+          formatCountryDisplayName(a.countryId, language).localeCompare(
+            formatCountryDisplayName(b.countryId, language),
+          ),
+        ),
     [availableCountryIds, language],
   );
   const availableCities = useMemo(() => {
@@ -185,7 +214,9 @@ export function ExploreScreen() {
       .sort(
         (a, b) =>
           (order.get(a.cityId) ?? 999) - (order.get(b.cityId) ?? 999) ||
-          formatCityDisplayName(a.cityId, language).localeCompare(formatCityDisplayName(b.cityId, language)),
+          formatCityDisplayName(a.cityId, language).localeCompare(
+            formatCityDisplayName(b.cityId, language),
+          ),
       );
   }, [availableCityIds, language]);
   const suggestions = useMemo(
@@ -196,9 +227,14 @@ export function ExploreScreen() {
   const filteredCountries = availableCountries.filter(
     (c) =>
       !countryQuery.trim() ||
-      normalizeSearchText([c.countryName, c.countryId, formatCountryDisplayName(c.countryId, language), ...expandSearchValues(c.countryName)].join(" ")).includes(
-        normalizeSearchText(countryQuery),
-      ),
+      normalizeSearchText(
+        [
+          c.countryName,
+          c.countryId,
+          formatCountryDisplayName(c.countryId, language),
+          ...expandSearchValues(c.countryName),
+        ].join(" "),
+      ).includes(normalizeSearchText(countryQuery)),
   );
   const filteredCities = availableCities.filter((c) => {
     const hay = citySearchHaystack(c, language);
@@ -278,23 +314,23 @@ export function ExploreScreen() {
         </ImageBackground>
         {activeTab === null ? (
           <View style={styles.searchBox}>
-          <Text style={styles.searchIcon}>⌕</Text>
-          <TextInput
-            style={styles.searchInput}
-            placeholder={t("explore.searchPlaceholder")}
-            placeholderTextColor="#8B94A3"
-            value={search}
-            onChangeText={setSearch}
-            returnKeyType="search"
-            autoCorrect={false}
-            autoCapitalize="none"
-          />
-          {search ? (
-            <TouchableOpacity onPress={() => setSearch("")}>
-              <Text style={styles.clearIcon}>×</Text>
-            </TouchableOpacity>
-          ) : null}
-        </View>
+            <Text style={styles.searchIcon}>⌕</Text>
+            <TextInput
+              style={styles.searchInput}
+              placeholder={t("explore.searchPlaceholder")}
+              placeholderTextColor="#8B94A3"
+              value={search}
+              onChangeText={setSearch}
+              returnKeyType="search"
+              autoCorrect={false}
+              autoCapitalize="none"
+            />
+            {search ? (
+              <TouchableOpacity onPress={() => setSearch("")}>
+                <Text style={styles.clearIcon}>×</Text>
+              </TouchableOpacity>
+            ) : null}
+          </View>
         ) : null}
         <View style={styles.primaryTabRow}>
           {filters.map((f) => (
@@ -340,7 +376,9 @@ export function ExploreScreen() {
                   <Text style={styles.resultTypeInline}>
                     {resultLabel(item.type, t)}
                   </Text>
-                  <Text style={styles.resultTitle}>{formatResultTitle(item, language)}</Text>
+                  <Text style={styles.resultTitle}>
+                    {formatResultTitle(item, language)}
+                  </Text>
                   <Text style={styles.resultSubtitle}>
                     {formatResultSubtitle(item, t, language)}
                   </Text>
@@ -387,7 +425,9 @@ export function ExploreScreen() {
                 >
                   <Text style={styles.countryFlag}>{c.countryFlag}</Text>
                   <View style={styles.countryContent}>
-                    <Text style={styles.countryName}>{formatCountryDisplayName(c.countryId, language)}</Text>
+                    <Text style={styles.countryName}>
+                      {formatCountryDisplayName(c.countryId, language)}
+                    </Text>
                     <Text style={styles.countryMeta}>
                       {formatOutletCount(outletCount(c.countryId), t)}
                     </Text>
@@ -424,7 +464,14 @@ export function ExploreScreen() {
               {filteredCities.length} {t("explore.resultCount")}
             </Text>
             {filteredCities.map((c) => (
-              <CityRow key={c.cityId} city={c} t={t} language={language} navigation={navigation} compact />
+              <CityRow
+                key={c.cityId}
+                city={c}
+                t={t}
+                language={language}
+                navigation={navigation}
+                compact
+              />
             ))}
           </>
         ) : null}
@@ -472,7 +519,11 @@ export function ExploreScreen() {
                   </Text>
                   <Text style={styles.resultTitle}>{o.name}</Text>
                   <Text style={styles.resultSubtitle}>
-                    {formatCityDisplayName(o.cityId, language)}, {formatCountryDisplayName(o.countryId, language)}
+                    {formatOutletLocationSubtitle(
+                      o.cityId,
+                      o.countryId,
+                      language,
+                    )}
                   </Text>
                 </View>
                 <Text style={styles.resultArrow}>›</Text>
@@ -519,7 +570,14 @@ function Empty({ t }: any) {
     </View>
   );
 }
-function DefaultHub({ t, setTab, runSearch, cities, navigation, language }: any) {
+function DefaultHub({
+  t,
+  setTab,
+  runSearch,
+  cities,
+  navigation,
+  language,
+}: any) {
   const cards: Array<[ExploreFilter, string, string, string]> = [
     [
       "outlet",
@@ -584,7 +642,13 @@ function DefaultHub({ t, setTab, runSearch, cities, navigation, language }: any)
         subtitle={t("explore.popularCitiesSubtitle")}
       />
       {cities.map((c: any) => (
-        <CityRow key={c.cityId} city={c} t={t} language={language} navigation={navigation} />
+        <CityRow
+          key={c.cityId}
+          city={c}
+          t={t}
+          language={language}
+          navigation={navigation}
+        />
       ))}
     </>
   );
@@ -602,11 +666,15 @@ function CityRow({ city, t, navigation, language, compact }: any) {
         <Image source={img} style={styles.cityThumb} />
       ) : (
         <View style={styles.cityAvatar}>
-          <Text style={styles.cityAvatarText}>{getCountryFlag(city.countryId)}</Text>
+          <Text style={styles.cityAvatarText}>
+            {getCountryFlag(city.countryId)}
+          </Text>
         </View>
       )}
       <View style={styles.resultContent}>
-        <Text style={styles.resultTitle}>{formatCityDisplayName(city.cityId, language)}</Text>
+        <Text style={styles.resultTitle}>
+          {formatCityDisplayName(city.cityId, language)}
+        </Text>
         <Text style={styles.resultSubtitle}>
           {formatCountryDisplayName(city.countryId, language)} ·{" "}
           {formatOutletCount(outletCount(undefined, city.cityId), t)}
