@@ -176,7 +176,7 @@ const I18N: Record<
       destination: "Destination",
       origin: "Origin",
       walking: "Walk",
-      checkRoute: "Check line/stop details with the official provider.",
+      checkRoute: "Confirm line and timetable with the official provider.",
     },
     noteTemplates: {
       officialCheck: (fact) => fact.officialCheckNote || fact.sourceNote,
@@ -249,7 +249,7 @@ const I18N: Record<
       destination: "Varış",
       origin: "Başlangıç",
       walking: "Yürüyüş",
-      checkRoute: "Eksik hat veya durak bilgisini resmi sağlayıcıdan kontrol edin.",
+      checkRoute: "Hat ve sefer bilgisini resmi sağlayıcıdan doğrula.",
     },
     noteTemplates: {
       officialCheck: (fact) => `${fact.provider || fact.operator || fact.line || "Resmi sağlayıcı"} saatlerini seyahatten önce kontrol edin.`,
@@ -301,7 +301,7 @@ const I18N: Record<
       destination: "Destino",
       origin: "Origen",
       walking: "A pie",
-      checkRoute: "Consulta la línea/parada con el proveedor oficial.",
+      checkRoute: "Confirma la línea y el horario con el proveedor oficial.",
     },
     noteTemplates: {
       officialCheck: () => "Consulta horarios y paradas oficiales antes de viajar.",
@@ -349,7 +349,7 @@ const I18N: Record<
       destination: "Destination",
       origin: "Origine",
       walking: "Marche",
-      checkRoute: "Vérifiez la ligne/l’arrêt auprès du prestataire officiel.",
+      checkRoute: "Confirmez la ligne et les horaires auprès du prestataire officiel.",
     },
     noteTemplates: {
       officialCheck: () => "Vérifiez les horaires et arrêts officiels avant le départ.",
@@ -397,7 +397,7 @@ const I18N: Record<
       destination: "Ziel",
       origin: "Start",
       walking: "Fußweg",
-      checkRoute: "Prüfe Linie/Haltestelle beim offiziellen Anbieter.",
+      checkRoute: "Bestätige Linie und Fahrplan beim offiziellen Anbieter.",
     },
     noteTemplates: {
       officialCheck: () => "Prüfe offizielle Zeiten und Haltestellen vor der Fahrt.",
@@ -445,7 +445,7 @@ const I18N: Record<
       destination: "Пункт назначения",
       origin: "Начало",
       walking: "Пешком",
-      checkRoute: "Уточните линию/остановку у официального поставщика.",
+      checkRoute: "Подтвердите линию и расписание у официального поставщика.",
     },
     noteTemplates: {
       officialCheck: () => "Проверьте официальное расписание и остановки перед поездкой.",
@@ -493,7 +493,7 @@ const I18N: Record<
       destination: "الوجهة",
       origin: "نقطة البداية",
       walking: "سيرًا",
-      checkRoute: "تحقق من تفاصيل الخط/المحطة لدى المزوّد الرسمي.",
+      checkRoute: "أكّد الخط والجدول الزمني مع المزوّد الرسمي.",
     },
     noteTemplates: {
       officialCheck: () => "تحقق من المواعيد والمحطات الرسمية قبل السفر.",
@@ -541,7 +541,7 @@ const I18N: Record<
       destination: "目的地",
       origin: "起点",
       walking: "步行",
-      checkRoute: "请向官方服务商确认线路/站点信息。",
+      checkRoute: "请向官方服务商确认线路和时刻表。",
     },
     noteTemplates: {
       officialCheck: () => "出行前请确认官方班次和站点。",
@@ -646,6 +646,26 @@ function factOriginGroup(fact: TransportationRouteFact | undefined): Transportat
   if (fact.originType === "shuttle") return "shuttle";
   return "city";
 }
+export function hasSourceBackedShuttleRouteDetail(
+  option: Pick<
+    TransportationV2Option,
+    "originGroup" | "mode" | "routeDetails" | "routeFact"
+  >,
+): boolean {
+  if (option.originGroup !== "shuttle" && option.mode !== "shuttle")
+    return true;
+  const fact = option.routeFact;
+  if (!fact || fact.confidence === "estimateOnly") return false;
+  return Boolean(
+    fact.provider ||
+      fact.operator ||
+      fact.titleKey ||
+      fact.boardingPoint ||
+      fact.destination ||
+      option.routeDetails.lineOrProviderLabel ||
+      option.routeDetails.boardingPointLabel,
+  );
+}
 function extractRouteDetails(
   guide: TransportationGuide,
   originGroup: TransportationV2Option["originGroup"],
@@ -682,6 +702,8 @@ function extractRouteDetails(
     };
   }
   return {
+    destinationLabel:
+      originGroup === "airport" ? outletNameFor(guide.outletId) : undefined,
     routeHintLabel: undefined,
     confidence: "estimateOnly",
     hasSourceBackedRouteDetail: false,
@@ -1269,7 +1291,10 @@ export function getOutletTransportationV2Summary(
       o.routeDetails.routeHintLabel,
   );
   const shuttle = display.find(
-    (o) => o.originGroup === "shuttle" && o.routeDetails.routeHintLabel,
+    (o) =>
+      o.originGroup === "shuttle" &&
+      o.routeDetails.routeHintLabel &&
+      hasSourceBackedShuttleRouteDetail(o),
   );
   const airport = display.find((o) => o.originGroup === "airport");
   return [city, shuttle, airport]
@@ -1294,6 +1319,11 @@ function dedupeOptions(
     if (
       o.routeDetails.confidence === "estimateOnly" &&
       hasSourcedPublic.has(`${o.originGroup}|${broadMode}`)
+    )
+      return false;
+    if (
+      (o.originGroup === "shuttle" || o.mode === "shuttle") &&
+      !hasSourceBackedShuttleRouteDetail(o)
     )
       return false;
     const key = `${o.originGroup}|${broadMode}`;
