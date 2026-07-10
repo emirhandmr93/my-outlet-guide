@@ -1,6 +1,9 @@
 import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from "react";
 
-import { createUserTrip, deleteUserTrip, getUserTrips, updateUserTrip } from "../services/tripsService";
+import { createUserTrip, deleteUserTrip, getUserTrips, updateUserTrip, updateTripNotificationSync } from "../services/tripsService";
+import { cancelTripReminderNotifications, syncTripReminderNotifications, type TripNotificationSyncMetadata } from "../services/notificationService";
+import { useLanguage } from "./LanguageContext";
+import { useNotificationSettings } from "./NotificationSettingsContext";
 import { useUser } from "./UserContext";
 
 export type TripStatus = "upcoming" | "active" | "past";
@@ -62,6 +65,7 @@ export type Trip = {
   segments: TripSegment[];
   flightDetails?: TripFlightDetails;
   reminderPlan: TripReminderPlanItem[];
+  notificationSync?: TripNotificationSyncMetadata;
 };
 
 export type TripInput = {
@@ -100,6 +104,8 @@ const TripsContext = createContext<TripsContextType | undefined>(undefined);
 
 export function TripsProvider({ children }: { children: ReactNode }) {
   const { currentUser } = useUser();
+  const { language } = useLanguage();
+  const { permissionStatus, settings } = useNotificationSettings();
   const [trips, setTrips] = useState<Trip[]>([]);
   const [loading, setLoading] = useState(false);
   const [tripsError, setTripsError] = useState<TripsError>(null);
@@ -134,6 +140,7 @@ export function TripsProvider({ children }: { children: ReactNode }) {
     }
 
     const tripId = await createUserTrip(currentUser.userId, trip);
+    await safelySyncTripReminders(tripId);
     await refreshTrips();
     return tripId;
   }
@@ -144,6 +151,7 @@ export function TripsProvider({ children }: { children: ReactNode }) {
     }
 
     await updateUserTrip(currentUser.userId, tripId, trip);
+    await safelySyncTripReminders(tripId);
     await refreshTrips();
   }
 
@@ -152,8 +160,23 @@ export function TripsProvider({ children }: { children: ReactNode }) {
       throw new Error("Authentication is required to delete a trip.");
     }
 
+    await cancelTripReminderNotifications(tripId);
     await deleteUserTrip(currentUser.userId, tripId);
     await refreshTrips();
+  }
+
+  async function safelySyncTripReminders(tripId: string) {
+    if (!currentUser?.userId || permissionStatus !== "granted" || settings?.enabled !== true || settings?.tripRemindersEnabled !== true) return;
+    try {
+      const savedTrip = (await getUserTrips(currentUser.userId)).find((item) => item.id === tripId || item.tripId === tripId);
+      if (!savedTrip) return;
+      const result = await syncTripReminderNotifications(savedTrip, language);
+      if (["scheduled", "partial", "skipped", "not_configured", "denied", "failed"].includes(result.status)) {
+        await updateTripNotificationSync(currentUser.userId, tripId, { status: result.status, scheduledCount: result.scheduledCount, skippedCount: result.skippedCount, failedCount: result.failedCount, updatedAt: result.updatedAt });
+      }
+    } catch (error) {
+      console.log("Trip reminder notification sync skipped", error);
+    }
   }
 
   return <TripsContext.Provider value={{ trips, loading, tripsError, addTrip, updateTrip, deleteTrip, refreshTrips }}>{children}</TripsContext.Provider>;
