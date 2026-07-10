@@ -4,6 +4,7 @@ import { SectionTitle } from "../SectionTitle";
 import {
   getTransportationDisplayFallbacks,
   getTransportationOptionDisplayModel,
+  getTransportationCompactSummaryLabel,
   type TransportationV2Option,
 } from "../../services/transportationV2Service";
 import { colors } from "../../theme/colors";
@@ -56,14 +57,7 @@ export function TransportationCard({
       {summaryItems.length > 0 ? (
         summaryItems.slice(0, 2).map((rawItem) => {
           const item = getTransportationOptionDisplayModel(rawItem, language);
-          const hint = item.routeDetails.routeHintLabel;
-          const meta = [
-            hint,
-            item.estimatedDurationLabel,
-            item.estimatedFareLabel,
-          ]
-            .filter(Boolean)
-            .join(" · ");
+          const meta = getTransportationCompactSummaryLabel(item, language);
           return meta ? (
             <View key={item.id} style={styles.summaryRow}>
               <Text style={styles.icon}>{getIcon(item.originGroup)}</Text>

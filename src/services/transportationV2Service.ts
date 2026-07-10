@@ -109,6 +109,7 @@ const I18N: Record<
     modes: Record<string, string>;
     steps: Record<string, string[]>;
     routeLabels: Record<string, string>;
+    noteTemplates: Record<string, (fact: TransportationRouteFact) => string | undefined>;
   }
 > = {
   en: {
@@ -177,6 +178,12 @@ const I18N: Record<
       walking: "Walk",
       checkRoute: "Check line/stop details with the official provider.",
     },
+    noteTemplates: {
+      officialCheck: (fact) => fact.officialCheckNote || fact.sourceNote,
+      walk: (fact) => fact.walkNote,
+      stationBus: (fact) => fact.alightingPoint && fact.destination ? `Use the official station bus from ${fact.alightingPoint} to ${fact.destination} when operating.` : undefined,
+      returnCheck: (fact) => `Check current ${fact.provider || fact.operator || fact.line || "provider"} times before travel.`,
+    },
   },
   tr: {
     approx: "Yaklaşık",
@@ -244,6 +251,12 @@ const I18N: Record<
       walking: "Yürüyüş",
       checkRoute: "Eksik hat veya durak bilgisini resmi sağlayıcıdan kontrol edin.",
     },
+    noteTemplates: {
+      officialCheck: (fact) => `${fact.provider || fact.operator || fact.line || "Resmi sağlayıcı"} saatlerini seyahatten önce kontrol edin.`,
+      walk: (fact) => fact.alightingPoint === "Parndorf Ort" ? "Outlet servisi çalışıyorsa kullanın veya yürüyüş bağlantısını takip edin." : fact.destination ? `${fact.destination} girişine yürüyerek devam edin.` : "Yürüyüş bağlantısını takip edin.",
+      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} ile ${fact.destination} arasındaki resmi outlet servisini çalışıyorsa kullanın.` : undefined,
+      returnCheck: (fact) => `${fact.provider || fact.operator || fact.line || "Dönüş"} saatlerini alışverişten önce kontrol edin.`,
+    },
   },
   es: {
     approx: "Aprox.",
@@ -285,6 +298,12 @@ const I18N: Record<
       origin: "Origen",
       walking: "A pie",
       checkRoute: "Consulta la línea/parada con el proveedor oficial.",
+    },
+    noteTemplates: {
+      officialCheck: () => "Consulta horarios y paradas oficiales antes de viajar.",
+      walk: () => "Continúa a pie hasta la entrada del outlet.",
+      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      returnCheck: () => "Consulta el regreso antes de comprar.",
     },
   },
   fr: {
@@ -328,6 +347,12 @@ const I18N: Record<
       walking: "Marche",
       checkRoute: "Vérifiez la ligne/l’arrêt auprès du prestataire officiel.",
     },
+    noteTemplates: {
+      officialCheck: () => "Vérifiez les horaires et arrêts officiels avant le départ.",
+      walk: () => "Continuez à pied jusqu’à l’entrée de l’outlet.",
+      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      returnCheck: () => "Vérifiez le retour avant vos achats.",
+    },
   },
   de: {
     approx: "Ca.",
@@ -369,6 +394,12 @@ const I18N: Record<
       origin: "Start",
       walking: "Fußweg",
       checkRoute: "Prüfe Linie/Haltestelle beim offiziellen Anbieter.",
+    },
+    noteTemplates: {
+      officialCheck: () => "Prüfe offizielle Zeiten und Haltestellen vor der Fahrt.",
+      walk: () => "Gehe weiter zum Outlet-Eingang.",
+      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      returnCheck: () => "Prüfe die Rückfahrt vor dem Einkauf.",
     },
   },
   ru: {
@@ -412,6 +443,12 @@ const I18N: Record<
       walking: "Пешком",
       checkRoute: "Уточните линию/остановку у официального поставщика.",
     },
+    noteTemplates: {
+      officialCheck: () => "Проверьте официальное расписание и остановки перед поездкой.",
+      walk: () => "Дойдите пешком до входа в аутлет.",
+      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      returnCheck: () => "Проверьте обратный рейс перед покупками.",
+    },
   },
   ar: {
     approx: "تقريبًا",
@@ -454,6 +491,12 @@ const I18N: Record<
       walking: "سيرًا",
       checkRoute: "تحقق من تفاصيل الخط/المحطة لدى المزوّد الرسمي.",
     },
+    noteTemplates: {
+      officialCheck: () => "تحقق من المواعيد والمحطات الرسمية قبل السفر.",
+      walk: () => "تابع سيرًا إلى مدخل الأوتلت.",
+      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      returnCheck: () => "تحقق من رحلة العودة قبل التسوق.",
+    },
   },
   zh: {
     approx: "约",
@@ -495,6 +538,12 @@ const I18N: Record<
       origin: "起点",
       walking: "步行",
       checkRoute: "请向官方服务商确认线路/站点信息。",
+    },
+    noteTemplates: {
+      officialCheck: () => "出行前请确认官方班次和站点。",
+      walk: () => "步行前往奥特莱斯入口。",
+      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      returnCheck: () => "购物前请确认返程班次。",
     },
   },
 };
@@ -631,8 +680,16 @@ function extractRouteDetails(
     hasSourceBackedRouteDetail: false,
   };
 }
-function localizePoint(value: string | undefined) {
+function localizePoint(value: string | undefined, language: TranslationLanguage = "en") {
+  if (!value) return value;
+  if (language === "tr" && value === "Central Paris RER A station")
+    return "Merkezi Paris RER A istasyonu";
   return value;
+}
+function originPointFor(option: TransportationV2Option, language: TranslationLanguage) {
+  if (option.routeDetails.boardingPointLabel) return option.routeDetails.boardingPointLabel;
+  if (!["taxi", "uber"].includes(option.mode)) return undefined;
+  return option.originGroup === "airport" ? I18N[language].airport.replace(/^From |^Depuis |^Vom |^Из |^من |^从 /, "") : I18N[language].city.replace(/^From |^Desde |^Depuis |^Vom |^Из |^من |^从 /, "");
 }
 export function getTransportationRouteDetailRows(
   option: TransportationV2Option,
@@ -653,11 +710,10 @@ export function getTransportationRouteDetailRows(
     detail.operatorLabel
       ? { label: labels.operator, value: detail.operatorLabel }
       : undefined,
-    detail.boardingPointLabel
+    originPointFor(option, language)
       ? {
           label: isTaxi ? labels.origin : labels.boarding,
-          value:
-            localizePoint(detail.boardingPointLabel) || detail.boardingPointLabel,
+          value: localizePoint(originPointFor(option, language), language) as string,
         }
       : undefined,
     detail.alightingPointLabel
@@ -666,8 +722,8 @@ export function getTransportationRouteDetailRows(
     detail.transferLabel
       ? { label: labels.transfer, value: detail.transferLabel }
       : undefined,
-    detail.walkNoteLabel
-      ? { label: labels.walking, value: detail.walkNoteLabel }
+    detail.walkNoteLabel && option.routeFact
+      ? { label: labels.walking, value: localizedWalkNote(option.routeFact, language) || detail.walkNoteLabel }
       : undefined,
     detail.destinationLabel
       ? {
@@ -734,13 +790,31 @@ function estimateFor(
     [Infinity, { duration: [90, 150], fare: [10, 30], confidence: "derived" }],
   ]);
 }
+function formatRange(min: number, max: number) {
+  return min === max ? `${min}` : `${min}–${max}`;
+}
 function formatDuration(e: Estimate, l: TranslationLanguage) {
   const x = I18N[l];
-  return `${x.approx} ${e.duration[0]}–${e.duration[1]} ${x.min}`;
+  return `${x.approx} ${formatRange(e.duration[0], e.duration[1])} ${x.min}`;
 }
 function formatFare(e: Estimate, l: TranslationLanguage) {
   const x = I18N[l];
-  return `${x.approx} €${e.fare[0]}–${e.fare[1]}`;
+  return `${x.approx} €${formatRange(e.fare[0], e.fare[1])}`;
+}
+function withoutApprox(value: string | undefined, language: TranslationLanguage) {
+  return String(value || "")
+    .replace(new RegExp(`^${I18N[language].approx}\\s+`, "i"), "")
+    .trim();
+}
+function localizedWalkNote(fact: TransportationRouteFact, language: TranslationLanguage) {
+  if (language === "en") return I18N.en.noteTemplates.walk(fact);
+  if (/station bus|official station bus/i.test(fact.walkNote || ""))
+    return I18N[language].noteTemplates.stationBus(fact) || I18N[language].noteTemplates.walk(fact);
+  return I18N[language].noteTemplates.walk(fact);
+}
+function localizedOfficialCheckNote(fact: TransportationRouteFact, language: TranslationLanguage) {
+  if (language === "en") return I18N.en.noteTemplates.officialCheck(fact);
+  return I18N[language].noteTemplates.officialCheck(fact);
 }
 export function sanitizeTransportationDisplayValue(
   value: string | undefined,
@@ -790,6 +864,27 @@ export function formatTransportFareForDisplay(
   if (!n) return undefined;
   return n.length <= 28 ? `${I18N[language].approx} ${n}` : undefined;
 }
+export function getTransportationCompactSummaryLabel(
+  option: TransportationV2Option,
+  language: TranslationLanguage,
+) {
+  const hint =
+    option.routeDetails.lineOrProviderLabel ||
+    option.routeDetails.routeHintLabel ||
+    option.routeFact?.provider ||
+    I18N[language].modes[option.mode] ||
+    option.modeLabel;
+  const shortHint = String(hint).split(" / ").slice(0, 2).join(" / ");
+  return [
+    shortHint,
+    withoutApprox(option.estimatedDurationLabel, language),
+    withoutApprox(option.estimatedFareLabel, language),
+  ]
+    .filter(Boolean)
+    .join(" · ")
+    .slice(0, 72);
+}
+
 export function getTransportationDisplayFallbacks(
   language: TranslationLanguage,
 ) {
@@ -851,41 +946,51 @@ function stepsFor(
     return I18N[l].steps.public;
   }
   const route = details?.lineOrProviderLabel;
-  const board = localizePoint(details?.boardingPointLabel);
+  const board = localizePoint(details?.boardingPointLabel, l);
   const alight = details?.alightingPointLabel;
   const transfer = details?.transferLabel;
-  const dest = localizePoint(details?.destinationLabel);
+  const dest = localizePoint(details?.destinationLabel, l);
   if (["taxi", "uber"].includes(mode))
     return [
-      "Başlangıç noktasını seç: şehir merkezi veya havalimanı.",
-      "Varış noktasını outlet konumu olarak ayarla.",
-      "Ücreti yolculuk başlamadan önce uygulamada kontrol et.",
+      "Başlangıç: şehir merkezi veya havalimanı noktasını seç.",
+      "Varış: outlet adını veya konumunu ayarla.",
+      "Yaklaşık ücreti yolculuk başlamadan önce uygulamada kontrol et.",
       "Trafik ve dönüş saatini alışverişten önce tekrar kontrol et.",
     ];
-  if (origin === "shuttle" || mode === "shuttle")
+  if (origin === "shuttle" || mode === "shuttle") {
+    const earlyPoint = route?.includes("Zani Viaggi") ? "Milano Centrale kalkış noktasına" : (board || "Belirtilen kalkış noktasına");
     return [
-      `${route ? `${route} için` : "Resmi shuttle sağlayıcısında"} kalkış noktası ve saatini kontrol et.`,
-      "Bilet gerekiyorsa seyahatten önce rezervasyon yap.",
-      `${board || "Belirtilen şehir merkezi kalkış noktasına"} erken git.`,
-      `Shuttle ile ${dest || "outlet girişine veya servis durağına"} git.`,
-      "Dönüş kalkış saatini outlet’e varmadan önce teyit et.",
+      `${route || "Shuttle sağlayıcısı"} kalkış noktasını ve saatini kontrol et.`,
+      "Gerekiyorsa bileti veya rezervasyonu seyahatten önce tamamla.",
+      `${earlyPoint} erken git.`,
+      `Shuttle ile ${dest || "outlet"}’e git.`,
+      "Dönüş kalkış saatini alışverişten önce doğrula.",
+    ];
+  }
+  if (route === "RER A" && alight?.includes("Val d'Europe"))
+    return [
+      "Merkezi Paris’teki bir RER A istasyonundan başla.",
+      "RER A ile Val d'Europe / Serris-Montévrain yönüne git.",
+      "Val d'Europe / Serris-Montévrain durağında in.",
+      "Val d'Europe alışveriş merkezi üzerinden La Vallée Village’a yürü.",
+      "Dönüş saatlerini seyahatten önce kontrol et.",
+    ];
+  if (route === "ÖBB" && alight === "Parndorf Ort")
+    return [
+      "Viyana şehir merkezinden ÖBB tren bağlantısını kontrol et.",
+      "ÖBB ile Parndorf Ort yönüne git.",
+      "Parndorf Ort durağında in.",
+      "Outlet servisi çalışıyorsa kullan veya yürüyüş bağlantısını takip et.",
+      "Dönüş saatlerini alışverişten önce kontrol et.",
     ];
   const steps = [
-    `${board || (origin === "airport" ? "Havalimanı toplu ulaşım alanından" : "Şehir merkezi ulaşım noktasından")} başla.`,
+    `${origin === "airport" ? "Havalimanındaki toplu ulaşım noktasından" : "Şehir merkezindeki uygun toplu ulaşım noktasından"} başla.`,
   ];
-  if (route)
-    steps.push(
-      `${route} bağlantısına ${alight || dest ? `${alight || dest} yönünde ` : ""}bin.`,
-    );
-  if (transfer)
-    steps.push(`${transfer} üzerinden aktarma bilgisini kontrol et.`);
+  if (route) steps.push(`${route} ile ${alight || dest || "outlet yönüne"} git.`);
+  if (transfer) steps.push(`${transfer} aktarmasını takip et.`);
   if (alight) steps.push(`${alight} durağında in.`);
-  steps.push(
-    `${dest || "Outlet girişine"} yürüyerek veya yerel servisle devam et.`,
-  );
-  steps.push(
-    `${route || "Dönüş bağlantısı"} saatlerini alışverişten önce kontrol et.`,
-  );
+  steps.push(`${dest || "Outlet girişine"} yürüyerek veya yerel servisle devam et.`);
+  steps.push("Dönüş saatlerini alışverişten önce kontrol et.");
   return steps.slice(0, 5);
 }
 function optionFromGuide(
@@ -1004,6 +1109,15 @@ export function getTransportationOptionDisplayModel(
       ? "source"
       : option.sourceConfidence;
   const displayDetails = extractRouteDetails(guide, originGroup, option.mode);
+  if (fact) {
+    displayDetails.boardingPointLabel = localizePoint(displayDetails.boardingPointLabel, language);
+    displayDetails.walkNoteLabel = localizedWalkNote(fact, language);
+    displayDetails.officialCheckNoteLabel = localizedOfficialCheckNote(fact, language);
+    displayDetails.routeHintLabel = compactJoin([
+      displayDetails.lineOrProviderLabel || fact.provider || fact.operator,
+      fact.alightingPoint || fact.boardingPoint || fact.destination,
+    ]);
+  }
   if (!displayDetails.routeHintLabel) {
     displayDetails.routeHintLabel = ["taxi", "uber"].includes(option.mode)
       ? I18N[language].modes.taxi
@@ -1025,7 +1139,7 @@ export function getTransportationOptionDisplayModel(
     estimatedFareLabel: fareLabel,
     note: undefined,
     noteLabel:
-      fact?.officialCheckNote ||
+      (fact ? localizedOfficialCheckNote(fact, language) : undefined) ||
       (["taxi", "uber"].includes(option.mode)
         ? I18N[language].note
         : displayDetails.hasSourceBackedRouteDetail
