@@ -4,7 +4,7 @@ import { transportationGuides } from "../src/constants/transportationGuides";
 import { outlets } from "../src/constants/outlets";
 import { getCompactRecommendedFallback, getNearbyAirportDisplay, getOutletTransportationV2Summary, getRecommendedTransportationV2Option, getSectionProviderNote, getTransportationOptionDisplayModel, getTransportationV2Options } from "../src/services/transportationV2Service";
 
-const requiredKeys = ["transportation.v2.subtitle", "transportation.v2.detailSubtitle", "transportation.v2.airportFrom", "transportation.v2.cityFrom", "transportation.v2.shuttle", "transportation.v2.airportAccess", "transportation.v2.cityAccess", "transportation.v2.shuttleSection", "transportation.v2.noAirportData", "transportation.v2.noCityData", "transportation.v2.noReliableSteps", "transportation.v2.navigation", "transportation.v2.nearbyAirports", "transportation.v2.nearbyAirport", "transportation.v2.distance", "transportation.v2.publicTransport", "transportation.v2.taxiUber", "transportation.v2.checkProviderShort", "transportation.v2.compactRecommendedFallback", "transportation.v2.providerSectionNote"];
+const requiredKeys = ["transportation.v2.subtitle", "transportation.v2.detailSubtitle", "transportation.v2.airportFrom", "transportation.v2.cityFrom", "transportation.v2.shuttle", "transportation.v2.airportAccess", "transportation.v2.cityAccess", "transportation.v2.shuttleSection", "transportation.v2.noAirportData", "transportation.v2.noCityData", "transportation.v2.noReliableSteps", "transportation.v2.navigation", "transportation.v2.nearbyAirports", "transportation.v2.nearbyAirport", "transportation.v2.distance", "transportation.v2.publicTransport", "transportation.v2.taxiUber", "transportation.v2.checkProviderShort", "transportation.v2.compactRecommendedFallback", "transportation.v2.providerSectionNote", "transportation.v2.approx", "transportation.v2.approxDuration", "transportation.v2.approxFare", "transportation.v2.estimateGuideFallback"];
 const titleDupes = /Shuttle shuttle|shuttle shuttle|Şehir merkezinden şehir merkezinden/i;
 const providerFallbacks = ["Süreyi sağlayıcıdan kontrol et", "Ücreti sağlayıcıdan kontrol et", "Resmi sağlayıcıdan kontrol et", "Toplu ulaşım: sağlayıcıdan kontrol et", "Taksi/Uber: sağlayıcıdan kontrol et"];
 const prohibited = /Private transfer|By Car \/ Outlet Parking|Car \+ town parking|Confirm parking locally|Free parking/;
@@ -47,8 +47,12 @@ for (const outlet of outlets) {
   for (const option of displayOptions) {
     const visible = [option.title, option.durationLabel, option.fareLabel, option.noteLabel, ...option.steps].filter(Boolean).join(" ");
     if (titleDupes.test(option.title)) errors.push(`${option.id} has duplicated title text: ${option.title}`);
+    if (!option.estimatedDurationLabel) errors.push(`${option.id} missing estimatedDurationLabel.`);
+    if (!option.estimatedFareLabel) errors.push(`${option.id} missing estimatedFareLabel.`);
     if (providerFallbacks.includes(option.durationLabel || "") || providerFallbacks.includes(option.fareLabel || "")) errors.push(`${option.id} exposes provider fallback as duration/fare label.`);
+    if (recommended?.id === option.id && (option.steps.length < 3 || option.steps.length > 5)) errors.push(`${option.id} recommended route must have 3-5 steps.`);
     if (rawEnglishLeakage.test(visible)) errors.push(`${option.id} leaks raw English transport prose in Turkish display model.`);
+    if (!/Yaklaşık/.test(`${option.estimatedDurationLabel} ${option.estimatedFareLabel}`)) errors.push(`${option.id} estimates are not explicitly approximate in Turkish.`);
     const rendersInCitySection = option.originGroup === "city" && option.isUsefulForPrimaryDisplay && (option.durationLabel || option.fareLabel);
     if (rendersInCitySection && !option.durationLabel && !option.fareLabel) errors.push(`${option.id} city section would render a useless option.`);
     if (prohibited.test(option.title)) errors.push(`${option.id} uses a prohibited primary label.`);
@@ -60,7 +64,16 @@ for (const outlet of outlets) {
   }
   const renderedShuttleKeys = displayOptions.filter((option) => option.originGroup === "shuttle" && option.isUsefulForPrimaryDisplay && (option.durationLabel || option.fareLabel || option.noteLabel)).slice(0, 1).map((shuttle) => [shuttle.fareLabel || "", shuttle.durationLabel || "", shuttle.noteLabel || ""].join("|"));
   if (new Set(renderedShuttleKeys).size !== renderedShuttleKeys.length) errors.push(`${outlet.outletId} renders duplicate shuttle options.`);
-  if (recommended && !recommended.isUsefulForSummaryDisplay && (recommended.durationLabel || recommended.fareLabel)) errors.push(`${outlet.outletId} recommended fallback state still has weak labels.`);
+  if (recommended && (!recommended.estimatedDurationLabel || !recommended.estimatedFareLabel)) errors.push(`${outlet.outletId} recommended route lacks useful estimates.`);
+  if ((outlet.airports || []).some((airport: any) => typeof airport.distanceKm === "number")) {
+    const hasAirportTaxi = displayOptions.some((option) => option.originGroup === "airport" && ["taxi", "uber"].includes(option.mode) && option.estimatedDurationLabel && option.estimatedFareLabel);
+    const hasAirportPublic = displayOptions.some((option) => option.originGroup === "airport" && !["taxi", "uber"].includes(option.mode) && option.estimatedDurationLabel && option.estimatedFareLabel);
+    if (!hasAirportTaxi || !hasAirportPublic) errors.push(`${outlet.outletId} nearby airport distance did not produce airport taxi/public estimates.`);
+  }
+  for (const row of summary) {
+    if (!row.estimatedDurationLabel || !row.estimatedFareLabel) errors.push(`${row.id} detail summary route row lacks duration/fare estimate.`);
+    if (/\b[A-Z][a-z]+ to [A-Z].* by \w+/.test(row.title)) errors.push(`${row.id} detail summary shows raw English route title.`);
+  }
 }
 
 for (const guide of transportationGuides) {

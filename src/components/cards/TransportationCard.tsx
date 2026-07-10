@@ -41,7 +41,7 @@ export function TransportationCard({ title, summaryItems, notAvailableText, butt
       {summaryItems.length > 0 ? (
         summaryItems.slice(0, 2).map((rawItem) => {
           const item = getTransportationOptionDisplayModel(rawItem, language);
-          const meta = [item.fareLabel, item.durationLabel, item.noteLabel].filter(Boolean).join(" • ");
+          const meta = [item.estimatedDurationLabel, item.estimatedFareLabel].filter(Boolean).join(" · ");
           return meta ? (
           <View key={item.id} style={styles.summaryRow}>
             <Text style={styles.icon}>{getIcon(item.originGroup)}</Text>

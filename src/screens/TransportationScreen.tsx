@@ -3,13 +3,13 @@ import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "r
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { useTranslation } from "../hooks/useTranslation";
-import { getCompactRecommendedFallback, getNearbyAirportDisplay, getOutletMapLinks, getRecommendedTransportationV2Option, getSectionProviderNote, getTransportationOptionDisplayModel, getTransportationV2Options, type NearbyAirportDisplay, type TransportationV2Option } from "../services/transportationV2Service";
+import { getNearbyAirportDisplay, getOutletMapLinks, getRecommendedTransportationV2Option, getTransportationOptionDisplayModel, getTransportationV2Options, type NearbyAirportDisplay, type TransportationV2Option } from "../services/transportationV2Service";
 import { colors } from "../theme/colors";
 
 type RouteParams = { Transportation: { outletId: string } };
 
 function Metadata({ item }: { item: TransportationV2Option }) {
-  const chips = [item.modeLabel, item.durationLabel, item.fareLabel, item.noteLabel].filter(Boolean) as string[];
+  const chips = [item.modeLabel, item.estimatedDurationLabel, item.estimatedFareLabel].filter(Boolean) as string[];
   return <View style={styles.chipRow}>{chips.map((chip) => <Text key={chip} style={styles.metaChip}>{chip}</Text>)}</View>;
 }
 
@@ -20,9 +20,9 @@ function OptionRow({ item, compact = false }: { item: TransportationV2Option; co
   </View>;
 }
 
-function Section({ title, items, note }: { title: string; items: TransportationV2Option[]; note?: string }) {
-  if (!items.length && !note) return null;
-  return <View style={styles.section}><Text style={styles.sectionTitle}>{title}</Text>{items.map((item) => <OptionRow key={item.id} item={item} />)}{!items.length && note ? <Text style={styles.note}>{note}</Text> : null}</View>;
+function Section({ title, items }: { title: string; items: TransportationV2Option[] }) {
+  if (!items.length) return null;
+  return <View style={styles.section}><Text style={styles.sectionTitle}>{title}</Text>{items.map((item) => <OptionRow key={item.id} item={item} />)}</View>;
 }
 
 function NearbyAirportsSection({ airports }: { airports: NearbyAirportDisplay[] }) {
@@ -52,9 +52,9 @@ export function TransportationScreen() {
   const maps = getOutletMapLinks(outletId);
   const airportOptions = options.filter((item) => item.originGroup === "airport" && item.isUsefulForPrimaryDisplay).slice(0, 3);
   const nearbyAirports = airportOptions.length ? [] : getNearbyAirportDisplay(outletId);
-  const cityOptions = options.filter((item) => item.originGroup === "city" && item.isUsefulForPrimaryDisplay && (item.durationLabel || item.fareLabel));
-  const shuttleOptions = dedupeShuttles(options.filter((item) => item.originGroup === "shuttle" && item.isUsefulForPrimaryDisplay && (item.durationLabel || item.fareLabel || item.noteLabel)));
-  const showRecommended = Boolean(recommended?.durationLabel || recommended?.fareLabel || recommended?.noteLabel);
+  const cityOptions = options.filter((item) => item.originGroup === "city" && item.estimatedDurationLabel && item.estimatedFareLabel);
+  const shuttleOptions = dedupeShuttles(options.filter((item) => item.originGroup === "shuttle" && item.estimatedDurationLabel && item.estimatedFareLabel));
+  const showRecommended = Boolean(recommended?.estimatedDurationLabel && recommended?.estimatedFareLabel);
   const steps = showRecommended ? recommended?.steps.slice(0, 4) ?? [] : [];
 
   if (!recommended && !nearbyAirports.length) return <View style={styles.emptyContainer}><Text style={styles.emptyTitle}>{t("transportation.notAvailable")}</Text></View>;
@@ -63,9 +63,9 @@ export function TransportationScreen() {
     <ScrollView style={styles.container} contentContainerStyle={[styles.content, { paddingTop: Math.max(getScreenTopInset(insets.top) - 6, 14), paddingBottom: getFloatingTabClearance(insets.bottom) + 16 }]} scrollIndicatorInsets={{ top: Math.max(getScreenTopInset(insets.top) - 6, 14), bottom: getScrollIndicatorBottomInset(insets.bottom) }}>
       <Text style={styles.pageTitle}>{t("transportation.title")}</Text>
       <Text style={styles.pageSubtitle}>{t("transportation.v2.subtitle")}</Text>
-      <View style={styles.recommendedCard}><Text style={styles.badge}>{t("transportation.recommendedRoute")}</Text>{showRecommended && recommended ? <><Text style={styles.recommendedTitle}>{recommended.title}</Text><OptionRow item={recommended} compact /></> : <Text style={styles.notePlain}>{getCompactRecommendedFallback(language)}</Text>}</View>
+      <View style={styles.recommendedCard}><Text style={styles.badge}>{t("transportation.recommendedRoute")}</Text>{showRecommended && recommended ? <><Text style={styles.recommendedTitle}>{recommended.title}</Text><OptionRow item={recommended} compact />{recommended.noteLabel ? <Text style={styles.notePlain}>{recommended.noteLabel}</Text> : null}</> : null}</View>
       {airportOptions.length ? <Section title={t("transportation.v2.airportAccess")} items={airportOptions} /> : <NearbyAirportsSection airports={nearbyAirports} />}
-      <Section title={t("transportation.v2.cityAccess")} items={cityOptions} note={cityOptions.length ? undefined : getSectionProviderNote(language)} />
+      <Section title={t("transportation.v2.cityAccess")} items={cityOptions} />
       <Section title={t("transportation.v2.shuttleSection")} items={shuttleOptions} />
       {steps.length ? <View style={styles.section}><Text style={styles.sectionTitle}>{t("transportation.stepByStep")}</Text>{steps.map((step, index) => <View key={`${recommended?.id}-${index}`} style={styles.stepRow}><Text style={styles.stepNumber}>{index + 1}</Text><Text style={styles.stepText}>{step}</Text></View>)}</View> : null}
       {maps ? <View style={styles.section}><Text style={styles.sectionTitle}>{t("transportation.v2.navigation")}</Text><View style={styles.mapRow}>{[{label:t("outlet.googleMaps"),url:maps.googleMapsUrl},{label:t("outlet.appleMaps"),url:maps.appleMapsUrl},{label:t("outlet.yandexMaps"),url:maps.yandexMapsUrl}].map((link) => link.url ? <TouchableOpacity key={link.label} style={styles.mapButton} onPress={() => Linking.openURL(link.url)}><Text style={styles.mapButtonText}>{link.label}</Text></TouchableOpacity> : null)}</View></View> : null}
