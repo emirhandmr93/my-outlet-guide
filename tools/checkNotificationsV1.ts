@@ -13,6 +13,16 @@ const tripsService = read("src/services/tripsService.ts");
 const tripDetail = read("src/screens/TripDetailScreen.tsx");
 const translations = read("src/translations/translations.ts");
 const packageJson = JSON.parse(read("package.json"));
+const appRoot = read("App.tsx");
+
+const notificationProviderOpen = appRoot.indexOf("<NotificationSettingsProvider>");
+const tripsProviderOpen = appRoot.indexOf("<TripsProvider>");
+const tripsProviderClose = appRoot.indexOf("</TripsProvider>");
+const notificationProviderClose = appRoot.indexOf("</NotificationSettingsProvider>");
+assert(notificationProviderOpen >= 0 && notificationProviderClose > notificationProviderOpen, "App provider tree must include NotificationSettingsProvider");
+assert(tripsProviderOpen >= 0 && tripsProviderClose > tripsProviderOpen, "App provider tree must include TripsProvider");
+assert(notificationProviderOpen < tripsProviderOpen && tripsProviderClose < notificationProviderClose, "TripsProvider must be rendered inside NotificationSettingsProvider so useNotificationSettings has provider context");
+assert(tripsContext.includes("useNotificationSettings") && tripsContext.includes("permissionStatus") && tripsContext.includes("settings"), "TripsContext must read notification settings through the NotificationSettingsContext hook");
 
 assert(service.includes("getNotificationCapability") && service.includes("syncTripReminderNotifications"), "centralized notification service must expose Notifications V1 API");
 assert(!/scheduleNotificationAsync/.test(tripDetail), "screens must not directly schedule notifications");

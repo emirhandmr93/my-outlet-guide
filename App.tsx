@@ -16,20 +16,20 @@ return (
 <LanguageProvider>
 <AuthProvider>
 <UserProvider>
+<NotificationSettingsProvider>
 <TripsProvider>
 <FavoritesProvider>
 <SavingsProvider>
 <FlightDealPreferencesProvider>
-<NotificationSettingsProvider>
 <ReviewsProvider>
 <AppNavigator />
 <StatusBar style="auto" />
 </ReviewsProvider>
-</NotificationSettingsProvider>
 </FlightDealPreferencesProvider>
 </SavingsProvider>
 </FavoritesProvider>
 </TripsProvider>
+</NotificationSettingsProvider>
 </UserProvider>
 </AuthProvider>
 </LanguageProvider>
