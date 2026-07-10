@@ -1,16 +1,43 @@
 import { outlets } from "../constants/outlets";
 import type { TranslationLanguage } from "../translations/translations";
-import { transportationGuides, type TransportationGuide, type TransportationType } from "../constants/transportationGuides";
+import {
+  transportationGuides,
+  type TransportationGuide,
+  type TransportationType,
+} from "../constants/transportationGuides";
 import { getTransportationForOutlet } from "./transportationService";
 
-const UNSAFE_VALUE_PATTERN = /\b(confirm|check|varies|vary|provider|timetable|availability|unknown|not verified|kontrol et|sağlayıcıdan)\b/i;
-const PROHIBITED_MAIN_LABEL_PATTERN = /private transfer|by car|parking|car \+ town parking|free parking/i;
+const UNSAFE_VALUE_PATTERN =
+  /\b(confirm|check|varies|vary|provider|timetable|availability|unknown|not verified|kontrol et|sağlayıcıdan)\b/i;
+const PROHIBITED_MAIN_LABEL_PATTERN =
+  /private transfer|by car|parking|car \+ town parking|free parking/i;
 const PUBLIC_TYPES = new Set(["train", "metro", "bus", "ferry", "walking"]);
-const NON_ENGLISH_LANGUAGES = new Set<TranslationLanguage>(["tr", "es", "fr", "de", "ru", "ar", "zh"]);
-const LONG_SOURCE_PROSE_PATTERN = /;|\bfrom\b.*\bby\b|official .* bus|notes about|listed\s+coach|check official|confirm with provider/i;
-const ENGLISH_STEP_PATTERN = /\b(check|travel|book|confirm|take|board|use|follow|return|parking|official|provider|timetable|arrive|ride)\b/i;
+const NON_ENGLISH_LANGUAGES = new Set<TranslationLanguage>([
+  "tr",
+  "es",
+  "fr",
+  "de",
+  "ru",
+  "ar",
+  "zh",
+]);
+const LONG_SOURCE_PROSE_PATTERN =
+  /;|\bfrom\b.*\bby\b|official .* bus|notes about|listed\s+coach|check official|confirm with provider/i;
+const ENGLISH_STEP_PATTERN =
+  /\b(check|travel|book|confirm|take|board|use|follow|return|parking|official|provider|timetable|arrive|ride)\b/i;
 
 type SourceConfidence = "source" | "derived" | "fallbackEstimate";
+
+export type TransportationRouteDetailDisplayModel = {
+  lineOrProviderLabel?: string;
+  operatorLabel?: string;
+  boardingPointLabel?: string;
+  alightingPointLabel?: string;
+  transferLabel?: string;
+  destinationLabel?: string;
+  routeHintLabel?: string;
+  hasSourceBackedRouteDetail: boolean;
+};
 
 export type TransportationEstimateDisplayModel = {
   id: string;
@@ -20,6 +47,7 @@ export type TransportationEstimateDisplayModel = {
   estimatedDurationLabel: string;
   estimatedFareLabel: string;
   noteLabel?: string;
+  routeDetails: TransportationRouteDetailDisplayModel;
   steps: string[];
   sourceConfidence: SourceConfidence;
 };
@@ -41,56 +69,1119 @@ export type TransportationV2Option = TransportationEstimateDisplayModel & {
   guide: TransportationGuide;
 };
 
-export type NearbyAirportDisplay = { code: string; name: string; distance?: string };
-type OutletAirport = { code: string; name: string; distanceKm?: number };
-type OutletLike = { outletId: string; airports?: OutletAirport[]; cityCenterDistanceKm?: number; airportDistanceKm?: number; cityCenterInfo?: { distanceKm?: number } };
-type Estimate = { duration: [number, number]; fare: [number, number]; confidence: SourceConfidence };
-
-const I18N: Record<TranslationLanguage, { approx: string; min: string; duration: string; fare: string; note: string; details: string; city: string; airport: string; titles: Record<string, string>; modes: Record<string, string>; steps: Record<string, string[]> }> = {
-  en: { approx: "Approx.", min: "min", duration: "Duration", fare: "Fare", note: "Check current times and fares before you travel.", details: "See transport estimates in the guide", city: "From city center", airport: "From airport", titles: { cityTrain: "From city center by train", cityBus: "From city center by bus", cityPublic: "From city center by public transport", airportPublic: "From airport by public transport", airportTaxi: "From airport by taxi/Uber", shuttle: "By shuttle", taxi: "By taxi / Uber" }, modes: { train: "Train", bus: "Bus", shuttle: "Shuttle", taxi: "Taxi / Uber", uber: "Uber", metro: "Public transport", ferry: "Ferry", walking: "Walking" }, steps: { public: ["Go to the most convenient city transport stop.", "Take the listed public transport connection toward the outlet area.", "Get off at the closest outlet stop or station.", "Walk to the outlet entrance and check the return time before shopping."], airportPublic: ["Follow airport signs to public transport.", "Take the city or regional connection toward the outlet area.", "Transfer if required and get off near the outlet.", "Check the return connection before shopping."], taxi: ["Open a taxi or ride-hailing app.", "Set the outlet as the destination and compare the estimate.", "Confirm the pickup point before departure.", "Allow extra time for peak-hour return travel."], shuttle: ["Check the shuttle departure point before travel.", "Reserve or buy a ticket if required.", "Arrive early at the departure point.", "Confirm the return departure before shopping."] } },
-  tr: { approx: "Yaklaşık", min: "dk", duration: "Süre", fare: "Ücret", note: "Güncel saat ve ücretleri seyahat öncesi kontrol edin.", details: "Ulaşım tahminlerini rehberde gör", city: "Şehir merkezinden", airport: "Havalimanından", titles: { cityTrain: "Şehir merkezinden trenle", cityBus: "Şehir merkezinden otobüsle", cityPublic: "Şehir merkezinden toplu ulaşım ile", airportPublic: "Havalimanından toplu ulaşım ile", airportTaxi: "Havalimanından taksi/Uber ile", shuttle: "Shuttle ile", taxi: "Taksi / Uber ile" }, modes: { train: "Tren", bus: "Otobüs", shuttle: "Shuttle", taxi: "Taksi / Uber", uber: "Uber", metro: "Toplu ulaşım", ferry: "Feribot", walking: "Yürüyüş" }, steps: { public: ["Şehir merkezindeki uygun tren veya otobüs durağına gidin.", "Outlet yönündeki toplu ulaşım bağlantısına binin.", "Outlet’e en yakın durak veya istasyonda inin.", "Girişe yürüyün ve dönüş saatini alışverişten önce kontrol edin."], airportPublic: ["Havalimanında toplu ulaşım yönlendirmelerini izleyin.", "Şehir veya bölgesel bağlantıyla outlet yönüne ilerleyin.", "Gerekirse aktarma yapıp outlet’e en yakın durakta inin.", "Dönüş bağlantısını alışverişten önce kontrol edin."], taxi: ["Taksi veya Uber uygulamasını açın.", "Varış noktası olarak outlet adını seçip tahmini ücreti karşılaştırın.", "Kalkış noktasını sürücüyle doğrulayın.", "Dönüşte yoğun saatler için ek süre bırakın."], shuttle: ["Shuttle kalkış noktasını seyahatten önce kontrol edin.", "Gerekiyorsa bilet veya rezervasyonu tamamlayın.", "Kalkış noktasına erken gidin.", "Dönüş kalkış saatini alışverişten önce doğrulayın."] } },
-  es: { approx: "Aprox.", min: "min", duration: "Duración", fare: "Tarifa", note: "Consulta horarios y tarifas actuales antes de viajar.", details: "Ver estimaciones de transporte en la guía", city: "Desde el centro", airport: "Desde el aeropuerto", titles: { cityTrain: "Desde el centro en tren", cityBus: "Desde el centro en autobús", cityPublic: "Desde el centro en transporte público", airportPublic: "Desde el aeropuerto en transporte público", airportTaxi: "Desde el aeropuerto en taxi/Uber", shuttle: "En shuttle", taxi: "En taxi / Uber" }, modes: { train: "Tren", bus: "Autobús", shuttle: "Shuttle", taxi: "Taxi / Uber", uber: "Uber", metro: "Transporte público", ferry: "Ferry", walking: "A pie" }, steps: {} as any },
-  fr: { approx: "Env.", min: "min", duration: "Durée", fare: "Tarif", note: "Vérifiez les horaires et tarifs actuels avant le départ.", details: "Voir les estimations de transport dans le guide", city: "Depuis le centre-ville", airport: "Depuis l’aéroport", titles: { cityTrain: "Depuis le centre-ville en train", cityBus: "Depuis le centre-ville en bus", cityPublic: "Depuis le centre-ville en transport public", airportPublic: "Depuis l’aéroport en transport public", airportTaxi: "Depuis l’aéroport en taxi/Uber", shuttle: "En navette", taxi: "En taxi / Uber" }, modes: { train: "Train", bus: "Bus", shuttle: "Navette", taxi: "Taxi / Uber", uber: "Uber", metro: "Transport public", ferry: "Ferry", walking: "À pied" }, steps: {} as any },
-  de: { approx: "Ca.", min: "Min.", duration: "Dauer", fare: "Preis", note: "Prüfe aktuelle Zeiten und Preise vor der Fahrt.", details: "Verkehrsschätzungen im Guide ansehen", city: "Vom Stadtzentrum", airport: "Vom Flughafen", titles: { cityTrain: "Vom Stadtzentrum mit dem Zug", cityBus: "Vom Stadtzentrum mit dem Bus", cityPublic: "Vom Stadtzentrum mit ÖPNV", airportPublic: "Vom Flughafen mit ÖPNV", airportTaxi: "Vom Flughafen mit Taxi/Uber", shuttle: "Mit Shuttle", taxi: "Mit Taxi / Uber" }, modes: { train: "Zug", bus: "Bus", shuttle: "Shuttle", taxi: "Taxi / Uber", uber: "Uber", metro: "ÖPNV", ferry: "Fähre", walking: "Zu Fuß" }, steps: {} as any },
-  ru: { approx: "Примерно", min: "мин", duration: "Время", fare: "Стоимость", note: "Проверьте актуальное расписание и цены перед поездкой.", details: "Смотрите оценки транспорта в путеводителе", city: "Из центра города", airport: "Из аэропорта", titles: { cityTrain: "Из центра города на поезде", cityBus: "Из центра города на автобусе", cityPublic: "Из центра города на общественном транспорте", airportPublic: "Из аэропорта на общественном транспорте", airportTaxi: "Из аэропорта на такси/Uber", shuttle: "На шаттле", taxi: "На такси / Uber" }, modes: { train: "Поезд", bus: "Автобус", shuttle: "Шаттл", taxi: "Такси / Uber", uber: "Uber", metro: "Общественный транспорт", ferry: "Паром", walking: "Пешком" }, steps: {} as any },
-  ar: { approx: "تقريبًا", min: "دقيقة", duration: "المدة", fare: "الأجرة", note: "تحقق من الأوقات والأجرة الحالية قبل السفر.", details: "اعرض تقديرات المواصلات في الدليل", city: "من وسط المدينة", airport: "من المطار", titles: { cityTrain: "من وسط المدينة بالقطار", cityBus: "من وسط المدينة بالحافلة", cityPublic: "من وسط المدينة بالمواصلات العامة", airportPublic: "من المطار بالمواصلات العامة", airportTaxi: "من المطار بتاكسي/Uber", shuttle: "بالشاتل", taxi: "بتاكسي / Uber" }, modes: { train: "قطار", bus: "حافلة", shuttle: "شاتل", taxi: "تاكسي / Uber", uber: "Uber", metro: "مواصلات عامة", ferry: "عبّارة", walking: "سيرًا" }, steps: {} as any },
-  zh: { approx: "约", min: "分钟", duration: "时长", fare: "费用", note: "出行前请确认最新班次和费用。", details: "在指南中查看交通估算", city: "从市中心", airport: "从机场", titles: { cityTrain: "从市中心乘火车", cityBus: "从市中心乘公交", cityPublic: "从市中心乘公共交通", airportPublic: "从机场乘公共交通", airportTaxi: "从机场乘出租车/Uber", shuttle: "乘接驳车", taxi: "乘出租车 / Uber" }, modes: { train: "火车", bus: "公交", shuttle: "接驳车", taxi: "出租车 / Uber", uber: "Uber", metro: "公共交通", ferry: "渡轮", walking: "步行" }, steps: {} as any },
+export type NearbyAirportDisplay = {
+  code: string;
+  name: string;
+  distance?: string;
 };
-for (const lang of ["es", "fr", "de", "ru", "ar", "zh"] as TranslationLanguage[]) I18N[lang].steps = I18N.en.steps;
+type OutletAirport = { code: string; name: string; distanceKm?: number };
+type OutletLike = {
+  outletId: string;
+  airports?: OutletAirport[];
+  cityCenterDistanceKm?: number;
+  airportDistanceKm?: number;
+  cityCenterInfo?: { distanceKm?: number };
+};
+type Estimate = {
+  duration: [number, number];
+  fare: [number, number];
+  confidence: SourceConfidence;
+};
 
-function rangeByKm(km: number, rows: [number, Estimate][]): Estimate { return rows.find(([max]) => km <= max)?.[1] || rows[rows.length - 1][1]; }
-function estimateFor(origin: "city" | "airport" | "shuttle", mode: TransportationType, km?: number): Estimate | undefined {
-  if (origin === "shuttle") return { duration: origin === "shuttle" ? [45, 90] : [60, 150], fare: [10, 30], confidence: "fallbackEstimate" };
-  if (typeof km !== "number") return undefined;
-  if (origin === "airport" && ["taxi", "uber"].includes(mode)) return rangeByKm(km, [[20, { duration: [20,35], fare: [25,50], confidence: "derived" }], [50, { duration: [35,70], fare: [45,100], confidence: "derived" }], [100, { duration: [60,120], fare: [90,180], confidence: "derived" }], [Infinity, { duration: [120,180], fare: [150,300], confidence: "derived" }]]);
-  if (origin === "airport") return rangeByKm(km, [[20, { duration: [30,50], fare: [3,12], confidence: "derived" }], [50, { duration: [45,90], fare: [5,20], confidence: "derived" }], [100, { duration: [75,150], fare: [10,35], confidence: "derived" }], [Infinity, { duration: [120,210], fare: [20,60], confidence: "derived" }]]);
-  if (["taxi", "uber"].includes(mode)) return rangeByKm(km, [[15, { duration: [10,25], fare: [15,35], confidence: "derived" }], [40, { duration: [25,50], fare: [35,75], confidence: "derived" }], [80, { duration: [50,90], fare: [70,140], confidence: "derived" }], [Infinity, { duration: [90,150], fare: [120,250], confidence: "derived" }]]);
-  return rangeByKm(km, [[15, { duration: [15,30], fare: [2,5], confidence: "derived" }], [40, { duration: [30,60], fare: [3,10], confidence: "derived" }], [80, { duration: [60,90], fare: [5,20], confidence: "derived" }], [Infinity, { duration: [90,150], fare: [10,30], confidence: "derived" }]]);
+const I18N: Record<
+  TranslationLanguage,
+  {
+    approx: string;
+    min: string;
+    duration: string;
+    fare: string;
+    note: string;
+    details: string;
+    city: string;
+    airport: string;
+    titles: Record<string, string>;
+    modes: Record<string, string>;
+    steps: Record<string, string[]>;
+    routeLabels: Record<string, string>;
+  }
+> = {
+  en: {
+    approx: "Approx.",
+    min: "min",
+    duration: "Duration",
+    fare: "Fare",
+    note: "Check current times and fares before you travel.",
+    details: "See transport estimates in the guide",
+    city: "From city center",
+    airport: "From airport",
+    titles: {
+      cityTrain: "From city center by train",
+      cityBus: "From city center by bus",
+      cityPublic: "From city center by public transport",
+      airportPublic: "From airport by public transport",
+      airportTaxi: "From airport by taxi/Uber",
+      shuttle: "By shuttle",
+      taxi: "By taxi / Uber",
+    },
+    modes: {
+      train: "Train",
+      bus: "Bus",
+      shuttle: "Shuttle",
+      taxi: "Taxi / Uber",
+      uber: "Uber",
+      metro: "Public transport",
+      ferry: "Ferry",
+      walking: "Walking",
+    },
+    steps: {
+      public: [
+        "Go to the most convenient city transport stop.",
+        "Take the listed public transport connection toward the outlet area.",
+        "Get off at the closest outlet stop or station.",
+        "Walk to the outlet entrance and check the return time before shopping.",
+      ],
+      airportPublic: [
+        "Follow airport signs to public transport.",
+        "Take the city or regional connection toward the outlet area.",
+        "Transfer if required and get off near the outlet.",
+        "Check the return connection before shopping.",
+      ],
+      taxi: [
+        "Open a taxi or ride-hailing app.",
+        "Set the outlet as the destination and compare the estimate.",
+        "Confirm the pickup point before departure.",
+        "Allow extra time for peak-hour return travel.",
+      ],
+      shuttle: [
+        "Check the shuttle departure point before travel.",
+        "Reserve or buy a ticket if required.",
+        "Arrive early at the departure point.",
+        "Confirm the return departure before shopping.",
+      ],
+    },
+    routeLabels: {
+      line: "Line",
+      provider: "Provider",
+      operator: "Operator",
+      boarding: "Board",
+      alighting: "Alight",
+      transfer: "Transfer",
+      destination: "Destination",
+      origin: "Origin",
+      walking: "Walk",
+      checkRoute: "Check line/stop details with the official provider.",
+    },
+  },
+  tr: {
+    approx: "Yaklaşık",
+    min: "dk",
+    duration: "Süre",
+    fare: "Ücret",
+    note: "Güncel saat ve ücretleri seyahat öncesi kontrol edin.",
+    details: "Ulaşım tahminlerini rehberde gör",
+    city: "Şehir merkezinden",
+    airport: "Havalimanından",
+    titles: {
+      cityTrain: "Şehir merkezinden trenle",
+      cityBus: "Şehir merkezinden otobüsle",
+      cityPublic: "Şehir merkezinden toplu ulaşım ile",
+      airportPublic: "Havalimanından toplu ulaşım ile",
+      airportTaxi: "Havalimanından taksi/Uber ile",
+      shuttle: "Shuttle ile",
+      taxi: "Taksi / Uber ile",
+    },
+    modes: {
+      train: "Tren",
+      bus: "Otobüs",
+      shuttle: "Shuttle",
+      taxi: "Taksi / Uber",
+      uber: "Uber",
+      metro: "Toplu ulaşım",
+      ferry: "Feribot",
+      walking: "Yürüyüş",
+    },
+    steps: {
+      public: [
+        "Şehir merkezindeki uygun tren veya otobüs durağına gidin.",
+        "Outlet yönündeki toplu ulaşım bağlantısına binin.",
+        "Outlet’e en yakın durak veya istasyonda inin.",
+        "Girişe yürüyün ve dönüş saatini alışverişten önce kontrol edin.",
+      ],
+      airportPublic: [
+        "Havalimanında toplu ulaşım yönlendirmelerini izleyin.",
+        "Şehir veya bölgesel bağlantıyla outlet yönüne ilerleyin.",
+        "Gerekirse aktarma yapıp outlet’e en yakın durakta inin.",
+        "Dönüş bağlantısını alışverişten önce kontrol edin.",
+      ],
+      taxi: [
+        "Taksi veya Uber uygulamasını açın.",
+        "Varış noktası olarak outlet adını seçip tahmini ücreti karşılaştırın.",
+        "Kalkış noktasını sürücüyle doğrulayın.",
+        "Dönüşte yoğun saatler için ek süre bırakın.",
+      ],
+      shuttle: [
+        "Shuttle kalkış noktasını seyahatten önce kontrol edin.",
+        "Gerekiyorsa bilet veya rezervasyonu tamamlayın.",
+        "Belirtilen kalkış noktasına erken gidin.",
+        "Dönüş kalkış saatini alışverişten önce doğrulayın.",
+      ],
+    },
+    routeLabels: {
+      line: "Hat",
+      provider: "Sağlayıcı",
+      operator: "Operatör",
+      boarding: "Biniş",
+      alighting: "İniş",
+      transfer: "Aktarma",
+      destination: "Varış",
+      origin: "Başlangıç",
+      walking: "Yürüyüş",
+      checkRoute: "Hat/durak bilgisini resmi sağlayıcıdan kontrol edin.",
+    },
+  },
+  es: {
+    approx: "Aprox.",
+    min: "min",
+    duration: "Duración",
+    fare: "Tarifa",
+    note: "Consulta horarios y tarifas actuales antes de viajar.",
+    details: "Ver estimaciones de transporte en la guía",
+    city: "Desde el centro",
+    airport: "Desde el aeropuerto",
+    titles: {
+      cityTrain: "Desde el centro en tren",
+      cityBus: "Desde el centro en autobús",
+      cityPublic: "Desde el centro en transporte público",
+      airportPublic: "Desde el aeropuerto en transporte público",
+      airportTaxi: "Desde el aeropuerto en taxi/Uber",
+      shuttle: "En shuttle",
+      taxi: "En taxi / Uber",
+    },
+    modes: {
+      train: "Tren",
+      bus: "Autobús",
+      shuttle: "Shuttle",
+      taxi: "Taxi / Uber",
+      uber: "Uber",
+      metro: "Transporte público",
+      ferry: "Ferry",
+      walking: "A pie",
+    },
+    steps: {} as any,
+    routeLabels: {
+      line: "Línea",
+      provider: "Proveedor",
+      operator: "Operador",
+      boarding: "Salida",
+      alighting: "Bajada",
+      transfer: "Transbordo",
+      destination: "Destino",
+      origin: "Origen",
+      walking: "A pie",
+      checkRoute: "Consulta la línea/parada con el proveedor oficial.",
+    },
+  },
+  fr: {
+    approx: "Env.",
+    min: "min",
+    duration: "Durée",
+    fare: "Tarif",
+    note: "Vérifiez les horaires et tarifs actuels avant le départ.",
+    details: "Voir les estimations de transport dans le guide",
+    city: "Depuis le centre-ville",
+    airport: "Depuis l’aéroport",
+    titles: {
+      cityTrain: "Depuis le centre-ville en train",
+      cityBus: "Depuis le centre-ville en bus",
+      cityPublic: "Depuis le centre-ville en transport public",
+      airportPublic: "Depuis l’aéroport en transport public",
+      airportTaxi: "Depuis l’aéroport en taxi/Uber",
+      shuttle: "En navette",
+      taxi: "En taxi / Uber",
+    },
+    modes: {
+      train: "Train",
+      bus: "Bus",
+      shuttle: "Navette",
+      taxi: "Taxi / Uber",
+      uber: "Uber",
+      metro: "Transport public",
+      ferry: "Ferry",
+      walking: "À pied",
+    },
+    steps: {} as any,
+    routeLabels: {
+      line: "Ligne",
+      provider: "Prestataire",
+      operator: "Opérateur",
+      boarding: "Départ",
+      alighting: "Arrivée",
+      transfer: "Correspondance",
+      destination: "Destination",
+      origin: "Origine",
+      walking: "Marche",
+      checkRoute: "Vérifiez la ligne/l’arrêt auprès du prestataire officiel.",
+    },
+  },
+  de: {
+    approx: "Ca.",
+    min: "Min.",
+    duration: "Dauer",
+    fare: "Preis",
+    note: "Prüfe aktuelle Zeiten und Preise vor der Fahrt.",
+    details: "Verkehrsschätzungen im Guide ansehen",
+    city: "Vom Stadtzentrum",
+    airport: "Vom Flughafen",
+    titles: {
+      cityTrain: "Vom Stadtzentrum mit dem Zug",
+      cityBus: "Vom Stadtzentrum mit dem Bus",
+      cityPublic: "Vom Stadtzentrum mit ÖPNV",
+      airportPublic: "Vom Flughafen mit ÖPNV",
+      airportTaxi: "Vom Flughafen mit Taxi/Uber",
+      shuttle: "Mit Shuttle",
+      taxi: "Mit Taxi / Uber",
+    },
+    modes: {
+      train: "Zug",
+      bus: "Bus",
+      shuttle: "Shuttle",
+      taxi: "Taxi / Uber",
+      uber: "Uber",
+      metro: "ÖPNV",
+      ferry: "Fähre",
+      walking: "Zu Fuß",
+    },
+    steps: {} as any,
+    routeLabels: {
+      line: "Linie",
+      provider: "Anbieter",
+      operator: "Betreiber",
+      boarding: "Einstieg",
+      alighting: "Ausstieg",
+      transfer: "Umstieg",
+      destination: "Ziel",
+      origin: "Start",
+      walking: "Fußweg",
+      checkRoute: "Prüfe Linie/Haltestelle beim offiziellen Anbieter.",
+    },
+  },
+  ru: {
+    approx: "Примерно",
+    min: "мин",
+    duration: "Время",
+    fare: "Стоимость",
+    note: "Проверьте актуальное расписание и цены перед поездкой.",
+    details: "Смотрите оценки транспорта в путеводителе",
+    city: "Из центра города",
+    airport: "Из аэропорта",
+    titles: {
+      cityTrain: "Из центра города на поезде",
+      cityBus: "Из центра города на автобусе",
+      cityPublic: "Из центра города на общественном транспорте",
+      airportPublic: "Из аэропорта на общественном транспорте",
+      airportTaxi: "Из аэропорта на такси/Uber",
+      shuttle: "На шаттле",
+      taxi: "На такси / Uber",
+    },
+    modes: {
+      train: "Поезд",
+      bus: "Автобус",
+      shuttle: "Шаттл",
+      taxi: "Такси / Uber",
+      uber: "Uber",
+      metro: "Общественный транспорт",
+      ferry: "Паром",
+      walking: "Пешком",
+    },
+    steps: {} as any,
+    routeLabels: {
+      line: "Линия",
+      provider: "Провайдер",
+      operator: "Оператор",
+      boarding: "Посадка",
+      alighting: "Выход",
+      transfer: "Пересадка",
+      destination: "Пункт назначения",
+      origin: "Начало",
+      walking: "Пешком",
+      checkRoute: "Уточните линию/остановку у официального поставщика.",
+    },
+  },
+  ar: {
+    approx: "تقريبًا",
+    min: "دقيقة",
+    duration: "المدة",
+    fare: "الأجرة",
+    note: "تحقق من الأوقات والأجرة الحالية قبل السفر.",
+    details: "اعرض تقديرات المواصلات في الدليل",
+    city: "من وسط المدينة",
+    airport: "من المطار",
+    titles: {
+      cityTrain: "من وسط المدينة بالقطار",
+      cityBus: "من وسط المدينة بالحافلة",
+      cityPublic: "من وسط المدينة بالمواصلات العامة",
+      airportPublic: "من المطار بالمواصلات العامة",
+      airportTaxi: "من المطار بتاكسي/Uber",
+      shuttle: "بالشاتل",
+      taxi: "بتاكسي / Uber",
+    },
+    modes: {
+      train: "قطار",
+      bus: "حافلة",
+      shuttle: "شاتل",
+      taxi: "تاكسي / Uber",
+      uber: "Uber",
+      metro: "مواصلات عامة",
+      ferry: "عبّارة",
+      walking: "سيرًا",
+    },
+    steps: {} as any,
+    routeLabels: {
+      line: "الخط",
+      provider: "المزوّد",
+      operator: "المشغّل",
+      boarding: "نقطة الصعود",
+      alighting: "نقطة النزول",
+      transfer: "تبديل",
+      destination: "الوجهة",
+      origin: "نقطة البداية",
+      walking: "سيرًا",
+      checkRoute: "تحقق من تفاصيل الخط/المحطة لدى المزوّد الرسمي.",
+    },
+  },
+  zh: {
+    approx: "约",
+    min: "分钟",
+    duration: "时长",
+    fare: "费用",
+    note: "出行前请确认最新班次和费用。",
+    details: "在指南中查看交通估算",
+    city: "从市中心",
+    airport: "从机场",
+    titles: {
+      cityTrain: "从市中心乘火车",
+      cityBus: "从市中心乘公交",
+      cityPublic: "从市中心乘公共交通",
+      airportPublic: "从机场乘公共交通",
+      airportTaxi: "从机场乘出租车/Uber",
+      shuttle: "乘接驳车",
+      taxi: "乘出租车 / Uber",
+    },
+    modes: {
+      train: "火车",
+      bus: "公交",
+      shuttle: "接驳车",
+      taxi: "出租车 / Uber",
+      uber: "Uber",
+      metro: "公共交通",
+      ferry: "渡轮",
+      walking: "步行",
+    },
+    steps: {} as any,
+    routeLabels: {
+      line: "线路",
+      provider: "服务商",
+      operator: "运营方",
+      boarding: "上车点",
+      alighting: "下车点",
+      transfer: "换乘",
+      destination: "目的地",
+      origin: "起点",
+      walking: "步行",
+      checkRoute: "请向官方服务商确认线路/站点信息。",
+    },
+  },
+};
+for (const lang of [
+  "es",
+  "fr",
+  "de",
+  "ru",
+  "ar",
+  "zh",
+] as TranslationLanguage[])
+  I18N[lang].steps = I18N.en.steps;
+
+const ROUTE_TERMS = [
+  "RER A",
+  "S23/RB23",
+  "RB24",
+  "RB23",
+  "S23",
+  "TGV",
+  "SNCF",
+  "ÖBB",
+  "S-Bahn",
+  "U-Bahn",
+  "Outlet Link",
+  "Shopping Express",
+  "Zani Viaggi",
+  "Frigerio Viaggi",
+  "FlixBus",
+  "BLAGUSS",
+  "Vienna Sightseeing",
+  "Obus",
+  "Trenitalia",
+];
+const STOP_TERMS = [
+  "Hotel Pullman Paris Bercy",
+  "Val d'Europe/Serris-Montévrain",
+  "Val d'Europe / Serris-Montévrain",
+  "Marne-la-Vallée Chessy",
+  "Parndorf Ort",
+  "Bad Münstereifel",
+  "Euskirchen",
+  "Milano Centrale",
+  "Milan Centrale",
+  "Largo Cairoli",
+  "Piazza della Repubblica 5",
+  "Venezia Mestre",
+  "Roma Termini",
+  "Firenze Santa Maria Novella",
+  "Estació del Nord",
+];
+function compactJoin(values: (string | undefined)[]) {
+  return [...new Set(values.filter(Boolean) as string[])]
+    .slice(0, 3)
+    .join(" / ");
 }
-function formatDuration(e: Estimate, l: TranslationLanguage) { const x = I18N[l]; return `${x.approx} ${e.duration[0]}–${e.duration[1]} ${x.min}`; }
-function formatFare(e: Estimate, l: TranslationLanguage) { const x = I18N[l]; return `${x.approx} €${e.fare[0]}–${e.fare[1]}`; }
-export function sanitizeTransportationDisplayValue(value: string | undefined, language: TranslationLanguage): string | undefined { const n = String(value || "").trim().replace(/\s+/g, " "); if (!n) return undefined; if (NON_ENGLISH_LANGUAGES.has(language) && LONG_SOURCE_PROSE_PATTERN.test(n)) return undefined; if (UNSAFE_VALUE_PATTERN.test(n)) return undefined; return n; }
-export function formatTransportDurationForDisplay(value: string | undefined, language: TranslationLanguage): string | undefined { const n = sanitizeTransportationDisplayValue(value, language); if (!n) return undefined; const r = n.match(/[≈~]?\s*(\d+)\s*[–-]\s*(\d+)\s*(?:min|minutes|dk)/i); if (r) return `${I18N[language].approx} ${r[1]}–${r[2]} ${I18N[language].min}`; const m = n.match(/[≈~]?\s*(\d+)\s*(?:min|minutes|dk)/i); if (m) return `${I18N[language].approx} ${m[1]} ${I18N[language].min}`; return n.length <= 22 ? `${I18N[language].approx} ${n}` : undefined; }
-export function formatTransportFareForDisplay(value: string | undefined, language: TranslationLanguage): string | undefined { const raw = String(value || "").trim(); if (!raw) return undefined; const plus = raw.match(/€\s?(\d+(?:[.,]\d+)?) each way plus rail fare/i); if (plus) return `${I18N[language].approx} €${plus[1]} / yön + tren ücreti`; const ret = raw.match(/€\s?(\d+(?:[.,]\d+)?).*return/i); if (ret) return language === "tr" ? `${I18N[language].approx} €${ret[1]} dönüş bileti` : `${I18N[language].approx} €${ret[1]} return`; const n = sanitizeTransportationDisplayValue(raw, language); if (!n) return undefined; return n.length <= 28 ? `${I18N[language].approx} ${n}` : undefined; }
-export function getTransportationDisplayFallbacks(language: TranslationLanguage) { return { time: "", fare: "", note: I18N[language].note, details: I18N[language].details, compactRecommended: I18N[language].details }; }
-function outletFor(id: string) { return outlets.find((o) => o.outletId === id) as OutletLike | undefined; }
-function distanceFor(guide: TransportationGuide): number | undefined { const outlet = outletFor(guide.outletId); if (guide.originType === "airport") return outlet?.airports?.find((a) => a.code === guide.originId)?.distanceKm ?? outlet?.airportDistanceKm; return outlet?.cityCenterInfo?.distanceKm ?? outlet?.cityCenterDistanceKm; }
-function titleFor(mode: TransportationType, origin: TransportationV2Option["originGroup"], l: TranslationLanguage) { const t = I18N[l].titles; if (origin === "shuttle" || mode === "shuttle") return t.shuttle; if (["taxi", "uber"].includes(mode)) return origin === "airport" ? t.airportTaxi : t.taxi; if (origin === "airport") return t.airportPublic; if (mode === "train") return t.cityTrain; if (mode === "bus") return t.cityBus; return t.cityPublic; }
-function originLabelFor(origin: TransportationV2Option["originGroup"], l: TranslationLanguage) { return origin === "airport" ? I18N[l].airport : origin === "city" ? I18N[l].city : I18N[l].titles.shuttle; }
-function stepsFor(mode: TransportationType, origin: TransportationV2Option["originGroup"], l: TranslationLanguage): string[] { if (origin === "shuttle" || mode === "shuttle") return I18N[l].steps.shuttle; if (["taxi", "uber"].includes(mode)) return I18N[l].steps.taxi; if (origin === "airport") return I18N[l].steps.airportPublic; return I18N[l].steps.public; }
-function optionFromGuide(guide: TransportationGuide): TransportationV2Option | undefined { if (PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)) return undefined; const originGroup = guide.transportationType === "shuttle" ? "shuttle" : guide.originType === "airport" ? "airport" : "city"; const km = distanceFor(guide); const estimate = estimateFor(originGroup, guide.transportationType, km); if (!estimate) return undefined; const hasSourceDuration = Boolean(sanitizeTransportationDisplayValue(guide.estimatedDuration, "en")); const hasSourceFare = Boolean(sanitizeTransportationDisplayValue(guide.estimatedCost, "en")); return { id: guide.guideId, originGroup, originLabel: originGroup, mode: guide.transportationType, modeLabel: guide.transportationType, estimatedDurationLabel: "", estimatedFareLabel: "", title: guide.title, steps: [], sourceConfidence: hasSourceDuration && hasSourceFare ? "source" : estimate.confidence, hasOnlyFallbackMeta: false, hasUsefulEstimate: true, hasUsefulFare: true, isUsefulForPrimaryDisplay: true, isUsefulForSummaryDisplay: true, guide }; }
-function syntheticGuide(outletId: string, originType: TransportationGuide["originType"], originId: string, mode: TransportationType): TransportationGuide { return { guideId: `${outletId}-${originId}-${mode}-estimate`, outletId, originType, originId, transportationType: mode, title: "Derived transportation estimate", estimatedDuration: "", estimatedCost: "", recommended: false, steps: [], updatedAt: "2026-07-10" }; }
-function syntheticOptions(outletId: string): TransportationV2Option[] { const outlet = outletFor(outletId); if (!outlet) return []; const airport = outlet.airports?.[0]; return [syntheticGuide(outletId, "city_center", "city", "train"), syntheticGuide(outletId, "city_center", "city", "taxi"), ...(airport ? [syntheticGuide(outletId, "airport", airport.code, "metro"), syntheticGuide(outletId, "airport", airport.code, "taxi")] : [])].map(optionFromGuide).filter(Boolean) as TransportationV2Option[]; }
-export function getTransportationOptionDisplayModel(option: TransportationV2Option, language: TranslationLanguage): TransportationV2Option { const guide = option.guide; const originGroup = option.originGroup; const estimate = estimateFor(originGroup, option.mode, distanceFor(guide)); if (!estimate) return option; const durationLabel = formatTransportDurationForDisplay(guide.estimatedDuration, language) || formatDuration(estimate, language); const fareLabel = formatTransportFareForDisplay(guide.estimatedCost, language) || formatFare(originGroup === "shuttle" && guide.originType === "airport" ? { ...estimate, duration: [60,150], fare: [15,45] } : estimate, language); const sourceConfidence: SourceConfidence = formatTransportDurationForDisplay(guide.estimatedDuration, language) && formatTransportFareForDisplay(guide.estimatedCost, language) ? "source" : option.sourceConfidence; return { ...option, originLabel: originLabelFor(originGroup, language), modeLabel: I18N[language].modes[option.mode] || option.mode, title: titleFor(option.mode, originGroup, language).replace(/\b(shuttle)\s+\1\b/ig, "$1"), duration: durationLabel, fare: fareLabel, durationLabel, fareLabel, estimatedDurationLabel: durationLabel, estimatedFareLabel: fareLabel, note: undefined, noteLabel: I18N[language].note, providerNote: undefined, steps: stepsFor(option.mode, originGroup, language).slice(0, 4), sourceConfidence, hasOnlyFallbackMeta: false, hasUsefulEstimate: true, hasUsefulFare: true, isUsefulForPrimaryDisplay: true, isUsefulForSummaryDisplay: true } }
-export function isSourceBackedValue(value: string | undefined): boolean { return Boolean(sanitizeTransportationDisplayValue(value, "en")); }
-export function isSourceBackedGuide(guide: TransportationGuide): boolean { return Boolean(optionFromGuide(guide)); }
-export function getTransportationV2Options(outletId: string): TransportationV2Option[] { const fromGuides = transportationGuides.filter((g) => g.outletId === outletId).map(optionFromGuide).filter(Boolean) as TransportationV2Option[]; return dedupeOptions([...fromGuides, ...syntheticOptions(outletId)]); }
-export function getRecommendedTransportationV2Option(outletId: string): TransportationV2Option | undefined { const options = getTransportationV2Options(outletId); return options.find((o) => o.mode === "shuttle") || options.find((o) => o.originGroup === "city" && PUBLIC_TYPES.has(o.mode)) || options.find((o) => o.originGroup === "airport" && PUBLIC_TYPES.has(o.mode)) || options[0]; }
-export function getOutletTransportationV2Summary(outletId: string): TransportationV2Option[] { const display = getTransportationV2Options(outletId).map((o) => getTransportationOptionDisplayModel(o, "tr")); const city = display.find((o) => o.originGroup === "city" && PUBLIC_TYPES.has(o.mode)); const shuttle = display.find((o) => o.originGroup === "shuttle"); const airport = display.find((o) => o.originGroup === "airport"); return [city, shuttle, airport].filter(Boolean).slice(0, 2) as TransportationV2Option[]; }
-function dedupeOptions(options: TransportationV2Option[]): TransportationV2Option[] { const seen = new Set<string>(); return options.filter((o) => { const key = `${o.originGroup}|${o.mode}`; if (seen.has(key)) return false; seen.add(key); return true; }); }
-export function getUsefulTransportationV2DisplayOptions(outletId: string, language: TranslationLanguage): TransportationV2Option[] { return getTransportationV2Options(outletId).map((o) => getTransportationOptionDisplayModel(o, language)); }
-export function getNearbyAirportDisplay(outletId: string): NearbyAirportDisplay[] { const outlet = outletFor(outletId); return (outlet?.airports || []).slice(0, 3).map((a) => ({ code: a.code, name: a.name, distance: typeof a.distanceKm === "number" ? `${a.distanceKm} km` : undefined })); }
-export function getSectionProviderNote(language: TranslationLanguage): string { return I18N[language].note; }
-export function getCompactRecommendedFallback(language: TranslationLanguage): string { return I18N[language].details; }
-export function hasLegacyTransportationClutter(outletId: string): boolean { return getTransportationForOutlet(outletId).some((item) => PROHIBITED_MAIN_LABEL_PATTERN.test(`${item.title} ${item.cost}`)); }
-export function getOutletMapLinks(outletId: string) { const outlet = outletFor(outletId) as any; return outlet ? { googleMapsUrl: outlet.googleMapsUrl, appleMapsUrl: outlet.appleMapsUrl, yandexMapsUrl: outlet.yandexMapsUrl } : undefined; }
+function sourceText(guide: TransportationGuide) {
+  return [
+    guide.title,
+    guide.estimatedDuration,
+    guide.estimatedCost,
+    ...guide.steps.map((step) => step.description),
+  ].join(" ");
+}
+function findTerms(text: string, terms: string[]) {
+  return terms.filter((term) =>
+    text.toLowerCase().includes(term.toLowerCase()),
+  );
+}
+function normalizeRouteTerm(term: string) {
+  return term
+    .replace("Milan Centrale", "Milano Centrale")
+    .replace(
+      "Val d'Europe/Serris-Montévrain",
+      "Val d'Europe / Serris-Montévrain",
+    )
+    .replace("Shopping Express®", "Shopping Express");
+}
+function outletNameFor(outletId: string) {
+  return outletId
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+function airportCodeFor(guide: TransportationGuide) {
+  const outlet = outletFor(guide.outletId);
+  return guide.originType === "airport"
+    ? outlet?.airports?.find((airport) => airport.code === guide.originId)?.code
+    : undefined;
+}
+function extractRouteDetails(
+  guide: TransportationGuide,
+  originGroup: TransportationV2Option["originGroup"],
+  mode: TransportationType,
+): TransportationRouteDetailDisplayModel {
+  const text = sourceText(guide);
+  const terms = findTerms(text, ROUTE_TERMS).map(normalizeRouteTerm);
+  const stops = findTerms(text, STOP_TERMS).map(normalizeRouteTerm);
+  const isTaxi = ["taxi", "uber"].includes(mode);
+  if (isTaxi)
+    return {
+      boardingPointLabel: originGroup === "airport" ? "Airport" : "City center",
+      destinationLabel: "Outlet address",
+      routeHintLabel:
+        originGroup === "airport" ? "Airport → outlet" : "City center → outlet",
+      hasSourceBackedRouteDetail: false,
+    };
+  const lineTerms = terms.filter((term) =>
+    /RER|S23|RB23|RB24|TGV|SNCF|ÖBB|S-Bahn|U-Bahn|Outlet Link|Obus|Trenitalia/i.test(
+      term,
+    ),
+  );
+  const providerTerms = terms.filter((term) =>
+    /Shopping Express|Zani Viaggi|Frigerio Viaggi|FlixBus|BLAGUSS|Vienna Sightseeing/i.test(
+      term,
+    ),
+  );
+  const airportCode = airportCodeFor(guide);
+  const lineOrProviderLabel = compactJoin(
+    mode === "shuttle"
+      ? [...providerTerms, ...lineTerms]
+      : [...lineTerms, ...providerTerms],
+  );
+  const boardingPointLabel =
+    stops.find((stop) =>
+      /Hotel Pullman|Milano Centrale|Largo Cairoli|Piazza|Roma Termini|Firenze|Venezia|Estació/i.test(
+        stop,
+      ),
+    ) ||
+    airportCode ||
+    (lineOrProviderLabel ? "City center" : undefined);
+  const alightingPointLabel = stops.find((stop) =>
+    /Val d'Europe|Parndorf Ort|Bad Münstereifel|Serris|Venezia Mestre/i.test(
+      stop,
+    ),
+  );
+  const transfer = stops.find((stop) =>
+    /Marne-la-Vallée|Euskirchen|Parndorf Ort|Venezia Mestre/i.test(stop),
+  );
+  const hasSourceBackedRouteDetail = Boolean(terms.length || stops.length);
+  return {
+    lineOrProviderLabel: lineOrProviderLabel || undefined,
+    operatorLabel:
+      compactJoin(
+        terms.filter((term) => /SNCF|ÖBB|Trenitalia|Obus/i.test(term)),
+      ) || undefined,
+    boardingPointLabel,
+    alightingPointLabel,
+    transferLabel:
+      transfer && transfer !== alightingPointLabel ? transfer : undefined,
+    destinationLabel: outletNameFor(guide.outletId),
+    routeHintLabel:
+      compactJoin([
+        lineOrProviderLabel,
+        alightingPointLabel || stops[0],
+        boardingPointLabel ||
+          (originGroup === "airport" ? airportCode : undefined),
+      ]) ||
+      (originGroup === "airport"
+        ? `${airportCode || "Airport"} → outlet`
+        : undefined),
+    hasSourceBackedRouteDetail,
+  };
+}
+function localizePoint(
+  value: string | undefined,
+  language: TranslationLanguage,
+  route?: string,
+) {
+  if (!value) return undefined;
+  if (language !== "tr") return value;
+  if (value === "City center")
+    return route ? `Şehir merkezi ${route} istasyonu` : "Şehir merkezi";
+  if (value === "Airport") return "Havalimanı";
+  if (value === "Outlet address") return "Outlet adresi";
+  return value;
+}
+export function getTransportationRouteDetailRows(
+  option: TransportationV2Option,
+  language: TranslationLanguage,
+) {
+  const labels = I18N[language].routeLabels;
+  const detail = option.routeDetails;
+  const isShuttle =
+    option.originGroup === "shuttle" || option.mode === "shuttle";
+  const isTaxi = ["taxi", "uber"].includes(option.mode);
+  return [
+    detail.lineOrProviderLabel
+      ? {
+          label: isShuttle ? labels.provider : labels.line,
+          value: detail.lineOrProviderLabel,
+        }
+      : undefined,
+    detail.operatorLabel
+      ? { label: labels.operator, value: detail.operatorLabel }
+      : undefined,
+    detail.boardingPointLabel
+      ? {
+          label: isTaxi ? labels.origin : labels.boarding,
+          value:
+            localizePoint(
+              detail.boardingPointLabel,
+              language,
+              detail.lineOrProviderLabel,
+            ) || detail.boardingPointLabel,
+        }
+      : undefined,
+    detail.alightingPointLabel
+      ? { label: labels.alighting, value: detail.alightingPointLabel }
+      : undefined,
+    detail.transferLabel
+      ? { label: labels.transfer, value: detail.transferLabel }
+      : undefined,
+    detail.destinationLabel
+      ? {
+          label: labels.destination,
+          value:
+            localizePoint(detail.destinationLabel, language) ||
+            detail.destinationLabel,
+        }
+      : undefined,
+  ].filter(Boolean) as { label: string; value: string }[];
+}
+export function getRouteDetailWarning(language: TranslationLanguage) {
+  return I18N[language].routeLabels.checkRoute;
+}
+
+function rangeByKm(km: number, rows: [number, Estimate][]): Estimate {
+  return rows.find(([max]) => km <= max)?.[1] || rows[rows.length - 1][1];
+}
+function estimateFor(
+  origin: "city" | "airport" | "shuttle",
+  mode: TransportationType,
+  km?: number,
+): Estimate | undefined {
+  if (origin === "shuttle")
+    return {
+      duration: origin === "shuttle" ? [45, 90] : [60, 150],
+      fare: [10, 30],
+      confidence: "fallbackEstimate",
+    };
+  if (typeof km !== "number") return undefined;
+  if (origin === "airport" && ["taxi", "uber"].includes(mode))
+    return rangeByKm(km, [
+      [20, { duration: [20, 35], fare: [25, 50], confidence: "derived" }],
+      [50, { duration: [35, 70], fare: [45, 100], confidence: "derived" }],
+      [100, { duration: [60, 120], fare: [90, 180], confidence: "derived" }],
+      [
+        Infinity,
+        { duration: [120, 180], fare: [150, 300], confidence: "derived" },
+      ],
+    ]);
+  if (origin === "airport")
+    return rangeByKm(km, [
+      [20, { duration: [30, 50], fare: [3, 12], confidence: "derived" }],
+      [50, { duration: [45, 90], fare: [5, 20], confidence: "derived" }],
+      [100, { duration: [75, 150], fare: [10, 35], confidence: "derived" }],
+      [
+        Infinity,
+        { duration: [120, 210], fare: [20, 60], confidence: "derived" },
+      ],
+    ]);
+  if (["taxi", "uber"].includes(mode))
+    return rangeByKm(km, [
+      [15, { duration: [10, 25], fare: [15, 35], confidence: "derived" }],
+      [40, { duration: [25, 50], fare: [35, 75], confidence: "derived" }],
+      [80, { duration: [50, 90], fare: [70, 140], confidence: "derived" }],
+      [
+        Infinity,
+        { duration: [90, 150], fare: [120, 250], confidence: "derived" },
+      ],
+    ]);
+  return rangeByKm(km, [
+    [15, { duration: [15, 30], fare: [2, 5], confidence: "derived" }],
+    [40, { duration: [30, 60], fare: [3, 10], confidence: "derived" }],
+    [80, { duration: [60, 90], fare: [5, 20], confidence: "derived" }],
+    [Infinity, { duration: [90, 150], fare: [10, 30], confidence: "derived" }],
+  ]);
+}
+function formatDuration(e: Estimate, l: TranslationLanguage) {
+  const x = I18N[l];
+  return `${x.approx} ${e.duration[0]}–${e.duration[1]} ${x.min}`;
+}
+function formatFare(e: Estimate, l: TranslationLanguage) {
+  const x = I18N[l];
+  return `${x.approx} €${e.fare[0]}–${e.fare[1]}`;
+}
+export function sanitizeTransportationDisplayValue(
+  value: string | undefined,
+  language: TranslationLanguage,
+): string | undefined {
+  const n = String(value || "")
+    .trim()
+    .replace(/\s+/g, " ");
+  if (!n) return undefined;
+  if (NON_ENGLISH_LANGUAGES.has(language) && LONG_SOURCE_PROSE_PATTERN.test(n))
+    return undefined;
+  if (UNSAFE_VALUE_PATTERN.test(n)) return undefined;
+  return n;
+}
+export function formatTransportDurationForDisplay(
+  value: string | undefined,
+  language: TranslationLanguage,
+): string | undefined {
+  const n = sanitizeTransportationDisplayValue(value, language);
+  if (!n) return undefined;
+  if (/less than 1 hour/i.test(n))
+    return `${I18N[language].approx} 60 ${I18N[language].min}`;
+  const r = n.match(/[≈~]?\s*(\d+)\s*[–-]\s*(\d+)\s*(?:min|minutes|dk)/i);
+  if (r)
+    return `${I18N[language].approx} ${r[1]}–${r[2]} ${I18N[language].min}`;
+  const m = n.match(/[≈~]?\s*(\d+)\s*(?:min|minutes|dk)/i);
+  if (m) return `${I18N[language].approx} ${m[1]} ${I18N[language].min}`;
+  return n.length <= 22 ? `${I18N[language].approx} ${n}` : undefined;
+}
+export function formatTransportFareForDisplay(
+  value: string | undefined,
+  language: TranslationLanguage,
+): string | undefined {
+  const raw = String(value || "")
+    .trim()
+    .replace(/\s*\(estimated\)/i, "")
+    .replace(/^≈\s*/, "");
+  if (!raw) return undefined;
+  const plus = raw.match(/€\s?(\d+(?:[.,]\d+)?) each way plus rail fare/i);
+  if (plus) return `${I18N[language].approx} €${plus[1]} / yön + tren ücreti`;
+  const ret = raw.match(/€\s?(\d+(?:[.,]\d+)?).*return/i);
+  if (ret)
+    return language === "tr"
+      ? `${I18N[language].approx} €${ret[1]} dönüş bileti`
+      : `${I18N[language].approx} €${ret[1]} return`;
+  const n = sanitizeTransportationDisplayValue(raw, language);
+  if (!n) return undefined;
+  return n.length <= 28 ? `${I18N[language].approx} ${n}` : undefined;
+}
+export function getTransportationDisplayFallbacks(
+  language: TranslationLanguage,
+) {
+  return {
+    time: "",
+    fare: "",
+    note: I18N[language].note,
+    details: I18N[language].details,
+    compactRecommended: I18N[language].details,
+  };
+}
+function outletFor(id: string) {
+  return outlets.find((o) => o.outletId === id) as OutletLike | undefined;
+}
+function distanceFor(guide: TransportationGuide): number | undefined {
+  const outlet = outletFor(guide.outletId);
+  if (guide.originType === "airport")
+    return (
+      outlet?.airports?.find((a) => a.code === guide.originId)?.distanceKm ??
+      outlet?.airportDistanceKm
+    );
+  return outlet?.cityCenterInfo?.distanceKm ?? outlet?.cityCenterDistanceKm;
+}
+function titleFor(
+  mode: TransportationType,
+  origin: TransportationV2Option["originGroup"],
+  l: TranslationLanguage,
+) {
+  const t = I18N[l].titles;
+  if (origin === "shuttle" || mode === "shuttle") return t.shuttle;
+  if (["taxi", "uber"].includes(mode))
+    return origin === "airport" ? t.airportTaxi : t.taxi;
+  if (origin === "airport") return t.airportPublic;
+  if (mode === "train") return t.cityTrain;
+  if (mode === "bus") return t.cityBus;
+  return t.cityPublic;
+}
+function originLabelFor(
+  origin: TransportationV2Option["originGroup"],
+  l: TranslationLanguage,
+) {
+  return origin === "airport"
+    ? I18N[l].airport
+    : origin === "city"
+      ? I18N[l].city
+      : I18N[l].titles.shuttle;
+}
+function stepsFor(
+  mode: TransportationType,
+  origin: TransportationV2Option["originGroup"],
+  l: TranslationLanguage,
+  details?: TransportationRouteDetailDisplayModel,
+): string[] {
+  if (l !== "tr") {
+    if (origin === "shuttle" || mode === "shuttle")
+      return I18N[l].steps.shuttle;
+    if (["taxi", "uber"].includes(mode)) return I18N[l].steps.taxi;
+    if (origin === "airport") return I18N[l].steps.airportPublic;
+    return I18N[l].steps.public;
+  }
+  const route = details?.lineOrProviderLabel;
+  const board = localizePoint(details?.boardingPointLabel, l, route);
+  const alight = details?.alightingPointLabel;
+  const transfer = details?.transferLabel;
+  const dest = localizePoint(details?.destinationLabel, l);
+  if (["taxi", "uber"].includes(mode))
+    return [
+      "Başlangıç noktasını seç: şehir merkezi veya havalimanı.",
+      "Varış adresini outlet adresi olarak ayarla.",
+      "Ücreti yolculuk başlamadan önce uygulamada kontrol et.",
+      "Trafik ve dönüş saatini alışverişten önce tekrar kontrol et.",
+    ];
+  if (origin === "shuttle" || mode === "shuttle")
+    return [
+      `${route ? `${route} için` : "Resmi shuttle sağlayıcısında"} kalkış noktası ve saatini kontrol et.`,
+      "Bilet gerekiyorsa seyahatten önce rezervasyon yap.",
+      `${board || "Belirtilen şehir merkezi kalkış noktasına"} erken git.`,
+      `Shuttle ile ${dest || "outlet girişine veya servis durağına"} git.`,
+      "Dönüş kalkış saatini outlet’e varmadan önce teyit et.",
+    ];
+  const steps = [
+    `${board || (origin === "airport" ? "Havalimanı toplu ulaşım alanından" : "Şehir merkezi ulaşım noktasından")} başla.`,
+  ];
+  if (route)
+    steps.push(
+      `${route} bağlantısına ${alight || dest ? `${alight || dest} yönünde ` : ""}bin.`,
+    );
+  if (transfer)
+    steps.push(`${transfer} üzerinden aktarma bilgisini kontrol et.`);
+  if (alight) steps.push(`${alight} durağında in.`);
+  steps.push(
+    `${dest || "Outlet girişine"} yürüyerek veya yerel servisle devam et.`,
+  );
+  steps.push(
+    `${route || "Dönüş bağlantısı"} saatlerini alışverişten önce kontrol et.`,
+  );
+  return steps.slice(0, 5);
+}
+function optionFromGuide(
+  guide: TransportationGuide,
+): TransportationV2Option | undefined {
+  if (PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)) return undefined;
+  const originGroup =
+    guide.transportationType === "shuttle"
+      ? "shuttle"
+      : guide.originType === "airport"
+        ? "airport"
+        : "city";
+  const km = distanceFor(guide);
+  const estimate = estimateFor(originGroup, guide.transportationType, km);
+  if (!estimate) return undefined;
+  const hasSourceDuration = Boolean(
+    sanitizeTransportationDisplayValue(guide.estimatedDuration, "en"),
+  );
+  const hasSourceFare = Boolean(
+    sanitizeTransportationDisplayValue(guide.estimatedCost, "en"),
+  );
+  return {
+    id: guide.guideId,
+    originGroup,
+    originLabel: originGroup,
+    mode: guide.transportationType,
+    modeLabel: guide.transportationType,
+    estimatedDurationLabel: "",
+    estimatedFareLabel: "",
+    title: guide.title,
+    routeDetails: extractRouteDetails(
+      guide,
+      originGroup,
+      guide.transportationType,
+    ),
+    steps: [],
+    sourceConfidence:
+      hasSourceDuration && hasSourceFare ? "source" : estimate.confidence,
+    hasOnlyFallbackMeta: false,
+    hasUsefulEstimate: true,
+    hasUsefulFare: true,
+    isUsefulForPrimaryDisplay: true,
+    isUsefulForSummaryDisplay: true,
+    guide,
+  };
+}
+function syntheticGuide(
+  outletId: string,
+  originType: TransportationGuide["originType"],
+  originId: string,
+  mode: TransportationType,
+): TransportationGuide {
+  return {
+    guideId: `${outletId}-${originId}-${mode}-estimate`,
+    outletId,
+    originType,
+    originId,
+    transportationType: mode,
+    title: "Derived transportation estimate",
+    estimatedDuration: "",
+    estimatedCost: "",
+    recommended: false,
+    steps: [],
+    updatedAt: "2026-07-10",
+  };
+}
+function syntheticOptions(outletId: string): TransportationV2Option[] {
+  const outlet = outletFor(outletId);
+  if (!outlet) return [];
+  const airport = outlet.airports?.[0];
+  return [
+    syntheticGuide(outletId, "city_center", "city", "train"),
+    syntheticGuide(outletId, "city_center", "city", "taxi"),
+    ...(airport
+      ? [
+          syntheticGuide(outletId, "airport", airport.code, "metro"),
+          syntheticGuide(outletId, "airport", airport.code, "taxi"),
+        ]
+      : []),
+  ]
+    .map(optionFromGuide)
+    .filter(Boolean) as TransportationV2Option[];
+}
+export function getTransportationOptionDisplayModel(
+  option: TransportationV2Option,
+  language: TranslationLanguage,
+): TransportationV2Option {
+  const guide = option.guide;
+  const originGroup = option.originGroup;
+  const estimate = estimateFor(originGroup, option.mode, distanceFor(guide));
+  if (!estimate) return option;
+  const durationLabel =
+    formatTransportDurationForDisplay(guide.estimatedDuration, language) ||
+    formatDuration(estimate, language);
+  const fareLabel =
+    formatTransportFareForDisplay(guide.estimatedCost, language) ||
+    formatFare(
+      originGroup === "shuttle" && guide.originType === "airport"
+        ? { ...estimate, duration: [60, 150], fare: [15, 45] }
+        : estimate,
+      language,
+    );
+  const sourceConfidence: SourceConfidence =
+    formatTransportDurationForDisplay(guide.estimatedDuration, language) &&
+    formatTransportFareForDisplay(guide.estimatedCost, language)
+      ? "source"
+      : option.sourceConfidence;
+  return {
+    ...option,
+    originLabel: originLabelFor(originGroup, language),
+    modeLabel: I18N[language].modes[option.mode] || option.mode,
+    title: titleFor(option.mode, originGroup, language).replace(
+      /\b(shuttle)\s+\1\b/gi,
+      "$1",
+    ),
+    duration: durationLabel,
+    fare: fareLabel,
+    durationLabel,
+    fareLabel,
+    estimatedDurationLabel: durationLabel,
+    estimatedFareLabel: fareLabel,
+    note: undefined,
+    noteLabel:
+      option.routeDetails.hasSourceBackedRouteDetail ||
+      ["taxi", "uber"].includes(option.mode)
+        ? I18N[language].note
+        : I18N[language].routeLabels.checkRoute,
+    providerNote: undefined,
+    routeDetails: extractRouteDetails(guide, originGroup, option.mode),
+    steps: stepsFor(
+      option.mode,
+      originGroup,
+      language,
+      extractRouteDetails(guide, originGroup, option.mode),
+    ),
+    sourceConfidence,
+    hasOnlyFallbackMeta: false,
+    hasUsefulEstimate: true,
+    hasUsefulFare: true,
+    isUsefulForPrimaryDisplay: true,
+    isUsefulForSummaryDisplay: true,
+  };
+}
+export function isSourceBackedValue(value: string | undefined): boolean {
+  return Boolean(sanitizeTransportationDisplayValue(value, "en"));
+}
+export function isSourceBackedGuide(guide: TransportationGuide): boolean {
+  return Boolean(optionFromGuide(guide));
+}
+export function getTransportationV2Options(
+  outletId: string,
+): TransportationV2Option[] {
+  const fromGuides = transportationGuides
+    .filter((g) => g.outletId === outletId)
+    .map(optionFromGuide)
+    .filter(Boolean) as TransportationV2Option[];
+  return dedupeOptions([...fromGuides, ...syntheticOptions(outletId)]);
+}
+function routePriority(option: TransportationV2Option) {
+  const detail = option.routeDetails;
+  if (detail.hasSourceBackedRouteDetail && option.sourceConfidence === "source")
+    return 100;
+  if (
+    (option.originGroup === "shuttle" || option.mode === "shuttle") &&
+    (detail.lineOrProviderLabel || detail.boardingPointLabel)
+  )
+    return 90;
+  if (
+    option.originGroup === "city" &&
+    PUBLIC_TYPES.has(option.mode) &&
+    detail.hasSourceBackedRouteDetail
+  )
+    return 80;
+  if (
+    option.originGroup === "airport" &&
+    PUBLIC_TYPES.has(option.mode) &&
+    detail.hasSourceBackedRouteDetail
+  )
+    return 70;
+  if (
+    ["taxi", "uber"].includes(option.mode) &&
+    detail.boardingPointLabel &&
+    detail.destinationLabel
+  )
+    return 60;
+  return 10;
+}
+export function getRecommendedTransportationV2Option(
+  outletId: string,
+): TransportationV2Option | undefined {
+  const options = getTransportationV2Options(outletId);
+  return [...options].sort((a, b) => routePriority(b) - routePriority(a))[0];
+}
+export function getOutletTransportationV2Summary(
+  outletId: string,
+): TransportationV2Option[] {
+  const display = getTransportationV2Options(outletId).map((o) =>
+    getTransportationOptionDisplayModel(o, "tr"),
+  );
+  const city = display.find(
+    (o) =>
+      o.originGroup === "city" &&
+      PUBLIC_TYPES.has(o.mode) &&
+      o.routeDetails.routeHintLabel,
+  );
+  const shuttle = display.find(
+    (o) => o.originGroup === "shuttle" && o.routeDetails.routeHintLabel,
+  );
+  const airport = display.find((o) => o.originGroup === "airport");
+  return [city, shuttle, airport]
+    .filter(Boolean)
+    .slice(0, 2) as TransportationV2Option[];
+}
+function dedupeOptions(
+  options: TransportationV2Option[],
+): TransportationV2Option[] {
+  const seen = new Set<string>();
+  return options.filter((o) => {
+    const key = `${o.originGroup}|${o.mode}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+export function getUsefulTransportationV2DisplayOptions(
+  outletId: string,
+  language: TranslationLanguage,
+): TransportationV2Option[] {
+  return getTransportationV2Options(outletId).map((o) =>
+    getTransportationOptionDisplayModel(o, language),
+  );
+}
+export function getNearbyAirportDisplay(
+  outletId: string,
+): NearbyAirportDisplay[] {
+  const outlet = outletFor(outletId);
+  return (outlet?.airports || []).slice(0, 3).map((a) => ({
+    code: a.code,
+    name: a.name,
+    distance:
+      typeof a.distanceKm === "number" ? `${a.distanceKm} km` : undefined,
+  }));
+}
+export function getSectionProviderNote(language: TranslationLanguage): string {
+  return I18N[language].note;
+}
+export function getCompactRecommendedFallback(
+  language: TranslationLanguage,
+): string {
+  return I18N[language].details;
+}
+export function hasLegacyTransportationClutter(outletId: string): boolean {
+  return getTransportationForOutlet(outletId).some((item) =>
+    PROHIBITED_MAIN_LABEL_PATTERN.test(`${item.title} ${item.cost}`),
+  );
+}
+export function getOutletMapLinks(outletId: string) {
+  const outlet = outletFor(outletId) as any;
+  return outlet
+    ? {
+        googleMapsUrl: outlet.googleMapsUrl,
+        appleMapsUrl: outlet.appleMapsUrl,
+        yandexMapsUrl: outlet.yandexMapsUrl,
+      }
+    : undefined;
+}
