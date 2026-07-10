@@ -25,6 +25,7 @@ import {
 type ProfileRouteName =
   | "Login"
   | "MyTrips"
+  | "FlightDeals"
   | "LanguageSettings"
   | "CurrencySettings"
   | "NotificationSettings"
@@ -220,6 +221,12 @@ export function ProfileScreen() {
         title={t("profile.myTrips")}
         subtitle={t("profile.subtitles.myTrips")}
         onPress={() => goTo("MyTrips")}
+      />
+      <ProfileRow
+        icon="✈️"
+        title={t("profile.flightDeals")}
+        subtitle={t("profile.subtitles.flightDeals")}
+        onPress={() => goTo("FlightDeals")}
       />
       <ProfileRow
         icon="💾"
