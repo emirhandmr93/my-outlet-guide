@@ -75,6 +75,9 @@ const providerFallbacks = [
 const prohibited =
   /Private transfer|By Car \/ Outlet Parking|Car \+ town parking|Confirm parking locally|Free parking/;
 const debugPrefixes = /\b(TR|EN|DE|FR|IT|ES|AR|RU|ZH):/;
+const badParndorfTurkish = ["Parndorf Ort ile Designer Outlet Parndorf", "arasındaki resmi outlet servisini çalışıyorsa kullanın."].join(" ");
+const badParisRerTurkish = ["Merkezi Paris RER A", "istasyonu"].join(" ");
+const unaccentedLaVallee = ["La", "Vallee", "Village"].join(" ");
 const collapsedRangePattern =
   /€(\d+(?:[.,]\d+)?)–\1\b|\b(\d+)–\2\s*(?:dk|min|minutes)\b/i;
 const longSlashChain = /(?:[^·\n]*\/){3,}/;
@@ -82,6 +85,7 @@ const fakeTerms = /\b(lorem|dummy|placeholder|mock)\b/i;
 const rawEnglishLeakage =
   /Use the official station bus|Confirm ÖBB|Walk through|Central Paris RER A station başla|shopping centre to|€5–5|45–45|60–60|Shuttle shuttle|city’dan|city'dan|Outlet adresi|Şehir merkezi ÖBB istasyonu|Check ÖBB|Travel by train|Check Serravalle|Book an official partner|Official Outlet Link bus|90 min from Milan|McArthurGlen notes|listed coach|Confirm with provider|Check official timetable|Go to the most convenient|Take the listed|Get off at/i;
 const files = [
+  "src/constants/transportationRouteFacts.ts",
   "src/screens/TransportationScreen.tsx",
   "src/components/cards/TransportationCard.tsx",
   "src/services/transportationV2Service.ts",
@@ -97,6 +101,12 @@ for (const file of files) {
     errors.push(`${file} contains prohibited generic/fake route wording.`);
   if (debugPrefixes.test(text))
     errors.push(`${file} contains visible debug language prefix.`);
+  if (text.includes(unaccentedLaVallee))
+    errors.push(`${file} contains unaccented La Vallée destination.`);
+  if (text.includes(badParndorfTurkish))
+    errors.push(`${file} contains the bad Parndorf Turkish walking sentence.`);
+  if (text.includes(badParisRerTurkish))
+    errors.push(`${file} contains bad Turkish Paris RER origin wording.`);
   if (file !== "src/translations/translations.ts" && fakeTerms.test(text))
     errors.push(`${file} contains fake/mock/placeholder wording.`);
   if (
@@ -218,6 +228,12 @@ for (const outlet of outlets) {
       (option.steps.length < 3 || option.steps.length > 5)
     )
       errors.push(`${option.id} recommended route must have 3-5 steps.`);
+    if (visible.includes(unaccentedLaVallee))
+      errors.push(`${option.id} displays unaccented La Vallée destination.`);
+    if (visible.includes(badParndorfTurkish))
+      errors.push(`${option.id} displays the bad Parndorf Turkish walking sentence.`);
+    if (visible.includes(badParisRerTurkish))
+      errors.push(`${option.id} displays bad Turkish Paris RER origin wording.`);
     if (rawEnglishLeakage.test(visible))
       errors.push(
         `${option.id} leaks raw English transport prose in Turkish display model.`,
@@ -394,15 +410,17 @@ function assertTurkishRoute(guideId: string, required: string[]) {
     display.routeDetails.destinationLabel,
     display.routeDetails.walkNoteLabel,
     display.routeDetails.officialCheckNoteLabel,
+    display.estimatedDurationLabel,
+    display.estimatedFareLabel,
     ...display.steps,
   ].filter(Boolean).join(" ");
   for (const item of required) if (!text.includes(item)) errors.push(`${guideId} Turkish display lacks ${item}.`);
   if (rawEnglishLeakage.test(text)) errors.push(`${guideId} Turkish display leaks prohibited English/raw text.`);
 }
-assertTurkishRoute("vienna-to-parndorf-train-bus", ["ÖBB", "Parndorf Ort"]);
-assertTurkishRoute("paris-to-la-vallee-rer-a", ["RER A", "Val d'Europe / Serris-Montévrain"]);
-assertTurkishRoute("paris-to-la-vallee-shopping-express", ["Shopping Express", "Hotel Pullman Paris Bercy"]);
-assertTurkishRoute("serravalle-milan-official-shuttle", ["Zani Viaggi / Frigerio Viaggi", "Milano Centrale"]);
+assertTurkishRoute("vienna-to-parndorf-train-bus", ["ÖBB", "Parndorf Ort", "Yaklaşık", "€", "Outlet servisi"]);
+assertTurkishRoute("paris-to-la-vallee-rer-a", ["RER A", "Val d'Europe / Serris-Montévrain", "La Vallée Village", "Yaklaşık", "€", "Paris merkezindeki bir RER A istasyonu"]);
+assertTurkishRoute("paris-to-la-vallee-shopping-express", ["Shopping Express", "Hotel Pullman Paris Bercy", "La Vallée Village", "Yaklaşık", "€"]);
+assertTurkishRoute("serravalle-milan-official-shuttle", ["Zani Viaggi / Frigerio Viaggi", "Milano Centrale", "Yaklaşık", "€"]);
 
 const parndorfFact = transportationRouteFacts.find(
   (fact) => fact.guideId === "vienna-to-parndorf-train-bus",
@@ -414,8 +432,11 @@ const laValleeFact = transportationRouteFacts.find(
 );
 if (!laValleeFact?.line?.includes("RER A") || !laValleeFact.provider?.includes("SNCF") || !laValleeFact.alightingPoint?.includes("Val d'Europe"))
   errors.push("La Vallée structured route fact must include RER A / SNCF and Val d'Europe / Serris-Montévrain.");
-if (!JSON.stringify([outlets, transportationRouteFacts]).includes("La Vallée Village"))
+const routeDataText = JSON.stringify([outlets, transportationRouteFacts, transportationGuides]);
+if (!routeDataText.includes("La Vallée Village"))
   errors.push("La Vallée Village accent is not preserved in display data.");
+if (routeDataText.includes(unaccentedLaVallee))
+  errors.push("Route/display source data contains unaccented La Vallée destination.");
 const serravalleFact = transportationRouteFacts.find(
   (fact) => fact.guideId === "serravalle-milan-official-shuttle",
 );
