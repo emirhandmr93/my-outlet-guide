@@ -22,10 +22,22 @@ export type TripSegment = {
   notes?: string;
 };
 
-export type TripFlightDetails = {
+export type TripFlightLegDetails = {
   airline?: string;
   flightNumber?: string;
   departureAirport?: string;
+  arrivalAirport?: string;
+  departureDate?: string;
+  departureTime?: string;
+};
+
+export type TripFlightDetails = {
+  outbound?: TripFlightLegDetails;
+  return?: TripFlightLegDetails;
+  airline?: string;
+  flightNumber?: string;
+  departureAirport?: string;
+  arrivalAirport?: string;
   returnAirport?: string;
   outboundDateTime?: string;
   returnDateTime?: string;

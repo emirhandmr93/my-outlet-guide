@@ -31,15 +31,45 @@ function getTripStatus(startDate?: string, endDate?: string): TripStatus {
   return "active";
 }
 
-function normalizeFlightDetails(value: any): TripFlightDetails | undefined {
+function splitDateTime(value: unknown) {
+  const text = normalizeOptionalString(value);
+  if (!text) return { departureDate: undefined, departureTime: undefined };
+  const [datePart, timePart = ""] = text.includes("T") ? text.split("T") : text.split(" ");
+  return {
+    departureDate: /^\d{4}-\d{2}-\d{2}$/.test(datePart) ? datePart : undefined,
+    departureTime: /^\d{2}:\d{2}/.test(timePart) ? timePart.slice(0, 5) : undefined,
+  };
+}
+
+function normalizeFlightLeg(value: any, legacy?: any) {
+  const fromDateTime = splitDateTime(legacy?.dateTime);
   const details = stripUndefined({
-    airline: normalizeOptionalString(value?.airline),
-    flightNumber: normalizeOptionalString(value?.flightNumber),
-    departureAirport: normalizeOptionalString(value?.departureAirport),
-    returnAirport: normalizeOptionalString(value?.returnAirport),
-    outboundDateTime: normalizeOptionalString(value?.outboundDateTime),
-    returnDateTime: normalizeOptionalString(value?.returnDateTime),
+    airline: normalizeOptionalString(value?.airline) || normalizeOptionalString(legacy?.airline),
+    flightNumber: normalizeOptionalString(value?.flightNumber) || normalizeOptionalString(legacy?.flightNumber),
+    departureAirport: normalizeOptionalString(value?.departureAirport) || normalizeOptionalString(legacy?.departureAirport),
+    arrivalAirport: normalizeOptionalString(value?.arrivalAirport) || normalizeOptionalString(legacy?.arrivalAirport),
+    departureDate: normalizeOptionalString(value?.departureDate) || fromDateTime.departureDate,
+    departureTime: normalizeOptionalString(value?.departureTime) || fromDateTime.departureTime,
   });
+  return Object.keys(details).length > 0 ? details : undefined;
+}
+
+function normalizeFlightDetails(value: any): TripFlightDetails | undefined {
+  const outbound = normalizeFlightLeg(value?.outbound, {
+    airline: value?.airline,
+    flightNumber: value?.flightNumber,
+    departureAirport: value?.departureAirport,
+    arrivalAirport: value?.arrivalAirport,
+    dateTime: value?.outboundDateTime,
+  });
+  const returnLeg = normalizeFlightLeg(value?.return, {
+    airline: value?.returnAirline,
+    flightNumber: value?.returnFlightNumber,
+    departureAirport: value?.returnDepartureAirport || value?.returnAirport,
+    arrivalAirport: value?.returnArrivalAirport,
+    dateTime: value?.returnDateTime,
+  });
+  const details = stripUndefined({ outbound, return: returnLeg });
   return Object.keys(details).length > 0 ? details : undefined;
 }
 
