@@ -666,6 +666,15 @@ export function hasSourceBackedShuttleRouteDetail(
       option.routeDetails.boardingPointLabel,
   );
 }
+
+function isRouteLineCode(value: string | undefined) {
+  if (!value) return false;
+  const normalized = value.trim();
+  if (!normalized) return false;
+  const knownProviderOnly = /^(?:ÖBB|Trenitalia|Shopping Express|Zani Viaggi|Frigerio Viaggi|Zani Viaggi \/ Frigerio Viaggi|Outlet Link|FlixBus|Obus)$/i;
+  if (knownProviderOnly.test(normalized)) return false;
+  return /(?:^|\b)(?:RER|TGV|SNCF|RATP|RB|RE|S)\s*[A-Z0-9]+(?:\b|$)|\//i.test(normalized);
+}
 function extractRouteDetails(
   guide: TransportationGuide,
   originGroup: TransportationV2Option["originGroup"],
@@ -675,9 +684,13 @@ function extractRouteDetails(
   const isTaxi = ["taxi", "uber"].includes(mode);
   if (fact) {
     const isExactOrPartial = fact.confidence !== "estimateOnly";
+    const lineOrProviderLabel = fact.mode === "shuttle"
+      ? fact.provider
+      : fact.line;
+    const operatorLabel = fact.operator || (fact.mode === "shuttle" ? undefined : fact.provider);
     return {
-      lineOrProviderLabel: fact.mode === "shuttle" ? fact.provider : fact.line,
-      operatorLabel: fact.operator || (fact.mode === "shuttle" ? undefined : fact.provider),
+      lineOrProviderLabel,
+      operatorLabel: operatorLabel && operatorLabel !== lineOrProviderLabel ? operatorLabel : undefined,
       boardingPointLabel: fact.boardingPoint,
       transferLabel: fact.transferPoints?.join(" / "),
       alightingPointLabel: fact.alightingPoint,
@@ -774,7 +787,7 @@ export function getTransportationRouteDetailRows(
   return [
     detail.lineOrProviderLabel
       ? {
-          label: isShuttle ? labels.provider : labels.line,
+          label: isShuttle || !isRouteLineCode(detail.lineOrProviderLabel) ? labels.provider : labels.line,
           value: detail.lineOrProviderLabel,
         }
       : undefined,

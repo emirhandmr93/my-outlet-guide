@@ -457,6 +457,31 @@ assertTurkishRoute("paris-to-la-vallee-rer-a", ["RER A", "Val d'Europe / Serris-
 assertTurkishRoute("paris-to-la-vallee-shopping-express", ["Shopping Express", "Hotel Pullman Paris Bercy", "La Vallée Village", "Yaklaşık", "€"]);
 assertTurkishRoute("serravalle-milan-official-shuttle", ["Zani Viaggi / Frigerio Viaggi", "Milano Centrale", "Yaklaşık", "€"]);
 
+function assertTurkishDetailRows(guideId: string, requiredRows: string[], prohibitedRows: string[]) {
+  const guide = transportationGuides.find((item) => item.guideId === guideId);
+  const option = guide
+    ? getTransportationV2Options(guide.outletId).find((item) => item.id === guideId)
+    : undefined;
+  if (!option) {
+    errors.push(`${guideId} Turkish detail rows are missing.`);
+    return;
+  }
+  const rows = getTransportationRouteDetailRows(
+    getTransportationOptionDisplayModel(option, "tr"),
+    "tr",
+  ).map((row) => `${row.label}: ${row.value}`).join(" | ");
+  for (const row of requiredRows)
+    if (!rows.includes(row)) errors.push(`${guideId} Turkish detail rows lack ${row}. Rows: ${rows}`);
+  for (const row of prohibitedRows)
+    if (rows.includes(row)) errors.push(`${guideId} Turkish detail rows must not render ${row}. Rows: ${rows}`);
+}
+
+assertTurkishDetailRows("vienna-to-parndorf-train-bus", ["Sağlayıcı: ÖBB"], ["Hat: ÖBB"]);
+assertTurkishDetailRows("serravalle-train-bus", ["Sağlayıcı: Outlet Link", "Operatör: Trenitalia"], ["Hat: Outlet Link"]);
+assertTurkishDetailRows("paris-to-la-vallee-rer-a", ["Hat: RER A", "Operatör: RATP / SNCF"], []);
+assertTurkishDetailRows("cdg-to-la-vallee-tgv-rer", ["Hat: TGV / RER A", "Operatör: SNCF / RATP"], []);
+assertTurkishDetailRows("paris-to-la-vallee-shopping-express", ["Sağlayıcı: Shopping Express"], ["Hat: Shopping Express"]);
+assertTurkishDetailRows("serravalle-milan-official-shuttle", ["Sağlayıcı: Zani Viaggi / Frigerio Viaggi"], ["Hat: Zani Viaggi", "Hat: Frigerio Viaggi"]);
 
 function assertVisibleOption(
   outletId: string,
