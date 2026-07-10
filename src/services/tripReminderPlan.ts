@@ -53,20 +53,13 @@ export function generateTripReminderPlan(trip: Pick<TripInput, "startDate" | "en
   }
 
   const flightDetails: TripFlightDetails | undefined = trip.flightDetails;
-  const outboundDate = isoDate(flightDetails?.outbound?.departureDate || flightDetails?.outboundDateTime);
-  if (outboundDate) {
-    const airport = flightDetails?.outbound?.departureAirport || flightDetails?.departureAirport || "";
-    pushUnique(reminders, { id: `outboundFlight_${tripId}`, type: "outboundFlight", date: outboundDate, title: "tripDetail.flightReminder", body: "tripDetail.outboundFlightReminderMessage", messageParams: { airport: airport ? ` (${airport})` : "" } });
-  }
-
   const returnDate = isoDate(flightDetails?.return?.departureDate || flightDetails?.returnDateTime);
-  if (returnDate) {
+  const returnTime = flightDetails?.return?.departureTime || "";
+  if (returnDate && /^([01]\d|2[0-3]):[0-5]\d$/.test(returnTime)) {
     const airport = flightDetails?.return?.departureAirport || flightDetails?.returnAirport || "";
     pushUnique(reminders, { id: `returnFlight_${tripId}`, type: "returnFlight", date: returnDate, title: "tripDetail.returnFlightReminder", body: "tripDetail.returnFlightReminderMessage", messageParams: { airport: airport ? ` (${airport})` : "" } });
   }
 
-  // Source-backed deal/event reminders intentionally remain empty until a verified
-  // bundled source with safe matching metadata is available. Demo fixtures are not used.
   return reminders.sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
 }
 

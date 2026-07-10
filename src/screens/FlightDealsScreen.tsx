@@ -14,8 +14,7 @@ export function FlightDealsScreen() {
   const { trips } = useTrips();
   const insets = useSafeAreaInsets();
   const flightRows = trips.flatMap((trip) => [
-    trip.flightDetails?.outbound?.departureDate ? { trip, leg: trip.flightDetails.outbound, label: t("flightAlerts.outboundFlight"), type: "outboundFlight" } : null,
-    trip.flightDetails?.return?.departureDate ? { trip, leg: trip.flightDetails.return, label: t("flightAlerts.returnFlight"), type: "returnFlight" } : null,
+    trip.flightDetails?.return?.departureDate && trip.flightDetails?.return?.departureTime ? { trip, leg: trip.flightDetails.return, label: t("flightAlerts.returnFlight"), type: "returnFlight" } : null,
   ].filter(Boolean));
 
   if (!isLoggedIn) {
