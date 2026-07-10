@@ -8,7 +8,6 @@ import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { motion } from "../../theme/motion";
 import { useTranslation } from "../../hooks/useTranslation";
-import { formatTransportationTypeLabel } from "../../utils/transportationLabelFormatter";
 
 export type TransportationCardProps = {
   title: string;
@@ -40,24 +39,21 @@ export function TransportationCard({ title, summaryItems, notAvailableText, butt
       <Text style={styles.subtitle}>{t("transportation.v2.detailSubtitle")}</Text>
 
       {summaryItems.length > 0 ? (
-        summaryItems.slice(0, 3).map((rawItem) => {
+        summaryItems.slice(0, 2).map((rawItem) => {
           const item = getTransportationOptionDisplayModel(rawItem, language);
-          const hasUsefulMeta = Boolean(item.duration || item.fare);
-          return (
+          const meta = [item.fareLabel, item.durationLabel, item.noteLabel].filter(Boolean).join(" • ");
+          return meta ? (
           <View key={item.id} style={styles.summaryRow}>
             <Text style={styles.icon}>{getIcon(item.originGroup)}</Text>
             <View style={styles.summaryText}>
               <Text style={styles.title}>{getSummaryTitle(item.originGroup, t)}</Text>
-              <Text style={styles.mode} numberOfLines={1}>{formatTransportationTypeLabel(item.mode, t)}</Text>
-              <Text style={styles.meta} numberOfLines={2}>
-                {hasUsefulMeta ? [item.duration, item.fare].filter(Boolean).join(" • ") : fallbacks.details}
-              </Text>
+              <Text style={styles.meta} numberOfLines={2}>{item.title} · {meta}</Text>
             </View>
           </View>
-        );
+        ) : null;
         })
       ) : (
-        <Text style={styles.emptyText}>{notAvailableText}</Text>
+        <Text style={styles.emptyText}>{fallbacks.details || notAvailableText}</Text>
       )}
 
       <TouchableOpacity style={styles.button} onPress={onPressGuide} activeOpacity={motion.pressOpacity}>
@@ -73,7 +69,6 @@ const styles = StyleSheet.create({
   icon: { width: 36, fontSize: 22, marginRight: spacing.sm },
   summaryText: { flex: 1, minWidth: 0 },
   title: { color: colors.textPrimary, fontWeight: typography.weightBlack, fontSize: typography.bodyLarge },
-  mode: { marginTop: 2, color: colors.gold, fontSize: typography.caption, fontWeight: typography.weightBlack, textTransform: "uppercase" },
   meta: { marginTop: 4, color: colors.textSecondary, fontSize: typography.body, lineHeight: 20, fontWeight: typography.weightBold },
   emptyText: { color: colors.textSecondary, lineHeight: 21, marginBottom: spacing.md },
   button: { marginTop: spacing.sm, backgroundColor: colors.primary, borderRadius: radius.pill, paddingVertical: spacing.md, alignItems: "center" },

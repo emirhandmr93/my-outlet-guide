@@ -11994,6 +11994,9 @@ for (const languageCode of supportedLanguageCodes) {
 
 const transportationV2Translations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
+    "transportation.v2.compactRecommendedFallback": "Check the most practical transport details from official sources.",
+    "transportation.v2.providerSectionNote": "Check current times and fares with the official provider.",
+    "transportation.v2.nearbyAirport": "Nearby airport",
     "transportation.v2.subtitle": "The most practical ways to reach this outlet.",
     "transportation.v2.detailSubtitle": "Practical ways to reach this outlet.",
     "transportation.v2.airportFrom": "From airport",
@@ -12015,6 +12018,9 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.navigation": "Map / navigation",
   },
   tr: {
+    "transportation.v2.compactRecommendedFallback": "En pratik ulaşım bilgisini resmi kaynaklardan kontrol et.",
+    "transportation.v2.providerSectionNote": "Güncel saat ve ücret bilgisini resmi sağlayıcıdan kontrol et.",
+    "transportation.v2.nearbyAirport": "Yakındaki havalimanı",
     "transportation.v2.subtitle": "Bu outlet'e ulaşmanın en pratik yolları.",
     "transportation.v2.detailSubtitle": "Bu outlet'e ulaşmanın pratik yolları.",
     "transportation.v2.airportFrom": "Havaalanından",
@@ -12023,8 +12029,8 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.airportAccess": "Havaalanından ulaşım",
     "transportation.v2.cityAccess": "Şehir merkezinden ulaşım",
     "transportation.v2.shuttleSection": "Shuttle",
-    "transportation.v2.confirmTime": "Süreyi sağlayıcıdan kontrol et",
-    "transportation.v2.confirmFare": "Ücreti sağlayıcıdan kontrol et",
+    "transportation.v2.confirmTime": "",
+    "transportation.v2.confirmFare": "",
     "transportation.v2.noAirportData": "Yakındaki havalimanlarını veya resmi sağlayıcıyı kontrol et.",
     "transportation.v2.nearbyAirports": "Yakındaki havalimanları",
     "transportation.v2.distance": "Mesafe",
@@ -12036,6 +12042,9 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.navigation": "Harita / navigasyon",
   },
   es: {
+    "transportation.v2.compactRecommendedFallback": "Consulta la información de transporte más práctica en fuentes oficiales.",
+    "transportation.v2.providerSectionNote": "Consulta horarios y tarifas actuales con el proveedor oficial.",
+    "transportation.v2.nearbyAirport": "Aeropuerto cercano",
     "transportation.v2.subtitle": "Las formas más prácticas de llegar a este outlet.",
     "transportation.v2.detailSubtitle": "Formas prácticas de llegar a este outlet.",
     "transportation.v2.airportFrom": "Desde el aeropuerto",
@@ -12057,6 +12066,9 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.navigation": "Mapa / navegación",
   },
   fr: {
+    "transportation.v2.compactRecommendedFallback": "Vérifiez les informations de transport les plus pratiques auprès des sources officielles.",
+    "transportation.v2.providerSectionNote": "Vérifiez les horaires et tarifs actuels auprès du fournisseur officiel.",
+    "transportation.v2.nearbyAirport": "Aéroport à proximité",
     "transportation.v2.subtitle": "Les moyens les plus pratiques pour rejoindre cet outlet.",
     "transportation.v2.detailSubtitle": "Moyens pratiques pour rejoindre cet outlet.",
     "transportation.v2.airportFrom": "Depuis l'aéroport",
@@ -12078,6 +12090,9 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.navigation": "Carte / navigation",
   },
   de: {
+    "transportation.v2.compactRecommendedFallback": "Prüfe die praktischsten Verkehrsinformationen bei offiziellen Quellen.",
+    "transportation.v2.providerSectionNote": "Aktuelle Zeiten und Preise beim offiziellen Anbieter prüfen.",
+    "transportation.v2.nearbyAirport": "Nahegelegener Flughafen",
     "transportation.v2.subtitle": "Die praktischsten Wege zu diesem Outlet.",
     "transportation.v2.detailSubtitle": "Praktische Wege zu diesem Outlet.",
     "transportation.v2.airportFrom": "Vom Flughafen",
@@ -12099,6 +12114,9 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.navigation": "Karte / Navigation",
   },
   ar: {
+    "transportation.v2.compactRecommendedFallback": "تحقق من معلومات الوصول الأنسب من المصادر الرسمية.",
+    "transportation.v2.providerSectionNote": "تحقق من الأوقات والأجرة الحالية لدى المزوّد الرسمي.",
+    "transportation.v2.nearbyAirport": "المطار القريب",
     "transportation.v2.subtitle": "أكثر الطرق العملية للوصول إلى هذا الأوتلت.",
     "transportation.v2.detailSubtitle": "طرق عملية للوصول إلى هذا الأوتلت.",
     "transportation.v2.airportFrom": "من المطار",
@@ -12120,6 +12138,9 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.navigation": "الخريطة / الملاحة",
   },
   ru: {
+    "transportation.v2.compactRecommendedFallback": "Проверьте самый практичный вариант транспорта в официальных источниках.",
+    "transportation.v2.providerSectionNote": "Проверьте актуальное расписание и цены у официального провайдера.",
+    "transportation.v2.nearbyAirport": "Ближайший аэропорт",
     "transportation.v2.subtitle": "Самые практичные способы добраться до этого аутлета.",
     "transportation.v2.detailSubtitle": "Практичные способы добраться до этого аутлета.",
     "transportation.v2.airportFrom": "Из аэропорта",
@@ -12141,6 +12162,9 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.navigation": "Карта / навигация",
   },
   zh: {
+    "transportation.v2.compactRecommendedFallback": "请从官方来源确认最实用的交通信息。",
+    "transportation.v2.providerSectionNote": "请向官方服务商确认当前班次和费用。",
+    "transportation.v2.nearbyAirport": "附近机场",
     "transportation.v2.subtitle": "前往此奥特莱斯的最实用方式。",
     "transportation.v2.detailSubtitle": "前往此奥特莱斯的实用方式。",
     "transportation.v2.airportFrom": "从机场",

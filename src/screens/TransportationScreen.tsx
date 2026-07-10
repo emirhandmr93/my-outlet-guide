@@ -3,45 +3,42 @@ import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "r
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { useTranslation } from "../hooks/useTranslation";
-import { formatTransportationTypeLabel } from "../utils/transportationLabelFormatter";
-import { getNearbyAirportDisplay, getOutletMapLinks, getRecommendedTransportationV2Option, getTransportationDisplayFallbacks, getTransportationOptionDisplayModel, getTransportationV2Options, type NearbyAirportDisplay, type TransportationV2Option } from "../services/transportationV2Service";
+import { getCompactRecommendedFallback, getNearbyAirportDisplay, getOutletMapLinks, getRecommendedTransportationV2Option, getSectionProviderNote, getTransportationOptionDisplayModel, getTransportationV2Options, type NearbyAirportDisplay, type TransportationV2Option } from "../services/transportationV2Service";
 import { colors } from "../theme/colors";
 
 type RouteParams = { Transportation: { outletId: string } };
 
-function labelForOrigin(item: TransportationV2Option, t: (key: string) => string) {
-  if (item.originGroup === "airport") return t("transportation.v2.airportFrom");
-  if (item.originGroup === "city") return t("transportation.v2.cityFrom");
-  return t("transportation.v2.shuttle");
+function Metadata({ item }: { item: TransportationV2Option }) {
+  const chips = [item.modeLabel, item.durationLabel, item.fareLabel, item.noteLabel].filter(Boolean) as string[];
+  return <View style={styles.chipRow}>{chips.map((chip) => <Text key={chip} style={styles.metaChip}>{chip}</Text>)}</View>;
 }
 
-function Value({ label, value }: { label: string; value: string }) {
-  return <View style={styles.valueBox}><Text style={styles.valueLabel}>{label}</Text><Text style={styles.valueText}>{value}</Text></View>;
-}
-
-function OptionRow({ item }: { item: TransportationV2Option }) {
-  const { t, language } = useTranslation();
-  const fallbacks = getTransportationDisplayFallbacks(language);
-  const duration = item.duration || fallbacks.time;
-  const fare = item.fare || fallbacks.fare;
-  return <View style={styles.optionRow}>
-    <View style={styles.optionHeader}><Text style={styles.optionTitle}>{item.title || formatTransportationTypeLabel(item.mode, t)}</Text><Text style={styles.modeChip}>{labelForOrigin(item, t)}</Text></View>
-    {item.hasOnlyFallbackMeta ? <View style={styles.metaList}><Text style={styles.metaLine}>{t("transportation.duration")}: {duration}</Text><Text style={styles.metaLine}>{t("transportation.cost")}: {fare}</Text></View> : <View style={styles.valueRow}><Value label={t("transportation.duration")} value={duration} /><Value label={t("transportation.cost")} value={fare} /></View>}
-    {item.note ? <Text style={styles.compactNote}>{item.note}</Text> : null}
-    {item.providerNote ? <Text style={styles.providerNote}>{item.providerNote}</Text> : null}
+function OptionRow({ item, compact = false }: { item: TransportationV2Option; compact?: boolean }) {
+  return <View style={[styles.optionRow, compact && styles.optionRowCompact]}>
+    {!compact ? <Text style={styles.optionTitle}>{item.title}</Text> : null}
+    <Metadata item={item} />
   </View>;
 }
 
-function Section({ title, items, empty }: { title: string; items: TransportationV2Option[]; empty?: string }) {
-  if (!items.length && !empty) return null;
-  return <View style={styles.section}><Text style={styles.sectionTitle}>{title}</Text>{items.length ? items.map((item) => <OptionRow key={item.id} item={item} />) : <Text style={styles.note}>{empty}</Text>}</View>;
+function Section({ title, items, note }: { title: string; items: TransportationV2Option[]; note?: string }) {
+  if (!items.length && !note) return null;
+  return <View style={styles.section}><Text style={styles.sectionTitle}>{title}</Text>{items.map((item) => <OptionRow key={item.id} item={item} />)}{!items.length && note ? <Text style={styles.note}>{note}</Text> : null}</View>;
 }
 
-
 function NearbyAirportsSection({ airports }: { airports: NearbyAirportDisplay[] }) {
-  const { t, language } = useTranslation();
+  const { t } = useTranslation();
   if (!airports.length) return null;
-  return <View style={styles.section}><Text style={styles.sectionTitle}>{t("transportation.v2.nearbyAirports")}</Text>{airports.map((airport) => <View key={`${airport.code}-${airport.name}`} style={styles.airportRow}><Text style={styles.airportName}>{airport.code} · {airport.name}</Text>{airport.distance ? <Text style={styles.metaLine}>{t("transportation.v2.distance")}: {airport.distance}</Text> : null}<Text style={styles.metaLine}>{t("transportation.v2.publicTransport")}: {t("transportation.v2.checkProviderShort")}</Text><Text style={styles.metaLine}>{t("transportation.v2.taxiUber")}: {t("transportation.v2.checkProviderShort")}</Text></View>)}</View>;
+  return <View style={styles.section}><Text style={styles.sectionTitle}>{t("transportation.v2.nearbyAirports")}</Text>{airports.map((airport) => <View key={`${airport.code}-${airport.name}`} style={styles.airportRow}><Text style={styles.airportName}>{airport.code} · {airport.name}</Text>{airport.distance ? <Text style={styles.metaLine}>{airport.distance}</Text> : null}</View>)}</View>;
+}
+
+function dedupeShuttles(items: TransportationV2Option[]) {
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    const key = [item.fareLabel || "", item.durationLabel || "", item.noteLabel || ""].join("|").toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  }).slice(0, 1);
 }
 
 export function TransportationScreen() {
@@ -53,28 +50,29 @@ export function TransportationScreen() {
   const recommendedBase = getRecommendedTransportationV2Option(outletId);
   const recommended = recommendedBase ? getTransportationOptionDisplayModel(recommendedBase, language) : undefined;
   const maps = getOutletMapLinks(outletId);
-  const airportOptions = options.filter((item) => item.originGroup === "airport").slice(0, 3);
+  const airportOptions = options.filter((item) => item.originGroup === "airport" && item.isUsefulForPrimaryDisplay).slice(0, 3);
   const nearbyAirports = airportOptions.length ? [] : getNearbyAirportDisplay(outletId);
-  const cityOptions = options.filter((item) => item.originGroup === "city");
-  const shuttleOptions = options.filter((item) => item.originGroup === "shuttle" && (item.duration || item.fare));
-  const steps = recommended?.steps.slice(0, 4) ?? [];
+  const cityOptions = options.filter((item) => item.originGroup === "city" && item.isUsefulForPrimaryDisplay && (item.durationLabel || item.fareLabel));
+  const shuttleOptions = dedupeShuttles(options.filter((item) => item.originGroup === "shuttle" && item.isUsefulForPrimaryDisplay && (item.durationLabel || item.fareLabel || item.noteLabel)));
+  const showRecommended = Boolean(recommended?.durationLabel || recommended?.fareLabel || recommended?.noteLabel);
+  const steps = showRecommended ? recommended?.steps.slice(0, 4) ?? [] : [];
 
-  if (!recommended) return <View style={styles.emptyContainer}><Text style={styles.emptyTitle}>{t("transportation.notAvailable")}</Text></View>;
+  if (!recommended && !nearbyAirports.length) return <View style={styles.emptyContainer}><Text style={styles.emptyTitle}>{t("transportation.notAvailable")}</Text></View>;
 
   return <View style={styles.screenRoot}><View pointerEvents="none" style={[styles.topSafeScrim, { height: insets.top }]} />
-    <ScrollView style={styles.container} contentContainerStyle={[styles.content, { paddingTop: Math.max(insets.top + 8, 18), paddingBottom: getFloatingTabClearance(insets.bottom) + 12 }]} scrollIndicatorInsets={{ top: Math.max(insets.top + 8, 18), bottom: getScrollIndicatorBottomInset(insets.bottom) }}>
+    <ScrollView style={styles.container} contentContainerStyle={[styles.content, { paddingTop: Math.max(getScreenTopInset(insets.top) - 6, 14), paddingBottom: getFloatingTabClearance(insets.bottom) + 16 }]} scrollIndicatorInsets={{ top: Math.max(getScreenTopInset(insets.top) - 6, 14), bottom: getScrollIndicatorBottomInset(insets.bottom) }}>
       <Text style={styles.pageTitle}>{t("transportation.title")}</Text>
       <Text style={styles.pageSubtitle}>{t("transportation.v2.subtitle")}</Text>
-      <View style={styles.recommendedCard}><Text style={styles.badge}>{t("transportation.recommendedRoute")}</Text><Text style={styles.recommendedTitle}>{recommended.title}</Text><OptionRow item={recommended} /></View>
+      <View style={styles.recommendedCard}><Text style={styles.badge}>{t("transportation.recommendedRoute")}</Text>{showRecommended && recommended ? <><Text style={styles.recommendedTitle}>{recommended.title}</Text><OptionRow item={recommended} compact /></> : <Text style={styles.notePlain}>{getCompactRecommendedFallback(language)}</Text>}</View>
       {airportOptions.length ? <Section title={t("transportation.v2.airportAccess")} items={airportOptions} /> : <NearbyAirportsSection airports={nearbyAirports} />}
-      <Section title={t("transportation.v2.cityAccess")} items={cityOptions} empty={t("transportation.v2.noCityData")} />
+      <Section title={t("transportation.v2.cityAccess")} items={cityOptions} note={cityOptions.length ? undefined : getSectionProviderNote(language)} />
       <Section title={t("transportation.v2.shuttleSection")} items={shuttleOptions} />
-      <View style={styles.section}><Text style={styles.sectionTitle}>{t("transportation.stepByStep")}</Text>{steps.length ? steps.map((step, index) => <View key={`${recommended.id}-${index}`} style={styles.stepRow}><Text style={styles.stepNumber}>{index + 1}</Text><Text style={styles.stepText}>{step}</Text></View>) : <Text style={styles.note}>{t("transportation.v2.noReliableSteps")}</Text>}</View>
+      {steps.length ? <View style={styles.section}><Text style={styles.sectionTitle}>{t("transportation.stepByStep")}</Text>{steps.map((step, index) => <View key={`${recommended?.id}-${index}`} style={styles.stepRow}><Text style={styles.stepNumber}>{index + 1}</Text><Text style={styles.stepText}>{step}</Text></View>)}</View> : null}
       {maps ? <View style={styles.section}><Text style={styles.sectionTitle}>{t("transportation.v2.navigation")}</Text><View style={styles.mapRow}>{[{label:t("outlet.googleMaps"),url:maps.googleMapsUrl},{label:t("outlet.appleMaps"),url:maps.appleMapsUrl},{label:t("outlet.yandexMaps"),url:maps.yandexMapsUrl}].map((link) => link.url ? <TouchableOpacity key={link.label} style={styles.mapButton} onPress={() => Linking.openURL(link.url)}><Text style={styles.mapButtonText}>{link.label}</Text></TouchableOpacity> : null)}</View></View> : null}
     </ScrollView>
   </View>;
 }
 
 const styles = StyleSheet.create({
-  screenRoot: { flex: 1, backgroundColor: colors.surfaceSoft }, topSafeScrim: { position: "absolute", top: 0, left: 0, right: 0, backgroundColor: colors.surfaceSoft, zIndex: 10 }, container: { flex: 1 }, content: { padding: 20 }, emptyContainer: { flex: 1, backgroundColor: colors.surfaceSoft, alignItems: "center", justifyContent: "center", padding: 20 }, emptyTitle: { fontSize: 18, fontWeight: "800", color: colors.primary, textAlign: "center" }, pageTitle: { fontSize: 30, fontWeight: "900", color: colors.primary }, pageSubtitle: { fontSize: 15, color: colors.gold, marginTop: 6, marginBottom: 18, lineHeight: 21 }, recommendedCard: { backgroundColor: colors.surface, borderRadius: 24, padding: 16, borderWidth: 1, borderColor: colors.border, marginBottom: 16 }, badge: { alignSelf: "flex-start", backgroundColor: colors.goldSurface, color: colors.primary, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 7, fontWeight: "900", marginBottom: 10 }, recommendedTitle: { fontSize: 19, fontWeight: "900", color: colors.primary, marginBottom: 8 }, section: { marginTop: 16 }, sectionTitle: { fontSize: 20, fontWeight: "900", color: colors.primary, marginBottom: 10 }, optionRow: { backgroundColor: colors.surface, borderRadius: 18, padding: 14, borderWidth: 1, borderColor: colors.border, marginBottom: 10 }, optionHeader: { flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: 8, marginBottom: 10 }, optionTitle: { flex: 1, minWidth: 0, fontSize: 16, fontWeight: "900", color: colors.primary }, modeChip: { color: colors.gold, backgroundColor: colors.goldSurface, borderRadius: 999, overflow: "hidden", paddingHorizontal: 10, paddingVertical: 5, fontSize: 12, fontWeight: "900" }, valueRow: { flexDirection: "row", gap: 10, flexWrap: "wrap" }, valueBox: { flexGrow: 1, flexBasis: "100%", minWidth: 0, backgroundColor: colors.surfaceSoft, borderRadius: 14, padding: 10 }, valueLabel: { color: colors.textMuted, fontSize: 11, fontWeight: "900", textTransform: "uppercase", marginBottom: 4 }, valueText: { color: colors.textPrimary, fontWeight: "800", lineHeight: 19 }, stepRow: { flexDirection: "row", alignItems: "flex-start", gap: 10, backgroundColor: colors.surface, borderRadius: 14, padding: 12, borderWidth: 1, borderColor: colors.border, marginBottom: 8 }, stepNumber: { width: 26, height: 26, borderRadius: 13, backgroundColor: colors.primary, color: colors.surface, textAlign: "center", lineHeight: 26, fontWeight: "900" }, stepText: { flex: 1, color: colors.textSecondary, lineHeight: 20 }, note: { color: colors.textSecondary, lineHeight: 21, backgroundColor: colors.surface, borderRadius: 14, padding: 14, borderWidth: 1, borderColor: colors.border }, mapRow: { flexDirection: "row", flexWrap: "wrap", gap: 10 }, mapButton: { backgroundColor: colors.primary, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 11 }, mapButtonText: { color: colors.surface, fontWeight: "900" }, metaList: { backgroundColor: colors.surfaceSoft, borderRadius: 14, padding: 10, gap: 4 }, metaLine: { color: colors.textSecondary, fontWeight: "800", lineHeight: 20 }, compactNote: { marginTop: 8, color: colors.textSecondary, lineHeight: 20 }, providerNote: { marginTop: 8, color: colors.gold, fontWeight: "800", lineHeight: 19 }, airportRow: { backgroundColor: colors.surface, borderRadius: 18, padding: 14, borderWidth: 1, borderColor: colors.border, marginBottom: 10 }, airportName: { color: colors.primary, fontWeight: "900", marginBottom: 6 },
+  screenRoot: { flex: 1, backgroundColor: colors.surfaceSoft }, topSafeScrim: { position: "absolute", top: 0, left: 0, right: 0, backgroundColor: colors.surfaceSoft, zIndex: 10 }, container: { flex: 1 }, content: { padding: 20 }, emptyContainer: { flex: 1, backgroundColor: colors.surfaceSoft, alignItems: "center", justifyContent: "center", padding: 20 }, emptyTitle: { fontSize: 18, fontWeight: "800", color: colors.primary, textAlign: "center" }, pageTitle: { fontSize: 28, fontWeight: "900", color: colors.primary }, pageSubtitle: { fontSize: 15, color: colors.gold, marginTop: 6, marginBottom: 14, lineHeight: 21 }, recommendedCard: { backgroundColor: colors.surface, borderRadius: 24, padding: 16, borderWidth: 1, borderColor: colors.border, marginBottom: 12 }, badge: { alignSelf: "flex-start", backgroundColor: colors.goldSurface, color: colors.primary, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 7, fontWeight: "900", marginBottom: 10 }, recommendedTitle: { fontSize: 19, fontWeight: "900", color: colors.primary, marginBottom: 8 }, section: { marginTop: 14 }, sectionTitle: { fontSize: 19, fontWeight: "900", color: colors.primary, marginBottom: 8 }, optionRow: { backgroundColor: colors.surface, borderRadius: 18, padding: 14, borderWidth: 1, borderColor: colors.border, marginBottom: 8 }, optionRowCompact: { padding: 0, borderWidth: 0, marginBottom: 0 }, optionTitle: { fontSize: 16, fontWeight: "900", color: colors.primary, marginBottom: 8 }, chipRow: { flexDirection: "row", gap: 8, flexWrap: "wrap" }, metaChip: { color: colors.textPrimary, backgroundColor: colors.surfaceSoft, borderRadius: 999, overflow: "hidden", paddingHorizontal: 10, paddingVertical: 6, fontSize: 12, fontWeight: "900" }, stepRow: { flexDirection: "row", alignItems: "flex-start", gap: 10, backgroundColor: colors.surface, borderRadius: 14, padding: 12, borderWidth: 1, borderColor: colors.border, marginBottom: 8 }, stepNumber: { width: 26, height: 26, borderRadius: 13, backgroundColor: colors.primary, color: colors.surface, textAlign: "center", lineHeight: 26, fontWeight: "900" }, stepText: { flex: 1, color: colors.textSecondary, lineHeight: 20 }, note: { color: colors.textSecondary, lineHeight: 21, backgroundColor: colors.surface, borderRadius: 14, padding: 14, borderWidth: 1, borderColor: colors.border }, notePlain: { color: colors.textSecondary, lineHeight: 21, fontWeight: "700" }, mapRow: { flexDirection: "row", flexWrap: "wrap", gap: 10 }, mapButton: { backgroundColor: colors.primary, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 11 }, mapButtonText: { color: colors.surface, fontWeight: "900" }, metaLine: { color: colors.textSecondary, fontWeight: "800", lineHeight: 20 }, airportRow: { backgroundColor: colors.surface, borderRadius: 18, padding: 14, borderWidth: 1, borderColor: colors.border, marginBottom: 8 }, airportName: { color: colors.primary, fontWeight: "900", marginBottom: 6 },
 });
