@@ -14,7 +14,10 @@ import {
   signOut,
 } from "firebase/auth";
 
-import { auth } from "../firebase/config";
+import { httpsCallable } from "firebase/functions";
+
+import { auth, functions } from "../firebase/config";
+import { useLanguage } from "./LanguageContext";
 
 type AuthContextType = {
   currentUser: User | null;
@@ -36,6 +39,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   const [loading, setLoading] = useState(true);
+  const { language } = useLanguage();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -52,6 +56,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function registerWithEmail(email: string, password: string) {
     await createUserWithEmailAndPassword(auth, email, password);
+
+    try {
+      await httpsCallable(functions, "sendWelcomeEmail")({ locale: language });
+    } catch (error) {
+      console.warn("Welcome email request failed after account creation.", error);
+    }
   }
 
   async function resetPasswordWithEmail(email: string) {
