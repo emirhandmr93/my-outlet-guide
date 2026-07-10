@@ -27,6 +27,28 @@ assert(
     !/Ville|Notas/.test(myTrips),
   "MyTrips trip cards must use localized source-backed city/country labels and avoid mixed-language fallback labels",
 );
+
+assert(
+  segmentEditor.includes('placeholder={t("tripSegment.unifiedSearchPlaceholder")}') &&
+    !segmentEditor.includes('placeholder={t("tripSegment.citySearch")}') &&
+    !segmentEditor.includes('placeholder={t("tripSegment.outletSearch")}'),
+  "TripSegmentEditor route selection must expose one unified search input and no separate city/outlet search boxes",
+);
+assert(
+  segmentEditor.includes('query.length < 2') &&
+    segmentEditor.includes('return [...outletResults, ...cityResults].slice(0, 10)'),
+  "TripSegmentEditor unified search must hide large default lists and return mixed outlet/city results after two characters",
+);
+assert(
+  segmentEditor.includes('setIsEditingRoute(false)') &&
+    segmentEditor.includes('summaryCard') &&
+    segmentEditor.includes('tripSegment.changeRoute'),
+  "TripSegmentEditor selecting a city or outlet must hide results and render an editable selected route summary",
+);
+assert(
+  !/navigate\(["']Explore|screen\s*:\s*["']Outlets/.test(segmentEditor),
+  "TripSegmentEditor must not navigate to Explore or Outlets",
+);
 assert(
   !segmentEditor.includes(" · {outlet.outletId}") &&
     segmentEditor.includes("formatOutletLocationSubtitle(outlet.cityId, outlet.countryId, language)"),
