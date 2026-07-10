@@ -8,6 +8,7 @@ import { transportationRouteFacts } from "../src/constants/transportationRouteFa
 import { outlets } from "../src/constants/outlets";
 import {
   getCompactRecommendedFallback,
+  getTransportationCompactSummaryLabel,
   getNearbyAirportDisplay,
   getOutletTransportationV2Summary,
   getRecommendedTransportationV2Option,
@@ -76,7 +77,7 @@ const prohibited =
 const debugPrefixes = /\b(TR|EN|DE|FR|IT|ES|AR|RU|ZH):/;
 const fakeTerms = /\b(lorem|dummy|placeholder|mock)\b/i;
 const rawEnglishLeakage =
-  /Check ÖBB|Travel by train|Check Serravalle|Book an official partner|Official Outlet Link bus|90 min from Milan|McArthurGlen notes|listed coach|Confirm with provider|Check official timetable|Go to the most convenient|Take the listed|Get off at/i;
+  /Use the official station bus|Confirm ÖBB|Walk through|Central Paris RER A station başla|shopping centre to|€5–5|45–45|60–60|Shuttle shuttle|city’dan|city'dan|Outlet adresi|Şehir merkezi ÖBB istasyonu|Check ÖBB|Travel by train|Check Serravalle|Book an official partner|Official Outlet Link bus|90 min from Milan|McArthurGlen notes|listed coach|Confirm with provider|Check official timetable|Go to the most convenient|Take the listed|Get off at/i;
 const files = [
   "src/screens/TransportationScreen.tsx",
   "src/components/cards/TransportationCard.tsx",
@@ -136,13 +137,7 @@ for (const outlet of outlets) {
   if (summary.length > 2)
     errors.push(`${outlet.outletId} detail summary renders more than 2 rows.`);
   for (const row of summary) {
-    const compact = [
-      row.routeDetails.routeHintLabel,
-      row.durationLabel,
-      row.fareLabel,
-    ]
-      .filter(Boolean)
-      .join(" ");
+    const compact = getTransportationCompactSummaryLabel(row, "tr");
     if (
       !row.routeDetails.routeHintLabel ||
       !row.estimatedDurationLabel ||
@@ -151,6 +146,8 @@ for (const outlet of outlets) {
       errors.push(
         `${row.id} compact summary lacks route hint plus duration/fare.`,
       );
+    if (compact.length > 72)
+      errors.push(`${row.id} compact summary is too long: ${compact}`);
     if (providerFallbacks.some((fallback) => compact.includes(fallback)))
       errors.push(
         `${row.id} compact summary contains provider-check fallback copy.`,
@@ -347,6 +344,30 @@ for (const outlet of outlets) {
   }
 }
 
+function assertTurkishRoute(guideId: string, required: string[]) {
+  const option = transportationGuides.find((guide) => guide.guideId === guideId);
+  const display = option ? getTransportationOptionDisplayModel(getTransportationV2Options(option.outletId).find((item) => item.id === guideId)!, "tr") : undefined;
+  if (!display) {
+    errors.push(`${guideId} Turkish display model is missing.`);
+    return;
+  }
+  const text = [
+    display.routeDetails.lineOrProviderLabel,
+    display.routeDetails.operatorLabel,
+    display.routeDetails.boardingPointLabel,
+    display.routeDetails.alightingPointLabel,
+    display.routeDetails.destinationLabel,
+    display.routeDetails.walkNoteLabel,
+    display.routeDetails.officialCheckNoteLabel,
+    ...display.steps,
+  ].filter(Boolean).join(" ");
+  for (const item of required) if (!text.includes(item)) errors.push(`${guideId} Turkish display lacks ${item}.`);
+  if (rawEnglishLeakage.test(text)) errors.push(`${guideId} Turkish display leaks prohibited English/raw text.`);
+}
+assertTurkishRoute("vienna-to-parndorf-train-bus", ["ÖBB", "Parndorf Ort"]);
+assertTurkishRoute("paris-to-la-vallee-rer-a", ["RER A", "Val d'Europe / Serris-Montévrain"]);
+assertTurkishRoute("paris-to-la-vallee-shopping-express", ["Shopping Express", "Hotel Pullman Paris Bercy"]);
+assertTurkishRoute("serravalle-milan-official-shuttle", ["Zani Viaggi / Frigerio Viaggi", "Milano Centrale"]);
 
 const parndorfFact = transportationRouteFacts.find(
   (fact) => fact.guideId === "vienna-to-parndorf-train-bus",
