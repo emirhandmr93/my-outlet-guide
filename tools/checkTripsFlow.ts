@@ -10,6 +10,8 @@ const tripFiles = [
   "src/screens/TripDetailScreen.tsx",
   "src/contexts/TripsContext.tsx",
   "src/services/tripsService.ts",
+  "src/navigation/tripOutletSelection.ts",
+  "src/navigation/AppNavigator.tsx",
 ];
 
 const read = (file: string) => readFileSync(join(repoRoot, file), "utf8");
@@ -32,14 +34,24 @@ assert(!generatedTravelPattern.test(read("src/screens/MyTripsScreen.tsx")), "MyT
 const createTrip = read("src/screens/CreateTripScreen.tsx");
 const myTrips = read("src/screens/MyTripsScreen.tsx");
 const tripDetail = read("src/screens/TripDetailScreen.tsx");
+const navigationTypes = read("src/navigation/types.ts");
+const navigationHelper = read("src/navigation/tripOutletSelection.ts");
+const appNavigator = read("src/navigation/AppNavigator.tsx");
 assert(createTrip.includes("useEffect") && createTrip.includes("requireAuth({ isLoggedIn, navigation"), "CreateTripScreen entry must auth-gate guests before rendering the form");
 assert(createTrip.includes("if (!isLoggedIn)") && createTrip.includes("return null"), "CreateTripScreen guest entry must not render form fields");
 assert(myTrips.includes("requireAuth({ isLoggedIn, navigation"), "MyTripsScreen create CTA must use the auth gate");
 assert(myTrips.includes("!isLoggedIn"), "MyTripsScreen must show an explicit guest state");
 assert(myTrips.indexOf("!isLoggedIn ?") < myTrips.indexOf("tripsError ?"), "MyTripsScreen must render guest sign-in state before permission/load errors");
 assert(!myTrips.includes('navigation.navigate("CreateTrip")'), "MyTripsScreen create CTA must not open CreateTripScreen without outlet context");
-assert(myTrips.includes('navigation.navigate("Explore"') && myTrips.includes("trips.createFromOutletCta"), "MyTripsScreen create CTA must route signed-in users to outlet discovery");
+const exploreIsRegistered = appNavigator.includes('<Tab.Screen name="Explore"') || appNavigator.includes('<Stack.Screen name="Explore"');
+assert(exploreIsRegistered, "Explore tab must be registered before any trip outlet-selection navigation uses it");
+assert(!combinedTripSource.includes('navigation.navigate("Explore"'), "trip screens must not use raw root-level Explore navigation");
+assert(navigationHelper.includes('navigation.navigate("MainTabs"') && navigationHelper.includes('screen: "Explore"') && navigationHelper.includes('initialTab: "outlet"'), "trip outlet-selection helper must route through registered MainTabs > Explore outlet tab");
+assert(myTrips.includes("navigateToTripOutletSelection(navigation)") && myTrips.includes("trips.createFromOutletCta"), "MyTripsScreen create CTA must use the shared valid outlet-selection path");
+assert(myTrips.includes('t(isLoggedIn ? "trips.createFromOutletCta" : "auth.signIn")'), "guest MyTrips create CTA must show the localized Login label");
 assert(createTrip.includes("if (!selectedOutlet)") && createTrip.includes("createTrip.chooseOutletCta"), "CreateTripScreen must render a no-outlet choose-outlet state");
+assert(createTrip.includes("navigateToTripOutletSelection(navigation)"), "CreateTripScreen no-outlet CTA must use the shared outlet-selection path");
+assert(navigationTypes.includes("RootStackParamList") && navigationTypes.includes("MainTabParamList") && navigationTypes.includes("initialTab"), "trip outlet-selection route params must be typed");
 assert(!createTrip.includes('Alert.alert(t("createTrip.missingOutletTitle")'), "CreateTripScreen must not rely on validation-only missing outlet alerts");
 assert(!/Outlet required|Outlet gerekli/.test(createTrip), "CreateTripScreen source must not expose old outlet-required copy");
 
@@ -87,6 +99,7 @@ for (const locale of supportedLanguageCodes) {
 
 assert(!/tripIds\.length/.test(combinedTripSource), "trip count must not use stale raw tripIds.length");
 assert(/summaryValue}>{trips\.length}</.test(myTrips), "MyTripsScreen count must use resolved visible trips length");
+assert(myTrips.indexOf("trips.length === 0") < myTrips.indexOf("tripsError ?"), "signed-in zero-trip state must render before signed-in permission/load errors");
 assert(createTrip.includes("getFloatingTabClearance") && myTrips.includes("getFloatingTabClearance") && tripDetail.includes("getFloatingTabClearance"), "trip screens must include floating tab clearance helpers");
 assert(createTrip.includes("getScrollIndicatorBottomInset") && myTrips.includes("getScrollIndicatorBottomInset") && tripDetail.includes("getScrollIndicatorBottomInset"), "trip screens must set scroll indicator bottom insets");
 assert(createTrip.includes("formatOutletLocationSubtitle"), "CreateTripScreen must display localized city/country destination text");
