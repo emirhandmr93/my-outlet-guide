@@ -51,6 +51,7 @@ import {
   isFirestorePermissionDenied,
 } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
+import { requireReviewAuth } from "../utils/reviewAuthGuard";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
@@ -537,7 +538,14 @@ export function OutletDetailScreen() {
               activeOpacity={0.86}
               style={styles.writeReviewButton}
               onPress={() => {
-                if (requireAuth({ isLoggedIn, navigation })) {
+                if (
+                  requireReviewAuth({
+                    navigation,
+                    user: currentUser,
+                    action: "writeReview",
+                    message: t("review.signInToWrite"),
+                  })
+                ) {
                   navigation.navigate("WriteReview", {
                     outletId: outlet.outletId,
                   });
@@ -551,17 +559,17 @@ export function OutletDetailScreen() {
           </View>
 
           <ReviewStatsCard
-            summaryText={`⭐ ${averageRating || "0.0"} (${outletReviews.length} ${t(
+            summaryText={`⭐ ${averageRating ?? "0.0"} (${outletReviews.length} ${t(
               "outlet.reviewLabel",
             )})`}
             transportationTitle={t("outlet.transportationRating")}
-            transportationValue={averageRating || "0.0"}
+            transportationValue={averageRating ?? "0.0"}
             brandsTitle={t("outlet.brandsRating")}
-            brandsValue={averageRating || "0.0"}
+            brandsValue={averageRating ?? "0.0"}
             restaurantsTitle={t("outlet.restaurantsRating")}
-            restaurantsValue={averageRating || "0.0"}
+            restaurantsValue={averageRating ?? "0.0"}
             servicesTitle={t("outlet.servicesRating")}
-            servicesValue={averageRating || "0.0"}
+            servicesValue={averageRating ?? "0.0"}
           />
 
           <View style={styles.reviewSortRow}>
@@ -603,7 +611,15 @@ export function OutletDetailScreen() {
                 deleteText={t("common.delete")}
                 reportText={t("review.report")}
                 onHelpful={async () => {
-                  if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
+                  if (
+                    requireReviewAuth({
+                      navigation,
+                      user: currentUser,
+                      action: "helpful",
+                      message: t("review.signInToHelpful"),
+                    }) &&
+                    currentUser
+                  ) {
                     try {
                       await toggleHelpful(review, currentUser.userId);
                     } catch (error) {
