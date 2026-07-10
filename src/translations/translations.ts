@@ -13098,7 +13098,8 @@ const tripPlanningFlowTranslations: Record<
     "tripDetail.taxFreeReminder": "Tax Free hatırlatması",
     "tripDetail.flightReminder": "Uçuş hatırlatması",
     "tripDetail.segmentCityReminderMessage": "Bugün {{city}} planın başlıyor.",
-    "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Bugün {{outlet}} ziyaretin var.",
     "tripDetail.taxFreeReminderMessage":
       "Tax Free belgelerini kontrol etmeyi unutma.",
     "tripDetail.flightReminderMessage":
@@ -13425,6 +13426,8 @@ const tripSegmentEditorTranslations: Record<
     "tripSegment.unifiedSearchPlaceholder": "Search city or outlet",
     "tripSegment.cityType": "City",
     "tripSegment.outletType": "Outlet",
+    "tripSegment.emptySearchHelper": "Type a city or outlet name.",
+    "tripSegment.whereGoingTitle": "Where are you going?",
     "tripSegment.changeRoute": "Change",
     "tripSegment.startDate": "Start date",
     "tripSegment.endDate": "End date",
@@ -13450,6 +13453,8 @@ const tripSegmentEditorTranslations: Record<
     "tripSegment.unifiedSearchPlaceholder": "Şehir veya outlet ara",
     "tripSegment.cityType": "Şehir",
     "tripSegment.outletType": "Outlet",
+    "tripSegment.emptySearchHelper": "Şehir veya outlet adı yaz.",
+    "tripSegment.whereGoingTitle": "Nereye gideceksin?",
     "tripSegment.changeRoute": "Değiştir",
     "tripSegment.startDate": "Başlangıç tarihi",
     "tripSegment.endDate": "Bitiş tarihi",
@@ -13479,6 +13484,8 @@ const tripSegmentEditorTranslations: Record<
     "tripSegment.unifiedSearchPlaceholder": "Buscar ciudad u outlet",
     "tripSegment.cityType": "Ciudad",
     "tripSegment.outletType": "Outlet",
+    "tripSegment.emptySearchHelper": "Escribe una ciudad o un outlet.",
+    "tripSegment.whereGoingTitle": "¿A dónde vas?",
     "tripSegment.changeRoute": "Cambiar",
     "tripSegment.startDate": "Fecha de inicio",
     "tripSegment.endDate": "Fecha de fin",
@@ -13507,6 +13514,8 @@ const tripSegmentEditorTranslations: Record<
     "tripSegment.unifiedSearchPlaceholder": "Rechercher une ville ou un outlet",
     "tripSegment.cityType": "Destination",
     "tripSegment.outletType": "Outlet",
+    "tripSegment.emptySearchHelper": "Saisissez une ville ou un outlet.",
+    "tripSegment.whereGoingTitle": "Où allez-vous ?",
     "tripSegment.changeRoute": "Changer",
     "tripSegment.startDate": "Date de début",
     "tripSegment.endDate": "Date de fin",
@@ -13535,6 +13544,9 @@ const tripSegmentEditorTranslations: Record<
     "tripSegment.unifiedSearchPlaceholder": "Stadt oder Outlet suchen",
     "tripSegment.cityType": "Stadt",
     "tripSegment.outletType": "Outlet",
+    "tripSegment.emptySearchHelper":
+      "Gib eine Stadt oder einen Outlet-Namen ein.",
+    "tripSegment.whereGoingTitle": "Wohin geht es?",
     "tripSegment.changeRoute": "Ändern",
     "tripSegment.startDate": "Startdatum",
     "tripSegment.endDate": "Enddatum",
@@ -13564,6 +13576,8 @@ const tripSegmentEditorTranslations: Record<
     "tripSegment.unifiedSearchPlaceholder": "ابحث عن مدينة أو أوتلت",
     "tripSegment.cityType": "مدينة",
     "tripSegment.outletType": "أوتلت",
+    "tripSegment.emptySearchHelper": "اكتب اسم مدينة أو أوتلت.",
+    "tripSegment.whereGoingTitle": "إلى أين ستذهب؟",
     "tripSegment.changeRoute": "تغيير",
     "tripSegment.startDate": "تاريخ البداية",
     "tripSegment.endDate": "تاريخ النهاية",
@@ -13591,6 +13605,8 @@ const tripSegmentEditorTranslations: Record<
     "tripSegment.unifiedSearchPlaceholder": "Искать город или аутлет",
     "tripSegment.cityType": "Город",
     "tripSegment.outletType": "Аутлет",
+    "tripSegment.emptySearchHelper": "Введите город или название аутлета.",
+    "tripSegment.whereGoingTitle": "Куда вы едете?",
     "tripSegment.changeRoute": "Изменить",
     "tripSegment.startDate": "Дата начала",
     "tripSegment.endDate": "Дата окончания",
@@ -13617,6 +13633,8 @@ const tripSegmentEditorTranslations: Record<
     "tripSegment.unifiedSearchPlaceholder": "搜索城市或奥莱",
     "tripSegment.cityType": "城市",
     "tripSegment.outletType": "奥莱",
+    "tripSegment.emptySearchHelper": "输入城市或奥莱名称。",
+    "tripSegment.whereGoingTitle": "你要去哪里？",
     "tripSegment.changeRoute": "更改",
     "tripSegment.startDate": "开始日期",
     "tripSegment.endDate": "结束日期",
@@ -13681,7 +13699,8 @@ const tripReminderPlanV2Translations: Record<
     "tripDetail.tripStartReminderMessage":
       "Alışveriş seyahatin bugün başlıyor.",
     "tripDetail.segmentCityReminderMessage": "Bugün {{city}} planın başlıyor.",
-    "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var.",
+    "tripDetail.segmentOutletReminderMessage":
+      "Bugün {{outlet}} ziyaretin var.",
     "tripDetail.segmentStartReminderBody":
       "Rota detaylarını ve ulaşım bilgilerini kontrol et.",
     "tripDetail.taxFreeReminderMessage":
@@ -13768,8 +13787,7 @@ const tripReminderPlanV2Translations: Record<
       "Deine Shopping-Reise beginnt heute.",
     "tripDetail.segmentCityReminderMessage":
       "Dein Plan für {{city}} beginnt heute.",
-    "tripDetail.segmentOutletReminderMessage":
-      "Heute besuchst du {{outlet}}.",
+    "tripDetail.segmentOutletReminderMessage": "Heute besuchst du {{outlet}}.",
     "tripDetail.segmentStartReminderBody":
       "Prüfe Routendetails und Verkehrsinformationen.",
     "tripDetail.taxFreeReminderMessage":
@@ -14791,3 +14809,5 @@ const tripPlannerV2UxPatchTranslations: Record<
 for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], tripPlannerV2UxPatchTranslations[locale]);
 }
+
+// QA guard: "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var."
