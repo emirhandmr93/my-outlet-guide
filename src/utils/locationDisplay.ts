@@ -336,6 +336,15 @@ const countryDisplayNames: Record<string, LocaleMap> = {
 };
 
 const cityDisplayNames: Record<string, LocaleMap> = {
+  bucharest: {
+    tr: "Bükreş",
+    es: "Bucarest",
+    fr: "Bucarest",
+    de: "Bukarest",
+    ru: "Бухарест",
+    ar: "بوخارست",
+    zh: "布加勒斯特",
+  },
   amsterdam: { tr: "Amsterdam", ar: "أمستردام", zh: "阿姆斯特丹" },
   barcelona: { tr: "Barselona", ar: "برشلونة", zh: "巴塞罗那" },
   cologne: {
@@ -411,6 +420,15 @@ const cityDisplayNames: Record<string, LocaleMap> = {
     ru: "Рим",
     ar: "روما",
     zh: "罗马",
+  },
+  venice: {
+    tr: "Venedik",
+    es: "Venecia",
+    fr: "Venise",
+    de: "Venedig",
+    ru: "Венеция",
+    ar: "البندقية",
+    zh: "威尼斯",
   },
   vienna: {
     tr: "Viyana",

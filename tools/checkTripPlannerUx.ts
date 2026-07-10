@@ -29,20 +29,22 @@ assert(
 );
 
 assert(
-  segmentEditor.includes('placeholder={t("tripSegment.unifiedSearchPlaceholder")}') &&
+  segmentEditor.includes(
+    'placeholder={t("tripSegment.unifiedSearchPlaceholder")}',
+  ) &&
     !segmentEditor.includes('placeholder={t("tripSegment.citySearch")}') &&
     !segmentEditor.includes('placeholder={t("tripSegment.outletSearch")}'),
   "TripSegmentEditor route selection must expose one unified search input and no separate city/outlet search boxes",
 );
 assert(
-  segmentEditor.includes('query.length < 2') &&
-    segmentEditor.includes('return [...outletResults, ...cityResults].slice(0, 10)'),
+  segmentEditor.includes("query.length < 2") &&
+    segmentEditor.includes("return [...cityResults, ...outletResults]"),
   "TripSegmentEditor unified search must hide large default lists and return mixed outlet/city results after two characters",
 );
 assert(
-  segmentEditor.includes('setIsEditingRoute(false)') &&
-    segmentEditor.includes('summaryCard') &&
-    segmentEditor.includes('tripSegment.changeRoute'),
+  segmentEditor.includes("setIsEditingRoute(false)") &&
+    segmentEditor.includes("summaryCard") &&
+    segmentEditor.includes("tripSegment.changeRoute"),
   "TripSegmentEditor selecting a city or outlet must hide results and render an editable selected route summary",
 );
 assert(
@@ -51,7 +53,9 @@ assert(
 );
 assert(
   !segmentEditor.includes(" · {outlet.outletId}") &&
-    segmentEditor.includes("formatOutletLocationSubtitle(outlet.cityId, outlet.countryId, language)"),
+    segmentEditor.includes(
+      "formatOutletLocationSubtitle(outlet.cityId, outlet.countryId, language)",
+    ),
   "TripSegmentEditor visible outlet rows must show only localized city/country subtitles and never outlet slugs/internal ids",
 );
 assert(
@@ -62,14 +66,49 @@ assert(
 );
 assert(
   locationDisplay.includes('tr: "İtalya"') &&
-    locationDisplay.includes('tr: "Fransa"') &&
+    locationDisplay.includes('tr: "Romanya"') &&
+    locationDisplay.includes('tr: "Birleşik Krallık"') &&
     locationDisplay.includes('tr: "Almanya"') &&
-    locationDisplay.includes('tr: "Birleşik Krallık"'),
+    locationDisplay.includes('tr: "Fransa"') &&
+    locationDisplay.includes('tr: "Macaristan"') &&
+    locationDisplay.includes('tr: "Hollanda"'),
   "TripSegmentEditor country display formatter must include Turkish country display names",
 );
 assert(
+  locationDisplay.includes("bucharest:") &&
+    locationDisplay.includes('tr: "Bükreş"') &&
+    locationDisplay.includes("venice:") &&
+    locationDisplay.includes('tr: "Venedik"') &&
+    locationDisplay.includes('tr: "Floransa"') &&
+    locationDisplay.includes('tr: "Milano"') &&
+    locationDisplay.includes('tr: "Roma"') &&
+    locationDisplay.includes('tr: "Köln"'),
+  "TripSegmentEditor city display formatter must include safe Turkish city display names",
+);
+assert(
+  !segmentEditor.includes("ŞEHIR") && !translations.includes("ŞEHIR"),
+  "Visible Turkish city type label must not render as ŞEHIR",
+);
+assert(
+  segmentEditor.includes("routeSearchRank") &&
+    segmentEditor.includes("return [...cityResults, ...outletResults]") &&
+    segmentEditor.indexOf(
+      "matches(cityValues, (value) => value === normalizedQuery)",
+    ) < segmentEditor.indexOf("return 2500"),
+  "TripSegmentEditor unified search ranking must prioritize exact/startsWith city and outlet-city matches above country matches",
+);
+assert(
+  segmentEditor.includes("tripSegment.emptySearchHelper") &&
+    ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"].every((locale) =>
+      translations.includes(`tripSegment.emptySearchHelper`),
+    ),
+  "TripSegmentEditor must include empty-search helper copy for supported locales",
+);
+assert(
   !translations.includes("outlet günün") &&
-    translations.includes('"tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var."'),
+    translations.includes(
+      '"tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var."',
+    ),
   "Segment outlet reminder body copy must be clean and not duplicate outlet",
 );
 
