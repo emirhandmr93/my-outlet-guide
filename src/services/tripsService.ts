@@ -2,6 +2,7 @@ import { collection, deleteDoc, doc, getDocs, orderBy, query, serverTimestamp, s
 
 import { db } from "../firebase/config";
 import type { Trip, TripFlightDetails, TripInput, TripSegment, TripStatus } from "../contexts/TripsContext";
+import type { TripNotificationSyncMetadata } from "./notificationService";
 import { generateTripReminderPlan, sortTripSegments } from "./tripReminderPlan";
 
 const USER_TRIPS_COLLECTION = "userTrips";
@@ -62,6 +63,19 @@ function normalizeSegments(value: any): TripSegment[] {
     .sort((a, b) => a.startDate.localeCompare(b.startDate));
 }
 
+function normalizeNotificationSync(value: any): TripNotificationSyncMetadata | undefined {
+  if (!value || typeof value !== "object") return undefined;
+  const status = ["scheduled", "partial", "skipped", "not_configured", "denied", "failed"].includes(value.status) ? value.status : undefined;
+  if (!status) return undefined;
+  return {
+    status,
+    scheduledCount: typeof value.scheduledCount === "number" ? value.scheduledCount : 0,
+    skippedCount: typeof value.skippedCount === "number" ? value.skippedCount : 0,
+    failedCount: typeof value.failedCount === "number" ? value.failedCount : 0,
+    updatedAt: typeof value.updatedAt === "string" ? value.updatedAt : "",
+  };
+}
+
 function normalizeTrip(id: string, data: any): Trip {
   const startDate = data.startDate || data.visitDate || "";
   const endDate = data.endDate || data.visitDate || startDate;
@@ -86,6 +100,7 @@ function normalizeTrip(id: string, data: any): Trip {
     segments,
     flightDetails,
     reminderPlan: generateTripReminderPlan({ tripId: id, startDate, endDate, segments, flightDetails }),
+    notificationSync: normalizeNotificationSync(data.notificationSync),
     createdAt: data.createdAt || "",
     updatedAt: data.updatedAt || "",
   };
@@ -152,6 +167,14 @@ export async function updateUserTrip(userId: string, tripId: string, trip: Parti
     flightDetails: flightDetails || null,
     reminderPlan,
     status: getTripStatus(startDate, endDate),
+    updatedAt: new Date().toISOString(),
+    firestoreUpdatedAt: serverTimestamp(),
+  }));
+}
+
+export async function updateTripNotificationSync(userId: string, tripId: string, notificationSync: TripNotificationSyncMetadata): Promise<void> {
+  await updateDoc(doc(db, USER_TRIPS_COLLECTION, userId, USER_TRIP_ITEMS_COLLECTION, tripId), stripUndefined({
+    notificationSync,
     updatedAt: new Date().toISOString(),
     firestoreUpdatedAt: serverTimestamp(),
   }));

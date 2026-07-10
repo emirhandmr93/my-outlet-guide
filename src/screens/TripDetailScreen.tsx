@@ -24,6 +24,13 @@ function ReminderRow({ item, t }: { item: TripReminderPlanItem; t: (key: string)
   </View>;
 }
 
+function getReminderStatusText(status: string | undefined, t: (key: string) => string) {
+  if (status === "scheduled") return t("tripDetail.notificationsScheduled");
+  if (status === "partial" || status === "failed") return t("tripDetail.notificationsPartial");
+  if (status === "denied") return t("notifications.permission.denied");
+  return t("tripDetail.reminderPlanPreview");
+}
+
 function SegmentRow({ segment, onEdit, onDelete }: { segment: TripSegment; onEdit: () => void; onDelete: () => void }) {
   const place = [segment.cityName, segment.outletName].filter(Boolean).join(" · ") || segment.countryName || segment.title;
   return <View style={styles.segmentCard}><Text style={styles.detailValue}>{segment.startDate} – {segment.endDate} · {place}</Text>{segment.countryName ? <Text style={styles.detailLabel}>{segment.countryName}</Text> : null}{segment.notes ? <Text style={styles.detailValue}>{segment.notes}</Text> : null}<View style={styles.actionRow}><TouchableOpacity style={styles.smallButton} onPress={onEdit}><Text style={styles.smallButtonText}>✎</Text></TouchableOpacity><TouchableOpacity style={styles.deleteButton} onPress={onDelete}><Text style={styles.deleteButtonText}>×</Text></TouchableOpacity></View></View>;
@@ -47,7 +54,7 @@ export function TripDetailScreen() {
     <View style={styles.summaryRow}><View style={styles.summaryBox}><Text style={styles.summaryValue}>{getTripStatusLabel(trip.status, t)}</Text><Text style={styles.summaryLabel}>{t("tripDetail.statusSummary")}</Text></View><View style={styles.summaryBox}><Text style={styles.summaryValue}>{trip.startDate} – {trip.endDate}</Text><Text style={styles.summaryLabel}>{t("createTrip.visitDates")}</Text></View></View>
     {hasFlightSummary && <View style={styles.card}><Text style={styles.sectionTitle}>{t("tripDetail.flightInfo")}</Text>{Object.entries(trip.flightDetails || {}).filter(([, value]) => Boolean(value)).map(([key, value]) => <Text key={key} style={styles.detailValue}>{value}</Text>)}</View>}
     <View style={styles.card}><View style={styles.sectionHeader}><Text style={styles.sectionTitle}>{t("tripDetail.routeSection")}</Text>{trip.segments.length > 0 ? <TouchableOpacity style={styles.secondaryButton} onPress={() => openEditor()}><Text style={styles.secondaryButtonText}>{t("tripDetail.addRouteCta")}</Text></TouchableOpacity> : null}</View>{trip.segments.length > 0 ? trip.segments.map((segment) => <SegmentRow key={segment.id} segment={segment} onEdit={() => openEditor(segment.id)} onDelete={() => confirmDelete(segment.id)} />) : <View style={styles.emptySegment}><Text style={styles.emptyTitle}>{t("tripDetail.emptyRouteTitle")}</Text><Text style={styles.emptyText}>{t("tripDetail.emptyRouteText")}</Text><TouchableOpacity style={styles.secondaryButton} onPress={() => openEditor()}><Text style={styles.secondaryButtonText}>{t("tripDetail.addRouteCta")}</Text></TouchableOpacity></View>}</View>
-    <View style={styles.card}><Text style={styles.sectionTitle}>{t("tripDetail.reminderPlan")}</Text><Text style={styles.helperText}>{t("tripDetail.reminderPlanPreview")}</Text>{trip.reminderPlan.length > 0 ? [...trip.reminderPlan].sort((a, b) => a.date.localeCompare(b.date)).map((item) => <ReminderRow key={item.id} item={item} t={t} />) : <View style={styles.emptySegment}><Text style={styles.emptyTitle}>{t("tripDetail.noRemindersTitle")}</Text><Text style={styles.emptyText}>{t("tripDetail.noRemindersText")}</Text></View>}</View>
+    <View style={styles.card}><Text style={styles.sectionTitle}>{t("tripDetail.reminderPlan")}</Text><Text style={styles.helperText}>{getReminderStatusText(trip.notificationSync?.status, t)}</Text>{trip.reminderPlan.length > 0 ? [...trip.reminderPlan].sort((a, b) => a.date.localeCompare(b.date)).map((item) => <ReminderRow key={item.id} item={item} t={t} />) : <View style={styles.emptySegment}><Text style={styles.emptyTitle}>{t("tripDetail.noRemindersTitle")}</Text><Text style={styles.emptyText}>{t("tripDetail.noRemindersText")}</Text></View>}</View>
     {trip.notes ? <View style={styles.card}><Text style={styles.sectionTitle}>{t("createTrip.notes")}</Text><Text style={styles.detailValue}>{trip.notes}</Text></View> : null}
   </ScrollView>;
 }
