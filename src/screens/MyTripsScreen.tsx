@@ -1,9 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Trip, useTrips } from "../contexts/TripsContext";
+import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getTripStatusLabel } from "../utils/getTripStatusLabel";
+import { requireAuth } from "../utils/requireAuth";
+import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
 function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => void; onDelete: () => void; t: (key: string) => string }) {
   return (
@@ -52,6 +56,8 @@ export function MyTripsScreen() {
   const navigation = useNavigation<any>();
   const { trips, deleteTrip, loading, tripsError } = useTrips();
   const { t } = useTranslation();
+  const { isLoggedIn } = useUser();
+  const insets = useSafeAreaInsets();
 
   const activeCount = trips.filter((trip) => trip.status === "active").length;
   const datedCount = trips.filter((trip) => Boolean(trip.visitDate)).length;
@@ -70,7 +76,11 @@ export function MyTripsScreen() {
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.kicker}>{t("trips.heroKicker")}</Text>
         <Text style={styles.title}>{t("trips.heroTitle")}</Text>
@@ -97,12 +107,22 @@ export function MyTripsScreen() {
       <TouchableOpacity
         style={styles.primaryButton}
         activeOpacity={0.86}
-        onPress={() => navigation.navigate("CreateTrip")}
+        onPress={() => {
+          if (requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") })) {
+            navigation.navigate("CreateTrip");
+          }
+        }}
       >
         <Text style={styles.primaryButtonText}>{t("trips.createShoppingTripCta")}</Text>
       </TouchableOpacity>
 
-      {loading ? (
+      {!isLoggedIn ? (
+        <View style={styles.emptyCard}>
+          <Text style={styles.emptyIcon}>🔐</Text>
+          <Text style={styles.emptyTitle}>{t("trips.signInTitle")}</Text>
+          <Text style={styles.emptyText}>{t("trips.signInText")}</Text>
+        </View>
+      ) : loading ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyTitle}>{t("trips.loading")}</Text>
         </View>
@@ -138,7 +158,7 @@ export function MyTripsScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
-  content: { padding: 20, paddingTop: 60, paddingBottom: 120 },
+  content: { padding: 20 },
   heroCard: { backgroundColor: "#0B1F3A", borderRadius: 30, padding: 24, marginBottom: 16 },
   kicker: { color: "#C9A227", fontSize: 12, fontWeight: "900", letterSpacing: 1.2, marginBottom: 10 },
   title: { color: "#FFFFFF", fontSize: 30, fontWeight: "900", lineHeight: 36 },

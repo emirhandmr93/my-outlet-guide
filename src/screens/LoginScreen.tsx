@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   Alert,
   KeyboardAvoidingView,
@@ -17,6 +17,7 @@ import { useTranslation } from "../hooks/useTranslation";
 
 export function LoginScreen() {
   const navigation = useNavigation<any>();
+  const route = useRoute<any>();
   const { t } = useTranslation();
   const { loginWithEmail, registerWithEmail, resetPasswordWithEmail } =
     useAuth();
@@ -103,7 +104,7 @@ export function LoginScreen() {
         <View style={styles.heroCard}>
           <Text style={styles.kicker}>{t("auth.kicker")}</Text>
           <Text style={styles.title}>{t("auth.title")}</Text>
-          <Text style={styles.subtitle}>{t("auth.subtitle")}</Text>
+          <Text style={styles.subtitle}>{route.params?.authMessage || t("auth.subtitle")}</Text>
         </View>
 
         <TouchableOpacity
