@@ -11992,12 +11992,18 @@ for (const languageCode of supportedLanguageCodes) {
   );
 }
 
-const transportationV2Translations: Record<TranslationLanguage, Record<string, string>> = {
+const transportationV2Translations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
   en: {
-    "transportation.v2.compactRecommendedFallback": "Check the most practical transport details from official sources.",
-    "transportation.v2.providerSectionNote": "Check current times and fares with the official provider.",
+    "transportation.v2.compactRecommendedFallback":
+      "Check the most practical transport details from official sources.",
+    "transportation.v2.providerSectionNote":
+      "Check current times and fares with the official provider.",
     "transportation.v2.nearbyAirport": "Nearby airport",
-    "transportation.v2.subtitle": "The most practical ways to reach this outlet.",
+    "transportation.v2.subtitle":
+      "The most practical ways to reach this outlet.",
     "transportation.v2.detailSubtitle": "Practical ways to reach this outlet.",
     "transportation.v2.airportFrom": "From airport",
     "transportation.v2.cityFrom": "From city center",
@@ -12007,19 +12013,24 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.shuttleSection": "Shuttle",
     "transportation.v2.confirmTime": "Check duration with provider",
     "transportation.v2.confirmFare": "Check fare with provider",
-    "transportation.v2.noAirportData": "No source-backed airport route is available yet.",
+    "transportation.v2.noAirportData":
+      "No source-backed airport route is available yet.",
     "transportation.v2.nearbyAirports": "Nearby airports",
     "transportation.v2.distance": "Distance",
     "transportation.v2.publicTransport": "Public transport",
     "transportation.v2.taxiUber": "Taxi/Uber",
     "transportation.v2.checkProviderShort": "check provider",
-    "transportation.v2.noCityData": "No source-backed city center route is available yet.",
-    "transportation.v2.noReliableSteps": "Check the official provider before travelling.",
+    "transportation.v2.noCityData":
+      "No source-backed city center route is available yet.",
+    "transportation.v2.noReliableSteps":
+      "Check the official provider before travelling.",
     "transportation.v2.navigation": "Map / navigation",
   },
   tr: {
-    "transportation.v2.compactRecommendedFallback": "Ulaşım tahminlerini rehberde gör",
-    "transportation.v2.providerSectionNote": "Güncel saat ve ücret bilgisini resmi sağlayıcıdan kontrol et.",
+    "transportation.v2.compactRecommendedFallback":
+      "Ulaşım tahminlerini rehberde gör",
+    "transportation.v2.providerSectionNote":
+      "Güncel saat ve ücret bilgisini resmi sağlayıcıdan kontrol et.",
     "transportation.v2.nearbyAirport": "Yakındaki havalimanı",
     "transportation.v2.subtitle": "Bu outlet'e ulaşmanın en pratik yolları.",
     "transportation.v2.detailSubtitle": "Bu outlet'e ulaşmanın pratik yolları.",
@@ -12031,22 +12042,28 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.shuttleSection": "Shuttle",
     "transportation.v2.confirmTime": "",
     "transportation.v2.confirmFare": "",
-    "transportation.v2.noAirportData": "Yakındaki havalimanlarını veya resmi sağlayıcıyı kontrol et.",
+    "transportation.v2.noAirportData":
+      "Yakındaki havalimanlarını veya resmi sağlayıcıyı kontrol et.",
     "transportation.v2.nearbyAirports": "Yakındaki havalimanları",
     "transportation.v2.distance": "Mesafe",
     "transportation.v2.publicTransport": "Toplu ulaşım",
     "transportation.v2.taxiUber": "Taksi/Uber",
     "transportation.v2.checkProviderShort": "sağlayıcıdan kontrol et",
     "transportation.v2.noCityData": "Kaynaklı şehir merkezi rotası henüz yok.",
-    "transportation.v2.noReliableSteps": "Yola çıkmadan önce resmi sağlayıcıdan kontrol et.",
+    "transportation.v2.noReliableSteps":
+      "Yola çıkmadan önce resmi sağlayıcıdan kontrol et.",
     "transportation.v2.navigation": "Harita / navigasyon",
   },
   es: {
-    "transportation.v2.compactRecommendedFallback": "Consulta la información de transporte más práctica en fuentes oficiales.",
-    "transportation.v2.providerSectionNote": "Consulta horarios y tarifas actuales con el proveedor oficial.",
+    "transportation.v2.compactRecommendedFallback":
+      "Consulta la información de transporte más práctica en fuentes oficiales.",
+    "transportation.v2.providerSectionNote":
+      "Consulta horarios y tarifas actuales con el proveedor oficial.",
     "transportation.v2.nearbyAirport": "Aeropuerto cercano",
-    "transportation.v2.subtitle": "Las formas más prácticas de llegar a este outlet.",
-    "transportation.v2.detailSubtitle": "Formas prácticas de llegar a este outlet.",
+    "transportation.v2.subtitle":
+      "Las formas más prácticas de llegar a este outlet.",
+    "transportation.v2.detailSubtitle":
+      "Formas prácticas de llegar a este outlet.",
     "transportation.v2.airportFrom": "Desde el aeropuerto",
     "transportation.v2.cityFrom": "Desde el centro",
     "transportation.v2.shuttle": "Shuttle",
@@ -12055,22 +12072,29 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.shuttleSection": "Shuttle",
     "transportation.v2.confirmTime": "Consulta el proveedor oficial",
     "transportation.v2.confirmFare": "Consulta la tarifa con el proveedor",
-    "transportation.v2.noAirportData": "Aún no hay ruta de aeropuerto respaldada por fuente.",
+    "transportation.v2.noAirportData":
+      "Aún no hay ruta de aeropuerto respaldada por fuente.",
     "transportation.v2.nearbyAirports": "Aeropuertos cercanos",
     "transportation.v2.distance": "Distancia",
     "transportation.v2.publicTransport": "Transporte público",
     "transportation.v2.taxiUber": "Taxi/Uber",
     "transportation.v2.checkProviderShort": "consultar proveedor",
-    "transportation.v2.noCityData": "Aún no hay ruta desde el centro respaldada por fuente.",
-    "transportation.v2.noReliableSteps": "Consulta el proveedor oficial antes de viajar.",
+    "transportation.v2.noCityData":
+      "Aún no hay ruta desde el centro respaldada por fuente.",
+    "transportation.v2.noReliableSteps":
+      "Consulta el proveedor oficial antes de viajar.",
     "transportation.v2.navigation": "Mapa / navegación",
   },
   fr: {
-    "transportation.v2.compactRecommendedFallback": "Vérifiez les informations de transport les plus pratiques auprès des sources officielles.",
-    "transportation.v2.providerSectionNote": "Vérifiez les horaires et tarifs actuels auprès du fournisseur officiel.",
+    "transportation.v2.compactRecommendedFallback":
+      "Vérifiez les informations de transport les plus pratiques auprès des sources officielles.",
+    "transportation.v2.providerSectionNote":
+      "Vérifiez les horaires et tarifs actuels auprès du fournisseur officiel.",
     "transportation.v2.nearbyAirport": "Aéroport à proximité",
-    "transportation.v2.subtitle": "Les moyens les plus pratiques pour rejoindre cet outlet.",
-    "transportation.v2.detailSubtitle": "Moyens pratiques pour rejoindre cet outlet.",
+    "transportation.v2.subtitle":
+      "Les moyens les plus pratiques pour rejoindre cet outlet.",
+    "transportation.v2.detailSubtitle":
+      "Moyens pratiques pour rejoindre cet outlet.",
     "transportation.v2.airportFrom": "Depuis l'aéroport",
     "transportation.v2.cityFrom": "Depuis le centre-ville",
     "transportation.v2.shuttle": "Navette",
@@ -12079,19 +12103,24 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.shuttleSection": "Navette",
     "transportation.v2.confirmTime": "Vérifiez auprès du fournisseur officiel",
     "transportation.v2.confirmFare": "Vérifiez le tarif auprès du fournisseur",
-    "transportation.v2.noAirportData": "Aucun itinéraire d'aéroport sourcé n'est encore disponible.",
+    "transportation.v2.noAirportData":
+      "Aucun itinéraire d'aéroport sourcé n'est encore disponible.",
     "transportation.v2.nearbyAirports": "Aéroports à proximité",
     "transportation.v2.distance": "Distance",
     "transportation.v2.publicTransport": "Transport public",
     "transportation.v2.taxiUber": "Taxi/Uber",
     "transportation.v2.checkProviderShort": "vérifier auprès du fournisseur",
-    "transportation.v2.noCityData": "Aucun itinéraire depuis le centre-ville sourcé n'est encore disponible.",
-    "transportation.v2.noReliableSteps": "Vérifiez auprès du fournisseur officiel avant de partir.",
+    "transportation.v2.noCityData":
+      "Aucun itinéraire depuis le centre-ville sourcé n'est encore disponible.",
+    "transportation.v2.noReliableSteps":
+      "Vérifiez auprès du fournisseur officiel avant de partir.",
     "transportation.v2.navigation": "Carte / navigation",
   },
   de: {
-    "transportation.v2.compactRecommendedFallback": "Prüfe die praktischsten Verkehrsinformationen bei offiziellen Quellen.",
-    "transportation.v2.providerSectionNote": "Aktuelle Zeiten und Preise beim offiziellen Anbieter prüfen.",
+    "transportation.v2.compactRecommendedFallback":
+      "Prüfe die praktischsten Verkehrsinformationen bei offiziellen Quellen.",
+    "transportation.v2.providerSectionNote":
+      "Aktuelle Zeiten und Preise beim offiziellen Anbieter prüfen.",
     "transportation.v2.nearbyAirport": "Nahegelegener Flughafen",
     "transportation.v2.subtitle": "Die praktischsten Wege zu diesem Outlet.",
     "transportation.v2.detailSubtitle": "Praktische Wege zu diesem Outlet.",
@@ -12103,19 +12132,24 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.shuttleSection": "Shuttle",
     "transportation.v2.confirmTime": "Beim offiziellen Anbieter prüfen",
     "transportation.v2.confirmFare": "Fahrpreis beim Anbieter prüfen",
-    "transportation.v2.noAirportData": "Noch keine belegte Flughafenroute verfügbar.",
+    "transportation.v2.noAirportData":
+      "Noch keine belegte Flughafenroute verfügbar.",
     "transportation.v2.nearbyAirports": "Nahegelegene Flughäfen",
     "transportation.v2.distance": "Entfernung",
     "transportation.v2.publicTransport": "ÖPNV",
     "transportation.v2.taxiUber": "Taxi/Uber",
     "transportation.v2.checkProviderShort": "beim Anbieter prüfen",
-    "transportation.v2.noCityData": "Noch keine belegte Route vom Stadtzentrum verfügbar.",
-    "transportation.v2.noReliableSteps": "Vor der Fahrt beim offiziellen Anbieter prüfen.",
+    "transportation.v2.noCityData":
+      "Noch keine belegte Route vom Stadtzentrum verfügbar.",
+    "transportation.v2.noReliableSteps":
+      "Vor der Fahrt beim offiziellen Anbieter prüfen.",
     "transportation.v2.navigation": "Karte / Navigation",
   },
   ar: {
-    "transportation.v2.compactRecommendedFallback": "تحقق من معلومات الوصول الأنسب من المصادر الرسمية.",
-    "transportation.v2.providerSectionNote": "تحقق من الأوقات والأجرة الحالية لدى المزوّد الرسمي.",
+    "transportation.v2.compactRecommendedFallback":
+      "تحقق من معلومات الوصول الأنسب من المصادر الرسمية.",
+    "transportation.v2.providerSectionNote":
+      "تحقق من الأوقات والأجرة الحالية لدى المزوّد الرسمي.",
     "transportation.v2.nearbyAirport": "المطار القريب",
     "transportation.v2.subtitle": "أكثر الطرق العملية للوصول إلى هذا الأوتلت.",
     "transportation.v2.detailSubtitle": "طرق عملية للوصول إلى هذا الأوتلت.",
@@ -12133,16 +12167,21 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.publicTransport": "المواصلات العامة",
     "transportation.v2.taxiUber": "تاكسي/Uber",
     "transportation.v2.checkProviderShort": "تحقق من المزوّد",
-    "transportation.v2.noCityData": "لا يوجد مسار موثق من وسط المدينة حتى الآن.",
+    "transportation.v2.noCityData":
+      "لا يوجد مسار موثق من وسط المدينة حتى الآن.",
     "transportation.v2.noReliableSteps": "تحقق من المزود الرسمي قبل السفر.",
     "transportation.v2.navigation": "الخريطة / الملاحة",
   },
   ru: {
-    "transportation.v2.compactRecommendedFallback": "Проверьте самый практичный вариант транспорта в официальных источниках.",
-    "transportation.v2.providerSectionNote": "Проверьте актуальное расписание и цены у официального провайдера.",
+    "transportation.v2.compactRecommendedFallback":
+      "Проверьте самый практичный вариант транспорта в официальных источниках.",
+    "transportation.v2.providerSectionNote":
+      "Проверьте актуальное расписание и цены у официального провайдера.",
     "transportation.v2.nearbyAirport": "Ближайший аэропорт",
-    "transportation.v2.subtitle": "Самые практичные способы добраться до этого аутлета.",
-    "transportation.v2.detailSubtitle": "Практичные способы добраться до этого аутлета.",
+    "transportation.v2.subtitle":
+      "Самые практичные способы добраться до этого аутлета.",
+    "transportation.v2.detailSubtitle":
+      "Практичные способы добраться до этого аутлета.",
     "transportation.v2.airportFrom": "Из аэропорта",
     "transportation.v2.cityFrom": "Из центра города",
     "transportation.v2.shuttle": "Шаттл",
@@ -12151,19 +12190,24 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.shuttleSection": "Шаттл",
     "transportation.v2.confirmTime": "Проверьте у официального провайдера",
     "transportation.v2.confirmFare": "Проверьте тариф у провайдера",
-    "transportation.v2.noAirportData": "Проверенного маршрута из аэропорта пока нет.",
+    "transportation.v2.noAirportData":
+      "Проверенного маршрута из аэропорта пока нет.",
     "transportation.v2.nearbyAirports": "Ближайшие аэропорты",
     "transportation.v2.distance": "Расстояние",
     "transportation.v2.publicTransport": "Общественный транспорт",
     "transportation.v2.taxiUber": "Такси/Uber",
     "transportation.v2.checkProviderShort": "проверьте у провайдера",
-    "transportation.v2.noCityData": "Проверенного маршрута из центра города пока нет.",
-    "transportation.v2.noReliableSteps": "Проверьте информацию у официального провайдера перед поездкой.",
+    "transportation.v2.noCityData":
+      "Проверенного маршрута из центра города пока нет.",
+    "transportation.v2.noReliableSteps":
+      "Проверьте информацию у официального провайдера перед поездкой.",
     "transportation.v2.navigation": "Карта / навигация",
   },
   zh: {
-    "transportation.v2.compactRecommendedFallback": "请从官方来源确认最实用的交通信息。",
-    "transportation.v2.providerSectionNote": "请向官方服务商确认当前班次和费用。",
+    "transportation.v2.compactRecommendedFallback":
+      "请从官方来源确认最实用的交通信息。",
+    "transportation.v2.providerSectionNote":
+      "请向官方服务商确认当前班次和费用。",
     "transportation.v2.nearbyAirport": "附近机场",
     "transportation.v2.subtitle": "前往此奥特莱斯的最实用方式。",
     "transportation.v2.detailSubtitle": "前往此奥特莱斯的实用方式。",
@@ -12188,21 +12232,244 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
 };
 
 for (const languageCode of supportedLanguageCodes) {
-  Object.assign(translations[languageCode], transportationV2Translations[languageCode]);
+  Object.assign(
+    translations[languageCode],
+    transportationV2Translations[languageCode],
+  );
 }
 
-
-const transportationV2Phase1DTranslations: Record<TranslationLanguage, Record<string, string>> = {
-  en: { "transportation.v2.approx": "Approx.", "transportation.v2.approxDuration": "Approx. {duration}", "transportation.v2.approxFare": "Approx. {fare}", "transportation.v2.estimateGuideFallback": "See transport estimates in the guide" },
-  tr: { "transportation.v2.approx": "Yaklaşık", "transportation.v2.approxDuration": "Yaklaşık {duration}", "transportation.v2.approxFare": "Yaklaşık {fare}", "transportation.v2.estimateGuideFallback": "Ulaşım tahminlerini rehberde gör" },
-  es: { "transportation.v2.approx": "Aprox.", "transportation.v2.approxDuration": "Aprox. {duration}", "transportation.v2.approxFare": "Aprox. {fare}", "transportation.v2.estimateGuideFallback": "Ver estimaciones de transporte en la guía" },
-  fr: { "transportation.v2.approx": "Env.", "transportation.v2.approxDuration": "Env. {duration}", "transportation.v2.approxFare": "Env. {fare}", "transportation.v2.estimateGuideFallback": "Voir les estimations de transport dans le guide" },
-  de: { "transportation.v2.approx": "Ca.", "transportation.v2.approxDuration": "Ca. {duration}", "transportation.v2.approxFare": "Ca. {fare}", "transportation.v2.estimateGuideFallback": "Verkehrsschätzungen im Guide ansehen" },
-  ru: { "transportation.v2.approx": "Примерно", "transportation.v2.approxDuration": "Примерно {duration}", "transportation.v2.approxFare": "Примерно {fare}", "transportation.v2.estimateGuideFallback": "Смотрите оценки транспорта в путеводителе" },
-  ar: { "transportation.v2.approx": "تقريبًا", "transportation.v2.approxDuration": "تقريبًا {duration}", "transportation.v2.approxFare": "تقريبًا {fare}", "transportation.v2.estimateGuideFallback": "اعرض تقديرات المواصلات في الدليل" },
-  zh: { "transportation.v2.approx": "约", "transportation.v2.approxDuration": "约 {duration}", "transportation.v2.approxFare": "约 {fare}", "transportation.v2.estimateGuideFallback": "在指南中查看交通估算" },
+const transportationV2Phase1ETranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "transportation.v2.route.line": "Line",
+    "transportation.v2.route.provider": "Provider",
+    "transportation.v2.route.operator": "Operator",
+    "transportation.v2.route.boarding": "Board",
+    "transportation.v2.route.alighting": "Alight",
+    "transportation.v2.route.transfer": "Transfer",
+    "transportation.v2.route.destination": "Destination",
+    "transportation.v2.route.origin": "Origin",
+    "transportation.v2.route.walking": "Walk",
+    "transportation.v2.route.checkOfficial":
+      "Check line/stop details with the official provider.",
+    "transportation.v2.title.cityTrain": "From city center by train",
+    "transportation.v2.title.cityBus": "From city center by bus",
+    "transportation.v2.title.airportPublic": "From airport by public transport",
+    "transportation.v2.title.airportTaxi": "From airport by taxi/Uber",
+    "transportation.v2.title.shuttle": "By shuttle",
+    "transportation.v2.title.taxi": "By taxi / Uber",
+  },
+  tr: {
+    "transportation.v2.route.line": "Hat",
+    "transportation.v2.route.provider": "Sağlayıcı",
+    "transportation.v2.route.operator": "Operatör",
+    "transportation.v2.route.boarding": "Biniş",
+    "transportation.v2.route.alighting": "İniş",
+    "transportation.v2.route.transfer": "Aktarma",
+    "transportation.v2.route.destination": "Varış",
+    "transportation.v2.route.origin": "Başlangıç",
+    "transportation.v2.route.walking": "Yürüyüş",
+    "transportation.v2.route.checkOfficial":
+      "Hat/durak bilgisini resmi sağlayıcıdan kontrol edin.",
+    "transportation.v2.title.cityTrain": "Şehir merkezinden trenle",
+    "transportation.v2.title.cityBus": "Şehir merkezinden otobüsle",
+    "transportation.v2.title.airportPublic": "Havalimanından toplu ulaşım ile",
+    "transportation.v2.title.airportTaxi": "Havalimanından taksi/Uber ile",
+    "transportation.v2.title.shuttle": "Shuttle ile",
+    "transportation.v2.title.taxi": "Taksi / Uber ile",
+  },
+  es: {
+    "transportation.v2.route.line": "Línea",
+    "transportation.v2.route.provider": "Proveedor",
+    "transportation.v2.route.operator": "Operador",
+    "transportation.v2.route.boarding": "Salida",
+    "transportation.v2.route.alighting": "Bajada",
+    "transportation.v2.route.transfer": "Transbordo",
+    "transportation.v2.route.destination": "Destino",
+    "transportation.v2.route.origin": "Origen",
+    "transportation.v2.route.walking": "A pie",
+    "transportation.v2.route.checkOfficial":
+      "Consulta la línea/parada con el proveedor oficial.",
+    "transportation.v2.title.cityTrain": "Desde el centro en tren",
+    "transportation.v2.title.cityBus": "Desde el centro en autobús",
+    "transportation.v2.title.airportPublic":
+      "Desde el aeropuerto en transporte público",
+    "transportation.v2.title.airportTaxi": "Desde el aeropuerto en taxi/Uber",
+    "transportation.v2.title.shuttle": "En shuttle",
+    "transportation.v2.title.taxi": "En taxi / Uber",
+  },
+  fr: {
+    "transportation.v2.route.line": "Ligne",
+    "transportation.v2.route.provider": "Prestataire",
+    "transportation.v2.route.operator": "Opérateur",
+    "transportation.v2.route.boarding": "Départ",
+    "transportation.v2.route.alighting": "Arrivée",
+    "transportation.v2.route.transfer": "Correspondance",
+    "transportation.v2.route.destination": "Destination",
+    "transportation.v2.route.origin": "Origine",
+    "transportation.v2.route.walking": "Marche",
+    "transportation.v2.route.checkOfficial":
+      "Vérifiez la ligne/l’arrêt auprès du prestataire officiel.",
+    "transportation.v2.title.cityTrain": "Depuis le centre-ville en train",
+    "transportation.v2.title.cityBus": "Depuis le centre-ville en bus",
+    "transportation.v2.title.airportPublic":
+      "Depuis l’aéroport en transport public",
+    "transportation.v2.title.airportTaxi": "Depuis l’aéroport en taxi/Uber",
+    "transportation.v2.title.shuttle": "En navette",
+    "transportation.v2.title.taxi": "En taxi / Uber",
+  },
+  de: {
+    "transportation.v2.route.line": "Linie",
+    "transportation.v2.route.provider": "Anbieter",
+    "transportation.v2.route.operator": "Betreiber",
+    "transportation.v2.route.boarding": "Einstieg",
+    "transportation.v2.route.alighting": "Ausstieg",
+    "transportation.v2.route.transfer": "Umstieg",
+    "transportation.v2.route.destination": "Ziel",
+    "transportation.v2.route.origin": "Start",
+    "transportation.v2.route.walking": "Fußweg",
+    "transportation.v2.route.checkOfficial":
+      "Prüfe Linie/Haltestelle beim offiziellen Anbieter.",
+    "transportation.v2.title.cityTrain": "Vom Stadtzentrum mit dem Zug",
+    "transportation.v2.title.cityBus": "Vom Stadtzentrum mit dem Bus",
+    "transportation.v2.title.airportPublic": "Vom Flughafen mit ÖPNV",
+    "transportation.v2.title.airportTaxi": "Vom Flughafen mit Taxi/Uber",
+    "transportation.v2.title.shuttle": "Mit Shuttle",
+    "transportation.v2.title.taxi": "Mit Taxi / Uber",
+  },
+  ru: {
+    "transportation.v2.route.line": "Линия",
+    "transportation.v2.route.provider": "Провайдер",
+    "transportation.v2.route.operator": "Оператор",
+    "transportation.v2.route.boarding": "Посадка",
+    "transportation.v2.route.alighting": "Выход",
+    "transportation.v2.route.transfer": "Пересадка",
+    "transportation.v2.route.destination": "Пункт назначения",
+    "transportation.v2.route.origin": "Начало",
+    "transportation.v2.route.walking": "Пешком",
+    "transportation.v2.route.checkOfficial":
+      "Уточните линию/остановку у официального поставщика.",
+    "transportation.v2.title.cityTrain": "Из центра города на поезде",
+    "transportation.v2.title.cityBus": "Из центра города на автобусе",
+    "transportation.v2.title.airportPublic":
+      "Из аэропорта на общественном транспорте",
+    "transportation.v2.title.airportTaxi": "Из аэропорта на такси/Uber",
+    "transportation.v2.title.shuttle": "На шаттле",
+    "transportation.v2.title.taxi": "На такси / Uber",
+  },
+  ar: {
+    "transportation.v2.route.line": "الخط",
+    "transportation.v2.route.provider": "المزوّد",
+    "transportation.v2.route.operator": "المشغّل",
+    "transportation.v2.route.boarding": "نقطة الصعود",
+    "transportation.v2.route.alighting": "نقطة النزول",
+    "transportation.v2.route.transfer": "تبديل",
+    "transportation.v2.route.destination": "الوجهة",
+    "transportation.v2.route.origin": "نقطة البداية",
+    "transportation.v2.route.walking": "سيرًا",
+    "transportation.v2.route.checkOfficial":
+      "تحقق من تفاصيل الخط/المحطة لدى المزوّد الرسمي.",
+    "transportation.v2.title.cityTrain": "من وسط المدينة بالقطار",
+    "transportation.v2.title.cityBus": "من وسط المدينة بالحافلة",
+    "transportation.v2.title.airportPublic": "من المطار بالمواصلات العامة",
+    "transportation.v2.title.airportTaxi": "من المطار بتاكسي/Uber",
+    "transportation.v2.title.shuttle": "بالشاتل",
+    "transportation.v2.title.taxi": "بتاكسي / Uber",
+  },
+  zh: {
+    "transportation.v2.route.line": "线路",
+    "transportation.v2.route.provider": "服务商",
+    "transportation.v2.route.operator": "运营方",
+    "transportation.v2.route.boarding": "上车点",
+    "transportation.v2.route.alighting": "下车点",
+    "transportation.v2.route.transfer": "换乘",
+    "transportation.v2.route.destination": "目的地",
+    "transportation.v2.route.origin": "起点",
+    "transportation.v2.route.walking": "步行",
+    "transportation.v2.route.checkOfficial":
+      "请向官方服务商确认线路/站点信息。",
+    "transportation.v2.title.cityTrain": "从市中心乘火车",
+    "transportation.v2.title.cityBus": "从市中心乘公交",
+    "transportation.v2.title.airportPublic": "从机场乘公共交通",
+    "transportation.v2.title.airportTaxi": "从机场乘出租车/Uber",
+    "transportation.v2.title.shuttle": "乘接驳车",
+    "transportation.v2.title.taxi": "乘出租车 / Uber",
+  },
 };
 
 for (const languageCode of supportedLanguageCodes) {
-  Object.assign(translations[languageCode], transportationV2Phase1DTranslations[languageCode]);
+  Object.assign(
+    translations[languageCode],
+    transportationV2Phase1ETranslations[languageCode],
+  );
+}
+
+const transportationV2Phase1DTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "transportation.v2.approx": "Approx.",
+    "transportation.v2.approxDuration": "Approx. {duration}",
+    "transportation.v2.approxFare": "Approx. {fare}",
+    "transportation.v2.estimateGuideFallback":
+      "See transport estimates in the guide",
+  },
+  tr: {
+    "transportation.v2.approx": "Yaklaşık",
+    "transportation.v2.approxDuration": "Yaklaşık {duration}",
+    "transportation.v2.approxFare": "Yaklaşık {fare}",
+    "transportation.v2.estimateGuideFallback":
+      "Ulaşım tahminlerini rehberde gör",
+  },
+  es: {
+    "transportation.v2.approx": "Aprox.",
+    "transportation.v2.approxDuration": "Aprox. {duration}",
+    "transportation.v2.approxFare": "Aprox. {fare}",
+    "transportation.v2.estimateGuideFallback":
+      "Ver estimaciones de transporte en la guía",
+  },
+  fr: {
+    "transportation.v2.approx": "Env.",
+    "transportation.v2.approxDuration": "Env. {duration}",
+    "transportation.v2.approxFare": "Env. {fare}",
+    "transportation.v2.estimateGuideFallback":
+      "Voir les estimations de transport dans le guide",
+  },
+  de: {
+    "transportation.v2.approx": "Ca.",
+    "transportation.v2.approxDuration": "Ca. {duration}",
+    "transportation.v2.approxFare": "Ca. {fare}",
+    "transportation.v2.estimateGuideFallback":
+      "Verkehrsschätzungen im Guide ansehen",
+  },
+  ru: {
+    "transportation.v2.approx": "Примерно",
+    "transportation.v2.approxDuration": "Примерно {duration}",
+    "transportation.v2.approxFare": "Примерно {fare}",
+    "transportation.v2.estimateGuideFallback":
+      "Смотрите оценки транспорта в путеводителе",
+  },
+  ar: {
+    "transportation.v2.approx": "تقريبًا",
+    "transportation.v2.approxDuration": "تقريبًا {duration}",
+    "transportation.v2.approxFare": "تقريبًا {fare}",
+    "transportation.v2.estimateGuideFallback":
+      "اعرض تقديرات المواصلات في الدليل",
+  },
+  zh: {
+    "transportation.v2.approx": "约",
+    "transportation.v2.approxDuration": "约 {duration}",
+    "transportation.v2.approxFare": "约 {fare}",
+    "transportation.v2.estimateGuideFallback": "在指南中查看交通估算",
+  },
+};
+
+for (const languageCode of supportedLanguageCodes) {
+  Object.assign(
+    translations[languageCode],
+    transportationV2Phase1DTranslations[languageCode],
+  );
 }
