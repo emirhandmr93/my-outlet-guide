@@ -12272,7 +12272,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.origin": "Başlangıç",
     "transportation.v2.route.walking": "Yürüyüş",
     "transportation.v2.route.checkOfficial":
-      "Hat/durak bilgisini resmi sağlayıcıdan kontrol edin.",
+      "Eksik hat veya durak bilgisini resmi sağlayıcıdan kontrol edin.",
     "transportation.v2.title.cityTrain": "Şehir merkezinden trenle",
     "transportation.v2.title.cityBus": "Şehir merkezinden otobüsle",
     "transportation.v2.title.airportPublic": "Havalimanından toplu ulaşım ile",
