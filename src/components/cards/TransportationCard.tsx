@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
-import type { TransportationV2Option } from "../../services/transportationV2Service";
+import { getTransportationDisplayFallbacks, getTransportationOptionDisplayModel, type TransportationV2Option } from "../../services/transportationV2Service";
 import { colors } from "../../theme/colors";
 import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
@@ -31,7 +31,8 @@ function getIcon(originGroup: TransportationV2Option["originGroup"]) {
 }
 
 export function TransportationCard({ title, summaryItems, notAvailableText, buttonText, onPressGuide }: TransportationCardProps) {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const fallbacks = getTransportationDisplayFallbacks(language);
 
   return (
     <Card>
@@ -39,18 +40,22 @@ export function TransportationCard({ title, summaryItems, notAvailableText, butt
       <Text style={styles.subtitle}>{t("transportation.v2.detailSubtitle")}</Text>
 
       {summaryItems.length > 0 ? (
-        summaryItems.slice(0, 3).map((item) => (
+        summaryItems.slice(0, 3).map((rawItem) => {
+          const item = getTransportationOptionDisplayModel(rawItem, language);
+          const hasUsefulMeta = Boolean(item.duration || item.fare);
+          return (
           <View key={item.id} style={styles.summaryRow}>
             <Text style={styles.icon}>{getIcon(item.originGroup)}</Text>
             <View style={styles.summaryText}>
               <Text style={styles.title}>{getSummaryTitle(item.originGroup, t)}</Text>
               <Text style={styles.mode} numberOfLines={1}>{formatTransportationTypeLabel(item.mode, t)}</Text>
               <Text style={styles.meta} numberOfLines={2}>
-                {item.duration || t("transportation.v2.confirmTime")} • {item.fare || t("transportation.v2.confirmFare")}
+                {hasUsefulMeta ? [item.duration, item.fare].filter(Boolean).join(" • ") : fallbacks.details}
               </Text>
             </View>
           </View>
-        ))
+        );
+        })
       ) : (
         <Text style={styles.emptyText}>{notAvailableText}</Text>
       )}
