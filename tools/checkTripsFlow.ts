@@ -36,6 +36,19 @@ const segmentEditor = read("src/screens/TripSegmentEditorScreen.tsx");
 const reminderService = read("src/services/tripReminderPlan.ts");
 
 assert(
+  myTrips.includes("formatCityDisplayName") &&
+    myTrips.includes("formatCountryDisplayName") &&
+    myTrips.includes("primarySegment") &&
+    !/Ville|Notas/.test(myTrips),
+  "Turkish MyTrips cards must not expose French/Spanish fallback labels",
+);
+assert(
+  segmentEditor.includes("formatOutletLocationSubtitle(outlet.cityId, outlet.countryId, language)") &&
+    !segmentEditor.includes(" · {outlet.outletId}"),
+  "TripSegmentEditor visible outlet results must not render outlet slug/internal id subtitles",
+);
+
+assert(
   !/\b(fake|mock|lorem|dummy|demoTrip|mockTrip|fakeTrip|sample trip|generated plan)\b/i.test(
     combinedTripSource,
   ),
@@ -236,4 +249,18 @@ for (const locale of supportedLanguageCodes) {
     );
   }
 }
+assert(
+  translations.tr["trips.city"] === "Şehir" &&
+    translations.tr["trips.country"] === "Ülke" &&
+    translations.tr["trips.notes"] === "Not",
+  "Turkish trip card labels must be localized as Şehir/Ülke/Not",
+);
+assert(
+  translations.tr["tripDetail.segmentOutletReminderMessage"] ===
+    "Bugün {{outlet}} ziyaretin var." &&
+    !Object.values(translations).some((locale) =>
+      Object.values(locale).some((value) => value.includes("outlet günün")),
+    ),
+  "Trip reminder copy must not contain visible outlet günün wording",
+);
 console.log("Trips flow QA passed.");

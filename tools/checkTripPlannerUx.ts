@@ -10,13 +10,46 @@ function assert(condition: unknown, message: string) {
 const createTrip = read("src/screens/CreateTripScreen.tsx");
 const myTrips = read("src/screens/MyTripsScreen.tsx");
 const tripDetail = read("src/screens/TripDetailScreen.tsx");
+const segmentEditor = read("src/screens/TripSegmentEditorScreen.tsx");
 const reminders = read("src/services/tripReminderPlan.ts");
 const flightAlerts = read("src/screens/FlightDealsScreen.tsx");
 const translations = read("src/translations/translations.ts");
+const locationDisplay = read("src/utils/locationDisplay.ts");
 const tripsContext = read("src/contexts/TripsContext.tsx");
 const tripsService = read("src/services/tripsService.ts");
 const profile = read("src/screens/ProfileScreen.tsx");
 const rules = read("firestore.rules");
+
+assert(
+  myTrips.includes("formatCityDisplayName") &&
+    myTrips.includes("formatCountryDisplayName") &&
+    myTrips.includes("primarySegment") &&
+    !/Ville|Notas/.test(myTrips),
+  "MyTrips trip cards must use localized source-backed city/country labels and avoid mixed-language fallback labels",
+);
+assert(
+  !segmentEditor.includes(" · {outlet.outletId}") &&
+    segmentEditor.includes("formatOutletLocationSubtitle(outlet.cityId, outlet.countryId, language)"),
+  "TripSegmentEditor visible outlet rows must show only localized city/country subtitles and never outlet slugs/internal ids",
+);
+assert(
+  translations.includes('"trips.city": "Şehir"') &&
+    translations.includes('"trips.country": "Ülke"') &&
+    translations.includes('"trips.notes": "Not"'),
+  "Turkish MyTrips stat labels must be localized",
+);
+assert(
+  locationDisplay.includes('tr: "İtalya"') &&
+    locationDisplay.includes('tr: "Fransa"') &&
+    locationDisplay.includes('tr: "Almanya"') &&
+    locationDisplay.includes('tr: "Birleşik Krallık"'),
+  "TripSegmentEditor country display formatter must include Turkish country display names",
+);
+assert(
+  !translations.includes("outlet günün") &&
+    translations.includes('"tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var."'),
+  "Segment outlet reminder body copy must be clean and not duplicate outlet",
+);
 
 assert(
   myTrips.includes("requireAuth({ isLoggedIn, navigation") &&

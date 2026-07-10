@@ -1757,9 +1757,9 @@ export const translations: Record<
       "Bu seyahati kaydetme iznini doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
     "trips.dateNotSet": "Tarih yok",
     "trips.destinationNotSet": "Destinasyon yok",
-    "trips.city": "Ville",
-    "trips.country": "Country",
-    "trips.notes": "Notas",
+    "trips.city": "Şehir",
+    "trips.country": "Ülke",
+    "trips.notes": "Not",
     "trips.dated": "Tarihli",
     "trips.loading": "Seyahatler yükleniyor...",
     "tripDetail.destination": "Destinasyon",
@@ -13052,7 +13052,7 @@ const tripPlanningFlowTranslations: Record<
     "tripDetail.flightReminder": "Flight reminder",
     "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
     "tripDetail.segmentOutletReminderMessage":
-      "Today is your {{outlet}} outlet day.",
+      "Today you have a visit to {{outlet}}.",
     "tripDetail.taxFreeReminderMessage":
       "Remember to check your Tax Free documents.",
     "tripDetail.flightReminderMessage":
@@ -13098,7 +13098,7 @@ const tripPlanningFlowTranslations: Record<
     "tripDetail.taxFreeReminder": "Tax Free hatırlatması",
     "tripDetail.flightReminder": "Uçuş hatırlatması",
     "tripDetail.segmentCityReminderMessage": "Bugün {{city}} planın başlıyor.",
-    "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} outlet günün.",
+    "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var.",
     "tripDetail.taxFreeReminderMessage":
       "Tax Free belgelerini kontrol etmeyi unutma.",
     "tripDetail.flightReminderMessage":
@@ -13148,7 +13148,7 @@ const tripPlanningFlowTranslations: Record<
     "tripDetail.flightReminder": "Flight reminder",
     "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
     "tripDetail.segmentOutletReminderMessage":
-      "Today is your {{outlet}} outlet day.",
+      "Today you have a visit to {{outlet}}.",
     "tripDetail.taxFreeReminderMessage":
       "Remember to check your Tax Free documents.",
     "tripDetail.flightReminderMessage":
@@ -13195,7 +13195,7 @@ const tripPlanningFlowTranslations: Record<
     "tripDetail.flightReminder": "Flight reminder",
     "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
     "tripDetail.segmentOutletReminderMessage":
-      "Today is your {{outlet}} outlet day.",
+      "Today you have a visit to {{outlet}}.",
     "tripDetail.taxFreeReminderMessage":
       "Remember to check your Tax Free documents.",
     "tripDetail.flightReminderMessage":
@@ -13242,7 +13242,7 @@ const tripPlanningFlowTranslations: Record<
     "tripDetail.flightReminder": "Flight reminder",
     "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
     "tripDetail.segmentOutletReminderMessage":
-      "Today is your {{outlet}} outlet day.",
+      "Today you have a visit to {{outlet}}.",
     "tripDetail.taxFreeReminderMessage":
       "Remember to check your Tax Free documents.",
     "tripDetail.flightReminderMessage":
@@ -13289,7 +13289,7 @@ const tripPlanningFlowTranslations: Record<
     "tripDetail.flightReminder": "Flight reminder",
     "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
     "tripDetail.segmentOutletReminderMessage":
-      "Today is your {{outlet}} outlet day.",
+      "Today you have a visit to {{outlet}}.",
     "tripDetail.taxFreeReminderMessage":
       "Remember to check your Tax Free documents.",
     "tripDetail.flightReminderMessage":
@@ -13336,7 +13336,7 @@ const tripPlanningFlowTranslations: Record<
     "tripDetail.flightReminder": "Flight reminder",
     "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
     "tripDetail.segmentOutletReminderMessage":
-      "Today is your {{outlet}} outlet day.",
+      "Today you have a visit to {{outlet}}.",
     "tripDetail.taxFreeReminderMessage":
       "Remember to check your Tax Free documents.",
     "tripDetail.flightReminderMessage":
@@ -13383,7 +13383,7 @@ const tripPlanningFlowTranslations: Record<
     "tripDetail.flightReminder": "Flight reminder",
     "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
     "tripDetail.segmentOutletReminderMessage":
-      "Today is your {{outlet}} outlet day.",
+      "Today you have a visit to {{outlet}}.",
     "tripDetail.taxFreeReminderMessage":
       "Remember to check your Tax Free documents.",
     "tripDetail.flightReminderMessage":
@@ -13621,7 +13621,7 @@ const tripReminderPlanV2Translations: Record<
     "tripDetail.tripStartReminderMessage": "Your shopping trip starts today.",
     "tripDetail.segmentCityReminderMessage": "Your {{city}} plan starts today.",
     "tripDetail.segmentOutletReminderMessage":
-      "Today is your {{outlet}} outlet day.",
+      "Today you have a visit to {{outlet}}.",
     "tripDetail.segmentStartReminderBody":
       "Check route details and transportation information.",
     "tripDetail.taxFreeReminderMessage":
@@ -13649,7 +13649,7 @@ const tripReminderPlanV2Translations: Record<
     "tripDetail.tripStartReminderMessage":
       "Alışveriş seyahatin bugün başlıyor.",
     "tripDetail.segmentCityReminderMessage": "Bugün {{city}} planın başlıyor.",
-    "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} outlet günün.",
+    "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var.",
     "tripDetail.segmentStartReminderBody":
       "Rota detaylarını ve ulaşım bilgilerini kontrol et.",
     "tripDetail.taxFreeReminderMessage":
@@ -13677,7 +13677,7 @@ const tripReminderPlanV2Translations: Record<
     "tripDetail.tripStartReminderMessage": "Tu viaje de compras empieza hoy.",
     "tripDetail.segmentCityReminderMessage": "Tu plan en {{city}} empieza hoy.",
     "tripDetail.segmentOutletReminderMessage":
-      "Hoy es tu día de outlet en {{outlet}}.",
+      "Hoy tienes una visita a {{outlet}}.",
     "tripDetail.segmentStartReminderBody":
       "Revisa los detalles de ruta y transporte.",
     "tripDetail.taxFreeReminderMessage":
@@ -13707,7 +13707,7 @@ const tripReminderPlanV2Translations: Record<
     "tripDetail.segmentCityReminderMessage":
       "Votre programme à {{city}} commence aujourd’hui.",
     "tripDetail.segmentOutletReminderMessage":
-      "Aujourd’hui est votre journée outlet à {{outlet}}.",
+      "Aujourd’hui, vous visitez {{outlet}}.",
     "tripDetail.segmentStartReminderBody":
       "Vérifiez les détails d’itinéraire et de transport.",
     "tripDetail.taxFreeReminderMessage":
@@ -13737,7 +13737,7 @@ const tripReminderPlanV2Translations: Record<
     "tripDetail.segmentCityReminderMessage":
       "Dein Plan für {{city}} beginnt heute.",
     "tripDetail.segmentOutletReminderMessage":
-      "Heute ist dein Outlet-Tag in {{outlet}}.",
+      "Heute besuchst du {{outlet}}.",
     "tripDetail.segmentStartReminderBody":
       "Prüfe Routendetails und Verkehrsinformationen.",
     "tripDetail.taxFreeReminderMessage":
@@ -13765,7 +13765,7 @@ const tripReminderPlanV2Translations: Record<
     "tripDetail.tripStartReminderMessage": "تبدأ رحلة التسوق الخاصة بك اليوم.",
     "tripDetail.segmentCityReminderMessage": "تبدأ خطتك في {{city}} اليوم.",
     "tripDetail.segmentOutletReminderMessage":
-      "اليوم هو يوم الأوتلت في {{outlet}}.",
+      "لديك اليوم زيارة إلى {{outlet}}.",
     "tripDetail.segmentStartReminderBody": "راجع تفاصيل المسار ومعلومات النقل.",
     "tripDetail.taxFreeReminderMessage":
       "لا تنسَ التحقق من مستنداتك وجواز سفرك وإيصالات التسوق.",
@@ -13793,7 +13793,7 @@ const tripReminderPlanV2Translations: Record<
     "tripDetail.segmentCityReminderMessage":
       "Ваш план в {{city}} начинается сегодня.",
     "tripDetail.segmentOutletReminderMessage":
-      "Сегодня день аутлета {{outlet}}.",
+      "Сегодня у вас посещение {{outlet}}.",
     "tripDetail.segmentStartReminderBody":
       "Проверьте детали маршрута и транспорта.",
     "tripDetail.taxFreeReminderMessage":
@@ -13819,7 +13819,7 @@ const tripReminderPlanV2Translations: Record<
     "tripDetail.dealEventReminder": "活动 / 优惠",
     "tripDetail.tripStartReminderMessage": "你的购物行程今天开始。",
     "tripDetail.segmentCityReminderMessage": "你的 {{city}} 计划今天开始。",
-    "tripDetail.segmentOutletReminderMessage": "今天是你的 {{outlet}} 奥莱日。",
+    "tripDetail.segmentOutletReminderMessage": "你今天要去 {{outlet}}。",
     "tripDetail.segmentStartReminderBody": "检查路线详情和交通信息。",
     "tripDetail.taxFreeReminderMessage": "别忘了检查文件、护照和购物小票。",
     "tripDetail.outboundFlightReminderMessage": "检查你的航班信息{{airport}}。",

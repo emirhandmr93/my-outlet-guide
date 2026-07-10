@@ -6,11 +6,18 @@ import { Trip, useTrips } from "../contexts/TripsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getTripStatusLabel } from "../utils/getTripStatusLabel";
+import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
 import type { RootStackParamList } from "../navigation/types";
 import { requireAuth } from "../utils/requireAuth";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
-function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => void; onDelete: () => void; t: (key: string) => string }) {
+function TripCard({ trip, onPress, onDelete, t, language }: { trip: Trip; onPress: () => void; onDelete: () => void; t: (key: string) => string; language: Parameters<typeof formatCityDisplayName>[1] }) {
+  const primarySegment = trip.segments?.find((item) => item.cityId || item.cityName || item.countryCode || item.countryName || item.outletName);
+  const cityValue = primarySegment?.cityId || primarySegment?.cityName || trip.city || "";
+  const countryValue = primarySegment?.countryCode || primarySegment?.countryName || trip.country || "";
+  const cityDisplay = cityValue ? formatCityDisplayName(cityValue, language) : "—";
+  const countryDisplay = countryValue ? formatCountryDisplayName(countryValue, language) : "—";
+
   return (
     <TouchableOpacity style={styles.tripCard} activeOpacity={0.86} onPress={onPress}>
       <View style={styles.cardTopRow}>
@@ -23,11 +30,11 @@ function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => v
 
       <View style={styles.tripMetaRow}>
         <View style={styles.metaBox}>
-          <Text style={styles.metaValue}>{trip.city || "—"}</Text>
+          <Text style={styles.metaValue}>{cityDisplay}</Text>
           <Text style={styles.metaLabel}>{t("trips.city")}</Text>
         </View>
         <View style={styles.metaBox}>
-          <Text style={styles.metaValue}>{trip.country || "—"}</Text>
+          <Text style={styles.metaValue}>{countryDisplay}</Text>
           <Text style={styles.metaLabel}>{t("trips.country")}</Text>
         </View>
         <View style={styles.metaBox}>
@@ -55,7 +62,7 @@ function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => v
 export function MyTripsScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { trips, deleteTrip, loading, tripsError } = useTrips();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const { isLoggedIn } = useUser();
   const insets = useSafeAreaInsets();
 
@@ -147,6 +154,7 @@ export function MyTripsScreen() {
             key={trip.id}
             trip={trip}
             onDelete={() => handleDeleteTrip(trip.id)}
+            language={language}
             onPress={() => navigation.navigate("TripDetail", { tripId: trip.id })}
             t={t}
           />
