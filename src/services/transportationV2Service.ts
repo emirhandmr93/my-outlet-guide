@@ -6,6 +6,7 @@ import {
   type TransportationType,
 } from "../constants/transportationGuides";
 import { getTransportationForOutlet } from "./transportationService";
+import { getTransportationRouteFact, type TransportationRouteFact } from "../constants/transportationRouteFacts";
 
 const UNSAFE_VALUE_PATTERN =
   /\b(confirm|check|varies|vary|provider|timetable|availability|unknown|not verified|kontrol et|sağlayıcıdan)\b/i;
@@ -27,6 +28,7 @@ const ENGLISH_STEP_PATTERN =
   /\b(check|travel|book|confirm|take|board|use|follow|return|parking|official|provider|timetable|arrive|ride)\b/i;
 
 type SourceConfidence = "source" | "derived" | "fallbackEstimate";
+type RouteFactConfidence = "exact" | "partial" | "estimateOnly";
 
 export type TransportationRouteDetailDisplayModel = {
   lineOrProviderLabel?: string;
@@ -36,6 +38,9 @@ export type TransportationRouteDetailDisplayModel = {
   transferLabel?: string;
   destinationLabel?: string;
   routeHintLabel?: string;
+  walkNoteLabel?: string;
+  officialCheckNoteLabel?: string;
+  confidence: RouteFactConfidence;
   hasSourceBackedRouteDetail: boolean;
 };
 
@@ -67,6 +72,7 @@ export type TransportationV2Option = TransportationEstimateDisplayModel & {
   isUsefulForPrimaryDisplay: boolean;
   isUsefulForSummaryDisplay: boolean;
   guide: TransportationGuide;
+  routeFact?: TransportationRouteFact;
 };
 
 export type NearbyAirportDisplay = {
@@ -236,7 +242,7 @@ const I18N: Record<
       destination: "Varış",
       origin: "Başlangıç",
       walking: "Yürüyüş",
-      checkRoute: "Hat/durak bilgisini resmi sağlayıcıdan kontrol edin.",
+      checkRoute: "Eksik hat veya durak bilgisini resmi sağlayıcıdan kontrol edin.",
     },
   },
   es: {
@@ -578,91 +584,54 @@ function airportCodeFor(guide: TransportationGuide) {
     ? outlet?.airports?.find((airport) => airport.code === guide.originId)?.code
     : undefined;
 }
+function factOriginGroup(fact: TransportationRouteFact | undefined): TransportationV2Option["originGroup"] | undefined {
+  if (!fact) return undefined;
+  if (fact.originType === "airport") return "airport";
+  if (fact.originType === "shuttle") return "shuttle";
+  return "city";
+}
 function extractRouteDetails(
   guide: TransportationGuide,
   originGroup: TransportationV2Option["originGroup"],
   mode: TransportationType,
 ): TransportationRouteDetailDisplayModel {
-  const text = sourceText(guide);
-  const terms = findTerms(text, ROUTE_TERMS).map(normalizeRouteTerm);
-  const stops = findTerms(text, STOP_TERMS).map(normalizeRouteTerm);
+  const fact = getTransportationRouteFact(guide.guideId);
   const isTaxi = ["taxi", "uber"].includes(mode);
-  if (isTaxi)
+  if (fact) {
+    const isExactOrPartial = fact.confidence !== "estimateOnly";
     return {
-      boardingPointLabel: originGroup === "airport" ? "Airport" : "City center",
-      destinationLabel: "Outlet address",
-      routeHintLabel:
-        originGroup === "airport" ? "Airport → outlet" : "City center → outlet",
+      lineOrProviderLabel: fact.mode === "shuttle" ? fact.provider : fact.line,
+      operatorLabel: fact.operator || (fact.mode === "shuttle" ? undefined : fact.provider),
+      boardingPointLabel: fact.boardingPoint,
+      transferLabel: fact.transferPoints?.join(" / "),
+      alightingPointLabel: fact.alightingPoint,
+      destinationLabel: fact.destination,
+      walkNoteLabel: fact.walkNote,
+      officialCheckNoteLabel: fact.officialCheckNote || fact.sourceNote,
+      routeHintLabel: compactJoin([
+        fact.provider || fact.operator || fact.line,
+        fact.line && fact.provider ? fact.line : undefined,
+        fact.alightingPoint || fact.boardingPoint || fact.destination,
+      ]),
+      confidence: fact.confidence,
+      hasSourceBackedRouteDetail: isExactOrPartial,
+    };
+  }
+  if (isTaxi) {
+    return {
+      destinationLabel: outletNameFor(guide.outletId),
+      routeHintLabel: originGroup === "airport" ? "Airport → outlet" : "City center → outlet",
+      confidence: "estimateOnly",
       hasSourceBackedRouteDetail: false,
     };
-  const lineTerms = terms.filter((term) =>
-    /RER|S23|RB23|RB24|TGV|SNCF|ÖBB|S-Bahn|U-Bahn|Outlet Link|Obus|Trenitalia/i.test(
-      term,
-    ),
-  );
-  const providerTerms = terms.filter((term) =>
-    /Shopping Express|Zani Viaggi|Frigerio Viaggi|FlixBus|BLAGUSS|Vienna Sightseeing/i.test(
-      term,
-    ),
-  );
-  const airportCode = airportCodeFor(guide);
-  const lineOrProviderLabel = compactJoin(
-    mode === "shuttle"
-      ? [...providerTerms, ...lineTerms]
-      : [...lineTerms, ...providerTerms],
-  );
-  const boardingPointLabel =
-    stops.find((stop) =>
-      /Hotel Pullman|Milano Centrale|Largo Cairoli|Piazza|Roma Termini|Firenze|Venezia|Estació/i.test(
-        stop,
-      ),
-    ) ||
-    airportCode ||
-    (lineOrProviderLabel ? "City center" : undefined);
-  const alightingPointLabel = stops.find((stop) =>
-    /Val d'Europe|Parndorf Ort|Bad Münstereifel|Serris|Venezia Mestre/i.test(
-      stop,
-    ),
-  );
-  const transfer = stops.find((stop) =>
-    /Marne-la-Vallée|Euskirchen|Parndorf Ort|Venezia Mestre/i.test(stop),
-  );
-  const hasSourceBackedRouteDetail = Boolean(terms.length || stops.length);
+  }
   return {
-    lineOrProviderLabel: lineOrProviderLabel || undefined,
-    operatorLabel:
-      compactJoin(
-        terms.filter((term) => /SNCF|ÖBB|Trenitalia|Obus/i.test(term)),
-      ) || undefined,
-    boardingPointLabel,
-    alightingPointLabel,
-    transferLabel:
-      transfer && transfer !== alightingPointLabel ? transfer : undefined,
-    destinationLabel: outletNameFor(guide.outletId),
-    routeHintLabel:
-      compactJoin([
-        lineOrProviderLabel,
-        alightingPointLabel || stops[0],
-        boardingPointLabel ||
-          (originGroup === "airport" ? airportCode : undefined),
-      ]) ||
-      (originGroup === "airport"
-        ? `${airportCode || "Airport"} → outlet`
-        : undefined),
-    hasSourceBackedRouteDetail,
+    routeHintLabel: undefined,
+    confidence: "estimateOnly",
+    hasSourceBackedRouteDetail: false,
   };
 }
-function localizePoint(
-  value: string | undefined,
-  language: TranslationLanguage,
-  route?: string,
-) {
-  if (!value) return undefined;
-  if (language !== "tr") return value;
-  if (value === "City center")
-    return route ? `Şehir merkezi ${route} istasyonu` : "Şehir merkezi";
-  if (value === "Airport") return "Havalimanı";
-  if (value === "Outlet address") return "Outlet adresi";
+function localizePoint(value: string | undefined) {
   return value;
 }
 export function getTransportationRouteDetailRows(
@@ -688,11 +657,7 @@ export function getTransportationRouteDetailRows(
       ? {
           label: isTaxi ? labels.origin : labels.boarding,
           value:
-            localizePoint(
-              detail.boardingPointLabel,
-              language,
-              detail.lineOrProviderLabel,
-            ) || detail.boardingPointLabel,
+            localizePoint(detail.boardingPointLabel) || detail.boardingPointLabel,
         }
       : undefined,
     detail.alightingPointLabel
@@ -701,12 +666,14 @@ export function getTransportationRouteDetailRows(
     detail.transferLabel
       ? { label: labels.transfer, value: detail.transferLabel }
       : undefined,
+    detail.walkNoteLabel
+      ? { label: labels.walking, value: detail.walkNoteLabel }
+      : undefined,
     detail.destinationLabel
       ? {
           label: labels.destination,
           value:
-            localizePoint(detail.destinationLabel, language) ||
-            detail.destinationLabel,
+            localizePoint(detail.destinationLabel) || detail.destinationLabel,
         }
       : undefined,
   ].filter(Boolean) as { label: string; value: string }[];
@@ -884,14 +851,14 @@ function stepsFor(
     return I18N[l].steps.public;
   }
   const route = details?.lineOrProviderLabel;
-  const board = localizePoint(details?.boardingPointLabel, l, route);
+  const board = localizePoint(details?.boardingPointLabel);
   const alight = details?.alightingPointLabel;
   const transfer = details?.transferLabel;
-  const dest = localizePoint(details?.destinationLabel, l);
+  const dest = localizePoint(details?.destinationLabel);
   if (["taxi", "uber"].includes(mode))
     return [
       "Başlangıç noktasını seç: şehir merkezi veya havalimanı.",
-      "Varış adresini outlet adresi olarak ayarla.",
+      "Varış noktasını outlet konumu olarak ayarla.",
       "Ücreti yolculuk başlamadan önce uygulamada kontrol et.",
       "Trafik ve dönüş saatini alışverişten önce tekrar kontrol et.",
     ];
@@ -932,7 +899,10 @@ function optionFromGuide(
         ? "airport"
         : "city";
   const km = distanceFor(guide);
-  const estimate = estimateFor(originGroup, guide.transportationType, km);
+  const routeFact = getTransportationRouteFact(guide.guideId);
+  const factOrigin = factOriginGroup(routeFact);
+  const effectiveOriginGroup = factOrigin || originGroup;
+  const estimate = estimateFor(effectiveOriginGroup, guide.transportationType, km);
   if (!estimate) return undefined;
   const hasSourceDuration = Boolean(
     sanitizeTransportationDisplayValue(guide.estimatedDuration, "en"),
@@ -942,8 +912,8 @@ function optionFromGuide(
   );
   return {
     id: guide.guideId,
-    originGroup,
-    originLabel: originGroup,
+    originGroup: effectiveOriginGroup,
+    originLabel: effectiveOriginGroup,
     mode: guide.transportationType,
     modeLabel: guide.transportationType,
     estimatedDurationLabel: "",
@@ -951,18 +921,19 @@ function optionFromGuide(
     title: guide.title,
     routeDetails: extractRouteDetails(
       guide,
-      originGroup,
+      effectiveOriginGroup,
       guide.transportationType,
     ),
     steps: [],
     sourceConfidence:
-      hasSourceDuration && hasSourceFare ? "source" : estimate.confidence,
+      routeFact?.confidence === "exact" || (hasSourceDuration && hasSourceFare) ? "source" : estimate.confidence,
     hasOnlyFallbackMeta: false,
     hasUsefulEstimate: true,
     hasUsefulFare: true,
     isUsefulForPrimaryDisplay: true,
     isUsefulForSummaryDisplay: true,
     guide,
+    routeFact,
   };
 }
 function syntheticGuide(
@@ -1010,10 +981,16 @@ export function getTransportationOptionDisplayModel(
   const originGroup = option.originGroup;
   const estimate = estimateFor(originGroup, option.mode, distanceFor(guide));
   if (!estimate) return option;
+  const fact = option.routeFact || getTransportationRouteFact(guide.guideId);
+  const factEstimate = fact?.estimatedDurationMin && fact?.estimatedDurationMax ? { duration: [fact.estimatedDurationMin, fact.estimatedDurationMax] as [number, number], fare: [fact.estimatedFareMin || estimate.fare[0], fact.estimatedFareMax || estimate.fare[1]] as [number, number], confidence: option.sourceConfidence } : undefined;
   const durationLabel =
+    (fact?.displayDuration ? `${I18N[language].approx} ${fact.displayDuration}` : undefined) ||
+    (factEstimate ? formatDuration(factEstimate, language) : undefined) ||
     formatTransportDurationForDisplay(guide.estimatedDuration, language) ||
     formatDuration(estimate, language);
   const fareLabel =
+    (fact?.displayFare ? `${I18N[language].approx} ${fact.displayFare}` : undefined) ||
+    (factEstimate && fact?.estimatedFareMin ? formatFare(factEstimate, language) : undefined) ||
     formatTransportFareForDisplay(guide.estimatedCost, language) ||
     formatFare(
       originGroup === "shuttle" && guide.originType === "airport"
@@ -1026,6 +1003,12 @@ export function getTransportationOptionDisplayModel(
     formatTransportFareForDisplay(guide.estimatedCost, language)
       ? "source"
       : option.sourceConfidence;
+  const displayDetails = extractRouteDetails(guide, originGroup, option.mode);
+  if (!displayDetails.routeHintLabel) {
+    displayDetails.routeHintLabel = ["taxi", "uber"].includes(option.mode)
+      ? I18N[language].modes.taxi
+      : I18N[language].modes[option.mode] || I18N[language].modes.metro;
+  }
   return {
     ...option,
     originLabel: originLabelFor(originGroup, language),
@@ -1042,19 +1025,21 @@ export function getTransportationOptionDisplayModel(
     estimatedFareLabel: fareLabel,
     note: undefined,
     noteLabel:
-      option.routeDetails.hasSourceBackedRouteDetail ||
-      ["taxi", "uber"].includes(option.mode)
+      fact?.officialCheckNote ||
+      (["taxi", "uber"].includes(option.mode)
         ? I18N[language].note
-        : I18N[language].routeLabels.checkRoute,
+        : displayDetails.hasSourceBackedRouteDetail
+          ? undefined
+          : I18N[language].routeLabels.checkRoute),
     providerNote: undefined,
-    routeDetails: extractRouteDetails(guide, originGroup, option.mode),
+    routeDetails: displayDetails,
     steps: stepsFor(
       option.mode,
       originGroup,
       language,
-      extractRouteDetails(guide, originGroup, option.mode),
+      displayDetails,
     ),
-    sourceConfidence,
+    sourceConfidence: fact?.confidence === "exact" ? "source" : sourceConfidence,
     hasOnlyFallbackMeta: false,
     hasUsefulEstimate: true,
     hasUsefulFare: true,
@@ -1079,8 +1064,9 @@ export function getTransportationV2Options(
 }
 function routePriority(option: TransportationV2Option) {
   const detail = option.routeDetails;
-  if (detail.hasSourceBackedRouteDetail && option.sourceConfidence === "source")
-    return 100;
+  if ((option.originGroup === "shuttle" || option.mode === "shuttle") && detail.confidence === "exact" && detail.boardingPointLabel && option.estimatedFareLabel) return 100;
+  if (option.originGroup === "city" && PUBLIC_TYPES.has(option.mode) && detail.confidence === "exact") return 90;
+  if (option.originGroup === "airport" && PUBLIC_TYPES.has(option.mode) && detail.confidence === "exact") return 80;
   if (
     (option.originGroup === "shuttle" || option.mode === "shuttle") &&
     (detail.lineOrProviderLabel || detail.boardingPointLabel)
@@ -1098,12 +1084,7 @@ function routePriority(option: TransportationV2Option) {
     detail.hasSourceBackedRouteDetail
   )
     return 70;
-  if (
-    ["taxi", "uber"].includes(option.mode) &&
-    detail.boardingPointLabel &&
-    detail.destinationLabel
-  )
-    return 60;
+  if (["taxi", "uber"].includes(option.mode)) return 60;
   return 10;
 }
 export function getRecommendedTransportationV2Option(

@@ -4,6 +4,7 @@ import {
   translations,
 } from "../src/translations/translations";
 import { transportationGuides } from "../src/constants/transportationGuides";
+import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
 import { outlets } from "../src/constants/outlets";
 import {
   getCompactRecommendedFallback,
@@ -58,6 +59,8 @@ const requiredKeys = [
   "transportation.v2.approxFare",
   "transportation.v2.estimateGuideFallback",
 ];
+const prohibitedGenericRouteStrings =
+  /Şehir merkezi ÖBB istasyonu|Şehir merkezi RER A|Outlet adresi|Shuttle shuttle|city’dan|city\'dan|Hat\/durak bilgisini resmi sağlayıcıdan kontrol edin/i;
 const titleDupes =
   /city’dan|city\'dan|Shuttle shuttle|shuttle shuttle|Şehir merkezinden şehir merkezinden/i;
 const publicTypes = new Set(["train", "metro", "bus", "ferry", "walking"]);
@@ -86,6 +89,8 @@ for (const file of files) {
   const text = fs.readFileSync(file, "utf8");
   if (file !== "src/translations/translations.ts" && prohibited.test(text))
     errors.push(`${file} contains prohibited legacy main-route label.`);
+  if (prohibitedGenericRouteStrings.test(text))
+    errors.push(`${file} contains prohibited generic/fake route wording.`);
   if (debugPrefixes.test(text))
     errors.push(`${file} contains visible debug language prefix.`);
   if (file !== "src/translations/translations.ts" && fakeTerms.test(text))
@@ -270,16 +275,13 @@ for (const outlet of outlets) {
   )
     errors.push(`${outlet.outletId} recommended route lacks useful estimates.`);
   if (recommended) {
-    const hasTaxiOriginDestination =
-      ["taxi", "uber"].includes(recommended.mode) &&
-      Boolean(
-        recommended.routeDetails.boardingPointLabel &&
-        recommended.routeDetails.destinationLabel,
-      );
+    const hasHonestEstimateOnly =
+      ["taxi", "uber"].includes(recommended.mode) ||
+      recommended.routeDetails.confidence === "estimateOnly";
     if (
       !recommended.routeDetails.hasSourceBackedRouteDetail &&
-      !hasTaxiOriginDestination &&
-      !/Hat\/durak/.test(recommended.noteLabel || "")
+      !hasHonestEstimateOnly &&
+      !/resmi|official|kontrol/i.test(recommended.noteLabel || "")
     )
       errors.push(
         `${outlet.outletId} recommended route lacks route detail and warning note.`,
@@ -344,6 +346,23 @@ for (const outlet of outlets) {
       errors.push(`${row.id} detail summary shows raw English route title.`);
   }
 }
+
+
+const parndorfFact = transportationRouteFacts.find(
+  (fact) => fact.guideId === "vienna-to-parndorf-train-bus",
+);
+if (!parndorfFact?.provider?.includes("ÖBB") || parndorfFact.alightingPoint !== "Parndorf Ort")
+  errors.push("Parndorf structured route fact must include ÖBB and Parndorf Ort.");
+const laValleeFact = transportationRouteFacts.find(
+  (fact) => fact.guideId === "paris-to-la-vallee-rer-a",
+);
+if (!laValleeFact?.line?.includes("RER A") || !laValleeFact.provider?.includes("SNCF") || !laValleeFact.alightingPoint?.includes("Val d'Europe"))
+  errors.push("La Vallée structured route fact must include RER A / SNCF and Val d'Europe / Serris-Montévrain.");
+const serravalleFact = transportationRouteFacts.find(
+  (fact) => fact.guideId === "serravalle-milan-official-shuttle",
+);
+if (!serravalleFact?.provider?.includes("Zani Viaggi") || !serravalleFact.provider.includes("Frigerio Viaggi") || !serravalleFact.boardingPoint?.includes("Milano Centrale"))
+  errors.push("Serravalle shuttle fact must include Zani Viaggi / Frigerio Viaggi and Milano Centrale.");
 
 for (const guide of transportationGuides) {
   const descriptions = guide.steps
