@@ -33,7 +33,7 @@ export function ReviewStatsCard({
   return (
     <View style={styles.container}>
       <View style={styles.summaryBox}>
-        <Text style={styles.summaryLabel}>{t("sharedCards.reviews.guestRating")}</Text>
+        <Text style={styles.summaryLabel}>{t("sharedCards.reviews.overallRating")}</Text>
         <Text style={styles.summaryText}>{summaryText}</Text>
       </View>
 

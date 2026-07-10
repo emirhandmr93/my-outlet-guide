@@ -157,7 +157,7 @@ const enTranslations = {
   "outlet.services": "Services",
   "outlet.transportation": "Transportation",
   "outlet.maps": "Maps",
-  "outlet.reviews": "Reviews & Ratings",
+  "outlet.reviews": "Reviews",
   "outlet.openingHours": "Opening Hours",
   "outlet.address": "Address",
   "outlet.reviewCount": "Reviews",
@@ -204,7 +204,7 @@ const enTranslations = {
   "sharedCards.quickFacts.cityCenter": "City Center",
   "sharedCards.quickFacts.rating": "Rating",
   "sharedCards.quickFacts.noRating": "No rating yet",
-  "sharedCards.reviews.guestRating": "Guest Rating",
+  "sharedCards.reviews.overallRating": "Overall rating",
   "sharedCards.weather.kicker": "Weather",
 
   "profile.title": "Profile",
@@ -1639,7 +1639,7 @@ export const translations: Record<
     "sharedCards.quickFacts.cityCenter": "Şehir merkezi",
     "sharedCards.quickFacts.rating": "Puan",
     "sharedCards.quickFacts.noRating": "Henüz puan yok",
-    "sharedCards.reviews.guestRating": "Misafir puanı",
+    "sharedCards.reviews.overallRating": "Genel puan",
     "sharedCards.weather.kicker": "Hava",
 
     "profile.title": "Profil",
@@ -2975,7 +2975,7 @@ export const translations: Record<
     "sharedCards.quickFacts.cityCenter": "Centro",
     "sharedCards.quickFacts.rating": "Valoración",
     "sharedCards.quickFacts.noRating": "Sin valoración todavía",
-    "sharedCards.reviews.guestRating": "Valoración de visitantes",
+    "sharedCards.reviews.overallRating": "Valoración de visitantes",
     "sharedCards.weather.kicker": "Clima",
 
     "profile.title": "Perfil",
@@ -4288,7 +4288,7 @@ export const translations: Record<
     "sharedCards.quickFacts.cityCenter": "Centre-ville",
     "sharedCards.quickFacts.rating": "Note",
     "sharedCards.quickFacts.noRating": "Pas encore de note",
-    "sharedCards.reviews.guestRating": "Note des visiteurs",
+    "sharedCards.reviews.overallRating": "Note des visiteurs",
     "sharedCards.weather.kicker": "Météo",
 
     "profile.title": "Profil",
@@ -5605,7 +5605,7 @@ export const translations: Record<
     "sharedCards.quickFacts.cityCenter": "Stadtzentrum",
     "sharedCards.quickFacts.rating": "Bewertung",
     "sharedCards.quickFacts.noRating": "Noch keine Bewertung",
-    "sharedCards.reviews.guestRating": "Gästebewertung",
+    "sharedCards.reviews.overallRating": "Gästebewertung",
     "sharedCards.weather.kicker": "Wetter",
 
     "profile.title": "Profil",
@@ -6870,7 +6870,7 @@ export const translations: Record<
     "sharedCards.quickFacts.cityCenter": "وسط المدينة",
     "sharedCards.quickFacts.rating": "التقييم",
     "sharedCards.quickFacts.noRating": "لا يوجد تقييم بعد",
-    "sharedCards.reviews.guestRating": "تقييم الزوار",
+    "sharedCards.reviews.overallRating": "تقييم الزوار",
     "sharedCards.weather.kicker": "الطقس",
 
     "profile.title": "الملف الشخصي",
@@ -8090,7 +8090,7 @@ export const translations: Record<
     "sharedCards.quickFacts.cityCenter": "Центр",
     "sharedCards.quickFacts.rating": "Рейтинг",
     "sharedCards.quickFacts.noRating": "Пока нет рейтинга",
-    "sharedCards.reviews.guestRating": "Оценка гостей",
+    "sharedCards.reviews.overallRating": "Оценка гостей",
     "sharedCards.weather.kicker": "Погода",
 
     "profile.title": "Профиль",
@@ -9381,7 +9381,7 @@ export const translations: Record<
     "sharedCards.quickFacts.cityCenter": "市中心",
     "sharedCards.quickFacts.rating": "评分",
     "sharedCards.quickFacts.noRating": "暂无评分",
-    "sharedCards.reviews.guestRating": "访客评分",
+    "sharedCards.reviews.overallRating": "访客评分",
     "sharedCards.weather.kicker": "天气",
 
     "profile.title": "个人资料",
@@ -12403,6 +12403,124 @@ for (const languageCode of supportedLanguageCodes) {
   Object.assign(
     translations[languageCode],
     transportationV2Phase1ETranslations[languageCode],
+  );
+}
+
+
+const reviewsMembershipGatePhase1ATranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "outlet.reviews": "Reviews",
+    "outlet.reviewLabel": "Reviews",
+    "outlet.reviewSortHelpful": "Most helpful",
+    "outlet.reviewSortRecent": "Newest",
+    "outlet.noReviews": "No reviews yet.",
+    "sharedCards.reviews.overallRating": "Overall rating",
+    "writeReview.title": "Write review",
+    "review.signInToWrite": "Sign in to write a review",
+    "review.signInToHelpful": "Sign in to mark a review helpful",
+    "review.helpful": "Helpful",
+    "review.helpfulActive": "Helpful ✓",
+  },
+  tr: {
+    "outlet.reviews": "Yorumlar",
+    "outlet.reviewLabel": "Yorumlar",
+    "outlet.reviewSortHelpful": "En faydalı",
+    "outlet.reviewSortRecent": "En yeni",
+    "outlet.noReviews": "Henüz yorum yok.",
+    "sharedCards.reviews.overallRating": "Genel puan",
+    "writeReview.title": "Yorum yaz",
+    "review.signInToWrite": "Yorum yazmak için üye ol",
+    "review.signInToHelpful": "Faydalı olarak işaretlemek için üye ol",
+    "review.helpful": "Faydalı",
+    "review.helpfulActive": "Faydalı ✓",
+  },
+  es: {
+    "outlet.reviews": "Reseñas",
+    "outlet.reviewLabel": "Reseñas",
+    "outlet.reviewSortHelpful": "Más útiles",
+    "outlet.reviewSortRecent": "Más recientes",
+    "outlet.noReviews": "Aún no hay reseñas.",
+    "sharedCards.reviews.overallRating": "Valoración general",
+    "writeReview.title": "Escribir reseña",
+    "review.signInToWrite": "Inicia sesión para escribir una reseña",
+    "review.signInToHelpful": "Inicia sesión para marcar una reseña como útil",
+    "review.helpful": "Útil",
+    "review.helpfulActive": "Útil ✓",
+  },
+  fr: {
+    "outlet.reviews": "Avis",
+    "outlet.reviewLabel": "Avis",
+    "outlet.reviewSortHelpful": "Les plus utiles",
+    "outlet.reviewSortRecent": "Les plus récents",
+    "outlet.noReviews": "Aucun avis pour le moment.",
+    "sharedCards.reviews.overallRating": "Note globale",
+    "writeReview.title": "Écrire un avis",
+    "review.signInToWrite": "Connectez-vous pour écrire un avis",
+    "review.signInToHelpful": "Connectez-vous pour marquer un avis comme utile",
+    "review.helpful": "Utile",
+    "review.helpfulActive": "Utile ✓",
+  },
+  de: {
+    "outlet.reviews": "Bewertungen",
+    "outlet.reviewLabel": "Bewertungen",
+    "outlet.reviewSortHelpful": "Am hilfreichsten",
+    "outlet.reviewSortRecent": "Neueste",
+    "outlet.noReviews": "Noch keine Bewertungen.",
+    "sharedCards.reviews.overallRating": "Gesamtbewertung",
+    "writeReview.title": "Bewertung schreiben",
+    "review.signInToWrite": "Melde dich an, um eine Bewertung zu schreiben",
+    "review.signInToHelpful": "Melde dich an, um eine Bewertung als hilfreich zu markieren",
+    "review.helpful": "Hilfreich",
+    "review.helpfulActive": "Hilfreich ✓",
+  },
+  ru: {
+    "outlet.reviews": "Отзывы",
+    "outlet.reviewLabel": "Отзывы",
+    "outlet.reviewSortHelpful": "Самые полезные",
+    "outlet.reviewSortRecent": "Новые",
+    "outlet.noReviews": "Пока нет отзывов.",
+    "sharedCards.reviews.overallRating": "Общая оценка",
+    "writeReview.title": "Написать отзыв",
+    "review.signInToWrite": "Войдите, чтобы написать отзыв",
+    "review.signInToHelpful": "Войдите, чтобы отметить отзыв как полезный",
+    "review.helpful": "Полезно",
+    "review.helpfulActive": "Полезно ✓",
+  },
+  ar: {
+    "outlet.reviews": "المراجعات",
+    "outlet.reviewLabel": "المراجعات",
+    "outlet.reviewSortHelpful": "الأكثر فائدة",
+    "outlet.reviewSortRecent": "الأحدث",
+    "outlet.noReviews": "لا توجد مراجعات بعد.",
+    "sharedCards.reviews.overallRating": "التقييم العام",
+    "writeReview.title": "اكتب مراجعة",
+    "review.signInToWrite": "سجّل الدخول لكتابة مراجعة",
+    "review.signInToHelpful": "سجّل الدخول لوضع علامة مفيد على مراجعة",
+    "review.helpful": "مفيد",
+    "review.helpfulActive": "مفيد ✓",
+  },
+  zh: {
+    "outlet.reviews": "评价",
+    "outlet.reviewLabel": "评价",
+    "outlet.reviewSortHelpful": "最有帮助",
+    "outlet.reviewSortRecent": "最新",
+    "outlet.noReviews": "暂无评价。",
+    "sharedCards.reviews.overallRating": "总体评分",
+    "writeReview.title": "写评价",
+    "review.signInToWrite": "请登录以写评价",
+    "review.signInToHelpful": "请登录以将评价标记为有帮助",
+    "review.helpful": "有帮助",
+    "review.helpfulActive": "有帮助 ✓",
+  },
+};
+
+for (const languageCode of supportedLanguageCodes) {
+  Object.assign(
+    translations[languageCode],
+    reviewsMembershipGatePhase1ATranslations[languageCode],
   );
 }
 
