@@ -45,5 +45,17 @@ assert(/Welcome email config missing; no email was sent\./.test(functionSource) 
 assert(/httpsCallable\(functions, "sendWelcomeEmail"\)/.test(authSource), "Signup flow must call the welcome email function after account creation.");
 assert(/getFunctions\(app, "us-central1"\)/.test(firebaseSource), "Firebase functions client must be configured for the deployed region.");
 
+assert(/status === "sent"[\s\S]*?already_sent/.test(functionSource), "sent mailEvents must block future duplicate welcome sends.");
+assert(/status !== "sending" && status !== "reserved"/.test(functionSource) && /WELCOME_EMAIL_RESERVATION_TTL_MS/.test(functionSource), "Only recent sending/reserved mailEvents should temporarily block duplicate sends.");
+assert(/nowMillis - guardMillis < WELCOME_EMAIL_RESERVATION_TTL_MS/.test(functionSource), "Stale sending/reserved mailEvents must be recoverable by a later retry.");
+assert(/status: "skipped_missing_config"[\s\S]*?checkedAt:[\s\S]*?reason: "missing_provider_config"|reason: "missing_provider_config"[\s\S]*?checkedAt:[\s\S]*?status: "skipped_missing_config"/.test(functionSource), "Missing provider config must record a non-blocking skipped_missing_config status with checkedAt/reason.");
+assert(!/status === "skipped_missing_config"[\s\S]*?already_sent/.test(functionSource), "skipped_missing_config must not block future send eligibility.");
+assert(/status: "failed"[\s\S]*?failedAt:[\s\S]*?errorCode: "provider_send_failed"|errorCode: "provider_send_failed"[\s\S]*?failedAt:[\s\S]*?status: "failed"/.test(functionSource), "Provider failures must be marked failed with failedAt and a safe error code/message.");
+assert(!/status === "failed"[\s\S]*?already_sent/.test(functionSource), "failed must not permanently block future send eligibility.");
+assert(/status: "sent"[\s\S]*?sentAt[\s\S]*?metadata/.test(functionSource), "Provider success must mark the mail event sent with sentAt and non-sensitive metadata.");
+assert(/sendEmail\(email\.trim\(\), welcomeEmailContent\[locale\], config\)/.test(functionSource), "Provider send must happen only after a safe reservation and use authenticated email.");
+assert(/users"\)\.doc\(uid\)\.set\(\{ welcomeEmailSentAt: sentAt, preferredLanguage: locale \}/.test(functionSource), "users/{uid}.welcomeEmailSentAt and preferredLanguage must be written after provider success.");
+assert(!/welcomeEmailSentAt: result\.sent \? FieldValue\.serverTimestamp\(\) : null/.test(functionSource), "Missing config or failed sends must not clear or write users/{uid}.welcomeEmailSentAt.");
+
 if (failed) process.exit(1);
 console.log("Welcome email QA passed.");
