@@ -623,6 +623,9 @@ function normalizeRouteTerm(term: string) {
     .replace("Shopping Express®", "Shopping Express");
 }
 function outletNameFor(outletId: string) {
+  if (outletId === "la-vallee-village") return "La Vallée Village";
+  if (outletId === "serravalle-designer-outlet") return "Serravalle Designer Outlet";
+  if (outletId === "designer-outlet-parndorf") return "Designer Outlet Parndorf";
   return outletId
     .replace(/-/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
@@ -684,12 +687,53 @@ function localizePoint(value: string | undefined, language: TranslationLanguage 
   if (!value) return value;
   if (language === "tr" && value === "Central Paris RER A station")
     return "Merkezi Paris RER A istasyonu";
+  if (value === "Paris Charles de Gaulle Airport Terminal 2 SNCF/TGV station") {
+    const localized: Partial<Record<TranslationLanguage, string>> = {
+      tr: "Paris Charles de Gaulle Havalimanı Terminal 2 SNCF/TGV istasyonu",
+      es: "estación SNCF/TGV de Paris Charles de Gaulle Aeropuerto Terminal 2",
+      fr: "gare SNCF/TGV de Paris Charles de Gaulle Aéroport Terminal 2",
+      de: "SNCF/TGV-Bahnhof Paris Charles de Gaulle Flughafen Terminal 2",
+      ru: "станция SNCF/TGV Paris Charles de Gaulle, аэропорт, терминал 2",
+      ar: "محطة SNCF/TGV في مطار Paris Charles de Gaulle، المبنى 2",
+      zh: "Paris Charles de Gaulle 机场 2 号航站楼 SNCF/TGV 车站",
+    };
+    return localized[language] || value;
+  }
   return value;
+}
+function neutralOriginPoint(
+  origin: TransportationV2Option["originGroup"],
+  language: TranslationLanguage,
+) {
+  if (origin === "airport") {
+    const labels: Partial<Record<TranslationLanguage, string>> = {
+      en: "Airport",
+      tr: "Havalimanı",
+      es: "Aeropuerto",
+      fr: "Aéroport",
+      de: "Flughafen",
+      ru: "Аэропорт",
+      ar: "المطار",
+      zh: "机场",
+    };
+    return labels[language] || I18N[language].airport;
+  }
+  const labels: Partial<Record<TranslationLanguage, string>> = {
+    en: "City center",
+    tr: "Şehir merkezi",
+    es: "Centro",
+    fr: "Centre-ville",
+    de: "Stadtzentrum",
+    ru: "Центр города",
+    ar: "وسط المدينة",
+    zh: "市中心",
+  };
+  return labels[language] || I18N[language].city;
 }
 function originPointFor(option: TransportationV2Option, language: TranslationLanguage) {
   if (option.routeDetails.boardingPointLabel) return option.routeDetails.boardingPointLabel;
   if (!["taxi", "uber"].includes(option.mode)) return undefined;
-  return option.originGroup === "airport" ? I18N[language].airport.replace(/^From |^Depuis |^Vom |^Из |^من |^从 /, "") : I18N[language].city.replace(/^From |^Desde |^Depuis |^Vom |^Из |^من |^从 /, "");
+  return neutralOriginPoint(option.originGroup, language);
 }
 export function getTransportationRouteDetailRows(
   option: TransportationV2Option,
@@ -729,7 +773,7 @@ export function getTransportationRouteDetailRows(
       ? {
           label: labels.destination,
           value:
-            localizePoint(detail.destinationLabel) || detail.destinationLabel,
+            localizePoint(detail.destinationLabel, language) || detail.destinationLabel,
         }
       : undefined,
   ].filter(Boolean) as { label: string; value: string }[];
@@ -800,11 +844,6 @@ function formatDuration(e: Estimate, l: TranslationLanguage) {
 function formatFare(e: Estimate, l: TranslationLanguage) {
   const x = I18N[l];
   return `${x.approx} €${formatRange(e.fare[0], e.fare[1])}`;
-}
-function withoutApprox(value: string | undefined, language: TranslationLanguage) {
-  return String(value || "")
-    .replace(new RegExp(`^${I18N[language].approx}\\s+`, "i"), "")
-    .trim();
 }
 function localizedWalkNote(fact: TransportationRouteFact, language: TranslationLanguage) {
   if (language === "en") return I18N.en.noteTemplates.walk(fact);
@@ -877,8 +916,8 @@ export function getTransportationCompactSummaryLabel(
   const shortHint = String(hint).split(" / ").slice(0, 2).join(" / ");
   return [
     shortHint,
-    withoutApprox(option.estimatedDurationLabel, language),
-    withoutApprox(option.estimatedFareLabel, language),
+    option.estimatedDurationLabel,
+    option.estimatedFareLabel,
   ]
     .filter(Boolean)
     .join(" · ")
@@ -1111,11 +1150,16 @@ export function getTransportationOptionDisplayModel(
   const displayDetails = extractRouteDetails(guide, originGroup, option.mode);
   if (fact) {
     displayDetails.boardingPointLabel = localizePoint(displayDetails.boardingPointLabel, language);
+    displayDetails.transferLabel = fact.transferPoints?.map((point) => localizePoint(point, language) || point).join(" / ");
+    displayDetails.alightingPointLabel = localizePoint(fact.alightingPoint, language);
+    displayDetails.destinationLabel = localizePoint(fact.destination, language);
     displayDetails.walkNoteLabel = localizedWalkNote(fact, language);
     displayDetails.officialCheckNoteLabel = localizedOfficialCheckNote(fact, language);
     displayDetails.routeHintLabel = compactJoin([
       displayDetails.lineOrProviderLabel || fact.provider || fact.operator,
-      fact.alightingPoint || fact.boardingPoint || fact.destination,
+      (localizePoint(fact.alightingPoint, language) || fact.alightingPoint) ||
+        (localizePoint(fact.boardingPoint, language) || fact.boardingPoint) ||
+        (localizePoint(fact.destination, language) || fact.destination),
     ]);
   }
   if (!displayDetails.routeHintLabel) {
@@ -1230,9 +1274,24 @@ export function getOutletTransportationV2Summary(
 function dedupeOptions(
   options: TransportationV2Option[],
 ): TransportationV2Option[] {
+  const hasSourcedPublic = new Set(
+    options
+      .filter(
+        (option) =>
+          PUBLIC_TYPES.has(option.mode) &&
+          option.routeDetails.confidence !== "estimateOnly",
+      )
+      .map((option) => `${option.originGroup}|public`),
+  );
   const seen = new Set<string>();
   return options.filter((o) => {
-    const key = `${o.originGroup}|${o.mode}`;
+    const broadMode = PUBLIC_TYPES.has(o.mode) ? "public" : o.mode;
+    if (
+      o.routeDetails.confidence === "estimateOnly" &&
+      hasSourcedPublic.has(`${o.originGroup}|${broadMode}`)
+    )
+      return false;
+    const key = `${o.originGroup}|${broadMode}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
