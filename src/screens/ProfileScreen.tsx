@@ -15,6 +15,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { resolveVisibleFavoriteOutlets } from "../utils/favoriteOutlets";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   getFloatingTabClearance,
@@ -57,6 +58,9 @@ export function ProfileScreen() {
   const insets = useSafeAreaInsets();
   const { trips } = useTrips();
   const { favoriteIds } = useFavorites();
+  const visibleFavoriteOutlets = isAuthenticated
+    ? resolveVisibleFavoriteOutlets(favoriteIds)
+    : [];
   const [displayName, setDisplayName] = useState("");
 
   const accountName =
@@ -140,7 +144,7 @@ export function ProfileScreen() {
         </View>
 
         <View style={styles.statCard}>
-          <Text style={styles.statValue}>{favoriteIds.length}</Text>
+          <Text style={styles.statValue}>{visibleFavoriteOutlets.length}</Text>
           <Text style={styles.statLabel}>{t("profile.stats.favorites")}</Text>
         </View>
 

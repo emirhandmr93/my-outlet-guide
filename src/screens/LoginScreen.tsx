@@ -18,12 +18,14 @@ import { useTranslation } from "../hooks/useTranslation";
 export function LoginScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const { loginWithEmail, registerWithEmail } = useAuth();
+  const { loginWithEmail, registerWithEmail, resetPasswordWithEmail } =
+    useAuth();
 
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
 
   async function handleLogin() {
     if (!email.trim() || !password) {
@@ -39,6 +41,36 @@ export function LoginScreen() {
       Alert.alert(t("auth.signInFailedTitle"), t("auth.signInFailedMessage"));
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleResetPassword() {
+    const cleanEmail = email.trim();
+
+    if (!cleanEmail) {
+      Alert.alert(
+        t("auth.resetPasswordTitle"),
+        t("auth.resetPasswordEmailRequired"),
+      );
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)) {
+      Alert.alert(
+        t("auth.resetPasswordTitle"),
+        t("auth.resetPasswordInvalidEmail"),
+      );
+      return;
+    }
+
+    try {
+      setResetLoading(true);
+      await resetPasswordWithEmail(cleanEmail);
+      Alert.alert(t("auth.resetPasswordTitle"), t("auth.resetPasswordSent"));
+    } catch {
+      Alert.alert(t("auth.resetPasswordTitle"), t("auth.resetPasswordFailed"));
+    } finally {
+      setResetLoading(false);
     }
   }
 
@@ -111,7 +143,7 @@ export function LoginScreen() {
               style={[styles.primaryButton, loading && styles.disabledButton]}
               activeOpacity={0.86}
               onPress={handleLogin}
-              disabled={loading}
+              disabled={loading || resetLoading}
             >
               <Text style={styles.primaryButtonText}>
                 {loading ? t("auth.pleaseWait") : t("auth.signIn")}
@@ -119,10 +151,23 @@ export function LoginScreen() {
             </TouchableOpacity>
 
             <TouchableOpacity
+              style={styles.resetButton}
+              activeOpacity={0.86}
+              onPress={handleResetPassword}
+              disabled={loading || resetLoading}
+            >
+              <Text style={styles.resetButtonText}>
+                {resetLoading
+                  ? t("auth.resetPasswordSending")
+                  : t("auth.forgotPassword")}
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
               style={styles.secondaryButton}
               activeOpacity={0.86}
               onPress={handleRegister}
-              disabled={loading}
+              disabled={loading || resetLoading}
             >
               <Text style={styles.secondaryButtonText}>
                 {t("auth.createAccount")}
@@ -209,6 +254,15 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     color: "#FFFFFF",
     fontWeight: "900",
+    textAlign: "center",
+  },
+  resetButton: {
+    paddingVertical: 12,
+    alignItems: "center",
+  },
+  resetButtonText: {
+    color: "#0B1F3A",
+    fontWeight: "800",
     textAlign: "center",
   },
   secondaryButton: {

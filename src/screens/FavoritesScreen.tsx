@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-import { outlets } from "../constants/outlets";
+import { resolveVisibleFavoriteOutlets } from "../utils/favoriteOutlets";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -22,9 +22,7 @@ export function FavoritesScreen() {
   const { t, language } = useTranslation();
   const navigation = useNavigation<any>();
 
-  const favoriteOutlets = outlets.filter((outlet) =>
-    favoriteIds.includes(outlet.outletId),
-  );
+  const favoriteOutlets = resolveVisibleFavoriteOutlets(favoriteIds);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>

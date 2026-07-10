@@ -9,6 +9,7 @@ import {
   supportedLanguageCodes,
   translations,
 } from "../src/translations/translations";
+import { resolveVisibleFavoriteOutlets } from "../src/utils/favoriteOutlets";
 
 const requiredKeys = [
   "nav.home",
@@ -93,6 +94,15 @@ const requiredKeys = [
   "auth.passwordPlaceholder",
   "auth.signIn",
   "auth.createAccount",
+  "auth.forgotPassword",
+  "auth.resetPassword",
+  "auth.resetPasswordTitle",
+  "auth.resetPasswordSubtitle",
+  "auth.resetPasswordEmailRequired",
+  "auth.resetPasswordInvalidEmail",
+  "auth.resetPasswordSending",
+  "auth.resetPasswordSent",
+  "auth.resetPasswordFailed",
   "auth.pleaseWait",
   "auth.termsText",
   "auth.missingTitle",
@@ -119,7 +129,7 @@ const expectedTurkishTabs: Record<string, string> = {
 
 const debugPrefix = /(?:^|[\s"'`])(?:TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:)/;
 const dirtyResolvedValuePattern =
-  /(?:çeviri:|translation:|auth\.|undefined|missing)/i;
+  /(?:Türkçe çeviri:|çeviri:|translation:|auth\.|undefined|missing|^$)/i;
 const visibleTranslationDebugTextPattern =
   /(?:Türkçe çeviri|çeviri:|translation:|English translation:)/i;
 const sourceFiles = [
@@ -174,6 +184,15 @@ const runtimeVisibleKeys = [
   "auth.passwordPlaceholder",
   "auth.signIn",
   "auth.createAccount",
+  "auth.forgotPassword",
+  "auth.resetPassword",
+  "auth.resetPasswordTitle",
+  "auth.resetPasswordSubtitle",
+  "auth.resetPasswordEmailRequired",
+  "auth.resetPasswordInvalidEmail",
+  "auth.resetPasswordSending",
+  "auth.resetPasswordSent",
+  "auth.resetPasswordFailed",
   "auth.termsText",
 ] as const;
 
@@ -333,10 +352,40 @@ for (const file of sourceFiles) {
   }
 }
 
+const favoriteHelperSource = readFileSync(
+  join(process.cwd(), "src/utils/favoriteOutlets.ts"),
+  "utf8",
+);
+const favoriteHelperUsesDedupedIds = favoriteHelperSource.includes("new Set(");
+const favoriteHelperExcludesMissingOutlets =
+  favoriteHelperSource.includes("allOutlets.filter(");
+if (!favoriteHelperUsesDedupedIds || !favoriteHelperExcludesMissingOutlets) {
+  fail(
+    "src/utils/favoriteOutlets.ts: favorite resolver must deduplicate ids and exclude missing outlet references",
+  );
+}
+const duplicateFavoriteIds = [
+  "la-vallee-village",
+  "la-vallee-village",
+  "missing-outlet",
+];
+const resolvedDuplicateFavorites =
+  resolveVisibleFavoriteOutlets(duplicateFavoriteIds);
+if (resolvedDuplicateFavorites.length !== 1) {
+  fail(
+    `favorite resolver should return 1 visible outlet for duplicate/stale ids, got ${resolvedDuplicateFavorites.length}`,
+  );
+}
+
 const favoritesSource = readFileSync(
   join(process.cwd(), "src/screens/FavoritesScreen.tsx"),
   "utf8",
 );
+if (!favoritesSource.includes("resolveVisibleFavoriteOutlets(favoriteIds)")) {
+  fail(
+    "src/screens/FavoritesScreen.tsx: FavoritesScreen must use the canonical visible favorite resolver",
+  );
+}
 if (
   !favoritesSource.includes("formatCityDisplayName(outlet.cityId, language)") ||
   !favoritesSource.includes(
@@ -368,6 +417,16 @@ const profileSource = readFileSync(
   join(process.cwd(), "src/screens/ProfileScreen.tsx"),
   "utf8",
 );
+if (!profileSource.includes("resolveVisibleFavoriteOutlets(favoriteIds)")) {
+  fail(
+    "src/screens/ProfileScreen.tsx: Profile favorite stat must use the canonical visible favorite resolver",
+  );
+}
+if (/favoriteIds\.length/.test(profileSource)) {
+  fail(
+    "src/screens/ProfileScreen.tsx: Profile favorite stat must not use raw favoriteIds.length",
+  );
+}
 if (
   !profileSource.includes("getFloatingTabClearance(insets.bottom)") ||
   !profileSource.includes("getScrollIndicatorBottomInset(insets.bottom)") ||
