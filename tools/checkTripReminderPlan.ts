@@ -23,5 +23,7 @@ assert(tripsService.includes("reminderPlan") && tripsService.includes("updateDoc
 for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) assert(translations.includes(`${locale}: {`) && translations.includes("tripDetail.noRemindersText"), `locale keys missing for ${locale}`);
 assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(tripDetail), "no visible locale/debug prefixes");
 assert(!translations.includes("Türkçe çeviri:"), "no Turkish fallback text");
+assert(!translations.includes("outlet günün"), "no awkward Turkish outlet reminder copy");
+assert(translations.includes('"tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var."'), "Turkish outlet reminder copy must describe a visit");
 assert(myTrips.indexOf("tripsError") < myTrips.indexOf("trips.length === 0"), "MyTrips signed-in load errors must not be confused with empty/guest state");
 console.log("Trip reminder plan checks passed.");
