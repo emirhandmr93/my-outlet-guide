@@ -26,7 +26,7 @@ assert(myTrips.includes('navigation.navigate("CreateTrip")'), "signed-in MyTrips
 assert(!myTrips.includes("navigateToTripOutletSelection"), "MyTrips create CTA must not route to outlet selection");
 assert(!/navigation\.navigate\("Explore", \{ screen: "Outlets", params: \{ trip" + "Prompt: true \} \}\)/.test(combinedTripSource), "old Explore/Outlets trip" + "Prompt navigation must not remain");
 assert(myTrips.includes('t(isLoggedIn ? "trips.createTripCta" : "auth.signIn")'), "guest CTA must be Login and signed-in CTA must be create trip");
-assert(myTrips.indexOf("trips.length === 0") < myTrips.indexOf("tripsError ?"), "signed-in zero-trip state must render before permission/load errors");
+assert(myTrips.indexOf("tripsError ?") < myTrips.indexOf("trips.length === 0"), "signed-in permission/load errors must render before zero-trip empty state");
 assert(!createTrip.includes("if (!selectedOutlet)"), "CreateTripScreen must no longer require outlet context");
 assert(!new RegExp(["Outlet required", "Outlet" + " gerekli"].join("|")).test(createTrip), "CreateTripScreen source must not expose old outlet-required copy");
 assert(createTrip.includes("startDate") && createTrip.includes("endDate") && createTrip.includes("endDateBeforeStart"), "CreateTripScreen must support and validate startDate/endDate");

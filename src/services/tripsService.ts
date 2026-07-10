@@ -85,7 +85,7 @@ function normalizeTrip(id: string, data: any): Trip {
     travelerCount: typeof data.travelerCount === "number" ? data.travelerCount : undefined,
     segments,
     flightDetails,
-    reminderPlan: generateTripReminderPlan({ startDate, endDate, segments, flightDetails }),
+    reminderPlan: generateTripReminderPlan({ tripId: id, startDate, endDate, segments, flightDetails }),
     createdAt: data.createdAt || "",
     updatedAt: data.updatedAt || "",
   };
@@ -101,7 +101,7 @@ export async function createUserTrip(userId: string, trip: TripInput): Promise<s
   const docRef = doc(getUserTripsCollection(userId));
   const segments = sortTripSegments(normalizeSegments(trip.segments));
   const flightDetails = normalizeFlightDetails(trip.flightDetails);
-  const reminderPlan = generateTripReminderPlan({ startDate: trip.startDate, endDate: trip.endDate, segments, flightDetails });
+  const reminderPlan = generateTripReminderPlan({ tripId: docRef.id, startDate: trip.startDate, endDate: trip.endDate, segments, flightDetails });
 
   await setDoc(docRef, stripUndefined({
     tripId: docRef.id,
@@ -141,7 +141,7 @@ export async function updateUserTrip(userId: string, tripId: string, trip: Parti
   const endDate = trip.endDate || existing?.endDate || startDate;
   const segments = sortTripSegments(normalizeSegments(trip.segments ?? existing?.segments ?? []));
   const flightDetails = normalizeFlightDetails(trip.flightDetails ?? existing?.flightDetails);
-  const reminderPlan = generateTripReminderPlan({ startDate, endDate, segments, flightDetails });
+  const reminderPlan = generateTripReminderPlan({ tripId, startDate, endDate, segments, flightDetails });
   await updateDoc(doc(db, USER_TRIPS_COLLECTION, userId, USER_TRIP_ITEMS_COLLECTION, tripId), stripUndefined({
     ...trip,
     userId,

@@ -126,19 +126,19 @@ export function MyTripsScreen() {
         <View style={styles.emptyCard}>
           <Text style={styles.emptyTitle}>{t("trips.loading")}</Text>
         </View>
+      ) : tripsError ? (
+        <View style={styles.emptyCard}>
+          <Text style={styles.emptyTitle}>{t("trips.loadFailedTitle")}</Text>
+          <Text style={styles.emptyText}>
+            {t(tripsError === "permission-denied" ? "trips.permissionDeniedMessage" : "trips.loadFailedMessage")}
+          </Text>
+        </View>
       ) : trips.length === 0 ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyIcon}>🧳</Text>
           <Text style={styles.emptyTitle}>{t("trips.emptyTitle")}</Text>
           <Text style={styles.emptyText}>
             {t("trips.emptyText")}
-          </Text>
-        </View>
-      ) : tripsError ? (
-        <View style={styles.emptyCard}>
-          <Text style={styles.emptyTitle}>{t("trips.loadFailedTitle")}</Text>
-          <Text style={styles.emptyText}>
-            {t(tripsError === "permission-denied" ? "trips.permissionDeniedMessage" : "trips.loadFailedMessage")}
           </Text>
         </View>
       ) : (
