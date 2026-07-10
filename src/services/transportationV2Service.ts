@@ -254,7 +254,11 @@ const I18N: Record<
     noteTemplates: {
       officialCheck: (fact) => `${fact.provider || fact.operator || fact.line || "Resmi sağlayıcı"} saatlerini seyahatten önce kontrol edin.`,
       walk: (fact) => fact.alightingPoint === "Parndorf Ort" ? "Outlet servisi çalışıyorsa kullanın veya yürüyüş bağlantısını takip edin." : fact.destination ? `${fact.destination} girişine yürüyerek devam edin.` : "Yürüyüş bağlantısını takip edin.",
-      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} ile ${fact.destination} arasındaki resmi outlet servisini çalışıyorsa kullanın.` : undefined,
+      stationBus: (fact) => fact.alightingPoint === "Parndorf Ort" && fact.destination
+        ? `Parndorf Ort’tan ${fact.destination}’a resmi outlet servisi çalışıyorsa kullanın; yoksa yürüyüş bağlantısını takip edin.`
+        : fact.alightingPoint && fact.destination
+          ? `${fact.alightingPoint} → ${fact.destination}`
+          : undefined,
       returnCheck: (fact) => `${fact.provider || fact.operator || fact.line || "Dönüş"} saatlerini alışverişten önce kontrol edin.`,
     },
   },
@@ -686,7 +690,8 @@ function extractRouteDetails(
 function localizePoint(value: string | undefined, language: TranslationLanguage = "en") {
   if (!value) return value;
   if (language === "tr" && value === "Central Paris RER A station")
-    return "Merkezi Paris RER A istasyonu";
+    return "Paris merkezindeki bir RER A istasyonu";
+  if (/^La Vall[eé]e Village$/.test(value)) return "La Vallée Village";
   if (value === "Paris Charles de Gaulle Airport Terminal 2 SNCF/TGV station") {
     const localized: Partial<Record<TranslationLanguage, string>> = {
       tr: "Paris Charles de Gaulle Havalimanı Terminal 2 SNCF/TGV istasyonu",
@@ -1008,7 +1013,7 @@ function stepsFor(
   }
   if (route === "RER A" && alight?.includes("Val d'Europe"))
     return [
-      "Merkezi Paris’teki bir RER A istasyonundan başla.",
+      "Paris merkezindeki bir RER A istasyonundan başla.",
       "RER A ile Val d'Europe / Serris-Montévrain yönüne git.",
       "Val d'Europe / Serris-Montévrain durağında in.",
       "Val d'Europe alışveriş merkezi üzerinden La Vallée Village’a yürü.",
