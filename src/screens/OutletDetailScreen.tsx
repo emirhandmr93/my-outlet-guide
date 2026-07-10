@@ -43,7 +43,7 @@ import {
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getBrandCategoryGroupsForOutlet } from "../services/brandService";
 import { getRestaurantsForOutlet } from "../services/restaurantService";
-import { getTransportationForOutlet } from "../services/transportationService";
+import { getOutletTransportationV2Summary } from "../services/transportationV2Service";
 import { CurrentWeather, getCurrentWeather } from "../services/weatherService";
 import {
   getAverageReviewRating,
@@ -149,7 +149,7 @@ export function OutletDetailScreen() {
 
   const favorite = isFavorite(outlet.outletId);
   const brandCategoryGroups = getBrandCategoryGroupsForOutlet(outlet.outletId);
-  const transportationItems = getTransportationForOutlet(outlet.outletId);
+  const transportationSummaryItems = getOutletTransportationV2Summary(outlet.outletId);
   const restaurantItems = getRestaurantsForOutlet(outlet.outletId);
   const outletReviews = getPublishedReviews(
     reviews.filter((review) => review.outletId === outlet.outletId),
@@ -474,7 +474,7 @@ export function OutletDetailScreen() {
         >
           <TransportationCard
             title={t("outlet.transportation")}
-            transportationItems={transportationItems}
+            summaryItems={transportationSummaryItems}
             notAvailableText={t("common.notAvailable")}
             buttonText={t("outlet.viewTransportationGuide")}
             onPressGuide={() =>

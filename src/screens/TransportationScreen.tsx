@@ -1,224 +1,35 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import {
-  getFloatingTabClearance,
-  getScreenTopInset,
-  getScrollIndicatorBottomInset,
-} from "../utils/safeAreaLayout";
+import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { useTranslation } from "../hooks/useTranslation";
-import { getTransportationLabel } from "../utils/transportationFormatter";
-import { transportationGuides } from "../constants/transportationGuides";
+import { formatTransportationTypeLabel } from "../utils/transportationLabelFormatter";
+import { getOutletMapLinks, getRecommendedTransportationV2Option, getTransportationV2Options, type TransportationV2Option } from "../services/transportationV2Service";
+import { colors } from "../theme/colors";
 
-function getFallbackSteps(guide: any, t: (key: string) => string) {
-  const title = String(guide.title || "").toLowerCase();
-  const type = String(guide.transportationType || "").toLowerCase();
+type RouteParams = { Transportation: { outletId: string } };
 
-  if (title.includes("charles de gaulle") || title.includes("cdg")) {
-    return [
-      { order: 1, description: t("transportation.fallback.cdg.step1") },
-      { order: 2, description: t("transportation.fallback.cdg.step2") },
-      { order: 3, description: t("transportation.fallback.cdg.step3") },
-      { order: 4, description: t("transportation.fallback.cdg.step4") },
-      {
-        order: 5,
-        description: t("transportation.fallback.common.walkOutletEntrance"),
-      },
-    ];
-  }
-
-  if (title.includes("orly")) {
-    return [
-      { order: 1, description: t("transportation.fallback.orly.step1") },
-      { order: 2, description: t("transportation.fallback.orly.step2") },
-      { order: 3, description: t("transportation.fallback.common.takeRerA") },
-      {
-        order: 4,
-        description: t("transportation.fallback.common.valDEuropeStation"),
-      },
-      {
-        order: 5,
-        description: t("transportation.fallback.common.walkLaVallee"),
-      },
-    ];
-  }
-
-  if (title.includes("disney")) {
-    return [
-      { order: 1, description: t("transportation.fallback.disney.step1") },
-      { order: 2, description: t("transportation.fallback.disney.step2") },
-      { order: 3, description: t("transportation.fallback.disney.step3") },
-    ];
-  }
-
-  if (
-    type.includes("taxi") ||
-    title.includes("taxi") ||
-    title.includes("uber")
-  ) {
-    return [
-      { order: 1, description: t("transportation.fallback.taxi.step1") },
-      { order: 2, description: t("transportation.fallback.taxi.step2") },
-      { order: 3, description: t("transportation.fallback.taxi.step3") },
-      { order: 4, description: t("transportation.fallback.taxi.step4") },
-      { order: 5, description: t("transportation.fallback.taxi.step5") },
-    ];
-  }
-
-  if (type.includes("shuttle") || title.includes("shuttle")) {
-    return [
-      { order: 1, description: t("transportation.fallback.shuttle.step1") },
-      { order: 2, description: t("transportation.fallback.shuttle.step2") },
-      { order: 3, description: t("transportation.fallback.shuttle.step3") },
-      { order: 4, description: t("transportation.fallback.shuttle.step4") },
-    ];
-  }
-
-  if (
-    type.includes("train") ||
-    title.includes("rer") ||
-    title.includes("paris")
-  ) {
-    return [
-      { order: 1, description: t("transportation.fallback.train.step1") },
-      { order: 2, description: t("transportation.fallback.common.takeRerA") },
-      {
-        order: 3,
-        description: t("transportation.fallback.common.valDEuropeStation"),
-      },
-      { order: 4, description: t("transportation.fallback.train.step4") },
-      {
-        order: 5,
-        description: t("transportation.fallback.common.walkOutletEntrance"),
-      },
-    ];
-  }
-
-  return [
-    { order: 1, description: t("transportation.fallback.default.step1") },
-    { order: 2, description: t("transportation.fallback.default.step2") },
-    { order: 3, description: t("transportation.fallback.default.step3") },
-  ];
+function labelForOrigin(item: TransportationV2Option, t: (key: string) => string) {
+  if (item.originGroup === "airport") return t("transportation.v2.airportFrom");
+  if (item.originGroup === "city") return t("transportation.v2.cityFrom");
+  return t("transportation.v2.shuttle");
 }
 
-function isLikelyEnglishProse(value: string) {
-  return /\b(check|confirm|official|provider|parking|free|fare|timetable|arrival|follow|shuttle|station|return|guest services)\b/i.test(
-    value,
-  );
+function Value({ label, value, fallback }: { label: string; value?: string; fallback: string }) {
+  return <View style={styles.valueBox}><Text style={styles.valueLabel}>{label}</Text><Text style={styles.valueText}>{value || fallback}</Text></View>;
 }
 
-function formatTransportationValue(
-  value: string,
-  t: (key: string) => string,
-  language: string,
-) {
-  if (language !== "tr") return value;
-  const normalized = String(value || "")
-    .trim()
-    .toLowerCase();
-  if (!normalized) return value;
-  if (normalized === "free" || normalized === "free parking")
-    return t("service.label.freeParking");
-  if (
-    normalized.includes("confirm") ||
-    normalized.includes("provider") ||
-    normalized.includes("timetable")
-  )
-    return t("transportation.safeInstruction");
-  if (normalized.includes("parking free"))
-    return t("transportation.safeInstruction");
-  return value;
+function OptionRow({ item }: { item: TransportationV2Option }) {
+  const { t } = useTranslation();
+  return <View style={styles.optionRow}>
+    <View style={styles.optionHeader}><Text style={styles.optionTitle}>{formatTransportationTypeLabel(item.mode, t)}</Text><Text style={styles.modeChip}>{labelForOrigin(item, t)}</Text></View>
+    <View style={styles.valueRow}><Value label={t("transportation.duration")} value={item.duration} fallback={t("transportation.v2.confirmTime")} /><Value label={t("transportation.cost")} value={item.fare} fallback={t("transportation.v2.confirmFare")} /></View>
+  </View>;
 }
 
-function formatRouteTitle(
-  title: string,
-  type: string,
-  t: (key: string) => string,
-  language: string,
-) {
-  if (language !== "tr") return title;
-  return String(title || "")
-    .replace(/Cologne city center to/gi, "Köln şehir merkezinden")
-    .replace(/city center to/gi, "şehir merkezinden")
-    .replace(/ by Car/gi, " araçla")
-    .replace(/ by Train/gi, " trenle")
-    .replace(/ by Shuttle Bus/gi, " servisle")
-    .replace(/^Car to /i, "Araçla ")
-    .replace(/^Train to /i, "Trenle ")
-    .replace(/^Shuttle bus to /i, "Servisle ");
-}
-
-function formatStepDescription(
-  description: string,
-  t: (key: string) => string,
-  language: string,
-) {
-  const value = String(description || "");
-  if (language === "tr" && (value.length > 90 || isLikelyEnglishProse(value))) {
-    return t("transportation.safeInstruction");
-  }
-  return value;
-}
-
-type RouteParams = {
-  Transportation: {
-    outletId: string;
-  };
-};
-
-function RouteGuideCard({
-  guide,
-  isRecommended,
-}: {
-  guide: any;
-  isRecommended?: boolean;
-}) {
-  const { t, language } = useTranslation();
-  const sortedSteps = (
-    guide.steps?.length ? [...guide.steps] : getFallbackSteps(guide, t)
-  ).sort((a, b) => a.order - b.order);
-
-  return (
-    <View style={styles.card}>
-      {isRecommended ? (
-        <Text style={styles.badge}>{t("transportation.recommendedRoute")}</Text>
-      ) : null}
-      <Text style={styles.routeTitle}>
-        {formatRouteTitle(guide.title, guide.transportationType, t, language)}
-      </Text>
-
-      <View style={styles.infoRow}>
-        <View style={styles.infoBox}>
-          <Text style={styles.infoLabel}>{t("transportation.service")}</Text>
-          <Text style={styles.infoValue}>
-            {getTransportationLabel(guide.transportationType, t)}
-          </Text>
-        </View>
-        <View style={styles.infoBox}>
-          <Text style={styles.infoLabel}>{t("transportation.duration")}</Text>
-          <Text style={styles.infoValue}>
-            ⏱️ {formatTransportationValue(guide.estimatedDuration, t, language)}
-          </Text>
-        </View>
-        <View style={styles.infoBoxFull}>
-          <Text style={styles.infoLabel}>{t("transportation.cost")}</Text>
-          <Text style={styles.infoValue}>
-            💰 {formatTransportationValue(guide.estimatedCost, t, language)}
-          </Text>
-        </View>
-      </View>
-
-      <Text style={styles.sectionTitle}>{t("transportation.stepByStep")}</Text>
-      {sortedSteps.map((step) => (
-        <View key={`${guide.guideId}-${step.order}`} style={styles.stepRow}>
-          <Text style={styles.stepNumber}>{step.order}</Text>
-          <Text style={styles.stepText}>
-            {formatStepDescription(step.description, t, language)}
-          </Text>
-        </View>
-      ))}
-    </View>
-  );
+function Section({ title, items, empty }: { title: string; items: TransportationV2Option[]; empty?: string }) {
+  if (!items.length && !empty) return null;
+  return <View style={styles.section}><Text style={styles.sectionTitle}>{title}</Text>{items.length ? items.map((item) => <OptionRow key={item.id} item={item} />) : <Text style={styles.note}>{empty}</Text>}</View>;
 }
 
 export function TransportationScreen() {
@@ -226,190 +37,30 @@ export function TransportationScreen() {
   const outletId = route.params?.outletId;
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const options = getTransportationV2Options(outletId);
+  const recommended = getRecommendedTransportationV2Option(outletId);
+  const maps = getOutletMapLinks(outletId);
+  const airportOptions = options.filter((item) => item.originGroup === "airport").slice(0, 3);
+  const cityOptions = options.filter((item) => item.originGroup === "city");
+  const shuttleOptions = options.filter((item) => item.originGroup === "shuttle" && (item.duration || item.fare));
+  const steps = recommended?.guide.steps.slice().sort((a, b) => a.order - b.order).slice(0, 6) ?? [];
 
-  const guides = transportationGuides.filter(
-    (guide) => guide.outletId === outletId,
-  );
-  const recommendedGuide =
-    guides.find((guide) => guide.recommended) || guides[0];
-  const otherGuides = guides.filter(
-    (guide) => guide.guideId !== recommendedGuide?.guideId,
-  );
+  if (!recommended) return <View style={styles.emptyContainer}><Text style={styles.emptyTitle}>{t("transportation.notAvailable")}</Text></View>;
 
-  if (!recommendedGuide) {
-    return (
-      <View style={styles.emptyContainer}>
-        <Text style={styles.emptyTitle}>
-          {t("transportation.notAvailable")}
-        </Text>
-      </View>
-    );
-  }
-
-  return (
-    <View style={styles.screenRoot}>
-      <View
-        pointerEvents="none"
-        style={[styles.topSafeScrim, { height: insets.top }]}
-      />
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={[
-          styles.content,
-          {
-            paddingTop: getScreenTopInset(insets.top),
-            paddingBottom: getFloatingTabClearance(insets.bottom),
-          },
-        ]}
-        scrollIndicatorInsets={{
-          top: getScreenTopInset(insets.top),
-          bottom: getScrollIndicatorBottomInset(insets.bottom),
-        }}
-      >
-        <Text style={styles.pageTitle}>{t("transportation.title")}</Text>
-        <Text style={styles.pageSubtitle}>{t("transportation.subtitle")}</Text>
-
-        <RouteGuideCard guide={recommendedGuide} isRecommended />
-
-        {otherGuides.length > 0 ? (
-          <>
-            <Text style={styles.sectionTitleOutside}>
-              {t("transportation.otherOptions")}
-            </Text>
-            {otherGuides.map((guide) => (
-              <RouteGuideCard key={guide.guideId} guide={guide} />
-            ))}
-          </>
-        ) : null}
-      </ScrollView>
-    </View>
-  );
+  return <View style={styles.screenRoot}><View pointerEvents="none" style={[styles.topSafeScrim, { height: insets.top }]} />
+    <ScrollView style={styles.container} contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]} scrollIndicatorInsets={{ top: getScreenTopInset(insets.top), bottom: getScrollIndicatorBottomInset(insets.bottom) }}>
+      <Text style={styles.pageTitle}>{t("transportation.title")}</Text>
+      <Text style={styles.pageSubtitle}>{t("transportation.v2.subtitle")}</Text>
+      <View style={styles.recommendedCard}><Text style={styles.badge}>{t("transportation.recommendedRoute")}</Text><Text style={styles.recommendedTitle}>{labelForOrigin(recommended, t)}</Text><OptionRow item={recommended} /></View>
+      <Section title={t("transportation.v2.airportAccess")} items={airportOptions} empty={t("transportation.v2.noAirportData")} />
+      <Section title={t("transportation.v2.cityAccess")} items={cityOptions} empty={t("transportation.v2.noCityData")} />
+      <Section title={t("transportation.v2.shuttleSection")} items={shuttleOptions} />
+      <View style={styles.section}><Text style={styles.sectionTitle}>{t("transportation.stepByStep")}</Text>{steps.length ? steps.map((step, index) => <View key={`${recommended.id}-${step.order}`} style={styles.stepRow}><Text style={styles.stepNumber}>{index + 1}</Text><Text style={styles.stepText}>{step.description}</Text></View>) : <Text style={styles.note}>{t("transportation.v2.noReliableSteps")}</Text>}</View>
+      {maps ? <View style={styles.section}><Text style={styles.sectionTitle}>{t("transportation.v2.navigation")}</Text><View style={styles.mapRow}>{[{label:t("outlet.googleMaps"),url:maps.googleMapsUrl},{label:t("outlet.appleMaps"),url:maps.appleMapsUrl},{label:t("outlet.yandexMaps"),url:maps.yandexMapsUrl}].map((link) => link.url ? <TouchableOpacity key={link.label} style={styles.mapButton} onPress={() => Linking.openURL(link.url)}><Text style={styles.mapButtonText}>{link.label}</Text></TouchableOpacity> : null)}</View></View> : null}
+    </ScrollView>
+  </View>;
 }
 
 const styles = StyleSheet.create({
-  screenRoot: { flex: 1, backgroundColor: "#F7F8FA" },
-  topSafeScrim: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: "#F7F8FA",
-    zIndex: 10,
-  },
-  container: { flex: 1, backgroundColor: "#F7F8FA" },
-  content: { padding: 20, paddingTop: 60, paddingBottom: 120 },
-  emptyContainer: {
-    flex: 1,
-    backgroundColor: "#F7F8FA",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
-  },
-  emptyTitle: {
-    fontSize: 18,
-    fontWeight: "800",
-    color: "#0B1F3A",
-    textAlign: "center",
-  },
-  pageTitle: { fontSize: 28, fontWeight: "800", color: "#0B1F3A" },
-  pageSubtitle: {
-    fontSize: 15,
-    color: "#C9A227",
-    marginTop: 6,
-    marginBottom: 22,
-  },
-  card: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 20,
-    padding: 18,
-    borderWidth: 1,
-    borderColor: "#E5E7EB",
-    marginBottom: 14,
-  },
-  badge: {
-    alignSelf: "flex-start",
-    backgroundColor: "#FFF8E1",
-    color: "#0B1F3A",
-    borderRadius: 999,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-    fontWeight: "800",
-    marginBottom: 12,
-  },
-  routeTitle: {
-    fontSize: 20,
-    fontWeight: "800",
-    color: "#0B1F3A",
-    marginBottom: 14,
-  },
-  infoRow: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 10,
-    marginBottom: 18,
-  },
-  infoBox: {
-    flexGrow: 1,
-    flexBasis: "47%",
-    backgroundColor: "#F7F8FA",
-    borderRadius: 14,
-    padding: 12,
-  },
-  infoBoxFull: {
-    width: "100%",
-    backgroundColor: "#F7F8FA",
-    borderRadius: 14,
-    padding: 12,
-  },
-  infoLabel: {
-    color: "#7A8494",
-    fontSize: 12,
-    fontWeight: "800",
-    marginBottom: 4,
-    textTransform: "uppercase",
-  },
-  infoValue: {
-    color: "#0B1F3A",
-    fontWeight: "800",
-    lineHeight: 20,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "800",
-    color: "#0B1F3A",
-    marginBottom: 12,
-  },
-  sectionTitleOutside: {
-    fontSize: 20,
-    fontWeight: "800",
-    color: "#0B1F3A",
-    marginTop: 20,
-    marginBottom: 12,
-  },
-  stepRow: {
-    flexDirection: "row",
-    gap: 12,
-    marginBottom: 12,
-    alignItems: "flex-start",
-  },
-  stepNumber: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: "#0B1F3A",
-    color: "#FFFFFF",
-    textAlign: "center",
-    lineHeight: 28,
-    fontWeight: "800",
-  },
-  stepText: {
-    flex: 1,
-    color: "#666666",
-    lineHeight: 20,
-  },
-  noStepsText: {
-    color: "#666666",
-    lineHeight: 21,
-    fontStyle: "italic",
-  },
+  screenRoot: { flex: 1, backgroundColor: colors.surfaceSoft }, topSafeScrim: { position: "absolute", top: 0, left: 0, right: 0, backgroundColor: colors.surfaceSoft, zIndex: 10 }, container: { flex: 1 }, content: { padding: 20 }, emptyContainer: { flex: 1, backgroundColor: colors.surfaceSoft, alignItems: "center", justifyContent: "center", padding: 20 }, emptyTitle: { fontSize: 18, fontWeight: "800", color: colors.primary, textAlign: "center" }, pageTitle: { fontSize: 30, fontWeight: "900", color: colors.primary }, pageSubtitle: { fontSize: 15, color: colors.gold, marginTop: 6, marginBottom: 18, lineHeight: 21 }, recommendedCard: { backgroundColor: colors.surface, borderRadius: 24, padding: 16, borderWidth: 1, borderColor: colors.border, marginBottom: 16 }, badge: { alignSelf: "flex-start", backgroundColor: colors.goldSurface, color: colors.primary, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 7, fontWeight: "900", marginBottom: 10 }, recommendedTitle: { fontSize: 19, fontWeight: "900", color: colors.primary, marginBottom: 8 }, section: { marginTop: 16 }, sectionTitle: { fontSize: 20, fontWeight: "900", color: colors.primary, marginBottom: 10 }, optionRow: { backgroundColor: colors.surface, borderRadius: 18, padding: 14, borderWidth: 1, borderColor: colors.border, marginBottom: 10 }, optionHeader: { flexDirection: "row", alignItems: "center", gap: 8, marginBottom: 10 }, optionTitle: { flex: 1, minWidth: 0, fontSize: 16, fontWeight: "900", color: colors.primary }, modeChip: { color: colors.gold, backgroundColor: colors.goldSurface, borderRadius: 999, overflow: "hidden", paddingHorizontal: 10, paddingVertical: 5, fontSize: 12, fontWeight: "900" }, valueRow: { flexDirection: "row", gap: 10, flexWrap: "wrap" }, valueBox: { flexGrow: 1, flexBasis: "46%", minWidth: 130, backgroundColor: colors.surfaceSoft, borderRadius: 14, padding: 10 }, valueLabel: { color: colors.textMuted, fontSize: 11, fontWeight: "900", textTransform: "uppercase", marginBottom: 4 }, valueText: { color: colors.textPrimary, fontWeight: "800", lineHeight: 19 }, stepRow: { flexDirection: "row", alignItems: "flex-start", gap: 10, backgroundColor: colors.surface, borderRadius: 14, padding: 12, borderWidth: 1, borderColor: colors.border, marginBottom: 8 }, stepNumber: { width: 26, height: 26, borderRadius: 13, backgroundColor: colors.primary, color: colors.surface, textAlign: "center", lineHeight: 26, fontWeight: "900" }, stepText: { flex: 1, color: colors.textSecondary, lineHeight: 20 }, note: { color: colors.textSecondary, lineHeight: 21, backgroundColor: colors.surface, borderRadius: 14, padding: 14, borderWidth: 1, borderColor: colors.border }, mapRow: { flexDirection: "row", flexWrap: "wrap", gap: 10 }, mapButton: { backgroundColor: colors.primary, borderRadius: 999, paddingHorizontal: 14, paddingVertical: 11 }, mapButtonText: { color: colors.surface, fontWeight: "900" },
 });
