@@ -42,6 +42,21 @@ assert(
     !/Ville|Notas/.test(myTrips),
   "Turkish MyTrips cards must not expose French/Spanish fallback labels",
 );
+
+assert(
+  segmentEditor.includes('placeholder={t("tripSegment.unifiedSearchPlaceholder")}') &&
+    !segmentEditor.includes('placeholder={t("tripSegment.citySearch")}') &&
+    !segmentEditor.includes('placeholder={t("tripSegment.outletSearch")}'),
+  "TripSegmentEditor must have only one visible search input for route selection",
+);
+assert(
+  segmentEditor.includes('setIsEditingRoute(false)') && segmentEditor.includes('summaryCard'),
+  "TripSegmentEditor selecting a city or outlet must render selected route summary and hide results",
+);
+assert(
+  !/navigate\(["']Explore|screen\s*:\s*["']Outlets/.test(segmentEditor),
+  "TripSegmentEditor must not contain Explore/Outlets navigation",
+);
 assert(
   segmentEditor.includes("formatOutletLocationSubtitle(outlet.cityId, outlet.countryId, language)") &&
     !segmentEditor.includes(" · {outlet.outletId}"),
