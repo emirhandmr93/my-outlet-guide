@@ -75,6 +75,9 @@ const providerFallbacks = [
 const prohibited =
   /Private transfer|By Car \/ Outlet Parking|Car \+ town parking|Confirm parking locally|Free parking/;
 const debugPrefixes = /\b(TR|EN|DE|FR|IT|ES|AR|RU|ZH):/;
+const collapsedRangePattern =
+  /€(\d+(?:[.,]\d+)?)–\1\b|\b(\d+)–\2\s*(?:dk|min|minutes)\b/i;
+const longSlashChain = /(?:[^·\n]*\/){3,}/;
 const fakeTerms = /\b(lorem|dummy|placeholder|mock)\b/i;
 const rawEnglishLeakage =
   /Use the official station bus|Confirm ÖBB|Walk through|Central Paris RER A station başla|shopping centre to|€5–5|45–45|60–60|Shuttle shuttle|city’dan|city'dan|Outlet adresi|Şehir merkezi ÖBB istasyonu|Check ÖBB|Travel by train|Check Serravalle|Book an official partner|Official Outlet Link bus|90 min from Milan|McArthurGlen notes|listed coach|Confirm with provider|Check official timetable|Go to the most convenient|Take the listed|Get off at/i;
@@ -148,6 +151,12 @@ for (const outlet of outlets) {
       );
     if (compact.length > 72)
       errors.push(`${row.id} compact summary is too long: ${compact}`);
+    if (longSlashChain.test(compact))
+      errors.push(
+        `${row.id} compact summary contains an overly long slash chain: ${compact}`,
+      );
+    if (collapsedRangePattern.test(compact))
+      errors.push(`${row.id} compact summary contains a collapsed range: ${compact}`);
     if (providerFallbacks.some((fallback) => compact.includes(fallback)))
       errors.push(
         `${row.id} compact summary contains provider-check fallback copy.`,
@@ -213,6 +222,14 @@ for (const outlet of outlets) {
       errors.push(
         `${option.id} leaks raw English transport prose in Turkish display model.`,
       );
+    if (/Başlangıç: (Havalimanından|Şehir merkezinden)/.test(visible))
+      errors.push(`${option.id} uses ablative Turkish origin after Başlangıç.`);
+    if (/Airport Terminal 2 .* station/.test(visible))
+      errors.push(
+        `${option.id} leaks unlocalized airport/station words in Turkish.`,
+      );
+    if (collapsedRangePattern.test(visible))
+      errors.push(`${option.id} contains a collapsed duration/fare range.`);
     if (
       !/Yaklaşık/.test(
         `${option.estimatedDurationLabel} ${option.estimatedFareLabel}`,
@@ -229,6 +246,24 @@ for (const outlet of outlets) {
       errors.push(`${option.id} city section would render a useless option.`);
     if (prohibited.test(option.title))
       errors.push(`${option.id} uses a prohibited primary label.`);
+  }
+  if (outlet.outletId === "la-vallee-village") {
+    const hasExactAirportPublic = displayOptions.some(
+      (option) =>
+        option.originGroup === "airport" &&
+        publicTypes.has(option.mode as any) &&
+        option.routeDetails.confidence !== "estimateOnly",
+    );
+    const hasGenericAirportPublic = displayOptions.some(
+      (option) =>
+        option.originGroup === "airport" &&
+        publicTypes.has(option.mode as any) &&
+        option.routeDetails.confidence === "estimateOnly",
+    );
+    if (hasExactAirportPublic && hasGenericAirportPublic)
+      errors.push(
+        "La Vallée shows a duplicate generic airport public estimate despite an exact airport route.",
+      );
   }
   const airportOptions = displayOptions.filter(
     (option) =>
@@ -379,6 +414,8 @@ const laValleeFact = transportationRouteFacts.find(
 );
 if (!laValleeFact?.line?.includes("RER A") || !laValleeFact.provider?.includes("SNCF") || !laValleeFact.alightingPoint?.includes("Val d'Europe"))
   errors.push("La Vallée structured route fact must include RER A / SNCF and Val d'Europe / Serris-Montévrain.");
+if (!JSON.stringify([outlets, transportationRouteFacts]).includes("La Vallée Village"))
+  errors.push("La Vallée Village accent is not preserved in display data.");
 const serravalleFact = transportationRouteFacts.find(
   (fact) => fact.guideId === "serravalle-milan-official-shuttle",
 );
