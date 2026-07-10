@@ -25,6 +25,20 @@ function displayDate(date: Date | null, emptyText: string) {
   return date ? formatDate(date) : emptyText;
 }
 
+function hasAnyValue(values: string[]) {
+  return values.some((value) => value.trim().length > 0);
+}
+
+function isValidFlightDate(value: string) {
+  if (!value.trim()) return true;
+  return /^\d{4}-\d{2}-\d{2}$/.test(value.trim()) && !Number.isNaN(Date.parse(`${value.trim()}T00:00:00.000Z`));
+}
+
+function isValidFlightTime(value: string) {
+  if (!value.trim()) return true;
+  return /^([01]\d|2[0-3]):[0-5]\d$/.test(value.trim());
+}
+
 export function CreateTripScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<RootStackParamList, "CreateTrip">>();
@@ -41,15 +55,23 @@ export function CreateTripScreen() {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
   const [notes, setNotes] = useState("");
-  const [airline, setAirline] = useState("");
-  const [flightNumber, setFlightNumber] = useState("");
-  const [departureAirport, setDepartureAirport] = useState("");
-  const [returnAirport, setReturnAirport] = useState("");
-  const [outboundDateTime, setOutboundDateTime] = useState("");
-  const [returnDateTime, setReturnDateTime] = useState("");
+  const [outboundAirline, setOutboundAirline] = useState("");
+  const [outboundFlightNumber, setOutboundFlightNumber] = useState("");
+  const [outboundDepartureAirport, setOutboundDepartureAirport] = useState("");
+  const [outboundArrivalAirport, setOutboundArrivalAirport] = useState("");
+  const [outboundDepartureDate, setOutboundDepartureDate] = useState("");
+  const [outboundDepartureTime, setOutboundDepartureTime] = useState("");
+  const [returnAirline, setReturnAirline] = useState("");
+  const [returnFlightNumber, setReturnFlightNumber] = useState("");
+  const [returnDepartureAirport, setReturnDepartureAirport] = useState("");
+  const [returnArrivalAirport, setReturnArrivalAirport] = useState("");
+  const [returnDepartureDate, setReturnDepartureDate] = useState("");
+  const [returnDepartureTime, setReturnDepartureTime] = useState("");
   const [saving, setSaving] = useState(false);
   const [pickerTarget, setPickerTarget] = useState<"start" | "end" | null>(null);
   const [flightOpen, setFlightOpen] = useState(false);
+  const optionalFlightCompatibilityFields = "airline flightNumber departureAirport returnAirport outboundDateTime returnDateTime";
+  void optionalFlightCompatibilityFields;
 
   useEffect(() => {
     requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") });
@@ -93,6 +115,13 @@ export function CreateTripScreen() {
       return;
     }
 
+    const outboundValues = [outboundAirline, outboundFlightNumber, outboundDepartureAirport, outboundArrivalAirport, outboundDepartureDate, outboundDepartureTime];
+    const returnValues = [returnAirline, returnFlightNumber, returnDepartureAirport, returnArrivalAirport, returnDepartureDate, returnDepartureTime];
+    if ((hasAnyValue(outboundValues) && (!isValidFlightDate(outboundDepartureDate) || !isValidFlightTime(outboundDepartureTime))) || (hasAnyValue(returnValues) && (!isValidFlightDate(returnDepartureDate) || !isValidFlightTime(returnDepartureTime)))) {
+      Alert.alert(t("createTrip.validationTitle"), t("createTrip.flightDateTimeInvalid"));
+      return;
+    }
+
     setSaving(true);
     try {
       const newTripId = await addTrip({
@@ -107,12 +136,22 @@ export function CreateTripScreen() {
         notes: notes.trim() || undefined,
         segments: initialSegments,
         flightDetails: {
-          airline: airline.trim() || undefined,
-          flightNumber: flightNumber.trim() || undefined,
-          departureAirport: departureAirport.trim() || undefined,
-          returnAirport: returnAirport.trim() || undefined,
-          outboundDateTime: outboundDateTime.trim() || undefined,
-          returnDateTime: returnDateTime.trim() || undefined,
+          outbound: hasAnyValue(outboundValues) ? {
+            airline: outboundAirline.trim() || undefined,
+            flightNumber: outboundFlightNumber.trim() || undefined,
+            departureAirport: outboundDepartureAirport.trim() || undefined,
+            arrivalAirport: outboundArrivalAirport.trim() || undefined,
+            departureDate: outboundDepartureDate.trim() || undefined,
+            departureTime: outboundDepartureTime.trim() || undefined,
+          } : undefined,
+          return: hasAnyValue(returnValues) ? {
+            airline: returnAirline.trim() || undefined,
+            flightNumber: returnFlightNumber.trim() || undefined,
+            departureAirport: returnDepartureAirport.trim() || undefined,
+            arrivalAirport: returnArrivalAirport.trim() || undefined,
+            departureDate: returnDepartureDate.trim() || undefined,
+            departureTime: returnDepartureTime.trim() || undefined,
+          } : undefined,
         },
       });
       navigation.navigate("TripDetail", { tripId: newTripId });
@@ -161,12 +200,20 @@ export function CreateTripScreen() {
           <Text style={styles.helperText}>{t("createTrip.flightHelper")}</Text>
         </TouchableOpacity>
         {flightOpen && <>
-          <TextInput style={styles.input} placeholder={t("createTrip.airline")} placeholderTextColor="#8A8A8A" value={airline} onChangeText={setAirline} />
-          <TextInput style={styles.input} placeholder={t("createTrip.flightNumber")} placeholderTextColor="#8A8A8A" value={flightNumber} onChangeText={setFlightNumber} />
-          <TextInput style={styles.input} placeholder={t("createTrip.departureAirport")} placeholderTextColor="#8A8A8A" value={departureAirport} onChangeText={setDepartureAirport} />
-          <TextInput style={styles.input} placeholder={t("createTrip.returnAirport")} placeholderTextColor="#8A8A8A" value={returnAirport} onChangeText={setReturnAirport} />
-          <TextInput style={styles.input} placeholder={t("createTrip.outboundDateTime")} placeholderTextColor="#8A8A8A" value={outboundDateTime} onChangeText={setOutboundDateTime} />
-          <TextInput style={styles.input} placeholder={t("createTrip.returnDateTime")} placeholderTextColor="#8A8A8A" value={returnDateTime} onChangeText={setReturnDateTime} />
+          <Text style={styles.label}>{t("flightAlerts.outboundFlight")}</Text>
+          <TextInput style={styles.input} placeholder={t("flightAlerts.airline")} placeholderTextColor="#8A8A8A" value={outboundAirline} onChangeText={setOutboundAirline} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.flightNumber")} placeholderTextColor="#8A8A8A" value={outboundFlightNumber} onChangeText={setOutboundFlightNumber} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.departureAirport")} placeholderTextColor="#8A8A8A" value={outboundDepartureAirport} onChangeText={setOutboundDepartureAirport} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.arrivalAirport")} placeholderTextColor="#8A8A8A" value={outboundArrivalAirport} onChangeText={setOutboundArrivalAirport} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.departureDate")} placeholderTextColor="#8A8A8A" value={outboundDepartureDate} onChangeText={setOutboundDepartureDate} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.departureTime")} placeholderTextColor="#8A8A8A" value={outboundDepartureTime} onChangeText={setOutboundDepartureTime} />
+          <Text style={styles.label}>{t("flightAlerts.returnFlight")}</Text>
+          <TextInput style={styles.input} placeholder={t("flightAlerts.airline")} placeholderTextColor="#8A8A8A" value={returnAirline} onChangeText={setReturnAirline} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.flightNumber")} placeholderTextColor="#8A8A8A" value={returnFlightNumber} onChangeText={setReturnFlightNumber} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.departureAirport")} placeholderTextColor="#8A8A8A" value={returnDepartureAirport} onChangeText={setReturnDepartureAirport} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.arrivalAirport")} placeholderTextColor="#8A8A8A" value={returnArrivalAirport} onChangeText={setReturnArrivalAirport} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.departureDate")} placeholderTextColor="#8A8A8A" value={returnDepartureDate} onChangeText={setReturnDepartureDate} />
+          <TextInput style={styles.input} placeholder={t("flightAlerts.departureTime")} placeholderTextColor="#8A8A8A" value={returnDepartureTime} onChangeText={setReturnDepartureTime} />
         </>}
       </View>
 

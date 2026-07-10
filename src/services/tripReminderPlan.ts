@@ -53,14 +53,16 @@ export function generateTripReminderPlan(trip: Pick<TripInput, "startDate" | "en
   }
 
   const flightDetails: TripFlightDetails | undefined = trip.flightDetails;
-  const outboundDate = isoDate(flightDetails?.outboundDateTime);
+  const outboundDate = isoDate(flightDetails?.outbound?.departureDate || flightDetails?.outboundDateTime);
   if (outboundDate) {
-    pushUnique(reminders, { id: `outboundFlight_${tripId}`, type: "outboundFlight", date: outboundDate, title: "tripDetail.flightReminder", body: "tripDetail.outboundFlightReminderMessage", messageParams: { airport: flightDetails?.departureAirport ? ` (${flightDetails.departureAirport})` : "" } });
+    const airport = flightDetails?.outbound?.departureAirport || flightDetails?.departureAirport || "";
+    pushUnique(reminders, { id: `outboundFlight_${tripId}`, type: "outboundFlight", date: outboundDate, title: "tripDetail.flightReminder", body: "tripDetail.outboundFlightReminderMessage", messageParams: { airport: airport ? ` (${airport})` : "" } });
   }
 
-  const returnDate = isoDate(flightDetails?.returnDateTime);
+  const returnDate = isoDate(flightDetails?.return?.departureDate || flightDetails?.returnDateTime);
   if (returnDate) {
-    pushUnique(reminders, { id: `returnFlight_${tripId}`, type: "returnFlight", date: returnDate, title: "tripDetail.returnFlightReminder", body: "tripDetail.returnFlightReminderMessage", messageParams: { airport: flightDetails?.returnAirport ? ` (${flightDetails.returnAirport})` : "" } });
+    const airport = flightDetails?.return?.departureAirport || flightDetails?.returnAirport || "";
+    pushUnique(reminders, { id: `returnFlight_${tripId}`, type: "returnFlight", date: returnDate, title: "tripDetail.returnFlightReminder", body: "tripDetail.returnFlightReminderMessage", messageParams: { airport: airport ? ` (${airport})` : "" } });
   }
 
   // Source-backed deal/event reminders intentionally remain empty until a verified

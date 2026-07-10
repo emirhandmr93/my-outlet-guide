@@ -257,7 +257,7 @@ for (const outlet of outlets) {
       );
     if (/Başlangıç: (Havalimanından|Şehir merkezinden)/.test(visible))
       errors.push(`${option.id} uses ablative Turkish origin after Başlangıç.`);
-    if (/Airport Terminal 2 .* station/.test(visible))
+    if (/Airport T2 .* station/.test(visible))
       errors.push(
         `${option.id} leaks unlocalized airport/station words in Turkish.`,
       );

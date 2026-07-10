@@ -727,12 +727,12 @@ function localizePoint(value: string | undefined, language: TranslationLanguage 
   if (language === "tr" && value === "Central Paris RER A station")
     return "Paris merkezindeki bir RER A istasyonu";
   if (/^La Vall[eé]e Village$/.test(value)) return "La Vallée Village";
-  if (value === "Paris Charles de Gaulle Airport Terminal 2 SNCF/TGV station") {
+  if (value === "Paris Charles de Gaulle Airport T2 SNCF/TGV station") {
     const localized: Partial<Record<TranslationLanguage, string>> = {
-      tr: "Paris Charles de Gaulle Havalimanı Terminal 2 SNCF/TGV istasyonu",
-      es: "estación SNCF/TGV de Paris Charles de Gaulle Aeropuerto Terminal 2",
-      fr: "gare SNCF/TGV de Paris Charles de Gaulle Aéroport Terminal 2",
-      de: "SNCF/TGV-Bahnhof Paris Charles de Gaulle Flughafen Terminal 2",
+      tr: "Paris Charles de Gaulle Havalimanı T2 SNCF/TGV istasyonu",
+      es: "estación SNCF/TGV de Paris Charles de Gaulle Aeropuerto T2",
+      fr: "gare SNCF/TGV de Paris Charles de Gaulle Aéroport T2",
+      de: "SNCF/TGV-Bahnhof Paris Charles de Gaulle Flughafen T2",
       ru: "станция SNCF/TGV Paris Charles de Gaulle, аэропорт, терминал 2",
       ar: "محطة SNCF/TGV في مطار Paris Charles de Gaulle، المبنى 2",
       zh: "Paris Charles de Gaulle 机场 2 号航站楼 SNCF/TGV 车站",
