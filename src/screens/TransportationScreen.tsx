@@ -22,6 +22,7 @@ import {
   getTransportationOptionDisplayModel,
   getTransportationRouteDetailRows,
   getTransportationV2Options,
+  hasSourceBackedShuttleRouteDetail,
   type NearbyAirportDisplay,
   type TransportationV2Option,
 } from "../services/transportationV2Service";
@@ -175,6 +176,7 @@ export function TransportationScreen() {
     options.filter(
       (item) =>
         item.originGroup === "shuttle" &&
+        hasSourceBackedShuttleRouteDetail(item) &&
         item.estimatedDurationLabel &&
         item.estimatedFareLabel,
     ),

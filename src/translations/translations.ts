@@ -12253,7 +12253,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.origin": "Origin",
     "transportation.v2.route.walking": "Walk",
     "transportation.v2.route.checkOfficial":
-      "Check line/stop details with the official provider.",
+      "Confirm line and timetable with the official provider.",
     "transportation.v2.title.cityTrain": "From city center by train",
     "transportation.v2.title.cityBus": "From city center by bus",
     "transportation.v2.title.airportPublic": "From airport by public transport",
@@ -12272,7 +12272,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.origin": "Başlangıç",
     "transportation.v2.route.walking": "Yürüyüş",
     "transportation.v2.route.checkOfficial":
-      "Eksik hat veya durak bilgisini resmi sağlayıcıdan kontrol edin.",
+      "Hat ve sefer bilgisini resmi sağlayıcıdan doğrula.",
     "transportation.v2.title.cityTrain": "Şehir merkezinden trenle",
     "transportation.v2.title.cityBus": "Şehir merkezinden otobüsle",
     "transportation.v2.title.airportPublic": "Havalimanından toplu ulaşım ile",
@@ -12291,7 +12291,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.origin": "Origen",
     "transportation.v2.route.walking": "A pie",
     "transportation.v2.route.checkOfficial":
-      "Consulta la línea/parada con el proveedor oficial.",
+      "Confirma la línea y el horario con el proveedor oficial.",
     "transportation.v2.title.cityTrain": "Desde el centro en tren",
     "transportation.v2.title.cityBus": "Desde el centro en autobús",
     "transportation.v2.title.airportPublic":
@@ -12311,7 +12311,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.origin": "Origine",
     "transportation.v2.route.walking": "Marche",
     "transportation.v2.route.checkOfficial":
-      "Vérifiez la ligne/l’arrêt auprès du prestataire officiel.",
+      "Confirmez la ligne et les horaires auprès du prestataire officiel.",
     "transportation.v2.title.cityTrain": "Depuis le centre-ville en train",
     "transportation.v2.title.cityBus": "Depuis le centre-ville en bus",
     "transportation.v2.title.airportPublic":
@@ -12331,7 +12331,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.origin": "Start",
     "transportation.v2.route.walking": "Fußweg",
     "transportation.v2.route.checkOfficial":
-      "Prüfe Linie/Haltestelle beim offiziellen Anbieter.",
+      "Bestätige Linie und Fahrplan beim offiziellen Anbieter.",
     "transportation.v2.title.cityTrain": "Vom Stadtzentrum mit dem Zug",
     "transportation.v2.title.cityBus": "Vom Stadtzentrum mit dem Bus",
     "transportation.v2.title.airportPublic": "Vom Flughafen mit ÖPNV",
@@ -12350,7 +12350,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.origin": "Начало",
     "transportation.v2.route.walking": "Пешком",
     "transportation.v2.route.checkOfficial":
-      "Уточните линию/остановку у официального поставщика.",
+      "Подтвердите линию и расписание у официального поставщика.",
     "transportation.v2.title.cityTrain": "Из центра города на поезде",
     "transportation.v2.title.cityBus": "Из центра города на автобусе",
     "transportation.v2.title.airportPublic":
@@ -12370,7 +12370,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.origin": "نقطة البداية",
     "transportation.v2.route.walking": "سيرًا",
     "transportation.v2.route.checkOfficial":
-      "تحقق من تفاصيل الخط/المحطة لدى المزوّد الرسمي.",
+      "أكّد الخط والجدول الزمني مع المزوّد الرسمي.",
     "transportation.v2.title.cityTrain": "من وسط المدينة بالقطار",
     "transportation.v2.title.cityBus": "من وسط المدينة بالحافلة",
     "transportation.v2.title.airportPublic": "من المطار بالمواصلات العامة",
@@ -12389,7 +12389,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.origin": "起点",
     "transportation.v2.route.walking": "步行",
     "transportation.v2.route.checkOfficial":
-      "请向官方服务商确认线路/站点信息。",
+      "请向官方服务商确认线路和时刻表。",
     "transportation.v2.title.cityTrain": "从市中心乘火车",
     "transportation.v2.title.cityBus": "从市中心乘公交",
     "transportation.v2.title.airportPublic": "从机场乘公共交通",

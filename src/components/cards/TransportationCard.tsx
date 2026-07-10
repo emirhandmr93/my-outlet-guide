@@ -5,6 +5,7 @@ import {
   getTransportationDisplayFallbacks,
   getTransportationOptionDisplayModel,
   getTransportationCompactSummaryLabel,
+  hasSourceBackedShuttleRouteDetail,
   type TransportationV2Option,
 } from "../../services/transportationV2Service";
 import { colors } from "../../theme/colors";
@@ -46,6 +47,9 @@ export function TransportationCard({
 }: TransportationCardProps) {
   const { t, language } = useTranslation();
   const fallbacks = getTransportationDisplayFallbacks(language);
+  const sourceBackedSummaryItems = summaryItems.filter(
+    hasSourceBackedShuttleRouteDetail,
+  );
 
   return (
     <Card>
@@ -54,8 +58,8 @@ export function TransportationCard({
         {t("transportation.v2.detailSubtitle")}
       </Text>
 
-      {summaryItems.length > 0 ? (
-        summaryItems.slice(0, 2).map((rawItem) => {
+      {sourceBackedSummaryItems.length > 0 ? (
+        sourceBackedSummaryItems.slice(0, 2).map((rawItem) => {
           const item = getTransportationOptionDisplayModel(rawItem, language);
           const meta = getTransportationCompactSummaryLabel(item, language);
           return meta ? (

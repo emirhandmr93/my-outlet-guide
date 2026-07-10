@@ -16,6 +16,7 @@ import {
   getTransportationOptionDisplayModel,
   getTransportationRouteDetailRows,
   getTransportationV2Options,
+  hasSourceBackedShuttleRouteDetail,
 } from "../src/services/transportationV2Service";
 
 const requiredKeys = [
@@ -61,7 +62,7 @@ const requiredKeys = [
   "transportation.v2.estimateGuideFallback",
 ];
 const prohibitedGenericRouteStrings =
-  /Şehir merkezi ÖBB istasyonu|Şehir merkezi RER A|Outlet adresi|Shuttle shuttle|city’dan|city\'dan|Hat\/durak bilgisini resmi sağlayıcıdan kontrol edin/i;
+  /Şehir merkezi ÖBB istasyonu|Şehir merkezi RER A|Outlet adresi|Shuttle shuttle|city’dan|city\'dan|Hat\/durak bilgisini resmi sağlayıcıdan kontrol edin|Eksik hat veya durak/i;
 const titleDupes =
   /city’dan|city\'dan|Shuttle shuttle|shuttle shuttle|Şehir merkezinden şehir merkezinden/i;
 const publicTypes = new Set(["train", "metro", "bus", "ferry", "walking"]);
@@ -84,6 +85,17 @@ const longSlashChain = /(?:[^·\n]*\/){3,}/;
 const fakeTerms = /\b(lorem|dummy|placeholder|mock)\b/i;
 const rawEnglishLeakage =
   /Use the official station bus|Confirm ÖBB|Walk through|Central Paris RER A station başla|shopping centre to|€5–5|45–45|60–60|Shuttle shuttle|city’dan|city'dan|Outlet adresi|Şehir merkezi ÖBB istasyonu|Check ÖBB|Travel by train|Check Serravalle|Book an official partner|Official Outlet Link bus|90 min from Milan|McArthurGlen notes|listed coach|Confirm with provider|Check official timetable|Go to the most convenient|Take the listed|Get off at/i;
+
+const cleanProviderNotes: Record<string, string> = {
+  en: "Confirm line and timetable with the official provider.",
+  tr: "Hat ve sefer bilgisini resmi sağlayıcıdan doğrula.",
+  es: "Confirma la línea y el horario con el proveedor oficial.",
+  fr: "Confirmez la ligne et les horaires auprès du prestataire officiel.",
+  de: "Bestätige Linie und Fahrplan beim offiziellen Anbieter.",
+  ru: "Подтвердите линию и расписание у официального поставщика.",
+  ar: "أكّد الخط والجدول الزمني مع المزوّد الرسمي.",
+  zh: "请向官方服务商确认线路和时刻表。",
+};
 const files = [
   "src/constants/transportationRouteFacts.ts",
   "src/screens/TransportationScreen.tsx",
@@ -126,6 +138,11 @@ for (const file of files) {
 for (const language of supportedLanguageCodes) {
   for (const key of requiredKeys)
     if (!translations[language][key]) errors.push(`${language} missing ${key}`);
+  if (
+    translations[language]["transportation.v2.route.checkOfficial"] !==
+    cleanProviderNotes[language]
+  )
+    errors.push(`${language} has stale transportation.v2.route.checkOfficial copy.`);
 }
 
 for (const outlet of outlets) {
@@ -300,20 +317,38 @@ for (const outlet of outlets) {
         `${outlet.outletId} nearby airport fallback includes transport provider-check rows.`,
       );
   }
-  const renderedShuttleKeys = displayOptions
+  const renderedShuttles = displayOptions
     .filter(
       (option) =>
         option.originGroup === "shuttle" &&
         option.isUsefulForPrimaryDisplay &&
+        hasSourceBackedShuttleRouteDetail(option) &&
         (option.durationLabel || option.fareLabel || option.noteLabel),
     )
-    .slice(0, 1)
-    .map((shuttle) =>
-      [
-        shuttle.fareLabel || "",
-        shuttle.durationLabel || "",
-        shuttle.noteLabel || "",
-      ].join("|"),
+    .slice(0, 1);
+  const renderedShuttleKeys = renderedShuttles.map((shuttle) =>
+    [
+      shuttle.fareLabel || "",
+      shuttle.durationLabel || "",
+      shuttle.noteLabel || "",
+    ].join("|"),
+  );
+  const estimateOnlyShuttle = displayOptions.find(
+    (option) =>
+      option.originGroup === "shuttle" &&
+      !hasSourceBackedShuttleRouteDetail(option) &&
+      (option.durationLabel || option.fareLabel || option.noteLabel),
+  );
+  if (estimateOnlyShuttle)
+    errors.push(
+      `${estimateOnlyShuttle.id} would render an estimate-only shuttle card.`,
+    );
+  if (
+    outlet.outletId === "designer-outlet-parndorf" &&
+    renderedShuttles.length
+  )
+    errors.push(
+      "Parndorf renders a generic shuttle without a source-backed shuttle fact.",
     );
   if (new Set(renderedShuttleKeys).size !== renderedShuttleKeys.length)
     errors.push(`${outlet.outletId} renders duplicate shuttle options.`);
@@ -421,6 +456,71 @@ assertTurkishRoute("vienna-to-parndorf-train-bus", ["ÖBB", "Parndorf Ort", "Yak
 assertTurkishRoute("paris-to-la-vallee-rer-a", ["RER A", "Val d'Europe / Serris-Montévrain", "La Vallée Village", "Yaklaşık", "€", "Paris merkezindeki bir RER A istasyonu"]);
 assertTurkishRoute("paris-to-la-vallee-shopping-express", ["Shopping Express", "Hotel Pullman Paris Bercy", "La Vallée Village", "Yaklaşık", "€"]);
 assertTurkishRoute("serravalle-milan-official-shuttle", ["Zani Viaggi / Frigerio Viaggi", "Milano Centrale", "Yaklaşık", "€"]);
+
+
+function assertVisibleOption(
+  outletId: string,
+  predicate: (
+    option: ReturnType<typeof getTransportationOptionDisplayModel>,
+  ) => boolean,
+  message: string,
+) {
+  const option = getTransportationV2Options(outletId)
+    .map((item) => getTransportationOptionDisplayModel(item, "tr"))
+    .find(predicate);
+  if (!option) errors.push(message);
+  return option;
+}
+
+assertVisibleOption(
+  "la-vallee-village",
+  (option) =>
+    option.originGroup === "shuttle" &&
+    option.routeDetails.lineOrProviderLabel === "Shopping Express",
+  "La Vallée Shopping Express shuttle no longer renders.",
+);
+assertVisibleOption(
+  "serravalle-designer-outlet",
+  (option) =>
+    option.originGroup === "shuttle" &&
+    /Zani Viaggi/.test(option.routeDetails.lineOrProviderLabel || "") &&
+    /Frigerio Viaggi/.test(option.routeDetails.lineOrProviderLabel || ""),
+  "Serravalle Zani Viaggi / Frigerio Viaggi shuttle no longer renders.",
+);
+assertVisibleOption(
+  "designer-outlet-parndorf",
+  (option) =>
+    option.originGroup === "airport" &&
+    publicTypes.has(option.mode as any) &&
+    option.routeDetails.confidence === "estimateOnly" &&
+    option.estimatedDurationLabel.includes("Yaklaşık") &&
+    option.estimatedFareLabel.includes("Yaklaşık") &&
+    option.noteLabel === cleanProviderNotes.tr,
+  "Airport estimate-only public transport no longer renders with the clean provider note.",
+);
+assertVisibleOption(
+  "designer-outlet-parndorf",
+  (option) =>
+    option.originGroup === "airport" &&
+    ["taxi", "uber"].includes(option.mode) &&
+    option.routeDetails.confidence === "estimateOnly" &&
+    option.estimatedDurationLabel.includes("Yaklaşık") &&
+    option.estimatedFareLabel.includes("Yaklaşık"),
+  "Taxi/Uber estimate-only option no longer renders with duration and fare.",
+);
+for (const outletId of [
+  "designer-outlet-parndorf",
+  "la-vallee-village",
+  "serravalle-designer-outlet",
+]) {
+  const visible = getTransportationV2Options(outletId)
+    .map((option) => getTransportationOptionDisplayModel(option, "tr"))
+    .filter(
+      (option) => option.estimatedDurationLabel && option.estimatedFareLabel,
+    );
+  if (!visible.length)
+    errors.push(`${outletId} no longer exposes estimated duration and fare.`);
+}
 
 const parndorfFact = transportationRouteFacts.find(
   (fact) => fact.guideId === "vienna-to-parndorf-train-bus",
