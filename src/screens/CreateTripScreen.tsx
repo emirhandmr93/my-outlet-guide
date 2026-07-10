@@ -1,5 +1,6 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
 import { Alert, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
@@ -7,7 +8,9 @@ import { outlets } from "../constants/outlets";
 import { useTrips } from "../contexts/TripsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { formatCityDisplayName, formatCountryDisplayName, formatOutletLocationSubtitle } from "../utils/locationDisplay";
 import { requireAuth } from "../utils/requireAuth";
+import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
 type RouteParams = {
   CreateTrip: {
@@ -27,17 +30,26 @@ export function CreateTripScreen() {
   const route = useRoute<RouteProp<RouteParams, "CreateTrip">>();
   const { isLoggedIn } = useUser();
   const { addTrip } = useTrips();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   const selectedOutlet = outlets.find((outlet) => outlet.outletId === route.params?.outletId);
-  const [tripName, setTripName] = useState(selectedOutlet?.outletName ? `${selectedOutlet.outletName} ${t("trips.defaultTripName")}` : "");
+  const outletCity = selectedOutlet?.cityId || selectedOutlet?.city || "";
+  const outletCountry = selectedOutlet?.countryId || selectedOutlet?.country || "";
+  const destinationText = selectedOutlet ? formatOutletLocationSubtitle(outletCity, outletCountry, language) : "";
+  const [tripName, setTripName] = useState("");
   const [visitDate, setVisitDate] = useState<Date | null>(null);
   const [notes, setNotes] = useState("");
   const [saving, setSaving] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
 
   async function saveTrip() {
-    if (!requireAuth({ isLoggedIn, navigation })) {
+    if (!requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") })) {
+      return;
+    }
+
+    if (!tripName.trim()) {
+      Alert.alert(t("createTrip.validationTitle"), t("createTrip.tripNameRequired"));
       return;
     }
 
@@ -49,12 +61,12 @@ export function CreateTripScreen() {
     setSaving(true);
     try {
       const newTripId = await addTrip({
-        tripName: tripName.trim() || `${selectedOutlet.outletName} ${t("trips.defaultTripName")}`,
+        tripName: tripName.trim(),
         outletId: selectedOutlet.outletId,
         outletName: selectedOutlet.outletName,
-        destination: [selectedOutlet.city, selectedOutlet.country].filter(Boolean).join(", "),
-        country: selectedOutlet.country,
-        city: selectedOutlet.city,
+        destination: destinationText,
+        country: outletCountry ? formatCountryDisplayName(outletCountry, language) : undefined,
+        city: outletCity ? formatCityDisplayName(outletCity, language) : undefined,
         visitDate: visitDate ? formatDate(visitDate) : undefined,
         notes: notes.trim() || undefined,
       });
@@ -73,7 +85,11 @@ export function CreateTripScreen() {
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.kicker}>{t("createTrip.heroKicker")}</Text>
         <Text style={styles.title}>{t("createTrip.heroTitle")}</Text>
@@ -84,7 +100,7 @@ export function CreateTripScreen() {
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>{t("createTrip.outletDestination")}</Text>
           <Text style={styles.outletName}>{selectedOutlet.outletName}</Text>
-          <Text style={styles.helperText}>{[selectedOutlet.city, selectedOutlet.country].filter(Boolean).join(", ")}</Text>
+          <Text style={styles.helperText}>{destinationText}</Text>
         </View>
       ) : null}
 
@@ -153,7 +169,7 @@ export function CreateTripScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
-  content: { padding: 20, paddingTop: 60, paddingBottom: 120 },
+  content: { padding: 20 },
   heroCard: { backgroundColor: "#0B1F3A", borderRadius: 30, padding: 24, marginBottom: 16 },
   kicker: { color: "#C9A227", fontSize: 12, fontWeight: "900", letterSpacing: 1.2, marginBottom: 10 },
   title: { color: "#FFFFFF", fontSize: 30, fontWeight: "900", lineHeight: 36 },

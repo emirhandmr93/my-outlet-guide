@@ -12834,3 +12834,66 @@ for (const languageCode of supportedLanguageCodes) {
     phase1BAppWideLocalizationTranslations[languageCode] ?? {},
   );
 }
+
+const tripsFlowPhase1ATranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "trips.authRequiredCreateMessage": "Sign in to create and save real shopping trips to your account.",
+    "trips.signInTitle": "Sign in to see your trips",
+    "trips.signInText": "Your saved trips appear here after you sign in. Guests only see a sign-in prompt.",
+    "createTrip.validationTitle": "Check trip details",
+    "createTrip.tripNameRequired": "Enter a trip name before saving.",
+  },
+  tr: {
+    "trips.authRequiredCreateMessage": "Gerçek alışveriş seyahatleri oluşturup hesabına kaydetmek için giriş yap.",
+    "trips.signInTitle": "Seyahatlerini görmek için giriş yap",
+    "trips.signInText": "Kayıtlı seyahatlerin giriş yaptıktan sonra burada görünür. Misafirler yalnızca giriş çağrısı görür.",
+    "createTrip.validationTitle": "Seyahat bilgilerini kontrol et",
+    "createTrip.tripNameRequired": "Kaydetmeden önce seyahat adı gir.",
+  },
+  es: {
+    "trips.authRequiredCreateMessage": "Inicia sesión para crear y guardar viajes de compras reales en tu cuenta.",
+    "trips.signInTitle": "Inicia sesión para ver tus viajes",
+    "trips.signInText": "Tus viajes guardados aparecerán aquí después de iniciar sesión. Los invitados solo ven una invitación para iniciar sesión.",
+    "createTrip.validationTitle": "Revisa los datos del viaje",
+    "createTrip.tripNameRequired": "Introduce un nombre de viaje antes de guardar.",
+  },
+  fr: {
+    "trips.authRequiredCreateMessage": "Connectez-vous pour créer et enregistrer de vrais voyages shopping dans votre compte.",
+    "trips.signInTitle": "Connectez-vous pour voir vos voyages",
+    "trips.signInText": "Vos voyages enregistrés s’affichent ici après connexion. Les invités voient seulement une invitation à se connecter.",
+    "createTrip.validationTitle": "Vérifiez les détails du voyage",
+    "createTrip.tripNameRequired": "Saisissez un nom de voyage avant d’enregistrer.",
+  },
+  de: {
+    "trips.authRequiredCreateMessage": "Melde dich an, um echte Shopping-Reisen in deinem Konto zu erstellen und zu speichern.",
+    "trips.signInTitle": "Anmelden, um deine Reisen zu sehen",
+    "trips.signInText": "Deine gespeicherten Reisen erscheinen hier nach der Anmeldung. Gäste sehen nur eine Anmeldeaufforderung.",
+    "createTrip.validationTitle": "Reisedetails prüfen",
+    "createTrip.tripNameRequired": "Gib vor dem Speichern einen Reisenamen ein.",
+  },
+  ar: {
+    "trips.authRequiredCreateMessage": "سجّل الدخول لإنشاء رحلات تسوق حقيقية وحفظها في حسابك.",
+    "trips.signInTitle": "سجّل الدخول لعرض رحلاتك",
+    "trips.signInText": "تظهر رحلاتك المحفوظة هنا بعد تسجيل الدخول. لا يرى الضيوف سوى دعوة لتسجيل الدخول.",
+    "createTrip.validationTitle": "تحقق من تفاصيل الرحلة",
+    "createTrip.tripNameRequired": "أدخل اسم الرحلة قبل الحفظ.",
+  },
+  ru: {
+    "trips.authRequiredCreateMessage": "Войдите, чтобы создавать и сохранять реальные шопинг-поездки в аккаунте.",
+    "trips.signInTitle": "Войдите, чтобы увидеть свои поездки",
+    "trips.signInText": "Сохранённые поездки появятся здесь после входа. Гости видят только предложение войти.",
+    "createTrip.validationTitle": "Проверьте данные поездки",
+    "createTrip.tripNameRequired": "Введите название поездки перед сохранением.",
+  },
+  zh: {
+    "trips.authRequiredCreateMessage": "请登录，以在账户中创建并保存真实的购物行程。",
+    "trips.signInTitle": "登录后查看你的行程",
+    "trips.signInText": "登录后，你保存的行程会显示在这里。访客只会看到登录提示。",
+    "createTrip.validationTitle": "请检查行程信息",
+    "createTrip.tripNameRequired": "保存前请输入行程名称。",
+  },
+};
+
+for (const languageCode of supportedLanguageCodes) {
+  Object.assign(translations[languageCode], tripsFlowPhase1ATranslations[languageCode]);
+}

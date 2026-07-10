@@ -1,9 +1,11 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getTripStatusLabel } from "../utils/getTripStatusLabel";
+import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
 type RouteParams = {
   TripDetail: {
@@ -16,6 +18,7 @@ export function TripDetailScreen() {
   const navigation = useNavigation<any>();
   const { trips } = useTrips();
   const { t } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   const trip = trips.find((item) => item.id === route.params?.tripId || item.tripId === route.params?.tripId);
 
@@ -31,7 +34,11 @@ export function TripDetailScreen() {
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.kicker}>{t("tripDetail.heroKicker")}</Text>
         <Text style={styles.title}>{trip.tripName}</Text>
@@ -69,7 +76,7 @@ export function TripDetailScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
-  content: { padding: 20, paddingTop: 60, paddingBottom: 120 },
+  content: { padding: 20 },
   centerState: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24, backgroundColor: "#F7F8FA" },
   heroCard: { backgroundColor: "#0B1F3A", borderRadius: 30, padding: 24, marginBottom: 16 },
   kicker: { color: "#C9A227", fontSize: 12, fontWeight: "900", letterSpacing: 1.2, marginBottom: 10 },
