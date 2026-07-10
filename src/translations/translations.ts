@@ -12591,3 +12591,21 @@ for (const languageCode of supportedLanguageCodes) {
     transportationV2Phase1DTranslations[languageCode],
   );
 }
+
+const phase1AAppWideLocalizationTranslations: Partial<
+  Record<TranslationLanguage, Record<string, string>>
+> = {
+  ar: {
+    "auth.termsText": "بالمتابعة، فإنك توافق على استخدام My Outlet Guide لبيانات حسابك لحفظ المفضلة والرحلات والتفضيلات.",
+  },
+  zh: {
+    "auth.termsText": "继续操作即表示你同意 My Outlet Guide 使用你的账号数据来保存收藏、行程和偏好。",
+  },
+};
+
+for (const languageCode of supportedLanguageCodes) {
+  Object.assign(
+    translations[languageCode],
+    phase1AAppWideLocalizationTranslations[languageCode] ?? {},
+  );
+}

@@ -27,6 +27,7 @@ import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { searchApp } from "../services/searchEngine";
 import type { SearchResult } from "../services/searchTypes";
+import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -259,6 +260,7 @@ export function HomeScreen() {
   const tabBarHeight = useBottomTabBarHeight();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { currentUser, isAuthenticated } = useAuth();
   const { trips } = useTrips();
   const { favoriteIds } = useFavorites();
   const [searchQuery, setSearchQuery] = useState("");
@@ -373,7 +375,8 @@ export function HomeScreen() {
         ]}
       >
         <HomeHeader
-          userName="Emirhan"
+          userName={currentUser?.displayName || currentUser?.email?.split("@")[0]}
+          isGuest={!isAuthenticated}
           onPressMenu={() => setIsQuickMenuOpen(true)}
           onPressNotifications={() =>
             navigation.navigate("NotificationSettings")
