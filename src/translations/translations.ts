@@ -12018,7 +12018,7 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
     "transportation.v2.navigation": "Map / navigation",
   },
   tr: {
-    "transportation.v2.compactRecommendedFallback": "En pratik ulaşım bilgisini resmi kaynaklardan kontrol et.",
+    "transportation.v2.compactRecommendedFallback": "Ulaşım tahminlerini rehberde gör",
     "transportation.v2.providerSectionNote": "Güncel saat ve ücret bilgisini resmi sağlayıcıdan kontrol et.",
     "transportation.v2.nearbyAirport": "Yakındaki havalimanı",
     "transportation.v2.subtitle": "Bu outlet'e ulaşmanın en pratik yolları.",
@@ -12189,4 +12189,20 @@ const transportationV2Translations: Record<TranslationLanguage, Record<string, s
 
 for (const languageCode of supportedLanguageCodes) {
   Object.assign(translations[languageCode], transportationV2Translations[languageCode]);
+}
+
+
+const transportationV2Phase1DTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "transportation.v2.approx": "Approx.", "transportation.v2.approxDuration": "Approx. {duration}", "transportation.v2.approxFare": "Approx. {fare}", "transportation.v2.estimateGuideFallback": "See transport estimates in the guide" },
+  tr: { "transportation.v2.approx": "Yaklaşık", "transportation.v2.approxDuration": "Yaklaşık {duration}", "transportation.v2.approxFare": "Yaklaşık {fare}", "transportation.v2.estimateGuideFallback": "Ulaşım tahminlerini rehberde gör" },
+  es: { "transportation.v2.approx": "Aprox.", "transportation.v2.approxDuration": "Aprox. {duration}", "transportation.v2.approxFare": "Aprox. {fare}", "transportation.v2.estimateGuideFallback": "Ver estimaciones de transporte en la guía" },
+  fr: { "transportation.v2.approx": "Env.", "transportation.v2.approxDuration": "Env. {duration}", "transportation.v2.approxFare": "Env. {fare}", "transportation.v2.estimateGuideFallback": "Voir les estimations de transport dans le guide" },
+  de: { "transportation.v2.approx": "Ca.", "transportation.v2.approxDuration": "Ca. {duration}", "transportation.v2.approxFare": "Ca. {fare}", "transportation.v2.estimateGuideFallback": "Verkehrsschätzungen im Guide ansehen" },
+  ru: { "transportation.v2.approx": "Примерно", "transportation.v2.approxDuration": "Примерно {duration}", "transportation.v2.approxFare": "Примерно {fare}", "transportation.v2.estimateGuideFallback": "Смотрите оценки транспорта в путеводителе" },
+  ar: { "transportation.v2.approx": "تقريبًا", "transportation.v2.approxDuration": "تقريبًا {duration}", "transportation.v2.approxFare": "تقريبًا {fare}", "transportation.v2.estimateGuideFallback": "اعرض تقديرات المواصلات في الدليل" },
+  zh: { "transportation.v2.approx": "约", "transportation.v2.approxDuration": "约 {duration}", "transportation.v2.approxFare": "约 {fare}", "transportation.v2.estimateGuideFallback": "在指南中查看交通估算" },
+};
+
+for (const languageCode of supportedLanguageCodes) {
+  Object.assign(translations[languageCode], transportationV2Phase1DTranslations[languageCode]);
 }
