@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -6,6 +6,8 @@ import { Trip, useTrips } from "../contexts/TripsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getTripStatusLabel } from "../utils/getTripStatusLabel";
+import { navigateToTripOutletSelection } from "../navigation/tripOutletSelection";
+import type { RootStackParamList } from "../navigation/types";
 import { requireAuth } from "../utils/requireAuth";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
@@ -53,7 +55,7 @@ function TripCard({ trip, onPress, onDelete, t }: { trip: Trip; onPress: () => v
 }
 
 export function MyTripsScreen() {
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { trips, deleteTrip, loading, tripsError } = useTrips();
   const { t } = useTranslation();
   const { isLoggedIn } = useUser();
@@ -109,11 +111,11 @@ export function MyTripsScreen() {
         activeOpacity={0.86}
         onPress={() => {
           if (requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") })) {
-            navigation.navigate("Explore", { screen: "Outlets", params: { tripPrompt: true } });
+            navigateToTripOutletSelection(navigation);
           }
         }}
       >
-        <Text style={styles.primaryButtonText}>{t("trips.createFromOutletCta")}</Text>
+        <Text style={styles.primaryButtonText}>{t(isLoggedIn ? "trips.createFromOutletCta" : "auth.signIn")}</Text>
       </TouchableOpacity>
 
       {!isLoggedIn ? (
@@ -126,19 +128,19 @@ export function MyTripsScreen() {
         <View style={styles.emptyCard}>
           <Text style={styles.emptyTitle}>{t("trips.loading")}</Text>
         </View>
-      ) : tripsError ? (
-        <View style={styles.emptyCard}>
-          <Text style={styles.emptyTitle}>{t("trips.loadFailedTitle")}</Text>
-          <Text style={styles.emptyText}>
-            {t(tripsError === "permission-denied" ? "trips.permissionDeniedMessage" : "trips.loadFailedMessage")}
-          </Text>
-        </View>
       ) : trips.length === 0 ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyIcon}>🧳</Text>
           <Text style={styles.emptyTitle}>{t("trips.emptyTitle")}</Text>
           <Text style={styles.emptyText}>
             {t("trips.emptyText")}
+          </Text>
+        </View>
+      ) : tripsError ? (
+        <View style={styles.emptyCard}>
+          <Text style={styles.emptyTitle}>{t("trips.loadFailedTitle")}</Text>
+          <Text style={styles.emptyText}>
+            {t(tripsError === "permission-denied" ? "trips.permissionDeniedMessage" : "trips.loadFailedMessage")}
           </Text>
         </View>
       ) : (

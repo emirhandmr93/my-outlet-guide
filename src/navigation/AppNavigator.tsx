@@ -38,8 +38,10 @@ import { TripDetailScreen } from "../screens/TripDetailScreen";
 import { WriteReviewScreen } from "../screens/WriteReviewScreen";
 import { useTranslation } from "../hooks/useTranslation";
 
-const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+import type { MainTabParamList, RootStackParamList } from "./types";
+
+const Tab = createBottomTabNavigator<MainTabParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function TabIcon({
 routeName,

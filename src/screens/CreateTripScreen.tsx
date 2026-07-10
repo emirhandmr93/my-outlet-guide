@@ -1,5 +1,5 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { NavigationProp, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import { Alert, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
@@ -9,14 +9,11 @@ import { useTrips } from "../contexts/TripsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { formatCityDisplayName, formatCountryDisplayName, formatOutletLocationSubtitle } from "../utils/locationDisplay";
+import { navigateToTripOutletSelection } from "../navigation/tripOutletSelection";
+import type { RootStackParamList } from "../navigation/types";
 import { requireAuth } from "../utils/requireAuth";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
-type RouteParams = {
-  CreateTrip: {
-    outletId?: string;
-  };
-};
 
 function formatDate(date: Date) {
   const year = date.getFullYear();
@@ -26,8 +23,8 @@ function formatDate(date: Date) {
 }
 
 export function CreateTripScreen() {
-  const navigation = useNavigation<any>();
-  const route = useRoute<RouteProp<RouteParams, "CreateTrip">>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const route = useRoute<RouteProp<RootStackParamList, "CreateTrip">>();
   const { isLoggedIn } = useUser();
   const { addTrip } = useTrips();
   const { t, language } = useTranslation();
@@ -48,7 +45,7 @@ export function CreateTripScreen() {
   }, [isLoggedIn, navigation, t]);
 
   function chooseOutlet() {
-    navigation.navigate("Explore", { screen: "Outlets", params: { tripPrompt: true } });
+    navigateToTripOutletSelection(navigation);
   }
 
   if (!isLoggedIn) {

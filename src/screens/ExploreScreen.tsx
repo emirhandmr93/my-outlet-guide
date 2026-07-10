@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { NavigationProp, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import {
   Image,
   ImageBackground,
@@ -27,6 +27,7 @@ import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
 import { getCountryFlag } from "../services/locationService";
 import { useTranslation } from "../hooks/useTranslation";
+import type { MainTabParamList, RootStackParamList } from "../navigation/types";
 import {
   formatCityDisplayName,
   formatCountryDisplayName,
@@ -170,8 +171,8 @@ function formatResultSubtitle(
 export function ExploreScreen() {
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<any>();
-  const route = useRoute<any>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const route = useRoute<RouteProp<MainTabParamList, "Explore">>();
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<ExploreFilter | null>(null);
   const [countryQuery, setCountryQuery] = useState("");
@@ -181,11 +182,16 @@ export function ExploreScreen() {
   const [cityFilter, setCityFilter] = useState<string | null>(null);
   useEffect(() => {
     const q = route.params?.initialQuery;
+    const initialTab = route.params?.initialTab;
     if (typeof q === "string" && q.trim()) {
       setSearch(q);
       setActiveTab(null);
+      return;
     }
-  }, [route.params?.initialQuery]);
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [route.params?.initialQuery, route.params?.initialTab]);
   const availableCountryIds = useMemo(
     () => Array.from(new Set(outlets.map((o) => o.countryId))),
     [],
