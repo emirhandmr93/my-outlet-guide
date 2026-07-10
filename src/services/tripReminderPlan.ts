@@ -1,41 +1,71 @@
 import type { TripFlightDetails, TripInput, TripReminderPlanItem, TripSegment } from "../contexts/TripsContext";
 
 function isoDate(value?: string) {
-  return typeof value === "string" && value.length >= 10 ? value.slice(0, 10) : "";
+  if (typeof value !== "string" || value.trim().length === 0) return "";
+  const date = value.trim().slice(0, 10);
+  return /^\d{4}-\d{2}-\d{2}$/.test(date) && !Number.isNaN(Date.parse(`${date}T00:00:00.000Z`)) ? date : "";
 }
 
 function addDays(date: string, days: number) {
   const value = new Date(`${date}T00:00:00.000Z`);
+  if (Number.isNaN(value.getTime())) return "";
   value.setUTCDate(value.getUTCDate() + days);
   return value.toISOString().slice(0, 10);
 }
 
-export function generateTripReminderPlan(trip: Pick<TripInput, "startDate" | "endDate" | "segments" | "flightDetails">): TripReminderPlanItem[] {
+function pushUnique(reminders: TripReminderPlanItem[], item: TripReminderPlanItem) {
+  if (!item.date || reminders.some((reminder) => reminder.id === item.id)) return;
+  reminders.push(item);
+}
+
+export function generateTripReminderPlan(trip: Pick<TripInput, "startDate" | "endDate" | "segments" | "flightDetails"> & { tripId?: string }): TripReminderPlanItem[] {
   const reminders: TripReminderPlanItem[] = [];
-  if (trip.startDate) {
-    reminders.push({ id: "trip-start", type: "tripStart", date: trip.startDate, title: "tripDetail.tripStartReminder", body: "tripDetail.tripStartReminderMessage" });
+  const tripId = trip.tripId || "draft";
+  const startDate = isoDate(trip.startDate);
+  const endDate = isoDate(trip.endDate);
+
+  if (startDate) {
+    pushUnique(reminders, { id: `tripStart_${tripId}`, type: "tripStart", date: startDate, title: "tripDetail.tripStartReminder", body: "tripDetail.tripStartReminderMessage" });
   }
-  if (trip.endDate) {
-    reminders.push({ id: "tax-free", type: "taxFreeOneDayBeforeEnd", date: addDays(trip.endDate, -1), title: "tripDetail.taxFreeReminder", body: "tripDetail.taxFreeReminderMessage" });
+
+  const taxFreeDate = endDate ? addDays(endDate, -1) : "";
+  if (taxFreeDate) {
+    pushUnique(reminders, { id: `taxFree_${tripId}`, type: "taxFreeOneDayBeforeEnd", date: taxFreeDate, title: "tripDetail.taxFreeReminder", body: "tripDetail.taxFreeReminderMessage" });
   }
+
   for (const segment of trip.segments || []) {
-    const label = segment.outletName || segment.cityName || segment.countryName || "";
-    reminders.push({
-      id: `segment-start-${segment.id}`,
+    const segmentDate = isoDate(segment.startDate);
+    if (!segment.id || !segmentDate) continue;
+    const outletName = segment.outletName?.trim();
+    const cityName = segment.cityName?.trim();
+    const label = outletName || cityName || segment.countryName || "";
+    pushUnique(reminders, {
+      id: `segmentStart_${segment.id}`,
       type: "segmentStart",
-      date: segment.startDate,
+      date: segmentDate,
       title: "tripDetail.segmentStartReminder",
-      body: segment.outletName ? "tripDetail.segmentOutletReminderMessage" : "tripDetail.segmentCityReminderMessage",
-      messageParams: segment.outletName ? { outlet: label } : { city: label },
+      body: outletName ? "tripDetail.segmentOutletReminderMessage" : "tripDetail.segmentCityReminderMessage",
+      messageParams: outletName ? { outlet: label } : { city: label },
       relatedSegmentId: segment.id,
       outletId: segment.outletId,
-      cityName: segment.cityName,
+      cityName,
     });
   }
+
   const flightDetails: TripFlightDetails | undefined = trip.flightDetails;
-  if (flightDetails?.outboundDateTime) reminders.push({ id: "flight-outbound", type: "outboundFlight", date: isoDate(flightDetails.outboundDateTime), title: "tripDetail.flightReminder", body: "tripDetail.flightReminderMessage" });
-  if (flightDetails?.returnDateTime) reminders.push({ id: "flight-return", type: "returnFlight", date: isoDate(flightDetails.returnDateTime), title: "tripDetail.flightReminder", body: "tripDetail.flightReminderMessage" });
-  return reminders.filter((item) => item.date).sort((a, b) => a.date.localeCompare(b.date));
+  const outboundDate = isoDate(flightDetails?.outboundDateTime);
+  if (outboundDate) {
+    pushUnique(reminders, { id: `outboundFlight_${tripId}`, type: "outboundFlight", date: outboundDate, title: "tripDetail.flightReminder", body: "tripDetail.outboundFlightReminderMessage", messageParams: { airport: flightDetails?.departureAirport ? ` (${flightDetails.departureAirport})` : "" } });
+  }
+
+  const returnDate = isoDate(flightDetails?.returnDateTime);
+  if (returnDate) {
+    pushUnique(reminders, { id: `returnFlight_${tripId}`, type: "returnFlight", date: returnDate, title: "tripDetail.returnFlightReminder", body: "tripDetail.returnFlightReminderMessage", messageParams: { airport: flightDetails?.returnAirport ? ` (${flightDetails.returnAirport})` : "" } });
+  }
+
+  // Source-backed deal/event reminders intentionally remain empty until a verified
+  // bundled source with safe matching metadata is available. Demo fixtures are not used.
+  return reminders.sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
 }
 
 export function sortTripSegments(segments: TripSegment[]) {
