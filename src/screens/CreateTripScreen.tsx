@@ -1,7 +1,7 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { outlets } from "../constants/outlets";
@@ -43,18 +43,53 @@ export function CreateTripScreen() {
   const [saving, setSaving] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);
 
+  useEffect(() => {
+    requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") });
+  }, [isLoggedIn, navigation, t]);
+
+  function chooseOutlet() {
+    navigation.navigate("Explore", { screen: "Outlets", params: { tripPrompt: true } });
+  }
+
+  if (!isLoggedIn) {
+    return null;
+  }
+
+  if (!selectedOutlet) {
+    return (
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+        scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+      >
+        <View style={styles.heroCard}>
+          <Text style={styles.kicker}>{t("createTrip.heroKicker")}</Text>
+          <Text style={styles.title}>{t("createTrip.missingOutletTitle")}</Text>
+          <Text style={styles.subtitle}>{t("createTrip.missingOutletMessage")}</Text>
+        </View>
+        <View style={styles.emptyCard}>
+          <Text style={styles.emptyIcon}>📍</Text>
+          <Text style={styles.emptyTitle}>{t("createTrip.missingOutletTitle")}</Text>
+          <Text style={styles.emptyText}>{t("createTrip.missingOutletMessage")}</Text>
+          <TouchableOpacity style={styles.primaryButton} activeOpacity={0.86} onPress={chooseOutlet}>
+            <Text style={styles.primaryButtonText}>{t("createTrip.chooseOutletCta")}</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    );
+  }
+
   async function saveTrip() {
     if (!requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") })) {
       return;
     }
 
-    if (!tripName.trim()) {
-      Alert.alert(t("createTrip.validationTitle"), t("createTrip.tripNameRequired"));
+    if (!selectedOutlet) {
       return;
     }
 
-    if (!selectedOutlet) {
-      Alert.alert(t("createTrip.missingOutletTitle"), t("createTrip.missingOutletMessage"));
+    if (!tripName.trim()) {
+      Alert.alert(t("createTrip.validationTitle"), t("createTrip.tripNameRequired"));
       return;
     }
 
@@ -96,13 +131,11 @@ export function CreateTripScreen() {
         <Text style={styles.subtitle}>{t("createTrip.heroSubtitle")}</Text>
       </View>
 
-      {selectedOutlet ? (
-        <View style={styles.card}>
-          <Text style={styles.sectionTitle}>{t("createTrip.outletDestination")}</Text>
-          <Text style={styles.outletName}>{selectedOutlet.outletName}</Text>
-          <Text style={styles.helperText}>{destinationText}</Text>
-        </View>
-      ) : null}
+      <View style={styles.card}>
+        <Text style={styles.sectionTitle}>{t("createTrip.outletDestination")}</Text>
+        <Text style={styles.outletName}>{selectedOutlet.outletName}</Text>
+        <Text style={styles.helperText}>{destinationText}</Text>
+      </View>
 
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>{t("createTrip.tripDetails")}</Text>
@@ -188,6 +221,10 @@ const styles = StyleSheet.create({
   doneButton: { backgroundColor: "#0B1F3A", borderRadius: 16, padding: 14, marginTop: 8 },
   doneButtonText: { color: "#FFFFFF", fontWeight: "900", textAlign: "center" },
   primaryButton: { backgroundColor: "#C9A227", borderRadius: 20, padding: 17 },
+  emptyCard: { backgroundColor: "#FFFFFF", borderRadius: 26, padding: 24, borderWidth: 1, borderColor: "#E5E7EB", alignItems: "center" },
+  emptyIcon: { fontSize: 34, marginBottom: 10 },
+  emptyTitle: { color: "#0B1F3A", fontSize: 21, fontWeight: "900" },
+  emptyText: { color: "#666666", textAlign: "center", lineHeight: 21, marginTop: 8, marginBottom: 16 },
   disabledButton: { opacity: 0.65 },
   primaryButtonText: { color: "#0B1F3A", fontWeight: "900", textAlign: "center" },
 });

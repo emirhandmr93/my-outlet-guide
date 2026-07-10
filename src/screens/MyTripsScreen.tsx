@@ -109,11 +109,11 @@ export function MyTripsScreen() {
         activeOpacity={0.86}
         onPress={() => {
           if (requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") })) {
-            navigation.navigate("CreateTrip");
+            navigation.navigate("Explore", { screen: "Outlets", params: { tripPrompt: true } });
           }
         }}
       >
-        <Text style={styles.primaryButtonText}>{t("trips.createShoppingTripCta")}</Text>
+        <Text style={styles.primaryButtonText}>{t("trips.createFromOutletCta")}</Text>
       </TouchableOpacity>
 
       {!isLoggedIn ? (

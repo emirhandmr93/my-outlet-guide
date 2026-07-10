@@ -32,9 +32,16 @@ assert(!generatedTravelPattern.test(read("src/screens/MyTripsScreen.tsx")), "MyT
 const createTrip = read("src/screens/CreateTripScreen.tsx");
 const myTrips = read("src/screens/MyTripsScreen.tsx");
 const tripDetail = read("src/screens/TripDetailScreen.tsx");
-assert(createTrip.includes("requireAuth({ isLoggedIn, navigation"), "CreateTripScreen save path must use the auth gate");
+assert(createTrip.includes("useEffect") && createTrip.includes("requireAuth({ isLoggedIn, navigation"), "CreateTripScreen entry must auth-gate guests before rendering the form");
+assert(createTrip.includes("if (!isLoggedIn)") && createTrip.includes("return null"), "CreateTripScreen guest entry must not render form fields");
 assert(myTrips.includes("requireAuth({ isLoggedIn, navigation"), "MyTripsScreen create CTA must use the auth gate");
 assert(myTrips.includes("!isLoggedIn"), "MyTripsScreen must show an explicit guest state");
+assert(myTrips.indexOf("!isLoggedIn ?") < myTrips.indexOf("tripsError ?"), "MyTripsScreen must render guest sign-in state before permission/load errors");
+assert(!myTrips.includes('navigation.navigate("CreateTrip")'), "MyTripsScreen create CTA must not open CreateTripScreen without outlet context");
+assert(myTrips.includes('navigation.navigate("Explore"') && myTrips.includes("trips.createFromOutletCta"), "MyTripsScreen create CTA must route signed-in users to outlet discovery");
+assert(createTrip.includes("if (!selectedOutlet)") && createTrip.includes("createTrip.chooseOutletCta"), "CreateTripScreen must render a no-outlet choose-outlet state");
+assert(!createTrip.includes('Alert.alert(t("createTrip.missingOutletTitle")'), "CreateTripScreen must not rely on validation-only missing outlet alerts");
+assert(!/Outlet required|Outlet gerekli/.test(createTrip), "CreateTripScreen source must not expose old outlet-required copy");
 
 const requiredKeys = [
   "trips.authRequiredCreateMessage",
@@ -42,6 +49,7 @@ const requiredKeys = [
   "trips.signInText",
   "trips.emptyTitle",
   "trips.emptyText",
+  "trips.createFromOutletCta",
   "trips.deleteConfirmTitle",
   "trips.deleteConfirmMessage",
   "trips.deleteFailedTitle",
@@ -57,6 +65,9 @@ const requiredKeys = [
   "createTrip.notesPlaceholder",
   "createTrip.createCta",
   "createTrip.saving",
+  "createTrip.missingOutletTitle",
+  "createTrip.missingOutletMessage",
+  "createTrip.chooseOutletCta",
   "tripDetail.notFound",
   "tripDetail.destination",
   "tripDetail.outlet",
@@ -69,7 +80,8 @@ for (const locale of supportedLanguageCodes) {
     assert(typeof value === "string" && value.trim().length > 0, `${locale} is missing ${key}`);
     assert(value !== key, `${locale} exposes visible key literal ${key}`);
     assert(!/^(TR|EN|DE|FR|IT|ES|AR|RU|ZH):/.test(value), `${locale} has a debug locale prefix for ${key}`);
-    assert(!/(Türkçe çeviri|çeviri:|translation:)/i.test(value), `${locale} has a translation placeholder for ${key}`);
+    assert(!/(Türkçe çeviri|çeviri:|translation:|fallback)/i.test(value), `${locale} has a translation placeholder for ${key}`);
+    assert(!/Guests only|Misafirler yalnızca|invitados solo|invités voient seulement|Gäste sehen nur|الضيوف سوى|Гости видят только|访客只会/.test(value), `${locale} has internal guest-state wording for ${key}`);
   }
 }
 

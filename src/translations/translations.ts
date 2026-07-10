@@ -231,9 +231,10 @@ const enTranslations = {
     "Save cities, dates, flights and Tax Free reminders in one place.",
   "trips.summaryTrips": "Trips",
   "trips.createShoppingTripCta": "Create shopping trip →",
-  "trips.emptyTitle": "No trip planned yet",
+  "trips.createFromOutletCta": "Choose an outlet to create a trip",
+  "trips.emptyTitle": "No trips yet",
   "trips.emptyText":
-    "Create your first trip for reminders, offline packs and Tax Free alerts.",
+    "Choose an outlet to create your first shopping trip.",
   "trips.noCitiesYet": "No cities added yet",
   "trips.defaultTripName": "Shopping Trip",
   "trips.cities": "Cities",
@@ -296,9 +297,10 @@ const enTranslations = {
     "Add reservation notes, shopping priorities or accessibility needs.",
   "createTrip.saving": "Saving trip...",
   "createTrip.outletDestination": "Outlet destination",
-  "createTrip.missingOutletTitle": "Outlet required",
+  "createTrip.missingOutletTitle": "Choose an outlet",
   "createTrip.missingOutletMessage":
-    "Open Create Trip from an outlet detail page so the destination can be saved.",
+    "Choose an outlet before creating a trip.",
+  "createTrip.chooseOutletCta": "Choose outlet",
   "createTrip.saveFailedTitle": "Trip could not be saved",
   "createTrip.saveFailedMessage": "Please check your connection and try again.",
   "createTrip.permissionDeniedMessage":
@@ -1675,9 +1677,10 @@ export const translations: Record<
       "Şehirleri, tarihleri, uçuşları ve Tax Free hatırlatmalarını tek yerde tut.",
     "trips.summaryTrips": "Seyahatler",
     "trips.createShoppingTripCta": "Alışveriş seyahati oluştur →",
-    "trips.emptyTitle": "Henüz seyahat planlanmadı",
+    "trips.createFromOutletCta": "Outlet seçerek seyahat oluştur",
+    "trips.emptyTitle": "Henüz seyahat yok",
     "trips.emptyText":
-      "İlk seyahatini oluştur; hatırlatmalar, çevrimdışı paketler ve Tax Free uyarıları hazır olsun.",
+      "Outlet seçerek ilk alışveriş seyahatini oluştur.",
     "trips.noCitiesYet": "Henüz şehir eklenmedi",
     "trips.defaultTripName": "Alışveriş Seyahati",
     "trips.cities": "Şehirler",
@@ -1746,9 +1749,10 @@ export const translations: Record<
       "Rezervasyon notları, alışveriş öncelikleri veya erişilebilirlik ihtiyaçları ekleyin.",
     "createTrip.saving": "Seyahat kaydediliyor...",
     "createTrip.outletDestination": "Outlet destinasyonu",
-    "createTrip.missingOutletTitle": "Outlet gerekli",
+    "createTrip.missingOutletTitle": "Outlet seç",
     "createTrip.missingOutletMessage":
-      "Destinasyonun kaydedilmesi için Seyahat Oluştur’u outlet detay sayfasından açın.",
+      "Seyahat oluşturmak için önce bir outlet seç.",
+    "createTrip.chooseOutletCta": "Outlet seç",
     "createTrip.saveFailedTitle": "Seyahat kaydedilemedi",
     "createTrip.saveFailedMessage":
       "Lütfen bağlantınızı kontrol edip tekrar deneyin.",
@@ -12839,14 +12843,14 @@ const tripsFlowPhase1ATranslations: Record<TranslationLanguage, Record<string, s
   en: {
     "trips.authRequiredCreateMessage": "Sign in to create and save real shopping trips to your account.",
     "trips.signInTitle": "Sign in to see your trips",
-    "trips.signInText": "Your saved trips appear here after you sign in. Guests only see a sign-in prompt.",
+    "trips.signInText": "Your saved shopping trips appear here after you sign in.",
     "createTrip.validationTitle": "Check trip details",
     "createTrip.tripNameRequired": "Enter a trip name before saving.",
   },
   tr: {
     "trips.authRequiredCreateMessage": "Gerçek alışveriş seyahatleri oluşturup hesabına kaydetmek için giriş yap.",
     "trips.signInTitle": "Seyahatlerini görmek için giriş yap",
-    "trips.signInText": "Kayıtlı seyahatlerin giriş yaptıktan sonra burada görünür. Misafirler yalnızca giriş çağrısı görür.",
+    "trips.signInText": "Giriş yaptıktan sonra kayıtlı alışveriş seyahatlerin burada görünür.",
     "createTrip.validationTitle": "Seyahat bilgilerini kontrol et",
     "createTrip.tripNameRequired": "Kaydetmeden önce seyahat adı gir.",
   },
@@ -12896,4 +12900,83 @@ const tripsFlowPhase1ATranslations: Record<TranslationLanguage, Record<string, s
 
 for (const languageCode of supportedLanguageCodes) {
   Object.assign(translations[languageCode], tripsFlowPhase1ATranslations[languageCode]);
+}
+
+const tripsGuestOutletFlowTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "trips.signInText": "Your saved shopping trips appear here after you sign in.",
+    "trips.emptyTitle": "No trips yet",
+    "trips.emptyText": "Choose an outlet to create your first shopping trip.",
+    "trips.createFromOutletCta": "Choose an outlet to create a trip",
+    "createTrip.missingOutletTitle": "Choose an outlet",
+    "createTrip.missingOutletMessage": "Choose an outlet before creating a trip.",
+    "createTrip.chooseOutletCta": "Choose outlet",
+  },
+  tr: {
+    "trips.signInText": "Giriş yaptıktan sonra kayıtlı alışveriş seyahatlerin burada görünür.",
+    "trips.emptyTitle": "Henüz seyahat yok",
+    "trips.emptyText": "Outlet seçerek ilk alışveriş seyahatini oluştur.",
+    "trips.createFromOutletCta": "Outlet seçerek seyahat oluştur",
+    "createTrip.missingOutletTitle": "Outlet seç",
+    "createTrip.missingOutletMessage": "Seyahat oluşturmak için önce bir outlet seç.",
+    "createTrip.chooseOutletCta": "Outlet seç",
+  },
+  es: {
+    "trips.signInText": "Tus viajes de compras guardados aparecerán aquí después de iniciar sesión.",
+    "trips.emptyTitle": "Aún no hay viajes",
+    "trips.emptyText": "Elige un outlet para crear tu primer viaje de compras.",
+    "trips.createFromOutletCta": "Crear viaje eligiendo un outlet",
+    "createTrip.missingOutletTitle": "Elige un outlet",
+    "createTrip.missingOutletMessage": "Elige un outlet antes de crear un viaje.",
+    "createTrip.chooseOutletCta": "Elegir outlet",
+  },
+  fr: {
+    "trips.signInText": "Vos voyages shopping enregistrés s’affichent ici après connexion.",
+    "trips.emptyTitle": "Aucun voyage pour le moment",
+    "trips.emptyText": "Choisissez un outlet pour créer votre premier voyage shopping.",
+    "trips.createFromOutletCta": "Créer un voyage en choisissant un outlet",
+    "createTrip.missingOutletTitle": "Choisissez un outlet",
+    "createTrip.missingOutletMessage": "Choisissez d’abord un outlet pour créer un voyage.",
+    "createTrip.chooseOutletCta": "Choisir un outlet",
+  },
+  de: {
+    "trips.signInText": "Deine gespeicherten Shopping-Reisen erscheinen hier nach der Anmeldung.",
+    "trips.emptyTitle": "Noch keine Reisen",
+    "trips.emptyText": "Wähle ein Outlet, um deine erste Shopping-Reise zu erstellen.",
+    "trips.createFromOutletCta": "Mit Outlet-Auswahl Reise erstellen",
+    "createTrip.missingOutletTitle": "Outlet auswählen",
+    "createTrip.missingOutletMessage": "Wähle zuerst ein Outlet, um eine Reise zu erstellen.",
+    "createTrip.chooseOutletCta": "Outlet auswählen",
+  },
+  ar: {
+    "trips.signInText": "ستظهر رحلات التسوق المحفوظة هنا بعد تسجيل الدخول.",
+    "trips.emptyTitle": "لا توجد رحلات بعد",
+    "trips.emptyText": "اختر أوتلت لإنشاء أول رحلة تسوق.",
+    "trips.createFromOutletCta": "أنشئ رحلة باختيار أوتلت",
+    "createTrip.missingOutletTitle": "اختر أوتلت",
+    "createTrip.missingOutletMessage": "اختر أوتلت أولاً لإنشاء رحلة.",
+    "createTrip.chooseOutletCta": "اختر أوتلت",
+  },
+  ru: {
+    "trips.signInText": "Сохранённые шопинг-поездки появятся здесь после входа.",
+    "trips.emptyTitle": "Поездок пока нет",
+    "trips.emptyText": "Выберите аутлет, чтобы создать первую шопинг-поездку.",
+    "trips.createFromOutletCta": "Создать поездку, выбрав аутлет",
+    "createTrip.missingOutletTitle": "Выберите аутлет",
+    "createTrip.missingOutletMessage": "Сначала выберите аутлет, чтобы создать поездку.",
+    "createTrip.chooseOutletCta": "Выбрать аутлет",
+  },
+  zh: {
+    "trips.signInText": "登录后，你保存的购物行程会显示在这里。",
+    "trips.emptyTitle": "还没有行程",
+    "trips.emptyText": "选择一个奥莱，创建你的第一个购物行程。",
+    "trips.createFromOutletCta": "选择奥莱创建行程",
+    "createTrip.missingOutletTitle": "选择奥莱",
+    "createTrip.missingOutletMessage": "创建行程前请先选择一个奥莱。",
+    "createTrip.chooseOutletCta": "选择奥莱",
+  },
+};
+
+for (const languageCode of supportedLanguageCodes) {
+  Object.assign(translations[languageCode], tripsGuestOutletFlowTranslations[languageCode]);
 }
