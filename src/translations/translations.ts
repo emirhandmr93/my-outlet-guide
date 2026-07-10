@@ -12388,8 +12388,7 @@ const transportationV2Phase1ETranslations: Record<
     "transportation.v2.route.destination": "目的地",
     "transportation.v2.route.origin": "起点",
     "transportation.v2.route.walking": "步行",
-    "transportation.v2.route.checkOfficial":
-      "请向官方服务商确认线路和时刻表。",
+    "transportation.v2.route.checkOfficial": "请向官方服务商确认线路和时刻表。",
     "transportation.v2.title.cityTrain": "从市中心乘火车",
     "transportation.v2.title.cityBus": "从市中心乘公交",
     "transportation.v2.title.airportPublic": "从机场乘公共交通",
@@ -12405,7 +12404,6 @@ for (const languageCode of supportedLanguageCodes) {
     transportationV2Phase1ETranslations[languageCode],
   );
 }
-
 
 const reviewsMembershipGatePhase1ATranslations: Record<
   TranslationLanguage,
@@ -12472,7 +12470,8 @@ const reviewsMembershipGatePhase1ATranslations: Record<
     "sharedCards.reviews.overallRating": "Gesamtbewertung",
     "writeReview.title": "Bewertung schreiben",
     "review.signInToWrite": "Melde dich an, um eine Bewertung zu schreiben",
-    "review.signInToHelpful": "Melde dich an, um eine Bewertung als hilfreich zu markieren",
+    "review.signInToHelpful":
+      "Melde dich an, um eine Bewertung als hilfreich zu markieren",
     "review.helpful": "Hilfreich",
     "review.helpfulActive": "Hilfreich ✓",
   },
@@ -12596,10 +12595,12 @@ const phase1AAppWideLocalizationTranslations: Partial<
   Record<TranslationLanguage, Record<string, string>>
 > = {
   ar: {
-    "auth.termsText": "بالمتابعة، فإنك توافق على استخدام My Outlet Guide لبيانات حسابك لحفظ المفضلة والرحلات والتفضيلات.",
+    "auth.termsText":
+      "بالمتابعة، فإنك توافق على استخدام My Outlet Guide لبيانات حسابك لحفظ المفضلة والرحلات والتفضيلات.",
   },
   zh: {
-    "auth.termsText": "继续操作即表示你同意 My Outlet Guide 使用你的账号数据来保存收藏、行程和偏好。",
+    "auth.termsText":
+      "继续操作即表示你同意 My Outlet Guide 使用你的账号数据来保存收藏、行程和偏好。",
   },
 };
 
@@ -12607,5 +12608,89 @@ for (const languageCode of supportedLanguageCodes) {
   Object.assign(
     translations[languageCode],
     phase1AAppWideLocalizationTranslations[languageCode] ?? {},
+  );
+}
+
+const phase1BAppWideLocalizationTranslations: Partial<
+  Record<TranslationLanguage, Record<string, string>>
+> = {
+  tr: {
+    "auth.missingTitle": "Eksik bilgi",
+    "auth.missingMessage": "Lütfen e-posta adresinizi ve şifrenizi girin.",
+    "auth.signInFailedTitle": "Giriş başarısız",
+    "auth.signInFailedMessage":
+      "Lütfen e-posta adresinizi ve şifrenizi kontrol edin.",
+    "auth.checkDetailsTitle": "Bilgilerini kontrol et",
+    "auth.checkDetailsMessage":
+      "Lütfen geçerli bir e-posta ve en az 6 karakterli şifre girin.",
+    "auth.createFailedTitle": "Hesap oluşturulamadı",
+    "auth.createFailedMessage": "Lütfen başka bir e-posta ile tekrar deneyin.",
+    "auth.appleMessage": "Apple ile giriş bu sürümde etkin değil.",
+    "currency.converterTitle": "Para birimi dönüştürücü",
+    "currency.converterCopy":
+      "Canlı referans kurlar Frankfurter üzerinden yüklenir. Dönüşüm bilgilendirme amaçlıdır ve bankanızdan, kart ağınızdan veya döviz bürosundan farklı olabilir.",
+    "currency.preferredTitle": "Tercih edilen alışveriş para birimi",
+    "currency.amount": "Tutar",
+    "currency.from": "Kaynak",
+    "currency.to": "Hedef",
+    "currency.convert": "Dönüştür",
+    "currency.loading": "Kur yükleniyor...",
+    "currency.source": "Kaynak",
+    "currency.lastUpdated": "Son güncelleme",
+    "currency.disclaimer":
+      "Yalnızca referans döviz kurlarıdır. Nihai tahsilat oranları banka, kart sağlayıcı, ücretler ve zamana göre değişebilir.",
+    "currency.unsupported": "Bu para birimi canlı dönüşüm için desteklenmiyor.",
+    "currency.providerUnavailable":
+      "Canlı döviz kurları şu anda kullanılamıyor. Güncel sağlayıcı yanıtı olmadan dönüşüm gösterilmez.",
+    "currency.unavailableShort": "Kur kullanılamıyor",
+    "currency.validation.amountRequired": "Dönüştürmek için bir tutar girin.",
+    "currency.validation.positiveAmount": "Pozitif sayısal bir tutar girin.",
+    "notifications.signInRequiredTitle": "Giriş gerekli",
+    "notifications.signInRequiredBody":
+      "Hesabın için bulut bildirim tercihlerini kaydetmek üzere giriş yap.",
+  },
+  ar: {
+    "auth.missingTitle": "معلومات ناقصة",
+    "auth.missingMessage": "يرجى إدخال البريد الإلكتروني وكلمة المرور.",
+    "auth.signInFailedTitle": "فشل تسجيل الدخول",
+    "auth.signInFailedMessage":
+      "يرجى التحقق من البريد الإلكتروني وكلمة المرور.",
+    "auth.checkDetailsTitle": "تحقق من بياناتك",
+    "auth.checkDetailsMessage":
+      "يرجى إدخال بريد إلكتروني صالح وكلمة مرور من 6 أحرف على الأقل.",
+    "auth.createFailedTitle": "تعذر إنشاء الحساب",
+    "auth.createFailedMessage":
+      "يرجى المحاولة مرة أخرى باستخدام بريد إلكتروني آخر.",
+    "auth.appleMessage": "تسجيل الدخول عبر Apple غير مفعّل في هذا الإصدار.",
+  },
+  ru: {
+    "auth.missingTitle": "Не хватает данных",
+    "auth.missingMessage": "Введите email и пароль.",
+    "auth.signInFailedTitle": "Не удалось войти",
+    "auth.signInFailedMessage": "Проверьте email и пароль.",
+    "auth.checkDetailsTitle": "Проверьте данные",
+    "auth.checkDetailsMessage":
+      "Введите действительный email и пароль не короче 6 символов.",
+    "auth.createFailedTitle": "Не удалось создать аккаунт",
+    "auth.createFailedMessage": "Попробуйте другой email.",
+    "auth.appleMessage": "Вход через Apple в этом выпуске не включен.",
+  },
+  zh: {
+    "auth.missingTitle": "信息不完整",
+    "auth.missingMessage": "请输入电子邮箱和密码。",
+    "auth.signInFailedTitle": "登录失败",
+    "auth.signInFailedMessage": "请检查你的电子邮箱和密码。",
+    "auth.checkDetailsTitle": "请检查信息",
+    "auth.checkDetailsMessage": "请输入有效电子邮箱和至少 6 个字符的密码。",
+    "auth.createFailedTitle": "无法创建账户",
+    "auth.createFailedMessage": "请使用其他电子邮箱重试。",
+    "auth.appleMessage": "此版本未启用 Apple 登录。",
+  },
+};
+
+for (const languageCode of supportedLanguageCodes) {
+  Object.assign(
+    translations[languageCode],
+    phase1BAppWideLocalizationTranslations[languageCode] ?? {},
   );
 }
