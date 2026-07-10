@@ -15,6 +15,11 @@ import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  getFloatingTabClearance,
+  getScrollIndicatorBottomInset,
+} from "../utils/safeAreaLayout";
 
 type ProfileRouteName =
   | "Login"
@@ -49,6 +54,7 @@ export function ProfileScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const { currentUser, isAuthenticated, logout } = useAuth();
+  const insets = useSafeAreaInsets();
   const { trips } = useTrips();
   const { favoriteIds } = useFavorites();
   const [displayName, setDisplayName] = useState("");
@@ -60,7 +66,9 @@ export function ProfileScreen() {
 
   useEffect(() => {
     if (currentUser) {
-      setDisplayName(currentUser.displayName || currentUser.email?.split("@")[0] || "");
+      setDisplayName(
+        currentUser.displayName || currentUser.email?.split("@")[0] || "",
+      );
     }
   }, [currentUser]);
 
@@ -99,7 +107,16 @@ export function ProfileScreen() {
   }
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[
+        styles.content,
+        { paddingBottom: getFloatingTabClearance(insets.bottom) },
+      ]}
+      scrollIndicatorInsets={{
+        bottom: getScrollIndicatorBottomInset(insets.bottom),
+      }}
+    >
       <View style={styles.heroCard}>
         <View style={styles.avatarCircle}>
           <Text style={styles.avatarText}>{getInitials(accountName)}</Text>
@@ -109,7 +126,9 @@ export function ProfileScreen() {
           <Text style={styles.kicker}>{t("profile.kicker")}</Text>
           <Text style={styles.pageTitle}>{accountName}</Text>
           <Text style={styles.pageSubtitle}>
-            {isAuthenticated ? t("profile.syncedText") : t("profile.signInText")}
+            {isAuthenticated
+              ? t("profile.syncedText")
+              : t("profile.signInText")}
           </Text>
         </View>
       </View>
@@ -127,7 +146,9 @@ export function ProfileScreen() {
 
         <View style={styles.statCard}>
           <Text style={styles.statValue}>
-            {isAuthenticated ? t("profile.status.sync") : t("profile.status.guest")}
+            {isAuthenticated
+              ? t("profile.status.sync")
+              : t("profile.status.guest")}
           </Text>
           <Text style={styles.statLabel}>{t("profile.stats.status")}</Text>
         </View>
@@ -137,12 +158,16 @@ export function ProfileScreen() {
         <Text style={styles.sectionTitle}>{t("profile.account")}</Text>
 
         <Text style={styles.authTitle}>
-          {isAuthenticated ? currentUser?.email || t("profile.signedIn") : t("profile.guestUser")}
+          {isAuthenticated
+            ? currentUser?.email || t("profile.signedIn")
+            : t("profile.guestUser")}
         </Text>
 
         {isAuthenticated ? (
           <View style={styles.displayNameBox}>
-            <Text style={styles.displayNameLabel}>{t("profile.displayName")}</Text>
+            <Text style={styles.displayNameLabel}>
+              {t("profile.displayName")}
+            </Text>
 
             <TextInput
               style={styles.displayNameInput}
@@ -152,24 +177,39 @@ export function ProfileScreen() {
               placeholderTextColor="#8A8A8A"
             />
 
-            <TouchableOpacity style={styles.primaryButton} onPress={handleSaveDisplayName}>
-              <Text style={styles.primaryButtonText}>{t("profile.saveName")}</Text>
+            <TouchableOpacity
+              style={styles.primaryButton}
+              onPress={handleSaveDisplayName}
+            >
+              <Text style={styles.primaryButtonText}>
+                {t("profile.saveName")}
+              </Text>
             </TouchableOpacity>
           </View>
         ) : (
-          <TouchableOpacity style={styles.primaryButton} onPress={() => goTo("Login")}>
+          <TouchableOpacity
+            style={styles.primaryButton}
+            onPress={() => goTo("Login")}
+          >
             <Text style={styles.primaryButtonText}>{t("profile.signIn")}</Text>
           </TouchableOpacity>
         )}
 
         {isAuthenticated && (
-          <TouchableOpacity style={styles.secondaryButton} onPress={handleLogout}>
-            <Text style={styles.secondaryButtonText}>{t("profile.signOut")}</Text>
+          <TouchableOpacity
+            style={styles.secondaryButton}
+            onPress={handleLogout}
+          >
+            <Text style={styles.secondaryButtonText}>
+              {t("profile.signOut")}
+            </Text>
           </TouchableOpacity>
         )}
       </View>
 
-      <Text style={styles.groupTitle}>{t("profile.groups.travelShopping")}</Text>
+      <Text style={styles.groupTitle}>
+        {t("profile.groups.travelShopping")}
+      </Text>
 
       <ProfileRow
         icon="🧳"
@@ -276,7 +316,9 @@ function ProfileRow({
       </View>
 
       <View style={styles.rowContent}>
-        <Text style={[styles.rowText, danger && styles.dangerText]}>{title}</Text>
+        <Text style={[styles.rowText, danger && styles.dangerText]}>
+          {title}
+        </Text>
         <Text style={styles.rowSubtitle}>{subtitle}</Text>
       </View>
 

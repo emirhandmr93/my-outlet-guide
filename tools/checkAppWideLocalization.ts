@@ -2,6 +2,10 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { resolveTranslation } from "../src/hooks/useTranslation";
 import {
+  formatCityDisplayName,
+  formatCountryDisplayName,
+} from "../src/utils/locationDisplay";
+import {
   supportedLanguageCodes,
   translations,
 } from "../src/translations/translations";
@@ -67,9 +71,6 @@ const requiredKeys = [
   "favorites.emptyTitle",
   "favorites.emptyText",
   "favorites.cardLabel",
-  "favorites.deals",
-  "favorites.events",
-  "favorites.remove",
   "profile.kicker",
   "profile.guestShopper",
   "profile.signInText",
@@ -117,8 +118,10 @@ const expectedTurkishTabs: Record<string, string> = {
 };
 
 const debugPrefix = /(?:^|[\s"'`])(?:TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:)/;
-const dirtyResolvedValuePattern = /(?:çeviri:|translation:|auth\.|undefined|missing)/i;
-const visibleTranslationDebugTextPattern = /(?:Türkçe çeviri|çeviri:|translation:|English translation:)/i;
+const dirtyResolvedValuePattern =
+  /(?:çeviri:|translation:|auth\.|undefined|missing)/i;
+const visibleTranslationDebugTextPattern =
+  /(?:Türkçe çeviri|çeviri:|translation:|English translation:)/i;
 const sourceFiles = [
   "src/screens/HomeScreen.tsx",
   "src/components/HomeHeader.tsx",
@@ -135,6 +138,10 @@ const authRenderPathFiles = [
   "src/screens/LoginScreen.tsx",
   "src/screens/ProfileScreen.tsx",
   "src/navigation/AppNavigator.tsx",
+];
+const profileFavoritesRenderPathFiles = [
+  "src/screens/ProfileScreen.tsx",
+  "src/screens/FavoritesScreen.tsx",
 ];
 
 let hasError = false;
@@ -156,7 +163,7 @@ for (const languageCode of supportedLanguageCodes) {
   }
 }
 
-const runtimeAuthKeys = [
+const runtimeVisibleKeys = [
   "auth.title",
   "auth.subtitle",
   "auth.continueEmail",
@@ -170,12 +177,47 @@ const runtimeAuthKeys = [
   "auth.termsText",
 ] as const;
 
+const runtimeProfileFavoriteKeys = [
+  "favorites.title",
+  "favorites.subtitle",
+  "favorites.signInTitle",
+  "favorites.signInText",
+  "favorites.permissionDenied",
+  "favorites.emptyTitle",
+  "favorites.emptyText",
+  "favorites.cardLabel",
+  "profile.kicker",
+  "profile.guestShopper",
+  "profile.syncedText",
+  "profile.signInText",
+  "profile.account",
+  "profile.guestUser",
+  "profile.displayName",
+  "profile.saveName",
+  "profile.signOut",
+  "profile.signIn",
+  "profile.stats.trips",
+  "profile.stats.favorites",
+  "profile.stats.status",
+  "profile.status.sync",
+  "profile.status.guest",
+  "profile.groups.travelShopping",
+  "profile.myTrips",
+  "profile.offlinePacks",
+  "profile.myReviews",
+  "profile.groups.preferences",
+  "profile.language",
+] as const;
+
 for (const languageCode of supportedLanguageCodes) {
-  for (const key of runtimeAuthKeys) {
+  for (const key of [...runtimeVisibleKeys, ...runtimeProfileFavoriteKeys]) {
     const resolvedValue = resolveTranslation(languageCode, key);
-    if (!resolvedValue.trim() || dirtyResolvedValuePattern.test(resolvedValue)) {
+    if (
+      !resolvedValue.trim() ||
+      dirtyResolvedValuePattern.test(resolvedValue)
+    ) {
       fail(
-        `${languageCode}: runtime auth resolver returned dirty value for ${key}: ${resolvedValue}`,
+        `${languageCode}: runtime resolver returned dirty value for ${key}: ${resolvedValue}`,
       );
     }
   }
@@ -212,7 +254,7 @@ for (const phrase of turkishEnglishPhrases) {
     );
 }
 
-const fakePattern = /\b(fake|mock|lorem|dummy)\b/i;
+const fakePattern = /\b(fake|mock|lorem|dummy|demo)\b/i;
 const demoUserPattern =
   /\b(Demo|demo|John|Guest User|User Name|My Outlet Guide User)\b/;
 const visibleKeyLiteralPattern =
@@ -291,6 +333,60 @@ for (const file of sourceFiles) {
   }
 }
 
+const favoritesSource = readFileSync(
+  join(process.cwd(), "src/screens/FavoritesScreen.tsx"),
+  "utf8",
+);
+if (
+  !favoritesSource.includes("formatCityDisplayName(outlet.cityId, language)") ||
+  !favoritesSource.includes(
+    "formatCountryDisplayName(outlet.countryId, language)",
+  )
+) {
+  fail(
+    "src/screens/FavoritesScreen.tsx: favorites cards must format localized city/country subtitles",
+  );
+}
+if (
+  /\b(deals|events)\b/.test(favoritesSource) ||
+  /favorites\.(?:deals|events|remove)/.test(favoritesSource)
+) {
+  fail(
+    "src/screens/FavoritesScreen.tsx: favorites cards must not render static offer/event counts or remove CTA",
+  );
+}
+if (
+  formatCityDisplayName("paris", "tr") !== "Paris" ||
+  formatCountryDisplayName("france", "tr") !== "Fransa"
+) {
+  fail(
+    "runtime location display helpers do not produce expected Turkish Paris, Fransa subtitle",
+  );
+}
+
+const profileSource = readFileSync(
+  join(process.cwd(), "src/screens/ProfileScreen.tsx"),
+  "utf8",
+);
+if (
+  !profileSource.includes("getFloatingTabClearance(insets.bottom)") ||
+  !profileSource.includes("getScrollIndicatorBottomInset(insets.bottom)") ||
+  !profileSource.includes("scrollIndicatorInsets")
+) {
+  fail(
+    "src/screens/ProfileScreen.tsx: Profile must use bottom-tab-aware content padding and scroll indicator inset",
+  );
+}
+
+for (const file of profileFavoritesRenderPathFiles) {
+  const source = readFileSync(join(process.cwd(), file), "utf8");
+  if (fakePattern.test(source)) {
+    fail(
+      `${file}: profile/favorites render path contains fake/mock/demo/lorem/dummy visible data marker`,
+    );
+  }
+}
+
 const authKeys = requiredKeys.filter((key) => key.startsWith("auth."));
 for (const languageCode of ["tr", "ar", "ru", "zh"] as const) {
   for (const key of authKeys) {
@@ -309,11 +405,12 @@ for (const languageCode of ["tr", "ar", "ru", "zh"] as const) {
   }
 }
 
-
 for (const file of authRenderPathFiles) {
   const source = readFileSync(join(process.cwd(), file), "utf8");
   if (visibleTranslationDebugTextPattern.test(source)) {
-    fail(`${file}: auth/profile render path contains visible fallback/debug translation text`);
+    fail(
+      `${file}: auth/profile render path contains visible fallback/debug translation text`,
+    );
   }
 }
 
