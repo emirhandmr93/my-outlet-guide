@@ -1,0 +1,88 @@
+import { addDoc, collection, deleteDoc, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
+
+import { db } from "../firebase/config";
+
+export const FLIGHT_DEAL_THRESHOLDS = [15, 30, 45] as const;
+export type FlightDealThreshold = (typeof FLIGHT_DEAL_THRESHOLDS)[number];
+export type FlightDealPreferenceProviderStatus = "pending_provider";
+
+export type FlightDealAlertPreference = {
+  alertId: string;
+  userId: string;
+  originLabel: string;
+  originAirportCode: string;
+  destinationCityKey: string;
+  destinationCityName: string;
+  destinationCountryCode: string;
+  selectedThresholds: FlightDealThreshold[];
+  active: boolean;
+  providerStatus: FlightDealPreferenceProviderStatus;
+  createdAt?: unknown;
+  updatedAt?: unknown;
+};
+
+export type FlightDealAlertMatch = {
+  originLabel: string;
+  destinationCityName: string;
+  currentFare: number;
+  averageFare: number;
+  discountPercent: number;
+  matchedThreshold: FlightDealThreshold;
+  currency: string;
+  deepLink?: string;
+};
+
+export type FlightDealAlertEvaluationResult =
+  | { status: "provider_pending" }
+  | { status: "insufficient_data"; sampleCount: number }
+  | { status: "no_match"; discountPercent: number | null }
+  | { status: "matched"; match: FlightDealAlertMatch };
+
+export function normalizeFlightDealThresholds(values: number[]) {
+  return values.filter((value): value is FlightDealThreshold => FLIGHT_DEAL_THRESHOLDS.includes(value as FlightDealThreshold));
+}
+
+export function getFlightDealAlertsCollection(userId: string) {
+  return collection(db, "flightDealPreferences", userId, "alerts");
+}
+
+export async function listFlightDealAlerts(userId: string): Promise<FlightDealAlertPreference[]> {
+  const snapshot = await getDocs(getFlightDealAlertsCollection(userId));
+  return snapshot.docs.map((item) => ({ alertId: item.id, ...item.data() }) as FlightDealAlertPreference);
+}
+
+export async function saveFlightDealAlert(
+  userId: string,
+  input: Omit<FlightDealAlertPreference, "alertId" | "userId" | "providerStatus" | "createdAt" | "updatedAt"> & { alertId?: string },
+) {
+  const selectedThresholds = normalizeFlightDealThresholds(input.selectedThresholds);
+  const payload = {
+    userId,
+    originLabel: input.originLabel.trim(),
+    originAirportCode: input.originAirportCode.trim().toUpperCase(),
+    destinationCityKey: input.destinationCityKey,
+    destinationCityName: input.destinationCityName.trim(),
+    destinationCountryCode: input.destinationCountryCode.trim().toUpperCase(),
+    selectedThresholds,
+    active: input.active,
+    providerStatus: "pending_provider" as const,
+    updatedAt: serverTimestamp(),
+  };
+
+  if (input.alertId) {
+    await setDoc(doc(db, "flightDealPreferences", userId, "alerts", input.alertId), payload, { merge: true });
+    return input.alertId;
+  }
+
+  const created = await addDoc(getFlightDealAlertsCollection(userId), { ...payload, createdAt: serverTimestamp() });
+  await setDoc(created, { alertId: created.id }, { merge: true });
+  return created.id;
+}
+
+export async function deleteFlightDealAlert(userId: string, alertId: string) {
+  await deleteDoc(doc(db, "flightDealPreferences", userId, "alerts", alertId));
+}
+
+export function buildPendingFlightDealEvaluation(): FlightDealAlertEvaluationResult {
+  return { status: "provider_pending" };
+}
