@@ -27,6 +27,11 @@ export type OutletReview = {
   helpfulUserIds?: string[];
   isEdited?: boolean;
   previousComment?: string;
+  previousTitle?: string;
+  previousRating?: number;
+  previousCategoryRatings?: Partial<ReviewCategoryRatings>;
+  editedAt?: string;
+  editCount?: number;
 };
 
 export type ReviewInput = {

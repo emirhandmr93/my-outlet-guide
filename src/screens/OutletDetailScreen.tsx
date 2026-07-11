@@ -619,6 +619,9 @@ export function OutletDetailScreen() {
                 editedText={t("outlet.edited")}
                 helpfulText={t("review.helpful")}
                 helpfulActiveText={t("review.helpfulActive")}
+                helpfulOwnDisabledText={t("review.helpfulOwnReview")}
+                previousCommentLabel={t("outlet.previousComment")}
+                previousTitleLabel={t("outlet.previousTitle")}
                 editText={t("common.edit")}
                 deleteText={t("review.deleteTitle")}
                 reportText={t("review.report")}

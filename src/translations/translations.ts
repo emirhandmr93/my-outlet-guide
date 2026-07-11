@@ -695,7 +695,8 @@ const enTranslations = {
   "review.helpfulOwnReview": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
   "review.report": "Bildir",
 
-  "outlet.previousComment": "Previous Comment",
+  "outlet.previousComment": "Previous comment",
+  "outlet.previousTitle": "Previous title",
 
   "notifications.title": "Notifications",
   "notifications.subtitle":
@@ -2162,7 +2163,8 @@ export const translations: Record<
     "review.helpfulOwnReview": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
 
-    "outlet.previousComment": "Önceki Yorum",
+    "outlet.previousComment": "Önceki yorum",
+    "outlet.previousTitle": "Önceki başlık",
 
     "notifications.title": "Bildirimler",
     "notifications.subtitle":
@@ -3524,6 +3526,7 @@ export const translations: Record<
     "review.report": "Bildir",
 
     "outlet.previousComment": "Comentario anterior",
+    "outlet.previousTitle": "Título anterior",
 
     "notifications.title": "Notificaciones",
     "notifications.subtitle":
@@ -4852,6 +4855,7 @@ export const translations: Record<
     "review.report": "Bildir",
 
     "outlet.previousComment": "Commentaire précédent",
+    "outlet.previousTitle": "Titre précédent",
 
     "notifications.title": "Alertes",
     "notifications.subtitle":
@@ -6165,6 +6169,7 @@ export const translations: Record<
     "review.helpfulOwnReview": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "outlet.previousComment": "Vorheriger Kommentar",
+    "outlet.previousTitle": "Vorheriger Titel",
     "notifications.title": "Benachrichtigungen",
     "notifications.subtitle":
       "Steuere, welche Reise- und Shopping-Erinnerungen du erhältst.",
@@ -7430,6 +7435,7 @@ export const translations: Record<
     "review.helpfulOwnReview": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "outlet.previousComment": "التعليق السابق",
+    "outlet.previousTitle": "العنوان السابق",
     "notifications.title": "الإشعارات",
     "notifications.subtitle": "تحكم في تذكيرات السفر والتسوق التي تصلك.",
     "notifications.info":
@@ -8691,6 +8697,7 @@ export const translations: Record<
     "review.report": "Bildir",
 
     "outlet.previousComment": "Предыдущий комментарий",
+    "outlet.previousTitle": "Предыдущий заголовок",
 
     "notifications.title": "Уведомления",
     "notifications.subtitle": "Настройте напоминания о поездках и шопинге.",
@@ -9969,6 +9976,7 @@ export const translations: Record<
     "review.helpfulOwnReview": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "outlet.previousComment": "上一条评论",
+    "outlet.previousTitle": "上一条标题",
 
     "notifications.title": "通知",
     "notifications.subtitle": "管理你想接收的旅行和购物提醒。",
@@ -15213,4 +15221,131 @@ reviewRatingsRegressionTranslations.zh = {
 
 for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], reviewRatingsRegressionTranslations[locale]);
+}
+
+const reviewContractV2Translations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "outlet.previousComment": "Previous comment",
+    "outlet.previousTitle": "Previous title",
+    "outlet.edited": "Edited",
+    "review.helpful": "Helpful",
+    "review.helpfulActive": "Marked as helpful",
+    "review.helpfulAdded": "Marked as helpful",
+    "review.helpfulRemoved": "Helpful mark removed",
+    "review.helpfulAlready": "You have already marked this review as helpful.",
+    "review.helpfulOwnReview": "You cannot mark your own review as helpful.",
+    "review.deleteErrorTitle": "Review could not be deleted",
+    "review.deleteErrorText": "Your review could not be deleted. Please try again.",
+    "writeReview.saveErrorTitle": "Review could not be saved",
+    "writeReview.saveErrorText": "We could not save your review. Please try again.",
+  },
+  tr: {
+    "outlet.previousComment": "Önceki yorum",
+    "outlet.previousTitle": "Önceki başlık",
+    "outlet.edited": "Düzenlendi",
+    "review.helpful": "Faydalı",
+    "review.helpfulActive": "Faydalı olarak işaretlendi",
+    "review.helpfulAdded": "Faydalı olarak işaretlendi",
+    "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
+    "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
+    "review.helpfulOwnReview": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+    "review.deleteErrorTitle": "Yorum silinemedi",
+    "review.deleteErrorText": "Yorumun silinemedi. Lütfen tekrar deneyin.",
+    "writeReview.saveErrorTitle": "Yorum kaydedilemedi",
+    "writeReview.saveErrorText": "Yorumunu kaydedemedik. Lütfen tekrar deneyin.",
+  },
+  es: {
+    "outlet.previousComment": "Comentario anterior",
+    "outlet.previousTitle": "Título anterior",
+    "outlet.edited": "Editado",
+    "review.helpful": "Útil",
+    "review.helpfulActive": "Marcado como útil",
+    "review.helpfulAdded": "Marcado como útil",
+    "review.helpfulRemoved": "Marca de útil eliminada",
+    "review.helpfulAlready": "Ya marcaste esta reseña como útil.",
+    "review.helpfulOwnReview": "No puedes marcar tu propia reseña como útil.",
+    "review.deleteErrorTitle": "No se pudo eliminar la reseña",
+    "review.deleteErrorText": "No se pudo eliminar tu reseña. Inténtalo de nuevo.",
+    "writeReview.saveErrorTitle": "No se pudo guardar la reseña",
+    "writeReview.saveErrorText": "No pudimos guardar tu reseña. Inténtalo de nuevo.",
+  },
+  fr: {
+    "outlet.previousComment": "Commentaire précédent",
+    "outlet.previousTitle": "Titre précédent",
+    "outlet.edited": "Modifié",
+    "review.helpful": "Utile",
+    "review.helpfulActive": "Marqué comme utile",
+    "review.helpfulAdded": "Marqué comme utile",
+    "review.helpfulRemoved": "Marque utile retirée",
+    "review.helpfulAlready": "Vous avez déjà marqué cet avis comme utile.",
+    "review.helpfulOwnReview": "Vous ne pouvez pas marquer votre propre avis comme utile.",
+    "review.deleteErrorTitle": "L'avis n'a pas pu être supprimé",
+    "review.deleteErrorText": "Votre avis n'a pas pu être supprimé. Veuillez réessayer.",
+    "writeReview.saveErrorTitle": "L'avis n'a pas pu être enregistré",
+    "writeReview.saveErrorText": "Nous n'avons pas pu enregistrer votre avis. Veuillez réessayer.",
+  },
+  de: {
+    "outlet.previousComment": "Vorheriger Kommentar",
+    "outlet.previousTitle": "Vorheriger Titel",
+    "outlet.edited": "Bearbeitet",
+    "review.helpful": "Hilfreich",
+    "review.helpfulActive": "Als hilfreich markiert",
+    "review.helpfulAdded": "Als hilfreich markiert",
+    "review.helpfulRemoved": "Hilfreich-Markierung entfernt",
+    "review.helpfulAlready": "Du hast diese Bewertung bereits als hilfreich markiert.",
+    "review.helpfulOwnReview": "Du kannst deine eigene Bewertung nicht als hilfreich markieren.",
+    "review.deleteErrorTitle": "Bewertung konnte nicht gelöscht werden",
+    "review.deleteErrorText": "Deine Bewertung konnte nicht gelöscht werden. Bitte versuche es erneut.",
+    "writeReview.saveErrorTitle": "Bewertung konnte nicht gespeichert werden",
+    "writeReview.saveErrorText": "Wir konnten deine Bewertung nicht speichern. Bitte versuche es erneut.",
+  },
+  ar: {
+    "outlet.previousComment": "التعليق السابق",
+    "outlet.previousTitle": "العنوان السابق",
+    "outlet.edited": "تم التعديل",
+    "review.helpful": "مفيد",
+    "review.helpfulActive": "تم وضع علامة مفيد",
+    "review.helpfulAdded": "تم وضع علامة مفيد",
+    "review.helpfulRemoved": "تمت إزالة علامة مفيد",
+    "review.helpfulAlready": "لقد وضعت علامة مفيد على هذه المراجعة بالفعل.",
+    "review.helpfulOwnReview": "لا يمكنك وضع علامة مفيد على مراجعتك الخاصة.",
+    "review.deleteErrorTitle": "تعذر حذف المراجعة",
+    "review.deleteErrorText": "تعذر حذف مراجعتك. يُرجى المحاولة مرة أخرى.",
+    "writeReview.saveErrorTitle": "تعذر حفظ المراجعة",
+    "writeReview.saveErrorText": "لم نتمكن من حفظ مراجعتك. يُرجى المحاولة مرة أخرى.",
+  },
+  ru: {
+    "outlet.previousComment": "Предыдущий комментарий",
+    "outlet.previousTitle": "Предыдущий заголовок",
+    "outlet.edited": "Изменено",
+    "review.helpful": "Полезно",
+    "review.helpfulActive": "Отмечено как полезное",
+    "review.helpfulAdded": "Отмечено как полезное",
+    "review.helpfulRemoved": "Отметка полезности снята",
+    "review.helpfulAlready": "Вы уже отметили этот отзыв как полезный.",
+    "review.helpfulOwnReview": "Вы не можете отметить собственный отзыв как полезный.",
+    "review.deleteErrorTitle": "Не удалось удалить отзыв",
+    "review.deleteErrorText": "Не удалось удалить ваш отзыв. Повторите попытку.",
+    "writeReview.saveErrorTitle": "Не удалось сохранить отзыв",
+    "writeReview.saveErrorText": "Не удалось сохранить ваш отзыв. Повторите попытку.",
+  },
+  zh: {
+    "outlet.previousComment": "上一条评论",
+    "outlet.previousTitle": "上一条标题",
+    "outlet.edited": "已编辑",
+    "review.helpful": "有帮助",
+    "review.helpfulActive": "已标记为有帮助",
+    "review.helpfulAdded": "已标记为有帮助",
+    "review.helpfulRemoved": "已取消有帮助标记",
+    "review.helpfulAlready": "你已经将此评价标记为有帮助。",
+    "review.helpfulOwnReview": "你不能将自己的评价标记为有帮助。",
+    "review.deleteErrorTitle": "无法删除评价",
+    "review.deleteErrorText": "无法删除你的评价。请重试。",
+    "writeReview.saveErrorTitle": "无法保存评价",
+    "writeReview.saveErrorText": "我们无法保存你的评价。请重试。",
+  },
+};
+
+for (const locale of supportedLanguageCodes) {
+  Object.assign(translations[locale], reviewContractV2Translations[locale]);
 }

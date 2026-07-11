@@ -24,6 +24,12 @@ const deleteScreen = read("src/screens/DeleteAccountScreen.tsx");
 
 assert(/getReviewDocRef\(input\.outletId, input\.userId\)/.test(service), "deterministic path reviews/{outletId}/items/{userId} is used for saves.");
 assert(/await setDoc\(reviewRef, payload\)/.test(service) && !/setDoc\(reviewRef, payload,\s*\{\s*merge/.test(service), "setDoc without merge is used for review create/update.");
+const setDocIndex = service.indexOf("await setDoc(reviewRef, payload)");
+const cleanupIndex = service.indexOf("await softDeleteDuplicateActiveReviews", setDocIndex);
+const throwAfterSaveIndex = service.indexOf("throw error", setDocIndex);
+assert(setDocIndex >= 0 && throwAfterSaveIndex > setDocIndex && cleanupIndex > throwAfterSaveIndex, "deterministic save failure is the only save-failing path before success is returned.");
+assert(/logDuplicateCleanupFailure/.test(service) && /console\.warn\("Review duplicate cleanup skipped"/.test(service), "duplicate cleanup is best-effort with safe dev-only warnings.");
+assert(/legacyReviewId/.test(service) && /hasUserId/.test(service) && /message: error instanceof Error/.test(service), "duplicate cleanup warning includes safe code/message/outletId/legacyReviewId/hasUserId diagnostics.");
 const payloadBlock = service.slice(service.indexOf("const payload = {"), service.indexOf("try {", service.indexOf("const payload = {")));
 assert(!/deletedAt:\s*null|firestoreUpdatedAt|disabledAt|emailHash|previousEmail|email\b/.test(payloadBlock), "published save payload excludes stale and identity fields.");
 for (const key of ["reviewId", "outletId", "userId", "userDisplayName", "rating", "overallRating", "categoryRatings", "title", "comment", "status", "createdAt", "updatedAt"]) {
@@ -34,12 +40,22 @@ assert(/where\("status",\s*"==",\s*"published"\)/.test(service) && /reviews\.fil
 assert(/status:\s*"deleted"/.test(service), "user delete uses status == deleted.");
 assert(/filter\(isPublishedReview\)/.test(service) && /getPublishedReviews/.test(outletDetail), "deleted reviews are excluded from aggregates and visible reviews.");
 assert(/latestByOutletUser/.test(service) && /softDeleteDuplicateActiveReviews/.test(service), "one active review per user/outlet is enforced and duplicates are cleaned when possible.");
+assert(/reviewIsDeterministic/.test(service) && /currentIsDeterministic/.test(service), "visible reads and aggregates prefer deterministic userId docs over legacy duplicates.");
+assert(/return getPublishedReviews\(reviews\)/.test(service), "legacy active docs are de-duplicated before fetch results feed visible reads/aggregates.");
 assert(/getDoc\(deterministicReviewRef\)/.test(service) && /fetchLatestActiveReviewForUser/.test(service) && /loadExistingReview/.test(writeReview), "edit loads deterministic review first with latest active fallback.");
 assert(/const reviewId = input\.userId/.test(service), "edit updates deterministic userId doc, not duplicate random docs.");
+assert(/previousComment: existingDeterministicReview\.comment \|\| ""/.test(service) && /previousTitle: existingDeterministicReview\.title \|\| ""/.test(service), "edit stores only the immediate previous comment/title snapshot.");
+assert(/editCount: \(existingDeterministicReview\.editCount \|\| 0\) \+ 1/.test(service) && !/previousComments|editHistory|history\.push/.test(service), "second edit replaces the previous snapshot instead of appending history.");
+assert(/existingDeterministicReview && isPublishedReview/.test(service), "create does not add edited/previous-comment state.");
+assert(/previousCommentLabel/.test(reviewItem) && /review\.previousComment/.test(reviewItem) && /editedBlock/.test(reviewItem), "review card renders previousComment under edited label.");
 assert(/REVIEW_CATEGORY_KEYS\.every/.test(writeReview) && /categoryRatingsRequired/.test(writeReview), "four category ratings are required.");
 assert(/calculateOverallRating/.test(writeReview) && /overallRating:\s*computedRating/.test(writeReview) && /rating:\s*computedRating/.test(writeReview), "rating and overallRating are derived from category average.");
 assert(/comment:\s*comment\.trim\(\)/.test(writeReview) && !/comment\.trim\(\)\.length|Write at least 10 characters/.test(writeReview + translations), "empty and short comments are allowed with no 10-character minimum.");
 assert(/REVIEW_HELPFUL_COLLECTION/.test(service) && /helpful\/{userId}/.test(rules) && /doc\([\s\S]*REVIEW_HELPFUL_COLLECTION,[\s\S]*userId/.test(service), "helpful uses one doc per user per review.");
+assert(/helpfulOwnDisabledText/.test(reviewItem) && /onHelpful/.test(reviewItem), "helpful button/state is visible for published review cards including own-review disabled copy.");
+assert(/!isAuthor[\s\S]*TouchableOpacity[\s\S]*onPress=\{onHelpful\}/.test(reviewItem) || /isAuthor \? \([\s\S]*actionPillDisabled[\s\S]*\) : \([\s\S]*TouchableOpacity[\s\S]*onPress=\{onHelpful\}/.test(reviewItem), "active helpful exists for other users.");
+assert(/review\.userId === currentUser\.userId/.test(outletDetail) && /helpfulOwnReview/.test(outletDetail + reviewItem + translations), "own-review helpful cannot inflate count.");
+assert(/review\.helpfulUserIds\?\.includes\(userId\)/.test(context) && /setReviewHelpful\(review\.outletId, review\.reviewId, userId, !hasHelpful\)/.test(context), "repeated helpful taps toggle one helpful/{userId} doc instead of incrementing count.");
 assert(!/helpfulCount/.test(rules.match(/match \/helpful\/{userId}[\s\S]*?\n      \}/)?.[0] || ""), "rules do not allow arbitrary helpful count overwrite.");
 assert(/authorDeleted === true/.test(reviewItem) && /authorDeleted/.test(deleteCallable), "authorDeleted anonymous display remains.");
 assert(/queueReviewAnonymization/.test(deleteCallable) && /batch\.update\(reviewDoc\.ref/.test(deleteCallable), "account deletion anonymization remains separate.");
@@ -53,6 +69,7 @@ for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) {
 }
 assert(/hasValidReviewCreateData/.test(rules) && /request\.resource\.data\.keys\(\)\.hasOnly/.test(rules) && /reviewId == request\.auth\.uid/.test(rules), "Firestore create rules enforce deterministic ownership and minimal keys.");
 assert(/isSoftDeleteReviewUpdate/.test(rules) && /deletedAt/.test(rules), "Firestore update rules allow owner soft delete.");
+assert(/previousComment/.test(rules) && /previousTitle/.test(rules) && /previousRating/.test(rules) && /previousCategoryRatings/.test(rules) && /data\.editedAt is timestamp/.test(rules) && /editCount/.test(rules), "Firestore rules strictly allow optional edit metadata fields.");
 assert(/allow read: if true/.test(rules), "Firestore rules allow public review reads.");
 assert(/ReviewStatsCard/.test(statsCard + outletDetail) && /getCategoryAverage\(outletReviews/.test(outletDetail), "ReviewStatsCard aggregates published review/category ratings safely.");
 console.log("Review Lifecycle V2 checks passed.");
