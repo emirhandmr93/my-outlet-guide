@@ -13,6 +13,8 @@ type ReviewItemProps = {
   editText: string;
   deleteText: string;
   reportText: string;
+  reportedText: string;
+  isReported?: boolean;
   anonymousAccountText: string;
   onHelpful: () => void;
   onEdit: () => void;
@@ -31,6 +33,8 @@ export function ReviewItem({
   editText,
   deleteText,
   reportText,
+  reportedText,
+  isReported = false,
   anonymousAccountText,
   onHelpful,
   onEdit,
@@ -94,7 +98,15 @@ export function ReviewItem({
             <TouchableOpacity style={styles.actionPill} onPress={onDelete}><Text style={styles.actionText}>{deleteText}</Text></TouchableOpacity>
           </>
         ) : (
-          <TouchableOpacity accessibilityLabel={reportText} accessibilityRole="button" style={[styles.actionPill, styles.secondaryActionPill]} onPress={onReport}><Text style={styles.actionText}>{reportText}</Text></TouchableOpacity>
+          <TouchableOpacity
+            accessibilityLabel={isReported ? reportedText : reportText}
+            accessibilityRole="button"
+            disabled={isReported}
+            style={[styles.actionPill, styles.secondaryActionPill, isReported && styles.actionPillDisabled]}
+            onPress={onReport}
+          >
+            <Text style={[styles.actionText, isReported && styles.actionTextDisabled]}>{isReported ? reportedText : reportText}</Text>
+          </TouchableOpacity>
         )}
       </View>
     </View>
@@ -121,6 +133,8 @@ const styles = StyleSheet.create({
   helpfulPill: { paddingHorizontal: 12, borderColor: "#D8DEE8" },
   secondaryActionPill: { paddingHorizontal: 12, backgroundColor: "#FBFCFE" },
   actionPillActive: { backgroundColor: "#0B1F3A", borderColor: "#0B1F3A" },
+  actionPillDisabled: { opacity: 0.65 },
   actionText: { color: "#0B1F3A", fontSize: 12, fontWeight: "900" },
   actionTextActive: { color: "#FFFFFF" },
+  actionTextDisabled: { color: "#6B7280" },
 });

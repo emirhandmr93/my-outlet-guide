@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 
-export type ReviewAuthAction = "writeReview" | "helpful";
+export type ReviewAuthAction = "writeReview" | "helpful" | "report";
 
 export function isReviewActionAllowed(user: unknown) {
   return Boolean(user);

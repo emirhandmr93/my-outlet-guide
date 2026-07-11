@@ -12,12 +12,11 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../firebase/config";
-import type { OutletReview, ReviewCategoryRatings, ReviewInput, ReviewReportReason } from "../types/review";
+import type { OutletReview, ReviewCategoryRatings, ReviewInput } from "../types/review";
 
 export const REVIEW_COLLECTION = "reviews";
 export const REVIEW_ITEMS_COLLECTION = "items";
 export const REVIEW_HELPFUL_COLLECTION = "helpful";
-export const REVIEW_REPORTS_COLLECTION = "reviewReports";
 
 export const REVIEW_CATEGORY_KEYS = ["transportation", "brands", "restaurants", "services"] as const;
 
@@ -326,18 +325,4 @@ export async function setReviewHelpful(outletId: string, reviewId: string, userI
   );
   if (helpful) await setDoc(helpfulRef, { userId, createdAt: new Date().toISOString() });
   else await deleteDoc(helpfulRef);
-}
-
-export async function reportReview(outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason) {
-  const reportId = `${outletId}_${reviewId}_${reporterUserId}_${Date.now()}`;
-  await setDoc(doc(db, REVIEW_REPORTS_COLLECTION, reportId), {
-    reportId,
-    outletId,
-    reviewId,
-    reporterUserId,
-    reason,
-    createdAt: new Date().toISOString(),
-    status: "open",
-    firestoreCreatedAt: serverTimestamp(),
-  });
 }

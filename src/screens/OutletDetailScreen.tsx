@@ -53,6 +53,7 @@ import {
 } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 import { requireReviewAuth } from "../utils/reviewAuthGuard";
+import type { ReviewReportReason } from "../types/review";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
@@ -114,6 +115,7 @@ export function OutletDetailScreen() {
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [brandSearch, setBrandSearch] = useState("");
   const [reviewSort, setReviewSort] = useState<"helpful" | "recent">("helpful");
+  const [reportedReviewIds, setReportedReviewIds] = useState<Set<string>>(() => new Set());
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [weather, setWeather] = useState<CurrentWeather | null>(null);
   const [weatherError, setWeatherError] = useState(false);
@@ -178,6 +180,53 @@ export function OutletDetailScreen() {
 
     return b.createdAt.localeCompare(a.createdAt);
   });
+
+  function showReportReasonPicker(reviewId: string, reviewAuthorUserId?: string | null) {
+    if (reviewAuthorUserId && currentUser?.userId === reviewAuthorUserId) {
+      Alert.alert(t("review.reportOwnReview"));
+      return;
+    }
+
+    if (
+      !requireReviewAuth({
+        navigation,
+        user: currentUser,
+        action: "report",
+        message: t("review.signInToReport"),
+      }) ||
+      !currentUser
+    ) {
+      return;
+    }
+
+    const submitReport = async (reason: ReviewReportReason) => {
+      try {
+        const result = await reportReview(outlet.outletId, reviewId, currentUser.userId, reason, reviewAuthorUserId);
+        if (result === "reported") {
+          setReportedReviewIds((current) => new Set(current).add(reviewId));
+          Alert.alert(t("review.reportSuccessTitle"), t("review.reportSuccessBody"));
+          return;
+        }
+        if (result === "already_reported") {
+          setReportedReviewIds((current) => new Set(current).add(reviewId));
+          Alert.alert(t("review.reportAlready"));
+          return;
+        }
+        Alert.alert(t("review.reportErrorTitle"), t("review.reportErrorText"));
+      } catch (error) {
+        showReviewActionError(error);
+      }
+    };
+
+    Alert.alert(t("review.reportTitle"), t("review.reportReasonPrompt"), [
+      { text: t("review.reportReasonSpam"), onPress: () => submitReport("spam") },
+      { text: t("review.reportReasonOffensive"), onPress: () => submitReport("offensive") },
+      { text: t("review.reportReasonMisleading"), onPress: () => submitReport("misleading") },
+      { text: t("review.reportReasonOther"), onPress: () => submitReport("other") },
+      { text: t("review.reportCancel"), style: "cancel" },
+    ]);
+  }
+
   const showReviewActionError = (error: unknown) => {
     console.log("Review action error", error);
     Alert.alert(
@@ -624,6 +673,8 @@ export function OutletDetailScreen() {
                 editText={t("common.edit")}
                 deleteText={t("review.deleteTitle")}
                 reportText={t("review.report")}
+                reportedText={t("review.reported")}
+                isReported={reportedReviewIds.has(review.reviewId)}
                 anonymousAccountText={t("reviews.anonymousAccount")}
                 onHelpful={async () => {
                   if (
@@ -670,20 +721,7 @@ export function OutletDetailScreen() {
                     },
                   ]);
                 }}
-                onReport={async () => {
-                  if (requireAuth({ isLoggedIn, navigation }) && currentUser) {
-                    try {
-                      await reportReview(
-                        outlet.outletId,
-                        review.reviewId,
-                        currentUser.userId,
-                        "other",
-                      );
-                    } catch (error) {
-                      showReviewActionError(error);
-                    }
-                  }
-                }}
+                onReport={() => showReportReasonPicker(review.reviewId, review.userId)}
               />
             ))
           ) : (
