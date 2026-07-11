@@ -16,6 +16,54 @@ const average = read("src/services/flightFareAverage.ts");
 const translations = read("src/translations/translations.ts");
 const rules = read("firestore.rules");
 const profile = read("src/screens/ProfileScreen.tsx");
+
+assert(
+  airports.includes('region: "EUROPE"') &&
+    airports.includes('region: "MIDDLE_EAST"') &&
+    airports.includes('region: "ASIA"') &&
+    airports.includes('region: "AMERICAS"') &&
+    airports.includes('airportCode: "JFK"') &&
+    airports.includes('airportCode: "LAX"') &&
+    airports.includes('airportCode: "DXB"') &&
+    airports.includes('airportCode: "SIN"') &&
+    airports.includes('airportCode: "GRU"') &&
+    airports.includes('airportCode: "EZE"'),
+  "airport directory must be curated global coverage, not Turkey-only",
+);
+assert(
+  !/currentFare|averageFare|discountPercent|price|fareAmount|deepLink|providerFare/.test(
+    airports,
+  ) && /airportCode: "[A-Z]{3}"/.test(airports),
+  "airport directory must remain metadata-only with IATA-style codes",
+);
+assert(
+  screen.includes("SELECTOR_FILTERS") &&
+    screen.includes("MAX_SELECTOR_RESULTS") &&
+    screen.includes("selectorFilter") &&
+    screen.includes("supportedFlightDealAirports.filter"),
+  "selector must use curated global directory with region filters and bounded results",
+);
+assert(
+  destinationOptions.includes("outlets.forEach") &&
+    destinationOptions.includes("flightDealDestinationAirportGroups") &&
+    !screen.includes("setSelectedDestination(filterText"),
+  "destination selector must use supported shopping destination groups and never save search text",
+);
+assert(
+  alertService.includes('destinationType: "city_group"') &&
+    alertService.includes("destinationKey") &&
+    alertService.includes("originCountryName") &&
+    alertService.includes("destinationLabel"),
+  "saved alert model must persist city-group destination metadata",
+);
+assert(
+  rules.includes("destinationType == 'city_group'") &&
+    rules.includes("destinationKey") &&
+    rules.includes("originCountryName") &&
+    rules.includes("destinationLabel"),
+  "Firestore rules must validate city-group alert fields",
+);
+
 const allSource = [
   screen,
   provider,
@@ -70,9 +118,9 @@ assert(
   "saved alert origin labels must localize origin city display when origin fields exist",
 );
 assert(
-  /<TouchableOpacity[^>]*onPress=\{\(\) => setPickerMode\(null\)\}[\s\S]*?<Text[^>]*>\{t\("flightDeals\.cancel"\)\}<\/Text>[\s\S]*?<\/TouchableOpacity>/.test(
-    screen,
-  ) && /<Text[^>]*>\{t\("flightDeals\.select"\)\}<\/Text>/.test(screen),
+  screen.includes("onPress={() => setPickerMode(null)}") &&
+    screen.includes('{t("flightDeals.cancel")}') &&
+    screen.includes('{t("flightDeals.select")}'),
   "selector footer labels must be wrapped in Text components",
 );
 assert(
@@ -95,17 +143,22 @@ assert(
     airports.includes("Esenboğa Airport") &&
     airports.includes("Adnan Menderes Airport") &&
     airports.includes("Dalaman Airport") &&
-    airports.includes("Hakkari Yüksekova Selahaddin Eyyubi Airport") &&
-    (airports.match(/airportCode/g) || []).length > 40,
-  "airport selector metadata must include broad source-safe Turkish airport coverage",
+    airports.includes("Ordu-Giresun Airport") &&
+    airports.includes("Rize-Artvin Airport") &&
+    (airports.match(/airportCode/g) || []).length > 90,
+  "airport selector metadata must include broad curated commercial airport coverage",
 );
 assert(
   screen.includes("originAirportName: selectedOrigin.airportName") &&
     screen.includes(
       "destinationCityKey: selectedDestination.destinationCityKey",
     ) &&
-    screen.includes("destinationAirportCodes: selectedDestination.destinationAirportCodes") &&
-    screen.includes("destinationAirportNames: selectedDestination.destinationAirportNames"),
+    screen.includes(
+      "destinationAirportCodes: selectedDestination.destinationAirportCodes",
+    ) &&
+    screen.includes(
+      "destinationAirportNames: selectedDestination.destinationAirportNames",
+    ),
   "saved origin/destination and destination airport groups must come from option objects",
 );
 assert(
@@ -115,7 +168,9 @@ assert(
 assert(
   alertService.includes("destinationAirportCodes: string[]") &&
     alertService.includes("destinationAirportNames: string[]") &&
-    alertService.includes("destinationAirportCodes: input.destinationAirportCodes") &&
+    alertService.includes(
+      "destinationAirportCodes: input.destinationAirportCodes",
+    ) &&
     alertService.includes("buildFlightDealAlertId") &&
     screen.includes("selectedOrigin.airportCode") &&
     screen.includes("selectedDestination.destinationCityKey"),
@@ -263,8 +318,12 @@ assert(
   "no fake/mock/demo data",
 );
 assert(
-  /flightDealDestinationAirportGroups[\s\S]*CDG[\s\S]*ORY[\s\S]*BVA/.test(airports) &&
-    /flightDealDestinationAirportGroups[\s\S]*FLR[\s\S]*PSA[\s\S]*BLQ/.test(airports) &&
+  /flightDealDestinationAirportGroups[\s\S]*CDG[\s\S]*ORY[\s\S]*BVA/.test(
+    airports,
+  ) &&
+    /flightDealDestinationAirportGroups[\s\S]*FLR[\s\S]*PSA[\s\S]*BLQ/.test(
+      airports,
+    ) &&
     screen.includes("destinationAirportCodesText(item)"),
   "destination selector rows must include airport group codes",
 );

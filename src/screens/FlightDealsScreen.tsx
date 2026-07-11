@@ -17,6 +17,7 @@ import {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import {
+  FlightDealAirportRegion,
   supportedFlightDealAirports,
   SupportedFlightDealAirport,
 } from "../constants/flightDealAirports";
@@ -46,6 +47,16 @@ import {
 } from "../utils/safeAreaLayout";
 
 type PickerMode = "origin" | "destination" | null;
+type FlightDealSelectorFilter = "popular" | FlightDealAirportRegion;
+const MAX_SELECTOR_RESULTS = 50;
+const SELECTOR_FILTERS: FlightDealSelectorFilter[] = [
+  "popular",
+  "TR",
+  "EUROPE",
+  "MIDDLE_EAST",
+  "ASIA",
+  "AMERICAS",
+];
 
 export function FlightDealsScreen() {
   const navigation = useNavigation<any>();
@@ -67,6 +78,8 @@ export function FlightDealsScreen() {
   const [saving, setSaving] = useState(false);
   const [pickerMode, setPickerMode] = useState<PickerMode>(null);
   const [filterText, setFilterText] = useState("");
+  const [selectorFilter, setSelectorFilter] =
+    useState<FlightDealSelectorFilter>("popular");
   const destinationOptions = useMemo(
     () => getFlightDealDestinationOptions(),
     [],
@@ -107,6 +120,7 @@ export function FlightDealsScreen() {
   function openPicker(mode: Exclude<PickerMode, null>) {
     setPickerMode(mode);
     setFilterText("");
+    setSelectorFilter("popular");
   }
 
   async function refreshAlerts(userId: string) {
@@ -145,12 +159,16 @@ export function FlightDealsScreen() {
       originAirportName: selectedOrigin.airportName,
       originCityName: selectedOrigin.cityName,
       originCountryCode: selectedOrigin.countryCode,
+      originCountryName: selectedOrigin.countryName,
+      destinationType: "city_group" as const,
+      destinationKey: selectedDestination.destinationCityKey,
       destinationCityKey: selectedDestination.destinationCityKey,
       destinationCityName: selectedDestination.destinationCityName,
       destinationCountryCode: selectedDestination.destinationCountryCode,
       destinationCountryName: selectedDestination.destinationCountryName,
       destinationAirportCodes: selectedDestination.destinationAirportCodes,
       destinationAirportNames: selectedDestination.destinationAirportNames,
+      destinationLabel: `${selectedDestination.destinationCityName} (${selectedDestination.destinationAirportCodes.join(" / ")})`,
       selectedThresholds,
       active,
     };
@@ -209,24 +227,67 @@ export function FlightDealsScreen() {
       language,
     );
 
-  const destinationAirportCodesText = (item: { destinationAirportCodes?: string[]; airportCodes?: string[] }) =>
-    (item.destinationAirportCodes || item.airportCodes || []).join(" / ");
+  const destinationAirportCodesText = (item: {
+    destinationAirportCodes?: string[];
+    airportCodes?: string[];
+  }) => (item.destinationAirportCodes || item.airportCodes || []).join(" / ");
 
   const normalizedFilter = filterText.trim().toLowerCase();
-  const originOptions = supportedFlightDealAirports.filter(
-    (item) =>
-      !normalizedFilter ||
-      `${item.cityName} ${formatCityDisplayName(item.cityName, language)} ${item.airportName} ${item.airportCode} ${(item.searchAliases || []).join(" ")}`
-        .toLowerCase()
-        .includes(normalizedFilter),
-  );
-  const filteredDestinationOptions = destinationOptions.filter(
-    (item) =>
-      !normalizedFilter ||
-      `${item.destinationCityName} ${localizedDestinationCity(item)} ${item.destinationCountryName} ${localizedDestinationCountry(item)} ${item.destinationAirportCodes.join(" ")} ${item.destinationAirportNames.join(" ")} ${(item.searchAliases || []).join(" ")}`
-        .toLowerCase()
-        .includes(normalizedFilter),
-  );
+  const getFilterLabel = (filter: FlightDealSelectorFilter) =>
+    filter === "popular"
+      ? t("flightDeals.filterPopular")
+      : filter === "TR"
+        ? t("flightDeals.filterTurkey")
+        : filter === "EUROPE"
+          ? t("flightDeals.filterEurope")
+          : filter === "MIDDLE_EAST"
+            ? t("flightDeals.filterMiddleEast")
+            : filter === "ASIA"
+              ? t("flightDeals.filterAsia")
+              : t("flightDeals.filterAmericas");
+  const sortPopularFirst = <T extends { popular?: boolean }>(items: T[]) =>
+    [...items].sort(
+      (a, b) => Number(Boolean(b.popular)) - Number(Boolean(a.popular)),
+    );
+  const originOptions = sortPopularFirst(
+    supportedFlightDealAirports.filter((item) => {
+      const matchesFilter =
+        selectorFilter === "popular"
+          ? item.popular
+          : item.region === selectorFilter;
+      const matchesSearch =
+        !normalizedFilter ||
+        `${item.cityName} ${formatCityDisplayName(item.cityName, language)} ${item.countryName} ${item.airportName} ${item.airportCode} ${(item.searchAliases || []).join(" ")}`
+          .toLowerCase()
+          .includes(normalizedFilter);
+      return matchesFilter && matchesSearch;
+    }),
+  ).slice(0, MAX_SELECTOR_RESULTS);
+  const filteredDestinationOptions = sortPopularFirst(
+    destinationOptions
+      .map((item) => ({
+        ...item,
+        popular: [
+          "france_paris",
+          "italy_milan",
+          "italy_florence",
+          "united_kingdom_london",
+        ].includes(item.destinationCityKey),
+        region: "EUROPE" as FlightDealAirportRegion,
+      }))
+      .filter((item) => {
+        const matchesFilter =
+          selectorFilter === "popular"
+            ? item.popular
+            : item.region === selectorFilter;
+        const matchesSearch =
+          !normalizedFilter ||
+          `${item.destinationCityName} ${localizedDestinationCity(item)} ${item.destinationCountryName} ${localizedDestinationCountry(item)} ${item.destinationAirportCodes.join(" ")} ${item.destinationAirportNames.join(" ")} ${(item.searchAliases || []).join(" ")}`
+            .toLowerCase()
+            .includes(normalizedFilter);
+        return matchesFilter && matchesSearch;
+      }),
+  ).slice(0, MAX_SELECTOR_RESULTS);
 
   return (
     <>
@@ -281,11 +342,12 @@ export function FlightDealsScreen() {
             <Text style={styles.selectorTitle}>
               {selectedDestination
                 ? localizedDestinationCity(selectedDestination)
-                : t("flightDeals.selectDestination")}
+                : t("flightDeals.destinationPlaceholder")}
             </Text>
             {selectedDestination ? (
               <Text style={styles.selectorMeta}>
-                {localizedDestinationCountry(selectedDestination)} · {destinationAirportCodesText(selectedDestination)}
+                {localizedDestinationCountry(selectedDestination)} ·{" "}
+                {destinationAirportCodesText(selectedDestination)}
               </Text>
             ) : null}
           </TouchableOpacity>
@@ -439,13 +501,42 @@ export function FlightDealsScreen() {
             behavior={Platform.OS === "ios" ? "padding" : "height"}
             style={styles.keyboardAvoidingView}
           >
-            <View style={[styles.modalCard, { paddingBottom: insets.bottom + 12 }]}>
+            <View
+              style={[styles.modalCard, { paddingBottom: insets.bottom + 12 }]}
+            >
               <View style={styles.modalHeader}>
                 <Text style={styles.sectionTitle}>
                   {pickerMode === "origin"
                     ? t("flightDeals.selectAirport")
-                    : t("flightDeals.selectDestination")}
+                    : t("flightDeals.destinationPlaceholder")}
                 </Text>
+                <ScrollView
+                  horizontal
+                  showsHorizontalScrollIndicator={false}
+                  keyboardShouldPersistTaps="handled"
+                  contentContainerStyle={styles.filterRow}
+                >
+                  {SELECTOR_FILTERS.map((filter) => (
+                    <TouchableOpacity
+                      key={filter}
+                      style={[
+                        styles.filterChip,
+                        selectorFilter === filter && styles.filterChipActive,
+                      ]}
+                      onPress={() => setSelectorFilter(filter)}
+                    >
+                      <Text
+                        style={[
+                          styles.filterChipText,
+                          selectorFilter === filter &&
+                            styles.filterChipTextActive,
+                        ]}
+                      >
+                        {getFilterLabel(filter)}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </ScrollView>
                 <TextInput
                   value={filterText}
                   onChangeText={setFilterText}
@@ -477,9 +568,13 @@ export function FlightDealsScreen() {
                       }}
                     >
                       <Text style={styles.selectorTitle}>
-                        {formatCityDisplayName(item.cityName, language)} · {item.airportCode}
+                        {formatCityDisplayName(item.cityName, language)} ·{" "}
+                        {item.airportCode}
                       </Text>
-                      <Text style={styles.selectorMeta}>{item.airportName}</Text>
+                      <Text style={styles.selectorMeta}>
+                        {item.airportName} ·{" "}
+                        {formatCountryDisplayName(item.countryName, language)}
+                      </Text>
                     </TouchableOpacity>
                   )}
                 />
@@ -505,7 +600,8 @@ export function FlightDealsScreen() {
                         {localizedDestinationCity(item)}
                       </Text>
                       <Text style={styles.selectorMeta}>
-                        {localizedDestinationCountry(item)} · {destinationAirportCodesText(item)}
+                        {localizedDestinationCountry(item)} ·{" "}
+                        {destinationAirportCodesText(item)}
                       </Text>
                     </TouchableOpacity>
                   )}
@@ -513,9 +609,13 @@ export function FlightDealsScreen() {
               )}
               <View style={styles.modalActions}>
                 <TouchableOpacity onPress={() => setPickerMode(null)}>
-                  <Text style={styles.deleteText}>{t("flightDeals.cancel")}</Text>
+                  <Text style={styles.deleteText}>
+                    {t("flightDeals.cancel")}
+                  </Text>
                 </TouchableOpacity>
-                <Text style={styles.selectorMeta}>{t("flightDeals.select")}</Text>
+                <Text style={styles.selectorMeta}>
+                  {t("flightDeals.select")}
+                </Text>
               </View>
             </View>
           </KeyboardAvoidingView>
@@ -713,6 +813,18 @@ const styles = StyleSheet.create({
   modalHeader: {
     backgroundColor: "#FFFFFF",
   },
+  filterRow: { gap: 8, paddingBottom: 12 },
+  filterChip: {
+    borderWidth: 1,
+    borderColor: "#CBD5E1",
+    borderRadius: 999,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    marginRight: 8,
+  },
+  filterChipActive: { backgroundColor: "#0B1F3A", borderColor: "#0B1F3A" },
+  filterChipText: { color: "#0B1F3A", fontWeight: "900", fontSize: 12 },
+  filterChipTextActive: { color: "#FFFFFF" },
   optionList: { flex: 1 },
   optionRow: {
     padding: 14,
