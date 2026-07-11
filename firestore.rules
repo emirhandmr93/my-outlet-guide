@@ -244,12 +244,17 @@ service cloud.firestore {
       return isAdminOrModerator()
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt', 'moderationNote', 'moderatedBy', 'moderatedAt'])
         && request.resource.data.status in ['open', 'reviewing', 'dismissed', 'action_taken']
+        && request.resource.data.reportId == resource.data.reportId
         && request.resource.data.reporterUserId == resource.data.reporterUserId
         && request.resource.data.reviewId == resource.data.reviewId
         && request.resource.data.outletId == resource.data.outletId
         && request.resource.data.reviewAuthorUserId == resource.data.reviewAuthorUserId
         && request.resource.data.reason == resource.data.reason
-        && request.resource.data.createdAt == resource.data.createdAt;
+        && request.resource.data.createdAt == resource.data.createdAt
+        && (!('moderationNote' in request.resource.data) || isOptionalStringOrNull(request.resource.data.moderationNote, 1000))
+        && (!('moderatedBy' in request.resource.data) || request.resource.data.moderatedBy == request.auth.uid)
+        && (!('moderatedAt' in request.resource.data) || request.resource.data.moderatedAt is timestamp)
+        && (!('updatedAt' in request.resource.data) || request.resource.data.updatedAt is timestamp || request.resource.data.updatedAt is string);
     }
 
     function isValidModerationActionCreate(actionId) {
@@ -257,7 +262,26 @@ service cloud.firestore {
         && request.resource.data.keys().hasOnly(['actionId', 'reportId', 'outletId', 'reviewId', 'moderatorUserId', 'action', 'reason', 'note', 'createdAt'])
         && request.resource.data.actionId == actionId
         && request.resource.data.moderatorUserId == request.auth.uid
+        && request.resource.data.reason in ['spam', 'offensive', 'misleading', 'other']
+        && request.resource.data.note is string
+        && request.resource.data.note.size() <= 1000
+        && request.resource.data.createdAt is timestamp
         && request.resource.data.action in ['mark_reviewing', 'dismiss_report', 'hide_review', 'restore_review', 'add_note'];
+    }
+
+    function isValidModeratedReviewStatusUpdate() {
+      return isAdminOrModerator()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt', 'moderatedBy', 'moderatedAt', 'moderationNote'])
+        && request.resource.data.status in ['hidden', 'published']
+        && request.resource.data.reviewId == resource.data.reviewId
+        && request.resource.data.outletId == resource.data.outletId
+        && request.resource.data.userId == resource.data.userId
+        && request.resource.data.createdAt == resource.data.createdAt
+        && (!('authorDeleted' in request.resource.data) || request.resource.data.authorDeleted == resource.data.authorDeleted)
+        && (!('moderationNote' in request.resource.data) || isOptionalStringOrNull(request.resource.data.moderationNote, 1000))
+        && request.resource.data.moderatedBy == request.auth.uid
+        && request.resource.data.moderatedAt is timestamp
+        && (request.resource.data.updatedAt is timestamp || request.resource.data.updatedAt is string);
     }
 
     function isValidReviewReportCreate(outletId, reviewId, userId) {
@@ -462,9 +486,7 @@ service cloud.firestore {
         && hasValidReviewUpdateData()
         && hasValidReviewEditMetadata(request.resource.data)
         && (isPublishedReviewUpdate() || isSoftDeleteReviewUpdate())
-        || (isAdminOrModerator()
-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
-          && request.resource.data.status in ['hidden', 'published']);
+        || isValidModeratedReviewStatusUpdate();
       allow delete: if false;
 
       match /helpful/{userId} {
