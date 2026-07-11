@@ -22,14 +22,16 @@ export type FlightDealAlertPreference = {
   originCityName: string;
   originCountryCode: string;
   originCountryName: string;
-  destinationType: "city_group";
+  destinationType: "airport" | "city_group";
   destinationKey: string;
-  destinationCityKey: string;
+  destinationAirportCode?: string;
+  destinationAirportName?: string;
+  destinationCityKey?: string;
   destinationCityName: string;
   destinationCountryCode: string;
   destinationCountryName: string;
-  destinationAirportCodes: string[];
-  destinationAirportNames: string[];
+  destinationAirportCodes?: string[];
+  destinationAirportNames?: string[];
   destinationLabel: string;
   selectedThresholds: FlightDealThreshold[];
   active: boolean;
@@ -67,9 +69,9 @@ export function normalizeFlightDealThresholds(values: number[]) {
 
 export function buildFlightDealAlertId(
   originAirportCode: string,
-  destinationCityKey: string,
+  destinationAirportCode: string,
 ) {
-  return `${originAirportCode}_${destinationCityKey}`
+  return `${originAirportCode}_${destinationAirportCode}`
     .toLowerCase()
     .replace(/[^a-z0-9_]+/g, "_")
     .replace(/^_+|_+$/g, "");
@@ -107,19 +109,22 @@ export async function saveFlightDealAlert(
     originCityName: input.originCityName.trim(),
     originCountryCode: input.originCountryCode.trim().toUpperCase(),
     originCountryName: input.originCountryName.trim(),
-    destinationType: "city_group" as const,
-    destinationKey: input.destinationKey || input.destinationCityKey,
-    destinationCityKey: input.destinationCityKey,
+    destinationType: "airport" as const,
+    destinationKey: (input.destinationAirportCode || input.destinationKey)
+      .trim()
+      .toUpperCase(),
+    destinationAirportCode: (
+      input.destinationAirportCode || input.destinationKey
+    )
+      .trim()
+      .toUpperCase(),
+    destinationAirportName: (input.destinationAirportName || "").trim(),
     destinationCityName: input.destinationCityName.trim(),
     destinationCountryCode: input.destinationCountryCode.trim().toUpperCase(),
     destinationCountryName: input.destinationCountryName.trim(),
-    destinationLabel: `${input.destinationCityName.trim()} (${input.destinationAirportCodes.join(" / ")})`,
-    destinationAirportCodes: input.destinationAirportCodes
-      .map((code) => code.trim().toUpperCase())
-      .filter(Boolean),
-    destinationAirportNames: input.destinationAirportNames
-      .map((name) => name.trim())
-      .filter(Boolean),
+    destinationLabel:
+      input.destinationLabel?.trim() ||
+      `${input.destinationCityName.trim()} (${(input.destinationAirportCode || input.destinationKey).trim().toUpperCase()})`,
     selectedThresholds,
     active: input.active,
     providerStatus: "pending_provider" as const,
@@ -129,7 +134,7 @@ export async function saveFlightDealAlert(
     input.alertId ||
     buildFlightDealAlertId(
       payload.originAirportCode,
-      payload.destinationCityKey,
+      payload.destinationAirportCode,
     );
   await setDoc(
     doc(db, "flightDealPreferences", userId, "alerts", alertId),
