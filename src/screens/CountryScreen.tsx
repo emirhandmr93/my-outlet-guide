@@ -230,15 +230,6 @@ export function CountryScreen() {
             {t("country.taxFreeCalculator")}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.actionButtonSecondary}
-          activeOpacity={0.9}
-          onPress={() => navigation.navigate("TaxFreeGuide")}
-        >
-          <Text style={styles.actionButtonSecondaryText}>
-            {t("country.taxFreeGuide")}
-          </Text>
-        </TouchableOpacity>
       </ScrollView>
     </View>
   );
