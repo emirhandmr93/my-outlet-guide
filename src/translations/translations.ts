@@ -668,21 +668,22 @@ const enTranslations = {
   "writeReview.titleLabel": "Başlık (isteğe bağlı)",
   "writeReview.titlePlaceholder": "Kısa özet",
   "writeReview.commentLabel": "Yorum",
-  "writeReview.commentPlaceholder": "Alışveriş yapanlar için faydalı olanı paylaşın.",
+  "writeReview.commentPlaceholder":
+    "Alışveriş yapanlar için faydalı olanı paylaşın.",
   "writeReview.submit": "Yorumu kaydet",
   "writeReview.validationTitle": "Yorum bilgileri gerekli",
   "writeReview.ratingRequired": "1 ile 5 arasında bir puan seçin.",
   "writeReview.commentRequired": "Tüm puan kategorilerini seç.",
   "writeReview.saveErrorTitle": "Yorum kaydedilemedi",
-  "writeReview.saveErrorText":
-    "Yorumun kaydedilemedi. Lütfen tekrar deneyin.",
+  "writeReview.saveErrorText": "Yorumun kaydedilemedi. Lütfen tekrar deneyin.",
   "review.actionErrorTitle": "Yorum işlemi başarısız",
   "review.actionPermissionErrorText":
     "Bu yorum işlemi için izni doğrulayamadık. Lütfen tekrar giriş yapıp deneyin.",
   "review.helpful": "Faydalı",
   "review.helpfulActive": "Faydalı ✓",
   "review.deleteTitle": "Yorumu sil",
-  "review.deleteBody": "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
+  "review.deleteBody":
+    "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
   "review.deleteConfirm": "Sil",
   "review.deleteCancel": "Vazgeç",
   "review.deleteErrorTitle": "Yorum silinemedi",
@@ -693,47 +694,49 @@ const enTranslations = {
   "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
   "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
   "review.helpfulOwnReview": "Kendi yorumun",
-    "review.helpfulOwnReviewMessage": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+  "review.helpfulOwnReviewMessage":
+    "Kendi yorumunu faydalı olarak işaretleyemezsin.",
   "review.report": "Bildir",
-    "review.reported": "Reported",
-    "review.reportTitle": "Report review",
-    "review.signInToReport": "Sign in to report this review.",
-    "review.reportReasonPrompt": "Why are you reporting this?",
-    "review.reportReasonSpam": "Fake or spam",
-    "review.reportReasonOffensive": "Inappropriate or offensive",
-    "review.reportReasonMisleading": "Misleading information",
-    "review.reportReasonOther": "Other",
-    "review.reportCancel": "Cancel",
-    "review.reportSubmit": "Submit",
-    "review.reportSuccessTitle": "Review reported",
-    "review.reportSuccessBody": "Your report was received and saved for review.",
-    "review.reportAlready": "You already reported this review.",
-    "review.reportPermissionErrorText": "We couldn't verify permission to report this review. Please sign in again and try once more.",
-    "review.reportOwnReview": "You cannot report your own review.",
-    "review.reportErrorTitle": "Review could not be reported",
-    "review.reportErrorText": "Report could not be sent. Please try again.",
+  "review.reported": "Reported",
+  "review.reportTitle": "Report review",
+  "review.signInToReport": "Sign in to report this review.",
+  "review.reportReasonPrompt": "Why are you reporting this?",
+  "review.reportReasonSpam": "Fake or spam",
+  "review.reportReasonOffensive": "Inappropriate or offensive",
+  "review.reportReasonMisleading": "Misleading information",
+  "review.reportReasonOther": "Other",
+  "review.reportCancel": "Cancel",
+  "review.reportSubmit": "Submit",
+  "review.reportSuccessTitle": "Review reported",
+  "review.reportSuccessBody": "Your report was received and saved for review.",
+  "review.reportAlready": "You already reported this review.",
+  "review.reportPermissionErrorText":
+    "We couldn't verify permission to report this review. Please sign in again and try once more.",
+  "review.reportOwnReview": "You cannot report your own review.",
+  "review.reportErrorTitle": "Review could not be reported",
+  "review.reportErrorText": "Report could not be sent. Please try again.",
 
-    "moderation.title": "Moderation",
-    "moderation.profileSubtitle": "Review reported comments.",
-    "moderation.inboxTitle": "Reported reviews",
-    "moderation.filter.open": "Open",
-    "moderation.filter.reviewing": "Reviewing",
-    "moderation.filter.action_taken": "Action taken",
-    "moderation.filter.dismissed": "Dismissed",
-    "moderation.markReviewing": "Start review",
-    "moderation.dismissReport": "Dismiss report",
-    "moderation.hideReview": "Hide review",
-    "moderation.restoreReview": "Restore review",
-    "moderation.addNote": "Add note",
-    "moderation.note": "Moderation note",
-    "moderation.reason": "Report reason",
-    "moderation.reportingUsers": "Reporting users",
-    "writeReview.hiddenByModeration": "This review was hidden by moderation.",
-    "moderation.reviewHidden": "Review hidden",
-    "moderation.reviewRestored": "Review published again",
-    "moderation.reportClosed": "Report closed",
-    "moderation.actionFailed": "Action could not be saved",
-    "moderation.permissionDenied": "You do not have permission for this action.",
+  "moderation.title": "Moderation",
+  "moderation.profileSubtitle": "Review reported comments.",
+  "moderation.inboxTitle": "Reported reviews",
+  "moderation.filter.open": "Open",
+  "moderation.filter.reviewing": "Reviewing",
+  "moderation.filter.action_taken": "Action taken",
+  "moderation.filter.dismissed": "Dismissed",
+  "moderation.markReviewing": "Start review",
+  "moderation.dismissReport": "Dismiss report",
+  "moderation.hideReview": "Hide review",
+  "moderation.restoreReview": "Restore review",
+  "moderation.addNote": "Add note",
+  "moderation.note": "Moderation note",
+  "moderation.reason": "Report reason",
+  "moderation.reportingUsers": "Reporting users",
+  "writeReview.hiddenByModeration": "This review was hidden by moderation.",
+  "moderation.reviewHidden": "Review hidden",
+  "moderation.reviewRestored": "Review published again",
+  "moderation.reportClosed": "Report closed",
+  "moderation.actionFailed": "Action could not be saved",
+  "moderation.permissionDenied": "You do not have permission for this action.",
   "outlet.previousComment": "Previous comment",
   "outlet.previousTitle": "Previous title",
 
@@ -2189,7 +2192,8 @@ export const translations: Record<
     "review.helpful": "Faydalı",
     "review.helpfulActive": "Faydalı ✓",
     "review.deleteTitle": "Yorumu sil",
-    "review.deleteBody": "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
+    "review.deleteBody":
+      "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
     "review.deleteConfirm": "Sil",
     "review.deleteCancel": "Vazgeç",
     "review.deleteErrorTitle": "Yorum silinemedi",
@@ -2200,7 +2204,8 @@ export const translations: Record<
     "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
     "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
     "review.helpfulOwnReview": "Kendi yorumun",
-    "review.helpfulOwnReviewMessage": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+    "review.helpfulOwnReviewMessage":
+      "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "review.reported": "Bildirildi",
     "review.reportTitle": "Yorumu bildir",
@@ -2215,7 +2220,8 @@ export const translations: Record<
     "review.reportSuccessTitle": "Yorum bildirildi",
     "review.reportSuccessBody": "Bildirimin alındı. İnceleme için kaydedildi.",
     "review.reportAlready": "Bu yorumu zaten bildirdin.",
-    "review.reportPermissionErrorText": "Bu yorumu bildirme iznini doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
+    "review.reportPermissionErrorText":
+      "Bu yorumu bildirme iznini doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
     "review.reportOwnReview": "Kendi yorumunu bildiremezsin.",
     "review.reportErrorTitle": "Yorum bildirilemedi",
     "review.reportErrorText": "Bildirim gönderilemedi. Lütfen tekrar deneyin.",
@@ -3569,7 +3575,8 @@ export const translations: Record<
     "review.helpful": "Faydalı",
     "review.helpfulActive": "Faydalı ✓",
     "review.deleteTitle": "Yorumu sil",
-    "review.deleteBody": "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
+    "review.deleteBody":
+      "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
     "review.deleteConfirm": "Sil",
     "review.deleteCancel": "Vazgeç",
     "review.deleteErrorTitle": "Yorum silinemedi",
@@ -3580,7 +3587,8 @@ export const translations: Record<
     "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
     "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
     "review.helpfulOwnReview": "Kendi yorumun",
-    "review.helpfulOwnReviewMessage": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+    "review.helpfulOwnReviewMessage":
+      "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "review.reported": "Reportada",
     "review.reportTitle": "Reportar reseña",
@@ -3593,12 +3601,15 @@ export const translations: Record<
     "review.reportCancel": "Cancelar",
     "review.reportSubmit": "Enviar",
     "review.reportSuccessTitle": "Reseña reportada",
-    "review.reportSuccessBody": "Recibimos tu reporte y lo guardamos para revisión.",
+    "review.reportSuccessBody":
+      "Recibimos tu reporte y lo guardamos para revisión.",
     "review.reportAlready": "Ya reportaste esta reseña.",
-    "review.reportPermissionErrorText": "No pudimos verificar el permiso para reportar esta reseña. Inicia sesión de nuevo e inténtalo otra vez.",
+    "review.reportPermissionErrorText":
+      "No pudimos verificar el permiso para reportar esta reseña. Inicia sesión de nuevo e inténtalo otra vez.",
     "review.reportOwnReview": "No puedes reportar tu propia reseña.",
     "review.reportErrorTitle": "No se pudo reportar la reseña",
-    "review.reportErrorText": "No se pudo enviar el reporte. Inténtalo de nuevo.",
+    "review.reportErrorText":
+      "No se pudo enviar el reporte. Inténtalo de nuevo.",
 
     "outlet.previousComment": "Comentario anterior",
     "outlet.previousTitle": "Título anterior",
@@ -4005,28 +4016,18 @@ export const translations: Record<
     "auth.appleMessage": "auth.appleMessage",
     "deleteAccount.title": "Eliminar cuenta",
     "deleteAccount.subtitle": "deleteAccount.subtitle",
-    "deleteAccount.whatDeleted":
-      "deleteAccount.whatDeleted",
-    "deleteAccount.itemAccount":
-      "deleteAccount.itemAccount",
-    "deleteAccount.itemFavorites":
-      "deleteAccount.itemFavorites",
+    "deleteAccount.whatDeleted": "deleteAccount.whatDeleted",
+    "deleteAccount.itemAccount": "deleteAccount.itemAccount",
+    "deleteAccount.itemFavorites": "deleteAccount.itemFavorites",
     "deleteAccount.itemTrips": "deleteAccount.itemTrips",
-    "deleteAccount.itemFlightPrefs":
-      "deleteAccount.itemFlightPrefs",
-    "deleteAccount.itemNotifications":
-      "deleteAccount.itemNotifications",
-    "deleteAccount.reviewsTitle":
-      "deleteAccount.reviewsTitle",
-    "deleteAccount.reviewsText":
-      "deleteAccount.reviewsText",
+    "deleteAccount.itemFlightPrefs": "deleteAccount.itemFlightPrefs",
+    "deleteAccount.itemNotifications": "deleteAccount.itemNotifications",
+    "deleteAccount.reviewsTitle": "deleteAccount.reviewsTitle",
+    "deleteAccount.reviewsText": "deleteAccount.reviewsText",
     "deleteAccount.button": "deleteAccount.button",
-    "deleteAccount.confirmMessage":
-      "deleteAccount.confirmMessage",
-    "deleteAccount.comingSoonTitle":
-      "deleteAccount.comingSoonTitle",
-    "deleteAccount.comingSoonMessage":
-      "deleteAccount.comingSoonMessage",
+    "deleteAccount.confirmMessage": "deleteAccount.confirmMessage",
+    "deleteAccount.comingSoonTitle": "deleteAccount.comingSoonTitle",
+    "deleteAccount.comingSoonMessage": "deleteAccount.comingSoonMessage",
     "privacy.title": "Política de privacidad",
     "privacy.subtitle": "privacy.subtitle",
     "privacy.collectTitle": "privacy.collectTitle",
@@ -4916,7 +4917,8 @@ export const translations: Record<
     "review.helpful": "Faydalı",
     "review.helpfulActive": "Faydalı ✓",
     "review.deleteTitle": "Yorumu sil",
-    "review.deleteBody": "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
+    "review.deleteBody":
+      "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
     "review.deleteConfirm": "Sil",
     "review.deleteCancel": "Vazgeç",
     "review.deleteErrorTitle": "Yorum silinemedi",
@@ -4927,7 +4929,8 @@ export const translations: Record<
     "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
     "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
     "review.helpfulOwnReview": "Kendi yorumun",
-    "review.helpfulOwnReviewMessage": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+    "review.helpfulOwnReviewMessage":
+      "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "review.reported": "Signalé",
     "review.reportTitle": "Signaler l’avis",
@@ -4940,12 +4943,15 @@ export const translations: Record<
     "review.reportCancel": "Annuler",
     "review.reportSubmit": "Envoyer",
     "review.reportSuccessTitle": "Avis signalé",
-    "review.reportSuccessBody": "Votre signalement a été reçu et enregistré pour examen.",
+    "review.reportSuccessBody":
+      "Votre signalement a été reçu et enregistré pour examen.",
     "review.reportAlready": "Vous avez déjà signalé cet avis.",
-    "review.reportPermissionErrorText": "Nous n’avons pas pu vérifier l’autorisation de signaler cet avis. Reconnectez-vous et réessayez.",
+    "review.reportPermissionErrorText":
+      "Nous n’avons pas pu vérifier l’autorisation de signaler cet avis. Reconnectez-vous et réessayez.",
     "review.reportOwnReview": "Vous ne pouvez pas signaler votre propre avis.",
     "review.reportErrorTitle": "L’avis n’a pas pu être signalé",
-    "review.reportErrorText": "Le signalement n’a pas pu être envoyé. Veuillez réessayer.",
+    "review.reportErrorText":
+      "Le signalement n’a pas pu être envoyé. Veuillez réessayer.",
 
     "outlet.previousComment": "Commentaire précédent",
     "outlet.previousTitle": "Titre précédent",
@@ -6249,7 +6255,8 @@ export const translations: Record<
     "review.helpful": "Faydalı",
     "review.helpfulActive": "Faydalı ✓",
     "review.deleteTitle": "Yorumu sil",
-    "review.deleteBody": "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
+    "review.deleteBody":
+      "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
     "review.deleteConfirm": "Sil",
     "review.deleteCancel": "Vazgeç",
     "review.deleteErrorTitle": "Yorum silinemedi",
@@ -6260,7 +6267,8 @@ export const translations: Record<
     "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
     "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
     "review.helpfulOwnReview": "Kendi yorumun",
-    "review.helpfulOwnReviewMessage": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+    "review.helpfulOwnReviewMessage":
+      "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "review.reported": "Gemeldet",
     "review.reportTitle": "Bewertung melden",
@@ -6273,12 +6281,15 @@ export const translations: Record<
     "review.reportCancel": "Abbrechen",
     "review.reportSubmit": "Senden",
     "review.reportSuccessTitle": "Bewertung gemeldet",
-    "review.reportSuccessBody": "Deine Meldung wurde empfangen und zur Prüfung gespeichert.",
+    "review.reportSuccessBody":
+      "Deine Meldung wurde empfangen und zur Prüfung gespeichert.",
     "review.reportAlready": "Du hast diese Bewertung bereits gemeldet.",
-    "review.reportPermissionErrorText": "Wir konnten die Berechtigung zum Melden dieser Bewertung nicht prüfen. Bitte melde dich erneut an und versuche es noch einmal.",
+    "review.reportPermissionErrorText":
+      "Wir konnten die Berechtigung zum Melden dieser Bewertung nicht prüfen. Bitte melde dich erneut an und versuche es noch einmal.",
     "review.reportOwnReview": "Du kannst deine eigene Bewertung nicht melden.",
     "review.reportErrorTitle": "Bewertung konnte nicht gemeldet werden",
-    "review.reportErrorText": "Meldung konnte nicht gesendet werden. Bitte versuche es erneut.",
+    "review.reportErrorText":
+      "Meldung konnte nicht gesendet werden. Bitte versuche es erneut.",
     "outlet.previousComment": "Vorheriger Kommentar",
     "outlet.previousTitle": "Vorheriger Titel",
     "notifications.title": "Benachrichtigungen",
@@ -7533,7 +7544,8 @@ export const translations: Record<
     "review.helpful": "Faydalı",
     "review.helpfulActive": "Faydalı ✓",
     "review.deleteTitle": "Yorumu sil",
-    "review.deleteBody": "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
+    "review.deleteBody":
+      "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
     "review.deleteConfirm": "Sil",
     "review.deleteCancel": "Vazgeç",
     "review.deleteErrorTitle": "Yorum silinemedi",
@@ -7544,7 +7556,8 @@ export const translations: Record<
     "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
     "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
     "review.helpfulOwnReview": "Kendi yorumun",
-    "review.helpfulOwnReviewMessage": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+    "review.helpfulOwnReviewMessage":
+      "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "review.reported": "تم الإبلاغ",
     "review.reportTitle": "الإبلاغ عن التقييم",
@@ -7559,7 +7572,8 @@ export const translations: Record<
     "review.reportSuccessTitle": "تم الإبلاغ عن التقييم",
     "review.reportSuccessBody": "تم استلام بلاغك وحفظه للمراجعة.",
     "review.reportAlready": "لقد أبلغت عن هذا التقييم من قبل.",
-    "review.reportPermissionErrorText": "تعذر علينا التحقق من إذن الإبلاغ عن هذا التقييم. يُرجى تسجيل الدخول مجددًا والمحاولة مرة أخرى.",
+    "review.reportPermissionErrorText":
+      "تعذر علينا التحقق من إذن الإبلاغ عن هذا التقييم. يُرجى تسجيل الدخول مجددًا والمحاولة مرة أخرى.",
     "review.reportOwnReview": "لا يمكنك الإبلاغ عن تقييمك الخاص.",
     "review.reportErrorTitle": "تعذر الإبلاغ عن التقييم",
     "review.reportErrorText": "تعذر إرسال البلاغ. يرجى المحاولة مرة أخرى.",
@@ -8812,7 +8826,8 @@ export const translations: Record<
     "review.helpful": "Faydalı",
     "review.helpfulActive": "Faydalı ✓",
     "review.deleteTitle": "Yorumu sil",
-    "review.deleteBody": "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
+    "review.deleteBody":
+      "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
     "review.deleteConfirm": "Sil",
     "review.deleteCancel": "Vazgeç",
     "review.deleteErrorTitle": "Yorum silinemedi",
@@ -8823,7 +8838,8 @@ export const translations: Record<
     "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
     "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
     "review.helpfulOwnReview": "Kendi yorumun",
-    "review.helpfulOwnReviewMessage": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+    "review.helpfulOwnReviewMessage":
+      "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "review.reported": "Отправлено",
     "review.reportTitle": "Пожаловаться на отзыв",
@@ -8836,12 +8852,15 @@ export const translations: Record<
     "review.reportCancel": "Отмена",
     "review.reportSubmit": "Отправить",
     "review.reportSuccessTitle": "Жалоба отправлена",
-    "review.reportSuccessBody": "Мы получили жалобу и сохранили ее для проверки.",
+    "review.reportSuccessBody":
+      "Мы получили жалобу и сохранили ее для проверки.",
     "review.reportAlready": "Вы уже пожаловались на этот отзыв.",
-    "review.reportPermissionErrorText": "Не удалось проверить разрешение на жалобу на этот отзыв. Войдите снова и повторите попытку.",
+    "review.reportPermissionErrorText":
+      "Не удалось проверить разрешение на жалобу на этот отзыв. Войдите снова и повторите попытку.",
     "review.reportOwnReview": "Нельзя пожаловаться на собственный отзыв.",
     "review.reportErrorTitle": "Не удалось пожаловаться на отзыв",
-    "review.reportErrorText": "Не удалось отправить жалобу. Попробуйте еще раз.",
+    "review.reportErrorText":
+      "Не удалось отправить жалобу. Попробуйте еще раз.",
 
     "outlet.previousComment": "Предыдущий комментарий",
     "outlet.previousTitle": "Предыдущий заголовок",
@@ -10110,7 +10129,8 @@ export const translations: Record<
     "review.helpful": "Faydalı",
     "review.helpfulActive": "Faydalı ✓",
     "review.deleteTitle": "Yorumu sil",
-    "review.deleteBody": "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
+    "review.deleteBody":
+      "Yorumunu silmek istiyor musun? Bu yorum outlet puanından kaldırılır.",
     "review.deleteConfirm": "Sil",
     "review.deleteCancel": "Vazgeç",
     "review.deleteErrorTitle": "Yorum silinemedi",
@@ -10121,7 +10141,8 @@ export const translations: Record<
     "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
     "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
     "review.helpfulOwnReview": "Kendi yorumun",
-    "review.helpfulOwnReviewMessage": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+    "review.helpfulOwnReviewMessage":
+      "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.report": "Bildir",
     "review.reported": "已举报",
     "review.reportTitle": "举报评价",
@@ -10136,7 +10157,8 @@ export const translations: Record<
     "review.reportSuccessTitle": "评价已举报",
     "review.reportSuccessBody": "你的举报已收到，并已保存以供审核。",
     "review.reportAlready": "你已经举报过此评价。",
-    "review.reportPermissionErrorText": "无法验证你举报此评价的权限。请重新登录后再试。",
+    "review.reportPermissionErrorText":
+      "无法验证你举报此评价的权限。请重新登录后再试。",
     "review.reportOwnReview": "你不能举报自己的评价。",
     "review.reportErrorTitle": "无法举报评价",
     "review.reportErrorText": "举报发送失败。请重试。",
@@ -15079,7 +15101,6 @@ for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], tripPlannerV2UxPatchTranslations[locale]);
 }
 
-
 const navigationProfileV2Phase1ATranslations: Record<
   TranslationLanguage,
   Record<string, string>
@@ -15106,7 +15127,8 @@ const navigationProfileV2Phase1ATranslations: Record<
     "profile.subtitles.favorites": "Ver los outlets que guardaste.",
     "profile.accountManagement": "Gestión de cuenta",
     "profile.deleteAccount": "Eliminar cuenta",
-    "profile.subtitles.deleteAccount": "Gestiona tu cuenta y los datos relacionados.",
+    "profile.subtitles.deleteAccount":
+      "Gestiona tu cuenta y los datos relacionados.",
   },
   fr: {
     "nav.trips": "Voyages",
@@ -15114,7 +15136,8 @@ const navigationProfileV2Phase1ATranslations: Record<
     "profile.subtitles.favorites": "Voir les outlets enregistrés.",
     "profile.accountManagement": "Gestion du compte",
     "profile.deleteAccount": "Supprimer le compte",
-    "profile.subtitles.deleteAccount": "Gérez votre compte et les données associées.",
+    "profile.subtitles.deleteAccount":
+      "Gérez votre compte et les données associées.",
   },
   de: {
     "nav.trips": "Reisen",
@@ -15122,7 +15145,8 @@ const navigationProfileV2Phase1ATranslations: Record<
     "profile.subtitles.favorites": "Sieh dir deine gespeicherten Outlets an.",
     "profile.accountManagement": "Kontoverwaltung",
     "profile.deleteAccount": "Konto löschen",
-    "profile.subtitles.deleteAccount": "Verwalte dein Konto und zugehörige Daten.",
+    "profile.subtitles.deleteAccount":
+      "Verwalte dein Konto und zugehörige Daten.",
   },
   ar: {
     "nav.trips": "الرحلات",
@@ -15138,7 +15162,8 @@ const navigationProfileV2Phase1ATranslations: Record<
     "profile.subtitles.favorites": "Посмотрите сохраненные аутлеты.",
     "profile.accountManagement": "Управление аккаунтом",
     "profile.deleteAccount": "Удалить аккаунт",
-    "profile.subtitles.deleteAccount": "Управляйте аккаунтом и связанными данными.",
+    "profile.subtitles.deleteAccount":
+      "Управляйте аккаунтом и связанными данными.",
   },
   zh: {
     "nav.trips": "行程",
@@ -15151,7 +15176,10 @@ const navigationProfileV2Phase1ATranslations: Record<
 };
 
 for (const locale of supportedLanguageCodes) {
-  Object.assign(translations[locale], navigationProfileV2Phase1ATranslations[locale]);
+  Object.assign(
+    translations[locale],
+    navigationProfileV2Phase1ATranslations[locale],
+  );
 }
 
 // QA guard: "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var."
@@ -15162,72 +15190,101 @@ const accountDeletionSafetyPhase1BTranslations: Record<
 > = {
   en: {
     "reviews.anonymousAccount": "Anonymous account",
-    "deleteAccount.reviewsText": "Your reviews and ratings stay to protect the outlet rating system.",
-    "deleteAccount.reviewsAnonymousText": "After your account is deleted, your reviews appear as Anonymous account.",
-    "deleteAccount.reviewsNoRelinkText": "Even if you register again with the same email, your old reviews are not linked to your new account.",
+    "deleteAccount.reviewsText":
+      "Your reviews and ratings stay to protect the outlet rating system.",
+    "deleteAccount.reviewsAnonymousText":
+      "After your account is deleted, your reviews appear as Anonymous account.",
+    "deleteAccount.reviewsNoRelinkText":
+      "Even if you register again with the same email, your old reviews are not linked to your new account.",
     "deleteAccount.signInRequiredTitle": "Sign-in required",
-    "deleteAccount.signInRequiredMessage": "Sign in before deleting your account.",
+    "deleteAccount.signInRequiredMessage":
+      "Sign in before deleting your account.",
     "deleteAccount.signInRequiredButton": "Sign In",
   },
   tr: {
     "reviews.anonymousAccount": "Anonim hesap",
-    "deleteAccount.reviewsText": "Yorumların ve puanların outlet puan sistemini korumak için kalır.",
-    "deleteAccount.reviewsAnonymousText": "Hesabın silindikten sonra yorumların Anonim hesap olarak görünür.",
-    "deleteAccount.reviewsNoRelinkText": "Aynı e-posta ile yeniden kayıt olsan bile eski yorumların yeni hesabına bağlanmaz.",
+    "deleteAccount.reviewsText":
+      "Yorumların ve puanların outlet puan sistemini korumak için kalır.",
+    "deleteAccount.reviewsAnonymousText":
+      "Hesabın silindikten sonra yorumların Anonim hesap olarak görünür.",
+    "deleteAccount.reviewsNoRelinkText":
+      "Aynı e-posta ile yeniden kayıt olsan bile eski yorumların yeni hesabına bağlanmaz.",
     "deleteAccount.signInRequiredTitle": "Giriş gerekli",
-    "deleteAccount.signInRequiredMessage": "Hesabını silmek için önce giriş yap.",
+    "deleteAccount.signInRequiredMessage":
+      "Hesabını silmek için önce giriş yap.",
     "deleteAccount.signInRequiredButton": "Giriş Yap",
   },
   es: {
     "reviews.anonymousAccount": "Cuenta anónima",
-    "deleteAccount.reviewsText": "Tus reseñas y puntuaciones permanecen para proteger el sistema de valoración del outlet.",
-    "deleteAccount.reviewsAnonymousText": "Después de eliminar tu cuenta, tus reseñas aparecerán como Cuenta anónima.",
-    "deleteAccount.reviewsNoRelinkText": "Aunque vuelvas a registrarte con el mismo correo, tus reseñas antiguas no se vincularán a tu nueva cuenta.",
+    "deleteAccount.reviewsText":
+      "Tus reseñas y puntuaciones permanecen para proteger el sistema de valoración del outlet.",
+    "deleteAccount.reviewsAnonymousText":
+      "Después de eliminar tu cuenta, tus reseñas aparecerán como Cuenta anónima.",
+    "deleteAccount.reviewsNoRelinkText":
+      "Aunque vuelvas a registrarte con el mismo correo, tus reseñas antiguas no se vincularán a tu nueva cuenta.",
     "deleteAccount.signInRequiredTitle": "Inicio de sesión requerido",
-    "deleteAccount.signInRequiredMessage": "Inicia sesión antes de eliminar tu cuenta.",
+    "deleteAccount.signInRequiredMessage":
+      "Inicia sesión antes de eliminar tu cuenta.",
     "deleteAccount.signInRequiredButton": "Iniciar sesión",
   },
   fr: {
     "reviews.anonymousAccount": "Compte anonyme",
-    "deleteAccount.reviewsText": "Vos avis et notes restent afin de préserver le système de notation de l'outlet.",
-    "deleteAccount.reviewsAnonymousText": "Après la suppression de votre compte, vos avis apparaissent comme Compte anonyme.",
-    "deleteAccount.reviewsNoRelinkText": "Même si vous vous réinscrivez avec la même adresse e-mail, vos anciens avis ne seront pas liés à votre nouveau compte.",
+    "deleteAccount.reviewsText":
+      "Vos avis et notes restent afin de préserver le système de notation de l'outlet.",
+    "deleteAccount.reviewsAnonymousText":
+      "Après la suppression de votre compte, vos avis apparaissent comme Compte anonyme.",
+    "deleteAccount.reviewsNoRelinkText":
+      "Même si vous vous réinscrivez avec la même adresse e-mail, vos anciens avis ne seront pas liés à votre nouveau compte.",
     "deleteAccount.signInRequiredTitle": "Connexion requise",
-    "deleteAccount.signInRequiredMessage": "Connectez-vous avant de supprimer votre compte.",
+    "deleteAccount.signInRequiredMessage":
+      "Connectez-vous avant de supprimer votre compte.",
     "deleteAccount.signInRequiredButton": "Se connecter",
   },
   de: {
     "reviews.anonymousAccount": "Anonymes Konto",
-    "deleteAccount.reviewsText": "Deine Bewertungen und Punktzahlen bleiben erhalten, um das Outlet-Bewertungssystem zu schützen.",
-    "deleteAccount.reviewsAnonymousText": "Nach dem Löschen deines Kontos erscheinen deine Bewertungen als Anonymes Konto.",
-    "deleteAccount.reviewsNoRelinkText": "Auch wenn du dich mit derselben E-Mail erneut registrierst, werden alte Bewertungen nicht mit deinem neuen Konto verknüpft.",
+    "deleteAccount.reviewsText":
+      "Deine Bewertungen und Punktzahlen bleiben erhalten, um das Outlet-Bewertungssystem zu schützen.",
+    "deleteAccount.reviewsAnonymousText":
+      "Nach dem Löschen deines Kontos erscheinen deine Bewertungen als Anonymes Konto.",
+    "deleteAccount.reviewsNoRelinkText":
+      "Auch wenn du dich mit derselben E-Mail erneut registrierst, werden alte Bewertungen nicht mit deinem neuen Konto verknüpft.",
     "deleteAccount.signInRequiredTitle": "Anmeldung erforderlich",
-    "deleteAccount.signInRequiredMessage": "Melde dich an, bevor du dein Konto löschst.",
+    "deleteAccount.signInRequiredMessage":
+      "Melde dich an, bevor du dein Konto löschst.",
     "deleteAccount.signInRequiredButton": "Anmelden",
   },
   ar: {
     "reviews.anonymousAccount": "حساب مجهول",
-    "deleteAccount.reviewsText": "تبقى مراجعاتك وتقييماتك لحماية نظام تقييم المنفذ.",
-    "deleteAccount.reviewsAnonymousText": "بعد حذف حسابك، ستظهر مراجعاتك باسم حساب مجهول.",
-    "deleteAccount.reviewsNoRelinkText": "حتى إذا سجلت مجدداً بالبريد الإلكتروني نفسه، فلن ترتبط مراجعاتك القديمة بحسابك الجديد.",
+    "deleteAccount.reviewsText":
+      "تبقى مراجعاتك وتقييماتك لحماية نظام تقييم المنفذ.",
+    "deleteAccount.reviewsAnonymousText":
+      "بعد حذف حسابك، ستظهر مراجعاتك باسم حساب مجهول.",
+    "deleteAccount.reviewsNoRelinkText":
+      "حتى إذا سجلت مجدداً بالبريد الإلكتروني نفسه، فلن ترتبط مراجعاتك القديمة بحسابك الجديد.",
     "deleteAccount.signInRequiredTitle": "تسجيل الدخول مطلوب",
     "deleteAccount.signInRequiredMessage": "سجّل الدخول قبل حذف حسابك.",
     "deleteAccount.signInRequiredButton": "تسجيل الدخول",
   },
   ru: {
     "reviews.anonymousAccount": "Анонимный аккаунт",
-    "deleteAccount.reviewsText": "Ваши отзывы и оценки сохраняются, чтобы защитить систему рейтинга аутлета.",
-    "deleteAccount.reviewsAnonymousText": "После удаления аккаунта ваши отзывы будут отображаться как Анонимный аккаунт.",
-    "deleteAccount.reviewsNoRelinkText": "Даже если вы снова зарегистрируетесь с тем же адресом электронной почты, старые отзывы не будут связаны с новым аккаунтом.",
+    "deleteAccount.reviewsText":
+      "Ваши отзывы и оценки сохраняются, чтобы защитить систему рейтинга аутлета.",
+    "deleteAccount.reviewsAnonymousText":
+      "После удаления аккаунта ваши отзывы будут отображаться как Анонимный аккаунт.",
+    "deleteAccount.reviewsNoRelinkText":
+      "Даже если вы снова зарегистрируетесь с тем же адресом электронной почты, старые отзывы не будут связаны с новым аккаунтом.",
     "deleteAccount.signInRequiredTitle": "Требуется вход",
-    "deleteAccount.signInRequiredMessage": "Войдите, прежде чем удалить аккаунт.",
+    "deleteAccount.signInRequiredMessage":
+      "Войдите, прежде чем удалить аккаунт.",
     "deleteAccount.signInRequiredButton": "Войти",
   },
   zh: {
     "reviews.anonymousAccount": "匿名账号",
     "deleteAccount.reviewsText": "你的评论和评分会保留，以保护奥莱评分系统。",
-    "deleteAccount.reviewsAnonymousText": "账号删除后，你的评论将显示为匿名账号。",
-    "deleteAccount.reviewsNoRelinkText": "即使你使用同一邮箱重新注册，旧评论也不会关联到新账号。",
+    "deleteAccount.reviewsAnonymousText":
+      "账号删除后，你的评论将显示为匿名账号。",
+    "deleteAccount.reviewsNoRelinkText":
+      "即使你使用同一邮箱重新注册，旧评论也不会关联到新账号。",
     "deleteAccount.signInRequiredTitle": "需要登录",
     "deleteAccount.signInRequiredMessage": "删除账号前请先登录。",
     "deleteAccount.signInRequiredButton": "登录",
@@ -15235,11 +15292,16 @@ const accountDeletionSafetyPhase1BTranslations: Record<
 };
 
 for (const locale of supportedLanguageCodes) {
-  Object.assign(translations[locale], accountDeletionSafetyPhase1BTranslations[locale]);
+  Object.assign(
+    translations[locale],
+    accountDeletionSafetyPhase1BTranslations[locale],
+  );
 }
 
-
-const reviewRatingsRegressionTranslations: Record<TranslationLanguage, Record<string, string>> = {
+const reviewRatingsRegressionTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
   en: {
     "nav.writeReview": "Write review",
     "writeReview.title": "Write review",
@@ -15256,14 +15318,19 @@ const reviewRatingsRegressionTranslations: Record<TranslationLanguage, Record<st
     "writeReview.ratingRequired": "Select all rating categories.",
     "writeReview.categoryRatingsRequired": "Select all rating categories.",
     "writeReview.saveErrorTitle": "Yorum kaydedilemedi",
-    "writeReview.saveErrorText": "We could not save your review. Please try again.",
-    "writeReview.savePermissionErrorText": "We couldn't verify permission to save this review. Please sign in again and try once more.",
+    "writeReview.saveErrorText":
+      "We could not save your review. Please try again.",
+    "writeReview.savePermissionErrorText":
+      "We couldn't verify permission to save this review. Please sign in again and try once more.",
     "writeReview.commentRequired": "Tüm puan kategorilerini seç.",
     "writeReview.commentLabel": "Review text",
     "writeReview.submit": "Save review",
-    "deleteAccount.reauthMessage": "For security, you need to sign in again. After signing in, you can delete your account.",
-    "deleteAccount.serviceRetryMessage": "The account deletion service could not be reached. Please try again later.",
-    "deleteAccount.failedMessage": "We could not delete your account. Please try again.",
+    "deleteAccount.reauthMessage":
+      "For security, you need to sign in again. After signing in, you can delete your account.",
+    "deleteAccount.serviceRetryMessage":
+      "The account deletion service could not be reached. Please try again later.",
+    "deleteAccount.failedMessage":
+      "We could not delete your account. Please try again.",
   },
   tr: {
     "nav.writeReview": "Yorum yaz",
@@ -15281,23 +15348,35 @@ const reviewRatingsRegressionTranslations: Record<TranslationLanguage, Record<st
     "writeReview.ratingRequired": "Tüm puan kategorilerini seç.",
     "writeReview.categoryRatingsRequired": "Tüm puan kategorilerini seç.",
     "writeReview.saveErrorTitle": "Yorum kaydedilemedi",
-    "writeReview.saveErrorText": "Yorumunu kaydedemedik. Lütfen tekrar deneyin.",
-    "writeReview.savePermissionErrorText": "Bu yorumu kaydetme iznini doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
+    "writeReview.saveErrorText":
+      "Yorumunu kaydedemedik. Lütfen tekrar deneyin.",
+    "writeReview.savePermissionErrorText":
+      "Bu yorumu kaydetme iznini doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
     "writeReview.commentRequired": "Tüm puan kategorilerini seç.",
     "writeReview.commentLabel": "Yorum metni",
     "writeReview.submit": "Yorumu kaydet",
-    "deleteAccount.reauthMessage": "Güvenlik için tekrar giriş yapman gerekiyor. Giriş yaptıktan sonra hesabını silebilirsin.",
-    "deleteAccount.serviceRetryMessage": "Hesap silme servisine ulaşılamadı. Lütfen daha sonra tekrar deneyin.",
-    "deleteAccount.failedMessage": "Hesabınızı silemedik. Lütfen tekrar deneyin.",
+    "deleteAccount.reauthMessage":
+      "Güvenlik için tekrar giriş yapman gerekiyor. Giriş yaptıktan sonra hesabını silebilirsin.",
+    "deleteAccount.serviceRetryMessage":
+      "Hesap silme servisine ulaşılamadı. Lütfen daha sonra tekrar deneyin.",
+    "deleteAccount.failedMessage":
+      "Hesabınızı silemedik. Lütfen tekrar deneyin.",
   },
-  es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {},
+  es: {},
+  fr: {},
+  de: {},
+  ar: {},
+  ru: {},
+  zh: {},
 };
 
 reviewRatingsRegressionTranslations.es = {
   ...reviewRatingsRegressionTranslations.en,
   "writeReview.saveErrorTitle": "No se pudo guardar la reseña",
-  "writeReview.saveErrorText": "No pudimos guardar tu reseña. Inténtalo de nuevo.",
-  "writeReview.savePermissionErrorText": "No pudimos verificar el permiso para guardar esta reseña. Inicia sesión de nuevo y vuelve a intentarlo.",
+  "writeReview.saveErrorText":
+    "No pudimos guardar tu reseña. Inténtalo de nuevo.",
+  "writeReview.savePermissionErrorText":
+    "No pudimos verificar el permiso para guardar esta reseña. Inicia sesión de nuevo y vuelve a intentarlo.",
   "nav.writeReview": "Escribir reseña",
   "writeReview.title": "Escribir reseña",
   "writeReview.editTitle": "Editar reseña",
@@ -15309,8 +15388,10 @@ reviewRatingsRegressionTranslations.es = {
 reviewRatingsRegressionTranslations.fr = {
   ...reviewRatingsRegressionTranslations.en,
   "writeReview.saveErrorTitle": "L'avis n'a pas pu être enregistré",
-  "writeReview.saveErrorText": "Nous n'avons pas pu enregistrer votre avis. Veuillez réessayer.",
-  "writeReview.savePermissionErrorText": "Nous n'avons pas pu vérifier l'autorisation d'enregistrer cet avis. Veuillez vous reconnecter puis réessayer.",
+  "writeReview.saveErrorText":
+    "Nous n'avons pas pu enregistrer votre avis. Veuillez réessayer.",
+  "writeReview.savePermissionErrorText":
+    "Nous n'avons pas pu vérifier l'autorisation d'enregistrer cet avis. Veuillez vous reconnecter puis réessayer.",
   "nav.writeReview": "Écrire un avis",
   "writeReview.title": "Écrire un avis",
   "writeReview.editTitle": "Modifier l'avis",
@@ -15319,24 +15400,29 @@ reviewRatingsRegressionTranslations.fr = {
   "writeReview.categories.restaurants": "Restaurants",
   "writeReview.categories.services": "Services",
   "review.deleteTitle": "Delete review",
-  "review.deleteBody": "Do you want to delete your review? This review will be removed from the outlet rating.",
+  "review.deleteBody":
+    "Do you want to delete your review? This review will be removed from the outlet rating.",
   "review.deleteConfirm": "Delete",
   "review.deleteCancel": "Cancel",
   "review.deleteErrorTitle": "Review could not be deleted",
-  "review.deleteErrorText": "Your review could not be deleted. Please try again.",
+  "review.deleteErrorText":
+    "Your review could not be deleted. Please try again.",
   "review.saved": "Review saved",
   "review.updated": "Review updated",
   "review.helpfulAdded": "Marked as helpful",
   "review.helpfulRemoved": "Helpful mark removed",
   "review.helpfulAlready": "You have already marked this review as helpful.",
   "review.helpfulOwnReview": "Your review",
-    "review.helpfulOwnReviewMessage": "You cannot mark your own review as helpful.",
+  "review.helpfulOwnReviewMessage":
+    "You cannot mark your own review as helpful.",
 };
 reviewRatingsRegressionTranslations.de = {
   ...reviewRatingsRegressionTranslations.en,
   "writeReview.saveErrorTitle": "Bewertung konnte nicht gespeichert werden",
-  "writeReview.saveErrorText": "Wir konnten deine Bewertung nicht speichern. Bitte versuche es erneut.",
-  "writeReview.savePermissionErrorText": "Wir konnten die Berechtigung zum Speichern dieser Bewertung nicht prüfen. Bitte melde dich erneut an und versuche es noch einmal.",
+  "writeReview.saveErrorText":
+    "Wir konnten deine Bewertung nicht speichern. Bitte versuche es erneut.",
+  "writeReview.savePermissionErrorText":
+    "Wir konnten die Berechtigung zum Speichern dieser Bewertung nicht prüfen. Bitte melde dich erneut an und versuche es noch einmal.",
   "nav.writeReview": "Bewertung schreiben",
   "writeReview.title": "Bewertung schreiben",
   "writeReview.editTitle": "Bewertung bearbeiten",
@@ -15348,8 +15434,10 @@ reviewRatingsRegressionTranslations.de = {
 reviewRatingsRegressionTranslations.ar = {
   ...reviewRatingsRegressionTranslations.en,
   "writeReview.saveErrorTitle": "تعذر حفظ المراجعة",
-  "writeReview.saveErrorText": "لم نتمكن من حفظ مراجعتك. يُرجى المحاولة مرة أخرى.",
-  "writeReview.savePermissionErrorText": "لم نتمكن من التحقق من إذن حفظ هذه المراجعة. يُرجى تسجيل الدخول مرة أخرى ثم إعادة المحاولة.",
+  "writeReview.saveErrorText":
+    "لم نتمكن من حفظ مراجعتك. يُرجى المحاولة مرة أخرى.",
+  "writeReview.savePermissionErrorText":
+    "لم نتمكن من التحقق من إذن حفظ هذه المراجعة. يُرجى تسجيل الدخول مرة أخرى ثم إعادة المحاولة.",
   "nav.writeReview": "اكتب مراجعة",
   "writeReview.title": "اكتب مراجعة",
   "writeReview.editTitle": "تعديل المراجعة",
@@ -15361,8 +15449,10 @@ reviewRatingsRegressionTranslations.ar = {
 reviewRatingsRegressionTranslations.ru = {
   ...reviewRatingsRegressionTranslations.en,
   "writeReview.saveErrorTitle": "Не удалось сохранить отзыв",
-  "writeReview.saveErrorText": "Не удалось сохранить ваш отзыв. Повторите попытку.",
-  "writeReview.savePermissionErrorText": "Не удалось проверить разрешение на сохранение этого отзыва. Войдите снова и повторите попытку.",
+  "writeReview.saveErrorText":
+    "Не удалось сохранить ваш отзыв. Повторите попытку.",
+  "writeReview.savePermissionErrorText":
+    "Не удалось проверить разрешение на сохранение этого отзыва. Войдите снова и повторите попытку.",
   "nav.writeReview": "Написать отзыв",
   "writeReview.title": "Написать отзыв",
   "writeReview.editTitle": "Редактировать отзыв",
@@ -15375,7 +15465,8 @@ reviewRatingsRegressionTranslations.zh = {
   ...reviewRatingsRegressionTranslations.en,
   "writeReview.saveErrorTitle": "无法保存评价",
   "writeReview.saveErrorText": "我们无法保存你的评价。请重试。",
-  "writeReview.savePermissionErrorText": "我们无法验证保存此评价的权限。请重新登录后再试。",
+  "writeReview.savePermissionErrorText":
+    "我们无法验证保存此评价的权限。请重新登录后再试。",
   "nav.writeReview": "写评价",
   "writeReview.title": "写评价",
   "writeReview.editTitle": "编辑评价",
@@ -15386,10 +15477,16 @@ reviewRatingsRegressionTranslations.zh = {
 };
 
 for (const locale of supportedLanguageCodes) {
-  Object.assign(translations[locale], reviewRatingsRegressionTranslations[locale]);
+  Object.assign(
+    translations[locale],
+    reviewRatingsRegressionTranslations[locale],
+  );
 }
 
-const reviewContractV2Translations: Record<TranslationLanguage, Record<string, string>> = {
+const reviewContractV2Translations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
   en: {
     "outlet.previousComment": "Previous comment",
     "outlet.previousTitle": "Previous title",
@@ -15400,11 +15497,14 @@ const reviewContractV2Translations: Record<TranslationLanguage, Record<string, s
     "review.helpfulRemoved": "Helpful mark removed",
     "review.helpfulAlready": "You have already marked this review as helpful.",
     "review.helpfulOwnReview": "Your review",
-    "review.helpfulOwnReviewMessage": "You cannot mark your own review as helpful.",
+    "review.helpfulOwnReviewMessage":
+      "You cannot mark your own review as helpful.",
     "review.deleteErrorTitle": "Review could not be deleted",
-    "review.deleteErrorText": "Your review could not be deleted. Please try again.",
+    "review.deleteErrorText":
+      "Your review could not be deleted. Please try again.",
     "writeReview.saveErrorTitle": "Review could not be saved",
-    "writeReview.saveErrorText": "We could not save your review. Please try again.",
+    "writeReview.saveErrorText":
+      "We could not save your review. Please try again.",
   },
   tr: {
     "outlet.previousComment": "Önceki yorum",
@@ -15416,11 +15516,13 @@ const reviewContractV2Translations: Record<TranslationLanguage, Record<string, s
     "review.helpfulRemoved": "Faydalı işareti kaldırıldı",
     "review.helpfulAlready": "Bu yorumu zaten faydalı olarak işaretledin.",
     "review.helpfulOwnReview": "Kendi yorumun",
-    "review.helpfulOwnReviewMessage": "Kendi yorumunu faydalı olarak işaretleyemezsin.",
+    "review.helpfulOwnReviewMessage":
+      "Kendi yorumunu faydalı olarak işaretleyemezsin.",
     "review.deleteErrorTitle": "Yorum silinemedi",
     "review.deleteErrorText": "Yorumun silinemedi. Lütfen tekrar deneyin.",
     "writeReview.saveErrorTitle": "Yorum kaydedilemedi",
-    "writeReview.saveErrorText": "Yorumunu kaydedemedik. Lütfen tekrar deneyin.",
+    "writeReview.saveErrorText":
+      "Yorumunu kaydedemedik. Lütfen tekrar deneyin.",
   },
   es: {
     "outlet.previousComment": "Comentario anterior",
@@ -15432,11 +15534,14 @@ const reviewContractV2Translations: Record<TranslationLanguage, Record<string, s
     "review.helpfulRemoved": "Marca de útil eliminada",
     "review.helpfulAlready": "Ya marcaste esta reseña como útil.",
     "review.helpfulOwnReview": "Tu reseña",
-    "review.helpfulOwnReviewMessage": "No puedes marcar tu propia reseña como útil.",
+    "review.helpfulOwnReviewMessage":
+      "No puedes marcar tu propia reseña como útil.",
     "review.deleteErrorTitle": "No se pudo eliminar la reseña",
-    "review.deleteErrorText": "No se pudo eliminar tu reseña. Inténtalo de nuevo.",
+    "review.deleteErrorText":
+      "No se pudo eliminar tu reseña. Inténtalo de nuevo.",
     "writeReview.saveErrorTitle": "No se pudo guardar la reseña",
-    "writeReview.saveErrorText": "No pudimos guardar tu reseña. Inténtalo de nuevo.",
+    "writeReview.saveErrorText":
+      "No pudimos guardar tu reseña. Inténtalo de nuevo.",
   },
   fr: {
     "outlet.previousComment": "Commentaire précédent",
@@ -15448,11 +15553,14 @@ const reviewContractV2Translations: Record<TranslationLanguage, Record<string, s
     "review.helpfulRemoved": "Marque utile retirée",
     "review.helpfulAlready": "Vous avez déjà marqué cet avis comme utile.",
     "review.helpfulOwnReview": "Votre avis",
-    "review.helpfulOwnReviewMessage": "Vous ne pouvez pas marquer votre propre avis comme utile.",
+    "review.helpfulOwnReviewMessage":
+      "Vous ne pouvez pas marquer votre propre avis comme utile.",
     "review.deleteErrorTitle": "L'avis n'a pas pu être supprimé",
-    "review.deleteErrorText": "Votre avis n'a pas pu être supprimé. Veuillez réessayer.",
+    "review.deleteErrorText":
+      "Votre avis n'a pas pu être supprimé. Veuillez réessayer.",
     "writeReview.saveErrorTitle": "L'avis n'a pas pu être enregistré",
-    "writeReview.saveErrorText": "Nous n'avons pas pu enregistrer votre avis. Veuillez réessayer.",
+    "writeReview.saveErrorText":
+      "Nous n'avons pas pu enregistrer votre avis. Veuillez réessayer.",
   },
   de: {
     "outlet.previousComment": "Vorheriger Kommentar",
@@ -15462,13 +15570,17 @@ const reviewContractV2Translations: Record<TranslationLanguage, Record<string, s
     "review.helpfulActive": "✓ Hilfreich",
     "review.helpfulAdded": "Als hilfreich markiert",
     "review.helpfulRemoved": "Hilfreich-Markierung entfernt",
-    "review.helpfulAlready": "Du hast diese Bewertung bereits als hilfreich markiert.",
+    "review.helpfulAlready":
+      "Du hast diese Bewertung bereits als hilfreich markiert.",
     "review.helpfulOwnReview": "Deine Bewertung",
-    "review.helpfulOwnReviewMessage": "Du kannst deine eigene Bewertung nicht als hilfreich markieren.",
+    "review.helpfulOwnReviewMessage":
+      "Du kannst deine eigene Bewertung nicht als hilfreich markieren.",
     "review.deleteErrorTitle": "Bewertung konnte nicht gelöscht werden",
-    "review.deleteErrorText": "Deine Bewertung konnte nicht gelöscht werden. Bitte versuche es erneut.",
+    "review.deleteErrorText":
+      "Deine Bewertung konnte nicht gelöscht werden. Bitte versuche es erneut.",
     "writeReview.saveErrorTitle": "Bewertung konnte nicht gespeichert werden",
-    "writeReview.saveErrorText": "Wir konnten deine Bewertung nicht speichern. Bitte versuche es erneut.",
+    "writeReview.saveErrorText":
+      "Wir konnten deine Bewertung nicht speichern. Bitte versuche es erneut.",
   },
   ar: {
     "outlet.previousComment": "التعليق السابق",
@@ -15480,11 +15592,13 @@ const reviewContractV2Translations: Record<TranslationLanguage, Record<string, s
     "review.helpfulRemoved": "تمت إزالة علامة مفيد",
     "review.helpfulAlready": "لقد وضعت علامة مفيد على هذه المراجعة بالفعل.",
     "review.helpfulOwnReview": "مراجعتك",
-    "review.helpfulOwnReviewMessage": "لا يمكنك وضع علامة مفيد على مراجعتك الخاصة.",
+    "review.helpfulOwnReviewMessage":
+      "لا يمكنك وضع علامة مفيد على مراجعتك الخاصة.",
     "review.deleteErrorTitle": "تعذر حذف المراجعة",
     "review.deleteErrorText": "تعذر حذف مراجعتك. يُرجى المحاولة مرة أخرى.",
     "writeReview.saveErrorTitle": "تعذر حفظ المراجعة",
-    "writeReview.saveErrorText": "لم نتمكن من حفظ مراجعتك. يُرجى المحاولة مرة أخرى.",
+    "writeReview.saveErrorText":
+      "لم نتمكن من حفظ مراجعتك. يُرجى المحاولة مرة أخرى.",
   },
   ru: {
     "outlet.previousComment": "Предыдущий комментарий",
@@ -15496,11 +15610,14 @@ const reviewContractV2Translations: Record<TranslationLanguage, Record<string, s
     "review.helpfulRemoved": "Отметка полезности снята",
     "review.helpfulAlready": "Вы уже отметили этот отзыв как полезный.",
     "review.helpfulOwnReview": "Ваш отзыв",
-    "review.helpfulOwnReviewMessage": "Вы не можете отметить собственный отзыв как полезный.",
+    "review.helpfulOwnReviewMessage":
+      "Вы не можете отметить собственный отзыв как полезный.",
     "review.deleteErrorTitle": "Не удалось удалить отзыв",
-    "review.deleteErrorText": "Не удалось удалить ваш отзыв. Повторите попытку.",
+    "review.deleteErrorText":
+      "Не удалось удалить ваш отзыв. Повторите попытку.",
     "writeReview.saveErrorTitle": "Не удалось сохранить отзыв",
-    "writeReview.saveErrorText": "Не удалось сохранить ваш отзыв. Повторите попытку.",
+    "writeReview.saveErrorText":
+      "Не удалось сохранить ваш отзыв. Повторите попытку.",
   },
   zh: {
     "outlet.previousComment": "上一条评论",
@@ -15526,28 +15643,195 @@ for (const locale of supportedLanguageCodes) {
 
 const reviewModerationTranslations = {
   en: {
-    "moderation.title": "Moderation", "moderation.profileSubtitle": "Review reported comments.", "moderation.inboxTitle": "Reported reviews", "moderation.filter.open": "Open", "moderation.filter.reviewing": "Reviewing", "moderation.filter.action_taken": "Action taken", "moderation.filter.dismissed": "Dismissed", "moderation.markReviewing": "Start review", "moderation.dismissReport": "Dismiss report", "moderation.hideReview": "Hide review", "moderation.restoreReview": "Restore review", "moderation.addNote": "Add note", "moderation.note": "Moderation note", "moderation.reason": "Report reason", "moderation.reportingUsers": "Reporting users", "writeReview.hiddenByModeration": "This review was hidden by moderation.", "moderation.reviewHidden": "Review hidden", "moderation.reviewRestored": "Review published again", "moderation.reportClosed": "Report closed", "moderation.actionFailed": "Action could not be saved", "moderation.permissionDenied": "You do not have permission for this action."
+    "moderation.title": "Moderation",
+    "moderation.profileSubtitle": "Review reported comments.",
+    "moderation.inboxTitle": "Reported reviews",
+    "moderation.filter.open": "Open",
+    "moderation.filter.reviewing": "Reviewing",
+    "moderation.filter.action_taken": "Action taken",
+    "moderation.filter.dismissed": "Dismissed",
+    "moderation.markReviewing": "Start review",
+    "moderation.dismissReport": "Dismiss report",
+    "moderation.hideReview": "Hide review",
+    "moderation.restoreReview": "Restore review",
+    "moderation.addNote": "Add note",
+    "moderation.note": "Moderation note",
+    "moderation.reason": "Report reason",
+    "moderation.reportingUsers": "Reporting users",
+    "writeReview.hiddenByModeration": "This review was hidden by moderation.",
+    "moderation.reviewHidden": "Review hidden",
+    "moderation.reviewRestored": "Review published again",
+    "moderation.reportClosed": "Report closed",
+    "moderation.actionFailed": "Action could not be saved",
+    "moderation.permissionDenied":
+      "You do not have permission for this action.",
   },
   tr: {
-    "moderation.title": "Moderasyon", "moderation.profileSubtitle": "Bildirilen yorumları incele.", "moderation.inboxTitle": "Bildirilen yorumlar", "moderation.filter.open": "Açık", "moderation.filter.reviewing": "İncelemede", "moderation.filter.action_taken": "İşlem yapıldı", "moderation.filter.dismissed": "Reddedildi", "moderation.markReviewing": "İncelemeye al", "moderation.dismissReport": "Raporu reddet", "moderation.hideReview": "Yorumu gizle", "moderation.restoreReview": "Yorumu geri al", "moderation.addNote": "Not ekle", "moderation.note": "Moderasyon notu", "moderation.reason": "Rapor nedeni", "moderation.reportingUsers": "Bildiren kullanıcılar", "writeReview.hiddenByModeration": "Bu yorum moderasyon tarafından gizlendi.", "moderation.reviewHidden": "Yorum gizlendi", "moderation.reviewRestored": "Yorum tekrar yayınlandı", "moderation.reportClosed": "Rapor kapatıldı", "moderation.actionFailed": "İşlem kaydedilemedi", "moderation.permissionDenied": "Bu işlem için yetkin yok."
+    "moderation.title": "Moderasyon",
+    "moderation.profileSubtitle": "Bildirilen yorumları incele.",
+    "moderation.inboxTitle": "Bildirilen yorumlar",
+    "moderation.filter.open": "Açık",
+    "moderation.filter.reviewing": "İncelemede",
+    "moderation.filter.action_taken": "İşlem yapıldı",
+    "moderation.filter.dismissed": "Reddedildi",
+    "moderation.markReviewing": "İncelemeye al",
+    "moderation.dismissReport": "Raporu reddet",
+    "moderation.hideReview": "Yorumu gizle",
+    "moderation.restoreReview": "Yorumu geri al",
+    "moderation.addNote": "Not ekle",
+    "moderation.note": "Moderasyon notu",
+    "moderation.reason": "Rapor nedeni",
+    "moderation.reportingUsers": "Bildiren kullanıcılar",
+    "writeReview.hiddenByModeration":
+      "Bu yorum moderasyon tarafından gizlendi.",
+    "moderation.reviewHidden": "Yorum gizlendi",
+    "moderation.reviewRestored": "Yorum tekrar yayınlandı",
+    "moderation.reportClosed": "Rapor kapatıldı",
+    "moderation.actionFailed": "İşlem kaydedilemedi",
+    "moderation.permissionDenied": "Bu işlem için yetkin yok.",
   },
   es: {
-    "moderation.title": "Moderación", "moderation.profileSubtitle": "Revisar reseñas reportadas.", "moderation.inboxTitle": "Reseñas reportadas", "moderation.filter.open": "Abiertas", "moderation.filter.reviewing": "En revisión", "moderation.filter.action_taken": "Acción tomada", "moderation.filter.dismissed": "Rechazadas", "moderation.markReviewing": "Iniciar revisión", "moderation.dismissReport": "Rechazar reporte", "moderation.hideReview": "Ocultar reseña", "moderation.restoreReview": "Restaurar reseña", "moderation.addNote": "Añadir nota", "moderation.note": "Nota de moderación", "moderation.reason": "Motivo del reporte", "moderation.reportingUsers": "Usuarios que reportan", "writeReview.hiddenByModeration": "Esta reseña fue ocultada por moderación.", "moderation.reviewHidden": "Reseña ocultada", "moderation.reviewRestored": "Reseña publicada de nuevo", "moderation.reportClosed": "Reporte cerrado", "moderation.actionFailed": "No se pudo guardar la acción", "moderation.permissionDenied": "No tienes permiso para esta acción."
+    "moderation.title": "Moderación",
+    "moderation.profileSubtitle": "Revisar reseñas reportadas.",
+    "moderation.inboxTitle": "Reseñas reportadas",
+    "moderation.filter.open": "Abiertas",
+    "moderation.filter.reviewing": "En revisión",
+    "moderation.filter.action_taken": "Acción tomada",
+    "moderation.filter.dismissed": "Rechazadas",
+    "moderation.markReviewing": "Iniciar revisión",
+    "moderation.dismissReport": "Rechazar reporte",
+    "moderation.hideReview": "Ocultar reseña",
+    "moderation.restoreReview": "Restaurar reseña",
+    "moderation.addNote": "Añadir nota",
+    "moderation.note": "Nota de moderación",
+    "moderation.reason": "Motivo del reporte",
+    "moderation.reportingUsers": "Usuarios que reportan",
+    "writeReview.hiddenByModeration":
+      "Esta reseña fue ocultada por moderación.",
+    "moderation.reviewHidden": "Reseña ocultada",
+    "moderation.reviewRestored": "Reseña publicada de nuevo",
+    "moderation.reportClosed": "Reporte cerrado",
+    "moderation.actionFailed": "No se pudo guardar la acción",
+    "moderation.permissionDenied": "No tienes permiso para esta acción.",
   },
   fr: {
-    "moderation.title": "Modération", "moderation.profileSubtitle": "Examiner les avis signalés.", "moderation.inboxTitle": "Avis signalés", "moderation.filter.open": "Ouverts", "moderation.filter.reviewing": "En examen", "moderation.filter.action_taken": "Action effectuée", "moderation.filter.dismissed": "Rejetés", "moderation.markReviewing": "Commencer l’examen", "moderation.dismissReport": "Rejeter le signalement", "moderation.hideReview": "Masquer l’avis", "moderation.restoreReview": "Restaurer l’avis", "moderation.addNote": "Ajouter une note", "moderation.note": "Note de modération", "moderation.reason": "Motif du signalement", "moderation.reportingUsers": "Utilisateurs signalants", "writeReview.hiddenByModeration": "Cet avis a été masqué par la modération.", "moderation.reviewHidden": "Avis masqué", "moderation.reviewRestored": "Avis republié", "moderation.reportClosed": "Signalement clôturé", "moderation.actionFailed": "L’action n’a pas pu être enregistrée", "moderation.permissionDenied": "Vous n’avez pas l’autorisation pour cette action."
+    "moderation.title": "Modération",
+    "moderation.profileSubtitle": "Examiner les avis signalés.",
+    "moderation.inboxTitle": "Avis signalés",
+    "moderation.filter.open": "Ouverts",
+    "moderation.filter.reviewing": "En examen",
+    "moderation.filter.action_taken": "Action effectuée",
+    "moderation.filter.dismissed": "Rejetés",
+    "moderation.markReviewing": "Commencer l’examen",
+    "moderation.dismissReport": "Rejeter le signalement",
+    "moderation.hideReview": "Masquer l’avis",
+    "moderation.restoreReview": "Restaurer l’avis",
+    "moderation.addNote": "Ajouter une note",
+    "moderation.note": "Note de modération",
+    "moderation.reason": "Motif du signalement",
+    "moderation.reportingUsers": "Utilisateurs signalants",
+    "writeReview.hiddenByModeration":
+      "Cet avis a été masqué par la modération.",
+    "moderation.reviewHidden": "Avis masqué",
+    "moderation.reviewRestored": "Avis republié",
+    "moderation.reportClosed": "Signalement clôturé",
+    "moderation.actionFailed": "L’action n’a pas pu être enregistrée",
+    "moderation.permissionDenied":
+      "Vous n’avez pas l’autorisation pour cette action.",
   },
   de: {
-    "moderation.title": "Moderation", "moderation.profileSubtitle": "Gemeldete Bewertungen prüfen.", "moderation.inboxTitle": "Gemeldete Bewertungen", "moderation.filter.open": "Offen", "moderation.filter.reviewing": "In Prüfung", "moderation.filter.action_taken": "Maßnahme ergriffen", "moderation.filter.dismissed": "Abgelehnt", "moderation.markReviewing": "Prüfung starten", "moderation.dismissReport": "Meldung ablehnen", "moderation.hideReview": "Bewertung ausblenden", "moderation.restoreReview": "Bewertung wiederherstellen", "moderation.addNote": "Notiz hinzufügen", "moderation.note": "Moderationsnotiz", "moderation.reason": "Meldegrund", "moderation.reportingUsers": "Meldende Nutzer", "writeReview.hiddenByModeration": "Diese Bewertung wurde von der Moderation ausgeblendet.", "moderation.reviewHidden": "Bewertung ausgeblendet", "moderation.reviewRestored": "Bewertung erneut veröffentlicht", "moderation.reportClosed": "Meldung geschlossen", "moderation.actionFailed": "Aktion konnte nicht gespeichert werden", "moderation.permissionDenied": "Du hast keine Berechtigung für diese Aktion."
+    "moderation.title": "Moderation",
+    "moderation.profileSubtitle": "Gemeldete Bewertungen prüfen.",
+    "moderation.inboxTitle": "Gemeldete Bewertungen",
+    "moderation.filter.open": "Offen",
+    "moderation.filter.reviewing": "In Prüfung",
+    "moderation.filter.action_taken": "Maßnahme ergriffen",
+    "moderation.filter.dismissed": "Abgelehnt",
+    "moderation.markReviewing": "Prüfung starten",
+    "moderation.dismissReport": "Meldung ablehnen",
+    "moderation.hideReview": "Bewertung ausblenden",
+    "moderation.restoreReview": "Bewertung wiederherstellen",
+    "moderation.addNote": "Notiz hinzufügen",
+    "moderation.note": "Moderationsnotiz",
+    "moderation.reason": "Meldegrund",
+    "moderation.reportingUsers": "Meldende Nutzer",
+    "writeReview.hiddenByModeration":
+      "Diese Bewertung wurde von der Moderation ausgeblendet.",
+    "moderation.reviewHidden": "Bewertung ausgeblendet",
+    "moderation.reviewRestored": "Bewertung erneut veröffentlicht",
+    "moderation.reportClosed": "Meldung geschlossen",
+    "moderation.actionFailed": "Aktion konnte nicht gespeichert werden",
+    "moderation.permissionDenied":
+      "Du hast keine Berechtigung für diese Aktion.",
   },
   ar: {
-    "moderation.title": "الإشراف", "moderation.profileSubtitle": "مراجعة التعليقات المبلغ عنها.", "moderation.inboxTitle": "التقييمات المبلغ عنها", "moderation.filter.open": "مفتوحة", "moderation.filter.reviewing": "قيد المراجعة", "moderation.filter.action_taken": "تم اتخاذ إجراء", "moderation.filter.dismissed": "مرفوضة", "moderation.markReviewing": "بدء المراجعة", "moderation.dismissReport": "رفض البلاغ", "moderation.hideReview": "إخفاء التقييم", "moderation.restoreReview": "استعادة التقييم", "moderation.addNote": "إضافة ملاحظة", "moderation.note": "ملاحظة الإشراف", "moderation.reason": "سبب البلاغ", "moderation.reportingUsers": "المستخدمون المبلغون", "writeReview.hiddenByModeration": "تم إخفاء هذا التقييم بواسطة الإشراف.", "moderation.reviewHidden": "تم إخفاء التقييم", "moderation.reviewRestored": "تم نشر التقييم مرة أخرى", "moderation.reportClosed": "تم إغلاق البلاغ", "moderation.actionFailed": "تعذر حفظ الإجراء", "moderation.permissionDenied": "ليست لديك صلاحية لهذا الإجراء."
+    "moderation.title": "الإشراف",
+    "moderation.profileSubtitle": "مراجعة التعليقات المبلغ عنها.",
+    "moderation.inboxTitle": "التقييمات المبلغ عنها",
+    "moderation.filter.open": "مفتوحة",
+    "moderation.filter.reviewing": "قيد المراجعة",
+    "moderation.filter.action_taken": "تم اتخاذ إجراء",
+    "moderation.filter.dismissed": "مرفوضة",
+    "moderation.markReviewing": "بدء المراجعة",
+    "moderation.dismissReport": "رفض البلاغ",
+    "moderation.hideReview": "إخفاء التقييم",
+    "moderation.restoreReview": "استعادة التقييم",
+    "moderation.addNote": "إضافة ملاحظة",
+    "moderation.note": "ملاحظة الإشراف",
+    "moderation.reason": "سبب البلاغ",
+    "moderation.reportingUsers": "المستخدمون المبلغون",
+    "writeReview.hiddenByModeration": "تم إخفاء هذا التقييم بواسطة الإشراف.",
+    "moderation.reviewHidden": "تم إخفاء التقييم",
+    "moderation.reviewRestored": "تم نشر التقييم مرة أخرى",
+    "moderation.reportClosed": "تم إغلاق البلاغ",
+    "moderation.actionFailed": "تعذر حفظ الإجراء",
+    "moderation.permissionDenied": "ليست لديك صلاحية لهذا الإجراء.",
   },
   ru: {
-    "moderation.title": "Модерация", "moderation.profileSubtitle": "Проверка жалоб на отзывы.", "moderation.inboxTitle": "Отзывы с жалобами", "moderation.filter.open": "Открыто", "moderation.filter.reviewing": "На проверке", "moderation.filter.action_taken": "Приняты меры", "moderation.filter.dismissed": "Отклонено", "moderation.markReviewing": "Начать проверку", "moderation.dismissReport": "Отклонить жалобу", "moderation.hideReview": "Скрыть отзыв", "moderation.restoreReview": "Восстановить отзыв", "moderation.addNote": "Добавить заметку", "moderation.note": "Заметка модерации", "moderation.reason": "Причина жалобы", "moderation.reportingUsers": "Пожаловавшиеся пользователи", "writeReview.hiddenByModeration": "Этот отзыв скрыт модерацией.", "moderation.reviewHidden": "Отзыв скрыт", "moderation.reviewRestored": "Отзыв снова опубликован", "moderation.reportClosed": "Жалоба закрыта", "moderation.actionFailed": "Не удалось сохранить действие", "moderation.permissionDenied": "У вас нет прав для этого действия."
+    "moderation.title": "Модерация",
+    "moderation.profileSubtitle": "Проверка жалоб на отзывы.",
+    "moderation.inboxTitle": "Отзывы с жалобами",
+    "moderation.filter.open": "Открыто",
+    "moderation.filter.reviewing": "На проверке",
+    "moderation.filter.action_taken": "Приняты меры",
+    "moderation.filter.dismissed": "Отклонено",
+    "moderation.markReviewing": "Начать проверку",
+    "moderation.dismissReport": "Отклонить жалобу",
+    "moderation.hideReview": "Скрыть отзыв",
+    "moderation.restoreReview": "Восстановить отзыв",
+    "moderation.addNote": "Добавить заметку",
+    "moderation.note": "Заметка модерации",
+    "moderation.reason": "Причина жалобы",
+    "moderation.reportingUsers": "Пожаловавшиеся пользователи",
+    "writeReview.hiddenByModeration": "Этот отзыв скрыт модерацией.",
+    "moderation.reviewHidden": "Отзыв скрыт",
+    "moderation.reviewRestored": "Отзыв снова опубликован",
+    "moderation.reportClosed": "Жалоба закрыта",
+    "moderation.actionFailed": "Не удалось сохранить действие",
+    "moderation.permissionDenied": "У вас нет прав для этого действия.",
   },
   zh: {
-    "moderation.title": "审核", "moderation.profileSubtitle": "查看被举报的评论。", "moderation.inboxTitle": "被举报的评论", "moderation.filter.open": "待处理", "moderation.filter.reviewing": "审核中", "moderation.filter.action_taken": "已处理", "moderation.filter.dismissed": "已驳回", "moderation.markReviewing": "开始审核", "moderation.dismissReport": "驳回举报", "moderation.hideReview": "隐藏评论", "moderation.restoreReview": "恢复评论", "moderation.addNote": "添加备注", "moderation.note": "审核备注", "moderation.reason": "举报原因", "moderation.reportingUsers": "举报用户", "writeReview.hiddenByModeration": "此评论已被审核隐藏。", "moderation.reviewHidden": "评论已隐藏", "moderation.reviewRestored": "评论已重新发布", "moderation.reportClosed": "举报已关闭", "moderation.actionFailed": "无法保存操作", "moderation.permissionDenied": "你无权执行此操作。"
+    "moderation.title": "审核",
+    "moderation.profileSubtitle": "查看被举报的评论。",
+    "moderation.inboxTitle": "被举报的评论",
+    "moderation.filter.open": "待处理",
+    "moderation.filter.reviewing": "审核中",
+    "moderation.filter.action_taken": "已处理",
+    "moderation.filter.dismissed": "已驳回",
+    "moderation.markReviewing": "开始审核",
+    "moderation.dismissReport": "驳回举报",
+    "moderation.hideReview": "隐藏评论",
+    "moderation.restoreReview": "恢复评论",
+    "moderation.addNote": "添加备注",
+    "moderation.note": "审核备注",
+    "moderation.reason": "举报原因",
+    "moderation.reportingUsers": "举报用户",
+    "writeReview.hiddenByModeration": "此评论已被审核隐藏。",
+    "moderation.reviewHidden": "评论已隐藏",
+    "moderation.reviewRestored": "评论已重新发布",
+    "moderation.reportClosed": "举报已关闭",
+    "moderation.actionFailed": "无法保存操作",
+    "moderation.permissionDenied": "你无权执行此操作。",
   },
 } as const;
 
@@ -15555,22 +15839,29 @@ for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], reviewModerationTranslations[locale]);
 }
 
-const flightDealAlertsInfrastructureTranslations: Record<TranslationLanguage, Record<string, string>> = {
+const flightDealAlertsInfrastructureTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
   en: {
     "flightDeals.title": "Flight Deals",
-    "flightDeals.subtitle": "Flight deal alerts for your shopping routes based on the 90-day average.",
+    "flightDeals.subtitle":
+      "Flight deal alerts for your shopping routes based on the 90-day average.",
     "flightDeals.origin": "Departure point",
     "flightDeals.originPlaceholder": "Airport or city, for example Ankara ESB",
     "flightDeals.destination": "Destination city",
-    "flightDeals.destinationPlaceholder": "Shopping city, for example Paris, FR",
+    "flightDeals.destinationPlaceholder":
+      "Shopping city, for example Paris, FR",
     "flightDeals.threshold": "Discount threshold",
     "flightDeals.threshold15": "%15 below",
     "flightDeals.threshold30": "%30 below",
     "flightDeals.threshold45": "%45 below",
     "flightDeals.saveAlert": "Save deal alert",
-    "flightDeals.providerPending": "Flight deal alerts will be prepared for your selected routes when a flight price provider is connected.",
+    "flightDeals.providerPending":
+      "Flight deal alerts will be prepared for your selected routes when a flight price provider is connected.",
     "flightDeals.noDealsYet": "No flight deals yet",
-    "flightDeals.noFakeDeals": "Fake deals are not shown until a real price provider is connected.",
+    "flightDeals.noFakeDeals":
+      "Fake deals are not shown until a real price provider is connected.",
     "flightDeals.tripReminders": "Trip flight reminders",
     "flightDeals.savedAlerts": "Saved alerts",
     "flightDeals.alertActive": "Alert active",
@@ -15579,13 +15870,24 @@ const flightDealAlertsInfrastructureTranslations: Record<TranslationLanguage, Re
     "flightDeals.saved": "Flight deal alert saved",
     "flightDeals.saveFailed": "Flight deal alert could not be saved",
     "flightDeals.signInPrompt": "Sign in to save flight deal alerts.",
+    "flightDeals.selectAirport": "Choose airport",
+    "flightDeals.selectDestination": "Choose destination city",
+    "flightDeals.thresholdRequired": "Select at least one discount threshold.",
+    "flightDeals.selectOriginRequired": "Choose a departure airport.",
+    "flightDeals.selectDestinationRequired": "Choose a destination city.",
+    "flightDeals.providerPendingBadge": "Provider pending",
+    "flightDeals.cancel": "Cancel",
+    "flightDeals.select": "Select",
+    "flightDeals.filterOptions": "Filter options",
     "flightDeals.bookTicket": "Buy ticket",
   },
   tr: {
     "flightDeals.title": "Uçuş Fırsatları",
-    "flightDeals.subtitle": "90 günlük ortalamaya göre alışveriş rotaların için uçuş fırsatı uyarıları.",
+    "flightDeals.subtitle":
+      "90 günlük ortalamaya göre alışveriş rotaların için uçuş fırsatı uyarıları.",
     "flightDeals.origin": "Çıkış noktası",
-    "flightDeals.originPlaceholder": "Havalimanı veya şehir, örneğin Ankara ESB",
+    "flightDeals.originPlaceholder":
+      "Havalimanı veya şehir, örneğin Ankara ESB",
     "flightDeals.destination": "Hedef şehir",
     "flightDeals.destinationPlaceholder": "Alışveriş şehri, örneğin Paris, FR",
     "flightDeals.threshold": "İndirim eşiği",
@@ -15593,9 +15895,11 @@ const flightDealAlertsInfrastructureTranslations: Record<TranslationLanguage, Re
     "flightDeals.threshold30": "%30 altında",
     "flightDeals.threshold45": "%45 altında",
     "flightDeals.saveAlert": "Fırsat uyarısını kaydet",
-    "flightDeals.providerPending": "Uçuş fiyat sağlayıcısı bağlandığında seçtiğin rotalar için fırsat uyarıları hazırlanır.",
+    "flightDeals.providerPending":
+      "Uçuş fiyat sağlayıcısı bağlandığında seçtiğin rotalar için fırsat uyarıları hazırlanır.",
     "flightDeals.noDealsYet": "Henüz uçuş fırsatı yok",
-    "flightDeals.noFakeDeals": "Gerçek fiyat sağlayıcısı bağlanana kadar sahte fırsat gösterilmez.",
+    "flightDeals.noFakeDeals":
+      "Gerçek fiyat sağlayıcısı bağlanana kadar sahte fırsat gösterilmez.",
     "flightDeals.tripReminders": "Seyahat uçuş hatırlatmaları",
     "flightDeals.savedAlerts": "Kaydedilen uyarılar",
     "flightDeals.alertActive": "Uyarı aktif",
@@ -15603,16 +15907,32 @@ const flightDealAlertsInfrastructureTranslations: Record<TranslationLanguage, Re
     "flightDeals.deleteAlert": "Uyarı sil",
     "flightDeals.saved": "Uçuş fırsatı uyarısı kaydedildi",
     "flightDeals.saveFailed": "Uçuş fırsatı uyarısı kaydedilemedi",
-    "flightDeals.signInPrompt": "Giriş yaparak uçuş fırsatı uyarılarını kaydedebilirsin.",
+    "flightDeals.signInPrompt":
+      "Giriş yaparak uçuş fırsatı uyarılarını kaydedebilirsin.",
+    "flightDeals.selectAirport": "Havalimanı seç",
+    "flightDeals.selectDestination": "Hedef şehir seç",
+    "flightDeals.thresholdRequired": "En az bir indirim eşiği seç.",
+    "flightDeals.selectOriginRequired": "Çıkış havalimanı seç.",
+    "flightDeals.selectDestinationRequired": "Hedef şehir seç.",
+    "flightDeals.providerPendingBadge": "Sağlayıcı bekleniyor",
+    "flightDeals.cancel": "Vazgeç",
+    "flightDeals.select": "Seç",
+    "flightDeals.filterOptions": "Seçenekleri filtrele",
     "flightDeals.bookTicket": "Bilet al",
   },
-  es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {},
+  es: {},
+  fr: {},
+  de: {},
+  ar: {},
+  ru: {},
+  zh: {},
 };
 
 Object.assign(flightDealAlertsInfrastructureTranslations.es, {
   ...flightDealAlertsInfrastructureTranslations.en,
   "flightDeals.title": "Ofertas de vuelos",
-  "flightDeals.subtitle": "Alertas de ofertas de vuelo para tus rutas de compras según la media de 90 días.",
+  "flightDeals.subtitle":
+    "Alertas de ofertas de vuelo para tus rutas de compras según la media de 90 días.",
   "flightDeals.origin": "Punto de salida",
   "flightDeals.destination": "Ciudad de destino",
   "flightDeals.threshold": "Umbral de descuento",
@@ -15620,12 +15940,50 @@ Object.assign(flightDealAlertsInfrastructureTranslations.es, {
   "flightDeals.tripReminders": "Recordatorios de vuelos de viaje",
   "flightDeals.savedAlerts": "Alertas guardadas",
 });
-Object.assign(flightDealAlertsInfrastructureTranslations.fr, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "Offres de vols", "flightDeals.origin": "Point de départ", "flightDeals.destination": "Ville de destination", "flightDeals.threshold": "Seuil de réduction", "flightDeals.saveAlert": "Enregistrer l’alerte" });
-Object.assign(flightDealAlertsInfrastructureTranslations.de, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "Flugangebote", "flightDeals.origin": "Abflugort", "flightDeals.destination": "Zielstadt", "flightDeals.threshold": "Rabattgrenze", "flightDeals.saveAlert": "Angebotsalarm speichern" });
-Object.assign(flightDealAlertsInfrastructureTranslations.ar, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "عروض الرحلات", "flightDeals.origin": "نقطة المغادرة", "flightDeals.destination": "مدينة الوجهة", "flightDeals.threshold": "حد الخصم", "flightDeals.saveAlert": "حفظ تنبيه العرض" });
-Object.assign(flightDealAlertsInfrastructureTranslations.ru, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "Авиапредложения", "flightDeals.origin": "Пункт отправления", "flightDeals.destination": "Город назначения", "flightDeals.threshold": "Порог скидки", "flightDeals.saveAlert": "Сохранить уведомление" });
-Object.assign(flightDealAlertsInfrastructureTranslations.zh, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "航班优惠", "flightDeals.origin": "出发地", "flightDeals.destination": "目的地城市", "flightDeals.threshold": "折扣门槛", "flightDeals.saveAlert": "保存优惠提醒" });
+Object.assign(flightDealAlertsInfrastructureTranslations.fr, {
+  ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.title": "Offres de vols",
+  "flightDeals.origin": "Point de départ",
+  "flightDeals.destination": "Ville de destination",
+  "flightDeals.threshold": "Seuil de réduction",
+  "flightDeals.saveAlert": "Enregistrer l’alerte",
+});
+Object.assign(flightDealAlertsInfrastructureTranslations.de, {
+  ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.title": "Flugangebote",
+  "flightDeals.origin": "Abflugort",
+  "flightDeals.destination": "Zielstadt",
+  "flightDeals.threshold": "Rabattgrenze",
+  "flightDeals.saveAlert": "Angebotsalarm speichern",
+});
+Object.assign(flightDealAlertsInfrastructureTranslations.ar, {
+  ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.title": "عروض الرحلات",
+  "flightDeals.origin": "نقطة المغادرة",
+  "flightDeals.destination": "مدينة الوجهة",
+  "flightDeals.threshold": "حد الخصم",
+  "flightDeals.saveAlert": "حفظ تنبيه العرض",
+});
+Object.assign(flightDealAlertsInfrastructureTranslations.ru, {
+  ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.title": "Авиапредложения",
+  "flightDeals.origin": "Пункт отправления",
+  "flightDeals.destination": "Город назначения",
+  "flightDeals.threshold": "Порог скидки",
+  "flightDeals.saveAlert": "Сохранить уведомление",
+});
+Object.assign(flightDealAlertsInfrastructureTranslations.zh, {
+  ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.title": "航班优惠",
+  "flightDeals.origin": "出发地",
+  "flightDeals.destination": "目的地城市",
+  "flightDeals.threshold": "折扣门槛",
+  "flightDeals.saveAlert": "保存优惠提醒",
+});
 
 for (const locale of supportedLanguageCodes) {
-  Object.assign(translations[locale], flightDealAlertsInfrastructureTranslations[locale]);
+  Object.assign(
+    translations[locale],
+    flightDealAlertsInfrastructureTranslations[locale],
+  );
 }

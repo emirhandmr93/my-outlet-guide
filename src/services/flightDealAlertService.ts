@@ -1,4 +1,11 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
 
 import { db } from "../firebase/config";
 
@@ -11,9 +18,13 @@ export type FlightDealAlertPreference = {
   userId: string;
   originLabel: string;
   originAirportCode: string;
+  originAirportName: string;
+  originCityName: string;
+  originCountryCode: string;
   destinationCityKey: string;
   destinationCityName: string;
   destinationCountryCode: string;
+  destinationCountryName: string;
   selectedThresholds: FlightDealThreshold[];
   active: boolean;
   providerStatus: FlightDealPreferenceProviderStatus;
@@ -39,44 +50,77 @@ export type FlightDealAlertEvaluationResult =
   | { status: "matched"; match: FlightDealAlertMatch };
 
 export function normalizeFlightDealThresholds(values: number[]) {
-  return values.filter((value): value is FlightDealThreshold => FLIGHT_DEAL_THRESHOLDS.includes(value as FlightDealThreshold));
+  return Array.from(
+    new Set(
+      values.filter((value): value is FlightDealThreshold =>
+        FLIGHT_DEAL_THRESHOLDS.includes(value as FlightDealThreshold),
+      ),
+    ),
+  );
+}
+
+export function buildFlightDealAlertId(
+  originAirportCode: string,
+  destinationCityKey: string,
+) {
+  return `${originAirportCode}_${destinationCityKey}`
+    .toLowerCase()
+    .replace(/[^a-z0-9_]+/g, "_")
+    .replace(/^_+|_+$/g, "");
 }
 
 export function getFlightDealAlertsCollection(userId: string) {
   return collection(db, "flightDealPreferences", userId, "alerts");
 }
 
-export async function listFlightDealAlerts(userId: string): Promise<FlightDealAlertPreference[]> {
+export async function listFlightDealAlerts(
+  userId: string,
+): Promise<FlightDealAlertPreference[]> {
   const snapshot = await getDocs(getFlightDealAlertsCollection(userId));
-  return snapshot.docs.map((item) => ({ alertId: item.id, ...item.data() }) as FlightDealAlertPreference);
+  return snapshot.docs.map(
+    (item) =>
+      ({ alertId: item.id, ...item.data() }) as FlightDealAlertPreference,
+  );
 }
 
 export async function saveFlightDealAlert(
   userId: string,
-  input: Omit<FlightDealAlertPreference, "alertId" | "userId" | "providerStatus" | "createdAt" | "updatedAt"> & { alertId?: string },
+  input: Omit<
+    FlightDealAlertPreference,
+    "alertId" | "userId" | "providerStatus" | "createdAt" | "updatedAt"
+  > & { alertId?: string },
 ) {
-  const selectedThresholds = normalizeFlightDealThresholds(input.selectedThresholds);
+  const selectedThresholds = normalizeFlightDealThresholds(
+    input.selectedThresholds,
+  );
   const payload = {
     userId,
     originLabel: input.originLabel.trim(),
     originAirportCode: input.originAirportCode.trim().toUpperCase(),
+    originAirportName: input.originAirportName.trim(),
+    originCityName: input.originCityName.trim(),
+    originCountryCode: input.originCountryCode.trim().toUpperCase(),
     destinationCityKey: input.destinationCityKey,
     destinationCityName: input.destinationCityName.trim(),
     destinationCountryCode: input.destinationCountryCode.trim().toUpperCase(),
+    destinationCountryName: input.destinationCountryName.trim(),
     selectedThresholds,
     active: input.active,
     providerStatus: "pending_provider" as const,
     updatedAt: serverTimestamp(),
   };
-
-  if (input.alertId) {
-    await setDoc(doc(db, "flightDealPreferences", userId, "alerts", input.alertId), payload, { merge: true });
-    return input.alertId;
-  }
-
-  const created = await addDoc(getFlightDealAlertsCollection(userId), { ...payload, createdAt: serverTimestamp() });
-  await setDoc(created, { alertId: created.id }, { merge: true });
-  return created.id;
+  const alertId =
+    input.alertId ||
+    buildFlightDealAlertId(
+      payload.originAirportCode,
+      payload.destinationCityKey,
+    );
+  await setDoc(
+    doc(db, "flightDealPreferences", userId, "alerts", alertId),
+    { ...payload, alertId, createdAt: serverTimestamp() },
+    { merge: true },
+  );
+  return alertId;
 }
 
 export async function deleteFlightDealAlert(userId: string, alertId: string) {

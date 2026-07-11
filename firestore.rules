@@ -153,6 +153,7 @@ service cloud.firestore {
 
     function hasOnlyValidFlightDealThresholds(thresholds) {
       return thresholds is list
+        && thresholds.size() > 0
         && thresholds.hasOnly([15, 30, 45]);
     }
 
@@ -162,9 +163,13 @@ service cloud.firestore {
           'userId',
           'originLabel',
           'originAirportCode',
+          'originAirportName',
+          'originCityName',
+          'originCountryCode',
           'destinationCityKey',
           'destinationCityName',
           'destinationCountryCode',
+          'destinationCountryName',
           'selectedThresholds',
           'active',
           'providerStatus',
@@ -173,12 +178,16 @@ service cloud.firestore {
         ])
         && userId == request.auth.uid
         && request.resource.data.userId == request.auth.uid
-        && (!('alertId' in request.resource.data) || request.resource.data.alertId == alertId)
+        && request.resource.data.alertId == alertId
         && isNonEmptyString(request.resource.data.originLabel)
         && isNonEmptyString(request.resource.data.originAirportCode)
+        && isNonEmptyString(request.resource.data.originAirportName)
+        && isNonEmptyString(request.resource.data.originCityName)
+        && isNonEmptyString(request.resource.data.originCountryCode)
         && isNonEmptyString(request.resource.data.destinationCityKey)
         && isNonEmptyString(request.resource.data.destinationCityName)
         && isNonEmptyString(request.resource.data.destinationCountryCode)
+        && isNonEmptyString(request.resource.data.destinationCountryName)
         && hasOnlyValidFlightDealThresholds(request.resource.data.selectedThresholds)
         && request.resource.data.active is bool
         && request.resource.data.providerStatus == 'pending_provider';
