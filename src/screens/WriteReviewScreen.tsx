@@ -39,7 +39,9 @@ export function WriteReviewScreen() {
   const scrollRef = useRef<ScrollView>(null);
 
   function scrollFocusedInputIntoView(offset: number) {
-    requestAnimationFrame(() => scrollRef.current?.scrollTo({ y: offset, animated: true }));
+    requestAnimationFrame(() => {
+      setTimeout(() => scrollRef.current?.scrollTo({ y: offset, animated: true }), 80);
+    });
   }
 
   useEffect(() => {
@@ -123,9 +125,9 @@ export function WriteReviewScreen() {
           <Text style={styles.derivedRatingValue}>⭐ {overallRating ? overallRating.toFixed(1).replace(/\.0$/, "") : "—"}</Text>
         </View>
         <Text style={styles.label}>{t("writeReview.titleLabel")}</Text>
-        <TextInput style={styles.input} value={title} onChangeText={setTitle} maxLength={80} placeholder={t("writeReview.titlePlaceholder")} onFocus={() => scrollFocusedInputIntoView(360)} />
+        <TextInput style={styles.input} value={title} onChangeText={setTitle} maxLength={80} placeholder={t("writeReview.titlePlaceholder")} returnKeyType="next" onFocus={() => scrollFocusedInputIntoView(420)} />
         <Text style={styles.label}>{t("writeReview.commentLabel")}</Text>
-        <TextInput style={[styles.input, styles.commentInput]} value={comment} onChangeText={setComment} multiline maxLength={1200} placeholder={t("writeReview.commentPlaceholder")} onFocus={() => scrollFocusedInputIntoView(480)} />
+        <TextInput style={[styles.input, styles.commentInput]} value={comment} onChangeText={setComment} multiline maxLength={1200} placeholder={t("writeReview.commentPlaceholder")} textAlignVertical="top" onFocus={() => scrollFocusedInputIntoView(560)} />
         <TouchableOpacity style={styles.button} activeOpacity={0.86} onPress={saveReview} disabled={saving}>
           <Text style={styles.buttonText}>{saving ? t("common.loading") : t("writeReview.submit")}</Text>
         </TouchableOpacity>
@@ -156,7 +158,7 @@ function RatingRow({ label, value, onChange }: { label: string; value: number; o
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
-  content: { padding: spacing.xl, paddingTop: 72, paddingBottom: 180 },
+  content: { padding: spacing.xl, paddingTop: 72, paddingBottom: 280 },
   card: { backgroundColor: colors.surface, borderRadius: radius.xl, borderWidth: 1, borderColor: colors.border, padding: spacing.xl },
   title: { color: colors.textPrimary, fontSize: typography.h2, fontWeight: "900", marginBottom: spacing.sm },
   helperText: { color: colors.textSecondary, fontSize: typography.small, fontWeight: "700", marginBottom: spacing.md },
@@ -170,7 +172,7 @@ const styles = StyleSheet.create({
   derivedRatingLabel: { color: colors.textSecondary, fontSize: typography.small, fontWeight: "900" },
   derivedRatingValue: { color: colors.textPrimary, fontSize: typography.h3, fontWeight: "900", marginTop: spacing.xs },
   input: { backgroundColor: colors.background, borderColor: colors.border, borderWidth: 1, borderRadius: radius.lg, padding: spacing.md, color: colors.textPrimary },
-  commentInput: { minHeight: 140, textAlignVertical: "top" },
+  commentInput: { minHeight: 180, textAlignVertical: "top" },
   button: { backgroundColor: colors.primary, borderRadius: radius.pill, paddingHorizontal: spacing.lg, paddingVertical: spacing.md, marginTop: spacing.lg, alignItems: "center" },
   buttonText: { color: colors.textInverse, fontSize: typography.body, fontWeight: "900" },
 });

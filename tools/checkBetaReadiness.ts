@@ -96,11 +96,11 @@ const coreUiSource = [
 assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(coreUiSource), "core UI source has no visible debug locale prefixes");
 assert(!/\b(mock|lorem|dummy)\b|sample trip|sample fare|fake fare|fake weather|generated plan|live flight|flight status/i.test(coreUiSource), "core completed user flows have no fake/mock/demo business data markers");
 
-assert(read("tools/checkSupportLegalLocalization.ts").includes("Support/legal localization checks passed"), "support/legal localization checker exists");
-assert(offlineScreen.includes('t("offline.noPacksTitle")') && translations.includes('"profile.subtitles.offlinePacks": "Uygulamayla gelen rehber verileri"'), "OfflinePacks does not claim downloadable packs");
+assert(read("tools/checkSupportLegalLocalization.ts").includes("OfflinePacks does not claim downloadable packs") && read("tools/checkSupportLegalLocalization.ts").includes("No hardcoded English heading"), "support/legal localization checker exists and guards English headings/offline download claims");
+assert(offlineScreen.includes('t("offline.noPacksTitle")') && translations.includes('"profile.subtitles.offlinePacks": "Uygulamayla gelen rehber verileri"') && translations.includes('"offline.noPacksText": "Bu sürümde ayrı paket indirme yoktur."'), "OfflinePacks does not claim downloadable packs");
 assert(read("src/screens/WriteReviewScreen.tsx").includes("KeyboardAvoidingView") && read("src/screens/WriteReviewScreen.tsx").includes('keyboardShouldPersistTaps="handled"'), "WriteReviewScreen uses keyboard-safe handling");
-assert(myReviewsScreen.includes('`${review.outletId}_${review.reviewId}`') && myReviewsScreen.includes("new Map"), "MyReviews uses unique key extractor and de-duplicates reviews");
-assert(moderationScreen.includes("group.groupKey") && moderationScreen.includes("moderation.reason.") && moderationScreen.includes("moderation.reviewStatus"), "ReviewModeration uses grouping and localized labels");
+assert(myReviewsScreen.includes('`${review.outletId}_${review.reviewId}_${review.userId}`') && myReviewsScreen.includes("new Map"), "MyReviews uses unique key extractor and de-duplicates reviews");
+assert(moderationScreen.includes("group.groupKey") && moderationScreen.includes("moderation.reason.") && moderationScreen.includes("moderation.reviewStatus") && moderationService.includes("getRelatedReports") && moderationService.includes("markReportReviewing"), "ReviewModeration uses grouping/action services and localized labels");
 assert(!moderationScreen.includes("{report.reason}") && !moderationScreen.includes("status: {review?.status"), "no raw internal status/reason labels in moderation UI");
 assert(translations.includes("Güvenlik için tekrar giriş yapman gerekiyor") && translations.includes('"review.actionErrorTitle": "Yorum işlemi başarısız"'), "Turkish review/account deletion errors are localized");
 

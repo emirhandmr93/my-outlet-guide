@@ -51,9 +51,13 @@ function primaryReportFromInput(input: RootReviewReport | ModerationReportGroup)
   return "primaryReport" in input ? input.primaryReport : input;
 }
 
+async function getRelatedReports(input: RootReviewReport | ModerationReportGroup) {
+  if ("reports" in input) return input.reports;
+  return (await getDocs(query(collection(db, REVIEW_REPORTS_ROOT_COLLECTION), where("outletId", "==", input.outletId), where("reviewId", "==", input.reviewId)))).docs.map((item) => normalizeReport(item.id, item.data()));
+}
+
 async function updateRelatedReportStatuses(input: RootReviewReport | ModerationReportGroup, status: RootReviewReport["status"], moderatorUserId: string, note?: string) {
-  const report = primaryReportFromInput(input);
-  const related = (await getDocs(query(collection(db, REVIEW_REPORTS_ROOT_COLLECTION), where("outletId", "==", report.outletId), where("reviewId", "==", report.reviewId)))).docs.map((item) => normalizeReport(item.id, item.data()));
+  const related = await getRelatedReports(input);
   const batch = writeBatch(db);
   related.filter((item) => ["open", "reviewing"].includes(item.status)).forEach((item) => {
     batch.update(doc(db, REVIEW_REPORTS_ROOT_COLLECTION, item.reportId), { status, moderationNote: note || "", updatedAt: serverTimestamp(), moderatedBy: moderatorUserId, moderatedAt: serverTimestamp() });
@@ -90,13 +94,12 @@ export async function dismissReport(input: RootReviewReport | ModerationReportGr
 
 export async function hideReviewForModeration(input: RootReviewReport | ModerationReportGroup, moderatorUserId: string, note?: string) {
   const report = primaryReportFromInput(input);
-  const related = await getDocs(query(collection(db, REVIEW_REPORTS_ROOT_COLLECTION), where("outletId", "==", report.outletId), where("reviewId", "==", report.reviewId)));
+  const related = await getRelatedReports(input);
   const batch = writeBatch(db);
   batch.update(getReviewDocRef(report.outletId, report.reviewId), { status: "hidden", updatedAt: new Date().toISOString() });
-  related.docs.forEach((item) => {
-    const data = normalizeReport(item.id, item.data());
-    if (REVIEW_REPORT_STATUSES.includes(data.status) && ["open", "reviewing"].includes(data.status)) {
-      batch.update(item.ref, { status: "action_taken", moderationNote: note || "", updatedAt: serverTimestamp(), moderatedBy: moderatorUserId, moderatedAt: serverTimestamp() });
+  related.forEach((item) => {
+    if (REVIEW_REPORT_STATUSES.includes(item.status) && ["open", "reviewing"].includes(item.status)) {
+      batch.update(doc(db, REVIEW_REPORTS_ROOT_COLLECTION, item.reportId), { status: "action_taken", moderationNote: note || "", updatedAt: serverTimestamp(), moderatedBy: moderatorUserId, moderatedAt: serverTimestamp() });
     }
   });
   await batch.commit();
@@ -111,10 +114,10 @@ export async function restoreReviewForModeration(input: RootReviewReport | Moder
 
 export async function addModerationNote(input: RootReviewReport | ModerationReportGroup, moderatorUserId: string, note: string) {
   const report = primaryReportFromInput(input);
-  const related = await getDocs(query(collection(db, REVIEW_REPORTS_ROOT_COLLECTION), where("outletId", "==", report.outletId), where("reviewId", "==", report.reviewId)));
+  const related = await getRelatedReports(input);
   const batch = writeBatch(db);
-  related.docs.forEach((item) => {
-    batch.update(item.ref, { moderationNote: note.trim(), updatedAt: serverTimestamp(), moderatedBy: moderatorUserId, moderatedAt: serverTimestamp() });
+  related.forEach((item) => {
+    batch.update(doc(db, REVIEW_REPORTS_ROOT_COLLECTION, item.reportId), { moderationNote: note.trim(), updatedAt: serverTimestamp(), moderatedBy: moderatorUserId, moderatedAt: serverTimestamp() });
   });
   await batch.commit();
   await audit({ report, moderatorUserId, action: "add_note", note });
