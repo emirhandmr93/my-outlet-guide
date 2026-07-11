@@ -15554,3 +15554,78 @@ const reviewModerationTranslations = {
 for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], reviewModerationTranslations[locale]);
 }
+
+const flightDealAlertsInfrastructureTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "flightDeals.title": "Flight Deals",
+    "flightDeals.subtitle": "Flight deal alerts for your shopping routes based on the 90-day average.",
+    "flightDeals.origin": "Departure point",
+    "flightDeals.originPlaceholder": "Airport or city, for example Ankara ESB",
+    "flightDeals.destination": "Destination city",
+    "flightDeals.destinationPlaceholder": "Shopping city, for example Paris, FR",
+    "flightDeals.threshold": "Discount threshold",
+    "flightDeals.threshold15": "%15 below",
+    "flightDeals.threshold30": "%30 below",
+    "flightDeals.threshold45": "%45 below",
+    "flightDeals.saveAlert": "Save deal alert",
+    "flightDeals.providerPending": "Flight deal alerts will be prepared for your selected routes when a flight price provider is connected.",
+    "flightDeals.noDealsYet": "No flight deals yet",
+    "flightDeals.noFakeDeals": "Fake deals are not shown until a real price provider is connected.",
+    "flightDeals.tripReminders": "Trip flight reminders",
+    "flightDeals.savedAlerts": "Saved alerts",
+    "flightDeals.alertActive": "Alert active",
+    "flightDeals.alertInactive": "Alert off",
+    "flightDeals.deleteAlert": "Delete alert",
+    "flightDeals.saved": "Flight deal alert saved",
+    "flightDeals.saveFailed": "Flight deal alert could not be saved",
+    "flightDeals.signInPrompt": "Sign in to save flight deal alerts.",
+    "flightDeals.bookTicket": "Buy ticket",
+  },
+  tr: {
+    "flightDeals.title": "Uçuş Fırsatları",
+    "flightDeals.subtitle": "90 günlük ortalamaya göre alışveriş rotaların için uçuş fırsatı uyarıları.",
+    "flightDeals.origin": "Çıkış noktası",
+    "flightDeals.originPlaceholder": "Havalimanı veya şehir, örneğin Ankara ESB",
+    "flightDeals.destination": "Hedef şehir",
+    "flightDeals.destinationPlaceholder": "Alışveriş şehri, örneğin Paris, FR",
+    "flightDeals.threshold": "İndirim eşiği",
+    "flightDeals.threshold15": "%15 altında",
+    "flightDeals.threshold30": "%30 altında",
+    "flightDeals.threshold45": "%45 altında",
+    "flightDeals.saveAlert": "Fırsat uyarısını kaydet",
+    "flightDeals.providerPending": "Uçuş fiyat sağlayıcısı bağlandığında seçtiğin rotalar için fırsat uyarıları hazırlanır.",
+    "flightDeals.noDealsYet": "Henüz uçuş fırsatı yok",
+    "flightDeals.noFakeDeals": "Gerçek fiyat sağlayıcısı bağlanana kadar sahte fırsat gösterilmez.",
+    "flightDeals.tripReminders": "Seyahat uçuş hatırlatmaları",
+    "flightDeals.savedAlerts": "Kaydedilen uyarılar",
+    "flightDeals.alertActive": "Uyarı aktif",
+    "flightDeals.alertInactive": "Uyarı kapalı",
+    "flightDeals.deleteAlert": "Uyarı sil",
+    "flightDeals.saved": "Uçuş fırsatı uyarısı kaydedildi",
+    "flightDeals.saveFailed": "Uçuş fırsatı uyarısı kaydedilemedi",
+    "flightDeals.signInPrompt": "Giriş yaparak uçuş fırsatı uyarılarını kaydedebilirsin.",
+    "flightDeals.bookTicket": "Bilet al",
+  },
+  es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {},
+};
+
+Object.assign(flightDealAlertsInfrastructureTranslations.es, {
+  ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.title": "Ofertas de vuelos",
+  "flightDeals.subtitle": "Alertas de ofertas de vuelo para tus rutas de compras según la media de 90 días.",
+  "flightDeals.origin": "Punto de salida",
+  "flightDeals.destination": "Ciudad de destino",
+  "flightDeals.threshold": "Umbral de descuento",
+  "flightDeals.saveAlert": "Guardar alerta de oferta",
+  "flightDeals.tripReminders": "Recordatorios de vuelos de viaje",
+  "flightDeals.savedAlerts": "Alertas guardadas",
+});
+Object.assign(flightDealAlertsInfrastructureTranslations.fr, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "Offres de vols", "flightDeals.origin": "Point de départ", "flightDeals.destination": "Ville de destination", "flightDeals.threshold": "Seuil de réduction", "flightDeals.saveAlert": "Enregistrer l’alerte" });
+Object.assign(flightDealAlertsInfrastructureTranslations.de, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "Flugangebote", "flightDeals.origin": "Abflugort", "flightDeals.destination": "Zielstadt", "flightDeals.threshold": "Rabattgrenze", "flightDeals.saveAlert": "Angebotsalarm speichern" });
+Object.assign(flightDealAlertsInfrastructureTranslations.ar, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "عروض الرحلات", "flightDeals.origin": "نقطة المغادرة", "flightDeals.destination": "مدينة الوجهة", "flightDeals.threshold": "حد الخصم", "flightDeals.saveAlert": "حفظ تنبيه العرض" });
+Object.assign(flightDealAlertsInfrastructureTranslations.ru, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "Авиапредложения", "flightDeals.origin": "Пункт отправления", "flightDeals.destination": "Город назначения", "flightDeals.threshold": "Порог скидки", "flightDeals.saveAlert": "Сохранить уведомление" });
+Object.assign(flightDealAlertsInfrastructureTranslations.zh, { ...flightDealAlertsInfrastructureTranslations.en, "flightDeals.title": "航班优惠", "flightDeals.origin": "出发地", "flightDeals.destination": "目的地城市", "flightDeals.threshold": "折扣门槛", "flightDeals.saveAlert": "保存优惠提醒" });
+
+for (const locale of supportedLanguageCodes) {
+  Object.assign(translations[locale], flightDealAlertsInfrastructureTranslations[locale]);
+}

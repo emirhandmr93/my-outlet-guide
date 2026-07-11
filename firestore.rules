@@ -151,7 +151,40 @@ service cloud.firestore {
         && request.resource.data.favoriteIds is list;
     }
 
-    function hasValidFlightDealPreferencesData(userId) {
+    function hasOnlyValidFlightDealThresholds(thresholds) {
+      return thresholds is list
+        && thresholds.hasOnly([15, 30, 45]);
+    }
+
+    function hasValidFlightDealAlertData(userId, alertId) {
+      return request.resource.data.keys().hasOnly([
+          'alertId',
+          'userId',
+          'originLabel',
+          'originAirportCode',
+          'destinationCityKey',
+          'destinationCityName',
+          'destinationCountryCode',
+          'selectedThresholds',
+          'active',
+          'providerStatus',
+          'createdAt',
+          'updatedAt'
+        ])
+        && userId == request.auth.uid
+        && request.resource.data.userId == request.auth.uid
+        && (!('alertId' in request.resource.data) || request.resource.data.alertId == alertId)
+        && isNonEmptyString(request.resource.data.originLabel)
+        && isNonEmptyString(request.resource.data.originAirportCode)
+        && isNonEmptyString(request.resource.data.destinationCityKey)
+        && isNonEmptyString(request.resource.data.destinationCityName)
+        && isNonEmptyString(request.resource.data.destinationCountryCode)
+        && hasOnlyValidFlightDealThresholds(request.resource.data.selectedThresholds)
+        && request.resource.data.active is bool
+        && request.resource.data.providerStatus == 'pending_provider';
+    }
+
+    function hasValidLegacyFlightDealPreferencesData(userId) {
       return request.resource.data.keys().hasOnly([
           'departureAirportId',
           'selectedCityIds',
@@ -354,8 +387,29 @@ service cloud.firestore {
 
     match /flightDealPreferences/{userId} {
       allow read: if isOwnerDocument(userId);
-      allow create, update: if isSignedIn() && hasValidFlightDealPreferencesData(userId);
+      allow create, update: if isSignedIn() && hasValidLegacyFlightDealPreferencesData(userId);
       allow delete: if isOwnerDocument(userId);
+
+      match /alerts/{alertId} {
+        allow read: if isOwnerDocument(userId);
+        allow create, update: if isSignedIn() && hasValidFlightDealAlertData(userId, alertId);
+        allow delete: if isOwnerDocument(userId);
+      }
+    }
+
+    match /flightFareRoutes/{routeKey} {
+      allow read: if true;
+      allow create, update, delete: if false;
+
+      match /dailySnapshots/{yyyyMMdd} {
+        allow read: if true;
+        allow create, update, delete: if false;
+      }
+
+      match /stats/{statId} {
+        allow read: if true;
+        allow create, update, delete: if false;
+      }
     }
 
 
