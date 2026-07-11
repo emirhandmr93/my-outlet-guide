@@ -68,7 +68,7 @@ export function WriteReviewScreen() {
       console.log("Review save error", error);
       Alert.alert(
         t("writeReview.saveErrorTitle"),
-        isFirestorePermissionDenied(error) ? t("writeReview.saveErrorText") : t("common.error"),
+        isFirestorePermissionDenied(error) ? t("writeReview.savePermissionErrorText") : t("writeReview.saveErrorText"),
       );
     } finally {
       setSaving(false);

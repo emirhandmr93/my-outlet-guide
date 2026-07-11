@@ -673,9 +673,9 @@ const enTranslations = {
   "writeReview.validationTitle": "Review details needed",
   "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
   "writeReview.commentRequired": "Select all rating categories.",
-  "writeReview.saveErrorTitle": "Could not save review",
+  "writeReview.saveErrorTitle": "Review could not be saved",
   "writeReview.saveErrorText":
-    "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+    "We could not save your review. Please try again.",
   "review.actionErrorTitle": "Review action failed",
   "review.actionPermissionErrorText":
     "We couldn’t verify permission for this review action. Please sign in again and try once more.",
@@ -2128,9 +2128,9 @@ export const translations: Record<
     "writeReview.validationTitle": "Review details needed",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Select all rating categories.",
-    "writeReview.saveErrorTitle": "Could not save review",
+    "writeReview.saveErrorTitle": "Review could not be saved",
     "writeReview.saveErrorText":
-      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+      "We could not save your review. Please try again.",
     "review.actionErrorTitle": "Review action failed",
     "review.actionPermissionErrorText":
       "We couldn’t verify permission for this review action. Please sign in again and try once more.",
@@ -3477,9 +3477,9 @@ export const translations: Record<
     "writeReview.validationTitle": "Review details needed",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Select all rating categories.",
-    "writeReview.saveErrorTitle": "Could not save review",
+    "writeReview.saveErrorTitle": "Review could not be saved",
     "writeReview.saveErrorText":
-      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+      "We could not save your review. Please try again.",
     "review.actionErrorTitle": "Review action failed",
     "review.actionPermissionErrorText":
       "We couldn’t verify permission for this review action. Please sign in again and try once more.",
@@ -4793,9 +4793,9 @@ export const translations: Record<
     "writeReview.validationTitle": "Review details needed",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Select all rating categories.",
-    "writeReview.saveErrorTitle": "Could not save review",
+    "writeReview.saveErrorTitle": "Review could not be saved",
     "writeReview.saveErrorText":
-      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+      "We could not save your review. Please try again.",
     "review.actionErrorTitle": "Review action failed",
     "review.actionPermissionErrorText":
       "We couldn’t verify permission for this review action. Please sign in again and try once more.",
@@ -6095,9 +6095,9 @@ export const translations: Record<
     "writeReview.validationTitle": "Review details needed",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Select all rating categories.",
-    "writeReview.saveErrorTitle": "Could not save review",
+    "writeReview.saveErrorTitle": "Review could not be saved",
     "writeReview.saveErrorText":
-      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+      "We could not save your review. Please try again.",
     "review.actionErrorTitle": "Review action failed",
     "review.actionPermissionErrorText":
       "We couldn’t verify permission for this review action. Please sign in again and try once more.",
@@ -7348,9 +7348,9 @@ export const translations: Record<
     "writeReview.validationTitle": "Review details needed",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Select all rating categories.",
-    "writeReview.saveErrorTitle": "Could not save review",
+    "writeReview.saveErrorTitle": "Review could not be saved",
     "writeReview.saveErrorText":
-      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+      "We could not save your review. Please try again.",
     "review.actionErrorTitle": "Review action failed",
     "review.actionPermissionErrorText":
       "We couldn’t verify permission for this review action. Please sign in again and try once more.",
@@ -8596,9 +8596,9 @@ export const translations: Record<
     "writeReview.validationTitle": "Review details needed",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Select all rating categories.",
-    "writeReview.saveErrorTitle": "Could not save review",
+    "writeReview.saveErrorTitle": "Review could not be saved",
     "writeReview.saveErrorText":
-      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+      "We could not save your review. Please try again.",
     "review.actionErrorTitle": "Review action failed",
     "review.actionPermissionErrorText":
       "We couldn’t verify permission for this review action. Please sign in again and try once more.",
@@ -9863,9 +9863,9 @@ export const translations: Record<
     "writeReview.validationTitle": "Review details needed",
     "writeReview.ratingRequired": "Choose a rating from 1 to 5.",
     "writeReview.commentRequired": "Select all rating categories.",
-    "writeReview.saveErrorTitle": "Could not save review",
+    "writeReview.saveErrorTitle": "Review could not be saved",
     "writeReview.saveErrorText":
-      "We couldn’t verify permission to save this review. Please sign in again and try once more.",
+      "We could not save your review. Please try again.",
     "review.actionErrorTitle": "Review action failed",
     "review.actionPermissionErrorText":
       "We couldn’t verify permission for this review action. Please sign in again and try once more.",
@@ -14986,6 +14986,9 @@ const reviewRatingsRegressionTranslations: Record<TranslationLanguage, Record<st
     "writeReview.validationTitle": "Review details needed",
     "writeReview.ratingRequired": "Select all rating categories.",
     "writeReview.categoryRatingsRequired": "Select all rating categories.",
+    "writeReview.saveErrorTitle": "Review could not be saved",
+    "writeReview.saveErrorText": "We could not save your review. Please try again.",
+    "writeReview.savePermissionErrorText": "We couldn't verify permission to save this review. Please sign in again and try once more.",
     "writeReview.commentRequired": "Select all rating categories.",
     "writeReview.commentLabel": "Review text",
     "writeReview.submit": "Save review",
@@ -15008,6 +15011,9 @@ const reviewRatingsRegressionTranslations: Record<TranslationLanguage, Record<st
     "writeReview.validationTitle": "Yorum bilgileri gerekli",
     "writeReview.ratingRequired": "Tüm puan kategorilerini seç.",
     "writeReview.categoryRatingsRequired": "Tüm puan kategorilerini seç.",
+    "writeReview.saveErrorTitle": "Yorum kaydedilemedi",
+    "writeReview.saveErrorText": "Yorumunu kaydedemedik. Lütfen tekrar deneyin.",
+    "writeReview.savePermissionErrorText": "Bu yorumu kaydetme iznini doğrulayamadık. Lütfen tekrar giriş yapıp yeniden deneyin.",
     "writeReview.commentRequired": "Tüm puan kategorilerini seç.",
     "writeReview.commentLabel": "Yorum metni",
     "writeReview.submit": "Yorumu kaydet",
@@ -15020,6 +15026,9 @@ const reviewRatingsRegressionTranslations: Record<TranslationLanguage, Record<st
 
 reviewRatingsRegressionTranslations.es = {
   ...reviewRatingsRegressionTranslations.en,
+  "writeReview.saveErrorTitle": "No se pudo guardar la reseña",
+  "writeReview.saveErrorText": "No pudimos guardar tu reseña. Inténtalo de nuevo.",
+  "writeReview.savePermissionErrorText": "No pudimos verificar el permiso para guardar esta reseña. Inicia sesión de nuevo y vuelve a intentarlo.",
   "nav.writeReview": "Escribir reseña",
   "writeReview.title": "Escribir reseña",
   "writeReview.editTitle": "Editar reseña",
@@ -15030,6 +15039,9 @@ reviewRatingsRegressionTranslations.es = {
 };
 reviewRatingsRegressionTranslations.fr = {
   ...reviewRatingsRegressionTranslations.en,
+  "writeReview.saveErrorTitle": "L'avis n'a pas pu être enregistré",
+  "writeReview.saveErrorText": "Nous n'avons pas pu enregistrer votre avis. Veuillez réessayer.",
+  "writeReview.savePermissionErrorText": "Nous n'avons pas pu vérifier l'autorisation d'enregistrer cet avis. Veuillez vous reconnecter puis réessayer.",
   "nav.writeReview": "Écrire un avis",
   "writeReview.title": "Écrire un avis",
   "writeReview.editTitle": "Modifier l'avis",
@@ -15040,6 +15052,9 @@ reviewRatingsRegressionTranslations.fr = {
 };
 reviewRatingsRegressionTranslations.de = {
   ...reviewRatingsRegressionTranslations.en,
+  "writeReview.saveErrorTitle": "Bewertung konnte nicht gespeichert werden",
+  "writeReview.saveErrorText": "Wir konnten deine Bewertung nicht speichern. Bitte versuche es erneut.",
+  "writeReview.savePermissionErrorText": "Wir konnten die Berechtigung zum Speichern dieser Bewertung nicht prüfen. Bitte melde dich erneut an und versuche es noch einmal.",
   "nav.writeReview": "Bewertung schreiben",
   "writeReview.title": "Bewertung schreiben",
   "writeReview.editTitle": "Bewertung bearbeiten",
@@ -15050,6 +15065,9 @@ reviewRatingsRegressionTranslations.de = {
 };
 reviewRatingsRegressionTranslations.ar = {
   ...reviewRatingsRegressionTranslations.en,
+  "writeReview.saveErrorTitle": "تعذر حفظ المراجعة",
+  "writeReview.saveErrorText": "لم نتمكن من حفظ مراجعتك. يُرجى المحاولة مرة أخرى.",
+  "writeReview.savePermissionErrorText": "لم نتمكن من التحقق من إذن حفظ هذه المراجعة. يُرجى تسجيل الدخول مرة أخرى ثم إعادة المحاولة.",
   "nav.writeReview": "اكتب مراجعة",
   "writeReview.title": "اكتب مراجعة",
   "writeReview.editTitle": "تعديل المراجعة",
@@ -15060,6 +15078,9 @@ reviewRatingsRegressionTranslations.ar = {
 };
 reviewRatingsRegressionTranslations.ru = {
   ...reviewRatingsRegressionTranslations.en,
+  "writeReview.saveErrorTitle": "Не удалось сохранить отзыв",
+  "writeReview.saveErrorText": "Не удалось сохранить ваш отзыв. Повторите попытку.",
+  "writeReview.savePermissionErrorText": "Не удалось проверить разрешение на сохранение этого отзыва. Войдите снова и повторите попытку.",
   "nav.writeReview": "Написать отзыв",
   "writeReview.title": "Написать отзыв",
   "writeReview.editTitle": "Редактировать отзыв",
@@ -15070,6 +15091,9 @@ reviewRatingsRegressionTranslations.ru = {
 };
 reviewRatingsRegressionTranslations.zh = {
   ...reviewRatingsRegressionTranslations.en,
+  "writeReview.saveErrorTitle": "无法保存评价",
+  "writeReview.saveErrorText": "我们无法保存你的评价。请重试。",
+  "writeReview.savePermissionErrorText": "我们无法验证保存此评价的权限。请重新登录后再试。",
   "nav.writeReview": "写评价",
   "writeReview.title": "写评价",
   "writeReview.editTitle": "编辑评价",
