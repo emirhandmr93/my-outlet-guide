@@ -11,6 +11,7 @@ type ReviewItemProps = {
   editText: string;
   deleteText: string;
   reportText: string;
+  anonymousAccountText: string;
   onHelpful: () => void;
   onEdit: () => void;
   onDelete: () => void;
@@ -26,12 +27,13 @@ export function ReviewItem({
   editText,
   deleteText,
   reportText,
+  anonymousAccountText,
   onHelpful,
   onEdit,
   onDelete,
   onReport,
 }: ReviewItemProps) {
-  const userName = review.userDisplayName || review.userName || "Anonymous Shopper";
+  const userName = review.authorDeleted === true ? anonymousAccountText : review.userDisplayName || review.userName || "Anonymous Shopper";
   const initial = userName.trim().charAt(0).toUpperCase() || "U";
   const isAuthor = Boolean(currentUserId && review.userId === currentUserId);
   const isHelpful = Boolean(currentUserId && review.helpfulUserIds?.includes(currentUserId));

@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import { useAuth } from "../contexts/AuthContext";
-import { deleteAccountAndUserData, isRecentLoginRequired } from "../services/accountDeletionService";
+import { deleteAccountWithBackend, isRecentLoginRequired } from "../services/accountDeletionCallable";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function DeleteAccountScreen() {
@@ -27,9 +27,9 @@ export function DeleteAccountScreen() {
 
     try {
       setDeleting(true);
-      await deleteAccountAndUserData(currentUser);
+      await deleteAccountWithBackend();
       Alert.alert(t("deleteAccount.deletedTitle"), t("deleteAccount.deletedMessage"));
-      navigation.navigate("MainTabs", { screen: "Profile" });
+      navigation.navigate("Login");
     } catch (error) {
       if (isRecentLoginRequired(error)) {
         Alert.alert(t("deleteAccount.reauthTitle"), t("deleteAccount.reauthMessage"));
@@ -53,6 +53,9 @@ export function DeleteAccountScreen() {
         <View style={styles.card}>
           <Text style={styles.cardTitle}>{t("deleteAccount.signInRequiredTitle")}</Text>
           <Text style={styles.cardText}>{t("deleteAccount.signInRequiredMessage")}</Text>
+          <TouchableOpacity style={styles.loginButton} onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.loginButtonText}>{t("deleteAccount.signInRequiredButton")}</Text>
+          </TouchableOpacity>
         </View>
       )}
 
@@ -72,6 +75,8 @@ export function DeleteAccountScreen() {
       <View style={styles.card}>
         <Text style={styles.cardTitle}>{t("deleteAccount.reviewsTitle")}</Text>
         <Text style={styles.cardText}>{t("deleteAccount.reviewsText")}</Text>
+        <Text style={styles.cardText}>{t("deleteAccount.reviewsAnonymousText")}</Text>
+        <Text style={styles.cardText}>{t("deleteAccount.reviewsNoRelinkText")}</Text>
       </View>
 
       <TouchableOpacity
@@ -148,6 +153,19 @@ const styles = StyleSheet.create({
 
   disabledButton: {
     opacity: 0.55,
+  },
+
+  loginButton: {
+    backgroundColor: "#0B1F3A",
+    borderRadius: 14,
+    padding: 14,
+    marginTop: 14,
+  },
+
+  loginButtonText: {
+    color: "#FFFFFF",
+    fontWeight: "800",
+    textAlign: "center",
   },
 
   deleteButtonText: {

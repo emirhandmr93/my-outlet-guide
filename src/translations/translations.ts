@@ -1107,7 +1107,7 @@ const enTranslations = {
     "• Notification settings and device tokens",
   "deleteAccount.reviewsTitle": "Reviews",
   "deleteAccount.reviewsText":
-    "Your published review text and ratings are retained for outlet integrity, but your display name is replaced with “Deleted account”.",
+    "Your published review text and ratings are retained for outlet integrity, but your display name is replaced with “Anonymous account”.",
   "deleteAccount.button": "Delete My Account",
   "deleteAccount.confirmMessage":
     "This permanently deletes your account data. This action cannot be undone.",
@@ -14886,3 +14886,85 @@ for (const locale of supportedLanguageCodes) {
 }
 
 // QA guard: "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var."
+
+const accountDeletionSafetyPhase1BTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "reviews.anonymousAccount": "Anonymous account",
+    "deleteAccount.reviewsText": "Your reviews and ratings stay to protect the outlet rating system.",
+    "deleteAccount.reviewsAnonymousText": "After your account is deleted, your reviews appear as Anonymous account.",
+    "deleteAccount.reviewsNoRelinkText": "Even if you register again with the same email, your old reviews are not linked to your new account.",
+    "deleteAccount.signInRequiredTitle": "Sign-in required",
+    "deleteAccount.signInRequiredMessage": "Sign in before deleting your account.",
+    "deleteAccount.signInRequiredButton": "Sign In",
+  },
+  tr: {
+    "reviews.anonymousAccount": "Anonim hesap",
+    "deleteAccount.reviewsText": "Yorumların ve puanların outlet puan sistemini korumak için kalır.",
+    "deleteAccount.reviewsAnonymousText": "Hesabın silindikten sonra yorumların Anonim hesap olarak görünür.",
+    "deleteAccount.reviewsNoRelinkText": "Aynı e-posta ile yeniden kayıt olsan bile eski yorumların yeni hesabına bağlanmaz.",
+    "deleteAccount.signInRequiredTitle": "Giriş gerekli",
+    "deleteAccount.signInRequiredMessage": "Hesabını silmek için önce giriş yap.",
+    "deleteAccount.signInRequiredButton": "Giriş Yap",
+  },
+  es: {
+    "reviews.anonymousAccount": "Cuenta anónima",
+    "deleteAccount.reviewsText": "Tus reseñas y puntuaciones permanecen para proteger el sistema de valoración del outlet.",
+    "deleteAccount.reviewsAnonymousText": "Después de eliminar tu cuenta, tus reseñas aparecerán como Cuenta anónima.",
+    "deleteAccount.reviewsNoRelinkText": "Aunque vuelvas a registrarte con el mismo correo, tus reseñas antiguas no se vincularán a tu nueva cuenta.",
+    "deleteAccount.signInRequiredTitle": "Inicio de sesión requerido",
+    "deleteAccount.signInRequiredMessage": "Inicia sesión antes de eliminar tu cuenta.",
+    "deleteAccount.signInRequiredButton": "Iniciar sesión",
+  },
+  fr: {
+    "reviews.anonymousAccount": "Compte anonyme",
+    "deleteAccount.reviewsText": "Vos avis et notes restent afin de préserver le système de notation de l'outlet.",
+    "deleteAccount.reviewsAnonymousText": "Après la suppression de votre compte, vos avis apparaissent comme Compte anonyme.",
+    "deleteAccount.reviewsNoRelinkText": "Même si vous vous réinscrivez avec la même adresse e-mail, vos anciens avis ne seront pas liés à votre nouveau compte.",
+    "deleteAccount.signInRequiredTitle": "Connexion requise",
+    "deleteAccount.signInRequiredMessage": "Connectez-vous avant de supprimer votre compte.",
+    "deleteAccount.signInRequiredButton": "Se connecter",
+  },
+  de: {
+    "reviews.anonymousAccount": "Anonymes Konto",
+    "deleteAccount.reviewsText": "Deine Bewertungen und Punktzahlen bleiben erhalten, um das Outlet-Bewertungssystem zu schützen.",
+    "deleteAccount.reviewsAnonymousText": "Nach dem Löschen deines Kontos erscheinen deine Bewertungen als Anonymes Konto.",
+    "deleteAccount.reviewsNoRelinkText": "Auch wenn du dich mit derselben E-Mail erneut registrierst, werden alte Bewertungen nicht mit deinem neuen Konto verknüpft.",
+    "deleteAccount.signInRequiredTitle": "Anmeldung erforderlich",
+    "deleteAccount.signInRequiredMessage": "Melde dich an, bevor du dein Konto löschst.",
+    "deleteAccount.signInRequiredButton": "Anmelden",
+  },
+  ar: {
+    "reviews.anonymousAccount": "حساب مجهول",
+    "deleteAccount.reviewsText": "تبقى مراجعاتك وتقييماتك لحماية نظام تقييم المنفذ.",
+    "deleteAccount.reviewsAnonymousText": "بعد حذف حسابك، ستظهر مراجعاتك باسم حساب مجهول.",
+    "deleteAccount.reviewsNoRelinkText": "حتى إذا سجلت مجدداً بالبريد الإلكتروني نفسه، فلن ترتبط مراجعاتك القديمة بحسابك الجديد.",
+    "deleteAccount.signInRequiredTitle": "تسجيل الدخول مطلوب",
+    "deleteAccount.signInRequiredMessage": "سجّل الدخول قبل حذف حسابك.",
+    "deleteAccount.signInRequiredButton": "تسجيل الدخول",
+  },
+  ru: {
+    "reviews.anonymousAccount": "Анонимный аккаунт",
+    "deleteAccount.reviewsText": "Ваши отзывы и оценки сохраняются, чтобы защитить систему рейтинга аутлета.",
+    "deleteAccount.reviewsAnonymousText": "После удаления аккаунта ваши отзывы будут отображаться как Анонимный аккаунт.",
+    "deleteAccount.reviewsNoRelinkText": "Даже если вы снова зарегистрируетесь с тем же адресом электронной почты, старые отзывы не будут связаны с новым аккаунтом.",
+    "deleteAccount.signInRequiredTitle": "Требуется вход",
+    "deleteAccount.signInRequiredMessage": "Войдите, прежде чем удалить аккаунт.",
+    "deleteAccount.signInRequiredButton": "Войти",
+  },
+  zh: {
+    "reviews.anonymousAccount": "匿名账号",
+    "deleteAccount.reviewsText": "你的评论和评分会保留，以保护奥莱评分系统。",
+    "deleteAccount.reviewsAnonymousText": "账号删除后，你的评论将显示为匿名账号。",
+    "deleteAccount.reviewsNoRelinkText": "即使你使用同一邮箱重新注册，旧评论也不会关联到新账号。",
+    "deleteAccount.signInRequiredTitle": "需要登录",
+    "deleteAccount.signInRequiredMessage": "删除账号前请先登录。",
+    "deleteAccount.signInRequiredButton": "登录",
+  },
+};
+
+for (const locale of supportedLanguageCodes) {
+  Object.assign(translations[locale], accountDeletionSafetyPhase1BTranslations[locale]);
+}

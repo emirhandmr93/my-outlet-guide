@@ -13,6 +13,7 @@ export type OutletReview = {
   updatedAt: string;
   status: ReviewStatus;
   deletedAt?: string | null;
+  authorDeleted?: boolean;
   helpfulCount?: number;
   helpfulUserIds?: string[];
   isEdited?: boolean;
