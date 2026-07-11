@@ -107,7 +107,7 @@ export function WriteReviewScreen() {
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS === "ios" ? 88 : 0}>
-      <ScrollView ref={scrollRef} style={styles.container} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <ScrollView ref={scrollRef} style={styles.container} contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled" keyboardDismissMode="interactive">
       <View style={styles.card}>
         <Text style={styles.title}>{existingReview ? t("writeReview.editTitle") : t("writeReview.title")}</Text>
         <Text style={styles.helperText}>{t("writeReview.commentOptional")}</Text>
@@ -125,9 +125,9 @@ export function WriteReviewScreen() {
           <Text style={styles.derivedRatingValue}>⭐ {overallRating ? overallRating.toFixed(1).replace(/\.0$/, "") : "—"}</Text>
         </View>
         <Text style={styles.label}>{t("writeReview.titleLabel")}</Text>
-        <TextInput style={styles.input} value={title} onChangeText={setTitle} maxLength={80} placeholder={t("writeReview.titlePlaceholder")} returnKeyType="next" onFocus={() => scrollFocusedInputIntoView(420)} />
+        <TextInput style={styles.input} value={title} onChangeText={setTitle} maxLength={80} placeholder={t("writeReview.titlePlaceholder")} returnKeyType="next" onFocus={() => scrollFocusedInputIntoView(460)} />
         <Text style={styles.label}>{t("writeReview.commentLabel")}</Text>
-        <TextInput style={[styles.input, styles.commentInput]} value={comment} onChangeText={setComment} multiline maxLength={1200} placeholder={t("writeReview.commentPlaceholder")} textAlignVertical="top" onFocus={() => scrollFocusedInputIntoView(560)} />
+        <TextInput style={[styles.input, styles.commentInput]} value={comment} onChangeText={setComment} multiline maxLength={1200} placeholder={t("writeReview.commentPlaceholder")} textAlignVertical="top" onFocus={() => scrollFocusedInputIntoView(640)} />
         <TouchableOpacity style={styles.button} activeOpacity={0.86} onPress={saveReview} disabled={saving}>
           <Text style={styles.buttonText}>{saving ? t("common.loading") : t("writeReview.submit")}</Text>
         </TouchableOpacity>

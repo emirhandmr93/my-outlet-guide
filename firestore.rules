@@ -242,7 +242,7 @@ service cloud.firestore {
 
     function isValidReviewReportUpdate() {
       return isAdminOrModerator()
-        && request.resource.data.diff(resource.data).changedKeys().hasOnly(['status', 'updatedAt', 'moderationNote', 'moderatedBy', 'moderatedAt'])
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt', 'moderationNote', 'moderatedBy', 'moderatedAt'])
         && request.resource.data.status in ['open', 'reviewing', 'dismissed', 'action_taken']
         && request.resource.data.reporterUserId == resource.data.reporterUserId
         && request.resource.data.reviewId == resource.data.reviewId
@@ -463,7 +463,7 @@ service cloud.firestore {
         && hasValidReviewEditMetadata(request.resource.data)
         && (isPublishedReviewUpdate() || isSoftDeleteReviewUpdate())
         || (isAdminOrModerator()
-          && request.resource.data.diff(resource.data).changedKeys().hasOnly(['status', 'updatedAt'])
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
           && request.resource.data.status in ['hidden', 'published']);
       allow delete: if false;
 

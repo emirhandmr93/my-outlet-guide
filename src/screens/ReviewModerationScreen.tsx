@@ -53,7 +53,7 @@ setCards(await fetchGroupedModerationReports(filter));
       const code = error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : "unknown";
       const safeMessage = error instanceof Error ? error.message.slice(0, 120) : "unknown";
       const hasAdminAccess = allowed && Boolean(moderatorUserId);
-      console.warn("reviewModerationActionFailed", { code, safeMessage, action: actionName, groupKey: group.groupKey, outletId: group.outletId, reviewId: group.reviewId, hasAdminAccess });
+      console.warn("reviewModerationActionFailed", { code, safeMessage, action: actionName, groupKey: group.groupKey, outletId: group.outletId, reviewId: group.reviewId, hasAdminAccess, payloadKeys: ["status", "updatedAt", "moderationNote", "moderatedBy", "moderatedAt"] });
       Alert.alert(code === "permission-denied" ? t("moderation.permissionDenied") : t("moderation.actionFailed"));
     } finally {
       setBusyAction(null);

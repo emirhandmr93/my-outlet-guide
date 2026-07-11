@@ -18,6 +18,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import { resolveVisibleFavoriteOutlets } from "../utils/favoriteOutlets";
 import { canUseModeration, getAdminAccess } from "../utils/adminAccess";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { getProductionMediaCredits } from "../media/outletMedia";
 import {
   getFloatingTabClearance,
   getScrollIndicatorBottomInset,
@@ -67,6 +68,7 @@ export function ProfileScreen() {
     : [];
   const [displayName, setDisplayName] = useState("");
   const [canModerateReviews, setCanModerateReviews] = useState(false);
+  const hasPublicMediaCredits = getProductionMediaCredits().length > 0;
 
   const accountName =
     currentUser?.displayName ||
@@ -304,12 +306,14 @@ export function ProfileScreen() {
         subtitle={t("profile.subtitles.termsConditions")}
         onPress={() => goTo("TermsConditions")}
       />
-      <ProfileRow
-        icon="🖼️"
-        title={t("profile.mediaCredits")}
-        subtitle={t("profile.subtitles.mediaCredits")}
-        onPress={() => goTo("MediaCredits")}
-      />
+      {hasPublicMediaCredits ? (
+        <ProfileRow
+          icon="🖼️"
+          title={t("profile.mediaCredits")}
+          subtitle={t("profile.subtitles.mediaCredits")}
+          onPress={() => goTo("MediaCredits")}
+        />
+      ) : null}
 
       <Text style={styles.groupTitle}>{t("profile.accountManagement")}</Text>
 

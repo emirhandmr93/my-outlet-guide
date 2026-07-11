@@ -23,7 +23,7 @@ const myReviews = Array.from(
 new Map(
 reviews
 .filter((review) => review.userId === currentUser?.userId && (review.status ?? "published") === "published")
-.map((review) => [`${review.outletId}_${review.reviewId}_${review.userId}`, review]),
+.map((review) => [`${review.outletId}_${review.userId}`, review]),
 ).values(),
 );
 
@@ -51,7 +51,7 @@ contentContainerStyle={styles.content}
 ) : (
 myReviews.map((review) => (
 <View
-key={`${review.outletId}_${review.reviewId}_${review.userId}`}
+key={`${review.outletId}_${review.reviewId}`}
 style={styles.reviewCard}
 >
 <Text style={styles.reviewOutlet}>
