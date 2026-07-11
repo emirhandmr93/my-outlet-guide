@@ -35,6 +35,21 @@ const tripDetail = read("src/screens/TripDetailScreen.tsx");
 const segmentEditor = read("src/screens/TripSegmentEditorScreen.tsx");
 const reminderService = read("src/services/tripReminderPlan.ts");
 
+const navigationSourceForTabs = read("src/navigation/AppNavigator.tsx");
+const navigationTypesForTabs = read("src/navigation/types.ts");
+assert(
+  /<Tab\.Screen name="Home"[\s\S]*?<Tab\.Screen name="Explore"[\s\S]*?<Tab\.Screen name="MyTrips"[\s\S]*?<Tab\.Screen name="Savings"[\s\S]*?<Tab\.Screen name="Profile"/.test(navigationSourceForTabs),
+  "bottom tabs must be Home, Explore, MyTrips, Savings, Profile in order",
+);
+assert(
+  !/<Tab\.Screen name="Favorites"/.test(navigationSourceForTabs),
+  "Favorites must not be a bottom tab",
+);
+assert(
+  /export type MainTabParamList[\s\S]*MyTrips: undefined;[\s\S]*};/.test(navigationTypesForTabs),
+  "MyTrips must be a bottom tab route",
+);
+
 assert(
   myTrips.includes("formatCityDisplayName") &&
     myTrips.includes("formatCountryDisplayName") &&
