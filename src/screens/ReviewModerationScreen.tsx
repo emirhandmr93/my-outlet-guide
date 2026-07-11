@@ -4,7 +4,7 @@ import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View 
 import { outlets } from "../constants/outlets";
 import { useAuth } from "../contexts/AuthContext";
 import { useTranslation } from "../hooks/useTranslation";
-import { addModerationNote, dismissReport, fetchGroupedModerationReports, hideReviewForModeration, markReportReviewing, restoreReviewForModeration, type ModerationReportGroup } from "../services/moderationService";
+import { addModerationNote, dismissReport, fetchGroupedModerationReports, getModerationCallableErrorCode, hideReview, markReviewing, restoreReview, type ModerationReportGroup } from "../services/moderationService";
 import type { RootReviewReport, ReviewReportModerationStatus } from "../services/reviewReportService";
 import type { OutletReview } from "../types/review";
 import { canUseModeration, getAdminAccess } from "../utils/adminAccess";
@@ -38,7 +38,7 @@ export function ReviewModerationScreen() {
 
   const title = useMemo(() => t("moderation.inboxTitle"), [t]);
 
-  async function run(actionName: string, group: ModerationReportGroup, action: () => Promise<void>, successKey: string, requireNote = false) {
+  async function run(actionName: string, group: ModerationReportGroup, action: () => Promise<unknown>, successKey: string, requireNote = false) {
     if (requireNote && !note.trim()) {
       Alert.alert(t("moderation.noteRequired"));
       return;
@@ -50,13 +50,14 @@ export function ReviewModerationScreen() {
       setNote("");
       await load();
     } catch (error) {
-      const code = error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : "unknown";
+      const code = getModerationCallableErrorCode(error);
       const safeMessage = error instanceof Error ? error.message.slice(0, 120) : "unknown";
       const hasAdminAccess = allowed && Boolean(moderatorUserId);
+      const hasUser = Boolean(currentUser);
       const payloadKeys = actionName === "restore_review"
         ? ["status", "updatedAt", "moderatedBy", "moderatedAt", "moderationNote"]
         : ["status", "updatedAt", "moderationNote", "moderatedBy", "moderatedAt"];
-      console.warn("reviewModerationActionFailed", { code, safeMessage, action: actionName, groupKey: group.groupKey, reportIdsCount: group.reports.length, outletId: group.outletId, reviewId: group.reviewId, hasAdminAccess, payloadKeys });
+      console.warn("reviewModerationActionFailed", { code, safeMessage, action: actionName, groupKey: group.groupKey, reportIdsCount: group.reports.length, outletId: group.outletId, reviewId: group.reviewId, hasUser, hasAdminAccess, payloadKeys });
       Alert.alert(code === "permission-denied" ? t("moderation.permissionDenied") : t("moderation.actionFailed"));
     } finally {
       setBusyAction(null);
@@ -90,10 +91,10 @@ export function ReviewModerationScreen() {
           <Text style={styles.meta}>{t("moderation.reportingUsers")}: {reportCount} • {new Date(group.latestUpdatedAt).toLocaleDateString()}</Text>
           <Text style={styles.meta}>{t("moderation.reportStatus")}: {t(`moderation.reportStatus.${report.status}`)} • {t("moderation.reviewStatus")}: {t(`moderation.reviewStatus.${reviewStatus}`)}</Text>
           <View style={styles.actions}>
-            {report.status === "open" ? <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("mark_reviewing", group, () => markReportReviewing(group, moderatorUserId), "moderation.markedReviewing")}><Text style={styles.buttonText}>{t("moderation.markReviewing")}</Text></TouchableOpacity> : null}
-            {report.status !== "dismissed" ? <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("dismiss_report", group, () => dismissReport(group, moderatorUserId, note), "moderation.reportDismissed")}><Text style={styles.buttonText}>{t("moderation.dismissReport")}</Text></TouchableOpacity> : null}
-            {reviewStatus === "hidden" ? <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("restore_review", group, () => restoreReviewForModeration(group, moderatorUserId, note), "moderation.reviewRestored")}><Text style={styles.buttonText}>{t("moderation.restoreReview")}</Text></TouchableOpacity> : <TouchableOpacity disabled={isBusy} style={styles.dangerButton} onPress={() => run("hide_review", group, () => hideReviewForModeration(group, moderatorUserId, note), "moderation.reviewHidden")}><Text style={styles.dangerText}>{t("moderation.hideReview")}</Text></TouchableOpacity>}
-            <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("add_note", group, () => addModerationNote(group, moderatorUserId, note), "moderation.noteSaved", true)}><Text style={styles.buttonText}>{t("moderation.addNote")}</Text></TouchableOpacity>
+            {report.status === "open" ? <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("mark_reviewing", group, () => markReviewing(group), "moderation.markedReviewing")}><Text style={styles.buttonText}>{t("moderation.markReviewing")}</Text></TouchableOpacity> : null}
+            {report.status !== "dismissed" ? <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("dismiss_report", group, () => dismissReport(group, note), "moderation.reportDismissed")}><Text style={styles.buttonText}>{t("moderation.dismissReport")}</Text></TouchableOpacity> : null}
+            {reviewStatus === "hidden" ? <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("restore_review", group, () => restoreReview(group, note), "moderation.reviewRestored")}><Text style={styles.buttonText}>{t("moderation.restoreReview")}</Text></TouchableOpacity> : <TouchableOpacity disabled={isBusy} style={styles.dangerButton} onPress={() => run("hide_review", group, () => hideReview(group, note), "moderation.reviewHidden")}><Text style={styles.dangerText}>{t("moderation.hideReview")}</Text></TouchableOpacity>}
+            <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("add_note", group, () => addModerationNote(group, note), "moderation.noteSaved", true)}><Text style={styles.buttonText}>{t("moderation.addNote")}</Text></TouchableOpacity>
           </View>
         </View>;
       })}
