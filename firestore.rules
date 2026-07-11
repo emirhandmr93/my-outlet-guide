@@ -466,12 +466,12 @@ service cloud.firestore {
       allow get: if isSignedIn() && reportId.matches('.*_' + request.auth.uid);
       allow create: if isSignedIn() && !exists(/databases/$(database)/documents/reviewReports/$(reportId)) && isValidRootReviewReportCreate(reportId);
       allow read: if isSignedIn() && (resource.data.reporterUserId == request.auth.uid || isAdminOrModerator());
-      allow update: if isValidReviewReportUpdate();
+      allow update: if false;
       allow delete: if false;
     }
 
     match /moderationActions/{actionId} {
-      allow create: if isValidModerationActionCreate(actionId);
+      allow create: if false;
       allow read: if isAdminOrModerator();
       allow update, delete: if false;
     }
@@ -485,8 +485,7 @@ service cloud.firestore {
         && resource.data.status == 'published'
         && hasValidReviewUpdateData()
         && hasValidReviewEditMetadata(request.resource.data)
-        && (isPublishedReviewUpdate() || isSoftDeleteReviewUpdate())
-        || isValidModeratedReviewStatusUpdate();
+        && (isPublishedReviewUpdate() || isSoftDeleteReviewUpdate());
       allow delete: if false;
 
       match /helpful/{userId} {

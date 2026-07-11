@@ -19,6 +19,7 @@ const deleteScreen = read("src/screens/DeleteAccountScreen.tsx");
 const deleteCallable = read("src/services/accountDeletionCallable.ts");
 const reviewService = read("src/services/reviewsRatingsService.ts");
 const moderationService = read("src/services/moderationService.ts");
+const reviewModerationFunction = read("functions/src/reviewModeration.ts");
 const reportService = read("src/services/reviewReportService.ts");
 const flightDeals = read("src/screens/FlightDealsScreen.tsx");
 const flightAlertService = read("src/services/flightDealAlertService.ts");
@@ -81,7 +82,7 @@ for (const collectionName of ["favorites", "userTrips", "flightDealPreferences",
   assert(rules.includes(collectionName), `Firestore rules mention ${collectionName}`);
 }
 assert(rules.includes("allow create, update, delete: if false") && rules.includes("match /flightFareRoutes/{routeKey}"), "Firestore rules block client provider fare writes");
-assert(functionsIndex.includes('export { deleteAccount } from "./accountDeletion"') && functionsIndex.includes('export { sendWelcomeEmail } from "./welcomeEmail"'), "functions exports include deleteAccount and sendWelcomeEmail");
+assert(functionsIndex.includes('export { deleteAccount } from "./accountDeletion"') && functionsIndex.includes('export { sendWelcomeEmail } from "./welcomeEmail"') && functionsIndex.includes('export { moderateReviewAction } from "./reviewModeration"'), "functions exports include deleteAccount, sendWelcomeEmail, and moderateReviewAction");
 assert(!/request\.data\.(email|uid)|recipientEmail|targetUid/.test(welcomeEmail + read("functions/src/accountDeletion.ts")), "welcome/delete functions do not accept client-supplied recipient email or delete target");
 
 const coreUiSource = [
@@ -102,7 +103,7 @@ assert(offlineScreen.includes('"guide", "brands", "notes", "media", "taxFree"') 
 assert(!/TouchableOpacity|Pressable|Button/.test(offlineScreen), "Offline screen has no fake download action");
 assert(read("src/screens/WriteReviewScreen.tsx").includes("KeyboardAvoidingView") && read("src/screens/WriteReviewScreen.tsx").includes('keyboardShouldPersistTaps="handled"'), "WriteReviewScreen uses keyboard-safe handling");
 assert(myReviewsScreen.includes('`${review.outletId}_${review.reviewId}`') && myReviewsScreen.includes("new Map"), "MyReviews uses unique key extractor and de-duplicates reviews");
-assert(moderationScreen.includes("group.groupKey") && moderationScreen.includes("moderation.reason.") && moderationScreen.includes("moderation.reviewStatus") && moderationService.includes("getRelatedReports") && read("firestore.rules").includes("isValidModeratedReviewStatusUpdate") && moderationService.includes("buildReportModerationUpdate") && moderationService.includes("markReportReviewing"), "ReviewModeration uses grouping/action services and rules-aligned localized actions");
+assert(moderationScreen.includes("group.groupKey") && moderationScreen.includes("moderation.reason.") && moderationScreen.includes("moderation.reviewStatus") && moderationService.includes("httpsCallable<ModerateReviewActionPayload, ModerateReviewActionResult>") && moderationService.includes('functions, "moderateReviewAction"') && !/updateDoc|writeBatch|setDoc|serverTimestamp/.test(moderationService) && reviewModerationFunction.includes("db.batch()"), "ReviewModeration uses grouping and backend-callable-backed moderation actions without client direct moderation status writes");
 assert(!moderationScreen.includes("{report.reason}") && !moderationScreen.includes("status: {review?.status"), "no raw internal status/reason labels in moderation UI");
 assert(translations.includes("Güvenlik için tekrar giriş yapman gerekiyor") && translations.includes('"review.actionErrorTitle": "Yorum işlemi başarısız"'), "Turkish review/account deletion errors are localized");
 

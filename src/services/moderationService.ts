@@ -1,12 +1,30 @@
-import { collection, doc, getDoc, getDocs, query, serverTimestamp, setDoc, updateDoc, where, writeBatch, type FieldValue } from "firebase/firestore";
+import { collection, getDoc, getDocs, query, where } from "firebase/firestore";
+import { httpsCallable, type FunctionsError } from "firebase/functions";
 
-import { db } from "../firebase/config";
+import { db, functions } from "../firebase/config";
 import type { OutletReview, ReviewReportReason } from "../types/review";
 import { getReviewDocRef } from "./reviewsRatingsService";
-import { REVIEW_REPORTS_ROOT_COLLECTION, REVIEW_REPORT_STATUSES, type RootReviewReport, normalizeReport } from "./reviewReportService";
+import { REVIEW_REPORTS_ROOT_COLLECTION, type RootReviewReport, normalizeReport } from "./reviewReportService";
 
 export const MODERATION_ACTIONS_COLLECTION = "moderationActions";
 export type ModerationAction = "mark_reviewing" | "dismiss_report" | "hide_review" | "restore_review" | "add_note";
+
+type ModerateReviewActionPayload = {
+  action: ModerationAction;
+  outletId: string;
+  reviewId: string;
+  reportIds?: string[];
+  moderationNote?: string;
+};
+
+export type ModerateReviewActionResult = {
+  status: "ok";
+  action: ModerationAction;
+  updatedReportCount: number;
+  reviewStatus: string | null;
+};
+
+const moderateReviewActionCallable = httpsCallable<ModerateReviewActionPayload, ModerateReviewActionResult>(functions, "moderateReviewAction");
 
 export type ModerationReportGroup = {
   groupKey: string;
@@ -51,97 +69,80 @@ function primaryReportFromInput(input: RootReviewReport | ModerationReportGroup)
   return "primaryReport" in input ? input.primaryReport : input;
 }
 
-async function getRelatedReports(input: RootReviewReport | ModerationReportGroup) {
-  if ("reports" in input) return input.reports;
-  return (await getDocs(query(collection(db, REVIEW_REPORTS_ROOT_COLLECTION), where("outletId", "==", input.outletId), where("reviewId", "==", input.reviewId)))).docs.map((item) => normalizeReport(item.id, item.data()));
+function reportIdsFromInput(input: RootReviewReport | ModerationReportGroup) {
+  return "reports" in input ? input.reports.map((report) => report.reportId) : [input.reportId];
 }
-
-type ReportModerationUpdate = { status?: RootReviewReport["status"]; updatedAt: FieldValue; moderatedBy: string; moderatedAt: FieldValue; moderationNote?: string };
-type ReviewModerationUpdate = { status: "hidden" | "published"; updatedAt: FieldValue; moderatedBy: string; moderatedAt: FieldValue; moderationNote?: string };
 
 function normalizedNote(note?: string) {
   const trimmed = note?.trim();
   return trimmed ? trimmed : undefined;
 }
 
-function buildReportModerationUpdate(status: RootReviewReport["status"] | undefined, moderatorUserId: string, note?: string): ReportModerationUpdate {
-  const payload: ReportModerationUpdate = { updatedAt: serverTimestamp(), moderatedBy: moderatorUserId, moderatedAt: serverTimestamp() };
-  if (status) payload.status = status;
+function getSafeCallableErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message.slice(0, 120) : "unknown";
+}
+
+export function getModerationCallableErrorCode(error: unknown) {
+  return error && typeof error === "object" && "code" in error ? String((error as FunctionsError).code).replace("functions/", "") : "unknown";
+}
+
+async function callModerationAction(input: RootReviewReport | ModerationReportGroup, action: ModerationAction, note?: string) {
+  const report = primaryReportFromInput(input);
+  const payload: ModerateReviewActionPayload = {
+    action,
+    outletId: report.outletId,
+    reviewId: report.reviewId,
+    reportIds: reportIdsFromInput(input),
+  };
   const trimmed = normalizedNote(note);
   if (trimmed) payload.moderationNote = trimmed;
-  return payload;
+
+  try {
+    const result = await moderateReviewActionCallable(payload);
+    return result.data;
+  } catch (error) {
+    console.warn("reviewModerationCallableFailed", {
+      code: getModerationCallableErrorCode(error),
+      safeMessage: getSafeCallableErrorMessage(error),
+      action,
+      outletId: report.outletId,
+      reviewId: report.reviewId,
+      reportCount: payload.reportIds?.length ?? 0,
+      hasUser: true,
+      hasAdminAccess: undefined,
+    });
+    throw error;
+  }
 }
 
-function buildReviewModerationUpdate(status: "hidden" | "published", moderatorUserId: string, note?: string): ReviewModerationUpdate {
-  const payload: ReviewModerationUpdate = { status, updatedAt: serverTimestamp(), moderatedBy: moderatorUserId, moderatedAt: serverTimestamp() };
-  const trimmed = normalizedNote(note);
-  if (trimmed) payload.moderationNote = trimmed;
-  return payload;
+export async function markReviewing(input: RootReviewReport | ModerationReportGroup) {
+  return callModerationAction(input, "mark_reviewing");
 }
 
-async function updateRelatedReportStatuses(input: RootReviewReport | ModerationReportGroup, status: RootReviewReport["status"], moderatorUserId: string, note?: string) {
-  const related = await getRelatedReports(input);
-  const batch = writeBatch(db);
-  related.filter((item) => ["open", "reviewing"].includes(item.status)).forEach((item) => {
-    batch.update(doc(db, REVIEW_REPORTS_ROOT_COLLECTION, item.reportId), buildReportModerationUpdate(status, moderatorUserId, note));
-  });
-  await batch.commit();
+export async function markReportReviewing(input: RootReviewReport | ModerationReportGroup) {
+  return markReviewing(input);
 }
 
-async function audit(input: { report: RootReviewReport; moderatorUserId: string; action: ModerationAction; reason?: ReviewReportReason; note?: string }) {
-  const actionRef = doc(collection(db, MODERATION_ACTIONS_COLLECTION));
-  await setDoc(actionRef, {
-    actionId: actionRef.id,
-    reportId: input.report.reportId,
-    outletId: input.report.outletId,
-    reviewId: input.report.reviewId,
-    moderatorUserId: input.moderatorUserId,
-    action: input.action,
-    reason: input.reason || input.report.reason,
-    note: normalizedNote(input.note) || "",
-    createdAt: serverTimestamp(),
-  });
+export async function dismissReport(input: RootReviewReport | ModerationReportGroup, note?: string) {
+  return callModerationAction(input, "dismiss_report", note);
 }
 
-export async function markReportReviewing(input: RootReviewReport | ModerationReportGroup, moderatorUserId: string) {
-  const report = primaryReportFromInput(input);
-  await updateRelatedReportStatuses(input, "reviewing", moderatorUserId);
-  await audit({ report, moderatorUserId, action: "mark_reviewing" });
+export async function hideReview(input: RootReviewReport | ModerationReportGroup, note?: string) {
+  return callModerationAction(input, "hide_review", note);
 }
 
-export async function dismissReport(input: RootReviewReport | ModerationReportGroup, moderatorUserId: string, note?: string) {
-  const report = primaryReportFromInput(input);
-  await updateRelatedReportStatuses(input, "dismissed", moderatorUserId, note);
-  await audit({ report, moderatorUserId, action: "dismiss_report", note });
+export async function hideReviewForModeration(input: RootReviewReport | ModerationReportGroup, note?: string) {
+  return hideReview(input, note);
 }
 
-export async function hideReviewForModeration(input: RootReviewReport | ModerationReportGroup, moderatorUserId: string, note?: string) {
-  const report = primaryReportFromInput(input);
-  const related = await getRelatedReports(input);
-  const batch = writeBatch(db);
-  batch.update(getReviewDocRef(report.outletId, report.reviewId), buildReviewModerationUpdate("hidden", moderatorUserId, note));
-  related.forEach((item) => {
-    if (REVIEW_REPORT_STATUSES.includes(item.status) && ["open", "reviewing"].includes(item.status)) {
-      batch.update(doc(db, REVIEW_REPORTS_ROOT_COLLECTION, item.reportId), buildReportModerationUpdate("action_taken", moderatorUserId, note));
-    }
-  });
-  await batch.commit();
-  await audit({ report, moderatorUserId, action: "hide_review", note });
+export async function restoreReview(input: RootReviewReport | ModerationReportGroup, note?: string) {
+  return callModerationAction(input, "restore_review", note);
 }
 
-export async function restoreReviewForModeration(input: RootReviewReport | ModerationReportGroup, moderatorUserId: string, note?: string) {
-  const report = primaryReportFromInput(input);
-  await updateDoc(getReviewDocRef(report.outletId, report.reviewId), buildReviewModerationUpdate("published", moderatorUserId, note));
-  await audit({ report, moderatorUserId, action: "restore_review", note });
+export async function restoreReviewForModeration(input: RootReviewReport | ModerationReportGroup, note?: string) {
+  return restoreReview(input, note);
 }
 
-export async function addModerationNote(input: RootReviewReport | ModerationReportGroup, moderatorUserId: string, note: string) {
-  const report = primaryReportFromInput(input);
-  const related = await getRelatedReports(input);
-  const batch = writeBatch(db);
-  related.forEach((item) => {
-    batch.update(doc(db, REVIEW_REPORTS_ROOT_COLLECTION, item.reportId), buildReportModerationUpdate(undefined, moderatorUserId, note));
-  });
-  await batch.commit();
-  await audit({ report, moderatorUserId, action: "add_note", note });
+export async function addModerationNote(input: RootReviewReport | ModerationReportGroup, note: string) {
+  return callModerationAction(input, "add_note", note);
 }
