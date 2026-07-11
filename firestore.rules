@@ -84,8 +84,35 @@ service cloud.firestore {
           'createdAt',
           'updatedAt',
           'status',
-          'deletedAt'
+          'deletedAt',
+          'previousComment',
+          'previousTitle',
+          'previousRating',
+          'previousCategoryRatings',
+          'editedAt',
+          'editCount'
         ]);
+    }
+
+    function hasValidOptionalPreviousCategoryRatings(data) {
+      return !('previousCategoryRatings' in data) || (
+        data.previousCategoryRatings is map
+        && data.previousCategoryRatings.keys().hasOnly(['transportation', 'brands', 'restaurants', 'services'])
+        && data.previousCategoryRatings.keys().hasAll(['transportation', 'brands', 'restaurants', 'services'])
+        && isValidRating(data.previousCategoryRatings.transportation)
+        && isValidRating(data.previousCategoryRatings.brands)
+        && isValidRating(data.previousCategoryRatings.restaurants)
+        && isValidRating(data.previousCategoryRatings.services)
+      );
+    }
+
+    function hasValidReviewEditMetadata(data) {
+      return (!('previousComment' in data) || (data.previousComment is string && data.previousComment.size() <= 4000))
+        && (!('previousTitle' in data) || (data.previousTitle is string && data.previousTitle.size() <= 120))
+        && (!('previousRating' in data) || isValidRating(data.previousRating))
+        && hasValidOptionalPreviousCategoryRatings(data)
+        && (!('editedAt' in data) || data.editedAt is timestamp)
+        && (!('editCount' in data) || (data.editCount is number && data.editCount >= 1));
     }
 
     function isPublishedReviewUpdate() {
@@ -281,6 +308,7 @@ service cloud.firestore {
         && resource.data.userId == request.auth.uid
         && keepsReviewOwnership(outletId, reviewId)
         && hasValidReviewUpdateData()
+        && hasValidReviewEditMetadata(request.resource.data)
         && (isPublishedReviewUpdate() || isSoftDeleteReviewUpdate());
       allow delete: if false;
 

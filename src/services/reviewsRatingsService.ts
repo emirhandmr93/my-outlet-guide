@@ -87,8 +87,16 @@ export function isPublishedReview(review: OutletReview) {
 export function getPublishedReviews(reviews: OutletReview[]) {
   const latestByOutletUser = new Map<string, OutletReview>();
   for (const review of reviews.filter(isPublishedReview)) {
-    const key = `${review.outletId}:${review.userId || review.reviewId}`;
+    const userKey = review.userId || review.reviewId;
+    const key = `${review.outletId}:${userKey}`;
     const current = latestByOutletUser.get(key);
+    const reviewIsDeterministic = Boolean(review.userId && review.reviewId === review.userId);
+    const currentIsDeterministic = Boolean(current?.userId && current.reviewId === current.userId);
+    if (reviewIsDeterministic && !currentIsDeterministic) {
+      latestByOutletUser.set(key, review);
+      continue;
+    }
+    if (currentIsDeterministic && !reviewIsDeterministic) continue;
     if (!current || review.updatedAt.localeCompare(current.updatedAt) > 0 || review.createdAt.localeCompare(current.createdAt) > 0) {
       latestByOutletUser.set(key, review);
     }
@@ -139,6 +147,16 @@ function normalizeReview(reviewId: string, data: any): OutletReview {
     status: data.status || "published",
     helpfulCount: Number(data.helpfulCount || 0),
     helpfulUserIds: Array.isArray(data.helpfulUserIds) ? data.helpfulUserIds : [],
+    previousComment: typeof data.previousComment === "string" ? data.previousComment : undefined,
+    previousTitle: typeof data.previousTitle === "string" ? data.previousTitle : undefined,
+    previousRating: isRealRating(data.previousRating) ? data.previousRating : undefined,
+    previousCategoryRatings: normalizeCategoryRatings(data.previousCategoryRatings),
+    editedAt: typeof data.editedAt === "string"
+      ? data.editedAt
+      : data.editedAt && typeof data.editedAt.toDate === "function"
+        ? data.editedAt.toDate().toISOString()
+        : undefined,
+    editCount: typeof data.editCount === "number" && data.editCount >= 1 ? data.editCount : undefined,
   };
 }
 
@@ -165,16 +183,23 @@ export async function fetchPublishedReviewsForOutlet(outletId: string): Promise<
     }),
   );
 
-  return reviews.filter(isPublishedReview);
+  return getPublishedReviews(reviews);
+}
+
+function isCompleteCategoryRatings(value: unknown): value is ReviewCategoryRatings {
+  if (!value || typeof value !== "object") return false;
+  const ratings = value as Partial<ReviewCategoryRatings>;
+  return REVIEW_CATEGORY_KEYS.every((key) => isRealRating(ratings[key]));
 }
 
 export async function upsertReview(input: ReviewInput) {
   const now = new Date().toISOString();
   const deterministicReviewRef = getReviewDocRef(input.outletId, input.userId);
   const deterministicSnapshot = await getDoc(deterministicReviewRef);
-  const existingReview = deterministicSnapshot.exists()
+  const existingDeterministicReview = deterministicSnapshot.exists()
     ? normalizeReview(deterministicSnapshot.id, deterministicSnapshot.data())
-    : await fetchLatestActiveReviewForUser(input.outletId, input.userId);
+    : null;
+  const existingReview = existingDeterministicReview || (await fetchLatestActiveReviewForUser(input.outletId, input.userId));
   const reviewId = input.userId;
   const reviewRef = deterministicReviewRef;
   const payload = {
@@ -190,11 +215,22 @@ export async function upsertReview(input: ReviewInput) {
     updatedAt: now,
     status: "published" as const,
     createdAt: existingReview?.createdAt || now,
+    ...(existingDeterministicReview && isPublishedReview(existingDeterministicReview)
+      ? {
+          previousComment: existingDeterministicReview.comment || "",
+          previousTitle: existingDeterministicReview.title || "",
+          previousRating: existingDeterministicReview.rating,
+          ...(isCompleteCategoryRatings(existingDeterministicReview.categoryRatings)
+            ? { previousCategoryRatings: existingDeterministicReview.categoryRatings }
+            : {}),
+          editedAt: serverTimestamp(),
+          editCount: (existingDeterministicReview.editCount || 0) + 1,
+        }
+      : {}),
   };
 
   try {
     await setDoc(reviewRef, payload);
-    await softDeleteDuplicateActiveReviews(input.outletId, input.userId, reviewId);
   } catch (error) {
     logReviewSaveFailure(error, {
       outletId: input.outletId,
@@ -205,6 +241,7 @@ export async function upsertReview(input: ReviewInput) {
     });
     throw error;
   }
+  await softDeleteDuplicateActiveReviews(input.outletId, input.userId, reviewId);
 }
 async function softDeleteDuplicateActiveReviews(outletId: string, userId: string, keepReviewId: string) {
   try {
@@ -219,18 +256,28 @@ async function softDeleteDuplicateActiveReviews(outletId: string, userId: string
     await Promise.all(
       snapshot.docs
         .filter((reviewDoc) => reviewDoc.id !== keepReviewId)
-        .map((reviewDoc) => updateDoc(reviewDoc.ref, { status: "deleted", deletedAt: now, updatedAt: now })),
+        .map(async (reviewDoc) => {
+          try {
+            await updateDoc(reviewDoc.ref, { status: "deleted", deletedAt: now, updatedAt: now });
+          } catch (error) {
+            logDuplicateCleanupFailure(error, { outletId, legacyReviewId: reviewDoc.id, hasUserId: Boolean(userId) });
+          }
+        }),
     );
   } catch (error) {
-    if (process.env.NODE_ENV !== "production") {
-      console.log("Review duplicate cleanup skipped", {
-        outletId,
-        reviewId: keepReviewId,
-        hasUserId: Boolean(userId),
-        code: error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : "unknown",
-      });
-    }
+    logDuplicateCleanupFailure(error, { outletId, legacyReviewId: keepReviewId, hasUserId: Boolean(userId) });
   }
+}
+
+function logDuplicateCleanupFailure(error: unknown, diagnostics: { outletId: string; legacyReviewId: string; hasUserId: boolean }) {
+  if (process.env.NODE_ENV === "production") return;
+  console.warn("Review duplicate cleanup skipped", {
+    code: error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : "unknown",
+    message: error instanceof Error ? error.message : "Unknown duplicate cleanup error",
+    outletId: diagnostics.outletId,
+    legacyReviewId: diagnostics.legacyReviewId,
+    hasUserId: diagnostics.hasUserId,
+  });
 }
 
 type ReviewSaveFailureDiagnostics = {

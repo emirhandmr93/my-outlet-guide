@@ -8,6 +8,9 @@ type ReviewItemProps = {
   editedText: string;
   helpfulText: string;
   helpfulActiveText: string;
+  helpfulOwnDisabledText: string;
+  previousCommentLabel: string;
+  previousTitleLabel: string;
   editText: string;
   deleteText: string;
   reportText: string;
@@ -24,6 +27,9 @@ export function ReviewItem({
   editedText,
   helpfulText,
   helpfulActiveText,
+  helpfulOwnDisabledText,
+  previousCommentLabel,
+  previousTitleLabel,
   editText,
   deleteText,
   reportText,
@@ -52,18 +58,29 @@ export function ReviewItem({
       {review.title ? <Text style={styles.title}>{review.title}</Text> : null}
       <Text style={styles.comment}>{review.comment}</Text>
 
-      {review.updatedAt && review.updatedAt !== review.createdAt ? (
-        <Text style={styles.editedText}>{editedText} • {new Date(review.updatedAt).toLocaleDateString()}</Text>
+      {review.editedAt || (review.updatedAt && review.updatedAt !== review.createdAt) ? (
+        <View style={styles.editedBlock}>
+          <Text style={styles.editedText}>{editedText} • {new Date(review.editedAt || review.updatedAt).toLocaleDateString()}</Text>
+          {review.previousComment ? (
+            <Text style={styles.previousText}>{previousCommentLabel}: {review.previousComment}</Text>
+          ) : review.previousTitle ? (
+            <Text style={styles.previousText}>{previousTitleLabel}: {review.previousTitle}</Text>
+          ) : null}
+        </View>
       ) : null}
 
       <View style={styles.actionsRow}>
-        {!isAuthor ? (
+        {isAuthor ? (
+          <View style={[styles.actionPill, styles.actionPillDisabled]}>
+            <Text style={styles.actionTextDisabled}>{helpfulOwnDisabledText} ({review.helpfulCount || 0})</Text>
+          </View>
+        ) : (
           <TouchableOpacity style={[styles.actionPill, isHelpful && styles.actionPillActive]} onPress={onHelpful}>
             <Text style={[styles.actionText, isHelpful && styles.actionTextActive]}>
               {isHelpful ? helpfulActiveText : helpfulText} ({review.helpfulCount || 0})
             </Text>
           </TouchableOpacity>
-        ) : null}
+        )}
 
         {isAuthor ? (
           <>
@@ -90,10 +107,14 @@ const styles = StyleSheet.create({
   ratingText: { color: "#0B1F3A", fontSize: 12, fontWeight: "900" },
   title: { color: "#0B1F3A", fontSize: 15, fontWeight: "900", marginTop: 12 },
   comment: { color: "#666666", fontSize: 14, lineHeight: 21, marginTop: 8 },
-  editedText: { color: "#C9A227", fontSize: 12, fontWeight: "800", marginTop: 8 },
+  editedBlock: { marginTop: 8 },
+  editedText: { color: "#C9A227", fontSize: 12, fontWeight: "800" },
+  previousText: { color: "#666666", fontSize: 12, fontWeight: "700", lineHeight: 18, marginTop: 4 },
   actionsRow: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12 },
   actionPill: { backgroundColor: "#FFFFFF", borderRadius: 999, paddingHorizontal: 12, paddingVertical: 8, borderWidth: 1, borderColor: "#E5E7EB" },
   actionPillActive: { backgroundColor: "#0B1F3A", borderColor: "#0B1F3A" },
+  actionPillDisabled: { backgroundColor: "#F1F5F9", borderColor: "#E5E7EB" },
+  actionTextDisabled: { color: "#64748B", fontSize: 12, fontWeight: "900" },
   actionText: { color: "#0B1F3A", fontSize: 12, fontWeight: "900" },
   actionTextActive: { color: "#FFFFFF" },
 });
