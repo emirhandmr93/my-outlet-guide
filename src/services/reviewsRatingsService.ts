@@ -2,6 +2,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   getDocs,
   limit,
   orderBy,
@@ -169,9 +170,13 @@ export async function fetchPublishedReviewsForOutlet(outletId: string): Promise<
 
 export async function upsertReview(input: ReviewInput) {
   const now = new Date().toISOString();
-  const existingReview = await fetchLatestActiveReviewForUser(input.outletId, input.userId);
-  const reviewId = existingReview?.reviewId || input.userId;
-  const reviewRef = getReviewDocRef(input.outletId, reviewId);
+  const deterministicReviewRef = getReviewDocRef(input.outletId, input.userId);
+  const deterministicSnapshot = await getDoc(deterministicReviewRef);
+  const existingReview = deterministicSnapshot.exists()
+    ? normalizeReview(deterministicSnapshot.id, deterministicSnapshot.data())
+    : await fetchLatestActiveReviewForUser(input.outletId, input.userId);
+  const reviewId = input.userId;
+  const reviewRef = deterministicReviewRef;
   const payload = {
     reviewId,
     outletId: input.outletId,
@@ -180,17 +185,16 @@ export async function upsertReview(input: ReviewInput) {
     rating: input.rating,
     overallRating: input.overallRating ?? input.rating,
     categoryRatings: input.categoryRatings,
-    title: input.title?.trim() || null,
+    title: input.title?.trim() || "",
     comment: input.comment.trim(),
     updatedAt: now,
     status: "published" as const,
-    deletedAt: null,
     createdAt: existingReview?.createdAt || now,
-    firestoreUpdatedAt: serverTimestamp(),
   };
 
   try {
     await setDoc(reviewRef, payload);
+    await softDeleteDuplicateActiveReviews(input.outletId, input.userId, reviewId);
   } catch (error) {
     logReviewSaveFailure(error, {
       outletId: input.outletId,
@@ -200,6 +204,32 @@ export async function upsertReview(input: ReviewInput) {
       categoryRatingsKeys: Object.keys(input.categoryRatings || {}),
     });
     throw error;
+  }
+}
+async function softDeleteDuplicateActiveReviews(outletId: string, userId: string, keepReviewId: string) {
+  try {
+    const snapshot = await getDocs(
+      query(
+        collection(db, REVIEW_COLLECTION, outletId, REVIEW_ITEMS_COLLECTION),
+        where("userId", "==", userId),
+        where("status", "==", "published"),
+      ),
+    );
+    const now = new Date().toISOString();
+    await Promise.all(
+      snapshot.docs
+        .filter((reviewDoc) => reviewDoc.id !== keepReviewId)
+        .map((reviewDoc) => updateDoc(reviewDoc.ref, { status: "deleted", deletedAt: now, updatedAt: now })),
+    );
+  } catch (error) {
+    if (process.env.NODE_ENV !== "production") {
+      console.log("Review duplicate cleanup skipped", {
+        outletId,
+        reviewId: keepReviewId,
+        hasUserId: Boolean(userId),
+        code: error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : "unknown",
+      });
+    }
   }
 }
 
@@ -226,12 +256,12 @@ function logReviewSaveFailure(error: unknown, diagnostics: ReviewSaveFailureDiag
   });
 }
 
-export async function deleteReview(outletId: string, reviewId: string, _userId: string) {
-  await updateDoc(getReviewDocRef(outletId, reviewId), {
+export async function deleteReview(outletId: string, _reviewId: string, userId: string) {
+  const now = new Date().toISOString();
+  await updateDoc(getReviewDocRef(outletId, userId), {
     status: "deleted",
-    deletedAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-    firestoreUpdatedAt: serverTimestamp(),
+    deletedAt: now,
+    updatedAt: now,
   });
 }
 
@@ -245,7 +275,7 @@ export async function setReviewHelpful(outletId: string, reviewId: string, userI
     REVIEW_HELPFUL_COLLECTION,
     userId,
   );
-  if (helpful) await setDoc(helpfulRef, { userId, createdAt: new Date().toISOString(), firestoreCreatedAt: serverTimestamp() });
+  if (helpful) await setDoc(helpfulRef, { userId, createdAt: new Date().toISOString() });
   else await deleteDoc(helpfulRef);
 }
 

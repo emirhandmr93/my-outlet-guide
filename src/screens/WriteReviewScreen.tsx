@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { useReviews } from "../contexts/ReviewsContext";
@@ -21,7 +21,7 @@ export function WriteReviewScreen() {
   const route = useRoute<RouteProp<RouteParams, "WriteReview">>();
   const { t } = useTranslation();
   const { currentUser, isLoggedIn } = useUser();
-  const { reviews, createOrUpdateReview } = useReviews();
+  const { reviews, createOrUpdateReview, getLatestActiveReviewForUser } = useReviews();
   const outletId = route.params?.outletId;
   const existingReview = useMemo(
     () => reviews.find((review) => review.outletId === outletId && review.userId === currentUser?.userId),
@@ -36,6 +36,27 @@ export function WriteReviewScreen() {
   const [title, setTitle] = useState(existingReview?.title || "");
   const [comment, setComment] = useState(existingReview?.comment || "");
   const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    async function loadExistingReview() {
+      if (!outletId || !currentUser?.userId) return;
+      const review = existingReview || (await getLatestActiveReviewForUser(outletId, currentUser.userId));
+      if (!active || !review) return;
+      setCategoryRatings({
+        transportation: review.categoryRatings?.transportation,
+        brands: review.categoryRatings?.brands,
+        restaurants: review.categoryRatings?.restaurants,
+        services: review.categoryRatings?.services,
+      });
+      setTitle(review.title || "");
+      setComment(review.comment || "");
+    }
+    loadExistingReview().catch(() => undefined);
+    return () => {
+      active = false;
+    };
+  }, [currentUser?.userId, existingReview, getLatestActiveReviewForUser, outletId]);
   const allCategoryRatingsSelected = REVIEW_CATEGORY_KEYS.every((key) => isSelectedRating(categoryRatings[key]));
   const overallRating = allCategoryRatingsSelected ? calculateOverallRating(categoryRatings as ReviewCategoryRatings) : 0;
 
@@ -63,10 +84,9 @@ export function WriteReviewScreen() {
         title: title.trim(),
         comment: comment.trim(),
       });
-      Alert.alert(existingReview ? t("review.updated") : t("review.saved"));
-      navigation.navigate("OutletDetail", { outletId });
+      navigation.navigate("OutletDetail", { outletId, reviewsRefresh: Date.now() });
     } catch (error) {
-      console.log("Review save error", error);
+
       Alert.alert(
         t("writeReview.saveErrorTitle"),
         isFirestorePermissionDenied(error) ? t("writeReview.savePermissionErrorText") : t("writeReview.saveErrorText"),

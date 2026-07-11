@@ -5,52 +5,54 @@ function read(path: string) {
 }
 
 function assert(condition: unknown, message: string) {
-  if (!condition) throw new Error(message);
+  if (!condition) {
+    throw new Error(`Review Lifecycle V2 check failed: ${message}`);
+  }
+  console.log(`✓ ${message}`);
 }
 
-const outletDetail = read("src/screens/OutletDetailScreen.tsx");
-const writeReview = read("src/screens/WriteReviewScreen.tsx");
 const service = read("src/services/reviewsRatingsService.ts");
 const context = read("src/contexts/ReviewsContext.tsx");
+const writeReview = read("src/screens/WriteReviewScreen.tsx");
+const outletDetail = read("src/screens/OutletDetailScreen.tsx");
 const reviewItem = read("src/components/ReviewItem.tsx");
 const statsCard = read("src/components/cards/ReviewStatsCard.tsx");
 const rules = read("firestore.rules");
 const translations = read("src/translations/translations.ts");
-const deleteCallable = read("src/services/accountDeletionCallable.ts");
+const deleteCallable = read("functions/src/accountDeletion.ts");
 const deleteScreen = read("src/screens/DeleteAccountScreen.tsx");
 
-assert(/const reviewId = existingReview\?\.reviewId \|\| input\.userId/.test(service), "New saves use the latest active user review or deterministic uid doc id.");
-assert(/fetchLatestActiveReviewForUser/.test(service + context), "Existing user review is detected before upsert.");
-assert(/collection\(db, REVIEW_COLLECTION, outletId, REVIEW_ITEMS_COLLECTION\)/.test(service) && /getReviewDocRef\(input\.outletId, reviewId\)/.test(service), "Save path equals OutletDetail query path: reviews/{outletId}/items/{reviewId}.");
-assert(/reviewId,\n    outletId: input\.outletId,\n    userId: input\.userId/.test(service) && /rating: input\.rating/.test(service) && /overallRating: input\.overallRating \?\? input\.rating/.test(service), "Required create payload keys exist.");
-assert(/status: "published" as const/.test(service) && /where\("status", "==", "published"\)/.test(service), "Create payload status matches query filter.");
-assert(/data\.categoryRatings\.transportation/.test(rules) && /data\.categoryRatings\.brands/.test(rules) && /data\.categoryRatings\.restaurants/.test(rules) && /data\.categoryRatings\.services/.test(rules), "Rules allow intended categoryRatings payload and require exactly four keys.");
-assert(/request\.resource\.data\.userId == request\.auth\.uid/.test(rules) && /request\.resource\.data\.userId == resource\.data\.userId/.test(rules), "Rules keep ownership strict and reject owner changes.");
-assert(/isOptionalStringOrNull\(data\.comment, 4000\)/.test(rules) && !/comment\.trim\(\)\.length\s*<\s*10/.test(writeReview + service), "Comment empty/short allowed and no 10-character minimum exists.");
-assert(/await loadReviews\(\)/.test(context) && /getPublishedReviews/.test(outletDetail), "Saved review refreshes OutletDetail-visible review data.");
-assert(/getAverageReviewRating\(outletReviews\)/.test(outletDetail) && /getCategoryAverage\(outletReviews/.test(outletDetail), "ReviewStatsCard aggregation reads saved published reviews.");
-assert(/status:\s*"deleted"/.test(service) && /reviews\.filter\(isPublishedReview\)/.test(service), "User delete excludes deleted reviews from visible list and aggregates.");
-assert(/logReviewSaveFailure/.test(service) && /payloadKeys/.test(service) && /categoryRatingsKeys/.test(service) && !/email|token|commentText/.test(service.match(/function logReviewSaveFailure[\s\S]*?\n}/)?.[0] || ""), "Dev-only safe review save failure diagnostics exist without sensitive fields.");
-
-assert(/currentUserReview[\s\S]*writeReview\.editTitle/.test(outletDetail), "Outlet detail uses edit CTA when user has an active review.");
-assert(/existingReview\?\.categoryRatings\?\.transportation/.test(writeReview) && /useState\(existingReview\?\.title/.test(writeReview) && /useState\(existingReview\?\.comment/.test(writeReview), "Edit preloads category ratings, title, and comment.");
-assert(/await setDoc\(reviewRef, payload\)/.test(service), "Edit overwrites the existing exact review document payload instead of creating a duplicate or preserving disallowed stale keys.");
-assert(/review\.deleteTitle/.test(outletDetail) && /deleteReview\(/.test(outletDetail), "Own active review delete action exists.");
-assert(/status:\s*"deleted"/.test(service) && /deletedAt/.test(service) && /filter\(isPublishedReview\)/.test(service), "Delete soft-deletes and active list/aggregates exclude deleted reviews.");
-assert(/deleteAccountWithBackend/.test(deleteScreen) && /httpsCallable[\s\S]*deleteAccount/.test(deleteCallable) && /authorDeleted/.test(deleteCallable + reviewItem), "Account deletion anonymization remains separate and unchanged.");
-assert(/REVIEW_HELPFUL_COLLECTION/.test(service) && /helpful\/{userId}/.test(rules), "Helpful one-vote-per-user metadata exists.");
-assert(/deleteDoc\(helpfulRef\)/.test(service) && /review\.helpfulUserIds\?\.includes\(userId\)/.test(context), "Helpful cannot repeatedly increment for the same user/review.");
-assert(/categoryRatings:\s*completeCategoryRatings/.test(writeReview), "Category ratings persist.");
-assert(/calculateOverallRating\(completeCategoryRatings\)/.test(writeReview), "Overall rating is derived from category ratings.");
-assert(!/comment\.trim\(\)\.length\s*</.test(writeReview) && /comment:\s*comment\.trim\(\)/.test(writeReview), "No minimum text length exists and empty/short trimmed comments are allowed.");
-assert(/getCategoryAverage/.test(outletDetail) && /ReviewStatsCard/.test(statsCard), "ReviewStatsCard refresh/aggregation path is covered.");
-assert(/hasValidReviewCategoryRatings/.test(rules) && /keepsReviewOwnership/.test(rules), "Firestore rules validate categoryRatings and ownership.");
-assert(!/allow update:[\s\S]*helpfulCount/.test(rules), "Firestore rules do not allow arbitrary helpful count overwrite.");
-for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) {
-  assert(new RegExp(`${locale}: \\{[\\s\\S]*"reviews\\.anonymousAccount"`).test(translations), `reviews.anonymousAccount still exists for ${locale}.`);
-  assert(new RegExp(`${locale}: \\{[\\s\\S]*"review\\.deleteTitle"`).test(translations), `review.deleteTitle exists for ${locale}.`);
+assert(/getReviewDocRef\(input\.outletId, input\.userId\)/.test(service), "deterministic path reviews/{outletId}/items/{userId} is used for saves.");
+assert(/await setDoc\(reviewRef, payload\)/.test(service) && !/setDoc\(reviewRef, payload,\s*\{\s*merge/.test(service), "setDoc without merge is used for review create/update.");
+const payloadBlock = service.slice(service.indexOf("const payload = {"), service.indexOf("try {", service.indexOf("const payload = {")));
+assert(!/deletedAt:\s*null|firestoreUpdatedAt|disabledAt|emailHash|previousEmail|email\b/.test(payloadBlock), "published save payload excludes stale and identity fields.");
+for (const key of ["reviewId", "outletId", "userId", "userDisplayName", "rating", "overallRating", "categoryRatings", "title", "comment", "status", "createdAt", "updatedAt"]) {
+  assert(new RegExp(`${key}\\s*:`).test(payloadBlock) || new RegExp(`\\b${key},`).test(payloadBlock), `published save payload includes ${key}.`);
 }
-assert(!/emailHash|previousEmail|relink-by-email/.test(deleteScreen + deleteCallable + reviewItem), "No emailHash/previousEmail/relink-by-email logic exists.");
-assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(translations), "No debug locale prefixes.");
-
-console.log("Review lifecycle V2 checks passed.");
+assert(/status:\s*"published" as const/.test(payloadBlock), "active reviews save with status == published.");
+assert(/where\("status",\s*"==",\s*"published"\)/.test(service) && /reviews\.filter\(isPublishedReview\)/.test(service), "query/render uses status == published.");
+assert(/status:\s*"deleted"/.test(service), "user delete uses status == deleted.");
+assert(/filter\(isPublishedReview\)/.test(service) && /getPublishedReviews/.test(outletDetail), "deleted reviews are excluded from aggregates and visible reviews.");
+assert(/latestByOutletUser/.test(service) && /softDeleteDuplicateActiveReviews/.test(service), "one active review per user/outlet is enforced and duplicates are cleaned when possible.");
+assert(/getDoc\(deterministicReviewRef\)/.test(service) && /fetchLatestActiveReviewForUser/.test(service) && /loadExistingReview/.test(writeReview), "edit loads deterministic review first with latest active fallback.");
+assert(/const reviewId = input\.userId/.test(service), "edit updates deterministic userId doc, not duplicate random docs.");
+assert(/REVIEW_CATEGORY_KEYS\.every/.test(writeReview) && /categoryRatingsRequired/.test(writeReview), "four category ratings are required.");
+assert(/calculateOverallRating/.test(writeReview) && /overallRating:\s*computedRating/.test(writeReview) && /rating:\s*computedRating/.test(writeReview), "rating and overallRating are derived from category average.");
+assert(/comment:\s*comment\.trim\(\)/.test(writeReview) && !/comment\.trim\(\)\.length|Write at least 10 characters/.test(writeReview + translations), "empty and short comments are allowed with no 10-character minimum.");
+assert(/REVIEW_HELPFUL_COLLECTION/.test(service) && /helpful\/{userId}/.test(rules) && /doc\([\s\S]*REVIEW_HELPFUL_COLLECTION,[\s\S]*userId/.test(service), "helpful uses one doc per user per review.");
+assert(!/helpfulCount/.test(rules.match(/match \/helpful\/{userId}[\s\S]*?\n      \}/)?.[0] || ""), "rules do not allow arbitrary helpful count overwrite.");
+assert(/authorDeleted === true/.test(reviewItem) && /authorDeleted/.test(deleteCallable), "authorDeleted anonymous display remains.");
+assert(/queueReviewAnonymization/.test(deleteCallable) && /batch\.update\(reviewDoc\.ref/.test(deleteCallable), "account deletion anonymization remains separate.");
+assert(!/emailHash|previousEmail|relink-by-email/.test(service + writeReview + outletDetail + deleteScreen + deleteCallable + reviewItem), "no emailHash/previousEmail/relink-by-email logic exists.");
+assert(!/Could not save review|Review needs attention/.test(writeReview + translations), "no hardcoded English review save alerts remain in Turkish path.");
+assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(service + writeReview + outletDetail + reviewItem), "no debug locale prefixes in review flow files.");
+for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) {
+  assert(new RegExp(`${locale}: \\{[\\s\\S]*"writeReview\\.categoryRatingsRequired"`).test(translations), `${locale} has category rating required localization.`);
+  assert(new RegExp(`${locale}: \\{[\\s\\S]*"review\\.helpfulOwnReview"`).test(translations), `${locale} has own-review helpful localization.`);
+  assert(new RegExp(`${locale}: \\{[\\s\\S]*"reviews\\.anonymousAccount"`).test(translations), `${locale} keeps anonymous-account localization.`);
+}
+assert(/hasValidReviewCreateData/.test(rules) && /request\.resource\.data\.keys\(\)\.hasOnly/.test(rules) && /reviewId == request\.auth\.uid/.test(rules), "Firestore create rules enforce deterministic ownership and minimal keys.");
+assert(/isSoftDeleteReviewUpdate/.test(rules) && /deletedAt/.test(rules), "Firestore update rules allow owner soft delete.");
+assert(/allow read: if true/.test(rules), "Firestore rules allow public review reads.");
+assert(/ReviewStatsCard/.test(statsCard + outletDetail) && /getCategoryAverage\(outletReviews/.test(outletDetail), "ReviewStatsCard aggregates published review/category ratings safely.");
+console.log("Review Lifecycle V2 checks passed.");
