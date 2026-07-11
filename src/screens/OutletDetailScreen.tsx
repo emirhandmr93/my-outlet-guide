@@ -637,7 +637,7 @@ export function OutletDetailScreen() {
                     currentUser
                   ) {
                     if (review.userId === currentUser.userId) {
-                      Alert.alert(t("review.helpfulOwnReview"));
+                      Alert.alert(t("review.helpfulOwnReviewMessage"));
                       return;
                     }
                     try {

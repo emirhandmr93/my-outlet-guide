@@ -52,9 +52,10 @@ assert(/REVIEW_CATEGORY_KEYS\.every/.test(writeReview) && /categoryRatingsRequir
 assert(/calculateOverallRating/.test(writeReview) && /overallRating:\s*computedRating/.test(writeReview) && /rating:\s*computedRating/.test(writeReview), "rating and overallRating are derived from category average.");
 assert(/comment:\s*comment\.trim\(\)/.test(writeReview) && !/comment\.trim\(\)\.length|Write at least 10 characters/.test(writeReview + translations), "empty and short comments are allowed with no 10-character minimum.");
 assert(/REVIEW_HELPFUL_COLLECTION/.test(service) && /helpful\/{userId}/.test(rules) && /doc\([\s\S]*REVIEW_HELPFUL_COLLECTION,[\s\S]*userId/.test(service), "helpful uses one doc per user per review.");
-assert(/helpfulOwnDisabledText/.test(reviewItem) && /onHelpful/.test(reviewItem), "helpful button/state is visible for published review cards including own-review disabled copy.");
+assert(/helpfulOwnDisabledText/.test(reviewItem) && /helpfulLabel/.test(reviewItem) && /onHelpful/.test(reviewItem), "helpful button/state uses compact card copy for published review cards including own-review disabled copy.");
+assert(/` · \$\{helpfulCount\}`/.test(reviewItem) && !/Faydalı olarak işaretlendi/.test(reviewItem), "helpful selected card label and count render compactly without long Turkish copy.");
 assert(/!isAuthor[\s\S]*TouchableOpacity[\s\S]*onPress=\{onHelpful\}/.test(reviewItem) || /isAuthor \? \([\s\S]*actionPillDisabled[\s\S]*\) : \([\s\S]*TouchableOpacity[\s\S]*onPress=\{onHelpful\}/.test(reviewItem), "active helpful exists for other users.");
-assert(/review\.userId === currentUser\.userId/.test(outletDetail) && /helpfulOwnReview/.test(outletDetail + reviewItem + translations), "own-review helpful cannot inflate count.");
+assert(/review\.userId === currentUser\.userId/.test(outletDetail) && /helpfulOwnReviewMessage/.test(outletDetail) && /helpfulOwnReview/.test(outletDetail + reviewItem + translations), "own-review helpful cannot inflate count and uses compact disabled copy plus longer alert copy.");
 assert(/review\.helpfulUserIds\?\.includes\(userId\)/.test(context) && /setReviewHelpful\(review\.outletId, review\.reviewId, userId, !hasHelpful\)/.test(context), "repeated helpful taps toggle one helpful/{userId} doc instead of incrementing count.");
 assert(!/helpfulCount/.test(rules.match(/match \/helpful\/{userId}[\s\S]*?\n      \}/)?.[0] || ""), "rules do not allow arbitrary helpful count overwrite.");
 assert(/authorDeleted === true/.test(reviewItem) && /authorDeleted/.test(deleteCallable), "authorDeleted anonymous display remains.");
@@ -68,7 +69,12 @@ for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) {
   assert(new RegExp(`${locale}: \\{[\\s\\S]*"reviews\\.anonymousAccount"`).test(translations), `${locale} keeps anonymous-account localization.`);
 }
 assert(/hasValidReviewCreateData/.test(rules) && /request\.resource\.data\.keys\(\)\.hasOnly/.test(rules) && /reviewId == request\.auth\.uid/.test(rules), "Firestore create rules enforce deterministic ownership and minimal keys.");
-assert(/isSoftDeleteReviewUpdate/.test(rules) && /deletedAt/.test(rules), "Firestore update rules allow owner soft delete.");
+assert(/function isDeterministicReviewOwner\(outletId, reviewId\)[\s\S]*reviewId == request\.auth\.uid/.test(rules), "Firestore rules allow deterministic self-repair from path reviewId == request.auth.uid.");
+const reviewUpdateRule = rules.slice(rules.indexOf("allow update: if isDeterministicReviewOwner"), rules.indexOf("allow delete: if false", rules.indexOf("allow update: if isDeterministicReviewOwner")));
+assert(!/resource\.data\.userId/.test(reviewUpdateRule), "Firestore self-repair update does not require old resource.data.userId to be valid.");
+assert(/keepsReviewRequestOwnership\(outletId, reviewId\)/.test(reviewUpdateRule) && /request\.resource\.data\.userId == request\.auth\.uid/.test(rules) && /request\.resource\.data\.outletId == outletId/.test(rules) && /request\.resource\.data\.reviewId == request\.auth\.uid/.test(rules), "Firestore update rules prevent another path write and request payload ownership changes.");
+assert(/isSoftDeleteReviewUpdate/.test(rules) && /deletedAt/.test(rules), "Firestore update rules allow deterministic owner soft delete.");
+assert(!/emailHash|previousEmail|relink/.test(rules + service + writeReview + outletDetail + deleteScreen + deleteCallable + reviewItem), "no emailHash/previousEmail/relink logic exists.");
 assert(/previousComment/.test(rules) && /previousTitle/.test(rules) && /previousRating/.test(rules) && /previousCategoryRatings/.test(rules) && /data\.editedAt is timestamp/.test(rules) && /editCount/.test(rules), "Firestore rules strictly allow optional edit metadata fields.");
 assert(/allow read: if true/.test(rules), "Firestore rules allow public review reads.");
 assert(/ReviewStatsCard/.test(statsCard + outletDetail) && /getCategoryAverage\(outletReviews/.test(outletDetail), "ReviewStatsCard aggregates published review/category ratings safely.");
