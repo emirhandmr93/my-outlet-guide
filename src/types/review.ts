@@ -1,5 +1,12 @@
 export type ReviewStatus = "published" | "deleted";
 
+export type ReviewCategoryRatings = {
+  transportation: number;
+  brands: number;
+  restaurants: number;
+  services: number;
+};
+
 export type OutletReview = {
   reviewId: string;
   outletId: string;
@@ -7,6 +14,8 @@ export type OutletReview = {
   userDisplayName: string;
   userName?: string;
   rating: number;
+  overallRating?: number;
+  categoryRatings?: Partial<ReviewCategoryRatings>;
   title?: string;
   comment: string;
   createdAt: string;
@@ -25,6 +34,8 @@ export type ReviewInput = {
   userId: string;
   userDisplayName: string;
   rating: number;
+  overallRating?: number;
+  categoryRatings: ReviewCategoryRatings;
   title?: string;
   comment: string;
 };

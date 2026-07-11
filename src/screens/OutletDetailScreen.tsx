@@ -47,6 +47,7 @@ import { getOutletTransportationV2Summary } from "../services/transportationV2Se
 import { CurrentWeather, getCurrentWeather } from "../services/weatherService";
 import {
   getAverageReviewRating,
+  getCategoryAverage,
   getPublishedReviews,
   isFirestorePermissionDenied,
 } from "../services/reviewsRatingsService";
@@ -563,13 +564,13 @@ export function OutletDetailScreen() {
               "outlet.reviewLabel",
             )})`}
             transportationTitle={t("outlet.transportationRating")}
-            transportationValue={averageRating ?? "0.0"}
+            transportationValue={getCategoryAverage(outletReviews, "transportation")}
             brandsTitle={t("outlet.brandsRating")}
-            brandsValue={averageRating ?? "0.0"}
+            brandsValue={getCategoryAverage(outletReviews, "brands")}
             restaurantsTitle={t("outlet.restaurantsRating")}
-            restaurantsValue={averageRating ?? "0.0"}
+            restaurantsValue={getCategoryAverage(outletReviews, "restaurants")}
             servicesTitle={t("outlet.servicesRating")}
-            servicesValue={averageRating ?? "0.0"}
+            servicesValue={getCategoryAverage(outletReviews, "services")}
           />
 
           <View style={styles.reviewSortRow}>

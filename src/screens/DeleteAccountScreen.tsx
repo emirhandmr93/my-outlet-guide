@@ -10,7 +10,7 @@ import {
 } from "react-native";
 
 import { useAuth } from "../contexts/AuthContext";
-import { deleteAccountWithBackend, isRecentLoginRequired } from "../services/accountDeletionCallable";
+import { deleteAccountWithBackend, getCallableErrorCode, getSafeCallableErrorMessage, mapDeleteAccountError } from "../services/accountDeletionCallable";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function DeleteAccountScreen() {
@@ -31,9 +31,26 @@ export function DeleteAccountScreen() {
       Alert.alert(t("deleteAccount.deletedTitle"), t("deleteAccount.deletedMessage"));
       navigation.navigate("Login");
     } catch (error) {
-      if (isRecentLoginRequired(error)) {
+      if (__DEV__) {
+        console.log("Delete account callable failed", {
+          code: getCallableErrorCode(error),
+          message: getSafeCallableErrorMessage(error),
+        });
+      }
+
+      const failureKind = mapDeleteAccountError(error);
+      if (failureKind === "recent-login") {
         Alert.alert(t("deleteAccount.reauthTitle"), t("deleteAccount.reauthMessage"));
         navigation.navigate("Login");
+        return;
+      }
+      if (failureKind === "sign-in-required") {
+        Alert.alert(t("deleteAccount.signInRequiredTitle"), t("deleteAccount.signInRequiredMessage"));
+        navigation.navigate("Login");
+        return;
+      }
+      if (failureKind === "service-retry") {
+        Alert.alert(t("deleteAccount.failedTitle"), t("deleteAccount.serviceRetryMessage"));
         return;
       }
 

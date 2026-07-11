@@ -72,6 +72,13 @@ export function ReviewsProvider({ children }: { children: ReactNode }) {
         userId,
         userDisplayName: ANONYMOUS_SHOPPER,
         rating: review.rating,
+        overallRating: review.overallRating ?? review.rating,
+        categoryRatings: {
+          transportation: review.categoryRatings?.transportation ?? review.rating,
+          brands: review.categoryRatings?.brands ?? review.rating,
+          restaurants: review.categoryRatings?.restaurants ?? review.rating,
+          services: review.categoryRatings?.services ?? review.rating,
+        },
         title: review.title,
         comment: review.comment,
       });
