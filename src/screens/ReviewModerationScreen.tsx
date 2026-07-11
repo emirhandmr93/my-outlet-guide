@@ -51,8 +51,10 @@ setCards(await fetchGroupedModerationReports(filter));
       await load();
     } catch (error) {
       const code = error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : "unknown";
-      console.warn("reviewModerationActionFailed", { code, action: actionName, reportId: group.primaryReport.reportId, groupKey: group.groupKey, outletId: group.outletId, reviewId: group.reviewId, hasAdminUser: Boolean(moderatorUserId) });
-      Alert.alert(code === "permission-denied" ? t("moderation.permissionDenied") : t("moderation.actionFailed"), t("moderation.tryAgain"));
+      const safeMessage = error instanceof Error ? error.message.slice(0, 120) : "unknown";
+      const hasAdminAccess = allowed && Boolean(moderatorUserId);
+      console.warn("reviewModerationActionFailed", { code, safeMessage, action: actionName, groupKey: group.groupKey, outletId: group.outletId, reviewId: group.reviewId, hasAdminAccess });
+      Alert.alert(code === "permission-denied" ? t("moderation.permissionDenied") : t("moderation.actionFailed"));
     } finally {
       setBusyAction(null);
     }

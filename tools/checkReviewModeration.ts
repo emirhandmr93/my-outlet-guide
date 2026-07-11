@@ -49,10 +49,15 @@ assert(files.screen.includes("key={group.groupKey}") && !files.screen.includes("
 assert(files.screen.includes("moderation.reason.spam") || files.screen.includes("moderation.reason.${group.reasons[0]}"), "localized reason labels are used");
 assert(files.screen.includes("moderation.reviewStatus") && files.screen.includes("moderation.reportStatus"), "localized review/report status labels are used");
 assert(!files.screen.includes("{report.reason}") && !files.screen.includes("status: {review?.status"), "no raw reason/status strings rendered directly in moderation UI");
+assert(files.moderation.includes("getRelatedReports") && files.moderation.includes("updateRelatedReportStatuses") && files.moderation.includes("moderationNote") && files.moderation.includes("moderatedBy") && files.moderation.includes("moderatedAt"), "admin action writes match Firestore report update shape");
+assert(files.rules.includes("changedKeys().hasOnly(['status', 'updatedAt', 'moderationNote', 'moderatedBy', 'moderatedAt'])") && files.rules.includes("request.resource.data.diff(resource.data).changedKeys().hasOnly(['status', 'updatedAt'])"), "Firestore rules allow only narrow moderation fields");
+assert(files.screen.includes("hasAdminAccess") && files.screen.includes("safeMessage") && !files.screen.includes("reporterEmail"), "safe moderation diagnostics avoid private data");
+assert(files.screen.includes('t("reviews.anonymousAccount")') && files.translations.includes('"reviews.anonymousAccount": "Anonim hesap"'), "Anonymous account is localized in Turkish UI");
+assert(files.translations.includes('"moderation.reason.offensive": "Uygunsuz veya saldırgan"') && files.translations.includes('"moderation.reason.other": "Diğer"') && files.translations.includes('"moderation.reviewStatus.published": "Yayında"'), "raw internal moderation labels are localized");
 assert(files.screen.includes("markReportReviewing(group") && files.screen.includes("dismissReport(group") && files.screen.includes("hideReviewForModeration(group") && files.screen.includes("restoreReviewForModeration(group") && files.screen.includes("addModerationNote(group"), "action buttons call moderation service functions");
 assert(files.screen.includes("await load()"), "moderation actions refresh list/state after success");
 assert(files.screen.includes('reviewStatus === "hidden"') && files.screen.includes('hideReview'), "hide/restore button visibility depends on review status");
-assert(files.screen.includes('moderation.actionFailed') && files.screen.includes('moderation.tryAgain'), "action failure shows localized error");
+assert(files.screen.includes('moderation.actionFailed') && files.translations.includes('"moderation.actionFailed": "İşlem kaydedilemedi. Lütfen tekrar deneyin."'), "action failure shows localized error");
 assert(files.screen.includes('code === "permission-denied"') && files.screen.includes('moderation.permissionDenied'), "permission failure shows localized error");
 for (const action of ["mark_reviewing", "dismiss_report", "hide_review", "restore_review", "add_note"]) assert(files.moderation.includes(action) && files.rules.includes(action), `audit log is written for ${action}`);
 
