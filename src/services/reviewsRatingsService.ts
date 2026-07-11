@@ -12,12 +12,47 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../firebase/config";
-import type { OutletReview, ReviewInput, ReviewReportReason } from "../types/review";
+import type { OutletReview, ReviewCategoryRatings, ReviewInput, ReviewReportReason } from "../types/review";
 
 export const REVIEW_COLLECTION = "reviews";
 export const REVIEW_ITEMS_COLLECTION = "items";
 export const REVIEW_HELPFUL_COLLECTION = "helpful";
 export const REVIEW_REPORTS_COLLECTION = "reviewReports";
+
+export const REVIEW_CATEGORY_KEYS = ["transportation", "brands", "restaurants", "services"] as const;
+
+export function roundToOneDecimal(value: number) {
+  return Math.round(value * 10) / 10;
+}
+
+export function calculateOverallRating(categoryRatings: ReviewCategoryRatings) {
+  return roundToOneDecimal((
+    categoryRatings.transportation +
+    categoryRatings.brands +
+    categoryRatings.restaurants +
+    categoryRatings.services
+  ) / 4);
+}
+
+function normalizeCategoryRatings(value: unknown): Partial<ReviewCategoryRatings> | undefined {
+  if (!value || typeof value !== "object") return undefined;
+  const source = value as Partial<Record<keyof ReviewCategoryRatings, unknown>>;
+  const normalized: Partial<ReviewCategoryRatings> = {};
+  for (const key of REVIEW_CATEGORY_KEYS) {
+    const rating = Number(source[key]);
+    if (isRealRating(rating)) normalized[key] = rating;
+  }
+  return Object.keys(normalized).length > 0 ? normalized : undefined;
+}
+
+export function getCategoryAverage(reviews: OutletReview[], category: keyof ReviewCategoryRatings): string {
+  const ratings = reviews
+    .filter(isPublishedReview)
+    .map((review) => review.categoryRatings?.[category])
+    .filter(isRealRating);
+  if (ratings.length === 0) return "0.0";
+  return formatRating(ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length) ?? "0.0";
+}
 
 export function isRealRating(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value) && value > 0;
@@ -73,6 +108,8 @@ function normalizeReview(reviewId: string, data: any): OutletReview {
     reviewId: data.reviewId || reviewId,
     userDisplayName: data.userDisplayName || data.userName || "Anonymous Shopper",
     rating: Number(data.rating ?? data.overallRating ?? 0),
+    overallRating: Number(data.overallRating ?? data.rating ?? 0),
+    categoryRatings: normalizeCategoryRatings(data.categoryRatings),
     createdAt,
     updatedAt,
     status: data.status || "published",
@@ -119,6 +156,8 @@ export async function upsertReview(input: ReviewInput) {
       userId: input.userId,
       userDisplayName: input.userDisplayName,
       rating: input.rating,
+      overallRating: input.overallRating ?? input.rating,
+      categoryRatings: input.categoryRatings,
       title: input.title?.trim() || null,
       comment: input.comment.trim(),
       updatedAt: now,
