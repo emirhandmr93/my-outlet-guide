@@ -62,9 +62,9 @@ export function ReviewsProvider({ children }: { children: ReactNode }) {
     await loadReviews();
   }
 
-  async function getLatestActiveReviewForUser(outletId: string, userId: string) {
+  const getLatestActiveReviewForUser = useCallback(async (outletId: string, userId: string) => {
     return fetchLatestActiveReviewForUser(outletId, userId);
-  }
+  }, []);
 
   async function reportReview(outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason) {
     await reportReviewRecord(outletId, reviewId, reporterUserId, reason);

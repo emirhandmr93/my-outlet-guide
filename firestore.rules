@@ -29,10 +29,12 @@ service cloud.firestore {
 
     function hasValidReviewContent(data) {
       return isValidRating(data.rating)
-        && (!('overallRating' in data) || isValidRating(data.overallRating))
+        && isValidRating(data.overallRating)
         && hasValidReviewCategoryRatings(data)
-        && isOptionalStringOrNull(data.comment, 4000)
-        && isOptionalStringOrNull(data.title, 120)
+        && data.comment is string
+        && data.comment.size() <= 4000
+        && data.title is string
+        && data.title.size() <= 120
         && isNonEmptyString(data.userDisplayName)
         && data.userDisplayName.size() <= 120;
     }
@@ -50,15 +52,12 @@ service cloud.firestore {
           'comment',
           'createdAt',
           'updatedAt',
-          'status',
-          'deletedAt',
-          'firestoreUpdatedAt'
+          'status'
         ])
         && request.resource.data.reviewId == reviewId
         && request.resource.data.outletId == outletId
         && request.resource.data.userId == request.auth.uid
         && request.resource.data.status == 'published'
-        && request.resource.data.deletedAt == null
         && hasValidReviewContent(request.resource.data);
     }
 
@@ -85,26 +84,26 @@ service cloud.firestore {
           'createdAt',
           'updatedAt',
           'status',
-          'deletedAt',
-          'firestoreUpdatedAt'
+          'deletedAt'
         ]);
     }
 
     function isPublishedReviewUpdate() {
       return request.resource.data.status == 'published'
-        && request.resource.data.deletedAt == null
+        && !('deletedAt' in request.resource.data)
         && hasValidReviewContent(request.resource.data);
     }
 
     function isSoftDeleteReviewUpdate() {
       return request.resource.data.status == 'deleted'
-        && request.resource.data.deletedAt != null
         && request.resource.data.deletedAt is string
-        && request.resource.data.deletedAt.size() > 0;
+        && request.resource.data.deletedAt.size() > 0
+        && request.resource.data.updatedAt is string
+        && request.resource.data.updatedAt.size() > 0;
     }
 
     function isValidHelpfulCreate(outletId, reviewId, userId) {
-      return request.resource.data.keys().hasOnly(['userId', 'createdAt', 'firestoreCreatedAt'])
+      return request.resource.data.keys().hasOnly(['userId', 'createdAt'])
         && userId == request.auth.uid
         && request.resource.data.userId == request.auth.uid
         && exists(/databases/$(database)/documents/reviews/$(outletId)/items/$(reviewId))
@@ -274,7 +273,7 @@ service cloud.firestore {
     }
 
     match /reviews/{outletId}/items/{reviewId} {
-      allow read: if resource.data.status == 'published';
+      allow read: if true;
       allow create: if isSignedIn()
         && reviewId == request.auth.uid
         && hasValidReviewCreateData(outletId, reviewId);

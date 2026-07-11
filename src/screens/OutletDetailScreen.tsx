@@ -66,6 +66,7 @@ const outletMediaMode = getConfiguredOutletMediaMode();
 type RouteParams = {
   OutletDetail: {
     outletId: string;
+    reviewsRefresh?: number;
   };
 };
 
@@ -94,7 +95,7 @@ export function OutletDetailScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
-  const { reviews, deleteReview, reportReview, toggleHelpful } = useReviews();
+  const { reviews, deleteReview, reportReview, toggleHelpful, loadReviews } = useReviews();
   const { currentUser, isLoggedIn } = useUser();
   const { toggleFavorite, isFavorite } = useFavorites();
 
@@ -121,6 +122,12 @@ export function OutletDetailScreen() {
   const [sectionPositions, setSectionPositions] = useState<
     Record<string, number>
   >({});
+
+  useEffect(() => {
+    if (route.params?.reviewsRefresh) {
+      loadReviews();
+    }
+  }, [loadReviews, route.params?.reviewsRefresh]);
 
   useEffect(() => {
     setSelectedImage(safeGalleryImages[0] ?? null);
@@ -552,6 +559,7 @@ export function OutletDetailScreen() {
                 ) {
                   navigation.navigate("WriteReview", {
                     outletId: outlet.outletId,
+                    reviewId: currentUserReview?.reviewId,
                   });
                 }
               }}
@@ -625,6 +633,10 @@ export function OutletDetailScreen() {
                     }) &&
                     currentUser
                   ) {
+                    if (review.userId === currentUser.userId) {
+                      Alert.alert(t("review.helpfulOwnReview"));
+                      return;
+                    }
                     try {
                       await toggleHelpful(review, currentUser.userId);
                     } catch (error) {
