@@ -31,7 +31,7 @@ export function ReviewModerationScreen() {
       return;
     }
     setAllowed(true);
-setCards(await fetchGroupedModerationReports(filter));
+    setCards(await fetchGroupedModerationReports(filter));
   }
 
   useEffect(() => { load().catch(() => setAllowed(false)); }, [filter, moderatorUserId]);
@@ -53,7 +53,10 @@ setCards(await fetchGroupedModerationReports(filter));
       const code = error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : "unknown";
       const safeMessage = error instanceof Error ? error.message.slice(0, 120) : "unknown";
       const hasAdminAccess = allowed && Boolean(moderatorUserId);
-      console.warn("reviewModerationActionFailed", { code, safeMessage, action: actionName, groupKey: group.groupKey, outletId: group.outletId, reviewId: group.reviewId, hasAdminAccess, payloadKeys: ["status", "updatedAt", "moderationNote", "moderatedBy", "moderatedAt"] });
+      const payloadKeys = actionName === "restore_review"
+        ? ["status", "updatedAt", "moderatedBy", "moderatedAt", "moderationNote"]
+        : ["status", "updatedAt", "moderationNote", "moderatedBy", "moderatedAt"];
+      console.warn("reviewModerationActionFailed", { code, safeMessage, action: actionName, groupKey: group.groupKey, reportIdsCount: group.reports.length, outletId: group.outletId, reviewId: group.reviewId, hasAdminAccess, payloadKeys });
       Alert.alert(code === "permission-denied" ? t("moderation.permissionDenied") : t("moderation.actionFailed"));
     } finally {
       setBusyAction(null);
