@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NativeModules, Platform } from "react-native";
 import {
   createContext,
   ReactNode,
@@ -7,10 +8,12 @@ import {
   useState,
 } from "react";
 
+import { TranslationLanguage } from "../translations/translations";
 import {
-  isTranslationLanguage,
-  TranslationLanguage,
-} from "../translations/translations";
+  DEFAULT_LANGUAGE,
+  DeviceLocaleSource,
+  resolveInitialLanguage,
+} from "../utils/languageFallback";
 
 type LanguageContextType = {
   language: TranslationLanguage;
@@ -22,7 +25,29 @@ const LanguageContext = createContext<LanguageContextType | undefined>(
 );
 
 const STORAGE_KEY = "my_outlet_guide_language";
-const DEFAULT_LANGUAGE: TranslationLanguage = "en";
+
+function getDeviceLocaleCandidates(): DeviceLocaleSource[] {
+  const settings = NativeModules.SettingsManager?.settings;
+  const i18nManager = NativeModules.I18nManager;
+  const localeIdentifier = i18nManager?.localeIdentifier;
+  const androidLocale = i18nManager?.locale;
+  const appleLocale = settings?.AppleLocale;
+  const appleLanguages = Array.isArray(settings?.AppleLanguages)
+    ? settings.AppleLanguages
+    : [];
+  const localeFromIntl = Intl.DateTimeFormat().resolvedOptions().locale;
+  const localeFromNavigator =
+    Platform.OS === "web" ? navigator.language : undefined;
+
+  return [
+    { languageTag: appleLocale },
+    ...appleLanguages.map((languageTag: string) => ({ languageTag })),
+    { languageTag: androidLocale },
+    { languageTag: localeIdentifier },
+    { languageTag: localeFromNavigator },
+    { languageTag: localeFromIntl },
+  ];
+}
 
 export function LanguageProvider({
   children,
@@ -39,13 +64,9 @@ export function LanguageProvider({
 
   async function loadLanguage() {
     const savedLanguage = await AsyncStorage.getItem(STORAGE_KEY);
-
-    if (isTranslationLanguage(savedLanguage)) {
-      setLanguageState(savedLanguage);
-      return;
-    }
-
-    setLanguageState(DEFAULT_LANGUAGE);
+    setLanguageState(
+      resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
+    );
   }
 
   async function setLanguage(languageCode: TranslationLanguage) {
