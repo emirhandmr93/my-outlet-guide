@@ -13,7 +13,7 @@ import {
 import { outlets } from "../constants/outlets";
 import { db } from "../firebase/config";
 
-const ANONYMIZED_REVIEW_NAME = "Deleted account";
+const ANONYMIZED_REVIEW_NAME = "Anonymous account";
 const MAX_BATCH_WRITES = 450;
 
 type QueuedWrite = (batch: ReturnType<typeof writeBatch>) => void;

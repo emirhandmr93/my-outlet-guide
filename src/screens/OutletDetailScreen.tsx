@@ -610,6 +610,7 @@ export function OutletDetailScreen() {
                 editText={t("common.edit")}
                 deleteText={t("common.delete")}
                 reportText={t("review.report")}
+                anonymousAccountText={t("reviews.anonymousAccount")}
                 onHelpful={async () => {
                   if (
                     requireReviewAuth({

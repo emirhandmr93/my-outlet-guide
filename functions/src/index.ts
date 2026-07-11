@@ -217,3 +217,5 @@ export const sendTripReminderNotifications = onSchedule(
 );
 
 export { sendWelcomeEmail } from "./welcomeEmail";
+
+export { deleteAccount } from "./accountDeletion";
