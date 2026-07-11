@@ -17,10 +17,21 @@ service cloud.firestore {
       return value is number && value >= 1 && value <= 5;
     }
 
+    function hasValidReviewCategoryRatings(data) {
+      return data.categoryRatings is map
+        && data.categoryRatings.keys().hasOnly(['transportation', 'brands', 'restaurants', 'services'])
+        && data.categoryRatings.keys().hasAll(['transportation', 'brands', 'restaurants', 'services'])
+        && isValidRating(data.categoryRatings.transportation)
+        && isValidRating(data.categoryRatings.brands)
+        && isValidRating(data.categoryRatings.restaurants)
+        && isValidRating(data.categoryRatings.services);
+    }
+
     function hasValidReviewContent(data) {
       return isValidRating(data.rating)
-        && isNonEmptyString(data.comment)
-        && data.comment.size() <= 4000
+        && (!('overallRating' in data) || isValidRating(data.overallRating))
+        && hasValidReviewCategoryRatings(data)
+        && isOptionalStringOrNull(data.comment, 4000)
         && isOptionalStringOrNull(data.title, 120)
         && isNonEmptyString(data.userDisplayName)
         && data.userDisplayName.size() <= 120;
@@ -33,6 +44,8 @@ service cloud.firestore {
           'userId',
           'userDisplayName',
           'rating',
+          'overallRating',
+          'categoryRatings',
           'title',
           'comment',
           'createdAt',
@@ -66,6 +79,8 @@ service cloud.firestore {
           'userId',
           'userDisplayName',
           'rating',
+          'overallRating',
+          'categoryRatings',
           'title',
           'comment',
           'createdAt',
