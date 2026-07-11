@@ -45,6 +45,41 @@ assert(
     destinationOptions.includes("getCountryById"),
   "destination options must derive from outlet/city data",
 );
+
+assert(
+  screen.includes("formatCityDisplayName") &&
+    screen.includes("formatCountryDisplayName") &&
+    screen.includes("localizedDestinationCity(selectedDestination)") &&
+    screen.includes("localizedDestinationCountry(selectedDestination)") &&
+    screen.includes("localizedDestinationCity(alert)"),
+  "selected destination and saved alerts must use localized city/country display helpers",
+);
+assert(
+  screen.includes("localizedSavedOriginLabel") &&
+    screen.includes("formatCityDisplayName(item.originCityName, language)"),
+  "saved alert origin labels must localize origin city display when origin fields exist",
+);
+assert(
+  /<TouchableOpacity[^>]*onPress=\{\(\) => setPickerMode\(null\)\}[\s\S]*?<Text[^>]*>\{t\("flightDeals\.cancel"\)\}<\/Text>[\s\S]*?<\/TouchableOpacity>/.test(
+    screen,
+  ) && /<Text[^>]*>\{t\("flightDeals\.select"\)\}<\/Text>/.test(screen),
+  "selector footer labels must be wrapped in Text components",
+);
+assert(
+  !/<TextInput[\s\S]*?\/>(?:\s*\{["'`]\s+["'`]\})/.test(screen),
+  "selector modal must not render bare whitespace string children after TextInput",
+);
+assert(
+  !/(<View|<TouchableOpacity|<ScrollView|<>)[\s\S]{0,160}\{["'`](?:·|→)["'`]\}/.test(
+    screen,
+  ),
+  "FlightDealsScreen must not render raw · or → string children outside Text",
+);
+assert(
+  !alertService.includes("departureAirportId") &&
+    !alertService.includes("selectedCityIds"),
+  "V1B alert save path must not write legacy root departureAirportId/selectedCityIds fields",
+);
 assert(
   airports.includes("airportCode") &&
     airports.includes("Esenboğa Airport") &&

@@ -21,6 +21,10 @@ import { useTrips } from "../contexts/TripsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import {
+  formatCityDisplayName,
+  formatCountryDisplayName,
+} from "../utils/locationDisplay";
+import {
   deleteFlightDealAlert,
   FLIGHT_DEAL_THRESHOLDS,
   FlightDealAlertPreference,
@@ -42,7 +46,7 @@ type PickerMode = "origin" | "destination" | null;
 
 export function FlightDealsScreen() {
   const navigation = useNavigation<any>();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const { isLoggedIn, currentUser } = useUser();
   const { trips } = useTrips();
   const insets = useSafeAreaInsets();
@@ -179,18 +183,39 @@ export function FlightDealsScreen() {
     );
   }
 
+  const localizedOriginLabel = (item: SupportedFlightDealAirport) =>
+    `${formatCityDisplayName(item.cityName, language)} (${item.airportCode})`;
+  const localizedSavedOriginLabel = (item: {
+    originCityName?: string;
+    originAirportCode?: string;
+    originLabel: string;
+  }) =>
+    item.originCityName && item.originAirportCode
+      ? `${formatCityDisplayName(item.originCityName, language)} (${item.originAirportCode})`
+      : item.originLabel;
+  const localizedDestinationCity = (item: { destinationCityName: string }) =>
+    formatCityDisplayName(item.destinationCityName, language);
+  const localizedDestinationCountry = (item: {
+    destinationCountryName: string;
+    destinationCountryCode: string;
+  }) =>
+    formatCountryDisplayName(
+      item.destinationCountryName || item.destinationCountryCode,
+      language,
+    );
+
   const normalizedFilter = filterText.trim().toLowerCase();
   const originOptions = supportedFlightDealAirports.filter(
     (item) =>
       !normalizedFilter ||
-      `${item.cityName} ${item.airportName} ${item.airportCode}`
+      `${item.cityName} ${formatCityDisplayName(item.cityName, language)} ${item.airportName} ${item.airportCode}`
         .toLowerCase()
         .includes(normalizedFilter),
   );
   const filteredDestinationOptions = destinationOptions.filter(
     (item) =>
       !normalizedFilter ||
-      `${item.destinationCityName} ${item.destinationCountryName}`
+      `${item.destinationCityName} ${localizedDestinationCity(item)} ${item.destinationCountryName} ${localizedDestinationCountry(item)}`
         .toLowerCase()
         .includes(normalizedFilter),
   );
@@ -231,7 +256,7 @@ export function FlightDealsScreen() {
           >
             <Text style={styles.selectorTitle}>
               {selectedOrigin
-                ? `${selectedOrigin.cityName} (${selectedOrigin.airportCode})`
+                ? localizedOriginLabel(selectedOrigin)
                 : t("flightDeals.selectAirport")}
             </Text>
             {selectedOrigin ? (
@@ -247,12 +272,12 @@ export function FlightDealsScreen() {
           >
             <Text style={styles.selectorTitle}>
               {selectedDestination
-                ? selectedDestination.destinationCityName
+                ? localizedDestinationCity(selectedDestination)
                 : t("flightDeals.selectDestination")}
             </Text>
             {selectedDestination ? (
               <Text style={styles.selectorMeta}>
-                {selectedDestination.destinationCountryName}
+                {localizedDestinationCountry(selectedDestination)}
               </Text>
             ) : null}
           </TouchableOpacity>
@@ -307,7 +332,8 @@ export function FlightDealsScreen() {
               <View key={alert.alertId} style={styles.savedAlertRow}>
                 <View style={styles.savedAlertText}>
                   <Text style={styles.detailValue}>
-                    {alert.originLabel} → {alert.destinationCityName}
+                    {localizedSavedOriginLabel(alert)} →{" "}
+                    {localizedDestinationCity(alert)}
                   </Text>
                   <Text style={styles.reminderMeta}>
                     {alert.selectedThresholds
@@ -412,7 +438,7 @@ export function FlightDealsScreen() {
               onChangeText={setFilterText}
               placeholder={t("flightDeals.filterOptions")}
               style={styles.input}
-            />{" "}
+            />
             <ScrollView>
               {pickerMode === "origin"
                 ? originOptions.map((item) => (
@@ -429,7 +455,8 @@ export function FlightDealsScreen() {
                       }}
                     >
                       <Text style={styles.selectorTitle}>
-                        {item.cityName} · {item.airportCode}
+                        {formatCityDisplayName(item.cityName, language)} ·{" "}
+                        {item.airportCode}
                       </Text>
                       <Text style={styles.selectorMeta}>
                         {item.airportName}
@@ -450,10 +477,10 @@ export function FlightDealsScreen() {
                       }}
                     >
                       <Text style={styles.selectorTitle}>
-                        {item.destinationCityName}
+                        {localizedDestinationCity(item)}
                       </Text>
                       <Text style={styles.selectorMeta}>
-                        {item.destinationCountryName}
+                        {localizedDestinationCountry(item)}
                       </Text>
                     </TouchableOpacity>
                   ))}
