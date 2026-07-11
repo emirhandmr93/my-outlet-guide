@@ -36,6 +36,13 @@ for (const key of ["reviewId", "outletId", "userId", "userDisplayName", "rating"
   assert(new RegExp(`${key}\\s*:`).test(payloadBlock) || new RegExp(`\\b${key},`).test(payloadBlock), `published save payload includes ${key}.`);
 }
 assert(/status:\s*"published" as const/.test(payloadBlock), "active reviews save with status == published.");
+
+assert(!/where\("status",\s*"==",\s*"published"\)[\s\S]{0,240}orderBy\("createdAt"|orderBy\("createdAt"[\s\S]{0,240}where\("status",\s*"==",\s*"published"\)/.test(service), "review loading does not combine status where with Firestore orderBy(createdAt).");
+const outletReviewLoad = service.slice(service.indexOf("export async function fetchPublishedReviewsForOutlet"), service.indexOf("function isCompleteCategoryRatings"));
+assert(/collection\(db, REVIEW_COLLECTION, outletId, REVIEW_ITEMS_COLLECTION\)/.test(outletReviewLoad) && /where\("status",\s*"==",\s*"published"\)/.test(outletReviewLoad), "outlet detail review loading uses reviews/{outletId}/items with status-only query.");
+assert(!/collectionGroup\("items"\)|collectionGroup\('items'\)/.test(outletReviewLoad), "outlet detail review loading does not use collectionGroup(items) when outletId is known.");
+assert(/sortReviewsByCreatedAtDesc/.test(service) && /\.sort\(sortReviewsByCreatedAtDesc\)/.test(outletReviewLoad), "review loading sorts by createdAt descending client-side.");
+assert(/reloadReviewsAfterMutation/.test(context) && /await upsertReview\(input\);[\s\S]*await reloadReviewsAfterMutation\(\);/.test(context), "post-save reload is isolated from deterministic save failure path.");
 assert(/where\("status",\s*"==",\s*"published"\)/.test(service) && /reviews\.filter\(isPublishedReview\)/.test(service), "query/render uses status == published.");
 assert(/status:\s*"deleted"/.test(service), "user delete uses status == deleted.");
 assert(/filter\(isPublishedReview\)/.test(service) && /getPublishedReviews/.test(outletDetail), "deleted reviews are excluded from aggregates and visible reviews.");

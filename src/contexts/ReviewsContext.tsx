@@ -45,21 +45,29 @@ export function ReviewsProvider({ children }: { children: ReactNode }) {
     loadReviews();
   }, [loadReviews]);
 
+  async function reloadReviewsAfterMutation() {
+    try {
+      await loadReviews();
+    } catch (error) {
+      console.log("Reviews load error", error);
+    }
+  }
+
   async function createOrUpdateReview(input: ReviewInput) {
     await upsertReview(input);
-    await loadReviews();
+    await reloadReviewsAfterMutation();
   }
 
   async function deleteReview(outletId: string, reviewId: string, userId: string) {
     await deleteReviewRecord(outletId, reviewId, userId);
-    await loadReviews();
+    await reloadReviewsAfterMutation();
   }
 
   async function toggleHelpful(review: OutletReview, userId: string) {
     if (!review.userId || review.userId === userId) return;
     const hasHelpful = review.helpfulUserIds?.includes(userId) ?? false;
     await setReviewHelpful(review.outletId, review.reviewId, userId, !hasHelpful);
-    await loadReviews();
+    await reloadReviewsAfterMutation();
   }
 
   const getLatestActiveReviewForUser = useCallback(async (outletId: string, userId: string) => {
