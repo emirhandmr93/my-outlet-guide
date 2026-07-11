@@ -157,6 +157,9 @@ export function OutletDetailScreen() {
     reviews.filter((review) => review.outletId === outlet.outletId),
   );
   const averageRating = getAverageReviewRating(outletReviews);
+  const currentUserReview = currentUser
+    ? outletReviews.find((review) => review.userId === currentUser.userId)
+    : undefined;
 
   const sortedReviews = [...outletReviews].sort((a, b) => {
     if (reviewSort === "helpful") {
@@ -554,7 +557,7 @@ export function OutletDetailScreen() {
               }}
             >
               <Text style={styles.writeReviewButtonText}>
-                {t("writeReview.title")}
+                {currentUserReview ? t("writeReview.editTitle") : t("writeReview.title")}
               </Text>
             </TouchableOpacity>
           </View>
@@ -609,7 +612,7 @@ export function OutletDetailScreen() {
                 helpfulText={t("review.helpful")}
                 helpfulActiveText={t("review.helpfulActive")}
                 editText={t("common.edit")}
-                deleteText={t("common.delete")}
+                deleteText={t("review.deleteTitle")}
                 reportText={t("review.report")}
                 anonymousAccountText={t("reviews.anonymousAccount")}
                 onHelpful={async () => {
@@ -635,18 +638,23 @@ export function OutletDetailScreen() {
                     reviewId: review.reviewId,
                   })
                 }
-                onDelete={async () => {
-                  if (currentUser) {
-                    try {
-                      await deleteReview(
-                        outlet.outletId,
-                        review.reviewId,
-                        currentUser.userId,
-                      );
-                    } catch (error) {
-                      showReviewActionError(error);
-                    }
-                  }
+                onDelete={() => {
+                  if (!currentUser) return;
+                  Alert.alert(t("review.deleteTitle"), t("review.deleteBody"), [
+                    { text: t("review.deleteCancel"), style: "cancel" },
+                    {
+                      text: t("review.deleteConfirm"),
+                      style: "destructive",
+                      onPress: async () => {
+                        try {
+                          await deleteReview(outlet.outletId, review.reviewId, currentUser.userId);
+                        } catch (error) {
+                          console.log("Review delete error", error);
+                          Alert.alert(t("review.deleteErrorTitle"), t("review.deleteErrorText"));
+                        }
+                      },
+                    },
+                  ]);
                 }}
                 onReport={async () => {
                   if (requireAuth({ isLoggedIn, navigation }) && currentUser) {

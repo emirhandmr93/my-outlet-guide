@@ -3,6 +3,7 @@ import { createContext, ReactNode, useCallback, useContext, useEffect, useState 
 import { outlets } from "../constants/outlets";
 import {
   deleteReview as deleteReviewRecord,
+  fetchLatestActiveReviewForUser,
   fetchPublishedReviewsForOutlet,
   reportReview as reportReviewRecord,
   setReviewHelpful,
@@ -16,6 +17,7 @@ type ReviewsContextType = {
   anonymizeUserReviews: (userId: string) => Promise<void>;
   createOrUpdateReview: (input: ReviewInput) => Promise<void>;
   deleteReview: (outletId: string, reviewId: string, userId: string) => Promise<void>;
+  getLatestActiveReviewForUser: (outletId: string, userId: string) => Promise<OutletReview | null>;
   getOutletReviews: (outletId: string) => OutletReview[];
   loadReviews: () => Promise<void>;
   reportReview: (outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason) => Promise<void>;
@@ -60,6 +62,10 @@ export function ReviewsProvider({ children }: { children: ReactNode }) {
     await loadReviews();
   }
 
+  async function getLatestActiveReviewForUser(outletId: string, userId: string) {
+    return fetchLatestActiveReviewForUser(outletId, userId);
+  }
+
   async function reportReview(outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason) {
     await reportReviewRecord(outletId, reviewId, reporterUserId, reason);
   }
@@ -95,6 +101,7 @@ export function ReviewsProvider({ children }: { children: ReactNode }) {
         reviews,
         loadReviews,
         getOutletReviews,
+        getLatestActiveReviewForUser,
         createOrUpdateReview,
         deleteReview,
         toggleHelpful,

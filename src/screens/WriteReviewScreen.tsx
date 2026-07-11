@@ -60,9 +60,10 @@ export function WriteReviewScreen() {
         rating: computedRating,
         overallRating: computedRating,
         categoryRatings: completeCategoryRatings,
-        title,
+        title: title.trim(),
         comment: comment.trim(),
       });
+      Alert.alert(existingReview ? t("review.updated") : t("review.saved"));
       navigation.navigate("OutletDetail", { outletId });
     } catch (error) {
       console.log("Review save error", error);
