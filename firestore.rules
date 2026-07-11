@@ -52,8 +52,7 @@ service cloud.firestore {
           'updatedAt',
           'status',
           'deletedAt',
-          'firestoreUpdatedAt',
-          'disabledAt'
+          'firestoreUpdatedAt'
         ])
         && request.resource.data.reviewId == reviewId
         && request.resource.data.outletId == outletId

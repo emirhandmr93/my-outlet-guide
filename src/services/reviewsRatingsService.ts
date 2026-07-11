@@ -172,26 +172,58 @@ export async function upsertReview(input: ReviewInput) {
   const existingReview = await fetchLatestActiveReviewForUser(input.outletId, input.userId);
   const reviewId = existingReview?.reviewId || input.userId;
   const reviewRef = getReviewDocRef(input.outletId, reviewId);
-  await setDoc(
-    reviewRef,
-    {
-      reviewId,
+  const payload = {
+    reviewId,
+    outletId: input.outletId,
+    userId: input.userId,
+    userDisplayName: input.userDisplayName.trim() || "Anonymous Shopper",
+    rating: input.rating,
+    overallRating: input.overallRating ?? input.rating,
+    categoryRatings: input.categoryRatings,
+    title: input.title?.trim() || null,
+    comment: input.comment.trim(),
+    updatedAt: now,
+    status: "published" as const,
+    deletedAt: null,
+    createdAt: existingReview?.createdAt || now,
+    firestoreUpdatedAt: serverTimestamp(),
+  };
+
+  try {
+    await setDoc(reviewRef, payload);
+  } catch (error) {
+    logReviewSaveFailure(error, {
       outletId: input.outletId,
-      userId: input.userId,
-      userDisplayName: input.userDisplayName,
-      rating: input.rating,
-      overallRating: input.overallRating ?? input.rating,
-      categoryRatings: input.categoryRatings,
-      title: input.title?.trim() || null,
-      comment: input.comment.trim(),
-      updatedAt: now,
-      status: "published",
-      deletedAt: null,
-      createdAt: existingReview?.createdAt || now,
-      firestoreUpdatedAt: serverTimestamp(),
-    },
-    { merge: true },
-  );
+      reviewId,
+      hasUserId: Boolean(input.userId),
+      payloadKeys: Object.keys(payload),
+      categoryRatingsKeys: Object.keys(input.categoryRatings || {}),
+    });
+    throw error;
+  }
+}
+
+type ReviewSaveFailureDiagnostics = {
+  outletId: string;
+  reviewId: string;
+  hasUserId: boolean;
+  payloadKeys: string[];
+  categoryRatingsKeys: string[];
+};
+
+function logReviewSaveFailure(error: unknown, diagnostics: ReviewSaveFailureDiagnostics) {
+  if (process.env.NODE_ENV === "production") return;
+  const code = error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : "unknown";
+  const safeMessage = error instanceof Error ? error.message : "Unknown review save error";
+  console.log("Review save failure diagnostics", {
+    code,
+    safeMessage,
+    outletId: diagnostics.outletId,
+    reviewId: diagnostics.reviewId,
+    hasUserId: diagnostics.hasUserId,
+    payloadKeys: diagnostics.payloadKeys,
+    categoryRatingsKeys: diagnostics.categoryRatingsKeys,
+  });
 }
 
 export async function deleteReview(outletId: string, reviewId: string, _userId: string) {
