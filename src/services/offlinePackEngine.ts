@@ -36,38 +36,50 @@ export function getOfflineAvailabilitySummary(): OfflineAvailabilitySummary {
     localMediaAssetCount,
     availableOffline: [
       {
-        title: "Outlet guide data",
+        title: "Outlet guide",
         description: `${outlets.length} outlets across ${countryCount} countries are bundled in the app for offline browsing.`,
       },
       {
-        title: "Brands, restaurants and transportation notes",
-        description: `${brands.length} brand records, ${restaurants.length} restaurant records and ${transportation.length} transportation records are bundled locally.`,
+        title: "Brand lists",
+        description: `${brands.length} brand records are bundled locally.`,
       },
       {
-        title: "Local outlet photos",
+        title: "Restaurant and transportation notes",
+        description: `${restaurants.length} restaurant records and ${transportation.length} transportation records are bundled locally.`,
+      },
+      {
+        title: "Local outlet images",
         description: `${localMediaAssetCount} production-safe outlet image assets are packaged with the app and do not require a network request.`,
       },
       {
-        title: "Tax Free rules",
+        title: "Supported Tax Free guide information",
         description: `${taxFreeRules.length} source-backed tax-free rule records are bundled for supported countries. Unsupported countries still show the existing unsupported-country state.`,
       },
     ],
     requiresInternet: [
       {
-        title: "Reviews and ratings",
-        description: "Review lists, review writes, helpful votes and reports are Firestore-backed and require network access.",
+        title: "Sign-in and account sync",
+        description: "Authentication and account-backed synchronization require network access.",
       },
       {
-        title: "Favorites and trips sync",
+        title: "Favorites and trips",
         description: "Favorites and saved trips are Firestore-backed. This release does not create a local offline sync queue.",
       },
       {
-        title: "Notifications and flight alerts",
-        description: "Push token registration, reminder settings and release-gated flight alert services require network-backed infrastructure.",
+        title: "Reviews, helpful votes and notifications",
+        description: "Review lists, review writes, helpful votes, reports, push token registration and reminder settings require network-backed infrastructure.",
       },
       {
-        title: "Currency converter",
+        title: "Flight deal alerts",
+        description: "Flight alert services require network-backed infrastructure.",
+      },
+      {
+        title: "Live currency data",
         description: "Exchange rates are live Frankfurter rates. No offline exchange-rate fallback is claimed unless a dated cached rate is implemented later.",
+      },
+      {
+        title: "Account deletion",
+        description: "Account deletion is handled by a backend callable and requires internet access.",
       },
     ],
   };

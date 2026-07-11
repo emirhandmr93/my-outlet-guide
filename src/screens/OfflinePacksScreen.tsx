@@ -3,8 +3,8 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from "../hooks/useTranslation";
 import { getOfflineAvailabilitySummary } from "../services/offlinePackEngine";
 
-const availableOfflineKeys = ["guide", "records", "media", "taxFree"] as const;
-const requiresInternetKeys = ["reviews", "favoritesTrips", "notifications", "currency"] as const;
+const availableOfflineKeys = ["guide", "brands", "notes", "media", "taxFree"] as const;
+const requiresInternetKeys = ["accountSync", "favoritesTrips", "reviewsNotifications", "flightAlerts", "currency", "accountDeletion"] as const;
 
 export function OfflinePacksScreen() {
   const { t } = useTranslation();

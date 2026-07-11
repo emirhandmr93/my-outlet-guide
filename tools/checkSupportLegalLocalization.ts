@@ -21,10 +21,31 @@ const supportScreens = [files.offline, files.notification, files.help, files.con
 const offlineSource = files.offline + "\n" + files.profile + "\n" + files.translations;
 
 assert(files.offline.includes('t("offline.title")') && files.offline.includes('offline.availableSection') && files.offline.includes('offline.requiresInternetSection'), "OfflinePacksScreen visible copy is translation-backed");
-assert(files.translations.includes('"offline.title": "Çevrimdışı Kullanım"') && files.translations.includes('"offline.subtitle": "Temel rehber verileri uygulamayla birlikte gelir. Bu sürümde ayrıca indirilebilir çevrimdışı paket yok."'), "OfflinePacks Turkish hero copy matches offline-usage product truth");
-assert(files.translations.includes('"offline.availableSection": "İnternetsiz kullanılabilir"') && files.translations.includes('"offline.requiresInternetSection": "İnternet gerektirir"') && files.translations.includes('"offline.noPacksText": "Bu sürümde ayrı paket indirme yoktur."'), "OfflinePacks Turkish sections and bottom note are localized");
+assert(files.translations.includes('"offline.title": "Çevrimdışı Kullanım"') && files.translations.includes('"offline.subtitle": "Temel rehber verileri uygulamayla birlikte gelir. Bu sürümde ayrıca indirilebilir paket yoktur."'), "OfflinePacks Turkish hero copy matches offline-usage product truth");
+assert(files.translations.includes('"offline.availableSection": "İnternetsiz kullanılabilir"') && files.translations.includes('"offline.requiresInternetSection": "İnternet gerektirir"') && files.translations.includes('"offline.noPacksText": "Bu sürümde ayrıca indirilebilir paket yoktur. Hesaba bağlı veriler ve canlı servisler internet gerektirir."'), "OfflinePacks Turkish sections and bottom note are localized");
 assert(files.translations.includes('"profile.offlinePacks": "Çevrimdışı Kullanım"') && files.translations.includes('"profile.subtitles.offlinePacks": "Uygulamayla gelen rehber verileri"'), "Profile Offline row does not claim downloadable packs");
-assert(!/indirilen paketler|download buttons|download city|download outlet/i.test(offlineSource), "OfflinePacks does not claim downloadable packs or expose download wording");
+assert(!/indirilen paketler|download buttons|download city|download outlet|download package|offline pack download/i.test(offlineSource), "OfflinePacks does not claim downloadable packs or expose download wording");
+assert(!files.translations.includes('"profile.offlinePacks": "Çevrimdışı Paketler"'), "Profile row no longer says Çevrimdışı Paketler");
+for (const phrase of [
+  "Çevrimdışı kullanılabilirlik",
+  "Temel rehber verileri uygulamayla birlikte gelir.",
+  "Bu sürümde ayrıca indirilebilir paket yoktur.",
+  "Uygulama kurulduktan sonra temel outlet rehberi internetsiz açılır.",
+  "Outlet rehberi",
+  "Marka listeleri",
+  "Restoran ve ulaşım notları",
+  "Yerel outlet görselleri",
+  "Desteklenen Tax Free rehber bilgileri",
+  "Giriş ve hesap senkronizasyonu",
+  "Favoriler ve seyahatler",
+  "Yorumlar, faydalı oyları ve bildirimler",
+  "Uçuş fırsatı uyarıları",
+  "Canlı kur verileri",
+  "Hesap silme",
+]) {
+  assert(files.translations.includes(phrase), `Required Turkish offline product-truth copy exists: ${phrase}`);
+}
+assert(!/TouchableOpacity|Pressable|Button/.test(files.offline), "Offline screen has no fake download action control");
 
 for (const [name, source] of Object.entries({ NotificationSettingsScreen: files.notification, HelpFaqScreen: files.help, ContactUsScreen: files.contact, PrivacyPolicyScreen: files.privacy, TermsConditionsScreen: files.terms, MediaCreditsScreen: files.media })) {
   assert(source.includes("t("), `${name} visible copy is translation-backed`);
