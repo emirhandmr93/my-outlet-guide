@@ -41,19 +41,19 @@ export function getFlightDealDestinationOptions(): FlightDealDestinationOption[]
     const key = destinationKey(countryId, cityId);
     if (byKey.has(key)) return;
     const airportGroup = airportGroupsByKey.get(key);
-    if (!airportGroup || airportGroup.airportCodes.length === 0) return;
+    if (!airportGroup || airportGroup.destinationAirportCodes.length === 0)
+      return;
     const city = getCityById(cityId);
     const country = getCountryById(countryId);
     byKey.set(key, {
       destinationCityKey: key,
-      destinationCityName: city?.cityName ?? airportGroup.cityName,
-      destinationCountryCode: airportGroup.countryCode,
-      destinationCountryName: country?.countryName ?? airportGroup.countryName,
-      destinationAirportCodes: airportGroup.airportCodes,
-      destinationAirportNames: airportGroup.airports.map(
-        (airport) => airport.airportName,
-      ),
-      airportCodes: airportGroup.airportCodes,
+      destinationCityName: city?.cityName ?? airportGroup.destinationCityName,
+      destinationCountryCode: airportGroup.destinationCountryCode,
+      destinationCountryName:
+        country?.countryName ?? airportGroup.destinationCountryName,
+      destinationAirportCodes: airportGroup.destinationAirportCodes,
+      destinationAirportNames: airportGroup.destinationAirportNames,
+      airportCodes: airportGroup.destinationAirportCodes,
       airports: airportGroup.airports,
       searchAliases: airportGroup.searchAliases,
     });

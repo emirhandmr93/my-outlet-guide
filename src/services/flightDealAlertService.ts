@@ -21,12 +21,16 @@ export type FlightDealAlertPreference = {
   originAirportName: string;
   originCityName: string;
   originCountryCode: string;
+  originCountryName: string;
+  destinationType: "city_group";
+  destinationKey: string;
   destinationCityKey: string;
   destinationCityName: string;
   destinationCountryCode: string;
   destinationCountryName: string;
   destinationAirportCodes: string[];
   destinationAirportNames: string[];
+  destinationLabel: string;
   selectedThresholds: FlightDealThreshold[];
   active: boolean;
   providerStatus: FlightDealPreferenceProviderStatus;
@@ -102,12 +106,20 @@ export async function saveFlightDealAlert(
     originAirportName: input.originAirportName.trim(),
     originCityName: input.originCityName.trim(),
     originCountryCode: input.originCountryCode.trim().toUpperCase(),
+    originCountryName: input.originCountryName.trim(),
+    destinationType: "city_group" as const,
+    destinationKey: input.destinationKey || input.destinationCityKey,
     destinationCityKey: input.destinationCityKey,
     destinationCityName: input.destinationCityName.trim(),
     destinationCountryCode: input.destinationCountryCode.trim().toUpperCase(),
     destinationCountryName: input.destinationCountryName.trim(),
-    destinationAirportCodes: input.destinationAirportCodes.map((code) => code.trim().toUpperCase()).filter(Boolean),
-    destinationAirportNames: input.destinationAirportNames.map((name) => name.trim()).filter(Boolean),
+    destinationLabel: `${input.destinationCityName.trim()} (${input.destinationAirportCodes.join(" / ")})`,
+    destinationAirportCodes: input.destinationAirportCodes
+      .map((code) => code.trim().toUpperCase())
+      .filter(Boolean),
+    destinationAirportNames: input.destinationAirportNames
+      .map((name) => name.trim())
+      .filter(Boolean),
     selectedThresholds,
     active: input.active,
     providerStatus: "pending_provider" as const,

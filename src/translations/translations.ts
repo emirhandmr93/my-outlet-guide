@@ -15883,6 +15883,12 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.destinationSearchPlaceholder": "City, country or airport",
     "flightDeals.airportMatchPending": "Airport match pending",
     "flightDeals.bookTicket": "Provider pending",
+    "flightDeals.filterPopular": "Popular",
+    "flightDeals.filterTurkey": "Türkiye",
+    "flightDeals.filterEurope": "Europe",
+    "flightDeals.filterMiddleEast": "Middle East",
+    "flightDeals.filterAsia": "Asia",
+    "flightDeals.filterAmericas": "Americas",
   },
   tr: {
     "flightDeals.title": "Uçuş Fırsatları",
@@ -15892,7 +15898,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.originPlaceholder":
       "Havalimanı veya şehir, örneğin Ankara ESB",
     "flightDeals.destination": "Hedef şehir",
-    "flightDeals.destinationPlaceholder": "Alışveriş şehri, örneğin Paris, FR",
+    "flightDeals.destinationPlaceholder": "Hedef şehir veya havalimanı seç",
     "flightDeals.threshold": "İndirim eşiği",
     "flightDeals.threshold15": "%15 altında",
     "flightDeals.threshold30": "%30 altında",
@@ -15913,7 +15919,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.signInPrompt":
       "Giriş yaparak uçuş fırsatı uyarılarını kaydedebilirsin.",
     "flightDeals.selectAirport": "Havalimanı seç",
-    "flightDeals.selectDestination": "Hedef şehir seç",
+    "flightDeals.selectDestination": "Hedef şehir veya havalimanı seç",
     "flightDeals.thresholdRequired": "En az bir indirim eşiği seç.",
     "flightDeals.selectOriginRequired": "Çıkış havalimanı seç.",
     "flightDeals.selectDestinationRequired": "Hedef şehir seç.",
@@ -15922,9 +15928,16 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.select": "Seç",
     "flightDeals.filterOptions": "Seçenekleri filtrele",
     "flightDeals.airportSearchPlaceholder": "Havalimanı, şehir veya kod ara",
-    "flightDeals.destinationSearchPlaceholder": "Şehir, ülke veya havalimanı ara",
+    "flightDeals.destinationSearchPlaceholder":
+      "Şehir, ülke veya havalimanı ara",
     "flightDeals.airportMatchPending": "Havalimanı eşleşmesi bekleniyor",
     "flightDeals.bookTicket": "Sağlayıcı bekleniyor",
+    "flightDeals.filterPopular": "Popüler",
+    "flightDeals.filterTurkey": "Türkiye",
+    "flightDeals.filterEurope": "Avrupa",
+    "flightDeals.filterMiddleEast": "Orta Doğu",
+    "flightDeals.filterAsia": "Asya",
+    "flightDeals.filterAmericas": "Amerika",
   },
   es: {},
   fr: {},
@@ -15945,6 +15958,12 @@ Object.assign(flightDealAlertsInfrastructureTranslations.es, {
   "flightDeals.saveAlert": "Guardar alerta de oferta",
   "flightDeals.tripReminders": "Recordatorios de vuelos de viaje",
   "flightDeals.savedAlerts": "Alertas guardadas",
+  "flightDeals.filterPopular": "Popular",
+  "flightDeals.filterTurkey": "Turquía",
+  "flightDeals.filterEurope": "Europa",
+  "flightDeals.filterMiddleEast": "Oriente Medio",
+  "flightDeals.filterAsia": "Asia",
+  "flightDeals.filterAmericas": "América",
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.fr, {
   ...flightDealAlertsInfrastructureTranslations.en,
@@ -15953,6 +15972,12 @@ Object.assign(flightDealAlertsInfrastructureTranslations.fr, {
   "flightDeals.destination": "Ville de destination",
   "flightDeals.threshold": "Seuil de réduction",
   "flightDeals.saveAlert": "Enregistrer l’alerte",
+  "flightDeals.filterPopular": "Populaire",
+  "flightDeals.filterTurkey": "Türkiye",
+  "flightDeals.filterEurope": "Europe",
+  "flightDeals.filterMiddleEast": "Moyen-Orient",
+  "flightDeals.filterAsia": "Asie",
+  "flightDeals.filterAmericas": "Amérique",
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.de, {
   ...flightDealAlertsInfrastructureTranslations.en,
@@ -15961,6 +15986,12 @@ Object.assign(flightDealAlertsInfrastructureTranslations.de, {
   "flightDeals.destination": "Zielstadt",
   "flightDeals.threshold": "Rabattgrenze",
   "flightDeals.saveAlert": "Angebotsalarm speichern",
+  "flightDeals.filterPopular": "Beliebt",
+  "flightDeals.filterTurkey": "Türkiye",
+  "flightDeals.filterEurope": "Europa",
+  "flightDeals.filterMiddleEast": "Naher Osten",
+  "flightDeals.filterAsia": "Asien",
+  "flightDeals.filterAmericas": "Amerika",
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.ar, {
   ...flightDealAlertsInfrastructureTranslations.en,
@@ -15969,6 +16000,12 @@ Object.assign(flightDealAlertsInfrastructureTranslations.ar, {
   "flightDeals.destination": "مدينة الوجهة",
   "flightDeals.threshold": "حد الخصم",
   "flightDeals.saveAlert": "حفظ تنبيه العرض",
+  "flightDeals.filterPopular": "الأكثر شيوعًا",
+  "flightDeals.filterTurkey": "تركيا",
+  "flightDeals.filterEurope": "أوروبا",
+  "flightDeals.filterMiddleEast": "الشرق الأوسط",
+  "flightDeals.filterAsia": "آسيا",
+  "flightDeals.filterAmericas": "الأمريكتان",
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.ru, {
   ...flightDealAlertsInfrastructureTranslations.en,
@@ -15977,6 +16014,12 @@ Object.assign(flightDealAlertsInfrastructureTranslations.ru, {
   "flightDeals.destination": "Город назначения",
   "flightDeals.threshold": "Порог скидки",
   "flightDeals.saveAlert": "Сохранить уведомление",
+  "flightDeals.filterPopular": "Популярное",
+  "flightDeals.filterTurkey": "Турция",
+  "flightDeals.filterEurope": "Европа",
+  "flightDeals.filterMiddleEast": "Ближний Восток",
+  "flightDeals.filterAsia": "Азия",
+  "flightDeals.filterAmericas": "Америка",
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.zh, {
   ...flightDealAlertsInfrastructureTranslations.en,
@@ -15985,6 +16028,12 @@ Object.assign(flightDealAlertsInfrastructureTranslations.zh, {
   "flightDeals.destination": "目的地城市",
   "flightDeals.threshold": "折扣门槛",
   "flightDeals.saveAlert": "保存优惠提醒",
+  "flightDeals.filterPopular": "热门",
+  "flightDeals.filterTurkey": "土耳其",
+  "flightDeals.filterEurope": "欧洲",
+  "flightDeals.filterMiddleEast": "中东",
+  "flightDeals.filterAsia": "亚洲",
+  "flightDeals.filterAmericas": "美洲",
 });
 
 for (const locale of supportedLanguageCodes) {
