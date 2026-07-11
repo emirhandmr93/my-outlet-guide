@@ -42,10 +42,20 @@ assert(
 assert(
   destinationOptions.includes("outlets.forEach") &&
     destinationOptions.includes("getCityById") &&
-    destinationOptions.includes("getCountryById"),
-  "destination options must derive from outlet/city data",
+    destinationOptions.includes("getCountryById") &&
+    destinationOptions.includes("flightDealDestinationAirportGroups") &&
+    destinationOptions.includes("destinationAirportCodes"),
+  "destination options must derive from outlet/city data and mapped airport groups",
 );
 
+assert(
+  screen.includes("KeyboardAvoidingView") &&
+    screen.includes('keyboardShouldPersistTaps="handled"') &&
+    screen.includes("FlatList") &&
+    screen.includes("flightDeals.airportSearchPlaceholder") &&
+    screen.includes("flightDeals.destinationSearchPlaceholder"),
+  "selector modal must use keyboard-safe sticky search and tappable result lists",
+);
 assert(
   screen.includes("formatCityDisplayName") &&
     screen.includes("formatCountryDisplayName") &&
@@ -83,22 +93,30 @@ assert(
 assert(
   airports.includes("airportCode") &&
     airports.includes("Esenboğa Airport") &&
-    airports.includes("Adnan Menderes Airport"),
-  "airport selector metadata must exist",
+    airports.includes("Adnan Menderes Airport") &&
+    airports.includes("Dalaman Airport") &&
+    airports.includes("Hakkari Yüksekova Selahaddin Eyyubi Airport") &&
+    (airports.match(/airportCode/g) || []).length > 40,
+  "airport selector metadata must include broad source-safe Turkish airport coverage",
 );
 assert(
   screen.includes("originAirportName: selectedOrigin.airportName") &&
     screen.includes(
       "destinationCityKey: selectedDestination.destinationCityKey",
-    ),
-  "saved origin/destination must come from option objects",
+    ) &&
+    screen.includes("destinationAirportCodes: selectedDestination.destinationAirportCodes") &&
+    screen.includes("destinationAirportNames: selectedDestination.destinationAirportNames"),
+  "saved origin/destination and destination airport groups must come from option objects",
 );
 assert(
   alertService.includes('"flightDealPreferences", userId, "alerts"'),
   "preference storage must use user-owned alerts subcollection",
 );
 assert(
-  alertService.includes("buildFlightDealAlertId") &&
+  alertService.includes("destinationAirportCodes: string[]") &&
+    alertService.includes("destinationAirportNames: string[]") &&
+    alertService.includes("destinationAirportCodes: input.destinationAirportCodes") &&
+    alertService.includes("buildFlightDealAlertId") &&
     screen.includes("selectedOrigin.airportCode") &&
     screen.includes("selectedDestination.destinationCityKey"),
   "alertId must be deterministic from origin/destination",
@@ -169,6 +187,8 @@ assert(
 assert(
   rules.includes("originAirportName") &&
     rules.includes("destinationCountryName") &&
+    rules.includes("destinationAirportCodes") &&
+    rules.includes("destinationAirportCodes.size() > 0") &&
     rules.includes("request.resource.data.keys().hasOnly"),
   "Firestore rules must require selected origin/destination strings and block fake fare fields",
 );
@@ -213,6 +233,9 @@ for (const key of [
   "flightDeals.selectAirport",
   "flightDeals.selectDestination",
   "flightDeals.thresholdRequired",
+  "flightDeals.airportSearchPlaceholder",
+  "flightDeals.destinationSearchPlaceholder",
+  "flightDeals.airportMatchPending",
 ]) {
   assert(translations.includes(key), `missing localization key ${key}`);
 }
@@ -238,5 +261,17 @@ assert(
 assert(
   !/mock flight|demo flight|sample flight|fake flight/i.test(allSource),
   "no fake/mock/demo data",
+);
+assert(
+  /flightDealDestinationAirportGroups[\s\S]*CDG[\s\S]*ORY[\s\S]*BVA/.test(airports) &&
+    /flightDealDestinationAirportGroups[\s\S]*FLR[\s\S]*PSA[\s\S]*BLQ/.test(airports) &&
+    screen.includes("destinationAirportCodesText(item)"),
+  "destination selector rows must include airport group codes",
+);
+assert(
+  rules.includes("match /flightFareRoutes/{routeKey}") &&
+    rules.includes("match /dailySnapshots/{yyyyMMdd}") &&
+    rules.includes("match /stats/{statId}"),
+  "provider route snapshots and stats must remain server-owned",
 );
 console.log("Flight Deal Alerts Infrastructure checks passed.");

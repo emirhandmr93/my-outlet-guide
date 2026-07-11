@@ -25,6 +25,8 @@ export type FlightDealAlertPreference = {
   destinationCityName: string;
   destinationCountryCode: string;
   destinationCountryName: string;
+  destinationAirportCodes: string[];
+  destinationAirportNames: string[];
   selectedThresholds: FlightDealThreshold[];
   active: boolean;
   providerStatus: FlightDealPreferenceProviderStatus;
@@ -104,6 +106,8 @@ export async function saveFlightDealAlert(
     destinationCityName: input.destinationCityName.trim(),
     destinationCountryCode: input.destinationCountryCode.trim().toUpperCase(),
     destinationCountryName: input.destinationCountryName.trim(),
+    destinationAirportCodes: input.destinationAirportCodes.map((code) => code.trim().toUpperCase()).filter(Boolean),
+    destinationAirportNames: input.destinationAirportNames.map((name) => name.trim()).filter(Boolean),
     selectedThresholds,
     active: input.active,
     providerStatus: "pending_provider" as const,

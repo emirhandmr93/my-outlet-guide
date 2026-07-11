@@ -170,6 +170,8 @@ service cloud.firestore {
           'destinationCityName',
           'destinationCountryCode',
           'destinationCountryName',
+          'destinationAirportCodes',
+          'destinationAirportNames',
           'selectedThresholds',
           'active',
           'providerStatus',
@@ -188,6 +190,10 @@ service cloud.firestore {
         && isNonEmptyString(request.resource.data.destinationCityName)
         && isNonEmptyString(request.resource.data.destinationCountryCode)
         && isNonEmptyString(request.resource.data.destinationCountryName)
+        && request.resource.data.destinationAirportCodes is list
+        && request.resource.data.destinationAirportCodes.size() > 0
+        && request.resource.data.destinationAirportNames is list
+        && request.resource.data.destinationAirportNames.size() > 0
         && hasOnlyValidFlightDealThresholds(request.resource.data.selectedThresholds)
         && request.resource.data.active is bool
         && request.resource.data.providerStatus == 'pending_provider';
