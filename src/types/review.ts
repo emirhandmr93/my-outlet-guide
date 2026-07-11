@@ -45,4 +45,4 @@ export type ReviewInput = {
   comment: string;
 };
 
-export type ReviewReportReason = "spam" | "abuse" | "off_topic" | "other";
+export type ReviewReportReason = "spam" | "offensive" | "misleading" | "other";

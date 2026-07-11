@@ -5,10 +5,10 @@ import {
   deleteReview as deleteReviewRecord,
   fetchLatestActiveReviewForUser,
   fetchPublishedReviewsForOutlet,
-  reportReview as reportReviewRecord,
   setReviewHelpful,
   upsertReview,
 } from "../services/reviewsRatingsService";
+import { reportReview as reportReviewRecord, type ReviewReportStatus } from "../services/reviewReportService";
 import type { OutletReview, ReviewInput, ReviewReportReason } from "../types/review";
 
 const ANONYMOUS_SHOPPER = "Anonymous Shopper";
@@ -20,7 +20,7 @@ type ReviewsContextType = {
   getLatestActiveReviewForUser: (outletId: string, userId: string) => Promise<OutletReview | null>;
   getOutletReviews: (outletId: string) => OutletReview[];
   loadReviews: () => Promise<void>;
-  reportReview: (outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason) => Promise<void>;
+  reportReview: (outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason, reviewAuthorUserId?: string | null) => Promise<ReviewReportStatus>;
   toggleHelpful: (review: OutletReview, userId: string) => Promise<void>;
   reviews: OutletReview[];
 };
@@ -74,8 +74,8 @@ export function ReviewsProvider({ children }: { children: ReactNode }) {
     return fetchLatestActiveReviewForUser(outletId, userId);
   }, []);
 
-  async function reportReview(outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason) {
-    await reportReviewRecord(outletId, reviewId, reporterUserId, reason);
+  async function reportReview(outletId: string, reviewId: string, reporterUserId: string, reason: ReviewReportReason, reviewAuthorUserId?: string | null) {
+    return reportReviewRecord({ outletId, reviewId, userId: reporterUserId, reason, reviewAuthorUserId });
   }
 
   async function anonymizeUserReviews(userId: string) {

@@ -162,25 +162,35 @@ service cloud.firestore {
         && request.resource.data.selectedThresholds is list;
     }
 
-    function isValidReviewReportCreate() {
+    function isValidReviewReportCreate(outletId, reviewId, userId) {
+      let review = get(/databases/$(database)/documents/reviews/$(outletId)/items/$(reviewId)).data;
       return request.resource.data.keys().hasOnly([
           'reportId',
           'outletId',
           'reviewId',
           'reporterUserId',
+          'reviewAuthorUserId',
           'reason',
-          'createdAt',
           'status',
-          'firestoreCreatedAt'
+          'createdAt',
+          'updatedAt'
         ])
-        && isNonEmptyString(request.resource.data.reportId)
-        && isNonEmptyString(request.resource.data.outletId)
-        && isNonEmptyString(request.resource.data.reviewId)
+        && userId == request.auth.uid
+        && exists(/databases/$(database)/documents/reviews/$(outletId)/items/$(reviewId))
+        && !exists(/databases/$(database)/documents/reviews/$(outletId)/items/$(reviewId)/reports/$(userId))
+        && request.resource.data.reportId == userId
+        && request.resource.data.outletId == outletId
+        && request.resource.data.reviewId == reviewId
         && request.resource.data.reporterUserId == request.auth.uid
-        && request.resource.data.reason in ['spam', 'abuse', 'off_topic', 'other']
-        && request.resource.data.status == 'open';
+        && request.resource.data.reviewAuthorUserId == review.userId
+        && request.resource.data.reporterUserId != review.userId
+        && review.status == 'published'
+        && !(review.keys().hasAny(['deletedAt']) && review.deletedAt != null)
+        && request.resource.data.reason in ['spam', 'offensive', 'misleading', 'other']
+        && request.resource.data.status == 'open'
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp;
     }
-
 
 
     function hasValidNotificationSettingsData(userId) {
@@ -319,6 +329,12 @@ service cloud.firestore {
         allow delete: if isSignedIn() && userId == request.auth.uid && resource.data.userId == request.auth.uid;
         allow update: if false;
       }
+
+      match /reports/{userId} {
+        allow read: if isSignedIn() && userId == request.auth.uid;
+        allow create: if isSignedIn() && isValidReviewReportCreate(outletId, reviewId, userId);
+        allow update, delete: if false;
+      }
     }
 
 
@@ -347,13 +363,6 @@ service cloud.firestore {
 
     match /notificationDeliveries/{deliveryId} {
       allow read, write: if false;
-    }
-
-    match /reviewReports/{reportId} {
-      allow create: if isSignedIn()
-        && request.resource.data.reportId == reportId
-        && isValidReviewReportCreate();
-      allow read, update, delete: if false;
     }
   }
 }
