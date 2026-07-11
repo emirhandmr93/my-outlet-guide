@@ -43,6 +43,8 @@ export function ReviewItem({
   const initial = userName.trim().charAt(0).toUpperCase() || "U";
   const isAuthor = Boolean(currentUserId && review.userId === currentUserId);
   const isHelpful = Boolean(currentUserId && review.helpfulUserIds?.includes(currentUserId));
+  const helpfulCount = review.helpfulCount || 0;
+  const helpfulLabel = `${isHelpful ? helpfulActiveText : helpfulText}${helpfulCount > 0 ? ` · ${helpfulCount}` : ""}`;
 
   return (
     <View style={styles.card}>
@@ -72,12 +74,12 @@ export function ReviewItem({
       <View style={styles.actionsRow}>
         {isAuthor ? (
           <View style={[styles.actionPill, styles.actionPillDisabled]}>
-            <Text style={styles.actionTextDisabled}>{helpfulOwnDisabledText} ({review.helpfulCount || 0})</Text>
+            <Text style={styles.actionTextDisabled}>{helpfulOwnDisabledText}</Text>
           </View>
         ) : (
           <TouchableOpacity style={[styles.actionPill, isHelpful && styles.actionPillActive]} onPress={onHelpful}>
             <Text style={[styles.actionText, isHelpful && styles.actionTextActive]}>
-              {isHelpful ? helpfulActiveText : helpfulText} ({review.helpfulCount || 0})
+              {helpfulLabel}
             </Text>
           </TouchableOpacity>
         )}
@@ -111,7 +113,7 @@ const styles = StyleSheet.create({
   editedText: { color: "#C9A227", fontSize: 12, fontWeight: "800" },
   previousText: { color: "#666666", fontSize: 12, fontWeight: "700", lineHeight: 18, marginTop: 4 },
   actionsRow: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12 },
-  actionPill: { backgroundColor: "#FFFFFF", borderRadius: 999, paddingHorizontal: 12, paddingVertical: 8, borderWidth: 1, borderColor: "#E5E7EB" },
+  actionPill: { backgroundColor: "#FFFFFF", borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6, borderWidth: 1, borderColor: "#E5E7EB", alignSelf: "flex-start" },
   actionPillActive: { backgroundColor: "#0B1F3A", borderColor: "#0B1F3A" },
   actionPillDisabled: { backgroundColor: "#F1F5F9", borderColor: "#E5E7EB" },
   actionTextDisabled: { color: "#64748B", fontSize: 12, fontWeight: "900" },
