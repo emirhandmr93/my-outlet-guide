@@ -67,8 +67,8 @@ if (routeName === "Savings") {
 return <MaterialCommunityIcons name="cash-multiple" size={size + 1} color={color} />;
 }
 
-if (routeName === "Favorites") {
-return <Ionicons name={focused ? "heart" : "heart-outline"} size={size} color={color} />;
+if (routeName === "MyTrips") {
+return <MaterialCommunityIcons name={focused ? "briefcase-clock" : "briefcase-clock-outline"} size={size + 1} color={color} />;
 }
 
 return <Ionicons name={focused ? "person" : "person-outline"} size={size} color={color} />;
@@ -80,8 +80,8 @@ const { t, language } = useTranslation();
 const tabLabels: Record<string, string> = {
 Home: t("nav.home"),
 Explore: t("nav.explore"),
+MyTrips: t("nav.trips"),
 Savings: t("nav.savings"),
-Favorites: t("nav.favorites"),
 Profile: t("nav.profile"),
 };
 
@@ -122,8 +122,8 @@ elevation: 14,
 >
 <Tab.Screen name="Home" component={HomeScreen} />
 <Tab.Screen name="Explore" component={ExploreScreen} />
+<Tab.Screen name="MyTrips" component={MyTripsScreen} />
 <Tab.Screen name="Savings" component={SavingsScreen} />
-<Tab.Screen name="Favorites" component={FavoritesScreen} />
 <Tab.Screen name="Profile" component={ProfileScreen} />
 </Tab.Navigator>
 );
@@ -157,6 +157,7 @@ backgroundColor: "#FFFFFF",
 <Stack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
 
 <Stack.Screen name="MyTrips" component={MyTripsScreen} options={{ title: t("nav.myTrips") }} />
+<Stack.Screen name="Favorites" component={FavoritesScreen} options={{ title: t("nav.favorites") }} />
 <Stack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
 <Stack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: t("nav.tripDetail") }} />
 <Stack.Screen name="TripSegmentEditor" component={TripSegmentEditorScreen} options={{ title: t("tripDetail.addRouteCta") }} />

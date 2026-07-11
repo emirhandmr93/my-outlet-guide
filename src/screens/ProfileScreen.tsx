@@ -25,6 +25,7 @@ import {
 type ProfileRouteName =
   | "Login"
   | "MyTrips"
+  | "Favorites"
   | "FlightDeals"
   | "LanguageSettings"
   | "CurrencySettings"
@@ -223,6 +224,12 @@ export function ProfileScreen() {
         onPress={() => goTo("MyTrips")}
       />
       <ProfileRow
+        icon="❤️"
+        title={t("profile.favorites")}
+        subtitle={t("profile.subtitles.favorites")}
+        onPress={() => goTo("Favorites")}
+      />
+      <ProfileRow
         icon="✈️"
         title={t("profile.flightDeals")}
         subtitle={t("profile.subtitles.flightDeals")}
@@ -294,6 +301,9 @@ export function ProfileScreen() {
         subtitle={t("profile.subtitles.mediaCredits")}
         onPress={() => goTo("MediaCredits")}
       />
+
+      <Text style={styles.groupTitle}>{t("profile.accountManagement")}</Text>
+
       <ProfileRow
         icon="🗑️"
         title={t("profile.deleteAccount")}

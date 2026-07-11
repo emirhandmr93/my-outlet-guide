@@ -14,6 +14,7 @@ import { resolveVisibleFavoriteOutlets } from "../src/utils/favoriteOutlets";
 const requiredKeys = [
   "nav.home",
   "nav.explore",
+  "nav.trips",
   "nav.savings",
   "nav.favorites",
   "nav.profile",
@@ -83,6 +84,11 @@ const requiredKeys = [
   "profile.groups.travelShopping",
   "profile.groups.preferences",
   "profile.groups.supportLegal",
+  "profile.favorites",
+  "profile.subtitles.favorites",
+  "profile.accountManagement",
+  "profile.deleteAccount",
+  "profile.subtitles.deleteAccount",
   "auth.kicker",
   "auth.title",
   "auth.subtitle",
@@ -329,7 +335,7 @@ const navigationSource = readFileSync(
   join(process.cwd(), "src/navigation/AppNavigator.tsx"),
   "utf8",
 );
-for (const tabKey of ["home", "explore", "savings", "favorites", "profile"]) {
+for (const tabKey of ["home", "explore", "trips", "savings", "profile"]) {
   if (!navigationSource.includes(`t("nav.${tabKey}")`)) {
     fail(
       `src/navigation/AppNavigator.tsx: bottom tab ${tabKey} label is not read from translations`,
@@ -471,6 +477,49 @@ for (const file of authRenderPathFiles) {
       `${file}: auth/profile render path contains visible fallback/debug translation text`,
     );
   }
+}
+
+
+const navigationTypesSource = readFileSync(join(process.cwd(), "src/navigation/types.ts"), "utf8");
+const profileSourceForNavigationV2 = readFileSync(join(process.cwd(), "src/screens/ProfileScreen.tsx"), "utf8");
+const tabOrderMatch = navigationSource.match(/<Tab\.Screen name="Home"[\s\S]*?<Tab\.Screen name="Explore"[\s\S]*?<Tab\.Screen name="MyTrips"[\s\S]*?<Tab\.Screen name="Savings"[\s\S]*?<Tab\.Screen name="Profile"/);
+if (!tabOrderMatch) {
+  fail("Bottom tabs must be Home, Explore, MyTrips, Savings, Profile in order");
+}
+if (/<Tab\.Screen name="Favorites"/.test(navigationSource) || /Favorites: undefined;/.test(navigationTypesSource.match(/export type MainTabParamList[\s\S]*?};/)?.[0] ?? "")) {
+  fail("Favorites must not be a bottom tab");
+}
+if (!navigationTypesSource.match(/export type MainTabParamList[\s\S]*MyTrips: undefined;[\s\S]*};/)) {
+  fail("MyTrips must be registered as a bottom tab route");
+}
+if (!/<Stack\.Screen name="Favorites" component={FavoritesScreen}/.test(navigationSource)) {
+  fail("FavoritesScreen must remain registered as a stack screen");
+}
+if (!profileSourceForNavigationV2.includes('title={t("profile.favorites")}') || !profileSourceForNavigationV2.includes('onPress={() => goTo("Favorites")}')) {
+  fail("Profile must include a Favorites row that navigates to Favorites");
+}
+const supportLegalSection = profileSourceForNavigationV2.split('t("profile.groups.supportLegal")')[1]?.split('t("profile.accountManagement")')[0] ?? "";
+if (supportLegalSection.includes('goTo("DeleteAccount")') || supportLegalSection.includes('t("profile.deleteAccount")')) {
+  fail("Delete Account must not be in the main support/legal list");
+}
+const accountManagementSection = profileSourceForNavigationV2.split('t("profile.accountManagement")')[1] ?? "";
+if (!accountManagementSection.includes('t("profile.deleteAccount")') || !accountManagementSection.includes('goTo("DeleteAccount")')) {
+  fail("Delete Account must remain reachable under Account Management");
+}
+if (!/<Stack\.Screen name="DeleteAccount" component={DeleteAccountScreen}/.test(navigationSource)) {
+  fail("DeleteAccountScreen must remain registered");
+}
+for (const locale of supportedLanguageCodes) {
+  if (!translations[locale]["nav.trips"]) {
+    fail(`${locale}: nav.trips is missing`);
+  }
+}
+if (translations.tr["nav.trips"] !== "Seyahat") {
+  fail("Turkish nav.trips must be Seyahat");
+}
+const tabLabelsBlock = navigationSource.match(/const tabLabels:[\s\S]*?};/)?.[0] ?? "";
+if (tabLabelsBlock.includes('t("nav.favorites")')) {
+  fail("Turkish tab labels must not include Favoriler/Favorites as a tab");
 }
 
 if (hasError) process.exit(1);

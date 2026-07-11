@@ -14810,4 +14810,79 @@ for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], tripPlannerV2UxPatchTranslations[locale]);
 }
 
+
+const navigationProfileV2Phase1ATranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "nav.trips": "Trips",
+    "profile.favorites": "Favorites",
+    "profile.subtitles.favorites": "View your saved outlets.",
+    "profile.accountManagement": "Account management",
+    "profile.deleteAccount": "Delete Account",
+    "profile.subtitles.deleteAccount": "Manage your account and related data.",
+  },
+  tr: {
+    "nav.trips": "Seyahat",
+    "profile.favorites": "Favorilerim",
+    "profile.subtitles.favorites": "Kaydettiğin outletleri gör.",
+    "profile.accountManagement": "Hesap yönetimi",
+    "profile.deleteAccount": "Hesabı Sil",
+    "profile.subtitles.deleteAccount": "Hesabını ve ilişkili verilerini yönet.",
+  },
+  es: {
+    "nav.trips": "Viajes",
+    "profile.favorites": "Mis favoritos",
+    "profile.subtitles.favorites": "Ver los outlets que guardaste.",
+    "profile.accountManagement": "Gestión de cuenta",
+    "profile.deleteAccount": "Eliminar cuenta",
+    "profile.subtitles.deleteAccount": "Gestiona tu cuenta y los datos relacionados.",
+  },
+  fr: {
+    "nav.trips": "Voyages",
+    "profile.favorites": "Mes favoris",
+    "profile.subtitles.favorites": "Voir les outlets enregistrés.",
+    "profile.accountManagement": "Gestion du compte",
+    "profile.deleteAccount": "Supprimer le compte",
+    "profile.subtitles.deleteAccount": "Gérez votre compte et les données associées.",
+  },
+  de: {
+    "nav.trips": "Reisen",
+    "profile.favorites": "Meine Favoriten",
+    "profile.subtitles.favorites": "Sieh dir deine gespeicherten Outlets an.",
+    "profile.accountManagement": "Kontoverwaltung",
+    "profile.deleteAccount": "Konto löschen",
+    "profile.subtitles.deleteAccount": "Verwalte dein Konto und zugehörige Daten.",
+  },
+  ar: {
+    "nav.trips": "الرحلات",
+    "profile.favorites": "مفضلتي",
+    "profile.subtitles.favorites": "اعرض المنافذ التي حفظتها.",
+    "profile.accountManagement": "إدارة الحساب",
+    "profile.deleteAccount": "حذف الحساب",
+    "profile.subtitles.deleteAccount": "إدارة حسابك والبيانات المرتبطة به.",
+  },
+  ru: {
+    "nav.trips": "Поездки",
+    "profile.favorites": "Мое избранное",
+    "profile.subtitles.favorites": "Посмотрите сохраненные аутлеты.",
+    "profile.accountManagement": "Управление аккаунтом",
+    "profile.deleteAccount": "Удалить аккаунт",
+    "profile.subtitles.deleteAccount": "Управляйте аккаунтом и связанными данными.",
+  },
+  zh: {
+    "nav.trips": "行程",
+    "profile.favorites": "我的收藏",
+    "profile.subtitles.favorites": "查看你保存的奥莱。",
+    "profile.accountManagement": "账号管理",
+    "profile.deleteAccount": "删除账号",
+    "profile.subtitles.deleteAccount": "管理你的账号和相关数据。",
+  },
+};
+
+for (const locale of supportedLanguageCodes) {
+  Object.assign(translations[locale], navigationProfileV2Phase1ATranslations[locale]);
+}
+
 // QA guard: "tripDetail.segmentOutletReminderMessage": "Bugün {{outlet}} ziyaretin var."
