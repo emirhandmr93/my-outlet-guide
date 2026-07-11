@@ -4,8 +4,6 @@ import {
   doc,
   getDoc,
   getDocs,
-  limit,
-  orderBy,
   query,
   serverTimestamp,
   setDoc,
@@ -109,13 +107,14 @@ export async function fetchLatestActiveReviewForUser(outletId: string, userId: s
     query(
       collection(db, REVIEW_COLLECTION, outletId, REVIEW_ITEMS_COLLECTION),
       where("userId", "==", userId),
-      where("status", "==", "published"),
-      orderBy("updatedAt", "desc"),
-      limit(1),
     ),
   );
-  const reviewDoc = snapshot.docs[0];
-  return reviewDoc ? normalizeReview(reviewDoc.id, reviewDoc.data()) : null;
+  const activeReviews = getPublishedReviews(
+    snapshot.docs
+      .map((reviewDoc) => normalizeReview(reviewDoc.id, reviewDoc.data()))
+      .filter((review) => review.userId === userId),
+  ).sort(sortReviewsByCreatedAtDesc);
+  return activeReviews[0] ?? null;
 }
 
 
@@ -160,12 +159,15 @@ function normalizeReview(reviewId: string, data: any): OutletReview {
   };
 }
 
+export function sortReviewsByCreatedAtDesc(a: OutletReview, b: OutletReview) {
+  return b.createdAt.localeCompare(a.createdAt) || b.updatedAt.localeCompare(a.updatedAt) || b.reviewId.localeCompare(a.reviewId);
+}
+
 export async function fetchPublishedReviewsForOutlet(outletId: string): Promise<OutletReview[]> {
   const snapshot = await getDocs(
     query(
       collection(db, REVIEW_COLLECTION, outletId, REVIEW_ITEMS_COLLECTION),
       where("status", "==", "published"),
-      orderBy("createdAt", "desc"),
     ),
   );
 
@@ -183,7 +185,7 @@ export async function fetchPublishedReviewsForOutlet(outletId: string): Promise<
     }),
   );
 
-  return getPublishedReviews(reviews);
+  return getPublishedReviews(reviews).sort(sortReviewsByCreatedAtDesc);
 }
 
 function isCompleteCategoryRatings(value: unknown): value is ReviewCategoryRatings {
