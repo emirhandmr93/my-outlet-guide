@@ -200,6 +200,9 @@ export async function upsertReview(input: ReviewInput) {
   const existingDeterministicReview = deterministicSnapshot.exists()
     ? normalizeReview(deterministicSnapshot.id, deterministicSnapshot.data())
     : null;
+  if (existingDeterministicReview?.status === "hidden") {
+    throw new Error("review-hidden-by-moderation");
+  }
   const existingReview = existingDeterministicReview || (await fetchLatestActiveReviewForUser(input.outletId, input.userId));
   const reviewId = input.userId;
   const reviewRef = deterministicReviewRef;

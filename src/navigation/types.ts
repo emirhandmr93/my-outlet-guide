@@ -34,6 +34,7 @@ export type RootStackParamList = {
   FlightDealDetail: { dealId: string };
   Login: { authMessage?: string } | undefined;
   MyReviews: undefined;
+  ReviewModeration: undefined;
   PrivacyPolicy: undefined;
   TermsConditions: undefined;
   ContactUs: undefined;

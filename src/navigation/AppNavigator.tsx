@@ -27,6 +27,7 @@ import { NotificationSettingsScreen } from "../screens/NotificationSettingsScree
 import { OfflinePacksScreen } from "../screens/OfflinePacksScreen";
 import { OutletDetailScreen } from "../screens/OutletDetailScreen";
 import { PriceAdvantageCalculatorScreen } from "../screens/PriceAdvantageCalculatorScreen";
+import { ReviewModerationScreen } from "../screens/ReviewModerationScreen";
 import { PrivacyPolicyScreen } from "../screens/PrivacyPolicyScreen";
 import { ProfileScreen } from "../screens/ProfileScreen";
 import { SavingsScreen } from "../screens/SavingsScreen";
@@ -178,6 +179,7 @@ backgroundColor: "#FFFFFF",
 
 <Stack.Screen name="Login" component={LoginScreen} options={{ title: t("nav.signIn") }} />
 <Stack.Screen name="MyReviews" component={MyReviewsScreen} options={{ title: t("nav.myReviews") }} />
+<Stack.Screen name="ReviewModeration" component={ReviewModerationScreen} options={{ title: t("moderation.title") }} />
 <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicyScreen} options={{ title: t("nav.privacyPolicy") }} />
 <Stack.Screen name="TermsConditions" component={TermsConditionsScreen} options={{ title: t("nav.termsConditions") }} />
 <Stack.Screen name="ContactUs" component={ContactUsScreen} options={{ title: t("nav.contactUs") }} />

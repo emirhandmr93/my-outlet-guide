@@ -55,6 +55,7 @@ service cloud.firestore {
           'status'
         ])
         && request.resource.data.reviewId == reviewId
+        && request.resource.data.reviewId == request.auth.uid
         && request.resource.data.outletId == outletId
         && request.resource.data.userId == request.auth.uid
         && request.resource.data.status == 'published'
@@ -160,6 +161,51 @@ service cloud.firestore {
         && isNonEmptyString(request.resource.data.departureAirportId)
         && request.resource.data.selectedCityIds is list
         && request.resource.data.selectedThresholds is list;
+    }
+
+    function isAdminOrModerator() {
+      return isSignedIn()
+        && exists(/databases/$(database)/documents/adminUsers/$(request.auth.uid))
+        && get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.active == true
+        && get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['admin', 'moderator'];
+    }
+
+    function isValidRootReviewReportCreate(reportId) {
+      let outletId = request.resource.data.outletId;
+      let reviewId = request.resource.data.reviewId;
+      let review = get(/databases/$(database)/documents/reviews/$(outletId)/items/$(reviewId)).data;
+      return request.resource.data.keys().hasOnly(['reportId', 'outletId', 'reviewId', 'reporterUserId', 'reviewAuthorUserId', 'reason', 'status', 'createdAt', 'updatedAt'])
+        && reportId == outletId + '_' + reviewId + '_' + request.auth.uid
+        && request.resource.data.reportId == reportId
+        && request.resource.data.reporterUserId == request.auth.uid
+        && exists(/databases/$(database)/documents/reviews/$(outletId)/items/$(reviewId))
+        && request.resource.data.reviewAuthorUserId == review.userId
+        && review.userId != request.auth.uid
+        && review.status == 'published'
+        && request.resource.data.reason in ['spam', 'offensive', 'misleading', 'other']
+        && request.resource.data.status == 'open'
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp;
+    }
+
+    function isValidReviewReportUpdate() {
+      return isAdminOrModerator()
+        && request.resource.data.diff(resource.data).changedKeys().hasOnly(['status', 'updatedAt', 'moderationNote', 'moderatedBy', 'moderatedAt'])
+        && request.resource.data.status in ['open', 'reviewing', 'dismissed', 'action_taken']
+        && request.resource.data.reporterUserId == resource.data.reporterUserId
+        && request.resource.data.reviewId == resource.data.reviewId
+        && request.resource.data.outletId == resource.data.outletId
+        && request.resource.data.reviewAuthorUserId == resource.data.reviewAuthorUserId
+        && request.resource.data.reason == resource.data.reason
+        && request.resource.data.createdAt == resource.data.createdAt;
+    }
+
+    function isValidModerationActionCreate(actionId) {
+      return isAdminOrModerator()
+        && request.resource.data.keys().hasOnly(['actionId', 'reportId', 'outletId', 'reviewId', 'moderatorUserId', 'action', 'reason', 'note', 'createdAt'])
+        && request.resource.data.actionId == actionId
+        && request.resource.data.moderatorUserId == request.auth.uid
+        && request.resource.data.action in ['mark_reviewing', 'dismiss_report', 'hide_review', 'restore_review', 'add_note'];
     }
 
     function isValidReviewReportCreate(outletId, reviewId, userId) {
@@ -312,15 +358,39 @@ service cloud.firestore {
       allow delete: if isOwnerDocument(userId);
     }
 
+
+    match /adminUsers/{userId} {
+      allow get: if isSignedIn() && (request.auth.uid == userId || isAdminOrModerator());
+      allow list: if isAdminOrModerator();
+      allow create, update, delete: if false;
+    }
+
+    match /reviewReports/{reportId} {
+      allow create: if isSignedIn() && !exists(/databases/$(database)/documents/reviewReports/$(reportId)) && isValidRootReviewReportCreate(reportId);
+      allow read: if isSignedIn() && (resource.data.reporterUserId == request.auth.uid || isAdminOrModerator());
+      allow update: if isValidReviewReportUpdate();
+      allow delete: if false;
+    }
+
+    match /moderationActions/{actionId} {
+      allow create: if isValidModerationActionCreate(actionId);
+      allow read: if isAdminOrModerator();
+      allow update, delete: if false;
+    }
+
     match /reviews/{outletId}/items/{reviewId} {
       allow read: if true;
       allow create: if isDeterministicReviewOwner(outletId, reviewId)
         && hasValidReviewCreateData(outletId, reviewId);
       allow update: if isDeterministicReviewOwner(outletId, reviewId)
         && keepsReviewRequestOwnership(outletId, reviewId)
+        && resource.data.status == 'published'
         && hasValidReviewUpdateData()
         && hasValidReviewEditMetadata(request.resource.data)
-        && (isPublishedReviewUpdate() || isSoftDeleteReviewUpdate());
+        && (isPublishedReviewUpdate() || isSoftDeleteReviewUpdate())
+        || (isAdminOrModerator()
+          && request.resource.data.diff(resource.data).changedKeys().hasOnly(['status', 'updatedAt'])
+          && request.resource.data.status in ['hidden', 'published']);
       allow delete: if false;
 
       match /helpful/{userId} {

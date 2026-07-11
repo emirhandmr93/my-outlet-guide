@@ -89,7 +89,9 @@ export function WriteReviewScreen() {
 
       Alert.alert(
         t("writeReview.saveErrorTitle"),
-        isFirestorePermissionDenied(error) ? t("writeReview.savePermissionErrorText") : t("writeReview.saveErrorText"),
+        error instanceof Error && error.message === "review-hidden-by-moderation"
+          ? t("writeReview.hiddenByModeration")
+          : isFirestorePermissionDenied(error) ? t("writeReview.savePermissionErrorText") : t("writeReview.saveErrorText"),
       );
     } finally {
       setSaving(false);

@@ -1,4 +1,4 @@
-export type ReviewStatus = "published" | "deleted";
+export type ReviewStatus = "published" | "deleted" | "hidden";
 
 export type ReviewCategoryRatings = {
   transportation: number;
