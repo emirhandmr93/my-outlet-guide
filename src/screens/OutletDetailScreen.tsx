@@ -53,6 +53,7 @@ import {
 } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 import { requireReviewAuth } from "../utils/reviewAuthGuard";
+import type { ReviewReportStatus } from "../services/reviewReportService";
 import type { ReviewReportReason } from "../types/review";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
@@ -181,8 +182,36 @@ export function OutletDetailScreen() {
     return b.createdAt.localeCompare(a.createdAt);
   });
 
+  function getReportErrorCopy(status: ReviewReportStatus) {
+    if (status === "self_report") return t("review.reportOwnReview");
+    if (status === "already_reported") return t("review.reportAlready");
+    if (status === "unauthenticated") return t("review.signInToReport");
+    if (status === "permission-denied") return t("review.reportPermissionErrorText");
+    return t("review.reportErrorText");
+  }
+
+  function logReportFailureDiagnostics(params: {
+    status: ReviewReportStatus;
+    outletId: string;
+    reviewId: string;
+    userId?: string | null;
+    reviewAuthorUserId?: string | null;
+  }) {
+    if (typeof __DEV__ !== "undefined" && __DEV__) {
+      console.warn("Review report failed", {
+        code: params.status,
+        message: getReportErrorCopy(params.status),
+        outletId: params.outletId,
+        reviewId: params.reviewId,
+        hasUserId: Boolean(params.userId),
+        isOwnReview: Boolean(params.userId && params.reviewAuthorUserId === params.userId),
+        reportId: params.userId ? `${params.outletId}_${params.reviewId}_${params.userId}` : null,
+      });
+    }
+  }
+
   function showReportReasonPicker(reviewId: string, reviewAuthorUserId?: string | null) {
-    if (reviewAuthorUserId && currentUser?.userId === reviewAuthorUserId) {
+    if (currentUser?.userId && reviewAuthorUserId === currentUser.userId) {
       Alert.alert(t("review.reportOwnReview"));
       return;
     }
@@ -212,9 +241,24 @@ export function OutletDetailScreen() {
           Alert.alert(t("review.reportAlready"));
           return;
         }
-        Alert.alert(t("review.reportErrorTitle"), t("review.reportErrorText"));
+        logReportFailureDiagnostics({
+          status: result,
+          outletId: outlet.outletId,
+          reviewId,
+          userId: currentUser.userId,
+          reviewAuthorUserId,
+        });
+        Alert.alert(t("review.reportErrorTitle"), getReportErrorCopy(result));
       } catch (error) {
-        showReviewActionError(error);
+        const status = isFirestorePermissionDenied(error) ? "permission-denied" : "failed";
+        logReportFailureDiagnostics({
+          status,
+          outletId: outlet.outletId,
+          reviewId,
+          userId: currentUser.userId,
+          reviewAuthorUserId,
+        });
+        Alert.alert(t("review.reportErrorTitle"), getReportErrorCopy(status));
       }
     };
 

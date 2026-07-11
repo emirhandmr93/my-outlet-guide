@@ -8,7 +8,7 @@ export const REVIEW_REPORTS_COLLECTION = "reports";
 export const REVIEW_REPORT_REASONS: ReviewReportReason[] = ["spam", "offensive", "misleading", "other"];
 export const REVIEW_REPORT_STATUSES = ["open", "reviewing", "dismissed", "action_taken"] as const;
 export type ReviewReportModerationStatus = (typeof REVIEW_REPORT_STATUSES)[number];
-export type ReviewReportStatus = "reported" | "already_reported" | "failed";
+export type ReviewReportStatus = "reported" | "already_reported" | "self_report" | "unauthenticated" | "permission-denied" | "unavailable" | "internal" | "failed";
 
 export type RootReviewReport = {
   reportId: string;
@@ -54,14 +54,17 @@ export async function hasReportedReview(outletId: string, reviewId: string, user
 }
 
 export async function reportReview({ outletId, reviewId, reviewAuthorUserId, reason, userId }: ReportReviewInput): Promise<ReviewReportStatus> {
-  if (!REVIEW_REPORT_REASONS.includes(reason) || reviewAuthorUserId === userId) return "failed";
-
   const reportId = getDeterministicReviewReportId(outletId, reviewId, userId);
+  if (!userId) return "unauthenticated";
+  if (reviewAuthorUserId === userId) return "self_report";
+  if (!REVIEW_REPORT_REASONS.includes(reason)) return "failed";
+
   const reportRef = doc(db, REVIEW_REPORTS_ROOT_COLLECTION, reportId);
-  const existingReport = await getDoc(reportRef);
-  if (existingReport.exists()) return "already_reported";
 
   try {
+    const existingReport = await getDoc(reportRef);
+    if (existingReport.exists()) return "already_reported";
+
     await setDoc(reportRef, {
       reportId,
       outletId,
@@ -75,8 +78,12 @@ export async function reportReview({ outletId, reviewId, reviewAuthorUserId, rea
     });
     return "reported";
   } catch (error) {
-    if (error && typeof error === "object" && "code" in error && (error as { code?: unknown }).code === "already-exists") {
+    const code = error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : undefined;
+    if (code === "already-exists") {
       return "already_reported";
+    }
+    if (code === "permission-denied" || code === "unavailable" || code === "internal") {
+      return code;
     }
     return "failed";
   }

@@ -366,6 +366,7 @@ service cloud.firestore {
     }
 
     match /reviewReports/{reportId} {
+      allow get: if isSignedIn() && reportId.matches('.*_' + request.auth.uid);
       allow create: if isSignedIn() && !exists(/databases/$(database)/documents/reviewReports/$(reportId)) && isValidRootReviewReportCreate(reportId);
       allow read: if isSignedIn() && (resource.data.reporterUserId == request.auth.uid || isAdminOrModerator());
       allow update: if isValidReviewReportUpdate();
