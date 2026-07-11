@@ -25,10 +25,13 @@ assert(files.report.includes('`${outletId}_${reviewId}_${reporterUserId}`'), "re
 assert(!/reporterEmail|token|fullUser|commentCopy|reviewText|emailHash|previousEmail/.test(files.report + files.moderation), "no reporter email/token/full user/comment copy stored");
 assert(files.report.includes('"spam", "offensive", "misleading", "other"'), "reason enum exists");
 assert(files.report.includes("existingReport.exists()") && files.rules.includes("!exists(/databases/$(database)/documents/reviewReports/$(reportId))"), "one report per user/review");
-assert(files.outlet.includes("requireReviewAuth") && files.outlet.includes('action: "report"'), "guest report auth-gated");
-assert(files.item.includes("!isAuthor") && files.report.includes("reviewAuthorUserId === userId"), "own review report hidden/blocked");
+assert(files.outlet.includes("requireReviewAuth") && files.outlet.includes('action: "report"') && files.outlet.includes('t("review.signInToReport")'), "guest report auth-gated");
+assert(files.item.includes("!isAuthor") && files.report.includes('return "self_report"') && files.outlet.includes('t("review.reportOwnReview")'), "own review does not render active report button and self-report is blocked before Firestore write with localized copy");
 assert(!/rating\s*:|categoryRatings\s*:|helpfulCount\s*:|comment\s*:/.test(files.report), "report does not change rating/category/helpful/review content");
-assert(files.outlet.includes('result === "reported"') && files.outlet.includes('already_reported'), "report success and already-reported states exist");
+assert(files.outlet.includes('result === "reported"') && files.outlet.includes('review.reportSuccessTitle') && files.outlet.includes('already_reported') && files.translations.includes('"review.reportAlready": "Bu yorumu zaten bildirdin."'), "report success UI and duplicate report handling remain");
+assert(files.outlet.includes('review.reportPermissionErrorText') && !files.outlet.includes("We couldn\'t verify permission"), "report permission-denied does not show hardcoded English");
+assert(files.report.includes('getDeterministicReviewReportId(outletId: string, reviewId: string, reporterUserId: string)') && files.report.includes('`${outletId}_${reviewId}_${reporterUserId}`'), "other-user report path remains reviewReports/{outletId_reviewId_reporterUserId}");
+assert(files.screen.includes("fetchModerationReports") && files.report.includes('REVIEW_REPORTS_ROOT_COLLECTION = "reviewReports"'), "moderation inbox architecture unchanged");
 assert(files.admin.includes("adminUsers") && files.profile.includes("canUseModeration"), "adminUsers role gate exists");
 assert(files.profile.includes('canModerateReviews ?') && files.profile.includes('goTo("ReviewModeration")'), "Profile moderation row visible only for admin/moderator");
 assert(files.nav.includes("ReviewModeration") && files.screen.includes("ReviewModerationScreen"), "ReviewModeration route/screen exists");
