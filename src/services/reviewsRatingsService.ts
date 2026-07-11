@@ -3,6 +3,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
+  limit,
   orderBy,
   query,
   serverTimestamp,
@@ -83,7 +84,29 @@ export function isPublishedReview(review: OutletReview) {
 }
 
 export function getPublishedReviews(reviews: OutletReview[]) {
-  return reviews.filter(isPublishedReview);
+  const latestByOutletUser = new Map<string, OutletReview>();
+  for (const review of reviews.filter(isPublishedReview)) {
+    const key = `${review.outletId}:${review.userId || review.reviewId}`;
+    const current = latestByOutletUser.get(key);
+    if (!current || review.updatedAt.localeCompare(current.updatedAt) > 0 || review.createdAt.localeCompare(current.createdAt) > 0) {
+      latestByOutletUser.set(key, review);
+    }
+  }
+  return Array.from(latestByOutletUser.values());
+}
+
+export async function fetchLatestActiveReviewForUser(outletId: string, userId: string): Promise<OutletReview | null> {
+  const snapshot = await getDocs(
+    query(
+      collection(db, REVIEW_COLLECTION, outletId, REVIEW_ITEMS_COLLECTION),
+      where("userId", "==", userId),
+      where("status", "==", "published"),
+      orderBy("updatedAt", "desc"),
+      limit(1),
+    ),
+  );
+  const reviewDoc = snapshot.docs[0];
+  return reviewDoc ? normalizeReview(reviewDoc.id, reviewDoc.data()) : null;
 }
 
 
@@ -146,7 +169,8 @@ export async function fetchPublishedReviewsForOutlet(outletId: string): Promise<
 
 export async function upsertReview(input: ReviewInput) {
   const now = new Date().toISOString();
-  const reviewId = input.userId;
+  const existingReview = await fetchLatestActiveReviewForUser(input.outletId, input.userId);
+  const reviewId = existingReview?.reviewId || input.userId;
   const reviewRef = getReviewDocRef(input.outletId, reviewId);
   await setDoc(
     reviewRef,
@@ -163,15 +187,14 @@ export async function upsertReview(input: ReviewInput) {
       updatedAt: now,
       status: "published",
       deletedAt: null,
-      createdAt: now,
+      createdAt: existingReview?.createdAt || now,
       firestoreUpdatedAt: serverTimestamp(),
     },
     { merge: true },
   );
 }
 
-export async function deleteReview(outletId: string, reviewId: string, userId: string) {
-  if (reviewId !== userId) throw new Error("Only the author can delete this review.");
+export async function deleteReview(outletId: string, reviewId: string, _userId: string) {
   await updateDoc(getReviewDocRef(outletId, reviewId), {
     status: "deleted",
     deletedAt: new Date().toISOString(),
