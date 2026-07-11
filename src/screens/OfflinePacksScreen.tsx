@@ -1,51 +1,50 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
+import { useTranslation } from "../hooks/useTranslation";
 import { getOfflineAvailabilitySummary } from "../services/offlinePackEngine";
 
+const availableOfflineKeys = ["guide", "records", "media", "taxFree"] as const;
+const requiresInternetKeys = ["reviews", "favoritesTrips", "notifications", "currency"] as const;
+
 export function OfflinePacksScreen() {
+  const { t } = useTranslation();
   const summary = getOfflineAvailabilitySummary();
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
-        <Text style={styles.kicker}>Offline mode</Text>
-        <Text style={styles.pageTitle}>Offline availability</Text>
-        <Text style={styles.pageSubtitle}>
-          Core guide data is bundled with the app. There are no downloadable offline packs in this release.
-        </Text>
+        <Text style={styles.kicker}>{t("offline.kicker")}</Text>
+        <Text style={styles.pageTitle}>{t("offline.title")}</Text>
+        <Text style={styles.pageSubtitle}>{t("offline.subtitle")}</Text>
       </View>
 
       <View style={styles.noticeCard}>
-        <Text style={styles.noticeTitle}>Already available without internet</Text>
-        <Text style={styles.noticeText}>
-          You can browse bundled outlet details, brand lists, restaurants, transportation notes, local outlet photos, and supported Tax Free rules after the app is installed.
-        </Text>
+        <Text style={styles.noticeTitle}>{t("offline.alreadyAvailable")}</Text>
+        <Text style={styles.noticeText}>{t("offline.alreadyAvailableText")}</Text>
       </View>
 
       <View style={styles.statsRow}>
-        <StatCard value={`${summary.outletCount}`} label="Bundled outlets" />
-        <StatCard value={`${summary.countryCount}`} label="Countries" />
+        <StatCard value={`${summary.outletCount}`} label={t("offline.stat.outlets")} />
+        <StatCard value={`${summary.countryCount}`} label={t("offline.stat.countries")} />
       </View>
       <View style={styles.statsRow}>
-        <StatCard value={`${summary.brandCount}`} label="Brand records" />
-        <StatCard value={`${summary.localMediaAssetCount}`} label="Local media assets" />
+        <StatCard value={`${summary.brandCount}`} label={t("offline.stat.brands")} />
+        <StatCard value={`${summary.localMediaAssetCount}`} label={t("offline.stat.media")} />
       </View>
 
-      <Text style={styles.sectionTitle}>Bundled offline scope</Text>
-      {summary.availableOffline.map((item) => (
-        <StatusCard key={item.title} icon="✅" title={item.title} text={item.description} />
+      <Text style={styles.sectionTitle}>{t("offline.availableSection")}</Text>
+      {summary.availableOffline.map((item, index) => (
+        <StatusCard key={availableOfflineKeys[index] ?? item.title} icon="✅" title={t(`offline.available.${availableOfflineKeys[index]}.title`)} text={t(`offline.available.${availableOfflineKeys[index]}.text`)} />
       ))}
 
-      <Text style={styles.sectionTitle}>Requires internet</Text>
-      {summary.requiresInternet.map((item) => (
-        <StatusCard key={item.title} icon="🌐" title={item.title} text={item.description} />
+      <Text style={styles.sectionTitle}>{t("offline.requiresInternetSection")}</Text>
+      {summary.requiresInternet.map((item, index) => (
+        <StatusCard key={requiresInternetKeys[index] ?? item.title} icon="🌐" title={t(`offline.requires.${requiresInternetKeys[index]}.title`)} text={t(`offline.requires.${requiresInternetKeys[index]}.text`)} />
       ))}
 
       <View style={styles.noticeCard}>
-        <Text style={styles.noticeTitle}>Offline packs</Text>
-        <Text style={styles.noticeText}>
-          Download buttons are not shown because this version does not persist separate trip packs. Saved trips and favorites remain Firestore-backed and need network access to sync.
-        </Text>
+        <Text style={styles.noticeTitle}>{t("offline.noPacksTitle")}</Text>
+        <Text style={styles.noticeText}>{t("offline.noPacksText")}</Text>
       </View>
     </ScrollView>
   );
