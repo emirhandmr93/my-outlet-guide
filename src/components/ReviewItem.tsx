@@ -8,7 +8,6 @@ type ReviewItemProps = {
   editedText: string;
   helpfulText: string;
   helpfulActiveText: string;
-  helpfulOwnDisabledText: string;
   previousCommentLabel: string;
   previousTitleLabel: string;
   editText: string;
@@ -27,7 +26,6 @@ export function ReviewItem({
   editedText,
   helpfulText,
   helpfulActiveText,
-  helpfulOwnDisabledText,
   previousCommentLabel,
   previousTitleLabel,
   editText,
@@ -44,7 +42,12 @@ export function ReviewItem({
   const isAuthor = Boolean(currentUserId && review.userId === currentUserId);
   const isHelpful = Boolean(currentUserId && review.helpfulUserIds?.includes(currentUserId));
   const helpfulCount = review.helpfulCount || 0;
-  const helpfulLabel = `${isHelpful ? helpfulActiveText : helpfulText}${helpfulCount > 0 ? ` · ${helpfulCount}` : ""}`;
+  const helpfulLabel = isHelpful
+    ? `👍 ${helpfulCount > 0 ? helpfulCount : ""}`.trim()
+    : `👍 ${helpfulText}`;
+  const helpfulAccessibilityLabel = isHelpful
+    ? `${helpfulActiveText}${helpfulCount > 0 ? ` ${helpfulCount}` : ""}`
+    : helpfulText;
 
   return (
     <View style={styles.card}>
@@ -72,17 +75,18 @@ export function ReviewItem({
       ) : null}
 
       <View style={styles.actionsRow}>
-        {isAuthor ? (
-          <View style={[styles.actionPill, styles.actionPillDisabled]}>
-            <Text style={styles.actionTextDisabled}>{helpfulOwnDisabledText}</Text>
-          </View>
-        ) : (
-          <TouchableOpacity style={[styles.actionPill, isHelpful && styles.actionPillActive]} onPress={onHelpful}>
+        {!isAuthor ? (
+          <TouchableOpacity
+            accessibilityLabel={helpfulAccessibilityLabel}
+            accessibilityRole="button"
+            style={[styles.actionPill, styles.helpfulPill, isHelpful && styles.actionPillActive]}
+            onPress={onHelpful}
+          >
             <Text style={[styles.actionText, isHelpful && styles.actionTextActive]}>
               {helpfulLabel}
             </Text>
           </TouchableOpacity>
-        )}
+        ) : null}
 
         {isAuthor ? (
           <>
@@ -90,7 +94,7 @@ export function ReviewItem({
             <TouchableOpacity style={styles.actionPill} onPress={onDelete}><Text style={styles.actionText}>{deleteText}</Text></TouchableOpacity>
           </>
         ) : (
-          <TouchableOpacity style={styles.actionPill} onPress={onReport}><Text style={styles.actionText}>{reportText}</Text></TouchableOpacity>
+          <TouchableOpacity accessibilityLabel={reportText} accessibilityRole="button" style={[styles.actionPill, styles.secondaryActionPill]} onPress={onReport}><Text style={styles.actionText}>{reportText}</Text></TouchableOpacity>
         )}
       </View>
     </View>
@@ -112,11 +116,11 @@ const styles = StyleSheet.create({
   editedBlock: { marginTop: 8 },
   editedText: { color: "#C9A227", fontSize: 12, fontWeight: "800" },
   previousText: { color: "#666666", fontSize: 12, fontWeight: "700", lineHeight: 18, marginTop: 4 },
-  actionsRow: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12 },
+  actionsRow: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12, alignItems: "center" },
   actionPill: { backgroundColor: "#FFFFFF", borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6, borderWidth: 1, borderColor: "#E5E7EB", alignSelf: "flex-start" },
+  helpfulPill: { paddingHorizontal: 12, borderColor: "#D8DEE8" },
+  secondaryActionPill: { paddingHorizontal: 12, backgroundColor: "#FBFCFE" },
   actionPillActive: { backgroundColor: "#0B1F3A", borderColor: "#0B1F3A" },
-  actionPillDisabled: { backgroundColor: "#F1F5F9", borderColor: "#E5E7EB" },
-  actionTextDisabled: { color: "#64748B", fontSize: 12, fontWeight: "900" },
   actionText: { color: "#0B1F3A", fontSize: 12, fontWeight: "900" },
   actionTextActive: { color: "#FFFFFF" },
 });
