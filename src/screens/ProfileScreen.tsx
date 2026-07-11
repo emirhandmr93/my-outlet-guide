@@ -16,6 +16,7 @@ import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { resolveVisibleFavoriteOutlets } from "../utils/favoriteOutlets";
+import { canUseModeration, getAdminAccess } from "../utils/adminAccess";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   getFloatingTabClearance,
@@ -37,7 +38,8 @@ type ProfileRouteName =
   | "PrivacyPolicy"
   | "TermsConditions"
   | "DeleteAccount"
-  | "MediaCredits";
+  | "MediaCredits"
+  | "ReviewModeration";
 
 function getInitials(value: string) {
   const cleanValue = value.trim();
@@ -64,11 +66,18 @@ export function ProfileScreen() {
     ? resolveVisibleFavoriteOutlets(favoriteIds)
     : [];
   const [displayName, setDisplayName] = useState("");
+  const [canModerateReviews, setCanModerateReviews] = useState(false);
 
   const accountName =
     currentUser?.displayName ||
     currentUser?.email?.split("@")[0] ||
     t("profile.guestShopper");
+
+  useEffect(() => {
+    let active = true;
+    getAdminAccess(currentUser?.uid).then((access) => { if (active) setCanModerateReviews(canUseModeration(access)); }).catch(() => { if (active) setCanModerateReviews(false); });
+    return () => { active = false; };
+  }, [currentUser?.uid]);
 
   useEffect(() => {
     if (currentUser) {
@@ -303,6 +312,15 @@ export function ProfileScreen() {
       />
 
       <Text style={styles.groupTitle}>{t("profile.accountManagement")}</Text>
+
+      {canModerateReviews ? (
+        <ProfileRow
+          icon="🛡️"
+          title={t("moderation.title")}
+          subtitle={t("moderation.profileSubtitle")}
+          onPress={() => goTo("ReviewModeration")}
+        />
+      ) : null}
 
       <ProfileRow
         icon="🗑️"

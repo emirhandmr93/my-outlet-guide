@@ -712,6 +712,27 @@ const enTranslations = {
     "review.reportErrorTitle": "Review could not be reported",
     "review.reportErrorText": "Report could not be sent. Please try again.",
 
+    "moderation.title": "Moderation",
+    "moderation.profileSubtitle": "Review reported comments.",
+    "moderation.inboxTitle": "Reported reviews",
+    "moderation.filter.open": "Open",
+    "moderation.filter.reviewing": "Reviewing",
+    "moderation.filter.action_taken": "Action taken",
+    "moderation.filter.dismissed": "Dismissed",
+    "moderation.markReviewing": "Start review",
+    "moderation.dismissReport": "Dismiss report",
+    "moderation.hideReview": "Hide review",
+    "moderation.restoreReview": "Restore review",
+    "moderation.addNote": "Add note",
+    "moderation.note": "Moderation note",
+    "moderation.reason": "Report reason",
+    "moderation.reportingUsers": "Reporting users",
+    "writeReview.hiddenByModeration": "This review was hidden by moderation.",
+    "moderation.reviewHidden": "Review hidden",
+    "moderation.reviewRestored": "Review published again",
+    "moderation.reportClosed": "Report closed",
+    "moderation.actionFailed": "Action could not be saved",
+    "moderation.permissionDenied": "You do not have permission for this action.",
   "outlet.previousComment": "Previous comment",
   "outlet.previousTitle": "Previous title",
 
@@ -15493,4 +15514,35 @@ const reviewContractV2Translations: Record<TranslationLanguage, Record<string, s
 
 for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], reviewContractV2Translations[locale]);
+}
+
+const reviewModerationTranslations = {
+  en: {
+    "moderation.title": "Moderation", "moderation.profileSubtitle": "Review reported comments.", "moderation.inboxTitle": "Reported reviews", "moderation.filter.open": "Open", "moderation.filter.reviewing": "Reviewing", "moderation.filter.action_taken": "Action taken", "moderation.filter.dismissed": "Dismissed", "moderation.markReviewing": "Start review", "moderation.dismissReport": "Dismiss report", "moderation.hideReview": "Hide review", "moderation.restoreReview": "Restore review", "moderation.addNote": "Add note", "moderation.note": "Moderation note", "moderation.reason": "Report reason", "moderation.reportingUsers": "Reporting users", "writeReview.hiddenByModeration": "This review was hidden by moderation.", "moderation.reviewHidden": "Review hidden", "moderation.reviewRestored": "Review published again", "moderation.reportClosed": "Report closed", "moderation.actionFailed": "Action could not be saved", "moderation.permissionDenied": "You do not have permission for this action."
+  },
+  tr: {
+    "moderation.title": "Moderasyon", "moderation.profileSubtitle": "Bildirilen yorumları incele.", "moderation.inboxTitle": "Bildirilen yorumlar", "moderation.filter.open": "Açık", "moderation.filter.reviewing": "İncelemede", "moderation.filter.action_taken": "İşlem yapıldı", "moderation.filter.dismissed": "Reddedildi", "moderation.markReviewing": "İncelemeye al", "moderation.dismissReport": "Raporu reddet", "moderation.hideReview": "Yorumu gizle", "moderation.restoreReview": "Yorumu geri al", "moderation.addNote": "Not ekle", "moderation.note": "Moderasyon notu", "moderation.reason": "Rapor nedeni", "moderation.reportingUsers": "Bildiren kullanıcılar", "writeReview.hiddenByModeration": "Bu yorum moderasyon tarafından gizlendi.", "moderation.reviewHidden": "Yorum gizlendi", "moderation.reviewRestored": "Yorum tekrar yayınlandı", "moderation.reportClosed": "Rapor kapatıldı", "moderation.actionFailed": "İşlem kaydedilemedi", "moderation.permissionDenied": "Bu işlem için yetkin yok."
+  },
+  es: {
+    "moderation.title": "Moderación", "moderation.profileSubtitle": "Revisar reseñas reportadas.", "moderation.inboxTitle": "Reseñas reportadas", "moderation.filter.open": "Abiertas", "moderation.filter.reviewing": "En revisión", "moderation.filter.action_taken": "Acción tomada", "moderation.filter.dismissed": "Rechazadas", "moderation.markReviewing": "Iniciar revisión", "moderation.dismissReport": "Rechazar reporte", "moderation.hideReview": "Ocultar reseña", "moderation.restoreReview": "Restaurar reseña", "moderation.addNote": "Añadir nota", "moderation.note": "Nota de moderación", "moderation.reason": "Motivo del reporte", "moderation.reportingUsers": "Usuarios que reportan", "writeReview.hiddenByModeration": "Esta reseña fue ocultada por moderación.", "moderation.reviewHidden": "Reseña ocultada", "moderation.reviewRestored": "Reseña publicada de nuevo", "moderation.reportClosed": "Reporte cerrado", "moderation.actionFailed": "No se pudo guardar la acción", "moderation.permissionDenied": "No tienes permiso para esta acción."
+  },
+  fr: {
+    "moderation.title": "Modération", "moderation.profileSubtitle": "Examiner les avis signalés.", "moderation.inboxTitle": "Avis signalés", "moderation.filter.open": "Ouverts", "moderation.filter.reviewing": "En examen", "moderation.filter.action_taken": "Action effectuée", "moderation.filter.dismissed": "Rejetés", "moderation.markReviewing": "Commencer l’examen", "moderation.dismissReport": "Rejeter le signalement", "moderation.hideReview": "Masquer l’avis", "moderation.restoreReview": "Restaurer l’avis", "moderation.addNote": "Ajouter une note", "moderation.note": "Note de modération", "moderation.reason": "Motif du signalement", "moderation.reportingUsers": "Utilisateurs signalants", "writeReview.hiddenByModeration": "Cet avis a été masqué par la modération.", "moderation.reviewHidden": "Avis masqué", "moderation.reviewRestored": "Avis republié", "moderation.reportClosed": "Signalement clôturé", "moderation.actionFailed": "L’action n’a pas pu être enregistrée", "moderation.permissionDenied": "Vous n’avez pas l’autorisation pour cette action."
+  },
+  de: {
+    "moderation.title": "Moderation", "moderation.profileSubtitle": "Gemeldete Bewertungen prüfen.", "moderation.inboxTitle": "Gemeldete Bewertungen", "moderation.filter.open": "Offen", "moderation.filter.reviewing": "In Prüfung", "moderation.filter.action_taken": "Maßnahme ergriffen", "moderation.filter.dismissed": "Abgelehnt", "moderation.markReviewing": "Prüfung starten", "moderation.dismissReport": "Meldung ablehnen", "moderation.hideReview": "Bewertung ausblenden", "moderation.restoreReview": "Bewertung wiederherstellen", "moderation.addNote": "Notiz hinzufügen", "moderation.note": "Moderationsnotiz", "moderation.reason": "Meldegrund", "moderation.reportingUsers": "Meldende Nutzer", "writeReview.hiddenByModeration": "Diese Bewertung wurde von der Moderation ausgeblendet.", "moderation.reviewHidden": "Bewertung ausgeblendet", "moderation.reviewRestored": "Bewertung erneut veröffentlicht", "moderation.reportClosed": "Meldung geschlossen", "moderation.actionFailed": "Aktion konnte nicht gespeichert werden", "moderation.permissionDenied": "Du hast keine Berechtigung für diese Aktion."
+  },
+  ar: {
+    "moderation.title": "الإشراف", "moderation.profileSubtitle": "مراجعة التعليقات المبلغ عنها.", "moderation.inboxTitle": "التقييمات المبلغ عنها", "moderation.filter.open": "مفتوحة", "moderation.filter.reviewing": "قيد المراجعة", "moderation.filter.action_taken": "تم اتخاذ إجراء", "moderation.filter.dismissed": "مرفوضة", "moderation.markReviewing": "بدء المراجعة", "moderation.dismissReport": "رفض البلاغ", "moderation.hideReview": "إخفاء التقييم", "moderation.restoreReview": "استعادة التقييم", "moderation.addNote": "إضافة ملاحظة", "moderation.note": "ملاحظة الإشراف", "moderation.reason": "سبب البلاغ", "moderation.reportingUsers": "المستخدمون المبلغون", "writeReview.hiddenByModeration": "تم إخفاء هذا التقييم بواسطة الإشراف.", "moderation.reviewHidden": "تم إخفاء التقييم", "moderation.reviewRestored": "تم نشر التقييم مرة أخرى", "moderation.reportClosed": "تم إغلاق البلاغ", "moderation.actionFailed": "تعذر حفظ الإجراء", "moderation.permissionDenied": "ليست لديك صلاحية لهذا الإجراء."
+  },
+  ru: {
+    "moderation.title": "Модерация", "moderation.profileSubtitle": "Проверка жалоб на отзывы.", "moderation.inboxTitle": "Отзывы с жалобами", "moderation.filter.open": "Открыто", "moderation.filter.reviewing": "На проверке", "moderation.filter.action_taken": "Приняты меры", "moderation.filter.dismissed": "Отклонено", "moderation.markReviewing": "Начать проверку", "moderation.dismissReport": "Отклонить жалобу", "moderation.hideReview": "Скрыть отзыв", "moderation.restoreReview": "Восстановить отзыв", "moderation.addNote": "Добавить заметку", "moderation.note": "Заметка модерации", "moderation.reason": "Причина жалобы", "moderation.reportingUsers": "Пожаловавшиеся пользователи", "writeReview.hiddenByModeration": "Этот отзыв скрыт модерацией.", "moderation.reviewHidden": "Отзыв скрыт", "moderation.reviewRestored": "Отзыв снова опубликован", "moderation.reportClosed": "Жалоба закрыта", "moderation.actionFailed": "Не удалось сохранить действие", "moderation.permissionDenied": "У вас нет прав для этого действия."
+  },
+  zh: {
+    "moderation.title": "审核", "moderation.profileSubtitle": "查看被举报的评论。", "moderation.inboxTitle": "被举报的评论", "moderation.filter.open": "待处理", "moderation.filter.reviewing": "审核中", "moderation.filter.action_taken": "已处理", "moderation.filter.dismissed": "已驳回", "moderation.markReviewing": "开始审核", "moderation.dismissReport": "驳回举报", "moderation.hideReview": "隐藏评论", "moderation.restoreReview": "恢复评论", "moderation.addNote": "添加备注", "moderation.note": "审核备注", "moderation.reason": "举报原因", "moderation.reportingUsers": "举报用户", "writeReview.hiddenByModeration": "此评论已被审核隐藏。", "moderation.reviewHidden": "评论已隐藏", "moderation.reviewRestored": "评论已重新发布", "moderation.reportClosed": "举报已关闭", "moderation.actionFailed": "无法保存操作", "moderation.permissionDenied": "你无权执行此操作。"
+  },
+} as const;
+
+for (const locale of supportedLanguageCodes) {
+  Object.assign(translations[locale], reviewModerationTranslations[locale]);
 }

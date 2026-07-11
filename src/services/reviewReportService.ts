@@ -2,12 +2,28 @@ import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 
 import { db } from "../firebase/config";
 import type { ReviewReportReason } from "../types/review";
-import { REVIEW_COLLECTION, REVIEW_ITEMS_COLLECTION } from "./reviewsRatingsService";
 
+export const REVIEW_REPORTS_ROOT_COLLECTION = "reviewReports";
 export const REVIEW_REPORTS_COLLECTION = "reports";
 export const REVIEW_REPORT_REASONS: ReviewReportReason[] = ["spam", "offensive", "misleading", "other"];
-
+export const REVIEW_REPORT_STATUSES = ["open", "reviewing", "dismissed", "action_taken"] as const;
+export type ReviewReportModerationStatus = (typeof REVIEW_REPORT_STATUSES)[number];
 export type ReviewReportStatus = "reported" | "already_reported" | "failed";
+
+export type RootReviewReport = {
+  reportId: string;
+  outletId: string;
+  reviewId: string;
+  reporterUserId: string;
+  reviewAuthorUserId?: string | null;
+  reason: ReviewReportReason;
+  status: ReviewReportModerationStatus;
+  createdAt: string;
+  updatedAt: string;
+  moderationNote?: string;
+  moderatedBy?: string;
+  moderatedAt?: string;
+};
 
 type ReportReviewInput = {
   outletId: string;
@@ -17,8 +33,19 @@ type ReportReviewInput = {
   userId: string;
 };
 
+export function getDeterministicReviewReportId(outletId: string, reviewId: string, reporterUserId: string) {
+  return `${outletId}_${reviewId}_${reporterUserId}`;
+}
+
 export function getReviewReportDocRef(outletId: string, reviewId: string, userId: string) {
-  return doc(db, REVIEW_COLLECTION, outletId, REVIEW_ITEMS_COLLECTION, reviewId, REVIEW_REPORTS_COLLECTION, userId);
+  return doc(db, REVIEW_REPORTS_ROOT_COLLECTION, getDeterministicReviewReportId(outletId, reviewId, userId));
+}
+
+export function normalizeReport(reportId: string, data: any): RootReviewReport {
+  const createdAt = typeof data.createdAt === "string" ? data.createdAt : data.createdAt?.toDate?.().toISOString?.() || new Date().toISOString();
+  const updatedAt = typeof data.updatedAt === "string" ? data.updatedAt : data.updatedAt?.toDate?.().toISOString?.() || createdAt;
+  const status = REVIEW_REPORT_STATUSES.includes(data.status) ? data.status : "open";
+  return { ...data, reportId: data.reportId || reportId, status, createdAt, updatedAt };
 }
 
 export async function hasReportedReview(outletId: string, reviewId: string, userId: string) {
@@ -29,13 +56,14 @@ export async function hasReportedReview(outletId: string, reviewId: string, user
 export async function reportReview({ outletId, reviewId, reviewAuthorUserId, reason, userId }: ReportReviewInput): Promise<ReviewReportStatus> {
   if (!REVIEW_REPORT_REASONS.includes(reason) || reviewAuthorUserId === userId) return "failed";
 
-  const reportRef = getReviewReportDocRef(outletId, reviewId, userId);
+  const reportId = getDeterministicReviewReportId(outletId, reviewId, userId);
+  const reportRef = doc(db, REVIEW_REPORTS_ROOT_COLLECTION, reportId);
   const existingReport = await getDoc(reportRef);
   if (existingReport.exists()) return "already_reported";
 
   try {
     await setDoc(reportRef, {
-      reportId: userId,
+      reportId,
       outletId,
       reviewId,
       reporterUserId: userId,

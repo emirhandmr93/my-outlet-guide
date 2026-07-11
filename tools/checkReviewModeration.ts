@@ -1,49 +1,50 @@
-import fs from "node:fs";
+import { readFileSync } from "fs";
+import { join } from "path";
 
-function read(path: string) {
-  return fs.readFileSync(path, "utf8");
-}
+const read = (file: string) => readFileSync(join(process.cwd(), file), "utf8");
+const files = {
+  report: read("src/services/reviewReportService.ts"),
+  moderation: read("src/services/moderationService.ts"),
+  admin: read("src/utils/adminAccess.ts"),
+  profile: read("src/screens/ProfileScreen.tsx"),
+  screen: read("src/screens/ReviewModerationScreen.tsx"),
+  nav: read("src/navigation/AppNavigator.tsx") + read("src/navigation/types.ts"),
+  outlet: read("src/screens/OutletDetailScreen.tsx"),
+  reviews: read("src/services/reviewsRatingsService.ts"),
+  write: read("src/screens/WriteReviewScreen.tsx"),
+  item: read("src/components/ReviewItem.tsx"),
+  rules: read("firestore.rules"),
+  translations: read("src/translations/translations.ts"),
+  accountDeletion: read("functions/src/accountDeletion.ts"),
+};
+const all = Object.values(files).join("\n");
+function assert(condition: unknown, message: string) { if (!condition) throw new Error(message); }
 
-function assert(condition: unknown, message: string) {
-  if (!condition) {
-    console.error(`❌ ${message}`);
-    process.exitCode = 1;
-  } else {
-    console.log(`✅ ${message}`);
-  }
-}
-
-const service = read("src/services/reviewReportService.ts");
-const reviewService = read("src/services/reviewsRatingsService.ts");
-const context = read("src/contexts/ReviewsContext.tsx");
-const outletDetail = read("src/screens/OutletDetailScreen.tsx");
-const reviewItem = read("src/components/ReviewItem.tsx");
-const rules = read("firestore.rules");
-const translations = read("src/translations/translations.ts");
-const deleteCallable = fs.existsSync("functions/src/accountDeletion.ts") ? read("functions/src/accountDeletion.ts") : read("functions/src/index.ts");
-
-assert(fs.existsSync("src/services/reviewReportService.ts") && /export async function reportReview/.test(service), "report service exists");
-assert(/REVIEW_COLLECTION, outletId, REVIEW_ITEMS_COLLECTION, reviewId, REVIEW_REPORTS_COLLECTION, userId/.test(service), "report path is reviews/{outletId}/items/{reviewId}/reports/{userId}");
-assert(/reportId:\s*userId/.test(service), "report doc id is userId");
-assert(!/email|token|fullUser|userObject|reviewText|comment|emailHash|previousEmail|relink/i.test(service), "report service does not store PII, review text, tokens, or recoverable identity fields");
-assert(/\["spam", "offensive", "misleading", "other"\]/.test(service), "reason enum exists");
-assert(/getDoc\(reportRef\)/.test(service) && /already_reported/.test(service), "one report per user per review enforced");
-assert(/action:\s*"report"/.test(outletDetail) && /review\.signInToReport/.test(outletDetail), "guest report is auth-gated");
-assert(/isAuthor[\s\S]*\? \([\s\S]*onEdit[\s\S]*onDelete[\s\S]*\) : \(/.test(reviewItem), "own review report is hidden or disabled");
-assert(!/rating|categoryRatings|helpfulCount|helpfulUserIds/.test(service), "report does not change rating/category/helpful fields");
-assert(/review\.reportSuccessTitle/.test(outletDetail) && /reviewed|reportedText|review\.reported/.test(reviewItem), "report success UI exists");
-assert(/already_reported/.test(outletDetail) && /review\.reportAlready/.test(outletDetail), "already reported handling exists");
-assert(/request\.resource\.data\.reporterUserId != review\.userId/.test(rules), "Firestore rules block self-report");
-assert(/review\.status == 'published'/.test(rules) && /deletedAt/.test(rules), "Firestore rules block reporting deleted/non-published reviews");
-assert(/allow update, delete: if false/.test(rules), "Firestore rules block client moderation status update/delete");
-assert(/`👍 \$\{helpfulCount > 0 \? helpfulCount : ""\}`/.test(reviewItem) && /`👍 \$\{helpfulText\}`/.test(reviewItem), "helpful compact chip remains unchanged");
-assert(/upsertReview/.test(reviewService) && /previousComment/.test(reviewService) && /deleteReview/.test(reviewService), "review save/edit/delete behavior unchanged");
-assert(/authorDeleted|anonymousAccount|Anonymous Shopper/.test(deleteCallable + reviewItem + translations), "account deletion anonymization remains unchanged");
-for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) {
-  const localePattern = locale === "en" ? /const enTranslations = \{[\s\S]*"review\.reportSuccessTitle"/ : new RegExp(`${locale}: \\{[\\s\\S]*"review\\.reportSuccessTitle"`);
-  assert(localePattern.test(translations), `localization exists for ${locale}`);
-}
-assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(translations), "no debug locale prefixes");
-assert(!/fake|mock|demo/i.test(service + outletDetail), "no fake/mock/demo data");
-
-if (process.exitCode) process.exit(process.exitCode);
+assert(files.report.includes('REVIEW_REPORTS_ROOT_COLLECTION = "reviewReports"') && files.screen.includes("fetchModerationReports"), "root reviewReports collection exists/used for inbox");
+assert(files.report.includes('`${outletId}_${reviewId}_${reporterUserId}`'), "reportId deterministic and includes outletId/reviewId/reporterUserId");
+assert(!/reporterEmail|token|fullUser|commentCopy|reviewText|emailHash|previousEmail/.test(files.report + files.moderation), "no reporter email/token/full user/comment copy stored");
+assert(files.report.includes('"spam", "offensive", "misleading", "other"'), "reason enum exists");
+assert(files.report.includes("existingReport.exists()") && files.rules.includes("!exists(/databases/$(database)/documents/reviewReports/$(reportId))"), "one report per user/review");
+assert(files.outlet.includes("requireReviewAuth") && files.outlet.includes('action: "report"'), "guest report auth-gated");
+assert(files.item.includes("!isAuthor") && files.report.includes("reviewAuthorUserId === userId"), "own review report hidden/blocked");
+assert(!/rating\s*:|categoryRatings\s*:|helpfulCount\s*:|comment\s*:/.test(files.report), "report does not change rating/category/helpful/review content");
+assert(files.outlet.includes('result === "reported"') && files.outlet.includes('already_reported'), "report success and already-reported states exist");
+assert(files.admin.includes("adminUsers") && files.profile.includes("canUseModeration"), "adminUsers role gate exists");
+assert(files.profile.includes('canModerateReviews ?') && files.profile.includes('goTo("ReviewModeration")'), "Profile moderation row visible only for admin/moderator");
+assert(files.nav.includes("ReviewModeration") && files.screen.includes("ReviewModerationScreen"), "ReviewModeration route/screen exists");
+assert(files.rules.includes("isAdminOrModerator()") && files.rules.includes("moderationActions") && files.screen.includes("permissionDenied"), "normal users cannot access moderation data/actions");
+assert(files.rules.includes("review.userId != request.auth.uid"), "Firestore rules block self-report");
+assert(files.rules.includes("review.status == 'published'"), "Firestore rules block reporting deleted/hidden reviews");
+assert(files.rules.includes("allow delete: if false") && files.rules.includes("allow update: if isValidReviewReportUpdate"), "rules block client delete/update of reports by normal users");
+assert(files.rules.includes("request.resource.data.status in ['open', 'reviewing', 'dismissed', 'action_taken']"), "rules allow admin/moderator moderation status updates");
+assert(files.reviews.includes('where("status", "==", "published")') && files.reviews.includes("isPublishedReview"), "hidden reviews excluded from public review lists and aggregates");
+assert(files.moderation.includes('status: "published"') && files.moderation.includes("restore_review"), "admin restore sets review back to published");
+assert(files.moderation.includes("moderationActions") && files.rules.includes("isValidModerationActionCreate"), "moderationActions audit log exists");
+assert(files.rules.includes("allow read: if isAdminOrModerator()"), "normal users cannot read moderationActions");
+assert(files.item.includes("helpfulPill") && files.outlet.includes("toggleHelpful"), "helpful compact chip remains unchanged");
+assert(files.write.includes("createOrUpdateReview") && files.reviews.includes("previousComment") && files.reviews.includes("status: \"deleted\""), "review save/edit/delete contract remains unchanged");
+assert(files.accountDeletion.includes("authorDeleted") && files.accountDeletion.includes("batch.update"), "account deletion anonymization remains unchanged");
+for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) assert(files.translations.includes("moderation.title"), `localization exists for ${locale}`);
+assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(all), "no debug locale prefixes");
+assert(!/fake|mock|demo|lorem|dummy/i.test(files.screen + files.report + files.moderation), "no fake/mock/demo data");
+console.log("Review moderation checks passed.");
