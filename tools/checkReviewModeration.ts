@@ -20,7 +20,7 @@ const files = {
 const all = Object.values(files).join("\n");
 function assert(condition: unknown, message: string) { if (!condition) throw new Error(message); }
 
-assert(files.report.includes('REVIEW_REPORTS_ROOT_COLLECTION = "reviewReports"') && files.screen.includes("fetchModerationReports"), "root reviewReports collection exists/used for inbox");
+assert(files.report.includes('REVIEW_REPORTS_ROOT_COLLECTION = "reviewReports"') && (files.screen.includes("fetchModerationReports") || files.screen.includes("fetchGroupedModerationReports")), "root reviewReports collection exists/used for inbox");
 assert(files.report.includes('`${outletId}_${reviewId}_${reporterUserId}`'), "reportId deterministic and includes outletId/reviewId/reporterUserId");
 assert(!/reporterEmail|token|fullUser|commentCopy|reviewText|emailHash|previousEmail/.test(files.report + files.moderation), "no reporter email/token/full user/comment copy stored");
 assert(files.report.includes('"spam", "offensive", "misleading", "other"'), "reason enum exists");
@@ -31,7 +31,7 @@ assert(!/rating\s*:|categoryRatings\s*:|helpfulCount\s*:|comment\s*:/.test(files
 assert(files.outlet.includes('result === "reported"') && files.outlet.includes('review.reportSuccessTitle') && files.outlet.includes('already_reported') && files.translations.includes('"review.reportAlready": "Bu yorumu zaten bildirdin."'), "report success UI and duplicate report handling remain");
 assert(files.outlet.includes('review.reportPermissionErrorText') && !files.outlet.includes("We couldn\'t verify permission"), "report permission-denied does not show hardcoded English");
 assert(files.report.includes('getDeterministicReviewReportId(outletId: string, reviewId: string, reporterUserId: string)') && files.report.includes('`${outletId}_${reviewId}_${reporterUserId}`'), "other-user report path remains reviewReports/{outletId_reviewId_reporterUserId}");
-assert(files.screen.includes("fetchModerationReports") && files.report.includes('REVIEW_REPORTS_ROOT_COLLECTION = "reviewReports"'), "moderation inbox architecture unchanged");
+assert((files.screen.includes("fetchModerationReports") || files.screen.includes("fetchGroupedModerationReports")) && files.report.includes('REVIEW_REPORTS_ROOT_COLLECTION = "reviewReports"'), "moderation inbox architecture unchanged");
 assert(files.admin.includes("adminUsers") && files.profile.includes("canUseModeration"), "adminUsers role gate exists");
 assert(files.profile.includes('canModerateReviews ?') && files.profile.includes('goTo("ReviewModeration")'), "Profile moderation row visible only for admin/moderator");
 assert(files.nav.includes("ReviewModeration") && files.screen.includes("ReviewModerationScreen"), "ReviewModeration route/screen exists");
@@ -44,6 +44,18 @@ assert(files.reviews.includes('where("status", "==", "published")') && files.rev
 assert(files.moderation.includes('status: "published"') && files.moderation.includes("restore_review"), "admin restore sets review back to published");
 assert(files.moderation.includes("moderationActions") && files.rules.includes("isValidModerationActionCreate"), "moderationActions audit log exists");
 assert(files.rules.includes("allow read: if isAdminOrModerator()"), "normal users cannot read moderationActions");
+assert(files.moderation.includes("fetchGroupedModerationReports") && files.moderation.includes("groupKey = `${report.outletId}_${report.reviewId}`"), "grouping by outletId + reviewId exists");
+assert(files.screen.includes("key={group.groupKey}") && !files.screen.includes("key={report.reportId}"), "duplicate report cards are not rendered for the same review group");
+assert(files.screen.includes("moderation.reason.spam") || files.screen.includes("moderation.reason.${group.reasons[0]}"), "localized reason labels are used");
+assert(files.screen.includes("moderation.reviewStatus") && files.screen.includes("moderation.reportStatus"), "localized review/report status labels are used");
+assert(!files.screen.includes("{report.reason}") && !files.screen.includes("status: {review?.status"), "no raw reason/status strings rendered directly in moderation UI");
+assert(files.screen.includes("markReportReviewing(group") && files.screen.includes("dismissReport(group") && files.screen.includes("hideReviewForModeration(group") && files.screen.includes("restoreReviewForModeration(group") && files.screen.includes("addModerationNote(group"), "action buttons call moderation service functions");
+assert(files.screen.includes("await load()"), "moderation actions refresh list/state after success");
+assert(files.screen.includes('reviewStatus === "hidden"') && files.screen.includes('hideReview'), "hide/restore button visibility depends on review status");
+assert(files.screen.includes('moderation.actionFailed') && files.screen.includes('moderation.tryAgain'), "action failure shows localized error");
+assert(files.screen.includes('code === "permission-denied"') && files.screen.includes('moderation.permissionDenied'), "permission failure shows localized error");
+for (const action of ["mark_reviewing", "dismiss_report", "hide_review", "restore_review", "add_note"]) assert(files.moderation.includes(action) && files.rules.includes(action), `audit log is written for ${action}`);
+
 assert(files.item.includes("helpfulPill") && files.outlet.includes("toggleHelpful"), "helpful compact chip remains unchanged");
 assert(files.write.includes("createOrUpdateReview") && files.reviews.includes("previousComment") && files.reviews.includes("status: \"deleted\""), "review save/edit/delete contract remains unchanged");
 assert(files.accountDeletion.includes("authorDeleted") && files.accountDeletion.includes("batch.update"), "account deletion anonymization remains unchanged");

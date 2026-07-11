@@ -28,6 +28,10 @@ const translations = read("src/translations/translations.ts");
 const rules = read("firestore.rules");
 const functionsIndex = read("functions/src/index.ts");
 const welcomeEmail = read("functions/src/welcomeEmail.ts");
+const offlineScreen = read("src/screens/OfflinePacksScreen.tsx");
+const myReviewsScreen = read("src/screens/MyReviewsScreen.tsx");
+const moderationScreen = read("src/screens/ReviewModerationScreen.tsx");
+
 
 const tabOrder = [...nav.matchAll(/<Tab\.Screen name="([^"]+)"/g)].map((match) => match[1]);
 assert(tabOrder.join(",") === "Home,Explore,MyTrips,Savings,Profile", "bottom tab order is Home, Explore, MyTrips, Savings, Profile");
@@ -91,6 +95,13 @@ const coreUiSource = [
 ].join("\n");
 assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(coreUiSource), "core UI source has no visible debug locale prefixes");
 assert(!/\b(mock|lorem|dummy)\b|sample trip|sample fare|fake fare|fake weather|generated plan|live flight|flight status/i.test(coreUiSource), "core completed user flows have no fake/mock/demo business data markers");
+
+assert(read("tools/checkSupportLegalLocalization.ts").includes("Support/legal localization checks passed"), "support/legal localization checker exists");
+assert(offlineScreen.includes('t("offline.noPacksTitle")') && translations.includes('"profile.subtitles.offlinePacks": "Uygulamayla gelen rehber verileri"'), "OfflinePacks does not claim downloadable packs");
+assert(read("src/screens/WriteReviewScreen.tsx").includes("KeyboardAvoidingView") && read("src/screens/WriteReviewScreen.tsx").includes('keyboardShouldPersistTaps="handled"'), "WriteReviewScreen uses keyboard-safe handling");
+assert(myReviewsScreen.includes('`${review.outletId}_${review.reviewId}`') && myReviewsScreen.includes("new Map"), "MyReviews uses unique key extractor and de-duplicates reviews");
+assert(moderationScreen.includes("group.groupKey") && moderationScreen.includes("moderation.reason.") && moderationScreen.includes("moderation.reviewStatus"), "ReviewModeration uses grouping and localized labels");
+assert(!moderationScreen.includes("{report.reason}") && !moderationScreen.includes("status: {review?.status"), "no raw internal status/reason labels in moderation UI");
 assert(translations.includes("Güvenlik için tekrar giriş yapman gerekiyor") && translations.includes('"review.actionErrorTitle": "Yorum işlemi başarısız"'), "Turkish review/account deletion errors are localized");
 
 console.log("Beta readiness guardrail checks passed.");

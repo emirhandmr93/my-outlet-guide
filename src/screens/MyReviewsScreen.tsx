@@ -19,8 +19,12 @@ const { currentUser } = useUser();
 const navigation = useNavigation<any>();
 const { t } = useTranslation();
 
-const myReviews = reviews.filter(
-(review) => review.userId === currentUser?.userId
+const myReviews = Array.from(
+new Map(
+reviews
+.filter((review) => review.userId === currentUser?.userId && (review.status ?? "published") === "published")
+.map((review) => [`${review.outletId}_${review.reviewId}`, review]),
+).values(),
 );
 
 return (
@@ -47,7 +51,7 @@ contentContainerStyle={styles.content}
 ) : (
 myReviews.map((review) => (
 <View
-key={review.reviewId}
+key={`${review.outletId}_${review.reviewId}`}
 style={styles.reviewCard}
 >
 <Text style={styles.reviewOutlet}>

@@ -4,14 +4,14 @@ import { Alert, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View 
 import { outlets } from "../constants/outlets";
 import { useAuth } from "../contexts/AuthContext";
 import { useTranslation } from "../hooks/useTranslation";
-import { addModerationNote, dismissReport, fetchModerationReports, fetchModerationReview, hideReviewForModeration, markReportReviewing, restoreReviewForModeration } from "../services/moderationService";
+import { addModerationNote, dismissReport, fetchGroupedModerationReports, hideReviewForModeration, markReportReviewing, restoreReviewForModeration, type ModerationReportGroup } from "../services/moderationService";
 import type { RootReviewReport, ReviewReportModerationStatus } from "../services/reviewReportService";
 import type { OutletReview } from "../types/review";
 import { canUseModeration, getAdminAccess } from "../utils/adminAccess";
 
 const FILTERS: ReviewReportModerationStatus[] = ["open", "reviewing", "action_taken", "dismissed"];
 
-type ReportCard = { report: RootReviewReport; review: OutletReview | null; reportCount: number };
+type ReportCard = ModerationReportGroup;
 
 export function ReviewModerationScreen() {
   const { t } = useTranslation();
@@ -20,6 +20,7 @@ export function ReviewModerationScreen() {
   const [filter, setFilter] = useState<ReviewReportModerationStatus>("open");
   const [cards, setCards] = useState<ReportCard[]>([]);
   const [note, setNote] = useState("");
+  const [busyAction, setBusyAction] = useState<string | null>(null);
 
   const moderatorUserId = currentUser?.uid || "";
 
@@ -30,28 +31,36 @@ export function ReviewModerationScreen() {
       return;
     }
     setAllowed(true);
-    const reports = await fetchModerationReports(filter);
-    const allForCounts = await Promise.all(reports.map((report) => fetchModerationReview(report.outletId, report.reviewId)));
-    const groupedCounts = reports.reduce<Record<string, number>>((acc, report) => {
-      acc[`${report.outletId}:${report.reviewId}`] = (acc[`${report.outletId}:${report.reviewId}`] || 0) + 1;
-      return acc;
-    }, {});
-    setCards(reports.map((report, index) => ({ report, review: allForCounts[index], reportCount: groupedCounts[`${report.outletId}:${report.reviewId}`] || 1 })));
+setCards(await fetchGroupedModerationReports(filter));
   }
 
   useEffect(() => { load().catch(() => setAllowed(false)); }, [filter, moderatorUserId]);
 
   const title = useMemo(() => t("moderation.inboxTitle"), [t]);
 
-  async function run(action: () => Promise<void>, successKey: string) {
+  async function run(actionName: string, group: ModerationReportGroup, action: () => Promise<void>, successKey: string, requireNote = false) {
+    if (requireNote && !note.trim()) {
+      Alert.alert(t("moderation.noteRequired"));
+      return;
+    }
     try {
+      setBusyAction(`${group.groupKey}:${actionName}`);
       await action();
       Alert.alert(t(successKey));
       setNote("");
       await load();
-    } catch {
-      Alert.alert(t("moderation.actionFailed"));
+    } catch (error) {
+      const code = error && typeof error === "object" && "code" in error ? String((error as { code?: unknown }).code) : "unknown";
+      console.warn("reviewModerationActionFailed", { code, action: actionName, reportId: group.primaryReport.reportId, groupKey: group.groupKey, outletId: group.outletId, reviewId: group.reviewId, hasAdminUser: Boolean(moderatorUserId) });
+      Alert.alert(code === "permission-denied" ? t("moderation.permissionDenied") : t("moderation.actionFailed"), t("moderation.tryAgain"));
+    } finally {
+      setBusyAction(null);
     }
+  }
+
+  function reasonSummary(group: ModerationReportGroup) {
+    if (group.reasons.length > 1) return t("moderation.multipleReasons");
+    return t(`moderation.reason.${group.reasons[0]}`);
   }
 
   if (!allowed) {
@@ -63,21 +72,23 @@ export function ReviewModerationScreen() {
       <View style={styles.hero}><Text style={styles.kicker}>{t("moderation.title")}</Text><Text style={styles.title}>{title}</Text></View>
       <View style={styles.tabs}>{FILTERS.map((item) => <TouchableOpacity key={item} style={[styles.tab, filter === item && styles.tabActive]} onPress={() => setFilter(item)}><Text style={[styles.tabText, filter === item && styles.tabTextActive]}>{t(`moderation.filter.${item}`)}</Text></TouchableOpacity>)}</View>
       <TextInput style={styles.noteInput} value={note} onChangeText={setNote} placeholder={t("moderation.note")} />
-      {cards.map(({ report, review, reportCount }) => {
-        const outlet = outlets.find((item) => item.outletId === report.outletId);
-        return <View key={report.reportId} style={styles.card}>
-          <Text style={styles.outlet}>{outlet?.name || report.outletId}</Text>
-          <Text style={styles.meta}>{review?.userDisplayName || report.reviewAuthorUserId || "—"} • ⭐ {review?.rating ?? "—"}</Text>
+      {cards.map((group) => {
+        const { primaryReport: report, review, reportCount } = group;
+        const outlet = outlets.find((item) => item.outletId === group.outletId);
+        const reviewStatus = review?.status || "published";
+        const isBusy = busyAction?.startsWith(`${group.groupKey}:`);
+        return <View key={group.groupKey} style={styles.card}>
+          <Text style={styles.outlet}>{outlet?.name || group.outletId}</Text>
+          <Text style={styles.meta}>{review?.userDisplayName || t("reviews.anonymousAccount")} • ⭐ {review?.rating ?? "—"}</Text>
           <Text style={styles.preview}>{review?.title ? `${review.title} — ` : ""}{review?.comment || ""}</Text>
-          <Text style={styles.meta}>{t("moderation.reason")}: {report.reason}</Text>
-          <Text style={styles.meta}>{t("moderation.reportingUsers")}: {reportCount} • {new Date(report.updatedAt).toLocaleDateString()}</Text>
-          <Text style={styles.meta}>status: {review?.status || "—"}</Text>
+          <Text style={styles.meta}>{t("moderation.reasonLabel")}: {reasonSummary(group)}</Text>
+          <Text style={styles.meta}>{t("moderation.reportingUsers")}: {reportCount} • {new Date(group.latestUpdatedAt).toLocaleDateString()}</Text>
+          <Text style={styles.meta}>{t("moderation.reportStatus")}: {t(`moderation.reportStatus.${report.status}`)} • {t("moderation.reviewStatus")}: {t(`moderation.reviewStatus.${reviewStatus}`)}</Text>
           <View style={styles.actions}>
-            <TouchableOpacity style={styles.button} onPress={() => run(() => markReportReviewing(report, moderatorUserId), "moderation.reportClosed")}><Text style={styles.buttonText}>{t("moderation.markReviewing")}</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => run(() => dismissReport(report, moderatorUserId, note), "moderation.reportClosed")}><Text style={styles.buttonText}>{t("moderation.dismissReport")}</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.dangerButton} onPress={() => run(() => hideReviewForModeration(report, moderatorUserId, note), "moderation.reviewHidden")}><Text style={styles.dangerText}>{t("moderation.hideReview")}</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => run(() => restoreReviewForModeration(report, moderatorUserId, note), "moderation.reviewRestored")}><Text style={styles.buttonText}>{t("moderation.restoreReview")}</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => run(() => addModerationNote(report, moderatorUserId, note), "moderation.reportClosed")}><Text style={styles.buttonText}>{t("moderation.addNote")}</Text></TouchableOpacity>
+            {report.status === "open" ? <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("mark_reviewing", group, () => markReportReviewing(group, moderatorUserId), "moderation.markedReviewing")}><Text style={styles.buttonText}>{t("moderation.markReviewing")}</Text></TouchableOpacity> : null}
+            {report.status !== "dismissed" ? <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("dismiss_report", group, () => dismissReport(group, moderatorUserId, note), "moderation.reportDismissed")}><Text style={styles.buttonText}>{t("moderation.dismissReport")}</Text></TouchableOpacity> : null}
+            {reviewStatus === "hidden" ? <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("restore_review", group, () => restoreReviewForModeration(group, moderatorUserId, note), "moderation.reviewRestored")}><Text style={styles.buttonText}>{t("moderation.restoreReview")}</Text></TouchableOpacity> : <TouchableOpacity disabled={isBusy} style={styles.dangerButton} onPress={() => run("hide_review", group, () => hideReviewForModeration(group, moderatorUserId, note), "moderation.reviewHidden")}><Text style={styles.dangerText}>{t("moderation.hideReview")}</Text></TouchableOpacity>}
+            <TouchableOpacity disabled={isBusy} style={styles.button} onPress={() => run("add_note", group, () => addModerationNote(group, moderatorUserId, note), "moderation.noteSaved", true)}><Text style={styles.buttonText}>{t("moderation.addNote")}</Text></TouchableOpacity>
           </View>
         </View>;
       })}
