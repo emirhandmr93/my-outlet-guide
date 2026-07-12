@@ -37,8 +37,12 @@ const expectedHeroMappings: Array<[string, string]> = [
 for (const [pageKey, heroMarker] of expectedHeroMappings) {
   assert(screen.includes(`key: "${pageKey}"`) && screen.includes(`hero: ${heroMarker}`), `onboarding ${pageKey} uses ${heroMarker}`);
 }
-assert(screen.includes("ImageBackground") && screen.includes("source={page.hero}"), "onboarding renders mapped local hero images");
-assert(!screen.includes("disabled={pageIndex === 0}") && screen.includes("pageIndex > 0"), "Back button is hidden on the first onboarding page");
+assert(screen.includes("ImageBackground") && screen.includes("source={page.hero}") && screen.includes('resizeMode="cover"'), "onboarding renders mapped local hero images as cover cards");
+assert(screen.includes("SafeAreaView") && screen.includes("useSafeAreaInsets") && screen.includes("insets.top"), "onboarding uses safe-area insets for status bar spacing");
+assert(screen.includes('<StatusBar style="light"'), "onboarding sets a light status bar style");
+assert(!screen.includes("disabled={pageIndex === 0}") && screen.includes("pageIndex > 0") && !screen.includes("secondaryButtonSpacer"), "Back button is hidden on the first onboarding page without a spacer");
+assert(screen.includes("pageIndex === 0 && styles.primaryButtonFull"), "first onboarding page primary action can render full width");
+assert(!screen.includes("iconBadge"), "onboarding hero card has no large nested icon badge");
 assert(/key: "flightDeals"/.test(screen) && !/trustedGuide|security guide|GÃ¼venli rehber/i.test(screen), "Page 4 is flightDeals, not trustedGuide/security guide");
 for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) {
   assert(new RegExp(`${locale}: \\{[\\s\\S]*onboarding\.pages\.flightDeals\.body`).test(translations) || translations.includes(`onboardingTranslations.${locale}`), `all onboarding translation keys exist for ${locale}`);
