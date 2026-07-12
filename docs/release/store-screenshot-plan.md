@@ -1,6 +1,6 @@
 # Store Screenshot Plan — My Outlet Guide
 
-Do not create image files for this plan. Capture from the final release build using real app behavior and source-backed data only. Do not use fake data, fake fare values, debug/dev client UI, local development endpoints, or unstable provider-not-configured states in public screenshots.
+Do not create image files for this plan. Capture from the final release build using real app behavior and source-backed data only. Do not use fake data, fake fare values, debug/dev client UI, local development endpoints, or unstable provider-not-configured states in public screenshots. First-launch only onboarding may be captured as an optional intro shot if the store needs it, but it should not replace the core seven screenshots unless necessary.
 
 ## General capture rules
 
@@ -9,6 +9,7 @@ Do not create image files for this plan. Capture from the final release build us
 - Avoid admin/moderation screenshots in public store screenshots unless a safety/reporting explanation is intentionally included; the recommended public set avoids admin screens.
 - Avoid provider-pending, provider-not-configured, or unavailable states when they would imply broken functionality; weather is not a required screenshot element for this release.
 - Do not show unsupported purchase, booking, live fare, guaranteed Tax Free, or cheapest-price claims.
+- Onboarding screenshots, if used, must show that onboarding does not request notification permission, does not require an account, and frames flight alerts as provider-backed/provider-pending with no fake fares.
 
 ## Recommended sequence
 

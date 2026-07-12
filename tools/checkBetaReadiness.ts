@@ -1,3 +1,5 @@
+import "./checkOnboardingReadiness";
+
 import { readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 

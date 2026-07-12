@@ -1,3 +1,5 @@
+import "./checkOnboardingReadiness";
+
 import { existsSync, readFileSync } from "node:fs";
 
 function read(path: string) {
