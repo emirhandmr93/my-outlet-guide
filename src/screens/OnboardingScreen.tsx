@@ -1,9 +1,10 @@
 import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useMemo, useState } from "react";
-import { Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { ImageBackground, Pressable, StyleSheet, Text, View, useWindowDimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useTranslation } from "../hooks/useTranslation";
+import { heroAssets } from "../media/heroAssets";
 import { markOnboardingSeen } from "../services/onboardingStorage";
 import colors from "../theme/colors";
 import spacing from "../theme/spacing";
@@ -14,13 +15,14 @@ type OnboardingPageKey = "outletDiscovery" | "tripPlanning" | "savingsTools" | "
 type OnboardingPage = {
   key: OnboardingPageKey;
   icon: "shopping" | "calendar-check" | "receipt-text-outline" | "airplane-clock";
+  hero: (typeof heroAssets)["explore"] | (typeof heroAssets)["trips"] | (typeof heroAssets)["savings"] | (typeof heroAssets)["flightDeals"];
 };
 
 const onboardingPages: OnboardingPage[] = [
-  { key: "outletDiscovery", icon: "shopping" },
-  { key: "tripPlanning", icon: "calendar-check" },
-  { key: "savingsTools", icon: "receipt-text-outline" },
-  { key: "flightDeals", icon: "airplane-clock" },
+  { key: "outletDiscovery", icon: "shopping", hero: heroAssets.explore },
+  { key: "tripPlanning", icon: "calendar-check", hero: heroAssets.trips },
+  { key: "savingsTools", icon: "receipt-text-outline", hero: heroAssets.savings },
+  { key: "flightDeals", icon: "airplane-clock", hero: heroAssets.flightDeals },
 ];
 
 export function OnboardingScreen({ onComplete }: { onComplete: () => void }) {
@@ -60,9 +62,17 @@ export function OnboardingScreen({ onComplete }: { onComplete: () => void }) {
 
         <View style={[styles.visualCard, compact && styles.visualCardCompact]}>
           <View style={styles.glow} />
-          <View style={styles.iconBadge}>
-            <MaterialCommunityIcons name={page.icon} size={compact ? 54 : 68} color={colors.gold} />
-          </View>
+          <ImageBackground
+            source={page.hero}
+            resizeMode="cover"
+            style={styles.heroImageFrame}
+            imageStyle={styles.heroImage}
+          >
+            <View style={styles.heroImageScrim} />
+            <View style={styles.iconBadge}>
+              <MaterialCommunityIcons name={page.icon} size={compact ? 34 : 42} color={colors.gold} />
+            </View>
+          </ImageBackground>
           <View style={styles.searchPill}>
             <Feather name={page.key === "flightDeals" ? "bell" : "search"} size={16} color={colors.gold} />
             <Text style={styles.searchPillText}>{t(`onboarding.pages.${page.key}.visual`)}</Text>
@@ -81,15 +91,18 @@ export function OnboardingScreen({ onComplete }: { onComplete: () => void }) {
         </View>
 
         <View style={styles.footerRow}>
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel={t("onboarding.accessibility.back")}
-            disabled={pageIndex === 0}
-            onPress={() => setPageIndex((current) => Math.max(0, current - 1))}
-            style={[styles.secondaryButton, pageIndex === 0 && styles.disabledButton]}
-          >
-            <Text style={[styles.secondaryButtonText, pageIndex === 0 && styles.disabledButtonText]}>{t("onboarding.back")}</Text>
-          </Pressable>
+          {pageIndex > 0 ? (
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel={t("onboarding.accessibility.back")}
+              onPress={() => setPageIndex((current) => Math.max(0, current - 1))}
+              style={styles.secondaryButton}
+            >
+              <Text style={styles.secondaryButtonText}>{t("onboarding.back")}</Text>
+            </Pressable>
+          ) : (
+            <View style={styles.secondaryButtonSpacer} />
+          )}
 
           <Pressable
             accessibilityRole="button"
@@ -116,7 +129,10 @@ const styles = StyleSheet.create({
   visualCard: { minHeight: 260, borderRadius: 34, backgroundColor: colors.primarySoft, borderWidth: 1, borderColor: "rgba(201,162,39,0.35)", alignItems: "center", justifyContent: "center", overflow: "hidden", marginVertical: spacing.xl },
   visualCardCompact: { minHeight: 210, marginVertical: spacing.md },
   glow: { position: "absolute", width: 220, height: 220, borderRadius: 110, backgroundColor: "rgba(201,162,39,0.16)", top: -46, right: -38 },
-  iconBadge: { width: 132, height: 132, borderRadius: 38, backgroundColor: "rgba(255,255,255,0.09)", borderWidth: 1, borderColor: "rgba(255,255,255,0.18)", alignItems: "center", justifyContent: "center" },
+  heroImageFrame: { width: "100%", minHeight: 166, borderRadius: 30, overflow: "hidden", justifyContent: "flex-end", padding: spacing.md, backgroundColor: colors.primary },
+  heroImage: { borderRadius: 30 },
+  heroImageScrim: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(10,31,68,0.18)" },
+  iconBadge: { width: 76, height: 76, borderRadius: 24, backgroundColor: "rgba(10,31,68,0.64)", borderWidth: 1, borderColor: "rgba(255,255,255,0.22)", alignItems: "center", justifyContent: "center" },
   searchPill: { marginTop: spacing.xl, flexDirection: "row", alignItems: "center", gap: spacing.sm, paddingHorizontal: spacing.lg, paddingVertical: spacing.md, borderRadius: 999, backgroundColor: "rgba(255,255,255,0.10)" },
   searchPillText: { color: colors.textInverse, fontSize: typography.caption, fontWeight: typography.weightBold },
   copyBlock: { alignItems: "center", paddingHorizontal: spacing.sm },
@@ -130,8 +146,7 @@ const styles = StyleSheet.create({
   footerRow: { flexDirection: "row", gap: spacing.md, alignItems: "center" },
   secondaryButton: { flex: 1, minHeight: 52, borderRadius: 18, borderWidth: 1, borderColor: "rgba(255,255,255,0.22)", alignItems: "center", justifyContent: "center" },
   secondaryButtonText: { color: colors.textInverse, fontWeight: typography.weightBlack, fontSize: typography.body },
-  disabledButton: { opacity: 0.42 },
-  disabledButtonText: { color: "rgba(255,255,255,0.56)" },
+  secondaryButtonSpacer: { flex: 1 },
   primaryButton: { flex: 1.35, minHeight: 54, borderRadius: 18, backgroundColor: colors.gold, alignItems: "center", justifyContent: "center" },
   primaryButtonText: { color: colors.primary, fontWeight: typography.weightBlack, fontSize: typography.bodyLarge },
 });

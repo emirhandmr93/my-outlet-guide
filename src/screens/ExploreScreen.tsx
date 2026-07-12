@@ -34,6 +34,7 @@ import {
   formatOutletLocationSubtitle,
 } from "../utils/locationDisplay";
 import type { TranslationLanguage } from "../translations/translations";
+import { heroAssets } from "../media/heroAssets";
 
 type ExploreFilter = "country" | "city" | "outlet";
 const filters: { id: ExploreFilter; labelKey: string; icon: string }[] = [
@@ -41,8 +42,6 @@ const filters: { id: ExploreFilter; labelKey: string; icon: string }[] = [
   { id: "city", labelKey: "explore.filters.cities", icon: "📍" },
   { id: "outlet", labelKey: "explore.filters.outlets", icon: "🛍️" },
 ];
-const exploreHeroImage = require("../../assets/explore/explore-hero-premium.png");
-
 const popularSearches = [
   { query: "Paris", labelKey: "explore.popularSearch.paris" },
   { query: "Burberry", labelKey: "explore.popularSearch.burberry" },
@@ -307,7 +306,7 @@ export function ExploreScreen() {
         }}
       >
         <ImageBackground
-          source={exploreHeroImage}
+          source={heroAssets.explore}
           resizeMode="cover"
           style={styles.heroCard}
           imageStyle={styles.heroImage}
