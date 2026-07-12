@@ -1,4 +1,4 @@
-import { existsSync, readFileSync } from "node:fs";
+﻿import { existsSync, readFileSync } from "node:fs";
 
 function read(path: string) {
   return readFileSync(path, "utf8");
@@ -39,7 +39,7 @@ for (const [pageKey, heroMarker] of expectedHeroMappings) {
 }
 assert(screen.includes("ImageBackground") && screen.includes("source={page.hero}"), "onboarding renders mapped local hero images");
 assert(!screen.includes("disabled={pageIndex === 0}") && screen.includes("pageIndex > 0"), "Back button is hidden on the first onboarding page");
-assert(/key: "flightDeals"/.test(screen) && !/trustedGuide|security guide|Güvenli rehber/i.test(screen), "Page 4 is flightDeals, not trustedGuide/security guide");
+assert(/key: "flightDeals"/.test(screen) && !/trustedGuide|security guide|GÃ¼venli rehber/i.test(screen), "Page 4 is flightDeals, not trustedGuide/security guide");
 for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) {
   assert(new RegExp(`${locale}: \\{[\\s\\S]*onboarding\.pages\.flightDeals\.body`).test(translations) || translations.includes(`onboardingTranslations.${locale}`), `all onboarding translation keys exist for ${locale}`);
 }
@@ -56,3 +56,4 @@ assert(beta.includes("checkOnboardingReadiness"), "beta readiness includes onboa
 assert(/first-launch only/i.test(docs) && /does not request notification permission/i.test(docs) && /does not require an account/i.test(docs), "release docs mention onboarding privacy/account behavior");
 
 console.log("Onboarding readiness checks passed.");
+
