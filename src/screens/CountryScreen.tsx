@@ -24,6 +24,7 @@ import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getCityName } from "../services/locationService";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
+import { formatStoresCountText } from "../utils/outletDisplayFormatters";
 import { formatRating } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 
@@ -114,7 +115,7 @@ function OutletCard({
         </View>
         <Text style={styles.cardTitle}>{outlet.name}</Text>
         <Text style={styles.cardText}>
-          {formatCityDisplayName(outlet.cityId, language)} • {outlet.storesCountText}
+          {formatCityDisplayName(outlet.cityId, language)} • {formatStoresCountText(outlet.storesCountText, language)}
         </Text>
         <Text style={styles.tapText}>{t("country.viewOutlet")}</Text>
       </View>
