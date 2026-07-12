@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
@@ -7,7 +7,11 @@ import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
 import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
-import { CurrencyCode, formatCurrency } from "../services/exchangeRateService";
+import {
+  convertCurrency,
+  CurrencyCode,
+  formatCurrency,
+} from "../services/exchangeRateService";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 import {
   calculateTaxFreeEstimate,
@@ -52,6 +56,60 @@ export function TaxFreeCalculatorScreen() {
     !!rule && selectedCountry.currency !== rule.currency;
   const isBelowMinimum =
     !!rule && !!estimate && isBelowMinimumPurchase(estimate.grossAmount, rule);
+  const shouldShowConvertedResults =
+    !!rule && selectedCurrency !== rule.currency && !!estimate && !isBelowMinimum;
+  const [convertedRefund, setConvertedRefund] = useState<number | null>(null);
+  const [convertedCostAfterRefund, setConvertedCostAfterRefund] = useState<number | null>(null);
+  const [conversionUnavailable, setConversionUnavailable] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+
+    if (!rule || !estimate || !shouldShowConvertedResults) {
+      setConvertedRefund(null);
+      setConvertedCostAfterRefund(null);
+      setConversionUnavailable(false);
+      return;
+    }
+
+    Promise.all([
+      convertCurrency(
+        estimate.estimatedTaxFreeRefund,
+        rule.currency as CurrencyCode,
+        selectedCurrency,
+      ),
+      convertCurrency(
+        estimate.estimatedCostAfterRefund,
+        rule.currency as CurrencyCode,
+        selectedCurrency,
+      ),
+    ])
+      .then(([refundResult, costResult]) => {
+        if (active) {
+          setConvertedRefund(refundResult.convertedAmount);
+          setConvertedCostAfterRefund(costResult.convertedAmount);
+          setConversionUnavailable(false);
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setConvertedRefund(null);
+          setConvertedCostAfterRefund(null);
+          setConversionUnavailable(true);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [
+    estimate?.estimatedCostAfterRefund,
+    estimate?.estimatedTaxFreeRefund,
+    rule,
+    selectedCurrency,
+    shouldShowConvertedResults,
+  ]);
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.heroCard}>
@@ -188,6 +246,40 @@ export function TaxFreeCalculatorScreen() {
               </View>
             </View>
 
+            {shouldShowConvertedResults && (
+              <View style={styles.convertedBox}>
+                <View style={styles.resultBox}>
+                  <Text style={styles.resultLabel}>
+                    {t("taxCalc.convertedRefund")}
+                  </Text>
+                  <Text style={styles.resultValue}>
+                    {convertedRefund === null
+                      ? conversionUnavailable
+                        ? t("currency.unavailableShort")
+                        : "—"
+                      : formatCurrency(convertedRefund, selectedCurrency, language)}
+                  </Text>
+                </View>
+
+                <View style={styles.resultBox}>
+                  <Text style={styles.resultLabel}>
+                    {t("taxCalc.convertedCostAfterRefund")}
+                  </Text>
+                  <Text style={styles.resultValue}>
+                    {convertedCostAfterRefund === null
+                      ? conversionUnavailable
+                        ? t("currency.unavailableShort")
+                        : "—"
+                      : formatCurrency(
+                          convertedCostAfterRefund,
+                          selectedCurrency,
+                          language,
+                        )}
+                  </Text>
+                </View>
+              </View>
+            )}
+
             <View style={styles.highlightBox}>
               <Text style={styles.highlightLabel}>
                 {t("taxCalc.actualRefundMayVary")}
@@ -217,7 +309,7 @@ export function TaxFreeCalculatorScreen() {
                 )}
               </Text>
             )}
-            <Text style={styles.metaText}>{rule.notes}</Text>
+            <Text style={styles.metaText}>{t("taxCalc.standardVatBasis")}</Text>
             <Text style={styles.metaNote}>{t("taxCalc.finalDisclaimer")}</Text>
           </View>
         )}
@@ -403,6 +495,10 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 28,
     fontWeight: "900",
+  },
+  convertedBox: {
+    marginTop: 16,
+    gap: 12,
   },
   metaBox: {
     marginTop: 16,

@@ -44,27 +44,34 @@ export function SmartShoppingCalculatorScreen() {
       : undefined;
   const refund = estimate?.vatPortion ?? 0;
   const netCost = numericPrice - refund;
+  const [convertedRefund, setConvertedRefund] = useState<number | null>(null);
   const [convertedNetCost, setConvertedNetCost] = useState<number | null>(null);
   const [conversionUnavailable, setConversionUnavailable] = useState(false);
 
   useEffect(() => {
     let active = true;
 
-    if (!rule || netCost <= 0) {
+    if (!rule || numericPrice <= 0 || selectedCurrency === rule.currency) {
+      setConvertedRefund(null);
       setConvertedNetCost(null);
       setConversionUnavailable(false);
       return;
     }
 
-    convertCurrency(netCost, rule.currency as CurrencyCode, selectedCurrency)
-      .then((result) => {
+    Promise.all([
+      convertCurrency(refund, rule.currency as CurrencyCode, selectedCurrency),
+      convertCurrency(netCost, rule.currency as CurrencyCode, selectedCurrency),
+    ])
+      .then(([refundResult, costResult]) => {
         if (active) {
-          setConvertedNetCost(result.convertedAmount);
+          setConvertedRefund(refundResult.convertedAmount);
+          setConvertedNetCost(costResult.convertedAmount);
           setConversionUnavailable(false);
         }
       })
       .catch(() => {
         if (active) {
+          setConvertedRefund(null);
           setConvertedNetCost(null);
           setConversionUnavailable(true);
         }
@@ -73,7 +80,7 @@ export function SmartShoppingCalculatorScreen() {
     return () => {
       active = false;
     };
-  }, [netCost, rule, selectedCurrency]);
+  }, [netCost, numericPrice, refund, rule, selectedCurrency]);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -149,7 +156,7 @@ export function SmartShoppingCalculatorScreen() {
         <View style={styles.resultGrid}>
           <View style={styles.resultBox}>
             <Text style={styles.resultLabel}>
-              {t("taxCalc.estimatedVatPortion")}
+              {t("taxCalc.estimatedTaxFreeRefund")}
             </Text>
             <Text style={styles.resultValue}>
               {rule
@@ -160,7 +167,7 @@ export function SmartShoppingCalculatorScreen() {
 
           <View style={styles.resultBox}>
             <Text style={styles.resultLabel}>
-              {t("smartCalc.estimatedNetCost")}
+              {t("taxCalc.estimatedCostAfterRefund")}
             </Text>
             <Text style={styles.resultValue}>
               {rule
@@ -170,22 +177,39 @@ export function SmartShoppingCalculatorScreen() {
           </View>
         </View>
 
-        <View style={styles.highlightBox}>
-          <Text style={styles.highlightLabel}>
-            {t("smartCalc.yourCurrency")}
-          </Text>
-          <Text style={styles.highlightValue}>
-            {convertedNetCost === null
-              ? conversionUnavailable && rule && numericPrice > 0
-                ? t("currency.unavailableShort")
-                : formatCurrency(0, selectedCurrency, language)
-              : formatCurrency(convertedNetCost, selectedCurrency, language)}
-          </Text>
-        </View>
+        {rule && selectedCurrency !== rule.currency && numericPrice > 0 && (
+          <View style={styles.convertedBox}>
+            <View style={styles.resultBox}>
+              <Text style={styles.resultLabel}>
+                {t("taxCalc.convertedRefund")}
+              </Text>
+              <Text style={styles.resultValue}>
+                {convertedRefund === null
+                  ? conversionUnavailable
+                    ? t("currency.unavailableShort")
+                    : "—"
+                  : formatCurrency(convertedRefund, selectedCurrency, language)}
+              </Text>
+            </View>
+
+            <View style={styles.resultBox}>
+              <Text style={styles.resultLabel}>
+                {t("taxCalc.convertedCostAfterRefund")}
+              </Text>
+              <Text style={styles.resultValue}>
+                {convertedNetCost === null
+                  ? conversionUnavailable
+                    ? t("currency.unavailableShort")
+                    : "—"
+                  : formatCurrency(convertedNetCost, selectedCurrency, language)}
+              </Text>
+            </View>
+          </View>
+        )}
 
         <Text style={styles.note}>
           {rule
-            ? `${t("taxCalc.vatRate")}: ${rule.vatRate}% • ${t("taxCalc.providerFeesUnknown")}`
+            ? `${t("taxCalc.vatRate")}: ${rule.vatRate}% • ${t("taxCalc.standardVatBasis")} • ${t("taxCalc.actualRefundMayVary")} ${t("taxCalc.notGuaranteedRefund")}`
             : t("taxCalc.unsupportedCountry")}
         </Text>
       </View>
@@ -356,6 +380,10 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 28,
     fontWeight: "900",
+  },
+  convertedBox: {
+    marginTop: 16,
+    gap: 12,
   },
   note: {
     marginTop: 16,

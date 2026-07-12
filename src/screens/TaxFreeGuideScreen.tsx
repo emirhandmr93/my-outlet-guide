@@ -40,7 +40,7 @@ export function TaxFreeGuideScreen() {
 
         <View style={styles.statBox}>
           <Text style={styles.statLabel}>
-            {t("taxCalc.estimatedVatPortion")}
+            {t("taxGuide.refundRate")}
           </Text>
           <Text style={styles.statValue}>{rule.vatRate}%</Text>
         </View>
@@ -57,7 +57,7 @@ export function TaxFreeGuideScreen() {
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>{t("taxGuide.refundProcess")}</Text>
 
-        {[rule.notes, t("taxCalc.finalDisclaimer")].map((step, index) => (
+        {[t("taxCalc.standardVatBasis"), t("taxCalc.finalDisclaimer")].map((step, index) => (
           <View key={`${step}-${index}`} style={styles.stepRow}>
             <View style={styles.stepNumberBox}>
               <Text style={styles.stepNumber}>{index + 1}</Text>

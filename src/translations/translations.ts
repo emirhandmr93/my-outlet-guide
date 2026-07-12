@@ -2117,7 +2117,7 @@ export const translations: Record<
     "taxCalc.vatRate": "KDV oranı",
     "taxCalc.refundRate": "Tahmini iade oranı",
     "taxCalc.minimumSpend": "Minimum harcama",
-    "taxCalc.estimatedVatPortion": "Dahil edilen KDV tahmini",
+    "taxCalc.estimatedVatPortion": "Tahmini Tax Free iadesi",
     "taxCalc.estimatedNetBeforeVat": "Vergi öncesi teknik tutar",
     "taxCalc.providerFeesUnknown": "Sağlayıcı/mağaza ücretleri dahil değildir",
     "taxCalc.noGuaranteedRefund": "Garanti edilen iade değildir",
@@ -17008,3 +17008,47 @@ const taxFreeCalculatorUxTranslations: Record<TranslationLanguage, Record<string
   }
 };
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeCalculatorUxTranslations[locale]);
+
+const finalTaxFreeCalculatorLabelTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "taxCalc.convertedRefund": "Estimated refund in selected currency",
+    "taxCalc.convertedCostAfterRefund": "Estimated cost after refund in selected currency",
+    "taxCalc.standardVatBasis": "Standard VAT rate only. Tax Free eligibility, minimum purchase rules, store participation, operator fees, and customs validation requirements should be checked before purchase."
+  },
+  tr: {
+    "taxCalc.convertedRefund": "Para biriminde tahmini iade",
+    "taxCalc.convertedCostAfterRefund": "Para biriminde iade sonrası maliyet",
+    "taxCalc.standardVatBasis": "Standart KDV oranı esas alınır. Tax Free uygunluğu, minimum harcama kuralları, mağaza katılımı, operatör ücretleri ve gümrük doğrulama gereklilikleri satın alma öncesinde kontrol edilmelidir."
+  },
+  es: {
+    "taxCalc.convertedRefund": "Reembolso estimado en la moneda seleccionada",
+    "taxCalc.convertedCostAfterRefund": "Coste estimado tras el reembolso en la moneda seleccionada",
+    "taxCalc.standardVatBasis": "Solo se usa el tipo de IVA estándar. La elegibilidad Tax Free, las reglas de gasto mínimo, la participación de la tienda, las comisiones del operador y los requisitos de validación aduanera deben comprobarse antes de comprar."
+  },
+  fr: {
+    "taxCalc.convertedRefund": "Remboursement estimé dans la devise sélectionnée",
+    "taxCalc.convertedCostAfterRefund": "Coût estimé après remboursement dans la devise sélectionnée",
+    "taxCalc.standardVatBasis": "Seul le taux de TVA standard est utilisé. L’éligibilité Tax Free, les règles de dépense minimale, la participation du magasin, les frais d’opérateur et les exigences de validation douanière doivent être vérifiés avant l’achat."
+  },
+  de: {
+    "taxCalc.convertedRefund": "Geschätzte Erstattung in der ausgewählten Währung",
+    "taxCalc.convertedCostAfterRefund": "Geschätzte Kosten nach Erstattung in der ausgewählten Währung",
+    "taxCalc.standardVatBasis": "Es wird nur der Standard-Mehrwertsteuersatz verwendet. Tax-Free-Berechtigung, Mindestkaufregeln, Teilnahme des Geschäfts, Betreibergebühren und Zollvalidierungsanforderungen sollten vor dem Kauf geprüft werden."
+  },
+  ar: {
+    "taxCalc.convertedRefund": "الاسترداد التقديري بالعملة المحددة",
+    "taxCalc.convertedCostAfterRefund": "التكلفة التقديرية بعد الاسترداد بالعملة المحددة",
+    "taxCalc.standardVatBasis": "يُستخدم معدل ضريبة القيمة المضافة القياسي فقط. يجب التحقق قبل الشراء من أهلية Tax Free، وقواعد الحد الأدنى للإنفاق، ومشاركة المتجر، ورسوم المشغل، ومتطلبات التحقق الجمركي."
+  },
+  ru: {
+    "taxCalc.convertedRefund": "Расчётный возврат в выбранной валюте",
+    "taxCalc.convertedCostAfterRefund": "Расчётная стоимость после возврата в выбранной валюте",
+    "taxCalc.standardVatBasis": "Используется только стандартная ставка НДС. Право на Tax Free, правила минимальной покупки, участие магазина, комиссии оператора и требования таможенного подтверждения следует проверить до покупки."
+  },
+  zh: {
+    "taxCalc.convertedRefund": "所选货币的预计退税",
+    "taxCalc.convertedCostAfterRefund": "所选货币的退税后预计成本",
+    "taxCalc.standardVatBasis": "仅使用标准增值税税率。购买前应确认 Tax Free 资格、最低消费规则、商店参与情况、运营商费用和海关验证要求。"
+  }
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], finalTaxFreeCalculatorLabelTranslations[locale]);
