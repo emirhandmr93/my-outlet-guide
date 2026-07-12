@@ -1262,8 +1262,8 @@ const enTranslations = {
     "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
   "currency.preferredTitle": "Preferred shopping currency",
   "currency.amount": "Amount",
-  "currency.from": "From",
-  "currency.to": "To",
+  "currency.from": "Source currency",
+  "currency.to": "Target currency",
   "currency.convert": "Convert",
   "currency.loading": "Loading rate...",
   "currency.source": "Source",
@@ -2176,7 +2176,7 @@ export const translations: Record<
       "Fiyatları karşılaştır, Tax Free iadelerini tahmin et ve seyahat öncesi bütçeni planla.",
     "savings.settingsKicker": "ALIŞVERİŞ AYARLARI",
     "savings.settingsTitle":
-      "Savings genelinde tek ülke ve para birimi kullan.",
+      "Tasarruf araçlarında tek ülke ve para birimi kullan.",
     "savings.settingsSharedTitle":
       "Ülke ve para birimi tüm Savings araçlarında ortaktır.",
     "savings.smartDescription":
@@ -2886,26 +2886,26 @@ export const translations: Record<
     "currency.title": "Tercih edilen para birimi",
     "currency.subtitle":
       "Hesaplayıcılar ve alışveriş araçları varsayılan olarak bunu kullanır.",
-    "currency.converterTitle": "Currency converter",
+    "currency.converterTitle": "Canlı kur çevirici",
     "currency.converterCopy":
-      "Live reference rates load from Frankfurter. Conversion is informational and may differ from your bank, card network, or exchange desk.",
-    "currency.preferredTitle": "Preferred shopping currency",
-    "currency.amount": "Amount",
-    "currency.from": "From",
-    "currency.to": "To",
-    "currency.convert": "Convert",
-    "currency.loading": "Loading rate...",
-    "currency.source": "Source",
-    "currency.lastUpdated": "Last updated",
+      "Canlı referans kurlar Frankfurter üzerinden yüklenir. Dönüşüm bilgilendirme amaçlıdır ve bankanızdan, kart ağınızdan veya döviz bürosundan farklı olabilir.",
+    "currency.preferredTitle": "Tercih edilen alışveriş para birimi",
+    "currency.amount": "Tutar",
+    "currency.from": "Kaynak para birimi",
+    "currency.to": "Hedef para birimi",
+    "currency.convert": "Çevir",
+    "currency.loading": "Kur yükleniyor...",
+    "currency.source": "Kaynak",
+    "currency.lastUpdated": "Son güncelleme",
     "currency.disclaimer":
-      "Reference exchange rates only. Final charged rates may vary by bank, card provider, fees, and timing.",
+      "Yalnızca referans döviz kurlarıdır. Nihai tahsilat oranları banka, kart sağlayıcı, ücretler ve zamana göre değişebilir.",
     "currency.unsupported":
-      "This currency is not supported for live conversion.",
+      "Bu para birimi canlı dönüşüm için desteklenmiyor.",
     "currency.providerUnavailable":
-      "Live exchange rates are unavailable right now. No conversion is shown without a current provider response.",
-    "currency.unavailableShort": "Rate unavailable",
-    "currency.validation.amountRequired": "Enter an amount to convert.",
-    "currency.validation.positiveAmount": "Enter a positive numeric amount.",
+      "Canlı döviz kurları şu anda kullanılamıyor. Güncel sağlayıcı yanıtı olmadan dönüşüm gösterilmez.",
+    "currency.unavailableShort": "Kur kullanılamıyor",
+    "currency.validation.amountRequired": "Dönüştürmek için bir tutar girin.",
+    "currency.validation.positiveAmount": "Pozitif sayısal bir tutar girin.",
     "notifications.kicker": "Bildirimler",
     "notifications.signInRequiredTitle": "Sign in required",
     "notifications.signInRequiredBody":
@@ -16907,7 +16907,7 @@ const liveCurrencyWeatherTranslations: Record<TranslationLanguage, Record<string
     "weather.title": "Weather", "weather.daily": "Daily weather", "weather.unavailable": "Weather could not be loaded.", "weather.providerNotConfigured": "Weather provider is not configured.", "weather.outOfRange": "Forecast is not available yet.", "weather.missingCoordinates": "Weather coordinates are missing for this city.", "weather.emptyRoute": "City-based weather will appear here when you add a route.", "weather.stale": "Last updated weather", "weather.sourceOpenMeteo": "Source: Open-Meteo", "weather.tempMax": "High", "weather.tempMin": "Low", "weather.precipitationProbability": "Precipitation chance", "weather.precipitation": "Precipitation", "weather.wind": "Wind", "weather.today": "Today", "weather.tomorrow": "Tomorrow", "weather.condition.clear": "Clear", "weather.condition.partlyCloudy": "Partly cloudy", "weather.condition.cloudy": "Cloudy", "weather.condition.fog": "Fog", "weather.condition.drizzle": "Drizzle", "weather.condition.rain": "Rain", "weather.condition.snow": "Snow", "weather.condition.showers": "Showers", "weather.condition.thunderstorm": "Thunderstorm", "weather.condition.unknown": "Unknown"
   },
   tr: {
-    "currency.liveRate": "Canlı kur", "currency.providerFrankfurter": "Kaynak: Frankfurter", "currency.updatedAt": "Güncellendi", "currency.staleRate": "Son güncellenen kur", "currency.liveUnavailable": "Canlı kur alınamadı.", "currency.noRateData": "Kur verisi mevcut değil.", "currency.amount": "Tutar", "currency.convert": "Çevir",
+    "currency.liveRate": "Canlı kur", "currency.providerFrankfurter": "Kaynak: Frankfurter", "currency.updatedAt": "Güncellendi", "currency.staleRate": "Son güncellenen kur", "currency.liveUnavailable": "Canlı kur alınamadı.", "currency.noRateData": "Kur kullanılamıyor", "currency.amount": "Tutar", "currency.from": "Kaynak para birimi", "currency.to": "Hedef para birimi", "currency.convert": "Çevir",
     "weather.title": "Hava durumu", "weather.daily": "Günlük hava durumu", "weather.unavailable": "Hava durumu alınamadı.", "weather.providerNotConfigured": "Hava durumu sağlayıcısı yapılandırılmadı.", "weather.outOfRange": "Tahmin henüz mevcut değil.", "weather.missingCoordinates": "Bu şehir için hava durumu koordinatı eksik.", "weather.emptyRoute": "Rota eklediğinde şehir bazlı hava durumu burada görünür.", "weather.stale": "Son güncellenen hava durumu", "weather.sourceOpenMeteo": "Kaynak: Open-Meteo", "weather.tempMax": "En yüksek", "weather.tempMin": "En düşük", "weather.precipitationProbability": "Yağış olasılığı", "weather.precipitation": "Yağış", "weather.wind": "Rüzgâr", "weather.today": "Bugün", "weather.tomorrow": "Yarın", "weather.condition.clear": "Açık", "weather.condition.partlyCloudy": "Parçalı bulutlu", "weather.condition.cloudy": "Bulutlu", "weather.condition.fog": "Sisli", "weather.condition.drizzle": "Çiseleme", "weather.condition.rain": "Yağmurlu", "weather.condition.snow": "Karlı", "weather.condition.showers": "Sağanak", "weather.condition.thunderstorm": "Gök gürültülü", "weather.condition.unknown": "Bilinmiyor"
   },
   es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {}
