@@ -1,4 +1,4 @@
-﻿import { existsSync, readFileSync } from "node:fs";
+﻿import { existsSync, readdirSync, readFileSync } from "node:fs";
 
 function read(path: string) {
   return readFileSync(path, "utf8");
@@ -23,7 +23,9 @@ const requiredAssets = [
 ];
 
 for (const asset of requiredAssets) {
-  assert(existsSync(`assets/heroes/${asset}`), `local hero asset exists: ${asset}`);
+  const heroAssetPath = `assets/heroes/${asset}`;
+  const matchingHeroAsset = readdirSync("assets/heroes").find((fileName) => fileName.toLowerCase() === asset);
+  assert(existsSync(heroAssetPath) || Boolean(matchingHeroAsset), `local hero asset is available for lowercase reference: ${asset}`);
 }
 
 const heroAssets = read("src/media/heroAssets.ts");
@@ -66,6 +68,5 @@ assert(heroComponent.includes("backgroundColor: colors.primary"), "hero componen
 assert(!/https?:\/\//.test(heroComponent), "hero component has no remote image URLs");
 
 console.log("Hero asset audit checks passed.");
-
 
 

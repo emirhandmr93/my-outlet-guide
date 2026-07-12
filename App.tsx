@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppNavigator } from "./src/navigation/AppNavigator";
 import "./src/firebase/config";
 import { LanguageProvider } from "./src/contexts/LanguageContext";
@@ -13,6 +14,7 @@ import { AuthProvider } from "./src/contexts/AuthContext";
 
 export default function App() {
 return (
+<SafeAreaProvider>
 <LanguageProvider>
 <AuthProvider>
 <UserProvider>
@@ -33,5 +35,6 @@ return (
 </UserProvider>
 </AuthProvider>
 </LanguageProvider>
+</SafeAreaProvider>
 );
 }
