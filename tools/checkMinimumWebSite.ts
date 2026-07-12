@@ -62,11 +62,11 @@ assert(!/Profile|Account management|Delete Account/.test(trDeletion), "Turkish a
 assert(!/Firebase auth hesabı/.test(trDeletion), "Turkish account deletion does not show Firebase auth hesabı");
 assert(!/Store readiness/i.test(allWeb), "Store readiness is not visible in web pages");
 assert(!/without heavy website dependencies/i.test(read("web/index.html")), "English home does not show internal website dependency copy");
-assert(/\.pill\{[^}]*background:#ffe5a3[^}]*color:#2f1d00[^}]*font-weight:800/.test(styles), "hero badge uses readable high-contrast styling");
+assert(/\.pill\{[^}]*background:#f2c35a[^}]*color:#071b33[^}]*font-weight:900/.test(styles), "hero badge uses readable high-contrast styling");
 assert(/Outlet guide/.test(read("web/index.html")) && /Outlet rehberi/.test(trHome), "user-facing hero badge copy exists in English and Turkish");
 for (const label of ["Home", "Privacy", "Terms", "Contact", "Account Deletion", "EN", "TR"]) assert(allWeb.includes(`>${label}<`), `mobile nav label exists: ${label}`);
 for (const label of ["Ana Sayfa", "Gizlilik", "Koşullar", "İletişim", "Hesap Silme"]) assert(allWeb.includes(`>${label}<`), `Turkish mobile nav label exists: ${label}`);
-assert(styles.includes("@media(max-width:640px)") && styles.includes("nav{grid-template-columns:1fr") && styles.includes(".links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))"), "mobile nav uses responsive wrapping grid");
+assert(styles.includes("@media(max-width:640px)") && styles.includes("nav{grid-template-columns:1fr") && styles.includes(".links{display:flex;flex-wrap:wrap") && styles.includes("flex:1 1 calc(50% - 8px)"), "mobile nav uses responsive wrapping flex chips");
 assert(!/(^|[;{])(width|min-width):\s*(?:[4-9]\d{2}|\d{4,})px/.test(styles), "no statically detectable fixed wide styles that risk horizontal overflow");
 assert(!/TODO|coming soon|placeholder|lorem|dummy/i.test(allWeb), "website has no visible TODO/coming soon/placeholder text");
 assert(!/\+?1[\s.-]?\(?555\)?|555[\s.-]?\d{4}|000-000|123-456/i.test(allWeb), "website has no fake phone number");
