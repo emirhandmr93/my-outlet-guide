@@ -44,7 +44,7 @@ Manual Firebase Console verification is required before store submission:
 - Functions list shows `sendWelcomeEmail`.
 - `deleteAccount` is deployed in the same Firebase project used by the production app.
 - `moderateReviewAction` is deployed and access remains moderator/admin gated.
-- `getTripWeather` is deployed and has production Open-Meteo environment configuration if required.
+- `getTripWeather` is deployed and safely returns provider-deferred/unavailable behavior when Open-Meteo is not configured; `OPEN_METEO_API_KEY` is optional/future and must not block this production build.
 - `sendTripReminderNotifications` scheduled function is deployed and has expected schedule/region.
 - `sendWelcomeEmail` is deployed with its production email provider configuration.
 - Do not deploy from this checklist; use the approved Firebase release process.
@@ -129,13 +129,13 @@ npx eas-cli build --platform android --profile production
 - Do not show debug banners, debug menus, console overlays, or development URLs.
 - Do not show real personal email addresses, private user data, admin-only moderation queues, or reviewer credentials.
 - Show bundled outlet guide discovery, detail, trip planning, savings/Tax Free, profile/support/legal, and account deletion access where appropriate.
-- Do not imply live fares, live booking, guaranteed refunds, fake weather, fake exchange rates, or unsupported notification categories.
+- Do not imply live fares, live booking, guaranteed refunds, fake exchange rates, or unsupported notification categories.
 - Confirm screenshots match `docs/release/store-screenshot-plan.md`.
 
 ## 11. Known non-blocking notes
 
 - Public Firebase client config in app source is expected and allowed.
-- Backend environment variable names may appear in Functions/docs, but committed secret values are not allowed.
+- Backend environment variable names may appear in Functions/docs, but committed secret values are not allowed. `OPEN_METEO_API_KEY` is optional/future for this release.
 - EAS production `autoIncrement` is the Android versionCode / iOS build number strategy; verify the remote values in EAS before final submission.
 - `expo-dev-client` may remain installed for development builds, but production EAS profile must not enable `developmentClient`.
 - Production functions deployment and Firestore index/rules publication require manual verification; this audit does not deploy.

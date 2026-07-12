@@ -47,11 +47,12 @@ assert(/Open-Meteo/.test(weatherFunction) && /getTripWeather/.test(functionsInde
 assert(!/OPEN_METEO_API_KEY/.test(read("src/services/liveWeatherService.ts") + read("src/firebase/config.ts")), "Weather API key not stored in client.");
 assert(/provider_not_configured/.test(weatherFunction) && !/fake forecast|mock weather|sample weather/i.test(weatherFunction), "Provider missing returns provider_not_configured, not fake data.");
 assert(!/fake weather|mock weather|sample weather|fake forecast/i.test(allSource), "No fake weather forecasts.");
-assert(/weather\.title/.test(tripDetail) && /getTripWeatherForecast/.test(tripDetail), "TripDetail weather section exists.");
+assert(/weather\.title/.test(tripDetail) && /getTripWeatherForecast/.test(tripDetail), "TripDetail keeps weather infrastructure wired for future provider activation.");
+assert(/status === "provider_not_configured" \? null/.test(tripDetail) && !/weather\.providerNotConfigured/.test(tripDetail), "TripDetail hides provider_not_configured instead of showing technical copy.");
 assert(/useEffect/.test(tripDetail) && /\.catch/.test(tripDetail), "Weather fetch is non-blocking.");
 assert(!/scheduleWeather|weather notification/i.test(allSource), "Weather not added to notification scheduling.");
-assert(/weather\.outOfRange/.test(tripDetail), "Out-of-range future trip shows safe copy.");
-assert(/weather\.missingCoordinates/.test(tripDetail) && /missing_coordinates/.test(weatherClient), "Missing coordinates safe state exists.");
+assert(/weather\.outOfRange/.test(tripDetail), "Out-of-range future trip has safe copy for configured provider responses.");
+assert(/weather\.unavailable/.test(tripDetail) && /missing_coordinates/.test(weatherClient), "Missing coordinates maps to a safe unavailable state.");
 assert(/Source: Open-Meteo|Kaynak: Open-Meteo/.test(translations) && /Source: Frankfurter|Kaynak: Frankfurter/.test(translations), "Source attribution exists.");
 for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) assert(new RegExp(`${locale}:`).test(translations) && new RegExp(`liveCurrencyWeatherTranslations\\.${locale}|${locale}: \\{[\\s\\S]*weather\\.title`).test(translations), `All new keys exist for ${locale}.`);
 assert(/liveCurrencyWeatherTranslations\.ar/.test(translations) && /سعر مباشر/.test(translations), "Arabic keys non-empty.");

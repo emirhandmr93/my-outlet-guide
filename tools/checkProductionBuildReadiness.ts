@@ -115,6 +115,7 @@ for (const exported of ["deleteAccount", "moderateReviewAction", "getTripWeather
 }
 
 assert(existsSync(checklistPath), "production build checklist doc exists");
+assert(/OPEN_METEO_API_KEY` is optional\/future/.test(checklist), "production build checklist treats OPEN_METEO_API_KEY as optional/future");
 for (const doc of [
   "docs/release/store-metadata.md",
   "docs/release/store-screenshot-plan.md",

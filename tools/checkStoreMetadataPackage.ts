@@ -63,6 +63,8 @@ assert(demoTodoMatches === 1, "reviewer notes include the docs-only demo credent
 assert(!/(password\s*[:=]|demo credentials\s*[:=]|reviewer credentials\s*[:=]|[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}\s*\/\s*\S+)/i.test(packageDocs), "store package docs contain no raw demo credentials");
 
 assert(/avoid admin\/moderation screenshots/i.test(screenshotPlan) || /avoid admin.*moderation/i.test(screenshotPlan), "screenshot plan avoids admin/moderation public screenshots unless justified");
+assert(/weather is not a required screenshot element/i.test(screenshotPlan), "screenshot plan does not require weather as an active feature");
+assert(!/Live weather|Trip weather forecast|Daily weather forecast/i.test(storeMetadata), "store metadata does not market weather as an active live feature");
 assert(/personal email/i.test(screenshotPlan) && /debug\/dev client UI|dev client UI/i.test(screenshotPlan), "screenshot plan warns not to show personal email or dev UI");
 
 for (const required of ["account-deletion", "Firebase", "Frankfurter", "Open-Meteo", "Reviews", "Push notification token", "User-selected city, route"]) {
