@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
@@ -19,10 +20,12 @@ import {
   parsePurchaseAmount,
 } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
+import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
 export function TaxFreeCalculatorScreen() {
   const [amount, setAmount] = useState("");
   const { t, language } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   const {
     selectedCountryId,
@@ -111,7 +114,11 @@ export function TaxFreeCalculatorScreen() {
   ]);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.heroLabel}>{t("taxCalc.heroLabel")}</Text>
         <Text style={styles.pageTitle}>{t("taxCalc.title")}</Text>
@@ -212,6 +219,7 @@ export function TaxFreeCalculatorScreen() {
               {formatCurrency(
                 rule.minimumPurchaseAmount ?? 0,
                 rule.currency as CurrencyCode,
+                language,
               )}
               .
             </Text>
@@ -229,6 +237,7 @@ export function TaxFreeCalculatorScreen() {
                   {formatCurrency(
                     estimate.estimatedTaxFreeRefund,
                     rule.currency as CurrencyCode,
+                    language,
                   )}
                 </Text>
               </View>
@@ -241,6 +250,7 @@ export function TaxFreeCalculatorScreen() {
                   {formatCurrency(
                     estimate.estimatedCostAfterRefund,
                     rule.currency as CurrencyCode,
+                    language,
                   )}
                 </Text>
               </View>
@@ -295,7 +305,7 @@ export function TaxFreeCalculatorScreen() {
           <View style={styles.metaBox}>
             <Text style={styles.metaTitle}>{t("taxCalc.sourceTitle")}</Text>
             <Text style={styles.metaText}>
-              {rule.sourceName} • {rule.effectiveDate}
+              {t("taxCalc.sourceEuropeanCommissionVatRates")} • {rule.effectiveDate}
             </Text>
             <Text style={styles.metaText}>
               {t("taxCalc.vatRate")}: {rule.vatRate}%

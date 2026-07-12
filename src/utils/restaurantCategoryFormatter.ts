@@ -49,6 +49,7 @@ const restaurantCategoryKeys: Record<string, string> = {
   restaurant: "restaurant.category.restaurant",
   restaurants: "restaurant.category.restaurant",
   sausages: "restaurant.category.sausages",
+  sicilian: "restaurant.category.sicilian",
   snacks: "restaurant.category.snacks",
   street: "restaurant.category.streetFood",
   sushi: "restaurant.category.sushi",

@@ -1,7 +1,13 @@
 import type { CurrencyCode } from "../services/exchangeRateService";
 
 const countryNameOverrides: Record<string, Record<string, string>> = {
-  tr: { france: "Fransa" },
+  tr: {
+    france: "Fransa",
+    italy: "İtalya",
+    germany: "Almanya",
+    "united-kingdom": "Birleşik Krallık",
+    gb: "Birleşik Krallık",
+  },
 };
 
 const currencyNameOverrides: Record<string, Partial<Record<CurrencyCode, string>>> = {

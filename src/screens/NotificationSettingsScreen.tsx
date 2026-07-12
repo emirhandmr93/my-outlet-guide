@@ -1,10 +1,13 @@
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { useNotificationSettings } from "../contexts/NotificationSettingsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
 export function NotificationSettingsScreen() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const insets = useSafeAreaInsets();
   const {
     isLoggedIn,
     isLoading,
@@ -22,7 +25,11 @@ export function NotificationSettingsScreen() {
   const enabled = settings?.enabled === true;
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.kicker}>{t("notifications.kicker")}</Text>
         <Text style={styles.pageTitle}>{t("notifications.title")}</Text>

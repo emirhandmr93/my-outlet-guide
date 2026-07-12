@@ -11,13 +11,14 @@ import { outlets } from "../constants/outlets";
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { formatUserFacingDate } from "../utils/outletDisplayFormatters";
 
 
 export function MyReviewsScreen() {
 const { reviews } = useReviews();
 const { currentUser } = useUser();
 const navigation = useNavigation<any>();
-const { t } = useTranslation();
+const { t, language } = useTranslation();
 
 const myReviews = Array.from(
 new Map(
@@ -71,7 +72,7 @@ outlets.find(
 </Text>
 
 <Text style={styles.reviewDate}>
-{review.createdAt}
+{formatUserFacingDate(review.createdAt, language)}
 </Text>
 
 <TouchableOpacity

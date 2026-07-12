@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   ScrollView,
   StyleSheet,
@@ -21,12 +22,15 @@ import {
 } from "../services/exchangeRateService";
 import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
+import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
+import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
 export function PriceAdvantageCalculatorScreen() {
   const [europePrice, setEuropePrice] = useState("");
   const [localPrice, setLocalPrice] = useState("");
   const [includeTaxFree, setIncludeTaxFree] = useState(true);
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   const {
     selectedCountryId,
@@ -84,7 +88,11 @@ export function PriceAdvantageCalculatorScreen() {
   const hasSavings = savings > 0;
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.heroLabel}>{t("priceCalc.heroLabel")}</Text>
         <Text style={styles.pageTitle}>{t("priceCalc.title")}</Text>
@@ -108,7 +116,7 @@ export function PriceAdvantageCalculatorScreen() {
               <View>
                 <Text style={styles.settingsLabel}>{t("common.country")}</Text>
                 <Text style={styles.settingsValue}>
-                  {selectedCountry.countryName}
+                  {getLocalizedCountryName(selectedCountry, language)}
                 </Text>
               </View>
             </View>
@@ -123,7 +131,7 @@ export function PriceAdvantageCalculatorScreen() {
                 <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
                 <Text style={styles.settingsValue}>{selectedCurrency}</Text>
                 <Text style={styles.settingsSubvalue}>
-                  {selectedCurrencyInfo.currencyName}
+                  {getLocalizedCurrencyName(selectedCurrencyInfo, language)}
                 </Text>
               </View>
             </View>
@@ -184,7 +192,7 @@ export function PriceAdvantageCalculatorScreen() {
           <Text style={styles.resultValue}>
             {convertedEuropeCost === null
             ? t("currency.unavailableShort")
-            : formatCurrency(convertedEuropeCost, selectedCurrency)}
+            : formatCurrency(convertedEuropeCost, selectedCurrency, language)}
           </Text>
         </View>
 
@@ -195,7 +203,7 @@ export function PriceAdvantageCalculatorScreen() {
             {hasSavings ? t("priceCalc.youSave") : t("priceCalc.noSavings")}
           </Text>
           <Text style={styles.highlightValue}>
-            {formatCurrency(Math.abs(savings), selectedCurrency)}
+            {formatCurrency(Math.abs(savings), selectedCurrency, language)}
           </Text>
         </View>
 
