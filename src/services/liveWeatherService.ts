@@ -7,11 +7,12 @@ import { functions } from "../firebase/config";
 export type WeatherStatus = "ready" | "partial" | "unavailable" | "provider_not_configured" | "out_of_range" | "missing_coordinates";
 
 export type TripWeatherDay = { date: string; weatherCode?: number; conditionLabel: string; tempMax?: number; tempMin?: number; precipitationProbabilityMax?: number; precipitationSum?: number; windSpeedMax?: number; status?: WeatherStatus };
-export type TripWeatherLocation = { key: string; label: string; status?: WeatherStatus; daily: TripWeatherDay[] };
+export type OutletCurrentWeather = { weatherCode?: number; conditionLabel: string; temperature?: number; status?: WeatherStatus };
+export type TripWeatherLocation = { key: string; label: string; status?: WeatherStatus; daily: TripWeatherDay[]; current?: OutletCurrentWeather };
 export type TripWeatherResult = { provider: "Open-Meteo"; updatedAt?: string; status: WeatherStatus; locations: TripWeatherLocation[] };
 
 type WeatherCallableResponse = TripWeatherResult;
-const getTripWeatherCallable = httpsCallable<{ locations: Array<{ key: string; label: string; latitude: number; longitude: number; startDate: string; endDate: string }>; locale?: string }, WeatherCallableResponse>(functions, "getTripWeather");
+const getTripWeatherCallable = httpsCallable<{ locations: Array<{ key: string; label: string; latitude: number; longitude: number; startDate: string; endDate: string; mode?: "daily" | "current" }>; locale?: string }, WeatherCallableResponse>(functions, "getTripWeather");
 
 export function mapWeatherCodeToLabel(code: number | undefined, locale = "tr") {
   const labels = locale === "tr" ? { clear: "Açık", partly: "Parçalı bulutlu", cloudy: "Bulutlu", fog: "Sisli", drizzle: "Çiseleme", rain: "Yağmurlu", snow: "Karlı", shower: "Sağanak", thunder: "Gök gürültülü", unknown: "Bilinmiyor" } : { clear: "Clear", partly: "Partly cloudy", cloudy: "Cloudy", fog: "Fog", drizzle: "Drizzle", rain: "Rain", snow: "Snow", shower: "Showers", thunder: "Thunderstorm", unknown: "Unknown" };
@@ -41,4 +42,20 @@ export async function getTripWeatherForecast(trip: Trip, locale = "tr"): Promise
 
   const result = await getTripWeatherCallable({ locations: locations.filter(Boolean) as NonNullable<(typeof locations)[number]>[], locale });
   return normalizeWeatherResponse(result.data, locale);
+}
+
+
+export type OutletCurrentWeatherResult = { provider: "Open-Meteo"; updatedAt?: string; status: WeatherStatus; weather?: OutletCurrentWeather };
+
+function todayIsoDate() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+export async function getOutletCurrentWeather(params: { key: string; label: string; latitude: number; longitude: number }, locale = "tr"): Promise<OutletCurrentWeatherResult> {
+  if (!Number.isFinite(params.latitude) || !Number.isFinite(params.longitude)) return { provider: "Open-Meteo", status: "missing_coordinates" };
+  const today = todayIsoDate();
+  const result = await getTripWeatherCallable({ locations: [{ ...params, startDate: today, endDate: today, mode: "current" }], locale });
+  const normalized = normalizeWeatherResponse(result.data, locale);
+  const location = normalized.locations[0];
+  return { provider: "Open-Meteo", updatedAt: normalized.updatedAt, status: normalized.status === "partial" ? location?.status || "unavailable" : normalized.status, weather: location?.current };
 }

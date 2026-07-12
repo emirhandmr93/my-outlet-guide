@@ -43,9 +43,6 @@ function parseDate(value: string) {
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
-function hasAnyValue(values: string[]) {
-  return values.some((value) => value.trim().length > 0);
-}
 
 function isValidTime(value: string) {
   return /^([01]\d|2[0-3]):[0-5]\d$/.test(value.trim());
@@ -83,6 +80,7 @@ export function CreateTripScreen() {
   const [autoReturnFlightDateSource, setAutoReturnFlightDateSource] = useState<
     string | null
   >(null);
+  const [returnFlightTouched, setReturnFlightTouched] = useState(false);
   const [flightOpen, setFlightOpen] = useState(false);
 
   useEffect(() => {
@@ -95,7 +93,18 @@ export function CreateTripScreen() {
 
   if (!isLoggedIn) return null;
 
+  function enableReturnFlightReminder() {
+    setReturnFlightTouched(true);
+    setFlightOpen(true);
+    if (!returnDepartureDate && endDate) {
+      const endDateValue = formatDate(endDate);
+      setReturnDepartureDate(endDateValue);
+      setAutoReturnFlightDateSource(endDateValue);
+    }
+  }
+
   function openDatePicker(target: DateTarget) {
+    if (target === "return") enableReturnFlightReminder();
     const current =
       target === "start"
         ? startDate
@@ -107,6 +116,7 @@ export function CreateTripScreen() {
   }
 
   function openTimePicker() {
+    enableReturnFlightReminder();
     const [hours, minutes] = isValidTime(returnDepartureTime)
       ? returnDepartureTime.split(":").map(Number)
       : [12, 0];
@@ -117,6 +127,7 @@ export function CreateTripScreen() {
   }
 
   function confirmTimePicker() {
+    enableReturnFlightReminder();
     setReturnDepartureTime(
       `${String(draftTime.getHours()).padStart(2, "0")}:${String(draftTime.getMinutes()).padStart(2, "0")}`,
     );
@@ -156,6 +167,7 @@ export function CreateTripScreen() {
         setAutoReturnFlightDateSource(selectedEndDate);
       }
     } else if (pickerTarget === "return") {
+      setReturnFlightTouched(true);
       setReturnDepartureDate(formatDate(selected));
       setAutoReturnFlightDateSource(null);
     }
@@ -193,23 +205,24 @@ export function CreateTripScreen() {
       );
     const hasReturnDate = returnDepartureDate.trim().length > 0;
     const hasReturnTime = returnDepartureTime.trim().length > 0;
-    if (hasReturnDate !== hasReturnTime)
+    const hasUserReturnReminderInput =
+      returnFlightTouched ||
+      hasReturnTime ||
+      returnDepartureAirport.trim().length > 0 ||
+      returnFlightNumber.trim().length > 0 ||
+      (hasReturnDate && autoReturnFlightDateSource !== returnDepartureDate.trim());
+    if (hasUserReturnReminderInput && hasReturnDate !== hasReturnTime)
       return Alert.alert(
         t("createTrip.validationTitle"),
         t("createTrip.returnFlightDateTimeRequired"),
       );
-    if (hasReturnTime && !isValidTime(returnDepartureTime))
+    if (hasUserReturnReminderInput && hasReturnTime && !isValidTime(returnDepartureTime))
       return Alert.alert(
         t("createTrip.validationTitle"),
         t("createTrip.flightDateTimeInvalid"),
       );
 
-    const returnValues = [
-      returnDepartureDate,
-      returnDepartureTime,
-      returnDepartureAirport,
-      returnFlightNumber,
-    ];
+    const shouldSaveReturnFlight = hasUserReturnReminderInput && hasReturnDate && hasReturnTime;
     setSaving(true);
     try {
       const newTripId = await addTrip({
@@ -218,7 +231,7 @@ export function CreateTripScreen() {
         endDate: formatDate(endDate),
         notes: notes.trim() || undefined,
         segments: [],
-        flightDetails: hasAnyValue(returnValues)
+        flightDetails: shouldSaveReturnFlight
           ? {
               return: {
                 flightNumber: returnFlightNumber.trim() || undefined,
@@ -333,7 +346,10 @@ export function CreateTripScreen() {
         <TouchableOpacity
           style={styles.flightHeader}
           activeOpacity={0.76}
-          onPress={() => setFlightOpen((value) => !value)}
+          onPress={() => {
+            if (!flightOpen) enableReturnFlightReminder();
+            else setFlightOpen(false);
+          }}
         >
           <View style={styles.headerText}>
             <Text style={styles.sectionTitle}>
@@ -395,7 +411,10 @@ export function CreateTripScreen() {
               placeholder={t("createTrip.returnDepartureAirportPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={returnDepartureAirport}
-              onChangeText={setReturnDepartureAirport}
+              onChangeText={(value) => {
+                setReturnFlightTouched(true);
+                setReturnDepartureAirport(value);
+              }}
               autoCapitalize="characters"
             />
             <Text style={styles.label}>
@@ -406,7 +425,10 @@ export function CreateTripScreen() {
               placeholder={t("createTrip.returnFlightNumberPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={returnFlightNumber}
-              onChangeText={setReturnFlightNumber}
+              onChangeText={(value) => {
+                setReturnFlightTouched(true);
+                setReturnFlightNumber(value);
+              }}
               autoCapitalize="characters"
             />
           </>

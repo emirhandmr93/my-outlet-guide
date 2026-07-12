@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
-import type { CurrentWeather } from "../../services/weatherService";
+import type { OutletCurrentWeatherResult } from "../../services/liveWeatherService";
 import { colors } from "../../theme/colors";
 import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
@@ -11,7 +11,7 @@ import { formatReviewCount } from "../../services/reviewsRatingsService";
 
 export type QuickFactsCardProps = {
   title: string;
-  weather: CurrentWeather | null;
+  weather: OutletCurrentWeatherResult | null;
   weatherLoading: boolean;
   weatherError: boolean;
   weatherLoadingText: string;

@@ -44,7 +44,7 @@ import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getBrandCategoryGroupsForOutlet } from "../services/brandService";
 import { getRestaurantsForOutlet } from "../services/restaurantService";
 import { getOutletTransportationV2Summary } from "../services/transportationV2Service";
-import { CurrentWeather, getCurrentWeather } from "../services/weatherService";
+import { getOutletCurrentWeather, type OutletCurrentWeatherResult } from "../services/liveWeatherService";
 import {
   getAverageReviewRating,
   getCategoryAverage,
@@ -118,7 +118,7 @@ export function OutletDetailScreen() {
   const [reviewSort, setReviewSort] = useState<"helpful" | "recent">("helpful");
   const [reportedReviewIds, setReportedReviewIds] = useState<Set<string>>(() => new Set());
   const [openCategory, setOpenCategory] = useState<string | null>(null);
-  const [weather, setWeather] = useState<CurrentWeather | null>(null);
+  const [weather, setWeather] = useState<OutletCurrentWeatherResult | null>(null);
   const [weatherError, setWeatherError] = useState(false);
   const [weatherLoading, setWeatherLoading] = useState(true);
   const scrollRef = useRef<ScrollView>(null);
@@ -142,9 +142,13 @@ export function OutletDetailScreen() {
         setWeatherLoading(true);
         setWeatherError(false);
 
-        const result = await getCurrentWeather(
-          Number(outlet.latitude),
-          Number(outlet.longitude),
+        const result = await getOutletCurrentWeather(
+          {
+            key: outlet.outletId,
+            label: outlet.name,
+            latitude: Number(outlet.latitude),
+            longitude: Number(outlet.longitude),
+          },
         );
 
         setWeather(result);
@@ -302,9 +306,8 @@ export function OutletDetailScreen() {
   }
 
   function getWeatherBadgeText() {
-    if (weatherLoading) return t("weather.title");
-    if (weatherError || !weather) return t("weather.unavailable");
-    return `${weather.icon || "⛅"} ${weather.temperature}°C`;
+    if (weatherLoading || weatherError || weather?.status !== "ready" || !weather.weather || !Number.isFinite(weather.weather.temperature)) return null;
+    return `${weather.weather.temperature}°C`;
   }
 
   function showPreviousImage() {
@@ -430,7 +433,12 @@ export function OutletDetailScreen() {
         </Modal>
 
         <View style={styles.badgeRow}>
-          <Text style={styles.badge}>{getWeatherBadgeText()}</Text>
+          {getWeatherBadgeText() ? (
+            <>
+              <Text style={styles.badge}>{getWeatherBadgeText()}</Text>
+              <Text style={styles.badge}>{t("weather.sourceOpenMeteo")}</Text>
+            </>
+          ) : null}
           <Text style={styles.badge}>{outlet.status}</Text>
           {averageRating ? (
             <Text style={styles.badge}>⭐ {averageRating}</Text>
