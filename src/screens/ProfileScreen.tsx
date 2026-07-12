@@ -317,15 +317,6 @@ export function ProfileScreen() {
 
       <Text style={styles.groupTitle}>{t("profile.accountManagement")}</Text>
 
-      {canModerateReviews ? (
-        <ProfileRow
-          icon="🛡️"
-          title={t("moderation.title")}
-          subtitle={t("moderation.profileSubtitle")}
-          onPress={() => goTo("ReviewModeration")}
-        />
-      ) : null}
-
       <ProfileRow
         icon="🗑️"
         title={t("profile.deleteAccount")}
@@ -333,6 +324,18 @@ export function ProfileScreen() {
         danger
         onPress={() => goTo("DeleteAccount")}
       />
+
+      {canModerateReviews ? (
+        <>
+          <Text style={styles.groupTitle}>{t("moderation.title")}</Text>
+          <ProfileRow
+            icon="🛡️"
+            title={t("moderation.title")}
+            subtitle={t("moderation.profileSubtitle")}
+            onPress={() => goTo("ReviewModeration")}
+          />
+        </>
+      ) : null}
 
       <Text style={styles.versionText}>My Outlet Guide v1.0</Text>
     </ScrollView>
