@@ -7,6 +7,7 @@ import {
   View,
 } from "react-native";
 
+import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, WEBSITE_URL, mailtoUrl } from "../constants/externalLinks";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function ContactUsScreen() {
@@ -24,9 +25,9 @@ export function ContactUsScreen() {
 
         <TouchableOpacity
           style={styles.actionButton}
-          onPress={() => Linking.openURL("mailto:info@myoutletguide.com")}
+          onPress={() => Linking.openURL(mailtoUrl(CONTACT_EMAIL))}
         >
-          <Text style={styles.actionButtonText}>info@myoutletguide.com</Text>
+          <Text style={styles.actionButtonText}>{CONTACT_EMAIL}</Text>
         </TouchableOpacity>
       </View>
 
@@ -37,24 +38,26 @@ export function ContactUsScreen() {
 
         <TouchableOpacity
           style={styles.actionButton}
-          onPress={() => Linking.openURL("https://instagram.com/outlet.guide")}
+          onPress={() => Linking.openURL(INSTAGRAM_URL)}
         >
-          <Text style={styles.actionButtonText}>@outlet.guide</Text>
+          <Text style={styles.actionButtonText}>{INSTAGRAM_HANDLE}</Text>
         </TouchableOpacity>
       </View>
 
-      <View style={styles.card}>
-        <Text style={styles.cardTitle}>{t("contact.websiteTitle")}</Text>
+      {WEBSITE_URL ? (
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>{t("contact.websiteTitle")}</Text>
 
-        <Text style={styles.cardText}>{t("contact.websiteText")}</Text>
+          <Text style={styles.cardText}>{t("contact.websiteText")}</Text>
 
-        <TouchableOpacity
-          style={styles.actionButton}
-          onPress={() => Linking.openURL("https://www.myoutletguide.com")}
-        >
-          <Text style={styles.actionButtonText}>myoutletguide.com</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            style={styles.actionButton}
+            onPress={() => Linking.openURL(WEBSITE_URL)}
+          >
+            <Text style={styles.actionButtonText}>{WEBSITE_URL.replace(/^https?:\/\/(www\.)?/, "")}</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
 
       <View style={styles.card}>
         <Text style={styles.cardTitle}>{t("contact.featureTitle")}</Text>
