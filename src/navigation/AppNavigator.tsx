@@ -1,7 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Platform } from "react-native";
+import { ActivityIndicator, Platform, View } from "react-native";
+import { useEffect, useState } from "react";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { BrandResultsScreen } from "../screens/BrandResultsScreen";
@@ -25,6 +26,7 @@ import { MyReviewsScreen } from "../screens/MyReviewsScreen";
 import { MyTripsScreen } from "../screens/MyTripsScreen";
 import { NotificationSettingsScreen } from "../screens/NotificationSettingsScreen";
 import { OfflinePacksScreen } from "../screens/OfflinePacksScreen";
+import { OnboardingScreen } from "../screens/OnboardingScreen";
 import { OutletDetailScreen } from "../screens/OutletDetailScreen";
 import { PriceAdvantageCalculatorScreen } from "../screens/PriceAdvantageCalculatorScreen";
 import { ReviewModerationScreen } from "../screens/ReviewModerationScreen";
@@ -38,7 +40,10 @@ import { TransportationScreen } from "../screens/TransportationScreen";
 import { TripDetailScreen } from "../screens/TripDetailScreen";
 import { TripSegmentEditorScreen } from "../screens/TripSegmentEditorScreen";
 import { WriteReviewScreen } from "../screens/WriteReviewScreen";
+import { useLanguage } from "../contexts/LanguageContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { hasSeenOnboarding } from "../services/onboardingStorage";
+import colors from "../theme/colors";
 
 import type { MainTabParamList, RootStackParamList } from "./types";
 
@@ -132,6 +137,42 @@ elevation: 14,
 
 export function AppNavigator() {
 const { t } = useTranslation();
+const { isLanguageResolved } = useLanguage();
+const [shouldShowOnboarding, setShouldShowOnboarding] = useState(false);
+const [isOnboardingGateReady, setIsOnboardingGateReady] = useState(false);
+
+useEffect(() => {
+if (!isLanguageResolved) return;
+let isMounted = true;
+
+async function resolveOnboardingGate() {
+try {
+const seen = await hasSeenOnboarding();
+if (isMounted) setShouldShowOnboarding(!seen);
+} catch {
+if (isMounted) setShouldShowOnboarding(false);
+} finally {
+if (isMounted) setIsOnboardingGateReady(true);
+}
+}
+
+resolveOnboardingGate();
+return () => {
+isMounted = false;
+};
+}, [isLanguageResolved]);
+
+if (!isLanguageResolved || !isOnboardingGateReady) {
+return (
+<View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.primary }}>
+<ActivityIndicator color={colors.gold} />
+</View>
+);
+}
+
+if (shouldShowOnboarding) {
+return <OnboardingScreen onComplete={() => setShouldShowOnboarding(false)} />;
+}
 
 return (
 <NavigationContainer>

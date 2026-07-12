@@ -18,6 +18,7 @@ import {
 type LanguageContextType = {
   language: TranslationLanguage;
   setLanguage: (languageCode: TranslationLanguage) => Promise<void>;
+  isLanguageResolved: boolean;
 };
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -57,16 +58,23 @@ export function LanguageProvider({
   const [language, setLanguageState] = useState<TranslationLanguage>(
     DEFAULT_LANGUAGE
   );
+  const [isLanguageResolved, setIsLanguageResolved] = useState(false);
 
   useEffect(() => {
     loadLanguage();
   }, []);
 
   async function loadLanguage() {
-    const savedLanguage = await AsyncStorage.getItem(STORAGE_KEY);
-    setLanguageState(
-      resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
-    );
+    try {
+      const savedLanguage = await AsyncStorage.getItem(STORAGE_KEY);
+      setLanguageState(
+        resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
+      );
+    } catch {
+      setLanguageState(resolveInitialLanguage(null, getDeviceLocaleCandidates()));
+    } finally {
+      setIsLanguageResolved(true);
+    }
   }
 
   async function setLanguage(languageCode: TranslationLanguage) {
@@ -79,6 +87,7 @@ export function LanguageProvider({
       value={{
         language,
         setLanguage,
+        isLanguageResolved,
       }}
     >
       {children}
