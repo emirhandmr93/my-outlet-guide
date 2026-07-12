@@ -122,3 +122,5 @@ assert(/getOutletCurrentWeather/.test(outletDetailWeatherAudit) && /status !== "
 
 import "./checkStoreSubmissionReadiness";
 import "./checkFinalUiPolish";
+
+import "./checkMinimumWebSite";

@@ -83,3 +83,5 @@ assert(!/fake rate|mock rate|demo rate/i.test(exchangeRate), "no fake rate claim
 assert(!/Bilet al|buy ticket/i.test(flightDeals), "no buy-ticket CTA without source-backed deepLink");
 
 console.log("Store submission readiness checks passed.");
+
+import "./checkMinimumWebSite";
