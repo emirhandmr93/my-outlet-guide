@@ -14,7 +14,14 @@ export type CurrencyCode =
   | "RON"
   | "TRY";
 
+export type ExchangeRateStatus = "ready" | "stale_cache" | "unavailable";
+
 export type ExchangeRates = {
+  status: ExchangeRateStatus;
+  provider: "Frankfurter";
+  base: "EUR";
+  quotes: CurrencyCode[];
+  updatedAt: string;
   baseCurrency: "EUR";
   effectiveDate: string;
   fetchedAt: string;
@@ -54,6 +61,7 @@ const sourceUrl = `${apiBaseUrl}/v2/rates?base=EUR&quotes=${supportedCurrencyCod
   .filter((currency) => currency !== "EUR")
   .join(",")}`;
 
+const CACHE_KEY = "my_outlet_guide_live_currency_frankfurter_v1";
 let inMemoryRates: ExchangeRates | null = null;
 
 function isCurrencyCode(value: string): value is CurrencyCode {
@@ -78,7 +86,27 @@ export function isSupportedCurrency(value: string): value is CurrencyCode {
   return isCurrencyCode(value);
 }
 
-export async function fetchLatestExchangeRates(): Promise<ExchangeRates> {
+async function readCachedExchangeRates(): Promise<ExchangeRates | null> {
+  try {
+    const AsyncStorage = (await import("@react-native-async-storage/async-storage")).default;
+    const raw = await AsyncStorage.getItem(CACHE_KEY);
+    return raw ? (JSON.parse(raw) as ExchangeRates) : null;
+  } catch {
+    return inMemoryRates;
+  }
+}
+
+async function writeCachedExchangeRates(rates: ExchangeRates) {
+  inMemoryRates = rates;
+  try {
+    const AsyncStorage = (await import("@react-native-async-storage/async-storage")).default;
+    await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(rates));
+  } catch {
+    // In-memory cache remains available for this session.
+  }
+}
+
+async function fetchProviderExchangeRates(): Promise<ExchangeRates> {
   const response = await fetch(sourceUrl);
 
   if (!response.ok) {
@@ -103,16 +131,39 @@ export async function fetchLatestExchangeRates(): Promise<ExchangeRates> {
     return accumulator;
   }, {} as Record<CurrencyCode, number>);
 
-  inMemoryRates = {
-    baseCurrency: "EUR",
+  const fetched = {
+    status: "ready" as const,
+    provider: "Frankfurter" as const,
+    base: "EUR" as const,
+    quotes: supportedCurrencyCodes,
+    updatedAt: payload.date,
+    baseCurrency: "EUR" as const,
     effectiveDate: payload.date,
     fetchedAt: new Date().toISOString(),
-    sourceName: "Frankfurter",
+    sourceName: "Frankfurter" as const,
     sourceUrl,
     rates,
   };
+  await writeCachedExchangeRates(fetched);
+  return fetched;
+}
 
-  return inMemoryRates;
+export async function fetchLatestExchangeRates(): Promise<ExchangeRates> {
+  try {
+    return await fetchProviderExchangeRates();
+  } catch (error) {
+    const cached = await readCachedExchangeRates();
+    if (cached) return { ...cached, status: "stale_cache" };
+    throw error;
+  }
+}
+
+export async function getLiveExchangeRates(): Promise<ExchangeRates | { status: "unavailable"; provider: "Frankfurter"; base: "EUR"; quotes: CurrencyCode[]; rates: Record<string, never>; updatedAt?: string }> {
+  try {
+    return await fetchLatestExchangeRates();
+  } catch {
+    return { status: "unavailable", provider: "Frankfurter", base: "EUR", quotes: supportedCurrencyCodes, rates: {} };
+  }
 }
 
 export function getCachedExchangeRates(): ExchangeRates | null {
@@ -129,6 +180,7 @@ export async function convertCurrency(
   }
 
   const rates = inMemoryRates ?? (await fetchLatestExchangeRates());
+  if (rates.status === "unavailable") throw new Error("Exchange-rate provider unavailable.");
   const sourceRate = rates.rates[sourceCurrency];
   const targetRate = rates.rates[targetCurrency];
   const rate = targetRate / sourceRate;

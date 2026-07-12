@@ -221,3 +221,5 @@ export { sendWelcomeEmail } from "./welcomeEmail";
 export { deleteAccount } from "./accountDeletion";
 
 export { moderateReviewAction } from "./reviewModeration";
+
+export { getTripWeather } from "./weather";

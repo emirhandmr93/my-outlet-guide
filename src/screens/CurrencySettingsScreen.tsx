@@ -52,7 +52,7 @@ export function CurrencySettingsScreen() {
       setResult(conversion);
     } catch {
       setResult(null);
-      setError(t("currency.providerUnavailable"));
+      setError(t("currency.liveUnavailable"));
     } finally {
       setLoading(false);
     }
@@ -118,8 +118,9 @@ export function CurrencySettingsScreen() {
             <Text style={styles.resultMeta}>
               1 {result.sourceCurrency} ≈ {formatRate(result.rate, language)} {result.targetCurrency}
             </Text>
-            <Text style={styles.resultMeta}>{t("currency.source")}: {result.rates.sourceName}</Text>
-            <Text style={styles.resultMeta}>{t("currency.lastUpdated")}: {result.rates.effectiveDate}</Text>
+            <Text style={styles.resultMeta}>{result.rates.status === "stale_cache" ? t("currency.staleRate") : t("currency.liveRate")}</Text>
+            <Text style={styles.resultMeta}>{t("currency.providerFrankfurter")}</Text>
+            <Text style={styles.resultMeta}>{t("currency.updatedAt")}: {result.rates.updatedAt}</Text>
             <Text style={styles.disclaimer}>{t("currency.disclaimer")}</Text>
           </View>
         )}
