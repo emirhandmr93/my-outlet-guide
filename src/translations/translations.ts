@@ -2117,10 +2117,10 @@ export const translations: Record<
     "taxCalc.vatRate": "KDV oranı",
     "taxCalc.refundRate": "Tahmini iade oranı",
     "taxCalc.minimumSpend": "Minimum harcama",
-    "taxCalc.estimatedVatPortion": "Tahmini KDV tutarı",
-    "taxCalc.estimatedNetBeforeVat": "KDV öncesi net tutar",
+    "taxCalc.estimatedVatPortion": "Dahil edilen KDV tahmini",
+    "taxCalc.estimatedNetBeforeVat": "Vergi öncesi teknik tutar",
     "taxCalc.providerFeesUnknown": "Sağlayıcı/mağaza ücretleri dahil değildir",
-    "taxCalc.noGuaranteedRefund": "Garanti edilen iade yok",
+    "taxCalc.noGuaranteedRefund": "Garanti edilen iade değildir",
     "taxCalc.unsupportedCountry":
       "Bu ülke için güvenilir ve kaynaklı veri uygulamaya eklenmediği için Tax Free hesaplama kullanılamaz.",
     "taxCalc.invalidAmount":
@@ -16931,3 +16931,80 @@ const returnFlightOutletWeatherSafetyTranslations: Record<TranslationLanguage, R
   zh: { "createTrip.returnFlightReminderTitle": "返程航班提醒", "createTrip.returnFlightReminderHelper": "如果选择日期和时间，将为返程航班创建提醒。", "createTrip.returnFlightDate": "返程航班日期", "createTrip.returnFlightTime": "返程航班时间", "createTrip.returnFlightDateTimeRequired": "返程航班日期和时间必须一起填写。", "weather.unavailable": "无法加载天气。", "weather.providerNotConfigured": "天气提供商未配置。", "weather.missingCoordinates": "此奥莱缺少天气坐标。", "weather.sourceOpenMeteo": "来源：Open-Meteo" },
 };
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], returnFlightOutletWeatherSafetyTranslations[locale]);
+
+const taxFreeCalculatorUxTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "taxCalc.productPrice": "Product price",
+    "taxCalc.estimatedTaxFreeRefund": "Estimated Tax Free refund",
+    "taxCalc.estimatedCostAfterRefund": "Estimated cost after refund",
+    "taxCalc.actualRefundMayVary": "Actual refund may vary by store, provider and processing fees.",
+    "taxCalc.notGuaranteedRefund": "This is not a guaranteed refund.",
+    "taxCalc.sourceTitle": "Source and estimate basis",
+    "taxCalc.finalDisclaimer": "The refund is an estimate. Actual refund may be lower and depends on store, provider, processing fees, country rules, and eligibility."
+  },
+  tr: {
+    "taxCalc.productPrice": "Ürün fiyatı",
+    "taxCalc.estimatedTaxFreeRefund": "Tahmini Tax Free iadesi",
+    "taxCalc.estimatedCostAfterRefund": "İade sonrası tahmini maliyet",
+    "taxCalc.actualRefundMayVary": "Gerçek iade mağaza, sağlayıcı ve işlem ücretlerine göre değişebilir.",
+    "taxCalc.notGuaranteedRefund": "Garanti edilen iade değildir.",
+    "taxCalc.vatRate": "KDV oranı",
+    "taxCalc.sourceTitle": "Kaynak ve tahmin temelli",
+    "taxCalc.finalDisclaimer": "Tahmini iade garanti edilen iade değildir; gerçek iade mağaza, sağlayıcı, işlem ücretleri, ülke kuralları ve uygunluğa göre daha düşük olabilir."
+  },
+  es: {
+    "taxCalc.productPrice": "Precio del producto",
+    "taxCalc.estimatedTaxFreeRefund": "Reembolso Tax Free estimado",
+    "taxCalc.estimatedCostAfterRefund": "Coste estimado tras el reembolso",
+    "taxCalc.actualRefundMayVary": "El reembolso real puede variar según la tienda, el proveedor y las comisiones de procesamiento.",
+    "taxCalc.notGuaranteedRefund": "No es un reembolso garantizado.",
+    "taxCalc.sourceTitle": "Fuente y base de estimación",
+    "taxCalc.finalDisclaimer": "El reembolso es una estimación. El reembolso real puede ser menor y depende de la tienda, el proveedor, las comisiones de procesamiento, las normas del país y la elegibilidad."
+  },
+  fr: {
+    "taxCalc.productPrice": "Prix du produit",
+    "taxCalc.estimatedTaxFreeRefund": "Remboursement Tax Free estimé",
+    "taxCalc.estimatedCostAfterRefund": "Coût estimé après remboursement",
+    "taxCalc.actualRefundMayVary": "Le remboursement réel peut varier selon le magasin, le fournisseur et les frais de traitement.",
+    "taxCalc.notGuaranteedRefund": "Ce remboursement n’est pas garanti.",
+    "taxCalc.sourceTitle": "Source et base d’estimation",
+    "taxCalc.finalDisclaimer": "Le remboursement est une estimation. Le remboursement réel peut être inférieur et dépend du magasin, du fournisseur, des frais de traitement, des règles du pays et de l’éligibilité."
+  },
+  de: {
+    "taxCalc.productPrice": "Produktpreis",
+    "taxCalc.estimatedTaxFreeRefund": "Geschätzte Tax-Free-Erstattung",
+    "taxCalc.estimatedCostAfterRefund": "Geschätzte Kosten nach Erstattung",
+    "taxCalc.actualRefundMayVary": "Die tatsächliche Erstattung kann je nach Geschäft, Anbieter und Bearbeitungsgebühren variieren.",
+    "taxCalc.notGuaranteedRefund": "Dies ist keine garantierte Erstattung.",
+    "taxCalc.sourceTitle": "Quelle und Schätzgrundlage",
+    "taxCalc.finalDisclaimer": "Die Erstattung ist eine Schätzung. Die tatsächliche Erstattung kann niedriger sein und hängt von Geschäft, Anbieter, Bearbeitungsgebühren, Landesregeln und Berechtigung ab."
+  },
+  ar: {
+    "taxCalc.productPrice": "سعر المنتج",
+    "taxCalc.estimatedTaxFreeRefund": "استرداد Tax Free تقديري",
+    "taxCalc.estimatedCostAfterRefund": "التكلفة التقديرية بعد الاسترداد",
+    "taxCalc.actualRefundMayVary": "قد يختلف الاسترداد الفعلي حسب المتجر والمزود ورسوم المعالجة.",
+    "taxCalc.notGuaranteedRefund": "هذا الاسترداد غير مضمون.",
+    "taxCalc.sourceTitle": "المصدر وأساس التقدير",
+    "taxCalc.finalDisclaimer": "الاسترداد تقديري. قد يكون الاسترداد الفعلي أقل ويعتمد على المتجر والمزود ورسوم المعالجة وقواعد البلد والأهلية."
+  },
+  ru: {
+    "taxCalc.productPrice": "Цена товара",
+    "taxCalc.estimatedTaxFreeRefund": "Расчётный возврат Tax Free",
+    "taxCalc.estimatedCostAfterRefund": "Расчётная стоимость после возврата",
+    "taxCalc.actualRefundMayVary": "Фактический возврат может отличаться в зависимости от магазина, провайдера и комиссий за обработку.",
+    "taxCalc.notGuaranteedRefund": "Возврат не гарантирован.",
+    "taxCalc.sourceTitle": "Источник и основа оценки",
+    "taxCalc.finalDisclaimer": "Возврат является оценкой. Фактический возврат может быть ниже и зависит от магазина, провайдера, комиссий за обработку, правил страны и права на возврат."
+  },
+  zh: {
+    "taxCalc.productPrice": "商品价格",
+    "taxCalc.estimatedTaxFreeRefund": "预计 Tax Free 退税",
+    "taxCalc.estimatedCostAfterRefund": "退税后预计成本",
+    "taxCalc.actualRefundMayVary": "实际退税可能因商店、服务商和处理费用而异。",
+    "taxCalc.notGuaranteedRefund": "这不是保证退税。",
+    "taxCalc.sourceTitle": "来源与估算依据",
+    "taxCalc.finalDisclaimer": "退税为估算值。实际退税可能更低，并取决于商店、服务商、处理费用、国家规则和资格。"
+  }
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeCalculatorUxTranslations[locale]);

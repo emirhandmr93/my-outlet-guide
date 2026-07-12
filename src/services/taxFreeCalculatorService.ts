@@ -4,8 +4,8 @@ export type TaxFreeEstimate = {
   grossAmount: number;
   netAmount: number;
   vatPortion: number;
-  estimatedRefund?: number;
-  estimatedNetCost?: number;
+  estimatedTaxFreeRefund: number;
+  estimatedCostAfterRefund: number;
 };
 
 export function parsePurchaseAmount(value: string) {
@@ -24,20 +24,15 @@ export function calculateTaxFreeEstimate(
 ): TaxFreeEstimate {
   const netAmount = grossAmount / (1 + rule.vatRate / 100);
   const vatPortion = grossAmount - netAmount;
-  const estimatedRefund =
-    typeof rule.providerFeeRate === "number"
-      ? vatPortion * (1 - rule.providerFeeRate)
-      : undefined;
+  const estimatedTaxFreeRefund = vatPortion;
+  const estimatedCostAfterRefund = grossAmount - estimatedTaxFreeRefund;
 
   return {
     grossAmount,
     netAmount,
     vatPortion,
-    estimatedRefund,
-    estimatedNetCost:
-      typeof estimatedRefund === "number"
-        ? grossAmount - estimatedRefund
-        : undefined,
+    estimatedTaxFreeRefund,
+    estimatedCostAfterRefund,
   };
 }
 
