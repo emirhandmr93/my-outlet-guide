@@ -8,6 +8,7 @@ import { currencies } from "../constants/currencies";
 import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
 import { CurrencyCode, formatCurrency } from "../services/exchangeRateService";
+import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 import {
   calculateTaxFreeEstimate,
   isBelowMinimumPurchase,
@@ -17,7 +18,7 @@ import { useTranslation } from "../hooks/useTranslation";
 
 export function TaxFreeCalculatorScreen() {
   const [amount, setAmount] = useState("");
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   const {
     selectedCountryId,
@@ -44,6 +45,9 @@ export function TaxFreeCalculatorScreen() {
       ? calculateTaxFreeEstimate(parsedAmount, rule)
       : undefined;
 
+  const displayCurrency = rule?.currency ?? selectedCountry.currency;
+  const selectedCountryDisplayName = getLocalizedCountryName(selectedCountry, language);
+  const selectedCurrencyDisplayName = getLocalizedCurrencyName(selectedCurrencyInfo, language);
   const isCurrencyMismatch =
     !!rule && selectedCountry.currency !== rule.currency;
   const isBelowMinimum =
@@ -73,7 +77,7 @@ export function TaxFreeCalculatorScreen() {
               <View>
                 <Text style={styles.settingsLabel}>{t("common.country")}</Text>
                 <Text style={styles.settingsValue}>
-                  {selectedCountry.countryName}
+                  {selectedCountryDisplayName}
                 </Text>
               </View>
             </View>
@@ -88,7 +92,7 @@ export function TaxFreeCalculatorScreen() {
                 <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
                 <Text style={styles.settingsValue}>{selectedCurrency}</Text>
                 <Text style={styles.settingsSubvalue}>
-                  {selectedCurrencyInfo.currencyName}
+                  {selectedCurrencyDisplayName}
                 </Text>
               </View>
             </View>
@@ -108,8 +112,8 @@ export function TaxFreeCalculatorScreen() {
         </View>
 
         <Text style={styles.label}>
-          {t("taxCalc.shoppingAmount")} (
-          {rule?.currency ?? selectedCountry.currency})
+          {t("taxCalc.productPrice")} (
+          {displayCurrency})
         </Text>
 
         <TextInput
@@ -161,11 +165,11 @@ export function TaxFreeCalculatorScreen() {
             <View style={styles.resultGrid}>
               <View style={styles.resultBox}>
                 <Text style={styles.resultLabel}>
-                  {t("taxCalc.estimatedVatPortion")}
+                  {t("taxCalc.estimatedTaxFreeRefund")}
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(
-                    estimate.vatPortion,
+                    estimate.estimatedTaxFreeRefund,
                     rule.currency as CurrencyCode,
                   )}
                 </Text>
@@ -173,11 +177,11 @@ export function TaxFreeCalculatorScreen() {
 
               <View style={styles.resultBox}>
                 <Text style={styles.resultLabel}>
-                  {t("taxCalc.estimatedNetBeforeVat")}
+                  {t("taxCalc.estimatedCostAfterRefund")}
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(
-                    estimate.netAmount,
+                    estimate.estimatedCostAfterRefund,
                     rule.currency as CurrencyCode,
                   )}
                 </Text>
@@ -186,10 +190,10 @@ export function TaxFreeCalculatorScreen() {
 
             <View style={styles.highlightBox}>
               <Text style={styles.highlightLabel}>
-                {t("taxCalc.providerFeesUnknown")}
+                {t("taxCalc.actualRefundMayVary")}
               </Text>
               <Text style={styles.highlightValue}>
-                {t("taxCalc.noGuaranteedRefund")}
+                {t("taxCalc.notGuaranteedRefund")}
               </Text>
             </View>
           </>

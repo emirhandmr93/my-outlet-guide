@@ -201,7 +201,7 @@ export function PriceAdvantageCalculatorScreen() {
 
         <Text style={styles.note}>
           {includeTaxFree && rule
-            ? `${t("taxCalc.estimatedVatPortion")}: ${formatCurrency(refund, rule.currency as CurrencyCode)}. ${t("taxCalc.providerFeesUnknown")}`
+            ? `${t("taxCalc.estimatedTaxFreeRefund")}: ${formatCurrency(refund, rule.currency as CurrencyCode)}. ${t("taxCalc.providerFeesUnknown")}`
             : includeTaxFree
               ? t("taxCalc.unsupportedCountry")
               : t("priceCalc.taxFreeNotIncluded")}
