@@ -1,6 +1,8 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
+import { heroAssets } from "../media/heroAssets";
 import { useNotificationSettings } from "../contexts/NotificationSettingsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
@@ -30,11 +32,11 @@ export function NotificationSettingsScreen() {
       contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
       scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
     >
-      <View style={styles.heroCard}>
+      <LocalHeroImageCard imageSource={heroAssets.notifications} style={styles.heroCard} contentStyle={styles.heroInner}>
         <Text style={styles.kicker}>{t("notifications.kicker")}</Text>
         <Text style={styles.pageTitle}>{t("notifications.title")}</Text>
         <Text style={styles.pageSubtitle}>{t("notifications.subtitle")}</Text>
-      </View>
+      </LocalHeroImageCard>
 
       {!isLoggedIn ? (
         <StatusCard
@@ -183,12 +185,8 @@ const styles = StyleSheet.create({
     paddingBottom: 120,
   },
 
-  heroCard: {
-    backgroundColor: "#0B1F3A",
-    borderRadius: 30,
-    padding: 24,
-    marginBottom: 16,
-  },
+  heroCard: { marginBottom: 16 },
+  heroInner: { padding: 24 },
 
   kicker: {
     color: "#C9A227",

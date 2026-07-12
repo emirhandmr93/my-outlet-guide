@@ -9,7 +9,9 @@ import {
   View,
 } from "react-native";
 
+import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { useAuth } from "../contexts/AuthContext";
+import { heroAssets } from "../media/heroAssets";
 import { deleteAccountWithBackend, getCallableErrorCode, getSafeCallableErrorMessage, mapDeleteAccountError } from "../services/accountDeletionCallable";
 import { useTranslation } from "../hooks/useTranslation";
 
@@ -62,9 +64,10 @@ export function DeleteAccountScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.pageTitle}>{t("deleteAccount.title")}</Text>
-
-      <Text style={styles.pageSubtitle}>{t("deleteAccount.subtitle")}</Text>
+      <LocalHeroImageCard imageSource={heroAssets.security} style={styles.heroCard} contentStyle={styles.heroInner}>
+        <Text style={styles.pageTitle}>{t("deleteAccount.title")}</Text>
+        <Text style={styles.pageSubtitle}>{t("deleteAccount.subtitle")}</Text>
+      </LocalHeroImageCard>
 
       {!currentUser && (
         <View style={styles.card}>
@@ -127,17 +130,19 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20, paddingTop: 60, paddingBottom: 120 },
 
+  heroCard: { marginBottom: 22 },
+  heroInner: { padding: 24 },
+
   pageTitle: {
     fontSize: 28,
     fontWeight: "800",
-    color: "#0B1F3A",
+    color: "#FFFFFF",
   },
 
   pageSubtitle: {
     fontSize: 15,
-    color: "#C9A227",
-    marginTop: 6,
-    marginBottom: 22,
+    color: "#D8DEE9",
+    marginTop: 8,
   },
 
   card: {

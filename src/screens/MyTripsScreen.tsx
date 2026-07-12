@@ -2,7 +2,9 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { Trip, useTrips } from "../contexts/TripsContext";
+import { heroAssets } from "../media/heroAssets";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getTripStatusLabel } from "../utils/getTripStatusLabel";
@@ -88,13 +90,13 @@ export function MyTripsScreen() {
       contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
       scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
     >
-      <View style={styles.heroCard}>
+      <LocalHeroImageCard imageSource={heroAssets.trips} style={styles.heroCard} contentStyle={styles.heroInner}>
         <Text style={styles.kicker}>{t("trips.heroKicker")}</Text>
         <Text style={styles.title}>{t("trips.heroTitle")}</Text>
         <Text style={styles.subtitle}>
           {t("trips.heroSubtitle")}
         </Text>
-      </View>
+      </LocalHeroImageCard>
 
       <View style={styles.summaryRow}>
         <View style={styles.summaryBox}>
@@ -167,7 +169,8 @@ export function MyTripsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20 },
-  heroCard: { backgroundColor: "#0B1F3A", borderRadius: 30, padding: 24, marginBottom: 16 },
+  heroCard: { marginBottom: 16 },
+  heroInner: { padding: 24 },
   kicker: { color: "#C9A227", fontSize: 12, fontWeight: "900", letterSpacing: 1.2, marginBottom: 10 },
   title: { color: "#FFFFFF", fontSize: 30, fontWeight: "900", lineHeight: 36 },
   subtitle: { color: "#D8DEE9", fontSize: 15, lineHeight: 22, marginTop: 10 },

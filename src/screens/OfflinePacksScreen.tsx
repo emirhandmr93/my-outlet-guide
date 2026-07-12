@@ -1,5 +1,7 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
+import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
+import { heroAssets } from "../media/heroAssets";
 import { useTranslation } from "../hooks/useTranslation";
 import { getOfflineAvailabilitySummary } from "../services/offlinePackEngine";
 
@@ -12,11 +14,11 @@ export function OfflinePacksScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.heroCard}>
+      <LocalHeroImageCard imageSource={heroAssets.offline} style={styles.heroCard} contentStyle={styles.heroInner}>
         <Text style={styles.kicker}>{t("offline.kicker")}</Text>
         <Text style={styles.pageTitle}>{t("offline.title")}</Text>
         <Text style={styles.pageSubtitle}>{t("offline.subtitle")}</Text>
-      </View>
+      </LocalHeroImageCard>
 
       <View style={styles.noticeCard}>
         <Text style={styles.noticeTitle}>{t("offline.alreadyAvailable")}</Text>
@@ -78,7 +80,8 @@ function StatusCard({ icon, title, text }: { icon: string; title: string; text: 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20, paddingTop: 60, paddingBottom: 120 },
-  heroCard: { backgroundColor: "#0B1F3A", borderRadius: 30, padding: 24, marginBottom: 16 },
+  heroCard: { marginBottom: 16 },
+  heroInner: { padding: 24 },
   kicker: { color: "#C9A227", fontSize: 12, fontWeight: "900", letterSpacing: 1.3, marginBottom: 8, textTransform: "uppercase" },
   pageTitle: { fontSize: 26, fontWeight: "900", color: "#FFFFFF" },
   pageSubtitle: { fontSize: 14, color: "#D8DEE9", marginTop: 8, lineHeight: 20 },

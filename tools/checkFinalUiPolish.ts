@@ -9,6 +9,10 @@ function runScreenshotPolishAudit() {
   execFileSync("npx", ["tsx", "tools/checkFinalScreenshotPolish.ts"], { stdio: "inherit" });
 }
 
+function runHeroAssetAudit() {
+  execFileSync("npx", ["tsx", "tools/checkHeroAssets.ts"], { stdio: "inherit" });
+}
+
 function assert(condition: unknown, message: string) {
   if (!condition) throw new Error(message);
   console.log(`OK: ${message}`);
@@ -21,6 +25,7 @@ function indexOfOrThrow(source: string, needle: string, label: string) {
 }
 
 runScreenshotPolishAudit();
+runHeroAssetAudit();
 
 const nav = read("src/navigation/AppNavigator.tsx");
 const navTypes = read("src/navigation/types.ts");
