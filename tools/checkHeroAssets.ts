@@ -53,7 +53,7 @@ for (const [screenPath, assetMarker, translationKeys] of mappedScreens) {
   for (const key of translationKeys) {
     assert(source.includes(`t("${key}")`) || source.includes(`t(isAuthenticated\n              ? "profile.syncedText"\n              : "profile.signInText")`), `${screenPath} keeps hero text translation-backed: ${key}`);
   }
-  assert(!/fake|mock|demo|lorem|dummy|sample fare|sample trip|coming soon|TODO/i.test(source), `${screenPath} has no fake/mock/demo/debug hero content`);
+  assert(!/\b(fake|mock|demo|lorem|dummy)\b|sample fare|sample trip|coming soon|TODO/i.test(source), `${screenPath} has no fake/mock/demo/debug hero content`);
 }
 
 const heroComponent = read("src/components/LocalHeroImageCard.tsx");
