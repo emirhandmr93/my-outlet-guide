@@ -90,3 +90,5 @@ assert(!/Bilet al|buy ticket/i.test(flightDeals), "no buy-ticket CTA without sou
 console.log("Store submission readiness checks passed.");
 
 import "./checkMinimumWebSite";
+
+import "./checkStoreMetadataPackage";

@@ -124,3 +124,5 @@ import "./checkStoreSubmissionReadiness";
 import "./checkFinalUiPolish";
 
 import "./checkMinimumWebSite";
+
+import "./checkStoreMetadataPackage";
