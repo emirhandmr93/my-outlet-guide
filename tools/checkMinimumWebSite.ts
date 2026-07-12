@@ -62,7 +62,8 @@ assert(!/Profile|Account management|Delete Account/.test(trDeletion), "Turkish a
 assert(!/Firebase auth hesabı/.test(trDeletion), "Turkish account deletion does not show Firebase auth hesabı");
 assert(!/Store readiness/i.test(allWeb), "Store readiness is not visible in web pages");
 assert(!/without heavy website dependencies/i.test(read("web/index.html")), "English home does not show internal website dependency copy");
-assert(/\.pill\{[^}]*background:#f2c35a[^}]*color:#071b33[^}]*font-weight:900/.test(styles), "hero badge uses readable high-contrast styling");
+assert(/\.pill\{[^}]*background:#f7d77f[^}]*color:#071b33[^}]*font-weight:900[^}]*text-shadow:none/.test(styles), "hero badge uses readable high-contrast styling");
+assert(/\.links a\{[^}]*background:#f7d77f[^}]*color:#071b33[^}]*font-weight:800/.test(styles), "nav badge labels use readable high-contrast styling");
 assert(/Outlet guide/.test(read("web/index.html")) && /Outlet rehberi/.test(trHome), "user-facing hero badge copy exists in English and Turkish");
 for (const label of ["Home", "Privacy", "Terms", "Contact", "Account Deletion", "EN", "TR"]) assert(allWeb.includes(`>${label}<`), `mobile nav label exists: ${label}`);
 for (const label of ["Ana Sayfa", "Gizlilik", "Koşullar", "İletişim", "Hesap Silme"]) assert(allWeb.includes(`>${label}<`), `Turkish mobile nav label exists: ${label}`);
