@@ -11,7 +11,7 @@ import {
   formatRate,
   isSupportedCurrency,
   type ConversionResult,
-} from "../services/exchangeRateService";
+} from "../services/liveCurrencyService";
 
 export function CurrencySettingsScreen() {
   const { selectedCurrency, setSelectedCurrency } = useSavings();

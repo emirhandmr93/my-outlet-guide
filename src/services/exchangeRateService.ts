@@ -56,10 +56,10 @@ export const supportedCurrencyCodes: CurrencyCode[] = [
   "TRY",
 ];
 
-const apiBaseUrl = "https://api.frankfurter.dev";
-const sourceUrl = `${apiBaseUrl}/v2/rates?base=EUR&quotes=${supportedCurrencyCodes
-  .filter((currency) => currency !== "EUR")
-  .join(",")}`;
+export const FRANKFURTER_API_BASE_URL = "https://api.frankfurter.dev";
+export const FRANKFURTER_RATES_ENDPOINT = `${FRANKFURTER_API_BASE_URL}/v2/rates`;
+const frankfurterQuoteCurrencies = supportedCurrencyCodes.filter((currency) => currency !== "EUR");
+export const sourceUrl = `${FRANKFURTER_RATES_ENDPOINT}?base=EUR&quotes=${frankfurterQuoteCurrencies.join(",")}`;
 
 const CACHE_KEY = "my_outlet_guide_live_currency_frankfurter_v1";
 let inMemoryRates: ExchangeRates | null = null;
@@ -106,15 +106,43 @@ async function writeCachedExchangeRates(rates: ExchangeRates) {
   }
 }
 
-async function fetchProviderExchangeRates(): Promise<ExchangeRates> {
-  const response = await fetch(sourceUrl);
+function logCurrencyFetchFailure(error: unknown, statusCode?: number) {
+  if (typeof __DEV__ !== "undefined" && __DEV__) {
+    const safeMessage = error instanceof Error ? error.message : "Unknown currency fetch failure.";
+    console.warn("Currency fetch failed", {
+      provider: "Frankfurter",
+      requestUrl: sourceUrl,
+      base: "EUR",
+      symbols: frankfurterQuoteCurrencies,
+      statusCode,
+      message: safeMessage,
+    });
+  }
+}
 
-  if (!response.ok) {
-    throw new Error(`Exchange-rate provider unavailable (${response.status}).`);
+async function fetchProviderExchangeRates(): Promise<ExchangeRates> {
+  let response: Response;
+  try {
+    response = await fetch(sourceUrl);
+  } catch (error) {
+    logCurrencyFetchFailure(error);
+    throw error;
   }
 
-  const payload: unknown = await response.json();
-  assertRatesPayload(payload);
+  if (!response.ok) {
+    const error = new Error(`Exchange-rate provider unavailable (${response.status}).`);
+    logCurrencyFetchFailure(error, response.status);
+    throw error;
+  }
+
+  let payload: unknown;
+  try {
+    payload = await response.json();
+    assertRatesPayload(payload);
+  } catch (error) {
+    logCurrencyFetchFailure(error, response.status);
+    throw error;
+  }
 
   const rates = supportedCurrencyCodes.reduce((accumulator, currency) => {
     if (currency === "EUR") {
@@ -124,7 +152,9 @@ async function fetchProviderExchangeRates(): Promise<ExchangeRates> {
 
     const rate = payload.rates[currency];
     if (typeof rate !== "number" || !Number.isFinite(rate) || rate <= 0) {
-      throw new Error(`Exchange-rate provider did not return ${currency}.`);
+      const error = new Error(`Exchange-rate provider did not return ${currency}.`);
+      logCurrencyFetchFailure(error, response.status);
+      throw error;
     }
 
     accumulator[currency] = rate;

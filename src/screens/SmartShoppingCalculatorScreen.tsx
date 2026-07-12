@@ -14,10 +14,11 @@ import {
 } from "../services/exchangeRateService";
 import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
+import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 
 export function SmartShoppingCalculatorScreen() {
   const [price, setPrice] = useState("");
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   const {
     selectedCountryId,
@@ -44,12 +45,14 @@ export function SmartShoppingCalculatorScreen() {
   const refund = estimate?.vatPortion ?? 0;
   const netCost = numericPrice - refund;
   const [convertedNetCost, setConvertedNetCost] = useState<number | null>(null);
+  const [conversionUnavailable, setConversionUnavailable] = useState(false);
 
   useEffect(() => {
     let active = true;
 
     if (!rule || netCost <= 0) {
       setConvertedNetCost(null);
+      setConversionUnavailable(false);
       return;
     }
 
@@ -57,11 +60,13 @@ export function SmartShoppingCalculatorScreen() {
       .then((result) => {
         if (active) {
           setConvertedNetCost(result.convertedAmount);
+          setConversionUnavailable(false);
         }
       })
       .catch(() => {
         if (active) {
           setConvertedNetCost(null);
+          setConversionUnavailable(true);
         }
       });
 
@@ -95,7 +100,7 @@ export function SmartShoppingCalculatorScreen() {
               <View>
                 <Text style={styles.settingsLabel}>{t("common.country")}</Text>
                 <Text style={styles.settingsValue}>
-                  {selectedCountry.countryName}
+                  {getLocalizedCountryName(selectedCountry, language)}
                 </Text>
               </View>
             </View>
@@ -110,7 +115,7 @@ export function SmartShoppingCalculatorScreen() {
                 <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
                 <Text style={styles.settingsValue}>{selectedCurrency}</Text>
                 <Text style={styles.settingsSubvalue}>
-                  {selectedCurrencyInfo.currencyName}
+                  {getLocalizedCurrencyName(selectedCurrencyInfo, language)}
                 </Text>
               </View>
             </View>
@@ -148,7 +153,7 @@ export function SmartShoppingCalculatorScreen() {
             </Text>
             <Text style={styles.resultValue}>
               {rule
-                ? formatCurrency(refund, rule.currency as CurrencyCode)
+                ? formatCurrency(refund, rule.currency as CurrencyCode, language)
                 : "—"}
             </Text>
           </View>
@@ -159,7 +164,7 @@ export function SmartShoppingCalculatorScreen() {
             </Text>
             <Text style={styles.resultValue}>
               {rule
-                ? formatCurrency(netCost, rule.currency as CurrencyCode)
+                ? formatCurrency(netCost, rule.currency as CurrencyCode, language)
                 : "—"}
             </Text>
           </View>
@@ -171,8 +176,10 @@ export function SmartShoppingCalculatorScreen() {
           </Text>
           <Text style={styles.highlightValue}>
             {convertedNetCost === null
-              ? t("currency.unavailableShort")
-              : formatCurrency(convertedNetCost, selectedCurrency)}
+              ? conversionUnavailable && rule && numericPrice > 0
+                ? t("currency.unavailableShort")
+                : formatCurrency(0, selectedCurrency, language)
+              : formatCurrency(convertedNetCost, selectedCurrency, language)}
           </Text>
         </View>
 

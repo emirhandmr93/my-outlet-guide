@@ -9,6 +9,7 @@ import { currencies } from "../constants/currencies";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { getLiveExchangeRates } from "../services/liveCurrencyService";
+import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 
 type SavingsTool = {
   id: string;
@@ -22,7 +23,7 @@ type SavingsTool = {
 
 export function SavingsScreen() {
   const navigation = useNavigation<any>();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [currencyStatus, setCurrencyStatus] = useState("");
   const [currencyUpdatedAt, setCurrencyUpdatedAt] = useState("");
 
@@ -111,7 +112,7 @@ export function SavingsScreen() {
             <Text style={styles.settingsFlag}>{selectedCountry.countryFlag}</Text>
             <View>
               <Text style={styles.settingsLabel}>{t("common.country")}</Text>
-              <Text style={styles.settingsValue}>{selectedCountry.countryName}</Text>
+              <Text style={styles.settingsValue}>{getLocalizedCountryName(selectedCountry, language)}</Text>
             </View>
           </View>
 
@@ -122,7 +123,7 @@ export function SavingsScreen() {
             <View>
               <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
               <Text style={styles.settingsValue}>{selectedCurrency}</Text>
-                <Text style={styles.settingsSubvalue}>{selectedCurrencyInfo.currencyName}</Text>
+                <Text style={styles.settingsSubvalue}>{getLocalizedCurrencyName(selectedCurrencyInfo, language)}</Text>
             </View>
           </View>
         </View>
