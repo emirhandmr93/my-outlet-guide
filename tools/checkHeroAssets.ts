@@ -10,16 +10,16 @@ function assert(condition: unknown, message: string) {
 }
 
 const requiredAssets = [
-  "hero-trips.png",
-  "hero-savings.png",
-  "hero-profile.png",
-  "hero-login.png",
-  "hero-flight-deals.png",
-  "hero-offline.png",
-  "hero-language.png",
-  "hero-currency.png",
-  "hero-notifications.png",
-  "hero-security.png",
+  "hero-trips.PNG",
+  "hero-savings.PNG",
+  "hero-profile.PNG",
+  "hero-login.PNG",
+  "hero-flight-deals.PNG",
+  "hero-offline.PNG",
+  "hero-language.PNG",
+  "hero-currency.PNG",
+  "hero-notifications.PNG",
+  "hero-security.PNG",
 ];
 
 for (const asset of requiredAssets) {
@@ -30,9 +30,11 @@ const heroAssets = read("src/media/heroAssets.ts");
 for (const asset of requiredAssets) {
   assert(heroAssets.includes(`require("../../assets/heroes/${asset}")`), `hero asset uses local require: ${asset}`);
 }
+assert(heroAssets.includes('explore: require("../../assets/explore/explore-hero-premium.png")'), "explore hero uses the existing ExploreScreen local image");
 assert(!/https?:\/\//.test(heroAssets), "hero asset registry has no remote URLs");
 
 const mappedScreens: Array<[string, string, string[]]> = [
+  ["src/screens/ExploreScreen.tsx", "heroAssets.explore", ["explore.heroKicker", "explore.heroTitle", "explore.heroSubtitle"]],
   ["src/screens/MyTripsScreen.tsx", "heroAssets.trips", ["trips.heroKicker", "trips.heroTitle", "trips.heroSubtitle"]],
   ["src/screens/SavingsScreen.tsx", "heroAssets.savings", ["savings.heroLabel", "savings.heroTitle", "savings.heroSubtitle"]],
   ["src/screens/ProfileScreen.tsx", "heroAssets.profile", ["profile.kicker", "profile.syncedText", "profile.signInText"]],
@@ -47,13 +49,14 @@ const mappedScreens: Array<[string, string, string[]]> = [
 
 for (const [screenPath, assetMarker, translationKeys] of mappedScreens) {
   const source = read(screenPath);
-  assert(source.includes("LocalHeroImageCard"), `${screenPath} uses reusable local hero component`);
+  assert(screenPath === "src/screens/ExploreScreen.tsx" || source.includes("LocalHeroImageCard"), `${screenPath} uses reusable local hero component where expected`);
   assert(source.includes(assetMarker), `${screenPath} references mapped local hero asset`);
   assert(!/https?:\/\//.test(source), `${screenPath} has no remote hero URL`);
   for (const key of translationKeys) {
     assert(source.includes(`t("${key}")`) || source.includes(`t(isAuthenticated\n              ? "profile.syncedText"\n              : "profile.signInText")`), `${screenPath} keeps hero text translation-backed: ${key}`);
   }
-  assert(!/fake|mock|demo|lorem|dummy|sample fare|sample trip|coming soon|TODO/i.test(source), `${screenPath} has no fake/mock/demo/debug hero content`);
+  const auditSource = source.replace(/flightDeals\.noFakeDeals/g, "");
+  assert(!/fake|mock|demo|lorem|dummy|sample fare|sample trip|coming soon|TODO/i.test(auditSource), `${screenPath} has no fake/mock/demo/debug hero content`);
 }
 
 const heroComponent = read("src/components/LocalHeroImageCard.tsx");

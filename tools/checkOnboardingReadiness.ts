@@ -27,6 +27,18 @@ assert(!/firebase|firestore|getAuth|getFunctions|collection\(|doc\(/i.test(scree
 assert(!/requestPermissions|requestPermissionsAsync|getPermissionsAsync|expo-notifications|notification permission/i.test(screen + storage), "onboarding does not request notification permission");
 assert(!/Login|requireAuth|signIn|authMessage|onAuthStateChanged/i.test(screen + storage), "onboarding does not force login");
 for (const key of ["outletDiscovery", "tripPlanning", "savingsTools", "flightDeals"]) assert(screen.includes(`key: "${key}"`) || screen.includes(key), `onboarding page exists: ${key}`);
+
+const expectedHeroMappings: Array<[string, string]> = [
+  ["outletDiscovery", "heroAssets.explore"],
+  ["tripPlanning", "heroAssets.trips"],
+  ["savingsTools", "heroAssets.savings"],
+  ["flightDeals", "heroAssets.flightDeals"],
+];
+for (const [pageKey, heroMarker] of expectedHeroMappings) {
+  assert(screen.includes(`key: "${pageKey}"`) && screen.includes(`hero: ${heroMarker}`), `onboarding ${pageKey} uses ${heroMarker}`);
+}
+assert(screen.includes("ImageBackground") && screen.includes("source={page.hero}"), "onboarding renders mapped local hero images");
+assert(!screen.includes("disabled={pageIndex === 0}") && screen.includes("pageIndex > 0"), "Back button is hidden on the first onboarding page");
 assert(/key: "flightDeals"/.test(screen) && !/trustedGuide|security guide|Güvenli rehber/i.test(screen), "Page 4 is flightDeals, not trustedGuide/security guide");
 for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) {
   assert(new RegExp(`${locale}: \\{[\\s\\S]*onboarding\.pages\.flightDeals\.body`).test(translations) || translations.includes(`onboardingTranslations.${locale}`), `all onboarding translation keys exist for ${locale}`);
