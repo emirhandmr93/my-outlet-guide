@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -8,6 +8,7 @@ import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { getLiveExchangeRates } from "../services/liveCurrencyService";
 
 type SavingsTool = {
   id: string;
@@ -22,6 +23,18 @@ type SavingsTool = {
 export function SavingsScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const [currencyStatus, setCurrencyStatus] = useState("");
+  const [currencyUpdatedAt, setCurrencyUpdatedAt] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    getLiveExchangeRates().then((rates) => {
+      if (!active) return;
+      setCurrencyStatus(rates.status);
+      setCurrencyUpdatedAt(rates.updatedAt || "");
+    });
+    return () => { active = false; };
+  }, []);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const {
     selectedCountryId,
@@ -129,6 +142,12 @@ export function SavingsScreen() {
             />
           </View>
         ) : null}
+
+        <View style={styles.liveRateBox}>
+          <Text style={styles.settingsLabel}>{currencyStatus === "stale_cache" ? t("currency.staleRate") : currencyStatus === "unavailable" ? t("currency.liveUnavailable") : t("currency.liveRate")}</Text>
+          <Text style={styles.settingsSubvalue}>{t("currency.providerFrankfurter")}</Text>
+          {currencyUpdatedAt ? <Text style={styles.settingsSubvalue}>{t("currency.updatedAt")}: {currencyUpdatedAt}</Text> : null}
+        </View>
       </View>
 
       <View style={styles.snapshotCard}>
@@ -348,6 +367,13 @@ const styles = StyleSheet.create({
 
   settingsSelectors: {
     marginTop: 16,
+  },
+
+  liveRateBox: {
+    marginTop: 14,
+    backgroundColor: "#F7F8FA",
+    borderRadius: 16,
+    padding: 12,
   },
 
   settingsSelectorTitle: {
