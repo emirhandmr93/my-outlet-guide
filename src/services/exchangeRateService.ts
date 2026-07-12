@@ -27,7 +27,7 @@ export type ExchangeRates = {
   fetchedAt: string;
   sourceName: "Frankfurter";
   sourceUrl: string;
-  rates: Record<CurrencyCode, number>;
+  rates: Partial<Record<CurrencyCode, number>>;
 };
 
 export type ConversionResult = {
@@ -68,18 +68,52 @@ function isCurrencyCode(value: string): value is CurrencyCode {
   return supportedCurrencyCodes.includes(value as CurrencyCode);
 }
 
-function assertRatesPayload(
-  payload: unknown
-): asserts payload is { date: string; rates: Partial<Record<CurrencyCode, number>> } {
-  if (!payload || typeof payload !== "object") {
-    throw new Error("Exchange-rate provider returned an invalid response.");
+type FrankfurterV2RateRow = {
+  date: string;
+  base: string;
+  quote: string;
+  rate: number;
+};
+
+function isUsableFrankfurterV2RateRow(row: unknown): row is FrankfurterV2RateRow {
+  if (!row || typeof row !== "object") return false;
+  const candidate = row as Partial<Record<keyof FrankfurterV2RateRow, unknown>>;
+  return (
+    typeof candidate.date === "string" &&
+    typeof candidate.base === "string" &&
+    typeof candidate.quote === "string" &&
+    typeof candidate.rate === "number" &&
+    Number.isFinite(candidate.rate) &&
+    candidate.rate > 0
+  );
+}
+
+function parseFrankfurterV2RatesPayload(payload: unknown): { effectiveDate: string; rates: Partial<Record<CurrencyCode, number>> } {
+  if (!Array.isArray(payload)) {
+    throw new Error("Exchange-rate provider response is missing v2 rate rows.");
   }
 
-  const candidate = payload as { date?: unknown; rates?: unknown };
+  const rates: Partial<Record<CurrencyCode, number>> = { EUR: 1 };
+  let effectiveDate: string | undefined;
 
-  if (typeof candidate.date !== "string" || !candidate.rates || typeof candidate.rates !== "object") {
-    throw new Error("Exchange-rate provider response is missing rate metadata.");
+  for (const row of payload) {
+    if (!isUsableFrankfurterV2RateRow(row)) continue;
+    if (!effectiveDate) effectiveDate = row.date;
+    if (row.base === "EUR" && isCurrencyCode(row.quote)) {
+      rates[row.quote] = row.rate;
+    }
   }
+
+  if (!effectiveDate) {
+    throw new Error("Exchange-rate provider response is missing valid dated rows.");
+  }
+
+  const missingQuotes = frankfurterQuoteCurrencies.filter((currency) => rates[currency] == null);
+  if (missingQuotes.length > 0 && typeof __DEV__ !== "undefined" && __DEV__) {
+    console.warn("Currency fetch missing quotes", { provider: "Frankfurter", base: "EUR", missingQuotes });
+  }
+
+  return { effectiveDate, rates };
 }
 
 export function isSupportedCurrency(value: string): value is CurrencyCode {
@@ -138,37 +172,25 @@ async function fetchProviderExchangeRates(): Promise<ExchangeRates> {
   let payload: unknown;
   try {
     payload = await response.json();
-    assertRatesPayload(payload);
+    // Frankfurter v2 /rates returns an array of { date, base, quote, rate } rows, not { rates: { ... } }.
+    // Parse the row shape explicitly so HTTP 200 v2 responses use the current provider schema.
+    payload = parseFrankfurterV2RatesPayload(payload);
   } catch (error) {
     logCurrencyFetchFailure(error, response.status);
     throw error;
   }
 
-  const rates = supportedCurrencyCodes.reduce((accumulator, currency) => {
-    if (currency === "EUR") {
-      accumulator[currency] = 1;
-      return accumulator;
-    }
-
-    const rate = payload.rates[currency];
-    if (typeof rate !== "number" || !Number.isFinite(rate) || rate <= 0) {
-      const error = new Error(`Exchange-rate provider did not return ${currency}.`);
-      logCurrencyFetchFailure(error, response.status);
-      throw error;
-    }
-
-    accumulator[currency] = rate;
-    return accumulator;
-  }, {} as Record<CurrencyCode, number>);
+  const parsedPayload = payload as ReturnType<typeof parseFrankfurterV2RatesPayload>;
+  const rates = parsedPayload.rates;
 
   const fetched = {
     status: "ready" as const,
     provider: "Frankfurter" as const,
     base: "EUR" as const,
     quotes: supportedCurrencyCodes,
-    updatedAt: payload.date,
+    updatedAt: parsedPayload.effectiveDate,
     baseCurrency: "EUR" as const,
-    effectiveDate: payload.date,
+    effectiveDate: parsedPayload.effectiveDate,
     fetchedAt: new Date().toISOString(),
     sourceName: "Frankfurter" as const,
     sourceUrl,
@@ -213,6 +235,10 @@ export async function convertCurrency(
   if (rates.status === "unavailable") throw new Error("Exchange-rate provider unavailable.");
   const sourceRate = rates.rates[sourceCurrency];
   const targetRate = rates.rates[targetCurrency];
+  if (typeof sourceRate !== "number" || typeof targetRate !== "number") {
+    const missingCurrency = typeof sourceRate !== "number" ? sourceCurrency : targetCurrency;
+    throw new Error(`Exchange rate unavailable for ${missingCurrency}.`);
+  }
   const rate = targetRate / sourceRate;
 
   return {
