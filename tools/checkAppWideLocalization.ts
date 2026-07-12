@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { resolveTranslation } from "../src/hooks/useTranslation";
+import { resolveTranslation } from "../src/i18n/translationResolver";
 import {
   formatCityDisplayName,
   formatCountryDisplayName,
@@ -161,6 +161,28 @@ const profileFavoritesRenderPathFiles = [
 ];
 
 let hasError = false;
+
+
+const translationResolverSource = readFileSync(
+  join(process.cwd(), "src/i18n/translationResolver.ts"),
+  "utf8",
+);
+const useTranslationSource = readFileSync(
+  join(process.cwd(), "src/hooks/useTranslation.ts"),
+  "utf8",
+);
+if (/from ["']react-native["']|require\(["']react-native["']\)/.test(translationResolverSource)) {
+  fail("src/i18n/translationResolver.ts: pure translation resolver must not import react-native");
+}
+if (/from ["'](?:expo|@react-navigation\/|react-native|react-native-safe-area-context)/.test(translationResolverSource)) {
+  fail("src/i18n/translationResolver.ts: pure translation resolver must not import native, Expo, navigation, or UI modules");
+}
+if (!useTranslationSource.includes('../i18n/translationResolver')) {
+  fail("src/hooks/useTranslation.ts: useTranslation must delegate to the pure translation resolver");
+}
+if (!translationResolverSource.includes('translations.en[key]')) {
+  fail("src/i18n/translationResolver.ts: unsupported/missing translation fallback must remain English-backed");
+}
 
 function fail(message: string) {
   console.error(message);

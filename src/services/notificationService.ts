@@ -2,7 +2,7 @@ import { Platform } from "react-native";
 import * as Notifications from "expo-notifications";
 
 import type { Trip, TripReminderPlanItem } from "../contexts/TripsContext";
-import { resolveTranslation } from "../hooks/useTranslation";
+import { resolveTranslation } from "../i18n/translationResolver";
 import { isTranslationLanguage, TranslationLanguage } from "../translations/translations";
 
 export type NotificationCapabilityStatus = "granted" | "denied" | "undetermined" | "unavailable" | "not_configured";
