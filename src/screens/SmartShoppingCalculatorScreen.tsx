@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
@@ -14,11 +15,13 @@ import {
 } from "../services/exchangeRateService";
 import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
+import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 
 export function SmartShoppingCalculatorScreen() {
   const [price, setPrice] = useState("");
   const { t, language } = useTranslation();
+  const insets = useSafeAreaInsets();
 
   const {
     selectedCountryId,
@@ -83,7 +86,11 @@ export function SmartShoppingCalculatorScreen() {
   }, [netCost, numericPrice, refund, rule, selectedCurrency]);
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.heroLabel}>{t("smartCalc.heroLabel")}</Text>
         <Text style={styles.pageTitle}>{t("smartCalc.title")}</Text>

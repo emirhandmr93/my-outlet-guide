@@ -36,6 +36,7 @@ import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { formatCountryDisplayName, formatCityDisplayName } from "../utils/locationDisplay";
 
 const screenWidth = Dimensions.get("window").width;
 const carouselWidth = screenWidth - spacing.xl * 2;
@@ -245,6 +246,12 @@ const quickMenuItems = [
 const outletMediaMode = getConfiguredOutletMediaMode();
 const recommendedOutletFallbackImage = require("../../assets/home/recommended-outlet-generic.png");
 
+function formatHomeLocation(location: string, language: any) {
+  const [city, country] = location.split(",").map((part) => part.trim());
+  if (!city || !country) return location;
+  return `${formatCityDisplayName(city, language)}, ${formatCountryDisplayName(country, language)}`;
+}
+
 function getOutletCardImageSource(
   outletId: string,
 ): ImageSourcePropType | undefined {
@@ -258,7 +265,7 @@ function getOutletCardImageSource(
 export function HomeScreen() {
   const navigation = useNavigation<any>();
   const tabBarHeight = useBottomTabBarHeight();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
   const { currentUser, isAuthenticated } = useAuth();
   const { trips } = useTrips();
@@ -517,7 +524,7 @@ export function HomeScreen() {
                 ) : null}
 
                 <View style={styles.outletBody}>
-                  <Text style={styles.outletLocation}>{outlet.location}</Text>
+                  <Text style={styles.outletLocation}>{formatHomeLocation(outlet.location, language)}</Text>
                   <Text style={styles.outletTitle}>{outlet.title}</Text>
                   <Text style={styles.outletText}>{t(outlet.textKey)}</Text>
                   <Text style={styles.tapText}>{t("home.viewOutlet")}</Text>
@@ -612,8 +619,8 @@ export function HomeScreen() {
               >
                 <View style={styles.cityOverlay} />
                 <View style={styles.cityContent}>
-                  <Text style={styles.cityKicker}>{city.country}</Text>
-                  <Text style={styles.cityTitle}>{city.title}</Text>
+                  <Text style={styles.cityKicker}>{formatCountryDisplayName(city.country, language).toLocaleUpperCase(language)}</Text>
+                  <Text style={styles.cityTitle}>{formatCityDisplayName(city.id, language)}</Text>
                   <Text style={styles.cityText}>{t(city.textKey)}</Text>
                 </View>
               </ImageBackground>

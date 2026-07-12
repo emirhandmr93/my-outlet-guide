@@ -12,6 +12,8 @@ const brandCategoryLabelKeys: Record<string, string> = {
   "shoes & bags": "explore.categories.shoesBags.title",
   sportswear: "explore.categories.sportswear.title",
   eyewear: "brandCategory.eyewear",
+  accessories: "brandCategory.accessories",
+  "books & toys": "brandCategory.booksToys",
 };
 
 export function formatBrandCategoryLabel(

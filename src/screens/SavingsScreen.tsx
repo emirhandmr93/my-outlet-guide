@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
@@ -8,6 +9,7 @@ import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { getLiveExchangeRates } from "../services/liveCurrencyService";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 
@@ -24,6 +26,7 @@ type SavingsTool = {
 export function SavingsScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
+  const insets = useSafeAreaInsets();
   const [currencyStatus, setCurrencyStatus] = useState("");
   const [currencyUpdatedAt, setCurrencyUpdatedAt] = useState("");
 
@@ -81,7 +84,11 @@ export function SavingsScreen() {
     currencies.find((currency) => currency.currencyCode === selectedCurrency) || currencies[0];
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+    >
       <View style={styles.heroCard}>
         <Text style={styles.heroLabel}>{t("savings.heroLabel")}</Text>
         <Text style={styles.pageTitle}>{t("savings.heroTitle")}</Text>

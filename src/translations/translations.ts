@@ -2178,7 +2178,7 @@ export const translations: Record<
     "savings.settingsTitle":
       "Tasarruf araçlarında tek ülke ve para birimi kullan.",
     "savings.settingsSharedTitle":
-      "Ülke ve para birimi tüm Savings araçlarında ortaktır.",
+      "Ülke ve para birimi tüm tasarruf araçlarında ortaktır.",
     "savings.smartDescription":
       "İndirim, para birimi ve Tax Free sonrası final outlet fiyatını tahmin et.",
     "savings.smartBadge": "Sepet için",
@@ -2265,7 +2265,7 @@ export const translations: Record<
     "offline.requires.reviewsNotifications.title": "Yorumlar, faydalı oyları ve bildirimler",
     "offline.requires.reviewsNotifications.text": "Yorumlar, faydalı oyları, raporlar ve bildirim ayarları internet gerektirir.",
     "offline.requires.favoritesTrips.title": "Favoriler ve seyahatler",
-    "offline.requires.favoritesTrips.text": "Favoriler ve kayıtlı seyahatler Firestore desteklidir; bu sürüm yerel çevrimdışı eşitleme kuyruğu oluşturmaz.",
+    "offline.requires.favoritesTrips.text": "Bu sürümde favoriler ve seyahatler internet bağlantısı olmadan senkronize edilmez.",
     "offline.requires.flightAlerts.title": "Uçuş fırsatı uyarıları",
     "offline.requires.flightAlerts.text": "Uçuş fırsatı uyarıları canlı servislerle çalışır ve internet gerektirir.",
     "offline.requires.currency.title": "Canlı kur verileri",
@@ -16200,7 +16200,7 @@ const betaSupportLegalTranslations: Record<TranslationLanguage, Record<string, s
     "offline.requires.reviewsNotifications.title": "Yorumlar, faydalı oyları ve bildirimler",
     "offline.requires.reviewsNotifications.text": "Yorumlar, faydalı oyları, raporlar ve bildirim ayarları internet gerektirir.",
     "offline.requires.favoritesTrips.title": "Favoriler ve seyahatler",
-    "offline.requires.favoritesTrips.text": "Favoriler ve kayıtlı seyahatler Firestore desteklidir; bu sürüm yerel çevrimdışı eşitleme kuyruğu oluşturmaz.",
+    "offline.requires.favoritesTrips.text": "Bu sürümde favoriler ve seyahatler internet bağlantısı olmadan senkronize edilmez.",
     "offline.requires.flightAlerts.title": "Uçuş fırsatı uyarıları",
     "offline.requires.flightAlerts.text": "Uçuş fırsatı uyarıları canlı servislerle çalışır ve internet gerektirir.",
     "offline.requires.currency.title": "Canlı kur verileri",
@@ -16827,7 +16827,7 @@ const remainingBetaBlockerTranslations: Record<TranslationLanguage, Record<strin
     "notifications.tripRemindersCategoryDesc": "Seyahat, Tax Free ve dönüş uçuşu hatırlatmaları için bildirimleri aç.",
     "notifications.categoryActive": "Üretim göndericisi aktif",
     "notifications.unsupportedCategoriesTitle": "Desteklenmeyen kategoriler aktif değil",
-    "notifications.unsupportedCategoriesBody": "Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri için henüz backend göndericisi yoktur. Sahte gelen kutusu, örnek geçmiş veya simüle gönderim gösterilmez.",
+    "notifications.unsupportedCategoriesBody": "Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri için henüz bildirim gönderim altyapısı yoktur. Sahte gelen kutusu, örnek geçmiş veya simüle gönderim gösterilmez.",
     "help.title": "Yardım ve SSS",
     "help.subtitle": "Sık sorulan sorular",
     "help.flightQuestion": "Uçuş fırsatı bildirimleri nasıl çalışır?",
@@ -17052,3 +17052,52 @@ const finalTaxFreeCalculatorLabelTranslations: Record<TranslationLanguage, Recor
   }
 };
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], finalTaxFreeCalculatorLabelTranslations[locale]);
+
+const finalScreenshotPolishTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "brandCategory.accessories": "Accessories",
+    "brandCategory.booksToys": "Books & Toys",
+    "restaurant.category.sicilian": "Sicilian",
+    "service.label.shuttleTransportInfo": "Shuttle / Transport Info",
+    "service.label.privateTransfer": "Private Transfer",
+    "service.label.camperParkingArea": "Camper parking area",
+    "review.countUnit": "reviews",
+    "status.open": "Open",
+    "status.closed": "Closed",
+    "taxCalc.sourceEuropeanCommissionVatRates": "European Commission VAT rates"
+  },
+  tr: {
+    "brandCategory.accessories": "Aksesuar",
+    "brandCategory.booksToys": "Kitap & Oyuncak",
+    "restaurant.category.sicilian": "Sicilya mutfağı",
+    "service.label.shuttleTransportInfo": "Servis / ulaşım bilgisi",
+    "service.label.privateTransfer": "Özel transfer",
+    "service.label.camperParkingArea": "Karavan park alanı",
+    "review.countUnit": "yorum",
+    "status.active": "Aktif",
+    "status.open": "Açık",
+    "status.closed": "Kapalı",
+    "outlet.googleMaps": "Google Maps’te Aç",
+    "outlet.appleMaps": "Apple Maps’te Aç",
+    "outlet.yandexMaps": "Yandex Maps’te Aç",
+    "myReviews.viewOutlet": "Outlet’i Gör →",
+    "taxCalc.sourceEuropeanCommissionVatRates": "Avrupa Komisyonu KDV oranları",
+    "savings.heroLabel": "TASARRUF MERKEZİ",
+    "savings.heroSubtitle": "Tasarruf araçlarında ülke, para birimi ve Tax Free tahminlerini birlikte kullan.",
+    "offline.stat.media": "Yerel görsel dosyaları",
+    "offline.requires.favoritesTrips.text": "Bu sürümde favoriler ve seyahatler internet bağlantısı olmadan senkronize edilmez.",
+    "offline.requires.currency.text": "Canlı kur verileri internet gerektirir. Eski kur verisi yalnızca tarihli olarak gösterilir.",
+    "notifications.deliveryStatusBody": "Seyahat hatırlatmaları bildirim gönderim altyapısıyla desteklenir. Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri henüz aktif değildir.",
+    "notifications.categoryActive": "Gönderim altyapısı aktif",
+    "notifications.unsupportedCategoriesBody": "Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri için henüz bildirim gönderim altyapısı yoktur. Sahte gelen kutusu, örnek geçmiş veya simüle gönderim gösterilmez.",
+    "profile.stats.trips": "Seyahatler",
+    "trips.summaryTrips": "Seyahatler"
+  },
+  es: { "brandCategory.accessories": "Accesorios", "brandCategory.booksToys": "Libros y juguetes", "restaurant.category.sicilian": "Siciliana", "service.label.shuttleTransportInfo": "Transporte / información de transporte", "service.label.privateTransfer": "Traslado privado", "service.label.camperParkingArea": "Área para autocaravanas", "review.countUnit": "reseñas", "status.open": "Abierto", "status.closed": "Cerrado", "taxCalc.sourceEuropeanCommissionVatRates": "Tipos de IVA de la Comisión Europea" },
+  fr: { "brandCategory.accessories": "Accessoires", "brandCategory.booksToys": "Livres et jouets", "restaurant.category.sicilian": "Sicilienne", "service.label.shuttleTransportInfo": "Navette / info transport", "service.label.privateTransfer": "Transfert privé", "service.label.camperParkingArea": "Aire camping-car", "review.countUnit": "avis", "status.open": "Ouvert", "status.closed": "Fermé", "taxCalc.sourceEuropeanCommissionVatRates": "Taux de TVA de la Commission européenne" },
+  de: { "brandCategory.accessories": "Accessoires", "brandCategory.booksToys": "Bücher & Spielzeug", "restaurant.category.sicilian": "Sizilianisch", "service.label.shuttleTransportInfo": "Shuttle / Verkehrsinformation", "service.label.privateTransfer": "Privater Transfer", "service.label.camperParkingArea": "Wohnmobilstellplatz", "review.countUnit": "Bewertungen", "status.open": "Geöffnet", "status.closed": "Geschlossen", "taxCalc.sourceEuropeanCommissionVatRates": "Mehrwertsteuersätze der Europäischen Kommission" },
+  ar: { "brandCategory.accessories": "إكسسوارات", "brandCategory.booksToys": "كتب وألعاب", "restaurant.category.sicilian": "صقلية", "service.label.shuttleTransportInfo": "معلومات النقل / الحافلة", "service.label.privateTransfer": "نقل خاص", "service.label.camperParkingArea": "منطقة وقوف الكارافان", "review.countUnit": "تقييمات", "status.open": "مفتوح", "status.closed": "مغلق", "taxCalc.sourceEuropeanCommissionVatRates": "معدلات ضريبة القيمة المضافة للمفوضية الأوروبية" },
+  ru: { "brandCategory.accessories": "Аксессуары", "brandCategory.booksToys": "Книги и игрушки", "restaurant.category.sicilian": "Сицилийская", "service.label.shuttleTransportInfo": "Шаттл / информация о транспорте", "service.label.privateTransfer": "Частный трансфер", "service.label.camperParkingArea": "Стоянка для кемперов", "review.countUnit": "отзывов", "status.open": "Открыто", "status.closed": "Закрыто", "taxCalc.sourceEuropeanCommissionVatRates": "Ставки НДС Европейской комиссии" },
+  zh: { "brandCategory.accessories": "配饰", "brandCategory.booksToys": "书籍与玩具", "restaurant.category.sicilian": "西西里", "service.label.shuttleTransportInfo": "接驳/交通信息", "service.label.privateTransfer": "私人接送", "service.label.camperParkingArea": "房车停车区", "review.countUnit": "条评价", "status.open": "开放", "status.closed": "关闭", "taxCalc.sourceEuropeanCommissionVatRates": "欧盟委员会增值税税率" }
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], finalScreenshotPolishTranslations[locale]);

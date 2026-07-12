@@ -1,7 +1,12 @@
 import { readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 
 function read(path: string) {
   return readFileSync(path, "utf8");
+}
+
+function runScreenshotPolishAudit() {
+  execFileSync("npx", ["tsx", "tools/checkFinalScreenshotPolish.ts"], { stdio: "inherit" });
 }
 
 function assert(condition: unknown, message: string) {
@@ -14,6 +19,8 @@ function indexOfOrThrow(source: string, needle: string, label: string) {
   assert(index >= 0, `${label} is present`);
   return index;
 }
+
+runScreenshotPolishAudit();
 
 const nav = read("src/navigation/AppNavigator.tsx");
 const navTypes = read("src/navigation/types.ts");

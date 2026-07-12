@@ -59,6 +59,8 @@ import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
+import { formatOutletStatusLabel, formatReviewSummaryLabel, formatStoresCountText } from "../utils/outletDisplayFormatters";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -95,7 +97,7 @@ const countryNames: Record<string, string> = {
 export function OutletDetailScreen() {
   const route = useRoute<RouteProp<RouteParams, "OutletDetail">>();
   const navigation = useNavigation<any>();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
   const { reviews, deleteReview, reportReview, toggleHelpful, loadReviews } = useReviews();
   const { currentUser, isLoggedIn } = useUser();
@@ -359,9 +361,7 @@ export function OutletDetailScreen() {
       >
         <OutletHero
           name={outlet.name}
-          location={`${cityNames[outlet.cityId] || outlet.cityId}, ${
-            countryNames[outlet.countryId] || outlet.countryId
-          }`}
+          location={`${formatCityDisplayName(outlet.cityId, language)}, ${formatCountryDisplayName(outlet.countryId, language)}`}
           selectedImage={selectedImage}
           galleryImages={safeGalleryImages}
           favoriteButtonText={
@@ -439,7 +439,7 @@ export function OutletDetailScreen() {
               <Text style={styles.badge}>{t("weather.sourceOpenMeteo")}</Text>
             </>
           ) : null}
-          <Text style={styles.badge}>{outlet.status}</Text>
+          <Text style={styles.badge}>{formatOutletStatusLabel(outlet.status, t)}</Text>
           {averageRating ? (
             <Text style={styles.badge}>⭐ {averageRating}</Text>
           ) : null}
@@ -533,12 +533,12 @@ export function OutletDetailScreen() {
             weatherError={weatherError}
             weatherLoadingText={t("weather.loading")}
             weatherUnavailableText={t("weather.unavailable")}
-            cityName={cityNames[outlet.cityId] || outlet.cityId}
+            cityName={formatCityDisplayName(outlet.cityId, language)}
             openingHoursLabel={t("outlet.openingHours")}
             openingHours={outlet.openingHours}
             addressLabel={t("outlet.address")}
             address={outlet.address}
-            storesCountText={outlet.storesCountText}
+            storesCountText={formatStoresCountText(outlet.storesCountText, language)}
             cityCenterDistanceKm={outlet.cityCenterDistanceKm}
             airportDistanceKm={outlet.airportDistanceKm}
             reviewCountLabel={t("outlet.reviewCount")}
@@ -672,9 +672,7 @@ export function OutletDetailScreen() {
           </View>
 
           <ReviewStatsCard
-            summaryText={`⭐ ${averageRating ?? "0.0"} (${outletReviews.length} ${t(
-              "outlet.reviewLabel",
-            )})`}
+            summaryText={formatReviewSummaryLabel(averageRating ?? "0.0", outletReviews.length, t)}
             transportationTitle={t("outlet.transportationRating")}
             transportationValue={getCategoryAverage(outletReviews, "transportation")}
             brandsTitle={t("outlet.brandsRating")}
