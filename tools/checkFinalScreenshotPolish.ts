@@ -32,7 +32,7 @@ assert(outletDetail.includes("formatOutletStatusLabel(outlet.status, t)"), "Outl
 assert(outletDetail.includes("formatStoresCountText(outlet.storesCountText, language)"), "OutletDetail store count text is localized for Turkish");
 assert(displayHelpers.includes("brandCategory.accessories") && displayHelpers.includes("brandCategory.booksToys"), "Brand category helper localizes Accessories and Books & Toys");
 assert(displayHelpers.includes("service.label.shuttleTransportInfo") && displayHelpers.includes("service.label.privateTransfer") && displayHelpers.includes("service.label.camperParkingArea"), "Service helper localizes screenshot service chips");
-assert(displayHelpers.includes("restaurant.category.sicilian"), "Restaurant cuisine helper localizes Sicilian");
+assert(displayHelpers.includes("restaurant.category.sicilian") && displayHelpers.includes("restaurant.category.lunch") && displayHelpers.includes("ice cream"), "Restaurant cuisine helper localizes Sicilian, ice cream, and Lunch");
 assert(translations.includes('"review.countUnit": "yorum"') && outletDetail.includes("formatReviewSummaryLabel"), "Turkish review counts use yorum instead of Yorumlar");
 assert(myReviews.includes("formatUserFacingDate(review.createdAt, language)"), "MyReviews formats review dates instead of rendering raw ISO timestamps");
 assert(!/Tahmini KDV tutarı|KDV öncesi net tutar|Dahil edilen KDV tahmini/.test(savings + translations), "Savings/Tax Free does not reintroduce old KDV primary labels");
@@ -45,6 +45,11 @@ assert(savings.includes("getFloatingTabClearance(insets.bottom)") && trips.inclu
 assert(!/32°C|32 °C/.test(appVisible), "No static weather chip like 32°C");
 assert(!/localhost|127\.0\.0\.1|192\.168\./.test(productionFacing), "No localhost/LAN production-facing URLs");
 assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(appVisible), "No debug locale prefixes");
+assert(!/110\s+boutiques/i.test(appVisible), "No English 110 boutiques text in Turkish display paths");
+assert(!/Dondurma\s+cream/i.test(appVisible), "No mixed Turkish-English ice cream category text");
+assert(!/\bItalya\b/.test(appVisible), "No malformed Turkish Italy display text");
+const oldMixedTripName = ["Milanı", "Shopping", "Route"].join(" ");
+assert(!appVisible.includes(oldMixedTripName), "No old mixed-language trip route name in screenshot-visible source");
 const safetyFiltered = appVisible.replace(/no fake inbox/gi, "").replace(/Sahte gelen kutusu/gi, "").replace(/no fake\/mock\/demo claims/gi, "");
 assert(!/lorem ipsum|dummy data|sample fare|sample trip|coming soon/i.test(safetyFiltered), "No visible TODO/coming soon/sample placeholders");
 

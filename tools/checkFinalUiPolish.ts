@@ -125,6 +125,9 @@ const coreVisibleWithoutSafetyDisclaimers = (home + profile + supportLegalTripSa
   .replace(/do not show mock fares or create fake alerts/gi, "");
 assert(!/fake|mock|demo|lorem|dummy|sample fare|sample trip|fake weather|mock weather|coming soon|TODO/i.test(coreVisibleWithoutSafetyDisclaimers), "no fake/mock/demo claims or visible TODO/coming soon markers in core screens");
 assert(!/Bilet al|buy ticket/i.test(flightDeals), "no Bilet al/buy ticket CTA without provider-backed deepLink");
+const screenshotMixedLanguagePattern = /110\s+boutiques|Dondurma\s+cream|\bItalya\b/i;
+assert(!screenshotMixedLanguagePattern.test(home + profile + supportLegalTripSavings + outletDetail + flightDeals + translations), "no screenshot-visible mixed-language Turkish polish regressions");
+assert(!(home + profile + supportLegalTripSavings + outletDetail + flightDeals + translations).includes(["Milanı", "Shopping", "Route"].join(" ")), "no old mixed-language Milan trip route name");
 assert(!/localhost|127\.0\.0\.1|192\.168\./.test(externalLinks + home + profile + supportLegalTripSavings + outletDetail + flightDeals), "no localhost/LAN production-facing URLs");
 
 console.log("Final UI polish audit checks passed.");

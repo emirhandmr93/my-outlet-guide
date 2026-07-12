@@ -102,6 +102,8 @@ const coreUiSource = [
   flightDeals,
 ].join("\n");
 assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(coreUiSource), "core UI source has no visible debug locale prefixes");
+assert(!/110\s+boutiques|Dondurma\s+cream|\bItalya\b/i.test(coreUiSource), "core UI source has no final screenshot mixed-language polish regressions");
+assert(!coreUiSource.includes(["Milanı", "Shopping", "Route"].join(" ")), "core UI source has no old mixed-language Milan trip route name");
 assert(!/\b(mock|lorem|dummy)\b|sample trip|sample fare|fake fare|fake weather|generated plan|live flight|flight status/i.test(coreUiSource), "core completed user flows have no fake/mock/demo business data markers");
 
 assert(read("tools/checkSupportLegalLocalization.ts").includes("OfflinePacks does not claim downloadable packs") && read("tools/checkSupportLegalLocalization.ts").includes("No hardcoded English heading"), "support/legal localization checker exists and guards English headings/offline download claims");
