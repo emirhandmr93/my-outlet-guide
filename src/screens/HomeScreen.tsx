@@ -477,100 +477,6 @@ export function HomeScreen() {
         </View>
 
         <DashboardSectionHeader
-          title={t("home.sections.tools.title")}
-          subtitle={t("home.sections.tools.subtitle")}
-        />
-
-        <View style={styles.toolsGrid}>
-          {shoppingTools.map((tool) => (
-            <TouchableOpacity
-              key={tool.id}
-              style={[styles.toolCard, { backgroundColor: tool.tone }]}
-              activeOpacity={0.88}
-              onPress={() => navigateTo(tool.route)}
-            >
-              <Text style={styles.toolIcon}>{tool.icon}</Text>
-              <Text style={styles.toolTitle}>{t(tool.titleKey)}</Text>
-              <Text style={styles.toolText}>{t(tool.textKey)}</Text>
-            </TouchableOpacity>
-          ))}
-        </View>
-
-        <DashboardSectionHeader
-          title={t("home.sections.activity.title")}
-          subtitle={t("home.sections.activity.subtitle")}
-        />
-
-        <View style={styles.activityCard}>
-          <View style={styles.activityColumn}>
-            <Text style={styles.activityIcon}>🧳</Text>
-            <Text style={styles.activityLabel}>
-              {t("home.activity.tripLabel")}
-            </Text>
-            <Text style={styles.activityValue}>
-              {latestTrip ? latestTrip.tripName : t("home.activity.noTrip")}
-            </Text>
-            <Text style={styles.activityText}>
-              {latestTrip
-                ? latestTrip.visitDate || latestTrip.outletName
-                : t("home.activity.createTripReminder")}
-            </Text>
-          </View>
-
-          <View style={styles.activityDivider} />
-
-          <View style={styles.activityColumn}>
-            <Text style={styles.activityIcon}>♡</Text>
-            <Text style={styles.activityLabel}>
-              {t("home.activity.favoritesLabel")}
-            </Text>
-            <Text style={styles.activityValue}>
-              {favoriteIds.length > 0
-                ? favoriteIds.length
-                : t("home.activity.noFavorites")}
-            </Text>
-            <Text style={styles.activityText}>
-              {firstFavorite
-                ? firstFavorite.name
-                : t("home.activity.saveOutlets")}
-            </Text>
-          </View>
-        </View>
-
-        <DashboardSectionHeader
-          title={t("home.sections.cities.title")}
-          subtitle={t("home.sections.cities.subtitle")}
-        />
-
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.horizontalList}
-        >
-          {popularCities.map((city) => (
-            <TouchableOpacity
-              key={city.id}
-              style={styles.cityCard}
-              activeOpacity={0.9}
-              onPress={() => navigateTo(city.route, city.params)}
-            >
-              <ImageBackground
-                source={city.image}
-                style={styles.cityImage}
-                imageStyle={styles.cityImageRadius}
-              >
-                <View style={styles.cityOverlay} />
-                <View style={styles.cityContent}>
-                  <Text style={styles.cityKicker}>{city.country}</Text>
-                  <Text style={styles.cityTitle}>{city.title}</Text>
-                  <Text style={styles.cityText}>{t(city.textKey)}</Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-
-        <DashboardSectionHeader
           title={t("home.sections.outlets.title")}
           subtitle={t("home.sections.outlets.subtitle")}
         />
@@ -619,6 +525,100 @@ export function HomeScreen() {
               </TouchableOpacity>
             );
           })}
+        </ScrollView>
+
+        <DashboardSectionHeader
+          title={t("home.sections.activity.title")}
+          subtitle={t("home.sections.activity.subtitle")}
+        />
+
+        <View style={styles.activityCard}>
+          <View style={styles.activityColumn}>
+            <Text style={styles.activityIcon}>🧳</Text>
+            <Text style={styles.activityLabel}>
+              {t("home.activity.tripLabel")}
+            </Text>
+            <Text style={styles.activityValue}>
+              {latestTrip ? latestTrip.tripName : t("home.activity.noTrip")}
+            </Text>
+            <Text style={styles.activityText}>
+              {latestTrip
+                ? latestTrip.visitDate || latestTrip.outletName
+                : t("home.activity.createTripReminder")}
+            </Text>
+          </View>
+
+          <View style={styles.activityDivider} />
+
+          <View style={styles.activityColumn}>
+            <Text style={styles.activityIcon}>♡</Text>
+            <Text style={styles.activityLabel}>
+              {t("home.activity.favoritesLabel")}
+            </Text>
+            <Text style={styles.activityValue}>
+              {favoriteIds.length > 0
+                ? favoriteIds.length
+                : t("home.activity.noFavorites")}
+            </Text>
+            <Text style={styles.activityText}>
+              {firstFavorite
+                ? firstFavorite.name
+                : t("home.activity.saveOutlets")}
+            </Text>
+          </View>
+        </View>
+
+        <DashboardSectionHeader
+          title={t("home.sections.tools.title")}
+          subtitle={t("home.sections.tools.subtitle")}
+        />
+
+        <View style={styles.toolsGrid}>
+          {shoppingTools.map((tool) => (
+            <TouchableOpacity
+              key={tool.id}
+              style={[styles.toolCard, { backgroundColor: tool.tone }]}
+              activeOpacity={0.88}
+              onPress={() => navigateTo(tool.route)}
+            >
+              <Text style={styles.toolIcon}>{tool.icon}</Text>
+              <Text style={styles.toolTitle}>{t(tool.titleKey)}</Text>
+              <Text style={styles.toolText}>{t(tool.textKey)}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        <DashboardSectionHeader
+          title={t("home.sections.cities.title")}
+          subtitle={t("home.sections.cities.subtitle")}
+        />
+
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.horizontalList}
+        >
+          {popularCities.map((city) => (
+            <TouchableOpacity
+              key={city.id}
+              style={styles.cityCard}
+              activeOpacity={0.9}
+              onPress={() => navigateTo(city.route, city.params)}
+            >
+              <ImageBackground
+                source={city.image}
+                style={styles.cityImage}
+                imageStyle={styles.cityImageRadius}
+              >
+                <View style={styles.cityOverlay} />
+                <View style={styles.cityContent}>
+                  <Text style={styles.cityKicker}>{city.country}</Text>
+                  <Text style={styles.cityTitle}>{city.title}</Text>
+                  <Text style={styles.cityText}>{t(city.textKey)}</Text>
+                </View>
+              </ImageBackground>
+            </TouchableOpacity>
+          ))}
         </ScrollView>
 
         <View style={[styles.bottomTabSpacer, { height: homeBottomSpacer }]} />
@@ -738,7 +738,7 @@ const styles = StyleSheet.create({
   },
 
   slideImage: {
-    minHeight: 268,
+    minHeight: 244,
     overflow: "hidden",
     justifyContent: "flex-end",
     borderRadius: radius.hero,

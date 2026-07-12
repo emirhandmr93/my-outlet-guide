@@ -114,3 +114,4 @@ const outletDetailWeatherAudit = read("src/screens/OutletDetailScreen.tsx") + re
 assert(/getOutletCurrentWeather/.test(outletDetailWeatherAudit) && /status !== "ready"/.test(outletDetailWeatherAudit), "Outlet weather avoids static numeric chips unless live provider result is ready");
 
 import "./checkStoreSubmissionReadiness";
+import "./checkFinalUiPolish";
