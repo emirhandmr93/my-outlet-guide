@@ -17108,4 +17108,101 @@ const finalScreenshotPolishTranslations: Record<TranslationLanguage, Record<stri
   ru: { "brandCategory.accessories": "Аксессуары", "brandCategory.booksToys": "Книги и игрушки", "restaurant.category.sicilian": "Сицилийская", "service.label.shuttleTransportInfo": "Шаттл / информация о транспорте", "service.label.privateTransfer": "Частный трансфер", "service.label.camperParkingArea": "Стоянка для кемперов", "review.countUnit": "отзывов", "status.open": "Открыто", "status.closed": "Закрыто", "taxCalc.sourceEuropeanCommissionVatRates": "Ставки НДС Европейской комиссии" },
   zh: { "brandCategory.accessories": "配饰", "brandCategory.booksToys": "书籍与玩具", "restaurant.category.sicilian": "西西里", "service.label.shuttleTransportInfo": "接驳/交通信息", "service.label.privateTransfer": "私人接送", "service.label.camperParkingArea": "房车停车区", "review.countUnit": "条评价", "status.open": "开放", "status.closed": "关闭", "taxCalc.sourceEuropeanCommissionVatRates": "欧盟委员会增值税税率" }
 };
+const onboardingTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "onboarding.brand": "My Outlet Guide",
+    "onboarding.skip": "Skip",
+    "onboarding.back": "Back",
+    "onboarding.next": "Next",
+    "onboarding.start": "Start",
+    "onboarding.accessibility.skip": "Skip onboarding and enter the app",
+    "onboarding.accessibility.back": "Go back to the previous onboarding page",
+    "onboarding.accessibility.next": "Go to the next onboarding page",
+    "onboarding.accessibility.start": "Start using My Outlet Guide",
+    "onboarding.accessibility.pageIndicator": "Onboarding page progress",
+    "onboarding.pages.outletDiscovery.title": "Discover premium outlets",
+    "onboarding.pages.outletDiscovery.body": "Explore shopping destinations by country, city, outlet, and brand.",
+    "onboarding.pages.outletDiscovery.visual": "Outlets, brands, and cities",
+    "onboarding.pages.tripPlanning.title": "Plan shopping trips",
+    "onboarding.pages.tripPlanning.body": "Organize outlet routes, dates, and reminders in one place.",
+    "onboarding.pages.tripPlanning.visual": "Routes, dates, and reminders",
+    "onboarding.pages.savingsTools.title": "Estimate Tax Free and currency",
+    "onboarding.pages.savingsTools.body": "Estimate Tax Free refunds, live exchange rates, and final shopping costs before you buy.",
+    "onboarding.pages.savingsTools.visual": "Refund and currency tools",
+    "onboarding.pages.flightDeals.title": "Prepare flight deal alerts",
+    "onboarding.pages.flightDeals.body": "Save routes now so flight deal alerts can be prepared when a supported provider is available.",
+    "onboarding.pages.flightDeals.visual": "Provider-backed route alerts"
+  },
+  tr: {
+    "onboarding.brand": "My Outlet Guide",
+    "onboarding.skip": "Atla",
+    "onboarding.back": "Geri",
+    "onboarding.next": "İleri",
+    "onboarding.start": "Başla",
+    "onboarding.accessibility.skip": "Onboarding ekranını atla ve uygulamaya gir",
+    "onboarding.accessibility.back": "Önceki onboarding sayfasına dön",
+    "onboarding.accessibility.next": "Sonraki onboarding sayfasına geç",
+    "onboarding.accessibility.start": "My Outlet Guide kullanmaya başla",
+    "onboarding.accessibility.pageIndicator": "Onboarding sayfa ilerlemesi",
+    "onboarding.pages.outletDiscovery.title": "Premium outletleri keşfet",
+    "onboarding.pages.outletDiscovery.body": "Ülke, şehir, outlet ve marka bazında alışveriş destinasyonlarını incele.",
+    "onboarding.pages.outletDiscovery.visual": "Outletler, markalar ve şehirler",
+    "onboarding.pages.tripPlanning.title": "Alışveriş seyahatini planla",
+    "onboarding.pages.tripPlanning.body": "Outlet rotanı, tarihlerini ve hatırlatmalarını tek yerden düzenle.",
+    "onboarding.pages.tripPlanning.visual": "Rotalar, tarihler ve hatırlatmalar",
+    "onboarding.pages.savingsTools.title": "Tax Free ve kur araçları",
+    "onboarding.pages.savingsTools.body": "Tax Free iadesini, canlı kuru ve tahmini final maliyeti alışverişten önce gör.",
+    "onboarding.pages.savingsTools.visual": "İade ve kur araçları",
+    "onboarding.pages.flightDeals.title": "Uçuş fırsatı uyarılarını hazırla",
+    "onboarding.pages.flightDeals.body": "Desteklenen sağlayıcı hazır olduğunda seçtiğin rotalar için uçuş fırsatı uyarılarını hazırlayabilirsin.",
+    "onboarding.pages.flightDeals.visual": "Sağlayıcı destekli rota uyarıları"
+  },
+  es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {}
+};
+
+Object.assign(onboardingTranslations.es, onboardingTranslations.en, {
+  "onboarding.skip": "Omitir", "onboarding.back": "Atrás", "onboarding.next": "Siguiente", "onboarding.start": "Empezar",
+  "onboarding.pages.outletDiscovery.title": "Descubre outlets premium", "onboarding.pages.outletDiscovery.body": "Explora destinos de compras por país, ciudad, outlet y marca.",
+  "onboarding.pages.tripPlanning.title": "Planifica viajes de compras", "onboarding.pages.tripPlanning.body": "Organiza rutas de outlets, fechas y recordatorios en un solo lugar.",
+  "onboarding.pages.savingsTools.title": "Estima Tax Free y divisas", "onboarding.pages.savingsTools.body": "Estima reembolsos Tax Free, tipos de cambio en vivo y costos finales antes de comprar.",
+  "onboarding.pages.flightDeals.title": "Prepara alertas de vuelos", "onboarding.pages.flightDeals.body": "Guarda rutas ahora para preparar alertas cuando haya un proveedor compatible."
+});
+Object.assign(onboardingTranslations.fr, onboardingTranslations.en, {
+  "onboarding.skip": "Passer", "onboarding.back": "Retour", "onboarding.next": "Suivant", "onboarding.start": "Commencer",
+  "onboarding.pages.outletDiscovery.title": "Découvrez les outlets premium", "onboarding.pages.outletDiscovery.body": "Explorez les destinations shopping par pays, ville, outlet et marque.",
+  "onboarding.pages.tripPlanning.title": "Planifiez vos voyages shopping", "onboarding.pages.tripPlanning.body": "Organisez les itinéraires, dates et rappels outlet au même endroit.",
+  "onboarding.pages.savingsTools.title": "Estimez Tax Free et devises", "onboarding.pages.savingsTools.body": "Estimez les remboursements Tax Free, les taux en direct et le coût final avant d’acheter.",
+  "onboarding.pages.flightDeals.title": "Préparez les alertes vols", "onboarding.pages.flightDeals.body": "Enregistrez vos routes afin de préparer les alertes quand un fournisseur compatible sera disponible."
+});
+Object.assign(onboardingTranslations.de, onboardingTranslations.en, {
+  "onboarding.skip": "Überspringen", "onboarding.back": "Zurück", "onboarding.next": "Weiter", "onboarding.start": "Starten",
+  "onboarding.pages.outletDiscovery.title": "Premium-Outlets entdecken", "onboarding.pages.outletDiscovery.body": "Entdecke Shoppingziele nach Land, Stadt, Outlet und Marke.",
+  "onboarding.pages.tripPlanning.title": "Shoppingreisen planen", "onboarding.pages.tripPlanning.body": "Organisiere Outlet-Routen, Termine und Erinnerungen an einem Ort.",
+  "onboarding.pages.savingsTools.title": "Tax Free und Währung schätzen", "onboarding.pages.savingsTools.body": "Schätze Tax-Free-Erstattungen, Live-Wechselkurse und Endkosten vor dem Kauf.",
+  "onboarding.pages.flightDeals.title": "Flugdeal-Benachrichtigungen vorbereiten", "onboarding.pages.flightDeals.body": "Speichere Routen, damit Benachrichtigungen vorbereitet werden, wenn ein unterstützter Anbieter verfügbar ist."
+});
+Object.assign(onboardingTranslations.ar, onboardingTranslations.en, {
+  "onboarding.skip": "تخطي", "onboarding.back": "رجوع", "onboarding.next": "التالي", "onboarding.start": "ابدأ",
+  "onboarding.pages.outletDiscovery.title": "اكتشف منافذ التسوق المميزة", "onboarding.pages.outletDiscovery.body": "استكشف وجهات التسوق حسب البلد والمدينة والمنفذ والعلامة التجارية.",
+  "onboarding.pages.tripPlanning.title": "خطط لرحلات التسوق", "onboarding.pages.tripPlanning.body": "نظم مسارات المنافذ والتواريخ والتذكيرات في مكان واحد.",
+  "onboarding.pages.savingsTools.title": "قدّر Tax Free والعملات", "onboarding.pages.savingsTools.body": "قدّر استرداد Tax Free وأسعار الصرف الحية والتكلفة النهائية قبل الشراء.",
+  "onboarding.pages.flightDeals.title": "حضّر تنبيهات عروض الطيران", "onboarding.pages.flightDeals.body": "احفظ المسارات الآن لتجهيز التنبيهات عند توفر مزود مدعوم."
+});
+Object.assign(onboardingTranslations.ru, onboardingTranslations.en, {
+  "onboarding.skip": "Пропустить", "onboarding.back": "Назад", "onboarding.next": "Далее", "onboarding.start": "Начать",
+  "onboarding.pages.outletDiscovery.title": "Откройте премиум-аутлеты", "onboarding.pages.outletDiscovery.body": "Изучайте направления для шопинга по стране, городу, аутлету и бренду.",
+  "onboarding.pages.tripPlanning.title": "Планируйте шопинг-поездки", "onboarding.pages.tripPlanning.body": "Организуйте маршруты аутлетов, даты и напоминания в одном месте.",
+  "onboarding.pages.savingsTools.title": "Оцените Tax Free и валюту", "onboarding.pages.savingsTools.body": "Оцените возврат Tax Free, текущие курсы и итоговые расходы до покупки.",
+  "onboarding.pages.flightDeals.title": "Подготовьте авиа-уведомления", "onboarding.pages.flightDeals.body": "Сохраните маршруты, чтобы подготовить уведомления при появлении поддерживаемого провайдера."
+});
+Object.assign(onboardingTranslations.zh, onboardingTranslations.en, {
+  "onboarding.skip": "跳过", "onboarding.back": "返回", "onboarding.next": "下一步", "onboarding.start": "开始",
+  "onboarding.pages.outletDiscovery.title": "发现精品奥莱", "onboarding.pages.outletDiscovery.body": "按国家、城市、奥莱和品牌探索购物目的地。",
+  "onboarding.pages.tripPlanning.title": "规划购物行程", "onboarding.pages.tripPlanning.body": "在一处整理奥莱路线、日期和提醒。",
+  "onboarding.pages.savingsTools.title": "估算 Tax Free 和汇率", "onboarding.pages.savingsTools.body": "购买前估算 Tax Free 退税、实时汇率和最终购物成本。",
+  "onboarding.pages.flightDeals.title": "准备航班优惠提醒", "onboarding.pages.flightDeals.body": "现在保存路线，待支持的供应商可用时即可准备提醒。"
+});
+
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], onboardingTranslations[locale]);
+
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], finalScreenshotPolishTranslations[locale]);

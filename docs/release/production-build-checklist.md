@@ -16,7 +16,9 @@ This checklist is for App Store / Google Play production readiness. It does not 
 - Confirm configured app assets exist locally: icon, adaptive icon foreground/background/monochrome, favicon, and any configured splash/notification assets.
 - Confirm no camera, microphone, photo library, or device GPS permissions are configured unless a release feature requires them.
 - Confirm notification permission is justified by notification settings, trip reminders, Tax Free reminders, and flight reminder preferences.
-- Run the full validation suite listed in this document before requesting store review.
+- Confirm first-launch only onboarding appears after language resolution, does not require an account, does not request notification permission, and can be skipped or started without network access.
+- Confirm flight alerts remain provider-backed/provider-pending during onboarding and no fake fares or buy-ticket calls to action are shown.
+- Run the full validation suite listed in this document before requesting store review, including `npx tsx tools/checkOnboardingReadiness.ts`.
 - Do not run EAS build until the readiness checks pass.
 
 ## 2. Required web URLs
