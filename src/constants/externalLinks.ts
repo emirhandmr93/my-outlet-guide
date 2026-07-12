@@ -1,7 +1,7 @@
-export const WEBSITE_URL: string = "";
-export const PRIVACY_POLICY_URL: string = "";
-export const TERMS_URL: string = "";
-export const ACCOUNT_DELETION_URL: string = "";
+export const WEBSITE_URL: string = "https://myoutletguide.com";
+export const PRIVACY_POLICY_URL: string = "https://myoutletguide.com/privacy";
+export const TERMS_URL: string = "https://myoutletguide.com/terms";
+export const ACCOUNT_DELETION_URL: string = "https://myoutletguide.com/account-deletion";
 
 export const CONTACT_EMAIL = "info@myoutletguide.com";
 export const SUPPORT_EMAIL = CONTACT_EMAIL;

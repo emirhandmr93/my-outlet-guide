@@ -37,7 +37,11 @@ for (const constantName of [
   assert(new RegExp(`export const ${constantName}\\b`).test(externalLinks), `${constantName} exists`);
 }
 
-assert(contact.includes("WEBSITE_URL ?"), "website external row is gated when WEBSITE_URL is empty");
+assert(externalLinks.includes('WEBSITE_URL: string = "https://myoutletguide.com"'), "WEBSITE_URL points to verified production domain");
+assert(externalLinks.includes('PRIVACY_POLICY_URL: string = "https://myoutletguide.com/privacy"'), "PRIVACY_POLICY_URL points to production privacy page");
+assert(externalLinks.includes('TERMS_URL: string = "https://myoutletguide.com/terms"'), "TERMS_URL points to production terms page");
+assert(externalLinks.includes('ACCOUNT_DELETION_URL: string = "https://myoutletguide.com/account-deletion"'), "ACCOUNT_DELETION_URL points to production account deletion page");
+assert(contact.includes("WEBSITE_URL ?") && contact.includes("Linking.openURL(WEBSITE_URL)") && !/https?:\/\/myoutletguide\.com/.test(contact), "website external row uses centralized WEBSITE_URL");
 assert(!profile.includes("WEBSITE_URL") && !profile.includes("website.visit"), "Profile does not show an ungated website row");
 assert(!profile.includes('goTo("MediaCredits")') || profile.includes("hasPublicMediaCredits ?"), "MediaCredits row is hidden unless public credits exist");
 
@@ -57,6 +61,7 @@ assert(!/exp:\/\/|metro|8081/.test(productionSource), "no Expo/Metro dev URL in 
 assert(!/coming soon/i.test(productionSource), "no visible coming soon copy in production-facing support/legal config");
 assert(!/example\.com|your-domain|placeholder-url/i.test(productionSource), "no broken placeholder URLs in production-facing support/legal config");
 assert(!/TODO/.test(productionSource), "no visible TODO copy in production-facing support/legal config");
+assert(!/https?:\/\/myoutletguide\.com/.test([contact, profile, deleteAccount, navigation, navTypes].join("\n")), "no raw uncentralized myoutletguide URLs in app screens or navigation");
 
 const docsTodo = read("docs/release/store-review-notes-draft.md").match(/TODO: reviewer demo account credentials/g)?.length ?? 0;
 assert(docsTodo === 1, "reviewer credential TODO appears only in store review notes draft");
