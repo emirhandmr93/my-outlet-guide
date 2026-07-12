@@ -11,7 +11,9 @@ import {
   View,
 } from "react-native";
 
+import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { useAuth } from "../contexts/AuthContext";
+import { heroAssets } from "../media/heroAssets";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -134,7 +136,7 @@ export function ProfileScreen() {
         bottom: getScrollIndicatorBottomInset(insets.bottom),
       }}
     >
-      <View style={styles.heroCard}>
+      <LocalHeroImageCard imageSource={heroAssets.profile} style={styles.heroCard} contentStyle={styles.heroInner}>
         <View style={styles.avatarCircle}>
           <Text style={styles.avatarText}>{getInitials(accountName)}</Text>
         </View>
@@ -148,7 +150,7 @@ export function ProfileScreen() {
               : t("profile.signInText")}
           </Text>
         </View>
-      </View>
+      </LocalHeroImageCard>
 
       <View style={styles.statsRow}>
         <View style={styles.statCard}>
@@ -385,11 +387,10 @@ const styles = StyleSheet.create({
     paddingBottom: 120,
   },
 
-  heroCard: {
-    backgroundColor: "#0B1F3A",
-    borderRadius: 30,
+  heroCard: { marginBottom: 14 },
+
+  heroInner: {
     padding: 22,
-    marginBottom: 14,
     flexDirection: "row",
     alignItems: "center",
   },

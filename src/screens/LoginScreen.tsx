@@ -12,7 +12,9 @@ import {
   View,
 } from "react-native";
 
+import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { useAuth } from "../contexts/AuthContext";
+import { heroAssets } from "../media/heroAssets";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function LoginScreen() {
@@ -101,11 +103,11 @@ export function LoginScreen() {
         style={styles.container}
         contentContainerStyle={styles.content}
       >
-        <View style={styles.heroCard}>
+        <LocalHeroImageCard imageSource={heroAssets.login} style={styles.heroCard} contentStyle={styles.heroInner}>
           <Text style={styles.kicker}>{t("auth.kicker")}</Text>
           <Text style={styles.title}>{t("auth.title")}</Text>
           <Text style={styles.subtitle}>{route.params?.authMessage || t("auth.subtitle")}</Text>
-        </View>
+        </LocalHeroImageCard>
 
         <TouchableOpacity
           style={styles.emailButton}
@@ -187,12 +189,8 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20, paddingTop: 64, paddingBottom: 120 },
-  heroCard: {
-    backgroundColor: "#0B1F3A",
-    borderRadius: 30,
-    padding: 24,
-    marginBottom: 18,
-  },
+  heroCard: { marginBottom: 18 },
+  heroInner: { padding: 24 },
   kicker: {
     color: "#C9A227",
     fontSize: 12,

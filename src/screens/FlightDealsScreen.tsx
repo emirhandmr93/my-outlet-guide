@@ -16,6 +16,8 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
+import { heroAssets } from "../media/heroAssets";
 import {
   FlightDealAirportRegion,
   supportedFlightDealAirports,
@@ -304,10 +306,10 @@ export function FlightDealsScreen() {
           bottom: getScrollIndicatorBottomInset(insets.bottom),
         }}
       >
-        <View style={styles.heroCard}>
+        <LocalHeroImageCard imageSource={heroAssets.flightDeals} style={styles.heroCard} contentStyle={styles.heroInner}>
           <Text style={styles.title}>{t("flightDeals.title")}</Text>
           <Text style={styles.subtitle}>{t("flightDeals.subtitle")}</Text>
-        </View>
+        </LocalHeroImageCard>
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>{t("flightDeals.saveAlert")}</Text>
           <Text style={styles.providerText}>
@@ -627,12 +629,8 @@ export function FlightDealsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20 },
-  heroCard: {
-    backgroundColor: "#0B1F3A",
-    borderRadius: 30,
-    padding: 24,
-    marginBottom: 16,
-  },
+  heroCard: { marginBottom: 16 },
+  heroInner: { padding: 24 },
   title: {
     color: "#FFFFFF",
     fontSize: 30,

@@ -4,6 +4,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
+import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
+import { heroAssets } from "../media/heroAssets";
 import { CurrencySelector } from "../components/CurrencySelector";
 import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
@@ -89,13 +91,13 @@ export function SavingsScreen() {
       contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
       scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
     >
-      <View style={styles.heroCard}>
+      <LocalHeroImageCard imageSource={heroAssets.savings} style={styles.heroCard} contentStyle={styles.heroInner}>
         <Text style={styles.heroLabel}>{t("savings.heroLabel")}</Text>
         <Text style={styles.pageTitle}>{t("savings.heroTitle")}</Text>
         <Text style={styles.pageSubtitle}>
           {t("savings.heroSubtitle")}
         </Text>
-      </View>
+      </LocalHeroImageCard>
 
 
       <View style={styles.settingsCard}>
@@ -237,9 +239,6 @@ const styles = StyleSheet.create({
   },
 
   heroCard: {
-    backgroundColor: "#0B1F3A",
-    borderRadius: 30,
-    padding: 26,
     marginBottom: 16,
     shadowColor: "#0B1F3A",
     shadowOpacity: 0.16,
@@ -247,6 +246,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     elevation: 8,
   },
+
+  heroInner: { padding: 26 },
 
   heroLabel: {
     color: "#C9A227",

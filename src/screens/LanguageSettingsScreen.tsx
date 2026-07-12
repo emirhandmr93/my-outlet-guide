@@ -1,6 +1,8 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { languages } from "../constants/languages";
+import { heroAssets } from "../media/heroAssets";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { colors } from "../theme/colors";
@@ -15,11 +17,11 @@ export function LanguageSettingsScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.headerCard}>
+      <LocalHeroImageCard imageSource={heroAssets.language} style={styles.headerCard} contentStyle={styles.heroInner}>
         <Text style={styles.kicker}>{t("languageSettings.kicker")}</Text>
         <Text style={styles.pageTitle}>{t("languageSettings.title")}</Text>
         <Text style={styles.pageSubtitle}>{t("languageSettings.subtitle")}</Text>
-      </View>
+      </LocalHeroImageCard>
 
       <View style={styles.sectionCard}>
         {languages.map((item) => {
@@ -67,12 +69,11 @@ const styles = StyleSheet.create({
   },
 
   headerCard: {
-    backgroundColor: colors.primary,
-    borderRadius: radius.xxl,
-    padding: spacing.xl,
     marginBottom: spacing.lg,
     ...shadows.card,
   },
+
+  heroInner: { padding: spacing.xl },
 
   kicker: {
     color: colors.gold,
