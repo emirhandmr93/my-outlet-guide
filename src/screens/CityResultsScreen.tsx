@@ -22,6 +22,7 @@ import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getCountryName } from "../services/locationService";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
+import { formatStoresCountText } from "../utils/outletDisplayFormatters";
 import { formatRating } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 
@@ -119,7 +120,7 @@ function OutletResultCard({
 
         <Text style={styles.cardTitle}>{outlet.name}</Text>
         <Text style={styles.cardText}>
-          {formatCountryDisplayName(outlet.countryId, language)} • {outlet.storesCountText}
+          {formatCountryDisplayName(outlet.countryId, language)} • {formatStoresCountText(outlet.storesCountText, language)}
         </Text>
         <Text style={styles.tapText}>{t("city.viewOutlet")}</Text>
       </View>
