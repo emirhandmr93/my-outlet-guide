@@ -109,3 +109,6 @@ assert(!moderationScreen.includes("{report.reason}") && !moderationScreen.includ
 assert(translations.includes("Güvenlik için tekrar giriş yapman gerekiyor") && translations.includes('"review.actionErrorTitle": "Yorum işlemi başarısız"'), "Turkish review/account deletion errors are localized");
 
 console.log("Beta readiness guardrail checks passed.");
+
+const outletDetailWeatherAudit = read("src/screens/OutletDetailScreen.tsx") + read("src/services/liveWeatherService.ts");
+assert(/getOutletCurrentWeather/.test(outletDetailWeatherAudit) && /status !== "ready"/.test(outletDetailWeatherAudit), "Outlet weather avoids static numeric chips unless live provider result is ready");

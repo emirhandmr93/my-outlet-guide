@@ -281,3 +281,7 @@ for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) {
   );
 }
 console.log("Trip Planner V2 UX check passed");
+
+assert(createTrip.includes("returnFlightTouched") || createTrip.includes("returnFlightReminderEnabled"), "Return flight reminder optionality is controlled by explicit user interaction state");
+assert(createTrip.includes("hasUserReturnReminderInput") && createTrip.includes("hasReturnDate !== hasReturnTime"), "Manual return flight date/time partial input blocks save while untouched auto-fill does not");
+assert(translations.includes('"createTrip.returnFlightReminderTitle": "Dönüş uçuş hatırlatması"'), "Turkish return flight reminder title removes optional copy");

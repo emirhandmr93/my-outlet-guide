@@ -294,3 +294,7 @@ assert(
   "Trip reminder copy must not contain visible outlet günün wording",
 );
 console.log("Trips flow QA passed.");
+
+assert(createTrip.includes("returnFlightTouched") || createTrip.includes("returnFlightReminderEnabled"), "Return flight reminder uses explicit touched/enabled state.");
+assert(createTrip.includes("hasUserReturnReminderInput") && createTrip.includes("shouldSaveReturnFlight"), "Auto-filled return date alone does not block save or persist incomplete flightDetails.");
+assert(!createTrip.includes("Dönüş uçuşu hatırlatması (opsiyonel)") && translations.tr["createTrip.returnFlightReminderTitle"] === "Dönüş uçuş hatırlatması", "Return flight section no longer uses misleading optional title.");

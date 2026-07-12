@@ -5,10 +5,11 @@ const MAX_LOCATIONS = 8;
 const MAX_FORECAST_DAYS = 16;
 const DEFAULT_BASE_URL = "https://customer-api.open-meteo.com/v1/forecast";
 
-type WeatherLocationRequest = { key?: unknown; label?: unknown; latitude?: unknown; longitude?: unknown; startDate?: unknown; endDate?: unknown };
+type WeatherLocationRequest = { key?: unknown; label?: unknown; latitude?: unknown; longitude?: unknown; startDate?: unknown; endDate?: unknown; mode?: unknown };
 type WeatherStatus = "ready" | "partial" | "unavailable" | "provider_not_configured" | "out_of_range" | "missing_coordinates";
 
 type DailyWeather = { date: string; weatherCode?: number; conditionLabel: string; tempMax?: number; tempMin?: number; precipitationProbabilityMax?: number; precipitationSum?: number; windSpeedMax?: number; status?: WeatherStatus };
+type CurrentWeather = { weatherCode?: number; conditionLabel: string; temperature?: number; status?: WeatherStatus };
 type OpenMeteoConfig = { apiKey: string; baseUrl: string };
 
 function parseDate(value: unknown, field: string) {
@@ -19,7 +20,7 @@ function parseDate(value: unknown, field: string) {
 }
 function daysBetween(start: string, end: string) { return Math.floor((new Date(`${end}T00:00:00Z`).getTime() - new Date(`${start}T00:00:00Z`).getTime()) / 86400000) + 1; }
 function conditionLabel(code?: number) { if (code === 0) return "Clear"; if (code === 1 || code === 2) return "Partly cloudy"; if (code === 3) return "Cloudy"; if (code === 45 || code === 48) return "Fog"; if ([51,53,55,56,57].includes(code ?? -1)) return "Drizzle"; if ([61,63,65,66,67].includes(code ?? -1)) return "Rain"; if ([71,73,75,77,85,86].includes(code ?? -1)) return "Snow"; if ([80,81,82].includes(code ?? -1)) return "Showers"; if ([95,96,99].includes(code ?? -1)) return "Thunderstorm"; return "Unknown"; }
-function cacheId(key: string, start: string, end: string) { return `${key}_${start}_${end}`.replace(/[^A-Za-z0-9_-]/g, "_").slice(0, 240); }
+function cacheId(key: string, start: string, end: string, mode = "daily") { return `${key}_${start}_${end}_${mode}`.replace(/[^A-Za-z0-9_-]/g, "_").slice(0, 240); }
 function providerNotConfigured() { return { provider: "Open-Meteo", updatedAt: new Date().toISOString(), status: "provider_not_configured" as WeatherStatus, locations: [] }; }
 function resolveOpenMeteoConfig(): OpenMeteoConfig | null {
   const apiKey = process.env.OPEN_METEO_API_KEY?.trim();
@@ -45,12 +46,13 @@ function validateLocations(input: unknown) {
     const endDate = parseDate(raw.endDate, "endDate");
     if (!key || !Number.isFinite(latitude) || !Number.isFinite(longitude)) throw new HttpsError("invalid-argument", "location_coordinates_invalid");
     if (daysBetween(startDate, endDate) < 1 || daysBetween(startDate, endDate) > MAX_FORECAST_DAYS) throw new HttpsError("invalid-argument", "date_range_invalid");
-    return { key, label, latitude, longitude, startDate, endDate };
+    const mode = raw.mode === "current" ? "current" : "daily";
+    return { key, label, latitude, longitude, startDate, endDate, mode };
   });
 }
 
 async function fetchLocation(db: Firestore, location: ReturnType<typeof validateLocations>[number], config: OpenMeteoConfig) {
-  const cacheRef = db.collection("weatherCache").doc(cacheId(location.key, location.startDate, location.endDate));
+  const cacheRef = db.collection("weatherCache").doc(cacheId(location.key, location.startDate, location.endDate, location.mode));
   const cached = await cacheRef.get();
   const cachedData = cached.data();
   if (cached.exists && typeof cachedData?.updatedAt === "string" && Date.now() - Date.parse(cachedData.updatedAt) < 60 * 60 * 1000) return cachedData.result;
@@ -61,14 +63,17 @@ async function fetchLocation(db: Firestore, location: ReturnType<typeof validate
   url.searchParams.set("start_date", location.startDate);
   url.searchParams.set("end_date", location.endDate);
   url.searchParams.set("daily", "weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max");
+  if (location.mode === "current") url.searchParams.set("current", "temperature_2m,weather_code");
   url.searchParams.set("timezone", "auto");
   url.searchParams.set("apikey", config.apiKey);
   const response = await fetch(url);
   if (!response.ok) throw new Error(`Open-Meteo returned ${response.status}`);
-  const body = await response.json() as { daily?: Record<string, unknown[]> };
+  const body = await response.json() as { daily?: Record<string, unknown[]>; current?: Record<string, unknown> };
   const time = body.daily?.time as string[] | undefined;
   const daily: DailyWeather[] = (time || []).map((date, index) => ({ date, weatherCode: (body.daily?.weather_code as number[] | undefined)?.[index], conditionLabel: conditionLabel((body.daily?.weather_code as number[] | undefined)?.[index]), tempMax: (body.daily?.temperature_2m_max as number[] | undefined)?.[index], tempMin: (body.daily?.temperature_2m_min as number[] | undefined)?.[index], precipitationProbabilityMax: (body.daily?.precipitation_probability_max as number[] | undefined)?.[index], precipitationSum: (body.daily?.precipitation_sum as number[] | undefined)?.[index], windSpeedMax: (body.daily?.wind_speed_10m_max as number[] | undefined)?.[index] }));
-  const result = { key: location.key, label: location.label, status: daily.length ? "ready" : "out_of_range", daily };
+  const currentWeather: CurrentWeather | undefined = location.mode === "current" ? { weatherCode: Number(body.current?.weather_code), conditionLabel: conditionLabel(Number(body.current?.weather_code)), temperature: Math.round(Number(body.current?.temperature_2m)) } : undefined;
+  const currentReady = currentWeather && Number.isFinite(currentWeather.temperature) && Number.isFinite(currentWeather.weatherCode);
+  const result = { key: location.key, label: location.label, status: location.mode === "current" ? (currentReady ? "ready" : "unavailable") : (daily.length ? "ready" : "out_of_range"), daily, ...(currentReady ? { current: currentWeather } : {}) };
   await cacheRef.set({ provider: "Open-Meteo", updatedAt: new Date().toISOString(), startDate: location.startDate, endDate: location.endDate, result, touchedAt: FieldValue.serverTimestamp() }, { merge: true });
   return result;
 }

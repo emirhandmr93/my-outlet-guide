@@ -32,3 +32,9 @@ for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) assert(ne
 assert(/liveCurrencyWeatherTranslations\.ar/.test(translations) && /سعر مباشر/.test(translations), "Arabic keys non-empty.");
 assert(!/(?:^|["'`\s])(?:TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:)|Türkçe çeviri|çeviri:|translation:/.test(allSource), "No debug locale prefixes.");
 assert(!/(OPEN_METEO_API_KEY\s*=|apikey\s*[:=]\s*["'][A-Za-z0-9_-]{12,})/.test(allSource), "No API secrets in source.");
+
+const outletDetail = read("src/screens/OutletDetailScreen.tsx");
+assert(/getOutletCurrentWeather/.test(weatherClient) && /mode:\s*"current"/.test(weatherClient), "Outlet weather requests current live provider-backed weather.");
+assert(/weather\?\.status !== "ready"/.test(outletDetail) && /Number\.isFinite\(weather\.weather\.temperature\)/.test(outletDetail), "Outlet weather chip renders numeric temperature only for ready provider result.");
+assert(!/getCurrentWeather/.test(outletDetail) && !/api\.open-meteo\.com\/v1\/forecast/.test(outletDetail), "Outlet detail does not fetch weather directly from client.");
+assert(/provider_not_configured/.test(weatherClient) && /missing_coordinates/.test(weatherClient), "Outlet weather exposes provider_not_configured and missing_coordinates safe states.");
