@@ -13,6 +13,7 @@ const screenPath = "src/screens/OnboardingScreen.tsx";
 const storagePath = "src/services/onboardingStorage.ts";
 const screen = existsSync(screenPath) ? read(screenPath) : "";
 const storage = existsSync(storagePath) ? read(storagePath) : "";
+const app = read("App.tsx");
 const nav = read("src/navigation/AppNavigator.tsx");
 const translations = read("src/translations/translations.ts");
 const production = read("tools/checkProductionBuildReadiness.ts");
@@ -39,6 +40,13 @@ for (const [pageKey, heroMarker] of expectedHeroMappings) {
 }
 assert(screen.includes("ImageBackground") && screen.includes("source={page.hero}") && screen.includes('resizeMode="cover"'), "onboarding renders mapped local hero images as cover cards");
 assert(screen.includes("SafeAreaView") && screen.includes("useSafeAreaInsets") && screen.includes("insets.top"), "onboarding uses safe-area insets for status bar spacing");
+assert(
+  app.includes('import { SafeAreaProvider } from "react-native-safe-area-context"') &&
+    app.indexOf("<SafeAreaProvider>") < app.indexOf("<LanguageProvider>") &&
+    app.indexOf("<AppNavigator />") < app.indexOf("</SafeAreaProvider>") &&
+    !nav.includes("SafeAreaProvider"),
+  "top-level SafeAreaProvider wraps onboarding and main navigation without duplicate navigation provider"
+);
 assert(screen.includes('<StatusBar style="light"'), "onboarding sets a light status bar style");
 assert(!screen.includes("disabled={pageIndex === 0}") && screen.includes("pageIndex > 0") && !screen.includes("secondaryButtonSpacer"), "Back button is hidden on the first onboarding page without a spacer");
 assert(screen.includes("pageIndex === 0 && styles.primaryButtonFull"), "first onboarding page primary action can render full width");
@@ -60,6 +68,5 @@ assert(beta.includes("checkOnboardingReadiness"), "beta readiness includes onboa
 assert(/first-launch only/i.test(docs) && /does not request notification permission/i.test(docs) && /does not require an account/i.test(docs), "release docs mention onboarding privacy/account behavior");
 
 console.log("Onboarding readiness checks passed.");
-
 
 
