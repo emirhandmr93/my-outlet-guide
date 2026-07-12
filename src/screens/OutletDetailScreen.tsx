@@ -52,7 +52,7 @@ import {
   isFirestorePermissionDenied,
 } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
-import { requireReviewAuth } from "../utils/reviewAuthGuard";
+import { requireReviewAuth } from "../services/reviews/reviewAuthGuard";
 import type { ReviewReportStatus } from "../services/reviewReportService";
 import type { ReviewReportReason } from "../types/review";
 import { colors } from "../theme/colors";

@@ -7,7 +7,7 @@ const read = (path: string) => readFileSync(join(root, path), "utf8");
 const translations = read("src/translations/translations.ts");
 const outletDetail = read("src/screens/OutletDetailScreen.tsx");
 const reviewStatsCard = read("src/components/cards/ReviewStatsCard.tsx");
-const reviewAuthGuard = read("src/utils/reviewAuthGuard.ts");
+const reviewAuthGuard = read("src/services/reviews/reviewAuthGuard.ts");
 const reviewsService = read("src/services/reviewsRatingsService.ts");
 
 const failures: string[] = [];
