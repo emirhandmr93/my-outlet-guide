@@ -10,16 +10,16 @@ function assert(condition: unknown, message: string) {
 }
 
 const requiredAssets = [
-  "hero-trips.PNG",
-  "hero-savings.PNG",
-  "hero-profile.PNG",
-  "hero-login.PNG",
-  "hero-flight-deals.PNG",
-  "hero-offline.PNG",
-  "hero-language.PNG",
-  "hero-currency.PNG",
-  "hero-notifications.PNG",
-  "hero-security.PNG",
+  "hero-trips.png",
+  "hero-savings.png",
+  "hero-profile.png",
+  "hero-login.png",
+  "hero-flight-deals.png",
+  "hero-offline.png",
+  "hero-language.png",
+  "hero-currency.png",
+  "hero-notifications.png",
+  "hero-security.png",
 ];
 
 for (const asset of requiredAssets) {
@@ -66,4 +66,6 @@ assert(heroComponent.includes("backgroundColor: colors.primary"), "hero componen
 assert(!/https?:\/\//.test(heroComponent), "hero component has no remote image URLs");
 
 console.log("Hero asset audit checks passed.");
+
+
 
