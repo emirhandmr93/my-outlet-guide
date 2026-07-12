@@ -108,7 +108,7 @@ for (const required of ["Ürün fiyatı", "Tahmini Tax Free iadesi", "İade sonr
 
 assert(!/32°C|32 °C/.test(outletDetail), "OutletDetail does not show a static weather chip");
 assert(/getOutletCurrentWeather/.test(outletDetail) && /status !== "ready"/.test(outletDetail), "OutletDetail weather chip only renders source-backed ready weather");
-assert(/provider_not_configured/.test(tripDetail) && /weather\.providerNotConfigured/.test(tripDetail), "TripDetail weather section uses safe provider_not_configured state");
+assert(/provider_not_configured/.test(tripDetail) && /status === "provider_not_configured" \? null/.test(tripDetail) && !/weather\.providerNotConfigured/.test(tripDetail), "TripDetail hides provider_not_configured instead of showing technical copy");
 assert(!/fake forecast|mock weather|sample weather/i.test(tripDetail), "TripDetail does not render fake weather forecasts");
 
 const debugLocalePattern = /TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/;

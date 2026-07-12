@@ -30,7 +30,7 @@ Working draft for manual Play Console entry. Not legal advice. Must be verified 
 
 ### Approximate location / selected route metadata
 
-- User-selected city, route, outlet, airport, and trip metadata may be processed for trip planning, weather context, and flight deal alerts.
+- User-selected city, route, outlet, airport, and trip metadata may be processed for trip planning and flight deal alerts; weather provider processing applies only if provider-backed weather is configured in a future release.
 - Do not mark device GPS location unless final code and permissions actually request device GPS.
 
 ### Diagnostics
@@ -41,7 +41,7 @@ Working draft for manual Play Console entry. Not legal advice. Must be verified 
 
 - Firebase backend, storage, authentication, functions, and database services may process account and app data as service providers.
 - Frankfurter receives currency-rate requests or related request metadata for live currency exchange rates.
-- Open-Meteo may receive weather requests through the backend if configured for trip/outlet weather context.
+- Open-Meteo is retained as future/provider-backed weather infrastructure; it should receive weather requests only if that provider is configured and enabled.
 - Do not claim data is sold unless policy/legal review says otherwise.
 - Do not overclaim “no sharing” unless verified under Google Play Data Safety definitions, including service-provider exceptions and provider request metadata.
 

@@ -29,7 +29,7 @@ Working draft for App Store Connect privacy questionnaire. Not legal advice. Mus
 
 ### Location
 
-- User-selected trip, outlet, city, airport, and route metadata only.
+- User-selected trip, outlet, city, airport, and route metadata only. Weather provider processing applies only if provider-backed weather is configured and enabled.
 - No device precise GPS should be declared unless final code and permissions actually request it.
 
 ### Diagnostics

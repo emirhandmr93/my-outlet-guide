@@ -1,13 +1,13 @@
 # Store Screenshot Plan — My Outlet Guide
 
-Do not create image files for this plan. Capture from the final release build using real app behavior and source-backed data only. Do not use fake data, fake fare values, fake weather values, debug/dev client UI, local development endpoints, or unstable provider-not-configured states in public screenshots.
+Do not create image files for this plan. Capture from the final release build using real app behavior and source-backed data only. Do not use fake data, fake fare values, debug/dev client UI, local development endpoints, or unstable provider-not-configured states in public screenshots.
 
 ## General capture rules
 
 - Prepare separate iPhone and Android screenshot sets with equivalent content and localized EN/TR captions.
 - Do not show a personal email unless it is blurred or a reviewer demo account configured only in the store console.
 - Avoid admin/moderation screenshots in public store screenshots unless a safety/reporting explanation is intentionally included; the recommended public set avoids admin screens.
-- Avoid provider-pending, provider-not-configured, or unavailable states when they would imply broken functionality.
+- Avoid provider-pending, provider-not-configured, or unavailable states when they would imply broken functionality; weather is not a required screenshot element for this release.
 - Do not show unsupported purchase, booking, live fare, guaranteed Tax Free, or cheapest-price claims.
 
 ## Recommended sequence
@@ -36,7 +36,7 @@ Do not create image files for this plan. Capture from the final release build us
 - Caption EN: Compare outlet details before you go
 - Caption TR: Gitmeden önce outlet detaylarını incele
 - Must be visible: outlet name, practical details, brand/context sections, favorite/review affordances where appropriate.
-- Must not be visible: unsupported cheapest-price language, fake opening data, fake weather, admin-only actions.
+- Must not be visible: unsupported cheapest-price language, fake opening data, admin-only actions.
 - Required test data state: choose an outlet with complete bundled guide data and stable imagery/content.
 
 ### 4. Trip planner / trip detail

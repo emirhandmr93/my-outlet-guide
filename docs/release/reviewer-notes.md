@@ -10,7 +10,7 @@ The release expects these Firebase callable/backend services to be deployed and 
 
 ## Account features
 
-Signed-in users can use account-backed features including favorites, trips, reviews, notifications, and delete account. Account sync, reviews, notifications, live weather, live currency, and flight alert services require network access.
+Signed-in users can use account-backed features including favorites, trips, reviews, notifications, and delete account. Account sync, reviews, notifications, live currency, and provider-backed services require network access.
 
 ## Review and reporting
 
@@ -22,7 +22,7 @@ Flight deal alerts are provider-backed/pending. The app must not show fake fares
 
 ## Weather
 
-Weather is source-backed through `getTripWeather` with Open-Meteo provider configuration. If provider data is unavailable or configuration is not ready, the app shows a safe unavailable state rather than fake weather.
+Weather infrastructure remains deployed through `getTripWeather`, but the paid Open-Meteo provider is not enabled for this first final release. If provider configuration is missing, the app hides weather or shows a safe unavailable state rather than technical provider errors or fake weather.
 
 ## Currency
 
@@ -30,7 +30,7 @@ Currency conversion uses Frankfurter source attribution. Exchange rates are info
 
 ## Offline behavior
 
-Outlet guide data is bundled for offline reference. Account sync, favorites/trips updates, reviews, live services, notifications, currency, and weather require network access.
+Outlet guide data is bundled for offline reference. Account sync, favorites/trips updates, reviews, live services, notifications, and currency require network access.
 
 ## Demo account
 

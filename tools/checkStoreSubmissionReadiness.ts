@@ -84,6 +84,7 @@ for (const doc of [
 
 assert(!/fake fare|mock fare|demo fare|sample fare/i.test(flightDeals + flightProvider), "no fake fare claims");
 assert(!/fake weather|mock weather|demo weather/i.test(weatherClient), "no fake weather claims");
+assert(/paid Open-Meteo provider is not enabled/i.test(read("docs/release/reviewer-notes.md")), "reviewer notes document provider-deferred weather");
 assert(!/fake rate|mock rate|demo rate/i.test(exchangeRate), "no fake rate claims");
 assert(!/Bilet al|buy ticket/i.test(flightDeals), "no buy-ticket CTA without source-backed deepLink");
 
