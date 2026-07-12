@@ -47,7 +47,11 @@ for (const constantName of [
 assert(contact.includes("CONTACT_EMAIL") && contact.includes("SUPPORT_EMAIL") === false && contact.includes("mailtoUrl(CONTACT_EMAIL)"), "Contact screen uses centralized contact email mailto link");
 assert(externalLinks.includes("SUPPORT_EMAIL = CONTACT_EMAIL"), "Support email is centralized with contact email");
 assert(contact.includes("INSTAGRAM_HANDLE") && contact.includes("INSTAGRAM_URL"), "Contact screen uses centralized Instagram handle and URL");
-assert(contact.includes("WEBSITE_URL ?") && !/myoutletguide\.com/.test(contact), "Website row is gated behind configured WEBSITE_URL and does not hardcode an unready website");
+assert(externalLinks.includes('WEBSITE_URL: string = "https://myoutletguide.com"'), "WEBSITE_URL points to verified production domain");
+assert(externalLinks.includes('PRIVACY_POLICY_URL: string = "https://myoutletguide.com/privacy"'), "PRIVACY_POLICY_URL points to production privacy page");
+assert(externalLinks.includes('TERMS_URL: string = "https://myoutletguide.com/terms"'), "TERMS_URL points to production terms page");
+assert(externalLinks.includes('ACCOUNT_DELETION_URL: string = "https://myoutletguide.com/account-deletion"'), "ACCOUNT_DELETION_URL points to production account deletion page");
+assert(contact.includes("WEBSITE_URL ?") && contact.includes("Linking.openURL(WEBSITE_URL)") && !/https?:\/\/myoutletguide\.com/.test(contact), "Website row uses centralized WEBSITE_URL without hardcoding the production domain");
 
 const visibleContactLegalSource = [contact, privacy, terms, deleteAccount].join("\n");
 assert(!/coming soon|broken|placeholder/i.test(visibleContactLegalSource), "No visible coming soon/broken/placeholder copy in Contact or Legal screens");
@@ -80,6 +84,17 @@ for (const key of [
 }
 
 assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test([externalLinks, contact, privacy, terms, deleteAccount, mediaCredits, profile].join("\n")), "No debug locale prefixes in changed support/legal screens or constants");
+assert(!/localhost|127\.0\.0\.1|192\.168\./.test(userFacingSource), "No localhost or LAN URLs in user-facing external link source");
+assert(!/https?:\/\/(?:example\.com|your-domain)|placeholder-url/i.test(userFacingSource), "No broken placeholder links in user-facing external link source");
+const approvedProductionUrls = new Set([
+  "https://myoutletguide.com",
+  "https://myoutletguide.com/privacy",
+  "https://myoutletguide.com/terms",
+  "https://myoutletguide.com/account-deletion",
+]);
+const centralizedProductionUrls = [...externalLinks.matchAll(/https?:\/\/myoutletguide\.com(?:\/[A-Za-z0-9-]+)?/g)].map((match) => match[0]);
+assert(centralizedProductionUrls.every((url) => approvedProductionUrls.has(url)), "Only approved production myoutletguide URLs are centralized in externalLinks");
+assert(!/https?:\/\/myoutletguide\.com/.test([contact, privacy, terms, deleteAccount, mediaCredits, profile, navigation, navTypes].join("\n")), "No raw uncentralized myoutletguide URLs in app screens or navigation");
 assert(/Frankfurter/.test(exchangeRateService) && /api\.frankfurter\.dev/.test(exchangeRateService), "Frankfurter provider name and URL are consistently referenced");
 assert(/open-meteo\.com/.test(weatherService), "Open-Meteo provider URL remains consistently referenced");
 

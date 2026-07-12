@@ -86,8 +86,9 @@ assert(firebaseJson.hosting?.public === "web", "firebase.json hosting public is 
 assert(firebaseJson.hosting?.ignore?.includes("firebase.json") && firebaseJson.hosting?.ignore?.includes("**/node_modules/**"), "firebase.json hosting ignore is configured");
 
 const externalLinks = read("src/constants/externalLinks.ts");
-for (const constantName of ["WEBSITE_URL", "PRIVACY_POLICY_URL", "TERMS_URL", "ACCOUNT_DELETION_URL"]) {
-  assert(new RegExp(`export const ${constantName}: string = "";`).test(externalLinks), `${constantName} remains empty until hosted`);
-}
+assert(externalLinks.includes('WEBSITE_URL: string = "https://myoutletguide.com"'), "WEBSITE_URL points to verified hosted domain");
+assert(externalLinks.includes('PRIVACY_POLICY_URL: string = "https://myoutletguide.com/privacy"'), "PRIVACY_POLICY_URL points to hosted privacy page");
+assert(externalLinks.includes('TERMS_URL: string = "https://myoutletguide.com/terms"'), "TERMS_URL points to hosted terms page");
+assert(externalLinks.includes('ACCOUNT_DELETION_URL: string = "https://myoutletguide.com/account-deletion"'), "ACCOUNT_DELETION_URL points to hosted account deletion page");
 
 console.log("Minimum public website checks passed.");
