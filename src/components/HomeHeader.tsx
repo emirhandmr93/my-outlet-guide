@@ -15,6 +15,7 @@ import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 
 const homeHeroPremiumImage = require("../../assets/home/home-hero-premium.png");
+const brandIcon = require("../../assets/icon.png");
 
 type HomeHeaderProps = {
   userName?: string;
@@ -75,7 +76,7 @@ export function HomeHeader({
 
         <View pointerEvents="none" style={styles.brandWrap}>
           <Image
-            source={require("../../assets/brand/app-icon.png")}
+            source={brandIcon}
             style={styles.brandIcon}
             resizeMode="contain"
           />
@@ -124,7 +125,7 @@ export function HomeHeader({
         <View style={styles.overlay}>
           <View style={styles.heroBrandMark}>
             <Image
-              source={require("../../assets/brand/app-icon.png")}
+              source={brandIcon}
               style={styles.heroBrandIcon}
               resizeMode="contain"
             />

@@ -13,7 +13,9 @@ This checklist is for App Store / Google Play production readiness. It does not 
 - Confirm app version is set before building.
 - Confirm EAS `production` profile exists and does not enable `developmentClient`.
 - Confirm `expo-dev-client` is not required by the production EAS profile.
-- Confirm configured app assets exist locally: icon, adaptive icon foreground/background/monochrome, favicon, and any configured splash/notification assets.
+- Confirm final local branding assets are wired exactly: iOS `./assets/icon.png`; Android adaptive `./assets/adaptive-icon-foreground.png`, `./assets/adaptive-icon-background.png`, and `./assets/adaptive-icon-monochrome.png`; web `./assets/favicon.png`; and splash `./assets/splash-icon.png`.
+- Confirm no `android-icon-*`, Expo/default, placeholder, remote, or letter-only/MOG icon reference remains in app config or the Home header; the Home header must render `assets/icon.png` next to `MY OUTLET GUIDE`.
+- Run `npx tsx tools/checkAppIconBranding.ts` to validate PNG dimensions, iOS opacity, local paths, and that the task diff has not changed `assets/`.
 - Confirm no camera, microphone, photo library, or device GPS permissions are configured unless a release feature requires them.
 - Confirm notification permission is justified by notification settings, trip reminders, Tax Free reminders, and flight reminder preferences.
 - Confirm first-launch only onboarding appears after language resolution, does not require an account, does not request notification permission, and can be skipped or started without network access.
