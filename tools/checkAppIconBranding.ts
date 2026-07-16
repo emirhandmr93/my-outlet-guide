@@ -21,6 +21,14 @@ function appPath(assetPath: string) {
   return assetPath.replace(/^\.\//, "");
 }
 
+function gitOutput(args: string[]) {
+  try {
+    return execFileSync("git", args, { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+  } catch {
+    return undefined;
+  }
+}
+
 function readPng(path: string) {
   const buffer = readFileSync(path);
   assert(buffer.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])), `${path} is a PNG`);
@@ -119,6 +127,19 @@ for (const path of ["assets/adaptive-icon-foreground.png", "assets/adaptive-icon
   assert(png.width === png.height, `${path} is square`);
 }
 
-const changedAssets = execFileSync("git", ["diff", "--name-only", "HEAD", "--", "assets"], { encoding: "utf8" }).trim();
-assert(changedAssets.length === 0, "working task diff does not change files under assets/");
+const workingTreeAssets = gitOutput(["status", "--porcelain", "--", "assets"]);
+assert(workingTreeAssets !== undefined, "git status is available for asset change validation");
+assert(workingTreeAssets.length === 0, "working tree and index do not modify files under assets/");
+
+const currentBranch = gitOutput(["branch", "--show-current"]);
+const originMain = gitOutput(["rev-parse", "--verify", "--quiet", "origin/main"]);
+if (currentBranch === "main") {
+  console.log("OK: on main, skipping branch-diff asset validation");
+} else if (currentBranch && originMain) {
+  const branchDiffAssets = gitOutput(["diff", "--name-only", "origin/main...HEAD", "--", "assets"]);
+  assert(branchDiffAssets !== undefined, "branch asset diff can be inspected");
+  assert(branchDiffAssets.length === 0, "task branch diff does not change files under assets/");
+} else {
+  console.log("OK: origin/main or the current branch is unavailable, skipping branch-diff asset validation");
+}
 console.log("App icon branding checks passed.");
