@@ -1,3 +1,4 @@
+import "./checkAppIconBranding";
 import "./checkOnboardingReadiness";
 
 import { readFileSync } from "node:fs";
