@@ -410,37 +410,18 @@ const feature = (
 ) =>
   `<a class="app-feature-card" href="${href}" style="background-image:linear-gradient(0deg,rgba(8,29,56,.88),rgba(8,29,56,.15)),url('${asset(image)}')"><span>${label}</span><strong>${title}</strong><em>${copy}</em><b>Keşfet →</b></a>`;
 
+const homePage = (body: string) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Outlet keşfi | My Outlet Guide</title><meta name="description" content="Premium outletleri keşfet, daha çok tasarruf et ve sonraki alışveriş seyahatini planla."><link rel="stylesheet" href="/assets/styles.css"></head><body class="home-page"><header class="home-header" style="background-image:linear-gradient(90deg,rgba(4,19,39,.96) 0%,rgba(8,29,56,.82) 47%,rgba(8,29,56,.45) 100%),url('${asset("home/home-hero-premium.png")}')"><nav><a class="brand" href="/"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 12h16l-1 13H9L8 12Z"/><path d="M12 12a4 4 0 0 1 8 0"/><path d="m16 15 1.8 3.5 3.8.5-2.8 2.7.7 3.8-3.5-1.8-3.5 1.8.7-3.8-2.8-2.7 3.8-.5L16 15Z"/></svg></span><span>MY OUTLET GUIDE</span></a><div class="links home-links"><a class="is-active" href="/" aria-current="page">Ana Sayfa</a><a href="/explore/">Keşfet</a><a href="/outlets/">Outletler</a><a href="/tax-free/">Tax Free</a><a href="/trip-planner/">Seyahat Planı</a><a href="/flight-deals/">Uçuş Uyarıları</a></div><a class="nav-app" href="/app/" aria-label="Uygulama durumu">⇩ <span>Uygulama</span></a></nav><section class="hero home-main-hero"><p class="pill">PREMIUM ALIŞVERİŞ VE SEYAHAT ASİSTANI</p><h1>My Outlet Guide’a hoş geldin</h1><p>Premium outletleri keşfet, daha çok tasarruf et ve sonraki alışveriş seyahatini planla.</p><div class="home-search app-search-pill">⌕ <span>Şehir, outlet ve marka ara</span></div><div class="home-hero-actions"><a class="home-primary-cta" href="/explore/">Outletleri keşfet <b>→</b></a><span>App Store incelemesi bekleniyor</span><span>Google Play hazırlıkta</span></div></section></header><main><div class="app-shell app-page">${body}</div>${appTabs}</main>${footer}</body></html>`;
+
+const homeCities = [
+  ["Paris", "Fransa", "Paris.webp", "paris"],
+  ["Milano", "İtalya", "Milano.webp", "milan"],
+  ["Londra", "Birleşik Krallık", "London.webp", "london"],
+  ["Münih", "Almanya", "Munich.webp", "munich"],
+] as const;
+
 write(
   "",
-  shell(
-    "Outlet keşfi",
-    "PREMIUM ALIŞVERİŞ VE SEYAHAT ASİSTANI",
-    "My Outlet Guide’a hoş geldin",
-    "Premium outletleri keşfet, daha çok tasarruf et ve sonraki alışveriş seyahatini planla.",
-    `<section class="app-image-hero" style="background-image:linear-gradient(0deg,rgba(8,29,56,.88),rgba(8,29,56,.12)),url('${asset("home/home-hero-premium.png")}')"><p>PREMIUM ALIŞVERİŞ VE SEYAHAT ASİSTANI</p><h2>My Outlet Guide’a hoş geldin</h2><span>Premium outletleri keşfet, daha çok tasarruf et ve sonraki alışveriş seyahatini planla.</span></section><div class="app-search-pill">⌕ <span>Şehir, outlet ve marka ara</span></div><section class="app-section"><h2>Öne çıkanlar</h2><p>Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar.</p><div class="app-feature-grid">${feature("KEŞFET", "Outletleri keşfet", "Premium markalar ve destinasyonlar.", "/explore/", "explore/explore-hero-premium.png")}${feature("SEYAHAT", "Outlet seyahatini planla", "Rotanı kartlarla düzenle.", "/trip-planner/", "home/home-hero-premium.png")}${feature("TASARRUF", "Tasarruf araçları", "Tax Free ve fiyat notların.", "/savings/", "explore/explore-hero-premium.png")}${feature("REHBER", "Çevrimdışı rehber", "Temel bilgileri yanında tut.", "/offline-guide/", "home/home-hero-premium.png")}</div></section><section class="app-section"><h2>Önerilen outletler</h2><div class="app-outlet-grid">${outlets.slice(0, 4).map(outletCard).join("")}</div></section><section class="app-section"><h2>Aktiviteniz</h2><div class="app-card activity-card"><div><span>Alışveriş Seyahati</span><b>Henüz seyahat yok</b></div><div><span>Favoriler</span><b>Henüz favori outlet yok</b></div></section><section class="app-section"><h2>Alışveriş araçları</h2><div class="app-quick-grid">${[
-      "Tax Free Hesaplayıcı|₺|/tax-free/",
-      "Döviz Çevirici|⇄|/savings/",
-      "Uçuş Alarmı|✈|/flight-deals/",
-      "Çevrimdışı|↓|/offline-guide/",
-    ]
-      .map((x) => {
-        const [a, b, c] = x.split("|");
-        return `<a class="app-quick-card" href="${c}"><b>${b}</b><span>${a}</span></a>`;
-      })
-      .join(
-        "",
-      )}</div></section><section class="app-section"><h2>Popüler şehirler</h2><div class="app-city-list">${[
-      "Paris|Fransa",
-      "Milano|İtalya",
-      "Londra|Birleşik Krallık",
-      "Münih|Almanya",
-    ]
-      .map((x) => {
-        const [a, b] = x.split("|");
-        return `<a class="app-list-card" href="/cities/"><b>⌖</b><span>${a}<small>${b} · Outlet rehberi</small></span><i>→</i></a>`;
-      })
-      .join("")}</div></section>`,
-  ),
+  homePage(`<section class="app-section"><h2>Öne çıkanlar</h2><p>Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar.</p><div class="app-feature-grid">${feature("KEŞFET", "Outletleri keşfet", "Premium markalar ve destinasyonlar.", "/explore/", "explore/explore-hero-premium.png")}${feature("SEYAHAT", "Outlet seyahatini planla", "Rotanı kartlarla düzenle.", "/trip-planner/", "home/home-hero-premium.png")}${feature("TASARRUF", "Tasarruf araçları", "Tax Free ve fiyat notların.", "/savings/", "explore/explore-hero-premium.png")}${feature("REHBER", "Çevrimdışı rehber", "Temel bilgileri yanında tut.", "/offline-guide/", "home/home-hero-premium.png")}</div></section><section class="app-section"><h2>Önerilen outletler</h2><p>Bir sonraki alışveriş günün için seçilmiş premium duraklar.</p><div class="app-outlet-grid">${outlets.slice(0, 4).map(outletCard).join("")}</div></section><section class="app-section"><h2>Aktiviteniz</h2><p>Kayıtlı alışveriş planlarınıza hızlı erişim.</p><div class="app-card activity-card"><div><i>🧳</i><span>Alışveriş Seyahati</span><b>Henüz seyahat yok</b><small>Hatırlatıcılar için bir seyahat oluşturun.</small></div><div><i>♡</i><span>Favoriler</span><b>Henüz favori outlet yok</b><small>Takip etmek istediğiniz outletleri kaydedin.</small></div></div></section><section class="app-section"><h2>Alışveriş araçları</h2><p>Alışverişten önce tasarrufunu planlayın.</p><div class="app-quick-grid home-tool-grid">${[["Tax Free Hesaplayıcı", "₺", "İade tahminini planla.", "/tax-free/"], ["Döviz Çevirici", "⇄", "Harcamayı karşılaştır.", "/savings/"], ["Uçuş Alarmı", "✈", "Rota tercihini hazırla.", "/flight-deals/"], ["Çevrimdışı", "↓", "Rehberi yanında tut.", "/offline-guide/"]].map(([title, icon, copy, href]) => `<a class="app-quick-card" href="${href}"><b>${icon}</b><span>${title}</span><small>${copy}</small><i>→</i></a>`).join("")}</div></section><section class="app-section"><h2>Popüler şehirler</h2><p>Şehir rehberleriyle outlet rotanı şekillendir.</p><div class="app-city-list home-city-grid">${homeCities.map(([city, country, image, cityId]) => { const count = outlets.filter((outlet: any) => outlet.cityId === cityId).length; return `<a class="app-list-card home-city-card" href="/cities/${cityId}/" style="background-image:linear-gradient(90deg,rgba(8,29,56,.86),rgba(8,29,56,.25)),url('${asset(`city-images/${image}`)}')"><span>${city}<small>${country} · ${cityOutletCount(count)}</small></span><i>→</i></a>`; }).join("")}</div></section>`),
 );
 
 write(

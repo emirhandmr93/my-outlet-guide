@@ -574,3 +574,43 @@ for (const [route, markers] of Object.entries({
       `${route} includes app-style ${marker}`,
     );
 console.log("Minimum public website checks passed.");
+
+// Homepage premium landing guardrails.
+assert(
+  /class="home-header"[^>]*home-hero-premium\.png/.test(home),
+  "homepage hero uses the home image as its main hero background",
+);
+assert(
+  (home.match(/My Outlet Guide’a hoş geldin/g) || []).length === 1,
+  "homepage has no duplicate hero title block",
+);
+assert(
+  !/<(?:input|select|textarea)\b/i.test(home),
+  "homepage has no raw form controls",
+);
+assert(
+  /<span>MY OUTLET GUIDE<\/span>/.test(home),
+  "homepage header brand uses exact MY OUTLET GUIDE spelling",
+);
+assert(
+  /class="is-active" href="\/" aria-current="page">Ana Sayfa/.test(home) &&
+    styles.includes(".home-links a:hover"),
+  "homepage top navigation has active and clickable treatments",
+);
+for (const marker of [
+  "Kayıtlı alışveriş planlarınıza hızlı erişim.",
+  "Hatırlatıcılar için bir seyahat oluşturun.",
+  "Takip etmek istediğiniz outletleri kaydedin.",
+  "Tax Free Hesaplayıcı",
+  "Döviz Çevirici",
+  "Uçuş Alarmı",
+  "Çevrimdışı",
+  "Paris.webp",
+  "Milano.webp",
+  "London.webp",
+  "Munich.webp",
+]) assert(home.includes(marker), `homepage premium content exists: ${marker}`);
+assert(
+  styles.includes(".home-city-card") && styles.includes(".home-tool-grid"),
+  "homepage city visuals and app-style tool grid have dedicated styling",
+);
