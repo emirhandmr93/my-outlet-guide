@@ -3507,19 +3507,19 @@ var PasswordPolicyImpl = class {
     this.schemaVersion = response.schemaVersion;
   }
   validatePassword(password) {
-    const status = {
+    const status2 = {
       isValid: true,
       passwordPolicy: this
     };
-    this.validatePasswordLengthOptions(password, status);
-    this.validatePasswordCharacterOptions(password, status);
-    status.isValid && (status.isValid = status.meetsMinPasswordLength ?? true);
-    status.isValid && (status.isValid = status.meetsMaxPasswordLength ?? true);
-    status.isValid && (status.isValid = status.containsLowercaseLetter ?? true);
-    status.isValid && (status.isValid = status.containsUppercaseLetter ?? true);
-    status.isValid && (status.isValid = status.containsNumericCharacter ?? true);
-    status.isValid && (status.isValid = status.containsNonAlphanumericCharacter ?? true);
-    return status;
+    this.validatePasswordLengthOptions(password, status2);
+    this.validatePasswordCharacterOptions(password, status2);
+    status2.isValid && (status2.isValid = status2.meetsMinPasswordLength ?? true);
+    status2.isValid && (status2.isValid = status2.meetsMaxPasswordLength ?? true);
+    status2.isValid && (status2.isValid = status2.containsLowercaseLetter ?? true);
+    status2.isValid && (status2.isValid = status2.containsUppercaseLetter ?? true);
+    status2.isValid && (status2.isValid = status2.containsNumericCharacter ?? true);
+    status2.isValid && (status2.isValid = status2.containsNonAlphanumericCharacter ?? true);
+    return status2;
   }
   /**
    * Validates that the password meets the length options for the policy.
@@ -3527,14 +3527,14 @@ var PasswordPolicyImpl = class {
    * @param password Password to validate.
    * @param status Validation status.
    */
-  validatePasswordLengthOptions(password, status) {
+  validatePasswordLengthOptions(password, status2) {
     const minPasswordLength = this.customStrengthOptions.minPasswordLength;
     const maxPasswordLength = this.customStrengthOptions.maxPasswordLength;
     if (minPasswordLength) {
-      status.meetsMinPasswordLength = password.length >= minPasswordLength;
+      status2.meetsMinPasswordLength = password.length >= minPasswordLength;
     }
     if (maxPasswordLength) {
-      status.meetsMaxPasswordLength = password.length <= maxPasswordLength;
+      status2.meetsMaxPasswordLength = password.length <= maxPasswordLength;
     }
   }
   /**
@@ -3543,9 +3543,9 @@ var PasswordPolicyImpl = class {
    * @param password Password to validate.
    * @param status Validation status.
    */
-  validatePasswordCharacterOptions(password, status) {
+  validatePasswordCharacterOptions(password, status2) {
     this.updatePasswordCharacterOptionsStatuses(
-      status,
+      status2,
       /* containsLowercaseCharacter= */
       false,
       /* containsUppercaseCharacter= */
@@ -3559,7 +3559,7 @@ var PasswordPolicyImpl = class {
     for (let i = 0; i < password.length; i++) {
       passwordChar = password.charAt(i);
       this.updatePasswordCharacterOptionsStatuses(
-        status,
+        status2,
         /* containsLowercaseCharacter= */
         passwordChar >= "a" && passwordChar <= "z",
         /* containsUppercaseCharacter= */
@@ -3582,18 +3582,18 @@ var PasswordPolicyImpl = class {
    * @param containsNumericCharacter Whether the character is a numeric character.
    * @param containsNonAlphanumericCharacter Whether the character is a non-alphanumeric character.
    */
-  updatePasswordCharacterOptionsStatuses(status, containsLowercaseCharacter, containsUppercaseCharacter, containsNumericCharacter, containsNonAlphanumericCharacter) {
+  updatePasswordCharacterOptionsStatuses(status2, containsLowercaseCharacter, containsUppercaseCharacter, containsNumericCharacter, containsNonAlphanumericCharacter) {
     if (this.customStrengthOptions.containsLowercaseLetter) {
-      status.containsLowercaseLetter || (status.containsLowercaseLetter = containsLowercaseCharacter);
+      status2.containsLowercaseLetter || (status2.containsLowercaseLetter = containsLowercaseCharacter);
     }
     if (this.customStrengthOptions.containsUppercaseLetter) {
-      status.containsUppercaseLetter || (status.containsUppercaseLetter = containsUppercaseCharacter);
+      status2.containsUppercaseLetter || (status2.containsUppercaseLetter = containsUppercaseCharacter);
     }
     if (this.customStrengthOptions.containsNumericCharacter) {
-      status.containsNumericCharacter || (status.containsNumericCharacter = containsNumericCharacter);
+      status2.containsNumericCharacter || (status2.containsNumericCharacter = containsNumericCharacter);
     }
     if (this.customStrengthOptions.containsNonAlphanumericCharacter) {
-      status.containsNonAlphanumericCharacter || (status.containsNonAlphanumericCharacter = containsNonAlphanumericCharacter);
+      status2.containsNonAlphanumericCharacter || (status2.containsNonAlphanumericCharacter = containsNonAlphanumericCharacter);
     }
   }
 };
@@ -37202,44 +37202,55 @@ function isBelowMinimumPurchase(grossAmount, rule) {
 var $2 = (selector, root = document) => root.querySelector(selector);
 var esc = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
 var route = (path) => path.endsWith("/") ? path : `${path}/`;
+var format = (amount, currency) => new Intl.NumberFormat("tr-TR", { style: "currency", currency, maximumFractionDigits: 2 }).format(amount);
 var currentUser = null;
-function loginUrl() {
-  return `/login/?returnTo=${encodeURIComponent(location.pathname + location.search)}`;
-}
-function requireAuth() {
+var loginUrl = () => `/login/?returnTo=${encodeURIComponent(location.pathname + location.search)}`;
+var requireAuth = () => {
   if (!currentUser) {
     location.assign(loginUrl());
     return false;
   }
   return true;
-}
-function outletPath(outlet) {
-  return route(`/outlets/${outlet.slug || outlet.outletId}`);
-}
-function format(amount, currency) {
-  return new Intl.NumberFormat("tr-TR", { style: "currency", currency, maximumFractionDigits: 2 }).format(amount);
-}
+};
+var status = (root, message, kind = "") => {
+  if (root) root.innerHTML = `<div class="web-status-card ${kind}">${esc(message)}</div>`;
+};
 function initSearch() {
   document.querySelectorAll("[data-search-input]").forEach((input) => {
-    const results = $2("[data-search-results]", input.parentElement?.parentElement || document);
-    const kind = $2("[data-search-kind]", input.parentElement?.parentElement || document);
+    const root = input.closest("[data-search]") || input.parentElement || document;
+    const results = $2("[data-search-results]", root);
+    const tabs = $2("[data-search-tabs]", root);
+    let kind = "all";
+    let limit = 6;
     const render = () => {
       const q = input.value.trim().toLocaleLowerCase("tr");
-      const selected = kind?.value || "all";
       if (!results) return;
       if (!q) {
         results.innerHTML = "";
         return;
       }
       const matches = [];
-      if (selected === "all" || selected === "outlet") outlets.filter((o) => `${o.name} ${(o.aliases || []).join(" ")}`.toLocaleLowerCase("tr").includes(q)).forEach((o) => matches.push({ type: "Outlet", name: o.name, href: outletPath(o), note: "Outlet rehberi" }));
-      if (selected === "all" || selected === "city") cities.filter((c) => c.cityName.toLocaleLowerCase("tr").includes(q)).forEach((c) => matches.push({ type: "\u015Eehir", name: c.cityName, href: route(`/cities/${c.cityId}`), note: "\u015Eehir rehberi" }));
-      if (selected === "all" || selected === "country") countries.filter((c) => c.countryName.toLocaleLowerCase("tr").includes(q)).forEach((c) => matches.push({ type: "\xDClke", name: c.countryName, href: route(`/countries/${c.countryId}`), note: c.currency }));
-      if (selected === "all" || selected === "brand") outlets.filter((o) => (o.brands || []).some((b) => b.toLocaleLowerCase("tr").includes(q))).slice(0, 20).forEach((o) => matches.push({ type: "Marka", name: o.name, href: outletPath(o), note: (o.brands || []).filter((b) => b.toLocaleLowerCase("tr").includes(q)).join(", ") }));
-      results.innerHTML = matches.slice(0, 20).map((m) => `<a class="search-result" href="${m.href}"><b>${esc(m.name)}</b><span>${m.type} \xB7 ${esc(m.note)}</span></a>`).join("") || "<p>Sonu\xE7 bulunamad\u0131.</p>";
+      const add = (type, name5, href, note) => matches.push({ type, name: name5, href, note });
+      if (kind === "all" || kind === "outlet") outlets.filter((o) => `${o.name} ${(o.aliases || []).join(" ")}`.toLocaleLowerCase("tr").includes(q)).forEach((o) => add("Outlet", o.name, route(`/outlets/${o.slug || o.outletId}`), "Outlet rehberi"));
+      if (kind === "all" || kind === "city") cities.filter((c) => c.cityName.toLocaleLowerCase("tr").includes(q)).forEach((c) => add("\u015Eehir", c.cityName, route(`/cities/${c.cityId}`), "\u015Eehir rehberi"));
+      if (kind === "all" || kind === "country") countries.filter((c) => c.countryName.toLocaleLowerCase("tr").includes(q)).forEach((c) => add("\xDClke", c.countryName, route(`/countries/${c.countryId}`), c.currency));
+      if (kind === "all" || kind === "brand") outlets.filter((o) => (o.brands || []).some((b) => b.toLocaleLowerCase("tr").includes(q))).forEach((o) => add("Marka", o.name, route(`/outlets/${o.slug || o.outletId}`), (o.brands || []).filter((b) => b.toLocaleLowerCase("tr").includes(q)).join(", ")));
+      const visible = matches.slice(0, limit);
+      results.innerHTML = matches.length ? `<div class="web-result-list">${visible.map((m) => `<a class="web-result-card" href="${esc(m.href)}"><span><b>${esc(m.name)}</b><small><i>${esc(m.type)}</i>${esc(m.note)}</small></span><strong aria-label="\u0130ncele">\u203A</strong></a>`).join("")}</div>${matches.length > limit ? `<button class="web-button web-button-secondary" type="button" data-show-more>Daha fazla g\xF6ster</button>` : ""}` : `<div class="web-empty-state">Sonu\xE7 bulunamad\u0131</div>`;
+      $2("[data-show-more]", results)?.addEventListener("click", () => {
+        limit += 6;
+        render();
+      });
     };
+    tabs?.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-search-kind]");
+      if (!button) return;
+      kind = button.dataset.searchKind || "all";
+      limit = 6;
+      tabs.querySelectorAll("button").forEach((b) => b.classList.toggle("is-active", b === button));
+      render();
+    });
     input.addEventListener("input", render);
-    kind?.addEventListener("change", render);
   });
 }
 function initCalculator() {
@@ -37250,13 +37261,9 @@ function initCalculator() {
     const render = () => {
       const rule = getTaxFreeRule(country.value);
       const value = parsePurchaseAmount(amount.value);
-      if (!rule || value === void 0 || !Number.isFinite(value) || value <= 0) {
-        result.textContent = value !== void 0 ? "Ge\xE7erli bir sat\u0131n alma tutar\u0131 girin." : "Tutar\u0131 girerek tahmini hesab\u0131 g\xF6r\xFCn.";
-        return;
-      }
+      if (!rule || !value || value <= 0) return status(result, value !== void 0 ? "Ge\xE7erli bir sat\u0131n alma tutar\u0131 girin." : "Tutar\u0131 girerek tahmini hesab\u0131 g\xF6r\xFCn.");
       const estimate = calculateTaxFreeEstimate(value, rule);
-      const minimum = isBelowMinimumPurchase(value, rule) ? `<p class="warning">Bu tutar, kaynakl\u0131 minimum al\u0131\u015Fveri\u015F tutar\u0131 olan ${format(rule.minimumPurchaseAmount, rule.currency)} alt\u0131nda.</p>` : "";
-      result.innerHTML = `<strong>Tahmini iade: ${format(estimate.estimatedTaxFreeRefund, rule.currency)}</strong><span>Tahmini iade sonras\u0131 maliyet: ${format(estimate.estimatedCostAfterRefund, rule.currency)}</span>${minimum}`;
+      result.innerHTML = `<div class="web-result-grid"><div><small>Tahmini Tax Free iadesi</small><b>${format(estimate.estimatedTaxFreeRefund, rule.currency)}</b></div><div><small>\u0130ade sonras\u0131 tahmini maliyet</small><b>${format(estimate.estimatedCostAfterRefund, rule.currency)}</b></div><div><small>Minimum harcama durumu</small><b>${isBelowMinimumPurchase(value, rule) ? `Minimum tutar ${format(rule.minimumPurchaseAmount, rule.currency)} alt\u0131nda` : "Minimum harcama tutar\u0131 kar\u015F\u0131lan\u0131yor"}</b></div></div>`;
     };
     country.addEventListener("change", render);
     amount.addEventListener("input", render);
@@ -37266,95 +37273,100 @@ function initCalculator() {
 function initSavings() {
   document.querySelectorAll("[data-savings-calculator]").forEach((root) => {
     const country = $2("select[name=country]", root);
-    const european = $2("input[name=european-price]", root);
-    const local = $2("input[name=local-price]", root);
+    const price = $2("input[name=european-price]", root);
+    const compare = $2("input[name=local-price]", root);
     const tax = $2("input[name=include-tax-free]", root);
     const result = $2("[data-savings-result]", root);
     const render = () => {
       const rule = getTaxFreeRule(country.value);
-      const eu = parsePurchaseAmount(european.value);
-      const localPrice = parsePurchaseAmount(local.value);
-      if (!rule || !eu || !localPrice || eu <= 0 || localPrice <= 0) {
-        result.textContent = "Her iki fiyat\u0131 girerek kar\u015F\u0131la\u015Ft\u0131r\u0131n.";
-        return;
-      }
-      const estimate = calculateTaxFreeEstimate(eu, rule);
-      const final = eu - (tax.checked ? estimate.estimatedTaxFreeRefund : 0);
-      const difference = localPrice - final;
-      result.innerHTML = `<strong>${difference >= 0 ? "Tahmini avantaj" : "Tahmini fark"}: ${format(Math.abs(difference), rule.currency)}</strong><span>Yurt d\u0131\u015F\u0131 tahmini maliyet: ${format(final, rule.currency)}. D\xF6viz d\xF6n\xFC\u015F\xFCm\xFC g\xF6sterilmez; canl\u0131 kur kullan\u0131lmadan farkl\u0131 para birimleri kar\u015F\u0131la\u015Ft\u0131r\u0131lamaz.</span>`;
+      const amount = parsePurchaseAmount(price.value);
+      const comparison = parsePurchaseAmount(compare.value);
+      if (!rule || !amount || amount <= 0) return status(result, "\xDCr\xFCn fiyat\u0131n\u0131 girerek tahmini hesab\u0131 g\xF6r\xFCn.");
+      const estimate = calculateTaxFreeEstimate(amount, rule);
+      const final = amount - (tax.checked ? estimate.estimatedTaxFreeRefund : 0);
+      const difference = comparison ? comparison - final : void 0;
+      result.innerHTML = `<div class="web-result-grid"><div><small>Tahmini iade</small><b>${format(estimate.estimatedTaxFreeRefund, rule.currency)}</b></div><div><small>\u0130ade sonras\u0131 maliyet</small><b>${format(final, rule.currency)}</b></div><div><small>Para biriminde tahmini iade</small><b>${format(estimate.estimatedTaxFreeRefund, rule.currency)}</b></div>${difference !== void 0 ? `<div><small>Fiyat avantaj\u0131</small><b>${format(Math.abs(difference), rule.currency)} ${difference >= 0 ? "avantaj" : "fark"}</b></div>` : ""}</div>${comparison ? "" : `<div class="web-status-card web-warning">Canl\u0131 kur kullan\u0131lmadan farkl\u0131 para birimleri kar\u015F\u0131la\u015Ft\u0131r\u0131lamaz.</div>`}`;
     };
-    [country, european, local, tax].forEach((el) => el.addEventListener("input", render));
+    [country, price, compare, tax].forEach((el) => el.addEventListener("input", render));
     render();
   });
 }
 function initAuth() {
   const form = $2("[data-auth-form]");
   const message = $2("[data-auth-message]");
-  form?.addEventListener("submit", async (event) => {
+  if (!form) return;
+  form.addEventListener("click", (event) => {
+    const mode = event.target.closest("[data-auth-mode]")?.dataset.authMode;
+    if (mode) {
+      $2("[name=mode]", form).value = mode;
+      form.querySelectorAll("[data-auth-mode]").forEach((b) => b.classList.toggle("is-active", b.dataset.authMode === mode));
+    }
+  });
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const data = new FormData(form);
-    const email = String(data.get("email") || "");
-    const password = String(data.get("password") || "");
-    const mode = String(data.get("mode") || "login");
     try {
-      if (mode === "register") await createUserWithEmailAndPassword(auth, email, password);
-      else await signInWithEmailAndPassword(auth, email, password);
+      String(data.get("mode")) === "register" ? await createUserWithEmailAndPassword(auth, String(data.get("email")), String(data.get("password"))) : await signInWithEmailAndPassword(auth, String(data.get("email")), String(data.get("password")));
       location.assign(new URLSearchParams(location.search).get("returnTo") || "/");
     } catch (error) {
-      if (message) message.textContent = error.message || "Giri\u015F yap\u0131lamad\u0131.";
+      status(message, error.message || "Giri\u015F yap\u0131lamad\u0131.", "web-error");
     }
   });
-  $2("[data-password-reset]")?.addEventListener("click", async () => {
-    const email = form ? new FormData(form).get("email") : "";
-    if (!email) {
-      if (message) message.textContent = "\xD6nce e-posta adresinizi girin.";
-      return;
-    }
+  $2("[data-password-reset]", form)?.addEventListener("click", async () => {
+    const email = String(new FormData(form).get("email") || "");
+    if (!email) return status(message, "\xD6nce e-posta adresinizi girin.", "web-error");
     try {
       await sendPasswordResetEmail(auth, email);
-      if (message) message.textContent = "Parola s\u0131f\u0131rlama e-postas\u0131 g\xF6nderildi.";
+      status(message, "Parola s\u0131f\u0131rlama e-postas\u0131 g\xF6nderildi.", "web-success");
     } catch (error) {
-      if (message) message.textContent = error.message;
+      status(message, error.message || "E-posta g\xF6nderilemedi.", "web-error");
     }
   });
-  $2("[data-logout]")?.addEventListener("click", () => signOut(auth));
 }
 function initOutletActions() {
-  const outletRoot = $2("[data-outlet-id]");
-  const outletId = outletRoot?.dataset.outletId;
-  if (!outletId) return;
+  const root = $2("[data-outlet-id]");
+  const outletId = root?.dataset.outletId;
+  if (!root || !outletId) return;
   const favorite = $2("[data-favorite]");
+  const feedback = $2("[data-outlet-message]");
   const syncFavorite = async () => {
     if (!currentUser || !favorite) return;
-    const snap = await getDoc(doc(db, "favorites", currentUser.uid));
-    const ids = Array.isArray(snap.data()?.outletIds) ? snap.data().outletIds : [];
-    favorite.textContent = ids.includes(outletId) ? "\u2665 Favoriden \xE7\u0131kar" : "\u2661 Favori";
+    const ids = (await getDoc(doc(db, "favorites", currentUser.uid))).data()?.outletIds || [];
+    const active = ids.includes(outletId);
+    favorite.classList.toggle("is-active", active);
+    favorite.textContent = active ? "\u2665 Favoriden \xE7\u0131kar" : "\u2661 Favori";
   };
   favorite?.addEventListener("click", async () => {
     if (!requireAuth()) return;
     const ref = doc(db, "favorites", currentUser.uid);
-    const snap = await getDoc(ref);
-    const ids = Array.isArray(snap.data()?.outletIds) ? snap.data().outletIds : [];
-    const next = ids.includes(outletId) ? ids.filter((id) => id !== outletId) : [...ids, outletId];
-    await setDoc(ref, { outletIds: next, updatedAt: (/* @__PURE__ */ new Date()).toISOString(), firestoreUpdatedAt: serverTimestamp() }, { merge: true });
+    const ids = (await getDoc(ref)).data()?.outletIds || [];
+    await setDoc(ref, { outletIds: ids.includes(outletId) ? ids.filter((id) => id !== outletId) : [...ids, outletId], updatedAt: (/* @__PURE__ */ new Date()).toISOString(), firestoreUpdatedAt: serverTimestamp() }, { merge: true });
     await syncFavorite();
+  });
+  $2("[data-open-trip]")?.addEventListener("click", () => {
+    if (requireAuth()) $2("[data-trip-drawer]")?.classList.add("is-open");
+  });
+  $2("[data-trip-drawer]")?.addEventListener("click", (event) => {
+    if (event.target.closest("[data-close-trip]")) $2("[data-trip-drawer]")?.classList.remove("is-open");
   });
   $2("[data-trip-form]")?.addEventListener("submit", async (event) => {
     event.preventDefault();
     if (!requireAuth()) return;
     const data = new FormData(event.currentTarget);
-    const outlet = outlets.find((item) => item.outletId === outletId || item.slug === outletRoot?.dataset.outletSlug);
+    const outlet = outlets.find((item) => item.outletId === outletId);
     const ref = doc(collection(db, "userTrips", currentUser.uid, "items"));
     const startDate = String(data.get("startDate"));
     const endDate = String(data.get("endDate"));
     await setDoc(ref, { tripId: ref.id, userId: currentUser.uid, tripName: String(data.get("tripName")), outletId, outletName: outlet?.name || outletId, destination: outlet?.name || "", country: outlet?.countryId || "", city: outlet?.cityId || "", visitDate: startDate, startDate, endDate, notes: String(data.get("notes") || ""), segments: [{ id: "segment-1", outletId, outletName: outlet?.name || outletId, cityId: outlet?.cityId, countryCode: outlet?.countryId, startDate, endDate }], status: "upcoming", createdAt: (/* @__PURE__ */ new Date()).toISOString(), updatedAt: (/* @__PURE__ */ new Date()).toISOString(), firestoreCreatedAt: serverTimestamp(), firestoreUpdatedAt: serverTimestamp() });
-    alert("Seyahat kaydedildi.");
+    $2("[data-trip-drawer]")?.classList.remove("is-open");
+    status(feedback, "Seyahat hesab\u0131na kaydedildi.", "web-success");
   });
   const reviews = $2("[data-reviews]");
   const loadReviews = async () => {
     if (!reviews) return;
     const snap = await getDocs(collection(db, "reviews", outletId, "items"));
-    reviews.innerHTML = snap.docs.map((item) => item.data()).filter((r) => r.status === "published" && !r.deletedAt).map((r) => `<article class="review"><b>${esc(r.userDisplayName || "Misafir")}</b><span>${"\u2605".repeat(Number(r.rating) || 0)} ${esc(r.comment || "")}</span></article>`).join("") || "<p>Hen\xFCz yay\u0131nlanm\u0131\u015F yorum yok.</p>";
+    const published = snap.docs.map((item) => item.data()).filter((r) => r.status === "published" && !r.deletedAt);
+    reviews.innerHTML = published.length ? `<div class="web-review-list">${published.map((r) => `<article class="web-review-card"><b>${esc(r.userDisplayName || "Misafir")}</b><small>${"\u2605".repeat(Number(r.rating) || 0)}</small><p>${esc(r.comment || "")}</p></article>`).join("")}</div>` : `<div class="web-empty-state">Hen\xFCz yay\u0131nlanm\u0131\u015F yorum yok.</div>`;
   };
   $2("[data-review-form]")?.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -37362,11 +37374,9 @@ function initOutletActions() {
     const data = new FormData(event.currentTarget);
     const rating = Number(data.get("rating"));
     const comment = String(data.get("comment") || "").trim();
-    if (!comment || comment.length > 1e3 || rating < 1 || rating > 5) {
-      alert("1-5 puan ve en fazla 1000 karakter yorum girin.");
-      return;
-    }
+    if (!comment || comment.length > 1e3 || rating < 1 || rating > 5) return status(feedback, "1-5 puan ve en fazla 1000 karakter yorum girin.", "web-error");
     await setDoc(doc(db, "reviews", outletId, "items", currentUser.uid), { reviewId: currentUser.uid, outletId, userId: currentUser.uid, userDisplayName: currentUser.displayName || currentUser.email?.split("@")[0] || "Misafir", rating, overallRating: rating, title: "", comment, status: "published", createdAt: (/* @__PURE__ */ new Date()).toISOString(), updatedAt: (/* @__PURE__ */ new Date()).toISOString() }, { merge: true });
+    event.currentTarget.reset();
     await loadReviews();
   });
   loadReviews();
@@ -37377,19 +37387,25 @@ function initTrips() {
   if (!root) return;
   onAuthStateChanged(auth, (user) => {
     if (!user) {
-      root.innerHTML = `<p>Seyahatlerinizi g\xF6rmek i\xE7in <a href="${loginUrl()}">giri\u015F yap\u0131n</a>.</p>`;
+      root.innerHTML = `<div class="web-empty-state"><h2>Seyahatlerini tek yerde tut</h2><p>Kaydedilmi\u015F seyahatlerini g\xF6rmek i\xE7in hesab\u0131na giri\u015F yap.</p><a class="web-button web-button-primary" href="${loginUrl()}">Giri\u015F yap</a></div>`;
       return;
     }
-    onSnapshot(collection(db, "userTrips", user.uid, "items"), (snap) => root.innerHTML = snap.docs.map((d) => {
-      const t = d.data();
-      return `<article class="card"><h3>${esc(t.tripName)}</h3><p>${esc(t.startDate)} \u2013 ${esc(t.endDate)} \xB7 ${esc(t.outletName || t.destination)}</p><p>${esc(t.notes || "")}</p></article>`;
-    }).join("") || "<p>Hen\xFCz kaydedilmi\u015F seyahatiniz yok.</p>");
+    onSnapshot(collection(db, "userTrips", user.uid, "items"), (snap) => {
+      root.innerHTML = snap.docs.length ? `<div class="web-trip-list">${snap.docs.map((d) => {
+        const t = d.data();
+        return `<article class="web-trip-card"><small>${esc(t.status || "Planlan\u0131yor")}</small><h2>${esc(t.tripName)}</h2><p>${esc(t.startDate)} \u2013 ${esc(t.endDate)}</p><p>${esc(t.outletName || t.destination || "Rota duraklar\u0131 g\xFCncelleniyor")}</p>${t.notes ? `<p>${esc(t.notes)}</p>` : ""}<div><button class="web-button web-button-secondary" type="button">A\xE7</button><button class="web-button web-button-secondary" type="button">D\xFCzenle</button></div></article>`;
+      }).join("")}</div>` : `<div class="web-empty-state"><h2>Hen\xFCz kaydedilmi\u015F seyahatin yok.</h2><p>\u0130lk seyahatini outlet sayfas\u0131ndan olu\u015Fturabilirsin.</p><a class="web-button web-button-primary" href="/outlets/">Outletleri ke\u015Ffet</a></div>`;
+    });
   });
 }
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
-  document.querySelectorAll("[data-auth-state]").forEach((node) => node.innerHTML = user ? `<span>${esc(user.email || "Hesab\u0131m")}</span> <button type="button" data-logout>\xC7\u0131k\u0131\u015F yap</button>` : `<a href="${loginUrl()}">Giri\u015F yap / Kay\u0131t ol</a>`);
-  initAuth();
+  document.querySelectorAll("[data-auth-state]").forEach((node) => {
+    const email = user?.email || "Hesap";
+    const short = email.length > 18 ? `${email.slice(0, 15)}\u2026` : email;
+    node.innerHTML = user ? `<span class="web-account-pill"><span class="account-email">${esc(short)}</span><span class="account-mobile">Hesap</span><button type="button" data-logout>\xC7\u0131k\u0131\u015F yap</button></span>` : `<a class="web-account-pill" href="${loginUrl()}">Giri\u015F yap</a>`;
+    $2("[data-logout]", node)?.addEventListener("click", () => signOut(auth));
+  });
 });
 initSearch();
 initCalculator();
