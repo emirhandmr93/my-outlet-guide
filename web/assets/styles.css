@@ -1892,3 +1892,68 @@ footer a {
     min-height: 64px;
   }
 }
+
+/* Homepage refinement — image-led premium landing experience. */
+.home-page .home-header {
+  min-height: 560px;
+  padding-bottom: 42px;
+  background-color: var(--navy);
+  background-position: center;
+  background-size: cover;
+}
+.home-page .brand { font-size: .9rem; gap: 11px; }
+.home-page .brand-mark { width: 46px; height: 46px; border-radius: 14px; }
+.home-page .brand-mark svg { width: 31px; height: 31px; }
+.home-page .home-links { gap: 7px; }
+.home-page .home-links a { padding: 10px 13px; border: 1px solid transparent; transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.home-page .home-links a:hover, .home-page .home-links a:focus-visible { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.36); outline: none; }
+.home-page .home-links .is-active { background: rgba(211,173,57,.2); border-color: rgba(243,203,87,.7); color: #fff4cf; }
+.home-page .nav-app { padding: 10px 14px; background: #f3cb57; border-color: #f3cb57; color: var(--navy); font-weight: 900; }
+.home-page .home-main-hero { padding-top: 94px; max-width: 1180px; }
+.home-page .home-main-hero h1 { max-width: 650px; font-size: clamp(2.7rem,5.5vw,4.8rem); }
+.home-page .home-main-hero > p:last-of-type { font-size: 1.12rem; }
+.home-page .home-search { max-width: 570px; margin-top: 25px; color: #68778a; }
+.home-hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top: 15px; }
+.home-hero-actions > span, .home-primary-cta { min-height: 42px; display:inline-flex; align-items:center; padding:9px 14px; border-radius:999px; font-size:.78rem; font-weight:800; }
+.home-hero-actions > span { border:1px solid rgba(255,255,255,.34); background:rgba(8,29,56,.45); color:#fff; }
+.home-primary-cta { gap:9px; background:#f3cb57; color:var(--navy); text-decoration:none; box-shadow:0 8px 20px rgba(0,0,0,.2); }
+.home-page main { margin-top: 0; padding-top: 30px; }
+.home-page .app-page { gap: 34px; }
+.home-page .app-section > h2 { margin:0; font-size:1.75rem; letter-spacing:-.03em; }
+.home-page .app-feature-card { min-height:230px; border:1px solid rgba(255,255,255,.2); }
+.home-page .app-feature-card > b { padding:8px 12px; font-weight:900; }
+.home-page .app-outlet-grid .outlet-card { overflow:hidden; border-radius:24px; border:1px solid var(--border); box-shadow:0 10px 24px rgba(8,29,56,.09); }
+.home-page .app-outlet-grid .card-image { height:190px; }
+.home-page .activity-card { overflow:hidden; }
+.home-page .activity-card div { padding:23px; background:linear-gradient(135deg,#fff,#f7f9fb); }
+.home-page .activity-card i { display:grid; place-items:center; width:42px; height:42px; margin-bottom:12px; border-radius:14px; background:#fff4cf; color:#876814; font-style:normal; }
+.home-page .activity-card small { display:block; margin-top:6px; color:var(--muted); font-size:.8rem; }
+.home-page .home-tool-grid .app-quick-card { position:relative; min-height:145px; background:linear-gradient(145deg,#fff,#fbf7ed); transition:transform .18s ease, box-shadow .18s ease; }
+.home-page .home-tool-grid .app-quick-card:nth-child(2n) { background:linear-gradient(145deg,#fff,#f1f6fb); }
+.home-page .home-tool-grid .app-quick-card:hover, .home-page .home-tool-grid .app-quick-card:focus-visible { transform:translateY(-3px); box-shadow:var(--shadow); outline:none; }
+.home-page .home-tool-grid small { display:block; margin-top:5px; color:var(--muted); font-size:.78rem; }
+.home-page .home-tool-grid i { position:absolute; right:16px; bottom:14px; color:var(--gold); font-size:1.1rem; font-style:normal; }
+.home-city-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.home-page .home-city-card { min-height:135px; margin:0; padding:17px; align-items:flex-end; background-color:var(--navy); background-size:cover; background-position:center; border:0; color:#fff; box-shadow:var(--shadow); }
+.home-page .home-city-card small { color:#e9eff6; margin-top:3px; }
+.home-page .home-city-card i { color:#f3cb57; }
+@media (max-width: 599px) {
+  .home-page .home-header { min-height: 0; padding:12px 14px 24px; background-position:63% center; }
+  .home-page .brand { font-size:.72rem; gap:8px; }
+  .home-page .brand-mark { width:38px; height:38px; border-radius:12px; }
+  .home-page .brand-mark svg { width:26px; height:26px; }
+  .home-page .home-main-hero { padding-top:46px; padding-bottom:0; }
+  .home-page .home-main-hero h1 { font-size:clamp(2.2rem,10vw,3rem); }
+  .home-page .home-main-hero > p:last-of-type { font-size:.96rem; }
+  .home-page .home-search { min-height:54px; margin-top:20px; }
+  .home-hero-actions { gap:8px; }
+  .home-hero-actions > span, .home-primary-cta { min-height:38px; padding:7px 10px; font-size:.67rem; }
+  .home-page main { padding-top:22px; }
+  .home-page .app-page { gap:28px; }
+  .home-page .app-feature-card { min-height:205px; }
+  .home-page .app-outlet-grid .card-image { height:200px; }
+  .home-page .activity-card { grid-template-columns:1fr; }
+  .home-page .activity-card div + div { border-top:1px solid var(--border); border-left:0; }
+  .home-city-grid { grid-template-columns:1fr; }
+  .home-page .home-city-card { min-height:122px; }
+}
