@@ -38,9 +38,8 @@
     "generate": "tsx tools/generateConstants.ts",
     "web:prepare": "tsx tools/prepareWebsiteAssets.ts",
     "web:generate": "tsx tools/generateWebsite.ts",
-    "web:build-client": "tsx tools/buildWebsiteClient.ts",
-    "web:check": "tsx tools/checkWebApp.ts",
-    "web:preview": "npm run web:prepare && npm run web:generate && npm run web:build-client && npx serve web"
+    "web:check": "tsx tools/checkMinimumWebSite.ts",
+    "web:preview": "npm run web:prepare && npm run web:generate && npx serve web"
   },
   "private": true,
   "devDependencies": {
