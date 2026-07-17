@@ -91,6 +91,10 @@ for (const label of ["Ana Sayfa", "Gizlilik", "Koşullar", "İletişim", "Hesap 
 assert(styles.includes("@media(max-width:720px)"), "responsive mobile layout is available");
 assert(!/(^|[;{])(width|min-width):\s*(?:[4-9]\d{2}|\d{4,})px/.test(styles), "no statically detectable fixed wide styles that risk horizontal overflow");
 assert(!/TODO|coming soon|placeholder|lorem|dummy/i.test(allWeb), "website has no visible TODO/coming soon/placeholder text");
+assert(/MY OUTLET GUIDE/.test(read("web/index.html")), "homepage uses app-like MY OUTLET GUIDE branding");
+assert(!/MMY OUTLET GUIDE/.test(webText), "website has no duplicated MY OUTLET GUIDE brand");
+assert(!/overflow marker/i.test(webText), "website has no header overflow marker text");
+for (const marker of ["hero-card", "search", "detail-tabs", "action-row", "tool-hero"]) assert(webText.includes(marker), `website includes app-style ${marker} sections`);
 for (const unsafe of [/buy ticket/i, /live flight prices active/i, /guaranteed refund/i, /cheapest guaranteed/i, /official partner/i, /fake fare/i, /fake weather/i, /fake rate/i, /localhost/i, /outlet\.guide/i]) {
   assert(!unsafe.test(allWeb.replace(/not guaranteed refunds|do not show fake fares/gi, "")), `website excludes unsafe claim: ${unsafe}`);
 }
