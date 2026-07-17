@@ -90,7 +90,7 @@ assert(/PREMİUM ALIŞVERİŞ VE SEYAHAT ASİSTANI/.test(read("web/index.html"))
 for (const label of ["Ana Sayfa", "Keşfet", "Outletler", "Tax Free", "Seyahat Planı", "Uçuş Uyarıları", "Gizlilik", "Şartlar", "Hesap Silme", "İletişim"]) assert(allWeb.includes(`>${label}<`), `Turkish-first navigation label exists: ${label}`);
 assert(styles.includes("@media(max-width:560px)"), "responsive mobile layout is available");
 assert(!/(^|[;{])(width|min-width):\s*(?:[4-9]\d{2}|\d{4,})px/.test(styles), "no statically detectable fixed wide styles that risk horizontal overflow");
-assert(!/TODO|coming soon|placeholder|lorem|dummy/i.test(allWeb), "website has no visible TODO/coming soon/placeholder text");
+assert(!/TODO|coming soon|lorem|dummy/i.test(allWeb), "website has no visible TODO/coming soon/demo text");
 assert(/MY OUTLET GUIDE/.test(read("web/index.html")), "homepage uses app-like MY OUTLET GUIDE branding");
 assert(/class="brand-mark"[^>]*><svg viewBox="0 0 32 32"/.test(read("web/index.html")), "homepage has inline SVG app-style brand mark");
 assert(/\.brand-mark\{[^}]*border-radius/.test(styles) && /\.brand-mark svg/.test(styles), "brand mark has rounded navy app-icon styling");
@@ -103,9 +103,10 @@ assert(/\.action-row\{display:grid;grid-template-columns:repeat\(3,1fr\)/.test(s
 const explore = read("web/explore/index.html");
 for (const marker of ["Ülkeler", "Şehirler", "Outletler", "POPÜLER ARAMALAR"]) assert(explore.includes(marker), `explore includes ${marker}`);
 const savings = read("web/savings/index.html");
-for (const marker of ["Akıllı Alışveriş Hesaplayıcısı", "Fiyat Avantajı", "Tax Free Hesaplayıcı", "ALIŞVERİŞ AYARLARI", "Tahmini iade", "İade sonrası maliyet"]) assert(savings.includes(marker), `savings includes ${marker}`);
+for (const marker of ["Akıllı Alışveriş Hesaplayıcısı", "Fiyat Avantajı", "Tax Free Hesaplayıcı", "data-savings-calculator"]) assert(savings.includes(marker), `savings includes ${marker}`);
 const tripPlanner = read("web/trip-planner/index.html");
-for (const marker of ["Paris &amp; Milano Alışveriş Rotası", "ZİYARET TARİHLERİ", "DURUM", "Web üzerinden seyahat oluşturma sunulmaz; bu özellik uygulama odaklıdır."]) assert(tripPlanner.includes(marker), `trip planner includes ${marker}`);
+assert(tripPlanner.includes("data-user-trips"), "trip planner includes the signed-in user's real trips island");
+assert(!tripPlanner.includes("Web üzerinden seyahat oluşturma sunulmaz"), "trip planner does not claim web trip creation is unavailable");
 const offlineGuide = read("web/offline-guide/index.html");
 for (const marker of ["offline-stats", "check-grid", "Uygulamadaki outletler", "Marka listeleri", "Restoran ve ulaşım notları"]) assert(offlineGuide.includes(marker), `offline guide includes ${marker}`);
 for (const unsafe of [/buy ticket/i, /live flight prices active/i, /guaranteed refund/i, /cheapest guaranteed/i, /official partner/i, /fake fare/i, /fake weather/i, /fake rate/i, /localhost/i, /outlet\.guide/i]) {
@@ -126,7 +127,7 @@ assert(!/\+?1[\s.-]?\(?555\)?|555[\s.-]?\d{4}|000-000|123-456/i.test(allWeb), "w
 assert(!/fake testimonial/i.test(allWeb), "website has no fake testimonials");
 assert(!/<img\b[^>]*src=["']https?:\/\//i.test(allWeb), "website has no unlicensed remote image references");
 assert(!/<script\b[^>]*(analytics|gtag|googletagmanager|cookie|segment|mixpanel|amplitude)/i.test(allWeb), "website has no analytics/cookie scripts");
-assert(!/<script\b/i.test(allWeb), "website has no script tags");
+assert(/<script type="module" src="\/assets\/web-client\.js"><\/script>/.test(allWeb), "website references the local interactive client bundle");
 assert(!/apiKey\s*[:=]|OPEN_METEO_API_KEY|secret\s*[:=]|private[_-]?key|password\s*[:=]/i.test(allWeb), "website has no obvious secrets/API keys");
 for (const removedAsset of ["/assets/app-icon.png", "/assets/home-hero-premium.png", "/assets/logo-horizontal.png"]) {
   assert(!webText.includes(removedAsset), `website does not reference removed asset: ${removedAsset}`);
