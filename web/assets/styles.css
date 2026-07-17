@@ -1663,9 +1663,130 @@ footer a {
     font-size: 1rem;
     color: #f3cb57;
   }
-  body:has(.app-bottom-tabs) footer {
+body:has(.app-bottom-tabs) footer {
     padding-bottom: 96px;
   }
+}
+
+/* Premium desktop homepage: deliberately wider than the app-like route shell. */
+.home-page .home-header {
+  min-height: 620px;
+  padding: 22px 48px 116px;
+  background-position: center;
+  background-size: cover;
+}
+.home-page .home-nav,
+.home-page .home-main-hero,
+.home-page .home-content {
+  width: min(1180px, calc(100vw - 96px));
+  max-width: none;
+}
+.home-page .brand {
+  gap: 12px;
+  font-size: 0.92rem;
+}
+.home-page .brand-mark {
+  width: 45px;
+  height: 45px;
+  border-radius: 14px;
+}
+.home-page .brand-mark svg { width: 30px; height: 30px; }
+.home-page .home-links { gap: 5px; }
+.home-page .home-links a {
+  padding: 9px 12px;
+  border: 1px solid transparent;
+  font-size: 0.8rem;
+}
+.home-page .home-links .is-active,
+.home-page .home-links a:hover {
+  border-color: rgba(255,255,255,.2);
+  background: rgba(255,255,255,.14);
+  color: #fff;
+}
+.home-page .nav-app {
+  padding: 11px 15px;
+  background: rgba(211,173,57,.15);
+  color: #ffe6a1;
+}
+.home-page .home-main-hero { padding-top: 112px; }
+.home-page .home-main-hero h1 { max-width: 760px; font-size: clamp(3rem, 5.1vw, 4.85rem); }
+.home-page .home-main-hero > p:last-child { max-width: 610px; font-size: 1.1rem; }
+.home-page .home-search { width: min(620px, 100%); min-height: 62px; margin-top: 26px; }
+.home-page .home-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 18px; }
+.home-page .home-primary-cta {
+  display: inline-flex; align-items: center; gap: 14px; min-height: 48px; padding: 12px 17px;
+  border-radius: 999px; background: #f3cb57; color: #081d38; font-weight: 900; text-decoration: none;
+}
+.home-page .home-hero-actions > span { color: #e8f0f8; font-size: .78rem; font-weight: 750; }
+.home-page.home-page main.home-main { max-width: none; margin-top: -42px; padding: 0 48px 76px; }
+.home-page .home-content { display: grid; gap: 54px; }
+.home-page .app-section > h2 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.35rem); letter-spacing: -.035em; }
+.home-page .app-section > p { margin-bottom: 20px; font-size: 1rem; }
+.home-page .app-feature-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.home-page .home-feature-section,
+.home-page .home-recommended-section { min-width: 0; }
+.home-page .app-feature-card { min-height: 275px; padding: 25px; border-radius: 28px; }
+.home-page .app-feature-card strong { font-size: 1.55rem; }
+.home-page .app-feature-card em { font-size: .96rem; }
+.home-page .app-feature-card > b { margin-top: 4px; padding: 9px 13px; }
+.home-page .app-outlet-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.home-page .outlet-card { min-width: 0; overflow: hidden; border-radius: 23px; background: #fff; box-shadow: 0 8px 22px rgba(8,29,56,.08); }
+.home-page .outlet-card .card-image { height: 195px; object-fit: cover; }
+.home-page .outlet-card .card-copy { padding: 15px; }
+.home-page .outlet-card h3 { font-size: 1rem; }
+.home-page .outlet-card p { font-size: .78rem; }
+.home-page .card-arrow { font-weight: 850; color: #8b6814; }
+.home-page .activity-card { min-height: 188px; overflow: hidden; }
+.home-page .activity-card div { display: grid; align-content: center; gap: 5px; padding: 30px; }
+.home-page .activity-card i { font-size: 1.5rem; font-style: normal; }
+.home-page .activity-card b { font-size: 1.08rem; }
+.home-page .activity-card small { color: var(--muted); }
+.home-page .home-tool-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.home-page .home-tool-grid .app-quick-card { position: relative; min-height: 180px; padding: 20px; }
+.home-page .home-tool-grid .app-quick-card:nth-child(1) { background: #fff8e7; }
+.home-page .home-tool-grid .app-quick-card:nth-child(2) { background: #edf6ff; }
+.home-page .home-tool-grid .app-quick-card:nth-child(3) { background: #f2efff; }
+.home-page .home-tool-grid .app-quick-card:nth-child(4) { background: #edf8f4; }
+.home-page .home-tool-grid small { display: block; margin-top: 7px; color: var(--muted); }
+.home-page .home-tool-grid i { position: absolute; right: 18px; bottom: 16px; color: #8b6814; font-size: 1.25rem; font-style: normal; }
+.home-page .home-city-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.home-page .home-city-card { min-height: 215px; margin: 0; padding: 19px; align-items: flex-end; border: 0; background-size: cover; background-position: center; color: #fff; box-shadow: var(--shadow); }
+.home-page .home-city-card span { color: #fff; font-size: 1.25rem; }
+.home-page .home-city-card small { margin-top: 3px; color: #e8eff6; font-size: .8rem; font-weight: 700; }
+.home-page .home-city-card i { color: #f3cb57; }
+.home-page .home-final-cta { display: flex; max-width: none; margin: 0; padding: 34px 38px; border-radius: 30px; background: linear-gradient(120deg,#081d38,#16466f); color: #fff; }
+.home-page .home-final-cta h2 { margin: 3px 0; font-size: 2rem; }
+.home-page .home-final-cta p:not(.eyebrow) { color: #dce8f4; }
+.home-page .home-final-cta .button { background: #f3cb57; color: #081d38; }
+@media (min-width: 600px) and (max-width: 900px) {
+  .home-page .home-header { padding-left: 28px; padding-right: 28px; }
+  .home-page .home-nav, .home-page .home-main-hero, .home-page .home-content { width: min(100%, calc(100vw - 56px)); }
+  .home-page.home-page main.home-main { padding-left: 28px; padding-right: 28px; }
+  .home-page .app-outlet-grid, .home-page .home-tool-grid, .home-page .home-city-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 599px) {
+  .home-page .home-header { min-height: 0; padding: 14px 16px 72px; background-position: 62% center; }
+  .home-page .home-nav, .home-page .home-main-hero, .home-page .home-content { width: 100%; }
+  .home-page .brand { font-size: .73rem; gap: 8px; }
+  .home-page .brand-mark { width: 36px; height: 36px; border-radius: 11px; }
+  .home-page .brand-mark svg { width: 25px; height: 25px; }
+  .home-page .home-main-hero { padding-top: 58px; }
+  .home-page .home-main-hero h1 { font-size: clamp(2.25rem, 11vw, 3rem); }
+  .home-page .home-main-hero > p:last-child { font-size: .98rem; }
+  .home-page .home-search { min-height: 54px; margin-top: 20px; }
+  .home-page .home-hero-actions { align-items: flex-start; flex-direction: column; }
+  .home-page.home-page main.home-main { margin-top: -28px; padding: 0 16px 78px; }
+  .home-page .home-content { gap: 34px; }
+  .home-page .app-feature-grid, .home-page .app-outlet-grid, .home-page .home-tool-grid, .home-page .home-city-grid { grid-template-columns: 1fr; }
+  .home-page .app-feature-card { min-height: 215px; padding: 20px; }
+  .home-page .outlet-card .card-image { height: 205px; }
+  .home-page .activity-card { grid-template-columns: 1fr; }
+  .home-page .activity-card div { min-height: 145px; padding: 23px; }
+  .home-page .activity-card div + div { border-top: 1px solid var(--border); border-left: 0; }
+  .home-page .home-tool-grid .app-quick-card { min-height: 144px; }
+  .home-page .home-city-card { min-height: 165px; }
+  .home-page .home-final-cta { display: grid; gap: 18px; padding: 25px; }
+  .home-page .home-final-cta h2 { font-size: 1.55rem; }
 }
 .app-detail-hero {
   position: relative;

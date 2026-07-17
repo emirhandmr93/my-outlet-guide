@@ -614,3 +614,43 @@ assert(
   styles.includes(".home-city-card") && styles.includes(".home-tool-grid"),
   "homepage city visuals and app-style tool grid have dedicated styling",
 );
+for (const marker of [
+  "home-content",
+  "home-main",
+  "home-main-hero",
+  "home-nav",
+  "home-feature-section",
+  "home-recommended-section",
+  "home-final-cta",
+])
+  assert(
+    home.includes(marker) && styles.includes(`.${marker}`),
+    `homepage premium desktop layout class exists: ${marker}`,
+  );
+assert(
+  styles.includes("width: min(1180px, calc(100vw - 96px))"),
+  "homepage desktop content uses a wide dedicated container",
+);
+assert(
+  (home.match(/app-feature-card/g) || []).length === 4,
+  "homepage feature grid has four image-led cards",
+);
+assert(
+  (home.match(/outlet-card/g) || []).length >= 4 &&
+    styles.includes(".home-page .app-outlet-grid"),
+  "homepage recommended outlet cards use a premium grid",
+);
+assert(
+  home.includes("activity-card") && styles.includes(".home-page .activity-card"),
+  "homepage activity section has a rich two-panel card",
+);
+assert(
+  (home.match(/app-quick-card/g) || []).length === 4 &&
+    styles.includes(".home-page .home-tool-grid"),
+  "homepage shopping tools have four app-style cards",
+);
+assert(
+  (home.match(/home-city-card/g) || []).length === 4 &&
+    styles.includes(".home-page .home-city-grid"),
+  "homepage popular cities use four image-led cards",
+);
