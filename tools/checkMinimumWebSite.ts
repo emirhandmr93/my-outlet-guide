@@ -84,17 +84,29 @@ assert(!/Firebase auth hesabı/.test(trDeletion), "Turkish account deletion does
 assert(!/Store readiness/i.test(allWeb), "Store readiness is not visible in web pages");
 assert(!/without heavy website dependencies/i.test(read("web/index.html")), "English home does not show internal website dependency copy");
 assert(/\.pill[^}]*color:var\(--gold\)/.test(styles), "hero badge uses readable gold styling");
-assert(/\.links a[^}]*color:#eff4fa/.test(styles), "navigation labels use readable styling");
+assert(/\.links a[^}]*color:#eaf1f8/.test(styles), "navigation labels use readable styling");
 assert(/OUTLET KEŞFİ VE PLANLAMA/.test(read("web/index.html")) && /Outlet rehberi/.test(trHome), "user-facing hero badge copy exists in English and Turkish");
-for (const label of ["Home", "Privacy", "Terms", "Contact", "Account Deletion", "EN", "TR"]) assert(allWeb.includes(`>${label}<`), `mobile nav label exists: ${label}`);
-for (const label of ["Ana Sayfa", "Gizlilik", "Koşullar", "İletişim", "Hesap Silme"]) assert(allWeb.includes(`>${label}<`), `Turkish mobile nav label exists: ${label}`);
-assert(styles.includes("@media(max-width:720px)"), "responsive mobile layout is available");
+for (const label of ["Ana Sayfa", "Keşfet", "Outletler", "Tax Free", "Seyahat Planı", "Uçuş Uyarıları", "Gizlilik", "Şartlar", "Hesap Silme", "İletişim"]) assert(allWeb.includes(`>${label}<`), `Turkish-first navigation label exists: ${label}`);
+assert(styles.includes("@media(max-width:560px)"), "responsive mobile layout is available");
 assert(!/(^|[;{])(width|min-width):\s*(?:[4-9]\d{2}|\d{4,})px/.test(styles), "no statically detectable fixed wide styles that risk horizontal overflow");
 assert(!/TODO|coming soon|placeholder|lorem|dummy/i.test(allWeb), "website has no visible TODO/coming soon/placeholder text");
 assert(/MY OUTLET GUIDE/.test(read("web/index.html")), "homepage uses app-like MY OUTLET GUIDE branding");
+assert(/class="brand-mark"[^>]*><svg viewBox="0 0 32 32"/.test(read("web/index.html")), "homepage has inline SVG app-style brand mark");
+assert(/\.brand-mark\{[^}]*border-radius/.test(styles) && /\.brand-mark svg/.test(styles), "brand mark has rounded navy app-icon styling");
 assert(!/MMY OUTLET GUIDE/.test(webText), "website has no duplicated MY OUTLET GUIDE brand");
 assert(!/overflow marker/i.test(webText), "website has no header overflow marker text");
-for (const marker of ["hero-card", "search", "detail-tabs", "action-row", "tool-hero"]) assert(webText.includes(marker), `website includes app-style ${marker} sections`);
+for (const marker of ["hero-card", "home-search", "featured-outlets", "mobile-tabbar", "detail-tabs", "action-row", "tool-hero"]) assert(webText.includes(marker), `website includes app-style ${marker} sections`);
+for (const marker of ["@media (max-width: 599px)", "overflow-x:hidden", "min-height:44px", "grid-template-columns:1fr", "@media (min-width:600px) and (max-width:900px)"]) assert(styles.includes(marker), `mobile-first responsive styling includes ${marker}`);
+assert(/\.home-search,[^}]*\.search input\{min-height:48px/.test(styles), "mobile search pills meet practical tap target height");
+assert(/\.action-row\{display:grid;grid-template-columns:repeat\(3,1fr\)/.test(styles), "outlet actions use mobile app-style action cards");
+const explore = read("web/explore/index.html");
+for (const marker of ["Ülkeler", "Şehirler", "Outletler", "POPÜLER ARAMALAR"]) assert(explore.includes(marker), `explore includes ${marker}`);
+const savings = read("web/savings/index.html");
+for (const marker of ["Akıllı Alışveriş Hesaplayıcısı", "Fiyat Avantajı", "Tax Free Hesaplayıcı", "ALIŞVERİŞ AYARLARI"]) assert(savings.includes(marker), `savings includes ${marker}`);
+const tripPlanner = read("web/trip-planner/index.html");
+for (const marker of ["ROTA DURAKLARI", "HATIRLATMA PLANI", "Planlanıyor"]) assert(tripPlanner.includes(marker), `trip planner includes ${marker}`);
+const offlineGuide = read("web/offline-guide/index.html");
+for (const marker of ["offline-stats", "check-grid"]) assert(offlineGuide.includes(marker), `offline guide includes ${marker}`);
 for (const unsafe of [/buy ticket/i, /live flight prices active/i, /guaranteed refund/i, /cheapest guaranteed/i, /official partner/i, /fake fare/i, /fake weather/i, /fake rate/i, /localhost/i, /outlet\.guide/i]) {
   assert(!unsafe.test(allWeb.replace(/not guaranteed refunds|do not show fake fares/gi, "")), `website excludes unsafe claim: ${unsafe}`);
 }
