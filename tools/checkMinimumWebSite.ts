@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 
 function read(path: string) {
@@ -125,6 +126,13 @@ for (const removedAsset of ["/assets/app-icon.png", "/assets/home-hero-premium.p
 }
 assert(!webFiles.some((path) => /^web\/assets\/.*\.(png|jpe?g|webp|gif|pdf|zip)$/i.test(path)), "web/assets contains no binary assets");
 
+const outletListing = read("web/outlets/index.html");
+for (const phrase of ["More than", "Over ", "Boutiques", "Check official website", "Official current"]) assert(!outletListing.includes(phrase), `outlet-card metadata is Turkish-first: ${phrase}`);
+for (const label of ["Otopark", "Misafir Hizmetleri", "Restoranlar ve Kafeler", "Servis / Ulaşım Bilgisi", "Erişilebilirlik"]) assert(webText.includes(label), `Turkish service label is present: ${label}`);
+assert(read("web/index.html").includes("Şehir, outlet ve marka ara"), "homepage has the app-style search pill copy");
+for (const popular of ["Paris", "Burberry", "Fransa", "İtalya", "Nike"]) assert(explore.includes(popular), `explore has popular search: ${popular}`);
+assert(webText.includes("/.generated-assets/"), "website references the generated local asset bridge");
+assert(execFileSync("git", ["check-ignore", "-q", "web/.generated-assets/home/home-hero-premium.png"]).toString() === "", "generated website asset output is ignored");
 const firebaseJson = JSON.parse(read("firebase.json"));
 assert(firebaseJson.firestore?.rules === "firestore.rules" && firebaseJson.functions?.source === "functions", "firebase.json preserves Firestore and Functions config");
 assert(read("web/robots.txt").includes("Sitemap: /sitemap.xml"), "robots.txt points to sitemap");
