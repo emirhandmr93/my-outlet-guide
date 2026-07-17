@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>/</loc></url>
-  <url><loc>/privacy/</loc></url>
-  <url><loc>/terms/</loc></url>
-  <url><loc>/contact/</loc></url>
-  <url><loc>/account-deletion/</loc></url>
-  <url><loc>/tr/</loc></url>
-  <url><loc>/tr/privacy/</loc></url>
-  <url><loc>/tr/terms/</loc></url>
-  <url><loc>/tr/contact/</loc></url>
-  <url><loc>/tr/account-deletion/</loc></url>
+  <url><loc>https://myoutletguide.com/</loc></url><url><loc>https://myoutletguide.com/explore/</loc></url><url><loc>https://myoutletguide.com/countries/</loc></url><url><loc>https://myoutletguide.com/cities/</loc></url><url><loc>https://myoutletguide.com/outlets/</loc></url><url><loc>https://myoutletguide.com/brands/</loc></url><url><loc>https://myoutletguide.com/tax-free/</loc></url><url><loc>https://myoutletguide.com/savings/</loc></url><url><loc>https://myoutletguide.com/trip-planner/</loc></url><url><loc>https://myoutletguide.com/flight-deals/</loc></url><url><loc>https://myoutletguide.com/offline-guide/</loc></url><url><loc>https://myoutletguide.com/app/</loc></url><url><loc>https://myoutletguide.com/privacy/</loc></url><url><loc>https://myoutletguide.com/terms/</loc></url><url><loc>https://myoutletguide.com/contact/</loc></url><url><loc>https://myoutletguide.com/account-deletion/</loc></url><url><loc>https://myoutletguide.com/tr/account-deletion/</loc></url>
 </urlset>

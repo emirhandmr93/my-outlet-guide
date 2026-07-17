@@ -1,4 +1,5 @@
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { join } from "node:path";
 
 function read(path: string) {
   return readFileSync(path, "utf8");
@@ -9,8 +10,26 @@ function assert(condition: unknown, message: string) {
   console.log(`OK: ${message}`);
 }
 
+function filesIn(directory: string): string[] {
+  return readdirSync(directory).flatMap((entry) => {
+    const path = join(directory, entry);
+    return statSync(path).isDirectory() ? filesIn(path) : [path];
+  });
+}
+
 const requiredPages = [
   "web/index.html",
+  "web/explore/index.html",
+  "web/countries/index.html",
+  "web/cities/index.html",
+  "web/outlets/index.html",
+  "web/brands/index.html",
+  "web/tax-free/index.html",
+  "web/savings/index.html",
+  "web/trip-planner/index.html",
+  "web/flight-deals/index.html",
+  "web/offline-guide/index.html",
+  "web/app/index.html",
   "web/privacy/index.html",
   "web/terms/index.html",
   "web/contact/index.html",
@@ -31,6 +50,8 @@ for (const page of requiredPages) {
 }
 
 const allWeb = requiredPages.concat(["web/assets/styles.css"]).filter(existsSync).map(read).join("\n");
+const webFiles = filesIn("web");
+const webText = webFiles.filter((path) => /\.(html|css|txt|xml)$/i.test(path)).map(read).join("\n");
 const privacy = read("web/privacy/index.html");
 const terms = read("web/terms/index.html");
 const contact = read("web/contact/index.html");
@@ -62,20 +83,31 @@ assert(!/Profile|Account management|Delete Account/.test(trDeletion), "Turkish a
 assert(!/Firebase auth hesabı/.test(trDeletion), "Turkish account deletion does not show Firebase auth hesabı");
 assert(!/Store readiness/i.test(allWeb), "Store readiness is not visible in web pages");
 assert(!/without heavy website dependencies/i.test(read("web/index.html")), "English home does not show internal website dependency copy");
-assert(/\.pill\{[^}]*background:#f7d77f[^}]*color:#071b33[^}]*font-weight:900[^}]*text-shadow:none/.test(styles), "hero badge uses readable high-contrast styling");
-assert(/\.links a\{[^}]*background:#f7d77f[^}]*color:#071b33[^}]*font-weight:800/.test(styles), "nav badge labels use readable high-contrast styling");
-assert(/Outlet guide/.test(read("web/index.html")) && /Outlet rehberi/.test(trHome), "user-facing hero badge copy exists in English and Turkish");
+assert(/\.pill[^}]*color:var\(--gold\)/.test(styles), "hero badge uses readable gold styling");
+assert(/\.links a[^}]*color:#eff4fa/.test(styles), "navigation labels use readable styling");
+assert(/OUTLET KEŞFİ VE PLANLAMA/.test(read("web/index.html")) && /Outlet rehberi/.test(trHome), "user-facing hero badge copy exists in English and Turkish");
 for (const label of ["Home", "Privacy", "Terms", "Contact", "Account Deletion", "EN", "TR"]) assert(allWeb.includes(`>${label}<`), `mobile nav label exists: ${label}`);
 for (const label of ["Ana Sayfa", "Gizlilik", "Koşullar", "İletişim", "Hesap Silme"]) assert(allWeb.includes(`>${label}<`), `Turkish mobile nav label exists: ${label}`);
-assert(styles.includes("@media(max-width:640px)") && styles.includes("nav{grid-template-columns:1fr") && styles.includes(".links{display:flex;flex-wrap:wrap") && styles.includes("flex:1 1 calc(50% - 8px)"), "mobile nav uses responsive wrapping flex chips");
+assert(styles.includes("@media(max-width:720px)"), "responsive mobile layout is available");
 assert(!/(^|[;{])(width|min-width):\s*(?:[4-9]\d{2}|\d{4,})px/.test(styles), "no statically detectable fixed wide styles that risk horizontal overflow");
 assert(!/TODO|coming soon|placeholder|lorem|dummy/i.test(allWeb), "website has no visible TODO/coming soon/placeholder text");
+for (const unsafe of [/buy ticket/i, /live flight prices active/i, /guaranteed refund/i, /cheapest guaranteed/i, /official partner/i, /fake fare/i, /fake weather/i, /fake rate/i, /localhost/i, /outlet\.guide/i]) {
+  assert(!unsafe.test(allWeb.replace(/not guaranteed refunds|do not show fake fares/gi, "")), `website excludes unsafe claim: ${unsafe}`);
+}
+const home = read("web/index.html");
+for (const phrase of ["Outlet keşfi", "Tax Free rehberi", "Seyahat planı", "Outletleri keşfet"]) assert(home.includes(phrase), `homepage includes platform section: ${phrase}`);
+assert(read("web/flight-deals/index.html").includes("Uçuş fiyat sağlayıcısı bağlandığında desteklenen rotalar için uyarılar hazırlanacaktır."), "flight alerts page states provider-pending status");
+assert(read("web/tax-free/index.html").includes("Tahminler bilgilendirme amaçlıdır; nihai iade mağaza, sağlayıcı, ülke kuralları, işlem ücretleri ve uygunluğa göre değişebilir."), "Tax Free disclaimer is present");
 assert(!/\+?1[\s.-]?\(?555\)?|555[\s.-]?\d{4}|000-000|123-456/i.test(allWeb), "website has no fake phone number");
 assert(!/fake testimonial/i.test(allWeb), "website has no fake testimonials");
 assert(!/<img\b[^>]*src=["']https?:\/\//i.test(allWeb), "website has no unlicensed remote image references");
 assert(!/<script\b[^>]*(analytics|gtag|googletagmanager|cookie|segment|mixpanel|amplitude)/i.test(allWeb), "website has no analytics/cookie scripts");
 assert(!/<script\b/i.test(allWeb), "website has no script tags");
 assert(!/apiKey\s*[:=]|OPEN_METEO_API_KEY|secret\s*[:=]|private[_-]?key|password\s*[:=]/i.test(allWeb), "website has no obvious secrets/API keys");
+for (const removedAsset of ["/assets/app-icon.png", "/assets/home-hero-premium.png", "/assets/logo-horizontal.png"]) {
+  assert(!webText.includes(removedAsset), `website does not reference removed asset: ${removedAsset}`);
+}
+assert(!webFiles.some((path) => /^web\/assets\/.*\.(png|jpe?g|webp|gif|pdf|zip)$/i.test(path)), "web/assets contains no binary assets");
 
 const firebaseJson = JSON.parse(read("firebase.json"));
 assert(firebaseJson.firestore?.rules === "firestore.rules" && firebaseJson.functions?.source === "functions", "firebase.json preserves Firestore and Functions config");
