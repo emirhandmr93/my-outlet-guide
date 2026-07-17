@@ -35,7 +35,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "generate": "tsx tools/generateConstants.ts"
+    "generate": "tsx tools/generateConstants.ts",
+    "web:prepare": "tsx tools/prepareWebsiteAssets.ts",
+    "web:generate": "tsx tools/generateWebsite.ts",
+    "web:preview": "npm run web:prepare && npm run web:generate && npx serve web"
   },
   "private": true,
   "devDependencies": {
