@@ -86,7 +86,7 @@ assert(!/Store readiness/i.test(allWeb), "Store readiness is not visible in web 
 assert(!/without heavy website dependencies/i.test(read("web/index.html")), "English home does not show internal website dependency copy");
 assert(/\.pill[^}]*color:var\(--gold\)/.test(styles), "hero badge uses readable gold styling");
 assert(/\.links a[^}]*color:#eaf1f8/.test(styles), "navigation labels use readable styling");
-assert(/OUTLET KEŞFİ VE PLANLAMA/.test(read("web/index.html")) && /Outlet rehberi/.test(trHome), "user-facing hero badge copy exists in English and Turkish");
+assert(/PREMİUM ALIŞVERİŞ VE SEYAHAT ASİSTANI/.test(read("web/index.html")) && /Outlet rehberi/.test(trHome), "user-facing hero badge copy exists in English and Turkish");
 for (const label of ["Ana Sayfa", "Keşfet", "Outletler", "Tax Free", "Seyahat Planı", "Uçuş Uyarıları", "Gizlilik", "Şartlar", "Hesap Silme", "İletişim"]) assert(allWeb.includes(`>${label}<`), `Turkish-first navigation label exists: ${label}`);
 assert(styles.includes("@media(max-width:560px)"), "responsive mobile layout is available");
 assert(!/(^|[;{])(width|min-width):\s*(?:[4-9]\d{2}|\d{4,})px/.test(styles), "no statically detectable fixed wide styles that risk horizontal overflow");
@@ -103,11 +103,11 @@ assert(/\.action-row\{display:grid;grid-template-columns:repeat\(3,1fr\)/.test(s
 const explore = read("web/explore/index.html");
 for (const marker of ["Ülkeler", "Şehirler", "Outletler", "POPÜLER ARAMALAR"]) assert(explore.includes(marker), `explore includes ${marker}`);
 const savings = read("web/savings/index.html");
-for (const marker of ["Akıllı Alışveriş Hesaplayıcısı", "Fiyat Avantajı", "Tax Free Hesaplayıcı", "ALIŞVERİŞ AYARLARI"]) assert(savings.includes(marker), `savings includes ${marker}`);
+for (const marker of ["Akıllı Alışveriş Hesaplayıcısı", "Fiyat Avantajı", "Tax Free Hesaplayıcı", "ALIŞVERİŞ AYARLARI", "Tahmini iade", "İade sonrası maliyet"]) assert(savings.includes(marker), `savings includes ${marker}`);
 const tripPlanner = read("web/trip-planner/index.html");
-for (const marker of ["ROTA DURAKLARI", "HATIRLATMA PLANI", "Planlanıyor"]) assert(tripPlanner.includes(marker), `trip planner includes ${marker}`);
+for (const marker of ["Paris &amp; Milano Alışveriş Rotası", "ZİYARET TARİHLERİ", "DURUM", "Web üzerinden seyahat oluşturma sunulmaz; bu özellik uygulama odaklıdır."]) assert(tripPlanner.includes(marker), `trip planner includes ${marker}`);
 const offlineGuide = read("web/offline-guide/index.html");
-for (const marker of ["offline-stats", "check-grid"]) assert(offlineGuide.includes(marker), `offline guide includes ${marker}`);
+for (const marker of ["offline-stats", "check-grid", "Uygulamadaki outletler", "Marka listeleri", "Restoran ve ulaşım notları"]) assert(offlineGuide.includes(marker), `offline guide includes ${marker}`);
 for (const unsafe of [/buy ticket/i, /live flight prices active/i, /guaranteed refund/i, /cheapest guaranteed/i, /official partner/i, /fake fare/i, /fake weather/i, /fake rate/i, /localhost/i, /outlet\.guide/i]) {
   assert(!unsafe.test(allWeb.replace(/not guaranteed refunds|do not show fake fares/gi, "")), `website excludes unsafe claim: ${unsafe}`);
 }
@@ -115,6 +115,13 @@ const home = read("web/index.html");
 for (const phrase of ["Outlet keşfi", "Tax Free rehberi", "Seyahat planı", "Outletleri keşfet"]) assert(home.includes(phrase), `homepage includes platform section: ${phrase}`);
 assert(read("web/flight-deals/index.html").includes("Uçuş fiyat sağlayıcısı bağlandığında desteklenen rotalar için uyarılar hazırlanacaktır."), "flight alerts page states provider-pending status");
 assert(read("web/tax-free/index.html").includes("Tahminler bilgilendirme amaçlıdır; nihai iade mağaza, sağlayıcı, ülke kuralları, işlem ücretleri ve uygunluğa göre değişebilir."), "Tax Free disclaimer is present");
+assert(read("web/tax-free/index.html").includes("Nasıl çalışır?") && read("web/tax-free/index.html").includes("Resmi sağlayıcıyla doğrula"), "Tax Free includes calculator steps");
+const flightDeals = read("web/flight-deals/index.html");
+for (const marker of ["Çıkış havalimanı", "Varış havalimanı", "İndirim eşiği", "%30 altında", "Bu sayfada canlı fiyat, bilet satışı veya rezervasyon sunulmaz."]) assert(flightDeals.includes(marker), `flight deals includes ${marker}`);
+const app = read("web/app/index.html");
+for (const marker of ["App Store incelemesi bekleniyor", "TestFlight test edildi", "Google Play hazırlıkta", "Doğrulama süreci devam ediyor"]) assert(app.includes(marker), `app includes status: ${marker}`);
+const countriesPage = read("web/countries/index.html");
+assert(!/\bAT Austria\b|\bDE Germany\b|\bIT Italy\b/.test(countriesPage), "country cards do not expose raw ISO English labels");
 assert(!/\+?1[\s.-]?\(?555\)?|555[\s.-]?\d{4}|000-000|123-456/i.test(allWeb), "website has no fake phone number");
 assert(!/fake testimonial/i.test(allWeb), "website has no fake testimonials");
 assert(!/<img\b[^>]*src=["']https?:\/\//i.test(allWeb), "website has no unlicensed remote image references");
