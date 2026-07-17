@@ -102,7 +102,12 @@ function listFiles(dir: string): string[] {
 const sourceFiles = ["src", "functions/src", "tools", "docs", "web"].flatMap(listFiles).concat(["app.json", "eas.json", "package.json", "firebase.json", "firestore.rules", "firestore.indexes.json"]);
 const appSourceFiles = sourceFiles.filter((file) => relative(process.cwd(), file).startsWith("src"));
 const allSource = sourceFiles.map((file) => `${file}\n${read(file)}`).join("\n");
-const runtimeSource = sourceFiles.filter((file) => !relative(process.cwd(), file).startsWith("tools")).map((file) => `${file}\n${read(file)}`).join("\n");
+// Third-party browser bundles may contain localhost defaults that are never used by
+// this application. Audit authored runtime sources rather than vendored output.
+const runtimeSource = sourceFiles.filter((file) => {
+  const relativeFile = relative(process.cwd(), file);
+  return !relativeFile.startsWith("tools") && !relativeFile.startsWith("web/assets/");
+}).map((file) => `${file}\n${read(file)}`).join("\n");
 const appSource = appSourceFiles.map(read).join("\n");
 
 assert(!/localhost|127\.0\.0\.1|192\.168\./.test(runtimeSource), "no obvious localhost or LAN URLs in runtime source/docs/config");
