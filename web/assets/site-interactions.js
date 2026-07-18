@@ -27,11 +27,13 @@
     const menuOpen = event.target.closest("[data-menu-open]");
     const searchOpen = event.target.closest("[data-search-open]");
     const close = event.target.closest("[data-menu-close], [data-search-close]");
+    const clear = event.target.closest("[data-search-clear]");
     const chip = event.target.closest("[data-search-chip]");
     const type = event.target.closest("[data-search-type]");
     if (menuOpen) { event.preventDefault(); openPanel("[data-menu-overlay]", "[data-menu-close]"); }
     if (searchOpen) { event.preventDefault(); openPanel("[data-search-overlay]", "[data-search-input]"); renderAllSearch(event.target.dataset.searchPrefill || ""); }
     if (close) { event.preventDefault(); closePanels(); }
+    if (clear) { event.preventDefault(); setQuery(""); doc.querySelectorAll("[data-home-search-results]").forEach((el) => { el.hidden = true; }); }
     if (chip) { event.preventDefault(); setQuery(chip.dataset.searchChip || chip.textContent || ""); }
     if (type) { event.preventDefault(); const value = type.dataset.searchType; activeTypes.has(value) ? activeTypes.delete(value) : activeTypes.add(value); type.classList.toggle("is-active", activeTypes.has(value)); renderAllSearch(currentQuery()); }
   });
@@ -45,7 +47,8 @@
     try { index = await fetch("/assets/search-index.json", { cache: "force-cache" }).then((r) => r.json()); } catch { index = []; }
     return index;
   };
-  const resultHtml = (items) => items.length ? items.map((item) => `<a class="app-result-card app-search-result-card" href="${item.href}"><b>${labels[item.type] || item.type}</b><span>${item.title}<small>${item.subtitle || ""}</small></span><i>→</i></a>`).join("") : `<div class="app-empty-state"><h3>Sonuç bulunamadı</h3><p>Farklı bir şehir, outlet veya marka adı deneyin.</p></div>`;
+  const icons = { outlet: "🏬", city: "📍", country: "🌍", brand: "🏷️" };
+  const resultHtml = (items) => items.length ? items.map((item) => `<a class="app-result-card app-search-result-card" href="${item.href}"><em>${icons[item.type] || "⌕"}</em><b>${labels[item.type] || item.type}</b><span>${item.title}<small>${item.subtitle || ""}</small></span><i>→</i></a>`).join("") : `<div class="app-empty-state"><h3>Sonuç bulunamadı</h3><p>Farklı bir şehir, outlet veya marka adı deneyin.</p></div>`;
   const search = async (query) => {
     const q = normalize(query);
     const data = await loadIndex();
@@ -58,6 +61,8 @@
     doc.querySelectorAll("[data-search-section]").forEach((el) => { el.hidden = !hasQuery; });
     const items = await search(query);
     doc.querySelectorAll("[data-search-results]").forEach((el) => { el.innerHTML = hasQuery ? resultHtml(items) : ""; });
+    doc.querySelectorAll("[data-home-search-results]").forEach((el) => { el.hidden = !hasQuery; });
+    doc.querySelectorAll("[data-search-clear]").forEach((el) => { el.hidden = !hasQuery; });
   }
 
   const path = location.pathname.replace(/\/index\.html$/, "/");

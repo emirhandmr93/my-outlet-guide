@@ -486,8 +486,8 @@ assert(
 
 // Homepage final-polish guardrails.
 assert(
-  /<button class="home-search app-search-pill" type="button" data-search-open/.test(home),
-  "homepage hero search pill opens local search overlay",
+  /data-home-inline-search/.test(home) && /data-home-search-results/.test(home) && !/<button class="home-search app-search-pill" type="button" data-search-open/.test(home),
+  "homepage search is inline and not modal-only",
 );
 assert(
   /<a class="home-primary-cta" href="\/explore\/">Outletleri keşfet/.test(home),
@@ -771,7 +771,7 @@ assert(
   "homepage shopping tools have four app-style cards",
 );
 assert(
-  /<section class="app-section home-feature-section"><h2>Öne çıkanlar<\/h2><p>Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar\.<\/p><div class="app-feature-grid"[^>]*>/.test(home),
+  /<section class="app-section home-feature-section"><h2>Öne çıkanlar<\/h2><p>Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar\.<\/p><div class="app-feature-grid home-rail"[^>]*>/.test(home),
   "homepage Öne çıkanlar appears as a normal visible section heading after hero",
 );
 assert(
@@ -807,15 +807,23 @@ assert(
 );
 assert(
   (home.match(/home-tool-icon/g) || []).length === 4 &&
-    (home.match(/home-tool-action/g) || []).length === 4 &&
-    styles.includes(".home-page .home-tool-grid .home-tool-icon") &&
-    styles.includes(".home-page .home-tool-grid .home-tool-action"),
-  "shopping tool cards include icon bubble/action affordance classes",
+    (home.match(/home-tool-action/g) || []).length === 0 &&
+    styles.includes(".home-page .home-tool-grid .home-tool-icon"),
+  "shopping tool cards include icon bubbles without extra arrow affordances",
 );
 assert(/<script src="\/assets\/site-interactions\.js" defer><\/script>/.test(home), "homepage only includes the allowed site interaction script tag");
-assert(/<button class="home-search app-search-pill" type="button" data-search-open/.test(home), "hero search pill opens the app-style search overlay");
+assert(/data-home-inline-search/.test(home), "hero search uses app-style inline input");
 assert(home.includes("data-menu-overlay") && home.includes("Hızlı Menü"), "hamburger menu overlay markup exists");
-assert(home.includes("data-search-overlay") && home.includes("data-search-results"), "search overlay/result markup exists");
+for (const row of ["🏬</i><span>Outletlere göz at", "💰</i><span>Tax Free Merkezi", "📥</i><span>Çevrimdışı erişim", "⭐</i><span>Uygulamayı değerlendir", "📤</i><span>Uygulamayı paylaş"])
+  assert(home.includes(row), `hamburger menu includes native row: ${row}`);
+assert(home.includes('class="home-menu-button"') && home.includes('aria-label="Bildirimler"') && home.includes('🇹🇷 <span>TR</span>'), "mobile topbar includes hamburger, bell, and TR language pill");
+assert(styles.includes('background: #06182f !important'), "bottom tab is dark navy on mobile");
+for (const cls of ['app-feature-grid home-rail', 'app-outlet-grid home-rail', 'home-city-grid home-rail'])
+  assert(home.includes(cls), `homepage horizontal rail class exists: ${cls}`);
+for (const term of ["Barberino Designer Outlet", "Saint Laurent", "Yves Saint Laurent", "France"])
+  assert(read("web/assets/search-index.json").includes(term), `search-index contains ${term}`);
+
+assert(home.includes("data-home-search-results") && home.includes("data-search-results"), "homepage inline search result markup exists");
 assert(explore.includes("explore-search-input") && explore.includes("data-inline-search"), "explore has styled real search input");
 assert(explore.includes("data-search-type=\"brand\""), "explore type filters include brands");
 assert(styles.includes(".app-bottom-tabs a.is-active") && read("web/assets/site-interactions.js").includes('path.startsWith("/outlets/")'), "bottom tab active logic classes/data attributes exist");
@@ -825,7 +833,7 @@ assert(explore.includes("explore/explore-hero-premium.png") && !explore.includes
 
 assert(/<a class="home-primary-cta" href="\/(explore|outlets)\/">Outletleri keşfet/.test(home), "hero primary CTA links to discovery route");
 for (const statusText of ["App Store incelemesi bekleniyor", "Google Play hazırlıkta"])
-  assert(new RegExp(`<a class="home-status-chip" href="/app/">${statusText}</a>`).test(home), `hero app status chip links to /app/: ${statusText}`);
+  assert(styles.includes(".home-page .home-status-chip { display: none; }"), `hero app status chip is hidden on mobile: ${statusText}`);
 for (const [label, href] of [["Ana Sayfa", "/"], ["Keşfet", "/explore/"], ["Outletler", "/outlets/"], ["Tax Free", "/tax-free/"], ["Seyahat Planı", "/trip-planner/"], ["Uçuş Uyarıları", "/flight-deals/"], ["Uygulama", "/app/"]] as const)
   assert(home.includes(`<a href="${href}">${label}</a>`) || home.includes(`<a class="is-active" href="${href}" aria-current="page">${label}</a>`), `homepage top nav links ${label} to ${href}`);
 for (const [label, href] of [["Outletleri keşfet", "/explore/"], ["Outlet seyahatini planla", "/trip-planner/"], ["Tasarruf araçları", "/savings/"], ["Çevrimdışı rehber", "/offline-guide/"]] as const)

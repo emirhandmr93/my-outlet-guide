@@ -3002,3 +3002,34 @@ button.home-menu-button, button.home-search, button.app-chip { font: inherit; cu
 .app-bottom-tabs a.is-active b { background: var(--navy); color: #f3cb57; }
 @media (min-width: 721px) { .app-menu-overlay, .app-search-overlay { place-items: center; } .app-menu-card, .app-search-card { border-radius: 34px; } }
 @media (max-width: 720px) { .app-menu-overlay, .app-search-overlay { padding: 12px 12px calc(18px + env(safe-area-inset-bottom)); } .app-menu-card, .app-search-card { border-radius: 30px 30px 26px 26px; } .app-bottom-tabs a:first-child:not(.is-active) { color: #7a8796; } }
+
+/* Mobile homepage app parity: native-style chrome, inline search, dark tabs. */
+.home-inline-search { width: min(100%, 398px); margin: 14px auto 0; }
+.home-search-clear[hidden], .home-inline-results[hidden] { display: none; }
+.home-page .home-search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--navy); font: inherit; font-weight: 850; }
+.home-page .home-search input::placeholder { color: #68778a; }
+.home-search-clear { display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 999px; background: #f0f3f7; color: var(--navy); font-size: 1.25rem; font-weight: 950; }
+.home-inline-results { margin-top: 10px; padding: 10px; border: 1px solid rgba(226,231,237,.95); border-radius: 24px; background: #fff; box-shadow: 0 16px 34px rgba(8,29,56,.12); }
+.app-search-result-card { display: grid; grid-template-columns: 42px auto minmax(0,1fr) 18px; align-items: center; gap: 10px; min-height: 64px; padding: 10px; border: 1px solid rgba(226,231,237,.9); border-radius: 18px; background: #fff; text-decoration: none; }
+.app-search-result-card em { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 16px; background: #fff4cf; font-style: normal; }
+.app-search-result-card b { color: #ad871d; font-size: .66rem; font-weight: 950; letter-spacing: .08em; }
+.app-search-result-card span { color: var(--navy); font-weight: 950; line-height: 1.15; }
+.app-search-result-card small { display: block; margin-top: 4px; color: var(--muted); font-size: .75rem; font-weight: 750; }
+.app-menu-card a i { display: grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; border-radius: 16px; background: #fff4cf; font-style: normal; }
+@media (max-width: 720px) {
+  .home-page .home-nav { grid-template-columns: 46px minmax(128px,1fr) auto; }
+  .app-menu-overlay { place-items: center; padding: 18px; }
+  .app-menu-card { width: min(100%, 392px); border-radius: 32px; padding: 24px 18px 18px; }
+  .app-menu-card a { min-height: 64px; border-radius: 22px; padding: 11px 14px; background: #fff; box-shadow: 0 8px 18px rgba(8,29,56,.055); }
+  .home-page .home-status-chip { display: none; }
+  .home-page .home-hero-actions { justify-content: flex-start; }
+  .home-page .home-content { padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
+  .home-page .home-feature-section .app-feature-card,
+  .home-page .home-recommended-section .outlet-card { flex-basis: min(84vw, 356px); }
+  .app-bottom-tabs { background: #06182f !important; border: 1px solid rgba(255,255,255,.08) !important; box-shadow: 0 20px 46px rgba(4,19,39,.42) !important; }
+  .app-bottom-tabs a { color: rgba(255,255,255,.72) !important; background: transparent !important; border-color: transparent !important; }
+  .app-bottom-tabs b { background: rgba(255,255,255,.10) !important; color: rgba(255,255,255,.86) !important; }
+  .app-bottom-tabs a.is-active { color: #f3cb57 !important; }
+  .app-bottom-tabs a.is-active b { background: rgba(243,203,87,.18) !important; color: #f3cb57 !important; }
+  footer { background: #fff; }
+}
