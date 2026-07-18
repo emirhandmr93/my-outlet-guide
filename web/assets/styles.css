@@ -3138,3 +3138,31 @@ body:has([data-explore-page]) { background: #f3f5f8; overflow-x: hidden; }
 @media (max-width: 359px) {
   .explore-discovery-grid, .app-action-grid, .app-quick-facts .app-quick-grid { grid-template-columns: 1fr; }
 }
+
+/* Native-detail mobile parity refresh. */
+.mobile-detail-topbar { display: none; }
+.app-section-title { display:flex; align-items:center; justify-content:space-between; gap:12px; min-width:0; }
+.app-section-title h2 { margin:0; }
+.app-section-title small, .app-section-title a { color:#ad871d; font-weight:950; text-decoration:none; }
+.app-tax-card { background:#fff; color:var(--navy); }
+.app-tax-card small { display:block; color:var(--muted); font-weight:750; line-height:1.45; }
+.app-navy-button { display:flex; justify-content:center; width:100%; background:var(--navy) !important; color:#fff !important; border-color:var(--navy) !important; }
+.app-map-row.is-primary { background:var(--navy); color:#fff; border-color:var(--navy); }
+.app-map-row.is-primary small { color:rgba(255,255,255,.72); }
+.app-map-row.is-primary i { color:#f3cb57; }
+.app-food-row > b, .app-category-row > b, .app-map-row > b { background:#fff4cf; color:#8b6814; }
+.app-service-list { flex-wrap:wrap; overflow:visible; }
+.app-detail-tabs a { text-decoration:none; }
+@media (max-width: 720px) {
+  .outlet-detail-page > .app-topbar, .outlet-detail-page footer { display:none; }
+  .mobile-detail-topbar { position:sticky; top:0; z-index:20; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; min-height:54px; padding:calc(8px + env(safe-area-inset-top)) 16px 8px; background:#fff; border-bottom:1px solid rgba(226,231,237,.95); color:var(--navy); }
+  .mobile-detail-topbar a { text-decoration:none; font-weight:900; color:var(--navy); }
+  .mobile-detail-topbar strong { font-size:.98rem; font-weight:950; }
+  .outlet-detail-shell { padding-top:14px; }
+  .outlet-detail-page main { margin-top:0; }
+  .app-action-card { background:#06182f !important; border-color:#06182f !important; color:#fff !important; box-shadow:0 14px 28px rgba(4,19,39,.18); }
+  .app-action-card span { background:rgba(243,203,87,.16) !important; color:#f3cb57 !important; }
+  .app-gallery-strip img:first-child { border:2px solid #d3ad39; }
+  .app-map-card .app-list-card, .app-category-row, .app-food-row { grid-template-columns:46px minmax(0,1fr) 18px; }
+  .app-list-card span, .app-list-card small, .app-quick-card, .app-quick-fact b { min-width:0; max-width:100%; overflow-wrap:anywhere; }
+}

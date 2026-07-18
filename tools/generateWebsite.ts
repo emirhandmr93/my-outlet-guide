@@ -4,6 +4,9 @@ import { cities } from "../src/constants/cities";
 import { countries } from "../src/constants/countries";
 import { outlets } from "../src/constants/outlets";
 import { brands } from "../src/constants/brands";
+import { outletBrands } from "../src/constants/outletBrands";
+import { restaurants } from "../src/constants/restaurants";
+import { taxFreeRules } from "../src/constants/taxFreeRules";
 
 const web = "web";
 const countryNames: Record<string, string> = {
@@ -62,18 +65,22 @@ const cityNames: Record<string, string> = {
 const serviceNames: Record<string, string> = {
   Parking: "Otopark",
   "Car Parking": "Otopark",
-  "Guest Services": "Misafir Hizmetleri",
-  "Restaurants & Cafes": "Restoranlar ve Kafeler",
-  "Shuttle / Transport Info": "Servis / Ulaşım Bilgisi",
+  "Guest Services": "Misafir hizmetleri",
+  "Restaurants and Cafes": "Restoranlar ve kafeler",
+  "Restaurants & Cafes": "Restoranlar ve kafeler",
+  "Shuttle / Transport Information": "Servis / ulaşım bilgisi",
+  "Shuttle / Transport Info": "Servis / ulaşım bilgisi",
   "Transport Info": "Servis / Ulaşım Bilgisi",
   "Private Transfer": "Özel Transfer",
-  "Camper Parking Area": "Karavan Park Alanı",
+  "Camper/RV parking": "Karavan park alanı",
+  "Camper Parking Area": "Karavan park alanı",
   "Gift Cards": "Hediye Kartları",
   "Gift cards": "Hediye Kartları",
   Accessibility: "Erişilebilirlik",
   "Wi-Fi": "Wi‑Fi",
   WiFi: "Wi‑Fi",
-  "Kids Area": "Çocuk Alanı",
+  "Children’s Area": "Çocuk alanı",
+  "Kids Area": "Çocuk alanı",
   "Public transport": "Toplu taşıma",
   "Electric car charger": "Elektrikli araç şarjı",
   "EV Charging": "Elektrikli araç şarjı",
@@ -83,14 +90,15 @@ const serviceNames: Record<string, string> = {
   Pets: "Evcil hayvanlar",
   Umbrella: "Şemsiye",
   "Tax Free w/ Immediate Refund": "Tax Free bilgisi",
+  "Personal Shopping": "Kişisel alışveriş",
+  "VIP Lounge": "VIP Lounge",
   "Shopping Assistance": "Alışveriş desteği",
   "Virtual Shopping": "Uzaktan alışveriş bilgisi",
   "Pet Friendly": "Evcil hayvan dostu",
 };
 const trCountry = (name: string) => countryNames[name] || name;
 const trCity = (name: string) => cityNames[name] || name;
-const trService = (name: string) =>
-  serviceNames[name] || (name === "Wi-Fi" ? "Wi‑Fi" : "Hizmet bilgisi");
+const trService = (name: string) => serviceNames[name] || "";
 const outletCount = (count: number) => `${count} outlet`;
 const cityOutletCount = (count: number) => `${count} outlet`;
 const trStores = (text: string) => {
@@ -434,6 +442,12 @@ const shell = (
     intro,
     `<div class="app-screen app-shell app-page">${body}</div>${appTabs}`,
   );
+
+const outletDetailPage = (title: string, intro: string, body: string) => `<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(title)} | My Outlet Guide</title><meta name="description" content="${esc(intro)}"><link rel="stylesheet" href="/assets/styles.css"></head><body class="app-screen outlet-detail-page"><header class="mobile-detail-topbar"><a href="/outlets/" data-history-back>‹ Geri</a><strong>Outlet</strong><span></span></header><main><div class="app-screen app-shell app-page outlet-detail-shell">${body}</div>${appTabs}</main>${footer}${quickMenu}${searchOverlay}${siteScript}</body></html>`;
+const safeHours = (text: string) => /selected summer dates|Generally|Shops|Mon|Sun|Official|website/i.test(text || "") || (text || "").length > 28 ? "Genellikle 10:00 - 20:00" : text;
+const trRestaurantCategory = (text = "") => text.replace(/Sushi/g, "Suşi").replace(/Restaurant/g, "Restoran").replace(/Chocolate/g, "Çikolata").replace(/Cafe|Café/g, "Kafe").replace(/Restaurants & Cafés/g, "Restoranlar & Kafeler").replace(/Coffee/g, "Kahve").replace(/Ice cream/g, "Dondurma").replace(/Food/g, "Yemek").replace(/Quick Service/g, "Hızlı servis").replace(/ • /g, " · ");
+const categoryLabels: Record<string, [string, string]> = { luxury: ["💎", "Lüks"], fashion: ["👗", "Moda"], sportswear: ["👟", "Spor giyim"], shoes_bags: ["👜", "Ayakkabı & Çanta"], beauty: ["💄", "Güzellik"], accessories: ["⌚", "Aksesuar"], home_living: ["🏠", "Ev & Yaşam"], homeware: ["🍽️", "Homeware"] };
+const brandCategoryRows = (outletId: string) => { const related = outletBrands.filter((x: any) => x.outletId === outletId && x.relationStatus === "active"); const counts = new Map<string, number>(); for (const rel of related) { const brand = (brands as any[]).find((b) => b.brandId === rel.brandId); const id = brand?.luxuryLevel === "luxury" ? "luxury" : brand?.categoryId || "fashion"; counts.set(id, (counts.get(id) || 0) + 1); } const total = related.length; const rows = Object.entries(categoryLabels).map(([id, [icon, label]]) => [icon, label, counts.get(id) || 0] as const).filter(([, , count]) => count > 0); return { total, html: rows.map(([icon, label, count]) => `<div class="app-list-card app-category-row"><b>${icon}</b><span>${label}<small>${count} marka</small></span><i>›</i></div>`).join("") || `<div class="app-list-card app-category-row"><b>👗</b><span>Moda<small>${Math.max(total, 1)} marka</small></span><i>›</i></div>` }; };
 const feature = (
   label: string,
   title: string,
@@ -451,6 +465,7 @@ const exploreCityImages: Record<string, string> = { paris: "Paris.webp", milan: 
 const exploreRows = {
   countries: (countries as any[])
     .map((country) => { const count = outlets.filter((outlet: any) => outlet.countryId === country.countryId).length; return { id: country.countryId, type: "country", flag: country.countryFlag, title: trCountry(country.countryName), subtitle: `${count} outlet`, href: `/countries/${country.countryId}/`, countryId: country.countryId, country: trCountry(country.countryName), count, keywords: [country.countryName, trCountry(country.countryName), country.currency].filter(Boolean) }; })
+    .filter((country) => country.count > 0)
     .sort((a, b) => b.count - a.count || a.title.localeCompare(b.title, "tr")),
   cities: (cities as any[]).map((city) => { const country = (countries as any[]).find((item) => item.countryId === city.countryId); const count = outlets.filter((outlet: any) => outlet.cityId === city.cityId).length; return { id: city.cityId, type: "city", title: trCity(city.cityName), subtitle: `${trCountry(country?.countryName || city.countryId)} · ${count} outlet`, href: `/cities/${city.cityId}/`, countryId: city.countryId, country: trCountry(country?.countryName || city.countryId), image: exploreCityImages[city.cityId] ? asset(`city-images/${exploreCityImages[city.cityId]}`) : "", flag: country?.countryFlag || "📍", count, keywords: [city.cityName, trCity(city.cityName), country?.countryName, trCountry(country?.countryName || "")].filter(Boolean) }; }).filter((city) => city.count > 0),
   outlets: (outlets as any[]).map((outlet) => { const city = (cities as any[]).find((item) => item.cityId === outlet.cityId); const country = (countries as any[]).find((item) => item.countryId === outlet.countryId); const slug = outlet.slug || outlet.outletId; return { id: slug, type: "outlet", title: outlet.name, subtitle: `${trCity(city?.cityName || outlet.cityId)}, ${trCountry(country?.countryName || outlet.countryId)}`, href: `/outlets/${slug}/`, countryId: outlet.countryId, country: trCountry(country?.countryName || outlet.countryId), flag: country?.countryFlag || "🏬", keywords: [outlet.name, city?.cityName, trCity(city?.cityName || ""), country?.countryName, trCountry(country?.countryName || "")].filter(Boolean) }; }),
@@ -530,7 +545,7 @@ for (const outlet of outlets as any[]) {
     ? outlet.airports.slice(0, 3).map((airport: any) => `${esc(airport.code)} · ${esc(airport.distanceKm)} km`).join(", ")
     : "—";
   const quickFacts = [
-    ["🕙", "SAATLER", esc(outlet.openingHours || "Güncel bilgiyi kontrol edin")],
+    ["🕙", "SAATLER", esc(safeHours(outlet.openingHours || "Güncel bilgiyi kontrol edin"))],
     ["🏬", "MAĞAZALAR", esc(trStores(outlet.storesCountText || "Bilgi güncelleniyor"))],
     ["₺", "TAX FREE", outlet.taxFreeAvailable ? "Mevcut" : "Mağazaya göre"],
     ["✈", "HAVALİMANLARI", airportSummary],
@@ -540,46 +555,10 @@ for (const outlet of outlets as any[]) {
   const route = `<article class="app-route-card app-tool-card"><span>Şehir merkezinden</span><b>Taksi / Uber ile</b><div class="app-chip-row"><em>Taksi / Uber</em><em>Yaklaşık 25–50 dk</em><em>Yaklaşık €35–75</em></div><small>Güncel saat ve ücretleri seyahat öncesi kontrol edin.</small></article>`;
   write(
     `outlets/${slug}`,
-    shell(
+    outletDetailPage(
       `${outlet.name} outlet rehberi`,
-      "PREMİUM OUTLET",
-      outlet.name,
       `${trCity(city?.cityName || outlet.cityId)}, ${trCountry(country?.countryName || outlet.countryId)}`,
-      `<section class="app-detail-hero app-image-card">${gallery}<div><p>PREMIUM OUTLET</p><h2>${esc(outlet.name)}</h2><span>${esc(trCity(city?.cityName || outlet.cityId))}, ${esc(trCountry(country?.countryName || outlet.countryId))}</span></div></section>${thumbnailStrip}<span class="app-status">● Aktif</span><div class="app-action-grid"><a class="app-action-card app-cta" href="/app/"><span>♡</span><b>Favori</b></a><a class="app-action-card app-cta" href="/trip-planner/"><span>◫</span><b>Seyahat Oluştur</b></a><a class="app-action-card app-cta" href="/explore/"><span>⌖</span><b>Yol Tarifi</b></a></div><div class="app-chip-row">${["Özet", "Markalar", "Ulaşım", "Yemek", "Yorumlar"].map((x, i) => `<span class="app-tab-chip ${i === 0 ? "selected" : ""}">${x}</span>`).join("")}</div><section class="app-card app-white-card app-info-card app-quick-facts"><h2>Hızlı Bilgiler</h2><div class="app-quick-grid">${quickFacts.map(([icon, label, value]) => `<div class="app-quick-fact"><i>${icon}</i><small>${label}</small><b>${value}</b></div>`).join("")}</div></section><section class="app-warning-card"><p>TAX FREE</p><h2>Tahmini iade bilgisi</h2><span>KDV oranı ve minimum harcama mağaza ile ülke kurallarına göre değişebilir.</span><small>Tahmini iade garanti edilen iade değildir; gerçek iade mağaza, sağlayıcı, işlem ücretleri, ülke kuralları ve uygunluğa göre değişebilir.</small></section><section class="app-card app-white-card app-brands-card"><h2>Markalar</h2><p>Marka listesi outlet tarafından güncellenebilir.</p><div class="app-search-pill">⌕ <span>Marka ara...</span></div>${["Moda", "Spor giyim", "Ayakkabı & Çanta", "Güzellik", "Aksesuar", "Gözlük", "Kitap & Oyuncak", "Ev & Yaşam"].map((x) => `<div class="app-list-card"><span>${x}<small>Marka bilgisi</small></span><i>→</i></div>`).join("")}</section><section class="app-card app-white-card"><h2>Ulaşım</h2><p>Bu outlet'e ulaşmanın pratik yolları.</p>${route}${route.replace("Şehir merkezinden", "Havaalanından")}<span class="button muted">Ulaşım Rehberini Gör</span></section><section class="app-card app-white-card"><h2>Haritalar</h2>${["Google Maps’te Aç", "Apple Maps’te Aç", "Yandex Maps’te Aç"].map((x) => `<span class="app-list-card"><span>${x}</span><i>→</i></span>`).join("")}</section><section class="app-card app-white-card"><h2>Resmi Web Sitesi</h2><p>Güncel çalışma saatleri, etkinlikler, kampanyalar, marka güncellemeleri ve geçici duyurular için her zaman resmi web sitesini kontrol edin.</p>${outlet.websiteUrl ? `<a class="button" href="${esc(outlet.websiteUrl)}">Resmi Web Sitesini Ziyaret Et</a>` : ""}</section><section class="app-card app-white-card"><h2>Restoranlar & Kafeler</h2>${(
-        outlet.restaurants || ["Restoran bilgisi güncelleniyor"]
-      )
-        .slice(0, 4)
-        .map(
-          (x: string) =>
-            `<div class="app-list-card"><b>☕</b><span>${esc(x)}<small>Yeme içme</small></span></div>`,
-        )
-        .join(
-          "",
-        )}</section><section class="app-card app-white-card"><h2>Hizmetler</h2><div class="app-chip-row">${(
-        outlet.services || [
-          "Parking",
-          "Tax Free",
-          "Guest Services",
-          "Restaurants & Cafes",
-          "Shuttle / Transport Info",
-          "Private Transfer",
-          "Camper Parking Area",
-          "Wi-Fi",
-          "Gift Cards",
-          "Accessibility",
-          "ATMs",
-          "Kids Area",
-          "Shopping Assistance",
-        ]
-      )
-        .slice(0, 13)
-        .map(
-          (x: string) =>
-            `<span class="app-service-chip">✓ ${esc(trService(x))}</span>`,
-        )
-        .join(
-          "",
-        )}</div></section><section class="app-card app-white-card reviews-card"><h2>Yorumlar</h2><p>Outlet alışveriş deneyimini paylaş</p><span class="button muted">Yorum yaz</span><div class="app-dark-card"><small>Genel puan</small><b>0.0 <em>(0 yorum)</em></b></div><div class="app-quick-grid">${["Ulaşım", "Markalar", "Restoranlar", "Hizmetler"].map((x) => `<div class="app-quick-card"><span>${x}</span><b>—</b></div>`).join("")}</div><div class="app-chip-row"><span class="app-tab-chip selected">En faydalı</span><span class="app-tab-chip">En yeni</span></div><p>Henüz yorum yok.</p></section>`,
+      (() => { const loc = `${esc(trCity(city?.cityName || outlet.cityId))}, ${esc(trCountry(country?.countryName || outlet.countryId))}`; const tax = taxFreeRules.find((rule: any) => rule.countryId === outlet.countryId); const brandRows = brandCategoryRows(outlet.outletId); const food = (restaurants as any[]).filter((r) => r.outletId === outlet.outletId && r.status !== "inactive").sort((a,b) => Number(a.displayOrder || 99) - Number(b.displayOrder || 99)); const services = [...new Set((outlet.services || ["Parking", "Tax Free", "Guest Services", "Restaurants and Cafes", "Shuttle / Transport Information", "Wi-Fi", "Gift Cards", "Accessibility", "ATM", "Personal Shopping"]).map((x: string) => trService(x)).filter(Boolean))]; const mapRows = [["🗺️", "Google Maps’te Aç", "Önerilen rota", outlet.googleMapsUrl, "is-primary"], ["", "Apple Maps’te Aç", "iOS harita seçeneği", outlet.appleMapsUrl, ""], ["⌖", "Yandex Maps’te Aç", "Alternatif harita seçeneği", outlet.yandexMapsUrl, ""]]; return `<section class="app-detail-hero app-image-card">${gallery}<div><p>PREMIUM OUTLET</p><h2>${esc(outlet.name)}</h2><span>${loc}</span></div></section>${thumbnailStrip}<span class="app-status">● Aktif</span><div class="app-action-grid"><a class="app-action-card app-cta" href="/app/"><span>♡</span><b>Favori</b></a><a class="app-action-card app-cta" href="/trip-planner/"><span>◫</span><b>Seyahat Oluştur</b></a><a class="app-action-card app-cta" href="${esc(outlet.googleMapsUrl || '/explore/')}"><span>⌖</span><b>Yol Tarifi</b></a></div><div class="app-chip-row app-detail-tabs">${["Özet", "Markalar", "Ulaşım", "Yemek", "Yorumlar"].map((x, i) => `<a href="#${i ? x.toLocaleLowerCase('tr-TR') : 'ozet'}" class="app-tab-chip ${i === 0 ? "selected" : ""}">${x}</a>`).join("")}</div><section id="ozet" class="app-card app-white-card app-info-card app-quick-facts"><h2>Hızlı Bilgiler</h2><div class="app-quick-grid">${quickFacts.map(([icon, label, value]) => `<div class="app-quick-fact"><i>${icon}</i><small>${label}</small><b>${value}</b></div>`).join("")}</div></section><section class="app-card app-white-card app-tax-card"><h2>Tax Free</h2><p>KDV oranı: ${tax?.vatRate ?? "—"}%</p>${tax?.minimumPurchaseAmount ? `<p>Minimum harcama: ${tax.minimumPurchaseAmount} ${tax.currency}</p>` : ""}<small>Tahmini iade garanti edilen iade değildir; gerçek iade mağaza, sağlayıcı, işlem ücretleri, ülke kuralları ve uygunluğa göre daha düşük olabilir.</small></section><section id="markalar" class="app-card app-white-card app-brands-card"><div class="app-section-title"><h2>Markalar</h2><small>${brandRows.total || ""} marka</small></div><div class="app-search-pill">⌕ <span>Marka ara...</span></div>${brandRows.html}</section><section id="ulaşım" class="app-card app-white-card"><h2>Ulaşım</h2><p>Bu outlet'e ulaşmanın pratik yolları.</p>${route}${route.replace("Şehir merkezinden", "Havaalanından")}<a class="button app-navy-button" href="/trip-planner/">Ulaşım Rehberini Gör</a></section><section class="app-card app-white-card app-map-card"><h2>Haritalar</h2><p>Navigasyonu tercih ettiğin harita uygulamasıyla aç.</p>${mapRows.map(([icon,title,sub,url,klass]) => url ? `<a class="app-list-card app-map-row ${klass}" href="${esc(url)}"><b>${icon}</b><span>${title}<small>${sub}</small></span><i>›</i></a>` : `<span class="app-list-card app-map-row"><b>${icon}</b><span>${title}<small>Adres bilgisini resmi kaynaklardan kontrol edin</small></span></span>`).join("")}</section><section class="app-card app-white-card app-official-card"><h2>🌐 Resmi Web Sitesi</h2><p>Güncel çalışma saatleri, etkinlikler, kampanyalar, marka güncellemeleri ve geçici duyurular için her zaman resmi web sitesini kontrol edin.</p>${outlet.websiteUrl ? `<a class="button app-navy-button" href="${esc(outlet.websiteUrl)}">Resmi Web Sitesini Ziyaret Et</a>` : ""}</section><section id="yemek" class="app-card app-white-card"><div class="app-section-title"><h2>Restoranlar & Kafeler</h2><small>${food.length} yer</small></div>${food.slice(0, 3).map((x: any) => `<div class="app-list-card app-food-row"><b>☕</b><span>${esc(x.restaurantName)}<small>${esc(trRestaurantCategory(x.category || 'Restoran'))}${x.priceLevel ? ` · ${esc(x.priceLevel)}` : ''}</small></span></div>`).join("")}<a class="button app-navy-button" href="/outlets/${slug}/">Tüm restoranlar</a></section><section class="app-card app-white-card"><h2>Hizmetler</h2><div class="app-chip-row app-service-list">${services.map((x) => `<span class="app-service-chip">✓ ${esc(x)}</span>`).join("")}</div></section><section id="yorumlar" class="app-card app-white-card reviews-card"><div class="app-section-title"><h2>Yorumlar</h2><a href="#yorumlar">Yorum yaz</a></div><p>Outlet alışveriş deneyimini paylaş.</p><div class="app-dark-card"><small>GENEL PUAN</small><b>⭐ 0.0 <em>(0 yorum)</em></b></div><div class="app-quick-grid">${["Ulaşım", "Markalar", "Restoranlar", "Hizmetler"].map((x) => `<div class="app-quick-card"><span>${x}</span><b>—</b></div>`).join("")}</div><div class="app-chip-row"><span class="app-tab-chip selected">En faydalı</span><span class="app-tab-chip">En yeni</span></div><p>Henüz yorum yok.</p></section>`; })(),
     ),
   );
 }
