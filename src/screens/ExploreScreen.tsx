@@ -1,5 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { NavigationProp, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import {
+  NavigationProp,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import {
   Image,
   ImageBackground,
@@ -35,6 +40,7 @@ import {
 } from "../utils/locationDisplay";
 import type { TranslationLanguage } from "../translations/translations";
 import { heroAssets } from "../media/heroAssets";
+import { getPopularCityImage } from "../media/imageResolvers";
 
 type ExploreFilter = "country" | "city" | "outlet";
 const filters: { id: ExploreFilter; labelKey: string; icon: string }[] = [
@@ -58,13 +64,7 @@ const preferredCityOrder = [
   "barcelona",
   "amsterdam",
 ];
-const cityImageMap: Record<string, any> = {
-  paris: require("../../assets/city-images/Paris.webp"),
-  milan: require("../../assets/city-images/Milano.webp"),
-  london: require("../../assets/city-images/London.webp"),
-  munich: require("../../assets/city-images/Munich.webp"),
-  vienna: require("../../assets/city-images/Vienna.webp"),
-};
+// City row photos share the same native city resolver as Home popular city cards.
 function outletCount(countryId?: string, cityId?: string) {
   return outlets.filter(
     (o) =>
@@ -659,7 +659,7 @@ function DefaultHub({
   );
 }
 function CityRow({ city, t, navigation, language, compact }: any) {
-  const img = cityImageMap[city.cityId];
+  const img = getPopularCityImage(city);
   return (
     <TouchableOpacity
       style={styles.cityRow}
