@@ -615,6 +615,7 @@ assert(
   "homepage city visuals and app-style tool grid have dedicated styling",
 );
 for (const marker of [
+  "home-wide-container",
   "home-content",
   "home-main",
   "home-main-hero",
@@ -628,7 +629,7 @@ for (const marker of [
     `homepage premium desktop layout class exists: ${marker}`,
   );
 assert(
-  styles.includes("width: min(1180px, calc(100vw - 96px))"),
+  styles.includes("max-width: min(1180px, calc(100vw - 96px))"),
   "homepage desktop content uses a wide dedicated container",
 );
 assert(
