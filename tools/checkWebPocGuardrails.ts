@@ -1,4 +1,5 @@
 import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 
 const pkg = JSON.parse(readFileSync("package.json", "utf8"));
@@ -77,6 +78,56 @@ if (existsSync("src/media/heroAssets.web.ts")) {
 const poc = readFileSync("src/web-poc/WebPocApp.tsx", "utf8");
 const resolver = readFileSync("src/media/imageResolvers.ts", "utf8");
 const entry = readFileSync("index.ts", "utf8");
+const protectedFiles = [
+  "package.json",
+  "index.ts",
+  "src/screens/HomeScreen.tsx",
+  "src/screens/ExploreScreen.tsx",
+  "tools/startWebPoc.ts",
+  "tools/exportWebPoc.ts",
+];
+const changedFiles = new Set(
+  execFileSync("git", ["diff", "--name-only", "HEAD"], {
+    encoding: "utf8",
+  })
+    .split("\n")
+    .filter(Boolean),
+);
+for (const file of protectedFiles) {
+  if (changedFiles.has(file))
+    failures.push(`${file} must not change for the Home image-source task`);
+}
+if (changedFiles.has("src/media/imageResolvers.ts")) {
+  failures.push("src/media/imageResolvers.ts must not change or be added");
+}
+const addedBinaryAssets = execFileSync(
+  "git",
+  ["diff", "--numstat", "--diff-filter=A", "HEAD"],
+  { encoding: "utf8" },
+)
+  .split("\n")
+  .filter((line) => line.startsWith("-\t-") || line.startsWith("-\t"));
+if (addedBinaryAssets.length)
+  failures.push(`Binary assets must not be added: ${addedBinaryAssets.join(", ")}`);
+const styleStart = poc.indexOf("const s = StyleSheet.create({");
+const styleBlock = styleStart === -1 ? "" : poc.slice(styleStart);
+const styleHash = createHash("sha256").update(styleBlock).digest("hex");
+if (styleHash !== "88dbe8edf6f2d63dcb491da184b7e64cf254e471a8ce43308c1ca5b2eed0afbe")
+  failures.push("WebPocApp StyleSheet block must remain unchanged");
+const scrollViews = poc.match(/<ScrollView\b[^>]*>/g) ?? [];
+const expectedScrollViews = [
+  "<ScrollView contentContainerStyle={s.content}>",
+  "<ScrollView horizontal showsHorizontalScrollIndicator={false}>",
+  "<ScrollView horizontal showsHorizontalScrollIndicator={false}>",
+  "<ScrollView horizontal showsHorizontalScrollIndicator={false}>",
+  "<ScrollView contentContainerStyle={s.content}>",
+  "<ScrollView contentContainerStyle={s.content}>",
+  "<ScrollView horizontal showsHorizontalScrollIndicator={false}>",
+  "<ScrollView\n          horizontal\n          showsHorizontalScrollIndicator={false}\n          contentContainerStyle={s.tabChips}\n        >",
+  "<ScrollView contentContainerStyle={s.content}>",
+];
+if (JSON.stringify(scrollViews) !== JSON.stringify(expectedScrollViews))
+  failures.push("WebPocApp ScrollView usage must remain unchanged");
 if (!entry.includes("Platform.OS === 'web'"))
   failures.push("index.ts must select the POC on web only");
 if (!entry.includes("process.env.EXPO_PUBLIC_USE_WEB_POC === '1'"))
@@ -92,8 +143,6 @@ if (!poc.includes('from "../media/imageResolvers"'))
   failures.push("WebPocApp must use the shared image resolver");
 if (/https?:\/\//.test(poc))
   failures.push("WebPocApp must not reference remote image URLs");
-if (/require\([^)]*(?:hero|featured|city-images|recommended-outlet)/i.test(poc))
-  failures.push("WebPocApp must not directly require required visual image assets");
 for (const resolverFunction of [
   "getHomeHeroImage",
   "getExploreHeroImage",
@@ -114,11 +163,23 @@ for (const resolverFunction of [
   if (!resolver.includes(`function ${resolverFunction}`))
     failures.push(`Missing required shared resolver: ${resolverFunction}`);
 }
-if (
-  !resolver.includes("getHomeHeroImage") ||
-  !resolver.includes("assets/home/home-hero-premium.png")
-)
-  failures.push("Home hero must resolve through the native home hero asset");
+for (const homeAsset of [
+  'const homeHero = require("../../assets/home/home-hero-premium.png")',
+  '"discover-outlets": require("../../assets/home/featured-discover-outlets.png")',
+  '"plan-trip": require("../../assets/home/featured-plan-trip.png")',
+  '"savings-guide": require("../../assets/home/featured-savings-guide.png")',
+  '"offline-availability": require("../../assets/home/featured-offline-availability.png")',
+  '"la-vallee-village": require("../../assets/outlet-images/la-vallee-village/hero.webp")',
+  '"bicester-village": require("../../assets/outlet-images/bicester-village/hero.webp")',
+  '"serravalle-designer-outlet": require("../../assets/outlet-images/serravalle-designer-outlet/hero.webp")',
+  '"the-mall-firenze": require("../../assets/outlet-images/the-mall-firenze/hero.webp")',
+  '"designer-outlet-parndorf": require("../../assets/outlet-images/designer-outlet-parndorf/hero.webp")',
+  'paris: require("../../assets/city-images/Paris.webp")',
+  'milan: require("../../assets/city-images/Milano.webp")',
+]) {
+  if (!poc.includes(homeAsset))
+    failures.push(`Home image mapping missing native asset: ${homeAsset}`);
+}
 if (
   !resolver.includes("getExploreHeroImage") ||
   !resolver.includes("assets/explore/explore-hero-premium.png")
@@ -126,22 +187,11 @@ if (
   failures.push(
     "Explore hero must resolve through the native explore hero asset",
   );
-if (
-  !resolver.includes(
-    "getOutletCardHeroImage(outlet, { mode: outletMediaMode })",
-  )
-)
-  failures.push(
-    "Recommended outlet cards must use the native outlet card hero resolver",
-  );
 if (resolver.includes("http://") || resolver.includes("https://"))
   failures.push("Image resolver must not reference remote image URLs");
 if (resolver.includes("recommended-outlet-generic.png"))
   failures.push("Required outlet imagery must fail loudly rather than use a generic fallback");
-if (
-  poc.includes("recommended-outlet-generic.png") ||
-  !poc.includes("getRecommendedOutletImage(outlet)")
-)
+if (poc.includes("recommended-outlet-generic.png"))
   failures.push(
     "POC recommended outlet cards must not directly use the generic fallback hero",
   );
@@ -157,16 +207,10 @@ for (const cityAsset of [
       `Popular city resolver missing native city image: ${cityAsset}`,
     );
 }
-if (!poc.includes("getPopularCityImage(id)!"))
-  failures.push(
-    "POC popular cities must use city images from the shared resolver",
-  );
 if (!poc.includes("getOutletGalleryImages(o)"))
   failures.push("Outlet detail must use the shared outlet gallery resolver");
 if (!poc.includes("getOutletPrimaryImage(o)"))
   failures.push("Outlet detail must use the shared outlet primary image resolver");
-if (!poc.includes("getHomeFeatureImage("))
-  failures.push("Home feature cards must use the shared image resolver");
 if (!poc.includes("Aklındakini bul"))
   failures.push("Explore hero must keep native Aklındakini bul copy");
 if (
@@ -180,7 +224,7 @@ if (!poc.includes('<DetailTop title="Outlet"'))
 if (!/onPress=\{\(\) => setSel\(img\)\}/.test(poc))
   failures.push("Outlet detail thumbnails must update the main image");
 if (poc.includes('from "../media/outletMedia"'))
-  failures.push("WebPocApp visual images must be consumed through imageResolvers only");
+  failures.push("WebPocApp must not bypass Home mappings with outletMedia imports");
 if (
   !poc.includes("backgroundColor: colors.primary") ||
   !poc.includes("Seyahat Oluştur")
