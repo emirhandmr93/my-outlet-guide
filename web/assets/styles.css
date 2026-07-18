@@ -3050,3 +3050,41 @@ button.home-menu-button, button.home-search, button.app-chip { font: inherit; cu
   .app-bottom-tabs a.is-active b { background: rgba(243,203,87,.18) !important; color: #f3cb57 !important; }
   footer { background: #fff; }
 }
+
+/* Explore static web/native parity. */
+.explore-app { display: grid; gap: 14px; max-width: 760px; margin: 0 auto; }
+.explore-app .app-section { margin: 0; }
+.explore-hero { min-height: 238px; border-radius: 30px; overflow: hidden; box-shadow: 0 18px 42px rgba(8,29,56,.16); }
+.explore-search-input { margin: 0; border-radius: 24px; min-height: 58px; }
+.explore-search-clear { display: grid; place-items: center; width: 34px; height: 34px; border: 0; border-radius: 999px; background: #f0f3f7; color: var(--navy); font-size: 1.25rem; font-weight: 950; appearance: none; -webkit-appearance: none; }
+.explore-search-clear[hidden] { display: none; }
+.explore-mode-chips { flex-wrap: nowrap; overflow-x: auto; padding: 2px 0 4px; scrollbar-width: none; }
+.explore-mode-chips::-webkit-scrollbar, .explore-country-filters::-webkit-scrollbar { display: none; }
+.explore-mode-chips .app-chip, .explore-popular-chips .app-chip, .explore-country-filters .app-chip { border-radius: 999px; min-height: 42px; padding: 10px 15px; border: 1px solid rgba(226,231,237,.95); background: #fff; color: var(--navy); font-weight: 900; box-shadow: 0 8px 18px rgba(8,29,56,.05); }
+.explore-discovery-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.explore-discovery-card { display: flex; align-items: center; gap: 12px; min-height: 118px; padding: 16px; border: 1px solid rgba(226,231,237,.95); border-radius: 24px; background: #fff; color: var(--navy); text-align: left; box-shadow: 0 12px 28px rgba(8,29,56,.08); font: inherit; appearance: none; -webkit-appearance: none; }
+.explore-discovery-card.is-wide { grid-column: 1 / -1; min-height: 96px; }
+.explore-discovery-card b, .explore-avatar { display: grid; place-items: center; flex: 0 0 48px; width: 48px; height: 48px; border-radius: 18px; background: #fff4cf; overflow: hidden; font-size: 1.25rem; }
+.explore-discovery-card span, .explore-list-card span { display: grid; gap: 4px; font-weight: 950; line-height: 1.15; }
+.explore-discovery-card small, .explore-list-card small, .explore-mode-panel > p, .explore-results-panel > p, .explore-result-count { color: var(--muted); font-size: .84rem; font-weight: 750; line-height: 1.35; }
+.explore-list-stack { display: grid; gap: 10px; }
+.explore-list-card { display: grid; grid-template-columns: 52px auto minmax(0,1fr) 18px; align-items: center; gap: 10px; min-height: 74px; padding: 11px; border: 1px solid rgba(226,231,237,.95); border-radius: 22px; background: #fff; color: var(--navy); text-decoration: none; box-shadow: 0 10px 24px rgba(8,29,56,.07); }
+.explore-list-card:not(:has(> b)) { grid-template-columns: 52px minmax(0,1fr) 18px; }
+.explore-list-card b { color: #ad871d; font-size: .66rem; font-weight: 950; letter-spacing: .08em; }
+.explore-list-card i { color: #ad871d; font-size: 1.15rem; font-style: normal; font-weight: 950; }
+.explore-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.explore-mode-panel { padding: 18px; border: 1px solid rgba(226,231,237,.95); border-radius: 28px; background: rgba(255,255,255,.72); box-shadow: 0 16px 36px rgba(8,29,56,.08); }
+.explore-mode-panel h2, .explore-results-panel h2 { margin-bottom: 4px; }
+.explore-mode-search { margin: 14px 0 10px; min-height: 52px; box-shadow: none; }
+.explore-country-filters { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+body:has([data-explore-page]) { background: #f3f5f8; overflow-x: hidden; }
+@media (max-width: 720px) {
+  body:has([data-explore-page]) .app-topbar > .hero { display: none; }
+  body:has([data-explore-page]) footer { display: none; }
+  body:has([data-explore-page]) .app-page { padding-bottom: calc(156px + env(safe-area-inset-bottom)); }
+  .explore-app { gap: 12px; }
+  .explore-hero { min-height: 226px; border-radius: 28px; }
+  .explore-hero h2 { font-size: clamp(1.85rem, 9vw, 2.35rem); }
+  .explore-app .app-section { padding: 16px 2px 4px; }
+  .explore-list-card { border-radius: 24px; }
+}

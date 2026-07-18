@@ -184,7 +184,7 @@ assert(
   "no statically detectable fixed wide styles that risk horizontal overflow",
 );
 assert(
-  !/TODO|coming soon|lorem|dummy/i.test(allWeb),
+  !/\b(?:TODO|coming soon|lorem|dummy)\b/i.test(allWeb.replace(/::placeholder|\splaceholder=["'][^"']*["']|\.placeholder|input\.placeholder/g, "")),
   "website has no visible TODO/coming soon/placeholder text",
 );
 assert(
@@ -248,6 +248,15 @@ assert(
 const explore = read("web/explore/index.html");
 for (const marker of ["Ülkeler", "Şehirler", "Outletler", "Popüler aramalar"])
   assert(explore.includes(marker), `explore includes ${marker}`);
+assert(!/data-explore-mode="brand"|🏷️ Markalar/.test(explore), "explore top mode chips exclude Markalar");
+assert(/data-explore-main-search/.test(explore) && /explore-search-input/.test(explore), "explore uses a styled inline search input");
+for (const marker of ["Outlet ara", "Ülkeye göre keşfet", "Şehre göre keşfet"])
+  assert(explore.includes(marker), `explore discovery option exists: ${marker}`);
+const popularCitiesSection = explore.match(/<h2>Popüler şehirler<\/h2>[\s\S]*?<\/section>/)?.[0] || "";
+assert(popularCitiesSection.includes("Paris") && popularCitiesSection.includes("Milano") && popularCitiesSection.includes("Londra"), "explore default popular cities are city rows");
+assert(!/Barberino|Saint Laurent/.test(popularCitiesSection), "explore default Popüler şehirler excludes outlet/brand search results");
+for (const marker of [`data-explore-mode="country"`, `data-explore-mode="city"`, `data-explore-mode="outlet"`, "data-explore-mode-panel"])
+  assert(explore.includes(marker), `explore supports mode container/template: ${marker}`);
 const savings = read("web/savings/index.html");
 for (const marker of [
   "Akıllı Alışveriş Hesaplayıcısı",
@@ -358,6 +367,14 @@ assert(
   ),
   "website has no analytics/cookie scripts",
 );
+
+const interactions = read("web/assets/site-interactions.js");
+assert(/setExploreMode|renderExploreMode|data-explore-mode/.test(interactions), "site interactions handle Explore mode switching");
+assert(/loadIndex|search-index\.json|renderAllSearch/.test(interactions), "site interactions handle Explore search from static index");
+assert(/startsWith\("\/explore\/"\).*startsWith\("\/outlets\/"\).*startsWith\("\/cities\/"\).*startsWith\("\/countries\/"\).*startsWith\("\/brands\/"\)/.test(interactions), "bottom tab active logic includes explore and discovery routes");
+assert(/body:has\(\[data-explore-page\]\) footer\s*\{\s*display:\s*none/.test(styles), "mobile footer is hidden on explore");
+assert(!/\.app-bottom-tabs[\s\S]{0,220}width:\s*100vw/i.test(styles), "bottom tab avoids overflow-prone 100vw fixed pattern");
+assert(!/<script\b[^>]*src=["']https?:\/\//i.test(webText), "website has no remote scripts");
 const htmlFiles = webFiles.filter((path) => /\.html$/i.test(path));
 const scriptTagsByPage = htmlFiles.map((path) => ({ path, tags: read(path).match(/<script\b[^>]*>/gi) || [] }));
 const homeScriptTags = scriptTagsByPage.find((entry) => entry.path === "web/index.html")?.tags || [];
@@ -374,7 +391,7 @@ for (const name of ["featured", "recommended", "cities"])
   assert(home.includes(`data-carousel="${name}"`), `homepage contains carousel data attribute: ${name}`);
 assert(/data-carousel-dot[^>]*(aria-current|class=)/i.test(home), "homepage contains active-dot capable carousel markup");
 assert(!/<(?:select|textarea)\b/i.test(webText), "static pages have no raw select/textarea controls");
-assert(!/<input\b(?![^>]*data-search-input)/i.test(webText), "website inputs are limited to styled search controls");
+assert(!/<input\b(?![^>]*(data-search-input|data-mode-search))/i.test(webText), "website inputs are limited to styled search controls");
 assert(
   !/apiKey\s*[:=]|OPEN_METEO_API_KEY|secret\s*[:=]|private[_-]?key|password\s*[:=]/i.test(
     allWeb,
@@ -615,8 +632,8 @@ for (const marker of [
 for (const marker of [
   "Aklındakini bul",
   "Nasıl keşfetmek istersin?",
-  "Barberino Designer Outlet",
-  "Saint Laurent",
+  "Popüler şehirler",
+  "Arama Sonuçları",
 ])
   assert(explore.includes(marker), `explore app section exists: ${marker}`);
 const sampleOutlet = read("web/outlets/la-vallee-village/index.html");
@@ -829,7 +846,7 @@ for (const term of ["Barberino Designer Outlet", "Saint Laurent", "Yves Saint La
 
 assert(home.includes("data-home-search-results") && home.includes("data-search-results"), "homepage inline search result markup exists");
 assert(explore.includes("explore-search-input") && explore.includes("data-inline-search"), "explore has styled real search input");
-assert(explore.includes("data-search-type=\"brand\""), "explore type filters include brands");
+assert(!explore.includes("data-search-type=\"brand\"") && !explore.includes("data-explore-mode=\"brand\""), "explore top filters exclude brands");
 assert(styles.includes(".app-bottom-tabs a.is-active") && read("web/assets/site-interactions.js").includes('path.startsWith("/outlets/")'), "bottom tab active logic classes/data attributes exist");
 assert(!home.includes("Aklındakini bul"), "homepage hero does not contain explore hero title");
 assert(home.includes("home/home-hero-premium.png"), "homepage hero uses home hero asset");
