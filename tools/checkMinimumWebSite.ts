@@ -393,10 +393,10 @@ for (const outletPage of [read("web/outlets/fidenza-village/index.html"), read("
 assert(/\.app-action-card \{ background:#06182f !important/.test(styles) && /min-width:0/.test(styles), "mobile detail CSS has dark action cards and min-width overflow guardrails");
 assert(/html, body \{ width: 100%; max-width: 100%; overflow-x: hidden; \}/.test(styles) && /overflow-wrap: anywhere/.test(styles) && /max-width: calc\(100vw - 32px\)/.test(styles), "mobile CSS includes no-horizontal-overflow protections");
 assert(!/\.app-bottom-tabs[\s\S]{0,220}width:\s*100vw/i.test(styles), "bottom tab avoids overflow-prone 100vw fixed pattern");
-const barberino = read("web/outlets/barberino/index.html");
-assert(!/>Görsel<|>Galeri<|>Rehber</.test(barberino), "generated outlet detail pages do not contain placeholder thumbnail text");
+const barberinoParityHtml = read("web/outlets/barberino/index.html");
+assert(!/>Görsel<|>Galeri<|>Rehber</.test(barberinoParityHtml), "generated outlet detail pages do not contain placeholder thumbnail text");
 for (const marker of ["Saatler10", "Tax FreeMevcut", "HavalimanlarıFLR", "Şehir merkezi30", "Puan0.0"])
-  assert(!barberino.includes(marker), `generated outlet detail pages do not contain ${marker}`);
+  assert(!barberinoParityHtml.includes(marker), `generated outlet detail pages do not contain ${marker}`);
 assert(!/<script\b[^>]*src=["']https?:\/\//i.test(webText), "website has no remote scripts");
 const htmlFiles = webFiles.filter((path) => /\.html$/i.test(path));
 const scriptTagsByPage = htmlFiles.map((path) => ({ path, tags: read(path).match(/<script\b[^>]*>/gi) || [] }));
@@ -914,3 +914,38 @@ assert(
     styles.includes(".home-page .home-city-grid"),
   "homepage popular cities use four image-led cards",
 );
+
+
+const explorePage = read("web/explore/index.html");
+const siteJs = read("web/assets/site-interactions.js");
+const barberinoDetail = read("web/outlets/barberino/index.html");
+const fidenza = read("web/outlets/fidenza-village/index.html");
+const barberinoTransportPath = "web/outlets/barberino/transport/index.html";
+const barberinoTransport = read(barberinoTransportPath);
+
+for (const text of ["Aklındakini bul", "Popüler aramalar", "Nasıl keşfetmek istersin?"])
+  assert(explorePage.includes(text), `/explore/ contains ${text}`);
+for (const text of ["Ülkeler", "Şehirler", "Outletler"])
+  assert(explorePage.includes(`data-explore-mode`) && explorePage.includes(text), `/explore/ top chips include ${text}`);
+assert(!/data-explore-mode="brand"|>[^<]*Markalar[^<]*<\/button>/.test(explorePage), "/explore/ top chip group does not include Markalar");
+assert(!/home-icon-button|nav-app|download|profile shortcut/i.test(explorePage), "/explore/ does not contain top-right yellow profile/download shortcut");
+assert(siteJs.includes("setExploreMode") && styles.includes(".explore-mode-chips .app-chip.is-active"), "/explore/ uses route-aware active chip classes");
+assert(!/data-mode-results[\s\S]*city-images/.test(explorePage) && siteJs.includes('item.flag || (mode === "outlet" ? "🛍️" : "⌖")'), "/explore/ generic city list does not mix random city thumbnails with flag/avatar rows");
+assert(siteJs.includes('is-outlet-row') && styles.includes('.explore-list-card.is-outlet-row'), "/explore/ outlet rows use non-overflow result-card structure");
+assert(!/0 outlet<\/small>/.test(explorePage), "/explore/ default countries do not include 0 outlet entries");
+
+for (const [name, html] of [["/outlets/barberino/", barberinoParityHtml], ["/outlets/fidenza-village/", fidenza]] as const) {
+  for (const text of ["Geri", "Outlet", "app-gallery-thumb", "Favori", "Seyahat Oluştur", "Yol Tarifi", "Hızlı Bilgiler", "Tax Free", "Markalar", "Ulaşım", "Haritalar", "Resmi Web Sitesi", "Restoranlar & Kafeler", "Hizmetler", "Yorumlar"])
+    assert(html.includes(text), `${name} contains ${text}`);
+  assert(!html.includes("Görsel"), `${name} has no Görsel placeholder`);
+  for (const bad of ["Saatler10", "HavalimanlarıFLR", "Generally 10:00", "Thursday until", "selected summer dates", "Hizmet bilgisi"])
+    assert(!html.includes(bad), `${name} does not contain ${bad}`);
+  const servicesSection = html.match(/<h2>Hizmetler<\/h2>[\s\S]*?<\/section>/)?.[0] || "";
+  assert((servicesSection.match(/Kişisel alışveriş/g) || []).length <= 1, `${name} does not duplicate Kişisel alışveriş in services section`);
+}
+assert(existsSync(barberinoTransportPath), "/outlets/barberino/transport/ exists");
+for (const text of ["Ulaşım", "Önerilen Rota", "Havaalanından ulaşım", "Şehir merkezinden ulaşım", "Adım adım rehber", "Harita / navigasyon"])
+  assert(barberinoTransport.includes(text), `/outlets/barberino/transport/ contains ${text}`);
+for (const text of ["renderAllSearch", "setExploreMode", "data-gallery-thumb", "data-brand-category-toggle", "data-transport-link", "data-restaurants-toggle", "app-detail-tabs"])
+  assert(siteJs.includes(text), `/assets/site-interactions.js contains logic for ${text}`);
+assert(!existsSync("web/assets/web-client.js") && !existsSync("src/web/client.ts"), "no forbidden client bundle files exist");

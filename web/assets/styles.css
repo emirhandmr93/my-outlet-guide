@@ -3195,3 +3195,46 @@ body:has([data-explore-page]) { background: #f3f5f8; overflow-x: hidden; }
   .app-gallery-strip::-webkit-scrollbar { display: none; }
 }
 html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+
+/* Mobile Explore + Outlet detail parity hardening */
+@media (max-width: 720px) {
+  body:has(.app-bottom-tabs) main,
+  body:has([data-explore-page]) .app-page {
+    padding-bottom: calc(180px + env(safe-area-inset-bottom)) !important;
+  }
+  .explore-mode-chips .app-chip.is-active,
+  .explore-country-filters .app-chip.is-active,
+  .app-detail-tabs .app-tab-chip.selected {
+    background: #06182f !important;
+    color: #f3cb57 !important;
+    border-color: #06182f !important;
+  }
+  .explore-mode-chips,
+  .explore-country-filters,
+  .explore-popular-chips,
+  .app-detail-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-right: 28px;
+    scrollbar-width: none;
+  }
+  .explore-mode-chips::-webkit-scrollbar,
+  .explore-country-filters::-webkit-scrollbar,
+  .explore-popular-chips::-webkit-scrollbar,
+  .app-detail-tabs::-webkit-scrollbar { display: none; }
+  .explore-discovery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .explore-discovery-card.is-wide { grid-column: 1 / -1; }
+  .explore-discovery-card { min-height: 116px; align-items: center; }
+  .explore-list-card { grid-template-columns: 52px minmax(0, 1fr) 18px !important; }
+  .explore-list-card.is-outlet-row span > b { color: #ad871d; font-size: .66rem; letter-spacing: .08em; }
+  .app-action-grid { overflow: visible !important; }
+  .app-gallery-strip { overflow-x: auto !important; }
+  .app-gallery-thumb { flex: 0 0 78px; min-width: 78px; }
+  .app-detail-hero img[data-gallery-hero] { width: 100%; height: 320px; object-fit: cover; border-radius: 28px; }
+  .app-detail-hero { overflow: hidden; }
+  .app-route-card .app-chip-row { overflow-x: auto; }
+  .app-route-card em { flex: 0 0 auto; background: #fff4cf; color: #72550d; border-radius: 999px; padding: 6px 9px; font-style: normal; font-weight: 900; font-size: .72rem; }
+  .mobile-detail-topbar { position: sticky; top: 0; z-index: 20; }
+  .transport-gold { color: #ad871d; font-weight: 900; }
+}
