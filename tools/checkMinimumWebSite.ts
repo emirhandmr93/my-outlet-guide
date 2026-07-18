@@ -718,6 +718,39 @@ assert(
   "homepage shopping tools have four app-style cards",
 );
 assert(
+  /<section class="app-section home-feature-section"><h2>Öne çıkanlar<\/h2><p>Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar\.<\/p><div class="app-feature-grid">/.test(home),
+  "homepage Öne çıkanlar appears as a normal visible section heading after hero",
+);
+assert(
+  (home.match(/Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar\./g) || []).length === 1,
+  "homepage has no duplicate/orphan feature subtitle directly under hero",
+);
+assert(
+  styles.includes(".home-page .home-content > .app-section:first-child") &&
+    styles.includes("transform: none") &&
+    !/home-content\s*>\s*\.app-section:first-child[^{]*{[^}]*margin-top:\s*-/.test(styles),
+  "homepage first section does not use negative overlap on the heading",
+);
+assert(
+  home.includes('class="app-section home-tools-section"') &&
+    (home.match(/home-tool-card/g) || []).length === 4,
+  "shopping tools section contains four app-style cards",
+);
+assert(
+  (home.match(/home-tool-icon/g) || []).length === 4 &&
+    (home.match(/home-tool-action/g) || []).length === 4 &&
+    styles.includes(".home-page .home-tool-grid .home-tool-icon") &&
+    styles.includes(".home-page .home-tool-grid .home-tool-action"),
+  "shopping tool cards include icon bubble/action affordance classes",
+);
+assert(!/<script\b/i.test(home), "homepage has no script tags");
+assert(/<a class="home-search app-search-pill" href="\/explore\/"/.test(home), "hero search pill remains an anchor to /explore/");
+assert(!existsSync("src/web/client.ts"), "src/web/client.ts does not exist");
+assert(
+  !webFiles.some((path) => /web\/assets\/.*\.(png|jpe?g|webp|gif|ico|avif|bmp|pdf|zip|woff2?|ttf|otf)$/i.test(path)),
+  "no binary files under web/assets",
+);
+assert(
   (home.match(/home-city-card/g) || []).length === 4 &&
     styles.includes(".home-page .home-city-grid"),
   "homepage popular cities use four image-led cards",
