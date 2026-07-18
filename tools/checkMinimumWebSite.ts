@@ -375,6 +375,16 @@ assert(/setExploreMode|renderExploreMode|data-explore-mode/.test(interactions) &
 assert(/loadIndex|search-index\.json|renderAllSearch/.test(interactions), "site interactions handle Explore search from static index");
 assert(/startsWith\("\/explore\/"\).*startsWith\("\/outlets\/"\).*startsWith\("\/cities\/"\).*startsWith\("\/countries\/"\).*startsWith\("\/brands\/"\)/.test(interactions), "bottom tab active logic includes explore and discovery routes");
 assert(/body:has\(\[data-explore-page\]\) footer\s*\{\s*display:\s*none/.test(styles), "mobile footer is hidden on explore");
+assert(explore.includes("Aklındakini bul") && explore.includes("Nasıl keşfetmek istersin?") && explore.includes("data-explore-main-search") && explore.includes("/assets/site-interactions.js"), "explore includes native app hero and local search wiring");
+assert(!/type&quot;:&quot;country&quot;[\s\S]{0,260}?subtitle&quot;:&quot;0 outlet/.test(explore), "explore default country data excludes zero-outlet countries");
+assert(explore.includes("explore-list-card") && explore.includes("explore-discovery-card"), "explore result/list cards contain app-style classes");
+for (const outletPage of [read("web/outlets/fidenza-village/index.html"), read("web/outlets/barberino/index.html")]) {
+  for (const marker of ["mobile-detail-topbar", "Geri", "Outlet", "app-gallery-strip", "Favori", "Seyahat Oluştur", "Yol Tarifi", "Hızlı Bilgiler", "Tax Free", "Markalar", "Ulaşım", "Haritalar", "Resmi Web Sitesi", "Restoranlar & Kafeler", "Hizmetler", "Yorumlar"]) assert(outletPage.includes(marker), `outlet detail includes ${marker}`);
+  assert(/app-action-card app-cta/.test(outletPage), "outlet detail includes dark action card markup");
+  assert(!/Saatler10|HavalimanlarıFLR|Generally 10:00|selected summer dates|Hizmet bilgisi|>Görsel</.test(outletPage), "outlet detail excludes known parity regressions");
+  assert((outletPage.match(/Kişisel alışveriş/g) || []).length <= 1, "outlet detail does not duplicate Kişisel alışveriş");
+}
+assert(/\.app-action-card \{ background:#06182f !important/.test(styles) && /min-width:0/.test(styles), "mobile detail CSS has dark action cards and min-width overflow guardrails");
 assert(/html, body \{ width: 100%; max-width: 100%; overflow-x: hidden; \}/.test(styles) && /overflow-wrap: anywhere/.test(styles) && /max-width: calc\(100vw - 32px\)/.test(styles), "mobile CSS includes no-horizontal-overflow protections");
 assert(!/\.app-bottom-tabs[\s\S]{0,220}width:\s*100vw/i.test(styles), "bottom tab avoids overflow-prone 100vw fixed pattern");
 const barberino = read("web/outlets/barberino/index.html");
@@ -436,9 +446,9 @@ for (const phrase of [
   );
 for (const label of [
   "Otopark",
-  "Misafir Hizmetleri",
-  "Restoranlar ve Kafeler",
-  "Servis / Ulaşım Bilgisi",
+  "Misafir hizmetleri",
+  "Restoranlar ve kafeler",
+  "Servis / ulaşım bilgisi",
   "Erişilebilirlik",
 ])
   assert(webText.includes(label), `Turkish service label is present: ${label}`);

@@ -26,6 +26,7 @@
   };
 
   doc.addEventListener("click", (event) => {
+    const back = event.target.closest("[data-history-back]");
     const menuOpen = event.target.closest("[data-menu-open]");
     const searchOpen = event.target.closest("[data-search-open]");
     const close = event.target.closest("[data-menu-close], [data-search-close]");
@@ -34,6 +35,7 @@
     const type = event.target.closest("[data-search-type]");
     const exploreMode = event.target.closest("[data-explore-mode]");
     const countryFilter = event.target.closest("[data-country-filter]");
+    if (back && history.length > 1) { event.preventDefault(); history.back(); }
     if (menuOpen) { event.preventDefault(); openPanel("[data-menu-overlay]", "[data-menu-close]"); }
     if (searchOpen) { event.preventDefault(); openPanel("[data-search-overlay]", "[data-search-input]"); renderAllSearch(event.target.dataset.searchPrefill || ""); }
     if (close) { event.preventDefault(); closePanels(); }
@@ -76,7 +78,7 @@
   const getExploreData = () => { const root = doc.querySelector("[data-explore-page]"); if (!root) return null; try { return JSON.parse(root.dataset.exploreData || "{}"); } catch { return null; } };
   const modeCopy = { country: ["Ülkeler", "Outlet rehberine devam etmek için ülke seç.", "Ülke ara..."], city: ["Şehirler", "Gerçek outlet kapsamı olan şehirleri incele.", "Şehir veya ülke ara..."], outlet: ["Outletler", "Outlet, şehir, ülke veya marka adına göre ara.", "Outlet, şehir, ülke ara..."] };
   const modeKey = { country: "countries", city: "cities", outlet: "outlets" };
-  const exploreRow = (item, mode) => `<a class="explore-list-card" href="${item.href}"><span class="explore-avatar">${item.image ? `<img src="${item.image}" alt="">` : (item.flag || (mode === "outlet" ? "🏬" : "⌖"))}</span>${mode === "outlet" ? "<b>OUTLET</b>" : ""}<span>${item.title}<small>${item.subtitle}</small></span><i>→</i></a>`;
+  const exploreRow = (item, mode) => `<a class="explore-list-card ${mode === "outlet" ? "is-outlet-row" : ""}" href="${item.href}"><span class="explore-avatar">${item.image ? `<img src="${item.image}" alt="">` : (item.flag || (mode === "outlet" ? "🛍️" : "⌖"))}</span><span>${mode === "outlet" ? "<b>OUTLET</b>" : ""}${item.title}<small>${item.subtitle}</small></span><i>→</i></a>`;
   const setExploreMode = (mode) => { activeExploreMode = activeExploreMode === mode ? "" : mode; activeCountryFilter = ""; renderExploreMode(); renderAllSearch(currentQuery()); };
   const renderExploreMode = () => { const data = getExploreData(); if (!data || !activeExploreMode) return; const copy = modeCopy[activeExploreMode]; const key = modeKey[activeExploreMode]; const panel = doc.querySelector("[data-explore-mode-panel]"); if (!panel) return; panel.hidden = false; doc.querySelectorAll("[data-explore-mode]").forEach((el) => el.classList.toggle("is-active", el.dataset.exploreMode === activeExploreMode)); panel.querySelector("[data-mode-title]").textContent = copy[0]; panel.querySelector("[data-mode-subtitle]").textContent = copy[1]; const input = panel.querySelector("[data-mode-search]"); input.placeholder = copy[2]; const q = normalize(input.value); let rows = (data[key] || []).filter((item) => !q || normalize([item.title,item.subtitle,...(item.keywords||[])].join(" ")).includes(q)); const filters = panel.querySelector("[data-country-filters]"); if (activeExploreMode === "city" || activeExploreMode === "outlet") { const countries = [...new Map((data[key] || []).map((item) => [item.countryId, item.country])).entries()].slice(0, 18); filters.hidden = false; filters.innerHTML = countries.map(([id, name]) => `<button type="button" class="app-chip ${activeCountryFilter === id ? "is-active" : ""}" data-country-filter="${id}">${name}</button>`).join(""); if (activeCountryFilter) rows = rows.filter((item) => item.countryId === activeCountryFilter); } else { filters.hidden = true; filters.innerHTML = ""; } panel.querySelector("[data-mode-count]").textContent = `${rows.length} sonuç`; panel.querySelector("[data-mode-results]").innerHTML = rows.map((item) => exploreRow(item, activeExploreMode)).join("") || resultHtml([]); };
 
