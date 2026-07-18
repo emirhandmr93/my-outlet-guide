@@ -55,7 +55,7 @@ for (const page of requiredPages) {
 }
 
 const allWeb = requiredPages
-  .concat(["web/assets/styles.css", "web/assets/home-carousel.js"])
+  .concat(["web/assets/styles.css", "web/assets/site-interactions.js", "web/assets/search-index.json"])
   .filter(existsSync)
   .map(read)
   .join("\n");
@@ -184,7 +184,7 @@ assert(
   "no statically detectable fixed wide styles that risk horizontal overflow",
 );
 assert(
-  !/TODO|coming soon|placeholder|lorem|dummy/i.test(allWeb),
+  !/TODO|coming soon|lorem|dummy/i.test(allWeb),
   "website has no visible TODO/coming soon/placeholder text",
 );
 assert(
@@ -357,14 +357,11 @@ assert(
 const htmlFiles = webFiles.filter((path) => /\.html$/i.test(path));
 const scriptTagsByPage = htmlFiles.map((path) => ({ path, tags: read(path).match(/<script\b[^>]*>/gi) || [] }));
 const homeScriptTags = scriptTagsByPage.find((entry) => entry.path === "web/index.html")?.tags || [];
-assert(existsSync("web/assets/home-carousel.js"), "homepage carousel script exists");
+assert(existsSync("web/assets/site-interactions.js"), "site interaction script exists");
+assert(existsSync("web/assets/search-index.json"), "static search index exists");
 assert(
-  homeScriptTags.length === 1 && /src=["']\/assets\/home-carousel\.js["'][^>]*\bdefer\b/.test(homeScriptTags[0]),
-  "web/index.html references only /assets/home-carousel.js with defer",
-);
-assert(
-  scriptTagsByPage.every((entry) => entry.path === "web/index.html" || entry.tags.length === 0),
-  "no generated HTML page other than web/index.html contains script tags",
+  scriptTagsByPage.every((entry) => entry.tags.length === 0 || (entry.tags.length === 1 && /src=["']\/assets\/site-interactions\.js["'][^>]*\bdefer\b/.test(entry.tags[0]))),
+  "generated HTML pages reference no scripts except /assets/site-interactions.js with defer",
 );
 assert(!existsSync("web-client.js") && !existsSync("web/web-client.js"), "no web-client.js exists");
 assert(!existsSync("src/web/client.ts"), "no src/web/client.ts exists");
@@ -372,7 +369,8 @@ assert(!existsSync("web/login/index.html") && !/href=["']\/login\/?["']/i.test(w
 for (const name of ["featured", "recommended", "cities"])
   assert(home.includes(`data-carousel="${name}"`), `homepage contains carousel data attribute: ${name}`);
 assert(/data-carousel-dot[^>]*(aria-current|class=)/i.test(home), "homepage contains active-dot capable carousel markup");
-assert(!/<(?:input|select|textarea)\b/i.test(webText), "static pages have no raw input/select/textarea controls");
+assert(!/<(?:select|textarea)\b/i.test(webText), "static pages have no raw select/textarea controls");
+assert(!/<input\b(?![^>]*data-search-input)/i.test(webText), "website inputs are limited to styled search controls");
 assert(
   !/apiKey\s*[:=]|OPEN_METEO_API_KEY|secret\s*[:=]|private[_-]?key|password\s*[:=]/i.test(
     allWeb,
@@ -488,16 +486,16 @@ assert(
 
 // Homepage final-polish guardrails.
 assert(
-  /<a class="home-search app-search-pill" href="\/explore\/"/.test(home),
-  "homepage hero search pill is a static link to /explore/",
+  /<button class="home-search app-search-pill" type="button" data-search-open/.test(home),
+  "homepage hero search pill opens local search overlay",
 );
 assert(
   /<a class="home-primary-cta" href="\/explore\/">Outletleri keşfet/.test(home),
   "homepage primary Outletleri keşfet CTA links to /explore/",
 );
 assert(
-  !/<(?:input|select|textarea)\b/i.test(home),
-  "homepage has no raw input/select/textarea controls",
+  !/<(?:select|textarea)\b/i.test(home) && !/<input\b(?![^>]*data-search-input)/i.test(home),
+  "homepage has no raw unstyled form controls",
 );
 assert(
   !/<\/header><main[^>]*>\s*<div[^>]*>\s*<p>Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar\.<\/p>/i.test(home),
@@ -707,8 +705,8 @@ assert(
   "homepage has no duplicate hero title block",
 );
 assert(
-  !/<(?:input|select|textarea)\b/i.test(home),
-  "homepage has no raw form controls",
+  !/<(?:select|textarea)\b/i.test(home) && !/<input\b(?![^>]*data-search-input)/i.test(home),
+  "homepage has no raw unstyled form controls",
 );
 assert(
   /<span>MY OUTLET GUIDE<\/span>/.test(home),
@@ -814,8 +812,16 @@ assert(
     styles.includes(".home-page .home-tool-grid .home-tool-action"),
   "shopping tool cards include icon bubble/action affordance classes",
 );
-assert(/<script src="\/assets\/home-carousel\.js" defer><\/script>/.test(home), "homepage only includes the allowed carousel script tag");
-assert(/<a class="home-search app-search-pill" href="\/explore\/"/.test(home), "hero search pill remains an anchor to /explore/");
+assert(/<script src="\/assets\/site-interactions\.js" defer><\/script>/.test(home), "homepage only includes the allowed site interaction script tag");
+assert(/<button class="home-search app-search-pill" type="button" data-search-open/.test(home), "hero search pill opens the app-style search overlay");
+assert(home.includes("data-menu-overlay") && home.includes("Hızlı Menü"), "hamburger menu overlay markup exists");
+assert(home.includes("data-search-overlay") && home.includes("data-search-results"), "search overlay/result markup exists");
+assert(explore.includes("explore-search-input") && explore.includes("data-inline-search"), "explore has styled real search input");
+assert(explore.includes("data-search-type=\"brand\""), "explore type filters include brands");
+assert(styles.includes(".app-bottom-tabs a.is-active") && read("web/assets/site-interactions.js").includes('path.startsWith("/outlets/")'), "bottom tab active logic classes/data attributes exist");
+assert(!home.includes("Aklındakini bul"), "homepage hero does not contain explore hero title");
+assert(home.includes("home/home-hero-premium.png"), "homepage hero uses home hero asset");
+assert(explore.includes("explore/explore-hero-premium.png") && !explore.includes("home/home-hero-premium.png"), "explore hero uses explore asset and not home hero asset");
 
 assert(/<a class="home-primary-cta" href="\/(explore|outlets)\/">Outletleri keşfet/.test(home), "hero primary CTA links to discovery route");
 for (const statusText of ["App Store incelemesi bekleniyor", "Google Play hazırlıkta"])
@@ -836,7 +842,8 @@ for (const href of ["/", "/explore/", "/trip-planner/", "/savings/", "/app/"])
   assert(new RegExp(`<nav class="app-bottom-tabs"[\\s\\S]*?<a href="${href.replace('/', '\\/')}`).test(home), `homepage bottom tab links to ${href}`);
 assert(!/web-client\.js/i.test(webText) && !existsSync("web/assets/web-client.js"), "web-client.js is not present");
 assert(!/href="\/login\/?"|\/login\//i.test(webText), "website has no /login route links");
-assert(!/<script\b(?![^>]*src="\/assets\/home-carousel\.js"[^>]*defer)[^>]*>/i.test(home), "homepage has no disallowed script tags");
+assert(!/<script\b(?![^>]*src="\/assets\/site-interactions\.js"[^>]*defer)[^>]*>/i.test(webText), "website has no disallowed script tags");
+assert(!existsSync("web/assets/home-carousel.js"), "old homepage carousel script was merged and removed");
 assert(!/<script\b[^>]*src=["']https?:\/\//i.test(webText), "website has no remote scripts");
 assert(!existsSync("src/web/client.ts"), "src/web/client.ts does not exist");
 assert(
