@@ -22,7 +22,6 @@ import {
   getTransportationV2Options,
   getOutletTransportationV2Summary,
 } from "../services/transportationV2Service";
-import { getImageSource } from "../media/outletMedia";
 import {
   getExploreHeroImage,
   getHomeFeatureImage,
@@ -583,7 +582,7 @@ function Detail({ outletId }: { outletId: string }) {
       <ScrollView contentContainerStyle={s.content}>
         <DetailTop title="Outlet" back="/explore/" />
         <ImageBackground
-          source={getImageSource(sel)}
+          source={sel}
           imageStyle={s.detailHeroImg}
           style={s.detailHero}
         >
@@ -597,7 +596,7 @@ function Detail({ outletId }: { outletId: string }) {
           {imgs.map((img, i) => (
             <TouchableOpacity key={i} onPress={() => setSel(img)}>
               <Image
-                source={getImageSource(img)}
+                source={img}
                 style={[s.thumb, img === sel && s.thumbOn]}
               />
             </TouchableOpacity>
