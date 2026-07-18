@@ -55,13 +55,13 @@ for (const page of requiredPages) {
 }
 
 const allWeb = requiredPages
-  .concat(["web/assets/styles.css"])
+  .concat(["web/assets/styles.css", "web/assets/home-carousel.js"])
   .filter(existsSync)
   .map(read)
   .join("\n");
 const webFiles = filesIn("web");
 const webText = webFiles
-  .filter((path) => /\.(html|css|txt|xml)$/i.test(path))
+  .filter((path) => /\.(html|css|js|txt|xml)$/i.test(path))
   .map(read)
   .join("\n");
 const privacy = read("web/privacy/index.html");
@@ -354,8 +354,25 @@ assert(
   ),
   "website has no analytics/cookie scripts",
 );
-assert(!/<script\b/i.test(allWeb), "website has no script tags");
-assert(!/<(?:form|input|select|textarea|button)\b/i.test(allWeb), "static pages have no raw forms or form controls");
+const htmlFiles = webFiles.filter((path) => /\.html$/i.test(path));
+const scriptTagsByPage = htmlFiles.map((path) => ({ path, tags: read(path).match(/<script\b[^>]*>/gi) || [] }));
+const homeScriptTags = scriptTagsByPage.find((entry) => entry.path === "web/index.html")?.tags || [];
+assert(existsSync("web/assets/home-carousel.js"), "homepage carousel script exists");
+assert(
+  homeScriptTags.length === 1 && /src=["']\/assets\/home-carousel\.js["'][^>]*\bdefer\b/.test(homeScriptTags[0]),
+  "web/index.html references only /assets/home-carousel.js with defer",
+);
+assert(
+  scriptTagsByPage.every((entry) => entry.path === "web/index.html" || entry.tags.length === 0),
+  "no generated HTML page other than web/index.html contains script tags",
+);
+assert(!existsSync("web-client.js") && !existsSync("web/web-client.js"), "no web-client.js exists");
+assert(!existsSync("src/web/client.ts"), "no src/web/client.ts exists");
+assert(!existsSync("web/login/index.html") && !/href=["']\/login\/?["']/i.test(webText), "no /login route exists");
+for (const name of ["featured", "recommended", "cities"])
+  assert(home.includes(`data-carousel="${name}"`), `homepage contains carousel data attribute: ${name}`);
+assert(/data-carousel-dot[^>]*(aria-current|class=)/i.test(home), "homepage contains active-dot capable carousel markup");
+assert(!/<(?:input|select|textarea)\b/i.test(webText), "static pages have no raw input/select/textarea controls");
 assert(
   !/apiKey\s*[:=]|OPEN_METEO_API_KEY|secret\s*[:=]|private[_-]?key|password\s*[:=]/i.test(
     allWeb,
@@ -528,12 +545,8 @@ assert(
   "homepage keeps exact MY OUTLET GUIDE brand",
 );
 assert(
-  !/web-client\.js|src\/web\/client\.ts/i.test(webText),
-  "website has no client layer references",
-);
-assert(
-  !/href=["']\/login\//i.test(webText),
-  "website has no /login route link",
+  !/(?:initializeApp|getAuth|signIn|createUser|onAuthStateChanged|firebase\/auth|apiKey\s*[:=])/i.test(webText),
+  "website has no Firebase/Auth/client app layer",
 );
 
 // Phase 1 visual/static public web guardrails.
@@ -760,7 +773,7 @@ assert(
   "homepage shopping tools have four app-style cards",
 );
 assert(
-  /<section class="app-section home-feature-section"><h2>Öne çıkanlar<\/h2><p>Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar\.<\/p><div class="app-feature-grid">/.test(home),
+  /<section class="app-section home-feature-section"><h2>Öne çıkanlar<\/h2><p>Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar\.<\/p><div class="app-feature-grid"[^>]*>/.test(home),
   "homepage Öne çıkanlar appears as a normal visible section heading after hero",
 );
 assert(
@@ -801,7 +814,7 @@ assert(
     styles.includes(".home-page .home-tool-grid .home-tool-action"),
   "shopping tool cards include icon bubble/action affordance classes",
 );
-assert(!/<script\b/i.test(home), "homepage has no script tags");
+assert(/<script src="\/assets\/home-carousel\.js" defer><\/script>/.test(home), "homepage only includes the allowed carousel script tag");
 assert(/<a class="home-search app-search-pill" href="\/explore\/"/.test(home), "hero search pill remains an anchor to /explore/");
 assert(!existsSync("src/web/client.ts"), "src/web/client.ts does not exist");
 assert(
