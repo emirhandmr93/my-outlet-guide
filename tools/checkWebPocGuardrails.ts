@@ -53,6 +53,19 @@ if (!webHeroAssets.includes("explore-hero-premium.png")) {
 }
 const poc = readFileSync("src/web-poc/WebPocApp.tsx", "utf8");
 if (/login|auth/i.test(poc)) failures.push("POC must not introduce login/auth behavior");
+
+if (!poc.includes('const homeHero = require("../../assets/home/home-hero-premium.png")')) failures.push("Home must use the native home hero asset");
+if (!poc.includes('const exploreHero = require("../../assets/explore/explore-hero-premium.png")')) failures.push("Explore must use the native explore hero asset");
+if (!poc.includes('Aklındakini bul')) failures.push("Explore hero must keep native Aklındakini bul copy");
+if (!poc.includes('["country","🌍 Ülkeler"],["city","📍 Şehirler"],["outlet","🛍️ Outletler"]')) failures.push("Explore chips must use complete Turkish labels");
+if (!poc.includes('<DetailTop title="Outlet"')) failures.push("Outlet detail must include Geri / Outlet topbar");
+if (!poc.includes('onPress={()=>setSel(img)}')) failures.push("Outlet detail thumbnails must update the main image");
+if (!poc.includes('backgroundColor:colors.primary') || !poc.includes('Seyahat Oluştur')) failures.push("Outlet detail action cards must stay navy app-style cards");
+if (!poc.includes('g.brands.slice(0,18).map')) failures.push("Brand categories must render actual brand chips");
+if (!poc.includes('setAllRest(!allRest)')) failures.push("Restaurant section must expand and collapse");
+if (!poc.includes('Ulaşım Rehberini Gör') || !poc.includes('/transport/')) failures.push("Transport guide CTA must not be dead");
+if (poc.includes('France</Text>') || poc.includes('Florence</Text>')) failures.push("Visible web POC labels must stay localized where native does");
+
 for (const route of ["home", "explore", "outlet"]) {
   if (!poc.toLowerCase().includes(route)) failures.push(`POC missing ${route} coverage`);
 }
