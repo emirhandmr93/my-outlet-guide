@@ -192,14 +192,18 @@ assert(
   "homepage uses app-like MY OUTLET GUIDE branding",
 );
 assert(
-  /class="brand-mark"[^>]*><svg viewBox="0 0 32 32"/.test(
+  /<img class="brand-mark brand-icon" src="\/\.generated-assets\/icon\.png" alt="" aria-hidden="true">/.test(
     read("web/index.html"),
   ),
-  "homepage has inline SVG app-style brand mark",
+  "homepage logo uses generated native app icon asset bridge",
 );
 assert(
-  styles.includes(".brand-mark") && styles.includes(".brand-mark svg"),
-  "brand mark has rounded navy app-icon styling",
+  !/<header[\s\S]*?class="brand-mark"[\s\S]*?<svg viewBox="0 0 32 32"/.test(read("web/index.html")),
+  "homepage mobile/topbar brand does not use inline placeholder SVG",
+);
+assert(
+  styles.includes(".brand-icon") && styles.includes("object-fit: contain"),
+  "brand icon image has dedicated sizing",
 );
 assert(
   !/MMY OUTLET GUIDE/.test(webText),
@@ -749,7 +753,7 @@ for (const marker of [
     `homepage premium desktop layout class exists: ${marker}`,
   );
 assert(
-  styles.includes("max-width: min(1180px, calc(100vw - 96px))"),
+  styles.includes("max-width: 1180px"),
   "homepage desktop content uses a wide dedicated container",
 );
 assert(
@@ -849,11 +853,17 @@ for (const city of ["paris", "milan", "london", "munich"])
 for (const href of ["/", "/explore/", "/trip-planner/", "/savings/", "/app/"])
   assert(new RegExp(`<nav class="app-bottom-tabs"[\\s\\S]*?<a href="${href.replace('/', '\\/')}`).test(home), `homepage bottom tab links to ${href}`);
 assert(!/web-client\.js/i.test(webText) && !existsSync("web/assets/web-client.js"), "web-client.js is not present");
+assert(!existsSync("web-client.js"), "root web-client.js is not present");
 assert(!/href="\/login\/?"|\/login\//i.test(webText), "website has no /login route links");
 assert(!/<script\b(?![^>]*src="\/assets\/site-interactions\.js"[^>]*defer)[^>]*>/i.test(webText), "website has no disallowed script tags");
 assert(!existsSync("web/assets/home-carousel.js"), "old homepage carousel script was merged and removed");
 assert(!/<script\b[^>]*src=["']https?:\/\//i.test(webText), "website has no remote scripts");
 assert(!existsSync("src/web/client.ts"), "src/web/client.ts does not exist");
+assert(/@media \(max-width: 720px\)[\s\S]*\.home-page > footer \{ display: none; \}/.test(styles), "mobile homepage hides the site footer after app content");
+assert(!/\.app-bottom-tabs\s*\{[^}]*width:\s*100vw/i.test(styles), "fixed bottom tabs do not use overflow-prone 100vw width");
+assert(!/grid-auto-columns:\s*calc\(100vw/i.test(styles), "homepage rails do not use overflow-prone 100vw columns");
+assert(/html,\s*body \{[\s\S]*?overflow-x:\s*hidden/.test(styles), "global horizontal overflow guard exists");
+
 assert(
   !webFiles.some((path) => /web\/assets\/.*\.(png|jpe?g|webp|gif|ico|avif|bmp|pdf|zip|woff2?|ttf|otf)$/i.test(path)),
   "no binary files under web/assets",

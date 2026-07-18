@@ -12,6 +12,11 @@
 * {
   box-sizing: border-box;
 }
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 body {
   margin: 0;
   background: var(--bg);
@@ -77,6 +82,10 @@ nav {
   stroke-width: 1.7;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+.brand-icon {
+  display: block;
+  object-fit: contain;
 }
 .links {
   display: flex;
@@ -1678,7 +1687,8 @@ body:has(.app-bottom-tabs) footer {
 .home-page .home-nav,
 .home-page .home-main-hero,
 .home-page .home-content {
-  width: min(1180px, calc(100vw - 96px));
+  width: 100%;
+  max-width: 1180px;
   max-width: none;
 }
 .home-page .brand {
@@ -1760,7 +1770,7 @@ body:has(.app-bottom-tabs) footer {
 .home-page .home-final-cta .button { background: #f3cb57; color: #081d38; }
 @media (min-width: 600px) and (max-width: 900px) {
   .home-page .home-header { padding-left: 28px; padding-right: 28px; }
-  .home-page .home-nav, .home-page .home-main-hero, .home-page .home-content { width: min(100%, calc(100vw - 56px)); }
+  .home-page .home-nav, .home-page .home-main-hero, .home-page .home-content { width: 100%; max-width: 100%; }
   .home-page.home-page main.home-main { padding-left: 28px; padding-right: 28px; }
   .home-page .app-outlet-grid, .home-page .home-tool-grid, .home-page .home-city-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -2085,7 +2095,8 @@ body:has(.app-bottom-tabs) footer {
 .home-page .home-nav,
 .home-page .home-main-hero {
   width: 100%;
-  max-width: min(1180px, calc(100vw - 96px));
+  max-width: 100%;
+  max-width: 1180px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -2217,7 +2228,8 @@ body:has(.app-bottom-tabs) footer {
 @media (min-width: 600px) and (max-width: 900px) {
   .home-page .home-wide-container,
   .home-page .home-nav,
-  .home-page .home-main-hero { max-width: min(100%, calc(100vw - 56px)); }
+  .home-page .home-main-hero { width: 100%;
+  max-width: 100%; }
   .home-page .home-header { padding-left: 0; padding-right: 0; }
   .home-page .app-outlet-grid,
   .home-page .home-tool-grid,
@@ -2531,6 +2543,7 @@ html, body { overflow-x: hidden; }
   .app-list-card, .app-result-card, .app-action-card, .button, .nav-app { min-height: 44px; }
   .app-bottom-tabs { bottom: calc(12px + env(safe-area-inset-bottom)); padding-bottom: calc(8px + env(safe-area-inset-bottom)); }
   body:has(.app-bottom-tabs) footer { padding-bottom: calc(140px + env(safe-area-inset-bottom)); }
+  .home-page > footer { display: none; }
   h1, h2, h3 { overflow: visible; }
 }
 
@@ -2622,7 +2635,7 @@ html, body { overflow-x: hidden; }
   .home-page .home-rail {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: calc(100vw - 64px);
+    grid-auto-columns: minmax(0, calc(100% - 48px));
     grid-template-columns: none !important;
     gap: 14px;
     overflow-x: auto;
@@ -2650,7 +2663,7 @@ html, body { overflow-x: hidden; }
   .home-page .activity-card a { margin-top: 12px; padding: 8px 10px; font-size: .72rem; }
   .home-page .home-tool-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 12px; }
   .home-page .home-tool-grid .app-quick-card { min-height: 142px; padding: 16px; border-radius: 22px; }
-  .home-page .home-city-grid.home-rail { grid-auto-columns: 42vw; }
+  .home-page .home-city-grid.home-rail { grid-auto-columns: minmax(0, 42%); }
   .home-page .home-city-card { min-height: 150px; border-radius: 24px; }
   .home-rail-dots { display: flex; justify-content: center; gap: 6px; margin-top: 2px; }
   .home-rail-dots span { width: 6px; height: 6px; border-radius: 999px; background: #cbd3dc; }
@@ -2658,6 +2671,8 @@ html, body { overflow-x: hidden; }
   .app-bottom-tabs {
     left: 18px;
     right: 18px;
+    width: auto;
+    max-width: calc(100% - 36px);
     bottom: calc(14px + env(safe-area-inset-bottom));
     height: 74px;
     padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
@@ -2675,7 +2690,7 @@ html, body { overflow-x: hidden; }
   .home-page .home-recommended-section .app-outlet-grid {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: calc(100vw - 64px);
+    grid-auto-columns: minmax(0, calc(100% - 48px));
     grid-template-columns: none !important;
     gap: 14px;
     overflow-x: auto;
@@ -2884,14 +2899,14 @@ html, body { overflow-x: hidden; }
   }
 
   .home-page .home-feature-section .app-feature-card {
-    flex: 0 0 84vw;
+    flex: 0 0 min(84%, 356px);
     max-width: 370px;
     min-height: 222px;
     scroll-snap-align: start;
   }
 
   .home-page .home-recommended-section .outlet-card {
-    flex: 0 0 86vw;
+    flex: 0 0 min(86%, 378px);
     max-width: 378px;
     scroll-snap-align: start;
   }
@@ -2934,7 +2949,7 @@ html, body { overflow-x: hidden; }
   }
 
   .home-page .home-city-grid.home-rail .home-city-card {
-    flex: 0 0 74vw;
+    flex: 0 0 min(74%, 326px);
     max-width: 326px;
     min-height: 158px;
     scroll-snap-align: start;
@@ -2947,6 +2962,8 @@ html, body { overflow-x: hidden; }
   .app-bottom-tabs {
     left: 14px;
     right: 14px;
+    width: auto;
+    max-width: calc(100% - 28px);
     bottom: calc(12px + env(safe-area-inset-bottom));
     height: 72px;
     padding: 7px 8px;
@@ -3025,7 +3042,7 @@ button.home-menu-button, button.home-search, button.app-chip { font: inherit; cu
   .home-page .home-hero-actions { justify-content: flex-start; }
   .home-page .home-content { padding-bottom: calc(28px + env(safe-area-inset-bottom)); }
   .home-page .home-feature-section .app-feature-card,
-  .home-page .home-recommended-section .outlet-card { flex-basis: min(84vw, 356px); }
+  .home-page .home-recommended-section .outlet-card { flex-basis: min(84%, 356px); }
   .app-bottom-tabs { background: #06182f !important; border: 1px solid rgba(255,255,255,.08) !important; box-shadow: 0 20px 46px rgba(4,19,39,.42) !important; }
   .app-bottom-tabs a { color: rgba(255,255,255,.72) !important; background: transparent !important; border-color: transparent !important; }
   .app-bottom-tabs b { background: rgba(255,255,255,.10) !important; color: rgba(255,255,255,.86) !important; }
