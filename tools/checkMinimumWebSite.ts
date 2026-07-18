@@ -248,6 +248,8 @@ assert(
 const explore = read("web/explore/index.html");
 for (const marker of ["Ülkeler", "Şehirler", "Outletler", "Popüler aramalar"])
   assert(explore.includes(marker), `explore includes ${marker}`);
+const topModeChips = [...explore.matchAll(/<button class="app-chip" type="button" data-explore-mode="(country|city|outlet)">([^<]+)<\/button>/g)].map((match) => match[2].trim());
+assert(topModeChips.join("|") === "🌍 Ülkeler|📍 Şehirler|🛍️ Outletler", "explore includes exactly Ülkeler, Şehirler, Outletler mode chips");
 assert(!/data-explore-mode="brand"|🏷️ Markalar/.test(explore), "explore top mode chips exclude Markalar");
 assert(/data-explore-main-search/.test(explore) && /explore-search-input/.test(explore), "explore uses a styled inline search input");
 for (const marker of ["Outlet ara", "Ülkeye göre keşfet", "Şehre göre keşfet"])
@@ -369,11 +371,16 @@ assert(
 );
 
 const interactions = read("web/assets/site-interactions.js");
-assert(/setExploreMode|renderExploreMode|data-explore-mode/.test(interactions), "site interactions handle Explore mode switching");
+assert(/setExploreMode|renderExploreMode|data-explore-mode/.test(interactions) && /Şehir veya ülke ara\.\.\./.test(interactions) && /Outlet, şehir, ülke ara\.\.\./.test(interactions), "site interactions handle Explore mode switching");
 assert(/loadIndex|search-index\.json|renderAllSearch/.test(interactions), "site interactions handle Explore search from static index");
 assert(/startsWith\("\/explore\/"\).*startsWith\("\/outlets\/"\).*startsWith\("\/cities\/"\).*startsWith\("\/countries\/"\).*startsWith\("\/brands\/"\)/.test(interactions), "bottom tab active logic includes explore and discovery routes");
 assert(/body:has\(\[data-explore-page\]\) footer\s*\{\s*display:\s*none/.test(styles), "mobile footer is hidden on explore");
+assert(/html, body \{ width: 100%; max-width: 100%; overflow-x: hidden; \}/.test(styles) && /overflow-wrap: anywhere/.test(styles) && /max-width: calc\(100vw - 32px\)/.test(styles), "mobile CSS includes no-horizontal-overflow protections");
 assert(!/\.app-bottom-tabs[\s\S]{0,220}width:\s*100vw/i.test(styles), "bottom tab avoids overflow-prone 100vw fixed pattern");
+const barberino = read("web/outlets/barberino/index.html");
+assert(!/>Görsel<|>Galeri<|>Rehber</.test(barberino), "generated outlet detail pages do not contain placeholder thumbnail text");
+for (const marker of ["Saatler10", "Tax FreeMevcut", "HavalimanlarıFLR", "Şehir merkezi30", "Puan0.0"])
+  assert(!barberino.includes(marker), `generated outlet detail pages do not contain ${marker}`);
 assert(!/<script\b[^>]*src=["']https?:\/\//i.test(webText), "website has no remote scripts");
 const htmlFiles = webFiles.filter((path) => /\.html$/i.test(path));
 const scriptTagsByPage = htmlFiles.map((path) => ({ path, tags: read(path).match(/<script\b[^>]*>/gi) || [] }));
