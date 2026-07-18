@@ -355,6 +355,7 @@ assert(
   "website has no analytics/cookie scripts",
 );
 assert(!/<script\b/i.test(allWeb), "website has no script tags");
+assert(!/<(?:form|input|select|textarea|button)\b/i.test(allWeb), "static pages have no raw forms or form controls");
 assert(
   !/apiKey\s*[:=]|OPEN_METEO_API_KEY|secret\s*[:=]|private[_-]?key|password\s*[:=]/i.test(
     allWeb,
@@ -537,17 +538,58 @@ assert(
 
 // Phase 1 visual/static public web guardrails.
 for (const marker of [
-  "app-shell",
+  "app-screen",
+  "app-topbar",
+  "app-logo-lockup",
+  "app-hero-card",
   "app-image-hero",
   "app-search-pill",
-  "app-feature-card",
+  "app-section",
+  "app-section-title",
+  "app-section-subtitle",
+  "app-image-card",
+  "app-white-card",
+  "app-action-card",
+  "app-tool-card",
+  "app-list-card",
+  "app-stat-card",
   "app-bottom-tabs",
+  "app-cta",
+  "app-pill",
+  "app-legal-card",
+  "app-shell",
+  "app-feature-card",
   "app-quick-grid",
   "app-dark-card",
   "app-warning-card",
   "app-route-card",
 ])
-  assert(styles.includes(`.${marker}`), `Phase 1 CSS class exists: ${marker}`);
+  assert(styles.includes(`.${marker}`), `shared mobile app shell CSS class exists: ${marker}`);
+for (const marker of [
+  "@media (max-width: 720px)",
+  "bottom: calc(12px + env(safe-area-inset-bottom))",
+  "padding-bottom: calc(140px + env(safe-area-inset-bottom))",
+])
+  assert(styles.includes(marker), `mobile app shell safe-area styling includes ${marker}`);
+for (const route of [
+  "web/index.html",
+  "web/explore/index.html",
+  "web/outlets/index.html",
+  "web/tax-free/index.html",
+  "web/savings/index.html",
+  "web/trip-planner/index.html",
+  "web/flight-deals/index.html",
+  "web/offline-guide/index.html",
+  "web/app/index.html",
+  "web/brands/index.html",
+  "web/countries/index.html",
+  "web/cities/index.html",
+  "web/privacy/index.html",
+  "web/terms/index.html",
+  "web/account-deletion/index.html",
+  "web/contact/index.html",
+])
+  assert(read(route).includes("app-screen") || read(route).includes("app-shell"), `${route} uses shared app shell`);
 for (const marker of [
   "Öne çıkanlar",
   "Aktiviteniz",
@@ -644,7 +686,7 @@ console.log("Minimum public website checks passed.");
 
 // Homepage premium landing guardrails.
 assert(
-  /class="home-header"[^>]*home-hero-premium\.png/.test(home),
+  /class="[^"]*home-header[^"]*"[^>]*home-hero-premium\.png/.test(home),
   "homepage hero uses the home image as its main hero background",
 );
 assert(
