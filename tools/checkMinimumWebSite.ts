@@ -725,11 +725,27 @@ assert(
   (home.match(/Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar\./g) || []).length === 1,
   "homepage has no duplicate/orphan feature subtitle directly under hero",
 );
+const heroCloseIndex = home.indexOf("</header><main");
+const firstFeatureIndex = home.indexOf('<section class="app-section home-feature-section"><h2>Öne çıkanlar</h2>');
+assert(
+  heroCloseIndex !== -1 && firstFeatureIndex > heroCloseIndex,
+  "homepage Öne çıkanlar h2 appears after the hero/header markup",
+);
+assert(
+  !/<header[\s\S]*?<h2>Öne çıkanlar<\/h2>[\s\S]*?<\/header>/.test(home),
+  "homepage Öne çıkanlar h2 is not inside the hero/header",
+);
 assert(
   styles.includes(".home-page .home-content > .app-section:first-child") &&
+    /home-content\s*>\s*\.app-section:first-child[^{]*{[^}]*margin-top:\s*(64|72)px/.test(styles) &&
+    /@media \(max-width:\s*599px\)[\s\S]*home-content\s*>\s*\.app-section:first-child[^{]*{[^}]*margin-top:\s*(32|40)px/.test(styles) &&
+    styles.includes("position: relative") &&
+    styles.includes("z-index: 1") &&
     styles.includes("transform: none") &&
-    !/home-content\s*>\s*\.app-section:first-child[^{]*{[^}]*margin-top:\s*-/.test(styles),
-  "homepage first section does not use negative overlap on the heading",
+    !/home-content\s*>\s*\.app-section:first-child[^{]*{[^}]*margin-top:\s*-/.test(styles) &&
+    !/home-feature-section[^{]*{[^}]*margin-top:\s*-/.test(styles) &&
+    !/home-feature-section\s*>\s*h2[^{]*{[^}]*transform:\s*translateY\s*\(/.test(styles),
+  "homepage first section uses explicit non-overlap spacing on desktop and mobile",
 );
 assert(
   home.includes('class="app-section home-tools-section"') &&
