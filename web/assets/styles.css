@@ -2242,3 +2242,118 @@ body:has(.app-bottom-tabs) footer {
   .home-page .home-city-card { min-height: 170px; }
   .home-page .home-final-cta { display: grid; padding: 26px; }
 }
+
+/* Homepage final polish: static links, richer app cards, and clean hero-to-content flow. */
+.home-page .home-search {
+  justify-content: space-between;
+  text-decoration: none;
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(243,203,87,.52);
+  box-shadow: 0 16px 36px rgba(0,0,0,.2);
+}
+.home-page .home-search b {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff4cf;
+  color: var(--navy);
+  font-size: 1rem;
+}
+.home-page .home-search span { flex: 1; color: #536173; font-weight: 800; }
+.home-page .home-search em {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #f3cb57;
+  font-style: normal;
+  font-size: .78rem;
+  font-weight: 950;
+}
+.home-page .home-search:hover,
+.home-page .home-search:focus-visible,
+.home-page .home-primary-cta:hover,
+.home-page .home-primary-cta:focus-visible,
+.home-page .app-feature-card:hover,
+.home-page .app-feature-card:focus-visible,
+.home-page .outlet-card a:hover,
+.home-page .outlet-card a:focus-visible,
+.home-page .home-city-card:hover,
+.home-page .home-city-card:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+.home-page .home-content > .app-section:first-child {
+  margin-top: 0;
+  padding-top: 8px;
+}
+.home-page .activity-card {
+  background:
+    radial-gradient(circle at 9% 0, rgba(243,203,87,.2), transparent 32%),
+    linear-gradient(135deg,#fff,#f8fbff);
+  border: 1px solid rgba(227,231,235,.95);
+}
+.home-page .activity-card div {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9), 0 10px 24px rgba(8,29,56,.06);
+}
+.home-page .activity-card div::after {
+  content: "";
+  position: absolute;
+  right: -36px;
+  top: -36px;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  background: rgba(211,173,57,.12);
+}
+.home-page .activity-card i {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 14px;
+  border-radius: 18px;
+  background: linear-gradient(135deg,#fff4cf,#f3cb57);
+  color: #72550d;
+  font-style: normal;
+  font-size: 1.45rem;
+  box-shadow: 0 8px 20px rgba(211,173,57,.24);
+}
+.home-page .activity-card span { font-weight: 900; letter-spacing: .02em; }
+.home-page .activity-card small { display: block; max-width: 260px; margin-top: 7px; color: var(--muted); }
+.home-page .activity-card a {
+  display: inline-flex;
+  width: max-content;
+  margin-top: 18px;
+  padding: 9px 13px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff4cf;
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 950;
+}
+.home-page .home-tool-grid .app-quick-card b {
+  width: 50px;
+  height: 50px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.82);
+  box-shadow: inset 0 0 0 1px rgba(211,173,57,.22);
+}
+.home-page .home-city-card i {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.18);
+  color: #f3cb57;
+  font-weight: 950;
+}
+@media (max-width: 599px) {
+  .home-page .home-search em { display: none; }
+  .home-page .activity-card div + div { border-top: 1px solid var(--border); border-left: 0; }
+}
