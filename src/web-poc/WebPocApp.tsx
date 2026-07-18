@@ -24,13 +24,9 @@ import {
 } from "../services/transportationV2Service";
 import {
   getExploreHeroImage,
-  getHomeFeatureImage,
-  getHomeHeroImage,
   getOutletGalleryImages,
   getOutletPrimaryImage,
   getPopularCityImage,
-  getRecommendedOutletImage,
-  getRecommendedOutlets,
   nativePopularCityIds,
 } from "../media/imageResolvers";
 import { colors, spacing } from "../theme";
@@ -40,8 +36,30 @@ import {
 } from "../utils/locationDisplay";
 
 const logo = require("../../assets/brand/logo-horizontal.png");
-const homeHero = getHomeHeroImage();
+const homeHero = require("../../assets/home/home-hero-premium.png");
 const exploreHero = getExploreHeroImage();
+const homeFeatureImages = {
+  "discover-outlets": require("../../assets/home/featured-discover-outlets.png"),
+  "plan-trip": require("../../assets/home/featured-plan-trip.png"),
+  "savings-guide": require("../../assets/home/featured-savings-guide.png"),
+  "offline-availability": require("../../assets/home/featured-offline-availability.png"),
+} as const;
+const homeRecommendedOutletImages = {
+  "la-vallee-village": require("../../assets/outlet-images/la-vallee-village/hero.webp"),
+  "bicester-village": require("../../assets/outlet-images/bicester-village/hero.webp"),
+  "serravalle-designer-outlet": require("../../assets/outlet-images/serravalle-designer-outlet/hero.webp"),
+  "the-mall-firenze": require("../../assets/outlet-images/the-mall-firenze/hero.webp"),
+  "designer-outlet-parndorf": require("../../assets/outlet-images/designer-outlet-parndorf/hero.webp"),
+} as const;
+const homePopularCityImages = {
+  paris: require("../../assets/city-images/Paris.webp"),
+  milan: require("../../assets/city-images/Milano.webp"),
+  london: require("../../assets/city-images/London.webp"),
+  munich: require("../../assets/city-images/Munich.webp"),
+  vienna: require("../../assets/city-images/Vienna.webp"),
+} as const;
+const homeRecommendedOutletIds = Object.keys(homeRecommendedOutletImages);
+const homePopularCityIds = Object.keys(homePopularCityImages);
 type Route =
   | { name: "home" }
   | { name: "explore" }
@@ -170,7 +188,10 @@ function Section(p: {
   );
 }
 function OutletCard({ outlet }: { outlet: any }) {
-  const img = getRecommendedOutletImage(outlet);
+  const img =
+    homeRecommendedOutletImages[
+      outlet.outletId as keyof typeof homeRecommendedOutletImages
+    ];
   return (
     <TouchableOpacity
       style={s.outletCard}
@@ -187,7 +208,9 @@ function OutletCard({ outlet }: { outlet: any }) {
   );
 }
 function Home() {
-  const rec = getRecommendedOutlets();
+  const rec = homeRecommendedOutletIds
+    .map((id) => outlets.find((outlet) => outlet.outletId === id))
+    .filter(Boolean);
   return (
     <Shell active="home">
       <ScrollView contentContainerStyle={s.content}>
@@ -221,7 +244,7 @@ function Home() {
             ] as const).map(([imageKey, icon, label]) => (
               <ImageBackground
                 key={imageKey}
-                source={getHomeFeatureImage(imageKey)}
+                source={homeFeatureImages[imageKey]}
                 imageStyle={s.featureImage}
                 style={s.feature}
               >
@@ -265,9 +288,16 @@ function Home() {
         </Section>
         <Section title="Popüler şehirler">
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {nativePopularCityIds.map((id) => (
+            {homePopularCityIds.map((id) => (
               <View key={id} style={s.city}>
-                <Image source={getPopularCityImage(id)!} style={s.cityImg} />
+                <Image
+                  source={
+                    homePopularCityImages[
+                      id as keyof typeof homePopularCityImages
+                    ]
+                  }
+                  style={s.cityImg}
+                />
                 <Text style={s.cardTitle}>{trCityName(id)}</Text>
                 <Text style={s.muted}>{outletCount(undefined, id)} outlet</Text>
               </View>
