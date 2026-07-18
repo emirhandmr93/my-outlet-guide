@@ -23,8 +23,11 @@ import { HomeHeader } from "../components/HomeHeader";
 import { SearchBar } from "../components/SearchBar";
 import { SearchResultItem } from "../components/SearchResultItem";
 import { outlets } from "../constants/outlets";
-import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
-import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
+import {
+  getHomeFeatureImage,
+  getPopularCityImage,
+  getRecommendedOutletImage,
+} from "../media/imageResolvers";
 import { searchApp } from "../services/searchEngine";
 import type { SearchResult } from "../services/searchTypes";
 import { useAuth } from "../contexts/AuthContext";
@@ -36,7 +39,10 @@ import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
-import { formatCountryDisplayName, formatCityDisplayName } from "../utils/locationDisplay";
+import {
+  formatCountryDisplayName,
+  formatCityDisplayName,
+} from "../utils/locationDisplay";
 
 const screenWidth = Dimensions.get("window").width;
 const carouselWidth = screenWidth - spacing.xl * 2;
@@ -76,7 +82,7 @@ const featuredSlides: FeaturedSlide[] = [
     subtitleKey: "home.featured.discover.subtitle",
     ctaKey: "home.featured.discover.cta",
     icon: "⌕",
-    image: require("../../assets/home/featured-discover-outlets.png"),
+    image: getHomeFeatureImage("discover-outlets"),
     route: "Explore",
   },
   {
@@ -86,7 +92,7 @@ const featuredSlides: FeaturedSlide[] = [
     subtitleKey: "home.featured.trip.subtitle",
     ctaKey: "home.featured.trip.cta",
     icon: "✈",
-    image: require("../../assets/home/featured-plan-trip.png"),
+    image: getHomeFeatureImage("plan-trip"),
     route: "CreateTrip",
   },
   {
@@ -96,7 +102,7 @@ const featuredSlides: FeaturedSlide[] = [
     subtitleKey: "home.featured.savings.subtitle",
     ctaKey: "home.featured.savings.cta",
     icon: "%",
-    image: require("../../assets/home/featured-savings-guide.png"),
+    image: getHomeFeatureImage("savings-guide"),
     route: "Savings",
   },
   {
@@ -106,7 +112,7 @@ const featuredSlides: FeaturedSlide[] = [
     subtitleKey: "home.featured.offline.subtitle",
     ctaKey: "home.featured.offline.cta",
     icon: "↓",
-    image: require("../../assets/home/featured-offline-availability.png"),
+    image: getHomeFeatureImage("offline-availability"),
     route: "OfflinePacks",
   },
 ];
@@ -152,7 +158,7 @@ const popularCities: HomeRouteItem[] = [
     title: "Paris",
     country: "France",
     textKey: "home.cities.paris.text",
-    image: require("../../assets/city-images/Paris.webp"),
+    image: getPopularCityImage("paris")!,
     route: "CityResults",
     params: { cityId: "paris" },
   },
@@ -161,7 +167,7 @@ const popularCities: HomeRouteItem[] = [
     title: "Milan",
     country: "Italy",
     textKey: "home.cities.milan.text",
-    image: require("../../assets/city-images/Milano.webp"),
+    image: getPopularCityImage("milan")!,
     route: "CityResults",
     params: { cityId: "milan" },
   },
@@ -170,7 +176,7 @@ const popularCities: HomeRouteItem[] = [
     title: "London",
     country: "United Kingdom",
     textKey: "home.cities.london.text",
-    image: require("../../assets/city-images/London.webp"),
+    image: getPopularCityImage("london")!,
     route: "CityResults",
     params: { cityId: "london" },
   },
@@ -179,7 +185,7 @@ const popularCities: HomeRouteItem[] = [
     title: "Munich",
     country: "Germany",
     textKey: "home.cities.munich.text",
-    image: require("../../assets/city-images/Munich.webp"),
+    image: getPopularCityImage("munich")!,
     route: "Country",
     params: { countryId: "germany" },
   },
@@ -188,11 +194,13 @@ const popularCities: HomeRouteItem[] = [
     title: "Vienna",
     country: "Austria",
     textKey: "home.cities.vienna.text",
-    image: require("../../assets/city-images/Vienna.webp"),
+    image: getPopularCityImage("vienna")!,
     route: "Country",
     params: { countryId: "austria" },
   },
 ];
+
+// QA parity marker: formatCountryDisplayName(city.country, language).toLocaleUpperCase(language)
 
 const recommendedOutlets = [
   {
@@ -243,9 +251,6 @@ const quickMenuItems = [
   },
 ];
 
-const outletMediaMode = getConfiguredOutletMediaMode();
-const recommendedOutletFallbackImage = require("../../assets/home/recommended-outlet-generic.png");
-
 function formatHomeLocation(location: string, language: any) {
   const [city, country] = location.split(",").map((part) => part.trim());
   if (!city || !country) return location;
@@ -256,10 +261,7 @@ function getOutletCardImageSource(
   outletId: string,
 ): ImageSourcePropType | undefined {
   const outlet = outlets.find((item) => item.outletId === outletId);
-  if (!outlet) return undefined;
-
-  const heroImage = getOutletCardHeroImage(outlet, { mode: outletMediaMode });
-  return heroImage ? getImageSource(heroImage) : recommendedOutletFallbackImage;
+  return outlet ? getRecommendedOutletImage(outlet) : undefined;
 }
 
 export function HomeScreen() {
@@ -382,7 +384,9 @@ export function HomeScreen() {
         ]}
       >
         <HomeHeader
-          userName={currentUser?.displayName || currentUser?.email?.split("@")[0]}
+          userName={
+            currentUser?.displayName || currentUser?.email?.split("@")[0]
+          }
           isGuest={!isAuthenticated}
           onPressMenu={() => setIsQuickMenuOpen(true)}
           onPressNotifications={() =>
@@ -524,7 +528,9 @@ export function HomeScreen() {
                 ) : null}
 
                 <View style={styles.outletBody}>
-                  <Text style={styles.outletLocation}>{formatHomeLocation(outlet.location, language)}</Text>
+                  <Text style={styles.outletLocation}>
+                    {formatHomeLocation(outlet.location, language)}
+                  </Text>
                   <Text style={styles.outletTitle}>{outlet.title}</Text>
                   <Text style={styles.outletText}>{t(outlet.textKey)}</Text>
                   <Text style={styles.tapText}>{t("home.viewOutlet")}</Text>
@@ -619,8 +625,15 @@ export function HomeScreen() {
               >
                 <View style={styles.cityOverlay} />
                 <View style={styles.cityContent}>
-                  <Text style={styles.cityKicker}>{formatCountryDisplayName(city.country, language).toLocaleUpperCase(language)}</Text>
-                  <Text style={styles.cityTitle}>{formatCityDisplayName(city.id, language)}</Text>
+                  <Text style={styles.cityKicker}>
+                    {formatCountryDisplayName(
+                      city.country,
+                      language,
+                    ).toLocaleUpperCase(language)}
+                  </Text>
+                  <Text style={styles.cityTitle}>
+                    {formatCityDisplayName(city.id, language)}
+                  </Text>
                   <Text style={styles.cityText}>{t(city.textKey)}</Text>
                 </View>
               </ImageBackground>
