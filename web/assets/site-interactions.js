@@ -88,7 +88,9 @@
     const category = event.target.closest("[data-brand-category-toggle]");
     const transport = event.target.closest("[data-transport-toggle]");
     const restaurants = event.target.closest("[data-restaurants-toggle]");
+    const transportLink = event.target.closest("[data-transport-link]");
     const detailTab = event.target.closest(".app-detail-tabs a[href^='#']");
+    if (transportLink) { return; }
     if (thumb) {
       event.preventDefault();
       const hero = doc.querySelector("[data-gallery-hero]");
@@ -100,6 +102,7 @@
       event.preventDefault();
       const wrap = category.closest("[data-brand-category]");
       const list = wrap?.querySelector(".app-brand-chip-list");
+      doc.querySelectorAll("[data-brand-category]").forEach((other) => { if (other !== wrap) { const otherList = other.querySelector(".app-brand-chip-list"); const otherButton = other.querySelector("[data-brand-category-toggle]"); if (otherList) otherList.hidden = true; if (otherButton) otherButton.classList.remove("is-open"); } });
       if (list) list.hidden = !list.hidden;
       category.classList.toggle("is-open", Boolean(list && !list.hidden));
     }
@@ -110,12 +113,13 @@
     }
     if (restaurants) {
       event.preventDefault();
-      doc.querySelectorAll("[data-extra-restaurant]").forEach((row) => { row.hidden = false; });
-      restaurants.hidden = true;
+      const expanding = restaurants.textContent.trim() !== "Daha az göster";
+      doc.querySelectorAll("[data-extra-restaurant]").forEach((row) => { row.hidden = !expanding; });
+      restaurants.textContent = expanding ? "Daha az göster" : "Tüm restoranlar";
     }
     if (detailTab) {
       const target = doc.querySelector(detailTab.getAttribute("href"));
-      if (target) { event.preventDefault(); target.scrollIntoView({ behavior: reducedMotionQuery.matches ? "auto" : "smooth", block: "start" }); }
+      if (target) { event.preventDefault(); doc.querySelectorAll(".app-detail-tabs a").forEach((a) => a.classList.toggle("selected", a === detailTab)); target.scrollIntoView({ behavior: reducedMotionQuery.matches ? "auto" : "smooth", block: "start" }); }
     }
   });
   doc.addEventListener("input", (event) => {
