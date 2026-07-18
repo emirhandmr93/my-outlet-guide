@@ -44,3 +44,6 @@ yarn-error.*
 
 # Generated copies of tracked mobile assets for static website preview/deploy.
 /web/.generated-assets/
+
+# Expo Web POC export output
+dist-web-poc/
