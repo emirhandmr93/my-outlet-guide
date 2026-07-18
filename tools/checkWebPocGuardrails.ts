@@ -69,10 +69,9 @@ for (const fileName of forbiddenLowercaseHeroCopies) {
     );
   }
 }
-const webHeroAssets = readFileSync("src/media/heroAssets.web.ts", "utf8");
-if (!webHeroAssets.includes("explore-hero-premium.png")) {
+if (existsSync("src/media/heroAssets.web.ts")) {
   failures.push(
-    "heroAssets.web.ts must use an existing tracked web-resolvable asset",
+    "heroAssets.web.ts must not override native hero asset sources on web",
   );
 }
 const poc = readFileSync("src/web-poc/WebPocApp.tsx", "utf8");
@@ -91,6 +90,30 @@ if (/login|auth/i.test(poc))
 
 if (!poc.includes('from "../media/imageResolvers"'))
   failures.push("WebPocApp must use the shared image resolver");
+if (/https?:\/\//.test(poc))
+  failures.push("WebPocApp must not reference remote image URLs");
+if (/require\([^)]*(?:hero|featured|city-images|recommended-outlet)/i.test(poc))
+  failures.push("WebPocApp must not directly require required visual image assets");
+for (const resolverFunction of [
+  "getHomeHeroImage",
+  "getExploreHeroImage",
+  "getHomeFeatureImage",
+  "getRecommendedOutletImage",
+  "getPopularCityImage",
+  "getTripHeroImage",
+  "getSavingsHeroImage",
+  "getProfileHeroImage",
+  "getFlightDealsHeroImage",
+  "getOfflineHeroImage",
+  "getLanguageHeroImage",
+  "getCurrencyHeroImage",
+  "getNotificationsHeroImage",
+  "getOutletPrimaryImage",
+  "getOutletGalleryImages",
+]) {
+  if (!resolver.includes(`function ${resolverFunction}`))
+    failures.push(`Missing required shared resolver: ${resolverFunction}`);
+}
 if (
   !resolver.includes("getHomeHeroImage") ||
   !resolver.includes("assets/home/home-hero-premium.png")
@@ -113,6 +136,8 @@ if (
   );
 if (resolver.includes("http://") || resolver.includes("https://"))
   failures.push("Image resolver must not reference remote image URLs");
+if (resolver.includes("recommended-outlet-generic.png"))
+  failures.push("Required outlet imagery must fail loudly rather than use a generic fallback");
 if (
   poc.includes("recommended-outlet-generic.png") ||
   !poc.includes("getRecommendedOutletImage(outlet)")
@@ -154,6 +179,8 @@ if (!poc.includes('<DetailTop title="Outlet"'))
   failures.push("Outlet detail must include Geri / Outlet topbar");
 if (!/onPress=\{\(\) => setSel\(img\)\}/.test(poc))
   failures.push("Outlet detail thumbnails must update the main image");
+if (poc.includes('from "../media/outletMedia"'))
+  failures.push("WebPocApp visual images must be consumed through imageResolvers only");
 if (
   !poc.includes("backgroundColor: colors.primary") ||
   !poc.includes("Seyahat Oluştur")

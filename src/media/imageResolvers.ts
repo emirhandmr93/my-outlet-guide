@@ -7,8 +7,8 @@ import {
   getOutletCardHeroImage,
   getOutletHeroImage,
   getOutletMediaImages,
-  type OutletMediaImage,
 } from "./outletMedia";
+import { heroAssets } from "./heroAssets";
 
 export type HomeFeatureImageKey =
   | "discover-outlets"
@@ -33,8 +33,6 @@ export const nativeRecommendedOutletIds = [
 ] as const;
 
 const outletMediaMode = getConfiguredOutletMediaMode();
-const recommendedOutletFallbackImage = require("../../assets/home/recommended-outlet-generic.png");
-
 const cityImageMap: Record<string, ImageSourcePropType> = {
   paris: require("../../assets/city-images/Paris.webp"),
   milan: require("../../assets/city-images/Milano.webp"),
@@ -51,11 +49,45 @@ const homeFeatureImageMap: Record<HomeFeatureImageKey, ImageSourcePropType> = {
 };
 
 export function getHomeHeroImage(): ImageSourcePropType {
+  // Kept in sync with HomeHeader, which is the native source of truth.
   return require("../../assets/home/home-hero-premium.png");
 }
 
 export function getExploreHeroImage(): ImageSourcePropType {
+  // Kept in sync with ExploreScreen, which is the native source of truth.
   return require("../../assets/explore/explore-hero-premium.png");
+}
+
+export function getTripHeroImage(): ImageSourcePropType {
+  return heroAssets.trips;
+}
+
+export function getSavingsHeroImage(): ImageSourcePropType {
+  return heroAssets.savings;
+}
+
+export function getProfileHeroImage(): ImageSourcePropType {
+  return heroAssets.profile;
+}
+
+export function getFlightDealsHeroImage(): ImageSourcePropType {
+  return heroAssets.flightDeals;
+}
+
+export function getOfflineHeroImage(): ImageSourcePropType {
+  return heroAssets.offline;
+}
+
+export function getLanguageHeroImage(): ImageSourcePropType {
+  return heroAssets.language;
+}
+
+export function getCurrencyHeroImage(): ImageSourcePropType {
+  return heroAssets.currency;
+}
+
+export function getNotificationsHeroImage(): ImageSourcePropType {
+  return heroAssets.notifications;
 }
 
 export function getHomeFeatureImage(
@@ -77,19 +109,36 @@ export function getRecommendedOutletImage(
   outlet: ImageResolvableOutlet,
 ): ImageSourcePropType {
   const heroImage = getOutletCardHeroImage(outlet, { mode: outletMediaMode });
-  return heroImage ? getImageSource(heroImage) : recommendedOutletFallbackImage;
+  if (!heroImage) {
+    throw new Error(
+      `Missing native recommended outlet image for ${String(outlet.outletId ?? "unknown outlet")}`,
+    );
+  }
+  return getImageSource(heroImage);
 }
 
 export function getOutletPrimaryImage(
   outlet: ImageResolvableOutlet,
-): OutletMediaImage | undefined {
-  return getOutletHeroImage(outlet, { mode: outletMediaMode });
+): ImageSourcePropType {
+  const image = getOutletHeroImage(outlet, { mode: outletMediaMode });
+  if (!image) {
+    throw new Error(
+      `Missing native outlet primary image for ${String(outlet.outletId ?? "unknown outlet")}`,
+    );
+  }
+  return getImageSource(image);
 }
 
 export function getOutletGalleryImages(
   outlet: ImageResolvableOutlet,
-): OutletMediaImage[] {
-  return getOutletMediaImages(outlet, { mode: outletMediaMode });
+): ImageSourcePropType[] {
+  const images = getOutletMediaImages(outlet, { mode: outletMediaMode });
+  if (!images.length) {
+    throw new Error(
+      `Missing native outlet gallery images for ${String(outlet.outletId ?? "unknown outlet")}`,
+    );
+  }
+  return images.map(getImageSource);
 }
 
 export function getRecommendedOutlets() {
