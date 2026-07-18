@@ -6,7 +6,19 @@ const failures: string[] = [];
 for (const script of ["web:poc:start", "web:poc:export"]) {
   if (!pkg.scripts?.[script]) failures.push(`Missing ${script} script`);
 }
-if (!String(pkg.scripts?.["web:poc:export"]).includes("dist-web-poc")) {
+if (pkg.scripts?.["web:poc:start"] !== "tsx tools/startWebPoc.ts") {
+  failures.push("web:poc:start must use the cross-platform TypeScript launcher");
+}
+if (pkg.scripts?.["web:poc:export"] !== "tsx tools/exportWebPoc.ts") {
+  failures.push("web:poc:export must use the cross-platform TypeScript launcher");
+}
+for (const launcher of ["tools/startWebPoc.ts", "tools/exportWebPoc.ts"]) {
+  if (!existsSync(launcher)) failures.push(`Missing ${launcher}`);
+  else if (!readFileSync(launcher, "utf8").includes('process.env.EXPO_PUBLIC_USE_WEB_POC = "1"')) {
+    failures.push(`${launcher} must enable the public web POC environment variable`);
+  }
+}
+if (!readFileSync("tools/exportWebPoc.ts", "utf8").includes("dist-web-poc")) {
   failures.push("web:poc:export must write to dist-web-poc");
 }
 for (const removed of ["web-client.js", "src/web/client.ts"]) {
@@ -65,6 +77,15 @@ if (!webHeroAssets.includes("explore-hero-premium.png")) {
 }
 const poc = readFileSync("src/web-poc/WebPocApp.tsx", "utf8");
 const resolver = readFileSync("src/media/imageResolvers.ts", "utf8");
+const entry = readFileSync("index.ts", "utf8");
+if (!entry.includes("Platform.OS === 'web'"))
+  failures.push("index.ts must select the POC on web only");
+if (!entry.includes("process.env.EXPO_PUBLIC_USE_WEB_POC === '1'"))
+  failures.push("index.ts must check EXPO_PUBLIC_USE_WEB_POC");
+if (entry.includes("EXPO_USE_WEB_POC"))
+  failures.push("index.ts must not use the non-public EXPO_USE_WEB_POC variable");
+if (/onboarding|intro(?:carousel)?|first.?launch/i.test(poc))
+  failures.push("WebPocApp must not import or reference native onboarding UI");
 if (/login|auth/i.test(poc))
   failures.push("POC must not introduce login/auth behavior");
 
@@ -117,6 +138,10 @@ if (!poc.includes("getPopularCityImage(id)!"))
   );
 if (!poc.includes("getOutletGalleryImages(o)"))
   failures.push("Outlet detail must use the shared outlet gallery resolver");
+if (!poc.includes("getOutletPrimaryImage(o)"))
+  failures.push("Outlet detail must use the shared outlet primary image resolver");
+if (!poc.includes("getHomeFeatureImage("))
+  failures.push("Home feature cards must use the shared image resolver");
 if (!poc.includes("Aklındakini bul"))
   failures.push("Explore hero must keep native Aklındakini bul copy");
 if (

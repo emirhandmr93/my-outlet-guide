@@ -25,8 +25,10 @@ import {
 import { getImageSource } from "../media/outletMedia";
 import {
   getExploreHeroImage,
+  getHomeFeatureImage,
   getHomeHeroImage,
   getOutletGalleryImages,
+  getOutletPrimaryImage,
   getPopularCityImage,
   getRecommendedOutletImage,
   getRecommendedOutlets,
@@ -212,17 +214,22 @@ function Home() {
           sub="Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim."
         >
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {[
-              ["🛍️", "Outletleri keşfet"],
-              ["✈️", "Outlet seyahatini planla"],
-              ["₺", "Tasarruf araçları"],
-              ["↓", "Çevrimdışı rehber"],
-            ].map(([i, x]) => (
-              <View key={x} style={s.feature}>
-                <Text style={s.featureIcon}>{i}</Text>
-                <Text style={s.cardTitle}>{x}</Text>
+            {([
+              ["discover-outlets", "🛍️", "Outletleri keşfet"],
+              ["plan-trip", "✈️", "Outlet seyahatini planla"],
+              ["savings-guide", "₺", "Tasarruf araçları"],
+              ["offline-availability", "↓", "Çevrimdışı rehber"],
+            ] as const).map(([imageKey, icon, label]) => (
+              <ImageBackground
+                key={imageKey}
+                source={getHomeFeatureImage(imageKey)}
+                imageStyle={s.featureImage}
+                style={s.feature}
+              >
+                <Text style={s.featureIcon}>{icon}</Text>
+                <Text style={s.cardTitle}>{label}</Text>
                 <Text style={s.muted}>Uygulama ritminde hızlı erişim.</Text>
-              </View>
+              </ImageBackground>
             ))}
           </ScrollView>
         </Section>
@@ -549,7 +556,11 @@ function DetailTop({ title, back }: { title: string; back: string }) {
 function Detail({ outletId }: { outletId: string }) {
   const o: any =
     outlets.find((x: any) => x.outletId === outletId) || outlets[0];
-  const imgs = getOutletGalleryImages(o);
+  const primaryImage = getOutletPrimaryImage(o);
+  const galleryImages = getOutletGalleryImages(o);
+  const imgs = primaryImage
+    ? [primaryImage, ...galleryImages.filter((image) => image !== primaryImage)]
+    : galleryImages;
   const [sel, setSel] = useState(imgs[0]);
   const [allRest, setAllRest] = useState(false);
   const groups = getBrandCategoryGroupsForOutlet(o.outletId);
@@ -957,7 +968,9 @@ const s = StyleSheet.create({
     borderRadius: 24,
     padding: 18,
     marginRight: 12,
+    overflow: "hidden",
   },
+  featureImage: { borderRadius: 24, opacity: 0.2 },
   featureIcon: { fontSize: 28, color: colors.gold },
   outletCard: {
     width: 280,

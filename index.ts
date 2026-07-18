@@ -1,6 +1,8 @@
 import { registerRootComponent } from 'expo';
+import { Platform } from 'react-native';
 
-const RootComponent = process.env.EXPO_USE_WEB_POC === '1'
+const RootComponent =
+  Platform.OS === 'web' && process.env.EXPO_PUBLIC_USE_WEB_POC === '1'
   ? require('./src/web-poc/WebPocApp').default
   : require('./App').default;
 
