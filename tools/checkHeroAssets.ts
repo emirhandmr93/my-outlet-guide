@@ -1,4 +1,4 @@
-﻿import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 
 function read(path: string) {
   return readFileSync(path, "utf8");
@@ -10,22 +10,22 @@ function assert(condition: unknown, message: string) {
 }
 
 const requiredAssets = [
-  "hero-trips.png",
-  "hero-savings.png",
-  "hero-profile.png",
-  "hero-login.png",
-  "hero-flight-deals.png",
-  "hero-offline.png",
-  "hero-language.png",
-  "hero-currency.png",
-  "hero-notifications.png",
-  "hero-security.png",
+  "hero-trips.PNG",
+  "hero-savings.PNG",
+  "hero-profile.PNG",
+  "hero-login.PNG",
+  "hero-flight-deals.PNG",
+  "hero-offline.PNG",
+  "hero-language.PNG",
+  "hero-currency.PNG",
+  "hero-notifications.PNG",
+  "hero-security.PNG",
 ];
 
 for (const asset of requiredAssets) {
   const heroAssetPath = `assets/heroes/${asset}`;
   const matchingHeroAsset = readdirSync("assets/heroes").find((fileName) => fileName.toLowerCase() === asset);
-  assert(existsSync(heroAssetPath) || Boolean(matchingHeroAsset), `local hero asset is available for lowercase reference: ${asset}`);
+  assert(existsSync(heroAssetPath) || Boolean(matchingHeroAsset), `local hero asset is available with existing filename: ${asset}`);
 }
 
 const heroAssets = read("src/media/heroAssets.ts");
