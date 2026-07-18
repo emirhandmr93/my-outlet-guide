@@ -2653,7 +2653,7 @@ html, body { overflow-x: hidden; }
   .home-page .home-city-card { min-height: 150px; border-radius: 24px; }
   .home-rail-dots { display: flex; justify-content: center; gap: 6px; margin-top: 2px; }
   .home-rail-dots span { width: 6px; height: 6px; border-radius: 999px; background: #cbd3dc; }
-  .home-rail-dots span:first-child { width: 18px; background: var(--gold); }
+  .home-rail-dots span[aria-current="true"], .home-rail-dots span.is-active { width: 18px; background: var(--gold); }
   .app-bottom-tabs {
     left: 18px;
     right: 18px;
