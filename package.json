@@ -39,7 +39,9 @@
     "web:prepare": "tsx tools/prepareWebsiteAssets.ts",
     "web:generate": "tsx tools/generateWebsite.ts",
     "web:check": "tsx tools/checkMinimumWebSite.ts",
-    "web:preview": "npm run web:prepare && npm run web:generate && npx serve web"
+    "web:preview": "npm run web:prepare && npm run web:generate && npx serve web",
+    "web:poc:start": "tsx tools/runWebPoc.ts start",
+    "web:poc:export": "tsx tools/runWebPoc.ts export"
   },
   "private": true,
   "devDependencies": {
