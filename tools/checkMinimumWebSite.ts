@@ -816,6 +816,28 @@ assert(
 );
 assert(/<script src="\/assets\/home-carousel\.js" defer><\/script>/.test(home), "homepage only includes the allowed carousel script tag");
 assert(/<a class="home-search app-search-pill" href="\/explore\/"/.test(home), "hero search pill remains an anchor to /explore/");
+
+assert(/<a class="home-primary-cta" href="\/(explore|outlets)\/">Outletleri keşfet/.test(home), "hero primary CTA links to discovery route");
+for (const statusText of ["App Store incelemesi bekleniyor", "Google Play hazırlıkta"])
+  assert(new RegExp(`<a class="home-status-chip" href="/app/">${statusText}</a>`).test(home), `hero app status chip links to /app/: ${statusText}`);
+for (const [label, href] of [["Ana Sayfa", "/"], ["Keşfet", "/explore/"], ["Outletler", "/outlets/"], ["Tax Free", "/tax-free/"], ["Seyahat Planı", "/trip-planner/"], ["Uçuş Uyarıları", "/flight-deals/"], ["Uygulama", "/app/"]] as const)
+  assert(home.includes(`<a href="${href}">${label}</a>`) || home.includes(`<a class="is-active" href="${href}" aria-current="page">${label}</a>`), `homepage top nav links ${label} to ${href}`);
+for (const [label, href] of [["Outletleri keşfet", "/explore/"], ["Outlet seyahatini planla", "/trip-planner/"], ["Tasarruf araçları", "/savings/"], ["Çevrimdışı rehber", "/offline-guide/"]] as const)
+  assert(new RegExp(`<a class="app-feature-card" href="${href}"[\\s\\S]*?<strong>${label}</strong>`).test(home), `homepage feature card links ${label} to ${href}`);
+for (const slug of ["la-vallee-village", "bicester-village", "serravalle-designer-outlet", "designer-outlet-roermond"])
+  assert(home.includes(`href="/outlets/${slug}/"`), `homepage recommended outlet card links to /outlets/${slug}/`);
+for (const [label, href] of [["Seyahat oluştur", "/trip-planner/"], ["Favorilere başla", "/explore/"]] as const)
+  assert(home.includes(`<a href="${href}">${label}</a>`), `homepage activity CTA links ${label} to ${href}`);
+for (const [label, href] of [["Tax Free Hesaplayıcı", "/tax-free/"], ["Döviz Çevirici", "/savings/"], ["Uçuş Alarmı", "/flight-deals/"], ["Çevrimdışı", "/offline-guide/"]] as const)
+  assert(new RegExp(`<a class="app-quick-card home-tool-card" href="${href}">[\\s\\S]*?<span>${label}</span>`).test(home), `homepage tool card links ${label} to ${href}`);
+for (const city of ["paris", "milan", "london", "munich"])
+  assert(home.includes(`href="/cities/${city}/"`), `homepage city card links to /cities/${city}/`);
+for (const href of ["/", "/explore/", "/trip-planner/", "/savings/", "/app/"])
+  assert(new RegExp(`<nav class="app-bottom-tabs"[\\s\\S]*?<a href="${href.replace('/', '\\/')}`).test(home), `homepage bottom tab links to ${href}`);
+assert(!/web-client\.js/i.test(webText) && !existsSync("web/assets/web-client.js"), "web-client.js is not present");
+assert(!/href="\/login\/?"|\/login\//i.test(webText), "website has no /login route links");
+assert(!/<script\b(?![^>]*src="\/assets\/home-carousel\.js"[^>]*defer)[^>]*>/i.test(home), "homepage has no disallowed script tags");
+assert(!/<script\b[^>]*src=["']https?:\/\//i.test(webText), "website has no remote scripts");
 assert(!existsSync("src/web/client.ts"), "src/web/client.ts does not exist");
 assert(
   !webFiles.some((path) => /web\/assets\/.*\.(png|jpe?g|webp|gif|ico|avif|bmp|pdf|zip|woff2?|ttf|otf)$/i.test(path)),

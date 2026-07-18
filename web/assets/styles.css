@@ -2035,8 +2035,9 @@ body:has(.app-bottom-tabs) footer {
 .home-page .home-main-hero > p:last-of-type { font-size: 1.12rem; }
 .home-page .home-search { max-width: 570px; margin-top: 25px; color: #68778a; }
 .home-hero-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top: 15px; }
-.home-hero-actions > span, .home-primary-cta { min-height: 42px; display:inline-flex; align-items:center; padding:9px 14px; border-radius:999px; font-size:.78rem; font-weight:800; }
-.home-hero-actions > span { border:1px solid rgba(255,255,255,.34); background:rgba(8,29,56,.45); color:#fff; }
+.home-hero-actions > span, .home-hero-actions > a, .home-primary-cta { min-height: 42px; display:inline-flex; align-items:center; padding:9px 14px; border-radius:999px; font-size:.78rem; font-weight:800; }
+.home-hero-actions > span, .home-status-chip { border:1px solid rgba(255,255,255,.34); background:rgba(8,29,56,.45); color:#fff; text-decoration:none; }
+.home-status-chip:hover, .home-status-chip:focus-visible { border-color: rgba(243,203,87,.8); background: rgba(8,29,56,.68); outline: none; }
 .home-primary-cta { gap:9px; background:#f3cb57; color:var(--navy); text-decoration:none; box-shadow:0 8px 20px rgba(0,0,0,.2); }
 .home-page main { margin-top: 0; padding-top: 30px; }
 .home-page .app-page { gap: 34px; }
@@ -2827,6 +2828,7 @@ html, body { overflow-x: hidden; }
   }
 
   .home-page .home-primary-cta,
+  .home-page .home-status-chip,
   .home-page .home-hero-actions > span {
     min-height: 38px;
     padding: 8px 11px;
@@ -2835,7 +2837,8 @@ html, body { overflow-x: hidden; }
     line-height: 1.15;
   }
 
-  .home-page .home-hero-actions > span {
+  .home-page .home-hero-actions > span,
+  .home-page .home-status-chip {
     background: rgba(255,255,255,.72);
     color: #536173;
   }
