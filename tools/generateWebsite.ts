@@ -449,7 +449,9 @@ const homePage = (body: string) => `<!doctype html><html lang="tr"><head><meta c
 
 const exploreCityImages: Record<string, string> = { paris: "Paris.webp", milan: "Milano.webp", london: "London.webp", munich: "Munich.webp" };
 const exploreRows = {
-  countries: (countries as any[]).map((country) => ({ id: country.countryId, type: "country", flag: country.countryFlag, title: trCountry(country.countryName), subtitle: `${outlets.filter((outlet: any) => outlet.countryId === country.countryId).length} outlet`, href: `/countries/${country.countryId}/`, countryId: country.countryId, country: trCountry(country.countryName), keywords: [country.countryName, trCountry(country.countryName), country.currency].filter(Boolean) })),
+  countries: (countries as any[])
+    .map((country) => { const count = outlets.filter((outlet: any) => outlet.countryId === country.countryId).length; return { id: country.countryId, type: "country", flag: country.countryFlag, title: trCountry(country.countryName), subtitle: `${count} outlet`, href: `/countries/${country.countryId}/`, countryId: country.countryId, country: trCountry(country.countryName), count, keywords: [country.countryName, trCountry(country.countryName), country.currency].filter(Boolean) }; })
+    .sort((a, b) => b.count - a.count || a.title.localeCompare(b.title, "tr")),
   cities: (cities as any[]).map((city) => { const country = (countries as any[]).find((item) => item.countryId === city.countryId); const count = outlets.filter((outlet: any) => outlet.cityId === city.cityId).length; return { id: city.cityId, type: "city", title: trCity(city.cityName), subtitle: `${trCountry(country?.countryName || city.countryId)} · ${count} outlet`, href: `/cities/${city.cityId}/`, countryId: city.countryId, country: trCountry(country?.countryName || city.countryId), image: exploreCityImages[city.cityId] ? asset(`city-images/${exploreCityImages[city.cityId]}`) : "", flag: country?.countryFlag || "📍", count, keywords: [city.cityName, trCity(city.cityName), country?.countryName, trCountry(country?.countryName || "")].filter(Boolean) }; }).filter((city) => city.count > 0),
   outlets: (outlets as any[]).map((outlet) => { const city = (cities as any[]).find((item) => item.cityId === outlet.cityId); const country = (countries as any[]).find((item) => item.countryId === outlet.countryId); const slug = outlet.slug || outlet.outletId; return { id: slug, type: "outlet", title: outlet.name, subtitle: `${trCity(city?.cityName || outlet.cityId)}, ${trCountry(country?.countryName || outlet.countryId)}`, href: `/outlets/${slug}/`, countryId: outlet.countryId, country: trCountry(country?.countryName || outlet.countryId), flag: country?.countryFlag || "🏬", keywords: [outlet.name, city?.cityName, trCity(city?.cityName || ""), country?.countryName, trCountry(country?.countryName || "")].filter(Boolean) }; }),
 };
@@ -517,9 +519,24 @@ for (const outlet of outlets as any[]) {
   const slug = outlet.slug || outlet.outletId;
   const images = availableOutletImages(slug);
   const hero = images.find((file) => file.startsWith("hero"));
-  const gallery = hero
-    ? `<img src="${asset(`outlet-images/${slug}/${hero}`)}" alt="${esc(outlet.name)}">`
+  const heroFile = hero || images[0];
+  const gallery = heroFile
+    ? `<img src="${asset(`outlet-images/${slug}/${heroFile}`)}" alt="${esc(outlet.name)}">`
     : "";
+  const thumbnailStrip = images.length
+    ? `<div class="app-gallery-strip">${images.slice(0, 5).map((file) => `<img src="${asset(`outlet-images/${slug}/${file}`)}" alt="${esc(outlet.name)} galeri görseli">`).join("")}</div>`
+    : "";
+  const airportSummary = outlet.airports?.length
+    ? outlet.airports.slice(0, 3).map((airport: any) => `${esc(airport.code)} · ${esc(airport.distanceKm)} km`).join(", ")
+    : "—";
+  const quickFacts = [
+    ["🕙", "SAATLER", esc(outlet.openingHours || "Güncel bilgiyi kontrol edin")],
+    ["🏬", "MAĞAZALAR", esc(trStores(outlet.storesCountText || "Bilgi güncelleniyor"))],
+    ["₺", "TAX FREE", outlet.taxFreeAvailable ? "Mevcut" : "Mağazaya göre"],
+    ["✈", "HAVALİMANLARI", airportSummary],
+    ["⌖", "ŞEHİR MERKEZİ", `${outlet.cityCenterDistanceKm ?? "—"} km`],
+    ["★", "PUAN", "Henüz puan yok"],
+  ];
   const route = `<article class="app-route-card app-tool-card"><span>Şehir merkezinden</span><b>Taksi / Uber ile</b><div class="app-chip-row"><em>Taksi / Uber</em><em>Yaklaşık 25–50 dk</em><em>Yaklaşık €35–75</em></div><small>Güncel saat ve ücretleri seyahat öncesi kontrol edin.</small></article>`;
   write(
     `outlets/${slug}`,
@@ -528,33 +545,7 @@ for (const outlet of outlets as any[]) {
       "PREMİUM OUTLET",
       outlet.name,
       `${trCity(city?.cityName || outlet.cityId)}, ${trCountry(country?.countryName || outlet.countryId)}`,
-      `<section class="app-detail-hero app-image-card">${gallery}<div><p>PREMİUM OUTLET</p><h2>${esc(outlet.name)}</h2><span>${esc(trCity(city?.cityName || outlet.cityId))}, ${esc(trCountry(country?.countryName || outlet.countryId))}</span></div></section><div class="app-gallery-strip">${
-        images
-          .slice(1, 5)
-          .map(
-            (file) =>
-              `<span>${file.startsWith("gallery") ? "Görsel" : "Outlet"}</span>`,
-          )
-          .join("") ||
-        "<span>Galeri</span><span>Outlet</span><span>Rehber</span>"
-      }</div><span class="app-status">● Aktif</span><div class="app-action-grid"><a class="app-action-card app-cta" href="/app/">♡<b>Favori</b></a><a class="app-action-card app-cta" href="/trip-planner/">◫<b>Seyahat Oluştur</b></a><a class="app-action-card app-cta" href="/explore/">⌖<b>Yol Tarifi</b></a></div><div class="app-chip-row">${["Özet", "Markalar", "Ulaşım", "Yemek", "Yorumlar"].map((x, i) => `<span class="app-tab-chip ${i === 0 ? "selected" : ""}">${x}</span>`).join("")}</div><section class="app-card app-white-card app-info-card"><h2>Hızlı Bilgiler</h2><div class="app-quick-grid">${[
-        ["Saatler", esc(outlet.openingHours || "Güncel bilgiyi kontrol edin")],
-        [
-          "Mağazalar",
-          esc(trStores(outlet.storesCountText || "Bilgi güncelleniyor")),
-        ],
-        [
-          "Tax Free",
-          outlet.taxFreeAvailable ? "Mevcut olabilir" : "Mağazaya göre",
-        ],
-        ["Havalimanları", outlet.airports?.[0]?.code || "—"],
-        ["Şehir merkezi", `${outlet.cityCenterDistanceKm ?? "—"} km`],
-        ["Puan", "0.0"],
-      ]
-        .map(([a, b]) => `<div><small>${a}</small><b>${b}</b></div>`)
-        .join(
-          "",
-        )}</div></section><section class="app-warning-card"><p>TAX FREE</p><h2>Tahmini iade bilgisi</h2><span>KDV oranı ve minimum harcama mağaza ile ülke kurallarına göre değişebilir.</span><small>Tahmini iade garanti edilen iade değildir; gerçek iade mağaza, sağlayıcı, işlem ücretleri, ülke kuralları ve uygunluğa göre değişebilir.</small></section><section class="app-card app-white-card app-brands-card"><h2>Markalar</h2><p>Marka listesi outlet tarafından güncellenebilir.</p><div class="app-search-pill">⌕ <span>Marka ara...</span></div>${["Moda", "Spor giyim", "Ayakkabı & Çanta", "Güzellik", "Aksesuar", "Gözlük", "Kitap & Oyuncak", "Ev & Yaşam"].map((x) => `<div class="app-list-card"><span>${x}<small>Marka bilgisi</small></span><i>→</i></div>`).join("")}</section><section class="app-card app-white-card"><h2>Ulaşım</h2><p>Bu outlet'e ulaşmanın pratik yolları.</p>${route}${route.replace("Şehir merkezinden", "Havaalanından")}<span class="button muted">Ulaşım Rehberini Gör</span></section><section class="app-card app-white-card"><h2>Haritalar</h2>${["Google Maps’te Aç", "Apple Maps’te Aç", "Yandex Maps’te Aç"].map((x) => `<span class="app-list-card"><span>${x}</span><i>→</i></span>`).join("")}</section><section class="app-card app-white-card"><h2>Resmi Web Sitesi</h2><p>Güncel çalışma saatleri, etkinlikler, kampanyalar, marka güncellemeleri ve geçici duyurular için her zaman resmi web sitesini kontrol edin.</p>${outlet.websiteUrl ? `<a class="button" href="${esc(outlet.websiteUrl)}">Resmi Web Sitesini Ziyaret Et</a>` : ""}</section><section class="app-card app-white-card"><h2>Restoranlar & Kafeler</h2>${(
+      `<section class="app-detail-hero app-image-card">${gallery}<div><p>PREMIUM OUTLET</p><h2>${esc(outlet.name)}</h2><span>${esc(trCity(city?.cityName || outlet.cityId))}, ${esc(trCountry(country?.countryName || outlet.countryId))}</span></div></section>${thumbnailStrip}<span class="app-status">● Aktif</span><div class="app-action-grid"><a class="app-action-card app-cta" href="/app/"><span>♡</span><b>Favori</b></a><a class="app-action-card app-cta" href="/trip-planner/"><span>◫</span><b>Seyahat Oluştur</b></a><a class="app-action-card app-cta" href="/explore/"><span>⌖</span><b>Yol Tarifi</b></a></div><div class="app-chip-row">${["Özet", "Markalar", "Ulaşım", "Yemek", "Yorumlar"].map((x, i) => `<span class="app-tab-chip ${i === 0 ? "selected" : ""}">${x}</span>`).join("")}</div><section class="app-card app-white-card app-info-card app-quick-facts"><h2>Hızlı Bilgiler</h2><div class="app-quick-grid">${quickFacts.map(([icon, label, value]) => `<div class="app-quick-fact"><i>${icon}</i><small>${label}</small><b>${value}</b></div>`).join("")}</div></section><section class="app-warning-card"><p>TAX FREE</p><h2>Tahmini iade bilgisi</h2><span>KDV oranı ve minimum harcama mağaza ile ülke kurallarına göre değişebilir.</span><small>Tahmini iade garanti edilen iade değildir; gerçek iade mağaza, sağlayıcı, işlem ücretleri, ülke kuralları ve uygunluğa göre değişebilir.</small></section><section class="app-card app-white-card app-brands-card"><h2>Markalar</h2><p>Marka listesi outlet tarafından güncellenebilir.</p><div class="app-search-pill">⌕ <span>Marka ara...</span></div>${["Moda", "Spor giyim", "Ayakkabı & Çanta", "Güzellik", "Aksesuar", "Gözlük", "Kitap & Oyuncak", "Ev & Yaşam"].map((x) => `<div class="app-list-card"><span>${x}<small>Marka bilgisi</small></span><i>→</i></div>`).join("")}</section><section class="app-card app-white-card"><h2>Ulaşım</h2><p>Bu outlet'e ulaşmanın pratik yolları.</p>${route}${route.replace("Şehir merkezinden", "Havaalanından")}<span class="button muted">Ulaşım Rehberini Gör</span></section><section class="app-card app-white-card"><h2>Haritalar</h2>${["Google Maps’te Aç", "Apple Maps’te Aç", "Yandex Maps’te Aç"].map((x) => `<span class="app-list-card"><span>${x}</span><i>→</i></span>`).join("")}</section><section class="app-card app-white-card"><h2>Resmi Web Sitesi</h2><p>Güncel çalışma saatleri, etkinlikler, kampanyalar, marka güncellemeleri ve geçici duyurular için her zaman resmi web sitesini kontrol edin.</p>${outlet.websiteUrl ? `<a class="button" href="${esc(outlet.websiteUrl)}">Resmi Web Sitesini Ziyaret Et</a>` : ""}</section><section class="app-card app-white-card"><h2>Restoranlar & Kafeler</h2>${(
         outlet.restaurants || ["Restoran bilgisi güncelleniyor"]
       )
         .slice(0, 4)

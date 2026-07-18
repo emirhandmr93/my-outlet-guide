@@ -3088,3 +3088,53 @@ body:has([data-explore-page]) { background: #f3f5f8; overflow-x: hidden; }
   .explore-app .app-section { padding: 16px 2px 4px; }
   .explore-list-card { border-radius: 24px; }
 }
+
+/* Mobile app-shell regression guardrails for Explore and outlet detail pages. */
+@media (max-width: 720px) {
+  html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
+  *, *::before, *::after { box-sizing: border-box; }
+  .app-screen, .app-shell, .app-page, .app-section, .app-card, .app-white-card,
+  .app-list-card, .app-result-card, .app-search-input, .explore-app,
+  .explore-list-stack, .explore-list-card, .explore-mode-panel,
+  .app-detail-hero, .app-gallery-strip, .app-action-grid, .app-quick-grid,
+  .app-route-card, .app-tool-card { max-width: 100%; min-width: 0; box-sizing: border-box; }
+  .app-page { width: min(100%, 430px); padding-left: 16px; padding-right: 16px; padding-bottom: calc(150px + env(safe-area-inset-bottom)); }
+  .app-chip-row { max-width: 100%; min-width: 0; overflow-x: auto; overscroll-behavior-x: contain; }
+  .app-chip-row > * { flex: 0 0 auto; }
+  .app-bottom-tabs { left: 16px; right: 16px; width: auto; max-width: calc(100vw - 32px); bottom: calc(14px + env(safe-area-inset-bottom)); box-sizing: border-box; }
+  body:has(.app-bottom-tabs) main { padding-bottom: calc(150px + env(safe-area-inset-bottom)); }
+  body:has(.app-bottom-tabs) footer { display: none; }
+  .explore-app { width: 100%; overflow: hidden; }
+  .explore-mode-chips, .explore-country-filters { width: 100%; max-width: 100%; }
+  .explore-discovery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .explore-discovery-card { min-width: 0; padding: 14px 12px; gap: 9px; align-items: flex-start; }
+  .explore-discovery-card b { flex-basis: 42px; width: 42px; height: 42px; border-radius: 16px; }
+  .explore-discovery-card span { min-width: 0; max-width: 100%; font-size: clamp(.86rem, 3.7vw, 1rem); overflow-wrap: normal; word-break: normal; }
+  .explore-discovery-card small { margin-top: 3px; font-size: clamp(.72rem, 3.1vw, .82rem); overflow-wrap: normal; }
+  .explore-list-card { width: 100%; grid-template-columns: 52px minmax(0, 1fr) 18px; overflow: hidden; }
+  .explore-list-card:has(> b) { grid-template-columns: 52px minmax(42px, auto) minmax(0, 1fr) 18px; }
+  .explore-list-card span { min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+  .explore-list-card small, .app-search-result-card small { overflow-wrap: anywhere; word-break: normal; }
+  .app-search-result-card { grid-template-columns: 42px minmax(42px, auto) minmax(0, 1fr) 18px; overflow: hidden; }
+  .app-search-result-card span { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+  .explore-mode-panel { width: 100%; padding: 16px; overflow: hidden; }
+  .explore-mode-panel > p { max-width: 100%; overflow-wrap: anywhere; }
+  .app-detail-hero { min-height: 332px; border-radius: 30px; overflow: hidden; }
+  .app-detail-hero img { width: 100%; height: 100%; object-fit: cover; }
+  .app-detail-hero h2, .app-detail-hero span { max-width: 100%; overflow-wrap: anywhere; }
+  .app-gallery-strip { display: flex; gap: 10px; overflow-x: auto; padding: 2px 0 8px; }
+  .app-gallery-strip img { flex: 0 0 78px; width: 78px; height: 62px; object-fit: cover; border-radius: 18px; border: 1px solid rgba(226,231,237,.95); }
+  .app-action-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .app-action-card { min-height: 94px; padding: 12px 8px; border-radius: 24px; display: grid; place-items: center; text-align: center; }
+  .app-action-card span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 16px; background: #fff4cf; color: #8b6814; font-size: 1.2rem; }
+  .app-action-card b { font-size: clamp(.68rem, 3vw, .82rem); line-height: 1.15; }
+  .app-white-card { width: 100%; padding: 18px; border-radius: 28px; overflow: hidden; }
+  .app-quick-facts .app-quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .app-quick-fact { display: grid; gap: 6px; min-width: 0; padding: 14px; border: 1px solid rgba(226,231,237,.95); border-radius: 20px; background: #fff; }
+  .app-quick-fact i { font-style: normal; color: #ad871d; }
+  .app-quick-fact small { color: #7a8796; font-size: .65rem; font-weight: 950; letter-spacing: .08em; }
+  .app-quick-fact b { color: var(--navy); font-size: .9rem; line-height: 1.25; overflow-wrap: anywhere; }
+}
+@media (max-width: 359px) {
+  .explore-discovery-grid, .app-action-grid, .app-quick-facts .app-quick-grid { grid-template-columns: 1fr; }
+}
