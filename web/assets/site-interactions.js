@@ -82,6 +82,58 @@
   const setExploreMode = (mode) => { activeExploreMode = activeExploreMode === mode ? "" : mode; activeCountryFilter = ""; renderExploreMode(); renderAllSearch(currentQuery()); };
   const renderExploreMode = () => { const data = getExploreData(); if (!data || !activeExploreMode) return; const copy = modeCopy[activeExploreMode]; const key = modeKey[activeExploreMode]; const panel = doc.querySelector("[data-explore-mode-panel]"); if (!panel) return; panel.hidden = false; doc.querySelectorAll("[data-explore-mode]").forEach((el) => el.classList.toggle("is-active", el.dataset.exploreMode === activeExploreMode)); panel.querySelector("[data-mode-title]").textContent = copy[0]; panel.querySelector("[data-mode-subtitle]").textContent = copy[1]; const input = panel.querySelector("[data-mode-search]"); input.placeholder = copy[2]; const q = normalize(input.value); let rows = (data[key] || []).filter((item) => !q || normalize([item.title,item.subtitle,...(item.keywords||[])].join(" ")).includes(q)); const filters = panel.querySelector("[data-country-filters]"); if (activeExploreMode === "city" || activeExploreMode === "outlet") { const countries = [...new Map((data[key] || []).map((item) => [item.countryId, item.country])).entries()].slice(0, 18); filters.hidden = false; filters.innerHTML = countries.map(([id, name]) => `<button type="button" class="app-chip ${activeCountryFilter === id ? "is-active" : ""}" data-country-filter="${id}">${name}</button>`).join(""); if (activeCountryFilter) rows = rows.filter((item) => item.countryId === activeCountryFilter); } else { filters.hidden = true; filters.innerHTML = ""; } panel.querySelector("[data-mode-count]").textContent = `${rows.length} sonuç`; panel.querySelector("[data-mode-results]").innerHTML = rows.map((item) => exploreRow(item, activeExploreMode)).join("") || resultHtml([]); };
 
+
+  doc.addEventListener("click", (event) => {
+    const thumb = event.target.closest("[data-gallery-thumb]");
+    const category = event.target.closest("[data-brand-category-toggle]");
+    const transport = event.target.closest("[data-transport-toggle]");
+    const restaurants = event.target.closest("[data-restaurants-toggle]");
+    const detailTab = event.target.closest(".app-detail-tabs a[href^='#']");
+    if (thumb) {
+      event.preventDefault();
+      const hero = doc.querySelector("[data-gallery-hero]");
+      const next = thumb.dataset.src;
+      if (hero && next) hero.setAttribute("src", next);
+      doc.querySelectorAll("[data-gallery-thumb]").forEach((button) => button.classList.toggle("is-selected", button === thumb));
+    }
+    if (category) {
+      event.preventDefault();
+      const wrap = category.closest("[data-brand-category]");
+      const list = wrap?.querySelector(".app-brand-chip-list");
+      if (list) list.hidden = !list.hidden;
+      category.classList.toggle("is-open", Boolean(list && !list.hidden));
+    }
+    if (transport) {
+      event.preventDefault();
+      const guide = doc.querySelector("[data-transport-guide]");
+      if (guide) { guide.hidden = false; guide.scrollIntoView({ behavior: reducedMotionQuery.matches ? "auto" : "smooth", block: "start" }); }
+    }
+    if (restaurants) {
+      event.preventDefault();
+      doc.querySelectorAll("[data-extra-restaurant]").forEach((row) => { row.hidden = false; });
+      restaurants.hidden = true;
+    }
+    if (detailTab) {
+      const target = doc.querySelector(detailTab.getAttribute("href"));
+      if (target) { event.preventDefault(); target.scrollIntoView({ behavior: reducedMotionQuery.matches ? "auto" : "smooth", block: "start" }); }
+    }
+  });
+  doc.addEventListener("input", (event) => {
+    if (!event.target.matches("[data-brand-search]")) return;
+    const q = normalize(event.target.value);
+    doc.querySelectorAll("[data-brand-category]").forEach((category) => {
+      let matched = false;
+      category.querySelectorAll("[data-brand-item]").forEach((item) => {
+        const visible = !q || normalize(item.textContent).includes(q);
+        item.hidden = !visible;
+        matched = matched || visible;
+      });
+      category.hidden = Boolean(q && !matched);
+      const list = category.querySelector(".app-brand-chip-list");
+      if (q && list) list.hidden = false;
+    });
+  });
+
   const path = location.pathname.replace(/\/index\.html$/, "/");
   const section = path === "/" ? "home" : path.startsWith("/trip-planner/") || path.startsWith("/flight-deals/") ? "trip" : path.startsWith("/savings/") || path.startsWith("/tax-free/") ? "savings" : path.startsWith("/app/") ? "profile" : path.startsWith("/explore/") || path.startsWith("/outlets/") || path.startsWith("/cities/") || path.startsWith("/countries/") || path.startsWith("/brands/") ? "explore" : "";
   doc.querySelectorAll(".app-bottom-tabs a").forEach((a) => { const href = a.getAttribute("href") || ""; const match = (section === "home" && href === "/") || (section === "explore" && href === "/explore/") || (section === "trip" && href === "/trip-planner/") || (section === "savings" && href === "/savings/") || (section === "profile" && href === "/app/"); a.classList.toggle("is-active", match); if (match) a.setAttribute("aria-current", "page"); });
