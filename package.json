@@ -40,8 +40,8 @@
     "web:generate": "tsx tools/generateWebsite.ts",
     "web:check": "tsx tools/checkMinimumWebSite.ts",
     "web:preview": "npm run web:prepare && npm run web:generate && npx serve web",
-    "web:poc:start": "EXPO_USE_WEB_POC=1 expo start --web",
-    "web:poc:export": "EXPO_USE_WEB_POC=1 expo export --platform web --output-dir dist-web-poc"
+    "web:poc:start": "tsx tools/startWebPoc.ts",
+    "web:poc:export": "tsx tools/exportWebPoc.ts"
   },
   "private": true,
   "devDependencies": {
