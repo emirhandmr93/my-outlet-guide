@@ -6,6 +6,8 @@
   let index = [];
   let activeTypes = new Set();
   let lastFocused = null;
+  let activeExploreMode = "";
+  let activeCountryFilter = "";
 
   const lock = (value) => body.classList.toggle("is-modal-open", value);
   const openPanel = (selector, focusSelector) => {
@@ -30,15 +32,19 @@
     const clear = event.target.closest("[data-search-clear]");
     const chip = event.target.closest("[data-search-chip]");
     const type = event.target.closest("[data-search-type]");
+    const exploreMode = event.target.closest("[data-explore-mode]");
+    const countryFilter = event.target.closest("[data-country-filter]");
     if (menuOpen) { event.preventDefault(); openPanel("[data-menu-overlay]", "[data-menu-close]"); }
     if (searchOpen) { event.preventDefault(); openPanel("[data-search-overlay]", "[data-search-input]"); renderAllSearch(event.target.dataset.searchPrefill || ""); }
     if (close) { event.preventDefault(); closePanels(); }
     if (clear) { event.preventDefault(); setQuery(""); doc.querySelectorAll("[data-home-search-results]").forEach((el) => { el.hidden = true; }); }
     if (chip) { event.preventDefault(); setQuery(chip.dataset.searchChip || chip.textContent || ""); }
     if (type) { event.preventDefault(); const value = type.dataset.searchType; activeTypes.has(value) ? activeTypes.delete(value) : activeTypes.add(value); type.classList.toggle("is-active", activeTypes.has(value)); renderAllSearch(currentQuery()); }
+    if (exploreMode) { event.preventDefault(); setExploreMode(exploreMode.dataset.exploreMode || ""); }
+    if (countryFilter) { event.preventDefault(); activeCountryFilter = activeCountryFilter === countryFilter.dataset.countryFilter ? "" : countryFilter.dataset.countryFilter; renderExploreMode(); }
   });
   doc.addEventListener("keydown", (event) => { if (event.key === "Escape") closePanels(); });
-  doc.addEventListener("input", (event) => { if (event.target.matches("[data-search-input]")) renderAllSearch(event.target.value); });
+  doc.addEventListener("input", (event) => { if (event.target.matches("[data-search-input]")) renderAllSearch(event.target.value); if (event.target.matches("[data-mode-search]")) renderExploreMode(); });
 
   const currentQuery = () => doc.querySelector("[data-inline-search]")?.value || doc.querySelector(".app-search-overlay [data-search-input]")?.value || "";
   const setQuery = (query) => { doc.querySelectorAll("[data-search-input]").forEach((input) => { input.value = query; }); renderAllSearch(query); doc.querySelector("[data-inline-search]")?.focus(); };
@@ -48,7 +54,7 @@
     return index;
   };
   const icons = { outlet: "🏬", city: "📍", country: "🌍", brand: "🏷️" };
-  const resultHtml = (items) => items.length ? items.map((item) => `<a class="app-result-card app-search-result-card" href="${item.href}"><em>${icons[item.type] || "⌕"}</em><b>${labels[item.type] || item.type}</b><span>${item.title}<small>${item.subtitle || ""}</small></span><i>→</i></a>`).join("") : `<div class="app-empty-state"><h3>Sonuç bulunamadı</h3><p>Farklı bir şehir, outlet veya marka adı deneyin.</p></div>`;
+  const resultHtml = (items) => items.length ? items.map((item) => `<a class="app-result-card app-search-result-card" href="${item.href}"><em>${icons[item.type] || "⌕"}</em><b>${labels[item.type] || item.type}</b><span>${item.title}<small>${item.subtitle || ""}</small></span><i>→</i></a>`).join("") : `<div class="app-empty-state"><h3>Sonuç bulunamadı</h3><p>Aramanı değiştir veya ülke, şehir, outlet adı dene.</p></div>`;
   const search = async (query) => {
     const q = normalize(query);
     const data = await loadIndex();
@@ -57,13 +63,22 @@
   };
   async function renderAllSearch(query) {
     const hasQuery = Boolean(String(query || "").trim());
-    doc.querySelectorAll("[data-default-discovery]").forEach((el) => { el.hidden = hasQuery; });
+    doc.querySelectorAll("[data-default-discovery]").forEach((el) => { el.hidden = hasQuery || Boolean(activeExploreMode); });
+    doc.querySelectorAll("[data-explore-mode-panel]").forEach((el) => { el.hidden = hasQuery || !activeExploreMode; });
     doc.querySelectorAll("[data-search-section]").forEach((el) => { el.hidden = !hasQuery; });
     const items = await search(query);
+    doc.querySelectorAll("[data-search-count]").forEach((el) => { el.textContent = hasQuery ? `Sonuçlar “${query}” · ${items.length}` : ""; });
     doc.querySelectorAll("[data-search-results]").forEach((el) => { el.innerHTML = hasQuery ? resultHtml(items) : ""; });
     doc.querySelectorAll("[data-home-search-results]").forEach((el) => { el.hidden = !hasQuery; });
     doc.querySelectorAll("[data-search-clear]").forEach((el) => { el.hidden = !hasQuery; });
   }
+
+  const getExploreData = () => { const root = doc.querySelector("[data-explore-page]"); if (!root) return null; try { return JSON.parse(root.dataset.exploreData || "{}"); } catch { return null; } };
+  const modeCopy = { country: ["Ülkeler", "Outlet rehberine devam etmek için ülke seç.", "Ülke ara..."], city: ["Şehirler", "Gerçek outlet kapsamı olan şehirleri incele.", "Şehir veya ülke ara..."], outlet: ["Outletler", "Outlet, şehir, ülke veya marka adına göre ara.", "Outlet, şehir, ülke ara..."] };
+  const modeKey = { country: "countries", city: "cities", outlet: "outlets" };
+  const exploreRow = (item, mode) => `<a class="explore-list-card" href="${item.href}"><span class="explore-avatar">${item.image ? `<img src="${item.image}" alt="">` : (item.flag || (mode === "outlet" ? "🏬" : "⌖"))}</span>${mode === "outlet" ? "<b>OUTLET</b>" : ""}<span>${item.title}<small>${item.subtitle}</small></span><i>→</i></a>`;
+  const setExploreMode = (mode) => { activeExploreMode = activeExploreMode === mode ? "" : mode; activeCountryFilter = ""; renderExploreMode(); renderAllSearch(currentQuery()); };
+  const renderExploreMode = () => { const data = getExploreData(); if (!data || !activeExploreMode) return; const copy = modeCopy[activeExploreMode]; const key = modeKey[activeExploreMode]; const panel = doc.querySelector("[data-explore-mode-panel]"); if (!panel) return; panel.hidden = false; doc.querySelectorAll("[data-explore-mode]").forEach((el) => el.classList.toggle("is-active", el.dataset.exploreMode === activeExploreMode)); panel.querySelector("[data-mode-title]").textContent = copy[0]; panel.querySelector("[data-mode-subtitle]").textContent = copy[1]; const input = panel.querySelector("[data-mode-search]"); input.placeholder = copy[2]; const q = normalize(input.value); let rows = (data[key] || []).filter((item) => !q || normalize([item.title,item.subtitle,...(item.keywords||[])].join(" ")).includes(q)); const filters = panel.querySelector("[data-country-filters]"); if (activeExploreMode === "city" || activeExploreMode === "outlet") { const countries = [...new Map((data[key] || []).map((item) => [item.countryId, item.country])).entries()].slice(0, 18); filters.hidden = false; filters.innerHTML = countries.map(([id, name]) => `<button type="button" class="app-chip ${activeCountryFilter === id ? "is-active" : ""}" data-country-filter="${id}">${name}</button>`).join(""); if (activeCountryFilter) rows = rows.filter((item) => item.countryId === activeCountryFilter); } else { filters.hidden = true; filters.innerHTML = ""; } panel.querySelector("[data-mode-count]").textContent = `${rows.length} sonuç`; panel.querySelector("[data-mode-results]").innerHTML = rows.map((item) => exploreRow(item, activeExploreMode)).join("") || resultHtml([]); };
 
   const path = location.pathname.replace(/\/index\.html$/, "/");
   const section = path === "/" ? "home" : path.startsWith("/trip-planner/") || path.startsWith("/flight-deals/") ? "trip" : path.startsWith("/savings/") || path.startsWith("/tax-free/") ? "savings" : path.startsWith("/app/") ? "profile" : path.startsWith("/explore/") || path.startsWith("/outlets/") || path.startsWith("/cities/") || path.startsWith("/countries/") || path.startsWith("/brands/") ? "explore" : "";
