@@ -468,6 +468,73 @@ assert(
   "ACCOUNT_DELETION_URL points to hosted account deletion page",
 );
 
+// Homepage final-polish guardrails.
+assert(
+  /<a class="home-search app-search-pill" href="\/explore\/"/.test(home),
+  "homepage hero search pill is a static link to /explore/",
+);
+assert(
+  /<a class="home-primary-cta" href="\/explore\/">Outletleri keşfet/.test(home),
+  "homepage primary Outletleri keşfet CTA links to /explore/",
+);
+assert(
+  !/<(?:input|select|textarea)\b/i.test(home),
+  "homepage has no raw input/select/textarea controls",
+);
+assert(
+  !/<\/header><main[^>]*>\s*<div[^>]*>\s*<p>Outlet keşfi, seyahat planı, tasarruf ve çevrimdışı erişim için temel araçlar\.<\/p>/i.test(home),
+  "homepage has no orphan subtitle immediately under hero",
+);
+for (const image of [
+  "explore/explore-hero-premium.png",
+  "heroes/hero-trips.PNG",
+  "heroes/hero-savings.PNG",
+  "heroes/hero-offline.PNG",
+])
+  assert(
+    home.includes(image),
+    `homepage feature card uses distinct asset: ${image}`,
+  );
+assert(
+  new Set([
+    "explore/explore-hero-premium.png",
+    "heroes/hero-trips.PNG",
+    "heroes/hero-savings.PNG",
+    "heroes/hero-offline.PNG",
+  ]).size === 4,
+  "homepage feature cards use four distinct visual mappings",
+);
+for (const outlet of ["La Vallée Village", "Bicester Village"])
+  assert(
+    home.includes(outlet),
+    `homepage recommended outlets include ${outlet}`,
+  );
+for (const cta of ["Seyahat oluştur", "Favorilere başla"])
+  assert(home.includes(cta), `homepage activity card includes ${cta}`);
+for (const tool of [
+  "Tax Free Hesaplayıcı",
+  "Döviz Çevirici",
+  "Uçuş Alarmı",
+  "Çevrimdışı",
+])
+  assert(home.includes(tool), `homepage shopping tools include ${tool}`);
+assert(
+  /home-city-card[^>]+background-image:/i.test(home),
+  "homepage popular cities use image-led cards",
+);
+assert(
+  /MY OUTLET GUIDE/.test(home),
+  "homepage keeps exact MY OUTLET GUIDE brand",
+);
+assert(
+  !/web-client\.js|src\/web\/client\.ts/i.test(webText),
+  "website has no client layer references",
+);
+assert(
+  !/href=["']\/login\//i.test(webText),
+  "website has no /login route link",
+);
+
 // Phase 1 visual/static public web guardrails.
 for (const marker of [
   "app-shell",
