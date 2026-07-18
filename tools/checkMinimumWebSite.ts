@@ -251,6 +251,7 @@ for (const marker of ["Ülkeler", "Şehirler", "Outletler", "Popüler aramalar"]
 const topModeChips = [...explore.matchAll(/<button class="app-chip" type="button" data-explore-mode="(country|city|outlet)">([^<]+)<\/button>/g)].map((match) => match[2].trim());
 assert(topModeChips.join("|") === "🌍 Ülkeler|📍 Şehirler|🛍️ Outletler", "explore includes exactly Ülkeler, Şehirler, Outletler mode chips");
 assert(!/data-explore-mode="brand"|🏷️ Markalar/.test(explore), "explore top mode chips exclude Markalar");
+assert(!/<a class="nav-app" href="\/app\/"[^>]*>⇩/.test(explore), "explore contains no mobile top-right profile/download shortcut markup in content shell");
 assert(/data-explore-main-search/.test(explore) && /explore-search-input/.test(explore), "explore uses a styled inline search input");
 for (const marker of ["Outlet ara", "Ülkeye göre keşfet", "Şehre göre keşfet"])
   assert(explore.includes(marker), `explore discovery option exists: ${marker}`);
@@ -373,12 +374,17 @@ assert(
 const interactions = read("web/assets/site-interactions.js");
 assert(/setExploreMode|renderExploreMode|data-explore-mode/.test(interactions) && /Şehir veya ülke ara\.\.\./.test(interactions) && /Outlet, şehir, ülke ara\.\.\./.test(interactions), "site interactions handle Explore mode switching");
 assert(/loadIndex|search-index\.json|renderAllSearch/.test(interactions), "site interactions handle Explore search from static index");
+for (const marker of ["data-gallery-thumb", "data-brand-category-toggle", "data-brand-search", "data-transport-toggle", "data-restaurants-toggle"]) assert(interactions.includes(marker), `site interactions include behavior hook: ${marker}`);
 assert(/startsWith\("\/explore\/"\).*startsWith\("\/outlets\/"\).*startsWith\("\/cities\/"\).*startsWith\("\/countries\/"\).*startsWith\("\/brands\/"\)/.test(interactions), "bottom tab active logic includes explore and discovery routes");
 assert(/body:has\(\[data-explore-page\]\) footer\s*\{\s*display:\s*none/.test(styles), "mobile footer is hidden on explore");
 assert(explore.includes("Aklındakini bul") && explore.includes("Nasıl keşfetmek istersin?") && explore.includes("data-explore-main-search") && explore.includes("/assets/site-interactions.js"), "explore includes native app hero and local search wiring");
 assert(!/type&quot;:&quot;country&quot;[\s\S]{0,260}?subtitle&quot;:&quot;0 outlet/.test(explore), "explore default country data excludes zero-outlet countries");
 assert(explore.includes("explore-list-card") && explore.includes("explore-discovery-card"), "explore result/list cards contain app-style classes");
+assert(/city-images\//.test(popularCitiesSection), "popular cities use city thumbnails");
+assert(!/type&quot;:&quot;city&quot;[\s\S]{0,320}?image&quot;:/.test(explore), "full city mode data uses flag/avatar rows, not mixed city photos");
+assert(!/is-outlet-row[\s\S]{0,80}<b>OUTLET<\/b><\/span>/.test(interactions), "outlet rows keep OUTLET label with title content instead of separate left column");
 for (const outletPage of [read("web/outlets/fidenza-village/index.html"), read("web/outlets/barberino/index.html")]) {
+  assert(/data-gallery-hero|data-gallery-thumb/.test(outletPage), "outlet detail has real thumbnail image markup");
   for (const marker of ["mobile-detail-topbar", "Geri", "Outlet", "app-gallery-strip", "Favori", "Seyahat Oluştur", "Yol Tarifi", "Hızlı Bilgiler", "Tax Free", "Markalar", "Ulaşım", "Haritalar", "Resmi Web Sitesi", "Restoranlar & Kafeler", "Hizmetler", "Yorumlar"]) assert(outletPage.includes(marker), `outlet detail includes ${marker}`);
   assert(/app-action-card app-cta/.test(outletPage), "outlet detail includes dark action card markup");
   assert(!/Saatler10|HavalimanlarıFLR|Generally 10:00|selected summer dates|Hizmet bilgisi|>Görsel</.test(outletPage), "outlet detail excludes known parity regressions");
@@ -402,13 +408,14 @@ assert(
   "generated HTML pages reference no scripts except /assets/site-interactions.js with defer",
 );
 assert(!existsSync("web-client.js") && !existsSync("web/web-client.js"), "no web-client.js exists");
+assert(!filesIn("web/assets").some((path) => /\.(png|jpe?g|webp|gif|avif|ico)$/i.test(path)), "no binary files under web/assets");
 assert(!existsSync("src/web/client.ts"), "no src/web/client.ts exists");
 assert(!existsSync("web/login/index.html") && !/href=["']\/login\/?["']/i.test(webText), "no /login route exists");
 for (const name of ["featured", "recommended", "cities"])
   assert(home.includes(`data-carousel="${name}"`), `homepage contains carousel data attribute: ${name}`);
 assert(/data-carousel-dot[^>]*(aria-current|class=)/i.test(home), "homepage contains active-dot capable carousel markup");
 assert(!/<(?:select|textarea)\b/i.test(webText), "static pages have no raw select/textarea controls");
-assert(!/<input\b(?![^>]*(data-search-input|data-mode-search))/i.test(webText), "website inputs are limited to styled search controls");
+assert(!/<input\b(?![^>]*(data-search-input|data-mode-search|data-brand-search))/i.test(webText), "website inputs are limited to styled search controls");
 assert(
   !/apiKey\s*[:=]|OPEN_METEO_API_KEY|secret\s*[:=]|private[_-]?key|password\s*[:=]/i.test(
     allWeb,

@@ -3166,3 +3166,32 @@ body:has([data-explore-page]) { background: #f3f5f8; overflow-x: hidden; }
   .app-map-card .app-list-card, .app-category-row, .app-food-row { grid-template-columns:46px minmax(0,1fr) 18px; }
   .app-list-card span, .app-list-card small, .app-quick-card, .app-quick-fact b { min-width:0; max-width:100%; overflow-wrap:anywhere; }
 }
+
+/* Mobile Explore + Outlet detail parity hardening */
+.app-shell, .app-page, .app-section, .app-card, .app-list-card, .app-result-card, .app-search-input, .app-chip-row > *, .app-action-card { min-width: 0; max-width: 100%; }
+.app-search-input input, .app-brand-search input { min-width: 0; width: 100%; border: 0; background: transparent; color: var(--navy); font: inherit; outline: none; }
+.app-chip-row { padding-left: 2px; padding-right: 18px; }
+.explore-mode-chips, .explore-popular-chips, .explore-country-filters { margin-left: -2px; margin-right: -2px; padding-left: 2px; padding-right: 28px; }
+.explore-list-card.is-outlet-row { grid-template-columns: 52px minmax(0, 1fr) 18px; }
+.explore-list-card.is-outlet-row span > b { display: block; margin-bottom: 3px; }
+.app-gallery-thumb { flex: 0 0 78px; width: 78px; padding: 0; border: 0; border-radius: 18px; background: transparent; appearance: none; -webkit-appearance: none; }
+.app-gallery-thumb img { display: block; width: 78px; height: 62px; object-fit: cover; border-radius: 18px; border: 1px solid rgba(226,231,237,.95); }
+.app-gallery-thumb.is-selected img { border: 2px solid #d3ad39; }
+.app-brand-category { display: grid; gap: 10px; margin-top: 10px; }
+.app-category-row { width: 100%; border: 1px solid rgba(226,231,237,.95); background: #fff; color: var(--navy); font: inherit; text-align: left; appearance: none; -webkit-appearance: none; }
+.app-category-row.is-open i { transform: rotate(90deg); }
+.app-brand-chip-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 4px 8px 58px; }
+.app-brand-chip-list span { border-radius: 999px; background: #f3f5f8; border: 1px solid rgba(226,231,237,.95); padding: 8px 11px; font-size: .82rem; font-weight: 850; }
+.app-transport-guide { margin-top: 14px; padding: 14px; border-radius: 20px; background: #f5f7fa; color: var(--navy); }
+.app-transport-guide h3 { margin: 10px 0 4px; font-size: 1rem; }
+.app-transport-guide p, .app-transport-guide li { color: var(--muted); font-size: .9rem; }
+@media (max-width: 720px) {
+  body:has([data-explore-page]) .app-topbar { display: none; }
+  body:has(.app-bottom-tabs) main, body:has([data-explore-page]) .app-page { padding-bottom: calc(170px + env(safe-area-inset-bottom)); }
+  .explore-app .app-section > p { margin-top: 4px; color: var(--muted); font-weight: 750; }
+  .explore-discovery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .explore-discovery-card.is-wide { grid-column: 1 / -1; }
+  .app-gallery-strip { overflow-x: auto; scrollbar-width: none; }
+  .app-gallery-strip::-webkit-scrollbar { display: none; }
+}
+html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
