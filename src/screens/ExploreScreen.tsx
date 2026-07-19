@@ -14,6 +14,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -171,6 +172,11 @@ function formatResultSubtitle(
 export function ExploreScreen() {
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
+  const contentWidth = Math.min(Math.max(width - 68, 0), 1180);
+  const twoColumnWidth = (contentWidth - 12) / 2;
+  const threeColumnWidth = (contentWidth - 24) / 3;
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<MainTabParamList, "Explore">>();
   const [search, setSearch] = useState("");
@@ -298,34 +304,47 @@ export function ExploreScreen() {
           styles.content,
           {
             paddingTop: getScreenTopInset(insets.top),
-            paddingBottom: getFloatingTabClearance(insets.bottom),
+            paddingBottom: isDesktopWeb
+              ? 32
+              : getFloatingTabClearance(insets.bottom),
           },
+          isDesktopWeb && styles.contentDesktop,
         ]}
         scrollIndicatorInsets={{
           top: getScreenTopInset(insets.top),
           bottom: getScrollIndicatorBottomInset(insets.bottom),
         }}
       >
+        <View style={isDesktopWeb ? styles.pageDesktop : undefined}>
         <ImageBackground
           source={heroAssets.explore}
           resizeMode="cover"
-          style={styles.heroCard}
+          style={[styles.heroCard, isDesktopWeb && styles.heroCardDesktop]}
           imageStyle={[
             styles.heroImage,
             Platform.OS === "web" ? styles.heroImageWeb : null,
           ]}
         >
-          <View style={styles.heroTextScrim}>
+          <View
+            style={[
+              styles.heroTextScrim,
+              isDesktopWeb && styles.heroTextScrimDesktop,
+            ]}
+          >
             <Text style={styles.heroKicker}>{t("explore.heroKicker")}</Text>
-            <Text style={styles.heroTitle}>{t("explore.heroTitle")}</Text>
-            <Text style={styles.heroText}>{t("explore.heroSubtitle")}</Text>
+            <Text style={[styles.heroTitle, isDesktopWeb && styles.heroTitleDesktop]}>
+              {t("explore.heroTitle")}
+            </Text>
+            <Text style={[styles.heroText, isDesktopWeb && styles.heroTextDesktop]}>
+              {t("explore.heroSubtitle")}
+            </Text>
           </View>
         </ImageBackground>
         {activeTab === null ? (
           <View style={styles.searchBox}>
             <Text style={styles.searchIcon}>⌕</Text>
             <TextInput
-              style={styles.searchInput}
+              style={[styles.searchInput, Platform.OS === "web" && styles.searchInputWeb]}
               placeholder={t("explore.searchPlaceholder")}
               placeholderTextColor="#8B94A3"
               value={search}
@@ -372,10 +391,11 @@ export function ExploreScreen() {
                 {t("explore.resultsFor")} “{q}” · {suggestions.length}
               </Text>
             </View>
+            <View style={isDesktopWeb ? styles.twoColumnGrid : undefined}>
             {suggestions.map((item) => (
               <TouchableOpacity
                 key={`${item.type}-${item.id}`}
-                style={styles.resultCard}
+                style={[styles.resultCard, isDesktopWeb && { width: twoColumnWidth }]}
                 onPress={() => openResult(item)}
               >
                 <View style={styles.resultIconWrap}>
@@ -395,6 +415,7 @@ export function ExploreScreen() {
                 <Text style={styles.resultArrow}>›</Text>
               </TouchableOpacity>
             ))}
+            </View>
             {suggestions.length === 0 ? <Empty t={t} /> : null}
           </>
         ) : activeTab === null ? (
@@ -405,6 +426,9 @@ export function ExploreScreen() {
             cities={compactCities}
             navigation={navigation}
             language={language}
+            isDesktopWeb={isDesktopWeb}
+            twoColumnWidth={twoColumnWidth}
+            threeColumnWidth={threeColumnWidth}
           />
         ) : null}
         {activeTab === "country" && !q ? (
@@ -423,11 +447,11 @@ export function ExploreScreen() {
             <Text style={styles.resultCount}>
               {filteredCountries.length} {t("explore.resultCount")}
             </Text>
-            <View style={styles.countryList}>
+            <View style={isDesktopWeb ? styles.threeColumnGrid : styles.countryList}>
               {filteredCountries.map((c) => (
                 <TouchableOpacity
                   key={c.countryId}
-                  style={styles.countryRow}
+                  style={[styles.countryRow, isDesktopWeb && styles.countryCardDesktop, isDesktopWeb && { width: threeColumnWidth }]}
                   onPress={() =>
                     navigation.navigate("Country", { countryId: c.countryId })
                   }
@@ -468,10 +492,12 @@ export function ExploreScreen() {
               reset={hasCityFilters ? resetFilters : undefined}
               t={t}
               language={language}
+              isDesktopWeb={isDesktopWeb}
             />
             <Text style={styles.resultCount}>
               {filteredCities.length} {t("explore.resultCount")}
             </Text>
+            <View style={isDesktopWeb ? styles.twoColumnGrid : undefined}>
             {filteredCities.map((c) => (
               <CityRow
                 key={c.cityId}
@@ -480,8 +506,11 @@ export function ExploreScreen() {
                 language={language}
                 navigation={navigation}
                 compact
+                isDesktopWeb={isDesktopWeb}
+                width={twoColumnWidth}
               />
             ))}
+            </View>
           </>
         ) : null}
         {activeTab === "outlet" && !q ? (
@@ -507,14 +536,16 @@ export function ExploreScreen() {
               reset={hasOutletFilters ? resetFilters : undefined}
               t={t}
               language={language}
+              isDesktopWeb={isDesktopWeb}
             />
             <Text style={styles.resultCount}>
               {outletResults.length} {t("explore.resultCount")}
             </Text>
+            <View style={isDesktopWeb ? styles.twoColumnGrid : undefined}>
             {outletResults.map((o) => (
               <TouchableOpacity
                 key={o.outletId}
-                style={styles.resultCard}
+                style={[styles.resultCard, isDesktopWeb && { width: twoColumnWidth }]}
                 onPress={() =>
                   navigation.navigate("OutletDetail", { outletId: o.outletId })
                 }
@@ -538,8 +569,10 @@ export function ExploreScreen() {
                 <Text style={styles.resultArrow}>›</Text>
               </TouchableOpacity>
             ))}
+            </View>
           </>
         ) : null}
+        </View>
       </ScrollView>
     </View>
   );
@@ -586,6 +619,9 @@ function DefaultHub({
   cities,
   navigation,
   language,
+  isDesktopWeb,
+  twoColumnWidth,
+  threeColumnWidth,
 }: any) {
   const cards: Array<[ExploreFilter, string, string, string]> = [
     [
@@ -634,7 +670,9 @@ function DefaultHub({
             key={tab}
             style={[
               styles.discoveryCard,
-              tab === "outlet"
+              isDesktopWeb
+                ? { width: threeColumnWidth }
+                : tab === "outlet"
                 ? styles.discoveryCardPrimary
                 : styles.discoveryCardSecondary,
             ]}
@@ -650,6 +688,7 @@ function DefaultHub({
         title={t("explore.popularCities")}
         subtitle={t("explore.popularCitiesSubtitle")}
       />
+      <View style={isDesktopWeb ? styles.twoColumnGrid : undefined}>
       {cities.map((c: any) => (
         <CityRow
           key={c.cityId}
@@ -657,16 +696,19 @@ function DefaultHub({
           t={t}
           language={language}
           navigation={navigation}
+          isDesktopWeb={isDesktopWeb}
+          width={twoColumnWidth}
         />
       ))}
+      </View>
     </>
   );
 }
-function CityRow({ city, t, navigation, language, compact }: any) {
+function CityRow({ city, t, navigation, language, compact, isDesktopWeb, width }: any) {
   const img = getPopularCityImage(city);
   return (
     <TouchableOpacity
-      style={styles.cityRow}
+      style={[styles.cityRow, isDesktopWeb && { width }]}
       onPress={() =>
         navigation.navigate("CityResults", { cityId: city.cityId })
       }
@@ -703,13 +745,10 @@ function FilterRail({
   reset,
   t,
   language,
+  isDesktopWeb,
 }: any) {
-  return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.filterRowPadded}
-    >
+  const chips = (
+    <>
       {reset ? (
         <TouchableOpacity style={styles.filterChip} onPress={reset}>
           <Text style={styles.filterText}>× {t("explore.clearFilters")}</Text>
@@ -755,6 +794,18 @@ function FilterRail({
           </Text>
         </TouchableOpacity>
       ))}
+    </>
+  );
+  if (isDesktopWeb) {
+    return <View style={styles.filterRowDesktop}>{chips}</View>;
+  }
+  return (
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.filterRowPadded}
+    >
+      {chips}
     </ScrollView>
   );
 }
@@ -770,6 +821,8 @@ const styles = StyleSheet.create({
   },
   container: { flex: 1, backgroundColor: "#F6F7F9" },
   content: { padding: 20 },
+  contentDesktop: { paddingHorizontal: 34 },
+  pageDesktop: { width: "100%", maxWidth: 1180, alignSelf: "center" },
   heroCard: {
     minHeight: 214,
     backgroundColor: "#0B1F3A",
@@ -784,6 +837,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 12 },
     elevation: 6,
   },
+  heroCardDesktop: { minHeight: 260 },
   heroImage: {
     borderRadius: 30,
   },
@@ -802,6 +856,7 @@ objectPosition: "58% 50%",
     paddingRight: 22,
     backgroundColor: "rgba(6, 20, 40, .54)",
   },
+  heroTextScrimDesktop: { maxWidth: "56%", minHeight: 260, padding: 32 },
   heroKicker: {
     color: "#C9A227",
     fontSize: 12,
@@ -819,6 +874,7 @@ objectPosition: "58% 50%",
     marginBottom: 10,
     flexShrink: 1,
   },
+  heroTitleDesktop: { fontSize: 38, lineHeight: 45 },
   heroText: {
     color: "#E7EDF5",
     fontSize: 16,
@@ -826,6 +882,7 @@ objectPosition: "58% 50%",
     fontWeight: "600",
     flexShrink: 1,
   },
+  heroTextDesktop: { maxWidth: 440 },
   searchBox: {
     minHeight: 62,
     backgroundColor: "#fff",
@@ -874,6 +931,7 @@ objectPosition: "58% 50%",
     fontWeight: "800",
     paddingVertical: 0,
   },
+  searchInputWeb: { outlineStyle: "none" } as any,
   clearIcon: {
     width: 34,
     height: 34,
@@ -896,6 +954,12 @@ objectPosition: "58% 50%",
     gap: 10,
     paddingLeft: 20,
     paddingRight: 24,
+    marginBottom: 8,
+  },
+  filterRowDesktop: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
     marginBottom: 8,
   },
   filterChip: {
@@ -946,6 +1010,8 @@ objectPosition: "58% 50%",
   },
   popularSearchText: { color: "#0B1F3A", fontSize: 14, fontWeight: "900" },
   discoveryGrid: { flexDirection: "row", flexWrap: "wrap", gap: 12 },
+  twoColumnGrid: { flexDirection: "row", flexWrap: "wrap", gap: 12 },
+  threeColumnGrid: { flexDirection: "row", flexWrap: "wrap", gap: 12 },
   discoveryCard: {
     minHeight: 128,
     backgroundColor: "#fff",
@@ -978,6 +1044,13 @@ objectPosition: "58% 50%",
     padding: 16,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "#E0E5EC",
+  },
+  countryCardDesktop: {
+    backgroundColor: "#fff",
+    borderRadius: 22,
+    borderWidth: 1,
+    borderColor: "#E0E5EC",
+    borderBottomWidth: 1,
   },
   countryFlag: { fontSize: 28, width: 42 },
   countryContent: { flex: 1, minWidth: 0, paddingRight: 10 },
