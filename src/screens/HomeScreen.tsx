@@ -780,7 +780,7 @@ const styles = StyleSheet.create({
   },
 
   slideImageWeb: {
-    objectPosition: "56% 50%",
+    objectPosition: "58% 50%",
   } as any,
 
   slideScrim: {
@@ -1057,7 +1057,7 @@ const styles = StyleSheet.create({
   },
 
   cityImageWeb: {
-    objectPosition: "50% 50%",
+    objectPosition: "52% 50%",
   } as any,
 
   cityOverlay: {
@@ -1112,7 +1112,7 @@ const styles = StyleSheet.create({
   },
 
   outletImageWeb: {
-    objectPosition: "50% 58%",
+    objectPosition: "58% 58%",
   } as any,
 
   outletOverlay: {

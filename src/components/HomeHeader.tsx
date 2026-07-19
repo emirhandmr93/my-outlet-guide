@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
   },
 
   heroImageWeb: {
-    objectPosition: "58% 50%",
+    objectPosition: "66% 50%",
   } as any,
 
   heroScrim: {

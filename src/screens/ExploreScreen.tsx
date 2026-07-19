@@ -8,6 +8,7 @@ import {
 import {
   Image,
   ImageBackground,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -309,7 +310,10 @@ export function ExploreScreen() {
           source={heroAssets.explore}
           resizeMode="cover"
           style={styles.heroCard}
-          imageStyle={styles.heroImage}
+          imageStyle={[
+            styles.heroImage,
+            Platform.OS === "web" ? styles.heroImageWeb : null,
+          ]}
         >
           <View style={styles.heroTextScrim}>
             <Text style={styles.heroKicker}>{t("explore.heroKicker")}</Text>
@@ -783,6 +787,9 @@ const styles = StyleSheet.create({
   heroImage: {
     borderRadius: 30,
   },
+  heroImageWeb: {
+    objectPosition: "58% 50%",
+  } as any,
   heroTextScrim: {
     alignSelf: "stretch",
     maxWidth: "76%",
