@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { languages } from "../constants/languages";
@@ -56,6 +57,8 @@ export function HomeHeader({
   onPressLanguage,
 }: HomeHeaderProps) {
   const { t, language } = useTranslation();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const selectedLanguage =
     languages.find((item) => item.languageCode === language) ?? languages[0];
   const title = getGreeting(t, userName, isGuest);
@@ -66,25 +69,41 @@ export function HomeHeader({
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.topBar}>
-        <TouchableOpacity
-          style={styles.iconButton}
-          activeOpacity={0.84}
-          onPress={onPressMenu}
-        >
-          <Text style={styles.menuIcon}>☰</Text>
-        </TouchableOpacity>
+      <View style={[styles.topBar, isDesktopWeb ? styles.topBarDesktop : null]}>
+        {!isDesktopWeb ? (
+          <TouchableOpacity
+            style={styles.iconButton}
+            activeOpacity={0.84}
+            onPress={onPressMenu}
+          >
+            <Text style={styles.menuIcon}>☰</Text>
+          </TouchableOpacity>
+        ) : null}
 
-        <View pointerEvents="none" style={styles.brandWrap}>
+        <View
+          pointerEvents="none"
+          style={[styles.brandWrap, isDesktopWeb ? styles.brandWrapDesktop : null]}
+        >
           <Image
             source={brandIcon}
-            style={styles.brandIcon}
+            style={[styles.brandIcon, isDesktopWeb ? styles.brandIconDesktop : null]}
             resizeMode="contain"
           />
-          <Text style={styles.brandText}>MY OUTLET GUIDE</Text>
+          <Text style={[styles.brandText, isDesktopWeb ? styles.brandTextDesktop : null]}>
+            MY OUTLET GUIDE
+          </Text>
         </View>
 
         <View style={styles.rightActions}>
+          {isDesktopWeb ? (
+            <TouchableOpacity
+              style={[styles.iconButton, styles.desktopMenuButton]}
+              activeOpacity={0.84}
+              onPress={onPressMenu}
+            >
+              <Text style={styles.menuIcon}>☰</Text>
+            </TouchableOpacity>
+          ) : null}
           <TouchableOpacity
             style={styles.iconButton}
             activeOpacity={0.84}
@@ -108,7 +127,7 @@ export function HomeHeader({
 
       <ImageBackground
         source={homeHeroPremiumImage}
-        style={styles.hero}
+        style={[styles.hero, isDesktopWeb ? styles.heroDesktop : null]}
         imageStyle={[
           styles.heroImage,
           Platform.OS === "web" ? styles.heroImageWeb : null,
@@ -130,7 +149,7 @@ export function HomeHeader({
           <View style={styles.patternLine} />
           <View style={styles.patternDotMuted} />
         </View>
-        <View style={styles.overlay}>
+        <View style={[styles.overlay, isDesktopWeb ? styles.overlayDesktop : null]}>
           <View style={styles.heroBrandMark}>
             <Image
               source={brandIcon}
@@ -139,8 +158,10 @@ export function HomeHeader({
             />
             <Text style={styles.heroLabel}>{t("home.heroLabel")}</Text>
           </View>
-          <Text style={styles.title}>{title}</Text>
-          <Text style={styles.subtitle}>{subtitle}</Text>
+          <Text style={[styles.title, isDesktopWeb ? styles.titleDesktop : null]}>{title}</Text>
+          <Text style={[styles.subtitle, isDesktopWeb ? styles.subtitleDesktop : null]}>
+            {subtitle}
+          </Text>
         </View>
       </ImageBackground>
     </View>
@@ -161,6 +182,11 @@ const styles = StyleSheet.create({
     position: "relative",
   },
 
+  topBarDesktop: {
+    minHeight: 52,
+    marginTop: spacing.md,
+  },
+
   brandWrap: {
     position: "absolute",
     left: 62,
@@ -171,10 +197,23 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  brandWrapDesktop: {
+    position: "relative",
+    left: undefined,
+    right: undefined,
+    height: 52,
+    justifyContent: "flex-start",
+  },
+
   brandIcon: {
     width: 34,
     height: 34,
     marginRight: spacing.xs,
+  },
+
+  brandIconDesktop: {
+    width: 38,
+    height: 38,
   },
 
   brandText: {
@@ -182,6 +221,11 @@ const styles = StyleSheet.create({
     fontSize: typography.bodySmall,
     fontWeight: typography.weightBlack,
     letterSpacing: 0.7,
+  },
+
+  brandTextDesktop: {
+    fontSize: typography.body,
+    letterSpacing: 0.9,
   },
 
   rightActions: {
@@ -200,6 +244,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     ...shadows.soft,
+  },
+
+  desktopMenuButton: {
+    width: 42,
+    height: 42,
   },
 
   languageButton: {
@@ -240,6 +289,10 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: colors.primary,
     ...shadows.premium,
+  },
+
+  heroDesktop: {
+    minHeight: 332,
   },
 
   heroImage: {
@@ -347,6 +400,12 @@ objectPosition: "50% 50%",
     justifyContent: "flex-end",
   },
 
+  overlayDesktop: {
+    minHeight: 332,
+    paddingHorizontal: 40,
+    paddingVertical: 36,
+  },
+
   heroBrandMark: {
     alignSelf: "flex-start",
     flexDirection: "row",
@@ -386,6 +445,11 @@ objectPosition: "50% 50%",
     marginBottom: spacing.md,
   },
 
+  titleDesktop: {
+    fontSize: 42,
+    lineHeight: 50,
+  },
+
   subtitle: {
     color: "#F7FAFF",
     textShadowColor: "rgba(0,0,0,0.36)",
@@ -395,5 +459,11 @@ objectPosition: "50% 50%",
     lineHeight: typography.lineBody,
     fontWeight: typography.weightMedium,
     maxWidth: 310,
+  },
+
+  subtitleDesktop: {
+    fontSize: 18,
+    lineHeight: 27,
+    maxWidth: 500,
   },
 });

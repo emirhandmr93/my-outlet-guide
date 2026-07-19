@@ -109,6 +109,16 @@ fontSize: isDesktopWeb ? 13 : 11,
 fontWeight: "900",
 marginTop: isDesktopWeb ? 0 : 2,
 },
+tabBarActiveBackgroundColor: isDesktopWeb ? "rgba(201,162,39,0.14)" : undefined,
+tabBarInactiveBackgroundColor: isDesktopWeb ? "transparent" : undefined,
+tabBarItemStyle: isDesktopWeb
+? {
+height: 52,
+marginHorizontal: 12,
+marginVertical: 4,
+borderRadius: 13,
+}
+: undefined,
 tabBarLabelPosition: isDesktopWeb ? "beside-icon" : "below-icon",
 tabBarPosition: isDesktopWeb ? "left" : "bottom",
 tabBarStyle: {
