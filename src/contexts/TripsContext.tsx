@@ -174,7 +174,9 @@ export function TripsProvider({ children }: { children: ReactNode }) {
 
     await cancelTripReminderNotifications(tripId);
     await deleteUserTrip(currentUser.userId, tripId);
+    setTrips((currentTrips) => currentTrips.filter((trip) => trip.id !== tripId && trip.tripId !== tripId));
     await refreshTrips();
+    setTrips((currentTrips) => currentTrips.filter((trip) => trip.id !== tripId && trip.tripId !== tripId));
   }
 
   async function safelySyncTripReminders(tripId: string) {
