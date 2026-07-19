@@ -1,6 +1,7 @@
 import {
   Image,
   ImageBackground,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -108,7 +109,10 @@ export function HomeHeader({
       <ImageBackground
         source={homeHeroPremiumImage}
         style={styles.hero}
-        imageStyle={styles.heroImage}
+        imageStyle={[
+          styles.heroImage,
+          Platform.OS === "web" ? styles.heroImageWeb : null,
+        ]}
         resizeMode="cover"
       >
         <View style={styles.heroScrim} />
@@ -237,6 +241,10 @@ const styles = StyleSheet.create({
   heroImage: {
     borderRadius: radius.hero,
   },
+
+  heroImageWeb: {
+    objectPosition: "58% 50%",
+  } as any,
 
   heroScrim: {
     ...StyleSheet.absoluteFillObject,
