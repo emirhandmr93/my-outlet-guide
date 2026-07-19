@@ -788,8 +788,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
   },
   heroImageWeb: {
-    objectPosition: "58% 50%",
-  } as any,
+width: "100%",
+height: "100%",
+objectFit: "cover",
+objectPosition: "58% 50%",
+} as any,
   heroTextScrim: {
     alignSelf: "stretch",
     maxWidth: "76%",
