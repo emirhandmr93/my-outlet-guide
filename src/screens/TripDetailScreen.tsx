@@ -102,7 +102,14 @@ export function TripDetailScreen() {
   const openDatePicker = (target: "start" | "end") => { setDraftDate(parseDate(target === "start" ? startDate : endDate)); setPickerTarget(target); };
   const confirmDatePicker = () => { const value = formatDate(draftDate); if (draftDate < todayAtMidnight()) return Alert.alert(t("createTrip.validationTitle"), t("createTrip.pastDateBlocked")); if (pickerTarget === "end" && value < startDate) return Alert.alert(t("createTrip.validationTitle"), t("createTrip.endDateBeforeStart")); if (pickerTarget === "start") { setStartDate(value); if (endDate < value) setEndDate(value); } else setEndDate(value); setPickerTarget(null); };
   const saveDates = async () => { if (startDate < formatDate(todayAtMidnight()) || endDate < formatDate(todayAtMidnight())) return Alert.alert(t("createTrip.validationTitle"), t("createTrip.pastDateBlocked")); if (endDate < startDate) return Alert.alert(t("createTrip.validationTitle"), t("createTrip.endDateBeforeStart")); setSavingDates(true); try { await updateTrip(trip.id, { startDate, endDate }); setEditingDates(false); } catch { Alert.alert(t("createTrip.saveFailedTitle"), t("createTrip.saveFailedMessage")); } finally { setSavingDates(false); } };
-  const confirmTripDelete = () => Alert.alert(t("trips.deleteConfirmTitle"), t("trips.deleteConfirmMessage"), [{ text: t("common.cancel"), style: "cancel" }, { text: t("common.delete"), style: "destructive", onPress: async () => { if (deleting) return; setDeleting(true); try { await deleteTrip(trip.id); navigation.navigate("MyTrips"); } catch (error) { const denied = (error as { code?: string }).code === "permission-denied"; Alert.alert(t("trips.deleteFailedTitle"), t(denied ? "trips.permissionDeniedMessage" : "trips.deleteFailedMessage")); } finally { setDeleting(false); } } }]);
+  const performTripDelete = async () => { if (deleting) return; setDeleting(true); try { await deleteTrip(trip.id); navigation.navigate("MyTrips"); } catch (error) { const denied = (error as { code?: string }).code === "permission-denied"; Alert.alert(t("trips.deleteFailedTitle"), t(denied ? "trips.permissionDeniedMessage" : "trips.deleteFailedMessage")); } finally { setDeleting(false); } };
+  const confirmTripDelete = () => {
+    if (Platform.OS === "web") {
+      if (globalThis.confirm(`${t("trips.deleteConfirmTitle")}\n\n${t("trips.deleteConfirmMessage")}`)) void performTripDelete();
+      return;
+    }
+    Alert.alert(t("trips.deleteConfirmTitle"), t("trips.deleteConfirmMessage"), [{ text: t("common.cancel"), style: "cancel" }, { text: t("common.delete"), style: "destructive", onPress: () => void performTripDelete() }]);
+  };
 
   return <ScrollView style={styles.container} contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]} scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}>
     <View style={styles.heroCard}><Text style={styles.kicker}>{t("tripDetail.heroKicker")}</Text><Text style={styles.title}>{trip.tripName}</Text><Text style={styles.subtitle}>{trip.startDate} – {trip.endDate}</Text></View>
