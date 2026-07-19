@@ -1,6 +1,6 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { useMemo, useState } from "react";
+import { createElement, useMemo, useState } from "react";
 import {
   Alert,
   Platform,
@@ -287,6 +287,16 @@ export function TripSegmentEditorScreen() {
         t("tripSegment.endBeforeStart"),
       );
     const others = trip.segments.filter((item) => item.id !== next.id);
+    const isDuplicateRoute = others.some((item) =>
+      next.outletId
+        ? item.outletId === next.outletId
+        : Boolean(next.cityId) && item.cityId === next.cityId && !item.outletId,
+    );
+    if (isDuplicateRoute)
+      return Alert.alert(
+        t("createTrip.validationTitle"),
+        t("tripSegment.overlap"),
+      );
     if (hasSegmentDateOverlap(next, others))
       return Alert.alert(
         t("createTrip.validationTitle"),
@@ -425,7 +435,16 @@ export function TripSegmentEditorScreen() {
             />
             {pickerTarget && (
               <View style={styles.pickerCard}>
-                <DateTimePicker
+                {Platform.OS === "web" ? createElement("input", {
+                  type: "date",
+                  value: pickerTarget === "start" ? segment.startDate : segment.endDate,
+                  min: trip.startDate,
+                  onChange: (event: any) => setSegment((value) => ({
+                    ...value,
+                    [pickerTarget === "start" ? "startDate" : "endDate"]: event.target.value,
+                  })),
+                  style: styles.webPickerInput,
+                }) : <DateTimePicker
                   value={parseDate(
                     pickerTarget === "start"
                       ? segment.startDate
@@ -442,7 +461,7 @@ export function TripSegmentEditorScreen() {
                       }));
                     if (Platform.OS !== "ios") setPickerTarget(null);
                   }}
-                />
+                />}
                 {Platform.OS === "ios" && (
                   <TouchableOpacity
                     style={styles.doneButton}
@@ -556,6 +575,7 @@ const styles = StyleSheet.create({
   inputText: { color: "#0B1F3A", fontWeight: "900" },
   notesInput: { minHeight: 96, textAlignVertical: "top" },
   pickerCard: { marginBottom: 12 },
+  webPickerInput: { borderWidth: 1, borderColor: "#E5E7EB", borderRadius: 12, padding: 12, fontSize: 16 },
   doneButton: { backgroundColor: "#0B1F3A", borderRadius: 16, padding: 14 },
   doneButtonText: { color: "#fff", fontWeight: "900", textAlign: "center" },
   primaryButton: { backgroundColor: "#C9A227", borderRadius: 20, padding: 17 },
