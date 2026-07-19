@@ -1112,8 +1112,12 @@ const styles = StyleSheet.create({
   },
 
   outletImageWeb: {
-    objectPosition: "58% 58%",
-  } as any,
+width: "100%",
+height: "100%",
+objectFit: "cover",
+objectPosition: "50% 50%",
+} as any,
+
 
   outletOverlay: {
     ...StyleSheet.absoluteFillObject,
