@@ -29,10 +29,15 @@ import {
   getOutletGalleryImages,
   getOutletPrimaryImage,
   getPopularCityImage,
-  getRecommendedOutletImage,
   getRecommendedOutlets,
   nativePopularCityIds,
 } from "../media/imageResolvers";
+import {
+  getOutletMediaImages,
+  getImageSource,
+  getOutletCardHeroImage,
+} from "../media/outletMedia";
+import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { colors, spacing } from "../theme";
 import {
   formatCityDisplayName,
@@ -42,6 +47,14 @@ import {
 const logo = require("../../assets/brand/logo-horizontal.png");
 const homeHero = getHomeHeroImage();
 const exploreHero = getExploreHeroImage();
+const outletMediaMode = getConfiguredOutletMediaMode();
+const recommendedOutletFallbackImage = require("../../assets/home/recommended-outlet-generic.png");
+
+function getHomeOutletImage(outlet: any) {
+  const heroImage = getOutletCardHeroImage(outlet, { mode: outletMediaMode });
+  return heroImage ? getImageSource(heroImage) : recommendedOutletFallbackImage;
+}
+
 type Route =
   | { name: "home" }
   | { name: "explore" }
@@ -170,19 +183,29 @@ function Section(p: {
   );
 }
 function OutletCard({ outlet }: { outlet: any }) {
-  const img = getRecommendedOutletImage(outlet);
   return (
     <TouchableOpacity
       style={s.outletCard}
       onPress={() => go(`/outlets/${outlet.outletId}/`)}
     >
-      <Image source={img} style={s.cardImg} />
-      <Text style={s.typeLabel}>OUTLET</Text>
-      <Text style={s.cardTitle}>{outlet.name}</Text>
-      <Text style={s.muted}>
-        {trCityName(outlet.cityId)}, {trCountryName(outlet.countryId)}
-      </Text>
-      <Text style={s.goldText}>{outlet.storesCountText}</Text>
+      <ImageBackground
+        source={getHomeOutletImage(outlet)}
+        style={s.outletImage}
+        imageStyle={s.outletImageRadius}
+      >
+        <View style={s.outletOverlay} />
+        <View style={s.outletBadge}>
+          <Text style={s.outletBadgeText}>Önerilen</Text>
+        </View>
+      </ImageBackground>
+      <View style={s.outletBody}>
+        <Text style={s.outletLocation}>
+          {trCityName(outlet.cityId)}, {trCountryName(outlet.countryId)}
+        </Text>
+        <Text style={s.outletTitle}>{outlet.name}</Text>
+        <Text style={s.outletText}>{outlet.storesCountText}</Text>
+        <Text style={s.tapText}>Outlet’i gör →</Text>
+      </View>
     </TouchableOpacity>
   );
 }
@@ -266,10 +289,26 @@ function Home() {
         <Section title="Popüler şehirler">
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {nativePopularCityIds.map((id) => (
-              <View key={id} style={s.city}>
-                <Image source={getPopularCityImage(id)!} style={s.cityImg} />
-                <Text style={s.cardTitle}>{trCityName(id)}</Text>
-                <Text style={s.muted}>{outletCount(undefined, id)} outlet</Text>
+              <View key={id} style={s.cityCardNative}>
+                <ImageBackground
+                  source={getPopularCityImage(id)!}
+                  style={s.cityImageNative}
+                  imageStyle={s.cityImageRadiusNative}
+                >
+                  <View style={s.cityOverlayNative} />
+                  <View style={s.cityContentNative}>
+                    <Text style={s.cityKickerNative}>
+                      {trCountryName(
+                        cities.find((city) => city.cityId === id)?.countryId ||
+                          "",
+                      ).toLocaleUpperCase("tr")}
+                    </Text>
+                    <Text style={s.cityTitleNative}>{trCityName(id)}</Text>
+                    <Text style={s.cityTextNative}>
+                      {outletCount(undefined, id)} outlet
+                    </Text>
+                  </View>
+                </ImageBackground>
               </View>
             ))}
           </ScrollView>
@@ -975,8 +1014,45 @@ const s = StyleSheet.create({
     width: 280,
     backgroundColor: "white",
     borderRadius: 26,
-    padding: 12,
+    overflow: "hidden",
     marginRight: 14,
+  },
+  outletImage: { height: 166 },
+  outletImageRadius: { borderTopLeftRadius: 26, borderTopRightRadius: 26 },
+  outletOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.12)",
+  },
+  outletBadge: {
+    position: "absolute",
+    top: 12,
+    left: 12,
+    backgroundColor: "white",
+    borderRadius: 999,
+    paddingHorizontal: 12,
+    paddingVertical: 4,
+  },
+  outletBadgeText: { color: colors.primary, fontSize: 11, fontWeight: "900" },
+  outletBody: { minHeight: 150, padding: 14 },
+  outletLocation: {
+    color: colors.gold,
+    fontSize: 11,
+    fontWeight: "900",
+    textTransform: "uppercase",
+    marginBottom: 4,
+  },
+  outletTitle: {
+    color: colors.primary,
+    fontSize: 20,
+    fontWeight: "900",
+    marginBottom: 4,
+  },
+  outletText: { color: "#5f6b7a", fontSize: 13, lineHeight: 18 },
+  tapText: {
+    marginTop: 8,
+    color: colors.primary,
+    fontSize: 13,
+    fontWeight: "900",
   },
   cardImg: { height: 145, borderRadius: 20, width: "100%" },
   cardTitle: { fontSize: 15, fontWeight: "900", color: colors.primary },
@@ -1006,6 +1082,40 @@ const s = StyleSheet.create({
     marginRight: 12,
   },
   cityImg: { height: 94, borderRadius: 18, width: "100%" },
+  cityCardNative: {
+    width: 152,
+    height: 148,
+    borderRadius: 24,
+    overflow: "hidden",
+    marginRight: 12,
+  },
+  cityImageNative: { flex: 1, justifyContent: "flex-end" },
+  cityImageRadiusNative: { borderRadius: 24 },
+  cityOverlayNative: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0, 0, 0, 0.34)",
+    borderRadius: 24,
+  },
+  cityContentNative: { padding: 14 },
+  cityKickerNative: {
+    color: colors.gold,
+    fontSize: 11,
+    fontWeight: "900",
+    textTransform: "uppercase",
+    marginBottom: 4,
+  },
+  cityTitleNative: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "900",
+    marginBottom: 4,
+  },
+  cityTextNative: {
+    color: "#EEF2F7",
+    fontSize: 13,
+    fontWeight: "700",
+    lineHeight: 18,
+  },
   tabs: {
     position: "fixed" as any,
     left: 14,
