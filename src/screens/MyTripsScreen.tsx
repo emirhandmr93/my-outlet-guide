@@ -1,5 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
-import { Alert, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useRef, useState } from "react";
+import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
@@ -13,7 +14,7 @@ import type { RootStackParamList } from "../navigation/types";
 import { requireAuth } from "../utils/requireAuth";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
-function TripCard({ trip, onPress, onDelete, t, language }: { trip: Trip; onPress: () => void; onDelete: () => void; t: (key: string) => string; language: Parameters<typeof formatCityDisplayName>[1] }) {
+function TripCard({ trip, onPress, onDelete, isDeleting, t, language }: { trip: Trip; onPress: () => void; onDelete: () => void; isDeleting: boolean; t: (key: string) => string; language: Parameters<typeof formatCityDisplayName>[1] }) {
   const primarySegment = trip.segments?.find((item) => item.cityId || item.cityName || item.countryCode || item.countryName || item.outletName);
   const cityValue = primarySegment?.cityId || primarySegment?.cityName || trip.city || "";
   const countryValue = primarySegment?.countryCode || primarySegment?.countryName || trip.country || "";
@@ -47,8 +48,24 @@ function TripCard({ trip, onPress, onDelete, t, language }: { trip: Trip; onPres
 
       <TouchableOpacity
         style={styles.deleteButton}
+        disabled={isDeleting}
         onPress={(event) => {
           event.stopPropagation();
+          if (Platform.OS === "web") {
+            event.preventDefault();
+          }
+
+          if (isDeleting) {
+            return;
+          }
+
+          if (Platform.OS === "web") {
+            if (globalThis.confirm(t("trips.deleteConfirmMessage"))) {
+              onDelete();
+            }
+            return;
+          }
+
           Alert.alert(t("trips.deleteConfirmTitle"), t("trips.deleteConfirmMessage"), [
             { text: t("common.cancel"), style: "cancel" },
             { text: t("common.delete"), style: "destructive", onPress: onDelete },
@@ -67,20 +84,36 @@ export function MyTripsScreen() {
   const { t, language } = useTranslation();
   const { isLoggedIn } = useUser();
   const insets = useSafeAreaInsets();
+  const [deletingTripIds, setDeletingTripIds] = useState<Set<string>>(() => new Set());
+  const deletingTripIdsRef = useRef(new Set<string>());
 
   const activeCount = trips.filter((trip) => trip.status === "active").length;
   const datedCount = trips.filter((trip) => Boolean(trip.startDate && trip.endDate)).length;
 
   async function handleDeleteTrip(tripId: string) {
+    if (deletingTripIdsRef.current.has(tripId)) {
+      return;
+    }
+
+    deletingTripIdsRef.current.add(tripId);
+    setDeletingTripIds((currentTripIds) => new Set(currentTripIds).add(tripId));
     try {
       await deleteTrip(tripId);
     } catch (error) {
-      console.log("Delete trip error", error);
+      const deleteError = error as { code?: unknown; message?: unknown };
+      console.log("Delete trip error", { code: deleteError.code, message: deleteError.message });
       const isPermissionDenied = (error as { code?: unknown }).code === "permission-denied";
       Alert.alert(
         t("trips.deleteFailedTitle"),
         t(isPermissionDenied ? "trips.permissionDeniedMessage" : "trips.deleteFailedMessage"),
       );
+    } finally {
+      deletingTripIdsRef.current.delete(tripId);
+      setDeletingTripIds((currentTripIds) => {
+        const nextTripIds = new Set(currentTripIds);
+        nextTripIds.delete(tripId);
+        return nextTripIds;
+      });
     }
   }
 
@@ -156,6 +189,7 @@ export function MyTripsScreen() {
             key={trip.id}
             trip={trip}
             onDelete={() => handleDeleteTrip(trip.id)}
+            isDeleting={deletingTripIds.has(trip.id)}
             language={language}
             onPress={() => navigation.navigate("TripDetail", { tripId: trip.id })}
             t={t}
