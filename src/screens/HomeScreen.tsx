@@ -780,6 +780,9 @@ const styles = StyleSheet.create({
   },
 
   slideImageWeb: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
     objectPosition: "58% 50%",
   } as any,
 
@@ -1057,6 +1060,9 @@ const styles = StyleSheet.create({
   },
 
   cityImageWeb: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
     objectPosition: "52% 50%",
   } as any,
 
@@ -1112,6 +1118,9 @@ const styles = StyleSheet.create({
   },
 
   outletImageWeb: {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
     objectPosition: "58% 58%",
   } as any,
 
