@@ -116,11 +116,15 @@ export function HomeHeader({
         resizeMode="cover"
       >
         <View style={styles.heroScrim} />
-        <View style={styles.heroGradientLeft} />
-        <View style={styles.heroGradientBottom} />
-        <View style={styles.heroGradientAnchor} />
-        <View style={styles.heroGlowTop} />
-        <View style={styles.heroGlowBottom} />
+        {Platform.OS !== "web" ? (
+<>
+<View style={styles.heroGradientLeft} />
+<View style={styles.heroGradientBottom} />
+<View style={styles.heroGradientAnchor} />
+<View style={styles.heroGlowTop} />
+<View style={styles.heroGlowBottom} />
+</>
+) : null}
         <View style={styles.heroPatternRow}>
           <View style={styles.patternDot} />
           <View style={styles.patternLine} />
@@ -243,8 +247,12 @@ const styles = StyleSheet.create({
   },
 
   heroImageWeb: {
-    objectPosition: "66% 50%",
-  } as any,
+width: "100%",
+height: "100%",
+objectFit: "cover",
+objectPosition: "50% 50%",
+} as any,
+
 
   heroScrim: {
     ...StyleSheet.absoluteFillObject,
