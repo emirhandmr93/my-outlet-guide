@@ -447,7 +447,10 @@ export function HomeScreen() {
                 <ImageBackground
                   source={slide.image}
                   style={styles.slideImage}
-                  imageStyle={styles.slideImageRadius}
+                  imageStyle={[
+                    styles.slideImageRadius,
+                    Platform.OS === "web" ? styles.slideImageWeb : null,
+                  ]}
                   resizeMode="cover"
                 >
                   <View style={styles.slideScrim} />
@@ -516,7 +519,10 @@ export function HomeScreen() {
                   <ImageBackground
                     source={imageSource}
                     style={styles.outletImage}
-                    imageStyle={styles.outletImageRadius}
+                    imageStyle={[
+                      styles.outletImageRadius,
+                      Platform.OS === "web" ? styles.outletImageWeb : null,
+                    ]}
                   >
                     <View style={styles.outletOverlay} />
                     <View style={styles.outletBadge}>
@@ -621,7 +627,10 @@ export function HomeScreen() {
               <ImageBackground
                 source={city.image}
                 style={styles.cityImage}
-                imageStyle={styles.cityImageRadius}
+                imageStyle={[
+                  styles.cityImageRadius,
+                  Platform.OS === "web" ? styles.cityImageWeb : null,
+                ]}
               >
                 <View style={styles.cityOverlay} />
                 <View style={styles.cityContent}>
@@ -769,6 +778,10 @@ const styles = StyleSheet.create({
   slideImageRadius: {
     borderRadius: radius.hero,
   },
+
+  slideImageWeb: {
+    objectPosition: "56% 50%",
+  } as any,
 
   slideScrim: {
     ...StyleSheet.absoluteFillObject,
@@ -1043,6 +1056,10 @@ const styles = StyleSheet.create({
     borderRadius: radius.xl,
   },
 
+  cityImageWeb: {
+    objectPosition: "50% 50%",
+  } as any,
+
   cityOverlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: "rgba(0, 0, 0, 0.34)",
@@ -1093,6 +1110,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: radius.xxl,
     borderTopRightRadius: radius.xxl,
   },
+
+  outletImageWeb: {
+    objectPosition: "50% 58%",
+  } as any,
 
   outletOverlay: {
     ...StyleSheet.absoluteFillObject,
