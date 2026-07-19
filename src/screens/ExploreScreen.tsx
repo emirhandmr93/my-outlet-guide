@@ -174,7 +174,12 @@ export function ExploreScreen() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
-  const contentWidth = Math.min(Math.max(width - 68, 0), 1180);
+  const desktopSidebarWidth = 216;
+  const desktopHorizontalPadding = 68;
+  const contentWidth = Math.min(
+    Math.max(width - desktopSidebarWidth - desktopHorizontalPadding, 0),
+    1180,
+  );
   const twoColumnWidth = (contentWidth - 12) / 2;
   const threeColumnWidth = (contentWidth - 24) / 3;
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -590,7 +595,10 @@ function MiniSearch({ value, setValue, placeholder, t }: any) {
     <View style={styles.searchBoxSmall}>
       <Text style={styles.searchIconSmall}>⌕</Text>
       <TextInput
-        style={styles.searchInput}
+        style={[
+          styles.searchInput,
+          Platform.OS === "web" && styles.searchInputWeb,
+        ]}
         placeholder={placeholder}
         placeholderTextColor="#8B94A3"
         value={value}
