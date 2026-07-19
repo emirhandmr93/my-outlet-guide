@@ -4,7 +4,6 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
-  Dimensions,
   ImageBackground,
   ImageSourcePropType,
   Modal,
@@ -16,6 +15,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { DashboardSectionHeader } from "../components/DashboardSectionHeader";
@@ -44,10 +44,6 @@ import {
   formatCityDisplayName,
 } from "../utils/locationDisplay";
 
-const screenWidth = Dimensions.get("window").width;
-const carouselWidth = screenWidth - spacing.xl * 2;
-const outletCardWidth = carouselWidth;
-const cityCardWidth = Math.round(screenWidth * 0.42);
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
 const homeTabBarClearanceGap = 72;
@@ -266,6 +262,7 @@ function getOutletCardImageSource(
 
 export function HomeScreen() {
   const navigation = useNavigation<any>();
+  const { width } = useWindowDimensions();
   const tabBarHeight = useBottomTabBarHeight();
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
@@ -276,6 +273,23 @@ export function HomeScreen() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
   const carouselRef = useRef<ScrollView | null>(null);
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
+  const contentWidth = Math.min(
+    isDesktopWeb ? width - 216 - 72 : width - spacing.xl * 2,
+    1180,
+  );
+  const carouselWidth = isDesktopWeb
+    ? Math.round((contentWidth - spacing.md) / 2)
+    : contentWidth;
+  const outletCardWidth = isDesktopWeb
+    ? Math.round((contentWidth - spacing.md * 2) / 3)
+    : contentWidth;
+  const cityCardWidth = isDesktopWeb
+    ? Math.round((contentWidth - spacing.md * 3) / 4)
+    : Math.round(width * 0.42);
+  const toolCardWidth = isDesktopWeb
+    ? Math.round((contentWidth - spacing.md * 3) / 4)
+    : (width - spacing.xl * 2 - spacing.md) / 2;
 
   const latestTrip = trips[0];
   const favoriteOutlets = outlets.filter((outlet) =>
@@ -298,7 +312,9 @@ export function HomeScreen() {
     floatingTabBarHeight + floatingTabBarBottomOffset,
   );
   const homeBottomSpacer =
-    insets.bottom + floatingTabBarFootprint + homeTabBarClearanceGap;
+    isDesktopWeb
+      ? 0
+      : insets.bottom + floatingTabBarFootprint + homeTabBarClearanceGap;
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -377,12 +393,14 @@ export function HomeScreen() {
         }}
         contentContainerStyle={[
           styles.content,
+          isDesktopWeb && styles.desktopContent,
           {
             paddingTop: insets.top + spacing.md,
             paddingBottom: 0,
           },
         ]}
       >
+        <View style={[styles.contentInner, isDesktopWeb && styles.desktopContentInner]}>
         <HomeHeader
           userName={
             currentUser?.displayName || currentUser?.email?.split("@")[0]
@@ -430,7 +448,7 @@ export function HomeScreen() {
           <ScrollView
             ref={carouselRef}
             horizontal
-            pagingEnabled
+            pagingEnabled={!isDesktopWeb}
             showsHorizontalScrollIndicator={false}
             decelerationRate="fast"
             snapToInterval={carouselWidth}
@@ -441,7 +459,7 @@ export function HomeScreen() {
               <TouchableOpacity
                 key={slide.id}
                 activeOpacity={0.9}
-                style={styles.slideOuter}
+                style={[styles.slideOuter, { width: carouselWidth }]}
                 onPress={() => openSlide(slide)}
               >
                 <ImageBackground
@@ -454,18 +472,41 @@ export function HomeScreen() {
                   resizeMode="cover"
                 >
                   <View style={styles.slideScrim} />
-                  <View style={styles.slideGradientLeft} />
+                  <View
+                    style={[
+                      styles.slideGradientLeft,
+                      {
+                        left: -carouselWidth * 0.42,
+                        width: carouselWidth * 1.08,
+                      },
+                    ]}
+                  />
                   <View style={styles.slideGradientBottom} />
-                  <View style={styles.slideGradientAnchor} />
+                  <View
+                    style={[
+                      styles.slideGradientAnchor,
+                      { width: carouselWidth * 0.82 },
+                    ]}
+                  />
                   <View style={styles.slideGlow} />
-                  <View style={styles.slideContent}>
+                  <View
+                    style={[
+                      styles.slideContent,
+                      { maxWidth: carouselWidth - spacing.lg },
+                    ]}
+                  >
                     <Text style={styles.slideIcon}>{slide.icon}</Text>
                     <Text style={styles.slideKicker}>{t(slide.kickerKey)}</Text>
                     <Text style={styles.slideTitle}>{t(slide.titleKey)}</Text>
                     <Text style={styles.slideSubtitle}>
                       {t(slide.subtitleKey)}
                     </Text>
-                    <View style={styles.slideAction}>
+                    <View
+                      style={[
+                        styles.slideAction,
+                        { maxWidth: carouselWidth - spacing.xl * 2 },
+                      ]}
+                    >
                       <Text style={styles.slideActionText}>
                         {t(slide.ctaKey)}
                       </Text>
@@ -509,7 +550,7 @@ export function HomeScreen() {
             return (
               <TouchableOpacity
                 key={outlet.id}
-                style={styles.outletCard}
+                style={[styles.outletCard, { width: outletCardWidth }]}
                 activeOpacity={0.9}
                 onPress={() =>
                   navigateTo("OutletDetail", { outletId: outlet.id })
@@ -596,7 +637,10 @@ export function HomeScreen() {
           {shoppingTools.map((tool) => (
             <TouchableOpacity
               key={tool.id}
-              style={[styles.toolCard, { backgroundColor: tool.tone }]}
+              style={[
+                styles.toolCard,
+                { width: toolCardWidth, backgroundColor: tool.tone },
+              ]}
               activeOpacity={0.88}
               onPress={() => navigateTo(tool.route)}
             >
@@ -620,7 +664,7 @@ export function HomeScreen() {
           {popularCities.map((city) => (
             <TouchableOpacity
               key={city.id}
-              style={styles.cityCard}
+              style={[styles.cityCard, { width: cityCardWidth }]}
               activeOpacity={0.9}
               onPress={() => navigateTo(city.route, city.params)}
             >
@@ -651,6 +695,7 @@ export function HomeScreen() {
         </ScrollView>
 
         <View style={[styles.bottomTabSpacer, { height: homeBottomSpacer }]} />
+        </View>
       </ScrollView>
 
       <View
@@ -722,6 +767,19 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
   },
 
+  desktopContent: {
+    paddingHorizontal: 36,
+  },
+
+  contentInner: {
+    width: "100%",
+  },
+
+  desktopContentInner: {
+    maxWidth: 1180,
+    alignSelf: "center",
+  },
+
   bottomTabSpacer: {
     flexShrink: 0,
   },
@@ -762,7 +820,6 @@ const styles = StyleSheet.create({
   },
 
   slideOuter: {
-    width: carouselWidth,
     paddingRight: spacing.sm,
   },
 
@@ -793,9 +850,7 @@ const styles = StyleSheet.create({
 
   slideGradientLeft: {
     position: "absolute",
-    left: -carouselWidth * 0.42,
     bottom: -90,
-    width: carouselWidth * 1.08,
     height: 360,
     borderRadius: 220,
     backgroundColor: "rgba(4,12,24,0.54)",
@@ -816,7 +871,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: -90,
     bottom: -44,
-    width: carouselWidth * 0.82,
     height: 232,
     borderRadius: 150,
     backgroundColor: "rgba(4,12,24,0.24)",
@@ -836,7 +890,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xl,
     paddingTop: spacing.xl,
     paddingBottom: spacing.xxl,
-    maxWidth: carouselWidth - spacing.lg,
   },
 
   slideIcon: {
@@ -897,7 +950,6 @@ const styles = StyleSheet.create({
     borderRadius: radius.pill,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
-    maxWidth: carouselWidth - spacing.xl * 2,
     minHeight: 40,
   },
 
@@ -943,7 +995,6 @@ const styles = StyleSheet.create({
   },
 
   toolCard: {
-    width: (screenWidth - spacing.xl * 2 - spacing.md) / 2,
     minHeight: 150,
     borderRadius: radius.xl,
     padding: spacing.md,
@@ -1042,7 +1093,6 @@ const styles = StyleSheet.create({
   },
 
   cityCard: {
-    width: cityCardWidth,
     height: 148,
     borderRadius: radius.xl,
     overflow: "hidden",
@@ -1099,7 +1149,6 @@ const styles = StyleSheet.create({
   },
 
   outletCard: {
-    width: outletCardWidth,
     backgroundColor: colors.surface,
     borderRadius: radius.xxl,
     overflow: "hidden",

@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ActivityIndicator, Platform, View } from "react-native";
+import { ActivityIndicator, Platform, useWindowDimensions, View } from "react-native";
 import { useEffect, useState } from "react";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -82,6 +82,8 @@ return <Ionicons name={focused ? "person" : "person-outline"} size={size} color=
 
 function MainTabs() {
 const { t, language } = useTranslation();
+const { width } = useWindowDimensions();
+const isDesktopWeb = Platform.OS === "web" && width >= 1024;
 
 const tabLabels: Record<string, string> = {
 Home: t("nav.home"),
@@ -103,11 +105,23 @@ tabBarIcon: ({ color, focused }) => (
 ),
 tabBarLabel: tabLabels[route.name] ?? route.name,
 tabBarLabelStyle: {
-fontSize: 11,
+fontSize: isDesktopWeb ? 13 : 11,
 fontWeight: "900",
-marginTop: 2,
+marginTop: isDesktopWeb ? 0 : 2,
 },
+tabBarLabelPosition: isDesktopWeb ? "beside-icon" : "below-icon",
+tabBarPosition: isDesktopWeb ? "left" : "bottom",
 tabBarStyle: {
+...(isDesktopWeb
+? {
+width: 216,
+backgroundColor: "#0B1F3A",
+borderTopWidth: 0,
+borderRightWidth: 0,
+paddingTop: 24,
+paddingBottom: 24,
+}
+: {
 position: "absolute",
 left: 14,
 right: 14,
@@ -123,6 +137,7 @@ shadowOpacity: 0.24,
 shadowRadius: 18,
 shadowOffset: { width: 0, height: 10 },
 elevation: 14,
+}),
 },
 })}
 >
