@@ -146,6 +146,14 @@ if (!isLanguageResolved) return;
 let isMounted = true;
 
 async function resolveOnboardingGate() {
+if (Platform.OS === "web") {
+if (isMounted) {
+setShouldShowOnboarding(false);
+setIsOnboardingGateReady(true);
+}
+return;
+}
+
 try {
 const seen = await hasSeenOnboarding();
 if (isMounted) setShouldShowOnboarding(!seen);

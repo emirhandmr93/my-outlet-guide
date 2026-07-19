@@ -1,4 +1,12 @@
-import { ImageBackground, ImageSourcePropType, StyleProp, StyleSheet, View, ViewStyle } from "react-native";
+import {
+  ImageBackground,
+  ImageSourcePropType,
+  Platform,
+  StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
 
 import { colors } from "../theme/colors";
 
@@ -21,7 +29,10 @@ export function LocalHeroImageCard({
         source={imageSource}
         resizeMode="cover"
         style={styles.image}
-        imageStyle={styles.imageRadius}
+        imageStyle={[
+          styles.imageRadius,
+          Platform.OS === "web" ? styles.imageWeb : null,
+        ]}
         accessibilityIgnoresInvertColors
       >
         <View style={[styles.overlay, overlayStyle]}>
@@ -44,6 +55,11 @@ const styles = StyleSheet.create({
   imageRadius: {
     borderRadius: 30,
   },
+  imageWeb: {
+    // React Native Web needs an explicit focal point to match the native
+    // ImageBackground cover crop for the shared, photo-backed hero cards.
+    objectPosition: "50% 50%",
+  } as any,
   overlay: {
     backgroundColor: "rgba(11,31,58,0.68)",
     minHeight: 156,
