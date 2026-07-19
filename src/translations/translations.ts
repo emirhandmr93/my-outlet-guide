@@ -16263,7 +16263,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.threshold45": "%45 below",
     "flightDeals.saveAlert": "Save deal alert",
     "flightDeals.providerPending":
-      "Flight deal alerts will be prepared for your selected routes when a flight price provider is connected.",
+      "Flight deal alerts are coming soon. No alert is being saved yet.",
     "flightDeals.noDealsYet": "No flight deals yet",
     "flightDeals.noFakeDeals":
       "Fake deals are not shown until a real price provider is connected.",
@@ -16311,7 +16311,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.threshold45": "%45 altında",
     "flightDeals.saveAlert": "Fırsat uyarısını kaydet",
     "flightDeals.providerPending":
-      "Uçuş fiyat sağlayıcısı bağlandığında seçtiğin rotalar için fırsat uyarıları hazırlanır.",
+      "Uçuş fırsatı uyarıları yakında geliyor. Henüz hiçbir uyarı kaydedilmiyor.",
     "flightDeals.noDealsYet": "Henüz uçuş fırsatı yok",
     "flightDeals.noFakeDeals":
       "Gerçek fiyat sağlayıcısı bağlanana kadar sahte fırsat gösterilmez.",

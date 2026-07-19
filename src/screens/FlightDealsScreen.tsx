@@ -1,14 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
-  Alert,
   FlatList,
   KeyboardAvoidingView,
   Modal,
   Platform,
   ScrollView,
   StyleSheet,
-  Switch,
   Text,
   TextInput,
   TouchableOpacity,
@@ -24,20 +22,12 @@ import {
   SupportedFlightDealAirport,
 } from "../constants/flightDealAirports";
 import { useTrips } from "../contexts/TripsContext";
-import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import {
   formatCityDisplayName,
   formatCountryDisplayName,
 } from "../utils/locationDisplay";
-import {
-  deleteFlightDealAlert,
-  FLIGHT_DEAL_THRESHOLDS,
-  FlightDealAlertPreference,
-  FlightDealThreshold,
-  listFlightDealAlerts,
-  saveFlightDealAlert,
-} from "../services/flightDealAlertService";
+import { FLIGHT_DEAL_THRESHOLDS, FlightDealThreshold } from "../services/flightDealAlertService";
 import {
   getFloatingTabClearance,
   getScreenTopInset,
@@ -59,7 +49,6 @@ const SELECTOR_FILTERS: FlightDealSelectorFilter[] = [
 export function FlightDealsScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
-  const { isLoggedIn, currentUser } = useUser();
   const { trips } = useTrips();
   const insets = useSafeAreaInsets();
   const [selectedOrigin, setSelectedOrigin] =
@@ -69,11 +58,6 @@ export function FlightDealsScreen() {
   const [selectedThresholds, setSelectedThresholds] = useState<
     FlightDealThreshold[]
   >([15]);
-  const [active, setActive] = useState(true);
-  const [savedAlerts, setSavedAlerts] = useState<FlightDealAlertPreference[]>(
-    [],
-  );
-  const [saving, setSaving] = useState(false);
   const [pickerMode, setPickerMode] = useState<PickerMode>(null);
   const [filterText, setFilterText] = useState("");
   const [selectorFilter, setSelectorFilter] =
@@ -93,16 +77,6 @@ export function FlightDealsScreen() {
     ].filter(Boolean),
   );
 
-  useEffect(() => {
-    if (!currentUser?.userId) {
-      setSavedAlerts([]);
-      return;
-    }
-    listFlightDealAlerts(currentUser.userId)
-      .then(setSavedAlerts)
-      .catch(() => setSavedAlerts([]));
-  }, [currentUser?.userId]);
-
   function toggleThreshold(threshold: FlightDealThreshold) {
     setSelectedThresholds((current) =>
       current.includes(threshold)
@@ -117,98 +91,8 @@ export function FlightDealsScreen() {
     setSelectorFilter("popular");
   }
 
-  async function refreshAlerts(userId: string) {
-    setSavedAlerts(await listFlightDealAlerts(userId));
-  }
-
-  async function handleSaveAlert() {
-    if (!currentUser?.userId) {
-      navigation.navigate("Login", {
-        authMessage: t("flightDeals.signInPrompt"),
-      });
-      return;
-    }
-    if (!selectedOrigin) {
-      Alert.alert(t("flightDeals.selectOriginRequired"));
-      return;
-    }
-    if (!selectedDestination) {
-      Alert.alert(t("flightDeals.selectDestinationRequired"));
-      return;
-    }
-    if (selectedThresholds.length === 0) {
-      Alert.alert(t("flightDeals.thresholdRequired"));
-      return;
-    }
-
-    const alertId =
-      `${selectedOrigin.airportCode}_${selectedDestination.airportCode}`
-        .toLowerCase()
-        .replace(/[^a-z0-9_]+/g, "_")
-        .replace(/^_+|_+$/g, "");
-    const payload = {
-      alertId,
-      originLabel: `${selectedOrigin.cityName} (${selectedOrigin.airportCode})`,
-      originAirportCode: selectedOrigin.airportCode,
-      originAirportName: selectedOrigin.airportName,
-      originCityName: selectedOrigin.cityName,
-      originCountryCode: selectedOrigin.countryCode,
-      originCountryName: selectedOrigin.countryName,
-      destinationType: "airport" as const,
-      destinationKey: selectedDestination.airportCode,
-      destinationAirportCode: selectedDestination.airportCode,
-      destinationAirportName: selectedDestination.airportName,
-      destinationCityName: selectedDestination.cityName,
-      destinationCountryCode: selectedDestination.countryCode,
-      destinationCountryName: selectedDestination.countryName,
-      destinationLabel: `${selectedDestination.cityName} (${selectedDestination.airportCode})`,
-      selectedThresholds,
-      active,
-    };
-
-    setSaving(true);
-    try {
-      await saveFlightDealAlert(currentUser.userId, payload);
-      await refreshAlerts(currentUser.userId);
-      Alert.alert(t("flightDeals.saved"));
-    } catch (error) {
-      if (__DEV__) {
-        const safeError = error as { code?: string; message?: string };
-        console.warn("Flight deal alert save failed", {
-          code: safeError?.code,
-          message: safeError?.message,
-          hasUserId: Boolean(currentUser.userId),
-          alertId,
-          originAirportCode: payload.originAirportCode,
-          destinationAirportCode: payload.destinationAirportCode,
-          selectedThresholds: payload.selectedThresholds,
-          payloadKeys: Object.keys(payload),
-        });
-      }
-      Alert.alert(t("flightDeals.saveFailed"));
-    } finally {
-      setSaving(false);
-    }
-  }
-
-  async function handleDeleteAlert(alertId: string) {
-    if (!currentUser?.userId) return;
-    await deleteFlightDealAlert(currentUser.userId, alertId);
-    setSavedAlerts((current) =>
-      current.filter((alert) => alert.alertId !== alertId),
-    );
-  }
-
   const localizedOriginLabel = (item: SupportedFlightDealAirport) =>
     `${formatCityDisplayName(item.cityName, language)} (${item.airportCode})`;
-  const localizedSavedOriginLabel = (item: {
-    originCityName?: string;
-    originAirportCode?: string;
-    originLabel: string;
-  }) =>
-    item.originCityName && item.originAirportCode
-      ? `${formatCityDisplayName(item.originCityName, language)} (${item.originAirportCode})`
-      : item.originLabel;
   const localizedDestinationCity = (item: {
     destinationCityName?: string;
     cityName?: string;
@@ -234,16 +118,6 @@ export function FlightDealsScreen() {
 
   const localizedAirportLabel = (item: SupportedFlightDealAirport) =>
     `${formatCityDisplayName(item.cityName, language)} (${item.airportCode})`;
-  const localizedSavedDestinationLabel = (item: FlightDealAlertPreference) => {
-    if (item.destinationAirportCode) {
-      return `${formatCityDisplayName(item.destinationCityName, language)} (${item.destinationAirportCode})`;
-    }
-    const legacyCodes = item.destinationAirportCodes?.join(" / ");
-    return legacyCodes
-      ? `${formatCityDisplayName(item.destinationCityName, language)} (${legacyCodes})`
-      : item.destinationLabel ||
-          formatCityDisplayName(item.destinationCityName, language);
-  };
 
   const normalizedFilter = filterText.trim().toLowerCase();
   const getFilterLabel = (filter: FlightDealSelectorFilter) =>
@@ -315,11 +189,6 @@ export function FlightDealsScreen() {
           <Text style={styles.providerText}>
             {t("flightDeals.providerPending")}
           </Text>
-          {!isLoggedIn ? (
-            <Text style={styles.guestText}>
-              {t("flightDeals.signInPrompt")}
-            </Text>
-          ) : null}
           <Text style={styles.label}>{t("flightDeals.origin")}</Text>
           <TouchableOpacity
             style={styles.selectorButton}
@@ -377,70 +246,18 @@ export function FlightDealsScreen() {
               </TouchableOpacity>
             ))}
           </View>
-          <View style={styles.switchRow}>
-            <Text style={styles.label}>
-              {active
-                ? t("flightDeals.alertActive")
-                : t("flightDeals.alertInactive")}
-            </Text>
-            <Switch value={active} onValueChange={setActive} />
-          </View>
-          <TouchableOpacity
-            style={styles.primaryButton}
-            onPress={handleSaveAlert}
-            disabled={saving}
-          >
+          <TouchableOpacity style={[styles.primaryButton, styles.disabledButton]} disabled>
             <Text style={styles.primaryButtonText}>
-              {t("flightDeals.saveAlert")}
+              {t("flightDeals.providerPendingBadge")}
             </Text>
           </TouchableOpacity>
+          <Text style={styles.providerText}>{t("flightDeals.providerPending")}</Text>
         </View>
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>
             {t("flightDeals.savedAlerts")}
           </Text>
-          {savedAlerts.length > 0 ? (
-            savedAlerts.map((alert) => (
-              <View key={alert.alertId} style={styles.savedAlertRow}>
-                <View style={styles.savedAlertText}>
-                  <Text style={styles.detailValue}>
-                    {localizedSavedOriginLabel(alert)} →{" "}
-                    {localizedSavedDestinationLabel(alert)}
-                  </Text>
-                  <Text style={styles.reminderMeta}>
-                    {alert.selectedThresholds
-                      .map((threshold) =>
-                        t(`flightDeals.threshold${threshold}`),
-                      )
-                      .join(", ")}{" "}
-                    ·{" "}
-                    {alert.active
-                      ? t("flightDeals.alertActive")
-                      : t("flightDeals.alertInactive")}
-                  </Text>
-                  <Text style={styles.pendingBadge}>
-                    {t("flightDeals.providerPendingBadge")}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  onPress={() => handleDeleteAlert(alert.alertId)}
-                >
-                  <Text style={styles.deleteText}>
-                    {t("flightDeals.deleteAlert")}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            ))
-          ) : (
-            <View style={styles.emptyCard}>
-              <Text style={styles.emptyTitle}>
-                {t("flightDeals.noDealsYet")}
-              </Text>
-              <Text style={styles.reminderMeta}>
-                {t("flightDeals.noFakeDeals")}
-              </Text>
-            </View>
-          )}
+          <View style={styles.emptyCard}><Text style={styles.emptyTitle}>{t("flightDeals.noDealsYet")}</Text><Text style={styles.reminderMeta}>{t("flightDeals.noFakeDeals")}</Text></View>
         </View>
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>
@@ -725,6 +542,7 @@ const styles = StyleSheet.create({
     padding: 17,
     marginTop: 4,
   },
+  disabledButton: { opacity: 0.55 },
   primaryButtonText: {
     color: "#0B1F3A",
     fontWeight: "900",
