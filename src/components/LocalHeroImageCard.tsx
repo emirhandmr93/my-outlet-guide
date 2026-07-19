@@ -58,6 +58,9 @@ const styles = StyleSheet.create({
   imageWeb: {
     // React Native Web needs an explicit focal point to match the native
     // ImageBackground cover crop for the shared, photo-backed hero cards.
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
     objectPosition: "50% 50%",
   } as any,
   overlay: {
