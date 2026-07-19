@@ -1,7 +1,7 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useEffect, useState } from "react";
+import { createElement, useEffect, useState } from "react";
 import {
   Alert,
   Modal,
@@ -459,15 +459,30 @@ export function CreateTripScreen() {
         <View style={styles.modalScrim}>
           <View style={styles.pickerModal}>
             <Text style={styles.sectionTitle}>{pickerTitle}</Text>
-            <DateTimePicker
-              value={draftDate}
-              mode="date"
-              display={Platform.OS === "ios" ? "spinner" : "calendar"}
-              minimumDate={todayAtMidnight()}
-              onChange={(_, selectedDate) =>
-                selectedDate && setDraftDate(selectedDate)
-              }
-            />
+            {Platform.OS === "web"
+? createElement("input", {
+type: "date",
+value: formatDate(draftDate),
+min: formatDate(todayAtMidnight()),
+onChange: (event: any) => {
+const selectedDate = parseDate(event.target.value);
+if (selectedDate) {
+setDraftDate(selectedDate);
+}
+},
+style: styles.webPickerInput,
+})
+: (
+<DateTimePicker
+value={draftDate}
+mode="date"
+display={Platform.OS === "ios" ? "spinner" : "calendar"}
+minimumDate={todayAtMidnight()}
+onChange={(_, selectedDate) =>
+selectedDate && setDraftDate(selectedDate)
+}
+/>
+)}
             <View style={styles.modalActions}>
               <TouchableOpacity
                 style={styles.cancelButton}
@@ -500,15 +515,35 @@ export function CreateTripScreen() {
             <Text style={styles.sectionTitle}>
               {t("createTrip.returnFlightTimePickerTitle")}
             </Text>
-            <DateTimePicker
-              value={draftTime}
-              mode="time"
-              display={Platform.OS === "ios" ? "spinner" : "clock"}
-              is24Hour
-              onChange={(_, selectedTime) =>
-                selectedTime && setDraftTime(selectedTime)
-              }
-            />
+            {Platform.OS === "web"
+? createElement("input", {
+type: "time",
+value: `${String(draftTime.getHours()).padStart(2, "0")}:${String(
+draftTime.getMinutes(),
+).padStart(2, "0")}`,
+onChange: (event: any) => {
+const [hours, minutes] = event.target.value.split(":").map(Number);
+
+if (Number.isFinite(hours) && Number.isFinite(minutes)) {
+const selectedTime = new Date(draftTime);
+selectedTime.setHours(hours, minutes, 0, 0);
+setDraftTime(selectedTime);
+}
+},
+style: styles.webPickerInput,
+})
+: (
+<DateTimePicker
+value={draftTime}
+mode="time"
+display={Platform.OS === "ios" ? "spinner" : "clock"}
+is24Hour
+onChange={(_, selectedTime) =>
+selectedTime && setDraftTime(selectedTime)
+}
+/>
+)}
+
             <View style={styles.modalActions}>
               <TouchableOpacity
                 style={styles.cancelButton}
@@ -613,6 +648,23 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 28,
     padding: 20,
   },
+
+  webPickerInput: {
+width: "100%",
+minHeight: 54,
+boxSizing: "border-box",
+backgroundColor: "#F7F8FA",
+borderWidth: 1,
+borderStyle: "solid",
+borderColor: "#E5E7EB",
+borderRadius: 16,
+padding: 14,
+color: "#0B1F3A",
+fontSize: 17,
+fontWeight: "700",
+fontFamily: "inherit",
+} as any,
+
   modalActions: { flexDirection: "row", gap: 10, marginTop: 12 },
   cancelButton: {
     flex: 1,
