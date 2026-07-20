@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
+import { LanguageFlag } from "../components/LanguageFlag";
 import { languages } from "../constants/languages";
 import { heroAssets } from "../media/heroAssets";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -35,7 +36,7 @@ export function LanguageSettingsScreen() {
               onPress={() => setLanguage(item.languageCode)}
             >
               <View style={styles.languageLeft}>
-                <Text style={styles.flag}>{item.flag}</Text>
+                <LanguageFlag flag={item.flag} languageName={item.languageName} size={32} />
 
                 <View>
                   <Text style={styles.languageName}>{item.languageName}</Text>
@@ -123,10 +124,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: spacing.md,
-  },
-
-  flag: {
-    fontSize: 24,
   },
 
   languageName: {
