@@ -58,6 +58,8 @@ Country: RootStackParamList["Country"];
 CityResults: RootStackParamList["CityResults"];
 Transportation: RootStackParamList["Transportation"];
 CreateTrip: undefined;
+NotificationSettings: undefined;
+LanguageSettings: undefined;
 };
 
 type DesktopTripsStackParamList = { MyTripsRoot: undefined; TripDetail: RootStackParamList["TripDetail"]; CreateTrip: undefined; TripSegmentEditor: RootStackParamList["TripSegmentEditor"]; };
@@ -103,6 +105,8 @@ return (
 <DesktopHomeStack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
 <DesktopHomeStack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
 <DesktopHomeStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
+<DesktopHomeStack.Screen name="LanguageSettings" component={LanguageSettingsScreen} options={{ title: t("nav.language") }} />
+<DesktopHomeStack.Screen name="NotificationSettings" component={NotificationSettingsScreen} options={{ title: t("nav.notifications") }} />
 </DesktopHomeStack.Navigator>
 );
 }

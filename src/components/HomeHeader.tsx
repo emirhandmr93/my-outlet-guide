@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { languages } from "../constants/languages";
+import { LanguageFlag } from "./LanguageFlag";
 import { useTranslation } from "../hooks/useTranslation";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
@@ -117,10 +118,16 @@ export function HomeHeader({
             activeOpacity={0.84}
             onPress={onPressLanguage}
           >
-            <Text style={styles.languageText}>
-              {selectedLanguage.flag}{" "}
-              {selectedLanguage.languageCode.toUpperCase()}
-            </Text>
+            <View style={styles.languageContent}>
+              <LanguageFlag
+                flag={selectedLanguage.flag}
+                languageName={selectedLanguage.languageName}
+                size={20}
+              />
+              <Text style={styles.languageText}>
+                {selectedLanguage.languageCode.toUpperCase()}
+              </Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -280,7 +287,12 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: typography.bodySmall,
     fontWeight: typography.weightBlack,
-    textAlign: "center",
+  },
+
+  languageContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.sm,
   },
 
   hero: {

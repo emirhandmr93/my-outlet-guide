@@ -1,6 +1,7 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
+import { AppOnlyFeatureNotice } from "../components/AppOnlyFeatureNotice";
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { heroAssets } from "../media/heroAssets";
 import { useNotificationSettings } from "../contexts/NotificationSettingsContext";
@@ -10,6 +11,9 @@ import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomIns
 export function NotificationSettingsScreen() {
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isWeb = Platform.OS === "web";
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const {
     isLoggedIn,
     isLoading,
@@ -29,8 +33,15 @@ export function NotificationSettingsScreen() {
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
-      scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
+      contentContainerStyle={[
+        styles.content,
+        isDesktopWeb && styles.contentDesktop,
+        {
+          paddingTop: isDesktopWeb ? 34 : getScreenTopInset(insets.top),
+          paddingBottom: isDesktopWeb ? 32 : getFloatingTabClearance(insets.bottom),
+        },
+      ]}
+      scrollIndicatorInsets={{ bottom: isDesktopWeb ? 32 : getScrollIndicatorBottomInset(insets.bottom) }}
     >
       <LocalHeroImageCard imageSource={heroAssets.notifications} style={styles.heroCard} contentStyle={styles.heroInner}>
         <Text style={styles.kicker}>{t("notifications.kicker")}</Text>
@@ -38,7 +49,15 @@ export function NotificationSettingsScreen() {
         <Text style={styles.pageSubtitle}>{t("notifications.subtitle")}</Text>
       </LocalHeroImageCard>
 
-      {!isLoggedIn ? (
+      {isWeb ? (
+        <AppOnlyFeatureNotice
+          badge={t("appOnly.badge")}
+          title={t("appOnly.notificationsTitle")}
+          body={t("appOnly.notificationsBody")}
+          helperText={t("appOnly.helper")}
+          ctaLabel={t("appOnly.cta")}
+        />
+      ) : !isLoggedIn ? (
         <StatusCard
           title={t("notifications.signInRequiredTitle")}
           body={t("notifications.signInRequiredBody")}
@@ -183,6 +202,13 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 60,
     paddingBottom: 120,
+  },
+
+  contentDesktop: {
+    width: "100%",
+    maxWidth: 1180,
+    alignSelf: "center",
+    paddingHorizontal: 34,
   },
 
   heroCard: { marginBottom: 16 },
