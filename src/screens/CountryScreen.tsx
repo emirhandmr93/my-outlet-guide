@@ -15,6 +15,7 @@ import {
 } from "../utils/safeAreaLayout";
 
 import { countries } from "../constants/countries";
+import { CountryFlag } from "../components/CountryFlag";
 import { outlets } from "../constants/outlets";
 import { getTaxFreeRule, taxFreeRules } from "../constants/taxFreeRules";
 import { useFavorites } from "../contexts/FavoritesContext";
@@ -163,7 +164,7 @@ export function CountryScreen() {
         }}
       >
         <View style={styles.heroCard}>
-          <Text style={styles.heroFlag}>{country.countryFlag}</Text>
+          <CountryFlag countryId={country.countryId} size={44} style={styles.heroFlag} />
           <Text style={styles.heroTitle}>{formatCountryDisplayName(country.countryId, language)}</Text>
           <Text style={styles.heroText}>
             {t("country.heroPrefix")} {formatCountryDisplayName(country.countryId, language)}.
@@ -195,6 +196,7 @@ export function CountryScreen() {
             activeOpacity={0.9}
             onPress={() => navigation.navigate("CityResults", { cityId })}
           >
+            <CountryFlag countryId={country.countryId} size={22} />
             <Text style={styles.cardTitle}>{formatCityDisplayName(cityId, language)}</Text>
             <Text style={styles.cardText}>
               {t("country.viewOutletsInCity")}
