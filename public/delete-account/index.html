@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="My Outlet Guide hesap silme bilgileri / account deletion information.">
+  <title>My Outlet Guide — Hesap Silme / Account Deletion</title>
+  <style>
+    :root { --navy: #0b1f3a; --navy-soft: #16345d; --gold: #c9a227; --gold-light: #f5edcf; --ink: #1b2738; --muted: #536174; --paper: #f7f8fa; --line: #dce2ea; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 16px; line-height: 1.65; }
+    .hero { background: linear-gradient(135deg, #07182f, var(--navy-soft)); border-bottom: 5px solid var(--gold); color: #fff; padding: clamp(38px, 8vw, 68px) 20px clamp(34px, 6vw, 52px); }
+    .hero__inner, main, footer { width: min(900px, calc(100% - 40px)); margin: 0 auto; }
+    .brand { margin: 0 0 20px; color: #f2d777; font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { max-width: 760px; margin: 0; font-size: clamp(2rem, 5vw, 3.35rem); letter-spacing: -.03em; line-height: 1.12; }
+    .hero__intro { max-width: 690px; margin: 16px 0 0; color: #dbe4f0; }
+    main { padding: 36px 0 24px; }
+    .language { margin-bottom: 28px; padding: clamp(22px, 4vw, 40px); background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 8px 28px rgba(11, 31, 58, .06); }
+    .label { display: inline-block; padding: 4px 10px; border-radius: 999px; background: var(--gold-light); color: var(--navy); font-size: .75rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    h2 { margin: 14px 0 12px; color: var(--navy); font-size: clamp(1.65rem, 3vw, 2.2rem); line-height: 1.2; }
+    h3 { margin: 26px 0 7px; color: var(--navy); font-size: 1.1rem; }
+    p { margin: 0 0 14px; }
+    ul { margin: 8px 0 14px; padding-left: 1.25rem; }
+    li + li { margin-top: 6px; }
+    .steps { margin: 20px 0; padding: 18px; border-left: 4px solid var(--gold); border-radius: 8px; background: #f8f4e2; }
+    .steps strong { color: var(--navy); }
+    .mail-button { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; margin: 8px 0 18px; padding: 12px 20px; border-radius: 10px; background: var(--navy); color: #fff; font-weight: 800; text-align: center; text-decoration: none; box-shadow: 0 4px 12px rgba(11, 31, 58, .2); }
+    .mail-button:hover, .mail-button:focus-visible { background: var(--navy-soft); outline: 3px solid #f2d777; outline-offset: 3px; }
+    a:not(.mail-button) { color: #0d4a85; font-weight: 700; text-underline-offset: 3px; }
+    .subject { padding: 12px 14px; border-radius: 8px; background: #f1f4f7; color: var(--navy); font-weight: 800; overflow-wrap: anywhere; }
+    footer { padding-bottom: 42px; color: var(--muted); font-size: .9rem; }
+    @media (max-width: 520px) { .hero__inner, main, footer { width: min(100% - 28px, 900px); } .language { padding: 22px 18px; border-radius: 14px; } .mail-button { width: 100%; } }
+    @media print { body { background: #fff; } .hero { padding: 24px 0; } .language { box-shadow: none; break-inside: avoid; } }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="brand">My Outlet Guide</p>
+      <h1>Hesap Silme / Account Deletion</h1>
+      <p class="hero__intro">Bu sayfa, My Outlet Guide hesabınızı silme seçeneklerini açıklar. Giriş yapmanız veya uygulamayı kullanmanız gerekmez.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="language" aria-labelledby="tr-title">
+      <span class="label">Türkçe</span>
+      <h2 id="tr-title">My Outlet Guide hesabınızı silin</h2>
+      <p>Hesabınızı uygulama içinden istediğiniz zaman silebilirsiniz:</p>
+      <div class="steps"><strong>Profil &gt; Hesabı Sil</strong></div>
+      <p>Uygulamaya erişiminiz yoksa, hesabınızın kayıtlı e-posta adresinden bize silme talebi gönderebilirsiniz.</p>
+      <a class="mail-button" href="mailto:info@myoutletguide.com?subject=My%20Outlet%20Guide%20Account%20Deletion%20Request">E-posta ile silme talebi gönderin</a>
+      <h3>E-posta talebi</h3>
+      <p><a href="mailto:info@myoutletguide.com">info@myoutletguide.com</a> adresine e-posta gönderin. Talebi, hesabınıza kayıtlı e-posta adresinden göndermeniz gerekir.</p>
+      <p class="subject">Konu: My Outlet Guide Account Deletion Request</p>
+      <h3>Silinen veriler</h3>
+      <p>Silme işlemi aşağıdaki verileri kaldırır:</p>
+      <ul>
+        <li>Firebase hesabınız</li>
+        <li>Favorileriniz</li>
+        <li>Gezileriniz</li>
+        <li>Uçuş fırsatı tercihleriniz</li>
+        <li>Bildirim ayarlarınız ve cihaz token’larınız</li>
+      </ul>
+      <p>Yayımlanmış yorumlar, outlet bütünlüğünü korumak amacıyla gizlilik politikasında açıklandığı şekilde anonimleştirilebilir.</p>
+      <p>Ayrıntılar için <a href="/privacy-policy/">Gizlilik Politikamızı</a> inceleyin.</p>
+    </section>
+
+    <section class="language" aria-labelledby="en-title" lang="en">
+      <span class="label">English</span>
+      <h2 id="en-title">Delete your My Outlet Guide account</h2>
+      <p>You can delete your account in the app at any time:</p>
+      <div class="steps"><strong>Profile &gt; Delete Account</strong></div>
+      <p>If you do not have access to the app, you can request account deletion by emailing us from the email address registered to your account.</p>
+      <a class="mail-button" href="mailto:info@myoutletguide.com?subject=My%20Outlet%20Guide%20Account%20Deletion%20Request">Request deletion by email</a>
+      <h3>Email request</h3>
+      <p>Email <a href="mailto:info@myoutletguide.com">info@myoutletguide.com</a>. Your request must be sent from the email address registered to the account.</p>
+      <p class="subject">Subject: My Outlet Guide Account Deletion Request</p>
+      <h3>Data deleted</h3>
+      <p>Deletion removes the following data:</p>
+      <ul>
+        <li>Your Firebase account</li>
+        <li>Your favorites</li>
+        <li>Your trips</li>
+        <li>Your flight-deal preferences</li>
+        <li>Your notification settings and device tokens</li>
+      </ul>
+      <p>Published reviews may be anonymized to preserve outlet integrity, as described in the privacy policy.</p>
+      <p>For details, see our <a href="/privacy-policy/">Privacy Policy</a>.</p>
+    </section>
+  </main>
+
+  <footer>© My Outlet Guide. This public page does not require a login or application runtime.</footer>
+</body>
+</html>
