@@ -1,4 +1,4 @@
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, type RouteProp } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator, Platform, useWindowDimensions, View } from "react-native";
@@ -50,6 +50,80 @@ import type { MainTabParamList, RootStackParamList } from "./types";
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+type DesktopHomeStackParamList = {
+HomeRoot: undefined;
+OutletDetail: RootStackParamList["OutletDetail"] & { reviewsRefresh?: number };
+BrandResults: RootStackParamList["BrandResults"] & { selectedCountryId?: string };
+Country: RootStackParamList["Country"];
+CityResults: RootStackParamList["CityResults"];
+Transportation: RootStackParamList["Transportation"];
+};
+
+type DesktopExploreStackParamList = {
+ExploreRoot: MainTabParamList["Explore"];
+OutletDetail: RootStackParamList["OutletDetail"] & { reviewsRefresh?: number };
+BrandResults: RootStackParamList["BrandResults"] & { selectedCountryId?: string };
+Country: RootStackParamList["Country"];
+CityResults: RootStackParamList["CityResults"];
+Transportation: RootStackParamList["Transportation"];
+};
+
+const DesktopHomeStack = createNativeStackNavigator<DesktopHomeStackParamList>();
+const DesktopExploreStack = createNativeStackNavigator<DesktopExploreStackParamList>();
+
+function desktopBrowseScreenOptions(t: ReturnType<typeof useTranslation>["t"]) {
+return {
+headerShown: true,
+headerBackTitle: t("nav.back"),
+headerTintColor: "#0B1F3A",
+headerTitleStyle: {
+color: "#0B1F3A",
+fontWeight: "900" as const,
+},
+headerStyle: {
+backgroundColor: "#FFFFFF",
+},
+};
+}
+
+function DesktopHomeNavigator() {
+const { t } = useTranslation();
+
+return (
+<DesktopHomeStack.Navigator screenOptions={desktopBrowseScreenOptions(t)}>
+<DesktopHomeStack.Screen name="HomeRoot" component={HomeScreen} options={{ headerShown: false }} />
+<DesktopHomeStack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: t("nav.outlet") }} />
+<DesktopHomeStack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: t("nav.brand") }} />
+<DesktopHomeStack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
+<DesktopHomeStack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
+<DesktopHomeStack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
+</DesktopHomeStack.Navigator>
+);
+}
+
+function DesktopExploreNavigator({ route }: { route: RouteProp<MainTabParamList, "Explore"> }) {
+const { t } = useTranslation();
+const initialQuery = route.params?.initialQuery;
+const initialTab = route.params?.initialTab;
+const navigatorKey = `${initialQuery ?? ""}:${initialTab ?? ""}`;
+
+return (
+<DesktopExploreStack.Navigator key={navigatorKey} screenOptions={desktopBrowseScreenOptions(t)}>
+<DesktopExploreStack.Screen
+name="ExploreRoot"
+component={ExploreScreen}
+initialParams={route.params}
+options={{ headerShown: false }}
+/>
+<DesktopExploreStack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: t("nav.outlet") }} />
+<DesktopExploreStack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: t("nav.brand") }} />
+<DesktopExploreStack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
+<DesktopExploreStack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
+<DesktopExploreStack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
+</DesktopExploreStack.Navigator>
+);
+}
+
 function TabIcon({
 routeName,
 color,
@@ -95,7 +169,7 @@ Profile: t("nav.profile"),
 
 return (
 <Tab.Navigator
-key={language}
+key={`${language}-${isDesktopWeb ? "desktop" : "mobile"}`}
 screenOptions={({ route }) => ({
 headerShown: false,
 tabBarActiveTintColor: "#C9A227",
@@ -151,8 +225,8 @@ elevation: 14,
 },
 })}
 >
-<Tab.Screen name="Home" component={HomeScreen} />
-<Tab.Screen name="Explore" component={ExploreScreen} />
+<Tab.Screen name="Home" component={isDesktopWeb ? DesktopHomeNavigator : HomeScreen} />
+<Tab.Screen name="Explore" component={isDesktopWeb ? DesktopExploreNavigator : ExploreScreen} />
 <Tab.Screen name="MyTrips" component={MyTripsScreen} />
 <Tab.Screen name="Savings" component={SavingsScreen} />
 <Tab.Screen name="Profile" component={ProfileScreen} />
