@@ -2,6 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import {
   Alert,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -21,6 +22,15 @@ export function DeleteAccountScreen() {
   const { currentUser } = useAuth();
   const [deleting, setDeleting] = useState(false);
 
+  function showMessage(title: string, message: string) {
+    if (Platform.OS === "web") {
+      globalThis.alert(`${title}\n\n${message}`);
+      return;
+    }
+
+    Alert.alert(title, message);
+  }
+
   async function handleConfirmedDelete() {
     if (!currentUser) {
       navigation.navigate("Login");
@@ -30,7 +40,7 @@ export function DeleteAccountScreen() {
     try {
       setDeleting(true);
       await deleteAccountWithBackend();
-      Alert.alert(t("deleteAccount.deletedTitle"), t("deleteAccount.deletedMessage"));
+      showMessage(t("deleteAccount.deletedTitle"), t("deleteAccount.deletedMessage"));
       navigation.navigate("Login");
     } catch (error) {
       if (__DEV__) {
@@ -42,24 +52,49 @@ export function DeleteAccountScreen() {
 
       const failureKind = mapDeleteAccountError(error);
       if (failureKind === "recent-login") {
-        Alert.alert(t("deleteAccount.reauthTitle"), t("deleteAccount.reauthMessage"));
+        showMessage(t("deleteAccount.reauthTitle"), t("deleteAccount.reauthMessage"));
         navigation.navigate("Login");
         return;
       }
       if (failureKind === "sign-in-required") {
-        Alert.alert(t("deleteAccount.signInRequiredTitle"), t("deleteAccount.signInRequiredMessage"));
+        showMessage(t("deleteAccount.signInRequiredTitle"), t("deleteAccount.signInRequiredMessage"));
         navigation.navigate("Login");
         return;
       }
       if (failureKind === "service-retry") {
-        Alert.alert(t("deleteAccount.failedTitle"), t("deleteAccount.serviceRetryMessage"));
+        showMessage(t("deleteAccount.failedTitle"), t("deleteAccount.serviceRetryMessage"));
         return;
       }
 
-      Alert.alert(t("deleteAccount.failedTitle"), t("deleteAccount.failedMessage"));
+      showMessage(t("deleteAccount.failedTitle"), t("deleteAccount.failedMessage"));
     } finally {
       setDeleting(false);
     }
+  }
+
+  function confirmDelete() {
+    if (Platform.OS === "web") {
+      if (globalThis.confirm(t("deleteAccount.confirmMessage"))) {
+        void handleConfirmedDelete();
+      }
+      return;
+    }
+
+    Alert.alert(
+      t("deleteAccount.title"),
+      t("deleteAccount.confirmMessage"),
+      [
+        {
+          text: t("common.cancel"),
+          style: "cancel",
+        },
+        {
+          text: t("common.delete"),
+          style: "destructive",
+          onPress: handleConfirmedDelete,
+        },
+      ],
+    );
   }
 
   return (
@@ -102,23 +137,7 @@ export function DeleteAccountScreen() {
       <TouchableOpacity
         style={[styles.deleteButton, (!currentUser || deleting) && styles.disabledButton]}
         disabled={!currentUser || deleting}
-        onPress={() =>
-          Alert.alert(
-            t("deleteAccount.title"),
-            t("deleteAccount.confirmMessage"),
-            [
-              {
-                text: t("common.cancel"),
-                style: "cancel",
-              },
-              {
-                text: t("common.delete"),
-                style: "destructive",
-                onPress: handleConfirmedDelete,
-              },
-            ],
-          )
-        }
+        onPress={confirmDelete}
       >
         <Text style={styles.deleteButtonText}>{deleting ? t("deleteAccount.deleting") : t("deleteAccount.button")}</Text>
       </TouchableOpacity>
