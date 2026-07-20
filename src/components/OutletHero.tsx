@@ -1,9 +1,11 @@
 import {
   FlatList,
   Image,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 
@@ -32,6 +34,8 @@ export function OutletHero({
   onPressHeroImage,
   onPressGalleryImage,
 }: OutletHeroProps) {
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const hasSelectedImage = Boolean(selectedImage);
   const images =
     galleryImages.length > 0
@@ -49,13 +53,12 @@ export function OutletHero({
         accessibilityRole="imagebutton"
         accessibilityLabel={`${name} gallery hero image`}
       >
-        <View style={styles.heroWrap}>
+        <View style={[styles.heroWrap, isDesktopWeb && styles.heroWrapDesktop]}>
           {selectedImage ? (
-            <Image
-              source={getImageSource(selectedImage)}
-              style={styles.heroImage}
-              resizeMode="cover"
-            />
+            isDesktopWeb ? <>
+              <Image source={getImageSource(selectedImage)} style={styles.desktopBackgroundImage} resizeMode="cover" blurRadius={8} />
+              <Image source={getImageSource(selectedImage)} style={styles.heroImage} resizeMode="contain" />
+            </> : <Image source={getImageSource(selectedImage)} style={styles.heroImage} resizeMode="cover" />
           ) : (
             <View style={styles.noImagePlaceholder}>
               <Text style={styles.noImageIcon}>🛍️</Text>
@@ -121,6 +124,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
+  desktopBackgroundImage: { ...StyleSheet.absoluteFillObject, width: "100%", height: "100%", opacity: 0.45, transform: [{ scale: 1.06 }] },
+  heroWrapDesktop: { minHeight: 460 },
 
   noImagePlaceholder: {
     ...StyleSheet.absoluteFillObject,

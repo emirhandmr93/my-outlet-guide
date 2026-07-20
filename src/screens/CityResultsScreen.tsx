@@ -1,4 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import type { ReactNode } from "react";
 import {
   Image,
   ScrollView,
@@ -15,6 +16,7 @@ import {
 } from "../utils/safeAreaLayout";
 
 import { outlets } from "../constants/outlets";
+import { CountryFlag } from "../components/CountryFlag";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -44,7 +46,7 @@ function hasTaxFree(value: unknown) {
   return value === true || value === "TRUE" || value === "true";
 }
 
-function StatCard({ value, label }: { value: string | number; label: string }) {
+function StatCard({ value, label }: { value: ReactNode; label: string }) {
   return (
     <View style={styles.statCard}>
       <Text style={styles.statNumber}>{value}</Text>
@@ -157,6 +159,7 @@ export function CityResultsScreen() {
     >
       <View style={styles.heroCard}>
         <Text style={styles.heroLabel}>{t("city.heroLabel")}</Text>
+        {cityOutlets[0] ? <CountryFlag countryId={cityOutlets[0].countryId} size={36} style={styles.heroFlag} /> : null}
         <Text style={styles.heroTitle}>{cityName}</Text>
         <Text style={styles.heroText}>{t("city.heroText")}</Text>
       </View>
@@ -164,9 +167,7 @@ export function CityResultsScreen() {
       <View style={styles.statsRow}>
         <StatCard value={cityOutlets.length} label={t("city.outlets")} />
         <StatCard
-          value={
-            cityOutlets[0] ? formatCountryDisplayName(cityOutlets[0].countryId, language) : "—"
-          }
+          value={cityOutlets[0] ? <View style={styles.countryStatValue}><CountryFlag countryId={cityOutlets[0].countryId} size={20} /><Text style={styles.statNumber}>{formatCountryDisplayName(cityOutlets[0].countryId, language)}</Text></View> : "—"}
           label={t("city.country")}
         />
       </View>
@@ -207,6 +208,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1.2,
     marginBottom: 10,
   },
+  heroFlag: { marginBottom: 8 },
   heroTitle: {
     color: "#FFFFFF",
     fontSize: 32,
@@ -231,6 +233,7 @@ const styles = StyleSheet.create({
     borderColor: "#E5E7EB",
   },
   statNumber: { color: "#0B1F3A", fontSize: 18, fontWeight: "900" },
+  countryStatValue: { flexDirection: "row", alignItems: "center", gap: 6 },
   statLabel: {
     color: "#C9A227",
     fontSize: 12,

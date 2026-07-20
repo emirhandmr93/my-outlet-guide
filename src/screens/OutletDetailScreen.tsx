@@ -10,6 +10,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  Platform,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -60,7 +62,7 @@ import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
-import { formatOutletStatusLabel, formatReviewSummaryLabel, formatStoresCountText } from "../utils/outletDisplayFormatters";
+import { formatOpeningHoursText, formatOutletStatusLabel, formatReviewSummaryLabel, formatStoresCountText } from "../utils/outletDisplayFormatters";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -99,6 +101,8 @@ export function OutletDetailScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const { reviews, deleteReview, reportReview, toggleHelpful, loadReviews } = useReviews();
   const { currentUser, isLoggedIn } = useUser();
   const { toggleFavorite, isFavorite } = useFavorites();
@@ -351,14 +355,16 @@ export function OutletDetailScreen() {
           styles.content,
           {
             paddingTop: getScreenTopInset(insets.top),
-            paddingBottom: getFloatingTabClearance(insets.bottom),
+            paddingBottom: isDesktopWeb ? 32 : getFloatingTabClearance(insets.bottom),
           },
+          isDesktopWeb && styles.desktopContent,
         ]}
         scrollIndicatorInsets={{
           top: getScreenTopInset(insets.top),
           bottom: getScrollIndicatorBottomInset(insets.bottom),
         }}
       >
+        <View style={isDesktopWeb ? styles.desktopInner : undefined}>
         <OutletHero
           name={outlet.name}
           location={`${formatCityDisplayName(outlet.cityId, language)}, ${formatCountryDisplayName(outlet.countryId, language)}`}
@@ -535,7 +541,7 @@ export function OutletDetailScreen() {
             weatherUnavailableText={t("weather.unavailable")}
             cityName={formatCityDisplayName(outlet.cityId, language)}
             openingHoursLabel={t("outlet.openingHours")}
-            openingHours={outlet.openingHours}
+            openingHours={formatOpeningHoursText(outlet.openingHours, language)}
             addressLabel={t("outlet.address")}
             address={outlet.address}
             storesCountText={formatStoresCountText(outlet.storesCountText, language)}
@@ -778,6 +784,7 @@ export function OutletDetailScreen() {
             <Text style={styles.emptyText}>{t("outlet.noReviews")}</Text>
           )}
         </View>
+        </View>
       </ScrollView>
     </View>
   );
@@ -803,6 +810,8 @@ const styles = StyleSheet.create({
     paddingTop: 64,
     paddingBottom: 168,
   },
+  desktopContent: { paddingHorizontal: 0 },
+  desktopInner: { width: "100%", maxWidth: 1180, alignSelf: "center", paddingHorizontal: 34 },
 
   galleryModal: {
     flex: 1,

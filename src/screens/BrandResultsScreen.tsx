@@ -20,6 +20,7 @@ import { brands } from "../constants/brands/index";
 import { outletBrands } from "../constants/outletBrands/index";
 import { outlets } from "../constants/outlets";
 import { countries } from "../constants/countries";
+import { CountryFlag } from "../components/CountryFlag";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -219,7 +220,7 @@ export function BrandResultsScreen() {
                   ]}
                   onPress={() => openCountryResults(country.countryId)}
                 >
-                  <Text style={styles.countryFlag}>{country.countryFlag}</Text>
+                  <CountryFlag countryId={country.countryId} size={28} style={styles.countryFlag} />
 
                   <View style={styles.countryContent}>
                     <Text style={styles.countryName} numberOfLines={2}>

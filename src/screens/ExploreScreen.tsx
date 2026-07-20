@@ -32,7 +32,7 @@ import {
 import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
-import { getCountryFlag } from "../services/locationService";
+import { CountryFlag } from "../components/CountryFlag";
 import { useTranslation } from "../hooks/useTranslation";
 import type { MainTabParamList, RootStackParamList } from "../navigation/types";
 import {
@@ -404,7 +404,7 @@ export function ExploreScreen() {
                 onPress={() => openResult(item)}
               >
                 <View style={styles.resultIconWrap}>
-                  <Text style={styles.resultIcon}>{resultIcon(item.type)}</Text>
+                  {item.type === "country" ? <CountryFlag countryId={item.id} size={26} /> : item.type === "city" && cities.find((city) => city.cityId === item.id) ? <CountryFlag countryId={cities.find((city) => city.cityId === item.id)!.countryId} size={22} /> : <Text style={styles.resultIcon}>{resultIcon(item.type)}</Text>}
                 </View>
                 <View style={styles.resultContent}>
                   <Text style={styles.resultTypeInline}>
@@ -461,7 +461,7 @@ export function ExploreScreen() {
                     navigation.navigate("Country", { countryId: c.countryId })
                   }
                 >
-                  <Text style={styles.countryFlag}>{c.countryFlag}</Text>
+                  <CountryFlag countryId={c.countryId} size={28} style={styles.countryFlag} />
                   <View style={styles.countryContent}>
                     <Text style={styles.countryName}>
                       {formatCountryDisplayName(c.countryId, language)}
@@ -725,19 +725,17 @@ function CityRow({ city, t, navigation, language, compact, isDesktopWeb, width }
         <Image source={img} style={styles.cityThumb} />
       ) : (
         <View style={styles.cityAvatar}>
-          <Text style={styles.cityAvatarText}>
-            {getCountryFlag(city.countryId)}
-          </Text>
+          <CountryFlag countryId={city.countryId} size={22} />
         </View>
       )}
       <View style={styles.resultContent}>
         <Text style={styles.resultTitle}>
           {formatCityDisplayName(city.cityId, language)}
         </Text>
-        <Text style={styles.resultSubtitle}>
-          {formatCountryDisplayName(city.countryId, language)} ·{" "}
-          {formatOutletCount(outletCount(undefined, city.cityId), t)}
-        </Text>
+        <View style={styles.citySubtitleRow}>
+          <CountryFlag countryId={city.countryId} size={18} />
+          <Text style={styles.resultSubtitle}>{formatCountryDisplayName(city.countryId, language)} · {formatOutletCount(outletCount(undefined, city.cityId), t)}</Text>
+        </View>
       </View>
       <Text style={styles.resultArrow}>›</Text>
     </TouchableOpacity>
@@ -779,7 +777,7 @@ function FilterRail({
               activeCountry === c.countryId && styles.filterTextActive,
             ]}
           >
-            {c.countryFlag} {formatCountryDisplayName(c.countryId, language)}
+            <CountryFlag countryId={c.countryId} size={20} /> {formatCountryDisplayName(c.countryId, language)}
           </Text>
         </TouchableOpacity>
       ))}
@@ -798,7 +796,7 @@ function FilterRail({
               activeCity === c.cityId && styles.filterTextActive,
             ]}
           >
-            {formatCityDisplayName(c.cityId, language)}
+            <CountryFlag countryId={c.countryId} size={18} /> {formatCityDisplayName(c.cityId, language)}
           </Text>
         </TouchableOpacity>
       ))}
@@ -845,7 +843,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 12 },
     elevation: 6,
   },
-  heroCardDesktop: { minHeight: 260 },
+  heroCardDesktop: { minHeight: 332 },
   heroImage: {
     borderRadius: 30,
   },
@@ -864,7 +862,7 @@ objectPosition: "58% 50%",
     paddingRight: 22,
     backgroundColor: "rgba(6, 20, 40, .54)",
   },
-  heroTextScrimDesktop: { maxWidth: "56%", minHeight: 260, padding: 32 },
+  heroTextScrimDesktop: { maxWidth: "56%", minHeight: 332, padding: 32 },
   heroKicker: {
     color: "#C9A227",
     fontSize: 12,
@@ -1096,6 +1094,7 @@ objectPosition: "58% 50%",
     justifyContent: "center",
   },
   cityAvatarText: { fontSize: 22 },
+  citySubtitleRow: { flexDirection: "row", alignItems: "center", gap: 6 },
   resultCard: {
     flexDirection: "row",
     alignItems: "center",
