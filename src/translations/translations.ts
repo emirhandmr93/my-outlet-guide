@@ -17212,5 +17212,10 @@ const appOnlyFeatureTranslations: Record<TranslationLanguage, Record<string, str
   tr: { "appOnly.badge": "MOBİL UYGULAMA", "appOnly.title": "Seyahat yönetimi uygulamada", "appOnly.body": "Web’de seyahatlerini görüntüleyebilirsin. Seyahat oluşturma, tarih ve rota değişiklikleri ile bildirim planlama mobil uygulamadan yapılır.", "appOnly.helper": "App Store incelemesi tamamlandığında burada uygulamada açma bağlantısı gösterilecek.", "appOnly.cta": "Uygulamada yakında", "appOnly.createBody": "Seyahat tarihleri, rotalar ve bildirim planlaması mobil uygulamadan yönetilir.", "appOnly.viewOnly": "Web yalnızca görüntüleme içindir. Değişiklikler ve bildirim eşitlemesi mobil uygulamada yapılır." },
   es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {}
 };
-for (const locale of supportedLanguageCodes) Object.assign(appOnlyFeatureTranslations[locale], appOnlyFeatureTranslations.en, appOnlyFeatureTranslations[locale]);
-for (const locale of supportedLanguageCodes) Object.assign(translations[locale], appOnlyFeatureTranslations[locale]);
+for (const locale of supportedLanguageCodes) {
+  Object.assign(
+    translations[locale],
+    appOnlyFeatureTranslations.en,
+    appOnlyFeatureTranslations[locale],
+  );
+}
