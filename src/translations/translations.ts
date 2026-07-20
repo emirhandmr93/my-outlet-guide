@@ -17206,3 +17206,11 @@ Object.assign(onboardingTranslations.zh, onboardingTranslations.en, {
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], onboardingTranslations[locale]);
 
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], finalScreenshotPolishTranslations[locale]);
+
+const appOnlyFeatureTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "appOnly.badge": "Mobile app", "appOnly.title": "Trip management is in the app", "appOnly.body": "You can view your trips on the web. Creating trips, changing dates and routes, and notification scheduling are managed in the mobile app.", "appOnly.helper": "App Store review is in progress. An open-in-app link will appear here when approval is complete.", "appOnly.cta": "Coming soon in the app", "appOnly.createBody": "Trip dates, routes, and notification scheduling are managed in the mobile app.", "appOnly.viewOnly": "Web is view-only. Changes and notification synchronization are handled in the mobile app." },
+  tr: { "appOnly.badge": "MOBİL UYGULAMA", "appOnly.title": "Seyahat yönetimi uygulamada", "appOnly.body": "Web’de seyahatlerini görüntüleyebilirsin. Seyahat oluşturma, tarih ve rota değişiklikleri ile bildirim planlama mobil uygulamadan yapılır.", "appOnly.helper": "App Store incelemesi tamamlandığında burada uygulamada açma bağlantısı gösterilecek.", "appOnly.cta": "Uygulamada yakında", "appOnly.createBody": "Seyahat tarihleri, rotalar ve bildirim planlaması mobil uygulamadan yönetilir.", "appOnly.viewOnly": "Web yalnızca görüntüleme içindir. Değişiklikler ve bildirim eşitlemesi mobil uygulamada yapılır." },
+  es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {}
+};
+for (const locale of supportedLanguageCodes) Object.assign(appOnlyFeatureTranslations[locale], appOnlyFeatureTranslations.en, appOnlyFeatureTranslations[locale]);
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], appOnlyFeatureTranslations[locale]);
