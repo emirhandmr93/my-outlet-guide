@@ -14,6 +14,7 @@ import {
   View,
 } from "react-native";
 
+import { AppOnlyFeatureNotice } from "../components/AppOnlyFeatureNotice";
 import { useTrips } from "../contexts/TripsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -57,6 +58,9 @@ export function CreateTripScreen() {
   const { addTrip } = useTrips();
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
+
+  const isWeb = Platform.OS === "web";
+  if (isWeb) return <View style={styles.webGate}><Text style={styles.webGateTitle}>{t("createTrip.heroTitle")}</Text><AppOnlyFeatureNotice title={t("appOnly.title")} body={t("appOnly.createBody")} helperText={t("appOnly.helper")} badge={t("appOnly.badge")} ctaLabel={t("appOnly.cta")} /></View>;
 
   const [tripName, setTripName] = useState("");
   const [startDate, setStartDate] = useState<Date | null>(null);
@@ -570,6 +574,8 @@ selectedTime && setDraftTime(selectedTime)
 }
 
 const styles = StyleSheet.create({
+  webGate: { flex: 1, backgroundColor: "#F7F8FA", padding: 24, alignItems: "center", justifyContent: "center" },
+  webGateTitle: { color: "#0B1F3A", fontSize: 30, fontWeight: "900", marginBottom: 18, textAlign: "center" },
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20 },
   heroCard: {

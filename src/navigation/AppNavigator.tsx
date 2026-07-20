@@ -57,7 +57,10 @@ BrandResults: RootStackParamList["BrandResults"] & { selectedCountryId?: string 
 Country: RootStackParamList["Country"];
 CityResults: RootStackParamList["CityResults"];
 Transportation: RootStackParamList["Transportation"];
+CreateTrip: undefined;
 };
+
+type DesktopTripsStackParamList = { MyTripsRoot: undefined; TripDetail: RootStackParamList["TripDetail"]; CreateTrip: undefined; TripSegmentEditor: RootStackParamList["TripSegmentEditor"]; };
 
 type DesktopExploreStackParamList = {
 ExploreRoot: MainTabParamList["Explore"];
@@ -66,10 +69,12 @@ BrandResults: RootStackParamList["BrandResults"] & { selectedCountryId?: string 
 Country: RootStackParamList["Country"];
 CityResults: RootStackParamList["CityResults"];
 Transportation: RootStackParamList["Transportation"];
+CreateTrip: undefined;
 };
 
 const DesktopHomeStack = createNativeStackNavigator<DesktopHomeStackParamList>();
 const DesktopExploreStack = createNativeStackNavigator<DesktopExploreStackParamList>();
+const DesktopTripsStack = createNativeStackNavigator<DesktopTripsStackParamList>();
 
 function desktopBrowseScreenOptions(t: ReturnType<typeof useTranslation>["t"]) {
 return {
@@ -97,6 +102,7 @@ return (
 <DesktopHomeStack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
 <DesktopHomeStack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
 <DesktopHomeStack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
+<DesktopHomeStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
 </DesktopHomeStack.Navigator>
 );
 }
@@ -120,9 +126,12 @@ options={{ headerShown: false }}
 <DesktopExploreStack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
 <DesktopExploreStack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
 <DesktopExploreStack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
+<DesktopExploreStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
 </DesktopExploreStack.Navigator>
 );
 }
+
+function DesktopTripsNavigator() { const { t } = useTranslation(); return <DesktopTripsStack.Navigator screenOptions={desktopBrowseScreenOptions(t)}><DesktopTripsStack.Screen name="MyTripsRoot" component={MyTripsScreen} options={{ headerShown: false }} /><DesktopTripsStack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: t("nav.tripDetail") }} /><DesktopTripsStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} /><DesktopTripsStack.Screen name="TripSegmentEditor" component={TripSegmentEditorScreen} options={{ title: t("tripDetail.addRouteCta") }} /></DesktopTripsStack.Navigator>; }
 
 function TabIcon({
 routeName,
@@ -227,7 +236,7 @@ elevation: 14,
 >
 <Tab.Screen name="Home" component={isDesktopWeb ? DesktopHomeNavigator : HomeScreen} />
 <Tab.Screen name="Explore" component={isDesktopWeb ? DesktopExploreNavigator : ExploreScreen} />
-<Tab.Screen name="MyTrips" component={MyTripsScreen} />
+<Tab.Screen name="MyTrips" component={isDesktopWeb ? DesktopTripsNavigator : MyTripsScreen} />
 <Tab.Screen name="Savings" component={SavingsScreen} />
 <Tab.Screen name="Profile" component={ProfileScreen} />
 </Tab.Navigator>

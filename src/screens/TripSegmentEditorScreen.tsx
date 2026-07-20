@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { AppOnlyFeatureNotice } from "../components/AppOnlyFeatureNotice";
 import { cities } from "../constants/cities";
 import { TripSegment, useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -152,6 +153,9 @@ export function TripSegmentEditorScreen() {
     null,
   );
   const [saving, setSaving] = useState(false);
+
+  const isWeb = Platform.OS === "web";
+  if (isWeb) return <View style={styles.webGate}><AppOnlyFeatureNotice title={t("appOnly.title")} body={t("appOnly.body")} helperText={t("appOnly.helper")} badge={t("appOnly.badge")} ctaLabel={t("appOnly.cta")} /></View>;
 
   const routeResults = useMemo<RouteSearchResult[]>(() => {
     const query = normalizeSearchText(routeQuery);
@@ -435,7 +439,7 @@ export function TripSegmentEditorScreen() {
             />
             {pickerTarget && (
               <View style={styles.pickerCard}>
-                {Platform.OS === "web" ? createElement("input", {
+                {isWeb ? createElement("input", {
                   type: "date",
                   value: pickerTarget === "start" ? segment.startDate : segment.endDate,
                   min: trip.startDate,
@@ -491,6 +495,7 @@ export function TripSegmentEditorScreen() {
 }
 
 const styles = StyleSheet.create({
+  webGate: { flex: 1, backgroundColor: "#F7F8FA", padding: 24, alignItems: "center", justifyContent: "center" },
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20 },
   centerState: { flex: 1, alignItems: "center", justifyContent: "center" },

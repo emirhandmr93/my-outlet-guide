@@ -1,8 +1,9 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useRef, useState } from "react";
-import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { AppOnlyFeatureNotice } from "../components/AppOnlyFeatureNotice";
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { Trip, useTrips } from "../contexts/TripsContext";
 import { heroAssets } from "../media/heroAssets";
@@ -13,6 +14,12 @@ import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locati
 import type { RootStackParamList } from "../navigation/types";
 import { requireAuth } from "../utils/requireAuth";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
+
+function formatDisplayDateRange(startDate: string, endDate: string) {
+  if (Platform.OS !== "web") return `${startDate} – ${endDate}`;
+  const format = (value: string) => new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(new Date(`${value}T00:00:00`));
+  return `${format(startDate)} – ${format(endDate)}`;
+}
 
 function TripCard({ trip, onPress, onDelete, isDeleting, t, language }: { trip: Trip; onPress: () => void; onDelete: () => void; isDeleting: boolean; t: (key: string) => string; language: Parameters<typeof formatCityDisplayName>[1] }) {
   const primarySegment = trip.segments?.find((item) => item.cityId || item.cityName || item.countryCode || item.countryName || item.outletName);
@@ -25,7 +32,7 @@ function TripCard({ trip, onPress, onDelete, isDeleting, t, language }: { trip: 
     <TouchableOpacity style={styles.tripCard} activeOpacity={0.86} onPress={onPress}>
       <View style={styles.cardTopRow}>
         <Text style={styles.statusPill}>{getTripStatusLabel(trip.status, t)}</Text>
-        <Text style={styles.dateText}>{trip.startDate && trip.endDate ? `${trip.startDate} – ${trip.endDate}` : t("trips.dateNotSet")}</Text>
+        <Text style={styles.dateText}>{trip.startDate && trip.endDate ? formatDisplayDateRange(trip.startDate, trip.endDate) : t("trips.dateNotSet")}</Text>
       </View>
 
       <Text style={styles.tripTitle}>{trip.tripName || t("trips.defaultTripName")}</Text>
@@ -46,7 +53,7 @@ function TripCard({ trip, onPress, onDelete, isDeleting, t, language }: { trip: 
         </View>
       </View>
 
-      <TouchableOpacity
+      {Platform.OS !== "web" && <TouchableOpacity
         style={styles.deleteButton}
         disabled={isDeleting}
         onPress={(event) => {
@@ -73,7 +80,7 @@ function TripCard({ trip, onPress, onDelete, isDeleting, t, language }: { trip: 
         }}
       >
         <Text style={styles.deleteButtonText}>{t("common.delete")}</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>}
     </TouchableOpacity>
   );
 }
@@ -84,6 +91,8 @@ export function MyTripsScreen() {
   const { t, language } = useTranslation();
   const { isLoggedIn } = useUser();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const [deletingTripIds, setDeletingTripIds] = useState<Set<string>>(() => new Set());
   const deletingTripIdsRef = useRef(new Set<string>());
 
@@ -120,7 +129,7 @@ export function MyTripsScreen() {
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      contentContainerStyle={[styles.content, isDesktopWeb && styles.desktopContent, { paddingTop: isDesktopWeb ? 32 : getScreenTopInset(insets.top), paddingBottom: isDesktopWeb ? 32 : getFloatingTabClearance(insets.bottom) }]}
       scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
     >
       <LocalHeroImageCard imageSource={heroAssets.trips} style={styles.heroCard} contentStyle={styles.heroInner}>
@@ -146,17 +155,7 @@ export function MyTripsScreen() {
         </View>
       </View>
 
-      <TouchableOpacity
-        style={styles.primaryButton}
-        activeOpacity={0.86}
-        onPress={() => {
-          if (requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") })) {
-            navigation.navigate("CreateTrip");
-          }
-        }}
-      >
-        <Text style={styles.primaryButtonText}>{t(isLoggedIn ? "trips.createTripCta" : "auth.signIn")}</Text>
-      </TouchableOpacity>
+      {Platform.OS === "web" && isLoggedIn ? <AppOnlyFeatureNotice compact title={t("appOnly.title")} body={t("appOnly.body")} helperText={t("appOnly.helper")} badge={t("appOnly.badge")} ctaLabel={t("appOnly.cta")} /> : <TouchableOpacity style={styles.primaryButton} activeOpacity={0.86} onPress={() => { if (requireAuth({ isLoggedIn, navigation, message: t("trips.authRequiredCreateMessage") })) navigation.navigate("CreateTrip"); }}><Text style={styles.primaryButtonText}>{t(isLoggedIn ? "trips.createTripCta" : "auth.signIn")}</Text></TouchableOpacity>}
 
       {!isLoggedIn ? (
         <View style={styles.emptyCard}>
@@ -184,7 +183,7 @@ export function MyTripsScreen() {
           </Text>
         </View>
       ) : (
-        trips.map((trip) => (
+        <View style={isDesktopWeb ? styles.tripGrid : undefined}>{trips.map((trip) => (
           <TripCard
             key={trip.id}
             trip={trip}
@@ -194,7 +193,7 @@ export function MyTripsScreen() {
             onPress={() => navigation.navigate("TripDetail", { tripId: trip.id })}
             t={t}
           />
-        ))
+        ))}</View>
       )}
     </ScrollView>
   );
@@ -203,6 +202,7 @@ export function MyTripsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20 },
+  desktopContent: { width: "100%", maxWidth: 1180, alignSelf: "center", paddingHorizontal: 34 },
   heroCard: { marginBottom: 16 },
   heroInner: { padding: 24 },
   kicker: { color: "#C9A227", fontSize: 12, fontWeight: "900", letterSpacing: 1.2, marginBottom: 10 },
@@ -218,7 +218,8 @@ const styles = StyleSheet.create({
   emptyIcon: { fontSize: 34, marginBottom: 10 },
   emptyTitle: { color: "#0B1F3A", fontSize: 21, fontWeight: "900" },
   emptyText: { color: "#666666", textAlign: "center", lineHeight: 21, marginTop: 8 },
-  tripCard: { backgroundColor: "#FFFFFF", borderRadius: 26, padding: 20, borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 14 },
+  tripGrid: { flexDirection: "row", flexWrap: "wrap", gap: 14 },
+  tripCard: { flexGrow: 1, flexBasis: 440, backgroundColor: "#FFFFFF", borderRadius: 26, padding: 20, borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 14 },
   cardTopRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: 12, marginBottom: 12 },
   statusPill: { backgroundColor: "#0B1F3A", color: "#FFFFFF", fontSize: 12, fontWeight: "900", paddingHorizontal: 10, paddingVertical: 6, borderRadius: 999, overflow: "hidden" },
   dateText: { color: "#666666", fontSize: 12, fontWeight: "800", flex: 1, textAlign: "right" },
