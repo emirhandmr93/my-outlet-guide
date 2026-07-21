@@ -18,7 +18,7 @@ const expectedServices: Record<string, string[]> = {
   "venezia-mega-outlet": ["ATM", "Baby Care Room", "Information Desk", "Prayer Room", "Lost Property", "Medical Room", "Taxi Stand"],
 };
 
-const unchangedOutletIds = ["212-outlet", "optimum-premium-outlet-istanbul", "izmir-optimum", "deepo-outlet-center"];
+const batchBOutletIds = ["212-outlet", "optimum-premium-outlet-istanbul", "izmir-optimum", "deepo-outlet-center"];
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -26,7 +26,8 @@ function assert(condition: unknown, message: string): asserts condition {
 
 const turkeyOutlets = outlets.filter((outlet) => outlet.countryId === "turkey");
 assert(turkeyOutlets.length === 8, "Expected exactly eight Turkey outlets.");
-assert(turkeyOutlets.filter((outlet) => targetOutletIds.has(outlet.outletId)).length === targetOutletIds.size, "Only the four Batch A target outlets may receive this metadata.");
+assert(turkeyOutlets.filter((outlet) => targetOutletIds.has(outlet.outletId)).length === targetOutletIds.size, "Expected all four Batch A target outlets.");
+assert(turkeyOutlets.filter((outlet) => batchBOutletIds.includes(outlet.outletId)).length === batchBOutletIds.length, "Expected all four Batch B outlet IDs.");
 
 const byId = (outletId: string) => turkeyOutlets.find((outlet) => outlet.outletId === outletId);
 const viaport = byId("viaport-asia-outlet-shopping");
@@ -47,11 +48,6 @@ for (const [outletId, services] of Object.entries(expectedServices)) {
   assert(services.length > 0 && new Set(services).size === services.length, `${outletId} services must be non-empty and unique.`);
 }
 
-for (const outletId of unchangedOutletIds) {
-  const outlet = byId(outletId);
-  assert(outlet?.openingHours === "" && outlet.storesCountText === "" && Array.isArray(outlet.services) && outlet.services.length === 0, `${outletId} must remain unchanged by Batch A.`);
-}
-
 for (const outlet of turkeyOutlets) {
   assert(outlet.rating === 0 && outlet.reviewCount === 0, `${outlet.outletId} must retain zero ratings and review counts.`);
   assert(outlet.heroImage === "" && Array.isArray(outlet.galleryImages) && outlet.galleryImages.length === 0, `${outlet.outletId} must not receive media.`);
@@ -62,4 +58,4 @@ for (const outlet of turkeyOutlets) {
   assert(!transportationGuides.some((item) => item.outletId === outlet.outletId), `${outlet.outletId} must not receive transportation-guide data.`);
 }
 
-console.log("Turkey Basic Metadata Batch A valid: exactly four target outlets updated; remaining four Turkey outlets unchanged.");
+console.log("Turkey Basic Metadata Batch A valid: all four Batch A target outlets retain their verified metadata.");

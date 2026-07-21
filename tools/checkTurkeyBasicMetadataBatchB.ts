@@ -36,8 +36,9 @@ function outletSource(source: string, outletId: string): string {
 }
 
 const currentTurkeySource = readFileSync(turkeySourcePath, "utf8");
-const headTurkeySource = execFileSync("git", ["show", `HEAD:${turkeySourcePath}`], { encoding: "utf8" });
-const baseRevision = headTurkeySource === currentTurkeySource ? "HEAD^" : "HEAD";
+const latestTurkeyRevision = execFileSync("git", ["log", "-1", "--format=%H", "--", turkeySourcePath], { encoding: "utf8" }).trim();
+const latestTurkeySource = execFileSync("git", ["show", `${latestTurkeyRevision}:${turkeySourcePath}`], { encoding: "utf8" });
+const baseRevision = latestTurkeySource === currentTurkeySource ? `${latestTurkeyRevision}^` : latestTurkeyRevision;
 const baseTurkeySource = execFileSync("git", ["show", `${baseRevision}:${turkeySourcePath}`], { encoding: "utf8" });
 for (const outletId of Object.keys(expectedBatchAServices)) {
   assert(outletSource(currentTurkeySource, outletId) === outletSource(baseTurkeySource, outletId), `${outletId} must remain byte-for-byte unchanged from Batch A.`);
