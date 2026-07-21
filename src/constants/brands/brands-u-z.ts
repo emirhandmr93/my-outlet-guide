@@ -2794,8 +2794,8 @@ export const brandsUZ: Brand[] = [
   },
   {
     brandId: "vakko",
-    brandName: "Vakko Outlet",
-    aliases: [],
+    brandName: "Vakko",
+    aliases: ["Vakko Outlet"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
