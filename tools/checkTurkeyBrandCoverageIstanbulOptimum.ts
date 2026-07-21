@@ -54,14 +54,8 @@ for (const [brandId, categoryId] of Object.entries(expectedCategories)) assert(b
 
 const mergeBase = execFileSync("git", ["merge-base", "HEAD", "main"], { encoding: "utf8" }).trim();
 const turkeySource = execFileSync("git", ["show", `${mergeBase}:src/constants/outletBrands/turkey.ts`], { encoding: "utf8" });
-for (const [id, expectedCount] of [["olivium-outlet-center",94],["starcity-outlet",101],[outletId,112]] as const) assert(outletBrands.filter((relation) => relation.outletId === id).length === expectedCount, `${id} relation count changed.`);
-for (const id of ["viaport-asia-outlet-shopping","212-outlet","venezia-mega-outlet","izmir-optimum","deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
-for (const [name, id] of [["oliviumBrandIds","olivium-outlet-center"],["starCityBrandIds","starcity-outlet"]] as const) {
-  const baseIds = [...turkeySource.match(new RegExp(`const ${name} = \\[([\\s\\S]*?)\\];`))![1].matchAll(/"([^"]+)"/g)].map((match) => match[1]);
-  assert(JSON.stringify(outletBrands.filter((relation) => relation.outletId === id).map((relation) => relation.brandId)) === JSON.stringify(baseIds), `${id} IDs/order must be byte-for-byte preserved.`);
-}
+const brandFiles = ["src/constants/brands/brands-a-e.ts", "src/constants/brands/brands-f-k.ts", "src/constants/brands/brands-l-p.ts", "src/constants/brands/brands-q-t.ts", "src/constants/brands/brands-u-z.ts"] as const;
 
-const brandFiles = ["src/constants/brands/brands-a-e.ts", "src/constants/brands/brands-f-k.ts", "src/constants/brands/brands-l-p.ts", "src/constants/brands/brands-q-t.ts", "src/constants/brands/brands-u-z.ts"];
 function sourceBrandBlock(source: string, brandId: string): string {
   const start = source.indexOf(`brandId: "${brandId}"`);
   assert(start !== -1, `Missing ${brandId} in source.`);
@@ -69,15 +63,75 @@ function sourceBrandBlock(source: string, brandId: string): string {
   const entryEnd = source.indexOf("\n  },", start);
   return source.slice(entryStart, entryEnd + 5);
 }
-const baseBrandIds = new Set(brandFiles.flatMap((file) => [...execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" }).matchAll(/brandId: "([^"]+)"/g)].map((match) => match[1])));
-const currentBrandIds = new Set(brands.map((brand) => brand.brandId));
-const newBrandIds = [...currentBrandIds].filter((brandId) => !baseBrandIds.has(brandId));
+function sourceBrands(source: string) {
+  return [...source.matchAll(/\{\n\s+brandId: "([^"]+)",[\s\S]*?\n\s+brandName: "([^"]+)",[\s\S]*?\n\s+aliases: \[([^\]]*)\],[\s\S]*?\n\s+\},/g)]
+    .map(([, brandId, brandName, aliases]) => ({ brandId, brandName, aliases: [...aliases.matchAll(/"([^"]+)"/g)].map((match) => match[1]) }));
+}
+function expectedBrandFile(brandId: string): string {
+  return brandId[0] <= "e" ? brandFiles[0] : brandId[0] <= "k" ? brandFiles[1] : brandId[0] <= "p" ? brandFiles[2] : brandId[0] <= "t" ? brandFiles[3] : brandFiles[4];
+}
+function baseRelationIds(name: string): string[] {
+  return [...turkeySource.match(new RegExp(`const ${name} = \\[([\\s\\S]*?)\\];`))![1].matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+}
+function assertPreservedRelations(name: string, preservedOutletId: string, expectedCount: number) {
+  const baseIds = baseRelationIds(name);
+  const current = outletBrands.filter((relation) => relation.outletId === preservedOutletId);
+  assert(baseIds.length === expectedCount && current.length === expectedCount, `${preservedOutletId} count changed.`);
+  assert(JSON.stringify(current.map((relation) => relation.brandId)) === JSON.stringify(baseIds), `${preservedOutletId} IDs/order changed.`);
+  for (const relation of current) {
+    assert(JSON.stringify(Object.keys(relation).sort()) === JSON.stringify(["brandId", "featured", "outletId", "relationStatus"]), `${preservedOutletId} relation has unexpected fields.`);
+    assert(relation.outletId === preservedOutletId && relation.featured === false && relation.relationStatus === "active", `${preservedOutletId} relation fields changed.`);
+  }
+}
+
+assertPreservedRelations("oliviumBrandIds", "olivium-outlet-center", 94);
+assertPreservedRelations("starCityBrandIds", "starcity-outlet", 101);
+assert(relations.length === 112, "Istanbul Optimum must have 112 relations.");
+for (const id of ["viaport-asia-outlet-shopping", "212-outlet", "venezia-mega-outlet", "izmir-optimum", "deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
+
+const baseSources = new Map(brandFiles.map((file) => [file, execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" })]));
+const currentSources = new Map(brandFiles.map((file) => [file, readFileSync(file, "utf8")]));
+const baseByFile = new Map(brandFiles.map((file) => [file, sourceBrands(baseSources.get(file)!)]));
+const currentByFile = new Map(brandFiles.map((file) => [file, sourceBrands(currentSources.get(file)!)]));
+const baseBrands = [...baseByFile.values()].flat();
+const currentBrands = [...currentByFile.values()].flat();
+const baseBrandIds = new Set(baseBrands.map((brand) => brand.brandId));
+const newBrandIds = currentBrands.filter((brand) => !baseBrandIds.has(brand.brandId)).map((brand) => brand.brandId);
+const baseIdentities = new Map<string, string>();
+for (const brand of baseBrands) for (const identity of [brand.brandName, ...brand.aliases].map(normalize)) baseIdentities.set(identity, brand.brandId);
+const newIdentityOwners = new Map<string, string>();
 for (const brandId of newBrandIds) {
+  assert(!baseBrandIds.has(brandId), `${brandId} existed at merge base.`);
   const file = brandFiles.find((candidate) => readFileSync(candidate, "utf8").includes(`brandId: "${brandId}"`))!;
-  assert(!sourceBrandBlock(readFileSync(file, "utf8"), brandId).includes("originCountryId:"), `${brandId} must not add originCountryId.`);
+  assert(file === expectedBrandFile(brandId), `${brandId} is in the wrong alphabetical file.`);
+  const block = sourceBrandBlock(currentSources.get(file)!, brandId);
+  assert(!block.includes("originCountryId:"), `${brandId} must not add originCountryId.`);
+  const brand = currentBrands.find((candidate) => candidate.brandId === brandId)!;
+  for (const identity of new Set([brand.brandName, ...brand.aliases].map(normalize))) {
+    const baseOwner = baseIdentities.get(identity);
+    const permittedBlueDiamond = identity === normalize("Blue Diamond") && baseOwner === "blue-diamond-garden-centre" && brandId === "blue-diamond-jewelry";
+    assert(!baseOwner || permittedBlueDiamond, `${brandId} collides with base ${baseOwner}.`);
+    const newOwner = newIdentityOwners.get(identity);
+    assert(!newOwner || newOwner === brandId, `${brandId} collides with new ${newOwner}.`);
+    newIdentityOwners.set(identity, brandId);
+  }
+}
+
+for (const baseBrand of baseBrands) {
+  const file = brandFiles.find((candidate) => currentByFile.get(candidate)!.some((brand) => brand.brandId === baseBrand.brandId))!;
+  const baseBlock = sourceBrandBlock(baseSources.get(file)!, baseBrand.brandId);
+  const currentBlock = sourceBrandBlock(currentSources.get(file)!, baseBrand.brandId);
+  if (baseBrand.brandId === "beymen") {
+    assert(currentBlock.replace('"Beymen Club", ', "") === baseBlock && currentBlock.includes('aliases: ["Beymen Business", "Beymen Club", "Beymen Outlet"]'), "Only Beymen Club may be added to Beymen aliases.");
+  } else if (baseBrand.brandId === "the-cosmetics-company-store") {
+    assert(currentBlock.replace('      "The ELC Company Store",\n      "Estée Lauder Companies Store",\n', "") === baseBlock, "Only approved ELC aliases may be added.");
+  } else {
+    assert(currentBlock === baseBlock, `${baseBrand.brandId} must remain byte-for-byte unchanged.`);
+  }
 }
 const baseBlueDiamond = sourceBrandBlock(execFileSync("git", ["show", `${mergeBase}:src/constants/brands/brands-a-e.ts`], { encoding: "utf8" }), "blue-diamond-garden-centre");
-assert(baseBlueDiamond.includes('aliases: ["Blue Diamond", "Springfields Garden Centre", "BlueDiamond"]'), "Base Blue Diamond garden aliases must be preserved.");
+const currentBlueDiamond = sourceBrandBlock(readFileSync("src/constants/brands/brands-a-e.ts", "utf8"), "blue-diamond-garden-centre");
+assert(currentBlueDiamond === baseBlueDiamond, "Blue Diamond Garden Centre must be byte-for-byte preserved.");
 assert(newBrandIds.includes("blue-diamond-jewelry"), "Blue Diamond jewelry must be a distinct new canonical.");
 
 const changedFiles = execFileSync("git", ["diff", "--name-only", `${mergeBase}...HEAD`], { encoding: "utf8" }).trim().split("\n").filter(Boolean);
