@@ -4924,6 +4924,7 @@ export const brandsQT: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+
   {
     brandId: "rivella",
     brandName: "RIVELLA",
@@ -4941,16 +4942,6 @@ export const brandsQT: Brand[] = [
     categoryId: "home",
     logo: "",
     luxuryLevel: "lifestyle",
-    rankingWeight: 60,
-    brandStatus: "active",
-  },
-  {
-    brandId: "sport-in-street",
-    brandName: "SPORT İN STREET",
-    aliases: ["Sport In Street"],
-    categoryId: "sportswear",
-    logo: "",
-    luxuryLevel: "sports",
     rankingWeight: 60,
     brandStatus: "active",
   },

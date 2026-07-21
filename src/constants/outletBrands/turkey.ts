@@ -1,9 +1,9 @@
 import type { OutletBrand } from "./index";
 
 const oliviumBrandIds = [
-  "acandco",
   "adidas",
   "adv",
+  "altinyildiz-classics",
   "arma-life",
   "armagan-oyuncak",
   "armine",
@@ -37,6 +37,7 @@ const oliviumBrandIds = [
   "gusto",
   "hatemoglu",
   "hummel",
+  "in-street",
   "ipekyol",
   "kigili",
   "kilifcim",
@@ -74,7 +75,6 @@ const oliviumBrandIds = [
   "rossmann",
   "sarev",
   "skechers",
-  "sport-in-street",
   "spx",
   "superstep",
   "supplementler",

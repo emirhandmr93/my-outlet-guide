@@ -2711,6 +2711,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+
   {
     brandId: "uki",
     brandName: "UKİ",
