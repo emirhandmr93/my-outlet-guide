@@ -88,7 +88,7 @@ function assertPreservedRelations(name: string, preservedOutletId: string, expec
 assertPreservedRelations("oliviumBrandIds", "olivium-outlet-center", 94);
 assertPreservedRelations("starCityBrandIds", "starcity-outlet", 101);
 assert(relations.length === 112, "Istanbul Optimum must have 112 relations.");
-for (const id of ["viaport-asia-outlet-shopping", "212-outlet", "venezia-mega-outlet", "deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
+for (const id of ["212-outlet", "venezia-mega-outlet", "deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
 
 const baseSources = new Map(brandFiles.map((file) => [file, execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" })]));
 const currentSources = new Map(brandFiles.map((file) => [file, readFileSync(file, "utf8")]));
@@ -126,6 +126,16 @@ for (const baseBrand of baseBrands) {
     assert(currentBlock === baseBlock || (currentBlock.replace('"Beymen Club", ', "") === baseBlock && currentBlock.includes('aliases: ["Beymen Business", "Beymen Club", "Beymen Outlet"]')), "Only Beymen Club may be added to Beymen aliases.");
   } else if (baseBrand.brandId === "the-cosmetics-company-store") {
     assert(currentBlock === baseBlock || currentBlock.replace('      "The ELC Company Store",\n      "Estée Lauder Companies Store",\n', "") === baseBlock, "Only approved ELC aliases may be added.");
+  } else if (baseBrand.brandId === "haribo") {
+    assert(currentBlock.replace('categoryId: "food",', 'categoryId: "food-confectionery",') === baseBlock, "Haribo may only receive its Viaport food category correction.");
+  } else if (baseBrand.brandId === "knitss-hemington") {
+    assert(currentBlock.replace(', "HEMINGTON"', "") === baseBlock, "Hemington may only be added as an alias to the existing canonical.");
+  } else if (baseBrand.brandId === "lego") {
+    assert(currentBlock.replace('categoryId: "toys",', 'categoryId: "children",').replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "premium",') === baseBlock, "LEGO may only receive its Viaport toys category correction.");
+  } else if (baseBrand.brandId === "m-store") {
+    assert(currentBlock.replace('brandName: "M Store",', 'brandName: "M+ Store",').replace('aliases: ["M+ Store"],', 'aliases: [],').replace('categoryId: "electronics",', 'categoryId: "fashion",').replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "fashion",') === baseBlock, "M Store may only receive its Viaport identity correction.");
+  } else if (baseBrand.brandId === "parfois") {
+    assert(currentBlock.replace('categoryId: "accessories",', 'categoryId: "shoes-bags",').replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "fashion",') === baseBlock, "Parfois may only receive its Viaport accessories category correction.");
   } else {
     const approvedAliasAdditions: Record<string, string> = { defacto: "DEFACTO KIDS", "saat-saat": "SAAT&SAAT EXCLUSIVE", samsung: "SAMSUNG MOBILE", karaca: "KARACA ZÜCCACİYE", "mi-shop": "MI STORE", vakko: "VAKKO BOUTİQUE", vestel: "VESTEL EKSPRES", teknosa: "TEKNOSA EXTRA", eve: "EVE SHOP", loft: "LOFT (YENİLENİYOR)", supplementler: "SUPPLEMENTLER.COM", "calvin-klein": "CALVİN KLEİN", "blue-diamond-jewelry": "BLUE DIAMOND", "b-and-g-store": "B&G STORE", "mr-diy": "MR.DIY", "jack-and-jones": "JACK & JONES", "in-street": "IN STREET", "lc-waikiki": "LCW", levis: "LEVI'S", "toyzz-shop": "TOYZZ SHOP", "turk-telekom": "TÜRK TELEKOM" };
     const approved = approvedAliasAdditions[baseBrand.brandId];
