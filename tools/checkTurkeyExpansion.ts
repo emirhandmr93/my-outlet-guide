@@ -41,6 +41,21 @@ assert(new Set(slugs).size === slugs.length, "Outlet slugs must be unique.");
 
 const turkeyOutlets = outlets.filter((outlet) => outlet.countryId === "turkey");
 assert(turkeyOutlets.length === 8, "Expected exactly eight Turkey outlet skeletons.");
+assert(!turkeyOutlets.some((outlet) => `${outlet.openingHours} ${outlet.storesCountText}`.includes("Check official website")), "Turkey outlets must not use raw English unavailable-data placeholders.");
+
+const viaport = turkeyOutlets.find((outlet) => outlet.outletId === "viaport-asia-outlet-shopping");
+const olivium = turkeyOutlets.find((outlet) => outlet.outletId === "olivium-outlet-center");
+const istanbulOptimum = turkeyOutlets.find((outlet) => outlet.outletId === "optimum-premium-outlet-istanbul");
+const starCity = turkeyOutlets.find((outlet) => outlet.outletId === "starcity-outlet");
+assert(viaport?.openingHours === "Daily 10:00–22:00", "Viaport official opening hours must be populated.");
+assert(olivium?.address.includes("No:30") && !olivium.address.includes("No:1"), "Olivium must use the official No:30 address.");
+assert(olivium?.websiteUrl === "https://www.olivium.com.tr/tr/", "Olivium must use the current official website.");
+assert(olivium?.openingHours === "Daily 10:00–22:00" && olivium.storesCountText === "129 stores", "Olivium official hours and store count must be populated.");
+assert(istanbulOptimum?.address.includes("Elibol Sokak No:2/B") && !istanbulOptimum.address.includes("Dedepaşa"), "Istanbul Optimum must use the Elibol Sokak address.");
+assert(istanbulOptimum?.websiteUrl?.includes("optimumistanbul.com"), "Istanbul Optimum must use optimumistanbul.com.");
+assert(istanbulOptimum?.latitude === 40.9895 && istanbulOptimum.longitude === 29.0962, "Istanbul Optimum must retain corrected coordinates after applying defaults.");
+assert(starCity?.taxFreeAvailable === true && starCity.taxFreeOfficeInfo?.includes("information desk near the Starbucks entrance"), "StarCity official Tax Free information must override shared defaults.");
+
 for (const outlet of turkeyOutlets) {
   assert(outlet.countryId === "turkey", `${outlet.outletId} must reference turkey.`);
   assert(cities.some((city) => city.cityId === outlet.cityId), `${outlet.outletId} has an unknown city.`);

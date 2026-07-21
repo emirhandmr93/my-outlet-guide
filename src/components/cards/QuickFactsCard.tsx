@@ -95,8 +95,12 @@ export function QuickFactsCard({
       <SectionTitle title={title} />
 
       <View style={styles.grid}>
-        <FactTile icon="🕒" label={t("sharedCards.quickFacts.hours")} value={openingHours} />
-        <FactTile icon="🛍️" label={t("sharedCards.quickFacts.stores")} value={storesCountText} onPress={onPressStores} />
+        {openingHours.trim() ? (
+          <FactTile icon="🕒" label={t("sharedCards.quickFacts.hours")} value={openingHours} />
+        ) : null}
+        {storesCountText.trim() ? (
+          <FactTile icon="🛍️" label={t("sharedCards.quickFacts.stores")} value={storesCountText} onPress={onPressStores} />
+        ) : null}
         <FactTile icon="💰" label={t("sharedCards.quickFacts.taxFree")} value={t("sharedCards.quickFacts.available")} onPress={onPressTaxFree} />
         <FactTile icon="✈️" label={t("sharedCards.quickFacts.airports")} value={airportText} onPress={onPressAirport} />
         <FactTile icon="🚗" label={t("sharedCards.quickFacts.cityCenter")} value={`${cityCenterDistanceKm} km`} />
