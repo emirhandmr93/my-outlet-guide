@@ -1,4 +1,5 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useNavigation } from "@react-navigation/native";
 import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
 import { AppOnlyFeatureNotice } from "../components/AppOnlyFeatureNotice";
@@ -9,6 +10,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
 export function NotificationSettingsScreen() {
+  const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
@@ -58,10 +60,13 @@ export function NotificationSettingsScreen() {
           ctaLabel={t("appOnly.cta")}
         />
       ) : !isLoggedIn ? (
-        <StatusCard
-          title={t("notifications.signInRequiredTitle")}
-          body={t("notifications.signInRequiredBody")}
-        />
+        <View style={styles.infoBox}>
+          <Text style={styles.infoTitle}>{t("notifications.signInRequiredTitle")}</Text>
+          <Text style={styles.infoText}>{t("notifications.signInRequiredBody")}</Text>
+          <TouchableOpacity style={styles.signInButton} onPress={() => navigation.navigate("Login")}>
+            <Text style={styles.signInButtonText}>{t("notifications.signInCta")}</Text>
+          </TouchableOpacity>
+        </View>
       ) : (
         <>
           <StatusCard
@@ -256,6 +261,8 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     fontWeight: "700",
   },
+  signInButton: { backgroundColor: "#0B1F3A", borderRadius: 14, paddingVertical: 13, paddingHorizontal: 18, alignItems: "center", marginTop: 16 },
+  signInButtonText: { color: "#FFFFFF", fontWeight: "900" },
 
   row: {
     backgroundColor: "#FFFFFF",

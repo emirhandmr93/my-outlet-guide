@@ -68,7 +68,7 @@ export const countries = [
     "countryName": "Bulgaria",
     "countryFlag": "🇧🇬",
     "continent": "Europe",
-    "currency": "BGN",
+    "currency": "EUR",
     "taxFreeAvailable": "TRUE"
   },
   {

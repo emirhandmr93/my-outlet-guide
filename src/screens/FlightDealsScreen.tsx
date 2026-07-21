@@ -28,6 +28,7 @@ import {
   formatCountryDisplayName,
 } from "../utils/locationDisplay";
 import { FLIGHT_DEAL_THRESHOLDS, FlightDealThreshold } from "../services/flightDealAlertService";
+import { FLIGHT_DEALS_PROVIDER_ENABLED } from "../constants/flightDealsAvailability";
 import {
   getFloatingTabClearance,
   getScreenTopInset,
@@ -246,9 +247,12 @@ export function FlightDealsScreen() {
               </TouchableOpacity>
             ))}
           </View>
-          <TouchableOpacity style={[styles.primaryButton, styles.disabledButton]} disabled>
+          <TouchableOpacity
+            style={[styles.primaryButton, !FLIGHT_DEALS_PROVIDER_ENABLED && styles.disabledButton]}
+            disabled={!FLIGHT_DEALS_PROVIDER_ENABLED}
+          >
             <Text style={styles.primaryButtonText}>
-              {t("flightDeals.providerPendingBadge")}
+              {FLIGHT_DEALS_PROVIDER_ENABLED ? t("flightDeals.saveAlert") : t("flightDeals.providerPendingBadge")}
             </Text>
           </TouchableOpacity>
           <Text style={styles.providerText}>{t("flightDeals.providerPending")}</Text>

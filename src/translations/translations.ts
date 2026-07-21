@@ -17205,6 +17205,34 @@ Object.assign(onboardingTranslations.zh, onboardingTranslations.en, {
 
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], onboardingTranslations[locale]);
 
+const crossPlatformFixTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "priceCalc.countryPrice": "{country} Price",
+    "priceCalc.countryNetCost": "{country} Net Cost",
+    "notifications.signInCta": "Sign in",
+    "home.featured.flightDeals.kicker": "Flight deals",
+    "home.featured.flightDeals.title": "Find better fares",
+    "home.featured.flightDeals.subtitle": "Explore routes and prepare alerts for your next shopping trip.",
+    "home.featured.flightDeals.cta": "View flight deals",
+  },
+  tr: {
+    "priceCalc.countryPrice": "{country} Fiyatı",
+    "priceCalc.countryNetCost": "{country} Net Maliyeti",
+    "notifications.signInCta": "Giriş Yap",
+    "home.featured.flightDeals.kicker": "Uçuş fırsatları",
+    "home.featured.flightDeals.title": "Daha iyi bilet fiyatlarını bul",
+    "home.featured.flightDeals.subtitle": "Bir sonraki alışveriş seyahatin için rotaları incele ve uyarılarını hazırla.",
+    "home.featured.flightDeals.cta": "Uçuş fırsatlarını gör",
+  },
+  es: { "priceCalc.countryPrice": "Precio en {country}", "priceCalc.countryNetCost": "Coste neto en {country}", "notifications.signInCta": "Iniciar sesión", "home.featured.flightDeals.kicker": "Ofertas de vuelos", "home.featured.flightDeals.title": "Encuentra mejores tarifas", "home.featured.flightDeals.subtitle": "Explora rutas y prepara alertas para tu próximo viaje de compras.", "home.featured.flightDeals.cta": "Ver ofertas de vuelos" },
+  fr: { "priceCalc.countryPrice": "Prix en {country}", "priceCalc.countryNetCost": "Coût net en {country}", "notifications.signInCta": "Se connecter", "home.featured.flightDeals.kicker": "Bons plans vols", "home.featured.flightDeals.title": "Trouvez de meilleurs tarifs", "home.featured.flightDeals.subtitle": "Explorez les itinéraires et préparez des alertes pour votre prochain voyage shopping.", "home.featured.flightDeals.cta": "Voir les bons plans vols" },
+  de: { "priceCalc.countryPrice": "Preis in {country}", "priceCalc.countryNetCost": "Nettokosten in {country}", "notifications.signInCta": "Anmelden", "home.featured.flightDeals.kicker": "Flugangebote", "home.featured.flightDeals.title": "Bessere Tarife finden", "home.featured.flightDeals.subtitle": "Erkunde Routen und bereite Benachrichtigungen für deine nächste Shoppingreise vor.", "home.featured.flightDeals.cta": "Flugangebote ansehen" },
+  ar: { "priceCalc.countryPrice": "السعر في {country}", "priceCalc.countryNetCost": "التكلفة الصافية في {country}", "notifications.signInCta": "تسجيل الدخول", "home.featured.flightDeals.kicker": "عروض الرحلات", "home.featured.flightDeals.title": "اعثر على أسعار أفضل", "home.featured.flightDeals.subtitle": "استكشف المسارات وجهّز التنبيهات لرحلة التسوق القادمة.", "home.featured.flightDeals.cta": "عرض عروض الرحلات" },
+  ru: { "priceCalc.countryPrice": "Цена в {country}", "priceCalc.countryNetCost": "Чистая стоимость в {country}", "notifications.signInCta": "Войти", "home.featured.flightDeals.kicker": "Предложения авиабилетов", "home.featured.flightDeals.title": "Находите лучшие тарифы", "home.featured.flightDeals.subtitle": "Изучайте маршруты и готовьте уведомления для следующей шопинг-поездки.", "home.featured.flightDeals.cta": "Посмотреть предложения" },
+  zh: { "priceCalc.countryPrice": "{country}价格", "priceCalc.countryNetCost": "{country}净成本", "notifications.signInCta": "登录", "home.featured.flightDeals.kicker": "机票优惠", "home.featured.flightDeals.title": "发现更优惠的票价", "home.featured.flightDeals.subtitle": "探索路线，为下一次购物之旅准备提醒。", "home.featured.flightDeals.cta": "查看机票优惠" },
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], crossPlatformFixTranslations[locale]);
+
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], finalScreenshotPolishTranslations[locale]);
 
 const appOnlyFeatureTranslations: Record<TranslationLanguage, Record<string, string>> = {

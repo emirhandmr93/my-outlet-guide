@@ -23,6 +23,7 @@ import {
 import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
+import { formatPriceAdvantage } from "../utils/priceAdvantage";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
 export function PriceAdvantageCalculatorScreen() {
@@ -151,7 +152,7 @@ export function PriceAdvantageCalculatorScreen() {
         </View>
 
         <Text style={styles.label}>
-          {t("priceCalc.europePrice")} ({selectedCountry.currency})
+          {t("priceCalc.countryPrice").replace("{country}", getLocalizedCountryName(selectedCountry, language))} ({selectedCountry.currency})
         </Text>
         <TextInput
           style={styles.input}
@@ -188,7 +189,7 @@ export function PriceAdvantageCalculatorScreen() {
         </TouchableOpacity>
 
         <View style={styles.resultBox}>
-          <Text style={styles.resultLabel}>{t("priceCalc.europeNetCost")}</Text>
+          <Text style={styles.resultLabel}>{t("priceCalc.countryNetCost").replace("{country}", getLocalizedCountryName(selectedCountry, language))}</Text>
           <Text style={styles.resultValue}>
             {convertedEuropeCost === null
             ? t("currency.unavailableShort")
@@ -203,7 +204,7 @@ export function PriceAdvantageCalculatorScreen() {
             {hasSavings ? t("priceCalc.youSave") : t("priceCalc.noSavings")}
           </Text>
           <Text style={styles.highlightValue}>
-            {formatCurrency(Math.abs(savings), selectedCurrency, language)}
+            {formatPriceAdvantage(savings, selectedCurrency, language)}
           </Text>
         </View>
 
