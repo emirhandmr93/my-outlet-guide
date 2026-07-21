@@ -46,7 +46,8 @@ assert(relationIds.includes("my-polo-home") && relationIds.includes("u-s-polo-as
 assert(relationIds.includes("the-cosmetics-company-store") && !relationIds.includes("estee-lauder"), "The ELC Company Store must not merge into Estée Lauder.");
 for (const relation of relations) {
   const brand = brands.find((candidate) => candidate.brandId === relation.brandId)!;
-  assert(!prohibitedIdentities.has(normalize(brand.brandId)) && !prohibitedIdentities.has(normalize(brand.brandName)), `Excluded identity became a relation: ${brand.brandId}.`);
+  const identities = [brand.brandId, brand.brandName, ...(brand.aliases ?? [])].map(normalize);
+  assert(identities.every((identity) => !prohibitedIdentities.has(identity)), `Excluded identity became a relation: ${brand.brandId}.`);
 }
 
 const expectedCategories: Record<string, string> = { "akya-saat":"jewelry-watches", "alix-avien":"beauty", "ayakkabi-dunyasi":"shoes-bags", "beauty-omelette":"beauty", "blue-diamond-jewelry":"jewelry-watches", "caseland":"electronics", "covertech":"electronics", "d-p-parfum":"beauty", "flormar":"beauty", "greyder":"shoes-bags", "lg":"electronics", "media-markt":"electronics", "my-polo-home":"home", "sapkaci-madam":"accessories", "samsung":"electronics", "sneaks-up":"sportswear", "tamer-tanca":"shoes-bags", "tergan":"shoes-bags", "zen-diamond":"jewelry-watches" };
