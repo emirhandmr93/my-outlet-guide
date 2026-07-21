@@ -49,21 +49,30 @@ const viaport = turkeyOutlets.find((outlet) => outlet.outletId === "viaport-asia
 const olivium = turkeyOutlets.find((outlet) => outlet.outletId === "olivium-outlet-center");
 const istanbulOptimum = turkeyOutlets.find((outlet) => outlet.outletId === "optimum-premium-outlet-istanbul");
 const starCity = turkeyOutlets.find((outlet) => outlet.outletId === "starcity-outlet");
-assert(viaport?.openingHours === "Daily 10:00–22:00", "Viaport official opening hours must be populated.");
+const venezia = turkeyOutlets.find((outlet) => outlet.outletId === "venezia-mega-outlet");
+const verifiedBatchAServices = {
+  "viaport-asia-outlet-shopping": ["Free Parking", "Baby Care Room", "Medical Room", "ATM", "Wheelchair", "Lost Property", "Valet", "Information Desk", "Prayer Room", "Taxi Stand"],
+  "olivium-outlet-center": ["ATM", "Baby Care Room", "Information Desk", "Prayer Room", "Lost Property", "Medical Room", "Wheelchair", "Tailor", "Shoe Shine", "Dry Cleaning", "Currency Exchange", "Car Wash"],
+  "starcity-outlet": ["Emergency Medical Unit", "Free Parking", "ATM", "Baby Stroller", "Baby Care Room", "Children’s Play Area", "Information Desk", "Currency Exchange", "Pharmacy", "EV Charging", "Prayer Room", "Lost Property", "Motorcycle Parking", "Disabled Parking", "Tax Free", "Wheelchair", "Free Wi-Fi", "Tailor", "Hairdresser", "Gym"],
+  "venezia-mega-outlet": ["ATM", "Baby Care Room", "Information Desk", "Prayer Room", "Lost Property", "Medical Room", "Taxi Stand"],
+} as const;
+assert(viaport?.openingHours === "Daily 10:00–22:00" && viaport.storesCountText === "250 stores", "Viaport official hours and store count must be populated.");
 assert(olivium?.address.includes("No:30") && !olivium.address.includes("No:1"), "Olivium must use the official No:30 address.");
 assert(olivium?.websiteUrl === "https://www.olivium.com.tr/tr/", "Olivium must use the current official website.");
 assert(olivium?.openingHours === "Daily 10:00–22:00" && olivium.storesCountText === "129 stores", "Olivium official hours and store count must be populated.");
 assert(istanbulOptimum?.address.includes("Elibol Sokak No:2/B") && !istanbulOptimum.address.includes("Dedepaşa"), "Istanbul Optimum must use the Elibol Sokak address.");
 assert(istanbulOptimum?.websiteUrl?.includes("optimumistanbul.com"), "Istanbul Optimum must use optimumistanbul.com.");
 assert(istanbulOptimum?.latitude === 40.9895 && istanbulOptimum.longitude === 29.0962, "Istanbul Optimum must retain corrected coordinates after applying defaults.");
+assert(starCity?.openingHours === "Daily 10:00–22:00", "StarCity official opening hours must be populated.");
 assert(starCity?.taxFreeAvailable === true && starCity.taxFreeOfficeInfo?.includes("information desk near the Starbucks entrance"), "StarCity official Tax Free information must override shared defaults.");
 assert(getTaxFreeStatusKey(starCity?.taxFreeAvailable === true) === "taxFree.statusAvailable", "StarCity must resolve to the available Tax Free status.");
+assert(venezia?.openingHours === "" && venezia.storesCountText === "", "Venezia must retain blank unverified centre hours and store count.");
 for (const outletId of ["viaport-asia-outlet-shopping", "212-outlet", "olivium-outlet-center", "venezia-mega-outlet", "optimum-premium-outlet-istanbul", "izmir-optimum", "deepo-outlet-center"]) {
   const outlet = turkeyOutlets.find((item) => item.outletId === outletId);
   assert(getTaxFreeStatusKey(outlet?.taxFreeAvailable === true) === "taxFree.statusNotVerified", `${outletId} must resolve to the not-verified Tax Free status.`);
 }
 assert(!hasVerifiedVatRate(viaport?.vatRate) && !hasVerifiedMinimumSpend(viaport?.minimumTaxFreeSpend), "Missing Tax Free values must be omitted rather than rendered as undefined.");
-assert(!hasDisplayValue(viaport?.storesCountText) && !hasDisplayValue(istanbulOptimum?.openingHours), "Empty Turkey quick-fact fields must remain omitted.");
+assert(hasDisplayValue(viaport?.storesCountText) && !hasDisplayValue(istanbulOptimum?.openingHours), "Viaport's verified store count must display while Istanbul Optimum's unverified hours remain omitted.");
 const verifiedTaxFreeOutlet = outlets.find((outlet) => outlet.outletId === "designer-outlet-parndorf");
 assert(hasVerifiedVatRate(verifiedTaxFreeOutlet?.vatRate) && hasVerifiedMinimumSpend(verifiedTaxFreeOutlet?.minimumTaxFreeSpend), "Existing verified VAT and minimum-spend data must remain displayable.");
 for (const language of languages) {
@@ -78,7 +87,12 @@ for (const outlet of turkeyOutlets) {
   assert(Boolean(outlet.websiteUrl?.startsWith("http")), `${outlet.outletId} needs an official website source.`);
   assert(outlet.rating === 0 && outlet.reviewCount === 0, `${outlet.outletId} must not contain fabricated ratings or review counts.`);
   assert(Array.isArray(outlet.restaurants) && outlet.restaurants.length === 0, `${outlet.outletId} must not add restaurant data.`);
-  assert(Array.isArray(outlet.services) && outlet.services.length === 0, `${outlet.outletId} must not add unverified services.`);
+  const expectedServices = verifiedBatchAServices[outlet.outletId as keyof typeof verifiedBatchAServices];
+  if (expectedServices) {
+    assert(JSON.stringify(outlet.services) === JSON.stringify(expectedServices), `${outlet.outletId} must retain its verified Batch A services.`);
+  } else {
+    assert(Array.isArray(outlet.services) && outlet.services.length === 0, `${outlet.outletId} must not add unverified services.`);
+  }
   assert(outlet.heroImage === "" && Array.isArray(outlet.galleryImages) && outlet.galleryImages.length === 0, `${outlet.outletId} must not add local images.`);
   assert(!outletBrands.some((relation) => relation.outletId === outlet.outletId), `${outlet.outletId} must not add brand relations.`);
   assert(!restaurants.some((restaurant) => restaurant.outletId === outlet.outletId), `${outlet.outletId} must not add restaurant records.`);
