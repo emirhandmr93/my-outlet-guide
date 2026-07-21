@@ -1,0 +1,67 @@
+import { cities } from "../src/constants/cities";
+import { countries } from "../src/constants/countries";
+import { outlets } from "../src/constants/outlets";
+import { outletBrands } from "../src/constants/outletBrands";
+import { restaurants } from "../src/constants/restaurants";
+import { transportation } from "../src/constants/transportation";
+import { transportationGuides } from "../src/constants/transportationGuides";
+import { formatCityDisplayName, formatCountryDisplayName } from "../src/utils/locationDisplay";
+import { currencies } from "../src/constants/currencies";
+import { supportedCurrencyCodes } from "../src/services/exchangeRateService";
+
+const languages = ["en", "tr", "es", "fr", "de", "ru", "ar", "zh"] as const;
+const expectedCountryNames = {
+  en: "Turkey", tr: "Türkiye", es: "Turquía", fr: "Turquie", de: "Türkei", ru: "Турция", ar: "تركيا", zh: "土耳其",
+};
+const expectedCityNames = {
+  istanbul: { en: "Istanbul", tr: "İstanbul", es: "Estambul", fr: "Istanbul", de: "Istanbul", ru: "Стамбул", ar: "إسطنبول", zh: "伊斯坦布尔" },
+  izmir: { en: "Izmir", tr: "İzmir", es: "Esmirna", fr: "Izmir", de: "Izmir", ru: "Измир", ar: "إزمير", zh: "伊兹密尔" },
+  antalya: { en: "Antalya", tr: "Antalya", es: "Antalya", fr: "Antalya", de: "Antalya", ru: "Анталья", ar: "أنطاليا", zh: "安塔利亚" },
+} as const;
+
+function assert(condition: unknown, message: string): asserts condition {
+  if (!condition) throw new Error(message);
+}
+
+const turkeyCountries = countries.filter((country) => country.countryId === "turkey");
+assert(turkeyCountries.length === 1, "Expected exactly one turkey country record.");
+assert(turkeyCountries[0].currency === "TRY", "Turkey must use TRY.");
+assert(turkeyCountries[0].taxFreeAvailable === "TRUE", "Turkey must declare tax-free availability.");
+assert(turkeyCountries[0].continent === "Europe", "Turkey must use the existing Europe continent filter value.");
+
+for (const cityId of Object.keys(expectedCityNames)) {
+  const records = cities.filter((city) => city.cityId === cityId && city.countryId === "turkey");
+  assert(records.length === 1, `Expected exactly one ${cityId} city record under turkey.`);
+}
+
+const outletIds = outlets.map((outlet) => outlet.outletId);
+const slugs = outlets.map((outlet) => outlet.slug);
+assert(new Set(outletIds).size === outletIds.length, "Outlet IDs must be unique.");
+assert(new Set(slugs).size === slugs.length, "Outlet slugs must be unique.");
+
+const turkeyOutlets = outlets.filter((outlet) => outlet.countryId === "turkey");
+assert(turkeyOutlets.length === 8, "Expected exactly eight Turkey outlet skeletons.");
+for (const outlet of turkeyOutlets) {
+  assert(outlet.countryId === "turkey", `${outlet.outletId} must reference turkey.`);
+  assert(cities.some((city) => city.cityId === outlet.cityId), `${outlet.outletId} has an unknown city.`);
+  assert(Boolean(outlet.websiteUrl?.startsWith("http")), `${outlet.outletId} needs an official website source.`);
+  assert(outlet.rating === 0 && outlet.reviewCount === 0, `${outlet.outletId} must not contain fabricated ratings or review counts.`);
+  assert(Array.isArray(outlet.restaurants) && outlet.restaurants.length === 0, `${outlet.outletId} must not add restaurant data.`);
+  assert(Array.isArray(outlet.services) && outlet.services.length === 0, `${outlet.outletId} must not add unverified services.`);
+  assert(outlet.heroImage === "" && Array.isArray(outlet.galleryImages) && outlet.galleryImages.length === 0, `${outlet.outletId} must not add local images.`);
+  assert(!outletBrands.some((relation) => relation.outletId === outlet.outletId), `${outlet.outletId} must not add brand relations.`);
+  assert(!restaurants.some((restaurant) => restaurant.outletId === outlet.outletId), `${outlet.outletId} must not add restaurant records.`);
+  assert(!transportation.some((record) => record.outletId === outlet.outletId), `${outlet.outletId} must not add transportation records.`);
+  assert(!transportationGuides.some((guide) => guide.outletId === outlet.outletId), `${outlet.outletId} must not add transportation guides.`);
+}
+
+assert(currencies.some((currency) => currency.currencyCode === "TRY"), "TRY must remain selectable.");
+assert(supportedCurrencyCodes.includes("TRY"), "TRY must remain live-rate supported.");
+for (const language of languages) {
+  assert(formatCountryDisplayName("turkey", language) === expectedCountryNames[language], `Turkey localization failed for ${language}.`);
+  for (const [cityId, names] of Object.entries(expectedCityNames)) {
+    assert(formatCityDisplayName(cityId, language) === names[language], `${cityId} localization failed for ${language}.`);
+  }
+}
+
+console.log(`Turkey expansion valid: 1 country, 3 cities, ${turkeyOutlets.length} outlet skeletons; TRY selectable and live-rate supported; localizations resolve in ${languages.length} languages.`);

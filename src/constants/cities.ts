@@ -110,6 +110,21 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "istanbul",
+    "cityName": "Istanbul",
+    "countryId": "turkey"
+  },
+  {
+    "cityId": "izmir",
+    "cityName": "Izmir",
+    "countryId": "turkey"
+  },
+  {
+    "cityId": "antalya",
+    "cityName": "Antalya",
+    "countryId": "turkey"
+  },
+  {
     "cityId": "kildare",
     "cityName": "Kildare",
     "countryId": "ireland"

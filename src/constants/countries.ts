@@ -232,6 +232,14 @@ export const countries = [
     "taxFreeAvailable": "TRUE"
   },
   {
+    "countryId": "turkey",
+    "countryName": "Turkey",
+    "countryFlag": "🇹🇷",
+    "continent": "Europe",
+    "currency": "TRY",
+    "taxFreeAvailable": "TRUE"
+  },
+  {
     "countryId": "united-arab-emirates",
     "countryName": "United Arab Emirates",
     "countryFlag": "🇦🇪",
