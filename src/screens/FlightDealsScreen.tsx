@@ -11,6 +11,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  Alert,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -22,13 +23,15 @@ import {
   SupportedFlightDealAirport,
 } from "../constants/flightDealAirports";
 import { useTrips } from "../contexts/TripsContext";
+import { useAuth } from "../contexts/AuthContext";
 import { useTranslation } from "../hooks/useTranslation";
 import {
   formatCityDisplayName,
   formatCountryDisplayName,
 } from "../utils/locationDisplay";
-import { FLIGHT_DEAL_THRESHOLDS, FlightDealThreshold } from "../services/flightDealAlertService";
+import { FLIGHT_DEAL_THRESHOLDS, FlightDealThreshold, saveFlightDealAlert } from "../services/flightDealAlertService";
 import { FLIGHT_DEALS_PROVIDER_ENABLED } from "../constants/flightDealsAvailability";
+import { submitFlightDealAlert } from "../services/flightDealAlertSubmission";
 import {
   getFloatingTabClearance,
   getScreenTopInset,
@@ -51,6 +54,7 @@ export function FlightDealsScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
   const { trips } = useTrips();
+  const { currentUser } = useAuth();
   const insets = useSafeAreaInsets();
   const [selectedOrigin, setSelectedOrigin] =
     useState<SupportedFlightDealAirport | null>(null);
@@ -63,6 +67,8 @@ export function FlightDealsScreen() {
   const [filterText, setFilterText] = useState("");
   const [selectorFilter, setSelectorFilter] =
     useState<FlightDealSelectorFilter>("popular");
+  const [saveFeedback, setSaveFeedback] = useState<string | null>(null);
+  const [isSavingAlert, setIsSavingAlert] = useState(false);
 
   const flightRows = trips.flatMap((trip) =>
     [
@@ -90,6 +96,35 @@ export function FlightDealsScreen() {
     setPickerMode(mode);
     setFilterText("");
     setSelectorFilter("popular");
+  }
+
+  async function handleSaveAlert() {
+    setIsSavingAlert(true);
+    setSaveFeedback(null);
+    const result = await submitFlightDealAlert({
+      providerEnabled: FLIGHT_DEALS_PROVIDER_ENABLED,
+      userId: currentUser?.uid,
+      origin: selectedOrigin,
+      destination: selectedDestination,
+      thresholds: selectedThresholds,
+      save: saveFlightDealAlert,
+    });
+    setIsSavingAlert(false);
+
+    if (result.status === "saved") {
+      const message = t("flightDeals.saveSuccess");
+      setSaveFeedback(message);
+      Alert.alert(t("flightDeals.saveSuccessTitle"), message);
+      return;
+    }
+    if (result.status === "sign_in_required") {
+      setSaveFeedback(t("flightDeals.signInRequired"));
+      navigation.navigate("Login");
+      return;
+    }
+    const message = t(`flightDeals.${result.status}`);
+    setSaveFeedback(message);
+    Alert.alert(t("flightDeals.saveErrorTitle"), message);
   }
 
   const localizedOriginLabel = (item: SupportedFlightDealAirport) =>
@@ -187,9 +222,9 @@ export function FlightDealsScreen() {
         </LocalHeroImageCard>
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>{t("flightDeals.saveAlert")}</Text>
-          <Text style={styles.providerText}>
-            {t("flightDeals.providerPending")}
-          </Text>
+          {!FLIGHT_DEALS_PROVIDER_ENABLED ? (
+            <Text style={styles.providerText}>{t("flightDeals.providerPending")}</Text>
+          ) : null}
           <Text style={styles.label}>{t("flightDeals.origin")}</Text>
           <TouchableOpacity
             style={styles.selectorButton}
@@ -248,14 +283,16 @@ export function FlightDealsScreen() {
             ))}
           </View>
           <TouchableOpacity
-            style={[styles.primaryButton, !FLIGHT_DEALS_PROVIDER_ENABLED && styles.disabledButton]}
-            disabled={!FLIGHT_DEALS_PROVIDER_ENABLED}
+            style={[styles.primaryButton, (!FLIGHT_DEALS_PROVIDER_ENABLED || isSavingAlert) && styles.disabledButton]}
+            disabled={!FLIGHT_DEALS_PROVIDER_ENABLED || isSavingAlert}
+            onPress={handleSaveAlert}
           >
             <Text style={styles.primaryButtonText}>
-              {FLIGHT_DEALS_PROVIDER_ENABLED ? t("flightDeals.saveAlert") : t("flightDeals.providerPendingBadge")}
+              {FLIGHT_DEALS_PROVIDER_ENABLED ? (isSavingAlert ? t("flightDeals.saving") : t("flightDeals.saveAlert")) : t("flightDeals.providerPendingBadge")}
             </Text>
           </TouchableOpacity>
-          <Text style={styles.providerText}>{t("flightDeals.providerPending")}</Text>
+          {saveFeedback ? <Text style={styles.providerText}>{saveFeedback}</Text> : null}
+          {!FLIGHT_DEALS_PROVIDER_ENABLED ? <Text style={styles.providerText}>{t("flightDeals.providerPending")}</Text> : null}
         </View>
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>

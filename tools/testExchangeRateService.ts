@@ -8,7 +8,13 @@ import {
   type ExchangeRates,
 } from "../src/services/exchangeRateService";
 import { formatPriceAdvantage } from "../src/utils/priceAdvantage";
+import { getTaxFreeRule } from "../src/constants/taxFreeRules";
+import { submitFlightDealAlert } from "../src/services/flightDealAlertSubmission";
+import { saveFlightDealAlert } from "../src/services/flightDealAlertService";
+import type { SupportedFlightDealAirport } from "../src/constants/flightDealAirports";
+import { getRecommendedCarouselLastIndex } from "../src/utils/recommendedCarousel";
 
+async function run() {
 const fixture = [
   { date: "2026-07-20", base: "EUR", quote: "TRY", rate: 47.2 },
   { date: "2026-07-20", base: "EUR", quote: "JPY", rate: 170 },
@@ -46,5 +52,35 @@ for (const source of ["EUR", "JPY", "PLN", "AED", "GBP", "CHF", "KRW", "THB"] as
   assert.ok(result.convertedAmount > 0, `${source} → TRY must convert`);
 }
 
+assert.equal(getTaxFreeRule("greece"), undefined, "Greece has no verified Tax Free rule");
+assert.equal(getTaxFreeRule("poland"), undefined, "Poland has no verified Tax Free rule");
+assert.ok(convertCurrencyWithRates(100, "EUR", "TRY", rates).convertedAmount > 0, "Greece EUR → TRY must convert without Tax Free");
+assert.ok(convertCurrencyWithRates(100, "PLN", "TRY", rates).convertedAmount > 0, "Poland PLN → TRY must convert without Tax Free");
+
+const airport: SupportedFlightDealAirport = { airportCode: "IST", airportName: "Istanbul Airport", cityName: "Istanbul", countryCode: "TR", countryName: "Turkey", region: "TR" };
+let saveCalls = 0;
+assert.deepEqual(
+  await submitFlightDealAlert({ providerEnabled: false, userId: "user", origin: airport, destination: airport, thresholds: [15], save: async () => { saveCalls += 1; return "unexpected"; } }),
+  { status: "provider_pending" },
+  "disabled providers must reject before persistence",
+);
+assert.equal(saveCalls, 0);
+assert.deepEqual(
+  await submitFlightDealAlert({ providerEnabled: true, userId: "user", origin: airport, destination: airport, thresholds: [15], save: async () => { saveCalls += 1; return "saved"; } }),
+  { status: "saved" },
+  "enabled providers must use the persistence handler",
+);
+assert.equal(saveCalls, 1);
+await assert.rejects(() => saveFlightDealAlert("user", {} as never), /provider is not connected/);
+
+assert.equal(getRecommendedCarouselLastIndex(5, 300, 16, 932), 2, "desktop carousel must wrap at its last reachable position");
+assert.equal(getRecommendedCarouselLastIndex(5, 300, 16, 300), 4, "mobile carousel retains one-card paging");
+
 assert.equal(formatPriceAdvantage(-255_630.42, "TRY", "tr-TR"), "-₺255.630,42");
-console.log("Exchange-rate fixture tests passed: 8 TRY conversions, parsing, cache precedence/status, malformed-row handling, and signed price advantage.");
+console.log("Exchange-rate fixture tests passed: 8 TRY conversions, Greece/Poland no-tax-free conversion, parsing/cache handling, provider gating, carousel wrapping, and signed price advantage.");
+}
+
+run().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

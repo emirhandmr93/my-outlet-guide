@@ -43,6 +43,7 @@ import {
   formatCountryDisplayName,
   formatCityDisplayName,
 } from "../utils/locationDisplay";
+import { getRecommendedCarouselLastIndex } from "../utils/recommendedCarousel";
 
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
@@ -296,6 +297,12 @@ export function HomeScreen() {
   const outletCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 2) / 3)
     : contentWidth;
+  const recommendedLastIndex = getRecommendedCarouselLastIndex(
+    recommendedOutlets.length,
+    outletCardWidth,
+    spacing.md,
+    contentWidth,
+  );
   const cityCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 3) / 4)
     : Math.round(width * 0.42);
@@ -343,7 +350,9 @@ export function HomeScreen() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (activeRecommendedIndex + 1) % recommendedOutlets.length;
+      const nextIndex = activeRecommendedIndex >= recommendedLastIndex
+        ? 0
+        : activeRecommendedIndex + 1;
       recommendedCarouselRef.current?.scrollTo({
         x: nextIndex * (outletCardWidth + spacing.md),
         animated: true,
@@ -352,7 +361,7 @@ export function HomeScreen() {
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeRecommendedIndex, outletCardWidth]);
+  }, [activeRecommendedIndex, outletCardWidth, recommendedLastIndex]);
 
   function handleCarouselScroll(
     event: NativeSyntheticEvent<NativeScrollEvent>,
@@ -370,7 +379,8 @@ export function HomeScreen() {
     const nextIndex = Math.round(
       event.nativeEvent.contentOffset.x / (outletCardWidth + spacing.md),
     );
-    if (nextIndex !== activeRecommendedIndex) setActiveRecommendedIndex(nextIndex);
+    const reachableIndex = Math.min(Math.max(nextIndex, 0), recommendedLastIndex);
+    if (reachableIndex !== activeRecommendedIndex) setActiveRecommendedIndex(reachableIndex);
   }
 
   function navigateTo(route: string, params?: Record<string, string>) {
