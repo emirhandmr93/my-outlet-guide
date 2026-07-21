@@ -6357,7 +6357,7 @@ export const brandsLP: Brand[] = [
     aliases: ["Lelas Company", "Lelas Parfüm", "LELAS"],
     categoryId: "beauty",
     logo: "",
-    luxuryLevel: "fashion",
+    luxuryLevel: "lifestyle",
     rankingWeight: 60,
     brandStatus: "active",
   },
