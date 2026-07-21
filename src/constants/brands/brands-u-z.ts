@@ -2802,4 +2802,27 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 60,
     brandStatus: "active",
   },
+  {
+    brandId: "yargici",
+    brandName: "YARGICI",
+    aliases: ["Yargıcı"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "zen-diamond",
+    brandName: "ZEN DIAMOND",
+    aliases: ["Zen Diamond"],
+    categoryId: "jewelry-watches",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
 ];

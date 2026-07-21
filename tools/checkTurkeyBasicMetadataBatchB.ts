@@ -78,8 +78,8 @@ for (const outlet of turkeyOutlets) {
   assert(!outlet.services.some((service: string) => /restaurant|cafe|café|starbucks/i.test(service)), `${outlet.outletId} services must not contain restaurant names.`);
   const outletBrandRelations = outletBrands.filter((item) => item.outletId === outlet.outletId);
   assert(
-    outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outletBrandRelations.length === 0,
-    `${outlet.outletId} must only contain the verified Olivium brand relations.`,
+    outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 113 : outletBrandRelations.length === 0,
+    `${outlet.outletId} must contain only the verified Turkey brand relations.`,
   );
   assert(!restaurants.some((item) => item.outletId === outlet.outletId), `${outlet.outletId} must not add restaurant data.`);
   assert(!transportation.some((item) => item.outletId === outlet.outletId), `${outlet.outletId} must not add transportation data.`);

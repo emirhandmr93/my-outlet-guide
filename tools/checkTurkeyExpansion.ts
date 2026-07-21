@@ -107,8 +107,8 @@ for (const outlet of turkeyOutlets) {
   assert(outlet.heroImage === "" && Array.isArray(outlet.galleryImages) && outlet.galleryImages.length === 0, `${outlet.outletId} must not add local images.`);
   const outletBrandRelations = outletBrands.filter((relation) => relation.outletId === outlet.outletId);
   assert(
-    outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outletBrandRelations.length === 0,
-    `${outlet.outletId} must only contain the verified Olivium brand relations.`,
+    outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 113 : outletBrandRelations.length === 0,
+    `${outlet.outletId} must contain only the verified Turkey brand relations.`,
   );
   assert(!restaurants.some((restaurant) => restaurant.outletId === outlet.outletId), `${outlet.outletId} must not add restaurant records.`);
   assert(!transportation.some((record) => record.outletId === outlet.outletId), `${outlet.outletId} must not add transportation records.`);
