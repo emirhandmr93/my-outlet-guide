@@ -48,6 +48,9 @@ assert(!turkeyOutlets.some((outlet) => `${outlet.openingHours} ${outlet.storesCo
 const viaport = turkeyOutlets.find((outlet) => outlet.outletId === "viaport-asia-outlet-shopping");
 const olivium = turkeyOutlets.find((outlet) => outlet.outletId === "olivium-outlet-center");
 const istanbulOptimum = turkeyOutlets.find((outlet) => outlet.outletId === "optimum-premium-outlet-istanbul");
+const outlet212 = turkeyOutlets.find((outlet) => outlet.outletId === "212-outlet");
+const izmirOptimum = turkeyOutlets.find((outlet) => outlet.outletId === "izmir-optimum");
+const deepo = turkeyOutlets.find((outlet) => outlet.outletId === "deepo-outlet-center");
 const starCity = turkeyOutlets.find((outlet) => outlet.outletId === "starcity-outlet");
 const venezia = turkeyOutlets.find((outlet) => outlet.outletId === "venezia-mega-outlet");
 const verifiedBatchAServices = {
@@ -55,6 +58,8 @@ const verifiedBatchAServices = {
   "olivium-outlet-center": ["ATM", "Baby Care Room", "Information Desk", "Prayer Room", "Lost Property", "Medical Room", "Wheelchair", "Tailor", "Shoe Shine", "Dry Cleaning", "Currency Exchange", "Car Wash"],
   "starcity-outlet": ["Emergency Medical Unit", "Free Parking", "ATM", "Baby Stroller", "Baby Care Room", "Children’s Play Area", "Information Desk", "Currency Exchange", "Pharmacy", "EV Charging", "Prayer Room", "Lost Property", "Motorcycle Parking", "Disabled Parking", "Tax Free", "Wheelchair", "Free Wi-Fi", "Tailor", "Hairdresser", "Gym"],
   "venezia-mega-outlet": ["ATM", "Baby Care Room", "Information Desk", "Prayer Room", "Lost Property", "Medical Room", "Taxi Stand"],
+  "212-outlet": ["Free Parking", "Baby Care Room", "Children’s Play Area", "Disabled Access", "Disabled Restroom", "Medical Room", "Prayer Room"],
+  "optimum-premium-outlet-istanbul": ["Baby Stroller"],
 } as const;
 assert(viaport?.openingHours === "Daily 10:00–22:00" && viaport.storesCountText === "250 stores", "Viaport official hours and store count must be populated.");
 assert(olivium?.address.includes("No:30") && !olivium.address.includes("No:1"), "Olivium must use the official No:30 address.");
@@ -63,6 +68,12 @@ assert(olivium?.openingHours === "Daily 10:00–22:00" && olivium.storesCountTex
 assert(istanbulOptimum?.address.includes("Elibol Sokak No:2/B") && !istanbulOptimum.address.includes("Dedepaşa"), "Istanbul Optimum must use the Elibol Sokak address.");
 assert(istanbulOptimum?.websiteUrl?.includes("optimumistanbul.com"), "Istanbul Optimum must use optimumistanbul.com.");
 assert(istanbulOptimum?.latitude === 40.9895 && istanbulOptimum.longitude === 29.0962, "Istanbul Optimum must retain corrected coordinates after applying defaults.");
+assert(outlet212?.openingHours === "" && outlet212.storesCountText === "", "212 Outlet must retain blank unverified centre hours and store count.");
+assert(outlet212?.parking?.includes("free indoor parking") && outlet212.parking.includes("3,500 vehicles"), "212 Outlet must retain its official free indoor parking wording and capacity.");
+assert(istanbulOptimum?.openingHours === "" && istanbulOptimum.storesCountText === "163 stores", "Istanbul Optimum must retain blank unverified centre hours and 163 stores.");
+assert(izmirOptimum?.openingHours === "" && izmirOptimum.storesCountText === "283 stores", "Izmir Optimum must retain blank unverified centre hours and 283 stores.");
+assert(deepo?.openingHours === "Daily 10:00–22:30" && deepo.storesCountText === "", "Deepo must retain its official daily hours without a store count.");
+assert(!`${deepo?.storesCountText} ${deepo?.parking ?? ""}`.match(/200\+\s*stores|3,000[ -]space parking/i), "Deepo must not receive combined-complex store or parking data.");
 assert(starCity?.openingHours === "Daily 10:00–22:00", "StarCity official opening hours must be populated.");
 assert(starCity?.taxFreeAvailable === true && starCity.taxFreeOfficeInfo?.includes("information desk near the Starbucks entrance"), "StarCity official Tax Free information must override shared defaults.");
 assert(getTaxFreeStatusKey(starCity?.taxFreeAvailable === true) === "taxFree.statusAvailable", "StarCity must resolve to the available Tax Free status.");
