@@ -5201,7 +5201,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "qumm",
     brandName: "QUMM",
-    aliases: ["QUMM"],
+    aliases: [],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -5221,7 +5221,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "reema",
     brandName: "REEMA",
-    aliases: ["REEMA"],
+    aliases: [],
     categoryId: "sportswear",
     logo: "",
     luxuryLevel: "fashion",
@@ -5241,7 +5241,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "shoebox",
     brandName: "SHOEBOX",
-    aliases: ["SHOEBOX"],
+    aliases: [],
     categoryId: "shoes-bags",
     logo: "",
     luxuryLevel: "fashion",
@@ -5251,7 +5251,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "sporthink",
     brandName: "SPORTHINK",
-    aliases: ["SPORTHINK"],
+    aliases: [],
     categoryId: "sportswear",
     logo: "",
     luxuryLevel: "fashion",
@@ -5261,7 +5261,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "streetbox",
     brandName: "STREETBOX",
-    aliases: ["STREETBOX"],
+    aliases: [],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -5271,7 +5271,7 @@ export const brandsQT: Brand[] = [
   {
     brandId: "tuvid-xxxl",
     brandName: "TUVİD XXXL",
-    aliases: ["TUVİD XXXL"],
+    aliases: [],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",

@@ -6653,7 +6653,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "love-my-body",
     brandName: "LOVE MY BODY",
-    aliases: ["LOVE MY BODY"],
+    aliases: [],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -6673,7 +6673,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "menderes-home",
     brandName: "MENDERES HOME",
-    aliases: ["MENDERES HOME"],
+    aliases: [],
     categoryId: "home",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -6693,7 +6693,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "muscent-perfume",
     brandName: "MUSCENT PERFUME",
-    aliases: ["MUSCENT PERFUME"],
+    aliases: [],
     categoryId: "beauty",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -6703,7 +6703,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "naramaxx",
     brandName: "NARAMAXX",
-    aliases: ["NARAMAXX"],
+    aliases: [],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -6713,7 +6713,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "occasion",
     brandName: "OCCASION",
-    aliases: ["OCCASION"],
+    aliases: [],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -6723,7 +6723,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "oxxo",
     brandName: "OXXO",
-    aliases: ["OXXO"],
+    aliases: [],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -6733,7 +6733,7 @@ export const brandsLP: Brand[] = [
   {
     brandId: "perfume-point",
     brandName: "PERFUME POINT",
-    aliases: ["PERFUME POINT"],
+    aliases: [],
     categoryId: "beauty",
     logo: "",
     luxuryLevel: "lifestyle",
