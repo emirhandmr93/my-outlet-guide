@@ -1,0 +1,49 @@
+name: Normalize hero references
+
+on:
+  push:
+    branches:
+      - codex/normalize-hero-asset-extensions-final
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/normalize-hero-asset-extensions-final
+          fetch-depth: 0
+
+      - name: Normalize exact hero references
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          paths = [
+              Path('tools/checkHeroAssets.ts'),
+              Path('tools/checkMinimumWebSite.ts'),
+              Path('tools/checkWebPocGuardrails.ts'),
+              Path('tools/generateWebsite.ts'),
+              Path('web/index.html'),
+          ]
+          pattern = re.compile(r'(hero-(?:trips|savings|profile|login|flight-deals|offline|language|currency|notifications|security))\.PNG')
+          for path in paths:
+              text = path.read_text(encoding='utf-8-sig')
+              updated = pattern.sub(r'\1.png', text)
+              path.write_text(updated, encoding='utf-8', newline='\n')
+          PY
+
+      - name: Remove temporary workflow and commit
+        run: |
+          rm .github/workflows/normalize-hero-refs.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/checkHeroAssets.ts tools/checkMinimumWebSite.ts tools/checkWebPocGuardrails.ts tools/generateWebsite.ts web/index.html .github/workflows/normalize-hero-refs.yml
+          git diff --cached --check
+          git commit -m "Update hero asset references" || exit 0
+          git push origin HEAD:codex/normalize-hero-asset-extensions-final
