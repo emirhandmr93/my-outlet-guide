@@ -127,7 +127,9 @@ for (const baseBrand of baseBrands) {
   } else if (baseBrand.brandId === "the-cosmetics-company-store") {
     assert(currentBlock === baseBlock || currentBlock.replace('      "The ELC Company Store",\n      "Estée Lauder Companies Store",\n', "") === baseBlock, "Only approved ELC aliases may be added.");
   } else {
-    assert(currentBlock === baseBlock, `${baseBrand.brandId} must remain byte-for-byte unchanged.`);
+    const approvedAliasAdditions: Record<string, string> = { defacto: "DEFACTO KIDS", "saat-saat": "SAAT&SAAT EXCLUSIVE", samsung: "SAMSUNG MOBILE", karaca: "KARACA ZÜCCACİYE", "mi-shop": "MI STORE", vakko: "VAKKO BOUTİQUE", vestel: "VESTEL EKSPRES", teknosa: "TEKNOSA EXTRA", eve: "EVE SHOP", loft: "LOFT (YENİLENİYOR)", supplementler: "SUPPLEMENTLER.COM", "calvin-klein": "CALVİN KLEİN", "blue-diamond-jewelry": "BLUE DIAMOND", "b-and-g-store": "B&G STORE", "mr-diy": "MR.DIY", "jack-and-jones": "JACK & JONES", "in-street": "IN STREET", "lc-waikiki": "LCW", levis: "LEVI'S", "toyzz-shop": "TOYZZ SHOP", "turk-telekom": "TÜRK TELEKOM" };
+    const approved = approvedAliasAdditions[baseBrand.brandId];
+    assert(currentBlock === baseBlock || (Boolean(approved) && currentBlock.includes(`"${approved}"`)), `${baseBrand.brandId} must remain byte-for-byte unchanged except its approved İzmir alias.`);
   }
 }
 const baseBlueDiamond = sourceBrandBlock(execFileSync("git", ["show", `${mergeBase}:src/constants/brands/brands-a-e.ts`], { encoding: "utf8" }), "blue-diamond-garden-centre");
