@@ -2826,7 +2826,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "valmenti",
     brandName: "VALMENTI",
-    aliases: [],
+    aliases: ["VALMENTI"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -2836,7 +2836,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "vena",
     brandName: "VENA",
-    aliases: [],
+    aliases: ["VENA"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -2846,7 +2846,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "venito",
     brandName: "VENITO",
-    aliases: [],
+    aliases: ["VENITO"],
     categoryId: "shoes-bags",
     logo: "",
     luxuryLevel: "fashion",
@@ -2856,7 +2856,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "w-collection",
     brandName: "W COLLECTION",
-    aliases: [],
+    aliases: ["W COLLECTION"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -2866,7 +2866,7 @@ export const brandsUZ: Brand[] = [
   {
     brandId: "xenon-smart",
     brandName: "XENON SMART",
-    aliases: [],
+    aliases: ["XENON SMART"],
     categoryId: "electronics",
     logo: "",
     luxuryLevel: "lifestyle",

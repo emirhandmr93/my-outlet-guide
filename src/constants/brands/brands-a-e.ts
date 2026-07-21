@@ -8130,7 +8130,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "adil-isik",
     brandName: "ADİL IŞIK",
-    aliases: [],
+    aliases: ["ADİL IŞIK"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -8140,7 +8140,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "altinbas",
     brandName: "ALTINBAŞ",
-    aliases: [],
+    aliases: ["ALTINBAŞ"],
     categoryId: "jewelry-watches",
     logo: "",
     luxuryLevel: "fashion",
@@ -8150,7 +8150,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "ambar",
     brandName: "AMBAR",
-    aliases: [],
+    aliases: ["AMBAR"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -8160,7 +8160,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "aris-pirlanta",
     brandName: "ARİŞ PIRLANTA",
-    aliases: [],
+    aliases: ["ARİŞ PIRLANTA"],
     categoryId: "jewelry-watches",
     logo: "",
     luxuryLevel: "fashion",
@@ -8170,7 +8170,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "atakoy-ayakkabi",
     brandName: "ATAKÖY AYAKKABI",
-    aliases: [],
+    aliases: ["ATAKÖY AYAKKABI"],
     categoryId: "shoes-bags",
     logo: "",
     luxuryLevel: "fashion",
@@ -8190,7 +8190,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "bershka",
     brandName: "BERSHKA",
-    aliases: [],
+    aliases: ["BERSHKA"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -8200,7 +8200,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "bilt",
     brandName: "BILT",
-    aliases: [],
+    aliases: ["BILT"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -8210,7 +8210,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "bornova-optik",
     brandName: "BORNOVA OPTİK",
-    aliases: [],
+    aliases: ["BORNOVA OPTİK"],
     categoryId: "eyewear",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -8220,7 +8220,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "brandeyes-optik",
     brandName: "BRANDEYES OPTİK",
-    aliases: [],
+    aliases: ["BRANDEYES OPTİK"],
     categoryId: "eyewear",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -8230,7 +8230,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "can-kardesler-kuruyemis",
     brandName: "CAN KARDEŞLER KURUYEMİŞ",
-    aliases: [],
+    aliases: ["CAN KARDEŞLER KURUYEMİŞ"],
     categoryId: "food",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -8240,7 +8240,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "cepax",
     brandName: "CEPAX",
-    aliases: [],
+    aliases: ["CEPAX"],
     categoryId: "electronics",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -8250,7 +8250,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "ceran-saat",
     brandName: "CERAN SAAT",
-    aliases: [],
+    aliases: ["CERAN SAAT"],
     categoryId: "jewelry-watches",
     logo: "",
     luxuryLevel: "fashion",
@@ -8260,7 +8260,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "chima",
     brandName: "CHIMA",
-    aliases: [],
+    aliases: ["CHIMA"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -8270,7 +8270,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "cilek-konsept",
     brandName: "ÇİLEK KONSEPT",
-    aliases: [],
+    aliases: ["ÇİLEK KONSEPT"],
     categoryId: "home",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -8280,7 +8280,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "d-and-r",
     brandName: "D&R",
-    aliases: [],
+    aliases: ["D&R"],
     categoryId: "books-stationery",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -8290,7 +8290,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "d-diamond",
     brandName: "D DIAMOND",
-    aliases: [],
+    aliases: ["D DIAMOND"],
     categoryId: "jewelry-watches",
     logo: "",
     luxuryLevel: "fashion",
@@ -8300,7 +8300,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "david-walker",
     brandName: "DAVID WALKER",
-    aliases: [],
+    aliases: ["DAVID WALKER"],
     categoryId: "beauty",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -8310,7 +8310,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "desa",
     brandName: "DESA",
-    aliases: [],
+    aliases: ["DESA"],
     categoryId: "shoes-bags",
     logo: "",
     luxuryLevel: "fashion",
@@ -8320,7 +8320,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "dukkan-leyla",
     brandName: "DÜKKAN LEYLA",
-    aliases: [],
+    aliases: ["DÜKKAN LEYLA"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -8330,7 +8330,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "ecrou",
     brandName: "ECROU",
-    aliases: [],
+    aliases: ["ECROU"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -8340,7 +8340,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "elit-optik",
     brandName: "ELİT OPTİK",
-    aliases: [],
+    aliases: ["ELİT OPTİK"],
     categoryId: "eyewear",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -8350,7 +8350,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "emo-optik",
     brandName: "EMO OPTİK",
-    aliases: [],
+    aliases: ["EMO OPTİK"],
     categoryId: "eyewear",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -8360,7 +8360,7 @@ export const brandsAE: Brand[] = [
   {
     brandId: "enplus",
     brandName: "ENPLUS",
-    aliases: [],
+    aliases: ["ENPLUS"],
     categoryId: "home",
     logo: "",
     luxuryLevel: "lifestyle",

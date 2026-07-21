@@ -5426,7 +5426,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "frederic-patric-parfum",
     brandName: "FREDERIC PATRIC PARFUM",
-    aliases: [],
+    aliases: ["FREDERIC PATRIC PARFUM"],
     categoryId: "beauty",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5436,7 +5436,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "galaxy-optik",
     brandName: "GALAXY OPTİK",
-    aliases: [],
+    aliases: ["GALAXY OPTİK"],
     categoryId: "eyewear",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5446,7 +5446,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "gallery-crystal",
     brandName: "GALLERY CRYSTAL",
-    aliases: [],
+    aliases: ["GALLERY CRYSTAL"],
     categoryId: "home",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5456,7 +5456,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "gmg",
     brandName: "GMG",
-    aliases: [],
+    aliases: ["GMG"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -5476,7 +5476,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "harley-davidson",
     brandName: "HARLEY DAVIDSON",
-    aliases: [],
+    aliases: ["HARLEY DAVIDSON"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -5486,7 +5486,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "hobbiez-world",
     brandName: "HOBBIEZ WORLD",
-    aliases: [],
+    aliases: ["HOBBIEZ WORLD"],
     categoryId: "toys",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5496,7 +5496,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "homend",
     brandName: "HOMEND",
-    aliases: [],
+    aliases: ["HOMEND"],
     categoryId: "home",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5506,7 +5506,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "hotic",
     brandName: "HOTİÇ",
-    aliases: [],
+    aliases: ["HOTİÇ"],
     categoryId: "shoes-bags",
     logo: "",
     luxuryLevel: "fashion",
@@ -5516,7 +5516,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "isabella-silver-gumus",
     brandName: "ISABELLA SILVER-GÜMÜŞ",
-    aliases: [],
+    aliases: ["ISABELLA SILVER-GÜMÜŞ"],
     categoryId: "jewelry-watches",
     logo: "",
     luxuryLevel: "fashion",
@@ -5526,7 +5526,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "iyo",
     brandName: "IYO",
-    aliases: [],
+    aliases: ["IYO"],
     categoryId: "electronics",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5536,7 +5536,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "jimmy-key",
     brandName: "JIMMY KEY",
-    aliases: [],
+    aliases: ["JIMMY KEY"],
     categoryId: "fashion",
     logo: "",
     luxuryLevel: "fashion",
@@ -5556,7 +5556,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "kasaba-active-sports",
     brandName: "KASABA ACTIVE SPORTS",
-    aliases: [],
+    aliases: ["KASABA ACTIVE SPORTS"],
     categoryId: "sportswear",
     logo: "",
     luxuryLevel: "fashion",
@@ -5566,7 +5566,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "kiit-teknoloji",
     brandName: "KİİT TEKNOLOJİ",
-    aliases: [],
+    aliases: ["KİİT TEKNOLOJİ"],
     categoryId: "electronics",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5576,7 +5576,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "kirmizi-kedi",
     brandName: "KIRMIZI KEDİ",
-    aliases: [],
+    aliases: ["KIRMIZI KEDİ"],
     categoryId: "books-stationery",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5586,7 +5586,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "kocak",
     brandName: "KOÇAK",
-    aliases: [],
+    aliases: ["KOÇAK"],
     categoryId: "jewelry-watches",
     logo: "",
     luxuryLevel: "fashion",
@@ -5596,7 +5596,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "koctas",
     brandName: "KOÇTAŞ",
-    aliases: [],
+    aliases: ["KOÇTAŞ"],
     categoryId: "home",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5606,7 +5606,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "kokos-accessories",
     brandName: "KOKOŞ ACCESSORIES",
-    aliases: [],
+    aliases: ["KOKOŞ ACCESSORIES"],
     categoryId: "accessories",
     logo: "",
     luxuryLevel: "lifestyle",
@@ -5616,7 +5616,7 @@ export const brandsFK: Brand[] = [
   {
     brandId: "konyali-saat",
     brandName: "KONYALI SAAT",
-    aliases: [],
+    aliases: ["KONYALI SAAT"],
     categoryId: "jewelry-watches",
     logo: "",
     luxuryLevel: "fashion",
