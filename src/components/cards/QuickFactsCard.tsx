@@ -8,6 +8,7 @@ import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatReviewCount } from "../../services/reviewsRatingsService";
+import { hasDisplayValue } from "../../utils/taxFreeDisplay";
 
 export type QuickFactsCardProps = {
   title: string;
@@ -22,6 +23,7 @@ export type QuickFactsCardProps = {
   addressLabel: string;
   address: string;
   storesCountText: string;
+  taxFreeAvailable: boolean;
   cityCenterDistanceKm: number;
   airportDistanceKm: number;
   nearestAirportName?: string;
@@ -69,6 +71,7 @@ export function QuickFactsCard({
   title,
   openingHours,
   storesCountText,
+  taxFreeAvailable,
   cityCenterDistanceKm,
   airportDistanceKm,
   nearestAirportName,
@@ -95,13 +98,18 @@ export function QuickFactsCard({
       <SectionTitle title={title} />
 
       <View style={styles.grid}>
-        {openingHours.trim() ? (
+        {hasDisplayValue(openingHours) ? (
           <FactTile icon="🕒" label={t("sharedCards.quickFacts.hours")} value={openingHours} />
         ) : null}
-        {storesCountText.trim() ? (
+        {hasDisplayValue(storesCountText) ? (
           <FactTile icon="🛍️" label={t("sharedCards.quickFacts.stores")} value={storesCountText} onPress={onPressStores} />
         ) : null}
-        <FactTile icon="💰" label={t("sharedCards.quickFacts.taxFree")} value={t("sharedCards.quickFacts.available")} onPress={onPressTaxFree} />
+        <FactTile
+          icon="💰"
+          label={t("sharedCards.quickFacts.taxFree")}
+          value={t(taxFreeAvailable ? "sharedCards.quickFacts.available" : "sharedCards.quickFacts.notVerified")}
+          onPress={onPressTaxFree}
+        />
         <FactTile icon="✈️" label={t("sharedCards.quickFacts.airports")} value={airportText} onPress={onPressAirport} />
         <FactTile icon="🚗" label={t("sharedCards.quickFacts.cityCenter")} value={`${cityCenterDistanceKm} km`} />
         <FactTile icon="⭐" label={t("sharedCards.quickFacts.rating")} value={ratingText} onPress={onPressRating} />

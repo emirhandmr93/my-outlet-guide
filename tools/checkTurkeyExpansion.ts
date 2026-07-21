@@ -8,6 +8,8 @@ import { transportationGuides } from "../src/constants/transportationGuides";
 import { formatCityDisplayName, formatCountryDisplayName } from "../src/utils/locationDisplay";
 import { currencies } from "../src/constants/currencies";
 import { supportedCurrencyCodes } from "../src/services/exchangeRateService";
+import { getTaxFreeStatusKey, hasDisplayValue, hasVerifiedMinimumSpend, hasVerifiedVatRate } from "../src/utils/taxFreeDisplay";
+import { translations } from "../src/translations/translations";
 
 const languages = ["en", "tr", "es", "fr", "de", "ru", "ar", "zh"] as const;
 const expectedCountryNames = {
@@ -55,6 +57,20 @@ assert(istanbulOptimum?.address.includes("Elibol Sokak No:2/B") && !istanbulOpti
 assert(istanbulOptimum?.websiteUrl?.includes("optimumistanbul.com"), "Istanbul Optimum must use optimumistanbul.com.");
 assert(istanbulOptimum?.latitude === 40.9895 && istanbulOptimum.longitude === 29.0962, "Istanbul Optimum must retain corrected coordinates after applying defaults.");
 assert(starCity?.taxFreeAvailable === true && starCity.taxFreeOfficeInfo?.includes("information desk near the Starbucks entrance"), "StarCity official Tax Free information must override shared defaults.");
+assert(getTaxFreeStatusKey(starCity?.taxFreeAvailable === true) === "taxFree.statusAvailable", "StarCity must resolve to the available Tax Free status.");
+for (const outletId of ["viaport-asia-outlet-shopping", "212-outlet", "olivium-outlet-center", "venezia-mega-outlet", "optimum-premium-outlet-istanbul", "izmir-optimum", "deepo-outlet-center"]) {
+  const outlet = turkeyOutlets.find((item) => item.outletId === outletId);
+  assert(getTaxFreeStatusKey(outlet?.taxFreeAvailable === true) === "taxFree.statusNotVerified", `${outletId} must resolve to the not-verified Tax Free status.`);
+}
+assert(!hasVerifiedVatRate(viaport?.vatRate) && !hasVerifiedMinimumSpend(viaport?.minimumTaxFreeSpend), "Missing Tax Free values must be omitted rather than rendered as undefined.");
+assert(!hasDisplayValue(viaport?.storesCountText) && !hasDisplayValue(istanbulOptimum?.openingHours), "Empty Turkey quick-fact fields must remain omitted.");
+const verifiedTaxFreeOutlet = outlets.find((outlet) => outlet.outletId === "designer-outlet-parndorf");
+assert(hasVerifiedVatRate(verifiedTaxFreeOutlet?.vatRate) && hasVerifiedMinimumSpend(verifiedTaxFreeOutlet?.minimumTaxFreeSpend), "Existing verified VAT and minimum-spend data must remain displayable.");
+for (const language of languages) {
+  for (const key of ["sharedCards.quickFacts.notVerified", "taxFree.statusAvailable", "taxFree.statusNotVerified", "taxFree.notVerifiedExplanation"]) {
+    assert(Boolean(translations[language][key]?.trim()), `${key} must be translated for ${language}.`);
+  }
+}
 
 for (const outlet of turkeyOutlets) {
   assert(outlet.countryId === "turkey", `${outlet.outletId} must reference turkey.`);

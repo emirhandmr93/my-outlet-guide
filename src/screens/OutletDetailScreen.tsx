@@ -545,6 +545,7 @@ export function OutletDetailScreen() {
             addressLabel={t("outlet.address")}
             address={outlet.address}
             storesCountText={formatStoresCountText(outlet.storesCountText, language)}
+            taxFreeAvailable={outlet.taxFreeAvailable === true}
             cityCenterDistanceKm={outlet.cityCenterDistanceKm}
             airportDistanceKm={outlet.airportDistanceKm}
             reviewCountLabel={t("outlet.reviewCount")}
@@ -565,6 +566,7 @@ export function OutletDetailScreen() {
         >
           <TaxFreeCard
             title={t("outlet.taxFree")}
+            taxFreeAvailable={outlet.taxFreeAvailable === true}
             vatRate={outlet.vatRate}
             minimumSpend={outlet.minimumTaxFreeSpend}
             officeInfo={outlet.taxFreeOfficeInfo}

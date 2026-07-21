@@ -17259,3 +17259,55 @@ for (const locale of supportedLanguageCodes) {
     appOnlyFeatureTranslations[locale],
   );
 }
+
+const taxFreeStatusTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "sharedCards.quickFacts.notVerified": "Not verified",
+    "taxFree.statusAvailable": "Tax Free service available",
+    "taxFree.statusNotVerified": "Not verified at outlet level",
+    "taxFree.notVerifiedExplanation": "An official Tax Free point has not been verified for this outlet. Confirm with the relevant store before purchase.",
+  },
+  tr: {
+    "sharedCards.quickFacts.notVerified": "Doğrulanmadı",
+    "taxFree.statusAvailable": "Tax Free hizmeti mevcut",
+    "taxFree.statusNotVerified": "Outlet düzeyinde doğrulanmadı",
+    "taxFree.notVerifiedExplanation": "Bu outlet için resmî bir Tax Free noktası doğrulanmadı. Satın almadan önce ilgili mağazadan teyit edin.",
+  },
+  es: {
+    "sharedCards.quickFacts.notVerified": "No verificado",
+    "taxFree.statusAvailable": "Servicio Tax Free disponible",
+    "taxFree.statusNotVerified": "No verificado a nivel de outlet",
+    "taxFree.notVerifiedExplanation": "No se ha verificado un punto Tax Free oficial para este outlet. Confírmelo con la tienda correspondiente antes de comprar.",
+  },
+  fr: {
+    "sharedCards.quickFacts.notVerified": "Non vérifié",
+    "taxFree.statusAvailable": "Service Tax Free disponible",
+    "taxFree.statusNotVerified": "Non vérifié au niveau de l’outlet",
+    "taxFree.notVerifiedExplanation": "Aucun point Tax Free officiel n’a été vérifié pour cet outlet. Confirmez auprès du magasin concerné avant l’achat.",
+  },
+  de: {
+    "sharedCards.quickFacts.notVerified": "Nicht verifiziert",
+    "taxFree.statusAvailable": "Tax-Free-Service verfügbar",
+    "taxFree.statusNotVerified": "Auf Outlet-Ebene nicht verifiziert",
+    "taxFree.notVerifiedExplanation": "Für dieses Outlet wurde keine offizielle Tax-Free-Stelle verifiziert. Bitte vor dem Kauf beim jeweiligen Geschäft nachfragen.",
+  },
+  ar: {
+    "sharedCards.quickFacts.notVerified": "غير متحقق منه",
+    "taxFree.statusAvailable": "خدمة Tax Free متاحة",
+    "taxFree.statusNotVerified": "غير متحقق منه على مستوى الأوتلت",
+    "taxFree.notVerifiedExplanation": "لم يتم التحقق من وجود نقطة Tax Free رسمية لهذا الأوتلت. يرجى التأكد من المتجر المعني قبل الشراء.",
+  },
+  ru: {
+    "sharedCards.quickFacts.notVerified": "Не подтверждено",
+    "taxFree.statusAvailable": "Услуга Tax Free доступна",
+    "taxFree.statusNotVerified": "Не подтверждено на уровне аутлета",
+    "taxFree.notVerifiedExplanation": "Для этого аутлета не подтверждён официальный пункт Tax Free. Перед покупкой уточните информацию в соответствующем магазине.",
+  },
+  zh: {
+    "sharedCards.quickFacts.notVerified": "未核实",
+    "taxFree.statusAvailable": "提供 Tax Free 服务",
+    "taxFree.statusNotVerified": "奥莱层面尚未核实",
+    "taxFree.notVerifiedExplanation": "该奥莱尚未核实官方 Tax Free 服务点。购买前请向相关商店确认。",
+  },
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeStatusTranslations[locale]);
