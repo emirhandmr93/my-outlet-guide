@@ -24,7 +24,7 @@ if (!readFileSync("tools/exportWebPoc.ts", "utf8").includes("dist-web-poc")) {
 for (const removed of ["web-client.js", "src/web/client.ts"]) {
   if (existsSync(removed)) failures.push(`${removed} must not be reintroduced`);
 }
-const forbiddenLowercaseHeroCopies = [
+const requiredHeroAssets = [
   "hero-currency.png",
   "hero-flight-deals.png",
   "hero-language.png",
@@ -36,11 +36,9 @@ const forbiddenLowercaseHeroCopies = [
   "hero-security.png",
   "hero-trips.png",
 ];
-for (const fileName of forbiddenLowercaseHeroCopies) {
-  if (existsSync(`assets/heroes/${fileName}`)) {
-    failures.push(
-      `POC must not add lowercase binary hero copy: assets/heroes/${fileName}`,
-    );
+for (const fileName of requiredHeroAssets) {
+  if (!existsSync(`assets/heroes/${fileName}`)) {
+    failures.push(`Missing required lowercase hero asset: assets/heroes/${fileName}`);
   }
 }
 const trackedHeroAssets = execFileSync("git", ["ls-files", "assets/heroes"], {
@@ -48,25 +46,15 @@ const trackedHeroAssets = execFileSync("git", ["ls-files", "assets/heroes"], {
 })
   .split("\n")
   .filter(Boolean);
-for (const fileName of forbiddenLowercaseHeroCopies) {
-  if (trackedHeroAssets.includes(`assets/heroes/${fileName}`)) {
-    failures.push(
-      `Lowercase binary hero copy is tracked: assets/heroes/${fileName}`,
-    );
+for (const fileName of requiredHeroAssets) {
+  if (!trackedHeroAssets.includes(`assets/heroes/${fileName}`)) {
+    failures.push(`Required lowercase hero asset is not tracked: assets/heroes/${fileName}`);
   }
 }
 const heroAssets = readFileSync("src/media/heroAssets.ts", "utf8");
-for (const fileName of forbiddenLowercaseHeroCopies) {
-  const existingFileName = fileName.replace(/\.png$/, ".PNG");
-  if (!heroAssets.includes(`assets/heroes/${existingFileName}`)) {
-    failures.push(
-      `heroAssets.ts must reference existing asset filename: ${existingFileName}`,
-    );
-  }
-  if (heroAssets.includes(`assets/heroes/${fileName}`)) {
-    failures.push(
-      `heroAssets.ts must not reference removed lowercase copy: ${fileName}`,
-    );
+for (const fileName of requiredHeroAssets) {
+  if (!heroAssets.includes(`assets/heroes/${fileName}`)) {
+    failures.push(`heroAssets.ts must reference lowercase asset filename: ${fileName}`);
   }
 }
 if (existsSync("src/media/heroAssets.web.ts")) {
