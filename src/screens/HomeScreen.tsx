@@ -43,6 +43,7 @@ import {
   formatCountryDisplayName,
   formatCityDisplayName,
 } from "../utils/locationDisplay";
+import { getRecommendedCarouselLastIndex } from "../utils/recommendedCarousel";
 
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
@@ -100,6 +101,16 @@ const featuredSlides: FeaturedSlide[] = [
     icon: "%",
     image: getHomeFeatureImage("savings-guide"),
     route: "Savings",
+  },
+  {
+    id: "flight-deals",
+    kickerKey: "home.featured.flightDeals.kicker",
+    titleKey: "home.featured.flightDeals.title",
+    subtitleKey: "home.featured.flightDeals.subtitle",
+    ctaKey: "home.featured.flightDeals.cta",
+    icon: "✈",
+    image: getHomeFeatureImage("plan-trip"),
+    route: "FlightDeals",
   },
   {
     id: "offline-availability",
@@ -271,8 +282,10 @@ export function HomeScreen() {
   const { favoriteIds } = useFavorites();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [activeRecommendedIndex, setActiveRecommendedIndex] = useState(0);
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
   const carouselRef = useRef<ScrollView | null>(null);
+  const recommendedCarouselRef = useRef<ScrollView | null>(null);
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const contentWidth = Math.min(
     isDesktopWeb ? width - 216 - 72 : width - spacing.xl * 2,
@@ -284,6 +297,12 @@ export function HomeScreen() {
   const outletCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 2) / 3)
     : contentWidth;
+  const recommendedLastIndex = getRecommendedCarouselLastIndex(
+    recommendedOutlets.length,
+    outletCardWidth,
+    spacing.md,
+    contentWidth,
+  );
   const cityCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 3) / 4)
     : Math.round(width * 0.42);
@@ -327,7 +346,22 @@ export function HomeScreen() {
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeSlideIndex, slides.length]);
+  }, [activeSlideIndex, carouselWidth, slides.length]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const nextIndex = activeRecommendedIndex >= recommendedLastIndex
+        ? 0
+        : activeRecommendedIndex + 1;
+      recommendedCarouselRef.current?.scrollTo({
+        x: nextIndex * (outletCardWidth + spacing.md),
+        animated: true,
+      });
+      setActiveRecommendedIndex(nextIndex);
+    }, 5500);
+
+    return () => clearInterval(interval);
+  }, [activeRecommendedIndex, outletCardWidth, recommendedLastIndex]);
 
   function handleCarouselScroll(
     event: NativeSyntheticEvent<NativeScrollEvent>,
@@ -339,6 +373,14 @@ export function HomeScreen() {
     if (nextIndex !== activeSlideIndex) {
       setActiveSlideIndex(nextIndex);
     }
+  }
+
+  function handleRecommendedScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    const nextIndex = Math.round(
+      event.nativeEvent.contentOffset.x / (outletCardWidth + spacing.md),
+    );
+    const reachableIndex = Math.min(Math.max(nextIndex, 0), recommendedLastIndex);
+    if (reachableIndex !== activeRecommendedIndex) setActiveRecommendedIndex(reachableIndex);
   }
 
   function navigateTo(route: string, params?: Record<string, string>) {
@@ -537,12 +579,14 @@ export function HomeScreen() {
         />
 
         <ScrollView
+          ref={recommendedCarouselRef}
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.recommendedList}
           snapToInterval={outletCardWidth + spacing.md}
           snapToAlignment="start"
           decelerationRate="fast"
+          onMomentumScrollEnd={handleRecommendedScroll}
         >
           {recommendedOutlets.map((outlet) => {
             const imageSource = getOutletCardImageSource(outlet.id);

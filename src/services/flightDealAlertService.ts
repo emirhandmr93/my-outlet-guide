@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../firebase/config";
+import { FLIGHT_DEALS_PROVIDER_ENABLED } from "../constants/flightDealsAvailability";
 
 export const FLIGHT_DEAL_THRESHOLDS = [15, 30, 45] as const;
 export type FlightDealThreshold = (typeof FLIGHT_DEAL_THRESHOLDS)[number];
@@ -98,6 +99,9 @@ export async function saveFlightDealAlert(
     "alertId" | "userId" | "providerStatus" | "createdAt" | "updatedAt"
   > & { alertId?: string },
 ) {
+  if (!FLIGHT_DEALS_PROVIDER_ENABLED) {
+    throw new Error("Flight-deal provider is not connected.");
+  }
   const selectedThresholds = normalizeFlightDealThresholds(
     input.selectedThresholds,
   );

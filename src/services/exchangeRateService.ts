@@ -12,7 +12,11 @@ export type CurrencyCode =
   | "CZK"
   | "HUF"
   | "RON"
-  | "TRY";
+  | "TRY"
+  | "CAD"
+  | "CNY"
+  | "KRW"
+  | "THB";
 
 export type ExchangeRateStatus = "ready" | "stale_cache" | "unavailable";
 
@@ -54,6 +58,10 @@ export const supportedCurrencyCodes: CurrencyCode[] = [
   "HUF",
   "RON",
   "TRY",
+  "CAD",
+  "CNY",
+  "KRW",
+  "THB",
 ];
 
 export const FRANKFURTER_API_BASE_URL = "https://api.frankfurter.dev";
@@ -61,7 +69,7 @@ export const FRANKFURTER_RATES_ENDPOINT = `${FRANKFURTER_API_BASE_URL}/v2/rates`
 const frankfurterQuoteCurrencies = supportedCurrencyCodes.filter((currency) => currency !== "EUR");
 export const sourceUrl = `${FRANKFURTER_RATES_ENDPOINT}?base=EUR&quotes=${frankfurterQuoteCurrencies.join(",")}`;
 
-const CACHE_KEY = "my_outlet_guide_live_currency_frankfurter_v1";
+const CACHE_KEY = "my_outlet_guide_live_currency_frankfurter_v2";
 let inMemoryRates: ExchangeRates | null = null;
 
 function isCurrencyCode(value: string): value is CurrencyCode {
@@ -88,7 +96,7 @@ function isUsableFrankfurterV2RateRow(row: unknown): row is FrankfurterV2RateRow
   );
 }
 
-function parseFrankfurterV2RatesPayload(payload: unknown): { effectiveDate: string; rates: Partial<Record<CurrencyCode, number>> } {
+export function parseFrankfurterV2RatesPayload(payload: unknown): { effectiveDate: string; rates: Partial<Record<CurrencyCode, number>> } {
   if (!Array.isArray(payload)) {
     throw new Error("Exchange-rate provider response is missing v2 rate rows.");
   }
@@ -114,6 +122,19 @@ function parseFrankfurterV2RatesPayload(payload: unknown): { effectiveDate: stri
   }
 
   return { effectiveDate, rates };
+}
+
+export function mergeFrankfurterRates(
+  freshRates: Partial<Record<CurrencyCode, number>>,
+  cachedRates?: Partial<Record<CurrencyCode, number>>,
+) {
+  const usedCachedQuote = frankfurterQuoteCurrencies.some(
+    (currency) => freshRates[currency] == null && cachedRates?.[currency] != null,
+  );
+  return {
+    rates: { ...(cachedRates ?? {}), ...freshRates },
+    status: usedCachedQuote ? ("stale_cache" as const) : ("ready" as const),
+  };
 }
 
 export function isSupportedCurrency(value: string): value is CurrencyCode {
@@ -181,10 +202,13 @@ async function fetchProviderExchangeRates(): Promise<ExchangeRates> {
   }
 
   const parsedPayload = payload as ReturnType<typeof parseFrankfurterV2RatesPayload>;
-  const rates = parsedPayload.rates;
+  // A partial provider response must not discard independently valid cached
+  // quotes. Fresh rows always win; cached values only fill omitted quotes.
+  const cached = await readCachedExchangeRates();
+  const mergedRates = mergeFrankfurterRates(parsedPayload.rates, cached?.rates);
 
   const fetched = {
-    status: "ready" as const,
+    status: mergedRates.status,
     provider: "Frankfurter" as const,
     base: "EUR" as const,
     quotes: supportedCurrencyCodes,
@@ -194,7 +218,7 @@ async function fetchProviderExchangeRates(): Promise<ExchangeRates> {
     fetchedAt: new Date().toISOString(),
     sourceName: "Frankfurter" as const,
     sourceUrl,
-    rates,
+    rates: mergedRates.rates,
   };
   await writeCachedExchangeRates(fetched);
   return fetched;
@@ -227,11 +251,19 @@ export async function convertCurrency(
   sourceCurrency: CurrencyCode,
   targetCurrency: CurrencyCode
 ): Promise<ConversionResult> {
+  const rates = inMemoryRates ?? (await fetchLatestExchangeRates());
+  return convertCurrencyWithRates(amount, sourceCurrency, targetCurrency, rates);
+}
+
+export function convertCurrencyWithRates(
+  amount: number,
+  sourceCurrency: CurrencyCode,
+  targetCurrency: CurrencyCode,
+  rates: ExchangeRates,
+): ConversionResult {
   if (!Number.isFinite(amount) || amount <= 0) {
     throw new Error("Amount must be a positive number.");
   }
-
-  const rates = inMemoryRates ?? (await fetchLatestExchangeRates());
   if (rates.status === "unavailable") throw new Error("Exchange-rate provider unavailable.");
   const sourceRate = rates.rates[sourceCurrency];
   const targetRate = rates.rates[targetCurrency];
