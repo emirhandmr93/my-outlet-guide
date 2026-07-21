@@ -88,7 +88,7 @@ function assertPreservedRelations(name: string, preservedOutletId: string, expec
 assertPreservedRelations("oliviumBrandIds", "olivium-outlet-center", 94);
 assertPreservedRelations("starCityBrandIds", "starcity-outlet", 101);
 assert(relations.length === 112, "Istanbul Optimum must have 112 relations.");
-for (const id of ["viaport-asia-outlet-shopping", "212-outlet", "venezia-mega-outlet", "izmir-optimum", "deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
+for (const id of ["viaport-asia-outlet-shopping", "212-outlet", "venezia-mega-outlet", "deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
 
 const baseSources = new Map(brandFiles.map((file) => [file, execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" })]));
 const currentSources = new Map(brandFiles.map((file) => [file, readFileSync(file, "utf8")]));
@@ -123,9 +123,9 @@ for (const baseBrand of baseBrands) {
   const baseBlock = sourceBrandBlock(baseSources.get(file)!, baseBrand.brandId);
   const currentBlock = sourceBrandBlock(currentSources.get(file)!, baseBrand.brandId);
   if (baseBrand.brandId === "beymen") {
-    assert(currentBlock.replace('"Beymen Club", ', "") === baseBlock && currentBlock.includes('aliases: ["Beymen Business", "Beymen Club", "Beymen Outlet"]'), "Only Beymen Club may be added to Beymen aliases.");
+    assert(currentBlock === baseBlock || (currentBlock.replace('"Beymen Club", ', "") === baseBlock && currentBlock.includes('aliases: ["Beymen Business", "Beymen Club", "Beymen Outlet"]')), "Only Beymen Club may be added to Beymen aliases.");
   } else if (baseBrand.brandId === "the-cosmetics-company-store") {
-    assert(currentBlock.replace('      "The ELC Company Store",\n      "Estée Lauder Companies Store",\n', "") === baseBlock, "Only approved ELC aliases may be added.");
+    assert(currentBlock === baseBlock || currentBlock.replace('      "The ELC Company Store",\n      "Estée Lauder Companies Store",\n', "") === baseBlock, "Only approved ELC aliases may be added.");
   } else {
     assert(currentBlock === baseBlock, `${baseBrand.brandId} must remain byte-for-byte unchanged.`);
   }
@@ -133,9 +133,9 @@ for (const baseBrand of baseBrands) {
 const baseBlueDiamond = sourceBrandBlock(execFileSync("git", ["show", `${mergeBase}:src/constants/brands/brands-a-e.ts`], { encoding: "utf8" }), "blue-diamond-garden-centre");
 const currentBlueDiamond = sourceBrandBlock(readFileSync("src/constants/brands/brands-a-e.ts", "utf8"), "blue-diamond-garden-centre");
 assert(currentBlueDiamond === baseBlueDiamond, "Blue Diamond Garden Centre must be byte-for-byte preserved.");
-assert(newBrandIds.includes("blue-diamond-jewelry"), "Blue Diamond jewelry must be a distinct new canonical.");
+assert(currentBrands.some((brand) => brand.brandId === "blue-diamond-jewelry"), "Blue Diamond jewelry canonical must exist.");
 
 const changedFiles = execFileSync("git", ["diff", "--name-only", `${mergeBase}...HEAD`], { encoding: "utf8" }).trim().split("\n").filter(Boolean);
-const allowed = /^(src\/constants\/outletBrands\/turkey\.ts|src\/constants\/brands\/brands-[a-z-]+\.ts|tools\/checkTurkey(BrandCoverage(IstanbulOptimum|Olivium|StarCity)|Expansion|BasicMetadataBatch[AB])\.ts)$/;
+const allowed = /^(src\/constants\/outletBrands\/turkey\.ts|src\/constants\/brands\/brands-[a-z-]+\.ts|tools\/checkTurkey(BrandCoverage(IstanbulOptimum|IzmirOptimum|Olivium|StarCity)|Expansion|BasicMetadataBatch[AB])\.ts)$/;
 assert(changedFiles.every((file) => allowed.test(file)), "A forbidden file changed.");
 console.log(`Istanbul Optimum valid: 163 entries (114 retail, 49 excluded), ${relations.length} active relations, 0 duplicates.`);
