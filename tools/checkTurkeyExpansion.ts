@@ -1,6 +1,7 @@
 import { cities } from "../src/constants/cities";
 import { countries } from "../src/constants/countries";
 import { outlets } from "../src/constants/outlets";
+import { brands } from "../src/constants/brands";
 import { outletBrands } from "../src/constants/outletBrands";
 import { restaurants } from "../src/constants/restaurants";
 import { transportation } from "../src/constants/transportation";
@@ -72,6 +73,17 @@ for (const language of languages) {
   }
 }
 
+const completedTurkeyBrandCoverageOutletIds = new Set<string>([]);
+const turkeyBrandRelations = outletBrands.filter((relation) => turkeyOutlets.some((outlet) => outlet.outletId === relation.outletId));
+const turkeyBrandRelationKeys = turkeyBrandRelations.map((relation) => `${relation.outletId}\u0000${relation.brandId}`);
+assert(new Set(turkeyBrandRelationKeys).size === turkeyBrandRelationKeys.length, "Turkey outletBrand relations must not contain duplicate outletId + brandId pairs.");
+for (const relation of turkeyBrandRelations) {
+  assert(completedTurkeyBrandCoverageOutletIds.has(relation.outletId), `${relation.outletId} is not an explicitly completed Turkey brand-coverage outlet.`);
+  const brand = brands.find((candidate) => candidate.brandId === relation.brandId);
+  assert(Boolean(brand), `${relation.brandId} must reference a canonical brand.`);
+  assert(!/\b(food|restaurant|cafe|café|atm|bank|cinema|gym|travel|entertainment|service)\b/i.test(brand?.brandName ?? ""), `${relation.brandId} is an excluded food or service-only tenant.`);
+}
+
 for (const outlet of turkeyOutlets) {
   assert(outlet.countryId === "turkey", `${outlet.outletId} must reference turkey.`);
   assert(cities.some((city) => city.cityId === outlet.cityId), `${outlet.outletId} has an unknown city.`);
@@ -80,7 +92,9 @@ for (const outlet of turkeyOutlets) {
   assert(Array.isArray(outlet.restaurants) && outlet.restaurants.length === 0, `${outlet.outletId} must not add restaurant data.`);
   assert(Array.isArray(outlet.services) && outlet.services.length === 0, `${outlet.outletId} must not add unverified services.`);
   assert(outlet.heroImage === "" && Array.isArray(outlet.galleryImages) && outlet.galleryImages.length === 0, `${outlet.outletId} must not add local images.`);
-  assert(!outletBrands.some((relation) => relation.outletId === outlet.outletId), `${outlet.outletId} must not add brand relations.`);
+  if (!completedTurkeyBrandCoverageOutletIds.has(outlet.outletId)) {
+    assert(!turkeyBrandRelations.some((relation) => relation.outletId === outlet.outletId), `${outlet.outletId} must remain relation-free until its brand-coverage phase is completed.`);
+  }
   assert(!restaurants.some((restaurant) => restaurant.outletId === outlet.outletId), `${outlet.outletId} must not add restaurant records.`);
   assert(!transportation.some((record) => record.outletId === outlet.outletId), `${outlet.outletId} must not add transportation records.`);
   assert(!transportationGuides.some((guide) => guide.outletId === outlet.outletId), `${outlet.outletId} must not add transportation guides.`);
