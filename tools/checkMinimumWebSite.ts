@@ -548,9 +548,9 @@ assert(
 );
 for (const image of [
   "explore/explore-hero-premium.png",
-  "heroes/hero-trips.PNG",
-  "heroes/hero-savings.PNG",
-  "heroes/hero-offline.PNG",
+  "heroes/hero-trips.png",
+  "heroes/hero-savings.png",
+  "heroes/hero-offline.png",
 ])
   assert(
     home.includes(image),
@@ -559,9 +559,9 @@ for (const image of [
 assert(
   new Set([
     "explore/explore-hero-premium.png",
-    "heroes/hero-trips.PNG",
-    "heroes/hero-savings.PNG",
-    "heroes/hero-offline.PNG",
+    "heroes/hero-trips.png",
+    "heroes/hero-savings.png",
+    "heroes/hero-offline.png",
   ]).size === 4,
   "homepage feature cards use four distinct visual mappings",
 );

@@ -24,7 +24,7 @@ if (!readFileSync("tools/exportWebPoc.ts", "utf8").includes("dist-web-poc")) {
 for (const removed of ["web-client.js", "src/web/client.ts"]) {
   if (existsSync(removed)) failures.push(`${removed} must not be reintroduced`);
 }
-const forbiddenLowercaseHeroCopies = [
+const requiredLowercaseHeroAssets = [
   "hero-currency.png",
   "hero-flight-deals.png",
   "hero-language.png",
@@ -36,37 +36,31 @@ const forbiddenLowercaseHeroCopies = [
   "hero-security.png",
   "hero-trips.png",
 ];
-for (const fileName of forbiddenLowercaseHeroCopies) {
-  if (existsSync(`assets/heroes/${fileName}`)) {
-    failures.push(
-      `POC must not add lowercase binary hero copy: assets/heroes/${fileName}`,
-    );
-  }
-}
 const trackedHeroAssets = execFileSync("git", ["ls-files", "assets/heroes"], {
   encoding: "utf8",
 })
   .split("\n")
   .filter(Boolean);
-for (const fileName of forbiddenLowercaseHeroCopies) {
-  if (trackedHeroAssets.includes(`assets/heroes/${fileName}`)) {
-    failures.push(
-      `Lowercase binary hero copy is tracked: assets/heroes/${fileName}`,
-    );
-  }
-}
 const heroAssets = readFileSync("src/media/heroAssets.ts", "utf8");
-for (const fileName of forbiddenLowercaseHeroCopies) {
-  const existingFileName = fileName.replace(/\.png$/, ".PNG");
-  if (!heroAssets.includes(`assets/heroes/${existingFileName}`)) {
-    failures.push(
-      `heroAssets.ts must reference existing asset filename: ${existingFileName}`,
-    );
+for (const fileName of requiredLowercaseHeroAssets) {
+  const lowercasePath = `assets/heroes/${fileName}`;
+  const uppercaseFileName = fileName.replace(/\.png$/, ".PNG");
+  const uppercasePath = `assets/heroes/${uppercaseFileName}`;
+
+  if (!existsSync(lowercasePath)) {
+    failures.push(`Missing canonical lowercase hero asset: ${lowercasePath}`);
   }
-  if (heroAssets.includes(`assets/heroes/${fileName}`)) {
-    failures.push(
-      `heroAssets.ts must not reference removed lowercase copy: ${fileName}`,
-    );
+  if (!trackedHeroAssets.includes(lowercasePath)) {
+    failures.push(`Canonical lowercase hero asset is not tracked: ${lowercasePath}`);
+  }
+  if (existsSync(uppercasePath) || trackedHeroAssets.includes(uppercasePath)) {
+    failures.push(`Uppercase hero asset copy must not exist: ${uppercasePath}`);
+  }
+  if (!heroAssets.includes(lowercasePath)) {
+    failures.push(`heroAssets.ts must reference canonical asset filename: ${fileName}`);
+  }
+  if (heroAssets.includes(uppercasePath)) {
+    failures.push(`heroAssets.ts must not reference uppercase asset filename: ${uppercaseFileName}`);
   }
 }
 if (existsSync("src/media/heroAssets.web.ts")) {
