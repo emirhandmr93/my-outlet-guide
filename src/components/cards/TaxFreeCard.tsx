@@ -2,40 +2,52 @@ import { StyleSheet, Text } from "react-native";
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
 import { useTranslation } from "../../hooks/useTranslation";
+import { getTaxFreeStatusKey, hasDisplayValue, hasVerifiedMinimumSpend, hasVerifiedVatRate } from "../../utils/taxFreeDisplay";
 
 type TaxFreeCardProps = {
   title: string;
-  vatRate: number;
-  minimumSpend: string;
-  officeInfo: string;
+  taxFreeAvailable: boolean;
+  vatRate?: number;
+  minimumSpend?: string;
+  officeInfo?: string;
 };
 
 export function TaxFreeCard({
   title,
+  taxFreeAvailable,
   vatRate,
   minimumSpend,
   officeInfo,
 }: TaxFreeCardProps) {
   const { t, language } = useTranslation();
-  const shouldShowOfficeInfo = language !== "tr" || officeInfo.length <= 90;
+  const hasOfficeInfo = hasDisplayValue(officeInfo);
+  const shouldShowOfficeInfo = hasOfficeInfo && (language !== "tr" || (officeInfo?.length ?? 0) <= 90);
 
   return (
     <Card>
       <SectionTitle title={title} />
 
-      <Text style={styles.text}>
-        {t("taxCalc.vatRate")}: {vatRate}%
-      </Text>
+      <Text style={styles.text}>{t(getTaxFreeStatusKey(taxFreeAvailable))}</Text>
+
+      {!taxFreeAvailable ? (
+        <Text style={styles.text}>{t("taxFree.notVerifiedExplanation")}</Text>
+      ) : null}
+
+      {hasVerifiedVatRate(vatRate) ? (
+        <Text style={styles.text}>
+          {t("taxCalc.vatRate")}: {vatRate}%
+        </Text>
+      ) : null}
 
       <Text style={styles.text}>{t("taxCalc.finalDisclaimer")}</Text>
 
-      <Text style={styles.text}>
-        {t("taxCalc.minimumSpend")}: {minimumSpend}
-      </Text>
-
-      {shouldShowOfficeInfo ? (
-        <Text style={styles.text}>{officeInfo}</Text>
+      {hasVerifiedMinimumSpend(minimumSpend) ? (
+        <Text style={styles.text}>
+          {t("taxCalc.minimumSpend")}: {minimumSpend}
+        </Text>
       ) : null}
+
+      {shouldShowOfficeInfo ? <Text style={styles.text}>{officeInfo ?? ""}</Text> : null}
     </Card>
   );
 }

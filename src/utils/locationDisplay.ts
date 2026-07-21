@@ -303,6 +303,16 @@ const countryDisplayNames: Record<string, LocaleMap> = {
     ar: "تايلاند",
     zh: "泰国",
   },
+  turkey: {
+    en: "Turkey",
+    tr: "Türkiye",
+    es: "Turquía",
+    fr: "Turquie",
+    de: "Türkei",
+    ru: "Турция",
+    ar: "تركيا",
+    zh: "土耳其",
+  },
   "united-arab-emirates": {
     en: "United Arab Emirates",
     tr: "Birleşik Arap Emirlikleri",
@@ -336,6 +346,36 @@ const countryDisplayNames: Record<string, LocaleMap> = {
 };
 
 const cityDisplayNames: Record<string, LocaleMap> = {
+  istanbul: {
+    en: "Istanbul",
+    tr: "İstanbul",
+    es: "Estambul",
+    fr: "Istanbul",
+    de: "Istanbul",
+    ru: "Стамбул",
+    ar: "إسطنبول",
+    zh: "伊斯坦布尔",
+  },
+  izmir: {
+    en: "Izmir",
+    tr: "İzmir",
+    es: "Esmirna",
+    fr: "Izmir",
+    de: "Izmir",
+    ru: "Измир",
+    ar: "إزمير",
+    zh: "伊兹密尔",
+  },
+  antalya: {
+    en: "Antalya",
+    tr: "Antalya",
+    es: "Antalya",
+    fr: "Antalya",
+    de: "Antalya",
+    ru: "Анталья",
+    ar: "أنطاليا",
+    zh: "安塔利亚",
+  },
   bucharest: {
     tr: "Bükreş",
     es: "Bucarest",
