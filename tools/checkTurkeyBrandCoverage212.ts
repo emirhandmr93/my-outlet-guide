@@ -1969,7 +1969,7 @@ for (const [constantName, preservedOutletId, expectedCount] of [
   );
 }
 
-for (const emptyOutletId of ["venezia-mega-outlet", "deepo-outlet-center"]) {
+for (const emptyOutletId of ["deepo-outlet-center"]) {
   assert(
     !outletBrands.some((relation) => relation.outletId === emptyOutletId),
     `${emptyOutletId} must remain relation-free.`,
@@ -1980,8 +1980,9 @@ function parseSourceBrands(source: string): Array<{
   brandId: string;
   brandName: string;
   aliases: string[];
+  block: string;
 }> {
-  const result: Array<{ brandId: string; brandName: string; aliases: string[] }> = [];
+  const result: Array<{ brandId: string; brandName: string; aliases: string[]; block: string }> = [];
   for (const match of source.matchAll(/\{\s*brandId:\s*"([^"]+)"([\s\S]*?)\n\s*\},/g)) {
     const block = match[0];
     const brandNameMatch = block.match(/brandName:\s*"((?:\\.|[^"])*)"/);
@@ -1996,6 +1997,7 @@ function parseSourceBrands(source: string): Array<{
       brandId: match[1],
       brandName: JSON.parse(`"${brandNameMatch[1]}"`),
       aliases,
+      block,
     });
   }
   return result;
@@ -2016,16 +2018,30 @@ const baseSources = new Map(
     execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" }),
   ]),
 );
+const base212RelationIds = extractIdArray(baseTurkeySource, "outlet212BrandIds");
+assert(
+  JSON.stringify(expectedRelationIds) === JSON.stringify(base212RelationIds),
+  "All 212 relation IDs and their sequence must remain preserved from main.",
+);
+assert(base212RelationIds.length === 105, "Main must contain 105 preserved 212 relations.");
 const currentSources = new Map(
   brandFiles.map((file) => [file, readFileSync(file, "utf8")]),
 );
 const baseSourceBrands = [...baseSources.values()].flatMap(parseSourceBrands);
+const currentSourceBlocks = new Map(
+  [...currentSources.values()].flatMap(parseSourceBrands).map((brand) => [brand.brandId, brand.block]),
+);
+for (const baseBrand of baseSourceBrands) {
+  assert(
+    currentSourceBlocks.get(baseBrand.brandId) === baseBrand.block,
+    `${baseBrand.brandId} must remain byte-for-byte unchanged from main.`,
+  );
+}
 const baseIds = new Set(baseSourceBrands.map((brand) => brand.brandId));
 const expectedNewIds = expectedRelationIds.filter((brandId) => !baseIds.has(brandId));
 assert(
-  JSON.stringify(expectedNewIds) ===
-    JSON.stringify(Object.keys(expectedSemanticByNewCanonical).sort()),
-  "The PR-created canonical set must exactly equal the literal semantic map.",
+  expectedNewIds.length === 0,
+  "Venezia PR must not create or mutate any 212 canonical.",
 );
 
 for (const file of brandFiles) {
@@ -2100,6 +2116,7 @@ const allowedFiles = new Set([
   "tools/checkTurkeyBasicMetadataBatchA.ts",
   "tools/checkTurkeyBasicMetadataBatchB.ts",
   "tools/checkTurkeyBrandCoverage212.ts",
+  "tools/checkTurkeyBrandCoverageVenezia.ts",
   "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
   "tools/checkTurkeyBrandCoverageIzmirOptimum.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
@@ -2108,7 +2125,7 @@ const allowedFiles = new Set([
   "tools/checkTurkeyExpansion.ts",
 ]);
 
-assert(changedFiles.length === 15, "Expected exactly the approved 15-file PR scope.");
+assert(changedFiles.length === 16, "Expected exactly the approved 16-file PR scope.");
 assert(
   changedFiles.every((file) => allowedFiles.has(file)),
   `Changed file is outside scope: ${changedFiles.find((file) => !allowedFiles.has(file))}.`,

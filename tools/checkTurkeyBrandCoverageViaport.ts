@@ -501,7 +501,7 @@ for (const [constantName, preservedOutletId, expectedCount] of [
   );
 }
 
-for (const emptyOutletId of ["venezia-mega-outlet", "deepo-outlet-center"]) {
+for (const emptyOutletId of ["deepo-outlet-center"]) {
   assert(
     !outletBrands.some((relation) => relation.outletId === emptyOutletId),
     `${emptyOutletId} must remain relation-free.`,
@@ -526,7 +526,7 @@ const allowedFiles = new Set([
   "src/constants/outletBrands/turkey.ts",
   "tools/checkTurkeyBasicMetadataBatchA.ts",
   "tools/checkTurkeyBasicMetadataBatchB.ts",
-  "tools/checkTurkeyBrandCoverage212.ts",
+  "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts",
   "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
   "tools/checkTurkeyBrandCoverageIzmirOptimum.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
