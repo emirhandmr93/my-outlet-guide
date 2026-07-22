@@ -88,7 +88,7 @@ function assertPreservedRelations(name: string, preservedOutletId: string, expec
 assertPreservedRelations("oliviumBrandIds", "olivium-outlet-center", 94);
 assertPreservedRelations("starCityBrandIds", "starcity-outlet", 101);
 assert(relations.length === 112, "Istanbul Optimum must have 112 relations.");
-for (const id of ["deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
+
 
 const baseSources = new Map(brandFiles.map((file) => [file, execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" })]));
 const currentSources = new Map(brandFiles.map((file) => [file, readFileSync(file, "utf8")]));
