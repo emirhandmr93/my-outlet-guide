@@ -133,6 +133,8 @@ for (const baseBrand of baseBrands) {
     assert(currentBlock.replace('categoryId: "toys",', 'categoryId: "children",').replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "premium",') === baseBlock, "LEGO may only receive its Viaport toys category correction.");
   } else if (baseBrand.brandId === "parfois") {
     assert(currentBlock.replace('categoryId: "accessories",', 'categoryId: "shoes-bags",').replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "fashion",') === baseBlock, "Parfois may only receive its Viaport accessories category correction.");
+  } else if (baseBrand.brandId === "kiko-milano") {
+    assert(currentBlock.replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "fashion",') === baseBlock, "KIKO Milano may only receive its Viaport beauty luxury correction.");
   } else {
     const approvedAliasAdditions: Record<string, string> = { defacto: "DEFACTO KIDS", "saat-saat": "SAAT&SAAT EXCLUSIVE", samsung: "SAMSUNG MOBILE", karaca: "KARACA ZÜCCACİYE", "mi-shop": "MI STORE", vakko: "VAKKO BOUTİQUE", vestel: "VESTEL EKSPRES", teknosa: "TEKNOSA EXTRA", eve: "EVE SHOP", loft: "LOFT (YENİLENİYOR)", supplementler: "SUPPLEMENTLER.COM", "calvin-klein": "CALVİN KLEİN", "blue-diamond-jewelry": "BLUE DIAMOND", "b-and-g-store": "B&G STORE", "mr-diy": "MR.DIY", "jack-and-jones": "JACK & JONES", "in-street": "IN STREET", "lc-waikiki": "LCW", levis: "LEVI'S", "toyzz-shop": "TOYZZ SHOP", "turk-telekom": "TÜRK TELEKOM" };
     const approved = approvedAliasAdditions[baseBrand.brandId];

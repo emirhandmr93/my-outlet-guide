@@ -4418,7 +4418,7 @@ export const brandsFK: Brand[] = [
     categoryId: "beauty",
     logo: "",
     originCountryId: "italy",
-    luxuryLevel: "fashion",
+    luxuryLevel: "lifestyle",
     rankingWeight: 78,
     brandStatus: "active",
   },
