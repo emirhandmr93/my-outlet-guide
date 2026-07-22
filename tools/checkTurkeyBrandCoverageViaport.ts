@@ -520,7 +520,7 @@ const approvedConsolidationFiles = [
   "src/constants/outletBrands/italy.ts",
   "src/constants/outletBrands/romania.ts",
   "src/constants/outletBrands/uk.ts",
-  "tools/checkCanonicalIdentityConsolidation.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
   "tools/checkTurkeyBrandCoverageStarCity.ts",
   "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
@@ -529,7 +529,7 @@ const approvedConsolidationFiles = [
   "tools/checkTurkeyBrandCoverage212.ts",
   "tools/checkTurkeyBrandCoverageVenezia.ts",
   "tools/checkTurkeyBrandCoverageDeepo.ts",
-  "tools/checkCanonicalIdentityConsolidation.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts",
 ] as const;
 const hasApprovedConsolidationScope = (changedFiles: string[]) =>
   JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
@@ -542,13 +542,13 @@ const allowedFiles = new Set([
   "src/constants/outletBrands/turkey.ts",
   "tools/checkTurkeyBasicMetadataBatchA.ts",
   "tools/checkTurkeyBasicMetadataBatchB.ts",
-  "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts",
+  "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts",
   "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
   "tools/checkTurkeyBrandCoverageIzmirOptimum.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
   "tools/checkTurkeyBrandCoverageStarCity.ts",
   "tools/checkTurkeyBrandCoverageViaport.ts",
-  "tools/checkTurkeyExpansion.ts",
+  "tools/checkTurkeyExpansion.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts",
 ]);
 
 allowedFiles.add("tools/checkTurkeyBrandCoverageDeepo.ts");

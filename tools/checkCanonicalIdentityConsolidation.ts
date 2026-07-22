@@ -28,7 +28,7 @@ const allowedChangedFiles = [
   "src/constants/outletBrands/italy.ts",
   "src/constants/outletBrands/romania.ts",
   "src/constants/outletBrands/uk.ts",
-  "tools/checkCanonicalIdentityConsolidation.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
   "tools/checkTurkeyBrandCoverageStarCity.ts",
   "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",

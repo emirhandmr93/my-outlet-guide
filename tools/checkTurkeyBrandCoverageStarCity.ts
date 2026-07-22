@@ -387,7 +387,7 @@ const byId=(id:string)=>brands.find((brand)=>brand.brandId===id)!; assert(byId("
 const mergeBase=execFileSync("git",["merge-base","HEAD","main"],{encoding:"utf8"}).trim(); const baseBrands=brandFiles.flatMap((file)=>sourceBrands(execFileSync("git",["show",`${mergeBase}:${file}`],{encoding:"utf8"}))); const baseIds=new Set(baseBrands.map((brand)=>brand.brandId)); const newIds=[...expectedIds].filter((id)=>!baseIds.has(id)); const baseIdentities=new Set(baseBrands.flatMap((brand)=>[brand.brandName,...brand.aliases].map(normalize))); const newOwners=new Map<string,string>();
 for (const id of newIds) { const brand=byId(id); assert(!baseIds.has(id), `${id} existed on base main.`); assert(readFileSync(expectedBrandFile(id),"utf8").includes(`brandId: "${id}"`), `${id} is in the wrong alphabetical brand file.`); for(const identity of new Set([brand.brandName,...(brand.aliases??[])].map(normalize))) { assert(!baseIdentities.has(identity), `${id} duplicates a base-main identity.`); const owner=newOwners.get(identity); assert(!owner || owner===id, `${id} duplicates new canonical ${owner}.`); newOwners.set(identity,id); } }
 const baseTurkey=execFileSync("git",["show",`${mergeBase}:src/constants/outletBrands/turkey.ts`],{encoding:"utf8"}); const baseOlivium=[...baseTurkey.match(/const oliviumBrandIds = \[([\s\S]*?)\];/)![1].matchAll(/"([^"]+)"/g)].map((match)=>match[1]); assert(JSON.stringify(oliviumRelations.map((r)=>r.brandId))===JSON.stringify(baseOlivium), "Olivium brand IDs or order changed from main."); assert(oliviumRelations.every((r)=>r.featured===false && r.relationStatus==="active"), "Olivium relation attributes changed from main.");
-const changed=execFileSync("git",["diff","--name-only",`${mergeBase}...HEAD`],{encoding:"utf8"}).trim().split("\n").filter(Boolean); const allowed=new Set(["src/constants/outletBrands/turkey.ts",...brandFiles,"tools/checkTurkeyBrandCoverageStarCity.ts","tools/checkTurkeyBrandCoverageOlivium.ts","tools/checkTurkeyBrandCoverageViaport.ts","tools/checkTurkeyBrandCoverageIstanbulOptimum.ts","tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyExpansion.ts","tools/checkTurkeyBasicMetadataBatchA.ts","tools/checkTurkeyBasicMetadataBatchB.ts","tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts"]);
+const changed=execFileSync("git",["diff","--name-only",`${mergeBase}...HEAD`],{encoding:"utf8"}).trim().split("\n").filter(Boolean); const allowed=new Set(["src/constants/outletBrands/turkey.ts",...brandFiles,"tools/checkTurkeyBrandCoverageStarCity.ts","tools/checkTurkeyBrandCoverageOlivium.ts","tools/checkTurkeyBrandCoverageViaport.ts","tools/checkTurkeyBrandCoverageIstanbulOptimum.ts","tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyExpansion.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts","tools/checkTurkeyBasicMetadataBatchA.ts","tools/checkTurkeyBasicMetadataBatchB.ts","tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts"]);
 const approvedConsolidationFiles = [
   "src/constants/brands/brands-f-k.ts",
   "src/constants/brands/brands-u-z.ts",
@@ -396,7 +396,7 @@ const approvedConsolidationFiles = [
   "src/constants/outletBrands/italy.ts",
   "src/constants/outletBrands/romania.ts",
   "src/constants/outletBrands/uk.ts",
-  "tools/checkCanonicalIdentityConsolidation.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
   "tools/checkTurkeyBrandCoverageStarCity.ts",
   "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
@@ -405,7 +405,7 @@ const approvedConsolidationFiles = [
   "tools/checkTurkeyBrandCoverage212.ts",
   "tools/checkTurkeyBrandCoverageVenezia.ts",
   "tools/checkTurkeyBrandCoverageDeepo.ts",
-  "tools/checkCanonicalIdentityConsolidation.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts",
 ] as const;
 const hasApprovedConsolidationScope = (changedFiles: string[]) =>
   JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());

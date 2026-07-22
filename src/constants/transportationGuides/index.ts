@@ -23,6 +23,7 @@ import { polandTransportationGuides } from "./poland";
 import { swedenTransportationGuides } from "./sweden";
 import { switzerlandTransportationGuides } from "./switzerland";
 import { ukTransportationGuides } from "./uk";
+import { turkeyTransportationGuides } from "./turkey";
 
 export type TransportationType =
   | "train"
@@ -79,6 +80,7 @@ export {
   swedenTransportationGuides,
   switzerlandTransportationGuides,
   ukTransportationGuides,
+  turkeyTransportationGuides,
 };
 
 export const transportationGuides: TransportationGuide[] = [
@@ -107,4 +109,5 @@ export const transportationGuides: TransportationGuide[] = [
   ...croatiaTransportationGuides,
   ...romaniaTransportationGuides,
   ...estoniaTransportationGuides,
+  ...turkeyTransportationGuides,
 ];
