@@ -1982,7 +1982,7 @@ function parseSourceBrands(source: string): Array<{
   aliases: string[];
   block: string;
 }> {
-  const result: Array<{ brandId: string; brandName: string; aliases: string[] }> = [];
+  const result: Array<{ brandId: string; brandName: string; aliases: string[]; block: string }> = [];
   for (const match of source.matchAll(/\{\s*brandId:\s*"([^"]+)"([\s\S]*?)\n\s*\},/g)) {
     const block = match[0];
     const brandNameMatch = block.match(/brandName:\s*"((?:\\.|[^"])*)"/);
@@ -2040,8 +2040,8 @@ for (const baseBrand of baseSourceBrands) {
 const baseIds = new Set(baseSourceBrands.map((brand) => brand.brandId));
 const expectedNewIds = expectedRelationIds.filter((brandId) => !baseIds.has(brandId));
 assert(
-  expectedNewIds.every((brandId) => expectedSemanticByNewCanonical[brandId] || baseIds.has(brandId)),
-  "Every 212-specific new canonical must remain covered by its semantic map.",
+  expectedNewIds.length === 0,
+  "Venezia PR must not create or mutate any 212 canonical.",
 );
 
 for (const file of brandFiles) {

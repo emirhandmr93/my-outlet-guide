@@ -39,15 +39,18 @@ function normalize(value: string): string {
 }
 
 // Literal transcription of Issue #619's 158 official display rows, grouped by its 15 source categories.
-const officialDisplayInventory: Record<string, readonly string[]> = {
+const officialDirectoryByCategory: Record<string, readonly string[]> = {
   "Ayakkabı & Çanta": [
+    "U.S. POLO ASSN.",
+    "DERİMOD",
+    "Skechers",
     "Adidas",
     "adL",
     "Aker",
     "Altınyıldız Classics",
-    "Amasya Et",
-    "ARMA LIFE",
-    "ARMINE",
+    "Amasya Et Ürünleri",
+    "Armalife",
+    "ARMİNE",
     "ATASUN OPTİK",
     "AVVA",
     "AYAKKABI DÜNYASI",
@@ -73,7 +76,6 @@ const officialDisplayInventory: Record<string, readonly string[]> = {
     "D&P PARFÜM",
     "DAGİ",
     "DEFACTO",
-    "DERİMOD",
     "D’S Damat",
     "DUFY",
     "E-BEBEK",
@@ -82,19 +84,19 @@ const officialDisplayInventory: Record<string, readonly string[]> = {
     "ENGLISH HOME",
     "Eve",
     "FLO",
-    "Flormar",
-    "Flormar Outlet",
+    "Flormar - Cadde Katı",
+    "Flormar - AVM Katı",
     "Fullamoda",
   ],
   "Çocuk Giyim & Ayakkabı": ["Gif Accessories", "Gizia", "Global Optik"],
   "Ev & Dekorasyon": [
-    "Golden Rose",
-    "Golden Rose Outlet",
+    "Golden Rose - Cadde Katı",
+    "Golden Rose - AVM Katı",
     "Grande Çanta",
     "GRATIS",
     "Greyder",
     "Guess",
-    "Guess Kiosk",
+    "Guess - Kiosk",
     "HOTİÇ",
     "Hummel",
     "İgs",
@@ -127,7 +129,7 @@ const officialDisplayInventory: Record<string, readonly string[]> = {
     "Merrell",
     "Mizalle",
     "Modanisa",
-    "MR.D.I.Y",
+    "MR.DIY",
     "Network",
     "Nike",
     "Nocturne",
@@ -151,7 +153,6 @@ const officialDisplayInventory: Record<string, readonly string[]> = {
     "Schafer",
     "Shiffa Home",
     "Sirello Accs",
-    "Skechers",
     "So Chic",
     "SPX",
     "Suayşe",
@@ -173,8 +174,7 @@ const officialDisplayInventory: Record<string, readonly string[]> = {
   "Market & Yapı Market": ["Tuğba", "TURK TELEKOM"],
   "Optik & Aksesuar": [
     "Turkcell Kio",
-    "U.S. Polo Assn.",
-    "U.S. Polo Assn. Kids",
+    "U.S. POLO ASSN. Kids",
     "Unzilee",
     "Vakko Outlet",
     "Valence",
@@ -253,9 +253,9 @@ const acceptedDisplayToBrandIds: Record<string, string[]> = {
   adL: ["adil-isik"],
   Aker: ["aker"],
   "Altınyıldız Classics": ["altinyildiz-classics"],
-  "Amasya Et": ["amasya-et"],
-  "ARMA LIFE": ["arma-life"],
-  ARMINE: ["armine"],
+  "Amasya Et Ürünleri": ["amasya-et"],
+  Armalife: ["arma-life"],
+  ARMİNE: ["armine"],
   "ATASUN OPTİK": ["atasun-optik"],
   AVVA: ["avva"],
   "AYAKKABI DÜNYASI": ["ayakkabi-dunyasi"],
@@ -286,19 +286,19 @@ const acceptedDisplayToBrandIds: Record<string, string[]> = {
   "ENGLISH HOME": ["english-home"],
   Eve: ["eve"],
   FLO: ["flo"],
-  Flormar: ["flormar"],
-  "Flormar Outlet": ["flormar"],
+  "Flormar - Cadde Katı": ["flormar"],
+  "Flormar - AVM Katı": ["flormar"],
   Fullamoda: ["fullamoda"],
   "Gif Accessories": ["gif-accessories"],
   Gizia: ["gizia"],
   "Global Optik": ["global-optik"],
-  "Golden Rose": ["golden-rose"],
-  "Golden Rose Outlet": ["golden-rose"],
+  "Golden Rose - Cadde Katı": ["golden-rose"],
+  "Golden Rose - AVM Katı": ["golden-rose"],
   "Grande Çanta": ["grande-canta"],
   GRATIS: ["gratis"],
   Greyder: ["greyder"],
   Guess: ["guess"],
-  "Guess Kiosk": ["guess"],
+  "Guess - Kiosk": ["guess"],
   HOTİÇ: ["hotic"],
   Hummel: ["hummel"],
   İgs: ["igs"],
@@ -329,7 +329,7 @@ const acceptedDisplayToBrandIds: Record<string, string[]> = {
   Merrell: ["merrell"],
   Mizalle: ["mizalle"],
   Modanisa: ["modanisa"],
-  "MR.D.I.Y": ["mr-diy"],
+  "MR.DIY": ["mr-diy"],
   Network: ["network"],
   Nike: ["nike"],
   Nocturne: ["nocturne"],
@@ -370,8 +370,8 @@ const acceptedDisplayToBrandIds: Record<string, string[]> = {
   Tuğba: ["tugba"],
   "TURK TELEKOM": ["turk-telekom"],
   "Turkcell Kio": ["turkcell"],
-  "U.S. Polo Assn.": ["u-s-polo-assn"],
-  "U.S. Polo Assn. Kids": ["u-s-polo-assn"],
+  "U.S. POLO ASSN.": ["u-s-polo-assn"],
+  "U.S. POLO ASSN. Kids": ["u-s-polo-assn"],
   Unzilee: ["unzilee"],
   "Vakko Outlet": ["vakko"],
   Valence: ["valence"],
@@ -381,26 +381,26 @@ const acceptedDisplayToBrandIds: Record<string, string[]> = {
   "Yves Rocher": ["yves-rocher"],
 };
 const officialCategoryCounts = {
-  "Ayakkabı & Çanta": 17,
+  "Ayakkabı & Çanta": 20,
   "Beyaz Eşya & Elektronik & GSM": 7,
-  "Çarşı Pazar": 16,
+  "Çarşı Pazar": 15,
   "Çocuk Giyim & Ayakkabı": 3,
   "Ev & Dekorasyon": 10,
   Gıda: 1,
-  Giyim: 54,
+  Giyim: 53,
   Hizmet: 7,
   "Hobi & Oyuncak & Eğlence": 3,
   "Market & Yapı Market": 2,
-  "Optik & Aksesuar": 12,
+  "Optik & Aksesuar": 11,
   "Oto Yıkama": 1,
   "Sağlık & Kozmetik": 16,
   Sinema: 1,
   Spor: 8,
 } as const;
 const inventorySha256 =
-  "9afdcbb8c78190254c197a547138e04d2a7b7fcb52998c9dfbc5dac5cba109ff";
+  "0dfba24d0b055ac0a8ef4b4a19dca1b081427ba48898da18118fb3d23d091657";
 const mappingSha256 =
-  "42fe4945bad415ad7eb90be19f141034ac2fc0f124fa125568f41ad80c65ae4f";
+  "34eb21e390ccffcbcb263838cbc245863aa71103504271a155ece54258badbfd";
 const exclusionsSha256 =
   "b5434b38d1cf02d932dc74e788e593e8af8d5524672ba5611badb36e91106cc0";
 const expectedSemanticByNewCanonical: Record<string, Semantic> = {
@@ -429,10 +429,10 @@ const expectedSemanticByNewCanonical: Record<string, Semantic> = {
   valence: { categoryId: "fashion", luxuryLevel: "fashion" },
 };
 
-const rows = Object.values(officialDisplayInventory).flat();
+const rows = Object.values(officialDirectoryByCategory).flat();
 const acceptedDisplays = Object.keys(acceptedDisplayToBrandIds);
 assert(
-  sha256(officialDisplayInventory) === inventorySha256,
+  sha256(officialDirectoryByCategory) === inventorySha256,
   "Literal source inventory SHA-256 changed.",
 );
 assert(
@@ -450,10 +450,9 @@ assert(
 assert(
   JSON.stringify(
     Object.fromEntries(
-      Object.entries(officialDisplayInventory).map(([category, displays]) => [
-        category,
-        displays.length,
-      ]),
+      Object.entries(officialDirectoryByCategory).map(
+        ([category, displays]) => [category, displays.length],
+      ),
     ),
   ) === JSON.stringify(officialCategoryCounts),
   "Official category counts changed.",
@@ -532,14 +531,14 @@ assert(
   "Every relation must reference an active canonical.",
 );
 for (const [display, expectedIds] of Object.entries({
-  "U.S. Polo Assn.": ["u-s-polo-assn"],
-  "U.S. Polo Assn. Kids": ["u-s-polo-assn"],
+  "U.S. POLO ASSN.": ["u-s-polo-assn"],
+  "U.S. POLO ASSN. Kids": ["u-s-polo-assn"],
   Guess: ["guess"],
-  "Guess Kiosk": ["guess"],
-  Flormar: ["flormar"],
-  "Flormar Outlet": ["flormar"],
-  "Golden Rose": ["golden-rose"],
-  "Golden Rose Outlet": ["golden-rose"],
+  "Guess - Kiosk": ["guess"],
+  "Flormar - Cadde Katı": ["flormar"],
+  "Flormar - AVM Katı": ["flormar"],
+  "Golden Rose - Cadde Katı": ["golden-rose"],
+  "Golden Rose - AVM Katı": ["golden-rose"],
   "KİP & Ramsey": ["kip", "ramsey"],
   Karaca: ["karaca"],
   "Çift Geyik Karaca": ["cift-geyik-karaca"],
