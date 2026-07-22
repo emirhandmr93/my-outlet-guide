@@ -169,21 +169,21 @@ export const turkeyRestaurants = [
   ...records(
     "olivium-outlet-center",
     oliviumRestaurants,
-    "https://www.olivium.com.tr/tr/",
+    "https://www.olivium.com.tr/tr/magazalar",
   ),
   ...records(
     "starcity-outlet",
     starCityRestaurants,
-    "https://www.starcity.com.tr/",
+    "https://www.starcity.com.tr/magazalar",
   ),
   ...records(
     "optimum-premium-outlet-istanbul",
     istanbulOptimumRestaurants,
-    "https://www.optimumistanbul.com/",
+    "https://www.optimumistanbul.com/magazalar",
   ),
   ...records(
     "izmir-optimum",
     izmirOptimumRestaurants,
-    "https://www.izmiroptimum.com/",
+    "https://www.izmiroptimum.com/magazalar",
   ),
 ];

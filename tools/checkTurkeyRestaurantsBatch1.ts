@@ -1,4 +1,6 @@
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
+import { outletBrands } from "../src/constants/outletBrands";
 import { outlets } from "../src/constants/outlets";
 import { restaurants } from "../src/constants/restaurants";
 
@@ -146,6 +148,28 @@ const expected = {
   ],
 } as const;
 
+const sourceDirectories = {
+  "olivium-outlet-center": "https://www.olivium.com.tr/tr/magazalar",
+  "starcity-outlet": "https://www.starcity.com.tr/magazalar",
+  "optimum-premium-outlet-istanbul":
+    "https://www.optimumistanbul.com/magazalar",
+  "izmir-optimum": "https://www.izmiroptimum.com/magazalar",
+} as const;
+
+const excludedRawFoodServiceRows = {
+  "olivium-outlet-center": ["HARIBO", "DONDURMA STANDI", "MISIR STANDI"],
+  "starcity-outlet": [],
+  "optimum-premium-outlet-istanbul": ["HARIBO"],
+  "izmir-optimum": [],
+} as const;
+
+const rawFoodServiceCounts = {
+  "olivium-outlet-center": 33,
+  "starcity-outlet": 25,
+  "optimum-premium-outlet-istanbul": 26,
+  "izmir-optimum": 53,
+} as const;
+
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
 }
@@ -189,6 +213,22 @@ for (const outletId of outletIds) {
   assert(
     actual.length === expectedNames.length,
     `${outletId} restaurant count changed.`,
+  );
+  const excluded =
+    excludedRawFoodServiceRows[outletId as keyof typeof expected];
+  assert(
+    expectedNames.length + excluded.length ===
+      rawFoodServiceCounts[outletId as keyof typeof expected],
+    `${outletId} raw food-service inventory changed.`,
+  );
+  assert(
+    new Set([...expectedNames, ...excluded].map(normalize)).size ===
+      expectedNames.length + excluded.length,
+    `${outletId} raw inventory contains an undocumented normalized duplicate.`,
+  );
+  assert(
+    sourceDirectories[outletId as keyof typeof expected].startsWith("https://"),
+    `${outletId} needs a first-party directory URL.`,
   );
   assert(
     new Set(names.map(normalize)).size === names.length,
@@ -264,6 +304,9 @@ const changedFiles = [
 const allowedFiles = [
   "src/constants/restaurants/index.ts",
   "src/constants/restaurants/turkey.ts",
+  "tools/checkTurkeyBasicMetadataBatchA.ts",
+  "tools/checkTurkeyBasicMetadataBatchB.ts",
+  "tools/checkTurkeyExpansion.ts",
   "tools/checkTurkeyRestaurantsBatch1.ts",
 ];
 assert(
@@ -289,6 +332,33 @@ assert(
       !allowedFiles.includes(file),
   ),
   "A non-Turkey restaurant file changed.",
+);
+
+const outletBrandsSourcePath = "src/constants/outletBrands/turkey.ts";
+const currentOutletBrandsSource = readFileSync(outletBrandsSourcePath, "utf8");
+const baseOutletBrandsSource = execFileSync(
+  "git",
+  ["show", `${mergeBase}:${outletBrandsSourcePath}`],
+  { encoding: "utf8" },
+);
+assert(
+  currentOutletBrandsSource === baseOutletBrandsSource,
+  "All eight Turkey outletBrand relation sequences and objects must remain byte-for-byte unchanged from merge-base main.",
+);
+assert(
+  [
+    "olivium-outlet-center",
+    "starcity-outlet",
+    "optimum-premium-outlet-istanbul",
+    "izmir-optimum",
+    "viaport-asia-outlet-shopping",
+    "212-outlet",
+    "venezia-mega-outlet",
+    "deepo-outlet-center",
+  ].every((outletId) =>
+    outletBrands.some((relation) => relation.outletId === outletId),
+  ),
+  "All eight preserved Turkey outletBrand relation sets must remain present.",
 );
 
 console.log(
