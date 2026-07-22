@@ -8616,4 +8616,46 @@ export const brandsAE: Brand[] = [
     brandStatus: "active",
   },
 
+
+  {
+    brandId: "batik",
+    brandName: "BATİK",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "bijulife",
+    brandName: "Bijulife",
+    aliases: [],
+    categoryId: "accessories",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "charmains",
+    brandName: "Charmains",
+    aliases: [],
+    categoryId: "accessories",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "crystalia-boutique",
+    brandName: "Crystalia Boutıque",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
 ];

@@ -54,7 +54,7 @@ for (const outlet of turkeyOutlets) {
   assert(!outlet.services.some((service: string) => /restaurant|cafe|starbucks/i.test(service)), `${outlet.outletId} services must not include restaurant names.`);
   const outletBrandRelations = outletBrands.filter((item) => item.outletId === outlet.outletId);
   assert(
-    outlet.outletId === "viaport-asia-outlet-shopping" ? outletBrandRelations.length === 187 : outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 112 : outlet.outletId === "izmir-optimum" ? outletBrandRelations.length === 194 : outlet.outletId === "212-outlet" ? outletBrandRelations.length === 105 : outletBrandRelations.length === 0,
+    outlet.outletId === "viaport-asia-outlet-shopping" ? outletBrandRelations.length === 187 : outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 112 : outlet.outletId === "izmir-optimum" ? outletBrandRelations.length === 194 : outlet.outletId === "212-outlet" ? outletBrandRelations.length === 105 : outlet.outletId === "venezia-mega-outlet" ? outletBrandRelations.length === 127 : outletBrandRelations.length === 0,
     `${outlet.outletId} must contain only the verified Turkey brand relations.`,
   );
   assert(!restaurants.some((item) => item.outletId === outlet.outletId), `${outlet.outletId} must not receive restaurant data.`);
@@ -63,3 +63,5 @@ for (const outlet of turkeyOutlets) {
 }
 
 console.log("Turkey Basic Metadata Batch A valid: all four Batch A target outlets retain their verified metadata.");
+
+assert(outletBrands.filter((relation) => relation.outletId === "venezia-mega-outlet").length === 127, "Venezia Mega Outlet must have exactly 127 active brand relations.");

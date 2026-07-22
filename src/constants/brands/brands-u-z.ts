@@ -2969,4 +2969,26 @@ export const brandsUZ: Brand[] = [
     brandStatus: "active",
   },
 
+
+  {
+    brandId: "unzilee",
+    brandName: "Unzilee",
+    aliases: [],
+    categoryId: "accessories",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "valence",
+    brandName: "VALENCE",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
 ];
