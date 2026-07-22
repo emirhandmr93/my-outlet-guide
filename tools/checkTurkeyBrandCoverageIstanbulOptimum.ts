@@ -166,8 +166,11 @@ const currentBlueDiamond = sourceBrandBlock(readFileSync("src/constants/brands/b
 assert(currentBlueDiamond === baseBlueDiamond, "Blue Diamond Garden Centre must be byte-for-byte preserved.");
 assert(currentBrands.some((brand) => brand.brandId === "blue-diamond-jewelry"), "Blue Diamond jewelry canonical must exist.");
 
-const allowed = /^(src\/constants\/outletBrands\/turkey\.ts|src\/constants\/brands\/brands-[a-z-]+\.ts|tools\/checkTurkey(BrandCoverage(212|Venezia|IstanbulOptimum|IzmirOptimum|Olivium|StarCity|Viaport|Deepo)|Expansion|BasicMetadataBatch[AB])|checkCanonicalIdentityConsolidation\.ts)$/;
-assert(isApprovedConsolidation || changedFiles.every((file) => allowed.test(file) || file.startsWith("tools/check")), "A forbidden file changed.");
+const allowedFiles = new Set([
+  "src/constants/brands/brands-a-e.ts", "src/constants/brands/brands-f-k.ts", "src/constants/brands/brands-l-p.ts", "src/constants/brands/brands-q-t.ts", "src/constants/brands/brands-u-z.ts",
+  "src/constants/outletBrands/turkey.ts", "tools/checkCanonicalIdentityConsolidation.ts", "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts",
+]);
+assert(isApprovedConsolidation || changedFiles.every((file) => allowedFiles.has(file)), "A forbidden file changed.");
 console.log(`Istanbul Optimum valid: 163 entries (114 retail, 49 excluded), ${relations.length} active relations, 0 duplicates.`);
 
 function assertPreservedIstanbulOptimumRelationObjects(): void {
