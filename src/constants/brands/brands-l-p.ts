@@ -6801,4 +6801,92 @@ export const brandsLP: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "madam-home",
+    brandName: "Madam Home",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "manche",
+    brandName: "Manche",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "miracle-woman",
+    brandName: "Miracle Woman",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "morven",
+    brandName: "Morven",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "oxo-aksesuar",
+    brandName: "Oxo Aksesuar",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "palmiye",
+    brandName: "Palmiye",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "palmiye-soap-house",
+    brandName: "Palmiye Soap House",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "perotti",
+    brandName: "Perotti",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
 ];

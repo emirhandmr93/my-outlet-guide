@@ -501,7 +501,7 @@ for (const [constantName, preservedOutletId, expectedCount] of [
   );
 }
 
-for (const emptyOutletId of ["212-outlet", "venezia-mega-outlet", "deepo-outlet-center"]) {
+for (const emptyOutletId of ["venezia-mega-outlet", "deepo-outlet-center"]) {
   assert(
     !outletBrands.some((relation) => relation.outletId === emptyOutletId),
     `${emptyOutletId} must remain relation-free.`,

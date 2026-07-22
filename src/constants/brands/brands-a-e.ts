@@ -8528,4 +8528,92 @@ export const brandsAE: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "afilli-cezvem",
+    brandName: "Afilli Cezve'm",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "anpa-gross",
+    brandName: "Anpa Gross",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "armor-service",
+    brandName: "Armor Service",
+    aliases: [],
+    categoryId: "electronics",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "btm",
+    brandName: "BTM",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "caretta-caretta",
+    brandName: "Caretta Caretta",
+    aliases: [],
+    categoryId: "jewelry",
+    logo: "",
+    luxuryLevel: "premium",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "cashmera",
+    brandName: "Cashmera",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "civil",
+    brandName: "Civil",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "costumen",
+    brandName: "Costumen",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
 ];

@@ -2914,4 +2914,59 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "ucla",
+    brandName: "UCLA",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "venesa",
+    brandName: "Venesa",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "veronica",
+    brandName: "Veronica",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "vision-optik",
+    brandName: "Vision Optik",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "yalinayak",
+    brandName: "Yalınayak",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
 ];
