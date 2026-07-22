@@ -169,8 +169,8 @@ export function TransportationScreen() {
   const cityOptions = options.filter(
     (item) =>
       item.originGroup === "city" &&
-      item.estimatedDurationLabel &&
-      item.estimatedFareLabel,
+      (item.routeDetails.hasSourceBackedRouteDetail ||
+        (item.estimatedDurationLabel && item.estimatedFareLabel)),
   );
   const shuttleOptions = dedupeShuttles(
     options.filter(
@@ -182,7 +182,9 @@ export function TransportationScreen() {
     ),
   );
   const showRecommended = Boolean(
-    recommended?.estimatedDurationLabel && recommended?.estimatedFareLabel,
+    recommended &&
+    (recommended.routeDetails.hasSourceBackedRouteDetail ||
+      (recommended.estimatedDurationLabel && recommended.estimatedFareLabel)),
   );
   const steps = showRecommended ? (recommended?.steps.slice(0, 4) ?? []) : [];
 
