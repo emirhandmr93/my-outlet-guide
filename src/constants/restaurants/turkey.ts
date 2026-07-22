@@ -12,7 +12,7 @@ export const turkeyRestaurants = [
   {
     restaurantId: "viaport-asia-outlet-shopping-arbys",
     outletId: "viaport-asia-outlet-shopping",
-    restaurantName: "Arby’s",
+    restaurantName: "Arby's",
     category: "",
     priceLevel: "",
     website: "https://www.viaport.com.tr/tr/magazalar",
@@ -192,7 +192,7 @@ export const turkeyRestaurants = [
   {
     restaurantId: "viaport-asia-outlet-shopping-happy-moons",
     outletId: "viaport-asia-outlet-shopping",
-    restaurantName: "Happy Moon’s",
+    restaurantName: "Happy Moon's",
     category: "",
     priceLevel: "",
     website: "https://www.viaport.com.tr/tr/magazalar",
@@ -322,7 +322,7 @@ export const turkeyRestaurants = [
   {
     restaurantId: "viaport-asia-outlet-shopping-mcdonalds",
     outletId: "viaport-asia-outlet-shopping",
-    restaurantName: "McDonald’s",
+    restaurantName: "McDonald's",
     category: "",
     priceLevel: "",
     website: "https://www.viaport.com.tr/tr/magazalar",
@@ -512,7 +512,7 @@ export const turkeyRestaurants = [
   {
     restaurantId: "olivium-outlet-center-arbys",
     outletId: "olivium-outlet-center",
-    restaurantName: "Arby’s",
+    restaurantName: "Arby's",
     category: "",
     priceLevel: "",
     website: "https://olivium.com.tr/tr/foods",
@@ -662,7 +662,7 @@ export const turkeyRestaurants = [
   {
     restaurantId: "olivium-outlet-center-my-donuts",
     outletId: "olivium-outlet-center",
-    restaurantName: "My Donut’s",
+    restaurantName: "My Donut's",
     category: "",
     priceLevel: "",
     website: "https://olivium.com.tr/tr/foods",
@@ -672,7 +672,7 @@ export const turkeyRestaurants = [
   {
     restaurantId: "olivium-outlet-center-richards-coffee",
     outletId: "olivium-outlet-center",
-    restaurantName: "Richard’s Coffee",
+    restaurantName: "Richard's Coffee",
     category: "",
     priceLevel: "",
     website: "https://olivium.com.tr/tr/foods",
@@ -922,7 +922,7 @@ export const turkeyRestaurants = [
   {
     restaurantId: "starcity-outlet-sokak-simiti",
     outletId: "starcity-outlet",
-    restaurantName: "Sokak Simit’i",
+    restaurantName: "Sokak Simit'i",
     category: "",
     priceLevel: "",
     website: "https://www.starcity.com.tr/app/index.php",
@@ -1002,7 +1002,7 @@ export const turkeyRestaurants = [
   {
     restaurantId: "venezia-mega-outlet-arbys",
     outletId: "venezia-mega-outlet",
-    restaurantName: "Arby’s",
+    restaurantName: "Arby's",
     category: "Fast Food",
     priceLevel: "",
     website: "https://veneziamegaoutlet.com/index.php/foods",
