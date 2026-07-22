@@ -15,6 +15,20 @@ const languages = ["en", "tr", "es", "fr", "de", "ru", "ar", "zh"] as const;
 const expectedCountryNames = {
   en: "Turkey", tr: "Türkiye", es: "Turquía", fr: "Turquie", de: "Türkei", ru: "Турция", ar: "تركيا", zh: "土耳其",
 };
+
+const expectedRestaurantCounts: Record<string, number> = {
+  "viaport-asia-outlet-shopping": 49, "olivium-outlet-center": 25, "starcity-outlet": 24, "venezia-mega-outlet": 38,
+  "212-outlet": 0, "optimum-premium-outlet-istanbul": 0, "izmir-optimum": 0, "deepo-outlet-center": 0,
+};
+const expectedTransportationCounts: Record<string, number> = {
+  "viaport-asia-outlet-shopping": 3, "olivium-outlet-center": 7, "starcity-outlet": 5, "venezia-mega-outlet": 7,
+  "212-outlet": 0, "optimum-premium-outlet-istanbul": 0, "izmir-optimum": 0, "deepo-outlet-center": 0,
+};
+const expectedTransportationGuideCounts: Record<string, number> = {
+  "viaport-asia-outlet-shopping": 3, "olivium-outlet-center": 5, "starcity-outlet": 5, "venezia-mega-outlet": 6,
+  "212-outlet": 0, "optimum-premium-outlet-istanbul": 0, "izmir-optimum": 0, "deepo-outlet-center": 0,
+};
+
 const expectedCityNames = {
   istanbul: { en: "Istanbul", tr: "İstanbul", es: "Estambul", fr: "Istanbul", de: "Istanbul", ru: "Стамбул", ar: "إسطنبول", zh: "伊斯坦布尔" },
   izmir: { en: "Izmir", tr: "İzmir", es: "Esmirna", fr: "Izmir", de: "Izmir", ru: "Измир", ar: "إزمير", zh: "伊兹密尔" },
@@ -110,10 +124,14 @@ for (const outlet of turkeyOutlets) {
     outlet.outletId === "viaport-asia-outlet-shopping" ? outletBrandRelations.length === 187 : outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 112 : outlet.outletId === "izmir-optimum" ? outletBrandRelations.length === 194 : outlet.outletId === "212-outlet" ? outletBrandRelations.length === 105 : outlet.outletId === "venezia-mega-outlet" ? outletBrandRelations.length === 127 : outlet.outletId === "deepo-outlet-center" ? outletBrandRelations.length === 171 : outletBrandRelations.length === 0,
     `${outlet.outletId} must contain only the verified Turkey brand relations.`,
   );
-  assert(!restaurants.some((restaurant) => restaurant.outletId === outlet.outletId), `${outlet.outletId} must not add restaurant records.`);
-  assert(!transportation.some((record) => record.outletId === outlet.outletId), `${outlet.outletId} must not add transportation records.`);
-  assert(!transportationGuides.some((guide) => guide.outletId === outlet.outletId), `${outlet.outletId} must not add transportation guides.`);
+  assert(restaurants.filter((restaurant) => restaurant.outletId === outlet.outletId).length === expectedRestaurantCounts[outlet.outletId], `${outlet.outletId} restaurant count must match the final Turkey map.`);
+  assert(transportation.filter((record) => record.outletId === outlet.outletId).length === expectedTransportationCounts[outlet.outletId], `${outlet.outletId} transportation count must match the final Turkey map.`);
+  assert(transportationGuides.filter((guide) => guide.outletId === outlet.outletId).length === expectedTransportationGuideCounts[outlet.outletId], `${outlet.outletId} transportation-guide count must match the final Turkey map.`);
 }
+
+assert(restaurants.filter((restaurant) => turkeyOutlets.some((outlet) => outlet.outletId === restaurant.outletId)).length === 136, "Turkey must have 136 external restaurant records.");
+assert(transportation.filter((record) => turkeyOutlets.some((outlet) => outlet.outletId === record.outletId)).length === 22, "Turkey must have 22 transportation records.");
+assert(transportationGuides.filter((guide) => turkeyOutlets.some((outlet) => outlet.outletId === guide.outletId)).length === 19, "Turkey must have 19 transportation guides.");
 
 assert(currencies.some((currency) => currency.currencyCode === "TRY"), "TRY must remain selectable.");
 assert(supportedCurrencyCodes.includes("TRY"), "TRY must remain live-rate supported.");
@@ -124,7 +142,7 @@ for (const language of languages) {
   }
 }
 
-console.log(`Turkey expansion valid: 1 country, 3 cities, ${turkeyOutlets.length} outlet skeletons; TRY selectable and live-rate supported; localizations resolve in ${languages.length} languages.`);
+console.log(`Turkey expansion valid: completed Batch 1 has 136 restaurants, 22 transportation records, and 19 guides; Batch 2 remains content-free; TRY support and ${languages.length} localizations resolve.`);
 
 // Venezia coverage is intentionally validated separately; retain its verified relation total.
 assert(outletBrands.filter((relation) => relation.outletId === "venezia-mega-outlet").length === 127, "Venezia must retain 127 verified relations.");
