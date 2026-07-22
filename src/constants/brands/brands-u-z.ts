@@ -2951,7 +2951,7 @@ export const brandsUZ: Brand[] = [
     brandId: "vision-optik",
     brandName: "Vision Optik",
     aliases: [],
-    categoryId: "home",
+    categoryId: "eyewear",
     logo: "",
     luxuryLevel: "lifestyle",
     rankingWeight: 50,

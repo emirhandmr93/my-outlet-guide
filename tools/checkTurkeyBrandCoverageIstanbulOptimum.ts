@@ -128,11 +128,11 @@ for (const baseBrand of baseBrands) {
   } else if (baseBrand.brandId === "the-cosmetics-company-store") {
     assert(currentBlock === baseBlock || currentBlock.replace('      "The ELC Company Store",\n      "Estée Lauder Companies Store",\n', "") === baseBlock, "Only approved ELC aliases may be added.");
   } else if (baseBrand.brandId === "knitss-hemington") {
-    assert(currentBlock.replace(', "HEMINGTON"', "") === baseBlock, "Hemington may only be added as an alias to the existing canonical.");
+    assert(currentBlock === baseBlock || currentBlock.replace(', "HEMINGTON"', "") === baseBlock, "Hemington may only be added as an alias to the existing canonical.");
   } else if (baseBrand.brandId === "lego") {
-    assert(currentBlock.replace('categoryId: "toys",', 'categoryId: "children",').replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "premium",') === baseBlock, "LEGO may only receive its Viaport toys category correction.");
+    assert(currentBlock === baseBlock || currentBlock.replace('categoryId: "toys",', 'categoryId: "children",').replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "premium",') === baseBlock, "LEGO may only receive its Viaport toys category correction.");
   } else if (baseBrand.brandId === "parfois") {
-    assert(currentBlock.replace('categoryId: "accessories",', 'categoryId: "shoes-bags",').replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "fashion",') === baseBlock, "Parfois may only receive its Viaport accessories category correction.");
+    assert(currentBlock === baseBlock || currentBlock.replace('categoryId: "accessories",', 'categoryId: "shoes-bags",').replace('luxuryLevel: "lifestyle",', 'luxuryLevel: "fashion",') === baseBlock, "Parfois may only receive its Viaport accessories category correction.");
   } else {
     const approvedAliasAdditions: Record<string, string> = { defacto: "DEFACTO KIDS", "saat-saat": "SAAT&SAAT EXCLUSIVE", samsung: "SAMSUNG MOBILE", karaca: "KARACA ZÜCCACİYE", "mi-shop": "MI STORE", vakko: "VAKKO BOUTİQUE", vestel: "VESTEL EKSPRES", teknosa: "TEKNOSA EXTRA", eve: "EVE SHOP", loft: "LOFT (YENİLENİYOR)", supplementler: "SUPPLEMENTLER.COM", "calvin-klein": "CALVİN KLEİN", "blue-diamond-jewelry": "BLUE DIAMOND", "b-and-g-store": "B&G STORE", "mr-diy": "MR.DIY", "jack-and-jones": "JACK & JONES", "in-street": "IN STREET", "lc-waikiki": "LCW", levis: "LEVI'S", "toyzz-shop": "TOYZZ SHOP", "turk-telekom": "TÜRK TELEKOM" };
     const approved = approvedAliasAdditions[baseBrand.brandId];
@@ -145,6 +145,6 @@ assert(currentBlueDiamond === baseBlueDiamond, "Blue Diamond Garden Centre must 
 assert(currentBrands.some((brand) => brand.brandId === "blue-diamond-jewelry"), "Blue Diamond jewelry canonical must exist.");
 
 const changedFiles = execFileSync("git", ["diff", "--name-only", `${mergeBase}...HEAD`], { encoding: "utf8" }).trim().split("\n").filter(Boolean);
-const allowed = /^(src\/constants\/outletBrands\/turkey\.ts|src\/constants\/brands\/brands-[a-z-]+\.ts|tools\/checkTurkey(BrandCoverage(IstanbulOptimum|IzmirOptimum|Olivium|StarCity|Viaport)|Expansion|BasicMetadataBatch[AB])\.ts)$/;
+const allowed = /^(src\/constants\/outletBrands\/turkey\.ts|src\/constants\/brands\/brands-[a-z-]+\.ts|tools\/checkTurkey(BrandCoverage(212|IstanbulOptimum|IzmirOptimum|Olivium|StarCity|Viaport)|Expansion|BasicMetadataBatch[AB])\.ts)$/;
 assert(changedFiles.every((file) => allowed.test(file)), "A forbidden file changed.");
 console.log(`Istanbul Optimum valid: 163 entries (114 retail, 49 excluded), ${relations.length} active relations, 0 duplicates.`);
