@@ -58,7 +58,7 @@ const fashionHouseOutletCentreBucharestBrandIds = [
   "tommy-hilfiger",
   "triumph",
   "under-armour",
-  "us-polo-assn",
+  "u-s-polo-assn",
   "wittchen",
 ];
 

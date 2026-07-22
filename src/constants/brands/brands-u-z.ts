@@ -585,17 +585,6 @@ export const brandsUZ: Brand[] = [
     brandStatus: "active",
   },
   {
-    brandId: "us-polo-assn",
-    brandName: "U.S. Polo Assn.",
-    aliases: ["U S Polo Assn", "US Polo Assn", "USPoloAssn"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "united-states",
-    luxuryLevel: "lifestyle",
-    rankingWeight: 60,
-    brandStatus: "active",
-  },
-  {
     brandId: "ufc",
     brandName: "UFC",
     aliases: ["Ultimate Fighting Championship"],

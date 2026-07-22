@@ -657,7 +657,7 @@ export const croatiaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ros-designer-outlet",
-    brandId: "us-polo-assn",
+    brandId: "u-s-polo-assn",
     featured: false,
     relationStatus: "active",
   },
