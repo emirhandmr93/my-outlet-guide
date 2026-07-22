@@ -175,7 +175,7 @@ const acceptedDisplayToBrandIds: Record<string, string[]> = {
   "KOM": ["kom"],
   "LEGO": ["lego"],
   "Liu Jo": ["liu-jo"],
-  "M STORE": ["m-store"],
+  "M STORE": ["m-store-electronics"],
   "MINISO": ["miniso"],
   "SMART SHOP & MR. CEP": ["smart-shop", "mr-cep"],
   "N SPORT": ["n-sport"],
@@ -283,15 +283,19 @@ const excludedDisplays = Object.values(excludedByReason).flat();
 assert(acceptedEntries.length === 195, "Expected 195 accepted retail display mappings.");
 assert(excludedDisplays.length === 69, "Expected 69 excluded displays.");
 assert(acceptedEntries.length + excludedDisplays.length === 264, "Official raw directory accounting must total 264.");
-const expectedIds = acceptedEntries.flatMap(([, brandIds]) => brandIds);
-assert(new Set(expectedIds).size === 187, "Expected 187 unique normalized Viaport relations.");
+const expectedRelationIds = [
+  ...new Set(Object.values(acceptedDisplayToBrandIds).flat()),
+].sort();
+assert(expectedRelationIds.length === 187, "Expected 187 unique normalized Viaport relations.");
 const relations = outletBrands.filter((relation) => relation.outletId === outletId);
 assert(relations.length === 187, "Viaport must contain exactly 187 relations.");
 assert(relations.every((relation) => relation.featured === false && relation.relationStatus === "active"), "Viaport relations must be active and non-featured.");
 assert(JSON.stringify(relations.map((relation) => relation.brandId)) === JSON.stringify([...relations].map((relation) => relation.brandId).sort()), "Viaport relations must be alphabetized by brandId.");
 assert(new Set(relations.map((relation) => relation.brandId)).size === relations.length, "Viaport relation pairs must be unique.");
-assert(JSON.stringify(relations.map((relation) => relation.brandId)) === JSON.stringify([...new Set(expectedIds)].sort()), "Relations must derive from literal mappings.");
+const relationIds = relations.map((relation) => relation.brandId);
+assert(JSON.stringify(relationIds) === JSON.stringify(expectedRelationIds), "Relations must derive from literal mappings without missing or unexpected IDs.");
 for (const relation of relations) assert(brands.some((brand) => brand.brandId === relation.brandId), `${relation.brandId} must reference an existing canonical.`);
+for (const relation of relations) assert(JSON.stringify(Object.keys(relation).sort()) === JSON.stringify(["brandId", "featured", "outletId", "relationStatus"]), `${relation.brandId} must use the exact four-field relation shape.`);
 for (const display of excludedDisplays) assert(!brands.some((brand) => [brand.brandId, brand.brandName, ...brand.aliases].includes(display)), `${display} must remain excluded.`);
 assert(JSON.stringify(acceptedDisplayToBrandIds["ARIFOGLU & HAZERBABA"]) === JSON.stringify(["arifoglu", "hazerbaba"]), "Arifoğlu & Hazerbaba must remain two relations.");
 assert(JSON.stringify(acceptedDisplayToBrandIds["LEVI\'S, DOCKERS"]) === JSON.stringify(["levis", "dockers"]), "Levi\'s and Dockers must remain separate.");
@@ -299,6 +303,7 @@ assert(JSON.stringify(acceptedDisplayToBrandIds["SMART SHOP & MR. CEP"]) === JSO
 assert(!relations.some((relation) => relation.brandId === "bottega-veneta"), "Bottega must not map to Bottega Veneta.");
 assert(relations.some((relation) => relation.brandId === "knitss-hemington") && !brands.some((brand) => brand.brandId === "hemington"), "Hemington must not create a duplicate canonical.");
 assert(relations.some((relation) => relation.brandId === "paul-and-shark") && !brands.some((brand) => brand.brandId === "paul-shark"), "Paul Shark must not create two canonicals.");
-assert(relations.some((relation) => relation.brandId === "m-store") && !relations.some((relation) => relation.brandId === "mi-shop"), "M Store must not silently map to Mi Shop.");
+assert(JSON.stringify(acceptedDisplayToBrandIds["M STORE"]) === JSON.stringify(["m-store-electronics"]), "M Store must map only to its distinct electronics canonical.");
+assert(relations.some((relation) => relation.brandId === "m-store-electronics") && !relations.some((relation) => relation.brandId === "m-store" || relation.brandId === "mi-shop"), "M Store must not silently map to M+ Store or Mi Shop.");
 assert(!relations.some((relation) => relation.brandId === "gurgenciler"), "Gürgençler Apple authorized service remains excluded.");
 console.log(`Viaport coverage valid: ${acceptedEntries.length} accepted, ${excludedDisplays.length} excluded, ${relations.length} relations.`);

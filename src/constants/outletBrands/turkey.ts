@@ -685,7 +685,7 @@ const viaportBrandIds = [
   "lego",
   "levis",
   "liu-jo",
-  "m-store",
+  "m-store-electronics",
   "miniso",
   "mr-cep",
   "n-sport",

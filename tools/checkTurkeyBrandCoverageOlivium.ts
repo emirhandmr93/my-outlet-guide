@@ -97,7 +97,7 @@ const changedFiles = new Set([
 const allowedFiles = new Set([
   "src/constants/outletBrands/turkey.ts", "src/constants/outletBrands/index.ts",
   ...brandSourceFiles,
-  "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts",
+  "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyExpansion.ts",
   "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts",
 ]);
 assert([...changedFiles].every((file) => allowedFiles.has(file)), `Changed file is outside the permitted scope: ${[...changedFiles].find((file) => !allowedFiles.has(file))}.`);

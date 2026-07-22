@@ -2033,7 +2033,7 @@ export const brandsFK: Brand[] = [
     brandId: "haribo",
     brandName: "HARIBO",
     aliases: ["Haribo"],
-    categoryId: "food",
+    categoryId: "food-confectionery",
     logo: "",
     originCountryId: "germany",
     luxuryLevel: "lifestyle",
