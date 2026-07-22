@@ -1,309 +1,545 @@
+import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { brands } from "../src/constants/brands";
 import { outletBrands } from "../src/constants/outletBrands";
 
 const outletId = "viaport-asia-outlet-shopping";
+const turkeyRelationsPath = "src/constants/outletBrands/turkey.ts";
+
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
 }
 
-// This literal official directory snapshot intentionally remains independent of
-// outletBrands. Each display maps to its verified canonical identity or identities.
+function normalize(value: string): string {
+  return value
+    .toLocaleLowerCase("tr-TR")
+    .replace(/ı/g, "i")
+    .replace(/ç/g, "c")
+    .replace(/ğ/g, "g")
+    .replace(/ö/g, "o")
+    .replace(/ş/g, "s")
+    .replace(/ü/g, "u")
+    .replace(/[’'´]/g, "")
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// Exact official Viaport display rows. This mapping is intentionally literal
+// and independent from outletBrands.
 const acceptedDisplayToBrandIds: Record<string, string[]> = {
-  "ADDAX": ["addax"],
-  "ADIDAS": ["adidas"],
-  "ADIL ISIK": ["adil-isik"],
-  "ADV": ["adv"],
-  "AKER": ["aker"],
-  "AKYA SAAT": ["akya-saat"],
-  "ALDO": ["aldo"],
-  "ALIX AVIEN": ["alix-avien"],
-  "ALTINBAS": ["altinbas"],
-  "ALTINYILDIZ CLASSICS": ["altinyildiz-classics"],
-  "AMASYA ET": ["amasya-et"],
-  "AMBAR": ["ambar"],
-  "ARIFOGLU & HAZERBABA": ["arifoglu", "hazerbaba"],
-  "ARIS PIRLANTA": ["aris-pirlanta"],
-  "ARMA LIFE": ["arma-life"],
-  "ARMAGAN OYUNCAK": ["armagan-oyuncak"],
-  "ARMINE": ["armine"],
-  "ASICS": ["asics"],
-  "ASRA PIRLANTA": ["asra-pirlanta"],
-  "ATAKOY AYAKKABI": ["atakoy-ayakkabi"],
-  "ATASAY": ["atasay"],
-  "ATASUN OPTIK": ["atasun-optik"],
-  "AVVA": ["avva"],
+  "ARİŞ PIRLANTA": ["aris-pirlanta"],
+  "ASICS MARLIN": ["asics"],
+  "ALTINYILDIZ": ["altinyildiz-classics"],
   "AYAKKABI DUNYASI": ["ayakkabi-dunyasi"],
-  "B AND G STORE": ["b-and-g-store"],
-  "BACK AND BOND": ["back-and-bond"],
-  "BAMBI": ["bambi"],
-  "BAMBI YATAK": ["bambi-yatak"],
-  "BARGELLO": ["bargello"],
-  "BARRELS AND OIL": ["barrels-and-oil"],
-  "BE PARFUM": ["be-parfum"],
-  "BEAUTY OMELETTE": ["beauty-omelette"],
-  "BEBETO": ["bebeto"],
-  "BEKO": ["beko"],
-  "BELLA MAISON": ["bella-maison"],
-  "BERSHKA": ["bershka"],
+  "ARMA LIFE": ["arma-life"],
+  "ATASAY": ["atasay"],
+  "ATASAY-2": ["atasay"],
+  "ATASUN - 2": ["atasun-optik"],
+  "SOLARIS ATASUN STANDI": ["atasun-optik"],
+  "AVVA": ["avva"],
+  "ALTINBAŞ": ["altinbas"],
+  "ADİDAS": ["adidas"],
+  "AKER": ["aker"],
+  "BAMBİ": ["bambi"],
+  "BENETTON": ["united-colors-of-benetton"],
+  "KARTAL YUVASI": ["kartal-yuvasi"],
   "BEYMEN": ["beymen"],
-  "BİLİK DERİ": ["bilik-deri"],
-  "BILT": ["bilt"],
+  "BEYMEN BUSINESS": ["beymen"],
+  "BEYMEN CLUB": ["beymen"],
+  "BG-STORE": ["b-and-g-store"],
   "BIRKENSTOCK": ["birkenstock"],
-  "BİSSE": ["bisse"],
-  "BLUE DIAMOND JEWELRY": ["blue-diamond-jewelry"],
-  "BLUEMINT": ["bluemint"],
-  "BOB VALE": ["bob-vale"],
-  "BORNOVA OPTIK": ["bornova-optik"],
-  "BOSCH": ["bosch"],
-  "BOTTEGA": ["bottega"],
+  "BLUE DIAMOND": ["blue-diamond-jewelry"],
   "BOYNER": ["boyner"],
-  "BRANDEYES OPTIK": ["brandeyes-optik"],
-  "BRANDROOM": ["brandroom"],
-  "BRANDYS": ["brandys"],
-  "BRILLANT SOLEY": ["brillant-soley"],
-  "BROCHE": ["broche"],
+  "BRANDY'S": ["brandys"],
   "BROOKS BROTHERS": ["brooks-brothers"],
   "CACHAREL": ["cacharel"],
-  "CALVIN KLEIN": ["calvin-klein"],
   "CAMPER": ["camper"],
-  "CAN KARDESLER KURUYEMIS": ["can-kardesler-kuruyemis"],
-  "CARREFOUR": ["carrefour"],
-  "CASELAND": ["caseland"],
-  "CEPAX": ["cepax"],
-  "CERAN SAAT": ["ceran-saat"],
+  "CALVİN KLEİN": ["calvin-klein"],
+  "COLIN'S": ["colins"],
+  "COLUMBİA": ["columbia"],
   "CHIMA": ["chima"],
-  "CIFT GEYIK KARACA": ["cift-geyik-karaca"],
-  "CILEK KONSEPT": ["cilek-konsept"],
-  "CITY BAG": ["city-bag"],
-  "COLINS": ["colins"],
-  "COLUMBIA": ["columbia"],
-  "COOLCASE": ["coolcase"],
-  "COVERTECH": ["covertech"],
-  "CREAPHONE": ["creaphone"],
-  "CROCS": ["crocs"],
-  "D AND R": ["d-and-r"],
-  "D DIAMOND": ["d-diamond"],
-  "D P PARFUM": ["d-p-parfum"],
-  "DAGI": ["dagi"],
+  "ÇİFT GEYİK KARACA": ["cift-geyik-karaca"],
+  "ÇİLEK KONSEPT": ["cilek-konsept"],
+  "DAGİ": ["dagi"],
   "DAMAT TWEEN": ["damat-tween"],
-  "DAMSMOOD": ["damsmood"],
-  "DAVID WALKER": ["david-walker"],
-  "DECATHLON": ["decathlon"],
-  "DEFACTO": ["defacto"],
+  "D'S DAMAT": ["ds-damat"],
+  "DEFACTO FİT": ["defacto"],
+  "DEFACTO-2": ["defacto"],
   "DEICHMANN": ["deichmann"],
-  "DENİZ KABUĞU": ["deniz-kabugu"],
-  "DERİDEN": ["deriden"],
-  "DERIMOD": ["derimod"],
-  "DERİNET": ["derinet"],
-  "DERIQUE": ["derique"],
+  "DERİMOD": ["derimod"],
   "DESA": ["desa"],
-  "DIESEL": ["diesel"],
-  "DIVARESE": ["divarese"],
-  "LEVI\'S, DOCKERS": ["levis", "dockers"],
-  "DS DAMAT": ["ds-damat"],
+  "DECATHLON": ["decathlon"],
   "DUFY": ["dufy"],
-  "DUKKAN LEYLA": ["dukkan-leyla"],
-  "DYSON": ["dyson"],
-  "E BEBEK": ["e-bebek"],
-  "EASYCEP": ["easycep"],
-  "ECCO": ["ecco"],
-  "ECROU": ["ecrou"],
-  "EDWARDS": ["edwards"],
-  "ELEGANCE OPTİK": ["elegance-optik"],
-  "ELIT OPTIK": ["elit-optik"],
-  "ELLE": ["elle"],
-  "EMO OPTIK": ["emo-optik"],
+  "D DIAMOND": ["d-diamond"],
+  "D&R": ["d-and-r"],
+  "D&P PERFUMUM": ["d-p-parfum"],
+  "E-BEBEK": ["e-bebek"],
+  "ELLE SHOES": ["elle"],
   "ENGLISH HOME": ["english-home"],
-  "ENPLUS": ["enplus"],
-  "ESCADA": ["escada"],
-  "ESEN ESARP": ["esen-esarp"],
-  "EŞREF SAATİ": ["esref-saati"],
-  "EVE": ["eve"],
-  "EVIDEA": ["evidea"],
-  "EXXE SELECTION": ["exxe-selection"],
-  "FAKIR HAUSGERATE": ["fakir-hausgerate"],
-  "FAST": ["fast"],
+  "ECCO": ["ecco"],
+  "EVİDEA": ["evidea"],
+  "EVE SHOP": ["eve"],
   "FENERIUM": ["fenerium"],
-  "FLAS OPTIK": ["flas-optik"],
   "FLO": ["flo"],
   "FLORMAR": ["flormar"],
-  "FLOWER": ["flower"],
-  "FLYING TIGER": ["flying-tiger"],
-  "FREDERIC PATRIC PARFUM": ["frederic-patric-parfum"],
-  "G-LNGERİE": ["g-lingerie"],
-  "GALAXY OPTIK": ["galaxy-optik"],
-  "GALLERY CRYSTAL": ["gallery-crystal"],
+  "FLYİNG TİGER": ["flying-tiger"],
   "GANT": ["gant"],
-  "GAP": ["gap"],
-  "GEORGE HOGG": ["george-hogg"],
-  "GIZIA": ["gizia"],
-  "GMG": ["gmg"],
   "GOLDEN ROSE": ["golden-rose"],
-  "GÖZ GRUP OPTİK": ["goz-grup-optik"],
-  "GRATIS": ["gratis"],
   "GREYDER": ["greyder"],
-  "GS STORE": ["gs-store"],
   "GUESS": ["guess"],
-  "YARGICI": ["yargici"],
-  "GUSTO": ["gusto"],
-  "H AND M": ["h-and-m"],
-  "HARIBO": ["haribo"],
-  "HARLEY DAVIDSON": ["harley-davidson"],
-  "HATEMOGLU": ["hatemoglu"],
-  "HOBBIEZ WORLD": ["hobbiez-world"],
-  "HOMEND": ["homend"],
-  "HOTIC": ["hotic"],
-  "HUGO BOSS": ["hugo-boss"],
+  "GUESS AKSESUAR": ["guess"],
+  "GRATİS": ["gratis"],
+  "GS STORE": ["gs-store"],
+  "HATEMOĞLU": ["hatemoglu"],
   "HUMMEL": ["hummel"],
-  "IGS": ["igs"],
-  "IN-FORMAL": ["in-formal"],
-  "IN STREET": ["in-street"],
-  "INTERSPORT": ["intersport"],
-  "İPEKEVİM": ["ipekevim"],
   "IPEKYOL": ["ipekyol"],
-  "ISABELLA SILVER GUMUS": ["isabella-silver-gumus"],
-  "IYO": ["iyo"],
-  "JACK AND JONES": ["jack-and-jones"],
-  "JEANSLAB": ["jeanslab"],
-  "JIMMY KEY": ["jimmy-key"],
-  "JUMBO": ["jumbo"],
-  "KARACA": ["karaca"],
+  "INTERSPORT": ["intersport"],
+  "JACK&JONES": ["jack-and-jones"],
+  "KARACA CONTAINER": ["karaca"],
+  "KARACA HOME": ["karaca"],
+  "KOTON": ["koton"],
+  "KİĞILI": ["kigili"],
+  "TAMER TANCA": ["tamer-tanca"],
+  "KOÇTAŞ": ["koctas"],
+  "KOCAK": ["kocak"],
+  "KONYALI SAAT": ["konyali-saat"],
+  "LCW, LC WAIKIKI - 1, X-SIDE": ["lc-waikiki"],
+  "LC WAIKIKI KİDS": ["lc-waikiki"],
+  "LEE WRANGLER": ["lee", "wrangler"],
+  "LES BENJAMİNS": ["les-benjamins"],
+  "LITTLE BIG (LTB)": ["ltb"],
+  "LİZAY": ["lizay"],
+  "MANGO/MANGO MAN": ["mango"],
+  "MADAME COCO": ["madame-coco"],
+  "MAVİ JEANS - 1": ["mavi"],
+  "MAVİ JEANS - 2": ["mavi"],
+  "MİGROS": ["migros"],
+  "MEDİA MARKT": ["media-markt"],
+  "MUDO": ["mudo"],
+  "NETWORK": ["network"],
+  "NEW BALANCE": ["new-balance"],
+  "NIKE": ["nike"],
+  "OCCASİON": ["occasion"],
+  "ÖZDİLEK": ["ozdilek"],
+  "OPMAR OPTİK": ["opmar-optik"],
+  "ADL": ["adil-isik"],
+  "PANÇO": ["panco"],
+  "PANDORA": ["pandora"],
+  "PENTI": ["penti"],
+  "PENTI - 2": ["penti"],
+  "PERFUME POİNT": ["perfume-point"],
+  "PERFUME POİNT 2": ["perfume-point"],
+  "PIERRE CARDİN": ["pierre-cardin"],
+  "PUMA": ["puma"],
+  "RAMSEY-KIP": ["ramsey", "kip"],
+  "ROSSMANN": ["rossmann"],
+  "RÜZGAR ALAZ": ["ruzgar-alaz-aksesuar"],
+  "SARAR": ["sarar"],
+  "SAMSUNG": ["samsung"],
+  "SAAT & SAAT": ["saat-saat"],
+  "SAMSONITE": ["samsonite"],
+  "SCHAFER": ["schafer"],
+  "SÜVARİ": ["suvari"],
+  "SUPERSTEP": ["superstep"],
+  "SAVE THE DUCK": ["save-the-duck"],
+  "SUWEN": ["suwen"],
+  "SKECHERS-VAULT": ["skechers"],
+  "SPORT IN STREET": ["in-street"],
+  "SPX": ["spx"],
+  "SUNGLASS HUT": ["sunglass-hut"],
+  "SWAROVSKI": ["swarovski"],
+  "VANS": ["vans"],
+  "TOMMY HILFIGER": ["tommy-hilfiger"],
+  "THE NORTH FACE": ["the-north-face"],
+  "TERGAN": ["tergan"],
+  "TEFAL HOME & COOK": ["tefal"],
+  "THE COSMETICS": ["the-cosmetics-company-store"],
+  "TURKCELL": ["turkcell"],
+  "TOYZZ SHOP": ["toyzz-shop"],
+  "U.S. POLO - 1": ["u-s-polo-assn"],
+  "U.S. POLO - 2": ["u-s-polo-assn"],
+  "U.S POLO KİDS": ["u-s-polo-assn"],
+  "UNDER ARMOUR": ["under-armour"],
+  "VAKKO": ["vakko"],
+  "VODAFONE": ["vodafone"],
+  "WATSONS": ["watsons"],
+  "YATAŞ": ["yatas"],
+  "YVES ROCHER": ["yves-rocher"],
+  "YARGICI": ["yargici"],
+  "ZEN PIRLANTA": ["zen-diamond"],
+  "LUFİAN": ["lufian"],
+  "MAD PERFUMEUR": ["mad-parfum"],
+  "ASRA PIRLANTA": ["asra-pirlanta"],
+  "ARIFOGLU & HAZERBABA": ["arifoglu", "hazerbaba"],
+  "BELLA MAISON": ["bella-maison"],
+  "BİLİK DERİ": ["bilik-deri"],
+  "BİSSE": ["bisse"],
+  "BLUEMINT": ["bluemint"],
+  "BOTTEGA": ["bottega"],
+  "BE PARFUM": ["be-parfum"],
+  "BROCHE": ["broche"],
+  "ADDAX": ["addax"],
+  "CROCS": ["crocs"],
+  "DENİZ KABUĞU": ["deniz-kabugu"],
+  "DIESEL": ["diesel"],
+  "DERİDEN": ["deriden"],
+  "DERİNET": ["derinet"],
+  "ESCADA": ["escada"],
+  "ELEGANCE OPTİK": ["elegance-optik"],
+  "EŞREF SAATİ": ["esref-saati"],
+  "FLOWER": ["flower"],
+  "GIZIA": ["gizia"],
+  "GÖZ GRUP OPTİK": ["goz-grup-optik"],
+  "G-LNGERİE": ["g-lingerie"],
+  "HUGO BOSS": ["hugo-boss"],
+  "HEMINGTON": ["knitss-hemington"],
+  "HARIBO": ["haribo"],
+  "İPEKEVİM": ["ipekevim"],
+  "IN-FORMAL": ["in-formal"],
   "KAVALE": ["kavale"],
   "KAYRA": ["kayra"],
-  "KIKO MİLANO": ["kiko-milano"],
-  "HEMINGTON": ["knitss-hemington"],
   "KOM": ["kom"],
+  "KIKO MİLANO": ["kiko-milano"],
+  "LEVI'S, DOCKERS": ["levis", "dockers"],
+  "BEBETO": ["bebeto"],
   "LEGO": ["lego"],
   "Liu Jo": ["liu-jo"],
-  "M STORE": ["m-store-electronics"],
   "MINISO": ["miniso"],
-  "SMART SHOP & MR. CEP": ["smart-shop", "mr-cep"],
+  "M STORE": ["m-store-electronics"],
   "N SPORT": ["n-sport"],
-  "NEVA KURUYEMİŞ": ["neva-kuruyemis"],
   "NOCTURNE": ["nocturne"],
-  "ÖZALTIN KUYUMCULUK": ["ozaltin-kuyumculuk"],
-  "PARFOIS": ["parfois"],
   "PAUL SHARK": ["paul-and-shark"],
+  "PARFOIS": ["parfois"],
   "REEBOK": ["reebok"],
   "ROMAN": ["roman"],
+  "NEVA KURUYEMİŞ": ["neva-kuruyemis"],
   "SO CHIC": ["so-chic"],
+  "ÖZALTIN KUYUMCULUK": ["ozaltin-kuyumculuk"],
+  "SMART SHOP & MR. CEP": ["smart-shop", "mr-cep"],
   "TEKNO SHOP": ["tekno-shop"],
-  "THE MOOSE BAY": ["the-moose-bay"],
-  "TUĞBA": ["tugba"],
   "TWIST": ["twist"],
-  "WELCOME BABY": ["welcome-baby"],
+  "TUĞBA": ["tugba"],
+  "THE MOOSE BAY": ["the-moose-bay"],
   "ZEKİ": ["zeki"],
-  "OUTLET DIRECTORY 1 ADDAX": ["addax"],
-  "OUTLET DIRECTORY 2 ADIDAS": ["adidas"],
-  "OUTLET DIRECTORY 3 ADIL-ISIK": ["adil-isik"],
-  "OUTLET DIRECTORY 4 ADV": ["adv"],
-  "OUTLET DIRECTORY 5 AKER": ["aker"],
-  "OUTLET DIRECTORY 6 AKYA-SAAT": ["akya-saat"],
-  "OUTLET DIRECTORY 7 ALDO": ["aldo"],
-  "OUTLET DIRECTORY 8 ALIX-AVIEN": ["alix-avien"],
-  "OUTLET DIRECTORY 9 ALTINBAS": ["altinbas"],
-  "OUTLET DIRECTORY 10 ALTINYILDIZ-CLASSICS": ["altinyildiz-classics"],
-  "OUTLET DIRECTORY 11 AMASYA-ET": ["amasya-et"],
+  "WELCOME BABY": ["welcome-baby"],
 };
 
-const excludedByReason = { food: [
-  "EXCLUDED VIAPORT DIRECTORY 1",
-  "EXCLUDED VIAPORT DIRECTORY 2",
-  "EXCLUDED VIAPORT DIRECTORY 3",
-  "EXCLUDED VIAPORT DIRECTORY 4",
-  "EXCLUDED VIAPORT DIRECTORY 5",
-  "EXCLUDED VIAPORT DIRECTORY 6",
-  "EXCLUDED VIAPORT DIRECTORY 7",
-  "EXCLUDED VIAPORT DIRECTORY 8",
-  "EXCLUDED VIAPORT DIRECTORY 9",
-  "EXCLUDED VIAPORT DIRECTORY 10",
-  "EXCLUDED VIAPORT DIRECTORY 11",
-  "EXCLUDED VIAPORT DIRECTORY 12",
-  "EXCLUDED VIAPORT DIRECTORY 13",
-  "EXCLUDED VIAPORT DIRECTORY 14",
-  "EXCLUDED VIAPORT DIRECTORY 15",
-  "EXCLUDED VIAPORT DIRECTORY 16",
-  "EXCLUDED VIAPORT DIRECTORY 17",
-  "EXCLUDED VIAPORT DIRECTORY 18",
-  "EXCLUDED VIAPORT DIRECTORY 19",
-  "EXCLUDED VIAPORT DIRECTORY 20",
-  "EXCLUDED VIAPORT DIRECTORY 21",
-  "EXCLUDED VIAPORT DIRECTORY 22",
-  "EXCLUDED VIAPORT DIRECTORY 23",
-  "EXCLUDED VIAPORT DIRECTORY 24",
-  "EXCLUDED VIAPORT DIRECTORY 25",
-  "EXCLUDED VIAPORT DIRECTORY 26",
-  "EXCLUDED VIAPORT DIRECTORY 27",
-  "EXCLUDED VIAPORT DIRECTORY 28",
-  "EXCLUDED VIAPORT DIRECTORY 29",
-  "EXCLUDED VIAPORT DIRECTORY 30",
-  "EXCLUDED VIAPORT DIRECTORY 31",
-  "EXCLUDED VIAPORT DIRECTORY 32",
-  "EXCLUDED VIAPORT DIRECTORY 33",
-  "EXCLUDED VIAPORT DIRECTORY 34",
-  "EXCLUDED VIAPORT DIRECTORY 35",
-  "EXCLUDED VIAPORT DIRECTORY 36",
-  "EXCLUDED VIAPORT DIRECTORY 37",
-  "EXCLUDED VIAPORT DIRECTORY 38",
-  "EXCLUDED VIAPORT DIRECTORY 39",
-  "EXCLUDED VIAPORT DIRECTORY 40",
-  "EXCLUDED VIAPORT DIRECTORY 41",
-  "EXCLUDED VIAPORT DIRECTORY 42",
-  "EXCLUDED VIAPORT DIRECTORY 43",
-  "EXCLUDED VIAPORT DIRECTORY 44",
-  "EXCLUDED VIAPORT DIRECTORY 45",
-  "EXCLUDED VIAPORT DIRECTORY 46",
-  "EXCLUDED VIAPORT DIRECTORY 47",
-  "EXCLUDED VIAPORT DIRECTORY 48",
-  "EXCLUDED VIAPORT DIRECTORY 49",
-  "EXCLUDED VIAPORT DIRECTORY 50",
-  "EXCLUDED VIAPORT DIRECTORY 51",
-  "EXCLUDED VIAPORT DIRECTORY 52",
-  "EXCLUDED VIAPORT DIRECTORY 53",
-  "EXCLUDED VIAPORT DIRECTORY 54",
-  "EXCLUDED VIAPORT DIRECTORY 55",
-  "EXCLUDED VIAPORT DIRECTORY 56",
-  "EXCLUDED VIAPORT DIRECTORY 57",
-  "EXCLUDED VIAPORT DIRECTORY 58",
-  "EXCLUDED VIAPORT DIRECTORY 59",
-  "EXCLUDED VIAPORT DIRECTORY 60",
-  "EXCLUDED VIAPORT DIRECTORY 61",
-  "EXCLUDED VIAPORT DIRECTORY 62",
-  "EXCLUDED VIAPORT DIRECTORY 63",
-  "EXCLUDED VIAPORT DIRECTORY 64",
-  "EXCLUDED VIAPORT DIRECTORY 65",
-  "EXCLUDED VIAPORT DIRECTORY 66",
-  "EXCLUDED VIAPORT DIRECTORY 67",
-  "EXCLUDED VIAPORT DIRECTORY 68",
-  "EXCLUDED VIAPORT DIRECTORY 69",
-] };
+const excludedDisplays = [
+  "1401 COFFEE",
+  "ACTİON WORLD",
+  "ARBY'S",
+  "BAYDÖNER",
+  "BEDESTEN TERZİ",
+  "BEREKET DÖNER",
+  "BOWLROOM",
+  "BURGER KING",
+  "BURGER KING - 2",
+  "BURGER YİYELİM",
+  "BURSA KEBAP EVİ",
+  "CAJUN CORNER",
+  "CAPTAIN BURGER",
+  "CAPTAIN DONER",
+  "CHEF KAVURMA",
+  "COLOMBİA COFFEE",
+  "DML TURK KAHVESI",
+  "DOYUYO",
+  "DRY SERVICE KURU TEMİZLEME",
+  "DÜRÜMLE",
+  "ECZANE VIAPORT",
+  "ETS TUR",
+  "FİRUZ BAKLAVA",
+  "GARANTİ BBVA BANKASI",
+  "GREEN SALADS",
+  "GREENWICH COFFEE",
+  "GÜNAYDIN KÖFTE & DÖNER",
+  "GÜRGENÇLER APPLE YET. SERVİS SAĞ.",
+  "HACIOĞLU",
+  "HAPPY MOON'S",
+  "HD İSKENDER - 2",
+  "HELVACI ALİ",
+  "HUQQABAZ",
+  "ILGAZ EMANET",
+  "ISLAK BURGER",
+  "JOLLY TUR",
+  "KRİSPY KREME",
+  "MADO",
+  "MAGNOLİA SHOP",
+  "MAKARNAM",
+  "MAYDONOZ DÖNER",
+  "MC DONALD'S",
+  "MISTIK USTA TATLI & DONDURMA",
+  "PACKET BURGER",
+  "PARİBU CINEVERSE",
+  "POLİGONYA",
+  "POPEYES",
+  "POWER PLATE",
+  "PİDEM",
+  "PİLAV TANEM",
+  "SALOON BURGER",
+  "SAS WAX",
+  "SERANDER CAFE",
+  "SOĞANLIK DÖVİZ ALTIN",
+  "STARBUCKS",
+  "SÜTLİYE",
+  "SİMİT SARAYI",
+  "SİMİT SARAYI - 2",
+  "SİMİT SARAYI - 3",
+  "TAKSİ DURAĞI",
+  "TAVUK DÜNYASI",
+  "THE CO COFFEE",
+  "THE CO COFFEE 2",
+  "TOBACCO SHOP",
+  "USTA ANAHTAR",
+  "USTA DÖNERCİ SBARRO",
+  "YAPI KREDI BANKASI",
+  "ZİYAFE KAYSERİ MUTFAĞI",
+  "ÇİKOLATA SARAYI & MAKARNA FIRINI",
+] as const;
 
-const acceptedEntries = Object.entries(acceptedDisplayToBrandIds);
-const excludedDisplays = Object.values(excludedByReason).flat();
-assert(acceptedEntries.length === 195, "Expected 195 accepted retail display mappings.");
-assert(excludedDisplays.length === 69, "Expected 69 excluded displays.");
-assert(acceptedEntries.length + excludedDisplays.length === 264, "Official raw directory accounting must total 264.");
+const acceptedDisplays = Object.keys(acceptedDisplayToBrandIds);
+const allOfficialDisplays = [...acceptedDisplays, ...excludedDisplays];
+
+assert(acceptedDisplays.length === 195, "Expected exactly 195 accepted Viaport display rows.");
+assert(excludedDisplays.length === 69, "Expected exactly 69 excluded Viaport display rows.");
+assert(allOfficialDisplays.length === 264, "Expected exactly 264 official Viaport directory rows.");
+assert(new Set(allOfficialDisplays).size === 264, "Official Viaport display rows must be unique.");
+assert(
+  !acceptedDisplays.some((display) => display.startsWith("OUTLET DIRECTORY")),
+  "Fabricated OUTLET DIRECTORY rows are forbidden.",
+);
+assert(
+  !excludedDisplays.some((display) => display.startsWith("EXCLUDED VIAPORT DIRECTORY")),
+  "Fabricated exclusion placeholders are forbidden.",
+);
+
 const expectedRelationIds = [
   ...new Set(Object.values(acceptedDisplayToBrandIds).flat()),
 ].sort();
-assert(expectedRelationIds.length === 187, "Expected 187 unique normalized Viaport relations.");
+
+assert(expectedRelationIds.length === 187, "Expected exactly 187 normalized Viaport relations.");
+
 const relations = outletBrands.filter((relation) => relation.outletId === outletId);
-assert(relations.length === 187, "Viaport must contain exactly 187 relations.");
-assert(relations.every((relation) => relation.featured === false && relation.relationStatus === "active"), "Viaport relations must be active and non-featured.");
-assert(JSON.stringify(relations.map((relation) => relation.brandId)) === JSON.stringify([...relations].map((relation) => relation.brandId).sort()), "Viaport relations must be alphabetized by brandId.");
-assert(new Set(relations.map((relation) => relation.brandId)).size === relations.length, "Viaport relation pairs must be unique.");
 const relationIds = relations.map((relation) => relation.brandId);
-assert(JSON.stringify(relationIds) === JSON.stringify(expectedRelationIds), "Relations must derive from literal mappings without missing or unexpected IDs.");
-for (const relation of relations) assert(brands.some((brand) => brand.brandId === relation.brandId), `${relation.brandId} must reference an existing canonical.`);
-for (const relation of relations) assert(JSON.stringify(Object.keys(relation).sort()) === JSON.stringify(["brandId", "featured", "outletId", "relationStatus"]), `${relation.brandId} must use the exact four-field relation shape.`);
-for (const display of excludedDisplays) assert(!brands.some((brand) => [brand.brandId, brand.brandName, ...brand.aliases].includes(display)), `${display} must remain excluded.`);
-assert(JSON.stringify(acceptedDisplayToBrandIds["ARIFOGLU & HAZERBABA"]) === JSON.stringify(["arifoglu", "hazerbaba"]), "Arifoğlu & Hazerbaba must remain two relations.");
-assert(JSON.stringify(acceptedDisplayToBrandIds["LEVI\'S, DOCKERS"]) === JSON.stringify(["levis", "dockers"]), "Levi\'s and Dockers must remain separate.");
-assert(JSON.stringify(acceptedDisplayToBrandIds["SMART SHOP & MR. CEP"]) === JSON.stringify(["smart-shop", "mr-cep"]), "Smart Shop and Mr. Cep must remain separate.");
-assert(!relations.some((relation) => relation.brandId === "bottega-veneta"), "Bottega must not map to Bottega Veneta.");
-assert(relations.some((relation) => relation.brandId === "knitss-hemington") && !brands.some((brand) => brand.brandId === "hemington"), "Hemington must not create a duplicate canonical.");
-assert(relations.some((relation) => relation.brandId === "paul-and-shark") && !brands.some((brand) => brand.brandId === "paul-shark"), "Paul Shark must not create two canonicals.");
-assert(JSON.stringify(acceptedDisplayToBrandIds["M STORE"]) === JSON.stringify(["m-store-electronics"]), "M Store must map only to its distinct electronics canonical.");
-assert(relations.some((relation) => relation.brandId === "m-store-electronics") && !relations.some((relation) => relation.brandId === "m-store" || relation.brandId === "mi-shop"), "M Store must not silently map to M+ Store or Mi Shop.");
-assert(!relations.some((relation) => relation.brandId === "gurgenciler"), "Gürgençler Apple authorized service remains excluded.");
-console.log(`Viaport coverage valid: ${acceptedEntries.length} accepted, ${excludedDisplays.length} excluded, ${relations.length} relations.`);
+
+assert(relations.length === 187, "Viaport must contain exactly 187 relations.");
+assert(new Set(relationIds).size === relationIds.length, "Viaport relations must be unique.");
+assert(
+  JSON.stringify(relationIds) === JSON.stringify(expectedRelationIds),
+  "Viaport relations must exactly match the literal official mapping.",
+);
+assert(
+  JSON.stringify(relationIds) === JSON.stringify([...relationIds].sort()),
+  "Viaport relations must be alphabetically sorted.",
+);
+
+const canonicalById = new Map(brands.map((brand) => [brand.brandId, brand]));
+
+for (const relation of relations) {
+  assert(relation.featured === false, `${relation.brandId} must not be featured.`);
+  assert(relation.relationStatus === "active", `${relation.brandId} must be active.`);
+  assert(
+    JSON.stringify(Object.keys(relation).sort()) ===
+      JSON.stringify(["brandId", "featured", "outletId", "relationStatus"]),
+    `${relation.brandId} must use the exact four-field relation object.`,
+  );
+  assert(canonicalById.has(relation.brandId), `${relation.brandId} has no canonical brand.`);
+}
+
+const excludedIdentities = new Set(excludedDisplays.map(normalize));
+for (const relation of relations) {
+  const brand = canonicalById.get(relation.brandId)!;
+  const identities = [brand.brandId, brand.brandName, ...(brand.aliases ?? [])].map(normalize);
+  assert(
+    identities.every((identity) => !excludedIdentities.has(identity)),
+    `Excluded Viaport identity leaked into relations: ${brand.brandId}.`,
+  );
+}
+
+function assertMapping(display: string, brandIds: string[]): void {
+  assert(
+    JSON.stringify(acceptedDisplayToBrandIds[display]) === JSON.stringify(brandIds),
+    `${display} mapping is incorrect.`,
+  );
+}
+
+assertMapping("ARIFOGLU & HAZERBABA", ["arifoglu", "hazerbaba"]);
+assertMapping("LEVI'S, DOCKERS", ["levis", "dockers"]);
+assertMapping("SMART SHOP & MR. CEP", ["smart-shop", "mr-cep"]);
+assertMapping("BOTTEGA", ["bottega"]);
+assertMapping("M STORE", ["m-store-electronics"]);
+assertMapping("HEMINGTON", ["knitss-hemington"]);
+assertMapping("PAUL SHARK", ["paul-and-shark"]);
+
+assert(!relationIds.includes("bottega-veneta"), "Bottega must remain distinct from Bottega Veneta.");
+assert(
+  relationIds.includes("m-store-electronics") &&
+    !relationIds.includes("m-store") &&
+    !relationIds.includes("mi-shop"),
+  "M Store must use only the distinct electronics canonical.",
+);
+assert(
+  relationIds.includes("knitss-hemington") && !canonicalById.has("hemington"),
+  "Hemington must reuse knitss-hemington without a duplicate canonical.",
+);
+assert(
+  relationIds.includes("paul-and-shark") && !canonicalById.has("paul-shark"),
+  "Paul Shark must reuse paul-and-shark without a duplicate canonical.",
+);
+assert(
+  excludedDisplays.includes("GÜRGENÇLER APPLE YET. SERVİS SAĞ."),
+  "Gürgençler authorized service must remain excluded.",
+);
+assert(!relationIds.includes("gurgenciler") && !relationIds.includes("apple"), "Authorized service must not become a relation.");
+
+const expectedCategoryByBrandId: Record<string, string> = {
+  "addax": "fashion",
+  "arifoglu": "food",
+  "asra-pirlanta": "jewelry-watches",
+  "be-parfum": "beauty",
+  "bebeto": "food",
+  "bella-maison": "home",
+  "bilik-deri": "shoes-bags",
+  "bisse": "fashion",
+  "bluemint": "fashion",
+  "bottega": "fashion",
+  "broche": "fashion",
+  "deniz-kabugu": "accessories",
+  "deriden": "shoes-bags",
+  "derinet": "shoes-bags",
+  "elegance-optik": "eyewear",
+  "esref-saati": "jewelry-watches",
+  "flower": "fashion",
+  "g-lingerie": "fashion",
+  "gizia": "fashion",
+  "goz-grup-optik": "eyewear",
+  "hazerbaba": "food",
+  "in-formal": "fashion",
+  "ipekevim": "home",
+  "kavale": "fashion",
+  "kayra": "fashion",
+  "kiko-milano": "beauty",
+  "kom": "fashion",
+  "m-store-electronics": "electronics",
+  "mr-cep": "electronics",
+  "n-sport": "sportswear",
+  "neva-kuruyemis": "food",
+  "nocturne": "fashion",
+  "ozaltin-kuyumculuk": "jewelry-watches",
+  "smart-shop": "electronics",
+  "so-chic": "jewelry-watches",
+  "tekno-shop": "electronics",
+  "the-moose-bay": "fashion",
+  "tugba": "fashion",
+  "twist": "fashion",
+  "welcome-baby": "kids",
+  "zeki": "fashion",
+};
+
+for (const [brandId, expectedCategory] of Object.entries(expectedCategoryByBrandId)) {
+  const brand = canonicalById.get(brandId);
+  assert(brand, `${brandId} canonical is missing.`);
+  assert(brand.categoryId === expectedCategory, `${brandId} must use category ${expectedCategory}.`);
+  if (["food", "home", "electronics", "eyewear", "beauty", "accessories", "toys", "kids"].includes(expectedCategory)) {
+    assert(brand.luxuryLevel === "lifestyle", `${brandId} must use lifestyle luxuryLevel.`);
+  }
+}
+
+const haribo = canonicalById.get("haribo");
+assert(haribo?.categoryId === "food-confectionery", "Haribo's existing category must remain food-confectionery.");
+assert(
+  canonicalById.get("knitss-hemington")?.aliases?.includes("HEMINGTON"),
+  "HEMINGTON must be an alias of knitss-hemington.",
+);
+assert(canonicalById.get("lego")?.categoryId === "toys", "LEGO must use the toys category.");
+assert(canonicalById.get("parfois")?.categoryId === "accessories", "Parfois must use the accessories category.");
+assert(
+  canonicalById.get("m-store")?.brandName === "M+ Store" &&
+    canonicalById.get("m-store")?.categoryId === "fashion",
+  "The existing M+ Store canonical must remain unchanged.",
+);
+assert(
+  canonicalById.get("m-store-electronics")?.brandName === "M Store" &&
+    canonicalById.get("m-store-electronics")?.categoryId === "electronics",
+  "The distinct M Store electronics canonical is invalid.",
+);
+
+const mergeBase = execFileSync("git", ["merge-base", "HEAD", "main"], { encoding: "utf8" }).trim();
+const baseTurkeySource = execFileSync(
+  "git",
+  ["show", `${mergeBase}:${turkeyRelationsPath}`],
+  { encoding: "utf8" },
+);
+
+function extractArray(source: string, constantName: string): string[] {
+  const match = source.match(new RegExp(`const ${constantName} = \\[([\\s\\S]*?)\\];`));
+  assert(match, `Could not extract ${constantName}.`);
+  return [...match[1].matchAll(/"([^"]+)"/g)].map((item) => item[1]);
+}
+
+for (const [constantName, preservedOutletId, expectedCount] of [
+  ["oliviumBrandIds", "olivium-outlet-center", 94],
+  ["starCityBrandIds", "starcity-outlet", 101],
+  ["istanbulOptimumBrandIds", "optimum-premium-outlet-istanbul", 112],
+  ["izmirOptimumBrandIds", "izmir-optimum", 194],
+] as const) {
+  const baseIds = extractArray(baseTurkeySource, constantName);
+  const currentRelations = outletBrands.filter((relation) => relation.outletId === preservedOutletId);
+  assert(baseIds.length === expectedCount, `${constantName} base count changed.`);
+  assert(
+    JSON.stringify(currentRelations.map((relation) => relation.brandId)) === JSON.stringify(baseIds),
+    `${preservedOutletId} IDs or order changed from main.`,
+  );
+  assert(
+    currentRelations.every(
+      (relation) =>
+        relation.featured === false &&
+        relation.relationStatus === "active" &&
+        JSON.stringify(Object.keys(relation).sort()) ===
+          JSON.stringify(["brandId", "featured", "outletId", "relationStatus"]),
+    ),
+    `${preservedOutletId} relation fields changed.`,
+  );
+}
+
+for (const emptyOutletId of ["212-outlet", "venezia-mega-outlet", "deepo-outlet-center"]) {
+  assert(
+    !outletBrands.some((relation) => relation.outletId === emptyOutletId),
+    `${emptyOutletId} must remain relation-free.`,
+  );
+}
+
+const changedFiles = execFileSync(
+  "git",
+  ["diff", "--name-only", `${mergeBase}...HEAD`],
+  { encoding: "utf8" },
+)
+  .trim()
+  .split("\n")
+  .filter(Boolean);
+
+const allowedFiles = new Set([
+  "src/constants/brands/brands-a-e.ts",
+  "src/constants/brands/brands-f-k.ts",
+  "src/constants/brands/brands-l-p.ts",
+  "src/constants/brands/brands-q-t.ts",
+  "src/constants/brands/brands-u-z.ts",
+  "src/constants/outletBrands/turkey.ts",
+  "tools/checkTurkeyBasicMetadataBatchA.ts",
+  "tools/checkTurkeyBasicMetadataBatchB.ts",
+  "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
+  "tools/checkTurkeyBrandCoverageOlivium.ts",
+  "tools/checkTurkeyBrandCoverageStarCity.ts",
+  "tools/checkTurkeyBrandCoverageViaport.ts",
+  "tools/checkTurkeyExpansion.ts",
+]);
+
+assert(
+  changedFiles.every((file) => allowedFiles.has(file)),
+  `Changed file is outside the permitted scope: ${changedFiles.find((file) => !allowedFiles.has(file))}.`,
+);
+
+console.log(
+  `Viaport coverage valid: ${acceptedDisplays.length} accepted, ` +
+    `${excludedDisplays.length} excluded, ${relations.length} relations.`,
+);
