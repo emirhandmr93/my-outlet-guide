@@ -110,18 +110,60 @@ assert(facts.every((fact) => Boolean(fact.guideId?.trim())), "Every Turkey route
 assert(JSON.stringify(facts.map((fact) => fact.guideId).sort()) === JSON.stringify([...expectedGuideIds].sort()), "Turkey route-fact guide IDs must exactly match guides.");
 
 const nonEnglishLanguages = ["tr", "es", "fr", "de", "ru", "ar", "zh"] as const;
+const allowedDurationGuideId = "zeytinburnu-to-olivium-local-connection";
 for (const outletId of batchAIds) {
-  const optionIds = getTransportationV2Options(outletId).map((option) => option.id).sort();
-  const outletGuideIds = guides.filter((guide) => guide.outletId === outletId).map((guide) => guide.guideId).sort();
-  assert(JSON.stringify(optionIds) === JSON.stringify(outletGuideIds), `${outletId} runtime option IDs must exactly match guide IDs.`);
-  for (const option of getTransportationV2Options(outletId)) {
-    assert(!["airport", "train", "taxi"].includes(option.originGroup) || option.guide.guideId === option.id, `${option.id} must not be synthetic.`);
+  const options = getTransportationV2Options(outletId);
+  const optionIds = options.map((option) => option.id).sort();
+  const outletGuideIds = guides
+    .filter((guide) => guide.outletId === outletId)
+    .map((guide) => guide.guideId)
+    .sort();
+  assert(
+    JSON.stringify(optionIds) === JSON.stringify(outletGuideIds),
+    `${outletId} runtime option IDs must exactly match guide IDs.`,
+  );
+  for (const option of options) {
+    const authoredSteps = [...option.guide.steps]
+      .sort((a, b) => a.order - b.order)
+      .map((step) => step.description);
+    assert(option.id === option.guide.guideId, `${option.id} must retain its guide identity.`);
+    assert(!option.id.endsWith("-estimate"), `${option.id} must not be a synthetic estimate.`);
+    assert(outletGuideIds.includes(option.id), `${option.id} must not be an unexpected runtime option.`);
+    assert(option.routeFact && ["exact", "partial"].includes(option.routeFact.confidence), `${option.id} must have an exact or partial source-backed route fact.`);
+    assert(option.routeDetails.hasSourceBackedRouteDetail, `${option.id} must retain source-backed route detail.`);
+    assert(option.sourceConfidence === "source", `${option.id} must have source confidence.`);
+
+    const englishDisplay = getTransportationOptionDisplayModel(option, "en");
+    assert(JSON.stringify(englishDisplay.steps) === JSON.stringify(authoredSteps), `${option.id} English steps must equal authored steps.`);
+    assert(englishDisplay.estimatedFareLabel === "", `${option.id} English fare must remain blank.`);
+    if (option.id === allowedDurationGuideId) {
+      assert(Boolean(englishDisplay.estimatedDurationLabel), `${option.id} English duration must be source-backed.`);
+    } else {
+      assert(englishDisplay.estimatedDurationLabel === "", `${option.id} English duration must remain blank.`);
+    }
+
     for (const language of nonEnglishLanguages) {
       const display = getTransportationOptionDisplayModel(option, language);
-      const englishSteps = option.guide.steps.sort((a, b) => a.order - b.order).map((step) => step.description);
-      assert(JSON.stringify(display.steps) !== JSON.stringify(englishSteps), `${option.id} ${language} steps must not reuse raw English steps.`);
-      assert(display.estimatedFareLabel === "" && display.estimatedDurationLabel === (option.id === "zeytinburnu-to-olivium-local-connection" ? display.estimatedDurationLabel : ""), `${option.id} ${language} must not add fares or durations.`);
-      assert(Boolean(display.routeDetails.lineOrProviderLabel || display.routeDetails.boardingPointLabel || display.routeDetails.alightingPointLabel || display.routeDetails.transferPointsLabel || display.routeDetails.destinationLabel), `${option.id} ${language} must retain route-specific detail.`);
+      assert(JSON.stringify(display.steps) !== JSON.stringify(authoredSteps), `${option.id} ${language} steps must not reuse raw English steps.`);
+      assert(display.estimatedFareLabel === "", `${option.id} ${language} fare must remain blank.`);
+      if (option.id === allowedDurationGuideId) {
+        assert(Boolean(display.estimatedDurationLabel), `${option.id} ${language} duration must be source-backed.`);
+      } else {
+        assert(display.estimatedDurationLabel === "", `${option.id} ${language} duration must remain blank.`);
+      }
+      assert(
+        Boolean(
+          display.routeDetails.lineOrProviderLabel ||
+          display.routeDetails.operatorLabel ||
+          display.routeDetails.boardingPointLabel ||
+          display.routeDetails.alightingPointLabel ||
+          display.routeDetails.transferLabel ||
+          display.routeDetails.destinationLabel ||
+          display.routeDetails.routeHintLabel ||
+          display.routeDetails.walkNoteLabel,
+        ),
+        `${option.id} ${language} must retain route-specific detail.`,
+      );
     }
   }
 }
