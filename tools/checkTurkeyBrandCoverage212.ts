@@ -1980,6 +1980,7 @@ function parseSourceBrands(source: string): Array<{
   brandId: string;
   brandName: string;
   aliases: string[];
+  block: string;
 }> {
   const result: Array<{ brandId: string; brandName: string; aliases: string[] }> = [];
   for (const match of source.matchAll(/\{\s*brandId:\s*"([^"]+)"([\s\S]*?)\n\s*\},/g)) {
@@ -1996,6 +1997,7 @@ function parseSourceBrands(source: string): Array<{
       brandId: match[1],
       brandName: JSON.parse(`"${brandNameMatch[1]}"`),
       aliases,
+      block,
     });
   }
   return result;
@@ -2016,10 +2018,25 @@ const baseSources = new Map(
     execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" }),
   ]),
 );
+const base212RelationIds = extractIdArray(baseTurkeySource, "outlet212BrandIds");
+assert(
+  JSON.stringify(expectedRelationIds) === JSON.stringify(base212RelationIds),
+  "All 212 relation IDs and their sequence must remain preserved from main.",
+);
+assert(base212RelationIds.length === 105, "Main must contain 105 preserved 212 relations.");
 const currentSources = new Map(
   brandFiles.map((file) => [file, readFileSync(file, "utf8")]),
 );
 const baseSourceBrands = [...baseSources.values()].flatMap(parseSourceBrands);
+const currentSourceBlocks = new Map(
+  [...currentSources.values()].flatMap(parseSourceBrands).map((brand) => [brand.brandId, brand.block]),
+);
+for (const baseBrand of baseSourceBrands) {
+  assert(
+    currentSourceBlocks.get(baseBrand.brandId) === baseBrand.block,
+    `${baseBrand.brandId} must remain byte-for-byte unchanged from main.`,
+  );
+}
 const baseIds = new Set(baseSourceBrands.map((brand) => brand.brandId));
 const expectedNewIds = expectedRelationIds.filter((brandId) => !baseIds.has(brandId));
 assert(
