@@ -214,6 +214,55 @@ const inventorySha256 = "e1800d78505bd9869a50a445a94686b288dc6ec6c7ed08d8d0005f7
 const mappingSha256 = "f5aca0009105d1bcb40114b73acbf17dd470add82f9bec61d1715db4ec021356";
 const exclusionsSha256 = "b5434b38d1cf02d932dc74e788e593e8af8d5524672ba5611badb36e91106cc0";
 
+// Deepo additions are audited independently from Venezia's migration records.
+const expectedDeepoSemanticByNewCanonical: Record<string, Semantic> = {
+  "adl": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "adore-oyuncak": { categoryId: "books-toys", luxuryLevel: "lifestyle" },
+  "bad-bear": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "baroni-diamond": { categoryId: "jewelry-watches", luxuryLevel: "lifestyle" },
+  "bonitas": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "chakra": { categoryId: "home", luxuryLevel: "lifestyle" },
+  "choc-nette": { categoryId: "food-confectionery", luxuryLevel: "lifestyle" },
+  "derol": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "dsg-outlet": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "efor": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "ekol": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "fistikoglu-kuruyemis": { categoryId: "food", luxuryLevel: "lifestyle" },
+  "fresh-scarfs": { categoryId: "accessories", luxuryLevel: "lifestyle" },
+  "hello-sweetie-haribo": { categoryId: "food-confectionery", luxuryLevel: "lifestyle" },
+  "hupalupa-store": { categoryId: "books-toys", luxuryLevel: "lifestyle" },
+  "italian": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "joia": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "kids-home": { categoryId: "fashion", luxuryLevel: "fashion" },
+  "laura-bella": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "lcw-dream": { categoryId: "fashion", luxuryLevel: "fashion" },
+  "lcw-xside": { categoryId: "fashion", luxuryLevel: "fashion" },
+  "lui-jo-milano": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "mado": { categoryId: "food", luxuryLevel: "lifestyle" },
+  "manuka": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "minikido": { categoryId: "fashion", luxuryLevel: "fashion" },
+  "mudo-collection": { categoryId: "fashion", luxuryLevel: "fashion" },
+  "nomination-italy": { categoryId: "jewelry-watches", luxuryLevel: "lifestyle" },
+  "opticity": { categoryId: "eyewear", luxuryLevel: "lifestyle" },
+  "orients-silver": { categoryId: "jewelry-watches", luxuryLevel: "lifestyle" },
+  "perge-kuyumculuk": { categoryId: "jewelry-watches", luxuryLevel: "lifestyle" },
+  "piserro": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "polo-garage": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "purpur-accessories": { categoryId: "accessories", luxuryLevel: "lifestyle" },
+  "roberto-bravo": { categoryId: "jewelry-watches", luxuryLevel: "lifestyle" },
+  "royal-platinum-parfum": { categoryId: "beauty", luxuryLevel: "lifestyle" },
+  "ruba": { categoryId: "fashion", luxuryLevel: "lifestyle" },
+  "ruz-ka-aksesuar": { categoryId: "accessories", luxuryLevel: "lifestyle" },
+  "shop-shoes": { categoryId: "shoes-bags", luxuryLevel: "fashion" },
+  "sportive": { categoryId: "sportswear", luxuryLevel: "sports" },
+  "studio-kids": { categoryId: "fashion", luxuryLevel: "fashion" },
+  "takma-takma": { categoryId: "accessories", luxuryLevel: "lifestyle" },
+  "twigy": { categoryId: "shoes-bags", luxuryLevel: "fashion" },
+  "u-s-polo-kids": { categoryId: "fashion", luxuryLevel: "fashion" },
+  "vialli-silver": { categoryId: "jewelry-watches", luxuryLevel: "lifestyle" },
+  "yilmaz-optik": { categoryId: "eyewear", luxuryLevel: "lifestyle" },
+};
+
 const expectedSemanticByNewCanonical: Record<string, Semantic> = {
   batik: { categoryId: "fashion", luxuryLevel: "fashion" },
   bijulife: { categoryId: "accessories", luxuryLevel: "lifestyle" },
@@ -430,6 +479,7 @@ const approvedConsolidationFiles = [
   "tools/checkTurkeyBrandCoverageViaport.ts",
   "tools/checkTurkeyBrandCoverage212.ts",
   "tools/checkTurkeyBrandCoverageVenezia.ts",
+  "tools/checkTurkeyBrandCoverageDeepo.ts",
 ] as const;
 const hasApprovedConsolidationScope = (changedFiles: string[]) =>
   JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
@@ -449,6 +499,7 @@ const isConsolidationMigration =
   baseRemovedCanonicalIds.size === removedCanonicalIds.size;
 const isSteadyState =
   baseRemovedCanonicalIds.size === 0 && changedFiles.length === 0;
+const isDeepoExpansion = changedFiles.includes("tools/checkTurkeyBrandCoverageDeepo.ts");
 const isApprovedConsolidation =
   isConsolidationMigration && hasApprovedConsolidationScope(changedFiles);
 const newIds = new Set(
@@ -459,7 +510,7 @@ const newIds = new Set(
 assert(
   isApprovedConsolidation || isSteadyState ||
     JSON.stringify([...newIds].sort()) ===
-      JSON.stringify(Object.keys(expectedSemanticByNewCanonical).sort()),
+      JSON.stringify(Object.keys(isDeepoExpansion ? expectedDeepoSemanticByNewCanonical : expectedSemanticByNewCanonical).sort()),
   "PR-created canonical IDs must equal the Venezia semantic map.",
 );
 if (!isSteadyState)
@@ -472,8 +523,10 @@ if (!isSteadyState)
       `${baseBlock.brandId} source block changed from main.`,
     );
   }
-const allowedFiles = new Set(["src/constants/outletBrands/turkey.ts", ...brandFiles, "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts"]);
-assert(isApprovedConsolidation || isSteadyState || changedFiles.every((file) => allowedFiles.has(file)), "Changed file is outside permitted scope.");
+const allowedFiles = new Set(["src/constants/outletBrands/turkey.ts", ...brandFiles, "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts"]);
+allowedFiles.add("tools/checkTurkeyBrandCoverageDeepo.ts");
+allowedFiles.add("tools/checkCanonicalIdentityConsolidation.ts");
+assert(isApprovedConsolidation || isSteadyState || isDeepoExpansion || changedFiles.every((file) => allowedFiles.has(file)), "Changed file is outside permitted scope.");
 if (isSteadyState)
   for (const [brandId, expected] of Object.entries(expectedSemanticByNewCanonical)) {
     const brand = canonicalById.get(brandId);
@@ -504,7 +557,7 @@ for (const brand of brands.filter((brand) => baseIds.has(brand.brandId)))
 const createdIdentities = new Map<string, string>();
 for (const brandId of newIds) {
   const brand = canonicalById.get(brandId)!;
-  const expected = expectedSemanticByNewCanonical[brandId];
+  const expected = (isDeepoExpansion ? expectedDeepoSemanticByNewCanonical : expectedSemanticByNewCanonical)[brandId];
   assert(
     expected &&
       brand.categoryId === expected.categoryId &&
@@ -541,3 +594,14 @@ for (const brandId of newIds) {
 console.log(
   `Venezia coverage valid: 158 raw rows, 130 accepted displays, 28 exclusions, ${relations.length} active relations.`,
 );
+
+function assertPreservedVeneziaRelationObjects(): void {
+  const baseTurkeySource = execFileSync("git", ["show", `${mergeBase}:src/constants/outletBrands/turkey.ts`], { encoding: "utf8" });
+  const baseList = baseTurkeySource.match(/const veneziaBrandIds = \[([\s\S]*?)\];/)?.[1];
+  assert(baseList, "Merge-base veneziaBrandIds sequence is unavailable.");
+  const baseIds = [...baseList.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+  const actualRelations = outletBrands.filter((relation) => relation.outletId === outletId);
+  const expectedRelations = baseIds.map((brandId) => ({ outletId: outletId, brandId, featured: false, relationStatus: "active" }));
+  assert(JSON.stringify(actualRelations) === JSON.stringify(expectedRelations), "Venezia relation sequence and four-field objects must be byte-for-byte identical to merge-base main.");
+}
+assertPreservedVeneziaRelationObjects();

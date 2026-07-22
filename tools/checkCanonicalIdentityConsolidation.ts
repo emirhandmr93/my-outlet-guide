@@ -124,7 +124,7 @@ for (const relation of outletBrands) {
 const turkeyCounts: Record<string, number> = {
   "olivium-outlet-center": 94, "starcity-outlet": 101, "optimum-premium-outlet-istanbul": 112,
   "izmir-optimum": 194, "viaport-asia-outlet-shopping": 187, "212-outlet": 105,
-  "venezia-mega-outlet": 127, "deepo-outlet-center": 0,
+  "venezia-mega-outlet": 127, "deepo-outlet-center": 171,
 };
 if (migrationMode) {
   for (const [outletId, expected] of Object.entries(turkeyCounts)) {

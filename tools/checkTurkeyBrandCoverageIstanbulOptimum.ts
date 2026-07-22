@@ -88,7 +88,7 @@ function assertPreservedRelations(name: string, preservedOutletId: string, expec
 assertPreservedRelations("oliviumBrandIds", "olivium-outlet-center", 94);
 assertPreservedRelations("starCityBrandIds", "starcity-outlet", 101);
 assert(relations.length === 112, "Istanbul Optimum must have 112 relations.");
-for (const id of ["deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
+
 
 const baseSources = new Map(brandFiles.map((file) => [file, execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" })]));
 const currentSources = new Map(brandFiles.map((file) => [file, readFileSync(file, "utf8")]));
@@ -166,6 +166,20 @@ const currentBlueDiamond = sourceBrandBlock(readFileSync("src/constants/brands/b
 assert(currentBlueDiamond === baseBlueDiamond, "Blue Diamond Garden Centre must be byte-for-byte preserved.");
 assert(currentBrands.some((brand) => brand.brandId === "blue-diamond-jewelry"), "Blue Diamond jewelry canonical must exist.");
 
-const allowed = /^(src\/constants\/outletBrands\/turkey\.ts|src\/constants\/brands\/brands-[a-z-]+\.ts|tools\/checkTurkey(BrandCoverage(212|Venezia|IstanbulOptimum|IzmirOptimum|Olivium|StarCity|Viaport)|Expansion|BasicMetadataBatch[AB])\.ts)$/;
-assert(isApprovedConsolidation || changedFiles.every((file) => allowed.test(file)), "A forbidden file changed.");
+const allowedFiles = new Set([
+  "src/constants/brands/brands-a-e.ts", "src/constants/brands/brands-f-k.ts", "src/constants/brands/brands-l-p.ts", "src/constants/brands/brands-q-t.ts", "src/constants/brands/brands-u-z.ts",
+  "src/constants/outletBrands/turkey.ts", "tools/checkCanonicalIdentityConsolidation.ts", "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts",
+]);
+assert(isApprovedConsolidation || changedFiles.every((file) => allowedFiles.has(file)), "A forbidden file changed.");
 console.log(`Istanbul Optimum valid: 163 entries (114 retail, 49 excluded), ${relations.length} active relations, 0 duplicates.`);
+
+function assertPreservedIstanbulOptimumRelationObjects(): void {
+  const baseTurkeySource = execFileSync("git", ["show", `${mergeBase}:src/constants/outletBrands/turkey.ts`], { encoding: "utf8" });
+  const baseList = baseTurkeySource.match(/const istanbulOptimumBrandIds = \[([\s\S]*?)\];/)?.[1];
+  assert(baseList, "Merge-base istanbulOptimumBrandIds sequence is unavailable.");
+  const baseIds = [...baseList.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+  const actualRelations = outletBrands.filter((relation) => relation.outletId === outletId);
+  const expectedRelations = baseIds.map((brandId) => ({ outletId: outletId, brandId, featured: false, relationStatus: "active" }));
+  assert(JSON.stringify(actualRelations) === JSON.stringify(expectedRelations), "IstanbulOptimum relation sequence and four-field objects must be byte-for-byte identical to merge-base main.");
+}
+assertPreservedIstanbulOptimumRelationObjects();
