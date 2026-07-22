@@ -471,7 +471,7 @@ const approvedConsolidationFiles = [
   "src/constants/outletBrands/italy.ts",
   "src/constants/outletBrands/romania.ts",
   "src/constants/outletBrands/uk.ts",
-  "tools/checkCanonicalIdentityConsolidation.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
   "tools/checkTurkeyBrandCoverageStarCity.ts",
   "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
@@ -523,7 +523,7 @@ if (!isSteadyState)
       `${baseBlock.brandId} source block changed from main.`,
     );
   }
-const allowedFiles = new Set(["src/constants/outletBrands/turkey.ts", ...brandFiles, "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts"]);
+const allowedFiles = new Set(["src/constants/outletBrands/turkey.ts", ...brandFiles, "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts", "src/constants/restaurants/index.ts", "src/constants/restaurants/turkey.ts", "src/constants/transportation/index.ts", "src/constants/transportation/turkey.ts", "src/constants/transportationGuides/index.ts", "src/constants/transportationGuides/turkey.ts", "tools/checkTurkeyContentBatch1.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts"]);
 allowedFiles.add("tools/checkTurkeyBrandCoverageDeepo.ts");
 allowedFiles.add("tools/checkCanonicalIdentityConsolidation.ts");
 assert(isApprovedConsolidation || isSteadyState || isDeepoExpansion || changedFiles.every((file) => allowedFiles.has(file)), "Changed file is outside permitted scope.");

@@ -11,6 +11,7 @@ import { supportedCurrencyCodes } from "../src/services/exchangeRateService";
 import { getTaxFreeStatusKey, hasDisplayValue, hasVerifiedMinimumSpend, hasVerifiedVatRate } from "../src/utils/taxFreeDisplay";
 import { translations } from "../src/translations/translations";
 
+const turkeyContentBatch1OutletIds = new Set(["olivium-outlet-center", "starcity-outlet", "optimum-premium-outlet-istanbul", "izmir-optimum"]);
 const languages = ["en", "tr", "es", "fr", "de", "ru", "ar", "zh"] as const;
 const expectedCountryNames = {
   en: "Turkey", tr: "Türkiye", es: "Turquía", fr: "Turquie", de: "Türkei", ru: "Турция", ar: "تركيا", zh: "土耳其",
@@ -110,9 +111,9 @@ for (const outlet of turkeyOutlets) {
     outlet.outletId === "viaport-asia-outlet-shopping" ? outletBrandRelations.length === 187 : outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 112 : outlet.outletId === "izmir-optimum" ? outletBrandRelations.length === 194 : outlet.outletId === "212-outlet" ? outletBrandRelations.length === 105 : outlet.outletId === "venezia-mega-outlet" ? outletBrandRelations.length === 127 : outlet.outletId === "deepo-outlet-center" ? outletBrandRelations.length === 171 : outletBrandRelations.length === 0,
     `${outlet.outletId} must contain only the verified Turkey brand relations.`,
   );
-  assert(!restaurants.some((restaurant) => restaurant.outletId === outlet.outletId), `${outlet.outletId} must not add restaurant records.`);
-  assert(!transportation.some((record) => record.outletId === outlet.outletId), `${outlet.outletId} must not add transportation records.`);
-  assert(!transportationGuides.some((guide) => guide.outletId === outlet.outletId), `${outlet.outletId} must not add transportation guides.`);
+  assert(!restaurants.some((restaurant) => restaurant.outletId === outlet.outletId && !turkeyContentBatch1OutletIds.has(outlet.outletId)), `${outlet.outletId} must not add restaurant records.`);
+  assert(!transportation.some((record) => record.outletId === outlet.outletId && !turkeyContentBatch1OutletIds.has(outlet.outletId)), `${outlet.outletId} must not add transportation records.`);
+  assert(!transportationGuides.some((guide) => guide.outletId === outlet.outletId && !turkeyContentBatch1OutletIds.has(outlet.outletId)), `${outlet.outletId} must not add transportation guides.`);
 }
 
 assert(currencies.some((currency) => currency.currencyCode === "TRY"), "TRY must remain selectable.");
