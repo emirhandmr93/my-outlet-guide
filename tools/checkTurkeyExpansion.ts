@@ -107,7 +107,7 @@ for (const outlet of turkeyOutlets) {
   assert(outlet.heroImage === "" && Array.isArray(outlet.galleryImages) && outlet.galleryImages.length === 0, `${outlet.outletId} must not add local images.`);
   const outletBrandRelations = outletBrands.filter((relation) => relation.outletId === outlet.outletId);
   assert(
-    outlet.outletId === "viaport-asia-outlet-shopping" ? outletBrandRelations.length === 187 : outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 112 : outlet.outletId === "izmir-optimum" ? outletBrandRelations.length === 194 : outlet.outletId === "212-outlet" ? outletBrandRelations.length === 105 : outletBrandRelations.length === 0,
+    outlet.outletId === "viaport-asia-outlet-shopping" ? outletBrandRelations.length === 187 : outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 112 : outlet.outletId === "izmir-optimum" ? outletBrandRelations.length === 194 : outlet.outletId === "212-outlet" ? outletBrandRelations.length === 105 : outlet.outletId === "venezia-mega-outlet" ? outletBrandRelations.length === 127 : outletBrandRelations.length === 0,
     `${outlet.outletId} must contain only the verified Turkey brand relations.`,
   );
   assert(!restaurants.some((restaurant) => restaurant.outletId === outlet.outletId), `${outlet.outletId} must not add restaurant records.`);
@@ -125,3 +125,6 @@ for (const language of languages) {
 }
 
 console.log(`Turkey expansion valid: 1 country, 3 cities, ${turkeyOutlets.length} outlet skeletons; TRY selectable and live-rate supported; localizations resolve in ${languages.length} languages.`);
+
+// Venezia coverage is intentionally validated separately; retain its verified relation total.
+assert(outletBrands.filter((relation) => relation.outletId === "venezia-mega-outlet").length === 127, "Venezia must retain 127 verified relations.");

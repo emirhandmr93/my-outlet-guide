@@ -88,7 +88,7 @@ function assertPreservedRelations(name: string, preservedOutletId: string, expec
 assertPreservedRelations("oliviumBrandIds", "olivium-outlet-center", 94);
 assertPreservedRelations("starCityBrandIds", "starcity-outlet", 101);
 assert(relations.length === 112, "Istanbul Optimum must have 112 relations.");
-for (const id of ["venezia-mega-outlet", "deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
+for (const id of ["deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
 
 const baseSources = new Map(brandFiles.map((file) => [file, execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" })]));
 const currentSources = new Map(brandFiles.map((file) => [file, readFileSync(file, "utf8")]));
@@ -145,6 +145,6 @@ assert(currentBlueDiamond === baseBlueDiamond, "Blue Diamond Garden Centre must 
 assert(currentBrands.some((brand) => brand.brandId === "blue-diamond-jewelry"), "Blue Diamond jewelry canonical must exist.");
 
 const changedFiles = execFileSync("git", ["diff", "--name-only", `${mergeBase}...HEAD`], { encoding: "utf8" }).trim().split("\n").filter(Boolean);
-const allowed = /^(src\/constants\/outletBrands\/turkey\.ts|src\/constants\/brands\/brands-[a-z-]+\.ts|tools\/checkTurkey(BrandCoverage(212|IstanbulOptimum|IzmirOptimum|Olivium|StarCity|Viaport)|Expansion|BasicMetadataBatch[AB])\.ts)$/;
+const allowed = /^(src\/constants\/outletBrands\/turkey\.ts|src\/constants\/brands\/brands-[a-z-]+\.ts|tools\/checkTurkey(BrandCoverage(212|Venezia|IstanbulOptimum|IzmirOptimum|Olivium|StarCity|Viaport)|Expansion|BasicMetadataBatch[AB])\.ts)$/;
 assert(changedFiles.every((file) => allowed.test(file)), "A forbidden file changed.");
 console.log(`Istanbul Optimum valid: 163 entries (114 retail, 49 excluded), ${relations.length} active relations, 0 duplicates.`);
