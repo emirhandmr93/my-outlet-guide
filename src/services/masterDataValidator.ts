@@ -1,10 +1,10 @@
 import { categories } from "../constants/categories";
-import { cities } from "../constants/cities";
-import { countries } from "../constants/countries";
+import { allCities as cities } from "../constants/cities";
+import { allCountries as countries } from "../constants/countries";
 import { brands } from "../constants/brands";
 import { outletBrands } from "../constants/outletBrands";
 import { restaurants } from "../constants/restaurants";
-import { outlets } from "../constants/outlets";
+import { allOutlets as outlets } from "../constants/outlets";
 import { transportation } from "../constants/transportation";
 import { transportationGuides } from "../constants/transportationGuides";
 import { taxFreeRules } from "../constants/taxFreeRules";

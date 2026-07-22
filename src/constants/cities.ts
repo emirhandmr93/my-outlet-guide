@@ -1,4 +1,6 @@
-export const cities = [
+import { isUserVisibleOutletCountry } from "../services/outletVisibility";
+
+export const allCities = [
   {
     "cityId": "amsterdam",
     "cityName": "Amsterdam",
@@ -506,3 +508,8 @@ export const cities = [
     "countryId": "italy"
   }
 ];
+
+/** User-facing selector; source records remain in allCities. */
+export const cities = allCities.filter((item) =>
+  isUserVisibleOutletCountry(item.countryId),
+);
