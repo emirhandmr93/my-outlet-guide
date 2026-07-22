@@ -2893,4 +2893,25 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+
+  {
+    brandId: "welcome-baby",
+    brandName: "Welcome Baby",
+    aliases: [],
+    categoryId: "kids",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
+    brandId: "zeki",
+    brandName: "Zeki",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
 ];
