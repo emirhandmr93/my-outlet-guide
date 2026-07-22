@@ -304,6 +304,10 @@ assert(acceptedDisplays.length === 195, "Expected exactly 195 accepted Viaport d
 assert(excludedDisplays.length === 69, "Expected exactly 69 excluded Viaport display rows.");
 assert(allOfficialDisplays.length === 264, "Expected exactly 264 official Viaport directory rows.");
 assert(new Set(allOfficialDisplays).size === 264, "Official Viaport display rows must be unique.");
+const validatorSource = readFileSync("tools/checkTurkeyBrandCoverageViaport.ts", "utf8").slice(0, readFileSync("tools/checkTurkeyBrandCoverageViaport.ts", "utf8").indexOf("const acceptedDisplays"));
+assert(!/OUTLET DIRECTORY/i.test(validatorSource), "Fabricated OUTLET DIRECTORY rows are forbidden.");
+assert(!/EXCLUDED VIAPORT DIRECTORY/i.test(validatorSource), "Placeholder exclusions are forbidden.");
+assert(!/unresolvedRetailDisplays/.test(validatorSource), "No unresolved Viaport list may remain.");
 const expectedRelationIds = [
   ...new Set(Object.values(acceptedDisplayToBrandIds).flat()),
 ].sort();
