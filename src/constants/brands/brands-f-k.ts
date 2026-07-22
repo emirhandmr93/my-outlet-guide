@@ -5734,4 +5734,92 @@ export const brandsFK: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "finery-by-nerrs",
+    brandName: "Finery By Nerrs",
+    aliases: [],
+    categoryId: "jewelry-watches",
+    logo: "",
+    luxuryLevel: "premium",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "finery-jewelry",
+    brandName: "Finery Jewelry",
+    aliases: [],
+    categoryId: "jewelry-watches",
+    logo: "",
+    luxuryLevel: "premium",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "hammer-jack",
+    brandName: "Hammer Jack",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "harput-dibek",
+    brandName: "Harput Dibek",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "homeax",
+    brandName: "Home'ax",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "kompedan",
+    brandName: "Kompedan",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "kuppeli",
+    brandName: "Küppeli",
+    aliases: [],
+    categoryId: "accessories",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "kuum",
+    brandName: "Kuum",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
 ];

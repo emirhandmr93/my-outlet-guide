@@ -5339,4 +5339,48 @@ export const brandsQT: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "sneaker-box",
+    brandName: "Sneaker Box",
+    aliases: [],
+    categoryId: "shoes-bags",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "the-crystal-home",
+    brandName: "The Crystal Home",
+    aliases: [],
+    categoryId: "home",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "the-most",
+    brandName: "The Most",
+    aliases: [],
+    categoryId: "accessories",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
+    brandId: "time-factory",
+    brandName: "Time Factory",
+    aliases: [],
+    categoryId: "jewelry-watches",
+    logo: "",
+    luxuryLevel: "premium",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
 ];
