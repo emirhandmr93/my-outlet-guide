@@ -23,6 +23,7 @@ import { spainRestaurants } from "./spain";
 import { swedenRestaurants } from "./sweden";
 import { switzerlandRestaurants } from "./switzerland";
 import { ukRestaurants } from "./uk";
+import { turkeyRestaurants } from "./turkey";
 
 export {
   austriaRestaurants,
@@ -50,6 +51,7 @@ export {
   swedenRestaurants,
   switzerlandRestaurants,
   ukRestaurants,
+  turkeyRestaurants,
 };
 
 export const restaurants = [
@@ -78,4 +80,5 @@ export const restaurants = [
   ...swedenRestaurants,
   ...switzerlandRestaurants,
   ...ukRestaurants,
+  ...turkeyRestaurants,
 ];
