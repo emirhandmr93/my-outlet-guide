@@ -37,15 +37,21 @@ const allowedChangedFiles = [
   "tools/checkTurkeyBrandCoverage212.ts",
   "tools/checkTurkeyBrandCoverageVenezia.ts",
 ];
-const changedFiles = git("diff", "--name-only", `${base}...HEAD`).split("\n").filter(Boolean).sort();
-assert(JSON.stringify(changedFiles) === JSON.stringify([...allowedChangedFiles].sort()), `Unexpected changed-file scope: ${changedFiles.join(", ")}.`);
-
 const removedHmBlock = `  {\n    brandId: ${quote(removedHmId)},\n    brandName: "H&M",\n    aliases: [],\n    categoryId: "fashion",\n    logo: "",\n    originCountryId: "italy",\n    luxuryLevel: "fashion",\n    rankingWeight: 60,\n    brandStatus: "active",\n  },\n`;
 const removedUsPoloBlock = `  {\n    brandId: ${quote(removedUsPoloId)},\n    brandName: "U.S. Polo Assn.",\n    aliases: ["U S Polo Assn", "US Polo Assn", "USPoloAssn"],\n    categoryId: "fashion",\n    logo: "",\n    originCountryId: "united-states",\n    luxuryLevel: "lifestyle",\n    rankingWeight: 60,\n    brandStatus: "active",\n  },\n`;
-for (const [file, removedBlock] of [["src/constants/brands/brands-f-k.ts", removedHmBlock], ["src/constants/brands/brands-u-z.ts", removedUsPoloBlock]] as const) {
-  const baseline = showBase(file);
-  assert(baseline.includes(removedBlock), `${file} baseline no longer contains its audited duplicate block.`);
-  assert(readCurrent(file) === baseline.replace(removedBlock, ""), `${file} changed canonical content other than the approved duplicate removal.`);
+const baseHmSource = showBase("src/constants/brands/brands-f-k.ts");
+const baseUsPoloSource = showBase("src/constants/brands/brands-u-z.ts");
+const baseHasHmDuplicate = baseHmSource.includes(removedHmBlock);
+const baseHasUsPoloDuplicate = baseUsPoloSource.includes(removedUsPoloBlock);
+assert(baseHasHmDuplicate === baseHasUsPoloDuplicate, "Merge-base contains only one audited duplicate block; cannot select a validator mode.");
+const migrationMode = baseHasHmDuplicate;
+
+if (migrationMode) {
+  const changedFiles = git("diff", "--name-only", `${base}...HEAD`).split("\n").filter(Boolean).sort();
+  assert(JSON.stringify(changedFiles) === JSON.stringify([...allowedChangedFiles].sort()), `Unexpected changed-file scope: ${changedFiles.join(", ")}.`);
+  for (const [file, baseline, removedBlock] of [["src/constants/brands/brands-f-k.ts", baseHmSource, removedHmBlock], ["src/constants/brands/brands-u-z.ts", baseUsPoloSource, removedUsPoloBlock]] as const) {
+    assert(readCurrent(file) === baseline.replace(removedBlock, ""), `${file} changed canonical content other than the approved duplicate removal.`);
+  }
 }
 
 const relationMigrations = [
@@ -56,20 +62,24 @@ const relationMigrations = [
   ["src/constants/outletBrands/romania.ts", removedUsPoloId, retainedUsPoloId, 1],
   ["src/constants/outletBrands/croatia.ts", removedUsPoloId, retainedUsPoloId, 1],
 ] as const;
-for (const file of new Set(relationMigrations.map(([file]) => file))) {
-  let expected = showBase(file);
-  for (const [, oldId, newId, expectedCount] of relationMigrations.filter(([candidate]) => candidate === file)) {
-    const oldToken = quote(oldId);
-    assert(expected.split(oldToken).length - 1 === expectedCount, `${file} baseline migration count drifted for ${oldId}.`);
-    expected = expected.replaceAll(oldToken, quote(newId));
+if (migrationMode) {
+  for (const file of new Set(relationMigrations.map(([file]) => file))) {
+    let expected = showBase(file);
+    for (const [, oldId, newId, expectedCount] of relationMigrations.filter(([candidate]) => candidate === file)) {
+      const oldToken = quote(oldId);
+      assert(expected.split(oldToken).length - 1 === expectedCount, `${file} baseline migration count drifted for ${oldId}.`);
+      expected = expected.replaceAll(oldToken, quote(newId));
+    }
+    assert(readCurrent(file) === expected, `${file} includes a relation change beyond the approved in-place substitutions.`);
   }
-  assert(readCurrent(file) === expected, `${file} includes a relation change beyond the approved in-place substitutions.`);
 }
 
 assert(!brands.some((brand) => brand.brandId === removedHmId || brand.brandId === removedUsPoloId), "A removed canonical identity remains.");
 assert(!outletBrands.some((relation) => relation.brandId === removedHmId || relation.brandId === removedUsPoloId), "A removed relation target remains.");
-assert(brands.length === 2713, `Expected 2713 canonical brands, found ${brands.length}.`);
-assert(outletBrands.length === 9730, `Expected unchanged relation total of 9730, found ${outletBrands.length}.`);
+if (migrationMode) {
+  assert(brands.length === 2713, `Expected 2713 canonical brands, found ${brands.length}.`);
+  assert(outletBrands.length === 9730, `Expected unchanged relation total of 9730, found ${outletBrands.length}.`);
+}
 
 const retainedHm = brands.filter((brand) => brand.brandId === retainedHmId);
 assert(retainedHm.length === 1, "Expected exactly one retained H&M canonical.");
@@ -77,8 +87,31 @@ assert(JSON.stringify(retainedHm[0]) === JSON.stringify({ brandId: retainedHmId,
 const retainedUsPolo = brands.filter((brand) => brand.brandId === retainedUsPoloId);
 assert(retainedUsPolo.length === 1, "Expected exactly one retained U.S. Polo Assn. canonical.");
 assert(JSON.stringify(retainedUsPolo[0]) === JSON.stringify({ brandId: retainedUsPoloId, brandName: "U.S. Polo Assn.", aliases: ["US Polo Assn", "U S Polo Assn", "USPoloAssn", "U.S. POLO ASSN. KİDS", "U.S. Polo Assn. Kids"], categoryId: "fashion", logo: "", originCountryId: "united-states", luxuryLevel: "lifestyle", rankingWeight: 76, brandStatus: "active" }), "Retained U.S. Polo Assn. semantics changed.");
-assert(outletBrands.filter((relation) => relation.brandId === retainedHmId).length === 3, "H&M must have exactly 3 relations.");
-assert(outletBrands.filter((relation) => relation.brandId === retainedUsPoloId).length === 21, "U.S. Polo Assn. must have exactly 21 relations.");
+const normalizeIdentity = (value: string): string => value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+for (const [retainedId, retainedBrand] of [[retainedHmId, retainedHm[0]], [retainedUsPoloId, retainedUsPolo[0]]] as const) {
+  const auditedIdentities = new Set([retainedBrand.brandId, retainedBrand.brandName, ...retainedBrand.aliases].map(normalizeIdentity));
+  for (const brand of brands) {
+    const ownsAuditedIdentity = [brand.brandId, brand.brandName, ...brand.aliases].map(normalizeIdentity).some((identity) => auditedIdentities.has(identity));
+    assert(!ownsAuditedIdentity || brand.brandId === retainedId, `${brand.brandId} also owns an audited ${retainedId} identity.`);
+  }
+}
+
+const auditedLegacyRelations = [
+  ["valmontone-outlet", retainedHmId],
+  ["vicolungo-the-style-outlets", retainedUsPoloId],
+  ["castel-guelfo-the-style-outlets", retainedUsPoloId],
+  ["one-nation-paris", retainedUsPoloId],
+  ["east-midlands-designer-outlet", retainedUsPoloId],
+  ["fashion-house-outlet-centre-bucharest", retainedUsPoloId],
+  ["ros-designer-outlet", retainedUsPoloId],
+] as const;
+for (const [outletId, brandId] of auditedLegacyRelations) {
+  assert(outletBrands.some((relation) => relation.outletId === outletId && relation.brandId === brandId && !relation.featured && relation.relationStatus === "active"), `Migrated relation missing or changed: ${outletId}/${brandId}.`);
+}
+if (migrationMode) {
+  assert(outletBrands.filter((relation) => relation.brandId === retainedHmId).length === 3, "H&M must have exactly 3 relations.");
+  assert(outletBrands.filter((relation) => relation.brandId === retainedUsPoloId).length === 21, "U.S. Polo Assn. must have exactly 21 relations.");
+}
 
 const brandIds = new Set(brands.map((brand) => brand.brandId));
 const pairs = new Set<string>();
@@ -93,8 +126,10 @@ const turkeyCounts: Record<string, number> = {
   "izmir-optimum": 194, "viaport-asia-outlet-shopping": 187, "212-outlet": 105,
   "venezia-mega-outlet": 127, "deepo-outlet-center": 0,
 };
-for (const [outletId, expected] of Object.entries(turkeyCounts)) {
-  assert(outletBrands.filter((relation) => relation.outletId === outletId).length === expected, `${outletId} relation count changed.`);
+if (migrationMode) {
+  for (const [outletId, expected] of Object.entries(turkeyCounts)) {
+    assert(outletBrands.filter((relation) => relation.outletId === outletId).length === expected, `${outletId} relation count changed.`);
+  }
 }
 
-console.log(`Canonical identity consolidation valid: ${brands.length} canonicals, ${outletBrands.length} relations, ${retainedHmId}=3, ${retainedUsPoloId}=21.`);
+console.log(`Canonical identity consolidation ${migrationMode ? "migration" : "steady-state"} valid: ${brands.length} canonicals, ${outletBrands.length} relations.`);
