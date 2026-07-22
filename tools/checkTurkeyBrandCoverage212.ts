@@ -2028,6 +2028,18 @@ assert(
   "The PR-created canonical set must exactly equal the literal semantic map.",
 );
 
+for (const file of brandFiles) {
+  const prCreatedBrandIds = parseSourceBrands(currentSources.get(file) ?? "")
+    .map((brand) => brand.brandId)
+    .filter((brandId) => !baseIds.has(brandId));
+  for (let index = 1; index < prCreatedBrandIds.length; index += 1) {
+    assert(
+      prCreatedBrandIds[index - 1] < prCreatedBrandIds[index],
+      `${file} PR-created canonical brandId sequence must be alphabetically sorted.`,
+    );
+  }
+}
+
 const baseIdentityOwners = new Map<string, string>();
 for (const brand of baseSourceBrands) {
   for (const identity of [brand.brandId, brand.brandName, ...brand.aliases].map(normalize)) {

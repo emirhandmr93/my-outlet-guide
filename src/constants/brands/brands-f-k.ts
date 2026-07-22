@@ -5768,6 +5768,17 @@ export const brandsFK: Brand[] = [
   },
 
   {
+    brandId: "harput-dibek",
+    brandName: "Harput Dibek",
+    aliases: [],
+    categoryId: "food",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+
+  {
     brandId: "homeax",
     brandName: "Home'ax",
     aliases: [],
@@ -5807,17 +5818,6 @@ export const brandsFK: Brand[] = [
     categoryId: "shoes-bags",
     logo: "",
     luxuryLevel: "fashion",
-    rankingWeight: 50,
-    brandStatus: "active",
-  },
-
-  {
-    brandId: "harput-dibek",
-    brandName: "Harput Dibek",
-    aliases: [],
-    categoryId: "food",
-    logo: "",
-    luxuryLevel: "lifestyle",
     rankingWeight: 50,
     brandStatus: "active",
   },
