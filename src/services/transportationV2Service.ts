@@ -6,7 +6,10 @@ import {
   type TransportationType,
 } from "../constants/transportationGuides";
 import { getTransportationForOutlet } from "./transportationService";
-import { getTransportationRouteFact, type TransportationRouteFact } from "../constants/transportationRouteFacts";
+import {
+  getTransportationRouteFact,
+  type TransportationRouteFact,
+} from "../constants/transportationRouteFacts";
 
 const UNSAFE_VALUE_PATTERN =
   /\b(confirm|check|varies|vary|provider|timetable|availability|unknown|not verified|kontrol et|sağlayıcıdan)\b/i;
@@ -109,7 +112,10 @@ const I18N: Record<
     modes: Record<string, string>;
     steps: Record<string, string[]>;
     routeLabels: Record<string, string>;
-    noteTemplates: Record<string, (fact: TransportationRouteFact) => string | undefined>;
+    noteTemplates: Record<
+      string,
+      (fact: TransportationRouteFact) => string | undefined
+    >;
   }
 > = {
   en: {
@@ -181,8 +187,12 @@ const I18N: Record<
     noteTemplates: {
       officialCheck: (fact) => fact.officialCheckNote || fact.sourceNote,
       walk: (fact) => fact.walkNote,
-      stationBus: (fact) => fact.alightingPoint && fact.destination ? `Use the official station bus from ${fact.alightingPoint} to ${fact.destination} when operating.` : undefined,
-      returnCheck: (fact) => `Check current ${fact.provider || fact.operator || fact.line || "provider"} times before travel.`,
+      stationBus: (fact) =>
+        fact.alightingPoint && fact.destination
+          ? `Use the official station bus from ${fact.alightingPoint} to ${fact.destination} when operating.`
+          : undefined,
+      returnCheck: (fact) =>
+        `Check current ${fact.provider || fact.operator || fact.line || "provider"} times before travel.`,
     },
   },
   tr: {
@@ -252,14 +262,22 @@ const I18N: Record<
       checkRoute: "Hat ve sefer bilgisini resmi sağlayıcıdan doğrula.",
     },
     noteTemplates: {
-      officialCheck: (fact) => `${fact.provider || fact.operator || fact.line || "Resmi sağlayıcı"} saatlerini seyahatten önce kontrol edin.`,
-      walk: (fact) => fact.alightingPoint === "Parndorf Ort" ? "Outlet servisi çalışıyorsa kullanın veya yürüyüş bağlantısını takip edin." : fact.destination ? `${fact.destination} girişine yürüyerek devam edin.` : "Yürüyüş bağlantısını takip edin.",
-      stationBus: (fact) => fact.alightingPoint === "Parndorf Ort" && fact.destination
-        ? `Parndorf Ort’tan ${fact.destination}’a resmi outlet servisi çalışıyorsa kullanın; yoksa yürüyüş bağlantısını takip edin.`
-        : fact.alightingPoint && fact.destination
-          ? `${fact.alightingPoint} → ${fact.destination}`
-          : undefined,
-      returnCheck: (fact) => `${fact.provider || fact.operator || fact.line || "Dönüş"} saatlerini alışverişten önce kontrol edin.`,
+      officialCheck: (fact) =>
+        `${fact.provider || fact.operator || fact.line || "Resmi sağlayıcı"} saatlerini seyahatten önce kontrol edin.`,
+      walk: (fact) =>
+        fact.alightingPoint === "Parndorf Ort"
+          ? "Outlet servisi çalışıyorsa kullanın veya yürüyüş bağlantısını takip edin."
+          : fact.destination
+            ? `${fact.destination} girişine yürüyerek devam edin.`
+            : "Yürüyüş bağlantısını takip edin.",
+      stationBus: (fact) =>
+        fact.alightingPoint === "Parndorf Ort" && fact.destination
+          ? `Parndorf Ort’tan ${fact.destination}’a resmi outlet servisi çalışıyorsa kullanın; yoksa yürüyüş bağlantısını takip edin.`
+          : fact.alightingPoint && fact.destination
+            ? `${fact.alightingPoint} → ${fact.destination}`
+            : undefined,
+      returnCheck: (fact) =>
+        `${fact.provider || fact.operator || fact.line || "Dönüş"} saatlerini alışverişten önce kontrol edin.`,
     },
   },
   es: {
@@ -304,9 +322,13 @@ const I18N: Record<
       checkRoute: "Confirma la línea y el horario con el proveedor oficial.",
     },
     noteTemplates: {
-      officialCheck: () => "Consulta horarios y paradas oficiales antes de viajar.",
+      officialCheck: () =>
+        "Consulta horarios y paradas oficiales antes de viajar.",
       walk: () => "Continúa a pie hasta la entrada del outlet.",
-      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      stationBus: (fact) =>
+        fact.alightingPoint && fact.destination
+          ? `${fact.alightingPoint} → ${fact.destination}`
+          : undefined,
       returnCheck: () => "Consulta el regreso antes de comprar.",
     },
   },
@@ -349,12 +371,17 @@ const I18N: Record<
       destination: "Destination",
       origin: "Origine",
       walking: "Marche",
-      checkRoute: "Confirmez la ligne et les horaires auprès du prestataire officiel.",
+      checkRoute:
+        "Confirmez la ligne et les horaires auprès du prestataire officiel.",
     },
     noteTemplates: {
-      officialCheck: () => "Vérifiez les horaires et arrêts officiels avant le départ.",
+      officialCheck: () =>
+        "Vérifiez les horaires et arrêts officiels avant le départ.",
       walk: () => "Continuez à pied jusqu’à l’entrée de l’outlet.",
-      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      stationBus: (fact) =>
+        fact.alightingPoint && fact.destination
+          ? `${fact.alightingPoint} → ${fact.destination}`
+          : undefined,
       returnCheck: () => "Vérifiez le retour avant vos achats.",
     },
   },
@@ -400,9 +427,13 @@ const I18N: Record<
       checkRoute: "Bestätige Linie und Fahrplan beim offiziellen Anbieter.",
     },
     noteTemplates: {
-      officialCheck: () => "Prüfe offizielle Zeiten und Haltestellen vor der Fahrt.",
+      officialCheck: () =>
+        "Prüfe offizielle Zeiten und Haltestellen vor der Fahrt.",
       walk: () => "Gehe weiter zum Outlet-Eingang.",
-      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      stationBus: (fact) =>
+        fact.alightingPoint && fact.destination
+          ? `${fact.alightingPoint} → ${fact.destination}`
+          : undefined,
       returnCheck: () => "Prüfe die Rückfahrt vor dem Einkauf.",
     },
   },
@@ -448,9 +479,13 @@ const I18N: Record<
       checkRoute: "Подтвердите линию и расписание у официального поставщика.",
     },
     noteTemplates: {
-      officialCheck: () => "Проверьте официальное расписание и остановки перед поездкой.",
+      officialCheck: () =>
+        "Проверьте официальное расписание и остановки перед поездкой.",
       walk: () => "Дойдите пешком до входа в аутлет.",
-      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      stationBus: (fact) =>
+        fact.alightingPoint && fact.destination
+          ? `${fact.alightingPoint} → ${fact.destination}`
+          : undefined,
       returnCheck: () => "Проверьте обратный рейс перед покупками.",
     },
   },
@@ -498,7 +533,10 @@ const I18N: Record<
     noteTemplates: {
       officialCheck: () => "تحقق من المواعيد والمحطات الرسمية قبل السفر.",
       walk: () => "تابع سيرًا إلى مدخل الأوتلت.",
-      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      stationBus: (fact) =>
+        fact.alightingPoint && fact.destination
+          ? `${fact.alightingPoint} → ${fact.destination}`
+          : undefined,
       returnCheck: () => "تحقق من رحلة العودة قبل التسوق.",
     },
   },
@@ -546,7 +584,10 @@ const I18N: Record<
     noteTemplates: {
       officialCheck: () => "出行前请确认官方班次和站点。",
       walk: () => "步行前往奥特莱斯入口。",
-      stationBus: (fact) => fact.alightingPoint && fact.destination ? `${fact.alightingPoint} → ${fact.destination}` : undefined,
+      stationBus: (fact) =>
+        fact.alightingPoint && fact.destination
+          ? `${fact.alightingPoint} → ${fact.destination}`
+          : undefined,
       returnCheck: () => "购物前请确认返程班次。",
     },
   },
@@ -628,8 +669,10 @@ function normalizeRouteTerm(term: string) {
 }
 function outletNameFor(outletId: string) {
   if (outletId === "la-vallee-village") return "La Vallée Village";
-  if (outletId === "serravalle-designer-outlet") return "Serravalle Designer Outlet";
-  if (outletId === "designer-outlet-parndorf") return "Designer Outlet Parndorf";
+  if (outletId === "serravalle-designer-outlet")
+    return "Serravalle Designer Outlet";
+  if (outletId === "designer-outlet-parndorf")
+    return "Designer Outlet Parndorf";
   return outletId
     .replace(/-/g, " ")
     .replace(/\b\w/g, (char) => char.toUpperCase());
@@ -640,7 +683,9 @@ function airportCodeFor(guide: TransportationGuide) {
     ? outlet?.airports?.find((airport) => airport.code === guide.originId)?.code
     : undefined;
 }
-function factOriginGroup(fact: TransportationRouteFact | undefined): TransportationV2Option["originGroup"] | undefined {
+function factOriginGroup(
+  fact: TransportationRouteFact | undefined,
+): TransportationV2Option["originGroup"] | undefined {
   if (!fact) return undefined;
   if (fact.originType === "airport") return "airport";
   if (fact.originType === "shuttle") return "shuttle";
@@ -658,12 +703,12 @@ export function hasSourceBackedShuttleRouteDetail(
   if (!fact || fact.confidence === "estimateOnly") return false;
   return Boolean(
     fact.provider ||
-      fact.operator ||
-      fact.titleKey ||
-      fact.boardingPoint ||
-      fact.destination ||
-      option.routeDetails.lineOrProviderLabel ||
-      option.routeDetails.boardingPointLabel,
+    fact.operator ||
+    fact.titleKey ||
+    fact.boardingPoint ||
+    fact.destination ||
+    option.routeDetails.lineOrProviderLabel ||
+    option.routeDetails.boardingPointLabel,
   );
 }
 
@@ -671,9 +716,12 @@ function isRouteLineCode(value: string | undefined) {
   if (!value) return false;
   const normalized = value.trim();
   if (!normalized) return false;
-  const knownProviderOnly = /^(?:ÖBB|Trenitalia|Shopping Express|Zani Viaggi|Frigerio Viaggi|Zani Viaggi \/ Frigerio Viaggi|Outlet Link|FlixBus|Obus)$/i;
+  const knownProviderOnly =
+    /^(?:ÖBB|Trenitalia|Shopping Express|Zani Viaggi|Frigerio Viaggi|Zani Viaggi \/ Frigerio Viaggi|Outlet Link|FlixBus|Obus)$/i;
   if (knownProviderOnly.test(normalized)) return false;
-  return /(?:^|\b)(?:RER|TGV|SNCF|RATP|RB|RE|S)\s*[A-Z0-9]+(?:\b|$)|\//i.test(normalized);
+  return /(?:^|\b)(?:RER|TGV|SNCF|RATP|RB|RE|S)\s*[A-Z0-9]+(?:\b|$)|\//i.test(
+    normalized,
+  );
 }
 function extractRouteDetails(
   guide: TransportationGuide,
@@ -684,13 +732,16 @@ function extractRouteDetails(
   const isTaxi = ["taxi", "uber"].includes(mode);
   if (fact) {
     const isExactOrPartial = fact.confidence !== "estimateOnly";
-    const lineOrProviderLabel = fact.mode === "shuttle"
-      ? fact.provider
-      : fact.line;
-    const operatorLabel = fact.operator || (fact.mode === "shuttle" ? undefined : fact.provider);
+    const lineOrProviderLabel =
+      fact.mode === "shuttle" ? fact.provider : fact.line;
+    const operatorLabel =
+      fact.operator || (fact.mode === "shuttle" ? undefined : fact.provider);
     return {
       lineOrProviderLabel,
-      operatorLabel: operatorLabel && operatorLabel !== lineOrProviderLabel ? operatorLabel : undefined,
+      operatorLabel:
+        operatorLabel && operatorLabel !== lineOrProviderLabel
+          ? operatorLabel
+          : undefined,
       boardingPointLabel: fact.boardingPoint,
       transferLabel: fact.transferPoints?.join(" / "),
       alightingPointLabel: fact.alightingPoint,
@@ -709,7 +760,8 @@ function extractRouteDetails(
   if (isTaxi) {
     return {
       destinationLabel: outletNameFor(guide.outletId),
-      routeHintLabel: originGroup === "airport" ? "Airport → outlet" : "City center → outlet",
+      routeHintLabel:
+        originGroup === "airport" ? "Airport → outlet" : "City center → outlet",
       confidence: "estimateOnly",
       hasSourceBackedRouteDetail: false,
     };
@@ -722,7 +774,10 @@ function extractRouteDetails(
     hasSourceBackedRouteDetail: false,
   };
 }
-function localizePoint(value: string | undefined, language: TranslationLanguage = "en") {
+function localizePoint(
+  value: string | undefined,
+  language: TranslationLanguage = "en",
+) {
   if (!value) return value;
   if (language === "tr" && value === "Central Paris RER A station")
     return "Paris merkezindeki bir RER A istasyonu";
@@ -770,8 +825,12 @@ function neutralOriginPoint(
   };
   return labels[language] || I18N[language].city;
 }
-function originPointFor(option: TransportationV2Option, language: TranslationLanguage) {
-  if (option.routeDetails.boardingPointLabel) return option.routeDetails.boardingPointLabel;
+function originPointFor(
+  option: TransportationV2Option,
+  language: TranslationLanguage,
+) {
+  if (option.routeDetails.boardingPointLabel)
+    return option.routeDetails.boardingPointLabel;
   if (!["taxi", "uber"].includes(option.mode)) return undefined;
   return neutralOriginPoint(option.originGroup, language);
 }
@@ -787,7 +846,10 @@ export function getTransportationRouteDetailRows(
   return [
     detail.lineOrProviderLabel
       ? {
-          label: isShuttle || !isRouteLineCode(detail.lineOrProviderLabel) ? labels.provider : labels.line,
+          label:
+            isShuttle || !isRouteLineCode(detail.lineOrProviderLabel)
+              ? labels.provider
+              : labels.line,
           value: detail.lineOrProviderLabel,
         }
       : undefined,
@@ -797,7 +859,10 @@ export function getTransportationRouteDetailRows(
     originPointFor(option, language)
       ? {
           label: isTaxi ? labels.origin : labels.boarding,
-          value: localizePoint(originPointFor(option, language), language) as string,
+          value: localizePoint(
+            originPointFor(option, language),
+            language,
+          ) as string,
         }
       : undefined,
     detail.alightingPointLabel
@@ -807,13 +872,19 @@ export function getTransportationRouteDetailRows(
       ? { label: labels.transfer, value: detail.transferLabel }
       : undefined,
     detail.walkNoteLabel && option.routeFact
-      ? { label: labels.walking, value: localizedWalkNote(option.routeFact, language) || detail.walkNoteLabel }
+      ? {
+          label: labels.walking,
+          value:
+            localizedWalkNote(option.routeFact, language) ||
+            detail.walkNoteLabel,
+        }
       : undefined,
     detail.destinationLabel
       ? {
           label: labels.destination,
           value:
-            localizePoint(detail.destinationLabel, language) || detail.destinationLabel,
+            localizePoint(detail.destinationLabel, language) ||
+            detail.destinationLabel,
         }
       : undefined,
   ].filter(Boolean) as { label: string; value: string }[];
@@ -885,13 +956,22 @@ function formatFare(e: Estimate, l: TranslationLanguage) {
   const x = I18N[l];
   return `${x.approx} €${formatRange(e.fare[0], e.fare[1])}`;
 }
-function localizedWalkNote(fact: TransportationRouteFact, language: TranslationLanguage) {
+function localizedWalkNote(
+  fact: TransportationRouteFact,
+  language: TranslationLanguage,
+) {
   if (language === "en") return I18N.en.noteTemplates.walk(fact);
   if (/station bus|official station bus/i.test(fact.walkNote || ""))
-    return I18N[language].noteTemplates.stationBus(fact) || I18N[language].noteTemplates.walk(fact);
+    return (
+      I18N[language].noteTemplates.stationBus(fact) ||
+      I18N[language].noteTemplates.walk(fact)
+    );
   return I18N[language].noteTemplates.walk(fact);
 }
-function localizedOfficialCheckNote(fact: TransportationRouteFact, language: TranslationLanguage) {
+function localizedOfficialCheckNote(
+  fact: TransportationRouteFact,
+  language: TranslationLanguage,
+) {
   if (language === "en") return I18N.en.noteTemplates.officialCheck(fact);
   return I18N[language].noteTemplates.officialCheck(fact);
 }
@@ -954,11 +1034,7 @@ export function getTransportationCompactSummaryLabel(
     I18N[language].modes[option.mode] ||
     option.modeLabel;
   const shortHint = String(hint).split(" / ").slice(0, 2).join(" / ");
-  return [
-    shortHint,
-    option.estimatedDurationLabel,
-    option.estimatedFareLabel,
-  ]
+  return [shortHint, option.estimatedDurationLabel, option.estimatedFareLabel]
     .filter(Boolean)
     .join(" · ")
     .slice(0, 72);
@@ -1016,7 +1092,12 @@ function stepsFor(
   origin: TransportationV2Option["originGroup"],
   l: TranslationLanguage,
   details?: TransportationRouteDetailDisplayModel,
+  guide?: TransportationGuide,
 ): string[] {
+  if (l === "en" && guide?.steps.length)
+    return [...guide.steps]
+      .sort((a, b) => a.order - b.order)
+      .map((step) => step.description);
   if (l !== "tr") {
     if (origin === "shuttle" || mode === "shuttle")
       return I18N[l].steps.shuttle;
@@ -1037,7 +1118,9 @@ function stepsFor(
       "Trafik ve dönüş saatini alışverişten önce tekrar kontrol et.",
     ];
   if (origin === "shuttle" || mode === "shuttle") {
-    const earlyPoint = route?.includes("Zani Viaggi") ? "Milano Centrale kalkış noktasına" : (board || "Belirtilen kalkış noktasına");
+    const earlyPoint = route?.includes("Zani Viaggi")
+      ? "Milano Centrale kalkış noktasına"
+      : board || "Belirtilen kalkış noktasına";
     return [
       `${route || "Shuttle sağlayıcısı"} kalkış noktasını ve saatini kontrol et.`,
       "Gerekiyorsa bileti veya rezervasyonu seyahatten önce tamamla.",
@@ -1065,10 +1148,13 @@ function stepsFor(
   const steps = [
     `${origin === "airport" ? "Havalimanındaki toplu ulaşım noktasından" : "Şehir merkezindeki uygun toplu ulaşım noktasından"} başla.`,
   ];
-  if (route) steps.push(`${route} ile ${alight || dest || "outlet yönüne"} git.`);
+  if (route)
+    steps.push(`${route} ile ${alight || dest || "outlet yönüne"} git.`);
   if (transfer) steps.push(`${transfer} aktarmasını takip et.`);
   if (alight) steps.push(`${alight} durağında in.`);
-  steps.push(`${dest || "Outlet girişine"} yürüyerek veya yerel servisle devam et.`);
+  steps.push(
+    `${dest || "Outlet girişine"} yürüyerek veya yerel servisle devam et.`,
+  );
   steps.push("Dönüş saatlerini alışverişten önce kontrol et.");
   return steps.slice(0, 5);
 }
@@ -1082,17 +1168,22 @@ function optionFromGuide(
       : guide.originType === "airport"
         ? "airport"
         : "city";
-  const km = distanceFor(guide);
   const routeFact = getTransportationRouteFact(guide.guideId);
-  const factOrigin = factOriginGroup(routeFact);
-  const effectiveOriginGroup = factOrigin || originGroup;
-  const estimate = estimateFor(effectiveOriginGroup, guide.transportationType, km);
-  if (!estimate) return undefined;
-  const hasSourceDuration = Boolean(
-    sanitizeTransportationDisplayValue(guide.estimatedDuration, "en"),
-  );
-  const hasSourceFare = Boolean(
-    sanitizeTransportationDisplayValue(guide.estimatedCost, "en"),
+  const effectiveOriginGroup = factOriginGroup(routeFact) || originGroup;
+  const isSourceBacked =
+    routeFact?.confidence === "exact" || routeFact?.confidence === "partial";
+  const estimate = isSourceBacked
+    ? undefined
+    : estimateFor(
+        effectiveOriginGroup,
+        guide.transportationType,
+        distanceFor(guide),
+      );
+  if (!isSourceBacked && !estimate) return undefined;
+  const details = extractRouteDetails(
+    guide,
+    effectiveOriginGroup,
+    guide.transportationType,
   );
   return {
     id: guide.guideId,
@@ -1103,19 +1194,20 @@ function optionFromGuide(
     estimatedDurationLabel: "",
     estimatedFareLabel: "",
     title: guide.title,
-    routeDetails: extractRouteDetails(
-      guide,
-      effectiveOriginGroup,
-      guide.transportationType,
-    ),
-    steps: [],
-    sourceConfidence:
-      routeFact?.confidence === "exact" || (hasSourceDuration && hasSourceFare) ? "source" : estimate.confidence,
-    hasOnlyFallbackMeta: false,
-    hasUsefulEstimate: true,
-    hasUsefulFare: true,
-    isUsefulForPrimaryDisplay: true,
-    isUsefulForSummaryDisplay: true,
+    routeDetails: details,
+    steps: guide.steps.length
+      ? [...guide.steps]
+          .sort((a, b) => a.order - b.order)
+          .map((step) => step.description)
+      : [],
+    sourceConfidence: isSourceBacked ? "source" : estimate!.confidence,
+    hasOnlyFallbackMeta: !isSourceBacked,
+    hasUsefulEstimate: Boolean(guide.estimatedDuration),
+    hasUsefulFare: Boolean(guide.estimatedCost),
+    isUsefulForPrimaryDisplay:
+      isSourceBacked || Boolean(guide.estimatedDuration && guide.estimatedCost),
+    isUsefulForSummaryDisplay:
+      isSourceBacked || Boolean(guide.estimatedDuration && guide.estimatedCost),
     guide,
     routeFact,
   };
@@ -1162,87 +1254,109 @@ export function getTransportationOptionDisplayModel(
   language: TranslationLanguage,
 ): TransportationV2Option {
   const guide = option.guide;
-  const originGroup = option.originGroup;
-  const estimate = estimateFor(originGroup, option.mode, distanceFor(guide));
-  if (!estimate) return option;
   const fact = option.routeFact || getTransportationRouteFact(guide.guideId);
-  const factEstimate = fact?.estimatedDurationMin && fact?.estimatedDurationMax ? { duration: [fact.estimatedDurationMin, fact.estimatedDurationMax] as [number, number], fare: [fact.estimatedFareMin || estimate.fare[0], fact.estimatedFareMax || estimate.fare[1]] as [number, number], confidence: option.sourceConfidence } : undefined;
+  const sourceBacked =
+    fact?.confidence === "exact" || fact?.confidence === "partial";
+  const estimate = sourceBacked
+    ? undefined
+    : estimateFor(option.originGroup, option.mode, distanceFor(guide));
+  const factEstimate =
+    fact?.estimatedDurationMin && fact?.estimatedDurationMax
+      ? {
+          duration: [fact.estimatedDurationMin, fact.estimatedDurationMax] as [
+            number,
+            number,
+          ],
+          fare: [fact.estimatedFareMin || 0, fact.estimatedFareMax || 0] as [
+            number,
+            number,
+          ],
+          confidence: option.sourceConfidence,
+        }
+      : undefined;
   const durationLabel =
-    (fact?.displayDuration ? `${I18N[language].approx} ${fact.displayDuration}` : undefined) ||
+    (fact?.displayDuration
+      ? `${I18N[language].approx} ${fact.displayDuration}`
+      : undefined) ||
     (factEstimate ? formatDuration(factEstimate, language) : undefined) ||
     formatTransportDurationForDisplay(guide.estimatedDuration, language) ||
-    formatDuration(estimate, language);
+    (estimate ? formatDuration(estimate, language) : undefined);
   const fareLabel =
-    (fact?.displayFare ? `${I18N[language].approx} ${fact.displayFare}` : undefined) ||
-    (factEstimate && fact?.estimatedFareMin ? formatFare(factEstimate, language) : undefined) ||
+    (fact?.displayFare
+      ? `${I18N[language].approx} ${fact.displayFare}`
+      : undefined) ||
+    (factEstimate && fact?.estimatedFareMin
+      ? formatFare(factEstimate, language)
+      : undefined) ||
     formatTransportFareForDisplay(guide.estimatedCost, language) ||
-    formatFare(
-      originGroup === "shuttle" && guide.originType === "airport"
-        ? { ...estimate, duration: [60, 150], fare: [15, 45] }
-        : estimate,
+    (estimate ? formatFare(estimate, language) : undefined);
+  const displayDetails = extractRouteDetails(
+    guide,
+    option.originGroup,
+    option.mode,
+  );
+  if (fact) {
+    displayDetails.boardingPointLabel = localizePoint(
+      displayDetails.boardingPointLabel,
       language,
     );
-  const sourceConfidence: SourceConfidence =
-    formatTransportDurationForDisplay(guide.estimatedDuration, language) &&
-    formatTransportFareForDisplay(guide.estimatedCost, language)
-      ? "source"
-      : option.sourceConfidence;
-  const displayDetails = extractRouteDetails(guide, originGroup, option.mode);
-  if (fact) {
-    displayDetails.boardingPointLabel = localizePoint(displayDetails.boardingPointLabel, language);
-    displayDetails.transferLabel = fact.transferPoints?.map((point) => localizePoint(point, language) || point).join(" / ");
-    displayDetails.alightingPointLabel = localizePoint(fact.alightingPoint, language);
+    displayDetails.transferLabel = fact.transferPoints
+      ?.map((point) => localizePoint(point, language) || point)
+      .join(" / ");
+    displayDetails.alightingPointLabel = localizePoint(
+      fact.alightingPoint,
+      language,
+    );
     displayDetails.destinationLabel = localizePoint(fact.destination, language);
     displayDetails.walkNoteLabel = localizedWalkNote(fact, language);
-    displayDetails.officialCheckNoteLabel = localizedOfficialCheckNote(fact, language);
+    displayDetails.officialCheckNoteLabel = localizedOfficialCheckNote(
+      fact,
+      language,
+    );
     displayDetails.routeHintLabel = compactJoin([
       displayDetails.lineOrProviderLabel || fact.provider || fact.operator,
-      (localizePoint(fact.alightingPoint, language) || fact.alightingPoint) ||
-        (localizePoint(fact.boardingPoint, language) || fact.boardingPoint) ||
-        (localizePoint(fact.destination, language) || fact.destination),
+      displayDetails.alightingPointLabel ||
+        displayDetails.boardingPointLabel ||
+        displayDetails.destinationLabel,
     ]);
   }
-  if (!displayDetails.routeHintLabel) {
+  if (!displayDetails.routeHintLabel)
     displayDetails.routeHintLabel = ["taxi", "uber"].includes(option.mode)
       ? I18N[language].modes.taxi
       : I18N[language].modes[option.mode] || I18N[language].modes.metro;
-  }
   return {
     ...option,
-    originLabel: originLabelFor(originGroup, language),
+    originLabel: originLabelFor(option.originGroup, language),
     modeLabel: I18N[language].modes[option.mode] || option.mode,
-    title: titleFor(option.mode, originGroup, language).replace(
-      /\b(shuttle)\s+\1\b/gi,
-      "$1",
-    ),
+    title:
+      language === "en"
+        ? guide.title
+        : titleFor(option.mode, option.originGroup, language),
     duration: durationLabel,
     fare: fareLabel,
     durationLabel,
     fareLabel,
-    estimatedDurationLabel: durationLabel,
-    estimatedFareLabel: fareLabel,
+    estimatedDurationLabel: durationLabel || "",
+    estimatedFareLabel: fareLabel || "",
     note: undefined,
-    noteLabel:
-      (fact ? localizedOfficialCheckNote(fact, language) : undefined) ||
-      (["taxi", "uber"].includes(option.mode)
-        ? I18N[language].note
-        : displayDetails.hasSourceBackedRouteDetail
-          ? undefined
-          : I18N[language].routeLabels.checkRoute),
+    noteLabel: fact ? localizedOfficialCheckNote(fact, language) : undefined,
     providerNote: undefined,
     routeDetails: displayDetails,
     steps: stepsFor(
       option.mode,
-      originGroup,
+      option.originGroup,
       language,
       displayDetails,
+      guide,
     ),
-    sourceConfidence: fact?.confidence === "exact" ? "source" : sourceConfidence,
-    hasOnlyFallbackMeta: false,
-    hasUsefulEstimate: true,
-    hasUsefulFare: true,
-    isUsefulForPrimaryDisplay: true,
-    isUsefulForSummaryDisplay: true,
+    sourceConfidence: sourceBacked ? "source" : option.sourceConfidence,
+    hasOnlyFallbackMeta: !sourceBacked,
+    hasUsefulEstimate: Boolean(durationLabel),
+    hasUsefulFare: Boolean(fareLabel),
+    isUsefulForPrimaryDisplay:
+      sourceBacked || Boolean(durationLabel && fareLabel),
+    isUsefulForSummaryDisplay:
+      sourceBacked || Boolean(durationLabel && fareLabel),
   };
 }
 export function isSourceBackedValue(value: string | undefined): boolean {
@@ -1258,13 +1372,31 @@ export function getTransportationV2Options(
     .filter((g) => g.outletId === outletId)
     .map(optionFromGuide)
     .filter(Boolean) as TransportationV2Option[];
-  return dedupeOptions([...fromGuides, ...syntheticOptions(outletId)]);
+  return dedupeOptions(
+    fromGuides.length ? fromGuides : syntheticOptions(outletId),
+  );
 }
 function routePriority(option: TransportationV2Option) {
   const detail = option.routeDetails;
-  if ((option.originGroup === "shuttle" || option.mode === "shuttle") && detail.confidence === "exact" && detail.boardingPointLabel && option.estimatedFareLabel) return 100;
-  if (option.originGroup === "city" && PUBLIC_TYPES.has(option.mode) && detail.confidence === "exact") return 90;
-  if (option.originGroup === "airport" && PUBLIC_TYPES.has(option.mode) && detail.confidence === "exact") return 80;
+  if (
+    (option.originGroup === "shuttle" || option.mode === "shuttle") &&
+    detail.confidence === "exact" &&
+    detail.boardingPointLabel &&
+    option.estimatedFareLabel
+  )
+    return 100;
+  if (
+    option.originGroup === "city" &&
+    PUBLIC_TYPES.has(option.mode) &&
+    detail.confidence === "exact"
+  )
+    return 90;
+  if (
+    option.originGroup === "airport" &&
+    PUBLIC_TYPES.has(option.mode) &&
+    detail.confidence === "exact"
+  )
+    return 80;
   if (
     (option.originGroup === "shuttle" || option.mode === "shuttle") &&
     (detail.lineOrProviderLabel || detail.boardingPointLabel)
@@ -1289,7 +1421,11 @@ export function getRecommendedTransportationV2Option(
   outletId: string,
 ): TransportationV2Option | undefined {
   const options = getTransportationV2Options(outletId);
-  return [...options].sort((a, b) => routePriority(b) - routePriority(a))[0];
+  return [...options].sort(
+    (a, b) =>
+      Number(b.guide.recommended) - Number(a.guide.recommended) ||
+      routePriority(b) - routePriority(a),
+  )[0];
 }
 export function getOutletTransportationV2Summary(
   outletId: string,
@@ -1317,29 +1453,32 @@ export function getOutletTransportationV2Summary(
 function dedupeOptions(
   options: TransportationV2Option[],
 ): TransportationV2Option[] {
-  const hasSourcedPublic = new Set(
+  const sourcedPublicOrigins = new Set(
     options
       .filter(
         (option) =>
           PUBLIC_TYPES.has(option.mode) &&
           option.routeDetails.confidence !== "estimateOnly",
       )
-      .map((option) => `${option.originGroup}|public`),
+      .map((option) => option.originGroup),
   );
   const seen = new Set<string>();
-  return options.filter((o) => {
-    const broadMode = PUBLIC_TYPES.has(o.mode) ? "public" : o.mode;
+  return options.filter((option) => {
     if (
-      o.routeDetails.confidence === "estimateOnly" &&
-      hasSourcedPublic.has(`${o.originGroup}|${broadMode}`)
+      option.routeDetails.confidence === "estimateOnly" &&
+      PUBLIC_TYPES.has(option.mode) &&
+      sourcedPublicOrigins.has(option.originGroup)
     )
       return false;
     if (
-      (o.originGroup === "shuttle" || o.mode === "shuttle") &&
-      !hasSourceBackedShuttleRouteDetail(o)
+      (option.originGroup === "shuttle" || option.mode === "shuttle") &&
+      !hasSourceBackedShuttleRouteDetail(option)
     )
       return false;
-    const key = `${o.originGroup}|${broadMode}`;
+    const key =
+      option.routeDetails.confidence === "estimateOnly"
+        ? `${option.originGroup}|${PUBLIC_TYPES.has(option.mode) ? "public" : option.mode}`
+        : option.id;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;

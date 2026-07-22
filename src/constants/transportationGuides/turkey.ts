@@ -85,9 +85,9 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     originType: "city_center",
     originId: "istanbul-city-center",
     transportationType: "taxi",
-    title: "Istanbul to Viaport Asia by Car or Taxi",
+    title: "Istanbul to Viaport Asia by Taxi or Road Access",
     estimatedDuration: "",
-    estimatedCost: "Free parking",
+    estimatedCost: "",
     recommended: false,
     steps: [
       {
@@ -262,7 +262,7 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     originType: "city_center",
     originId: "istanbul-city-center",
     transportationType: "taxi",
-    title: "Istanbul to Olivium by Car or Taxi",
+    title: "Istanbul to Olivium by Taxi or Road Access",
     estimatedDuration: "",
     estimatedCost: "",
     recommended: false,
@@ -428,9 +428,9 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     originType: "city_center",
     originId: "istanbul-city-center",
     transportationType: "taxi",
-    title: "Istanbul to StarCity by Car or Taxi",
+    title: "Istanbul to StarCity by Taxi or Road Access",
     estimatedDuration: "",
-    estimatedCost: "Free parking",
+    estimatedCost: "",
     recommended: false,
     steps: [
       {
@@ -594,7 +594,7 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     originType: "city_center",
     originId: "istanbul-city-center",
     transportationType: "taxi",
-    title: "Istanbul to Venezia Mega Outlet by Car or Taxi",
+    title: "Istanbul to Venezia Mega Outlet by Taxi or Road Access",
     estimatedDuration: "",
     estimatedCost: "",
     recommended: false,
