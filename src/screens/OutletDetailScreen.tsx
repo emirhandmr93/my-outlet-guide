@@ -98,15 +98,7 @@ const countryNames: Record<string, string> = {
 
 export function OutletDetailScreen() {
   const route = useRoute<RouteProp<RouteParams, "OutletDetail">>();
-  const navigation = useNavigation<any>();
-  const { t, language } = useTranslation();
-  const insets = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
-  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
-  const { reviews, deleteReview, reportReview, toggleHelpful, loadReviews } = useReviews();
-  const { currentUser, isLoggedIn } = useUser();
-  const { toggleFavorite, isFavorite } = useFavorites();
-
+  const { t } = useTranslation();
   const matchingOutlet = outlets.find(
     (item) => item?.outletId === route.params?.outletId,
   );
@@ -119,7 +111,23 @@ export function OutletDetailScreen() {
     );
   }
 
-  const outlet = matchingOutlet;
+  return <OutletDetailContent />;
+}
+
+function OutletDetailContent() {
+  const route = useRoute<RouteProp<RouteParams, "OutletDetail">>();
+  const navigation = useNavigation<any>();
+  const { t, language } = useTranslation();
+  const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
+  const { reviews, deleteReview, reportReview, toggleHelpful, loadReviews } = useReviews();
+  const { currentUser, isLoggedIn } = useUser();
+  const { toggleFavorite, isFavorite } = useFavorites();
+
+  const outlet = outlets.find(
+    (item) => item?.outletId === route.params?.outletId,
+  )!;
 
   const safeGalleryImages = useMemo(() => {
     return getOutletMediaImages(outlet, { mode: outletMediaMode });
