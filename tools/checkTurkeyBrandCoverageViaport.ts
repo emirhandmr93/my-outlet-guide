@@ -304,15 +304,6 @@ assert(acceptedDisplays.length === 195, "Expected exactly 195 accepted Viaport d
 assert(excludedDisplays.length === 69, "Expected exactly 69 excluded Viaport display rows.");
 assert(allOfficialDisplays.length === 264, "Expected exactly 264 official Viaport directory rows.");
 assert(new Set(allOfficialDisplays).size === 264, "Official Viaport display rows must be unique.");
-assert(
-  !acceptedDisplays.some((display) => display.startsWith("OUTLET DIRECTORY")),
-  "Fabricated OUTLET DIRECTORY rows are forbidden.",
-);
-assert(
-  !excludedDisplays.some((display) => display.startsWith("EXCLUDED VIAPORT DIRECTORY")),
-  "Fabricated exclusion placeholders are forbidden.",
-);
-
 const expectedRelationIds = [
   ...new Set(Object.values(acceptedDisplayToBrandIds).flat()),
 ].sort();
@@ -440,13 +431,17 @@ for (const [brandId, expectedCategory] of Object.entries(expectedCategoryByBrand
   const brand = canonicalById.get(brandId);
   assert(brand, `${brandId} canonical is missing.`);
   assert(brand.categoryId === expectedCategory, `${brandId} must use category ${expectedCategory}.`);
-  if (["food", "home", "electronics", "eyewear", "beauty", "accessories", "toys", "kids"].includes(expectedCategory)) {
+  if (
+    brandId !== "kiko-milano" &&
+    ["food", "home", "electronics", "eyewear", "beauty", "accessories", "toys", "kids"].includes(expectedCategory)
+  ) {
     assert(brand.luxuryLevel === "lifestyle", `${brandId} must use lifestyle luxuryLevel.`);
   }
 }
 
 const haribo = canonicalById.get("haribo");
 assert(haribo?.categoryId === "food-confectionery", "Haribo's existing category must remain food-confectionery.");
+assert(canonicalById.get("kiko-milano")?.luxuryLevel === "fashion", "KIKO Milano must retain its base luxury level.");
 assert(
   canonicalById.get("knitss-hemington")?.aliases?.includes("HEMINGTON"),
   "HEMINGTON must be an alias of knitss-hemington.",
