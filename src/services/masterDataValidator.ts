@@ -4,7 +4,7 @@ import { countries } from "../constants/countries";
 import { brands } from "../constants/brands";
 import { outletBrands } from "../constants/outletBrands";
 import { restaurants } from "../constants/restaurants";
-import { outlets } from "../constants/outlets";
+import { allOutlets } from "../constants/outlets";
 import { transportation } from "../constants/transportation";
 import { transportationGuides } from "../constants/transportationGuides";
 import { taxFreeRules } from "../constants/taxFreeRules";
@@ -79,7 +79,7 @@ const findDuplicates = <T>(items: T[], getId: (item: T) => string): Map<string, 
 const validateCoreReferences = (issues: MasterDataValidationIssue[]): void => {
   const countryIds = new Set(countries.map((country) => String(country.countryId ?? "").trim()).filter(Boolean));
   const cityIds = new Set(cities.map((city) => String(city.cityId ?? "").trim()).filter(Boolean));
-  const outletIds = new Set(outlets.map((outlet) => String(outlet.outletId ?? "").trim()).filter(Boolean));
+  const outletIds = new Set(allOutlets.map((outlet) => String(outlet.outletId ?? "").trim()).filter(Boolean));
   const categoryIds = new Set(categories.map((category) => String(category.categoryId ?? "").trim()).filter(Boolean));
   const brandIds = new Set(brands.map((brand) => String(brand.brandId ?? "").trim()).filter(Boolean));
 
@@ -98,11 +98,11 @@ const validateCoreReferences = (issues: MasterDataValidationIssue[]): void => {
     }
   });
 
-  findDuplicates(outlets, (outlet) => String(outlet.outletId ?? "").trim()).forEach((count, outletId) =>
+  findDuplicates(allOutlets, (outlet) => String(outlet.outletId ?? "").trim()).forEach((count, outletId) =>
     pushIssue(issues, "DUPLICATE_OUTLET_ID", `outletId ${outletId} appears ${count} times.`, { outletId, businessName: outletId })
   );
 
-  outlets.forEach((outlet) => {
+  allOutlets.forEach((outlet) => {
     const outletId = String(outlet.outletId ?? "").trim();
     const countryId = String(outlet.countryId ?? "").trim();
     const cityId = String(outlet.cityId ?? "").trim();
@@ -246,7 +246,7 @@ const validateTransportationGuides = (
   issues: MasterDataValidationIssue[]
 ): void => {
   const validOutletIds = new Set(
-    outlets
+    allOutlets
       .map((outlet) => String(outlet.outletId ?? "").trim())
       .filter(Boolean)
   );

@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import { outlets } from "../src/constants/outlets";
+import { allOutlets } from "../src/constants/outlets";
 import { outletBrands } from "../src/constants/outletBrands";
 import { restaurants } from "../src/constants/restaurants";
 import { transportation } from "../src/constants/transportation";
@@ -47,7 +47,7 @@ for (const outletId of targetOutletIds) {
   assert(outletSource(currentTurkeySource, outletId) !== outletSource(baseTurkeySource, outletId), `${outletId} must be updated by Batch B.`);
 }
 
-const turkeyOutlets = outlets.filter((outlet) => outlet.countryId === "turkey");
+const turkeyOutlets = allOutlets.filter((outlet) => outlet.countryId === "turkey");
 const byId = (outletId: string) => turkeyOutlets.find((outlet) => outlet.outletId === outletId);
 assert(turkeyOutlets.length === 8, "Expected exactly eight Turkey outlets.");
 assert(turkeyOutlets.filter((outlet) => targetOutletIds.has(outlet.outletId)).length === targetOutletIds.size, "Expected exactly the four Batch B target outlets.");
