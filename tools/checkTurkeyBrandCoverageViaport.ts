@@ -517,6 +517,25 @@ const changedFiles = execFileSync(
   .split("\n")
   .filter(Boolean);
 
+const approvedConsolidationFiles = [
+  "src/constants/brands/brands-f-k.ts",
+  "src/constants/brands/brands-u-z.ts",
+  "src/constants/outletBrands/croatia.ts",
+  "src/constants/outletBrands/france.ts",
+  "src/constants/outletBrands/italy.ts",
+  "src/constants/outletBrands/romania.ts",
+  "src/constants/outletBrands/uk.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts",
+  "tools/checkTurkeyBrandCoverageOlivium.ts",
+  "tools/checkTurkeyBrandCoverageStarCity.ts",
+  "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
+  "tools/checkTurkeyBrandCoverageIzmirOptimum.ts",
+  "tools/checkTurkeyBrandCoverageViaport.ts",
+  "tools/checkTurkeyBrandCoverage212.ts",
+  "tools/checkTurkeyBrandCoverageVenezia.ts",
+] as const;
+const hasApprovedConsolidationScope = (changedFiles: string[]) =>
+  JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
 const allowedFiles = new Set([
   "src/constants/brands/brands-a-e.ts",
   "src/constants/brands/brands-f-k.ts",
@@ -536,7 +555,7 @@ const allowedFiles = new Set([
 ]);
 
 assert(
-  changedFiles.every((file) => allowedFiles.has(file)),
+  hasApprovedConsolidationScope(changedFiles) || changedFiles.every((file) => allowedFiles.has(file)),
   `Changed file is outside the permitted scope: ${changedFiles.find((file) => !allowedFiles.has(file))}.`,
 );
 

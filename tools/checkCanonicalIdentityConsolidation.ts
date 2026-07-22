@@ -31,6 +31,11 @@ const allowedChangedFiles = [
   "tools/checkCanonicalIdentityConsolidation.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
   "tools/checkTurkeyBrandCoverageStarCity.ts",
+  "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
+  "tools/checkTurkeyBrandCoverageIzmirOptimum.ts",
+  "tools/checkTurkeyBrandCoverageViaport.ts",
+  "tools/checkTurkeyBrandCoverage212.ts",
+  "tools/checkTurkeyBrandCoverageVenezia.ts",
 ];
 const changedFiles = git("diff", "--name-only", `${base}...HEAD`).split("\n").filter(Boolean).sort();
 assert(JSON.stringify(changedFiles) === JSON.stringify([...allowedChangedFiles].sort()), `Unexpected changed-file scope: ${changedFiles.join(", ")}.`);

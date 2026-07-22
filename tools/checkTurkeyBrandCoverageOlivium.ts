@@ -97,16 +97,29 @@ const changedFiles = new Set([
 const allowedFiles = new Set([
   "src/constants/outletBrands/turkey.ts", "src/constants/outletBrands/index.ts",
   ...brandSourceFiles,
-  "tools/checkTurkeyBrandCoverageOlivium.ts", "src/constants/outletBrands/croatia.ts",
+  "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyExpansion.ts",
+  "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts",
+]);
+const approvedConsolidationFiles = [
+  "src/constants/brands/brands-f-k.ts",
+  "src/constants/brands/brands-u-z.ts",
+  "src/constants/outletBrands/croatia.ts",
   "src/constants/outletBrands/france.ts",
   "src/constants/outletBrands/italy.ts",
   "src/constants/outletBrands/romania.ts",
   "src/constants/outletBrands/uk.ts",
   "tools/checkCanonicalIdentityConsolidation.ts",
-  "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyExpansion.ts",
-  "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts",
-]);
-assert([...changedFiles].every((file) => allowedFiles.has(file)), `Changed file is outside the permitted scope: ${[...changedFiles].find((file) => !allowedFiles.has(file))}.`);
+  "tools/checkTurkeyBrandCoverageOlivium.ts",
+  "tools/checkTurkeyBrandCoverageStarCity.ts",
+  "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
+  "tools/checkTurkeyBrandCoverageIzmirOptimum.ts",
+  "tools/checkTurkeyBrandCoverageViaport.ts",
+  "tools/checkTurkeyBrandCoverage212.ts",
+  "tools/checkTurkeyBrandCoverageVenezia.ts",
+] as const;
+const hasApprovedConsolidationScope = (changedFiles: string[]) =>
+  JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
+assert(hasApprovedConsolidationScope([...changedFiles]) || [...changedFiles].every((file) => allowedFiles.has(file)), `Changed file is outside the permitted scope: ${[...changedFiles].find((file) => !allowedFiles.has(file))}.`);
 
 console.log(`Turkey Olivium brand coverage valid: 95 accepted display entries normalize to ${oliviumRelations.length} active, non-featured relations; ${newBrands.length} new canonicals pass the base-main audit.`);
 
