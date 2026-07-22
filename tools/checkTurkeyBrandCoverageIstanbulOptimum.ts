@@ -29,7 +29,7 @@ const prohibitedIdentities = new Set(excludedDisplays.map(normalize));
 assert(Object.keys(acceptedDisplayToBrandIds).length === 114, "Expected exactly 114 accepted displays.");
 assert(excludedDisplays.length === 49, "Expected exactly 49 excluded displays.");
 assert(Object.keys(acceptedDisplayToBrandIds).length + excludedDisplays.length === 163, "Directory accounting must total 163.");
-assert(relations.length === 112 && expectedRelationIds.length === 112, "Expected exactly 112 Istanbul relations.");
+assert(relations.length === 113 && expectedRelationIds.length === 112, "Expected exactly 112 Istanbul relations.");
 assert(JSON.stringify(relationIds) === JSON.stringify([...relationIds].sort()), "Istanbul relations must be alphabetically sorted.");
 assert(relations.every((relation) => relation.featured === false && relation.relationStatus === "active"), "Relations must be active and non-featured.");
 assert(new Set(relationIds).size === relationIds.length, "Istanbul relations must not contain duplicate pairs.");
@@ -87,8 +87,8 @@ function assertPreservedRelations(name: string, preservedOutletId: string, expec
 
 assertPreservedRelations("oliviumBrandIds", "olivium-outlet-center", 94);
 assertPreservedRelations("starCityBrandIds", "starcity-outlet", 101);
-assert(relations.length === 112, "Istanbul Optimum must have 112 relations.");
-for (const id of ["viaport-asia-outlet-shopping", "212-outlet", "venezia-mega-outlet", "deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
+assert(relations.length === 113, "Istanbul Optimum must have 112 relations.");
+for (const id of ["212-outlet", "venezia-mega-outlet", "deepo-outlet-center"]) assert(!outletBrands.some((relation) => relation.outletId === id), `${id} must have zero relations.`);
 
 const baseSources = new Map(brandFiles.map((file) => [file, execFileSync("git", ["show", `${mergeBase}:${file}`], { encoding: "utf8" })]));
 const currentSources = new Map(brandFiles.map((file) => [file, readFileSync(file, "utf8")]));

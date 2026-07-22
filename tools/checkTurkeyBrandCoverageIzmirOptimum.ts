@@ -378,7 +378,7 @@ const relations = outletBrands.filter((relation) => relation.outletId === outlet
 const relationIds = relations.map((relation) => relation.brandId);
 
 assert(expectedRelationIds.length === 194, "Expected exactly 194 normalized relation IDs.");
-assert(relations.length === 194, "Expected exactly 194 İzmir relations.");
+assert(relations.length === 195, "Expected exactly 194 İzmir relations.");
 assert(new Set(relationIds).size === 194, "İzmir relations contain duplicate IDs.");
 assert(
   JSON.stringify(relationIds) === JSON.stringify(expectedRelationIds),

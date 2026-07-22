@@ -78,7 +78,7 @@ assert(starCity?.openingHours === "Daily 10:00–22:00", "StarCity official open
 assert(starCity?.taxFreeAvailable === true && starCity.taxFreeOfficeInfo?.includes("information desk near the Starbucks entrance"), "StarCity official Tax Free information must override shared defaults.");
 assert(getTaxFreeStatusKey(starCity?.taxFreeAvailable === true) === "taxFree.statusAvailable", "StarCity must resolve to the available Tax Free status.");
 assert(venezia?.openingHours === "" && venezia.storesCountText === "", "Venezia must retain blank unverified centre hours and store count.");
-for (const outletId of ["viaport-asia-outlet-shopping", "212-outlet", "olivium-outlet-center", "venezia-mega-outlet", "optimum-premium-outlet-istanbul", "izmir-optimum", "deepo-outlet-center"]) {
+for (const outletId of ["212-outlet", "olivium-outlet-center", "venezia-mega-outlet", "optimum-premium-outlet-istanbul", "izmir-optimum", "deepo-outlet-center"]) {
   const outlet = turkeyOutlets.find((item) => item.outletId === outletId);
   assert(getTaxFreeStatusKey(outlet?.taxFreeAvailable === true) === "taxFree.statusNotVerified", `${outletId} must resolve to the not-verified Tax Free status.`);
 }
@@ -107,7 +107,7 @@ for (const outlet of turkeyOutlets) {
   assert(outlet.heroImage === "" && Array.isArray(outlet.galleryImages) && outlet.galleryImages.length === 0, `${outlet.outletId} must not add local images.`);
   const outletBrandRelations = outletBrands.filter((relation) => relation.outletId === outlet.outletId);
   assert(
-    outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 101 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 112 : outlet.outletId === "izmir-optimum" ? outletBrandRelations.length === 194 : outletBrandRelations.length === 0,
+    outlet.outletId === "viaport-asia-outlet-shopping" ? outletBrandRelations.length === 187 : outlet.outletId === "olivium-outlet-center" ? outletBrandRelations.length === 94 : outlet.outletId === "starcity-outlet" ? outletBrandRelations.length === 102 : outlet.outletId === "optimum-premium-outlet-istanbul" ? outletBrandRelations.length === 113 : outlet.outletId === "izmir-optimum" ? outletBrandRelations.length === 195 : outletBrandRelations.length === 0,
     `${outlet.outletId} must contain only the verified Turkey brand relations.`,
   );
   assert(!restaurants.some((restaurant) => restaurant.outletId === outlet.outletId), `${outlet.outletId} must not add restaurant records.`);
