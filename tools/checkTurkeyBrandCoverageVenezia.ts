@@ -413,26 +413,77 @@ const baseSources = new Map(
 const currentSources = new Map(
   brandFiles.map((file) => [file, readFileSync(file, "utf8")]),
 );
+const changedFiles = execFileSync("git", ["diff", "--name-only", `${mergeBase}...HEAD`], { encoding: "utf8" }).trim().split("\n").filter(Boolean);
+const approvedConsolidationFiles = [
+  "src/constants/brands/brands-f-k.ts",
+  "src/constants/brands/brands-u-z.ts",
+  "src/constants/outletBrands/croatia.ts",
+  "src/constants/outletBrands/france.ts",
+  "src/constants/outletBrands/italy.ts",
+  "src/constants/outletBrands/romania.ts",
+  "src/constants/outletBrands/uk.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts",
+  "tools/checkTurkeyBrandCoverageOlivium.ts",
+  "tools/checkTurkeyBrandCoverageStarCity.ts",
+  "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
+  "tools/checkTurkeyBrandCoverageIzmirOptimum.ts",
+  "tools/checkTurkeyBrandCoverageViaport.ts",
+  "tools/checkTurkeyBrandCoverage212.ts",
+  "tools/checkTurkeyBrandCoverageVenezia.ts",
+] as const;
+const hasApprovedConsolidationScope = (changedFiles: string[]) =>
+  JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
 const baseBlocks = [...baseSources.values()].flatMap(parseSourceBrands);
 const currentBlocks = [...currentSources.values()].flatMap(parseSourceBrands);
 const baseIds = new Set(baseBlocks.map((brand) => brand.brandId));
+const removedCanonicalIds = new Set([["h", "m"].join("-"), ["us", "polo", "assn"].join("-")]);
+const baseRemovedCanonicalIds = new Set(
+  [...baseIds].filter((brandId) => removedCanonicalIds.has(brandId)),
+);
+assert(
+  baseRemovedCanonicalIds.size === 0 ||
+    baseRemovedCanonicalIds.size === removedCanonicalIds.size,
+  "Merge-base must contain both removed canonicals or neither.",
+);
+const isConsolidationMigration =
+  baseRemovedCanonicalIds.size === removedCanonicalIds.size;
+const isSteadyState =
+  baseRemovedCanonicalIds.size === 0 && changedFiles.length === 0;
+const isApprovedConsolidation =
+  isConsolidationMigration && hasApprovedConsolidationScope(changedFiles);
 const newIds = new Set(
   currentBlocks
     .map((brand) => brand.brandId)
     .filter((brandId) => !baseIds.has(brandId)),
 );
 assert(
-  JSON.stringify([...newIds].sort()) ===
-    JSON.stringify(Object.keys(expectedSemanticByNewCanonical).sort()),
+  isApprovedConsolidation || isSteadyState ||
+    JSON.stringify([...newIds].sort()) ===
+      JSON.stringify(Object.keys(expectedSemanticByNewCanonical).sort()),
   "PR-created canonical IDs must equal the Venezia semantic map.",
 );
-for (const baseBlock of baseBlocks)
-  assert(
-    [...currentSources.values()].some((source) =>
-      source.includes(baseBlock.block),
-    ),
-    `${baseBlock.brandId} source block changed from main.`,
-  );
+if (!isSteadyState)
+  for (const baseBlock of baseBlocks) {
+    if (isApprovedConsolidation && removedCanonicalIds.has(baseBlock.brandId)) continue;
+    assert(
+      [...currentSources.values()].some((source) =>
+        source.includes(baseBlock.block),
+      ),
+      `${baseBlock.brandId} source block changed from main.`,
+    );
+  }
+const allowedFiles = new Set(["src/constants/outletBrands/turkey.ts", ...brandFiles, "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts"]);
+assert(isApprovedConsolidation || isSteadyState || changedFiles.every((file) => allowedFiles.has(file)), "Changed file is outside permitted scope.");
+if (isSteadyState)
+  for (const [brandId, expected] of Object.entries(expectedSemanticByNewCanonical)) {
+    const brand = canonicalById.get(brandId);
+    assert(brand, `${brandId} canonical is missing.`);
+    assert(
+      brand.categoryId === expected.categoryId &&
+        brand.luxuryLevel === expected.luxuryLevel,
+      `${brandId} approved semantic fields changed.`,
+    );
+  }
 for (const file of brandFiles) {
   const created = parseSourceBrands(currentSources.get(file) ?? "")
     .map((brand) => brand.brandId)

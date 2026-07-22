@@ -24,17 +24,6 @@ export const brandsFK: Brand[] = [
     brandStatus: "active",
   },
   {
-    brandId: "h-m",
-    brandName: "H&M",
-    aliases: [],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "italy",
-    luxuryLevel: "fashion",
-    rankingWeight: 60,
-    brandStatus: "active",
-  },
-  {
     brandId: "hanita",
     brandName: "Hanita",
     aliases: [],

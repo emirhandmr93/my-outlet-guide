@@ -9733,7 +9733,7 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "east-midlands-designer-outlet",
-    brandId: "us-polo-assn",
+    brandId: "u-s-polo-assn",
     featured: false,
     relationStatus: "active",
   },

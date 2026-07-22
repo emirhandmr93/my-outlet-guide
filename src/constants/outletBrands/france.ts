@@ -3383,7 +3383,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "one-nation-paris",
-    brandId: "us-polo-assn",
+    brandId: "u-s-polo-assn",
     featured: false,
     relationStatus: "active",
   },

@@ -191,7 +191,7 @@ const valmontoneOutletBrandIds = [
   "goldenpoint",
   "guess",
   "gutteridge",
-  "h-m",
+  "h-and-m",
   "hanita",
   "harmont-blaine",
   "harmont-blaine-junior",
@@ -7216,7 +7216,7 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "vicolungo-the-style-outlets",
-    brandId: "us-polo-assn",
+    brandId: "u-s-polo-assn",
     featured: false,
     relationStatus: "active",
   },
@@ -7726,7 +7726,7 @@ export const italyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "castel-guelfo-the-style-outlets",
-    brandId: "us-polo-assn",
+    brandId: "u-s-polo-assn",
     featured: false,
     relationStatus: "active",
   },
