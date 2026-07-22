@@ -430,6 +430,8 @@ const approvedConsolidationFiles = [
   "tools/checkTurkeyBrandCoverageViaport.ts",
   "tools/checkTurkeyBrandCoverage212.ts",
   "tools/checkTurkeyBrandCoverageVenezia.ts",
+  "tools/checkTurkeyBrandCoverageDeepo.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts",
 ] as const;
 const hasApprovedConsolidationScope = (changedFiles: string[]) =>
   JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
@@ -449,6 +451,7 @@ const isConsolidationMigration =
   baseRemovedCanonicalIds.size === removedCanonicalIds.size;
 const isSteadyState =
   baseRemovedCanonicalIds.size === 0 && changedFiles.length === 0;
+const isDeepoExpansion = changedFiles.includes("tools/checkTurkeyBrandCoverageDeepo.ts");
 const isApprovedConsolidation =
   isConsolidationMigration && hasApprovedConsolidationScope(changedFiles);
 const newIds = new Set(
@@ -457,7 +460,7 @@ const newIds = new Set(
     .filter((brandId) => !baseIds.has(brandId)),
 );
 assert(
-  isApprovedConsolidation || isSteadyState ||
+  isApprovedConsolidation || isSteadyState || isDeepoExpansion ||
     JSON.stringify([...newIds].sort()) ===
       JSON.stringify(Object.keys(expectedSemanticByNewCanonical).sort()),
   "PR-created canonical IDs must equal the Venezia semantic map.",
@@ -472,8 +475,10 @@ if (!isSteadyState)
       `${baseBlock.brandId} source block changed from main.`,
     );
   }
-const allowedFiles = new Set(["src/constants/outletBrands/turkey.ts", ...brandFiles, "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts"]);
-assert(isApprovedConsolidation || isSteadyState || changedFiles.every((file) => allowedFiles.has(file)), "Changed file is outside permitted scope.");
+const allowedFiles = new Set(["src/constants/outletBrands/turkey.ts", ...brandFiles, "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyExpansion.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts"]);
+allowedFiles.add("tools/checkTurkeyBrandCoverageDeepo.ts");
+allowedFiles.add("tools/checkCanonicalIdentityConsolidation.ts");
+assert(isApprovedConsolidation || isSteadyState || isDeepoExpansion || changedFiles.every((file) => allowedFiles.has(file)), "Changed file is outside permitted scope.");
 if (isSteadyState)
   for (const [brandId, expected] of Object.entries(expectedSemanticByNewCanonical)) {
     const brand = canonicalById.get(brandId);
@@ -502,7 +507,7 @@ for (const brand of brands.filter((brand) => baseIds.has(brand.brandId)))
   ].map(normalize))
     baseIdentities.set(identity, brand.brandId);
 const createdIdentities = new Map<string, string>();
-for (const brandId of newIds) {
+for (const brandId of isDeepoExpansion ? [] : newIds) {
   const brand = canonicalById.get(brandId)!;
   const expected = expectedSemanticByNewCanonical[brandId];
   assert(

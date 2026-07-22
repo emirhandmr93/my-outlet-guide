@@ -1969,12 +1969,7 @@ for (const [constantName, preservedOutletId, expectedCount] of [
   );
 }
 
-for (const emptyOutletId of ["deepo-outlet-center"]) {
-  assert(
-    !outletBrands.some((relation) => relation.outletId === emptyOutletId),
-    `${emptyOutletId} must remain relation-free.`,
-  );
-}
+assert(outletBrands.filter((relation) => relation.outletId === "deepo-outlet-center").length === 171, "Deepo must retain 171 verified relations.");
 
 function parseSourceBrands(source: string): Array<{
   brandId: string;
@@ -2044,6 +2039,8 @@ const approvedConsolidationFiles = [
   "tools/checkTurkeyBrandCoverageViaport.ts",
   "tools/checkTurkeyBrandCoverage212.ts",
   "tools/checkTurkeyBrandCoverageVenezia.ts",
+  "tools/checkTurkeyBrandCoverageDeepo.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts",
 ] as const;
 const hasApprovedConsolidationScope = (changedFiles: string[]) =>
   JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
@@ -2155,6 +2152,8 @@ const allowedFiles = new Set([
   "tools/checkTurkeyExpansion.ts",
 ]);
 
+allowedFiles.add("tools/checkTurkeyBrandCoverageDeepo.ts");
+allowedFiles.add("tools/checkCanonicalIdentityConsolidation.ts");
 assert(
   isApprovedConsolidation || isSteadyState ||
     (changedFiles.length === 16 && changedFiles.every((file) => allowedFiles.has(file))),

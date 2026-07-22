@@ -501,12 +501,7 @@ for (const [constantName, preservedOutletId, expectedCount] of [
   );
 }
 
-for (const emptyOutletId of ["deepo-outlet-center"]) {
-  assert(
-    !outletBrands.some((relation) => relation.outletId === emptyOutletId),
-    `${emptyOutletId} must remain relation-free.`,
-  );
-}
+assert(outletBrands.filter((relation) => relation.outletId === "deepo-outlet-center").length === 171, "Deepo must retain 171 verified relations.");
 
 const changedFiles = execFileSync(
   "git",
@@ -533,6 +528,8 @@ const approvedConsolidationFiles = [
   "tools/checkTurkeyBrandCoverageViaport.ts",
   "tools/checkTurkeyBrandCoverage212.ts",
   "tools/checkTurkeyBrandCoverageVenezia.ts",
+  "tools/checkTurkeyBrandCoverageDeepo.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts",
 ] as const;
 const hasApprovedConsolidationScope = (changedFiles: string[]) =>
   JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
@@ -545,7 +542,7 @@ const allowedFiles = new Set([
   "src/constants/outletBrands/turkey.ts",
   "tools/checkTurkeyBasicMetadataBatchA.ts",
   "tools/checkTurkeyBasicMetadataBatchB.ts",
-  "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts",
+  "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts",
   "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
   "tools/checkTurkeyBrandCoverageIzmirOptimum.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
@@ -554,6 +551,8 @@ const allowedFiles = new Set([
   "tools/checkTurkeyExpansion.ts",
 ]);
 
+allowedFiles.add("tools/checkTurkeyBrandCoverageDeepo.ts");
+allowedFiles.add("tools/checkCanonicalIdentityConsolidation.ts");
 assert(
   hasApprovedConsolidationScope(changedFiles) || changedFiles.every((file) => allowedFiles.has(file)),
   `Changed file is outside the permitted scope: ${changedFiles.find((file) => !allowedFiles.has(file))}.`,

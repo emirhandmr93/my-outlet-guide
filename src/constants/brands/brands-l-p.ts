@@ -7001,6 +7001,16 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "mado",
+    brandName: "Mado",
+    aliases: ["Mado Dondurma"],
+    categoryId: "food",
+    logo: "",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
     brandId: "manuka",
     brandName: "MANUKA",
     aliases: [],
@@ -7100,14 +7110,5 @@ export const brandsLP: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
-  {
-    brandId: "mado",
-    brandName: "Mado",
-    aliases: ["Mado Dondurma"],
-    categoryId: "food",
-    logo: "",
-    luxuryLevel: "lifestyle",
-    rankingWeight: 50,
-    brandStatus: "active",
-  },
+
 ];

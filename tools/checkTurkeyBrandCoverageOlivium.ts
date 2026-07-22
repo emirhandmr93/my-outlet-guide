@@ -47,7 +47,8 @@ assert(turkeyOutlets.some((outlet) => outlet.outletId === oliviumOutletId), "Oli
 const oliviumRelations = outletBrands.filter((relation) => relation.outletId === oliviumOutletId);
 assert(Object.keys(acceptedDisplayToBrandId).length === 95, "Expected exactly 95 accepted display entries.");
 assert(oliviumRelations.length === 94, "Expected exactly 94 Olivium relations.");
-for (const outlet of turkeyOutlets) if (outlet.outletId !== oliviumOutletId && outlet.outletId !== "viaport-asia-outlet-shopping" && outlet.outletId !== "starcity-outlet" && outlet.outletId !== "optimum-premium-outlet-istanbul" && outlet.outletId !== "izmir-optimum" && outlet.outletId !== "212-outlet" && outlet.outletId !== "venezia-mega-outlet") assert(!outletBrands.some((relation) => relation.outletId === outlet.outletId), `${outlet.outletId} must have zero brand relations.`);
+for (const outlet of turkeyOutlets) if (outlet.outletId !== oliviumOutletId && outlet.outletId !== "viaport-asia-outlet-shopping" && outlet.outletId !== "starcity-outlet" && outlet.outletId !== "optimum-premium-outlet-istanbul" && outlet.outletId !== "izmir-optimum" && outlet.outletId !== "212-outlet" && outlet.outletId !== "venezia-mega-outlet" && outlet.outletId !== "deepo-outlet-center") assert(!outletBrands.some((relation) => relation.outletId === outlet.outletId), `${outlet.outletId} must have zero brand relations.`);
+assert(outletBrands.filter((relation) => relation.outletId === "deepo-outlet-center").length === 171, "Deepo must retain 171 verified relations.");
 
 const canonicalBrandIds = new Set(brands.map((brand) => brand.brandId));
 const seenPairs = new Set<string>();
@@ -98,7 +99,7 @@ const allowedFiles = new Set([
   "src/constants/outletBrands/turkey.ts", "src/constants/outletBrands/index.ts",
   ...brandSourceFiles,
   "tools/checkTurkeyBrandCoverageOlivium.ts", "tools/checkTurkeyBrandCoverageStarCity.ts", "tools/checkTurkeyBrandCoverageViaport.ts", "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts", "tools/checkTurkeyBrandCoverageIzmirOptimum.ts", "tools/checkTurkeyExpansion.ts",
-  "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts",
+  "tools/checkTurkeyBasicMetadataBatchA.ts", "tools/checkTurkeyBasicMetadataBatchB.ts", "tools/checkTurkeyBrandCoverage212.ts", "tools/checkTurkeyBrandCoverageVenezia.ts", "tools/checkTurkeyBrandCoverageDeepo.ts", "tools/checkCanonicalIdentityConsolidation.ts",
 ]);
 const approvedConsolidationFiles = [
   "src/constants/brands/brands-f-k.ts",
@@ -116,6 +117,8 @@ const approvedConsolidationFiles = [
   "tools/checkTurkeyBrandCoverageViaport.ts",
   "tools/checkTurkeyBrandCoverage212.ts",
   "tools/checkTurkeyBrandCoverageVenezia.ts",
+  "tools/checkTurkeyBrandCoverageDeepo.ts",
+  "tools/checkCanonicalIdentityConsolidation.ts",
 ] as const;
 const hasApprovedConsolidationScope = (changedFiles: string[]) =>
   JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
