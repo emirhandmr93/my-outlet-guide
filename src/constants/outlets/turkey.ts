@@ -157,7 +157,7 @@ export const turkeyOutlets = [
     cityCenterInfo: { name: "Istanbul City Centre (approximate straight-line distance)", distanceKm: 14 },
     taxFreeAvailable: true,
     taxFreeOfficeInfo: "Official StarCity services state that Tax Free processing is available at the information desk near the Starbucks entrance daily from 10:00 to 22:00.",
-    websiteUrl: "http://www.starcity.com.tr/",
+    websiteUrl: "https://www.starcity.com.tr/",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=40.9947,28.8224",
     appleMapsUrl: "https://maps.apple.com/?ll=40.9947,28.8224&q=StarCity%20Outlet",
     yandexMapsUrl: "https://yandex.com/maps/?ll=28.8224,40.9947&z=16&text=StarCity%20Outlet",
