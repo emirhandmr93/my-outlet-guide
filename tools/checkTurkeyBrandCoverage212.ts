@@ -2047,18 +2047,35 @@ const approvedConsolidationFiles = [
 ] as const;
 const hasApprovedConsolidationScope = (changedFiles: string[]) =>
   JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
-const isApprovedConsolidation = hasApprovedConsolidationScope(changedFiles);
 const baseSourceBrands = [...baseSources.values()].flatMap(parseSourceBrands);
+const removedCanonicalIds = new Set([["h", "m"].join("-"), ["us", "polo", "assn"].join("-")]);
+const baseRemovedCanonicalIds = new Set(
+  baseSourceBrands
+    .map((brand) => brand.brandId)
+    .filter((brandId) => removedCanonicalIds.has(brandId)),
+);
+assert(
+  baseRemovedCanonicalIds.size === 0 ||
+    baseRemovedCanonicalIds.size === removedCanonicalIds.size,
+  "Merge-base must contain both removed canonicals or neither.",
+);
+const isConsolidationMigration =
+  baseRemovedCanonicalIds.size === removedCanonicalIds.size;
+const isSteadyState =
+  baseRemovedCanonicalIds.size === 0 && changedFiles.length === 0;
+const isApprovedConsolidation =
+  isConsolidationMigration && hasApprovedConsolidationScope(changedFiles);
 const currentSourceBlocks = new Map(
   [...currentSources.values()].flatMap(parseSourceBrands).map((brand) => [brand.brandId, brand.block]),
 );
-for (const baseBrand of baseSourceBrands) {
-  if (isApprovedConsolidation && (["h", "m"].join("-") === baseBrand.brandId || ["us", "polo", "assn"].join("-") === baseBrand.brandId)) continue;
-  assert(
-    currentSourceBlocks.get(baseBrand.brandId) === baseBrand.block,
-    `${baseBrand.brandId} must remain byte-for-byte unchanged from main.`,
-  );
-}
+if (!isSteadyState)
+  for (const baseBrand of baseSourceBrands) {
+    if (isApprovedConsolidation && removedCanonicalIds.has(baseBrand.brandId)) continue;
+    assert(
+      currentSourceBlocks.get(baseBrand.brandId) === baseBrand.block,
+      `${baseBrand.brandId} must remain byte-for-byte unchanged from main.`,
+    );
+  }
 const baseIds = new Set(baseSourceBrands.map((brand) => brand.brandId));
 const expectedNewIds = expectedRelationIds.filter((brandId) => !baseIds.has(brandId));
 assert(
@@ -2139,12 +2156,12 @@ const allowedFiles = new Set([
 ]);
 
 assert(
-  isApprovedConsolidation ||
+  isApprovedConsolidation || isSteadyState ||
     (changedFiles.length === 16 && changedFiles.every((file) => allowedFiles.has(file))),
   "Changed file scope is not approved.",
 );
 assert(
-  isApprovedConsolidation || changedFiles.every((file) => allowedFiles.has(file)),
+  isApprovedConsolidation || isSteadyState || changedFiles.every((file) => allowedFiles.has(file)),
   `Changed file is outside scope: ${changedFiles.find((file) => !allowedFiles.has(file))}.`,
 );
 
