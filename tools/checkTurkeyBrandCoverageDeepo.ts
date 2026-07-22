@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { brands } from "../src/constants/brands";
 import { outletBrands } from "../src/constants/outletBrands";
@@ -206,3 +207,19 @@ for (const relation of actual) assert(!relation.featured && relation.relationSta
 const brandIds = new Set(brands.map((brand) => brand.brandId));
 for (const brandId of expectedRelationIds) assert(brandIds.has(brandId), `Deepo mapping references missing canonical: ${brandId}.`);
 console.log(`Deepo coverage valid: ${actual.length} relations; source SHA-256 ${sourceRowSha256}; mapping SHA-256 ${mappingSha256}.`);
+
+function assertCompletedTurkeyRelationsMatchMergeBase(): void {
+  const mergeBase = execFileSync("git", ["merge-base", "HEAD", "main"], { encoding: "utf8" }).trim();
+  const baseTurkeySource = execFileSync("git", ["show", `${mergeBase}:src/constants/outletBrands/turkey.ts`], { encoding: "utf8" });
+  const completedOutlets = [["oliviumBrandIds", "olivium-outlet-center", 94], ["starCityBrandIds", "starcity-outlet", 101], ["istanbulOptimumBrandIds", "optimum-premium-outlet-istanbul", 112], ["izmirOptimumBrandIds", "izmir-optimum", 194], ["viaportBrandIds", "viaport-asia-outlet-shopping", 187], ["outlet212BrandIds", "212-outlet", 105], ["veneziaBrandIds", "venezia-mega-outlet", 127]] as const;
+  for (const [constantName, outletId, expectedCount] of completedOutlets) {
+    const baseList = baseTurkeySource.match(new RegExp(`const ${constantName} = \\[([\\s\\S]*?)\\];`))?.[1];
+    assert(baseList, `Merge-base ${constantName} sequence is unavailable.`);
+    const baseIds = [...baseList.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+    const expectedRelations = baseIds.map((brandId) => ({ outletId, brandId, featured: false, relationStatus: "active" }));
+    const currentRelations = outletBrands.filter((relation) => relation.outletId === outletId);
+    assert(baseIds.length === expectedCount, `${outletId} merge-base count drifted.`);
+    assert(JSON.stringify(currentRelations) === JSON.stringify(expectedRelations), `${outletId} relation sequence and four-field objects must be byte-for-byte identical to merge-base main.`);
+  }
+}
+assertCompletedTurkeyRelationsMatchMergeBase();

@@ -169,3 +169,14 @@ assert(currentBrands.some((brand) => brand.brandId === "blue-diamond-jewelry"), 
 const allowed = /^(src\/constants\/outletBrands\/turkey\.ts|src\/constants\/brands\/brands-[a-z-]+\.ts|tools\/checkTurkey(BrandCoverage(212|Venezia|IstanbulOptimum|IzmirOptimum|Olivium|StarCity|Viaport|Deepo)|Expansion|BasicMetadataBatch[AB])|checkCanonicalIdentityConsolidation\.ts)$/;
 assert(isApprovedConsolidation || changedFiles.every((file) => allowed.test(file) || file.startsWith("tools/check")), "A forbidden file changed.");
 console.log(`Istanbul Optimum valid: 163 entries (114 retail, 49 excluded), ${relations.length} active relations, 0 duplicates.`);
+
+function assertPreservedIstanbulOptimumRelationObjects(): void {
+  const baseTurkeySource = execFileSync("git", ["show", `${mergeBase}:src/constants/outletBrands/turkey.ts`], { encoding: "utf8" });
+  const baseList = baseTurkeySource.match(/const istanbulOptimumBrandIds = \[([\s\S]*?)\];/)?.[1];
+  assert(baseList, "Merge-base istanbulOptimumBrandIds sequence is unavailable.");
+  const baseIds = [...baseList.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+  const actualRelations = outletBrands.filter((relation) => relation.outletId === outletId);
+  const expectedRelations = baseIds.map((brandId) => ({ outletId: outletId, brandId, featured: false, relationStatus: "active" }));
+  assert(JSON.stringify(actualRelations) === JSON.stringify(expectedRelations), "IstanbulOptimum relation sequence and four-field objects must be byte-for-byte identical to merge-base main.");
+}
+assertPreservedIstanbulOptimumRelationObjects();

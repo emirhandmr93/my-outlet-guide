@@ -546,3 +546,14 @@ for (const brandId of isDeepoExpansion ? [] : newIds) {
 console.log(
   `Venezia coverage valid: 158 raw rows, 130 accepted displays, 28 exclusions, ${relations.length} active relations.`,
 );
+
+function assertPreservedVeneziaRelationObjects(): void {
+  const baseTurkeySource = execFileSync("git", ["show", `${mergeBase}:src/constants/outletBrands/turkey.ts`], { encoding: "utf8" });
+  const baseList = baseTurkeySource.match(/const veneziaBrandIds = \[([\s\S]*?)\];/)?.[1];
+  assert(baseList, "Merge-base veneziaBrandIds sequence is unavailable.");
+  const baseIds = [...baseList.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+  const actualRelations = outletBrands.filter((relation) => relation.outletId === outletId);
+  const expectedRelations = baseIds.map((brandId) => ({ outletId: outletId, brandId, featured: false, relationStatus: "active" }));
+  assert(JSON.stringify(actualRelations) === JSON.stringify(expectedRelations), "Venezia relation sequence and four-field objects must be byte-for-byte identical to merge-base main.");
+}
+assertPreservedVeneziaRelationObjects();

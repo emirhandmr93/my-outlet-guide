@@ -411,3 +411,14 @@ const hasApprovedConsolidationScope = (changedFiles: string[]) =>
   JSON.stringify([...changedFiles].sort()) === JSON.stringify([...approvedConsolidationFiles].sort());
 assert(hasApprovedConsolidationScope(changed) || changed.every((file)=>allowed.has(file)), "Changed file is outside permitted scope.");
 console.log(`StarCity coverage valid: 103 accepted entries, 48 exclusions, ${starCityRelations.length} relations, ${oliviumRelations.length} byte-for-byte preserved Olivium relations, 0 duplicates.`);
+
+function assertPreservedStarCityRelationObjects(): void {
+  const baseTurkeySource = execFileSync("git", ["show", `${mergeBase}:src/constants/outletBrands/turkey.ts`], { encoding: "utf8" });
+  const baseList = baseTurkeySource.match(/const starCityBrandIds = \[([\s\S]*?)\];/)?.[1];
+  assert(baseList, "Merge-base starCityBrandIds sequence is unavailable.");
+  const baseIds = [...baseList.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+  const actualRelations = outletBrands.filter((relation) => relation.outletId === "starcity-outlet");
+  const expectedRelations = baseIds.map((brandId) => ({ outletId: "starcity-outlet", brandId, featured: false, relationStatus: "active" }));
+  assert(JSON.stringify(actualRelations) === JSON.stringify(expectedRelations), "StarCity relation sequence and four-field objects must be byte-for-byte identical to merge-base main.");
+}
+assertPreservedStarCityRelationObjects();

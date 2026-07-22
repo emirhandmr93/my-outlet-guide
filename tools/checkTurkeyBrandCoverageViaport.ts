@@ -562,3 +562,14 @@ console.log(
   `Viaport coverage valid: ${acceptedDisplays.length} accepted, ` +
     `${excludedDisplays.length} excluded, ${relations.length} relations.`,
 );
+
+function assertPreservedViaportRelationObjects(): void {
+  const baseTurkeySource = execFileSync("git", ["show", `${mergeBase}:src/constants/outletBrands/turkey.ts`], { encoding: "utf8" });
+  const baseList = baseTurkeySource.match(/const viaportBrandIds = \[([\s\S]*?)\];/)?.[1];
+  assert(baseList, "Merge-base viaportBrandIds sequence is unavailable.");
+  const baseIds = [...baseList.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+  const actualRelations = outletBrands.filter((relation) => relation.outletId === outletId);
+  const expectedRelations = baseIds.map((brandId) => ({ outletId: outletId, brandId, featured: false, relationStatus: "active" }));
+  assert(JSON.stringify(actualRelations) === JSON.stringify(expectedRelations), "Viaport relation sequence and four-field objects must be byte-for-byte identical to merge-base main.");
+}
+assertPreservedViaportRelationObjects();

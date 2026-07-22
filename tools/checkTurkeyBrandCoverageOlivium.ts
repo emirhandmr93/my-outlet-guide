@@ -128,3 +128,14 @@ console.log(`Turkey Olivium brand coverage valid: 95 accepted display entries no
 
 // Venezia coverage is intentionally validated separately; retain its verified relation total.
 assert(outletBrands.filter((relation) => relation.outletId === "venezia-mega-outlet").length === 127, "Venezia must retain 127 verified relations.");
+
+function assertPreservedOlvRelationObjects(): void {
+  const baseTurkeySource = execFileSync("git", ["show", `${mergeBase}:src/constants/outletBrands/turkey.ts`], { encoding: "utf8" });
+  const baseList = baseTurkeySource.match(/const oliviumBrandIds = \[([\s\S]*?)\];/)?.[1];
+  assert(baseList, "Merge-base oliviumBrandIds sequence is unavailable.");
+  const baseIds = [...baseList.matchAll(/"([^"]+)"/g)].map((match) => match[1]);
+  const actualRelations = outletBrands.filter((relation) => relation.outletId === oliviumOutletId);
+  const expectedRelations = baseIds.map((brandId) => ({ outletId: oliviumOutletId, brandId, featured: false, relationStatus: "active" }));
+  assert(JSON.stringify(actualRelations) === JSON.stringify(expectedRelations), "Olv relation sequence and four-field objects must be byte-for-byte identical to merge-base main.");
+}
+assertPreservedOlvRelationObjects();
