@@ -107,10 +107,19 @@ export function OutletDetailScreen() {
   const { currentUser, isLoggedIn } = useUser();
   const { toggleFavorite, isFavorite } = useFavorites();
 
-  const outlet =
-    outlets.find((item) => item?.outletId === route.params?.outletId) ||
-    outlets.find((item) => Boolean(item)) ||
-    outlets[0];
+  const matchingOutlet = outlets.find(
+    (item) => item?.outletId === route.params?.outletId,
+  );
+
+  if (!matchingOutlet) {
+    return (
+      <View style={styles.unavailableContainer}>
+        <Text style={styles.unavailableText}>{t("outlet.notAvailable")}</Text>
+      </View>
+    );
+  }
+
+  const outlet = matchingOutlet;
 
   const safeGalleryImages = useMemo(() => {
     return getOutletMediaImages(outlet, { mode: outletMediaMode });
@@ -1045,6 +1054,20 @@ const styles = StyleSheet.create({
     fontSize: typography.body,
     color: colors.textSecondary,
     lineHeight: 22,
+  },
+
+  unavailableContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.background,
+    padding: spacing.xl,
+  },
+
+  unavailableText: {
+    color: colors.textSecondary,
+    fontSize: typography.body,
+    fontWeight: typography.weightBold,
   },
 
   writeReviewButton: {

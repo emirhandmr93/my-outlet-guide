@@ -1,4 +1,4 @@
-import { outlets } from "../src/constants/outlets";
+import { allOutlets } from "../src/constants/outlets";
 import { outletBrands } from "../src/constants/outletBrands";
 import { restaurants } from "../src/constants/restaurants";
 import { transportation } from "../src/constants/transportation";
@@ -24,7 +24,7 @@ function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
 }
 
-const turkeyOutlets = outlets.filter((outlet) => outlet.countryId === "turkey");
+const turkeyOutlets = allOutlets.filter((outlet) => outlet.countryId === "turkey");
 assert(turkeyOutlets.length === 8, "Expected exactly eight Turkey outlets.");
 assert(turkeyOutlets.filter((outlet) => targetOutletIds.has(outlet.outletId)).length === targetOutletIds.size, "Expected all four Batch A target outlets.");
 assert(turkeyOutlets.filter((outlet) => batchBOutletIds.includes(outlet.outletId)).length === batchBOutletIds.length, "Expected all four Batch B outlet IDs.");

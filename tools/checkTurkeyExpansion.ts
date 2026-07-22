@@ -1,6 +1,6 @@
 import { cities } from "../src/constants/cities";
 import { countries } from "../src/constants/countries";
-import { outlets } from "../src/constants/outlets";
+import { allOutlets } from "../src/constants/outlets";
 import { outletBrands } from "../src/constants/outletBrands";
 import { restaurants } from "../src/constants/restaurants";
 import { transportation } from "../src/constants/transportation";
@@ -36,12 +36,12 @@ for (const cityId of Object.keys(expectedCityNames)) {
   assert(records.length === 1, `Expected exactly one ${cityId} city record under turkey.`);
 }
 
-const outletIds = outlets.map((outlet) => outlet.outletId);
-const slugs = outlets.map((outlet) => outlet.slug);
+const outletIds = allOutlets.map((outlet) => outlet.outletId);
+const slugs = allOutlets.map((outlet) => outlet.slug);
 assert(new Set(outletIds).size === outletIds.length, "Outlet IDs must be unique.");
 assert(new Set(slugs).size === slugs.length, "Outlet slugs must be unique.");
 
-const turkeyOutlets = outlets.filter((outlet) => outlet.countryId === "turkey");
+const turkeyOutlets = allOutlets.filter((outlet) => outlet.countryId === "turkey");
 assert(turkeyOutlets.length === 8, "Expected exactly eight Turkey outlet skeletons.");
 assert(!turkeyOutlets.some((outlet) => `${outlet.openingHours} ${outlet.storesCountText}`.includes("Check official website")), "Turkey outlets must not use raw English unavailable-data placeholders.");
 
@@ -84,7 +84,7 @@ for (const outletId of ["viaport-asia-outlet-shopping", "212-outlet", "olivium-o
 }
 assert(!hasVerifiedVatRate(viaport?.vatRate) && !hasVerifiedMinimumSpend(viaport?.minimumTaxFreeSpend), "Missing Tax Free values must be omitted rather than rendered as undefined.");
 assert(hasDisplayValue(viaport?.storesCountText) && !hasDisplayValue(istanbulOptimum?.openingHours), "Viaport's verified store count must display while Istanbul Optimum's unverified hours remain omitted.");
-const verifiedTaxFreeOutlet = outlets.find((outlet) => outlet.outletId === "designer-outlet-parndorf");
+const verifiedTaxFreeOutlet = allOutlets.find((outlet) => outlet.outletId === "designer-outlet-parndorf");
 assert(hasVerifiedVatRate(verifiedTaxFreeOutlet?.vatRate) && hasVerifiedMinimumSpend(verifiedTaxFreeOutlet?.minimumTaxFreeSpend), "Existing verified VAT and minimum-spend data must remain displayable.");
 for (const language of languages) {
   for (const key of ["sharedCards.quickFacts.notVerified", "taxFree.statusAvailable", "taxFree.statusNotVerified", "taxFree.notVerifiedExplanation"]) {

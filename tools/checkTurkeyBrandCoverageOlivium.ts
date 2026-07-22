@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import { outlets } from "../src/constants/outlets";
+import { allOutlets } from "../src/constants/outlets";
 import { brands } from "../src/constants/brands";
 import { outletBrands } from "../src/constants/outletBrands";
 
@@ -42,7 +42,7 @@ function expectedBrandFile(brandId: string): string {
   return brandSourceFiles[4];
 }
 
-const turkeyOutlets = outlets.filter((outlet) => outlet.countryId === "turkey");
+const turkeyOutlets = allOutlets.filter((outlet) => outlet.countryId === "turkey");
 assert(turkeyOutlets.some((outlet) => outlet.outletId === oliviumOutletId), "Olivium must exist.");
 const oliviumRelations = outletBrands.filter((relation) => relation.outletId === oliviumOutletId);
 assert(Object.keys(acceptedDisplayToBrandId).length === 95, "Expected exactly 95 accepted display entries.");

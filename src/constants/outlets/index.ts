@@ -59,7 +59,7 @@ export {
 type OutletAirport = { code: string; name: string; distanceKm: number };
 type Outlet = { airports?: OutletAirport[]; [key: string]: any };
 
-export const outlets: Outlet[] = [
+export const allOutlets: Outlet[] = [
   ...italyOutlets,
   ...germanyOutlets,
   ...franceOutlets,
@@ -88,3 +88,5 @@ export const outlets: Outlet[] = [
   ...switzerlandOutlets,
   ...turkeyOutlets,
 ];
+
+export const outlets = allOutlets.filter((outlet) => outlet.countryId !== "turkey");
