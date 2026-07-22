@@ -49,4 +49,81 @@ const facts = transportationRouteFacts.filter((f) => batchAIds.includes(f.outlet
 assert(facts.length === 19 && new Set(facts.map((f) => f.guideId)).size === 19 && expectedGuideIds.every((id) => facts.some((f) => f.guideId === id)) && batchBIds.every((id) => !transportationRouteFacts.some((f) => f.outletId === id)), "Turkey route facts must cover Batch 1 only.");
 for (const fact of facts) { const guide = guides.find((g) => g.guideId === fact.guideId); assert(guide && fact.outletId === guide.outletId && fact.mode === guide.transportationType && ["exact", "partial"].includes(fact.confidence) && fact.officialCheckNote?.trim() && [fact.provider, fact.operator, fact.line, fact.boardingPoint, fact.transferPoints?.join(), fact.alightingPoint, fact.destination, fact.walkNote, fact.sourceNote].some(Boolean) && !["estimatedDurationMin", "estimatedDurationMax", "displayDuration", "estimatedFareMin", "estimatedFareMax", "displayFare", "currency"].some((key) => key in fact), `${fact.guideId} route fact is invalid.`); }
 for (const id of batchAIds) { const options = getTransportationV2Options(id); const ids = guides.filter((g) => g.outletId === id).map((g) => g.guideId); assert(options.length === guideCounts[id] && ids.every((guideId) => options.some((o) => o.id === guideId)) && getRecommendedTransportationV2Option(id)?.id === recommended[id], `${id} runtime options or recommendation changed.`); for (const option of options) { const display = getTransportationOptionDisplayModel(option, "en"); assert(!option.id.endsWith("-estimate") && option.routeDetails.hasSourceBackedRouteDetail && option.sourceConfidence === "source" && display.estimatedFareLabel === "" && (option.id === "zeytinburnu-to-olivium-local-connection" || display.estimatedDurationLabel === "") && JSON.stringify(display.steps) === JSON.stringify([...option.guide.steps].sort((a, b) => a.order - b.order).map((s) => s.description)), `${option.id} runtime display is invalid.`); } }
+
+// Keep the pre-existing Batch A metadata guards explicit and independently readable.
+const viaport = outlets.find((outlet) => outlet.outletId === "viaport-asia-outlet-shopping");
+const olivium = outlets.find((outlet) => outlet.outletId === "olivium-outlet-center");
+const starCity = outlets.find((outlet) => outlet.outletId === "starcity-outlet");
+const venezia = outlets.find((outlet) => outlet.outletId === "venezia-mega-outlet");
+assert(viaport?.openingHours === "Daily 10:00–22:00", "Viaport opening hours must remain verified.");
+assert(viaport?.storesCountText === "250 stores", "Viaport store count must remain verified.");
+assert(viaport?.parking === "Official outlet information states that Viaport Asia has free parking with capacity for approximately 4,000 vehicles.", "Viaport parking wording changed.");
+assert(olivium?.openingHours === "Daily 10:00–22:00", "Olivium opening hours must remain verified.");
+assert(olivium?.storesCountText === "129 stores", "Olivium store count must remain verified.");
+assert(starCity?.openingHours === "Daily 10:00–22:00", "StarCity opening hours must remain verified.");
+assert(starCity?.taxFreeAvailable === true, "StarCity Tax Free must remain available.");
+assert(starCity?.taxFreeOfficeInfo === "Official StarCity services state that Tax Free processing is available at the information desk near the Starbucks entrance daily from 10:00 to 22:00.", "StarCity Tax Free office information changed.");
+assert(venezia?.openingHours === "", "Venezia opening hours must remain blank.");
+assert(venezia?.storesCountText === "", "Venezia store count must remain blank.");
+
+assert(new Set(restaurants.map((record) => record.restaurantId)).size === restaurants.length, "Restaurant IDs must be globally unique.");
+assert(new Set(turkeyRestaurants.map((record) => `${record.outletId}|${normalize(record.restaurantName)}`)).size === turkeyRestaurants.length, "Turkey restaurant normalized identities must be unique.");
+const asciiApostropheNames: Record<string, string[]> = {
+  "viaport-asia-outlet-shopping": ["Arby's", "Happy Moon's", "McDonald's"],
+  "olivium-outlet-center": ["Arby's", "My Donut's", "Richard's Coffee"],
+  "starcity-outlet": ["Sokak Simit'i"],
+  "venezia-mega-outlet": ["Arby's"],
+};
+for (const [outletId, names] of Object.entries(asciiApostropheNames)) {
+  for (const name of names) {
+    const record = turkeyRestaurants.find((restaurant) => restaurant.outletId === outletId && restaurant.restaurantName === name);
+    assert(record?.restaurantName === name, `${outletId} must preserve ${name}.`);
+    assert(record.restaurantName.includes("'"), `${name} must use U+0027.`);
+    assert(!record.restaurantName.includes("’"), `${name} must not use U+2019.`);
+  }
+}
+const carlsJr = turkeyRestaurants.find((restaurant) => restaurant.restaurantName === "Carl’s Jr.");
+assert(carlsJr?.restaurantName === "Carl’s Jr.", "Carl’s Jr. must retain its exact literal.");
+assert(carlsJr.restaurantName.includes("’"), "Carl’s Jr. must use U+2019.");
+assert(!carlsJr.restaurantName.includes("'"), "Carl’s Jr. must not use U+0027.");
+const requiredLocationNames: Record<string, string[]> = {
+  "viaport-asia-outlet-shopping": ["Burger King", "Burger King - 2", "HD İskender", "HD İskender - 2", "Simit Sarayı", "Simit Sarayı - 2", "Simit Sarayı - 3"],
+  "venezia-mega-outlet": ["Starbucks - AVM Katı", "Starbucks - Cadde Katı"],
+};
+for (const [outletId, names] of Object.entries(requiredLocationNames)) {
+  for (const name of names) assert(turkeyRestaurants.some((restaurant) => restaurant.outletId === outletId && restaurant.restaurantName === name), `${outletId} must preserve separately published ${name}.`);
+}
+
+const transportationKeys = ["transportationId", "outletId", "transportType", "title", "duration", "cost", "tip", "status", "displayOrder"];
+assert(new Set(transportation.map((record) => record.transportationId)).size === transportation.length, "Transportation IDs must be globally unique.");
+assert(JSON.stringify(turkeyTransportation.map((record) => record.transportationId).sort()) === JSON.stringify([...expectedTransportationIds].sort()), "Turkey transportation IDs must exactly match the expected set.");
+for (const record of turkeyTransportation) assert(JSON.stringify(Object.keys(record)) === JSON.stringify(transportationKeys), `${record.transportationId} field order changed.`);
+
+const guideKeys = ["guideId", "outletId", "originType", "originId", "transportationType", "title", "estimatedDuration", "estimatedCost", "recommended", "steps", "updatedAt"];
+assert(new Set(transportationGuides.map((guide) => guide.guideId)).size === transportationGuides.length, "Guide IDs must be globally unique.");
+assert(JSON.stringify(guides.map((guide) => guide.guideId).sort()) === JSON.stringify([...expectedGuideIds].sort()), "Turkey guide IDs must exactly match the expected set.");
+for (const guide of guides) {
+  assert(JSON.stringify(Object.keys(guide)) === JSON.stringify(guideKeys), `${guide.guideId} field order changed.`);
+  for (const step of guide.steps) assert(JSON.stringify(Object.keys(step)) === JSON.stringify(["order", "description"]), `${guide.guideId} step schema changed.`);
+}
+assert(facts.every((fact) => Boolean(fact.guideId?.trim())), "Every Turkey route fact must have a guide ID.");
+assert(JSON.stringify(facts.map((fact) => fact.guideId).sort()) === JSON.stringify([...expectedGuideIds].sort()), "Turkey route-fact guide IDs must exactly match guides.");
+
+const nonEnglishLanguages = ["tr", "es", "fr", "de", "ru", "ar", "zh"] as const;
+for (const outletId of batchAIds) {
+  const optionIds = getTransportationV2Options(outletId).map((option) => option.id).sort();
+  const outletGuideIds = guides.filter((guide) => guide.outletId === outletId).map((guide) => guide.guideId).sort();
+  assert(JSON.stringify(optionIds) === JSON.stringify(outletGuideIds), `${outletId} runtime option IDs must exactly match guide IDs.`);
+  for (const option of getTransportationV2Options(outletId)) {
+    assert(!["airport", "train", "taxi"].includes(option.originGroup) || option.guide.guideId === option.id, `${option.id} must not be synthetic.`);
+    for (const language of nonEnglishLanguages) {
+      const display = getTransportationOptionDisplayModel(option, language);
+      const englishSteps = option.guide.steps.sort((a, b) => a.order - b.order).map((step) => step.description);
+      assert(JSON.stringify(display.steps) !== JSON.stringify(englishSteps), `${option.id} ${language} steps must not reuse raw English steps.`);
+      assert(display.estimatedFareLabel === "" && display.estimatedDurationLabel === (option.id === "zeytinburnu-to-olivium-local-connection" ? display.estimatedDurationLabel : ""), `${option.id} ${language} must not add fares or durations.`);
+      assert(Boolean(display.routeDetails.lineOrProviderLabel || display.routeDetails.boardingPointLabel || display.routeDetails.alightingPointLabel || display.routeDetails.transferPointsLabel || display.routeDetails.destinationLabel), `${option.id} ${language} must retain route-specific detail.`);
+    }
+  }
+}
+
 console.log("Turkey Basic Metadata Batch A valid: 136 restaurants, 22 transportation records, 19 guides, route facts, and source-backed runtime options validated; Batch 2 remains content-free.");
