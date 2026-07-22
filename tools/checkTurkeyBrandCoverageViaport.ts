@@ -528,6 +528,7 @@ const allowedFiles = new Set([
   "tools/checkTurkeyBasicMetadataBatchB.ts",
   "tools/checkTurkeyBrandCoverage212.ts",
   "tools/checkTurkeyBrandCoverageIstanbulOptimum.ts",
+  "tools/checkTurkeyBrandCoverageIzmirOptimum.ts",
   "tools/checkTurkeyBrandCoverageOlivium.ts",
   "tools/checkTurkeyBrandCoverageStarCity.ts",
   "tools/checkTurkeyBrandCoverageViaport.ts",

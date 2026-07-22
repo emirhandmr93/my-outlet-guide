@@ -1616,7 +1616,7 @@ const expectedSemanticByNewCanonical: Record<
   },
   "caretta-caretta": {
     "categoryId": "jewelry-watches",
-    "luxuryLevel": "lifestyle"
+    "luxuryLevel": "premium"
   },
   "cashmera": {
     "categoryId": "fashion",
@@ -1632,11 +1632,11 @@ const expectedSemanticByNewCanonical: Record<
   },
   "finery-by-nerrs": {
     "categoryId": "jewelry-watches",
-    "luxuryLevel": "lifestyle"
+    "luxuryLevel": "premium"
   },
   "finery-jewelry": {
     "categoryId": "jewelry-watches",
-    "luxuryLevel": "lifestyle"
+    "luxuryLevel": "premium"
   },
   "hammer-jack": {
     "categoryId": "shoes-bags",
@@ -1708,7 +1708,7 @@ const expectedSemanticByNewCanonical: Record<
   },
   "time-factory": {
     "categoryId": "jewelry-watches",
-    "luxuryLevel": "lifestyle"
+    "luxuryLevel": "premium"
   },
   "ucla": {
     "categoryId": "fashion",
@@ -2030,7 +2030,7 @@ assert(
 
 const baseIdentityOwners = new Map<string, string>();
 for (const brand of baseSourceBrands) {
-  for (const identity of [brand.brandName, ...brand.aliases].map(normalize)) {
+  for (const identity of [brand.brandId, brand.brandName, ...brand.aliases].map(normalize)) {
     if (!baseIdentityOwners.has(identity)) baseIdentityOwners.set(identity, brand.brandId);
   }
 }
@@ -2060,7 +2060,7 @@ for (const brandId of expectedNewIds) {
   );
 
   for (const identity of new Set(
-    [canonical.brandName, ...(canonical.aliases ?? [])].map(normalize),
+    [canonical.brandId, canonical.brandName, ...(canonical.aliases ?? [])].map(normalize),
   )) {
     const baseOwner = baseIdentityOwners.get(identity);
     assert(!baseOwner, `${brandId} collides with base canonical ${baseOwner}.`);

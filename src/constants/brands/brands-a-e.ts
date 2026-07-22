@@ -8578,7 +8578,7 @@ export const brandsAE: Brand[] = [
     aliases: [],
     categoryId: "jewelry-watches",
     logo: "",
-    luxuryLevel: "lifestyle",
+    luxuryLevel: "premium",
     rankingWeight: 50,
     brandStatus: "active",
   },
