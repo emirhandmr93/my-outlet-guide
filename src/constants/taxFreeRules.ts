@@ -1,100 +1,16 @@
-export type TaxFreeRule = {
-  countryCode: string;
-  countryName: string;
-  countryId: string;
-  currency: string;
-  vatRate: number;
-  minimumPurchaseAmount?: number;
-  providerFeeRate?: number;
-  sourceUrl: string;
-  sourceName: string;
-  effectiveDate: string;
-  notes: string;
-};
-
+export type TaxFreeCountryStatus = "available" | "not_available" | "not_verified";
+export type MinimumPurchaseStatus = "verified_amount" | "no_statutory_minimum" | "not_verified";
+export type TaxFreeRule = { countryCode: string; countryName: string; countryId: string; currency: string; vatRate: number; minimumPurchaseAmount?: number; providerFeeRate?: number; minimumPurchaseBasis?: "gross" | "net"; minimumPurchaseStatus: MinimumPurchaseStatus; refundEstimateMode: "maximum_vat_component"; sourceUrl: string; sourceName: string; effectiveDate: string; notes: string };
+const eu = "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en";
+const euSource = "European Commission — VAT rates";
+const checked = "2026-07-23";
+const rule = (countryCode: string, countryName: string, countryId: string, currency: string, vatRate: number, minimumPurchaseStatus: MinimumPurchaseStatus = "not_verified", minimumPurchaseAmount?: number, minimumPurchaseBasis?: "gross" | "net"): TaxFreeRule => ({ countryCode, countryName, countryId, currency, vatRate, minimumPurchaseStatus, minimumPurchaseAmount, minimumPurchaseBasis, refundEstimateMode: "maximum_vat_component", sourceUrl: eu, sourceName: euSource, effectiveDate: checked, notes: "Standard rate and tourist-retail scheme information require confirmation at the participating retailer. The displayed amount is the maximum VAT component before operator and administration fees." });
 export const taxFreeRules: TaxFreeRule[] = [
-  {
-    "countryCode": "FR",
-    "countryName": "France",
-    "countryId": "france",
-    "currency": "EUR",
-    "vatRate": 20,
-    "minimumPurchaseAmount": 100,
-    "sourceUrl": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en",
-    "sourceName": "European Commission VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. Tax-free eligibility, minimum purchase rules, store participation, operator fees, and customs validation requirements can change and must be confirmed before purchase."
-  },
-  {
-    "countryCode": "IT",
-    "countryName": "Italy",
-    "countryId": "italy",
-    "currency": "EUR",
-    "vatRate": 22,
-    "minimumPurchaseAmount": 70.01,
-    "sourceUrl": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en",
-    "sourceName": "European Commission VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. Tax-free eligibility, minimum purchase rules, store participation, operator fees, and customs validation requirements can change and must be confirmed before purchase."
-  },
-  {
-    "countryCode": "DE",
-    "countryName": "Germany",
-    "countryId": "germany",
-    "currency": "EUR",
-    "vatRate": 19,
-    "sourceUrl": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en",
-    "sourceName": "European Commission VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. Provider/store fees and any purchase eligibility rules are not included because no source-backed fee rate is bundled in the app."
-  },
-  {
-    "countryCode": "ES",
-    "countryName": "Spain",
-    "countryId": "spain",
-    "currency": "EUR",
-    "vatRate": 21,
-    "sourceUrl": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en",
-    "sourceName": "European Commission VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. Provider/store fees and any purchase eligibility rules are not included because no source-backed fee rate is bundled in the app."
-  },
-  {
-    "countryCode": "CH",
-    "countryName": "Switzerland",
-    "countryId": "switzerland",
-    "currency": "CHF",
-    "vatRate": 8.1,
-    "minimumPurchaseAmount": 300,
-    "sourceUrl": "https://www.estv.admin.ch/en/vat-rates-switzerland",
-    "sourceName": "Swiss Federal Tax Administration VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Normal VAT rate only. Provider/store fees and final refund eligibility are not included because no source-backed fee rate is bundled in the app."
-  },
-  {
-    "countryCode": "AE",
-    "countryName": "United Arab Emirates",
-    "countryId": "united-arab-emirates",
-    "currency": "AED",
-    "vatRate": 5,
-    "sourceUrl": "https://u.ae/en/information-and-services/finance-and-investment/taxation/vat/tax-refund-for-tourists",
-    "sourceName": "The Official Portal of the UAE Government",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. UAE tourist refunds require registered retailers and validation; provider/store fees are not included."
-  },
-  {
-    "countryCode": "JP",
-    "countryName": "Japan",
-    "countryId": "japan",
-    "currency": "JPY",
-    "vatRate": 10,
-    "sourceUrl": "https://www.jetro.go.jp/en/invest/setting_up/section3/page6.html",
-    "sourceName": "JETRO overview of consumption tax",
-    "effectiveDate": "2026-07-08",
-    "notes": "General consumption tax rate only; reduced-rate goods and store-specific tax-free procedures are not included."
-  }
+ rule("AT","Austria","austria","EUR",20), rule("BE","Belgium","belgium","EUR",21), rule("BG","Bulgaria","bulgaria","EUR",20), rule("CN","China","china","CNY",13), rule("HR","Croatia","croatia","EUR",25), rule("CZ","Czech Republic","czech-republic","CZK",21), rule("DK","Denmark","denmark","DKK",25), rule("EE","Estonia","estonia","EUR",24), rule("FI","Finland","finland","EUR",25.5), rule("FR","France","france","EUR",20,"verified_amount",100,"gross"), rule("DE","Germany","germany","EUR",19), rule("GR","Greece","greece","EUR",24), rule("HU","Hungary","hungary","HUF",27), rule("IE","Ireland","ireland","EUR",23), rule("IT","Italy","italy","EUR",22,"verified_amount",70.01,"gross"), rule("JP","Japan","japan","JPY",10), rule("LV","Latvia","latvia","EUR",21), rule("LT","Lithuania","lithuania","EUR",21), rule("NL","Netherlands","netherlands","EUR",21), rule("NO","Norway","norway","NOK",25), rule("PL","Poland","poland","PLN",23),
+ { ...rule("PT","Portugal","portugal","EUR",23,"verified_amount",50,"net"), sourceUrl:"https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/questoes_frequentes/Pages/faqs-00950.aspx", sourceName:"Portuguese Tax and Customs Authority", notes:"Portugal requires a purchase exceeding EUR 50 excluding VAT. The estimate is the maximum VAT component before operator and administration fees." },
+ rule("RO","Romania","romania","RON",19), rule("SK","Slovakia","slovakia","EUR",23), rule("KR","South Korea","south-korea","KRW",10), rule("ES","Spain","spain","EUR",21), rule("SE","Sweden","sweden","SEK",25),
+ { ...rule("CH","Switzerland","switzerland","CHF",8.1,"verified_amount",300,"gross"), sourceUrl:"https://www.estv.admin.ch/en/vat-rates-switzerland", sourceName:"Swiss Federal Tax Administration" }, rule("TH","Thailand","thailand","THB",7),
+ { ...rule("TR","Turkey","turkey","TRY",20,"verified_amount",118,"gross"), sourceUrl:"https://www.trade.gov.tr/gumruk-islemleri/sikca-sorulan-sorular/yolcu-beraberi-esya", sourceName:"Republic of Türkiye Ministry of Trade", notes:"Turkey’s verified minimum is TRY 118 including VAT. The estimate is the maximum VAT component before operator and administration fees." },
+ { ...rule("AE","United Arab Emirates","united-arab-emirates","AED",5), sourceUrl:"https://u.ae/en/information-and-services/finance-and-investment/taxation/vat/tax-refund-for-tourists", sourceName:"UAE Government Portal" }
 ];
-
-export function getTaxFreeRule(countryId: string) {
-  return taxFreeRules.find((rule) => rule.countryId === countryId);
-}
+export function getTaxFreeRule(countryId: string) { return taxFreeRules.find((rule) => rule.countryId === countryId); }

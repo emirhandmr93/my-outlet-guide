@@ -8,7 +8,7 @@ import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatReviewCount } from "../../services/reviewsRatingsService";
-import { hasDisplayValue } from "../../utils/taxFreeDisplay";
+import { hasDisplayValue, OutletTaxFreeDisplayStatus } from "../../utils/taxFreeDisplay";
 
 export type QuickFactsCardProps = {
   title: string;
@@ -23,7 +23,7 @@ export type QuickFactsCardProps = {
   addressLabel: string;
   address: string;
   storesCountText: string;
-  taxFreeAvailable: boolean;
+  taxFreeStatus: OutletTaxFreeDisplayStatus;
   cityCenterDistanceKm: number;
   airportDistanceKm: number;
   nearestAirportName?: string;
@@ -71,7 +71,7 @@ export function QuickFactsCard({
   title,
   openingHours,
   storesCountText,
-  taxFreeAvailable,
+  taxFreeStatus,
   cityCenterDistanceKm,
   airportDistanceKm,
   nearestAirportName,
@@ -107,7 +107,7 @@ export function QuickFactsCard({
         <FactTile
           icon="💰"
           label={t("sharedCards.quickFacts.taxFree")}
-          value={t(taxFreeAvailable ? "sharedCards.quickFacts.available" : "sharedCards.quickFacts.notVerified")}
+          value={t(`taxFree.${taxFreeStatus}`)}
           onPress={onPressTaxFree}
         />
         <FactTile icon="✈️" label={t("sharedCards.quickFacts.airports")} value={airportText} onPress={onPressAirport} />

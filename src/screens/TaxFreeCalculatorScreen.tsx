@@ -43,6 +43,7 @@ export function TaxFreeCalculatorScreen() {
     currencies[0];
 
   const rule = getTaxFreeRule(selectedCountryId);
+  const countryTaxFreeStatus = (selectedCountry as any).taxFreeStatus ?? "not_verified";
   const parsedAmount = parsePurchaseAmount(amount);
   const hasAmount = typeof parsedAmount === "number";
   const isInvalidAmount =
@@ -191,11 +192,7 @@ export function TaxFreeCalculatorScreen() {
         />
 
         {!rule && (
-          <View style={styles.warningBox}>
-            <Text style={styles.warningText}>
-              {t("taxCalc.unsupportedCountry")}
-            </Text>
-          </View>
+          <View style={styles.warningBox}><Text style={styles.warningText}>{t(countryTaxFreeStatus === "not_available" ? "taxFree.notAvailableExplanation" : "taxFree.notVerifiedExplanation")}</Text></View>
         )}
 
         {isCurrencyMismatch && (
@@ -231,7 +228,7 @@ export function TaxFreeCalculatorScreen() {
             <View style={styles.resultGrid}>
               <View style={styles.resultBox}>
                 <Text style={styles.resultLabel}>
-                  {t("taxCalc.estimatedTaxFreeRefund")}
+                  {t("taxFree.maximumVatBeforeFees")}
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(

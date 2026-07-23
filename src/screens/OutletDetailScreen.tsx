@@ -28,6 +28,9 @@ import { RestaurantsCard } from "../components/cards/RestaurantsCard";
 import { ReviewStatsCard } from "../components/cards/ReviewStatsCard";
 import { ServicesCard } from "../components/cards/ServicesCard";
 import { TaxFreeCard } from "../components/cards/TaxFreeCard";
+import { countries } from "../constants/countries";
+import { getTaxFreeRule } from "../constants/taxFreeRules";
+import { resolveOutletTaxFreeDisplayStatus } from "../utils/taxFreeDisplay";
 import { TransportationCard } from "../components/cards/TransportationCard";
 import { WebsiteCard } from "../components/cards/WebsiteCard";
 import { OutletHero } from "../components/OutletHero";
@@ -173,6 +176,10 @@ export function OutletDetailScreen() {
   const brandCategoryGroups = getBrandCategoryGroupsForOutlet(outlet.outletId);
   const transportationSummaryItems = getOutletTransportationV2Summary(outlet.outletId);
   const restaurantItems = getRestaurantsForOutlet(outlet.outletId);
+  const taxFreeCountry = countries.find((country) => country.countryId === outlet.countryId);
+  const taxFreeRule = getTaxFreeRule(outlet.countryId);
+  const taxFreeStatus = resolveOutletTaxFreeDisplayStatus(outlet, (taxFreeCountry?.taxFreeStatus ?? "not_verified") as any);
+
   const outletReviews = getPublishedReviews(
     reviews.filter((review) => review.outletId === outlet.outletId),
   );
@@ -545,7 +552,7 @@ export function OutletDetailScreen() {
             addressLabel={t("outlet.address")}
             address={outlet.address}
             storesCountText={formatStoresCountText(outlet.storesCountText, language)}
-            taxFreeAvailable={outlet.taxFreeAvailable === true}
+            taxFreeStatus={taxFreeStatus}
             cityCenterDistanceKm={outlet.cityCenterDistanceKm}
             airportDistanceKm={outlet.airportDistanceKm}
             reviewCountLabel={t("outlet.reviewCount")}
@@ -566,9 +573,8 @@ export function OutletDetailScreen() {
         >
           <TaxFreeCard
             title={t("outlet.taxFree")}
-            taxFreeAvailable={outlet.taxFreeAvailable === true}
-            vatRate={outlet.vatRate}
-            minimumSpend={outlet.minimumTaxFreeSpend}
+            taxFreeStatus={taxFreeStatus}
+            rule={taxFreeRule}
             officeInfo={outlet.taxFreeOfficeInfo}
           />
         </View>
