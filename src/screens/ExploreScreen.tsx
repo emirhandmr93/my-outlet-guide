@@ -296,7 +296,13 @@ export function ExploreScreen() {
     setActiveTab(activeTab === tab ? null : tab);
     setSearch("");
   }
-  const compactCities = availableCities.slice(0, 4);
+  const compactCities =
+    Platform.OS !== "web"
+      ? [
+          ...availableCities.filter((city) => city.cityId === "istanbul"),
+          ...availableCities.filter((city) => city.cityId !== "istanbul"),
+        ].slice(0, 4)
+      : availableCities.slice(0, 4);
   return (
     <View style={styles.screenRoot}>
       <View

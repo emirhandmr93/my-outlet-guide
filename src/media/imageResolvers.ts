@@ -34,6 +34,7 @@ export const nativeRecommendedOutletIds = [
 
 const outletMediaMode = getConfiguredOutletMediaMode();
 const cityImageMap: Record<string, ImageSourcePropType> = {
+  istanbul: require("../../assets/city-images/Istanbul.webp"),
   paris: require("../../assets/city-images/Paris.webp"),
   milan: require("../../assets/city-images/Milano.webp"),
   london: require("../../assets/city-images/London.webp"),
