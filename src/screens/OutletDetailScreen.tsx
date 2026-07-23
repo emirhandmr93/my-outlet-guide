@@ -30,7 +30,7 @@ import { ServicesCard } from "../components/cards/ServicesCard";
 import { TaxFreeCard } from "../components/cards/TaxFreeCard";
 import { countries } from "../constants/countries";
 import { getTaxFreeRule } from "../constants/taxFreeRules";
-import { resolveOutletTaxFreeDisplayStatus } from "../utils/taxFreeDisplay";
+import { normalizeTaxFreeCountryStatus, resolveOutletTaxFreeDisplayStatus } from "../utils/taxFreeDisplay";
 import { TransportationCard } from "../components/cards/TransportationCard";
 import { WebsiteCard } from "../components/cards/WebsiteCard";
 import { OutletHero } from "../components/OutletHero";
@@ -186,7 +186,7 @@ export function OutletDetailScreen() {
       taxFreeOfficeInfo: typeof outlet.taxFreeOfficeInfo === "string" ? outlet.taxFreeOfficeInfo : undefined,
       taxFreeOperator: typeof outlet.taxFreeOperator === "string" ? outlet.taxFreeOperator : undefined,
     },
-    taxFreeCountry?.taxFreeStatus ?? "not_verified",
+    normalizeTaxFreeCountryStatus(taxFreeCountry?.taxFreeStatus),
   );
 
   const outletReviews = getPublishedReviews(

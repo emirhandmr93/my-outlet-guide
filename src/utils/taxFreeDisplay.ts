@@ -26,9 +26,21 @@ export function hasVerifiedMinimumSpend(minimumSpend: string | undefined): minim
   return hasDisplayValue(minimumSpend);
 }
 
+export function normalizeTaxFreeCountryStatus(value: unknown): TaxFreeCountryStatus {
+  return value === "available" || value === "not_available" || value === "not_verified"
+    ? value
+    : "not_verified";
+}
+
+export function getMinimumPurchaseComparisonSymbol(rule: TaxFreeRule): "≥" | ">" | "" {
+  if (rule.minimumPurchaseComparison === "at_least") return "≥";
+  if (rule.minimumPurchaseComparison === "greater_than") return ">";
+  return "";
+}
+
 export function resolveOutletTaxFreeDisplayStatus(
   outlet: OutletTaxFreeInput,
-  countryStatus: TaxFreeCountryStatus | string,
+  countryStatus: TaxFreeCountryStatus,
 ): OutletTaxFreeDisplayStatus {
   if (countryStatus === "not_available") return "not_available";
   if (countryStatus === "not_verified") return "not_verified";

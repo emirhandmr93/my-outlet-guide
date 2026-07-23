@@ -6,6 +6,7 @@ import { TaxFreeRule } from "../../constants/taxFreeRules";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatCurrency } from "../../services/exchangeRateService";
 import {
+  getMinimumPurchaseComparisonSymbol,
   getMinimumPurchaseTextKey,
   hasDisplayValue,
   OutletTaxFreeDisplayStatus,
@@ -51,7 +52,7 @@ export function TaxFreeCard({
           </Text>
           {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
             <Text style={styles.text}>
-              {t("taxCalc.minimumSpend")}: {formatCurrency(
+              {t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(
                 rule.minimumPurchaseAmount,
                 rule.currency,
                 language,
