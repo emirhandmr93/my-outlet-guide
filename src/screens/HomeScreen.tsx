@@ -6,6 +6,7 @@ import {
   Alert,
   ImageBackground,
   ImageSourcePropType,
+  Linking,
   Modal,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -48,6 +49,10 @@ import { getRecommendedCarouselLastIndex } from "../utils/recommendedCarousel";
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
 const homeTabBarClearanceGap = 72;
+const nativeIosReviewUrl =
+  "itms-apps://itunes.apple.com/app/viewContentsUserReviews/id6791893523?action=write-review";
+const httpsReviewFallbackUrl =
+  "https://apps.apple.com/app/apple-store/id6791893523?action=write-review";
 
 type HomeRouteItem = {
   id: string;
@@ -421,7 +426,23 @@ export function HomeScreen() {
     });
   }
 
-  function rateApp() {
+  async function rateApp() {
+    if (Platform.OS === "ios") {
+      setIsQuickMenuOpen(false);
+
+      try {
+        await Linking.openURL(nativeIosReviewUrl);
+      } catch {
+        try {
+          await Linking.openURL(httpsReviewFallbackUrl);
+        } catch {
+          Alert.alert(t("common.error"), t("common.notAvailable"));
+        }
+      }
+
+      return;
+    }
+
     Alert.alert(t("home.rateApp.title"), t("home.rateApp.message"));
   }
 
