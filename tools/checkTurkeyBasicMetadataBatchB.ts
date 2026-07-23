@@ -3,6 +3,7 @@ import { outletBrands } from "../src/constants/outletBrands";
 import { restaurants } from "../src/constants/restaurants";
 import { transportation } from "../src/constants/transportation";
 import { transportationGuides } from "../src/constants/transportationGuides";
+import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
 
 const targetOutletIds = new Set(["212-outlet", "optimum-premium-outlet-istanbul", "izmir-optimum", "deepo-outlet-center"]);
 const expectedBatchAServices: Record<string, string[]> = {
@@ -11,9 +12,10 @@ const expectedBatchAServices: Record<string, string[]> = {
   "starcity-outlet": ["Emergency Medical Unit", "Free Parking", "ATM", "Baby Stroller", "Baby Care Room", "Children’s Play Area", "Information Desk", "Currency Exchange", "Pharmacy", "EV Charging", "Prayer Room", "Lost Property", "Motorcycle Parking", "Disabled Parking", "Tax Free", "Wheelchair", "Free Wi-Fi", "Tailor", "Hairdresser", "Gym"],
   "venezia-mega-outlet": ["ATM", "Baby Care Room", "Information Desk", "Prayer Room", "Lost Property", "Medical Room", "Taxi Stand"],
 };
-const expectedRestaurantCounts: Record<string, number> = { "viaport-asia-outlet-shopping": 49, "olivium-outlet-center": 25, "starcity-outlet": 24, "venezia-mega-outlet": 38, "212-outlet": 0, "optimum-premium-outlet-istanbul": 0, "izmir-optimum": 0, "deepo-outlet-center": 0 };
-const expectedTransportationCounts: Record<string, number> = { "viaport-asia-outlet-shopping": 3, "olivium-outlet-center": 7, "starcity-outlet": 5, "venezia-mega-outlet": 7, "212-outlet": 0, "optimum-premium-outlet-istanbul": 0, "izmir-optimum": 0, "deepo-outlet-center": 0 };
-const expectedTransportationGuideCounts: Record<string, number> = { "viaport-asia-outlet-shopping": 3, "olivium-outlet-center": 5, "starcity-outlet": 5, "venezia-mega-outlet": 6, "212-outlet": 0, "optimum-premium-outlet-istanbul": 0, "izmir-optimum": 0, "deepo-outlet-center": 0 };
+const expectedRestaurantCounts: Record<string, number> = { "viaport-asia-outlet-shopping": 49, "olivium-outlet-center": 25, "starcity-outlet": 24, "venezia-mega-outlet": 38, "212-outlet": 38, "optimum-premium-outlet-istanbul": 26, "izmir-optimum": 53, "deepo-outlet-center": 25 };
+const expectedTransportationCounts: Record<string, number> = { "viaport-asia-outlet-shopping": 3, "olivium-outlet-center": 7, "starcity-outlet": 5, "venezia-mega-outlet": 7, "212-outlet": 7, "optimum-premium-outlet-istanbul": 4, "izmir-optimum": 5, "deepo-outlet-center": 5 };
+const expectedTransportationGuideCounts: Record<string, number> = { "viaport-asia-outlet-shopping": 3, "olivium-outlet-center": 5, "starcity-outlet": 5, "venezia-mega-outlet": 6, "212-outlet": 7, "optimum-premium-outlet-istanbul": 3, "izmir-optimum": 4, "deepo-outlet-center": 4 };
+const expectedRouteFactCounts = expectedTransportationGuideCounts;
 function assert(condition: unknown, message: string): asserts condition { if (!condition) throw new Error(message); }
 const turkeyOutlets = outlets.filter((outlet) => outlet.countryId === "turkey");
 const byId = (outletId: string) => turkeyOutlets.find((outlet) => outlet.outletId === outletId);
@@ -28,7 +30,7 @@ for (const outlet of turkeyOutlets) {
   assert(new Set(outlet.services).size === outlet.services.length && !outlet.services.some((service) => /restaurant|cafe|café|starbucks/i.test(service)), `${outlet.outletId} services must remain unique and non-restaurant.`);
   const expectedRelations: Record<string, number> = { "viaport-asia-outlet-shopping": 187, "olivium-outlet-center": 94, "starcity-outlet": 101, "optimum-premium-outlet-istanbul": 112, "izmir-optimum": 194, "212-outlet": 105, "venezia-mega-outlet": 127, "deepo-outlet-center": 171 };
   assert(outletBrands.filter((item) => item.outletId === outlet.outletId).length === expectedRelations[outlet.outletId], `${outlet.outletId} relation count changed.`);
-  assert(restaurants.filter((item) => item.outletId === outlet.outletId).length === expectedRestaurantCounts[outlet.outletId] && transportation.filter((item) => item.outletId === outlet.outletId).length === expectedTransportationCounts[outlet.outletId] && transportationGuides.filter((item) => item.outletId === outlet.outletId).length === expectedTransportationGuideCounts[outlet.outletId], `${outlet.outletId} final content counts changed.`);
+  assert(restaurants.filter((item) => item.outletId === outlet.outletId).length === expectedRestaurantCounts[outlet.outletId] && transportation.filter((item) => item.outletId === outlet.outletId).length === expectedTransportationCounts[outlet.outletId] && transportationGuides.filter((item) => item.outletId === outlet.outletId).length === expectedTransportationGuideCounts[outlet.outletId] && transportationRouteFacts.filter((item) => item.outletId === outlet.outletId).length === expectedRouteFactCounts[outlet.outletId], `${outlet.outletId} final content counts changed.`);
 }
 for (const [outletId, services] of Object.entries(expectedBatchAServices)) assert(JSON.stringify(byId(outletId)?.services) === JSON.stringify(services), `${outletId} Batch A services must remain exact.`);
-console.log("Turkey Basic Metadata Batch B valid: current canonical Batch 1 content counts and content-free Batch 2 state are preserved.");
+console.log("Turkey Basic Metadata Batch B valid: both Turkey batches have complete canonical restaurants, transportation, guides, and route facts.");
