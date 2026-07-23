@@ -160,7 +160,7 @@ const expected: Array<
   ["japan", "JPY", 5000, "net", "at_least", 10],
   ["south-korea", "KRW", 15000, "gross", "at_least", 10],
   ["thailand", "THB", 2000, "gross", "at_least", 7],
-  ["france", "EUR", 100, "gross", "at_least", 20],
+  ["france", "EUR", 100, "gross", "greater_than", 20],
   ["italy", "EUR", 70, "gross", "greater_than", 22],
   ["portugal", "EUR", 50, "net", "greater_than", 23],
   ["switzerland", "CHF", 300, "gross", "at_least", 8.1],

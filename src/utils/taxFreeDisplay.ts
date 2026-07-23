@@ -42,14 +42,15 @@ export function resolveOutletTaxFreeDisplayStatus(
   outlet: OutletTaxFreeInput,
   countryStatus: TaxFreeCountryStatus,
 ): OutletTaxFreeDisplayStatus {
-  if (countryStatus === "not_available") return "not_available";
-  if (countryStatus === "not_verified") return "not_verified";
   const hasEvidence = outlet.taxFreeAvailable === true && (
     outlet.services?.some((service) => /tax free/i.test(service)) ||
     hasDisplayValue(outlet.taxFreeOfficeInfo) ||
     hasDisplayValue(outlet.taxFreeOperator)
   );
-  return hasEvidence ? "outlet_verified" : "country_scheme_available";
+  if (hasEvidence) return "outlet_verified";
+  if (countryStatus === "not_available") return "not_available";
+  if (countryStatus === "not_verified") return "not_verified";
+  return "country_scheme_available";
 }
 
 export function getTaxFreeStatusKey(taxFreeAvailable: boolean): "taxFree.statusAvailable" | "taxFree.statusNotVerified";
