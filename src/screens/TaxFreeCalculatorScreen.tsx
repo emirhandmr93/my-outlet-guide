@@ -214,6 +214,7 @@ export function TaxFreeCalculatorScreen() {
           <View style={styles.warningBox}>
             <Text style={styles.warningText}>
               {t("taxCalc.belowMinimum")}{" "}
+              {getMinimumPurchaseComparisonSymbol(rule)}{" "}
               {formatCurrency(
                 rule.minimumPurchaseAmount,
                 rule.currency,
