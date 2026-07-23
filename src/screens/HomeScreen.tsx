@@ -164,7 +164,18 @@ const shoppingTools = [
   },
 ];
 
+const istanbulPopularCity: HomeRouteItem = {
+  id: "istanbul",
+  title: "Istanbul",
+  country: "Turkey",
+  textKey: "home.cities.istanbul.text",
+  image: getPopularCityImage("istanbul")!,
+  route: "CityResults",
+  params: { cityId: "istanbul" },
+};
+
 const popularCities: HomeRouteItem[] = [
+  ...(Platform.OS !== "web" ? [istanbulPopularCity] : []),
   {
     id: "paris",
     title: "Paris",
