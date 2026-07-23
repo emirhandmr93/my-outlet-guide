@@ -37,9 +37,9 @@ export function calculateTaxFreeEstimate(
 }
 
 export function isBelowMinimumPurchase(grossAmount: number, rule: TaxFreeRule) {
-  return (
-    typeof rule.minimumPurchaseAmount === "number" &&
-    grossAmount > 0 &&
-    grossAmount < rule.minimumPurchaseAmount
-  );
+  if (rule.minimumPurchaseStatus !== "verified_amount" || typeof rule.minimumPurchaseAmount !== "number" || grossAmount <= 0) return false;
+  const comparisonAmount = rule.minimumPurchaseBasis === "net" ? grossAmount / (1 + rule.vatRate / 100) : grossAmount;
+  return rule.minimumPurchaseComparison === "greater_than"
+    ? comparisonAmount <= rule.minimumPurchaseAmount
+    : comparisonAmount < rule.minimumPurchaseAmount;
 }

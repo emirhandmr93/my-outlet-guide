@@ -14,6 +14,7 @@ import {
   formatCurrency,
 } from "../services/exchangeRateService";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
+import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
 import {
   calculateTaxFreeEstimate,
   isBelowMinimumPurchase,
@@ -43,6 +44,7 @@ export function TaxFreeCalculatorScreen() {
     currencies[0];
 
   const rule = getTaxFreeRule(selectedCountryId);
+  const countryTaxFreeStatus = normalizeTaxFreeCountryStatus(selectedCountry.taxFreeStatus);
   const parsedAmount = parsePurchaseAmount(amount);
   const hasAmount = typeof parsedAmount === "number";
   const isInvalidAmount =
@@ -78,12 +80,12 @@ export function TaxFreeCalculatorScreen() {
     Promise.all([
       convertCurrency(
         estimate.estimatedTaxFreeRefund,
-        rule.currency as CurrencyCode,
+        rule.currency,
         selectedCurrency,
       ),
       convertCurrency(
         estimate.estimatedCostAfterRefund,
-        rule.currency as CurrencyCode,
+        rule.currency,
         selectedCurrency,
       ),
     ])
@@ -191,11 +193,7 @@ export function TaxFreeCalculatorScreen() {
         />
 
         {!rule && (
-          <View style={styles.warningBox}>
-            <Text style={styles.warningText}>
-              {t("taxCalc.unsupportedCountry")}
-            </Text>
-          </View>
+          <View style={styles.warningBox}><Text style={styles.warningText}>{t(countryTaxFreeStatus === "not_available" ? "taxFree.notAvailableExplanation" : "taxFree.notVerifiedExplanation")}</Text></View>
         )}
 
         {isCurrencyMismatch && (
@@ -212,16 +210,16 @@ export function TaxFreeCalculatorScreen() {
           </View>
         )}
 
-        {isBelowMinimum && (
+        {isBelowMinimum && typeof rule?.minimumPurchaseAmount === "number" && (
           <View style={styles.warningBox}>
             <Text style={styles.warningText}>
               {t("taxCalc.belowMinimum")}{" "}
+              {getMinimumPurchaseComparisonSymbol(rule)}{" "}
               {formatCurrency(
-                rule.minimumPurchaseAmount ?? 0,
-                rule.currency as CurrencyCode,
+                rule.minimumPurchaseAmount,
+                rule.currency,
                 language,
-              )}
-              .
+              )} ({t(getMinimumPurchaseTextKey(rule))}).
             </Text>
           </View>
         )}
@@ -231,12 +229,12 @@ export function TaxFreeCalculatorScreen() {
             <View style={styles.resultGrid}>
               <View style={styles.resultBox}>
                 <Text style={styles.resultLabel}>
-                  {t("taxCalc.estimatedTaxFreeRefund")}
+                  {t("taxFree.maximumVatBeforeFees")}
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(
                     estimate.estimatedTaxFreeRefund,
-                    rule.currency as CurrencyCode,
+                    rule.currency,
                     language,
                   )}
                 </Text>
@@ -249,7 +247,7 @@ export function TaxFreeCalculatorScreen() {
                 <Text style={styles.resultValue}>
                   {formatCurrency(
                     estimate.estimatedCostAfterRefund,
-                    rule.currency as CurrencyCode,
+                    rule.currency,
                     language,
                   )}
                 </Text>
@@ -304,21 +302,11 @@ export function TaxFreeCalculatorScreen() {
         {rule && (
           <View style={styles.metaBox}>
             <Text style={styles.metaTitle}>{t("taxCalc.sourceTitle")}</Text>
-            <Text style={styles.metaText}>
-              {t("taxCalc.sourceEuropeanCommissionVatRates")} • {rule.effectiveDate}
-            </Text>
-            <Text style={styles.metaText}>
-              {t("taxCalc.vatRate")}: {rule.vatRate}%
-            </Text>
-            {typeof rule.minimumPurchaseAmount === "number" && (
-              <Text style={styles.metaText}>
-                {t("taxCalc.minimumSpend")}:{" "}
-                {formatCurrency(
-                  rule.minimumPurchaseAmount,
-                  rule.currency as CurrencyCode,
-                )}
-              </Text>
-            )}
+            <Text style={styles.metaText}>{rule.schemeSource.name} • {rule.schemeSource.checkedDate}</Text>
+            <Text style={styles.metaText}>{t("taxCalc.vatRate")}: {rule.vatRate}% • {rule.vatRateSource.name} • {rule.vatRateSource.checkedDate}</Text>
+            {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" && rule.minimumPurchaseSource ? (
+              <Text style={styles.metaText}>{t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}) • {rule.minimumPurchaseSource.name} • {rule.minimumPurchaseSource.checkedDate}</Text>
+            ) : <Text style={styles.metaText}>{t(getMinimumPurchaseTextKey(rule))}</Text>}
             <Text style={styles.metaText}>{t("taxCalc.standardVatBasis")}</Text>
             <Text style={styles.metaNote}>{t("taxCalc.finalDisclaimer")}</Text>
           </View>

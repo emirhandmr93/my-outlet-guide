@@ -1,98 +1,67 @@
+import type { CurrencyCode } from "../services/exchangeRateService";
+
+export type TaxFreeCountryStatus = "available" | "not_available" | "not_verified";
+export type MinimumPurchaseStatus = "verified_amount" | "no_statutory_minimum" | "not_verified";
+export type MinimumPurchaseComparison = "at_least" | "greater_than";
+
+export type TaxFreeSource = { url: string; name: string; checkedDate: string };
+
 export type TaxFreeRule = {
   countryCode: string;
   countryName: string;
   countryId: string;
-  currency: string;
+  currency: CurrencyCode;
   vatRate: number;
   minimumPurchaseAmount?: number;
   providerFeeRate?: number;
-  sourceUrl: string;
-  sourceName: string;
-  effectiveDate: string;
+  minimumPurchaseBasis?: "gross" | "net";
+  minimumPurchaseComparison?: MinimumPurchaseComparison;
+  minimumPurchaseStatus: MinimumPurchaseStatus;
+  refundEstimateMode: "maximum_vat_component";
+  schemeSource: TaxFreeSource;
+  vatRateSource: TaxFreeSource;
+  minimumPurchaseSource?: TaxFreeSource;
   notes: string;
 };
 
+const euVatRatesUrl = "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en";
+const checkedDate = "2026-07-23";
+const euSchemeSource: TaxFreeSource = { url: "https://taxation-customs.ec.europa.eu/taxation/vat/vat-directive/vat-refunds_en", name: "European Commission — VAT refunds", checkedDate };
+const euVatSource: TaxFreeSource = { url: euVatRatesUrl, name: "European Commission — VAT rates", checkedDate };
+const euNotes = "European Commission VAT rate reference. Confirm tourist-retail eligibility and retailer participation before purchase; the estimate is the maximum VAT component before operator and administration fees.";
+
 export const taxFreeRules: TaxFreeRule[] = [
-  {
-    "countryCode": "FR",
-    "countryName": "France",
-    "countryId": "france",
-    "currency": "EUR",
-    "vatRate": 20,
-    "minimumPurchaseAmount": 100,
-    "sourceUrl": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en",
-    "sourceName": "European Commission VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. Tax-free eligibility, minimum purchase rules, store participation, operator fees, and customs validation requirements can change and must be confirmed before purchase."
-  },
-  {
-    "countryCode": "IT",
-    "countryName": "Italy",
-    "countryId": "italy",
-    "currency": "EUR",
-    "vatRate": 22,
-    "minimumPurchaseAmount": 70.01,
-    "sourceUrl": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en",
-    "sourceName": "European Commission VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. Tax-free eligibility, minimum purchase rules, store participation, operator fees, and customs validation requirements can change and must be confirmed before purchase."
-  },
-  {
-    "countryCode": "DE",
-    "countryName": "Germany",
-    "countryId": "germany",
-    "currency": "EUR",
-    "vatRate": 19,
-    "sourceUrl": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en",
-    "sourceName": "European Commission VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. Provider/store fees and any purchase eligibility rules are not included because no source-backed fee rate is bundled in the app."
-  },
-  {
-    "countryCode": "ES",
-    "countryName": "Spain",
-    "countryId": "spain",
-    "currency": "EUR",
-    "vatRate": 21,
-    "sourceUrl": "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en",
-    "sourceName": "European Commission VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. Provider/store fees and any purchase eligibility rules are not included because no source-backed fee rate is bundled in the app."
-  },
-  {
-    "countryCode": "CH",
-    "countryName": "Switzerland",
-    "countryId": "switzerland",
-    "currency": "CHF",
-    "vatRate": 8.1,
-    "minimumPurchaseAmount": 300,
-    "sourceUrl": "https://www.estv.admin.ch/en/vat-rates-switzerland",
-    "sourceName": "Swiss Federal Tax Administration VAT rates",
-    "effectiveDate": "2026-07-08",
-    "notes": "Normal VAT rate only. Provider/store fees and final refund eligibility are not included because no source-backed fee rate is bundled in the app."
-  },
-  {
-    "countryCode": "AE",
-    "countryName": "United Arab Emirates",
-    "countryId": "united-arab-emirates",
-    "currency": "AED",
-    "vatRate": 5,
-    "sourceUrl": "https://u.ae/en/information-and-services/finance-and-investment/taxation/vat/tax-refund-for-tourists",
-    "sourceName": "The Official Portal of the UAE Government",
-    "effectiveDate": "2026-07-08",
-    "notes": "Standard VAT rate only. UAE tourist refunds require registered retailers and validation; provider/store fees are not included."
-  },
-  {
-    "countryCode": "JP",
-    "countryName": "Japan",
-    "countryId": "japan",
-    "currency": "JPY",
-    "vatRate": 10,
-    "sourceUrl": "https://www.jetro.go.jp/en/invest/setting_up/section3/page6.html",
-    "sourceName": "JETRO overview of consumption tax",
-    "effectiveDate": "2026-07-08",
-    "notes": "General consumption tax rate only; reduced-rate goods and store-specific tax-free procedures are not included."
-  }
+  { countryCode: "JP", countryName: "Japan", countryId: "japan", currency: "JPY", vatRate: 10, minimumPurchaseAmount: 5000, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, vatRateSource: { url: "https://www.nta.go.jp/english/taxes/consumption_tax/01.htm", name: "Japan National Tax Agency", checkedDate }, minimumPurchaseSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, notes: "Eligible tourists may receive tax exemption at participating stores. The same-store, same-day minimum is JPY 5,000 excluding tax; store participation must be confirmed." },
+  { countryCode: "KR", countryName: "South Korea", countryId: "south-korea", currency: "KRW", vatRate: 10, minimumPurchaseAmount: 15000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=929&vcontsId=248765", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, vatRateSource: { url: "https://www.investkorea.org/file/ik-en/252025Taxation_in_Korea.pdf", name: "Invest KOREA / KOTRA", checkedDate }, minimumPurchaseSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=929&vcontsId=248765", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, notes: "Participating stores may provide immediate refunds from KRW 15,000; retailer participation and official eligibility conditions apply." },
+  { countryCode: "TH", countryName: "Thailand", countryId: "thailand", currency: "THB", vatRate: 7, minimumPurchaseAmount: 2000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate }, vatRateSource: { url: "https://www.rd.go.th/english/6043.html", name: "Thailand Revenue Department", checkedDate }, minimumPurchaseSource: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate }, notes: "VAT Refund for Tourists requires at least THB 2,000 including VAT from the same store on the same day and participating-store documentation." },
+  { countryCode: "CN", countryName: "China", countryId: "china", currency: "CNY", vatRate: 13, minimumPurchaseAmount: 200, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240071/content.html", name: "State Taxation Administration", checkedDate }, vatRateSource: { url: "https://fgk.chinatax.gov.cn/zcfgk/c100016/c5248161/content.html", name: "State Taxation Administration", checkedDate }, minimumPurchaseSource: { url: "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240071/content.html", name: "State Taxation Administration", checkedDate }, notes: "Official departure tax-refund policy; CNY 200 is modeled only for the official refund-shopping minimum." },
+  { countryCode: "AT", countryName: "Austria", countryId: "austria", currency: "EUR", vatRate: 20, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "BE", countryName: "Belgium", countryId: "belgium", currency: "EUR", vatRate: 21, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "BG", countryName: "Bulgaria", countryId: "bulgaria", currency: "EUR", vatRate: 20, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "HR", countryName: "Croatia", countryId: "croatia", currency: "EUR", vatRate: 25, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "CZ", countryName: "Czech Republic", countryId: "czech-republic", currency: "CZK", vatRate: 21, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "DK", countryName: "Denmark", countryId: "denmark", currency: "DKK", vatRate: 25, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "EE", countryName: "Estonia", countryId: "estonia", currency: "EUR", vatRate: 24, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "FI", countryName: "Finland", countryId: "finland", currency: "EUR", vatRate: 25.5, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "FR", countryName: "France", countryId: "france", currency: "EUR", vatRate: 20, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://www.douane.gouv.fr/demarche/vous-achetez-des-marchandises-en-detaxe", name: "French Customs", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://www.douane.gouv.fr/demarche/vous-achetez-des-marchandises-en-detaxe", name: "French Customs", checkedDate }, notes: euNotes },
+  { countryCode: "DE", countryName: "Germany", countryId: "germany", currency: "EUR", vatRate: 19, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "GR", countryName: "Greece", countryId: "greece", currency: "EUR", vatRate: 24, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "HU", countryName: "Hungary", countryId: "hungary", currency: "HUF", vatRate: 27, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "IE", countryName: "Ireland", countryId: "ireland", currency: "EUR", vatRate: 23, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "IT", countryName: "Italy", countryId: "italy", currency: "EUR", vatRate: 22, minimumPurchaseAmount: 70, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://www.agenziaentrate.gov.it/portale/documents/20143/5866239/Circolare%2Bn%2B3_del%2B16_2_2024.pdf/6e8e87f4-a360-b3c0-8b0b-475cf43ab2d8", name: "Agenzia delle Entrate", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://www.agenziaentrate.gov.it/portale/documents/20143/5866239/Circolare%2Bn%2B3_del%2B16_2_2024.pdf/6e8e87f4-a360-b3c0-8b0b-475cf43ab2d8", name: "Agenzia delle Entrate", checkedDate }, notes: euNotes },
+  { countryCode: "LV", countryName: "Latvia", countryId: "latvia", currency: "EUR", vatRate: 21, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "LT", countryName: "Lithuania", countryId: "lithuania", currency: "EUR", vatRate: 21, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "NL", countryName: "Netherlands", countryId: "netherlands", currency: "EUR", vatRate: 21, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "PL", countryName: "Poland", countryId: "poland", currency: "PLN", vatRate: 23, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "PT", countryName: "Portugal", countryId: "portugal", currency: "EUR", vatRate: 23, minimumPurchaseAmount: 50, minimumPurchaseBasis: "net", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/questoes_frequentes/Pages/faqs-00950.aspx", name: "Portuguese Tax and Customs Authority", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/questoes_frequentes/Pages/faqs-00950.aspx", name: "Portuguese Tax and Customs Authority", checkedDate }, notes: "Purchase value must exceed EUR 50 excluding VAT. The estimate is the maximum VAT component before operator and administration fees." },
+  { countryCode: "RO", countryName: "Romania", countryId: "romania", currency: "RON", vatRate: 19, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "SK", countryName: "Slovakia", countryId: "slovakia", currency: "EUR", vatRate: 23, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "ES", countryName: "Spain", countryId: "spain", currency: "EUR", vatRate: 21, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "SE", countryName: "Sweden", countryId: "sweden", currency: "SEK", vatRate: 25, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "CH", countryName: "Switzerland", countryId: "switzerland", currency: "CHF", vatRate: 8.1, minimumPurchaseAmount: 300, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://www.estv.admin.ch/en/tax-free-for-tourists", name: "Swiss Federal Tax Administration", checkedDate }, vatRateSource: { url: "https://www.estv.admin.ch/en/vat-rates-switzerland", name: "Swiss Federal Tax Administration", checkedDate }, minimumPurchaseSource: { url: "https://www.estv.admin.ch/en/tax-free-for-tourists", name: "Swiss Federal Tax Administration", checkedDate }, notes: "Swiss tax-free shopping threshold and VAT conditions must be confirmed with the retailer." },
+  { countryCode: "NO", countryName: "Norway", countryId: "norway", currency: "NOK", vatRate: 25, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://www.toll.no/en/travelling-to-and-from-norway/reimbursement-of-vat-to-tourists", name: "Norwegian Customs", checkedDate }, vatRateSource: { url: "https://www.skatteetaten.no/en/rates/value-added-tax/", name: "Norwegian Tax Administration", checkedDate }, notes: "Norwegian Customs provides the official tourist VAT reimbursement guidance; no numeric minimum is modeled." },
+  { countryCode: "TR", countryName: "Turkey", countryId: "turkey", currency: "TRY", vatRate: 20, minimumPurchaseAmount: 1000, minimumPurchaseBasis: "net", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://cdn.gib.gov.tr/api/gibportal-file/file/getFile?objectKey=MEVZUAT_TEBLIGLER%2FUNIVERSAL%2F2026%2Fkdv_genteb.pdf", name: "Turkish Revenue Administration", checkedDate }, vatRateSource: { url: "https://cdn.gib.gov.tr/api/gibportal-file/file/getFile?objectKey=MEVZUAT_TEBLIGLER%2FUNIVERSAL%2F2026%2Fkdv_genteb.pdf", name: "Turkish Revenue Administration", checkedDate }, minimumPurchaseSource: { url: "https://cdn.gib.gov.tr/api/gibportal-file/file/getFile?objectKey=MEVZUAT_TEBLIGLER%2FUNIVERSAL%2F2026%2Fkdv_genteb.pdf", name: "Turkish Revenue Administration", checkedDate }, notes: "The consolidated VAT communiqué requires an invoice value above TRY 1,000 excluding VAT." },
+  { countryCode: "AE", countryName: "United Arab Emirates", countryId: "united-arab-emirates", currency: "AED", vatRate: 5, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://u.ae/en/information-and-services/finance-and-investment/taxation/vat/tax-refund-for-tourists", name: "UAE Government Portal", checkedDate }, vatRateSource: { url: "https://u.ae/en/information-and-services/finance-and-investment/taxation/vat/tax-refund-for-tourists", name: "UAE Government Portal", checkedDate }, notes: "Official UAE tourist VAT refund guidance; retailer participation and final refund conditions apply." },
 ];
 
 export function getTaxFreeRule(countryId: string) {

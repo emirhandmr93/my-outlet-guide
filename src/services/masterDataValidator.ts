@@ -351,81 +351,38 @@ const validateTransportationGuides = (
   });
 };
 
-const supportedTaxFreeCountryIds = new Set([
-  "france",
-  "italy",
-  "germany",
-  "spain",
-  "switzerland",
-  "united-arab-emirates",
-  "japan",
-]);
-
+const isIsoDate = (value: string) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+};
+const isTaxFreeSourceComplete = (source: unknown): source is { url: string; name: string; checkedDate: string } => {
+  if (!source || typeof source !== "object" || !("url" in source) || !("name" in source) || !("checkedDate" in source)) return false;
+  const { url, name, checkedDate } = source;
+  return typeof url === "string" && url.trim().length > 0 && typeof name === "string" && name.trim().length > 0 && typeof checkedDate === "string" && checkedDate.trim().length > 0 && isIsoDate(checkedDate);
+};
 const validateTaxFreeRules = (issues: MasterDataValidationIssue[]): void => {
-  findDuplicates(taxFreeRules, (rule) => String(rule.countryId ?? "").trim()).forEach(
-    (count, countryId) =>
-      pushIssue(
-        issues,
-        "DUPLICATE_TAX_FREE_RULE_COUNTRY",
-        `Tax-free countryId ${countryId} appears ${count} times.`,
-        { businessName: countryId },
-      ),
-  );
-
+  const euVatRatesUrl = "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en";
+  const rulesByCountryId = new Map<string, typeof taxFreeRules>();
   taxFreeRules.forEach((rule) => {
-    const countryId = String(rule.countryId ?? "").trim();
-    const requiredFields = [
-      rule.countryCode,
-      rule.countryName,
-      rule.currency,
-      rule.sourceUrl,
-      rule.sourceName,
-      rule.effectiveDate,
-      rule.notes,
-    ];
-
-    if (!countryId || !supportedTaxFreeCountryIds.has(countryId)) {
-      pushIssue(
-        issues,
-        "UNSUPPORTED_TAX_FREE_RULE_COUNTRY",
-        `Tax-free rule ${countryId || "UNKNOWN_COUNTRY"} is not in the source-backed Phase 1A allowlist.`,
-        { businessName: countryId || "UNKNOWN_COUNTRY" },
-      );
-    }
-
-    if (requiredFields.some((field) => !String(field ?? "").trim())) {
-      pushIssue(
-        issues,
-        "MISSING_TAX_FREE_RULE_SOURCE_FIELD",
-        `Tax-free rule ${countryId || "UNKNOWN_COUNTRY"} is missing a source, effective date, or required identity field.`,
-        { businessName: countryId || "UNKNOWN_COUNTRY" },
-      );
-    }
-
-    if (typeof rule.vatRate !== "number" || !Number.isFinite(rule.vatRate) || rule.vatRate <= 0) {
-      pushIssue(
-        issues,
-        "INVALID_TAX_FREE_RULE_VAT_RATE",
-        `Tax-free rule ${countryId || "UNKNOWN_COUNTRY"} has an invalid VAT rate.`,
-        { businessName: countryId || "UNKNOWN_COUNTRY" },
-      );
-    }
-
-    if (
-      rule.providerFeeRate !== undefined &&
-      (typeof rule.providerFeeRate !== "number" ||
-        !Number.isFinite(rule.providerFeeRate) ||
-        rule.providerFeeRate < 0 ||
-        rule.providerFeeRate >= 1)
-    ) {
-      pushIssue(
-        issues,
-        "INVALID_TAX_FREE_RULE_PROVIDER_FEE",
-        `Tax-free rule ${countryId || "UNKNOWN_COUNTRY"} has an invalid provider fee rate.`,
-        { businessName: countryId || "UNKNOWN_COUNTRY" },
-      );
-    }
+    const countryId = String(rule.countryId ?? "").trim(); const country = countries.find((item) => item.countryId === countryId); const rules = rulesByCountryId.get(countryId) ?? [];
+    rules.push(rule);
+    rulesByCountryId.set(countryId, rules);
+    if (rules.length > 1) pushIssue(issues, "DUPLICATE_TAX_FREE_RULE_COUNTRY", `Duplicate Tax-free rule for ${countryId}.`, { businessName: countryId });
+    if (!country) pushIssue(issues, "UNKNOWN_TAX_FREE_RULE_COUNTRY", `Tax-free rule references unknown country ${countryId}.`, { businessName: countryId });
+    else if (country.taxFreeStatus !== "available" || country.currency !== rule.currency) pushIssue(issues, "INVALID_TAX_FREE_RULE_COUNTRY", `Tax-free rule is inconsistent with ${countryId}.`, { businessName: countryId });
+    if (!isTaxFreeSourceComplete(rule.schemeSource) || !isTaxFreeSourceComplete(rule.vatRateSource) || !String(rule.notes ?? "").trim()) pushIssue(issues, "MISSING_TAX_FREE_RULE_SOURCE_FIELD", `Tax-free rule ${countryId} is missing source metadata.`, { businessName: countryId });
+    if (rule.schemeSource?.url === euVatRatesUrl || rule.minimumPurchaseSource?.url === euVatRatesUrl) pushIssue(issues, "INVALID_TAX_FREE_SOURCE_ROLE", `EU VAT rates URL has an invalid role for ${countryId}.`, { businessName: countryId });
+    if (typeof rule.vatRate !== "number" || !Number.isFinite(rule.vatRate) || rule.vatRate <= 0 || rule.vatRate > 100) pushIssue(issues, "INVALID_TAX_FREE_RULE_VAT_RATE", `Tax-free rule ${countryId} has an invalid VAT rate.`, { businessName: countryId });
+    if (rule.providerFeeRate !== undefined && (typeof rule.providerFeeRate !== "number" || !Number.isFinite(rule.providerFeeRate) || rule.providerFeeRate < 0 || rule.providerFeeRate >= 1)) pushIssue(issues, "INVALID_TAX_FREE_RULE_PROVIDER_FEE", `Tax-free rule ${countryId} has an invalid provider fee rate.`, { businessName: countryId });
+    const verified = rule.minimumPurchaseStatus === "verified_amount";
+    const validMinimum = typeof rule.minimumPurchaseAmount === "number" && Number.isFinite(rule.minimumPurchaseAmount) && rule.minimumPurchaseAmount > 0 && rule.minimumPurchaseAmount !== .01 && (rule.minimumPurchaseBasis === "gross" || rule.minimumPurchaseBasis === "net") && (rule.minimumPurchaseComparison === "at_least" || rule.minimumPurchaseComparison === "greater_than") && isTaxFreeSourceComplete(rule.minimumPurchaseSource);
+    const hasForbiddenMinimumFields = rule.minimumPurchaseAmount !== undefined || rule.minimumPurchaseBasis !== undefined || rule.minimumPurchaseComparison !== undefined || rule.minimumPurchaseSource !== undefined;
+    if (verified && !validMinimum) pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Invalid verified minimum for ${countryId}.`, { businessName: countryId });
+    if ((rule.minimumPurchaseStatus === "not_verified" || rule.minimumPurchaseStatus === "no_statutory_minimum") && hasForbiddenMinimumFields) pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Unexpected minimum fields for ${countryId}.`, { businessName: countryId });
+    if (!verified && rule.minimumPurchaseStatus !== "not_verified" && rule.minimumPurchaseStatus !== "no_statutory_minimum") pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Unknown minimum status for ${countryId}.`, { businessName: countryId });
   });
+  countries.forEach((country) => { const count = rulesByCountryId.get(country.countryId)?.length ?? 0; const validStatus = ["available", "not_available", "not_verified"].includes(country.taxFreeStatus); if (!validStatus || (country.taxFreeStatus === "available" ? count !== 1 : count !== 0)) pushIssue(issues, "INVALID_TAX_FREE_COUNTRY_STATUS", `Tax-free status/rule mismatch for ${country.countryId}.`, { businessName: country.countryId }); });
 };
 
 const officiallyDiningOnlyOutletBrandKeys = new Set<string>();

@@ -1,53 +1,73 @@
 import { StyleSheet, Text } from "react-native";
+
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
+import { TaxFreeRule } from "../../constants/taxFreeRules";
 import { useTranslation } from "../../hooks/useTranslation";
-import { getTaxFreeStatusKey, hasDisplayValue, hasVerifiedMinimumSpend, hasVerifiedVatRate } from "../../utils/taxFreeDisplay";
+import { formatCurrency } from "../../services/exchangeRateService";
+import {
+  getMinimumPurchaseComparisonSymbol,
+  getMinimumPurchaseTextKey,
+  hasDisplayValue,
+  OutletTaxFreeDisplayStatus,
+} from "../../utils/taxFreeDisplay";
 
 type TaxFreeCardProps = {
   title: string;
-  taxFreeAvailable: boolean;
-  vatRate?: number;
-  minimumSpend?: string;
+  taxFreeStatus: OutletTaxFreeDisplayStatus;
+  rule?: TaxFreeRule;
   officeInfo?: string;
 };
 
 export function TaxFreeCard({
   title,
-  taxFreeAvailable,
-  vatRate,
-  minimumSpend,
+  taxFreeStatus,
+  rule,
   officeInfo,
 }: TaxFreeCardProps) {
   const { t, language } = useTranslation();
-  const hasOfficeInfo = hasDisplayValue(officeInfo);
-  const shouldShowOfficeInfo = hasOfficeInfo && (language !== "tr" || (officeInfo?.length ?? 0) <= 90);
+  const shouldShowOfficeInfo =
+    hasDisplayValue(officeInfo) &&
+    (language !== "tr" || (officeInfo?.length ?? 0) <= 90);
 
   return (
     <Card>
       <SectionTitle title={title} />
+      <Text style={styles.text}>{t(`taxFree.${taxFreeStatus}`)}</Text>
 
-      <Text style={styles.text}>{t(getTaxFreeStatusKey(taxFreeAvailable))}</Text>
-
-      {!taxFreeAvailable ? (
+      {taxFreeStatus === "country_scheme_available" ? (
+        <Text style={styles.text}>{t("taxFree.retailerConfirmation")}</Text>
+      ) : null}
+      {taxFreeStatus === "not_available" ? (
+        <Text style={styles.text}>{t("taxFree.notAvailableExplanation")}</Text>
+      ) : null}
+      {taxFreeStatus === "not_verified" ? (
         <Text style={styles.text}>{t("taxFree.notVerifiedExplanation")}</Text>
       ) : null}
 
-      {hasVerifiedVatRate(vatRate) ? (
-        <Text style={styles.text}>
-          {t("taxCalc.vatRate")}: {vatRate}%
-        </Text>
+      {rule ? (
+        <>
+          <Text style={styles.text}>
+            {t("taxCalc.vatRate")}: {rule.vatRate}%
+          </Text>
+          {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
+            <Text style={styles.text}>
+              {t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(
+                rule.minimumPurchaseAmount,
+                rule.currency,
+                language,
+              )} ({t(getMinimumPurchaseTextKey(rule))})
+            </Text>
+          ) : (
+            <Text style={styles.text}>{t(getMinimumPurchaseTextKey(rule))}</Text>
+          )}
+          <Text style={styles.text}>{t("taxCalc.finalDisclaimer")}</Text>
+        </>
       ) : null}
 
-      <Text style={styles.text}>{t("taxCalc.finalDisclaimer")}</Text>
-
-      {hasVerifiedMinimumSpend(minimumSpend) ? (
-        <Text style={styles.text}>
-          {t("taxCalc.minimumSpend")}: {minimumSpend}
-        </Text>
+      {shouldShowOfficeInfo && taxFreeStatus === "outlet_verified" ? (
+        <Text style={styles.text}>{officeInfo}</Text>
       ) : null}
-
-      {shouldShowOfficeInfo ? <Text style={styles.text}>{officeInfo ?? ""}</Text> : null}
     </Card>
   );
 }
