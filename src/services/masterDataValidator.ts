@@ -351,17 +351,24 @@ const validateTransportationGuides = (
   });
 };
 
-const isTaxFreeSourceComplete = (source: unknown): source is { url: string; name: string; checkedDate: string } => {
-  if (!source || typeof source !== "object") return false;
-  const candidate = source as { url?: unknown; name?: unknown; checkedDate?: unknown };
-  return [candidate.url, candidate.name, candidate.checkedDate].every((value) => typeof value === "string" && value.trim().length > 0) && isIsoDate(candidate.checkedDate as string);
+const isIsoDate = (value: string) => {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
 };
-const isIsoDate = (value: string) => /^\d{4}-\d{2}-\d{2}$/.test(value) && new Date(`${value}T00:00:00.000Z`).toISOString().slice(0, 10) === value;
+const isTaxFreeSourceComplete = (source: unknown): source is { url: string; name: string; checkedDate: string } => {
+  if (!source || typeof source !== "object" || !("url" in source) || !("name" in source) || !("checkedDate" in source)) return false;
+  const { url, name, checkedDate } = source;
+  return typeof url === "string" && url.trim().length > 0 && typeof name === "string" && name.trim().length > 0 && typeof checkedDate === "string" && checkedDate.trim().length > 0 && isIsoDate(checkedDate);
+};
 const validateTaxFreeRules = (issues: MasterDataValidationIssue[]): void => {
   const euVatRatesUrl = "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en";
   const rulesByCountryId = new Map<string, typeof taxFreeRules>();
   taxFreeRules.forEach((rule) => {
-    const countryId = String(rule.countryId ?? "").trim(); const country = countries.find((item) => item.countryId === countryId); const rules = rulesByCountryId.get(countryId) ?? []; rules.push(rule); rulesByCountryId.set(countryId, rules);
+    const countryId = String(rule.countryId ?? "").trim(); const country = countries.find((item) => item.countryId === countryId); const rules = rulesByCountryId.get(countryId) ?? [];
+    rules.push(rule);
+    rulesByCountryId.set(countryId, rules);
+    if (rules.length > 1) pushIssue(issues, "DUPLICATE_TAX_FREE_RULE_COUNTRY", `Duplicate Tax-free rule for ${countryId}.`, { businessName: countryId });
     if (!country) pushIssue(issues, "UNKNOWN_TAX_FREE_RULE_COUNTRY", `Tax-free rule references unknown country ${countryId}.`, { businessName: countryId });
     else if (country.taxFreeStatus !== "available" || country.currency !== rule.currency) pushIssue(issues, "INVALID_TAX_FREE_RULE_COUNTRY", `Tax-free rule is inconsistent with ${countryId}.`, { businessName: countryId });
     if (!isTaxFreeSourceComplete(rule.schemeSource) || !isTaxFreeSourceComplete(rule.vatRateSource) || !String(rule.notes ?? "").trim()) pushIssue(issues, "MISSING_TAX_FREE_RULE_SOURCE_FIELD", `Tax-free rule ${countryId} is missing source metadata.`, { businessName: countryId });
@@ -370,7 +377,10 @@ const validateTaxFreeRules = (issues: MasterDataValidationIssue[]): void => {
     if (rule.providerFeeRate !== undefined && (typeof rule.providerFeeRate !== "number" || !Number.isFinite(rule.providerFeeRate) || rule.providerFeeRate < 0 || rule.providerFeeRate >= 1)) pushIssue(issues, "INVALID_TAX_FREE_RULE_PROVIDER_FEE", `Tax-free rule ${countryId} has an invalid provider fee rate.`, { businessName: countryId });
     const verified = rule.minimumPurchaseStatus === "verified_amount";
     const validMinimum = typeof rule.minimumPurchaseAmount === "number" && Number.isFinite(rule.minimumPurchaseAmount) && rule.minimumPurchaseAmount > 0 && rule.minimumPurchaseAmount !== .01 && (rule.minimumPurchaseBasis === "gross" || rule.minimumPurchaseBasis === "net") && (rule.minimumPurchaseComparison === "at_least" || rule.minimumPurchaseComparison === "greater_than") && isTaxFreeSourceComplete(rule.minimumPurchaseSource);
-    if (verified ? !validMinimum : rule.minimumPurchaseStatus !== "not_verified" && rule.minimumPurchaseStatus !== "no_statutory_minimum" || !verified && (rule.minimumPurchaseAmount !== undefined || rule.minimumPurchaseBasis !== undefined || rule.minimumPurchaseComparison !== undefined || rule.minimumPurchaseSource !== undefined)) pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Invalid minimum model for ${countryId}.`, { businessName: countryId });
+    const hasForbiddenMinimumFields = rule.minimumPurchaseAmount !== undefined || rule.minimumPurchaseBasis !== undefined || rule.minimumPurchaseComparison !== undefined || rule.minimumPurchaseSource !== undefined;
+    if (verified && !validMinimum) pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Invalid verified minimum for ${countryId}.`, { businessName: countryId });
+    if ((rule.minimumPurchaseStatus === "not_verified" || rule.minimumPurchaseStatus === "no_statutory_minimum") && hasForbiddenMinimumFields) pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Unexpected minimum fields for ${countryId}.`, { businessName: countryId });
+    if (!verified && rule.minimumPurchaseStatus !== "not_verified" && rule.minimumPurchaseStatus !== "no_statutory_minimum") pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Unknown minimum status for ${countryId}.`, { businessName: countryId });
   });
   countries.forEach((country) => { const count = rulesByCountryId.get(country.countryId)?.length ?? 0; const validStatus = ["available", "not_available", "not_verified"].includes(country.taxFreeStatus); if (!validStatus || (country.taxFreeStatus === "available" ? count !== 1 : count !== 0)) pushIssue(issues, "INVALID_TAX_FREE_COUNTRY_STATUS", `Tax-free status/rule mismatch for ${country.countryId}.`, { businessName: country.countryId }); });
 };
