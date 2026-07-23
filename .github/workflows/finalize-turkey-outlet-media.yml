@@ -1,0 +1,144 @@
+name: Finalize Turkey Outlet Media
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.x
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes imagemagick
+
+      - name: Generate scoped Turkey outlet media
+        id: generate
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="automation/add-turkey-outlet-media-${GITHUB_RUN_ID}"
+          echo "branch=${branch}" >> "$GITHUB_OUTPUT"
+          git switch -c "$branch"
+          npx tsx tools/finalizeTurkeyOutletMedia.ts --check
+          npx tsx tools/finalizeTurkeyOutletMedia.ts --write
+
+      - name: Run initial validators
+        run: |
+          set -euo pipefail
+          npx tsc --noEmit
+          npx tsx src/services/masterDataValidator.ts
+          npx tsx tools/checkTranslationKeys.ts
+          npx tsx tools/checkOutletMediaMetadata.ts
+          npx tsx tools/checkOutletMediaMetadata.ts --resolver-audit
+          npx tsx tools/checkOutletMediaMetadata.ts --strict
+          npx tsx tools/checkTurkeyExpansion.ts
+          npx tsx tools/checkTurkeyBasicMetadataBatchA.ts
+          npx tsx tools/checkTurkeyBasicMetadataBatchB.ts
+
+      - name: Stage and commit generated media
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- \
+            assets/outlet-images/viaport-asia-outlet-shopping \
+            assets/outlet-images/olivium-outlet-center \
+            assets/outlet-images/starcity-outlet \
+            assets/outlet-images/venezia-mega-outlet \
+            assets/outlet-images/212-outlet \
+            assets/outlet-images/optimum-premium-outlet-istanbul \
+            assets/outlet-images/izmir-optimum \
+            assets/outlet-images/deepo-outlet-center \
+            src/media/outletMedia.ts src/media/outletMediaMetadata.ts
+          test "$(git diff --cached --name-only | sed '/^$/d' | wc -l | tr -d ' ')" = 31
+          git commit -m "Add Turkey outlet media"
+
+      - name: Run steady-state scope validators
+        shell: bash
+        run: |
+          set -euo pipefail
+          original_main="$(git rev-parse refs/heads/main)"
+          restore_main() { git update-ref refs/heads/main "$original_main"; }
+          trap restore_main EXIT
+          git update-ref refs/heads/main HEAD
+          npx tsx tools/checkCanonicalIdentityConsolidation.ts
+          npx tsx tools/checkTurkeyBrandCoverageOlivium.ts
+          npx tsx tools/checkTurkeyBrandCoverageStarCity.ts
+          npx tsx tools/checkTurkeyBrandCoverageIstanbulOptimum.ts
+          npx tsx tools/checkTurkeyBrandCoverageIzmirOptimum.ts
+          npx tsx tools/checkTurkeyBrandCoverageViaport.ts
+          npx tsx tools/checkTurkeyBrandCoverage212.ts
+          npx tsx tools/checkTurkeyBrandCoverageVenezia.ts
+          npx tsx tools/checkTurkeyBrandCoverageDeepo.ts
+
+      - name: Export Expo web bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          CI=1 NODE_OPTIONS=--max-old-space-size=8192 npx expo export --platform web 2>&1 | tee expo-export.log
+          grep -F "Exported: dist" expo-export.log
+          rm -rf dist expo-export.log
+
+      - name: Verify generated change set
+        run: |
+          set -euo pipefail
+          git diff --check main...HEAD
+          test "$(git diff --name-only main...HEAD | sed '/^$/d' | wc -l | tr -d ' ')" = 31
+          git diff --name-only main...HEAD
+          git diff --stat main...HEAD
+          git diff --numstat main...HEAD
+          git ls-files dist
+          test -z "$(git ls-files dist)"
+          git status --short
+          test -z "$(git status --short)"
+
+      - name: Create contact sheet
+        run: |
+          set -euo pipefail
+          montage assets/outlet-images/{viaport-asia-outlet-shopping,olivium-outlet-center,starcity-outlet,venezia-mega-outlet,212-outlet,optimum-premium-outlet-istanbul,izmir-optimum,deepo-outlet-center}/*.webp -thumbnail 320x180 -tile 4x -geometry +4+4 turkey-outlet-media-contact-sheet.webp
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: turkey-outlet-media-contact-sheet
+          path: turkey-outlet-media-contact-sheet.webp
+
+      - name: Push generated branch and create pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.generate.outputs.branch }}
+          REPOSITORY: ${{ github.repository }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git push --set-upstream origin "$BRANCH"
+          body=$(cat <<'BODY'
+          ## Generated Turkey outlet media
+
+          - Generated **29 WebP images** at **1600 × 900**.
+          - Outlet counts: Viaport 4, Olivium 4, StarCity 3, Venezia 4, 212 3, Istanbul Optimum 3, İzmir Optimum 4, Deepo 4.
+          - Source SHA-256 preservation: passed.
+          - Non-Turkey asset SHA-256 preservation: passed.
+          - TypeScript, metadata, Turkey expansion, identity, and brand coverage validators: passed.
+          - Expo web export: passed (`Exported: dist`).
+          BODY
+          )
+          if ! gh pr create --repo "$REPOSITORY" --base main --head "$BRANCH" --title "Add Turkey outlet media" --body "$body"; then
+            echo "Automatic PR creation was blocked. Open: https://github.com/${REPOSITORY}/compare/main...${BRANCH}?expand=1"
+          fi
