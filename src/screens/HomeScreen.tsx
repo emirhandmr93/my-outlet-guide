@@ -303,6 +303,7 @@ export function HomeScreen() {
     spacing.md,
     contentWidth,
   );
+  const recommendedPageCount = recommendedLastIndex + 1;
   const cityCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 3) / 4)
     : Math.round(width * 0.42);
@@ -578,7 +579,8 @@ export function HomeScreen() {
           subtitle={t("home.sections.outlets.subtitle")}
         />
 
-        <ScrollView
+        <View style={styles.recommendedCarouselWrap}>
+          <ScrollView
           ref={recommendedCarouselRef}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -629,7 +631,22 @@ export function HomeScreen() {
               </TouchableOpacity>
             );
           })}
-        </ScrollView>
+          </ScrollView>
+
+          {recommendedPageCount > 1 ? (
+            <View style={styles.dotsRow}>
+              {Array.from({ length: recommendedPageCount }).map((_, index) => (
+                <View
+                  key={`recommended-dot-${index}`}
+                  style={[
+                    styles.dot,
+                    index === activeRecommendedIndex && styles.dotActive,
+                  ]}
+                />
+              ))}
+            </View>
+          ) : null}
+        </View>
 
         <DashboardSectionHeader
           title={t("home.sections.activity.title")}
@@ -1133,6 +1150,9 @@ const styles = StyleSheet.create({
   recommendedList: {
     paddingRight: spacing.xl,
     gap: spacing.md,
+  },
+
+  recommendedCarouselWrap: {
     marginBottom: spacing.lg,
   },
 

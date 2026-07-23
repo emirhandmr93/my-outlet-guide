@@ -60,6 +60,7 @@ export function HomeHeader({
   const { t, language } = useTranslation();
   const { width } = useWindowDimensions();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
+  const isCompactMobile = !isDesktopWeb && width < 400;
   const selectedLanguage =
     languages.find((item) => item.languageCode === language) ?? languages[0];
   const title = getGreeting(t, userName, isGuest);
@@ -73,7 +74,7 @@ export function HomeHeader({
       <View style={[styles.topBar, isDesktopWeb ? styles.topBarDesktop : null]}>
         {!isDesktopWeb ? (
           <TouchableOpacity
-            style={styles.iconButton}
+            style={[styles.iconButton, isCompactMobile ? styles.iconButtonCompact : null]}
             activeOpacity={0.84}
             onPress={onPressMenu}
           >
@@ -83,19 +84,24 @@ export function HomeHeader({
 
         <View
           pointerEvents="none"
-          style={[styles.brandWrap, isDesktopWeb ? styles.brandWrapDesktop : null]}
+          style={[styles.brandWrap, isDesktopWeb ? styles.brandWrapDesktop : null, isCompactMobile ? styles.brandWrapCompact : null]}
         >
           <Image
             source={brandIcon}
-            style={[styles.brandIcon, isDesktopWeb ? styles.brandIconDesktop : null]}
+            style={[styles.brandIcon, isDesktopWeb ? styles.brandIconDesktop : null, isCompactMobile ? styles.brandIconCompact : null]}
             resizeMode="contain"
           />
-          <Text style={[styles.brandText, isDesktopWeb ? styles.brandTextDesktop : null]}>
+          <Text
+            style={[styles.brandText, isDesktopWeb ? styles.brandTextDesktop : null, isCompactMobile ? styles.brandTextCompact : null]}
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.72}
+          >
             MY OUTLET GUIDE
           </Text>
         </View>
 
-        <View style={styles.rightActions}>
+        <View style={[styles.rightActions, isCompactMobile ? styles.rightActionsCompact : null]}>
           {isDesktopWeb ? (
             <TouchableOpacity
               style={[styles.iconButton, styles.desktopMenuButton]}
@@ -106,7 +112,7 @@ export function HomeHeader({
             </TouchableOpacity>
           ) : null}
           <TouchableOpacity
-            style={styles.iconButton}
+            style={[styles.iconButton, isCompactMobile ? styles.iconButtonCompact : null]}
             activeOpacity={0.84}
             onPress={onPressNotifications}
           >
@@ -114,15 +120,15 @@ export function HomeHeader({
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.languageButton}
+            style={[styles.languageButton, isCompactMobile ? styles.languageButtonCompact : null]}
             activeOpacity={0.84}
             onPress={onPressLanguage}
           >
-            <View style={styles.languageContent}>
+            <View style={[styles.languageContent, isCompactMobile ? styles.languageContentCompact : null]}>
               <LanguageFlag
                 flag={selectedLanguage.flag}
                 languageName={selectedLanguage.languageName}
-                size={20}
+                size={isCompactMobile ? 18 : 20}
               />
               <Text style={styles.languageText}>
                 {selectedLanguage.languageCode.toUpperCase()}
@@ -202,6 +208,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+    minWidth: 0,
+    flexShrink: 1,
+  },
+
+  brandWrapCompact: {
+    left: 48,
+    right: 120,
+    height: 44,
   },
 
   brandWrapDesktop: {
@@ -223,11 +237,23 @@ const styles = StyleSheet.create({
     height: 38,
   },
 
+  brandIconCompact: {
+    width: 28,
+    height: 28,
+    marginRight: 4,
+  },
+
   brandText: {
     color: colors.primary,
     fontSize: typography.bodySmall,
     fontWeight: typography.weightBlack,
     letterSpacing: 0.7,
+    flexShrink: 1,
+  },
+
+  brandTextCompact: {
+    fontSize: 12,
+    letterSpacing: 0.45,
   },
 
   brandTextDesktop: {
@@ -241,6 +267,10 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
   },
 
+  rightActionsCompact: {
+    gap: 4,
+  },
+
   iconButton: {
     width: 46,
     height: 46,
@@ -251,6 +281,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     ...shadows.soft,
+  },
+
+  iconButtonCompact: {
+    width: 44,
+    height: 44,
   },
 
   desktopMenuButton: {
@@ -269,6 +304,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: spacing.md,
     ...shadows.soft,
+  },
+
+  languageButtonCompact: {
+    height: 44,
+    minWidth: 68,
+    paddingHorizontal: 6,
   },
 
   menuIcon: {
@@ -293,6 +334,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: spacing.sm,
+  },
+
+  languageContentCompact: {
+    gap: 4,
   },
 
   hero: {
