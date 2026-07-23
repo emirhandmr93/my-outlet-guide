@@ -624,6 +624,51 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/fashion-fish-factory-outlet/gallery1.webp"),
     require("../../assets/outlet-images/fashion-fish-factory-outlet/gallery2.webp"),
   ],
+  "viaport-asia-outlet-shopping": [
+    require("../../assets/outlet-images/viaport-asia-outlet-shopping/hero.webp"),
+    require("../../assets/outlet-images/viaport-asia-outlet-shopping/gallery1.webp"),
+    require("../../assets/outlet-images/viaport-asia-outlet-shopping/gallery2.webp"),
+    require("../../assets/outlet-images/viaport-asia-outlet-shopping/gallery3.webp"),
+  ],
+  "olivium-outlet-center": [
+    require("../../assets/outlet-images/olivium-outlet-center/hero.webp"),
+    require("../../assets/outlet-images/olivium-outlet-center/gallery1.webp"),
+    require("../../assets/outlet-images/olivium-outlet-center/gallery2.webp"),
+    require("../../assets/outlet-images/olivium-outlet-center/gallery3.webp"),
+  ],
+  "starcity-outlet": [
+    require("../../assets/outlet-images/starcity-outlet/hero.webp"),
+    require("../../assets/outlet-images/starcity-outlet/gallery1.webp"),
+    require("../../assets/outlet-images/starcity-outlet/gallery2.webp"),
+  ],
+  "venezia-mega-outlet": [
+    require("../../assets/outlet-images/venezia-mega-outlet/hero.webp"),
+    require("../../assets/outlet-images/venezia-mega-outlet/gallery1.webp"),
+    require("../../assets/outlet-images/venezia-mega-outlet/gallery2.webp"),
+    require("../../assets/outlet-images/venezia-mega-outlet/gallery3.webp"),
+  ],
+  "212-outlet": [
+    require("../../assets/outlet-images/212-outlet/hero.webp"),
+    require("../../assets/outlet-images/212-outlet/gallery1.webp"),
+    require("../../assets/outlet-images/212-outlet/gallery2.webp"),
+  ],
+  "optimum-premium-outlet-istanbul": [
+    require("../../assets/outlet-images/optimum-premium-outlet-istanbul/hero.webp"),
+    require("../../assets/outlet-images/optimum-premium-outlet-istanbul/gallery1.webp"),
+    require("../../assets/outlet-images/optimum-premium-outlet-istanbul/gallery2.webp"),
+  ],
+  "izmir-optimum": [
+    require("../../assets/outlet-images/izmir-optimum/hero.webp"),
+    require("../../assets/outlet-images/izmir-optimum/gallery1.webp"),
+    require("../../assets/outlet-images/izmir-optimum/gallery2.webp"),
+    require("../../assets/outlet-images/izmir-optimum/gallery3.webp"),
+  ],
+  "deepo-outlet-center": [
+    require("../../assets/outlet-images/deepo-outlet-center/hero.webp"),
+    require("../../assets/outlet-images/deepo-outlet-center/gallery1.webp"),
+    require("../../assets/outlet-images/deepo-outlet-center/gallery2.webp"),
+    require("../../assets/outlet-images/deepo-outlet-center/gallery3.webp"),
+  ],
 };
 
 const productionClearedSourceStatuses = new Set<OutletMediaSourceStatus>([
