@@ -15,8 +15,8 @@ for (const rule of taxFreeRules) {
   const country = countries.find((item) => item.countryId === rule.countryId);
   if (!country || country.taxFreeStatus !== "available") fail(`invalid rule country ${rule.countryId}`);
   if (country.currency !== rule.currency) fail(`currency mismatch ${rule.countryId}`);
-  if (nonEuCountryIds.has(rule.countryId) && rule.sourceUrl === euVatRatesUrl) fail(`non-EU EU source ${rule.countryId}`);
-  if (!rule.sourceUrl || !rule.sourceName || !rule.notes) fail(`missing source ${rule.countryId}`);
+  if (nonEuCountryIds.has(rule.countryId) && rule.schemeSource.url === euVatRatesUrl || rule.minimumPurchaseSource?.url === euVatRatesUrl) fail(`non-EU EU source ${rule.countryId}`);
+  if (!rule.schemeSource?.url || !rule.schemeSource?.name || !rule.vatRateSource?.url || !rule.vatRateSource?.name || !rule.notes) fail(`missing source ${rule.countryId}`);
   if (rule.minimumPurchaseStatus === "verified_amount" && (!rule.minimumPurchaseAmount || !rule.minimumPurchaseBasis || !rule.minimumPurchaseComparison)) fail(`invalid verified minimum ${rule.countryId}`);
   if (rule.minimumPurchaseStatus !== "verified_amount" && (rule.minimumPurchaseAmount !== undefined || rule.minimumPurchaseBasis || rule.minimumPurchaseComparison)) fail(`numeric unverified minimum ${rule.countryId}`);
   if (rule.minimumPurchaseAmount === 0 || rule.minimumPurchaseAmount === 0.01) fail(`placeholder minimum ${rule.countryId}`);
@@ -33,5 +33,5 @@ if (!isBelowMinimumPurchase(portugalGross, portugal) || !isBelowMinimumPurchase(
 const turkey = taxFreeRules.find((rule) => rule.countryId === "turkey");
 if (!turkey || turkey.minimumPurchaseAmount !== 1000 || turkey.minimumPurchaseBasis !== "net" || turkey.minimumPurchaseComparison !== "greater_than" || turkey.minimumPurchaseStatus !== "verified_amount") fail("Turkey threshold handling");
 console.log("Tax Free source and country audit");
-for (const countryId of activeCountryIds) { const country = countries.find((item) => item.countryId === countryId)!; const rule = taxFreeRules.find((item) => item.countryId === countryId); console.log(`${countryId}: ${country.taxFreeStatus}; ${rule?.sourceName ?? "no calculator rule"}`); }
+for (const countryId of activeCountryIds) { const country = countries.find((item) => item.countryId === countryId)!; const rule = taxFreeRules.find((item) => item.countryId === countryId); console.log(`${countryId}: ${country.taxFreeStatus}; ${rule?.schemeSource.name ?? "no calculator rule"}`); }
 console.log(`Tax Free outlet summary: ${outlets.filter((outlet) => outlet.status === "active").length} active outlets`);

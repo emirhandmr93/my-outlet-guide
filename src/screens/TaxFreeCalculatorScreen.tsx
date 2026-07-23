@@ -302,7 +302,7 @@ export function TaxFreeCalculatorScreen() {
           <View style={styles.metaBox}>
             <Text style={styles.metaTitle}>{t("taxCalc.sourceTitle")}</Text>
             <Text style={styles.metaText}>
-              {t("taxCalc.sourceEuropeanCommissionVatRates")} • {rule.effectiveDate}
+              {rule.schemeSource.name} • {rule.schemeSource.checkedDate}
             </Text>
             <Text style={styles.metaText}>
               {t("taxCalc.vatRate")}: {rule.vatRate}%
