@@ -18,15 +18,15 @@ const expectedCountryNames = {
 
 const expectedRestaurantCounts: Record<string, number> = {
   "viaport-asia-outlet-shopping": 49, "olivium-outlet-center": 25, "starcity-outlet": 24, "venezia-mega-outlet": 38,
-  "212-outlet": 0, "optimum-premium-outlet-istanbul": 0, "izmir-optimum": 0, "deepo-outlet-center": 0,
+  "212-outlet": 38, "optimum-premium-outlet-istanbul": 26, "izmir-optimum": 53, "deepo-outlet-center": 25,
 };
 const expectedTransportationCounts: Record<string, number> = {
   "viaport-asia-outlet-shopping": 3, "olivium-outlet-center": 7, "starcity-outlet": 5, "venezia-mega-outlet": 7,
-  "212-outlet": 0, "optimum-premium-outlet-istanbul": 0, "izmir-optimum": 0, "deepo-outlet-center": 0,
+  "212-outlet": 7, "optimum-premium-outlet-istanbul": 4, "izmir-optimum": 5, "deepo-outlet-center": 5,
 };
 const expectedTransportationGuideCounts: Record<string, number> = {
   "viaport-asia-outlet-shopping": 3, "olivium-outlet-center": 5, "starcity-outlet": 5, "venezia-mega-outlet": 6,
-  "212-outlet": 0, "optimum-premium-outlet-istanbul": 0, "izmir-optimum": 0, "deepo-outlet-center": 0,
+  "212-outlet": 7, "optimum-premium-outlet-istanbul": 3, "izmir-optimum": 4, "deepo-outlet-center": 4,
 };
 
 const expectedCityNames = {
@@ -129,9 +129,9 @@ for (const outlet of turkeyOutlets) {
   assert(transportationGuides.filter((guide) => guide.outletId === outlet.outletId).length === expectedTransportationGuideCounts[outlet.outletId], `${outlet.outletId} transportation-guide count must match the final Turkey map.`);
 }
 
-assert(restaurants.filter((restaurant) => turkeyOutlets.some((outlet) => outlet.outletId === restaurant.outletId)).length === 136, "Turkey must have 136 external restaurant records.");
-assert(transportation.filter((record) => turkeyOutlets.some((outlet) => outlet.outletId === record.outletId)).length === 22, "Turkey must have 22 transportation records.");
-assert(transportationGuides.filter((guide) => turkeyOutlets.some((outlet) => outlet.outletId === guide.outletId)).length === 19, "Turkey must have 19 transportation guides.");
+assert(restaurants.filter((restaurant) => turkeyOutlets.some((outlet) => outlet.outletId === restaurant.outletId)).length === 278, "Turkey must have 278 external restaurant records.");
+assert(transportation.filter((record) => turkeyOutlets.some((outlet) => outlet.outletId === record.outletId)).length === 43, "Turkey must have 43 transportation records.");
+assert(transportationGuides.filter((guide) => turkeyOutlets.some((outlet) => outlet.outletId === guide.outletId)).length === 37, "Turkey must have 37 transportation guides.");
 
 assert(currencies.some((currency) => currency.currencyCode === "TRY"), "TRY must remain selectable.");
 assert(supportedCurrencyCodes.includes("TRY"), "TRY must remain live-rate supported.");
@@ -142,7 +142,7 @@ for (const language of languages) {
   }
 }
 
-console.log(`Turkey expansion valid: completed Batch 1 has 136 restaurants, 22 transportation records, and 19 guides; Batch 2 remains content-free; TRY support and ${languages.length} localizations resolve.`);
+console.log(`Turkey expansion valid: all eight completed Turkey outlets have 278 restaurants, 43 transportation records, and 37 guides; TRY support and ${languages.length} localizations resolve.`);
 
 // Venezia coverage is intentionally validated separately; retain its verified relation total.
 assert(outletBrands.filter((relation) => relation.outletId === "venezia-mega-outlet").length === 127, "Venezia must retain 127 verified relations.");
