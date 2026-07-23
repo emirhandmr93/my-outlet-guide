@@ -43,11 +43,22 @@ assert(turkeyRestaurants.length === 278 && new Set(turkeyRestaurants.map((r) => 
 const normalize = (name: string) => name.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "").replace(/ı/g, "i").replace(/\u0307/g, "").replace(/ç/g, "c").replace(/ğ/g, "g").replace(/ö/g, "o").replace(/ş/g, "s").replace(/ü/g, "u").replace(/[’'´`]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
 for (const id of turkeyOutletIds) { const entries = turkeyRestaurants.filter((r) => r.outletId === id); assert(entries.length === restaurantCounts[id] && entries.every((r) => r.status === "active" && r.priceLevel === "" && r.restaurantId === `${id}-${normalize(r.restaurantName)}` && r.website === restaurantWebsites[id] && r.restaurantName.trim() && !/https?:\/\/|restaurant \d+/i.test(r.restaurantName)) && JSON.stringify(entries.map((r) => Object.keys(r))) === JSON.stringify(entries.map(() => ["restaurantId", "outletId", "restaurantName", "category", "priceLevel", "website", "status", "displayOrder"])) && entries.map((r) => r.displayOrder).join() === Array.from({ length: entries.length }, (_, i) => String(i + 1)).join(), `${id} restaurant collection is invalid.`); }
 for (const [outletId, names] of Object.entries(expectedBatchBRestaurantNames)) assert(JSON.stringify(turkeyRestaurants.filter((r) => r.outletId === outletId).map((r) => r.restaurantName)) === JSON.stringify(names), `${outletId} restaurant inventory or display order changed.`);
+for (const outletId of ["viaport-asia-outlet-shopping", "olivium-outlet-center", "starcity-outlet"] as const) {
+  assert(turkeyRestaurants.filter((restaurant) => restaurant.outletId === outletId).every((restaurant) => restaurant.category === ""), `${outletId} restaurant categories must remain blank.`);
+}
 const veneziaRestaurants = turkeyRestaurants.filter((r) => r.outletId === "venezia-mega-outlet"); assert(veneziaRestaurants.every((r, i) => r.category === (i < 10 ? "Fast Food" : "Restaurant & Cafe")), "Venezia restaurant categories must follow the published split.");
 const turkeyTransportation = transportation.filter((r) => turkeyOutletIds.includes(r.outletId as typeof turkeyOutletIds[number]));
 assert(turkeyTransportation.length === 43 && new Set(turkeyTransportation.map((r) => r.transportationId)).size === 43 && expectedTransportationIds.every((id) => turkeyTransportation.some((r) => r.transportationId === id)), "Turkey transportation ID set is invalid.");
 for (const id of turkeyOutletIds) { const entries = turkeyTransportation.filter((r) => r.outletId === id); assert(entries.length === transportationCounts[id] && entries.every((r) => r.status === "active" && r.duration === "" && ["train", "metro", "bus", "ferry", "taxi", "car"].includes(r.transportType) && !/shuttle|private transfer/i.test(`${r.title} ${r.tip}`)) && entries.map((r) => r.displayOrder).join() === Array.from({ length: entries.length }, (_, i) => String(i + 1)).join(), `${id} transportation records are invalid.`); }
-assert(turkeyTransportation.every((r) => r.cost === "" || ["viaport-asia-car-free-parking", "starcity-car-free-parking", "212-car-free-indoor-parking"].includes(r.transportationId) && r.cost === "Free parking") , "Turkey transportation costs are invalid.");
+const freeParkingTransportationIds = new Set([
+  "viaport-asia-car-free-parking",
+  "starcity-car-free-parking",
+  "212-car-free-indoor-parking",
+]);
+for (const record of turkeyTransportation) {
+  const expectedCost = freeParkingTransportationIds.has(record.transportationId) ? "Free parking" : "";
+  assert(record.cost === expectedCost, `${record.transportationId} transportation cost must equal its exact expected value.`);
+}
 const guides = transportationGuides.filter((g) => turkeyOutletIds.includes(g.outletId as typeof turkeyOutletIds[number]));
 assert(guides.length === 37 && new Set(guides.map((g) => g.guideId)).size === 37 && expectedGuideIds.every((id) => guides.some((g) => g.guideId === id)) && new Set(guides.map((g) => `${g.outletId}|${g.originType}|${g.originId}|${g.transportationType}`)).size === 37, "Turkey guide ID or route-key set is invalid.");
 for (const id of turkeyOutletIds) { const entries = guides.filter((g) => g.outletId === id); assert(entries.length === guideCounts[id] && entries.filter((g) => g.recommended).length === 1 && entries.every((g) => (batchAIds.includes(g.outletId as typeof batchAIds[number]) ? g.updatedAt === "2026-07-22" : g.updatedAt === "2026-07-23") && ["city_center", "station"].includes(g.originType) && ["train", "metro", "bus", "ferry", "taxi"].includes(g.transportationType) && g.steps.length >= 4 && g.steps.length <= 7 && g.steps.every((s, i) => s.order === i + 1 && s.description.trim()) && g.estimatedCost === "" && !/private transfer|by car|parking|free parking/i.test(g.title)), `${id} guides are invalid.`); assert(entries.find((g) => g.recommended)?.guideId === recommended[id], `${id} recommended guide changed.`); }
@@ -118,7 +129,7 @@ assert(JSON.stringify(facts.map((fact) => fact.guideId).sort()) === JSON.stringi
 
 const nonEnglishLanguages = ["tr", "es", "fr", "de", "ru", "ar", "zh"] as const;
 const allowedDurationGuideId = "zeytinburnu-to-olivium-local-connection";
-for (const outletId of batchAIds) {
+for (const outletId of turkeyOutletIds) {
   const options = getTransportationV2Options(outletId);
   const optionIds = options.map((option) => option.id).sort();
   const outletGuideIds = guides
