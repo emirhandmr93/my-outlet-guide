@@ -351,39 +351,28 @@ const validateTransportationGuides = (
   });
 };
 
+const isTaxFreeSourceComplete = (source: unknown): source is { url: string; name: string; checkedDate: string } => {
+  if (!source || typeof source !== "object") return false;
+  const candidate = source as { url?: unknown; name?: unknown; checkedDate?: unknown };
+  return [candidate.url, candidate.name, candidate.checkedDate].every((value) => typeof value === "string" && value.trim().length > 0) && isIsoDate(candidate.checkedDate as string);
+};
+const isIsoDate = (value: string) => /^\d{4}-\d{2}-\d{2}$/.test(value) && new Date(`${value}T00:00:00.000Z`).toISOString().slice(0, 10) === value;
 const validateTaxFreeRules = (issues: MasterDataValidationIssue[]): void => {
   const euVatRatesUrl = "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en";
-  const nonEuCountryIds = new Set(["norway", "switzerland", "turkey", "united-arab-emirates"]);
   const rulesByCountryId = new Map<string, typeof taxFreeRules>();
-
   taxFreeRules.forEach((rule) => {
-    const countryId = String(rule.countryId ?? "").trim();
-    const country = countries.find((item) => item.countryId === countryId);
-    const existing = rulesByCountryId.get(countryId) ?? [];
-    existing.push(rule);
-    rulesByCountryId.set(countryId, existing);
-
-    if (!country) {
-      pushIssue(issues, "UNKNOWN_TAX_FREE_RULE_COUNTRY", `Tax-free rule references unknown country ${countryId}.`, { businessName: countryId });
-    } else {
-      if (country.currency !== rule.currency) pushIssue(issues, "TAX_FREE_CURRENCY_MISMATCH", `Tax-free rule currency does not match ${countryId}.`, { businessName: countryId });
-      if (country.taxFreeStatus !== "available") pushIssue(issues, "TAX_FREE_RULE_FOR_UNAVAILABLE_COUNTRY", `Only available countries may have a Tax-free rule: ${countryId}.`, { businessName: countryId });
-    }
-    if (!rule.schemeSource?.url || !rule.schemeSource?.name || !rule.schemeSource?.checkedDate || !rule.vatRateSource?.url || !rule.vatRateSource?.name || !rule.vatRateSource?.checkedDate || !rule.notes) pushIssue(issues, "MISSING_TAX_FREE_RULE_SOURCE_FIELD", `Tax-free rule ${countryId} is missing source metadata.`, { businessName: countryId });
-    if (typeof rule.vatRate !== "number" || !Number.isFinite(rule.vatRate) || rule.vatRate <= 0) pushIssue(issues, "INVALID_TAX_FREE_RULE_VAT_RATE", `Tax-free rule ${countryId} has an invalid VAT rate.`, { businessName: countryId });
+    const countryId = String(rule.countryId ?? "").trim(); const country = countries.find((item) => item.countryId === countryId); const rules = rulesByCountryId.get(countryId) ?? []; rules.push(rule); rulesByCountryId.set(countryId, rules);
+    if (!country) pushIssue(issues, "UNKNOWN_TAX_FREE_RULE_COUNTRY", `Tax-free rule references unknown country ${countryId}.`, { businessName: countryId });
+    else if (country.taxFreeStatus !== "available" || country.currency !== rule.currency) pushIssue(issues, "INVALID_TAX_FREE_RULE_COUNTRY", `Tax-free rule is inconsistent with ${countryId}.`, { businessName: countryId });
+    if (!isTaxFreeSourceComplete(rule.schemeSource) || !isTaxFreeSourceComplete(rule.vatRateSource) || !String(rule.notes ?? "").trim()) pushIssue(issues, "MISSING_TAX_FREE_RULE_SOURCE_FIELD", `Tax-free rule ${countryId} is missing source metadata.`, { businessName: countryId });
+    if (rule.schemeSource?.url === euVatRatesUrl || rule.minimumPurchaseSource?.url === euVatRatesUrl) pushIssue(issues, "INVALID_TAX_FREE_SOURCE_ROLE", `EU VAT rates URL has an invalid role for ${countryId}.`, { businessName: countryId });
+    if (typeof rule.vatRate !== "number" || !Number.isFinite(rule.vatRate) || rule.vatRate <= 0 || rule.vatRate > 100) pushIssue(issues, "INVALID_TAX_FREE_RULE_VAT_RATE", `Tax-free rule ${countryId} has an invalid VAT rate.`, { businessName: countryId });
     if (rule.providerFeeRate !== undefined && (typeof rule.providerFeeRate !== "number" || !Number.isFinite(rule.providerFeeRate) || rule.providerFeeRate < 0 || rule.providerFeeRate >= 1)) pushIssue(issues, "INVALID_TAX_FREE_RULE_PROVIDER_FEE", `Tax-free rule ${countryId} has an invalid provider fee rate.`, { businessName: countryId });
-
-    if (nonEuCountryIds.has(countryId) && rule.schemeSource.url === euVatRatesUrl || rule.minimumPurchaseSource?.url === euVatRatesUrl) pushIssue(issues, "INVALID_NON_EU_TAX_FREE_SOURCE", `Non-EU rule ${countryId} cannot use the EU VAT-rates page as scheme source.`, { businessName: countryId });
-    if (rule.minimumPurchaseStatus === "verified_amount" && (!(typeof rule.minimumPurchaseAmount === "number" && rule.minimumPurchaseAmount > 0) || !rule.minimumPurchaseBasis || !rule.minimumPurchaseComparison)) pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Verified minimum for ${countryId} needs amount, basis, and comparison.`, { businessName: countryId });
-    if (rule.minimumPurchaseStatus !== "verified_amount" && (rule.minimumPurchaseAmount !== undefined || rule.minimumPurchaseBasis !== undefined || rule.minimumPurchaseComparison !== undefined)) pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Unverified minimum for ${countryId} cannot have threshold data.`, { businessName: countryId });
-    if (rule.minimumPurchaseAmount === 0 || rule.minimumPurchaseAmount === 0.01) pushIssue(issues, "PLACEHOLDER_TAX_FREE_MINIMUM", `Placeholder minimum for ${countryId}.`, { businessName: countryId });
+    const verified = rule.minimumPurchaseStatus === "verified_amount";
+    const validMinimum = typeof rule.minimumPurchaseAmount === "number" && Number.isFinite(rule.minimumPurchaseAmount) && rule.minimumPurchaseAmount > 0 && rule.minimumPurchaseAmount !== .01 && (rule.minimumPurchaseBasis === "gross" || rule.minimumPurchaseBasis === "net") && (rule.minimumPurchaseComparison === "at_least" || rule.minimumPurchaseComparison === "greater_than") && isTaxFreeSourceComplete(rule.minimumPurchaseSource);
+    if (verified ? !validMinimum : rule.minimumPurchaseStatus !== "not_verified" && rule.minimumPurchaseStatus !== "no_statutory_minimum" || !verified && (rule.minimumPurchaseAmount !== undefined || rule.minimumPurchaseBasis !== undefined || rule.minimumPurchaseComparison !== undefined || rule.minimumPurchaseSource !== undefined)) pushIssue(issues, "INVALID_TAX_FREE_MINIMUM", `Invalid minimum model for ${countryId}.`, { businessName: countryId });
   });
-
-  countries.forEach((country) => {
-    const count = rulesByCountryId.get(country.countryId)?.length ?? 0;
-    if (country.taxFreeStatus === "available" && count !== 1) pushIssue(issues, "MISSING_OR_DUPLICATE_TAX_FREE_RULE", `Available country ${country.countryId} must have exactly one rule.`, { businessName: country.countryId });
-    if (country.taxFreeStatus === "not_available" && count !== 0) pushIssue(issues, "TAX_FREE_RULE_FOR_UNAVAILABLE_COUNTRY", `Unavailable country ${country.countryId} must not have a rule.`, { businessName: country.countryId });
-  });
+  countries.forEach((country) => { const count = rulesByCountryId.get(country.countryId)?.length ?? 0; const validStatus = ["available", "not_available", "not_verified"].includes(country.taxFreeStatus); if (!validStatus || (country.taxFreeStatus === "available" ? count !== 1 : count !== 0)) pushIssue(issues, "INVALID_TAX_FREE_COUNTRY_STATUS", `Tax-free status/rule mismatch for ${country.countryId}.`, { businessName: country.countryId }); });
 };
 
 const officiallyDiningOnlyOutletBrandKeys = new Set<string>();
