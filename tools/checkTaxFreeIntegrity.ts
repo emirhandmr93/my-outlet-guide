@@ -31,7 +31,7 @@ if (!portugal || portugal.minimumPurchaseComparison !== "greater_than" || portug
 const portugalGross = 50 * 1.23;
 if (!isBelowMinimumPurchase(portugalGross, portugal) || !isBelowMinimumPurchase(portugalGross - 0.001, portugal) || isBelowMinimumPurchase(portugalGross + 0.001, portugal)) fail("Portugal boundary behavior");
 const turkey = taxFreeRules.find((rule) => rule.countryId === "turkey");
-if (!turkey || turkey.minimumPurchaseStatus !== "not_verified" || turkey.minimumPurchaseAmount !== undefined || turkey.minimumPurchaseBasis !== undefined) fail("Turkey inferred threshold");
+if (!turkey || turkey.minimumPurchaseAmount !== 1000 || turkey.minimumPurchaseBasis !== "net" || turkey.minimumPurchaseComparison !== "greater_than" || turkey.minimumPurchaseStatus !== "verified_amount") fail("Turkey threshold handling");
 console.log("Tax Free source and country audit");
 for (const countryId of activeCountryIds) { const country = countries.find((item) => item.countryId === countryId)!; const rule = taxFreeRules.find((item) => item.countryId === countryId); console.log(`${countryId}: ${country.taxFreeStatus}; ${rule?.sourceName ?? "no calculator rule"}`); }
 console.log(`Tax Free outlet summary: ${outlets.filter((outlet) => outlet.status === "active").length} active outlets`);

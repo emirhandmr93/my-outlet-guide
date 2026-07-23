@@ -178,7 +178,16 @@ export function OutletDetailScreen() {
   const restaurantItems = getRestaurantsForOutlet(outlet.outletId);
   const taxFreeCountry = countries.find((country) => country.countryId === outlet.countryId);
   const taxFreeRule = getTaxFreeRule(outlet.countryId);
-  const taxFreeStatus = resolveOutletTaxFreeDisplayStatus(outlet, (taxFreeCountry?.taxFreeStatus ?? "not_verified") as any);
+  const taxFreeStatus = resolveOutletTaxFreeDisplayStatus(
+    {
+      countryId: String(outlet.countryId),
+      taxFreeAvailable: outlet.taxFreeAvailable === true,
+      services: Array.isArray(outlet.services) ? outlet.services : undefined,
+      taxFreeOfficeInfo: typeof outlet.taxFreeOfficeInfo === "string" ? outlet.taxFreeOfficeInfo : undefined,
+      taxFreeOperator: typeof outlet.taxFreeOperator === "string" ? outlet.taxFreeOperator : undefined,
+    },
+    taxFreeCountry?.taxFreeStatus ?? "not_verified",
+  );
 
   const outletReviews = getPublishedReviews(
     reviews.filter((review) => review.outletId === outlet.outletId),

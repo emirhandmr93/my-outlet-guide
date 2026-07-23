@@ -28,12 +28,12 @@ export const countries = [
   },
   {
     "countryId": "china",
-    "taxFreeStatus": "not_verified",
+    "taxFreeStatus": "available",
     "countryName": "China",
     "countryFlag": "🇨🇳",
     "continent": "Asia",
     "currency": "CNY",
-    "taxFreeAvailable": "FALSE"
+    "taxFreeAvailable": "TRUE"
   },
   {
     "countryId": "croatia",
