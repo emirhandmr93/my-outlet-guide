@@ -3771,5 +3771,295 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
     "license": "Project-owned",
     "alt": "FASHION FISH gallery photo",
     "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
-  }
+  },
+{
+  "outletId": "viaport-asia-outlet-shopping",
+  "role": "hero",
+  "assetPath": "assets/outlet-images/viaport-asia-outlet-shopping/hero.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Viaport Asia Outlet Shopping hero photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "viaport-asia-outlet-shopping",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/viaport-asia-outlet-shopping/gallery1.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Viaport Asia Outlet Shopping gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "viaport-asia-outlet-shopping",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/viaport-asia-outlet-shopping/gallery2.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Viaport Asia Outlet Shopping gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "viaport-asia-outlet-shopping",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/viaport-asia-outlet-shopping/gallery3.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Viaport Asia Outlet Shopping gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "olivium-outlet-center",
+  "role": "hero",
+  "assetPath": "assets/outlet-images/olivium-outlet-center/hero.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Olivium Outlet Center hero photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "olivium-outlet-center",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/olivium-outlet-center/gallery1.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Olivium Outlet Center gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "olivium-outlet-center",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/olivium-outlet-center/gallery2.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Olivium Outlet Center gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "olivium-outlet-center",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/olivium-outlet-center/gallery3.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Olivium Outlet Center gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "starcity-outlet",
+  "role": "hero",
+  "assetPath": "assets/outlet-images/starcity-outlet/hero.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "StarCity Outlet hero photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "starcity-outlet",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/starcity-outlet/gallery1.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "StarCity Outlet gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "starcity-outlet",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/starcity-outlet/gallery2.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "StarCity Outlet gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "venezia-mega-outlet",
+  "role": "hero",
+  "assetPath": "assets/outlet-images/venezia-mega-outlet/hero.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Venezia Mega Outlet hero photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "venezia-mega-outlet",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/venezia-mega-outlet/gallery1.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Venezia Mega Outlet gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "venezia-mega-outlet",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/venezia-mega-outlet/gallery2.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Venezia Mega Outlet gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "venezia-mega-outlet",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/venezia-mega-outlet/gallery3.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Venezia Mega Outlet gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "212-outlet",
+  "role": "hero",
+  "assetPath": "assets/outlet-images/212-outlet/hero.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "212 Outlet hero photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "212-outlet",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/212-outlet/gallery1.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "212 Outlet gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "212-outlet",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/212-outlet/gallery2.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "212 Outlet gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "optimum-premium-outlet-istanbul",
+  "role": "hero",
+  "assetPath": "assets/outlet-images/optimum-premium-outlet-istanbul/hero.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Optimum Premium Outlet hero photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "optimum-premium-outlet-istanbul",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/optimum-premium-outlet-istanbul/gallery1.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Optimum Premium Outlet gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "optimum-premium-outlet-istanbul",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/optimum-premium-outlet-istanbul/gallery2.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Optimum Premium Outlet gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "izmir-optimum",
+  "role": "hero",
+  "assetPath": "assets/outlet-images/izmir-optimum/hero.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "İzmir Optimum hero photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "izmir-optimum",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/izmir-optimum/gallery1.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "İzmir Optimum gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "izmir-optimum",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/izmir-optimum/gallery2.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "İzmir Optimum gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "izmir-optimum",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/izmir-optimum/gallery3.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "İzmir Optimum gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "deepo-outlet-center",
+  "role": "hero",
+  "assetPath": "assets/outlet-images/deepo-outlet-center/hero.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Deepo Outlet Center hero photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "deepo-outlet-center",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/deepo-outlet-center/gallery1.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Deepo Outlet Center gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "deepo-outlet-center",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/deepo-outlet-center/gallery2.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Deepo Outlet Center gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+  "outletId": "deepo-outlet-center",
+  "role": "gallery",
+  "assetPath": "assets/outlet-images/deepo-outlet-center/gallery3.webp",
+  "sourceStatus": "project-owned",
+  "credit": "My Outlet Guide project-owned manual media",
+  "license": "Project-owned",
+  "alt": "Deepo Outlet Center gallery photo",
+  "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+}
 ] as const;
