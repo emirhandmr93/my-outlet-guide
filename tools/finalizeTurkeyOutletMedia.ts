@@ -128,9 +128,13 @@ function renderMetadataRecords(): string {
 }
 function updateMetadata(): void {
   const source = fs.readFileSync(metadataPath, "utf8");
-  const marker = "\n] as const;";
-  if (!source.endsWith(marker)) fail("Could not locate outletMediaMetadata closing delimiter.");
-  fs.writeFileSync(metadataPath, `${source.slice(0, -marker.length)},\n${renderMetadataRecords()}${marker}`);
+  const match = source.match(/(\r?\n)\] as const;(\r?\n)?$/);
+  if (!match || match.index === undefined) fail("Could not locate outletMediaMetadata closing delimiter.");
+  const newline = match[1];
+  const trailingNewline = match[2] ?? "";
+  const prefix = source.slice(0, match.index);
+  const records = renderMetadataRecords().replace(/\n/g, newline);
+  fs.writeFileSync(metadataPath, `${prefix},${newline}${records}${newline}] as const;${trailingNewline}`);
 }
 function verifyOutputs(im: ImageMagick): void {
   let count = 0;
