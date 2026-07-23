@@ -4,7 +4,7 @@ import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
 import { TaxFreeRule } from "../../constants/taxFreeRules";
 import { useTranslation } from "../../hooks/useTranslation";
-import { formatCurrency, CurrencyCode } from "../../services/exchangeRateService";
+import { formatCurrency } from "../../services/exchangeRateService";
 import {
   getMinimumPurchaseTextKey,
   hasDisplayValue,
@@ -49,11 +49,11 @@ export function TaxFreeCard({
           <Text style={styles.text}>
             {t("taxCalc.vatRate")}: {rule.vatRate}%
           </Text>
-          {rule.minimumPurchaseStatus === "verified_amount" ? (
+          {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
             <Text style={styles.text}>
               {t("taxCalc.minimumSpend")}: {formatCurrency(
-                rule.minimumPurchaseAmount ?? 0,
-                rule.currency as CurrencyCode,
+                rule.minimumPurchaseAmount,
+                rule.currency,
                 language,
               )} ({t(getMinimumPurchaseTextKey(rule))})
             </Text>

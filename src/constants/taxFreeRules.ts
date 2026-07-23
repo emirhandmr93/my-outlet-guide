@@ -1,3 +1,5 @@
+import type { CurrencyCode } from "../services/exchangeRateService";
+
 export type TaxFreeCountryStatus = "available" | "not_available" | "not_verified";
 export type MinimumPurchaseStatus = "verified_amount" | "no_statutory_minimum" | "not_verified";
 export type MinimumPurchaseComparison = "at_least" | "greater_than";
@@ -8,7 +10,7 @@ export type TaxFreeRule = {
   countryCode: string;
   countryName: string;
   countryId: string;
-  currency: string;
+  currency: CurrencyCode;
   vatRate: number;
   minimumPurchaseAmount?: number;
   providerFeeRate?: number;
@@ -38,12 +40,12 @@ export const taxFreeRules: TaxFreeRule[] = [
   { countryCode: "DK", countryName: "Denmark", countryId: "denmark", currency: "DKK", vatRate: 25, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
   { countryCode: "EE", countryName: "Estonia", countryId: "estonia", currency: "EUR", vatRate: 24, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
   { countryCode: "FI", countryName: "Finland", countryId: "finland", currency: "EUR", vatRate: 25.5, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
-  { countryCode: "FR", countryName: "France", countryId: "france", currency: "EUR", vatRate: 20, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "FR", countryName: "France", countryId: "france", currency: "EUR", vatRate: 20, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://www.douane.gouv.fr/sites/default/files/ba_files/da/2026-04/Circulaire%20d%C3%A9taxe%20du%2024%20avril%202026.pdf", name: "French Customs / DGDDI", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://www.douane.gouv.fr/sites/default/files/ba_files/da/2026-04/Circulaire%20d%C3%A9taxe%20du%2024%20avril%202026.pdf", name: "French Customs / DGDDI", checkedDate }, notes: euNotes },
   { countryCode: "DE", countryName: "Germany", countryId: "germany", currency: "EUR", vatRate: 19, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
   { countryCode: "GR", countryName: "Greece", countryId: "greece", currency: "EUR", vatRate: 24, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
   { countryCode: "HU", countryName: "Hungary", countryId: "hungary", currency: "HUF", vatRate: 27, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
   { countryCode: "IE", countryName: "Ireland", countryId: "ireland", currency: "EUR", vatRate: 23, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
-  { countryCode: "IT", countryName: "Italy", countryId: "italy", currency: "EUR", vatRate: 22, minimumPurchaseAmount: 70, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
+  { countryCode: "IT", countryName: "Italy", countryId: "italy", currency: "EUR", vatRate: 22, minimumPurchaseAmount: 70, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundEstimateMode: "maximum_vat_component", schemeSource: { url: "https://www.agenziaentrate.gov.it/portale/documents/20143/5866239/Circolare%2Bn%2B3_del%2B16_2_2024.pdf/6e8e87f4-a360-b3c0-8b0b-475cf43ab2d8", name: "Agenzia delle Entrate", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://www.agenziaentrate.gov.it/portale/documents/20143/5866239/Circolare%2Bn%2B3_del%2B16_2_2024.pdf/6e8e87f4-a360-b3c0-8b0b-475cf43ab2d8", name: "Agenzia delle Entrate", checkedDate }, notes: euNotes },
   { countryCode: "LV", countryName: "Latvia", countryId: "latvia", currency: "EUR", vatRate: 21, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
   { countryCode: "LT", countryName: "Lithuania", countryId: "lithuania", currency: "EUR", vatRate: 21, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },
   { countryCode: "NL", countryName: "Netherlands", countryId: "netherlands", currency: "EUR", vatRate: 21, minimumPurchaseStatus: "not_verified", refundEstimateMode: "maximum_vat_component", schemeSource: euSchemeSource, vatRateSource: euVatSource, notes: euNotes },

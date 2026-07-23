@@ -43,7 +43,7 @@ export function TaxFreeCalculatorScreen() {
     currencies[0];
 
   const rule = getTaxFreeRule(selectedCountryId);
-  const countryTaxFreeStatus = (selectedCountry as any).taxFreeStatus ?? "not_verified";
+  const countryTaxFreeStatus = selectedCountry.taxFreeStatus === "available" || selectedCountry.taxFreeStatus === "not_available" || selectedCountry.taxFreeStatus === "not_verified" ? selectedCountry.taxFreeStatus : "not_verified";
   const parsedAmount = parsePurchaseAmount(amount);
   const hasAmount = typeof parsedAmount === "number";
   const isInvalidAmount =
@@ -79,12 +79,12 @@ export function TaxFreeCalculatorScreen() {
     Promise.all([
       convertCurrency(
         estimate.estimatedTaxFreeRefund,
-        rule.currency as CurrencyCode,
+        rule.currency,
         selectedCurrency,
       ),
       convertCurrency(
         estimate.estimatedCostAfterRefund,
-        rule.currency as CurrencyCode,
+        rule.currency,
         selectedCurrency,
       ),
     ])
@@ -209,13 +209,13 @@ export function TaxFreeCalculatorScreen() {
           </View>
         )}
 
-        {isBelowMinimum && (
+        {isBelowMinimum && typeof rule?.minimumPurchaseAmount === "number" && (
           <View style={styles.warningBox}>
             <Text style={styles.warningText}>
               {t("taxCalc.belowMinimum")}{" "}
               {formatCurrency(
-                rule.minimumPurchaseAmount ?? 0,
-                rule.currency as CurrencyCode,
+                rule.minimumPurchaseAmount,
+                rule.currency,
                 language,
               )}
               .
@@ -233,7 +233,7 @@ export function TaxFreeCalculatorScreen() {
                 <Text style={styles.resultValue}>
                   {formatCurrency(
                     estimate.estimatedTaxFreeRefund,
-                    rule.currency as CurrencyCode,
+                    rule.currency,
                     language,
                   )}
                 </Text>
@@ -246,7 +246,7 @@ export function TaxFreeCalculatorScreen() {
                 <Text style={styles.resultValue}>
                   {formatCurrency(
                     estimate.estimatedCostAfterRefund,
-                    rule.currency as CurrencyCode,
+                    rule.currency,
                     language,
                   )}
                 </Text>
@@ -312,7 +312,7 @@ export function TaxFreeCalculatorScreen() {
                 {t("taxCalc.minimumSpend")}:{" "}
                 {formatCurrency(
                   rule.minimumPurchaseAmount,
-                  rule.currency as CurrencyCode,
+                  rule.currency,
                 )}
               </Text>
             )}
