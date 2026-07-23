@@ -2,36 +2,13 @@ import { countries } from "../src/constants/countries";
 import { outlets } from "../src/constants/outlets";
 import { taxFreeRules } from "../src/constants/taxFreeRules";
 import { isBelowMinimumPurchase } from "../src/services/taxFreeCalculatorService";
-
-const euVatRatesUrl = "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en";
-const nonEuCountryIds = new Set(["norway", "switzerland", "turkey", "united-arab-emirates"]);
-const fail = (message: string): never => { throw new Error(`Tax Free integrity: ${message}`); };
-const activeCountryIds = [...new Set(outlets.filter((outlet) => outlet.status === "active").map((outlet) => outlet.countryId))].sort();
-const ruleIds = new Set<string>();
-
-for (const rule of taxFreeRules) {
-  if (ruleIds.has(rule.countryId)) fail(`duplicate rule ${rule.countryId}`);
-  ruleIds.add(rule.countryId);
-  const country = countries.find((item) => item.countryId === rule.countryId);
-  if (!country || country.taxFreeStatus !== "available") fail(`invalid rule country ${rule.countryId}`);
-  if (country.currency !== rule.currency) fail(`currency mismatch ${rule.countryId}`);
-  if (nonEuCountryIds.has(rule.countryId) && rule.schemeSource.url === euVatRatesUrl || rule.minimumPurchaseSource?.url === euVatRatesUrl) fail(`non-EU EU source ${rule.countryId}`);
-  if (!rule.schemeSource?.url || !rule.schemeSource?.name || !rule.vatRateSource?.url || !rule.vatRateSource?.name || !rule.notes) fail(`missing source ${rule.countryId}`);
-  if (rule.minimumPurchaseStatus === "verified_amount" && (!rule.minimumPurchaseAmount || !rule.minimumPurchaseBasis || !rule.minimumPurchaseComparison)) fail(`invalid verified minimum ${rule.countryId}`);
-  if (rule.minimumPurchaseStatus !== "verified_amount" && (rule.minimumPurchaseAmount !== undefined || rule.minimumPurchaseBasis || rule.minimumPurchaseComparison)) fail(`numeric unverified minimum ${rule.countryId}`);
-  if (rule.minimumPurchaseAmount === 0 || rule.minimumPurchaseAmount === 0.01) fail(`placeholder minimum ${rule.countryId}`);
-}
-for (const countryId of activeCountryIds) {
-  const country = countries.find((item) => item.countryId === countryId);
-  if (!country) fail(`active outlet country missing ${countryId}`);
-  if (country.taxFreeStatus === "available" !== ruleIds.has(countryId)) fail(`status/rule mismatch ${countryId}`);
-}
-const portugal = taxFreeRules.find((rule) => rule.countryId === "portugal");
-if (!portugal || portugal.minimumPurchaseComparison !== "greater_than" || portugal.minimumPurchaseBasis !== "net") fail("Portugal must use strict net threshold");
-const portugalGross = 50 * 1.23;
-if (!isBelowMinimumPurchase(portugalGross, portugal) || !isBelowMinimumPurchase(portugalGross - 0.001, portugal) || isBelowMinimumPurchase(portugalGross + 0.001, portugal)) fail("Portugal boundary behavior");
-const turkey = taxFreeRules.find((rule) => rule.countryId === "turkey");
-if (!turkey || turkey.minimumPurchaseAmount !== 1000 || turkey.minimumPurchaseBasis !== "net" || turkey.minimumPurchaseComparison !== "greater_than" || turkey.minimumPurchaseStatus !== "verified_amount") fail("Turkey threshold handling");
-console.log("Tax Free source and country audit");
-for (const countryId of activeCountryIds) { const country = countries.find((item) => item.countryId === countryId)!; const rule = taxFreeRules.find((item) => item.countryId === countryId); console.log(`${countryId}: ${country.taxFreeStatus}; ${rule?.schemeSource.name ?? "no calculator rule"}`); }
-console.log(`Tax Free outlet summary: ${outlets.filter((outlet) => outlet.status === "active").length} active outlets`);
+import { normalizeTaxFreeCountryStatus, resolveOutletTaxFreeDisplayStatus } from "../src/utils/taxFreeDisplay";
+const fail=(m:string):never=>{throw new Error(`Tax Free integrity: ${m}`)};
+const eu="https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en";
+const date=(v:string)=>/^\d{4}-\d{2}-\d{2}$/.test(v)&&!Number.isNaN(new Date(`${v}T00:00:00.000Z`).getTime());
+const source=(s:unknown)=>!!s&&typeof s==="object"&&"url" in s&&"name" in s&&"checkedDate" in s&&typeof s.url==="string"&&typeof s.name==="string"&&typeof s.checkedDate==="string"&&!!s.url.trim()&&!!s.name.trim()&&date(s.checkedDate);
+const seen=new Set<string>();
+for(const r of taxFreeRules){if(seen.has(r.countryId))fail(`duplicate ${r.countryId}`);seen.add(r.countryId);const c=countries.find(x=>x.countryId===r.countryId);if(!c||c.taxFreeStatus!=="available"||c.currency!==r.currency)fail(`country ${r.countryId}`);if(!source(r.schemeSource)||!source(r.vatRateSource)||r.schemeSource.url===eu||r.minimumPurchaseSource?.url===eu)fail(`source ${r.countryId}`);if(!Number.isFinite(r.vatRate)||r.vatRate<=0||r.vatRate>100)fail(`VAT ${r.countryId}`);if(r.minimumPurchaseStatus==="verified_amount"){if(!(typeof r.minimumPurchaseAmount==="number"&&r.minimumPurchaseAmount>0&&r.minimumPurchaseAmount!==.01&&r.minimumPurchaseBasis&&r.minimumPurchaseComparison&&source(r.minimumPurchaseSource)))fail(`minimum ${r.countryId}`);const boundary=r.minimumPurchaseBasis==="net"?r.minimumPurchaseAmount*(1+r.vatRate/100):r.minimumPurchaseAmount;const e=.001;if(r.minimumPurchaseComparison==="at_least"?(isBelowMinimumPurchase(boundary,r)||!isBelowMinimumPurchase(boundary-e,r)||isBelowMinimumPurchase(boundary+e,r)):( !isBelowMinimumPurchase(boundary,r)||!isBelowMinimumPurchase(boundary-e,r)||isBelowMinimumPurchase(boundary+e,r)))fail(`boundary ${r.countryId}`)}else if(r.minimumPurchaseAmount!==undefined||r.minimumPurchaseSource)fail(`unexpected minimum ${r.countryId}`)}
+for(const c of countries){const n=taxFreeRules.filter(r=>r.countryId===c.countryId).length;if(!["available","not_available","not_verified"].includes(c.taxFreeStatus)|| (c.taxFreeStatus==="available"?n!==1:n!==0))fail(`status ${c.countryId}`)}
+const exact=[['china','CNY',200,'gross','at_least',13],['japan','JPY',5000,'net','at_least',10],['south-korea','KRW',15000,'gross','at_least',10],['thailand','THB',2000,'gross','at_least',7],['france','EUR',100,'gross','at_least',20],['italy','EUR',70,'gross','greater_than',22],['portugal','EUR',50,'net','greater_than',23],['switzerland','CHF',300,'gross','at_least',8.1],['turkey','TRY',1000,'net','greater_than',20]];for(const [id,currency,amount,basis,comparison,vat] of exact){const r=taxFreeRules.find(x=>x.countryId===id);if(!r||r.currency!==currency||r.minimumPurchaseAmount!==amount||r.minimumPurchaseBasis!==basis||r.minimumPurchaseComparison!==comparison||r.vatRate!==vat)fail(`snapshot ${id}`)}
+const status=(id:string)=>{const o=outlets.find(x=>x.outletId===id)!;const c=countries.find(x=>x.countryId===o.countryId)!;return resolveOutletTaxFreeDisplayStatus(o,normalizeTaxFreeCountryStatus(c.taxFreeStatus))};if(status('freeport-lisboa-fashion-outlet')!=="outlet_verified"||status('vila-do-conde-porto-fashion-outlet')!=="outlet_verified"||status('starcity-outlet')!=="outlet_verified")fail('outlet verified');console.log(`Tax Free audit: ${taxFreeRules.length} rules; ${outlets.filter(x=>x.status==='active').length} active outlets; ${exact.length} boundary snapshots.`);
