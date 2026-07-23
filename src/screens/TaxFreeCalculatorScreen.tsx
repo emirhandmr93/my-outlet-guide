@@ -218,7 +218,7 @@ export function TaxFreeCalculatorScreen() {
                 rule.minimumPurchaseAmount,
                 rule.currency,
                 language,
-              )} ({t(getMinimumPurchaseTextKey(rule) )}).
+              )} ({t(getMinimumPurchaseTextKey(rule))}).
             </Text>
           </View>
         )}
