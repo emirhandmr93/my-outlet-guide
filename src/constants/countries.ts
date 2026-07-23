@@ -154,12 +154,12 @@ export const countries = [
   },
   {
     "countryId": "japan",
-    "taxFreeStatus": "not_verified",
+    "taxFreeStatus": "available",
     "countryName": "Japan",
     "countryFlag": "🇯🇵",
     "continent": "Asia",
     "currency": "JPY",
-    "taxFreeAvailable": "FALSE"
+    "taxFreeAvailable": "TRUE"
   },
   {
     "countryId": "latvia",
@@ -226,12 +226,12 @@ export const countries = [
   },
   {
     "countryId": "south-korea",
-    "taxFreeStatus": "not_verified",
+    "taxFreeStatus": "available",
     "countryName": "South Korea",
     "countryFlag": "🇰🇷",
     "continent": "Asia",
     "currency": "KRW",
-    "taxFreeAvailable": "FALSE"
+    "taxFreeAvailable": "TRUE"
   },
   {
     "countryId": "spain",
@@ -262,12 +262,12 @@ export const countries = [
   },
   {
     "countryId": "thailand",
-    "taxFreeStatus": "not_verified",
+    "taxFreeStatus": "available",
     "countryName": "Thailand",
     "countryFlag": "🇹🇭",
     "continent": "Asia",
     "currency": "THB",
-    "taxFreeAvailable": "FALSE"
+    "taxFreeAvailable": "TRUE"
   },
   {
     "countryId": "turkey",
