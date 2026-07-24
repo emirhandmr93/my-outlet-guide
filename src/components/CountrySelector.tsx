@@ -65,7 +65,7 @@ export function SavingsCountryFlag({ countryId, size = 28 }: { countryId: string
   const country = countries.find((item) => item.countryId === countryId);
   const artwork = desktopFlags[countryId];
   const desktop = isDesktopWeb(Platform.OS, width);
-  const uri = artwork && `data:image/svg+xml;utf8,${encodeURIComponent(artwork.svg)}`;
+  const uri = artwork && `data:image/svg+xml;utf8,${artwork.svg}`;
   useEffect(() => setImageFailed(false), [countryId, uri]);
 
   if (!desktop) return <Text style={{ fontSize: size }}>{country?.countryFlag ?? "🌍"}</Text>;
