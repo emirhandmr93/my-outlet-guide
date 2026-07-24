@@ -1,5 +1,6 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
+import { Platform } from "react-native";
 import {
   Image,
   ScrollView,
@@ -27,6 +28,8 @@ import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locati
 import { formatStoresCountText } from "../utils/outletDisplayFormatters";
 import { formatRating } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
+import { recordRecentVisit } from "../services/recentVisitsService";
+import { cities } from "../constants/cities";
 
 type RouteParams = {
   CityResults: {
@@ -141,6 +144,11 @@ export function CityResultsScreen() {
   const cityId = route.params?.cityId || "paris";
   const cityName = formatCityDisplayName(cityId, language) || cityNames[cityId] || cityId;
   const cityOutlets = outlets.filter((outlet) => outlet.cityId === cityId);
+  const visitedCity = cities.find((item) => item.cityId === route.params?.cityId);
+
+  useEffect(() => {
+    if (Platform.OS !== "web" && visitedCity) void recordRecentVisit("city", visitedCity.cityId);
+  }, [visitedCity?.cityId]);
 
   return (
     <ScrollView

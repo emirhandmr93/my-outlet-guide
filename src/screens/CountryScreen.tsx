@@ -1,4 +1,6 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { useEffect } from "react";
+import { Platform } from "react-native";
 import {
   Image,
   ScrollView,
@@ -28,6 +30,7 @@ import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locati
 import { formatStoresCountText } from "../utils/outletDisplayFormatters";
 import { formatRating } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
+import { recordRecentVisit } from "../services/recentVisitsService";
 
 type RouteParams = {
   Country: {
@@ -136,6 +139,11 @@ export function CountryScreen() {
   const country =
     countries.find((item) => item.countryId === countryId) || countries[0];
   const rule = getTaxFreeRule(country.countryId) || taxFreeRules[0];
+  const visitedCountry = countries.find((item) => item.countryId === route.params?.countryId);
+
+  useEffect(() => {
+    if (Platform.OS !== "web" && visitedCountry) void recordRecentVisit("country", visitedCountry.countryId);
+  }, [visitedCountry?.countryId]);
   const countryOutlets = outlets.filter(
     (outlet) => outlet.countryId === country.countryId,
   );

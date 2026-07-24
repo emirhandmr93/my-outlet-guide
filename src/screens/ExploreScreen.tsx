@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   NavigationProp,
   RouteProp,
   useNavigation,
   useRoute,
+  useFocusEffect,
 } from "@react-navigation/native";
 import {
   Image,
@@ -32,6 +33,7 @@ import {
 import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
+import { brands } from "../constants/brands";
 import { CountryFlag } from "../components/CountryFlag";
 import { useTranslation } from "../hooks/useTranslation";
 import type { MainTabParamList, RootStackParamList } from "../navigation/types";
@@ -43,8 +45,10 @@ import {
 import type { TranslationLanguage } from "../translations/translations";
 import { heroAssets } from "../media/heroAssets";
 import { getPopularCityImage } from "../media/imageResolvers";
+import { loadRecentVisits, type RecentVisit } from "../services/recentVisitsService";
 
 type ExploreFilter = "country" | "city" | "outlet";
+type ResolvedRecentVisit = RecentVisit & { label: string };
 const filters: { id: ExploreFilter; labelKey: string; icon: string }[] = [
   { id: "country", labelKey: "explore.filters.countries", icon: "🌍" },
   { id: "city", labelKey: "explore.filters.cities", icon: "📍" },
@@ -191,6 +195,13 @@ export function ExploreScreen() {
   const [outletQuery, setOutletQuery] = useState("");
   const [countryFilter, setCountryFilter] = useState<string | null>(null);
   const [cityFilter, setCityFilter] = useState<string | null>(null);
+  const [recentVisits, setRecentVisits] = useState<RecentVisit[]>([]);
+
+  useFocusEffect(useCallback(() => {
+    let cancelled = false;
+    void loadRecentVisits().then((visits) => { if (!cancelled) setRecentVisits(visits); });
+    return () => { cancelled = true; };
+  }, []));
   useEffect(() => {
     const q = route.params?.initialQuery;
     const initialTab = route.params?.initialTab;
@@ -236,6 +247,19 @@ export function ExploreScreen() {
           ),
       );
   }, [availableCityIds, language]);
+  const resolvedRecentVisits = useMemo<ResolvedRecentVisit[]>(() => recentVisits.flatMap((visit) => {
+    if (visit.type === "country") { const country = countries.find((item) => item.countryId === visit.id); return country ? [{ ...visit, label: formatCountryDisplayName(country.countryId, language) }] : []; }
+    if (visit.type === "city") { const city = cities.find((item) => item.cityId === visit.id); return city ? [{ ...visit, label: formatCityDisplayName(city.cityId, language) }] : []; }
+    if (visit.type === "outlet") { const outlet = outlets.find((item) => item.outletId === visit.id); return outlet ? [{ ...visit, label: outlet.name }] : []; }
+    const brand = brands.find((item) => item.brandId === visit.id);
+    return brand ? [{ ...visit, label: brand.brandName }] : [];
+  }), [language, recentVisits]);
+  function openRecentVisit(visit: ResolvedRecentVisit) {
+    if (visit.type === "country") navigation.navigate("Country", { countryId: visit.id });
+    else if (visit.type === "city") navigation.navigate("CityResults", { cityId: visit.id });
+    else if (visit.type === "outlet") navigation.navigate("OutletDetail", { outletId: visit.id });
+    else navigation.navigate("BrandResults", { brandId: visit.id, mode: "chooseCountry" });
+  }
   const suggestions = useMemo(
     () => getExploreVisibleSearchResults(search, activeTab ? [activeTab] : []),
     [search, activeTab],
@@ -440,6 +464,8 @@ export function ExploreScreen() {
             isDesktopWeb={isDesktopWeb}
             twoColumnWidth={twoColumnWidth}
             threeColumnWidth={threeColumnWidth}
+            recentVisits={resolvedRecentVisits}
+            openRecentVisit={openRecentVisit}
           />
         ) : null}
         {activeTab === "country" && !q ? (
@@ -636,6 +662,8 @@ function DefaultHub({
   isDesktopWeb,
   twoColumnWidth,
   threeColumnWidth,
+  recentVisits,
+  openRecentVisit,
 }: any) {
   const cards: Array<[ExploreFilter, string, string, string]> = [
     [
@@ -659,21 +687,7 @@ function DefaultHub({
   ];
   return (
     <>
-      <Header
-        title={t("explore.popularSearches")}
-        subtitle={t("explore.popularSearchesSubtitle")}
-      />
-      <View style={styles.popularSearchGrid}>
-        {popularSearches.map((p) => (
-          <TouchableOpacity
-            key={p.query}
-            style={styles.popularSearchChip}
-            onPress={() => runSearch(p.query)}
-          >
-            <Text style={styles.popularSearchText}>{t(p.labelKey)}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      {Platform.OS !== "web" && recentVisits.length > 0 ? <><Header title={t("explore.recentlyVisited")} subtitle={t("explore.recentlyVisitedSubtitle")} /><View style={styles.popularSearchGrid}>{recentVisits.map((visit: ResolvedRecentVisit) => <TouchableOpacity key={`${visit.type}-${visit.id}`} style={styles.popularSearchChip} onPress={() => openRecentVisit(visit)}><Text style={styles.popularSearchText}>{visit.label}</Text></TouchableOpacity>)}</View></> : <><Header title={t("explore.popularSearches")} subtitle={t("explore.popularSearchesSubtitle")} /><View style={styles.popularSearchGrid}>{popularSearches.map((p) => <TouchableOpacity key={p.query} style={styles.popularSearchChip} onPress={() => runSearch(p.query)}><Text style={styles.popularSearchText}>{t(p.labelKey)}</Text></TouchableOpacity>)}</View></>}
       <Header
         title={t("explore.discoveryTitle")}
         subtitle={t("explore.discoverySubtitle")}

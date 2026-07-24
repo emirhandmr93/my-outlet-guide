@@ -66,6 +66,7 @@ import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
 import { formatOpeningHoursText, formatOutletStatusLabel, formatReviewSummaryLabel, formatStoresCountText } from "../utils/outletDisplayFormatters";
+import { recordRecentVisit } from "../services/recentVisitsService";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -114,6 +115,12 @@ export function OutletDetailScreen() {
     outlets.find((item) => item?.outletId === route.params?.outletId) ||
     outlets.find((item) => Boolean(item)) ||
     outlets[0];
+
+  const visitedOutlet = outlets.find((item) => item.outletId === route.params?.outletId);
+
+  useEffect(() => {
+    if (Platform.OS !== "web" && visitedOutlet) void recordRecentVisit("outlet", visitedOutlet.outletId);
+  }, [visitedOutlet?.outletId]);
 
   const safeGalleryImages = useMemo(() => {
     return getOutletMediaImages(outlet, { mode: outletMediaMode });
