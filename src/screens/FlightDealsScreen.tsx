@@ -32,6 +32,7 @@ import {
 } from "../utils/locationDisplay";
 import { FLIGHT_DEAL_THRESHOLDS, FlightDealThreshold, saveFlightDealAlert } from "../services/flightDealAlertService";
 import { FLIGHT_DEALS_PROVIDER_ENABLED } from "../constants/flightDealsAvailability";
+import { isUserVisibleOutletCountryCode } from "../services/outletVisibility";
 import { submitFlightDealAlert } from "../services/flightDealAlertSubmission";
 import {
   getFloatingTabClearance,
@@ -44,7 +45,6 @@ type FlightDealSelectorFilter = "popular" | FlightDealAirportRegion;
 const MAX_SELECTOR_RESULTS = 50;
 const SELECTOR_FILTERS: FlightDealSelectorFilter[] = [
   "popular",
-  "TR",
   "EUROPE",
   "MIDDLE_EAST",
   "ASIA",
@@ -162,9 +162,7 @@ export function FlightDealsScreen() {
   const getFilterLabel = (filter: FlightDealSelectorFilter) =>
     filter === "popular"
       ? t("flightDeals.filterPopular")
-      : filter === "TR"
-        ? t("flightDeals.filterTurkey")
-        : filter === "EUROPE"
+      : filter === "EUROPE"
           ? t("flightDeals.filterEurope")
           : filter === "MIDDLE_EAST"
             ? t("flightDeals.filterMiddleEast")
@@ -177,6 +175,7 @@ export function FlightDealsScreen() {
     );
   const originOptions = sortPopularFirst(
     supportedFlightDealAirports.filter((item) => {
+      if (!isUserVisibleOutletCountryCode(item.countryCode)) return false;
       const matchesFilter =
         selectorFilter === "popular"
           ? item.popular
@@ -191,6 +190,7 @@ export function FlightDealsScreen() {
   ).slice(0, MAX_SELECTOR_RESULTS);
   const filteredDestinationOptions = sortPopularFirst(
     supportedFlightDealAirports.filter((item) => {
+      if (!isUserVisibleOutletCountryCode(item.countryCode)) return false;
       const matchesFilter =
         selectorFilter === "popular"
           ? item.popular

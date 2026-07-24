@@ -35,7 +35,7 @@ import { TransportationCard } from "../components/cards/TransportationCard";
 import { WebsiteCard } from "../components/cards/WebsiteCard";
 import { OutletHero } from "../components/OutletHero";
 import { ReviewItem } from "../components/ReviewItem";
-import { outlets } from "../constants/outlets";
+import { getUserVisibleOutletById, outlets } from "../constants/outlets";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
@@ -111,10 +111,14 @@ export function OutletDetailScreen() {
   const { currentUser, isLoggedIn } = useUser();
   const { toggleFavorite, isFavorite } = useFavorites();
 
-  const outlet =
-    outlets.find((item) => item?.outletId === route.params?.outletId) ||
-    outlets.find((item) => Boolean(item)) ||
-    outlets[0];
+  const requestedOutlet = getUserVisibleOutletById(route.params?.outletId);
+  const outlet = requestedOutlet || outlets[0];
+
+  useEffect(() => {
+    if (!requestedOutlet) {
+      navigation.replace("Explore");
+    }
+  }, [navigation, requestedOutlet]);
 
   const visitedOutlet = outlets.find((item) => item.outletId === route.params?.outletId);
 

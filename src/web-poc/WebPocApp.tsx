@@ -904,6 +904,12 @@ export default function WebPocApp() {
     return () => removeEventListener("popstate", l);
   }, []);
   if (route.name === "explore") return <Explore />;
+  if (
+    (route.name === "outlet" || route.name === "transport") &&
+    !outlets.some((outlet) => outlet.outletId === route.outletId)
+  ) {
+    return <Explore />;
+  }
   if (route.name === "outlet") return <Detail outletId={route.outletId} />;
   if (route.name === "transport")
     return <Transport outletId={route.outletId} />;

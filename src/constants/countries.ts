@@ -1,4 +1,6 @@
-export const countries = [
+import { isUserVisibleOutletCountry } from "../services/outletVisibility";
+
+export const allCountries = [
   {
     "countryId": "austria",
     "taxFreeStatus": "available",
@@ -306,3 +308,8 @@ export const countries = [
     "taxFreeAvailable": "FALSE"
   }
 ];
+
+/** User-facing selector; source records remain in allCountries. */
+export const countries = allCountries.filter((item) =>
+  isUserVisibleOutletCountry(item.countryId),
+);
