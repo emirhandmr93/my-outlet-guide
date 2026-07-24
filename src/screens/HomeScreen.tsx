@@ -23,6 +23,11 @@ import { DashboardSectionHeader } from "../components/DashboardSectionHeader";
 import { HomeHeader } from "../components/HomeHeader";
 import { SearchBar } from "../components/SearchBar";
 import { SearchResultItem } from "../components/SearchResultItem";
+import {
+  appStoreDownloadUrl,
+  httpsReviewFallbackUrl,
+  nativeIosReviewUrl,
+} from "../constants/appLinks";
 import { outlets } from "../constants/outlets";
 import {
   getHomeFeatureImage,
@@ -49,10 +54,6 @@ import { getRecommendedCarouselLastIndex } from "../utils/recommendedCarousel";
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
 const homeTabBarClearanceGap = 72;
-const nativeIosReviewUrl =
-  "itms-apps://itunes.apple.com/app/viewContentsUserReviews/id6791893523?action=write-review";
-const httpsReviewFallbackUrl =
-  "https://apps.apple.com/app/apple-store/id6791893523?action=write-review";
 
 type HomeRouteItem = {
   id: string;
@@ -438,6 +439,18 @@ export function HomeScreen() {
   }
 
   async function rateApp() {
+    if (Platform.OS === "web") {
+      setIsQuickMenuOpen(false);
+
+      try {
+        await Linking.openURL(appStoreDownloadUrl);
+      } catch {
+        Alert.alert(t("common.error"), t("common.notAvailable"));
+      }
+
+      return;
+    }
+
     if (Platform.OS === "ios") {
       setIsQuickMenuOpen(false);
 
@@ -825,7 +838,7 @@ export function HomeScreen() {
             >
               <Text style={styles.quickMenuIcon}>⭐</Text>
               <Text style={styles.quickMenuText}>
-                {t("home.quick.rateApp")}
+                {t(Platform.OS === "web" ? "home.quick.downloadApp" : "home.quick.rateApp")}
               </Text>
               <Text style={styles.quickMenuArrow}>→</Text>
             </TouchableOpacity>
