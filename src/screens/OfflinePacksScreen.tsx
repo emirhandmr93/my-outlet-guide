@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { Platform, ScrollView, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { heroAssets } from "../media/heroAssets";
@@ -10,11 +10,13 @@ const requiresInternetKeys = ["accountSync", "favoritesTrips", "reviewsNotificat
 
 export function OfflinePacksScreen() {
   const { t } = useTranslation();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const summary = getOfflineAvailabilitySummary();
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <LocalHeroImageCard imageSource={heroAssets.offline} style={styles.heroCard} contentStyle={styles.heroInner}>
+    <ScrollView style={styles.container} contentContainerStyle={[styles.content, isDesktopWeb && styles.desktopContent, isDesktopWeb && styles.desktopVerticalPadding]}>
+      <LocalHeroImageCard imageSource={heroAssets.offline} responsiveWeb style={styles.heroCard} contentStyle={styles.heroInner}>
         <Text style={styles.kicker}>{t("offline.kicker")}</Text>
         <Text style={styles.pageTitle}>{t("offline.title")}</Text>
         <Text style={styles.pageSubtitle}>{t("offline.subtitle")}</Text>
@@ -80,6 +82,8 @@ function StatusCard({ icon, title, text }: { icon: string; title: string; text: 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20, paddingTop: 60, paddingBottom: 120 },
+  desktopContent: { width: "100%", maxWidth: 1180, alignSelf: "center", paddingHorizontal: 34 },
+  desktopVerticalPadding: { paddingTop: 32, paddingBottom: 32 },
   heroCard: { marginBottom: 16 },
   heroInner: { padding: 24 },
   kicker: { color: "#C9A227", fontSize: 12, fontWeight: "900", letterSpacing: 1.3, marginBottom: 8, textTransform: "uppercase" },

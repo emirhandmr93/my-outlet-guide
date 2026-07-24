@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { updateProfile } from "firebase/auth";
 import {
   Alert,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 
@@ -63,6 +65,8 @@ export function ProfileScreen() {
   const { t } = useTranslation();
   const { currentUser, isAuthenticated, logout } = useAuth();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const { trips } = useTrips();
   const { favoriteIds } = useFavorites();
   const visibleFavoriteOutlets = isAuthenticated
@@ -130,13 +134,14 @@ export function ProfileScreen() {
       style={styles.container}
       contentContainerStyle={[
         styles.content,
-        { paddingBottom: getFloatingTabClearance(insets.bottom) },
+        isDesktopWeb && styles.desktopContent,
+        { paddingTop: isDesktopWeb ? 32 : 60, paddingBottom: isDesktopWeb ? 32 : getFloatingTabClearance(insets.bottom) },
       ]}
       scrollIndicatorInsets={{
         bottom: getScrollIndicatorBottomInset(insets.bottom),
       }}
     >
-      <LocalHeroImageCard imageSource={heroAssets.profile} style={styles.heroCard} contentStyle={styles.heroInner}>
+      <LocalHeroImageCard imageSource={heroAssets.profile} responsiveWeb style={styles.heroCard} contentStyle={styles.heroInner}>
         <View style={styles.avatarCircle}>
           <Text style={styles.avatarText}>{getInitials(accountName)}</Text>
         </View>
@@ -386,6 +391,7 @@ const styles = StyleSheet.create({
     paddingTop: 60,
     paddingBottom: 120,
   },
+  desktopContent: { width: "100%", maxWidth: 1180, alignSelf: "center", paddingHorizontal: 34 },
 
   heroCard: { marginBottom: 14 },
 

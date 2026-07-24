@@ -10,6 +10,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  useWindowDimensions,
   View,
   Alert,
 } from "react-native";
@@ -56,6 +57,8 @@ export function FlightDealsScreen() {
   const { trips } = useTrips();
   const { currentUser } = useAuth();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const [selectedOrigin, setSelectedOrigin] =
     useState<SupportedFlightDealAirport | null>(null);
   const [selectedDestination, setSelectedDestination] =
@@ -207,16 +210,17 @@ export function FlightDealsScreen() {
         style={styles.container}
         contentContainerStyle={[
           styles.content,
+          isDesktopWeb && styles.desktopContent,
           {
-            paddingTop: getScreenTopInset(insets.top),
-            paddingBottom: getFloatingTabClearance(insets.bottom),
+            paddingTop: isDesktopWeb ? 32 : getScreenTopInset(insets.top),
+            paddingBottom: isDesktopWeb ? 32 : getFloatingTabClearance(insets.bottom),
           },
         ]}
         scrollIndicatorInsets={{
           bottom: getScrollIndicatorBottomInset(insets.bottom),
         }}
       >
-        <LocalHeroImageCard imageSource={heroAssets.flightDeals} style={styles.heroCard} contentStyle={styles.heroInner}>
+        <LocalHeroImageCard imageSource={heroAssets.flightDeals} responsiveWeb style={styles.heroCard} contentStyle={styles.heroInner}>
           <Text style={styles.title}>{t("flightDeals.title")}</Text>
           <Text style={styles.subtitle}>{t("flightDeals.subtitle")}</Text>
         </LocalHeroImageCard>
@@ -487,6 +491,7 @@ export function FlightDealsScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
   content: { padding: 20 },
+  desktopContent: { width: "100%", maxWidth: 1180, alignSelf: "center", paddingHorizontal: 34 },
   heroCard: { marginBottom: 16 },
   heroInner: { padding: 24 },
   title: {
