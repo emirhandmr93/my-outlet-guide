@@ -17,6 +17,7 @@ export type HomeFeatureImageKey =
   | "offline-availability";
 
 export const nativePopularCityIds = [
+  "istanbul",
   "paris",
   "milan",
   "london",

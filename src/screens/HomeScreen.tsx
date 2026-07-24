@@ -176,7 +176,7 @@ const istanbulPopularCity: HomeRouteItem = {
 };
 
 const popularCities: HomeRouteItem[] = [
-  ...(Platform.OS !== "web" ? [istanbulPopularCity] : []),
+  istanbulPopularCity,
   {
     id: "paris",
     title: "Paris",
@@ -300,6 +300,7 @@ export function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [activeRecommendedIndex, setActiveRecommendedIndex] = useState(0);
+  const [activeCityIndex, setActiveCityIndex] = useState(0);
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
   const carouselRef = useRef<ScrollView | null>(null);
   const recommendedCarouselRef = useRef<ScrollView | null>(null);
@@ -324,6 +325,7 @@ export function HomeScreen() {
   const cityCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 3) / 4)
     : Math.round(width * 0.42);
+  const citySnapInterval = cityCardWidth + spacing.md;
   const toolCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 3) / 4)
     : (width - spacing.xl * 2 - spacing.md) / 2;
@@ -399,6 +401,20 @@ export function HomeScreen() {
     );
     const reachableIndex = Math.min(Math.max(nextIndex, 0), recommendedLastIndex);
     if (reachableIndex !== activeRecommendedIndex) setActiveRecommendedIndex(reachableIndex);
+  }
+
+  function handleCityScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    const nextIndex = Math.round(
+      event.nativeEvent.contentOffset.x / citySnapInterval,
+    );
+    const reachableIndex = Math.min(
+      Math.max(nextIndex, 0),
+      popularCities.length - 1,
+    );
+
+    if (reachableIndex !== activeCityIndex) {
+      setActiveCityIndex(reachableIndex);
+    }
   }
 
   function navigateTo(route: string, params?: Record<string, string>) {
@@ -762,43 +778,67 @@ export function HomeScreen() {
           subtitle={t("home.sections.cities.subtitle")}
         />
 
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.horizontalList}
-        >
-          {popularCities.map((city) => (
-            <TouchableOpacity
-              key={city.id}
-              style={[styles.cityCard, { width: cityCardWidth }]}
-              activeOpacity={0.9}
-              onPress={() => navigateTo(city.route, city.params)}
-            >
-              <ImageBackground
-                source={city.image}
-                style={styles.cityImage}
-                imageStyle={[
-                  styles.cityImageRadius,
-                  Platform.OS === "web" ? styles.cityImageWeb : null,
-                ]}
+        <View style={styles.cityCarouselWrap}>
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.cityList}
+            snapToInterval={
+              Platform.OS === "web" ? undefined : citySnapInterval
+            }
+            snapToAlignment={Platform.OS === "web" ? undefined : "start"}
+            decelerationRate={Platform.OS === "web" ? undefined : "fast"}
+            onMomentumScrollEnd={
+              Platform.OS === "web" ? undefined : handleCityScroll
+            }
+          >
+            {popularCities.map((city) => (
+              <TouchableOpacity
+                key={city.id}
+                style={[styles.cityCard, { width: cityCardWidth }]}
+                activeOpacity={0.9}
+                onPress={() => navigateTo(city.route, city.params)}
               >
-                <View style={styles.cityOverlay} />
-                <View style={styles.cityContent}>
-                  <Text style={styles.cityKicker}>
-                    {formatCountryDisplayName(
-                      city.country,
-                      language,
-                    ).toLocaleUpperCase(language)}
-                  </Text>
-                  <Text style={styles.cityTitle}>
-                    {formatCityDisplayName(city.id, language)}
-                  </Text>
-                  <Text style={styles.cityText}>{t(city.textKey)}</Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+                <ImageBackground
+                  source={city.image}
+                  style={styles.cityImage}
+                  imageStyle={[
+                    styles.cityImageRadius,
+                    Platform.OS === "web" ? styles.cityImageWeb : null,
+                  ]}
+                >
+                  <View style={styles.cityOverlay} />
+                  <View style={styles.cityContent}>
+                    <Text style={styles.cityKicker}>
+                      {formatCountryDisplayName(
+                        city.country,
+                        language,
+                      ).toLocaleUpperCase(language)}
+                    </Text>
+                    <Text style={styles.cityTitle}>
+                      {formatCityDisplayName(city.id, language)}
+                    </Text>
+                    <Text style={styles.cityText}>{t(city.textKey)}</Text>
+                  </View>
+                </ImageBackground>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+
+          {Platform.OS !== "web" ? (
+            <View style={styles.dotsRow}>
+              {popularCities.map((city, index) => (
+                <View
+                  key={`${city.id}-dot`}
+                  style={[
+                    styles.dot,
+                    index === activeCityIndex && styles.dotActive,
+                  ]}
+                />
+              ))}
+            </View>
+          ) : null}
+        </View>
 
         <View style={[styles.bottomTabSpacer, { height: homeBottomSpacer }]} />
         </View>
@@ -1199,6 +1239,15 @@ const styles = StyleSheet.create({
 
   recommendedCarouselWrap: {
     marginBottom: spacing.lg,
+  },
+
+  cityCarouselWrap: {
+    marginBottom: spacing.lg,
+  },
+
+  cityList: {
+    paddingRight: spacing.xl,
+    gap: spacing.md,
   },
 
   cityCard: {
