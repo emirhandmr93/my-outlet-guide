@@ -1,6 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
-import { Platform } from "react-native";
 import {
   Image,
   ScrollView,
@@ -142,7 +141,7 @@ export function CountryScreen() {
   const visitedCountry = countries.find((item) => item.countryId === route.params?.countryId);
 
   useEffect(() => {
-    if (Platform.OS !== "web" && visitedCountry) void recordRecentVisit("country", visitedCountry.countryId);
+    if (visitedCountry) void recordRecentVisit("country", visitedCountry.countryId);
   }, [visitedCountry?.countryId]);
   const countryOutlets = outlets.filter(
     (outlet) => outlet.countryId === country.countryId,

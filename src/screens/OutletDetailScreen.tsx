@@ -119,7 +119,7 @@ export function OutletDetailScreen() {
   const visitedOutlet = outlets.find((item) => item.outletId === route.params?.outletId);
 
   useEffect(() => {
-    if (Platform.OS !== "web" && visitedOutlet) void recordRecentVisit("outlet", visitedOutlet.outletId);
+    if (visitedOutlet) void recordRecentVisit("outlet", visitedOutlet.outletId);
   }, [visitedOutlet?.outletId]);
 
   const safeGalleryImages = useMemo(() => {

@@ -687,7 +687,7 @@ function DefaultHub({
   ];
   return (
     <>
-      {Platform.OS !== "web" && resolvedRecentVisits.length > 0 ? (
+      {resolvedRecentVisits.length > 0 ? (
         <>
           <Header
             title={t("explore.recentlyVisited")}
