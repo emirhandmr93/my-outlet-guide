@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
-import { CountrySelector } from "../components/CountrySelector";
+import { CountrySelector, SavingsCountryFlag } from "../components/CountrySelector";
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { heroAssets } from "../media/heroAssets";
 import { CurrencySelector } from "../components/CurrencySelector";
@@ -120,7 +120,7 @@ export function SavingsScreen() {
 
         <View style={styles.settingsSummaryRow}>
           <View style={styles.settingsSummaryItem}>
-            <Text style={styles.settingsFlag}>{selectedCountry.countryFlag}</Text>
+            <View style={styles.settingsFlag}><SavingsCountryFlag countryId={selectedCountry.countryId} size={27} /></View>
             <View>
               <Text style={styles.settingsLabel}>{t("common.country")}</Text>
               <Text style={styles.settingsValue}>{getLocalizedCountryName(selectedCountry, language)}</Text>
@@ -352,7 +352,6 @@ const styles = StyleSheet.create({
   },
 
   settingsFlag: {
-    fontSize: 27,
     marginRight: 10,
   },
 
