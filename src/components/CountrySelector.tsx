@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Image, Platform, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 
 import { countries } from "../constants/countries";
@@ -40,18 +40,24 @@ const desktopFlags: Record<string, FlagArtwork> = {
   poland: { ratio: 8 / 5, svg: horizontal(8 / 5, ["#fff", "#dc143c"]) },
   portugal: { ratio: 1.5, svg: flag(1.5, '<rect width="40%" height="100%" fill="#006600"/><rect x="40%" width="60%" height="100%" fill="#ff0000"/><circle cx=".6" cy=".5" r=".19" fill="#ffcc00"/><circle cx=".6" cy=".5" r=".12" fill="#fff" stroke="#006600" stroke-width=".04"/>') },
   slovakia: { ratio: 1.5, svg: horizontal(1.5, ["#fff", "#0b4ea2", "#ee1c25"]) },
-  "south-korea": { ratio: 1.5, svg: flag(1.5, '<rect width="100%" height="100%" fill="#fff"/><circle cx=".75" cy=".5" r=".23" fill="#cd2e3a"/><path d="M.75.27a.23.23 0 0 0 0 .46.115.115 0 0 0 0-.23.115.115 0 0 1 0-.23" fill="#0047a0"/>') },
+  "south-korea": { ratio: 1.5, svg: flag(1.5, '<rect width="100%" height="100%" fill="#fff"/><circle cx=".75" cy=".5" r=".23" fill="#cd2e3a"/><path d="M.75.27a.23.23 0 0 0 0 .46.115.115 0 0 0 0-.23.115.115 0 0 1 0-.23" fill="#0047a0"/><path d="M.2.2l.12.08m-.12-.02l.12.08M1.18.2l.12.08m-.12-.02l.12.08M.2.72l.12.08m-.12-.02l.12.08M1.18.72l.12.08m-.12-.02l.12.08" stroke="#000" stroke-width=".035"/>') },
   spain: { ratio: 1.5, svg: horizontal(1.5, ["#aa151b", "#f1bf00", "#aa151b"]) },
   sweden: { ratio: 8 / 5, svg: flag(8 / 5, '<rect width="100%" height="100%" fill="#006aa7"/><path d="M.31 0h.14v1H.31zM0 .4h1v.2H0z" fill="#fecc00"/>') },
   switzerland: { ratio: 1, svg: flag(1, '<rect width="100%" height="100%" fill="#d52b1e"/><path d="M.38.18h.24v.2h.2v.24h-.2v.2H.38v-.2h-.2V.38h.2z" fill="#fff"/>') },
   thailand: { ratio: 1.5, svg: flag(1.5, '<rect width="100%" height="100%" fill="#a51931"/><path d="M0 .17h1.5v.16H0zm0 .34h1.5v.16H0z" fill="#fff"/><path d="M0 .33h1.5v.34H0z" fill="#2d2a4a"/>') },
-  turkey: { ratio: 1.5, svg: flag(1.5, '<rect width="100%" height="100%" fill="#e30a17"/><path d="M.66.22a.28.28 0 1 0 0 .56.22.22 0 1 1 0-.56z" fill="#fff"/>') },
+  turkey: { ratio: 1.5, svg: flag(1.5, '<rect width="100%" height="100%" fill="#e30a17"/><path d="M.66.22a.28.28 0 1 0 0 .56.22.22 0 1 1 0-.56zM.92.38l.035.1.105.002-.084.064.03.1-.086-.06-.086.06.03-.1-.084-.064.105-.002z" fill="#fff"/>') },
   "united-arab-emirates": { ratio: 2, svg: flag(2, '<rect width="25%" height="100%" fill="#ff0000"/><rect x="25%" width="75%" height="33.3%" fill="#00732f"/><rect x="25%" y="33.3%" width="75%" height="33.4%" fill="#fff"/><rect x="25%" y="66.7%" width="75%" height="33.3%" fill="#000"/>') },
   "united-kingdom": { ratio: 2, svg: flag(2, '<rect width="100%" height="100%" fill="#012169"/><path d="M0 0l2 1M2 0L0 1" stroke="#fff" stroke-width=".2"/><path d="M0 0l2 1M2 0L0 1" stroke="#c8102e" stroke-width=".08"/><path d="M.8 0h.4v1H.8zM0 .4h2v.2H0z" fill="#fff"/><path d="M.9 0h.2v1H.9zM0 .45h2v.1H0z" fill="#c8102e"/>') },
   "united-states": { ratio: 19 / 10, svg: flag(19 / 10, '<rect width="100%" height="100%" fill="#fff"/><path d="M0 0h1.9v.077H0zm0 .154h1.9v.077H0zm0 .308h1.9v.077H0zm0 .462h1.9v.077H0zm0 .616h1.9v.077H0zm0 .77h1.9v.077H0zm0 .924h1.9V1H0z" fill="#b22234"/><rect width=".76" height=".54" fill="#3c3b6e"/>') },
 };
 
 function isDesktopWeb(platform: string, width: number) { return platform === "web" && width >= 1024; }
+
+function getIsoCode(flag: string | undefined) {
+  const indicators = Array.from(flag ?? "");
+  if (indicators.length !== 2) return "";
+  return indicators.map((indicator) => String.fromCharCode(indicator.codePointAt(0)! - 0x1f1e6 + 65)).join("");
+}
 
 export function SavingsCountryFlag({ countryId, size = 28 }: { countryId: string; size?: number }) {
   const { width } = useWindowDimensions();
@@ -60,9 +66,10 @@ export function SavingsCountryFlag({ countryId, size = 28 }: { countryId: string
   const artwork = desktopFlags[countryId];
   const desktop = isDesktopWeb(Platform.OS, width);
   const uri = artwork && `data:image/svg+xml;utf8,${encodeURIComponent(artwork.svg)}`;
+  useEffect(() => setImageFailed(false), [countryId, uri]);
 
   if (!desktop) return <Text style={{ fontSize: size }}>{country?.countryFlag ?? "🌍"}</Text>;
-  if (!uri || imageFailed) return <Text style={[styles.isoFallback, { fontSize: Math.max(8, Math.round(size * 0.4))}]}>{countryId.toUpperCase()}</Text>;
+  if (!uri || imageFailed) return <Text style={[styles.isoFallback, { fontSize: Math.max(8, Math.round(size * 0.4))}]}>{getIsoCode(country?.countryFlag)}</Text>;
   return <Image key={countryId} accessible={false} source={{ uri }} resizeMode="contain" style={{ width: size, height: size }} onError={() => setImageFailed(true)} />;
 }
 
