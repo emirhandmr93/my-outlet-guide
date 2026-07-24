@@ -1,9 +1,10 @@
 import { createNavigationContainerRef, NavigationContainer, type RouteProp } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ActivityIndicator, Platform, useWindowDimensions, View } from "react-native";
+import { ActivityIndicator, Platform, Pressable, useWindowDimensions, View } from "react-native";
 import { useEffect, useState } from "react";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import { useFonts } from "expo-font";
 
 import { BrandResultsScreen } from "../screens/BrandResultsScreen";
 import { CityResultsScreen } from "../screens/CityResultsScreen";
@@ -80,8 +81,22 @@ const DesktopHomeStack = createNativeStackNavigator<DesktopHomeStackParamList>()
 const DesktopExploreStack = createNativeStackNavigator<DesktopExploreStackParamList>();
 const DesktopTripsStack = createNativeStackNavigator<DesktopTripsStackParamList>();
 
-function desktopBrowseScreenOptions(t: ReturnType<typeof useTranslation>["t"]) {
-return {
+function HeaderBackIcon({ color, label, onPress }: { color?: string; label: string; onPress: () => void }) {
+return (
+<Pressable
+accessibilityRole="button"
+accessibilityLabel={label}
+onPress={onPress}
+hitSlop={12}
+style={{ paddingHorizontal: 8, paddingVertical: 6 }}
+>
+<Ionicons name="chevron-back" size={26} color={color ?? "#0B1F3A"} />
+</Pressable>
+);
+}
+
+function navigationScreenOptions(t: ReturnType<typeof useTranslation>["t"]) {
+return ({ navigation }: { navigation: { canGoBack: () => boolean; goBack: () => void } }) => ({
 headerShown: true,
 headerBackTitle: t("nav.back"),
 headerTintColor: "#0B1F3A",
@@ -92,14 +107,16 @@ fontWeight: "900" as const,
 headerStyle: {
 backgroundColor: "#FFFFFF",
 },
-};
+headerLeft: ({ tintColor }: { tintColor?: string }) =>
+navigation.canGoBack() ? <HeaderBackIcon color={tintColor} label={t("nav.back")} onPress={() => navigation.goBack()} /> : null,
+});
 }
 
 function DesktopHomeNavigator() {
 const { t } = useTranslation();
 
 return (
-<DesktopHomeStack.Navigator screenOptions={desktopBrowseScreenOptions(t)}>
+<DesktopHomeStack.Navigator screenOptions={navigationScreenOptions(t)}>
 <DesktopHomeStack.Screen name="HomeRoot" component={HomeScreen} options={{ headerShown: false }} />
 <DesktopHomeStack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: t("nav.outlet") }} />
 <DesktopHomeStack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: t("nav.brand") }} />
@@ -120,7 +137,7 @@ const initialTab = route.params?.initialTab;
 const navigatorKey = `${initialQuery ?? ""}:${initialTab ?? ""}`;
 
 return (
-<DesktopExploreStack.Navigator key={navigatorKey} screenOptions={desktopBrowseScreenOptions(t)}>
+<DesktopExploreStack.Navigator key={navigatorKey} screenOptions={navigationScreenOptions(t)}>
 <DesktopExploreStack.Screen
 name="ExploreRoot"
 component={ExploreScreen}
@@ -137,7 +154,7 @@ options={{ headerShown: false }}
 );
 }
 
-function DesktopTripsNavigator() { const { t } = useTranslation(); return <DesktopTripsStack.Navigator screenOptions={desktopBrowseScreenOptions(t)}><DesktopTripsStack.Screen name="MyTripsRoot" component={MyTripsScreen} options={{ headerShown: false }} /><DesktopTripsStack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: t("nav.tripDetail") }} /><DesktopTripsStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} /><DesktopTripsStack.Screen name="TripSegmentEditor" component={TripSegmentEditorScreen} options={{ title: t("tripDetail.addRouteCta") }} /></DesktopTripsStack.Navigator>; }
+function DesktopTripsNavigator() { const { t } = useTranslation(); return <DesktopTripsStack.Navigator screenOptions={navigationScreenOptions(t)}><DesktopTripsStack.Screen name="MyTripsRoot" component={MyTripsScreen} options={{ headerShown: false }} /><DesktopTripsStack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: t("nav.tripDetail") }} /><DesktopTripsStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} /><DesktopTripsStack.Screen name="TripSegmentEditor" component={TripSegmentEditorScreen} options={{ title: t("tripDetail.addRouteCta") }} /></DesktopTripsStack.Navigator>; }
 
 function TabIcon({
 routeName,
@@ -254,6 +271,11 @@ const { t } = useTranslation();
 const { isLanguageResolved, language } = useLanguage();
 const [shouldShowOnboarding, setShouldShowOnboarding] = useState(false);
 const [isOnboardingGateReady, setIsOnboardingGateReady] = useState(false);
+const [navigationFontsLoaded, navigationFontError] = useFonts({
+...Ionicons.font,
+...Feather.font,
+...MaterialCommunityIcons.font,
+});
 
 useEffect(() => {
 if (!isLanguageResolved) return;
@@ -294,7 +316,7 @@ if (`${window.location.pathname}${window.location.search}` !== path) window.hist
 
 useEffect(() => { syncWebPath(); }, [language]);
 
-if (!isLanguageResolved || !isOnboardingGateReady) {
+if (!isLanguageResolved || !isOnboardingGateReady || (!navigationFontsLoaded && !navigationFontError)) {
 return (
 <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.primary }}>
 <ActivityIndicator color={colors.gold} />
@@ -309,18 +331,7 @@ return <OnboardingScreen onComplete={() => setShouldShowOnboarding(false)} />;
 return (
 <NavigationContainer ref={navigationRef} linking={webLinking} onReady={syncWebPath} onStateChange={syncWebPath}>
 <Stack.Navigator
-screenOptions={{
-headerShown: true,
-headerBackTitle: t("nav.back"),
-headerTintColor: "#0B1F3A",
-headerTitleStyle: {
-color: "#0B1F3A",
-fontWeight: "900",
-},
-headerStyle: {
-backgroundColor: "#FFFFFF",
-},
-}}
+screenOptions={navigationScreenOptions(t)}
 >
 <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
 
