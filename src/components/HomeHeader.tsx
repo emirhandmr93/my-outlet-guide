@@ -102,15 +102,6 @@ export function HomeHeader({
         </View>
 
         <View style={[styles.rightActions, isCompactMobile ? styles.rightActionsCompact : null]}>
-          {isDesktopWeb ? (
-            <TouchableOpacity
-              style={[styles.iconButton, styles.desktopMenuButton]}
-              activeOpacity={0.84}
-              onPress={onPressMenu}
-            >
-              <Text style={styles.menuIcon}>☰</Text>
-            </TouchableOpacity>
-          ) : null}
           <TouchableOpacity
             style={[styles.iconButton, isCompactMobile ? styles.iconButtonCompact : null]}
             activeOpacity={0.84}
@@ -288,10 +279,6 @@ const styles = StyleSheet.create({
     height: 44,
   },
 
-  desktopMenuButton: {
-    width: 42,
-    height: 42,
-  },
 
   languageButton: {
     height: 46,
