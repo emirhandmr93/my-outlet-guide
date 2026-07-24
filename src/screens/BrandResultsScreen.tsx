@@ -1,4 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { useEffect } from "react";
 import {
   Image,
   Platform,
@@ -31,6 +32,7 @@ import {
   formatCountryDisplayName,
 } from "../utils/locationDisplay";
 import { requireAuth } from "../utils/requireAuth";
+import { recordRecentVisit } from "../services/recentVisitsService";
 
 type RouteParams = {
   BrandResults: {
@@ -139,6 +141,11 @@ export function BrandResultsScreen() {
 
   const brand =
     brands.find((item) => item.brandId === route.params?.brandId) || brands[0];
+  const visitedBrand = brands.find((item) => item.brandId === route.params?.brandId);
+
+  useEffect(() => {
+    if (Platform.OS !== "web" && visitedBrand) void recordRecentVisit("brand", visitedBrand.brandId);
+  }, [visitedBrand?.brandId]);
 
   const matchingOutletIds = outletBrands
     .filter(

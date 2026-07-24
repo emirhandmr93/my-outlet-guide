@@ -12498,6 +12498,8 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.france": "France",
     "explore.popularSearch.italy": "Italy",
     "explore.popularSearch.nike": "Nike",
+    "explore.recentlyVisited": "Recently visited",
+    "explore.recentlyVisitedSubtitle": "Continue from where you left off.",
   },
   tr: {
     "city.heroText": "Bu şehirdeki outletleri ve alışveriş rotalarını keşfet.",
@@ -12508,6 +12510,8 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.france": "Fransa",
     "explore.popularSearch.italy": "İtalya",
     "explore.popularSearch.nike": "Nike",
+    "explore.recentlyVisited": "Son ziyaret edilenler",
+    "explore.recentlyVisitedSubtitle": "En son baktığın yerlerden devam et.",
   },
   es: {
     "city.heroText": "Explora outlets y rutas de compras en esta ciudad.",
@@ -12518,6 +12522,8 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.france": "Francia",
     "explore.popularSearch.italy": "Italia",
     "explore.popularSearch.nike": "Nike",
+    "explore.recentlyVisited": "Visitados recientemente",
+    "explore.recentlyVisitedSubtitle": "Continúa desde donde lo dejaste.",
   },
   fr: {
     "city.heroText":
@@ -12529,6 +12535,8 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.france": "France",
     "explore.popularSearch.italy": "Italie",
     "explore.popularSearch.nike": "Nike",
+    "explore.recentlyVisited": "Consultés récemment",
+    "explore.recentlyVisitedSubtitle": "Reprenez là où vous vous étiez arrêté.",
   },
   de: {
     "city.heroText": "Entdecke Outlets und Shopping-Routen in dieser Stadt.",
@@ -12539,6 +12547,8 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.france": "Frankreich",
     "explore.popularSearch.italy": "Italien",
     "explore.popularSearch.nike": "Nike",
+    "explore.recentlyVisited": "Kürzlich besucht",
+    "explore.recentlyVisitedSubtitle": "Mach dort weiter, wo du aufgehört hast.",
   },
   ru: {
     "city.heroText": "Изучайте аутлеты и маршруты для шопинга в этом городе.",
@@ -12549,6 +12559,8 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.france": "Франция",
     "explore.popularSearch.italy": "Италия",
     "explore.popularSearch.nike": "Nike",
+    "explore.recentlyVisited": "Недавно просмотренные",
+    "explore.recentlyVisitedSubtitle": "Продолжите с того места, где остановились.",
   },
   ar: {
     "city.heroText": "استكشف الأوتلت ومسارات التسوق في هذه المدينة.",
@@ -12559,6 +12571,8 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.france": "فرنسا",
     "explore.popularSearch.italy": "إيطاليا",
     "explore.popularSearch.nike": "Nike",
+    "explore.recentlyVisited": "تمت زيارتها مؤخرًا",
+    "explore.recentlyVisitedSubtitle": "تابع من حيث توقفت.",
   },
   zh: {
     "city.heroText": "探索这座城市的奥特莱斯和购物路线。",
@@ -12569,6 +12583,8 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.france": "法国",
     "explore.popularSearch.italy": "意大利",
     "explore.popularSearch.nike": "Nike",
+    "explore.recentlyVisited": "最近浏览",
+    "explore.recentlyVisitedSubtitle": "从上次停下的地方继续。",
   },
 };
 
