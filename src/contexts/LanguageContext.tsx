@@ -66,15 +66,19 @@ export function LanguageProvider({
   }, []);
 
   async function loadLanguage() {
+    const urlLanguage = Platform.OS === "web"
+      ? getLanguageFromPath(window.location.pathname)
+      : undefined;
+
     try {
       const savedLanguage = await AsyncStorage.getItem(STORAGE_KEY);
       setLanguageState(
-        Platform.OS === "web"
-          ? getLanguageFromPath(window.location.pathname) ?? resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
-          : resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
+        urlLanguage ?? resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
       );
     } catch {
-      setLanguageState(resolveInitialLanguage(null, getDeviceLocaleCandidates()));
+      setLanguageState(
+        urlLanguage ?? resolveInitialLanguage(null, getDeviceLocaleCandidates())
+      );
     } finally {
       setIsLanguageResolved(true);
     }

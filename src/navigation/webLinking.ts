@@ -20,6 +20,16 @@ const routes: RouteDefinition[] = [
 
 const tabRoutes = new Set(["Home", "Explore", "MyTrips", "Savings", "Profile"]);
 
+const canonicalNestedRootRoutes: Record<string, string> = {
+  HomeRoot: "Home",
+  ExploreRoot: "Explore",
+  MyTripsRoot: "MyTrips",
+};
+
+function getCanonicalLeafName(name: string) {
+  return canonicalNestedRootRoutes[name] ?? name;
+}
+
 function decode(segment: string) {
   try { return decodeURIComponent(segment); } catch { return segment; }
 }
@@ -75,7 +85,7 @@ export function createWebLinking(language: TranslationLanguage): LinkingOptions<
     },
     getPathFromState(state): string {
       const leaf = getLeafRoute(state);
-      const path = leaf ? pathForRoute(leaf.name, leaf.params) : "";
+      const path = leaf ? pathForRoute(getCanonicalLeafName(leaf.name), leaf.params) : "";
       return `/${language}${path ? `/${path}` : ""}`;
     },
   };
