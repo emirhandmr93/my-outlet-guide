@@ -11,6 +11,7 @@ export type RecentVisit = {
 
 const RECENT_VISITS_STORAGE_KEY = "my-outlet-guide:recent-visits:v1";
 const MAX_RECENT_VISITS = 5;
+let recentVisitsWriteQueue: Promise<void> = Promise.resolve();
 
 function isRecentVisit(value: unknown): value is RecentVisit {
   if (!value || typeof value !== "object") return false;
@@ -27,9 +28,7 @@ function isRecentVisit(value: unknown): value is RecentVisit {
   );
 }
 
-export async function loadRecentVisits(): Promise<RecentVisit[]> {
-  if (Platform.OS === "web") return [];
-
+async function readRecentVisits(): Promise<RecentVisit[]> {
   try {
     const storedVisits = await AsyncStorage.getItem(RECENT_VISITS_STORAGE_KEY);
     if (!storedVisits) return [];
@@ -46,26 +45,38 @@ export async function loadRecentVisits(): Promise<RecentVisit[]> {
   }
 }
 
+export async function loadRecentVisits(): Promise<RecentVisit[]> {
+  if (Platform.OS === "web") return [];
+
+  await recentVisitsWriteQueue;
+  return readRecentVisits();
+}
+
 export async function recordRecentVisit(
   type: RecentVisitType,
   id: string,
 ): Promise<void> {
   if (Platform.OS === "web" || !id) return;
 
-  try {
-    const existingVisits = await loadRecentVisits();
-    const visit: RecentVisit = { type, id, visitedAt: Date.now() };
-    const nextVisits = [
-      visit,
-      ...existingVisits.filter(
-        (existingVisit) =>
-          existingVisit.type !== type || existingVisit.id !== id,
-      ),
-    ].slice(0, MAX_RECENT_VISITS);
+  const queuedWrite = recentVisitsWriteQueue.then(async () => {
+    try {
+      const existingVisits = await readRecentVisits();
+      const visit: RecentVisit = { type, id, visitedAt: Date.now() };
+      const nextVisits = [
+        visit,
+        ...existingVisits.filter(
+          (existingVisit) =>
+            existingVisit.type !== type || existingVisit.id !== id,
+        ),
+      ].slice(0, MAX_RECENT_VISITS);
 
-    await AsyncStorage.setItem(
-      RECENT_VISITS_STORAGE_KEY,
-      JSON.stringify(nextVisits),
-    );
-  } catch {}
+      await AsyncStorage.setItem(
+        RECENT_VISITS_STORAGE_KEY,
+        JSON.stringify(nextVisits),
+      );
+    } catch {}
+  });
+
+  recentVisitsWriteQueue = queuedWrite.catch(() => {});
+  await queuedWrite;
 }

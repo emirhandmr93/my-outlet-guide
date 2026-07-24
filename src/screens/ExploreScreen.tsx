@@ -464,7 +464,7 @@ export function ExploreScreen() {
             isDesktopWeb={isDesktopWeb}
             twoColumnWidth={twoColumnWidth}
             threeColumnWidth={threeColumnWidth}
-            recentVisits={resolvedRecentVisits}
+            resolvedRecentVisits={resolvedRecentVisits}
             openRecentVisit={openRecentVisit}
           />
         ) : null}
@@ -662,7 +662,7 @@ function DefaultHub({
   isDesktopWeb,
   twoColumnWidth,
   threeColumnWidth,
-  recentVisits,
+  resolvedRecentVisits,
   openRecentVisit,
 }: any) {
   const cards: Array<[ExploreFilter, string, string, string]> = [
@@ -687,7 +687,43 @@ function DefaultHub({
   ];
   return (
     <>
-      {Platform.OS !== "web" && recentVisits.length > 0 ? <><Header title={t("explore.recentlyVisited")} subtitle={t("explore.recentlyVisitedSubtitle")} /><View style={styles.popularSearchGrid}>{recentVisits.map((visit: ResolvedRecentVisit) => <TouchableOpacity key={`${visit.type}-${visit.id}`} style={styles.popularSearchChip} onPress={() => openRecentVisit(visit)}><Text style={styles.popularSearchText}>{visit.label}</Text></TouchableOpacity>)}</View></> : <><Header title={t("explore.popularSearches")} subtitle={t("explore.popularSearchesSubtitle")} /><View style={styles.popularSearchGrid}>{popularSearches.map((p) => <TouchableOpacity key={p.query} style={styles.popularSearchChip} onPress={() => runSearch(p.query)}><Text style={styles.popularSearchText}>{t(p.labelKey)}</Text></TouchableOpacity>)}</View></>}
+      {Platform.OS !== "web" && resolvedRecentVisits.length > 0 ? (
+        <>
+          <Header
+            title={t("explore.recentlyVisited")}
+            subtitle={t("explore.recentlyVisitedSubtitle")}
+          />
+          <View style={styles.popularSearchGrid}>
+            {resolvedRecentVisits.map((visit: ResolvedRecentVisit) => (
+              <TouchableOpacity
+                key={`${visit.type}-${visit.id}`}
+                style={styles.popularSearchChip}
+                onPress={() => openRecentVisit(visit)}
+              >
+                <Text style={styles.popularSearchText}>{visit.label}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </>
+      ) : (
+        <>
+          <Header
+            title={t("explore.popularSearches")}
+            subtitle={t("explore.popularSearchesSubtitle")}
+          />
+          <View style={styles.popularSearchGrid}>
+            {popularSearches.map((p) => (
+              <TouchableOpacity
+                key={p.query}
+                style={styles.popularSearchChip}
+                onPress={() => runSearch(p.query)}
+              >
+                <Text style={styles.popularSearchText}>{t(p.labelKey)}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </>
+      )}
       <Header
         title={t("explore.discoveryTitle")}
         subtitle={t("explore.discoverySubtitle")}
