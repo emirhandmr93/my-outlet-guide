@@ -14,6 +14,7 @@ import {
   DeviceLocaleSource,
   resolveInitialLanguage,
 } from "../utils/languageFallback";
+import { getLanguageFromPath } from "../navigation/webLinking";
 
 type LanguageContextType = {
   language: TranslationLanguage;
@@ -68,7 +69,9 @@ export function LanguageProvider({
     try {
       const savedLanguage = await AsyncStorage.getItem(STORAGE_KEY);
       setLanguageState(
-        resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
+        Platform.OS === "web"
+          ? getLanguageFromPath(window.location.pathname) ?? resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
+          : resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
       );
     } catch {
       setLanguageState(resolveInitialLanguage(null, getDeviceLocaleCandidates()));

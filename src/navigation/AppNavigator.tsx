@@ -1,4 +1,4 @@
-import { NavigationContainer, type RouteProp } from "@react-navigation/native";
+import { createNavigationContainerRef, NavigationContainer, type RouteProp } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator, Platform, useWindowDimensions, View } from "react-native";
@@ -46,9 +46,11 @@ import { hasSeenOnboarding } from "../services/onboardingStorage";
 import colors from "../theme/colors";
 
 import type { MainTabParamList, RootStackParamList } from "./types";
+import { createWebLinking } from "./webLinking";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
+const navigationRef = createNavigationContainerRef<RootStackParamList>();
 
 type DesktopHomeStackParamList = {
 HomeRoot: undefined;
@@ -249,7 +251,7 @@ elevation: 14,
 
 export function AppNavigator() {
 const { t } = useTranslation();
-const { isLanguageResolved } = useLanguage();
+const { isLanguageResolved, language } = useLanguage();
 const [shouldShowOnboarding, setShouldShowOnboarding] = useState(false);
 const [isOnboardingGateReady, setIsOnboardingGateReady] = useState(false);
 
@@ -282,6 +284,16 @@ isMounted = false;
 };
 }, [isLanguageResolved]);
 
+const webLinking = Platform.OS === "web" ? createWebLinking(language) : undefined;
+
+function syncWebPath() {
+if (Platform.OS !== "web" || !navigationRef.isReady()) return;
+const path = createWebLinking(language).getPathFromState?.(navigationRef.getRootState()) ?? `/${language}`;
+if (`${window.location.pathname}${window.location.search}` !== path) window.history.replaceState(window.history.state, "", path);
+}
+
+useEffect(() => { syncWebPath(); }, [language]);
+
 if (!isLanguageResolved || !isOnboardingGateReady) {
 return (
 <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.primary }}>
@@ -295,7 +307,7 @@ return <OnboardingScreen onComplete={() => setShouldShowOnboarding(false)} />;
 }
 
 return (
-<NavigationContainer>
+<NavigationContainer ref={navigationRef} linking={webLinking} onReady={syncWebPath} onStateChange={syncWebPath}>
 <Stack.Navigator
 screenOptions={{
 headerShown: true,
