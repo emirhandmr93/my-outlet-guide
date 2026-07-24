@@ -1,31 +1,88 @@
+import { useEffect, useState } from "react";
+import { Image, Platform, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+
 import { countries } from "../constants/countries";
 import { useTranslation } from "../hooks/useTranslation";
 import { getLocalizedCountryName } from "../utils/localization";
-import { DropdownSelector } from "./DropdownSelector";
+import { DropdownOption, DropdownSelector } from "./DropdownSelector";
 
-type CountrySelectorProps = {
-  selectedCountryId: string;
-  onSelectCountry: (countryId: string) => void;
+type CountrySelectorProps = { selectedCountryId: string; onSelectCountry: (countryId: string) => void };
+type FlagArtwork = { svg: string; ratio: number };
+
+const svg = (ratio: number, content: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${ratio} 1">${content}</svg>`;
+const horizontal = (ratio: number, colors: string[]) => svg(ratio, colors.map((color, index) => `<rect y="${index * 100 / colors.length}%" width="100%" height="${100 / colors.length}%" fill="${color}"/>`).join(""));
+const vertical = (ratio: number, colors: string[]) => svg(ratio, colors.map((color, index) => `<rect x="${index * 100 / colors.length}%" width="${100 / colors.length}%" height="100%" fill="${color}"/>`).join(""));
+const flag = (ratio: number, content: string) => svg(ratio, content);
+
+const desktopFlags: Record<string, FlagArtwork> = {
+  austria: { ratio: 1.5, svg: horizontal(1.5, ["#ed2939", "#fff", "#ed2939"]) },
+  belgium: { ratio: 15 / 13, svg: vertical(15 / 13, ["#000", "#ffd90c", "#ef3340"]) },
+  canada: { ratio: 2, svg: flag(2, '<rect width="25%" height="100%" fill="#d80621"/><rect x="25%" width="50%" height="100%" fill="#fff"/><rect x="75%" width="25%" height="100%" fill="#d80621"/><path d="M1 .17l.06.2.1-.08-.03.16.15.02-.16.11.1.09-.2-.03L1 .78.98.64l-.2.03.1-.09-.16-.11.15-.02-.03-.16.1.08z" fill="#d80621"/>') },
+  china: { ratio: 1.5, svg: flag(1.5, '<rect width="1.5" height="1" fill="#de2910"/><defs><path id="cn-star" d="M0,-.025 .0059,-.0081 .0238,-.0077 .0095,.0031 .0147,.0202 0,.01 -.0147,.0202 -.0095,.0031 -.0238,-.0077 -.0059,-.0081z"/></defs><g fill="#ffde00"><use href="#cn-star" transform="translate(.25 .25) scale(4)"/><use href="#cn-star" transform="translate(.50 .12) rotate(-121)"/><use href="#cn-star" transform="translate(.60 .24) rotate(-98)"/><use href="#cn-star" transform="translate(.59 .39) rotate(-74)"/><use href="#cn-star" transform="translate(.49 .50) rotate(-51)"/></g>') },
+  croatia: { ratio: 2, svg: flag(2, '<rect width="2" height=".333" fill="#ff0000"/><rect y=".333" width="2" height=".334" fill="#fff"/><rect y=".667" width="2" height=".333" fill="#171796"/><path d="M.81.31h.29v.31q-.145.14-.29 0z" fill="#fff" stroke="#d7141a" stroke-width=".018"/><rect x="0.820" y="0.340" width=".055" height=".055" fill="#d7141a"/><rect x="0.875" y="0.340" width=".055" height=".055" fill="#fff"/><rect x="0.930" y="0.340" width=".055" height=".055" fill="#d7141a"/><rect x="0.985" y="0.340" width=".055" height=".055" fill="#fff"/><rect x="1.040" y="0.340" width=".055" height=".055" fill="#d7141a"/><rect x="0.820" y="0.395" width=".055" height=".055" fill="#fff"/><rect x="0.875" y="0.395" width=".055" height=".055" fill="#d7141a"/><rect x="0.930" y="0.395" width=".055" height=".055" fill="#fff"/><rect x="0.985" y="0.395" width=".055" height=".055" fill="#d7141a"/><rect x="1.040" y="0.395" width=".055" height=".055" fill="#fff"/><rect x="0.820" y="0.450" width=".055" height=".055" fill="#d7141a"/><rect x="0.875" y="0.450" width=".055" height=".055" fill="#fff"/><rect x="0.930" y="0.450" width=".055" height=".055" fill="#d7141a"/><rect x="0.985" y="0.450" width=".055" height=".055" fill="#fff"/><rect x="1.040" y="0.450" width=".055" height=".055" fill="#d7141a"/><rect x="0.820" y="0.505" width=".055" height=".055" fill="#fff"/><rect x="0.875" y="0.505" width=".055" height=".055" fill="#d7141a"/><rect x="0.930" y="0.505" width=".055" height=".055" fill="#fff"/><rect x="0.985" y="0.505" width=".055" height=".055" fill="#d7141a"/><rect x="1.040" y="0.505" width=".055" height=".055" fill="#fff"/><rect x="0.820" y="0.560" width=".055" height=".055" fill="#d7141a"/><rect x="0.875" y="0.560" width=".055" height=".055" fill="#fff"/><rect x="0.930" y="0.560" width=".055" height=".055" fill="#d7141a"/><rect x="0.985" y="0.560" width=".055" height=".055" fill="#fff"/><rect x="1.040" y="0.560" width=".055" height=".055" fill="#d7141a"/><g stroke="#fff" stroke-width=".008"><rect x=".82" y=".26" width=".05" height=".07" fill="#57a5d8"/><rect x=".875" y=".24" width=".05" height=".09" fill="#171796"/><rect x=".93" y=".25" width=".05" height=".08" fill="#d7141a"/><rect x=".985" y=".24" width=".05" height=".09" fill="#57a5d8"/><rect x="1.04" y=".26" width=".05" height=".07" fill="#171796"/></g>') },
+  "czech-republic": { ratio: 1.5, svg: flag(1.5, '<rect width="100%" height="50%" fill="#fff"/><rect y="50%" width="100%" height="50%" fill="#d7141a"/><path d="M0 0l.75.5L0 1z" fill="#11457e"/>') },
+  denmark: { ratio: 37 / 28, svg: flag(37 / 28, '<rect width="100%" height="100%" fill="#c60c30"/><path d="M.38 0h.12v1H.38zM0 .43h1.321v.14H0z" fill="#fff"/>') },
+  finland: { ratio: 18 / 11, svg: flag(18 / 11, '<rect width="100%" height="100%" fill="#fff"/><path d="M.36 0h.16v1H.36zM0 .4h1.636v.2H0z" fill="#003580"/>') },
+  bulgaria: { ratio: 5 / 3, svg: horizontal(5 / 3, ["#fff", "#00966e", "#d62612"]) },
+  estonia: { ratio: 11 / 7, svg: horizontal(11 / 7, ["#4891d9", "#000", "#fff"]) },
+  romania: { ratio: 1.5, svg: vertical(1.5, ["#002b7f", "#fcd116", "#ce1126"]) },
+  france: { ratio: 1.5, svg: vertical(1.5, ["#002654", "#fff", "#ed2939"]) },
+  germany: { ratio: 5 / 3, svg: horizontal(5 / 3, ["#000", "#dd0000", "#ffce00"]) },
+  greece: { ratio: 1.5, svg: flag(1.5, '<rect width="1.5" height=".111" fill="#0d5eaf"/><rect y=".111" width="1.5" height=".111" fill="#fff"/><rect y=".222" width="1.5" height=".111" fill="#0d5eaf"/><rect y=".333" width="1.5" height=".111" fill="#fff"/><rect y=".444" width="1.5" height=".111" fill="#0d5eaf"/><rect y=".555" width="1.5" height=".111" fill="#fff"/><rect y=".666" width="1.5" height=".111" fill="#0d5eaf"/><rect y=".777" width="1.5" height=".111" fill="#fff"/><rect y=".888" width="1.5" height=".112" fill="#0d5eaf"/><rect width=".555" height=".555" fill="#0d5eaf"/><path d="M.222 0h.111v.555H.222zM0 .222h.555v.111H0z" fill="#fff"/>') },
+  hungary: { ratio: 2, svg: horizontal(2, ["#ce2939", "#fff", "#477050"]) },
+  ireland: { ratio: 2, svg: vertical(2, ["#169b62", "#fff", "#ff883e"]) },
+  italy: { ratio: 1.5, svg: vertical(1.5, ["#009246", "#fff", "#ce2b37"]) },
+  japan: { ratio: 1.5, svg: flag(1.5, '<rect width="100%" height="100%" fill="#fff"/><circle cx=".75" cy=".5" r=".3" fill="#bc002d"/>') },
+  latvia: { ratio: 2, svg: flag(2, '<rect width="100%" height="40%" fill="#9e3039"/><rect y="40%" width="100%" height="20%" fill="#fff"/><rect y="60%" width="100%" height="40%" fill="#9e3039"/>') },
+  lithuania: { ratio: 5 / 3, svg: horizontal(5 / 3, ["#fdb913", "#006a44", "#c1272d"]) },
+  netherlands: { ratio: 1.5, svg: horizontal(1.5, ["#ae1c28", "#fff", "#21468b"]) },
+  norway: { ratio: 11 / 8, svg: flag(11 / 8, '<rect width="100%" height="100%" fill="#ba0c2f"/><path d="M.31 0h.2v1h-.2zM0 .39h1.375v.22H0z" fill="#fff"/><path d="M.36 0h.1v1h-.1zM0 .445h1.375v.11H0z" fill="#00205b"/>') },
+  poland: { ratio: 8 / 5, svg: horizontal(8 / 5, ["#fff", "#dc143c"]) },
+  portugal: { ratio: 1.5, svg: flag(1.5, '<rect width=".6" height="1" fill="#046a38"/><rect x=".6" width=".9" height="1" fill="#da291c"/><g fill="none" stroke="#ffcd00" stroke-width=".025"><ellipse cx=".6" cy=".5" rx=".22" ry=".22"/><ellipse cx=".6" cy=".5" rx=".11" ry=".22"/><path d="M.38.5h.44M.42.39h.36M.42.61h.36"/></g><path d="M.49.36h.22v.27q-.11.12-.22 0z" fill="#fff" stroke="#da291c" stroke-width=".025"/><g fill="#003399"><path d="M.53.41h.035v.035H.53zM.59.41h.035v.035H.59zM.65.41h.035v.035H.65zM.56.48h.035v.035H.56zM.62.48h.035v.035H.62z"/></g>') },
+  slovakia: { ratio: 1.5, svg: flag(1.5, '<rect width="1.5" height=".333" fill="#fff"/><rect y=".333" width="1.5" height=".334" fill="#0b4ea2"/><rect y=".667" width="1.5" height=".333" fill="#ee1c25"/><path d="M.28.29h.36v.38q-.18.19-.36 0z" fill="#ee1c25" stroke="#fff" stroke-width=".025"/><path d="M.34.62q.12-.18.24 0z" fill="#0b4ea2"/><path d="M.31.65q.15-.22.3 0zM.38.66q.08-.17.16 0z" fill="#0b4ea2"/><path d="M.44.34h.04v.25h-.04zM.38.41h.16v.04H.38zM.40.49h.12v.04H.40z" fill="#fff"/>') },
+  "south-korea": { ratio: 1.5, svg: flag(1.5, '<rect width="1.5" height="1" fill="#fff"/><path d="M.75.27a.23.23 0 0 1 0 .46.115.115 0 0 1 0-.23.115.115 0 0 0 0-.23z" fill="#cd2e3a"/><path d="M.75.73a.23.23 0 0 1 0-.46.115.115 0 0 1 0 .23.115.115 0 0 0 0 .23z" fill="#0047a0"/><g fill="#000"><g transform="translate(.23 .18) rotate(34)"><rect y="0" width=".24" height=".025"/><rect y=".045" width=".24" height=".025"/><rect y=".09" width=".24" height=".025"/></g><g transform="translate(1.07 .18) rotate(-34)"><rect width=".10" height=".025"/><rect x=".14" width=".10" height=".025"/><rect y=".045" width=".24" height=".025"/><rect y=".09" width=".10" height=".025"/><rect x=".14" y=".09" width=".10" height=".025"/></g><g transform="translate(.18 .72) rotate(-34)"><rect width=".24" height=".025"/><rect y=".045" width=".10" height=".025"/><rect x=".14" y=".045" width=".10" height=".025"/><rect y=".09" width=".24" height=".025"/></g><g transform="translate(1.12 .72) rotate(34)"><rect width=".10" height=".025"/><rect x=".14" width=".10" height=".025"/><rect y=".045" width=".10" height=".025"/><rect x=".14" y=".045" width=".10" height=".025"/><rect y=".09" width=".10" height=".025"/><rect x=".14" y=".09" width=".10" height=".025"/></g></g>') },
+  spain: { ratio: 1.5, svg: flag(1.5, '<rect width="1.5" height=".25" fill="#aa151b"/><rect y=".25" width="1.5" height=".5" fill="#f1bf00"/><rect y=".75" width="1.5" height=".25" fill="#aa151b"/><g transform="translate(.28 .31)"><path d="M.05.08h.18v.25q-.09.08-.18 0z" fill="#aa151b" stroke="#fff" stroke-width=".018"/><path d="M.05.08h.09v.12H.05z" fill="#f1bf00"/><path d="M.14.20h.09v.13H.14z" fill="#0050a4"/><path d="M.04.05l.04-.04.05.03.04-.04.05.04.04-.03.04.04-.03.035H.07z" fill="#f1bf00" stroke="#aa151b" stroke-width=".012"/><rect x="0" y=".09" width=".025" height=".25" fill="#fff" stroke="#aa151b" stroke-width=".01"/><rect x=".255" y=".09" width=".025" height=".25" fill="#fff" stroke="#aa151b" stroke-width=".01"/></g>') },
+  sweden: { ratio: 8 / 5, svg: flag(8 / 5, '<rect width="100%" height="100%" fill="#006aa7"/><path d="M.31 0h.14v1H.31zM0 .4h1.636v.2H0z" fill="#fecc00"/>') },
+  switzerland: { ratio: 1, svg: flag(1, '<rect width="100%" height="100%" fill="#d52b1e"/><path d="M.38.18h.24v.2h.2v.24h-.2v.2H.38v-.2h-.2V.38h.2z" fill="#fff"/>') },
+  thailand: { ratio: 1.5, svg: flag(1.5, '<rect width="100%" height="16.67%" fill="#a51931"/><rect y="16.67%" width="100%" height="16.67%" fill="#fff"/><rect y="33.34%" width="100%" height="33.33%" fill="#2d2a4a"/><rect y="66.67%" width="100%" height="16.67%" fill="#fff"/><rect y="83.34%" width="100%" height="16.66%" fill="#a51931"/>') },
+  turkey: { ratio: 1.5, svg: flag(1.5, '<rect width="100%" height="100%" fill="#e30a17"/><path d="M.66.22a.28.28 0 1 0 0 .56.22.22 0 1 1 0-.56zM.92.38l.035.1.105.002-.084.064.03.1-.086-.06-.086.06.03-.1-.084-.064.105-.002z" fill="#fff"/>') },
+  "united-arab-emirates": { ratio: 2, svg: flag(2, '<rect width="25%" height="100%" fill="#ff0000"/><rect x="25%" width="75%" height="33.3%" fill="#00732f"/><rect x="25%" y="33.3%" width="75%" height="33.4%" fill="#fff"/><rect x="25%" y="66.7%" width="75%" height="33.3%" fill="#000"/>') },
+  "united-kingdom": { ratio: 2, svg: flag(2, '<rect width="100%" height="100%" fill="#012169"/><path d="M0 0l2 1M2 0L0 1" stroke="#fff" stroke-width=".2"/><path d="M0 0l2 1M2 0L0 1" stroke="#c8102e" stroke-width=".08"/><path d="M.8 0h.4v1H.8zM0 .4h2v.2H0z" fill="#fff"/><path d="M.9 0h.2v1H.9zM0 .45h2v.1H0z" fill="#c8102e"/>') },
+  "united-states": { ratio: 19 / 10, svg: flag(19 / 10, '<defs><path id="us-star" d="M0,-.025 .0059,-.0081 .0238,-.0077 .0095,.0031 .0147,.0202 0,.01 -.0147,.0202 -.0095,.0031 -.0238,-.0077 -.0059,-.0081z"/></defs><rect y="0.000000" width="1.9" height="0.076923" fill="#b22234"/><rect y="0.076923" width="1.9" height="0.076923" fill="#fff"/><rect y="0.153846" width="1.9" height="0.076923" fill="#b22234"/><rect y="0.230769" width="1.9" height="0.076923" fill="#fff"/><rect y="0.307692" width="1.9" height="0.076923" fill="#b22234"/><rect y="0.384615" width="1.9" height="0.076923" fill="#fff"/><rect y="0.461538" width="1.9" height="0.076923" fill="#b22234"/><rect y="0.538462" width="1.9" height="0.076923" fill="#fff"/><rect y="0.615385" width="1.9" height="0.076923" fill="#b22234"/><rect y="0.692308" width="1.9" height="0.076923" fill="#fff"/><rect y="0.769231" width="1.9" height="0.076923" fill="#b22234"/><rect y="0.846154" width="1.9" height="0.076923" fill="#fff"/><rect y="0.923077" width="1.9" height="0.076923" fill="#b22234"/><rect width=".76" height="0.538462" fill="#3c3b6e"/><g fill="#fff"><use href="#us-star" x="0.065" y="0.045"/><use href="#us-star" x="0.191" y="0.045"/><use href="#us-star" x="0.317" y="0.045"/><use href="#us-star" x="0.443" y="0.045"/><use href="#us-star" x="0.569" y="0.045"/><use href="#us-star" x="0.695" y="0.045"/><use href="#us-star" x="0.128" y="0.102"/><use href="#us-star" x="0.254" y="0.102"/><use href="#us-star" x="0.380" y="0.102"/><use href="#us-star" x="0.506" y="0.102"/><use href="#us-star" x="0.632" y="0.102"/><use href="#us-star" x="0.065" y="0.159"/><use href="#us-star" x="0.191" y="0.159"/><use href="#us-star" x="0.317" y="0.159"/><use href="#us-star" x="0.443" y="0.159"/><use href="#us-star" x="0.569" y="0.159"/><use href="#us-star" x="0.695" y="0.159"/><use href="#us-star" x="0.128" y="0.216"/><use href="#us-star" x="0.254" y="0.216"/><use href="#us-star" x="0.380" y="0.216"/><use href="#us-star" x="0.506" y="0.216"/><use href="#us-star" x="0.632" y="0.216"/><use href="#us-star" x="0.065" y="0.273"/><use href="#us-star" x="0.191" y="0.273"/><use href="#us-star" x="0.317" y="0.273"/><use href="#us-star" x="0.443" y="0.273"/><use href="#us-star" x="0.569" y="0.273"/><use href="#us-star" x="0.695" y="0.273"/><use href="#us-star" x="0.128" y="0.330"/><use href="#us-star" x="0.254" y="0.330"/><use href="#us-star" x="0.380" y="0.330"/><use href="#us-star" x="0.506" y="0.330"/><use href="#us-star" x="0.632" y="0.330"/><use href="#us-star" x="0.065" y="0.387"/><use href="#us-star" x="0.191" y="0.387"/><use href="#us-star" x="0.317" y="0.387"/><use href="#us-star" x="0.443" y="0.387"/><use href="#us-star" x="0.569" y="0.387"/><use href="#us-star" x="0.695" y="0.387"/><use href="#us-star" x="0.128" y="0.444"/><use href="#us-star" x="0.254" y="0.444"/><use href="#us-star" x="0.380" y="0.444"/><use href="#us-star" x="0.506" y="0.444"/><use href="#us-star" x="0.632" y="0.444"/><use href="#us-star" x="0.065" y="0.501"/><use href="#us-star" x="0.191" y="0.501"/><use href="#us-star" x="0.317" y="0.501"/><use href="#us-star" x="0.443" y="0.501"/><use href="#us-star" x="0.569" y="0.501"/><use href="#us-star" x="0.695" y="0.501"/></g>') },
 };
 
-export function CountrySelector({
-  selectedCountryId,
-  onSelectCountry,
-}: CountrySelectorProps) {
-  const { t, language } = useTranslation();
-  const selectedCountry =
-    countries.find((country) => country.countryId === selectedCountryId) || countries[0];
-  const selectedCountryName = getLocalizedCountryName(selectedCountry, language);
+function isDesktopWeb(platform: string, width: number) { return platform === "web" && width >= 1024; }
 
-  return (
-    <DropdownSelector
-      label={t("common.country")}
-      selectedLabel={`${selectedCountry.countryFlag} ${selectedCountryName}`}
-      options={countries.map((country) => ({
-        label: `${country.countryFlag} ${getLocalizedCountryName(country, language)}`,
-        value: country.countryId,
-      }))}
-      onSelect={onSelectCountry}
-    />
-  );
+function getIsoCode(flag: string | undefined) {
+  const indicators = Array.from(flag ?? "");
+  if (indicators.length !== 2) return "";
+  return indicators.map((indicator) => String.fromCharCode(indicator.codePointAt(0)! - 0x1f1e6 + 65)).join("");
 }
+
+export function SavingsCountryFlag({ countryId, size = 28 }: { countryId: string; size?: number }) {
+  const { width } = useWindowDimensions();
+  const [imageFailed, setImageFailed] = useState(false);
+  const country = countries.find((item) => item.countryId === countryId);
+  const artwork = desktopFlags[countryId];
+  const desktop = isDesktopWeb(Platform.OS, width);
+  const uri = artwork && `data:image/svg+xml;utf8,${artwork.svg}`;
+  useEffect(() => setImageFailed(false), [countryId, uri]);
+
+  if (!desktop) return <Text style={{ fontSize: size }}>{country?.countryFlag ?? "🌍"}</Text>;
+  if (!uri || imageFailed) return <Text style={[styles.isoFallback, { fontSize: Math.max(8, Math.round(size * 0.4))}]}>{getIsoCode(country?.countryFlag)}</Text>;
+  return <Image key={countryId} accessible={false} source={{ uri }} resizeMode="contain" style={{ width: size, height: size }} onError={() => setImageFailed(true)} />;
+}
+
+export function CountrySelector({ selectedCountryId, onSelectCountry }: CountrySelectorProps) {
+  const { t, language } = useTranslation();
+  const { width } = useWindowDimensions();
+  const desktop = isDesktopWeb(Platform.OS, width);
+  const selectedCountry = countries.find((country) => country.countryId === selectedCountryId) || countries[0];
+  const options: DropdownOption[] = countries.map((country) => ({ label: `${country.countryFlag} ${getLocalizedCountryName(country, language)}`, value: country.countryId }));
+
+  return <DropdownSelector label={t("common.country")} selectedLabel={`${selectedCountry.countryFlag} ${getLocalizedCountryName(selectedCountry, language)}`} options={options} onSelect={onSelectCountry} renderSelected={desktop ? () => <FlagLabel countryId={selectedCountry.countryId} label={getLocalizedCountryName(selectedCountry, language)} /> : undefined} renderOption={desktop ? (option) => <FlagLabel countryId={option.value} label={option.label.replace(/^\S+\s/, "")} /> : undefined} />;
+}
+
+function FlagLabel({ countryId, label }: { countryId: string; label: string }) { return <View style={styles.flagLabel}><SavingsCountryFlag countryId={countryId} size={24} /><Text style={styles.flagLabelText}>{label}</Text></View>; }
+
+const styles = StyleSheet.create({ flagLabel: { flex: 1, flexDirection: "row", alignItems: "center" }, flagLabelText: { color: "#0B1F3A", fontSize: 16, fontWeight: "900", marginLeft: 10 }, isoFallback: { color: "#0B1F3A", fontWeight: "900", textAlign: "center", width: 28 } });
