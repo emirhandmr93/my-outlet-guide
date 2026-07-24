@@ -132,7 +132,7 @@ export function MyTripsScreen() {
       contentContainerStyle={[styles.content, isDesktopWeb && styles.desktopContent, { paddingTop: isDesktopWeb ? 32 : getScreenTopInset(insets.top), paddingBottom: isDesktopWeb ? 32 : getFloatingTabClearance(insets.bottom) }]}
       scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
     >
-      <LocalHeroImageCard imageSource={heroAssets.trips} style={styles.heroCard} contentStyle={styles.heroInner}>
+      <LocalHeroImageCard imageSource={heroAssets.trips} responsiveWeb style={styles.heroCard} contentStyle={styles.heroInner}>
         <Text style={styles.kicker}>{t("trips.heroKicker")}</Text>
         <Text style={styles.title}>{t("trips.heroTitle")}</Text>
         <Text style={styles.subtitle}>

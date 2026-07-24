@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
@@ -29,6 +29,8 @@ export function SavingsScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const [currencyStatus, setCurrencyStatus] = useState("");
   const [currencyUpdatedAt, setCurrencyUpdatedAt] = useState("");
 
@@ -88,10 +90,10 @@ export function SavingsScreen() {
   return (
     <ScrollView
       style={styles.container}
-      contentContainerStyle={[styles.content, { paddingTop: getScreenTopInset(insets.top), paddingBottom: getFloatingTabClearance(insets.bottom) }]}
+      contentContainerStyle={[styles.content, isDesktopWeb && styles.desktopContent, { paddingTop: isDesktopWeb ? 32 : getScreenTopInset(insets.top), paddingBottom: isDesktopWeb ? 32 : getFloatingTabClearance(insets.bottom) }]}
       scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }}
     >
-      <LocalHeroImageCard imageSource={heroAssets.savings} style={styles.heroCard} contentStyle={styles.heroInner}>
+      <LocalHeroImageCard imageSource={heroAssets.savings} responsiveWeb style={styles.heroCard} contentStyle={styles.heroInner}>
         <Text style={styles.heroLabel}>{t("savings.heroLabel")}</Text>
         <Text style={styles.pageTitle}>{t("savings.heroTitle")}</Text>
         <Text style={styles.pageSubtitle}>
@@ -237,6 +239,7 @@ const styles = StyleSheet.create({
     paddingTop: 58,
     paddingBottom: 130,
   },
+  desktopContent: { width: "100%", maxWidth: 1180, alignSelf: "center", paddingHorizontal: 34 },
 
   heroCard: {
     marginBottom: 16,
