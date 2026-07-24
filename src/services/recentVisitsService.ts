@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Platform } from "react-native";
 
 export type RecentVisitType = "country" | "city" | "outlet" | "brand";
 
@@ -46,8 +45,6 @@ async function readRecentVisits(): Promise<RecentVisit[]> {
 }
 
 export async function loadRecentVisits(): Promise<RecentVisit[]> {
-  if (Platform.OS === "web") return [];
-
   await recentVisitsWriteQueue;
   return readRecentVisits();
 }
@@ -56,7 +53,7 @@ export async function recordRecentVisit(
   type: RecentVisitType,
   id: string,
 ): Promise<void> {
-  if (Platform.OS === "web" || !id) return;
+  if (!id) return;
 
   const queuedWrite = recentVisitsWriteQueue.then(async () => {
     try {

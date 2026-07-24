@@ -144,7 +144,7 @@ export function BrandResultsScreen() {
   const visitedBrand = brands.find((item) => item.brandId === route.params?.brandId);
 
   useEffect(() => {
-    if (Platform.OS !== "web" && visitedBrand) void recordRecentVisit("brand", visitedBrand.brandId);
+    if (visitedBrand) void recordRecentVisit("brand", visitedBrand.brandId);
   }, [visitedBrand?.brandId]);
 
   const matchingOutletIds = outletBrands

@@ -1,6 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, type ReactNode } from "react";
-import { Platform } from "react-native";
 import {
   Image,
   ScrollView,
@@ -147,7 +146,7 @@ export function CityResultsScreen() {
   const visitedCity = cities.find((item) => item.cityId === route.params?.cityId);
 
   useEffect(() => {
-    if (Platform.OS !== "web" && visitedCity) void recordRecentVisit("city", visitedCity.cityId);
+    if (visitedCity) void recordRecentVisit("city", visitedCity.cityId);
   }, [visitedCity?.cityId]);
 
   return (
