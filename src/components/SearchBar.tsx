@@ -4,6 +4,7 @@ import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 
 type SearchBarProps = {
   value: string;
@@ -14,15 +15,16 @@ type SearchBarProps = {
 
 export function SearchBar({ value, placeholder, onChangeText, onSubmitEditing }: SearchBarProps) {
   const hasValue = value.trim().length > 0;
+  const { isNativeRTL } = useLayoutDirection();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.searchIconWrap}>
+    <View style={[styles.container, isNativeRTL && styles.containerRTL]}>
+      <View style={[styles.searchIconWrap, isNativeRTL && styles.searchIconWrapRTL]}>
         <Text style={styles.searchIcon}>⌕</Text>
       </View>
 
       <TextInput
-        style={styles.input}
+        style={[styles.input, isNativeRTL && styles.inputRTL]}
         value={value}
         placeholder={placeholder}
         placeholderTextColor={colors.textMuted}
@@ -35,7 +37,7 @@ export function SearchBar({ value, placeholder, onChangeText, onSubmitEditing }:
 
       {hasValue ? (
         <TouchableOpacity
-          style={styles.clearButton}
+          style={[styles.clearButton, isNativeRTL && styles.clearButtonRTL]}
           activeOpacity={0.82}
           onPress={() => onChangeText("")}
         >
@@ -61,6 +63,10 @@ const styles = StyleSheet.create({
     marginBottom: spacing.lg,
     ...shadows.soft,
   },
+  containerRTL: {
+    paddingLeft: spacing.md,
+    paddingRight: spacing.sm,
+  },
 
   searchIconWrap: {
     width: 44,
@@ -70,6 +76,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginRight: spacing.sm,
+  },
+  searchIconWrapRTL: {
+    marginRight: 0,
+    marginLeft: spacing.sm,
   },
 
   searchIcon: {
@@ -86,6 +96,10 @@ const styles = StyleSheet.create({
     fontWeight: typography.weightBold,
     paddingVertical: 0,
   },
+  inputRTL: {
+    textAlign: "right",
+    writingDirection: "rtl",
+  },
 
   clearButton: {
     width: 34,
@@ -95,6 +109,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginLeft: spacing.sm,
+  },
+  clearButtonRTL: {
+    marginLeft: 0,
+    marginRight: spacing.sm,
   },
 
   clearText: {

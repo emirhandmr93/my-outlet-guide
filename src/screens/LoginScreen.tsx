@@ -123,7 +123,7 @@ export function LoginScreen() {
           <View style={styles.emailCard}>
             <Text style={styles.label}>{t("auth.emailLabel")}</Text>
             <TextInput
-              style={styles.input}
+              style={[styles.input, styles.technicalInputLTR]}
               placeholder={t("auth.emailPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={email}
@@ -134,7 +134,7 @@ export function LoginScreen() {
 
             <Text style={styles.label}>{t("auth.passwordLabel")}</Text>
             <TextInput
-              style={styles.input}
+              style={[styles.input, styles.technicalInputLTR]}
               placeholder={t("auth.passwordPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={password}
@@ -283,4 +283,5 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginTop: 4,
   },
+  technicalInputLTR: { direction: "ltr", writingDirection: "ltr", textAlign: "left" },
 });

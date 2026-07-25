@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7F8FA",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 12,
+    marginEnd: 12,
   },
 
   icon: {
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
     borderColor: "#E5E7EB",
-    marginLeft: 10,
+    marginStart: 10,
   },
 
   toggleActive: {

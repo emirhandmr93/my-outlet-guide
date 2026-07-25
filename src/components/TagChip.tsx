@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     paddingVertical: spacing.sm,
     borderWidth: 1,
     borderColor: colors.border,
-    marginRight: spacing.sm,
+    marginEnd: spacing.sm,
     marginBottom: spacing.sm,
     maxWidth: "100%",
   },
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: typography.caption,
-    marginRight: spacing.xs,
+    marginEnd: spacing.xs,
   },
   text: {
     color: colors.textPrimary,

@@ -7,6 +7,7 @@ import { radius } from "../../theme/radius";
 import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useLayoutDirection } from "../../hooks/useLayoutDirection";
 import { formatBrandCategoryLabel } from "../../utils/brandCategoryLabelFormatter";
 
 type BrandsCardProps = {
@@ -56,6 +57,7 @@ export function BrandsCard({
   brandCategoryGroups,
 }: BrandsCardProps) {
   const { t } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const totalBrandCount = brandCategoryGroups.reduce(
     (total, category) => total + category.brands.length,
     0
@@ -69,7 +71,7 @@ export function BrandsCard({
       </View>
 
       <TextInput
-        style={styles.searchInput}
+        style={[styles.searchInput, isNativeRTL && styles.searchInputRTL]}
         placeholder={t("sharedCards.brands.searchPlaceholder")}
         placeholderTextColor={colors.textMuted}
         value={brandSearch}
@@ -173,7 +175,7 @@ const styles = StyleSheet.create({
 
   categoryIcon: {
     fontSize: 26,
-    marginRight: spacing.md,
+    marginEnd: spacing.md,
   },
 
   categoryTextBlock: {
@@ -197,7 +199,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: typography.caption,
     fontWeight: typography.weightBlack,
-    marginLeft: spacing.sm,
+    marginStart: spacing.sm,
   },
 
   brandGrid: {
@@ -214,7 +216,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
-    marginRight: spacing.sm,
+    marginEnd: spacing.sm,
     marginBottom: spacing.sm,
   },
 
@@ -223,4 +225,5 @@ const styles = StyleSheet.create({
     fontSize: typography.caption,
     fontWeight: typography.weightExtraBold,
   },
+  searchInputRTL: { textAlign: "right", writingDirection: "rtl" },
 });

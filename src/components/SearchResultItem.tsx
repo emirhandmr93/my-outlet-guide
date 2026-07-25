@@ -5,6 +5,7 @@ import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 
 type SearchResultItemProps = {
   item: SearchResult;
@@ -33,6 +34,7 @@ function getSubtitle(item: SearchResult, t: (key: string) => string) {
 
 export function SearchResultItem({ item, onPress }: SearchResultItemProps) {
   const { t } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
 
   return (
     <TouchableOpacity
@@ -42,7 +44,7 @@ export function SearchResultItem({ item, onPress }: SearchResultItemProps) {
       accessibilityRole="button"
       accessibilityLabel={`${item.title}, ${item.subtitle}`}
     >
-      <View style={styles.iconBox}>
+      <View style={[styles.iconBox, isNativeRTL && styles.iconBoxRTL]}>
         <Text style={styles.icon}>{icons[item.type]}</Text>
       </View>
 
@@ -52,7 +54,7 @@ export function SearchResultItem({ item, onPress }: SearchResultItemProps) {
         <Text style={styles.subtitle}>{getSubtitle(item, t)}</Text>
       </View>
 
-      <Text style={styles.arrow}>›</Text>
+      <Text style={[styles.arrow, isNativeRTL && styles.arrowRTL]}>{isNativeRTL ? "‹" : "›"}</Text>
     </TouchableOpacity>
   );
 }
@@ -79,6 +81,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginRight: spacing.md,
     marginTop: 2,
+  },
+  iconBoxRTL: {
+    marginRight: 0,
+    marginLeft: spacing.md,
   },
 
   icon: {
@@ -123,5 +129,9 @@ const styles = StyleSheet.create({
     fontWeight: typography.weightBold,
     marginLeft: spacing.sm,
     marginTop: 10,
+  },
+  arrowRTL: {
+    marginLeft: 0,
+    marginRight: spacing.sm,
   },
 });

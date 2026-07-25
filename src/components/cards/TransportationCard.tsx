@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     marginBottom: spacing.sm,
   },
-  icon: { width: 36, fontSize: 22, marginRight: spacing.sm },
+  icon: { width: 36, fontSize: 22, marginEnd: spacing.sm },
   summaryText: { flex: 1, minWidth: 0 },
   title: {
     color: colors.textPrimary,

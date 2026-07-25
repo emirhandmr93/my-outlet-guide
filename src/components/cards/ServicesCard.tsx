@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     color: colors.gold,
     fontSize: typography.body,
     fontWeight: typography.weightBlack,
-    marginRight: spacing.xs,
+    marginEnd: spacing.xs,
   },
 
   text: {

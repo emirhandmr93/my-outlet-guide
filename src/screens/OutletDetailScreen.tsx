@@ -40,6 +40,7 @@ import { useFavorites } from "../contexts/FavoritesContext";
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import {
   getImageSource,
   getOutletMediaImages,
@@ -101,6 +102,7 @@ const countryNames: Record<string, string> = {
 };
 
 export function OutletDetailScreen() {
+  const { isNativeRTL } = useLayoutDirection();
   const route = useRoute<RouteProp<RouteParams, "OutletDetail">>();
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
@@ -412,6 +414,7 @@ export function OutletDetailScreen() {
         />
 
         <Modal visible={isGalleryOpen} animationType="fade">
+          <NativeDirectionRoot>
           <View style={styles.galleryModal}>
             <TouchableOpacity
               style={styles.galleryCloseButton}
@@ -425,7 +428,7 @@ export function OutletDetailScreen() {
             <View style={styles.galleryModalImageWrapper}>
               <TouchableOpacity
                 style={styles.galleryArrowLeft}
-                onPress={showPreviousImage}
+                onPress={isNativeRTL ? showNextImage : showPreviousImage}
               >
                 <Text style={styles.galleryArrowText}>‹</Text>
               </TouchableOpacity>
@@ -453,12 +456,13 @@ export function OutletDetailScreen() {
 
               <TouchableOpacity
                 style={styles.galleryArrowRight}
-                onPress={showNextImage}
+                onPress={isNativeRTL ? showPreviousImage : showNextImage}
               >
                 <Text style={styles.galleryArrowText}>›</Text>
               </TouchableOpacity>
             </View>
           </View>
+          </NativeDirectionRoot>
         </Modal>
 
         <View style={styles.badgeRow}>

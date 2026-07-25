@@ -11,6 +11,7 @@ import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { getLiveExchangeRates } from "../services/liveCurrencyService";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
@@ -28,6 +29,7 @@ type SavingsTool = {
 export function SavingsScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
@@ -212,7 +214,7 @@ export function SavingsScreen() {
 
           <View style={styles.actionRow}>
             <Text style={styles.cardAction}>{t("savings.openTool")}</Text>
-            <Text style={styles.arrow}>→</Text>
+            <Text style={styles.arrow}>{isNativeRTL ? "←" : "→"}</Text>
           </View>
         </TouchableOpacity>
       ))}
@@ -352,7 +354,7 @@ const styles = StyleSheet.create({
   },
 
   settingsFlag: {
-    marginRight: 10,
+    marginEnd: 10,
   },
 
   settingsLabel: {

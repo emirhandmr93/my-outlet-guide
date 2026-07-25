@@ -74,7 +74,7 @@ export function CurrencySettingsScreen() {
 
         <Text style={styles.inputLabel}>{t("currency.amount")}</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.technicalInputLTR]}
           keyboardType="decimal-pad"
           placeholder="100"
           placeholderTextColor="#8A8A8A"
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
   disclaimer: { color: "#667085", marginTop: 10, lineHeight: 19 },
   card: { backgroundColor: "#FFFFFF", borderRadius: 22, padding: 16, borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 12, flexDirection: "row", alignItems: "center" },
   selectedCard: { borderColor: "#C9A227", backgroundColor: "#FFF8E1" },
-  symbolBox: { width: 48, height: 48, borderRadius: 24, backgroundColor: "#F7F8FA", alignItems: "center", justifyContent: "center", marginRight: 14 },
+  symbolBox: { width: 48, height: 48, borderRadius: 24, backgroundColor: "#F7F8FA", alignItems: "center", justifyContent: "center", marginEnd: 14 },
   symbol: { color: "#0B1F3A", fontSize: 20, fontWeight: "900" },
   cardContent: { flex: 1 },
   currencyName: { fontSize: 17, fontWeight: "900", color: "#0B1F3A" },
@@ -192,4 +192,5 @@ const styles = StyleSheet.create({
   checkCircle: { width: 30, height: 30, borderRadius: 15, borderWidth: 1, borderColor: "#E5E7EB", alignItems: "center", justifyContent: "center" },
   checkCircleActive: { backgroundColor: "#C9A227", borderColor: "#C9A227" },
   checkmark: { color: "#0B1F3A", fontSize: 18, fontWeight: "900" },
+  technicalInputLTR: { direction: "ltr", writingDirection: "ltr", textAlign: "left" },
 });

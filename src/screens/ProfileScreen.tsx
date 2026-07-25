@@ -19,6 +19,7 @@ import { heroAssets } from "../media/heroAssets";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { resolveVisibleFavoriteOutlets } from "../utils/favoriteOutlets";
 import { canUseModeration, getAdminAccess } from "../utils/adminAccess";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -63,6 +64,7 @@ function getInitials(value: string) {
 export function ProfileScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const { currentUser, isAuthenticated, logout } = useAuth();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
@@ -194,7 +196,7 @@ export function ProfileScreen() {
             </Text>
 
             <TextInput
-              style={styles.displayNameInput}
+              style={[styles.displayNameInput, isNativeRTL && styles.displayNameInputRTL]}
               value={displayName}
               onChangeText={setDisplayName}
               placeholder={t("profile.displayNamePlaceholder")}
@@ -362,6 +364,7 @@ function ProfileRow({
   danger?: boolean;
   onPress: () => void;
 }) {
+  const { isNativeRTL } = useLayoutDirection();
   return (
     <TouchableOpacity style={styles.row} activeOpacity={0.86} onPress={onPress}>
       <View style={styles.rowIconBox}>
@@ -375,7 +378,7 @@ function ProfileRow({
         <Text style={styles.rowSubtitle}>{subtitle}</Text>
       </View>
 
-      <Text style={styles.arrow}>›</Text>
+      <Text style={styles.arrow}>{isNativeRTL ? "‹" : "›"}</Text>
     </TouchableOpacity>
   );
 }
@@ -408,7 +411,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#C9A227",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 16,
+    marginEnd: 16,
   },
 
   avatarText: {
@@ -513,6 +516,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
 
+  displayNameInputRTL: { textAlign: "right", writingDirection: "rtl" },
+
   primaryButton: {
     backgroundColor: "#0B1F3A",
     borderRadius: 16,
@@ -567,7 +572,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7F8FA",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 12,
+    marginEnd: 12,
   },
 
   rowIcon: {
@@ -598,7 +603,7 @@ const styles = StyleSheet.create({
   arrow: {
     fontSize: 26,
     color: "#C9A227",
-    marginLeft: 10,
+    marginStart: 10,
   },
 
   versionText: {

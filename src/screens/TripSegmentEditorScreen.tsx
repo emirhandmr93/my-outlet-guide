@@ -17,6 +17,7 @@ import { AppOnlyFeatureNotice } from "../components/AppOnlyFeatureNotice";
 import { cities } from "../constants/cities";
 import { TripSegment, useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import type { RootStackParamList } from "../navigation/types";
 import { searchOutlets } from "../services/searchService";
 import {
@@ -130,6 +131,7 @@ export function TripSegmentEditorScreen() {
   const navigation = useNavigation<any>();
   const { trips, updateTrip } = useTrips();
   const { t, language } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const insets = useSafeAreaInsets();
   const trip = trips.find(
     (item) =>
@@ -354,7 +356,7 @@ export function TripSegmentEditorScreen() {
         {(!routeSelected || isEditingRoute) && (
           <>
             <TextInput
-              style={styles.input}
+              style={[styles.input, isNativeRTL && styles.proseInputRTL]}
               placeholder={t("tripSegment.unifiedSearchPlaceholder")}
               value={routeQuery}
               onChangeText={setRouteQuery}
@@ -430,7 +432,7 @@ export function TripSegmentEditorScreen() {
               </TouchableOpacity>
             </View>
             <TextInput
-              style={[styles.input, styles.notesInput]}
+              style={[styles.input, styles.notesInput, isNativeRTL && styles.proseInputRTL]}
               placeholder={t("tripSegment.notes")}
               value={notes}
               onChangeText={setNotes}
@@ -592,4 +594,5 @@ const styles = StyleSheet.create({
   disabledButton: { opacity: 0.65 },
   emptyTitle: { color: "#0B1F3A", fontSize: 21, fontWeight: "900" },
   emptyHelper: { color: "#666", fontWeight: "700", marginBottom: 12 },
+  proseInputRTL: { textAlign: "right", writingDirection: "rtl" },
 });

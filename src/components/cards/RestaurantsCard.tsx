@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.warningSoft,
     alignItems: "center",
     justifyContent: "center",
-    marginRight: spacing.md,
+    marginEnd: spacing.md,
   },
 
   icon: {
