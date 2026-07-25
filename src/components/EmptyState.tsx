@@ -4,6 +4,7 @@ import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { PremiumIconButton } from "./PremiumIconButton";
 
 type EmptyStateProps = {
@@ -15,6 +16,7 @@ type EmptyStateProps = {
 };
 
 export function EmptyState({ icon = "✨", title, message, actionText, onPressAction }: EmptyStateProps) {
+  const { isNativeRTL } = useLayoutDirection();
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
@@ -25,7 +27,7 @@ export function EmptyState({ icon = "✨", title, message, actionText, onPressAc
       {message ? <Text style={styles.message}>{message}</Text> : null}
 
       {actionText && onPressAction ? (
-        <PremiumIconButton label={actionText} icon="→" onPress={onPressAction} variant="primary" />
+        <PremiumIconButton label={actionText} icon={isNativeRTL ? "←" : "→"} onPress={onPressAction} variant="primary" />
       ) : null}
     </View>
   );

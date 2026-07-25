@@ -19,6 +19,7 @@ import { heroAssets } from "../media/heroAssets";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { resolveVisibleFavoriteOutlets } from "../utils/favoriteOutlets";
 import { canUseModeration, getAdminAccess } from "../utils/adminAccess";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -63,6 +64,7 @@ function getInitials(value: string) {
 export function ProfileScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const { currentUser, isAuthenticated, logout } = useAuth();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
@@ -362,6 +364,7 @@ function ProfileRow({
   danger?: boolean;
   onPress: () => void;
 }) {
+  const { isNativeRTL } = useLayoutDirection();
   return (
     <TouchableOpacity style={styles.row} activeOpacity={0.86} onPress={onPress}>
       <View style={styles.rowIconBox}>
@@ -375,7 +378,7 @@ function ProfileRow({
         <Text style={styles.rowSubtitle}>{subtitle}</Text>
       </View>
 
-      <Text style={styles.arrow}>›</Text>
+      <Text style={styles.arrow}>{isNativeRTL ? "‹" : "›"}</Text>
     </TouchableOpacity>
   );
 }

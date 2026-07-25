@@ -11,6 +11,7 @@ import { resolveVisibleFavoriteOutlets } from "../utils/favoriteOutlets";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import {
   formatCityDisplayName,
   formatCountryDisplayName,
@@ -20,6 +21,7 @@ export function FavoritesScreen() {
   const { favoriteIds, favoritesError } = useFavorites();
   const { isLoggedIn } = useUser();
   const { t, language } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const navigation = useNavigation<any>();
 
   const favoriteOutlets = resolveVisibleFavoriteOutlets(favoriteIds);
@@ -85,7 +87,7 @@ export function FavoritesScreen() {
                 </Text>
               </View>
 
-              <Text style={styles.cardArrow}>›</Text>
+              <Text style={styles.cardArrow}>{isNativeRTL ? "‹" : "›"}</Text>
             </View>
           </TouchableOpacity>
         ))

@@ -25,6 +25,7 @@ import { CountryFlag } from "../components/CountryFlag";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import {
@@ -61,6 +62,7 @@ function OutletCard({
   imageStyle?: object;
 }) {
   const { t } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const heroImage = getOutletCardHeroImage(outlet, {
     mode: getConfiguredOutletMediaMode(),
   });
@@ -122,6 +124,7 @@ function EmptyCard({ title, text }: { title: string; text: string }) {
 export function BrandResultsScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp<RouteParams, "BrandResults">>();
@@ -243,7 +246,7 @@ export function BrandResultsScreen() {
                     </Text>
                   </View>
 
-                  <Text style={styles.arrow}>→</Text>
+                  <Text style={styles.arrow}>{isNativeRTL ? "←" : "→"}</Text>
                 </TouchableOpacity>
               ))}
             </View>

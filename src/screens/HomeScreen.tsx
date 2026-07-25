@@ -40,6 +40,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
@@ -293,6 +294,7 @@ export function HomeScreen() {
   const { width } = useWindowDimensions();
   const tabBarHeight = useBottomTabBarHeight();
   const { t, language } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const insets = useSafeAreaInsets();
   const { currentUser, isAuthenticated } = useAuth();
   const { trips } = useTrips();
@@ -614,7 +616,7 @@ export function HomeScreen() {
                       <Text style={styles.slideActionText}>
                         {t(slide.ctaKey)}
                       </Text>
-                      <Text style={styles.slideActionArrow}>→</Text>
+                      <Text style={styles.slideActionArrow}>{isNativeRTL ? "←" : "→"}</Text>
                     </View>
                   </View>
                 </ImageBackground>
@@ -867,7 +869,7 @@ export function HomeScreen() {
               >
                 <Text style={styles.quickMenuIcon}>{item.icon}</Text>
                 <Text style={styles.quickMenuText}>{t(item.titleKey)}</Text>
-                <Text style={styles.quickMenuArrow}>→</Text>
+                <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
               </TouchableOpacity>
             ))}
 
@@ -880,7 +882,7 @@ export function HomeScreen() {
               <Text style={styles.quickMenuText}>
                 {t(Platform.OS === "web" ? "home.quick.downloadApp" : "home.quick.rateApp")}
               </Text>
-              <Text style={styles.quickMenuArrow}>→</Text>
+              <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -892,7 +894,7 @@ export function HomeScreen() {
               <Text style={styles.quickMenuText}>
                 {t("home.quick.shareApp")}
               </Text>
-              <Text style={styles.quickMenuArrow}>→</Text>
+              <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>

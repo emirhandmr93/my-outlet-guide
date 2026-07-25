@@ -36,6 +36,7 @@ import { outlets } from "../constants/outlets";
 import { brands } from "../constants/brands";
 import { CountryFlag } from "../components/CountryFlag";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import type { MainTabParamList, RootStackParamList } from "../navigation/types";
 import {
   formatCityDisplayName,
@@ -176,6 +177,7 @@ function formatResultSubtitle(
 
 export function ExploreScreen() {
   const { t, language } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
@@ -442,7 +444,7 @@ export function ExploreScreen() {
                     {formatResultSubtitle(item, t, language)}
                   </Text>
                 </View>
-                <Text style={styles.resultArrow}>›</Text>
+                <Text style={styles.resultArrow}>{isNativeRTL ? "‹" : "›"}</Text>
               </TouchableOpacity>
             ))}
             </View>
@@ -497,7 +499,7 @@ export function ExploreScreen() {
                       {formatOutletCount(outletCount(c.countryId), t)}
                     </Text>
                   </View>
-                  <Text style={styles.countryArrow}>›</Text>
+                  <Text style={styles.countryArrow}>{isNativeRTL ? "‹" : "›"}</Text>
                 </TouchableOpacity>
               ))}
             </View>
@@ -598,7 +600,7 @@ export function ExploreScreen() {
                     )}
                   </Text>
                 </View>
-                <Text style={styles.resultArrow}>›</Text>
+                <Text style={styles.resultArrow}>{isNativeRTL ? "‹" : "›"}</Text>
               </TouchableOpacity>
             ))}
             </View>
@@ -764,6 +766,7 @@ function DefaultHub({
   );
 }
 function CityRow({ city, t, navigation, language, compact, isDesktopWeb, width }: any) {
+  const { isNativeRTL } = useLayoutDirection();
   const img = getPopularCityImage(city);
   return (
     <TouchableOpacity
@@ -788,7 +791,7 @@ function CityRow({ city, t, navigation, language, compact, isDesktopWeb, width }
           <Text style={styles.resultSubtitle}>{formatCountryDisplayName(city.countryId, language)} · {formatOutletCount(outletCount(undefined, city.cityId), t)}</Text>
         </View>
       </View>
-      <Text style={styles.resultArrow}>›</Text>
+      <Text style={styles.resultArrow}>{isNativeRTL ? "‹" : "›"}</Text>
     </TouchableOpacity>
   );
 }

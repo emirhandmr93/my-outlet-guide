@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useTranslation } from "../hooks/useTranslation";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
@@ -32,6 +33,7 @@ export function DashboardUpdateCard({
   onPress,
 }: DashboardUpdateCardProps) {
   const { t } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const dealLevel = metadata?.dealLevel
     ? t(dealLabelKeys[metadata.dealLevel] || metadata.dealLevel)
     : undefined;
@@ -63,7 +65,7 @@ export function DashboardUpdateCard({
 
       <View style={styles.actionRow}>
         <Text style={styles.action}>{actionText}</Text>
-        <Text style={styles.arrow}>→</Text>
+        <Text style={styles.arrow}>{isNativeRTL ? "←" : "→"}</Text>
       </View>
     </TouchableOpacity>
   );
