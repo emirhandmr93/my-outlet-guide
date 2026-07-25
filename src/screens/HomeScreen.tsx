@@ -316,8 +316,10 @@ function getClosestSnapIndex(offset: number, snapOffsets: number[]) {
   return snapOffsets.reduce((closest, candidate, index) => Math.abs(candidate - offset) < Math.abs(snapOffsets[closest] - offset) ? index : closest, 0);
 }
 
-function getNativeSnapOffsets(logicalOffsets: number[], maxOffset: number, isRTL: boolean) {
-  return isRTL ? logicalOffsets.map((offset) => maxOffset - offset).sort((a, b) => a - b) : logicalOffsets;
+function getNativeSnapOffsets(logicalOffsets: number[], maxOffset: number, platform: typeof Platform.OS, isRTL: boolean) {
+  return platform === "ios" && isRTL
+    ? logicalOffsets.map((offset) => maxOffset - offset).sort((a, b) => a - b)
+    : logicalOffsets;
 }
 
 export function HomeScreen() {
@@ -399,9 +401,11 @@ export function HomeScreen() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (activeSlideIndex + 1) % featuredSnapOffsets.length;
+      const nextIndex = (activeSlideIndex + 1) % (Platform.OS === "web" ? slides.length : featuredSnapOffsets.length);
       carouselRef.current?.scrollTo({
-        x: logicalToScrollOffset(featuredSnapOffsets[nextIndex] ?? 0, featuredMaxOffset, transformAndroidRTL),
+        x: Platform.OS === "web"
+          ? nextIndex * carouselWidth
+          : logicalToScrollOffset(featuredSnapOffsets[nextIndex] ?? 0, featuredMaxOffset, transformAndroidRTL),
         animated: true,
       });
       setActiveSlideIndex(nextIndex);
@@ -416,7 +420,9 @@ export function HomeScreen() {
         ? 0
         : activeRecommendedIndex + 1;
       recommendedCarouselRef.current?.scrollTo({
-        x: logicalToScrollOffset(recommendedSnapOffsets[nextIndex] ?? 0, recommendedMaxOffset, transformAndroidRTL),
+        x: Platform.OS === "web"
+          ? nextIndex * (outletCardWidth + spacing.md)
+          : logicalToScrollOffset(recommendedSnapOffsets[nextIndex] ?? 0, recommendedMaxOffset, transformAndroidRTL),
         animated: true,
       });
       setActiveRecommendedIndex(nextIndex);
@@ -435,10 +441,15 @@ export function HomeScreen() {
   function handleCarouselScroll(
     event: NativeSyntheticEvent<NativeScrollEvent>,
   ) {
-    const nextIndex = getClosestSnapIndex(
-      scrollToLogicalOffset(event.nativeEvent.contentOffset.x, featuredMaxOffset, transformAndroidRTL),
-      featuredSnapOffsets,
-    );
+    const logicalOffset = scrollToLogicalOffset(event.nativeEvent.contentOffset.x, featuredMaxOffset, transformAndroidRTL);
+    const nextIndex = Platform.OS === "web"
+      ? Math.round(logicalOffset / carouselWidth)
+      : getClosestSnapIndex(logicalOffset, featuredSnapOffsets);
+
+    const targetOffset = featuredSnapOffsets[nextIndex] ?? 0;
+    if (Platform.OS !== "web" && Math.abs(logicalOffset - targetOffset) > 1) {
+      carouselRef.current?.scrollTo({ x: logicalToScrollOffset(targetOffset, featuredMaxOffset, transformAndroidRTL), animated: false });
+    }
 
     if (nextIndex !== activeSlideIndex) {
       setActiveSlideIndex(nextIndex);
@@ -446,23 +457,29 @@ export function HomeScreen() {
   }
 
   function handleRecommendedScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
-    const nextIndex = getClosestSnapIndex(
-      scrollToLogicalOffset(event.nativeEvent.contentOffset.x, recommendedMaxOffset, transformAndroidRTL),
-      recommendedSnapOffsets,
-    );
+    const logicalOffset = scrollToLogicalOffset(event.nativeEvent.contentOffset.x, recommendedMaxOffset, transformAndroidRTL);
+    const nextIndex = Platform.OS === "web"
+      ? Math.round(logicalOffset / (outletCardWidth + spacing.md))
+      : getClosestSnapIndex(logicalOffset, recommendedSnapOffsets);
     const reachableIndex = Math.min(Math.max(nextIndex, 0), recommendedLastIndex);
+    const targetOffset = recommendedSnapOffsets[reachableIndex] ?? 0;
+    if (Platform.OS !== "web" && Math.abs(logicalOffset - targetOffset) > 1) {
+      recommendedCarouselRef.current?.scrollTo({ x: logicalToScrollOffset(targetOffset, recommendedMaxOffset, transformAndroidRTL), animated: false });
+    }
     if (reachableIndex !== activeRecommendedIndex) setActiveRecommendedIndex(reachableIndex);
   }
 
   function handleCityScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
-    const nextIndex = getClosestSnapIndex(
-      scrollToLogicalOffset(event.nativeEvent.contentOffset.x, cityMaxOffset, transformAndroidRTL),
-      citySnapOffsets,
-    );
+    const logicalOffset = scrollToLogicalOffset(event.nativeEvent.contentOffset.x, cityMaxOffset, transformAndroidRTL);
+    const nextIndex = getClosestSnapIndex(logicalOffset, citySnapOffsets);
     const reachableIndex = Math.min(
       Math.max(nextIndex, 0),
       popularCities.length - 1,
     );
+    const targetOffset = citySnapOffsets[reachableIndex] ?? 0;
+    if (Math.abs(logicalOffset - targetOffset) > 1) {
+      cityCarouselRef.current?.scrollTo({ x: logicalToScrollOffset(targetOffset, cityMaxOffset, transformAndroidRTL), animated: false });
+    }
 
     if (reachableIndex !== activeCityIndex) {
       setActiveCityIndex(reachableIndex);
@@ -608,7 +625,7 @@ export function HomeScreen() {
             showsHorizontalScrollIndicator={false}
             decelerationRate="fast"
             snapToInterval={Platform.OS === "web" ? carouselWidth : undefined}
-            snapToOffsets={Platform.OS === "web" ? undefined : getNativeSnapOffsets(featuredSnapOffsets, featuredMaxOffset, isNativeRTL)}
+            snapToOffsets={Platform.OS === "web" ? undefined : getNativeSnapOffsets(featuredSnapOffsets, featuredMaxOffset, Platform.OS, isNativeRTL)}
             snapToAlignment="start"
             onMomentumScrollEnd={handleCarouselScroll}
             onLayout={(event) => setFeaturedMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
@@ -702,7 +719,7 @@ export function HomeScreen() {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.recommendedList}
           snapToInterval={Platform.OS === "web" ? outletCardWidth + spacing.md : undefined}
-          snapToOffsets={Platform.OS === "web" ? undefined : getNativeSnapOffsets(recommendedSnapOffsets, recommendedMaxOffset, isNativeRTL)}
+          snapToOffsets={Platform.OS === "web" ? undefined : getNativeSnapOffsets(recommendedSnapOffsets, recommendedMaxOffset, Platform.OS, isNativeRTL)}
           snapToAlignment="start"
           decelerationRate="fast"
           onMomentumScrollEnd={handleRecommendedScroll}
@@ -843,7 +860,7 @@ export function HomeScreen() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.cityList}
             snapToInterval={undefined}
-            snapToOffsets={Platform.OS === "web" ? undefined : getNativeSnapOffsets(citySnapOffsets, cityMaxOffset, isNativeRTL)}
+            snapToOffsets={Platform.OS === "web" ? undefined : getNativeSnapOffsets(citySnapOffsets, cityMaxOffset, Platform.OS, isNativeRTL)}
             snapToAlignment={Platform.OS === "web" ? undefined : "start"}
             decelerationRate={Platform.OS === "web" ? undefined : "fast"}
             onMomentumScrollEnd={
