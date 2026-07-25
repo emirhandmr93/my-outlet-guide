@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { type ReactNode, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { colors } from "../theme/colors";
@@ -17,6 +17,8 @@ type DropdownSelectorProps = {
   selectedLabel: string;
   options: DropdownOption[];
   onSelect: (value: string) => void;
+  renderSelected?: () => ReactNode;
+  renderOption?: (option: DropdownOption) => ReactNode;
 };
 
 export function DropdownSelector({
@@ -24,6 +26,8 @@ export function DropdownSelector({
   selectedLabel,
   options,
   onSelect,
+  renderSelected,
+  renderOption,
 }: DropdownSelectorProps) {
   const [open, setOpen] = useState(false);
 
@@ -36,7 +40,7 @@ export function DropdownSelector({
         activeOpacity={0.86}
         onPress={() => setOpen((current) => !current)}
       >
-        <Text style={styles.selectedText}>{selectedLabel}</Text>
+        {renderSelected ? renderSelected() : <Text style={styles.selectedText}>{selectedLabel}</Text>}
         <Text style={styles.chevron}>{open ? "▲" : "▼"}</Text>
       </TouchableOpacity>
 
@@ -52,7 +56,7 @@ export function DropdownSelector({
                 setOpen(false);
               }}
             >
-              <Text style={styles.optionText}>{option.label}</Text>
+              {renderOption ? renderOption(option) : <Text style={styles.optionText}>{option.label}</Text>}
             </TouchableOpacity>
           ))}
         </View>
