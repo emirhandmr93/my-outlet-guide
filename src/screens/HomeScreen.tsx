@@ -40,7 +40,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
-import { useLayoutDirection } from "../hooks/useLayoutDirection";
+import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
@@ -852,6 +852,7 @@ export function HomeScreen() {
       />
 
       <Modal visible={isQuickMenuOpen} transparent animationType="fade">
+        <NativeDirectionRoot>
         <TouchableOpacity
           style={styles.menuBackdrop}
           activeOpacity={1}
@@ -898,6 +899,7 @@ export function HomeScreen() {
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
+        </NativeDirectionRoot>
       </Modal>
     </>
   );
@@ -968,7 +970,7 @@ const styles = StyleSheet.create({
   },
 
   slideOuter: {
-    paddingRight: spacing.sm,
+    paddingEnd: spacing.sm,
   },
 
   slideImage: {
@@ -1229,13 +1231,13 @@ const styles = StyleSheet.create({
   },
 
   horizontalList: {
-    paddingRight: spacing.xl,
+    paddingEnd: spacing.xl,
     gap: spacing.md,
     marginBottom: spacing.lg,
   },
 
   recommendedList: {
-    paddingRight: spacing.xl,
+    paddingEnd: spacing.xl,
     gap: spacing.md,
   },
 
@@ -1248,7 +1250,7 @@ const styles = StyleSheet.create({
   },
 
   cityList: {
-    paddingRight: spacing.xl,
+    paddingEnd: spacing.xl,
     gap: spacing.md,
   },
 

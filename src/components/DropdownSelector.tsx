@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     color: colors.gold,
     fontSize: typography.caption,
     fontWeight: "900",
-    marginLeft: spacing.md,
+    marginStart: spacing.md,
   },
 
   optionsBox: {

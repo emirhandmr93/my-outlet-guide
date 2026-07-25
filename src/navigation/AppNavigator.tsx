@@ -1,7 +1,7 @@
 import { createNavigationContainerRef, NavigationContainer, type RouteProp } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ActivityIndicator, Platform, Pressable, Text, useWindowDimensions, View } from "react-native";
+import { ActivityIndicator, Platform, Pressable, useWindowDimensions, View } from "react-native";
 import { useEffect, useState } from "react";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
@@ -105,11 +105,6 @@ headerTitleStyle: {
 color: "#0B1F3A",
 fontWeight: "900" as const,
 },
-headerTitle: isNativeRTL
-? ({ children }: { children: string }) => (
-<Text style={{ color: "#0B1F3A", fontSize: 17, fontWeight: "900", textAlign: "right", writingDirection: "rtl" }}>{children}</Text>
-)
-: undefined,
 headerStyle: {
 backgroundColor: "#FFFFFF",
 },
@@ -197,7 +192,7 @@ return <Ionicons name={focused ? "person" : "person-outline"} size={size} color=
 }
 
 function MainTabs() {
-const { t, language } = useTranslation();
+const { t } = useTranslation();
 const { width } = useWindowDimensions();
 const isDesktopWeb = Platform.OS === "web" && width >= 1024;
 

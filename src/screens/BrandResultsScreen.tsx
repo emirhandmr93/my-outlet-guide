@@ -62,7 +62,6 @@ function OutletCard({
   imageStyle?: object;
 }) {
   const { t } = useTranslation();
-  const { isNativeRTL } = useLayoutDirection();
   const heroImage = getOutletCardHeroImage(outlet, {
     mode: getConfiguredOutletMediaMode(),
   });

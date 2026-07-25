@@ -18,6 +18,7 @@ import { AppOnlyFeatureNotice } from "../components/AppOnlyFeatureNotice";
 import { useTrips } from "../contexts/TripsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import type { RootStackParamList } from "../navigation/types";
 import { requireAuth } from "../utils/requireAuth";
 import {
@@ -57,6 +58,7 @@ export function CreateTripScreen() {
   const { isLoggedIn } = useUser();
   const { addTrip } = useTrips();
   const { t } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const insets = useSafeAreaInsets();
 
   const isWeb = Platform.OS === "web";
@@ -295,7 +297,7 @@ export function CreateTripScreen() {
         <Text style={styles.sectionTitle}>{t("createTrip.tripDetails")}</Text>
         <Text style={styles.label}>{t("createTrip.tripName")}</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, isNativeRTL && styles.proseInputRTL]}
           placeholder={t("createTrip.tripNamePlaceholder")}
           placeholderTextColor="#8A8A8A"
           value={tripName}
@@ -338,7 +340,7 @@ export function CreateTripScreen() {
         </View>
         <Text style={styles.label}>{t("createTrip.notes")}</Text>
         <TextInput
-          style={[styles.input, styles.notesInput]}
+          style={[styles.input, styles.notesInput, isNativeRTL && styles.proseInputRTL]}
           placeholder={t("createTrip.notesPlaceholder")}
           placeholderTextColor="#8A8A8A"
           value={notes}
@@ -460,6 +462,7 @@ export function CreateTripScreen() {
         animationType="slide"
         onRequestClose={() => setPickerTarget(null)}
       >
+        <NativeDirectionRoot>
         <View style={styles.modalScrim}>
           <View style={styles.pickerModal}>
             <Text style={styles.sectionTitle}>{pickerTitle}</Text>
@@ -507,6 +510,7 @@ selectedDate && setDraftDate(selectedDate)
             </View>
           </View>
         </View>
+        </NativeDirectionRoot>
       </Modal>
       <Modal
         visible={Boolean(timePickerTarget)}
@@ -514,6 +518,7 @@ selectedDate && setDraftDate(selectedDate)
         animationType="slide"
         onRequestClose={() => setTimePickerTarget(null)}
       >
+        <NativeDirectionRoot>
         <View style={styles.modalScrim}>
           <View style={styles.pickerModal}>
             <Text style={styles.sectionTitle}>
@@ -568,6 +573,7 @@ selectedTime && setDraftTime(selectedTime)
             </View>
           </View>
         </View>
+        </NativeDirectionRoot>
       </Modal>
     </ScrollView>
   );
@@ -697,4 +703,5 @@ fontFamily: "inherit",
     fontWeight: "900",
     textAlign: "center",
   },
+  proseInputRTL: { textAlign: "right", writingDirection: "rtl" },
 });

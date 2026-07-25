@@ -26,6 +26,7 @@ import {
 import { useTrips } from "../contexts/TripsContext";
 import { useAuth } from "../contexts/AuthContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import {
   formatCityDisplayName,
   formatCountryDisplayName,
@@ -54,6 +55,7 @@ const SELECTOR_FILTERS: FlightDealSelectorFilter[] = [
 export function FlightDealsScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const { trips } = useTrips();
   const { currentUser } = useAuth();
   const insets = useSafeAreaInsets();
@@ -360,6 +362,7 @@ export function FlightDealsScreen() {
         </View>
       </ScrollView>
       <Modal visible={pickerMode !== null} animationType="slide" transparent>
+        <NativeDirectionRoot>
         <View style={styles.modalOverlay}>
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -410,7 +413,7 @@ export function FlightDealsScreen() {
                       : t("flightDeals.destinationSearchPlaceholder")
                   }
                   placeholderTextColor="#94A3B8"
-                  style={styles.input}
+                  style={[styles.input, isNativeRTL && styles.proseInputRTL]}
                 />
               </View>
               {pickerMode === "origin" ? (
@@ -483,6 +486,7 @@ export function FlightDealsScreen() {
             </View>
           </KeyboardAvoidingView>
         </View>
+              </NativeDirectionRoot>
       </Modal>
     </>
   );
@@ -699,4 +703,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingTop: 12,
   },
+  proseInputRTL: { textAlign: "right", writingDirection: "rtl" },
 });

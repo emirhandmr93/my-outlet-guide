@@ -376,7 +376,7 @@ export function ExploreScreen() {
           <View style={styles.searchBox}>
             <Text style={styles.searchIcon}>⌕</Text>
             <TextInput
-              style={[styles.searchInput, Platform.OS === "web" && styles.searchInputWeb]}
+              style={[styles.searchInput, Platform.OS === "web" && styles.searchInputWeb, isNativeRTL && styles.searchInputRTL]}
               placeholder={t("explore.searchPlaceholder")}
               placeholderTextColor="#8B94A3"
               value={search}
@@ -620,6 +620,7 @@ function Header({ title, subtitle }: { title: string; subtitle: string }) {
   );
 }
 function MiniSearch({ value, setValue, placeholder, t }: any) {
+  const { isNativeRTL } = useLayoutDirection();
   return (
     <View style={styles.searchBoxSmall}>
       <Text style={styles.searchIconSmall}>⌕</Text>
@@ -627,6 +628,7 @@ function MiniSearch({ value, setValue, placeholder, t }: any) {
         style={[
           styles.searchInput,
           Platform.OS === "web" && styles.searchInputWeb,
+          isNativeRTL && styles.searchInputRTL,
         ]}
         placeholder={placeholder}
         placeholderTextColor="#8B94A3"
@@ -947,8 +949,8 @@ objectPosition: "58% 50%",
     minHeight: 62,
     backgroundColor: "#fff",
     borderRadius: 999,
-    paddingLeft: 12,
-    paddingRight: 16,
+    paddingStart: 12,
+    paddingEnd: 16,
     flexDirection: "row",
     alignItems: "center",
     borderWidth: 1,
@@ -981,9 +983,9 @@ objectPosition: "58% 50%",
     lineHeight: 42,
     fontSize: 22,
     fontWeight: "900",
-    marginRight: 10,
+    marginEnd: 10,
   },
-  searchIconSmall: { fontSize: 20, marginRight: 10, color: "#0B1F3A" },
+  searchIconSmall: { fontSize: 20, marginEnd: 10, color: "#0B1F3A" },
   searchInput: {
     flex: 1,
     color: "#0B1F3A",
@@ -991,8 +993,10 @@ objectPosition: "58% 50%",
     fontWeight: "800",
     paddingVertical: 0,
   },
+  searchInputRTL: { textAlign: "right", writingDirection: "rtl" },
   searchInputWeb: { outlineStyle: "none" } as any,
   clearIcon: {
+    marginStart: 8,
     width: 34,
     height: 34,
     borderRadius: 999,
@@ -1003,8 +1007,8 @@ objectPosition: "58% 50%",
     fontSize: 28,
     fontWeight: "900",
   },
-  clearSmall: { color: "#C9A227", fontWeight: "900" },
-  filterRow: { gap: 10, paddingRight: 20, marginBottom: 8 },
+  clearSmall: { marginStart: 8, color: "#C9A227", fontWeight: "900" },
+  filterRow: { gap: 10, paddingEnd: 20, marginBottom: 8 },
   primaryTabRow: {
     flexDirection: "row",
     gap: 8,
@@ -1012,8 +1016,8 @@ objectPosition: "58% 50%",
   },
   filterRowPadded: {
     gap: 10,
-    paddingLeft: 20,
-    paddingRight: 24,
+    paddingStart: 20,
+    paddingEnd: 24,
     marginBottom: 8,
   },
   filterRowDesktop: {
@@ -1113,7 +1117,7 @@ objectPosition: "58% 50%",
     borderBottomWidth: 1,
   },
   countryFlag: { fontSize: 28, width: 42 },
-  countryContent: { flex: 1, minWidth: 0, paddingRight: 10 },
+  countryContent: { flex: 1, minWidth: 0, paddingEnd: 10 },
   countryName: {
     color: "#0B1F3A",
     fontSize: 18,
@@ -1137,12 +1141,12 @@ objectPosition: "58% 50%",
     borderColor: "#E0E5EC",
     marginBottom: 10,
   },
-  cityThumb: { width: 58, height: 58, borderRadius: 17, marginRight: 12 },
+  cityThumb: { width: 58, height: 58, borderRadius: 17, marginEnd: 12 },
   cityAvatar: {
     width: 44,
     height: 44,
     borderRadius: 999,
-    marginRight: 12,
+    marginEnd: 12,
     backgroundColor: "#F2F5F9",
     alignItems: "center",
     justifyContent: "center",
@@ -1166,7 +1170,7 @@ objectPosition: "58% 50%",
     backgroundColor: "#FFF7E0",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 12,
+    marginEnd: 12,
   },
   resultIcon: { fontSize: 19 },
   resultContent: { flex: 1, minWidth: 0 },
@@ -1194,7 +1198,7 @@ objectPosition: "58% 50%",
     color: "#C9A227",
     fontSize: 25,
     fontWeight: "900",
-    marginLeft: 8,
+    marginStart: 8,
   },
   resultCount: {
     color: "#687386",
@@ -1227,7 +1231,7 @@ objectPosition: "58% 50%",
     overflow: "hidden",
   },
   brandCategoryRow: { flexDirection: "row", alignItems: "center", padding: 16 },
-  brandCategoryIcon: { fontSize: 24, marginRight: 12 },
+  brandCategoryIcon: { fontSize: 24, marginEnd: 12 },
   brandCategoryContent: { flex: 1, minWidth: 0 },
   brandCategoryTitle: { color: "#0B1F3A", fontSize: 17, fontWeight: "900" },
   brandCategorySubtitle: {

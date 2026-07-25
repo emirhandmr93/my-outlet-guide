@@ -116,7 +116,7 @@ export function ReviewItem({
 const styles = StyleSheet.create({
   card: { backgroundColor: "#F7F8FA", borderRadius: 18, padding: 15, borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 12 },
   headerRow: { flexDirection: "row", alignItems: "center" },
-  avatar: { width: 38, height: 38, borderRadius: 19, backgroundColor: "#0B1F3A", alignItems: "center", justifyContent: "center", marginRight: 10 },
+  avatar: { width: 38, height: 38, borderRadius: 19, backgroundColor: "#0B1F3A", alignItems: "center", justifyContent: "center", marginEnd: 10 },
   avatarText: { color: "#C9A227", fontSize: 15, fontWeight: "900" },
   headerTextWrap: { flex: 1 },
   userName: { color: "#0B1F3A", fontSize: 15, fontWeight: "900" },

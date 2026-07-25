@@ -40,6 +40,7 @@ import { useFavorites } from "../contexts/FavoritesContext";
 import { useReviews } from "../contexts/ReviewsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { NativeDirectionRoot } from "../hooks/useLayoutDirection";
 import {
   getImageSource,
   getOutletMediaImages,
@@ -412,6 +413,7 @@ export function OutletDetailScreen() {
         />
 
         <Modal visible={isGalleryOpen} animationType="fade">
+          <NativeDirectionRoot>
           <View style={styles.galleryModal}>
             <TouchableOpacity
               style={styles.galleryCloseButton}
@@ -459,6 +461,7 @@ export function OutletDetailScreen() {
               </TouchableOpacity>
             </View>
           </View>
+          </NativeDirectionRoot>
         </Modal>
 
         <View style={styles.badgeRow}>

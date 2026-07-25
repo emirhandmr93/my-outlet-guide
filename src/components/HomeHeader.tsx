@@ -16,6 +16,7 @@ import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 
 const homeHeroPremiumImage = require("../../assets/home/home-hero-premium.png");
 const brandIcon = require("../../assets/icon.png");
@@ -58,6 +59,7 @@ export function HomeHeader({
   onPressLanguage,
 }: HomeHeaderProps) {
   const { t, language } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
   const { width } = useWindowDimensions();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const isCompactMobile = !isDesktopWeb && width < 400;
@@ -84,7 +86,7 @@ export function HomeHeader({
 
         <View
           pointerEvents="none"
-          style={[styles.brandWrap, isDesktopWeb ? styles.brandWrapDesktop : null, isCompactMobile ? styles.brandWrapCompact : null]}
+          style={[styles.brandWrap, isDesktopWeb ? styles.brandWrapDesktop : null, isCompactMobile ? styles.brandWrapCompact : null, isNativeRTL ? styles.brandWrapRTL : null, isNativeRTL && isCompactMobile ? styles.brandWrapCompactRTL : null]}
         >
           <Image
             source={brandIcon}
@@ -209,6 +211,9 @@ const styles = StyleSheet.create({
     height: 44,
   },
 
+  brandWrapRTL: { left: 132, right: 62 },
+  brandWrapCompactRTL: { left: 120, right: 48 },
+
   brandWrapDesktop: {
     position: "relative",
     left: undefined,
@@ -220,7 +225,7 @@ const styles = StyleSheet.create({
   brandIcon: {
     width: 34,
     height: 34,
-    marginRight: spacing.xs,
+    marginEnd: spacing.xs,
   },
 
   brandIconDesktop: {
@@ -231,7 +236,7 @@ const styles = StyleSheet.create({
   brandIconCompact: {
     width: 28,
     height: 28,
-    marginRight: 4,
+    marginEnd: 4,
   },
 
   brandText: {
@@ -466,7 +471,7 @@ objectPosition: "50% 50%",
   heroBrandIcon: {
     width: 22,
     height: 22,
-    marginRight: spacing.sm,
+    marginEnd: spacing.sm,
   },
 
   heroLabel: {

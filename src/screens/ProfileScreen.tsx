@@ -196,7 +196,7 @@ export function ProfileScreen() {
             </Text>
 
             <TextInput
-              style={styles.displayNameInput}
+              style={[styles.displayNameInput, isNativeRTL && styles.displayNameInputRTL]}
               value={displayName}
               onChangeText={setDisplayName}
               placeholder={t("profile.displayNamePlaceholder")}
@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#C9A227",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 16,
+    marginEnd: 16,
   },
 
   avatarText: {
@@ -516,6 +516,8 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
 
+  displayNameInputRTL: { textAlign: "right", writingDirection: "rtl" },
+
   primaryButton: {
     backgroundColor: "#0B1F3A",
     borderRadius: 16,
@@ -570,7 +572,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F7F8FA",
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 12,
+    marginEnd: 12,
   },
 
   rowIcon: {
@@ -601,7 +603,7 @@ const styles = StyleSheet.create({
   arrow: {
     fontSize: 26,
     color: "#C9A227",
-    marginLeft: 10,
+    marginStart: 10,
   },
 
   versionText: {
