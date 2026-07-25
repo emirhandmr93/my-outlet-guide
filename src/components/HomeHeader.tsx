@@ -63,6 +63,7 @@ export function HomeHeader({
   const { width } = useWindowDimensions();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const isCompactMobile = !isDesktopWeb && width < 400;
+  const isNarrowMobileWeb = Platform.OS === "web" && width < 480;
   const selectedLanguage =
     languages.find((item) => item.languageCode === language) ?? languages[0];
   const title = getGreeting(t, userName, isGuest);
@@ -73,10 +74,20 @@ export function HomeHeader({
 
   return (
     <View style={styles.wrapper}>
-      <View style={[styles.topBar, isDesktopWeb ? styles.topBarDesktop : null]}>
+      <View
+        style={[
+          styles.topBar,
+          isDesktopWeb ? styles.topBarDesktop : null,
+          isNarrowMobileWeb ? styles.topBarNarrowWeb : null,
+        ]}
+      >
         {!isDesktopWeb ? (
           <TouchableOpacity
-            style={[styles.iconButton, isCompactMobile ? styles.iconButtonCompact : null]}
+            style={[
+              styles.iconButton,
+              isCompactMobile ? styles.iconButtonCompact : null,
+              isNarrowMobileWeb ? styles.iconButtonNarrowWeb : null,
+            ]}
             activeOpacity={0.84}
             onPress={onPressMenu}
           >
@@ -86,15 +97,32 @@ export function HomeHeader({
 
         <View
           pointerEvents="none"
-          style={[styles.brandWrap, isDesktopWeb ? styles.brandWrapDesktop : null, isCompactMobile ? styles.brandWrapCompact : null, isNativeRTL ? styles.brandWrapRTL : null, isNativeRTL && isCompactMobile ? styles.brandWrapCompactRTL : null]}
+          style={[
+            styles.brandWrap,
+            isDesktopWeb ? styles.brandWrapDesktop : null,
+            isCompactMobile ? styles.brandWrapCompact : null,
+            isNativeRTL ? styles.brandWrapRTL : null,
+            isNativeRTL && isCompactMobile ? styles.brandWrapCompactRTL : null,
+            isNarrowMobileWeb ? styles.brandWrapNarrowWeb : null,
+          ]}
         >
           <Image
             source={brandIcon}
-            style={[styles.brandIcon, isDesktopWeb ? styles.brandIconDesktop : null, isCompactMobile ? styles.brandIconCompact : null]}
+            style={[
+              styles.brandIcon,
+              isDesktopWeb ? styles.brandIconDesktop : null,
+              isCompactMobile ? styles.brandIconCompact : null,
+              isNarrowMobileWeb ? styles.brandIconNarrowWeb : null,
+            ]}
             resizeMode="contain"
           />
           <Text
-            style={[styles.brandText, isDesktopWeb ? styles.brandTextDesktop : null, isCompactMobile ? styles.brandTextCompact : null]}
+            style={[
+              styles.brandText,
+              isDesktopWeb ? styles.brandTextDesktop : null,
+              isCompactMobile ? styles.brandTextCompact : null,
+              isNarrowMobileWeb ? styles.brandTextNarrowWeb : null,
+            ]}
             numberOfLines={1}
             adjustsFontSizeToFit
             minimumFontScale={0.72}
@@ -103,9 +131,19 @@ export function HomeHeader({
           </Text>
         </View>
 
-        <View style={[styles.rightActions, isCompactMobile ? styles.rightActionsCompact : null]}>
+        <View
+          style={[
+            styles.rightActions,
+            isCompactMobile ? styles.rightActionsCompact : null,
+            isNarrowMobileWeb ? styles.rightActionsNarrowWeb : null,
+          ]}
+        >
           <TouchableOpacity
-            style={[styles.iconButton, isCompactMobile ? styles.iconButtonCompact : null]}
+            style={[
+              styles.iconButton,
+              isCompactMobile ? styles.iconButtonCompact : null,
+              isNarrowMobileWeb ? styles.iconButtonNarrowWeb : null,
+            ]}
             activeOpacity={0.84}
             onPress={onPressNotifications}
           >
@@ -113,7 +151,11 @@ export function HomeHeader({
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[styles.languageButton, isCompactMobile ? styles.languageButtonCompact : null]}
+            style={[
+              styles.languageButton,
+              isCompactMobile ? styles.languageButtonCompact : null,
+              isNarrowMobileWeb ? styles.languageButtonNarrowWeb : null,
+            ]}
             activeOpacity={0.84}
             onPress={onPressLanguage}
           >
@@ -121,7 +163,7 @@ export function HomeHeader({
               <LanguageFlag
                 flag={selectedLanguage.flag}
                 languageName={selectedLanguage.languageName}
-                size={isCompactMobile ? 18 : 20}
+                size={isNarrowMobileWeb ? 16 : isCompactMobile ? 18 : 20}
               />
               <Text style={styles.languageText}>
                 {selectedLanguage.languageCode.toUpperCase()}
@@ -193,6 +235,10 @@ const styles = StyleSheet.create({
     marginTop: spacing.md,
   },
 
+  topBarNarrowWeb: {
+    gap: 2,
+  },
+
   brandWrap: {
     position: "absolute",
     left: 62,
@@ -222,6 +268,16 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
 
+  brandWrapNarrowWeb: {
+    position: "relative",
+    left: undefined,
+    right: undefined,
+    height: 40,
+    flex: 1,
+    flexShrink: 1,
+    justifyContent: "flex-start",
+  },
+
   brandIcon: {
     width: 34,
     height: 34,
@@ -239,6 +295,12 @@ const styles = StyleSheet.create({
     marginEnd: 4,
   },
 
+  brandIconNarrowWeb: {
+    width: 24,
+    height: 24,
+    marginEnd: 3,
+  },
+
   brandText: {
     color: colors.primary,
     fontSize: typography.bodySmall,
@@ -250,6 +312,12 @@ const styles = StyleSheet.create({
   brandTextCompact: {
     fontSize: 12,
     letterSpacing: 0.45,
+  },
+
+  brandTextNarrowWeb: {
+    fontSize: 11,
+    letterSpacing: 0.1,
+    flexShrink: 0,
   },
 
   brandTextDesktop: {
@@ -267,6 +335,11 @@ const styles = StyleSheet.create({
     gap: 4,
   },
 
+  rightActionsNarrowWeb: {
+    gap: 2,
+    flexShrink: 0,
+  },
+
   iconButton: {
     width: 46,
     height: 46,
@@ -282,6 +355,11 @@ const styles = StyleSheet.create({
   iconButtonCompact: {
     width: 44,
     height: 44,
+  },
+
+  iconButtonNarrowWeb: {
+    width: 40,
+    height: 40,
   },
 
 
@@ -302,6 +380,12 @@ const styles = StyleSheet.create({
     height: 44,
     minWidth: 68,
     paddingHorizontal: 6,
+  },
+
+  languageButtonNarrowWeb: {
+    height: 40,
+    minWidth: 56,
+    paddingHorizontal: 4,
   },
 
   menuIcon: {

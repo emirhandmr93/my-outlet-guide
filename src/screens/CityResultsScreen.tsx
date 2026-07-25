@@ -1,11 +1,13 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   Image,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -62,11 +64,15 @@ function OutletResultCard({
   isFavorite,
   onPress,
   onToggleFavorite,
+  isDesktopWeb,
+  desktopCardWidth,
 }: {
   outlet: OutletItem;
   isFavorite: boolean;
   onPress: () => void;
   onToggleFavorite: () => void;
+  isDesktopWeb: boolean;
+  desktopCardWidth: number | "48%";
 }) {
   const { t, language } = useTranslation();
   const heroImage = getOutletCardHeroImage(outlet, {
@@ -76,14 +82,30 @@ function OutletResultCard({
 
   return (
     <TouchableOpacity
-      style={styles.outletCard}
+      style={[
+        styles.outletCard,
+        isDesktopWeb ? styles.outletCardDesktop : null,
+        isDesktopWeb ? { width: desktopCardWidth } : null,
+      ]}
       activeOpacity={0.9}
       onPress={onPress}
     >
       {heroImage ? (
-        <Image source={getImageSource(heroImage)} style={styles.outletImage} />
+        <Image
+          source={getImageSource(heroImage)}
+          style={[
+            styles.outletImage,
+            isDesktopWeb ? styles.outletImageDesktop : null,
+          ]}
+          resizeMode="cover"
+        />
       ) : (
-        <View style={styles.outletImagePlaceholder}>
+        <View
+          style={[
+            styles.outletImagePlaceholder,
+            isDesktopWeb ? styles.outletImageDesktop : null,
+          ]}
+        >
           <Text style={styles.outletImageIcon}>🛍️</Text>
         </View>
       )}
@@ -136,6 +158,11 @@ export function CityResultsScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
+  const { width } = useWindowDimensions();
+  const isDesktopWeb = Platform.OS === "web" && width >= 1024;
+  const [outletGridWidth, setOutletGridWidth] = useState(0);
+  const desktopCardWidth =
+    outletGridWidth > 16 ? (outletGridWidth - 16) / 2 : "48%";
   const route = useRoute<RouteProp<RouteParams, "CityResults">>();
   const { isLoggedIn } = useUser();
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -180,21 +207,39 @@ export function CityResultsScreen() {
       </View>
 
       <Text style={styles.sectionTitle}>{t("city.availableOutlets")}</Text>
-      {cityOutlets.map((outlet) => (
-        <OutletResultCard
-          key={outlet.outletId}
-          outlet={outlet}
-          isFavorite={isFavorite(outlet.outletId)}
-          onPress={() =>
-            navigation.navigate("OutletDetail", { outletId: outlet.outletId })
-          }
-          onToggleFavorite={() => {
-            if (requireAuth({ isLoggedIn, navigation })) {
-              toggleFavorite(outlet.outletId);
+      <View
+        style={isDesktopWeb ? styles.outletGridDesktop : null}
+        onLayout={
+          isDesktopWeb
+            ? (event) => {
+                const measuredWidth = event.nativeEvent.layout.width;
+                setOutletGridWidth((currentWidth) =>
+                  Math.abs(currentWidth - measuredWidth) > 0.5
+                    ? measuredWidth
+                    : currentWidth,
+                );
+              }
+            : undefined
+        }
+      >
+        {cityOutlets.map((outlet) => (
+          <OutletResultCard
+            key={outlet.outletId}
+            outlet={outlet}
+            isFavorite={isFavorite(outlet.outletId)}
+            isDesktopWeb={isDesktopWeb}
+            desktopCardWidth={desktopCardWidth}
+            onPress={() =>
+              navigation.navigate("OutletDetail", { outletId: outlet.outletId })
             }
-          }}
-        />
-      ))}
+            onToggleFavorite={() => {
+              if (requireAuth({ isLoggedIn, navigation })) {
+                toggleFavorite(outlet.outletId);
+              }
+            }}
+          />
+        ))}
+      </View>
     </ScrollView>
   );
 }
@@ -262,7 +307,17 @@ const styles = StyleSheet.create({
     borderColor: "#E5E7EB",
     marginBottom: 12,
   },
+  outletGridDesktop: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    columnGap: 16,
+    rowGap: 16,
+  },
+  outletCardDesktop: {
+    marginBottom: 0,
+  },
   outletImage: { width: "100%", height: 168, backgroundColor: "#E5E7EB" },
+  outletImageDesktop: { height: undefined, aspectRatio: 16 / 9 },
   outletImagePlaceholder: {
     height: 168,
     backgroundColor: "#0B1F3A",
