@@ -413,7 +413,7 @@ export function CreateTripScreen() {
               {t("createTrip.returnDepartureAirport")}
             </Text>
             <TextInput
-              style={styles.input}
+              style={[styles.input, styles.technicalInputLTR]}
               placeholder={t("createTrip.returnDepartureAirportPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={returnDepartureAirport}
@@ -427,7 +427,7 @@ export function CreateTripScreen() {
               {t("createTrip.returnFlightNumber")}
             </Text>
             <TextInput
-              style={styles.input}
+              style={[styles.input, styles.technicalInputLTR]}
               placeholder={t("createTrip.returnFlightNumberPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={returnFlightNumber}
@@ -704,4 +704,5 @@ fontFamily: "inherit",
     textAlign: "center",
   },
   proseInputRTL: { textAlign: "right", writingDirection: "rtl" },
+  technicalInputLTR: { direction: "ltr", writingDirection: "ltr", textAlign: "left" },
 });

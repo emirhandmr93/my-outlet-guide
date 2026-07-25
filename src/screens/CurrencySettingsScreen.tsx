@@ -74,7 +74,7 @@ export function CurrencySettingsScreen() {
 
         <Text style={styles.inputLabel}>{t("currency.amount")}</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.technicalInputLTR]}
           keyboardType="decimal-pad"
           placeholder="100"
           placeholderTextColor="#8A8A8A"
@@ -192,4 +192,5 @@ const styles = StyleSheet.create({
   checkCircle: { width: 30, height: 30, borderRadius: 15, borderWidth: 1, borderColor: "#E5E7EB", alignItems: "center", justifyContent: "center" },
   checkCircleActive: { backgroundColor: "#C9A227", borderColor: "#C9A227" },
   checkmark: { color: "#0B1F3A", fontSize: 18, fontWeight: "900" },
+  technicalInputLTR: { direction: "ltr", writingDirection: "ltr", textAlign: "left" },
 });

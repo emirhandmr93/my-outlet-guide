@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     paddingHorizontal: 12,
     paddingVertical: 8,
-    marginRight: 8,
+    marginEnd: 8,
   },
   filterChipActive: { backgroundColor: "#0B1F3A", borderColor: "#0B1F3A" },
   filterChipText: { color: "#0B1F3A", fontWeight: "900", fontSize: 12 },

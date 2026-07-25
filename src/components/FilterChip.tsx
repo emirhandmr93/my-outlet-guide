@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     alignSelf: "flex-start",
-    marginRight: spacing.sm,
+    marginEnd: spacing.sm,
     marginBottom: spacing.sm,
   },
   chip: {
@@ -62,15 +62,15 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: radius.pill,
     borderTopRightRadius: radius.pill,
     borderBottomRightRadius: radius.pill,
-    paddingLeft: spacing.md,
-    paddingRight: spacing.lg,
+    paddingStart: spacing.md,
+    paddingEnd: spacing.lg,
     maxWidth: "100%",
     borderWidth: 1,
     borderColor: colors.gold,
   },
   icon: {
     fontSize: typography.caption,
-    marginRight: spacing.xs,
+    marginEnd: spacing.xs,
   },
   label: {
     color: colors.primary,
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: -spacing.md,
+    marginStart: -spacing.md,
   },
   removeText: {
     color: colors.textInverse,

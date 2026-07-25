@@ -7,6 +7,7 @@ import { spacing } from "../../theme/spacing";
 import { typography } from "../../theme/typography";
 import { motion } from "../../theme/motion";
 import { useTranslation } from "../../hooks/useTranslation";
+import { useLayoutDirection } from "../../hooks/useLayoutDirection";
 
 export type MapsCardProps = {
   title: string;
@@ -28,6 +29,7 @@ export function MapsCard({
   onPressYandex,
 }: MapsCardProps) {
   const { t } = useTranslation();
+  const { isNativeRTL } = useLayoutDirection();
 
   return (
     <Card>
@@ -46,7 +48,7 @@ export function MapsCard({
             <Text style={styles.primaryButtonText}>{googleText}</Text>
             <Text style={styles.primaryButtonSubtext}>{t("sharedCards.maps.recommendedRoute")}</Text>
           </View>
-          <Text style={styles.primaryArrow}>→</Text>
+          <Text style={styles.primaryArrow}>{isNativeRTL ? "←" : "→"}</Text>
         </TouchableOpacity>
 
         <View style={styles.secondaryRow}>
@@ -95,7 +97,7 @@ const styles = StyleSheet.create({
 
   primaryIcon: {
     fontSize: 24,
-    marginRight: spacing.md,
+    marginEnd: spacing.md,
   },
 
   buttonTextWrap: {

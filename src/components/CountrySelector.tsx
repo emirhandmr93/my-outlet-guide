@@ -85,4 +85,4 @@ export function CountrySelector({ selectedCountryId, onSelectCountry }: CountryS
 
 function FlagLabel({ countryId, label }: { countryId: string; label: string }) { return <View style={styles.flagLabel}><SavingsCountryFlag countryId={countryId} size={24} /><Text style={styles.flagLabelText}>{label}</Text></View>; }
 
-const styles = StyleSheet.create({ flagLabel: { flex: 1, flexDirection: "row", alignItems: "center" }, flagLabelText: { color: "#0B1F3A", fontSize: 16, fontWeight: "900", marginStart: 10 }, isoFallback: { color: "#0B1F3A", fontWeight: "900", textAlign: "center", width: 28 } });
+const styles = StyleSheet.create({ flagLabel: { flex: 1, flexDirection: "row", alignItems: "center" }, flagLabelText: { color: "#0B1F3A", fontSize: 16, fontWeight: "900", marginLeft: 10 }, isoFallback: { color: "#0B1F3A", fontWeight: "900", textAlign: "center", width: 28 } });

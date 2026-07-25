@@ -354,7 +354,7 @@ const styles = StyleSheet.create({
   },
 
   settingsFlag: {
-    marginRight: 10,
+    marginEnd: 10,
   },
 
   settingsLabel: {

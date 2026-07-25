@@ -14,6 +14,7 @@ import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
+import { useLayoutDirection } from "../hooks/useLayoutDirection";
 
 type OutletHeroProps = {
   name: string;
@@ -35,6 +36,7 @@ export function OutletHero({
   onPressGalleryImage,
 }: OutletHeroProps) {
   const { width } = useWindowDimensions();
+  const { isNativeRTL } = useLayoutDirection();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const hasSelectedImage = Boolean(selectedImage);
   const images =
@@ -66,7 +68,7 @@ export function OutletHero({
           )}
           <View style={styles.overlay} />
 
-          <View style={styles.kickerPill}>
+          <View style={[styles.kickerPill, isNativeRTL && styles.kickerPillRTL]}>
             <Text style={styles.kickerText}>PREMIUM OUTLET</Text>
           </View>
 
@@ -152,6 +154,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.sm,
   },
+  kickerPillRTL: {
+    left: undefined,
+    right: spacing.lg,
+  },
 
   kickerText: {
     color: colors.gold,
@@ -192,7 +198,7 @@ const styles = StyleSheet.create({
   galleryContent: {
     gap: spacing.sm,
     paddingTop: spacing.md,
-    paddingRight: spacing.xl,
+    paddingEnd: spacing.xl,
   },
 
   galleryImage: {

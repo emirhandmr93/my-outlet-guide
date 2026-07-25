@@ -184,7 +184,7 @@ export function TaxFreeCalculatorScreen() {
         </Text>
 
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.technicalInputLTR]}
           keyboardType="numeric"
           placeholder="2500"
           placeholderTextColor="#8A8A8A"
@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
   },
   settingsFlag: {
     fontSize: 25,
-    marginRight: 9,
+    marginEnd: 9,
   },
   settingsLabel: {
     color: "#687386",
@@ -524,4 +524,5 @@ const styles = StyleSheet.create({
     lineHeight: 19,
     marginTop: 4,
   },
+  technicalInputLTR: { direction: "ltr", writingDirection: "ltr", textAlign: "left" },
 });

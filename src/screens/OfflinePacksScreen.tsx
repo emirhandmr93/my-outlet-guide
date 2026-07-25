@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   sectionTitle: { fontSize: 20, fontWeight: "900", color: "#0B1F3A", marginTop: 12, marginBottom: 12 },
   card: { backgroundColor: "#FFFFFF", borderRadius: 24, padding: 18, borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 14 },
   cardTopRow: { flexDirection: "row", alignItems: "flex-start" },
-  iconBox: { width: 46, height: 46, borderRadius: 23, backgroundColor: "#F7F8FA", alignItems: "center", justifyContent: "center", marginRight: 12 },
+  iconBox: { width: 46, height: 46, borderRadius: 23, backgroundColor: "#F7F8FA", alignItems: "center", justifyContent: "center", marginEnd: 12 },
   icon: { fontSize: 22 },
   cardHeaderContent: { flex: 1 },
   cardTitle: { color: "#0B1F3A", fontSize: 16, fontWeight: "900", marginBottom: 4 },

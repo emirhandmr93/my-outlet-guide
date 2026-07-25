@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     color: "#C9A227",
     fontWeight: "700",
-    marginLeft: 12,
+    marginStart: 12,
   },
 
   cardLabel: {

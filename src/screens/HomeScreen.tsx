@@ -289,6 +289,21 @@ function getOutletCardImageSource(
   return outlet ? getRecommendedOutletImage(outlet) : undefined;
 }
 
+function getCarouselMaxOffset(contentWidth: number, viewportWidth: number) {
+  return Math.max(contentWidth - viewportWidth, 0);
+}
+
+function logicalIndexToPhysicalOffset(index: number, interval: number, contentWidth: number, viewportWidth: number, isRTL: boolean) {
+  const maxOffset = getCarouselMaxOffset(contentWidth, viewportWidth);
+  const logicalOffset = Math.min(Math.max(index * interval, 0), maxOffset);
+  return isRTL ? maxOffset - logicalOffset : logicalOffset;
+}
+
+function physicalToLogicalOffset(physicalOffset: number, contentWidth: number, viewportWidth: number, isRTL: boolean) {
+  const maxOffset = getCarouselMaxOffset(contentWidth, viewportWidth);
+  return isRTL ? maxOffset - physicalOffset : physicalOffset;
+}
+
 export function HomeScreen() {
   const navigation = useNavigation<any>();
   const { width } = useWindowDimensions();
@@ -306,6 +321,10 @@ export function HomeScreen() {
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
   const carouselRef = useRef<ScrollView | null>(null);
   const recommendedCarouselRef = useRef<ScrollView | null>(null);
+  const cityCarouselRef = useRef<ScrollView | null>(null);
+  const [featuredMetrics, setFeaturedMetrics] = useState({ content: 0, viewport: 0 });
+  const [recommendedMetrics, setRecommendedMetrics] = useState({ content: 0, viewport: 0 });
+  const [cityMetrics, setCityMetrics] = useState({ content: 0, viewport: 0 });
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const contentWidth = Math.min(
     isDesktopWeb ? width - 216 - 72 : width - spacing.xl * 2,
@@ -361,14 +380,14 @@ export function HomeScreen() {
     const interval = setInterval(() => {
       const nextIndex = (activeSlideIndex + 1) % slides.length;
       carouselRef.current?.scrollTo({
-        x: nextIndex * carouselWidth,
+        x: logicalIndexToPhysicalOffset(nextIndex, carouselWidth, featuredMetrics.content, featuredMetrics.viewport, isNativeRTL),
         animated: true,
       });
       setActiveSlideIndex(nextIndex);
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeSlideIndex, carouselWidth, slides.length]);
+  }, [activeSlideIndex, carouselWidth, featuredMetrics, isNativeRTL, slides.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -376,20 +395,27 @@ export function HomeScreen() {
         ? 0
         : activeRecommendedIndex + 1;
       recommendedCarouselRef.current?.scrollTo({
-        x: nextIndex * (outletCardWidth + spacing.md),
+        x: logicalIndexToPhysicalOffset(nextIndex, outletCardWidth + spacing.md, recommendedMetrics.content, recommendedMetrics.viewport, isNativeRTL),
         animated: true,
       });
       setActiveRecommendedIndex(nextIndex);
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeRecommendedIndex, outletCardWidth, recommendedLastIndex]);
+  }, [activeRecommendedIndex, outletCardWidth, recommendedLastIndex, recommendedMetrics, isNativeRTL]);
+
+  useEffect(() => {
+    if (Platform.OS === "web") return;
+    carouselRef.current?.scrollTo({ x: logicalIndexToPhysicalOffset(activeSlideIndex, carouselWidth, featuredMetrics.content, featuredMetrics.viewport, isNativeRTL), animated: false });
+    recommendedCarouselRef.current?.scrollTo({ x: logicalIndexToPhysicalOffset(activeRecommendedIndex, outletCardWidth + spacing.md, recommendedMetrics.content, recommendedMetrics.viewport, isNativeRTL), animated: false });
+    cityCarouselRef.current?.scrollTo({ x: logicalIndexToPhysicalOffset(activeCityIndex, citySnapInterval, cityMetrics.content, cityMetrics.viewport, isNativeRTL), animated: false });
+  }, [isNativeRTL, featuredMetrics, recommendedMetrics, cityMetrics, carouselWidth, outletCardWidth, citySnapInterval]);
 
   function handleCarouselScroll(
     event: NativeSyntheticEvent<NativeScrollEvent>,
   ) {
     const nextIndex = Math.round(
-      event.nativeEvent.contentOffset.x / carouselWidth,
+      physicalToLogicalOffset(event.nativeEvent.contentOffset.x, featuredMetrics.content, featuredMetrics.viewport, isNativeRTL) / carouselWidth,
     );
 
     if (nextIndex !== activeSlideIndex) {
@@ -399,7 +425,7 @@ export function HomeScreen() {
 
   function handleRecommendedScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
     const nextIndex = Math.round(
-      event.nativeEvent.contentOffset.x / (outletCardWidth + spacing.md),
+      physicalToLogicalOffset(event.nativeEvent.contentOffset.x, recommendedMetrics.content, recommendedMetrics.viewport, isNativeRTL) / (outletCardWidth + spacing.md),
     );
     const reachableIndex = Math.min(Math.max(nextIndex, 0), recommendedLastIndex);
     if (reachableIndex !== activeRecommendedIndex) setActiveRecommendedIndex(reachableIndex);
@@ -407,7 +433,7 @@ export function HomeScreen() {
 
   function handleCityScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
     const nextIndex = Math.round(
-      event.nativeEvent.contentOffset.x / citySnapInterval,
+      physicalToLogicalOffset(event.nativeEvent.contentOffset.x, cityMetrics.content, cityMetrics.viewport, isNativeRTL) / citySnapInterval,
     );
     const reachableIndex = Math.min(
       Math.max(nextIndex, 0),
@@ -560,6 +586,8 @@ export function HomeScreen() {
             snapToInterval={carouselWidth}
             snapToAlignment="start"
             onMomentumScrollEnd={handleCarouselScroll}
+            onLayout={(event) => setFeaturedMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
+            onContentSizeChange={(content) => setFeaturedMetrics((current) => ({ ...current, content }))}
           >
             {slides.map((slide) => (
               <TouchableOpacity
@@ -652,6 +680,8 @@ export function HomeScreen() {
           snapToAlignment="start"
           decelerationRate="fast"
           onMomentumScrollEnd={handleRecommendedScroll}
+          onLayout={(event) => setRecommendedMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
+          onContentSizeChange={(content) => setRecommendedMetrics((current) => ({ ...current, content }))}
         >
           {recommendedOutlets.map((outlet) => {
             const imageSource = getOutletCardImageSource(outlet.id);
@@ -782,6 +812,7 @@ export function HomeScreen() {
 
         <View style={styles.cityCarouselWrap}>
           <ScrollView
+            ref={cityCarouselRef}
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.cityList}
@@ -793,6 +824,8 @@ export function HomeScreen() {
             onMomentumScrollEnd={
               Platform.OS === "web" ? undefined : handleCityScroll
             }
+            onLayout={(event) => setCityMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
+            onContentSizeChange={(content) => setCityMetrics((current) => ({ ...current, content }))}
           >
             {popularCities.map((city) => (
               <TouchableOpacity
@@ -1107,7 +1140,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: typography.caption,
     fontWeight: typography.weightBlack,
-    marginRight: spacing.xs,
+    marginEnd: spacing.xs,
     flexShrink: 1,
   },
 

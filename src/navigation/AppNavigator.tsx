@@ -109,9 +109,7 @@ headerStyle: {
 backgroundColor: "#FFFFFF",
 },
 headerLeft: ({ tintColor }: { tintColor?: string }) =>
-!isNativeRTL && navigation.canGoBack() ? <HeaderBackIcon color={tintColor} label={t("nav.back")} onPress={() => navigation.goBack()} isRTL={false} /> : null,
-headerRight: ({ tintColor }: { tintColor?: string }) =>
-isNativeRTL && navigation.canGoBack() ? <HeaderBackIcon color={tintColor} label={t("nav.back")} onPress={() => navigation.goBack()} isRTL /> : null,
+navigation.canGoBack() ? <HeaderBackIcon color={tintColor} label={t("nav.back")} onPress={() => navigation.goBack()} isRTL={isNativeRTL} /> : null,
 });
 }
 

@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
 
   categoryIcon: {
     fontSize: 26,
-    marginRight: spacing.md,
+    marginEnd: spacing.md,
   },
 
   categoryTextBlock: {
@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: typography.caption,
     fontWeight: typography.weightBlack,
-    marginLeft: spacing.sm,
+    marginStart: spacing.sm,
   },
 
   brandGrid: {
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     borderColor: colors.border,
     paddingHorizontal: spacing.md,
     paddingVertical: spacing.sm,
-    marginRight: spacing.sm,
+    marginEnd: spacing.sm,
     marginBottom: spacing.sm,
   },
 
