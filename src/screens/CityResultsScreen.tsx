@@ -1,5 +1,5 @@
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   Image,
   Platform,
@@ -65,12 +65,14 @@ function OutletResultCard({
   onPress,
   onToggleFavorite,
   isDesktopWeb,
+  desktopCardWidth,
 }: {
   outlet: OutletItem;
   isFavorite: boolean;
   onPress: () => void;
   onToggleFavorite: () => void;
   isDesktopWeb: boolean;
+  desktopCardWidth: number | "48%";
 }) {
   const { t, language } = useTranslation();
   const heroImage = getOutletCardHeroImage(outlet, {
@@ -80,7 +82,11 @@ function OutletResultCard({
 
   return (
     <TouchableOpacity
-      style={[styles.outletCard, isDesktopWeb ? styles.outletCardDesktop : null]}
+      style={[
+        styles.outletCard,
+        isDesktopWeb ? styles.outletCardDesktop : null,
+        isDesktopWeb ? { width: desktopCardWidth } : null,
+      ]}
       activeOpacity={0.9}
       onPress={onPress}
     >
@@ -154,6 +160,9 @@ export function CityResultsScreen() {
   const insets = useSafeAreaInsets();
   const { width } = useWindowDimensions();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
+  const [outletGridWidth, setOutletGridWidth] = useState(0);
+  const desktopCardWidth =
+    outletGridWidth > 16 ? (outletGridWidth - 16) / 2 : "48%";
   const route = useRoute<RouteProp<RouteParams, "CityResults">>();
   const { isLoggedIn } = useUser();
   const { isFavorite, toggleFavorite } = useFavorites();
@@ -198,13 +207,28 @@ export function CityResultsScreen() {
       </View>
 
       <Text style={styles.sectionTitle}>{t("city.availableOutlets")}</Text>
-      <View style={isDesktopWeb ? styles.outletGridDesktop : null}>
+      <View
+        style={isDesktopWeb ? styles.outletGridDesktop : null}
+        onLayout={
+          isDesktopWeb
+            ? (event) => {
+                const measuredWidth = event.nativeEvent.layout.width;
+                setOutletGridWidth((currentWidth) =>
+                  Math.abs(currentWidth - measuredWidth) > 0.5
+                    ? measuredWidth
+                    : currentWidth,
+                );
+              }
+            : undefined
+        }
+      >
         {cityOutlets.map((outlet) => (
           <OutletResultCard
             key={outlet.outletId}
             outlet={outlet}
             isFavorite={isFavorite(outlet.outletId)}
             isDesktopWeb={isDesktopWeb}
+            desktopCardWidth={desktopCardWidth}
             onPress={() =>
               navigation.navigate("OutletDetail", { outletId: outlet.outletId })
             }
@@ -290,7 +314,6 @@ const styles = StyleSheet.create({
     rowGap: 16,
   },
   outletCardDesktop: {
-    width: "calc(50% - 8px)" as any,
     marginBottom: 0,
   },
   outletImage: { width: "100%", height: 168, backgroundColor: "#E5E7EB" },
