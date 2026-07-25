@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import { ActivityIndicator, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppNavigator } from "./src/navigation/AppNavigator";
 import "./src/firebase/config";
@@ -10,29 +11,45 @@ import { ReviewsProvider } from "./src/contexts/ReviewsContext";
 import { NotificationSettingsProvider } from "./src/contexts/NotificationSettingsContext";
 import { UserProvider } from "./src/contexts/UserContext";
 import { FlightDealPreferencesProvider } from "./src/contexts/FlightDealPreferencesContext";
-import { AuthProvider } from "./src/contexts/AuthContext";
+import { AuthProvider, useAuth } from "./src/contexts/AuthContext";
+
+function AuthLoadingGate() {
+  const { loading } = useAuth();
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  return (
+    <UserProvider>
+      <NotificationSettingsProvider>
+        <TripsProvider>
+          <FavoritesProvider>
+            <SavingsProvider>
+              <FlightDealPreferencesProvider>
+                <ReviewsProvider>
+                  <AppNavigator />
+                  <StatusBar style="auto" />
+                </ReviewsProvider>
+              </FlightDealPreferencesProvider>
+            </SavingsProvider>
+          </FavoritesProvider>
+        </TripsProvider>
+      </NotificationSettingsProvider>
+    </UserProvider>
+  );
+}
 
 export default function App() {
 return (
 <SafeAreaProvider>
 <LanguageProvider>
 <AuthProvider>
-<UserProvider>
-<NotificationSettingsProvider>
-<TripsProvider>
-<FavoritesProvider>
-<SavingsProvider>
-<FlightDealPreferencesProvider>
-<ReviewsProvider>
-<AppNavigator />
-<StatusBar style="auto" />
-</ReviewsProvider>
-</FlightDealPreferencesProvider>
-</SavingsProvider>
-</FavoritesProvider>
-</TripsProvider>
-</NotificationSettingsProvider>
-</UserProvider>
+<AuthLoadingGate />
 </AuthProvider>
 </LanguageProvider>
 </SafeAreaProvider>
