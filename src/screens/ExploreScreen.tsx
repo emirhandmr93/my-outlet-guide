@@ -360,6 +360,7 @@ export function ExploreScreen() {
           <View
             style={[
               styles.heroTextScrim,
+              isNativeRTL && styles.heroTextScrimRTL,
               isDesktopWeb && styles.heroTextScrimDesktop,
             ]}
           >
@@ -918,6 +919,7 @@ objectPosition: "58% 50%",
     paddingRight: 22,
     backgroundColor: "rgba(6, 20, 40, .54)",
   },
+  heroTextScrimRTL: { paddingLeft: 22, paddingRight: 26 },
   heroTextScrimDesktop: { maxWidth: "56%", minHeight: 332, padding: 32 },
   heroKicker: {
     color: "#C9A227",
