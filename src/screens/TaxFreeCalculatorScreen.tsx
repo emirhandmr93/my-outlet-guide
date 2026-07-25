@@ -19,6 +19,8 @@ import {
   calculateTaxFreeEstimate,
   isBelowMinimumPurchase,
   parsePurchaseAmount,
+  getEstimateRefundAmount,
+  getEstimateCostAmount,
 } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
@@ -54,6 +56,8 @@ export function TaxFreeCalculatorScreen() {
       ? calculateTaxFreeEstimate(parsedAmount, rule)
       : undefined;
 
+  const estimateRefund = estimate ? getEstimateRefundAmount(estimate) : undefined;
+  const estimateCost = estimate ? getEstimateCostAmount(estimate) : undefined;
   const displayCurrency = rule?.currency ?? selectedCountry.currency;
   const selectedCountryDisplayName = getLocalizedCountryName(selectedCountry, language);
   const selectedCurrencyDisplayName = getLocalizedCurrencyName(selectedCurrencyInfo, language);
@@ -79,12 +83,12 @@ export function TaxFreeCalculatorScreen() {
 
     Promise.all([
       convertCurrency(
-        estimate.estimatedTaxFreeRefund,
+        estimateRefund!,
         rule.currency,
         selectedCurrency,
       ),
       convertCurrency(
-        estimate.estimatedCostAfterRefund,
+        estimateCost!,
         rule.currency,
         selectedCurrency,
       ),
@@ -108,8 +112,8 @@ export function TaxFreeCalculatorScreen() {
       active = false;
     };
   }, [
-    estimate?.estimatedCostAfterRefund,
-    estimate?.estimatedTaxFreeRefund,
+    estimateCost,
+    estimateRefund,
     rule,
     selectedCurrency,
     shouldShowConvertedResults,
@@ -224,16 +228,16 @@ export function TaxFreeCalculatorScreen() {
           </View>
         )}
 
-        {rule && estimate && !isBelowMinimum && (
+        {rule && estimate && !isBelowMinimum && estimateRefund !== undefined && estimateCost !== undefined && (
           <>
             <View style={styles.resultGrid}>
               <View style={styles.resultBox}>
                 <Text style={styles.resultLabel}>
-                  {t("taxFree.maximumVatBeforeFees")}
+                  {t(estimate.kind === "net_estimate" ? "taxCalc.estimatedNetRefund" : estimate.kind === "point_of_sale_exemption" ? "taxCalc.estimatedTaxSaving" : estimate.kind === "upper_bound" ? "taxCalc.maximumRefundBeforeFees" : "taxCalc.noSourcedNetRate")}
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(
-                    estimate.estimatedTaxFreeRefund,
+                    estimateRefund!,
                     rule.currency,
                     language,
                   )}
@@ -242,11 +246,11 @@ export function TaxFreeCalculatorScreen() {
 
               <View style={styles.resultBox}>
                 <Text style={styles.resultLabel}>
-                  {t("taxCalc.estimatedCostAfterRefund")}
+                  {t(estimate.kind === "net_estimate" ? "taxCalc.estimatedCostAfterRefund" : estimate.kind === "point_of_sale_exemption" ? "taxCalc.costAfterExemption" : "taxCalc.bestCaseCostBeforeFees")}
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(
-                    estimate.estimatedCostAfterRefund,
+                    estimateCost!,
                     rule.currency,
                     language,
                   )}
@@ -258,7 +262,7 @@ export function TaxFreeCalculatorScreen() {
               <View style={styles.convertedBox}>
                 <View style={styles.resultBox}>
                   <Text style={styles.resultLabel}>
-                    {t("taxCalc.convertedRefund")}
+                    {t(estimate.kind === "upper_bound" ? "taxCalc.convertedMaximum" : estimate.kind === "point_of_sale_exemption" ? "taxCalc.estimatedTaxSaving" : "taxCalc.convertedRefund")}
                   </Text>
                   <Text style={styles.resultValue}>
                     {convertedRefund === null
@@ -271,7 +275,7 @@ export function TaxFreeCalculatorScreen() {
 
                 <View style={styles.resultBox}>
                   <Text style={styles.resultLabel}>
-                    {t("taxCalc.convertedCostAfterRefund")}
+                    {t(estimate.kind === "upper_bound" ? "taxCalc.convertedBestCaseCost" : estimate.kind === "point_of_sale_exemption" ? "taxCalc.costAfterExemption" : "taxCalc.convertedCostAfterRefund")}
                   </Text>
                   <Text style={styles.resultValue}>
                     {convertedCostAfterRefund === null
@@ -303,7 +307,7 @@ export function TaxFreeCalculatorScreen() {
           <View style={styles.metaBox}>
             <Text style={styles.metaTitle}>{t("taxCalc.sourceTitle")}</Text>
             <Text style={styles.metaText}>{rule.schemeSource.name} • {rule.schemeSource.checkedDate}</Text>
-            <Text style={styles.metaText}>{t("taxCalc.vatRate")}: {rule.vatRate}% • {rule.vatRateSource.name} • {rule.vatRateSource.checkedDate}</Text>
+
             {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" && rule.minimumPurchaseSource ? (
               <Text style={styles.metaText}>{t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}) • {rule.minimumPurchaseSource.name} • {rule.minimumPurchaseSource.checkedDate}</Text>
             ) : <Text style={styles.metaText}>{t(getMinimumPurchaseTextKey(rule))}</Text>}

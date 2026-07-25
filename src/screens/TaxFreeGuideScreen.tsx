@@ -2,19 +2,21 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
 import { countries } from "../constants/countries";
-import { getTaxFreeRule, taxFreeRules } from "../constants/taxFreeRules";
+import { getMaximumRefundRate, getTaxFreePolicySummaryKey, getTaxFreeRule } from "../constants/taxFreeRules";
+import { formatCurrency } from "../services/exchangeRateService";
+import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey } from "../utils/taxFreeDisplay";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
 
 export function TaxFreeGuideScreen() {
   const { selectedCountryId, setSelectedCountryId } = useSavings();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
 
   const selectedCountry =
     countries.find((country) => country.countryId === selectedCountryId) ||
     countries[0];
 
-  const rule = getTaxFreeRule(selectedCountry.countryId) || taxFreeRules[0];
+  const rule = getTaxFreeRule(selectedCountry.countryId);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -32,27 +34,12 @@ export function TaxFreeGuideScreen() {
         />
       </View>
 
-      <View style={styles.statsRow}>
-        <View style={styles.statBox}>
-          <Text style={styles.statLabel}>{t("taxGuide.vatRate")}</Text>
-          <Text style={styles.statValue}>{rule.vatRate}%</Text>
-        </View>
-
-        <View style={styles.statBox}>
-          <Text style={styles.statLabel}>
-            {t("taxGuide.refundRate")}
-          </Text>
-          <Text style={styles.statValue}>{rule.vatRate}%</Text>
-        </View>
-      </View>
-
-      <View style={styles.highlightCard}>
-        <Text style={styles.highlightLabel}>{t("taxGuide.minimumSpend")}</Text>
-        <Text style={styles.highlightValue}>
-          {rule.currency} {rule.minimumPurchaseAmount ?? 0}
-        </Text>
-        <Text style={styles.highlightText}>{selectedCountry.countryName}</Text>
-      </View>
+      {rule ? (
+        <>
+          <View style={styles.statsRow}><View style={styles.statBox}><Text style={styles.statLabel}>{t(getTaxFreePolicySummaryKey(rule))}</Text><Text style={styles.statValue}>{rule.refundPolicy.mode === "provider_dependent_upper_bound" ? `${getMaximumRefundRate(rule).toFixed(1)}%` : "✓"}</Text></View></View>
+          <View style={styles.highlightCard}><Text style={styles.highlightLabel}>{t("taxGuide.minimumSpend")}</Text><Text style={styles.highlightValue}>{rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)}` : t(getMinimumPurchaseTextKey(rule))}</Text><Text style={styles.highlightText}>{selectedCountry.countryName}</Text></View>
+        </>
+      ) : <View style={styles.noteCard}><Text style={styles.note}>{t("taxCalc.noSourcedNetRate")}</Text></View>}
 
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>{t("taxGuide.refundProcess")}</Text>

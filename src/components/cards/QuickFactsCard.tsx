@@ -24,6 +24,7 @@ export type QuickFactsCardProps = {
   address: string;
   storesCountText: string;
   taxFreeStatus: OutletTaxFreeDisplayStatus;
+  taxFreeSummary?: string;
   cityCenterDistanceKm: number;
   airportDistanceKm: number;
   nearestAirportName?: string;
@@ -72,6 +73,7 @@ export function QuickFactsCard({
   openingHours,
   storesCountText,
   taxFreeStatus,
+  taxFreeSummary,
   cityCenterDistanceKm,
   airportDistanceKm,
   nearestAirportName,
@@ -107,7 +109,7 @@ export function QuickFactsCard({
         <FactTile
           icon="💰"
           label={t("sharedCards.quickFacts.taxFree")}
-          value={t(`taxFree.${taxFreeStatus}`)}
+          value={`${t(`taxFree.${taxFreeStatus}`)}${taxFreeSummary ? `\n${taxFreeSummary}` : ""}`}
           onPress={onPressTaxFree}
         />
         <FactTile icon="✈️" label={t("sharedCards.quickFacts.airports")} value={airportText} onPress={onPressAirport} />

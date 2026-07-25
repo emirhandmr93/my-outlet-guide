@@ -13,7 +13,7 @@ import {
   CurrencyCode,
   formatCurrency,
 } from "../services/exchangeRateService";
-import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
+import { calculateTaxFreeEstimate, getEstimateCostAmount, getEstimateRefundAmount } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
@@ -45,8 +45,8 @@ export function SmartShoppingCalculatorScreen() {
     rule && numericPrice > 0
       ? calculateTaxFreeEstimate(numericPrice, rule)
       : undefined;
-  const refund = estimate?.vatPortion ?? 0;
-  const netCost = numericPrice - refund;
+  const refund = estimate ? (getEstimateRefundAmount(estimate) ?? 0) : 0;
+  const netCost = estimate ? (getEstimateCostAmount(estimate) ?? numericPrice) : numericPrice;
   const [convertedRefund, setConvertedRefund] = useState<number | null>(null);
   const [convertedNetCost, setConvertedNetCost] = useState<number | null>(null);
   const [conversionUnavailable, setConversionUnavailable] = useState(false);
@@ -163,10 +163,10 @@ export function SmartShoppingCalculatorScreen() {
         <View style={styles.resultGrid}>
           <View style={styles.resultBox}>
             <Text style={styles.resultLabel}>
-              {t("taxCalc.estimatedTaxFreeRefund")}
+              {t(estimate?.kind === "upper_bound" ? "taxCalc.maximumRefundBeforeFees" : estimate?.kind === "point_of_sale_exemption" ? "taxCalc.estimatedTaxSaving" : "taxCalc.estimatedNetRefund")}
             </Text>
             <Text style={styles.resultValue}>
-              {rule
+              {rule && estimate?.kind !== "no_numeric_estimate"
                 ? formatCurrency(refund, rule.currency as CurrencyCode, language)
                 : "—"}
             </Text>
@@ -174,10 +174,10 @@ export function SmartShoppingCalculatorScreen() {
 
           <View style={styles.resultBox}>
             <Text style={styles.resultLabel}>
-              {t("taxCalc.estimatedCostAfterRefund")}
+              {t(estimate?.kind === "upper_bound" ? "taxCalc.bestCaseCostBeforeFees" : estimate?.kind === "point_of_sale_exemption" ? "taxCalc.costAfterExemption" : "taxCalc.estimatedCostAfterRefund")}
             </Text>
             <Text style={styles.resultValue}>
-              {rule
+              {rule && estimate?.kind !== "no_numeric_estimate"
                 ? formatCurrency(netCost, rule.currency as CurrencyCode, language)
                 : "—"}
             </Text>
@@ -216,7 +216,7 @@ export function SmartShoppingCalculatorScreen() {
 
         <Text style={styles.note}>
           {rule
-            ? `${t("taxCalc.vatRate")}: ${rule.vatRate}% • ${t("taxCalc.standardVatBasis")} • ${t("taxCalc.actualRefundMayVary")} ${t("taxCalc.notGuaranteedRefund")}`
+            ? estimate?.kind === "no_numeric_estimate" ? t("taxCalc.noSourcedNetRate") : estimate?.kind === "upper_bound" ? t("taxCalc.upperBoundDisclaimer") : t("taxCalc.finalDisclaimer")
             : t("taxCalc.unsupportedCountry")}
         </Text>
       </View>

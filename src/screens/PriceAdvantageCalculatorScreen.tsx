@@ -20,7 +20,7 @@ import {
   CurrencyCode,
   formatCurrency,
 } from "../services/exchangeRateService";
-import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
+import { calculateTaxFreeEstimate, getEstimateCostAmount, getEstimateRefundAmount } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 import { formatPriceAdvantage } from "../utils/priceAdvantage";
@@ -56,8 +56,8 @@ export function PriceAdvantageCalculatorScreen() {
     rule && numericEuropePrice > 0
       ? calculateTaxFreeEstimate(numericEuropePrice, rule)
       : undefined;
-  const refund = includeTaxFree ? (estimate?.vatPortion ?? 0) : 0;
-  const netEuropeCost = numericEuropePrice - refund;
+  const refund = includeTaxFree && estimate ? (getEstimateRefundAmount(estimate) ?? 0) : 0;
+  const netEuropeCost = includeTaxFree && estimate ? (getEstimateCostAmount(estimate) ?? numericEuropePrice) : numericEuropePrice;
   const [convertedEuropeCost, setConvertedEuropeCost] = useState<number | null>(null);
 
   useEffect(() => {
@@ -210,7 +210,7 @@ export function PriceAdvantageCalculatorScreen() {
 
         <Text style={styles.note}>
           {includeTaxFree && rule
-            ? `${t("taxCalc.estimatedTaxFreeRefund")}: ${formatCurrency(refund, rule.currency as CurrencyCode)}. ${t("taxCalc.providerFeesUnknown")}`
+            ? estimate?.kind === "no_numeric_estimate" ? t("taxCalc.noSourcedNetRate") : `${t(estimate?.kind === "upper_bound" ? "taxCalc.maximumRefundBeforeFees" : estimate?.kind === "point_of_sale_exemption" ? "taxCalc.estimatedTaxSaving" : "taxCalc.estimatedNetRefund")}: ${formatCurrency(refund, rule.currency as CurrencyCode)}. ${t(estimate?.kind === "upper_bound" ? "taxCalc.upperBoundDisclaimer" : "taxCalc.finalDisclaimer")}`
             : includeTaxFree
               ? t("taxCalc.unsupportedCountry")
               : t("priceCalc.taxFreeNotIncluded")}

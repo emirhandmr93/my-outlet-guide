@@ -2,7 +2,7 @@ import { StyleSheet, Text } from "react-native";
 
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
-import { TaxFreeRule } from "../../constants/taxFreeRules";
+import { getMaximumRefundRate, getTaxFreePolicySummaryKey, TaxFreeRule } from "../../constants/taxFreeRules";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatCurrency } from "../../services/exchangeRateService";
 import {
@@ -45,10 +45,12 @@ export function TaxFreeCard({
         <Text style={styles.text}>{t("taxFree.notVerifiedExplanation")}</Text>
       ) : null}
 
-      {rule ? (
+      {rule && (taxFreeStatus === "outlet_verified" || taxFreeStatus === "country_scheme_available") ? (
         <>
           <Text style={styles.text}>
-            {t("taxCalc.vatRate")}: {rule.vatRate}%
+            {rule.refundPolicy.mode === "provider_dependent_upper_bound"
+              ? t(getTaxFreePolicySummaryKey(rule)).replace("%{rate}", `${getMaximumRefundRate(rule).toFixed(1)}%`)
+              : t(getTaxFreePolicySummaryKey(rule))}
           </Text>
           {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
             <Text style={styles.text}>
