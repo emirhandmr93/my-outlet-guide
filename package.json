@@ -35,6 +35,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "web:build": "expo export --platform web --output-dir dist && tsx tools/finalizeWebSeo.ts && tsx tools/checkWebSeo.ts",
     "generate": "tsx tools/generateConstants.ts",
     "web:prepare": "tsx tools/prepareWebsiteAssets.ts",
     "web:generate": "tsx tools/generateWebsite.ts",

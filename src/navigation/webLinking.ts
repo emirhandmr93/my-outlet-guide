@@ -3,13 +3,13 @@ import type { InitialState, LinkingOptions } from "@react-navigation/native";
 import { isTranslationLanguage, type TranslationLanguage } from "../translations/translations";
 import type { RootStackParamList } from "./types";
 
-type RouteDefinition = {
+export type WebRouteDefinition = {
   name: keyof RootStackParamList | "Home" | "Explore" | "MyTrips" | "Savings" | "Profile";
   path: string;
   parameter?: string;
 };
 
-const routes: RouteDefinition[] = [
+export const WEB_ROUTE_DEFINITIONS: readonly WebRouteDefinition[] = [
   { name: "Home", path: "" }, { name: "Explore", path: "explore" }, { name: "MyTrips", path: "trips" }, { name: "Savings", path: "savings" }, { name: "Profile", path: "profile" },
   { name: "OutletDetail", path: "outlet/:outletId", parameter: "outletId" }, { name: "BrandResults", path: "brand/:brandId", parameter: "brandId" }, { name: "Country", path: "country/:countryId", parameter: "countryId" }, { name: "CityResults", path: "city/:cityId", parameter: "cityId" }, { name: "Transportation", path: "transportation/:outletId", parameter: "outletId" },
   { name: "Favorites", path: "favorites" }, { name: "CreateTrip", path: "trips/create" }, { name: "TripDetail", path: "trip/:tripId", parameter: "tripId" }, { name: "TripSegmentEditor", path: "trip/:tripId/edit", parameter: "tripId" },
@@ -39,14 +39,14 @@ function getPathSegments(path: string) {
 }
 
 function routeForSegments(segments: string[]) {
-  return routes.find((route) => {
+  return WEB_ROUTE_DEFINITIONS.find((route) => {
     const pattern = route.path ? route.path.split("/") : [];
     return pattern.length === segments.length && pattern.every((part, index) => part.startsWith(":") || part === segments[index]);
   });
 }
 
 function pathForRoute(name: string, params: object | undefined) {
-  const route = routes.find((candidate) => candidate.name === name);
+  const route = WEB_ROUTE_DEFINITIONS.find((candidate) => candidate.name === name);
   if (!route) return "";
   return route.path.replace(/:([A-Za-z]+)/g, (_, key: string) => {
     const value = params && key in params ? Reflect.get(params, key) : undefined
@@ -75,7 +75,7 @@ export function createWebLinking(language: TranslationLanguage): LinkingOptions<
     getStateFromPath(path): InitialState | undefined {
       const segments = getPathSegments(path);
       if (isTranslationLanguage(segments[0])) segments.shift();
-      const route = routeForSegments(segments) ?? routes[0];
+      const route = routeForSegments(segments) ?? WEB_ROUTE_DEFINITIONS[0];
       const parameterValue = route.parameter ? segments[route.path.split("/").findIndex((part) => part.startsWith(":"))] : undefined;
       const params = route.parameter && parameterValue ? { [route.parameter]: parameterValue } : undefined;
       if (tabRoutes.has(route.name)) {
