@@ -32,7 +32,7 @@ const fixedPages: readonly WebSeoLogicalPage[] = [
 ];
 export const WEB_SEO_NOINDEX_PATHS = WEB_ROUTE_DEFINITIONS.filter(route => !["Home","Explore","Savings","SmartShoppingCalculator","PriceAdvantageCalculator","TaxFreeCalculator","OutletDetail","BrandResults","Country","CityResults","Transportation","PrivacyPolicy","TermsConditions","ContactUs","HelpFaq"].includes(route.name)).filter(route => !route.parameter).map(route => route.path);
 
-export const WEB_SEO_UNPUBLISHED_OUTLET_IDS = new Set([
+export const WEB_SEO_UNPUBLISHED_OUTLET_IDS = [
   "viaport-asia-outlet-shopping",
   "212-outlet",
   "olivium-outlet-center",
@@ -41,11 +41,13 @@ export const WEB_SEO_UNPUBLISHED_OUTLET_IDS = new Set([
   "optimum-premium-outlet-istanbul",
   "izmir-optimum",
   "deepo-outlet-center",
-] as const) satisfies ReadonlySet<string>;
+] as const;
+const webSeoUnpublishedOutletIds: ReadonlySet<string> = new Set(WEB_SEO_UNPUBLISHED_OUTLET_IDS);
+type WebSeoOutlet = (typeof outlets)[number];
 
-function publicSeoOutlets() { return outlets.filter(outlet => outlet.status === "active" && !WEB_SEO_UNPUBLISHED_OUTLET_IDS.has(outlet.outletId)); }
+export function isWebSeoPublicOutlet(outlet: WebSeoOutlet) { return outlet.status === "active" && typeof outlet.outletId === "string" && !webSeoUnpublishedOutletIds.has(outlet.outletId); }
 export function getIndexableWebSeoPages(): WebSeoLogicalPage[] {
-  const visible = publicSeoOutlets(); const outletIds = new Set(visible.map(outlet => outlet.outletId));
+  const visible = outlets.filter(isWebSeoPublicOutlet); const outletIds = new Set(visible.map(outlet => outlet.outletId));
   const pages = [...fixedPages];
   for (const outlet of visible) pages.push({kind:"outlet",path:`outlet/${outlet.outletId}`,entityName:outlet.name,entityLocation:`${outlet.cityId}|${outlet.countryId}`});
   for (const brand of brands.filter(brand => brand.brandStatus === "active" && outletBrands.some(relation => relation.brandId === brand.brandId && relation.relationStatus === "active" && outletIds.has(relation.outletId)))) pages.push({kind:"brand",path:`brand/${brand.brandId}`,entityName:brand.brandName});

@@ -21,6 +21,7 @@ import { brands } from "../constants/brands/index";
 import { outletBrands } from "../constants/outletBrands/index";
 import { outlets } from "../constants/outlets";
 import { countries } from "../constants/countries";
+import { isWebSeoPublicOutlet } from "../constants/webSeo";
 import { CountryFlag } from "../components/CountryFlag";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
@@ -156,8 +157,10 @@ export function BrandResultsScreen() {
     )
     .map((item) => item.outletId);
 
-  const matchingOutlets = outlets.filter((outlet) =>
-    matchingOutletIds.includes(outlet.outletId),
+  const matchingOutlets = outlets.filter(
+    (outlet) =>
+      matchingOutletIds.includes(outlet.outletId) &&
+      (Platform.OS !== "web" || isWebSeoPublicOutlet(outlet)),
   );
 
   const countryIds = Array.from(

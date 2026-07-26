@@ -1,8 +1,11 @@
 import { access, readFile, readdir } from "node:fs/promises";
 import { join, relative, sep } from "node:path";
 import { brands } from "../src/constants/brands";
+import { cities } from "../src/constants/cities";
+import { countries } from "../src/constants/countries";
 import { outletBrands } from "../src/constants/outletBrands";
 import { outlets } from "../src/constants/outlets";
+import { transportation } from "../src/constants/transportation";
 import { getIndexableWebSeoPages, WEB_SEO_LANGUAGES, WEB_SEO_NOINDEX_PATHS, WEB_SEO_ORIGIN, WEB_SEO_UNPUBLISHED_OUTLET_IDS } from "../src/constants/webSeo";
 import { supportedLanguageCodes } from "../src/translations/translations";
 
@@ -16,19 +19,31 @@ async function htmlFiles(directory:string):Promise<string[]> { const result:stri
 
 async function check() {
   assert(new Set(WEB_SEO_LANGUAGES).size===8 && WEB_SEO_LANGUAGES.every(language => supportedLanguageCodes.includes(language)),"SEO languages must be the eight supported languages.");
-  assert(WEB_SEO_UNPUBLISHED_OUTLET_IDS.size===EXPECTED_UNPUBLISHED_IDS.length && EXPECTED_UNPUBLISHED_IDS.every(id=>WEB_SEO_UNPUBLISHED_OUTLET_IDS.has(id)),"Unpublished outlet exclusion policy changed.");
+  assert(WEB_SEO_UNPUBLISHED_OUTLET_IDS.length===EXPECTED_UNPUBLISHED_IDS.length && EXPECTED_UNPUBLISHED_IDS.every(id=>WEB_SEO_UNPUBLISHED_OUTLET_IDS.includes(id)),"Unpublished outlet exclusion policy changed.");
   const independentlyPublicOutlets=outlets.filter(outlet=>outlet.status==="active"&&!EXPECTED_UNPUBLISHED_IDS.includes(outlet.outletId));
   const independentlyPublicOutletIds=new Set(independentlyPublicOutlets.map(outlet=>outlet.outletId));
   const expectedBrandIds=new Set(brands.filter(brand=>brand.brandStatus==="active"&&outletBrands.some(relation=>relation.brandId===brand.brandId&&relation.relationStatus==="active"&&independentlyPublicOutletIds.has(relation.outletId))).map(brand=>brand.brandId));
+  const expectedCountryIds=new Set(countries.filter(country=>independentlyPublicOutlets.some(outlet=>outlet.countryId===country.countryId)).map(country=>country.countryId));
+  const expectedCityIds=new Set(cities.filter(city=>independentlyPublicOutlets.some(outlet=>outlet.cityId===city.cityId)).map(city=>city.cityId));
+  const expectedTransportationOutletIds=new Set(independentlyPublicOutlets.filter(outlet=>transportation.some(item=>item.outletId===outlet.outletId&&item.status==="active"&&(item.title.trim()||item.tip.trim()))).map(outlet=>outlet.outletId));
   const excludedOnlyBrandIds=new Set(brands.filter(brand=>brand.brandStatus==="active"&&outletBrands.some(relation=>relation.brandId===brand.brandId&&relation.relationStatus==="active"&&EXPECTED_UNPUBLISHED_IDS.includes(relation.outletId))&&!outletBrands.some(relation=>relation.brandId===brand.brandId&&relation.relationStatus==="active"&&independentlyPublicOutletIds.has(relation.outletId))).map(brand=>brand.brandId));
   const pages=getIndexableWebSeoPages(); const expected:string[]=[];
   const generatedBrandIds=new Set(pages.filter(page=>page.kind==="brand").map(page=>page.path.slice("brand/".length)));
+  const generatedOutletIds=new Set(pages.filter(page=>page.kind==="outlet").map(page=>page.path.slice("outlet/".length)));
+  const generatedCountryIds=new Set(pages.filter(page=>page.kind==="country").map(page=>page.path.slice("country/".length)));
+  const generatedCityIds=new Set(pages.filter(page=>page.kind==="city").map(page=>page.path.slice("city/".length)));
+  const generatedTransportationOutletIds=new Set(pages.filter(page=>page.kind==="transportation").map(page=>page.path.slice("transportation/".length)));
+  assert(generatedOutletIds.size===independentlyPublicOutletIds.size&&[...independentlyPublicOutletIds].every(id=>generatedOutletIds.has(id)),"Outlet pages do not independently match public outlet data.");
   assert(generatedBrandIds.size===expectedBrandIds.size&&[...expectedBrandIds].every(id=>generatedBrandIds.has(id)),"Brand pages do not independently match public outlet relations.");
+  assert(generatedCountryIds.size===expectedCountryIds.size&&[...expectedCountryIds].every(id=>generatedCountryIds.has(id)),"Country pages do not independently match public outlet data.");
+  assert(generatedCityIds.size===expectedCityIds.size&&[...expectedCityIds].every(id=>generatedCityIds.has(id)),"City pages do not independently match public outlet data.");
+  assert(generatedTransportationOutletIds.size===expectedTransportationOutletIds.size&&[...expectedTransportationOutletIds].every(id=>generatedTransportationOutletIds.has(id)),"Transportation pages do not independently match public outlet content.");
   assert([...excludedOnlyBrandIds].every(id=>!generatedBrandIds.has(id)),"An excluded-only outlet relation made a brand indexable.");
-  assert(independentlyPublicOutlets.every(outlet=>outlet.countryId!=="turkey"),"Validator assumption failed: an independently public Turkey outlet now exists.");
-  for (const path of ["country/turkey","city/istanbul","city/izmir","city/antalya"]) assert(!pages.some(page=>page.path===path),`${path} must not be generated without a public outlet.`);
+  const brandResultsSource=await readFile(join(process.cwd(),"src/screens/BrandResultsScreen.tsx"),"utf8");
+  assert(brandResultsSource.includes('import { isWebSeoPublicOutlet } from "../constants/webSeo";')&&/Platform\.OS\s*!==\s*"web"\s*\|\|\s*isWebSeoPublicOutlet\(outlet\)/.test(brandResultsSource),"BrandResultsScreen web runtime must use the central public outlet helper.");
   const root=await readFile(join(DIST,"index.html"),"utf8"); assert(matches(root,/<meta\s+name="robots"\s+content="([^"]+)"/g)[0]==="noindex,follow","Root shell must be noindex,follow."); assert(!/rel="canonical"/.test(root),"Root shell must not have a canonical.");
   const baseAssets=matches(root,/(?:src|href)="([^"]+\.(?:js|css)[^"]*)"/g);
+  assert(baseAssets.length>0,"Expo base HTML must contain at least one JS or CSS asset reference.");
   for (const language of WEB_SEO_LANGUAGES) for (const page of pages) {
     const route=`${language}${page.path ? `/${page.path}`:""}`; const url=`${WEB_SEO_ORIGIN}/${route}`; expected.push(url);
     const html=await readFile(fileFor(route),"utf8");
@@ -40,7 +55,7 @@ async function check() {
   }
   for (const language of WEB_SEO_LANGUAGES) for (const path of WEB_SEO_NOINDEX_PATHS) { const html=await readFile(fileFor(`${language}/${path}`),"utf8"); assert(/name="robots" content="noindex,follow"/.test(html),`${language}/${path}: private shell must be noindex`); assert(!/rel="canonical"|hreflang=/.test(html),`${language}/${path}: private shell has index signals`); }
   for (const id of EXPECTED_UNPUBLISHED_IDS) for (const language of WEB_SEO_LANGUAGES) { assert(!await exists(fileFor(`${language}/outlet/${id}`)),`${language}: unpublished outlet HTML exists for ${id}`); assert(!await exists(fileFor(`${language}/transportation/${id}`)),`${language}: unpublished transportation HTML exists for ${id}`); }
-  for (const language of WEB_SEO_LANGUAGES) for (const path of ["country/turkey","city/istanbul","city/izmir","city/antalya"]) assert(!await exists(fileFor(`${language}/${path}`)),`${language}/${path}: stale localized HTML exists`);
+  for (const language of WEB_SEO_LANGUAGES) for (const path of ["country/turkey","city/istanbul","city/izmir","city/antalya"]) { const entityId=path.slice(path.indexOf("/")+1); const expected=path.startsWith("country/")?expectedCountryIds.has(entityId):expectedCityIds.has(entityId); assert(await exists(fileFor(`${language}/${path}`))===expected,`${language}/${path}: localized HTML presence does not match public data`); }
   for (const staticPath of ["privacy-policy","delete-account"]) { const html=await readFile(join(DIST,staticPath,"index.html"),"utf8"); assert(/name="robots" content="noindex,follow"/.test(html),`${staticPath}: static page must be noindex`); }
   const sitemap=await readFile(join(DIST,"sitemap.xml"),"utf8"); assert(/^<\?xml[^>]+>\n<urlset[^>]+>[\s\S]*<\/urlset>\n$/.test(sitemap),"Invalid sitemap XML structure"); const actual=matches(sitemap,/<loc>([^<]+)<\/loc>/g); assert(actual.length===new Set(actual).size,"Duplicate sitemap URL"); assert(EXPECTED_UNPUBLISHED_IDS.every(id=>actual.every(url=>!url.includes(`/outlet/${id}`)&&!url.includes(`/transportation/${id}`))),"Sitemap exposes an unpublished outlet"); assert(expected.length===actual.length&&expected.every(url=>actual.includes(url)),"Sitemap and expected indexable pages differ");
   const diskIndexUrls:string[]=[]; for (const language of WEB_SEO_LANGUAGES) for (const file of [fileFor(language),...await htmlFiles(join(DIST,language))]) { const html=await readFile(file,"utf8"); if (/name="robots" content="index,follow"/.test(html)) { const route=relative(DIST,file).split(sep).join("/").replace(/\.html$/,""); diskIndexUrls.push(`${WEB_SEO_ORIGIN}/${route}`); } }
