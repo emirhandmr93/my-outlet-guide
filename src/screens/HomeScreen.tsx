@@ -518,9 +518,21 @@ export function HomeScreen() {
   }
 
   async function shareApp() {
-    await Share.share({
-      message: t("home.shareMessage"),
-    });
+    try {
+      await Share.share(
+        Platform.OS === "ios"
+          ? {
+              message: t("home.shareMessage"),
+              url: appStoreDownloadUrl,
+            }
+          : {
+              title: "My Outlet Guide",
+              message: `${t("home.shareMessage")}\n\n${appStoreDownloadUrl}`,
+            },
+      );
+    } catch {
+      Alert.alert(t("common.error"), t("common.notAvailable"));
+    }
   }
 
   async function rateApp() {
