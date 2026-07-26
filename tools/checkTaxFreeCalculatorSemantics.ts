@@ -1,8 +1,9 @@
 import { readFileSync } from "node:fs";
 import { currencies } from "../src/constants/currencies";
+import { countries } from "../src/constants/countries";
 import { getRefundPolicyValidationErrors, getTaxFreePolicySummaryKey, getTaxFreeRule, TaxFreeRule, TaxFreeSource, taxFreeRules } from "../src/constants/taxFreeRules";
 import { resolveTranslation } from "../src/i18n/translationResolver";
-import { calculateTaxFreeEstimate } from "../src/services/taxFreeCalculatorService";
+import { calculateTaxFreeEstimate, getTaxFreeDisplayPlan, hasNumericTaxFreePlan } from "../src/services/taxFreeCalculatorService";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../src/utils/localization";
 
 const read = (path: string) => readFileSync(path, "utf8");
@@ -43,12 +44,24 @@ assert(getRefundPolicyValidationErrors({ mode: "official_refund_table", source, 
 const japan = getTaxFreeRule("japan"); assert(japan?.refundPolicy.mode === "point_of_sale_exemption", "Japan is a point-of-sale policy.");
 assert(calculateTaxFreeEstimate(11000, japan, new Date("2026-10-31T14:59:59.999Z")).kind === "point_of_sale_exemption", "Japan exemption applies at 2026-10-31 23:59:59.999 JST.");
 assert(calculateTaxFreeEstimate(11000, japan, new Date("2026-10-31T15:00:00.000Z")).kind === "no_numeric_estimate", "Japan becomes nonnumeric at 2026-11-01 00:00:00 JST.");
-assert(getTaxFreePolicySummaryKey(japan, new Date("2026-10-31T15:00:00.000Z")) === "taxCalc.noSourcedNetRate", "Japan summary cards stop claiming checkout exemption at transition.");
+assert(getTaxFreePolicySummaryKey(japan, new Date("2026-10-31T15:00:00.000Z")) === "taxCalc.futureRegimeNoEstimate", "Japan summary cards stop claiming checkout exemption at transition.");
 assert(quickFacts.includes("taxFreeSummary") && taxCard.includes("getTaxFreePolicySummaryKey"), "Quick Facts and Tax Free card consume the centralized dated summary.");
 
-assert(/estimateRefund !== undefined && estimateCost !== undefined/.test(taxScreen) && !/estimateRefund!|estimateCost!/.test(taxScreen), "Tax Free conversion requires numeric amounts without non-null assertions.");
-assert(/!estimateAmounts/.test(smartScreen) && /convertedMaximum/.test(smartScreen) && /convertedBestCaseCost/.test(smartScreen) && /convertedTaxSaving/.test(smartScreen), "Smart Shopping skips nonnumeric conversion and uses mode-aware converted labels.");
-assert(/case "upper_bound"[\s\S]*bestCaseCostBeforeFees/.test(priceScreen) && /maximumPossibleAdvantageBeforeFees/.test(priceScreen) && /case "no_numeric_estimate"[\s\S]*numericEuropePrice/.test(priceScreen), "Price Advantage labels upper bounds as best-case and preserves raw price for nonnumeric estimates.");
+const franceAtMinimum = getTaxFreeDisplayPlan(100, france);
+const franceAboveMinimum = getTaxFreeDisplayPlan(100.01, france);
+assert(franceAtMinimum.kind === "below_minimum" && franceAboveMinimum.kind === "upper_bound", "France greater-than minimum rejects EUR 100 and accepts EUR 100.01.");
+const italy = getTaxFreeRule("italy"); assert(italy && getTaxFreeDisplayPlan(70, italy).kind === "below_minimum", "Italy rejects the equal EUR 70 gross boundary.");
+assert(getTaxFreeDisplayPlan(5500, japan, new Date("2026-10-01T00:00:00Z")).kind === "point_of_sale_exemption" && getTaxFreeDisplayPlan(1000, japan, new Date("2026-10-01T00:00:00Z")).kind === "below_minimum", "Japan accepts the JPY 5,000 net gross-equivalent boundary and rejects JPY 1,000 gross.");
+const upperPlan = getTaxFreeDisplayPlan(1000, makeRule({ mode: "provider_dependent_upper_bound", source }));
+assert(upperPlan.kind === "upper_bound" && upperPlan.benefitLabelKey === "taxCalc.maximumRefundBeforeFees" && upperPlan.costLabelKey === "taxCalc.bestCaseCostBeforeFees" && upperPlan.disclaimerKey === "taxCalc.upperBoundDisclaimer", "Upper-bound plan exposes only maximum/best-case labels.");
+const netPlan = getTaxFreeDisplayPlan(1050, makeRule({ mode: "official_formula", formula: "uae_vat_85_minus_tag_fee", assumptionKey: "taxCalc.oneTagAssumption", source }, 5));
+assert(netPlan.kind === "net_estimate" && netPlan.benefitLabelKey === "taxCalc.estimatedNetRefund" && netPlan.disclaimerKey === "taxCalc.finalDisclaimer", "Net plan exposes only net-refund labels.");
+const posPlan = getTaxFreeDisplayPlan(11000, japan, new Date("2026-10-01T00:00:00Z"));
+assert(posPlan.kind === "point_of_sale_exemption" && posPlan.disclaimerKey === "taxCalc.pointOfSaleDisclaimer" && !posPlan.disclaimerKey.includes("Refund"), "POS plan never selects a refund disclaimer.");
+const futurePlan = getTaxFreeDisplayPlan(11000, japan, new Date("2026-10-31T15:00:00Z"));
+assert(futurePlan.kind === "no_numeric_estimate" && futurePlan.messageKey === "taxCalc.futureRegimeNoEstimate" && !hasNumericTaxFreePlan(futurePlan), "Japan future regime returns safe nonnumeric copy and no conversion plan.");
+assert(!hasNumericTaxFreePlan(franceAtMinimum), "Smart Shopping minimum failure cannot produce refund or conversion amounts.");
+assert(franceAtMinimum.kind === "below_minimum", "Price Advantage minimum failure keeps Tax Free out of savings.");
 assert(!guideScreen.includes("taxFreeRules[0]") && !guideScreen.includes('t(getTaxFreePolicySummaryKey(rule))</Text><Text') && guideScreen.includes("maximumRefundBeforeFees"), "Guide has no fallback or literal %{rate} heading.");
 assert(/conversionUnavailable/.test(taxScreen + smartScreen) && /currency\.unavailableShort/.test(taxScreen + smartScreen), "FX failure preserves local results and shows an unavailable conversion.");
 assert(/!rule &&/.test(taxScreen) && /notAvailableExplanation/.test(taxScreen), "Unsupported countries do not show a numeric refund.");
@@ -57,4 +70,22 @@ assert(getLocalizedCountryName({ countryId: "france", countryName: "France" }, "
 assert(!/providerFeeRate\s*:|storeFeeRate|processingFeeRate|fake tax|mock tax|sample tax/i.test(rulesSource + service + taxScreen + smartScreen + priceScreen), "No invented provider/store/processing fee exists.");
 assert(resolveTranslation("tr", "taxCalc.standardVatBasis").startsWith("Standart KDV oranı") && taxScreen.includes('t("taxCalc.standardVatBasis")'), "Source and explanation copy remains localized in Turkish.");
 assert(taxFreeRules.length === 31 && ["united-arab-emirates", "china", "thailand"].every((id) => getTaxFreeRule(id)?.refundPolicy.mode === "provider_dependent_upper_bound"), "31 rules remain and UAE, China, Thailand stay safe upper bounds.");
-for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"] as const) for (const key of ["taxCalc.productPrice", "taxCalc.estimatedCostAfterRefund", "taxCalc.convertedRefund", "taxCalc.convertedCostAfterRefund", "taxCalc.maximumRefundBeforeFees", "taxCalc.convertedMaximum", "taxCalc.convertedBestCaseCost", "taxCalc.convertedTaxSaving", "taxCalc.convertedCostAfterExemption", "taxCalc.noSourcedNetRate", "taxCalc.taxFreeNotAppliedNoNumeric", "priceCalc.maximumPossibleAdvantageBeforeFees"]) assert(resolveTranslation(locale, key) !== key, `${key} exists for ${locale}.`);
+assert(countries.length === 34 && countries.filter(({ taxFreeStatus }) => taxFreeStatus === "available").length === 31 && countries.filter(({ taxFreeStatus }) => taxFreeStatus === "not_available").length === 3, "Coverage remains 34 countries, 31 available, and 3 not available.");
+for (const removed of ["Dahil edilen KDV tahmini", "Tahmini KDV tutarı", "KDV öncesi net tutar"]) assert(!(taxScreen + smartScreen + priceScreen).includes(removed), `Confusing Turkish result label ${removed} remains absent.`);
+assert(resolveTranslation("tr", "taxCalc.convertedRefund") === "Para biriminde tahmini iade" && resolveTranslation("tr", "taxCalc.convertedCostAfterRefund") === "Para biriminde iade sonrası maliyet", "Turkish converted refund and cost labels remain exact.");
+assert(resolveTranslation("tr", "taxCalc.standardVatBasis") === "Standart KDV oranı esas alınır. Tax Free uygunluğu, minimum harcama kuralları, mağaza katılımı, operatör ücretleri ve gümrük doğrulama gereklilikleri satın alma öncesinde kontrol edilmelidir.", "Turkish standard VAT basis remains exact.");
+assert(resolveTranslation("tr", "taxCalc.pointOfSaleDisclaimer") !== resolveTranslation("en", "taxCalc.pointOfSaleDisclaimer"), "English POS explanation does not leak into Turkish UI.");
+const invalidPolicies: Array<[TaxFreeRule["refundPolicy"], string]> = [
+  [{ mode: "official_refund_table", source, brackets: [{ minimumGrossInclusive: Number.NaN, maximumGrossExclusive: 200, refund: 5 }] }, "nonfinite table"],
+  [{ mode: "official_refund_table", source, brackets: [{ minimumGrossInclusive: -1, maximumGrossExclusive: 200, refund: 5 }] }, "negative table"],
+  [{ mode: "official_refund_table", source, brackets: [{ minimumGrossInclusive: 200, maximumGrossExclusive: 200, refund: 5 }] }, "invalid table range"],
+  [{ mode: "official_refund_table", source, brackets: [{ minimumGrossInclusive: 10, maximumGrossExclusive: 20, refund: 11 }] }, "refund exceeds gross"],
+  [{ mode: "official_refund_table", source, brackets: [{ minimumGrossInclusive: 200, maximumGrossExclusive: 300, refund: 5 }, { minimumGrossInclusive: 100, maximumGrossExclusive: 250, refund: 5 }] }, "unsorted overlap"],
+  [{ mode: "provider_dependent_upper_bound", source: { ...source, url: "" } }, "empty source"],
+  [{ mode: "point_of_sale_exemption", source, validThrough: "bad", refundRegimeStarts: "2026-11-01", timeZone: "Asia/Tokyo" }, "invalid POS date"],
+  [{ mode: "point_of_sale_exemption", source, validThrough: "2026-10-30", refundRegimeStarts: "2026-11-01", timeZone: "Asia/Tokyo" }, "nonconsecutive POS dates"],
+];
+for (const [policy, label] of invalidPolicies) assert(getRefundPolicyValidationErrors(policy).length > 0, `${label} fails policy validation.`);
+const leakedUpper = { mode: "provider_dependent_upper_bound", source, estimatedNetRefund: 10 } as const;
+assert(getRefundPolicyValidationErrors(leakedUpper).length > 0, "Leaked upper-bound net refund fails validation.");
+for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"] as const) for (const key of ["taxCalc.productPrice", "taxCalc.estimatedCostAfterRefund", "taxCalc.convertedRefund", "taxCalc.convertedCostAfterRefund", "taxCalc.maximumRefundBeforeFees", "taxCalc.convertedMaximum", "taxCalc.convertedBestCaseCost", "taxCalc.convertedTaxSaving", "taxCalc.convertedCostAfterExemption", "taxCalc.noSourcedNetRate", "taxCalc.taxFreeNotAppliedNoNumeric", "priceCalc.maximumPossibleAdvantageBeforeFees", "taxCalc.pointOfSaleDisclaimer", "taxCalc.futureRegimeNoEstimate", "taxCalc.taxFreeNotAppliedBelowMinimum"]) assert(resolveTranslation(locale, key) !== key, `${key} exists for ${locale}.`);

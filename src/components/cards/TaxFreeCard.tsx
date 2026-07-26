@@ -26,6 +26,7 @@ export function TaxFreeCard({
   officeInfo,
 }: TaxFreeCardProps) {
   const { t, language } = useTranslation();
+  const policySummaryKey = rule ? getTaxFreePolicySummaryKey(rule) : undefined;
   const shouldShowOfficeInfo =
     hasDisplayValue(officeInfo) &&
     (language !== "tr" || (officeInfo?.length ?? 0) <= 90);
@@ -49,8 +50,8 @@ export function TaxFreeCard({
         <>
           <Text style={styles.text}>
             {rule.refundPolicy.mode === "provider_dependent_upper_bound"
-              ? t(getTaxFreePolicySummaryKey(rule)).replace("%{rate}", `${getMaximumRefundRate(rule).toFixed(1)}%`)
-              : t(getTaxFreePolicySummaryKey(rule))}
+              ? t(policySummaryKey!).replace("%{rate}", `${getMaximumRefundRate(rule).toFixed(1)}%`)
+              : t(policySummaryKey!)}
           </Text>
           {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
             <Text style={styles.text}>
@@ -63,7 +64,7 @@ export function TaxFreeCard({
           ) : (
             <Text style={styles.text}>{t(getMinimumPurchaseTextKey(rule))}</Text>
           )}
-          <Text style={styles.text}>{t("taxCalc.finalDisclaimer")}</Text>
+          <Text style={styles.text}>{t(rule.refundPolicy.mode === "point_of_sale_exemption" ? policySummaryKey === "taxCalc.pointOfSaleExemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.futureRegimeNoEstimate" : "taxCalc.finalDisclaimer")}</Text>
         </>
       ) : null}
 

@@ -37,7 +37,7 @@ export function TaxFreeGuideScreen() {
 
       {rule ? (
         <>
-          <View style={styles.statsRow}><View style={styles.statBox}><Text style={styles.statLabel}>{t(rule.refundPolicy.mode === "provider_dependent_upper_bound" ? "taxCalc.maximumRefundBeforeFees" : policySummaryKey!)}</Text><Text style={styles.statValue}>{rule.refundPolicy.mode === "provider_dependent_upper_bound" ? `${getMaximumRefundRate(rule).toFixed(1)}%` : policySummaryKey === "taxCalc.noSourcedNetRate" ? "—" : "✓"}</Text></View></View>
+          <View style={styles.statsRow}><View style={styles.statBox}><Text style={styles.statLabel}>{t(rule.refundPolicy.mode === "provider_dependent_upper_bound" ? "taxCalc.maximumRefundBeforeFees" : policySummaryKey!)}</Text><Text style={styles.statValue}>{rule.refundPolicy.mode === "provider_dependent_upper_bound" ? `${getMaximumRefundRate(rule).toFixed(1)}%` : policySummaryKey === "taxCalc.futureRegimeNoEstimate" ? "—" : "✓"}</Text></View></View>
           <View style={styles.highlightCard}><Text style={styles.highlightLabel}>{t("taxGuide.minimumSpend")}</Text><Text style={styles.highlightValue}>{rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)}` : t(getMinimumPurchaseTextKey(rule))}</Text><Text style={styles.highlightText}>{selectedCountry.countryName}</Text></View>
         </>
       ) : <View style={styles.noteCard}><Text style={styles.note}>{t(normalizeTaxFreeCountryStatus(selectedCountry.taxFreeStatus) === "not_available" ? "taxFree.notAvailableExplanation" : "taxFree.notVerifiedExplanation")}</Text></View>}
@@ -45,7 +45,7 @@ export function TaxFreeGuideScreen() {
       <View style={styles.card}>
         <Text style={styles.sectionTitle}>{t("taxGuide.refundProcess")}</Text>
 
-        {[t("taxCalc.standardVatBasis"), t("taxCalc.finalDisclaimer")].map((step, index) => (
+        {[t("taxCalc.standardVatBasis"), t(rule?.refundPolicy.mode === "point_of_sale_exemption" ? policySummaryKey === "taxCalc.pointOfSaleExemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.futureRegimeNoEstimate" : "taxCalc.finalDisclaimer")].map((step, index) => (
           <View key={`${step}-${index}`} style={styles.stepRow}>
             <View style={styles.stepNumberBox}>
               <Text style={styles.stepNumber}>{index + 1}</Text>
@@ -57,7 +57,7 @@ export function TaxFreeGuideScreen() {
 
       <View style={styles.noteCard}>
         <Text style={styles.noteTitle}>{t("common.important")}</Text>
-        <Text style={styles.note}>{t("taxGuide.note")}</Text>
+        <Text style={styles.note}>{t(rule?.refundPolicy.mode === "point_of_sale_exemption" ? policySummaryKey === "taxCalc.futureRegimeNoEstimate" ? "taxCalc.futureRegimeNoEstimate" : "taxCalc.pointOfSaleDisclaimer" : "taxGuide.note")}</Text>
       </View>
     </ScrollView>
   );

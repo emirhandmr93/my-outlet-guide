@@ -20,11 +20,12 @@ import {
   CurrencyCode,
   formatCurrency,
 } from "../services/exchangeRateService";
-import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
+import { getTaxFreeDisplayPlan, hasNumericTaxFreePlan } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 import { formatPriceAdvantage } from "../utils/priceAdvantage";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
+import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey } from "../utils/taxFreeDisplay";
 
 export function PriceAdvantageCalculatorScreen() {
   const [europePrice, setEuropePrice] = useState("");
@@ -52,21 +53,11 @@ export function PriceAdvantageCalculatorScreen() {
 
   const numericEuropePrice = Number(europePrice) || 0;
   const numericLocalPrice = Number(localPrice) || 0;
-  const estimate =
-    rule && numericEuropePrice > 0
-      ? calculateTaxFreeEstimate(numericEuropePrice, rule)
-      : undefined;
-  const appliedEstimate = includeTaxFree ? estimate : undefined;
-  const comparison = (() => {
-    if (!appliedEstimate) return { cost: numericEuropePrice, semantic: "raw" as const };
-    switch (appliedEstimate.kind) {
-      case "upper_bound": return { cost: appliedEstimate.bestCaseCostBeforeFees, benefit: appliedEstimate.maximumRefundBeforeFees, semantic: "upper_bound" as const };
-      case "net_estimate": return { cost: appliedEstimate.estimatedCostAfterRefund, benefit: appliedEstimate.estimatedNetRefund, semantic: "net_estimate" as const };
-      case "point_of_sale_exemption": return { cost: appliedEstimate.estimatedCostAfterExemption, benefit: appliedEstimate.estimatedTaxSaving, semantic: "point_of_sale_exemption" as const };
-      case "no_numeric_estimate": return { cost: numericEuropePrice, semantic: "no_numeric_estimate" as const };
-    }
-  })();
-  const comparisonCost = comparison.cost;
+  const displayPlan = rule && numericEuropePrice > 0 ? getTaxFreeDisplayPlan(numericEuropePrice, rule) : undefined;
+  const appliedPlan = includeTaxFree ? displayPlan : undefined;
+  const numericPlan = hasNumericTaxFreePlan(appliedPlan) ? appliedPlan : undefined;
+  const comparisonCost = numericPlan?.costAmount ?? numericEuropePrice;
+  const comparisonSemantic = appliedPlan?.kind ?? "raw";
   const [convertedEuropeCost, setConvertedEuropeCost] = useState<number | null>(null);
 
   useEffect(() => {
@@ -197,8 +188,12 @@ export function PriceAdvantageCalculatorScreen() {
           </Text>
         </TouchableOpacity>
 
+        {includeTaxFree && displayPlan?.kind === "below_minimum" && rule && typeof rule.minimumPurchaseAmount === "number" ? (
+          <View style={styles.warningBox}><Text style={styles.warningText}>{t("taxCalc.belowMinimum")} {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}).</Text></View>
+        ) : null}
+
         <View style={styles.resultBox}>
-          <Text style={styles.resultLabel}>{t(comparison.semantic === "upper_bound" ? "taxCalc.bestCaseCostBeforeFees" : comparison.semantic === "point_of_sale_exemption" ? "taxCalc.costAfterExemption" : comparison.semantic === "no_numeric_estimate" || comparison.semantic === "raw" ? "priceCalc.countryPriceRaw" : "priceCalc.countryNetCost").replace("{country}", getLocalizedCountryName(selectedCountry, language))}</Text>
+          <Text style={styles.resultLabel}>{t(comparisonSemantic === "upper_bound" ? "taxCalc.bestCaseCostBeforeFees" : comparisonSemantic === "point_of_sale_exemption" ? "taxCalc.costAfterExemption" : comparisonSemantic === "no_numeric_estimate" || comparisonSemantic === "below_minimum" || comparisonSemantic === "raw" ? "priceCalc.countryPriceRaw" : "priceCalc.countryNetCost").replace("{country}", getLocalizedCountryName(selectedCountry, language))}</Text>
           <Text style={styles.resultValue}>
             {convertedEuropeCost === null
             ? t("currency.unavailableShort")
@@ -210,7 +205,7 @@ export function PriceAdvantageCalculatorScreen() {
           style={[styles.highlightBox, !hasSavings && styles.highlightBoxMuted]}
         >
           <Text style={styles.highlightLabel}>
-            {comparison.semantic === "upper_bound" ? t("priceCalc.maximumPossibleAdvantageBeforeFees") : hasSavings ? t("priceCalc.youSave") : t("priceCalc.noSavings")}
+            {comparisonSemantic === "upper_bound" ? t("priceCalc.maximumPossibleAdvantageBeforeFees") : hasSavings ? t("priceCalc.youSave") : t("priceCalc.noSavings")}
           </Text>
           <Text style={styles.highlightValue}>
             {formatPriceAdvantage(savings, selectedCurrency, language)}
@@ -219,7 +214,7 @@ export function PriceAdvantageCalculatorScreen() {
 
         <Text style={styles.note}>
           {includeTaxFree && rule
-            ? estimate?.kind === "no_numeric_estimate" ? t("taxCalc.taxFreeNotAppliedNoNumeric") : `${t(estimate?.kind === "upper_bound" ? "taxCalc.maximumRefundBeforeFees" : estimate?.kind === "point_of_sale_exemption" ? "taxCalc.estimatedTaxSaving" : "taxCalc.estimatedNetRefund")}: ${formatCurrency(comparison.benefit ?? 0, rule.currency as CurrencyCode)}. ${t(estimate?.kind === "upper_bound" ? "taxCalc.upperBoundDisclaimer" : "taxCalc.finalDisclaimer")}`
+            ? appliedPlan?.kind === "no_numeric_estimate" ? t(appliedPlan.messageKey) : appliedPlan?.kind === "below_minimum" ? t("taxCalc.taxFreeNotAppliedBelowMinimum") : numericPlan ? `${t(numericPlan.benefitLabelKey)}: ${formatCurrency(numericPlan.benefitAmount, rule.currency as CurrencyCode, language)}. ${t(numericPlan.disclaimerKey)}` : t("taxCalc.unsupportedCountry")
             : includeTaxFree
               ? t("taxCalc.unsupportedCountry")
               : t("priceCalc.taxFreeNotIncluded")}
@@ -256,6 +251,8 @@ const styles = StyleSheet.create({
     color: "#D8DEE9",
     lineHeight: 22,
   },
+  warningBox: { backgroundColor: "#FFF4E5", borderRadius: 14, padding: 12, marginBottom: 12 },
+  warningText: { color: "#8A4B08", fontSize: 13, lineHeight: 19 },
   card: {
     backgroundColor: "#FFFFFF",
     borderRadius: 24,

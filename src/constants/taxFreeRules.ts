@@ -101,13 +101,14 @@ export function getTaxFreePolicySummaryKey(rule: TaxFreeRule, date = new Date())
   switch (rule.refundPolicy.mode) {
     case "official_formula": return "taxCalc.officialFormulaSummary";
     case "official_refund_table": return "taxCalc.officialRefundTable";
-    case "point_of_sale_exemption": return isPointOfSalePolicyActive(rule.refundPolicy, date) ? "taxCalc.pointOfSaleExemption" : "taxCalc.noSourcedNetRate";
+    case "point_of_sale_exemption": return isPointOfSalePolicyActive(rule.refundPolicy, date) ? "taxCalc.pointOfSaleExemption" : "taxCalc.futureRegimeNoEstimate";
     default: return "taxCalc.maximumBeforeFeesRate";
   }
 }
 
 export function getRefundPolicyValidationErrors(policy: TaxFreeRefundPolicy): string[] {
   const errors: string[] = [];
+  if (!policy.source.url.trim() || !policy.source.name.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(policy.source.checkedDate)) errors.push("refund policy source is incomplete");
   if (policy.mode === "provider_dependent_upper_bound") {
     if ("estimatedNetRefund" in policy) errors.push("upper-bound policy contains a net refund");
   } else if (policy.mode === "official_formula") {
