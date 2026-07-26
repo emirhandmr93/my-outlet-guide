@@ -56,6 +56,15 @@ const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
 const homeTabBarClearanceGap = 72;
 
+function isAbortError(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "name" in error &&
+    error.name === "AbortError"
+  );
+}
+
 type HomeRouteItem = {
   id: string;
   title: string;
@@ -530,7 +539,11 @@ export function HomeScreen() {
               message: `${t("home.shareMessage")}\n\n${appStoreDownloadUrl}`,
             },
       );
-    } catch {
+    } catch (error: unknown) {
+      if (Platform.OS === "web" && isAbortError(error)) {
+        return;
+      }
+
       Alert.alert(t("common.error"), t("common.notAvailable"));
     }
   }
