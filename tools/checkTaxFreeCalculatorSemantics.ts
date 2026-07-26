@@ -3,7 +3,7 @@ import { currencies } from "../src/constants/currencies";
 import { countries } from "../src/constants/countries";
 import { getRefundPolicyValidationErrors, getTaxFreePolicySummaryKey, getTaxFreeRule, TaxFreeRule, TaxFreeSource, taxFreeRules } from "../src/constants/taxFreeRules";
 import { resolveTranslation } from "../src/i18n/translationResolver";
-import { calculateTaxFreeEstimate, getTaxFreeDisplayPlan, hasNumericTaxFreePlan } from "../src/services/taxFreeCalculatorService";
+import { calculateTaxFreeEstimate, getTaxFreeDisplayPlan, getTaxFreeMetadataPlan, hasNumericTaxFreePlan } from "../src/services/taxFreeCalculatorService";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../src/utils/localization";
 
 const read = (path: string) => readFileSync(path, "utf8");
@@ -68,6 +68,14 @@ assert(franceAtMinimum.kind === "below_minimum", "Price Advantage minimum failur
 assert(!guideScreen.includes("taxFreeRules[0]") && !guideScreen.includes('t(getTaxFreePolicySummaryKey(rule))</Text><Text') && guideScreen.includes("maximumRefundBeforeFees"), "Guide has no fallback or literal %{rate} heading.");
 assert(resolveTranslation("tr", "taxGuide.taxFreeProcess") === "Tax Free süreci" && !resolveTranslation("tr", "taxGuide.taxFreeProcess").toLocaleLowerCase("tr").includes("iade"), "Active POS Guide heading is mode-neutral in Turkish.");
 assert(getTaxFreePolicySummaryKey(japan, cutoff) === "taxCalc.futureRegimeNoEstimate", "Tax Calculator empty amount resolves Japan metadata to the future-regime state.");
+const futureEmptyMetadata = getTaxFreeMetadataPlan(japan, false, cutoff);
+const futureAmountMetadata = getTaxFreeMetadataPlan(japan, true, cutoff);
+const activeJapanMetadata = getTaxFreeMetadataPlan(japan, false, new Date("2026-10-31T14:59:59.999Z"));
+const franceMetadata = getTaxFreeMetadataPlan(france, false, cutoff);
+assert(futureEmptyMetadata.isFutureRegime && futureEmptyMetadata.messageKey === "taxCalc.futureRegimeNoEstimate", "Japan future metadata hides legacy details and shows one message for an empty amount.");
+assert(futureAmountMetadata.isFutureRegime && futureAmountMetadata.messageKey === undefined, "Japan future metadata does not repeat the message after an amount warning.");
+assert(!activeJapanMetadata.isFutureRegime && activeJapanMetadata.messageKey === undefined, "Japan active regime keeps minimum and POS metadata.");
+assert(!franceMetadata.isFutureRegime && franceMetadata.messageKey === undefined, "France and other country metadata remains unchanged.");
 assert(/numericEuropePrice <= 0[\s\S]*\? null/.test(priceScreen) && /!rule[\s\S]*unsupportedCountry/.test(priceScreen), "Price Advantage does not label a supported country with an empty price as unsupported.");
 assert(/policySummaryKey === "taxCalc.futureRegimeNoEstimate"[\s\S]*noteCard/.test(guideScreen) && /policySummaryKey === "taxCalc.futureRegimeNoEstimate"[\s\S]*futureRegimeNoEstimate/.test(taxCard), "Guide and Tax Free Card isolate the future regime from old minimum and POS detail blocks.");
 assert(/conversionUnavailable/.test(taxScreen + smartScreen) && /currency\.unavailableShort/.test(taxScreen + smartScreen), "FX failure preserves local results and shows an unavailable conversion.");

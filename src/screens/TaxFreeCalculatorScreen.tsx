@@ -6,7 +6,7 @@ import { CountrySelector } from "../components/CountrySelector";
 import { CurrencySelector } from "../components/CurrencySelector";
 import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
-import { getTaxFreePolicySummaryKey, getTaxFreeRule } from "../constants/taxFreeRules";
+import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
 import {
   convertCurrency,
@@ -17,11 +17,13 @@ import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/loca
 import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
 import {
   getTaxFreeDisplayPlan,
+  getTaxFreeMetadataPlan,
   hasNumericTaxFreePlan,
   parsePurchaseAmount,
 } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
+
 
 export function TaxFreeCalculatorScreen() {
   const [amount, setAmount] = useState("");
@@ -51,6 +53,7 @@ export function TaxFreeCalculatorScreen() {
     hasAmount && (!Number.isFinite(parsedAmount) || parsedAmount <= 0);
   const displayPlan = rule && hasAmount && !isInvalidAmount ? getTaxFreeDisplayPlan(parsedAmount, rule) : undefined;
   const numericPlan = hasNumericTaxFreePlan(displayPlan) ? displayPlan : undefined;
+  const metadataPlan = rule ? getTaxFreeMetadataPlan(rule, displayPlan?.kind === "no_numeric_estimate") : undefined;
   const estimateRefund = numericPlan?.benefitAmount;
   const estimateCost = numericPlan?.costAmount;
   const displayCurrency = rule?.currency ?? selectedCountry.currency;
@@ -301,12 +304,18 @@ export function TaxFreeCalculatorScreen() {
             <Text style={styles.metaTitle}>{t("taxCalc.sourceTitle")}</Text>
             <Text style={styles.metaText}>{rule.schemeSource.name} • {rule.schemeSource.checkedDate}</Text>
 
-            {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" && rule.minimumPurchaseSource ? (
-              <Text style={styles.metaText}>{t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}) • {rule.minimumPurchaseSource.name} • {rule.minimumPurchaseSource.checkedDate}</Text>
-            ) : <Text style={styles.metaText}>{t(getMinimumPurchaseTextKey(rule))}</Text>}
-            <Text style={styles.metaText}>{t("taxCalc.standardVatBasis")}</Text>
-            {displayPlan?.kind !== "no_numeric_estimate" ? (
-              <Text style={styles.metaNote}>{t(numericPlan?.disclaimerKey ?? (rule.refundPolicy.mode === "point_of_sale_exemption" ? getTaxFreePolicySummaryKey(rule) === "taxCalc.futureRegimeNoEstimate" ? "taxCalc.futureRegimeNoEstimate" : "taxCalc.pointOfSaleDisclaimer" : "taxCalc.finalDisclaimer"))}</Text>
+            {!metadataPlan?.isFutureRegime ? (
+              <>
+                {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" && rule.minimumPurchaseSource ? (
+                  <Text style={styles.metaText}>{t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}) • {rule.minimumPurchaseSource.name} • {rule.minimumPurchaseSource.checkedDate}</Text>
+                ) : <Text style={styles.metaText}>{t(getMinimumPurchaseTextKey(rule))}</Text>}
+                <Text style={styles.metaText}>{t("taxCalc.standardVatBasis")}</Text>
+              </>
+            ) : null}
+            {metadataPlan?.messageKey ? (
+              <Text style={styles.metaNote}>{t(metadataPlan.messageKey)}</Text>
+            ) : !metadataPlan?.isFutureRegime && displayPlan?.kind !== "no_numeric_estimate" ? (
+              <Text style={styles.metaNote}>{t(numericPlan?.disclaimerKey ?? (rule.refundPolicy.mode === "point_of_sale_exemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.finalDisclaimer"))}</Text>
             ) : null}
           </View>
         )}

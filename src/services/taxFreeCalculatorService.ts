@@ -1,4 +1,4 @@
-import { isPointOfSalePolicyActive, TaxFreeRule } from "../constants/taxFreeRules";
+import { getTaxFreePolicySummaryKey, isPointOfSalePolicyActive, TaxFreeRule } from "../constants/taxFreeRules";
 
 type EstimateBase = { grossAmount: number; netAmount: number; vatPortion: number; sourceUrl: string };
 type FormulaAssumptionKey = "taxCalc.oneTagAssumption" | "taxCalc.standardRateProductAssumption";
@@ -69,4 +69,13 @@ export function getTaxFreeDisplayPlan(grossAmount: number, rule: TaxFreeRule, ca
 
 export function hasNumericTaxFreePlan(plan: TaxFreeDisplayPlan | undefined): plan is Extract<TaxFreeDisplayPlan, { benefitAmount: number }> {
   return !!plan && "benefitAmount" in plan;
+}
+
+export function getTaxFreeMetadataPlan(rule: TaxFreeRule, hasFutureWarning: boolean, date = new Date()) {
+  const policySummaryKey = getTaxFreePolicySummaryKey(rule, date);
+  const isFutureRegime = policySummaryKey === "taxCalc.futureRegimeNoEstimate";
+  return {
+    isFutureRegime,
+    messageKey: isFutureRegime && !hasFutureWarning ? "taxCalc.futureRegimeNoEstimate" as const : undefined,
+  };
 }
