@@ -20,7 +20,7 @@ import {
   CurrencyCode,
   formatCurrency,
 } from "../services/exchangeRateService";
-import { calculateTaxFreeEstimate, getEstimateCostAmount, getEstimateRefundAmount } from "../services/taxFreeCalculatorService";
+import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 import { formatPriceAdvantage } from "../utils/priceAdvantage";
@@ -56,19 +56,28 @@ export function PriceAdvantageCalculatorScreen() {
     rule && numericEuropePrice > 0
       ? calculateTaxFreeEstimate(numericEuropePrice, rule)
       : undefined;
-  const refund = includeTaxFree && estimate ? (getEstimateRefundAmount(estimate) ?? 0) : 0;
-  const netEuropeCost = includeTaxFree && estimate ? (getEstimateCostAmount(estimate) ?? numericEuropePrice) : numericEuropePrice;
+  const appliedEstimate = includeTaxFree ? estimate : undefined;
+  const comparison = (() => {
+    if (!appliedEstimate) return { cost: numericEuropePrice, semantic: "raw" as const };
+    switch (appliedEstimate.kind) {
+      case "upper_bound": return { cost: appliedEstimate.bestCaseCostBeforeFees, benefit: appliedEstimate.maximumRefundBeforeFees, semantic: "upper_bound" as const };
+      case "net_estimate": return { cost: appliedEstimate.estimatedCostAfterRefund, benefit: appliedEstimate.estimatedNetRefund, semantic: "net_estimate" as const };
+      case "point_of_sale_exemption": return { cost: appliedEstimate.estimatedCostAfterExemption, benefit: appliedEstimate.estimatedTaxSaving, semantic: "point_of_sale_exemption" as const };
+      case "no_numeric_estimate": return { cost: numericEuropePrice, semantic: "no_numeric_estimate" as const };
+    }
+  })();
+  const comparisonCost = comparison.cost;
   const [convertedEuropeCost, setConvertedEuropeCost] = useState<number | null>(null);
 
   useEffect(() => {
     let active = true;
 
-    if (netEuropeCost <= 0) {
+    if (comparisonCost <= 0) {
       setConvertedEuropeCost(null);
       return;
     }
 
-    convertCurrency(netEuropeCost, selectedCountry.currency as CurrencyCode, selectedCurrency)
+    convertCurrency(comparisonCost, selectedCountry.currency as CurrencyCode, selectedCurrency)
       .then((result) => {
         if (active) {
           setConvertedEuropeCost(result.convertedAmount);
@@ -83,7 +92,7 @@ export function PriceAdvantageCalculatorScreen() {
     return () => {
       active = false;
     };
-  }, [netEuropeCost, selectedCountry.currency, selectedCurrency]);
+  }, [comparisonCost, selectedCountry.currency, selectedCurrency]);
 
   const savings = convertedEuropeCost === null ? 0 : numericLocalPrice - convertedEuropeCost;
   const hasSavings = savings > 0;
@@ -189,7 +198,7 @@ export function PriceAdvantageCalculatorScreen() {
         </TouchableOpacity>
 
         <View style={styles.resultBox}>
-          <Text style={styles.resultLabel}>{t("priceCalc.countryNetCost").replace("{country}", getLocalizedCountryName(selectedCountry, language))}</Text>
+          <Text style={styles.resultLabel}>{t(comparison.semantic === "upper_bound" ? "taxCalc.bestCaseCostBeforeFees" : comparison.semantic === "point_of_sale_exemption" ? "taxCalc.costAfterExemption" : comparison.semantic === "no_numeric_estimate" || comparison.semantic === "raw" ? "priceCalc.countryPriceRaw" : "priceCalc.countryNetCost").replace("{country}", getLocalizedCountryName(selectedCountry, language))}</Text>
           <Text style={styles.resultValue}>
             {convertedEuropeCost === null
             ? t("currency.unavailableShort")
@@ -201,7 +210,7 @@ export function PriceAdvantageCalculatorScreen() {
           style={[styles.highlightBox, !hasSavings && styles.highlightBoxMuted]}
         >
           <Text style={styles.highlightLabel}>
-            {hasSavings ? t("priceCalc.youSave") : t("priceCalc.noSavings")}
+            {comparison.semantic === "upper_bound" ? t("priceCalc.maximumPossibleAdvantageBeforeFees") : hasSavings ? t("priceCalc.youSave") : t("priceCalc.noSavings")}
           </Text>
           <Text style={styles.highlightValue}>
             {formatPriceAdvantage(savings, selectedCurrency, language)}
@@ -210,7 +219,7 @@ export function PriceAdvantageCalculatorScreen() {
 
         <Text style={styles.note}>
           {includeTaxFree && rule
-            ? estimate?.kind === "no_numeric_estimate" ? t("taxCalc.noSourcedNetRate") : `${t(estimate?.kind === "upper_bound" ? "taxCalc.maximumRefundBeforeFees" : estimate?.kind === "point_of_sale_exemption" ? "taxCalc.estimatedTaxSaving" : "taxCalc.estimatedNetRefund")}: ${formatCurrency(refund, rule.currency as CurrencyCode)}. ${t(estimate?.kind === "upper_bound" ? "taxCalc.upperBoundDisclaimer" : "taxCalc.finalDisclaimer")}`
+            ? estimate?.kind === "no_numeric_estimate" ? t("taxCalc.taxFreeNotAppliedNoNumeric") : `${t(estimate?.kind === "upper_bound" ? "taxCalc.maximumRefundBeforeFees" : estimate?.kind === "point_of_sale_exemption" ? "taxCalc.estimatedTaxSaving" : "taxCalc.estimatedNetRefund")}: ${formatCurrency(comparison.benefit ?? 0, rule.currency as CurrencyCode)}. ${t(estimate?.kind === "upper_bound" ? "taxCalc.upperBoundDisclaimer" : "taxCalc.finalDisclaimer")}`
             : includeTaxFree
               ? t("taxCalc.unsupportedCountry")
               : t("priceCalc.taxFreeNotIncluded")}

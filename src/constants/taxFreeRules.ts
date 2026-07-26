@@ -6,11 +6,21 @@ export type MinimumPurchaseComparison = "at_least" | "greater_than";
 
 export type TaxFreeSource = { url: string; name: string; checkedDate: string };
 
+export type OfficialFormulaPolicy =
+  | { mode: "official_formula"; formula: "uae_vat_85_minus_tag_fee"; source: TaxFreeSource; assumptionKey: "taxCalc.oneTagAssumption" }
+  | { mode: "official_formula"; formula: "china_standard_rate"; source: TaxFreeSource; assumptionKey: "taxCalc.standardRateProductAssumption" };
+
+export type RefundTableBracket = {
+  minimumGrossInclusive: number;
+  maximumGrossExclusive: number;
+  refund: number;
+};
+
 export type TaxFreeRefundPolicy =
   | { mode: "provider_dependent_upper_bound"; source: TaxFreeSource }
-  | { mode: "official_formula"; formula: "uae_vat_85_minus_tag_fee" | "china_standard_rate"; source: TaxFreeSource; assumptionKey: "taxCalc.oneTagAssumption" | "taxCalc.standardRateProductAssumption" }
-  | { mode: "official_refund_table"; brackets: ReadonlyArray<{ minimumGross: number; maximumGross: number; refund: number }>; source: TaxFreeSource }
-  | { mode: "point_of_sale_exemption"; validThrough: string; refundRegimeStarts: string; source: TaxFreeSource };
+  | OfficialFormulaPolicy
+  | { mode: "official_refund_table"; brackets: ReadonlyArray<RefundTableBracket>; source: TaxFreeSource; assumptionKey?: string }
+  | { mode: "point_of_sale_exemption"; validThrough: string; refundRegimeStarts: string; timeZone: "Asia/Tokyo"; source: TaxFreeSource };
 
 export type TaxFreeRule = {
   countryCode: string;
@@ -36,7 +46,7 @@ const euVatSource: TaxFreeSource = { url: euVatRatesUrl, name: "European Commiss
 const euNotes = "European Commission VAT rate reference. Confirm tourist-retail eligibility and retailer participation before purchase; the estimate is the maximum VAT component before operator and administration fees.";
 
 export const taxFreeRules: TaxFreeRule[] = [
-  { countryCode: "JP", countryName: "Japan", countryId: "japan", currency: "JPY", vatRate: 10, minimumPurchaseAmount: 5000, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "point_of_sale_exemption", validThrough: "2026-10-31", refundRegimeStarts: "2026-11-01", source: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html", name: "Japan Tourism Agency — refund-system transition", checkedDate } }, schemeSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, vatRateSource: { url: "https://www.nta.go.jp/english/taxes/consumption_tax/01.htm", name: "Japan National Tax Agency", checkedDate }, minimumPurchaseSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, notes: "Eligible tourists may receive tax exemption at participating stores. The same-store, same-day minimum is JPY 5,000 excluding tax; store participation must be confirmed." },
+  { countryCode: "JP", countryName: "Japan", countryId: "japan", currency: "JPY", vatRate: 10, minimumPurchaseAmount: 5000, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "point_of_sale_exemption", validThrough: "2026-10-31", refundRegimeStarts: "2026-11-01", timeZone: "Asia/Tokyo", source: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html", name: "Japan Tourism Agency — refund-system transition", checkedDate } }, schemeSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, vatRateSource: { url: "https://www.nta.go.jp/english/taxes/consumption_tax/01.htm", name: "Japan National Tax Agency", checkedDate }, minimumPurchaseSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, notes: "Eligible tourists may receive tax exemption at participating stores. The same-store, same-day minimum is JPY 5,000 excluding tax; store participation must be confirmed." },
   { countryCode: "KR", countryName: "South Korea", countryId: "south-korea", currency: "KRW", vatRate: 10, minimumPurchaseAmount: 15000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=929&vcontsId=248765", name: "Korea Tourism Organization / VISITKOREA", checkedDate } }, schemeSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=929&vcontsId=248765", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, vatRateSource: { url: "https://www.investkorea.org/file/ik-en/252025Taxation_in_Korea.pdf", name: "Invest KOREA / KOTRA", checkedDate }, minimumPurchaseSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=929&vcontsId=248765", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, notes: "Participating stores may provide immediate refunds from KRW 15,000; retailer participation and official eligibility conditions apply." },
   { countryCode: "TH", countryName: "Thailand", countryId: "thailand", currency: "THB", vatRate: 7, minimumPurchaseAmount: 2000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate } }, schemeSource: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate }, vatRateSource: { url: "https://www.rd.go.th/english/6043.html", name: "Thailand Revenue Department", checkedDate }, minimumPurchaseSource: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate }, notes: "VAT Refund for Tourists requires at least THB 2,000 including VAT from the same store on the same day and participating-store documentation." },
   { countryCode: "CN", countryName: "China", countryId: "china", currency: "CNY", vatRate: 13, minimumPurchaseAmount: 200, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240071/content.html", name: "State Taxation Administration", checkedDate } }, schemeSource: { url: "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240071/content.html", name: "State Taxation Administration", checkedDate }, vatRateSource: { url: "https://fgk.chinatax.gov.cn/zcfgk/c100016/c5248161/content.html", name: "State Taxation Administration", checkedDate }, minimumPurchaseSource: { url: "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5240071/content.html", name: "State Taxation Administration", checkedDate }, notes: "Official departure tax-refund policy; CNY 200 is modeled only for the official refund-shopping minimum." },
@@ -77,11 +87,53 @@ export function getMaximumRefundRate(rule: TaxFreeRule) {
   return rule.vatRate / (100 + rule.vatRate) * 100;
 }
 
-export function getTaxFreePolicySummaryKey(rule: TaxFreeRule) {
+export function getDateInTimeZone(date: Date, timeZone: string) {
+  const parts = new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(date);
+  const get = (type: "year" | "month" | "day") => parts.find((part) => part.type === type)?.value ?? "";
+  return `${get("year")}-${get("month")}-${get("day")}`;
+}
+
+export function isPointOfSalePolicyActive(policy: Extract<TaxFreeRefundPolicy, { mode: "point_of_sale_exemption" }>, date = new Date()) {
+  return getDateInTimeZone(date, policy.timeZone) < policy.refundRegimeStarts;
+}
+
+export function getTaxFreePolicySummaryKey(rule: TaxFreeRule, date = new Date()) {
   switch (rule.refundPolicy.mode) {
     case "official_formula": return "taxCalc.officialFormulaSummary";
     case "official_refund_table": return "taxCalc.officialRefundTable";
-    case "point_of_sale_exemption": return "taxCalc.pointOfSaleExemption";
+    case "point_of_sale_exemption": return isPointOfSalePolicyActive(rule.refundPolicy, date) ? "taxCalc.pointOfSaleExemption" : "taxCalc.noSourcedNetRate";
     default: return "taxCalc.maximumBeforeFeesRate";
   }
+}
+
+export function getRefundPolicyValidationErrors(policy: TaxFreeRefundPolicy): string[] {
+  const errors: string[] = [];
+  if (policy.mode === "provider_dependent_upper_bound") {
+    if ("estimatedNetRefund" in policy) errors.push("upper-bound policy contains a net refund");
+  } else if (policy.mode === "official_formula") {
+    if (policy.formula === "uae_vat_85_minus_tag_fee" && policy.assumptionKey !== "taxCalc.oneTagAssumption") errors.push("UAE formula assumption mismatch");
+    if (policy.formula === "china_standard_rate" && policy.assumptionKey !== "taxCalc.standardRateProductAssumption") errors.push("China formula assumption mismatch");
+  } else if (policy.mode === "official_refund_table") {
+    if (policy.brackets.length === 0) errors.push("refund table is empty");
+    policy.brackets.forEach((bracket, index) => {
+      const values = [bracket.minimumGrossInclusive, bracket.maximumGrossExclusive, bracket.refund];
+      if (values.some((value) => !Number.isFinite(value) || value <= 0)) errors.push(`refund table bracket ${index} has non-positive or non-finite values`);
+      if (bracket.minimumGrossInclusive >= bracket.maximumGrossExclusive) errors.push(`refund table bracket ${index} has an invalid range`);
+      if (bracket.refund > bracket.minimumGrossInclusive) errors.push(`refund table bracket ${index} exceeds its gross range`);
+      if (index > 0 && policy.brackets[index - 1].maximumGrossExclusive > bracket.minimumGrossInclusive) errors.push(`refund table bracket ${index} overlaps or is unsorted`);
+    });
+  } else {
+    const validDate = (value: string) => {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+      const date = new Date(`${value}T00:00:00.000Z`);
+      return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
+    };
+    if (!validDate(policy.validThrough) || !validDate(policy.refundRegimeStarts)) errors.push("point-of-sale dates are invalid");
+    else {
+      const nextDay = new Date(`${policy.validThrough}T00:00:00.000Z`);
+      nextDay.setUTCDate(nextDay.getUTCDate() + 1);
+      if (nextDay.toISOString().slice(0, 10) !== policy.refundRegimeStarts) errors.push("point-of-sale dates are not consecutive");
+    }
+  }
+  return errors;
 }

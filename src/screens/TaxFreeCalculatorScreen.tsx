@@ -19,8 +19,6 @@ import {
   calculateTaxFreeEstimate,
   isBelowMinimumPurchase,
   parsePurchaseAmount,
-  getEstimateRefundAmount,
-  getEstimateCostAmount,
 } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
@@ -56,8 +54,17 @@ export function TaxFreeCalculatorScreen() {
       ? calculateTaxFreeEstimate(parsedAmount, rule)
       : undefined;
 
-  const estimateRefund = estimate ? getEstimateRefundAmount(estimate) : undefined;
-  const estimateCost = estimate ? getEstimateCostAmount(estimate) : undefined;
+  const estimateAmounts = (() => {
+    if (!estimate) return undefined;
+    switch (estimate.kind) {
+      case "upper_bound": return { refund: estimate.maximumRefundBeforeFees, cost: estimate.bestCaseCostBeforeFees };
+      case "net_estimate": return { refund: estimate.estimatedNetRefund, cost: estimate.estimatedCostAfterRefund };
+      case "point_of_sale_exemption": return { refund: estimate.estimatedTaxSaving, cost: estimate.estimatedCostAfterExemption };
+      case "no_numeric_estimate": return undefined;
+    }
+  })();
+  const estimateRefund = estimateAmounts?.refund;
+  const estimateCost = estimateAmounts?.cost;
   const displayCurrency = rule?.currency ?? selectedCountry.currency;
   const selectedCountryDisplayName = getLocalizedCountryName(selectedCountry, language);
   const selectedCurrencyDisplayName = getLocalizedCurrencyName(selectedCurrencyInfo, language);
@@ -66,7 +73,7 @@ export function TaxFreeCalculatorScreen() {
   const isBelowMinimum =
     !!rule && !!estimate && isBelowMinimumPurchase(estimate.grossAmount, rule);
   const shouldShowConvertedResults =
-    !!rule && selectedCurrency !== rule.currency && !!estimate && !isBelowMinimum;
+    !!rule && selectedCurrency !== rule.currency && estimateRefund !== undefined && estimateCost !== undefined && !isBelowMinimum;
   const [convertedRefund, setConvertedRefund] = useState<number | null>(null);
   const [convertedCostAfterRefund, setConvertedCostAfterRefund] = useState<number | null>(null);
   const [conversionUnavailable, setConversionUnavailable] = useState(false);
@@ -74,7 +81,7 @@ export function TaxFreeCalculatorScreen() {
   useEffect(() => {
     let active = true;
 
-    if (!rule || !estimate || !shouldShowConvertedResults) {
+    if (!rule || !shouldShowConvertedResults || estimateRefund === undefined || estimateCost === undefined) {
       setConvertedRefund(null);
       setConvertedCostAfterRefund(null);
       setConversionUnavailable(false);
@@ -83,12 +90,12 @@ export function TaxFreeCalculatorScreen() {
 
     Promise.all([
       convertCurrency(
-        estimateRefund!,
+        estimateRefund,
         rule.currency,
         selectedCurrency,
       ),
       convertCurrency(
-        estimateCost!,
+        estimateCost,
         rule.currency,
         selectedCurrency,
       ),
@@ -228,6 +235,10 @@ export function TaxFreeCalculatorScreen() {
           </View>
         )}
 
+        {rule && estimate?.kind === "no_numeric_estimate" && !isBelowMinimum ? (
+          <View style={styles.warningBox}><Text style={styles.warningText}>{t("taxCalc.noSourcedNetRate")}</Text></View>
+        ) : null}
+
         {rule && estimate && !isBelowMinimum && estimateRefund !== undefined && estimateCost !== undefined && (
           <>
             <View style={styles.resultGrid}>
@@ -237,7 +248,7 @@ export function TaxFreeCalculatorScreen() {
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(
-                    estimateRefund!,
+                    estimateRefund,
                     rule.currency,
                     language,
                   )}
@@ -250,7 +261,7 @@ export function TaxFreeCalculatorScreen() {
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(
-                    estimateCost!,
+                    estimateCost,
                     rule.currency,
                     language,
                   )}

@@ -1,6 +1,6 @@
 import { countries } from "../src/constants/countries";
 import { outlets } from "../src/constants/outlets";
-import { TaxFreeRule, taxFreeRules } from "../src/constants/taxFreeRules";
+import { getRefundPolicyValidationErrors, TaxFreeRule, taxFreeRules } from "../src/constants/taxFreeRules";
 import { isBelowMinimumPurchase } from "../src/services/taxFreeCalculatorService";
 import {
   normalizeTaxFreeCountryStatus,
@@ -108,7 +108,8 @@ for (const rule of taxFreeRules) {
   )
     fail(`rule values ${rule.countryId}`);
   if (!isCompleteSource(rule.refundPolicy.source)) fail(`refund policy source ${rule.countryId}`);
-  if (rule.refundPolicy.mode === "provider_dependent_upper_bound" && "estimatedNetRefund" in rule.refundPolicy) fail(`upper bound net field ${rule.countryId}`);
+  const policyErrors = getRefundPolicyValidationErrors(rule.refundPolicy);
+  if (policyErrors.length) fail(`refund policy ${rule.countryId}: ${policyErrors.join(", ")}`);
   if (
     !isCompleteSource(rule.schemeSource) ||
     !isCompleteSource(rule.vatRateSource) ||
