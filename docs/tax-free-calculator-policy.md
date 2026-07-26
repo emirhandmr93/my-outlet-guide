@@ -1,38 +1,10 @@
-# Tax Free Calculator Policy
+# Tax Free calculator policy
 
-Phase 1A implements a source-backed estimator only. The calculator must not use fake refund rates, mock provider fees, placeholder calculations, or guaranteed refund language.
+Tax Free calculations use a sourced, discriminated policy. The standard VAT component is never presented as a net refund.
 
-## Supported data fields
+- `provider_dependent_upper_bound` returns only the VAT component embedded in the gross price as `maximumRefundBeforeFees`, plus a clearly labelled best-case cost. Store, operator, payment-method, product-tax-class and processing charges can reduce the result.
+- `official_formula` may return a net estimate only when the official formula and its assumptions have been verified.
+- `official_refund_table` selects an amount from a complete, verified official table and otherwise returns no numeric result.
+- `point_of_sale_exemption` represents tax saved at checkout rather than a cash refund. Japan's current treatment expires on 2026-10-31; from 2026-11-01 the calculator returns a safe nonnumeric result until the new regime is sourced.
 
-Each bundled rule must include:
-
-- `countryCode`
-- `countryName`
-- `currency`
-- `vatRate`
-- `sourceUrl`
-- `sourceName`
-- `effectiveDate`
-- `notes`
-
-Optional fields are allowed only when source-backed:
-
-- `minimumPurchaseAmount`
-- `providerFeeRate`
-
-## Formula
-
-Input is the gross purchase amount in the selected country's currency.
-
-- `net = gross / (1 + vatRate)`
-- `vatPortion = gross - net`
-- If a source-backed provider fee is available: `estimatedRefund = vatPortion * (1 - providerFeeRate)`
-- If no source-backed provider fee is available, show the estimated VAT portion before provider/store fees and do not show a final refund amount.
-
-## Disclaimer
-
-The refund is an estimate. Actual refund depends on store, operator/provider, country rules, fees, and eligibility.
-
-## Unsupported countries
-
-Countries without source-backed bundled rules must not calculate. The UI must show an unsupported-country state and explain that reliable source-backed tax-free data is not available in the app for that country.
+The UAE, China and Thailand pages could not be retrieved during this change, so their values were not inferred: they remain provider-dependent upper bounds. No global provider or processing fee is modeled. VAT rates remain internal inputs for gross-price VAT extraction, minimum-spend comparisons, and integrity validation.

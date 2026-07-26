@@ -2,7 +2,7 @@ import { StyleSheet, Text } from "react-native";
 
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
-import { TaxFreeRule } from "../../constants/taxFreeRules";
+import { getMaximumRefundRate, getTaxFreePolicySummaryKey, TaxFreeRule } from "../../constants/taxFreeRules";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatCurrency } from "../../services/exchangeRateService";
 import {
@@ -26,6 +26,7 @@ export function TaxFreeCard({
   officeInfo,
 }: TaxFreeCardProps) {
   const { t, language } = useTranslation();
+  const policySummaryKey = rule ? getTaxFreePolicySummaryKey(rule) : undefined;
   const shouldShowOfficeInfo =
     hasDisplayValue(officeInfo) &&
     (language !== "tr" || (officeInfo?.length ?? 0) <= 90);
@@ -45,27 +46,27 @@ export function TaxFreeCard({
         <Text style={styles.text}>{t("taxFree.notVerifiedExplanation")}</Text>
       ) : null}
 
-      {rule ? (
-        <>
-          <Text style={styles.text}>
-            {t("taxCalc.vatRate")}: {rule.vatRate}%
-          </Text>
-          {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
+      {rule && (taxFreeStatus === "outlet_verified" || taxFreeStatus === "country_scheme_available") ? (
+        policySummaryKey === "taxCalc.futureRegimeNoEstimate" ? (
+          <Text style={styles.text}>{t("taxCalc.futureRegimeNoEstimate")}</Text>
+        ) : (
+          <>
             <Text style={styles.text}>
-              {t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(
-                rule.minimumPurchaseAmount,
-                rule.currency,
-                language,
-              )} ({t(getMinimumPurchaseTextKey(rule))})
+              {rule.refundPolicy.mode === "provider_dependent_upper_bound"
+                ? t(policySummaryKey!).replace("%{rate}", `${getMaximumRefundRate(rule).toFixed(1)}%`)
+                : t(policySummaryKey!)}
             </Text>
-          ) : (
-            <Text style={styles.text}>{t(getMinimumPurchaseTextKey(rule))}</Text>
-          )}
-          <Text style={styles.text}>{t("taxCalc.finalDisclaimer")}</Text>
-        </>
+            {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
+              <Text style={styles.text}>
+                {t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))})
+              </Text>
+            ) : <Text style={styles.text}>{t(getMinimumPurchaseTextKey(rule))}</Text>}
+            <Text style={styles.text}>{t(rule.refundPolicy.mode === "point_of_sale_exemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.finalDisclaimer")}</Text>
+          </>
+        )
       ) : null}
 
-      {shouldShowOfficeInfo && taxFreeStatus === "outlet_verified" ? (
+      {shouldShowOfficeInfo && taxFreeStatus === "outlet_verified" && policySummaryKey !== "taxCalc.futureRegimeNoEstimate" ? (
         <Text style={styles.text}>{officeInfo}</Text>
       ) : null}
     </Card>

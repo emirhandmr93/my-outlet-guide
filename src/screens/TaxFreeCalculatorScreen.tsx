@@ -16,12 +16,14 @@ import {
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
 import {
-  calculateTaxFreeEstimate,
-  isBelowMinimumPurchase,
+  getTaxFreeDisplayPlan,
+  getTaxFreeMetadataPlan,
+  hasNumericTaxFreePlan,
   parsePurchaseAmount,
 } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
+
 
 export function TaxFreeCalculatorScreen() {
   const [amount, setAmount] = useState("");
@@ -49,20 +51,19 @@ export function TaxFreeCalculatorScreen() {
   const hasAmount = typeof parsedAmount === "number";
   const isInvalidAmount =
     hasAmount && (!Number.isFinite(parsedAmount) || parsedAmount <= 0);
-  const estimate =
-    rule && hasAmount && !isInvalidAmount
-      ? calculateTaxFreeEstimate(parsedAmount, rule)
-      : undefined;
-
+  const displayPlan = rule && hasAmount && !isInvalidAmount ? getTaxFreeDisplayPlan(parsedAmount, rule) : undefined;
+  const numericPlan = hasNumericTaxFreePlan(displayPlan) ? displayPlan : undefined;
+  const metadataPlan = rule ? getTaxFreeMetadataPlan(rule, displayPlan?.kind === "no_numeric_estimate") : undefined;
+  const estimateRefund = numericPlan?.benefitAmount;
+  const estimateCost = numericPlan?.costAmount;
   const displayCurrency = rule?.currency ?? selectedCountry.currency;
   const selectedCountryDisplayName = getLocalizedCountryName(selectedCountry, language);
   const selectedCurrencyDisplayName = getLocalizedCurrencyName(selectedCurrencyInfo, language);
   const isCurrencyMismatch =
     !!rule && selectedCountry.currency !== rule.currency;
-  const isBelowMinimum =
-    !!rule && !!estimate && isBelowMinimumPurchase(estimate.grossAmount, rule);
+  const isBelowMinimum = displayPlan?.kind === "below_minimum";
   const shouldShowConvertedResults =
-    !!rule && selectedCurrency !== rule.currency && !!estimate && !isBelowMinimum;
+    !!rule && selectedCurrency !== rule.currency && estimateRefund !== undefined && estimateCost !== undefined && !isBelowMinimum;
   const [convertedRefund, setConvertedRefund] = useState<number | null>(null);
   const [convertedCostAfterRefund, setConvertedCostAfterRefund] = useState<number | null>(null);
   const [conversionUnavailable, setConversionUnavailable] = useState(false);
@@ -70,7 +71,7 @@ export function TaxFreeCalculatorScreen() {
   useEffect(() => {
     let active = true;
 
-    if (!rule || !estimate || !shouldShowConvertedResults) {
+    if (!rule || !shouldShowConvertedResults || estimateRefund === undefined || estimateCost === undefined) {
       setConvertedRefund(null);
       setConvertedCostAfterRefund(null);
       setConversionUnavailable(false);
@@ -79,12 +80,12 @@ export function TaxFreeCalculatorScreen() {
 
     Promise.all([
       convertCurrency(
-        estimate.estimatedTaxFreeRefund,
+        estimateRefund,
         rule.currency,
         selectedCurrency,
       ),
       convertCurrency(
-        estimate.estimatedCostAfterRefund,
+        estimateCost,
         rule.currency,
         selectedCurrency,
       ),
@@ -108,8 +109,8 @@ export function TaxFreeCalculatorScreen() {
       active = false;
     };
   }, [
-    estimate?.estimatedCostAfterRefund,
-    estimate?.estimatedTaxFreeRefund,
+    estimateCost,
+    estimateRefund,
     rule,
     selectedCurrency,
     shouldShowConvertedResults,
@@ -224,16 +225,20 @@ export function TaxFreeCalculatorScreen() {
           </View>
         )}
 
-        {rule && estimate && !isBelowMinimum && (
+        {rule && displayPlan?.kind === "no_numeric_estimate" ? (
+          <View style={styles.warningBox}><Text style={styles.warningText}>{t(displayPlan.messageKey)}</Text></View>
+        ) : null}
+
+        {rule && numericPlan && estimateRefund !== undefined && estimateCost !== undefined && (
           <>
             <View style={styles.resultGrid}>
               <View style={styles.resultBox}>
                 <Text style={styles.resultLabel}>
-                  {t("taxFree.maximumVatBeforeFees")}
+                  {t(numericPlan.benefitLabelKey)}
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(
-                    estimate.estimatedTaxFreeRefund,
+                    estimateRefund,
                     rule.currency,
                     language,
                   )}
@@ -242,11 +247,11 @@ export function TaxFreeCalculatorScreen() {
 
               <View style={styles.resultBox}>
                 <Text style={styles.resultLabel}>
-                  {t("taxCalc.estimatedCostAfterRefund")}
+                  {t(numericPlan.costLabelKey)}
                 </Text>
                 <Text style={styles.resultValue}>
                   {formatCurrency(
-                    estimate.estimatedCostAfterRefund,
+                    estimateCost,
                     rule.currency,
                     language,
                   )}
@@ -258,7 +263,7 @@ export function TaxFreeCalculatorScreen() {
               <View style={styles.convertedBox}>
                 <View style={styles.resultBox}>
                   <Text style={styles.resultLabel}>
-                    {t("taxCalc.convertedRefund")}
+                    {t(numericPlan.convertedBenefitLabelKey)}
                   </Text>
                   <Text style={styles.resultValue}>
                     {convertedRefund === null
@@ -271,7 +276,7 @@ export function TaxFreeCalculatorScreen() {
 
                 <View style={styles.resultBox}>
                   <Text style={styles.resultLabel}>
-                    {t("taxCalc.convertedCostAfterRefund")}
+                    {t(numericPlan.convertedCostLabelKey)}
                   </Text>
                   <Text style={styles.resultValue}>
                     {convertedCostAfterRefund === null
@@ -289,12 +294,7 @@ export function TaxFreeCalculatorScreen() {
             )}
 
             <View style={styles.highlightBox}>
-              <Text style={styles.highlightLabel}>
-                {t("taxCalc.actualRefundMayVary")}
-              </Text>
-              <Text style={styles.highlightValue}>
-                {t("taxCalc.notGuaranteedRefund")}
-              </Text>
+              <Text style={styles.highlightValue}>{t(numericPlan.disclaimerKey)}</Text>
             </View>
           </>
         )}
@@ -303,12 +303,20 @@ export function TaxFreeCalculatorScreen() {
           <View style={styles.metaBox}>
             <Text style={styles.metaTitle}>{t("taxCalc.sourceTitle")}</Text>
             <Text style={styles.metaText}>{rule.schemeSource.name} • {rule.schemeSource.checkedDate}</Text>
-            <Text style={styles.metaText}>{t("taxCalc.vatRate")}: {rule.vatRate}% • {rule.vatRateSource.name} • {rule.vatRateSource.checkedDate}</Text>
-            {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" && rule.minimumPurchaseSource ? (
-              <Text style={styles.metaText}>{t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}) • {rule.minimumPurchaseSource.name} • {rule.minimumPurchaseSource.checkedDate}</Text>
-            ) : <Text style={styles.metaText}>{t(getMinimumPurchaseTextKey(rule))}</Text>}
-            <Text style={styles.metaText}>{t("taxCalc.standardVatBasis")}</Text>
-            <Text style={styles.metaNote}>{t("taxCalc.finalDisclaimer")}</Text>
+
+            {!metadataPlan?.isFutureRegime ? (
+              <>
+                {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" && rule.minimumPurchaseSource ? (
+                  <Text style={styles.metaText}>{t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}) • {rule.minimumPurchaseSource.name} • {rule.minimumPurchaseSource.checkedDate}</Text>
+                ) : <Text style={styles.metaText}>{t(getMinimumPurchaseTextKey(rule))}</Text>}
+                <Text style={styles.metaText}>{t("taxCalc.standardVatBasis")}</Text>
+              </>
+            ) : null}
+            {metadataPlan?.messageKey ? (
+              <Text style={styles.metaNote}>{t(metadataPlan.messageKey)}</Text>
+            ) : !metadataPlan?.isFutureRegime && displayPlan?.kind !== "no_numeric_estimate" ? (
+              <Text style={styles.metaNote}>{t(numericPlan?.disclaimerKey ?? (rule.refundPolicy.mode === "point_of_sale_exemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.finalDisclaimer"))}</Text>
+            ) : null}
           </View>
         )}
       </View>

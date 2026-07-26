@@ -7,7 +7,7 @@ import { restaurants } from "../constants/restaurants";
 import { outlets } from "../constants/outlets";
 import { transportation } from "../constants/transportation";
 import { transportationGuides } from "../constants/transportationGuides";
-import { taxFreeRules } from "../constants/taxFreeRules";
+import { getRefundPolicyValidationErrors, taxFreeRules } from "../constants/taxFreeRules";
 
 export type MasterDataValidationIssue = {
   code: string;
@@ -374,7 +374,8 @@ const validateTaxFreeRules = (issues: MasterDataValidationIssue[]): void => {
     if (!isTaxFreeSourceComplete(rule.schemeSource) || !isTaxFreeSourceComplete(rule.vatRateSource) || !String(rule.notes ?? "").trim()) pushIssue(issues, "MISSING_TAX_FREE_RULE_SOURCE_FIELD", `Tax-free rule ${countryId} is missing source metadata.`, { businessName: countryId });
     if (rule.schemeSource?.url === euVatRatesUrl || rule.minimumPurchaseSource?.url === euVatRatesUrl) pushIssue(issues, "INVALID_TAX_FREE_SOURCE_ROLE", `EU VAT rates URL has an invalid role for ${countryId}.`, { businessName: countryId });
     if (typeof rule.vatRate !== "number" || !Number.isFinite(rule.vatRate) || rule.vatRate <= 0 || rule.vatRate > 100) pushIssue(issues, "INVALID_TAX_FREE_RULE_VAT_RATE", `Tax-free rule ${countryId} has an invalid VAT rate.`, { businessName: countryId });
-    if (rule.providerFeeRate !== undefined && (typeof rule.providerFeeRate !== "number" || !Number.isFinite(rule.providerFeeRate) || rule.providerFeeRate < 0 || rule.providerFeeRate >= 1)) pushIssue(issues, "INVALID_TAX_FREE_RULE_PROVIDER_FEE", `Tax-free rule ${countryId} has an invalid provider fee rate.`, { businessName: countryId });
+    if (!rule.refundPolicy || !isTaxFreeSourceComplete(rule.refundPolicy.source)) pushIssue(issues, "INVALID_TAX_FREE_REFUND_POLICY_SOURCE", `Tax-free rule ${countryId} has an incomplete refund policy source.`, { businessName: countryId });
+    else for (const error of getRefundPolicyValidationErrors(rule.refundPolicy)) pushIssue(issues, "INVALID_TAX_FREE_REFUND_POLICY", `Tax-free rule ${countryId}: ${error}.`, { businessName: countryId });
     const verified = rule.minimumPurchaseStatus === "verified_amount";
     const validMinimum = typeof rule.minimumPurchaseAmount === "number" && Number.isFinite(rule.minimumPurchaseAmount) && rule.minimumPurchaseAmount > 0 && rule.minimumPurchaseAmount !== .01 && (rule.minimumPurchaseBasis === "gross" || rule.minimumPurchaseBasis === "net") && (rule.minimumPurchaseComparison === "at_least" || rule.minimumPurchaseComparison === "greater_than") && isTaxFreeSourceComplete(rule.minimumPurchaseSource);
     const hasForbiddenMinimumFields = rule.minimumPurchaseAmount !== undefined || rule.minimumPurchaseBasis !== undefined || rule.minimumPurchaseComparison !== undefined || rule.minimumPurchaseSource !== undefined;

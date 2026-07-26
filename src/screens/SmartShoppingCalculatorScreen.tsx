@@ -6,17 +6,18 @@ import { CountrySelector } from "../components/CountrySelector";
 import { CurrencySelector } from "../components/CurrencySelector";
 import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
-import { getTaxFreeRule } from "../constants/taxFreeRules";
+import { getTaxFreePolicySummaryKey, getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
 import {
   convertCurrency,
   CurrencyCode,
   formatCurrency,
 } from "../services/exchangeRateService";
-import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
+import { getTaxFreeDisplayPlan, hasNumericTaxFreePlan } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
+import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey } from "../utils/taxFreeDisplay";
 
 export function SmartShoppingCalculatorScreen() {
   const [price, setPrice] = useState("");
@@ -41,12 +42,8 @@ export function SmartShoppingCalculatorScreen() {
   const rule = getTaxFreeRule(selectedCountryId);
 
   const numericPrice = Number(price) || 0;
-  const estimate =
-    rule && numericPrice > 0
-      ? calculateTaxFreeEstimate(numericPrice, rule)
-      : undefined;
-  const refund = estimate?.vatPortion ?? 0;
-  const netCost = numericPrice - refund;
+  const displayPlan = rule && numericPrice > 0 ? getTaxFreeDisplayPlan(numericPrice, rule) : undefined;
+  const numericPlan = hasNumericTaxFreePlan(displayPlan) ? displayPlan : undefined;
   const [convertedRefund, setConvertedRefund] = useState<number | null>(null);
   const [convertedNetCost, setConvertedNetCost] = useState<number | null>(null);
   const [conversionUnavailable, setConversionUnavailable] = useState(false);
@@ -54,7 +51,7 @@ export function SmartShoppingCalculatorScreen() {
   useEffect(() => {
     let active = true;
 
-    if (!rule || numericPrice <= 0 || selectedCurrency === rule.currency) {
+    if (!rule || !numericPlan || numericPrice <= 0 || selectedCurrency === rule.currency) {
       setConvertedRefund(null);
       setConvertedNetCost(null);
       setConversionUnavailable(false);
@@ -62,8 +59,8 @@ export function SmartShoppingCalculatorScreen() {
     }
 
     Promise.all([
-      convertCurrency(refund, rule.currency as CurrencyCode, selectedCurrency),
-      convertCurrency(netCost, rule.currency as CurrencyCode, selectedCurrency),
+      convertCurrency(numericPlan.benefitAmount, rule.currency as CurrencyCode, selectedCurrency),
+      convertCurrency(numericPlan.costAmount, rule.currency as CurrencyCode, selectedCurrency),
     ])
       .then(([refundResult, costResult]) => {
         if (active) {
@@ -83,7 +80,7 @@ export function SmartShoppingCalculatorScreen() {
     return () => {
       active = false;
     };
-  }, [netCost, numericPrice, refund, rule, selectedCurrency]);
+  }, [displayPlan?.kind, numericPlan?.costAmount, numericPlan?.benefitAmount, numericPrice, rule, selectedCurrency]);
 
   return (
     <ScrollView
@@ -160,35 +157,28 @@ export function SmartShoppingCalculatorScreen() {
           onChangeText={setPrice}
         />
 
-        <View style={styles.resultGrid}>
-          <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>
-              {t("taxCalc.estimatedTaxFreeRefund")}
-            </Text>
-            <Text style={styles.resultValue}>
-              {rule
-                ? formatCurrency(refund, rule.currency as CurrencyCode, language)
-                : "—"}
-            </Text>
-          </View>
+        {displayPlan?.kind === "below_minimum" && rule && typeof rule.minimumPurchaseAmount === "number" ? (
+          <View style={styles.warningBox}><Text style={styles.warningText}>{t("taxCalc.belowMinimum")} {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}).</Text></View>
+        ) : null}
 
-          <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>
-              {t("taxCalc.estimatedCostAfterRefund")}
-            </Text>
-            <Text style={styles.resultValue}>
-              {rule
-                ? formatCurrency(netCost, rule.currency as CurrencyCode, language)
-                : "—"}
-            </Text>
+        {numericPlan || displayPlan?.kind === "below_minimum" ? (
+          <View style={styles.resultGrid}>
+            <View style={styles.resultBox}>
+              <Text style={styles.resultLabel}>{t(numericPlan?.benefitLabelKey ?? "taxCalc.taxFreeResult")}</Text>
+              <Text style={styles.resultValue}>{rule && numericPlan ? formatCurrency(numericPlan.benefitAmount, rule.currency as CurrencyCode, language) : "—"}</Text>
+            </View>
+            <View style={styles.resultBox}>
+              <Text style={styles.resultLabel}>{t(numericPlan?.costLabelKey ?? "taxCalc.purchaseCost")}</Text>
+              <Text style={styles.resultValue}>{rule && numericPlan ? formatCurrency(numericPlan.costAmount, rule.currency as CurrencyCode, language) : "—"}</Text>
+            </View>
           </View>
-        </View>
+        ) : null}
 
-        {rule && selectedCurrency !== rule.currency && numericPrice > 0 && (
+        {rule && numericPlan && selectedCurrency !== rule.currency && numericPrice > 0 && (
           <View style={styles.convertedBox}>
             <View style={styles.resultBox}>
               <Text style={styles.resultLabel}>
-                {t("taxCalc.convertedRefund")}
+                {t(numericPlan?.convertedBenefitLabelKey ?? "taxCalc.convertedRefund")}
               </Text>
               <Text style={styles.resultValue}>
                 {convertedRefund === null
@@ -201,7 +191,7 @@ export function SmartShoppingCalculatorScreen() {
 
             <View style={styles.resultBox}>
               <Text style={styles.resultLabel}>
-                {t("taxCalc.convertedCostAfterRefund")}
+                {t(numericPlan?.convertedCostLabelKey ?? "taxCalc.convertedCostAfterRefund")}
               </Text>
               <Text style={styles.resultValue}>
                 {convertedNetCost === null
@@ -216,7 +206,7 @@ export function SmartShoppingCalculatorScreen() {
 
         <Text style={styles.note}>
           {rule
-            ? `${t("taxCalc.vatRate")}: ${rule.vatRate}% • ${t("taxCalc.standardVatBasis")} • ${t("taxCalc.actualRefundMayVary")} ${t("taxCalc.notGuaranteedRefund")}`
+            ? displayPlan?.kind === "no_numeric_estimate" ? t(displayPlan.messageKey) : displayPlan?.kind === "below_minimum" ? t("taxCalc.belowMinimum") : numericPlan ? t(numericPlan.disclaimerKey) : rule.refundPolicy.mode === "point_of_sale_exemption" ? t(getTaxFreePolicySummaryKey(rule) === "taxCalc.futureRegimeNoEstimate" ? "taxCalc.futureRegimeNoEstimate" : "taxCalc.pointOfSaleDisclaimer") : t("taxCalc.finalDisclaimer")
             : t("taxCalc.unsupportedCountry")}
         </Text>
       </View>
@@ -251,6 +241,8 @@ const styles = StyleSheet.create({
     color: "#D8DEE9",
     lineHeight: 22,
   },
+  warningBox: { backgroundColor: "#FFF4E5", borderRadius: 14, padding: 12, marginBottom: 12 },
+  warningText: { color: "#8A4B08", fontSize: 13, lineHeight: 19 },
   card: {
     backgroundColor: "#FFFFFF",
     borderRadius: 24,

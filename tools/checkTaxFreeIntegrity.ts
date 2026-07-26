@@ -1,6 +1,6 @@
 import { countries } from "../src/constants/countries";
 import { outlets } from "../src/constants/outlets";
-import { TaxFreeRule, taxFreeRules } from "../src/constants/taxFreeRules";
+import { getRefundPolicyValidationErrors, TaxFreeRule, taxFreeRules } from "../src/constants/taxFreeRules";
 import { isBelowMinimumPurchase } from "../src/services/taxFreeCalculatorService";
 import {
   normalizeTaxFreeCountryStatus,
@@ -103,18 +103,13 @@ for (const rule of taxFreeRules) {
     !Number.isFinite(rule.vatRate) ||
     rule.vatRate <= 0 ||
     rule.vatRate > 100 ||
-    rule.refundEstimateMode !== "maximum_vat_component" ||
     typeof rule.notes !== "string" ||
     !rule.notes.trim()
   )
     fail(`rule values ${rule.countryId}`);
-  if (
-    rule.providerFeeRate !== undefined &&
-    (!Number.isFinite(rule.providerFeeRate) ||
-      rule.providerFeeRate < 0 ||
-      rule.providerFeeRate >= 1)
-  )
-    fail(`provider fee ${rule.countryId}`);
+  if (!isCompleteSource(rule.refundPolicy.source)) fail(`refund policy source ${rule.countryId}`);
+  const policyErrors = getRefundPolicyValidationErrors(rule.refundPolicy);
+  if (policyErrors.length) fail(`refund policy ${rule.countryId}: ${policyErrors.join(", ")}`);
   if (
     !isCompleteSource(rule.schemeSource) ||
     !isCompleteSource(rule.vatRateSource) ||

@@ -20,11 +20,12 @@ import {
   CurrencyCode,
   formatCurrency,
 } from "../services/exchangeRateService";
-import { calculateTaxFreeEstimate } from "../services/taxFreeCalculatorService";
+import { getTaxFreeDisplayPlan, hasNumericTaxFreePlan } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
 import { formatPriceAdvantage } from "../utils/priceAdvantage";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
+import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey } from "../utils/taxFreeDisplay";
 
 export function PriceAdvantageCalculatorScreen() {
   const [europePrice, setEuropePrice] = useState("");
@@ -52,23 +53,22 @@ export function PriceAdvantageCalculatorScreen() {
 
   const numericEuropePrice = Number(europePrice) || 0;
   const numericLocalPrice = Number(localPrice) || 0;
-  const estimate =
-    rule && numericEuropePrice > 0
-      ? calculateTaxFreeEstimate(numericEuropePrice, rule)
-      : undefined;
-  const refund = includeTaxFree ? (estimate?.vatPortion ?? 0) : 0;
-  const netEuropeCost = numericEuropePrice - refund;
+  const displayPlan = rule && numericEuropePrice > 0 ? getTaxFreeDisplayPlan(numericEuropePrice, rule) : undefined;
+  const appliedPlan = includeTaxFree ? displayPlan : undefined;
+  const numericPlan = hasNumericTaxFreePlan(appliedPlan) ? appliedPlan : undefined;
+  const comparisonCost = numericPlan?.costAmount ?? numericEuropePrice;
+  const comparisonSemantic = appliedPlan?.kind ?? "raw";
   const [convertedEuropeCost, setConvertedEuropeCost] = useState<number | null>(null);
 
   useEffect(() => {
     let active = true;
 
-    if (netEuropeCost <= 0) {
+    if (comparisonCost <= 0) {
       setConvertedEuropeCost(null);
       return;
     }
 
-    convertCurrency(netEuropeCost, selectedCountry.currency as CurrencyCode, selectedCurrency)
+    convertCurrency(comparisonCost, selectedCountry.currency as CurrencyCode, selectedCurrency)
       .then((result) => {
         if (active) {
           setConvertedEuropeCost(result.convertedAmount);
@@ -83,7 +83,7 @@ export function PriceAdvantageCalculatorScreen() {
     return () => {
       active = false;
     };
-  }, [netEuropeCost, selectedCountry.currency, selectedCurrency]);
+  }, [comparisonCost, selectedCountry.currency, selectedCurrency]);
 
   const savings = convertedEuropeCost === null ? 0 : numericLocalPrice - convertedEuropeCost;
   const hasSavings = savings > 0;
@@ -188,8 +188,12 @@ export function PriceAdvantageCalculatorScreen() {
           </Text>
         </TouchableOpacity>
 
+        {includeTaxFree && displayPlan?.kind === "below_minimum" && rule && typeof rule.minimumPurchaseAmount === "number" ? (
+          <View style={styles.warningBox}><Text style={styles.warningText}>{t("taxCalc.belowMinimum")} {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}).</Text></View>
+        ) : null}
+
         <View style={styles.resultBox}>
-          <Text style={styles.resultLabel}>{t("priceCalc.countryNetCost").replace("{country}", getLocalizedCountryName(selectedCountry, language))}</Text>
+          <Text style={styles.resultLabel}>{t(comparisonSemantic === "upper_bound" ? "taxCalc.bestCaseCostBeforeFees" : comparisonSemantic === "point_of_sale_exemption" ? "taxCalc.costAfterExemption" : comparisonSemantic === "no_numeric_estimate" || comparisonSemantic === "below_minimum" || comparisonSemantic === "raw" ? "priceCalc.countryPriceRaw" : "priceCalc.countryNetCost").replace("{country}", getLocalizedCountryName(selectedCountry, language))}</Text>
           <Text style={styles.resultValue}>
             {convertedEuropeCost === null
             ? t("currency.unavailableShort")
@@ -201,7 +205,7 @@ export function PriceAdvantageCalculatorScreen() {
           style={[styles.highlightBox, !hasSavings && styles.highlightBoxMuted]}
         >
           <Text style={styles.highlightLabel}>
-            {hasSavings ? t("priceCalc.youSave") : t("priceCalc.noSavings")}
+            {comparisonSemantic === "upper_bound" ? t("priceCalc.maximumPossibleAdvantageBeforeFees") : hasSavings ? t("priceCalc.youSave") : t("priceCalc.noSavings")}
           </Text>
           <Text style={styles.highlightValue}>
             {formatPriceAdvantage(savings, selectedCurrency, language)}
@@ -209,11 +213,19 @@ export function PriceAdvantageCalculatorScreen() {
         </View>
 
         <Text style={styles.note}>
-          {includeTaxFree && rule
-            ? `${t("taxCalc.estimatedTaxFreeRefund")}: ${formatCurrency(refund, rule.currency as CurrencyCode)}. ${t("taxCalc.providerFeesUnknown")}`
-            : includeTaxFree
+          {!includeTaxFree
+            ? t("priceCalc.taxFreeNotIncluded")
+            : !rule
               ? t("taxCalc.unsupportedCountry")
-              : t("priceCalc.taxFreeNotIncluded")}
+              : numericEuropePrice <= 0
+                ? null
+                : appliedPlan?.kind === "no_numeric_estimate"
+                  ? t(appliedPlan.messageKey)
+                  : appliedPlan?.kind === "below_minimum"
+                    ? t("taxCalc.taxFreeNotAppliedBelowMinimum")
+                    : numericPlan
+                      ? `${t(numericPlan.benefitLabelKey)}: ${formatCurrency(numericPlan.benefitAmount, rule.currency as CurrencyCode, language)}. ${t(numericPlan.disclaimerKey)}`
+                      : null}
         </Text>
       </View>
     </ScrollView>
@@ -247,6 +259,8 @@ const styles = StyleSheet.create({
     color: "#D8DEE9",
     lineHeight: 22,
   },
+  warningBox: { backgroundColor: "#FFF4E5", borderRadius: 14, padding: 12, marginBottom: 12 },
+  warningText: { color: "#8A4B08", fontSize: 13, lineHeight: 19 },
   card: {
     backgroundColor: "#FFFFFF",
     borderRadius: 24,
