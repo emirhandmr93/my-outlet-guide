@@ -6,7 +6,7 @@ import { CountrySelector } from "../components/CountrySelector";
 import { CurrencySelector } from "../components/CurrencySelector";
 import { countries } from "../constants/countries";
 import { currencies } from "../constants/currencies";
-import { getTaxFreeRule } from "../constants/taxFreeRules";
+import { getTaxFreePolicySummaryKey, getTaxFreeRule } from "../constants/taxFreeRules";
 import { useSavings } from "../contexts/SavingsContext";
 import {
   convertCurrency,
@@ -305,7 +305,9 @@ export function TaxFreeCalculatorScreen() {
               <Text style={styles.metaText}>{t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}) • {rule.minimumPurchaseSource.name} • {rule.minimumPurchaseSource.checkedDate}</Text>
             ) : <Text style={styles.metaText}>{t(getMinimumPurchaseTextKey(rule))}</Text>}
             <Text style={styles.metaText}>{t("taxCalc.standardVatBasis")}</Text>
-            <Text style={styles.metaNote}>{t(numericPlan?.disclaimerKey ?? (displayPlan?.kind === "no_numeric_estimate" ? displayPlan.messageKey : rule.refundPolicy.mode === "point_of_sale_exemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.finalDisclaimer"))}</Text>
+            {displayPlan?.kind !== "no_numeric_estimate" ? (
+              <Text style={styles.metaNote}>{t(numericPlan?.disclaimerKey ?? (rule.refundPolicy.mode === "point_of_sale_exemption" ? getTaxFreePolicySummaryKey(rule) === "taxCalc.futureRegimeNoEstimate" ? "taxCalc.futureRegimeNoEstimate" : "taxCalc.pointOfSaleDisclaimer" : "taxCalc.finalDisclaimer"))}</Text>
+            ) : null}
           </View>
         )}
       </View>

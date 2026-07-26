@@ -56,8 +56,9 @@ export type TaxFreeDisplayPlan =
   | { kind: "no_numeric_estimate"; messageKey: "taxCalc.futureRegimeNoEstimate" | "taxCalc.noSourcedNetRate" };
 
 export function getTaxFreeDisplayPlan(grossAmount: number, rule: TaxFreeRule, calculationDate = new Date()): TaxFreeDisplayPlan {
-  if (isBelowMinimumPurchase(grossAmount, rule)) return { kind: "below_minimum" };
   const estimate = calculateTaxFreeEstimate(grossAmount, rule, calculationDate);
+  if (estimate.kind === "no_numeric_estimate" && estimate.reason === "future_regime_unmodeled") return { kind: estimate.kind, messageKey: "taxCalc.futureRegimeNoEstimate" };
+  if (isBelowMinimumPurchase(grossAmount, rule)) return { kind: "below_minimum" };
   switch (estimate.kind) {
     case "upper_bound": return { kind: estimate.kind, benefitAmount: estimate.maximumRefundBeforeFees, costAmount: estimate.bestCaseCostBeforeFees, benefitLabelKey: "taxCalc.maximumRefundBeforeFees", costLabelKey: "taxCalc.bestCaseCostBeforeFees", convertedBenefitLabelKey: "taxCalc.convertedMaximum", convertedCostLabelKey: "taxCalc.convertedBestCaseCost", disclaimerKey: "taxCalc.upperBoundDisclaimer" };
     case "net_estimate": return { kind: estimate.kind, benefitAmount: estimate.estimatedNetRefund, costAmount: estimate.estimatedCostAfterRefund, benefitLabelKey: "taxCalc.estimatedNetRefund", costLabelKey: "taxCalc.estimatedCostAfterRefund", convertedBenefitLabelKey: "taxCalc.convertedRefund", convertedCostLabelKey: "taxCalc.convertedCostAfterRefund", disclaimerKey: "taxCalc.finalDisclaimer" };

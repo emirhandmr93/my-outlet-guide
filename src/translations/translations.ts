@@ -17472,3 +17472,15 @@ const taxFreeEligibilitySemanticsTranslations: Record<TranslationLanguage, Recor
   zh: { "taxCalc.pointOfSaleDisclaimer": "此金额是符合条件的购物在结账时获得的预计节税额，并非现金退税。须符合商店参与和资格条件。", "taxCalc.futureRegimeNoEstimate": "原结账免税制度已结束。新制度暂无可靠来源的数值估算。", "taxCalc.taxFreeNotAppliedBelowMinimum": "因未达到最低消费要求，未应用 Tax Free。" }
 };
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeEligibilitySemanticsTranslations[locale]);
+
+const taxFreeFutureStateTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "taxCalc.taxFreeResult": "Tax Free result", "taxCalc.purchaseCost": "Purchase cost", "taxGuide.taxFreeProcess": "Tax Free process" },
+  tr: { "taxCalc.taxFreeResult": "Tax Free sonucu", "taxCalc.purchaseCost": "Alışveriş maliyeti", "taxGuide.taxFreeProcess": "Tax Free süreci" },
+  es: { "taxCalc.taxFreeResult": "Resultado Tax Free", "taxCalc.purchaseCost": "Coste de compra", "taxGuide.taxFreeProcess": "Proceso Tax Free" },
+  fr: { "taxCalc.taxFreeResult": "Résultat Tax Free", "taxCalc.purchaseCost": "Coût d’achat", "taxGuide.taxFreeProcess": "Processus Tax Free" },
+  de: { "taxCalc.taxFreeResult": "Tax-Free-Ergebnis", "taxCalc.purchaseCost": "Kaufkosten", "taxGuide.taxFreeProcess": "Tax-Free-Ablauf" },
+  ar: { "taxCalc.taxFreeResult": "نتيجة Tax Free", "taxCalc.purchaseCost": "تكلفة الشراء", "taxGuide.taxFreeProcess": "عملية Tax Free" },
+  ru: { "taxCalc.taxFreeResult": "Результат Tax Free", "taxCalc.purchaseCost": "Стоимость покупки", "taxGuide.taxFreeProcess": "Процесс Tax Free" },
+  zh: { "taxCalc.taxFreeResult": "Tax Free 结果", "taxCalc.purchaseCost": "购物成本", "taxGuide.taxFreeProcess": "Tax Free 流程" }
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeFutureStateTranslations[locale]);

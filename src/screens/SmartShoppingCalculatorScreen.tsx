@@ -161,29 +161,18 @@ export function SmartShoppingCalculatorScreen() {
           <View style={styles.warningBox}><Text style={styles.warningText}>{t("taxCalc.belowMinimum")} {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}).</Text></View>
         ) : null}
 
-        <View style={styles.resultGrid}>
-          <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>
-              {t(numericPlan?.benefitLabelKey ?? "taxCalc.estimatedNetRefund")}
-            </Text>
-            <Text style={styles.resultValue}>
-              {rule && numericPlan
-                ? formatCurrency(numericPlan.benefitAmount, rule.currency as CurrencyCode, language)
-                : "—"}
-            </Text>
+        {numericPlan || displayPlan?.kind === "below_minimum" ? (
+          <View style={styles.resultGrid}>
+            <View style={styles.resultBox}>
+              <Text style={styles.resultLabel}>{t(numericPlan?.benefitLabelKey ?? "taxCalc.taxFreeResult")}</Text>
+              <Text style={styles.resultValue}>{rule && numericPlan ? formatCurrency(numericPlan.benefitAmount, rule.currency as CurrencyCode, language) : "—"}</Text>
+            </View>
+            <View style={styles.resultBox}>
+              <Text style={styles.resultLabel}>{t(numericPlan?.costLabelKey ?? "taxCalc.purchaseCost")}</Text>
+              <Text style={styles.resultValue}>{rule && numericPlan ? formatCurrency(numericPlan.costAmount, rule.currency as CurrencyCode, language) : "—"}</Text>
+            </View>
           </View>
-
-          <View style={styles.resultBox}>
-            <Text style={styles.resultLabel}>
-              {t(numericPlan?.costLabelKey ?? "taxCalc.estimatedCostAfterRefund")}
-            </Text>
-            <Text style={styles.resultValue}>
-              {rule && numericPlan
-                ? formatCurrency(numericPlan.costAmount, rule.currency as CurrencyCode, language)
-                : "—"}
-            </Text>
-          </View>
-        </View>
+        ) : null}
 
         {rule && numericPlan && selectedCurrency !== rule.currency && numericPrice > 0 && (
           <View style={styles.convertedBox}>

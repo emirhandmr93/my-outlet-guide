@@ -47,28 +47,26 @@ export function TaxFreeCard({
       ) : null}
 
       {rule && (taxFreeStatus === "outlet_verified" || taxFreeStatus === "country_scheme_available") ? (
-        <>
-          <Text style={styles.text}>
-            {rule.refundPolicy.mode === "provider_dependent_upper_bound"
-              ? t(policySummaryKey!).replace("%{rate}", `${getMaximumRefundRate(rule).toFixed(1)}%`)
-              : t(policySummaryKey!)}
-          </Text>
-          {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
+        policySummaryKey === "taxCalc.futureRegimeNoEstimate" ? (
+          <Text style={styles.text}>{t("taxCalc.futureRegimeNoEstimate")}</Text>
+        ) : (
+          <>
             <Text style={styles.text}>
-              {t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(
-                rule.minimumPurchaseAmount,
-                rule.currency,
-                language,
-              )} ({t(getMinimumPurchaseTextKey(rule))})
+              {rule.refundPolicy.mode === "provider_dependent_upper_bound"
+                ? t(policySummaryKey!).replace("%{rate}", `${getMaximumRefundRate(rule).toFixed(1)}%`)
+                : t(policySummaryKey!)}
             </Text>
-          ) : (
-            <Text style={styles.text}>{t(getMinimumPurchaseTextKey(rule))}</Text>
-          )}
-          <Text style={styles.text}>{t(rule.refundPolicy.mode === "point_of_sale_exemption" ? policySummaryKey === "taxCalc.pointOfSaleExemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.futureRegimeNoEstimate" : "taxCalc.finalDisclaimer")}</Text>
-        </>
+            {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
+              <Text style={styles.text}>
+                {t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))})
+              </Text>
+            ) : <Text style={styles.text}>{t(getMinimumPurchaseTextKey(rule))}</Text>}
+            <Text style={styles.text}>{t(rule.refundPolicy.mode === "point_of_sale_exemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.finalDisclaimer")}</Text>
+          </>
+        )
       ) : null}
 
-      {shouldShowOfficeInfo && taxFreeStatus === "outlet_verified" ? (
+      {shouldShowOfficeInfo && taxFreeStatus === "outlet_verified" && policySummaryKey !== "taxCalc.futureRegimeNoEstimate" ? (
         <Text style={styles.text}>{officeInfo}</Text>
       ) : null}
     </Card>

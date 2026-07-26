@@ -213,11 +213,19 @@ export function PriceAdvantageCalculatorScreen() {
         </View>
 
         <Text style={styles.note}>
-          {includeTaxFree && rule
-            ? appliedPlan?.kind === "no_numeric_estimate" ? t(appliedPlan.messageKey) : appliedPlan?.kind === "below_minimum" ? t("taxCalc.taxFreeNotAppliedBelowMinimum") : numericPlan ? `${t(numericPlan.benefitLabelKey)}: ${formatCurrency(numericPlan.benefitAmount, rule.currency as CurrencyCode, language)}. ${t(numericPlan.disclaimerKey)}` : t("taxCalc.unsupportedCountry")
-            : includeTaxFree
+          {!includeTaxFree
+            ? t("priceCalc.taxFreeNotIncluded")
+            : !rule
               ? t("taxCalc.unsupportedCountry")
-              : t("priceCalc.taxFreeNotIncluded")}
+              : numericEuropePrice <= 0
+                ? null
+                : appliedPlan?.kind === "no_numeric_estimate"
+                  ? t(appliedPlan.messageKey)
+                  : appliedPlan?.kind === "below_minimum"
+                    ? t("taxCalc.taxFreeNotAppliedBelowMinimum")
+                    : numericPlan
+                      ? `${t(numericPlan.benefitLabelKey)}: ${formatCurrency(numericPlan.benefitAmount, rule.currency as CurrencyCode, language)}. ${t(numericPlan.disclaimerKey)}`
+                      : null}
         </Text>
       </View>
     </ScrollView>
