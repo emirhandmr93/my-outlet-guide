@@ -592,15 +592,48 @@ const I18N: Record<
     },
   },
 };
-for (const lang of [
-  "es",
-  "fr",
-  "de",
-  "ru",
-  "ar",
-  "zh",
-] as TranslationLanguage[])
-  I18N[lang].steps = I18N.en.steps;
+const LOCALIZED_GENERIC_STEPS: Partial<
+  Record<TranslationLanguage, Record<string, string[]>>
+> = {
+  es: {
+    public: ["Ve a una parada céntrica adecuada.", "Toma el transporte público hacia el outlet.", "Baja en la parada más cercana.", "Comprueba el regreso antes de comprar."],
+    airportPublic: ["Sigue las señales de transporte público del aeropuerto.", "Toma una conexión hacia la zona del outlet.", "Haz transbordo si es necesario.", "Comprueba el regreso antes de comprar."],
+    taxi: ["Abre una aplicación de taxi.", "Selecciona el outlet como destino.", "Confirma el punto de recogida.", "Prevé más tiempo en hora punta."],
+    shuttle: ["Comprueba el punto de salida de la lanzadera.", "Reserva si es necesario.", "Llega con antelación.", "Confirma la salida de regreso."],
+  },
+  fr: {
+    public: ["Rejoignez un arrêt adapté en centre-ville.", "Prenez les transports publics vers l’outlet.", "Descendez à l’arrêt le plus proche.", "Vérifiez le retour avant vos achats."],
+    airportPublic: ["Suivez les panneaux de transport public.", "Prenez une liaison vers l’outlet.", "Changez si nécessaire.", "Vérifiez le retour avant vos achats."],
+    taxi: ["Ouvrez une application de taxi.", "Choisissez l’outlet comme destination.", "Confirmez le point de prise en charge.", "Prévoyez plus de temps aux heures de pointe."],
+    shuttle: ["Vérifiez le départ de la navette.", "Réservez si nécessaire.", "Arrivez en avance.", "Confirmez le départ du retour."],
+  },
+  de: {
+    public: ["Gehe zu einer passenden Haltestelle im Zentrum.", "Fahre mit öffentlichen Verkehrsmitteln Richtung Outlet.", "Steige an der nächsten Haltestelle aus.", "Prüfe die Rückfahrt vor dem Einkauf."],
+    airportPublic: ["Folge den Schildern zum Nahverkehr.", "Nimm eine Verbindung Richtung Outlet.", "Steige bei Bedarf um.", "Prüfe die Rückfahrt vor dem Einkauf."],
+    taxi: ["Öffne eine Taxi-App.", "Wähle das Outlet als Ziel.", "Bestätige den Abholpunkt.", "Plane zur Hauptverkehrszeit mehr Zeit ein."],
+    shuttle: ["Prüfe den Shuttle-Abfahrtsort.", "Reserviere bei Bedarf.", "Sei frühzeitig vor Ort.", "Bestätige die Rückfahrt."],
+  },
+  ru: {
+    public: ["Пройдите к удобной остановке в центре.", "Сядьте на транспорт в сторону аутлета.", "Выйдите на ближайшей остановке.", "Проверьте обратный рейс до покупок."],
+    airportPublic: ["Следуйте указателям к транспорту.", "Выберите маршрут в сторону аутлета.", "При необходимости сделайте пересадку.", "Проверьте обратный рейс."],
+    taxi: ["Откройте приложение такси.", "Укажите аутлет как пункт назначения.", "Подтвердите место посадки.", "Учтите пробки в часы пик."],
+    shuttle: ["Проверьте место отправления шаттла.", "При необходимости забронируйте билет.", "Приходите заранее.", "Подтвердите обратный рейс."],
+  },
+  ar: {
+    public: ["توجّه إلى موقف مناسب في وسط المدينة.", "استقل النقل العام باتجاه الأوتلت.", "انزل في أقرب موقف.", "تحقق من رحلة العودة قبل التسوق."],
+    airportPublic: ["اتبع إشارات النقل العام.", "استقل وسيلة باتجاه الأوتلت.", "بدّل الخط عند الحاجة.", "تحقق من رحلة العودة."],
+    taxi: ["افتح تطبيق سيارة أجرة.", "حدد الأوتلت كوجهة.", "أكد نقطة الالتقاء.", "اترك وقتاً إضافياً وقت الازدحام."],
+    shuttle: ["تحقق من نقطة انطلاق الحافلة.", "احجز عند الحاجة.", "صل مبكراً.", "أكد موعد العودة."],
+  },
+  zh: {
+    public: ["前往市中心合适的交通站点。", "乘坐公共交通前往奥特莱斯方向。", "在最近的站点下车。", "购物前确认返程。"],
+    airportPublic: ["跟随机场公共交通指示。", "乘车前往奥特莱斯方向。", "如有需要请换乘。", "确认返程安排。"],
+    taxi: ["打开出租车应用。", "将奥特莱斯设为目的地。", "确认上车点。", "高峰时段预留更多时间。"],
+    shuttle: ["确认接驳车出发点。", "如有需要请预订。", "提前到达。", "确认返程时间。"],
+  },
+};
+for (const language of Object.keys(LOCALIZED_GENERIC_STEPS) as TranslationLanguage[])
+  I18N[language].steps = LOCALIZED_GENERIC_STEPS[language]!;
 
 const ROUTE_TERMS = [
   "RER A",
@@ -694,13 +727,25 @@ function factOriginGroup(
 export function hasSourceBackedShuttleRouteDetail(
   option: Pick<
     TransportationV2Option,
-    "originGroup" | "mode" | "routeDetails" | "routeFact"
+    | "originGroup"
+    | "mode"
+    | "routeDetails"
+    | "routeFact"
+    | "sourceConfidence"
+    | "guide"
+    | "hasUsefulEstimate"
   >,
 ): boolean {
   if (option.originGroup !== "shuttle" && option.mode !== "shuttle")
     return true;
   const fact = option.routeFact;
-  if (!fact || fact.confidence === "estimateOnly") return false;
+  if (!fact || fact.confidence === "estimateOnly") {
+    return Boolean(
+      option.routeDetails.confidence === "estimateOnly" &&
+        option.sourceConfidence !== "source" &&
+        (option.guide.estimatedDuration || option.hasUsefulEstimate),
+    );
+  }
   return Boolean(
     fact.provider ||
     fact.operator ||
@@ -1161,7 +1206,6 @@ function stepsFor(
 function optionFromGuide(
   guide: TransportationGuide,
 ): TransportationV2Option | undefined {
-  if (PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)) return undefined;
   const originGroup =
     guide.transportationType === "shuttle"
       ? "shuttle"
@@ -1329,7 +1373,7 @@ export function getTransportationOptionDisplayModel(
     originLabel: originLabelFor(option.originGroup, language),
     modeLabel: I18N[language].modes[option.mode] || option.mode,
     title:
-      language === "en"
+      language === "en" && !PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)
         ? guide.title
         : titleFor(option.mode, option.originGroup, language),
     duration: durationLabel,
@@ -1372,9 +1416,8 @@ export function getTransportationV2Options(
     .filter((g) => g.outletId === outletId)
     .map(optionFromGuide)
     .filter(Boolean) as TransportationV2Option[];
-  return dedupeOptions(
-    fromGuides.length ? fromGuides : syntheticOptions(outletId),
-  );
+  const curated = dedupeOptions(fromGuides);
+  return curated.length ? curated : dedupeOptions(syntheticOptions(outletId));
 }
 function routePriority(option: TransportationV2Option) {
   const detail = option.routeDetails;
@@ -1429,9 +1472,10 @@ export function getRecommendedTransportationV2Option(
 }
 export function getOutletTransportationV2Summary(
   outletId: string,
+  language: TranslationLanguage = "en",
 ): TransportationV2Option[] {
   const display = getTransportationV2Options(outletId).map((o) =>
-    getTransportationOptionDisplayModel(o, "tr"),
+    getTransportationOptionDisplayModel(o, language),
   );
   const city = display.find(
     (o) =>
@@ -1446,8 +1490,16 @@ export function getOutletTransportationV2Summary(
       hasSourceBackedShuttleRouteDetail(o),
   );
   const airport = display.find((o) => o.originGroup === "airport");
-  return [city, shuttle, airport]
+  const recommended = getRecommendedTransportationV2Option(outletId);
+  const recommendedDisplay = recommended
+    ? display.find((option) => option.id === recommended.id)
+    : undefined;
+  return [city, shuttle, airport, recommendedDisplay, display[0]]
     .filter(Boolean)
+    .filter(
+      (option, index, all) =>
+        all.findIndex((candidate) => candidate?.id === option?.id) === index,
+    )
     .slice(0, 2) as TransportationV2Option[];
 }
 function dedupeOptions(
@@ -1468,11 +1520,6 @@ function dedupeOptions(
       option.routeDetails.confidence === "estimateOnly" &&
       PUBLIC_TYPES.has(option.mode) &&
       sourcedPublicOrigins.has(option.originGroup)
-    )
-      return false;
-    if (
-      (option.originGroup === "shuttle" || option.mode === "shuttle") &&
-      !hasSourceBackedShuttleRouteDetail(option)
     )
       return false;
     const key =

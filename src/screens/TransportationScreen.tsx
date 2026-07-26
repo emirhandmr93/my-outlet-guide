@@ -176,7 +176,8 @@ export function TransportationScreen() {
     options.filter(
       (item) =>
         item.originGroup === "shuttle" &&
-        hasSourceBackedShuttleRouteDetail(item) &&
+        (hasSourceBackedShuttleRouteDetail(item) ||
+          item.routeDetails.confidence === "estimateOnly") &&
         item.estimatedDurationLabel &&
         item.estimatedFareLabel,
     ),

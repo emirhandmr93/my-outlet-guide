@@ -48,7 +48,9 @@ export function TransportationCard({
   const { t, language } = useTranslation();
   const fallbacks = getTransportationDisplayFallbacks(language);
   const sourceBackedSummaryItems = summaryItems.filter(
-    hasSourceBackedShuttleRouteDetail,
+    (item) =>
+      hasSourceBackedShuttleRouteDetail(item) ||
+      item.routeDetails.confidence === "estimateOnly",
   );
 
   return (
