@@ -49,6 +49,7 @@ import colors from "../theme/colors";
 
 import type { MainTabParamList, RootStackParamList } from "./types";
 import { createWebLinking } from "./webLinking";
+import { syncWebSeo } from "../utils/webSeo";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -316,6 +317,7 @@ function syncWebPath() {
 if (Platform.OS !== "web" || !navigationRef.isReady()) return;
 const path = createWebLinking(language).getPathFromState?.(navigationRef.getRootState()) ?? `/${language}`;
 if (`${window.location.pathname}${window.location.search}` !== path) window.history.replaceState(window.history.state, "", path);
+syncWebSeo(language, path);
 }
 
 useEffect(() => { syncWebPath(); }, [language]);

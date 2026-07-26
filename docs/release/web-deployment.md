@@ -8,10 +8,12 @@ the production Hosting source. Do not commit the generated `dist/` directory.
 
 ## Build
 
-From the repository root, create the production web export:
+From the repository root, run the complete production build. Expo export is the
+production source, and the generated route HTML, sitemap, robots file, and SEO
+validator are mandatory parts of the build:
 
 ```sh
-CI=1 NODE_OPTIONS=--max-old-space-size=8192 npx expo export --platform web --output-dir dist
+CI=1 NODE_OPTIONS=--max-old-space-size=8192 npm run web:build
 ```
 
 A successful export ends with this exact line:
@@ -19,6 +21,17 @@ A successful export ends with this exact line:
 ```text
 Exported: dist
 ```
+
+PowerShell:
+
+```powershell
+$env:CI="1"
+$env:NODE_OPTIONS="--max-old-space-size=8192"
+npm run web:build
+```
+
+Do not commit `dist/`. Before any deploy, independently run
+`npx tsx tools/checkWebSeo.ts` against the generated output.
 
 ## Firebase Hosting
 
@@ -32,5 +45,6 @@ then complete live acceptance testing. After those checks pass, deploy Hosting o
 npx firebase-tools deploy --only hosting --project my-outlet-guide
 ```
 
-Do not deploy from this configuration change. SEO work is outside the scope of this
-PR.
+Do not deploy from this configuration change. When a later approved release is
+performed, deploy Hosting only; never use this workflow to deploy Functions,
+Firestore, Storage, or other Firebase services.
