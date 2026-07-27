@@ -298,7 +298,6 @@ export function FlightDealsScreen() {
             </Text>
           </TouchableOpacity>
           {saveFeedback ? <Text style={styles.providerText}>{saveFeedback}</Text> : null}
-          {!FLIGHT_DEALS_PROVIDER_ENABLED ? <Text style={styles.providerText}>{t("flightDeals.providerPending")}</Text> : null}
         </View>
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>

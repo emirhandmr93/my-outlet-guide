@@ -1,4 +1,10 @@
 import { readFileSync } from "node:fs";
+import { execFileSync } from "node:child_process";
+
+import {
+  supportedLanguageCodes,
+  translations as translationCatalog,
+} from "../src/translations/translations";
 
 function read(path: string) {
   return readFileSync(path, "utf8");
@@ -25,6 +31,8 @@ const taxFreeSourceDisplay = read("src/utils/taxFreeSourceDisplay.ts");
 const offline = read("src/screens/OfflinePacksScreen.tsx");
 const notifications = read("src/screens/NotificationSettingsScreen.tsx");
 const trips = read("src/screens/MyTripsScreen.tsx");
+const flightDeals = read("src/screens/FlightDealsScreen.tsx");
+const flightDealsAvailability = read("src/constants/flightDealsAvailability.ts");
 const appVisible = [home, explore, outletDetail, myReviews, savings, offline, notifications, trips, translations].join("\n");
 const productionFacing = appVisible + read("src/constants/externalLinks.ts");
 
@@ -65,7 +73,30 @@ assert(!/eşitleme kuyruğu|backend göndericisi/.test(appVisible), "Offline and
 assert(savings.includes("getFloatingTabClearance(insets.bottom)") && trips.includes("getFloatingTabClearance(insets.bottom)") && notifications.includes("getFloatingTabClearance(insets.bottom)"), "Savings/MyTrips/NotificationSettings have bottom safe-area padding");
 assert(!/32°C|32 °C/.test(appVisible), "No static weather chip like 32°C");
 assert(!/localhost|127\.0\.0\.1|192\.168\./.test(productionFacing), "No localhost/LAN production-facing URLs");
-assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(appVisible), "No debug locale prefixes");
+export function hasDebugLocalePrefix(value: string) {
+  return /(?:^|\n)\s*(?:(?:TR|EN|DE|FR|IT|ES|AR|RU|ZH):|Türkçe çeviri|çeviri:|translation:)/i.test(value);
+}
+
+const translationValues = supportedLanguageCodes.flatMap((language) =>
+  Object.values(translationCatalog[language]),
+);
+const productionScreenLiterals = [
+  home,
+  explore,
+  outletDetailScreen,
+  myReviews,
+  savings,
+  offline,
+  notifications,
+  trips,
+  flightDeals,
+].flatMap((source) =>
+  Array.from(source.matchAll(/(["'`])((?:\\.|(?!\1)[\s\S])*)\1/g), (match) => match[2]),
+);
+assert(
+  ![...translationValues, ...productionScreenLiterals].some(hasDebugLocalePrefix),
+  "No debug locale prefixes in final translations or production screen literals",
+);
 assert(!/110\s+boutiques/i.test(appVisible), "No English 110 boutiques text in Turkish display paths");
 assert(!/Dondurma\s+cream/i.test(appVisible), "No mixed Turkish-English ice cream category text");
 assert(!/\bItalya\b/.test(appVisible), "No malformed Turkish Italy display text");
@@ -73,5 +104,31 @@ const oldMixedTripName = ["Milanı", "Shopping", "Route"].join(" ");
 assert(!appVisible.includes(oldMixedTripName), "No old mixed-language trip route name in screenshot-visible source");
 const safetyFiltered = appVisible.replace(/no fake inbox/gi, "").replace(/Sahte gelen kutusu/gi, "").replace(/no fake\/mock\/demo claims/gi, "");
 assert(!/lorem ipsum|dummy data|sample fare|sample trip|coming soon/i.test(safetyFiltered), "No visible TODO/coming soon/sample placeholders");
+
+const expectedFlightDealCopy = {
+  en: ["Live fare monitoring is unavailable because a production flight-price provider is not connected. Alerts are not saved.", "Monitoring unavailable", "No live flight deals", "No deal is shown without a connected production price provider."],
+  tr: ["Üretim uçuş fiyatı sağlayıcısı bağlı olmadığı için canlı fiyat takibi kullanılamıyor. Uyarılar kaydedilmiyor.", "Fiyat takibi kullanılamıyor", "Canlı uçuş fırsatı yok", "Üretim fiyat sağlayıcısı bağlı olmadan fırsat gösterilmez."],
+  es: ["El seguimiento de tarifas en vivo no está disponible porque no hay un proveedor de precios de vuelos de producción conectado. Las alertas no se guardan.", "Seguimiento no disponible", "No hay ofertas de vuelos en vivo", "No se muestra ninguna oferta sin un proveedor de precios de producción conectado."],
+  fr: ["Le suivi des tarifs en direct est indisponible, car aucun fournisseur de prix de vols en production n’est connecté. Les alertes ne sont pas enregistrées.", "Suivi indisponible", "Aucune offre de vol en direct", "Aucune offre n’est affichée sans fournisseur de prix en production connecté."],
+  de: ["Die Live-Flugpreisüberwachung ist nicht verfügbar, da kein produktiver Flugpreisanbieter verbunden ist. Warnungen werden nicht gespeichert.", "Überwachung nicht verfügbar", "Keine Live-Flugangebote", "Ohne verbundenen produktiven Preisanbieter werden keine Angebote angezeigt."],
+  ar: ["تتبّع أسعار الرحلات المباشر غير متاح لعدم اتصال مزود إنتاج لأسعار الرحلات. لا يتم حفظ التنبيهات.", "التتبّع غير متاح", "لا توجد عروض رحلات مباشرة", "لا يتم عرض أي عرض من دون مزود أسعار إنتاج متصل."],
+  ru: ["Мониторинг тарифов в реальном времени недоступен, поскольку не подключён рабочий поставщик цен на авиабилеты. Оповещения не сохраняются.", "Мониторинг недоступен", "Нет актуальных предложений на авиабилеты", "Без подключённого рабочего поставщика цен предложения не показываются."],
+  zh: ["由于尚未连接生产环境的航班价格提供商，实时票价监控不可用，提醒不会保存。", "监控不可用", "暂无实时航班优惠", "未连接生产环境价格提供商时，不显示任何优惠。"],
+} as const;
+const flightDealKeys = ["flightDeals.providerPending", "flightDeals.providerPendingBadge", "flightDeals.noDealsYet", "flightDeals.noFakeDeals"] as const;
+for (const language of supportedLanguageCodes) {
+  const values = flightDealKeys.map((key) => translationCatalog[language][key]);
+  assert(values.every(Boolean), `Flight Deals disabled-provider copy is complete for ${language}`);
+  assert(values.every((value, index) => value === expectedFlightDealCopy[language][index]), `Flight Deals disabled-provider copy is exact for ${language}`);
+  assert(!values.some((value) => /coming soon|yakında geliyor/i.test(value)), `Flight Deals copy has no future placeholder for ${language}`);
+  if (language !== "en") assert(values[0] !== translationCatalog.en[flightDealKeys[0]], `Flight Deals provider status does not fall back to English for ${language}`);
+}
+assert((flightDeals.match(/t\("flightDeals\.providerPending"\)/g) || []).length === 1, "FlightDealsScreen renders the detailed provider status once");
+assert((flightDeals.match(/t\("flightDeals\.providerPendingBadge"\)/g) || []).length === 1, "Disabled Flight Deals button uses the short provider badge once");
+assert(flightDeals.includes("disabled={!FLIGHT_DEALS_PROVIDER_ENABLED || isSavingAlert}"), "Flight Deals primary button stays disabled without a provider");
+assert(/FLIGHT_DEALS_PROVIDER_ENABLED\s*=\s*false/.test(flightDealsAvailability), "Flight Deals provider feature flag remains false");
+const protectedDiff = execFileSync("git", ["diff", "main", "--", "src/constants/flightDealsAvailability.ts", "src/services/flightDealAlertSubmission.ts", "src/services/flightDealAlertService.ts"], { encoding: "utf8" });
+assert(protectedDiff === "", "Flight Deals feature flag and save flow are unchanged from main");
+assert(!/sample fare|dummy data|mock deal|fake fare/i.test(flightDeals), "FlightDealsScreen adds no fake fare or deal data");
 
 console.log("Final screenshot polish audit checks passed.");
