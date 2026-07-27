@@ -365,7 +365,13 @@ export type HomeMountDiagnosticMode =
   | "all-carousels"
   | "three-scroll-shells"
   | "progressive-forward"
-  | "progressive-reverse";
+  | "progressive-reverse"
+  | "featured-recommended"
+  | "featured-cities"
+  | "recommended-cities"
+  | "delayed-featured"
+  | "delayed-recommended"
+  | "delayed-cities";
 
 export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagnosticMode } = {}) {
   const homeEffectsEnabled = diagnosticMode === undefined;
@@ -384,6 +390,7 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
   const [activeCityIndex, setActiveCityIndex] = useState(0);
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
   const [diagnosticProgressStep, setDiagnosticProgressStep] = useState(0);
+  const [diagnosticDelayedCarouselMounted, setDiagnosticDelayedCarouselMounted] = useState(false);
   const carouselRef = useRef<ScrollView | null>(null);
   const recommendedCarouselRef = useRef<ScrollView | null>(null);
   const cityCarouselRef = useRef<ScrollView | null>(null);
@@ -467,11 +474,18 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
   const isProgressiveReverse = diagnosticMode === "progressive-reverse";
   const isProgressive = isProgressiveForward || isProgressiveReverse;
   const showAllCarousels = diagnosticMode === "all-carousels";
+  const showFeaturedRecommended = diagnosticMode === "featured-recommended";
+  const showFeaturedCities = diagnosticMode === "featured-cities";
+  const showRecommendedCities = diagnosticMode === "recommended-cities";
+  const isDelayedFeatured = diagnosticMode === "delayed-featured";
+  const isDelayedRecommended = diagnosticMode === "delayed-recommended";
+  const isDelayedCities = diagnosticMode === "delayed-cities";
+  const isDelayedCarousel = isDelayedFeatured || isDelayedRecommended || isDelayedCities;
   const showHeaderSearch = showFullVisualTree || diagnosticMode === "header-search" || (isProgressiveForward && diagnosticProgressStep >= 1) || (isProgressiveReverse && diagnosticProgressStep >= 5);
-  const showFeatured = showFullVisualTree || showAllCarousels || diagnosticMode === "featured-only" || (isProgressiveForward && diagnosticProgressStep >= 2) || (isProgressiveReverse && diagnosticProgressStep >= 4);
-  const showRecommended = showFullVisualTree || showAllCarousels || diagnosticMode === "recommended-only" || (isProgressive && diagnosticProgressStep >= 3);
+  const showFeatured = showFullVisualTree || showAllCarousels || showFeaturedRecommended || showFeaturedCities || diagnosticMode === "featured-only" || (isDelayedFeatured && diagnosticDelayedCarouselMounted) || (isProgressiveForward && diagnosticProgressStep >= 2) || (isProgressiveReverse && diagnosticProgressStep >= 4);
+  const showRecommended = showFullVisualTree || showAllCarousels || showFeaturedRecommended || showRecommendedCities || diagnosticMode === "recommended-only" || (isDelayedRecommended && diagnosticDelayedCarouselMounted) || (isProgressive && diagnosticProgressStep >= 3);
   const showStatic = showFullVisualTree || diagnosticMode === "static-only" || (isProgressiveForward && diagnosticProgressStep >= 4) || (isProgressiveReverse && diagnosticProgressStep >= 2);
-  const showCities = showFullVisualTree || showAllCarousels || diagnosticMode === "cities-only" || (isProgressiveForward && diagnosticProgressStep >= 5) || (isProgressiveReverse && diagnosticProgressStep >= 1);
+  const showCities = showFullVisualTree || showAllCarousels || showFeaturedCities || showRecommendedCities || diagnosticMode === "cities-only" || (isDelayedCities && diagnosticDelayedCarouselMounted) || (isProgressiveForward && diagnosticProgressStep >= 5) || (isProgressiveReverse && diagnosticProgressStep >= 1);
   const showQuickMenu = diagnosticMode === undefined || diagnosticMode === "modal-only";
   const progressiveForwardOrder = ["Header/Search", "Featured", "Recommended", "Static Activity/Tools", "Popular Cities"];
   const progressiveReverseOrder = ["Popular Cities", "Static Activity/Tools", "Recommended", "Featured", "Header/Search"];
@@ -865,6 +879,15 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
       >
         <View style={[styles.contentInner, isDesktopWeb && styles.desktopContentInner]}>
         {showAllCarousels ? <Text>ALL HOME CAROUSELS MOUNTED</Text> : null}
+        {showFeaturedRecommended ? <Text>FEATURED AND RECOMMENDED MOUNTED</Text> : null}
+        {showFeaturedCities ? <Text>FEATURED AND CITIES MOUNTED</Text> : null}
+        {showRecommendedCities ? <Text>RECOMMENDED AND CITIES MOUNTED</Text> : null}
+        {isDelayedCarousel ? (
+          <View>
+            <Text>{isDelayedFeatured ? (diagnosticDelayedCarouselMounted ? "DELAYED FEATURED MOUNTED" : "DELAYED FEATURED READY") : isDelayedRecommended ? (diagnosticDelayedCarouselMounted ? "DELAYED RECOMMENDED MOUNTED" : "DELAYED RECOMMENDED READY") : (diagnosticDelayedCarouselMounted ? "DELAYED CITIES MOUNTED" : "DELAYED CITIES READY")}</Text>
+            {!diagnosticDelayedCarouselMounted ? <Pressable onPress={() => setDiagnosticDelayedCarouselMounted(true)}><Text>MOUNT CAROUSEL</Text></Pressable> : null}
+          </View>
+        ) : null}
         {isProgressive ? (
           <View>
             <Text>{isProgressiveForward ? "PROGRESSIVE HOME — FORWARD" : "PROGRESSIVE HOME — REVERSE"}</Text>
