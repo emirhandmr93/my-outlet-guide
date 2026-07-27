@@ -874,11 +874,11 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
           ) : null}
         </View>
 
-        <Text>HOME HEADER AND SEARCH MOUNTED</Text>
+        {diagnosticMode === "header-search" ? <Text>HOME HEADER AND SEARCH MOUNTED</Text> : null}
         </>) : null}
 
         {showFeatured ? (<>
-        <Text>FEATURED CAROUSEL MOUNTED</Text>
+        {diagnosticMode === "featured-only" ? <Text>FEATURED CAROUSEL MOUNTED</Text> : null}
         <DashboardSectionHeader
           title={t("home.sections.featured.title")}
           subtitle={t("home.sections.featured.subtitle")}
@@ -977,7 +977,7 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
         </>) : null}
 
         {showRecommended ? (<>
-        <Text>RECOMMENDED CAROUSEL MOUNTED</Text>
+        {diagnosticMode === "recommended-only" ? <Text>RECOMMENDED CAROUSEL MOUNTED</Text> : null}
         <DashboardSectionHeader
           title={t("home.sections.outlets.title")}
           subtitle={t("home.sections.outlets.subtitle")}
@@ -1058,7 +1058,7 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
         </>) : null}
 
         {showStatic ? (<>
-        <Text>STATIC HOME SECTIONS MOUNTED</Text>
+        {diagnosticMode === "static-only" ? <Text>STATIC HOME SECTIONS MOUNTED</Text> : null}
         <DashboardSectionHeader
           title={t("home.sections.activity.title")}
           subtitle={t("home.sections.activity.subtitle")}
@@ -1126,7 +1126,7 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
         </>) : null}
 
         {showCities ? (<>
-        <Text>POPULAR CITIES MOUNTED</Text>
+        {diagnosticMode === "cities-only" ? <Text>POPULAR CITIES MOUNTED</Text> : null}
         <DashboardSectionHeader
           title={t("home.sections.cities.title")}
           subtitle={t("home.sections.cities.subtitle")}

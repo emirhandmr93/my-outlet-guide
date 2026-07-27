@@ -66,6 +66,23 @@ const homeLayerDiagnosticErrors = errors([
   [home.includes('diagnosticMode === "modal-only"') && home.includes("quickMenuModal(false)") && home.includes("HOME MODAL MOUNTED"), "modal-only mode missing hidden current Modal"],
   [diagnostic.includes("const CurrentHomeTabs = () => <HomeTabs />") && !diagnostic.includes('<HomeTabs diagnosticMode={undefined}'), "existing full Home stage must remain unmodified"],
 ]);
+const markerGuards: Array<[string, string]> = [
+  ["header-search", "HOME HEADER AND SEARCH MOUNTED"],
+  ["featured-only", "FEATURED CAROUSEL MOUNTED"],
+  ["recommended-only", "RECOMMENDED CAROUSEL MOUNTED"],
+  ["static-only", "STATIC HOME SECTIONS MOUNTED"],
+  ["cities-only", "POPULAR CITIES MOUNTED"],
+  ["full-no-effects-no-modal", "FULL HOME WITHOUT EFFECTS OR MODAL"],
+];
+const productionFaithfulHomeErrors = errors([
+  [markerGuards.every(([mode, marker]) => home.includes(`diagnosticMode === "${mode}" ? <Text>${marker}</Text> : null`)), "every visual-tree marker must use its exact diagnostic mode guard"],
+  [home.includes('if (diagnosticMode === "hooks-only")') && home.includes("HOME HOOKS MOUNTED"), "hooks-only marker guard missing"],
+  [home.includes('if (diagnosticMode === "modal-only")') && home.includes("HOME MODAL MOUNTED"), "modal-only marker guard missing"],
+  [home.includes("const showFullVisualTree = diagnosticMode === undefined") && markerGuards.every(([mode, marker]) => !home.includes(`showFullVisualTree ? <Text>${marker}`)), "default Home may expose a diagnostic marker"],
+  [diagnostic.includes("const CurrentHomeTabs = () => <HomeTabs />") && !diagnostic.includes('<CurrentHomeTabs diagnosticMode='), "stack-home-tabs must mount HomeScreen without a diagnostic prop"],
+  [diagnostic.includes('if (stage === "full-current-app") return props.fullCurrentApp'), "full-current-app must delegate to current production tree"],
+  [markerGuards.every(([mode, marker]) => markerGuards.filter(([otherMode]) => otherMode !== mode).every(([, otherMarker]) => !`diagnosticMode === "${mode}" ? <Text>${marker}</Text> : null`.includes(otherMarker))), "an isolated visual stage can expose another stage marker"],
+]);
 const fullAppErrors = errors([
   [diagnostic.includes("return props.fullCurrentApp"), "full stage does not delegate to current app tree"],
   [currentTree >= 0 && gate > currentTree, "current production tree is not retained before diagnostic selection"],
@@ -75,7 +92,7 @@ const platformProtectionErrors = errors([
   [app.includes("return currentAppNavigationTree"), "Android/web normal return missing"],
   [onboarding >= 0 && onboarding < gate, "onboarding must precede diagnostic gate"],
 ]);
-const lists = [diagnosticGateErrors,persistenceErrors,build3Errors,currentStackErrors,simpleTabsErrors,stackTabsErrors,realHomeProbeErrors,homeLayerDiagnosticErrors,fullAppErrors,platformProtectionErrors];
+const lists = [diagnosticGateErrors,persistenceErrors,build3Errors,currentStackErrors,simpleTabsErrors,stackTabsErrors,realHomeProbeErrors,homeLayerDiagnosticErrors,productionFaithfulHomeErrors,fullAppErrors,platformProtectionErrors];
 console.log("Stage ID list:", JSON.stringify(expected));
 console.log("Diagnostic gate error list:", JSON.stringify(diagnosticGateErrors));
 console.log("Persistence error list:", JSON.stringify(persistenceErrors));
@@ -85,6 +102,7 @@ console.log("Simple tabs error list:", JSON.stringify(simpleTabsErrors));
 console.log("Stack-tabs error list:", JSON.stringify(stackTabsErrors));
 console.log("Real Home probe error list:", JSON.stringify(realHomeProbeErrors));
 console.log("Home layer diagnostic error list:", JSON.stringify(homeLayerDiagnosticErrors));
+console.log("Production-faithful Home error list:", JSON.stringify(productionFaithfulHomeErrors));
 console.log("Full app error list:", JSON.stringify(fullAppErrors));
 console.log("Platform protection error list:", JSON.stringify(platformProtectionErrors));
 const count = lists.reduce((sum,list) => sum + list.length, 0);
