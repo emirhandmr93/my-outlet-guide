@@ -110,7 +110,7 @@ assert(!/fake|mock|demo|sample trip|sample fare|coming soon/i.test(home), "Home 
 for (const removed of ["Tahmini KDV tutarı", "KDV öncesi net tutar", "Dahil edilen KDV tahmini"]) {
   assert(!savings.includes(removed), `Savings does not contain old KDV label: ${removed}`);
 }
-for (const required of ["Ürün fiyatı", "Tahmini Tax Free iadesi", "İade sonrası tahmini maliyet"]) {
+for (const required of ["Ürün fiyatı", "Tahmini Tax Free iadesi", "Tax Free sonrası tahmini fiyat"]) {
   assert(translations.includes(required), `Savings keeps required Tax Free label: ${required}`);
 }
 

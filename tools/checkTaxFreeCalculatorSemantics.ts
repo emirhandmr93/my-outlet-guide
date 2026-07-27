@@ -93,7 +93,27 @@ assert(/\{!rule \? \([\s\S]*notAvailableExplanation[\s\S]*\) : policyDisplay\?\.
 assert(taxFreeRules.length === 31 && ["united-arab-emirates", "china", "thailand"].every((id) => getTaxFreeRule(id)?.refundPolicy.mode === "provider_dependent_upper_bound"), "31 rules remain and UAE, China, Thailand stay safe upper bounds.");
 assert(countries.length === 34 && countries.filter(({ taxFreeStatus }) => taxFreeStatus === "available").length === 31 && countries.filter(({ taxFreeStatus }) => taxFreeStatus === "not_available").length === 3, "Coverage remains 34 countries, 31 available, and 3 not available.");
 for (const removed of ["Dahil edilen KDV tahmini", "Tahmini KDV tutarı", "KDV öncesi net tutar"]) assert(!(taxScreen + smartScreen + priceScreen).includes(removed), `Confusing Turkish result label ${removed} remains absent.`);
-assert(resolveTranslation("tr", "taxCalc.convertedRefund") === "Para biriminde tahmini iade" && resolveTranslation("tr", "taxCalc.convertedCostAfterRefund") === "Para biriminde iade sonrası maliyet", "Turkish converted refund and cost labels remain exact.");
+const expectedTurkishTaxFreeResultCopy = {
+  "taxCalc.maximumRefundBeforeFees": "Tahmini Tax Free iadesi",
+  "taxCalc.bestCaseCostBeforeFees": "Tax Free sonrası tahmini fiyat",
+  "taxCalc.convertedMaximum": "Tahmini Tax Free iadesi",
+  "taxCalc.convertedBestCaseCost": "Tax Free sonrası tahmini fiyat",
+  "taxCalc.estimatedNetRefund": "Tahmini Tax Free iadesi",
+  "taxCalc.estimatedCostAfterRefund": "Tax Free sonrası tahmini fiyat",
+  "taxCalc.convertedRefund": "Tahmini Tax Free iadesi",
+  "taxCalc.convertedCostAfterRefund": "Tax Free sonrası tahmini fiyat",
+  "priceCalc.maximumPossibleAdvantageBeforeFees": "Tahmini fiyat avantajı",
+  "taxCalc.upperBoundDisclaimer": "Bu en yüksek tahmindir. Gerçek iade mağaza, sağlayıcı ve işlem ücretlerine göre daha düşük olabilir.",
+} as const;
+for (const [key, expected] of Object.entries(expectedTurkishTaxFreeResultCopy)) {
+  assert(resolveTranslation("tr", key) === expected, `${key} has exact simplified Turkish result copy.`);
+}
+const resolvedTurkishTaxFreeResultCopy = Object.keys(expectedTurkishTaxFreeResultCopy)
+  .map((key) => resolveTranslation("tr", key))
+  .join("\n");
+for (const removed of ["Ücretler öncesi azami iade", "Ücretlerden önce olası en düşük maliyet", "Para biriminde ücretler öncesi", "Azami olası avantaj"]) {
+  assert(!resolvedTurkishTaxFreeResultCopy.includes(removed), `Legacy Turkish Tax Free result phrase is absent: ${removed}`);
+}
 assert(resolveTranslation("tr", "taxFree.estimatedMaximumRefundRateBeforeFees") === "Tahmini azami Tax Free iade oranı: %{rate} (ücretler öncesi)", "Turkish maximum-rate label remains exact.");
 assert(resolveTranslation("tr", "taxCalc.pointOfSaleDisclaimer") !== resolveTranslation("en", "taxCalc.pointOfSaleDisclaimer"), "English POS explanation does not leak into Turkish UI.");
 const invalidPolicies: Array<[TaxFreeRule["refundPolicy"], string]> = [
