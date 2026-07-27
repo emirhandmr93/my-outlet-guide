@@ -151,9 +151,11 @@ export function CountryScreen() {
   const statusText = countryTaxFreeStatus === "available"
     ? t("country.yes")
     : t(countryTaxFreeStatus === "not_available" ? "taxFree.not_available" : "taxFree.not_verified");
-  const minimumText = rule?.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number"
-    ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} (${t(getMinimumPurchaseTextKey(rule))})`
-    : rule ? t(getMinimumPurchaseTextKey(rule)) : statusText;
+  const minimumText = policyDisplay?.kind === "future_regime"
+    ? t("taxFree.futureRegimeMinimumNotModeled")
+    : rule?.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number"
+      ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} (${t(getMinimumPurchaseTextKey(rule))})`
+      : rule ? t(getMinimumPurchaseTextKey(rule)) : statusText;
   const visitedCountry = countries.find((item) => item.countryId === route.params?.countryId);
 
   useEffect(() => {

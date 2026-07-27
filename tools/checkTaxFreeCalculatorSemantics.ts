@@ -5,6 +5,7 @@ import { getRefundPolicyValidationErrors, getTaxFreePolicySummaryKey, getTaxFree
 import { resolveTranslation } from "../src/i18n/translationResolver";
 import { calculateTaxFreeEstimate, getTaxFreeDisplayPlan, getTaxFreeMetadataPlan, hasNumericTaxFreePlan } from "../src/services/taxFreeCalculatorService";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../src/utils/localization";
+import { getTaxFreeSourceDisplayRows } from "../src/utils/taxFreeSourceDisplay";
 
 const read = (path: string) => readFileSync(path, "utf8");
 function assert(condition: unknown, message: string): asserts condition { if (!condition) throw new Error(message); console.log(`✅ ${message}`); }
@@ -86,7 +87,9 @@ assert(currencies.slice(0, 3).map(({ currencyCode }) => currencyCode).join(",") 
 assert(getLocalizedCountryName({ countryId: "france", countryName: "France" }, "tr") === "Fransa" && getLocalizedCurrencyName(currencies.find(({ currencyCode }) => currencyCode === "TRY")!, "tr") === "Türk Lirası" && getLocalizedCurrencyName(currencies.find(({ currencyCode }) => currencyCode === "USD")!, "tr") === "ABD Doları", "Turkish country and currency localization is preserved.");
 assert(!/providerFeeRate\s*:|storeFeeRate|processingFeeRate|fake tax|mock tax|sample tax/i.test(rulesSource + service + taxScreen + smartScreen + priceScreen), "No invented provider/store/processing fee exists.");
 assert(resolveTranslation("tr", "taxFree.maximumRateBasisExplanation").startsWith("Bu tahmini azami oran") && taxScreen.includes("taxFree.maximumRateBasisExplanation"), "Provider-dependent explanation is localized and user-focused in Turkish.");
-assert(taxScreen.includes("getLocalizedTaxFreeSourceName") && sourceHelper.includes("taxCalc.sourceEuropeanCommissionVatRates"), "Calculator uses the centralized localized source helper.");
+assert(taxScreen.includes("getTaxFreeSourceDisplayRows(rule, language, t") && sourceHelper.includes("source: rule.vatRateSource") && sourceHelper.includes("getLocalizedTaxFreeSourceName(source, language, t)"), "Calculator renders VAT-rate provenance through the centralized localized source flow.");
+assert(getTaxFreeSourceDisplayRows(getTaxFreeRule("turkey")!, "tr", (key) => resolveTranslation("tr", key)).length === 1, "Identical Turkey scheme, rate, minimum, and policy sources are combined into one row.");
+assert(/\{!rule \? \([\s\S]*notAvailableExplanation[\s\S]*\) : policyDisplay\?\.kind === "future_regime"/.test(guideScreen), "Countries without a rule stop before Tax Free process content.");
 assert(taxFreeRules.length === 31 && ["united-arab-emirates", "china", "thailand"].every((id) => getTaxFreeRule(id)?.refundPolicy.mode === "provider_dependent_upper_bound"), "31 rules remain and UAE, China, Thailand stay safe upper bounds.");
 assert(countries.length === 34 && countries.filter(({ taxFreeStatus }) => taxFreeStatus === "available").length === 31 && countries.filter(({ taxFreeStatus }) => taxFreeStatus === "not_available").length === 3, "Coverage remains 34 countries, 31 available, and 3 not available.");
 for (const removed of ["Dahil edilen KDV tahmini", "Tahmini KDV tutarı", "KDV öncesi net tutar"]) assert(!(taxScreen + smartScreen + priceScreen).includes(removed), `Confusing Turkish result label ${removed} remains absent.`);

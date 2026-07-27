@@ -36,16 +36,14 @@ export function TaxFreeGuideScreen() {
         />
       </View>
 
-      {policyDisplay?.kind === "future_regime" ? (
+      {!rule ? (
+        <View style={styles.noteCard}><Text style={styles.note}>{t(normalizeTaxFreeCountryStatus(selectedCountry.taxFreeStatus) === "not_available" ? "taxFree.notAvailableExplanation" : "taxFree.notVerifiedExplanation")}</Text></View>
+      ) : policyDisplay?.kind === "future_regime" ? (
         <View style={styles.noteCard}><Text style={styles.noteTitle}>{t("common.important")}</Text><Text style={styles.note}>{policyDisplay.summary}</Text></View>
       ) : (
         <>
-          {rule ? (
-            <>
-              <View style={styles.statsRow}><View style={styles.statBox}><Text style={styles.statLabel}>{policyDisplay!.label}</Text><Text style={styles.statValue}>{policyDisplay!.rateText ?? policyDisplay!.summary}</Text></View></View>
-              <View style={styles.highlightCard}><Text style={styles.highlightLabel}>{t("taxGuide.minimumSpend")}</Text><Text style={styles.highlightValue}>{rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)}` : t(getMinimumPurchaseTextKey(rule))}</Text><Text style={styles.highlightText}>{formatCountryDisplayName(selectedCountry.countryId, language)}</Text></View>
-            </>
-          ) : <View style={styles.noteCard}><Text style={styles.note}>{t(normalizeTaxFreeCountryStatus(selectedCountry.taxFreeStatus) === "not_available" ? "taxFree.notAvailableExplanation" : "taxFree.notVerifiedExplanation")}</Text></View>}
+          <View style={styles.statsRow}><View style={styles.statBox}><Text style={styles.statLabel}>{policyDisplay!.label}</Text><Text style={styles.statValue}>{policyDisplay!.rateText ?? policyDisplay!.summary}</Text></View></View>
+          <View style={styles.highlightCard}><Text style={styles.highlightLabel}>{t("taxGuide.minimumSpend")}</Text><Text style={styles.highlightValue}>{rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)}` : t(getMinimumPurchaseTextKey(rule))}</Text><Text style={styles.highlightText}>{formatCountryDisplayName(selectedCountry.countryId, language)}</Text></View>
 
           <View style={styles.card}>
             <Text style={styles.sectionTitle}>{t("taxGuide.taxFreeProcess")}</Text>

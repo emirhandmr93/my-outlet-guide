@@ -58,20 +58,20 @@ assert(myReviews.includes("formatUserFacingDate(review.createdAt, language)"), "
 assert(!/Tahmini KDV tutarı|KDV öncesi net tutar|Dahil edilen KDV tahmini/.test(savings + translations), "Savings/Tax Free does not reintroduce old KDV primary labels");
 assert(!translations.includes("Savings araçlarında") && translations.includes("Tasarruf araçlarında"), "Turkish Savings copy uses Tasarruf araçlarında");
 assert(savings.includes("formatCurrency(convertedRefund, selectedCurrency, language)") && savings.includes("formatCurrency(convertedEuropeCost, selectedCurrency, language)"), "Turkish currency formatting passes locale into result cards");
-assert(translations.includes("Avrupa Komisyonu KDV oranları") && savings.includes("getLocalizedTaxFreeSourceName") && taxFreeSourceDisplay.includes("taxCalc.sourceEuropeanCommissionVatRates"), "Tax Free source is localized in Turkish through the production helper");
+assert(translations.includes("Avrupa Komisyonu KDV oranları") && savings.includes("getTaxFreeSourceDisplayRows(rule, language, t") && taxFreeSourceDisplay.includes("source: rule.vatRateSource") && taxFreeSourceDisplay.includes("getLocalizedTaxFreeSourceName(source, language, t)") && taxFreeSourceDisplay.includes("taxCalc.sourceEuropeanCommissionVatRates"), "Tax Free VAT-rate source is localized through the production source-row flow");
 assert(!/KDV oranı:\s*\{?rule\.vatRate|VAT rate:\s*\{?rule\.vatRate/.test(savings + outletDetailScreen + country), "Tax Free screens do not restore VAT as a primary refund result");
 assert(!appVisible.includes("Uçuş fırsatıuyarıları"), "Offline copy has no missing space in flight deal alerts");
 assert(!/eşitleme kuyruğu|backend göndericisi/.test(appVisible), "Offline and notification copy avoid technical sync/backend wording");
 assert(savings.includes("getFloatingTabClearance(insets.bottom)") && trips.includes("getFloatingTabClearance(insets.bottom)") && notifications.includes("getFloatingTabClearance(insets.bottom)"), "Savings/MyTrips/NotificationSettings have bottom safe-area padding");
 assert(!/32°C|32 °C/.test(appVisible), "No static weather chip like 32°C");
 assert(!/localhost|127\.0\.0\.1|192\.168\./.test(productionFacing), "No localhost/LAN production-facing URLs");
-assert(!/(?:^|\s)(?:TR|EN|DE|FR|IT|ES|AR|RU|ZH):|Türkçe çeviri|çeviri:|translation:/.test(appVisible), "No debug locale prefixes");
+assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(appVisible), "No debug locale prefixes");
 assert(!/110\s+boutiques/i.test(appVisible), "No English 110 boutiques text in Turkish display paths");
 assert(!/Dondurma\s+cream/i.test(appVisible), "No mixed Turkish-English ice cream category text");
 assert(!/\bItalya\b/.test(appVisible), "No malformed Turkish Italy display text");
 const oldMixedTripName = ["Milanı", "Shopping", "Route"].join(" ");
 assert(!appVisible.includes(oldMixedTripName), "No old mixed-language trip route name in screenshot-visible source");
-const safetyFiltered = appVisible.replace(/no fake inbox/gi, "").replace(/Sahte gelen kutusu/gi, "").replace(/no fake\/mock\/demo claims/gi, "").replace(/Flight deal alerts are coming soon\. No alert is being saved yet\./gi, "");
+const safetyFiltered = appVisible.replace(/no fake inbox/gi, "").replace(/Sahte gelen kutusu/gi, "").replace(/no fake\/mock\/demo claims/gi, "");
 assert(!/lorem ipsum|dummy data|sample fare|sample trip|coming soon/i.test(safetyFiltered), "No visible TODO/coming soon/sample placeholders");
 
 console.log("Final screenshot polish audit checks passed.");
