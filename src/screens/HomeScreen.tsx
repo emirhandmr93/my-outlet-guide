@@ -51,6 +51,7 @@ import {
   formatCityDisplayName,
 } from "../utils/locationDisplay";
 import { getRecommendedCarouselLastIndex } from "../utils/recommendedCarousel";
+import { getAppSharePayload } from "../utils/appShare";
 
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
@@ -527,18 +528,10 @@ export function HomeScreen() {
   }
 
   async function shareApp() {
+    setIsQuickMenuOpen(false);
+
     try {
-      await Share.share(
-        Platform.OS === "ios"
-          ? {
-              message: t("home.shareMessage"),
-              url: appStoreDownloadUrl,
-            }
-          : {
-              title: "My Outlet Guide",
-              message: `${t("home.shareMessage")}\n\n${appStoreDownloadUrl}`,
-            },
-      );
+      await Share.share(getAppSharePayload(Platform.OS, t("home.shareMessage")));
     } catch (error: unknown) {
       if (Platform.OS === "web" && isAbortError(error)) {
         return;
