@@ -29,8 +29,8 @@ import { ReviewStatsCard } from "../components/cards/ReviewStatsCard";
 import { ServicesCard } from "../components/cards/ServicesCard";
 import { TaxFreeCard } from "../components/cards/TaxFreeCard";
 import { countries } from "../constants/countries";
-import { getMaximumRefundRate, getTaxFreePolicySummaryKey, getTaxFreeRule } from "../constants/taxFreeRules";
-import { normalizeTaxFreeCountryStatus, resolveOutletTaxFreeDisplayStatus } from "../utils/taxFreeDisplay";
+import { getTaxFreeRule } from "../constants/taxFreeRules";
+import { getTaxFreePolicyDisplayModel, normalizeTaxFreeCountryStatus, resolveOutletTaxFreeDisplayStatus } from "../utils/taxFreeDisplay";
 import { TransportationCard } from "../components/cards/TransportationCard";
 import { WebsiteCard } from "../components/cards/WebsiteCard";
 import { OutletHero } from "../components/OutletHero";
@@ -210,7 +210,10 @@ export function OutletDetailScreen() {
     normalizeTaxFreeCountryStatus(taxFreeCountry?.taxFreeStatus),
   );
   const mayShowTaxFreeEstimate = taxFreeStatus === "outlet_verified" || taxFreeStatus === "country_scheme_available";
-  const taxFreeSummary = taxFreeRule && mayShowTaxFreeEstimate ? (taxFreeRule.refundPolicy.mode === "provider_dependent_upper_bound" ? t(getTaxFreePolicySummaryKey(taxFreeRule)).replace("%{rate}", `${getMaximumRefundRate(taxFreeRule).toFixed(1)}%`) : t(getTaxFreePolicySummaryKey(taxFreeRule))) : undefined;
+  const taxFreeDisplay = taxFreeRule && mayShowTaxFreeEstimate
+    ? getTaxFreePolicyDisplayModel(taxFreeRule, language, t)
+    : undefined;
+  const taxFreeSummary = taxFreeDisplay?.conciseSummary ?? taxFreeDisplay?.summary;
 
   const outletReviews = getPublishedReviews(
     reviews.filter((review) => review.outletId === outlet.outletId),

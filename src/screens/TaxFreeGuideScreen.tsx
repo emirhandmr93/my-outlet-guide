@@ -2,11 +2,12 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { CountrySelector } from "../components/CountrySelector";
 import { countries } from "../constants/countries";
-import { getMaximumRefundRate, getTaxFreePolicySummaryKey, getTaxFreeRule } from "../constants/taxFreeRules";
+import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { formatCurrency } from "../services/exchangeRateService";
-import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
+import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, getTaxFreePolicyDisplayModel, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
+import { formatCountryDisplayName } from "../utils/locationDisplay";
 
 export function TaxFreeGuideScreen() {
   const { selectedCountryId, setSelectedCountryId } = useSavings();
@@ -17,7 +18,7 @@ export function TaxFreeGuideScreen() {
     countries[0];
 
   const rule = getTaxFreeRule(selectedCountry.countryId);
-  const policySummaryKey = rule ? getTaxFreePolicySummaryKey(rule) : undefined;
+  const policyDisplay = rule ? getTaxFreePolicyDisplayModel(rule, language, t) : undefined;
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -35,20 +36,20 @@ export function TaxFreeGuideScreen() {
         />
       </View>
 
-      {policySummaryKey === "taxCalc.futureRegimeNoEstimate" ? (
-        <View style={styles.noteCard}><Text style={styles.noteTitle}>{t("common.important")}</Text><Text style={styles.note}>{t("taxCalc.futureRegimeNoEstimate")}</Text></View>
+      {policyDisplay?.kind === "future_regime" ? (
+        <View style={styles.noteCard}><Text style={styles.noteTitle}>{t("common.important")}</Text><Text style={styles.note}>{policyDisplay.summary}</Text></View>
       ) : (
         <>
           {rule ? (
             <>
-              <View style={styles.statsRow}><View style={styles.statBox}><Text style={styles.statLabel}>{t(rule.refundPolicy.mode === "provider_dependent_upper_bound" ? "taxCalc.maximumRefundBeforeFees" : policySummaryKey!)}</Text><Text style={styles.statValue}>{rule.refundPolicy.mode === "provider_dependent_upper_bound" ? `${getMaximumRefundRate(rule).toFixed(1)}%` : "✓"}</Text></View></View>
-              <View style={styles.highlightCard}><Text style={styles.highlightLabel}>{t("taxGuide.minimumSpend")}</Text><Text style={styles.highlightValue}>{rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)}` : t(getMinimumPurchaseTextKey(rule))}</Text><Text style={styles.highlightText}>{selectedCountry.countryName}</Text></View>
+              <View style={styles.statsRow}><View style={styles.statBox}><Text style={styles.statLabel}>{policyDisplay!.label}</Text><Text style={styles.statValue}>{policyDisplay!.rateText ?? policyDisplay!.summary}</Text></View></View>
+              <View style={styles.highlightCard}><Text style={styles.highlightLabel}>{t("taxGuide.minimumSpend")}</Text><Text style={styles.highlightValue}>{rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)}` : t(getMinimumPurchaseTextKey(rule))}</Text><Text style={styles.highlightText}>{formatCountryDisplayName(selectedCountry.countryId, language)}</Text></View>
             </>
           ) : <View style={styles.noteCard}><Text style={styles.note}>{t(normalizeTaxFreeCountryStatus(selectedCountry.taxFreeStatus) === "not_available" ? "taxFree.notAvailableExplanation" : "taxFree.notVerifiedExplanation")}</Text></View>}
 
           <View style={styles.card}>
             <Text style={styles.sectionTitle}>{t("taxGuide.taxFreeProcess")}</Text>
-            {[t("taxCalc.standardVatBasis"), t(rule?.refundPolicy.mode === "point_of_sale_exemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.finalDisclaimer")].map((step, index) => (
+            {[t(rule?.refundPolicy.mode === "provider_dependent_upper_bound" ? "taxFree.maximumRateBasisExplanation" : "taxCalc.standardVatBasis"), t(rule?.refundPolicy.mode === "point_of_sale_exemption" ? "taxCalc.pointOfSaleDisclaimer" : "taxCalc.finalDisclaimer")].map((step, index) => (
               <View key={`${step}-${index}`} style={styles.stepRow}><View style={styles.stepNumberBox}><Text style={styles.stepNumber}>{index + 1}</Text></View><Text style={styles.stepText}>{step}</Text></View>
             ))}
           </View>

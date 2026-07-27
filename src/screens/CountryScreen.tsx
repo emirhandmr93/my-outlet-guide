@@ -18,7 +18,7 @@ import {
 import { countries } from "../constants/countries";
 import { CountryFlag } from "../components/CountryFlag";
 import { outlets } from "../constants/outlets";
-import { getTaxFreeRule, taxFreeRules } from "../constants/taxFreeRules";
+import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -31,6 +31,8 @@ import { getBrandsForOutlet } from "../services/brandService";
 import { formatRating } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 import { recordRecentVisit } from "../services/recentVisitsService";
+import { formatCurrency } from "../services/exchangeRateService";
+import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, getTaxFreePolicyDisplayModel, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
 
 type RouteParams = {
   Country: {
@@ -143,7 +145,15 @@ export function CountryScreen() {
   const countryId = route.params?.countryId || "france";
   const country =
     countries.find((item) => item.countryId === countryId) || countries[0];
-  const rule = getTaxFreeRule(country.countryId) || taxFreeRules[0];
+  const rule = getTaxFreeRule(country.countryId);
+  const countryTaxFreeStatus = normalizeTaxFreeCountryStatus(country.taxFreeStatus);
+  const policyDisplay = rule ? getTaxFreePolicyDisplayModel(rule, language, t) : undefined;
+  const statusText = countryTaxFreeStatus === "available"
+    ? t("country.yes")
+    : t(countryTaxFreeStatus === "not_available" ? "taxFree.not_available" : "taxFree.not_verified");
+  const minimumText = rule?.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number"
+    ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} (${t(getMinimumPurchaseTextKey(rule))})`
+    : rule ? t(getMinimumPurchaseTextKey(rule)) : statusText;
   const visitedCountry = countries.find((item) => item.countryId === route.params?.countryId);
 
   useEffect(() => {
@@ -189,15 +199,13 @@ export function CountryScreen() {
           <InfoCard
             title={t("country.taxFree")}
             value={
-              hasTaxFree(country.taxFreeAvailable)
-                ? t("country.yes")
-                : t("country.limited")
+              statusText
             }
           />
-          <InfoCard title={t("country.vatRate")} value={`${rule.vatRate}%`} />
+          <InfoCard title={policyDisplay?.label ?? t("taxFree.method")} value={policyDisplay?.rateText ?? policyDisplay?.summary ?? statusText} />
           <InfoCard
             title={t("country.minimum")}
-            value={`${rule.currency} ${rule.minimumPurchaseAmount ?? 0}`}
+            value={minimumText}
           />
         </View>
 
