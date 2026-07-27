@@ -50,6 +50,7 @@ import type { MainTabParamList, RootStackParamList } from "./types";
 import { useNavigationFonts } from "./useNavigationFonts";
 import { createWebLinking } from "./webLinking";
 import { syncWebSeo } from "../utils/webSeo";
+import { IOS_STARTUP_MOUNT_DIAGNOSTIC_ENABLED, StartupMountDiagnostic } from "./StartupMountDiagnostic";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -334,7 +335,7 @@ return (
 );
 }
 
-return (
+const currentAppNavigationTree = (
 <NativeDirectionRoot>
 <NavigationContainer direction={direction} ref={navigationRef} linking={webLinking} onReady={syncWebPath} onStateChange={syncWebPath}>
 <Stack.Navigator
@@ -381,4 +382,10 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 </NavigationContainer>
 </NativeDirectionRoot>
 );
+
+if (Platform.OS === "ios" && IOS_STARTUP_MOUNT_DIAGNOSTIC_ENABLED && !shouldShowOnboarding) {
+return <StartupMountDiagnostic direction={direction} screenOptions={navigationScreenOptions(t, isNativeRTL)} fullCurrentApp={currentAppNavigationTree} />;
+}
+
+return currentAppNavigationTree;
 }
