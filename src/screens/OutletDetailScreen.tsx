@@ -66,7 +66,7 @@ import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
-import { formatOpeningHoursText, formatOutletStatusLabel, formatReviewSummaryLabel, formatStoresCountText } from "../utils/outletDisplayFormatters";
+import { formatOpeningHoursText, formatOutletStatusLabel, formatReviewSummaryLabel, resolveOutletRetailCountDisplay } from "../utils/outletDisplayFormatters";
 import { recordRecentVisit } from "../services/recentVisitsService";
 
 const screenWidth = Dimensions.get("window").width;
@@ -183,6 +183,15 @@ export function OutletDetailScreen() {
 
   const favorite = isFavorite(outlet.outletId);
   const brandCategoryGroups = getBrandCategoryGroupsForOutlet(outlet.outletId);
+  const listedBrandCount = new Set(
+    brandCategoryGroups.flatMap((group) => group.brands.map((brand) => brand.brandId)),
+  ).size;
+  const retailCountDisplay = resolveOutletRetailCountDisplay(
+    outlet.storesCountText,
+    listedBrandCount,
+    language,
+    t,
+  );
   const transportationSummaryItems = getOutletTransportationV2Summary(
     outlet.outletId,
     language,
@@ -576,7 +585,7 @@ export function OutletDetailScreen() {
             openingHours={formatOpeningHoursText(outlet.openingHours, language)}
             addressLabel={t("outlet.address")}
             address={outlet.address}
-            storesCountText={formatStoresCountText(outlet.storesCountText, language)}
+            retailCountDisplay={retailCountDisplay}
             taxFreeStatus={taxFreeStatus}
             taxFreeSummary={taxFreeSummary}
             cityCenterDistanceKm={outlet.cityCenterDistanceKm}

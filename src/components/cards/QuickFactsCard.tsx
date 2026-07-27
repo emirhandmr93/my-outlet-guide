@@ -9,6 +9,7 @@ import { typography } from "../../theme/typography";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatReviewCount } from "../../services/reviewsRatingsService";
 import { hasDisplayValue, OutletTaxFreeDisplayStatus } from "../../utils/taxFreeDisplay";
+import type { OutletRetailCountDisplay } from "../../utils/outletDisplayFormatters";
 
 export type QuickFactsCardProps = {
   title: string;
@@ -22,7 +23,7 @@ export type QuickFactsCardProps = {
   openingHours: string;
   addressLabel: string;
   address: string;
-  storesCountText: string;
+  retailCountDisplay: OutletRetailCountDisplay;
   taxFreeStatus: OutletTaxFreeDisplayStatus;
   taxFreeSummary?: string;
   cityCenterDistanceKm: number;
@@ -71,7 +72,7 @@ function FactTile({
 export function QuickFactsCard({
   title,
   openingHours,
-  storesCountText,
+  retailCountDisplay,
   taxFreeStatus,
   taxFreeSummary,
   cityCenterDistanceKm,
@@ -103,9 +104,12 @@ export function QuickFactsCard({
         {hasDisplayValue(openingHours) ? (
           <FactTile icon="🕒" label={t("sharedCards.quickFacts.hours")} value={openingHours} />
         ) : null}
-        {hasDisplayValue(storesCountText) ? (
-          <FactTile icon="🛍️" label={t("sharedCards.quickFacts.stores")} value={storesCountText} onPress={onPressStores} />
-        ) : null}
+        <FactTile
+          icon="🛍️"
+          label={t(retailCountDisplay.labelKey)}
+          value={retailCountDisplay.value}
+          onPress={onPressStores}
+        />
         <FactTile
           icon="💰"
           label={t("sharedCards.quickFacts.taxFree")}

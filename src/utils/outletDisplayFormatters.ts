@@ -8,19 +8,124 @@ export function formatOutletStatusLabel(status: string, t: (key: string) => stri
   return status;
 }
 
-export function formatStoresCountText(value: string, language: TranslationLanguage) {
-  if (language !== "tr") return value;
+export type OutletRetailCountQualifier =
+  | "exact"
+  | "plus"
+  | "more_than"
+  | "almost"
+  | "about"
+  | "up_to";
 
+export type OutletRetailCountDisplay = {
+  labelKey: string;
+  value: string;
+  source:
+    | "official_store_count"
+    | "official_brand_count"
+    | "official_boutique_count"
+    | "listed_brand_fallback"
+    | "not_verified";
+  count?: number;
+  qualifier?: OutletRetailCountQualifier;
+};
+
+export type ParsedOutletRetailCount = {
+  kind: "store" | "brand" | "boutique";
+  count: number;
+  qualifier: OutletRetailCountQualifier;
+};
+
+const RETAIL_NOUN = "(?:outlet\\s+shops?|shops?|(?:outlet|retail|designer|brand(?:ed)?|different)\\s+stores?|stores?|boutiques?|brands?)";
+const RETAIL_COUNT_PATTERN = new RegExp(
+  `(?:(more\\s+than|over|almost|nearly|around|about|approximately|up\\s+to)\\s+)?(-?\\d+)(\\+)?\\s+(?:of\\s+the\\s+biggest\\s+)?[^\\d;]{0,85}?(${RETAIL_NOUN})\\b`,
+  "gi",
+);
+
+/** Parses only the noun/qualifier combinations present in the outlet dataset. */
+export function parseOutletRetailCount(value: unknown): ParsedOutletRetailCount | null {
+  if (typeof value !== "string") return null;
   const compactValue = value.trim();
-  const match = compactValue.match(/^(more than|over|almost)?\s*(\d+)(\+)?\s+(?:(?:leading|premium|luxury|international|fashion|lifestyle|top)\s+)*(designer\s+)?(?:outlet\s+)?(brands?|boutiques|stores|shops)\b/i);
-  if (match) {
-    const [, qualifier, count, plus, designer, noun] = match;
-    const amount = qualifier === "more than" || qualifier === "over" ? `${count}'den fazla` : `${count}${plus ?? ""}`;
-    const unit = /brand/i.test(noun) ? `${designer ? "tasarım " : ""}marka` : /boutique/i.test(noun) ? "butik" : "mağaza";
-    return `${amount} ${unit}`;
-  }
+  if (!compactValue || /^(?:n\/?a|unknown|not verified|placeholder|mock|nan|infinity)$/i.test(compactValue)) return null;
 
-  return value;
+  RETAIL_COUNT_PATTERN.lastIndex = 0;
+  const matches = [...compactValue.matchAll(RETAIL_COUNT_PATTERN)];
+  // Multiple retail figures are intentionally not guessed (for example stores vs brands).
+  if (matches.length !== 1) return null;
+  const [, rawQualifier, rawCount, plus, noun] = matches[0];
+  const count = Number(rawCount);
+  if (!Number.isSafeInteger(count) || count <= 0) return null;
+
+  const normalizedNoun = noun.toLowerCase();
+  const kind = normalizedNoun.includes("brand")
+    ? "brand"
+    : normalizedNoun.includes("boutique")
+      ? "boutique"
+      : "store";
+  const normalizedQualifier = rawQualifier?.toLowerCase().replace(/\s+/g, " ");
+  const qualifier: OutletRetailCountQualifier = plus
+    ? "plus"
+    : normalizedQualifier === "more than" || normalizedQualifier === "over"
+      ? "more_than"
+      : normalizedQualifier === "almost" || normalizedQualifier === "nearly"
+        ? "almost"
+        : normalizedQualifier === "around" || normalizedQualifier === "about" || normalizedQualifier === "approximately"
+          ? "about"
+          : normalizedQualifier === "up to"
+            ? "up_to"
+            : "exact";
+  return { kind, count, qualifier };
+}
+
+function interpolateCount(template: string, count: number, language: TranslationLanguage): string {
+  if (language === "tr" && template.includes("{count}'D")) {
+    const lastDigit = count % 10;
+    const suffix = lastDigit === 0
+      ? ({ 0: "den", 1: "dan", 2: "den", 3: "dan", 4: "tan", 5: "den", 6: "tan", 7: "ten", 8: "den", 9: "dan" } as Record<number, string>)[Math.floor(count / 10) % 10]
+      : ({ 1: "den", 2: "den", 3: "ten", 4: "ten", 5: "ten", 6: "dan", 7: "den", 8: "den", 9: "dan" } as Record<number, string>)[lastDigit];
+    return template.replace("{count}'D", `${count}'${suffix}`);
+  }
+  return template.replace("{count}", String(count));
+}
+
+export function resolveOutletRetailCountDisplay(
+  value: unknown,
+  listedBrandCount: number,
+  language: TranslationLanguage,
+  t: (key: string) => string,
+): OutletRetailCountDisplay {
+  const parsed = parseOutletRetailCount(value);
+  if (parsed) {
+    const source = `official_${parsed.kind}_count` as OutletRetailCountDisplay["source"];
+    return {
+      labelKey: `sharedCards.quickFacts.${parsed.kind === "store" ? "stores" : `${parsed.kind}s`}`,
+      value: interpolateCount(t(`outlet.retailCount.qualifier.${parsed.qualifier}`), parsed.count, language),
+      source,
+      count: parsed.count,
+      qualifier: parsed.qualifier,
+    };
+  }
+  if (Number.isSafeInteger(listedBrandCount) && listedBrandCount > 0) {
+    return {
+      labelKey: "sharedCards.quickFacts.listedBrands",
+      value: String(listedBrandCount),
+      source: "listed_brand_fallback",
+      count: listedBrandCount,
+      qualifier: "exact",
+    };
+  }
+  return {
+    labelKey: "sharedCards.quickFacts.retailCount",
+    value: t("outlet.retailCount.notVerified"),
+    source: "not_verified",
+  };
+}
+
+/** @deprecated Outlet Detail uses resolveOutletRetailCountDisplay for its complete fallback model. */
+export function formatStoresCountText(value: string, language: TranslationLanguage): string {
+  if (language === "en") return value;
+  const parsed = parseOutletRetailCount(value);
+  if (!parsed) return value;
+  return `${parsed.count}${parsed.qualifier === "plus" ? "+" : ""}`;
 }
 
 export function formatOpeningHoursText(value: string, language: TranslationLanguage): string {
