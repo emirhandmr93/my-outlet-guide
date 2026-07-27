@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator, Platform, Pressable, useWindowDimensions, View } from "react-native";
 import { useEffect, useState } from "react";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import { useFonts } from "expo-font";
 
 import { BrandResultsScreen } from "../screens/BrandResultsScreen";
 import { CityResultsScreen } from "../screens/CityResultsScreen";
@@ -48,6 +47,7 @@ import { hasSeenOnboarding } from "../services/onboardingStorage";
 import colors from "../theme/colors";
 
 import type { MainTabParamList, RootStackParamList } from "./types";
+import { useNavigationFonts } from "./useNavigationFonts";
 import { createWebLinking } from "./webLinking";
 import { syncWebSeo } from "../utils/webSeo";
 
@@ -276,11 +276,7 @@ const { isLanguageResolved, language } = useLanguage();
 const { direction, isNativeRTL } = useLayoutDirection();
 const [shouldShowOnboarding, setShouldShowOnboarding] = useState(false);
 const [isOnboardingGateReady, setIsOnboardingGateReady] = useState(false);
-const [navigationFontsLoaded, navigationFontError] = useFonts({
-...Ionicons.font,
-...Feather.font,
-...MaterialCommunityIcons.font,
-});
+const [navigationFontsLoaded, navigationFontError] = useNavigationFonts();
 
 useEffect(() => {
 if (!isLanguageResolved) return;
