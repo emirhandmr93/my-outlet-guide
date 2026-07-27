@@ -88,6 +88,12 @@ type FeaturedSlide = {
   params?: Record<string, string>;
 };
 
+type CarouselLayoutSignature = {
+  interval: number;
+  content: number;
+  viewport: number;
+};
+
 const featuredSlides: FeaturedSlide[] = [
   {
     id: "discover-outlets",
@@ -304,14 +310,27 @@ function getCarouselMaxOffset(contentWidth: number, viewportWidth: number) {
 }
 
 function getLogicalSnapOffsets(itemCount: number, interval: number, contentWidth: number, viewportWidth: number) {
+  if (
+    itemCount <= 0 ||
+    !Number.isFinite(interval) ||
+    interval <= 0 ||
+    !Number.isFinite(contentWidth) ||
+    contentWidth <= 0 ||
+    !Number.isFinite(viewportWidth) ||
+    viewportWidth <= 0
+  ) {
+    return [];
+  }
+
   const maxOffset = getCarouselMaxOffset(contentWidth, viewportWidth);
   const offsets: number[] = [];
   for (let index = 0; index < itemCount; index += 1) {
     const offset = Math.min(index * interval, maxOffset);
+    if (!Number.isFinite(offset) || offset < 0) continue;
     if (offsets.length === 0 || offset - offsets[offsets.length - 1] >= interval / 2) offsets.push(offset);
-    else offsets[offsets.length - 1] = offset;
+    else if (offset !== offsets[offsets.length - 1]) offsets[offsets.length - 1] = offset;
   }
-  return offsets;
+  return [...new Set(offsets)];
 }
 
 function logicalToScrollOffset(logicalOffset: number, maxOffset: number, transformAndroidRTL: boolean) {
@@ -323,6 +342,7 @@ function scrollToLogicalOffset(scrollOffset: number, maxOffset: number, transfor
 }
 
 function getClosestSnapIndex(offset: number, snapOffsets: number[]) {
+  if (snapOffsets.length === 0 || !Number.isFinite(offset)) return 0;
   return snapOffsets.reduce((closest, candidate, index) => Math.abs(candidate - offset) < Math.abs(snapOffsets[closest] - offset) ? index : closest, 0);
 }
 
@@ -350,6 +370,15 @@ export function HomeScreen() {
   const carouselRef = useRef<ScrollView | null>(null);
   const recommendedCarouselRef = useRef<ScrollView | null>(null);
   const cityCarouselRef = useRef<ScrollView | null>(null);
+  const featuredLtrLayoutRef = useRef<CarouselLayoutSignature | null>(null);
+  const recommendedLtrLayoutRef = useRef<CarouselLayoutSignature | null>(null);
+  const cityLtrLayoutRef = useRef<CarouselLayoutSignature | null>(null);
+  const activeSlideIndexRef = useRef(activeSlideIndex);
+  const activeRecommendedIndexRef = useRef(activeRecommendedIndex);
+  const activeCityIndexRef = useRef(activeCityIndex);
+  activeSlideIndexRef.current = activeSlideIndex;
+  activeRecommendedIndexRef.current = activeRecommendedIndex;
+  activeCityIndexRef.current = activeCityIndex;
   const [featuredMetrics, setFeaturedMetrics] = useState({ content: 0, viewport: 0 });
   const [recommendedMetrics, setRecommendedMetrics] = useState({ content: 0, viewport: 0 });
   const [cityMetrics, setCityMetrics] = useState({ content: 0, viewport: 0 });
@@ -368,6 +397,7 @@ export function HomeScreen() {
     ? Math.round((contentWidth - spacing.md * 3) / 4)
     : Math.round(width * 0.42);
   const citySnapInterval = cityCardWidth + spacing.md;
+  const useNativeRtlOffsets = Platform.OS !== "web" && isNativeRTL;
   const transformAndroidRTL = Platform.OS === "android" && isNativeRTL;
   const featuredMaxOffset = getCarouselMaxOffset(featuredMetrics.content, featuredMetrics.viewport);
   const recommendedMaxOffset = getCarouselMaxOffset(recommendedMetrics.content, recommendedMetrics.viewport);
@@ -375,11 +405,17 @@ export function HomeScreen() {
   const featuredSnapOffsets = getLogicalSnapOffsets(featuredSlides.length, carouselWidth, featuredMetrics.content, featuredMetrics.viewport);
   const recommendedSnapOffsets = getLogicalSnapOffsets(recommendedOutlets.length, outletCardWidth + spacing.md, recommendedMetrics.content, recommendedMetrics.viewport);
   const citySnapOffsets = getLogicalSnapOffsets(popularCities.length, citySnapInterval, cityMetrics.content, cityMetrics.viewport);
+  const featuredRtlReady = useNativeRtlOffsets && featuredMetrics.content > 0 && featuredMetrics.viewport > 0 && featuredSnapOffsets.length > 0 && featuredSnapOffsets.every(Number.isFinite);
+  const recommendedRtlReady = useNativeRtlOffsets && recommendedMetrics.content > 0 && recommendedMetrics.viewport > 0 && recommendedSnapOffsets.length > 0 && recommendedSnapOffsets.every(Number.isFinite);
+  const cityRtlReady = useNativeRtlOffsets && cityMetrics.content > 0 && cityMetrics.viewport > 0 && citySnapOffsets.length > 0 && citySnapOffsets.every(Number.isFinite);
+  const featuredNativeSnapOffsets = featuredRtlReady ? getNativeSnapOffsets(featuredSnapOffsets, featuredMaxOffset, Platform.OS, isNativeRTL) : undefined;
+  const recommendedNativeSnapOffsets = recommendedRtlReady ? getNativeSnapOffsets(recommendedSnapOffsets, recommendedMaxOffset, Platform.OS, isNativeRTL) : undefined;
+  const cityNativeSnapOffsets = cityRtlReady ? getNativeSnapOffsets(citySnapOffsets, cityMaxOffset, Platform.OS, isNativeRTL) : undefined;
   const calculatedRecommendedLastIndex = getRecommendedCarouselLastIndex(recommendedOutlets.length, outletCardWidth, spacing.md, contentWidth);
-  const recommendedLastIndex = Platform.OS === "web" ? calculatedRecommendedLastIndex : recommendedSnapOffsets.length - 1;
+  const recommendedLastIndex = useNativeRtlOffsets ? recommendedSnapOffsets.length - 1 : calculatedRecommendedLastIndex;
   const recommendedPageCount = recommendedLastIndex + 1;
-  const featuredPageCount = Platform.OS === "web" ? featuredSlides.length : featuredSnapOffsets.length;
-  const cityPageCount = Platform.OS === "web" ? popularCities.length : citySnapOffsets.length;
+  const featuredPageCount = useNativeRtlOffsets ? featuredSnapOffsets.length : featuredSlides.length;
+  const cityPageCount = useNativeRtlOffsets ? citySnapOffsets.length : popularCities.length;
   const toolCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 3) / 4)
     : (width - spacing.xl * 2 - spacing.md) / 2;
@@ -411,53 +447,159 @@ export function HomeScreen() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextIndex = (activeSlideIndex + 1) % (Platform.OS === "web" ? slides.length : featuredSnapOffsets.length);
+      const itemCount = useNativeRtlOffsets ? featuredSnapOffsets.length : slides.length;
+      if (itemCount <= (useNativeRtlOffsets ? 1 : 0)) return;
+      const nextIndex = (activeSlideIndex + 1) % itemCount;
+      const targetOffset = useNativeRtlOffsets
+        ? featuredSnapOffsets[nextIndex]
+        : nextIndex * carouselWidth;
+      if (!Number.isFinite(targetOffset) || !carouselRef.current) return;
       carouselRef.current?.scrollTo({
-        x: Platform.OS === "web"
-          ? nextIndex * carouselWidth
-          : logicalToScrollOffset(featuredSnapOffsets[nextIndex] ?? 0, featuredMaxOffset, transformAndroidRTL),
+        x: useNativeRtlOffsets
+          ? logicalToScrollOffset(targetOffset, featuredMaxOffset, transformAndroidRTL)
+          : targetOffset,
         animated: true,
       });
       setActiveSlideIndex(nextIndex);
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeSlideIndex, carouselWidth, featuredMetrics, isNativeRTL, slides.length]);
+  }, [activeSlideIndex, carouselWidth, featuredMetrics, slides.length, useNativeRtlOffsets]);
 
   useEffect(() => {
     const interval = setInterval(() => {
+      if (useNativeRtlOffsets && recommendedSnapOffsets.length < 2) return;
+      if (!useNativeRtlOffsets && recommendedOutlets.length === 0) return;
       const nextIndex = activeRecommendedIndex >= recommendedLastIndex
         ? 0
         : activeRecommendedIndex + 1;
+      const targetOffset = useNativeRtlOffsets
+        ? recommendedSnapOffsets[nextIndex]
+        : nextIndex * (outletCardWidth + spacing.md);
+      if (!Number.isFinite(targetOffset) || !recommendedCarouselRef.current) return;
       recommendedCarouselRef.current?.scrollTo({
-        x: Platform.OS === "web"
-          ? nextIndex * (outletCardWidth + spacing.md)
-          : logicalToScrollOffset(recommendedSnapOffsets[nextIndex] ?? 0, recommendedMaxOffset, transformAndroidRTL),
+        x: useNativeRtlOffsets
+          ? logicalToScrollOffset(targetOffset, recommendedMaxOffset, transformAndroidRTL)
+          : targetOffset,
         animated: true,
       });
       setActiveRecommendedIndex(nextIndex);
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeRecommendedIndex, outletCardWidth, recommendedLastIndex, recommendedMetrics, isNativeRTL]);
+  }, [activeRecommendedIndex, outletCardWidth, recommendedLastIndex, recommendedMetrics, useNativeRtlOffsets]);
 
   useEffect(() => {
-    if (Platform.OS === "web") return;
-    carouselRef.current?.scrollTo({ x: logicalToScrollOffset(featuredSnapOffsets[activeSlideIndex] ?? 0, featuredMaxOffset, transformAndroidRTL), animated: false });
-    recommendedCarouselRef.current?.scrollTo({ x: logicalToScrollOffset(recommendedSnapOffsets[activeRecommendedIndex] ?? 0, recommendedMaxOffset, transformAndroidRTL), animated: false });
-    cityCarouselRef.current?.scrollTo({ x: logicalToScrollOffset(citySnapOffsets[activeCityIndex] ?? 0, cityMaxOffset, transformAndroidRTL), animated: false });
-  }, [isNativeRTL, featuredMetrics, recommendedMetrics, cityMetrics, carouselWidth, outletCardWidth, citySnapInterval]);
+    if (!useNativeRtlOffsets) return;
+
+    const frame = requestAnimationFrame(() => {
+      const alignCarousel = (
+        ref: ScrollView | null,
+        metrics: { content: number; viewport: number },
+        snapOffsets: number[],
+        activeIndex: number,
+        maxOffset: number,
+      ) => {
+        if (!ref || metrics.content <= 0 || metrics.viewport <= 0 || snapOffsets.length === 0) return;
+        if (![metrics.content, metrics.viewport, maxOffset, ...snapOffsets].every(Number.isFinite)) return;
+        const targetOffset = snapOffsets[activeIndex];
+        if (!Number.isFinite(targetOffset)) return;
+        const scrollOffset = logicalToScrollOffset(targetOffset, maxOffset, transformAndroidRTL);
+        if (!Number.isFinite(scrollOffset)) return;
+        ref.scrollTo({ x: scrollOffset, animated: false });
+      };
+
+      alignCarousel(carouselRef.current, featuredMetrics, featuredSnapOffsets, activeSlideIndex, featuredMaxOffset);
+      alignCarousel(recommendedCarouselRef.current, recommendedMetrics, recommendedSnapOffsets, activeRecommendedIndex, recommendedMaxOffset);
+      alignCarousel(cityCarouselRef.current, cityMetrics, citySnapOffsets, activeCityIndex, cityMaxOffset);
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [useNativeRtlOffsets, featuredMetrics, recommendedMetrics, cityMetrics, activeSlideIndex, activeRecommendedIndex, activeCityIndex, featuredMaxOffset, recommendedMaxOffset, cityMaxOffset, featuredSnapOffsets, recommendedSnapOffsets, citySnapOffsets, transformAndroidRTL]);
+
+  useEffect(() => {
+    if (Platform.OS === "web" || useNativeRtlOffsets) return;
+
+    const frames: number[] = [];
+    const realignAfterLtrLayoutChange = (
+      ref: ScrollView | null,
+      previousLayoutRef: { current: CarouselLayoutSignature | null },
+      signature: CarouselLayoutSignature,
+      activeIndex: number,
+    ) => {
+      const { interval, content, viewport } = signature;
+      if (
+        !ref ||
+        interval <= 0 ||
+        content <= 0 ||
+        viewport <= 0 ||
+        ![interval, content, viewport].every(Number.isFinite)
+      ) {
+        return;
+      }
+
+      const previousSignature = previousLayoutRef.current;
+      if (previousSignature === null) {
+        previousLayoutRef.current = signature;
+        return;
+      }
+
+      const layoutChanged =
+        previousSignature.interval !== interval ||
+        previousSignature.content !== content ||
+        previousSignature.viewport !== viewport;
+      if (!layoutChanged) return;
+      previousLayoutRef.current = signature;
+
+      const maxOffset = Math.max(content - viewport, 0);
+      const targetOffset = Math.min(Math.max(activeIndex * interval, 0), maxOffset);
+      if (!Number.isFinite(targetOffset) || targetOffset < 0) return;
+
+      const frame = requestAnimationFrame(() => {
+        ref.scrollTo({
+          x: targetOffset,
+          animated: false,
+        });
+      });
+      frames.push(frame);
+    };
+
+    realignAfterLtrLayoutChange(
+      carouselRef.current,
+      featuredLtrLayoutRef,
+      { interval: carouselWidth, ...featuredMetrics },
+      activeSlideIndexRef.current,
+    );
+    realignAfterLtrLayoutChange(
+      recommendedCarouselRef.current,
+      recommendedLtrLayoutRef,
+      { interval: outletCardWidth + spacing.md, ...recommendedMetrics },
+      activeRecommendedIndexRef.current,
+    );
+    realignAfterLtrLayoutChange(
+      cityCarouselRef.current,
+      cityLtrLayoutRef,
+      { interval: citySnapInterval, ...cityMetrics },
+      activeCityIndexRef.current,
+    );
+
+    return () => frames.forEach(cancelAnimationFrame);
+  }, [useNativeRtlOffsets, carouselWidth, outletCardWidth, citySnapInterval, featuredMetrics, recommendedMetrics, cityMetrics]);
 
   function handleCarouselScroll(
     event: NativeSyntheticEvent<NativeScrollEvent>,
   ) {
+    if (!useNativeRtlOffsets) {
+      const nextIndex = Math.round(event.nativeEvent.contentOffset.x / carouselWidth);
+      if (Number.isFinite(nextIndex) && nextIndex !== activeSlideIndex) setActiveSlideIndex(nextIndex);
+      return;
+    }
+    if (!featuredRtlReady || featuredSnapOffsets.length === 0) return;
     const logicalOffset = scrollToLogicalOffset(event.nativeEvent.contentOffset.x, featuredMaxOffset, transformAndroidRTL);
-    const nextIndex = Platform.OS === "web"
-      ? Math.round(logicalOffset / carouselWidth)
-      : getClosestSnapIndex(logicalOffset, featuredSnapOffsets);
+    const nextIndex = getClosestSnapIndex(logicalOffset, featuredSnapOffsets);
 
     const targetOffset = featuredSnapOffsets[nextIndex] ?? 0;
-    if (Platform.OS !== "web" && Math.abs(logicalOffset - targetOffset) > 1) {
+    if (Math.abs(logicalOffset - targetOffset) > 1) {
       carouselRef.current?.scrollTo({ x: logicalToScrollOffset(targetOffset, featuredMaxOffset, transformAndroidRTL), animated: false });
     }
 
@@ -467,19 +609,56 @@ export function HomeScreen() {
   }
 
   function handleRecommendedScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    if (!useNativeRtlOffsets) {
+      const nextIndex = Math.round(event.nativeEvent.contentOffset.x / (outletCardWidth + spacing.md));
+      const reachableIndex = Math.min(Math.max(nextIndex, 0), recommendedLastIndex);
+      if (Number.isFinite(reachableIndex) && reachableIndex !== activeRecommendedIndex) setActiveRecommendedIndex(reachableIndex);
+      return;
+    }
+    if (!recommendedRtlReady || recommendedSnapOffsets.length === 0) return;
     const logicalOffset = scrollToLogicalOffset(event.nativeEvent.contentOffset.x, recommendedMaxOffset, transformAndroidRTL);
-    const nextIndex = Platform.OS === "web"
-      ? Math.round(logicalOffset / (outletCardWidth + spacing.md))
-      : getClosestSnapIndex(logicalOffset, recommendedSnapOffsets);
+    const nextIndex = getClosestSnapIndex(logicalOffset, recommendedSnapOffsets);
     const reachableIndex = Math.min(Math.max(nextIndex, 0), recommendedLastIndex);
     const targetOffset = recommendedSnapOffsets[reachableIndex] ?? 0;
-    if (Platform.OS !== "web" && Math.abs(logicalOffset - targetOffset) > 1) {
+    if (Math.abs(logicalOffset - targetOffset) > 1) {
       recommendedCarouselRef.current?.scrollTo({ x: logicalToScrollOffset(targetOffset, recommendedMaxOffset, transformAndroidRTL), animated: false });
     }
     if (reachableIndex !== activeRecommendedIndex) setActiveRecommendedIndex(reachableIndex);
   }
 
   function handleCityScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    if (Platform.OS === "web") {
+      const currentOffset = event.nativeEvent.contentOffset.x;
+      const cityMetricsReady = cityMetrics.content > 0 && cityMetrics.viewport > 0;
+
+      if (!Number.isFinite(currentOffset)) return;
+      if (!cityMetricsReady || citySnapOffsets.length === 0 || !citySnapOffsets.every(Number.isFinite)) {
+        const intervalIndex = Math.round(currentOffset / citySnapInterval);
+        const reachableIndex = Math.min(Math.max(Number.isFinite(intervalIndex) ? intervalIndex : 0, 0), popularCities.length - 1);
+        if (reachableIndex !== activeCityIndex) setActiveCityIndex(reachableIndex);
+        return;
+      }
+
+      const nextIndex = getClosestSnapIndex(currentOffset, citySnapOffsets);
+      const reachableIndex = Math.min(Math.max(nextIndex, 0), popularCities.length - 1);
+      const targetOffset = citySnapOffsets[reachableIndex];
+      if (Number.isFinite(targetOffset) && Math.abs(currentOffset - targetOffset) > 1) {
+        cityCarouselRef.current?.scrollTo({
+          x: targetOffset,
+          animated: false,
+        });
+      }
+      if (reachableIndex !== activeCityIndex) setActiveCityIndex(reachableIndex);
+      return;
+    }
+
+    if (!useNativeRtlOffsets) {
+      const nextIndex = Math.round(event.nativeEvent.contentOffset.x / citySnapInterval);
+      const reachableIndex = Math.min(Math.max(nextIndex, 0), popularCities.length - 1);
+      if (Number.isFinite(reachableIndex) && reachableIndex !== activeCityIndex) setActiveCityIndex(reachableIndex);
+      return;
+    }
+    if (!cityRtlReady || citySnapOffsets.length === 0) return;
     const logicalOffset = scrollToLogicalOffset(event.nativeEvent.contentOffset.x, cityMaxOffset, transformAndroidRTL);
     const nextIndex = getClosestSnapIndex(logicalOffset, citySnapOffsets);
     const reachableIndex = Math.min(
@@ -642,8 +821,8 @@ export function HomeScreen() {
             pagingEnabled={!isDesktopWeb}
             showsHorizontalScrollIndicator={false}
             decelerationRate="fast"
-            snapToInterval={Platform.OS === "web" ? carouselWidth : undefined}
-            snapToOffsets={Platform.OS === "web" ? undefined : getNativeSnapOffsets(featuredSnapOffsets, featuredMaxOffset, Platform.OS, isNativeRTL)}
+            snapToInterval={useNativeRtlOffsets ? undefined : carouselWidth}
+            snapToOffsets={featuredNativeSnapOffsets}
             snapToAlignment="start"
             onMomentumScrollEnd={handleCarouselScroll}
             onLayout={(event) => setFeaturedMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
@@ -736,8 +915,8 @@ export function HomeScreen() {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.recommendedList}
-          snapToInterval={Platform.OS === "web" ? outletCardWidth + spacing.md : undefined}
-          snapToOffsets={Platform.OS === "web" ? undefined : getNativeSnapOffsets(recommendedSnapOffsets, recommendedMaxOffset, Platform.OS, isNativeRTL)}
+          snapToInterval={useNativeRtlOffsets ? undefined : outletCardWidth + spacing.md}
+          snapToOffsets={recommendedNativeSnapOffsets}
           snapToAlignment="start"
           decelerationRate="fast"
           onMomentumScrollEnd={handleRecommendedScroll}
@@ -877,13 +1056,11 @@ export function HomeScreen() {
             horizontal
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.cityList}
-            snapToInterval={undefined}
-            snapToOffsets={Platform.OS === "web" ? undefined : getNativeSnapOffsets(citySnapOffsets, cityMaxOffset, Platform.OS, isNativeRTL)}
+            snapToInterval={Platform.OS === "web" || useNativeRtlOffsets ? undefined : citySnapInterval}
+            snapToOffsets={cityNativeSnapOffsets}
             snapToAlignment={Platform.OS === "web" ? undefined : "start"}
             decelerationRate={Platform.OS === "web" ? undefined : "fast"}
-            onMomentumScrollEnd={
-              Platform.OS === "web" ? undefined : handleCityScroll
-            }
+            onMomentumScrollEnd={handleCityScroll}
             onLayout={(event) => setCityMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
             onContentSizeChange={(content) => setCityMetrics((current) => ({ ...current, content }))}
           >
