@@ -1,4 +1,63 @@
-import { TaxFreeCountryStatus, TaxFreeRule } from "../constants/taxFreeRules";
+import {
+  getMaximumRefundRate,
+  getTaxFreePolicySummaryKey,
+  TaxFreeCountryStatus,
+  TaxFreeRule,
+} from "../constants/taxFreeRules";
+import type { TranslationLanguage } from "../translations/translations";
+
+export type TaxFreePolicyDisplayKind =
+  | "maximum_rate"
+  | "official_formula"
+  | "official_table"
+  | "point_of_sale"
+  | "future_regime";
+
+export type TaxFreePolicyDisplayModel = {
+  kind: TaxFreePolicyDisplayKind;
+  summary: string;
+  label: string;
+  rate?: number;
+  rateText?: string;
+  conciseSummary?: string;
+};
+
+type Translate = (key: string) => string;
+
+export function formatTaxFreeRate(rate: number, language: TranslationLanguage) {
+  const locale = language === "tr" ? "tr-TR" : language;
+  return `${new Intl.NumberFormat(locale, { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(rate)}%`;
+}
+
+export function getTaxFreePolicyDisplayModel(
+  rule: TaxFreeRule,
+  language: TranslationLanguage,
+  t: Translate,
+  date = new Date(),
+): TaxFreePolicyDisplayModel {
+  const summaryKey = getTaxFreePolicySummaryKey(rule, date);
+  if (rule.refundPolicy.mode === "provider_dependent_upper_bound") {
+    const rate = getMaximumRefundRate(rule);
+    const rateText = formatTaxFreeRate(rate, language);
+    return {
+      kind: "maximum_rate",
+      rate,
+      rateText,
+      label: t("taxFree.estimatedMaximumRefundRate"),
+      conciseSummary: t("taxFree.estimatedMaximumRefundRateValue").replace("%{rate}", rateText),
+      summary: t("taxFree.estimatedMaximumRefundRateBeforeFees").replace("%{rate}", rateText),
+    };
+  }
+
+  const kind: TaxFreePolicyDisplayKind = rule.refundPolicy.mode === "official_formula"
+    ? "official_formula"
+    : rule.refundPolicy.mode === "official_refund_table"
+      ? "official_table"
+      : summaryKey === "taxCalc.futureRegimeNoEstimate"
+        ? "future_regime"
+        : "point_of_sale";
+  return { kind, label: t("taxFree.method"), summary: t(summaryKey) };
+}
 
 export type OutletTaxFreeDisplayStatus =
   | "outlet_verified"

@@ -2,12 +2,13 @@ import { StyleSheet, Text } from "react-native";
 
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
-import { getMaximumRefundRate, getTaxFreePolicySummaryKey, TaxFreeRule } from "../../constants/taxFreeRules";
+import { TaxFreeRule } from "../../constants/taxFreeRules";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatCurrency } from "../../services/exchangeRateService";
 import {
   getMinimumPurchaseComparisonSymbol,
   getMinimumPurchaseTextKey,
+  getTaxFreePolicyDisplayModel,
   hasDisplayValue,
   OutletTaxFreeDisplayStatus,
 } from "../../utils/taxFreeDisplay";
@@ -26,7 +27,7 @@ export function TaxFreeCard({
   officeInfo,
 }: TaxFreeCardProps) {
   const { t, language } = useTranslation();
-  const policySummaryKey = rule ? getTaxFreePolicySummaryKey(rule) : undefined;
+  const policyDisplay = rule ? getTaxFreePolicyDisplayModel(rule, language, t) : undefined;
   const shouldShowOfficeInfo =
     hasDisplayValue(officeInfo) &&
     (language !== "tr" || (officeInfo?.length ?? 0) <= 90);
@@ -47,14 +48,12 @@ export function TaxFreeCard({
       ) : null}
 
       {rule && (taxFreeStatus === "outlet_verified" || taxFreeStatus === "country_scheme_available") ? (
-        policySummaryKey === "taxCalc.futureRegimeNoEstimate" ? (
-          <Text style={styles.text}>{t("taxCalc.futureRegimeNoEstimate")}</Text>
+        policyDisplay?.kind === "future_regime" ? (
+          <Text style={styles.text}>{policyDisplay.summary}</Text>
         ) : (
           <>
             <Text style={styles.text}>
-              {rule.refundPolicy.mode === "provider_dependent_upper_bound"
-                ? t(policySummaryKey!).replace("%{rate}", `${getMaximumRefundRate(rule).toFixed(1)}%`)
-                : t(policySummaryKey!)}
+              {policyDisplay?.summary}
             </Text>
             {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" ? (
               <Text style={styles.text}>
@@ -66,7 +65,7 @@ export function TaxFreeCard({
         )
       ) : null}
 
-      {shouldShowOfficeInfo && taxFreeStatus === "outlet_verified" && policySummaryKey !== "taxCalc.futureRegimeNoEstimate" ? (
+      {shouldShowOfficeInfo && taxFreeStatus === "outlet_verified" && policyDisplay?.kind !== "future_regime" ? (
         <Text style={styles.text}>{officeInfo}</Text>
       ) : null}
     </Card>

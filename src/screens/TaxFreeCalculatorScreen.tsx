@@ -14,7 +14,8 @@ import {
   formatCurrency,
 } from "../services/exchangeRateService";
 import { getLocalizedCountryName, getLocalizedCurrencyName } from "../utils/localization";
-import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
+import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, getTaxFreePolicyDisplayModel, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
+import { getTaxFreeSourceDisplayRows } from "../utils/taxFreeSourceDisplay";
 import {
   getTaxFreeDisplayPlan,
   getTaxFreeMetadataPlan,
@@ -54,6 +55,8 @@ export function TaxFreeCalculatorScreen() {
   const displayPlan = rule && hasAmount && !isInvalidAmount ? getTaxFreeDisplayPlan(parsedAmount, rule) : undefined;
   const numericPlan = hasNumericTaxFreePlan(displayPlan) ? displayPlan : undefined;
   const metadataPlan = rule ? getTaxFreeMetadataPlan(rule, displayPlan?.kind === "no_numeric_estimate") : undefined;
+  const policyDisplay = rule ? getTaxFreePolicyDisplayModel(rule, language, t) : undefined;
+  const sourceRows = rule ? getTaxFreeSourceDisplayRows(rule, language, t, !metadataPlan?.isFutureRegime) : [];
   const estimateRefund = numericPlan?.benefitAmount;
   const estimateCost = numericPlan?.costAmount;
   const displayCurrency = rule?.currency ?? selectedCountry.currency;
@@ -296,20 +299,27 @@ export function TaxFreeCalculatorScreen() {
             <View style={styles.highlightBox}>
               <Text style={styles.highlightValue}>{t(numericPlan.disclaimerKey)}</Text>
             </View>
+            {policyDisplay?.kind === "maximum_rate" ? (
+              <View style={styles.highlightBox}><Text style={styles.highlightValue}>{policyDisplay.summary}</Text></View>
+            ) : null}
           </>
         )}
 
         {rule && (
           <View style={styles.metaBox}>
             <Text style={styles.metaTitle}>{t("taxCalc.sourceTitle")}</Text>
-            <Text style={styles.metaText}>{rule.schemeSource.name} • {rule.schemeSource.checkedDate}</Text>
+            {sourceRows.map((sourceRow) => (
+              <Text key={sourceRow.identity} style={styles.metaText}>
+                {sourceRow.roleLabel}: {sourceRow.authorityName} • {sourceRow.checkedDate}
+              </Text>
+            ))}
 
             {!metadataPlan?.isFutureRegime ? (
               <>
                 {rule.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number" && rule.minimumPurchaseSource ? (
-                  <Text style={styles.metaText}>{t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))}) • {rule.minimumPurchaseSource.name} • {rule.minimumPurchaseSource.checkedDate}</Text>
+                  <Text style={styles.metaText}>{t("taxCalc.minimumSpend")}: {getMinimumPurchaseComparisonSymbol(rule)} {formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)} ({t(getMinimumPurchaseTextKey(rule))})</Text>
                 ) : <Text style={styles.metaText}>{t(getMinimumPurchaseTextKey(rule))}</Text>}
-                <Text style={styles.metaText}>{t("taxCalc.standardVatBasis")}</Text>
+                <Text style={styles.metaText}>{t(rule.refundPolicy.mode === "provider_dependent_upper_bound" ? "taxFree.maximumRateBasisExplanation" : "taxCalc.standardVatBasis")}</Text>
               </>
             ) : null}
             {metadataPlan?.messageKey ? (

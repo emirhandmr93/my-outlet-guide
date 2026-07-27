@@ -21,6 +21,7 @@ const outletDetail = outletDetailScreen + quickFacts + read("src/components/Revi
 const displayHelpers = read("src/utils/outletDisplayFormatters.ts") + read("src/utils/brandCategoryLabelFormatter.ts") + read("src/utils/serviceLabelFormatter.ts") + read("src/utils/restaurantCategoryFormatter.ts");
 const myReviews = read("src/screens/MyReviewsScreen.tsx");
 const savings = read("src/screens/SavingsScreen.tsx") + read("src/screens/SmartShoppingCalculatorScreen.tsx") + read("src/screens/PriceAdvantageCalculatorScreen.tsx") + read("src/screens/TaxFreeCalculatorScreen.tsx");
+const taxFreeSourceDisplay = read("src/utils/taxFreeSourceDisplay.ts");
 const offline = read("src/screens/OfflinePacksScreen.tsx");
 const notifications = read("src/screens/NotificationSettingsScreen.tsx");
 const trips = read("src/screens/MyTripsScreen.tsx");
@@ -57,7 +58,8 @@ assert(myReviews.includes("formatUserFacingDate(review.createdAt, language)"), "
 assert(!/Tahmini KDV tutarı|KDV öncesi net tutar|Dahil edilen KDV tahmini/.test(savings + translations), "Savings/Tax Free does not reintroduce old KDV primary labels");
 assert(!translations.includes("Savings araçlarında") && translations.includes("Tasarruf araçlarında"), "Turkish Savings copy uses Tasarruf araçlarında");
 assert(savings.includes("formatCurrency(convertedRefund, selectedCurrency, language)") && savings.includes("formatCurrency(convertedEuropeCost, selectedCurrency, language)"), "Turkish currency formatting passes locale into result cards");
-assert(translations.includes("Avrupa Komisyonu KDV oranları") && savings.includes("taxCalc.sourceEuropeanCommissionVatRates"), "Tax Free source is localized in Turkish");
+assert(translations.includes("Avrupa Komisyonu KDV oranları") && savings.includes("getTaxFreeSourceDisplayRows(rule, language, t") && taxFreeSourceDisplay.includes("source: rule.vatRateSource") && taxFreeSourceDisplay.includes("getLocalizedTaxFreeSourceName(source, language, t)") && taxFreeSourceDisplay.includes("taxCalc.sourceEuropeanCommissionVatRates"), "Tax Free VAT-rate source is localized through the production source-row flow");
+assert(!/KDV oranı:\s*\{?rule\.vatRate|VAT rate:\s*\{?rule\.vatRate/.test(savings + outletDetailScreen + country), "Tax Free screens do not restore VAT as a primary refund result");
 assert(!appVisible.includes("Uçuş fırsatıuyarıları"), "Offline copy has no missing space in flight deal alerts");
 assert(!/eşitleme kuyruğu|backend göndericisi/.test(appVisible), "Offline and notification copy avoid technical sync/backend wording");
 assert(savings.includes("getFloatingTabClearance(insets.bottom)") && trips.includes("getFloatingTabClearance(insets.bottom)") && notifications.includes("getFloatingTabClearance(insets.bottom)"), "Savings/MyTrips/NotificationSettings have bottom safe-area padding");
