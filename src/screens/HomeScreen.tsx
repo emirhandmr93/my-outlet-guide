@@ -352,7 +352,18 @@ function getNativeSnapOffsets(logicalOffsets: number[], maxOffset: number, platf
     : logicalOffsets;
 }
 
-export function HomeScreen() {
+export type HomeMountDiagnosticMode =
+  | "hooks-only"
+  | "header-search"
+  | "featured-only"
+  | "recommended-only"
+  | "static-only"
+  | "cities-only"
+  | "full-no-effects-no-modal"
+  | "modal-only";
+
+export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagnosticMode } = {}) {
+  const homeEffectsEnabled = diagnosticMode === undefined;
   const navigation = useNavigation<any>();
   const { width } = useWindowDimensions();
   const tabBarHeight = useBottomTabBarHeight();
@@ -445,7 +456,16 @@ export function HomeScreen() {
       ? 0
       : insets.bottom + floatingTabBarFootprint + homeTabBarClearanceGap;
 
+  const showFullVisualTree = diagnosticMode === undefined || diagnosticMode === "full-no-effects-no-modal";
+  const showHeaderSearch = showFullVisualTree || diagnosticMode === "header-search";
+  const showFeatured = showFullVisualTree || diagnosticMode === "featured-only";
+  const showRecommended = showFullVisualTree || diagnosticMode === "recommended-only";
+  const showStatic = showFullVisualTree || diagnosticMode === "static-only";
+  const showCities = showFullVisualTree || diagnosticMode === "cities-only";
+  const showQuickMenu = diagnosticMode === undefined || diagnosticMode === "modal-only";
+
   useEffect(() => {
+    if (!homeEffectsEnabled) return;
     const interval = setInterval(() => {
       const itemCount = useNativeRtlOffsets ? featuredSnapOffsets.length : slides.length;
       if (itemCount <= (useNativeRtlOffsets ? 1 : 0)) return;
@@ -464,9 +484,10 @@ export function HomeScreen() {
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeSlideIndex, carouselWidth, featuredMetrics, slides.length, useNativeRtlOffsets]);
+  }, [activeSlideIndex, carouselWidth, featuredMetrics, slides.length, useNativeRtlOffsets, homeEffectsEnabled]);
 
   useEffect(() => {
+    if (!homeEffectsEnabled) return;
     const interval = setInterval(() => {
       if (useNativeRtlOffsets && recommendedSnapOffsets.length < 2) return;
       if (!useNativeRtlOffsets && recommendedOutlets.length === 0) return;
@@ -487,10 +508,11 @@ export function HomeScreen() {
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeRecommendedIndex, outletCardWidth, recommendedLastIndex, recommendedMetrics, useNativeRtlOffsets]);
+  }, [activeRecommendedIndex, outletCardWidth, recommendedLastIndex, recommendedMetrics, useNativeRtlOffsets, homeEffectsEnabled]);
 
   useEffect(() => {
     if (!useNativeRtlOffsets) return;
+    if (!homeEffectsEnabled) return;
 
     const frame = requestAnimationFrame(() => {
       const alignCarousel = (
@@ -515,10 +537,11 @@ export function HomeScreen() {
     });
 
     return () => cancelAnimationFrame(frame);
-  }, [useNativeRtlOffsets, featuredMetrics, recommendedMetrics, cityMetrics, activeSlideIndex, activeRecommendedIndex, activeCityIndex, featuredMaxOffset, recommendedMaxOffset, cityMaxOffset, featuredSnapOffsets, recommendedSnapOffsets, citySnapOffsets, transformAndroidRTL]);
+  }, [useNativeRtlOffsets, featuredMetrics, recommendedMetrics, cityMetrics, activeSlideIndex, activeRecommendedIndex, activeCityIndex, featuredMaxOffset, recommendedMaxOffset, cityMaxOffset, featuredSnapOffsets, recommendedSnapOffsets, citySnapOffsets, transformAndroidRTL, homeEffectsEnabled]);
 
   useEffect(() => {
     if (Platform.OS === "web" || useNativeRtlOffsets) return;
+    if (!homeEffectsEnabled) return;
 
     const frames: number[] = [];
     const realignAfterLtrLayoutChange = (
@@ -584,7 +607,7 @@ export function HomeScreen() {
     );
 
     return () => frames.forEach(cancelAnimationFrame);
-  }, [useNativeRtlOffsets, carouselWidth, outletCardWidth, citySnapInterval, featuredMetrics, recommendedMetrics, cityMetrics]);
+  }, [useNativeRtlOffsets, carouselWidth, outletCardWidth, citySnapInterval, featuredMetrics, recommendedMetrics, cityMetrics, homeEffectsEnabled]);
 
   function handleCarouselScroll(
     event: NativeSyntheticEvent<NativeScrollEvent>,
@@ -752,6 +775,47 @@ export function HomeScreen() {
     Alert.alert(t("home.rateApp.title"), t("home.rateApp.message"));
   }
 
+  const quickMenuModal = (visible: boolean) => (
+    <Modal visible={visible} transparent animationType="fade">
+      <NativeDirectionRoot>
+      <TouchableOpacity
+        style={styles.menuBackdrop}
+        activeOpacity={1}
+        onPress={() => setIsQuickMenuOpen(false)}
+      >
+        <View style={styles.quickMenu}>
+          <Text style={styles.quickMenuTitle}>{t("home.quick.title")}</Text>
+          {quickMenuItems.map((item) => (
+            <TouchableOpacity key={item.id} style={styles.quickMenuItem} activeOpacity={0.84} onPress={() => navigateTo(item.route)}>
+              <Text style={styles.quickMenuIcon}>{item.icon}</Text>
+              <Text style={styles.quickMenuText}>{t(item.titleKey)}</Text>
+              <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
+            </TouchableOpacity>
+          ))}
+          <TouchableOpacity style={styles.quickMenuItem} activeOpacity={0.84} onPress={rateApp}>
+            <Text style={styles.quickMenuIcon}>⭐</Text>
+            <Text style={styles.quickMenuText}>{t(Platform.OS === "web" ? "home.quick.downloadApp" : "home.quick.rateApp")}</Text>
+            <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.quickMenuItemLast} activeOpacity={0.84} onPress={shareApp}>
+            <Text style={styles.quickMenuIcon}>📤</Text>
+            <Text style={styles.quickMenuText}>{t("home.quick.shareApp")}</Text>
+            <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
+          </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+      </NativeDirectionRoot>
+    </Modal>
+  );
+
+  if (diagnosticMode === "hooks-only") {
+    return <View><Text>HOME HOOKS MOUNTED</Text></View>;
+  }
+
+  if (diagnosticMode === "modal-only") {
+    return <View style={styles.container}><Text>HOME MODAL MOUNTED</Text>{quickMenuModal(false)}</View>;
+  }
+
   return (
     <>
       <ScrollView
@@ -771,6 +835,7 @@ export function HomeScreen() {
         ]}
       >
         <View style={[styles.contentInner, isDesktopWeb && styles.desktopContentInner]}>
+        {showHeaderSearch ? (<>
         <HomeHeader
           userName={
             currentUser?.displayName || currentUser?.email?.split("@")[0]
@@ -809,6 +874,11 @@ export function HomeScreen() {
           ) : null}
         </View>
 
+        <Text>HOME HEADER AND SEARCH MOUNTED</Text>
+        </>) : null}
+
+        {showFeatured ? (<>
+        <Text>FEATURED CAROUSEL MOUNTED</Text>
         <DashboardSectionHeader
           title={t("home.sections.featured.title")}
           subtitle={t("home.sections.featured.subtitle")}
@@ -904,6 +974,10 @@ export function HomeScreen() {
           </View>
         </View>
 
+        </>) : null}
+
+        {showRecommended ? (<>
+        <Text>RECOMMENDED CAROUSEL MOUNTED</Text>
         <DashboardSectionHeader
           title={t("home.sections.outlets.title")}
           subtitle={t("home.sections.outlets.subtitle")}
@@ -981,6 +1055,10 @@ export function HomeScreen() {
           ) : null}
         </View>
 
+        </>) : null}
+
+        {showStatic ? (<>
+        <Text>STATIC HOME SECTIONS MOUNTED</Text>
         <DashboardSectionHeader
           title={t("home.sections.activity.title")}
           subtitle={t("home.sections.activity.subtitle")}
@@ -1045,6 +1123,10 @@ export function HomeScreen() {
           ))}
         </View>
 
+        </>) : null}
+
+        {showCities ? (<>
+        <Text>POPULAR CITIES MOUNTED</Text>
         <DashboardSectionHeader
           title={t("home.sections.cities.title")}
           subtitle={t("home.sections.cities.subtitle")}
@@ -1112,6 +1194,9 @@ export function HomeScreen() {
           ) : null}
         </View>
 
+        </>) : null}
+
+        {diagnosticMode === "full-no-effects-no-modal" ? <Text>FULL HOME WITHOUT EFFECTS OR MODAL</Text> : null}
         <View style={[styles.bottomTabSpacer, { height: homeBottomSpacer }]} />
         </View>
       </ScrollView>
@@ -1121,56 +1206,7 @@ export function HomeScreen() {
         style={[styles.statusBarScrim, { height: insets.top }]}
       />
 
-      <Modal visible={isQuickMenuOpen} transparent animationType="fade">
-        <NativeDirectionRoot>
-        <TouchableOpacity
-          style={styles.menuBackdrop}
-          activeOpacity={1}
-          onPress={() => setIsQuickMenuOpen(false)}
-        >
-          <View style={styles.quickMenu}>
-            <Text style={styles.quickMenuTitle}>{t("home.quick.title")}</Text>
-
-            {quickMenuItems.map((item) => (
-              <TouchableOpacity
-                key={item.id}
-                style={styles.quickMenuItem}
-                activeOpacity={0.84}
-                onPress={() => navigateTo(item.route)}
-              >
-                <Text style={styles.quickMenuIcon}>{item.icon}</Text>
-                <Text style={styles.quickMenuText}>{t(item.titleKey)}</Text>
-                <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
-              </TouchableOpacity>
-            ))}
-
-            <TouchableOpacity
-              style={styles.quickMenuItem}
-              activeOpacity={0.84}
-              onPress={rateApp}
-            >
-              <Text style={styles.quickMenuIcon}>⭐</Text>
-              <Text style={styles.quickMenuText}>
-                {t(Platform.OS === "web" ? "home.quick.downloadApp" : "home.quick.rateApp")}
-              </Text>
-              <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.quickMenuItemLast}
-              activeOpacity={0.84}
-              onPress={shareApp}
-            >
-              <Text style={styles.quickMenuIcon}>📤</Text>
-              <Text style={styles.quickMenuText}>
-                {t("home.quick.shareApp")}
-              </Text>
-              <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
-            </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-        </NativeDirectionRoot>
-      </Modal>
+      {showQuickMenu ? quickMenuModal(isQuickMenuOpen) : null}
     </>
   );
 }

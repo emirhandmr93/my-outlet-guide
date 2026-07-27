@@ -4,7 +4,8 @@ import path from "node:path";
 const root = process.cwd();
 const app = fs.readFileSync(path.join(root, "src/navigation/AppNavigator.tsx"), "utf8");
 const diagnostic = fs.readFileSync(path.join(root, "src/navigation/StartupMountDiagnostic.tsx"), "utf8");
-const expected = ["chooser", "build3-stack", "current-stack", "simple-tabs", "stack-simple-tabs", "stack-home-tabs", "full-current-app"];
+const home = fs.readFileSync(path.join(root, "src/screens/HomeScreen.tsx"), "utf8");
+const expected = ["chooser", "build3-stack", "current-stack", "simple-tabs", "stack-simple-tabs", "stack-home-tabs", "full-current-app", "home-hooks-only", "home-header-search", "home-featured-only", "home-recommended-only", "home-static-only", "home-cities-only", "home-full-no-effects-no-modal", "home-modal-only"];
 const errors = (checks: Array<[boolean,string]>) => checks.filter(([ok]) => !ok).map(([,message]) => message);
 const gate = app.indexOf('Platform.OS === "ios" && IOS_STARTUP_MOUNT_DIAGNOSTIC_ENABLED');
 const onboarding = app.indexOf("if (shouldShowOnboarding)");
@@ -43,8 +44,27 @@ const stackTabsErrors = errors([
   [current.includes("Current.Navigator") && current.includes("StackTabs"), "native stack + bottom tabs composition missing"],
 ]);
 const realHomeProbeErrors = errors([
-  [diagnostic.includes('<Tabs.Screen name="Home" component={HomeScreen} />'), "real Home is not mounted for Home"],
+  [diagnostic.includes("const CurrentHomeTabs = () => <HomeTabs />") && diagnostic.includes('stage === "stack-home-tabs"'), "real Home is not mounted without a diagnostic prop"],
   [["Explore","MyTrips","Savings","Profile"].every(name => diagnostic.includes(`<Tabs.Screen name="${name}" component={HomeProbeScreen} />`)), "non-Home tabs are not all plain probes"],
+]);
+const homeModes = ["hooks-only", "header-search", "featured-only", "recommended-only", "static-only", "cities-only", "full-no-effects-no-modal", "modal-only"];
+const hooksOnlyReturn = home.slice(home.indexOf('if (diagnosticMode === "hooks-only")'), home.indexOf('if (diagnosticMode === "modal-only")'));
+const homeLayerDiagnosticErrors = errors([
+  [homeModes.every(mode => diagnostic.includes(`"${mode}"`)), "all eight Home diagnostic modes must exist"],
+  [homeModes.every(mode => diagnostic.includes(`"home-${mode}"`)), "all eight Home stage IDs must map to modes"],
+  [diagnostic.includes('return <CurrentShell {...props} tabs="home" homeMode={homeMode} />'), "Home stages must share current stack + tabs shell"],
+  [["Explore","MyTrips","Savings","Profile"].every(name => diagnostic.includes(`<Tabs.Screen name="${name}" component={HomeProbeScreen} />`)), "non-Home diagnostic tabs must remain plain"],
+  [hooksOnlyReturn.includes("HOME HOOKS MOUNTED") && ["ScrollView","Image","ImageBackground","HomeHeader","SearchBar","Modal"].every(term => !hooksOnlyReturn.includes(term)), "hooks-only return must be plain"],
+  [home.includes("export function HomeScreen({ diagnosticMode") && home.indexOf('if (diagnosticMode === "hooks-only")') > home.lastIndexOf("useEffect(() =>"), "hooks-only must execute the full unconditional hook/effect path"],
+  [(home.match(/if \(!homeEffectsEnabled\) return;/g) ?? []).length === 4 && home.includes("const homeEffectsEnabled = diagnosticMode === undefined"), "non-current modes must disable all programmatic effects while default enables them"],
+  [home.includes('diagnosticMode === "header-search"') && home.includes("<HomeHeader") && home.includes("<SearchBar"), "header/search mode must use real components"],
+  [home.includes('diagnosticMode === "featured-only"') && home.includes("FEATURED CAROUSEL MOUNTED"), "Featured-only mode missing"],
+  [home.includes('diagnosticMode === "recommended-only"') && home.includes("RECOMMENDED CAROUSEL MOUNTED"), "Recommended-only mode missing"],
+  [home.includes('diagnosticMode === "static-only"') && home.includes("STATIC HOME SECTIONS MOUNTED"), "static-only mode missing"],
+  [home.includes('diagnosticMode === "cities-only"') && home.includes("POPULAR CITIES MOUNTED") && home.includes("cityPageCount"), "cities-only carousel/dots missing"],
+  [home.includes('diagnosticMode === "full-no-effects-no-modal"') && home.includes('showQuickMenu = diagnosticMode === undefined || diagnosticMode === "modal-only"'), "full-no-effects mode must exclude Modal"],
+  [home.includes('diagnosticMode === "modal-only"') && home.includes("quickMenuModal(false)") && home.includes("HOME MODAL MOUNTED"), "modal-only mode missing hidden current Modal"],
+  [diagnostic.includes("const CurrentHomeTabs = () => <HomeTabs />") && !diagnostic.includes('<HomeTabs diagnosticMode={undefined}'), "existing full Home stage must remain unmodified"],
 ]);
 const fullAppErrors = errors([
   [diagnostic.includes("return props.fullCurrentApp"), "full stage does not delegate to current app tree"],
@@ -55,7 +75,7 @@ const platformProtectionErrors = errors([
   [app.includes("return currentAppNavigationTree"), "Android/web normal return missing"],
   [onboarding >= 0 && onboarding < gate, "onboarding must precede diagnostic gate"],
 ]);
-const lists = [diagnosticGateErrors,persistenceErrors,build3Errors,currentStackErrors,simpleTabsErrors,stackTabsErrors,realHomeProbeErrors,fullAppErrors,platformProtectionErrors];
+const lists = [diagnosticGateErrors,persistenceErrors,build3Errors,currentStackErrors,simpleTabsErrors,stackTabsErrors,realHomeProbeErrors,homeLayerDiagnosticErrors,fullAppErrors,platformProtectionErrors];
 console.log("Stage ID list:", JSON.stringify(expected));
 console.log("Diagnostic gate error list:", JSON.stringify(diagnosticGateErrors));
 console.log("Persistence error list:", JSON.stringify(persistenceErrors));
@@ -64,6 +84,7 @@ console.log("Current stack error list:", JSON.stringify(currentStackErrors));
 console.log("Simple tabs error list:", JSON.stringify(simpleTabsErrors));
 console.log("Stack-tabs error list:", JSON.stringify(stackTabsErrors));
 console.log("Real Home probe error list:", JSON.stringify(realHomeProbeErrors));
+console.log("Home layer diagnostic error list:", JSON.stringify(homeLayerDiagnosticErrors));
 console.log("Full app error list:", JSON.stringify(fullAppErrors));
 console.log("Platform protection error list:", JSON.stringify(platformProtectionErrors));
 const count = lists.reduce((sum,list) => sum + list.length, 0);
