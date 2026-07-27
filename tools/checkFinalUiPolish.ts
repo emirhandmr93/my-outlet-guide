@@ -1,6 +1,9 @@
 import { readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 
+import { supportedLanguageCodes, translations as translationCatalog } from "../src/translations/translations";
+import { extractUserFacingTextCandidates, hasDebugLocalePrefix } from "./userFacingTextAudit";
+
 function read(path: string) {
   return readFileSync(path, "utf8");
 }
@@ -116,8 +119,12 @@ assert(/getOutletCurrentWeather/.test(outletDetail) && /status !== "ready"/.test
 assert(/provider_not_configured/.test(tripDetail) && /status === "provider_not_configured" \? null/.test(tripDetail) && !/weather\.providerNotConfigured/.test(tripDetail), "TripDetail hides provider_not_configured instead of showing technical copy");
 assert(!/fake forecast|mock weather|sample weather/i.test(tripDetail), "TripDetail does not render fake weather forecasts");
 
-const debugLocalePattern = /TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/;
-assert(!debugLocalePattern.test(home + profile + supportLegalTripSavings + outletDetail + flightDeals), "no debug locale prefixes in core visible screens");
+const coreVisibleSources = [home, profile, supportLegalTripSavings, outletDetail, flightDeals];
+const userFacingAuditValues = [
+  ...supportedLanguageCodes.flatMap((language) => Object.values(translationCatalog[language])),
+  ...coreVisibleSources.flatMap((source) => extractUserFacingTextCandidates(source)),
+];
+assert(!userFacingAuditValues.some(hasDebugLocalePrefix), "no debug locale prefixes in core visible copy");
 assert(!/\b(Help & FAQ|Contact Us|Privacy Policy|Terms & Conditions|Offline Mode|Currency converter|Trip reminders|Use of the App|Information Accuracy)\b/.test(supportLegalTripSavings), "no visible hardcoded English in Turkish support/legal/savings/trip core screens");
 const coreVisibleWithoutSafetyDisclaimers = (home + profile + supportLegalTripSavings + outletDetail + flightDeals)
   .replace(/flightDeals\.noFakeDeals/g, "")

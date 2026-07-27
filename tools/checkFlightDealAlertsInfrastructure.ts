@@ -1,5 +1,8 @@
 import fs from "fs";
 
+import { supportedLanguageCodes, translations as translationCatalog } from "../src/translations/translations";
+import { extractUserFacingTextCandidates, hasDebugLocalePrefix } from "./userFacingTextAudit";
+
 function read(path: string) {
   return fs.readFileSync(path, "utf8");
 }
@@ -10,6 +13,7 @@ function assert(condition: unknown, message: string) {
 const screen = read("src/screens/FlightDealsScreen.tsx");
 const provider = read("src/services/flightDealProvider.ts");
 const alertService = read("src/services/flightDealAlertService.ts");
+const submissionService = read("src/services/flightDealAlertSubmission.ts");
 const airports = read("src/constants/flightDealAirports.ts");
 const average = read("src/services/flightFareAverage.ts");
 const translations = read("src/translations/translations.ts");
@@ -20,6 +24,7 @@ const allSource = [
   screen,
   provider,
   alertService,
+  submissionService,
   airports,
   average,
   translations,
@@ -94,33 +99,57 @@ assert(
   "selector modal must keep filters, bounded rendering, keyboard-safe search and tappable result lists",
 );
 assert(
-  screen.includes("originAirportName: selectedOrigin.airportName") &&
-    screen.includes('destinationType: "airport"') &&
-    screen.includes(
-      "destinationAirportCode: selectedDestination.airportCode",
-    ) &&
-    screen.includes(
-      "destinationAirportName: selectedDestination.airportName",
-    ) &&
-    screen.includes("destinationKey: selectedDestination.airportCode"),
-  "new saved alert model must persist airport-to-airport route metadata",
+  screen.includes('import { submitFlightDealAlert }') &&
+    screen.includes("submitFlightDealAlert({") &&
+    screen.includes("origin: selectedOrigin") &&
+    screen.includes("destination: selectedDestination") &&
+    screen.includes("thresholds: selectedThresholds") &&
+    screen.includes("save: saveFlightDealAlert") &&
+    !screen.includes("originLabel:") &&
+    !screen.includes('destinationType: "airport"') &&
+    !screen.includes("setDoc(") &&
+    !screen.includes("getFlightDealAlertsCollection("),
+  "screen must delegate selected route metadata and persistence to the submission service",
+);
+assert(
+  [
+    "originLabel:",
+    "originAirportCode:",
+    "originAirportName:",
+    "originCityName:",
+    "originCountryCode:",
+    "originCountryName:",
+    'destinationType: "airport"',
+    "destinationKey:",
+    "destinationAirportCode:",
+    "destinationAirportName:",
+    "destinationCityName:",
+    "destinationCountryCode:",
+    "destinationCountryName:",
+    "destinationLabel:",
+    "selectedThresholds: thresholds",
+    "active: true",
+  ].every((marker) => submissionService.includes(marker)) &&
+    submissionService.indexOf("if (!providerEnabled)") <
+      submissionService.indexOf("await save(userId"),
+  "submission service must gate provider availability and construct complete airport-to-airport metadata",
+);
+assert(
+  alertService.includes("normalizeFlightDealThresholds") &&
+    alertService.includes("buildFlightDealAlertId(") &&
+    alertService.includes("originAirportCode: string") &&
+    alertService.includes("destinationAirportCode: string") &&
+    alertService.includes("`${originAirportCode}_${destinationAirportCode}`") &&
+    alertService.includes("payload.originAirportCode") &&
+    alertService.includes("payload.destinationAirportCode"),
+  "alert service must normalize thresholds and own deterministic airport-pair IDs",
 );
 assert(
   alertService.includes('destinationType: "airport" as const') &&
-    alertService.includes("destinationAirportCode") &&
-    alertService.includes("buildFlightDealAlertId") &&
-    alertService.includes("payload.destinationAirportCode") &&
-    screen.includes(
-      "`${selectedOrigin.airportCode}_${selectedDestination.airportCode}`",
-    ),
-  "alertId must be deterministic from originAirportCode + destinationAirportCode",
-);
-assert(
   alertService.includes('destinationType: "airport" | "city_group"') &&
     alertService.includes("destinationAirportCodes?: string[]") &&
-    screen.includes("localizedSavedDestinationLabel") &&
-    screen.includes("item.destinationAirportCodes?.join"),
-  "old city-group alerts must still render safely if present",
+    alertService.includes("destinationAirportNames?: string[]"),
+  "writes must stay airport-only while read types retain legacy city-group compatibility",
 );
 assert(
   alertService.includes('"flightDealPreferences", userId, "alerts"') &&
@@ -166,8 +195,14 @@ assert(
 );
 assert(
   screen.includes('navigation.navigate("Login"') &&
-    screen.includes("flightDeals.signInPrompt"),
-  "guests must be auth-gated",
+    screen.includes('result.status === "sign_in_required"') &&
+    screen.includes('t("flightDeals.signInRequired")'),
+  "guests must be auth-gated through the current submission result",
+);
+assert(
+  alertService.includes("if (!FLIGHT_DEALS_PROVIDER_ENABLED)") &&
+    alertService.includes('throw new Error("Flight-deal provider is not connected.")'),
+  "alert persistence must remain blocked while the provider flag is false",
 );
 assert(
   profile.includes('goTo("FlightDeals")'),
@@ -239,25 +274,11 @@ assert(
     ),
   "required Turkish airport selector localization must exist",
 );
-assert(
-  !new RegExp(
-    [
-      "TR:",
-      "EN:",
-      "DE:",
-      "FR:",
-      "IT:",
-      "ES:",
-      "AR:",
-      "RU:",
-      "ZH:",
-      "Türkçe çeviri",
-      "çeviri:",
-      "translation:",
-    ].join("|"),
-  ).test(allSource),
-  "debug locale prefixes are not allowed",
-);
+const userFacingAuditValues = [
+  ...supportedLanguageCodes.flatMap((language) => Object.values(translationCatalog[language])),
+  ...extractUserFacingTextCandidates(screen),
+];
+assert(!userFacingAuditValues.some(hasDebugLocalePrefix), "debug locale prefixes are not allowed in user-facing copy");
 assert(
   !/mock flight|demo flight|sample flight|fake flight/i.test(allSource),
   "no fake/mock/demo flight data",

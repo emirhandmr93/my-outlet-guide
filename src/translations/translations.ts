@@ -16383,10 +16383,10 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.threshold45": "%45 below",
     "flightDeals.saveAlert": "Save deal alert",
     "flightDeals.providerPending":
-      "Flight deal alerts are coming soon. No alert is being saved yet.",
-    "flightDeals.noDealsYet": "No flight deals yet",
+      "Live fare monitoring is unavailable because a production flight-price provider is not connected. Alerts are not saved.",
+    "flightDeals.noDealsYet": "Flight deals unavailable",
     "flightDeals.noFakeDeals":
-      "Fake deals are not shown until a real price provider is connected.",
+      "No deal is shown without a connected production price provider.",
     "flightDeals.tripReminders": "Trip flight reminders",
     "flightDeals.savedAlerts": "Saved alerts",
     "flightDeals.alertActive": "Alert active",
@@ -16402,7 +16402,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.thresholdRequired": "Select at least one discount threshold.",
     "flightDeals.selectOriginRequired": "Choose a departure airport.",
     "flightDeals.selectDestinationRequired": "Choose an arrival airport.",
-    "flightDeals.providerPendingBadge": "Provider pending",
+    "flightDeals.providerPendingBadge": "Monitoring unavailable",
     "flightDeals.cancel": "Cancel",
     "flightDeals.select": "Select",
     "flightDeals.filterOptions": "Filter options",
@@ -16431,10 +16431,10 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.threshold45": "%45 altında",
     "flightDeals.saveAlert": "Fırsat uyarısını kaydet",
     "flightDeals.providerPending":
-      "Uçuş fırsatı uyarıları yakında geliyor. Henüz hiçbir uyarı kaydedilmiyor.",
-    "flightDeals.noDealsYet": "Henüz uçuş fırsatı yok",
+      "Üretim uçuş fiyatı sağlayıcısı bağlı olmadığı için canlı fiyat takibi kullanılamıyor. Uyarılar kaydedilmiyor.",
+    "flightDeals.noDealsYet": "Uçuş fırsatları kullanılamıyor",
     "flightDeals.noFakeDeals":
-      "Gerçek fiyat sağlayıcısı bağlanana kadar sahte fırsat gösterilmez.",
+      "Üretim fiyat sağlayıcısı bağlı olmadan fırsat gösterilmez.",
     "flightDeals.tripReminders": "Seyahat uçuş hatırlatmaları",
     "flightDeals.savedAlerts": "Kaydedilen uyarılar",
     "flightDeals.alertActive": "Uyarı aktif",
@@ -16451,7 +16451,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "flightDeals.thresholdRequired": "En az bir indirim eşiği seç.",
     "flightDeals.selectOriginRequired": "Çıkış havalimanı seç.",
     "flightDeals.selectDestinationRequired": "Varış havalimanı seç.",
-    "flightDeals.providerPendingBadge": "Sağlayıcı bekleniyor",
+    "flightDeals.providerPendingBadge": "Fiyat takibi kullanılamıyor",
     "flightDeals.cancel": "Vazgeç",
     "flightDeals.select": "Seç",
     "flightDeals.filterOptions": "Seçenekleri filtrele",
@@ -16603,6 +16603,10 @@ const flightDealAlertsInfrastructureTranslations: Record<
 
 Object.assign(flightDealAlertsInfrastructureTranslations.es, {
   ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.providerPending": "El seguimiento de tarifas en vivo no está disponible porque no hay un proveedor de precios de vuelos de producción conectado. Las alertas no se guardan.",
+  "flightDeals.providerPendingBadge": "Seguimiento no disponible",
+  "flightDeals.noDealsYet": "Ofertas de vuelos no disponibles",
+  "flightDeals.noFakeDeals": "No se muestra ninguna oferta sin un proveedor de precios de producción conectado.",
   "flightDeals.title": "Ofertas de vuelos",
   "flightDeals.subtitle":
     "Alertas de ofertas de vuelo para tus rutas de compras según la media de 90 días.",
@@ -16621,6 +16625,10 @@ Object.assign(flightDealAlertsInfrastructureTranslations.es, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.fr, {
   ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.providerPending": "Le suivi des tarifs en direct est indisponible, car aucun fournisseur de prix de vols en production n’est connecté. Les alertes ne sont pas enregistrées.",
+  "flightDeals.providerPendingBadge": "Suivi indisponible",
+  "flightDeals.noDealsYet": "Offres de vols indisponibles",
+  "flightDeals.noFakeDeals": "Aucune offre n’est affichée sans fournisseur de prix en production connecté.",
   "flightDeals.title": "Offres de vols",
   "flightDeals.origin": "Aéroport de départ",
   "flightDeals.destination": "Aéroport d’arrivée",
@@ -16635,6 +16643,10 @@ Object.assign(flightDealAlertsInfrastructureTranslations.fr, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.de, {
   ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.providerPending": "Die Live-Flugpreisüberwachung ist nicht verfügbar, da kein produktiver Flugpreisanbieter verbunden ist. Warnungen werden nicht gespeichert.",
+  "flightDeals.providerPendingBadge": "Überwachung nicht verfügbar",
+  "flightDeals.noDealsYet": "Flugangebote nicht verfügbar",
+  "flightDeals.noFakeDeals": "Ohne verbundenen produktiven Preisanbieter werden keine Angebote angezeigt.",
   "flightDeals.title": "Flugangebote",
   "flightDeals.origin": "Abflughafen",
   "flightDeals.destination": "Ankunftsflughafen",
@@ -16649,6 +16661,10 @@ Object.assign(flightDealAlertsInfrastructureTranslations.de, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.ar, {
   ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.providerPending": "تتبّع أسعار الرحلات المباشر غير متاح لعدم اتصال مزود إنتاج لأسعار الرحلات. لا يتم حفظ التنبيهات.",
+  "flightDeals.providerPendingBadge": "التتبّع غير متاح",
+  "flightDeals.noDealsYet": "عروض الرحلات غير متاحة",
+  "flightDeals.noFakeDeals": "لا يتم عرض أي عرض من دون مزود أسعار إنتاج متصل.",
   "flightDeals.title": "عروض الرحلات",
   "flightDeals.origin": "مطار المغادرة",
   "flightDeals.destination": "مطار الوصول",
@@ -16663,6 +16679,10 @@ Object.assign(flightDealAlertsInfrastructureTranslations.ar, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.ru, {
   ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.providerPending": "Мониторинг тарифов в реальном времени недоступен, поскольку не подключён рабочий поставщик цен на авиабилеты. Оповещения не сохраняются.",
+  "flightDeals.providerPendingBadge": "Мониторинг недоступен",
+  "flightDeals.noDealsYet": "Предложения на авиабилеты недоступны",
+  "flightDeals.noFakeDeals": "Без подключённого рабочего поставщика цен предложения не показываются.",
   "flightDeals.title": "Авиапредложения",
   "flightDeals.origin": "Аэропорт вылета",
   "flightDeals.destination": "Аэропорт прибытия",
@@ -16677,6 +16697,10 @@ Object.assign(flightDealAlertsInfrastructureTranslations.ru, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.zh, {
   ...flightDealAlertsInfrastructureTranslations.en,
+  "flightDeals.providerPending": "由于尚未连接生产环境的航班价格提供商，实时票价监控不可用，提醒不会保存。",
+  "flightDeals.providerPendingBadge": "监控不可用",
+  "flightDeals.noDealsYet": "航班优惠不可用",
+  "flightDeals.noFakeDeals": "未连接生产环境价格提供商时，不显示任何优惠。",
   "flightDeals.title": "航班优惠",
   "flightDeals.origin": "出发机场",
   "flightDeals.destination": "到达机场",
