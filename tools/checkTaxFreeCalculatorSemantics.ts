@@ -93,7 +93,10 @@ assert(/\{!rule \? \([\s\S]*notAvailableExplanation[\s\S]*\) : policyDisplay\?\.
 assert(taxFreeRules.length === 31 && ["united-arab-emirates", "china", "thailand"].every((id) => getTaxFreeRule(id)?.refundPolicy.mode === "provider_dependent_upper_bound"), "31 rules remain and UAE, China, Thailand stay safe upper bounds.");
 assert(countries.length === 34 && countries.filter(({ taxFreeStatus }) => taxFreeStatus === "available").length === 31 && countries.filter(({ taxFreeStatus }) => taxFreeStatus === "not_available").length === 3, "Coverage remains 34 countries, 31 available, and 3 not available.");
 for (const removed of ["Dahil edilen KDV tahmini", "Tahmini KDV tutarı", "KDV öncesi net tutar"]) assert(!(taxScreen + smartScreen + priceScreen).includes(removed), `Confusing Turkish result label ${removed} remains absent.`);
-assert(resolveTranslation("tr", "taxCalc.convertedRefund") === "Para biriminde tahmini iade" && resolveTranslation("tr", "taxCalc.convertedCostAfterRefund") === "Para biriminde iade sonrası maliyet", "Turkish converted refund and cost labels remain exact.");
+for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"] as const) {
+  assert(resolveTranslation(locale, "taxCalc.convertedRefund") === resolveTranslation(locale, "taxCalc.maximumRefundBeforeFees"), `${locale} converted and local refund labels use the same simplified copy.`);
+  assert(resolveTranslation(locale, "taxCalc.convertedCostAfterRefund") === resolveTranslation(locale, "taxCalc.bestCaseCostBeforeFees"), `${locale} converted and local post-refund price labels use the same simplified copy.`);
+}
 assert(resolveTranslation("tr", "taxFree.estimatedMaximumRefundRateBeforeFees") === "Tahmini azami Tax Free iade oranı: %{rate} (ücretler öncesi)", "Turkish maximum-rate label remains exact.");
 assert(resolveTranslation("tr", "taxCalc.pointOfSaleDisclaimer") !== resolveTranslation("en", "taxCalc.pointOfSaleDisclaimer"), "English POS explanation does not leak into Turkish UI.");
 const invalidPolicies: Array<[TaxFreeRule["refundPolicy"], string]> = [
