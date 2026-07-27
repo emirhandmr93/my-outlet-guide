@@ -3,7 +3,7 @@ import {
   supportedLanguageCodes,
   translations as translationCatalog,
 } from "../src/translations/translations";
-import { extractStringLiterals, hasDebugLocalePrefix } from "./userFacingTextAudit";
+import { extractUserFacingTextCandidates, hasDebugLocalePrefix } from "./userFacingTextAudit";
 
 function read(path: string) {
   return readFileSync(path, "utf8");
@@ -87,7 +87,7 @@ const productionScreenLiterals = [
   notifications,
   trips,
   flightDeals,
-].flatMap(extractStringLiterals);
+].flatMap((source) => extractUserFacingTextCandidates(source));
 assert(
   ![...translationValues, ...productionScreenLiterals].some(hasDebugLocalePrefix),
   "No debug locale prefixes in final translations or production screen literals",

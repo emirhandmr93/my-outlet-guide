@@ -1,7 +1,7 @@
 import fs from "fs";
 
 import { supportedLanguageCodes, translations as translationCatalog } from "../src/translations/translations";
-import { extractStringLiterals, hasDebugLocalePrefix } from "./userFacingTextAudit";
+import { extractUserFacingTextCandidates, hasDebugLocalePrefix } from "./userFacingTextAudit";
 
 function read(path: string) {
   return fs.readFileSync(path, "utf8");
@@ -276,7 +276,7 @@ assert(
 );
 const userFacingAuditValues = [
   ...supportedLanguageCodes.flatMap((language) => Object.values(translationCatalog[language])),
-  ...extractStringLiterals(screen),
+  ...extractUserFacingTextCandidates(screen),
 ];
 assert(!userFacingAuditValues.some(hasDebugLocalePrefix), "debug locale prefixes are not allowed in user-facing copy");
 assert(

@@ -1,7 +1,7 @@
 import fs from "fs";
 
 import { supportedLanguageCodes, translations as translationCatalog } from "../src/translations/translations";
-import { extractStringLiterals, hasDebugLocalePrefix } from "./userFacingTextAudit";
+import { extractUserFacingTextCandidates, hasDebugLocalePrefix } from "./userFacingTextAudit";
 
 function read(path: string) {
   return fs.readFileSync(path, "utf8");
@@ -19,7 +19,7 @@ const hasRealProvider = /providerType:\s*"api"/.test(flightEngine) && !/return \
 assert(!new RegExp(["fake", "mock", "sample", "demo"].map((word) => `${word} flight`).join("|"), "i").test(screens), "seeded flight alert fixtures may not render");
 if (!hasRealProvider) {
   const positiveProviderStatus = /\b(?:Live flight status|Boarding|Delayed|Gate|Terminal|Landed)\b/i;
-  assert(!extractStringLiterals(screens).some((value) => positiveProviderStatus.test(value)), "positive provider-backed flight statuses require a provider");
+  assert(!extractUserFacingTextCandidates(screens).some((value) => positiveProviderStatus.test(value)), "positive provider-backed flight statuses require a provider");
 }
 assert(context.includes("outbound?: TripFlightLegDetails") && context.includes("return?: TripFlightLegDetails"), "flight model must support optional outbound and return legs");
 assert(screens.includes("shouldSaveReturnFlight") && !/hasAnyValue\(outboundValues\)/.test(screens), "new trip flight fields must be optional return-flight reminders only");
@@ -31,7 +31,7 @@ assert(screens.includes("trips.flatMap") && screens.includes("navigation.navigat
 for (const locale of ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]) assert(translations.includes(`${locale}: {`) && translations.includes("flightAlerts.title"), `missing flight alert locale keys for ${locale}`);
 const userFacingAuditValues = [
   ...supportedLanguageCodes.flatMap((language) => Object.values(translationCatalog[language])),
-  ...extractStringLiterals(screens),
+  ...extractUserFacingTextCandidates(screens),
 ];
 assert(!userFacingAuditValues.some(hasDebugLocalePrefix), "debug locale prefixes/fallbacks are not allowed in user-facing copy");
 console.log(`Flight Alerts V1 checks passed. realProvider=${hasRealProvider ? "yes" : "no"}`);

@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 
 import { supportedLanguageCodes, translations as translationCatalog } from "../src/translations/translations";
-import { extractStringLiterals, hasDebugLocalePrefix } from "./userFacingTextAudit";
+import { extractUserFacingTextCandidates, hasDebugLocalePrefix } from "./userFacingTextAudit";
 
 function read(path: string) {
   return readFileSync(path, "utf8");
@@ -122,7 +122,7 @@ assert(!/fake forecast|mock weather|sample weather/i.test(tripDetail), "TripDeta
 const coreVisibleSources = [home, profile, supportLegalTripSavings, outletDetail, flightDeals];
 const userFacingAuditValues = [
   ...supportedLanguageCodes.flatMap((language) => Object.values(translationCatalog[language])),
-  ...coreVisibleSources.flatMap(extractStringLiterals),
+  ...coreVisibleSources.flatMap((source) => extractUserFacingTextCandidates(source)),
 ];
 assert(!userFacingAuditValues.some(hasDebugLocalePrefix), "no debug locale prefixes in core visible copy");
 assert(!/\b(Help & FAQ|Contact Us|Privacy Policy|Terms & Conditions|Offline Mode|Currency converter|Trip reminders|Use of the App|Information Accuracy)\b/.test(supportLegalTripSavings), "no visible hardcoded English in Turkish support/legal/savings/trip core screens");
