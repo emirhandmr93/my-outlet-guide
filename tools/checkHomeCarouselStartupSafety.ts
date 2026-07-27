@@ -16,10 +16,35 @@ const ltrBranches = [...source.matchAll(/if \(!useNativeRtlOffsets\) \{([\s\S]*?
 const cityHandler = source.match(/function handleCityScroll[\s\S]*?\n  }\n\n  function navigateTo/)?.[0] ?? "";
 const webCityBranch = cityHandler.match(/if \(Platform\.OS === "web"\) \{([\s\S]*?)\n    }\n\n    if \(!useNativeRtlOffsets\)/)?.[1] ?? "";
 const nativeLtrCityBranch = cityHandler.match(/if \(!useNativeRtlOffsets\) \{([\s\S]*?)\n    }\n    if \(!cityRtlReady/)?.[1] ?? "";
+const ltrRealignmentEffect = source.match(
+  /useEffect\(\(\) => \{\n    if \(Platform\.OS === "web" \|\| useNativeRtlOffsets\) return;[\s\S]*?return \(\) => frames\.forEach\(cancelAnimationFrame\);[\s\S]*?\n  \}, \[[^\]]+\]\);/,
+)?.[0] ?? "";
 
 const ltrMountScrollCommands = alignmentEffect && alignmentEffect.indexOf("scrollTo") < alignmentEffect.indexOf("if (!useNativeRtlOffsets)")
   ? ["alignment effect can scroll before its native RTL gate"]
   : [];
+
+const ltrLayoutChangeRealignmentErrors = errorsFor([
+  ["native LTR realignment is not excluded on web", ltrRealignmentEffect.includes('if (Platform.OS === "web" || useNativeRtlOffsets) return;')],
+  ["native LTR realignment is not excluded in RTL", ltrRealignmentEffect.includes("|| useNativeRtlOffsets")],
+  ["three independent previous-ready layout refs are missing", ["featuredLtrLayoutRef", "recommendedLtrLayoutRef", "cityLtrLayoutRef"].every((name) => has(new RegExp(`const ${name} = useRef<CarouselLayoutSignature \\| null>\\(null\\);`)))],
+  ["first valid layout does not store without scrolling", /if \(previousSignature === null\) \{\s*previousLayoutRef\.current = signature;\s*return;\s*}/.test(ltrRealignmentEffect)],
+  ["unchanged layout does not return without a command", ltrRealignmentEffect.includes("if (!layoutChanged) return;")],
+  ["changed layout is not required before command creation", ltrRealignmentEffect.indexOf("if (!layoutChanged) return;") < ltrRealignmentEffect.indexOf("requestAnimationFrame")],
+  ["LTR realignment content > 0 guard is missing", ltrRealignmentEffect.includes("content <= 0")],
+  ["LTR realignment viewport > 0 guard is missing", ltrRealignmentEffect.includes("viewport <= 0")],
+  ["LTR realignment interval > 0 guard is missing", ltrRealignmentEffect.includes("interval <= 0")],
+  ["LTR realignment finite-value guard is missing", ltrRealignmentEffect.includes("[interval, content, viewport].every(Number.isFinite)") && ltrRealignmentEffect.includes("Number.isFinite(targetOffset)")],
+  ["LTR realignment maximum-offset clamp is missing", ltrRealignmentEffect.includes("Math.max(content - viewport, 0)") && ltrRealignmentEffect.includes("Math.min(Math.max(activeIndex * interval, 0), maxOffset)")],
+  ["LTR realignment is not frame deferred", ltrRealignmentEffect.includes("requestAnimationFrame")],
+  ["LTR realignment frame cleanup is missing", ltrRealignmentEffect.includes("frames.forEach(cancelAnimationFrame)")],
+  ["featured realignment does not use latest activeSlideIndex", ltrRealignmentEffect.includes("activeSlideIndexRef.current")],
+  ["recommended realignment does not use latest activeRecommendedIndex", ltrRealignmentEffect.includes("activeRecommendedIndexRef.current")],
+  ["city realignment does not use latest activeCityIndex", ltrRealignmentEffect.includes("activeCityIndexRef.current")],
+  ["native LTR momentum branches contain corrective scrollTo", ltrBranches.every((branch) => !branch.includes("scrollTo"))],
+  ["native city dots are no longer rendered", has(/Platform\.OS !== "web" \? \([\s\S]*?length: cityPageCount/)],
+  ["web city behavior is missing", webCityBranch.includes("getClosestSnapIndex(currentOffset, citySnapOffsets)") && webCityBranch.includes("cityCarouselRef.current?.scrollTo")],
+]);
 
 const rtlReadinessGuardErrors = errorsFor([
   ["explicit native RTL offset gate is missing", has(/const useNativeRtlOffsets = Platform\.OS !== "web" && isNativeRTL;/)],
@@ -86,6 +111,7 @@ const preservedBehaviorErrors = errorsFor([
 
 const reports: Array<[string, string[]]> = [
   ["LTR mount scroll command list", ltrMountScrollCommands],
+  ["LTR layout-change realignment error list", ltrLayoutChangeRealignmentErrors],
   ["RTL readiness guard list", rtlReadinessGuardErrors],
   ["Unsafe empty-offset list", unsafeEmptyOffsetErrors],
   ["Non-finite offset risk list", nonFiniteOffsetRiskErrors],
