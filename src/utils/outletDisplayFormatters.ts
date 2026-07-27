@@ -35,6 +35,8 @@ export type ParsedOutletRetailCount = {
   qualifier: OutletRetailCountQualifier;
 };
 
+const COMBINED_VENUE_TOTAL_PATTERN = /\b(?:shops?|stores?)\b\s*(?:,|&|\band\b)[^;]{0,50}\b(?:services?|restaurants?|caf[eé]s?|food\s+venues?|leisure|entertainment|cinemas?)\b/i;
+
 const RETAIL_NOUN = "(?:outlet\\s+shops?|shops?|(?:outlet|retail|designer|brand(?:ed)?|different)\\s+stores?|stores?|boutiques?|brands?)";
 const RETAIL_COUNT_PATTERN = new RegExp(
   `(?:(more\\s+than|over|almost|nearly|around|about|approximately|up\\s+to)\\s+)?(-?\\d+)(\\+)?\\s+(?:of\\s+the\\s+biggest\\s+)?[^\\d;]{0,85}?(${RETAIL_NOUN})\\b`,
@@ -46,6 +48,7 @@ export function parseOutletRetailCount(value: unknown): ParsedOutletRetailCount 
   if (typeof value !== "string") return null;
   const compactValue = value.trim();
   if (!compactValue || /^(?:n\/?a|unknown|not verified|placeholder|mock|nan|infinity)$/i.test(compactValue)) return null;
+  if (COMBINED_VENUE_TOTAL_PATTERN.test(compactValue)) return null;
 
   RETAIL_COUNT_PATTERN.lastIndex = 0;
   const matches = [...compactValue.matchAll(RETAIL_COUNT_PATTERN)];
@@ -120,12 +123,20 @@ export function resolveOutletRetailCountDisplay(
   };
 }
 
-/** @deprecated Outlet Detail uses resolveOutletRetailCountDisplay for its complete fallback model. */
-export function formatStoresCountText(value: string, language: TranslationLanguage): string {
-  if (language === "en") return value;
-  const parsed = parseOutletRetailCount(value);
-  if (!parsed) return value;
-  return `${parsed.count}${parsed.qualifier === "plus" ? "+" : ""}`;
+export function formatOutletRetailCountCompactText(
+  display: OutletRetailCountDisplay,
+  t: (key: string) => string,
+): string {
+  if (display.source === "not_verified") return t("outlet.retailCount.compact.notVerified");
+  if (display.source === "listed_brand_fallback") {
+    return t("outlet.retailCount.compact.listedBrands").replace("{count}", String(display.count));
+  }
+  const kind = display.source === "official_store_count"
+    ? "stores"
+    : display.source === "official_brand_count"
+      ? "brands"
+      : "boutiques";
+  return t(`outlet.retailCount.compact.${kind}`).replace("{value}", display.value);
 }
 
 export function formatOpeningHoursText(value: string, language: TranslationLanguage): string {

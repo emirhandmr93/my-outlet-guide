@@ -26,7 +26,8 @@ import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getCityName } from "../services/locationService";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
-import { formatStoresCountText } from "../utils/outletDisplayFormatters";
+import { formatOutletRetailCountCompactText, resolveOutletRetailCountDisplay } from "../utils/outletDisplayFormatters";
+import { getBrandsForOutlet } from "../services/brandService";
 import { formatRating } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 import { recordRecentVisit } from "../services/recentVisitsService";
@@ -68,6 +69,11 @@ function OutletCard({
     mode: getConfiguredOutletMediaMode(),
   });
   const displayRating = formatRating(outlet.rating);
+  const retailCountText = formatOutletRetailCountCompactText(
+    resolveOutletRetailCountDisplay(outlet.storesCountText, getBrandsForOutlet(outlet.outletId).length, language, t),
+    t,
+  );
+  const metadata = [formatCityDisplayName(outlet.cityId, language), retailCountText].filter(Boolean).join(" • ");
 
   return (
     <TouchableOpacity
@@ -118,7 +124,7 @@ function OutletCard({
         </View>
         <Text style={styles.cardTitle}>{outlet.name}</Text>
         <Text style={styles.cardText}>
-          {formatCityDisplayName(outlet.cityId, language)} • {formatStoresCountText(outlet.storesCountText, language)}
+          {metadata}
         </Text>
         <Text style={styles.tapText}>{t("country.viewOutlet")}</Text>
       </View>
