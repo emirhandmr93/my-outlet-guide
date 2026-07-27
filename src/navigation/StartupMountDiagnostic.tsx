@@ -8,7 +8,7 @@ import { NativeDirectionRoot } from "../hooks/useLayoutDirection";
 import { HomeScreen, type HomeMountDiagnosticMode } from "../screens/HomeScreen";
 
 export const IOS_STARTUP_MOUNT_DIAGNOSTIC_ENABLED = true;
-export const STARTUP_MOUNT_DIAGNOSTIC_STAGE_IDS = ["chooser", "build3-stack", "current-stack", "simple-tabs", "stack-simple-tabs", "stack-home-tabs", "full-current-app", "home-hooks-only", "home-header-search", "home-featured-only", "home-recommended-only", "home-static-only", "home-cities-only", "home-full-no-effects-no-modal", "home-modal-only"] as const;
+export const STARTUP_MOUNT_DIAGNOSTIC_STAGE_IDS = ["chooser", "build3-stack", "current-stack", "simple-tabs", "stack-simple-tabs", "stack-home-tabs", "full-current-app", "home-hooks-only", "home-header-search", "home-featured-only", "home-recommended-only", "home-static-only", "home-cities-only", "home-full-no-effects-no-modal", "home-modal-only", "home-all-carousels", "home-three-scroll-shells", "home-progressive-forward", "home-progressive-reverse"] as const;
 type Stage = (typeof STARTUP_MOUNT_DIAGNOSTIC_STAGE_IDS)[number];
 type Tabs = { Home: undefined; Explore: undefined; MyTrips: undefined; Savings: undefined; Profile: undefined };
 type StackParams = { Probe: undefined; MainTabs: undefined };
@@ -33,6 +33,10 @@ const HomeStaticOnly = () => <HomeScreen diagnosticMode="static-only" />;
 const HomeCitiesOnly = () => <HomeScreen diagnosticMode="cities-only" />;
 const HomeFullNoEffectsNoModal = () => <HomeScreen diagnosticMode="full-no-effects-no-modal" />;
 const HomeModalOnly = () => <HomeScreen diagnosticMode="modal-only" />;
+const HomeAllCarousels = () => <HomeScreen diagnosticMode="all-carousels" />;
+const HomeThreeScrollShells = () => <HomeScreen diagnosticMode="three-scroll-shells" />;
+const HomeProgressiveForward = () => <HomeScreen diagnosticMode="progressive-forward" />;
+const HomeProgressiveReverse = () => <HomeScreen diagnosticMode="progressive-reverse" />;
 const homeDiagnosticComponents: Record<HomeMountDiagnosticMode, typeof HomeScreen> = {
   "hooks-only": HomeHooksOnly,
   "header-search": HomeHeaderSearch,
@@ -42,6 +46,10 @@ const homeDiagnosticComponents: Record<HomeMountDiagnosticMode, typeof HomeScree
   "cities-only": HomeCitiesOnly,
   "full-no-effects-no-modal": HomeFullNoEffectsNoModal,
   "modal-only": HomeModalOnly,
+  "all-carousels": HomeAllCarousels,
+  "three-scroll-shells": HomeThreeScrollShells,
+  "progressive-forward": HomeProgressiveForward,
+  "progressive-reverse": HomeProgressiveReverse,
 };
 function HomeTabs({ diagnosticMode }: { diagnosticMode?: HomeMountDiagnosticMode }) { const HomeComponent = diagnosticMode ? homeDiagnosticComponents[diagnosticMode] : HomeScreen; return <Tabs.Navigator screenOptions={{ headerShown: false }}><Tabs.Screen name="Home" component={HomeComponent} /><Tabs.Screen name="Explore" component={HomeProbeScreen} /><Tabs.Screen name="MyTrips" component={HomeProbeScreen} /><Tabs.Screen name="Savings" component={HomeProbeScreen} /><Tabs.Screen name="Profile" component={HomeProbeScreen} /></Tabs.Navigator>; }
 const CurrentHomeTabs = () => <HomeTabs />;
@@ -59,7 +67,13 @@ const homeChoices: Array<[Stage, string, HomeMountDiagnosticMode]> = [
   ["home-full-no-effects-no-modal", "Full Home without effects or Modal", "full-no-effects-no-modal"],
   ["home-modal-only", "Home Modal only", "modal-only"],
 ];
+const combinedHomeChoices: Array<[Stage, string, HomeMountDiagnosticMode]> = [
+  ["home-all-carousels", "All real Home carousels", "all-carousels"],
+  ["home-three-scroll-shells", "Three plain scroll shells", "three-scroll-shells"],
+  ["home-progressive-forward", "Progressive Home — forward", "progressive-forward"],
+  ["home-progressive-reverse", "Progressive Home — reverse", "progressive-reverse"],
+];
 const guide = ["Build 3 stack fails → native-stack shell fails","Build 3 stack works, Current stack fails → current direction/header/root configuration","Current stack works, Simple tabs fails → bottom tabs layer","Simple tabs works, Stack + tabs fails → nested stack/tab composition","Stack + tabs works, Real Home fails → Home tree","Real Home works, Full app fails → full route/screen registration or configuration"];
 function StageButton({ id, label, select }: { id: Exclude<Stage, "chooser">; label: string; select: (stage: Exclude<Stage,"chooser">) => void }) { return <Pressable onPress={() => select(id)} style={{ backgroundColor: "#0B1F3A", padding: 16, marginBottom: 10 }}><Text style={{ color: "white", fontWeight: "800" }}>{label}</Text><Text style={{ color: "#C9A227" }}>{id}</Text></Pressable>; }
-function Chooser({ select }: { select: (stage: Exclude<Stage,"chooser">) => void }) { return <ScrollView contentContainerStyle={{ padding: 24, paddingTop: 72, flexGrow: 1 }}><Text style={{ fontSize: 26, fontWeight: "900" }}>iOS Startup Mount Diagnostic</Text><Text style={{ marginVertical: 16 }}>Select one layer, then fully terminate and reopen the process.</Text>{choices.map(([id,label]) => <StageButton key={id} id={id} label={label} select={select} />)}<Text style={{ fontSize: 20, fontWeight: "900", marginVertical: 16 }}>Home tree isolation</Text>{homeChoices.map(([id,label]) => <StageButton key={id} id={id as Exclude<Stage,"chooser">} label={label} select={select} />)}<Text style={{ fontSize: 18, fontWeight: "900", marginTop: 16 }}>Interpretation guide</Text>{guide.map(x => <Text key={x} style={{ marginTop: 8 }}>• {x}</Text>)}</ScrollView>; }
-export function StartupMountDiagnostic(props: Props) { const [stage, setStage] = useState<Stage>("chooser"); if (stage === "chooser") return <Chooser select={setStage} />; if (stage === "build3-stack") return <Build3StackDiagnostic />; if (stage === "current-stack") return <CurrentShell {...props} />; if (stage === "simple-tabs") return <NavigationContainer><SimpleTabs /></NavigationContainer>; if (stage === "stack-simple-tabs") return <CurrentShell {...props} tabs="simple" />; if (stage === "stack-home-tabs") return <CurrentShell {...props} tabs="home" />; if (stage === "full-current-app") return props.fullCurrentApp; const homeMode = homeChoices.find(([id]) => id === stage)?.[2]; return <CurrentShell {...props} tabs="home" homeMode={homeMode} />; }
+function Chooser({ select }: { select: (stage: Exclude<Stage,"chooser">) => void }) { return <ScrollView contentContainerStyle={{ padding: 24, paddingTop: 72, flexGrow: 1 }}><Text style={{ fontSize: 26, fontWeight: "900" }}>iOS Startup Mount Diagnostic</Text><Text style={{ marginVertical: 16 }}>Select one layer, then fully terminate and reopen the process.</Text>{choices.map(([id,label]) => <StageButton key={id} id={id} label={label} select={select} />)}<Text style={{ fontSize: 20, fontWeight: "900", marginVertical: 16 }}>Home tree isolation</Text>{homeChoices.map(([id,label]) => <StageButton key={id} id={id as Exclude<Stage,"chooser">} label={label} select={select} />)}<Text style={{ fontSize: 20, fontWeight: "900", marginVertical: 16 }}>Combined Home isolation</Text>{combinedHomeChoices.map(([id,label]) => <StageButton key={id} id={id as Exclude<Stage,"chooser">} label={label} select={select} />)}<Text style={{ fontSize: 18, fontWeight: "900", marginTop: 16 }}>Interpretation guide</Text>{guide.map(x => <Text key={x} style={{ marginTop: 8 }}>• {x}</Text>)}</ScrollView>; }
+export function StartupMountDiagnostic(props: Props) { const [stage, setStage] = useState<Stage>("chooser"); if (stage === "chooser") return <Chooser select={setStage} />; if (stage === "build3-stack") return <Build3StackDiagnostic />; if (stage === "current-stack") return <CurrentShell {...props} />; if (stage === "simple-tabs") return <NavigationContainer><SimpleTabs /></NavigationContainer>; if (stage === "stack-simple-tabs") return <CurrentShell {...props} tabs="simple" />; if (stage === "stack-home-tabs") return <CurrentShell {...props} tabs="home" />; if (stage === "full-current-app") return props.fullCurrentApp; const homeMode = [...homeChoices, ...combinedHomeChoices].find(([id]) => id === stage)?.[2]; return <CurrentShell {...props} tabs="home" homeMode={homeMode} />; }

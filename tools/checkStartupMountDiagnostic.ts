@@ -5,7 +5,7 @@ const root = process.cwd();
 const app = fs.readFileSync(path.join(root, "src/navigation/AppNavigator.tsx"), "utf8");
 const diagnostic = fs.readFileSync(path.join(root, "src/navigation/StartupMountDiagnostic.tsx"), "utf8");
 const home = fs.readFileSync(path.join(root, "src/screens/HomeScreen.tsx"), "utf8");
-const expected = ["chooser", "build3-stack", "current-stack", "simple-tabs", "stack-simple-tabs", "stack-home-tabs", "full-current-app", "home-hooks-only", "home-header-search", "home-featured-only", "home-recommended-only", "home-static-only", "home-cities-only", "home-full-no-effects-no-modal", "home-modal-only"];
+const expected = ["chooser", "build3-stack", "current-stack", "simple-tabs", "stack-simple-tabs", "stack-home-tabs", "full-current-app", "home-hooks-only", "home-header-search", "home-featured-only", "home-recommended-only", "home-static-only", "home-cities-only", "home-full-no-effects-no-modal", "home-modal-only", "home-all-carousels", "home-three-scroll-shells", "home-progressive-forward", "home-progressive-reverse"];
 const errors = (checks: Array<[boolean,string]>) => checks.filter(([ok]) => !ok).map(([,message]) => message);
 const gate = app.indexOf('Platform.OS === "ios" && IOS_STARTUP_MOUNT_DIAGNOSTIC_ENABLED');
 const onboarding = app.indexOf("if (shouldShowOnboarding)");
@@ -83,6 +83,27 @@ const productionFaithfulHomeErrors = errors([
   [diagnostic.includes('if (stage === "full-current-app") return props.fullCurrentApp'), "full-current-app must delegate to current production tree"],
   [markerGuards.every(([mode, marker]) => markerGuards.filter(([otherMode]) => otherMode !== mode).every(([, otherMarker]) => !`diagnosticMode === "${mode}" ? <Text>${marker}</Text> : null`.includes(otherMarker))), "an isolated visual stage can expose another stage marker"],
 ]);
+const combinedModes = ["all-carousels", "three-scroll-shells", "progressive-forward", "progressive-reverse"];
+const plainShellStart = home.indexOf('if (diagnosticMode === "three-scroll-shells")');
+const plainShell = home.slice(plainShellStart, home.indexOf("\n\n  return (\n    <>", plainShellStart));
+const combinedHomeDiagnosticErrors = errors([
+  [expected.length === 19, "final diagnostic stage count must be 19"],
+  [combinedModes.every(mode => diagnostic.includes(`"home-${mode}"`) && diagnostic.includes(`"${mode}"`)), "all four combined Home stages and modes must exist"],
+  [diagnostic.includes('const homeMode = [...homeChoices, ...combinedHomeChoices]') && diagnostic.includes('return <CurrentShell {...props} tabs="home" homeMode={homeMode} />'), "combined stages must share current stack + tabs shell"],
+  [["Explore","MyTrips","Savings","Profile"].every(name => diagnostic.includes(`<Tabs.Screen name="${name}" component={HomeProbeScreen} />`)), "combined non-Home tabs must remain plain"],
+  [home.includes('const showAllCarousels = diagnosticMode === "all-carousels"') && home.includes('showFullVisualTree || showAllCarousels || diagnosticMode === "featured-only"') && home.includes('showFullVisualTree || showAllCarousels || diagnosticMode === "recommended-only"') && home.includes('showFullVisualTree || showAllCarousels || diagnosticMode === "cities-only"'), "all-carousels must enable Featured, Recommended, and Cities"],
+  [home.includes('const showHeaderSearch = showFullVisualTree || diagnosticMode === "header-search"') && home.includes('const showStatic = showFullVisualTree || diagnosticMode === "static-only"'), "all-carousels must exclude Header/Search and Static"],
+  [home.includes("ALL HOME CAROUSELS MOUNTED") && home.includes('const showQuickMenu = diagnosticMode === undefined || diagnosticMode === "modal-only"'), "all-carousels marker or Modal exclusion missing"],
+  [(plainShell.match(/<ScrollView/g) ?? []).length === 4 && (plainShell.match(/horizontal/g) ?? []).length === 3, "three-scroll-shells must contain one vertical and exactly three horizontal ScrollViews"],
+  [plainShell.includes("plainCards") && plainShell.includes("<View") && ["Image", "ImageBackground", "HomeHeader", "SearchBar", "DashboardSectionHeader", "Modal", "onMomentumScrollEnd", "onContentSizeChange", "onLayout", "scrollTo", "requestAnimationFrame"].every(term => !plainShell.includes(term)), "three-scroll-shells must be plain and command-free"],
+  [home.includes('const progressiveForwardOrder = ["Header/Search", "Featured", "Recommended", "Static Activity/Tools", "Popular Cities"]'), "progressive forward order is incorrect"],
+  [home.includes('const progressiveReverseOrder = ["Popular Cities", "Static Activity/Tools", "Recommended", "Featured", "Header/Search"]'), "progressive reverse order is incorrect"],
+  [home.includes("const [diagnosticProgressStep, setDiagnosticProgressStep] = useState(0)") && home.includes("Math.min(step + 1, 5)"), "progressive state must default to zero and increment/clamp at five"],
+  [home.includes("mountedProgressiveSections") && home.includes("nextProgressiveSection") && home.includes("MOUNT NEXT SECTION"), "progressive manual controls are incomplete"],
+  [home.includes('const homeEffectsEnabled = diagnosticMode === undefined') && home.includes('const showQuickMenu = diagnosticMode === undefined || diagnosticMode === "modal-only"'), "combined effects or Modal exclusion is incorrect"],
+  [!["setTimeout", "InteractionManager"].some(term => home.includes(term)), "automatic progressive scheduling is forbidden"],
+  [diagnostic.includes('useState<Stage>("chooser")') && !diagnostic.includes("AsyncStorage"), "combined stage persistence is forbidden"],
+]);
 const fullAppErrors = errors([
   [diagnostic.includes("return props.fullCurrentApp"), "full stage does not delegate to current app tree"],
   [currentTree >= 0 && gate > currentTree, "current production tree is not retained before diagnostic selection"],
@@ -92,7 +113,7 @@ const platformProtectionErrors = errors([
   [app.includes("return currentAppNavigationTree"), "Android/web normal return missing"],
   [onboarding >= 0 && onboarding < gate, "onboarding must precede diagnostic gate"],
 ]);
-const lists = [diagnosticGateErrors,persistenceErrors,build3Errors,currentStackErrors,simpleTabsErrors,stackTabsErrors,realHomeProbeErrors,homeLayerDiagnosticErrors,productionFaithfulHomeErrors,fullAppErrors,platformProtectionErrors];
+const lists = [diagnosticGateErrors,persistenceErrors,build3Errors,currentStackErrors,simpleTabsErrors,stackTabsErrors,realHomeProbeErrors,homeLayerDiagnosticErrors,productionFaithfulHomeErrors,combinedHomeDiagnosticErrors,fullAppErrors,platformProtectionErrors];
 console.log("Stage ID list:", JSON.stringify(expected));
 console.log("Diagnostic gate error list:", JSON.stringify(diagnosticGateErrors));
 console.log("Persistence error list:", JSON.stringify(persistenceErrors));
@@ -103,6 +124,7 @@ console.log("Stack-tabs error list:", JSON.stringify(stackTabsErrors));
 console.log("Real Home probe error list:", JSON.stringify(realHomeProbeErrors));
 console.log("Home layer diagnostic error list:", JSON.stringify(homeLayerDiagnosticErrors));
 console.log("Production-faithful Home error list:", JSON.stringify(productionFaithfulHomeErrors));
+console.log("Combined Home diagnostic error list:", JSON.stringify(combinedHomeDiagnosticErrors));
 console.log("Full app error list:", JSON.stringify(fullAppErrors));
 console.log("Platform protection error list:", JSON.stringify(platformProtectionErrors));
 const count = lists.reduce((sum,list) => sum + list.length, 0);

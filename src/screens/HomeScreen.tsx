@@ -11,6 +11,7 @@ import {
   NativeScrollEvent,
   NativeSyntheticEvent,
   Platform,
+  Pressable,
   ScrollView,
   Share,
   StyleSheet,
@@ -360,7 +361,11 @@ export type HomeMountDiagnosticMode =
   | "static-only"
   | "cities-only"
   | "full-no-effects-no-modal"
-  | "modal-only";
+  | "modal-only"
+  | "all-carousels"
+  | "three-scroll-shells"
+  | "progressive-forward"
+  | "progressive-reverse";
 
 export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagnosticMode } = {}) {
   const homeEffectsEnabled = diagnosticMode === undefined;
@@ -378,6 +383,7 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
   const [activeRecommendedIndex, setActiveRecommendedIndex] = useState(0);
   const [activeCityIndex, setActiveCityIndex] = useState(0);
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
+  const [diagnosticProgressStep, setDiagnosticProgressStep] = useState(0);
   const carouselRef = useRef<ScrollView | null>(null);
   const recommendedCarouselRef = useRef<ScrollView | null>(null);
   const cityCarouselRef = useRef<ScrollView | null>(null);
@@ -457,12 +463,21 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
       : insets.bottom + floatingTabBarFootprint + homeTabBarClearanceGap;
 
   const showFullVisualTree = diagnosticMode === undefined || diagnosticMode === "full-no-effects-no-modal";
-  const showHeaderSearch = showFullVisualTree || diagnosticMode === "header-search";
-  const showFeatured = showFullVisualTree || diagnosticMode === "featured-only";
-  const showRecommended = showFullVisualTree || diagnosticMode === "recommended-only";
-  const showStatic = showFullVisualTree || diagnosticMode === "static-only";
-  const showCities = showFullVisualTree || diagnosticMode === "cities-only";
+  const isProgressiveForward = diagnosticMode === "progressive-forward";
+  const isProgressiveReverse = diagnosticMode === "progressive-reverse";
+  const isProgressive = isProgressiveForward || isProgressiveReverse;
+  const showAllCarousels = diagnosticMode === "all-carousels";
+  const showHeaderSearch = showFullVisualTree || diagnosticMode === "header-search" || (isProgressiveForward && diagnosticProgressStep >= 1) || (isProgressiveReverse && diagnosticProgressStep >= 5);
+  const showFeatured = showFullVisualTree || showAllCarousels || diagnosticMode === "featured-only" || (isProgressiveForward && diagnosticProgressStep >= 2) || (isProgressiveReverse && diagnosticProgressStep >= 4);
+  const showRecommended = showFullVisualTree || showAllCarousels || diagnosticMode === "recommended-only" || (isProgressive && diagnosticProgressStep >= 3);
+  const showStatic = showFullVisualTree || diagnosticMode === "static-only" || (isProgressiveForward && diagnosticProgressStep >= 4) || (isProgressiveReverse && diagnosticProgressStep >= 2);
+  const showCities = showFullVisualTree || showAllCarousels || diagnosticMode === "cities-only" || (isProgressiveForward && diagnosticProgressStep >= 5) || (isProgressiveReverse && diagnosticProgressStep >= 1);
   const showQuickMenu = diagnosticMode === undefined || diagnosticMode === "modal-only";
+  const progressiveForwardOrder = ["Header/Search", "Featured", "Recommended", "Static Activity/Tools", "Popular Cities"];
+  const progressiveReverseOrder = ["Popular Cities", "Static Activity/Tools", "Recommended", "Featured", "Header/Search"];
+  const progressiveOrder = isProgressiveReverse ? progressiveReverseOrder : progressiveForwardOrder;
+  const mountedProgressiveSections = progressiveOrder.slice(0, diagnosticProgressStep);
+  const nextProgressiveSection = progressiveOrder[diagnosticProgressStep] ?? "All sections mounted";
 
   useEffect(() => {
     if (!homeEffectsEnabled) return;
@@ -816,6 +831,20 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
     return <View style={styles.container}><Text>HOME MODAL MOUNTED</Text>{quickMenuModal(false)}</View>;
   }
 
+  if (diagnosticMode === "three-scroll-shells") {
+    const plainCards = (label: string, width: number) => Array.from({ length: 5 }, (_, index) => (
+      <View key={`${label}-${index}`} style={{ width, padding: spacing.md }}><Text>{label} {index + 1}</Text></View>
+    ));
+    return (
+      <ScrollView style={styles.container}>
+        <Text>THREE PLAIN SCROLL SHELLS MOUNTED</Text>
+        <ScrollView horizontal snapToInterval={carouselWidth}>{plainCards("Featured shell", carouselWidth)}</ScrollView>
+        <ScrollView horizontal snapToInterval={outletCardWidth + spacing.md}>{plainCards("Recommended shell", outletCardWidth)}</ScrollView>
+        <ScrollView horizontal snapToInterval={citySnapInterval}>{plainCards("City shell", cityCardWidth)}</ScrollView>
+      </ScrollView>
+    );
+  }
+
   return (
     <>
       <ScrollView
@@ -835,6 +864,17 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
         ]}
       >
         <View style={[styles.contentInner, isDesktopWeb && styles.desktopContentInner]}>
+        {showAllCarousels ? <Text>ALL HOME CAROUSELS MOUNTED</Text> : null}
+        {isProgressive ? (
+          <View>
+            <Text>{isProgressiveForward ? "PROGRESSIVE HOME — FORWARD" : "PROGRESSIVE HOME — REVERSE"}</Text>
+            <Text>Mounted sections: {mountedProgressiveSections.length ? mountedProgressiveSections.join(", ") : "None"}</Text>
+            <Text>Next section: {nextProgressiveSection}</Text>
+            <Pressable disabled={diagnosticProgressStep >= 5} onPress={() => setDiagnosticProgressStep((step) => Math.min(step + 1, 5))}>
+              <Text>MOUNT NEXT SECTION</Text>
+            </Pressable>
+          </View>
+        ) : null}
         {showHeaderSearch ? (<>
         <HomeHeader
           userName={
