@@ -13,6 +13,9 @@ const alignmentEffect = source.match(
 )?.[0] ?? "";
 
 const ltrBranches = [...source.matchAll(/if \(!useNativeRtlOffsets\) \{([\s\S]*?)\n    \}/g)].map((match) => match[1]);
+const cityHandler = source.match(/function handleCityScroll[\s\S]*?\n  }\n\n  function navigateTo/)?.[0] ?? "";
+const webCityBranch = cityHandler.match(/if \(Platform\.OS === "web"\) \{([\s\S]*?)\n    }\n\n    if \(!useNativeRtlOffsets\)/)?.[1] ?? "";
+const nativeLtrCityBranch = cityHandler.match(/if \(!useNativeRtlOffsets\) \{([\s\S]*?)\n    }\n    if \(!cityRtlReady/)?.[1] ?? "";
 
 const ltrMountScrollCommands = alignmentEffect && alignmentEffect.indexOf("scrollTo") < alignmentEffect.indexOf("if (!useNativeRtlOffsets)")
   ? ["alignment effect can scroll before its native RTL gate"]
@@ -59,6 +62,19 @@ const rtlSnapModeErrors = errorsFor([
   ["RTL correction does not require a real deviation", (source.match(/Math\.abs\(logicalOffset - targetOffset\) > 1/g)?.length ?? 0) === 3],
 ]);
 
+const webCitySnapModeErrors = errorsFor([
+  ["web city path is not explicit and ordered before native LTR", cityHandler.indexOf('if (Platform.OS === "web")') >= 0 && cityHandler.indexOf('if (Platform.OS === "web")') < cityHandler.indexOf("if (!useNativeRtlOffsets)")],
+  ["web city path does not use citySnapOffsets", webCityBranch.includes("citySnapOffsets")],
+  ["web city path does not calculate the closest snap index", webCityBranch.includes("getClosestSnapIndex(currentOffset, citySnapOffsets)")],
+  ["web city path does not perform corrective scrolling", webCityBranch.includes("cityCarouselRef.current?.scrollTo")],
+  ["web city correction is not limited to deviations over one pixel", webCityBranch.includes("Math.abs(currentOffset - targetOffset) > 1")],
+  ["web city path does not return before native logic", webCityBranch.trimEnd().endsWith("return;") && (webCityBranch.match(/return;/g)?.length ?? 0) >= 3],
+  ["web city carousel unexpectedly enables snapToInterval", has(/snapToInterval=\{Platform\.OS === "web" \|\| useNativeRtlOffsets \? undefined : citySnapInterval\}/)],
+  ["web city carousel does not invoke the three-path momentum handler", has(/onMomentumScrollEnd=\{handleCityScroll\}/)],
+  ["native LTR city path contains corrective scrollTo", !nativeLtrCityBranch.includes("scrollTo")],
+  ["native RTL city readiness guard is missing", cityHandler.includes("if (!cityRtlReady || citySnapOffsets.length === 0) return;")],
+]);
+
 const preservedBehaviorErrors = errorsFor([
   ["5,500 ms featured/recommended timing changed", (source.match(/\}, 5500\);/g)?.length ?? 0) === 2],
   ["Share App behavior is missing", has(/async function shareApp\(\)/) && has(/Share\.share\(getAppSharePayload/)],
@@ -75,6 +91,7 @@ const reports: Array<[string, string[]]> = [
   ["Non-finite offset risk list", nonFiniteOffsetRiskErrors],
   ["LTR snap-mode error list", ltrSnapModeErrors],
   ["RTL snap-mode error list", rtlSnapModeErrors],
+  ["Web city snap-mode error list", webCitySnapModeErrors],
   ["Preserved behavior error list", preservedBehaviorErrors],
 ];
 

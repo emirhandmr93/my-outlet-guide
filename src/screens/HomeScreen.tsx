@@ -543,6 +543,31 @@ export function HomeScreen() {
   }
 
   function handleCityScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    if (Platform.OS === "web") {
+      const currentOffset = event.nativeEvent.contentOffset.x;
+      const cityMetricsReady = cityMetrics.content > 0 && cityMetrics.viewport > 0;
+
+      if (!Number.isFinite(currentOffset)) return;
+      if (!cityMetricsReady || citySnapOffsets.length === 0 || !citySnapOffsets.every(Number.isFinite)) {
+        const intervalIndex = Math.round(currentOffset / citySnapInterval);
+        const reachableIndex = Math.min(Math.max(Number.isFinite(intervalIndex) ? intervalIndex : 0, 0), popularCities.length - 1);
+        if (reachableIndex !== activeCityIndex) setActiveCityIndex(reachableIndex);
+        return;
+      }
+
+      const nextIndex = getClosestSnapIndex(currentOffset, citySnapOffsets);
+      const reachableIndex = Math.min(Math.max(nextIndex, 0), popularCities.length - 1);
+      const targetOffset = citySnapOffsets[reachableIndex];
+      if (Number.isFinite(targetOffset) && Math.abs(currentOffset - targetOffset) > 1) {
+        cityCarouselRef.current?.scrollTo({
+          x: targetOffset,
+          animated: false,
+        });
+      }
+      if (reachableIndex !== activeCityIndex) setActiveCityIndex(reachableIndex);
+      return;
+    }
+
     if (!useNativeRtlOffsets) {
       const nextIndex = Math.round(event.nativeEvent.contentOffset.x / citySnapInterval);
       const reachableIndex = Math.min(Math.max(nextIndex, 0), popularCities.length - 1);
@@ -951,9 +976,7 @@ export function HomeScreen() {
             snapToOffsets={cityNativeSnapOffsets}
             snapToAlignment={Platform.OS === "web" ? undefined : "start"}
             decelerationRate={Platform.OS === "web" ? undefined : "fast"}
-            onMomentumScrollEnd={
-              Platform.OS === "web" ? undefined : handleCityScroll
-            }
+            onMomentumScrollEnd={handleCityScroll}
             onLayout={(event) => setCityMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
             onContentSizeChange={(content) => setCityMetrics((current) => ({ ...current, content }))}
           >
