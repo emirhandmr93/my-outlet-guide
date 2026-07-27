@@ -22,7 +22,7 @@ import {
   getTransportationOptionDisplayModel,
   getTransportationRouteDetailRows,
   getTransportationV2Options,
-  hasSourceBackedShuttleRouteDetail,
+  isDisplayableShuttleOption,
   type NearbyAirportDisplay,
   type TransportationV2Option,
 } from "../services/transportationV2Service";
@@ -170,21 +170,22 @@ export function TransportationScreen() {
     (item) =>
       item.originGroup === "city" &&
       (item.routeDetails.hasSourceBackedRouteDetail ||
-        (item.estimatedDurationLabel && item.estimatedFareLabel)),
+        item.estimatedDurationLabel ||
+        item.estimatedFareLabel),
   );
   const shuttleOptions = dedupeShuttles(
     options.filter(
       (item) =>
         item.originGroup === "shuttle" &&
-        hasSourceBackedShuttleRouteDetail(item) &&
-        item.estimatedDurationLabel &&
-        item.estimatedFareLabel,
+        isDisplayableShuttleOption(item) &&
+        item.estimatedDurationLabel,
     ),
   );
   const showRecommended = Boolean(
     recommended &&
     (recommended.routeDetails.hasSourceBackedRouteDetail ||
-      (recommended.estimatedDurationLabel && recommended.estimatedFareLabel)),
+      recommended.estimatedDurationLabel ||
+      recommended.estimatedFareLabel),
   );
   const steps = showRecommended ? (recommended?.steps.slice(0, 4) ?? []) : [];
 

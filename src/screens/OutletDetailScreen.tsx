@@ -183,7 +183,10 @@ export function OutletDetailScreen() {
 
   const favorite = isFavorite(outlet.outletId);
   const brandCategoryGroups = getBrandCategoryGroupsForOutlet(outlet.outletId);
-  const transportationSummaryItems = getOutletTransportationV2Summary(outlet.outletId);
+  const transportationSummaryItems = getOutletTransportationV2Summary(
+    outlet.outletId,
+    language,
+  );
   const restaurantItems = getRestaurantsForOutlet(outlet.outletId);
   const taxFreeCountry = countries.find((country) => country.countryId === outlet.countryId);
   const taxFreeRule = getTaxFreeRule(outlet.countryId);
