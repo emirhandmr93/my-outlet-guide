@@ -17,7 +17,9 @@ import {
   getTransportationRouteDetailRows,
   getTransportationV2Options,
   hasSourceBackedShuttleRouteDetail,
+  hasSafeFareProvenance,
   isDisplayableShuttleOption,
+  isDrivingParkingOnlyGuide,
   isSafeEstimateOnlyShuttleOption,
 } from "../src/services/transportationV2Service";
 
@@ -172,8 +174,9 @@ for (const outlet of outlets) {
     const compact = getTransportationCompactSummaryLabel(row, "tr");
     if (
       !row.routeDetails.routeHintLabel ||
-      !row.estimatedDurationLabel ||
-      !row.estimatedFareLabel
+      (!row.estimatedDurationLabel &&
+        !row.estimatedFareLabel &&
+        !row.routeDetails.hasSourceBackedRouteDetail)
     )
       errors.push(
         `${row.id} compact summary lacks route hint plus duration/fare.`,
@@ -233,8 +236,8 @@ for (const outlet of outlets) {
       errors.push(`${option.id} has duplicated title text: ${option.title}`);
     if (!option.estimatedDurationLabel)
       errors.push(`${option.id} missing estimatedDurationLabel.`);
-    if (!option.estimatedFareLabel)
-      errors.push(`${option.id} missing estimatedFareLabel.`);
+    if (!hasSafeFareProvenance(option))
+      errors.push(`${option.id} has an unsafe fare provenance.`);
     if (
       providerFallbacks.includes(option.durationLabel || "") ||
       providerFallbacks.includes(option.fareLabel || "")
@@ -347,7 +350,9 @@ for (const outlet of outlets) {
     errors.push(`${outlet.outletId} renders duplicate shuttle options.`);
   if (
     recommended &&
-    (!recommended.estimatedDurationLabel || !recommended.estimatedFareLabel)
+    !recommended.routeDetails.hasSourceBackedRouteDetail &&
+    !recommended.estimatedDurationLabel &&
+    !recommended.estimatedFareLabel
   )
     errors.push(`${outlet.outletId} recommended route lacks useful estimates.`);
   if (recommended) {
@@ -405,7 +410,11 @@ for (const outlet of outlets) {
   )
     errors.push(`${outlet.outletId} has no airport route or nearby-airport fallback.`);
   for (const row of summary) {
-    if (!row.estimatedDurationLabel || !row.estimatedFareLabel)
+    if (
+      !row.routeDetails.hasSourceBackedRouteDetail &&
+      !row.estimatedDurationLabel &&
+      !row.estimatedFareLabel
+    )
       errors.push(
         `${row.id} detail summary route row lacks duration/fare estimate.`,
       );
@@ -537,6 +546,62 @@ for (const guide of transportationGuides) {
     .filter(Boolean);
   if (new Set(descriptions).size !== descriptions.length)
     errors.push(`${guide.guideId} has repeated step text.`);
+}
+
+for (const outlet of outlets) {
+  const options = getTransportationV2Options(outlet.outletId);
+  const recommended = getRecommendedTransportationV2Option(outlet.outletId);
+  for (const option of options) {
+    const display = getTransportationOptionDisplayModel(option, "en");
+    if (isDrivingParkingOnlyGuide(option.guide))
+      errors.push(`${option.id} road-only guide remains in V2 options.`);
+    if (option.id.endsWith("-estimate") && display.estimatedFareLabel)
+      errors.push(`${option.id} synthetic option displays a monetary fare.`);
+    if (!hasSafeFareProvenance(display))
+      errors.push(`${option.id} displays a fare without safe provenance.`);
+    if (
+      ["taxi", "uber"].includes(display.mode) &&
+      display.steps.some((step) => /\b(?:driving|parking|car park|fuel)\b/i.test(step))
+    )
+      errors.push(`${option.id} generic taxi leaks driving or parking steps.`);
+    if (/Approx\. Free|Yaklaşık Ücretsiz|€10–30/.test(display.estimatedFareLabel))
+      errors.push(`${option.id} displays an invalid generic/free fare.`);
+  }
+  if (recommended && isDrivingParkingOnlyGuide(recommended.guide))
+    errors.push(`${outlet.outletId} recommends a road-only guide.`);
+}
+
+for (const [outletId, guideId] of [
+  ["factory-ursus", "factory-ursus-car-parking-guide"],
+  ["factory-annopol", "factory-annopol-car-parking-guide"],
+  ["outletcity-metzingen", "outletcity-metzingen-by-car"],
+  ["halle-leipzig-the-style-outlets", "halle-leipzig-style-outlets-car-parking"],
+]) {
+  if (getTransportationV2Options(outletId).some((option) => option.id === guideId))
+    errors.push(`${guideId} must be excluded as road/parking-only.`);
+}
+if (
+  getRecommendedTransportationV2Option("factory-ursus")?.id !==
+  "warsaw-centre-to-factory-ursus-train-walk"
+)
+  errors.push("Factory Ursus must recommend its public train route.");
+if (
+  getRecommendedTransportationV2Option("factory-annopol")?.id !==
+  "warsaw-centre-to-factory-annopol-metro-tram"
+)
+  errors.push("Factory Annopol must recommend its public metro route.");
+
+for (const [outletId, guideId] of [
+  ["halle-leipzig-the-style-outlets", "halle-leipzig-style-outlets-saturday-shuttle"],
+  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
+]) {
+  const option = getTransportationV2Options(outletId).find(
+    (candidate) => candidate.id === guideId,
+  );
+  const fare = option
+    ? getTransportationOptionDisplayModel(option, "en").estimatedFareLabel
+    : undefined;
+  if (fare !== "Free") errors.push(`${guideId} must display an exact Free fare.`);
 }
 
 for (const outletName of [

@@ -1,5 +1,6 @@
 import { outlets } from "../src/constants/outlets";
 import { transportationGuides } from "../src/constants/transportationGuides";
+import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
 import { supportedLanguageCodes } from "../src/translations/translations";
 import {
   getNearbyAirportDisplay,
@@ -8,7 +9,9 @@ import {
   getRecommendedTransportationV2Option,
   getTransportationOptionDisplayModel,
   getTransportationV2Options,
+  hasSafeFareProvenance,
   hasSourceBackedShuttleRouteDetail,
+  isDrivingParkingOnlyGuide,
   isSafeEstimateOnlyShuttleOption,
   selectTransportationOptions,
   type TransportationV2Option,
@@ -22,7 +25,15 @@ const noRecommendedRoute: string[] = [];
 const unsafeEstimateOnlyShuttles: string[] = [];
 const sourceBackedOutlets = new Set<string>();
 const safeEstimateOnlyOutlets = new Set<string>();
+const durationOnlyFallbackOutlets = new Set<string>();
+const explicitSourceFareOutlets = new Set<string>();
+const explicitFreeFareOutlets = new Set<string>();
+const unsafeFares = new Set<string>();
+const roadOnlyAsTaxi = new Set<string>();
 let postFilterSyntheticFallbackCount = 0;
+const excludedRoadOnlyGuideCount = transportationGuides.filter(
+  isDrivingParkingOnlyGuide,
+).length;
 
 const invalidText = /\b(?:NaN|Infinity|undefined|mock|placeholder)\b/i;
 const longEnglishProse =
@@ -84,6 +95,28 @@ for (const outlet of activeOutlets) {
         errors.push(`${display.id}/${language}: long English source prose leaked`);
       if (display.routeDetails.hasSourceBackedRouteDetail)
         sourceBackedOutlets.add(outlet.outletId);
+      if (display.id.endsWith("-estimate") && display.estimatedFareLabel)
+        unsafeFares.add(`${display.id}/${language}: synthetic monetary fare`);
+      if (!hasSafeFareProvenance(display))
+        unsafeFares.add(`${display.id}/${language}: unsafe fare provenance`);
+      if (
+        display.routeDetails.confidence === "estimateOnly" &&
+        display.estimatedDurationLabel &&
+        !display.estimatedFareLabel
+      )
+        durationOnlyFallbackOutlets.add(outlet.outletId);
+      if (display.estimatedFareLabel) {
+        if (/^(?:Free|Ücretsiz|Gratis|Gratuit|Kostenlos|Бесплатно|مجانًا|免费)$/.test(display.estimatedFareLabel))
+          explicitFreeFareOutlets.add(outlet.outletId);
+        else explicitSourceFareOutlets.add(outlet.outletId);
+      }
+      if (isDrivingParkingOnlyGuide(display.guide))
+        roadOnlyAsTaxi.add(`${display.id}/${language}`);
+      if (
+        ["taxi", "uber"].includes(display.mode) &&
+        display.steps.some((step) => /\b(?:driving|parking|car park|fuel)\b/i.test(step))
+      )
+        roadOnlyAsTaxi.add(`${display.id}/${language}: leaked road steps`);
       if (display.routeDetails.confidence === "estimateOnly") {
         safeEstimateOnlyOutlets.add(outlet.outletId);
         if (
@@ -144,6 +177,67 @@ for (const language of ["tr", "en", "fr", "de"] as const) {
     errors.push(`barberino/${language}: localized safe shuttle is missing`);
 }
 
+for (const guideId of [
+  "factory-ursus-car-parking-guide",
+  "factory-annopol-car-parking-guide",
+  "outletcity-metzingen-by-car",
+  "halle-leipzig-style-outlets-car-parking",
+]) {
+  if (
+    activeOutlets.some((outlet) =>
+      getTransportationV2Options(outlet.outletId).some(
+        (option) => option.id === guideId,
+      ),
+    )
+  )
+    errors.push(`${guideId}: road-only guide remains visible`);
+}
+for (const [outletId, expected] of [
+  ["factory-ursus", "warsaw-centre-to-factory-ursus-train-walk"],
+  ["factory-annopol", "warsaw-centre-to-factory-annopol-metro-tram"],
+] as const) {
+  if (getRecommendedTransportationV2Option(outletId)?.id !== expected)
+    errors.push(`${outletId}: safe public route is not recommended`);
+}
+
+const freeLabels = {
+  en: "Free",
+  tr: "Ücretsiz",
+  es: "Gratis",
+  fr: "Gratuit",
+  de: "Kostenlos",
+  ru: "Бесплатно",
+  ar: "مجانًا",
+  zh: "免费",
+} as const;
+for (const [outletId, guideId] of [
+  ["halle-leipzig-the-style-outlets", "halle-leipzig-style-outlets-saturday-shuttle"],
+  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
+] as const) {
+  for (const language of supportedLanguageCodes) {
+    const option = display(outletId, guideId, language);
+    if (option?.estimatedFareLabel !== freeLabels[language])
+      errors.push(`${guideId}/${language}: explicit free fare was not preserved`);
+    if (/Approx|Yaklaşık|Aprox|Env|Ca\.|Примерно|تقريبًا|约.*(?:Free|Ücretsiz|Gratis|Gratuit|Kostenlos|Бесплатно|مجانًا|免费)/i.test(option?.estimatedFareLabel || ""))
+      errors.push(`${guideId}/${language}: free fare was marked approximate`);
+  }
+}
+
+for (const fact of transportationRouteFacts) {
+  if (
+    fact.estimatedFareMin != null &&
+    fact.estimatedFareMax != null &&
+    fact.currency &&
+    fact.currency !== "EUR"
+  ) {
+    const option = fact.guideId
+      ? display(fact.outletId, fact.guideId)
+      : undefined;
+    if (option?.estimatedFareLabel.includes("€"))
+      unsafeFares.add(`${fact.guideId}: ${fact.currency} fare displayed as EUR`);
+  }
+}
+
 const serravalle = display(
   "serravalle-designer-outlet",
   "serravalle-milan-official-shuttle",
@@ -166,17 +260,25 @@ for (const [outletId, guideId, claims] of [
 
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
+for (const unsafe of unsafeFares) errors.push(unsafe);
+for (const roadOnly of roadOnlyAsTaxi) errors.push(`${roadOnly}: road-only as taxi`);
 
 console.log(`Active outlet count: ${activeOutlets.length}`);
 console.log(`Source-backed route outlet count: ${sourceBackedOutlets.size}`);
 console.log(`Safe estimate-only outlet count: ${safeEstimateOnlyOutlets.size}`);
+console.log(`Duration-only fallback outlet count: ${durationOnlyFallbackOutlets.size}`);
+console.log(`Explicit source-fare outlet count: ${explicitSourceFareOutlets.size}`);
+console.log(`Explicit free-fare outlet count: ${explicitFreeFareOutlets.size}`);
 console.log(`Post-filter synthetic fallback count: ${postFilterSyntheticFallbackCount}`);
+console.log(`Excluded road-only guide count: ${excludedRoadOnlyGuideCount}`);
 console.log(`Empty options: ${JSON.stringify(emptyOptions)}`);
 console.log(`Empty summaries: ${JSON.stringify([...emptySummaries])}`);
 console.log(`No recommended route: ${JSON.stringify(noRecommendedRoute)}`);
 console.log(
   `Unsafe estimate-only shuttles: ${JSON.stringify([...new Set(unsafeEstimateOnlyShuttles)])}`,
 );
+console.log(`Unsafe fares: ${JSON.stringify([...unsafeFares])}`);
+console.log(`Road-only as taxi: ${JSON.stringify([...roadOnlyAsTaxi])}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
 );
