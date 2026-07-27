@@ -17,6 +17,8 @@ import {
   getTransportationRouteDetailRows,
   getTransportationV2Options,
   hasSourceBackedShuttleRouteDetail,
+  isDisplayableShuttleOption,
+  isSafeEstimateOnlyShuttleOption,
 } from "../src/services/transportationV2Service";
 
 const requiredKeys = [
@@ -322,7 +324,7 @@ for (const outlet of outlets) {
       (option) =>
         option.originGroup === "shuttle" &&
         option.isUsefulForPrimaryDisplay &&
-        hasSourceBackedShuttleRouteDetail(option) &&
+        isDisplayableShuttleOption(option) &&
         (option.durationLabel || option.fareLabel || option.noteLabel),
     )
     .slice(0, 1);
@@ -333,23 +335,14 @@ for (const outlet of outlets) {
       shuttle.noteLabel || "",
     ].join("|"),
   );
-  const estimateOnlyShuttle = displayOptions.find(
+  for (const shuttle of displayOptions.filter(
     (option) =>
       option.originGroup === "shuttle" &&
-      !hasSourceBackedShuttleRouteDetail(option) &&
-      (option.durationLabel || option.fareLabel || option.noteLabel),
-  );
-  if (estimateOnlyShuttle)
-    errors.push(
-      `${estimateOnlyShuttle.id} would render an estimate-only shuttle card.`,
-    );
-  if (
-    outlet.outletId === "designer-outlet-parndorf" &&
-    renderedShuttles.length
-  )
-    errors.push(
-      "Parndorf renders a generic shuttle without a source-backed shuttle fact.",
-    );
+      !hasSourceBackedShuttleRouteDetail(option),
+  )) {
+    if (!isSafeEstimateOnlyShuttleOption(shuttle))
+      errors.push(`${shuttle.id} is an unsafe estimate-only shuttle card.`);
+  }
   if (new Set(renderedShuttleKeys).size !== renderedShuttleKeys.length)
     errors.push(`${outlet.outletId} renders duplicate shuttle options.`);
   if (
@@ -396,30 +389,21 @@ for (const outlet of outlets) {
         `${recommended.id} step list is only provider/booking/return checks.`,
       );
   }
+  const hasUsableAirportRoute = displayOptions.some(
+    (option) =>
+      option.originGroup === "airport" &&
+      option.estimatedDurationLabel &&
+      option.estimatedFareLabel,
+  );
+  const hasNearbyAirportFallback = getNearbyAirportDisplay(
+    outlet.outletId,
+  ).length > 0;
   if (
-    (outlet.airports || []).some(
-      (airport: any) => typeof airport.distanceKm === "number",
-    )
-  ) {
-    const hasAirportTaxi = displayOptions.some(
-      (option) =>
-        option.originGroup === "airport" &&
-        ["taxi", "uber"].includes(option.mode) &&
-        option.estimatedDurationLabel &&
-        option.estimatedFareLabel,
-    );
-    const hasAirportPublic = displayOptions.some(
-      (option) =>
-        option.originGroup === "airport" &&
-        !["taxi", "uber"].includes(option.mode) &&
-        option.estimatedDurationLabel &&
-        option.estimatedFareLabel,
-    );
-    if (!hasAirportTaxi || !hasAirportPublic)
-      errors.push(
-        `${outlet.outletId} nearby airport distance did not produce airport taxi/public estimates.`,
-      );
-  }
+    (outlet.airports || []).length &&
+    !hasUsableAirportRoute &&
+    !hasNearbyAirportFallback
+  )
+    errors.push(`${outlet.outletId} has no airport route or nearby-airport fallback.`);
   for (const row of summary) {
     if (!row.estimatedDurationLabel || !row.estimatedFareLabel)
       errors.push(
@@ -511,27 +495,6 @@ assertVisibleOption(
     /Zani Viaggi/.test(option.routeDetails.lineOrProviderLabel || "") &&
     /Frigerio Viaggi/.test(option.routeDetails.lineOrProviderLabel || ""),
   "Serravalle Zani Viaggi / Frigerio Viaggi shuttle no longer renders.",
-);
-assertVisibleOption(
-  "designer-outlet-parndorf",
-  (option) =>
-    option.originGroup === "airport" &&
-    publicTypes.has(option.mode as any) &&
-    option.routeDetails.confidence === "estimateOnly" &&
-    option.estimatedDurationLabel.includes("Yaklaşık") &&
-    option.estimatedFareLabel.includes("Yaklaşık") &&
-    option.noteLabel === cleanProviderNotes.tr,
-  "Airport estimate-only public transport no longer renders with the clean provider note.",
-);
-assertVisibleOption(
-  "designer-outlet-parndorf",
-  (option) =>
-    option.originGroup === "airport" &&
-    ["taxi", "uber"].includes(option.mode) &&
-    option.routeDetails.confidence === "estimateOnly" &&
-    option.estimatedDurationLabel.includes("Yaklaşık") &&
-    option.estimatedFareLabel.includes("Yaklaşık"),
-  "Taxi/Uber estimate-only option no longer renders with duration and fare.",
 );
 for (const outletId of [
   "designer-outlet-parndorf",

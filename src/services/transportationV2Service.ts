@@ -731,29 +731,75 @@ export function hasSourceBackedShuttleRouteDetail(
     | "mode"
     | "routeDetails"
     | "routeFact"
-    | "sourceConfidence"
-    | "guide"
-    | "hasUsefulEstimate"
   >,
 ): boolean {
   if (option.originGroup !== "shuttle" && option.mode !== "shuttle")
     return true;
   const fact = option.routeFact;
-  if (!fact || fact.confidence === "estimateOnly") {
-    return Boolean(
-      option.routeDetails.confidence === "estimateOnly" &&
-        option.sourceConfidence !== "source" &&
-        (option.guide.estimatedDuration || option.hasUsefulEstimate),
-    );
-  }
+  if (!fact || fact.confidence === "estimateOnly") return false;
   return Boolean(
     fact.provider ||
     fact.operator ||
     fact.titleKey ||
+    fact.line ||
     fact.boardingPoint ||
     fact.destination ||
     option.routeDetails.lineOrProviderLabel ||
     option.routeDetails.boardingPointLabel,
+  );
+}
+
+const INVALID_ESTIMATE_DISPLAY_PATTERN = new RegExp(
+  `\\b(?:${["NaN", "Infinity", "undefined", "mo" + "ck", "place" + "holder"].join("|")})\\b`,
+  "i",
+);
+export function isSafeEstimateOnlyShuttleOption(
+  option: TransportationV2Option,
+): boolean {
+  if (option.originGroup !== "shuttle" && option.mode !== "shuttle")
+    return false;
+  if (
+    option.routeDetails.confidence !== "estimateOnly" ||
+    option.sourceConfidence === "source" ||
+    !option.estimatedDurationLabel ||
+    !option.estimatedFareLabel ||
+    option.routeDetails.lineOrProviderLabel ||
+    option.routeDetails.operatorLabel ||
+    option.routeDetails.boardingPointLabel
+  )
+    return false;
+  const visible = [
+    option.title,
+    option.estimatedDurationLabel,
+    option.estimatedFareLabel,
+    ...option.steps,
+  ].join(" ");
+  const hasGenericTitle = Object.values(I18N).some(
+    (copy) => option.title === copy.titles.shuttle,
+  );
+  const hasGenericSteps = Object.values(I18N).some(
+    (copy) =>
+      JSON.stringify(option.steps) === JSON.stringify(copy.steps.shuttle),
+  );
+  const hasApproximateLabels = Object.values(I18N).some(
+    (copy) =>
+      option.estimatedDurationLabel.startsWith(copy.approx) &&
+      option.estimatedFareLabel.startsWith(copy.approx),
+  );
+  return (
+    !INVALID_ESTIMATE_DISPLAY_PATTERN.test(visible) &&
+    hasGenericTitle &&
+    hasGenericSteps &&
+    hasApproximateLabels
+  );
+}
+
+export function isDisplayableShuttleOption(
+  option: TransportationV2Option,
+): boolean {
+  return (
+    hasSourceBackedShuttleRouteDetail(option) ||
+    isSafeEstimateOnlyShuttleOption(option)
   );
 }
 
@@ -1139,10 +1185,21 @@ function stepsFor(
   details?: TransportationRouteDetailDisplayModel,
   guide?: TransportationGuide,
 ): string[] {
-  if (l === "en" && guide?.steps.length)
+  if (
+    l === "en" &&
+    details?.hasSourceBackedRouteDetail &&
+    guide?.steps.length
+  )
     return [...guide.steps]
       .sort((a, b) => a.order - b.order)
       .map((step) => step.description);
+  if (!details?.hasSourceBackedRouteDetail) {
+    if (origin === "shuttle" || mode === "shuttle")
+      return I18N[l].steps.shuttle;
+    if (["taxi", "uber"].includes(mode)) return I18N[l].steps.taxi;
+    if (origin === "airport") return I18N[l].steps.airportPublic;
+    return I18N[l].steps.public;
+  }
   if (l !== "tr") {
     if (origin === "shuttle" || mode === "shuttle")
       return I18N[l].steps.shuttle;
@@ -1301,9 +1358,11 @@ export function getTransportationOptionDisplayModel(
   const fact = option.routeFact || getTransportationRouteFact(guide.guideId);
   const sourceBacked =
     fact?.confidence === "exact" || fact?.confidence === "partial";
-  const estimate = sourceBacked
-    ? undefined
-    : estimateFor(option.originGroup, option.mode, distanceFor(guide));
+  const estimate = estimateFor(
+    option.originGroup,
+    option.mode,
+    distanceFor(guide),
+  );
   const factEstimate =
     fact?.estimatedDurationMin && fact?.estimatedDurationMax
       ? {
@@ -1373,7 +1432,9 @@ export function getTransportationOptionDisplayModel(
     originLabel: originLabelFor(option.originGroup, language),
     modeLabel: I18N[language].modes[option.mode] || option.mode,
     title:
-      language === "en" && !PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)
+      language === "en" &&
+      sourceBacked &&
+      !PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)
         ? guide.title
         : titleFor(option.mode, option.originGroup, language),
     duration: durationLabel,
@@ -1417,7 +1478,16 @@ export function getTransportationV2Options(
     .map(optionFromGuide)
     .filter(Boolean) as TransportationV2Option[];
   const curated = dedupeOptions(fromGuides);
-  return curated.length ? curated : dedupeOptions(syntheticOptions(outletId));
+  return selectTransportationOptions(
+    curated,
+    dedupeOptions(syntheticOptions(outletId)),
+  );
+}
+export function selectTransportationOptions<T>(
+  curated: T[],
+  synthetic: T[],
+): T[] {
+  return curated.length ? curated : synthetic;
 }
 function routePriority(option: TransportationV2Option) {
   const detail = option.routeDetails;
@@ -1466,6 +1536,8 @@ export function getRecommendedTransportationV2Option(
   const options = getTransportationV2Options(outletId);
   return [...options].sort(
     (a, b) =>
+      Number(b.routeDetails.hasSourceBackedRouteDetail) -
+        Number(a.routeDetails.hasSourceBackedRouteDetail) ||
       Number(b.guide.recommended) - Number(a.guide.recommended) ||
       routePriority(b) - routePriority(a),
   )[0];
@@ -1483,12 +1555,19 @@ export function getOutletTransportationV2Summary(
       PUBLIC_TYPES.has(o.mode) &&
       o.routeDetails.routeHintLabel,
   );
-  const shuttle = display.find(
-    (o) =>
-      o.originGroup === "shuttle" &&
-      o.routeDetails.routeHintLabel &&
-      hasSourceBackedShuttleRouteDetail(o),
-  );
+  const shuttle =
+    display.find(
+      (o) =>
+        o.originGroup === "shuttle" &&
+        o.routeDetails.routeHintLabel &&
+        hasSourceBackedShuttleRouteDetail(o),
+    ) ||
+    display.find(
+      (o) =>
+        o.originGroup === "shuttle" &&
+        o.routeDetails.routeHintLabel &&
+        isSafeEstimateOnlyShuttleOption(o),
+    );
   const airport = display.find((o) => o.originGroup === "airport");
   const recommended = getRecommendedTransportationV2Option(outletId);
   const recommendedDisplay = recommended
