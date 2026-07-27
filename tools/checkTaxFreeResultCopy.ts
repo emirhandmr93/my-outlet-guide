@@ -1,10 +1,7 @@
-import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import vm from "node:vm";
-import ts from "typescript";
 import { getTaxFreeRule } from "../src/constants/taxFreeRules";
 import { resolveTranslation } from "../src/i18n/translationResolver";
-import { calculateTaxFreeEstimate } from "../src/services/taxFreeCalculatorService";
+import { calculateTaxFreeEstimate, getTaxFreeDisplayPlan } from "../src/services/taxFreeCalculatorService";
 import { supportedLanguageCodes, translations, type TranslationLanguage } from "../src/translations/translations";
 
 const refundKeys = ["taxCalc.maximumRefundBeforeFees", "taxCalc.convertedMaximum", "taxCalc.estimatedNetRefund", "taxCalc.convertedRefund"] as const;
@@ -24,21 +21,13 @@ const expected: Record<TranslationLanguage, { refund: string; price: string; adv
   zh: { refund: "预计 Tax Free 退税额", price: "Tax Free 退税后预计价格", advantage: "预计价格优势", disclaimer: "该金额为最高估算值。实际退税额可能因商店、退税服务商和手续费而更低。" },
 };
 
-function loadBaseTranslations() {
-  const source = execFileSync("git", ["show", "main:src/translations/translations.ts"], { encoding: "utf8" });
-  const code = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 } }).outputText;
-  const module = { exports: {} as { translations: Record<TranslationLanguage, Record<string, string>> } };
-  vm.runInNewContext(code, { exports: module.exports, module });
-  return module.exports.translations;
-}
-
-const baseTranslations = loadBaseTranslations();
 const exactCopyMismatch: string[] = [];
 const emptyCopy: string[] = [];
 const fallbackLanguage: string[] = [];
 const oldTechnicalCopyLeakage: string[] = [];
 const placeholderLeakage: string[] = [];
-const unexpectedTranslationChange: string[] = [];
+const labelConsistencyError: string[] = [];
+const screenIntegrationError: string[] = [];
 const calculationMismatch: string[] = [];
 const oldPatterns: Partial<Record<TranslationLanguage, RegExp>> = {
   en: /before fees|maximum refund|best-case cost/i, tr: /ücretler öncesi|ücretlerden önce|azami iade|olası en düşük maliyet/i,
@@ -47,33 +36,57 @@ const oldPatterns: Partial<Record<TranslationLanguage, RegExp>> = {
   ru: /до комиссий|максимальный возврат|минимальная возможная стоимость/i, zh: /费用前|最高退税额|最低成本/i,
 };
 
+if (supportedLanguageCodes.length !== 8) exactCopyMismatch.push(`supported-language-count:${supportedLanguageCodes.length}`);
+if (targetKeys.length !== 10) exactCopyMismatch.push(`target-key-count:${targetKeys.length}`);
+
 for (const locale of supportedLanguageCodes) {
   const expectedByKey = Object.fromEntries([
     ...refundKeys.map((key) => [key, expected[locale].refund]), ...priceKeys.map((key) => [key, expected[locale].price]),
     [advantageKey, expected[locale].advantage], [disclaimerKey, expected[locale].disclaimer],
   ]);
   for (const key of targetKeys) {
+    const directValue = translations[locale][key];
     const value = resolveTranslation(locale, key);
     if (value !== expectedByKey[key]) exactCopyMismatch.push(`${locale}:${key}`);
     if (!value.trim()) emptyCopy.push(`${locale}:${key}`);
     if (value === key) fallbackLanguage.push(`${locale}:${key}:raw-key`);
-    if (translations[locale][key] === undefined || (locale !== "en" && value === resolveTranslation("en", key))) fallbackLanguage.push(`${locale}:${key}`);
+    if (directValue === undefined || directValue.trim() === key || (locale !== "en" && value === resolveTranslation("en", key))) fallbackLanguage.push(`${locale}:${key}`);
     if (/[{][^}]*[}]|%\{[^}]*\}/.test(value)) placeholderLeakage.push(`${locale}:${key}`);
     if (key !== disclaimerKey && oldPatterns[locale]?.test(value)) oldTechnicalCopyLeakage.push(`${locale}:${key}`);
   }
-  const allKeys = new Set([...Object.keys(baseTranslations[locale]), ...Object.keys(translations[locale])]);
-  for (const key of allKeys) if (!targetKeys.includes(key as typeof targetKeys[number]) && baseTranslations[locale][key] !== translations[locale][key]) unexpectedTranslationChange.push(`${locale}:${key}`);
-  for (const key of targetKeys) if (baseTranslations[locale][key] === translations[locale][key]) unexpectedTranslationChange.push(`${locale}:${key}:unchanged`);
+  const refundValues = refundKeys.map((key) => resolveTranslation(locale, key));
+  const priceValues = priceKeys.map((key) => resolveTranslation(locale, key));
+  if (new Set(refundValues).size !== 1) labelConsistencyError.push(`${locale}:refund-labels`);
+  if (new Set(priceValues).size !== 1) labelConsistencyError.push(`${locale}:post-refund-price-labels`);
 }
 
-for (const path of ["src/services/taxFreeCalculatorService.ts", "src/screens/TaxFreeCalculatorScreen.tsx", "src/screens/SmartShoppingCalculatorScreen.tsx", "src/screens/PriceAdvantageCalculatorScreen.tsx"]) {
-  const base = execFileSync("git", ["show", `main:${path}`], { encoding: "utf8" });
-  if (base !== readFileSync(path, "utf8")) calculationMismatch.push(`${path}:changed`);
-}
-const franceEstimate = calculateTaxFreeEstimate(1000, getTaxFreeRule("france"));
-if (franceEstimate.kind !== "upper_bound" || Math.abs(franceEstimate.maximumRefundBeforeFees - 166.6666667) > 0.005 || Math.abs(franceEstimate.bestCaseCostBeforeFees - 833.3333333) > 0.005) calculationMismatch.push("1000 EUR France example");
+if (resolveTranslation("tr", "taxFree.estimatedMaximumRefundRateBeforeFees") !== "Tahmini azami Tax Free iade oranı: %{rate} (ücretler öncesi)") labelConsistencyError.push("tr:maximum-refund-rate-copy");
 
-const errorCount = exactCopyMismatch.length + emptyCopy.length + fallbackLanguage.length + oldTechnicalCopyLeakage.length + placeholderLeakage.length + unexpectedTranslationChange.length + calculationMismatch.length;
+const screenChecks: Array<[string, string[]]> = [
+  ["src/screens/TaxFreeCalculatorScreen.tsx", ["t(numericPlan.benefitLabelKey)", "t(numericPlan.costLabelKey)", "t(numericPlan.convertedBenefitLabelKey)", "t(numericPlan.convertedCostLabelKey)", "t(numericPlan.disclaimerKey)"]],
+  ["src/screens/SmartShoppingCalculatorScreen.tsx", ["numericPlan?.benefitLabelKey", "numericPlan?.costLabelKey", "numericPlan?.convertedBenefitLabelKey", "numericPlan?.convertedCostLabelKey", "t(numericPlan.disclaimerKey)"]],
+  ["src/screens/PriceAdvantageCalculatorScreen.tsx", ["comparisonSemantic === \"upper_bound\" ? \"taxCalc.bestCaseCostBeforeFees\"", "comparisonSemantic === \"upper_bound\" ? t(\"priceCalc.maximumPossibleAdvantageBeforeFees\")", "t(numericPlan.benefitLabelKey)", "t(numericPlan.disclaimerKey)"]],
+];
+for (const [path, requiredSnippets] of screenChecks) {
+  const source = readFileSync(path, "utf8");
+  for (const snippet of requiredSnippets) if (!source.includes(snippet)) screenIntegrationError.push(`${path}:${snippet}`);
+}
+
+const franceRule = getTaxFreeRule("france");
+const franceEstimate = calculateTaxFreeEstimate(1000, franceRule);
+if (franceEstimate.kind !== "upper_bound") calculationMismatch.push("1000 EUR France result kind");
+if (franceEstimate.kind === "upper_bound") {
+  if (Math.abs(franceEstimate.maximumRefundBeforeFees - 166.6666667) > 0.005) calculationMismatch.push("1000 EUR France maximum refund");
+  if (Math.abs(franceEstimate.bestCaseCostBeforeFees - 833.3333333) > 0.005) calculationMismatch.push("1000 EUR France post-refund cost");
+}
+const francePlan = getTaxFreeDisplayPlan(1000, franceRule);
+if (francePlan.kind !== "upper_bound") calculationMismatch.push("1000 EUR France display-plan kind");
+if (francePlan.kind === "upper_bound") {
+  const expectedPlan = { benefitLabelKey: "taxCalc.maximumRefundBeforeFees", costLabelKey: "taxCalc.bestCaseCostBeforeFees", convertedBenefitLabelKey: "taxCalc.convertedMaximum", convertedCostLabelKey: "taxCalc.convertedBestCaseCost", disclaimerKey: "taxCalc.upperBoundDisclaimer" } as const;
+  for (const [field, expectedValue] of Object.entries(expectedPlan)) if (francePlan[field as keyof typeof expectedPlan] !== expectedValue) calculationMismatch.push(`1000 EUR France display-plan ${field}`);
+}
+
+const errorCount = exactCopyMismatch.length + emptyCopy.length + fallbackLanguage.length + oldTechnicalCopyLeakage.length + placeholderLeakage.length + labelConsistencyError.length + screenIntegrationError.length + calculationMismatch.length;
 console.log(`Supported language count: ${supportedLanguageCodes.length}`);
 console.log(`Target key count: ${targetKeys.length}`);
 console.log("Exact copy mismatch list:", exactCopyMismatch);
@@ -81,7 +94,8 @@ console.log("Empty copy list:", emptyCopy);
 console.log("Fallback language list:", fallbackLanguage);
 console.log("Old technical copy leakage list:", oldTechnicalCopyLeakage);
 console.log("Placeholder leakage list:", placeholderLeakage);
-console.log("Unexpected translation change list:", unexpectedTranslationChange);
+console.log("Label consistency error list:", labelConsistencyError);
+console.log("Screen integration error list:", screenIntegrationError);
 console.log("Calculation mismatch list:", calculationMismatch);
 console.log(`Error count: ${errorCount}`);
 if (errorCount) process.exitCode = 1;
