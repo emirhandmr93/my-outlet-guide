@@ -25,7 +25,7 @@ const ltrMountScrollCommands =
 
 const ltrLayoutChangeRealignmentErrors = errorsFor([
   ["native LTR realignment is not excluded on web", ltrRealignmentEffect.includes('if (Platform.OS === "web" || useNativeRtlOffsets) return;')],
-  ["Featured and Recommended layout refs are missing", ["featuredLtrLayoutRef", "recommendedLtrLayoutRef"].every((name) => source.includes(`const ${name} = useRef<CarouselLayoutSignature | null>(null);`))],
+  ["Featured layout ref is missing", source.includes("const featuredLtrLayoutRef = useRef<CarouselLayoutSignature | null>(null);")],
   ["first valid layout does not store without scrolling", /if \(previousSignature === null\) \{\s*previousLayoutRef\.current = signature;\s*return;\s*}/.test(ltrRealignmentEffect)],
   ["changed layout is not required before command creation", ltrRealignmentEffect.indexOf("if (!layoutChanged) return;") < ltrRealignmentEffect.indexOf("requestAnimationFrame")],
   ["layout metrics are not finite guarded", ltrRealignmentEffect.includes("[interval, content, viewport].every(Number.isFinite)")],
@@ -39,14 +39,14 @@ const rtlReadinessGuardErrors = errorsFor([
   ["alignment effect is not gated before scheduling", alignmentEffect.startsWith("useEffect(() => {\n    if (!useNativeRtlOffsets) return;")],
   ["content/viewport guards are missing", alignmentEffect.includes("metrics.content <= 0") && alignmentEffect.includes("metrics.viewport <= 0")],
   ["finite offset guards are missing", alignmentEffect.includes(".every(Number.isFinite)") && alignmentEffect.includes("Number.isFinite(targetOffset)")],
-  ["Featured and Recommended do not have independent alignment calls", (alignmentEffect.match(/alignCarousel\(/g)?.length ?? 0) === 2],
+  ["Featured does not have its alignment call", (alignmentEffect.match(/alignCarousel\(/g)?.length ?? 0) === 1],
   ["Popular Cities incorrectly has an RTL corrective command", !alignmentEffect.includes("cityCarouselRef")],
 ]);
 
 const unsafeEmptyOffsetErrors = errorsFor([
   ["closest snap helper does not reject an empty list", has(/function getClosestSnapIndex[\s\S]*?snapOffsets\.length === 0/)],
   ["Featured RTL auto-advance lacks its offset-count guard", source.includes("itemCount <= (useNativeRtlOffsets ? 1 : 0)")],
-  ["Recommended RTL auto-advance lacks its offset-count guard", source.includes("recommendedSnapOffsets.length < 2")],
+  ["Recommended auto-advance lacks its item-count guard", source.includes("if (recommendedOutlets.length === 0) return;")],
 ]);
 
 const nonFiniteOffsetRiskErrors = errorsFor([
@@ -57,14 +57,14 @@ const nonFiniteOffsetRiskErrors = errorsFor([
 
 const ltrSnapModeErrors = errorsFor([
   ["Featured LTR snap interval is missing", source.includes("snapToInterval={useNativeRtlOffsets ? undefined : carouselWidth}")],
-  ["Recommended LTR snap interval is missing", source.includes("snapToInterval={useNativeRtlOffsets ? undefined : outletCardWidth + spacing.md}")],
+  ["Recommended native snap interval is missing", source.includes('snapToInterval={Platform.OS === "web" ? undefined : recommendedSnapInterval}')],
   ["Popular Cities native snap interval is missing", cityList.includes('snapToInterval={Platform.OS === "web" ? undefined : citySnapInterval}')],
   ["Popular Cities contains a corrective scroll command", !/scrollTo(?:Offset|Index|End)?/.test(cityList)],
 ]);
 
 const rtlSnapModeErrors = errorsFor([
   ["Featured snap offsets are not readiness gated", source.includes("const featuredNativeSnapOffsets = featuredRtlReady ?")],
-  ["Recommended snap offsets are not readiness gated", source.includes("const recommendedNativeSnapOffsets = recommendedRtlReady ?")],
+  ["Recommended still uses measured snap offsets", !source.includes("recommendedNativeSnapOffsets") && !source.includes("recommendedSnapOffsets")],
   ["Popular Cities still uses RTL snap offsets", !source.includes("cityNativeSnapOffsets") && !cityList.includes("snapToOffsets")],
 ]);
 
