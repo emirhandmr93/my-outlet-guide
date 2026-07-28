@@ -21,7 +21,7 @@ import {
   View,
 } from "react-native";
 import { FlatList as RecommendedFlatList } from "react-native";
-import type { FlatList as VirtualizedOutletList } from "react-native";
+import type { FlatList as VirtualizedList } from "react-native";
 import { DashboardSectionHeader } from "../components/DashboardSectionHeader";
 import { HomeHeader } from "../components/HomeHeader";
 import { SearchBar } from "../components/SearchBar";
@@ -89,12 +89,6 @@ type FeaturedSlide = {
   image: ImageSourcePropType;
   route: string;
   params?: Record<string, string>;
-};
-
-type CarouselLayoutSignature = {
-  interval: number;
-  content: number;
-  viewport: number;
 };
 
 const featuredSlides: FeaturedSlide[] = [
@@ -310,53 +304,6 @@ function getOutletCardImageSource(
   return outlet ? getRecommendedOutletImage(outlet) : undefined;
 }
 
-function getCarouselMaxOffset(contentWidth: number, viewportWidth: number) {
-  return Math.max(contentWidth - viewportWidth, 0);
-}
-
-function getLogicalSnapOffsets(itemCount: number, interval: number, contentWidth: number, viewportWidth: number) {
-  if (
-    itemCount <= 0 ||
-    !Number.isFinite(interval) ||
-    interval <= 0 ||
-    !Number.isFinite(contentWidth) ||
-    contentWidth <= 0 ||
-    !Number.isFinite(viewportWidth) ||
-    viewportWidth <= 0
-  ) {
-    return [];
-  }
-
-  const maxOffset = getCarouselMaxOffset(contentWidth, viewportWidth);
-  const offsets: number[] = [];
-  for (let index = 0; index < itemCount; index += 1) {
-    const offset = Math.min(index * interval, maxOffset);
-    if (!Number.isFinite(offset) || offset < 0) continue;
-    if (offsets.length === 0 || offset - offsets[offsets.length - 1] >= interval / 2) offsets.push(offset);
-    else if (offset !== offsets[offsets.length - 1]) offsets[offsets.length - 1] = offset;
-  }
-  return [...new Set(offsets)];
-}
-
-function logicalToScrollOffset(logicalOffset: number, maxOffset: number, transformAndroidRTL: boolean) {
-  return transformAndroidRTL ? maxOffset - logicalOffset : logicalOffset;
-}
-
-function scrollToLogicalOffset(scrollOffset: number, maxOffset: number, transformAndroidRTL: boolean) {
-  return transformAndroidRTL ? maxOffset - scrollOffset : scrollOffset;
-}
-
-function getClosestSnapIndex(offset: number, snapOffsets: number[]) {
-  if (snapOffsets.length === 0 || !Number.isFinite(offset)) return 0;
-  return snapOffsets.reduce((closest, candidate, index) => Math.abs(candidate - offset) < Math.abs(snapOffsets[closest] - offset) ? index : closest, 0);
-}
-
-function getNativeSnapOffsets(logicalOffsets: number[], maxOffset: number, platform: typeof Platform.OS, isRTL: boolean) {
-  return platform === "ios" && isRTL
-    ? logicalOffsets.map((offset) => maxOffset - offset).sort((a, b) => a - b)
-    : logicalOffsets;
-}
-
 export function HomeScreen() {
   const navigation = useNavigation<any>();
   const { width } = useWindowDimensions();
@@ -372,12 +319,9 @@ export function HomeScreen() {
   const [activeRecommendedIndex, setActiveRecommendedIndex] = useState(0);
   const [activeCityIndex, setActiveCityIndex] = useState(0);
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
-  const carouselRef = useRef<ScrollView | null>(null);
-  const recommendedCarouselRef = useRef<VirtualizedOutletList<RecommendedOutlet> | null>(null);
-  const featuredLtrLayoutRef = useRef<CarouselLayoutSignature | null>(null);
-  const activeSlideIndexRef = useRef(activeSlideIndex);
-  activeSlideIndexRef.current = activeSlideIndex;
-  const [featuredMetrics, setFeaturedMetrics] = useState({ content: 0, viewport: 0 });
+  const carouselRef = useRef<VirtualizedList<FeaturedSlide> | null>(null);
+  const recommendedCarouselRef =
+    useRef<VirtualizedList<RecommendedOutlet> | null>(null);
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const contentWidth = Math.min(
     isDesktopWeb ? width - 216 - 72 : width - spacing.xl * 2,
@@ -394,16 +338,16 @@ export function HomeScreen() {
     : Math.round(width * 0.42);
   const citySnapInterval = cityCardWidth + spacing.md;
   const recommendedSnapInterval = outletCardWidth + spacing.md;
-  const useNativeRtlOffsets = Platform.OS !== "web" && isNativeRTL;
-  const transformAndroidRTL = Platform.OS === "android" && isNativeRTL;
-  const featuredMaxOffset = getCarouselMaxOffset(featuredMetrics.content, featuredMetrics.viewport);
-  const featuredSnapOffsets = getLogicalSnapOffsets(featuredSlides.length, carouselWidth, featuredMetrics.content, featuredMetrics.viewport);
-  const featuredRtlReady = useNativeRtlOffsets && featuredMetrics.content > 0 && featuredMetrics.viewport > 0 && featuredSnapOffsets.length > 0 && featuredSnapOffsets.every(Number.isFinite);
-  const featuredNativeSnapOffsets = featuredRtlReady ? getNativeSnapOffsets(featuredSnapOffsets, featuredMaxOffset, Platform.OS, isNativeRTL) : undefined;
-  const calculatedRecommendedLastIndex = getRecommendedCarouselLastIndex(recommendedOutlets.length, outletCardWidth, spacing.md, contentWidth);
+
+  const calculatedRecommendedLastIndex = getRecommendedCarouselLastIndex(
+    recommendedOutlets.length,
+    outletCardWidth,
+    spacing.md,
+    contentWidth,
+  );
   const recommendedLastIndex = calculatedRecommendedLastIndex;
   const recommendedPageCount = recommendedLastIndex + 1;
-  const featuredPageCount = useNativeRtlOffsets ? featuredSnapOffsets.length : featuredSlides.length;
+  const featuredPageCount = featuredSlides.length;
   const showCityPageIndicators = Platform.OS !== "web" || !isDesktopWeb;
   const toolCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 3) / 4)
@@ -436,155 +380,82 @@ export function HomeScreen() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const itemCount = useNativeRtlOffsets ? featuredSnapOffsets.length : slides.length;
-      if (itemCount <= (useNativeRtlOffsets ? 1 : 0)) return;
-      const nextIndex = (activeSlideIndex + 1) % itemCount;
-      const targetOffset = useNativeRtlOffsets
-        ? featuredSnapOffsets[nextIndex]
-        : nextIndex * carouselWidth;
-      if (!Number.isFinite(targetOffset) || !carouselRef.current) return;
-      carouselRef.current?.scrollTo({
-        x: useNativeRtlOffsets
-          ? logicalToScrollOffset(targetOffset, featuredMaxOffset, transformAndroidRTL)
-          : targetOffset,
-        animated: true,
-      });
-      setActiveSlideIndex(nextIndex);
+      if (slides.length === 0 || !carouselRef.current) return;
+      const nextIndex = Math.min(
+        Math.max((activeSlideIndex + 1) % slides.length, 0),
+        slides.length - 1,
+      );
+      carouselRef.current.scrollToIndex({ index: nextIndex, animated: true });
+      if (Platform.OS === "web") setActiveSlideIndex(nextIndex);
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeSlideIndex, carouselWidth, featuredMetrics, slides.length, useNativeRtlOffsets]);
+  }, [activeSlideIndex, slides.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (recommendedOutlets.length === 0) return;
-      const nextIndex = activeRecommendedIndex >= recommendedLastIndex
-        ? 0
-        : activeRecommendedIndex + 1;
-      if (!recommendedCarouselRef.current) return;
-      recommendedCarouselRef.current.scrollToIndex({ index: nextIndex, animated: true });
-      setActiveRecommendedIndex(nextIndex);
+      if (recommendedOutlets.length === 0 || !recommendedCarouselRef.current)
+        return;
+      const nextIndex = Math.min(
+        Math.max(
+          activeRecommendedIndex >= recommendedLastIndex
+            ? 0
+            : activeRecommendedIndex + 1,
+          0,
+        ),
+        recommendedLastIndex,
+      );
+      recommendedCarouselRef.current.scrollToIndex({
+        index: nextIndex,
+        animated: true,
+      });
+      if (Platform.OS === "web") setActiveRecommendedIndex(nextIndex);
     }, 5500);
 
     return () => clearInterval(interval);
   }, [activeRecommendedIndex, recommendedLastIndex]);
 
-  useEffect(() => {
-    if (!useNativeRtlOffsets) return;
-
-    const frame = requestAnimationFrame(() => {
-      const alignCarousel = (
-        ref: ScrollView | null,
-        metrics: { content: number; viewport: number },
-        snapOffsets: number[],
-        activeIndex: number,
-        maxOffset: number,
-      ) => {
-        if (!ref || metrics.content <= 0 || metrics.viewport <= 0 || snapOffsets.length === 0) return;
-        if (![metrics.content, metrics.viewport, maxOffset, ...snapOffsets].every(Number.isFinite)) return;
-        const targetOffset = snapOffsets[activeIndex];
-        if (!Number.isFinite(targetOffset)) return;
-        const scrollOffset = logicalToScrollOffset(targetOffset, maxOffset, transformAndroidRTL);
-        if (!Number.isFinite(scrollOffset)) return;
-        ref.scrollTo({ x: scrollOffset, animated: false });
-      };
-
-      alignCarousel(carouselRef.current, featuredMetrics, featuredSnapOffsets, activeSlideIndex, featuredMaxOffset);
-    });
-
-    return () => cancelAnimationFrame(frame);
-  }, [useNativeRtlOffsets, featuredMetrics, activeSlideIndex, featuredMaxOffset, featuredSnapOffsets, transformAndroidRTL]);
-
-  useEffect(() => {
-    if (Platform.OS === "web" || useNativeRtlOffsets) return;
-
-    const frames: number[] = [];
-    const realignAfterLtrLayoutChange = (
-      ref: ScrollView | null,
-      previousLayoutRef: { current: CarouselLayoutSignature | null },
-      signature: CarouselLayoutSignature,
-      activeIndex: number,
-    ) => {
-      const { interval, content, viewport } = signature;
-      if (
-        !ref ||
-        interval <= 0 ||
-        content <= 0 ||
-        viewport <= 0 ||
-        ![interval, content, viewport].every(Number.isFinite)
-      ) {
-        return;
-      }
-
-      const previousSignature = previousLayoutRef.current;
-      if (previousSignature === null) {
-        previousLayoutRef.current = signature;
-        return;
-      }
-
-      const layoutChanged =
-        previousSignature.interval !== interval ||
-        previousSignature.content !== content ||
-        previousSignature.viewport !== viewport;
-      if (!layoutChanged) return;
-      previousLayoutRef.current = signature;
-
-      const maxOffset = Math.max(content - viewport, 0);
-      const targetOffset = Math.min(Math.max(activeIndex * interval, 0), maxOffset);
-      if (!Number.isFinite(targetOffset) || targetOffset < 0) return;
-
-      const frame = requestAnimationFrame(() => {
-        ref.scrollTo({
-          x: targetOffset,
-          animated: false,
-        });
-      });
-      frames.push(frame);
-    };
-
-    realignAfterLtrLayoutChange(
-      carouselRef.current,
-      featuredLtrLayoutRef,
-      { interval: carouselWidth, ...featuredMetrics },
-      activeSlideIndexRef.current,
-    );
-    return () => frames.forEach(cancelAnimationFrame);
-  }, [useNativeRtlOffsets, carouselWidth, featuredMetrics]);
-
   function handleCarouselScroll(
     event: NativeSyntheticEvent<NativeScrollEvent>,
   ) {
-    if (!useNativeRtlOffsets) {
-      const nextIndex = Math.round(event.nativeEvent.contentOffset.x / carouselWidth);
-      if (Number.isFinite(nextIndex) && nextIndex !== activeSlideIndex) setActiveSlideIndex(nextIndex);
+    const offset = event.nativeEvent.contentOffset.x;
+    if (
+      !Number.isFinite(offset) ||
+      !Number.isFinite(carouselWidth) ||
+      carouselWidth <= 0
+    )
       return;
-    }
-    if (!featuredRtlReady || featuredSnapOffsets.length === 0) return;
-    const logicalOffset = scrollToLogicalOffset(event.nativeEvent.contentOffset.x, featuredMaxOffset, transformAndroidRTL);
-    const nextIndex = getClosestSnapIndex(logicalOffset, featuredSnapOffsets);
 
-    const targetOffset = featuredSnapOffsets[nextIndex] ?? 0;
-    if (Math.abs(logicalOffset - targetOffset) > 1) {
-      carouselRef.current?.scrollTo({ x: logicalToScrollOffset(targetOffset, featuredMaxOffset, transformAndroidRTL), animated: false });
-    }
-
-    if (nextIndex !== activeSlideIndex) {
-      setActiveSlideIndex(nextIndex);
-    }
+    const logicalIndex = Math.round(offset / carouselWidth);
+    const nextIndex = Math.min(Math.max(logicalIndex, 0), slides.length - 1);
+    if (nextIndex !== activeSlideIndex) setActiveSlideIndex(nextIndex);
   }
 
-  function handleRecommendedScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+  function handleRecommendedScroll(
+    event: NativeSyntheticEvent<NativeScrollEvent>,
+  ) {
     const offset = event.nativeEvent.contentOffset.x;
-    if (!Number.isFinite(offset) || !Number.isFinite(recommendedSnapInterval) || recommendedSnapInterval <= 0) return;
+    if (
+      !Number.isFinite(offset) ||
+      !Number.isFinite(recommendedSnapInterval) ||
+      recommendedSnapInterval <= 0
+    )
+      return;
 
-    const nextIndex = Math.round(offset / recommendedSnapInterval);
-    const reachableIndex = Math.min(Math.max(nextIndex, 0), recommendedLastIndex);
-    if (reachableIndex !== activeRecommendedIndex) setActiveRecommendedIndex(reachableIndex);
+    const logicalIndex = Math.round(offset / recommendedSnapInterval);
+    const nextIndex = Math.min(Math.max(logicalIndex, 0), recommendedLastIndex);
+    if (nextIndex !== activeRecommendedIndex)
+      setActiveRecommendedIndex(nextIndex);
   }
 
   function handleCityScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
     const offset = event.nativeEvent.contentOffset.x;
-    if (!Number.isFinite(citySnapInterval) || citySnapInterval <= 0 || !Number.isFinite(offset)) return;
+    if (
+      !Number.isFinite(citySnapInterval) ||
+      citySnapInterval <= 0 ||
+      !Number.isFinite(offset)
+    )
+      return;
 
     const nextIndex = Math.round(offset / citySnapInterval);
     const reachableIndex = Math.min(
@@ -689,7 +560,12 @@ export function HomeScreen() {
           },
         ]}
       >
-        <View style={[styles.contentInner, isDesktopWeb && styles.desktopContentInner]}>
+        <View
+          style={[
+            styles.contentInner,
+            isDesktopWeb && styles.desktopContentInner,
+          ]}
+        >
         <HomeHeader
           userName={
             currentUser?.displayName || currentUser?.email?.split("@")[0]
@@ -734,24 +610,39 @@ export function HomeScreen() {
         />
 
         <View style={styles.carouselWrap}>
-          <ScrollView
+          <FlatList<FeaturedSlide>
             ref={carouselRef}
             horizontal
-            pagingEnabled={!isDesktopWeb}
             showsHorizontalScrollIndicator={false}
-            decelerationRate="fast"
-            snapToInterval={useNativeRtlOffsets ? undefined : carouselWidth}
-            snapToOffsets={featuredNativeSnapOffsets}
-            snapToAlignment="start"
+            data={slides}
+            keyExtractor={(slide) => slide.id}
+            style={
+              Platform.OS === "web" ? undefined : styles.nativeCarouselGeometry
+            }
+            snapToInterval={Platform.OS === "web" ? undefined : carouselWidth}
+            snapToAlignment={Platform.OS === "web" ? undefined : "start"}
+            decelerationRate={Platform.OS === "web" ? undefined : "fast"}
+            disableIntervalMomentum={Platform.OS === "web" ? undefined : true}
             onMomentumScrollEnd={handleCarouselScroll}
-            onLayout={(event) => setFeaturedMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
-            onContentSizeChange={(content) => setFeaturedMetrics((current) => ({ ...current, content }))}
-          >
-            {slides.map((slide) => (
+            getItemLayout={(_, index) => ({
+              length: carouselWidth,
+              offset: carouselWidth * index,
+              index,
+            })}
+            initialNumToRender={5}
+            maxToRenderPerBatch={5}
+            windowSize={5}
+            removeClippedSubviews={false}
+            renderItem={({ item: slide }) => (
               <TouchableOpacity
-                key={slide.id}
                 activeOpacity={0.9}
-                style={[styles.slideOuter, { width: carouselWidth }]}
+                style={[
+                  styles.slideOuter,
+                  { width: carouselWidth },
+                  Platform.OS !== "web" &&
+                    isNativeRTL &&
+                    styles.nativeCarouselRtlContent,
+                ]}
                 onPress={() => openSlide(slide)}
               >
                 <ImageBackground
@@ -790,34 +681,29 @@ export function HomeScreen() {
                     <Text style={styles.slideIcon}>{slide.icon}</Text>
                     <Text style={styles.slideKicker}>{t(slide.kickerKey)}</Text>
                     <Text style={styles.slideTitle}>{t(slide.titleKey)}</Text>
-                    <Text style={styles.slideSubtitle}>
-                      {t(slide.subtitleKey)}
-                    </Text>
+                    <Text style={styles.slideSubtitle}>{t(slide.subtitleKey)}</Text>
                     <View
                       style={[
                         styles.slideAction,
                         { maxWidth: carouselWidth - spacing.xl * 2 },
                       ]}
                     >
-                      <Text style={styles.slideActionText}>
-                        {t(slide.ctaKey)}
+                      <Text style={styles.slideActionText}>{t(slide.ctaKey)}</Text>
+                      <Text style={styles.slideActionArrow}>
+                        {isNativeRTL ? "←" : "→"}
                       </Text>
-                      <Text style={styles.slideActionArrow}>{isNativeRTL ? "←" : "→"}</Text>
                     </View>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
-            ))}
-          </ScrollView>
+            )}
+          />
 
           <View style={styles.dotsRow}>
             {Array.from({ length: featuredPageCount }, (_, index) => (
               <View
                 key={`featured-dot-${index}`}
-                style={[
-                  styles.dot,
-                  index === activeSlideIndex && styles.dotActive,
-                ]}
+                style={[styles.dot, index === activeSlideIndex && styles.dotActive]}
               />
             ))}
           </View>
@@ -835,8 +721,13 @@ export function HomeScreen() {
             showsHorizontalScrollIndicator={false}
             data={recommendedOutlets}
             keyExtractor={(outlet) => outlet.id}
+            style={
+              Platform.OS === "web" ? undefined : styles.nativeCarouselGeometry
+            }
             contentContainerStyle={styles.recommendedList}
-            snapToInterval={Platform.OS === "web" ? undefined : recommendedSnapInterval}
+            snapToInterval={
+              Platform.OS === "web" ? undefined : recommendedSnapInterval
+            }
             snapToAlignment={Platform.OS === "web" ? undefined : "start"}
             decelerationRate={Platform.OS === "web" ? undefined : "fast"}
             disableIntervalMomentum={Platform.OS === "web" ? undefined : true}
@@ -846,48 +737,55 @@ export function HomeScreen() {
               offset: recommendedSnapInterval * index,
               index,
             })}
-            initialNumToRender={1}
-            maxToRenderPerBatch={1}
-            windowSize={3}
+            initialNumToRender={5}
+            maxToRenderPerBatch={5}
+            windowSize={5}
+            removeClippedSubviews={false}
             renderItem={({ item: outlet }) => {
-            const imageSource = getOutletCardImageSource(outlet.id);
+              const imageSource = getOutletCardImageSource(outlet.id);
 
-            return (
-              <TouchableOpacity
-                style={[styles.outletCard, { width: outletCardWidth }]}
-                activeOpacity={0.9}
-                onPress={() =>
-                  navigateTo("OutletDetail", { outletId: outlet.id })
-                }
-              >
-                {imageSource ? (
-                  <ImageBackground
-                    source={imageSource}
-                    style={styles.outletImage}
-                    imageStyle={[
-                      styles.outletImageRadius,
-                      Platform.OS === "web" ? styles.outletImageWeb : null,
-                    ]}
-                  >
-                    <View style={styles.outletOverlay} />
-                    <View style={styles.outletBadge}>
-                      <Text style={styles.outletBadgeText}>
-                        {t("home.recommended")}
-                      </Text>
-                    </View>
-                  </ImageBackground>
-                ) : null}
+              return (
+                <TouchableOpacity
+                  style={[
+                    styles.outletCard,
+                    { width: outletCardWidth },
+                    Platform.OS !== "web" &&
+                      isNativeRTL &&
+                      styles.nativeCarouselRtlContent,
+                  ]}
+                  activeOpacity={0.9}
+                  onPress={() =>
+                    navigateTo("OutletDetail", { outletId: outlet.id })
+                  }
+                >
+                  {imageSource ? (
+                    <ImageBackground
+                      source={imageSource}
+                      style={styles.outletImage}
+                      imageStyle={[
+                        styles.outletImageRadius,
+                        Platform.OS === "web" ? styles.outletImageWeb : null,
+                      ]}
+                    >
+                      <View style={styles.outletOverlay} />
+                      <View style={styles.outletBadge}>
+                        <Text style={styles.outletBadgeText}>
+                          {t("home.recommended")}
+                        </Text>
+                      </View>
+                    </ImageBackground>
+                  ) : null}
 
-                <View style={styles.outletBody}>
-                  <Text style={styles.outletLocation}>
-                    {formatHomeLocation(outlet.location, language)}
-                  </Text>
-                  <Text style={styles.outletTitle}>{outlet.title}</Text>
-                  <Text style={styles.outletText}>{t(outlet.textKey)}</Text>
-                  <Text style={styles.tapText}>{t("home.viewOutlet")}</Text>
-                </View>
-              </TouchableOpacity>
-            );
+                  <View style={styles.outletBody}>
+                    <Text style={styles.outletLocation}>
+                      {formatHomeLocation(outlet.location, language)}
+                    </Text>
+                    <Text style={styles.outletTitle}>{outlet.title}</Text>
+                    <Text style={styles.outletText}>{t(outlet.textKey)}</Text>
+                    <Text style={styles.tapText}>{t("home.viewOutlet")}</Text>
+                  </View>
+                </TouchableOpacity>
+              );
             }}
           />
 
@@ -982,7 +880,9 @@ export function HomeScreen() {
             data={popularCities}
             keyExtractor={(city) => city.id}
             contentContainerStyle={styles.cityList}
-            snapToInterval={Platform.OS === "web" ? undefined : citySnapInterval}
+              snapToInterval={
+                Platform.OS === "web" ? undefined : citySnapInterval
+              }
             snapToAlignment={Platform.OS === "web" ? undefined : "start"}
             decelerationRate={Platform.OS === "web" ? undefined : "fast"}
             disableIntervalMomentum={Platform.OS === "web" ? undefined : true}
@@ -1034,7 +934,9 @@ export function HomeScreen() {
           ) : null}
         </View>
 
-        <View style={[styles.bottomTabSpacer, { height: homeBottomSpacer }]} />
+          <View
+            style={[styles.bottomTabSpacer, { height: homeBottomSpacer }]}
+          />
         </View>
       </ScrollView>
 
@@ -1062,7 +964,9 @@ export function HomeScreen() {
               >
                 <Text style={styles.quickMenuIcon}>{item.icon}</Text>
                 <Text style={styles.quickMenuText}>{t(item.titleKey)}</Text>
-                <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
+                  <Text style={styles.quickMenuArrow}>
+                    {isNativeRTL ? "←" : "→"}
+                  </Text>
               </TouchableOpacity>
             ))}
 
@@ -1073,9 +977,15 @@ export function HomeScreen() {
             >
               <Text style={styles.quickMenuIcon}>⭐</Text>
               <Text style={styles.quickMenuText}>
-                {t(Platform.OS === "web" ? "home.quick.downloadApp" : "home.quick.rateApp")}
+                  {t(
+                    Platform.OS === "web"
+                      ? "home.quick.downloadApp"
+                      : "home.quick.rateApp",
+                  )}
+                </Text>
+                <Text style={styles.quickMenuArrow}>
+                  {isNativeRTL ? "←" : "→"}
               </Text>
-              <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -1087,7 +997,9 @@ export function HomeScreen() {
               <Text style={styles.quickMenuText}>
                 {t("home.quick.shareApp")}
               </Text>
-              <Text style={styles.quickMenuArrow}>{isNativeRTL ? "←" : "→"}</Text>
+                <Text style={styles.quickMenuArrow}>
+                  {isNativeRTL ? "←" : "→"}
+                </Text>
             </TouchableOpacity>
           </View>
         </TouchableOpacity>
@@ -1159,6 +1071,14 @@ const styles = StyleSheet.create({
 
   carouselWrap: {
     marginBottom: spacing.xxl,
+  },
+
+  nativeCarouselGeometry: {
+    direction: "ltr",
+  },
+
+  nativeCarouselRtlContent: {
+    direction: "rtl",
   },
 
   slideOuter: {

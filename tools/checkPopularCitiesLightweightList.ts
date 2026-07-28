@@ -48,7 +48,7 @@ const flatListConfigurationErrors = errorsFor([
   ["the horizontal scroll indicator is not hidden", cityList.includes("showsHorizontalScrollIndicator={false}")],
   ["popularCities data is not supplied", cityList.includes("data={popularCities}")],
   ["stable city keys are missing", cityList.includes("keyExtractor={(city) => city.id}")],
-  ["native snapToInterval is missing", cityList.includes('snapToInterval={Platform.OS === "web" ? undefined : citySnapInterval}')],
+  ["native snapToInterval is missing", /snapToInterval=\{[\s\S]*?Platform\.OS === \"web\" \? undefined : citySnapInterval[\s\S]*?\}/.test(cityList)],
   ["native start alignment is missing", cityList.includes('snapToAlignment={Platform.OS === "web" ? undefined : "start"}')],
   ["native fast deceleration is missing", cityList.includes('decelerationRate={Platform.OS === "web" ? undefined : "fast"}')],
   ["interval momentum is not disabled on native", cityList.includes('disableIntervalMomentum={Platform.OS === "web" ? undefined : true}')],
@@ -90,12 +90,12 @@ const sectionOrder = [
 ];
 const sectionPositions = sectionOrder.map((section) => source.indexOf(section));
 const preservedHomeBehaviorErrors = errorsFor([
-  ["Featured ScrollView carousel is missing", has(/ref=\{carouselRef\}[\s\S]*?onMomentumScrollEnd=\{handleCarouselScroll\}/)],
-  ["Recommended ScrollView carousel is missing", has(/ref=\{recommendedCarouselRef\}[\s\S]*?onMomentumScrollEnd=\{handleRecommendedScroll\}/)],
+  ["Featured FlatList carousel is missing", has(/<FlatList<FeaturedSlide>[\s\S]*?ref=\{carouselRef\}[\s\S]*?onMomentumScrollEnd=\{handleCarouselScroll\}/)],
+  ["Recommended FlatList carousel is missing", has(/ref=\{recommendedCarouselRef\}[\s\S]*?onMomentumScrollEnd=\{handleRecommendedScroll\}/)],
   ["the two 5,500 ms timers were not preserved", (source.match(/\}, 5500\);/g)?.length ?? 0) === 2],
-  ["Featured/Recommended programmatic scrolling was not preserved", (source.match(/\.scrollTo\(\{/g)?.length ?? 0) >= 2],
+  ["Featured/Recommended index scrolling was not preserved", (source.match(/\.scrollToIndex\(\{/g)?.length ?? 0) === 2],
   ["Home section order changed", sectionPositions.every((position, index) => position >= 0 && (index === 0 || position > sectionPositions[index - 1]))],
-  ["Share App behavior is missing", source.includes("async function shareApp()") && source.includes("Share.share(getAppSharePayload")],
+  ["Share App behavior is missing", source.includes("async function shareApp()") && /Share\.share\(\s*getAppSharePayload/.test(source)],
   ["Rate App behavior is missing", source.includes("async function rateApp()") && source.includes("nativeIosReviewUrl")],
   ["diagnostic code was added to Home", !/StartupMountDiagnostic|checkStartupMountDiagnostic|diagnostic/i.test(source)],
 ]);
