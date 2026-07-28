@@ -12,7 +12,12 @@ import { NotificationSettingsProvider } from "./src/contexts/NotificationSetting
 import { UserProvider } from "./src/contexts/UserContext";
 import { FlightDealPreferencesProvider } from "./src/contexts/FlightDealPreferencesContext";
 import { AuthProvider, useAuth } from "./src/contexts/AuthContext";
+import * as Sentry from '@sentry/react-native';
 
+Sentry.init({
+  dsn: 'https://1ae0a4bd9d6ca4477d144109f1afdf87@o4511812961632256.ingest.de.sentry.io/4511812985028688',
+  sendDefaultPii: false,
+});
 function AuthLoadingGate() {
   const { loading } = useAuth();
 
@@ -44,7 +49,7 @@ function AuthLoadingGate() {
   );
 }
 
-export default function App() {
+export default Sentry.wrap(function App() {
 return (
 <SafeAreaProvider>
 <LanguageProvider>
@@ -54,4 +59,4 @@ return (
 </LanguageProvider>
 </SafeAreaProvider>
 );
-}
+});
