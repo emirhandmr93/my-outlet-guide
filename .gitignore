@@ -47,3 +47,5 @@ yarn-error.*
 
 # Expo Web POC export output
 dist-web-poc/
+
+.env.local
