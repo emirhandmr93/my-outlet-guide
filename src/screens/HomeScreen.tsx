@@ -43,10 +43,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
-import {
-  NativeDirectionRoot,
-  useLayoutDirection,
-} from "../hooks/useLayoutDirection";
+import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
@@ -376,7 +373,8 @@ export function HomeScreen() {
     tabBarHeight,
     floatingTabBarHeight + floatingTabBarBottomOffset,
   );
-  const homeBottomSpacer = isDesktopWeb
+  const homeBottomSpacer =
+    isDesktopWeb
       ? 0
       : insets.bottom + floatingTabBarFootprint + homeTabBarClearanceGap;
 
@@ -388,6 +386,7 @@ export function HomeScreen() {
         slides.length - 1,
       );
       carouselRef.current.scrollToIndex({ index: nextIndex, animated: true });
+      if (Platform.OS === "web") setActiveSlideIndex(nextIndex);
     }, 5500);
 
     return () => clearInterval(interval);
@@ -400,7 +399,7 @@ export function HomeScreen() {
       const nextIndex = Math.min(
         Math.max(
           activeRecommendedIndex >= recommendedLastIndex
-        ? 0
+            ? 0
             : activeRecommendedIndex + 1,
           0,
         ),
@@ -410,6 +409,7 @@ export function HomeScreen() {
         index: nextIndex,
         animated: true,
       });
+      if (Platform.OS === "web") setActiveRecommendedIndex(nextIndex);
     }, 5500);
 
     return () => clearInterval(interval);
@@ -429,7 +429,7 @@ export function HomeScreen() {
     const logicalIndex = Math.round(offset / carouselWidth);
     const nextIndex = Math.min(Math.max(logicalIndex, 0), slides.length - 1);
     if (nextIndex !== activeSlideIndex) setActiveSlideIndex(nextIndex);
-    }
+  }
 
   function handleRecommendedScroll(
     event: NativeSyntheticEvent<NativeScrollEvent>,
@@ -500,9 +500,7 @@ export function HomeScreen() {
     setIsQuickMenuOpen(false);
 
     try {
-      await Share.share(
-        getAppSharePayload(Platform.OS, t("home.shareMessage")),
-      );
+      await Share.share(getAppSharePayload(Platform.OS, t("home.shareMessage")));
     } catch (error: unknown) {
       if (Platform.OS === "web" && isAbortError(error)) {
         return;
@@ -612,41 +610,39 @@ export function HomeScreen() {
         />
 
         <View style={styles.carouselWrap}>
-            <FlatList<FeaturedSlide>
+          <FlatList<FeaturedSlide>
             ref={carouselRef}
             horizontal
             showsHorizontalScrollIndicator={false}
-              data={slides}
-              keyExtractor={(slide) => slide.id}
-              style={
-                Platform.OS === "web"
-                  ? undefined
-                  : styles.nativeCarouselGeometry
-              }
-              snapToInterval={Platform.OS === "web" ? undefined : carouselWidth}
-              snapToAlignment={Platform.OS === "web" ? undefined : "start"}
-              decelerationRate={Platform.OS === "web" ? undefined : "fast"}
-              disableIntervalMomentum={Platform.OS === "web" ? undefined : true}
+            data={slides}
+            keyExtractor={(slide) => slide.id}
+            style={
+              Platform.OS === "web" ? undefined : styles.nativeCarouselGeometry
+            }
+            snapToInterval={Platform.OS === "web" ? undefined : carouselWidth}
+            snapToAlignment={Platform.OS === "web" ? undefined : "start"}
+            decelerationRate={Platform.OS === "web" ? undefined : "fast"}
+            disableIntervalMomentum={Platform.OS === "web" ? undefined : true}
             onMomentumScrollEnd={handleCarouselScroll}
-              getItemLayout={(_, index) => ({
-                length: carouselWidth,
-                offset: carouselWidth * index,
-                index,
-              })}
-              initialNumToRender={5}
-              maxToRenderPerBatch={5}
-              windowSize={5}
-              removeClippedSubviews={false}
-              renderItem={({ item: slide }) => (
+            getItemLayout={(_, index) => ({
+              length: carouselWidth,
+              offset: carouselWidth * index,
+              index,
+            })}
+            initialNumToRender={5}
+            maxToRenderPerBatch={5}
+            windowSize={5}
+            removeClippedSubviews={false}
+            renderItem={({ item: slide }) => (
               <TouchableOpacity
                 activeOpacity={0.9}
-                  style={[
-                    styles.slideOuter,
-                    { width: carouselWidth },
-                    Platform.OS !== "web" &&
-                      isNativeRTL &&
-                      styles.nativeCarouselRtlContent,
-                  ]}
+                style={[
+                  styles.slideOuter,
+                  { width: carouselWidth },
+                  Platform.OS !== "web" &&
+                    isNativeRTL &&
+                    styles.nativeCarouselRtlContent,
+                ]}
                 onPress={() => openSlide(slide)}
               >
                 <ImageBackground
@@ -683,40 +679,31 @@ export function HomeScreen() {
                     ]}
                   >
                     <Text style={styles.slideIcon}>{slide.icon}</Text>
-                      <Text style={styles.slideKicker}>
-                        {t(slide.kickerKey)}
-                      </Text>
+                    <Text style={styles.slideKicker}>{t(slide.kickerKey)}</Text>
                     <Text style={styles.slideTitle}>{t(slide.titleKey)}</Text>
-                    <Text style={styles.slideSubtitle}>
-                      {t(slide.subtitleKey)}
-                    </Text>
+                    <Text style={styles.slideSubtitle}>{t(slide.subtitleKey)}</Text>
                     <View
                       style={[
                         styles.slideAction,
                         { maxWidth: carouselWidth - spacing.xl * 2 },
                       ]}
                     >
-                      <Text style={styles.slideActionText}>
-                        {t(slide.ctaKey)}
+                      <Text style={styles.slideActionText}>{t(slide.ctaKey)}</Text>
+                      <Text style={styles.slideActionArrow}>
+                        {isNativeRTL ? "←" : "→"}
                       </Text>
-                        <Text style={styles.slideActionArrow}>
-                          {isNativeRTL ? "←" : "→"}
-                        </Text>
                     </View>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
-              )}
-            />
+            )}
+          />
 
           <View style={styles.dotsRow}>
             {Array.from({ length: featuredPageCount }, (_, index) => (
               <View
                 key={`featured-dot-${index}`}
-                style={[
-                  styles.dot,
-                  index === activeSlideIndex && styles.dotActive,
-                ]}
+                style={[styles.dot, index === activeSlideIndex && styles.dotActive]}
               />
             ))}
           </View>
@@ -734,15 +721,13 @@ export function HomeScreen() {
             showsHorizontalScrollIndicator={false}
             data={recommendedOutlets}
             keyExtractor={(outlet) => outlet.id}
-              style={
-                Platform.OS === "web"
-                  ? undefined
-                  : styles.nativeCarouselGeometry
-              }
+            style={
+              Platform.OS === "web" ? undefined : styles.nativeCarouselGeometry
+            }
             contentContainerStyle={styles.recommendedList}
-              snapToInterval={
-                Platform.OS === "web" ? undefined : recommendedSnapInterval
-              }
+            snapToInterval={
+              Platform.OS === "web" ? undefined : recommendedSnapInterval
+            }
             snapToAlignment={Platform.OS === "web" ? undefined : "start"}
             decelerationRate={Platform.OS === "web" ? undefined : "fast"}
             disableIntervalMomentum={Platform.OS === "web" ? undefined : true}
@@ -752,62 +737,61 @@ export function HomeScreen() {
               offset: recommendedSnapInterval * index,
               index,
             })}
-              initialNumToRender={5}
-              maxToRenderPerBatch={5}
-              windowSize={5}
-              removeClippedSubviews={false}
+            initialNumToRender={5}
+            maxToRenderPerBatch={5}
+            windowSize={5}
+            removeClippedSubviews={false}
             renderItem={({ item: outlet }) => {
-            const imageSource = getOutletCardImageSource(outlet.id);
+              const imageSource = getOutletCardImageSource(outlet.id);
 
-            return (
-              <TouchableOpacity
-                    style={[
-                      styles.outletCard,
-                      { width: outletCardWidth },
-                      Platform.OS !== "web" &&
-                        isNativeRTL &&
-                        styles.nativeCarouselRtlContent,
-                    ]}
-                activeOpacity={0.9}
-                onPress={() =>
-                  navigateTo("OutletDetail", { outletId: outlet.id })
-                }
-              >
-                {imageSource ? (
-                  <ImageBackground
-                    source={imageSource}
-                    style={styles.outletImage}
-                    imageStyle={[
-                      styles.outletImageRadius,
-                      Platform.OS === "web" ? styles.outletImageWeb : null,
-                    ]}
-                  >
-                    <View style={styles.outletOverlay} />
-                    <View style={styles.outletBadge}>
-                      <Text style={styles.outletBadgeText}>
-                        {t("home.recommended")}
-                      </Text>
-                    </View>
-                  </ImageBackground>
-                ) : null}
+              return (
+                <TouchableOpacity
+                  style={[
+                    styles.outletCard,
+                    { width: outletCardWidth },
+                    Platform.OS !== "web" &&
+                      isNativeRTL &&
+                      styles.nativeCarouselRtlContent,
+                  ]}
+                  activeOpacity={0.9}
+                  onPress={() =>
+                    navigateTo("OutletDetail", { outletId: outlet.id })
+                  }
+                >
+                  {imageSource ? (
+                    <ImageBackground
+                      source={imageSource}
+                      style={styles.outletImage}
+                      imageStyle={[
+                        styles.outletImageRadius,
+                        Platform.OS === "web" ? styles.outletImageWeb : null,
+                      ]}
+                    >
+                      <View style={styles.outletOverlay} />
+                      <View style={styles.outletBadge}>
+                        <Text style={styles.outletBadgeText}>
+                          {t("home.recommended")}
+                        </Text>
+                      </View>
+                    </ImageBackground>
+                  ) : null}
 
-                <View style={styles.outletBody}>
-                  <Text style={styles.outletLocation}>
-                    {formatHomeLocation(outlet.location, language)}
-                  </Text>
-                  <Text style={styles.outletTitle}>{outlet.title}</Text>
-                  <Text style={styles.outletText}>{t(outlet.textKey)}</Text>
-                  <Text style={styles.tapText}>{t("home.viewOutlet")}</Text>
-                </View>
-              </TouchableOpacity>
-            );
+                  <View style={styles.outletBody}>
+                    <Text style={styles.outletLocation}>
+                      {formatHomeLocation(outlet.location, language)}
+                    </Text>
+                    <Text style={styles.outletTitle}>{outlet.title}</Text>
+                    <Text style={styles.outletText}>{t(outlet.textKey)}</Text>
+                    <Text style={styles.tapText}>{t("home.viewOutlet")}</Text>
+                  </View>
+                </TouchableOpacity>
+              );
             }}
           />
 
           {recommendedPageCount > 1 ? (
             <View style={styles.dotsRow}>
-                {Array.from({ length: recommendedPageCount }).map(
-                  (_, index) => (
+              {Array.from({ length: recommendedPageCount }).map((_, index) => (
                 <View
                   key={`recommended-dot-${index}`}
                   style={[
@@ -815,8 +799,7 @@ export function HomeScreen() {
                     index === activeRecommendedIndex && styles.dotActive,
                   ]}
                 />
-                  ),
-                )}
+              ))}
             </View>
           ) : null}
         </View>

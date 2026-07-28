@@ -20,6 +20,9 @@ const checks: Array<[string, boolean]> = [
   ["Recommended index is not finite guarded and clamped", recommendedHandler.includes("!Number.isFinite(offset)") && recommendedHandler.includes("Math.min(Math.max(logicalIndex, 0), recommendedLastIndex)")],
   ["momentum handlers contain corrective commands", !/scrollTo/.test(featuredHandler) && !/scrollTo/.test(recommendedHandler)],
   ["both timers do not use scrollToIndex", (source.match(/\.scrollToIndex\(\{/g)?.length ?? 0) === 2],
+  ["Featured web timer fallback is missing", source.includes('if (Platform.OS === "web") setActiveSlideIndex(nextIndex);')],
+  ["Recommended web timer fallback is missing", source.includes('if (Platform.OS === "web") setActiveRecommendedIndex(nextIndex);')],
+  ["timer state fallbacks are not web-only", (source.match(/if \(Platform\.OS === "web"\) setActive(?:Slide|Recommended)Index\(nextIndex\);/g)?.length ?? 0) === 2],
   ["both 5,500 ms timers are not retained", (source.match(/}, 5500\);/g)?.length ?? 0) === 2],
   ["Featured legacy geometry remains", !/CarouselLayoutSignature|featuredMetrics|featuredSnapOffsets|snapToOffsets|requestAnimationFrame/.test(source)],
 ];
