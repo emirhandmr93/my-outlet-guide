@@ -1,9 +1,10 @@
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { type ElementType, useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
+  FlatList,
   ImageBackground,
   ImageSourcePropType,
   Linking,
@@ -371,7 +372,13 @@ export type HomeMountDiagnosticMode =
   | "recommended-cities"
   | "delayed-featured"
   | "delayed-recommended"
-  | "delayed-cities";
+  | "delayed-cities"
+  | "featured-recommended-no-metrics"
+  | "delayed-featured-no-metrics"
+  | "featured-recommended-no-images"
+  | "delayed-featured-no-images"
+  | "featured-recommended-one-item"
+  | "lightweight-all-carousels";
 
 export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagnosticMode } = {}) {
   const homeEffectsEnabled = diagnosticMode === undefined;
@@ -481,17 +488,28 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
   const isDelayedRecommended = diagnosticMode === "delayed-recommended";
   const isDelayedCities = diagnosticMode === "delayed-cities";
   const isDelayedCarousel = isDelayedFeatured || isDelayedRecommended || isDelayedCities;
+  const showFeaturedRecommendedNoMetrics = diagnosticMode === "featured-recommended-no-metrics";
+  const isDelayedFeaturedNoMetrics = diagnosticMode === "delayed-featured-no-metrics";
+  const showFeaturedRecommendedNoImages = diagnosticMode === "featured-recommended-no-images";
+  const isDelayedFeaturedNoImages = diagnosticMode === "delayed-featured-no-images";
+  const showFeaturedRecommendedOneItem = diagnosticMode === "featured-recommended-one-item";
+  const showLightweightAllCarousels = diagnosticMode === "lightweight-all-carousels";
+  const isDelayedFinalFeatured = isDelayedFeaturedNoMetrics || isDelayedFeaturedNoImages;
+  const carouselMetricsEnabled = !showFeaturedRecommendedNoMetrics && !isDelayedFeaturedNoMetrics;
+  const carouselImagesEnabled = !showFeaturedRecommendedNoImages && !isDelayedFeaturedNoImages;
   const showHeaderSearch = showFullVisualTree || diagnosticMode === "header-search" || (isProgressiveForward && diagnosticProgressStep >= 1) || (isProgressiveReverse && diagnosticProgressStep >= 5);
-  const showFeatured = showFullVisualTree || showAllCarousels || showFeaturedRecommended || showFeaturedCities || diagnosticMode === "featured-only" || (isDelayedFeatured && diagnosticDelayedCarouselMounted) || (isProgressiveForward && diagnosticProgressStep >= 2) || (isProgressiveReverse && diagnosticProgressStep >= 4);
-  const showRecommended = showFullVisualTree || showAllCarousels || showFeaturedRecommended || showRecommendedCities || diagnosticMode === "recommended-only" || (isDelayedRecommended && diagnosticDelayedCarouselMounted) || (isProgressive && diagnosticProgressStep >= 3);
+  const showFeatured = showFullVisualTree || showAllCarousels || showFeaturedRecommendedNoMetrics || showFeaturedRecommendedNoImages || showFeaturedRecommendedOneItem || showLightweightAllCarousels || showFeaturedRecommended || showFeaturedCities || diagnosticMode === "featured-only" || ((isDelayedFeatured || isDelayedFinalFeatured) && diagnosticDelayedCarouselMounted) || (isProgressiveForward && diagnosticProgressStep >= 2) || (isProgressiveReverse && diagnosticProgressStep >= 4);
+  const showRecommended = showFullVisualTree || showAllCarousels || showFeaturedRecommendedNoMetrics || showFeaturedRecommendedNoImages || showFeaturedRecommendedOneItem || showLightweightAllCarousels || showFeaturedRecommended || showRecommendedCities || diagnosticMode === "recommended-only" || (isDelayedRecommended && diagnosticDelayedCarouselMounted) || (isProgressive && diagnosticProgressStep >= 3);
   const showStatic = showFullVisualTree || diagnosticMode === "static-only" || (isProgressiveForward && diagnosticProgressStep >= 4) || (isProgressiveReverse && diagnosticProgressStep >= 2);
-  const showCities = showFullVisualTree || showAllCarousels || showFeaturedCities || showRecommendedCities || diagnosticMode === "cities-only" || (isDelayedCities && diagnosticDelayedCarouselMounted) || (isProgressiveForward && diagnosticProgressStep >= 5) || (isProgressiveReverse && diagnosticProgressStep >= 1);
+  const showCities = showFullVisualTree || showAllCarousels || showLightweightAllCarousels || showFeaturedCities || showRecommendedCities || diagnosticMode === "cities-only" || (isDelayedCities && diagnosticDelayedCarouselMounted) || (isProgressiveForward && diagnosticProgressStep >= 5) || (isProgressiveReverse && diagnosticProgressStep >= 1);
   const showQuickMenu = diagnosticMode === undefined || diagnosticMode === "modal-only";
   const progressiveForwardOrder = ["Header/Search", "Featured", "Recommended", "Static Activity/Tools", "Popular Cities"];
   const progressiveReverseOrder = ["Popular Cities", "Static Activity/Tools", "Recommended", "Featured", "Header/Search"];
   const progressiveOrder = isProgressiveReverse ? progressiveReverseOrder : progressiveForwardOrder;
   const mountedProgressiveSections = progressiveOrder.slice(0, diagnosticProgressStep);
   const nextProgressiveSection = progressiveOrder[diagnosticProgressStep] ?? "All sections mounted";
+  const FeaturedImageContainer: ElementType = carouselImagesEnabled ? ImageBackground : View;
+  const RecommendedImageContainer: ElementType = carouselImagesEnabled ? ImageBackground : View;
 
   useEffect(() => {
     if (!homeEffectsEnabled) return;
@@ -727,6 +745,16 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
     }
   }
 
+  function handleLightweightRecommendedScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    const nextIndex = Math.min(Math.max(Math.round(event.nativeEvent.contentOffset.x / (outletCardWidth + spacing.md)), 0), recommendedOutlets.length - 1);
+    if (Number.isFinite(nextIndex)) setActiveRecommendedIndex(nextIndex);
+  }
+
+  function handleLightweightCityScroll(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    const nextIndex = Math.min(Math.max(Math.round(event.nativeEvent.contentOffset.x / citySnapInterval), 0), popularCities.length - 1);
+    if (Number.isFinite(nextIndex)) setActiveCityIndex(nextIndex);
+  }
+
   function navigateTo(route: string, params?: Record<string, string>) {
     setIsQuickMenuOpen(false);
 
@@ -882,9 +910,13 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
         {showFeaturedRecommended ? <Text>FEATURED AND RECOMMENDED MOUNTED</Text> : null}
         {showFeaturedCities ? <Text>FEATURED AND CITIES MOUNTED</Text> : null}
         {showRecommendedCities ? <Text>RECOMMENDED AND CITIES MOUNTED</Text> : null}
-        {isDelayedCarousel ? (
+        {showFeaturedRecommendedNoMetrics ? <Text>FEATURED AND RECOMMENDED NO METRICS MOUNTED</Text> : null}
+        {showFeaturedRecommendedNoImages ? <Text>FEATURED AND RECOMMENDED NO IMAGES MOUNTED</Text> : null}
+        {showFeaturedRecommendedOneItem ? <Text>FEATURED AND RECOMMENDED ONE ITEM MOUNTED</Text> : null}
+        {showLightweightAllCarousels ? <Text>LIGHTWEIGHT ALL CAROUSELS MOUNTED</Text> : null}
+        {isDelayedCarousel || isDelayedFinalFeatured ? (
           <View>
-            <Text>{isDelayedFeatured ? (diagnosticDelayedCarouselMounted ? "DELAYED FEATURED MOUNTED" : "DELAYED FEATURED READY") : isDelayedRecommended ? (diagnosticDelayedCarouselMounted ? "DELAYED RECOMMENDED MOUNTED" : "DELAYED RECOMMENDED READY") : (diagnosticDelayedCarouselMounted ? "DELAYED CITIES MOUNTED" : "DELAYED CITIES READY")}</Text>
+            <Text>{isDelayedFeaturedNoMetrics ? (diagnosticDelayedCarouselMounted ? "DELAYED FEATURED NO METRICS MOUNTED" : "DELAYED FEATURED NO METRICS READY") : isDelayedFeaturedNoImages ? (diagnosticDelayedCarouselMounted ? "DELAYED FEATURED NO IMAGES MOUNTED" : "DELAYED FEATURED NO IMAGES READY") : isDelayedFeatured ? (diagnosticDelayedCarouselMounted ? "DELAYED FEATURED MOUNTED" : "DELAYED FEATURED READY") : isDelayedRecommended ? (diagnosticDelayedCarouselMounted ? "DELAYED RECOMMENDED MOUNTED" : "DELAYED RECOMMENDED READY") : (diagnosticDelayedCarouselMounted ? "DELAYED CITIES MOUNTED" : "DELAYED CITIES READY")}</Text>
             {!diagnosticDelayedCarouselMounted ? <Pressable onPress={() => setDiagnosticDelayedCarouselMounted(true)}><Text>MOUNT CAROUSEL</Text></Pressable> : null}
           </View>
         ) : null}
@@ -949,33 +981,28 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
 
         <View style={styles.carouselWrap}>
           <ScrollView
-            ref={carouselRef}
+            ref={carouselMetricsEnabled ? carouselRef : undefined}
             horizontal
             pagingEnabled={!isDesktopWeb}
             showsHorizontalScrollIndicator={false}
             decelerationRate="fast"
             snapToInterval={useNativeRtlOffsets ? undefined : carouselWidth}
-            snapToOffsets={featuredNativeSnapOffsets}
+            snapToOffsets={carouselMetricsEnabled ? featuredNativeSnapOffsets : undefined}
             snapToAlignment="start"
-            onMomentumScrollEnd={handleCarouselScroll}
-            onLayout={(event) => setFeaturedMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
-            onContentSizeChange={(content) => setFeaturedMetrics((current) => ({ ...current, content }))}
+            onMomentumScrollEnd={carouselMetricsEnabled ? handleCarouselScroll : undefined}
+            onLayout={carouselMetricsEnabled ? (event) => setFeaturedMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width })) : undefined}
+            onContentSizeChange={carouselMetricsEnabled ? (content) => setFeaturedMetrics((current) => ({ ...current, content })) : undefined}
           >
-            {slides.map((slide) => (
+            {(showFeaturedRecommendedOneItem ? slides.slice(0, 1) : slides).map((slide) => (
               <TouchableOpacity
                 key={slide.id}
                 activeOpacity={0.9}
                 style={[styles.slideOuter, { width: carouselWidth }]}
                 onPress={() => openSlide(slide)}
               >
-                <ImageBackground
-                  source={slide.image}
+                <FeaturedImageContainer
+                  {...(carouselImagesEnabled ? { source: slide.image, imageStyle: [styles.slideImageRadius, Platform.OS === "web" ? styles.slideImageWeb : null], resizeMode: "cover" as const } : {})}
                   style={styles.slideImage}
-                  imageStyle={[
-                    styles.slideImageRadius,
-                    Platform.OS === "web" ? styles.slideImageWeb : null,
-                  ]}
-                  resizeMode="cover"
                 >
                   <View style={styles.slideScrim} />
                   <View
@@ -1019,7 +1046,7 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
                       <Text style={styles.slideActionArrow}>{isNativeRTL ? "←" : "→"}</Text>
                     </View>
                   </View>
-                </ImageBackground>
+                </FeaturedImageContainer>
               </TouchableOpacity>
             ))}
           </ScrollView>
@@ -1047,20 +1074,44 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
         />
 
         <View style={styles.recommendedCarouselWrap}>
+          {showLightweightAllCarousels ? (
+            <FlatList
+              horizontal
+              data={recommendedOutlets}
+              keyExtractor={(outlet) => outlet.id}
+              initialNumToRender={1}
+              maxToRenderPerBatch={1}
+              windowSize={3}
+              snapToInterval={outletCardWidth + spacing.md}
+              decelerationRate="fast"
+              showsHorizontalScrollIndicator={false}
+              getItemLayout={(_, index) => ({ length: outletCardWidth + spacing.md, offset: (outletCardWidth + spacing.md) * index, index })}
+              onMomentumScrollEnd={handleLightweightRecommendedScroll}
+              renderItem={({ item: outlet }) => {
+                const imageSource = getOutletCardImageSource(outlet.id);
+                return (
+                  <TouchableOpacity key={outlet.id} style={[styles.outletCard, { width: outletCardWidth }]} activeOpacity={0.9} onPress={() => navigateTo("OutletDetail", { outletId: outlet.id })}>
+                    {imageSource ? <ImageBackground source={imageSource} style={styles.outletImage} imageStyle={styles.outletImageRadius}><View style={styles.outletOverlay} /><View style={styles.outletBadge}><Text style={styles.outletBadgeText}>{t("home.recommended")}</Text></View></ImageBackground> : null}
+                    <View style={styles.outletBody}><Text style={styles.outletLocation}>{formatHomeLocation(outlet.location, language)}</Text><Text style={styles.outletTitle}>{outlet.title}</Text><Text style={styles.outletText}>{t(outlet.textKey)}</Text><Text style={styles.tapText}>{t("home.viewOutlet")}</Text></View>
+                  </TouchableOpacity>
+                );
+              }}
+            />
+          ) : (
           <ScrollView
-          ref={recommendedCarouselRef}
+          ref={carouselMetricsEnabled ? recommendedCarouselRef : undefined}
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.recommendedList}
           snapToInterval={useNativeRtlOffsets ? undefined : outletCardWidth + spacing.md}
-          snapToOffsets={recommendedNativeSnapOffsets}
+          snapToOffsets={carouselMetricsEnabled ? recommendedNativeSnapOffsets : undefined}
           snapToAlignment="start"
           decelerationRate="fast"
-          onMomentumScrollEnd={handleRecommendedScroll}
-          onLayout={(event) => setRecommendedMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width }))}
-          onContentSizeChange={(content) => setRecommendedMetrics((current) => ({ ...current, content }))}
+          onMomentumScrollEnd={carouselMetricsEnabled ? handleRecommendedScroll : undefined}
+          onLayout={carouselMetricsEnabled ? (event) => setRecommendedMetrics((current) => ({ ...current, viewport: event.nativeEvent.layout.width })) : undefined}
+          onContentSizeChange={carouselMetricsEnabled ? (content) => setRecommendedMetrics((current) => ({ ...current, content })) : undefined}
         >
-          {recommendedOutlets.map((outlet) => {
+          {(showFeaturedRecommendedOneItem ? recommendedOutlets.slice(0, 1) : recommendedOutlets).map((outlet) => {
             const imageSource = getOutletCardImageSource(outlet.id);
 
             return (
@@ -1072,14 +1123,10 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
                   navigateTo("OutletDetail", { outletId: outlet.id })
                 }
               >
-                {imageSource ? (
-                  <ImageBackground
-                    source={imageSource}
+                {imageSource || !carouselImagesEnabled ? (
+                  <RecommendedImageContainer
+                    {...(carouselImagesEnabled ? { source: imageSource, imageStyle: [styles.outletImageRadius, Platform.OS === "web" ? styles.outletImageWeb : null] } : {})}
                     style={styles.outletImage}
-                    imageStyle={[
-                      styles.outletImageRadius,
-                      Platform.OS === "web" ? styles.outletImageWeb : null,
-                    ]}
                   >
                     <View style={styles.outletOverlay} />
                     <View style={styles.outletBadge}>
@@ -1087,7 +1134,7 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
                         {t("home.recommended")}
                       </Text>
                     </View>
-                  </ImageBackground>
+                  </RecommendedImageContainer>
                 ) : null}
 
                 <View style={styles.outletBody}>
@@ -1102,6 +1149,7 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
             );
           })}
           </ScrollView>
+          )}
 
           {recommendedPageCount > 1 ? (
             <View style={styles.dotsRow}>
@@ -1196,6 +1244,29 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
         />
 
         <View style={styles.cityCarouselWrap}>
+          {showLightweightAllCarousels ? (
+            <FlatList
+              horizontal
+              data={popularCities}
+              keyExtractor={(city) => city.id}
+              initialNumToRender={2}
+              maxToRenderPerBatch={1}
+              windowSize={3}
+              snapToInterval={citySnapInterval}
+              decelerationRate="fast"
+              showsHorizontalScrollIndicator={false}
+              getItemLayout={(_, index) => ({ length: citySnapInterval, offset: citySnapInterval * index, index })}
+              onMomentumScrollEnd={handleLightweightCityScroll}
+              renderItem={({ item: city }) => (
+                <TouchableOpacity key={city.id} style={[styles.cityCard, { width: cityCardWidth }]} activeOpacity={0.9} onPress={() => navigateTo(city.route, city.params)}>
+                  <ImageBackground source={city.image} style={styles.cityImage} imageStyle={styles.cityImageRadius}>
+                    <View style={styles.cityOverlay} />
+                    <View style={styles.cityContent}><Text style={styles.cityKicker}>{formatCountryDisplayName(city.country, language).toLocaleUpperCase(language)}</Text><Text style={styles.cityTitle}>{formatCityDisplayName(city.id, language)}</Text><Text style={styles.cityText}>{t(city.textKey)}</Text></View>
+                  </ImageBackground>
+                </TouchableOpacity>
+              )}
+            />
+          ) : (
           <ScrollView
             ref={cityCarouselRef}
             horizontal
@@ -1241,6 +1312,7 @@ export function HomeScreen({ diagnosticMode }: { diagnosticMode?: HomeMountDiagn
               </TouchableOpacity>
             ))}
           </ScrollView>
+          )}
 
           {Platform.OS !== "web" ? (
             <View style={styles.dotsRow}>

@@ -5,7 +5,7 @@ const root = process.cwd();
 const app = fs.readFileSync(path.join(root, "src/navigation/AppNavigator.tsx"), "utf8");
 const diagnostic = fs.readFileSync(path.join(root, "src/navigation/StartupMountDiagnostic.tsx"), "utf8");
 const home = fs.readFileSync(path.join(root, "src/screens/HomeScreen.tsx"), "utf8");
-const expected = ["chooser", "build3-stack", "current-stack", "simple-tabs", "stack-simple-tabs", "stack-home-tabs", "full-current-app", "home-hooks-only", "home-header-search", "home-featured-only", "home-recommended-only", "home-static-only", "home-cities-only", "home-full-no-effects-no-modal", "home-modal-only", "home-all-carousels", "home-three-scroll-shells", "home-progressive-forward", "home-progressive-reverse", "home-featured-recommended", "home-featured-cities", "home-recommended-cities", "home-delayed-featured", "home-delayed-recommended", "home-delayed-cities"];
+const expected = ["chooser", "build3-stack", "current-stack", "simple-tabs", "stack-simple-tabs", "stack-home-tabs", "full-current-app", "home-hooks-only", "home-header-search", "home-featured-only", "home-recommended-only", "home-static-only", "home-cities-only", "home-full-no-effects-no-modal", "home-modal-only", "home-all-carousels", "home-three-scroll-shells", "home-progressive-forward", "home-progressive-reverse", "home-featured-recommended", "home-featured-cities", "home-recommended-cities", "home-delayed-featured", "home-delayed-recommended", "home-delayed-cities", "home-featured-recommended-no-metrics", "home-delayed-featured-no-metrics", "home-featured-recommended-no-images", "home-delayed-featured-no-images", "home-featured-recommended-one-item", "home-lightweight-all-carousels"];
 const errors = (checks: Array<[boolean,string]>) => checks.filter(([ok]) => !ok).map(([,message]) => message);
 const gate = app.indexOf('Platform.OS === "ios" && IOS_STARTUP_MOUNT_DIAGNOSTIC_ENABLED');
 const onboarding = app.indexOf("if (shouldShowOnboarding)");
@@ -89,7 +89,7 @@ const plainShell = home.slice(plainShellStart, home.indexOf("\n\n  return (\n   
 const combinedHomeDiagnosticErrors = errors([
   [expected.length >= 19, "the existing 19 diagnostic stages must remain"],
   [combinedModes.every(mode => diagnostic.includes(`"home-${mode}"`) && diagnostic.includes(`"${mode}"`)), "all four combined Home stages and modes must exist"],
-  [diagnostic.includes('const homeMode = [...homeChoices, ...combinedHomeChoices, ...finalCarouselChoices]') && diagnostic.includes('return <CurrentShell {...props} tabs="home" homeMode={homeMode} />'), "combined stages must share current stack + tabs shell"],
+  [diagnostic.includes('const homeMode = [...homeChoices, ...combinedHomeChoices, ...finalCarouselChoices, ...imageMeasurementChoices]') && diagnostic.includes('return <CurrentShell {...props} tabs="home" homeMode={homeMode} />'), "combined stages must share current stack + tabs shell"],
   [["Explore","MyTrips","Savings","Profile"].every(name => diagnostic.includes(`<Tabs.Screen name="${name}" component={HomeProbeScreen} />`)), "combined non-Home tabs must remain plain"],
   [home.includes('const showAllCarousels = diagnosticMode === "all-carousels"') && home.includes('const showFeatured = showFullVisualTree || showAllCarousels') && home.includes('const showRecommended = showFullVisualTree || showAllCarousels') && home.includes('const showCities = showFullVisualTree || showAllCarousels'), "all-carousels must enable Featured, Recommended, and Cities"],
   [home.includes('const showHeaderSearch = showFullVisualTree || diagnosticMode === "header-search"') && home.includes('const showStatic = showFullVisualTree || diagnosticMode === "static-only"'), "all-carousels must exclude Header/Search and Static"],
@@ -106,22 +106,36 @@ const combinedHomeDiagnosticErrors = errors([
 ]);
 const finalCarouselModes = ["featured-recommended", "featured-cities", "recommended-cities", "delayed-featured", "delayed-recommended", "delayed-cities"];
 const finalCarouselIsolationErrors = errors([
-  [expected.length === 25, "final diagnostic stage count must be 25"],
+  [expected.length >= 25, "the existing 25 diagnostic stages must remain"],
   [finalCarouselModes.every(mode => diagnostic.includes(`"home-${mode}"`) && diagnostic.includes(`"${mode}"`)), "all six final carousel stages and modes must exist"],
-  [diagnostic.includes('const homeMode = [...homeChoices, ...combinedHomeChoices, ...finalCarouselChoices]') && diagnostic.includes('return <CurrentShell {...props} tabs="home" homeMode={homeMode} />'), "final carousel stages must share current stack + tabs shell"],
+  [diagnostic.includes('const homeMode = [...homeChoices, ...combinedHomeChoices, ...finalCarouselChoices, ...imageMeasurementChoices]') && diagnostic.includes('return <CurrentShell {...props} tabs="home" homeMode={homeMode} />'), "final carousel stages must share current stack + tabs shell"],
   [["Explore","MyTrips","Savings","Profile"].every(name => diagnostic.includes(`<Tabs.Screen name="${name}" component={HomeProbeScreen} />`)), "final carousel non-Home tabs must remain plain"],
   [home.includes('const showFeaturedRecommended = diagnosticMode === "featured-recommended"') && home.includes("showFeaturedRecommended || showFeaturedCities") && home.includes("showFeaturedRecommended || showRecommendedCities"), "Featured + Recommended initial pair is incorrect"],
-  [home.includes('const showFeaturedCities = diagnosticMode === "featured-cities"') && home.includes("showFeaturedRecommended || showFeaturedCities") && home.includes("showAllCarousels || showFeaturedCities || showRecommendedCities"), "Featured + Cities initial pair is incorrect"],
-  [home.includes('const showRecommendedCities = diagnosticMode === "recommended-cities"') && home.includes("showFeaturedRecommended || showRecommendedCities") && home.includes("showAllCarousels || showFeaturedCities || showRecommendedCities"), "Recommended + Cities initial pair is incorrect"],
+  [home.includes('const showFeaturedCities = diagnosticMode === "featured-cities"') && home.includes("showFeaturedRecommended || showFeaturedCities") && home.includes("showFeaturedCities || showRecommendedCities"), "Featured + Cities initial pair is incorrect"],
+  [home.includes('const showRecommendedCities = diagnosticMode === "recommended-cities"') && home.includes("showFeaturedRecommended || showRecommendedCities") && home.includes("showFeaturedCities || showRecommendedCities"), "Recommended + Cities initial pair is incorrect"],
   [["FEATURED AND RECOMMENDED MOUNTED", "FEATURED AND CITIES MOUNTED", "RECOMMENDED AND CITIES MOUNTED"].every(marker => home.includes(marker)), "static pair markers are incomplete"],
   [home.includes("const [diagnosticDelayedCarouselMounted, setDiagnosticDelayedCarouselMounted] = useState(false)"), "delayed state must be component-local and default false"],
   [home.includes('const isDelayedFeatured = diagnosticMode === "delayed-featured"') && home.includes('const isDelayedRecommended = diagnosticMode === "delayed-recommended"') && home.includes('const isDelayedCities = diagnosticMode === "delayed-cities"'), "delayed mode selectors are incomplete"],
-  [home.includes("isDelayedFeatured && diagnosticDelayedCarouselMounted") && home.includes("isDelayedRecommended && diagnosticDelayedCarouselMounted") && home.includes("isDelayedCities && diagnosticDelayedCarouselMounted"), "delayed stages must initially mount zero and then exactly their requested carousel"],
+  [home.includes("isDelayedFeatured || isDelayedFinalFeatured") && home.includes("isDelayedRecommended && diagnosticDelayedCarouselMounted") && home.includes("isDelayedCities && diagnosticDelayedCarouselMounted"), "delayed stages must initially mount zero and then exactly their requested carousel"],
   [home.includes("MOUNT CAROUSEL") && home.includes("setDiagnosticDelayedCarouselMounted(true)") && (home.match(/setDiagnosticDelayedCarouselMounted\(true\)/g) ?? []).length === 1, "delayed stages need exactly one explicit mount action"],
   [["DELAYED FEATURED READY", "DELAYED FEATURED MOUNTED", "DELAYED RECOMMENDED READY", "DELAYED RECOMMENDED MOUNTED", "DELAYED CITIES READY", "DELAYED CITIES MOUNTED"].every(marker => home.includes(marker)), "delayed ready/mounted markers are incomplete"],
   [!["setTimeout", "InteractionManager"].some(term => home.includes(term)), "automatic delayed advancement is forbidden"],
   [home.includes('const homeEffectsEnabled = diagnosticMode === undefined') && home.includes('const showQuickMenu = diagnosticMode === undefined || diagnosticMode === "modal-only"'), "final carousel modes must disable effects and exclude Modal"],
   [diagnostic.includes('useState<Stage>("chooser")') && !["AsyncStorage", "Firebase", "SecureStore", "URLSearchParams"].some(term => diagnostic.includes(term)), "final carousel persistence is forbidden"],
+]);
+const imageMeasurementModes = ["featured-recommended-no-metrics", "delayed-featured-no-metrics", "featured-recommended-no-images", "delayed-featured-no-images", "featured-recommended-one-item", "lightweight-all-carousels"];
+const imageMeasurementIsolationErrors = errors([
+  [expected.length === 31, "final diagnostic stage count must be 31"],
+  [imageMeasurementModes.every(mode => diagnostic.includes(`"home-${mode}"`) && diagnostic.includes(`"${mode}"`)), "all six image/measurement stages and modes must exist"],
+  [diagnostic.includes('const homeMode = [...homeChoices, ...combinedHomeChoices, ...finalCarouselChoices, ...imageMeasurementChoices]') && diagnostic.includes('return <CurrentShell {...props} tabs="home" homeMode={homeMode} />'), "new stages must share current stack + tabs shell"],
+  [home.includes('const carouselMetricsEnabled = !showFeaturedRecommendedNoMetrics && !isDelayedFeaturedNoMetrics') && home.includes("ref={carouselMetricsEnabled ? carouselRef : undefined}") && home.includes("ref={carouselMetricsEnabled ? recommendedCarouselRef : undefined}"), "no-metrics modes must detach carousel refs"],
+  [home.includes("snapToOffsets={carouselMetricsEnabled ? featuredNativeSnapOffsets : undefined}") && home.includes("snapToOffsets={carouselMetricsEnabled ? recommendedNativeSnapOffsets : undefined}") && home.includes("onLayout={carouselMetricsEnabled ?") && home.includes("onContentSizeChange={carouselMetricsEnabled ?"), "no-metrics modes must detach measurement and offset wiring"],
+  [home.includes('const carouselImagesEnabled = !showFeaturedRecommendedNoImages && !isDelayedFeaturedNoImages') && home.includes("FeaturedImageContainer") && home.includes("RecommendedImageContainer"), "no-images modes must replace both image containers"],
+  [home.includes("showFeaturedRecommendedOneItem ? slides.slice(0, 1)") && home.includes("showFeaturedRecommendedOneItem ? recommendedOutlets.slice(0, 1)"), "one-item mode must render only the first item in both real carousels"],
+  [(home.match(/<FlatList/g) ?? []).length === 2 && home.includes("initialNumToRender={1}") && home.includes("initialNumToRender={2}") && home.split("maxToRenderPerBatch={1}").length - 1 === 2 && home.split("windowSize={3}").length - 1 === 2, "lightweight mode must use the required two diagnostic FlatLists"],
+  [(home.match(/getItemLayout=/g) ?? []).length >= 2 && home.includes("handleLightweightRecommendedScroll") && home.includes("handleLightweightCityScroll"), "lightweight lists need stable layouts and manual indicators"],
+  [["FEATURED AND RECOMMENDED NO METRICS MOUNTED", "DELAYED FEATURED NO METRICS READY", "DELAYED FEATURED NO METRICS MOUNTED", "FEATURED AND RECOMMENDED NO IMAGES MOUNTED", "DELAYED FEATURED NO IMAGES READY", "DELAYED FEATURED NO IMAGES MOUNTED", "FEATURED AND RECOMMENDED ONE ITEM MOUNTED", "LIGHTWEIGHT ALL CAROUSELS MOUNTED"].every(marker => home.includes(marker)), "new diagnostic markers are incomplete"],
+  [home.includes('const homeEffectsEnabled = diagnosticMode === undefined') && home.includes('const showQuickMenu = diagnosticMode === undefined || diagnosticMode === "modal-only"'), "new modes must disable effects and exclude Modal without changing default Home"],
 ]);
 const fullAppErrors = errors([
   [diagnostic.includes("return props.fullCurrentApp"), "full stage does not delegate to current app tree"],
@@ -132,7 +146,7 @@ const platformProtectionErrors = errors([
   [app.includes("return currentAppNavigationTree"), "Android/web normal return missing"],
   [onboarding >= 0 && onboarding < gate, "onboarding must precede diagnostic gate"],
 ]);
-const lists = [diagnosticGateErrors,persistenceErrors,build3Errors,currentStackErrors,simpleTabsErrors,stackTabsErrors,realHomeProbeErrors,homeLayerDiagnosticErrors,productionFaithfulHomeErrors,combinedHomeDiagnosticErrors,finalCarouselIsolationErrors,fullAppErrors,platformProtectionErrors];
+const lists = [diagnosticGateErrors,persistenceErrors,build3Errors,currentStackErrors,simpleTabsErrors,stackTabsErrors,realHomeProbeErrors,homeLayerDiagnosticErrors,productionFaithfulHomeErrors,combinedHomeDiagnosticErrors,finalCarouselIsolationErrors,imageMeasurementIsolationErrors,fullAppErrors,platformProtectionErrors];
 console.log("Stage ID list:", JSON.stringify(expected));
 console.log("Diagnostic gate error list:", JSON.stringify(diagnosticGateErrors));
 console.log("Persistence error list:", JSON.stringify(persistenceErrors));
@@ -145,6 +159,7 @@ console.log("Home layer diagnostic error list:", JSON.stringify(homeLayerDiagnos
 console.log("Production-faithful Home error list:", JSON.stringify(productionFaithfulHomeErrors));
 console.log("Combined Home diagnostic error list:", JSON.stringify(combinedHomeDiagnosticErrors));
 console.log("Final carousel isolation error list:", JSON.stringify(finalCarouselIsolationErrors));
+console.log("Image and measurement isolation error list:", JSON.stringify(imageMeasurementIsolationErrors));
 console.log("Full app error list:", JSON.stringify(fullAppErrors));
 console.log("Platform protection error list:", JSON.stringify(platformProtectionErrors));
 const count = lists.reduce((sum,list) => sum + list.length, 0);
