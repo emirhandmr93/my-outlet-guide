@@ -2,6 +2,7 @@ import { createContext, ReactNode, useContext, useEffect, useState } from "react
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import { db } from "../firebase/config";
+import { requestAppRatingIfEligible } from "../services/appRatingPrompt";
 import { useUser } from "./UserContext";
 
 type FavoritesContextType = {
@@ -79,7 +80,7 @@ setFavoriteIds(cleanFavoriteIds);
 if (!currentUser?.userId) {
 setFavoriteIds([]);
 setFavoritesError(null);
-return;
+return false;
 }
 
 try {
@@ -90,12 +91,14 @@ favoriteIds: cleanFavoriteIds,
 }
 );
 setFavoritesError(null);
+return true;
 } catch (error) {
 setFavoriteIds(previousFavoriteIds);
 console.log("Firestore favorites save error", error);
 if (isFirestorePermissionDenied(error)) {
 setFavoritesError("permission-denied");
 }
+return false;
 }
 }
 
@@ -106,11 +109,16 @@ setFavoritesError(null);
 return;
 }
 
-const nextFavorites = favoriteIds.includes(outletId)
+const isRemovingFavorite = favoriteIds.includes(outletId);
+const nextFavorites = isRemovingFavorite
 ? favoriteIds.filter((id) => id !== outletId)
 : [...favoriteIds, outletId];
 
-await saveFavorites(nextFavorites);
+const didSave = await saveFavorites(nextFavorites);
+
+if (didSave && !isRemovingFavorite) {
+void requestAppRatingIfEligible(nextFavorites.length);
+}
 }
 
 function isFavorite(outletId: string) {
