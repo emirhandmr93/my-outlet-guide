@@ -55,6 +55,11 @@ export const cities = [
     "countryId": "united-kingdom"
   },
   {
+    "cityId": "dubai",
+    "cityName": "Dubai",
+    "countryId": "united-arab-emirates"
+  },
+  {
     "cityId": "fleetwood",
     "cityName": "Fleetwood",
     "countryId": "united-kingdom"
