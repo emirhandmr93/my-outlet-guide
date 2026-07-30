@@ -24,6 +24,7 @@ import { spainOutlets } from "./spain";
 import { swedenOutlets } from "./sweden";
 import { switzerlandOutlets } from "./switzerland";
 import { turkeyOutlets } from "./turkey";
+import { unitedArabEmiratesOutlets } from "./united-arab-emirates";
 import { ukOutlets } from "./uk";
 
 export {
@@ -53,6 +54,7 @@ export {
   swedenOutlets,
   switzerlandOutlets,
   turkeyOutlets,
+  unitedArabEmiratesOutlets,
   ukOutlets,
 };
 
@@ -87,4 +89,5 @@ export const outlets: Outlet[] = [
   ...swedenOutlets,
   ...switzerlandOutlets,
   ...turkeyOutlets,
+  ...unitedArabEmiratesOutlets,
 ];
