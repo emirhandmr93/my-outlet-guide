@@ -24,6 +24,7 @@ import { swedenTransportation } from "./sweden";
 import { switzerlandTransportation } from "./switzerland";
 import { ukTransportation } from "./uk";
 import { turkeyTransportation } from "./turkey";
+import { unitedArabEmiratesTransportation } from "./united-arab-emirates";
 
 export {
   austriaTransportation,
@@ -52,6 +53,7 @@ export {
   switzerlandTransportation,
   ukTransportation,
   turkeyTransportation,
+  unitedArabEmiratesTransportation,
 };
 
 export const transportation = [
@@ -81,4 +83,5 @@ export const transportation = [
   ...slovakiaTransportation,
   ...croatiaTransportation,
   ...turkeyTransportation,
+  ...unitedArabEmiratesTransportation,
 ];
