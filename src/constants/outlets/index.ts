@@ -24,6 +24,7 @@ import { spainOutlets } from "./spain";
 import { swedenOutlets } from "./sweden";
 import { switzerlandOutlets } from "./switzerland";
 import { turkeyOutlets } from "./turkey";
+import { isUserVisibleOutlet } from "../../services/outletVisibility";
 import { ukOutlets } from "./uk";
 
 export {
@@ -59,7 +60,7 @@ export {
 type OutletAirport = { code: string; name: string; distanceKm: number };
 type Outlet = { airports?: OutletAirport[]; [key: string]: any };
 
-export const outlets: Outlet[] = [
+export const allOutlets: Outlet[] = [
   ...italyOutlets,
   ...germanyOutlets,
   ...franceOutlets,
@@ -88,3 +89,12 @@ export const outlets: Outlet[] = [
   ...switzerlandOutlets,
   ...turkeyOutlets,
 ];
+
+/** User-facing outlet selector; source records remain in allOutlets. */
+export const outlets = allOutlets.filter((outlet) =>
+  isUserVisibleOutlet({ countryId: outlet.countryId }),
+);
+
+export function getUserVisibleOutletById(outletId?: string): Outlet | undefined {
+  return outlets.find((outlet) => outlet.outletId === outletId);
+}
