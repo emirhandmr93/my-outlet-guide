@@ -182,6 +182,37 @@ export function chooseUserFlightPriceDealProjection(existing: unknown, incoming:
   return (incoming.matchedThreshold as number) < (existing.matchedThreshold as number) ? "preserve" : "update";
 }
 
+export type UserFlightPriceDealProjectionInput = Omit<Record<(typeof USER_DEAL_REQUIRED_FIELDS)[number], unknown>, "updatedAt"> &
+  { returnDate?: string; provider: "aviasales_data_api" };
+const EVENT_LIFECYCLE_STATUSES = new Set([
+  "pending_delivery", "submitted_to_expo", "delivery_failed", "cancelled_stale_alert", "no_eligible_tokens",
+]);
+
+export function buildUserFlightPriceDealProjectionFromEvent(
+  eventDocumentId: string, eventData: unknown,
+): UserFlightPriceDealProjectionInput | null {
+  if (!isObject(eventData) || !EVENT_LIFECYCLE_STATUSES.has(eventData.status as string) || eventData.eventId !== eventDocumentId) return null;
+  const candidate = {
+    schemaVersion: eventData.schemaVersion, eventId: eventData.eventId, userId: eventData.userId, alertId: eventData.alertId,
+    queryKey: eventData.queryKey, providerQueryKey: eventData.providerQueryKey, originAirportCode: eventData.originAirportCode,
+    destinationAirportCode: eventData.destinationAirportCode, tripType: eventData.tripType, departDate: eventData.departDate,
+    ...(eventData.returnDate !== undefined ? { returnDate: eventData.returnDate } : {}), adults: eventData.adults,
+    children: eventData.children, infants: eventData.infants, tripClass: eventData.tripClass, directOnly: eventData.directOnly,
+    snapshotDate: eventData.snapshotDate, currentPrice: eventData.currentPrice, averagePrice: eventData.averagePrice,
+    discountPercent: eventData.discountPercent, matchedThreshold: eventData.matchedThreshold, metThresholds: eventData.metThresholds,
+    selectedThresholds: eventData.selectedThresholds, trackingDayCount: eventData.trackingDayCount,
+    historyWindowDays: eventData.historyWindowDays, priceSampleCount: eventData.priceSampleCount,
+    provider: "aviasales_data_api" as const, currency: eventData.currency, priceScope: eventData.priceScope,
+    passengerCountApplied: eventData.passengerCountApplied, createdAt: eventData.createdAt,
+  };
+  if (!isValidDealProjection({ ...candidate, updatedAt: eventData.createdAt })) return null;
+  return candidate as UserFlightPriceDealProjectionInput;
+}
+
+function projectionBelongsToEvent(existing: unknown, authoritative: UserFlightPriceDealProjectionInput): existing is Record<string, unknown> {
+  return isValidDealProjection(existing) && PROJECTION_COMPATIBILITY_FIELDS.every(field => existing[field] === authoritative[field]);
+}
+
 type AlertGroup = { providerQueryKey: string; query: ProviderFlightPriceQuery; alerts: FlightPriceAlertRecord[] };
 async function mapLimited<T, R>(items: T[], limit: number, fn: (item: T) => Promise<R>): Promise<R[]> {
   const results = new Array<R>(items.length);
@@ -267,7 +298,9 @@ export const evaluateFlightPriceAlerts = onSchedule(
         const eventId = buildFlightPriceAlertEventId(alert.userId, alert.alertId, evaluationDate);
         const eventRef = db.collection("flightPriceAlertEvents").doc(eventId);
         const dealRef = db.collection("userFlightPriceDeals").doc(alert.userId).collection("items").doc(eventId);
-        const [eventSnapshot, dealSnapshot] = crossing || sameDayCrossing
+        const hasEventCandidate = evaluation.status === "evaluated" && matched !== null && evaluation.currentPrice !== undefined &&
+          evaluation.averagePrice !== undefined && evaluation.discountPercent !== undefined;
+        const [eventSnapshot, dealSnapshot] = hasEventCandidate
           ? await Promise.all([transaction.get(eventRef), transaction.get(dealRef)])
           : [null, null];
         const now = FieldValue.serverTimestamp();
@@ -292,7 +325,7 @@ export const evaluateFlightPriceAlerts = onSchedule(
           createdAt: isObject(prior) && prior.createdAt !== undefined ? prior.createdAt : now, evaluatedAt: now, updatedAt: now,
         };
         transaction.set(stateRef, state);
-        if ((!crossing && (!sameDayCrossing || !eventSnapshot?.exists)) || matched === null || evaluation.currentPrice === undefined || evaluation.averagePrice === undefined || evaluation.discountPercent === undefined) {
+        if (!hasEventCandidate || (!crossing && !eventSnapshot?.exists)) {
           return { accepted: true, choice: "preserve" as FlightPriceAlertEventUpdateChoice, matched };
         }
         const metThresholds = currentAlert.selectedThresholds.filter(threshold => history.rawDiscountPercent! >= threshold);
@@ -306,20 +339,28 @@ export const evaluateFlightPriceAlerts = onSchedule(
           historyWindowDays: evaluation.windowDays, priceSampleCount: evaluation.priceSampleCount, currency: "EUR", priceScope: "cached_offer",
           passengerCountApplied: false, status: "pending_delivery", createdAt: now, updatedAt: now,
         };
-        const choice = chooseFlightPriceAlertEventUpdate(eventSnapshot?.data(), incoming);
-        if (choice === "create") transaction.create(eventRef, incoming);
-        else if (choice === "upgrade") {
+        const choice = crossing || sameDayCrossing
+          ? chooseFlightPriceAlertEventUpdate(eventSnapshot?.data(), incoming)
+          : "preserve" as FlightPriceAlertEventUpdateChoice;
+        let authoritativeEvent: unknown;
+        if (choice === "create") {
+          transaction.create(eventRef, incoming);
+          authoritativeEvent = incoming;
+        } else if (choice === "upgrade") {
           const existing = eventSnapshot!.data()!;
-          transaction.set(eventRef, { ...incoming, createdAt: existing.createdAt });
+          authoritativeEvent = { ...incoming, createdAt: existing.createdAt };
+          transaction.set(eventRef, authoritativeEvent);
+        } else {
+          authoritativeEvent = eventSnapshot?.data();
         }
-        const { status: _status, ...eventSafeFields } = incoming;
-        const safeIncoming = { ...eventSafeFields, provider: "aviasales_data_api" as const };
-        const projectionChoice = chooseUserFlightPriceDealProjection(dealSnapshot?.data(), safeIncoming);
-        if (projectionChoice !== "preserve") {
-          const existingCreatedAt = projectionChoice === "update" ? dealSnapshot!.data()!.createdAt : undefined;
+        const authoritativeProjection = buildUserFlightPriceDealProjectionFromEvent(eventId, authoritativeEvent);
+        if (authoritativeProjection) {
+          const existingProjection = dealSnapshot?.data();
+          const existingCreatedAt = choice !== "create" && projectionBelongsToEvent(existingProjection, authoritativeProjection)
+            ? existingProjection.createdAt : undefined;
           transaction.set(dealRef, {
-            ...safeIncoming,
-            createdAt: existingCreatedAt ?? now,
+            ...authoritativeProjection,
+            createdAt: existingCreatedAt ?? authoritativeProjection.createdAt ?? now,
             updatedAt: now,
           });
         }
