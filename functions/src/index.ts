@@ -1,9 +1,9 @@
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { initializeApp } from "firebase-admin/app";
-import { FieldValue, getFirestore, type DocumentSnapshot } from "firebase-admin/firestore";
+import { FieldValue, getFirestore, Timestamp, type DocumentSnapshot } from "firebase-admin/firestore";
 import { logger } from "firebase-functions";
 import { onSchedule } from "firebase-functions/v2/scheduler";
-import { ExpoPushMessage, ExpoPushTicket, isExpoPushToken, sendExpoPushNotifications } from "./expoPush";
+import { ExpoPushMessage, ExpoPushRequestError, ExpoPushTicket, isExpoPushToken, sendExpoPushNotifications } from "./expoPush";
 
 initializeApp();
 
@@ -11,6 +11,8 @@ const db = getFirestore();
 type ReminderType = "tripReminder7Days" | "tripReminder1Day";
 export type DeliveryIdentity = { userId: string; tripId: string; tokenId: string; type: ReminderType; visitDate: string };
 const MAX_DELIVERY_ATTEMPTS = 3;
+const RESERVATION_LEASE_MS = 10 * 60 * 1_000;
+const RETRY_BACKOFF_MS = [1_000, 2_000] as const;
 
 function parseVisitDate(value: unknown): Date | null {
   if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
@@ -45,11 +47,11 @@ function isSafeDocumentSegment(value: unknown): value is string {
     !value.includes("/") && !/[\u0000-\u001f\u007f-\u009f]/.test(value) && Buffer.byteLength(value, "utf8") <= 1_500;
 }
 
-function safeTripName(value: unknown): string | null {
-  if (value === undefined) return "Your outlet trip";
-  if (typeof value !== "string") return null;
+export function safeTripName(value: unknown): string | null {
+  if (typeof value !== "string") return "Your outlet trip";
   const trimmed = value.trim();
-  return trimmed && !/[\u0000-\u001f\u007f-\u009f]/.test(trimmed) && Buffer.byteLength(trimmed, "utf8") <= 300 ? trimmed : null;
+  return trimmed && !/[\u0000-\u001f\u007f-\u009f]/.test(trimmed) && Array.from(trimmed).length <= 240 ?
+    trimmed : "Your outlet trip";
 }
 
 function reminderTypeFor(visitDate: unknown, oneDayDate: string, sevenDayDate: string): ReminderType | null {
@@ -59,14 +61,15 @@ function reminderTypeFor(visitDate: unknown, oneDayDate: string, sevenDayDate: s
   return null;
 }
 
-function validTripDocument(path: string, data: Record<string, unknown>, oneDayDate: string, sevenDayDate: string) {
+export function validTripDocument(path: string, data: Record<string, unknown>, oneDayDate: string, sevenDayDate: string) {
   const segments = path.split("/");
   if (segments.length !== 4 || segments[0] !== "userTrips" || segments[2] !== "items") return null;
   const [, userId, , tripId] = segments;
   const type = reminderTypeFor(data.visitDate, oneDayDate, sevenDayDate);
-  const tripName = safeTripName(data.tripName);
+  const tripName = safeTripName(data.tripName) ?? "Your outlet trip";
+  const hasTripId = Object.prototype.hasOwnProperty.call(data, "tripId");
   if (!isSafeDocumentSegment(userId) || !isSafeDocumentSegment(tripId) || data.userId !== userId ||
-    data.tripId !== tripId || !type || !tripName) return null;
+    !hasTripId || (data.tripId !== null && data.tripId !== tripId) || !type) return null;
   return { userId, tripId, type, visitDate: data.visitDate as string, tripName };
 }
 
@@ -81,8 +84,28 @@ function sameIdentity(data: Record<string, unknown>, identity: DeliveryIdentity)
     data.type === identity.type && data.visitDate === identity.visitDate;
 }
 
-function matchesReservedDelivery(data: Record<string, unknown>, identity: DeliveryIdentity) {
-  return data.status === "reserved" && sameIdentity(data, identity);
+type ReservationAttempt = {
+  identity: DeliveryIdentity;
+  reservationId: string;
+  attemptCount: number;
+  token: string;
+};
+
+function matchesReservedAttempt(data: Record<string, unknown>, attempt: ReservationAttempt) {
+  return data.status === "reserved" && sameIdentity(data, attempt.identity) &&
+    data.reservationId === attempt.reservationId && data.attemptCount === attempt.attemptCount;
+}
+
+function hasValidReservationMetadata(data: Record<string, unknown>) {
+  return typeof data.reservationId === "string" &&
+    /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(data.reservationId) &&
+    data.reservedAt instanceof Timestamp && data.leaseExpiresAt instanceof Timestamp;
+}
+
+function isRetryableErrorCode(value: unknown) {
+  return typeof value === "string" && [
+    "message_rate_exceeded", "timeout", "network_error", "expo_http_429", "expo_http_5xx", "expo_request_failed",
+  ].includes(value);
 }
 
 function currentSource(
@@ -104,8 +127,7 @@ function currentSource(
 }
 
 type ReservationResult =
-  | { kind: "reserved"; token: string; tripName: string }
-  | { kind: "reclaimed"; token: string; tripName: string }
+  | { kind: "reserved" | "reclaimed"; attempt: ReservationAttempt; staleLease: boolean }
   | { kind: "skipped" }
   | { kind: "source_stale" };
 
@@ -114,6 +136,7 @@ async function reserveDelivery(identity: DeliveryIdentity, oneDayDate: string, s
   const settingsRef = db.collection("userNotificationSettings").doc(identity.userId);
   const tokenRef = settingsRef.collection("tokens").doc(identity.tokenId);
   const deliveryRef = db.collection("notificationDeliveries").doc(deliveryIdFor(identity));
+  const reservationId = randomUUID();
   return db.runTransaction(async transaction => {
     const tripSnapshot = await transaction.get(tripRef);
     const settingsSnapshot = await transaction.get(settingsRef);
@@ -121,22 +144,35 @@ async function reserveDelivery(identity: DeliveryIdentity, oneDayDate: string, s
     const deliverySnapshot = await transaction.get(deliveryRef);
     const source = currentSource(tripSnapshot, settingsSnapshot, tokenSnapshot, identity, oneDayDate, sevenDayDate);
     if (!source) return { kind: "source_stale" };
+    const now = Timestamp.now();
+    const leaseExpiresAt = Timestamp.fromMillis(now.toMillis() + RESERVATION_LEASE_MS);
     if (deliverySnapshot.exists) {
       const existing = deliverySnapshot.data() ?? {};
-      if (!sameIdentity(existing, identity) || existing.status !== "failed" || !Number.isInteger(existing.attemptCount) ||
+      if (!sameIdentity(existing, identity) || !Number.isInteger(existing.attemptCount) ||
         existing.attemptCount < 1 || existing.attemptCount >= MAX_DELIVERY_ATTEMPTS) return { kind: "skipped" };
+      let staleLease = false;
+      if (existing.status === "reserved") {
+        if (!hasValidReservationMetadata(existing)) return { kind: "skipped" };
+        if (existing.leaseExpiresAt.toMillis() > now.toMillis()) return { kind: "skipped" };
+        staleLease = true;
+      } else if (existing.status !== "failed" || !isRetryableErrorCode(existing.errorCode)) {
+        return { kind: "skipped" };
+      }
+      const attemptCount = existing.attemptCount + 1;
       transaction.update(deliveryRef, {
-        status: "reserved", attemptCount: existing.attemptCount + 1,
-        reservedAt: FieldValue.serverTimestamp(), updatedAt: FieldValue.serverTimestamp(),
+        status: "reserved", attemptCount, reservationId, reservedAt: now, leaseExpiresAt,
+        updatedAt: FieldValue.serverTimestamp(),
         errorCode: FieldValue.delete(), error: FieldValue.delete(), expoTicketId: FieldValue.delete(),
       });
-      return { kind: "reclaimed", ...source };
+      return { kind: "reclaimed", staleLease,
+        attempt: { identity, reservationId, attemptCount, token: source.token } };
     }
     transaction.create(deliveryRef, {
-      schemaVersion: 1, deliveryId: deliveryRef.id, ...identity, status: "reserved", attemptCount: 1,
-      reservedAt: FieldValue.serverTimestamp(), createdAt: FieldValue.serverTimestamp(), updatedAt: FieldValue.serverTimestamp(),
+      schemaVersion: 1, deliveryId: deliveryRef.id, ...identity, status: "reserved", attemptCount: 1, reservationId,
+      reservedAt: now, leaseExpiresAt, createdAt: FieldValue.serverTimestamp(), updatedAt: FieldValue.serverTimestamp(),
     });
-    return { kind: "reserved", ...source };
+    return { kind: "reserved", staleLease: false,
+      attempt: { identity, reservationId, attemptCount: 1, token: source.token } };
   });
 }
 
@@ -146,8 +182,9 @@ type PreSendResult =
   | { kind: "skipped" };
 
 async function revalidateBeforeSend(
-  identity: DeliveryIdentity, expectedToken: string, oneDayDate: string, sevenDayDate: string,
+  attempt: ReservationAttempt, oneDayDate: string, sevenDayDate: string,
 ): Promise<PreSendResult> {
+  const { identity } = attempt;
   const tripRef = db.collection("userTrips").doc(identity.userId).collection("items").doc(identity.tripId);
   const settingsRef = db.collection("userNotificationSettings").doc(identity.userId);
   const tokenRef = settingsRef.collection("tokens").doc(identity.tokenId);
@@ -157,47 +194,66 @@ async function revalidateBeforeSend(
     const settingsSnapshot = await transaction.get(settingsRef);
     const tokenSnapshot = await transaction.get(tokenRef);
     const deliverySnapshot = await transaction.get(deliveryRef);
-    if (!deliverySnapshot.exists || !matchesReservedDelivery(deliverySnapshot.data() ?? {}, identity)) return { kind: "skipped" };
-    const source = currentSource(tripSnapshot, settingsSnapshot, tokenSnapshot, identity, oneDayDate, sevenDayDate, expectedToken);
+    const delivery = deliverySnapshot.data() ?? {};
+    if (!deliverySnapshot.exists || !matchesReservedAttempt(delivery, attempt) || !hasValidReservationMetadata(delivery) ||
+      (delivery.leaseExpiresAt as Timestamp).toMillis() <= Timestamp.now().toMillis()) return { kind: "skipped" };
+    const source = currentSource(tripSnapshot, settingsSnapshot, tokenSnapshot, identity, oneDayDate, sevenDayDate, attempt.token);
     if (source) return { kind: "current", ...source };
     transaction.update(deliveryRef, {
       status: "cancelled_source_stale", errorCode: "source_stale", updatedAt: FieldValue.serverTimestamp(),
+      leaseExpiresAt: FieldValue.delete(),
     });
     return { kind: "source_stale", cancelled: true };
   });
 }
 
-async function updateReservedDelivery(identity: DeliveryIdentity, outcome: Record<string, unknown>) {
-  const deliveryRef = db.collection("notificationDeliveries").doc(deliveryIdFor(identity));
+async function updateReservedDelivery(attempt: ReservationAttempt, outcome: Record<string, unknown>) {
+  const deliveryRef = db.collection("notificationDeliveries").doc(deliveryIdFor(attempt.identity));
   return db.runTransaction(async transaction => {
     const snapshot = await transaction.get(deliveryRef);
-    if (!snapshot.exists || !matchesReservedDelivery(snapshot.data() ?? {}, identity)) return false;
-    transaction.update(deliveryRef, { ...outcome, updatedAt: FieldValue.serverTimestamp() });
+    if (!snapshot.exists || !matchesReservedAttempt(snapshot.data() ?? {}, attempt)) return false;
+    transaction.update(deliveryRef, {
+      ...outcome, updatedAt: FieldValue.serverTimestamp(), leaseExpiresAt: FieldValue.delete(),
+    });
     return true;
   });
 }
 
-function sanitizedTicketError(ticket: ExpoPushTicket): string {
-  if (ticket.status === "error" && ticket.details?.error === "DeviceNotRegistered") return "device_not_registered";
-  return "expo_ticket_error";
+function classifyTicketError(ticket: ExpoPushTicket): { errorCode: string; retryable: boolean; deviceNotRegistered: boolean } {
+  const expoCode = ticket.status === "error" ? ticket.details?.error : undefined;
+  if (expoCode === "DeviceNotRegistered") return { errorCode: "device_not_registered", retryable: false, deviceNotRegistered: true };
+  if (expoCode === "MessageRateExceeded") return { errorCode: "message_rate_exceeded", retryable: true, deviceNotRegistered: false };
+  const knownPermanent: Record<string, string> = {
+    MessageTooBig: "message_too_big", MismatchSenderId: "mismatch_sender_id", InvalidCredentials: "invalid_credentials",
+  };
+  return { errorCode: expoCode && knownPermanent[expoCode] || "expo_ticket_error", retryable: false, deviceNotRegistered: false };
 }
 
-async function disableMatchingTokenAndFail(identity: DeliveryIdentity, token: string) {
+function classifyRequestError(error: unknown): { errorCode: string; retryable: boolean } {
+  const code = error instanceof ExpoPushRequestError ? error.code : "unknown_request_error";
+  const retryable = ["timeout", "network_error", "expo_http_429", "expo_http_5xx"].includes(code);
+  const terminalCodes = new Set(["invalid_request", "invalid_response", "expo_http_4xx"]);
+  return { errorCode: retryable || terminalCodes.has(code) ? code : "unknown_request_error", retryable };
+}
+
+async function disableMatchingTokenAndFail(attempt: ReservationAttempt) {
+  const { identity } = attempt;
   const deliveryRef = db.collection("notificationDeliveries").doc(deliveryIdFor(identity));
   const tokenRef = db.collection("userNotificationSettings").doc(identity.userId).collection("tokens").doc(identity.tokenId);
   return db.runTransaction(async transaction => {
     const deliverySnapshot = await transaction.get(deliveryRef);
     const tokenSnapshot = await transaction.get(tokenRef);
-    if (!deliverySnapshot.exists || !matchesReservedDelivery(deliverySnapshot.data() ?? {}, identity)) {
+    if (!deliverySnapshot.exists || !matchesReservedAttempt(deliverySnapshot.data() ?? {}, attempt)) {
       return { deliveryFailed: false, tokenDisabled: false };
     }
-    transaction.update(deliveryRef, { status: "failed", errorCode: "device_not_registered", updatedAt: FieldValue.serverTimestamp() });
-    if (tokenSnapshot.exists && tokenSnapshot.data()?.userId === identity.userId && tokenSnapshot.data()?.token === token &&
-      tokenSnapshot.data()?.disabledAt == null) {
-      transaction.update(tokenRef, { disabledAt: FieldValue.serverTimestamp() });
-      return { deliveryFailed: true, tokenDisabled: true };
+    if (!tokenSnapshot.exists || tokenSnapshot.data()?.userId !== identity.userId ||
+      tokenSnapshot.data()?.token !== attempt.token || tokenSnapshot.data()?.disabledAt != null) {
+      return { deliveryFailed: false, tokenDisabled: false };
     }
-    return { deliveryFailed: true, tokenDisabled: false };
+    transaction.update(deliveryRef, { status: "failed", errorCode: "device_not_registered",
+      expoTicketId: FieldValue.delete(), leaseExpiresAt: FieldValue.delete(), updatedAt: FieldValue.serverTimestamp() });
+    transaction.update(tokenRef, { disabledAt: FieldValue.serverTimestamp() });
+    return { deliveryFailed: true, tokenDisabled: true };
   });
 }
 
@@ -217,6 +273,8 @@ export const sendTripReminderNotifications = onSchedule(
       settingsEligibleTrips: 0, eligibleTokens: 0, deliveriesReserved: 0, deliveriesReclaimed: 0,
       deliveriesSkipped: 0, sourceStaleReservations: 0, sourceStaleBeforeSend: 0, deliveriesCancelled: 0,
       messagesSubmitted: 0, ticketsAccepted: 0, ticketErrors: 0, requestErrors: 0, tokensDisabled: 0,
+      retryableFailures: 0, terminalFailures: 0, deliveryRetryAttempts: 0, staleLeasesReclaimed: 0,
+      staleAttemptOutcomesSkipped: 0,
       elapsedMilliseconds: 0 };
     const reminderDates = getUtcReminderDates(event.scheduleTime);
     if (!reminderDates) {
@@ -231,7 +289,7 @@ export const sendTripReminderNotifications = onSchedule(
     }
     const tripsSnapshot = await db.collectionGroup("items").where("visitDate", "in", targetDates).get();
     counters.candidateDocumentsRead = tripsSnapshot.size;
-    const reservations: Array<{ identity: DeliveryIdentity; token: string }> = [];
+    const attemptQueue: ReservationAttempt[] = [];
     for (const tripDoc of tripsSnapshot.docs) {
       const trip = validTripDocument(tripDoc.ref.path, tripDoc.data(), oneDayDate, sevenDayDate);
       if (!trip) { counters.malformedDocumentsSkipped += 1; continue; }
@@ -253,47 +311,86 @@ export const sendTripReminderNotifications = onSchedule(
         if (reservation.kind === "source_stale") { counters.sourceStaleReservations += 1; continue; }
         if (reservation.kind === "skipped") { counters.deliveriesSkipped += 1; continue; }
         counters[reservation.kind === "reserved" ? "deliveriesReserved" : "deliveriesReclaimed"] += 1;
-        reservations.push({ identity, token: reservation.token });
+        if (reservation.staleLease) counters.staleLeasesReclaimed += 1;
+        attemptQueue.push(reservation.attempt);
       }
     }
-    for (let offset = 0; offset < reservations.length; offset += 100) {
-      const reservedChunk = reservations.slice(offset, offset + 100);
-      const currentChunk: Array<{ identity: DeliveryIdentity; token: string; message: ExpoPushMessage }> = [];
+    while (attemptQueue.length > 0) {
+      const reservedChunk = attemptQueue.splice(0, 100);
+      const currentChunk: Array<{ attempt: ReservationAttempt; message: ExpoPushMessage }> = [];
       const currentResults = await Promise.all(reservedChunk.map(async entry => ({
-        entry, current: await revalidateBeforeSend(entry.identity, entry.token, oneDayDate, sevenDayDate),
+        entry, current: await revalidateBeforeSend(entry, oneDayDate, sevenDayDate),
       })));
       for (const { entry, current } of currentResults) {
         if (current.kind === "source_stale") {
           counters.sourceStaleBeforeSend += 1;
           if (current.cancelled) counters.deliveriesCancelled += 1;
         } else if (current.kind === "current") {
-          currentChunk.push({ identity: entry.identity, token: current.token,
+          currentChunk.push({ attempt: { ...entry, token: current.token },
             message: messageFor(entry.identity, current.token, current.tripName) });
+        } else {
+          counters.staleAttemptOutcomesSkipped += 1;
         }
       }
       if (currentChunk.length === 0) continue;
+      const retryIdentities: Array<{ identity: DeliveryIdentity; priorAttemptCount: number }> = [];
       try {
         counters.messagesSubmitted += currentChunk.length;
         const tickets = await sendExpoPushNotifications(currentChunk.map(entry => entry.message));
         await Promise.all(tickets.map(async (ticket, index) => {
           const entry = currentChunk[index];
           if (ticket.status === "ok") {
-            if (await updateReservedDelivery(entry.identity, { status: "ticket_accepted", expoTicketId: ticket.id })) counters.ticketsAccepted += 1;
+            if (await updateReservedDelivery(entry.attempt, { status: "ticket_accepted", expoTicketId: ticket.id })) {
+              counters.ticketsAccepted += 1;
+            } else counters.staleAttemptOutcomesSkipped += 1;
             return;
           }
-          const errorCode = sanitizedTicketError(ticket);
-          if (errorCode === "device_not_registered") {
-            const result = await disableMatchingTokenAndFail(entry.identity, entry.token);
-            if (result.deliveryFailed) counters.ticketErrors += 1;
+          const classification = classifyTicketError(ticket);
+          if (classification.deviceNotRegistered) {
+            const result = await disableMatchingTokenAndFail(entry.attempt);
+            if (result.deliveryFailed) { counters.ticketErrors += 1; counters.terminalFailures += 1; }
+            else counters.staleAttemptOutcomesSkipped += 1;
             if (result.tokenDisabled) counters.tokensDisabled += 1;
           } else {
-            if (await updateReservedDelivery(entry.identity, { status: "failed", errorCode })) counters.ticketErrors += 1;
+            const transitioned = await updateReservedDelivery(entry.attempt, {
+              status: "failed", errorCode: classification.errorCode, expoTicketId: FieldValue.delete(),
+            });
+            if (!transitioned) { counters.staleAttemptOutcomesSkipped += 1; return; }
+            counters.ticketErrors += 1;
+            counters[classification.retryable ? "retryableFailures" : "terminalFailures"] += 1;
+            if (classification.retryable && entry.attempt.attemptCount < MAX_DELIVERY_ATTEMPTS) {
+              retryIdentities.push({ identity: entry.attempt.identity, priorAttemptCount: entry.attempt.attemptCount });
+            }
           }
         }));
-      } catch {
-        const failed = await Promise.all(currentChunk.map(entry => updateReservedDelivery(entry.identity,
-          { status: "failed", errorCode: "expo_request_failed" })));
-        counters.requestErrors += failed.filter(Boolean).length;
+      } catch (error) {
+        const classification = classifyRequestError(error);
+        await Promise.all(currentChunk.map(async entry => {
+          const transitioned = await updateReservedDelivery(entry.attempt, {
+            status: "failed", errorCode: classification.errorCode, expoTicketId: FieldValue.delete(),
+          });
+          if (!transitioned) { counters.staleAttemptOutcomesSkipped += 1; return; }
+          counters.requestErrors += 1;
+          counters[classification.retryable ? "retryableFailures" : "terminalFailures"] += 1;
+          if (classification.retryable && entry.attempt.attemptCount < MAX_DELIVERY_ATTEMPTS) {
+            retryIdentities.push({ identity: entry.attempt.identity, priorAttemptCount: entry.attempt.attemptCount });
+          }
+        }));
+      }
+      if (retryIdentities.length > 0) {
+        const backoff = Math.max(...retryIdentities.map(entry => RETRY_BACKOFF_MS[entry.priorAttemptCount - 1]));
+        await new Promise(resolve => setTimeout(resolve, backoff));
+        const retries = await Promise.all(retryIdentities.map(entry =>
+          reserveDelivery(entry.identity, oneDayDate, sevenDayDate)));
+        retries.forEach(retry => {
+          if (retry.kind === "reclaimed") {
+            counters.deliveriesReclaimed += 1;
+            counters.deliveryRetryAttempts += 1;
+            if (retry.staleLease) counters.staleLeasesReclaimed += 1;
+            attemptQueue.push(retry.attempt);
+          } else if (retry.kind === "source_stale") counters.sourceStaleReservations += 1;
+          else counters.deliveriesSkipped += 1;
+        });
       }
     }
     counters.elapsedMilliseconds = Date.now() - startedAt;
