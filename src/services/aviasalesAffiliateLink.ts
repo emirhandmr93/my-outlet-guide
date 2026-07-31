@@ -1,0 +1,141 @@
+import {
+  AVIASALES_AFFILIATE_MARKER,
+  AVIASALES_SEARCH_BASE_URL,
+} from "../constants/travelAffiliate";
+
+export type AviasalesTripClass = "economy" | "business";
+
+export type AviasalesAffiliateSearchInput = {
+  originIata: string;
+  destinationIata: string;
+  departDate: string;
+  returnDate?: string;
+  adults: number;
+  children?: number;
+  infants?: number;
+  tripClass?: AviasalesTripClass;
+  locale?: string;
+  currency?: "USD" | "EUR";
+  subId?: string;
+};
+
+const IATA_PATTERN = /^[A-Za-z]{3}$/;
+const DATE_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+
+function validateIata(value: string, fieldName: "originIata" | "destinationIata") {
+  if (!IATA_PATTERN.test(value)) {
+    throw new Error(`${fieldName} must be exactly three ASCII letters`);
+  }
+
+  return value.toUpperCase();
+}
+
+function validateDate(value: string, fieldName: "departDate" | "returnDate") {
+  const match = DATE_PATTERN.exec(value);
+  if (!match) {
+    throw new Error(`${fieldName} must be a valid date in YYYY-MM-DD format`);
+  }
+
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(Date.UTC(year, month - 1, day));
+
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month - 1 ||
+    date.getUTCDate() !== day
+  ) {
+    throw new Error(`${fieldName} must be a valid calendar date`);
+  }
+
+  return value;
+}
+
+function validateIntegerInRange(value: number, fieldName: string, minimum: number, maximum: number) {
+  if (!Number.isInteger(value) || value < minimum || value > maximum) {
+    throw new Error(`${fieldName} must be an integer between ${minimum} and ${maximum}`);
+  }
+}
+
+function normalizeSubId(value: string | undefined) {
+  if (value === undefined) return "";
+
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[ -]+/g, "_")
+    .replace(/[^a-z0-9_]/g, "")
+    .replace(/_+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 80)
+    .replace(/_+$/g, "");
+}
+
+export function buildAviasalesAffiliateSearchUrl(
+  input: AviasalesAffiliateSearchInput,
+): string {
+  const originIata = validateIata(input.originIata, "originIata");
+  const destinationIata = validateIata(input.destinationIata, "destinationIata");
+  if (originIata === destinationIata) {
+    throw new Error("originIata and destinationIata must be different");
+  }
+
+  const departDate = validateDate(input.departDate, "departDate");
+  const returnDate = input.returnDate === undefined
+    ? undefined
+    : validateDate(input.returnDate, "returnDate");
+  if (returnDate !== undefined && returnDate < departDate) {
+    throw new Error("returnDate must not be earlier than departDate");
+  }
+
+  const children = input.children ?? 0;
+  const infants = input.infants ?? 0;
+  validateIntegerInRange(input.adults, "adults", 1, 9);
+  validateIntegerInRange(children, "children", 0, 8);
+  validateIntegerInRange(infants, "infants", 0, 9);
+  if (input.adults + children > 9) {
+    throw new Error("adults and children combined must not exceed 9");
+  }
+  if (infants > input.adults) {
+    throw new Error("infants must not exceed adults");
+  }
+
+  const tripClass = input.tripClass ?? "economy";
+  if (tripClass !== "economy" && tripClass !== "business") {
+    throw new Error("tripClass must be economy or business");
+  }
+
+  const currency = input.currency ?? "USD";
+  if (currency !== "USD" && currency !== "EUR") {
+    throw new Error("currency must be USD or EUR");
+  }
+
+  const locale = input.locale ?? "en";
+  if (locale.trim() === "") {
+    throw new Error("locale must not be blank");
+  }
+
+  const subId = normalizeSubId(input.subId);
+  const marker = subId ? `${AVIASALES_AFFILIATE_MARKER}.${subId}` : AVIASALES_AFFILIATE_MARKER;
+  const parameters = new URLSearchParams({
+    origin_iata: originIata,
+    destination_iata: destinationIata,
+    depart_date: departDate,
+    adults: String(input.adults),
+    children: String(children),
+    infants: String(infants),
+    trip_class: tripClass === "economy" ? "0" : "1",
+    currency,
+    locale: locale.trim(),
+    oneway: returnDate === undefined ? "1" : "0",
+    marker,
+  });
+  if (returnDate !== undefined) {
+    parameters.set("return_date", returnDate);
+  }
+
+  const url = new URL(AVIASALES_SEARCH_BASE_URL);
+  url.search = parameters.toString();
+  return url.toString();
+}
