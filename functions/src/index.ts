@@ -223,3 +223,7 @@ export { deleteAccount } from "./accountDeletion";
 export { moderateReviewAction } from "./reviewModeration";
 
 export { getTripWeather } from "./weather";
+
+export {
+  collectFlightPriceSnapshots,
+} from "./flightPriceCollection";
