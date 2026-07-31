@@ -2,8 +2,9 @@ import { createNavigationContainerRef, NavigationContainer, type RouteProp } fro
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator, Platform, Pressable, useWindowDimensions, View } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Notifications from "expo-notifications";
 
 import { BrandResultsScreen } from "../screens/BrandResultsScreen";
 import { CityResultsScreen } from "../screens/CityResultsScreen";
@@ -46,6 +47,11 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import { hasSeenOnboarding } from "../services/onboardingStorage";
+import {
+getNotificationResponseIdentity,
+isSameFlightDealRoute,
+parseFlightPriceNotificationResponse,
+} from "../services/flightPriceNotificationResponse";
 import colors from "../theme/colors";
 
 import type { MainTabParamList, RootStackParamList } from "./types";
@@ -56,6 +62,8 @@ import { syncWebSeo } from "../utils/webSeo";
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const navigationRef = createNavigationContainerRef<RootStackParamList>();
+const MAX_HANDLED_NOTIFICATION_RESPONSES = 100;
+const notificationResponseApi = Notifications as unknown as typeof import("expo-notifications/build/NotificationsEmitter");
 
 type DesktopHomeStackParamList = {
 HomeRoot: undefined;
@@ -273,7 +281,10 @@ const { isLanguageResolved, language } = useLanguage();
 const { direction, isNativeRTL } = useLayoutDirection();
 const [shouldShowOnboarding, setShouldShowOnboarding] = useState(false);
 const [isOnboardingGateReady, setIsOnboardingGateReady] = useState(false);
+const [isNavigationReady, setIsNavigationReady] = useState(false);
 const [navigationFontsLoaded, navigationFontError] = useNavigationFonts();
+const handledResponseKeys = useRef(new Map<string, true>());
+const responseProcessingQueue = useRef(Promise.resolve());
 
 useEffect(() => {
 if (!isLanguageResolved) return;
@@ -313,6 +324,73 @@ if (`${window.location.pathname}${window.location.search}` !== path) window.hist
 syncWebSeo(language, path);
 }
 
+function handleNavigationReady() {
+setIsNavigationReady(true);
+syncWebPath();
+}
+
+useEffect(() => {
+if (Platform.OS === "web" || !isOnboardingGateReady || shouldShowOnboarding ||
+  !isNavigationReady || !navigationRef.isReady()) return;
+
+let active = true;
+
+async function safelyClearMatchingLastResponse(responseIdentity: string) {
+if (!active) return;
+try {
+const lastResponse = await notificationResponseApi.getLastNotificationResponseAsync();
+if (!active || getNotificationResponseIdentity(lastResponse) !== responseIdentity) return;
+await notificationResponseApi.clearLastNotificationResponseAsync();
+} catch {
+// Notification state is best-effort and must not affect navigation or startup.
+}
+}
+
+function enqueueResponse(response: unknown) {
+const result = parseFlightPriceNotificationResponse(response, notificationResponseApi.DEFAULT_ACTION_IDENTIFIER);
+if (result.status === "ignored") return;
+
+let shouldNavigate = false;
+if (result.status === "target" && !handledResponseKeys.current.has(result.target.responseKey)) {
+handledResponseKeys.current.set(result.target.responseKey, true);
+shouldNavigate = true;
+while (handledResponseKeys.current.size > MAX_HANDLED_NOTIFICATION_RESPONSES) {
+const oldestKey = handledResponseKeys.current.keys().next().value;
+if (oldestKey === undefined) break;
+handledResponseKeys.current.delete(oldestKey);
+}
+}
+
+const responseIdentity = result.status === "target" ? result.target.responseIdentity : result.responseIdentity;
+responseProcessingQueue.current = responseProcessingQueue.current.then(async () => {
+if (!active) return;
+if (result.status === "target" && shouldNavigate) {
+if (!navigationRef.isReady()) return;
+if (!isSameFlightDealRoute(navigationRef.getCurrentRoute(), result.target.eventId)) {
+navigationRef.navigate("FlightDealDetail", { dealId: result.target.eventId });
+}
+}
+if (responseIdentity) await safelyClearMatchingLastResponse(responseIdentity);
+}).catch(() => {
+// A response-processing failure must not break processing of later responses.
+});
+}
+
+const subscription = notificationResponseApi.addNotificationResponseReceivedListener(enqueueResponse);
+void notificationResponseApi.getLastNotificationResponseAsync()
+  .then(response => {
+    if (active && response) enqueueResponse(response);
+  })
+  .catch(() => {
+    // Notification state is unavailable; app startup should continue normally.
+  });
+
+return () => {
+active = false;
+subscription.remove();
+};
+}, [isNavigationReady, isOnboardingGateReady, shouldShowOnboarding]);
+
 useEffect(() => { syncWebPath(); }, [language]);
 
 if (!isLanguageResolved || !isOnboardingGateReady || (!navigationFontsLoaded && !navigationFontError)) {
@@ -333,7 +411,7 @@ return (
 
 return (
 <NativeDirectionRoot>
-<NavigationContainer direction={direction} ref={navigationRef} linking={webLinking} onReady={syncWebPath} onStateChange={syncWebPath}>
+<NavigationContainer direction={direction} ref={navigationRef} linking={webLinking} onReady={handleNavigationReady} onStateChange={syncWebPath}>
 <Stack.Navigator
 screenOptions={navigationScreenOptions(t, isNativeRTL)}
 >
