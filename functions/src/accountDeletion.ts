@@ -68,7 +68,7 @@ export const deleteAccount = onCall({ region: "us-central1" }, async (request) =
   const uid = request.auth.uid;
   requireRecentAuth(request.auth.token.auth_time);
 
-  const sourceAlertWrites: QueuedWrite[] = [];
+  const sourceWrites: QueuedWrite[] = [];
   let deletedTripItems = 0;
   let deletedNotificationTokens = 0;
   let anonymizedReviews = 0;
@@ -77,13 +77,24 @@ export const deleteAccount = onCall({ region: "us-central1" }, async (request) =
   let deletedUserFlightPriceDeals = 0;
   let deletedFlightPricePushDeliveries = 0;
   let deletedFlightPriceEvents = 0;
+  let deletedTripReminderDeliveries = 0;
   let committedBatches = 0;
 
-  deletedFlightDealAlerts += await queueCollectionDeletes(db.collection("flightDealPreferences").doc(uid).collection("alerts"), sourceAlertWrites);
-  queueDocumentDelete(db.collection("flightDealPreferences").doc(uid), sourceAlertWrites);
-  committedBatches += await commitQueuedWrites(sourceAlertWrites);
+  deletedFlightDealAlerts += await queueCollectionDeletes(db.collection("flightDealPreferences").doc(uid).collection("alerts"), sourceWrites);
+  queueDocumentDelete(db.collection("flightDealPreferences").doc(uid), sourceWrites);
+  deletedTripItems += await queueCollectionDeletes(db.collection("userTrips").doc(uid).collection("items"), sourceWrites);
+  queueDocumentDelete(db.collection("userTrips").doc(uid), sourceWrites);
+  deletedNotificationTokens += await queueCollectionDeletes(db.collection("userNotificationSettings").doc(uid).collection("tokens"), sourceWrites);
+  queueDocumentDelete(db.collection("userNotificationSettings").doc(uid), sourceWrites);
+  queueDocumentDelete(db.collection("notificationSettings").doc(uid), sourceWrites);
+  queueDocumentDelete(db.collection("trips").doc(uid), sourceWrites);
+  committedBatches += await commitQueuedWrites(sourceWrites);
 
   const writes: QueuedWrite[] = [];
+  const tripReminderDeliveries = await db.collection("notificationDeliveries").where("userId", "==", uid).get();
+  tripReminderDeliveries.docs.forEach(document => queueDocumentDelete(document.ref, writes));
+  deletedTripReminderDeliveries += tripReminderDeliveries.size;
+
   queueDocumentDelete(db.collection("favorites").doc(uid), writes);
 
   deletedFlightPriceEvaluations += await queueCollectionDeletes(db.collection("flightPriceAlertEvaluations").doc(uid).collection("items"), writes);
@@ -98,14 +109,6 @@ export const deleteAccount = onCall({ region: "us-central1" }, async (request) =
     queueDocumentDelete(eventDocument.ref, writes);
     deletedFlightPriceEvents += 1;
   }
-
-  deletedTripItems += await queueCollectionDeletes(db.collection("userTrips").doc(uid).collection("items"), writes);
-  queueDocumentDelete(db.collection("userTrips").doc(uid), writes);
-
-  deletedNotificationTokens += await queueCollectionDeletes(db.collection("userNotificationSettings").doc(uid).collection("tokens"), writes);
-  queueDocumentDelete(db.collection("userNotificationSettings").doc(uid), writes);
-  queueDocumentDelete(db.collection("notificationSettings").doc(uid), writes);
-  queueDocumentDelete(db.collection("trips").doc(uid), writes);
 
   const reviewsSnapshot = await db.collectionGroup("items").where("userId", "==", uid).get();
   reviewsSnapshot.docs.forEach((reviewDoc) => {
@@ -130,6 +133,7 @@ export const deleteAccount = onCall({ region: "us-central1" }, async (request) =
     deletedUserFlightPriceDeals,
     deletedFlightPricePushDeliveries,
     deletedFlightPriceEvents,
+    deletedTripReminderDeliveries,
     committedBatches,
   };
 });
