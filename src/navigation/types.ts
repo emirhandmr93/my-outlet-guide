@@ -31,6 +31,7 @@ export type RootStackParamList = {
   WriteReview: { outletId: string; reviewId?: string };
   FlightDealSettings: undefined;
   FlightDeals: undefined;
+  FlightSearch: undefined;
   FlightDealDetail: { dealId: string };
   Login: { authMessage?: string } | undefined;
   MyReviews: undefined;
