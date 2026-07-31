@@ -29,10 +29,12 @@ export type FlightPriceAlertRecord = {
   tripClass: "economy" | "business";
   directOnly: boolean;
   currency: "EUR";
-  selectedThresholds: number[];
+  selectedThresholds: FlightPriceThreshold[];
   active: boolean;
   providerStatus: "pending_provider";
 };
+
+export type FlightPriceThreshold = 15 | 30 | 45;
 
 export type GroupedProviderQuery = {
   providerQueryKey: string;
@@ -85,10 +87,10 @@ export function buildProviderFlightPriceQueryKey(query: ProviderFlightPriceQuery
 }
 
 type AlertClassification =
-  | { kind: "active"; query: ProviderFlightPriceQuery }
+  | { kind: "active"; query: ProviderFlightPriceQuery; alert: FlightPriceAlertRecord }
   | { kind: "inactive" | "expired" | "invalid" | "unrelated" };
 
-function classifyAlertDocument(path: string, data: unknown, today: string): AlertClassification {
+export function classifyFlightPriceAlertDocument(path: string, data: unknown, today: string): AlertClassification {
   const segments = path.split("/");
   if (segments.length !== 4 || segments[0] !== "flightDealPreferences" || segments[2] !== "alerts") {
     return { kind: "unrelated" };
@@ -120,7 +122,28 @@ function classifyAlertDocument(path: string, data: unknown, today: string): Aler
   if (!query) return { kind: "invalid" };
   if (!data.active) return { kind: "inactive" };
   if (data.departDate < today) return { kind: "expired" };
-  return { kind: "active", query };
+  const selectedThresholds = [...new Set(data.selectedThresholds as FlightPriceThreshold[])].sort((a, b) => a - b);
+  const alert: FlightPriceAlertRecord = {
+    schemaVersion: 2,
+    alertId: data.alertId,
+    queryKey: data.queryKey as string,
+    userId: data.userId as string,
+    originAirportCode: query.originAirportCode,
+    destinationAirportCode: query.destinationAirportCode,
+    tripType: query.tripType,
+    departDate: query.departDate,
+    ...(query.returnDate ? { returnDate: query.returnDate } : {}),
+    adults: data.adults as number,
+    children: data.children as number,
+    infants: data.infants as number,
+    tripClass: query.tripClass,
+    directOnly: query.directOnly,
+    currency: "EUR",
+    selectedThresholds,
+    active: true,
+    providerStatus: "pending_provider",
+  };
+  return { kind: "active", query, alert };
 }
 
 export type FlightPriceAlertClassificationSummary = {
@@ -147,7 +170,7 @@ export function classifyFlightPriceAlerts(
     };
   }
   for (const document of documents) {
-    const classification = classifyAlertDocument(document.path, document.data, today);
+    const classification = classifyFlightPriceAlertDocument(document.path, document.data, today);
     counts[classification.kind] += 1;
     if (classification.kind !== "active") continue;
     const providerQueryKey = buildProviderFlightPriceQueryKey(classification.query);
@@ -303,7 +326,10 @@ export const collectFlightPriceSnapshots = onSchedule(
         : { ...snapshotBase(group, snapshotDate), status: "no_data" };
       await db.runTransaction(async (transaction) => {
         const snapshotRef = stateRef.collection("dailySnapshots").doc(snapshotDate);
-        const existing = await transaction.get(snapshotRef);
+        const [existing, existingState] = await Promise.all([
+          transaction.get(snapshotRef),
+          transaction.get(stateRef),
+        ]);
         const chosen = chooseDailyFlightPriceSnapshot(existing.data(), incoming) as Snapshot;
         transaction.set(snapshotRef, chosen);
         const state: Record<string, unknown> = {
@@ -311,6 +337,9 @@ export const collectFlightPriceSnapshots = onSchedule(
           lastRunStatus: price ? "price_found" : "no_data",
           lastAttemptAt: FieldValue.serverTimestamp(),
           lastSuccessfulRequestAt: FieldValue.serverTimestamp(),
+          firstSnapshotDate: isDate(existingState.data()?.firstSnapshotDate) && existingState.data()!.firstSnapshotDate <= snapshotDate
+            ? existingState.data()!.firstSnapshotDate
+            : snapshotDate,
           lastErrorCode: FieldValue.delete(),
           updatedAt: FieldValue.serverTimestamp(),
         };

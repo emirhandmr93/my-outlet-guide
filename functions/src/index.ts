@@ -227,3 +227,7 @@ export { getTripWeather } from "./weather";
 export {
   collectFlightPriceSnapshots,
 } from "./flightPriceCollection";
+
+export {
+  evaluateFlightPriceAlerts,
+} from "./flightPriceEvaluation";
