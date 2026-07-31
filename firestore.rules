@@ -569,6 +569,15 @@ service cloud.firestore {
       }
     }
 
+    match /userFlightPriceDeals/{userId}/items/{eventId} {
+      allow get: if isSignedIn()
+        && request.auth.uid == userId
+        && resource.data.userId == userId
+        && resource.data.eventId == eventId;
+      allow list: if false;
+      allow create, update, delete: if false;
+    }
+
     match /notificationDeliveries/{deliveryId} {
       allow read, write: if false;
     }
