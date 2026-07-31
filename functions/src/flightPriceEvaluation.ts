@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 
-import { FieldValue, getFirestore } from "firebase-admin/firestore";
+import { FieldPath, FieldValue, getFirestore } from "firebase-admin/firestore";
 import { logger } from "firebase-functions";
 import { onSchedule } from "firebase-functions/v2/scheduler";
 
@@ -38,6 +38,12 @@ function parseDate(value: unknown): Date | null {
   if (!match) return null;
   const date = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
   return date.getUTCFullYear() === Number(match[1]) && date.getUTCMonth() === Number(match[2]) - 1 && date.getUTCDate() === Number(match[3]) ? date : null;
+}
+
+export function getFlightPriceHistoryStartDate(evaluationDate: string): string | null {
+  const endDate = parseDate(evaluationDate);
+  if (!endDate) return null;
+  return new Date(endDate.getTime() - 89 * 86_400_000).toISOString().slice(0, 10);
 }
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -242,7 +248,12 @@ export const evaluateFlightPriceAlerts = onSchedule(
   async (event) => {
     const startedAt = Date.now();
     const scheduled = typeof event.scheduleTime === "string" ? new Date(event.scheduleTime) : new Date(Number.NaN);
-    const evaluationDate = (Number.isFinite(scheduled.getTime()) ? scheduled : new Date()).toISOString().slice(0, 10);
+    const evaluationDate = Number.isFinite(scheduled.getTime()) ? scheduled.toISOString().slice(0, 10) : null;
+    const historyStartDate = evaluationDate ? getFlightPriceHistoryStartDate(evaluationDate) : null;
+    if (!evaluationDate || !historyStartDate) {
+      logger.error("Flight price evaluation skipped because the scheduled date is invalid");
+      return;
+    }
     const db = getFirestore();
     const runtime = await loadFlightPriceRuntimeConfig(db);
     if (runtime.mode === "off") {
@@ -272,7 +283,11 @@ export const evaluateFlightPriceAlerts = onSchedule(
       const stateRef = db.collection("flightPriceQueries").doc(group.providerQueryKey);
       const [state, snapshots] = await Promise.all([
         stateRef.get(),
-        stateRef.collection("dailySnapshots").orderBy("snapshotDate", "desc").limit(90).get(),
+        stateRef.collection("dailySnapshots")
+          .where(FieldPath.documentId(), ">=", historyStartDate)
+          .where(FieldPath.documentId(), "<=", evaluationDate)
+          .orderBy(FieldPath.documentId(), "asc")
+          .get(),
       ]);
       const inputs = snapshots.docs.map(snapshot => ({ documentId: snapshot.id, data: snapshot.data() as unknown }));
       const firstSnapshotDate = state.data()?.firstSnapshotDate;
