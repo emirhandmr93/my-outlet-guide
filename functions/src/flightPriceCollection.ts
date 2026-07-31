@@ -4,6 +4,7 @@ import { defineSecret } from "firebase-functions/params";
 import { onSchedule } from "firebase-functions/v2/scheduler";
 
 import {
+  AviasalesCachedPrice,
   AviasalesProviderError,
   fetchAviasalesCachedPrice,
   ProviderFlightPriceQuery,
@@ -83,19 +84,30 @@ export function buildProviderFlightPriceQueryKey(query: ProviderFlightPriceQuery
   ].join("_");
 }
 
-function alertFromDocument(path: string, data: unknown, today: string): ProviderFlightPriceQuery | null {
+type AlertClassification =
+  | { kind: "active"; query: ProviderFlightPriceQuery }
+  | { kind: "inactive" | "expired" | "invalid" | "unrelated" };
+
+function classifyAlertDocument(path: string, data: unknown, today: string): AlertClassification {
   const segments = path.split("/");
-  if (segments.length !== 4 || segments[0] !== "flightDealPreferences" || segments[2] !== "alerts" || !isObject(data)) return null;
-  const integersValid = [data.adults, data.children, data.infants].every(Number.isInteger) &&
-    (data.adults as number) >= 1 && (data.children as number) >= 0 && (data.infants as number) >= 0;
+  if (segments.length !== 4 || segments[0] !== "flightDealPreferences" || segments[2] !== "alerts") {
+    return { kind: "unrelated" };
+  }
+  if (!isObject(data)) return { kind: "invalid" };
+  const passengersValid =
+    Number.isInteger(data.adults) && (data.adults as number) >= 1 && (data.adults as number) <= 9 &&
+    Number.isInteger(data.children) && (data.children as number) >= 0 && (data.children as number) <= 8 &&
+    Number.isInteger(data.infants) && (data.infants as number) >= 0 && (data.infants as number) <= 9 &&
+    (data.adults as number) + (data.children as number) <= 9 &&
+    (data.infants as number) <= (data.adults as number);
   const thresholdsValid = Array.isArray(data.selectedThresholds) && data.selectedThresholds.length > 0 &&
     data.selectedThresholds.every((value) => value === 15 || value === 30 || value === 45);
   if (
-    data.schemaVersion !== 2 || data.active !== true || data.providerStatus !== "pending_provider" || data.currency !== "EUR" ||
+    data.schemaVersion !== 2 || typeof data.active !== "boolean" || data.providerStatus !== "pending_provider" || data.currency !== "EUR" ||
     data.userId !== segments[1] || data.alertId !== segments[3] || data.alertId !== data.queryKey ||
-    typeof data.alertId !== "string" || !integersValid || !thresholdsValid || !isDate(data.departDate) || data.departDate < today
-  ) return null;
-  return normalizedQuery({
+    typeof data.alertId !== "string" || !passengersValid || !thresholdsValid || !isDate(data.departDate)
+  ) return { kind: "invalid" };
+  const query = normalizedQuery({
     originAirportCode: data.originAirportCode as string,
     destinationAirportCode: data.destinationAirportCode as string,
     tripType: data.tripType as ProviderFlightPriceQuery["tripType"],
@@ -105,23 +117,60 @@ function alertFromDocument(path: string, data: unknown, today: string): Provider
     directOnly: data.directOnly as boolean,
     currency: data.currency,
   });
+  if (!query) return { kind: "invalid" };
+  if (!data.active) return { kind: "inactive" };
+  if (data.departDate < today) return { kind: "expired" };
+  return { kind: "active", query };
+}
+
+export type FlightPriceAlertClassificationSummary = {
+  groups: GroupedProviderQuery[];
+  flightAlertDocumentCount: number;
+  validActiveAlertCount: number;
+  invalidAlertCount: number;
+  inactiveAlertCount: number;
+  expiredAlertCount: number;
+  unrelatedAlertCount: number;
+};
+
+export function classifyFlightPriceAlerts(
+  documents: Array<{ path: string; data: unknown }>,
+  today: string,
+): FlightPriceAlertClassificationSummary {
+  const groups = new Map<string, GroupedProviderQuery>();
+  const counts = { active: 0, invalid: 0, inactive: 0, expired: 0, unrelated: 0 };
+  if (!isDate(today)) {
+    return {
+      groups: [], flightAlertDocumentCount: 0, validActiveAlertCount: 0,
+      invalidAlertCount: 0, inactiveAlertCount: 0, expiredAlertCount: 0,
+      unrelatedAlertCount: documents.length,
+    };
+  }
+  for (const document of documents) {
+    const classification = classifyAlertDocument(document.path, document.data, today);
+    counts[classification.kind] += 1;
+    if (classification.kind !== "active") continue;
+    const providerQueryKey = buildProviderFlightPriceQueryKey(classification.query);
+    const existing = groups.get(providerQueryKey);
+    if (existing) existing.activeAlertCount += 1;
+    else groups.set(providerQueryKey, { providerQueryKey, query: classification.query, activeAlertCount: 1 });
+  }
+  return {
+    groups: [...groups.values()].sort((a, b) => a.providerQueryKey.localeCompare(b.providerQueryKey)),
+    flightAlertDocumentCount: documents.length - counts.unrelated,
+    validActiveAlertCount: counts.active,
+    invalidAlertCount: counts.invalid,
+    inactiveAlertCount: counts.inactive,
+    expiredAlertCount: counts.expired,
+    unrelatedAlertCount: counts.unrelated,
+  };
 }
 
 export function groupActiveFlightPriceAlerts(
   documents: Array<{ path: string; data: unknown }>,
   today: string,
 ): GroupedProviderQuery[] {
-  if (!isDate(today)) return [];
-  const groups = new Map<string, GroupedProviderQuery>();
-  for (const document of documents) {
-    const query = alertFromDocument(document.path, document.data, today);
-    if (!query) continue;
-    const providerQueryKey = buildProviderFlightPriceQueryKey(query);
-    const existing = groups.get(providerQueryKey);
-    if (existing) existing.activeAlertCount += 1;
-    else groups.set(providerQueryKey, { providerQueryKey, query, activeAlertCount: 1 });
-  }
-  return [...groups.values()].sort((a, b) => a.providerQueryKey.localeCompare(b.providerQueryKey));
+  return classifyFlightPriceAlerts(documents, today).groups;
 }
 
 function validSnapshot(value: unknown): value is Snapshot {
@@ -137,6 +186,48 @@ export function chooseDailyFlightPriceSnapshot(existing: unknown, incoming: unkn
     return incoming;
   }
   return incoming.status === "price_found" ? incoming : existing;
+}
+
+type ProviderProcessingHandlers = {
+  fetchPrice: (group: GroupedProviderQuery) => Promise<AviasalesCachedPrice | null>;
+  persistSuccess: (group: GroupedProviderQuery, price: AviasalesCachedPrice | null) => Promise<void>;
+  persistProviderError: (group: GroupedProviderQuery, error: AviasalesProviderError) => Promise<void>;
+  logProviderError?: (group: GroupedProviderQuery, error: AviasalesProviderError) => void;
+};
+
+export async function processFlightPriceQueryGroups(
+  groups: GroupedProviderQuery[],
+  handlers: ProviderProcessingHandlers,
+  concurrency = 3,
+): Promise<{ priceFoundCount: number; noDataCount: number; providerErrorCount: number }> {
+  const counts = { priceFoundCount: 0, noDataCount: 0, providerErrorCount: 0 };
+  let nextIndex = 0;
+  async function processGroup(group: GroupedProviderQuery) {
+    let price: AviasalesCachedPrice | null;
+    try {
+      price = await handlers.fetchPrice(group);
+    } catch (error) {
+      const providerError = error instanceof AviasalesProviderError
+        ? error
+        : new AviasalesProviderError("network_error");
+      handlers.logProviderError?.(group, providerError);
+      await handlers.persistProviderError(group, providerError);
+      counts.providerErrorCount += 1;
+      return;
+    }
+    await handlers.persistSuccess(group, price);
+    if (price) counts.priceFoundCount += 1;
+    else counts.noDataCount += 1;
+  }
+  async function worker() {
+    while (nextIndex < groups.length) {
+      const group = groups[nextIndex++];
+      await processGroup(group);
+    }
+  }
+  const workerCount = Math.min(Math.max(1, Math.floor(concurrency)), 3, groups.length);
+  await Promise.all(Array.from({ length: workerCount }, () => worker()));
+  return counts;
 }
 
 function baseState(group: GroupedProviderQuery) {
@@ -201,74 +292,62 @@ export const collectFlightPriceSnapshots = onSchedule(
     const db = getFirestore();
     const alertSnapshot = await db.collectionGroup("alerts").get();
     const documents = alertSnapshot.docs.map((document) => ({ path: document.ref.path, data: document.data() as unknown }));
-    const groups = groupActiveFlightPriceAlerts(documents, snapshotDate);
-    const validActiveAlerts = groups.reduce((sum, group) => sum + group.activeAlertCount, 0);
-    const counts = { price_found: 0, no_data: 0, provider_error: 0 };
-    let nextIndex = 0;
-
-    async function processGroup(group: GroupedProviderQuery) {
+    const classification = classifyFlightPriceAlerts(documents, snapshotDate);
+    const groups = classification.groups;
+    async function persistSuccess(group: GroupedProviderQuery, price: AviasalesCachedPrice | null) {
       const stateRef = db.collection("flightPriceQueries").doc(group.providerQueryKey);
-      try {
-        const price = await fetchAviasalesCachedPrice(group.query, token);
-        const incoming = price
-          ? { ...snapshotBase(group, snapshotDate), status: "price_found", price: price.price, transfers: price.transfers,
-            ...(price.airline ? { airline: price.airline } : {}), ...(price.flightNumber ? { flightNumber: price.flightNumber } : {}),
-            ...(price.sourceFoundAt ? { sourceFoundAt: price.sourceFoundAt } : {}) }
-          : { ...snapshotBase(group, snapshotDate), status: "no_data" };
-        await db.runTransaction(async (transaction) => {
-          const snapshotRef = stateRef.collection("dailySnapshots").doc(snapshotDate);
-          const existing = await transaction.get(snapshotRef);
-          const chosen = chooseDailyFlightPriceSnapshot(existing.data(), incoming) as Snapshot;
-          transaction.set(snapshotRef, chosen);
-          const state: Record<string, unknown> = {
-            ...baseState(group),
-            lastRunStatus: price ? "price_found" : "no_data",
-            lastAttemptAt: FieldValue.serverTimestamp(),
-            lastSuccessfulRequestAt: FieldValue.serverTimestamp(),
-            lastErrorCode: FieldValue.delete(),
-            updatedAt: FieldValue.serverTimestamp(),
-          };
-          if (chosen.status === "price_found") {
-            state.latestPrice = chosen.price;
-            state.latestPriceSnapshotDate = snapshotDate;
-            state.latestTransfers = chosen.transfers;
-          }
-          transaction.set(stateRef, state, { merge: true });
-        });
-        counts[price ? "price_found" : "no_data"] += 1;
-      } catch (error) {
-        const safeError = error instanceof AviasalesProviderError ? error : new AviasalesProviderError("network_error");
-        counts.provider_error += 1;
-        logger.error("Flight price provider request failed", {
-          providerQueryKey: group.providerQueryKey,
-          errorCode: safeError.code,
-          ...(safeError.status !== undefined ? { httpStatus: safeError.status } : {}),
-        });
-        await stateRef.set({
+      const incoming = price
+        ? { ...snapshotBase(group, snapshotDate), status: "price_found", price: price.price, transfers: price.transfers,
+          ...(price.airline ? { airline: price.airline } : {}), ...(price.flightNumber ? { flightNumber: price.flightNumber } : {}),
+          ...(price.sourceFoundAt ? { sourceFoundAt: price.sourceFoundAt } : {}) }
+        : { ...snapshotBase(group, snapshotDate), status: "no_data" };
+      await db.runTransaction(async (transaction) => {
+        const snapshotRef = stateRef.collection("dailySnapshots").doc(snapshotDate);
+        const existing = await transaction.get(snapshotRef);
+        const chosen = chooseDailyFlightPriceSnapshot(existing.data(), incoming) as Snapshot;
+        transaction.set(snapshotRef, chosen);
+        const state: Record<string, unknown> = {
+          ...baseState(group),
+          lastRunStatus: price ? "price_found" : "no_data",
+          lastAttemptAt: FieldValue.serverTimestamp(),
+          lastSuccessfulRequestAt: FieldValue.serverTimestamp(),
+          lastErrorCode: FieldValue.delete(),
+          updatedAt: FieldValue.serverTimestamp(),
+        };
+        if (chosen.status === "price_found") {
+          state.latestPrice = chosen.price;
+          state.latestPriceSnapshotDate = snapshotDate;
+          state.latestTransfers = chosen.transfers;
+        }
+        transaction.set(stateRef, state, { merge: true });
+      });
+    }
+    const counts = await processFlightPriceQueryGroups(groups, {
+      fetchPrice: (group) => fetchAviasalesCachedPrice(group.query, token),
+      persistSuccess,
+      persistProviderError: async (group, error) => {
+        await db.collection("flightPriceQueries").doc(group.providerQueryKey).set({
           ...baseState(group),
           lastRunStatus: "provider_error",
           lastAttemptAt: FieldValue.serverTimestamp(),
-          lastErrorCode: safeError.code,
+          lastErrorCode: error.code,
           updatedAt: FieldValue.serverTimestamp(),
         }, { merge: true });
-      }
-    }
-
-    async function worker() {
-      while (nextIndex < groups.length) {
-        const group = groups[nextIndex++];
-        await processGroup(group);
-      }
-    }
-    await Promise.all(Array.from({ length: Math.min(3, groups.length) }, () => worker()));
+      },
+      logProviderError: (group, error) => logger.error("Flight price provider request failed", {
+        providerQueryKey: group.providerQueryKey,
+        errorCode: error.code,
+        ...(error.status !== undefined ? { httpStatus: error.status } : {}),
+      }),
+    });
     logger.info("Flight price collection completed", {
-      totalAlertDocumentsRead: documents.length,
-      validActiveAlertsCounted: validActiveAlerts,
+      totalAlertDocumentsRead: classification.flightAlertDocumentCount,
+      validActiveAlertsCounted: classification.validActiveAlertCount,
       uniqueProviderQueryCount: groups.length,
-      priceFoundCount: counts.price_found,
-      noDataCount: counts.no_data,
-      providerErrorCount: counts.provider_error,
-      invalidAlertCount: documents.length - validActiveAlerts,
+      priceFoundCount: counts.priceFoundCount,
+      noDataCount: counts.noDataCount,
+      providerErrorCount: counts.providerErrorCount,
+      invalidAlertCount: classification.invalidAlertCount,
       elapsedMilliseconds: Date.now() - startedAt,
       snapshotDate,
     });
