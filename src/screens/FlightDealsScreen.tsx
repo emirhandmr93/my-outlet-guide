@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import {
   FlatList,
   KeyboardAvoidingView,
@@ -13,6 +14,8 @@ import {
   useWindowDimensions,
   View,
   Alert,
+  Pressable,
+  Switch,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -31,7 +34,17 @@ import {
   formatCityDisplayName,
   formatCountryDisplayName,
 } from "../utils/locationDisplay";
-import { FLIGHT_DEAL_THRESHOLDS, FlightDealThreshold, saveFlightDealAlert } from "../services/flightDealAlertService";
+import {
+  deleteFlightDealAlert,
+  FLIGHT_DEAL_THRESHOLDS,
+  FlightDealAlertPreference,
+  FlightDealThreshold,
+  FlightDealTripClass,
+  FlightDealTripType,
+  listFlightDealAlerts,
+  saveFlightDealAlert,
+  setFlightDealAlertActive,
+} from "../services/flightDealAlertService";
 import { FLIGHT_DEALS_PROVIDER_ENABLED } from "../constants/flightDealsAvailability";
 import { submitFlightDealAlert } from "../services/flightDealAlertSubmission";
 import {
@@ -41,6 +54,7 @@ import {
 } from "../utils/safeAreaLayout";
 
 type PickerMode = "origin" | "destination" | null;
+type DateTarget = "depart" | "return" | null;
 type FlightDealSelectorFilter = "popular" | FlightDealAirportRegion;
 const MAX_SELECTOR_RESULTS = 50;
 const SELECTOR_FILTERS: FlightDealSelectorFilter[] = [
@@ -74,6 +88,44 @@ export function FlightDealsScreen() {
     useState<FlightDealSelectorFilter>("popular");
   const [saveFeedback, setSaveFeedback] = useState<string | null>(null);
   const [isSavingAlert, setIsSavingAlert] = useState(false);
+  const [tripType, setTripType] = useState<FlightDealTripType>("round_trip");
+  const [departDate, setDepartDate] = useState("");
+  const [returnDate, setReturnDate] = useState("");
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [infants, setInfants] = useState(0);
+  const [tripClass, setTripClass] = useState<FlightDealTripClass>("economy");
+  const [directOnly, setDirectOnly] = useState(false);
+  const [dateTarget, setDateTarget] = useState<DateTarget>(null);
+  const [draftDate, setDraftDate] = useState(new Date());
+  const [savedAlerts, setSavedAlerts] = useState<FlightDealAlertPreference[]>([]);
+  const [alertsLoading, setAlertsLoading] = useState(false);
+  const [alertsLoadFailed, setAlertsLoadFailed] = useState(false);
+  const [editingAlertId, setEditingAlertId] = useState<string>();
+  const [busyAlertId, setBusyAlertId] = useState<string>();
+  const scrollRef = useRef<ScrollView>(null);
+
+  const loadAlerts = useCallback(async () => {
+    if (!currentUser?.uid) { setSavedAlerts([]); return; }
+    setAlertsLoading(true); setAlertsLoadFailed(false);
+    try { setSavedAlerts(await listFlightDealAlerts(currentUser.uid)); }
+    catch { setAlertsLoadFailed(true); }
+    finally { setAlertsLoading(false); }
+  }, [currentUser?.uid]);
+  useEffect(() => { void loadAlerts(); }, [loadAlerts]);
+
+  const pad = (value: number) => String(value).padStart(2, "0");
+  const toLocalDateString = (date: Date) => `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+  const parseLocalDate = (value: string) => { const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value); if (!match) return null; const date = new Date(+match[1], +match[2] - 1, +match[3]); return date.getFullYear() === +match[1] && date.getMonth() === +match[2] - 1 && date.getDate() === +match[3] ? date : null; };
+  const todayString = () => toLocalDateString(new Date());
+  function selectTripType(value: FlightDealTripType) { setTripType(value); if (value === "one_way") setReturnDate(""); }
+  function updateDate(target: Exclude<DateTarget, null>, value: string) { if (target === "depart") { setDepartDate(value); if (returnDate && returnDate < value) setReturnDate(""); } else setReturnDate(value); }
+  function openDate(target: Exclude<DateTarget, null>) { setDraftDate(parseLocalDate(target === "depart" ? departDate : returnDate) ?? parseLocalDate(departDate) ?? new Date()); setDateTarget(target); }
+  function adjustPassenger(kind: "adults" | "children" | "infants", delta: number) { if (kind === "adults") { const value = adults + delta; if (value >= 1 && value <= 9 && value + children <= 9 && infants <= value) setAdults(value); } else if (kind === "children") { const value = children + delta; if (value >= 0 && value <= 8 && adults + value <= 9) setChildren(value); } else { const value = infants + delta; if (value >= 0 && value <= 9 && value <= adults) setInfants(value); } }
+  function resetForm() { setSelectedOrigin(null); setSelectedDestination(null); setTripType("round_trip"); setDepartDate(""); setReturnDate(""); setAdults(1); setChildren(0); setInfants(0); setTripClass("economy"); setDirectOnly(false); setSelectedThresholds([15]); setEditingAlertId(undefined); }
+  function editAlert(alert: FlightDealAlertPreference) { setSelectedOrigin(supportedFlightDealAirports.find(item => item.airportCode === alert.originAirportCode) ?? null); setSelectedDestination(supportedFlightDealAirports.find(item => item.airportCode === alert.destinationAirportCode) ?? null); setTripType(alert.tripType); setDepartDate(alert.departDate); setReturnDate(alert.returnDate ?? ""); setAdults(alert.adults); setChildren(alert.children); setInfants(alert.infants); setTripClass(alert.tripClass); setDirectOnly(alert.directOnly); setSelectedThresholds(alert.selectedThresholds); setEditingAlertId(alert.alertId); scrollRef.current?.scrollTo({ y: 190, animated: true }); }
+  async function toggleAlert(alert: FlightDealAlertPreference) { if (!currentUser || busyAlertId) return; setBusyAlertId(alert.alertId); try { await setFlightDealAlertActive(currentUser.uid, alert.alertId, !alert.active); await loadAlerts(); } catch { Alert.alert(t("flightDeals.toggleFailedTitle"), t("flightDeals.toggleFailedBody")); } finally { setBusyAlertId(undefined); } }
+  function confirmDelete(alert: FlightDealAlertPreference) { Alert.alert(t("flightDeals.deleteConfirmTitle"), t("flightDeals.deleteConfirmBody"), [{ text: t("flightDeals.cancel"), style: "cancel" }, { text: t("flightDeals.deleteAlert"), style: "destructive", onPress: async () => { if (!currentUser || busyAlertId) return; setBusyAlertId(alert.alertId); try { await deleteFlightDealAlert(currentUser.uid, alert.alertId); if (editingAlertId === alert.alertId) resetForm(); await loadAlerts(); } catch { Alert.alert(t("flightDeals.deleteFailedTitle"), t("flightDeals.deleteFailedBody")); } finally { setBusyAlertId(undefined); } } }]); }
 
   const flightRows = trips.flatMap((trip) =>
     [
@@ -104,32 +156,14 @@ export function FlightDealsScreen() {
   }
 
   async function handleSaveAlert() {
-    setIsSavingAlert(true);
-    setSaveFeedback(null);
-    const result = await submitFlightDealAlert({
-      providerEnabled: FLIGHT_DEALS_PROVIDER_ENABLED,
-      userId: currentUser?.uid,
-      origin: selectedOrigin,
-      destination: selectedDestination,
-      thresholds: selectedThresholds,
-      save: saveFlightDealAlert,
-    });
+    if (isSavingAlert) return;
+    setIsSavingAlert(true); setSaveFeedback(null);
+    const result = await submitFlightDealAlert({ providerEnabled: FLIGHT_DEALS_PROVIDER_ENABLED, userId: currentUser?.uid, origin: selectedOrigin, destination: selectedDestination, thresholds: selectedThresholds, tripType, departDate, ...(tripType === "round_trip" && returnDate ? { returnDate } : {}), adults, children, infants, tripClass, directOnly, previousAlertId: editingAlertId, active: editingAlertId ? savedAlerts.find(item => item.alertId === editingAlertId)?.active : true, save: saveFlightDealAlert });
     setIsSavingAlert(false);
-
-    if (result.status === "saved") {
-      const message = t("flightDeals.saveSuccess");
-      setSaveFeedback(message);
-      Alert.alert(t("flightDeals.saveSuccessTitle"), message);
-      return;
-    }
-    if (result.status === "sign_in_required") {
-      setSaveFeedback(t("flightDeals.signInRequired"));
-      navigation.navigate("Login");
-      return;
-    }
-    const message = t(`flightDeals.${result.status}`);
-    setSaveFeedback(message);
-    Alert.alert(t("flightDeals.saveErrorTitle"), message);
+    if (result.status === "saved" || result.status === "saved_pending_provider") { const pending = result.status === "saved_pending_provider"; const title = editingAlertId ? t("flightDeals.updatedTitle") : pending ? t("flightDeals.savedPendingTitle") : t("flightDeals.saveSuccessTitle"); const message = editingAlertId ? t("flightDeals.updatedBody") : pending ? t("flightDeals.savedPendingBody") : t("flightDeals.saveSuccess"); setSaveFeedback(message); Alert.alert(title, message); resetForm(); await loadAlerts(); return; }
+    if (result.status === "sign_in_required") { setSaveFeedback(t("flightDeals.signInRequired")); navigation.navigate("Login"); return; }
+    const key: Record<string, string> = { same_airport_error: "sameAirportError", depart_date_required: "departDateRequired", return_date_required: "returnDateRequired", past_date_error: "pastDateError", return_before_departure: "returnBeforeDeparture", passenger_error: "passengerError" };
+    const message = t(`flightDeals.${key[result.status] ?? result.status}`); setSaveFeedback(message); Alert.alert(t("flightDeals.saveErrorTitle"), message);
   }
 
   const localizedOriginLabel = (item: SupportedFlightDealAirport) =>
@@ -209,6 +243,7 @@ export function FlightDealsScreen() {
   return (
     <>
       <ScrollView
+        ref={scrollRef}
         style={styles.container}
         contentContainerStyle={[
           styles.content,
@@ -264,11 +299,20 @@ export function FlightDealsScreen() {
               </Text>
             ) : null}
           </TouchableOpacity>
+          <Text style={styles.label}>{t("flightSearch.tripType")}</Text>
+          <View style={[styles.segment, isNativeRTL && styles.rowReverse]}>{(["round_trip", "one_way"] as FlightDealTripType[]).map(value => <Segment key={value} selected={tripType === value} label={t(`flightSearch.${value === "round_trip" ? "roundTrip" : "oneWay"}`)} onPress={() => selectTripType(value)} />)}</View>
+          <View style={[styles.dateRow, isNativeRTL && styles.rowReverse]}><DateControl label={t("flightSearch.departDate")} value={departDate} onChange={value => updateDate("depart", value)} onPress={() => openDate("depart")} />{tripType === "round_trip" ? <DateControl label={t("flightSearch.returnDate")} value={returnDate} onChange={value => updateDate("return", value)} onPress={() => openDate("return")} /> : null}</View>
+          <Text style={styles.label}>{t("flightSearch.passengers")}</Text>
+          {([ ["adults", adults], ["children", children], ["infants", infants] ] as const).map(([kind, value]) => <View key={kind} style={[styles.counterRow, isNativeRTL && styles.rowReverse]}><Text style={styles.counterLabel}>{t(`flightSearch.${kind}`)}</Text><View style={styles.counter}><CounterButton label={`− ${t(`flightSearch.${kind}`)}`} symbol="−" onPress={() => adjustPassenger(kind, -1)} /><Text style={styles.count}>{value}</Text><CounterButton label={`+ ${t(`flightSearch.${kind}`)}`} symbol="+" onPress={() => adjustPassenger(kind, 1)} /></View></View>)}
+          <Text style={styles.label}>{t("flightSearch.cabinClass")}</Text><View style={[styles.segment, isNativeRTL && styles.rowReverse]}>{(["economy", "business"] as FlightDealTripClass[]).map(value => <Segment key={value} selected={tripClass === value} label={t(`flightSearch.${value}`)} onPress={() => setTripClass(value)} />)}</View>
+          <View style={[styles.switchRow, isNativeRTL && styles.rowReverse]}><View style={styles.switchCopy}><Text style={styles.label}>{t("flightDeals.directOnly")}</Text><Text style={styles.selectorMeta}>{t("flightDeals.directOnlyHint")}</Text></View><Switch accessibilityLabel={t("flightDeals.directOnly")} value={directOnly} onValueChange={setDirectOnly} /></View>
           <Text style={styles.label}>{t("flightDeals.threshold")}</Text>
           <View style={styles.thresholdRow}>
             {FLIGHT_DEAL_THRESHOLDS.map((threshold) => (
               <TouchableOpacity
                 key={threshold}
+                accessibilityRole="button"
+                accessibilityState={{ selected: selectedThresholds.includes(threshold) }}
                 style={[
                   styles.thresholdButton,
                   selectedThresholds.includes(threshold) &&
@@ -289,21 +333,24 @@ export function FlightDealsScreen() {
             ))}
           </View>
           <TouchableOpacity
-            style={[styles.primaryButton, (!FLIGHT_DEALS_PROVIDER_ENABLED || isSavingAlert) && styles.disabledButton]}
-            disabled={!FLIGHT_DEALS_PROVIDER_ENABLED || isSavingAlert}
+            accessibilityRole="button"
+            accessibilityState={{ disabled: isSavingAlert }}
+            style={[styles.primaryButton, isSavingAlert && styles.disabledButton]}
+            disabled={isSavingAlert}
             onPress={handleSaveAlert}
           >
             <Text style={styles.primaryButtonText}>
-              {FLIGHT_DEALS_PROVIDER_ENABLED ? (isSavingAlert ? t("flightDeals.saving") : t("flightDeals.saveAlert")) : t("flightDeals.providerPendingBadge")}
+              {isSavingAlert ? t("flightDeals.saving") : editingAlertId ? t("flightDeals.updateAlert") : t("flightDeals.saveAlert")}
             </Text>
           </TouchableOpacity>
+          {editingAlertId ? <TouchableOpacity accessibilityRole="button" onPress={resetForm}><Text style={styles.cancelEditing}>{t("flightDeals.cancelEditing")}</Text></TouchableOpacity> : null}
           {saveFeedback ? <Text style={styles.providerText}>{saveFeedback}</Text> : null}
         </View>
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>
             {t("flightDeals.savedAlerts")}
           </Text>
-          <View style={styles.emptyCard}><Text style={styles.emptyTitle}>{t("flightDeals.noDealsYet")}</Text><Text style={styles.reminderMeta}>{t("flightDeals.noFakeDeals")}</Text></View>
+          {alertsLoading ? <Text style={styles.providerText}>{t("flightDeals.savedAlertsLoading")}</Text> : alertsLoadFailed ? <Text style={styles.errorText}>{t("flightDeals.savedAlertsLoadFailed")}</Text> : savedAlerts.length === 0 ? <View style={styles.emptyCard}><Text style={styles.emptyTitle}>{t("flightDeals.savedAlertsEmpty")}</Text></View> : savedAlerts.map(alert => <View key={alert.alertId} style={styles.savedCard}><Text style={styles.savedRoute}>{alert.originAirportCode} → {alert.destinationAirportCode}</Text><Text style={styles.savedMeta}>{t(`flightSearch.${alert.tripType === "round_trip" ? "roundTrip" : "oneWay"}`)} · {alert.departDate}{alert.returnDate ? ` → ${alert.returnDate}` : ""}</Text><Text style={styles.savedMeta}>{t("flightDeals.passengerSummary")}: {alert.adults} {t("flightSearch.adults")}, {alert.children} {t("flightSearch.children")}, {alert.infants} {t("flightSearch.infants")}</Text><Text style={styles.savedMeta}>{t(`flightSearch.${alert.tripClass}`)} · {t(alert.directOnly ? "flightDeals.directFlights" : "flightDeals.anyFlights")} · {alert.selectedThresholds.map(value => `${value}%`).join(" · ")}</Text><Text style={styles.pendingBadge}>{t(alert.active ? "flightDeals.activeStatus" : "flightDeals.pausedStatus")} · {t("flightDeals.pendingMonitoringStatus")}</Text><View style={styles.actionRow}><ActionButton label={t("flightDeals.editAlert")} disabled={Boolean(busyAlertId)} onPress={() => editAlert(alert)} /><ActionButton label={t(alert.active ? "flightDeals.pauseAlert" : "flightDeals.activateAlert")} disabled={Boolean(busyAlertId)} onPress={() => void toggleAlert(alert)} /><ActionButton label={t("flightDeals.deleteAlert")} destructive disabled={Boolean(busyAlertId)} onPress={() => confirmDelete(alert)} /></View></View>)}
         </View>
         <View style={styles.card}>
           <Text style={styles.sectionTitle}>
@@ -487,9 +534,15 @@ export function FlightDealsScreen() {
         </View>
               </NativeDirectionRoot>
       </Modal>
+      <Modal visible={dateTarget !== null} transparent animationType="fade" onRequestClose={() => setDateTarget(null)}><NativeDirectionRoot><View style={styles.modalOverlay}><View style={styles.dateModal}><Text style={styles.sectionTitle}>{dateTarget === "depart" ? t("flightSearch.departDate") : t("flightSearch.returnDate")}</Text><DateTimePicker value={draftDate} mode="date" display={Platform.OS === "ios" ? "spinner" : "calendar"} minimumDate={parseLocalDate(dateTarget === "return" ? departDate : todayString()) ?? new Date()} onChange={(_, value) => value && setDraftDate(value)} /><View style={styles.modalActions}><TouchableOpacity accessibilityRole="button" onPress={() => setDateTarget(null)}><Text style={styles.deleteText}>{t("flightSearch.close")}</Text></TouchableOpacity><TouchableOpacity accessibilityRole="button" style={styles.confirmButton} onPress={() => { if (dateTarget) updateDate(dateTarget, toLocalDateString(draftDate)); setDateTarget(null); }}><Text style={styles.primaryButtonText}>{t("flightSearch.selectDate")}</Text></TouchableOpacity></View></View></View></NativeDirectionRoot></Modal>
     </>
   );
 }
+
+function Segment({ selected, label, onPress }: { selected: boolean; label: string; onPress: () => void }) { return <Pressable accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ selected }} onPress={onPress} style={[styles.segmentButton, selected && styles.segmentActive]}><Text style={[styles.segmentText, selected && styles.segmentTextActive]}>{label}</Text></Pressable>; }
+function CounterButton({ label, symbol, onPress }: { label: string; symbol: string; onPress: () => void }) { return <Pressable accessibilityRole="button" accessibilityLabel={label} onPress={onPress} style={styles.counterButton}><Text style={styles.counterSymbol}>{symbol}</Text></Pressable>; }
+function DateControl({ label, value, onChange, onPress }: { label: string; value: string; onChange: (value: string) => void; onPress: () => void }) { return <View style={styles.dateControl}><Text style={styles.label}>{label}</Text>{Platform.OS === "web" ? <TextInput accessibilityLabel={label} value={value} onChangeText={onChange} placeholder="YYYY-MM-DD" maxLength={10} style={styles.input} /> : <TouchableOpacity accessibilityRole="button" accessibilityLabel={label} style={styles.selectorButton} onPress={onPress}><Text style={styles.selectorTitle}>{value || "YYYY-MM-DD"}</Text></TouchableOpacity>}</View>; }
+function ActionButton({ label, onPress, disabled, destructive = false }: { label: string; onPress: () => void; disabled: boolean; destructive?: boolean }) { return <TouchableOpacity accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled }} disabled={disabled} onPress={onPress} style={[styles.actionButton, disabled && styles.disabledButton]}><Text style={destructive ? styles.deleteText : styles.actionText}>{label}</Text></TouchableOpacity>; }
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F8FA" },
@@ -703,4 +756,5 @@ const styles = StyleSheet.create({
     paddingTop: 12,
   },
   proseInputRTL: { textAlign: "right", writingDirection: "rtl" },
+  segment: { flexDirection: "row", padding: 4, borderRadius: 14, backgroundColor: "#F1F5F9", gap: 4, marginBottom: 14 }, rowReverse: { flexDirection: "row-reverse" }, segmentButton: { flex: 1, paddingVertical: 11, alignItems: "center", borderRadius: 11 }, segmentActive: { backgroundColor: "#0B1F3A" }, segmentText: { color: "#475569", fontWeight: "800" }, segmentTextActive: { color: "#FFFFFF" }, dateRow: { flexDirection: "row", gap: 12 }, dateControl: { flex: 1 }, counterRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", paddingVertical: 5 }, counterLabel: { color: "#0B1F3A", fontWeight: "700" }, counter: { flexDirection: "row", alignItems: "center", gap: 14 }, counterButton: { width: 36, height: 36, borderRadius: 18, alignItems: "center", justifyContent: "center", backgroundColor: "#FEF3C7", borderWidth: 1, borderColor: "#C9A227" }, counterSymbol: { color: "#0B1F3A", fontSize: 21, fontWeight: "900" }, count: { minWidth: 20, textAlign: "center", color: "#0B1F3A", fontWeight: "900" }, switchCopy: { flex: 1, paddingEnd: 12 }, cancelEditing: { color: "#0B1F3A", textAlign: "center", fontWeight: "900", padding: 12 }, savedCard: { backgroundColor: "#F8FAFC", borderRadius: 18, padding: 15, borderWidth: 1, borderColor: "#E5E7EB", marginBottom: 10 }, savedRoute: { color: "#0B1F3A", fontSize: 18, fontWeight: "900" }, savedMeta: { color: "#475569", fontSize: 13, fontWeight: "700", marginTop: 5, lineHeight: 19 }, actionRow: { flexDirection: "row", flexWrap: "wrap", gap: 8, marginTop: 12 }, actionButton: { borderWidth: 1, borderColor: "#CBD5E1", borderRadius: 12, paddingHorizontal: 12, paddingVertical: 9 }, actionText: { color: "#0B1F3A", fontWeight: "900" }, errorText: { color: "#B91C1C", fontWeight: "800" }, dateModal: { backgroundColor: "#FFFFFF", margin: 18, marginTop: "auto", marginBottom: "auto", borderRadius: 22, padding: 18 }, confirmButton: { backgroundColor: "#C9A227", borderRadius: 12, paddingHorizontal: 18, paddingVertical: 11 },
 });
