@@ -68,7 +68,7 @@ export const deleteAccount = onCall({ region: "us-central1" }, async (request) =
   const uid = request.auth.uid;
   requireRecentAuth(request.auth.token.auth_time);
 
-  const writes: QueuedWrite[] = [];
+  const sourceAlertWrites: QueuedWrite[] = [];
   let deletedTripItems = 0;
   let deletedNotificationTokens = 0;
   let anonymizedReviews = 0;
@@ -77,10 +77,14 @@ export const deleteAccount = onCall({ region: "us-central1" }, async (request) =
   let deletedUserFlightPriceDeals = 0;
   let deletedFlightPricePushDeliveries = 0;
   let deletedFlightPriceEvents = 0;
+  let committedBatches = 0;
 
+  deletedFlightDealAlerts += await queueCollectionDeletes(db.collection("flightDealPreferences").doc(uid).collection("alerts"), sourceAlertWrites);
+  queueDocumentDelete(db.collection("flightDealPreferences").doc(uid), sourceAlertWrites);
+  committedBatches += await commitQueuedWrites(sourceAlertWrites);
+
+  const writes: QueuedWrite[] = [];
   queueDocumentDelete(db.collection("favorites").doc(uid), writes);
-  deletedFlightDealAlerts += await queueCollectionDeletes(db.collection("flightDealPreferences").doc(uid).collection("alerts"), writes);
-  queueDocumentDelete(db.collection("flightDealPreferences").doc(uid), writes);
 
   deletedFlightPriceEvaluations += await queueCollectionDeletes(db.collection("flightPriceAlertEvaluations").doc(uid).collection("items"), writes);
   queueDocumentDelete(db.collection("flightPriceAlertEvaluations").doc(uid), writes);
@@ -112,7 +116,7 @@ export const deleteAccount = onCall({ region: "us-central1" }, async (request) =
     }
   });
 
-  const committedBatches = await commitQueuedWrites(writes);
+  committedBatches += await commitQueuedWrites(writes);
   await getAuth().deleteUser(uid);
 
   return {

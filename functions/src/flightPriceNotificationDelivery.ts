@@ -96,6 +96,15 @@ export function isFlightPriceEventThresholdAuthorized(
   return sourceSelectedThresholds.includes(event.matchedThreshold);
 }
 
+export function isFlightPriceEventSourceCurrent(
+  event: ValidFlightPriceAlertEvent, sourcePath: string, sourceData: unknown, evaluationDate: string,
+): boolean {
+  const classified = classifyFlightPriceAlertDocument(sourcePath, sourceData, evaluationDate);
+  return classified.kind === "active" && classified.alert.userId === event.userId && classified.alert.alertId === event.alertId &&
+    classified.alert.queryKey === event.queryKey && buildProviderFlightPriceQueryKey(classified.query) === event.providerQueryKey &&
+    isFlightPriceEventThresholdAuthorized(event, classified.alert.selectedThresholds);
+}
+
 export function chooseFlightPriceEventSubmissionStatus(deliveries: unknown[]): "pending_delivery" | "submitted_to_expo" | "delivery_failed" {
   const statuses = deliveries.map(value => object(value) ? value.status : undefined);
   if (statuses.some(status => status === "reserved" || status === "retry_pending")) return "pending_delivery";
@@ -127,6 +136,15 @@ const safeExpoCode = (value: unknown, fallback: string) => typeof value === "str
 const requestCode = (error: unknown) => error instanceof ExpoPushRequestError ? error.code : "network_error";
 const todayUtc = () => new Date().toISOString().slice(0, 10);
 const disabledTokenKey = (userId: string, tokenId: string) => JSON.stringify([userId, tokenId]);
+
+async function updateExisting(ref: FirebaseFirestore.DocumentReference, data: FirebaseFirestore.UpdateData<FirebaseFirestore.DocumentData>): Promise<boolean> {
+  return ref.firestore.runTransaction(async transaction => {
+    const snapshot = await transaction.get(ref);
+    if (!snapshot.exists) return false;
+    transaction.update(ref, data);
+    return true;
+  });
+}
 
 export class FlightPriceDisabledTokenRegistry {
   private readonly keys = new Set<string>();
@@ -178,9 +196,9 @@ async function updateReceiptAggregates(eventIds: Set<string>) {
     const snapshot = await eventRef.collection("pushDeliveries").get();
     const data = snapshot.docs.map(doc => doc.data());
     const count = (status: string) => data.filter(item => item.status === status).length;
-    await eventRef.set({ receiptStatus: chooseFlightPriceEventReceiptStatus(data), receiptOkCount: count("receipt_ok"),
+    await updateExisting(eventRef, { receiptStatus: chooseFlightPriceEventReceiptStatus(data), receiptOkCount: count("receipt_ok"),
       receiptErrorCount: count("receipt_error"), receiptUnavailableCount: count("receipt_unavailable"),
-      receiptPendingCount: count("ticket_accepted"), receiptCheckedAt: FieldValue.serverTimestamp(), updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+      receiptPendingCount: count("ticket_accepted"), receiptCheckedAt: FieldValue.serverTimestamp(), updatedAt: FieldValue.serverTimestamp() });
   }
 }
 
@@ -202,20 +220,20 @@ async function processReceipts(summary: Summary, disabledTokens: FlightPriceDisa
     affected.add(delivery.eventId);
     if (receipt?.status === "ok") {
       summary.receiptOkCount += 1;
-      await doc.ref.set({ status: "receipt_ok", receiptCheckedAt: now, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+      await updateExisting(doc.ref, { status: "receipt_ok", receiptCheckedAt: now, updatedAt: FieldValue.serverTimestamp() });
     } else if (receipt?.status === "error") {
       summary.receiptErrorCount += 1;
-      await doc.ref.set({ status: "receipt_error", receiptErrorCode: safeExpoCode(receipt.details?.error, "expo_receipt_error"),
-        receiptCheckedAt: now, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+      await updateExisting(doc.ref, { status: "receipt_error", receiptErrorCode: safeExpoCode(receipt.details?.error, "expo_receipt_error"),
+        receiptCheckedAt: now, updatedAt: FieldValue.serverTimestamp() });
       if (receipt.details?.error === "DeviceNotRegistered") {
         await disableFlightPriceToken(delivery.userId, { tokenId: delivery.tokenId, token: "",
           ref: db.collection("userNotificationSettings").doc(delivery.userId).collection("tokens").doc(delivery.tokenId) }, disabledTokens);
       }
     } else if (delivery.submittedAt && now.toMillis() - delivery.submittedAt.toMillis() >= 86_400_000) {
       summary.receiptUnavailableCount += 1;
-      await doc.ref.set({ status: "receipt_unavailable", receiptCheckedAt: now, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+      await updateExisting(doc.ref, { status: "receipt_unavailable", receiptCheckedAt: now, updatedAt: FieldValue.serverTimestamp() });
     } else {
-      await doc.ref.set({ lastReceiptCheckAt: now, receiptCheckCount: FieldValue.increment(1), updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+      await updateExisting(doc.ref, { lastReceiptCheckAt: now, receiptCheckCount: FieldValue.increment(1), updatedAt: FieldValue.serverTimestamp() });
     }
   }
   await updateReceiptAggregates(affected);
@@ -223,13 +241,19 @@ async function processReceipts(summary: Summary, disabledTokens: FlightPriceDisa
 
 async function reserve(event: ValidFlightPriceAlertEvent, token: Token): Promise<{ ref: FirebaseFirestore.DocumentReference; token: Token } | null> {
   const db = getFirestore(); const id = buildFlightPricePushDeliveryId(event.eventId, token.tokenId);
-  const ref = db.collection("flightPriceAlertEvents").doc(event.eventId).collection("pushDeliveries").doc(id);
+  const eventRef = db.collection("flightPriceAlertEvents").doc(event.eventId);
+  const ref = eventRef.collection("pushDeliveries").doc(id);
+  const sourceRef = db.collection("flightDealPreferences").doc(event.userId).collection("alerts").doc(event.alertId);
   return db.runTransaction(async transaction => {
-    const snapshot = await transaction.get(ref); const now = Timestamp.now();
+    const [sourceSnapshot, eventSnapshot, snapshot] = await Promise.all([
+      transaction.get(sourceRef), transaction.get(eventRef), transaction.get(ref),
+    ]); const now = Timestamp.now();
+    if (!sourceSnapshot.exists || !eventSnapshot.exists || validateFlightPriceAlertEvent(eventSnapshot.id, eventSnapshot.data()) === null ||
+      !isFlightPriceEventSourceCurrent(event, sourceRef.path, sourceSnapshot.data(), todayUtc())) return null;
     const decision = snapshot.exists ? decideFlightPriceDeliveryReservation(snapshot.data(), now.toMillis()) : "create";
     if (decision === "terminal" || decision === "wait") return null;
     if (decision === "exhausted") {
-      transaction.set(ref, { status: "ticket_error", ticketErrorCode: "retry_exhausted", updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+      transaction.update(ref, { status: "ticket_error", ticketErrorCode: "retry_exhausted", updatedAt: FieldValue.serverTimestamp() });
       return null;
     }
     const attemptCount = decision === "create" ? 1 : ((snapshot.data()?.attemptCount as number) || 0) + 1;
@@ -237,7 +261,7 @@ async function reserve(event: ValidFlightPriceAlertEvent, token: Token): Promise
       tokenId: token.tokenId, status: "reserved", attemptCount, leaseExpiresAt: Timestamp.fromMillis(now.toMillis() + 600_000),
       ...(decision === "create" ? { createdAt: FieldValue.serverTimestamp() } : {}), updatedAt: FieldValue.serverTimestamp() };
     if (decision === "create") transaction.create(ref, reservation);
-    else transaction.set(ref, reservation, { merge: true });
+    else transaction.update(ref, reservation);
     return { ref, token };
   });
 }
@@ -251,7 +275,7 @@ async function aggregateSubmission(event: ValidFlightPriceAlertEvent, summary: S
   const update: Record<string, unknown> = { status, ticketAcceptedCount: accepted, ticketErrorCount: errors, updatedAt: FieldValue.serverTimestamp() };
   if (status === "submitted_to_expo") { update.receiptStatus = "pending"; update.submittedAt = FieldValue.serverTimestamp(); summary.eventsSubmittedToExpo += 1; }
   if (status === "delivery_failed") summary.eventsFailed += 1;
-  await eventRef.set(update, { merge: true });
+  await updateExisting(eventRef, update);
 }
 
 async function processEvent(event: ValidFlightPriceAlertEvent, tokensForUser: (userId: string) => Promise<Token[] | null>,
@@ -265,43 +289,56 @@ async function processEvent(event: ValidFlightPriceAlertEvent, tokensForUser: (u
     classified.alert.queryKey !== event.queryKey || currentProviderKey !== event.providerQueryKey ||
     !isFlightPriceEventThresholdAuthorized(event, classified.alert.selectedThresholds)) {
     summary.staleEventsCancelled += 1;
-    await eventRef.set({ status: "cancelled_stale_alert", updatedAt: FieldValue.serverTimestamp() }, { merge: true }); return;
+    await updateExisting(eventRef, { status: "cancelled_stale_alert", updatedAt: FieldValue.serverTimestamp() }); return;
   }
   const tokens = (await tokensForUser(event.userId))?.filter(token =>
     !disabledTokens.isUnavailable(event.userId, token.tokenId));
   if (!tokens || tokens.length === 0) {
     summary.eventsWithNoEligibleTokens += 1;
-    await eventRef.set({ status: "no_eligible_tokens", updatedAt: FieldValue.serverTimestamp() }, { merge: true }); return;
+    await updateExisting(eventRef, { status: "no_eligible_tokens", updatedAt: FieldValue.serverTimestamp() }); return;
   }
   const reservations = (await Promise.all(tokens.map(token => reserve(event, token)))).filter((value): value is NonNullable<typeof value> => value !== null);
   summary.deliveriesReserved += reservations.length;
+  let sourceBecameStale = false;
   for (let offset = 0; offset < reservations.length; offset += 100) {
     const chunk = reservations.slice(offset, offset + 100); const sentAt = Timestamp.now();
+    const [freshSource, freshEvent] = await Promise.all([alertRef.get(), eventRef.get()]);
+    const sourceCurrent = freshSource.exists && freshEvent.exists && validateFlightPriceAlertEvent(freshEvent.id, freshEvent.data()) !== null &&
+      isFlightPriceEventSourceCurrent(event, alertRef.path, freshSource.data(), todayUtc());
+    if (!sourceCurrent) {
+      await Promise.all(chunk.map(item => updateExisting(item.ref, { status: "ticket_error", ticketErrorCode: "stale_source_alert",
+        updatedAt: FieldValue.serverTimestamp() })));
+      await updateExisting(eventRef, { status: "cancelled_stale_alert", updatedAt: FieldValue.serverTimestamp() });
+      summary.staleEventsCancelled += 1;
+      sourceBecameStale = true;
+      break;
+    }
     let tickets: ExpoPushTicket[];
     try {
       tickets = await sendExpoPushNotifications(chunk.map(item => buildFlightPricePushMessage(event, item.token.token)));
     } catch (error) {
-      await Promise.all(chunk.map(item => item.ref.set({ status: "retry_pending", ticketErrorCode: requestCode(error),
-        nextAttemptAt: Timestamp.fromMillis(sentAt.toMillis() + 900_000), updatedAt: FieldValue.serverTimestamp() }, { merge: true })));
+      await Promise.all(chunk.map(item => updateExisting(item.ref, { status: "retry_pending", ticketErrorCode: requestCode(error),
+        nextAttemptAt: Timestamp.fromMillis(sentAt.toMillis() + 900_000), updatedAt: FieldValue.serverTimestamp() })));
       summary.retryPendingDeliveries += chunk.length;
       continue;
     }
     await Promise.all(tickets.map(async (ticket, index) => {
       const item = chunk[index];
       if (ticket.status === "ok") {
-        await item.ref.set({ status: "ticket_accepted", expoTicketId: ticket.id, submittedAt: sentAt,
-          receiptCheckAfter: Timestamp.fromMillis(sentAt.toMillis() + 900_000), updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+        await updateExisting(item.ref, { status: "ticket_accepted", expoTicketId: ticket.id, submittedAt: sentAt,
+          receiptCheckAfter: Timestamp.fromMillis(sentAt.toMillis() + 900_000), updatedAt: FieldValue.serverTimestamp() });
         summary.ticketsAccepted += 1;
         return;
       }
-      await item.ref.set({ status: "ticket_error", ticketErrorCode: safeExpoCode(ticket.details?.error, "expo_ticket_error"),
-        submittedAt: sentAt, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
+      await updateExisting(item.ref, { status: "ticket_error", ticketErrorCode: safeExpoCode(ticket.details?.error, "expo_ticket_error"),
+        submittedAt: sentAt, updatedAt: FieldValue.serverTimestamp() });
       summary.ticketErrors += 1;
       if (ticket.details?.error === "DeviceNotRegistered") {
         await disableFlightPriceToken(event.userId, item.token, disabledTokens);
       }
     }));
   }
+  if (sourceBecameStale) return;
   await aggregateSubmission(event, summary);
 }
 
