@@ -126,6 +126,39 @@ export function chooseFlightPriceAlertEventUpdate(existing: unknown, incoming: u
     (newThreshold === 15 || newThreshold === 30 || newThreshold === 45) && newThreshold > oldThreshold ? "upgrade" : "preserve";
 }
 
+export type UserFlightPriceDealProjectionChoice = "create" | "update" | "preserve";
+function isValidDealProjection(value: unknown): value is Record<string, unknown> {
+  if (!isObject(value)) return false;
+  return value.schemaVersion === 1 && typeof value.eventId === "string" && /^[0-9a-f]{64}$/.test(value.eventId) &&
+    value.createdAt !== undefined && value.updatedAt !== undefined &&
+    typeof value.userId === "string" && value.userId.length > 0 && typeof value.alertId === "string" && value.alertId.length > 0 &&
+    typeof value.queryKey === "string" && value.queryKey.length > 0 && typeof value.providerQueryKey === "string" && value.providerQueryKey.length > 0 &&
+    typeof value.originAirportCode === "string" && /^[A-Z]{3}$/.test(value.originAirportCode) &&
+    typeof value.destinationAirportCode === "string" && /^[A-Z]{3}$/.test(value.destinationAirportCode) && value.originAirportCode !== value.destinationAirportCode &&
+    (value.tripType === "round_trip" || value.tripType === "one_way") && parseDate(value.departDate) !== null && parseDate(value.snapshotDate) !== null &&
+    (value.tripType === "round_trip" ? parseDate(value.returnDate) !== null && (value.returnDate as string) >= (value.departDate as string) : value.returnDate === undefined) &&
+    Number.isInteger(value.adults) && (value.adults as number) >= 1 && Number.isInteger(value.children) && (value.children as number) >= 0 &&
+    Number.isInteger(value.infants) && (value.infants as number) >= 0 && (value.infants as number) <= (value.adults as number) &&
+    (value.tripClass === "economy" || value.tripClass === "business") && typeof value.directOnly === "boolean" &&
+    (value.matchedThreshold === 15 || value.matchedThreshold === 30 || value.matchedThreshold === 45) &&
+    Array.isArray(value.metThresholds) && value.metThresholds.includes(value.matchedThreshold) && Array.isArray(value.selectedThresholds) &&
+    value.selectedThresholds.includes(value.matchedThreshold) && value.metThresholds.every(threshold => (value.selectedThresholds as unknown[]).includes(threshold)) &&
+    Number.isInteger(value.trackingDayCount) && (value.trackingDayCount as number) >= 14 &&
+    (value.historyWindowDays === 14 || value.historyWindowDays === 30 || value.historyWindowDays === 90) &&
+    Number.isInteger(value.priceSampleCount) && (value.priceSampleCount as number) > 0 &&
+    typeof value.currentPrice === "number" && Number.isFinite(value.currentPrice) && value.currentPrice > 0 &&
+    typeof value.averagePrice === "number" && Number.isFinite(value.averagePrice) && value.averagePrice > 0 &&
+    typeof value.discountPercent === "number" && Number.isFinite(value.discountPercent) &&
+    value.provider === "aviasales_data_api" && value.currency === "EUR" && value.priceScope === "cached_offer" &&
+    value.passengerCountApplied === false;
+}
+
+export function chooseUserFlightPriceDealProjection(existing: unknown, incoming: unknown): UserFlightPriceDealProjectionChoice {
+  if (!isValidDealProjection(incoming)) return "preserve";
+  if (!isValidDealProjection(existing)) return "create";
+  return (incoming.matchedThreshold as number) < (existing.matchedThreshold as number) ? "preserve" : "update";
+}
+
 type AlertGroup = { providerQueryKey: string; query: ProviderFlightPriceQuery; alerts: FlightPriceAlertRecord[] };
 async function mapLimited<T, R>(items: T[], limit: number, fn: (item: T) => Promise<R>): Promise<R[]> {
   const results = new Array<R>(items.length);
@@ -190,13 +223,19 @@ export const evaluateFlightPriceAlerts = onSchedule(
       const stateRef = db.collection("flightPriceAlertEvaluations").doc(alert.userId).collection("items").doc(alert.alertId);
       const eventChoice = await db.runTransaction(async transaction => {
         const priorSnapshot = await transaction.get(stateRef);
-        const previousObserved = priorThreshold(priorSnapshot.data());
+        const prior = priorSnapshot.data();
+        const previousObserved = priorThreshold(prior);
         const crossing = evaluation.status === "evaluated" && hasCrossedFlightPriceThreshold(previousObserved, matched);
+        const sameDayCrossing = evaluation.status === "evaluated" && matched !== null && isObject(prior) &&
+          prior.lastCrossedSnapshotDate === evaluationDate &&
+          (prior.lastCrossedThreshold === 15 || prior.lastCrossedThreshold === 30 || prior.lastCrossedThreshold === 45);
         const eventId = buildFlightPriceAlertEventId(alert.userId, alert.alertId, evaluationDate);
         const eventRef = db.collection("flightPriceAlertEvents").doc(eventId);
-        const eventSnapshot = crossing ? await transaction.get(eventRef) : null;
+        const dealRef = db.collection("userFlightPriceDeals").doc(alert.userId).collection("items").doc(eventId);
+        const [eventSnapshot, dealSnapshot] = crossing || sameDayCrossing
+          ? await Promise.all([transaction.get(eventRef), transaction.get(dealRef)])
+          : [null, null];
         const now = FieldValue.serverTimestamp();
-        const prior = priorSnapshot.data();
         const status: FlightPriceEvaluationStatus = evaluation.status === "insufficient_history" ? "insufficient_history"
           : evaluation.status === "no_current_price" ? "no_current_price" : matched === null ? "no_threshold_match" : "threshold_met";
         const observed = evaluation.status === "evaluated" ? matched : previousObserved;
@@ -218,7 +257,7 @@ export const evaluateFlightPriceAlerts = onSchedule(
           createdAt: isObject(prior) && prior.createdAt !== undefined ? prior.createdAt : now, evaluatedAt: now, updatedAt: now,
         };
         transaction.set(stateRef, state);
-        if (!crossing || matched === null || evaluation.currentPrice === undefined || evaluation.averagePrice === undefined || evaluation.discountPercent === undefined) return "preserve" as FlightPriceAlertEventUpdateChoice;
+        if ((!crossing && (!sameDayCrossing || !eventSnapshot?.exists)) || matched === null || evaluation.currentPrice === undefined || evaluation.averagePrice === undefined || evaluation.discountPercent === undefined) return "preserve" as FlightPriceAlertEventUpdateChoice;
         const metThresholds = alert.selectedThresholds.filter(threshold => history.rawDiscountPercent! >= threshold);
         const incoming = {
           schemaVersion: 1, eventId, userId: alert.userId, alertId: alert.alertId, queryKey: alert.queryKey, providerQueryKey: group.providerQueryKey,
@@ -235,6 +274,17 @@ export const evaluateFlightPriceAlerts = onSchedule(
         else if (choice === "upgrade") {
           const existing = eventSnapshot!.data()!;
           transaction.set(eventRef, { ...incoming, createdAt: existing.createdAt });
+        }
+        const { status: _status, ...eventSafeFields } = incoming;
+        const safeIncoming = { ...eventSafeFields, provider: "aviasales_data_api" as const };
+        const projectionChoice = chooseUserFlightPriceDealProjection(dealSnapshot?.data(), safeIncoming);
+        if (projectionChoice !== "preserve") {
+          const existingCreatedAt = projectionChoice === "update" ? dealSnapshot!.data()!.createdAt : undefined;
+          transaction.set(dealRef, {
+            ...safeIncoming,
+            createdAt: existingCreatedAt ?? now,
+            updatedAt: now,
+          });
         }
         return choice;
       });
