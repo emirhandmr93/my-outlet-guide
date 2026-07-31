@@ -159,7 +159,9 @@ service cloud.firestore {
 
     function hasValidFlightDealAlertData(userId, alertId) {
       return request.resource.data.keys().hasOnly([
+          'schemaVersion',
           'alertId',
+          'queryKey',
           'userId',
           'originLabel',
           'originAirportCode',
@@ -175,6 +177,15 @@ service cloud.firestore {
           'destinationCountryCode',
           'destinationCountryName',
           'destinationLabel',
+          'tripType',
+          'departDate',
+          'returnDate',
+          'adults',
+          'children',
+          'infants',
+          'tripClass',
+          'directOnly',
+          'currency',
           'selectedThresholds',
           'active',
           'providerStatus',
@@ -184,6 +195,9 @@ service cloud.firestore {
         && userId == request.auth.uid
         && request.resource.data.userId == request.auth.uid
         && request.resource.data.alertId == alertId
+        && request.resource.data.schemaVersion == 2
+        && request.resource.data.queryKey == alertId
+        && request.resource.data.alertId == request.resource.data.queryKey
         && isNonEmptyString(request.resource.data.originLabel)
         && isNonEmptyString(request.resource.data.originAirportCode)
         && isNonEmptyString(request.resource.data.originAirportName)
@@ -198,9 +212,38 @@ service cloud.firestore {
         && isNonEmptyString(request.resource.data.destinationCountryCode)
         && isNonEmptyString(request.resource.data.destinationCountryName)
         && isNonEmptyString(request.resource.data.destinationLabel)
+        && request.resource.data.originAirportCode.matches('^[A-Z]{3}$')
+        && request.resource.data.destinationAirportCode.matches('^[A-Z]{3}$')
+        && request.resource.data.originAirportCode != request.resource.data.destinationAirportCode
+        && request.resource.data.tripType in ['round_trip', 'one_way']
+        && request.resource.data.departDate is string
+        && request.resource.data.departDate.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+        && ((request.resource.data.tripType == 'round_trip'
+            && request.resource.data.keys().hasAll(['returnDate'])
+            && request.resource.data.returnDate is string
+            && request.resource.data.returnDate.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$')
+            && request.resource.data.returnDate >= request.resource.data.departDate)
+          || (request.resource.data.tripType == 'one_way'
+            && !request.resource.data.keys().hasAny(['returnDate'])))
+        && request.resource.data.adults is int
+        && request.resource.data.adults >= 1
+        && request.resource.data.adults <= 9
+        && request.resource.data.children is int
+        && request.resource.data.children >= 0
+        && request.resource.data.children <= 8
+        && request.resource.data.infants is int
+        && request.resource.data.infants >= 0
+        && request.resource.data.infants <= 9
+        && request.resource.data.adults + request.resource.data.children <= 9
+        && request.resource.data.infants <= request.resource.data.adults
+        && request.resource.data.tripClass in ['economy', 'business']
+        && request.resource.data.directOnly is bool
+        && request.resource.data.currency == 'EUR'
         && hasOnlyValidFlightDealThresholds(request.resource.data.selectedThresholds)
         && request.resource.data.active is bool
-        && request.resource.data.providerStatus == 'pending_provider';
+        && request.resource.data.providerStatus == 'pending_provider'
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp;
     }
 
     function hasValidLegacyFlightDealPreferencesData(userId) {
