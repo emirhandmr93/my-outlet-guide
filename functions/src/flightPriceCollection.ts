@@ -9,6 +9,7 @@ import {
   fetchAviasalesCachedPrice,
   ProviderFlightPriceQuery,
 } from "./flightPriceProvider";
+import { getFlightPriceAlertPathUserId, isFlightPriceRuntimeUserEnabled, loadFlightPriceRuntimeConfig } from "./flightPriceRuntime";
 
 const AVIASALES_API_TOKEN =
   defineSecret("AVIASALES_API_TOKEN");
@@ -310,11 +311,20 @@ export const collectFlightPriceSnapshots = onSchedule(
   async (event) => {
     const startedAt = Date.now();
     const snapshotDate = utcDate(event.scheduleTime);
+    const db = getFirestore();
+    const runtime = await loadFlightPriceRuntimeConfig(db);
+    if (runtime.mode === "off") {
+      logger.info("Flight price collection skipped by runtime control", { runtimeMode: runtime.mode, runtimeConfigStatus: runtime.status });
+      return;
+    }
     const token = AVIASALES_API_TOKEN.value();
     if (!token.trim()) throw new AviasalesProviderError("missing_token");
-    const db = getFirestore();
     const alertSnapshot = await db.collectionGroup("alerts").get();
-    const documents = alertSnapshot.docs.map((document) => ({ path: document.ref.path, data: document.data() as unknown }));
+    const documents = alertSnapshot.docs.map((document) => ({ path: document.ref.path, data: document.data() as unknown }))
+      .filter(document => {
+        const userId = getFlightPriceAlertPathUserId(document.path);
+        return userId !== null && isFlightPriceRuntimeUserEnabled(runtime, userId);
+      });
     const classification = classifyFlightPriceAlerts(documents, snapshotDate);
     const groups = classification.groups;
     async function persistSuccess(group: GroupedProviderQuery, price: AviasalesCachedPrice | null) {
@@ -363,13 +373,14 @@ export const collectFlightPriceSnapshots = onSchedule(
           updatedAt: FieldValue.serverTimestamp(),
         }, { merge: true });
       },
-      logProviderError: (group, error) => logger.error("Flight price provider request failed", {
-        providerQueryKey: group.providerQueryKey,
+      logProviderError: (_group, error) => logger.error("Flight price provider request failed", {
         errorCode: error.code,
         ...(error.status !== undefined ? { httpStatus: error.status } : {}),
       }),
     });
     logger.info("Flight price collection completed", {
+      runtimeMode: runtime.mode, runtimeConfigStatus: runtime.status,
+      alertDocumentsRead: alertSnapshot.size, runtimeEligibleAlertDocuments: documents.length,
       totalAlertDocumentsRead: classification.flightAlertDocumentCount,
       validActiveAlertsCounted: classification.validActiveAlertCount,
       uniqueProviderQueryCount: groups.length,
