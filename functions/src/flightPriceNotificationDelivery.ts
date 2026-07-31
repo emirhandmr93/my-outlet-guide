@@ -220,6 +220,72 @@ export function validateFlightPriceReceiptDelivery(
   };
 }
 
+const PENDING_EVENT_LIMIT = 100;
+const RECEIPT_DELIVERY_LIMIT = 1_000;
+const RUNTIME_USER_QUERY_CHUNK_SIZE = 10;
+
+function runtimeUserChunks(runtime: FlightPriceRuntimeConfig): string[][] {
+  const userIds = [...runtime.testUserIds].sort((left, right) => left.localeCompare(right));
+  const chunks: string[][] = [];
+  for (let offset = 0; offset < userIds.length; offset += RUNTIME_USER_QUERY_CHUNK_SIZE) {
+    chunks.push(userIds.slice(offset, offset + RUNTIME_USER_QUERY_CHUNK_SIZE));
+  }
+  return chunks;
+}
+
+type PendingEventLoadResult = {
+  documentsRead: number;
+  invalidDocuments: number;
+  events: ValidFlightPriceAlertEvent[];
+};
+
+export async function loadRuntimeEligiblePendingFlightPriceEvents(
+  db: FirebaseFirestore.Firestore, runtime: FlightPriceRuntimeConfig,
+): Promise<PendingEventLoadResult> {
+  if (runtime.mode === "off") return { documentsRead: 0, invalidDocuments: 0, events: [] };
+  const snapshots = runtime.mode === "all"
+    ? [await db.collection("flightPriceAlertEvents").where("status", "==", "pending_delivery").limit(PENDING_EVENT_LIMIT).get()]
+    : await Promise.all(runtimeUserChunks(runtime).map(userIds => db.collection("flightPriceAlertEvents")
+      .where("status", "==", "pending_delivery").where("userId", "in", userIds).limit(PENDING_EVENT_LIMIT).get()));
+  const documents = new Map<string, FirebaseFirestore.QueryDocumentSnapshot>();
+  for (const snapshot of snapshots) for (const document of snapshot.docs) documents.set(document.ref.path, document);
+  let invalidDocuments = 0;
+  const events = [...documents.values()].map(document => validateFlightPriceAlertEvent(document.id, document.data()))
+    .filter((event): event is ValidFlightPriceAlertEvent => {
+      if (!event) invalidDocuments += 1;
+      return event !== null && isFlightPriceRuntimeUserEnabled(runtime, event.userId);
+    })
+    .sort((left, right) => left.snapshotDate.localeCompare(right.snapshotDate) || left.eventId.localeCompare(right.eventId))
+    .slice(0, PENDING_EVENT_LIMIT);
+  return { documentsRead: documents.size, invalidDocuments, events };
+}
+
+type ReceiptDeliveryEntry = {
+  document: FirebaseFirestore.QueryDocumentSnapshot;
+  delivery: ValidFlightPriceReceiptDelivery;
+};
+
+export async function loadRuntimeEligibleDueFlightPriceReceiptDeliveries(
+  db: FirebaseFirestore.Firestore, runtime: FlightPriceRuntimeConfig, now: Timestamp,
+): Promise<{ documentsRead: number; deliveries: ReceiptDeliveryEntry[] }> {
+  if (runtime.mode === "off") return { documentsRead: 0, deliveries: [] };
+  const baseQuery = () => db.collectionGroup("pushDeliveries").where("status", "==", "ticket_accepted");
+  const snapshots = runtime.mode === "all"
+    ? [await baseQuery().where("receiptCheckAfter", "<=", now).orderBy("receiptCheckAfter", "asc").limit(RECEIPT_DELIVERY_LIMIT).get()]
+    : await Promise.all(runtimeUserChunks(runtime).map(userIds => baseQuery().where("userId", "in", userIds)
+      .where("receiptCheckAfter", "<=", now).orderBy("receiptCheckAfter", "asc").limit(RECEIPT_DELIVERY_LIMIT).get()));
+  const documents = new Map<string, FirebaseFirestore.QueryDocumentSnapshot>();
+  for (const snapshot of snapshots) for (const document of snapshot.docs) documents.set(document.ref.path, document);
+  const deliveries = [...documents.values()].map(document => ({
+    document, delivery: validateFlightPriceReceiptDelivery(document.ref.path, document.id, document.data()),
+  })).filter((entry): entry is ReceiptDeliveryEntry => entry.delivery !== null &&
+    isFlightPriceRuntimeUserEnabled(runtime, entry.delivery.userId) && entry.delivery.receiptCheckAfter.toMillis() <= now.toMillis())
+    .sort((left, right) => left.delivery.receiptCheckAfter.toMillis() - right.delivery.receiptCheckAfter.toMillis() ||
+      left.document.ref.path.localeCompare(right.document.ref.path))
+    .slice(0, RECEIPT_DELIVERY_LIMIT);
+  return { documentsRead: documents.size, deliveries };
+}
+
 async function updateReceiptAggregates(eventIds: Set<string>) {
   const db = getFirestore();
   for (const eventId of eventIds) {
@@ -236,17 +302,15 @@ async function updateReceiptAggregates(eventIds: Set<string>) {
 async function processReceipts(summary: Summary, disabledTokens: FlightPriceDisabledTokenRegistry, runtime: FlightPriceRuntimeConfig) {
   const db = getFirestore();
   const now = Timestamp.now();
-  const snapshot = await db.collectionGroup("pushDeliveries").where("status", "==", "ticket_accepted").limit(1000).get();
-  summary.receiptDeliveryDocumentsRead = snapshot.size;
-  const eligible = snapshot.docs.map(doc => ({ doc, delivery: validateFlightPriceReceiptDelivery(doc.ref.path, doc.id, doc.data()) }))
-    .filter((entry): entry is { doc: FirebaseFirestore.QueryDocumentSnapshot; delivery: ValidFlightPriceReceiptDelivery } =>
-      entry.delivery !== null && isFlightPriceRuntimeUserEnabled(runtime, entry.delivery.userId) && entry.delivery.receiptCheckAfter.toMillis() <= now.toMillis());
+  const loaded = await loadRuntimeEligibleDueFlightPriceReceiptDeliveries(db, runtime, now);
+  summary.receiptDeliveryDocumentsRead = loaded.documentsRead;
+  const eligible = loaded.deliveries;
   if (eligible.length === 0) return;
   const ids = [...new Set(eligible.map(entry => entry.delivery.expoTicketId))];
   summary.receiptsRequested = ids.length;
   const receipts = await getExpoPushReceipts(ids);
   const affected = new Set<string>();
-  for (const { doc, delivery } of eligible) {
+  for (const { document: doc, delivery } of eligible) {
     const receipt = receipts[delivery.expoTicketId];
     affected.add(delivery.eventId);
     if (receipt?.status === "ok") {
@@ -356,8 +420,9 @@ async function processEvent(event: ValidFlightPriceAlertEvent, tokensForUser: (u
     const freshRuntime = await loadFlightPriceRuntimeConfig(db);
     if (!isFlightPriceRuntimeUserEnabled(freshRuntime, event.userId)) {
       const retryAt = Timestamp.fromMillis(sentAt.toMillis() + 900_000);
-      await Promise.all(chunk.map(item => updateExistingWithStatus(item.ref, "reserved", { status: "retry_pending",
+      const deferred = await Promise.all(reservations.map(item => updateExistingWithStatus(item.ref, "reserved", { status: "retry_pending",
         ticketErrorCode: "runtime_disabled", nextAttemptAt: retryAt, updatedAt: FieldValue.serverTimestamp() })));
+      summary.retryPendingDeliveries += deferred.filter(Boolean).length;
       return;
     }
     const [freshSource, freshEvent] = await Promise.all([alertRef.get(), eventRef.get()]);
@@ -425,12 +490,10 @@ export const processFlightPriceAlertNotifications = onSchedule(
       eventsSubmittedToExpo: 0, eventsFailed: 0 };
     const disabledTokens = new FlightPriceDisabledTokenRegistry();
     await processReceipts(summary, disabledTokens, runtime);
-    const pending = await db.collection("flightPriceAlertEvents").where("status", "==", "pending_delivery").limit(100).get();
-    summary.pendingEventsRead = pending.size;
-    const events = pending.docs.map(doc => validateFlightPriceAlertEvent(doc.id, doc.data())).filter((value): value is ValidFlightPriceAlertEvent => {
-      if (!value) summary.invalidEventsSkipped += 1;
-      return value !== null && isFlightPriceRuntimeUserEnabled(runtime, value.userId);
-    }).sort((a, b) => a.snapshotDate.localeCompare(b.snapshotDate) || a.eventId.localeCompare(b.eventId));
+    const pending = await loadRuntimeEligiblePendingFlightPriceEvents(db, runtime);
+    summary.pendingEventsRead = pending.documentsRead;
+    summary.invalidEventsSkipped = pending.invalidDocuments;
+    const events = pending.events;
     summary.validEventsProcessed = events.length;
     const cache = new Map<string, Promise<Token[] | null>>();
     const tokensForUser = (userId: string) => {
