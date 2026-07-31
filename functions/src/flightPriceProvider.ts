@@ -118,6 +118,53 @@ function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
+export function parseAviasalesLatestPricesResponse(
+  body: unknown,
+  normalizedQuery: ProviderFlightPriceQuery,
+): AviasalesCachedPrice | null {
+  if (!isObject(body)) throw new AviasalesProviderError("invalid_response");
+  if (body.success !== true) throw new AviasalesProviderError("provider_error");
+  if (!Array.isArray(body.data)) throw new AviasalesProviderError("invalid_response");
+  if (body.currency !== undefined && body.currency !== null) {
+    if (typeof body.currency !== "string") throw new AviasalesProviderError("invalid_response");
+    const currency = body.currency.trim();
+    if (currency && currency.toUpperCase() !== "EUR") throw new AviasalesProviderError("invalid_response");
+  }
+  const expectedClass = normalizedQuery.tripClass === "economy" ? 0 : 1;
+  let lowest: AviasalesCachedPrice | null = null;
+  for (const item of body.data) {
+    if (!isObject(item)) continue;
+    const origin = typeof item.origin === "string" ? item.origin.toUpperCase() : "";
+    const destination = typeof item.destination === "string" ? item.destination.toUpperCase() : "";
+    const returnDateMatches = normalizedQuery.tripType === "round_trip"
+      ? item.return_date === normalizedQuery.returnDate
+      : item.return_date === undefined || item.return_date === null || item.return_date === "";
+    if (
+      origin !== normalizedQuery.originAirportCode || destination !== normalizedQuery.destinationAirportCode ||
+      item.depart_date !== normalizedQuery.departDate || !returnDateMatches || item.trip_class !== expectedClass ||
+      typeof item.value !== "number" || !Number.isFinite(item.value) || item.value <= 0 ||
+      !Number.isInteger(item.number_of_changes) || (item.number_of_changes as number) < 0 ||
+      (normalizedQuery.directOnly && item.number_of_changes !== 0) || item.actual === false
+    ) continue;
+    const candidate: AviasalesCachedPrice = {
+      price: item.value,
+      currency: "EUR",
+      originAirportCode: normalizedQuery.originAirportCode,
+      destinationAirportCode: normalizedQuery.destinationAirportCode,
+      departDate: normalizedQuery.departDate,
+      ...(normalizedQuery.returnDate ? { returnDate: normalizedQuery.returnDate } : {}),
+      tripClass: normalizedQuery.tripClass,
+      directOnly: normalizedQuery.directOnly,
+      transfers: item.number_of_changes as number,
+      ...(safeOptionalString(item.airline) ? { airline: safeOptionalString(item.airline) } : {}),
+      ...(safeOptionalString(item.flight_number) ? { flightNumber: safeOptionalString(item.flight_number) } : {}),
+      ...(safeOptionalString(item.found_at) ? { sourceFoundAt: safeOptionalString(item.found_at) } : {}),
+    };
+    if (!lowest || candidate.price < lowest.price) lowest = candidate;
+  }
+  return lowest;
+}
+
 export async function fetchAviasalesCachedPrice(
   query: ProviderFlightPriceQuery,
   token: string,
@@ -157,44 +204,7 @@ export async function fetchAviasalesCachedPrice(
       }
       throw new AviasalesProviderError("invalid_json");
     }
-    if (!isObject(body)) throw new AviasalesProviderError("invalid_response");
-    if (body.success !== true) throw new AviasalesProviderError("provider_error");
-    if (!Array.isArray(body.data) || (body.currency !== undefined && (typeof body.currency !== "string" || body.currency.toUpperCase() !== "EUR"))) {
-      throw new AviasalesProviderError("invalid_response");
-    }
-    const expectedClass = normalized.tripClass === "economy" ? 0 : 1;
-    let lowest: AviasalesCachedPrice | null = null;
-    for (const item of body.data) {
-      if (!isObject(item)) continue;
-      const origin = typeof item.origin === "string" ? item.origin.toUpperCase() : "";
-      const destination = typeof item.destination === "string" ? item.destination.toUpperCase() : "";
-      const returnDateMatches = normalized.tripType === "round_trip"
-        ? item.return_date === normalized.returnDate
-        : item.return_date === undefined || item.return_date === null || item.return_date === "";
-      if (
-        origin !== normalized.originAirportCode || destination !== normalized.destinationAirportCode ||
-        item.depart_date !== normalized.departDate || !returnDateMatches || item.trip_class !== expectedClass ||
-        typeof item.value !== "number" || !Number.isFinite(item.value) || item.value <= 0 ||
-        !Number.isInteger(item.number_of_changes) || (item.number_of_changes as number) < 0 ||
-        (normalized.directOnly && item.number_of_changes !== 0) || item.actual === false
-      ) continue;
-      const candidate: AviasalesCachedPrice = {
-        price: item.value,
-        currency: "EUR",
-        originAirportCode: normalized.originAirportCode,
-        destinationAirportCode: normalized.destinationAirportCode,
-        departDate: normalized.departDate,
-        ...(normalized.returnDate ? { returnDate: normalized.returnDate } : {}),
-        tripClass: normalized.tripClass,
-        directOnly: normalized.directOnly,
-        transfers: item.number_of_changes as number,
-        ...(safeOptionalString(item.airline) ? { airline: safeOptionalString(item.airline) } : {}),
-        ...(safeOptionalString(item.flight_number) ? { flightNumber: safeOptionalString(item.flight_number) } : {}),
-        ...(safeOptionalString(item.found_at) ? { sourceFoundAt: safeOptionalString(item.found_at) } : {}),
-      };
-      if (!lowest || candidate.price < lowest.price) lowest = candidate;
-    }
-    return lowest;
+    return parseAviasalesLatestPricesResponse(body, normalized);
   } catch (error) {
     if (error instanceof AviasalesProviderError) throw error;
     throw new AviasalesProviderError(controller.signal.aborted ? "timeout" : "network_error");
