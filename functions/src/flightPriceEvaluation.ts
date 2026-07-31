@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 
-import { FieldPath, FieldValue, getFirestore } from "firebase-admin/firestore";
+import { FieldValue, getFirestore } from "firebase-admin/firestore";
 import { logger } from "firebase-functions";
 import { onSchedule } from "firebase-functions/v2/scheduler";
 
@@ -272,7 +272,7 @@ export const evaluateFlightPriceAlerts = onSchedule(
       const stateRef = db.collection("flightPriceQueries").doc(group.providerQueryKey);
       const [state, snapshots] = await Promise.all([
         stateRef.get(),
-        stateRef.collection("dailySnapshots").orderBy(FieldPath.documentId(), "desc").limit(90).get(),
+        stateRef.collection("dailySnapshots").orderBy("snapshotDate", "desc").limit(90).get(),
       ]);
       const inputs = snapshots.docs.map(snapshot => ({ documentId: snapshot.id, data: snapshot.data() as unknown }));
       const firstSnapshotDate = state.data()?.firstSnapshotDate;
