@@ -11,6 +11,7 @@ import {
   FlightPriceThreshold,
 } from "./flightPriceCollection";
 import { ProviderFlightPriceQuery } from "./flightPriceProvider";
+import { getFlightPriceAlertPathUserId, isFlightPriceRuntimeUserEnabled, loadFlightPriceRuntimeConfig } from "./flightPriceRuntime";
 
 export type FlightPriceHistoryPhase = "insufficient_1_13" | "rolling_14" | "rolling_30" | "rolling_90";
 export type FlightPriceEvaluationStatus = "insufficient_history" | "no_current_price" | "no_threshold_match" | "threshold_met";
@@ -243,11 +244,18 @@ export const evaluateFlightPriceAlerts = onSchedule(
     const scheduled = typeof event.scheduleTime === "string" ? new Date(event.scheduleTime) : new Date(Number.NaN);
     const evaluationDate = (Number.isFinite(scheduled.getTime()) ? scheduled : new Date()).toISOString().slice(0, 10);
     const db = getFirestore();
+    const runtime = await loadFlightPriceRuntimeConfig(db);
+    if (runtime.mode === "off") {
+      logger.info("Flight price evaluation skipped by runtime control", { runtimeMode: runtime.mode, runtimeConfigStatus: runtime.status });
+      return;
+    }
     const alertSnapshot = await db.collectionGroup("alerts").get();
     const groups = new Map<string, AlertGroup>();
     let totalFlightAlertDocuments = 0;
     let validActiveAlertCount = 0;
     for (const document of alertSnapshot.docs) {
+      const pathUserId = getFlightPriceAlertPathUserId(document.ref.path);
+      if (pathUserId === null || !isFlightPriceRuntimeUserEnabled(runtime, pathUserId)) continue;
       const classified = classifyFlightPriceAlertDocument(document.ref.path, document.data() as unknown, evaluationDate);
       if (classified.kind !== "unrelated") totalFlightAlertDocuments += 1;
       if (classified.kind !== "active") continue;
@@ -279,6 +287,9 @@ export const evaluateFlightPriceAlerts = onSchedule(
       const stateRef = db.collection("flightPriceAlertEvaluations").doc(alert.userId).collection("items").doc(alert.alertId);
       const sourceRef = db.collection("flightDealPreferences").doc(alert.userId).collection("alerts").doc(alert.alertId);
       const transactionResult = await db.runTransaction(async transaction => {
+        if (!isFlightPriceRuntimeUserEnabled(runtime, alert.userId)) {
+          return { accepted: false, choice: "preserve" as FlightPriceAlertEventUpdateChoice, matched: null };
+        }
         const [sourceSnapshot, priorSnapshot] = await Promise.all([transaction.get(sourceRef), transaction.get(stateRef)]);
         if (!sourceSnapshot.exists) return { accepted: false, choice: "preserve" as FlightPriceAlertEventUpdateChoice, matched: null };
         const classified = classifyFlightPriceAlertDocument(sourceRef.path, sourceSnapshot.data() as unknown, evaluationDate);
@@ -375,6 +386,7 @@ export const evaluateFlightPriceAlerts = onSchedule(
       else if (transactionResult.choice === "upgrade") counts.upgraded += 1;
     });
     logger.info("Flight price evaluation completed", {
+      runtimeMode: runtime.mode, runtimeConfigStatus: runtime.status,
       totalFlightAlertDocuments, validActiveAlertCount, uniqueProviderQueryCount: orderedGroups.length,
       insufficientHistoryAlertCount: counts.insufficient, noCurrentPriceAlertCount: counts.noCurrent, evaluatedAlertCount: counts.evaluated,
       thresholdMetAlertCount: counts.thresholdMet, thresholdEventCreatedCount: counts.created, thresholdEventUpgradedCount: counts.upgraded,
