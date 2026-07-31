@@ -1,22 +1,11 @@
 import { initializeApp } from "firebase-admin/app";
 import { FieldValue, getFirestore, Timestamp } from "firebase-admin/firestore";
 import { onSchedule } from "firebase-functions/v2/scheduler";
+import { ExpoPushMessage, ExpoPushTicket, isExpoPushToken, sendExpoPushNotifications } from "./expoPush";
 
 initializeApp();
 
 const db = getFirestore();
-type ExpoPushMessage = {
-  to: string;
-  sound: "default";
-  title: string;
-  body: string;
-  data: { type: ReminderType; tripId: string };
-};
-
-type ExpoPushTicket =
-  | { status: "ok"; id: string }
-  | { status: "error"; message?: string; details?: { error?: string } };
-
 type ReminderType = "tripReminder7Days" | "tripReminder1Day";
 
 type ReminderCandidate = {
@@ -28,30 +17,6 @@ const REMINDER_CANDIDATES: ReminderCandidate[] = [
   { type: "tripReminder7Days", daysUntilVisit: 7 },
   { type: "tripReminder1Day", daysUntilVisit: 1 },
 ];
-
-function isExpoPushToken(token: string) {
-  return /^ExponentPushToken\[[A-Za-z0-9_-]+\]$/.test(token) || /^ExpoPushToken\[[A-Za-z0-9_-]+\]$/.test(token);
-}
-
-async function sendExpoPushNotifications(messages: ExpoPushMessage[]): Promise<ExpoPushTicket[]> {
-  const response = await fetch("https://exp.host/--/api/v2/push/send", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Accept-Encoding": "gzip, deflate",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(messages),
-  });
-
-  const body = (await response.json()) as { data?: ExpoPushTicket[] | ExpoPushTicket; errors?: unknown };
-
-  if (!response.ok || !body.data) {
-    throw new Error(`Expo push service returned ${response.status}.`);
-  }
-
-  return Array.isArray(body.data) ? body.data : [body.data];
-}
 
 function parseVisitDate(value: unknown): Date | null {
   if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) {
@@ -231,3 +196,7 @@ export {
 export {
   evaluateFlightPriceAlerts,
 } from "./flightPriceEvaluation";
+
+export {
+  processFlightPriceAlertNotifications,
+} from "./flightPriceNotificationDelivery";
