@@ -17608,3 +17608,55 @@ const flightSearchTranslations: Record<TranslationLanguage, Record<string, strin
   }
 };
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], flightSearchTranslations[locale]);
+
+const travelHubTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "travelHub.kicker": "Travel tools", "travelHub.title": "Plan your journey", "travelHub.subtitle": "Search flights, track price opportunities and organize your trips in one place.", "travelHub.toolsTitle": "Travel tools",
+    "travelHub.flightSearchTitle": "Flight Search", "travelHub.flightSearchBody": "Choose your route, dates and passengers, then view current results on Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Price Alerts", "travelHub.priceAlertsBody": "Create route alerts and select 15%, 30% or 45% price-drop thresholds.", "travelHub.priceAlertsBadge": "15% · 30% · 45%",
+    "travelHub.myTripsTitle": "My Trips", "travelHub.myTripsBody": "Create and manage your travel plans, destinations and reminders.", "travelHub.myTripsBadge": "Trip planner",
+  },
+  tr: {
+    "travelHub.kicker": "Seyahat araçları", "travelHub.title": "Seyahatini planla", "travelHub.subtitle": "Uçuş ara, fiyat fırsatlarını takip et ve seyahatlerini tek yerden düzenle.", "travelHub.toolsTitle": "Seyahat araçları",
+    "travelHub.flightSearchTitle": "Uçuş Ara", "travelHub.flightSearchBody": "Rotanı, tarihlerini ve yolcuları seç; güncel sonuçları Aviasales’ta görüntüle.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Fiyat Alarmları", "travelHub.priceAlertsBody": "Rota alarmı oluştur ve %15, %30 veya %45 fiyat düşüşü eşiklerini seç.", "travelHub.priceAlertsBadge": "%15 · %30 · %45",
+    "travelHub.myTripsTitle": "Seyahatlerim", "travelHub.myTripsBody": "Seyahat planlarını, destinasyonlarını ve hatırlatmalarını oluşturup yönet.", "travelHub.myTripsBadge": "Seyahat planlayıcı",
+  },
+  es: {
+    "travelHub.kicker": "Herramientas de viaje", "travelHub.title": "Planifica tu viaje", "travelHub.subtitle": "Busca vuelos, sigue oportunidades de precios y organiza tus viajes en un solo lugar.", "travelHub.toolsTitle": "Herramientas de viaje",
+    "travelHub.flightSearchTitle": "Buscar vuelos", "travelHub.flightSearchBody": "Elige la ruta, las fechas y los pasajeros y consulta los resultados actuales en Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Alertas de precios", "travelHub.priceAlertsBody": "Crea alertas de ruta y selecciona umbrales de bajada del 15 %, 30 % o 45 %.", "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
+    "travelHub.myTripsTitle": "Mis viajes", "travelHub.myTripsBody": "Crea y gestiona tus planes de viaje, destinos y recordatorios.", "travelHub.myTripsBadge": "Planificador de viajes",
+  },
+  fr: {
+    "travelHub.kicker": "Outils de voyage", "travelHub.title": "Planifiez votre voyage", "travelHub.subtitle": "Recherchez des vols, suivez les opportunités de prix et organisez vos voyages au même endroit.", "travelHub.toolsTitle": "Outils de voyage",
+    "travelHub.flightSearchTitle": "Recherche de vols", "travelHub.flightSearchBody": "Choisissez votre itinéraire, vos dates et vos passagers, puis consultez les résultats actuels sur Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Alertes de prix", "travelHub.priceAlertsBody": "Créez des alertes par itinéraire et choisissez un seuil de baisse de 15 %, 30 % ou 45 %.", "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
+    "travelHub.myTripsTitle": "Mes voyages", "travelHub.myTripsBody": "Créez et gérez vos projets de voyage, destinations et rappels.", "travelHub.myTripsBadge": "Planificateur de voyage",
+  },
+  de: {
+    "travelHub.kicker": "Reisewerkzeuge", "travelHub.title": "Planen Sie Ihre Reise", "travelHub.subtitle": "Suchen Sie Flüge, verfolgen Sie Preischancen und organisieren Sie Ihre Reisen an einem Ort.", "travelHub.toolsTitle": "Reisewerkzeuge",
+    "travelHub.flightSearchTitle": "Flugsuche", "travelHub.flightSearchBody": "Wählen Sie Route, Reisedaten und Passagiere und sehen Sie aktuelle Ergebnisse bei Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Preisalarme", "travelHub.priceAlertsBody": "Erstellen Sie Routenalarme und wählen Sie Preissenkungen von 15 %, 30 % oder 45 % als Schwellenwert.", "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
+    "travelHub.myTripsTitle": "Meine Reisen", "travelHub.myTripsBody": "Erstellen und verwalten Sie Reisepläne, Ziele und Erinnerungen.", "travelHub.myTripsBadge": "Reiseplaner",
+  },
+  ar: {
+    "travelHub.kicker": "أدوات السفر", "travelHub.title": "خطط لرحلتك", "travelHub.subtitle": "ابحث عن الرحلات وتابع فرص الأسعار ونظّم رحلاتك في مكان واحد.", "travelHub.toolsTitle": "أدوات السفر",
+    "travelHub.flightSearchTitle": "البحث عن رحلات", "travelHub.flightSearchBody": "اختر المسار والتواريخ والمسافرين، ثم اطّلع على النتائج الحالية عبر Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "تنبيهات الأسعار", "travelHub.priceAlertsBody": "أنشئ تنبيهات للمسارات واختر عتبات انخفاض السعر بنسبة 15٪ أو 30٪ أو 45٪.", "travelHub.priceAlertsBadge": "15٪ · 30٪ · 45٪",
+    "travelHub.myTripsTitle": "رحلاتي", "travelHub.myTripsBody": "أنشئ خطط سفرك ووجهاتك وتذكيراتك وأدرها.", "travelHub.myTripsBadge": "مخطط الرحلات",
+  },
+  ru: {
+    "travelHub.kicker": "Инструменты для путешествий", "travelHub.title": "Спланируйте путешествие", "travelHub.subtitle": "Ищите авиабилеты, отслеживайте выгодные цены и организуйте поездки в одном месте.", "travelHub.toolsTitle": "Инструменты для путешествий",
+    "travelHub.flightSearchTitle": "Поиск авиабилетов", "travelHub.flightSearchBody": "Выберите маршрут, даты и пассажиров, затем посмотрите актуальные результаты на Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Уведомления о ценах", "travelHub.priceAlertsBody": "Создавайте уведомления для маршрутов и выбирайте порог снижения цены: 15 %, 30 % или 45 %.", "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
+    "travelHub.myTripsTitle": "Мои поездки", "travelHub.myTripsBody": "Создавайте планы поездок, направления и напоминания и управляйте ими.", "travelHub.myTripsBadge": "Планировщик поездок",
+  },
+  zh: {
+    "travelHub.kicker": "旅行工具", "travelHub.title": "规划你的旅程", "travelHub.subtitle": "搜索航班、追踪价格机会，并在一处整理你的旅行。", "travelHub.toolsTitle": "旅行工具",
+    "travelHub.flightSearchTitle": "搜索航班", "travelHub.flightSearchBody": "选择航线、日期和乘客，然后在 Aviasales 查看当前搜索结果。", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "价格提醒", "travelHub.priceAlertsBody": "创建航线提醒，并选择 15%、30% 或 45% 的降价阈值。", "travelHub.priceAlertsBadge": "15% · 30% · 45%",
+    "travelHub.myTripsTitle": "我的旅行", "travelHub.myTripsBody": "创建并管理你的旅行计划、目的地和提醒。", "travelHub.myTripsBadge": "旅行规划器",
+  },
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], travelHubTranslations[locale]);

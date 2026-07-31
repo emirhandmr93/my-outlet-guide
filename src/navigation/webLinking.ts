@@ -12,9 +12,9 @@ export type WebRouteDefinition = {
 export const WEB_ROUTE_DEFINITIONS: readonly WebRouteDefinition[] = [
   { name: "Home", path: "" }, { name: "Explore", path: "explore" }, { name: "MyTrips", path: "trips" }, { name: "Savings", path: "savings" }, { name: "Profile", path: "profile" },
   { name: "OutletDetail", path: "outlet/:outletId", parameter: "outletId" }, { name: "BrandResults", path: "brand/:brandId", parameter: "brandId" }, { name: "Country", path: "country/:countryId", parameter: "countryId" }, { name: "CityResults", path: "city/:cityId", parameter: "cityId" }, { name: "Transportation", path: "transportation/:outletId", parameter: "outletId" },
-  { name: "Favorites", path: "favorites" }, { name: "CreateTrip", path: "trips/create" }, { name: "TripDetail", path: "trip/:tripId", parameter: "tripId" }, { name: "TripSegmentEditor", path: "trip/:tripId/edit", parameter: "tripId" },
+  { name: "MyTripsList", path: "trips/my-trips" }, { name: "Favorites", path: "favorites" }, { name: "CreateTrip", path: "trips/create" }, { name: "TripDetail", path: "trip/:tripId", parameter: "tripId" }, { name: "TripSegmentEditor", path: "trip/:tripId/edit", parameter: "tripId" },
   { name: "SmartShoppingCalculator", path: "calculator/smart-shopping" }, { name: "PriceAdvantageCalculator", path: "calculator/price-advantage" }, { name: "TaxFreeCalculator", path: "calculator/tax-free" }, { name: "LanguageSettings", path: "language" }, { name: "CurrencySettings", path: "currency" }, { name: "NotificationSettings", path: "notifications" }, { name: "OfflinePacks", path: "offline" },
-  { name: "WriteReview", path: "outlet/:outletId/review", parameter: "outletId" }, { name: "FlightDealSettings", path: "flight-deals/settings" }, { name: "FlightDeals", path: "flight-deals" }, { name: "FlightDealDetail", path: "flight-deals/:dealId", parameter: "dealId" },
+  { name: "WriteReview", path: "outlet/:outletId/review", parameter: "outletId" }, { name: "FlightSearch", path: "flights/search" }, { name: "FlightDealSettings", path: "flight-deals/settings" }, { name: "FlightDeals", path: "flight-deals" }, { name: "FlightDealDetail", path: "flight-deals/:dealId", parameter: "dealId" },
   { name: "Login", path: "login" }, { name: "MyReviews", path: "reviews" }, { name: "ReviewModeration", path: "review-moderation" }, { name: "PrivacyPolicy", path: "privacy" }, { name: "TermsConditions", path: "terms" }, { name: "ContactUs", path: "contact" }, { name: "HelpFaq", path: "help" }, { name: "DeleteAccount", path: "delete-account" }, { name: "MediaCredits", path: "media-credits" },
 ];
 
@@ -23,7 +23,6 @@ const tabRoutes = new Set(["Home", "Explore", "MyTrips", "Savings", "Profile"]);
 const canonicalNestedRootRoutes: Record<string, string> = {
   HomeRoot: "Home",
   ExploreRoot: "Explore",
-  MyTripsRoot: "MyTrips",
 };
 
 function getCanonicalLeafName(name: string) {

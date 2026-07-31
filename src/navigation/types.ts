@@ -16,6 +16,7 @@ export type RootStackParamList = {
   Country: { countryId: string };
   CityResults: { cityId: string };
   MyTrips: undefined;
+  MyTripsList: undefined;
   Favorites: undefined;
   CreateTrip: { outletId?: string } | undefined;
   TripDetail: { tripId: string };
