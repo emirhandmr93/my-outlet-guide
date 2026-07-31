@@ -17,6 +17,7 @@ import { FavoritesScreen } from "../screens/FavoritesScreen";
 import { FlightDealDetailScreen } from "../screens/FlightDealDetailScreen";
 import { FlightDealSettingsScreen } from "../screens/FlightDealSettingsScreen";
 import { FlightDealsScreen } from "../screens/FlightDealsScreen";
+import { FlightSearchScreen } from "../screens/FlightSearchScreen";
 import { HelpFaqScreen } from "../screens/HelpFaqScreen";
 import { HomeScreen } from "../screens/HomeScreen";
 import { LanguageSettingsScreen } from "../screens/LanguageSettingsScreen";
@@ -366,6 +367,7 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 <Stack.Screen name="WriteReview" component={WriteReviewScreen} options={{ title: t("nav.writeReview") }} />
 <Stack.Screen name="FlightDealSettings" component={FlightDealSettingsScreen} options={{ title: t("nav.flightDeals") }} />
 <Stack.Screen name="FlightDeals" component={FlightDealsScreen} options={{ title: t("nav.flightDeals") }} />
+<Stack.Screen name="FlightSearch" component={FlightSearchScreen} options={{ title: t("nav.flightSearch") }} />
 <Stack.Screen name="FlightDealDetail" component={FlightDealDetailScreen} options={{ title: t("nav.flightDeal") }} />
 
 <Stack.Screen name="Login" component={LoginScreen} options={{ title: t("nav.signIn") }} />
