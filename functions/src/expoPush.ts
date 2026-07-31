@@ -35,6 +35,10 @@ export function isExpoPushToken(value: string): boolean {
   return /^(ExponentPushToken|ExpoPushToken)\[[A-Za-z0-9_-]+\]$/.test(value);
 }
 
+export function isExpoPushTicketId(value: unknown): value is string {
+  return typeof value === "string" && /^[A-Za-z0-9_-]+$/.test(value);
+}
+
 function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -111,7 +115,7 @@ export async function getExpoPushReceipts(
   ticketIds: string[], fetchImplementation: typeof fetch = fetch,
 ): Promise<Record<string, ExpoPushReceipt>> {
   if (ticketIds.length === 0 || ticketIds.length > 1000 || new Set(ticketIds).size !== ticketIds.length ||
-    ticketIds.some(id => typeof id !== "string" || !/^[A-Za-z0-9_-]+$/.test(id))) {
+    ticketIds.some(id => !isExpoPushTicketId(id))) {
     throw new ExpoPushRequestError("invalid_request");
   }
   const body = await request(RECEIPT_URL, { ids: ticketIds }, fetchImplementation);

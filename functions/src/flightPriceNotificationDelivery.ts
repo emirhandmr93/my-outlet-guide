@@ -5,7 +5,8 @@ import { onSchedule } from "firebase-functions/v2/scheduler";
 
 import { buildProviderFlightPriceQueryKey, classifyFlightPriceAlertDocument } from "./flightPriceCollection";
 import {
-  ExpoPushMessage, ExpoPushRequestError, ExpoPushTicket, getExpoPushReceipts, isExpoPushToken, sendExpoPushNotifications,
+  ExpoPushMessage, ExpoPushRequestError, ExpoPushTicket, getExpoPushReceipts, isExpoPushTicketId, isExpoPushToken,
+  sendExpoPushNotifications,
 } from "./expoPush";
 
 export type FlightPricePushThreshold = 15 | 30 | 45;
@@ -31,6 +32,10 @@ const TERMINAL = new Set<DeliveryStatus>(["ticket_accepted", "ticket_error", "re
 const threshold = (value: unknown): value is FlightPricePushThreshold => value === 15 || value === 30 || value === 45;
 const object = (value: unknown): value is Record<string, unknown> => typeof value === "object" && value !== null && !Array.isArray(value);
 const nonempty = (value: unknown): value is string => typeof value === "string" && value.trim().length > 0;
+export function isSafeFirestoreDocumentSegment(value: unknown): value is string {
+  return typeof value === "string" && value.length > 0 && value !== "." && value !== ".." &&
+    !value.includes("/") && !/[\u0000-\u001f\u007f-\u009f]/.test(value) && Buffer.byteLength(value, "utf8") <= 1_500;
+}
 const dateString = (value: unknown): value is string => {
   if (typeof value !== "string") return false;
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
@@ -46,7 +51,7 @@ export function buildFlightPricePushDeliveryId(eventId: string, tokenId: string)
 }
 
 export function validateFlightPriceAlertEvent(documentId: string, data: unknown): ValidFlightPriceAlertEvent | null {
-  if (!nonempty(documentId) || !object(data)) return null;
+  if (!/^[a-f0-9]{64}$/.test(documentId) || !object(data)) return null;
   const passengers = Number.isInteger(data.adults) && (data.adults as number) >= 1 && (data.adults as number) <= 9 &&
     Number.isInteger(data.children) && (data.children as number) >= 0 && (data.children as number) <= 8 &&
     Number.isInteger(data.infants) && (data.infants as number) >= 0 && (data.infants as number) <= 9 &&
@@ -59,11 +64,14 @@ export function validateFlightPriceAlertEvent(documentId: string, data: unknown)
   const prices = typeof data.currentPrice === "number" && Number.isFinite(data.currentPrice) && data.currentPrice > 0 &&
     typeof data.averagePrice === "number" && Number.isFinite(data.averagePrice) && data.averagePrice > 0 &&
     typeof data.discountPercent === "number" && Number.isFinite(data.discountPercent);
-  if (data.schemaVersion !== 1 || data.eventId !== documentId || !nonempty(data.userId) || !nonempty(data.alertId) ||
-    !nonempty(data.queryKey) || !nonempty(data.providerQueryKey) || !route || !trip || !passengers ||
+  if (data.schemaVersion !== 1 || data.eventId !== documentId || !isSafeFirestoreDocumentSegment(data.userId) ||
+    !isSafeFirestoreDocumentSegment(data.alertId) || !isSafeFirestoreDocumentSegment(data.queryKey) ||
+    !isSafeFirestoreDocumentSegment(data.providerQueryKey) || !route || !trip || !passengers ||
     (data.tripClass !== "economy" && data.tripClass !== "business") || typeof data.directOnly !== "boolean" ||
     !dateString(data.snapshotDate) || !prices || !threshold(data.matchedThreshold) || !uniqueThresholds(data.metThresholds) ||
     !uniqueThresholds(data.selectedThresholds) || !(data.metThresholds as unknown[]).includes(data.matchedThreshold) ||
+    !(data.selectedThresholds as unknown[]).includes(data.matchedThreshold) ||
+    !(data.metThresholds as unknown[]).every(value => (data.selectedThresholds as unknown[]).includes(value)) ||
     !Number.isInteger(data.trackingDayCount) || (data.trackingDayCount as number) < 14 ||
     (data.historyWindowDays !== 14 && data.historyWindowDays !== 30 && data.historyWindowDays !== 90) ||
     !Number.isInteger(data.priceSampleCount) || (data.priceSampleCount as number) < 1 || data.currency !== "EUR" ||
@@ -79,6 +87,13 @@ export function buildFlightPricePushMessage(event: ValidFlightPriceAlertEvent, e
     body: `Tracked fare: €${money(event.currentPrice)}. Recent ${event.historyWindowDays}-day average: €${money(event.averagePrice)}.`,
     data: { type: "flightPriceAlert", eventId: event.eventId },
   };
+}
+
+export function isFlightPriceEventThresholdAuthorized(
+  event: Pick<ValidFlightPriceAlertEvent, "matchedThreshold">,
+  sourceSelectedThresholds: readonly FlightPricePushThreshold[],
+): boolean {
+  return sourceSelectedThresholds.includes(event.matchedThreshold);
 }
 
 export function chooseFlightPriceEventSubmissionStatus(deliveries: unknown[]): "pending_delivery" | "submitted_to_expo" | "delivery_failed" {
@@ -111,10 +126,43 @@ export function decideFlightPriceDeliveryReservation(data: unknown, nowMilliseco
 const safeExpoCode = (value: unknown, fallback: string) => typeof value === "string" && /^[A-Za-z][A-Za-z0-9_]{0,63}$/.test(value) ? value : fallback;
 const requestCode = (error: unknown) => error instanceof ExpoPushRequestError ? error.code : "network_error";
 const todayUtc = () => new Date().toISOString().slice(0, 10);
+const disabledTokenKey = (userId: string, tokenId: string) => JSON.stringify([userId, tokenId]);
 
-async function disableToken(token: Token) {
+export class FlightPriceDisabledTokenRegistry {
+  private readonly keys = new Set<string>();
+  markUnavailable(userId: string, tokenId: string) { this.keys.add(disabledTokenKey(userId, tokenId)); }
+  isUnavailable(userId: string, tokenId: string) { return this.keys.has(disabledTokenKey(userId, tokenId)); }
+}
+
+export async function disableFlightPriceToken(
+  userId: string, token: Token, disabledTokens: FlightPriceDisabledTokenRegistry,
+) {
   const iso = new Date().toISOString();
   await token.ref.set({ disabledAt: iso, updatedAt: iso, firestoreUpdatedAt: FieldValue.serverTimestamp() }, { merge: true });
+  disabledTokens.markUnavailable(userId, token.tokenId);
+}
+
+export type ValidFlightPriceReceiptDelivery = {
+  eventId: string; deliveryId: string; userId: string; alertId: string; tokenId: string;
+  expoTicketId: string; receiptCheckAfter: Timestamp; submittedAt?: Timestamp;
+};
+
+export function validateFlightPriceReceiptDelivery(
+  path: string, documentId: string, data: unknown,
+): ValidFlightPriceReceiptDelivery | null {
+  if (!object(data)) return null;
+  const parts = path.split("/");
+  if (parts.length !== 4 || parts[0] !== "flightPriceAlertEvents" || parts[2] !== "pushDeliveries" ||
+    !/^[a-f0-9]{64}$/.test(parts[1]) || !/^[a-f0-9]{64}$/.test(documentId) || parts[3] !== documentId ||
+    data.eventId !== parts[1] || data.deliveryId !== documentId || !isSafeFirestoreDocumentSegment(data.userId) ||
+    !isSafeFirestoreDocumentSegment(data.alertId) || !isSafeFirestoreDocumentSegment(data.tokenId) ||
+    !isExpoPushTicketId(data.expoTicketId) || !(data.receiptCheckAfter instanceof Timestamp) ||
+    (data.submittedAt !== undefined && !(data.submittedAt instanceof Timestamp))) return null;
+  return {
+    eventId: parts[1], deliveryId: documentId, userId: data.userId, alertId: data.alertId, tokenId: data.tokenId,
+    expoTicketId: data.expoTicketId, receiptCheckAfter: data.receiptCheckAfter,
+    ...(data.submittedAt instanceof Timestamp ? { submittedAt: data.submittedAt } : {}),
+  };
 }
 
 async function updateReceiptAggregates(eventIds: Set<string>) {
@@ -130,25 +178,22 @@ async function updateReceiptAggregates(eventIds: Set<string>) {
   }
 }
 
-async function processReceipts(summary: Summary) {
+async function processReceipts(summary: Summary, disabledTokens: FlightPriceDisabledTokenRegistry) {
   const db = getFirestore();
   const now = Timestamp.now();
   const snapshot = await db.collectionGroup("pushDeliveries").where("status", "==", "ticket_accepted").limit(1000).get();
   summary.receiptDeliveryDocumentsRead = snapshot.size;
-  const eligible = snapshot.docs.filter(doc => {
-    const parts = doc.ref.path.split("/");
-    const data = doc.data();
-    return parts.length === 4 && parts[0] === "flightPriceAlertEvents" && parts[2] === "pushDeliveries" && parts[3] === doc.id &&
-      nonempty(data.expoTicketId) && data.receiptCheckAfter instanceof Timestamp && data.receiptCheckAfter.toMillis() <= now.toMillis();
-  });
+  const eligible = snapshot.docs.map(doc => ({ doc, delivery: validateFlightPriceReceiptDelivery(doc.ref.path, doc.id, doc.data()) }))
+    .filter((entry): entry is { doc: FirebaseFirestore.QueryDocumentSnapshot; delivery: ValidFlightPriceReceiptDelivery } =>
+      entry.delivery !== null && entry.delivery.receiptCheckAfter.toMillis() <= now.toMillis());
   if (eligible.length === 0) return;
-  const ids = [...new Set(eligible.map(doc => doc.data().expoTicketId as string))];
+  const ids = [...new Set(eligible.map(entry => entry.delivery.expoTicketId))];
   summary.receiptsRequested = ids.length;
   const receipts = await getExpoPushReceipts(ids);
   const affected = new Set<string>();
-  for (const doc of eligible) {
-    const data = doc.data(); const receipt = receipts[data.expoTicketId as string]; const eventId = doc.ref.parent.parent!.id;
-    affected.add(eventId);
+  for (const { doc, delivery } of eligible) {
+    const receipt = receipts[delivery.expoTicketId];
+    affected.add(delivery.eventId);
     if (receipt?.status === "ok") {
       summary.receiptOkCount += 1;
       await doc.ref.set({ status: "receipt_ok", receiptCheckedAt: now, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
@@ -156,10 +201,11 @@ async function processReceipts(summary: Summary) {
       summary.receiptErrorCount += 1;
       await doc.ref.set({ status: "receipt_error", receiptErrorCode: safeExpoCode(receipt.details?.error, "expo_receipt_error"),
         receiptCheckedAt: now, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
-      if (receipt.details?.error === "DeviceNotRegistered" && nonempty(data.userId) && nonempty(data.tokenId)) {
-        await disableToken({ tokenId: data.tokenId, token: "", ref: db.collection("userNotificationSettings").doc(data.userId).collection("tokens").doc(data.tokenId) });
+      if (receipt.details?.error === "DeviceNotRegistered") {
+        await disableFlightPriceToken(delivery.userId, { tokenId: delivery.tokenId, token: "",
+          ref: db.collection("userNotificationSettings").doc(delivery.userId).collection("tokens").doc(delivery.tokenId) }, disabledTokens);
       }
-    } else if (data.submittedAt instanceof Timestamp && now.toMillis() - data.submittedAt.toMillis() >= 86_400_000) {
+    } else if (delivery.submittedAt && now.toMillis() - delivery.submittedAt.toMillis() >= 86_400_000) {
       summary.receiptUnavailableCount += 1;
       await doc.ref.set({ status: "receipt_unavailable", receiptCheckedAt: now, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
     } else {
@@ -202,18 +248,21 @@ async function aggregateSubmission(event: ValidFlightPriceAlertEvent, summary: S
   await eventRef.set(update, { merge: true });
 }
 
-async function processEvent(event: ValidFlightPriceAlertEvent, tokensForUser: (userId: string) => Promise<Token[] | null>, summary: Summary) {
+async function processEvent(event: ValidFlightPriceAlertEvent, tokensForUser: (userId: string) => Promise<Token[] | null>,
+  disabledTokens: FlightPriceDisabledTokenRegistry, summary: Summary) {
   const db = getFirestore(); const eventRef = db.collection("flightPriceAlertEvents").doc(event.eventId);
   const alertRef = db.collection("flightDealPreferences").doc(event.userId).collection("alerts").doc(event.alertId);
   const alertSnapshot = await alertRef.get();
   const classified = alertSnapshot.exists ? classifyFlightPriceAlertDocument(alertRef.path, alertSnapshot.data(), todayUtc()) : null;
   const currentProviderKey = classified?.kind === "active" ? buildProviderFlightPriceQueryKey(classified.query) : null;
   if (classified?.kind !== "active" || classified.alert.userId !== event.userId || classified.alert.alertId !== event.alertId ||
-    classified.alert.queryKey !== event.queryKey || currentProviderKey !== event.providerQueryKey) {
+    classified.alert.queryKey !== event.queryKey || currentProviderKey !== event.providerQueryKey ||
+    !isFlightPriceEventThresholdAuthorized(event, classified.alert.selectedThresholds)) {
     summary.staleEventsCancelled += 1;
     await eventRef.set({ status: "cancelled_stale_alert", updatedAt: FieldValue.serverTimestamp() }, { merge: true }); return;
   }
-  const tokens = await tokensForUser(event.userId);
+  const tokens = (await tokensForUser(event.userId))?.filter(token =>
+    !disabledTokens.isUnavailable(event.userId, token.tokenId));
   if (!tokens || tokens.length === 0) {
     summary.eventsWithNoEligibleTokens += 1;
     await eventRef.set({ status: "no_eligible_tokens", updatedAt: FieldValue.serverTimestamp() }, { merge: true }); return;
@@ -234,7 +283,9 @@ async function processEvent(event: ValidFlightPriceAlertEvent, tokensForUser: (u
           summary.ticketErrors += 1;
           await item.ref.set({ status: "ticket_error", ticketErrorCode: safeExpoCode(ticket.details?.error, "expo_ticket_error"),
             submittedAt: sentAt, updatedAt: FieldValue.serverTimestamp() }, { merge: true });
-          if (ticket.details?.error === "DeviceNotRegistered") await disableToken(item.token);
+          if (ticket.details?.error === "DeviceNotRegistered") {
+            await disableFlightPriceToken(event.userId, item.token, disabledTokens);
+          }
         }
       }));
     } catch (error) {
@@ -259,7 +310,8 @@ export const processFlightPriceAlertNotifications = onSchedule(
       receiptUnavailableCount: 0, pendingEventsRead: 0, validEventsProcessed: 0, invalidEventsSkipped: 0, staleEventsCancelled: 0,
       eventsWithNoEligibleTokens: 0, deliveriesReserved: 0, ticketsAccepted: 0, ticketErrors: 0, retryPendingDeliveries: 0,
       eventsSubmittedToExpo: 0, eventsFailed: 0 };
-    await processReceipts(summary);
+    const disabledTokens = new FlightPriceDisabledTokenRegistry();
+    await processReceipts(summary, disabledTokens);
     const pending = await db.collection("flightPriceAlertEvents").where("status", "==", "pending_delivery").limit(100).get();
     summary.pendingEventsRead = pending.size;
     const events = pending.docs.map(doc => validateFlightPriceAlertEvent(doc.id, doc.data())).filter((value): value is ValidFlightPriceAlertEvent => {
@@ -278,7 +330,14 @@ export const processFlightPriceAlertNotifications = onSchedule(
           .map(doc => ({ tokenId: doc.id, token: doc.data().token as string, ref: doc.ref }));
       })(); cache.set(userId, loaded); return loaded;
     };
-    await mapLimited(events, 3, event => processEvent(event, tokensForUser, summary));
+    const eventsByUser = new Map<string, ValidFlightPriceAlertEvent[]>();
+    for (const event of events) {
+      const queue = eventsByUser.get(event.userId);
+      if (queue) queue.push(event); else eventsByUser.set(event.userId, [event]);
+    }
+    await mapLimited([...eventsByUser.values()], 3, async queue => {
+      for (const event of queue) await processEvent(event, tokensForUser, disabledTokens, summary);
+    });
     logger.info("Flight price push processing summary", { ...summary, elapsedMilliseconds: Date.now() - started });
   },
 );
