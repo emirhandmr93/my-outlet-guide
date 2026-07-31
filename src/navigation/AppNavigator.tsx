@@ -25,6 +25,7 @@ import { LoginScreen } from "../screens/LoginScreen";
 import { MediaCreditsScreen } from "../screens/MediaCreditsScreen";
 import { MyReviewsScreen } from "../screens/MyReviewsScreen";
 import { MyTripsScreen } from "../screens/MyTripsScreen";
+import { TravelHubScreen } from "../screens/TravelHubScreen";
 import { NotificationSettingsScreen } from "../screens/NotificationSettingsScreen";
 import { OfflinePacksScreen } from "../screens/OfflinePacksScreen";
 import { OnboardingScreen } from "../screens/OnboardingScreen";
@@ -68,8 +69,6 @@ NotificationSettings: undefined;
 LanguageSettings: undefined;
 };
 
-type DesktopTripsStackParamList = { MyTripsRoot: undefined; TripDetail: RootStackParamList["TripDetail"]; CreateTrip: undefined; TripSegmentEditor: RootStackParamList["TripSegmentEditor"]; };
-
 type DesktopExploreStackParamList = {
 ExploreRoot: MainTabParamList["Explore"];
 OutletDetail: RootStackParamList["OutletDetail"] & { reviewsRefresh?: number };
@@ -82,7 +81,6 @@ CreateTrip: undefined;
 
 const DesktopHomeStack = createNativeStackNavigator<DesktopHomeStackParamList>();
 const DesktopExploreStack = createNativeStackNavigator<DesktopExploreStackParamList>();
-const DesktopTripsStack = createNativeStackNavigator<DesktopTripsStackParamList>();
 
 function HeaderBackIcon({ color, label, onPress, isRTL }: { color?: string; label: string; onPress: () => void; isRTL: boolean }) {
 return (
@@ -159,8 +157,6 @@ options={{ headerShown: false }}
 );
 }
 
-function DesktopTripsNavigator() { const { t } = useTranslation(); const { isNativeRTL } = useLayoutDirection(); return <DesktopTripsStack.Navigator screenOptions={navigationScreenOptions(t, isNativeRTL)}><DesktopTripsStack.Screen name="MyTripsRoot" component={MyTripsScreen} options={{ headerShown: false }} /><DesktopTripsStack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: t("nav.tripDetail") }} /><DesktopTripsStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} /><DesktopTripsStack.Screen name="TripSegmentEditor" component={TripSegmentEditorScreen} options={{ title: t("tripDetail.addRouteCta") }} /></DesktopTripsStack.Navigator>; }
-
 function TabIcon({
 routeName,
 color,
@@ -185,7 +181,7 @@ return <MaterialCommunityIcons name="cash-multiple" size={size + 1} color={color
 }
 
 if (routeName === "MyTrips") {
-return <MaterialCommunityIcons name={focused ? "briefcase-clock" : "briefcase-clock-outline"} size={size + 1} color={color} />;
+return <Ionicons name={focused ? "airplane" : "airplane-outline"} size={size + 1} color={color} />;
 }
 
 return <Ionicons name={focused ? "person" : "person-outline"} size={size} color={color} />;
@@ -264,7 +260,7 @@ elevation: 14,
 >
 <Tab.Screen name="Home" component={isDesktopWeb ? DesktopHomeNavigator : HomeScreen} />
 <Tab.Screen name="Explore" component={isDesktopWeb ? DesktopExploreNavigator : ExploreScreen} />
-<Tab.Screen name="MyTrips" component={isDesktopWeb ? DesktopTripsNavigator : MyTripsScreen} />
+<Tab.Screen name="MyTrips" component={TravelHubScreen} />
 <Tab.Screen name="Savings" component={SavingsScreen} />
 <Tab.Screen name="Profile" component={ProfileScreen} />
 </Tab.Navigator>
@@ -350,6 +346,7 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 <Stack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
 
 <Stack.Screen name="MyTrips" component={MyTripsScreen} options={{ title: t("nav.myTrips") }} />
+<Stack.Screen name="MyTripsList" component={MyTripsScreen} options={{ title: t("nav.myTrips") }} />
 <Stack.Screen name="Favorites" component={FavoritesScreen} options={{ title: t("nav.favorites") }} />
 <Stack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
 <Stack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: t("nav.tripDetail") }} />
