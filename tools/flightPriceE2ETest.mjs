@@ -2,14 +2,15 @@
 
 import { createHash, randomUUID } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { chmodSync, constants as fsConstants, existsSync, openSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { accessSync, chmodSync, constants as fsConstants, existsSync, openSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
 import process from "node:process";
+import { fileURLToPath } from "node:url";
 
 const PROJECT = "my-outlet-guide";
 const CONFIRMATION = "MY_OUTLET_GUIDE_SYNTHETIC_FLIGHT_TEST";
 const ACTIONS = new Set(["preflight", "seed", "verify", "cleanup"]);
-const EVENT_STATUSES = new Set(["pending_delivery", "submitted_to_expo", "delivery_failed", "no_eligible_tokens"]);
+const EVENT_STATUSES = new Set(["pending_delivery", "submitted_to_expo", "delivery_failed", "cancelled_stale_alert", "no_eligible_tokens"]);
 const DELIVERY_STATUSES = new Set(["reserved", "retry_pending", "ticket_accepted", "ticket_error", "receipt_ok", "receipt_error", "receipt_unavailable"]);
 const EXPECTED_AVERAGE = (13 * 100 + 80) / 14;
 const EXPECTED_DISCOUNT = ((EXPECTED_AVERAGE - 80) / EXPECTED_AVERAGE) * 100;
@@ -174,7 +175,14 @@ export class FirestoreRest {
     return body;
   }
   name(path) { return `${this.documents}/${path}`; }
-  update(path, fields, precondition) { return { update: { name: this.name(path), fields }, ...(precondition ? { currentDocument: precondition } : {}) }; }
+  update(path, fields, precondition, fieldPaths) {
+    const write = { update: { name: this.name(path), fields }, ...(precondition ? { currentDocument: precondition } : {}) };
+    if (fieldPaths !== undefined) {
+      if (!Array.isArray(fieldPaths) || fieldPaths.length === 0 || new Set(fieldPaths).size !== fieldPaths.length || fieldPaths.some(path => !validFieldPath(path))) fail("Invalid Firestore update-mask field path.");
+      write.updateMask = { fieldPaths: [...fieldPaths] };
+    }
+    return write;
+  }
   delete(path, precondition) { return { delete: this.name(path), ...(precondition ? { currentDocument: precondition } : {}) }; }
 }
 
@@ -206,10 +214,12 @@ function validateAlert(alert, uid, alertId, evaluationDate) {
 function eligibleTokens(documents, uid) {
   return documents.filter(document => {
     const token = data(document);
-    return token?.userId === uid && (token.disabledAt === undefined || token.disabledAt === null) && typeof token.token === "string" && /^(ExponentPushToken|ExpoPushToken)\[[A-Za-z0-9_-]+\]$/.test(token.token);
+    return token?.userId === uid && (token.platform === "ios" || token.platform === "android") &&
+      (token.disabledAt === undefined || token.disabledAt === null || token.disabledAt === "") &&
+      typeof token.token === "string" && /^(ExponentPushToken|ExpoPushToken)\[[A-Za-z0-9_-]+\]$/.test(token.token);
   }).length;
 }
-export async function preflight(db, args, quiet = false) {
+async function coreContext(db, args) {
   const evaluationDate = args["evaluation-date"] ?? new Date().toISOString().slice(0, 10);
   if (!isDate(evaluationDate)) fail("Evaluation date must be a real YYYY-MM-DD calendar date.");
   const uid = args["user-id"], alertId = args["alert-id"];
@@ -217,115 +227,134 @@ export async function preflight(db, args, quiet = false) {
   validateRuntime(data(runtimeDoc), uid);
   const alertDoc = await db.get(`flightDealPreferences/${uid}/alerts/${alertId}`); if (!alertDoc) fail("Source alert is missing.");
   const alert = data(alertDoc), key = validateAlert(alert, uid, alertId, evaluationDate);
-  const settingsDoc = await db.get(`userNotificationSettings/${uid}`); if (!settingsDoc || data(settingsDoc)?.enabled !== true) fail("User notification settings are not enabled.");
-  const count = eligibleTokens(await db.list(`userNotificationSettings/${uid}`, "tokens"), uid); if (count < 1) fail("No eligible Expo push tokens exist.");
   const id = eventId(uid, alertId, evaluationDate); if (!/^[a-f0-9]{64}$/.test(id)) fail("Deterministic event ID is invalid.");
+  return { runtimeDoc, alertDoc, alert, evaluationDate, providerQueryKey: key, eventId: id };
+}
+async function pushEligibility(db, uid, required) {
+  const settings = await db.get(`userNotificationSettings/${uid}`);
+  const tokens = await db.list(`userNotificationSettings/${uid}`, "tokens");
+  const count = eligibleTokens(tokens, uid);
+  if (required && (!settings || data(settings)?.enabled !== true)) fail("User notification settings are not enabled.");
+  if (required && count < 1) fail("No eligible Expo push tokens exist.");
+  return { enabled: data(settings)?.enabled === true, count };
+}
+export async function preflight(db, args, quiet = false, requirePush = true) {
+  const context = await coreContext(db, args);
+  const eligibility = requirePush ? await pushEligibility(db, args["user-id"], true) : { enabled: false, count: 0 };
   if (!quiet) {
-    log("action", args.action); log("project", PROJECT); log("user", mask(uid)); log("alert", mask(alertId)); log("evaluation date", evaluationDate);
-    log("provider query key", mask(key)); log("event ID", mask(id)); log("eligible token count", count); log("expected discount", EXPECTED_DISCOUNT.toFixed(2)); log("status", "preflight_passed");
+    log("action", args.action); log("project", PROJECT); log("user", mask(args["user-id"])); log("alert", mask(args["alert-id"])); log("evaluation date", context.evaluationDate);
+    log("provider query key", mask(context.providerQueryKey)); log("event ID", mask(context.eventId)); log("eligible token count", eligibility.count); log("expected discount", EXPECTED_DISCOUNT.toFixed(2)); log("status", "preflight_passed");
   }
-  return { runtimeDoc, alertDoc, alert, evaluationDate, providerQueryKey: key, eventId: id, eligibleTokenCount: count };
+  return { ...context, eligibleTokenCount: eligibility.count };
 }
 
-function repoRoot() { return realpathSync(resolve(dirname(new URL(import.meta.url).pathname), "..")); }
-export function validateBackupPath(path) {
+function repoRoot() { return realpathSync(resolve(dirname(fileURLToPath(import.meta.url)), "..")); }
+function outsideRepository(path, mustExist) {
   if (!isAbsolute(path)) fail("Backup path must be absolute.");
   const absolute = resolve(path), root = repoRoot();
-  let canonicalParent; try { canonicalParent = realpathSync(dirname(absolute)); } catch { fail("Backup parent directory must already exist."); }
-  const canonical = resolve(canonicalParent, absolute.slice(dirname(absolute).length + 1)), rel = relative(root, canonical);
+  let canonical;
+  try { canonical = mustExist ? realpathSync(absolute) : resolve(realpathSync(dirname(absolute)), absolute.slice(dirname(absolute).length + 1)); }
+  catch { fail(mustExist ? "Backup must be an existing readable regular file." : "Backup parent directory must already exist."); }
+  const rel = relative(root, canonical);
   if (rel === "" || (!rel.startsWith(`..${sep}`) && rel !== ".." && !isAbsolute(rel))) fail("Backup path must be outside the repository working tree.");
-  if (existsSync(absolute)) fail("Backup path already exists; refusing to overwrite it.");
+  if (mustExist) { try { if (!statSync(canonical).isFile()) fail("Backup must be a regular file."); accessSync(canonical, fsConstants.R_OK); } catch { fail("Backup must be an existing readable regular file."); } }
   return absolute;
 }
-function writeBackup(path, backup) {
-  const fd = openSync(path, fsConstants.O_CREAT | fsConstants.O_EXCL | fsConstants.O_WRONLY, 0o600);
-  try { writeFileSync(fd, `${JSON.stringify(backup, null, 2)}\n`, "utf8"); } finally { try { chmodSync(path, 0o600); } catch {} }
+export function validateBackupPath(path) { const absolute = outsideRepository(path, false); if (existsSync(absolute)) fail("Backup path already exists; refusing to overwrite it."); return absolute; }
+function writeBackup(path, backup) { const fd = openSync(path, fsConstants.O_CREAT | fsConstants.O_EXCL | fsConstants.O_WRONLY, 0o600); try { writeFileSync(fd, `${JSON.stringify(backup, null, 2)}\n`, "utf8"); } finally { try { chmodSync(path, 0o600); } catch {} } }
+function canonical(value) {
+  if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`;
+  if (value && typeof value === "object") return `{${Object.keys(value).sort().map(key => `${JSON.stringify(key)}:${canonical(value[key])}`).join(",")}}`;
+  return JSON.stringify(value);
 }
-function documentFields(document) { return document?.fields ?? {}; }
+export function rawEqual(left, right) { return canonical(left) === canonical(right); }
+function rawClone(value) { return JSON.parse(JSON.stringify(value)); }
+function rawFields(document) { return document?.fields ?? {}; }
+function rawDocumentEqual(actual, original) { return actual === null || original === null ? actual === original : rawEqual(rawFields(actual), rawFields(original)); }
+function withoutTestFields(fields) { const copy = rawClone(fields); delete copy.firstSnapshotDate; delete copy.syntheticTestRunId; return copy; }
+function validFieldPath(path) { return typeof path === "string" && /^[A-Za-z_][A-Za-z0-9_]*$/.test(path) && !/^__.*__$/.test(path); }
 function updatePrecondition(document) { return document ? { updateTime: document.updateTime } : { exists: false }; }
-function syntheticSnapshot(context, date, price, runId) {
-  return { schemaVersion: 1, provider: "aviasales_data_api", providerQueryKey: context.providerQueryKey, snapshotDate: date, status: "price_found", price, transfers: 0, currency: "EUR", priceScope: "cached_offer", passengerCountApplied: false, departDate: context.alert.departDate, ...(context.alert.tripType === "round_trip" ? { returnDate: context.alert.returnDate } : {}), tripClass: context.alert.tripClass, directOnly: context.alert.directOnly, collectedAt: new Date(), syntheticTestRunId: runId };
+function syntheticSnapshot(context, date, price, runId, collectedAt) {
+  return { schemaVersion: 1, provider: "aviasales_data_api", providerQueryKey: context.providerQueryKey, snapshotDate: date, status: "price_found", price, transfers: 0, currency: "EUR", priceScope: "cached_offer", passengerCountApplied: false, departDate: context.alert.departDate, ...(context.alert.tripType === "round_trip" ? { returnDate: context.alert.returnDate } : {}), tripClass: context.alert.tripClass, directOnly: context.alert.directOnly, collectedAt, syntheticTestRunId: runId };
 }
-function hasMarker(document, runId) { return data(document)?.syntheticTestRunId === runId; }
+function validUuid(value) { return typeof value === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value); }
+function profileMatches(value, alert) { return value?.originAirportCode === alert.originAirportCode && value.destinationAirportCode === alert.destinationAirportCode && value.tripType === alert.tripType && value.departDate === alert.departDate && value.returnDate === alert.returnDate && value.adults === alert.adults && value.children === alert.children && value.infants === alert.infants && value.tripClass === alert.tripClass && value.directOnly === alert.directOnly; }
+function parentMatches(value, context) { return value?.schemaVersion === 1 && value.provider === "aviasales_data_api" && value.providerQueryKey === context.providerQueryKey && value.originAirportCode === context.alert.originAirportCode && value.destinationAirportCode === context.alert.destinationAirportCode && value.tripType === context.alert.tripType && value.departDate === context.alert.departDate && value.returnDate === context.alert.returnDate && value.tripClass === context.alert.tripClass && value.directOnly === context.alert.directOnly && value.currency === "EUR" && value.priceScope === "cached_offer" && value.passengerCountApplied === false; }
+function snapshotMatches(value, context, date, price, runId) { return value?.schemaVersion === 1 && value.provider === "aviasales_data_api" && value.providerQueryKey === context.providerQueryKey && value.snapshotDate === date && value.status === "price_found" && value.price === price && value.transfers === 0 && value.currency === "EUR" && value.priceScope === "cached_offer" && value.passengerCountApplied === false && value.departDate === context.alert.departDate && value.returnDate === context.alert.returnDate && value.tripClass === context.alert.tripClass && value.directOnly === context.alert.directOnly && value.syntheticTestRunId === runId; }
 
 export async function seed(db, args) {
-  const backupPath = validateBackupPath(args.backup);
-  const context = await preflight(db, args, true), uid = args["user-id"], alertId = args["alert-id"];
-  const dates = syntheticDates(context.evaluationDate), historical = dates.slice(0, 13), currentPath = `flightPriceQueries/${context.providerQueryKey}/dailySnapshots/${context.evaluationDate}`;
-  const statePath = `flightPriceQueries/${context.providerQueryKey}`, evaluationPath = `flightPriceAlertEvaluations/${uid}/items/${alertId}`, eventPath = `flightPriceAlertEvents/${context.eventId}`, dealPath = `userFlightPriceDeals/${uid}/items/${context.eventId}`;
+  const backupPath = validateBackupPath(args.backup), context = await preflight(db, args, true, true), uid = args["user-id"], alertId = args["alert-id"];
+  const dates = syntheticDates(context.evaluationDate), historical = dates.slice(0, 13), statePath = `flightPriceQueries/${context.providerQueryKey}`, currentPath = `${statePath}/dailySnapshots/${context.evaluationDate}`;
+  const evaluationPath = `flightPriceAlertEvaluations/${uid}/items/${alertId}`, eventPath = `flightPriceAlertEvents/${context.eventId}`, dealPath = `userFlightPriceDeals/${uid}/items/${context.eventId}`;
   const [state, current, evaluation, event, deal, ...history] = await Promise.all([db.get(statePath), db.get(currentPath), db.get(evaluationPath), db.get(eventPath), db.get(dealPath), ...historical.map(date => db.get(`${statePath}/dailySnapshots/${date}`))]);
+  if (!state) fail("Parent flight-price query state is missing; seed refused.");
+  if (!parentMatches(data(state), context)) fail("Parent flight-price query identity/profile is invalid; seed refused.");
   if (event || deal) fail("Deterministic event or projection already exists; seed refused.");
   if (history.some(Boolean)) fail("A first-13 historical snapshot already exists; seed refused without overwrite.");
-  const runId = randomUUID();
-  const backup = { schemaVersion: 1, projectId: PROJECT, maskedMetadata: { user: mask(uid), alert: mask(alertId), providerQueryKey: mask(context.providerQueryKey), eventId: mask(context.eventId) }, userId: uid, alertId, providerQueryKey: context.providerQueryKey, eventId: context.eventId, evaluationDate: context.evaluationDate, syntheticTestRunId: runId, syntheticDateIds: dates, existence: { state: Boolean(state), currentSnapshot: Boolean(current), evaluation: Boolean(evaluation) }, originalStateDocument: state, originalCurrentSnapshotDocument: current, originalEvaluationDocument: evaluation, createdAt: new Date().toISOString() };
+  const runId = randomUUID(), collectedAt = new Date(), parentPatch = { firstSnapshotDate: dates[0], syntheticTestRunId: runId };
+  const snapshotFields = dates.map((date, index) => encodeFields(syntheticSnapshot(context, date, index === 13 ? 80 : 100, runId, collectedAt)));
+  const originalTestFields = { firstSnapshotDate: { exists: Object.hasOwn(state.fields, "firstSnapshotDate"), value: state.fields.firstSnapshotDate ?? null }, syntheticTestRunId: { exists: Object.hasOwn(state.fields, "syntheticTestRunId"), value: state.fields.syntheticTestRunId ?? null } };
+  const backup = { schemaVersion: 2, projectId: PROJECT, maskedMetadata: { user: mask(uid), alert: mask(alertId), providerQueryKey: mask(context.providerQueryKey), eventId: mask(context.eventId) }, userId: uid, alertId, providerQueryKey: context.providerQueryKey, eventId: context.eventId, evaluationDate: context.evaluationDate, syntheticTestRunId: runId, syntheticDateIds: dates, existence: { currentSnapshot: Boolean(current), evaluation: Boolean(evaluation) }, originalStateDocument: rawClone(state), originalCurrentSnapshotDocument: current ? rawClone(current) : null, originalEvaluationDocument: evaluation ? rawClone(evaluation) : null, originalParentTestFields: rawClone(originalTestFields), expectedRawSyntheticParentPatch: encodeFields(parentPatch), expectedRawSyntheticSnapshotFields: rawClone(snapshotFields), createdAt: new Date().toISOString() };
   writeBackup(backupPath, backup);
-  const parent = { ...data(state), firstSnapshotDate: dates[0], syntheticTestRunId: runId };
-  const writes = [db.update(statePath, encodeFields(parent), updatePrecondition(state))];
-  dates.forEach((date, index) => writes.push(db.update(`${statePath}/dailySnapshots/${date}`, encodeFields(syntheticSnapshot(context, date, index === 13 ? 80 : 100, runId)), index === 13 ? updatePrecondition(current) : { exists: false })));
+  const writes = [db.update(statePath, backup.expectedRawSyntheticParentPatch, { updateTime: state.updateTime }, ["firstSnapshotDate", "syntheticTestRunId"])];
+  dates.forEach((date, index) => writes.push(db.update(`${statePath}/dailySnapshots/${date}`, snapshotFields[index], index === 13 ? updatePrecondition(current) : { exists: false })));
   await db.commit(writes);
   const [savedState, ...saved] = await Promise.all([db.get(statePath), ...dates.map(date => db.get(`${statePath}/dailySnapshots/${date}`))]);
-  if (!hasMarker(savedState, runId) || saved.length !== 14 || saved.some((document, index) => !hasMarker(document, runId) || data(document).price !== (index === 13 ? 80 : 100))) fail(`Seed verification failed; run cleanup with backup ${backupPath}.`);
+  const savedData = data(savedState);
+  if (!savedState || savedData.firstSnapshotDate !== dates[0] || savedData.syntheticTestRunId !== runId || !rawEqual(withoutTestFields(savedState.fields), withoutTestFields(state.fields)) || saved.some((document, index) => !document || !rawEqual(document.fields, snapshotFields[index]))) fail(`Seed verification failed; run cleanup with backup ${backupPath}.`);
   log("action", "seed"); log("project", PROJECT); log("evaluation date", context.evaluationDate); log("provider query key", mask(context.providerQueryKey)); log("event ID", mask(context.eventId)); log("synthetic snapshot count", 14); log("expected discount", EXPECTED_DISCOUNT.toFixed(2)); log("backup path", backupPath); log("test run ID", runId); log("status", "seed_verified");
 }
 
 function approximately(actual, expected, tolerance = 0.02) { return typeof actual === "number" && Math.abs(actual - expected) <= tolerance; }
-function statusCounts(documents) { const counts = {}; for (const document of documents) { const status = data(document)?.status; counts[typeof status === "string" ? status : "malformed"] = (counts[status] ?? 0) + 1; } return counts; }
+export function statusCounts(documents) { const counts = {}; for (const document of documents) { const value = data(document)?.status; const status = typeof value === "string" ? value : "malformed"; counts[status] = (counts[status] ?? 0) + 1; } return counts; }
 export async function verify(db, args) {
-  const context = await preflight(db, args, true), uid = args["user-id"], alertId = args["alert-id"], dates = syntheticDates(context.evaluationDate);
-  const statePath = `flightPriceQueries/${context.providerQueryKey}`;
-  const [state, evaluation, event, deal, deliveries, ...snapshots] = await Promise.all([db.get(statePath), db.get(`flightPriceAlertEvaluations/${uid}/items/${alertId}`), db.get(`flightPriceAlertEvents/${context.eventId}`), db.get(`userFlightPriceDeals/${uid}/items/${context.eventId}`), db.list(`flightPriceAlertEvents/${context.eventId}`, "pushDeliveries"), ...dates.map(date => db.get(`${statePath}/dailySnapshots/${date}`))]);
-  const evaluationData = data(evaluation), eventData = data(event), deliveryCounts = statusCounts(deliveries);
-  const core = Boolean(state) && snapshots.length === 14 && snapshots.every(Boolean) && evaluationData?.status === "threshold_met" && evaluationData.phase === "rolling_14" && evaluationData.trackingDayCount === 14 && evaluationData.windowDays === 14 && evaluationData.priceSampleCount === 14 && evaluationData.currentPrice === 80 && approximately(evaluationData.averagePrice, EXPECTED_AVERAGE) && approximately(evaluationData.discountPercent, EXPECTED_DISCOUNT) && evaluationData.highestMatchedThreshold === 15 && Boolean(event) && Boolean(deal);
-  const statusesValid = !eventData || EVENT_STATUSES.has(eventData.status); const deliveriesValid = Object.keys(deliveryCounts).every(status => DELIVERY_STATUSES.has(status));
-  log("action", "verify"); log("project", PROJECT); log("evaluation date", context.evaluationDate); log("provider query key", mask(context.providerQueryKey)); log("event ID", mask(context.eventId)); log("snapshot count", snapshots.filter(Boolean).length); log("evaluation status", evaluationData?.status ?? "missing"); log("evaluation phase", evaluationData?.phase ?? "missing"); log("event status", eventData?.status ?? "missing"); log("projection status", deal ? "exists" : "missing"); log("delivery count", deliveries.length); log("delivery status counts", JSON.stringify(deliveryCounts)); log("core evaluator verification", core && statusesValid && deliveriesValid ? "passed" : "failed");
-  if (!core || !statusesValid || !deliveriesValid) fail("Core evaluator outputs are missing or inconsistent.");
+  const context = await preflight(db, args, true, false), uid = args["user-id"], alertId = args["alert-id"], dates = syntheticDates(context.evaluationDate), statePath = `flightPriceQueries/${context.providerQueryKey}`;
+  const [eligibility, state, evaluation, event, deal, deliveries, ...snapshots] = await Promise.all([pushEligibility(db, uid, false), db.get(statePath), db.get(`flightPriceAlertEvaluations/${uid}/items/${alertId}`), db.get(`flightPriceAlertEvents/${context.eventId}`), db.get(`userFlightPriceDeals/${uid}/items/${context.eventId}`), db.list(`flightPriceAlertEvents/${context.eventId}`, "pushDeliveries"), ...dates.map(date => db.get(`${statePath}/dailySnapshots/${date}`))]);
+  const stateData = data(state), runId = stateData?.syntheticTestRunId, evaluationData = data(evaluation), eventData = data(event), deliveryCounts = statusCounts(deliveries);
+  const synthetic = validUuid(runId) && parentMatches(stateData, context) && stateData.firstSnapshotDate === dates[0] && snapshots.every((document, index) => document && snapshotMatches(data(document), context, dates[index], index === 13 ? 80 : 100, runId));
+  const core = synthetic && evaluationMatches(evaluationData, context) && eventMatches(eventData, context) && projectionMatches(data(deal), context);
+  const statusesValid = EVENT_STATUSES.has(eventData?.status); const deliveriesValid = Object.keys(deliveryCounts).every(status => DELIVERY_STATUSES.has(status));
+  log("action", "verify"); log("project", PROJECT); log("evaluation date", context.evaluationDate); log("provider query key", mask(context.providerQueryKey)); log("event ID", mask(context.eventId)); log("test run ID", validUuid(runId) ? runId : "invalid"); log("eligible token count", eligibility.count); log("push eligibility after test", eligibility.enabled && eligibility.count > 0 ? "eligible" : "not_eligible"); log("snapshot count", snapshots.filter(Boolean).length); log("evaluation status", evaluationData?.status ?? "missing"); log("event status", eventData?.status ?? "missing"); log("projection status", deal ? "exists" : "missing"); log("delivery count", deliveries.length); log("delivery status counts", JSON.stringify(deliveryCounts)); log("core evaluator verification", core && statusesValid && deliveriesValid ? "passed" : "failed");
+  if (!core || !statusesValid || !deliveriesValid) fail("Core evaluator or strict synthetic-run outputs are missing or inconsistent.");
 }
 
-function readBackup(path) {
-  if (!isAbsolute(path)) fail("Backup path must be absolute.");
-  let backup; try { backup = JSON.parse(readFileSync(path, "utf8")); } catch { fail("Backup cannot be read or parsed."); }
-  return backup;
-}
-function validateBackup(backup, args, context) {
-  const uid = args["user-id"], alertId = args["alert-id"];
-  if (!backup || backup.schemaVersion !== 1 || backup.projectId !== PROJECT || backup.userId !== uid || backup.alertId !== alertId || backup.providerQueryKey !== context.providerQueryKey || backup.eventId !== eventId(uid, alertId, backup.evaluationDate) || backup.eventId !== context.eventId || !isDate(backup.evaluationDate) || typeof backup.syntheticTestRunId !== "string" || !Array.isArray(backup.syntheticDateIds) || JSON.stringify(backup.syntheticDateIds) !== JSON.stringify(syntheticDates(backup.evaluationDate)) || !backup.existence || typeof backup.createdAt !== "string") fail("Backup validation or supplied path identity validation failed.");
-}
-function restoreWrite(db, path, original, current) {
-  if (original) return db.update(path, documentFields(original), current ? { updateTime: current.updateTime } : { exists: false });
-  return current ? db.delete(path, { updateTime: current.updateTime }) : null;
-}
-function sameStoredFields(actual, original) {
-  return actual === null || original === null
-    ? actual === original
-    : JSON.stringify(documentFields(actual)) === JSON.stringify(documentFields(original));
-}
+function readBackup(path) { const absolute = outsideRepository(path, true); let backup; try { backup = JSON.parse(readFileSync(absolute, "utf8")); } catch { fail("Backup cannot be read or parsed."); } return backup; }
+function validateBackup(backup, args, context) { const uid = args["user-id"], alertId = args["alert-id"]; if (!backup || backup.schemaVersion !== 2 || backup.projectId !== PROJECT || backup.userId !== uid || backup.alertId !== alertId || backup.providerQueryKey !== context.providerQueryKey || backup.eventId !== eventId(uid, alertId, backup.evaluationDate) || backup.eventId !== context.eventId || !validUuid(backup.syntheticTestRunId) || !Array.isArray(backup.syntheticDateIds) || !rawEqual(backup.syntheticDateIds, syntheticDates(backup.evaluationDate)) || !backup.originalStateDocument || !backup.originalParentTestFields || !Array.isArray(backup.expectedRawSyntheticSnapshotFields) || backup.expectedRawSyntheticSnapshotFields.length !== 14 || typeof backup.createdAt !== "string") fail("Backup validation or supplied path identity validation failed."); }
+function expectedThresholds(alert) { return alert.selectedThresholds.filter(value => EXPECTED_DISCOUNT >= value); }
+function evaluationMatches(value, context) { return value?.schemaVersion === 1 && value.userId === context.alert.userId && value.alertId === context.alert.alertId && value.queryKey === context.alert.queryKey && value.providerQueryKey === context.providerQueryKey && value.evaluationDate === context.evaluationDate && value.status === "threshold_met" && value.phase === "rolling_14" && value.trackingDayCount === 14 && value.windowDays === 14 && value.priceSampleCount === 14 && value.currentPrice === 80 && approximately(value.averagePrice, EXPECTED_AVERAGE) && approximately(value.discountPercent, EXPECTED_DISCOUNT) && value.highestMatchedThreshold === 15 && value.lastObservedMatchedThreshold === 15 && profileMatches(value, context.alert); }
+function eventMatches(value, context) { return value?.schemaVersion === 1 && value.eventId === context.eventId && value.userId === context.alert.userId && value.alertId === context.alert.alertId && value.queryKey === context.alert.queryKey && value.providerQueryKey === context.providerQueryKey && value.snapshotDate === context.evaluationDate && profileMatches(value, context.alert) && value.currentPrice === 80 && approximately(value.averagePrice, EXPECTED_AVERAGE) && approximately(value.discountPercent, EXPECTED_DISCOUNT) && value.matchedThreshold === 15 && rawEqual(value.metThresholds, expectedThresholds(context.alert)) && rawEqual(value.selectedThresholds, context.alert.selectedThresholds) && value.trackingDayCount === 14 && value.historyWindowDays === 14 && value.priceSampleCount === 14 && value.currency === "EUR" && value.priceScope === "cached_offer" && value.passengerCountApplied === false && EVENT_STATUSES.has(value.status); }
+function projectionMatches(value, context) { return eventMatches({ ...value, status: "pending_delivery" }, context) && value.provider === "aviasales_data_api"; }
+function deliveryPath(document, context) { const marker = "/documents/", offset = document.name.indexOf(marker); if (offset < 0) return null; const path = decodeURIComponent(document.name.slice(offset + marker.length)), parts = path.split("/"); if (parts.length !== 4 || parts[0] !== "flightPriceAlertEvents" || parts[1] !== context.eventId || parts[2] !== "pushDeliveries" || !validSegment(parts[3])) return null; const value = data(document); return value?.deliveryId === parts[3] && value.eventId === context.eventId && value.userId === context.alert.userId && value.alertId === context.alert.alertId && DELIVERY_STATUSES.has(value.status) ? path : null; }
+function parentRestoreFields(backup) { const fields = {}; for (const name of ["firstSnapshotDate", "syntheticTestRunId"]) if (backup.originalParentTestFields[name].exists) fields[name] = rawClone(backup.originalParentTestFields[name].value); return fields; }
 export async function cleanup(db, args) {
-  const backup = readBackup(args.backup);
-  args["evaluation-date"] = backup.evaluationDate;
-  const context = await preflight(db, args, true); validateBackup(backup, args, context);
+  const backup = readBackup(args.backup); args["evaluation-date"] = backup.evaluationDate;
+  const context = await preflight(db, args, true, false); validateBackup(backup, args, context);
   const uid = args["user-id"], alertId = args["alert-id"], runId = backup.syntheticTestRunId, dates = backup.syntheticDateIds, statePath = `flightPriceQueries/${context.providerQueryKey}`;
   const eventPath = `flightPriceAlertEvents/${context.eventId}`, dealPath = `userFlightPriceDeals/${uid}/items/${context.eventId}`, evaluationPath = `flightPriceAlertEvaluations/${uid}/items/${alertId}`;
   const deliveries = await db.list(eventPath, "pushDeliveries");
   const [event, deal, state, evaluation, ...snapshots] = await Promise.all([db.get(eventPath), db.get(dealPath), db.get(statePath), db.get(evaluationPath), ...dates.map(date => db.get(`${statePath}/dailySnapshots/${date}`))]);
-  for (let index = 0; index < 13; index += 1) if (snapshots[index] && !hasMarker(snapshots[index], runId)) fail("Synthetic marker conflict on historical snapshot; cleanup stopped before writes.");
-  const current = snapshots[13];
-  if (current && !hasMarker(current, runId) && !(backup.existence.currentSnapshot && sameStoredFields(current, backup.originalCurrentSnapshotDocument))) fail("Synthetic marker conflict on current snapshot; cleanup stopped before writes.");
-  if (state && !hasMarker(state, runId) && !(backup.existence.state && sameStoredFields(state, backup.originalStateDocument))) fail("Synthetic marker conflict on parent query state; cleanup stopped before writes.");
-  const alreadyClean = deliveries.length === 0 && !event && !deal && snapshots.slice(0, 13).every(document => !document) && (backup.existence.currentSnapshot ? sameStoredFields(current, backup.originalCurrentSnapshotDocument) : !current) && (backup.existence.state ? sameStoredFields(state, backup.originalStateDocument) : !state) && (backup.existence.evaluation ? sameStoredFields(evaluation, backup.originalEvaluationDocument) : !evaluation);
+  const originalEvaluation = backup.originalEvaluationDocument;
+  const alreadyClean = deliveries.length === 0 && !event && !deal && snapshots.slice(0, 13).every(document => !document) && rawDocumentEqual(snapshots[13], backup.originalCurrentSnapshotDocument) && rawDocumentEqual(evaluation, originalEvaluation) && state && parentMatches(data(state), context) && rawEqual(state.fields.firstSnapshotDate, backup.originalParentTestFields.firstSnapshotDate.exists ? backup.originalParentTestFields.firstSnapshotDate.value : undefined) && rawEqual(state.fields.syntheticTestRunId, backup.originalParentTestFields.syntheticTestRunId.exists ? backup.originalParentTestFields.syntheticTestRunId.value : undefined);
   if (alreadyClean) { log("action", "cleanup"); log("project", PROJECT); log("status", "already_clean"); return; }
-  const writes = [];
-  for (const delivery of deliveries) { const path = delivery.name.split("/documents/")[1]; if (!path) fail("Malformed delivery document path."); writes.push(db.delete(path, { updateTime: delivery.updateTime })); }
-  if (event) writes.push(db.delete(eventPath, { updateTime: event.updateTime }));
-  if (deal) writes.push(db.delete(dealPath, { updateTime: deal.updateTime }));
+  if (!state || !parentMatches(data(state), context) || data(state).syntheticTestRunId !== runId) fail("Parent state identity or synthetic marker conflict; cleanup stopped before writes.");
+  for (let index = 0; index < 14; index += 1) if (snapshots[index] && !snapshotMatches(data(snapshots[index]), context, dates[index], index === 13 ? 80 : 100, runId)) fail("Synthetic snapshot identity or marker conflict; cleanup stopped before writes.");
+  if (!snapshots[13]) fail("Current synthetic snapshot is missing; cleanup stopped before writes.");
+  if (originalEvaluation && !evaluation) fail("Original evaluation is unexpectedly missing; cleanup stopped before writes.");
+  const evaluationAlreadyRestored = rawDocumentEqual(evaluation, originalEvaluation); if (evaluation && !evaluationAlreadyRestored && !evaluationMatches(data(evaluation), context)) fail("Evaluation conflicts with the synthetic test; cleanup stopped before writes.");
+  if (event && !eventMatches(data(event), context)) fail("Event conflicts with the synthetic test; cleanup stopped before writes.");
+  if (deal && !projectionMatches(data(deal), context)) fail("Projection conflicts with the synthetic test; cleanup stopped before writes.");
+  const deliveryPaths = deliveries.map(document => deliveryPath(document, context)); if (deliveryPaths.some(path => path === null)) fail("A delivery conflicts with the synthetic test; cleanup stopped before writes.");
+  const writes = deliveries.map((document, index) => db.delete(deliveryPaths[index], { updateTime: document.updateTime }));
+  if (event) writes.push(db.delete(eventPath, { updateTime: event.updateTime })); if (deal) writes.push(db.delete(dealPath, { updateTime: deal.updateTime }));
   snapshots.slice(0, 13).forEach((document, index) => { if (document) writes.push(db.delete(`${statePath}/dailySnapshots/${dates[index]}`, { updateTime: document.updateTime })); });
-  const currentWrite = restoreWrite(db, `${statePath}/dailySnapshots/${dates[13]}`, backup.originalCurrentSnapshotDocument, current); if (currentWrite) writes.push(currentWrite);
-  const stateWrite = restoreWrite(db, statePath, backup.originalStateDocument, state); if (stateWrite) writes.push(stateWrite);
-  const evaluationWrite = restoreWrite(db, evaluationPath, backup.originalEvaluationDocument, evaluation); if (evaluationWrite) writes.push(evaluationWrite);
-  if (writes.length) await db.commit(writes);
+  const currentPath = `${statePath}/dailySnapshots/${dates[13]}`; writes.push(backup.originalCurrentSnapshotDocument ? db.update(currentPath, rawClone(backup.originalCurrentSnapshotDocument.fields), { updateTime: snapshots[13].updateTime }) : db.delete(currentPath, { updateTime: snapshots[13].updateTime }));
+  writes.push(db.update(statePath, parentRestoreFields(backup), { updateTime: state.updateTime }, ["firstSnapshotDate", "syntheticTestRunId"]));
+  if (!evaluationAlreadyRestored) writes.push(originalEvaluation ? db.update(evaluationPath, rawClone(originalEvaluation.fields), evaluation ? { updateTime: evaluation.updateTime } : { exists: false }) : db.delete(evaluationPath, { updateTime: evaluation.updateTime }));
+  await db.commit(writes);
   const [remainingDeliveries, finalEvent, finalDeal, finalState, finalEvaluation, ...finalSnapshots] = await Promise.all([db.list(eventPath, "pushDeliveries"), db.get(eventPath), db.get(dealPath), db.get(statePath), db.get(evaluationPath), ...dates.map(date => db.get(`${statePath}/dailySnapshots/${date}`))]);
-  const clean = remainingDeliveries.length === 0 && !finalEvent && !finalDeal && finalSnapshots.slice(0, 13).every(document => !document) && (backup.existence.currentSnapshot ? sameStoredFields(finalSnapshots[13], backup.originalCurrentSnapshotDocument) : !finalSnapshots[13]) && (backup.existence.state ? sameStoredFields(finalState, backup.originalStateDocument) : !finalState) && (backup.existence.evaluation ? sameStoredFields(finalEvaluation, backup.originalEvaluationDocument) : !finalEvaluation);
+  const clean = remainingDeliveries.length === 0 && !finalEvent && !finalDeal && finalSnapshots.slice(0, 13).every(document => !document) && rawDocumentEqual(finalSnapshots[13], backup.originalCurrentSnapshotDocument) && rawDocumentEqual(finalEvaluation, originalEvaluation) && finalState && parentMatches(data(finalState), context) && rawEqual(finalState.fields.firstSnapshotDate, backup.originalParentTestFields.firstSnapshotDate.exists ? backup.originalParentTestFields.firstSnapshotDate.value : undefined) && rawEqual(finalState.fields.syntheticTestRunId, backup.originalParentTestFields.syntheticTestRunId.exists ? backup.originalParentTestFields.syntheticTestRunId.value : undefined);
   if (!clean) fail("Cleanup verification failed; backup remains authoritative.");
-  log("action", "cleanup"); log("project", PROJECT); log("evaluation date", context.evaluationDate); log("event ID", mask(context.eventId)); log("deleted delivery count", deliveries.length); log("restored state", backup.existence.state); log("restored current snapshot", backup.existence.currentSnapshot); log("restored evaluation", backup.existence.evaluation); log("status", "cleanup_verified");
+  log("action", "cleanup"); log("project", PROJECT); log("delivery count", deliveries.length); log("event deleted", Boolean(event)); log("projection deleted", Boolean(deal)); log("evaluation restored", !evaluationAlreadyRestored); log("current snapshot restored", Boolean(backup.originalCurrentSnapshotDocument)); log("parent test fields restored", true); log("historical snapshots deleted", snapshots.slice(0, 13).filter(Boolean).length); log("status", "cleanup_verified");
 }
 
 export async function main(argv = process.argv.slice(2), dependencies = {}) {
@@ -338,5 +367,5 @@ export async function main(argv = process.argv.slice(2), dependencies = {}) {
   else await cleanup(db, args);
 }
 
-const invokedDirectly = process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname);
+const invokedDirectly = process.argv[1] && resolve(process.argv[1]) === resolve(fileURLToPath(import.meta.url));
 if (invokedDirectly) main().catch(error => { process.stderr.write(`Error: ${safeError(error)}\n`); process.exitCode = 1; });
