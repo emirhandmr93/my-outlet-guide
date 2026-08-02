@@ -1,5 +1,5 @@
 import { createElement, useRef } from "react";
-import { StyleProp, Text, TextStyle, TouchableOpacity, ViewStyle } from "react-native";
+import { StyleProp, Text, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native";
 
 import { formatIsoDateOnly, parseIsoDateOnly } from "../utils/dateOnly";
 
@@ -47,7 +47,7 @@ export function WebDatePickerButton({
     }
   };
 
-  return <>
+  return <View style={{ position: "relative", width: "100%" }}>
     <TouchableOpacity accessibilityRole="button" accessibilityLabel={accessibilityLabel} onPress={openPicker} style={style}>
       <Text style={displayValue ? textStyle : placeholderStyle}>{displayValue || placeholder}</Text>
     </TouchableOpacity>
@@ -64,7 +64,7 @@ export function WebDatePickerButton({
         if (parseIsoDateOnly(next)) onChange(next);
         event.target.blur();
       },
-      style: { position: "fixed", width: 1, height: 1, left: 0, top: 0, opacity: 0, pointerEvents: "none" },
+      style: { position: "absolute", inset: 0, width: "100%", height: "100%", opacity: 0, pointerEvents: "none" },
     })}
-  </>;
+  </View>;
 }

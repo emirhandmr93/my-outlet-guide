@@ -789,11 +789,11 @@ const enTranslations = {
   "notifications.majorPromotionsDesc":
     "Receive alerts only for important campaigns outside your trip.",
 
-  "transportation.title": "Ulaşım",
+  "transportation.title": "Transportation",
   "transportation.subtitle": "Bu outlet'e ulaşmanın en iyi yolları.",
   "transportation.notAvailable": "Ulaşım rehberi henüz mevcut değil.",
-  "transportation.recommendedRoute": "Önerilen rota",
-  "transportation.stepByStep": "Adım adım rehber",
+  "transportation.recommendedRoute": "Recommended route",
+  "transportation.stepByStep": "Step-by-step guide",
   "transportation.otherOptions": "Diğer seçenekler",
 
   "transportation.fallback.cdg.step1":

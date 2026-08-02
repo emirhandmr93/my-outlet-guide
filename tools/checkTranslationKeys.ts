@@ -8,6 +8,50 @@ const strictLanguages = new Set<TranslationLanguage>(["en", "tr"]);
 const englishKeys = new Set(Object.keys(translations.en));
 let hasStrictParityError = false;
 let hasNavigationTitleError = false;
+let hasTransportationHeadingError = false;
+
+const transportationHeadingKeys = [
+  "transportation.title",
+  "transportation.recommendedRoute",
+  "transportation.stepByStep",
+] as const;
+const expectedEnglishTransportationHeadings = {
+  "transportation.title": "Transportation",
+  "transportation.recommendedRoute": "Recommended route",
+  "transportation.stepByStep": "Step-by-step guide",
+} as const;
+const expectedTurkishTransportationHeadings = {
+  "transportation.title": "Ulaşım",
+  "transportation.recommendedRoute": "Önerilen Rota",
+  "transportation.stepByStep": "Adım adım rehber",
+} as const;
+
+for (const languageCode of supportedLanguageCodes) {
+  for (const key of transportationHeadingKeys) {
+    const value = translations[languageCode][key];
+    if (typeof value !== "string" || value.trim() === "") {
+      console.error(`${languageCode}: ${key} must be a non-empty string.`);
+      hasTransportationHeadingError = true;
+    }
+  }
+}
+
+for (const key of transportationHeadingKeys) {
+  const englishValue = translations.en[key];
+  const turkishValue = translations.tr[key];
+  if (englishValue !== expectedEnglishTransportationHeadings[key]) {
+    console.error(`${key} expected ${JSON.stringify(expectedEnglishTransportationHeadings[key])} in English, received ${JSON.stringify(englishValue)}.`);
+    hasTransportationHeadingError = true;
+  }
+  if (turkishValue !== expectedTurkishTransportationHeadings[key]) {
+    console.error(`${key} expected unchanged Turkish value ${JSON.stringify(expectedTurkishTransportationHeadings[key])}, received ${JSON.stringify(turkishValue)}.`);
+    hasTransportationHeadingError = true;
+  }
+  if (englishValue === turkishValue) {
+    console.error(`${key} must not resolve to the Turkish value in English.`);
+    hasTransportationHeadingError = true;
+  }
+}
 
 const expectedNavigationTitles: Record<
   TranslationLanguage,
@@ -137,15 +181,19 @@ for (const languageCode of supportedLanguageCodes) {
   }
 }
 
-if (hasStrictParityError || hasNavigationTitleError) {
+if (hasStrictParityError || hasNavigationTitleError || hasTransportationHeadingError) {
   if (hasStrictParityError) {
     console.error("English/Turkish translation parity check failed.");
   }
   if (hasNavigationTitleError) {
     console.error("Country/city navigation title check failed.");
   }
+  if (hasTransportationHeadingError) {
+    console.error("Transportation heading check failed.");
+  }
   process.exit(1);
 }
 
 console.log("English/Turkish translation parity check passed.");
 console.log("Country/city navigation title check passed.");
+console.log("Transportation heading check passed.");
