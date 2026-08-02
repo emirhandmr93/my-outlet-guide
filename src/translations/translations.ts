@@ -17916,6 +17916,67 @@ const flightDealProfileTranslations: Record<TranslationLanguage, Record<string, 
   },
 };
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], flightDealProfileTranslations[locale]);
+const rollingRouteFlightDealScreenTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: {
+    "flightDeals.subtitle": "Monitor a route and get notified when fares fall below their recent average.",
+    "flightDeals.rollingExplanation": "No dates are needed. We track the lowest fare found for this route over the upcoming 12 months and notify you when it falls below its recent average by a threshold you select.",
+    "flightDeals.rollingMonitoringStatus": "Rolling route monitoring",
+    "flightDeals.legacyDatedAlert": "Legacy dated alert",
+    "flightDeals.legacyAlertExplanation": "New alerts no longer need dates. You can keep, pause or delete this older alert.",
+    "flightDeals.savedAlertsEmptyRolling": "You do not have any saved route alerts yet.",
+    "flightDeals.providerPending": "Your alert will be saved now. Monitoring will begin when flight-price data is available.",
+    "flightDeals.originRequired": "Select an origin airport.", "flightDeals.destinationRequired": "Select a destination airport.",
+    "flightDeals.tripTypeError": "Select a valid trip type.", "flightDeals.tripClassError": "Select a valid cabin class.", "flightDeals.directOnlyError": "Check the direct-flight setting and try again.",
+  },
+  tr: {
+    "flightDeals.subtitle": "Bir rotayı takip et; fiyat son dönem ortalamasının altına düştüğünde bildirim al.",
+    "flightDeals.rollingExplanation": "Tarih seçmen gerekmez. Sistem bu rota için önümüzdeki 12 ayda bulunan en düşük fiyatı takip eder. Fiyat son dönem ortalamasının seçtiğin oranda altına düştüğünde bildirim gönderir.",
+    "flightDeals.rollingMonitoringStatus": "Sürekli rota takibi",
+    "flightDeals.legacyDatedAlert": "Eski tarihli alarm",
+    "flightDeals.legacyAlertExplanation": "Yeni alarmlarda tarih gerekmez. Bu eski alarmı tutabilir, duraklatabilir veya silebilirsin.",
+    "flightDeals.savedAlertsEmptyRolling": "Henüz kayıtlı rota alarmın yok.",
+    "flightDeals.providerPending": "Alarmın şimdi kaydedilir. Uçuş fiyatı verileri kullanıma açıldığında takip başlar.",
+    "flightDeals.originRequired": "Kalkış havalimanını seç.", "flightDeals.destinationRequired": "Varış havalimanını seç.",
+    "flightDeals.tripTypeError": "Geçerli bir seyahat türü seç.", "flightDeals.tripClassError": "Geçerli bir kabin sınıfı seç.", "flightDeals.directOnlyError": "Direkt uçuş ayarını kontrol edip tekrar dene.",
+  },
+  es: {
+    "flightDeals.subtitle": "Sigue una ruta y recibe avisos cuando las tarifas bajen de su media reciente.",
+    "flightDeals.rollingExplanation": "No necesitas elegir fechas. Seguimos la tarifa más baja encontrada para esta ruta durante los próximos 12 meses y te avisamos cuando baja de su media reciente según el umbral elegido.",
+    "flightDeals.rollingMonitoringStatus": "Seguimiento continuo de la ruta", "flightDeals.legacyDatedAlert": "Alerta antigua con fechas", "flightDeals.legacyAlertExplanation": "Las alertas nuevas ya no necesitan fechas. Puedes conservar, pausar o eliminar esta alerta anterior.", "flightDeals.savedAlertsEmptyRolling": "Aún no tienes alertas de ruta guardadas.", "flightDeals.providerPending": "Tu alerta se guardará ahora. El seguimiento comenzará cuando haya datos de precios de vuelos.",
+    "flightDeals.originRequired": "Selecciona un aeropuerto de origen.", "flightDeals.destinationRequired": "Selecciona un aeropuerto de destino.", "flightDeals.tripTypeError": "Selecciona un tipo de viaje válido.", "flightDeals.tripClassError": "Selecciona una clase de cabina válida.", "flightDeals.directOnlyError": "Comprueba la opción de vuelos directos e inténtalo de nuevo.",
+  },
+  fr: {
+    "flightDeals.subtitle": "Suivez un trajet et soyez averti lorsque les tarifs passent sous leur moyenne récente.",
+    "flightDeals.rollingExplanation": "Aucune date n’est nécessaire. Nous suivons le tarif le plus bas trouvé pour ce trajet au cours des 12 prochains mois et vous avertissons lorsqu’il passe sous sa moyenne récente selon le seuil choisi.",
+    "flightDeals.rollingMonitoringStatus": "Suivi continu du trajet", "flightDeals.legacyDatedAlert": "Ancienne alerte datée", "flightDeals.legacyAlertExplanation": "Les nouvelles alertes ne nécessitent plus de dates. Vous pouvez conserver, suspendre ou supprimer cette ancienne alerte.", "flightDeals.savedAlertsEmptyRolling": "Vous n’avez encore aucune alerte de trajet enregistrée.", "flightDeals.providerPending": "Votre alerte sera enregistrée maintenant. Le suivi commencera lorsque les données de prix seront disponibles.",
+    "flightDeals.originRequired": "Choisissez un aéroport de départ.", "flightDeals.destinationRequired": "Choisissez un aéroport de destination.", "flightDeals.tripTypeError": "Choisissez un type de voyage valide.", "flightDeals.tripClassError": "Choisissez une classe de voyage valide.", "flightDeals.directOnlyError": "Vérifiez l’option des vols directs et réessayez.",
+  },
+  de: {
+    "flightDeals.subtitle": "Beobachten Sie eine Route und erhalten Sie Hinweise, wenn Preise unter ihren jüngsten Durchschnitt fallen.",
+    "flightDeals.rollingExplanation": "Sie müssen keine Daten auswählen. Wir beobachten den niedrigsten gefundenen Preis für diese Route in den kommenden 12 Monaten und benachrichtigen Sie, wenn er gemäß Ihrer Schwelle unter den jüngsten Durchschnitt fällt.",
+    "flightDeals.rollingMonitoringStatus": "Fortlaufende Routenbeobachtung", "flightDeals.legacyDatedAlert": "Älterer datierter Alarm", "flightDeals.legacyAlertExplanation": "Neue Alarme benötigen keine Daten mehr. Sie können diesen älteren Alarm behalten, pausieren oder löschen.", "flightDeals.savedAlertsEmptyRolling": "Sie haben noch keine Routenalarme gespeichert.", "flightDeals.providerPending": "Ihr Alarm wird jetzt gespeichert. Die Beobachtung beginnt, sobald Flugpreisdaten verfügbar sind.",
+    "flightDeals.originRequired": "Wählen Sie einen Abflughafen.", "flightDeals.destinationRequired": "Wählen Sie einen Zielflughafen.", "flightDeals.tripTypeError": "Wählen Sie eine gültige Reiseart.", "flightDeals.tripClassError": "Wählen Sie eine gültige Reiseklasse.", "flightDeals.directOnlyError": "Prüfen Sie die Direktflug-Einstellung und versuchen Sie es erneut.",
+  },
+  ar: {
+    "flightDeals.subtitle": "راقب مسارًا واحصل على إشعار عندما تنخفض الأسعار عن متوسطها الأخير.",
+    "flightDeals.rollingExplanation": "لا حاجة لاختيار تواريخ. نتابع أقل سعر موجود لهذا المسار خلال الأشهر الـ12 المقبلة ونرسل إشعارًا عندما ينخفض عن متوسطه الأخير بحسب الحد الذي تختاره.",
+    "flightDeals.rollingMonitoringStatus": "مراقبة مستمرة للمسار", "flightDeals.legacyDatedAlert": "تنبيه قديم محدد التاريخ", "flightDeals.legacyAlertExplanation": "لم تعد التنبيهات الجديدة تحتاج إلى تواريخ. يمكنك الاحتفاظ بهذا التنبيه القديم أو إيقافه مؤقتًا أو حذفه.", "flightDeals.savedAlertsEmptyRolling": "ليس لديك تنبيهات مسارات محفوظة بعد.", "flightDeals.providerPending": "سيُحفظ تنبيهك الآن. ستبدأ المراقبة عند توفر بيانات أسعار الرحلات.",
+    "flightDeals.originRequired": "اختر مطار المغادرة.", "flightDeals.destinationRequired": "اختر مطار الوجهة.", "flightDeals.tripTypeError": "اختر نوع رحلة صالحًا.", "flightDeals.tripClassError": "اختر درجة سفر صالحة.", "flightDeals.directOnlyError": "تحقق من إعداد الرحلات المباشرة وحاول مجددًا.",
+  },
+  ru: {
+    "flightDeals.subtitle": "Следите за маршрутом и получайте уведомления, когда тарифы опускаются ниже недавнего среднего.",
+    "flightDeals.rollingExplanation": "Даты выбирать не нужно. Мы отслеживаем самый низкий найденный тариф на этом маршруте на ближайшие 12 месяцев и уведомляем, когда он становится ниже недавнего среднего на выбранный порог.",
+    "flightDeals.rollingMonitoringStatus": "Непрерывный мониторинг маршрута", "flightDeals.legacyDatedAlert": "Старое уведомление с датами", "flightDeals.legacyAlertExplanation": "Для новых уведомлений даты больше не нужны. Это старое уведомление можно оставить, приостановить или удалить.", "flightDeals.savedAlertsEmptyRolling": "У вас пока нет сохранённых уведомлений о маршрутах.", "flightDeals.providerPending": "Уведомление будет сохранено сейчас. Мониторинг начнётся, когда станут доступны данные о ценах.",
+    "flightDeals.originRequired": "Выберите аэропорт отправления.", "flightDeals.destinationRequired": "Выберите аэропорт назначения.", "flightDeals.tripTypeError": "Выберите допустимый тип поездки.", "flightDeals.tripClassError": "Выберите допустимый класс обслуживания.", "flightDeals.directOnlyError": "Проверьте настройку прямых рейсов и повторите попытку.",
+  },
+  zh: {
+    "flightDeals.subtitle": "监控航线，并在票价低于近期平均水平时收到通知。",
+    "flightDeals.rollingExplanation": "无需选择日期。我们会跟踪未来 12 个月内此航线找到的最低票价，并在票价按你选择的幅度低于近期平均水平时通知你。",
+    "flightDeals.rollingMonitoringStatus": "持续航线监控", "flightDeals.legacyDatedAlert": "旧版指定日期提醒", "flightDeals.legacyAlertExplanation": "新提醒不再需要日期。你可以保留、暂停或删除这条旧提醒。", "flightDeals.savedAlertsEmptyRolling": "你还没有保存任何航线提醒。", "flightDeals.providerPending": "你的提醒会立即保存，并在航班价格数据可用后开始监控。",
+    "flightDeals.originRequired": "请选择出发机场。", "flightDeals.destinationRequired": "请选择目的地机场。", "flightDeals.tripTypeError": "请选择有效的行程类型。", "flightDeals.tripClassError": "请选择有效的舱位。", "flightDeals.directOnlyError": "请检查直飞航班设置后重试。",
+  },
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], rollingRouteFlightDealScreenTranslations[locale]);
 const travelHubTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "travelHub.kicker": "Travel tools", "travelHub.title": "Plan your journey", "travelHub.subtitle": "Search flights, track price opportunities and organize your trips in one place.", "travelHub.toolsTitle": "Travel tools",
