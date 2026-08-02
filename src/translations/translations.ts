@@ -495,23 +495,16 @@ const enTranslations = {
     "Tax Free rules may change. Always confirm details before large purchases.",
   "taxFree.outlet_verified": "Available at outlet",
   "taxFree.country_scheme_available": "Available at country level",
-  "taxFree.retailerConfirmation":
-    "Confirm participation with the individual retailer.",
-  "taxFree.not_available":
-    "Tourist retail Tax Free is not generally available in this country.",
-  "taxFree.notAvailableExplanation":
-    "Tourist retail Tax Free is not generally available in this country.",
-  "taxFree.not_verified":
-    "The official Tax Free scheme status has not been verified.",
-  "taxFree.notVerifiedExplanation":
-    "The official Tax Free scheme status has not been verified.",
+  "taxFree.retailerConfirmation": "Confirm participation with the individual retailer.",
+  "taxFree.not_available": "Tourist retail Tax Free is not generally available in this country.",
+  "taxFree.notAvailableExplanation": "Tourist retail Tax Free is not generally available in this country.",
+  "taxFree.not_verified": "The official Tax Free scheme status has not been verified.",
+  "taxFree.notVerifiedExplanation": "The official Tax Free scheme status has not been verified.",
   "taxFree.noStatutoryMinimum": "No statutory minimum purchase.",
-  "taxFree.minimumNotVerified":
-    "The minimum purchase requirement has not been verified.",
+  "taxFree.minimumNotVerified": "The minimum purchase requirement has not been verified.",
   "taxFree.minimumExcludesVat": "minimum excludes VAT",
   "taxFree.minimumIncludesVat": "minimum includes VAT",
-  "taxFree.maximumVatBeforeFees":
-    "Maximum VAT component before operator and administration fees",
+  "taxFree.maximumVatBeforeFees": "Maximum VAT component before operator and administration fees",
   "taxCalc.title": "Tax Free Calculator",
   "taxCalc.subtitle": "Estimate your Tax Free refund by country.",
   "taxCalc.country": "Pays",
@@ -1565,7 +1558,7 @@ const finalPhase1ACriticalTranslations: Partial<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   de: {
     "moderation.reasonLabel": "Report reason",
@@ -1587,7 +1580,7 @@ const finalPhase1ACriticalTranslations: Partial<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   ru: {
     "moderation.reasonLabel": "Report reason",
@@ -1609,7 +1602,7 @@ const finalPhase1ACriticalTranslations: Partial<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   ar: {
     "moderation.reasonLabel": "Report reason",
@@ -1631,7 +1624,7 @@ const finalPhase1ACriticalTranslations: Partial<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   zh: {
     "moderation.reasonLabel": "Report reason",
@@ -1653,7 +1646,7 @@ const finalPhase1ACriticalTranslations: Partial<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
 };
 
@@ -2126,22 +2119,18 @@ export const translations: Record<
     "taxGuide.note":
       "Tax Free kuralları değişebilir. Büyük alışverişlerden önce güncel bilgileri kontrol et.",
     "taxFree.outlet_verified": "Outlet’te mevcut",
-    "taxFree.country_scheme_available": "Ülke düzeyinde mevcut",
-    "taxFree.retailerConfirmation": "Katılımcı mağazayla teyit edin.",
-    "taxFree.not_available":
-      "Bu ülkede turist perakende Tax Free genel olarak mevcut değildir.",
-    "taxFree.notAvailableExplanation":
-      "Bu ülkede turist perakende Tax Free genel olarak mevcut değildir.",
-    "taxFree.not_verified": "Resmî Tax Free sistem durumu doğrulanmadı.",
-    "taxFree.notVerifiedExplanation":
-      "Resmî Tax Free sistem durumu doğrulanmadı.",
-    "taxFree.noStatutoryMinimum": "Yasal asgari alışveriş tutarı yok.",
-    "taxFree.minimumNotVerified": "Asgari alışveriş koşulu doğrulanmadı.",
-    "taxFree.minimumExcludesVat": "asgari tutar KDV hariçtir",
-    "taxFree.minimumIncludesVat": "asgari tutar KDV dahildir",
-    "taxFree.maximumVatBeforeFees":
-      "Operatör ve yönetim ücretlerinden önce azami KDV tutarı",
-    "taxCalc.title": "Tax Free Hesaplayıcı",
+  "taxFree.country_scheme_available": "Ülke düzeyinde mevcut",
+  "taxFree.retailerConfirmation": "Katılımcı mağazayla teyit edin.",
+  "taxFree.not_available": "Bu ülkede turist perakende Tax Free genel olarak mevcut değildir.",
+  "taxFree.notAvailableExplanation": "Bu ülkede turist perakende Tax Free genel olarak mevcut değildir.",
+  "taxFree.not_verified": "Resmî Tax Free sistem durumu doğrulanmadı.",
+  "taxFree.notVerifiedExplanation": "Resmî Tax Free sistem durumu doğrulanmadı.",
+  "taxFree.noStatutoryMinimum": "Yasal asgari alışveriş tutarı yok.",
+  "taxFree.minimumNotVerified": "Asgari alışveriş koşulu doğrulanmadı.",
+  "taxFree.minimumExcludesVat": "asgari tutar KDV hariçtir",
+  "taxFree.minimumIncludesVat": "asgari tutar KDV dahildir",
+  "taxFree.maximumVatBeforeFees": "Operatör ve yönetim ücretlerinden önce azami KDV tutarı",
+  "taxCalc.title": "Tax Free Hesaplayıcı",
     "taxCalc.subtitle": "Ülkeye göre tahmini Tax Free iadesini hesapla.",
     "taxCalc.country": "Ülke",
     "taxCalc.yourCurrency": "Para Birimin",
@@ -2277,12 +2266,10 @@ export const translations: Record<
       "Favoriler şu anda güncellenemedi. Lütfen tekrar giriş yapıp daha sonra deneyin.",
 
     "offline.title": "Çevrimdışı Kullanım",
-    "offline.subtitle":
-      "Temel rehber verileri uygulamayla birlikte gelir. Bu sürümde ayrıca indirilebilir paket yoktur.",
+    "offline.subtitle": "Temel rehber verileri uygulamayla birlikte gelir. Bu sürümde ayrıca indirilebilir paket yoktur.",
     "offline.tripPacks": "Seyahat Çevrimdışı Paketleri",
     "offline.alreadyAvailable": "İnternetsiz kullanılabilir",
-    "offline.alreadyAvailableText":
-      "Uygulama kurulduktan sonra temel outlet rehberi internetsiz açılır.",
+    "offline.alreadyAvailableText": "Uygulama kurulduktan sonra temel outlet rehberi internetsiz açılır.",
     "offline.availableSection": "İnternetsiz kullanılabilir",
     "offline.requiresInternetSection": "İnternet gerektirir",
     "offline.stat.outlets": "Uygulamadaki outletler",
@@ -2290,42 +2277,29 @@ export const translations: Record<
     "offline.stat.brands": "Marka kayıtları",
     "offline.stat.media": "Yerel medya dosyaları",
     "offline.available.guide.title": "Outlet rehberi",
-    "offline.available.guide.text":
-      "Outlet detayları ve ülke kapsamı uygulamayla birlikte gelir.",
+    "offline.available.guide.text": "Outlet detayları ve ülke kapsamı uygulamayla birlikte gelir.",
     "offline.available.brands.title": "Marka listeleri",
-    "offline.available.brands.text":
-      "Marka listeleri uygulamayla birlikte gelir.",
+    "offline.available.brands.text": "Marka listeleri uygulamayla birlikte gelir.",
     "offline.available.notes.title": "Restoran ve ulaşım notları",
-    "offline.available.notes.text":
-      "Restoran ve ulaşım notları temel rehber verileriyle birlikte gelir.",
+    "offline.available.notes.text": "Restoran ve ulaşım notları temel rehber verileriyle birlikte gelir.",
     "offline.available.media.title": "Yerel outlet görselleri",
-    "offline.available.media.text":
-      "Üretim için güvenli outlet görselleri uygulama paketindedir ve ağ isteği gerektirmez.",
+    "offline.available.media.text": "Üretim için güvenli outlet görselleri uygulama paketindedir ve ağ isteği gerektirmez.",
     "offline.available.taxFree.title": "Desteklenen Tax Free rehber bilgileri",
-    "offline.available.taxFree.text":
-      "Desteklenen ülkeler için kaynaklı Tax Free kayıtları uygulamayla gelir.",
+    "offline.available.taxFree.text": "Desteklenen ülkeler için kaynaklı Tax Free kayıtları uygulamayla gelir.",
     "offline.requires.accountSync.title": "Giriş ve hesap senkronizasyonu",
-    "offline.requires.accountSync.text":
-      "Hesaba bağlı veriler ve canlı servisler internet gerektirir.",
-    "offline.requires.reviewsNotifications.title":
-      "Yorumlar, faydalı oyları ve bildirimler",
-    "offline.requires.reviewsNotifications.text":
-      "Yorumlar, faydalı oyları, raporlar ve bildirim ayarları internet gerektirir.",
+    "offline.requires.accountSync.text": "Hesaba bağlı veriler ve canlı servisler internet gerektirir.",
+    "offline.requires.reviewsNotifications.title": "Yorumlar, faydalı oyları ve bildirimler",
+    "offline.requires.reviewsNotifications.text": "Yorumlar, faydalı oyları, raporlar ve bildirim ayarları internet gerektirir.",
     "offline.requires.favoritesTrips.title": "Favoriler ve seyahatler",
-    "offline.requires.favoritesTrips.text":
-      "Bu sürümde favoriler ve seyahatler internet bağlantısı olmadan senkronize edilmez.",
+    "offline.requires.favoritesTrips.text": "Bu sürümde favoriler ve seyahatler internet bağlantısı olmadan senkronize edilmez.",
     "offline.requires.flightAlerts.title": "Uçuş fırsatı uyarıları",
-    "offline.requires.flightAlerts.text":
-      "Uçuş fırsatı uyarıları canlı servislerle çalışır ve internet gerektirir.",
+    "offline.requires.flightAlerts.text": "Uçuş fırsatı uyarıları canlı servislerle çalışır ve internet gerektirir.",
     "offline.requires.currency.title": "Canlı kur verileri",
-    "offline.requires.currency.text":
-      "Kurlar canlı Frankfurter oranlarıdır; tarihli önbellek uygulanmadan çevrimdışı kur yedeği iddia edilmez.",
+    "offline.requires.currency.text": "Kurlar canlı Frankfurter oranlarıdır; tarihli önbellek uygulanmadan çevrimdışı kur yedeği iddia edilmez.",
     "offline.requires.accountDeletion.title": "Hesap silme",
-    "offline.requires.accountDeletion.text":
-      "Hesap silme internet bağlantısı gerektirir.",
+    "offline.requires.accountDeletion.text": "Hesap silme internet bağlantısı gerektirir.",
     "offline.noPacksTitle": "Ayrı çevrimdışı paket yok",
-    "offline.noPacksText":
-      "Bu sürümde ayrıca indirilebilir paket yoktur. Hesaba bağlı veriler ve canlı servisler internet gerektirir.",
+    "offline.noPacksText": "Bu sürümde ayrıca indirilebilir paket yoktur. Hesaba bağlı veriler ve canlı servisler internet gerektirir.",
     "offline.noTrips": "Henüz Seyahat Yok",
     "offline.noTripsText":
       "Önce bir alışveriş seyahati oluştur. Çevrimdışı paketin seyahat şehirlerine göre hazırlanır.",
@@ -2952,7 +2926,8 @@ export const translations: Record<
     "currency.lastUpdated": "Son güncelleme",
     "currency.disclaimer":
       "Yalnızca referans döviz kurlarıdır. Nihai tahsilat oranları banka, kart sağlayıcı, ücretler ve zamana göre değişebilir.",
-    "currency.unsupported": "Bu para birimi canlı dönüşüm için desteklenmiyor.",
+    "currency.unsupported":
+      "Bu para birimi canlı dönüşüm için desteklenmiyor.",
     "currency.providerUnavailable":
       "Canlı döviz kurları şu anda kullanılamıyor. Güncel sağlayıcı yanıtı olmadan dönüşüm gösterilmez.",
     "currency.unavailableShort": "Kur kullanılamıyor",
@@ -3585,24 +3560,18 @@ export const translations: Record<
     "taxGuide.note":
       "Las reglas Tax Free pueden cambiar. Confirma los detalles antes de compras grandes.",
     "taxFree.outlet_verified": "Disponible en el outlet",
-    "taxFree.country_scheme_available": "Disponible a nivel nacional",
-    "taxFree.retailerConfirmation":
-      "Confirma la participación con el comercio.",
-    "taxFree.not_available":
-      "La devolución Tax Free para turistas no está disponible de forma general en este país.",
-    "taxFree.notAvailableExplanation":
-      "La devolución Tax Free para turistas no está disponible de forma general en este país.",
-    "taxFree.not_verified":
-      "El estado oficial del sistema Tax Free no se ha verificado.",
-    "taxFree.notVerifiedExplanation":
-      "El estado oficial del sistema Tax Free no se ha verificado.",
-    "taxFree.noStatutoryMinimum": "No hay compra mínima legal.",
-    "taxFree.minimumNotVerified": "La compra mínima no se ha verificado.",
-    "taxFree.minimumExcludesVat": "el mínimo excluye IVA",
-    "taxFree.minimumIncludesVat": "el mínimo incluye IVA",
-    "taxFree.maximumVatBeforeFees":
-      "Componente máximo de IVA antes de tasas del operador y administración",
-    "taxCalc.title": "Calculadora Tax Free",
+  "taxFree.country_scheme_available": "Disponible a nivel nacional",
+  "taxFree.retailerConfirmation": "Confirma la participación con el comercio.",
+  "taxFree.not_available": "La devolución Tax Free para turistas no está disponible de forma general en este país.",
+  "taxFree.notAvailableExplanation": "La devolución Tax Free para turistas no está disponible de forma general en este país.",
+  "taxFree.not_verified": "El estado oficial del sistema Tax Free no se ha verificado.",
+  "taxFree.notVerifiedExplanation": "El estado oficial del sistema Tax Free no se ha verificado.",
+  "taxFree.noStatutoryMinimum": "No hay compra mínima legal.",
+  "taxFree.minimumNotVerified": "La compra mínima no se ha verificado.",
+  "taxFree.minimumExcludesVat": "el mínimo excluye IVA",
+  "taxFree.minimumIncludesVat": "el mínimo incluye IVA",
+  "taxFree.maximumVatBeforeFees": "Componente máximo de IVA antes de tasas del operador y administración",
+  "taxCalc.title": "Calculadora Tax Free",
     "taxCalc.subtitle": "Calcula tu reembolso Tax Free por país.",
     "taxCalc.country": "País",
     "taxCalc.yourCurrency": "Tu moneda",
@@ -4947,24 +4916,18 @@ export const translations: Record<
     "taxGuide.note":
       "Les règles Tax Free peuvent changer. Vérifiez toujours avant un achat important.",
     "taxFree.outlet_verified": "Disponible dans l’outlet",
-    "taxFree.country_scheme_available": "Disponible au niveau national",
-    "taxFree.retailerConfirmation":
-      "Confirmez la participation auprès du magasin.",
-    "taxFree.not_available":
-      "La détaxe touristique n’est généralement pas disponible dans ce pays.",
-    "taxFree.notAvailableExplanation":
-      "La détaxe touristique n’est généralement pas disponible dans ce pays.",
-    "taxFree.not_verified":
-      "Le statut officiel du régime de détaxe n’a pas été vérifié.",
-    "taxFree.notVerifiedExplanation":
-      "Le statut officiel du régime de détaxe n’a pas été vérifié.",
-    "taxFree.noStatutoryMinimum": "Aucun minimum légal.",
-    "taxFree.minimumNotVerified": "Le minimum d’achat n’a pas été vérifié.",
-    "taxFree.minimumExcludesVat": "minimum hors TVA",
-    "taxFree.minimumIncludesVat": "minimum TVA comprise",
-    "taxFree.maximumVatBeforeFees":
-      "Montant maximal de TVA avant frais opérateur et administratifs",
-    "taxCalc.title": "Calculateur Tax Free",
+  "taxFree.country_scheme_available": "Disponible au niveau national",
+  "taxFree.retailerConfirmation": "Confirmez la participation auprès du magasin.",
+  "taxFree.not_available": "La détaxe touristique n’est généralement pas disponible dans ce pays.",
+  "taxFree.notAvailableExplanation": "La détaxe touristique n’est généralement pas disponible dans ce pays.",
+  "taxFree.not_verified": "Le statut officiel du régime de détaxe n’a pas été vérifié.",
+  "taxFree.notVerifiedExplanation": "Le statut officiel du régime de détaxe n’a pas été vérifié.",
+  "taxFree.noStatutoryMinimum": "Aucun minimum légal.",
+  "taxFree.minimumNotVerified": "Le minimum d’achat n’a pas été vérifié.",
+  "taxFree.minimumExcludesVat": "minimum hors TVA",
+  "taxFree.minimumIncludesVat": "minimum TVA comprise",
+  "taxFree.maximumVatBeforeFees": "Montant maximal de TVA avant frais opérateur et administratifs",
+  "taxCalc.title": "Calculateur Tax Free",
     "taxCalc.subtitle": "Estimez votre remboursement Tax Free par pays.",
     "taxCalc.country": "Pays",
     "taxCalc.yourCurrency": "Votre devise",
@@ -6307,25 +6270,18 @@ export const translations: Record<
     "taxGuide.note":
       "Tax Free Regeln können sich ändern. Prüfe Details vor größeren Einkäufen immer erneut.",
     "taxFree.outlet_verified": "Im Outlet verfügbar",
-    "taxFree.country_scheme_available": "Auf Länderebene verfügbar",
-    "taxFree.retailerConfirmation":
-      "Teilnahme beim einzelnen Händler bestätigen.",
-    "taxFree.not_available":
-      "Touristen-Tax-Free ist in diesem Land nicht allgemein verfügbar.",
-    "taxFree.notAvailableExplanation":
-      "Touristen-Tax-Free ist in diesem Land nicht allgemein verfügbar.",
-    "taxFree.not_verified":
-      "Der offizielle Status des Tax-Free-Systems wurde nicht bestätigt.",
-    "taxFree.notVerifiedExplanation":
-      "Der offizielle Status des Tax-Free-Systems wurde nicht bestätigt.",
-    "taxFree.noStatutoryMinimum": "Kein gesetzlicher Mindestbetrag.",
-    "taxFree.minimumNotVerified":
-      "Der Mindestkaufbetrag wurde nicht bestätigt.",
-    "taxFree.minimumExcludesVat": "Mindestbetrag ohne MwSt.",
-    "taxFree.minimumIncludesVat": "Mindestbetrag mit MwSt.",
-    "taxFree.maximumVatBeforeFees":
-      "Maximaler MwSt.-Anteil vor Betreiber- und Verwaltungsgebühren",
-    "taxCalc.title": "Tax Free Rechner",
+  "taxFree.country_scheme_available": "Auf Länderebene verfügbar",
+  "taxFree.retailerConfirmation": "Teilnahme beim einzelnen Händler bestätigen.",
+  "taxFree.not_available": "Touristen-Tax-Free ist in diesem Land nicht allgemein verfügbar.",
+  "taxFree.notAvailableExplanation": "Touristen-Tax-Free ist in diesem Land nicht allgemein verfügbar.",
+  "taxFree.not_verified": "Der offizielle Status des Tax-Free-Systems wurde nicht bestätigt.",
+  "taxFree.notVerifiedExplanation": "Der offizielle Status des Tax-Free-Systems wurde nicht bestätigt.",
+  "taxFree.noStatutoryMinimum": "Kein gesetzlicher Mindestbetrag.",
+  "taxFree.minimumNotVerified": "Der Mindestkaufbetrag wurde nicht bestätigt.",
+  "taxFree.minimumExcludesVat": "Mindestbetrag ohne MwSt.",
+  "taxFree.minimumIncludesVat": "Mindestbetrag mit MwSt.",
+  "taxFree.maximumVatBeforeFees": "Maximaler MwSt.-Anteil vor Betreiber- und Verwaltungsgebühren",
+  "taxCalc.title": "Tax Free Rechner",
     "taxCalc.subtitle": "Schätze deine Tax Free Erstattung nach Land.",
     "taxCalc.country": "Land",
     "taxCalc.yourCurrency": "Deine Währung",
@@ -7624,21 +7580,18 @@ export const translations: Record<
     "taxGuide.note":
       "قد تتغير قواعد Tax Free. تحقق دائماً من التفاصيل قبل المشتريات الكبيرة.",
     "taxFree.outlet_verified": "متاح في المتجر",
-    "taxFree.country_scheme_available": "متاح على مستوى الدولة",
-    "taxFree.retailerConfirmation": "أكد المشاركة مع المتجر الفردي.",
-    "taxFree.not_available":
-      "استرداد الضريبة للسياح غير متاح عموماً في هذا البلد.",
-    "taxFree.notAvailableExplanation":
-      "استرداد الضريبة للسياح غير متاح عموماً في هذا البلد.",
-    "taxFree.not_verified": "لم يتم التحقق من حالة النظام الرسمية.",
-    "taxFree.notVerifiedExplanation": "لم يتم التحقق من حالة النظام الرسمية.",
-    "taxFree.noStatutoryMinimum": "لا يوجد حد أدنى قانوني.",
-    "taxFree.minimumNotVerified": "لم يتم التحقق من الحد الأدنى للشراء.",
-    "taxFree.minimumExcludesVat": "الحد الأدنى لا يشمل الضريبة",
-    "taxFree.minimumIncludesVat": "الحد الأدنى يشمل الضريبة",
-    "taxFree.maximumVatBeforeFees":
-      "الحد الأقصى لمكوّن الضريبة قبل رسوم المشغل والإدارة",
-    "taxCalc.title": "حاسبة Tax Free",
+  "taxFree.country_scheme_available": "متاح على مستوى الدولة",
+  "taxFree.retailerConfirmation": "أكد المشاركة مع المتجر الفردي.",
+  "taxFree.not_available": "استرداد الضريبة للسياح غير متاح عموماً في هذا البلد.",
+  "taxFree.notAvailableExplanation": "استرداد الضريبة للسياح غير متاح عموماً في هذا البلد.",
+  "taxFree.not_verified": "لم يتم التحقق من حالة النظام الرسمية.",
+  "taxFree.notVerifiedExplanation": "لم يتم التحقق من حالة النظام الرسمية.",
+  "taxFree.noStatutoryMinimum": "لا يوجد حد أدنى قانوني.",
+  "taxFree.minimumNotVerified": "لم يتم التحقق من الحد الأدنى للشراء.",
+  "taxFree.minimumExcludesVat": "الحد الأدنى لا يشمل الضريبة",
+  "taxFree.minimumIncludesVat": "الحد الأدنى يشمل الضريبة",
+  "taxFree.maximumVatBeforeFees": "الحد الأقصى لمكوّن الضريبة قبل رسوم المشغل والإدارة",
+  "taxCalc.title": "حاسبة Tax Free",
     "taxCalc.subtitle": "قدّر استرداد Tax Free حسب البلد.",
     "taxCalc.country": "البلد",
     "taxCalc.yourCurrency": "عملتك",
@@ -8911,23 +8864,18 @@ export const translations: Record<
     "taxGuide.note":
       "Правила Tax Free могут меняться. Всегда проверяйте детали перед крупными покупками.",
     "taxFree.outlet_verified": "Доступно в аутлете",
-    "taxFree.country_scheme_available": "Доступно на уровне страны",
-    "taxFree.retailerConfirmation":
-      "Подтвердите участие у конкретного магазина.",
-    "taxFree.not_available":
-      "Туристический возврат налога обычно недоступен в этой стране.",
-    "taxFree.notAvailableExplanation":
-      "Туристический возврат налога обычно недоступен в этой стране.",
-    "taxFree.not_verified": "Официальный статус системы не подтверждён.",
-    "taxFree.notVerifiedExplanation":
-      "Официальный статус системы не подтверждён.",
-    "taxFree.noStatutoryMinimum": "Нет установленного законом минимума.",
-    "taxFree.minimumNotVerified": "Минимальная сумма не подтверждена.",
-    "taxFree.minimumExcludesVat": "минимум без НДС",
-    "taxFree.minimumIncludesVat": "минимум с НДС",
-    "taxFree.maximumVatBeforeFees":
-      "Максимальная сумма НДС до комиссий оператора и администрации",
-    "taxCalc.title": "Калькулятор Tax Free",
+  "taxFree.country_scheme_available": "Доступно на уровне страны",
+  "taxFree.retailerConfirmation": "Подтвердите участие у конкретного магазина.",
+  "taxFree.not_available": "Туристический возврат налога обычно недоступен в этой стране.",
+  "taxFree.notAvailableExplanation": "Туристический возврат налога обычно недоступен в этой стране.",
+  "taxFree.not_verified": "Официальный статус системы не подтверждён.",
+  "taxFree.notVerifiedExplanation": "Официальный статус системы не подтверждён.",
+  "taxFree.noStatutoryMinimum": "Нет установленного законом минимума.",
+  "taxFree.minimumNotVerified": "Минимальная сумма не подтверждена.",
+  "taxFree.minimumExcludesVat": "минимум без НДС",
+  "taxFree.minimumIncludesVat": "минимум с НДС",
+  "taxFree.maximumVatBeforeFees": "Максимальная сумма НДС до комиссий оператора и администрации",
+  "taxCalc.title": "Калькулятор Tax Free",
     "taxCalc.subtitle": "Оцените возврат Tax Free по стране.",
     "taxCalc.country": "Страна",
     "taxCalc.yourCurrency": "Ваша валюта",
@@ -10244,18 +10192,18 @@ export const translations: Record<
     "taxGuide.refundProcess": "退税流程",
     "taxGuide.note": "Tax Free 规则可能变化。大额购物前请务必确认详情。",
     "taxFree.outlet_verified": "门店可用",
-    "taxFree.country_scheme_available": "国家层面可用",
-    "taxFree.retailerConfirmation": "请向具体零售商确认参与资格。",
-    "taxFree.not_available": "该国通常不提供游客零售退税。",
-    "taxFree.notAvailableExplanation": "该国通常不提供游客零售退税。",
-    "taxFree.not_verified": "官方退税制度状态尚未核实。",
-    "taxFree.notVerifiedExplanation": "官方退税制度状态尚未核实。",
-    "taxFree.noStatutoryMinimum": "没有法定最低消费。",
-    "taxFree.minimumNotVerified": "最低消费要求尚未核实。",
-    "taxFree.minimumExcludesVat": "最低金额不含增值税",
-    "taxFree.minimumIncludesVat": "最低金额含增值税",
-    "taxFree.maximumVatBeforeFees": "运营商和管理费前的最高增值税部分",
-    "taxCalc.title": "Tax Free 计算器",
+  "taxFree.country_scheme_available": "国家层面可用",
+  "taxFree.retailerConfirmation": "请向具体零售商确认参与资格。",
+  "taxFree.not_available": "该国通常不提供游客零售退税。",
+  "taxFree.notAvailableExplanation": "该国通常不提供游客零售退税。",
+  "taxFree.not_verified": "官方退税制度状态尚未核实。",
+  "taxFree.notVerifiedExplanation": "官方退税制度状态尚未核实。",
+  "taxFree.noStatutoryMinimum": "没有法定最低消费。",
+  "taxFree.minimumNotVerified": "最低消费要求尚未核实。",
+  "taxFree.minimumExcludesVat": "最低金额不含增值税",
+  "taxFree.minimumIncludesVat": "最低金额含增值税",
+  "taxFree.maximumVatBeforeFees": "运营商和管理费前的最高增值税部分",
+  "taxCalc.title": "Tax Free 计算器",
     "taxCalc.subtitle": "按国家估算你的 Tax Free 退税。",
     "taxCalc.country": "国家",
     "taxCalc.yourCurrency": "你的货币",
@@ -12600,8 +12548,7 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.italy": "Italien",
     "explore.popularSearch.nike": "Nike",
     "explore.recentlyVisited": "Kürzlich besucht",
-    "explore.recentlyVisitedSubtitle":
-      "Mach dort weiter, wo du aufgehört hast.",
+    "explore.recentlyVisitedSubtitle": "Mach dort weiter, wo du aufgehört hast.",
   },
   ru: {
     "city.heroText": "Изучайте аутлеты и маршруты для шопинга в этом городе.",
@@ -12613,8 +12560,7 @@ const exploreV2Phase1DTranslations: Partial<
     "explore.popularSearch.italy": "Италия",
     "explore.popularSearch.nike": "Nike",
     "explore.recentlyVisited": "Недавно просмотренные",
-    "explore.recentlyVisitedSubtitle":
-      "Продолжите с того места, где остановились.",
+    "explore.recentlyVisitedSubtitle": "Продолжите с того места, где остановились.",
   },
   ar: {
     "city.heroText": "استكشف الأوتلت ومسارات التسوق في هذه المدينة.",
@@ -15700,7 +15646,7 @@ const reviewRatingsRegressionTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   fr: {
     "moderation.reasonLabel": "Report reason",
@@ -15722,7 +15668,7 @@ const reviewRatingsRegressionTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   de: {
     "moderation.reasonLabel": "Report reason",
@@ -15744,7 +15690,7 @@ const reviewRatingsRegressionTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   ar: {
     "moderation.reasonLabel": "Report reason",
@@ -15766,7 +15712,7 @@ const reviewRatingsRegressionTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   ru: {
     "moderation.reasonLabel": "Report reason",
@@ -15788,7 +15734,7 @@ const reviewRatingsRegressionTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   zh: {
     "moderation.reasonLabel": "Report reason",
@@ -15810,7 +15756,7 @@ const reviewRatingsRegressionTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
 };
 
@@ -16323,14 +16269,10 @@ for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], reviewModerationTranslations[locale]);
 }
 
-const betaSupportLegalTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const betaSupportLegalTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "offline.alreadyAvailable": "Already available without internet",
-    "offline.alreadyAvailableText":
-      "After the app is installed, you can browse bundled outlet details, brand lists, restaurants, transportation notes, local outlet photos, and supported Tax Free rules.",
+    "offline.alreadyAvailableText": "After the app is installed, you can browse bundled outlet details, brand lists, restaurants, transportation notes, local outlet photos, and supported Tax Free rules.",
     "offline.availableSection": "Already available without internet",
     "offline.requiresInternetSection": "Requires internet",
     "offline.stat.outlets": "Bundled outlets",
@@ -16338,46 +16280,33 @@ const betaSupportLegalTranslations: Record<
     "offline.stat.brands": "Brand records",
     "offline.stat.media": "Local media assets",
     "offline.available.guide.title": "Outlet guide",
-    "offline.available.guide.text":
-      "Outlet details and country coverage are bundled with the app.",
+    "offline.available.guide.text": "Outlet details and country coverage are bundled with the app.",
     "offline.available.brands.title": "Brand lists",
     "offline.available.brands.text": "Brand lists are bundled with the app.",
     "offline.available.notes.title": "Restaurant and transportation notes",
-    "offline.available.notes.text":
-      "Restaurant and transportation notes are bundled with the guide data.",
+    "offline.available.notes.text": "Restaurant and transportation notes are bundled with the guide data.",
     "offline.available.media.title": "Local outlet images",
-    "offline.available.media.text":
-      "Production-safe outlet image assets are packaged with the app and do not require a network request.",
+    "offline.available.media.text": "Production-safe outlet image assets are packaged with the app and do not require a network request.",
     "offline.available.taxFree.title": "Supported Tax Free guide information",
-    "offline.available.taxFree.text":
-      "Source-backed Tax Free records are bundled for supported countries.",
+    "offline.available.taxFree.text": "Source-backed Tax Free records are bundled for supported countries.",
     "offline.requires.accountSync.title": "Sign-in and account sync",
-    "offline.requires.accountSync.text":
-      "Account-linked data and live services require internet.",
-    "offline.requires.reviewsNotifications.title":
-      "Reviews, helpful votes and notifications",
-    "offline.requires.reviewsNotifications.text":
-      "Reviews, helpful votes, reports and notification settings require internet.",
+    "offline.requires.accountSync.text": "Account-linked data and live services require internet.",
+    "offline.requires.reviewsNotifications.title": "Reviews, helpful votes and notifications",
+    "offline.requires.reviewsNotifications.text": "Reviews, helpful votes, reports and notification settings require internet.",
     "offline.requires.favoritesTrips.title": "Favorites and trips",
-    "offline.requires.favoritesTrips.text":
-      "Favorites and saved trips are Firestore-backed; this release does not create a local offline sync queue.",
+    "offline.requires.favoritesTrips.text": "Favorites and saved trips are Firestore-backed; this release does not create a local offline sync queue.",
     "offline.requires.flightAlerts.title": "Flight deal alerts",
-    "offline.requires.flightAlerts.text":
-      "Flight deal alerts use live services and require internet.",
+    "offline.requires.flightAlerts.text": "Flight deal alerts use live services and require internet.",
     "offline.requires.currency.title": "Live currency data",
-    "offline.requires.currency.text":
-      "Exchange rates are live Frankfurter rates; no offline exchange-rate fallback is claimed without a dated cache.",
+    "offline.requires.currency.text": "Exchange rates are live Frankfurter rates; no offline exchange-rate fallback is claimed without a dated cache.",
     "offline.requires.accountDeletion.title": "Account deletion",
-    "offline.requires.accountDeletion.text":
-      "Account deletion requires internet access.",
+    "offline.requires.accountDeletion.text": "Account deletion requires internet access.",
     "offline.noPacksTitle": "No separate offline packs",
-    "offline.noPacksText":
-      "This release does not download separate trip packs. Saved trips and favorites require internet to sync.",
+    "offline.noPacksText": "This release does not download separate trip packs. Saved trips and favorites require internet to sync."
   },
   tr: {
     "offline.alreadyAvailable": "İnternetsiz kullanılabilir",
-    "offline.alreadyAvailableText":
-      "Uygulama kurulduktan sonra temel outlet rehberi internetsiz açılır.",
+    "offline.alreadyAvailableText": "Uygulama kurulduktan sonra temel outlet rehberi internetsiz açılır.",
     "offline.availableSection": "İnternetsiz kullanılabilir",
     "offline.requiresInternetSection": "İnternet gerektirir",
     "offline.stat.outlets": "Uygulamadaki outletler",
@@ -16385,42 +16314,29 @@ const betaSupportLegalTranslations: Record<
     "offline.stat.brands": "Marka kayıtları",
     "offline.stat.media": "Yerel medya dosyaları",
     "offline.available.guide.title": "Outlet rehberi",
-    "offline.available.guide.text":
-      "Outlet detayları ve ülke kapsamı uygulamayla birlikte gelir.",
+    "offline.available.guide.text": "Outlet detayları ve ülke kapsamı uygulamayla birlikte gelir.",
     "offline.available.brands.title": "Marka listeleri",
-    "offline.available.brands.text":
-      "Marka listeleri uygulamayla birlikte gelir.",
+    "offline.available.brands.text": "Marka listeleri uygulamayla birlikte gelir.",
     "offline.available.notes.title": "Restoran ve ulaşım notları",
-    "offline.available.notes.text":
-      "Restoran ve ulaşım notları temel rehber verileriyle birlikte gelir.",
+    "offline.available.notes.text": "Restoran ve ulaşım notları temel rehber verileriyle birlikte gelir.",
     "offline.available.media.title": "Yerel outlet görselleri",
-    "offline.available.media.text":
-      "Üretim için güvenli outlet görselleri uygulama paketindedir ve ağ isteği gerektirmez.",
+    "offline.available.media.text": "Üretim için güvenli outlet görselleri uygulama paketindedir ve ağ isteği gerektirmez.",
     "offline.available.taxFree.title": "Desteklenen Tax Free rehber bilgileri",
-    "offline.available.taxFree.text":
-      "Desteklenen ülkeler için kaynaklı Tax Free kayıtları uygulamayla gelir.",
+    "offline.available.taxFree.text": "Desteklenen ülkeler için kaynaklı Tax Free kayıtları uygulamayla gelir.",
     "offline.requires.accountSync.title": "Giriş ve hesap senkronizasyonu",
-    "offline.requires.accountSync.text":
-      "Hesaba bağlı veriler ve canlı servisler internet gerektirir.",
-    "offline.requires.reviewsNotifications.title":
-      "Yorumlar, faydalı oyları ve bildirimler",
-    "offline.requires.reviewsNotifications.text":
-      "Yorumlar, faydalı oyları, raporlar ve bildirim ayarları internet gerektirir.",
+    "offline.requires.accountSync.text": "Hesaba bağlı veriler ve canlı servisler internet gerektirir.",
+    "offline.requires.reviewsNotifications.title": "Yorumlar, faydalı oyları ve bildirimler",
+    "offline.requires.reviewsNotifications.text": "Yorumlar, faydalı oyları, raporlar ve bildirim ayarları internet gerektirir.",
     "offline.requires.favoritesTrips.title": "Favoriler ve seyahatler",
-    "offline.requires.favoritesTrips.text":
-      "Bu sürümde favoriler ve seyahatler internet bağlantısı olmadan senkronize edilmez.",
+    "offline.requires.favoritesTrips.text": "Bu sürümde favoriler ve seyahatler internet bağlantısı olmadan senkronize edilmez.",
     "offline.requires.flightAlerts.title": "Uçuş fırsatı uyarıları",
-    "offline.requires.flightAlerts.text":
-      "Uçuş fırsatı uyarıları canlı servislerle çalışır ve internet gerektirir.",
+    "offline.requires.flightAlerts.text": "Uçuş fırsatı uyarıları canlı servislerle çalışır ve internet gerektirir.",
     "offline.requires.currency.title": "Canlı kur verileri",
-    "offline.requires.currency.text":
-      "Kurlar canlı Frankfurter oranlarıdır; tarihli önbellek uygulanmadan çevrimdışı kur yedeği iddia edilmez.",
+    "offline.requires.currency.text": "Kurlar canlı Frankfurter oranlarıdır; tarihli önbellek uygulanmadan çevrimdışı kur yedeği iddia edilmez.",
     "offline.requires.accountDeletion.title": "Hesap silme",
-    "offline.requires.accountDeletion.text":
-      "Hesap silme internet bağlantısı gerektirir.",
+    "offline.requires.accountDeletion.text": "Hesap silme internet bağlantısı gerektirir.",
     "offline.noPacksTitle": "Ayrı çevrimdışı paket yok",
-    "offline.noPacksText":
-      "Bu sürümde ayrıca indirilebilir paket yoktur. Hesaba bağlı veriler ve canlı servisler internet gerektirir.",
+    "offline.noPacksText": "Bu sürümde ayrıca indirilebilir paket yoktur. Hesaba bağlı veriler ve canlı servisler internet gerektirir."
   },
   es: {
     "moderation.reasonLabel": "Report reason",
@@ -16442,20 +16358,11 @@ const betaSupportLegalTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
-  },
-  fr: {},
-  de: {},
-  ar: {},
-  ru: {},
-  zh: {},
+    "moderation.tryAgain": "Please try again."
+  }, fr: {}, de: {}, ar: {}, ru: {}, zh: {},
 };
 for (const locale of supportedLanguageCodes) {
-  Object.assign(
-    translations[locale],
-    betaSupportLegalTranslations.en,
-    betaSupportLegalTranslations[locale],
-  );
+  Object.assign(translations[locale], betaSupportLegalTranslations.en, betaSupportLegalTranslations[locale]);
 }
 
 const flightDealAlertsInfrastructureTranslations: Record<
@@ -16580,7 +16487,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   fr: {
     "moderation.reasonLabel": "Report reason",
@@ -16602,7 +16509,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   de: {
     "moderation.reasonLabel": "Report reason",
@@ -16624,7 +16531,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   ar: {
     "moderation.reasonLabel": "Report reason",
@@ -16646,7 +16553,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   ru: {
     "moderation.reasonLabel": "Report reason",
@@ -16668,7 +16575,7 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   zh: {
     "moderation.reasonLabel": "Report reason",
@@ -16690,18 +16597,16 @@ const flightDealAlertsInfrastructureTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
 };
 
 Object.assign(flightDealAlertsInfrastructureTranslations.es, {
   ...flightDealAlertsInfrastructureTranslations.en,
-  "flightDeals.providerPending":
-    "El seguimiento de tarifas en vivo no está disponible porque no hay un proveedor de precios de vuelos de producción conectado. Las alertas no se guardan.",
+  "flightDeals.providerPending": "El seguimiento de tarifas en vivo no está disponible porque no hay un proveedor de precios de vuelos de producción conectado. Las alertas no se guardan.",
   "flightDeals.providerPendingBadge": "Seguimiento no disponible",
   "flightDeals.noDealsYet": "Ofertas de vuelos no disponibles",
-  "flightDeals.noFakeDeals":
-    "No se muestra ninguna oferta sin un proveedor de precios de producción conectado.",
+  "flightDeals.noFakeDeals": "No se muestra ninguna oferta sin un proveedor de precios de producción conectado.",
   "flightDeals.title": "Ofertas de vuelos",
   "flightDeals.subtitle":
     "Alertas de ofertas de vuelo para tus rutas de compras según la media de 90 días.",
@@ -16720,12 +16625,10 @@ Object.assign(flightDealAlertsInfrastructureTranslations.es, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.fr, {
   ...flightDealAlertsInfrastructureTranslations.en,
-  "flightDeals.providerPending":
-    "Le suivi des tarifs en direct est indisponible, car aucun fournisseur de prix de vols en production n’est connecté. Les alertes ne sont pas enregistrées.",
+  "flightDeals.providerPending": "Le suivi des tarifs en direct est indisponible, car aucun fournisseur de prix de vols en production n’est connecté. Les alertes ne sont pas enregistrées.",
   "flightDeals.providerPendingBadge": "Suivi indisponible",
   "flightDeals.noDealsYet": "Offres de vols indisponibles",
-  "flightDeals.noFakeDeals":
-    "Aucune offre n’est affichée sans fournisseur de prix en production connecté.",
+  "flightDeals.noFakeDeals": "Aucune offre n’est affichée sans fournisseur de prix en production connecté.",
   "flightDeals.title": "Offres de vols",
   "flightDeals.origin": "Aéroport de départ",
   "flightDeals.destination": "Aéroport d’arrivée",
@@ -16740,12 +16643,10 @@ Object.assign(flightDealAlertsInfrastructureTranslations.fr, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.de, {
   ...flightDealAlertsInfrastructureTranslations.en,
-  "flightDeals.providerPending":
-    "Die Live-Flugpreisüberwachung ist nicht verfügbar, da kein produktiver Flugpreisanbieter verbunden ist. Warnungen werden nicht gespeichert.",
+  "flightDeals.providerPending": "Die Live-Flugpreisüberwachung ist nicht verfügbar, da kein produktiver Flugpreisanbieter verbunden ist. Warnungen werden nicht gespeichert.",
   "flightDeals.providerPendingBadge": "Überwachung nicht verfügbar",
   "flightDeals.noDealsYet": "Flugangebote nicht verfügbar",
-  "flightDeals.noFakeDeals":
-    "Ohne verbundenen produktiven Preisanbieter werden keine Angebote angezeigt.",
+  "flightDeals.noFakeDeals": "Ohne verbundenen produktiven Preisanbieter werden keine Angebote angezeigt.",
   "flightDeals.title": "Flugangebote",
   "flightDeals.origin": "Abflughafen",
   "flightDeals.destination": "Ankunftsflughafen",
@@ -16760,8 +16661,7 @@ Object.assign(flightDealAlertsInfrastructureTranslations.de, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.ar, {
   ...flightDealAlertsInfrastructureTranslations.en,
-  "flightDeals.providerPending":
-    "تتبّع أسعار الرحلات المباشر غير متاح لعدم اتصال مزود إنتاج لأسعار الرحلات. لا يتم حفظ التنبيهات.",
+  "flightDeals.providerPending": "تتبّع أسعار الرحلات المباشر غير متاح لعدم اتصال مزود إنتاج لأسعار الرحلات. لا يتم حفظ التنبيهات.",
   "flightDeals.providerPendingBadge": "التتبّع غير متاح",
   "flightDeals.noDealsYet": "عروض الرحلات غير متاحة",
   "flightDeals.noFakeDeals": "لا يتم عرض أي عرض من دون مزود أسعار إنتاج متصل.",
@@ -16779,12 +16679,10 @@ Object.assign(flightDealAlertsInfrastructureTranslations.ar, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.ru, {
   ...flightDealAlertsInfrastructureTranslations.en,
-  "flightDeals.providerPending":
-    "Мониторинг тарифов в реальном времени недоступен, поскольку не подключён рабочий поставщик цен на авиабилеты. Оповещения не сохраняются.",
+  "flightDeals.providerPending": "Мониторинг тарифов в реальном времени недоступен, поскольку не подключён рабочий поставщик цен на авиабилеты. Оповещения не сохраняются.",
   "flightDeals.providerPendingBadge": "Мониторинг недоступен",
   "flightDeals.noDealsYet": "Предложения на авиабилеты недоступны",
-  "flightDeals.noFakeDeals":
-    "Без подключённого рабочего поставщика цен предложения не показываются.",
+  "flightDeals.noFakeDeals": "Без подключённого рабочего поставщика цен предложения не показываются.",
   "flightDeals.title": "Авиапредложения",
   "flightDeals.origin": "Аэропорт вылета",
   "flightDeals.destination": "Аэропорт прибытия",
@@ -16799,8 +16697,7 @@ Object.assign(flightDealAlertsInfrastructureTranslations.ru, {
 });
 Object.assign(flightDealAlertsInfrastructureTranslations.zh, {
   ...flightDealAlertsInfrastructureTranslations.en,
-  "flightDeals.providerPending":
-    "由于尚未连接生产环境的航班价格提供商，实时票价监控不可用，提醒不会保存。",
+  "flightDeals.providerPending": "由于尚未连接生产环境的航班价格提供商，实时票价监控不可用，提醒不会保存。",
   "flightDeals.providerPendingBadge": "监控不可用",
   "flightDeals.noDealsYet": "航班优惠不可用",
   "flightDeals.noFakeDeals": "未连接生产环境价格提供商时，不显示任何优惠。",
@@ -16824,43 +16721,33 @@ for (const locale of supportedLanguageCodes) {
   );
 }
 
-const finalBetaBlockerTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+
+const finalBetaBlockerTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {},
   tr: {
     "offline.kicker": "ÇEVRİMDIŞI KULLANIM",
     "offline.title": "Çevrimdışı Kullanım",
-    "offline.subtitle":
-      "Temel rehber verileri uygulamayla birlikte gelir. Bu sürümde ayrıca indirilebilir paket yoktur.",
+    "offline.subtitle": "Temel rehber verileri uygulamayla birlikte gelir. Bu sürümde ayrıca indirilebilir paket yoktur.",
     "offline.alreadyAvailable": "İnternetsiz kullanılabilir",
-    "offline.alreadyAvailableText":
-      "Uygulama kurulduktan sonra temel outlet rehberi internetsiz açılır.",
+    "offline.alreadyAvailableText": "Uygulama kurulduktan sonra temel outlet rehberi internetsiz açılır.",
     "offline.availableSection": "İnternetsiz kullanılabilir",
     "offline.requiresInternetSection": "İnternet gerektirir",
     "offline.noPacksTitle": "Çevrimdışı kullanılabilirlik",
-    "offline.noPacksText":
-      "Bu sürümde ayrıca indirilebilir paket yoktur. Hesaba bağlı veriler ve canlı servisler internet gerektirir.",
+    "offline.noPacksText": "Bu sürümde ayrıca indirilebilir paket yoktur. Hesaba bağlı veriler ve canlı servisler internet gerektirir.",
     "offline.available.brands.title": "Marka listeleri",
-    "offline.available.brands.text":
-      "Marka listeleri uygulamayla birlikte gelir.",
+    "offline.available.brands.text": "Marka listeleri uygulamayla birlikte gelir.",
     "offline.available.notes.title": "Restoran ve ulaşım notları",
-    "offline.available.notes.text":
-      "Restoran ve ulaşım notları temel rehber verileriyle birlikte gelir.",
+    "offline.available.notes.text": "Restoran ve ulaşım notları temel rehber verileriyle birlikte gelir.",
     "profile.offlinePacks": "Çevrimdışı Kullanım",
     "profile.subtitles.offlinePacks": "Uygulamayla gelen rehber verileri",
     "notifications.deviceStatusTitle": "Cihaz bildirim durumu",
     "notifications.permission.granted": "Cihaz bildirim izni açık.",
     "notifications.tokenStatusTitle": "Push token kaydı",
-    "notifications.token.not_registered":
-      "Bu cihazda bu hesap için kayıtlı push token yok.",
+    "notifications.token.not_registered": "Bu cihazda bu hesap için kayıtlı push token yok.",
     "notifications.deliveryStatusTitle": "Üretim gönderim durumu",
-    "notifications.deliveryStatusBody":
-      "Seyahat hatırlatmaları üretim göndericisiyle desteklenir. Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri henüz aktif değildir.",
+    "notifications.deliveryStatusBody": "Seyahat hatırlatmaları üretim göndericisiyle desteklenir. Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri henüz aktif değildir.",
     "notifications.cloudPreferences": "Bulut bildirim tercihleri",
-    "notifications.unsupportedCategoriesTitle":
-      "Desteklenmeyen kategoriler aktif değil",
+    "notifications.unsupportedCategoriesTitle": "Desteklenmeyen kategoriler aktif değil",
     "help.title": "Yardım ve SSS",
     "help.subtitle": "Sık sorulan sorular",
     "help.flightQuestion": "Uçuş fırsatı bildirimleri nasıl çalışır?",
@@ -16869,8 +16756,7 @@ const finalBetaBlockerTranslations: Record<
     "help.reviewQuestion": "Yorumumu düzenleyebilir miyim?",
     "help.accountQuestion": "Hesap gerekli mi?",
     "contact.title": "Bize Ulaşın",
-    "contact.subtitle":
-      "Yardıma mı ihtiyacın var veya geri bildirim mi paylaşmak istiyorsun?",
+    "contact.subtitle": "Yardıma mı ihtiyacın var veya geri bildirim mi paylaşmak istiyorsun?",
     "contact.emailTitle": "E-posta desteği",
     "contact.instagramTitle": "Instagram",
     "contact.websiteTitle": "Web sitesi",
@@ -16892,9 +16778,8 @@ const finalBetaBlockerTranslations: Record<
     "terms.accountTitle": "Hesap",
     "mediaCredits.title": "Medya Kredileri",
     "mediaCredits.kicker": "Görsel Kredileri",
-    "mediaCredits.subtitle":
-      "Üretim için onaylı outlet görselleri ve atıf ayrıntıları burada görünür.",
-    "moderation.actionFailed": "İşlem kaydedilemedi. Lütfen tekrar deneyin.",
+    "mediaCredits.subtitle": "Üretim için onaylı outlet görselleri ve atıf ayrıntıları burada görünür.",
+    "moderation.actionFailed": "İşlem kaydedilemedi. Lütfen tekrar deneyin."
   },
   es: {
     "moderation.reasonLabel": "Report reason",
@@ -16916,7 +16801,7 @@ const finalBetaBlockerTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   fr: {
     "moderation.reasonLabel": "Report reason",
@@ -16938,7 +16823,7 @@ const finalBetaBlockerTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   de: {
     "moderation.reasonLabel": "Report reason",
@@ -16960,7 +16845,7 @@ const finalBetaBlockerTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   ar: {
     "moderation.reasonLabel": "Report reason",
@@ -16982,7 +16867,7 @@ const finalBetaBlockerTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   ru: {
     "moderation.reasonLabel": "Report reason",
@@ -17004,7 +16889,7 @@ const finalBetaBlockerTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
   zh: {
     "moderation.reasonLabel": "Report reason",
@@ -17026,7 +16911,7 @@ const finalBetaBlockerTranslations: Record<
     "moderation.reportDismissed": "Report dismissed",
     "moderation.noteSaved": "Moderation note saved",
     "moderation.noteRequired": "Enter a moderation note.",
-    "moderation.tryAgain": "Please try again.",
+    "moderation.tryAgain": "Please try again."
   },
 };
 
@@ -17034,25 +16919,20 @@ for (const locale of supportedLanguageCodes) {
   Object.assign(translations[locale], finalBetaBlockerTranslations[locale]);
 }
 
-const remainingBetaBlockerTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+
+const remainingBetaBlockerTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "profile.offlinePacks": "Offline Usage",
     "profile.subtitles.offlinePacks": "Guide data bundled with the app",
     "offline.title": "Offline Usage",
-    "offline.subtitle":
-      "Core guide data is bundled with the app. This version does not include additional downloadable offline packages.",
+    "offline.subtitle": "Core guide data is bundled with the app. This version does not include additional downloadable offline packages.",
     "offline.kicker": "Offline availability",
     "offline.alreadyAvailable": "Offline availability",
-    "offline.alreadyAvailableText":
-      "After installation, the core outlet guide opens without internet.",
+    "offline.alreadyAvailableText": "After installation, the core outlet guide opens without internet.",
     "offline.availableSection": "Available without internet",
     "offline.requiresInternetSection": "Requires internet",
     "offline.noPacksTitle": "No downloadable packages",
-    "offline.noPacksText":
-      "This version does not include additional downloadable offline packages.",
+    "offline.noPacksText": "This version does not include additional downloadable offline packages.",
     "offline.available.guide.title": "Outlet guide",
     "offline.available.brands.title": "Brand lists",
     "offline.available.notes.title": "Restaurant and transport notes",
@@ -17060,8 +16940,7 @@ const remainingBetaBlockerTranslations: Record<
     "offline.available.taxFree.title": "Supported Tax Free guide information",
     "offline.requires.accountSync.title": "Sign-in and account sync",
     "offline.requires.favoritesTrips.title": "Favorites and trips",
-    "offline.requires.reviewsNotifications.title":
-      "Reviews, helpful votes, and notifications",
+    "offline.requires.reviewsNotifications.title": "Reviews, helpful votes, and notifications",
     "offline.requires.flightAlerts.title": "Flight deal alerts",
     "offline.requires.currency.title": "Live exchange rates",
     "offline.requires.accountDeletion.title": "Account deletion",
@@ -17070,17 +16949,14 @@ const remainingBetaBlockerTranslations: Record<
     "profile.offlinePacks": "Çevrimdışı Kullanım",
     "profile.subtitles.offlinePacks": "Uygulamayla gelen rehber verileri",
     "offline.title": "Çevrimdışı Kullanım",
-    "offline.subtitle":
-      "Temel rehber verileri uygulamayla birlikte gelir. Bu sürümde ayrıca indirilebilir çevrimdışı paket yoktur.",
+    "offline.subtitle": "Temel rehber verileri uygulamayla birlikte gelir. Bu sürümde ayrıca indirilebilir çevrimdışı paket yoktur.",
     "offline.kicker": "Çevrimdışı kullanılabilirlik",
     "offline.alreadyAvailable": "Çevrimdışı kullanılabilirlik",
-    "offline.alreadyAvailableText":
-      "Uygulama kurulduktan sonra temel outlet rehberi internetsiz açılır.",
+    "offline.alreadyAvailableText": "Uygulama kurulduktan sonra temel outlet rehberi internetsiz açılır.",
     "offline.availableSection": "İnternetsiz kullanılabilir",
     "offline.requiresInternetSection": "İnternet gerektirir",
     "offline.noPacksTitle": "İndirilebilir paket yok",
-    "offline.noPacksText":
-      "Bu sürümde ayrıca indirilebilir çevrimdışı paket yoktur.",
+    "offline.noPacksText": "Bu sürümde ayrıca indirilebilir çevrimdışı paket yoktur.",
     "offline.available.guide.title": "Outlet rehberi",
     "offline.available.brands.title": "Marka listeleri",
     "offline.available.notes.title": "Restoran ve ulaşım notları",
@@ -17088,99 +16964,71 @@ const remainingBetaBlockerTranslations: Record<
     "offline.available.taxFree.title": "Desteklenen Tax Free rehber bilgileri",
     "offline.requires.accountSync.title": "Giriş ve hesap senkronizasyonu",
     "offline.requires.favoritesTrips.title": "Favoriler ve seyahatler",
-    "offline.requires.reviewsNotifications.title":
-      "Yorumlar, faydalı oyları ve bildirimler",
+    "offline.requires.reviewsNotifications.title": "Yorumlar, faydalı oyları ve bildirimler",
     "offline.requires.flightAlerts.title": "Uçuş fırsatı uyarıları",
     "offline.requires.currency.title": "Canlı kur verileri",
     "offline.requires.accountDeletion.title": "Hesap silme",
     "notifications.deviceStatusTitle": "Cihaz bildirim durumu",
     "notifications.permission.granted": "Cihaz bildirim izni açık.",
     "notifications.tokenStatusTitle": "Push token kaydı",
-    "notifications.token.not_registered":
-      "Bu cihazda bu hesap için kayıtlı push token yok.",
+    "notifications.token.not_registered": "Bu cihazda bu hesap için kayıtlı push token yok.",
     "notifications.deliveryStatusTitle": "Üretim gönderim durumu",
-    "notifications.deliveryStatusBody":
-      "Seyahat hatırlatmaları üretim göndericisiyle desteklenir. Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri henüz aktif değildir.",
+    "notifications.deliveryStatusBody": "Seyahat hatırlatmaları üretim göndericisiyle desteklenir. Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri henüz aktif değildir.",
     "notifications.cloudPreferences": "Bulut bildirim tercihleri",
-    "notifications.cloudPreferencesDesc":
-      "Hesabının desteklenen üretim bildirimlerini alıp almayacağını kaydeder.",
-    "notifications.tripRemindersCategoryDesc":
-      "Seyahat, Tax Free ve dönüş uçuşu hatırlatmaları için bildirimleri aç.",
+    "notifications.cloudPreferencesDesc": "Hesabının desteklenen üretim bildirimlerini alıp almayacağını kaydeder.",
+    "notifications.tripRemindersCategoryDesc": "Seyahat, Tax Free ve dönüş uçuşu hatırlatmaları için bildirimleri aç.",
     "notifications.categoryActive": "Üretim göndericisi aktif",
-    "notifications.unsupportedCategoriesTitle":
-      "Desteklenmeyen kategoriler aktif değil",
-    "notifications.unsupportedCategoriesBody":
-      "Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri için henüz bildirim gönderim altyapısı yoktur. Sahte gelen kutusu, örnek geçmiş veya simüle gönderim gösterilmez.",
+    "notifications.unsupportedCategoriesTitle": "Desteklenmeyen kategoriler aktif değil",
+    "notifications.unsupportedCategoriesBody": "Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri için henüz bildirim gönderim altyapısı yoktur. Sahte gelen kutusu, örnek geçmiş veya simüle gönderim gösterilmez.",
     "help.title": "Yardım ve SSS",
     "help.subtitle": "Sık sorulan sorular",
     "help.flightQuestion": "Uçuş fırsatı bildirimleri nasıl çalışır?",
-    "help.flightAnswer":
-      "Uçuş fırsatı uyarıları, gerçek fiyat sağlayıcısı bağlandığında seçtiğin rotalarda 90 günlük ortalamaya göre belirgin düşüşleri takip eder.",
+    "help.flightAnswer": "Uçuş fırsatı uyarıları, gerçek fiyat sağlayıcısı bağlandığında seçtiğin rotalarda 90 günlük ortalamaya göre belirgin düşüşleri takip eder.",
     "help.taxQuestion": "Tax Free bilgileri nasıl çalışır?",
-    "help.taxAnswer":
-      "Tax Free bilgileri ülke kurallarına ve alışveriş koşullarına göre değişebilir. Son işlem öncesinde resmi kaynakları kontrol et.",
+    "help.taxAnswer": "Tax Free bilgileri ülke kurallarına ve alışveriş koşullarına göre değişebilir. Son işlem öncesinde resmi kaynakları kontrol et.",
     "help.offlineQuestion": "İnternetsiz neler çalışır?",
-    "help.offlineAnswer":
-      "Uygulamayla gelen outlet rehberi, yerel outlet görselleri, markalar, restoranlar, ulaşım notları ve desteklenen Tax Free rehber bilgileri internetsiz çalışır. Yorumlar, favoriler, seyahatler, bildirimler ve canlı kurlar internet gerektirir.",
+    "help.offlineAnswer": "Uygulamayla gelen outlet rehberi, yerel outlet görselleri, markalar, restoranlar, ulaşım notları ve desteklenen Tax Free rehber bilgileri internetsiz çalışır. Yorumlar, favoriler, seyahatler, bildirimler ve canlı kurlar internet gerektirir.",
     "help.reviewQuestion": "Yorumumu düzenleyebilir miyim?",
-    "help.reviewAnswer":
-      "Evet. Yorumunu ve puanlarını gönderdikten sonra güncelleyebilirsin. Şeffaflık için önceki yorum bilgisi gösterilebilir.",
+    "help.reviewAnswer": "Evet. Yorumunu ve puanlarını gönderdikten sonra güncelleyebilirsin. Şeffaflık için önceki yorum bilgisi gösterilebilir.",
     "help.accountQuestion": "Hesap gerekli mi?",
-    "help.accountAnswer":
-      "Hayır. Çoğu rehber bilgisi hesapsız görüntülenebilir. Favoriler, seyahatler, yorumlar ve kişiselleştirilmiş bildirimler için hesap gerekir.",
+    "help.accountAnswer": "Hayır. Çoğu rehber bilgisi hesapsız görüntülenebilir. Favoriler, seyahatler, yorumlar ve kişiselleştirilmiş bildirimler için hesap gerekir.",
     "help.deleteQuestion": "Hesabımı nasıl silerim?",
-    "help.deleteAnswer":
-      "Hesap silme isteğini Profil bölümünden başlatabilirsin.",
+    "help.deleteAnswer": "Hesap silme isteğini Profil bölümünden başlatabilirsin.",
     "contact.title": "Bize Ulaşın",
-    "contact.subtitle":
-      "Yardıma mı ihtiyacın var veya geri bildirim mi paylaşmak istiyorsun?",
+    "contact.subtitle": "Yardıma mı ihtiyacın var veya geri bildirim mi paylaşmak istiyorsun?",
     "contact.emailTitle": "E-posta desteği",
-    "contact.emailText":
-      "Sorular, geri bildirim veya teknik sorunlar için destek ekibimize ulaş.",
-    "contact.instagramText":
-      "Outlet haberleri, alışveriş ipuçları ve güncellemeler için bizi takip et.",
+    "contact.emailText": "Sorular, geri bildirim veya teknik sorunlar için destek ekibimize ulaş.",
+    "contact.instagramText": "Outlet haberleri, alışveriş ipuçları ve güncellemeler için bizi takip et.",
     "contact.websiteTitle": "Web sitesi",
     "contact.websiteText": "Resmi web sitemizi ziyaret et.",
     "contact.featureTitle": "Özellik öner",
-    "contact.featureText":
-      "My Outlet Guide’ı geliştirecek bir fikrin mi var? Duymak isteriz.",
+    "contact.featureText": "My Outlet Guide’ı geliştirecek bir fikrin mi var? Duymak isteriz.",
     "contact.problemTitle": "Sorun bildir",
-    "contact.problemText":
-      "Hatalı bilgi veya uygulama hatası bulduysan lütfen ayrıntılarıyla bize ilet.",
+    "contact.problemText": "Hatalı bilgi veya uygulama hatası bulduysan lütfen ayrıntılarıyla bize ilet.",
     "privacy.title": "Gizlilik Politikası",
     "privacy.subtitle": "My Outlet Guide verilerinizi nasıl işler?",
     "privacy.collectTitle": "Topladığımız Bilgiler",
-    "privacy.collectText":
-      "Hesap bilgileri, kaydedilen seyahatler, favoriler, bildirim tercihleri, uçuş fırsatı tercihleri ve gönderdiğin yorumlar işlenebilir.",
+    "privacy.collectText": "Hesap bilgileri, kaydedilen seyahatler, favoriler, bildirim tercihleri, uçuş fırsatı tercihleri ve gönderdiğin yorumlar işlenebilir.",
     "privacy.useTitle": "Bilgileri Nasıl Kullanırız",
-    "privacy.useText":
-      "Bilgilerini hesabını senkronize etmek, kaydedilen seyahat ve favorilerini göstermek, bildirimleri kişiselleştirmek ve uygulama deneyimini iyileştirmek için kullanırız.",
+    "privacy.useText": "Bilgilerini hesabını senkronize etmek, kaydedilen seyahat ve favorilerini göstermek, bildirimleri kişiselleştirmek ve uygulama deneyimini iyileştirmek için kullanırız.",
     "privacy.reviewsTitle": "Yorumlar",
-    "privacy.reviewsText":
-      "Yayınladığın yorumlar görünen adınla birlikte diğer kullanıcılara görünebilir. Hesabını silersen yorumların anonimleştirilir.",
+    "privacy.reviewsText": "Yayınladığın yorumlar görünen adınla birlikte diğer kullanıcılara görünebilir. Hesabını silersen yorumların anonimleştirilir.",
     "privacy.securityTitle": "Veri Güvenliği",
-    "privacy.securityText":
-      "Kullanıcı verilerini korumaya yardımcı olmak için Firebase servisleri ve güvenlik kuralları kullanırız.",
+    "privacy.securityText": "Kullanıcı verilerini korumaya yardımcı olmak için Firebase servisleri ve güvenlik kuralları kullanırız.",
     "privacy.contactTitle": "İletişim",
-    "privacy.contactText":
-      "Gizlilik soruları için iletişim: info@myoutletguide.com",
+    "privacy.contactText": "Gizlilik soruları için iletişim: info@myoutletguide.com",
     "terms.title": "Kullanım Şartları",
     "terms.subtitle": "My Outlet Guide kullanım kuralları.",
     "terms.useTitle": "Uygulamanın Kullanımı",
-    "terms.useText":
-      "My Outlet Guide, outlet alışverişi, seyahat, Tax Free ve uçuş fırsatı planlama bilgileri sunar.",
+    "terms.useText": "My Outlet Guide, outlet alışverişi, seyahat, Tax Free ve uçuş fırsatı planlama bilgileri sunar.",
     "terms.accuracyTitle": "Bilgi Doğruluğu",
-    "terms.accuracyText":
-      "Outlet detayları, fiyatlar, kampanyalar, ulaşım bilgileri ve uçuş fırsatı verileri değişebilir. Son karar öncesinde resmi sağlayıcıları kontrol et.",
+    "terms.accuracyText": "Outlet detayları, fiyatlar, kampanyalar, ulaşım bilgileri ve uçuş fırsatı verileri değişebilir. Son karar öncesinde resmi sağlayıcıları kontrol et.",
     "terms.reviewsTitle": "Kullanıcı Yorumları",
-    "terms.reviewsText":
-      "Kullanıcılar gönderdikleri yorum ve içeriklerden sorumludur. Uygunsuz veya yanıltıcı içerikleri kaldırabilir veya gizleyebiliriz.",
+    "terms.reviewsText": "Kullanıcılar gönderdikleri yorum ve içeriklerden sorumludur. Uygunsuz veya yanıltıcı içerikleri kaldırabilir veya gizleyebiliriz.",
     "terms.thirdPartyTitle": "Üçüncü Taraf Hizmetler",
-    "terms.thirdPartyText":
-      "Uygulama harita, havayolu, seyahat veya outlet sitelerine bağlantı verebilir. Üçüncü taraf hizmetlerden sorumlu değiliz.",
+    "terms.thirdPartyText": "Uygulama harita, havayolu, seyahat veya outlet sitelerine bağlantı verebilir. Üçüncü taraf hizmetlerden sorumlu değiliz.",
     "terms.accountTitle": "Hesap",
-    "terms.accountText":
-      "Hesabının güvenliğinden ve hesabın altında yapılan işlemlerden sen sorumlusun.",
+    "terms.accountText": "Hesabının güvenliğinden ve hesabın altında yapılan işlemlerden sen sorumlusun.",
     "reviews.anonymousAccount": "Anonim hesap",
     "moderation.permissionDenied": "Bu işlem için yetkin yok.",
     "moderation.actionFailed": "İşlem kaydedilemedi. Lütfen tekrar deneyin.",
@@ -17196,391 +17044,110 @@ const remainingBetaBlockerTranslations: Record<
     "moderation.reportStatus.reviewing": "İncelemede",
     "moderation.reportStatus.action_taken": "İşlem yapıldı",
     "moderation.reportStatus.dismissed": "Reddedildi",
-    "moderation.reportingUsers": "Bildiren kullanıcılar",
+    "moderation.reportingUsers": "Bildiren kullanıcılar"
   },
-  es: {},
-  fr: {},
-  de: {},
-  ar: {},
-  ru: {},
-  zh: {},
+  es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {}
 };
 
 for (const locale of supportedLanguageCodes) {
-  Object.assign(
-    translations[locale],
-    remainingBetaBlockerTranslations.en,
-    remainingBetaBlockerTranslations[locale],
-  );
+  Object.assign(translations[locale], remainingBetaBlockerTranslations.en, remainingBetaBlockerTranslations[locale]);
 }
 
-const liveCurrencyWeatherTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const liveCurrencyWeatherTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
-    "currency.liveRate": "Live rate",
-    "currency.providerFrankfurter": "Source: Frankfurter",
-    "currency.updatedAt": "Updated",
-    "currency.staleRate": "Last updated rate",
-    "currency.liveUnavailable": "Live rate could not be loaded.",
-    "currency.noRateData": "Rate data is not available.",
-    "currency.amount": "Amount",
-    "currency.convert": "Convert",
-    "weather.title": "Weather",
-    "weather.daily": "Weather",
-    "weather.checkingAvailability": "Checking weather availability",
-    "weather.unavailable": "Weather information is currently unavailable.",
-    "weather.providerNotConfigured":
-      "Weather information is currently unavailable.",
-    "weather.outOfRange": "Forecast is not available yet.",
-    "weather.missingCoordinates":
-      "Weather coordinates are missing for this city.",
-    "weather.emptyRoute":
-      "City-based weather will appear here when you add a route.",
-    "weather.stale": "Last updated weather",
-    "weather.sourceOpenMeteo": "Source: Open-Meteo",
-    "weather.tempMax": "High",
-    "weather.tempMin": "Low",
-    "weather.precipitationProbability": "Precipitation chance",
-    "weather.precipitation": "Precipitation",
-    "weather.wind": "Wind",
-    "weather.today": "Today",
-    "weather.tomorrow": "Tomorrow",
-    "weather.condition.clear": "Clear",
-    "weather.condition.partlyCloudy": "Partly cloudy",
-    "weather.condition.cloudy": "Cloudy",
-    "weather.condition.fog": "Fog",
-    "weather.condition.drizzle": "Drizzle",
-    "weather.condition.rain": "Rain",
-    "weather.condition.snow": "Snow",
-    "weather.condition.showers": "Showers",
-    "weather.condition.thunderstorm": "Thunderstorm",
-    "weather.condition.unknown": "Unknown",
+    "currency.liveRate": "Live rate", "currency.providerFrankfurter": "Source: Frankfurter", "currency.updatedAt": "Updated", "currency.staleRate": "Last updated rate", "currency.liveUnavailable": "Live rate could not be loaded.", "currency.noRateData": "Rate data is not available.", "currency.amount": "Amount", "currency.convert": "Convert",
+    "weather.title": "Weather", "weather.daily": "Weather", "weather.checkingAvailability": "Checking weather availability", "weather.unavailable": "Weather information is currently unavailable.", "weather.providerNotConfigured": "Weather information is currently unavailable.", "weather.outOfRange": "Forecast is not available yet.", "weather.missingCoordinates": "Weather coordinates are missing for this city.", "weather.emptyRoute": "City-based weather will appear here when you add a route.", "weather.stale": "Last updated weather", "weather.sourceOpenMeteo": "Source: Open-Meteo", "weather.tempMax": "High", "weather.tempMin": "Low", "weather.precipitationProbability": "Precipitation chance", "weather.precipitation": "Precipitation", "weather.wind": "Wind", "weather.today": "Today", "weather.tomorrow": "Tomorrow", "weather.condition.clear": "Clear", "weather.condition.partlyCloudy": "Partly cloudy", "weather.condition.cloudy": "Cloudy", "weather.condition.fog": "Fog", "weather.condition.drizzle": "Drizzle", "weather.condition.rain": "Rain", "weather.condition.snow": "Snow", "weather.condition.showers": "Showers", "weather.condition.thunderstorm": "Thunderstorm", "weather.condition.unknown": "Unknown"
   },
   tr: {
-    "currency.liveRate": "Canlı kur",
-    "currency.providerFrankfurter": "Kaynak: Frankfurter",
-    "currency.updatedAt": "Güncellendi",
-    "currency.staleRate": "Son güncellenen kur",
-    "currency.liveUnavailable": "Canlı kur alınamadı.",
-    "currency.noRateData": "Kur kullanılamıyor",
-    "currency.amount": "Tutar",
-    "currency.from": "Kaynak para birimi",
-    "currency.to": "Hedef para birimi",
-    "currency.convert": "Çevir",
-    "weather.title": "Hava durumu",
-    "weather.daily": "Hava durumu",
-    "weather.checkingAvailability":
-      "Hava durumu kullanılabilirliği kontrol ediliyor",
-    "weather.unavailable": "Hava durumu bilgisi şu anda kullanılamıyor.",
-    "weather.providerNotConfigured":
-      "Hava durumu bilgisi şu anda kullanılamıyor.",
-    "weather.outOfRange": "Tahmin henüz mevcut değil.",
-    "weather.missingCoordinates": "Bu şehir için hava durumu koordinatı eksik.",
-    "weather.emptyRoute":
-      "Rota eklediğinde şehir bazlı hava durumu burada görünür.",
-    "weather.stale": "Son güncellenen hava durumu",
-    "weather.sourceOpenMeteo": "Kaynak: Open-Meteo",
-    "weather.tempMax": "En yüksek",
-    "weather.tempMin": "En düşük",
-    "weather.precipitationProbability": "Yağış olasılığı",
-    "weather.precipitation": "Yağış",
-    "weather.wind": "Rüzgâr",
-    "weather.today": "Bugün",
-    "weather.tomorrow": "Yarın",
-    "weather.condition.clear": "Açık",
-    "weather.condition.partlyCloudy": "Parçalı bulutlu",
-    "weather.condition.cloudy": "Bulutlu",
-    "weather.condition.fog": "Sisli",
-    "weather.condition.drizzle": "Çiseleme",
-    "weather.condition.rain": "Yağmurlu",
-    "weather.condition.snow": "Karlı",
-    "weather.condition.showers": "Sağanak",
-    "weather.condition.thunderstorm": "Gök gürültülü",
-    "weather.condition.unknown": "Bilinmiyor",
+    "currency.liveRate": "Canlı kur", "currency.providerFrankfurter": "Kaynak: Frankfurter", "currency.updatedAt": "Güncellendi", "currency.staleRate": "Son güncellenen kur", "currency.liveUnavailable": "Canlı kur alınamadı.", "currency.noRateData": "Kur kullanılamıyor", "currency.amount": "Tutar", "currency.from": "Kaynak para birimi", "currency.to": "Hedef para birimi", "currency.convert": "Çevir",
+    "weather.title": "Hava durumu", "weather.daily": "Hava durumu", "weather.checkingAvailability": "Hava durumu kullanılabilirliği kontrol ediliyor", "weather.unavailable": "Hava durumu bilgisi şu anda kullanılamıyor.", "weather.providerNotConfigured": "Hava durumu bilgisi şu anda kullanılamıyor.", "weather.outOfRange": "Tahmin henüz mevcut değil.", "weather.missingCoordinates": "Bu şehir için hava durumu koordinatı eksik.", "weather.emptyRoute": "Rota eklediğinde şehir bazlı hava durumu burada görünür.", "weather.stale": "Son güncellenen hava durumu", "weather.sourceOpenMeteo": "Kaynak: Open-Meteo", "weather.tempMax": "En yüksek", "weather.tempMin": "En düşük", "weather.precipitationProbability": "Yağış olasılığı", "weather.precipitation": "Yağış", "weather.wind": "Rüzgâr", "weather.today": "Bugün", "weather.tomorrow": "Yarın", "weather.condition.clear": "Açık", "weather.condition.partlyCloudy": "Parçalı bulutlu", "weather.condition.cloudy": "Bulutlu", "weather.condition.fog": "Sisli", "weather.condition.drizzle": "Çiseleme", "weather.condition.rain": "Yağmurlu", "weather.condition.snow": "Karlı", "weather.condition.showers": "Sağanak", "weather.condition.thunderstorm": "Gök gürültülü", "weather.condition.unknown": "Bilinmiyor"
   },
-  es: {},
-  fr: {},
-  de: {},
-  ar: {},
-  ru: {},
-  zh: {},
+  es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {}
 };
-Object.assign(
-  liveCurrencyWeatherTranslations.es,
-  liveCurrencyWeatherTranslations.en,
-  {
-    "currency.liveRate": "Tipo en vivo",
-    "currency.liveUnavailable": "No se pudo cargar el tipo en vivo.",
-    "weather.title": "Tiempo",
-    "weather.unavailable": "No se pudo cargar el tiempo.",
-  },
-);
-Object.assign(
-  liveCurrencyWeatherTranslations.fr,
-  liveCurrencyWeatherTranslations.en,
-  {
-    "currency.liveRate": "Taux en direct",
-    "currency.liveUnavailable": "Impossible de charger le taux en direct.",
-    "weather.title": "Météo",
-    "weather.unavailable": "Impossible de charger la météo.",
-  },
-);
-Object.assign(
-  liveCurrencyWeatherTranslations.de,
-  liveCurrencyWeatherTranslations.en,
-  {
-    "currency.liveRate": "Live-Kurs",
-    "currency.liveUnavailable": "Live-Kurs konnte nicht geladen werden.",
-    "weather.title": "Wetter",
-    "weather.unavailable": "Wetter konnte nicht geladen werden.",
-  },
-);
-Object.assign(
-  liveCurrencyWeatherTranslations.ar,
-  liveCurrencyWeatherTranslations.en,
-  {
-    "currency.liveRate": "سعر مباشر",
-    "currency.liveUnavailable": "تعذر تحميل السعر المباشر.",
-    "currency.amount": "المبلغ",
-    "currency.convert": "تحويل",
-    "weather.title": "الطقس",
-    "weather.unavailable": "تعذر تحميل الطقس.",
-    "weather.providerNotConfigured": "معلومات الطقس غير متوفرة حاليًا.",
-    "weather.outOfRange": "التوقع غير متاح بعد.",
-    "weather.missingCoordinates": "إحداثيات الطقس غير متوفرة لهذه المدينة.",
-  },
-);
-Object.assign(
-  liveCurrencyWeatherTranslations.ru,
-  liveCurrencyWeatherTranslations.en,
-  {
-    "currency.liveRate": "Актуальный курс",
-    "currency.liveUnavailable": "Не удалось загрузить актуальный курс.",
-    "weather.title": "Погода",
-    "weather.unavailable": "Не удалось загрузить погоду.",
-  },
-);
-Object.assign(
-  liveCurrencyWeatherTranslations.zh,
-  liveCurrencyWeatherTranslations.en,
-  {
-    "currency.liveRate": "实时汇率",
-    "currency.liveUnavailable": "无法加载实时汇率。",
-    "weather.title": "天气",
-    "weather.unavailable": "无法加载天气。",
-  },
-);
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], liveCurrencyWeatherTranslations[locale]);
+Object.assign(liveCurrencyWeatherTranslations.es, liveCurrencyWeatherTranslations.en, { "currency.liveRate": "Tipo en vivo", "currency.liveUnavailable": "No se pudo cargar el tipo en vivo.", "weather.title": "Tiempo", "weather.unavailable": "No se pudo cargar el tiempo." });
+Object.assign(liveCurrencyWeatherTranslations.fr, liveCurrencyWeatherTranslations.en, { "currency.liveRate": "Taux en direct", "currency.liveUnavailable": "Impossible de charger le taux en direct.", "weather.title": "Météo", "weather.unavailable": "Impossible de charger la météo." });
+Object.assign(liveCurrencyWeatherTranslations.de, liveCurrencyWeatherTranslations.en, { "currency.liveRate": "Live-Kurs", "currency.liveUnavailable": "Live-Kurs konnte nicht geladen werden.", "weather.title": "Wetter", "weather.unavailable": "Wetter konnte nicht geladen werden." });
+Object.assign(liveCurrencyWeatherTranslations.ar, liveCurrencyWeatherTranslations.en, { "currency.liveRate": "سعر مباشر", "currency.liveUnavailable": "تعذر تحميل السعر المباشر.", "currency.amount": "المبلغ", "currency.convert": "تحويل", "weather.title": "الطقس", "weather.unavailable": "تعذر تحميل الطقس.", "weather.providerNotConfigured": "معلومات الطقس غير متوفرة حاليًا.", "weather.outOfRange": "التوقع غير متاح بعد.", "weather.missingCoordinates": "إحداثيات الطقس غير متوفرة لهذه المدينة." });
+Object.assign(liveCurrencyWeatherTranslations.ru, liveCurrencyWeatherTranslations.en, { "currency.liveRate": "Актуальный курс", "currency.liveUnavailable": "Не удалось загрузить актуальный курс.", "weather.title": "Погода", "weather.unavailable": "Не удалось загрузить погоду." });
+Object.assign(liveCurrencyWeatherTranslations.zh, liveCurrencyWeatherTranslations.en, { "currency.liveRate": "实时汇率", "currency.liveUnavailable": "无法加载实时汇率。", "weather.title": "天气", "weather.unavailable": "无法加载天气。" });
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], liveCurrencyWeatherTranslations[locale]);
 
-const returnFlightOutletWeatherSafetyTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "createTrip.returnFlightReminderTitle": "Return flight reminder",
-    "createTrip.returnFlightReminderHelper":
-      "If you choose a date and time, a reminder is created for your return flight.",
-    "createTrip.returnFlightDate": "Return flight date",
-    "createTrip.returnFlightTime": "Return flight time",
-    "createTrip.returnFlightDateTimeRequired":
-      "Return flight date and time must be entered together.",
-    "weather.unavailable": "Weather information is currently unavailable.",
-    "weather.providerNotConfigured":
-      "Weather information is currently unavailable.",
-    "weather.missingCoordinates":
-      "Weather coordinates are missing for this outlet.",
-    "weather.sourceOpenMeteo": "Source: Open-Meteo",
-  },
-  tr: {
-    "createTrip.returnFlightReminderTitle": "Dönüş uçuş hatırlatması",
-    "createTrip.returnFlightReminderHelper":
-      "Tarih ve saat seçersen dönüş uçuşu için hatırlatma oluşturulur.",
-    "createTrip.returnFlightDate": "Dönüş uçuş tarihi",
-    "createTrip.returnFlightTime": "Dönüş uçuş saati",
-    "createTrip.returnFlightDateTimeRequired":
-      "Dönüş uçuş tarihi ve saati birlikte girilmeli.",
-    "weather.unavailable": "Hava durumu bilgisi şu anda kullanılamıyor.",
-    "weather.providerNotConfigured":
-      "Hava durumu bilgisi şu anda kullanılamıyor.",
-    "weather.missingCoordinates":
-      "Bu outlet için hava durumu koordinatı eksik.",
-    "weather.sourceOpenMeteo": "Kaynak: Open-Meteo",
-  },
-  es: {
-    "createTrip.returnFlightReminderTitle": "Recordatorio de vuelo de regreso",
-    "createTrip.returnFlightReminderHelper":
-      "Si eliges fecha y hora, se creará un recordatorio para tu vuelo de regreso.",
-    "createTrip.returnFlightDate": "Fecha del vuelo de regreso",
-    "createTrip.returnFlightTime": "Hora del vuelo de regreso",
-    "createTrip.returnFlightDateTimeRequired":
-      "La fecha y la hora del vuelo de regreso deben introducirse juntas.",
-    "weather.unavailable": "No se pudo cargar el tiempo.",
-    "weather.providerNotConfigured":
-      "La información meteorológica no está disponible en este momento.",
-    "weather.missingCoordinates":
-      "Faltan coordenadas del tiempo para este outlet.",
-    "weather.sourceOpenMeteo": "Fuente: Open-Meteo",
-  },
-  fr: {
-    "createTrip.returnFlightReminderTitle": "Rappel de vol retour",
-    "createTrip.returnFlightReminderHelper":
-      "Si vous choisissez une date et une heure, un rappel est créé pour votre vol retour.",
-    "createTrip.returnFlightDate": "Date du vol retour",
-    "createTrip.returnFlightTime": "Heure du vol retour",
-    "createTrip.returnFlightDateTimeRequired":
-      "La date et l’heure du vol retour doivent être saisies ensemble.",
-    "weather.unavailable": "Impossible de charger la météo.",
-    "weather.providerNotConfigured":
-      "Les informations météo sont actuellement indisponibles.",
-    "weather.missingCoordinates":
-      "Les coordonnées météo manquent pour cet outlet.",
-    "weather.sourceOpenMeteo": "Source : Open-Meteo",
-  },
-  de: {
-    "createTrip.returnFlightReminderTitle": "Rückflug-Erinnerung",
-    "createTrip.returnFlightReminderHelper":
-      "Wenn du Datum und Uhrzeit auswählst, wird eine Erinnerung für deinen Rückflug erstellt.",
-    "createTrip.returnFlightDate": "Rückflugdatum",
-    "createTrip.returnFlightTime": "Rückflugzeit",
-    "createTrip.returnFlightDateTimeRequired":
-      "Rückflugdatum und -zeit müssen zusammen eingegeben werden.",
-    "weather.unavailable": "Wetter konnte nicht geladen werden.",
-    "weather.providerNotConfigured":
-      "Wetterinformationen sind derzeit nicht verfügbar.",
-    "weather.missingCoordinates": "Für dieses Outlet fehlen Wetterkoordinaten.",
-    "weather.sourceOpenMeteo": "Quelle: Open-Meteo",
-  },
-  ar: {
-    "createTrip.returnFlightReminderTitle": "تذكير رحلة العودة",
-    "createTrip.returnFlightReminderHelper":
-      "إذا اخترت التاريخ والوقت فسيتم إنشاء تذكير لرحلة العودة.",
-    "createTrip.returnFlightDate": "تاريخ رحلة العودة",
-    "createTrip.returnFlightTime": "وقت رحلة العودة",
-    "createTrip.returnFlightDateTimeRequired":
-      "يجب إدخال تاريخ ووقت رحلة العودة معًا.",
-    "weather.unavailable": "تعذر تحميل الطقس.",
-    "weather.providerNotConfigured": "معلومات الطقس غير متوفرة حاليًا.",
-    "weather.missingCoordinates": "إحداثيات الطقس غير متوفرة لهذا الأوتلت.",
-    "weather.sourceOpenMeteo": "المصدر: Open-Meteo",
-  },
-  ru: {
-    "createTrip.returnFlightReminderTitle": "Напоминание об обратном рейсе",
-    "createTrip.returnFlightReminderHelper":
-      "Если выбрать дату и время, будет создано напоминание об обратном рейсе.",
-    "createTrip.returnFlightDate": "Дата обратного рейса",
-    "createTrip.returnFlightTime": "Время обратного рейса",
-    "createTrip.returnFlightDateTimeRequired":
-      "Дата и время обратного рейса должны быть указаны вместе.",
-    "weather.unavailable": "Не удалось загрузить погоду.",
-    "weather.providerNotConfigured": "Информация о погоде сейчас недоступна.",
-    "weather.missingCoordinates":
-      "Для этого аутлета отсутствуют координаты погоды.",
-    "weather.sourceOpenMeteo": "Источник: Open-Meteo",
-  },
-  zh: {
-    "createTrip.returnFlightReminderTitle": "返程航班提醒",
-    "createTrip.returnFlightReminderHelper":
-      "如果选择日期和时间，将为返程航班创建提醒。",
-    "createTrip.returnFlightDate": "返程航班日期",
-    "createTrip.returnFlightTime": "返程航班时间",
-    "createTrip.returnFlightDateTimeRequired":
-      "返程航班日期和时间必须一起填写。",
-    "weather.unavailable": "无法加载天气。",
-    "weather.providerNotConfigured": "天气信息目前不可用。",
-    "weather.missingCoordinates": "此奥莱缺少天气坐标。",
-    "weather.sourceOpenMeteo": "来源：Open-Meteo",
-  },
+const returnFlightOutletWeatherSafetyTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "createTrip.returnFlightReminderTitle": "Return flight reminder", "createTrip.returnFlightReminderHelper": "If you choose a date and time, a reminder is created for your return flight.", "createTrip.returnFlightDate": "Return flight date", "createTrip.returnFlightTime": "Return flight time", "createTrip.returnFlightDateTimeRequired": "Return flight date and time must be entered together.", "weather.unavailable": "Weather information is currently unavailable.", "weather.providerNotConfigured": "Weather information is currently unavailable.", "weather.missingCoordinates": "Weather coordinates are missing for this outlet.", "weather.sourceOpenMeteo": "Source: Open-Meteo" },
+  tr: { "createTrip.returnFlightReminderTitle": "Dönüş uçuş hatırlatması", "createTrip.returnFlightReminderHelper": "Tarih ve saat seçersen dönüş uçuşu için hatırlatma oluşturulur.", "createTrip.returnFlightDate": "Dönüş uçuş tarihi", "createTrip.returnFlightTime": "Dönüş uçuş saati", "createTrip.returnFlightDateTimeRequired": "Dönüş uçuş tarihi ve saati birlikte girilmeli.", "weather.unavailable": "Hava durumu bilgisi şu anda kullanılamıyor.", "weather.providerNotConfigured": "Hava durumu bilgisi şu anda kullanılamıyor.", "weather.missingCoordinates": "Bu outlet için hava durumu koordinatı eksik.", "weather.sourceOpenMeteo": "Kaynak: Open-Meteo" },
+  es: { "createTrip.returnFlightReminderTitle": "Recordatorio de vuelo de regreso", "createTrip.returnFlightReminderHelper": "Si eliges fecha y hora, se creará un recordatorio para tu vuelo de regreso.", "createTrip.returnFlightDate": "Fecha del vuelo de regreso", "createTrip.returnFlightTime": "Hora del vuelo de regreso", "createTrip.returnFlightDateTimeRequired": "La fecha y la hora del vuelo de regreso deben introducirse juntas.", "weather.unavailable": "No se pudo cargar el tiempo.", "weather.providerNotConfigured": "La información meteorológica no está disponible en este momento.", "weather.missingCoordinates": "Faltan coordenadas del tiempo para este outlet.", "weather.sourceOpenMeteo": "Fuente: Open-Meteo" },
+  fr: { "createTrip.returnFlightReminderTitle": "Rappel de vol retour", "createTrip.returnFlightReminderHelper": "Si vous choisissez une date et une heure, un rappel est créé pour votre vol retour.", "createTrip.returnFlightDate": "Date du vol retour", "createTrip.returnFlightTime": "Heure du vol retour", "createTrip.returnFlightDateTimeRequired": "La date et l’heure du vol retour doivent être saisies ensemble.", "weather.unavailable": "Impossible de charger la météo.", "weather.providerNotConfigured": "Les informations météo sont actuellement indisponibles.", "weather.missingCoordinates": "Les coordonnées météo manquent pour cet outlet.", "weather.sourceOpenMeteo": "Source : Open-Meteo" },
+  de: { "createTrip.returnFlightReminderTitle": "Rückflug-Erinnerung", "createTrip.returnFlightReminderHelper": "Wenn du Datum und Uhrzeit auswählst, wird eine Erinnerung für deinen Rückflug erstellt.", "createTrip.returnFlightDate": "Rückflugdatum", "createTrip.returnFlightTime": "Rückflugzeit", "createTrip.returnFlightDateTimeRequired": "Rückflugdatum und -zeit müssen zusammen eingegeben werden.", "weather.unavailable": "Wetter konnte nicht geladen werden.", "weather.providerNotConfigured": "Wetterinformationen sind derzeit nicht verfügbar.", "weather.missingCoordinates": "Für dieses Outlet fehlen Wetterkoordinaten.", "weather.sourceOpenMeteo": "Quelle: Open-Meteo" },
+  ar: { "createTrip.returnFlightReminderTitle": "تذكير رحلة العودة", "createTrip.returnFlightReminderHelper": "إذا اخترت التاريخ والوقت فسيتم إنشاء تذكير لرحلة العودة.", "createTrip.returnFlightDate": "تاريخ رحلة العودة", "createTrip.returnFlightTime": "وقت رحلة العودة", "createTrip.returnFlightDateTimeRequired": "يجب إدخال تاريخ ووقت رحلة العودة معًا.", "weather.unavailable": "تعذر تحميل الطقس.", "weather.providerNotConfigured": "معلومات الطقس غير متوفرة حاليًا.", "weather.missingCoordinates": "إحداثيات الطقس غير متوفرة لهذا الأوتلت.", "weather.sourceOpenMeteo": "المصدر: Open-Meteo" },
+  ru: { "createTrip.returnFlightReminderTitle": "Напоминание об обратном рейсе", "createTrip.returnFlightReminderHelper": "Если выбрать дату и время, будет создано напоминание об обратном рейсе.", "createTrip.returnFlightDate": "Дата обратного рейса", "createTrip.returnFlightTime": "Время обратного рейса", "createTrip.returnFlightDateTimeRequired": "Дата и время обратного рейса должны быть указаны вместе.", "weather.unavailable": "Не удалось загрузить погоду.", "weather.providerNotConfigured": "Информация о погоде сейчас недоступна.", "weather.missingCoordinates": "Для этого аутлета отсутствуют координаты погоды.", "weather.sourceOpenMeteo": "Источник: Open-Meteo" },
+  zh: { "createTrip.returnFlightReminderTitle": "返程航班提醒", "createTrip.returnFlightReminderHelper": "如果选择日期和时间，将为返程航班创建提醒。", "createTrip.returnFlightDate": "返程航班日期", "createTrip.returnFlightTime": "返程航班时间", "createTrip.returnFlightDateTimeRequired": "返程航班日期和时间必须一起填写。", "weather.unavailable": "无法加载天气。", "weather.providerNotConfigured": "天气信息目前不可用。", "weather.missingCoordinates": "此奥莱缺少天气坐标。", "weather.sourceOpenMeteo": "来源：Open-Meteo" },
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(
-    translations[locale],
-    returnFlightOutletWeatherSafetyTranslations[locale],
-  );
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], returnFlightOutletWeatherSafetyTranslations[locale]);
 
-const taxFreeCalculatorUxTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const taxFreeCalculatorUxTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "taxCalc.productPrice": "Product price",
     "taxCalc.estimatedTaxFreeRefund": "Estimated Tax Free refund",
     "taxCalc.estimatedCostAfterRefund": "Estimated cost after refund",
-    "taxCalc.actualRefundMayVary":
-      "Actual refund may vary by store, provider and processing fees.",
+    "taxCalc.actualRefundMayVary": "Actual refund may vary by store, provider and processing fees.",
     "taxCalc.notGuaranteedRefund": "This is not a guaranteed refund.",
     "taxCalc.sourceTitle": "Source and estimate basis",
-    "taxCalc.finalDisclaimer":
-      "The refund is an estimate. Actual refund may be lower and depends on store, provider, processing fees, country rules, and eligibility.",
+    "taxCalc.finalDisclaimer": "The refund is an estimate. Actual refund may be lower and depends on store, provider, processing fees, country rules, and eligibility."
   },
   tr: {
     "taxCalc.productPrice": "Ürün fiyatı",
     "taxCalc.estimatedTaxFreeRefund": "Tahmini Tax Free iadesi",
     "taxCalc.estimatedCostAfterRefund": "İade sonrası tahmini maliyet",
-    "taxCalc.actualRefundMayVary":
-      "Gerçek iade mağaza, sağlayıcı ve işlem ücretlerine göre değişebilir.",
+    "taxCalc.actualRefundMayVary": "Gerçek iade mağaza, sağlayıcı ve işlem ücretlerine göre değişebilir.",
     "taxCalc.notGuaranteedRefund": "Garanti edilen iade değildir.",
     "taxCalc.vatRate": "KDV oranı",
     "taxCalc.sourceTitle": "Kaynak ve tahmin temelli",
-    "taxCalc.finalDisclaimer":
-      "Tahmini iade garanti edilen iade değildir; gerçek iade mağaza, sağlayıcı, işlem ücretleri, ülke kuralları ve uygunluğa göre daha düşük olabilir.",
+    "taxCalc.finalDisclaimer": "Tahmini iade garanti edilen iade değildir; gerçek iade mağaza, sağlayıcı, işlem ücretleri, ülke kuralları ve uygunluğa göre daha düşük olabilir."
   },
   es: {
     "taxCalc.productPrice": "Precio del producto",
     "taxCalc.estimatedTaxFreeRefund": "Reembolso Tax Free estimado",
     "taxCalc.estimatedCostAfterRefund": "Coste estimado tras el reembolso",
-    "taxCalc.actualRefundMayVary":
-      "El reembolso real puede variar según la tienda, el proveedor y las comisiones de procesamiento.",
+    "taxCalc.actualRefundMayVary": "El reembolso real puede variar según la tienda, el proveedor y las comisiones de procesamiento.",
     "taxCalc.notGuaranteedRefund": "No es un reembolso garantizado.",
     "taxCalc.sourceTitle": "Fuente y base de estimación",
-    "taxCalc.finalDisclaimer":
-      "El reembolso es una estimación. El reembolso real puede ser menor y depende de la tienda, el proveedor, las comisiones de procesamiento, las normas del país y la elegibilidad.",
+    "taxCalc.finalDisclaimer": "El reembolso es una estimación. El reembolso real puede ser menor y depende de la tienda, el proveedor, las comisiones de procesamiento, las normas del país y la elegibilidad."
   },
   fr: {
     "taxCalc.productPrice": "Prix du produit",
     "taxCalc.estimatedTaxFreeRefund": "Remboursement Tax Free estimé",
     "taxCalc.estimatedCostAfterRefund": "Coût estimé après remboursement",
-    "taxCalc.actualRefundMayVary":
-      "Le remboursement réel peut varier selon le magasin, le fournisseur et les frais de traitement.",
+    "taxCalc.actualRefundMayVary": "Le remboursement réel peut varier selon le magasin, le fournisseur et les frais de traitement.",
     "taxCalc.notGuaranteedRefund": "Ce remboursement n’est pas garanti.",
     "taxCalc.sourceTitle": "Source et base d’estimation",
-    "taxCalc.finalDisclaimer":
-      "Le remboursement est une estimation. Le remboursement réel peut être inférieur et dépend du magasin, du fournisseur, des frais de traitement, des règles du pays et de l’éligibilité.",
+    "taxCalc.finalDisclaimer": "Le remboursement est une estimation. Le remboursement réel peut être inférieur et dépend du magasin, du fournisseur, des frais de traitement, des règles du pays et de l’éligibilité."
   },
   de: {
     "taxCalc.productPrice": "Produktpreis",
     "taxCalc.estimatedTaxFreeRefund": "Geschätzte Tax-Free-Erstattung",
     "taxCalc.estimatedCostAfterRefund": "Geschätzte Kosten nach Erstattung",
-    "taxCalc.actualRefundMayVary":
-      "Die tatsächliche Erstattung kann je nach Geschäft, Anbieter und Bearbeitungsgebühren variieren.",
+    "taxCalc.actualRefundMayVary": "Die tatsächliche Erstattung kann je nach Geschäft, Anbieter und Bearbeitungsgebühren variieren.",
     "taxCalc.notGuaranteedRefund": "Dies ist keine garantierte Erstattung.",
     "taxCalc.sourceTitle": "Quelle und Schätzgrundlage",
-    "taxCalc.finalDisclaimer":
-      "Die Erstattung ist eine Schätzung. Die tatsächliche Erstattung kann niedriger sein und hängt von Geschäft, Anbieter, Bearbeitungsgebühren, Landesregeln und Berechtigung ab.",
+    "taxCalc.finalDisclaimer": "Die Erstattung ist eine Schätzung. Die tatsächliche Erstattung kann niedriger sein und hängt von Geschäft, Anbieter, Bearbeitungsgebühren, Landesregeln und Berechtigung ab."
   },
   ar: {
     "taxCalc.productPrice": "سعر المنتج",
     "taxCalc.estimatedTaxFreeRefund": "استرداد Tax Free تقديري",
     "taxCalc.estimatedCostAfterRefund": "التكلفة التقديرية بعد الاسترداد",
-    "taxCalc.actualRefundMayVary":
-      "قد يختلف الاسترداد الفعلي حسب المتجر والمزود ورسوم المعالجة.",
+    "taxCalc.actualRefundMayVary": "قد يختلف الاسترداد الفعلي حسب المتجر والمزود ورسوم المعالجة.",
     "taxCalc.notGuaranteedRefund": "هذا الاسترداد غير مضمون.",
     "taxCalc.sourceTitle": "المصدر وأساس التقدير",
-    "taxCalc.finalDisclaimer":
-      "الاسترداد تقديري. قد يكون الاسترداد الفعلي أقل ويعتمد على المتجر والمزود ورسوم المعالجة وقواعد البلد والأهلية.",
+    "taxCalc.finalDisclaimer": "الاسترداد تقديري. قد يكون الاسترداد الفعلي أقل ويعتمد على المتجر والمزود ورسوم المعالجة وقواعد البلد والأهلية."
   },
   ru: {
     "taxCalc.productPrice": "Цена товара",
     "taxCalc.estimatedTaxFreeRefund": "Расчётный возврат Tax Free",
     "taxCalc.estimatedCostAfterRefund": "Расчётная стоимость после возврата",
-    "taxCalc.actualRefundMayVary":
-      "Фактический возврат может отличаться в зависимости от магазина, провайдера и комиссий за обработку.",
+    "taxCalc.actualRefundMayVary": "Фактический возврат может отличаться в зависимости от магазина, провайдера и комиссий за обработку.",
     "taxCalc.notGuaranteedRefund": "Возврат не гарантирован.",
     "taxCalc.sourceTitle": "Источник и основа оценки",
-    "taxCalc.finalDisclaimer":
-      "Возврат является оценкой. Фактический возврат может быть ниже и зависит от магазина, провайдера, комиссий за обработку, правил страны и права на возврат.",
+    "taxCalc.finalDisclaimer": "Возврат является оценкой. Фактический возврат может быть ниже и зависит от магазина, провайдера, комиссий за обработку, правил страны и права на возврат."
   },
   zh: {
     "taxCalc.productPrice": "商品价格",
@@ -17589,84 +17156,56 @@ const taxFreeCalculatorUxTranslations: Record<
     "taxCalc.actualRefundMayVary": "实际退税可能因商店、服务商和处理费用而异。",
     "taxCalc.notGuaranteedRefund": "这不是保证退税。",
     "taxCalc.sourceTitle": "来源与估算依据",
-    "taxCalc.finalDisclaimer":
-      "退税为估算值。实际退税可能更低，并取决于商店、服务商、处理费用、国家规则和资格。",
-  },
+    "taxCalc.finalDisclaimer": "退税为估算值。实际退税可能更低，并取决于商店、服务商、处理费用、国家规则和资格。"
+  }
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], taxFreeCalculatorUxTranslations[locale]);
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeCalculatorUxTranslations[locale]);
 
-const finalTaxFreeCalculatorLabelTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const finalTaxFreeCalculatorLabelTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "taxCalc.convertedRefund": "Estimated refund in selected currency",
-    "taxCalc.convertedCostAfterRefund":
-      "Estimated cost after refund in selected currency",
-    "taxCalc.standardVatBasis":
-      "Standard VAT rate only. Tax Free eligibility, minimum purchase rules, store participation, operator fees, and customs validation requirements should be checked before purchase.",
+    "taxCalc.convertedCostAfterRefund": "Estimated cost after refund in selected currency",
+    "taxCalc.standardVatBasis": "Standard VAT rate only. Tax Free eligibility, minimum purchase rules, store participation, operator fees, and customs validation requirements should be checked before purchase."
   },
   tr: {
     "taxCalc.convertedRefund": "Para biriminde tahmini iade",
     "taxCalc.convertedCostAfterRefund": "Para biriminde iade sonrası maliyet",
-    "taxCalc.standardVatBasis":
-      "Standart KDV oranı esas alınır. Tax Free uygunluğu, minimum harcama kuralları, mağaza katılımı, operatör ücretleri ve gümrük doğrulama gereklilikleri satın alma öncesinde kontrol edilmelidir.",
+    "taxCalc.standardVatBasis": "Standart KDV oranı esas alınır. Tax Free uygunluğu, minimum harcama kuralları, mağaza katılımı, operatör ücretleri ve gümrük doğrulama gereklilikleri satın alma öncesinde kontrol edilmelidir."
   },
   es: {
     "taxCalc.convertedRefund": "Reembolso estimado en la moneda seleccionada",
-    "taxCalc.convertedCostAfterRefund":
-      "Coste estimado tras el reembolso en la moneda seleccionada",
-    "taxCalc.standardVatBasis":
-      "Solo se usa el tipo de IVA estándar. La elegibilidad Tax Free, las reglas de gasto mínimo, la participación de la tienda, las comisiones del operador y los requisitos de validación aduanera deben comprobarse antes de comprar.",
+    "taxCalc.convertedCostAfterRefund": "Coste estimado tras el reembolso en la moneda seleccionada",
+    "taxCalc.standardVatBasis": "Solo se usa el tipo de IVA estándar. La elegibilidad Tax Free, las reglas de gasto mínimo, la participación de la tienda, las comisiones del operador y los requisitos de validación aduanera deben comprobarse antes de comprar."
   },
   fr: {
-    "taxCalc.convertedRefund":
-      "Remboursement estimé dans la devise sélectionnée",
-    "taxCalc.convertedCostAfterRefund":
-      "Coût estimé après remboursement dans la devise sélectionnée",
-    "taxCalc.standardVatBasis":
-      "Seul le taux de TVA standard est utilisé. L’éligibilité Tax Free, les règles de dépense minimale, la participation du magasin, les frais d’opérateur et les exigences de validation douanière doivent être vérifiés avant l’achat.",
+    "taxCalc.convertedRefund": "Remboursement estimé dans la devise sélectionnée",
+    "taxCalc.convertedCostAfterRefund": "Coût estimé après remboursement dans la devise sélectionnée",
+    "taxCalc.standardVatBasis": "Seul le taux de TVA standard est utilisé. L’éligibilité Tax Free, les règles de dépense minimale, la participation du magasin, les frais d’opérateur et les exigences de validation douanière doivent être vérifiés avant l’achat."
   },
   de: {
-    "taxCalc.convertedRefund":
-      "Geschätzte Erstattung in der ausgewählten Währung",
-    "taxCalc.convertedCostAfterRefund":
-      "Geschätzte Kosten nach Erstattung in der ausgewählten Währung",
-    "taxCalc.standardVatBasis":
-      "Es wird nur der Standard-Mehrwertsteuersatz verwendet. Tax-Free-Berechtigung, Mindestkaufregeln, Teilnahme des Geschäfts, Betreibergebühren und Zollvalidierungsanforderungen sollten vor dem Kauf geprüft werden.",
+    "taxCalc.convertedRefund": "Geschätzte Erstattung in der ausgewählten Währung",
+    "taxCalc.convertedCostAfterRefund": "Geschätzte Kosten nach Erstattung in der ausgewählten Währung",
+    "taxCalc.standardVatBasis": "Es wird nur der Standard-Mehrwertsteuersatz verwendet. Tax-Free-Berechtigung, Mindestkaufregeln, Teilnahme des Geschäfts, Betreibergebühren und Zollvalidierungsanforderungen sollten vor dem Kauf geprüft werden."
   },
   ar: {
     "taxCalc.convertedRefund": "الاسترداد التقديري بالعملة المحددة",
-    "taxCalc.convertedCostAfterRefund":
-      "التكلفة التقديرية بعد الاسترداد بالعملة المحددة",
-    "taxCalc.standardVatBasis":
-      "يُستخدم معدل ضريبة القيمة المضافة القياسي فقط. يجب التحقق قبل الشراء من أهلية Tax Free، وقواعد الحد الأدنى للإنفاق، ومشاركة المتجر، ورسوم المشغل، ومتطلبات التحقق الجمركي.",
+    "taxCalc.convertedCostAfterRefund": "التكلفة التقديرية بعد الاسترداد بالعملة المحددة",
+    "taxCalc.standardVatBasis": "يُستخدم معدل ضريبة القيمة المضافة القياسي فقط. يجب التحقق قبل الشراء من أهلية Tax Free، وقواعد الحد الأدنى للإنفاق، ومشاركة المتجر، ورسوم المشغل، ومتطلبات التحقق الجمركي."
   },
   ru: {
     "taxCalc.convertedRefund": "Расчётный возврат в выбранной валюте",
-    "taxCalc.convertedCostAfterRefund":
-      "Расчётная стоимость после возврата в выбранной валюте",
-    "taxCalc.standardVatBasis":
-      "Используется только стандартная ставка НДС. Право на Tax Free, правила минимальной покупки, участие магазина, комиссии оператора и требования таможенного подтверждения следует проверить до покупки.",
+    "taxCalc.convertedCostAfterRefund": "Расчётная стоимость после возврата в выбранной валюте",
+    "taxCalc.standardVatBasis": "Используется только стандартная ставка НДС. Право на Tax Free, правила минимальной покупки, участие магазина, комиссии оператора и требования таможенного подтверждения следует проверить до покупки."
   },
   zh: {
     "taxCalc.convertedRefund": "所选货币的预计退税",
     "taxCalc.convertedCostAfterRefund": "所选货币的退税后预计成本",
-    "taxCalc.standardVatBasis":
-      "仅使用标准增值税税率。购买前应确认 Tax Free 资格、最低消费规则、商店参与情况、运营商费用和海关验证要求。",
-  },
+    "taxCalc.standardVatBasis": "仅使用标准增值税税率。购买前应确认 Tax Free 资格、最低消费规则、商店参与情况、运营商费用和海关验证要求。"
+  }
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(
-    translations[locale],
-    finalTaxFreeCalculatorLabelTranslations[locale],
-  );
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], finalTaxFreeCalculatorLabelTranslations[locale]);
 
-const finalScreenshotPolishTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const finalScreenshotPolishTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "brandCategory.accessories": "Accessories",
     "brandCategory.booksToys": "Books & Toys",
@@ -17677,7 +17216,7 @@ const finalScreenshotPolishTranslations: Record<
     "review.countUnit": "reviews",
     "status.open": "Open",
     "status.closed": "Closed",
-    "taxCalc.sourceEuropeanCommissionVatRates": "European Commission VAT rates",
+    "taxCalc.sourceEuropeanCommissionVatRates": "European Commission VAT rates"
   },
   tr: {
     "brandCategory.accessories": "Aksesuar",
@@ -17696,104 +17235,24 @@ const finalScreenshotPolishTranslations: Record<
     "myReviews.viewOutlet": "Outlet’i Gör →",
     "taxCalc.sourceEuropeanCommissionVatRates": "Avrupa Komisyonu KDV oranları",
     "savings.heroLabel": "TASARRUF MERKEZİ",
-    "savings.heroSubtitle":
-      "Tasarruf araçlarında ülke, para birimi ve Tax Free tahminlerini birlikte kullan.",
+    "savings.heroSubtitle": "Tasarruf araçlarında ülke, para birimi ve Tax Free tahminlerini birlikte kullan.",
     "offline.stat.media": "Yerel görsel dosyaları",
-    "offline.requires.favoritesTrips.text":
-      "Bu sürümde favoriler ve seyahatler internet bağlantısı olmadan senkronize edilmez.",
-    "offline.requires.currency.text":
-      "Canlı kur verileri internet gerektirir. Eski kur verisi yalnızca tarihli olarak gösterilir.",
-    "notifications.deliveryStatusBody":
-      "Seyahat hatırlatmaları bildirim gönderim altyapısıyla desteklenir. Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri henüz aktif değildir.",
+    "offline.requires.favoritesTrips.text": "Bu sürümde favoriler ve seyahatler internet bağlantısı olmadan senkronize edilmez.",
+    "offline.requires.currency.text": "Canlı kur verileri internet gerektirir. Eski kur verisi yalnızca tarihli olarak gösterilir.",
+    "notifications.deliveryStatusBody": "Seyahat hatırlatmaları bildirim gönderim altyapısıyla desteklenir. Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri henüz aktif değildir.",
     "notifications.categoryActive": "Gönderim altyapısı aktif",
-    "notifications.unsupportedCategoriesBody":
-      "Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri için henüz bildirim gönderim altyapısı yoktur. Sahte gelen kutusu, örnek geçmiş veya simüle gönderim gösterilmez.",
+    "notifications.unsupportedCategoriesBody": "Favori outlet güncellemeleri, yorum güncellemeleri ve pazarlama bildirimleri için henüz bildirim gönderim altyapısı yoktur. Sahte gelen kutusu, örnek geçmiş veya simüle gönderim gösterilmez.",
     "profile.stats.trips": "Seyahatler",
-    "trips.summaryTrips": "Seyahatler",
+    "trips.summaryTrips": "Seyahatler"
   },
-  es: {
-    "brandCategory.accessories": "Accesorios",
-    "brandCategory.booksToys": "Libros y juguetes",
-    "restaurant.category.sicilian": "Siciliana",
-    "service.label.shuttleTransportInfo":
-      "Transporte / información de transporte",
-    "service.label.privateTransfer": "Traslado privado",
-    "service.label.camperParkingArea": "Área para autocaravanas",
-    "review.countUnit": "reseñas",
-    "status.open": "Abierto",
-    "status.closed": "Cerrado",
-    "taxCalc.sourceEuropeanCommissionVatRates":
-      "Tipos de IVA de la Comisión Europea",
-  },
-  fr: {
-    "brandCategory.accessories": "Accessoires",
-    "brandCategory.booksToys": "Livres et jouets",
-    "restaurant.category.sicilian": "Sicilienne",
-    "service.label.shuttleTransportInfo": "Navette / info transport",
-    "service.label.privateTransfer": "Transfert privé",
-    "service.label.camperParkingArea": "Aire camping-car",
-    "review.countUnit": "avis",
-    "status.open": "Ouvert",
-    "status.closed": "Fermé",
-    "taxCalc.sourceEuropeanCommissionVatRates":
-      "Taux de TVA de la Commission européenne",
-  },
-  de: {
-    "brandCategory.accessories": "Accessoires",
-    "brandCategory.booksToys": "Bücher & Spielzeug",
-    "restaurant.category.sicilian": "Sizilianisch",
-    "service.label.shuttleTransportInfo": "Shuttle / Verkehrsinformation",
-    "service.label.privateTransfer": "Privater Transfer",
-    "service.label.camperParkingArea": "Wohnmobilstellplatz",
-    "review.countUnit": "Bewertungen",
-    "status.open": "Geöffnet",
-    "status.closed": "Geschlossen",
-    "taxCalc.sourceEuropeanCommissionVatRates":
-      "Mehrwertsteuersätze der Europäischen Kommission",
-  },
-  ar: {
-    "brandCategory.accessories": "إكسسوارات",
-    "brandCategory.booksToys": "كتب وألعاب",
-    "restaurant.category.sicilian": "صقلية",
-    "service.label.shuttleTransportInfo": "معلومات النقل / الحافلة",
-    "service.label.privateTransfer": "نقل خاص",
-    "service.label.camperParkingArea": "منطقة وقوف الكارافان",
-    "review.countUnit": "تقييمات",
-    "status.open": "مفتوح",
-    "status.closed": "مغلق",
-    "taxCalc.sourceEuropeanCommissionVatRates":
-      "معدلات ضريبة القيمة المضافة للمفوضية الأوروبية",
-  },
-  ru: {
-    "brandCategory.accessories": "Аксессуары",
-    "brandCategory.booksToys": "Книги и игрушки",
-    "restaurant.category.sicilian": "Сицилийская",
-    "service.label.shuttleTransportInfo": "Шаттл / информация о транспорте",
-    "service.label.privateTransfer": "Частный трансфер",
-    "service.label.camperParkingArea": "Стоянка для кемперов",
-    "review.countUnit": "отзывов",
-    "status.open": "Открыто",
-    "status.closed": "Закрыто",
-    "taxCalc.sourceEuropeanCommissionVatRates":
-      "Ставки НДС Европейской комиссии",
-  },
-  zh: {
-    "brandCategory.accessories": "配饰",
-    "brandCategory.booksToys": "书籍与玩具",
-    "restaurant.category.sicilian": "西西里",
-    "service.label.shuttleTransportInfo": "接驳/交通信息",
-    "service.label.privateTransfer": "私人接送",
-    "service.label.camperParkingArea": "房车停车区",
-    "review.countUnit": "条评价",
-    "status.open": "开放",
-    "status.closed": "关闭",
-    "taxCalc.sourceEuropeanCommissionVatRates": "欧盟委员会增值税税率",
-  },
+  es: { "brandCategory.accessories": "Accesorios", "brandCategory.booksToys": "Libros y juguetes", "restaurant.category.sicilian": "Siciliana", "service.label.shuttleTransportInfo": "Transporte / información de transporte", "service.label.privateTransfer": "Traslado privado", "service.label.camperParkingArea": "Área para autocaravanas", "review.countUnit": "reseñas", "status.open": "Abierto", "status.closed": "Cerrado", "taxCalc.sourceEuropeanCommissionVatRates": "Tipos de IVA de la Comisión Europea" },
+  fr: { "brandCategory.accessories": "Accessoires", "brandCategory.booksToys": "Livres et jouets", "restaurant.category.sicilian": "Sicilienne", "service.label.shuttleTransportInfo": "Navette / info transport", "service.label.privateTransfer": "Transfert privé", "service.label.camperParkingArea": "Aire camping-car", "review.countUnit": "avis", "status.open": "Ouvert", "status.closed": "Fermé", "taxCalc.sourceEuropeanCommissionVatRates": "Taux de TVA de la Commission européenne" },
+  de: { "brandCategory.accessories": "Accessoires", "brandCategory.booksToys": "Bücher & Spielzeug", "restaurant.category.sicilian": "Sizilianisch", "service.label.shuttleTransportInfo": "Shuttle / Verkehrsinformation", "service.label.privateTransfer": "Privater Transfer", "service.label.camperParkingArea": "Wohnmobilstellplatz", "review.countUnit": "Bewertungen", "status.open": "Geöffnet", "status.closed": "Geschlossen", "taxCalc.sourceEuropeanCommissionVatRates": "Mehrwertsteuersätze der Europäischen Kommission" },
+  ar: { "brandCategory.accessories": "إكسسوارات", "brandCategory.booksToys": "كتب وألعاب", "restaurant.category.sicilian": "صقلية", "service.label.shuttleTransportInfo": "معلومات النقل / الحافلة", "service.label.privateTransfer": "نقل خاص", "service.label.camperParkingArea": "منطقة وقوف الكارافان", "review.countUnit": "تقييمات", "status.open": "مفتوح", "status.closed": "مغلق", "taxCalc.sourceEuropeanCommissionVatRates": "معدلات ضريبة القيمة المضافة للمفوضية الأوروبية" },
+  ru: { "brandCategory.accessories": "Аксессуары", "brandCategory.booksToys": "Книги и игрушки", "restaurant.category.sicilian": "Сицилийская", "service.label.shuttleTransportInfo": "Шаттл / информация о транспорте", "service.label.privateTransfer": "Частный трансфер", "service.label.camperParkingArea": "Стоянка для кемперов", "review.countUnit": "отзывов", "status.open": "Открыто", "status.closed": "Закрыто", "taxCalc.sourceEuropeanCommissionVatRates": "Ставки НДС Европейской комиссии" },
+  zh: { "brandCategory.accessories": "配饰", "brandCategory.booksToys": "书籍与玩具", "restaurant.category.sicilian": "西西里", "service.label.shuttleTransportInfo": "接驳/交通信息", "service.label.privateTransfer": "私人接送", "service.label.camperParkingArea": "房车停车区", "review.countUnit": "条评价", "status.open": "开放", "status.closed": "关闭", "taxCalc.sourceEuropeanCommissionVatRates": "欧盟委员会增值税税率" }
 };
-const onboardingTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const onboardingTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "onboarding.brand": "My Outlet Guide",
     "onboarding.skip": "Skip",
@@ -17806,21 +17265,17 @@ const onboardingTranslations: Record<
     "onboarding.accessibility.start": "Start using My Outlet Guide",
     "onboarding.accessibility.pageIndicator": "Onboarding page progress",
     "onboarding.pages.outletDiscovery.title": "Discover premium outlets",
-    "onboarding.pages.outletDiscovery.body":
-      "Explore shopping destinations by country, city, outlet, and brand.",
+    "onboarding.pages.outletDiscovery.body": "Explore shopping destinations by country, city, outlet, and brand.",
     "onboarding.pages.outletDiscovery.visual": "Outlets, brands, and cities",
     "onboarding.pages.tripPlanning.title": "Plan shopping trips",
-    "onboarding.pages.tripPlanning.body":
-      "Organize outlet routes, dates, and reminders in one place.",
+    "onboarding.pages.tripPlanning.body": "Organize outlet routes, dates, and reminders in one place.",
     "onboarding.pages.tripPlanning.visual": "Routes, dates, and reminders",
     "onboarding.pages.savingsTools.title": "Estimate Tax Free and currency",
-    "onboarding.pages.savingsTools.body":
-      "Estimate Tax Free refunds, live exchange rates, and final shopping costs before you buy.",
+    "onboarding.pages.savingsTools.body": "Estimate Tax Free refunds, live exchange rates, and final shopping costs before you buy.",
     "onboarding.pages.savingsTools.visual": "Refund and currency tools",
     "onboarding.pages.flightDeals.title": "Prepare flight deal alerts",
-    "onboarding.pages.flightDeals.body":
-      "Save routes now so flight deal alerts can be prepared when a supported provider is available.",
-    "onboarding.pages.flightDeals.visual": "Provider-backed route alerts",
+    "onboarding.pages.flightDeals.body": "Save routes now so flight deal alerts can be prepared when a supported provider is available.",
+    "onboarding.pages.flightDeals.visual": "Provider-backed route alerts"
   },
   tr: {
     "onboarding.brand": "My Outlet Guide",
@@ -17828,163 +17283,80 @@ const onboardingTranslations: Record<
     "onboarding.back": "Geri",
     "onboarding.next": "İleri",
     "onboarding.start": "Başla",
-    "onboarding.accessibility.skip":
-      "Onboarding ekranını atla ve uygulamaya gir",
+    "onboarding.accessibility.skip": "Onboarding ekranını atla ve uygulamaya gir",
     "onboarding.accessibility.back": "Önceki onboarding sayfasına dön",
     "onboarding.accessibility.next": "Sonraki onboarding sayfasına geç",
     "onboarding.accessibility.start": "My Outlet Guide kullanmaya başla",
     "onboarding.accessibility.pageIndicator": "Onboarding sayfa ilerlemesi",
     "onboarding.pages.outletDiscovery.title": "Premium outletleri keşfet",
-    "onboarding.pages.outletDiscovery.body":
-      "Ülke, şehir, outlet ve marka bazında alışveriş destinasyonlarını incele.",
-    "onboarding.pages.outletDiscovery.visual":
-      "Outletler, markalar ve şehirler",
+    "onboarding.pages.outletDiscovery.body": "Ülke, şehir, outlet ve marka bazında alışveriş destinasyonlarını incele.",
+    "onboarding.pages.outletDiscovery.visual": "Outletler, markalar ve şehirler",
     "onboarding.pages.tripPlanning.title": "Alışveriş seyahatini planla",
-    "onboarding.pages.tripPlanning.body":
-      "Outlet rotanı, tarihlerini ve hatırlatmalarını tek yerden düzenle.",
-    "onboarding.pages.tripPlanning.visual":
-      "Rotalar, tarihler ve hatırlatmalar",
+    "onboarding.pages.tripPlanning.body": "Outlet rotanı, tarihlerini ve hatırlatmalarını tek yerden düzenle.",
+    "onboarding.pages.tripPlanning.visual": "Rotalar, tarihler ve hatırlatmalar",
     "onboarding.pages.savingsTools.title": "Tax Free ve kur araçları",
-    "onboarding.pages.savingsTools.body":
-      "Tax Free iadesini, canlı kuru ve tahmini final maliyeti alışverişten önce gör.",
+    "onboarding.pages.savingsTools.body": "Tax Free iadesini, canlı kuru ve tahmini final maliyeti alışverişten önce gör.",
     "onboarding.pages.savingsTools.visual": "İade ve kur araçları",
     "onboarding.pages.flightDeals.title": "Uçuş fırsatı uyarılarını hazırla",
-    "onboarding.pages.flightDeals.body":
-      "Desteklenen sağlayıcı hazır olduğunda seçtiğin rotalar için uçuş fırsatı uyarılarını hazırlayabilirsin.",
-    "onboarding.pages.flightDeals.visual": "Sağlayıcı destekli rota uyarıları",
+    "onboarding.pages.flightDeals.body": "Desteklenen sağlayıcı hazır olduğunda seçtiğin rotalar için uçuş fırsatı uyarılarını hazırlayabilirsin.",
+    "onboarding.pages.flightDeals.visual": "Sağlayıcı destekli rota uyarıları"
   },
-  es: {},
-  fr: {},
-  de: {},
-  ar: {},
-  ru: {},
-  zh: {},
+  es: {}, fr: {}, de: {}, ar: {}, ru: {}, zh: {}
 };
 
 Object.assign(onboardingTranslations.es, onboardingTranslations.en, {
-  "onboarding.skip": "Omitir",
-  "onboarding.back": "Atrás",
-  "onboarding.next": "Siguiente",
-  "onboarding.start": "Empezar",
-  "onboarding.pages.outletDiscovery.title": "Descubre outlets premium",
-  "onboarding.pages.outletDiscovery.body":
-    "Explora destinos de compras por país, ciudad, outlet y marca.",
-  "onboarding.pages.tripPlanning.title": "Planifica viajes de compras",
-  "onboarding.pages.tripPlanning.body":
-    "Organiza rutas de outlets, fechas y recordatorios en un solo lugar.",
-  "onboarding.pages.savingsTools.title": "Estima Tax Free y divisas",
-  "onboarding.pages.savingsTools.body":
-    "Estima reembolsos Tax Free, tipos de cambio en vivo y costos finales antes de comprar.",
-  "onboarding.pages.flightDeals.title": "Prepara alertas de vuelos",
-  "onboarding.pages.flightDeals.body":
-    "Guarda rutas ahora para preparar alertas cuando haya un proveedor compatible.",
+  "onboarding.skip": "Omitir", "onboarding.back": "Atrás", "onboarding.next": "Siguiente", "onboarding.start": "Empezar",
+  "onboarding.pages.outletDiscovery.title": "Descubre outlets premium", "onboarding.pages.outletDiscovery.body": "Explora destinos de compras por país, ciudad, outlet y marca.",
+  "onboarding.pages.tripPlanning.title": "Planifica viajes de compras", "onboarding.pages.tripPlanning.body": "Organiza rutas de outlets, fechas y recordatorios en un solo lugar.",
+  "onboarding.pages.savingsTools.title": "Estima Tax Free y divisas", "onboarding.pages.savingsTools.body": "Estima reembolsos Tax Free, tipos de cambio en vivo y costos finales antes de comprar.",
+  "onboarding.pages.flightDeals.title": "Prepara alertas de vuelos", "onboarding.pages.flightDeals.body": "Guarda rutas ahora para preparar alertas cuando haya un proveedor compatible."
 });
 Object.assign(onboardingTranslations.fr, onboardingTranslations.en, {
-  "onboarding.skip": "Passer",
-  "onboarding.back": "Retour",
-  "onboarding.next": "Suivant",
-  "onboarding.start": "Commencer",
-  "onboarding.pages.outletDiscovery.title": "Découvrez les outlets premium",
-  "onboarding.pages.outletDiscovery.body":
-    "Explorez les destinations shopping par pays, ville, outlet et marque.",
-  "onboarding.pages.tripPlanning.title": "Planifiez vos voyages shopping",
-  "onboarding.pages.tripPlanning.body":
-    "Organisez les itinéraires, dates et rappels outlet au même endroit.",
-  "onboarding.pages.savingsTools.title": "Estimez Tax Free et devises",
-  "onboarding.pages.savingsTools.body":
-    "Estimez les remboursements Tax Free, les taux en direct et le coût final avant d’acheter.",
-  "onboarding.pages.flightDeals.title": "Préparez les alertes vols",
-  "onboarding.pages.flightDeals.body":
-    "Enregistrez vos routes afin de préparer les alertes quand un fournisseur compatible sera disponible.",
+  "onboarding.skip": "Passer", "onboarding.back": "Retour", "onboarding.next": "Suivant", "onboarding.start": "Commencer",
+  "onboarding.pages.outletDiscovery.title": "Découvrez les outlets premium", "onboarding.pages.outletDiscovery.body": "Explorez les destinations shopping par pays, ville, outlet et marque.",
+  "onboarding.pages.tripPlanning.title": "Planifiez vos voyages shopping", "onboarding.pages.tripPlanning.body": "Organisez les itinéraires, dates et rappels outlet au même endroit.",
+  "onboarding.pages.savingsTools.title": "Estimez Tax Free et devises", "onboarding.pages.savingsTools.body": "Estimez les remboursements Tax Free, les taux en direct et le coût final avant d’acheter.",
+  "onboarding.pages.flightDeals.title": "Préparez les alertes vols", "onboarding.pages.flightDeals.body": "Enregistrez vos routes afin de préparer les alertes quand un fournisseur compatible sera disponible."
 });
 Object.assign(onboardingTranslations.de, onboardingTranslations.en, {
-  "onboarding.skip": "Überspringen",
-  "onboarding.back": "Zurück",
-  "onboarding.next": "Weiter",
-  "onboarding.start": "Starten",
-  "onboarding.pages.outletDiscovery.title": "Premium-Outlets entdecken",
-  "onboarding.pages.outletDiscovery.body":
-    "Entdecke Shoppingziele nach Land, Stadt, Outlet und Marke.",
-  "onboarding.pages.tripPlanning.title": "Shoppingreisen planen",
-  "onboarding.pages.tripPlanning.body":
-    "Organisiere Outlet-Routen, Termine und Erinnerungen an einem Ort.",
-  "onboarding.pages.savingsTools.title": "Tax Free und Währung schätzen",
-  "onboarding.pages.savingsTools.body":
-    "Schätze Tax-Free-Erstattungen, Live-Wechselkurse und Endkosten vor dem Kauf.",
-  "onboarding.pages.flightDeals.title":
-    "Flugdeal-Benachrichtigungen vorbereiten",
-  "onboarding.pages.flightDeals.body":
-    "Speichere Routen, damit Benachrichtigungen vorbereitet werden, wenn ein unterstützter Anbieter verfügbar ist.",
+  "onboarding.skip": "Überspringen", "onboarding.back": "Zurück", "onboarding.next": "Weiter", "onboarding.start": "Starten",
+  "onboarding.pages.outletDiscovery.title": "Premium-Outlets entdecken", "onboarding.pages.outletDiscovery.body": "Entdecke Shoppingziele nach Land, Stadt, Outlet und Marke.",
+  "onboarding.pages.tripPlanning.title": "Shoppingreisen planen", "onboarding.pages.tripPlanning.body": "Organisiere Outlet-Routen, Termine und Erinnerungen an einem Ort.",
+  "onboarding.pages.savingsTools.title": "Tax Free und Währung schätzen", "onboarding.pages.savingsTools.body": "Schätze Tax-Free-Erstattungen, Live-Wechselkurse und Endkosten vor dem Kauf.",
+  "onboarding.pages.flightDeals.title": "Flugdeal-Benachrichtigungen vorbereiten", "onboarding.pages.flightDeals.body": "Speichere Routen, damit Benachrichtigungen vorbereitet werden, wenn ein unterstützter Anbieter verfügbar ist."
 });
 Object.assign(onboardingTranslations.ar, onboardingTranslations.en, {
-  "onboarding.skip": "تخطي",
-  "onboarding.back": "رجوع",
-  "onboarding.next": "التالي",
-  "onboarding.start": "ابدأ",
-  "onboarding.pages.outletDiscovery.title": "اكتشف منافذ التسوق المميزة",
-  "onboarding.pages.outletDiscovery.body":
-    "استكشف وجهات التسوق حسب البلد والمدينة والمنفذ والعلامة التجارية.",
-  "onboarding.pages.tripPlanning.title": "خطط لرحلات التسوق",
-  "onboarding.pages.tripPlanning.body":
-    "نظم مسارات المنافذ والتواريخ والتذكيرات في مكان واحد.",
-  "onboarding.pages.savingsTools.title": "قدّر Tax Free والعملات",
-  "onboarding.pages.savingsTools.body":
-    "قدّر استرداد Tax Free وأسعار الصرف الحية والتكلفة النهائية قبل الشراء.",
-  "onboarding.pages.flightDeals.title": "حضّر تنبيهات عروض الطيران",
-  "onboarding.pages.flightDeals.body":
-    "احفظ المسارات الآن لتجهيز التنبيهات عند توفر مزود مدعوم.",
+  "onboarding.skip": "تخطي", "onboarding.back": "رجوع", "onboarding.next": "التالي", "onboarding.start": "ابدأ",
+  "onboarding.pages.outletDiscovery.title": "اكتشف منافذ التسوق المميزة", "onboarding.pages.outletDiscovery.body": "استكشف وجهات التسوق حسب البلد والمدينة والمنفذ والعلامة التجارية.",
+  "onboarding.pages.tripPlanning.title": "خطط لرحلات التسوق", "onboarding.pages.tripPlanning.body": "نظم مسارات المنافذ والتواريخ والتذكيرات في مكان واحد.",
+  "onboarding.pages.savingsTools.title": "قدّر Tax Free والعملات", "onboarding.pages.savingsTools.body": "قدّر استرداد Tax Free وأسعار الصرف الحية والتكلفة النهائية قبل الشراء.",
+  "onboarding.pages.flightDeals.title": "حضّر تنبيهات عروض الطيران", "onboarding.pages.flightDeals.body": "احفظ المسارات الآن لتجهيز التنبيهات عند توفر مزود مدعوم."
 });
 Object.assign(onboardingTranslations.ru, onboardingTranslations.en, {
-  "onboarding.skip": "Пропустить",
-  "onboarding.back": "Назад",
-  "onboarding.next": "Далее",
-  "onboarding.start": "Начать",
-  "onboarding.pages.outletDiscovery.title": "Откройте премиум-аутлеты",
-  "onboarding.pages.outletDiscovery.body":
-    "Изучайте направления для шопинга по стране, городу, аутлету и бренду.",
-  "onboarding.pages.tripPlanning.title": "Планируйте шопинг-поездки",
-  "onboarding.pages.tripPlanning.body":
-    "Организуйте маршруты аутлетов, даты и напоминания в одном месте.",
-  "onboarding.pages.savingsTools.title": "Оцените Tax Free и валюту",
-  "onboarding.pages.savingsTools.body":
-    "Оцените возврат Tax Free, текущие курсы и итоговые расходы до покупки.",
-  "onboarding.pages.flightDeals.title": "Подготовьте авиа-уведомления",
-  "onboarding.pages.flightDeals.body":
-    "Сохраните маршруты, чтобы подготовить уведомления при появлении поддерживаемого провайдера.",
+  "onboarding.skip": "Пропустить", "onboarding.back": "Назад", "onboarding.next": "Далее", "onboarding.start": "Начать",
+  "onboarding.pages.outletDiscovery.title": "Откройте премиум-аутлеты", "onboarding.pages.outletDiscovery.body": "Изучайте направления для шопинга по стране, городу, аутлету и бренду.",
+  "onboarding.pages.tripPlanning.title": "Планируйте шопинг-поездки", "onboarding.pages.tripPlanning.body": "Организуйте маршруты аутлетов, даты и напоминания в одном месте.",
+  "onboarding.pages.savingsTools.title": "Оцените Tax Free и валюту", "onboarding.pages.savingsTools.body": "Оцените возврат Tax Free, текущие курсы и итоговые расходы до покупки.",
+  "onboarding.pages.flightDeals.title": "Подготовьте авиа-уведомления", "onboarding.pages.flightDeals.body": "Сохраните маршруты, чтобы подготовить уведомления при появлении поддерживаемого провайдера."
 });
 Object.assign(onboardingTranslations.zh, onboardingTranslations.en, {
-  "onboarding.skip": "跳过",
-  "onboarding.back": "返回",
-  "onboarding.next": "下一步",
-  "onboarding.start": "开始",
-  "onboarding.pages.outletDiscovery.title": "发现精品奥莱",
-  "onboarding.pages.outletDiscovery.body":
-    "按国家、城市、奥莱和品牌探索购物目的地。",
-  "onboarding.pages.tripPlanning.title": "规划购物行程",
-  "onboarding.pages.tripPlanning.body": "在一处整理奥莱路线、日期和提醒。",
-  "onboarding.pages.savingsTools.title": "估算 Tax Free 和汇率",
-  "onboarding.pages.savingsTools.body":
-    "购买前估算 Tax Free 退税、实时汇率和最终购物成本。",
-  "onboarding.pages.flightDeals.title": "准备航班优惠提醒",
-  "onboarding.pages.flightDeals.body":
-    "现在保存路线，待支持的供应商可用时即可准备提醒。",
+  "onboarding.skip": "跳过", "onboarding.back": "返回", "onboarding.next": "下一步", "onboarding.start": "开始",
+  "onboarding.pages.outletDiscovery.title": "发现精品奥莱", "onboarding.pages.outletDiscovery.body": "按国家、城市、奥莱和品牌探索购物目的地。",
+  "onboarding.pages.tripPlanning.title": "规划购物行程", "onboarding.pages.tripPlanning.body": "在一处整理奥莱路线、日期和提醒。",
+  "onboarding.pages.savingsTools.title": "估算 Tax Free 和汇率", "onboarding.pages.savingsTools.body": "购买前估算 Tax Free 退税、实时汇率和最终购物成本。",
+  "onboarding.pages.flightDeals.title": "准备航班优惠提醒", "onboarding.pages.flightDeals.body": "现在保存路线，待支持的供应商可用时即可准备提醒。"
 });
 
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], onboardingTranslations[locale]);
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], onboardingTranslations[locale]);
 
-const crossPlatformFixTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const crossPlatformFixTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "priceCalc.countryPrice": "{country} Price",
     "priceCalc.countryNetCost": "{country} Net Cost",
     "notifications.signInCta": "Sign in",
     "home.featured.flightDeals.kicker": "Flight deals",
     "home.featured.flightDeals.title": "Find better fares",
-    "home.featured.flightDeals.subtitle":
-      "Explore routes and prepare alerts for your next shopping trip.",
+    "home.featured.flightDeals.subtitle": "Explore routes and prepare alerts for your next shopping trip.",
     "home.featured.flightDeals.cta": "View flight deals",
   },
   tr: {
@@ -17993,335 +17365,41 @@ const crossPlatformFixTranslations: Record<
     "notifications.signInCta": "Giriş Yap",
     "home.featured.flightDeals.kicker": "Uçuş fırsatları",
     "home.featured.flightDeals.title": "Daha iyi bilet fiyatlarını bul",
-    "home.featured.flightDeals.subtitle":
-      "Bir sonraki alışveriş seyahatin için rotaları incele ve uyarılarını hazırla.",
+    "home.featured.flightDeals.subtitle": "Bir sonraki alışveriş seyahatin için rotaları incele ve uyarılarını hazırla.",
     "home.featured.flightDeals.cta": "Uçuş fırsatlarını gör",
   },
-  es: {
-    "priceCalc.countryPrice": "Precio en {country}",
-    "priceCalc.countryNetCost": "Coste neto en {country}",
-    "notifications.signInCta": "Iniciar sesión",
-    "home.featured.flightDeals.kicker": "Ofertas de vuelos",
-    "home.featured.flightDeals.title": "Encuentra mejores tarifas",
-    "home.featured.flightDeals.subtitle":
-      "Explora rutas y prepara alertas para tu próximo viaje de compras.",
-    "home.featured.flightDeals.cta": "Ver ofertas de vuelos",
-  },
-  fr: {
-    "priceCalc.countryPrice": "Prix en {country}",
-    "priceCalc.countryNetCost": "Coût net en {country}",
-    "notifications.signInCta": "Se connecter",
-    "home.featured.flightDeals.kicker": "Bons plans vols",
-    "home.featured.flightDeals.title": "Trouvez de meilleurs tarifs",
-    "home.featured.flightDeals.subtitle":
-      "Explorez les itinéraires et préparez des alertes pour votre prochain voyage shopping.",
-    "home.featured.flightDeals.cta": "Voir les bons plans vols",
-  },
-  de: {
-    "priceCalc.countryPrice": "Preis in {country}",
-    "priceCalc.countryNetCost": "Nettokosten in {country}",
-    "notifications.signInCta": "Anmelden",
-    "home.featured.flightDeals.kicker": "Flugangebote",
-    "home.featured.flightDeals.title": "Bessere Tarife finden",
-    "home.featured.flightDeals.subtitle":
-      "Erkunde Routen und bereite Benachrichtigungen für deine nächste Shoppingreise vor.",
-    "home.featured.flightDeals.cta": "Flugangebote ansehen",
-  },
-  ar: {
-    "priceCalc.countryPrice": "السعر في {country}",
-    "priceCalc.countryNetCost": "التكلفة الصافية في {country}",
-    "notifications.signInCta": "تسجيل الدخول",
-    "home.featured.flightDeals.kicker": "عروض الرحلات",
-    "home.featured.flightDeals.title": "اعثر على أسعار أفضل",
-    "home.featured.flightDeals.subtitle":
-      "استكشف المسارات وجهّز التنبيهات لرحلة التسوق القادمة.",
-    "home.featured.flightDeals.cta": "عرض عروض الرحلات",
-  },
-  ru: {
-    "priceCalc.countryPrice": "Цена в {country}",
-    "priceCalc.countryNetCost": "Чистая стоимость в {country}",
-    "notifications.signInCta": "Войти",
-    "home.featured.flightDeals.kicker": "Предложения авиабилетов",
-    "home.featured.flightDeals.title": "Находите лучшие тарифы",
-    "home.featured.flightDeals.subtitle":
-      "Изучайте маршруты и готовьте уведомления для следующей шопинг-поездки.",
-    "home.featured.flightDeals.cta": "Посмотреть предложения",
-  },
-  zh: {
-    "priceCalc.countryPrice": "{country}价格",
-    "priceCalc.countryNetCost": "{country}净成本",
-    "notifications.signInCta": "登录",
-    "home.featured.flightDeals.kicker": "机票优惠",
-    "home.featured.flightDeals.title": "发现更优惠的票价",
-    "home.featured.flightDeals.subtitle":
-      "探索路线，为下一次购物之旅准备提醒。",
-    "home.featured.flightDeals.cta": "查看机票优惠",
-  },
+  es: { "priceCalc.countryPrice": "Precio en {country}", "priceCalc.countryNetCost": "Coste neto en {country}", "notifications.signInCta": "Iniciar sesión", "home.featured.flightDeals.kicker": "Ofertas de vuelos", "home.featured.flightDeals.title": "Encuentra mejores tarifas", "home.featured.flightDeals.subtitle": "Explora rutas y prepara alertas para tu próximo viaje de compras.", "home.featured.flightDeals.cta": "Ver ofertas de vuelos" },
+  fr: { "priceCalc.countryPrice": "Prix en {country}", "priceCalc.countryNetCost": "Coût net en {country}", "notifications.signInCta": "Se connecter", "home.featured.flightDeals.kicker": "Bons plans vols", "home.featured.flightDeals.title": "Trouvez de meilleurs tarifs", "home.featured.flightDeals.subtitle": "Explorez les itinéraires et préparez des alertes pour votre prochain voyage shopping.", "home.featured.flightDeals.cta": "Voir les bons plans vols" },
+  de: { "priceCalc.countryPrice": "Preis in {country}", "priceCalc.countryNetCost": "Nettokosten in {country}", "notifications.signInCta": "Anmelden", "home.featured.flightDeals.kicker": "Flugangebote", "home.featured.flightDeals.title": "Bessere Tarife finden", "home.featured.flightDeals.subtitle": "Erkunde Routen und bereite Benachrichtigungen für deine nächste Shoppingreise vor.", "home.featured.flightDeals.cta": "Flugangebote ansehen" },
+  ar: { "priceCalc.countryPrice": "السعر في {country}", "priceCalc.countryNetCost": "التكلفة الصافية في {country}", "notifications.signInCta": "تسجيل الدخول", "home.featured.flightDeals.kicker": "عروض الرحلات", "home.featured.flightDeals.title": "اعثر على أسعار أفضل", "home.featured.flightDeals.subtitle": "استكشف المسارات وجهّز التنبيهات لرحلة التسوق القادمة.", "home.featured.flightDeals.cta": "عرض عروض الرحلات" },
+  ru: { "priceCalc.countryPrice": "Цена в {country}", "priceCalc.countryNetCost": "Чистая стоимость в {country}", "notifications.signInCta": "Войти", "home.featured.flightDeals.kicker": "Предложения авиабилетов", "home.featured.flightDeals.title": "Находите лучшие тарифы", "home.featured.flightDeals.subtitle": "Изучайте маршруты и готовьте уведомления для следующей шопинг-поездки.", "home.featured.flightDeals.cta": "Посмотреть предложения" },
+  zh: { "priceCalc.countryPrice": "{country}价格", "priceCalc.countryNetCost": "{country}净成本", "notifications.signInCta": "登录", "home.featured.flightDeals.kicker": "机票优惠", "home.featured.flightDeals.title": "发现更优惠的票价", "home.featured.flightDeals.subtitle": "探索路线，为下一次购物之旅准备提醒。", "home.featured.flightDeals.cta": "查看机票优惠" },
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], crossPlatformFixTranslations[locale]);
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], crossPlatformFixTranslations[locale]);
 
-const flightDealSaveTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "flightDeals.saving": "Saving…",
-    "flightDeals.saveSuccessTitle": "Alert saved",
-    "flightDeals.saveSuccess": "Your flight-deal alert has been saved.",
-    "flightDeals.saveErrorTitle": "Could not save alert",
-    "flightDeals.provider_pending":
-      "Flight-deal alerts become active when a provider is connected.",
-    "flightDeals.signInRequired": "Sign in to save a flight-deal alert.",
-    "flightDeals.origin_required": "Select an origin airport.",
-    "flightDeals.destination_required": "Select a destination airport.",
-    "flightDeals.threshold_required": "Select at least one alert level.",
-    "flightDeals.save_failed":
-      "Your alert could not be saved. Please try again.",
-  },
-  tr: {
-    "flightDeals.saving": "Kaydediliyor…",
-    "flightDeals.saveSuccessTitle": "Uyarı kaydedildi",
-    "flightDeals.saveSuccess": "Uçuş fırsatı uyarın kaydedildi.",
-    "flightDeals.saveErrorTitle": "Uyarı kaydedilemedi",
-    "flightDeals.provider_pending":
-      "Uçuş fırsatı uyarıları bir sağlayıcı bağlandığında etkinleşir.",
-    "flightDeals.signInRequired":
-      "Uçuş fırsatı uyarısını kaydetmek için giriş yap.",
-    "flightDeals.origin_required": "Kalkış havalimanını seç.",
-    "flightDeals.destination_required": "Varış havalimanını seç.",
-    "flightDeals.threshold_required": "En az bir uyarı seviyesi seç.",
-    "flightDeals.save_failed": "Uyarın kaydedilemedi. Lütfen tekrar dene.",
-  },
-  es: {
-    "flightDeals.saving": "Guardando…",
-    "flightDeals.saveSuccessTitle": "Alerta guardada",
-    "flightDeals.saveSuccess": "Tu alerta de vuelo se ha guardado.",
-    "flightDeals.saveErrorTitle": "No se pudo guardar la alerta",
-    "flightDeals.provider_pending":
-      "Las alertas se activarán cuando se conecte un proveedor.",
-    "flightDeals.signInRequired": "Inicia sesión para guardar una alerta.",
-    "flightDeals.origin_required": "Selecciona un aeropuerto de origen.",
-    "flightDeals.destination_required": "Selecciona un aeropuerto de destino.",
-    "flightDeals.threshold_required": "Selecciona al menos un nivel.",
-    "flightDeals.save_failed":
-      "No se pudo guardar la alerta. Inténtalo de nuevo.",
-  },
-  fr: {
-    "flightDeals.saving": "Enregistrement…",
-    "flightDeals.saveSuccessTitle": "Alerte enregistrée",
-    "flightDeals.saveSuccess": "Votre alerte de vol a été enregistrée.",
-    "flightDeals.saveErrorTitle": "Impossible d’enregistrer l’alerte",
-    "flightDeals.provider_pending":
-      "Les alertes seront actives lorsqu’un fournisseur sera connecté.",
-    "flightDeals.signInRequired": "Connectez-vous pour enregistrer une alerte.",
-    "flightDeals.origin_required": "Sélectionnez un aéroport de départ.",
-    "flightDeals.destination_required": "Sélectionnez un aéroport d’arrivée.",
-    "flightDeals.threshold_required": "Sélectionnez au moins un niveau.",
-    "flightDeals.save_failed": "Impossible d’enregistrer l’alerte. Réessayez.",
-  },
-  de: {
-    "flightDeals.saving": "Wird gespeichert…",
-    "flightDeals.saveSuccessTitle": "Benachrichtigung gespeichert",
-    "flightDeals.saveSuccess":
-      "Deine Flugangebot-Benachrichtigung wurde gespeichert.",
-    "flightDeals.saveErrorTitle": "Speichern fehlgeschlagen",
-    "flightDeals.provider_pending":
-      "Benachrichtigungen werden aktiv, sobald ein Anbieter verbunden ist.",
-    "flightDeals.signInRequired":
-      "Melde dich an, um eine Benachrichtigung zu speichern.",
-    "flightDeals.origin_required": "Wähle einen Abflughafen.",
-    "flightDeals.destination_required": "Wähle einen Zielflughafen.",
-    "flightDeals.threshold_required": "Wähle mindestens eine Stufe.",
-    "flightDeals.save_failed":
-      "Die Benachrichtigung konnte nicht gespeichert werden.",
-  },
-  ar: {
-    "flightDeals.saving": "جارٍ الحفظ…",
-    "flightDeals.saveSuccessTitle": "تم حفظ التنبيه",
-    "flightDeals.saveSuccess": "تم حفظ تنبيه عرض الرحلة.",
-    "flightDeals.saveErrorTitle": "تعذر حفظ التنبيه",
-    "flightDeals.provider_pending": "ستنشط التنبيهات عند ربط مزود.",
-    "flightDeals.signInRequired": "سجّل الدخول لحفظ التنبيه.",
-    "flightDeals.origin_required": "اختر مطار المغادرة.",
-    "flightDeals.destination_required": "اختر مطار الوصول.",
-    "flightDeals.threshold_required": "اختر مستوى تنبيه واحدًا على الأقل.",
-    "flightDeals.save_failed": "تعذر حفظ التنبيه. حاول مرة أخرى.",
-  },
-  ru: {
-    "flightDeals.saving": "Сохранение…",
-    "flightDeals.saveSuccessTitle": "Уведомление сохранено",
-    "flightDeals.saveSuccess": "Уведомление о выгодном рейсе сохранено.",
-    "flightDeals.saveErrorTitle": "Не удалось сохранить",
-    "flightDeals.provider_pending":
-      "Уведомления станут активными после подключения провайдера.",
-    "flightDeals.signInRequired": "Войдите, чтобы сохранить уведомление.",
-    "flightDeals.origin_required": "Выберите аэропорт отправления.",
-    "flightDeals.destination_required": "Выберите аэропорт назначения.",
-    "flightDeals.threshold_required": "Выберите хотя бы один уровень.",
-    "flightDeals.save_failed":
-      "Не удалось сохранить уведомление. Попробуйте снова.",
-  },
-  zh: {
-    "flightDeals.saving": "正在保存…",
-    "flightDeals.saveSuccessTitle": "提醒已保存",
-    "flightDeals.saveSuccess": "您的机票优惠提醒已保存。",
-    "flightDeals.saveErrorTitle": "无法保存提醒",
-    "flightDeals.provider_pending": "连接服务商后提醒将启用。",
-    "flightDeals.signInRequired": "请登录后保存提醒。",
-    "flightDeals.origin_required": "请选择出发机场。",
-    "flightDeals.destination_required": "请选择到达机场。",
-    "flightDeals.threshold_required": "请至少选择一个提醒级别。",
-    "flightDeals.save_failed": "无法保存提醒，请重试。",
-  },
+const flightDealSaveTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "flightDeals.saving": "Saving…", "flightDeals.saveSuccessTitle": "Alert saved", "flightDeals.saveSuccess": "Your flight-deal alert has been saved.", "flightDeals.saveErrorTitle": "Could not save alert", "flightDeals.provider_pending": "Flight-deal alerts become active when a provider is connected.", "flightDeals.signInRequired": "Sign in to save a flight-deal alert.", "flightDeals.origin_required": "Select an origin airport.", "flightDeals.destination_required": "Select a destination airport.", "flightDeals.threshold_required": "Select at least one alert level.", "flightDeals.save_failed": "Your alert could not be saved. Please try again." },
+  tr: { "flightDeals.saving": "Kaydediliyor…", "flightDeals.saveSuccessTitle": "Uyarı kaydedildi", "flightDeals.saveSuccess": "Uçuş fırsatı uyarın kaydedildi.", "flightDeals.saveErrorTitle": "Uyarı kaydedilemedi", "flightDeals.provider_pending": "Uçuş fırsatı uyarıları bir sağlayıcı bağlandığında etkinleşir.", "flightDeals.signInRequired": "Uçuş fırsatı uyarısını kaydetmek için giriş yap.", "flightDeals.origin_required": "Kalkış havalimanını seç.", "flightDeals.destination_required": "Varış havalimanını seç.", "flightDeals.threshold_required": "En az bir uyarı seviyesi seç.", "flightDeals.save_failed": "Uyarın kaydedilemedi. Lütfen tekrar dene." },
+  es: { "flightDeals.saving": "Guardando…", "flightDeals.saveSuccessTitle": "Alerta guardada", "flightDeals.saveSuccess": "Tu alerta de vuelo se ha guardado.", "flightDeals.saveErrorTitle": "No se pudo guardar la alerta", "flightDeals.provider_pending": "Las alertas se activarán cuando se conecte un proveedor.", "flightDeals.signInRequired": "Inicia sesión para guardar una alerta.", "flightDeals.origin_required": "Selecciona un aeropuerto de origen.", "flightDeals.destination_required": "Selecciona un aeropuerto de destino.", "flightDeals.threshold_required": "Selecciona al menos un nivel.", "flightDeals.save_failed": "No se pudo guardar la alerta. Inténtalo de nuevo." },
+  fr: { "flightDeals.saving": "Enregistrement…", "flightDeals.saveSuccessTitle": "Alerte enregistrée", "flightDeals.saveSuccess": "Votre alerte de vol a été enregistrée.", "flightDeals.saveErrorTitle": "Impossible d’enregistrer l’alerte", "flightDeals.provider_pending": "Les alertes seront actives lorsqu’un fournisseur sera connecté.", "flightDeals.signInRequired": "Connectez-vous pour enregistrer une alerte.", "flightDeals.origin_required": "Sélectionnez un aéroport de départ.", "flightDeals.destination_required": "Sélectionnez un aéroport d’arrivée.", "flightDeals.threshold_required": "Sélectionnez au moins un niveau.", "flightDeals.save_failed": "Impossible d’enregistrer l’alerte. Réessayez." },
+  de: { "flightDeals.saving": "Wird gespeichert…", "flightDeals.saveSuccessTitle": "Benachrichtigung gespeichert", "flightDeals.saveSuccess": "Deine Flugangebot-Benachrichtigung wurde gespeichert.", "flightDeals.saveErrorTitle": "Speichern fehlgeschlagen", "flightDeals.provider_pending": "Benachrichtigungen werden aktiv, sobald ein Anbieter verbunden ist.", "flightDeals.signInRequired": "Melde dich an, um eine Benachrichtigung zu speichern.", "flightDeals.origin_required": "Wähle einen Abflughafen.", "flightDeals.destination_required": "Wähle einen Zielflughafen.", "flightDeals.threshold_required": "Wähle mindestens eine Stufe.", "flightDeals.save_failed": "Die Benachrichtigung konnte nicht gespeichert werden." },
+  ar: { "flightDeals.saving": "جارٍ الحفظ…", "flightDeals.saveSuccessTitle": "تم حفظ التنبيه", "flightDeals.saveSuccess": "تم حفظ تنبيه عرض الرحلة.", "flightDeals.saveErrorTitle": "تعذر حفظ التنبيه", "flightDeals.provider_pending": "ستنشط التنبيهات عند ربط مزود.", "flightDeals.signInRequired": "سجّل الدخول لحفظ التنبيه.", "flightDeals.origin_required": "اختر مطار المغادرة.", "flightDeals.destination_required": "اختر مطار الوصول.", "flightDeals.threshold_required": "اختر مستوى تنبيه واحدًا على الأقل.", "flightDeals.save_failed": "تعذر حفظ التنبيه. حاول مرة أخرى." },
+  ru: { "flightDeals.saving": "Сохранение…", "flightDeals.saveSuccessTitle": "Уведомление сохранено", "flightDeals.saveSuccess": "Уведомление о выгодном рейсе сохранено.", "flightDeals.saveErrorTitle": "Не удалось сохранить", "flightDeals.provider_pending": "Уведомления станут активными после подключения провайдера.", "flightDeals.signInRequired": "Войдите, чтобы сохранить уведомление.", "flightDeals.origin_required": "Выберите аэропорт отправления.", "flightDeals.destination_required": "Выберите аэропорт назначения.", "flightDeals.threshold_required": "Выберите хотя бы один уровень.", "flightDeals.save_failed": "Не удалось сохранить уведомление. Попробуйте снова." },
+  zh: { "flightDeals.saving": "正在保存…", "flightDeals.saveSuccessTitle": "提醒已保存", "flightDeals.saveSuccess": "您的机票优惠提醒已保存。", "flightDeals.saveErrorTitle": "无法保存提醒", "flightDeals.provider_pending": "连接服务商后提醒将启用。", "flightDeals.signInRequired": "请登录后保存提醒。", "flightDeals.origin_required": "请选择出发机场。", "flightDeals.destination_required": "请选择到达机场。", "flightDeals.threshold_required": "请至少选择一个提醒级别。", "flightDeals.save_failed": "无法保存提醒，请重试。" },
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], flightDealSaveTranslations[locale]);
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], flightDealSaveTranslations[locale]);
 
-for (const locale of supportedLanguageCodes)
-  Object.assign(
-    translations[locale],
-    finalScreenshotPolishTranslations[locale],
-  );
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], finalScreenshotPolishTranslations[locale]);
 
-const appOnlyFeatureTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "appOnly.badge": "Mobile app",
-    "appOnly.title": "Trip management is in the app",
-    "appOnly.body":
-      "You can view your trips on the web. Creating trips, changing dates and routes, and notification scheduling are managed in the mobile app.",
-    "appOnly.helper":
-      "Download the app from the App Store to manage your trips and notifications.",
-    "appOnly.cta": "Download on the App Store",
-    "appOnly.createBody":
-      "Trip dates, routes, and notification scheduling are managed in the mobile app.",
-    "appOnly.viewOnly":
-      "Web is view-only. Changes and notification synchronization are handled in the mobile app.",
-    "appOnly.notificationsTitle": "Notifications are managed in the app",
-    "appOnly.notificationsBody":
-      "Notification permissions, trip reminders, and device alerts are managed in the mobile app.",
-    "home.quick.downloadApp": "Download the app",
-  },
-  tr: {
-    "appOnly.badge": "MOBİL UYGULAMA",
-    "appOnly.title": "Seyahat yönetimi uygulamada",
-    "appOnly.body":
-      "Web’de seyahatlerini görüntüleyebilirsin. Seyahat oluşturma, tarih ve rota değişiklikleri ile bildirim planlama mobil uygulamadan yapılır.",
-    "appOnly.helper":
-      "Seyahatlerini ve bildirimlerini yönetmek için uygulamayı App Store’dan indir.",
-    "appOnly.cta": "App Store’dan indir",
-    "appOnly.createBody":
-      "Seyahat tarihleri, rotalar ve bildirim planlaması mobil uygulamadan yönetilir.",
-    "appOnly.viewOnly":
-      "Web yalnızca görüntüleme içindir. Değişiklikler ve bildirim eşitlemesi mobil uygulamada yapılır.",
-    "appOnly.notificationsTitle": "Bildirimler uygulamada",
-    "appOnly.notificationsBody":
-      "Bildirim izinleri, seyahat hatırlatmaları ve cihaz bildirimleri mobil uygulamadan yönetilir.",
-    "home.quick.downloadApp": "Uygulamayı indir",
-  },
-  es: {
-    "appOnly.badge": "APP MÓVIL",
-    "appOnly.title": "La gestión de viajes está en la app",
-    "appOnly.body":
-      "Puedes ver tus viajes en la web. La creación de viajes, los cambios de fechas y rutas, y la programación de notificaciones se gestionan en la app móvil.",
-    "appOnly.helper":
-      "Descarga la app desde App Store para gestionar tus viajes y notificaciones.",
-    "appOnly.cta": "Descargar en App Store",
-    "appOnly.createBody":
-      "Las fechas, rutas y notificaciones de viajes se gestionan en la app móvil.",
-    "appOnly.viewOnly":
-      "La web es solo de consulta. Los cambios y la sincronización de notificaciones se gestionan en la app móvil.",
-    "appOnly.notificationsTitle": "Las notificaciones se gestionan en la app",
-    "appOnly.notificationsBody":
-      "Los permisos de notificaciones, recordatorios de viaje y alertas del dispositivo se gestionan en la app móvil.",
-    "home.quick.downloadApp": "Descargar la app",
-  },
-  fr: {
-    "appOnly.badge": "APPLICATION MOBILE",
-    "appOnly.title": "La gestion des voyages se fait dans l’application",
-    "appOnly.body":
-      "Vous pouvez consulter vos voyages sur le web. La création des voyages, les changements de dates et d’itinéraires, ainsi que la programmation des notifications se gèrent dans l’application mobile.",
-    "appOnly.helper":
-      "Téléchargez l’application depuis l’App Store pour gérer vos voyages et notifications.",
-    "appOnly.cta": "Télécharger sur l’App Store",
-    "appOnly.createBody":
-      "Les dates, itinéraires et notifications de voyage se gèrent dans l’application mobile.",
-    "appOnly.viewOnly":
-      "Le web est en lecture seule. Les modifications et la synchronisation des notifications se font dans l’application mobile.",
-    "appOnly.notificationsTitle":
-      "Les notifications se gèrent dans l’application",
-    "appOnly.notificationsBody":
-      "Les autorisations de notification, rappels de voyage et alertes de l’appareil se gèrent dans l’application mobile.",
-    "home.quick.downloadApp": "Télécharger l’application",
-  },
-  de: {
-    "appOnly.badge": "MOBILE APP",
-    "appOnly.title": "Die Reiseverwaltung ist in der App",
-    "appOnly.body":
-      "Du kannst deine Reisen im Web ansehen. Das Erstellen von Reisen, Änderungen an Daten und Routen sowie die Benachrichtigungsplanung werden in der mobilen App verwaltet.",
-    "appOnly.helper":
-      "Lade die App aus dem App Store herunter, um deine Reisen und Benachrichtigungen zu verwalten.",
-    "appOnly.cta": "Im App Store laden",
-    "appOnly.createBody":
-      "Reisedaten, Routen und Benachrichtigungen werden in der mobilen App verwaltet.",
-    "appOnly.viewOnly":
-      "Das Web ist nur zur Ansicht. Änderungen und die Synchronisierung von Benachrichtigungen erfolgen in der mobilen App.",
-    "appOnly.notificationsTitle":
-      "Benachrichtigungen werden in der App verwaltet",
-    "appOnly.notificationsBody":
-      "Benachrichtigungsberechtigungen, Reiseerinnerungen und Gerätewarnungen werden in der mobilen App verwaltet.",
-    "home.quick.downloadApp": "App herunterladen",
-  },
-  ru: {
-    "appOnly.badge": "МОБИЛЬНОЕ ПРИЛОЖЕНИЕ",
-    "appOnly.title": "Управление поездками доступно в приложении",
-    "appOnly.body":
-      "Вы можете просматривать поездки в веб-версии. Создание поездок, изменение дат и маршрутов, а также настройка уведомлений доступны в мобильном приложении.",
-    "appOnly.helper":
-      "Загрузите приложение из App Store, чтобы управлять поездками и уведомлениями.",
-    "appOnly.cta": "Загрузить в App Store",
-    "appOnly.createBody":
-      "Даты, маршруты и уведомления о поездках управляются в мобильном приложении.",
-    "appOnly.viewOnly":
-      "Веб-версия доступна только для просмотра. Изменения и синхронизация уведомлений выполняются в мобильном приложении.",
-    "appOnly.notificationsTitle": "Уведомления управляются в приложении",
-    "appOnly.notificationsBody":
-      "Разрешения на уведомления, напоминания о поездках и оповещения устройства управляются в мобильном приложении.",
-    "home.quick.downloadApp": "Загрузить приложение",
-  },
-  ar: {
-    "appOnly.badge": "تطبيق الجوال",
-    "appOnly.title": "إدارة الرحلات متاحة في التطبيق",
-    "appOnly.body":
-      "يمكنك عرض رحلاتك على الويب. تتم إدارة إنشاء الرحلات وتعديل التواريخ والمسارات وجدولة الإشعارات في تطبيق الجوال.",
-    "appOnly.helper": "نزّل التطبيق من App Store لإدارة رحلاتك وإشعاراتك.",
-    "appOnly.cta": "تنزيل من App Store",
-    "appOnly.createBody":
-      "تتم إدارة تواريخ الرحلات ومساراتها وإشعاراتها في تطبيق الجوال.",
-    "appOnly.viewOnly":
-      "الويب للعرض فقط. تتم التغييرات ومزامنة الإشعارات في تطبيق الجوال.",
-    "appOnly.notificationsTitle": "تتم إدارة الإشعارات في التطبيق",
-    "appOnly.notificationsBody":
-      "تتم إدارة أذونات الإشعارات وتذكيرات الرحلات وتنبيهات الجهاز في تطبيق الجوال.",
-    "home.quick.downloadApp": "تنزيل التطبيق",
-  },
-  zh: {
-    "appOnly.badge": "移动应用",
-    "appOnly.title": "行程管理请使用应用",
-    "appOnly.body":
-      "您可以在网页上查看行程。创建行程、修改日期和路线以及安排通知均在移动应用中管理。",
-    "appOnly.helper": "请从 App Store 下载应用，以管理您的行程和通知。",
-    "appOnly.cta": "在 App Store 下载",
-    "appOnly.createBody": "行程日期、路线和通知均在移动应用中管理。",
-    "appOnly.viewOnly": "网页仅供查看。更改和通知同步均在移动应用中完成。",
-    "appOnly.notificationsTitle": "通知请在应用中管理",
-    "appOnly.notificationsBody":
-      "通知权限、行程提醒和设备提醒均在移动应用中管理。",
-    "home.quick.downloadApp": "下载应用",
-  },
+const appOnlyFeatureTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "appOnly.badge": "Mobile app", "appOnly.title": "Trip management is in the app", "appOnly.body": "You can view your trips on the web. Creating trips, changing dates and routes, and notification scheduling are managed in the mobile app.", "appOnly.helper": "Download the app from the App Store to manage your trips and notifications.", "appOnly.cta": "Download on the App Store", "appOnly.createBody": "Trip dates, routes, and notification scheduling are managed in the mobile app.", "appOnly.viewOnly": "Web is view-only. Changes and notification synchronization are handled in the mobile app.", "appOnly.notificationsTitle": "Notifications are managed in the app", "appOnly.notificationsBody": "Notification permissions, trip reminders, and device alerts are managed in the mobile app.", "home.quick.downloadApp": "Download the app" },
+  tr: { "appOnly.badge": "MOBİL UYGULAMA", "appOnly.title": "Seyahat yönetimi uygulamada", "appOnly.body": "Web’de seyahatlerini görüntüleyebilirsin. Seyahat oluşturma, tarih ve rota değişiklikleri ile bildirim planlama mobil uygulamadan yapılır.", "appOnly.helper": "Seyahatlerini ve bildirimlerini yönetmek için uygulamayı App Store’dan indir.", "appOnly.cta": "App Store’dan indir", "appOnly.createBody": "Seyahat tarihleri, rotalar ve bildirim planlaması mobil uygulamadan yönetilir.", "appOnly.viewOnly": "Web yalnızca görüntüleme içindir. Değişiklikler ve bildirim eşitlemesi mobil uygulamada yapılır.", "appOnly.notificationsTitle": "Bildirimler uygulamada", "appOnly.notificationsBody": "Bildirim izinleri, seyahat hatırlatmaları ve cihaz bildirimleri mobil uygulamadan yönetilir.", "home.quick.downloadApp": "Uygulamayı indir" },
+  es: { "appOnly.badge": "APP MÓVIL", "appOnly.title": "La gestión de viajes está en la app", "appOnly.body": "Puedes ver tus viajes en la web. La creación de viajes, los cambios de fechas y rutas, y la programación de notificaciones se gestionan en la app móvil.", "appOnly.helper": "Descarga la app desde App Store para gestionar tus viajes y notificaciones.", "appOnly.cta": "Descargar en App Store", "appOnly.createBody": "Las fechas, rutas y notificaciones de viajes se gestionan en la app móvil.", "appOnly.viewOnly": "La web es solo de consulta. Los cambios y la sincronización de notificaciones se gestionan en la app móvil.", "appOnly.notificationsTitle": "Las notificaciones se gestionan en la app", "appOnly.notificationsBody": "Los permisos de notificaciones, recordatorios de viaje y alertas del dispositivo se gestionan en la app móvil.", "home.quick.downloadApp": "Descargar la app" },
+  fr: { "appOnly.badge": "APPLICATION MOBILE", "appOnly.title": "La gestion des voyages se fait dans l’application", "appOnly.body": "Vous pouvez consulter vos voyages sur le web. La création des voyages, les changements de dates et d’itinéraires, ainsi que la programmation des notifications se gèrent dans l’application mobile.", "appOnly.helper": "Téléchargez l’application depuis l’App Store pour gérer vos voyages et notifications.", "appOnly.cta": "Télécharger sur l’App Store", "appOnly.createBody": "Les dates, itinéraires et notifications de voyage se gèrent dans l’application mobile.", "appOnly.viewOnly": "Le web est en lecture seule. Les modifications et la synchronisation des notifications se font dans l’application mobile.", "appOnly.notificationsTitle": "Les notifications se gèrent dans l’application", "appOnly.notificationsBody": "Les autorisations de notification, rappels de voyage et alertes de l’appareil se gèrent dans l’application mobile.", "home.quick.downloadApp": "Télécharger l’application" },
+  de: { "appOnly.badge": "MOBILE APP", "appOnly.title": "Die Reiseverwaltung ist in der App", "appOnly.body": "Du kannst deine Reisen im Web ansehen. Das Erstellen von Reisen, Änderungen an Daten und Routen sowie die Benachrichtigungsplanung werden in der mobilen App verwaltet.", "appOnly.helper": "Lade die App aus dem App Store herunter, um deine Reisen und Benachrichtigungen zu verwalten.", "appOnly.cta": "Im App Store laden", "appOnly.createBody": "Reisedaten, Routen und Benachrichtigungen werden in der mobilen App verwaltet.", "appOnly.viewOnly": "Das Web ist nur zur Ansicht. Änderungen und die Synchronisierung von Benachrichtigungen erfolgen in der mobilen App.", "appOnly.notificationsTitle": "Benachrichtigungen werden in der App verwaltet", "appOnly.notificationsBody": "Benachrichtigungsberechtigungen, Reiseerinnerungen und Gerätewarnungen werden in der mobilen App verwaltet.", "home.quick.downloadApp": "App herunterladen" },
+  ru: { "appOnly.badge": "МОБИЛЬНОЕ ПРИЛОЖЕНИЕ", "appOnly.title": "Управление поездками доступно в приложении", "appOnly.body": "Вы можете просматривать поездки в веб-версии. Создание поездок, изменение дат и маршрутов, а также настройка уведомлений доступны в мобильном приложении.", "appOnly.helper": "Загрузите приложение из App Store, чтобы управлять поездками и уведомлениями.", "appOnly.cta": "Загрузить в App Store", "appOnly.createBody": "Даты, маршруты и уведомления о поездках управляются в мобильном приложении.", "appOnly.viewOnly": "Веб-версия доступна только для просмотра. Изменения и синхронизация уведомлений выполняются в мобильном приложении.", "appOnly.notificationsTitle": "Уведомления управляются в приложении", "appOnly.notificationsBody": "Разрешения на уведомления, напоминания о поездках и оповещения устройства управляются в мобильном приложении.", "home.quick.downloadApp": "Загрузить приложение" },
+  ar: { "appOnly.badge": "تطبيق الجوال", "appOnly.title": "إدارة الرحلات متاحة في التطبيق", "appOnly.body": "يمكنك عرض رحلاتك على الويب. تتم إدارة إنشاء الرحلات وتعديل التواريخ والمسارات وجدولة الإشعارات في تطبيق الجوال.", "appOnly.helper": "نزّل التطبيق من App Store لإدارة رحلاتك وإشعاراتك.", "appOnly.cta": "تنزيل من App Store", "appOnly.createBody": "تتم إدارة تواريخ الرحلات ومساراتها وإشعاراتها في تطبيق الجوال.", "appOnly.viewOnly": "الويب للعرض فقط. تتم التغييرات ومزامنة الإشعارات في تطبيق الجوال.", "appOnly.notificationsTitle": "تتم إدارة الإشعارات في التطبيق", "appOnly.notificationsBody": "تتم إدارة أذونات الإشعارات وتذكيرات الرحلات وتنبيهات الجهاز في تطبيق الجوال.", "home.quick.downloadApp": "تنزيل التطبيق" },
+  zh: { "appOnly.badge": "移动应用", "appOnly.title": "行程管理请使用应用", "appOnly.body": "您可以在网页上查看行程。创建行程、修改日期和路线以及安排通知均在移动应用中管理。", "appOnly.helper": "请从 App Store 下载应用，以管理您的行程和通知。", "appOnly.cta": "在 App Store 下载", "appOnly.createBody": "行程日期、路线和通知均在移动应用中管理。", "appOnly.viewOnly": "网页仅供查看。更改和通知同步均在移动应用中完成。", "appOnly.notificationsTitle": "通知请在应用中管理", "appOnly.notificationsBody": "通知权限、行程提醒和设备提醒均在移动应用中管理。", "home.quick.downloadApp": "下载应用" },
 };
 for (const locale of supportedLanguageCodes) {
   Object.assign(
@@ -18331,1567 +17409,215 @@ for (const locale of supportedLanguageCodes) {
   );
 }
 
-const taxFreeStatusTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const taxFreeStatusTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "sharedCards.quickFacts.notVerified": "Not verified",
     "taxFree.statusAvailable": "Tax Free service available",
     "taxFree.statusNotVerified": "Not verified at outlet level",
-    "taxFree.notVerifiedExplanation":
-      "An official Tax Free point has not been verified for this outlet. Confirm with the relevant store before purchase.",
+    "taxFree.notVerifiedExplanation": "An official Tax Free point has not been verified for this outlet. Confirm with the relevant store before purchase.",
   },
   tr: {
     "sharedCards.quickFacts.notVerified": "Doğrulanmadı",
     "taxFree.statusAvailable": "Tax Free hizmeti mevcut",
     "taxFree.statusNotVerified": "Outlet düzeyinde doğrulanmadı",
-    "taxFree.notVerifiedExplanation":
-      "Bu outlet için resmî bir Tax Free noktası doğrulanmadı. Satın almadan önce ilgili mağazadan teyit edin.",
+    "taxFree.notVerifiedExplanation": "Bu outlet için resmî bir Tax Free noktası doğrulanmadı. Satın almadan önce ilgili mağazadan teyit edin.",
   },
   es: {
     "sharedCards.quickFacts.notVerified": "No verificado",
     "taxFree.statusAvailable": "Servicio Tax Free disponible",
     "taxFree.statusNotVerified": "No verificado a nivel de outlet",
-    "taxFree.notVerifiedExplanation":
-      "No se ha verificado un punto Tax Free oficial para este outlet. Confírmelo con la tienda correspondiente antes de comprar.",
+    "taxFree.notVerifiedExplanation": "No se ha verificado un punto Tax Free oficial para este outlet. Confírmelo con la tienda correspondiente antes de comprar.",
   },
   fr: {
     "sharedCards.quickFacts.notVerified": "Non vérifié",
     "taxFree.statusAvailable": "Service Tax Free disponible",
     "taxFree.statusNotVerified": "Non vérifié au niveau de l’outlet",
-    "taxFree.notVerifiedExplanation":
-      "Aucun point Tax Free officiel n’a été vérifié pour cet outlet. Confirmez auprès du magasin concerné avant l’achat.",
+    "taxFree.notVerifiedExplanation": "Aucun point Tax Free officiel n’a été vérifié pour cet outlet. Confirmez auprès du magasin concerné avant l’achat.",
   },
   de: {
     "sharedCards.quickFacts.notVerified": "Nicht verifiziert",
     "taxFree.statusAvailable": "Tax-Free-Service verfügbar",
     "taxFree.statusNotVerified": "Auf Outlet-Ebene nicht verifiziert",
-    "taxFree.notVerifiedExplanation":
-      "Für dieses Outlet wurde keine offizielle Tax-Free-Stelle verifiziert. Bitte vor dem Kauf beim jeweiligen Geschäft nachfragen.",
+    "taxFree.notVerifiedExplanation": "Für dieses Outlet wurde keine offizielle Tax-Free-Stelle verifiziert. Bitte vor dem Kauf beim jeweiligen Geschäft nachfragen.",
   },
   ar: {
     "sharedCards.quickFacts.notVerified": "غير متحقق منه",
     "taxFree.statusAvailable": "خدمة Tax Free متاحة",
     "taxFree.statusNotVerified": "غير متحقق منه على مستوى الأوتلت",
-    "taxFree.notVerifiedExplanation":
-      "لم يتم التحقق من وجود نقطة Tax Free رسمية لهذا الأوتلت. يرجى التأكد من المتجر المعني قبل الشراء.",
+    "taxFree.notVerifiedExplanation": "لم يتم التحقق من وجود نقطة Tax Free رسمية لهذا الأوتلت. يرجى التأكد من المتجر المعني قبل الشراء.",
   },
   ru: {
     "sharedCards.quickFacts.notVerified": "Не подтверждено",
     "taxFree.statusAvailable": "Услуга Tax Free доступна",
     "taxFree.statusNotVerified": "Не подтверждено на уровне аутлета",
-    "taxFree.notVerifiedExplanation":
-      "Для этого аутлета не подтверждён официальный пункт Tax Free. Перед покупкой уточните информацию в соответствующем магазине.",
+    "taxFree.notVerifiedExplanation": "Для этого аутлета не подтверждён официальный пункт Tax Free. Перед покупкой уточните информацию в соответствующем магазине.",
   },
   zh: {
     "sharedCards.quickFacts.notVerified": "未核实",
     "taxFree.statusAvailable": "提供 Tax Free 服务",
     "taxFree.statusNotVerified": "奥莱层面尚未核实",
-    "taxFree.notVerifiedExplanation":
-      "该奥莱尚未核实官方 Tax Free 服务点。购买前请向相关商店确认。",
+    "taxFree.notVerifiedExplanation": "该奥莱尚未核实官方 Tax Free 服务点。购买前请向相关商店确认。",
   },
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], taxFreeStatusTranslations[locale]);
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeStatusTranslations[locale]);
 
-const countryTaxFreeEstimateTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const countryTaxFreeEstimateTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "taxCalc.maximumRefundBeforeFees": "Maximum refund before fees", "taxCalc.maximumBeforeFeesRate": "At most %{rate} before fees", "taxCalc.estimatedNetRefund": "Estimated net Tax Free refund", "taxCalc.bestCaseCostBeforeFees": "Best-case cost before fees", "taxCalc.convertedMaximum": "Maximum before fees in selected currency", "taxCalc.convertedBestCaseCost": "Best-case cost before fees in selected currency", "taxCalc.pointOfSaleExemption": "Tax exemption at checkout for eligible purchases", "taxCalc.estimatedTaxSaving": "Estimated tax saving", "taxCalc.costAfterExemption": "Estimated cost after exemption", "taxCalc.officialRefundTable": "According to the official refund table", "taxCalc.officialFormulaSummary": "According to the official refund formula", "taxCalc.oneTagAssumption": "1 Tax Free tag is assumed", "taxCalc.standardRateProductAssumption": "Standard-rate product assumed", "taxCalc.upperBoundDisclaimer": "The actual refund may be lower depending on the store, provider, payment method, product tax class and processing fees.", "taxCalc.noSourcedNetRate": "No sourced net refund rate is available for this country" },
+  tr: { "taxCalc.maximumRefundBeforeFees": "Ücretler öncesi azami iade", "taxCalc.maximumBeforeFeesRate": "Ücretler öncesi en fazla %{rate}", "taxCalc.estimatedNetRefund": "Tahmini net Tax Free iadesi", "taxCalc.bestCaseCostBeforeFees": "Ücretlerden önce olası en düşük maliyet", "taxCalc.convertedMaximum": "Para biriminde ücretler öncesi azami iade", "taxCalc.convertedBestCaseCost": "Para biriminde ücretler öncesi olası en düşük maliyet", "taxCalc.pointOfSaleExemption": "Uygun alışverişlerde kasada vergi muafiyeti", "taxCalc.estimatedTaxSaving": "Tahmini vergi tasarrufu", "taxCalc.costAfterExemption": "Muafiyet sonrası tahmini maliyet", "taxCalc.officialRefundTable": "Resmî iade tablosuna göre", "taxCalc.officialFormulaSummary": "Resmî iade formülüne göre", "taxCalc.oneTagAssumption": "1 Tax Free etiketi varsayılmıştır", "taxCalc.standardRateProductAssumption": "Standart oranlı ürün varsayılmıştır", "taxCalc.upperBoundDisclaimer": "Gerçek iade mağaza, sağlayıcı, ödeme yöntemi, ürün vergi sınıfı ve işlem ücretlerine göre daha düşük olabilir.", "taxCalc.noSourcedNetRate": "Bu ülke için kaynaklı net iade oranı bulunmuyor" },
+  es: { "taxCalc.maximumRefundBeforeFees": "Reembolso máximo antes de comisiones", "taxCalc.maximumBeforeFeesRate": "Como máximo %{rate} antes de comisiones", "taxCalc.estimatedNetRefund": "Reembolso Tax Free neto estimado", "taxCalc.bestCaseCostBeforeFees": "Coste mínimo posible antes de comisiones", "taxCalc.convertedMaximum": "Máximo antes de comisiones en la moneda elegida", "taxCalc.convertedBestCaseCost": "Coste mínimo antes de comisiones en la moneda elegida", "taxCalc.pointOfSaleExemption": "Exención fiscal en caja para compras elegibles", "taxCalc.estimatedTaxSaving": "Ahorro fiscal estimado", "taxCalc.costAfterExemption": "Coste estimado tras la exención", "taxCalc.officialRefundTable": "Según la tabla oficial de reembolso", "taxCalc.officialFormulaSummary": "Según la fórmula oficial de reembolso", "taxCalc.oneTagAssumption": "Se supone 1 etiqueta Tax Free", "taxCalc.standardRateProductAssumption": "Se supone un producto con tipo estándar", "taxCalc.upperBoundDisclaimer": "El reembolso real puede ser menor según la tienda, proveedor, método de pago, clase fiscal del producto y comisiones.", "taxCalc.noSourcedNetRate": "No hay una tasa neta documentada para este país" },
+  fr: { "taxCalc.maximumRefundBeforeFees": "Remboursement maximal avant frais", "taxCalc.maximumBeforeFeesRate": "Au maximum %{rate} avant frais", "taxCalc.estimatedNetRefund": "Remboursement Tax Free net estimé", "taxCalc.bestCaseCostBeforeFees": "Coût minimal possible avant frais", "taxCalc.convertedMaximum": "Maximum avant frais dans la devise choisie", "taxCalc.convertedBestCaseCost": "Coût minimal avant frais dans la devise choisie", "taxCalc.pointOfSaleExemption": "Exonération à la caisse pour les achats éligibles", "taxCalc.estimatedTaxSaving": "Économie de taxe estimée", "taxCalc.costAfterExemption": "Coût estimé après exonération", "taxCalc.officialRefundTable": "Selon le barème officiel", "taxCalc.officialFormulaSummary": "Selon la formule officielle", "taxCalc.oneTagAssumption": "1 étiquette Tax Free est supposée", "taxCalc.standardRateProductAssumption": "Produit au taux normal supposé", "taxCalc.upperBoundDisclaimer": "Le remboursement réel peut être inférieur selon le magasin, l’opérateur, le paiement, la classe fiscale et les frais.", "taxCalc.noSourcedNetRate": "Aucun taux net sourcé n’est disponible pour ce pays" },
+  de: { "taxCalc.maximumRefundBeforeFees": "Maximale Erstattung vor Gebühren", "taxCalc.maximumBeforeFeesRate": "Höchstens %{rate} vor Gebühren", "taxCalc.estimatedNetRefund": "Geschätzte Netto-Tax-Free-Erstattung", "taxCalc.bestCaseCostBeforeFees": "Niedrigste mögliche Kosten vor Gebühren", "taxCalc.convertedMaximum": "Maximum vor Gebühren in gewählter Währung", "taxCalc.convertedBestCaseCost": "Niedrigste Kosten vor Gebühren in gewählter Währung", "taxCalc.pointOfSaleExemption": "Steuerbefreiung an der Kasse für berechtigte Käufe", "taxCalc.estimatedTaxSaving": "Geschätzte Steuerersparnis", "taxCalc.costAfterExemption": "Geschätzte Kosten nach Befreiung", "taxCalc.officialRefundTable": "Gemäß offizieller Erstattungstabelle", "taxCalc.officialFormulaSummary": "Gemäß offizieller Erstattungsformel", "taxCalc.oneTagAssumption": "1 Tax-Free-Tag wird angenommen", "taxCalc.standardRateProductAssumption": "Produkt zum Standardsatz angenommen", "taxCalc.upperBoundDisclaimer": "Die tatsächliche Erstattung kann je nach Geschäft, Anbieter, Zahlung, Steuerklasse und Gebühren niedriger sein.", "taxCalc.noSourcedNetRate": "Für dieses Land ist kein belegter Nettoerstattungssatz verfügbar" },
+  ar: { "taxCalc.maximumRefundBeforeFees": "الحد الأقصى للاسترداد قبل الرسوم", "taxCalc.maximumBeforeFeesRate": "بحد أقصى %{rate} قبل الرسوم", "taxCalc.estimatedNetRefund": "صافي استرداد Tax Free التقديري", "taxCalc.bestCaseCostBeforeFees": "أقل تكلفة محتملة قبل الرسوم", "taxCalc.convertedMaximum": "الحد الأقصى قبل الرسوم بالعملة المختارة", "taxCalc.convertedBestCaseCost": "أقل تكلفة قبل الرسوم بالعملة المختارة", "taxCalc.pointOfSaleExemption": "إعفاء ضريبي عند الدفع للمشتريات المؤهلة", "taxCalc.estimatedTaxSaving": "التوفير الضريبي التقديري", "taxCalc.costAfterExemption": "التكلفة التقديرية بعد الإعفاء", "taxCalc.officialRefundTable": "وفق جدول الاسترداد الرسمي", "taxCalc.officialFormulaSummary": "وفق صيغة الاسترداد الرسمية", "taxCalc.oneTagAssumption": "يُفترض وجود ملصق Tax Free واحد", "taxCalc.standardRateProductAssumption": "يُفترض منتج بالمعدل القياسي", "taxCalc.upperBoundDisclaimer": "قد يكون الاسترداد الفعلي أقل حسب المتجر والمزود وطريقة الدفع وفئة الضريبة والرسوم.", "taxCalc.noSourcedNetRate": "لا يتوفر معدل استرداد صافٍ موثق لهذا البلد" },
+  ru: { "taxCalc.maximumRefundBeforeFees": "Максимальный возврат до комиссий", "taxCalc.maximumBeforeFeesRate": "Не более %{rate} до комиссий", "taxCalc.estimatedNetRefund": "Расчётный чистый возврат Tax Free", "taxCalc.bestCaseCostBeforeFees": "Минимальная возможная стоимость до комиссий", "taxCalc.convertedMaximum": "Максимум до комиссий в выбранной валюте", "taxCalc.convertedBestCaseCost": "Минимальная стоимость до комиссий в выбранной валюте", "taxCalc.pointOfSaleExemption": "Освобождение от налога на кассе для подходящих покупок", "taxCalc.estimatedTaxSaving": "Расчётная экономия налога", "taxCalc.costAfterExemption": "Расчётная стоимость после освобождения", "taxCalc.officialRefundTable": "По официальной таблице возврата", "taxCalc.officialFormulaSummary": "По официальной формуле возврата", "taxCalc.oneTagAssumption": "Предполагается 1 тег Tax Free", "taxCalc.standardRateProductAssumption": "Предполагается товар по стандартной ставке", "taxCalc.upperBoundDisclaimer": "Фактический возврат может быть ниже в зависимости от магазина, оператора, оплаты, налогового класса и комиссий.", "taxCalc.noSourcedNetRate": "Для этой страны нет подтверждённой ставки чистого возврата" },
+  zh: { "taxCalc.maximumRefundBeforeFees": "费用前最高退税额", "taxCalc.maximumBeforeFeesRate": "费用前最高 %{rate}", "taxCalc.estimatedNetRefund": "预计 Tax Free 净退税", "taxCalc.bestCaseCostBeforeFees": "费用前可能的最低成本", "taxCalc.convertedMaximum": "所选货币的费用前最高额", "taxCalc.convertedBestCaseCost": "所选货币的费用前最低成本", "taxCalc.pointOfSaleExemption": "符合条件的购物可在结账时免税", "taxCalc.estimatedTaxSaving": "预计节税额", "taxCalc.costAfterExemption": "免税后预计成本", "taxCalc.officialRefundTable": "根据官方退税表", "taxCalc.officialFormulaSummary": "根据官方退税公式", "taxCalc.oneTagAssumption": "假设使用 1 个 Tax Free 标签", "taxCalc.standardRateProductAssumption": "假设为标准税率商品", "taxCalc.upperBoundDisclaimer": "实际退税可能因商店、服务商、支付方式、商品税类和手续费而更低。", "taxCalc.noSourcedNetRate": "该国家没有可靠来源的净退税率" }
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], countryTaxFreeEstimateTranslations[locale]);
+
+const taxFreeSemanticFollowupTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "taxCalc.convertedTaxSaving": "Estimated tax saving in selected currency", "taxCalc.convertedCostAfterExemption": "Estimated cost after exemption in selected currency", "taxCalc.taxFreeNotAppliedNoNumeric": "No sourced numeric Tax Free estimate is available; the original price comparison is shown.", "priceCalc.maximumPossibleAdvantageBeforeFees": "Maximum possible advantage before fees", "priceCalc.countryPriceRaw": "Original price in {country}" },
+  tr: { "taxCalc.convertedTaxSaving": "Para biriminde tahmini vergi tasarrufu", "taxCalc.convertedCostAfterExemption": "Para biriminde muafiyet sonrası tahmini maliyet", "taxCalc.taxFreeNotAppliedNoNumeric": "Kaynaklı sayısal Tax Free tahmini bulunmadığı için ham fiyat karşılaştırması gösteriliyor.", "priceCalc.maximumPossibleAdvantageBeforeFees": "Ücretler öncesi azami olası avantaj", "priceCalc.countryPriceRaw": "{country} ham fiyatı" },
+  es: { "taxCalc.convertedTaxSaving": "Ahorro fiscal estimado en la moneda elegida", "taxCalc.convertedCostAfterExemption": "Coste tras la exención en la moneda elegida", "taxCalc.taxFreeNotAppliedNoNumeric": "No hay una estimación Tax Free numérica documentada; se muestra la comparación del precio original.", "priceCalc.maximumPossibleAdvantageBeforeFees": "Máxima ventaja posible antes de comisiones", "priceCalc.countryPriceRaw": "Precio original en {country}" },
+  fr: { "taxCalc.convertedTaxSaving": "Économie de taxe estimée dans la devise choisie", "taxCalc.convertedCostAfterExemption": "Coût après exonération dans la devise choisie", "taxCalc.taxFreeNotAppliedNoNumeric": "Aucune estimation Tax Free chiffrée et sourcée n’est disponible ; le prix initial est comparé.", "priceCalc.maximumPossibleAdvantageBeforeFees": "Avantage maximal possible avant frais", "priceCalc.countryPriceRaw": "Prix initial en {country}" },
+  de: { "taxCalc.convertedTaxSaving": "Geschätzte Steuerersparnis in gewählter Währung", "taxCalc.convertedCostAfterExemption": "Kosten nach Befreiung in gewählter Währung", "taxCalc.taxFreeNotAppliedNoNumeric": "Keine belegte numerische Tax-Free-Schätzung verfügbar; der Originalpreis wird verglichen.", "priceCalc.maximumPossibleAdvantageBeforeFees": "Maximal möglicher Vorteil vor Gebühren", "priceCalc.countryPriceRaw": "Originalpreis in {country}" },
+  ar: { "taxCalc.convertedTaxSaving": "التوفير الضريبي التقديري بالعملة المختارة", "taxCalc.convertedCostAfterExemption": "التكلفة بعد الإعفاء بالعملة المختارة", "taxCalc.taxFreeNotAppliedNoNumeric": "لا يتوفر تقدير رقمي موثق؛ تظهر مقارنة السعر الأصلي.", "priceCalc.maximumPossibleAdvantageBeforeFees": "أقصى ميزة محتملة قبل الرسوم", "priceCalc.countryPriceRaw": "السعر الأصلي في {country}" },
+  ru: { "taxCalc.convertedTaxSaving": "Расчётная экономия налога в выбранной валюте", "taxCalc.convertedCostAfterExemption": "Стоимость после освобождения в выбранной валюте", "taxCalc.taxFreeNotAppliedNoNumeric": "Подтверждённой числовой оценки Tax Free нет; показано сравнение исходной цены.", "priceCalc.maximumPossibleAdvantageBeforeFees": "Максимально возможная выгода до комиссий", "priceCalc.countryPriceRaw": "Исходная цена в {country}" },
+  zh: { "taxCalc.convertedTaxSaving": "所选货币的预计节税额", "taxCalc.convertedCostAfterExemption": "所选货币的免税后预计成本", "taxCalc.taxFreeNotAppliedNoNumeric": "没有可靠来源的数值估算；显示原价比较。", "priceCalc.maximumPossibleAdvantageBeforeFees": "费用前最大可能优势", "priceCalc.countryPriceRaw": "{country} 原价" }
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeSemanticFollowupTranslations[locale]);
+
+const taxFreeEligibilitySemanticsTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "taxCalc.pointOfSaleDisclaimer": "This amount is the estimated tax saving provided at checkout for eligible purchases; it is not a cash refund. Store participation and eligibility conditions apply.", "taxCalc.futureRegimeNoEstimate": "The previous checkout exemption has ended. No sourced numeric estimate is available for the new refund regime.", "taxCalc.taxFreeNotAppliedBelowMinimum": "Tax Free was not applied because the minimum purchase requirement is not met." },
+  tr: { "taxCalc.pointOfSaleDisclaimer": "Bu tutar uygun alışverişlerde kasada sağlanan tahmini vergi tasarrufudur; nakit iade değildir. Mağaza katılımı ve uygunluk koşulları geçerlidir.", "taxCalc.futureRegimeNoEstimate": "Önceki kasada muafiyet sistemi sona erdi. Yeni iade rejimi için kaynaklı sayısal tahmin bulunmuyor.", "taxCalc.taxFreeNotAppliedBelowMinimum": "Minimum harcama şartı karşılanmadığı için Tax Free uygulanmadı." },
+  es: { "taxCalc.pointOfSaleDisclaimer": "Este importe es el ahorro fiscal estimado aplicado en caja a compras elegibles; no es un reembolso en efectivo. Se aplican la participación de la tienda y los requisitos.", "taxCalc.futureRegimeNoEstimate": "La exención anterior en caja ha terminado. No hay una estimación numérica documentada para el nuevo régimen.", "taxCalc.taxFreeNotAppliedBelowMinimum": "No se aplicó Tax Free porque no se cumple la compra mínima." },
+  fr: { "taxCalc.pointOfSaleDisclaimer": "Ce montant est l’économie de taxe estimée accordée en caisse aux achats éligibles ; ce n’est pas un remboursement en espèces. La participation du magasin et les conditions s’appliquent.", "taxCalc.futureRegimeNoEstimate": "L’ancienne exonération en caisse a pris fin. Aucune estimation chiffrée et sourcée n’est disponible pour le nouveau régime.", "taxCalc.taxFreeNotAppliedBelowMinimum": "Tax Free n’a pas été appliqué car le minimum d’achat n’est pas atteint." },
+  de: { "taxCalc.pointOfSaleDisclaimer": "Dieser Betrag ist die geschätzte Steuerersparnis an der Kasse für berechtigte Käufe; keine Barauszahlung. Geschäftsteilnahme und Berechtigung gelten.", "taxCalc.futureRegimeNoEstimate": "Die bisherige Kassenbefreiung ist beendet. Für das neue System ist keine belegte numerische Schätzung verfügbar.", "taxCalc.taxFreeNotAppliedBelowMinimum": "Tax Free wurde nicht angewendet, da der Mindestkauf nicht erreicht ist." },
+  ar: { "taxCalc.pointOfSaleDisclaimer": "هذا المبلغ هو التوفير الضريبي التقديري عند الدفع للمشتريات المؤهلة، وليس استردادًا نقديًا. تنطبق مشاركة المتجر وشروط الأهلية.", "taxCalc.futureRegimeNoEstimate": "انتهى الإعفاء السابق عند الدفع. لا يتوفر تقدير رقمي موثق للنظام الجديد.", "taxCalc.taxFreeNotAppliedBelowMinimum": "لم يُطبق Tax Free لعدم استيفاء الحد الأدنى للشراء." },
+  ru: { "taxCalc.pointOfSaleDisclaimer": "Эта сумма — расчётная экономия налога на кассе для подходящих покупок, а не денежный возврат. Действуют участие магазина и условия права.", "taxCalc.futureRegimeNoEstimate": "Прежнее освобождение на кассе завершилось. Для нового режима нет подтверждённой числовой оценки.", "taxCalc.taxFreeNotAppliedBelowMinimum": "Tax Free не применён: минимальная сумма покупки не достигнута." },
+  zh: { "taxCalc.pointOfSaleDisclaimer": "此金额是符合条件的购物在结账时获得的预计节税额，并非现金退税。须符合商店参与和资格条件。", "taxCalc.futureRegimeNoEstimate": "原结账免税制度已结束。新制度暂无可靠来源的数值估算。", "taxCalc.taxFreeNotAppliedBelowMinimum": "因未达到最低消费要求，未应用 Tax Free。" }
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeEligibilitySemanticsTranslations[locale]);
+
+const taxFreeFutureStateTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "taxCalc.taxFreeResult": "Tax Free result", "taxCalc.purchaseCost": "Purchase cost", "taxGuide.taxFreeProcess": "Tax Free process" },
+  tr: { "taxCalc.taxFreeResult": "Tax Free sonucu", "taxCalc.purchaseCost": "Alışveriş maliyeti", "taxGuide.taxFreeProcess": "Tax Free süreci" },
+  es: { "taxCalc.taxFreeResult": "Resultado Tax Free", "taxCalc.purchaseCost": "Coste de compra", "taxGuide.taxFreeProcess": "Proceso Tax Free" },
+  fr: { "taxCalc.taxFreeResult": "Résultat Tax Free", "taxCalc.purchaseCost": "Coût d’achat", "taxGuide.taxFreeProcess": "Processus Tax Free" },
+  de: { "taxCalc.taxFreeResult": "Tax-Free-Ergebnis", "taxCalc.purchaseCost": "Kaufkosten", "taxGuide.taxFreeProcess": "Tax-Free-Ablauf" },
+  ar: { "taxCalc.taxFreeResult": "نتيجة Tax Free", "taxCalc.purchaseCost": "تكلفة الشراء", "taxGuide.taxFreeProcess": "عملية Tax Free" },
+  ru: { "taxCalc.taxFreeResult": "Результат Tax Free", "taxCalc.purchaseCost": "Стоимость покупки", "taxGuide.taxFreeProcess": "Процесс Tax Free" },
+  zh: { "taxCalc.taxFreeResult": "Tax Free 结果", "taxCalc.purchaseCost": "购物成本", "taxGuide.taxFreeProcess": "Tax Free 流程" }
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeFutureStateTranslations[locale]);
+
+const outletRetailCountTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "sharedCards.quickFacts.brands": "Brands", "sharedCards.quickFacts.boutiques": "Boutiques", "sharedCards.quickFacts.listedBrands": "Listed brands", "sharedCards.quickFacts.retailCount": "Retail count", "outlet.retailCount.notVerified": "Count not verified", "outlet.retailCount.qualifier.exact": "{count}", "outlet.retailCount.qualifier.plus": "{count}+", "outlet.retailCount.qualifier.more_than": "More than {count}", "outlet.retailCount.qualifier.almost": "Almost {count}", "outlet.retailCount.qualifier.about": "About {count}", "outlet.retailCount.qualifier.up_to": "Up to {count}" },
+  tr: { "sharedCards.quickFacts.brands": "Markalar", "sharedCards.quickFacts.boutiques": "Butikler", "sharedCards.quickFacts.listedBrands": "Listelenen markalar", "sharedCards.quickFacts.retailCount": "Perakende sayısı", "outlet.retailCount.notVerified": "Sayı doğrulanmadı", "outlet.retailCount.qualifier.exact": "{count}", "outlet.retailCount.qualifier.plus": "{count}+", "outlet.retailCount.qualifier.more_than": "{count}'D fazla", "outlet.retailCount.qualifier.almost": "Neredeyse {count}", "outlet.retailCount.qualifier.about": "Yaklaşık {count}", "outlet.retailCount.qualifier.up_to": "En fazla {count}" },
+  es: { "sharedCards.quickFacts.brands": "Marcas", "sharedCards.quickFacts.boutiques": "Boutiques", "sharedCards.quickFacts.listedBrands": "Marcas listadas", "sharedCards.quickFacts.retailCount": "Cantidad de comercios", "outlet.retailCount.notVerified": "Cantidad no verificada", "outlet.retailCount.qualifier.exact": "{count}", "outlet.retailCount.qualifier.plus": "{count}+", "outlet.retailCount.qualifier.more_than": "Más de {count}", "outlet.retailCount.qualifier.almost": "Casi {count}", "outlet.retailCount.qualifier.about": "Aproximadamente {count}", "outlet.retailCount.qualifier.up_to": "Hasta {count}" },
+  fr: { "sharedCards.quickFacts.brands": "Marques", "sharedCards.quickFacts.boutiques": "Boutiques", "sharedCards.quickFacts.listedBrands": "Marques répertoriées", "sharedCards.quickFacts.retailCount": "Nombre de commerces", "outlet.retailCount.notVerified": "Nombre non vérifié", "outlet.retailCount.qualifier.exact": "{count}", "outlet.retailCount.qualifier.plus": "{count}+", "outlet.retailCount.qualifier.more_than": "Plus de {count}", "outlet.retailCount.qualifier.almost": "Presque {count}", "outlet.retailCount.qualifier.about": "Environ {count}", "outlet.retailCount.qualifier.up_to": "Jusqu’à {count}" },
+  de: { "sharedCards.quickFacts.brands": "Marken", "sharedCards.quickFacts.boutiques": "Boutiquen", "sharedCards.quickFacts.listedBrands": "Gelistete Marken", "sharedCards.quickFacts.retailCount": "Anzahl Geschäfte", "outlet.retailCount.notVerified": "Anzahl nicht bestätigt", "outlet.retailCount.qualifier.exact": "{count}", "outlet.retailCount.qualifier.plus": "{count}+", "outlet.retailCount.qualifier.more_than": "Mehr als {count}", "outlet.retailCount.qualifier.almost": "Fast {count}", "outlet.retailCount.qualifier.about": "Etwa {count}", "outlet.retailCount.qualifier.up_to": "Bis zu {count}" },
+  ar: { "sharedCards.quickFacts.brands": "العلامات التجارية", "sharedCards.quickFacts.boutiques": "البوتيكات", "sharedCards.quickFacts.listedBrands": "العلامات المدرجة", "sharedCards.quickFacts.retailCount": "عدد منافذ البيع", "outlet.retailCount.notVerified": "لم يتم التحقق من العدد", "outlet.retailCount.qualifier.exact": "{count}", "outlet.retailCount.qualifier.plus": "+{count}", "outlet.retailCount.qualifier.more_than": "أكثر من {count}", "outlet.retailCount.qualifier.almost": "ما يقارب {count}", "outlet.retailCount.qualifier.about": "حوالي {count}", "outlet.retailCount.qualifier.up_to": "حتى {count}" },
+  ru: { "sharedCards.quickFacts.brands": "Бренды", "sharedCards.quickFacts.boutiques": "Бутики", "sharedCards.quickFacts.listedBrands": "Бренды в каталоге", "sharedCards.quickFacts.retailCount": "Количество торговых точек", "outlet.retailCount.notVerified": "Количество не подтверждено", "outlet.retailCount.qualifier.exact": "{count}", "outlet.retailCount.qualifier.plus": "{count}+", "outlet.retailCount.qualifier.more_than": "Более {count}", "outlet.retailCount.qualifier.almost": "Почти {count}", "outlet.retailCount.qualifier.about": "Около {count}", "outlet.retailCount.qualifier.up_to": "До {count}" },
+  zh: { "sharedCards.quickFacts.brands": "品牌", "sharedCards.quickFacts.boutiques": "精品店", "sharedCards.quickFacts.listedBrands": "已收录品牌", "sharedCards.quickFacts.retailCount": "零售数量", "outlet.retailCount.notVerified": "数量未核实", "outlet.retailCount.qualifier.exact": "{count}", "outlet.retailCount.qualifier.plus": "{count}+", "outlet.retailCount.qualifier.more_than": "超过 {count}", "outlet.retailCount.qualifier.almost": "接近 {count}", "outlet.retailCount.qualifier.about": "约 {count}", "outlet.retailCount.qualifier.up_to": "最多 {count}" },
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], outletRetailCountTranslations[locale]);
+
+const outletRetailCountCompactTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "outlet.retailCount.compact.stores": "{value} stores", "outlet.retailCount.compact.brands": "{value} brands", "outlet.retailCount.compact.boutiques": "{value} boutiques", "outlet.retailCount.compact.listedBrands": "{count} listed brands", "outlet.retailCount.compact.notVerified": "Retail count not verified" },
+  tr: { "outlet.retailCount.compact.stores": "{value} mağaza", "outlet.retailCount.compact.brands": "{value} marka", "outlet.retailCount.compact.boutiques": "{value} butik", "outlet.retailCount.compact.listedBrands": "{count} listelenen marka", "outlet.retailCount.compact.notVerified": "Perakende sayısı doğrulanmadı" },
+  es: { "outlet.retailCount.compact.stores": "{value} tiendas", "outlet.retailCount.compact.brands": "{value} marcas", "outlet.retailCount.compact.boutiques": "{value} boutiques", "outlet.retailCount.compact.listedBrands": "{count} marcas listadas", "outlet.retailCount.compact.notVerified": "Cantidad de comercios no verificada" },
+  fr: { "outlet.retailCount.compact.stores": "{value} magasins", "outlet.retailCount.compact.brands": "{value} marques", "outlet.retailCount.compact.boutiques": "{value} boutiques", "outlet.retailCount.compact.listedBrands": "{count} marques répertoriées", "outlet.retailCount.compact.notVerified": "Nombre de commerces non vérifié" },
+  de: { "outlet.retailCount.compact.stores": "{value} Geschäfte", "outlet.retailCount.compact.brands": "{value} Marken", "outlet.retailCount.compact.boutiques": "{value} Boutiquen", "outlet.retailCount.compact.listedBrands": "{count} gelistete Marken", "outlet.retailCount.compact.notVerified": "Anzahl der Geschäfte nicht bestätigt" },
+  ar: { "outlet.retailCount.compact.stores": "{value} متجرًا", "outlet.retailCount.compact.brands": "{value} علامة تجارية", "outlet.retailCount.compact.boutiques": "{value} بوتيكًا", "outlet.retailCount.compact.listedBrands": "{count} علامة تجارية مدرجة", "outlet.retailCount.compact.notVerified": "لم يتم التحقق من عدد منافذ البيع" },
+  ru: { "outlet.retailCount.compact.stores": "{value} магазинов", "outlet.retailCount.compact.brands": "{value} брендов", "outlet.retailCount.compact.boutiques": "{value} бутиков", "outlet.retailCount.compact.listedBrands": "{count} брендов в каталоге", "outlet.retailCount.compact.notVerified": "Количество торговых точек не подтверждено" },
+  zh: { "outlet.retailCount.compact.stores": "{value} 家店铺", "outlet.retailCount.compact.brands": "{value} 个品牌", "outlet.retailCount.compact.boutiques": "{value} 家精品店", "outlet.retailCount.compact.listedBrands": "已收录 {count} 个品牌", "outlet.retailCount.compact.notVerified": "零售数量尚未核实" },
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], outletRetailCountCompactTranslations[locale]);
+
+const taxFreePolicyDisplayTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
-    "taxCalc.maximumRefundBeforeFees": "Maximum refund before fees",
-    "taxCalc.maximumBeforeFeesRate": "At most %{rate} before fees",
-    "taxCalc.estimatedNetRefund": "Estimated net Tax Free refund",
-    "taxCalc.bestCaseCostBeforeFees": "Best-case cost before fees",
-    "taxCalc.convertedMaximum": "Maximum before fees in selected currency",
-    "taxCalc.convertedBestCaseCost":
-      "Best-case cost before fees in selected currency",
-    "taxCalc.pointOfSaleExemption":
-      "Tax exemption at checkout for eligible purchases",
-    "taxCalc.estimatedTaxSaving": "Estimated tax saving",
-    "taxCalc.costAfterExemption": "Estimated cost after exemption",
-    "taxCalc.officialRefundTable": "According to the official refund table",
-    "taxCalc.officialFormulaSummary":
-      "According to the official refund formula",
-    "taxCalc.oneTagAssumption": "1 Tax Free tag is assumed",
-    "taxCalc.standardRateProductAssumption": "Standard-rate product assumed",
-    "taxCalc.upperBoundDisclaimer":
-      "The actual refund may be lower depending on the store, provider, payment method, product tax class and processing fees.",
-    "taxCalc.noSourcedNetRate":
-      "No sourced net refund rate is available for this country",
+    "taxFree.estimatedMaximumRefundRate": "Estimated maximum Tax Free refund rate", "taxFree.estimatedMaximumRefundRateValue": "Estimated maximum Tax Free refund rate: %{rate}", "taxFree.estimatedMaximumRefundRateBeforeFees": "Estimated maximum Tax Free refund rate: %{rate} before fees", "taxFree.method": "Tax Free method", "taxCalc.schemeSourceLabel": "Tax Free scheme source", "taxCalc.vatRateSourceLabel": "Rate source", "taxCalc.minimumSourceLabel": "Minimum purchase source", "taxCalc.refundPolicySourceLabel": "Refund policy source", "taxFree.futureRegimeMinimumNotModeled": "Minimum for the new regime is not yet modeled", "taxFree.maximumRateBasisExplanation": "This estimated maximum rate is calculated from the theoretical tax component contained in the gross price. The actual Tax Free refund may be lower depending on the retailer, provider, payment method, product class and processing fees.",
+    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate", "taxFreeSource.europeanCommissionVatRefunds": "European Commission — VAT refunds", "taxFreeSource.frenchCustoms": "French Customs", "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA", "taxFreeSource.japanNationalTaxAgency": "Japan National Tax Agency", "taxFreeSource.japanTourismAgency": "Japan Tourism Agency", "taxFreeSource.japanTourismAgencyTransition": "Japan Tourism Agency — refund-system transition", "taxFreeSource.koreaTourismVisitKorea": "Korea Tourism Organization / VISITKOREA", "taxFreeSource.norwegianCustoms": "Norwegian Customs", "taxFreeSource.norwegianTaxAdministration": "Norwegian Tax Administration", "taxFreeSource.portugueseTaxCustoms": "Portuguese Tax and Customs Authority", "taxFreeSource.stateTaxationAdministration": "State Taxation Administration", "taxFreeSource.swissFederalTaxAdministration": "Swiss Federal Tax Administration", "taxFreeSource.thailandRevenueDepartment": "Thailand Revenue Department", "taxFreeSource.turkishRevenueAdministration": "Turkish Revenue Administration", "taxFreeSource.uaeGovernmentPortal": "UAE Government Portal"
   },
   tr: {
-    "taxCalc.maximumRefundBeforeFees": "Ücretler öncesi azami iade",
-    "taxCalc.maximumBeforeFeesRate": "Ücretler öncesi en fazla %{rate}",
-    "taxCalc.estimatedNetRefund": "Tahmini net Tax Free iadesi",
-    "taxCalc.bestCaseCostBeforeFees": "Ücretlerden önce olası en düşük maliyet",
-    "taxCalc.convertedMaximum": "Para biriminde ücretler öncesi azami iade",
-    "taxCalc.convertedBestCaseCost":
-      "Para biriminde ücretler öncesi olası en düşük maliyet",
-    "taxCalc.pointOfSaleExemption":
-      "Uygun alışverişlerde kasada vergi muafiyeti",
-    "taxCalc.estimatedTaxSaving": "Tahmini vergi tasarrufu",
-    "taxCalc.costAfterExemption": "Muafiyet sonrası tahmini maliyet",
-    "taxCalc.officialRefundTable": "Resmî iade tablosuna göre",
-    "taxCalc.officialFormulaSummary": "Resmî iade formülüne göre",
-    "taxCalc.oneTagAssumption": "1 Tax Free etiketi varsayılmıştır",
-    "taxCalc.standardRateProductAssumption":
-      "Standart oranlı ürün varsayılmıştır",
-    "taxCalc.upperBoundDisclaimer":
-      "Gerçek iade mağaza, sağlayıcı, ödeme yöntemi, ürün vergi sınıfı ve işlem ücretlerine göre daha düşük olabilir.",
-    "taxCalc.noSourcedNetRate":
-      "Bu ülke için kaynaklı net iade oranı bulunmuyor",
+    "taxFree.estimatedMaximumRefundRate": "Tahmini azami Tax Free iade oranı", "taxFree.estimatedMaximumRefundRateValue": "Tahmini azami Tax Free iade oranı: %{rate}", "taxFree.estimatedMaximumRefundRateBeforeFees": "Tahmini azami Tax Free iade oranı: %{rate} (ücretler öncesi)", "taxFree.method": "Tax Free yöntemi", "taxCalc.schemeSourceLabel": "Tax Free sistemi kaynağı", "taxCalc.vatRateSourceLabel": "Oran kaynağı", "taxCalc.minimumSourceLabel": "Minimum tutar kaynağı", "taxCalc.refundPolicySourceLabel": "İade politikası kaynağı", "taxFree.futureRegimeMinimumNotModeled": "Yeni sistem için minimum alışveriş tutarı henüz modellenmedi", "taxFree.maximumRateBasisExplanation": "Bu tahmini azami oran, brüt fiyatın içindeki teorik vergi üst sınırından hesaplanır. Gerçek Tax Free iadesi mağaza, sağlayıcı, ödeme yöntemi, ürün sınıfı ve işlem ücretlerine göre daha düşük olabilir.",
+    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate", "taxFreeSource.europeanCommissionVatRefunds": "Avrupa Komisyonu — KDV iadeleri", "taxFreeSource.frenchCustoms": "Fransa Gümrük İdaresi", "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA", "taxFreeSource.japanNationalTaxAgency": "Japonya Ulusal Vergi Ajansı", "taxFreeSource.japanTourismAgency": "Japonya Turizm Ajansı", "taxFreeSource.japanTourismAgencyTransition": "Japonya Turizm Ajansı — iade sistemi geçişi", "taxFreeSource.koreaTourismVisitKorea": "Kore Turizm Organizasyonu / VISITKOREA", "taxFreeSource.norwegianCustoms": "Norveç Gümrük İdaresi", "taxFreeSource.norwegianTaxAdministration": "Norveç Vergi İdaresi", "taxFreeSource.portugueseTaxCustoms": "Portekiz Vergi ve Gümrük İdaresi", "taxFreeSource.stateTaxationAdministration": "Çin Devlet Vergi İdaresi", "taxFreeSource.swissFederalTaxAdministration": "İsviçre Federal Vergi İdaresi", "taxFreeSource.thailandRevenueDepartment": "Tayland Gelir İdaresi", "taxFreeSource.turkishRevenueAdministration": "Gelir İdaresi Başkanlığı", "taxFreeSource.uaeGovernmentPortal": "BAE Hükümet Portalı"
   },
   es: {
-    "taxCalc.maximumRefundBeforeFees": "Reembolso máximo antes de comisiones",
-    "taxCalc.maximumBeforeFeesRate": "Como máximo %{rate} antes de comisiones",
-    "taxCalc.estimatedNetRefund": "Reembolso Tax Free neto estimado",
-    "taxCalc.bestCaseCostBeforeFees":
-      "Coste mínimo posible antes de comisiones",
-    "taxCalc.convertedMaximum":
-      "Máximo antes de comisiones en la moneda elegida",
-    "taxCalc.convertedBestCaseCost":
-      "Coste mínimo antes de comisiones en la moneda elegida",
-    "taxCalc.pointOfSaleExemption":
-      "Exención fiscal en caja para compras elegibles",
-    "taxCalc.estimatedTaxSaving": "Ahorro fiscal estimado",
-    "taxCalc.costAfterExemption": "Coste estimado tras la exención",
-    "taxCalc.officialRefundTable": "Según la tabla oficial de reembolso",
-    "taxCalc.officialFormulaSummary": "Según la fórmula oficial de reembolso",
-    "taxCalc.oneTagAssumption": "Se supone 1 etiqueta Tax Free",
-    "taxCalc.standardRateProductAssumption":
-      "Se supone un producto con tipo estándar",
-    "taxCalc.upperBoundDisclaimer":
-      "El reembolso real puede ser menor según la tienda, proveedor, método de pago, clase fiscal del producto y comisiones.",
-    "taxCalc.noSourcedNetRate":
-      "No hay una tasa neta documentada para este país",
+    "taxFree.estimatedMaximumRefundRate": "Tasa máxima estimada de reembolso Tax Free", "taxFree.estimatedMaximumRefundRateValue": "Tasa máxima estimada de reembolso Tax Free: %{rate}", "taxFree.estimatedMaximumRefundRateBeforeFees": "Tasa máxima estimada de reembolso Tax Free: %{rate} antes de comisiones", "taxFree.method": "Método Tax Free", "taxCalc.schemeSourceLabel": "Fuente del sistema Tax Free", "taxCalc.vatRateSourceLabel": "Fuente de la tasa", "taxCalc.minimumSourceLabel": "Fuente de compra mínima", "taxCalc.refundPolicySourceLabel": "Fuente de la política de reembolso", "taxFree.futureRegimeMinimumNotModeled": "El mínimo del nuevo sistema aún no está modelado", "taxFree.maximumRateBasisExplanation": "Esta tasa máxima estimada se calcula a partir del componente fiscal teórico incluido en el precio bruto. El reembolso Tax Free real puede ser inferior según el comercio, proveedor, método de pago, clase de producto y comisiones de tramitación.",
+    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate", "taxFreeSource.europeanCommissionVatRefunds": "Comisión Europea — devoluciones de IVA", "taxFreeSource.frenchCustoms": "Aduanas francesas", "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA", "taxFreeSource.japanNationalTaxAgency": "Agencia Tributaria Nacional de Japón", "taxFreeSource.japanTourismAgency": "Agencia de Turismo de Japón", "taxFreeSource.japanTourismAgencyTransition": "Agencia de Turismo de Japón — transición del sistema de reembolso", "taxFreeSource.koreaTourismVisitKorea": "Organización de Turismo de Corea / VISITKOREA", "taxFreeSource.norwegianCustoms": "Aduanas noruegas", "taxFreeSource.norwegianTaxAdministration": "Administración Tributaria de Noruega", "taxFreeSource.portugueseTaxCustoms": "Autoridad Tributaria y Aduanera portuguesa", "taxFreeSource.stateTaxationAdministration": "Administración Estatal de Impuestos de China", "taxFreeSource.swissFederalTaxAdministration": "Administración Federal de Impuestos de Suiza", "taxFreeSource.thailandRevenueDepartment": "Departamento de Ingresos de Tailandia", "taxFreeSource.turkishRevenueAdministration": "Administración Tributaria de Turquía", "taxFreeSource.uaeGovernmentPortal": "Portal del Gobierno de EAU"
   },
   fr: {
-    "taxCalc.maximumRefundBeforeFees": "Remboursement maximal avant frais",
-    "taxCalc.maximumBeforeFeesRate": "Au maximum %{rate} avant frais",
-    "taxCalc.estimatedNetRefund": "Remboursement Tax Free net estimé",
-    "taxCalc.bestCaseCostBeforeFees": "Coût minimal possible avant frais",
-    "taxCalc.convertedMaximum": "Maximum avant frais dans la devise choisie",
-    "taxCalc.convertedBestCaseCost":
-      "Coût minimal avant frais dans la devise choisie",
-    "taxCalc.pointOfSaleExemption":
-      "Exonération à la caisse pour les achats éligibles",
-    "taxCalc.estimatedTaxSaving": "Économie de taxe estimée",
-    "taxCalc.costAfterExemption": "Coût estimé après exonération",
-    "taxCalc.officialRefundTable": "Selon le barème officiel",
-    "taxCalc.officialFormulaSummary": "Selon la formule officielle",
-    "taxCalc.oneTagAssumption": "1 étiquette Tax Free est supposée",
-    "taxCalc.standardRateProductAssumption": "Produit au taux normal supposé",
-    "taxCalc.upperBoundDisclaimer":
-      "Le remboursement réel peut être inférieur selon le magasin, l’opérateur, le paiement, la classe fiscale et les frais.",
-    "taxCalc.noSourcedNetRate":
-      "Aucun taux net sourcé n’est disponible pour ce pays",
+    "taxFree.estimatedMaximumRefundRate": "Taux maximal estimé de remboursement Tax Free", "taxFree.estimatedMaximumRefundRateValue": "Taux maximal estimé de remboursement Tax Free : %{rate}", "taxFree.estimatedMaximumRefundRateBeforeFees": "Taux maximal estimé de remboursement Tax Free : %{rate} avant frais", "taxFree.method": "Méthode Tax Free", "taxCalc.schemeSourceLabel": "Source du système Tax Free", "taxCalc.vatRateSourceLabel": "Source du taux", "taxCalc.minimumSourceLabel": "Source du minimum d’achat", "taxCalc.refundPolicySourceLabel": "Source de la politique de remboursement", "taxFree.futureRegimeMinimumNotModeled": "Le minimum du nouveau système n’est pas encore modélisé", "taxFree.maximumRateBasisExplanation": "Ce taux maximal estimé est calculé à partir de la composante fiscale théorique incluse dans le prix brut. Le remboursement Tax Free réel peut être inférieur selon le commerçant, le prestataire, le moyen de paiement, la catégorie de produit et les frais de traitement.",
+    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate", "taxFreeSource.europeanCommissionVatRefunds": "Commission européenne — remboursements de TVA", "taxFreeSource.frenchCustoms": "Douane française", "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA", "taxFreeSource.japanNationalTaxAgency": "Agence nationale des impôts du Japon", "taxFreeSource.japanTourismAgency": "Agence japonaise du tourisme", "taxFreeSource.japanTourismAgencyTransition": "Agence japonaise du tourisme — transition du système de remboursement", "taxFreeSource.koreaTourismVisitKorea": "Office du tourisme de Corée / VISITKOREA", "taxFreeSource.norwegianCustoms": "Douanes norvégiennes", "taxFreeSource.norwegianTaxAdministration": "Administration fiscale norvégienne", "taxFreeSource.portugueseTaxCustoms": "Autorité fiscale et douanière portugaise", "taxFreeSource.stateTaxationAdministration": "Administration fiscale d’État de Chine", "taxFreeSource.swissFederalTaxAdministration": "Administration fédérale des contributions suisse", "taxFreeSource.thailandRevenueDepartment": "Administration fiscale thaïlandaise", "taxFreeSource.turkishRevenueAdministration": "Administration fiscale turque", "taxFreeSource.uaeGovernmentPortal": "Portail du gouvernement des EAU"
   },
   de: {
-    "taxCalc.maximumRefundBeforeFees": "Maximale Erstattung vor Gebühren",
-    "taxCalc.maximumBeforeFeesRate": "Höchstens %{rate} vor Gebühren",
-    "taxCalc.estimatedNetRefund": "Geschätzte Netto-Tax-Free-Erstattung",
-    "taxCalc.bestCaseCostBeforeFees": "Niedrigste mögliche Kosten vor Gebühren",
-    "taxCalc.convertedMaximum": "Maximum vor Gebühren in gewählter Währung",
-    "taxCalc.convertedBestCaseCost":
-      "Niedrigste Kosten vor Gebühren in gewählter Währung",
-    "taxCalc.pointOfSaleExemption":
-      "Steuerbefreiung an der Kasse für berechtigte Käufe",
-    "taxCalc.estimatedTaxSaving": "Geschätzte Steuerersparnis",
-    "taxCalc.costAfterExemption": "Geschätzte Kosten nach Befreiung",
-    "taxCalc.officialRefundTable": "Gemäß offizieller Erstattungstabelle",
-    "taxCalc.officialFormulaSummary": "Gemäß offizieller Erstattungsformel",
-    "taxCalc.oneTagAssumption": "1 Tax-Free-Tag wird angenommen",
-    "taxCalc.standardRateProductAssumption":
-      "Produkt zum Standardsatz angenommen",
-    "taxCalc.upperBoundDisclaimer":
-      "Die tatsächliche Erstattung kann je nach Geschäft, Anbieter, Zahlung, Steuerklasse und Gebühren niedriger sein.",
-    "taxCalc.noSourcedNetRate":
-      "Für dieses Land ist kein belegter Nettoerstattungssatz verfügbar",
+    "taxFree.estimatedMaximumRefundRate": "Geschätzter maximaler Tax-Free-Erstattungssatz", "taxFree.estimatedMaximumRefundRateValue": "Geschätzter maximaler Tax-Free-Erstattungssatz: %{rate}", "taxFree.estimatedMaximumRefundRateBeforeFees": "Geschätzter maximaler Tax-Free-Erstattungssatz: %{rate} vor Gebühren", "taxFree.method": "Tax-Free-Methode", "taxCalc.schemeSourceLabel": "Quelle des Tax-Free-Systems", "taxCalc.vatRateSourceLabel": "Quelle des Satzes", "taxCalc.minimumSourceLabel": "Quelle des Mindestkaufs", "taxCalc.refundPolicySourceLabel": "Quelle der Erstattungsrichtlinie", "taxFree.futureRegimeMinimumNotModeled": "Der Mindestkauf für das neue System ist noch nicht modelliert", "taxFree.maximumRateBasisExplanation": "Dieser geschätzte Höchstsatz wird aus dem theoretischen Steueranteil im Bruttopreis berechnet. Die tatsächliche Tax-Free-Erstattung kann je nach Händler, Anbieter, Zahlungsmethode, Produktklasse und Bearbeitungsgebühren niedriger ausfallen.",
+    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate", "taxFreeSource.europeanCommissionVatRefunds": "Europäische Kommission — MwSt.-Erstattungen", "taxFreeSource.frenchCustoms": "Französischer Zoll", "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA", "taxFreeSource.japanNationalTaxAgency": "Nationale Steuerbehörde Japans", "taxFreeSource.japanTourismAgency": "Japanische Tourismusbehörde", "taxFreeSource.japanTourismAgencyTransition": "Japanische Tourismusbehörde — Umstellung des Erstattungssystems", "taxFreeSource.koreaTourismVisitKorea": "Koreanische Tourismusorganisation / VISITKOREA", "taxFreeSource.norwegianCustoms": "Norwegischer Zoll", "taxFreeSource.norwegianTaxAdministration": "Norwegische Steuerverwaltung", "taxFreeSource.portugueseTaxCustoms": "Portugiesische Steuer- und Zollbehörde", "taxFreeSource.stateTaxationAdministration": "Staatliche Steuerverwaltung Chinas", "taxFreeSource.swissFederalTaxAdministration": "Eidgenössische Steuerverwaltung", "taxFreeSource.thailandRevenueDepartment": "Thailändische Steuerbehörde", "taxFreeSource.turkishRevenueAdministration": "Türkische Steuerverwaltung", "taxFreeSource.uaeGovernmentPortal": "Regierungsportal der VAE"
   },
   ar: {
-    "taxCalc.maximumRefundBeforeFees": "الحد الأقصى للاسترداد قبل الرسوم",
-    "taxCalc.maximumBeforeFeesRate": "بحد أقصى %{rate} قبل الرسوم",
-    "taxCalc.estimatedNetRefund": "صافي استرداد Tax Free التقديري",
-    "taxCalc.bestCaseCostBeforeFees": "أقل تكلفة محتملة قبل الرسوم",
-    "taxCalc.convertedMaximum": "الحد الأقصى قبل الرسوم بالعملة المختارة",
-    "taxCalc.convertedBestCaseCost": "أقل تكلفة قبل الرسوم بالعملة المختارة",
-    "taxCalc.pointOfSaleExemption": "إعفاء ضريبي عند الدفع للمشتريات المؤهلة",
-    "taxCalc.estimatedTaxSaving": "التوفير الضريبي التقديري",
-    "taxCalc.costAfterExemption": "التكلفة التقديرية بعد الإعفاء",
-    "taxCalc.officialRefundTable": "وفق جدول الاسترداد الرسمي",
-    "taxCalc.officialFormulaSummary": "وفق صيغة الاسترداد الرسمية",
-    "taxCalc.oneTagAssumption": "يُفترض وجود ملصق Tax Free واحد",
-    "taxCalc.standardRateProductAssumption": "يُفترض منتج بالمعدل القياسي",
-    "taxCalc.upperBoundDisclaimer":
-      "قد يكون الاسترداد الفعلي أقل حسب المتجر والمزود وطريقة الدفع وفئة الضريبة والرسوم.",
-    "taxCalc.noSourcedNetRate": "لا يتوفر معدل استرداد صافٍ موثق لهذا البلد",
+    "taxFree.estimatedMaximumRefundRate": "معدل استرداد Tax Free الأقصى التقديري", "taxFree.estimatedMaximumRefundRateValue": "معدل استرداد Tax Free الأقصى التقديري: %{rate}", "taxFree.estimatedMaximumRefundRateBeforeFees": "معدل استرداد Tax Free الأقصى التقديري: %{rate} قبل الرسوم", "taxFree.method": "طريقة Tax Free", "taxCalc.schemeSourceLabel": "مصدر نظام Tax Free", "taxCalc.vatRateSourceLabel": "مصدر المعدل", "taxCalc.minimumSourceLabel": "مصدر الحد الأدنى للشراء", "taxCalc.refundPolicySourceLabel": "مصدر سياسة الاسترداد", "taxFree.futureRegimeMinimumNotModeled": "لم تتم بعد نمذجة الحد الأدنى للشراء في النظام الجديد", "taxFree.maximumRateBasisExplanation": "يُحسب هذا المعدل الأقصى التقديري من المكوّن الضريبي النظري المتضمن في السعر الإجمالي. قد يكون استرداد Tax Free الفعلي أقل حسب المتجر والمزوّد وطريقة الدفع وفئة المنتج ورسوم المعالجة.",
+    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate", "taxFreeSource.europeanCommissionVatRefunds": "المفوضية الأوروبية — استرداد ضريبة القيمة المضافة", "taxFreeSource.frenchCustoms": "الجمارك الفرنسية", "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA", "taxFreeSource.japanNationalTaxAgency": "وكالة الضرائب الوطنية اليابانية", "taxFreeSource.japanTourismAgency": "وكالة السياحة اليابانية", "taxFreeSource.japanTourismAgencyTransition": "وكالة السياحة اليابانية — انتقال نظام الاسترداد", "taxFreeSource.koreaTourismVisitKorea": "منظمة السياحة الكورية / VISITKOREA", "taxFreeSource.norwegianCustoms": "الجمارك النرويجية", "taxFreeSource.norwegianTaxAdministration": "إدارة الضرائب النرويجية", "taxFreeSource.portugueseTaxCustoms": "هيئة الضرائب والجمارك البرتغالية", "taxFreeSource.stateTaxationAdministration": "إدارة الضرائب الحكومية الصينية", "taxFreeSource.swissFederalTaxAdministration": "إدارة الضرائب الفيدرالية السويسرية", "taxFreeSource.thailandRevenueDepartment": "إدارة الإيرادات التايلاندية", "taxFreeSource.turkishRevenueAdministration": "إدارة الإيرادات التركية", "taxFreeSource.uaeGovernmentPortal": "بوابة حكومة الإمارات"
   },
   ru: {
-    "taxCalc.maximumRefundBeforeFees": "Максимальный возврат до комиссий",
-    "taxCalc.maximumBeforeFeesRate": "Не более %{rate} до комиссий",
-    "taxCalc.estimatedNetRefund": "Расчётный чистый возврат Tax Free",
-    "taxCalc.bestCaseCostBeforeFees":
-      "Минимальная возможная стоимость до комиссий",
-    "taxCalc.convertedMaximum": "Максимум до комиссий в выбранной валюте",
-    "taxCalc.convertedBestCaseCost":
-      "Минимальная стоимость до комиссий в выбранной валюте",
-    "taxCalc.pointOfSaleExemption":
-      "Освобождение от налога на кассе для подходящих покупок",
-    "taxCalc.estimatedTaxSaving": "Расчётная экономия налога",
-    "taxCalc.costAfterExemption": "Расчётная стоимость после освобождения",
-    "taxCalc.officialRefundTable": "По официальной таблице возврата",
-    "taxCalc.officialFormulaSummary": "По официальной формуле возврата",
-    "taxCalc.oneTagAssumption": "Предполагается 1 тег Tax Free",
-    "taxCalc.standardRateProductAssumption":
-      "Предполагается товар по стандартной ставке",
-    "taxCalc.upperBoundDisclaimer":
-      "Фактический возврат может быть ниже в зависимости от магазина, оператора, оплаты, налогового класса и комиссий.",
-    "taxCalc.noSourcedNetRate":
-      "Для этой страны нет подтверждённой ставки чистого возврата",
+    "taxFree.estimatedMaximumRefundRate": "Расчётная максимальная ставка возврата Tax Free", "taxFree.estimatedMaximumRefundRateValue": "Расчётная максимальная ставка возврата Tax Free: %{rate}", "taxFree.estimatedMaximumRefundRateBeforeFees": "Расчётная максимальная ставка возврата Tax Free: %{rate} до комиссий", "taxFree.method": "Метод Tax Free", "taxCalc.schemeSourceLabel": "Источник системы Tax Free", "taxCalc.vatRateSourceLabel": "Источник ставки", "taxCalc.minimumSourceLabel": "Источник минимальной покупки", "taxCalc.refundPolicySourceLabel": "Источник политики возврата", "taxFree.futureRegimeMinimumNotModeled": "Минимальная покупка для новой системы пока не смоделирована", "taxFree.maximumRateBasisExplanation": "Эта расчётная максимальная ставка определяется по теоретической налоговой составляющей в цене брутто. Фактический возврат Tax Free может быть ниже в зависимости от магазина, провайдера, способа оплаты, категории товара и комиссий за обработку.",
+    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate", "taxFreeSource.europeanCommissionVatRefunds": "Европейская комиссия — возврат НДС", "taxFreeSource.frenchCustoms": "Таможенная служба Франции", "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA", "taxFreeSource.japanNationalTaxAgency": "Национальное налоговое агентство Японии", "taxFreeSource.japanTourismAgency": "Японское агентство по туризму", "taxFreeSource.japanTourismAgencyTransition": "Японское агентство по туризму — переход системы возврата", "taxFreeSource.koreaTourismVisitKorea": "Корейская туристическая организация / VISITKOREA", "taxFreeSource.norwegianCustoms": "Таможенная служба Норвегии", "taxFreeSource.norwegianTaxAdministration": "Налоговая администрация Норвегии", "taxFreeSource.portugueseTaxCustoms": "Налоговая и таможенная служба Португалии", "taxFreeSource.stateTaxationAdministration": "Государственная налоговая администрация Китая", "taxFreeSource.swissFederalTaxAdministration": "Федеральная налоговая администрация Швейцарии", "taxFreeSource.thailandRevenueDepartment": "Налоговая служба Таиланда", "taxFreeSource.turkishRevenueAdministration": "Налоговая администрация Турции", "taxFreeSource.uaeGovernmentPortal": "Правительственный портал ОАЭ"
   },
   zh: {
-    "taxCalc.maximumRefundBeforeFees": "费用前最高退税额",
-    "taxCalc.maximumBeforeFeesRate": "费用前最高 %{rate}",
-    "taxCalc.estimatedNetRefund": "预计 Tax Free 净退税",
-    "taxCalc.bestCaseCostBeforeFees": "费用前可能的最低成本",
-    "taxCalc.convertedMaximum": "所选货币的费用前最高额",
-    "taxCalc.convertedBestCaseCost": "所选货币的费用前最低成本",
-    "taxCalc.pointOfSaleExemption": "符合条件的购物可在结账时免税",
-    "taxCalc.estimatedTaxSaving": "预计节税额",
-    "taxCalc.costAfterExemption": "免税后预计成本",
-    "taxCalc.officialRefundTable": "根据官方退税表",
-    "taxCalc.officialFormulaSummary": "根据官方退税公式",
-    "taxCalc.oneTagAssumption": "假设使用 1 个 Tax Free 标签",
-    "taxCalc.standardRateProductAssumption": "假设为标准税率商品",
-    "taxCalc.upperBoundDisclaimer":
-      "实际退税可能因商店、服务商、支付方式、商品税类和手续费而更低。",
-    "taxCalc.noSourcedNetRate": "该国家没有可靠来源的净退税率",
-  },
+    "taxFree.estimatedMaximumRefundRate": "预计最高 Tax Free 退税率", "taxFree.estimatedMaximumRefundRateValue": "预计最高 Tax Free 退税率：%{rate}", "taxFree.estimatedMaximumRefundRateBeforeFees": "预计最高 Tax Free 退税率：%{rate}（费用前）", "taxFree.method": "Tax Free 方式", "taxCalc.schemeSourceLabel": "Tax Free 制度来源", "taxCalc.vatRateSourceLabel": "税率来源", "taxCalc.minimumSourceLabel": "最低购买额来源", "taxCalc.refundPolicySourceLabel": "退税政策来源", "taxFree.futureRegimeMinimumNotModeled": "新制度的最低购买额尚未建模", "taxFree.maximumRateBasisExplanation": "此预计最高比率根据含税总价中的理论税额计算。实际 Tax Free 退税可能因零售商、服务商、付款方式、商品类别和处理费用而更低。",
+    "taxFreeSource.agenziaDelleEntrate": "意大利税务局（Agenzia delle Entrate）", "taxFreeSource.europeanCommissionVatRefunds": "欧盟委员会 — 增值税退税", "taxFreeSource.frenchCustoms": "法国海关", "taxFreeSource.investKoreaKotra": "韩国投资促进局 / KOTRA", "taxFreeSource.japanNationalTaxAgency": "日本国税厅", "taxFreeSource.japanTourismAgency": "日本观光厅", "taxFreeSource.japanTourismAgencyTransition": "日本观光厅 — 退税制度过渡", "taxFreeSource.koreaTourismVisitKorea": "韩国旅游发展局 / VISITKOREA", "taxFreeSource.norwegianCustoms": "挪威海关", "taxFreeSource.norwegianTaxAdministration": "挪威税务局", "taxFreeSource.portugueseTaxCustoms": "葡萄牙税务与海关局", "taxFreeSource.stateTaxationAdministration": "中国国家税务总局", "taxFreeSource.swissFederalTaxAdministration": "瑞士联邦税务局", "taxFreeSource.thailandRevenueDepartment": "泰国税务局", "taxFreeSource.turkishRevenueAdministration": "土耳其税务局", "taxFreeSource.uaeGovernmentPortal": "阿联酋政府门户"
+  }
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(
-    translations[locale],
-    countryTaxFreeEstimateTranslations[locale],
-  );
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreePolicyDisplayTranslations[locale]);
 
-const taxFreeSemanticFollowupTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const simplifiedTaxFreeResultCopyTranslations: Record<TranslationLanguage, Record<string, string>> = {
+  en: { "taxCalc.maximumRefundBeforeFees": "Estimated Tax Free refund", "taxCalc.convertedMaximum": "Estimated Tax Free refund", "taxCalc.estimatedNetRefund": "Estimated Tax Free refund", "taxCalc.convertedRefund": "Estimated Tax Free refund", "taxCalc.bestCaseCostBeforeFees": "Estimated price after Tax Free", "taxCalc.convertedBestCaseCost": "Estimated price after Tax Free", "taxCalc.estimatedCostAfterRefund": "Estimated price after Tax Free", "taxCalc.convertedCostAfterRefund": "Estimated price after Tax Free", "priceCalc.maximumPossibleAdvantageBeforeFees": "Estimated price advantage", "taxCalc.upperBoundDisclaimer": "This amount is the highest possible estimate. The actual refund may be lower depending on the store, refund provider, and processing fees." },
+  tr: { "taxCalc.maximumRefundBeforeFees": "Tahmini Tax Free iadesi", "taxCalc.convertedMaximum": "Tahmini Tax Free iadesi", "taxCalc.estimatedNetRefund": "Tahmini Tax Free iadesi", "taxCalc.convertedRefund": "Tahmini Tax Free iadesi", "taxCalc.bestCaseCostBeforeFees": "Tax Free sonrası tahmini fiyat", "taxCalc.convertedBestCaseCost": "Tax Free sonrası tahmini fiyat", "taxCalc.estimatedCostAfterRefund": "Tax Free sonrası tahmini fiyat", "taxCalc.convertedCostAfterRefund": "Tax Free sonrası tahmini fiyat", "priceCalc.maximumPossibleAdvantageBeforeFees": "Tahmini fiyat avantajı", "taxCalc.upperBoundDisclaimer": "Bu tutar üst sınır tahminidir. Gerçek iade mağazaya, iade sağlayıcısına ve işlem ücretlerine göre daha düşük olabilir." },
+  es: { "taxCalc.maximumRefundBeforeFees": "Reembolso Tax Free estimado", "taxCalc.convertedMaximum": "Reembolso Tax Free estimado", "taxCalc.estimatedNetRefund": "Reembolso Tax Free estimado", "taxCalc.convertedRefund": "Reembolso Tax Free estimado", "taxCalc.bestCaseCostBeforeFees": "Precio estimado después del reembolso Tax Free", "taxCalc.convertedBestCaseCost": "Precio estimado después del reembolso Tax Free", "taxCalc.estimatedCostAfterRefund": "Precio estimado después del reembolso Tax Free", "taxCalc.convertedCostAfterRefund": "Precio estimado después del reembolso Tax Free", "priceCalc.maximumPossibleAdvantageBeforeFees": "Ventaja de precio estimada", "taxCalc.upperBoundDisclaimer": "Este importe es la estimación máxima posible. El reembolso real puede ser menor según la tienda, el proveedor de reembolso y las comisiones de tramitación." },
+  fr: { "taxCalc.maximumRefundBeforeFees": "Remboursement Tax Free estimé", "taxCalc.convertedMaximum": "Remboursement Tax Free estimé", "taxCalc.estimatedNetRefund": "Remboursement Tax Free estimé", "taxCalc.convertedRefund": "Remboursement Tax Free estimé", "taxCalc.bestCaseCostBeforeFees": "Prix estimé après remboursement Tax Free", "taxCalc.convertedBestCaseCost": "Prix estimé après remboursement Tax Free", "taxCalc.estimatedCostAfterRefund": "Prix estimé après remboursement Tax Free", "taxCalc.convertedCostAfterRefund": "Prix estimé après remboursement Tax Free", "priceCalc.maximumPossibleAdvantageBeforeFees": "Avantage de prix estimé", "taxCalc.upperBoundDisclaimer": "Ce montant correspond à l’estimation maximale possible. Le remboursement réel peut être inférieur selon le magasin, le prestataire de remboursement et les frais de traitement." },
+  de: { "taxCalc.maximumRefundBeforeFees": "Geschätzte Tax-Free-Erstattung", "taxCalc.convertedMaximum": "Geschätzte Tax-Free-Erstattung", "taxCalc.estimatedNetRefund": "Geschätzte Tax-Free-Erstattung", "taxCalc.convertedRefund": "Geschätzte Tax-Free-Erstattung", "taxCalc.bestCaseCostBeforeFees": "Geschätzter Preis nach Tax-Free-Erstattung", "taxCalc.convertedBestCaseCost": "Geschätzter Preis nach Tax-Free-Erstattung", "taxCalc.estimatedCostAfterRefund": "Geschätzter Preis nach Tax-Free-Erstattung", "taxCalc.convertedCostAfterRefund": "Geschätzter Preis nach Tax-Free-Erstattung", "priceCalc.maximumPossibleAdvantageBeforeFees": "Geschätzter Preisvorteil", "taxCalc.upperBoundDisclaimer": "Dieser Betrag ist die höchstmögliche Schätzung. Die tatsächliche Erstattung kann je nach Geschäft, Erstattungsanbieter und Bearbeitungsgebühren niedriger ausfallen." },
+  ar: { "taxCalc.maximumRefundBeforeFees": "استرداد Tax Free التقديري", "taxCalc.convertedMaximum": "استرداد Tax Free التقديري", "taxCalc.estimatedNetRefund": "استرداد Tax Free التقديري", "taxCalc.convertedRefund": "استرداد Tax Free التقديري", "taxCalc.bestCaseCostBeforeFees": "السعر التقديري بعد استرداد Tax Free", "taxCalc.convertedBestCaseCost": "السعر التقديري بعد استرداد Tax Free", "taxCalc.estimatedCostAfterRefund": "السعر التقديري بعد استرداد Tax Free", "taxCalc.convertedCostAfterRefund": "السعر التقديري بعد استرداد Tax Free", "priceCalc.maximumPossibleAdvantageBeforeFees": "ميزة السعر التقديرية", "taxCalc.upperBoundDisclaimer": "هذا المبلغ هو أعلى تقدير ممكن. قد يكون الاسترداد الفعلي أقل حسب المتجر ومزوّد الاسترداد ورسوم المعالجة." },
+  ru: { "taxCalc.maximumRefundBeforeFees": "Расчётный возврат Tax Free", "taxCalc.convertedMaximum": "Расчётный возврат Tax Free", "taxCalc.estimatedNetRefund": "Расчётный возврат Tax Free", "taxCalc.convertedRefund": "Расчётный возврат Tax Free", "taxCalc.bestCaseCostBeforeFees": "Расчётная цена после возврата Tax Free", "taxCalc.convertedBestCaseCost": "Расчётная цена после возврата Tax Free", "taxCalc.estimatedCostAfterRefund": "Расчётная цена после возврата Tax Free", "taxCalc.convertedCostAfterRefund": "Расчётная цена после возврата Tax Free", "priceCalc.maximumPossibleAdvantageBeforeFees": "Расчётная выгода в цене", "taxCalc.upperBoundDisclaimer": "Это максимально возможная оценка. Фактический возврат может быть ниже в зависимости от магазина, оператора возврата и комиссии за обработку." },
+  zh: { "taxCalc.maximumRefundBeforeFees": "预计 Tax Free 退税额", "taxCalc.convertedMaximum": "预计 Tax Free 退税额", "taxCalc.estimatedNetRefund": "预计 Tax Free 退税额", "taxCalc.convertedRefund": "预计 Tax Free 退税额", "taxCalc.bestCaseCostBeforeFees": "Tax Free 退税后预计价格", "taxCalc.convertedBestCaseCost": "Tax Free 退税后预计价格", "taxCalc.estimatedCostAfterRefund": "Tax Free 退税后预计价格", "taxCalc.convertedCostAfterRefund": "Tax Free 退税后预计价格", "priceCalc.maximumPossibleAdvantageBeforeFees": "预计价格优势", "taxCalc.upperBoundDisclaimer": "该金额为最高估算值。实际退税额可能因商店、退税服务商和手续费而更低。" },
+};
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], simplifiedTaxFreeResultCopyTranslations[locale]);
+
+const flightSearchTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
-    "taxCalc.convertedTaxSaving": "Estimated tax saving in selected currency",
-    "taxCalc.convertedCostAfterExemption":
-      "Estimated cost after exemption in selected currency",
-    "taxCalc.taxFreeNotAppliedNoNumeric":
-      "No sourced numeric Tax Free estimate is available; the original price comparison is shown.",
-    "priceCalc.maximumPossibleAdvantageBeforeFees":
-      "Maximum possible advantage before fees",
-    "priceCalc.countryPriceRaw": "Original price in {country}",
+    "nav.flightSearch": "Flight Search", "flightSearch.kicker": "Plan your journey", "flightSearch.title": "Find flights", "flightSearch.subtitle": "Search flights and view current prices on Aviasales.", "flightSearch.tripType": "Trip type", "flightSearch.roundTrip": "Round trip", "flightSearch.oneWay": "One way", "flightSearch.origin": "Origin", "flightSearch.destination": "Destination", "flightSearch.selectOrigin": "Select origin airport", "flightSearch.selectDestination": "Select destination airport", "flightSearch.departDate": "Departure date", "flightSearch.returnDate": "Return date", "flightSearch.selectDate": "Select date", "flightSearch.passengers": "Passengers", "flightSearch.adults": "Adults", "flightSearch.children": "Children", "flightSearch.infants": "Infants", "flightSearch.cabinClass": "Cabin class", "flightSearch.economy": "Economy", "flightSearch.business": "Business", "flightSearch.searchButton": "Search on Aviasales", "flightSearch.openingProvider": "Opening Aviasales…", "flightSearch.airportSearch": "Search city, country, airport or IATA code", "flightSearch.filterPopular": "Popular", "flightSearch.filterTurkey": "Turkey", "flightSearch.filterEurope": "Europe", "flightSearch.filterMiddleEast": "Middle East", "flightSearch.filterAsia": "Asia", "flightSearch.filterAmericas": "Americas", "flightSearch.noAirportResults": "No airports found.", "flightSearch.close": "Cancel", "flightSearch.validationTitle": "Check your search", "flightSearch.originRequired": "Select an origin airport.", "flightSearch.destinationRequired": "Select a destination airport.", "flightSearch.sameAirportError": "Origin and destination must be different.", "flightSearch.departDateRequired": "Enter a valid departure date.", "flightSearch.returnDateRequired": "Enter a valid return date.", "flightSearch.pastDateError": "Departure date cannot be earlier than today.", "flightSearch.returnBeforeDeparture": "Return date cannot be earlier than departure date.", "flightSearch.passengerError": "Check the passenger counts and try again.", "flightSearch.openFailedTitle": "Could not open Aviasales", "flightSearch.openFailedBody": "Please check your connection and try again.", "flightSearch.providerTitle": "About your flight search", "flightSearch.providerDisclosure": "Search results, prices and availability are provided by Aviasales. Booking is completed on a third-party provider website.", "flightSearch.affiliateDisclosure": "Some links are affiliate links. We may earn revenue from eligible bookings made through them; the price you pay does not change.", "flightSearch.priceNotice": "Prices and availability may change before booking."
   },
   tr: {
-    "taxCalc.convertedTaxSaving": "Para biriminde tahmini vergi tasarrufu",
-    "taxCalc.convertedCostAfterExemption":
-      "Para biriminde muafiyet sonrası tahmini maliyet",
-    "taxCalc.taxFreeNotAppliedNoNumeric":
-      "Kaynaklı sayısal Tax Free tahmini bulunmadığı için ham fiyat karşılaştırması gösteriliyor.",
-    "priceCalc.maximumPossibleAdvantageBeforeFees":
-      "Ücretler öncesi azami olası avantaj",
-    "priceCalc.countryPriceRaw": "{country} ham fiyatı",
+    "nav.flightSearch": "Uçuş Ara", "flightSearch.kicker": "Yolculuğunu planla", "flightSearch.title": "Uçuş Ara", "flightSearch.subtitle": "Uçuşları ara ve güncel fiyatları Aviasales’ta görüntüle.", "flightSearch.tripType": "Seyahat türü", "flightSearch.roundTrip": "Gidiş-dönüş", "flightSearch.oneWay": "Tek yön", "flightSearch.origin": "Kalkış", "flightSearch.destination": "Varış", "flightSearch.selectOrigin": "Kalkış havalimanını seç", "flightSearch.selectDestination": "Varış havalimanını seç", "flightSearch.departDate": "Gidiş tarihi", "flightSearch.returnDate": "Dönüş tarihi", "flightSearch.selectDate": "Tarihi seç", "flightSearch.passengers": "Yolcular", "flightSearch.adults": "Yetişkin", "flightSearch.children": "Çocuk", "flightSearch.infants": "Bebek", "flightSearch.cabinClass": "Kabin sınıfı", "flightSearch.economy": "Ekonomi", "flightSearch.business": "Business", "flightSearch.searchButton": "Aviasales’ta Ara", "flightSearch.openingProvider": "Aviasales açılıyor…", "flightSearch.airportSearch": "Şehir, ülke, havalimanı veya IATA kodu ara", "flightSearch.filterPopular": "Popüler", "flightSearch.filterTurkey": "Türkiye", "flightSearch.filterEurope": "Avrupa", "flightSearch.filterMiddleEast": "Orta Doğu", "flightSearch.filterAsia": "Asya", "flightSearch.filterAmericas": "Amerika", "flightSearch.noAirportResults": "Havalimanı bulunamadı.", "flightSearch.close": "İptal", "flightSearch.validationTitle": "Aramanı kontrol et", "flightSearch.originRequired": "Kalkış havalimanını seç.", "flightSearch.destinationRequired": "Varış havalimanını seç.", "flightSearch.sameAirportError": "Kalkış ve varış havalimanları farklı olmalıdır.", "flightSearch.departDateRequired": "Geçerli bir gidiş tarihi gir.", "flightSearch.returnDateRequired": "Geçerli bir dönüş tarihi gir.", "flightSearch.pastDateError": "Gidiş tarihi bugünden önce olamaz.", "flightSearch.returnBeforeDeparture": "Dönüş tarihi gidiş tarihinden önce olamaz.", "flightSearch.passengerError": "Yolcu sayılarını kontrol edip tekrar dene.", "flightSearch.openFailedTitle": "Aviasales açılamadı", "flightSearch.openFailedBody": "Bağlantını kontrol edip tekrar dene.", "flightSearch.providerTitle": "Uçuş araman hakkında", "flightSearch.providerDisclosure": "Arama sonuçları, fiyatlar ve müsaitlik Aviasales tarafından sağlanır. Rezervasyon üçüncü taraf sağlayıcının internet sitesinde tamamlanır.", "flightSearch.affiliateDisclosure": "Bazı bağlantılar iş ortaklığı bağlantılarıdır. Bu bağlantılar üzerinden yapılan uygun rezervasyonlardan gelir elde edebiliriz; ödediğiniz fiyat değişmez.", "flightSearch.priceNotice": "Fiyatlar ve müsaitlik rezervasyon öncesinde değişebilir."
   },
   es: {
-    "taxCalc.convertedTaxSaving": "Ahorro fiscal estimado en la moneda elegida",
-    "taxCalc.convertedCostAfterExemption":
-      "Coste tras la exención en la moneda elegida",
-    "taxCalc.taxFreeNotAppliedNoNumeric":
-      "No hay una estimación Tax Free numérica documentada; se muestra la comparación del precio original.",
-    "priceCalc.maximumPossibleAdvantageBeforeFees":
-      "Máxima ventaja posible antes de comisiones",
-    "priceCalc.countryPriceRaw": "Precio original en {country}",
+    "nav.flightSearch": "Buscar vuelos", "flightSearch.kicker": "Planifica tu viaje", "flightSearch.title": "Buscar vuelos", "flightSearch.subtitle": "Busca vuelos y consulta los precios actuales en Aviasales.", "flightSearch.tripType": "Tipo de viaje", "flightSearch.roundTrip": "Ida y vuelta", "flightSearch.oneWay": "Solo ida", "flightSearch.origin": "Origen", "flightSearch.destination": "Destino", "flightSearch.selectOrigin": "Selecciona el aeropuerto de origen", "flightSearch.selectDestination": "Selecciona el aeropuerto de destino", "flightSearch.departDate": "Fecha de salida", "flightSearch.returnDate": "Fecha de regreso", "flightSearch.selectDate": "Seleccionar fecha", "flightSearch.passengers": "Pasajeros", "flightSearch.adults": "Adultos", "flightSearch.children": "Niños", "flightSearch.infants": "Bebés", "flightSearch.cabinClass": "Clase de cabina", "flightSearch.economy": "Turista", "flightSearch.business": "Business", "flightSearch.searchButton": "Buscar en Aviasales", "flightSearch.openingProvider": "Abriendo Aviasales…", "flightSearch.airportSearch": "Busca ciudad, país, aeropuerto o código IATA", "flightSearch.filterPopular": "Populares", "flightSearch.filterTurkey": "Turquía", "flightSearch.filterEurope": "Europa", "flightSearch.filterMiddleEast": "Oriente Medio", "flightSearch.filterAsia": "Asia", "flightSearch.filterAmericas": "América", "flightSearch.noAirportResults": "No se encontraron aeropuertos.", "flightSearch.close": "Cancelar", "flightSearch.validationTitle": "Revisa tu búsqueda", "flightSearch.originRequired": "Selecciona un aeropuerto de origen.", "flightSearch.destinationRequired": "Selecciona un aeropuerto de destino.", "flightSearch.sameAirportError": "El origen y el destino deben ser distintos.", "flightSearch.departDateRequired": "Introduce una fecha de salida válida.", "flightSearch.returnDateRequired": "Introduce una fecha de regreso válida.", "flightSearch.pastDateError": "La salida no puede ser anterior a hoy.", "flightSearch.returnBeforeDeparture": "El regreso no puede ser anterior a la salida.", "flightSearch.passengerError": "Revisa el número de pasajeros.", "flightSearch.openFailedTitle": "No se pudo abrir Aviasales", "flightSearch.openFailedBody": "Comprueba tu conexión e inténtalo de nuevo.", "flightSearch.providerTitle": "Acerca de tu búsqueda", "flightSearch.providerDisclosure": "Aviasales proporciona los resultados, precios y disponibilidad. La reserva se completa en el sitio web de un proveedor externo.", "flightSearch.affiliateDisclosure": "Algunos enlaces son enlaces de afiliación. Podemos obtener ingresos por las reservas elegibles realizadas a través de ellos; el precio que pagas no cambia.", "flightSearch.priceNotice": "Los precios y la disponibilidad pueden cambiar antes de reservar."
   },
   fr: {
-    "taxCalc.convertedTaxSaving":
-      "Économie de taxe estimée dans la devise choisie",
-    "taxCalc.convertedCostAfterExemption":
-      "Coût après exonération dans la devise choisie",
-    "taxCalc.taxFreeNotAppliedNoNumeric":
-      "Aucune estimation Tax Free chiffrée et sourcée n’est disponible ; le prix initial est comparé.",
-    "priceCalc.maximumPossibleAdvantageBeforeFees":
-      "Avantage maximal possible avant frais",
-    "priceCalc.countryPriceRaw": "Prix initial en {country}",
+    "nav.flightSearch": "Rechercher un vol", "flightSearch.kicker": "Planifiez votre voyage", "flightSearch.title": "Rechercher un vol", "flightSearch.subtitle": "Recherchez des vols et consultez les prix actuels sur Aviasales.", "flightSearch.tripType": "Type de voyage", "flightSearch.roundTrip": "Aller-retour", "flightSearch.oneWay": "Aller simple", "flightSearch.origin": "Départ", "flightSearch.destination": "Destination", "flightSearch.selectOrigin": "Choisir l’aéroport de départ", "flightSearch.selectDestination": "Choisir l’aéroport de destination", "flightSearch.departDate": "Date de départ", "flightSearch.returnDate": "Date de retour", "flightSearch.selectDate": "Choisir la date", "flightSearch.passengers": "Passagers", "flightSearch.adults": "Adultes", "flightSearch.children": "Enfants", "flightSearch.infants": "Bébés", "flightSearch.cabinClass": "Classe de voyage", "flightSearch.economy": "Économique", "flightSearch.business": "Affaires", "flightSearch.searchButton": "Rechercher sur Aviasales", "flightSearch.openingProvider": "Ouverture d’Aviasales…", "flightSearch.airportSearch": "Ville, pays, aéroport ou code IATA", "flightSearch.filterPopular": "Populaires", "flightSearch.filterTurkey": "Turquie", "flightSearch.filterEurope": "Europe", "flightSearch.filterMiddleEast": "Moyen-Orient", "flightSearch.filterAsia": "Asie", "flightSearch.filterAmericas": "Amériques", "flightSearch.noAirportResults": "Aucun aéroport trouvé.", "flightSearch.close": "Annuler", "flightSearch.validationTitle": "Vérifiez votre recherche", "flightSearch.originRequired": "Choisissez un aéroport de départ.", "flightSearch.destinationRequired": "Choisissez un aéroport de destination.", "flightSearch.sameAirportError": "Le départ et la destination doivent être différents.", "flightSearch.departDateRequired": "Saisissez une date de départ valide.", "flightSearch.returnDateRequired": "Saisissez une date de retour valide.", "flightSearch.pastDateError": "Le départ ne peut pas être antérieur à aujourd’hui.", "flightSearch.returnBeforeDeparture": "Le retour ne peut pas précéder le départ.", "flightSearch.passengerError": "Vérifiez le nombre de passagers.", "flightSearch.openFailedTitle": "Impossible d’ouvrir Aviasales", "flightSearch.openFailedBody": "Vérifiez votre connexion et réessayez.", "flightSearch.providerTitle": "À propos de votre recherche", "flightSearch.providerDisclosure": "Les résultats, les prix et les disponibilités sont fournis par Aviasales. La réservation s’effectue sur le site d’un prestataire tiers.", "flightSearch.affiliateDisclosure": "Certains liens sont des liens d’affiliation. Nous pouvons percevoir des revenus sur les réservations éligibles effectuées via ces liens ; le prix que vous payez ne change pas.", "flightSearch.priceNotice": "Les prix et les disponibilités peuvent changer avant la réservation."
   },
   de: {
-    "taxCalc.convertedTaxSaving":
-      "Geschätzte Steuerersparnis in gewählter Währung",
-    "taxCalc.convertedCostAfterExemption":
-      "Kosten nach Befreiung in gewählter Währung",
-    "taxCalc.taxFreeNotAppliedNoNumeric":
-      "Keine belegte numerische Tax-Free-Schätzung verfügbar; der Originalpreis wird verglichen.",
-    "priceCalc.maximumPossibleAdvantageBeforeFees":
-      "Maximal möglicher Vorteil vor Gebühren",
-    "priceCalc.countryPriceRaw": "Originalpreis in {country}",
+    "nav.flightSearch": "Flüge suchen", "flightSearch.kicker": "Reise planen", "flightSearch.title": "Flüge suchen", "flightSearch.subtitle": "Suchen Sie Flüge und sehen Sie aktuelle Preise bei Aviasales.", "flightSearch.tripType": "Reiseart", "flightSearch.roundTrip": "Hin und zurück", "flightSearch.oneWay": "Nur Hinflug", "flightSearch.origin": "Abflug", "flightSearch.destination": "Ziel", "flightSearch.selectOrigin": "Abflughafen wählen", "flightSearch.selectDestination": "Zielflughafen wählen", "flightSearch.departDate": "Abflugdatum", "flightSearch.returnDate": "Rückflugdatum", "flightSearch.selectDate": "Datum wählen", "flightSearch.passengers": "Passagiere", "flightSearch.adults": "Erwachsene", "flightSearch.children": "Kinder", "flightSearch.infants": "Kleinkinder", "flightSearch.cabinClass": "Reiseklasse", "flightSearch.economy": "Economy", "flightSearch.business": "Business", "flightSearch.searchButton": "Bei Aviasales suchen", "flightSearch.openingProvider": "Aviasales wird geöffnet…", "flightSearch.airportSearch": "Stadt, Land, Flughafen oder IATA-Code", "flightSearch.filterPopular": "Beliebt", "flightSearch.filterTurkey": "Türkei", "flightSearch.filterEurope": "Europa", "flightSearch.filterMiddleEast": "Naher Osten", "flightSearch.filterAsia": "Asien", "flightSearch.filterAmericas": "Amerika", "flightSearch.noAirportResults": "Keine Flughäfen gefunden.", "flightSearch.close": "Abbrechen", "flightSearch.validationTitle": "Suche prüfen", "flightSearch.originRequired": "Wählen Sie einen Abflughafen.", "flightSearch.destinationRequired": "Wählen Sie einen Zielflughafen.", "flightSearch.sameAirportError": "Abflug und Ziel müssen verschieden sein.", "flightSearch.departDateRequired": "Geben Sie ein gültiges Abflugdatum ein.", "flightSearch.returnDateRequired": "Geben Sie ein gültiges Rückflugdatum ein.", "flightSearch.pastDateError": "Das Abflugdatum darf nicht vor heute liegen.", "flightSearch.returnBeforeDeparture": "Der Rückflug darf nicht vor dem Abflug liegen.", "flightSearch.passengerError": "Prüfen Sie die Passagierzahlen.", "flightSearch.openFailedTitle": "Aviasales konnte nicht geöffnet werden", "flightSearch.openFailedBody": "Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.", "flightSearch.providerTitle": "Hinweise zur Flugsuche", "flightSearch.providerDisclosure": "Suchergebnisse, Preise und Verfügbarkeit werden von Aviasales bereitgestellt. Die Buchung erfolgt auf der Website eines Drittanbieters.", "flightSearch.affiliateDisclosure": "Einige Links sind Affiliate-Links. Für qualifizierte Buchungen über diese Links können wir Einnahmen erhalten; der von Ihnen gezahlte Preis ändert sich nicht.", "flightSearch.priceNotice": "Preise und Verfügbarkeit können sich vor der Buchung ändern."
   },
   ar: {
-    "taxCalc.convertedTaxSaving": "التوفير الضريبي التقديري بالعملة المختارة",
-    "taxCalc.convertedCostAfterExemption":
-      "التكلفة بعد الإعفاء بالعملة المختارة",
-    "taxCalc.taxFreeNotAppliedNoNumeric":
-      "لا يتوفر تقدير رقمي موثق؛ تظهر مقارنة السعر الأصلي.",
-    "priceCalc.maximumPossibleAdvantageBeforeFees":
-      "أقصى ميزة محتملة قبل الرسوم",
-    "priceCalc.countryPriceRaw": "السعر الأصلي في {country}",
+    "nav.flightSearch": "البحث عن رحلات", "flightSearch.kicker": "خطط لرحلتك", "flightSearch.title": "ابحث عن رحلات", "flightSearch.subtitle": "ابحث عن الرحلات واطّلع على الأسعار الحالية عبر Aviasales.", "flightSearch.tripType": "نوع الرحلة", "flightSearch.roundTrip": "ذهاب وعودة", "flightSearch.oneWay": "ذهاب فقط", "flightSearch.origin": "المغادرة", "flightSearch.destination": "الوجهة", "flightSearch.selectOrigin": "اختر مطار المغادرة", "flightSearch.selectDestination": "اختر مطار الوجهة", "flightSearch.departDate": "تاريخ المغادرة", "flightSearch.returnDate": "تاريخ العودة", "flightSearch.selectDate": "اختر التاريخ", "flightSearch.passengers": "المسافرون", "flightSearch.adults": "البالغون", "flightSearch.children": "الأطفال", "flightSearch.infants": "الرضّع", "flightSearch.cabinClass": "درجة السفر", "flightSearch.economy": "السياحية", "flightSearch.business": "رجال الأعمال", "flightSearch.searchButton": "البحث عبر Aviasales", "flightSearch.openingProvider": "جارٍ فتح Aviasales…", "flightSearch.airportSearch": "ابحث بالمدينة أو البلد أو المطار أو رمز IATA", "flightSearch.filterPopular": "شائعة", "flightSearch.filterTurkey": "تركيا", "flightSearch.filterEurope": "أوروبا", "flightSearch.filterMiddleEast": "الشرق الأوسط", "flightSearch.filterAsia": "آسيا", "flightSearch.filterAmericas": "الأمريكتان", "flightSearch.noAirportResults": "لم يتم العثور على مطارات.", "flightSearch.close": "إلغاء", "flightSearch.validationTitle": "تحقق من البحث", "flightSearch.originRequired": "اختر مطار المغادرة.", "flightSearch.destinationRequired": "اختر مطار الوجهة.", "flightSearch.sameAirportError": "يجب أن يختلف مطار المغادرة عن الوجهة.", "flightSearch.departDateRequired": "أدخل تاريخ مغادرة صالحًا.", "flightSearch.returnDateRequired": "أدخل تاريخ عودة صالحًا.", "flightSearch.pastDateError": "لا يمكن أن يسبق تاريخ المغادرة اليوم.", "flightSearch.returnBeforeDeparture": "لا يمكن أن يسبق تاريخ العودة المغادرة.", "flightSearch.passengerError": "تحقق من أعداد المسافرين.", "flightSearch.openFailedTitle": "تعذر فتح Aviasales", "flightSearch.openFailedBody": "تحقق من الاتصال وحاول مرة أخرى.", "flightSearch.providerTitle": "حول البحث عن الرحلات", "flightSearch.providerDisclosure": "تقدم Aviasales نتائج البحث والأسعار والتوافر. يكتمل الحجز على موقع مزود خارجي.", "flightSearch.affiliateDisclosure": "بعض الروابط هي روابط تسويق بالعمولة. قد نحقق إيرادًا من الحجوزات المؤهلة التي تتم عبرها، من دون تغيير السعر الذي تدفعه.", "flightSearch.priceNotice": "قد تتغير الأسعار والتوافر قبل الحجز."
   },
   ru: {
-    "taxCalc.convertedTaxSaving":
-      "Расчётная экономия налога в выбранной валюте",
-    "taxCalc.convertedCostAfterExemption":
-      "Стоимость после освобождения в выбранной валюте",
-    "taxCalc.taxFreeNotAppliedNoNumeric":
-      "Подтверждённой числовой оценки Tax Free нет; показано сравнение исходной цены.",
-    "priceCalc.maximumPossibleAdvantageBeforeFees":
-      "Максимально возможная выгода до комиссий",
-    "priceCalc.countryPriceRaw": "Исходная цена в {country}",
+    "nav.flightSearch": "Поиск авиабилетов", "flightSearch.kicker": "Спланируйте поездку", "flightSearch.title": "Найти авиабилеты", "flightSearch.subtitle": "Найдите рейсы и посмотрите актуальные цены на Aviasales.", "flightSearch.tripType": "Тип поездки", "flightSearch.roundTrip": "Туда и обратно", "flightSearch.oneWay": "В одну сторону", "flightSearch.origin": "Откуда", "flightSearch.destination": "Куда", "flightSearch.selectOrigin": "Выберите аэропорт отправления", "flightSearch.selectDestination": "Выберите аэропорт назначения", "flightSearch.departDate": "Дата вылета", "flightSearch.returnDate": "Дата возвращения", "flightSearch.selectDate": "Выбрать дату", "flightSearch.passengers": "Пассажиры", "flightSearch.adults": "Взрослые", "flightSearch.children": "Дети", "flightSearch.infants": "Младенцы", "flightSearch.cabinClass": "Класс", "flightSearch.economy": "Эконом", "flightSearch.business": "Бизнес", "flightSearch.searchButton": "Искать на Aviasales", "flightSearch.openingProvider": "Открываем Aviasales…", "flightSearch.airportSearch": "Город, страна, аэропорт или код IATA", "flightSearch.filterPopular": "Популярные", "flightSearch.filterTurkey": "Турция", "flightSearch.filterEurope": "Европа", "flightSearch.filterMiddleEast": "Ближний Восток", "flightSearch.filterAsia": "Азия", "flightSearch.filterAmericas": "Америка", "flightSearch.noAirportResults": "Аэропорты не найдены.", "flightSearch.close": "Отмена", "flightSearch.validationTitle": "Проверьте поиск", "flightSearch.originRequired": "Выберите аэропорт отправления.", "flightSearch.destinationRequired": "Выберите аэропорт назначения.", "flightSearch.sameAirportError": "Аэропорты отправления и назначения должны различаться.", "flightSearch.departDateRequired": "Введите корректную дату вылета.", "flightSearch.returnDateRequired": "Введите корректную дату возвращения.", "flightSearch.pastDateError": "Дата вылета не может быть раньше сегодняшней.", "flightSearch.returnBeforeDeparture": "Возвращение не может быть раньше вылета.", "flightSearch.passengerError": "Проверьте количество пассажиров.", "flightSearch.openFailedTitle": "Не удалось открыть Aviasales", "flightSearch.openFailedBody": "Проверьте подключение и повторите попытку.", "flightSearch.providerTitle": "О поиске авиабилетов", "flightSearch.providerDisclosure": "Результаты, цены и наличие предоставляет Aviasales. Бронирование завершается на сайте стороннего поставщика.", "flightSearch.affiliateDisclosure": "Некоторые ссылки являются партнёрскими. Мы можем получать доход от подходящих бронирований, совершённых по ним; цена для вас не меняется.", "flightSearch.priceNotice": "Цены и наличие могут измениться до бронирования."
   },
   zh: {
-    "taxCalc.convertedTaxSaving": "所选货币的预计节税额",
-    "taxCalc.convertedCostAfterExemption": "所选货币的免税后预计成本",
-    "taxCalc.taxFreeNotAppliedNoNumeric":
-      "没有可靠来源的数值估算；显示原价比较。",
-    "priceCalc.maximumPossibleAdvantageBeforeFees": "费用前最大可能优势",
-    "priceCalc.countryPriceRaw": "{country} 原价",
-  },
+    "nav.flightSearch": "搜索航班", "flightSearch.kicker": "规划旅程", "flightSearch.title": "搜索航班", "flightSearch.subtitle": "搜索航班并在 Aviasales 查看当前价格。", "flightSearch.tripType": "行程类型", "flightSearch.roundTrip": "往返", "flightSearch.oneWay": "单程", "flightSearch.origin": "出发地", "flightSearch.destination": "目的地", "flightSearch.selectOrigin": "选择出发机场", "flightSearch.selectDestination": "选择目的地机场", "flightSearch.departDate": "出发日期", "flightSearch.returnDate": "返程日期", "flightSearch.selectDate": "选择日期", "flightSearch.passengers": "乘客", "flightSearch.adults": "成人", "flightSearch.children": "儿童", "flightSearch.infants": "婴儿", "flightSearch.cabinClass": "舱位", "flightSearch.economy": "经济舱", "flightSearch.business": "商务舱", "flightSearch.searchButton": "在 Aviasales 搜索", "flightSearch.openingProvider": "正在打开 Aviasales…", "flightSearch.airportSearch": "搜索城市、国家、机场或 IATA 代码", "flightSearch.filterPopular": "热门", "flightSearch.filterTurkey": "土耳其", "flightSearch.filterEurope": "欧洲", "flightSearch.filterMiddleEast": "中东", "flightSearch.filterAsia": "亚洲", "flightSearch.filterAmericas": "美洲", "flightSearch.noAirportResults": "未找到机场。", "flightSearch.close": "取消", "flightSearch.validationTitle": "请检查搜索条件", "flightSearch.originRequired": "请选择出发机场。", "flightSearch.destinationRequired": "请选择目的地机场。", "flightSearch.sameAirportError": "出发机场和目的地机场不能相同。", "flightSearch.departDateRequired": "请输入有效的出发日期。", "flightSearch.returnDateRequired": "请输入有效的返程日期。", "flightSearch.pastDateError": "出发日期不能早于今天。", "flightSearch.returnBeforeDeparture": "返程日期不能早于出发日期。", "flightSearch.passengerError": "请检查乘客人数。", "flightSearch.openFailedTitle": "无法打开 Aviasales", "flightSearch.openFailedBody": "请检查网络连接后重试。", "flightSearch.providerTitle": "关于航班搜索", "flightSearch.providerDisclosure": "搜索结果、价格和可用性由 Aviasales 提供。预订将在第三方服务商网站完成。", "flightSearch.affiliateDisclosure": "部分链接为联盟链接。通过这些链接完成符合条件的预订时，我们可能获得收入；您支付的价格不会因此改变。", "flightSearch.priceNotice": "价格和可用性可能在预订前发生变化。"
+  }
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(
-    translations[locale],
-    taxFreeSemanticFollowupTranslations[locale],
-  );
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], flightSearchTranslations[locale]);
 
-const taxFreeEligibilitySemanticsTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "taxCalc.pointOfSaleDisclaimer":
-      "This amount is the estimated tax saving provided at checkout for eligible purchases; it is not a cash refund. Store participation and eligibility conditions apply.",
-    "taxCalc.futureRegimeNoEstimate":
-      "The previous checkout exemption has ended. No sourced numeric estimate is available for the new refund regime.",
-    "taxCalc.taxFreeNotAppliedBelowMinimum":
-      "Tax Free was not applied because the minimum purchase requirement is not met.",
-  },
-  tr: {
-    "taxCalc.pointOfSaleDisclaimer":
-      "Bu tutar uygun alışverişlerde kasada sağlanan tahmini vergi tasarrufudur; nakit iade değildir. Mağaza katılımı ve uygunluk koşulları geçerlidir.",
-    "taxCalc.futureRegimeNoEstimate":
-      "Önceki kasada muafiyet sistemi sona erdi. Yeni iade rejimi için kaynaklı sayısal tahmin bulunmuyor.",
-    "taxCalc.taxFreeNotAppliedBelowMinimum":
-      "Minimum harcama şartı karşılanmadığı için Tax Free uygulanmadı.",
-  },
-  es: {
-    "taxCalc.pointOfSaleDisclaimer":
-      "Este importe es el ahorro fiscal estimado aplicado en caja a compras elegibles; no es un reembolso en efectivo. Se aplican la participación de la tienda y los requisitos.",
-    "taxCalc.futureRegimeNoEstimate":
-      "La exención anterior en caja ha terminado. No hay una estimación numérica documentada para el nuevo régimen.",
-    "taxCalc.taxFreeNotAppliedBelowMinimum":
-      "No se aplicó Tax Free porque no se cumple la compra mínima.",
-  },
-  fr: {
-    "taxCalc.pointOfSaleDisclaimer":
-      "Ce montant est l’économie de taxe estimée accordée en caisse aux achats éligibles ; ce n’est pas un remboursement en espèces. La participation du magasin et les conditions s’appliquent.",
-    "taxCalc.futureRegimeNoEstimate":
-      "L’ancienne exonération en caisse a pris fin. Aucune estimation chiffrée et sourcée n’est disponible pour le nouveau régime.",
-    "taxCalc.taxFreeNotAppliedBelowMinimum":
-      "Tax Free n’a pas été appliqué car le minimum d’achat n’est pas atteint.",
-  },
-  de: {
-    "taxCalc.pointOfSaleDisclaimer":
-      "Dieser Betrag ist die geschätzte Steuerersparnis an der Kasse für berechtigte Käufe; keine Barauszahlung. Geschäftsteilnahme und Berechtigung gelten.",
-    "taxCalc.futureRegimeNoEstimate":
-      "Die bisherige Kassenbefreiung ist beendet. Für das neue System ist keine belegte numerische Schätzung verfügbar.",
-    "taxCalc.taxFreeNotAppliedBelowMinimum":
-      "Tax Free wurde nicht angewendet, da der Mindestkauf nicht erreicht ist.",
-  },
-  ar: {
-    "taxCalc.pointOfSaleDisclaimer":
-      "هذا المبلغ هو التوفير الضريبي التقديري عند الدفع للمشتريات المؤهلة، وليس استردادًا نقديًا. تنطبق مشاركة المتجر وشروط الأهلية.",
-    "taxCalc.futureRegimeNoEstimate":
-      "انتهى الإعفاء السابق عند الدفع. لا يتوفر تقدير رقمي موثق للنظام الجديد.",
-    "taxCalc.taxFreeNotAppliedBelowMinimum":
-      "لم يُطبق Tax Free لعدم استيفاء الحد الأدنى للشراء.",
-  },
-  ru: {
-    "taxCalc.pointOfSaleDisclaimer":
-      "Эта сумма — расчётная экономия налога на кассе для подходящих покупок, а не денежный возврат. Действуют участие магазина и условия права.",
-    "taxCalc.futureRegimeNoEstimate":
-      "Прежнее освобождение на кассе завершилось. Для нового режима нет подтверждённой числовой оценки.",
-    "taxCalc.taxFreeNotAppliedBelowMinimum":
-      "Tax Free не применён: минимальная сумма покупки не достигнута.",
-  },
-  zh: {
-    "taxCalc.pointOfSaleDisclaimer":
-      "此金额是符合条件的购物在结账时获得的预计节税额，并非现金退税。须符合商店参与和资格条件。",
-    "taxCalc.futureRegimeNoEstimate":
-      "原结账免税制度已结束。新制度暂无可靠来源的数值估算。",
-    "taxCalc.taxFreeNotAppliedBelowMinimum":
-      "因未达到最低消费要求，未应用 Tax Free。",
-  },
-};
-for (const locale of supportedLanguageCodes)
-  Object.assign(
-    translations[locale],
-    taxFreeEligibilitySemanticsTranslations[locale],
-  );
-
-const taxFreeFutureStateTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "taxCalc.taxFreeResult": "Tax Free result",
-    "taxCalc.purchaseCost": "Purchase cost",
-    "taxGuide.taxFreeProcess": "Tax Free process",
-  },
-  tr: {
-    "taxCalc.taxFreeResult": "Tax Free sonucu",
-    "taxCalc.purchaseCost": "Alışveriş maliyeti",
-    "taxGuide.taxFreeProcess": "Tax Free süreci",
-  },
-  es: {
-    "taxCalc.taxFreeResult": "Resultado Tax Free",
-    "taxCalc.purchaseCost": "Coste de compra",
-    "taxGuide.taxFreeProcess": "Proceso Tax Free",
-  },
-  fr: {
-    "taxCalc.taxFreeResult": "Résultat Tax Free",
-    "taxCalc.purchaseCost": "Coût d’achat",
-    "taxGuide.taxFreeProcess": "Processus Tax Free",
-  },
-  de: {
-    "taxCalc.taxFreeResult": "Tax-Free-Ergebnis",
-    "taxCalc.purchaseCost": "Kaufkosten",
-    "taxGuide.taxFreeProcess": "Tax-Free-Ablauf",
-  },
-  ar: {
-    "taxCalc.taxFreeResult": "نتيجة Tax Free",
-    "taxCalc.purchaseCost": "تكلفة الشراء",
-    "taxGuide.taxFreeProcess": "عملية Tax Free",
-  },
-  ru: {
-    "taxCalc.taxFreeResult": "Результат Tax Free",
-    "taxCalc.purchaseCost": "Стоимость покупки",
-    "taxGuide.taxFreeProcess": "Процесс Tax Free",
-  },
-  zh: {
-    "taxCalc.taxFreeResult": "Tax Free 结果",
-    "taxCalc.purchaseCost": "购物成本",
-    "taxGuide.taxFreeProcess": "Tax Free 流程",
-  },
-};
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], taxFreeFutureStateTranslations[locale]);
-
-const outletRetailCountTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "sharedCards.quickFacts.brands": "Brands",
-    "sharedCards.quickFacts.boutiques": "Boutiques",
-    "sharedCards.quickFacts.listedBrands": "Listed brands",
-    "sharedCards.quickFacts.retailCount": "Retail count",
-    "outlet.retailCount.notVerified": "Count not verified",
-    "outlet.retailCount.qualifier.exact": "{count}",
-    "outlet.retailCount.qualifier.plus": "{count}+",
-    "outlet.retailCount.qualifier.more_than": "More than {count}",
-    "outlet.retailCount.qualifier.almost": "Almost {count}",
-    "outlet.retailCount.qualifier.about": "About {count}",
-    "outlet.retailCount.qualifier.up_to": "Up to {count}",
-  },
-  tr: {
-    "sharedCards.quickFacts.brands": "Markalar",
-    "sharedCards.quickFacts.boutiques": "Butikler",
-    "sharedCards.quickFacts.listedBrands": "Listelenen markalar",
-    "sharedCards.quickFacts.retailCount": "Perakende sayısı",
-    "outlet.retailCount.notVerified": "Sayı doğrulanmadı",
-    "outlet.retailCount.qualifier.exact": "{count}",
-    "outlet.retailCount.qualifier.plus": "{count}+",
-    "outlet.retailCount.qualifier.more_than": "{count}'D fazla",
-    "outlet.retailCount.qualifier.almost": "Neredeyse {count}",
-    "outlet.retailCount.qualifier.about": "Yaklaşık {count}",
-    "outlet.retailCount.qualifier.up_to": "En fazla {count}",
-  },
-  es: {
-    "sharedCards.quickFacts.brands": "Marcas",
-    "sharedCards.quickFacts.boutiques": "Boutiques",
-    "sharedCards.quickFacts.listedBrands": "Marcas listadas",
-    "sharedCards.quickFacts.retailCount": "Cantidad de comercios",
-    "outlet.retailCount.notVerified": "Cantidad no verificada",
-    "outlet.retailCount.qualifier.exact": "{count}",
-    "outlet.retailCount.qualifier.plus": "{count}+",
-    "outlet.retailCount.qualifier.more_than": "Más de {count}",
-    "outlet.retailCount.qualifier.almost": "Casi {count}",
-    "outlet.retailCount.qualifier.about": "Aproximadamente {count}",
-    "outlet.retailCount.qualifier.up_to": "Hasta {count}",
-  },
-  fr: {
-    "sharedCards.quickFacts.brands": "Marques",
-    "sharedCards.quickFacts.boutiques": "Boutiques",
-    "sharedCards.quickFacts.listedBrands": "Marques répertoriées",
-    "sharedCards.quickFacts.retailCount": "Nombre de commerces",
-    "outlet.retailCount.notVerified": "Nombre non vérifié",
-    "outlet.retailCount.qualifier.exact": "{count}",
-    "outlet.retailCount.qualifier.plus": "{count}+",
-    "outlet.retailCount.qualifier.more_than": "Plus de {count}",
-    "outlet.retailCount.qualifier.almost": "Presque {count}",
-    "outlet.retailCount.qualifier.about": "Environ {count}",
-    "outlet.retailCount.qualifier.up_to": "Jusqu’à {count}",
-  },
-  de: {
-    "sharedCards.quickFacts.brands": "Marken",
-    "sharedCards.quickFacts.boutiques": "Boutiquen",
-    "sharedCards.quickFacts.listedBrands": "Gelistete Marken",
-    "sharedCards.quickFacts.retailCount": "Anzahl Geschäfte",
-    "outlet.retailCount.notVerified": "Anzahl nicht bestätigt",
-    "outlet.retailCount.qualifier.exact": "{count}",
-    "outlet.retailCount.qualifier.plus": "{count}+",
-    "outlet.retailCount.qualifier.more_than": "Mehr als {count}",
-    "outlet.retailCount.qualifier.almost": "Fast {count}",
-    "outlet.retailCount.qualifier.about": "Etwa {count}",
-    "outlet.retailCount.qualifier.up_to": "Bis zu {count}",
-  },
-  ar: {
-    "sharedCards.quickFacts.brands": "العلامات التجارية",
-    "sharedCards.quickFacts.boutiques": "البوتيكات",
-    "sharedCards.quickFacts.listedBrands": "العلامات المدرجة",
-    "sharedCards.quickFacts.retailCount": "عدد منافذ البيع",
-    "outlet.retailCount.notVerified": "لم يتم التحقق من العدد",
-    "outlet.retailCount.qualifier.exact": "{count}",
-    "outlet.retailCount.qualifier.plus": "+{count}",
-    "outlet.retailCount.qualifier.more_than": "أكثر من {count}",
-    "outlet.retailCount.qualifier.almost": "ما يقارب {count}",
-    "outlet.retailCount.qualifier.about": "حوالي {count}",
-    "outlet.retailCount.qualifier.up_to": "حتى {count}",
-  },
-  ru: {
-    "sharedCards.quickFacts.brands": "Бренды",
-    "sharedCards.quickFacts.boutiques": "Бутики",
-    "sharedCards.quickFacts.listedBrands": "Бренды в каталоге",
-    "sharedCards.quickFacts.retailCount": "Количество торговых точек",
-    "outlet.retailCount.notVerified": "Количество не подтверждено",
-    "outlet.retailCount.qualifier.exact": "{count}",
-    "outlet.retailCount.qualifier.plus": "{count}+",
-    "outlet.retailCount.qualifier.more_than": "Более {count}",
-    "outlet.retailCount.qualifier.almost": "Почти {count}",
-    "outlet.retailCount.qualifier.about": "Около {count}",
-    "outlet.retailCount.qualifier.up_to": "До {count}",
-  },
-  zh: {
-    "sharedCards.quickFacts.brands": "品牌",
-    "sharedCards.quickFacts.boutiques": "精品店",
-    "sharedCards.quickFacts.listedBrands": "已收录品牌",
-    "sharedCards.quickFacts.retailCount": "零售数量",
-    "outlet.retailCount.notVerified": "数量未核实",
-    "outlet.retailCount.qualifier.exact": "{count}",
-    "outlet.retailCount.qualifier.plus": "{count}+",
-    "outlet.retailCount.qualifier.more_than": "超过 {count}",
-    "outlet.retailCount.qualifier.almost": "接近 {count}",
-    "outlet.retailCount.qualifier.about": "约 {count}",
-    "outlet.retailCount.qualifier.up_to": "最多 {count}",
-  },
-};
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], outletRetailCountTranslations[locale]);
-
-const outletRetailCountCompactTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "outlet.retailCount.compact.stores": "{value} stores",
-    "outlet.retailCount.compact.brands": "{value} brands",
-    "outlet.retailCount.compact.boutiques": "{value} boutiques",
-    "outlet.retailCount.compact.listedBrands": "{count} listed brands",
-    "outlet.retailCount.compact.notVerified": "Retail count not verified",
-  },
-  tr: {
-    "outlet.retailCount.compact.stores": "{value} mağaza",
-    "outlet.retailCount.compact.brands": "{value} marka",
-    "outlet.retailCount.compact.boutiques": "{value} butik",
-    "outlet.retailCount.compact.listedBrands": "{count} listelenen marka",
-    "outlet.retailCount.compact.notVerified": "Perakende sayısı doğrulanmadı",
-  },
-  es: {
-    "outlet.retailCount.compact.stores": "{value} tiendas",
-    "outlet.retailCount.compact.brands": "{value} marcas",
-    "outlet.retailCount.compact.boutiques": "{value} boutiques",
-    "outlet.retailCount.compact.listedBrands": "{count} marcas listadas",
-    "outlet.retailCount.compact.notVerified":
-      "Cantidad de comercios no verificada",
-  },
-  fr: {
-    "outlet.retailCount.compact.stores": "{value} magasins",
-    "outlet.retailCount.compact.brands": "{value} marques",
-    "outlet.retailCount.compact.boutiques": "{value} boutiques",
-    "outlet.retailCount.compact.listedBrands": "{count} marques répertoriées",
-    "outlet.retailCount.compact.notVerified": "Nombre de commerces non vérifié",
-  },
-  de: {
-    "outlet.retailCount.compact.stores": "{value} Geschäfte",
-    "outlet.retailCount.compact.brands": "{value} Marken",
-    "outlet.retailCount.compact.boutiques": "{value} Boutiquen",
-    "outlet.retailCount.compact.listedBrands": "{count} gelistete Marken",
-    "outlet.retailCount.compact.notVerified":
-      "Anzahl der Geschäfte nicht bestätigt",
-  },
-  ar: {
-    "outlet.retailCount.compact.stores": "{value} متجرًا",
-    "outlet.retailCount.compact.brands": "{value} علامة تجارية",
-    "outlet.retailCount.compact.boutiques": "{value} بوتيكًا",
-    "outlet.retailCount.compact.listedBrands": "{count} علامة تجارية مدرجة",
-    "outlet.retailCount.compact.notVerified":
-      "لم يتم التحقق من عدد منافذ البيع",
-  },
-  ru: {
-    "outlet.retailCount.compact.stores": "{value} магазинов",
-    "outlet.retailCount.compact.brands": "{value} брендов",
-    "outlet.retailCount.compact.boutiques": "{value} бутиков",
-    "outlet.retailCount.compact.listedBrands": "{count} брендов в каталоге",
-    "outlet.retailCount.compact.notVerified":
-      "Количество торговых точек не подтверждено",
-  },
-  zh: {
-    "outlet.retailCount.compact.stores": "{value} 家店铺",
-    "outlet.retailCount.compact.brands": "{value} 个品牌",
-    "outlet.retailCount.compact.boutiques": "{value} 家精品店",
-    "outlet.retailCount.compact.listedBrands": "已收录 {count} 个品牌",
-    "outlet.retailCount.compact.notVerified": "零售数量尚未核实",
-  },
-};
-for (const locale of supportedLanguageCodes)
-  Object.assign(
-    translations[locale],
-    outletRetailCountCompactTranslations[locale],
-  );
-
-const taxFreePolicyDisplayTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "taxFree.estimatedMaximumRefundRate":
-      "Estimated maximum Tax Free refund rate",
-    "taxFree.estimatedMaximumRefundRateValue":
-      "Estimated maximum Tax Free refund rate: %{rate}",
-    "taxFree.estimatedMaximumRefundRateBeforeFees":
-      "Estimated maximum Tax Free refund rate: %{rate} before fees",
-    "taxFree.method": "Tax Free method",
-    "taxCalc.schemeSourceLabel": "Tax Free scheme source",
-    "taxCalc.vatRateSourceLabel": "Rate source",
-    "taxCalc.minimumSourceLabel": "Minimum purchase source",
-    "taxCalc.refundPolicySourceLabel": "Refund policy source",
-    "taxFree.futureRegimeMinimumNotModeled":
-      "Minimum for the new regime is not yet modeled",
-    "taxFree.maximumRateBasisExplanation":
-      "This estimated maximum rate is calculated from the theoretical tax component contained in the gross price. The actual Tax Free refund may be lower depending on the retailer, provider, payment method, product class and processing fees.",
-    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate",
-    "taxFreeSource.europeanCommissionVatRefunds":
-      "European Commission — VAT refunds",
-    "taxFreeSource.frenchCustoms": "French Customs",
-    "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA",
-    "taxFreeSource.japanNationalTaxAgency": "Japan National Tax Agency",
-    "taxFreeSource.japanTourismAgency": "Japan Tourism Agency",
-    "taxFreeSource.japanTourismAgencyTransition":
-      "Japan Tourism Agency — refund-system transition",
-    "taxFreeSource.koreaTourismVisitKorea":
-      "Korea Tourism Organization / VISITKOREA",
-    "taxFreeSource.norwegianCustoms": "Norwegian Customs",
-    "taxFreeSource.norwegianTaxAdministration": "Norwegian Tax Administration",
-    "taxFreeSource.portugueseTaxCustoms":
-      "Portuguese Tax and Customs Authority",
-    "taxFreeSource.stateTaxationAdministration":
-      "State Taxation Administration",
-    "taxFreeSource.swissFederalTaxAdministration":
-      "Swiss Federal Tax Administration",
-    "taxFreeSource.thailandRevenueDepartment": "Thailand Revenue Department",
-    "taxFreeSource.turkishRevenueAdministration":
-      "Turkish Revenue Administration",
-    "taxFreeSource.uaeGovernmentPortal": "UAE Government Portal",
-  },
-  tr: {
-    "taxFree.estimatedMaximumRefundRate": "Tahmini azami Tax Free iade oranı",
-    "taxFree.estimatedMaximumRefundRateValue":
-      "Tahmini azami Tax Free iade oranı: %{rate}",
-    "taxFree.estimatedMaximumRefundRateBeforeFees":
-      "Tahmini azami Tax Free iade oranı: %{rate} (ücretler öncesi)",
-    "taxFree.method": "Tax Free yöntemi",
-    "taxCalc.schemeSourceLabel": "Tax Free sistemi kaynağı",
-    "taxCalc.vatRateSourceLabel": "Oran kaynağı",
-    "taxCalc.minimumSourceLabel": "Minimum tutar kaynağı",
-    "taxCalc.refundPolicySourceLabel": "İade politikası kaynağı",
-    "taxFree.futureRegimeMinimumNotModeled":
-      "Yeni sistem için minimum alışveriş tutarı henüz modellenmedi",
-    "taxFree.maximumRateBasisExplanation":
-      "Bu tahmini azami oran, brüt fiyatın içindeki teorik vergi üst sınırından hesaplanır. Gerçek Tax Free iadesi mağaza, sağlayıcı, ödeme yöntemi, ürün sınıfı ve işlem ücretlerine göre daha düşük olabilir.",
-    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate",
-    "taxFreeSource.europeanCommissionVatRefunds":
-      "Avrupa Komisyonu — KDV iadeleri",
-    "taxFreeSource.frenchCustoms": "Fransa Gümrük İdaresi",
-    "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA",
-    "taxFreeSource.japanNationalTaxAgency": "Japonya Ulusal Vergi Ajansı",
-    "taxFreeSource.japanTourismAgency": "Japonya Turizm Ajansı",
-    "taxFreeSource.japanTourismAgencyTransition":
-      "Japonya Turizm Ajansı — iade sistemi geçişi",
-    "taxFreeSource.koreaTourismVisitKorea":
-      "Kore Turizm Organizasyonu / VISITKOREA",
-    "taxFreeSource.norwegianCustoms": "Norveç Gümrük İdaresi",
-    "taxFreeSource.norwegianTaxAdministration": "Norveç Vergi İdaresi",
-    "taxFreeSource.portugueseTaxCustoms": "Portekiz Vergi ve Gümrük İdaresi",
-    "taxFreeSource.stateTaxationAdministration": "Çin Devlet Vergi İdaresi",
-    "taxFreeSource.swissFederalTaxAdministration":
-      "İsviçre Federal Vergi İdaresi",
-    "taxFreeSource.thailandRevenueDepartment": "Tayland Gelir İdaresi",
-    "taxFreeSource.turkishRevenueAdministration": "Gelir İdaresi Başkanlığı",
-    "taxFreeSource.uaeGovernmentPortal": "BAE Hükümet Portalı",
-  },
-  es: {
-    "taxFree.estimatedMaximumRefundRate":
-      "Tasa máxima estimada de reembolso Tax Free",
-    "taxFree.estimatedMaximumRefundRateValue":
-      "Tasa máxima estimada de reembolso Tax Free: %{rate}",
-    "taxFree.estimatedMaximumRefundRateBeforeFees":
-      "Tasa máxima estimada de reembolso Tax Free: %{rate} antes de comisiones",
-    "taxFree.method": "Método Tax Free",
-    "taxCalc.schemeSourceLabel": "Fuente del sistema Tax Free",
-    "taxCalc.vatRateSourceLabel": "Fuente de la tasa",
-    "taxCalc.minimumSourceLabel": "Fuente de compra mínima",
-    "taxCalc.refundPolicySourceLabel": "Fuente de la política de reembolso",
-    "taxFree.futureRegimeMinimumNotModeled":
-      "El mínimo del nuevo sistema aún no está modelado",
-    "taxFree.maximumRateBasisExplanation":
-      "Esta tasa máxima estimada se calcula a partir del componente fiscal teórico incluido en el precio bruto. El reembolso Tax Free real puede ser inferior según el comercio, proveedor, método de pago, clase de producto y comisiones de tramitación.",
-    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate",
-    "taxFreeSource.europeanCommissionVatRefunds":
-      "Comisión Europea — devoluciones de IVA",
-    "taxFreeSource.frenchCustoms": "Aduanas francesas",
-    "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA",
-    "taxFreeSource.japanNationalTaxAgency":
-      "Agencia Tributaria Nacional de Japón",
-    "taxFreeSource.japanTourismAgency": "Agencia de Turismo de Japón",
-    "taxFreeSource.japanTourismAgencyTransition":
-      "Agencia de Turismo de Japón — transición del sistema de reembolso",
-    "taxFreeSource.koreaTourismVisitKorea":
-      "Organización de Turismo de Corea / VISITKOREA",
-    "taxFreeSource.norwegianCustoms": "Aduanas noruegas",
-    "taxFreeSource.norwegianTaxAdministration":
-      "Administración Tributaria de Noruega",
-    "taxFreeSource.portugueseTaxCustoms":
-      "Autoridad Tributaria y Aduanera portuguesa",
-    "taxFreeSource.stateTaxationAdministration":
-      "Administración Estatal de Impuestos de China",
-    "taxFreeSource.swissFederalTaxAdministration":
-      "Administración Federal de Impuestos de Suiza",
-    "taxFreeSource.thailandRevenueDepartment":
-      "Departamento de Ingresos de Tailandia",
-    "taxFreeSource.turkishRevenueAdministration":
-      "Administración Tributaria de Turquía",
-    "taxFreeSource.uaeGovernmentPortal": "Portal del Gobierno de EAU",
-  },
-  fr: {
-    "taxFree.estimatedMaximumRefundRate":
-      "Taux maximal estimé de remboursement Tax Free",
-    "taxFree.estimatedMaximumRefundRateValue":
-      "Taux maximal estimé de remboursement Tax Free : %{rate}",
-    "taxFree.estimatedMaximumRefundRateBeforeFees":
-      "Taux maximal estimé de remboursement Tax Free : %{rate} avant frais",
-    "taxFree.method": "Méthode Tax Free",
-    "taxCalc.schemeSourceLabel": "Source du système Tax Free",
-    "taxCalc.vatRateSourceLabel": "Source du taux",
-    "taxCalc.minimumSourceLabel": "Source du minimum d’achat",
-    "taxCalc.refundPolicySourceLabel":
-      "Source de la politique de remboursement",
-    "taxFree.futureRegimeMinimumNotModeled":
-      "Le minimum du nouveau système n’est pas encore modélisé",
-    "taxFree.maximumRateBasisExplanation":
-      "Ce taux maximal estimé est calculé à partir de la composante fiscale théorique incluse dans le prix brut. Le remboursement Tax Free réel peut être inférieur selon le commerçant, le prestataire, le moyen de paiement, la catégorie de produit et les frais de traitement.",
-    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate",
-    "taxFreeSource.europeanCommissionVatRefunds":
-      "Commission européenne — remboursements de TVA",
-    "taxFreeSource.frenchCustoms": "Douane française",
-    "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA",
-    "taxFreeSource.japanNationalTaxAgency":
-      "Agence nationale des impôts du Japon",
-    "taxFreeSource.japanTourismAgency": "Agence japonaise du tourisme",
-    "taxFreeSource.japanTourismAgencyTransition":
-      "Agence japonaise du tourisme — transition du système de remboursement",
-    "taxFreeSource.koreaTourismVisitKorea":
-      "Office du tourisme de Corée / VISITKOREA",
-    "taxFreeSource.norwegianCustoms": "Douanes norvégiennes",
-    "taxFreeSource.norwegianTaxAdministration":
-      "Administration fiscale norvégienne",
-    "taxFreeSource.portugueseTaxCustoms":
-      "Autorité fiscale et douanière portugaise",
-    "taxFreeSource.stateTaxationAdministration":
-      "Administration fiscale d’État de Chine",
-    "taxFreeSource.swissFederalTaxAdministration":
-      "Administration fédérale des contributions suisse",
-    "taxFreeSource.thailandRevenueDepartment":
-      "Administration fiscale thaïlandaise",
-    "taxFreeSource.turkishRevenueAdministration":
-      "Administration fiscale turque",
-    "taxFreeSource.uaeGovernmentPortal": "Portail du gouvernement des EAU",
-  },
-  de: {
-    "taxFree.estimatedMaximumRefundRate":
-      "Geschätzter maximaler Tax-Free-Erstattungssatz",
-    "taxFree.estimatedMaximumRefundRateValue":
-      "Geschätzter maximaler Tax-Free-Erstattungssatz: %{rate}",
-    "taxFree.estimatedMaximumRefundRateBeforeFees":
-      "Geschätzter maximaler Tax-Free-Erstattungssatz: %{rate} vor Gebühren",
-    "taxFree.method": "Tax-Free-Methode",
-    "taxCalc.schemeSourceLabel": "Quelle des Tax-Free-Systems",
-    "taxCalc.vatRateSourceLabel": "Quelle des Satzes",
-    "taxCalc.minimumSourceLabel": "Quelle des Mindestkaufs",
-    "taxCalc.refundPolicySourceLabel": "Quelle der Erstattungsrichtlinie",
-    "taxFree.futureRegimeMinimumNotModeled":
-      "Der Mindestkauf für das neue System ist noch nicht modelliert",
-    "taxFree.maximumRateBasisExplanation":
-      "Dieser geschätzte Höchstsatz wird aus dem theoretischen Steueranteil im Bruttopreis berechnet. Die tatsächliche Tax-Free-Erstattung kann je nach Händler, Anbieter, Zahlungsmethode, Produktklasse und Bearbeitungsgebühren niedriger ausfallen.",
-    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate",
-    "taxFreeSource.europeanCommissionVatRefunds":
-      "Europäische Kommission — MwSt.-Erstattungen",
-    "taxFreeSource.frenchCustoms": "Französischer Zoll",
-    "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA",
-    "taxFreeSource.japanNationalTaxAgency": "Nationale Steuerbehörde Japans",
-    "taxFreeSource.japanTourismAgency": "Japanische Tourismusbehörde",
-    "taxFreeSource.japanTourismAgencyTransition":
-      "Japanische Tourismusbehörde — Umstellung des Erstattungssystems",
-    "taxFreeSource.koreaTourismVisitKorea":
-      "Koreanische Tourismusorganisation / VISITKOREA",
-    "taxFreeSource.norwegianCustoms": "Norwegischer Zoll",
-    "taxFreeSource.norwegianTaxAdministration": "Norwegische Steuerverwaltung",
-    "taxFreeSource.portugueseTaxCustoms":
-      "Portugiesische Steuer- und Zollbehörde",
-    "taxFreeSource.stateTaxationAdministration":
-      "Staatliche Steuerverwaltung Chinas",
-    "taxFreeSource.swissFederalTaxAdministration":
-      "Eidgenössische Steuerverwaltung",
-    "taxFreeSource.thailandRevenueDepartment": "Thailändische Steuerbehörde",
-    "taxFreeSource.turkishRevenueAdministration": "Türkische Steuerverwaltung",
-    "taxFreeSource.uaeGovernmentPortal": "Regierungsportal der VAE",
-  },
-  ar: {
-    "taxFree.estimatedMaximumRefundRate":
-      "معدل استرداد Tax Free الأقصى التقديري",
-    "taxFree.estimatedMaximumRefundRateValue":
-      "معدل استرداد Tax Free الأقصى التقديري: %{rate}",
-    "taxFree.estimatedMaximumRefundRateBeforeFees":
-      "معدل استرداد Tax Free الأقصى التقديري: %{rate} قبل الرسوم",
-    "taxFree.method": "طريقة Tax Free",
-    "taxCalc.schemeSourceLabel": "مصدر نظام Tax Free",
-    "taxCalc.vatRateSourceLabel": "مصدر المعدل",
-    "taxCalc.minimumSourceLabel": "مصدر الحد الأدنى للشراء",
-    "taxCalc.refundPolicySourceLabel": "مصدر سياسة الاسترداد",
-    "taxFree.futureRegimeMinimumNotModeled":
-      "لم تتم بعد نمذجة الحد الأدنى للشراء في النظام الجديد",
-    "taxFree.maximumRateBasisExplanation":
-      "يُحسب هذا المعدل الأقصى التقديري من المكوّن الضريبي النظري المتضمن في السعر الإجمالي. قد يكون استرداد Tax Free الفعلي أقل حسب المتجر والمزوّد وطريقة الدفع وفئة المنتج ورسوم المعالجة.",
-    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate",
-    "taxFreeSource.europeanCommissionVatRefunds":
-      "المفوضية الأوروبية — استرداد ضريبة القيمة المضافة",
-    "taxFreeSource.frenchCustoms": "الجمارك الفرنسية",
-    "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA",
-    "taxFreeSource.japanNationalTaxAgency": "وكالة الضرائب الوطنية اليابانية",
-    "taxFreeSource.japanTourismAgency": "وكالة السياحة اليابانية",
-    "taxFreeSource.japanTourismAgencyTransition":
-      "وكالة السياحة اليابانية — انتقال نظام الاسترداد",
-    "taxFreeSource.koreaTourismVisitKorea":
-      "منظمة السياحة الكورية / VISITKOREA",
-    "taxFreeSource.norwegianCustoms": "الجمارك النرويجية",
-    "taxFreeSource.norwegianTaxAdministration": "إدارة الضرائب النرويجية",
-    "taxFreeSource.portugueseTaxCustoms": "هيئة الضرائب والجمارك البرتغالية",
-    "taxFreeSource.stateTaxationAdministration":
-      "إدارة الضرائب الحكومية الصينية",
-    "taxFreeSource.swissFederalTaxAdministration":
-      "إدارة الضرائب الفيدرالية السويسرية",
-    "taxFreeSource.thailandRevenueDepartment": "إدارة الإيرادات التايلاندية",
-    "taxFreeSource.turkishRevenueAdministration": "إدارة الإيرادات التركية",
-    "taxFreeSource.uaeGovernmentPortal": "بوابة حكومة الإمارات",
-  },
-  ru: {
-    "taxFree.estimatedMaximumRefundRate":
-      "Расчётная максимальная ставка возврата Tax Free",
-    "taxFree.estimatedMaximumRefundRateValue":
-      "Расчётная максимальная ставка возврата Tax Free: %{rate}",
-    "taxFree.estimatedMaximumRefundRateBeforeFees":
-      "Расчётная максимальная ставка возврата Tax Free: %{rate} до комиссий",
-    "taxFree.method": "Метод Tax Free",
-    "taxCalc.schemeSourceLabel": "Источник системы Tax Free",
-    "taxCalc.vatRateSourceLabel": "Источник ставки",
-    "taxCalc.minimumSourceLabel": "Источник минимальной покупки",
-    "taxCalc.refundPolicySourceLabel": "Источник политики возврата",
-    "taxFree.futureRegimeMinimumNotModeled":
-      "Минимальная покупка для новой системы пока не смоделирована",
-    "taxFree.maximumRateBasisExplanation":
-      "Эта расчётная максимальная ставка определяется по теоретической налоговой составляющей в цене брутто. Фактический возврат Tax Free может быть ниже в зависимости от магазина, провайдера, способа оплаты, категории товара и комиссий за обработку.",
-    "taxFreeSource.agenziaDelleEntrate": "Agenzia delle Entrate",
-    "taxFreeSource.europeanCommissionVatRefunds":
-      "Европейская комиссия — возврат НДС",
-    "taxFreeSource.frenchCustoms": "Таможенная служба Франции",
-    "taxFreeSource.investKoreaKotra": "Invest KOREA / KOTRA",
-    "taxFreeSource.japanNationalTaxAgency":
-      "Национальное налоговое агентство Японии",
-    "taxFreeSource.japanTourismAgency": "Японское агентство по туризму",
-    "taxFreeSource.japanTourismAgencyTransition":
-      "Японское агентство по туризму — переход системы возврата",
-    "taxFreeSource.koreaTourismVisitKorea":
-      "Корейская туристическая организация / VISITKOREA",
-    "taxFreeSource.norwegianCustoms": "Таможенная служба Норвегии",
-    "taxFreeSource.norwegianTaxAdministration":
-      "Налоговая администрация Норвегии",
-    "taxFreeSource.portugueseTaxCustoms":
-      "Налоговая и таможенная служба Португалии",
-    "taxFreeSource.stateTaxationAdministration":
-      "Государственная налоговая администрация Китая",
-    "taxFreeSource.swissFederalTaxAdministration":
-      "Федеральная налоговая администрация Швейцарии",
-    "taxFreeSource.thailandRevenueDepartment": "Налоговая служба Таиланда",
-    "taxFreeSource.turkishRevenueAdministration":
-      "Налоговая администрация Турции",
-    "taxFreeSource.uaeGovernmentPortal": "Правительственный портал ОАЭ",
-  },
-  zh: {
-    "taxFree.estimatedMaximumRefundRate": "预计最高 Tax Free 退税率",
-    "taxFree.estimatedMaximumRefundRateValue":
-      "预计最高 Tax Free 退税率：%{rate}",
-    "taxFree.estimatedMaximumRefundRateBeforeFees":
-      "预计最高 Tax Free 退税率：%{rate}（费用前）",
-    "taxFree.method": "Tax Free 方式",
-    "taxCalc.schemeSourceLabel": "Tax Free 制度来源",
-    "taxCalc.vatRateSourceLabel": "税率来源",
-    "taxCalc.minimumSourceLabel": "最低购买额来源",
-    "taxCalc.refundPolicySourceLabel": "退税政策来源",
-    "taxFree.futureRegimeMinimumNotModeled": "新制度的最低购买额尚未建模",
-    "taxFree.maximumRateBasisExplanation":
-      "此预计最高比率根据含税总价中的理论税额计算。实际 Tax Free 退税可能因零售商、服务商、付款方式、商品类别和处理费用而更低。",
-    "taxFreeSource.agenziaDelleEntrate":
-      "意大利税务局（Agenzia delle Entrate）",
-    "taxFreeSource.europeanCommissionVatRefunds": "欧盟委员会 — 增值税退税",
-    "taxFreeSource.frenchCustoms": "法国海关",
-    "taxFreeSource.investKoreaKotra": "韩国投资促进局 / KOTRA",
-    "taxFreeSource.japanNationalTaxAgency": "日本国税厅",
-    "taxFreeSource.japanTourismAgency": "日本观光厅",
-    "taxFreeSource.japanTourismAgencyTransition": "日本观光厅 — 退税制度过渡",
-    "taxFreeSource.koreaTourismVisitKorea": "韩国旅游发展局 / VISITKOREA",
-    "taxFreeSource.norwegianCustoms": "挪威海关",
-    "taxFreeSource.norwegianTaxAdministration": "挪威税务局",
-    "taxFreeSource.portugueseTaxCustoms": "葡萄牙税务与海关局",
-    "taxFreeSource.stateTaxationAdministration": "中国国家税务总局",
-    "taxFreeSource.swissFederalTaxAdministration": "瑞士联邦税务局",
-    "taxFreeSource.thailandRevenueDepartment": "泰国税务局",
-    "taxFreeSource.turkishRevenueAdministration": "土耳其税务局",
-    "taxFreeSource.uaeGovernmentPortal": "阿联酋政府门户",
-  },
-};
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], taxFreePolicyDisplayTranslations[locale]);
-
-const simplifiedTaxFreeResultCopyTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "taxCalc.maximumRefundBeforeFees": "Estimated Tax Free refund",
-    "taxCalc.convertedMaximum": "Estimated Tax Free refund",
-    "taxCalc.estimatedNetRefund": "Estimated Tax Free refund",
-    "taxCalc.convertedRefund": "Estimated Tax Free refund",
-    "taxCalc.bestCaseCostBeforeFees": "Estimated price after Tax Free",
-    "taxCalc.convertedBestCaseCost": "Estimated price after Tax Free",
-    "taxCalc.estimatedCostAfterRefund": "Estimated price after Tax Free",
-    "taxCalc.convertedCostAfterRefund": "Estimated price after Tax Free",
-    "priceCalc.maximumPossibleAdvantageBeforeFees": "Estimated price advantage",
-    "taxCalc.upperBoundDisclaimer":
-      "This amount is the highest possible estimate. The actual refund may be lower depending on the store, refund provider, and processing fees.",
-  },
-  tr: {
-    "taxCalc.maximumRefundBeforeFees": "Tahmini Tax Free iadesi",
-    "taxCalc.convertedMaximum": "Tahmini Tax Free iadesi",
-    "taxCalc.estimatedNetRefund": "Tahmini Tax Free iadesi",
-    "taxCalc.convertedRefund": "Tahmini Tax Free iadesi",
-    "taxCalc.bestCaseCostBeforeFees": "Tax Free sonrası tahmini fiyat",
-    "taxCalc.convertedBestCaseCost": "Tax Free sonrası tahmini fiyat",
-    "taxCalc.estimatedCostAfterRefund": "Tax Free sonrası tahmini fiyat",
-    "taxCalc.convertedCostAfterRefund": "Tax Free sonrası tahmini fiyat",
-    "priceCalc.maximumPossibleAdvantageBeforeFees": "Tahmini fiyat avantajı",
-    "taxCalc.upperBoundDisclaimer":
-      "Bu tutar üst sınır tahminidir. Gerçek iade mağazaya, iade sağlayıcısına ve işlem ücretlerine göre daha düşük olabilir.",
-  },
-  es: {
-    "taxCalc.maximumRefundBeforeFees": "Reembolso Tax Free estimado",
-    "taxCalc.convertedMaximum": "Reembolso Tax Free estimado",
-    "taxCalc.estimatedNetRefund": "Reembolso Tax Free estimado",
-    "taxCalc.convertedRefund": "Reembolso Tax Free estimado",
-    "taxCalc.bestCaseCostBeforeFees":
-      "Precio estimado después del reembolso Tax Free",
-    "taxCalc.convertedBestCaseCost":
-      "Precio estimado después del reembolso Tax Free",
-    "taxCalc.estimatedCostAfterRefund":
-      "Precio estimado después del reembolso Tax Free",
-    "taxCalc.convertedCostAfterRefund":
-      "Precio estimado después del reembolso Tax Free",
-    "priceCalc.maximumPossibleAdvantageBeforeFees":
-      "Ventaja de precio estimada",
-    "taxCalc.upperBoundDisclaimer":
-      "Este importe es la estimación máxima posible. El reembolso real puede ser menor según la tienda, el proveedor de reembolso y las comisiones de tramitación.",
-  },
-  fr: {
-    "taxCalc.maximumRefundBeforeFees": "Remboursement Tax Free estimé",
-    "taxCalc.convertedMaximum": "Remboursement Tax Free estimé",
-    "taxCalc.estimatedNetRefund": "Remboursement Tax Free estimé",
-    "taxCalc.convertedRefund": "Remboursement Tax Free estimé",
-    "taxCalc.bestCaseCostBeforeFees":
-      "Prix estimé après remboursement Tax Free",
-    "taxCalc.convertedBestCaseCost": "Prix estimé après remboursement Tax Free",
-    "taxCalc.estimatedCostAfterRefund":
-      "Prix estimé après remboursement Tax Free",
-    "taxCalc.convertedCostAfterRefund":
-      "Prix estimé après remboursement Tax Free",
-    "priceCalc.maximumPossibleAdvantageBeforeFees": "Avantage de prix estimé",
-    "taxCalc.upperBoundDisclaimer":
-      "Ce montant correspond à l’estimation maximale possible. Le remboursement réel peut être inférieur selon le magasin, le prestataire de remboursement et les frais de traitement.",
-  },
-  de: {
-    "taxCalc.maximumRefundBeforeFees": "Geschätzte Tax-Free-Erstattung",
-    "taxCalc.convertedMaximum": "Geschätzte Tax-Free-Erstattung",
-    "taxCalc.estimatedNetRefund": "Geschätzte Tax-Free-Erstattung",
-    "taxCalc.convertedRefund": "Geschätzte Tax-Free-Erstattung",
-    "taxCalc.bestCaseCostBeforeFees":
-      "Geschätzter Preis nach Tax-Free-Erstattung",
-    "taxCalc.convertedBestCaseCost":
-      "Geschätzter Preis nach Tax-Free-Erstattung",
-    "taxCalc.estimatedCostAfterRefund":
-      "Geschätzter Preis nach Tax-Free-Erstattung",
-    "taxCalc.convertedCostAfterRefund":
-      "Geschätzter Preis nach Tax-Free-Erstattung",
-    "priceCalc.maximumPossibleAdvantageBeforeFees": "Geschätzter Preisvorteil",
-    "taxCalc.upperBoundDisclaimer":
-      "Dieser Betrag ist die höchstmögliche Schätzung. Die tatsächliche Erstattung kann je nach Geschäft, Erstattungsanbieter und Bearbeitungsgebühren niedriger ausfallen.",
-  },
-  ar: {
-    "taxCalc.maximumRefundBeforeFees": "استرداد Tax Free التقديري",
-    "taxCalc.convertedMaximum": "استرداد Tax Free التقديري",
-    "taxCalc.estimatedNetRefund": "استرداد Tax Free التقديري",
-    "taxCalc.convertedRefund": "استرداد Tax Free التقديري",
-    "taxCalc.bestCaseCostBeforeFees": "السعر التقديري بعد استرداد Tax Free",
-    "taxCalc.convertedBestCaseCost": "السعر التقديري بعد استرداد Tax Free",
-    "taxCalc.estimatedCostAfterRefund": "السعر التقديري بعد استرداد Tax Free",
-    "taxCalc.convertedCostAfterRefund": "السعر التقديري بعد استرداد Tax Free",
-    "priceCalc.maximumPossibleAdvantageBeforeFees": "ميزة السعر التقديرية",
-    "taxCalc.upperBoundDisclaimer":
-      "هذا المبلغ هو أعلى تقدير ممكن. قد يكون الاسترداد الفعلي أقل حسب المتجر ومزوّد الاسترداد ورسوم المعالجة.",
-  },
-  ru: {
-    "taxCalc.maximumRefundBeforeFees": "Расчётный возврат Tax Free",
-    "taxCalc.convertedMaximum": "Расчётный возврат Tax Free",
-    "taxCalc.estimatedNetRefund": "Расчётный возврат Tax Free",
-    "taxCalc.convertedRefund": "Расчётный возврат Tax Free",
-    "taxCalc.bestCaseCostBeforeFees": "Расчётная цена после возврата Tax Free",
-    "taxCalc.convertedBestCaseCost": "Расчётная цена после возврата Tax Free",
-    "taxCalc.estimatedCostAfterRefund":
-      "Расчётная цена после возврата Tax Free",
-    "taxCalc.convertedCostAfterRefund":
-      "Расчётная цена после возврата Tax Free",
-    "priceCalc.maximumPossibleAdvantageBeforeFees": "Расчётная выгода в цене",
-    "taxCalc.upperBoundDisclaimer":
-      "Это максимально возможная оценка. Фактический возврат может быть ниже в зависимости от магазина, оператора возврата и комиссии за обработку.",
-  },
-  zh: {
-    "taxCalc.maximumRefundBeforeFees": "预计 Tax Free 退税额",
-    "taxCalc.convertedMaximum": "预计 Tax Free 退税额",
-    "taxCalc.estimatedNetRefund": "预计 Tax Free 退税额",
-    "taxCalc.convertedRefund": "预计 Tax Free 退税额",
-    "taxCalc.bestCaseCostBeforeFees": "Tax Free 退税后预计价格",
-    "taxCalc.convertedBestCaseCost": "Tax Free 退税后预计价格",
-    "taxCalc.estimatedCostAfterRefund": "Tax Free 退税后预计价格",
-    "taxCalc.convertedCostAfterRefund": "Tax Free 退税后预计价格",
-    "priceCalc.maximumPossibleAdvantageBeforeFees": "预计价格优势",
-    "taxCalc.upperBoundDisclaimer":
-      "该金额为最高估算值。实际退税额可能因商店、退税服务商和手续费而更低。",
-  },
-};
-for (const locale of supportedLanguageCodes)
-  Object.assign(
-    translations[locale],
-    simplifiedTaxFreeResultCopyTranslations[locale],
-  );
-
-const flightSearchTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
-  en: {
-    "nav.flightSearch": "Flight Search",
-    "flightSearch.kicker": "Plan your journey",
-    "flightSearch.title": "Find flights",
-    "flightSearch.subtitle":
-      "Search flights and view current prices on Aviasales.",
-    "flightSearch.tripType": "Trip type",
-    "flightSearch.roundTrip": "Round trip",
-    "flightSearch.oneWay": "One way",
-    "flightSearch.origin": "Origin",
-    "flightSearch.destination": "Destination",
-    "flightSearch.selectOrigin": "Select origin airport",
-    "flightSearch.selectDestination": "Select destination airport",
-    "flightSearch.departDate": "Departure date",
-    "flightSearch.returnDate": "Return date",
-    "flightSearch.selectDate": "Select date",
-    "flightSearch.passengers": "Passengers",
-    "flightSearch.adults": "Adults",
-    "flightSearch.children": "Children",
-    "flightSearch.infants": "Infants",
-    "flightSearch.cabinClass": "Cabin class",
-    "flightSearch.economy": "Economy",
-    "flightSearch.business": "Business",
-    "flightSearch.searchButton": "Search on Aviasales",
-    "flightSearch.openingProvider": "Opening Aviasales…",
-    "flightSearch.airportSearch": "Search city, country, airport or IATA code",
-    "flightSearch.filterPopular": "Popular",
-    "flightSearch.filterTurkey": "Turkey",
-    "flightSearch.filterEurope": "Europe",
-    "flightSearch.filterMiddleEast": "Middle East",
-    "flightSearch.filterAsia": "Asia",
-    "flightSearch.filterAmericas": "Americas",
-    "flightSearch.noAirportResults": "No airports found.",
-    "flightSearch.close": "Cancel",
-    "flightSearch.validationTitle": "Check your search",
-    "flightSearch.originRequired": "Select an origin airport.",
-    "flightSearch.destinationRequired": "Select a destination airport.",
-    "flightSearch.sameAirportError":
-      "Origin and destination must be different.",
-    "flightSearch.departDateRequired": "Enter a valid departure date.",
-    "flightSearch.returnDateRequired": "Enter a valid return date.",
-    "flightSearch.pastDateError":
-      "Departure date cannot be earlier than today.",
-    "flightSearch.returnBeforeDeparture":
-      "Return date cannot be earlier than departure date.",
-    "flightSearch.passengerError": "Check the passenger counts and try again.",
-    "flightSearch.openFailedTitle": "Could not open Aviasales",
-    "flightSearch.openFailedBody":
-      "Please check your connection and try again.",
-    "flightSearch.providerTitle": "About your flight search",
-    "flightSearch.providerDisclosure":
-      "Search results, prices and availability are provided by Aviasales. Booking is completed on a third-party provider website.",
-    "flightSearch.affiliateDisclosure":
-      "Some links are affiliate links. We may earn revenue from eligible bookings made through them; the price you pay does not change.",
-    "flightSearch.priceNotice":
-      "Prices and availability may change before booking.",
-  },
-  tr: {
-    "nav.flightSearch": "Uçuş Ara",
-    "flightSearch.kicker": "Yolculuğunu planla",
-    "flightSearch.title": "Uçuş Ara",
-    "flightSearch.subtitle":
-      "Uçuşları ara ve güncel fiyatları Aviasales’ta görüntüle.",
-    "flightSearch.tripType": "Seyahat türü",
-    "flightSearch.roundTrip": "Gidiş-dönüş",
-    "flightSearch.oneWay": "Tek yön",
-    "flightSearch.origin": "Kalkış",
-    "flightSearch.destination": "Varış",
-    "flightSearch.selectOrigin": "Kalkış havalimanını seç",
-    "flightSearch.selectDestination": "Varış havalimanını seç",
-    "flightSearch.departDate": "Gidiş tarihi",
-    "flightSearch.returnDate": "Dönüş tarihi",
-    "flightSearch.selectDate": "Tarihi seç",
-    "flightSearch.passengers": "Yolcular",
-    "flightSearch.adults": "Yetişkin",
-    "flightSearch.children": "Çocuk",
-    "flightSearch.infants": "Bebek",
-    "flightSearch.cabinClass": "Kabin sınıfı",
-    "flightSearch.economy": "Ekonomi",
-    "flightSearch.business": "Business",
-    "flightSearch.searchButton": "Aviasales’ta Ara",
-    "flightSearch.openingProvider": "Aviasales açılıyor…",
-    "flightSearch.airportSearch": "Şehir, ülke, havalimanı veya IATA kodu ara",
-    "flightSearch.filterPopular": "Popüler",
-    "flightSearch.filterTurkey": "Türkiye",
-    "flightSearch.filterEurope": "Avrupa",
-    "flightSearch.filterMiddleEast": "Orta Doğu",
-    "flightSearch.filterAsia": "Asya",
-    "flightSearch.filterAmericas": "Amerika",
-    "flightSearch.noAirportResults": "Havalimanı bulunamadı.",
-    "flightSearch.close": "İptal",
-    "flightSearch.validationTitle": "Aramanı kontrol et",
-    "flightSearch.originRequired": "Kalkış havalimanını seç.",
-    "flightSearch.destinationRequired": "Varış havalimanını seç.",
-    "flightSearch.sameAirportError":
-      "Kalkış ve varış havalimanları farklı olmalıdır.",
-    "flightSearch.departDateRequired": "Geçerli bir gidiş tarihi gir.",
-    "flightSearch.returnDateRequired": "Geçerli bir dönüş tarihi gir.",
-    "flightSearch.pastDateError": "Gidiş tarihi bugünden önce olamaz.",
-    "flightSearch.returnBeforeDeparture":
-      "Dönüş tarihi gidiş tarihinden önce olamaz.",
-    "flightSearch.passengerError": "Yolcu sayılarını kontrol edip tekrar dene.",
-    "flightSearch.openFailedTitle": "Aviasales açılamadı",
-    "flightSearch.openFailedBody": "Bağlantını kontrol edip tekrar dene.",
-    "flightSearch.providerTitle": "Uçuş araman hakkında",
-    "flightSearch.providerDisclosure":
-      "Arama sonuçları, fiyatlar ve müsaitlik Aviasales tarafından sağlanır. Rezervasyon üçüncü taraf sağlayıcının internet sitesinde tamamlanır.",
-    "flightSearch.affiliateDisclosure":
-      "Bazı bağlantılar iş ortaklığı bağlantılarıdır. Bu bağlantılar üzerinden yapılan uygun rezervasyonlardan gelir elde edebiliriz; ödediğiniz fiyat değişmez.",
-    "flightSearch.priceNotice":
-      "Fiyatlar ve müsaitlik rezervasyon öncesinde değişebilir.",
-  },
-  es: {
-    "nav.flightSearch": "Buscar vuelos",
-    "flightSearch.kicker": "Planifica tu viaje",
-    "flightSearch.title": "Buscar vuelos",
-    "flightSearch.subtitle":
-      "Busca vuelos y consulta los precios actuales en Aviasales.",
-    "flightSearch.tripType": "Tipo de viaje",
-    "flightSearch.roundTrip": "Ida y vuelta",
-    "flightSearch.oneWay": "Solo ida",
-    "flightSearch.origin": "Origen",
-    "flightSearch.destination": "Destino",
-    "flightSearch.selectOrigin": "Selecciona el aeropuerto de origen",
-    "flightSearch.selectDestination": "Selecciona el aeropuerto de destino",
-    "flightSearch.departDate": "Fecha de salida",
-    "flightSearch.returnDate": "Fecha de regreso",
-    "flightSearch.selectDate": "Seleccionar fecha",
-    "flightSearch.passengers": "Pasajeros",
-    "flightSearch.adults": "Adultos",
-    "flightSearch.children": "Niños",
-    "flightSearch.infants": "Bebés",
-    "flightSearch.cabinClass": "Clase de cabina",
-    "flightSearch.economy": "Turista",
-    "flightSearch.business": "Business",
-    "flightSearch.searchButton": "Buscar en Aviasales",
-    "flightSearch.openingProvider": "Abriendo Aviasales…",
-    "flightSearch.airportSearch":
-      "Busca ciudad, país, aeropuerto o código IATA",
-    "flightSearch.filterPopular": "Populares",
-    "flightSearch.filterTurkey": "Turquía",
-    "flightSearch.filterEurope": "Europa",
-    "flightSearch.filterMiddleEast": "Oriente Medio",
-    "flightSearch.filterAsia": "Asia",
-    "flightSearch.filterAmericas": "América",
-    "flightSearch.noAirportResults": "No se encontraron aeropuertos.",
-    "flightSearch.close": "Cancelar",
-    "flightSearch.validationTitle": "Revisa tu búsqueda",
-    "flightSearch.originRequired": "Selecciona un aeropuerto de origen.",
-    "flightSearch.destinationRequired": "Selecciona un aeropuerto de destino.",
-    "flightSearch.sameAirportError":
-      "El origen y el destino deben ser distintos.",
-    "flightSearch.departDateRequired": "Introduce una fecha de salida válida.",
-    "flightSearch.returnDateRequired": "Introduce una fecha de regreso válida.",
-    "flightSearch.pastDateError": "La salida no puede ser anterior a hoy.",
-    "flightSearch.returnBeforeDeparture":
-      "El regreso no puede ser anterior a la salida.",
-    "flightSearch.passengerError": "Revisa el número de pasajeros.",
-    "flightSearch.openFailedTitle": "No se pudo abrir Aviasales",
-    "flightSearch.openFailedBody":
-      "Comprueba tu conexión e inténtalo de nuevo.",
-    "flightSearch.providerTitle": "Acerca de tu búsqueda",
-    "flightSearch.providerDisclosure":
-      "Aviasales proporciona los resultados, precios y disponibilidad. La reserva se completa en el sitio web de un proveedor externo.",
-    "flightSearch.affiliateDisclosure":
-      "Algunos enlaces son enlaces de afiliación. Podemos obtener ingresos por las reservas elegibles realizadas a través de ellos; el precio que pagas no cambia.",
-    "flightSearch.priceNotice":
-      "Los precios y la disponibilidad pueden cambiar antes de reservar.",
-  },
-  fr: {
-    "nav.flightSearch": "Rechercher un vol",
-    "flightSearch.kicker": "Planifiez votre voyage",
-    "flightSearch.title": "Rechercher un vol",
-    "flightSearch.subtitle":
-      "Recherchez des vols et consultez les prix actuels sur Aviasales.",
-    "flightSearch.tripType": "Type de voyage",
-    "flightSearch.roundTrip": "Aller-retour",
-    "flightSearch.oneWay": "Aller simple",
-    "flightSearch.origin": "Départ",
-    "flightSearch.destination": "Destination",
-    "flightSearch.selectOrigin": "Choisir l’aéroport de départ",
-    "flightSearch.selectDestination": "Choisir l’aéroport de destination",
-    "flightSearch.departDate": "Date de départ",
-    "flightSearch.returnDate": "Date de retour",
-    "flightSearch.selectDate": "Choisir la date",
-    "flightSearch.passengers": "Passagers",
-    "flightSearch.adults": "Adultes",
-    "flightSearch.children": "Enfants",
-    "flightSearch.infants": "Bébés",
-    "flightSearch.cabinClass": "Classe de voyage",
-    "flightSearch.economy": "Économique",
-    "flightSearch.business": "Affaires",
-    "flightSearch.searchButton": "Rechercher sur Aviasales",
-    "flightSearch.openingProvider": "Ouverture d’Aviasales…",
-    "flightSearch.airportSearch": "Ville, pays, aéroport ou code IATA",
-    "flightSearch.filterPopular": "Populaires",
-    "flightSearch.filterTurkey": "Turquie",
-    "flightSearch.filterEurope": "Europe",
-    "flightSearch.filterMiddleEast": "Moyen-Orient",
-    "flightSearch.filterAsia": "Asie",
-    "flightSearch.filterAmericas": "Amériques",
-    "flightSearch.noAirportResults": "Aucun aéroport trouvé.",
-    "flightSearch.close": "Annuler",
-    "flightSearch.validationTitle": "Vérifiez votre recherche",
-    "flightSearch.originRequired": "Choisissez un aéroport de départ.",
-    "flightSearch.destinationRequired":
-      "Choisissez un aéroport de destination.",
-    "flightSearch.sameAirportError":
-      "Le départ et la destination doivent être différents.",
-    "flightSearch.departDateRequired": "Saisissez une date de départ valide.",
-    "flightSearch.returnDateRequired": "Saisissez une date de retour valide.",
-    "flightSearch.pastDateError":
-      "Le départ ne peut pas être antérieur à aujourd’hui.",
-    "flightSearch.returnBeforeDeparture":
-      "Le retour ne peut pas précéder le départ.",
-    "flightSearch.passengerError": "Vérifiez le nombre de passagers.",
-    "flightSearch.openFailedTitle": "Impossible d’ouvrir Aviasales",
-    "flightSearch.openFailedBody": "Vérifiez votre connexion et réessayez.",
-    "flightSearch.providerTitle": "À propos de votre recherche",
-    "flightSearch.providerDisclosure":
-      "Les résultats, les prix et les disponibilités sont fournis par Aviasales. La réservation s’effectue sur le site d’un prestataire tiers.",
-    "flightSearch.affiliateDisclosure":
-      "Certains liens sont des liens d’affiliation. Nous pouvons percevoir des revenus sur les réservations éligibles effectuées via ces liens ; le prix que vous payez ne change pas.",
-    "flightSearch.priceNotice":
-      "Les prix et les disponibilités peuvent changer avant la réservation.",
-  },
-  de: {
-    "nav.flightSearch": "Flüge suchen",
-    "flightSearch.kicker": "Reise planen",
-    "flightSearch.title": "Flüge suchen",
-    "flightSearch.subtitle":
-      "Suchen Sie Flüge und sehen Sie aktuelle Preise bei Aviasales.",
-    "flightSearch.tripType": "Reiseart",
-    "flightSearch.roundTrip": "Hin und zurück",
-    "flightSearch.oneWay": "Nur Hinflug",
-    "flightSearch.origin": "Abflug",
-    "flightSearch.destination": "Ziel",
-    "flightSearch.selectOrigin": "Abflughafen wählen",
-    "flightSearch.selectDestination": "Zielflughafen wählen",
-    "flightSearch.departDate": "Abflugdatum",
-    "flightSearch.returnDate": "Rückflugdatum",
-    "flightSearch.selectDate": "Datum wählen",
-    "flightSearch.passengers": "Passagiere",
-    "flightSearch.adults": "Erwachsene",
-    "flightSearch.children": "Kinder",
-    "flightSearch.infants": "Kleinkinder",
-    "flightSearch.cabinClass": "Reiseklasse",
-    "flightSearch.economy": "Economy",
-    "flightSearch.business": "Business",
-    "flightSearch.searchButton": "Bei Aviasales suchen",
-    "flightSearch.openingProvider": "Aviasales wird geöffnet…",
-    "flightSearch.airportSearch": "Stadt, Land, Flughafen oder IATA-Code",
-    "flightSearch.filterPopular": "Beliebt",
-    "flightSearch.filterTurkey": "Türkei",
-    "flightSearch.filterEurope": "Europa",
-    "flightSearch.filterMiddleEast": "Naher Osten",
-    "flightSearch.filterAsia": "Asien",
-    "flightSearch.filterAmericas": "Amerika",
-    "flightSearch.noAirportResults": "Keine Flughäfen gefunden.",
-    "flightSearch.close": "Abbrechen",
-    "flightSearch.validationTitle": "Suche prüfen",
-    "flightSearch.originRequired": "Wählen Sie einen Abflughafen.",
-    "flightSearch.destinationRequired": "Wählen Sie einen Zielflughafen.",
-    "flightSearch.sameAirportError": "Abflug und Ziel müssen verschieden sein.",
-    "flightSearch.departDateRequired":
-      "Geben Sie ein gültiges Abflugdatum ein.",
-    "flightSearch.returnDateRequired":
-      "Geben Sie ein gültiges Rückflugdatum ein.",
-    "flightSearch.pastDateError":
-      "Das Abflugdatum darf nicht vor heute liegen.",
-    "flightSearch.returnBeforeDeparture":
-      "Der Rückflug darf nicht vor dem Abflug liegen.",
-    "flightSearch.passengerError": "Prüfen Sie die Passagierzahlen.",
-    "flightSearch.openFailedTitle": "Aviasales konnte nicht geöffnet werden",
-    "flightSearch.openFailedBody":
-      "Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.",
-    "flightSearch.providerTitle": "Hinweise zur Flugsuche",
-    "flightSearch.providerDisclosure":
-      "Suchergebnisse, Preise und Verfügbarkeit werden von Aviasales bereitgestellt. Die Buchung erfolgt auf der Website eines Drittanbieters.",
-    "flightSearch.affiliateDisclosure":
-      "Einige Links sind Affiliate-Links. Für qualifizierte Buchungen über diese Links können wir Einnahmen erhalten; der von Ihnen gezahlte Preis ändert sich nicht.",
-    "flightSearch.priceNotice":
-      "Preise und Verfügbarkeit können sich vor der Buchung ändern.",
-  },
-  ar: {
-    "nav.flightSearch": "البحث عن رحلات",
-    "flightSearch.kicker": "خطط لرحلتك",
-    "flightSearch.title": "ابحث عن رحلات",
-    "flightSearch.subtitle":
-      "ابحث عن الرحلات واطّلع على الأسعار الحالية عبر Aviasales.",
-    "flightSearch.tripType": "نوع الرحلة",
-    "flightSearch.roundTrip": "ذهاب وعودة",
-    "flightSearch.oneWay": "ذهاب فقط",
-    "flightSearch.origin": "المغادرة",
-    "flightSearch.destination": "الوجهة",
-    "flightSearch.selectOrigin": "اختر مطار المغادرة",
-    "flightSearch.selectDestination": "اختر مطار الوجهة",
-    "flightSearch.departDate": "تاريخ المغادرة",
-    "flightSearch.returnDate": "تاريخ العودة",
-    "flightSearch.selectDate": "اختر التاريخ",
-    "flightSearch.passengers": "المسافرون",
-    "flightSearch.adults": "البالغون",
-    "flightSearch.children": "الأطفال",
-    "flightSearch.infants": "الرضّع",
-    "flightSearch.cabinClass": "درجة السفر",
-    "flightSearch.economy": "السياحية",
-    "flightSearch.business": "رجال الأعمال",
-    "flightSearch.searchButton": "البحث عبر Aviasales",
-    "flightSearch.openingProvider": "جارٍ فتح Aviasales…",
-    "flightSearch.airportSearch":
-      "ابحث بالمدينة أو البلد أو المطار أو رمز IATA",
-    "flightSearch.filterPopular": "شائعة",
-    "flightSearch.filterTurkey": "تركيا",
-    "flightSearch.filterEurope": "أوروبا",
-    "flightSearch.filterMiddleEast": "الشرق الأوسط",
-    "flightSearch.filterAsia": "آسيا",
-    "flightSearch.filterAmericas": "الأمريكتان",
-    "flightSearch.noAirportResults": "لم يتم العثور على مطارات.",
-    "flightSearch.close": "إلغاء",
-    "flightSearch.validationTitle": "تحقق من البحث",
-    "flightSearch.originRequired": "اختر مطار المغادرة.",
-    "flightSearch.destinationRequired": "اختر مطار الوجهة.",
-    "flightSearch.sameAirportError": "يجب أن يختلف مطار المغادرة عن الوجهة.",
-    "flightSearch.departDateRequired": "أدخل تاريخ مغادرة صالحًا.",
-    "flightSearch.returnDateRequired": "أدخل تاريخ عودة صالحًا.",
-    "flightSearch.pastDateError": "لا يمكن أن يسبق تاريخ المغادرة اليوم.",
-    "flightSearch.returnBeforeDeparture":
-      "لا يمكن أن يسبق تاريخ العودة المغادرة.",
-    "flightSearch.passengerError": "تحقق من أعداد المسافرين.",
-    "flightSearch.openFailedTitle": "تعذر فتح Aviasales",
-    "flightSearch.openFailedBody": "تحقق من الاتصال وحاول مرة أخرى.",
-    "flightSearch.providerTitle": "حول البحث عن الرحلات",
-    "flightSearch.providerDisclosure":
-      "تقدم Aviasales نتائج البحث والأسعار والتوافر. يكتمل الحجز على موقع مزود خارجي.",
-    "flightSearch.affiliateDisclosure":
-      "بعض الروابط هي روابط تسويق بالعمولة. قد نحقق إيرادًا من الحجوزات المؤهلة التي تتم عبرها، من دون تغيير السعر الذي تدفعه.",
-    "flightSearch.priceNotice": "قد تتغير الأسعار والتوافر قبل الحجز.",
-  },
-  ru: {
-    "nav.flightSearch": "Поиск авиабилетов",
-    "flightSearch.kicker": "Спланируйте поездку",
-    "flightSearch.title": "Найти авиабилеты",
-    "flightSearch.subtitle":
-      "Найдите рейсы и посмотрите актуальные цены на Aviasales.",
-    "flightSearch.tripType": "Тип поездки",
-    "flightSearch.roundTrip": "Туда и обратно",
-    "flightSearch.oneWay": "В одну сторону",
-    "flightSearch.origin": "Откуда",
-    "flightSearch.destination": "Куда",
-    "flightSearch.selectOrigin": "Выберите аэропорт отправления",
-    "flightSearch.selectDestination": "Выберите аэропорт назначения",
-    "flightSearch.departDate": "Дата вылета",
-    "flightSearch.returnDate": "Дата возвращения",
-    "flightSearch.selectDate": "Выбрать дату",
-    "flightSearch.passengers": "Пассажиры",
-    "flightSearch.adults": "Взрослые",
-    "flightSearch.children": "Дети",
-    "flightSearch.infants": "Младенцы",
-    "flightSearch.cabinClass": "Класс",
-    "flightSearch.economy": "Эконом",
-    "flightSearch.business": "Бизнес",
-    "flightSearch.searchButton": "Искать на Aviasales",
-    "flightSearch.openingProvider": "Открываем Aviasales…",
-    "flightSearch.airportSearch": "Город, страна, аэропорт или код IATA",
-    "flightSearch.filterPopular": "Популярные",
-    "flightSearch.filterTurkey": "Турция",
-    "flightSearch.filterEurope": "Европа",
-    "flightSearch.filterMiddleEast": "Ближний Восток",
-    "flightSearch.filterAsia": "Азия",
-    "flightSearch.filterAmericas": "Америка",
-    "flightSearch.noAirportResults": "Аэропорты не найдены.",
-    "flightSearch.close": "Отмена",
-    "flightSearch.validationTitle": "Проверьте поиск",
-    "flightSearch.originRequired": "Выберите аэропорт отправления.",
-    "flightSearch.destinationRequired": "Выберите аэропорт назначения.",
-    "flightSearch.sameAirportError":
-      "Аэропорты отправления и назначения должны различаться.",
-    "flightSearch.departDateRequired": "Введите корректную дату вылета.",
-    "flightSearch.returnDateRequired": "Введите корректную дату возвращения.",
-    "flightSearch.pastDateError":
-      "Дата вылета не может быть раньше сегодняшней.",
-    "flightSearch.returnBeforeDeparture":
-      "Возвращение не может быть раньше вылета.",
-    "flightSearch.passengerError": "Проверьте количество пассажиров.",
-    "flightSearch.openFailedTitle": "Не удалось открыть Aviasales",
-    "flightSearch.openFailedBody": "Проверьте подключение и повторите попытку.",
-    "flightSearch.providerTitle": "О поиске авиабилетов",
-    "flightSearch.providerDisclosure":
-      "Результаты, цены и наличие предоставляет Aviasales. Бронирование завершается на сайте стороннего поставщика.",
-    "flightSearch.affiliateDisclosure":
-      "Некоторые ссылки являются партнёрскими. Мы можем получать доход от подходящих бронирований, совершённых по ним; цена для вас не меняется.",
-    "flightSearch.priceNotice":
-      "Цены и наличие могут измениться до бронирования.",
-  },
-  zh: {
-    "nav.flightSearch": "搜索航班",
-    "flightSearch.kicker": "规划旅程",
-    "flightSearch.title": "搜索航班",
-    "flightSearch.subtitle": "搜索航班并在 Aviasales 查看当前价格。",
-    "flightSearch.tripType": "行程类型",
-    "flightSearch.roundTrip": "往返",
-    "flightSearch.oneWay": "单程",
-    "flightSearch.origin": "出发地",
-    "flightSearch.destination": "目的地",
-    "flightSearch.selectOrigin": "选择出发机场",
-    "flightSearch.selectDestination": "选择目的地机场",
-    "flightSearch.departDate": "出发日期",
-    "flightSearch.returnDate": "返程日期",
-    "flightSearch.selectDate": "选择日期",
-    "flightSearch.passengers": "乘客",
-    "flightSearch.adults": "成人",
-    "flightSearch.children": "儿童",
-    "flightSearch.infants": "婴儿",
-    "flightSearch.cabinClass": "舱位",
-    "flightSearch.economy": "经济舱",
-    "flightSearch.business": "商务舱",
-    "flightSearch.searchButton": "在 Aviasales 搜索",
-    "flightSearch.openingProvider": "正在打开 Aviasales…",
-    "flightSearch.airportSearch": "搜索城市、国家、机场或 IATA 代码",
-    "flightSearch.filterPopular": "热门",
-    "flightSearch.filterTurkey": "土耳其",
-    "flightSearch.filterEurope": "欧洲",
-    "flightSearch.filterMiddleEast": "中东",
-    "flightSearch.filterAsia": "亚洲",
-    "flightSearch.filterAmericas": "美洲",
-    "flightSearch.noAirportResults": "未找到机场。",
-    "flightSearch.close": "取消",
-    "flightSearch.validationTitle": "请检查搜索条件",
-    "flightSearch.originRequired": "请选择出发机场。",
-    "flightSearch.destinationRequired": "请选择目的地机场。",
-    "flightSearch.sameAirportError": "出发机场和目的地机场不能相同。",
-    "flightSearch.departDateRequired": "请输入有效的出发日期。",
-    "flightSearch.returnDateRequired": "请输入有效的返程日期。",
-    "flightSearch.pastDateError": "出发日期不能早于今天。",
-    "flightSearch.returnBeforeDeparture": "返程日期不能早于出发日期。",
-    "flightSearch.passengerError": "请检查乘客人数。",
-    "flightSearch.openFailedTitle": "无法打开 Aviasales",
-    "flightSearch.openFailedBody": "请检查网络连接后重试。",
-    "flightSearch.providerTitle": "关于航班搜索",
-    "flightSearch.providerDisclosure":
-      "搜索结果、价格和可用性由 Aviasales 提供。预订将在第三方服务商网站完成。",
-    "flightSearch.affiliateDisclosure":
-      "部分链接为联盟链接。通过这些链接完成符合条件的预订时，我们可能获得收入；您支付的价格不会因此改变。",
-    "flightSearch.priceNotice": "价格和可用性可能在预订前发生变化。",
-  },
-};
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], flightSearchTranslations[locale]);
-
-const flightDealProfileTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+const flightDealProfileTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
     "flightDeals.directOnly": "Direct flights only",
-    "flightDeals.directOnlyHint":
-      "Save this preference for direct flights only.",
+    "flightDeals.directOnlyHint": "Save this preference for direct flights only.",
     "flightDeals.savedPendingProvider": "Saved; provider pending",
     "flightDeals.savedActiveProvider": "Saved with active provider",
     "flightDeals.savedAlertsLoading": "Loading saved alerts…",
     "flightDeals.savedAlertsLoadFailed": "Could not load saved alerts.",
-    "flightDeals.savedAlertsEmpty":
-      "You do not have any saved price alerts yet.",
+    "flightDeals.savedAlertsEmpty": "You do not have any saved price alerts yet.",
     "flightDeals.editAlert": "Edit",
     "flightDeals.updateAlert": "Update Alert",
     "flightDeals.cancelEditing": "Cancel Editing",
@@ -19899,13 +17625,11 @@ const flightDealProfileTranslations: Record<
     "flightDeals.activateAlert": "Activate",
     "flightDeals.deleteAlert": "Delete",
     "flightDeals.deleteConfirmTitle": "Delete price alert?",
-    "flightDeals.deleteConfirmBody":
-      "This saved price-alert preference will be permanently deleted.",
+    "flightDeals.deleteConfirmBody": "This saved price-alert preference will be permanently deleted.",
     "flightDeals.deleteFailedTitle": "Could not delete alert",
     "flightDeals.deleteFailedBody": "Please try deleting the alert again.",
     "flightDeals.toggleFailedTitle": "Could not update alert",
-    "flightDeals.toggleFailedBody":
-      "Please try changing the alert status again.",
+    "flightDeals.toggleFailedBody": "Please try changing the alert status again.",
     "flightDeals.tripProfile": "Trip profile",
     "flightDeals.passengerSummary": "Passengers",
     "flightDeals.anyFlights": "Any flights",
@@ -19914,16 +17638,14 @@ const flightDealProfileTranslations: Record<
     "flightDeals.pausedStatus": "Paused",
     "flightDeals.pendingMonitoringStatus": "Automatic monitoring pending",
     "flightDeals.savedPendingTitle": "Preference saved",
-    "flightDeals.savedPendingBody":
-      "Your price-alert preference was saved. Automatic price monitoring will start when the flight-data service is activated.",
+    "flightDeals.savedPendingBody": "Your price-alert preference was saved. Automatic price monitoring will start when the flight-data service is activated.",
     "flightDeals.updatedTitle": "Alert updated",
     "flightDeals.updatedBody": "Your price-alert preference was updated.",
     "flightDeals.sameAirportError": "Origin and destination must be different.",
     "flightDeals.departDateRequired": "Enter a valid departure date.",
     "flightDeals.returnDateRequired": "Enter a valid return date.",
     "flightDeals.pastDateError": "Departure date cannot be earlier than today.",
-    "flightDeals.returnBeforeDeparture":
-      "Return date cannot be earlier than departure date.",
+    "flightDeals.returnBeforeDeparture": "Return date cannot be earlier than departure date.",
     "flightDeals.passengerError": "Check the passenger counts and try again.",
   },
   tr: {
@@ -19941,8 +17663,7 @@ const flightDealProfileTranslations: Record<
     "flightDeals.activateAlert": "Etkinleştir",
     "flightDeals.deleteAlert": "Sil",
     "flightDeals.deleteConfirmTitle": "Fiyat alarmı silinsin mi?",
-    "flightDeals.deleteConfirmBody":
-      "Bu kayıtlı fiyat alarmı tercihi kalıcı olarak silinecek.",
+    "flightDeals.deleteConfirmBody": "Bu kayıtlı fiyat alarmı tercihi kalıcı olarak silinecek.",
     "flightDeals.deleteFailedTitle": "Alarm silinemedi",
     "flightDeals.deleteFailedBody": "Alarmı silmeyi tekrar dene.",
     "flightDeals.toggleFailedTitle": "Alarm güncellenemedi",
@@ -19955,17 +17676,14 @@ const flightDealProfileTranslations: Record<
     "flightDeals.pausedStatus": "Duraklatıldı",
     "flightDeals.pendingMonitoringStatus": "Otomatik takip bekliyor",
     "flightDeals.savedPendingTitle": "Tercih kaydedildi",
-    "flightDeals.savedPendingBody":
-      "Fiyat alarmı tercihin kaydedildi. Otomatik fiyat takibi, uçuş veri hizmeti etkinleştirildiğinde başlayacak.",
+    "flightDeals.savedPendingBody": "Fiyat alarmı tercihin kaydedildi. Otomatik fiyat takibi, uçuş veri hizmeti etkinleştirildiğinde başlayacak.",
     "flightDeals.updatedTitle": "Alarm güncellendi",
     "flightDeals.updatedBody": "Fiyat alarmı tercihin güncellendi.",
-    "flightDeals.sameAirportError":
-      "Kalkış ve varış havalimanları farklı olmalıdır.",
+    "flightDeals.sameAirportError": "Kalkış ve varış havalimanları farklı olmalıdır.",
     "flightDeals.departDateRequired": "Geçerli bir gidiş tarihi gir.",
     "flightDeals.returnDateRequired": "Geçerli bir dönüş tarihi gir.",
     "flightDeals.pastDateError": "Gidiş tarihi bugünden önce olamaz.",
-    "flightDeals.returnBeforeDeparture":
-      "Dönüş tarihi gidiş tarihinden önce olamaz.",
+    "flightDeals.returnBeforeDeparture": "Dönüş tarihi gidiş tarihinden önce olamaz.",
     "flightDeals.passengerError": "Yolcu sayılarını kontrol edip tekrar dene.",
   },
   es: {
@@ -19975,8 +17693,7 @@ const flightDealProfileTranslations: Record<
     "flightDeals.savedActiveProvider": "Guardada con proveedor activo",
     "flightDeals.savedAlertsLoading": "Cargando alertas guardadas…",
     "flightDeals.savedAlertsLoadFailed": "No se pudieron cargar las alertas.",
-    "flightDeals.savedAlertsEmpty":
-      "Aún no tienes alertas de precios guardadas.",
+    "flightDeals.savedAlertsEmpty": "Aún no tienes alertas de precios guardadas.",
     "flightDeals.editAlert": "Editar",
     "flightDeals.updateAlert": "Actualizar alerta",
     "flightDeals.cancelEditing": "Cancelar edición",
@@ -19984,8 +17701,7 @@ const flightDealProfileTranslations: Record<
     "flightDeals.activateAlert": "Activar",
     "flightDeals.deleteAlert": "Eliminar",
     "flightDeals.deleteConfirmTitle": "¿Eliminar alerta de precio?",
-    "flightDeals.deleteConfirmBody":
-      "Esta preferencia se eliminará de forma permanente.",
+    "flightDeals.deleteConfirmBody": "Esta preferencia se eliminará de forma permanente.",
     "flightDeals.deleteFailedTitle": "No se pudo eliminar",
     "flightDeals.deleteFailedBody": "Inténtalo de nuevo.",
     "flightDeals.toggleFailedTitle": "No se pudo actualizar",
@@ -19996,32 +17712,26 @@ const flightDealProfileTranslations: Record<
     "flightDeals.directFlights": "Solo directos",
     "flightDeals.activeStatus": "Activa",
     "flightDeals.pausedStatus": "Pausada",
-    "flightDeals.pendingMonitoringStatus":
-      "Monitorización automática pendiente",
+    "flightDeals.pendingMonitoringStatus": "Monitorización automática pendiente",
     "flightDeals.savedPendingTitle": "Preferencia guardada",
-    "flightDeals.savedPendingBody":
-      "Tu preferencia se guardó. La monitorización automática comenzará cuando se active el servicio de datos de vuelos.",
+    "flightDeals.savedPendingBody": "Tu preferencia se guardó. La monitorización automática comenzará cuando se active el servicio de datos de vuelos.",
     "flightDeals.updatedTitle": "Alerta actualizada",
     "flightDeals.updatedBody": "Tu preferencia se actualizó.",
-    "flightDeals.sameAirportError":
-      "El origen y el destino deben ser distintos.",
+    "flightDeals.sameAirportError": "El origen y el destino deben ser distintos.",
     "flightDeals.departDateRequired": "Introduce una fecha de salida válida.",
     "flightDeals.returnDateRequired": "Introduce una fecha de regreso válida.",
     "flightDeals.pastDateError": "La salida no puede ser anterior a hoy.",
-    "flightDeals.returnBeforeDeparture":
-      "El regreso no puede ser anterior a la salida.",
+    "flightDeals.returnBeforeDeparture": "El regreso no puede ser anterior a la salida.",
     "flightDeals.passengerError": "Revisa el número de pasajeros.",
   },
   fr: {
     "flightDeals.directOnly": "Vols directs uniquement",
-    "flightDeals.directOnlyHint":
-      "Enregistrer la préférence pour les vols directs.",
+    "flightDeals.directOnlyHint": "Enregistrer la préférence pour les vols directs.",
     "flightDeals.savedPendingProvider": "Enregistrée ; fournisseur en attente",
     "flightDeals.savedActiveProvider": "Enregistrée avec fournisseur actif",
     "flightDeals.savedAlertsLoading": "Chargement des alertes…",
     "flightDeals.savedAlertsLoadFailed": "Impossible de charger les alertes.",
-    "flightDeals.savedAlertsEmpty":
-      "Vous n’avez encore aucune alerte de prix enregistrée.",
+    "flightDeals.savedAlertsEmpty": "Vous n’avez encore aucune alerte de prix enregistrée.",
     "flightDeals.editAlert": "Modifier",
     "flightDeals.updateAlert": "Mettre à jour",
     "flightDeals.cancelEditing": "Annuler la modification",
@@ -20029,8 +17739,7 @@ const flightDealProfileTranslations: Record<
     "flightDeals.activateAlert": "Activer",
     "flightDeals.deleteAlert": "Supprimer",
     "flightDeals.deleteConfirmTitle": "Supprimer l’alerte de prix ?",
-    "flightDeals.deleteConfirmBody":
-      "Cette préférence sera définitivement supprimée.",
+    "flightDeals.deleteConfirmBody": "Cette préférence sera définitivement supprimée.",
     "flightDeals.deleteFailedTitle": "Suppression impossible",
     "flightDeals.deleteFailedBody": "Veuillez réessayer.",
     "flightDeals.toggleFailedTitle": "Mise à jour impossible",
@@ -20043,18 +17752,14 @@ const flightDealProfileTranslations: Record<
     "flightDeals.pausedStatus": "Suspendue",
     "flightDeals.pendingMonitoringStatus": "Suivi automatique en attente",
     "flightDeals.savedPendingTitle": "Préférence enregistrée",
-    "flightDeals.savedPendingBody":
-      "Votre préférence a été enregistrée. Le suivi automatique commencera quand le service de données de vol sera activé.",
+    "flightDeals.savedPendingBody": "Votre préférence a été enregistrée. Le suivi automatique commencera quand le service de données de vol sera activé.",
     "flightDeals.updatedTitle": "Alerte mise à jour",
     "flightDeals.updatedBody": "Votre préférence a été mise à jour.",
-    "flightDeals.sameAirportError":
-      "Le départ et la destination doivent être différents.",
+    "flightDeals.sameAirportError": "Le départ et la destination doivent être différents.",
     "flightDeals.departDateRequired": "Saisissez une date de départ valide.",
     "flightDeals.returnDateRequired": "Saisissez une date de retour valide.",
-    "flightDeals.pastDateError":
-      "Le départ ne peut pas être antérieur à aujourd’hui.",
-    "flightDeals.returnBeforeDeparture":
-      "Le retour ne peut pas précéder le départ.",
+    "flightDeals.pastDateError": "Le départ ne peut pas être antérieur à aujourd’hui.",
+    "flightDeals.returnBeforeDeparture": "Le retour ne peut pas précéder le départ.",
     "flightDeals.passengerError": "Vérifiez le nombre de passagers.",
   },
   de: {
@@ -20064,8 +17769,7 @@ const flightDealProfileTranslations: Record<
     "flightDeals.savedActiveProvider": "Mit aktivem Anbieter gespeichert",
     "flightDeals.savedAlertsLoading": "Gespeicherte Alarme werden geladen…",
     "flightDeals.savedAlertsLoadFailed": "Alarme konnten nicht geladen werden.",
-    "flightDeals.savedAlertsEmpty":
-      "Sie haben noch keine Preisalarme gespeichert.",
+    "flightDeals.savedAlertsEmpty": "Sie haben noch keine Preisalarme gespeichert.",
     "flightDeals.editAlert": "Bearbeiten",
     "flightDeals.updateAlert": "Alarm aktualisieren",
     "flightDeals.cancelEditing": "Bearbeitung abbrechen",
@@ -20084,20 +17788,16 @@ const flightDealProfileTranslations: Record<
     "flightDeals.directFlights": "Nur direkt",
     "flightDeals.activeStatus": "Aktiv",
     "flightDeals.pausedStatus": "Pausiert",
-    "flightDeals.pendingMonitoringStatus":
-      "Automatische Überwachung ausstehend",
+    "flightDeals.pendingMonitoringStatus": "Automatische Überwachung ausstehend",
     "flightDeals.savedPendingTitle": "Präferenz gespeichert",
-    "flightDeals.savedPendingBody":
-      "Ihre Präferenz wurde gespeichert. Die automatische Überwachung startet, wenn der Flugdatenservice aktiviert ist.",
+    "flightDeals.savedPendingBody": "Ihre Präferenz wurde gespeichert. Die automatische Überwachung startet, wenn der Flugdatenservice aktiviert ist.",
     "flightDeals.updatedTitle": "Alarm aktualisiert",
     "flightDeals.updatedBody": "Ihre Präferenz wurde aktualisiert.",
     "flightDeals.sameAirportError": "Abflug und Ziel müssen verschieden sein.",
     "flightDeals.departDateRequired": "Geben Sie ein gültiges Abflugdatum ein.",
-    "flightDeals.returnDateRequired":
-      "Geben Sie ein gültiges Rückflugdatum ein.",
+    "flightDeals.returnDateRequired": "Geben Sie ein gültiges Rückflugdatum ein.",
     "flightDeals.pastDateError": "Das Abflugdatum darf nicht vor heute liegen.",
-    "flightDeals.returnBeforeDeparture":
-      "Der Rückflug darf nicht vor dem Abflug liegen.",
+    "flightDeals.returnBeforeDeparture": "Der Rückflug darf nicht vor dem Abflug liegen.",
     "flightDeals.passengerError": "Prüfen Sie die Passagierzahlen.",
   },
   ar: {
@@ -20128,28 +17828,24 @@ const flightDealProfileTranslations: Record<
     "flightDeals.pausedStatus": "متوقف مؤقتًا",
     "flightDeals.pendingMonitoringStatus": "المراقبة التلقائية قيد الانتظار",
     "flightDeals.savedPendingTitle": "تم حفظ التفضيل",
-    "flightDeals.savedPendingBody":
-      "تم حفظ تفضيل تنبيه السعر. ستبدأ المراقبة التلقائية عند تفعيل خدمة بيانات الرحلات.",
+    "flightDeals.savedPendingBody": "تم حفظ تفضيل تنبيه السعر. ستبدأ المراقبة التلقائية عند تفعيل خدمة بيانات الرحلات.",
     "flightDeals.updatedTitle": "تم تحديث التنبيه",
     "flightDeals.updatedBody": "تم تحديث تفضيل تنبيه السعر.",
     "flightDeals.sameAirportError": "يجب أن يختلف مطار المغادرة عن الوجهة.",
     "flightDeals.departDateRequired": "أدخل تاريخ مغادرة صالحًا.",
     "flightDeals.returnDateRequired": "أدخل تاريخ عودة صالحًا.",
     "flightDeals.pastDateError": "لا يمكن أن يسبق تاريخ المغادرة اليوم.",
-    "flightDeals.returnBeforeDeparture":
-      "لا يمكن أن يسبق تاريخ العودة المغادرة.",
+    "flightDeals.returnBeforeDeparture": "لا يمكن أن يسبق تاريخ العودة المغادرة.",
     "flightDeals.passengerError": "تحقق من أعداد المسافرين.",
   },
   ru: {
     "flightDeals.directOnly": "Только прямые рейсы",
-    "flightDeals.directOnlyHint":
-      "Сохранить предпочтение только для прямых рейсов.",
+    "flightDeals.directOnlyHint": "Сохранить предпочтение только для прямых рейсов.",
     "flightDeals.savedPendingProvider": "Сохранено; провайдер ожидается",
     "flightDeals.savedActiveProvider": "Сохранено с активным провайдером",
     "flightDeals.savedAlertsLoading": "Загрузка сохранённых уведомлений…",
     "flightDeals.savedAlertsLoadFailed": "Не удалось загрузить уведомления.",
-    "flightDeals.savedAlertsEmpty":
-      "У вас пока нет сохранённых уведомлений о ценах.",
+    "flightDeals.savedAlertsEmpty": "У вас пока нет сохранённых уведомлений о ценах.",
     "flightDeals.editAlert": "Изменить",
     "flightDeals.updateAlert": "Обновить уведомление",
     "flightDeals.cancelEditing": "Отменить изменение",
@@ -20168,21 +17864,16 @@ const flightDealProfileTranslations: Record<
     "flightDeals.directFlights": "Только прямые",
     "flightDeals.activeStatus": "Активно",
     "flightDeals.pausedStatus": "Приостановлено",
-    "flightDeals.pendingMonitoringStatus":
-      "Автоматический мониторинг ожидается",
+    "flightDeals.pendingMonitoringStatus": "Автоматический мониторинг ожидается",
     "flightDeals.savedPendingTitle": "Предпочтение сохранено",
-    "flightDeals.savedPendingBody":
-      "Предпочтение сохранено. Автоматический мониторинг начнётся после активации сервиса полётных данных.",
+    "flightDeals.savedPendingBody": "Предпочтение сохранено. Автоматический мониторинг начнётся после активации сервиса полётных данных.",
     "flightDeals.updatedTitle": "Уведомление обновлено",
     "flightDeals.updatedBody": "Предпочтение обновлено.",
-    "flightDeals.sameAirportError":
-      "Аэропорты отправления и назначения должны различаться.",
+    "flightDeals.sameAirportError": "Аэропорты отправления и назначения должны различаться.",
     "flightDeals.departDateRequired": "Введите корректную дату вылета.",
     "flightDeals.returnDateRequired": "Введите корректную дату возвращения.",
-    "flightDeals.pastDateError":
-      "Дата вылета не может быть раньше сегодняшней.",
-    "flightDeals.returnBeforeDeparture":
-      "Возвращение не может быть раньше вылета.",
+    "flightDeals.pastDateError": "Дата вылета не может быть раньше сегодняшней.",
+    "flightDeals.returnBeforeDeparture": "Возвращение не может быть раньше вылета.",
     "flightDeals.passengerError": "Проверьте количество пассажиров.",
   },
   zh: {
@@ -20213,8 +17904,7 @@ const flightDealProfileTranslations: Record<
     "flightDeals.pausedStatus": "已暂停",
     "flightDeals.pendingMonitoringStatus": "自动监控待启用",
     "flightDeals.savedPendingTitle": "偏好已保存",
-    "flightDeals.savedPendingBody":
-      "你的价格提醒偏好已保存。航班数据服务启用后将开始自动价格监控。",
+    "flightDeals.savedPendingBody": "你的价格提醒偏好已保存。航班数据服务启用后将开始自动价格监控。",
     "flightDeals.updatedTitle": "提醒已更新",
     "flightDeals.updatedBody": "你的价格提醒偏好已更新。",
     "flightDeals.sameAirportError": "出发机场和目的地机场不能相同。",
@@ -20225,855 +17915,149 @@ const flightDealProfileTranslations: Record<
     "flightDeals.passengerError": "请检查乘客人数。",
   },
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], flightDealProfileTranslations[locale]);
-const rollingRouteFlightDealScreenTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], flightDealProfileTranslations[locale]);
+const rollingRouteFlightDealScreenTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
-    "flightDeals.subtitle":
-      "Monitor a route and get notified when fares fall below their recent average.",
-    "flightDeals.rollingExplanation":
-      "No dates are needed. We track the lowest fare found for this route over the upcoming 12 months and notify you when it falls below its recent average by a threshold you select.",
+    "flightDeals.subtitle": "Monitor a route and get notified when fares fall below their recent average.",
+    "flightDeals.rollingExplanation": "No dates are needed. We track the lowest fare found for this route over the upcoming 12 months and notify you when it falls below its recent average by a threshold you select.",
     "flightDeals.rollingMonitoringStatus": "Rolling route monitoring",
     "flightDeals.legacyDatedAlert": "Legacy dated alert",
-    "flightDeals.legacyAlertExplanation":
-      "New alerts no longer need dates. You can keep, pause or delete this older alert.",
-    "flightDeals.savedAlertsEmptyRolling":
-      "You do not have any saved route alerts yet.",
-    "flightDeals.providerPending":
-      "Your alert will be saved now. Monitoring will begin when flight-price data is available.",
-    "flightDeals.originRequired": "Select an origin airport.",
-    "flightDeals.destinationRequired": "Select a destination airport.",
-    "flightDeals.tripTypeError": "Select a valid trip type.",
-    "flightDeals.tripClassError": "Select a valid cabin class.",
-    "flightDeals.directOnlyError":
-      "Check the direct-flight setting and try again.",
+    "flightDeals.legacyAlertExplanation": "New alerts no longer need dates. You can keep, pause or delete this older alert.",
+    "flightDeals.savedAlertsEmptyRolling": "You do not have any saved route alerts yet.",
+    "flightDeals.providerPending": "Your alert will be saved now. Monitoring will begin when flight-price data is available.",
+    "flightDeals.originRequired": "Select an origin airport.", "flightDeals.destinationRequired": "Select a destination airport.",
+    "flightDeals.tripTypeError": "Select a valid trip type.", "flightDeals.tripClassError": "Select a valid cabin class.", "flightDeals.directOnlyError": "Check the direct-flight setting and try again.",
   },
   tr: {
-    "flightDeals.subtitle":
-      "Bir rotayı takip et; fiyat son dönem ortalamasının altına düştüğünde bildirim al.",
-    "flightDeals.rollingExplanation":
-      "Tarih seçmen gerekmez. Sistem bu rota için önümüzdeki 12 ayda bulunan en düşük fiyatı takip eder. Fiyat son dönem ortalamasının seçtiğin oranda altına düştüğünde bildirim gönderir.",
+    "flightDeals.subtitle": "Bir rotayı takip et; fiyat son dönem ortalamasının altına düştüğünde bildirim al.",
+    "flightDeals.rollingExplanation": "Tarih seçmen gerekmez. Sistem bu rota için önümüzdeki 12 ayda bulunan en düşük fiyatı takip eder. Fiyat son dönem ortalamasının seçtiğin oranda altına düştüğünde bildirim gönderir.",
     "flightDeals.rollingMonitoringStatus": "Sürekli rota takibi",
     "flightDeals.legacyDatedAlert": "Eski tarihli alarm",
-    "flightDeals.legacyAlertExplanation":
-      "Yeni alarmlarda tarih gerekmez. Bu eski alarmı tutabilir, duraklatabilir veya silebilirsin.",
+    "flightDeals.legacyAlertExplanation": "Yeni alarmlarda tarih gerekmez. Bu eski alarmı tutabilir, duraklatabilir veya silebilirsin.",
     "flightDeals.savedAlertsEmptyRolling": "Henüz kayıtlı rota alarmın yok.",
-    "flightDeals.providerPending":
-      "Alarmın şimdi kaydedilir. Uçuş fiyatı verileri kullanıma açıldığında takip başlar.",
-    "flightDeals.originRequired": "Kalkış havalimanını seç.",
-    "flightDeals.destinationRequired": "Varış havalimanını seç.",
-    "flightDeals.tripTypeError": "Geçerli bir seyahat türü seç.",
-    "flightDeals.tripClassError": "Geçerli bir kabin sınıfı seç.",
-    "flightDeals.directOnlyError":
-      "Direkt uçuş ayarını kontrol edip tekrar dene.",
+    "flightDeals.providerPending": "Alarmın şimdi kaydedilir. Uçuş fiyatı verileri kullanıma açıldığında takip başlar.",
+    "flightDeals.originRequired": "Kalkış havalimanını seç.", "flightDeals.destinationRequired": "Varış havalimanını seç.",
+    "flightDeals.tripTypeError": "Geçerli bir seyahat türü seç.", "flightDeals.tripClassError": "Geçerli bir kabin sınıfı seç.", "flightDeals.directOnlyError": "Direkt uçuş ayarını kontrol edip tekrar dene.",
   },
   es: {
-    "flightDeals.subtitle":
-      "Sigue una ruta y recibe avisos cuando las tarifas bajen de su media reciente.",
-    "flightDeals.rollingExplanation":
-      "No necesitas elegir fechas. Seguimos la tarifa más baja encontrada para esta ruta durante los próximos 12 meses y te avisamos cuando baja de su media reciente según el umbral elegido.",
-    "flightDeals.rollingMonitoringStatus": "Seguimiento continuo de la ruta",
-    "flightDeals.legacyDatedAlert": "Alerta antigua con fechas",
-    "flightDeals.legacyAlertExplanation":
-      "Las alertas nuevas ya no necesitan fechas. Puedes conservar, pausar o eliminar esta alerta anterior.",
-    "flightDeals.savedAlertsEmptyRolling":
-      "Aún no tienes alertas de ruta guardadas.",
-    "flightDeals.providerPending":
-      "Tu alerta se guardará ahora. El seguimiento comenzará cuando haya datos de precios de vuelos.",
-    "flightDeals.originRequired": "Selecciona un aeropuerto de origen.",
-    "flightDeals.destinationRequired": "Selecciona un aeropuerto de destino.",
-    "flightDeals.tripTypeError": "Selecciona un tipo de viaje válido.",
-    "flightDeals.tripClassError": "Selecciona una clase de cabina válida.",
-    "flightDeals.directOnlyError":
-      "Comprueba la opción de vuelos directos e inténtalo de nuevo.",
+    "flightDeals.subtitle": "Sigue una ruta y recibe avisos cuando las tarifas bajen de su media reciente.",
+    "flightDeals.rollingExplanation": "No necesitas elegir fechas. Seguimos la tarifa más baja encontrada para esta ruta durante los próximos 12 meses y te avisamos cuando baja de su media reciente según el umbral elegido.",
+    "flightDeals.rollingMonitoringStatus": "Seguimiento continuo de la ruta", "flightDeals.legacyDatedAlert": "Alerta antigua con fechas", "flightDeals.legacyAlertExplanation": "Las alertas nuevas ya no necesitan fechas. Puedes conservar, pausar o eliminar esta alerta anterior.", "flightDeals.savedAlertsEmptyRolling": "Aún no tienes alertas de ruta guardadas.", "flightDeals.providerPending": "Tu alerta se guardará ahora. El seguimiento comenzará cuando haya datos de precios de vuelos.",
+    "flightDeals.originRequired": "Selecciona un aeropuerto de origen.", "flightDeals.destinationRequired": "Selecciona un aeropuerto de destino.", "flightDeals.tripTypeError": "Selecciona un tipo de viaje válido.", "flightDeals.tripClassError": "Selecciona una clase de cabina válida.", "flightDeals.directOnlyError": "Comprueba la opción de vuelos directos e inténtalo de nuevo.",
   },
   fr: {
-    "flightDeals.subtitle":
-      "Suivez un trajet et soyez averti lorsque les tarifs passent sous leur moyenne récente.",
-    "flightDeals.rollingExplanation":
-      "Aucune date n’est nécessaire. Nous suivons le tarif le plus bas trouvé pour ce trajet au cours des 12 prochains mois et vous avertissons lorsqu’il passe sous sa moyenne récente selon le seuil choisi.",
-    "flightDeals.rollingMonitoringStatus": "Suivi continu du trajet",
-    "flightDeals.legacyDatedAlert": "Ancienne alerte datée",
-    "flightDeals.legacyAlertExplanation":
-      "Les nouvelles alertes ne nécessitent plus de dates. Vous pouvez conserver, suspendre ou supprimer cette ancienne alerte.",
-    "flightDeals.savedAlertsEmptyRolling":
-      "Vous n’avez encore aucune alerte de trajet enregistrée.",
-    "flightDeals.providerPending":
-      "Votre alerte sera enregistrée maintenant. Le suivi commencera lorsque les données de prix seront disponibles.",
-    "flightDeals.originRequired": "Choisissez un aéroport de départ.",
-    "flightDeals.destinationRequired": "Choisissez un aéroport de destination.",
-    "flightDeals.tripTypeError": "Choisissez un type de voyage valide.",
-    "flightDeals.tripClassError": "Choisissez une classe de voyage valide.",
-    "flightDeals.directOnlyError":
-      "Vérifiez l’option des vols directs et réessayez.",
+    "flightDeals.subtitle": "Suivez un trajet et soyez averti lorsque les tarifs passent sous leur moyenne récente.",
+    "flightDeals.rollingExplanation": "Aucune date n’est nécessaire. Nous suivons le tarif le plus bas trouvé pour ce trajet au cours des 12 prochains mois et vous avertissons lorsqu’il passe sous sa moyenne récente selon le seuil choisi.",
+    "flightDeals.rollingMonitoringStatus": "Suivi continu du trajet", "flightDeals.legacyDatedAlert": "Ancienne alerte datée", "flightDeals.legacyAlertExplanation": "Les nouvelles alertes ne nécessitent plus de dates. Vous pouvez conserver, suspendre ou supprimer cette ancienne alerte.", "flightDeals.savedAlertsEmptyRolling": "Vous n’avez encore aucune alerte de trajet enregistrée.", "flightDeals.providerPending": "Votre alerte sera enregistrée maintenant. Le suivi commencera lorsque les données de prix seront disponibles.",
+    "flightDeals.originRequired": "Choisissez un aéroport de départ.", "flightDeals.destinationRequired": "Choisissez un aéroport de destination.", "flightDeals.tripTypeError": "Choisissez un type de voyage valide.", "flightDeals.tripClassError": "Choisissez une classe de voyage valide.", "flightDeals.directOnlyError": "Vérifiez l’option des vols directs et réessayez.",
   },
   de: {
-    "flightDeals.subtitle":
-      "Beobachten Sie eine Route und erhalten Sie Hinweise, wenn Preise unter ihren jüngsten Durchschnitt fallen.",
-    "flightDeals.rollingExplanation":
-      "Sie müssen keine Daten auswählen. Wir beobachten den niedrigsten gefundenen Preis für diese Route in den kommenden 12 Monaten und benachrichtigen Sie, wenn er gemäß Ihrer Schwelle unter den jüngsten Durchschnitt fällt.",
-    "flightDeals.rollingMonitoringStatus": "Fortlaufende Routenbeobachtung",
-    "flightDeals.legacyDatedAlert": "Älterer datierter Alarm",
-    "flightDeals.legacyAlertExplanation":
-      "Neue Alarme benötigen keine Daten mehr. Sie können diesen älteren Alarm behalten, pausieren oder löschen.",
-    "flightDeals.savedAlertsEmptyRolling":
-      "Sie haben noch keine Routenalarme gespeichert.",
-    "flightDeals.providerPending":
-      "Ihr Alarm wird jetzt gespeichert. Die Beobachtung beginnt, sobald Flugpreisdaten verfügbar sind.",
-    "flightDeals.originRequired": "Wählen Sie einen Abflughafen.",
-    "flightDeals.destinationRequired": "Wählen Sie einen Zielflughafen.",
-    "flightDeals.tripTypeError": "Wählen Sie eine gültige Reiseart.",
-    "flightDeals.tripClassError": "Wählen Sie eine gültige Reiseklasse.",
-    "flightDeals.directOnlyError":
-      "Prüfen Sie die Direktflug-Einstellung und versuchen Sie es erneut.",
+    "flightDeals.subtitle": "Beobachten Sie eine Route und erhalten Sie Hinweise, wenn Preise unter ihren jüngsten Durchschnitt fallen.",
+    "flightDeals.rollingExplanation": "Sie müssen keine Daten auswählen. Wir beobachten den niedrigsten gefundenen Preis für diese Route in den kommenden 12 Monaten und benachrichtigen Sie, wenn er gemäß Ihrer Schwelle unter den jüngsten Durchschnitt fällt.",
+    "flightDeals.rollingMonitoringStatus": "Fortlaufende Routenbeobachtung", "flightDeals.legacyDatedAlert": "Älterer datierter Alarm", "flightDeals.legacyAlertExplanation": "Neue Alarme benötigen keine Daten mehr. Sie können diesen älteren Alarm behalten, pausieren oder löschen.", "flightDeals.savedAlertsEmptyRolling": "Sie haben noch keine Routenalarme gespeichert.", "flightDeals.providerPending": "Ihr Alarm wird jetzt gespeichert. Die Beobachtung beginnt, sobald Flugpreisdaten verfügbar sind.",
+    "flightDeals.originRequired": "Wählen Sie einen Abflughafen.", "flightDeals.destinationRequired": "Wählen Sie einen Zielflughafen.", "flightDeals.tripTypeError": "Wählen Sie eine gültige Reiseart.", "flightDeals.tripClassError": "Wählen Sie eine gültige Reiseklasse.", "flightDeals.directOnlyError": "Prüfen Sie die Direktflug-Einstellung und versuchen Sie es erneut.",
   },
   ar: {
-    "flightDeals.subtitle":
-      "راقب مسارًا واحصل على إشعار عندما تنخفض الأسعار عن متوسطها الأخير.",
-    "flightDeals.rollingExplanation":
-      "لا حاجة لاختيار تواريخ. نتابع أقل سعر موجود لهذا المسار خلال الأشهر الـ12 المقبلة ونرسل إشعارًا عندما ينخفض عن متوسطه الأخير بحسب الحد الذي تختاره.",
-    "flightDeals.rollingMonitoringStatus": "مراقبة مستمرة للمسار",
-    "flightDeals.legacyDatedAlert": "تنبيه قديم محدد التاريخ",
-    "flightDeals.legacyAlertExplanation":
-      "لم تعد التنبيهات الجديدة تحتاج إلى تواريخ. يمكنك الاحتفاظ بهذا التنبيه القديم أو إيقافه مؤقتًا أو حذفه.",
-    "flightDeals.savedAlertsEmptyRolling":
-      "ليس لديك تنبيهات مسارات محفوظة بعد.",
-    "flightDeals.providerPending":
-      "سيُحفظ تنبيهك الآن. ستبدأ المراقبة عند توفر بيانات أسعار الرحلات.",
-    "flightDeals.originRequired": "اختر مطار المغادرة.",
-    "flightDeals.destinationRequired": "اختر مطار الوجهة.",
-    "flightDeals.tripTypeError": "اختر نوع رحلة صالحًا.",
-    "flightDeals.tripClassError": "اختر درجة سفر صالحة.",
-    "flightDeals.directOnlyError":
-      "تحقق من إعداد الرحلات المباشرة وحاول مجددًا.",
+    "flightDeals.subtitle": "راقب مسارًا واحصل على إشعار عندما تنخفض الأسعار عن متوسطها الأخير.",
+    "flightDeals.rollingExplanation": "لا حاجة لاختيار تواريخ. نتابع أقل سعر موجود لهذا المسار خلال الأشهر الـ12 المقبلة ونرسل إشعارًا عندما ينخفض عن متوسطه الأخير بحسب الحد الذي تختاره.",
+    "flightDeals.rollingMonitoringStatus": "مراقبة مستمرة للمسار", "flightDeals.legacyDatedAlert": "تنبيه قديم محدد التاريخ", "flightDeals.legacyAlertExplanation": "لم تعد التنبيهات الجديدة تحتاج إلى تواريخ. يمكنك الاحتفاظ بهذا التنبيه القديم أو إيقافه مؤقتًا أو حذفه.", "flightDeals.savedAlertsEmptyRolling": "ليس لديك تنبيهات مسارات محفوظة بعد.", "flightDeals.providerPending": "سيُحفظ تنبيهك الآن. ستبدأ المراقبة عند توفر بيانات أسعار الرحلات.",
+    "flightDeals.originRequired": "اختر مطار المغادرة.", "flightDeals.destinationRequired": "اختر مطار الوجهة.", "flightDeals.tripTypeError": "اختر نوع رحلة صالحًا.", "flightDeals.tripClassError": "اختر درجة سفر صالحة.", "flightDeals.directOnlyError": "تحقق من إعداد الرحلات المباشرة وحاول مجددًا.",
   },
   ru: {
-    "flightDeals.subtitle":
-      "Следите за маршрутом и получайте уведомления, когда тарифы опускаются ниже недавнего среднего.",
-    "flightDeals.rollingExplanation":
-      "Даты выбирать не нужно. Мы отслеживаем самый низкий найденный тариф на этом маршруте на ближайшие 12 месяцев и уведомляем, когда он становится ниже недавнего среднего на выбранный порог.",
-    "flightDeals.rollingMonitoringStatus": "Непрерывный мониторинг маршрута",
-    "flightDeals.legacyDatedAlert": "Старое уведомление с датами",
-    "flightDeals.legacyAlertExplanation":
-      "Для новых уведомлений даты больше не нужны. Это старое уведомление можно оставить, приостановить или удалить.",
-    "flightDeals.savedAlertsEmptyRolling":
-      "У вас пока нет сохранённых уведомлений о маршрутах.",
-    "flightDeals.providerPending":
-      "Уведомление будет сохранено сейчас. Мониторинг начнётся, когда станут доступны данные о ценах.",
-    "flightDeals.originRequired": "Выберите аэропорт отправления.",
-    "flightDeals.destinationRequired": "Выберите аэропорт назначения.",
-    "flightDeals.tripTypeError": "Выберите допустимый тип поездки.",
-    "flightDeals.tripClassError": "Выберите допустимый класс обслуживания.",
-    "flightDeals.directOnlyError":
-      "Проверьте настройку прямых рейсов и повторите попытку.",
+    "flightDeals.subtitle": "Следите за маршрутом и получайте уведомления, когда тарифы опускаются ниже недавнего среднего.",
+    "flightDeals.rollingExplanation": "Даты выбирать не нужно. Мы отслеживаем самый низкий найденный тариф на этом маршруте на ближайшие 12 месяцев и уведомляем, когда он становится ниже недавнего среднего на выбранный порог.",
+    "flightDeals.rollingMonitoringStatus": "Непрерывный мониторинг маршрута", "flightDeals.legacyDatedAlert": "Старое уведомление с датами", "flightDeals.legacyAlertExplanation": "Для новых уведомлений даты больше не нужны. Это старое уведомление можно оставить, приостановить или удалить.", "flightDeals.savedAlertsEmptyRolling": "У вас пока нет сохранённых уведомлений о маршрутах.", "flightDeals.providerPending": "Уведомление будет сохранено сейчас. Мониторинг начнётся, когда станут доступны данные о ценах.",
+    "flightDeals.originRequired": "Выберите аэропорт отправления.", "flightDeals.destinationRequired": "Выберите аэропорт назначения.", "flightDeals.tripTypeError": "Выберите допустимый тип поездки.", "flightDeals.tripClassError": "Выберите допустимый класс обслуживания.", "flightDeals.directOnlyError": "Проверьте настройку прямых рейсов и повторите попытку.",
   },
   zh: {
     "flightDeals.subtitle": "监控航线，并在票价低于近期平均水平时收到通知。",
-    "flightDeals.rollingExplanation":
-      "无需选择日期。我们会跟踪未来 12 个月内此航线找到的最低票价，并在票价按你选择的幅度低于近期平均水平时通知你。",
-    "flightDeals.rollingMonitoringStatus": "持续航线监控",
-    "flightDeals.legacyDatedAlert": "旧版指定日期提醒",
-    "flightDeals.legacyAlertExplanation":
-      "新提醒不再需要日期。你可以保留、暂停或删除这条旧提醒。",
-    "flightDeals.savedAlertsEmptyRolling": "你还没有保存任何航线提醒。",
-    "flightDeals.providerPending":
-      "你的提醒会立即保存，并在航班价格数据可用后开始监控。",
-    "flightDeals.originRequired": "请选择出发机场。",
-    "flightDeals.destinationRequired": "请选择目的地机场。",
-    "flightDeals.tripTypeError": "请选择有效的行程类型。",
-    "flightDeals.tripClassError": "请选择有效的舱位。",
-    "flightDeals.directOnlyError": "请检查直飞航班设置后重试。",
+    "flightDeals.rollingExplanation": "无需选择日期。我们会跟踪未来 12 个月内此航线找到的最低票价，并在票价按你选择的幅度低于近期平均水平时通知你。",
+    "flightDeals.rollingMonitoringStatus": "持续航线监控", "flightDeals.legacyDatedAlert": "旧版指定日期提醒", "flightDeals.legacyAlertExplanation": "新提醒不再需要日期。你可以保留、暂停或删除这条旧提醒。", "flightDeals.savedAlertsEmptyRolling": "你还没有保存任何航线提醒。", "flightDeals.providerPending": "你的提醒会立即保存，并在航班价格数据可用后开始监控。",
+    "flightDeals.originRequired": "请选择出发机场。", "flightDeals.destinationRequired": "请选择目的地机场。", "flightDeals.tripTypeError": "请选择有效的行程类型。", "flightDeals.tripClassError": "请选择有效的舱位。", "flightDeals.directOnlyError": "请检查直飞航班设置后重试。",
   },
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(
-    translations[locale],
-    rollingRouteFlightDealScreenTranslations[locale],
-  );
-const travelHubTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], rollingRouteFlightDealScreenTranslations[locale]);
+const travelHubTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
-    "travelHub.kicker": "Travel tools",
-    "travelHub.title": "Plan your journey",
-    "travelHub.subtitle":
-      "Search flights, track price opportunities and organize your trips in one place.",
-    "travelHub.toolsTitle": "Travel tools",
-    "travelHub.flightSearchTitle": "Flight Search",
-    "travelHub.flightSearchBody":
-      "Choose your route, dates and passengers, then view current results on Aviasales.",
-    "travelHub.flightSearchBadge": "Aviasales",
-    "travelHub.priceAlertsTitle": "Price Alerts",
-    "travelHub.priceAlertsBody":
-      "Create route alerts and select 15%, 30% or 45% price-drop thresholds.",
-    "travelHub.priceAlertsBadge": "15% · 30% · 45%",
-    "travelHub.myTripsTitle": "My Trips",
-    "travelHub.myTripsBody":
-      "Create and manage your travel plans, destinations and reminders.",
-    "travelHub.myTripsBadge": "Trip planner",
+    "travelHub.kicker": "Travel tools", "travelHub.title": "Plan your journey", "travelHub.subtitle": "Search flights, track price opportunities and organize your trips in one place.", "travelHub.toolsTitle": "Travel tools",
+    "travelHub.flightSearchTitle": "Flight Search", "travelHub.flightSearchBody": "Choose your route, dates and passengers, then view current results on Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Price Alerts", "travelHub.priceAlertsBody": "Create route alerts and select 15%, 30% or 45% price-drop thresholds.", "travelHub.priceAlertsBadge": "15% · 30% · 45%",
+    "travelHub.myTripsTitle": "My Trips", "travelHub.myTripsBody": "Create and manage your travel plans, destinations and reminders.", "travelHub.myTripsBadge": "Trip planner",
   },
   tr: {
-    "travelHub.kicker": "Seyahat araçları",
-    "travelHub.title": "Seyahatini planla",
-    "travelHub.subtitle":
-      "Uçuş ara, fiyat fırsatlarını takip et ve seyahatlerini tek yerden düzenle.",
-    "travelHub.toolsTitle": "Seyahat araçları",
-    "travelHub.flightSearchTitle": "Uçuş Ara",
-    "travelHub.flightSearchBody":
-      "Rotanı, tarihlerini ve yolcuları seç; güncel sonuçları Aviasales’ta görüntüle.",
-    "travelHub.flightSearchBadge": "Aviasales",
-    "travelHub.priceAlertsTitle": "Fiyat Alarmları",
-    "travelHub.priceAlertsBody":
-      "Rota alarmı oluştur ve %15, %30 veya %45 fiyat düşüşü eşiklerini seç.",
-    "travelHub.priceAlertsBadge": "%15 · %30 · %45",
-    "travelHub.myTripsTitle": "Seyahatlerim",
-    "travelHub.myTripsBody":
-      "Seyahat planlarını, destinasyonlarını ve hatırlatmalarını oluşturup yönet.",
-    "travelHub.myTripsBadge": "Seyahat planlayıcı",
+    "travelHub.kicker": "Seyahat araçları", "travelHub.title": "Seyahatini planla", "travelHub.subtitle": "Uçuş ara, fiyat fırsatlarını takip et ve seyahatlerini tek yerden düzenle.", "travelHub.toolsTitle": "Seyahat araçları",
+    "travelHub.flightSearchTitle": "Uçuş Ara", "travelHub.flightSearchBody": "Rotanı, tarihlerini ve yolcuları seç; güncel sonuçları Aviasales’ta görüntüle.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Fiyat Alarmları", "travelHub.priceAlertsBody": "Rota alarmı oluştur ve %15, %30 veya %45 fiyat düşüşü eşiklerini seç.", "travelHub.priceAlertsBadge": "%15 · %30 · %45",
+    "travelHub.myTripsTitle": "Seyahatlerim", "travelHub.myTripsBody": "Seyahat planlarını, destinasyonlarını ve hatırlatmalarını oluşturup yönet.", "travelHub.myTripsBadge": "Seyahat planlayıcı",
   },
   es: {
-    "travelHub.kicker": "Herramientas de viaje",
-    "travelHub.title": "Planifica tu viaje",
-    "travelHub.subtitle":
-      "Busca vuelos, sigue oportunidades de precios y organiza tus viajes en un solo lugar.",
-    "travelHub.toolsTitle": "Herramientas de viaje",
-    "travelHub.flightSearchTitle": "Buscar vuelos",
-    "travelHub.flightSearchBody":
-      "Elige la ruta, las fechas y los pasajeros y consulta los resultados actuales en Aviasales.",
-    "travelHub.flightSearchBadge": "Aviasales",
-    "travelHub.priceAlertsTitle": "Alertas de precios",
-    "travelHub.priceAlertsBody":
-      "Crea alertas de ruta y selecciona umbrales de bajada del 15 %, 30 % o 45 %.",
-    "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
-    "travelHub.myTripsTitle": "Mis viajes",
-    "travelHub.myTripsBody":
-      "Crea y gestiona tus planes de viaje, destinos y recordatorios.",
-    "travelHub.myTripsBadge": "Planificador de viajes",
+    "travelHub.kicker": "Herramientas de viaje", "travelHub.title": "Planifica tu viaje", "travelHub.subtitle": "Busca vuelos, sigue oportunidades de precios y organiza tus viajes en un solo lugar.", "travelHub.toolsTitle": "Herramientas de viaje",
+    "travelHub.flightSearchTitle": "Buscar vuelos", "travelHub.flightSearchBody": "Elige la ruta, las fechas y los pasajeros y consulta los resultados actuales en Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Alertas de precios", "travelHub.priceAlertsBody": "Crea alertas de ruta y selecciona umbrales de bajada del 15 %, 30 % o 45 %.", "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
+    "travelHub.myTripsTitle": "Mis viajes", "travelHub.myTripsBody": "Crea y gestiona tus planes de viaje, destinos y recordatorios.", "travelHub.myTripsBadge": "Planificador de viajes",
   },
   fr: {
-    "travelHub.kicker": "Outils de voyage",
-    "travelHub.title": "Planifiez votre voyage",
-    "travelHub.subtitle":
-      "Recherchez des vols, suivez les opportunités de prix et organisez vos voyages au même endroit.",
-    "travelHub.toolsTitle": "Outils de voyage",
-    "travelHub.flightSearchTitle": "Recherche de vols",
-    "travelHub.flightSearchBody":
-      "Choisissez votre itinéraire, vos dates et vos passagers, puis consultez les résultats actuels sur Aviasales.",
-    "travelHub.flightSearchBadge": "Aviasales",
-    "travelHub.priceAlertsTitle": "Alertes de prix",
-    "travelHub.priceAlertsBody":
-      "Créez des alertes par itinéraire et choisissez un seuil de baisse de 15 %, 30 % ou 45 %.",
-    "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
-    "travelHub.myTripsTitle": "Mes voyages",
-    "travelHub.myTripsBody":
-      "Créez et gérez vos projets de voyage, destinations et rappels.",
-    "travelHub.myTripsBadge": "Planificateur de voyage",
+    "travelHub.kicker": "Outils de voyage", "travelHub.title": "Planifiez votre voyage", "travelHub.subtitle": "Recherchez des vols, suivez les opportunités de prix et organisez vos voyages au même endroit.", "travelHub.toolsTitle": "Outils de voyage",
+    "travelHub.flightSearchTitle": "Recherche de vols", "travelHub.flightSearchBody": "Choisissez votre itinéraire, vos dates et vos passagers, puis consultez les résultats actuels sur Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Alertes de prix", "travelHub.priceAlertsBody": "Créez des alertes par itinéraire et choisissez un seuil de baisse de 15 %, 30 % ou 45 %.", "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
+    "travelHub.myTripsTitle": "Mes voyages", "travelHub.myTripsBody": "Créez et gérez vos projets de voyage, destinations et rappels.", "travelHub.myTripsBadge": "Planificateur de voyage",
   },
   de: {
-    "travelHub.kicker": "Reisewerkzeuge",
-    "travelHub.title": "Planen Sie Ihre Reise",
-    "travelHub.subtitle":
-      "Suchen Sie Flüge, verfolgen Sie Preischancen und organisieren Sie Ihre Reisen an einem Ort.",
-    "travelHub.toolsTitle": "Reisewerkzeuge",
-    "travelHub.flightSearchTitle": "Flugsuche",
-    "travelHub.flightSearchBody":
-      "Wählen Sie Route, Reisedaten und Passagiere und sehen Sie aktuelle Ergebnisse bei Aviasales.",
-    "travelHub.flightSearchBadge": "Aviasales",
-    "travelHub.priceAlertsTitle": "Preisalarme",
-    "travelHub.priceAlertsBody":
-      "Erstellen Sie Routenalarme und wählen Sie Preissenkungen von 15 %, 30 % oder 45 % als Schwellenwert.",
-    "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
-    "travelHub.myTripsTitle": "Meine Reisen",
-    "travelHub.myTripsBody":
-      "Erstellen und verwalten Sie Reisepläne, Ziele und Erinnerungen.",
-    "travelHub.myTripsBadge": "Reiseplaner",
+    "travelHub.kicker": "Reisewerkzeuge", "travelHub.title": "Planen Sie Ihre Reise", "travelHub.subtitle": "Suchen Sie Flüge, verfolgen Sie Preischancen und organisieren Sie Ihre Reisen an einem Ort.", "travelHub.toolsTitle": "Reisewerkzeuge",
+    "travelHub.flightSearchTitle": "Flugsuche", "travelHub.flightSearchBody": "Wählen Sie Route, Reisedaten und Passagiere und sehen Sie aktuelle Ergebnisse bei Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Preisalarme", "travelHub.priceAlertsBody": "Erstellen Sie Routenalarme und wählen Sie Preissenkungen von 15 %, 30 % oder 45 % als Schwellenwert.", "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
+    "travelHub.myTripsTitle": "Meine Reisen", "travelHub.myTripsBody": "Erstellen und verwalten Sie Reisepläne, Ziele und Erinnerungen.", "travelHub.myTripsBadge": "Reiseplaner",
   },
   ar: {
-    "travelHub.kicker": "أدوات السفر",
-    "travelHub.title": "خطط لرحلتك",
-    "travelHub.subtitle":
-      "ابحث عن الرحلات وتابع فرص الأسعار ونظّم رحلاتك في مكان واحد.",
-    "travelHub.toolsTitle": "أدوات السفر",
-    "travelHub.flightSearchTitle": "البحث عن رحلات",
-    "travelHub.flightSearchBody":
-      "اختر المسار والتواريخ والمسافرين، ثم اطّلع على النتائج الحالية عبر Aviasales.",
-    "travelHub.flightSearchBadge": "Aviasales",
-    "travelHub.priceAlertsTitle": "تنبيهات الأسعار",
-    "travelHub.priceAlertsBody":
-      "أنشئ تنبيهات للمسارات واختر عتبات انخفاض السعر بنسبة 15٪ أو 30٪ أو 45٪.",
-    "travelHub.priceAlertsBadge": "15٪ · 30٪ · 45٪",
-    "travelHub.myTripsTitle": "رحلاتي",
-    "travelHub.myTripsBody": "أنشئ خطط سفرك ووجهاتك وتذكيراتك وأدرها.",
-    "travelHub.myTripsBadge": "مخطط الرحلات",
+    "travelHub.kicker": "أدوات السفر", "travelHub.title": "خطط لرحلتك", "travelHub.subtitle": "ابحث عن الرحلات وتابع فرص الأسعار ونظّم رحلاتك في مكان واحد.", "travelHub.toolsTitle": "أدوات السفر",
+    "travelHub.flightSearchTitle": "البحث عن رحلات", "travelHub.flightSearchBody": "اختر المسار والتواريخ والمسافرين، ثم اطّلع على النتائج الحالية عبر Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "تنبيهات الأسعار", "travelHub.priceAlertsBody": "أنشئ تنبيهات للمسارات واختر عتبات انخفاض السعر بنسبة 15٪ أو 30٪ أو 45٪.", "travelHub.priceAlertsBadge": "15٪ · 30٪ · 45٪",
+    "travelHub.myTripsTitle": "رحلاتي", "travelHub.myTripsBody": "أنشئ خطط سفرك ووجهاتك وتذكيراتك وأدرها.", "travelHub.myTripsBadge": "مخطط الرحلات",
   },
   ru: {
-    "travelHub.kicker": "Инструменты для путешествий",
-    "travelHub.title": "Спланируйте путешествие",
-    "travelHub.subtitle":
-      "Ищите авиабилеты, отслеживайте выгодные цены и организуйте поездки в одном месте.",
-    "travelHub.toolsTitle": "Инструменты для путешествий",
-    "travelHub.flightSearchTitle": "Поиск авиабилетов",
-    "travelHub.flightSearchBody":
-      "Выберите маршрут, даты и пассажиров, затем посмотрите актуальные результаты на Aviasales.",
-    "travelHub.flightSearchBadge": "Aviasales",
-    "travelHub.priceAlertsTitle": "Уведомления о ценах",
-    "travelHub.priceAlertsBody":
-      "Создавайте уведомления для маршрутов и выбирайте порог снижения цены: 15 %, 30 % или 45 %.",
-    "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
-    "travelHub.myTripsTitle": "Мои поездки",
-    "travelHub.myTripsBody":
-      "Создавайте планы поездок, направления и напоминания и управляйте ими.",
-    "travelHub.myTripsBadge": "Планировщик поездок",
+    "travelHub.kicker": "Инструменты для путешествий", "travelHub.title": "Спланируйте путешествие", "travelHub.subtitle": "Ищите авиабилеты, отслеживайте выгодные цены и организуйте поездки в одном месте.", "travelHub.toolsTitle": "Инструменты для путешествий",
+    "travelHub.flightSearchTitle": "Поиск авиабилетов", "travelHub.flightSearchBody": "Выберите маршрут, даты и пассажиров, затем посмотрите актуальные результаты на Aviasales.", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "Уведомления о ценах", "travelHub.priceAlertsBody": "Создавайте уведомления для маршрутов и выбирайте порог снижения цены: 15 %, 30 % или 45 %.", "travelHub.priceAlertsBadge": "15 % · 30 % · 45 %",
+    "travelHub.myTripsTitle": "Мои поездки", "travelHub.myTripsBody": "Создавайте планы поездок, направления и напоминания и управляйте ими.", "travelHub.myTripsBadge": "Планировщик поездок",
   },
   zh: {
-    "travelHub.kicker": "旅行工具",
-    "travelHub.title": "规划你的旅程",
-    "travelHub.subtitle": "搜索航班、追踪价格机会，并在一处整理你的旅行。",
-    "travelHub.toolsTitle": "旅行工具",
-    "travelHub.flightSearchTitle": "搜索航班",
-    "travelHub.flightSearchBody":
-      "选择航线、日期和乘客，然后在 Aviasales 查看当前搜索结果。",
-    "travelHub.flightSearchBadge": "Aviasales",
-    "travelHub.priceAlertsTitle": "价格提醒",
-    "travelHub.priceAlertsBody":
-      "创建航线提醒，并选择 15%、30% 或 45% 的降价阈值。",
-    "travelHub.priceAlertsBadge": "15% · 30% · 45%",
-    "travelHub.myTripsTitle": "我的旅行",
-    "travelHub.myTripsBody": "创建并管理你的旅行计划、目的地和提醒。",
-    "travelHub.myTripsBadge": "旅行规划器",
+    "travelHub.kicker": "旅行工具", "travelHub.title": "规划你的旅程", "travelHub.subtitle": "搜索航班、追踪价格机会，并在一处整理你的旅行。", "travelHub.toolsTitle": "旅行工具",
+    "travelHub.flightSearchTitle": "搜索航班", "travelHub.flightSearchBody": "选择航线、日期和乘客，然后在 Aviasales 查看当前搜索结果。", "travelHub.flightSearchBadge": "Aviasales",
+    "travelHub.priceAlertsTitle": "价格提醒", "travelHub.priceAlertsBody": "创建航线提醒，并选择 15%、30% 或 45% 的降价阈值。", "travelHub.priceAlertsBadge": "15% · 30% · 45%",
+    "travelHub.myTripsTitle": "我的旅行", "travelHub.myTripsBody": "创建并管理你的旅行计划、目的地和提醒。", "travelHub.myTripsBadge": "旅行规划器",
   },
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], travelHubTranslations[locale]);
-const flightDealDetailTranslations: Record<
-  TranslationLanguage,
-  Record<string, string>
-> = {
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], travelHubTranslations[locale]);
+const flightDealDetailTranslations: Record<TranslationLanguage, Record<string, string>> = {
   en: {
-    "flightDealDetail.kicker": "Flight price alert",
-    "flightDealDetail.title": "Flight deal details",
-    "flightDealDetail.subtitle":
-      "Review the cached fare that crossed your alert threshold.",
-    "flightDealDetail.loadingTitle": "Loading flight deal",
-    "flightDealDetail.loadingBody": "We’re securely loading this deal.",
-    "flightDealDetail.signInTitle": "Sign in required",
-    "flightDealDetail.signInBody":
-      "Sign in to view a flight deal linked to your account.",
-    "flightDealDetail.signInCta": "Sign in",
-    "flightDealDetail.unavailableTitle": "Flight deal unavailable",
-    "flightDealDetail.unavailableBody":
-      "This deal is no longer available or cannot be viewed by this account.",
-    "flightDealDetail.retry": "Try again",
-    "flightDealDetail.discountBelowAverage":
-      "%{discount} below the recent average",
-    "flightDealDetail.trackedFare": "Current tracked fare",
-    "flightDealDetail.recentAverage": "Recent average fare",
-    "flightDealDetail.thresholdReached": "Threshold reached",
-    "flightDealDetail.trackingWindow": "Tracking period",
-    "flightDealDetail.sampleCount": "Price samples",
-    "flightDealDetail.lastChecked": "Last checked",
-    "flightDealDetail.days": "days",
-    "flightDealDetail.tripProfile": "Trip profile",
-    "flightDealDetail.roundTrip": "Round trip",
-    "flightDealDetail.oneWay": "One way",
-    "flightDealDetail.departureDate": "Departure date",
-    "flightDealDetail.returnDate": "Return date",
-    "flightDealDetail.passengers": "Passengers",
-    "flightDealDetail.adults": "Adults",
-    "flightDealDetail.children": "Children",
-    "flightDealDetail.infants": "Infants",
-    "flightDealDetail.economy": "Economy",
-    "flightDealDetail.business": "Business",
-    "flightDealDetail.directOnly": "Direct only",
-    "flightDealDetail.allFlights": "All flights",
-    "flightDealDetail.cachedBadge": "Cached tracked price",
-    "flightDealDetail.rollingCachedBadge": "Lowest fare found for this route",
-    "flightDealDetail.rollingOfferProfile": "Found flight offer",
-    "flightDealDetail.offerDepartureDate": "Offer departure date",
-    "flightDealDetail.offerReturnDate": "Offer return date",
-    "flightDealDetail.transfers": "Number of transfers",
-    "flightDealDetail.airline": "Airline",
-    "flightDealDetail.flightNumber": "Flight number",
-    "flightDealDetail.rollingScopeNotice":
-      "This was the lowest eligible cached offer found for this route within the upcoming 12 months at the time of checking. The live provider price may differ.",
-    "flightDealDetail.rollingPassengerNotice":
-      "The Aviasales search opens for 1 adult. You can change passenger counts on the provider screen.",
-    "flightDealDetail.sourceTitle": "Source and important information",
-    "flightDealDetail.cachedPriceNotice":
-      "Prices may be cached and can change on the provider’s site.",
-    "flightDealDetail.thirdPartyNotice":
-      "The search and booking process is completed on Aviasales or its travel partner.",
-    "flightDealDetail.affiliateNotice":
-      "Some links are affiliate links. We may earn revenue from eligible bookings made through them; the price you pay does not change.",
-    "flightDealDetail.passengerScopeNotice":
-      "Passenger counts were saved with the alert profile, but the cached provider price was not multiplied or repriced by passenger count.",
-    "flightDealDetail.directFilterNotice":
-      "This alert tracked direct flights only. You may need to apply the direct-flight filter again on the provider’s site.",
-    "flightDealDetail.providerCta": "Check current price on Aviasales",
-    "flightDealDetail.openingProvider": "Opening Aviasales…",
-    "flightDealDetail.openFailedTitle": "Could not open Aviasales",
-    "flightDealDetail.openFailedBody": "Please try again.",
+    "flightDealDetail.kicker":"Flight price alert", "flightDealDetail.title":"Flight deal details", "flightDealDetail.subtitle":"Review the cached fare that crossed your alert threshold.",
+    "flightDealDetail.loadingTitle":"Loading flight deal", "flightDealDetail.loadingBody":"We’re securely loading this deal.", "flightDealDetail.signInTitle":"Sign in required", "flightDealDetail.signInBody":"Sign in to view a flight deal linked to your account.", "flightDealDetail.signInCta":"Sign in",
+    "flightDealDetail.unavailableTitle":"Flight deal unavailable", "flightDealDetail.unavailableBody":"This deal is no longer available or cannot be viewed by this account.", "flightDealDetail.retry":"Try again",
+    "flightDealDetail.discountBelowAverage":"%{discount} below the recent average", "flightDealDetail.trackedFare":"Current tracked fare", "flightDealDetail.recentAverage":"Recent average fare", "flightDealDetail.thresholdReached":"Threshold reached", "flightDealDetail.trackingWindow":"Tracking period", "flightDealDetail.sampleCount":"Price samples", "flightDealDetail.lastChecked":"Last checked", "flightDealDetail.days":"days",
+    "flightDealDetail.tripProfile":"Trip profile", "flightDealDetail.roundTrip":"Round trip", "flightDealDetail.oneWay":"One way", "flightDealDetail.departureDate":"Departure date", "flightDealDetail.returnDate":"Return date", "flightDealDetail.passengers":"Passengers", "flightDealDetail.adults":"Adults", "flightDealDetail.children":"Children", "flightDealDetail.infants":"Infants", "flightDealDetail.economy":"Economy", "flightDealDetail.business":"Business", "flightDealDetail.directOnly":"Direct only", "flightDealDetail.allFlights":"All flights",
+    "flightDealDetail.cachedBadge":"Cached tracked price", "flightDealDetail.rollingCachedBadge":"Lowest fare found for this route", "flightDealDetail.rollingOfferProfile":"Found flight offer", "flightDealDetail.offerDepartureDate":"Offer departure date", "flightDealDetail.offerReturnDate":"Offer return date", "flightDealDetail.transfers":"Number of transfers", "flightDealDetail.airline":"Airline", "flightDealDetail.flightNumber":"Flight number", "flightDealDetail.rollingScopeNotice":"This was the lowest eligible cached offer found for this route within the upcoming 12 months at the time of checking. The live provider price may differ.", "flightDealDetail.rollingPassengerNotice":"The Aviasales search opens for 1 adult. You can change passenger counts on the provider screen.", "flightDealDetail.sourceTitle":"Source and important information", "flightDealDetail.cachedPriceNotice":"Prices may be cached and can change on the provider’s site.", "flightDealDetail.thirdPartyNotice":"The search and booking process is completed on Aviasales or its travel partner.", "flightDealDetail.affiliateNotice":"Some links are affiliate links. We may earn revenue from eligible bookings made through them; the price you pay does not change.", "flightDealDetail.passengerScopeNotice":"Passenger counts were saved with the alert profile, but the cached provider price was not multiplied or repriced by passenger count.", "flightDealDetail.directFilterNotice":"This alert tracked direct flights only. You may need to apply the direct-flight filter again on the provider’s site.",
+    "flightDealDetail.providerCta":"Check current price on Aviasales", "flightDealDetail.openingProvider":"Opening Aviasales…", "flightDealDetail.openFailedTitle":"Could not open Aviasales", "flightDealDetail.openFailedBody":"Please try again.",
   },
   tr: {
-    "flightDealDetail.kicker": "Uçuş fiyat alarmı",
-    "flightDealDetail.title": "Uçuş fırsatı ayrıntıları",
-    "flightDealDetail.subtitle":
-      "Alarm eşiğini geçen önbelleğe alınmış ücreti incele.",
-    "flightDealDetail.loadingTitle": "Uçuş fırsatı yükleniyor",
-    "flightDealDetail.loadingBody": "Bu fırsat güvenli bir şekilde yükleniyor.",
-    "flightDealDetail.signInTitle": "Giriş gerekli",
-    "flightDealDetail.signInBody":
-      "Hesabına bağlı uçuş fırsatını görmek için giriş yap.",
-    "flightDealDetail.signInCta": "Giriş yap",
-    "flightDealDetail.unavailableTitle": "Uçuş fırsatı kullanılamıyor",
-    "flightDealDetail.unavailableBody":
-      "Bu fırsat artık kullanılamıyor veya bu hesap tarafından görüntülenemiyor.",
-    "flightDealDetail.retry": "Tekrar dene",
-    "flightDealDetail.discountBelowAverage":
-      "Son ortalamanın %{discount} altında",
-    "flightDealDetail.trackedFare": "Takip edilen ücret",
-    "flightDealDetail.recentAverage": "Son dönem ortalaması",
-    "flightDealDetail.thresholdReached": "Ulaşılan eşik",
-    "flightDealDetail.trackingWindow": "Takip süresi",
-    "flightDealDetail.sampleCount": "Fiyat örneği",
-    "flightDealDetail.lastChecked": "Son kontrol",
-    "flightDealDetail.days": "gün",
-    "flightDealDetail.tripProfile": "Seyahat profili",
-    "flightDealDetail.roundTrip": "Gidiş dönüş",
-    "flightDealDetail.oneWay": "Tek yön",
-    "flightDealDetail.departureDate": "Gidiş tarihi",
-    "flightDealDetail.returnDate": "Dönüş tarihi",
-    "flightDealDetail.passengers": "Yolcular",
-    "flightDealDetail.adults": "Yetişkin",
-    "flightDealDetail.children": "Çocuk",
-    "flightDealDetail.infants": "Bebek",
-    "flightDealDetail.economy": "Ekonomi",
-    "flightDealDetail.business": "Business",
-    "flightDealDetail.directOnly": "Yalnızca direkt",
-    "flightDealDetail.allFlights": "Tüm uçuşlar",
-    "flightDealDetail.cachedBadge": "Önbelleğe alınmış takip fiyatı",
-    "flightDealDetail.rollingCachedBadge": "Rota için bulunan en düşük fiyat",
-    "flightDealDetail.rollingOfferProfile": "Bulunan uçuş teklifi",
-    "flightDealDetail.offerDepartureDate": "Teklif gidiş tarihi",
-    "flightDealDetail.offerReturnDate": "Teklif dönüş tarihi",
-    "flightDealDetail.transfers": "Aktarma sayısı",
-    "flightDealDetail.airline": "Havayolu",
-    "flightDealDetail.flightNumber": "Uçuş numarası",
-    "flightDealDetail.rollingScopeNotice":
-      "Bu fiyat, kontrol anında bu rota için önümüzdeki 12 ay içinde bulunan en düşük uygun önbelleğe alınmış tekliftir. Sağlayıcının sitesindeki güncel fiyat değişebilir.",
-    "flightDealDetail.rollingPassengerNotice":
-      "Aviasales araması 1 yetişkin için açılır. Yolcu sayısını sağlayıcının ekranında değiştirebilirsin.",
-    "flightDealDetail.sourceTitle": "Kaynak ve önemli bilgiler",
-    "flightDealDetail.cachedPriceNotice":
-      "Fiyatlar önbelleğe alınmış olabilir ve sağlayıcının sitesinde değişebilir.",
-    "flightDealDetail.thirdPartyNotice":
-      "Arama ve rezervasyon işlemi Aviasales veya seyahat ortağı üzerinden tamamlanır.",
-    "flightDealDetail.affiliateNotice":
-      "Bazı bağlantılar iş ortaklığı bağlantılarıdır. Bu bağlantılar üzerinden yapılan uygun rezervasyonlardan gelir elde edebiliriz; ödediğiniz fiyat değişmez.",
-    "flightDealDetail.passengerScopeNotice":
-      "Yolcu sayıları alarm profiline kaydedildi ancak önbelleğe alınmış sağlayıcı fiyatı yolcu sayısıyla çarpılmadı veya yeniden fiyatlandırılmadı.",
-    "flightDealDetail.directFilterNotice":
-      "Bu alarm yalnızca direkt uçuşları takip etti. Sağlayıcının sitesinde direkt uçuş filtresini yeniden uygulaman gerekebilir.",
-    "flightDealDetail.providerCta": "Aviasales’ta güncel fiyatı kontrol et",
-    "flightDealDetail.openingProvider": "Aviasales açılıyor…",
-    "flightDealDetail.openFailedTitle": "Aviasales açılamadı",
-    "flightDealDetail.openFailedBody": "Lütfen tekrar dene.",
+    "flightDealDetail.kicker":"Uçuş fiyat alarmı", "flightDealDetail.title":"Uçuş fırsatı ayrıntıları", "flightDealDetail.subtitle":"Alarm eşiğini geçen önbelleğe alınmış ücreti incele.", "flightDealDetail.loadingTitle":"Uçuş fırsatı yükleniyor", "flightDealDetail.loadingBody":"Bu fırsat güvenli bir şekilde yükleniyor.", "flightDealDetail.signInTitle":"Giriş gerekli", "flightDealDetail.signInBody":"Hesabına bağlı uçuş fırsatını görmek için giriş yap.", "flightDealDetail.signInCta":"Giriş yap", "flightDealDetail.unavailableTitle":"Uçuş fırsatı kullanılamıyor", "flightDealDetail.unavailableBody":"Bu fırsat artık kullanılamıyor veya bu hesap tarafından görüntülenemiyor.", "flightDealDetail.retry":"Tekrar dene", "flightDealDetail.discountBelowAverage":"Son ortalamanın %{discount} altında", "flightDealDetail.trackedFare":"Takip edilen ücret", "flightDealDetail.recentAverage":"Son dönem ortalaması", "flightDealDetail.thresholdReached":"Ulaşılan eşik", "flightDealDetail.trackingWindow":"Takip süresi", "flightDealDetail.sampleCount":"Fiyat örneği", "flightDealDetail.lastChecked":"Son kontrol", "flightDealDetail.days":"gün", "flightDealDetail.tripProfile":"Seyahat profili", "flightDealDetail.roundTrip":"Gidiş dönüş", "flightDealDetail.oneWay":"Tek yön", "flightDealDetail.departureDate":"Gidiş tarihi", "flightDealDetail.returnDate":"Dönüş tarihi", "flightDealDetail.passengers":"Yolcular", "flightDealDetail.adults":"Yetişkin", "flightDealDetail.children":"Çocuk", "flightDealDetail.infants":"Bebek", "flightDealDetail.economy":"Ekonomi", "flightDealDetail.business":"Business", "flightDealDetail.directOnly":"Yalnızca direkt", "flightDealDetail.allFlights":"Tüm uçuşlar", "flightDealDetail.cachedBadge":"Önbelleğe alınmış takip fiyatı", "flightDealDetail.rollingCachedBadge":"Rota için bulunan en düşük fiyat", "flightDealDetail.rollingOfferProfile":"Bulunan uçuş teklifi", "flightDealDetail.offerDepartureDate":"Teklif gidiş tarihi", "flightDealDetail.offerReturnDate":"Teklif dönüş tarihi", "flightDealDetail.transfers":"Aktarma sayısı", "flightDealDetail.airline":"Havayolu", "flightDealDetail.flightNumber":"Uçuş numarası", "flightDealDetail.rollingScopeNotice":"Bu fiyat, kontrol anında bu rota için önümüzdeki 12 ay içinde bulunan en düşük uygun önbelleğe alınmış tekliftir. Sağlayıcının sitesindeki güncel fiyat değişebilir.", "flightDealDetail.rollingPassengerNotice":"Aviasales araması 1 yetişkin için açılır. Yolcu sayısını sağlayıcının ekranında değiştirebilirsin.", "flightDealDetail.sourceTitle":"Kaynak ve önemli bilgiler", "flightDealDetail.cachedPriceNotice":"Fiyatlar önbelleğe alınmış olabilir ve sağlayıcının sitesinde değişebilir.", "flightDealDetail.thirdPartyNotice":"Arama ve rezervasyon işlemi Aviasales veya seyahat ortağı üzerinden tamamlanır.", "flightDealDetail.affiliateNotice":"Bazı bağlantılar iş ortaklığı bağlantılarıdır. Bu bağlantılar üzerinden yapılan uygun rezervasyonlardan gelir elde edebiliriz; ödediğiniz fiyat değişmez.", "flightDealDetail.passengerScopeNotice":"Yolcu sayıları alarm profiline kaydedildi ancak önbelleğe alınmış sağlayıcı fiyatı yolcu sayısıyla çarpılmadı veya yeniden fiyatlandırılmadı.", "flightDealDetail.directFilterNotice":"Bu alarm yalnızca direkt uçuşları takip etti. Sağlayıcının sitesinde direkt uçuş filtresini yeniden uygulaman gerekebilir.", "flightDealDetail.providerCta":"Aviasales’ta güncel fiyatı kontrol et", "flightDealDetail.openingProvider":"Aviasales açılıyor…", "flightDealDetail.openFailedTitle":"Aviasales açılamadı", "flightDealDetail.openFailedBody":"Lütfen tekrar dene."
   },
   es: {
-    "flightDealDetail.kicker": "Alerta de precio",
-    "flightDealDetail.title": "Detalles de la oferta de vuelo",
-    "flightDealDetail.subtitle":
-      "Consulta la tarifa almacenada que superó el umbral de tu alerta.",
-    "flightDealDetail.loadingTitle": "Cargando oferta",
-    "flightDealDetail.loadingBody":
-      "Estamos cargando esta oferta de forma segura.",
-    "flightDealDetail.signInTitle": "Inicio de sesión requerido",
-    "flightDealDetail.signInBody":
-      "Inicia sesión para ver una oferta vinculada a tu cuenta.",
-    "flightDealDetail.signInCta": "Iniciar sesión",
-    "flightDealDetail.unavailableTitle": "Oferta no disponible",
-    "flightDealDetail.unavailableBody":
-      "Esta oferta ya no está disponible o esta cuenta no puede verla.",
-    "flightDealDetail.retry": "Reintentar",
-    "flightDealDetail.discountBelowAverage":
-      "%{discount} por debajo del promedio reciente",
-    "flightDealDetail.trackedFare": "Tarifa seguida",
-    "flightDealDetail.recentAverage": "Promedio reciente",
-    "flightDealDetail.thresholdReached": "Umbral alcanzado",
-    "flightDealDetail.trackingWindow": "Período de seguimiento",
-    "flightDealDetail.sampleCount": "Muestras de precio",
-    "flightDealDetail.lastChecked": "Última comprobación",
-    "flightDealDetail.days": "días",
-    "flightDealDetail.tripProfile": "Perfil del viaje",
-    "flightDealDetail.roundTrip": "Ida y vuelta",
-    "flightDealDetail.oneWay": "Solo ida",
-    "flightDealDetail.departureDate": "Fecha de salida",
-    "flightDealDetail.returnDate": "Fecha de regreso",
-    "flightDealDetail.passengers": "Pasajeros",
-    "flightDealDetail.adults": "Adultos",
-    "flightDealDetail.children": "Niños",
-    "flightDealDetail.infants": "Bebés",
-    "flightDealDetail.economy": "Turista",
-    "flightDealDetail.business": "Business",
-    "flightDealDetail.directOnly": "Solo directos",
-    "flightDealDetail.allFlights": "Todos los vuelos",
-    "flightDealDetail.cachedBadge": "Precio seguido en caché",
-    "flightDealDetail.rollingCachedBadge":
-      "Tarifa más baja encontrada para esta ruta",
-    "flightDealDetail.rollingOfferProfile": "Oferta de vuelo encontrada",
-    "flightDealDetail.offerDepartureDate": "Fecha de salida de la oferta",
-    "flightDealDetail.offerReturnDate": "Fecha de regreso de la oferta",
-    "flightDealDetail.transfers": "Número de escalas",
-    "flightDealDetail.airline": "Aerolínea",
-    "flightDealDetail.flightNumber": "Número de vuelo",
-    "flightDealDetail.rollingScopeNotice":
-      "Este era el precio en caché elegible más bajo encontrado para esta ruta durante los próximos 12 meses en el momento de la comprobación. El precio actual del proveedor puede variar.",
-    "flightDealDetail.rollingPassengerNotice":
-      "La búsqueda de Aviasales se abre para 1 adulto. Puedes cambiar el número de pasajeros en la pantalla del proveedor.",
-    "flightDealDetail.sourceTitle": "Fuente e información importante",
-    "flightDealDetail.cachedPriceNotice":
-      "Los precios pueden estar en caché y cambiar en el sitio del proveedor.",
-    "flightDealDetail.thirdPartyNotice":
-      "La búsqueda y la reserva se completan en Aviasales o con su socio de viajes.",
-    "flightDealDetail.affiliateNotice":
-      "Algunos enlaces son enlaces de afiliación. Podemos obtener ingresos por las reservas elegibles realizadas a través de ellos; el precio que pagas no cambia.",
-    "flightDealDetail.passengerScopeNotice":
-      "Los pasajeros se guardaron en la alerta, pero el precio en caché no se multiplicó ni recalculó según su número.",
-    "flightDealDetail.directFilterNotice":
-      "Esta alerta solo siguió vuelos directos. Quizá debas aplicar de nuevo ese filtro en el sitio del proveedor.",
-    "flightDealDetail.providerCta": "Comprobar el precio actual en Aviasales",
-    "flightDealDetail.openingProvider": "Abriendo Aviasales…",
-    "flightDealDetail.openFailedTitle": "No se pudo abrir Aviasales",
-    "flightDealDetail.openFailedBody": "Inténtalo de nuevo.",
+    "flightDealDetail.kicker":"Alerta de precio", "flightDealDetail.title":"Detalles de la oferta de vuelo", "flightDealDetail.subtitle":"Consulta la tarifa almacenada que superó el umbral de tu alerta.", "flightDealDetail.loadingTitle":"Cargando oferta", "flightDealDetail.loadingBody":"Estamos cargando esta oferta de forma segura.", "flightDealDetail.signInTitle":"Inicio de sesión requerido", "flightDealDetail.signInBody":"Inicia sesión para ver una oferta vinculada a tu cuenta.", "flightDealDetail.signInCta":"Iniciar sesión", "flightDealDetail.unavailableTitle":"Oferta no disponible", "flightDealDetail.unavailableBody":"Esta oferta ya no está disponible o esta cuenta no puede verla.", "flightDealDetail.retry":"Reintentar", "flightDealDetail.discountBelowAverage":"%{discount} por debajo del promedio reciente", "flightDealDetail.trackedFare":"Tarifa seguida", "flightDealDetail.recentAverage":"Promedio reciente", "flightDealDetail.thresholdReached":"Umbral alcanzado", "flightDealDetail.trackingWindow":"Período de seguimiento", "flightDealDetail.sampleCount":"Muestras de precio", "flightDealDetail.lastChecked":"Última comprobación", "flightDealDetail.days":"días", "flightDealDetail.tripProfile":"Perfil del viaje", "flightDealDetail.roundTrip":"Ida y vuelta", "flightDealDetail.oneWay":"Solo ida", "flightDealDetail.departureDate":"Fecha de salida", "flightDealDetail.returnDate":"Fecha de regreso", "flightDealDetail.passengers":"Pasajeros", "flightDealDetail.adults":"Adultos", "flightDealDetail.children":"Niños", "flightDealDetail.infants":"Bebés", "flightDealDetail.economy":"Turista", "flightDealDetail.business":"Business", "flightDealDetail.directOnly":"Solo directos", "flightDealDetail.allFlights":"Todos los vuelos", "flightDealDetail.cachedBadge":"Precio seguido en caché", "flightDealDetail.rollingCachedBadge":"Tarifa más baja encontrada para esta ruta", "flightDealDetail.rollingOfferProfile":"Oferta de vuelo encontrada", "flightDealDetail.offerDepartureDate":"Fecha de salida de la oferta", "flightDealDetail.offerReturnDate":"Fecha de regreso de la oferta", "flightDealDetail.transfers":"Número de escalas", "flightDealDetail.airline":"Aerolínea", "flightDealDetail.flightNumber":"Número de vuelo", "flightDealDetail.rollingScopeNotice":"Este era el precio en caché elegible más bajo encontrado para esta ruta durante los próximos 12 meses en el momento de la comprobación. El precio actual del proveedor puede variar.", "flightDealDetail.rollingPassengerNotice":"La búsqueda de Aviasales se abre para 1 adulto. Puedes cambiar el número de pasajeros en la pantalla del proveedor.", "flightDealDetail.sourceTitle":"Fuente e información importante", "flightDealDetail.cachedPriceNotice":"Los precios pueden estar en caché y cambiar en el sitio del proveedor.", "flightDealDetail.thirdPartyNotice":"La búsqueda y la reserva se completan en Aviasales o con su socio de viajes.", "flightDealDetail.affiliateNotice":"Algunos enlaces son enlaces de afiliación. Podemos obtener ingresos por las reservas elegibles realizadas a través de ellos; el precio que pagas no cambia.", "flightDealDetail.passengerScopeNotice":"Los pasajeros se guardaron en la alerta, pero el precio en caché no se multiplicó ni recalculó según su número.", "flightDealDetail.directFilterNotice":"Esta alerta solo siguió vuelos directos. Quizá debas aplicar de nuevo ese filtro en el sitio del proveedor.", "flightDealDetail.providerCta":"Comprobar el precio actual en Aviasales", "flightDealDetail.openingProvider":"Abriendo Aviasales…", "flightDealDetail.openFailedTitle":"No se pudo abrir Aviasales", "flightDealDetail.openFailedBody":"Inténtalo de nuevo."
   },
   fr: {
-    "flightDealDetail.kicker": "Alerte de prix",
-    "flightDealDetail.title": "Détails de l’offre de vol",
-    "flightDealDetail.subtitle":
-      "Consultez le tarif en cache ayant franchi votre seuil.",
-    "flightDealDetail.loadingTitle": "Chargement de l’offre",
-    "flightDealDetail.loadingBody":
-      "Nous chargeons cette offre de façon sécurisée.",
-    "flightDealDetail.signInTitle": "Connexion requise",
-    "flightDealDetail.signInBody":
-      "Connectez-vous pour voir une offre liée à votre compte.",
-    "flightDealDetail.signInCta": "Se connecter",
-    "flightDealDetail.unavailableTitle": "Offre indisponible",
-    "flightDealDetail.unavailableBody":
-      "Cette offre n’est plus disponible ou ne peut pas être consultée par ce compte.",
-    "flightDealDetail.retry": "Réessayer",
-    "flightDealDetail.discountBelowAverage":
-      "%{discount} sous la moyenne récente",
-    "flightDealDetail.trackedFare": "Tarif suivi",
-    "flightDealDetail.recentAverage": "Moyenne récente",
-    "flightDealDetail.thresholdReached": "Seuil atteint",
-    "flightDealDetail.trackingWindow": "Période de suivi",
-    "flightDealDetail.sampleCount": "Échantillons de prix",
-    "flightDealDetail.lastChecked": "Dernière vérification",
-    "flightDealDetail.days": "jours",
-    "flightDealDetail.tripProfile": "Profil du voyage",
-    "flightDealDetail.roundTrip": "Aller-retour",
-    "flightDealDetail.oneWay": "Aller simple",
-    "flightDealDetail.departureDate": "Date de départ",
-    "flightDealDetail.returnDate": "Date de retour",
-    "flightDealDetail.passengers": "Passagers",
-    "flightDealDetail.adults": "Adultes",
-    "flightDealDetail.children": "Enfants",
-    "flightDealDetail.infants": "Bébés",
-    "flightDealDetail.economy": "Économie",
-    "flightDealDetail.business": "Affaires",
-    "flightDealDetail.directOnly": "Direct uniquement",
-    "flightDealDetail.allFlights": "Tous les vols",
-    "flightDealDetail.cachedBadge": "Prix suivi en cache",
-    "flightDealDetail.rollingCachedBadge":
-      "Tarif le plus bas trouvé pour ce trajet",
-    "flightDealDetail.rollingOfferProfile": "Offre de vol trouvée",
-    "flightDealDetail.offerDepartureDate": "Date de départ de l’offre",
-    "flightDealDetail.offerReturnDate": "Date de retour de l’offre",
-    "flightDealDetail.transfers": "Nombre d’escales",
-    "flightDealDetail.airline": "Compagnie aérienne",
-    "flightDealDetail.flightNumber": "Numéro de vol",
-    "flightDealDetail.rollingScopeNotice":
-      "Il s’agissait de l’offre en cache admissible la plus basse trouvée pour ce trajet dans les 12 prochains mois au moment de la vérification. Le prix actuel du fournisseur peut différer.",
-    "flightDealDetail.rollingPassengerNotice":
-      "La recherche Aviasales s’ouvre pour 1 adulte. Vous pouvez modifier le nombre de passagers sur l’écran du fournisseur.",
-    "flightDealDetail.sourceTitle": "Source et informations importantes",
-    "flightDealDetail.cachedPriceNotice":
-      "Les prix peuvent être mis en cache et changer sur le site du fournisseur.",
-    "flightDealDetail.thirdPartyNotice":
-      "La recherche et la réservation s’effectuent sur Aviasales ou auprès de son partenaire.",
-    "flightDealDetail.affiliateNotice":
-      "Certains liens sont des liens d’affiliation. Nous pouvons percevoir des revenus sur les réservations éligibles effectuées via ces liens ; le prix que vous payez ne change pas.",
-    "flightDealDetail.passengerScopeNotice":
-      "Le nombre de passagers a été enregistré, mais le prix en cache n’a pas été multiplié ni recalculé selon ce nombre.",
-    "flightDealDetail.directFilterNotice":
-      "Cette alerte suivait uniquement les vols directs. Vous devrez peut-être réappliquer ce filtre sur le site du fournisseur.",
-    "flightDealDetail.providerCta": "Vérifier le prix actuel sur Aviasales",
-    "flightDealDetail.openingProvider": "Ouverture d’Aviasales…",
-    "flightDealDetail.openFailedTitle": "Impossible d’ouvrir Aviasales",
-    "flightDealDetail.openFailedBody": "Veuillez réessayer.",
+    "flightDealDetail.kicker":"Alerte de prix", "flightDealDetail.title":"Détails de l’offre de vol", "flightDealDetail.subtitle":"Consultez le tarif en cache ayant franchi votre seuil.", "flightDealDetail.loadingTitle":"Chargement de l’offre", "flightDealDetail.loadingBody":"Nous chargeons cette offre de façon sécurisée.", "flightDealDetail.signInTitle":"Connexion requise", "flightDealDetail.signInBody":"Connectez-vous pour voir une offre liée à votre compte.", "flightDealDetail.signInCta":"Se connecter", "flightDealDetail.unavailableTitle":"Offre indisponible", "flightDealDetail.unavailableBody":"Cette offre n’est plus disponible ou ne peut pas être consultée par ce compte.", "flightDealDetail.retry":"Réessayer", "flightDealDetail.discountBelowAverage":"%{discount} sous la moyenne récente", "flightDealDetail.trackedFare":"Tarif suivi", "flightDealDetail.recentAverage":"Moyenne récente", "flightDealDetail.thresholdReached":"Seuil atteint", "flightDealDetail.trackingWindow":"Période de suivi", "flightDealDetail.sampleCount":"Échantillons de prix", "flightDealDetail.lastChecked":"Dernière vérification", "flightDealDetail.days":"jours", "flightDealDetail.tripProfile":"Profil du voyage", "flightDealDetail.roundTrip":"Aller-retour", "flightDealDetail.oneWay":"Aller simple", "flightDealDetail.departureDate":"Date de départ", "flightDealDetail.returnDate":"Date de retour", "flightDealDetail.passengers":"Passagers", "flightDealDetail.adults":"Adultes", "flightDealDetail.children":"Enfants", "flightDealDetail.infants":"Bébés", "flightDealDetail.economy":"Économie", "flightDealDetail.business":"Affaires", "flightDealDetail.directOnly":"Direct uniquement", "flightDealDetail.allFlights":"Tous les vols", "flightDealDetail.cachedBadge":"Prix suivi en cache", "flightDealDetail.rollingCachedBadge":"Tarif le plus bas trouvé pour ce trajet", "flightDealDetail.rollingOfferProfile":"Offre de vol trouvée", "flightDealDetail.offerDepartureDate":"Date de départ de l’offre", "flightDealDetail.offerReturnDate":"Date de retour de l’offre", "flightDealDetail.transfers":"Nombre d’escales", "flightDealDetail.airline":"Compagnie aérienne", "flightDealDetail.flightNumber":"Numéro de vol", "flightDealDetail.rollingScopeNotice":"Il s’agissait de l’offre en cache admissible la plus basse trouvée pour ce trajet dans les 12 prochains mois au moment de la vérification. Le prix actuel du fournisseur peut différer.", "flightDealDetail.rollingPassengerNotice":"La recherche Aviasales s’ouvre pour 1 adulte. Vous pouvez modifier le nombre de passagers sur l’écran du fournisseur.", "flightDealDetail.sourceTitle":"Source et informations importantes", "flightDealDetail.cachedPriceNotice":"Les prix peuvent être mis en cache et changer sur le site du fournisseur.", "flightDealDetail.thirdPartyNotice":"La recherche et la réservation s’effectuent sur Aviasales ou auprès de son partenaire.", "flightDealDetail.affiliateNotice":"Certains liens sont des liens d’affiliation. Nous pouvons percevoir des revenus sur les réservations éligibles effectuées via ces liens ; le prix que vous payez ne change pas.", "flightDealDetail.passengerScopeNotice":"Le nombre de passagers a été enregistré, mais le prix en cache n’a pas été multiplié ni recalculé selon ce nombre.", "flightDealDetail.directFilterNotice":"Cette alerte suivait uniquement les vols directs. Vous devrez peut-être réappliquer ce filtre sur le site du fournisseur.", "flightDealDetail.providerCta":"Vérifier le prix actuel sur Aviasales", "flightDealDetail.openingProvider":"Ouverture d’Aviasales…", "flightDealDetail.openFailedTitle":"Impossible d’ouvrir Aviasales", "flightDealDetail.openFailedBody":"Veuillez réessayer."
   },
   de: {
-    "flightDealDetail.kicker": "Flugpreisalarm",
-    "flightDealDetail.title": "Details zum Flugangebot",
-    "flightDealDetail.subtitle":
-      "Prüfen Sie den gespeicherten Tarif, der Ihren Schwellenwert überschritten hat.",
-    "flightDealDetail.loadingTitle": "Angebot wird geladen",
-    "flightDealDetail.loadingBody": "Dieses Angebot wird sicher geladen.",
-    "flightDealDetail.signInTitle": "Anmeldung erforderlich",
-    "flightDealDetail.signInBody":
-      "Melden Sie sich an, um ein mit Ihrem Konto verknüpftes Angebot zu sehen.",
-    "flightDealDetail.signInCta": "Anmelden",
-    "flightDealDetail.unavailableTitle": "Angebot nicht verfügbar",
-    "flightDealDetail.unavailableBody":
-      "Dieses Angebot ist nicht mehr verfügbar oder kann von diesem Konto nicht angesehen werden.",
-    "flightDealDetail.retry": "Erneut versuchen",
-    "flightDealDetail.discountBelowAverage":
-      "%{discount} unter dem jüngsten Durchschnitt",
-    "flightDealDetail.trackedFare": "Beobachteter Tarif",
-    "flightDealDetail.recentAverage": "Jüngster Durchschnitt",
-    "flightDealDetail.thresholdReached": "Erreichter Schwellenwert",
-    "flightDealDetail.trackingWindow": "Beobachtungszeitraum",
-    "flightDealDetail.sampleCount": "Preisbeispiele",
-    "flightDealDetail.lastChecked": "Zuletzt geprüft",
-    "flightDealDetail.days": "Tage",
-    "flightDealDetail.tripProfile": "Reiseprofil",
-    "flightDealDetail.roundTrip": "Hin- und Rückflug",
-    "flightDealDetail.oneWay": "Nur Hinflug",
-    "flightDealDetail.departureDate": "Abflugdatum",
-    "flightDealDetail.returnDate": "Rückflugdatum",
-    "flightDealDetail.passengers": "Passagiere",
-    "flightDealDetail.adults": "Erwachsene",
-    "flightDealDetail.children": "Kinder",
-    "flightDealDetail.infants": "Kleinkinder",
-    "flightDealDetail.economy": "Economy",
-    "flightDealDetail.business": "Business",
-    "flightDealDetail.directOnly": "Nur Direktflüge",
-    "flightDealDetail.allFlights": "Alle Flüge",
-    "flightDealDetail.cachedBadge": "Gespeicherter Preis",
-    "flightDealDetail.rollingCachedBadge":
-      "Niedrigster gefundener Preis für diese Route",
-    "flightDealDetail.rollingOfferProfile": "Gefundenes Flugangebot",
-    "flightDealDetail.offerDepartureDate": "Abflugdatum des Angebots",
-    "flightDealDetail.offerReturnDate": "Rückflugdatum des Angebots",
-    "flightDealDetail.transfers": "Anzahl der Umstiege",
-    "flightDealDetail.airline": "Fluggesellschaft",
-    "flightDealDetail.flightNumber": "Flugnummer",
-    "flightDealDetail.rollingScopeNotice":
-      "Dies war zum Prüfzeitpunkt das niedrigste geeignete gespeicherte Angebot für diese Route in den kommenden 12 Monaten. Der aktuelle Anbieterpreis kann abweichen.",
-    "flightDealDetail.rollingPassengerNotice":
-      "Die Aviasales-Suche wird für 1 Erwachsenen geöffnet. Die Passagierzahl kann auf der Anbieterseite geändert werden.",
-    "flightDealDetail.sourceTitle": "Quelle und wichtige Hinweise",
-    "flightDealDetail.cachedPriceNotice":
-      "Preise können zwischengespeichert sein und sich auf der Anbieterseite ändern.",
-    "flightDealDetail.thirdPartyNotice":
-      "Suche und Buchung erfolgen bei Aviasales oder einem Reisepartner.",
-    "flightDealDetail.affiliateNotice":
-      "Einige Links sind Affiliate-Links. Für qualifizierte Buchungen über diese Links können wir Einnahmen erhalten; der von Ihnen gezahlte Preis ändert sich nicht.",
-    "flightDealDetail.passengerScopeNotice":
-      "Die Passagierzahl wurde gespeichert, der zwischengespeicherte Preis aber nicht damit multipliziert oder neu berechnet.",
-    "flightDealDetail.directFilterNotice":
-      "Dieser Alarm beobachtete nur Direktflüge. Möglicherweise müssen Sie den Filter auf der Anbieterseite erneut setzen.",
-    "flightDealDetail.providerCta": "Aktuellen Preis bei Aviasales prüfen",
-    "flightDealDetail.openingProvider": "Aviasales wird geöffnet…",
-    "flightDealDetail.openFailedTitle":
-      "Aviasales konnte nicht geöffnet werden",
-    "flightDealDetail.openFailedBody": "Bitte versuchen Sie es erneut.",
+    "flightDealDetail.kicker":"Flugpreisalarm", "flightDealDetail.title":"Details zum Flugangebot", "flightDealDetail.subtitle":"Prüfen Sie den gespeicherten Tarif, der Ihren Schwellenwert überschritten hat.", "flightDealDetail.loadingTitle":"Angebot wird geladen", "flightDealDetail.loadingBody":"Dieses Angebot wird sicher geladen.", "flightDealDetail.signInTitle":"Anmeldung erforderlich", "flightDealDetail.signInBody":"Melden Sie sich an, um ein mit Ihrem Konto verknüpftes Angebot zu sehen.", "flightDealDetail.signInCta":"Anmelden", "flightDealDetail.unavailableTitle":"Angebot nicht verfügbar", "flightDealDetail.unavailableBody":"Dieses Angebot ist nicht mehr verfügbar oder kann von diesem Konto nicht angesehen werden.", "flightDealDetail.retry":"Erneut versuchen", "flightDealDetail.discountBelowAverage":"%{discount} unter dem jüngsten Durchschnitt", "flightDealDetail.trackedFare":"Beobachteter Tarif", "flightDealDetail.recentAverage":"Jüngster Durchschnitt", "flightDealDetail.thresholdReached":"Erreichter Schwellenwert", "flightDealDetail.trackingWindow":"Beobachtungszeitraum", "flightDealDetail.sampleCount":"Preisbeispiele", "flightDealDetail.lastChecked":"Zuletzt geprüft", "flightDealDetail.days":"Tage", "flightDealDetail.tripProfile":"Reiseprofil", "flightDealDetail.roundTrip":"Hin- und Rückflug", "flightDealDetail.oneWay":"Nur Hinflug", "flightDealDetail.departureDate":"Abflugdatum", "flightDealDetail.returnDate":"Rückflugdatum", "flightDealDetail.passengers":"Passagiere", "flightDealDetail.adults":"Erwachsene", "flightDealDetail.children":"Kinder", "flightDealDetail.infants":"Kleinkinder", "flightDealDetail.economy":"Economy", "flightDealDetail.business":"Business", "flightDealDetail.directOnly":"Nur Direktflüge", "flightDealDetail.allFlights":"Alle Flüge", "flightDealDetail.cachedBadge":"Gespeicherter Preis", "flightDealDetail.rollingCachedBadge":"Niedrigster gefundener Preis für diese Route", "flightDealDetail.rollingOfferProfile":"Gefundenes Flugangebot", "flightDealDetail.offerDepartureDate":"Abflugdatum des Angebots", "flightDealDetail.offerReturnDate":"Rückflugdatum des Angebots", "flightDealDetail.transfers":"Anzahl der Umstiege", "flightDealDetail.airline":"Fluggesellschaft", "flightDealDetail.flightNumber":"Flugnummer", "flightDealDetail.rollingScopeNotice":"Dies war zum Prüfzeitpunkt das niedrigste geeignete gespeicherte Angebot für diese Route in den kommenden 12 Monaten. Der aktuelle Anbieterpreis kann abweichen.", "flightDealDetail.rollingPassengerNotice":"Die Aviasales-Suche wird für 1 Erwachsenen geöffnet. Die Passagierzahl kann auf der Anbieterseite geändert werden.", "flightDealDetail.sourceTitle":"Quelle und wichtige Hinweise", "flightDealDetail.cachedPriceNotice":"Preise können zwischengespeichert sein und sich auf der Anbieterseite ändern.", "flightDealDetail.thirdPartyNotice":"Suche und Buchung erfolgen bei Aviasales oder einem Reisepartner.", "flightDealDetail.affiliateNotice":"Einige Links sind Affiliate-Links. Für qualifizierte Buchungen über diese Links können wir Einnahmen erhalten; der von Ihnen gezahlte Preis ändert sich nicht.", "flightDealDetail.passengerScopeNotice":"Die Passagierzahl wurde gespeichert, der zwischengespeicherte Preis aber nicht damit multipliziert oder neu berechnet.", "flightDealDetail.directFilterNotice":"Dieser Alarm beobachtete nur Direktflüge. Möglicherweise müssen Sie den Filter auf der Anbieterseite erneut setzen.", "flightDealDetail.providerCta":"Aktuellen Preis bei Aviasales prüfen", "flightDealDetail.openingProvider":"Aviasales wird geöffnet…", "flightDealDetail.openFailedTitle":"Aviasales konnte nicht geöffnet werden", "flightDealDetail.openFailedBody":"Bitte versuchen Sie es erneut."
   },
   ar: {
-    "flightDealDetail.kicker": "تنبيه سعر الرحلة",
-    "flightDealDetail.title": "تفاصيل عرض الرحلة",
-    "flightDealDetail.subtitle": "راجع السعر المخزن الذي تجاوز حد التنبيه.",
-    "flightDealDetail.loadingTitle": "جارٍ تحميل العرض",
-    "flightDealDetail.loadingBody": "نحمّل هذا العرض بأمان.",
-    "flightDealDetail.signInTitle": "تسجيل الدخول مطلوب",
-    "flightDealDetail.signInBody": "سجّل الدخول لعرض صفقة مرتبطة بحسابك.",
-    "flightDealDetail.signInCta": "تسجيل الدخول",
-    "flightDealDetail.unavailableTitle": "العرض غير متاح",
-    "flightDealDetail.unavailableBody":
-      "لم يعد هذا العرض متاحًا أو لا يمكن لهذا الحساب عرضه.",
-    "flightDealDetail.retry": "إعادة المحاولة",
-    "flightDealDetail.discountBelowAverage":
-      "أقل من المتوسط الأخير بنسبة %{discount}",
-    "flightDealDetail.trackedFare": "السعر المتابَع",
-    "flightDealDetail.recentAverage": "المتوسط الأخير",
-    "flightDealDetail.thresholdReached": "الحد المحقق",
-    "flightDealDetail.trackingWindow": "فترة المتابعة",
-    "flightDealDetail.sampleCount": "عينات السعر",
-    "flightDealDetail.lastChecked": "آخر تحقق",
-    "flightDealDetail.days": "يومًا",
-    "flightDealDetail.tripProfile": "ملف الرحلة",
-    "flightDealDetail.roundTrip": "ذهاب وعودة",
-    "flightDealDetail.oneWay": "ذهاب فقط",
-    "flightDealDetail.departureDate": "تاريخ المغادرة",
-    "flightDealDetail.returnDate": "تاريخ العودة",
-    "flightDealDetail.passengers": "المسافرون",
-    "flightDealDetail.adults": "البالغون",
-    "flightDealDetail.children": "الأطفال",
-    "flightDealDetail.infants": "الرضع",
-    "flightDealDetail.economy": "اقتصادية",
-    "flightDealDetail.business": "أعمال",
-    "flightDealDetail.directOnly": "مباشر فقط",
-    "flightDealDetail.allFlights": "كل الرحلات",
-    "flightDealDetail.cachedBadge": "سعر متابَع مخزن",
-    "flightDealDetail.rollingCachedBadge": "أقل سعر تم العثور عليه لهذا المسار",
-    "flightDealDetail.rollingOfferProfile": "عرض الرحلة الذي تم العثور عليه",
-    "flightDealDetail.offerDepartureDate": "تاريخ مغادرة العرض",
-    "flightDealDetail.offerReturnDate": "تاريخ عودة العرض",
-    "flightDealDetail.transfers": "عدد محطات التوقف",
-    "flightDealDetail.airline": "شركة الطيران",
-    "flightDealDetail.flightNumber": "رقم الرحلة",
-    "flightDealDetail.rollingScopeNotice":
-      "كان هذا أقل عرض مؤهل مخزن مؤقتًا تم العثور عليه لهذا المسار خلال الأشهر الـ12 المقبلة وقت التحقق. قد يختلف السعر الحالي لدى المزود.",
-    "flightDealDetail.rollingPassengerNotice":
-      "يفتح بحث Aviasales لشخص بالغ واحد. يمكنك تغيير عدد المسافرين على شاشة المزود.",
-    "flightDealDetail.sourceTitle": "المصدر ومعلومات مهمة",
-    "flightDealDetail.cachedPriceNotice":
-      "قد تكون الأسعار مخزنة مؤقتًا وقد تتغير على موقع المزود.",
-    "flightDealDetail.thirdPartyNotice":
-      "تتم عملية البحث والحجز عبر Aviasales أو شريك السفر.",
-    "flightDealDetail.affiliateNotice":
-      "بعض الروابط هي روابط تسويق بالعمولة. قد نحقق إيرادًا من الحجوزات المؤهلة التي تتم عبرها، من دون تغيير السعر الذي تدفعه.",
-    "flightDealDetail.passengerScopeNotice":
-      "حُفظ عدد المسافرين في التنبيه، لكن السعر المخزن لم يُضرب أو يُعاد تسعيره حسب العدد.",
-    "flightDealDetail.directFilterNotice":
-      "تابع هذا التنبيه الرحلات المباشرة فقط. قد تحتاج إلى إعادة تطبيق مرشح الرحلات المباشرة على موقع المزود.",
-    "flightDealDetail.providerCta": "تحقق من السعر الحالي على Aviasales",
-    "flightDealDetail.openingProvider": "جارٍ فتح Aviasales…",
-    "flightDealDetail.openFailedTitle": "تعذر فتح Aviasales",
-    "flightDealDetail.openFailedBody": "يرجى المحاولة مجددًا.",
+    "flightDealDetail.kicker":"تنبيه سعر الرحلة", "flightDealDetail.title":"تفاصيل عرض الرحلة", "flightDealDetail.subtitle":"راجع السعر المخزن الذي تجاوز حد التنبيه.", "flightDealDetail.loadingTitle":"جارٍ تحميل العرض", "flightDealDetail.loadingBody":"نحمّل هذا العرض بأمان.", "flightDealDetail.signInTitle":"تسجيل الدخول مطلوب", "flightDealDetail.signInBody":"سجّل الدخول لعرض صفقة مرتبطة بحسابك.", "flightDealDetail.signInCta":"تسجيل الدخول", "flightDealDetail.unavailableTitle":"العرض غير متاح", "flightDealDetail.unavailableBody":"لم يعد هذا العرض متاحًا أو لا يمكن لهذا الحساب عرضه.", "flightDealDetail.retry":"إعادة المحاولة", "flightDealDetail.discountBelowAverage":"أقل من المتوسط الأخير بنسبة %{discount}", "flightDealDetail.trackedFare":"السعر المتابَع", "flightDealDetail.recentAverage":"المتوسط الأخير", "flightDealDetail.thresholdReached":"الحد المحقق", "flightDealDetail.trackingWindow":"فترة المتابعة", "flightDealDetail.sampleCount":"عينات السعر", "flightDealDetail.lastChecked":"آخر تحقق", "flightDealDetail.days":"يومًا", "flightDealDetail.tripProfile":"ملف الرحلة", "flightDealDetail.roundTrip":"ذهاب وعودة", "flightDealDetail.oneWay":"ذهاب فقط", "flightDealDetail.departureDate":"تاريخ المغادرة", "flightDealDetail.returnDate":"تاريخ العودة", "flightDealDetail.passengers":"المسافرون", "flightDealDetail.adults":"البالغون", "flightDealDetail.children":"الأطفال", "flightDealDetail.infants":"الرضع", "flightDealDetail.economy":"اقتصادية", "flightDealDetail.business":"أعمال", "flightDealDetail.directOnly":"مباشر فقط", "flightDealDetail.allFlights":"كل الرحلات", "flightDealDetail.cachedBadge":"سعر متابَع مخزن", "flightDealDetail.rollingCachedBadge":"أقل سعر تم العثور عليه لهذا المسار", "flightDealDetail.rollingOfferProfile":"عرض الرحلة الذي تم العثور عليه", "flightDealDetail.offerDepartureDate":"تاريخ مغادرة العرض", "flightDealDetail.offerReturnDate":"تاريخ عودة العرض", "flightDealDetail.transfers":"عدد محطات التوقف", "flightDealDetail.airline":"شركة الطيران", "flightDealDetail.flightNumber":"رقم الرحلة", "flightDealDetail.rollingScopeNotice":"كان هذا أقل عرض مؤهل مخزن مؤقتًا تم العثور عليه لهذا المسار خلال الأشهر الـ12 المقبلة وقت التحقق. قد يختلف السعر الحالي لدى المزود.", "flightDealDetail.rollingPassengerNotice":"يفتح بحث Aviasales لشخص بالغ واحد. يمكنك تغيير عدد المسافرين على شاشة المزود.", "flightDealDetail.sourceTitle":"المصدر ومعلومات مهمة", "flightDealDetail.cachedPriceNotice":"قد تكون الأسعار مخزنة مؤقتًا وقد تتغير على موقع المزود.", "flightDealDetail.thirdPartyNotice":"تتم عملية البحث والحجز عبر Aviasales أو شريك السفر.", "flightDealDetail.affiliateNotice":"بعض الروابط هي روابط تسويق بالعمولة. قد نحقق إيرادًا من الحجوزات المؤهلة التي تتم عبرها، من دون تغيير السعر الذي تدفعه.", "flightDealDetail.passengerScopeNotice":"حُفظ عدد المسافرين في التنبيه، لكن السعر المخزن لم يُضرب أو يُعاد تسعيره حسب العدد.", "flightDealDetail.directFilterNotice":"تابع هذا التنبيه الرحلات المباشرة فقط. قد تحتاج إلى إعادة تطبيق مرشح الرحلات المباشرة على موقع المزود.", "flightDealDetail.providerCta":"تحقق من السعر الحالي على Aviasales", "flightDealDetail.openingProvider":"جارٍ فتح Aviasales…", "flightDealDetail.openFailedTitle":"تعذر فتح Aviasales", "flightDealDetail.openFailedBody":"يرجى المحاولة مجددًا."
   },
   ru: {
-    "flightDealDetail.kicker": "Уведомление о цене",
-    "flightDealDetail.title": "Детали предложения",
-    "flightDealDetail.subtitle":
-      "Просмотрите сохранённый тариф, достигший заданного порога.",
-    "flightDealDetail.loadingTitle": "Загрузка предложения",
-    "flightDealDetail.loadingBody": "Мы безопасно загружаем это предложение.",
-    "flightDealDetail.signInTitle": "Требуется вход",
-    "flightDealDetail.signInBody":
-      "Войдите, чтобы увидеть предложение, связанное с аккаунтом.",
-    "flightDealDetail.signInCta": "Войти",
-    "flightDealDetail.unavailableTitle": "Предложение недоступно",
-    "flightDealDetail.unavailableBody":
-      "Это предложение больше недоступно или не может быть просмотрено этим аккаунтом.",
-    "flightDealDetail.retry": "Повторить",
-    "flightDealDetail.discountBelowAverage":
-      "На %{discount} ниже недавнего среднего",
-    "flightDealDetail.trackedFare": "Отслеживаемый тариф",
-    "flightDealDetail.recentAverage": "Недавнее среднее",
-    "flightDealDetail.thresholdReached": "Достигнутый порог",
-    "flightDealDetail.trackingWindow": "Период отслеживания",
-    "flightDealDetail.sampleCount": "Примеры цен",
-    "flightDealDetail.lastChecked": "Последняя проверка",
-    "flightDealDetail.days": "дней",
-    "flightDealDetail.tripProfile": "Параметры поездки",
-    "flightDealDetail.roundTrip": "Туда и обратно",
-    "flightDealDetail.oneWay": "В одну сторону",
-    "flightDealDetail.departureDate": "Дата вылета",
-    "flightDealDetail.returnDate": "Дата возвращения",
-    "flightDealDetail.passengers": "Пассажиры",
-    "flightDealDetail.adults": "Взрослые",
-    "flightDealDetail.children": "Дети",
-    "flightDealDetail.infants": "Младенцы",
-    "flightDealDetail.economy": "Эконом",
-    "flightDealDetail.business": "Бизнес",
-    "flightDealDetail.directOnly": "Только прямые",
-    "flightDealDetail.allFlights": "Все рейсы",
-    "flightDealDetail.cachedBadge": "Сохранённая цена",
-    "flightDealDetail.rollingCachedBadge":
-      "Самый низкий найденный тариф для маршрута",
-    "flightDealDetail.rollingOfferProfile": "Найденное предложение",
-    "flightDealDetail.offerDepartureDate": "Дата вылета предложения",
-    "flightDealDetail.offerReturnDate": "Дата возврата предложения",
-    "flightDealDetail.transfers": "Количество пересадок",
-    "flightDealDetail.airline": "Авиакомпания",
-    "flightDealDetail.flightNumber": "Номер рейса",
-    "flightDealDetail.rollingScopeNotice":
-      "На момент проверки это было самое низкое подходящее предложение из кеша для маршрута на ближайшие 12 месяцев. Текущая цена поставщика может отличаться.",
-    "flightDealDetail.rollingPassengerNotice":
-      "Поиск Aviasales открывается для 1 взрослого. Число пассажиров можно изменить на странице поставщика.",
-    "flightDealDetail.sourceTitle": "Источник и важная информация",
-    "flightDealDetail.cachedPriceNotice":
-      "Цены могут быть сохранены в кеше и меняться на сайте поставщика.",
-    "flightDealDetail.thirdPartyNotice":
-      "Поиск и бронирование выполняются на Aviasales или у его партнёра.",
-    "flightDealDetail.affiliateNotice":
-      "Некоторые ссылки являются партнёрскими. Мы можем получать доход от подходящих бронирований, совершённых по ним; цена для вас не меняется.",
-    "flightDealDetail.passengerScopeNotice":
-      "Число пассажиров сохранено в уведомлении, но цена из кеша не умножалась и не пересчитывалась по их числу.",
-    "flightDealDetail.directFilterNotice":
-      "Уведомление отслеживало только прямые рейсы. Возможно, фильтр потребуется снова применить на сайте поставщика.",
-    "flightDealDetail.providerCta": "Проверить текущую цену на Aviasales",
-    "flightDealDetail.openingProvider": "Открываем Aviasales…",
-    "flightDealDetail.openFailedTitle": "Не удалось открыть Aviasales",
-    "flightDealDetail.openFailedBody": "Повторите попытку.",
+    "flightDealDetail.kicker":"Уведомление о цене", "flightDealDetail.title":"Детали предложения", "flightDealDetail.subtitle":"Просмотрите сохранённый тариф, достигший заданного порога.", "flightDealDetail.loadingTitle":"Загрузка предложения", "flightDealDetail.loadingBody":"Мы безопасно загружаем это предложение.", "flightDealDetail.signInTitle":"Требуется вход", "flightDealDetail.signInBody":"Войдите, чтобы увидеть предложение, связанное с аккаунтом.", "flightDealDetail.signInCta":"Войти", "flightDealDetail.unavailableTitle":"Предложение недоступно", "flightDealDetail.unavailableBody":"Это предложение больше недоступно или не может быть просмотрено этим аккаунтом.", "flightDealDetail.retry":"Повторить", "flightDealDetail.discountBelowAverage":"На %{discount} ниже недавнего среднего", "flightDealDetail.trackedFare":"Отслеживаемый тариф", "flightDealDetail.recentAverage":"Недавнее среднее", "flightDealDetail.thresholdReached":"Достигнутый порог", "flightDealDetail.trackingWindow":"Период отслеживания", "flightDealDetail.sampleCount":"Примеры цен", "flightDealDetail.lastChecked":"Последняя проверка", "flightDealDetail.days":"дней", "flightDealDetail.tripProfile":"Параметры поездки", "flightDealDetail.roundTrip":"Туда и обратно", "flightDealDetail.oneWay":"В одну сторону", "flightDealDetail.departureDate":"Дата вылета", "flightDealDetail.returnDate":"Дата возвращения", "flightDealDetail.passengers":"Пассажиры", "flightDealDetail.adults":"Взрослые", "flightDealDetail.children":"Дети", "flightDealDetail.infants":"Младенцы", "flightDealDetail.economy":"Эконом", "flightDealDetail.business":"Бизнес", "flightDealDetail.directOnly":"Только прямые", "flightDealDetail.allFlights":"Все рейсы", "flightDealDetail.cachedBadge":"Сохранённая цена", "flightDealDetail.rollingCachedBadge":"Самый низкий найденный тариф для маршрута", "flightDealDetail.rollingOfferProfile":"Найденное предложение", "flightDealDetail.offerDepartureDate":"Дата вылета предложения", "flightDealDetail.offerReturnDate":"Дата возврата предложения", "flightDealDetail.transfers":"Количество пересадок", "flightDealDetail.airline":"Авиакомпания", "flightDealDetail.flightNumber":"Номер рейса", "flightDealDetail.rollingScopeNotice":"На момент проверки это было самое низкое подходящее предложение из кеша для маршрута на ближайшие 12 месяцев. Текущая цена поставщика может отличаться.", "flightDealDetail.rollingPassengerNotice":"Поиск Aviasales открывается для 1 взрослого. Число пассажиров можно изменить на странице поставщика.", "flightDealDetail.sourceTitle":"Источник и важная информация", "flightDealDetail.cachedPriceNotice":"Цены могут быть сохранены в кеше и меняться на сайте поставщика.", "flightDealDetail.thirdPartyNotice":"Поиск и бронирование выполняются на Aviasales или у его партнёра.", "flightDealDetail.affiliateNotice":"Некоторые ссылки являются партнёрскими. Мы можем получать доход от подходящих бронирований, совершённых по ним; цена для вас не меняется.", "flightDealDetail.passengerScopeNotice":"Число пассажиров сохранено в уведомлении, но цена из кеша не умножалась и не пересчитывалась по их числу.", "flightDealDetail.directFilterNotice":"Уведомление отслеживало только прямые рейсы. Возможно, фильтр потребуется снова применить на сайте поставщика.", "flightDealDetail.providerCta":"Проверить текущую цену на Aviasales", "flightDealDetail.openingProvider":"Открываем Aviasales…", "flightDealDetail.openFailedTitle":"Не удалось открыть Aviasales", "flightDealDetail.openFailedBody":"Повторите попытку."
   },
   zh: {
-    "flightDealDetail.kicker": "航班价格提醒",
-    "flightDealDetail.title": "航班优惠详情",
-    "flightDealDetail.subtitle": "查看达到提醒阈值的缓存票价。",
-    "flightDealDetail.loadingTitle": "正在加载优惠",
-    "flightDealDetail.loadingBody": "正在安全加载此优惠。",
-    "flightDealDetail.signInTitle": "需要登录",
-    "flightDealDetail.signInBody": "登录后可查看与你的账户关联的航班优惠。",
-    "flightDealDetail.signInCta": "登录",
-    "flightDealDetail.unavailableTitle": "优惠不可用",
-    "flightDealDetail.unavailableBody": "此优惠已不可用，或当前账户无法查看。",
-    "flightDealDetail.retry": "重试",
-    "flightDealDetail.discountBelowAverage": "比近期平均价低 %{discount}",
-    "flightDealDetail.trackedFare": "追踪票价",
-    "flightDealDetail.recentAverage": "近期平均价",
-    "flightDealDetail.thresholdReached": "达到的阈值",
-    "flightDealDetail.trackingWindow": "追踪周期",
-    "flightDealDetail.sampleCount": "价格样本",
-    "flightDealDetail.lastChecked": "最后检查",
-    "flightDealDetail.days": "天",
-    "flightDealDetail.tripProfile": "行程资料",
-    "flightDealDetail.roundTrip": "往返",
-    "flightDealDetail.oneWay": "单程",
-    "flightDealDetail.departureDate": "出发日期",
-    "flightDealDetail.returnDate": "返程日期",
-    "flightDealDetail.passengers": "乘客",
-    "flightDealDetail.adults": "成人",
-    "flightDealDetail.children": "儿童",
-    "flightDealDetail.infants": "婴儿",
-    "flightDealDetail.economy": "经济舱",
-    "flightDealDetail.business": "商务舱",
-    "flightDealDetail.directOnly": "仅直飞",
-    "flightDealDetail.allFlights": "所有航班",
-    "flightDealDetail.cachedBadge": "缓存追踪价格",
-    "flightDealDetail.rollingCachedBadge": "该航线找到的最低票价",
-    "flightDealDetail.rollingOfferProfile": "找到的航班优惠",
-    "flightDealDetail.offerDepartureDate": "优惠出发日期",
-    "flightDealDetail.offerReturnDate": "优惠返程日期",
-    "flightDealDetail.transfers": "中转次数",
-    "flightDealDetail.airline": "航空公司",
-    "flightDealDetail.flightNumber": "航班号",
-    "flightDealDetail.rollingScopeNotice":
-      "这是检查时在该航线未来 12 个月内找到的最低合格缓存优惠。服务商的实时价格可能有所不同。",
-    "flightDealDetail.rollingPassengerNotice":
-      "Aviasales 搜索按 1 名成人打开。你可以在服务商页面更改乘客人数。",
-    "flightDealDetail.sourceTitle": "来源和重要信息",
-    "flightDealDetail.cachedPriceNotice":
-      "价格可能来自缓存，并可能在服务商网站上发生变化。",
-    "flightDealDetail.thirdPartyNotice":
-      "搜索和预订将在 Aviasales 或其旅行合作伙伴处完成。",
-    "flightDealDetail.affiliateNotice":
-      "部分链接为联盟链接。通过这些链接完成符合条件的预订时，我们可能获得收入；您支付的价格不会因此改变。",
-    "flightDealDetail.passengerScopeNotice":
-      "提醒资料保存了乘客人数，但缓存价格并未按乘客人数乘算或重新定价。",
-    "flightDealDetail.directFilterNotice":
-      "此提醒仅追踪直飞航班，你可能需要在服务商网站上重新应用直飞筛选。",
-    "flightDealDetail.providerCta": "在 Aviasales 查看当前价格",
-    "flightDealDetail.openingProvider": "正在打开 Aviasales…",
-    "flightDealDetail.openFailedTitle": "无法打开 Aviasales",
-    "flightDealDetail.openFailedBody": "请重试。",
+    "flightDealDetail.kicker":"航班价格提醒", "flightDealDetail.title":"航班优惠详情", "flightDealDetail.subtitle":"查看达到提醒阈值的缓存票价。", "flightDealDetail.loadingTitle":"正在加载优惠", "flightDealDetail.loadingBody":"正在安全加载此优惠。", "flightDealDetail.signInTitle":"需要登录", "flightDealDetail.signInBody":"登录后可查看与你的账户关联的航班优惠。", "flightDealDetail.signInCta":"登录", "flightDealDetail.unavailableTitle":"优惠不可用", "flightDealDetail.unavailableBody":"此优惠已不可用，或当前账户无法查看。", "flightDealDetail.retry":"重试", "flightDealDetail.discountBelowAverage":"比近期平均价低 %{discount}", "flightDealDetail.trackedFare":"追踪票价", "flightDealDetail.recentAverage":"近期平均价", "flightDealDetail.thresholdReached":"达到的阈值", "flightDealDetail.trackingWindow":"追踪周期", "flightDealDetail.sampleCount":"价格样本", "flightDealDetail.lastChecked":"最后检查", "flightDealDetail.days":"天", "flightDealDetail.tripProfile":"行程资料", "flightDealDetail.roundTrip":"往返", "flightDealDetail.oneWay":"单程", "flightDealDetail.departureDate":"出发日期", "flightDealDetail.returnDate":"返程日期", "flightDealDetail.passengers":"乘客", "flightDealDetail.adults":"成人", "flightDealDetail.children":"儿童", "flightDealDetail.infants":"婴儿", "flightDealDetail.economy":"经济舱", "flightDealDetail.business":"商务舱", "flightDealDetail.directOnly":"仅直飞", "flightDealDetail.allFlights":"所有航班", "flightDealDetail.cachedBadge":"缓存追踪价格", "flightDealDetail.rollingCachedBadge":"该航线找到的最低票价", "flightDealDetail.rollingOfferProfile":"找到的航班优惠", "flightDealDetail.offerDepartureDate":"优惠出发日期", "flightDealDetail.offerReturnDate":"优惠返程日期", "flightDealDetail.transfers":"中转次数", "flightDealDetail.airline":"航空公司", "flightDealDetail.flightNumber":"航班号", "flightDealDetail.rollingScopeNotice":"这是检查时在该航线未来 12 个月内找到的最低合格缓存优惠。服务商的实时价格可能有所不同。", "flightDealDetail.rollingPassengerNotice":"Aviasales 搜索按 1 名成人打开。你可以在服务商页面更改乘客人数。", "flightDealDetail.sourceTitle":"来源和重要信息", "flightDealDetail.cachedPriceNotice":"价格可能来自缓存，并可能在服务商网站上发生变化。", "flightDealDetail.thirdPartyNotice":"搜索和预订将在 Aviasales 或其旅行合作伙伴处完成。", "flightDealDetail.affiliateNotice":"部分链接为联盟链接。通过这些链接完成符合条件的预订时，我们可能获得收入；您支付的价格不会因此改变。", "flightDealDetail.passengerScopeNotice":"提醒资料保存了乘客人数，但缓存价格并未按乘客人数乘算或重新定价。", "flightDealDetail.directFilterNotice":"此提醒仅追踪直飞航班，你可能需要在服务商网站上重新应用直飞筛选。", "flightDealDetail.providerCta":"在 Aviasales 查看当前价格", "flightDealDetail.openingProvider":"正在打开 Aviasales…", "flightDealDetail.openFailedTitle":"无法打开 Aviasales", "flightDealDetail.openFailedBody":"请重试。"
   },
 };
-for (const locale of supportedLanguageCodes)
-  Object.assign(translations[locale], flightDealDetailTranslations[locale]);
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], flightDealDetailTranslations[locale]);

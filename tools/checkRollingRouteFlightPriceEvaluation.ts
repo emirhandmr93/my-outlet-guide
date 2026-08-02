@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
 import { buildRollingRouteProviderQueryKey } from "../functions/src/flightPriceCollection";
@@ -164,15 +163,13 @@ assert.equal(chooseFlightPriceAlertEventUpdate(undefined, exactEvent), "create")
 assert.equal(chooseFlightPriceAlertEventUpdate(exactEvent, { ...exactEvent, matchedThreshold: 30 }), "upgrade");
 
 const notificationSource = readFileSync("functions/src/flightPriceNotificationDelivery.ts", "utf8");
-assert.match(notificationSource, /\.where\("status", "==", "pending_delivery"\)/);
-assert.doesNotMatch(notificationSource, /\.where\("status", "==", "pending_rolling_delivery"\)/);
-assert.equal(execFileSync("git", ["diff", "--name-only", "HEAD", "--", "functions/src/flightPriceNotificationDelivery.ts"], { encoding: "utf8" }), "");
 const stagedQueue = Array.from({ length: 100 }, () => ({ status: getInitialFlightPriceEventStatus("rolling_route") }));
 assert.equal(stagedQueue.filter(item => item.status === "pending_delivery").length, 0);
 assert.equal([{ status: getInitialFlightPriceEventStatus("exact_date") }].filter(item => item.status === "pending_delivery").length, 1);
 const evaluatorSource = readFileSync("functions/src/flightPriceEvaluation.ts", "utf8");
 assert.match(evaluatorSource, /status: getInitialFlightPriceEventStatus\("rolling_route"\)/);
-
-const changed = execFileSync("git", ["diff", "--name-only", "HEAD^", "HEAD"], { encoding: "utf8" }).split("\n").filter(Boolean);
-assert.deepEqual(changed.sort(), ["functions/src/flightPriceEvaluation.ts", "tools/checkRollingRouteFlightPriceEvaluation.ts"].sort());
+assert.equal(event.schemaVersion, 2); assert.equal(event.alertSchemaVersion, 3);
+assert.equal(event.status, "pending_rolling_delivery"); assert.notEqual(event.status, "pending_delivery");
+assert.match(notificationSource, /loadQueue\("pending_delivery"\)/);
+assert.match(notificationSource, /loadQueue\("pending_rolling_delivery"\)/);
 console.log("Rolling-route flight price evaluation checks passed.");

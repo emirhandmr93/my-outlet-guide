@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 import { buildRollingRouteProviderQueryKey } from "../functions/src/flightPriceCollection";
@@ -8,11 +7,13 @@ import {
   buildFlightPricePushMessage,
   chooseFlightPriceEventSubmissionStatus,
   isFlightPriceEventSourceCurrent,
+  loadRuntimeEligiblePendingFlightPriceEvents,
   sameFlightPriceAlertEventWorkItem,
   validateFlightPriceAlertEvent,
   validateRollingRouteFlightPriceAlertEvent,
 } from "../functions/src/flightPriceNotificationDelivery";
 import { validateUserFlightPriceDeal } from "../src/services/flightPriceDealDetailService";
+import { supportedLanguageCodes, translations as translationCatalog } from "../src/translations/translations";
 
 const stamp = { toDate: () => new Date("2026-08-02T00:00:00Z") };
 const exactId = "a".repeat(64);
@@ -112,6 +113,47 @@ for (const invalid of [
     validateRollingRouteFlightPriceAlertEvent(rollingId, invalid),
     null,
   );
+
+const day = (offset: number) => new Date(Date.UTC(2026, 0, 1 + offset)).toISOString().slice(0, 10);
+const exactQueue = Array.from({ length: 120 }, (_, index) => {
+  const eventId = index.toString(16).padStart(64, "0");
+  return { id: eventId, data: { ...exact, eventId, snapshotDate: day(index) } };
+});
+const rollingQueue = Array.from({ length: 120 }, (_, index) => {
+  const snapshotDate = day(index); const eventId = buildFlightPriceAlertEventId("u1", key, snapshotDate);
+  return { id: eventId, data: { ...rolling, eventId, snapshotDate, offerDepartDate: snapshotDate, offerReturnDate: snapshotDate } };
+});
+function fakeDb(queues: Record<string, Array<{ id: string; data: Record<string, unknown> }>>) {
+  return { collection: () => {
+    let selected = [...exactQueue, ...rollingQueue];
+    const queryApi = {
+      where(field: string, operator: string, value: unknown) {
+        selected = selected.filter(item => operator === "==" ? item.data[field] === value :
+          operator === "in" && Array.isArray(value) && value.includes(item.data[field]));
+        return queryApi;
+      },
+      limit(value: number) { selected = selected.slice(0, value); return queryApi; },
+      async get() { return { docs: selected.map(item => ({ id: item.id, data: () => item.data,
+        ref: { path: `flightPriceAlertEvents/${item.id}` } })) }; },
+    };
+    selected = Object.values(queues).flat();
+    return queryApi;
+  } };
+}
+async function checkPendingLoader() {
+  const allLoaded = await loadRuntimeEligiblePendingFlightPriceEvents(fakeDb({ exactQueue, rollingQueue }) as never,
+    { mode: "all", testUserIds: new Set(), status: "configured" });
+  assert.equal(allLoaded.events.filter(event => event.schemaVersion === 1).length, 100);
+  assert.equal(allLoaded.events.filter(event => event.schemaVersion === 2).length, 100);
+  assert.equal(allLoaded.exactDocumentsRead, 100); assert.equal(allLoaded.rollingDocumentsRead, 100);
+  const mixedExact = exactQueue.map((item, index) => ({ ...item, data: { ...item.data, userId: index === 0 ? "u1" : "u2" } }));
+  const runtimeLoaded = await loadRuntimeEligiblePendingFlightPriceEvents(fakeDb({ mixedExact, rollingQueue }) as never,
+    { mode: "test_users", testUserIds: new Set(["u1"]), status: "configured" });
+  assert.ok(runtimeLoaded.events.every(event => event.userId === "u1"));
+  const offLoaded = await loadRuntimeEligiblePendingFlightPriceEvents(fakeDb({ exactQueue, rollingQueue }) as never,
+    { mode: "off", testUserIds: new Set(), status: "configured" });
+  assert.equal(offLoaded.events.length, 0);
+}
 
 const source = {
   schemaVersion: 3,
@@ -238,10 +280,14 @@ assert.match(
   /loadQueue\("pending_delivery"\).*loadQueue\("pending_rolling_delivery"\)/s,
 );
 assert.match(deliverySource, /slice\(0, PENDING_EVENT_LIMIT\)/);
+assert.match(deliverySource, /status === pendingStatus\s*\? \{ status, updatedAt: FieldValue\.serverTimestamp\(\) \}/);
+const pendingParentUpdate = deliverySource.match(/status === pendingStatus\s*\? (\{[^}]+\})/)?.[1] ?? "";
+assert.doesNotMatch(pendingParentUpdate, /ticketAcceptedCount|ticketErrorCount/);
 const screen = readFileSync("src/screens/FlightDealDetailScreen.tsx", "utf8");
 assert.match(screen, /offerDepartDate/);
 assert.match(screen, /adults: rolling \? 1 : deal\.adults/);
 assert.match(screen, /app_rolling_flight_deal_detail/);
+assert.match(screen, /deal\.schemaVersion === 1 \? <>[\s\S]*flightDealDetail\.passengers[\s\S]*<\/>\s*: <>[\s\S]*offerDepartureDate/);
 const translations = readFileSync("src/translations/translations.ts", "utf8");
 for (const keyName of [
   "rollingCachedBadge",
@@ -254,24 +300,7 @@ for (const keyName of [
   "rollingScopeNotice",
   "rollingPassengerNotice",
 ])
-  assert.equal(
-    (translations.match(new RegExp(`flightDealDetail\\.${keyName}`, "g")) ?? [])
-      .length,
-    8,
-  );
-for (const untouched of [
-  "src/services/flightPriceNotificationResponse.ts",
-  "src/navigation/AppNavigator.tsx",
-  "firestore.rules",
-  "firestore.indexes.json",
-])
-  assert.ok(readFileSync(untouched, "utf8").length > 0);
-assert.equal(
-  createHash("sha256")
-    .update(JSON.stringify(Object.keys(exactMessage.data).sort()))
-    .digest("hex"),
-  createHash("sha256")
-    .update(JSON.stringify(["eventId", "type"]))
-    .digest("hex"),
-);
-console.log("Rolling-route flight-price delivery checks passed.");
+  for (const locale of supportedLanguageCodes)
+    assert.ok(translationCatalog[locale][`flightDealDetail.${keyName}`]?.trim());
+assert.deepEqual(Object.keys(exactMessage.data).sort(), ["eventId", "type"]);
+checkPendingLoader().then(() => console.log("Rolling-route flight-price delivery checks passed."));
