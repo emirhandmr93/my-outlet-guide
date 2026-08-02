@@ -16,6 +16,40 @@ import { getFlightPriceAlertPathUserId, isFlightPriceRuntimeUserEnabled, loadFli
 const AVIASALES_API_TOKEN =
   defineSecret("AVIASALES_API_TOKEN");
 
+const PROVIDER_REQUEST_SPACING_MS = 250;
+const PROVIDER_REQUEST_BUDGET_MS = 450_000;
+
+export type ProviderRequestPacerOptions = {
+  fetchImplementation: typeof fetch;
+  monotonicNow: () => number;
+  sleep: (milliseconds: number) => Promise<void>;
+  deadline: number;
+};
+
+export function createProviderRequestPacer(options: ProviderRequestPacerOptions): typeof fetch {
+  let nextAllowedStart = options.monotonicNow();
+  let startQueue = Promise.resolve();
+  return async (input, init) => {
+    const startPermission = startQueue.then(async () => {
+      const now = options.monotonicNow();
+      const scheduledStart = Math.max(now, nextAllowedStart);
+      if (scheduledStart >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
+      const wait = scheduledStart - now;
+      if (wait > 0) await options.sleep(wait);
+      const actualStart = options.monotonicNow();
+      if (actualStart >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
+      nextAllowedStart = actualStart + PROVIDER_REQUEST_SPACING_MS;
+    });
+    startQueue = startPermission.catch(() => undefined);
+    await startPermission;
+    return options.fetchImplementation(input, init);
+  };
+}
+
+function sleep(milliseconds: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, Math.min(milliseconds, PROVIDER_REQUEST_SPACING_MS)));
+}
+
 export type FlightPriceAlertRecord = {
   schemaVersion: 2;
   alertId: string;
@@ -447,6 +481,13 @@ export const collectFlightPriceSnapshots = onSchedule(
   },
   async (event) => {
     const startedAt = Date.now();
+    const invocationClockStart = performance.now();
+    const pacedFetch = createProviderRequestPacer({
+      fetchImplementation: fetch,
+      monotonicNow: () => performance.now(),
+      sleep,
+      deadline: invocationClockStart + PROVIDER_REQUEST_BUDGET_MS,
+    });
     const snapshotDate = utcDate(event.scheduleTime);
     const db = getFirestore();
     const runtime = await loadFlightPriceRuntimeConfig(db);
@@ -505,8 +546,8 @@ export const collectFlightPriceSnapshots = onSchedule(
     }
     const counts = await processFlightPriceQueryGroups(groups, {
       fetchPrice: (group) => isRollingGroup(group)
-        ? fetchAviasalesRollingRoutePrice(group.query, snapshotDate, token)
-        : fetchAviasalesCachedPrice(group.query, token),
+        ? fetchAviasalesRollingRoutePrice(group.query, snapshotDate, token, pacedFetch)
+        : fetchAviasalesCachedPrice(group.query, token, pacedFetch),
       persistSuccess,
       persistProviderError: async (group, error) => {
         await db.collection("flightPriceQueries").doc(group.providerQueryKey).set({

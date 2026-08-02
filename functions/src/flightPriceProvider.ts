@@ -49,7 +49,8 @@ export type AviasalesProviderErrorCode =
   | "invalid_json"
   | "provider_error"
   | "invalid_response"
-  | "pagination_incomplete";
+  | "pagination_incomplete"
+  | "request_budget_exhausted";
 
 export class AviasalesProviderError extends Error {
   constructor(public readonly code: AviasalesProviderErrorCode, public readonly status?: number) {
@@ -313,6 +314,7 @@ export async function fetchAviasalesCachedPrice(
         signal: controller.signal,
       });
     } catch (error) {
+      if (error instanceof AviasalesProviderError) throw error;
       if (controller.signal.aborted || (error instanceof Error && error.name === "AbortError")) {
         throw new AviasalesProviderError("timeout");
       }
@@ -364,6 +366,7 @@ export async function fetchAviasalesRollingRoutePrice(
             signal: controller.signal,
           });
         } catch (error) {
+          if (error instanceof AviasalesProviderError) throw error;
           if (controller.signal.aborted || (error instanceof Error && error.name === "AbortError")) {
             throw new AviasalesProviderError("timeout");
           }

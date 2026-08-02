@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   AviasalesProviderError,
   buildAviasalesRollingRouteRequest,
+  fetchAviasalesCachedPrice,
   fetchAviasalesRollingRoutePrice,
   getRollingRouteWindow,
   parseAviasalesRollingRouteResponse,
@@ -14,6 +15,7 @@ import {
   chooseDailyRollingRouteSnapshot,
   classifyFlightPriceAlerts,
   classifyRollingRouteFlightPriceAlertDocument,
+  createProviderRequestPacer,
 } from "../functions/src/flightPriceCollection";
 
 const query: RollingRouteFlightPriceQuery = {
@@ -92,6 +94,66 @@ async function expectProviderError(promise: Promise<unknown>, code: string) {
   await assert.rejects(promise, (error: unknown) => error instanceof AviasalesProviderError && error.code === code);
 }
 async function runAsyncTests() {
+  const exactQuery = {
+    originAirportCode: "ESB", destinationAirportCode: "FRA", tripType: "one_way" as const,
+    departDate: "2026-01-10", tripClass: "economy" as const, directOnly: false, currency: "EUR" as const,
+  };
+  let pacedNow = 0;
+  const sharedStarts: number[] = [];
+  const sharedPacer = createProviderRequestPacer({
+    monotonicNow: () => pacedNow,
+    sleep: async milliseconds => { pacedNow += milliseconds; },
+    deadline: 10_000,
+    fetchImplementation: async input => {
+      sharedStarts.push(pacedNow);
+      const url = new URL(String(input));
+      return url.searchParams.get("period_type") === "day"
+        ? jsonResponse([row({ depart_date: "2026-01-10" })])
+        : jsonResponse([]);
+    },
+  });
+  await Promise.all([
+    fetchAviasalesCachedPrice(exactQuery, "token", sharedPacer),
+    fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", sharedPacer),
+    fetchAviasalesRollingRoutePrice({ ...query, destinationAirportCode: "CDG" }, "2026-01-01", "token", sharedPacer),
+    fetchAviasalesRollingRoutePrice({ ...query, destinationAirportCode: "AMS" }, "2026-01-01", "token", sharedPacer),
+  ]);
+  assert.deepEqual(sharedStarts, [0, 250, 500, 750]);
+  assert(sharedStarts.every((start, index) => index === 0 || start - sharedStarts[index - 1] >= 250));
+
+  pacedNow = 0;
+  const rateStarts: number[] = [];
+  const ratePacer = createProviderRequestPacer({
+    monotonicNow: () => pacedNow,
+    sleep: async milliseconds => { pacedNow += milliseconds; },
+    deadline: 100_000,
+    fetchImplementation: async () => { rateStarts.push(pacedNow); return jsonResponse([]); },
+  });
+  await Promise.all(Array.from({ length: 241 }, () => ratePacer("https://example.test")));
+  for (const start of rateStarts) {
+    assert(rateStarts.filter(candidate => candidate >= start && candidate < start + 60_000).length <= 240);
+  }
+
+  pacedNow = 0;
+  let inFlight = 0;
+  let maximumInFlight = 0;
+  const releases: Array<() => void> = [];
+  const concurrentPacer = createProviderRequestPacer({
+    monotonicNow: () => pacedNow,
+    sleep: async milliseconds => { pacedNow += milliseconds; },
+    deadline: 10_000,
+    fetchImplementation: () => new Promise<Response>(resolve => {
+      inFlight += 1;
+      maximumInFlight = Math.max(maximumInFlight, inFlight);
+      releases.push(() => { inFlight -= 1; resolve(jsonResponse([])); });
+    }),
+  });
+  const concurrentRequests = [1, 2, 3].map(() => concurrentPacer("https://example.test"));
+  while (releases.length < 3) await Promise.resolve();
+  assert.equal(maximumInFlight, 3);
+  releases.forEach(release => release());
+  await Promise.all(concurrentRequests);
+
   let calls: URL[] = [];
   const laterPagePrice = await fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async input => {
     const url = new URL(String(input));
@@ -134,6 +196,23 @@ async function runAsyncTests() {
     return jsonResponse(fullPage(Number(url.searchParams.get("page"))));
   }), "pagination_incomplete");
   assert.equal(calls.length, ROLLING_ROUTE_MAX_PAGES_PER_YEAR);
+
+  pacedNow = 0;
+  let budgetRequestCount = 0;
+  const budgetPacer = createProviderRequestPacer({
+    monotonicNow: () => pacedNow,
+    sleep: async milliseconds => { pacedNow += milliseconds; },
+    deadline: 200,
+    fetchImplementation: async () => {
+      budgetRequestCount += 1;
+      return jsonResponse(fullPage(1, { depart_date: "2026-06-10", value: 50 }));
+    },
+  });
+  await expectProviderError(
+    fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", budgetPacer),
+    "request_budget_exhausted",
+  );
+  assert.equal(budgetRequestCount, 1); // no second request and no partial first-page candidate
 
   await expectProviderError(fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async () =>
     new Response("x", { status: 503 })), "provider_http_5xx");
