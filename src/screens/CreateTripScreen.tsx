@@ -21,6 +21,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import type { RootStackParamList } from "../navigation/types";
 import { requireAuth } from "../utils/requireAuth";
+import { formatIsoDateOnly, formatLocalDate, localDateToIso, parseIsoDateOnly } from "../utils/dateOnly";
 import {
   getFloatingTabClearance,
   getScreenTopInset,
@@ -28,10 +29,7 @@ import {
 } from "../utils/safeAreaLayout";
 
 function formatDate(date: Date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+  return localDateToIso(date);
 }
 
 function todayAtMidnight() {
@@ -41,8 +39,7 @@ function todayAtMidnight() {
 }
 
 function parseDate(value: string) {
-  const date = new Date(`${value}T00:00:00`);
-  return Number.isNaN(date.getTime()) ? null : date;
+  return parseIsoDateOnly(value);
 }
 
 
@@ -331,7 +328,7 @@ export function CreateTripScreen() {
                 onPress={() => openDatePicker(target)}
               >
                 <Text style={value ? styles.inputText : styles.placeholderText}>
-                  {value ? formatDate(value) : t(placeholder)}
+                  {value ? formatLocalDate(value) : t(placeholder)}
                 </Text>
                 <Text style={styles.chevron}>⌄</Text>
               </TouchableOpacity>
@@ -385,7 +382,7 @@ export function CreateTripScreen() {
                     : styles.placeholderText
                 }
               >
-                {returnDepartureDate || t("createTrip.selectReturnDate")}
+                {formatIsoDateOnly(returnDepartureDate) || t("createTrip.selectReturnDate")}
               </Text>
               <Text style={styles.chevron}>⌄</Text>
             </TouchableOpacity>

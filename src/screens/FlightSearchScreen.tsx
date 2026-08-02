@@ -20,6 +20,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import * as WebBrowser from "expo-web-browser";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
+import { WebDatePickerButton } from "../components/WebDatePickerButton";
 import {
   FlightDealAirportRegion,
   supportedFlightDealAirports,
@@ -31,6 +32,7 @@ import { heroAssets } from "../media/heroAssets";
 import { buildAviasalesAffiliateSearchUrl, AviasalesTripClass } from "../services/aviasalesAffiliateLink";
 import colors from "../theme/colors";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
+import { formatIsoDateOnly, localDateToIso, parseIsoDateOnly } from "../utils/dateOnly";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { supportedLanguageCodes, TranslationLanguage } from "../translations/translations";
 
@@ -40,15 +42,7 @@ type AirportFilter = "popular" | FlightDealAirportRegion;
 type DateTarget = "depart" | "return" | null;
 const FILTERS: AirportFilter[] = ["popular", "TR", "EUROPE", "MIDDLE_EAST", "ASIA", "AMERICAS"];
 
-function pad(value: number) { return String(value).padStart(2, "0"); }
-function toLocalDateString(date: Date) { return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`; }
-function parseLocalDate(value: string) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
-  if (!match) return null;
-  const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
-  return date.getFullYear() === Number(match[1]) && date.getMonth() === Number(match[2]) - 1 && date.getDate() === Number(match[3]) ? date : null;
-}
-function todayString() { const now = new Date(); return toLocalDateString(new Date(now.getFullYear(), now.getMonth(), now.getDate())); }
+function todayString() { return localDateToIso(new Date()); }
 
 export function FlightSearchScreen() {
   const { t, language } = useTranslation();
@@ -75,10 +69,7 @@ export function FlightSearchScreen() {
   const locale = supportedLanguageCodes.includes(language.trim().toLowerCase() as any)
     ? language.trim().toLowerCase()
     : "en";
-  const displayDate = (value: string) => {
-    const parsed = parseLocalDate(value);
-    return parsed ? new Intl.DateTimeFormat(locale, { year: "numeric", month: "short", day: "numeric" }).format(parsed) : t("flightSearch.selectDate");
-  };
+  const displayDate = (value: string) => formatIsoDateOnly(value) || t("flightSearch.selectDate");
   const openAirportPicker = (mode: Exclude<PickerMode, null>) => { setPickerMode(mode); setFilterText(""); setFilter("popular"); };
   const excludedCode = pickerMode === "origin" ? destination?.airportCode : origin?.airportCode;
   const airportOptions = useMemo(() => {
@@ -94,11 +85,11 @@ export function FlightSearchScreen() {
   function selectTripType(value: TripType) { setTripType(value); if (value === "oneWay") setReturnDate(""); }
   function openDatePicker(target: Exclude<DateTarget, null>) {
     const value = target === "depart" ? departDate : returnDate;
-    setDraftDate(parseLocalDate(value) ?? parseLocalDate(target === "return" ? departDate : "") ?? new Date());
+    setDraftDate(parseIsoDateOnly(value) ?? parseIsoDateOnly(target === "return" ? departDate : "") ?? new Date());
     setDateTarget(target);
   }
   function confirmDate() {
-    const value = toLocalDateString(draftDate);
+    const value = localDateToIso(draftDate);
     if (dateTarget === "depart") { setDepartDate(value); if (returnDate && returnDate < value) setReturnDate(""); }
     if (dateTarget === "return") setReturnDate(value);
     setDateTarget(null);
@@ -123,9 +114,9 @@ export function FlightSearchScreen() {
     if (!origin) return t("flightSearch.originRequired");
     if (!destination) return t("flightSearch.destinationRequired");
     if (origin.airportCode === destination.airportCode) return t("flightSearch.sameAirportError");
-    if (!departDate || !parseLocalDate(departDate)) return t("flightSearch.departDateRequired");
+    if (!departDate || !parseIsoDateOnly(departDate)) return t("flightSearch.departDateRequired");
     if (departDate < todayString()) return t("flightSearch.pastDateError");
-    if (tripType === "roundTrip" && (!returnDate || !parseLocalDate(returnDate))) return t("flightSearch.returnDateRequired");
+    if (tripType === "roundTrip" && (!returnDate || !parseIsoDateOnly(returnDate))) return t("flightSearch.returnDateRequired");
     if (tripType === "roundTrip" && returnDate < departDate) return t("flightSearch.returnBeforeDeparture");
     if (adults < 1 || adults > 9 || children < 0 || children > 8 || infants < 0 || infants > adults || adults + children > 9) return t("flightSearch.passengerError");
     return null;
@@ -162,8 +153,8 @@ export function FlightSearchScreen() {
         <AirportButton label={t("flightSearch.origin")} placeholder={t("flightSearch.selectOrigin")} airport={origin} title={origin ? airportTitle(origin) : ""} country={false} language={language} onPress={() => openAirportPicker("origin")} />
         <AirportButton label={t("flightSearch.destination")} placeholder={t("flightSearch.selectDestination")} airport={destination} title={destination ? airportTitle(destination) : ""} country language={language} onPress={() => openAirportPicker("destination")} />
         <View style={[styles.dateRow, isNativeRTL && styles.rowReverse]}>
-          <DateControl label={t("flightSearch.departDate")} value={departDate} display={displayDate(departDate)} onChange={value => updateWebDate("depart", value)} onPress={() => openDatePicker("depart")} hint={t("flightSearch.dateFormatHint")} />
-          {tripType === "roundTrip" ? <DateControl label={t("flightSearch.returnDate")} value={returnDate} display={displayDate(returnDate)} onChange={value => updateWebDate("return", value)} onPress={() => openDatePicker("return")} hint={t("flightSearch.dateFormatHint")} /> : null}
+          <DateControl label={t("flightSearch.departDate")} value={departDate} display={displayDate(departDate)} placeholder={t("flightSearch.selectDate")} minimumDate={todayString()} onChange={value => updateWebDate("depart", value)} onPress={() => openDatePicker("depart")} />
+          {tripType === "roundTrip" ? <DateControl label={t("flightSearch.returnDate")} value={returnDate} display={displayDate(returnDate)} placeholder={t("flightSearch.selectDate")} minimumDate={departDate || todayString()} onChange={value => updateWebDate("return", value)} onPress={() => openDatePicker("return")} /> : null}
         </View>
         <Text style={styles.label}>{t("flightSearch.passengers")}</Text>
         {([["adults", adults], ["children", children], ["infants", infants]] as const).map(([kind, value]) => <View key={kind} style={[styles.counterRow, isNativeRTL && styles.rowReverse]}><Text style={styles.counterLabel}>{t(`flightSearch.${kind}`)}</Text><View style={styles.counter}><CounterButton label={`− ${t(`flightSearch.${kind}`)}`} symbol="−" onPress={() => adjustPassenger(kind, -1)} /><Text style={styles.count}>{value}</Text><CounterButton label={`+ ${t(`flightSearch.${kind}`)}`} symbol="+" onPress={() => adjustPassenger(kind, 1)} /></View></View>)}
@@ -173,14 +164,14 @@ export function FlightSearchScreen() {
       <View style={styles.disclosure}><Text style={styles.disclosureTitle}>{t("flightSearch.providerTitle")}</Text><Text style={styles.disclosureText}>{t("flightSearch.providerDisclosure")}</Text><Text style={styles.disclosureText}>{t("flightSearch.priceNotice")}</Text><Text style={styles.disclosureText}>{t("flightSearch.affiliateDisclosure")}</Text></View>
     </ScrollView>
     <Modal visible={pickerMode !== null} transparent animationType="slide" onRequestClose={() => setPickerMode(null)}><NativeDirectionRoot><View style={styles.overlay}><KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"} style={styles.keyboard}><View style={[styles.modalCard, { paddingBottom: insets.bottom + 12 }]}><Text style={styles.modalTitle}>{pickerMode === "origin" ? t("flightSearch.selectOrigin") : t("flightSearch.selectDestination")}</Text><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filters}>{FILTERS.map(value => <Pressable key={value} accessibilityRole="button" onPress={() => setFilter(value)} style={[styles.chip, filter === value && styles.chipActive]}><Text style={[styles.chipText, filter === value && styles.chipTextActive]}>{filterLabel(value)}</Text></Pressable>)}</ScrollView><TextInput accessibilityLabel={t("flightSearch.airportSearch")} value={filterText} onChangeText={setFilterText} placeholder={t("flightSearch.airportSearch")} placeholderTextColor={colors.textMuted} style={[styles.input, isNativeRTL && styles.rtlText]} /><FlatList data={airportOptions} keyExtractor={item => item.airportCode} keyboardShouldPersistTaps="handled" ListEmptyComponent={<Text style={styles.empty}>{t("flightSearch.noAirportResults")}</Text>} renderItem={({ item }) => <TouchableOpacity style={styles.airportRow} onPress={() => { if (pickerMode === "origin") setOrigin(item); else setDestination(item); setPickerMode(null); }}><Text style={styles.airportTitle}>{airportTitle(item)}</Text><Text style={styles.airportMeta}>{item.airportName} · {formatCountryDisplayName(item.countryName, language)}</Text></TouchableOpacity>} /><TouchableOpacity accessibilityRole="button" style={styles.close} onPress={() => setPickerMode(null)}><Text style={styles.closeText}>{t("flightSearch.close")}</Text></TouchableOpacity></View></KeyboardAvoidingView></View></NativeDirectionRoot></Modal>
-    <Modal visible={dateTarget !== null} transparent animationType="fade" onRequestClose={() => setDateTarget(null)}><NativeDirectionRoot><View style={styles.overlay}><View style={styles.dateModal}><Text style={styles.modalTitle}>{dateTarget === "depart" ? t("flightSearch.departDate") : t("flightSearch.returnDate")}</Text><DateTimePicker value={draftDate} mode="date" display={Platform.OS === "ios" ? "spinner" : "calendar"} minimumDate={parseLocalDate(dateTarget === "return" ? departDate : todayString()) ?? new Date()} onChange={(_, value) => value && setDraftDate(value)} /><View style={styles.modalActions}><TouchableOpacity onPress={() => setDateTarget(null)}><Text style={styles.closeText}>{t("flightSearch.close")}</Text></TouchableOpacity><TouchableOpacity style={styles.confirm} onPress={confirmDate}><Text style={styles.searchText}>{t("flightSearch.selectDate")}</Text></TouchableOpacity></View></View></View></NativeDirectionRoot></Modal>
+    {Platform.OS !== "web" ? <Modal visible={dateTarget !== null} transparent animationType="fade" onRequestClose={() => setDateTarget(null)}><NativeDirectionRoot><View style={styles.overlay}><View style={styles.dateModal}><Text style={styles.modalTitle}>{dateTarget === "depart" ? t("flightSearch.departDate") : t("flightSearch.returnDate")}</Text><DateTimePicker value={draftDate} mode="date" display={Platform.OS === "ios" ? "spinner" : "calendar"} minimumDate={parseIsoDateOnly(dateTarget === "return" ? departDate : todayString()) ?? new Date()} onChange={(_, value) => value && setDraftDate(value)} /><View style={styles.modalActions}><TouchableOpacity onPress={() => setDateTarget(null)}><Text style={styles.closeText}>{t("flightSearch.close")}</Text></TouchableOpacity><TouchableOpacity style={styles.confirm} onPress={confirmDate}><Text style={styles.searchText}>{t("flightSearch.selectDate")}</Text></TouchableOpacity></View></View></View></NativeDirectionRoot></Modal> : null}
   </>;
 }
 
 function Segment({ selected, label, onPress }: { selected: boolean; label: string; onPress: () => void }) { return <Pressable accessibilityRole="button" accessibilityState={{ selected }} accessibilityLabel={label} onPress={onPress} style={[styles.segmentButton, selected && styles.segmentActive]}><Text style={[styles.segmentText, selected && styles.segmentTextActive]}>{label}</Text></Pressable>; }
 function CounterButton({ label, symbol, onPress }: { label: string; symbol: string; onPress: () => void }) { return <Pressable accessibilityRole="button" accessibilityLabel={label} hitSlop={8} onPress={onPress} style={styles.counterButton}><Text style={styles.counterSymbol}>{symbol}</Text></Pressable>; }
 function AirportButton({ label, placeholder, airport, title, country, language, onPress }: { label: string; placeholder: string; airport: SupportedFlightDealAirport | null; title: string; country: boolean; language: TranslationLanguage; onPress: () => void }) { return <View><Text style={styles.label}>{label}</Text><TouchableOpacity accessibilityRole="button" accessibilityLabel={label} style={styles.selector} onPress={onPress}><Text style={styles.airportTitle}>{airport ? title : placeholder}</Text>{airport ? <Text style={styles.airportMeta}>{airport.airportName}{country ? ` · ${formatCountryDisplayName(airport.countryName, language)}` : ""}</Text> : null}</TouchableOpacity></View>; }
-function DateControl({ label, value, display, hint, onChange, onPress }: { label: string; value: string; display: string; hint: string; onChange: (value: string) => void; onPress: () => void }) { return <View style={styles.dateControl}><Text style={styles.label}>{label}</Text>{Platform.OS === "web" ? <><TextInput accessibilityLabel={label} value={value} onChangeText={onChange} placeholder="YYYY-MM-DD" maxLength={10} keyboardType="numbers-and-punctuation" style={styles.input} /><Text style={styles.hint}>{value && parseLocalDate(value) ? display : hint}</Text></> : <TouchableOpacity accessibilityRole="button" accessibilityLabel={label} style={styles.selector} onPress={onPress}><Text style={styles.airportTitle}>{display}</Text></TouchableOpacity>}</View>; }
+function DateControl({ label, value, display, placeholder, minimumDate, onChange, onPress }: { label: string; value: string; display: string; placeholder: string; minimumDate: string; onChange: (value: string) => void; onPress: () => void }) { return <View style={styles.dateControl}><Text style={styles.label}>{label}</Text>{Platform.OS === "web" ? <WebDatePickerButton accessibilityLabel={label} value={value} placeholder={placeholder} minimumDate={minimumDate} onChange={onChange} style={styles.selector} textStyle={styles.airportTitle} placeholderStyle={styles.airportTitle} /> : <TouchableOpacity accessibilityRole="button" accessibilityLabel={label} style={styles.selector} onPress={onPress}><Text style={styles.airportTitle}>{display}</Text></TouchableOpacity>}</View>; }
 
 const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background }, content: { paddingHorizontal: 16, gap: 18 }, desktop: { width: "100%", maxWidth: 920, alignSelf: "center" }, hero: { borderRadius: 24 }, heroContent: { padding: 24, minHeight: 190, justifyContent: "flex-end" }, kicker: { color: colors.gold, fontSize: 13, fontWeight: "900", textTransform: "uppercase", letterSpacing: 1 }, heroTitle: { color: colors.textInverse, fontSize: 30, fontWeight: "900", marginTop: 6 }, heroSubtitle: { color: "rgba(255,255,255,.9)", fontSize: 16, lineHeight: 23, marginTop: 7 },
