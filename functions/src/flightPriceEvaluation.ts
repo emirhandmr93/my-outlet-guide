@@ -206,7 +206,11 @@ const ROLLING_EVENT_REQUIRED_FIELDS = ["schemaVersion", "alertSchemaVersion", "e
   "offerDepartDate", "offerTransfers", "currentPrice", "averagePrice", "discountPercent", "matchedThreshold", "metThresholds", "selectedThresholds",
   "trackingDayCount", "historyWindowDays", "priceSampleCount", "provider", "currency", "priceScope", "passengerCountApplied", "status", "createdAt", "updatedAt"] as const;
 const ROLLING_EVENT_ALLOWED_FIELDS = new Set<string>([...ROLLING_EVENT_REQUIRED_FIELDS, "offerReturnDate", "offerAirline", "offerFlightNumber", "offerSourceFoundAt"]);
-const ROLLING_EVENT_STATUSES = new Set(["pending_delivery", "submitted_to_expo", "delivery_failed", "cancelled_stale_alert", "no_eligible_tokens"]);
+export type InitialFlightPriceEventStatus = "pending_delivery" | "pending_rolling_delivery";
+export function getInitialFlightPriceEventStatus(kind: FlightPriceHistoryProfile["kind"]): InitialFlightPriceEventStatus {
+  return kind === "exact_date" ? "pending_delivery" : "pending_rolling_delivery";
+}
+const ROLLING_EVENT_STATUSES = new Set(["pending_rolling_delivery", "submitted_to_expo", "delivery_failed", "cancelled_stale_alert", "no_eligible_tokens"]);
 export function isValidRollingFlightPriceAlertEvent(value: unknown): value is Record<string, unknown> {
   if (!isObject(value) || Object.keys(value).some(key => !ROLLING_EVENT_ALLOWED_FIELDS.has(key)) ||
     ROLLING_EVENT_REQUIRED_FIELDS.some(key => !Object.prototype.hasOwnProperty.call(value, key))) return false;
@@ -238,7 +242,7 @@ export function chooseFlightPriceAlertEventUpdate(existing: unknown, incoming: u
   if (isObject(incoming) && incoming.schemaVersion === 2) {
     if (!isValidRollingFlightPriceAlertEvent(incoming)) return "preserve";
     if (existing === undefined || existing === null) return "create";
-    if (!isValidRollingFlightPriceAlertEvent(existing) || existing.status !== "pending_delivery" || incoming.status !== "pending_delivery") return "preserve";
+    if (!isValidRollingFlightPriceAlertEvent(existing) || existing.status !== "pending_rolling_delivery" || incoming.status !== "pending_rolling_delivery") return "preserve";
     const identityFields = ["eventId", "userId", "alertId", "queryKey", "providerQueryKey", "originAirportCode", "destinationAirportCode", "tripType", "tripClass",
       "directOnly", "monitoringMode", "monitoringWindowDays", "snapshotDate", "offerDepartDate", "offerReturnDate", "offerTransfers"];
     if (identityFields.some(field => existing[field] !== incoming[field])) return "preserve";
@@ -369,7 +373,8 @@ const EVENT_LIFECYCLE_STATUSES = new Set([
 export function buildUserFlightPriceDealProjectionFromEvent(
   eventDocumentId: string, eventData: unknown,
 ): UserFlightPriceDealProjectionInput | null {
-  if (!isObject(eventData) || !EVENT_LIFECYCLE_STATUSES.has(eventData.status as string) || eventData.eventId !== eventDocumentId) return null;
+  if (!isObject(eventData) || eventData.eventId !== eventDocumentId || (eventData.schemaVersion === 2
+    ? !ROLLING_EVENT_STATUSES.has(eventData.status as string) : !EVENT_LIFECYCLE_STATUSES.has(eventData.status as string))) return null;
   if (eventData.schemaVersion === 2) {
     const candidate = {
       schemaVersion: 2, alertSchemaVersion: eventData.alertSchemaVersion, eventId: eventData.eventId, userId: eventData.userId, alertId: eventData.alertId,
@@ -659,15 +664,15 @@ export const evaluateFlightPriceAlerts = onSchedule(
           currentPrice: evaluation.currentPrice, averagePrice: evaluation.averagePrice, discountPercent: evaluation.discountPercent,
           matchedThreshold: matched, metThresholds, selectedThresholds: currentAlert.selectedThresholds, trackingDayCount: evaluation.trackingDayCount,
           historyWindowDays: evaluation.windowDays, priceSampleCount: evaluation.priceSampleCount, currency: "EUR", priceScope: "cached_offer",
-          passengerCountApplied: false, status: "pending_delivery", createdAt: now, updatedAt: now,
+          passengerCountApplied: false, createdAt: now, updatedAt: now,
         };
         const incoming = group.kind === "exact_date" && currentAlert.schemaVersion === 2 ? { schemaVersion: 1, ...commonEvent,
           departDate: currentAlert.departDate, ...(currentAlert.returnDate ? { returnDate: currentAlert.returnDate } : {}), adults: currentAlert.adults,
-          children: currentAlert.children, infants: currentAlert.infants } : { schemaVersion: 2, alertSchemaVersion: 3, ...commonEvent,
+          children: currentAlert.children, infants: currentAlert.infants, status: getInitialFlightPriceEventStatus("exact_date") } : { schemaVersion: 2, alertSchemaVersion: 3, ...commonEvent,
           monitoringMode: "rolling_route", monitoringWindowDays: 365, provider: "aviasales_data_api", offerDepartDate: evaluation.offerDepartDate,
           ...(evaluation.offerReturnDate ? { offerReturnDate: evaluation.offerReturnDate } : {}), offerTransfers: evaluation.offerTransfers,
           ...(evaluation.offerAirline ? { offerAirline: evaluation.offerAirline } : {}), ...(evaluation.offerFlightNumber ? { offerFlightNumber: evaluation.offerFlightNumber } : {}),
-          ...(evaluation.offerSourceFoundAt ? { offerSourceFoundAt: evaluation.offerSourceFoundAt } : {}) };
+          ...(evaluation.offerSourceFoundAt ? { offerSourceFoundAt: evaluation.offerSourceFoundAt } : {}), status: getInitialFlightPriceEventStatus("rolling_route") };
         const choice = crossing || sameDayCrossing
           ? chooseFlightPriceAlertEventUpdate(eventSnapshot?.data(), incoming)
           : "preserve" as FlightPriceAlertEventUpdateChoice;
@@ -716,8 +721,8 @@ export const evaluateFlightPriceAlerts = onSchedule(
       rollingRouteProviderGroupCount: orderedGroups.filter(group => group.kind === "rolling_route").length,
       insufficientHistoryAlertCount: counts.insufficient, noCurrentPriceAlertCount: counts.noCurrent, evaluatedAlertCount: counts.evaluated,
       thresholdMetAlertCount: counts.thresholdMet, thresholdEventCreatedCount: counts.created, thresholdEventUpgradedCount: counts.upgraded,
-      rollingEvaluationCount: counts.rollingEvaluated, rollingThresholdEventCreatedCount: counts.rollingCreated,
-      rollingThresholdEventUpgradedCount: counts.rollingUpgraded, malformedSnapshotCount, elapsedMilliseconds: Date.now() - startedAt, evaluationDate,
+      rollingEvaluationCount: counts.rollingEvaluated, rollingThresholdEventStagedCount: counts.rollingCreated,
+      rollingThresholdEventStageUpgradeCount: counts.rollingUpgraded, malformedSnapshotCount, elapsedMilliseconds: Date.now() - startedAt, evaluationDate,
     });
   },
 );

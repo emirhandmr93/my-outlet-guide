@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 
 import { buildRollingRouteProviderQueryKey } from "../functions/src/flightPriceCollection";
 import {
@@ -9,6 +10,7 @@ import {
   chooseUserFlightPriceDealProjection,
   evaluateFlightPriceHistory,
   evaluateRollingRouteFlightPriceHistory,
+  getInitialFlightPriceEventStatus,
   groupFlightPriceEvaluatorAlerts,
   hasCrossedFlightPriceThreshold,
   isValidRollingFlightPriceAlertEvent,
@@ -83,10 +85,11 @@ const event = { schemaVersion: 2, alertSchemaVersion: 3, eventId, userId: "u1", 
   monitoringMode: "rolling_route", monitoringWindowDays: 365, snapshotDate: day(89), offerDepartDate: day(180), offerReturnDate: day(190),
   offerTransfers: 1, currentPrice: 50, averagePrice: 100, discountPercent: 50, matchedThreshold: 45, metThresholds: [15, 30, 45],
   selectedThresholds: [15, 30, 45], trackingDayCount: 90, historyWindowDays: 90, priceSampleCount: 90, provider: "aviasales_data_api",
-  currency: "EUR", priceScope: "cached_offer", passengerCountApplied: false, status: "pending_delivery", createdAt: stamp, updatedAt: stamp };
+  currency: "EUR", priceScope: "cached_offer", passengerCountApplied: false, status: "pending_rolling_delivery", createdAt: stamp, updatedAt: stamp };
 const projectionInput = buildUserFlightPriceDealProjectionFromEvent(eventId, event)!;
 const projection = { ...projectionInput, updatedAt: stamp };
 assert.ok(isValidRollingUserFlightPriceDealProjection(projection));
+assert.equal(Object.prototype.hasOwnProperty.call(projection, "status"), false);
 for (const forbidden of ["departDate", "returnDate", "adults", "children", "infants", "expoPushToken"]) {
   assert.equal(isValidRollingUserFlightPriceDealProjection({ ...projection, [forbidden]: 1 }), false);
 }
@@ -121,6 +124,10 @@ assert.equal(parseCompatibleRollingRouteFlightPriceEvaluationState({ ...validSta
 assert.equal(parseCompatibleRollingRouteFlightPriceEvaluationState({ ...validState, lastCrossedThreshold: 45, lastCrossedSnapshotDate: day(90) }, expectedStateIdentity), null);
 
 assert.ok(isValidRollingFlightPriceAlertEvent(event));
+assert.equal(getInitialFlightPriceEventStatus("exact_date"), "pending_delivery");
+assert.equal(getInitialFlightPriceEventStatus("rolling_route"), "pending_rolling_delivery");
+assert.equal(isValidRollingFlightPriceAlertEvent({ ...event, status: "pending_delivery" }), false);
+assert.equal(chooseFlightPriceAlertEventUpdate(undefined, event), "create");
 for (const invalidEvent of [
   (() => { const { updatedAt: _removed, ...rest } = event; return rest; })(),
   { ...event, extra: true }, { ...event, eventId: "0".repeat(64) }, { ...event, queryKey: "mismatch" },
@@ -155,6 +162,16 @@ const exactEvent = { schemaVersion: 1, status: "pending_delivery", eventId: "exa
   tripClass: "economy", directOnly: false, snapshotDate: day(89), matchedThreshold: 15 };
 assert.equal(chooseFlightPriceAlertEventUpdate(undefined, exactEvent), "create");
 assert.equal(chooseFlightPriceAlertEventUpdate(exactEvent, { ...exactEvent, matchedThreshold: 30 }), "upgrade");
+
+const notificationSource = readFileSync("functions/src/flightPriceNotificationDelivery.ts", "utf8");
+assert.match(notificationSource, /\.where\("status", "==", "pending_delivery"\)/);
+assert.doesNotMatch(notificationSource, /\.where\("status", "==", "pending_rolling_delivery"\)/);
+assert.equal(execFileSync("git", ["diff", "--name-only", "HEAD", "--", "functions/src/flightPriceNotificationDelivery.ts"], { encoding: "utf8" }), "");
+const stagedQueue = Array.from({ length: 100 }, () => ({ status: getInitialFlightPriceEventStatus("rolling_route") }));
+assert.equal(stagedQueue.filter(item => item.status === "pending_delivery").length, 0);
+assert.equal([{ status: getInitialFlightPriceEventStatus("exact_date") }].filter(item => item.status === "pending_delivery").length, 1);
+const evaluatorSource = readFileSync("functions/src/flightPriceEvaluation.ts", "utf8");
+assert.match(evaluatorSource, /status: getInitialFlightPriceEventStatus\("rolling_route"\)/);
 
 const changed = execFileSync("git", ["diff", "--name-only", "HEAD^", "HEAD"], { encoding: "utf8" }).split("\n").filter(Boolean);
 assert.deepEqual(changed.sort(), ["functions/src/flightPriceEvaluation.ts", "tools/checkRollingRouteFlightPriceEvaluation.ts"].sort());
