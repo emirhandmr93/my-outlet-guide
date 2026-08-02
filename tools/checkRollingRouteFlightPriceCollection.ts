@@ -122,6 +122,23 @@ async function runAsyncTests() {
   assert(sharedStarts.every((start, index) => index === 0 || start - sharedStarts[index - 1] >= 250));
 
   pacedNow = 0;
+  const earlyWakeStarts: number[] = [];
+  const earlyWakeSleeps: number[] = [];
+  const earlyWakePacer = createProviderRequestPacer({
+    monotonicNow: () => pacedNow,
+    sleep: async milliseconds => {
+      earlyWakeSleeps.push(milliseconds);
+      pacedNow += Math.min(100, milliseconds);
+    },
+    deadline: 10_000,
+    fetchImplementation: async () => { earlyWakeStarts.push(pacedNow); return jsonResponse([]); },
+  });
+  await Promise.all([1, 2, 3].map(() => earlyWakePacer("https://example.test")));
+  assert.deepEqual(earlyWakeStarts, [0, 250, 500]);
+  assert.deepEqual(earlyWakeSleeps.slice(0, 3), [250, 150, 50]);
+  assert(earlyWakeSleeps.every(milliseconds => Number.isInteger(milliseconds) && milliseconds > 0));
+
+  pacedNow = 0;
   const rateStarts: number[] = [];
   const ratePacer = createProviderRequestPacer({
     monotonicNow: () => pacedNow,
@@ -153,6 +170,23 @@ async function runAsyncTests() {
   assert.equal(maximumInFlight, 3);
   releases.forEach(release => release());
   await Promise.all(concurrentRequests);
+
+  pacedNow = 0;
+  let deadlineFetchCount = 0;
+  let deadlineSleepCount = 0;
+  const deadlineDuringWaitPacer = createProviderRequestPacer({
+    monotonicNow: () => pacedNow,
+    sleep: async () => {
+      deadlineSleepCount += 1;
+      pacedNow = deadlineSleepCount === 1 ? 100 : 300;
+    },
+    deadline: 300,
+    fetchImplementation: async () => { deadlineFetchCount += 1; return jsonResponse([]); },
+  });
+  await deadlineDuringWaitPacer("https://example.test");
+  await expectProviderError(deadlineDuringWaitPacer("https://example.test"), "request_budget_exhausted");
+  assert.equal(deadlineSleepCount, 2);
+  assert.equal(deadlineFetchCount, 1);
 
   let calls: URL[] = [];
   const laterPagePrice = await fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async input => {

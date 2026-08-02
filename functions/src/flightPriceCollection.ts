@@ -34,8 +34,14 @@ export function createProviderRequestPacer(options: ProviderRequestPacerOptions)
       const now = options.monotonicNow();
       const scheduledStart = Math.max(now, nextAllowedStart);
       if (scheduledStart >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
-      const wait = scheduledStart - now;
-      if (wait > 0) await options.sleep(wait);
+      let current = now;
+      while (current < scheduledStart) {
+        if (current >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
+        const wait = Math.max(1, Math.ceil(scheduledStart - current));
+        if (current + wait >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
+        await options.sleep(wait);
+        current = options.monotonicNow();
+      }
       const actualStart = options.monotonicNow();
       if (actualStart >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
       nextAllowedStart = actualStart + PROVIDER_REQUEST_SPACING_MS;
@@ -47,7 +53,8 @@ export function createProviderRequestPacer(options: ProviderRequestPacerOptions)
 }
 
 function sleep(milliseconds: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, Math.min(milliseconds, PROVIDER_REQUEST_SPACING_MS)));
+  const delay = Math.max(1, Math.min(Math.ceil(milliseconds), PROVIDER_REQUEST_SPACING_MS));
+  return new Promise(resolve => setTimeout(resolve, delay));
 }
 
 export type FlightPriceAlertRecord = {
