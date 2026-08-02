@@ -2,9 +2,10 @@ import { createContext, ReactNode, useContext, useEffect, useMemo, useState } fr
 import { Platform } from "react-native";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
-import { collection, doc, getDoc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, runTransaction, serverTimestamp, setDoc } from "firebase/firestore";
 
 import { db } from "../firebase/config";
+import { planNotificationTokenRegistration } from "../services/notificationTokenRegistration";
 import { useUser } from "./UserContext";
 
 export type NotificationPermissionStatus = "unsupported" | "not_requested" | "granted" | "denied";
@@ -167,20 +168,28 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     const token = (await Notifications.getExpoPushTokenAsync({ projectId })).data;
     const now = new Date().toISOString();
 
-    await setDoc(
-      doc(db, "userNotificationSettings", userId, "tokens", tokenDocumentId(token)),
-      {
+    const tokenRef = doc(db, "userNotificationSettings", userId, "tokens", tokenDocumentId(token));
+
+    await runTransaction(db, async (transaction) => {
+      const snapshot = await transaction.get(tokenRef);
+      const plan = planNotificationTokenRegistration(snapshot.exists() ? snapshot.data() : undefined, {
         userId,
         token,
         platform: Platform.OS,
-        createdAt: now,
-        updatedAt: now,
-        disabledAt: null,
-        firestoreCreatedAt: serverTimestamp(),
-        firestoreUpdatedAt: serverTimestamp(),
-      },
-      { merge: true }
-    );
+        now,
+        firestoreNow: serverTimestamp(),
+      });
+
+      if (plan.kind === "reject") {
+        throw new Error(`Existing push token has incompatible ${plan.reason}.`);
+      }
+
+      if (plan.kind === "create") {
+        transaction.set(tokenRef, plan.data);
+      } else {
+        transaction.update(tokenRef, plan.data);
+      }
+    });
 
     setRegisteredToken(token);
     setTokenRegistrationStatus("registered");
@@ -223,8 +232,6 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
       userId: currentUser.userId,
     };
 
-    setSettings(nextSettings);
-
     await setDoc(
       doc(db, "userNotificationSettings", currentUser.userId),
       {
@@ -235,6 +242,8 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
       },
       { merge: true }
     );
+
+    setSettings(nextSettings);
 
     return nextSettings;
   }
@@ -247,13 +256,18 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     setIsSaving(true);
 
     try {
-      await saveSettingsPatch({ enabled });
-
       if (enabled) {
-        await registerPushToken(currentUser.userId);
+        const token = await registerPushToken(currentUser.userId);
+        if (token) {
+          await saveSettingsPatch({ enabled: true });
+        }
       } else {
+        await saveSettingsPatch({ enabled: false });
         await disableRegisteredTokens(currentUser.userId);
       }
+    } catch (error) {
+      setTokenRegistrationStatus("failed");
+      setRegistrationError(error instanceof Error ? error.message : "Push token registration failed.");
     } finally {
       setIsSaving(false);
     }
