@@ -16,6 +16,7 @@ const submission = read("src/services/flightDealAlertSubmission.ts");
 const airportsSource = read("src/constants/flightDealAirports.ts");
 const provider = read("src/services/flightDealProvider.ts");
 const average = read("src/services/flightFareAverage.ts");
+const collection = read("functions/src/flightPriceCollection.ts");
 const evaluator = read("functions/src/flightPriceEvaluation.ts");
 const rules = read("firestore.rules");
 const profile = read("src/screens/ProfileScreen.tsx");
@@ -129,7 +130,12 @@ assert.match(rules, /match \/dailySnapshots\/\{yyyyMMdd\}[\s\S]*?allow create, u
 assert.match(rules, /match \/stats\/\{statId\}[\s\S]*?allow create, update, delete: if false/);
 assert.match(rules, /match \/userFlightPriceDeals\/\{userId\}\/items\/\{eventId\}[\s\S]*?allow create, update, delete: if false/);
 assert.match(rules, /match \/notificationDeliveries\/\{deliveryId\}[\s\S]*?allow read, write: if false/);
-for (const serverOnlyCollection of ["flightPriceProviderQueries", "flightPriceEvaluations", "flightPriceEvents"]) {
+for (const [serverOnlyCollection, functionsSource] of [
+  ["flightPriceQueries", collection],
+  ["flightPriceAlertEvaluations", evaluator],
+  ["flightPriceAlertEvents", evaluator],
+] as const) {
+  assert(functionsSource.includes(`collection("${serverOnlyCollection}")`), `${serverOnlyCollection} must remain used by Functions`);
   assert(!rules.includes(`match /${serverOnlyCollection}`), `${serverOnlyCollection} must remain covered by default deny`);
 }
 
