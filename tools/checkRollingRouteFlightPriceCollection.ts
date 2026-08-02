@@ -7,6 +7,7 @@ import {
   getRollingRouteWindow,
   parseAviasalesRollingRouteResponse,
   RollingRouteFlightPriceQuery,
+  ROLLING_ROUTE_MAX_PAGES_PER_YEAR,
 } from "../functions/src/flightPriceProvider";
 import {
   buildRollingRouteProviderQueryKey,
@@ -85,23 +86,67 @@ assert.equal(parseAviasalesRollingRouteResponse({ success: true, data: [row({ re
 assert.throws(() => parseAviasalesRollingRouteResponse([], query, "2026-08-02"), (e: unknown) => e instanceof AviasalesProviderError && e.code === "invalid_response");
 
 const jsonResponse = (data: unknown[]) => new Response(JSON.stringify({ success: true, currency: "EUR", data }), { status: 200 });
+const fullPage = (page: number, overrides: Record<string, unknown> = {}) => Array.from({ length: 100 }, (_, index) =>
+  row({ depart_date: "2025-12-31", value: 999, flight_number: `${page}-${index}`, ...overrides }));
+async function expectProviderError(promise: Promise<unknown>, code: string) {
+  await assert.rejects(promise, (error: unknown) => error instanceof AviasalesProviderError && error.code === code);
+}
 async function runAsyncTests() {
-let calls: URL[] = [];
-await fetchAviasalesRollingRoutePrice(query, "2026-01-02", "token", async input => {
-  calls.push(new URL(String(input)));
-  return jsonResponse(Array.from({ length: new URL(String(input)).searchParams.get("page") === "1" ? 100 : 1 }, () => row()));
-});
-assert.equal(calls.length, 4); // two pages for each of two years
-assert.deepEqual(calls.map(url => url.searchParams.get("page")), ["1", "2", "1", "2"]);
-calls = [];
-await fetchAviasalesRollingRoutePrice(query, "2026-01-02", "token", async input => {
-  calls.push(new URL(String(input)));
-  return jsonResponse(Array.from({ length: 100 }, () => row()));
-});
-assert.equal(calls.length, 6);
-await assert.rejects(fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async () => new Response("x", { status: 503 })),
-  (e: unknown) => e instanceof AviasalesProviderError && e.code === "provider_http_5xx");
+  let calls: URL[] = [];
+  const laterPagePrice = await fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async input => {
+    const url = new URL(String(input));
+    calls.push(url);
+    const page = Number(url.searchParams.get("page"));
+    if (page <= 3) return jsonResponse(fullPage(page)); // full, but entirely outside the window
+    if (page === 4) return jsonResponse(fullPage(page, { depart_date: "2026-06-10", value: 200 }));
+    return jsonResponse([row({ depart_date: "2026-06-11", value: 100 })]);
+  });
+  assert.equal(laterPagePrice?.price, 100);
+  assert.deepEqual(calls.map(url => url.searchParams.get("page")), ["1", "2", "3", "4", "5"]);
 
+  calls = [];
+  await fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async input => {
+    calls.push(new URL(String(input)));
+    return jsonResponse([row({ depart_date: "2026-03-01" })]);
+  });
+  assert.equal(calls.length, 1); // a short first page proves exhaustion immediately
+
+  calls = [];
+  await fetchAviasalesRollingRoutePrice(query, "2026-01-02", "token", async input => {
+    calls.push(new URL(String(input)));
+    return jsonResponse([]);
+  });
+  assert.deepEqual(calls.map(url => [url.searchParams.get("beginning_of_period"), url.searchParams.get("page")]),
+    [["2026", "1"], ["2027", "1"]]);
+
+  const repeated = fullPage(1);
+  calls = [];
+  await expectProviderError(fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async input => {
+    calls.push(new URL(String(input)));
+    return jsonResponse(repeated);
+  }), "pagination_incomplete");
+  assert.equal(calls.length, 2);
+
+  calls = [];
+  await expectProviderError(fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async input => {
+    const url = new URL(String(input));
+    calls.push(url);
+    return jsonResponse(fullPage(Number(url.searchParams.get("page"))));
+  }), "pagination_incomplete");
+  assert.equal(calls.length, ROLLING_ROUTE_MAX_PAGES_PER_YEAR);
+
+  await expectProviderError(fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async () =>
+    new Response("x", { status: 503 })), "provider_http_5xx");
+  await expectProviderError(fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async () => {
+    const error = new Error("aborted"); error.name = "AbortError"; throw error;
+  }), "timeout");
+  await expectProviderError(fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async () => {
+    throw new Error("network");
+  }), "network_error");
+  await expectProviderError(fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async () =>
+    new Response("not json", { status: 200 })), "invalid_json");
+  await expectProviderError(fetchAviasalesRollingRoutePrice(query, "2026-01-01", "token", async () =>
+    new Response(JSON.stringify({ success: true, data: null }), { status: 200 })), "invalid_response");
 }
 
 const price = { status: "price_found", price: 100, departDate: "2026-08-10", transfers: 1 };

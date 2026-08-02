@@ -48,7 +48,8 @@ export type AviasalesProviderErrorCode =
   | "provider_http_5xx"
   | "invalid_json"
   | "provider_error"
-  | "invalid_response";
+  | "invalid_response"
+  | "pagination_incomplete";
 
 export class AviasalesProviderError extends Error {
   constructor(public readonly code: AviasalesProviderErrorCode, public readonly status?: number) {
@@ -59,6 +60,8 @@ export class AviasalesProviderError extends Error {
 
 const ENDPOINT = "https://api.travelpayouts.com/aviasales/v3/get_latest_prices";
 const DAY_MS = 86_400_000;
+const ROLLING_ROUTE_PAGE_LIMIT = 100;
+export const ROLLING_ROUTE_MAX_PAGES_PER_YEAR = 100;
 
 function parseCalendarDate(value: unknown): Date | null {
   if (typeof value !== "string") return null;
@@ -159,7 +162,10 @@ export function buildAviasalesRollingRouteRequest(
   page: number,
 ): URL {
   const normalized = normalizeRollingQuery(query);
-  if (!Number.isInteger(year) || year < 2000 || year > 9999 || !Number.isInteger(page) || page < 1 || page > 3) {
+  if (
+    !Number.isInteger(year) || year < 2000 || year > 9999 ||
+    !Number.isInteger(page) || page < 1 || page > ROLLING_ROUTE_MAX_PAGES_PER_YEAR
+  ) {
     throw new AviasalesProviderError("invalid_query");
   }
   const url = new URL(ENDPOINT);
@@ -175,7 +181,7 @@ export function buildAviasalesRollingRouteRequest(
     market: "us",
     show_to_affiliates: "true",
     group_by: "dates",
-    limit: "100",
+    limit: String(ROLLING_ROUTE_PAGE_LIMIT),
     page: String(page),
   }).toString();
   return url;
@@ -344,7 +350,8 @@ export async function fetchAviasalesRollingRoutePrice(
   if (typeof token !== "string" || !token.trim()) throw new AviasalesProviderError("missing_token");
   let lowest: AviasalesCachedPrice | null = null;
   for (const year of window.years) {
-    for (let page = 1; page <= 3; page += 1) {
+    const fullPageSignatures = new Set<string>();
+    for (let page = 1; page <= ROLLING_ROUTE_MAX_PAGES_PER_YEAR; page += 1) {
       const url = buildAviasalesRollingRouteRequest(normalized, year, page);
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 15_000);
@@ -375,8 +382,17 @@ export async function fetchAviasalesRollingRoutePrice(
           throw new AviasalesProviderError("invalid_json");
         }
         const parsed = parseAviasalesRollingRouteResponse(body, normalized, today);
+        const pageIsFull = parsed.rowCount >= ROLLING_ROUTE_PAGE_LIMIT;
+        if (pageIsFull) {
+          const signature = JSON.stringify((body as Record<string, unknown>).data);
+          if (fullPageSignatures.has(signature)) throw new AviasalesProviderError("pagination_incomplete");
+          fullPageSignatures.add(signature);
+        }
         if (parsed.price && (!lowest || compareCachedPrices(parsed.price, lowest) < 0)) lowest = parsed.price;
-        if (parsed.rowCount < 100) break;
+        if (!pageIsFull) break;
+        if (page === ROLLING_ROUTE_MAX_PAGES_PER_YEAR) {
+          throw new AviasalesProviderError("pagination_incomplete");
+        }
       } catch (error) {
         if (error instanceof AviasalesProviderError) throw error;
         throw new AviasalesProviderError(controller.signal.aborted ? "timeout" : "network_error");
