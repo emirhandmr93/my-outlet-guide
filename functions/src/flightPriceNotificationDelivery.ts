@@ -3,7 +3,9 @@ import { FieldValue, getFirestore, Timestamp } from "firebase-admin/firestore";
 import { logger } from "firebase-functions";
 import { onSchedule } from "firebase-functions/v2/scheduler";
 
-import { buildProviderFlightPriceQueryKey, classifyFlightPriceAlertDocument } from "./flightPriceCollection";
+import { buildProviderFlightPriceQueryKey, buildRollingRouteProviderQueryKey, classifyFlightPriceAlertDocument,
+  classifyRollingRouteFlightPriceAlertDocument } from "./flightPriceCollection";
+import { isValidRollingFlightPriceAlertEvent } from "./flightPriceEvaluation";
 import {
   ExpoPushMessage, ExpoPushRequestError, ExpoPushTicket, getExpoPushReceipts, isExpoPushTicketId, isExpoPushToken,
   sendExpoPushNotifications,
@@ -11,7 +13,7 @@ import {
 import { FlightPriceRuntimeConfig, isFlightPriceRuntimeUserEnabled, loadFlightPriceRuntimeConfig } from "./flightPriceRuntime";
 
 export type FlightPricePushThreshold = 15 | 30 | 45;
-export type ValidFlightPriceAlertEvent = {
+export type ExactDateFlightPriceAlertEvent = {
   schemaVersion: 1; eventId: string; userId: string; alertId: string; queryKey: string; providerQueryKey: string;
   originAirportCode: string; destinationAirportCode: string; tripType: "round_trip" | "one_way"; departDate: string;
   returnDate?: string; adults: number; children: number; infants: number; tripClass: "economy" | "business";
@@ -21,11 +23,24 @@ export type ValidFlightPriceAlertEvent = {
   priceSampleCount: number; currency: "EUR"; priceScope: "cached_offer"; passengerCountApplied: false;
   status: "pending_delivery";
 };
+export type RollingRouteFlightPriceAlertEvent = {
+  schemaVersion: 2; alertSchemaVersion: 3; eventId: string; userId: string; alertId: string; queryKey: string;
+  providerQueryKey: string; originAirportCode: string; destinationAirportCode: string; tripType: "round_trip" | "one_way";
+  tripClass: "economy" | "business"; directOnly: boolean; monitoringMode: "rolling_route"; monitoringWindowDays: 365;
+  snapshotDate: string; offerDepartDate: string; offerReturnDate?: string; offerTransfers: number; offerAirline?: string;
+  offerFlightNumber?: string; offerSourceFoundAt?: string; currentPrice: number; averagePrice: number; discountPercent: number;
+  matchedThreshold: FlightPricePushThreshold; metThresholds: FlightPricePushThreshold[]; selectedThresholds: FlightPricePushThreshold[];
+  trackingDayCount: number; historyWindowDays: 14 | 30 | 90; priceSampleCount: number; provider: "aviasales_data_api";
+  currency: "EUR"; priceScope: "cached_offer"; passengerCountApplied: false; status: "pending_rolling_delivery";
+};
+export type ValidFlightPriceAlertEvent = ExactDateFlightPriceAlertEvent | RollingRouteFlightPriceAlertEvent;
 
 type DeliveryStatus = "reserved" | "retry_pending" | "ticket_accepted" | "ticket_error" | "receipt_ok" | "receipt_error" | "receipt_unavailable";
 type Token = { tokenId: string; token: string; ref: FirebaseFirestore.DocumentReference };
 type Summary = Record<"receiptDeliveryDocumentsRead" | "receiptsRequested" | "receiptOkCount" | "receiptErrorCount" |
   "receiptUnavailableCount" | "pendingEventsRead" | "validEventsProcessed" | "invalidEventsSkipped" |
+  "exactPendingEventDocumentsRead" | "rollingPendingEventDocumentsRead" | "exactValidEventsProcessed" |
+  "rollingValidEventsProcessed" | "exactInvalidEventsSkipped" | "rollingInvalidEventsSkipped" |
   "staleEventsCancelled" | "eventsWithNoEligibleTokens" | "deliveriesReserved" | "ticketsAccepted" |
   "ticketErrors" | "retryPendingDeliveries" | "eventsSubmittedToExpo" | "eventsFailed", number>;
 
@@ -51,7 +66,7 @@ export function buildFlightPricePushDeliveryId(eventId: string, tokenId: string)
   return createHash("sha256").update(JSON.stringify([eventId, tokenId])).digest("hex");
 }
 
-export function validateFlightPriceAlertEvent(documentId: string, data: unknown): ValidFlightPriceAlertEvent | null {
+export function validateFlightPriceAlertEvent(documentId: string, data: unknown): ExactDateFlightPriceAlertEvent | null {
   if (!/^[a-f0-9]{64}$/.test(documentId) || !object(data)) return null;
   const passengers = Number.isInteger(data.adults) && (data.adults as number) >= 1 && (data.adults as number) <= 9 &&
     Number.isInteger(data.children) && (data.children as number) >= 0 && (data.children as number) <= 8 &&
@@ -77,15 +92,32 @@ export function validateFlightPriceAlertEvent(documentId: string, data: unknown)
     (data.historyWindowDays !== 14 && data.historyWindowDays !== 30 && data.historyWindowDays !== 90) ||
     !Number.isInteger(data.priceSampleCount) || (data.priceSampleCount as number) < 1 || data.currency !== "EUR" ||
     data.priceScope !== "cached_offer" || data.passengerCountApplied !== false || data.status !== "pending_delivery") return null;
-  return data as ValidFlightPriceAlertEvent;
+  return data as ExactDateFlightPriceAlertEvent;
+}
+
+export function validateRollingRouteFlightPriceAlertEvent(documentId: string, data: unknown): RollingRouteFlightPriceAlertEvent | null {
+  return /^[a-f0-9]{64}$/.test(documentId) && object(data) && data.eventId === documentId &&
+    data.status === "pending_rolling_delivery" && isValidRollingFlightPriceAlertEvent(data)
+    ? data as RollingRouteFlightPriceAlertEvent : null;
+}
+
+export function validatePendingFlightPriceAlertEvent(documentId: string, data: unknown): ValidFlightPriceAlertEvent | null {
+  if (!object(data)) return null;
+  return data.schemaVersion === 2
+    ? validateRollingRouteFlightPriceAlertEvent(documentId, data)
+    : validateFlightPriceAlertEvent(documentId, data);
 }
 
 const money = (value: number) => Number(value.toFixed(2)).toString();
 export function buildFlightPricePushMessage(event: ValidFlightPriceAlertEvent, expoPushToken: string): ExpoPushMessage {
+  const rolling = event.schemaVersion === 2;
+  const travel = rolling ? ` Travel: ${event.offerDepartDate}${event.offerReturnDate ? ` → ${event.offerReturnDate}` : ""}.` : "";
   return {
     to: expoPushToken, sound: "default", ttl: 21_600, priority: "high",
     title: `${event.originAirportCode} → ${event.destinationAirportCode} · ${event.matchedThreshold}%`,
-    body: `Tracked fare: €${money(event.currentPrice)}. Recent ${event.historyWindowDays}-day average: €${money(event.averagePrice)}.`,
+    body: rolling
+      ? `Lowest tracked fare: €${money(event.currentPrice)}. Recent ${event.historyWindowDays}-day average: €${money(event.averagePrice)}.${travel}`
+      : `Tracked fare: €${money(event.currentPrice)}. Recent ${event.historyWindowDays}-day average: €${money(event.averagePrice)}.`,
     data: { type: "flightPriceAlert", eventId: event.eventId },
   };
 }
@@ -100,6 +132,16 @@ export function isFlightPriceEventThresholdAuthorized(
 export function isFlightPriceEventSourceCurrent(
   event: ValidFlightPriceAlertEvent, sourcePath: string, sourceData: unknown, evaluationDate: string,
 ): boolean {
+  if (event.schemaVersion === 2) {
+    const classified = classifyRollingRouteFlightPriceAlertDocument(sourcePath, sourceData);
+    return classified.kind === "active" && classified.alert.userId === event.userId && classified.alert.alertId === event.alertId &&
+      classified.alert.queryKey === event.queryKey && buildRollingRouteProviderQueryKey(classified.query) === event.providerQueryKey &&
+      classified.alert.originAirportCode === event.originAirportCode && classified.alert.destinationAirportCode === event.destinationAirportCode &&
+      classified.alert.tripType === event.tripType && classified.alert.tripClass === event.tripClass &&
+      classified.alert.directOnly === event.directOnly && classified.alert.monitoringMode === event.monitoringMode &&
+      classified.alert.monitoringWindowDays === event.monitoringWindowDays && event.offerDepartDate >= evaluationDate &&
+      isFlightPriceEventThresholdAuthorized(event, classified.alert.selectedThresholds);
+  }
   const classified = classifyFlightPriceAlertDocument(sourcePath, sourceData, evaluationDate);
   return classified.kind === "active" && classified.alert.userId === event.userId && classified.alert.alertId === event.alertId &&
     classified.alert.queryKey === event.queryKey && buildProviderFlightPriceQueryKey(classified.query) === event.providerQueryKey &&
@@ -110,7 +152,7 @@ export function isFlightPriceEventSourceCurrent(
     isFlightPriceEventThresholdAuthorized(event, classified.alert.selectedThresholds);
 }
 
-const EVENT_WORK_ITEM_SCALARS = [
+const EXACT_EVENT_WORK_ITEM_SCALARS = [
   "schemaVersion", "eventId", "userId", "alertId", "queryKey", "providerQueryKey", "originAirportCode",
   "destinationAirportCode", "tripType", "departDate", "returnDate", "adults", "children", "infants", "tripClass",
   "directOnly", "snapshotDate", "currentPrice", "averagePrice", "discountPercent", "matchedThreshold", "trackingDayCount",
@@ -120,13 +162,25 @@ const sameArray = <T>(left: readonly T[], right: readonly T[]) => left.length ==
 export function sameFlightPriceAlertEventWorkItem(
   expected: ValidFlightPriceAlertEvent, current: ValidFlightPriceAlertEvent,
 ): boolean {
-  return EVENT_WORK_ITEM_SCALARS.every(field => expected[field] === current[field]) &&
+  if (expected.schemaVersion !== current.schemaVersion) return false;
+  if (expected.schemaVersion === 2 && current.schemaVersion === 2) {
+    const fields: Array<keyof RollingRouteFlightPriceAlertEvent> = ["schemaVersion", "alertSchemaVersion", "eventId", "userId", "alertId",
+      "queryKey", "providerQueryKey", "originAirportCode", "destinationAirportCode", "tripType", "tripClass", "directOnly",
+      "monitoringMode", "monitoringWindowDays", "snapshotDate", "offerDepartDate", "offerReturnDate", "offerTransfers", "offerAirline",
+      "offerFlightNumber", "offerSourceFoundAt", "currentPrice", "averagePrice", "discountPercent", "matchedThreshold", "trackingDayCount",
+      "historyWindowDays", "priceSampleCount", "provider", "currency", "priceScope", "passengerCountApplied", "status"];
+    return fields.every(field => expected[field] === current[field]) && sameArray(expected.metThresholds, current.metThresholds) &&
+      sameArray(expected.selectedThresholds, current.selectedThresholds);
+  }
+  if (expected.schemaVersion !== 1 || current.schemaVersion !== 1) return false;
+  return EXACT_EVENT_WORK_ITEM_SCALARS.every(field => expected[field] === current[field]) &&
     sameArray(expected.metThresholds, current.metThresholds) && sameArray(expected.selectedThresholds, current.selectedThresholds);
 }
 
-export function chooseFlightPriceEventSubmissionStatus(deliveries: unknown[]): "pending_delivery" | "submitted_to_expo" | "delivery_failed" {
+export function chooseFlightPriceEventSubmissionStatus(deliveries: unknown[], pendingStatus: "pending_delivery" | "pending_rolling_delivery" = "pending_delivery"):
+  "pending_delivery" | "pending_rolling_delivery" | "submitted_to_expo" | "delivery_failed" {
   const statuses = deliveries.map(value => object(value) ? value.status : undefined);
-  if (statuses.some(status => status === "reserved" || status === "retry_pending")) return "pending_delivery";
+  if (statuses.some(status => status === "reserved" || status === "retry_pending")) return pendingStatus;
   return statuses.some(status => status === "ticket_accepted" || status === "receipt_ok" || status === "receipt_error" || status === "receipt_unavailable")
     ? "submitted_to_expo" : "delivery_failed";
 }
@@ -236,28 +290,40 @@ function runtimeUserChunks(runtime: FlightPriceRuntimeConfig): string[][] {
 type PendingEventLoadResult = {
   documentsRead: number;
   invalidDocuments: number;
+  exactDocumentsRead: number;
+  rollingDocumentsRead: number;
+  exactInvalidDocuments: number;
+  rollingInvalidDocuments: number;
   events: ValidFlightPriceAlertEvent[];
 };
 
 export async function loadRuntimeEligiblePendingFlightPriceEvents(
   db: FirebaseFirestore.Firestore, runtime: FlightPriceRuntimeConfig,
 ): Promise<PendingEventLoadResult> {
-  if (runtime.mode === "off") return { documentsRead: 0, invalidDocuments: 0, events: [] };
-  const snapshots = runtime.mode === "all"
-    ? [await db.collection("flightPriceAlertEvents").where("status", "==", "pending_delivery").limit(PENDING_EVENT_LIMIT).get()]
-    : await Promise.all(runtimeUserChunks(runtime).map(userIds => db.collection("flightPriceAlertEvents")
-      .where("status", "==", "pending_delivery").where("userId", "in", userIds).limit(PENDING_EVENT_LIMIT).get()));
-  const documents = new Map<string, FirebaseFirestore.QueryDocumentSnapshot>();
-  for (const snapshot of snapshots) for (const document of snapshot.docs) documents.set(document.ref.path, document);
-  let invalidDocuments = 0;
-  const events = [...documents.values()].map(document => validateFlightPriceAlertEvent(document.id, document.data()))
-    .filter((event): event is ValidFlightPriceAlertEvent => {
-      if (!event) invalidDocuments += 1;
-      return event !== null && isFlightPriceRuntimeUserEnabled(runtime, event.userId);
-    })
-    .sort((left, right) => left.snapshotDate.localeCompare(right.snapshotDate) || left.eventId.localeCompare(right.eventId))
-    .slice(0, PENDING_EVENT_LIMIT);
-  return { documentsRead: documents.size, invalidDocuments, events };
+  if (runtime.mode === "off") return { documentsRead: 0, invalidDocuments: 0, exactDocumentsRead: 0,
+    rollingDocumentsRead: 0, exactInvalidDocuments: 0, rollingInvalidDocuments: 0, events: [] };
+  const loadQueue = async (status: "pending_delivery" | "pending_rolling_delivery") => runtime.mode === "all"
+    ? [await db.collection("flightPriceAlertEvents").where("status", "==", status).limit(PENDING_EVENT_LIMIT).get()]
+    : Promise.all(runtimeUserChunks(runtime).map(userIds => db.collection("flightPriceAlertEvents")
+      .where("status", "==", status).where("userId", "in", userIds).limit(PENDING_EVENT_LIMIT).get()));
+  const [exactSnapshots, rollingSnapshots] = await Promise.all([loadQueue("pending_delivery"), loadQueue("pending_rolling_delivery")]);
+  const select = (snapshots: FirebaseFirestore.QuerySnapshot[], rolling: boolean) => {
+    const documents = new Map<string, FirebaseFirestore.QueryDocumentSnapshot>();
+    for (const snapshot of snapshots) for (const document of snapshot.docs) documents.set(document.ref.path, document);
+    let invalid = 0;
+    const events = [...documents.values()].map(document => rolling
+      ? validateRollingRouteFlightPriceAlertEvent(document.id, document.data())
+      : validateFlightPriceAlertEvent(document.id, document.data())).filter((event): event is ValidFlightPriceAlertEvent => {
+        if (!event) invalid += 1;
+        return event !== null && isFlightPriceRuntimeUserEnabled(runtime, event.userId);
+      }).sort((left, right) => left.snapshotDate.localeCompare(right.snapshotDate) || left.eventId.localeCompare(right.eventId))
+      .slice(0, PENDING_EVENT_LIMIT);
+    return { documentsRead: documents.size, invalid, events };
+  };
+  const exact = select(exactSnapshots, false); const rolling = select(rollingSnapshots, true);
+  return { documentsRead: exact.documentsRead + rolling.documentsRead, invalidDocuments: exact.invalid + rolling.invalid,
+    exactDocumentsRead: exact.documentsRead, rollingDocumentsRead: rolling.documentsRead, exactInvalidDocuments: exact.invalid,
+    rollingInvalidDocuments: rolling.invalid, events: [...exact.events, ...rolling.events] };
 }
 
 type ReceiptDeliveryEntry = {
@@ -348,7 +414,7 @@ async function reserve(event: ValidFlightPriceAlertEvent, token: Token, runtime:
       transaction.get(sourceRef), transaction.get(eventRef), transaction.get(ref),
     ]); const now = Timestamp.now();
     if (!eventSnapshot.exists) return { kind: "event_unavailable" };
-    const currentEvent = validateFlightPriceAlertEvent(eventSnapshot.id, eventSnapshot.data());
+    const currentEvent = validatePendingFlightPriceAlertEvent(eventSnapshot.id, eventSnapshot.data());
     if (!currentEvent) return { kind: "event_unavailable" };
     if (!sameFlightPriceAlertEventWorkItem(event, currentEvent)) return { kind: "event_changed" };
     if (!sourceSnapshot.exists || !isFlightPriceEventSourceCurrent(currentEvent, sourceRef.path, sourceSnapshot.data(), todayUtc())) {
@@ -373,10 +439,13 @@ async function reserve(event: ValidFlightPriceAlertEvent, token: Token, runtime:
 async function aggregateSubmission(event: ValidFlightPriceAlertEvent, summary: Summary) {
   const db = getFirestore(); const eventRef = db.collection("flightPriceAlertEvents").doc(event.eventId);
   const snapshot = await eventRef.collection("pushDeliveries").get(); const data = snapshot.docs.map(doc => doc.data());
-  const status = chooseFlightPriceEventSubmissionStatus(data);
+  const pendingStatus = event.schemaVersion === 2 ? "pending_rolling_delivery" : "pending_delivery";
+  const status = chooseFlightPriceEventSubmissionStatus(data, pendingStatus);
   const accepted = data.filter(item => ["ticket_accepted", "receipt_ok", "receipt_error", "receipt_unavailable"].includes(item.status)).length;
   const errors = data.filter(item => item.status === "ticket_error").length;
-  const update: Record<string, unknown> = { status, ticketAcceptedCount: accepted, ticketErrorCount: errors, updatedAt: FieldValue.serverTimestamp() };
+  const update: Record<string, unknown> = status === pendingStatus
+    ? { status, updatedAt: FieldValue.serverTimestamp() }
+    : { status, ticketAcceptedCount: accepted, ticketErrorCount: errors, updatedAt: FieldValue.serverTimestamp() };
   if (status === "submitted_to_expo") { update.receiptStatus = "pending"; update.submittedAt = FieldValue.serverTimestamp(); summary.eventsSubmittedToExpo += 1; }
   if (status === "delivery_failed") summary.eventsFailed += 1;
   await updateExisting(eventRef, update);
@@ -427,7 +496,7 @@ async function processEvent(event: ValidFlightPriceAlertEvent, tokensForUser: (u
     }
     const [freshSource, freshEvent] = await Promise.all([alertRef.get(), eventRef.get()]);
     if (!freshEvent.exists) return;
-    const currentEvent = validateFlightPriceAlertEvent(freshEvent.id, freshEvent.data());
+    const currentEvent = validatePendingFlightPriceAlertEvent(freshEvent.id, freshEvent.data());
     if (!currentEvent) return;
     if (!sameFlightPriceAlertEventWorkItem(event, currentEvent)) {
       const retryAt = Timestamp.fromMillis(sentAt.toMillis() + 900_000);
@@ -486,6 +555,8 @@ export const processFlightPriceAlertNotifications = onSchedule(
     }
     const summary: Summary = { receiptDeliveryDocumentsRead: 0, receiptsRequested: 0, receiptOkCount: 0, receiptErrorCount: 0,
       receiptUnavailableCount: 0, pendingEventsRead: 0, validEventsProcessed: 0, invalidEventsSkipped: 0, staleEventsCancelled: 0,
+      exactPendingEventDocumentsRead: 0, rollingPendingEventDocumentsRead: 0, exactValidEventsProcessed: 0,
+      rollingValidEventsProcessed: 0, exactInvalidEventsSkipped: 0, rollingInvalidEventsSkipped: 0,
       eventsWithNoEligibleTokens: 0, deliveriesReserved: 0, ticketsAccepted: 0, ticketErrors: 0, retryPendingDeliveries: 0,
       eventsSubmittedToExpo: 0, eventsFailed: 0 };
     const disabledTokens = new FlightPriceDisabledTokenRegistry();
@@ -493,8 +564,14 @@ export const processFlightPriceAlertNotifications = onSchedule(
     const pending = await loadRuntimeEligiblePendingFlightPriceEvents(db, runtime);
     summary.pendingEventsRead = pending.documentsRead;
     summary.invalidEventsSkipped = pending.invalidDocuments;
+    summary.exactPendingEventDocumentsRead = pending.exactDocumentsRead;
+    summary.rollingPendingEventDocumentsRead = pending.rollingDocumentsRead;
+    summary.exactInvalidEventsSkipped = pending.exactInvalidDocuments;
+    summary.rollingInvalidEventsSkipped = pending.rollingInvalidDocuments;
     const events = pending.events;
     summary.validEventsProcessed = events.length;
+    summary.exactValidEventsProcessed = events.filter(event => event.schemaVersion === 1).length;
+    summary.rollingValidEventsProcessed = events.filter(event => event.schemaVersion === 2).length;
     const cache = new Map<string, Promise<Token[] | null>>();
     const tokensForUser = (userId: string) => {
       const existing = cache.get(userId); if (existing) return existing;

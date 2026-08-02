@@ -64,10 +64,14 @@ export function FlightDealDetailScreen() {
     if (!deal || opening) return;
     setOpening(true);
     try {
+      const rolling = deal.schemaVersion === 2;
       const url = buildAviasalesAffiliateSearchUrl({
-        originIata: deal.originAirportCode, destinationIata: deal.destinationAirportCode, departDate: deal.departDate,
-        ...(deal.returnDate ? { returnDate: deal.returnDate } : {}), adults: deal.adults, children: deal.children,
-        infants: deal.infants, tripClass: deal.tripClass, currency: "EUR", locale, subId: "app_flight_deal_detail",
+        originIata: deal.originAirportCode, destinationIata: deal.destinationAirportCode,
+        departDate: rolling ? deal.offerDepartDate : deal.departDate,
+        ...((rolling ? deal.offerReturnDate : deal.returnDate) ? { returnDate: rolling ? deal.offerReturnDate : deal.returnDate } : {}),
+        adults: rolling ? 1 : deal.adults, children: rolling ? 0 : deal.children, infants: rolling ? 0 : deal.infants,
+        tripClass: deal.tripClass, currency: "EUR", locale,
+        subId: rolling ? "app_rolling_flight_deal_detail" : "app_flight_deal_detail",
       });
       if (Platform.OS === "web") await Linking.openURL(url);
       else await WebBrowser.openBrowserAsync(url);
@@ -93,7 +97,7 @@ export function FlightDealDetailScreen() {
     <View style={styles.highlight}>
       <Text accessibilityRole="header" style={[styles.route, isNativeRTL && styles.rtl]}>{deal.originAirportCode} → {deal.destinationAirportCode}</Text>
       <Text style={[styles.discount, isNativeRTL && styles.rtl]}>{interpolate(t("flightDealDetail.discountBelowAverage"), { discount: `${deal.discountPercent}%` })}</Text>
-      <Text style={styles.badge}>{t("flightDealDetail.cachedBadge")}</Text>
+      <Text style={styles.badge}>{t(deal.schemaVersion === 2 ? "flightDealDetail.rollingCachedBadge" : "flightDealDetail.cachedBadge")}</Text>
     </View>
     <View style={styles.grid}>
       <Metric label={t("flightDealDetail.trackedFare")} value={formatPrice(deal.currentPrice)} />
@@ -104,22 +108,30 @@ export function FlightDealDetailScreen() {
       <Metric label={t("flightDealDetail.lastChecked")} value={formatDate(deal.snapshotDate)} />
     </View>
     <View style={styles.card}>
-      <Text accessibilityRole="header" style={styles.sectionTitle}>{t("flightDealDetail.tripProfile")}</Text>
+      <Text accessibilityRole="header" style={styles.sectionTitle}>{t(deal.schemaVersion === 2 ? "flightDealDetail.rollingOfferProfile" : "flightDealDetail.tripProfile")}</Text>
       <Detail label={deal.tripType === "round_trip" ? t("flightDealDetail.roundTrip") : t("flightDealDetail.oneWay")} value="" />
-      <Detail label={t("flightDealDetail.departureDate")} value={formatDate(deal.departDate)} />
-      {deal.returnDate ? <Detail label={t("flightDealDetail.returnDate")} value={formatDate(deal.returnDate)} /> : null}
-      <Detail label={t("flightDealDetail.adults")} value={String(deal.adults)} />
-      <Detail label={t("flightDealDetail.children")} value={String(deal.children)} />
-      <Detail label={t("flightDealDetail.infants")} value={String(deal.infants)} />
-      <Detail label={t("flightDealDetail.passengers")} value={`${deal.adults + deal.children + deal.infants}`} />
+      {deal.schemaVersion === 1 ? <>
+        <Detail label={t("flightDealDetail.departureDate")} value={formatDate(deal.departDate)} />
+        {deal.returnDate ? <Detail label={t("flightDealDetail.returnDate")} value={formatDate(deal.returnDate)} /> : null}
+        <Detail label={t("flightDealDetail.adults")} value={String(deal.adults)} />
+        <Detail label={t("flightDealDetail.children")} value={String(deal.children)} />
+        <Detail label={t("flightDealDetail.infants")} value={String(deal.infants)} />
+        <Detail label={t("flightDealDetail.passengers")} value={`${deal.adults + deal.children + deal.infants}`} />
+      </> : <>
+        <Detail label={t("flightDealDetail.offerDepartureDate")} value={formatDate(deal.offerDepartDate)} />
+        {deal.offerReturnDate ? <Detail label={t("flightDealDetail.offerReturnDate")} value={formatDate(deal.offerReturnDate)} /> : null}
+        <Detail label={t("flightDealDetail.transfers")} value={String(deal.offerTransfers)} />
+        {deal.offerAirline ? <Detail label={t("flightDealDetail.airline")} value={deal.offerAirline} /> : null}
+        {deal.offerFlightNumber ? <Detail label={t("flightDealDetail.flightNumber")} value={deal.offerFlightNumber} /> : null}
+      </>}
       <Detail label={deal.tripClass === "economy" ? t("flightDealDetail.economy") : t("flightDealDetail.business")} value={deal.directOnly ? t("flightDealDetail.directOnly") : t("flightDealDetail.allFlights")} />
     </View>
     <View style={styles.disclosure}>
       <Text accessibilityRole="header" style={styles.sectionTitle}>{t("flightDealDetail.sourceTitle")}</Text>
-      <Text style={styles.notice}>{t("flightDealDetail.cachedPriceNotice")}</Text>
+      <Text style={styles.notice}>{t(deal.schemaVersion === 2 ? "flightDealDetail.rollingScopeNotice" : "flightDealDetail.cachedPriceNotice")}</Text>
       <Text style={styles.notice}>{t("flightDealDetail.thirdPartyNotice")}</Text>
       <Text style={styles.notice}>{t("flightDealDetail.affiliateNotice")}</Text>
-      <Text style={styles.notice}>{t("flightDealDetail.passengerScopeNotice")}</Text>
+      <Text style={styles.notice}>{t(deal.schemaVersion === 2 ? "flightDealDetail.rollingPassengerNotice" : "flightDealDetail.passengerScopeNotice")}</Text>
       {deal.directOnly ? <Text style={styles.directNotice}>{t("flightDealDetail.directFilterNotice")}</Text> : null}
     </View>
     <TouchableOpacity accessibilityRole="button" accessibilityLabel={t("flightDealDetail.providerCta")} accessibilityState={{ disabled: opening, busy: opening }} disabled={opening} onPress={openProvider} style={[styles.cta, opening && styles.disabled]}>
