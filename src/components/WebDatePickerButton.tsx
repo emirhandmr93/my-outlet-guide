@@ -30,8 +30,21 @@ export function WebDatePickerButton({
   const openPicker = () => {
     const input = inputRef.current;
     if (!input) return;
-    if (typeof input.showPicker === "function") input.showPicker();
-    else input.click();
+
+    if (typeof input.showPicker === "function") {
+      try {
+        input.showPicker();
+        return;
+      } catch {
+        // Continue to compatibility fallback.
+      }
+    }
+
+    try {
+      input.click();
+    } catch {
+      // Leave the control safely unchanged.
+    }
   };
 
   return <>
