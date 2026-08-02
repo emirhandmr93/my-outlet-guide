@@ -4,6 +4,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  runTransaction,
   serverTimestamp,
   setDoc,
   updateDoc,
@@ -374,6 +375,49 @@ export function parseStoredRollingRouteFlightDealAlert(documentId: string, data:
   try { return parseStoredRollingRouteFlightDealAlertValue(documentId, data, expectedUserId); } catch { return null; }
 }
 
+export type RollingRouteFlightDealAlertDocumentState =
+  | { exists: false }
+  | { exists: true; data: unknown };
+
+export type RollingRouteFlightDealAlertSaveDecision = {
+  createdAt: unknown;
+  deletePrevious: boolean;
+};
+
+/** Resolves collision and timestamp semantics without performing Firestore I/O. */
+export function decideRollingRouteFlightDealAlertSave({ userId, targetAlertId, targetDocument, previousAlertId,
+  previousDocument, newCreatedAt }: {
+  userId: string;
+  targetAlertId: string;
+  targetDocument: RollingRouteFlightDealAlertDocumentState;
+  previousAlertId?: string;
+  previousDocument?: RollingRouteFlightDealAlertDocumentState;
+  newCreatedAt: unknown;
+}): RollingRouteFlightDealAlertSaveDecision {
+  const parseRequired = (alertId: string, document: RollingRouteFlightDealAlertDocumentState | undefined, role: "previous" | "target") => {
+    if (!document?.exists) throw new Error(`The ${role} rolling-route alert does not exist.`);
+    const parsed = parseStoredRollingRouteFlightDealAlert(alertId, document.data, userId);
+    if (!parsed || parsed.createdAt === undefined) throw new Error(`The ${role} document is not a valid rolling-route alert.`);
+    return parsed;
+  };
+
+  if (previousAlertId === targetAlertId) {
+    const existing = parseRequired(targetAlertId, targetDocument, "target");
+    return { createdAt: existing.createdAt, deletePrevious: false };
+  }
+
+  const previous = previousAlertId
+    ? parseRequired(previousAlertId, previousDocument, "previous")
+    : undefined;
+  const target = targetDocument.exists
+    ? parseRequired(targetAlertId, targetDocument, "target")
+    : undefined;
+  return {
+    createdAt: target?.createdAt ?? previous?.createdAt ?? newCreatedAt,
+    deletePrevious: previousAlertId !== undefined,
+  };
+}
+
 export async function listFlightDealAlerts(userId: string): Promise<FlightDealAlertPreference[]> {
   const snapshot = await getDocs(getFlightDealAlertsCollection(userId));
   return snapshot.docs
@@ -423,18 +467,24 @@ export async function saveRollingRouteFlightDealAlert(userId: string, input: Rol
   const validated = validateRollingRouteFlightDealAlertInput(input);
   const queryKey = buildRollingRouteFlightDealQueryKey({ ...validated, monitoringMode: "rolling_route", monitoringWindowDays: 365 });
   const target = doc(db, "flightDealPreferences", userId, "alerts", queryKey);
-  const previous = previousAlertId ? doc(db, "flightDealPreferences", userId, "alerts", previousAlertId) : target;
-  const previousSnapshot = await getDoc(previous);
-  const payload = { ...validated, schemaVersion: 3 as const, alertId: queryKey, queryKey, userId,
-    monitoringMode: "rolling_route" as const, monitoringWindowDays: 365 as const,
-    providerStatus: "pending_provider" as const, updatedAt: serverTimestamp() };
-  const createdAt = previousSnapshot.data()?.createdAt ?? serverTimestamp();
-  if (previousAlertId && previousAlertId !== queryKey) {
-    const batch = writeBatch(db);
-    batch.set(target, { ...payload, createdAt });
-    batch.delete(previous);
-    await batch.commit();
-  } else await setDoc(target, { ...payload, createdAt });
+  const identityChanges = previousAlertId !== undefined && previousAlertId !== queryKey;
+  const previous = identityChanges ? doc(db, "flightDealPreferences", userId, "alerts", previousAlertId) : target;
+  await runTransaction(db, async transaction => {
+    const targetSnapshot = await transaction.get(target);
+    const previousSnapshot = identityChanges ? await transaction.get(previous) : targetSnapshot;
+    const newCreatedAt = serverTimestamp();
+    const decision = decideRollingRouteFlightDealAlertSave({
+      userId, targetAlertId: queryKey, previousAlertId,
+      targetDocument: targetSnapshot.exists() ? { exists: true, data: targetSnapshot.data() } : { exists: false },
+      previousDocument: previousSnapshot.exists() ? { exists: true, data: previousSnapshot.data() } : { exists: false },
+      newCreatedAt,
+    });
+    const payload = { ...validated, schemaVersion: 3 as const, alertId: queryKey, queryKey, userId,
+      monitoringMode: "rolling_route" as const, monitoringWindowDays: 365 as const,
+      providerStatus: "pending_provider" as const, updatedAt: serverTimestamp(), createdAt: decision.createdAt };
+    transaction.set(target, payload);
+    if (decision.deletePrevious) transaction.delete(previous);
+  });
   return queryKey;
 }
 

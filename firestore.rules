@@ -550,6 +550,7 @@ service cloud.firestore {
         allow read: if isOwnerDocument(userId);
         allow create: if isSignedIn() && hasValidFlightDealAlertData(userId, alertId);
         allow update: if isSignedIn() && hasValidFlightDealAlertData(userId, alertId)
+          && request.resource.data.schemaVersion == resource.data.schemaVersion
           && (request.resource.data.schemaVersion != 3 || request.resource.data.createdAt == resource.data.createdAt);
         allow delete: if isOwnerDocument(userId);
       }

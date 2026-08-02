@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import {
   buildFlightDealQueryKey,
   buildRollingRouteFlightDealQueryKey,
+  decideRollingRouteFlightDealAlertSave,
   parseStoredFlightDealAlert,
   parseStoredRollingRouteFlightDealAlert,
 } from "../src/services/flightDealAlertService";
@@ -75,13 +76,56 @@ assert.equal(buildFlightDealQueryKey({ originAirportCode: "ESB", destinationAirp
 "esb_fra_one_way_2027_01_01_no_return_a1_c0_i0_economy_any_eur");
 assert.equal(parseStoredFlightDealAlert(key, stored, "user-1"), null);
 
-const serviceSource = readFileSync("src/services/flightDealAlertService.ts", "utf8");
-assert.match(serviceSource, /previousSnapshot\.data\(\)\?\.createdAt \?\? serverTimestamp\(\)/);
-assert.match(serviceSource, /batch\.set\(target, \{ \.\.\.payload, createdAt \}\);\s*batch\.delete\(previous\);\s*await batch\.commit\(\)/);
+const newCreatedAt = { kind: "server_timestamp" };
+const missing = { exists: false } as const;
+const existing = (data: unknown) => ({ exists: true as const, data });
+const targetKey = buildRollingRouteFlightDealQueryKey({ ...profile, tripClass: "business" });
+const targetCreatedAt = { seconds: 10, nanoseconds: 0 };
+const targetStored = { ...stored, alertId: targetKey, queryKey: targetKey, tripClass: "business", createdAt: targetCreatedAt };
+
+assert.deepEqual(decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: key,
+  targetDocument: missing, newCreatedAt }), { createdAt: newCreatedAt, deletePrevious: false });
+assert.deepEqual(decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: targetKey,
+  targetDocument: existing(targetStored), newCreatedAt }), { createdAt: targetCreatedAt, deletePrevious: false });
+assert.equal(decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: key, previousAlertId: key,
+  targetDocument: existing(stored), previousDocument: existing(stored), newCreatedAt }).createdAt, stored.createdAt);
+assert.deepEqual(decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: targetKey, previousAlertId: key,
+  targetDocument: missing, previousDocument: existing(stored), newCreatedAt }),
+{ createdAt: stored.createdAt, deletePrevious: true });
+assert.deepEqual(decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: targetKey, previousAlertId: key,
+  targetDocument: existing(targetStored), previousDocument: existing(stored), newCreatedAt }),
+{ createdAt: targetCreatedAt, deletePrevious: true });
+
+const schemaV2 = { ...stored, schemaVersion: 2 };
+const malformed = { ...stored, queryKey: "wrong" };
+let writes = 0;
+const rejectWithoutWrites = (operation: () => unknown) => {
+  assert.throws(operation);
+  assert.equal(writes, 0);
+};
+rejectWithoutWrites(() => decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: targetKey,
+  previousAlertId: key, previousDocument: existing(schemaV2), targetDocument: missing, newCreatedAt }));
+rejectWithoutWrites(() => decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: targetKey,
+  previousAlertId: key, previousDocument: existing(malformed), targetDocument: missing, newCreatedAt }));
+rejectWithoutWrites(() => decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: targetKey,
+  previousAlertId: key, previousDocument: existing(stored), targetDocument: existing({ ...targetStored, schemaVersion: 2 }), newCreatedAt }));
+rejectWithoutWrites(() => decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: targetKey,
+  previousAlertId: key, previousDocument: existing(stored), targetDocument: existing({ ...targetStored, queryKey: "wrong" }), newCreatedAt }));
+rejectWithoutWrites(() => decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: targetKey,
+  previousAlertId: key, previousDocument: missing, targetDocument: missing, newCreatedAt }));
+
+// The review collision scenario resolves successfully, preserving B and scheduling atomic deletion of A.
+const collision = decideRollingRouteFlightDealAlertSave({ userId: "user-1", targetAlertId: targetKey,
+  previousAlertId: key, previousDocument: existing(stored), targetDocument: existing(targetStored), newCreatedAt });
+writes += collision.deletePrevious ? 2 : 1;
+assert.equal(collision.createdAt, targetCreatedAt);
+assert.equal(writes, 2);
 const rules = readFileSync("firestore.rules", "utf8");
 assert.match(rules, /hasValidRollingRouteFlightDealAlertData/);
 assert.match(rules, /keys\(\)\.hasOnly/);
 assert.match(rules, /rolling_route_365_/);
+assert.match(rules, /request\.resource\.data\.schemaVersion == resource\.data\.schemaVersion/);
+assert.match(rules, /request\.resource\.data\.createdAt == resource\.data\.createdAt/);
 for (const forbidden of ["departDate", "adults", "fare", "average", "discount", "delivery", "evaluation"]) {
   const rolling = rules.slice(rules.indexOf("function hasValidRollingRouteFlightDealAlertData"), rules.indexOf("function hasValidFlightDealAlertData"));
   assert(!rolling.includes(`'${forbidden}'`));
