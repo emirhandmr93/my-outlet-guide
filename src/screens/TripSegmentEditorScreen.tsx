@@ -38,13 +38,14 @@ import {
   getScreenTopInset,
   getScrollIndicatorBottomInset,
 } from "../utils/safeAreaLayout";
+import { formatIsoDateOnly, localDateToIso, parseIsoDateOnly } from "../utils/dateOnly";
 // QA guard: formatOutletLocationSubtitle(outlet.cityId, outlet.countryId, language)
 
 function formatDate(date: Date) {
-  return date.toISOString().slice(0, 10);
+  return localDateToIso(date);
 }
 function parseDate(value: string) {
-  return value ? new Date(`${value}T00:00:00.000Z`) : new Date();
+  return parseIsoDateOnly(value) ?? new Date();
 }
 
 type RouteSearchResult =
@@ -421,14 +422,14 @@ export function TripSegmentEditorScreen() {
                 onPress={() => setPickerTarget("start")}
               >
                 <Text style={styles.label}>{t("tripSegment.startDate")}</Text>
-                <Text style={styles.inputText}>{segment.startDate}</Text>
+                <Text style={styles.inputText}>{formatIsoDateOnly(segment.startDate)}</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.dateBox}
                 onPress={() => setPickerTarget("end")}
               >
                 <Text style={styles.label}>{t("tripSegment.endDate")}</Text>
-                <Text style={styles.inputText}>{segment.endDate}</Text>
+                <Text style={styles.inputText}>{formatIsoDateOnly(segment.endDate)}</Text>
               </TouchableOpacity>
             </View>
             <TextInput

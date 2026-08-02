@@ -14,11 +14,10 @@ import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locati
 import type { RootStackParamList } from "../navigation/types";
 import { requireAuth } from "../utils/requireAuth";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
+import { formatIsoDateOnly } from "../utils/dateOnly";
 
 function formatDisplayDateRange(startDate: string, endDate: string) {
-  if (Platform.OS !== "web") return `${startDate} – ${endDate}`;
-  const format = (value: string) => new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(new Date(`${value}T00:00:00`));
-  return `${format(startDate)} – ${format(endDate)}`;
+  return `${formatIsoDateOnly(startDate)} – ${formatIsoDateOnly(endDate)}`;
 }
 
 function TripCard({ trip, onPress, onDelete, isDeleting, t, language }: { trip: Trip; onPress: () => void; onDelete: () => void; isDeleting: boolean; t: (key: string) => string; language: Parameters<typeof formatCityDisplayName>[1] }) {

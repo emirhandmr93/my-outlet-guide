@@ -15,6 +15,7 @@ import { getUserFlightPriceDeal, UserFlightPriceDeal, UserFlightPriceDealResult 
 import colors from "../theme/colors";
 import { supportedLanguageCodes } from "../translations/translations";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
+import { formatIsoDateOnly } from "../utils/dateOnly";
 
 type ViewState = "loading" | "found" | "not_found" | "invalid" | "read_failed";
 
@@ -22,12 +23,6 @@ function interpolate(template: string, values: Record<string, string | number>) 
   return Object.entries(values).reduce((text, [key, value]) => text.replace(`%{${key}}`, String(value)), template);
 }
 
-function parseDateOnly(value: string) {
-  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
-  if (!match) return null;
-  const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
-  return date.getFullYear() === Number(match[1]) && date.getMonth() === Number(match[2]) - 1 && date.getDate() === Number(match[3]) ? date : null;
-}
 
 export function FlightDealDetailScreen() {
   const { t, language } = useTranslation();
@@ -63,12 +58,7 @@ export function FlightDealDetailScreen() {
     catch { return null; }
   }, [locale]);
   const formatPrice = (value: number) => { try { return currencyFormatter?.format(value) ?? `€${value.toFixed(2)}`; } catch { return `€${value}`; } };
-  const formatDate = (value: string) => {
-    const parsed = parseDateOnly(value);
-    if (!parsed) return value;
-    try { return new Intl.DateTimeFormat(locale, { year: "numeric", month: "short", day: "numeric" }).format(parsed); }
-    catch { return value; }
-  };
+  const formatDate = formatIsoDateOnly;
 
   async function openProvider() {
     if (!deal || opening) return;
