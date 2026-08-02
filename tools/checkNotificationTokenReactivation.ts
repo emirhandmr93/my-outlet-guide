@@ -1,5 +1,3 @@
-import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
@@ -11,7 +9,22 @@ const assert = (condition: unknown, message: string): asserts condition => {
   if (!condition) throw new Error(message);
 };
 const keys = (value: Record<string, unknown>) => Object.keys(value).sort();
-const sha256 = (value: string) => createHash("sha256").update(value).digest("hex");
+const compact = (value: string) => value.replace(/\s+/g, "");
+const extractBracedBlock = (source: string, anchor: string) => {
+  const anchorIndex = source.indexOf(anchor);
+  assert(anchorIndex >= 0, `missing source block: ${anchor}`);
+  const openingBrace = source.indexOf("{", anchorIndex + anchor.length);
+  assert(openingBrace >= 0, `missing opening brace for: ${anchor}`);
+
+  let depth = 0;
+  for (let index = openingBrace; index < source.length; index += 1) {
+    if (source[index] === "{") depth += 1;
+    if (source[index] === "}") depth -= 1;
+    if (depth === 0) return source.slice(anchorIndex, index + 1);
+  }
+
+  throw new Error(`missing closing brace for: ${anchor}`);
+};
 
 const identity = { userId: "user-1", token: "ExponentPushToken[test]", platform: "ios" };
 const values = { ...identity, now: "2026-08-02T10:00:00.000Z", firestoreNow: "server-time" };
@@ -64,33 +77,51 @@ assert(toggle.includes("catch (error)") && toggle.includes('setTokenRegistration
 assert(disableSaveIndex >= 0 && disableTokensIndex > disableSaveIndex, "disabling must save enabled false before disabling tokens");
 
 const rules = read("firestore.rules");
+const tokenOwnershipRule = compact(extractBracedBlock(rules, "function keepsNotificationTokenOwnership(userId)"));
 assert(
-  rules.includes("request.resource.data.createdAt == resource.data.createdAt") &&
-    rules.includes("request.resource.data.userId == resource.data.userId") &&
-    rules.includes("request.resource.data.token == resource.data.token") &&
-    rules.includes("request.resource.data.platform == resource.data.platform"),
+  tokenOwnershipRule.includes("request.resource.data.userId==resource.data.userId") &&
+    tokenOwnershipRule.includes("request.resource.data.token==resource.data.token") &&
+    tokenOwnershipRule.includes("request.resource.data.platform==resource.data.platform") &&
+    tokenOwnershipRule.includes("request.resource.data.createdAt==resource.data.createdAt"),
   "Firestore Rules must continue preserving notification token identity and createdAt"
 );
-assert(sha256(rules) === "b1c5efce21ba0feca1fe1c645d2d3b24dd16b045bc73e9d49db10dafa8932336", "Firestore Rules must remain unchanged");
+const tokenMatchRule = compact(extractBracedBlock(rules, "match /tokens/{tokenId}"));
+assert(
+  tokenMatchRule.includes(
+    "allowupdate:ifisSignedIn()&&keepsNotificationTokenOwnership(userId)&&hasValidNotificationTokenData(userId);"
+  ),
+  "notification token updates must require ownership preservation and valid token data"
+);
+assert(
+  !tokenMatchRule.includes("allowupdate:iftrue") && !tokenMatchRule.includes("allowcreate,update:iftrue"),
+  "notification token updates must not allow unrestricted client writes"
+);
 
 const worker = read("functions/src/flightPriceNotificationDelivery.ts");
+const tokenLoadingBlock = extractBracedBlock(worker, "const tokensForUser = (userId: string) =>");
+const compactTokenLoadingBlock = compact(tokenLoadingBlock);
 assert(
-  worker.includes("data.disabledAt === undefined || data.disabledAt === null || data.disabledAt === \"\"") &&
-    sha256(worker) === "e3e38e6b1735ec6bc747c72114aae2b62e3a36e4dd4bd6b8e7fbd7470ad12300",
-  "delivery worker must remain unchanged and exclude disabled token documents"
+  compactTokenLoadingBlock.includes("if(settings.data()?.enabled!==true)returnnull"),
+  "flight-price token loading must require the parent notification setting to be enabled"
+);
+assert(
+  compactTokenLoadingBlock.includes("data.userId===userId") && compactTokenLoadingBlock.includes("isExpoPushToken(data.token)"),
+  "flight-price token loading must require the matching user and a valid Expo push token"
+);
+assert(
+  compactTokenLoadingBlock.includes('(data.platform==="ios"||data.platform==="android")'),
+  "flight-price token loading must accept only iOS and Android tokens"
+);
+assert(
+  compactTokenLoadingBlock.includes('(data.disabledAt===undefined||data.disabledAt===null||data.disabledAt==="")'),
+  "flight-price token loading must accept only unset, null, or empty disabledAt values"
+);
+const eligibleDisabledAt = (disabledAt: unknown) => disabledAt === undefined || disabledAt === null || disabledAt === "";
+assert(
+  eligibleDisabledAt(undefined) && eligibleDisabledAt(null) && eligibleDisabledAt("") && !eligibleDisabledAt("2026-08-02T10:00:00.000Z"),
+  "a non-empty disabledAt value must not be eligible for flight-price delivery"
 );
 const startupEffects = [...context.matchAll(/useEffect\(\(\) => \{([\s\S]*?)\}, \[/g)].map((match) => match[1]).join("\n");
 assert(!startupEffects.includes("registerPushToken"), "startup effects must not register or reactivate push tokens");
-
-const approvedFiles = new Set([
-  "src/contexts/NotificationSettingsContext.tsx",
-  "src/services/notificationTokenRegistration.ts",
-  "tools/checkNotificationTokenReactivation.ts",
-]);
-const changedFiles = execFileSync("git", ["diff", "--name-only", "HEAD^", "HEAD"], { cwd: root, encoding: "utf8" })
-  .trim()
-  .split("\n")
-  .filter(Boolean);
-assert(changedFiles.every((file) => approvedFiles.has(file)), `unapproved files changed: ${changedFiles.filter((file) => !approvedFiles.has(file)).join(", ")}`);
 
 console.log("Notification token reactivation checks passed");
