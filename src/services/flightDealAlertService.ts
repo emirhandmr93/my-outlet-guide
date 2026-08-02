@@ -18,6 +18,7 @@ export type FlightDealPreferenceProviderStatus = "pending_provider";
 export type FlightDealTripType = "round_trip" | "one_way";
 export type FlightDealTripClass = "economy" | "business";
 export type FlightDealAlertCurrency = "EUR";
+export type RollingRouteFlightDealMonitoringMode = "rolling_route";
 
 export type FlightDealAlertProfile = {
   tripType: FlightDealTripType;
@@ -61,6 +62,46 @@ export type FlightDealAlertSaveInput = Omit<
   FlightDealAlertPreference,
   "schemaVersion" | "alertId" | "queryKey" | "userId" | "providerStatus" | "createdAt" | "updatedAt"
 >;
+
+export type RollingRouteFlightDealAlertProfile = {
+  tripType: FlightDealTripType;
+  tripClass: FlightDealTripClass;
+  directOnly: boolean;
+  currency: FlightDealAlertCurrency;
+  monitoringMode: RollingRouteFlightDealMonitoringMode;
+  monitoringWindowDays: 365;
+};
+
+export type RollingRouteFlightDealAlertPreference = RollingRouteFlightDealAlertProfile & {
+  schemaVersion: 3;
+  alertId: string;
+  queryKey: string;
+  userId: string;
+  originLabel: string;
+  originAirportCode: string;
+  originAirportName: string;
+  originCityName: string;
+  originCountryCode: string;
+  originCountryName: string;
+  destinationType: "airport";
+  destinationKey: string;
+  destinationAirportCode: string;
+  destinationAirportName: string;
+  destinationCityName: string;
+  destinationCountryCode: string;
+  destinationCountryName: string;
+  destinationLabel: string;
+  selectedThresholds: FlightDealThreshold[];
+  active: boolean;
+  providerStatus: FlightDealPreferenceProviderStatus;
+  createdAt?: unknown;
+  updatedAt?: unknown;
+};
+
+export type RollingRouteFlightDealAlertSaveInput = Omit<RollingRouteFlightDealAlertPreference,
+  "schemaVersion" | "alertId" | "queryKey" | "userId" | "providerStatus" | "monitoringMode" | "monitoringWindowDays" | "createdAt" | "updatedAt"
+>;
+export type StoredFlightDealAlertPreference = FlightDealAlertPreference | RollingRouteFlightDealAlertPreference;
 
 export type FlightDealAlertMatch = { originLabel: string; destinationCityName: string; currentFare: number; averageFare: number; discountPercent: number; matchedThreshold: FlightDealThreshold; currency: string; deepLink?: string };
 export type FlightDealAlertEvaluationResult = { status: "provider_pending" } | { status: "insufficient_data"; sampleCount: number } | { status: "no_match"; discountPercent: number | null } | { status: "matched"; match: FlightDealAlertMatch };
@@ -111,6 +152,43 @@ export function buildFlightDealQueryKey(input: Pick<FlightDealAlertSaveInput, "o
   return parts.join("_").replace(/[^a-z0-9_]+/g, "_").replace(/_+/g, "_").replace(/^_+|_+$/g, "");
 }
 
+export function buildRollingRouteFlightDealQueryKey(input: Pick<RollingRouteFlightDealAlertPreference,
+  "originAirportCode" | "destinationAirportCode" | "tripType" | "tripClass" | "directOnly" | "currency" | "monitoringMode" | "monitoringWindowDays"
+>): string {
+  const origin = input.originAirportCode.trim().toUpperCase();
+  const destination = input.destinationAirportCode.trim().toUpperCase();
+  if (!/^[A-Z]{3}$/.test(origin) || !/^[A-Z]{3}$/.test(destination) || origin === destination
+    || (input.tripType !== "round_trip" && input.tripType !== "one_way")
+    || (input.tripClass !== "economy" && input.tripClass !== "business")
+    || typeof input.directOnly !== "boolean" || input.currency !== "EUR"
+    || input.monitoringMode !== "rolling_route" || input.monitoringWindowDays !== 365) throw new Error("Invalid rolling-route profile.");
+  return [origin.toLowerCase(), destination.toLowerCase(), "rolling_route", "365", input.tripType,
+    input.tripClass, input.directOnly ? "direct" : "any", "eur"].join("_");
+}
+
+export function validateRollingRouteFlightDealAlertInput(input: RollingRouteFlightDealAlertSaveInput): RollingRouteFlightDealAlertSaveInput {
+  const originAirportCode = input.originAirportCode.trim().toUpperCase();
+  const destinationAirportCode = input.destinationAirportCode.trim().toUpperCase();
+  if (!/^[A-Z]{3}$/.test(originAirportCode)) throw new Error("Origin airport code must be exactly three ASCII letters.");
+  if (!/^[A-Z]{3}$/.test(destinationAirportCode)) throw new Error("Destination airport code must be exactly three ASCII letters.");
+  if (originAirportCode === destinationAirportCode) throw new Error("Origin and destination airports must differ.");
+  if (input.tripType !== "round_trip" && input.tripType !== "one_way") throw new Error("Trip type must be round_trip or one_way.");
+  if (input.tripClass !== "economy" && input.tripClass !== "business") throw new Error("Trip class must be economy or business.");
+  if (typeof input.directOnly !== "boolean") throw new Error("directOnly must be boolean.");
+  if (input.currency !== "EUR") throw new Error("Currency must be EUR.");
+  if (input.destinationType !== "airport" || input.destinationKey.trim().toUpperCase() !== destinationAirportCode) throw new Error("Destination metadata must identify the selected airport.");
+  if (!/^[A-Z]{2}$/.test(input.originCountryCode) || !/^[A-Z]{2}$/.test(input.destinationCountryCode)) throw new Error("Country codes must be two uppercase ASCII letters.");
+  const displays = [input.originLabel, input.originAirportName, input.originCityName, input.originCountryName,
+    input.destinationAirportName, input.destinationCityName, input.destinationCountryName, input.destinationLabel];
+  if (!displays.every(isValidDisplayString)) throw new Error("Complete display metadata is required.");
+  if (!Array.isArray(input.selectedThresholds) || input.selectedThresholds.length === 0
+    || input.selectedThresholds.some(value => !FLIGHT_DEAL_THRESHOLDS.includes(value))
+    || new Set(input.selectedThresholds).size !== input.selectedThresholds.length) throw new Error("Thresholds must be a unique subset of 15, 30 and 45.");
+  if (typeof input.active !== "boolean") throw new Error("active must be boolean.");
+  return { ...input, originAirportCode, destinationAirportCode, destinationKey: destinationAirportCode,
+    selectedThresholds: [...input.selectedThresholds].sort((a, b) => a - b) };
+}
+
 /** @deprecated Use buildFlightDealQueryKey for complete profile identity. */
 export const buildFlightDealAlertId = buildFlightDealQueryKey;
 export function getFlightDealAlertsCollection(userId: string) { return collection(db, "flightDealPreferences", userId, "alerts"); }
@@ -148,6 +226,15 @@ function isValidDisplayString(value: unknown): value is string {
     && value === value.trim()
     && !CONTROL_CHARACTER_PATTERN.test(value)
     && utf8ByteLength(value) <= 300;
+}
+
+function isStoredTimestamp(value: unknown): boolean {
+  if (value instanceof Date) return Number.isFinite(value.getTime());
+  if (typeof value !== "object" || value === null || Array.isArray(value)) return false;
+  const timestamp = value as { seconds?: unknown; nanoseconds?: unknown };
+  return typeof timestamp.seconds === "number" && Number.isFinite(timestamp.seconds)
+    && typeof timestamp.nanoseconds === "number" && Number.isInteger(timestamp.nanoseconds)
+    && timestamp.nanoseconds >= 0 && timestamp.nanoseconds < 1_000_000_000;
 }
 
 function parseStoredFlightDealAlertValue(documentId: string, data: unknown, expectedUserId: string): FlightDealAlertPreference | null {
@@ -225,12 +312,91 @@ export function parseStoredFlightDealAlert(documentId: string, data: unknown, ex
   }
 }
 
+const ROLLING_ROUTE_ALERT_KEYS = new Set([
+  "schemaVersion", "alertId", "queryKey", "userId", "originLabel", "originAirportCode", "originAirportName",
+  "originCityName", "originCountryCode", "originCountryName", "destinationType", "destinationKey",
+  "destinationAirportCode", "destinationAirportName", "destinationCityName", "destinationCountryCode",
+  "destinationCountryName", "destinationLabel", "tripType", "tripClass", "directOnly", "currency",
+  "monitoringMode", "monitoringWindowDays", "selectedThresholds", "active", "providerStatus", "createdAt", "updatedAt",
+]);
+
+function parseStoredRollingRouteFlightDealAlertValue(documentId: string, data: unknown, expectedUserId: string): RollingRouteFlightDealAlertPreference | null {
+  if (!isValidDocumentSegment(documentId) || !isValidDocumentSegment(expectedUserId) || typeof data !== "object" || data === null || Array.isArray(data)) return null;
+  const stored = data as Record<string, unknown>;
+  if (Object.keys(stored).some(key => !ROLLING_ROUTE_ALERT_KEYS.has(key))
+    || stored.schemaVersion !== 3 || stored.alertId !== documentId || stored.queryKey !== documentId
+    || stored.userId !== expectedUserId || stored.alertId !== stored.queryKey) return null;
+  if ((Object.prototype.hasOwnProperty.call(stored, "createdAt") && !isStoredTimestamp(stored.createdAt))
+    || (Object.prototype.hasOwnProperty.call(stored, "updatedAt") && !isStoredTimestamp(stored.updatedAt))) return null;
+  if (typeof stored.originAirportCode !== "string" || !/^[A-Z]{3}$/.test(stored.originAirportCode)
+    || typeof stored.destinationAirportCode !== "string" || !/^[A-Z]{3}$/.test(stored.destinationAirportCode)
+    || stored.originAirportCode === stored.destinationAirportCode || stored.destinationType !== "airport"
+    || stored.destinationKey !== stored.destinationAirportCode
+    || typeof stored.originCountryCode !== "string" || !/^[A-Z]{2}$/.test(stored.originCountryCode)
+    || typeof stored.destinationCountryCode !== "string" || !/^[A-Z]{2}$/.test(stored.destinationCountryCode)) return null;
+  const displays = [stored.originLabel, stored.originAirportName, stored.originCityName, stored.originCountryName,
+    stored.destinationAirportName, stored.destinationCityName, stored.destinationCountryName, stored.destinationLabel];
+  if (!displays.every(isValidDisplayString)
+    || (stored.tripType !== "round_trip" && stored.tripType !== "one_way")
+    || (stored.tripClass !== "economy" && stored.tripClass !== "business")
+    || typeof stored.directOnly !== "boolean" || stored.currency !== "EUR"
+    || stored.monitoringMode !== "rolling_route" || stored.monitoringWindowDays !== 365
+    || typeof stored.active !== "boolean" || stored.providerStatus !== "pending_provider") return null;
+  if (!Array.isArray(stored.selectedThresholds) || stored.selectedThresholds.length === 0
+    || stored.selectedThresholds.some(value => typeof value !== "number" || !FLIGHT_DEAL_THRESHOLDS.includes(value as FlightDealThreshold))
+    || new Set(stored.selectedThresholds).size !== stored.selectedThresholds.length) return null;
+  const selectedThresholds = [...stored.selectedThresholds].sort((a, b) => a - b) as FlightDealThreshold[];
+  const rebuilt = buildRollingRouteFlightDealQueryKey({
+    originAirportCode: stored.originAirportCode, destinationAirportCode: stored.destinationAirportCode,
+    tripType: stored.tripType, tripClass: stored.tripClass, directOnly: stored.directOnly, currency: "EUR",
+    monitoringMode: "rolling_route", monitoringWindowDays: 365,
+  });
+  if (rebuilt !== documentId || rebuilt !== stored.alertId || rebuilt !== stored.queryKey) return null;
+  return {
+    schemaVersion: 3, alertId: documentId, queryKey: documentId, userId: expectedUserId,
+    originLabel: stored.originLabel as string, originAirportCode: stored.originAirportCode,
+    originAirportName: stored.originAirportName as string, originCityName: stored.originCityName as string,
+    originCountryCode: stored.originCountryCode, originCountryName: stored.originCountryName as string,
+    destinationType: "airport", destinationKey: stored.destinationAirportCode,
+    destinationAirportCode: stored.destinationAirportCode, destinationAirportName: stored.destinationAirportName as string,
+    destinationCityName: stored.destinationCityName as string, destinationCountryCode: stored.destinationCountryCode,
+    destinationCountryName: stored.destinationCountryName as string, destinationLabel: stored.destinationLabel as string,
+    tripType: stored.tripType, tripClass: stored.tripClass, directOnly: stored.directOnly, currency: "EUR",
+    monitoringMode: "rolling_route", monitoringWindowDays: 365, selectedThresholds, active: stored.active,
+    providerStatus: "pending_provider",
+    ...(Object.prototype.hasOwnProperty.call(stored, "createdAt") ? { createdAt: stored.createdAt } : {}),
+    ...(Object.prototype.hasOwnProperty.call(stored, "updatedAt") ? { updatedAt: stored.updatedAt } : {}),
+  };
+}
+
+/** Strictly parses an untrusted schema-v3 record without I/O, logging, mutation, or exceptions. */
+export function parseStoredRollingRouteFlightDealAlert(documentId: string, data: unknown, expectedUserId: string): RollingRouteFlightDealAlertPreference | null {
+  try { return parseStoredRollingRouteFlightDealAlertValue(documentId, data, expectedUserId); } catch { return null; }
+}
+
 export async function listFlightDealAlerts(userId: string): Promise<FlightDealAlertPreference[]> {
   const snapshot = await getDocs(getFlightDealAlertsCollection(userId));
   return snapshot.docs
     .map(item => parseStoredFlightDealAlert(item.id, item.data(), userId))
     .filter((item): item is FlightDealAlertPreference => item !== null)
     .sort((a, b) => a.departDate.localeCompare(b.departDate) || a.queryKey.localeCompare(b.queryKey));
+}
+
+export async function listRollingRouteFlightDealAlerts(userId: string): Promise<RollingRouteFlightDealAlertPreference[]> {
+  const snapshot = await getDocs(getFlightDealAlertsCollection(userId));
+  return snapshot.docs.map(item => parseStoredRollingRouteFlightDealAlert(item.id, item.data(), userId))
+    .filter((item): item is RollingRouteFlightDealAlertPreference => item !== null)
+    .sort((a, b) => a.queryKey.localeCompare(b.queryKey));
+}
+
+export async function listAllFlightDealAlerts(userId: string): Promise<StoredFlightDealAlertPreference[]> {
+  const snapshot = await getDocs(getFlightDealAlertsCollection(userId));
+  return snapshot.docs.flatMap(item => {
+    const data = item.data();
+    const parsed = parseStoredFlightDealAlert(item.id, data, userId)
+      ?? parseStoredRollingRouteFlightDealAlert(item.id, data, userId);
+    return parsed ? [parsed] : [];
+  }).sort((a, b) => a.schemaVersion - b.schemaVersion || a.queryKey.localeCompare(b.queryKey));
 }
 
 export async function saveFlightDealAlert(userId: string, input: FlightDealAlertSaveInput, previousAlertId?: string) {
@@ -248,6 +414,27 @@ export async function saveFlightDealAlert(userId: string, input: FlightDealAlert
   } else {
     await setDoc(target, { ...payload, createdAt: previousSnapshot.data()?.createdAt ?? serverTimestamp() });
   }
+  return queryKey;
+}
+
+export async function saveRollingRouteFlightDealAlert(userId: string, input: RollingRouteFlightDealAlertSaveInput, previousAlertId?: string) {
+  if (!isValidDocumentSegment(userId)) throw new Error("A valid user ID is required.");
+  if (previousAlertId !== undefined && !isValidDocumentSegment(previousAlertId)) throw new Error("Invalid previous alert ID.");
+  const validated = validateRollingRouteFlightDealAlertInput(input);
+  const queryKey = buildRollingRouteFlightDealQueryKey({ ...validated, monitoringMode: "rolling_route", monitoringWindowDays: 365 });
+  const target = doc(db, "flightDealPreferences", userId, "alerts", queryKey);
+  const previous = previousAlertId ? doc(db, "flightDealPreferences", userId, "alerts", previousAlertId) : target;
+  const previousSnapshot = await getDoc(previous);
+  const payload = { ...validated, schemaVersion: 3 as const, alertId: queryKey, queryKey, userId,
+    monitoringMode: "rolling_route" as const, monitoringWindowDays: 365 as const,
+    providerStatus: "pending_provider" as const, updatedAt: serverTimestamp() };
+  const createdAt = previousSnapshot.data()?.createdAt ?? serverTimestamp();
+  if (previousAlertId && previousAlertId !== queryKey) {
+    const batch = writeBatch(db);
+    batch.set(target, { ...payload, createdAt });
+    batch.delete(previous);
+    await batch.commit();
+  } else await setDoc(target, { ...payload, createdAt });
   return queryKey;
 }
 

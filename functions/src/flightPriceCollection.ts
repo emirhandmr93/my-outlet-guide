@@ -201,12 +201,17 @@ export function classifyRollingRouteFlightPriceAlertDocument(path: string, data:
     (data.tripType !== "round_trip" && data.tripType !== "one_way") ||
     (data.tripClass !== "economy" && data.tripClass !== "business") || typeof data.directOnly !== "boolean"
   ) return { kind: "invalid" };
-  if (!data.active) return { kind: "inactive" };
   const query: RollingRouteFlightPriceQuery = {
     originAirportCode: origin, destinationAirportCode: destination,
     tripType: data.tripType, tripClass: data.tripClass, directOnly: data.directOnly,
     currency: "EUR", monitoringMode: "rolling_route", monitoringWindowDays: 365,
   };
+  let rebuiltQueryKey: string;
+  try { rebuiltQueryKey = buildRollingRouteProviderQueryKey(query); } catch { return { kind: "invalid" }; }
+  if (rebuiltQueryKey !== segments[3] || rebuiltQueryKey !== data.alertId || rebuiltQueryKey !== data.queryKey) {
+    return { kind: "invalid" };
+  }
+  if (!data.active) return { kind: "inactive" };
   const alert: RollingRouteFlightPriceAlertRecord = {
     schemaVersion: 3, alertId: data.alertId, queryKey: data.queryKey as string, userId: data.userId as string,
     ...query, selectedThresholds: [...data.selectedThresholds as FlightPriceThreshold[]].sort((a, b) => a - b),

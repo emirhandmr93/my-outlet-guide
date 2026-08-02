@@ -160,7 +160,7 @@ service cloud.firestore {
         && thresholds.hasOnly([15, 30, 45]);
     }
 
-    function hasValidFlightDealAlertData(userId, alertId) {
+    function hasValidExactDateFlightDealAlertData(userId, alertId) {
       return request.resource.data.keys().hasOnly([
           'schemaVersion',
           'alertId',
@@ -247,6 +247,73 @@ service cloud.firestore {
         && request.resource.data.providerStatus == 'pending_provider'
         && request.resource.data.createdAt is timestamp
         && request.resource.data.updatedAt is timestamp;
+    }
+
+    function hasValidUniqueFlightDealThresholds(thresholds) {
+      return thresholds == [15] || thresholds == [30] || thresholds == [45]
+        || thresholds == [15, 30] || thresholds == [15, 45] || thresholds == [30, 45]
+        || thresholds == [15, 30, 45];
+    }
+
+    function hasValidRollingRouteFlightDealAlertData(userId, alertId) {
+      return request.resource.data.keys().hasOnly([
+          'schemaVersion', 'alertId', 'queryKey', 'userId',
+          'originLabel', 'originAirportCode', 'originAirportName', 'originCityName', 'originCountryCode', 'originCountryName',
+          'destinationType', 'destinationKey', 'destinationAirportCode', 'destinationAirportName',
+          'destinationCityName', 'destinationCountryCode', 'destinationCountryName', 'destinationLabel',
+          'tripType', 'tripClass', 'directOnly', 'currency', 'monitoringMode', 'monitoringWindowDays',
+          'selectedThresholds', 'active', 'providerStatus', 'createdAt', 'updatedAt'
+        ])
+        && request.resource.data.keys().hasAll([
+          'schemaVersion', 'alertId', 'queryKey', 'userId',
+          'originLabel', 'originAirportCode', 'originAirportName', 'originCityName', 'originCountryCode', 'originCountryName',
+          'destinationType', 'destinationKey', 'destinationAirportCode', 'destinationAirportName',
+          'destinationCityName', 'destinationCountryCode', 'destinationCountryName', 'destinationLabel',
+          'tripType', 'tripClass', 'directOnly', 'currency', 'monitoringMode', 'monitoringWindowDays',
+          'selectedThresholds', 'active', 'providerStatus', 'createdAt', 'updatedAt'
+        ])
+        && userId == request.auth.uid
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.schemaVersion == 3
+        && request.resource.data.alertId == alertId
+        && request.resource.data.queryKey == alertId
+        && request.resource.data.alertId == request.resource.data.queryKey
+        && alertId.matches('^[a-z]{3}_[a-z]{3}_rolling_route_365_(round_trip|one_way)_(economy|business)_(direct|any)_eur$')
+        && isNonEmptyString(request.resource.data.originLabel)
+        && request.resource.data.originAirportCode is string
+        && request.resource.data.originAirportCode.matches('^[A-Z]{3}$')
+        && isNonEmptyString(request.resource.data.originAirportName)
+        && isNonEmptyString(request.resource.data.originCityName)
+        && request.resource.data.originCountryCode is string
+        && request.resource.data.originCountryCode.matches('^[A-Z]{2}$')
+        && isNonEmptyString(request.resource.data.originCountryName)
+        && request.resource.data.destinationType == 'airport'
+        && request.resource.data.destinationKey == request.resource.data.destinationAirportCode
+        && request.resource.data.destinationAirportCode is string
+        && request.resource.data.destinationAirportCode.matches('^[A-Z]{3}$')
+        && request.resource.data.originAirportCode != request.resource.data.destinationAirportCode
+        && isNonEmptyString(request.resource.data.destinationAirportName)
+        && isNonEmptyString(request.resource.data.destinationCityName)
+        && request.resource.data.destinationCountryCode is string
+        && request.resource.data.destinationCountryCode.matches('^[A-Z]{2}$')
+        && isNonEmptyString(request.resource.data.destinationCountryName)
+        && isNonEmptyString(request.resource.data.destinationLabel)
+        && request.resource.data.tripType in ['round_trip', 'one_way']
+        && request.resource.data.tripClass in ['economy', 'business']
+        && request.resource.data.directOnly is bool
+        && request.resource.data.currency == 'EUR'
+        && request.resource.data.monitoringMode == 'rolling_route'
+        && request.resource.data.monitoringWindowDays == 365
+        && hasValidUniqueFlightDealThresholds(request.resource.data.selectedThresholds)
+        && request.resource.data.active is bool
+        && request.resource.data.providerStatus == 'pending_provider'
+        && request.resource.data.createdAt is timestamp
+        && request.resource.data.updatedAt is timestamp;
+    }
+
+    function hasValidFlightDealAlertData(userId, alertId) {
+      return hasValidExactDateFlightDealAlertData(userId, alertId)
+        || hasValidRollingRouteFlightDealAlertData(userId, alertId);
     }
 
     function hasValidLegacyFlightDealPreferencesData(userId) {
@@ -481,7 +548,9 @@ service cloud.firestore {
 
       match /alerts/{alertId} {
         allow read: if isOwnerDocument(userId);
-        allow create, update: if isSignedIn() && hasValidFlightDealAlertData(userId, alertId);
+        allow create: if isSignedIn() && hasValidFlightDealAlertData(userId, alertId);
+        allow update: if isSignedIn() && hasValidFlightDealAlertData(userId, alertId)
+          && (request.resource.data.schemaVersion != 3 || request.resource.data.createdAt == resource.data.createdAt);
         allow delete: if isOwnerDocument(userId);
       }
     }
