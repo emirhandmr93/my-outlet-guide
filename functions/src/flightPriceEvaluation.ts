@@ -76,6 +76,23 @@ function validateSnapshot(input: FlightPriceDailySnapshotInput): ValidSnapshot |
 
 const safeOfferString = (value: unknown): value is string => typeof value === "string" && value.trim() === value && value.length > 0 &&
   Buffer.byteLength(value, "utf8") <= 200 && !/[\u0000-\u001f\u007f-\u009f]/.test(value);
+const isTimestampLike = (value: unknown): boolean => isObject(value) && typeof value.toDate === "function" && (() => {
+  try { return (value.toDate as () => unknown)() instanceof Date && Number.isFinite(((value.toDate as () => Date)()).getTime()); } catch { return false; }
+})();
+const isEventWriteTimestamp = (value: unknown): boolean => isTimestampLike(value) ||
+  (isObject(value) && value.constructor?.name === "ServerTimestampTransform");
+const isThreshold = (value: unknown): value is FlightPriceThreshold => value === 15 || value === 30 || value === 45;
+const hasValidRollingOffer = (value: Record<string, unknown>, dateField: "evaluationDate" | "snapshotDate"): boolean => {
+  const anchor = parseDate(value[dateField]);
+  const departure = parseDate(value.offerDepartDate);
+  if (!anchor || !departure || (value.offerDepartDate as string) < (value[dateField] as string) ||
+    (value.offerDepartDate as string) > new Date(anchor.getTime() + 364 * 86_400_000).toISOString().slice(0, 10) ||
+    !Number.isInteger(value.offerTransfers) || (value.offerTransfers as number) < 0 || (value.directOnly === true && value.offerTransfers !== 0)) return false;
+  if (value.tripType === "round_trip") {
+    if (!parseDate(value.offerReturnDate) || (value.offerReturnDate as string) < (value.offerDepartDate as string)) return false;
+  } else if (value.tripType !== "one_way" || Object.prototype.hasOwnProperty.call(value, "offerReturnDate")) return false;
+  return ["offerAirline", "offerFlightNumber", "offerSourceFoundAt"].every(field => value[field] === undefined || safeOfferString(value[field]));
+};
 
 export function validateRollingRouteFlightPriceSnapshot(
   input: FlightPriceDailySnapshotInput,
@@ -184,8 +201,49 @@ export function buildFlightPriceAlertEventId(userId: string, alertId: string, sn
   return createHash("sha256").update(JSON.stringify([userId, alertId, snapshotDate])).digest("hex");
 }
 
+const ROLLING_EVENT_REQUIRED_FIELDS = ["schemaVersion", "alertSchemaVersion", "eventId", "userId", "alertId", "queryKey", "providerQueryKey",
+  "originAirportCode", "destinationAirportCode", "tripType", "tripClass", "directOnly", "monitoringMode", "monitoringWindowDays", "snapshotDate",
+  "offerDepartDate", "offerTransfers", "currentPrice", "averagePrice", "discountPercent", "matchedThreshold", "metThresholds", "selectedThresholds",
+  "trackingDayCount", "historyWindowDays", "priceSampleCount", "provider", "currency", "priceScope", "passengerCountApplied", "status", "createdAt", "updatedAt"] as const;
+const ROLLING_EVENT_ALLOWED_FIELDS = new Set<string>([...ROLLING_EVENT_REQUIRED_FIELDS, "offerReturnDate", "offerAirline", "offerFlightNumber", "offerSourceFoundAt"]);
+const ROLLING_EVENT_STATUSES = new Set(["pending_delivery", "submitted_to_expo", "delivery_failed", "cancelled_stale_alert", "no_eligible_tokens"]);
+export function isValidRollingFlightPriceAlertEvent(value: unknown): value is Record<string, unknown> {
+  if (!isObject(value) || Object.keys(value).some(key => !ROLLING_EVENT_ALLOWED_FIELDS.has(key)) ||
+    ROLLING_EVENT_REQUIRED_FIELDS.some(key => !Object.prototype.hasOwnProperty.call(value, key))) return false;
+  let rebuiltKey: string;
+  try { rebuiltKey = buildRollingRouteProviderQueryKey({ originAirportCode: value.originAirportCode as string,
+    destinationAirportCode: value.destinationAirportCode as string, tripType: value.tripType as "round_trip" | "one_way",
+    tripClass: value.tripClass as "economy" | "business", directOnly: value.directOnly as boolean, currency: "EUR",
+    monitoringMode: "rolling_route", monitoringWindowDays: 365 }); } catch { return false; }
+  return value.schemaVersion === 2 && value.alertSchemaVersion === 3 && safeIdentity(value.userId) && safeIdentity(value.alertId) &&
+    value.queryKey === value.alertId && value.providerQueryKey === value.queryKey && value.providerQueryKey === rebuiltKey && parseDate(value.snapshotDate) !== null &&
+    value.eventId === buildFlightPriceAlertEventId(value.userId, value.alertId, value.snapshotDate as string) &&
+    /^[A-Z]{3}$/.test(value.originAirportCode as string) && /^[A-Z]{3}$/.test(value.destinationAirportCode as string) && value.originAirportCode !== value.destinationAirportCode &&
+    value.monitoringMode === "rolling_route" && value.monitoringWindowDays === 365 && hasValidRollingOffer(value, "snapshotDate") &&
+    typeof value.currentPrice === "number" && Number.isFinite(value.currentPrice) && value.currentPrice > 0 &&
+    typeof value.averagePrice === "number" && Number.isFinite(value.averagePrice) && value.averagePrice > 0 &&
+    typeof value.discountPercent === "number" && Number.isFinite(value.discountPercent) && isThreshold(value.matchedThreshold) &&
+    validProjectionThresholds(value.metThresholds) && value.metThresholds.at(-1) === value.matchedThreshold && validProjectionThresholds(value.selectedThresholds) &&
+    value.selectedThresholds.includes(value.matchedThreshold) && value.metThresholds.every(threshold => (value.selectedThresholds as unknown[]).includes(threshold)) &&
+    Number.isInteger(value.trackingDayCount) && (value.trackingDayCount as number) >= 14 &&
+    (value.historyWindowDays === 14 || value.historyWindowDays === 30 || value.historyWindowDays === 90) &&
+    (value.trackingDayCount as number) >= (value.historyWindowDays as number) && Number.isInteger(value.priceSampleCount) &&
+    (value.priceSampleCount as number) >= 1 && (value.priceSampleCount as number) <= (value.historyWindowDays as number) &&
+    value.provider === "aviasales_data_api" && value.currency === "EUR" && value.priceScope === "cached_offer" && value.passengerCountApplied === false &&
+    ROLLING_EVENT_STATUSES.has(value.status as string) && isEventWriteTimestamp(value.createdAt) && isEventWriteTimestamp(value.updatedAt);
+}
+
 export type FlightPriceAlertEventUpdateChoice = "create" | "upgrade" | "preserve";
 export function chooseFlightPriceAlertEventUpdate(existing: unknown, incoming: unknown): FlightPriceAlertEventUpdateChoice {
+  if (isObject(incoming) && incoming.schemaVersion === 2) {
+    if (!isValidRollingFlightPriceAlertEvent(incoming)) return "preserve";
+    if (existing === undefined || existing === null) return "create";
+    if (!isValidRollingFlightPriceAlertEvent(existing) || existing.status !== "pending_delivery" || incoming.status !== "pending_delivery") return "preserve";
+    const identityFields = ["eventId", "userId", "alertId", "queryKey", "providerQueryKey", "originAirportCode", "destinationAirportCode", "tripType", "tripClass",
+      "directOnly", "monitoringMode", "monitoringWindowDays", "snapshotDate", "offerDepartDate", "offerReturnDate", "offerTransfers"];
+    if (identityFields.some(field => existing[field] !== incoming[field])) return "preserve";
+    return (incoming.matchedThreshold as number) > (existing.matchedThreshold as number) ? "upgrade" : "preserve";
+  }
   if (!isObject(existing)) return "create";
   if (!isObject(incoming) || existing.status !== "pending_delivery" || incoming.status !== "pending_delivery") return "preserve";
   if (existing.schemaVersion !== incoming.schemaVersion || existing.eventId !== incoming.eventId || existing.userId !== incoming.userId ||
@@ -255,8 +313,15 @@ const ROLLING_DEAL_ALLOWED_FIELDS = new Set<string>([...ROLLING_DEAL_REQUIRED_FI
 export function isValidRollingUserFlightPriceDealProjection(value: unknown): value is Record<string, unknown> {
   if (!isObject(value) || Object.keys(value).some(key => !ROLLING_DEAL_ALLOWED_FIELDS.has(key)) ||
     ROLLING_DEAL_REQUIRED_FIELDS.some(key => !Object.prototype.hasOwnProperty.call(value, key))) return false;
+  let rebuiltKey: string;
+  try { rebuiltKey = buildRollingRouteProviderQueryKey({ originAirportCode: value.originAirportCode as string,
+    destinationAirportCode: value.destinationAirportCode as string, tripType: value.tripType as "round_trip" | "one_way",
+    tripClass: value.tripClass as "economy" | "business", directOnly: value.directOnly as boolean, currency: "EUR",
+    monitoringMode: "rolling_route", monitoringWindowDays: 365 }); } catch { return false; }
   return value.schemaVersion === 2 && value.alertSchemaVersion === 3 && typeof value.eventId === "string" && /^[0-9a-f]{64}$/.test(value.eventId) &&
     safeIdentity(value.userId) && safeIdentity(value.alertId) && safeIdentity(value.queryKey) && safeIdentity(value.providerQueryKey) &&
+    value.queryKey === value.alertId && value.providerQueryKey === value.queryKey && value.providerQueryKey === rebuiltKey &&
+    value.eventId === buildFlightPriceAlertEventId(value.userId, value.alertId, value.snapshotDate as string) &&
     /^[A-Z]{3}$/.test(value.originAirportCode as string) && /^[A-Z]{3}$/.test(value.destinationAirportCode as string) && value.originAirportCode !== value.destinationAirportCode &&
     (value.tripType === "round_trip" || value.tripType === "one_way") && (value.tripClass === "economy" || value.tripClass === "business") &&
     typeof value.directOnly === "boolean" && value.monitoringMode === "rolling_route" && value.monitoringWindowDays === 365 && parseDate(value.snapshotDate) !== null &&
@@ -266,9 +331,10 @@ export function isValidRollingUserFlightPriceDealProjection(value: unknown): val
       : !Object.prototype.hasOwnProperty.call(value, "offerReturnDate")) && Number.isInteger(value.offerTransfers) && (value.offerTransfers as number) >= 0 &&
     (!value.directOnly || value.offerTransfers === 0) && ["offerAirline", "offerFlightNumber", "offerSourceFoundAt"].every(field => value[field] === undefined || safeOfferString(value[field])) &&
     (value.matchedThreshold === 15 || value.matchedThreshold === 30 || value.matchedThreshold === 45) && validProjectionThresholds(value.metThresholds) &&
-    value.metThresholds.includes(value.matchedThreshold) && validProjectionThresholds(value.selectedThresholds) && value.selectedThresholds.includes(value.matchedThreshold) &&
+    value.metThresholds.at(-1) === value.matchedThreshold && validProjectionThresholds(value.selectedThresholds) && value.selectedThresholds.includes(value.matchedThreshold) &&
     value.metThresholds.every(threshold => (value.selectedThresholds as unknown[]).includes(threshold)) && Number.isInteger(value.trackingDayCount) &&
     (value.trackingDayCount as number) >= 14 && (value.historyWindowDays === 14 || value.historyWindowDays === 30 || value.historyWindowDays === 90) &&
+    (value.trackingDayCount as number) >= (value.historyWindowDays as number) &&
     Number.isInteger(value.priceSampleCount) && (value.priceSampleCount as number) > 0 && (value.priceSampleCount as number) <= (value.historyWindowDays as number) &&
     [value.currentPrice, value.averagePrice].every(item => typeof item === "number" && Number.isFinite(item) && item > 0) &&
     typeof value.discountPercent === "number" && Number.isFinite(value.discountPercent) && value.provider === "aviasales_data_api" && value.currency === "EUR" &&
@@ -286,12 +352,16 @@ export function chooseUserFlightPriceDealProjection(existing: unknown, incoming:
   if ((isValidDealProjection(existing) || isValidRollingUserFlightPriceDealProjection(existing)) && !validate(existing)) return "preserve";
   if (!validate(existing)) return "create";
   const fields = rolling ? ["eventId", "userId", "alertId", "queryKey", "providerQueryKey", "originAirportCode", "destinationAirportCode", "tripType",
-    "tripClass", "directOnly", "monitoringMode", "monitoringWindowDays", "snapshotDate"] : PROJECTION_COMPATIBILITY_FIELDS;
-  if (fields.some(field => existing[field] !== incoming[field])) return "create";
+    "tripClass", "directOnly", "monitoringMode", "monitoringWindowDays", "snapshotDate", "offerDepartDate", "offerReturnDate", "offerTransfers"] : PROJECTION_COMPATIBILITY_FIELDS;
+  if (fields.some(field => existing[field] !== incoming[field])) return rolling ? "preserve" : "create";
   return (incoming.matchedThreshold as number) < (existing.matchedThreshold as number) ? "preserve" : "update";
 }
 
-export type UserFlightPriceDealProjectionInput = Record<string, unknown> & { provider: "aviasales_data_api" };
+export type ExactDateUserFlightPriceDealProjectionInput = Omit<Record<(typeof USER_DEAL_REQUIRED_FIELDS)[number], unknown>, "updatedAt"> &
+  { schemaVersion: 1; returnDate?: string; provider: "aviasales_data_api" };
+export type RollingUserFlightPriceDealProjectionInput = Omit<Record<(typeof ROLLING_DEAL_REQUIRED_FIELDS)[number], unknown>, "updatedAt"> &
+  { schemaVersion: 2; offerReturnDate?: string; offerAirline?: string; offerFlightNumber?: string; offerSourceFoundAt?: string; provider: "aviasales_data_api" };
+export type UserFlightPriceDealProjectionInput = ExactDateUserFlightPriceDealProjectionInput | RollingUserFlightPriceDealProjectionInput;
 const EVENT_LIFECYCLE_STATUSES = new Set([
   "pending_delivery", "submitted_to_expo", "delivery_failed", "cancelled_stale_alert", "no_eligible_tokens",
 ]);
@@ -301,7 +371,7 @@ export function buildUserFlightPriceDealProjectionFromEvent(
 ): UserFlightPriceDealProjectionInput | null {
   if (!isObject(eventData) || !EVENT_LIFECYCLE_STATUSES.has(eventData.status as string) || eventData.eventId !== eventDocumentId) return null;
   if (eventData.schemaVersion === 2) {
-    const candidate: UserFlightPriceDealProjectionInput = {
+    const candidate = {
       schemaVersion: 2, alertSchemaVersion: eventData.alertSchemaVersion, eventId: eventData.eventId, userId: eventData.userId, alertId: eventData.alertId,
       queryKey: eventData.queryKey, providerQueryKey: eventData.providerQueryKey, originAirportCode: eventData.originAirportCode,
       destinationAirportCode: eventData.destinationAirportCode, tripType: eventData.tripType, tripClass: eventData.tripClass, directOnly: eventData.directOnly,
@@ -315,7 +385,8 @@ export function buildUserFlightPriceDealProjectionFromEvent(
       historyWindowDays: eventData.historyWindowDays, priceSampleCount: eventData.priceSampleCount, provider: "aviasales_data_api", currency: eventData.currency,
       priceScope: eventData.priceScope, passengerCountApplied: eventData.passengerCountApplied, createdAt: eventData.createdAt,
     };
-    return isValidRollingUserFlightPriceDealProjection({ ...candidate, updatedAt: eventData.createdAt }) ? candidate : null;
+    return isValidRollingUserFlightPriceDealProjection({ ...candidate, updatedAt: eventData.createdAt })
+      ? candidate as RollingUserFlightPriceDealProjectionInput : null;
   }
   const candidate = {
     schemaVersion: eventData.schemaVersion, eventId: eventData.eventId, userId: eventData.userId, alertId: eventData.alertId,
@@ -336,7 +407,7 @@ export function buildUserFlightPriceDealProjectionFromEvent(
 
 function projectionBelongsToEvent(existing: unknown, authoritative: UserFlightPriceDealProjectionInput): existing is Record<string, unknown> {
   if (authoritative.schemaVersion === 2) return isValidRollingUserFlightPriceDealProjection(existing) &&
-    ["eventId", "userId", "alertId", "queryKey", "providerQueryKey", "snapshotDate"].every(field => existing[field] === authoritative[field]);
+    ["eventId", "userId", "alertId", "queryKey", "providerQueryKey", "snapshotDate"].every(field => existing[field] === (authoritative as Record<string, unknown>)[field]);
   return isValidDealProjection(existing) && PROJECTION_COMPATIBILITY_FIELDS.every(field => existing[field] === authoritative[field]);
 }
 
@@ -349,6 +420,69 @@ async function mapLimited<T, R>(items: T[], limit: number, fn: (item: T) => Prom
   async function worker() { while (index < items.length) { const current = index++; results[current] = await fn(items[current]); } }
   await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
   return results;
+}
+
+const ROLLING_STATE_REQUIRED_FIELDS = ["schemaVersion", "alertSchemaVersion", "userId", "alertId", "queryKey", "providerQueryKey",
+  "originAirportCode", "destinationAirportCode", "tripType", "tripClass", "directOnly", "monitoringMode", "monitoringWindowDays",
+  "selectedThresholds", "evaluationDate", "status", "phase", "trackingDayCount", "windowDays", "priceSampleCount", "currency",
+  "priceScope", "passengerCountApplied", "lastObservedMatchedThreshold", "createdAt", "evaluatedAt", "updatedAt"] as const;
+const ROLLING_STATE_OPTIONAL_FIELDS = ["firstSnapshotDate", "currentPrice", "averagePrice", "discountPercent", "highestMatchedThreshold",
+  "lastCrossedThreshold", "lastCrossedSnapshotDate", "offerDepartDate", "offerReturnDate", "offerTransfers", "offerAirline",
+  "offerFlightNumber", "offerSourceFoundAt"] as const;
+const ROLLING_STATE_ALLOWED_FIELDS = new Set<string>([...ROLLING_STATE_REQUIRED_FIELDS, ...ROLLING_STATE_OPTIONAL_FIELDS]);
+export type RollingRouteEvaluationStateIdentity = Pick<RollingRouteFlightPriceAlertRecord, "userId" | "alertId" | "queryKey" |
+  "originAirportCode" | "destinationAirportCode" | "tripType" | "tripClass" | "directOnly" | "monitoringMode" | "monitoringWindowDays" | "selectedThresholds"> &
+  { providerQueryKey: string };
+
+export function parseCompatibleRollingRouteFlightPriceEvaluationState(
+  value: unknown, expected: RollingRouteEvaluationStateIdentity,
+): Record<string, unknown> | null {
+  if (!isObject(value) || Object.keys(value).some(key => !ROLLING_STATE_ALLOWED_FIELDS.has(key)) ||
+    ROLLING_STATE_REQUIRED_FIELDS.some(key => !Object.prototype.hasOwnProperty.call(value, key))) return null;
+  let rebuiltKey: string;
+  try { rebuiltKey = buildRollingRouteProviderQueryKey({ originAirportCode: value.originAirportCode as string,
+    destinationAirportCode: value.destinationAirportCode as string, tripType: value.tripType as "round_trip" | "one_way",
+    tripClass: value.tripClass as "economy" | "business", directOnly: value.directOnly as boolean, currency: "EUR",
+    monitoringMode: "rolling_route", monitoringWindowDays: 365 }); } catch { return null; }
+  const identityFields: Array<keyof RollingRouteEvaluationStateIdentity> = ["userId", "alertId", "queryKey", "providerQueryKey", "originAirportCode",
+    "destinationAirportCode", "tripType", "tripClass", "directOnly", "monitoringMode", "monitoringWindowDays"];
+  if (value.schemaVersion !== 2 || value.alertSchemaVersion !== 3 || identityFields.some(field => value[field] !== expected[field]) ||
+    !safeIdentity(value.userId) || !safeIdentity(value.alertId) || value.queryKey !== value.alertId || value.providerQueryKey !== value.queryKey ||
+    value.providerQueryKey !== rebuiltKey || !/^[A-Z]{3}$/.test(value.originAirportCode as string) ||
+    !/^[A-Z]{3}$/.test(value.destinationAirportCode as string) || value.originAirportCode === value.destinationAirportCode ||
+    value.monitoringMode !== "rolling_route" || value.monitoringWindowDays !== 365 || value.currency !== "EUR" ||
+    value.priceScope !== "cached_offer" || value.passengerCountApplied !== false || !validProjectionThresholds(value.selectedThresholds) ||
+    value.selectedThresholds.length !== expected.selectedThresholds.length || value.selectedThresholds.some((threshold, index) => threshold !== expected.selectedThresholds[index]) ||
+    !parseDate(value.evaluationDate) || !Number.isInteger(value.trackingDayCount) || (value.trackingDayCount as number) < 0 ||
+    !Number.isInteger(value.priceSampleCount) || !isTimestampLike(value.createdAt) || !isTimestampLike(value.evaluatedAt) || !isTimestampLike(value.updatedAt) ||
+    !(value.lastObservedMatchedThreshold === null || isThreshold(value.lastObservedMatchedThreshold))) return null;
+  const tracking = value.trackingDayCount as number;
+  const expectedPhase: FlightPriceHistoryPhase = tracking >= 90 ? "rolling_90" : tracking >= 30 ? "rolling_30" : tracking >= 14 ? "rolling_14" : "insufficient_1_13";
+  const expectedWindow: 0 | 14 | 30 | 90 = tracking >= 90 ? 90 : tracking >= 30 ? 30 : tracking >= 14 ? 14 : 0;
+  if (value.phase !== expectedPhase || value.windowDays !== expectedWindow || (value.priceSampleCount as number) < 0 ||
+    (value.priceSampleCount as number) > expectedWindow || (expectedWindow > 0 && tracking < expectedWindow) ||
+    (value.firstSnapshotDate !== undefined && (!parseDate(value.firstSnapshotDate) || (value.firstSnapshotDate as string) > (value.evaluationDate as string)))) return null;
+  const hasCrossedThreshold = Object.prototype.hasOwnProperty.call(value, "lastCrossedThreshold");
+  const hasCrossedDate = Object.prototype.hasOwnProperty.call(value, "lastCrossedSnapshotDate");
+  if (hasCrossedThreshold !== hasCrossedDate || (hasCrossedThreshold && (!isThreshold(value.lastCrossedThreshold) ||
+    !parseDate(value.lastCrossedSnapshotDate) || (value.lastCrossedSnapshotDate as string) > (value.evaluationDate as string)))) return null;
+  const priceFields = ["currentPrice", "averagePrice", "discountPercent", "highestMatchedThreshold"];
+  const offerFields = ["offerDepartDate", "offerReturnDate", "offerTransfers", "offerAirline", "offerFlightNumber", "offerSourceFoundAt"];
+  const hasAny = (fields: string[]) => fields.some(field => Object.prototype.hasOwnProperty.call(value, field));
+  if (value.status === "insufficient_history") {
+    if (expectedWindow !== 0 || tracking >= 14 || value.priceSampleCount !== 0 || hasAny([...priceFields, ...offerFields])) return null;
+  } else if (value.status === "no_current_price") {
+    if (expectedWindow === 0 || hasAny([...priceFields, ...offerFields])) return null;
+  } else if (value.status === "no_threshold_match" || value.status === "threshold_met") {
+    if (expectedWindow === 0 || (value.priceSampleCount as number) < 1 || typeof value.currentPrice !== "number" || !Number.isFinite(value.currentPrice) || value.currentPrice <= 0 ||
+      typeof value.averagePrice !== "number" || !Number.isFinite(value.averagePrice) || value.averagePrice <= 0 ||
+      typeof value.discountPercent !== "number" || !Number.isFinite(value.discountPercent) || !hasValidRollingOffer(value, "evaluationDate")) return null;
+    if (value.status === "no_threshold_match") {
+      if (Object.prototype.hasOwnProperty.call(value, "highestMatchedThreshold") || value.lastObservedMatchedThreshold !== null) return null;
+    } else if (!isThreshold(value.highestMatchedThreshold) || !(value.selectedThresholds as unknown[]).includes(value.highestMatchedThreshold) ||
+      value.lastObservedMatchedThreshold !== value.highestMatchedThreshold) return null;
+  } else return null;
+  return { ...value };
 }
 
 function priorThreshold(data: unknown): FlightPriceThreshold | null {
@@ -467,12 +601,13 @@ export const evaluateFlightPriceAlerts = onSchedule(
         const matched = evaluation.status === "evaluated"
           ? getHighestMatchedFlightPriceThreshold(history.rawDiscountPercent!, currentAlert.selectedThresholds) : null;
         const prior = priorSnapshot.data();
-        const compatiblePrior = isObject(prior) && (group.kind === "exact_date" ? true : prior.schemaVersion === 2 && prior.alertSchemaVersion === 3 &&
-          prior.userId === currentAlert.userId && prior.alertId === currentAlert.alertId && prior.queryKey === currentAlert.queryKey &&
-          prior.providerQueryKey === group.providerQueryKey && prior.originAirportCode === currentAlert.originAirportCode &&
-          prior.destinationAirportCode === currentAlert.destinationAirportCode && prior.tripType === currentAlert.tripType && prior.tripClass === currentAlert.tripClass &&
-          prior.directOnly === currentAlert.directOnly && prior.monitoringMode === "rolling_route" && prior.monitoringWindowDays === 365);
-        const safePrior = compatiblePrior ? prior : undefined;
+        const safePrior = group.kind === "exact_date" ? prior : currentAlert.schemaVersion === 3
+          ? parseCompatibleRollingRouteFlightPriceEvaluationState(prior, { userId: currentAlert.userId, alertId: currentAlert.alertId,
+            queryKey: currentAlert.queryKey, providerQueryKey: group.providerQueryKey, originAirportCode: currentAlert.originAirportCode,
+            destinationAirportCode: currentAlert.destinationAirportCode, tripType: currentAlert.tripType, tripClass: currentAlert.tripClass,
+            directOnly: currentAlert.directOnly, monitoringMode: currentAlert.monitoringMode, monitoringWindowDays: currentAlert.monitoringWindowDays,
+            selectedThresholds: currentAlert.selectedThresholds }) ?? undefined
+          : undefined;
         const previousObserved = priorThreshold(safePrior);
         const crossing = evaluation.status === "evaluated" && hasCrossedFlightPriceThreshold(previousObserved, matched);
         const sameDayCrossing = evaluation.status === "evaluated" && matched !== null && isObject(safePrior) && safePrior.lastCrossedSnapshotDate === evaluationDate &&
