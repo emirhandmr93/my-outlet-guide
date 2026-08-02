@@ -7,12 +7,55 @@ import {
   AviasalesCachedPrice,
   AviasalesProviderError,
   fetchAviasalesCachedPrice,
+  fetchAviasalesRollingRoutePrice,
   ProviderFlightPriceQuery,
+  RollingRouteFlightPriceQuery,
 } from "./flightPriceProvider";
 import { getFlightPriceAlertPathUserId, isFlightPriceRuntimeUserEnabled, loadFlightPriceRuntimeConfig } from "./flightPriceRuntime";
 
 const AVIASALES_API_TOKEN =
   defineSecret("AVIASALES_API_TOKEN");
+
+const PROVIDER_REQUEST_SPACING_MS = 250;
+const PROVIDER_REQUEST_BUDGET_MS = 450_000;
+
+export type ProviderRequestPacerOptions = {
+  fetchImplementation: typeof fetch;
+  monotonicNow: () => number;
+  sleep: (milliseconds: number) => Promise<void>;
+  deadline: number;
+};
+
+export function createProviderRequestPacer(options: ProviderRequestPacerOptions): typeof fetch {
+  let nextAllowedStart = options.monotonicNow();
+  let startQueue = Promise.resolve();
+  return async (input, init) => {
+    const startPermission = startQueue.then(async () => {
+      const now = options.monotonicNow();
+      const scheduledStart = Math.max(now, nextAllowedStart);
+      if (scheduledStart >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
+      let current = now;
+      while (current < scheduledStart) {
+        if (current >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
+        const wait = Math.max(1, Math.ceil(scheduledStart - current));
+        if (current + wait >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
+        await options.sleep(wait);
+        current = options.monotonicNow();
+      }
+      const actualStart = options.monotonicNow();
+      if (actualStart >= options.deadline) throw new AviasalesProviderError("request_budget_exhausted");
+      nextAllowedStart = actualStart + PROVIDER_REQUEST_SPACING_MS;
+    });
+    startQueue = startPermission.catch(() => undefined);
+    await startPermission;
+    return options.fetchImplementation(input, init);
+  };
+}
+
+function sleep(milliseconds: number): Promise<void> {
+  const delay = Math.max(1, Math.min(Math.ceil(milliseconds), PROVIDER_REQUEST_SPACING_MS));
+  return new Promise(resolve => setTimeout(resolve, delay));
+}
 
 export type FlightPriceAlertRecord = {
   schemaVersion: 2;
@@ -42,6 +85,33 @@ export type GroupedProviderQuery = {
   query: ProviderFlightPriceQuery;
   activeAlertCount: number;
 };
+
+export type RollingRouteFlightPriceAlertRecord = {
+  schemaVersion: 3;
+  alertId: string;
+  queryKey: string;
+  userId: string;
+  originAirportCode: string;
+  destinationAirportCode: string;
+  tripType: "round_trip" | "one_way";
+  tripClass: "economy" | "business";
+  directOnly: boolean;
+  currency: "EUR";
+  monitoringMode: "rolling_route";
+  monitoringWindowDays: 365;
+  selectedThresholds: FlightPriceThreshold[];
+  active: boolean;
+  providerStatus: "pending_provider";
+};
+
+export type GroupedRollingRouteProviderQuery = {
+  providerQueryKey: string;
+  query: RollingRouteFlightPriceQuery;
+  activeAlertCount: number;
+  monitoringMode: "rolling_route";
+};
+
+export type CollectionProviderQueryGroup = GroupedProviderQuery | GroupedRollingRouteProviderQuery;
 
 type Snapshot = Record<string, unknown> & { status: "price_found" | "no_data"; price?: number };
 
@@ -90,6 +160,60 @@ export function buildProviderFlightPriceQueryKey(query: ProviderFlightPriceQuery
 type AlertClassification =
   | { kind: "active"; query: ProviderFlightPriceQuery; alert: FlightPriceAlertRecord }
   | { kind: "inactive" | "expired" | "invalid" | "unrelated" };
+
+type RollingAlertClassification =
+  | { kind: "active"; query: RollingRouteFlightPriceQuery; alert: RollingRouteFlightPriceAlertRecord }
+  | { kind: "inactive" | "invalid" | "unrelated" };
+
+export function buildRollingRouteProviderQueryKey(query: RollingRouteFlightPriceQuery): string {
+  const origin = typeof query.originAirportCode === "string" ? query.originAirportCode.toUpperCase() : "";
+  const destination = typeof query.destinationAirportCode === "string" ? query.destinationAirportCode.toUpperCase() : "";
+  if (
+    !/^[A-Z]{3}$/.test(origin) || !/^[A-Z]{3}$/.test(destination) || origin === destination ||
+    (query.tripType !== "round_trip" && query.tripType !== "one_way") ||
+    (query.tripClass !== "economy" && query.tripClass !== "business") ||
+    typeof query.directOnly !== "boolean" || query.currency !== "EUR" ||
+    query.monitoringMode !== "rolling_route" || query.monitoringWindowDays !== 365
+  ) throw new Error("invalid_query");
+  return [origin.toLowerCase(), destination.toLowerCase(), "rolling_route", "365", query.tripType,
+    query.tripClass, query.directOnly ? "direct" : "any", "eur"].join("_");
+}
+
+export function classifyRollingRouteFlightPriceAlertDocument(path: string, data: unknown): RollingAlertClassification {
+  const segments = path.split("/");
+  if (segments.length !== 4 || segments[0] !== "flightDealPreferences" || segments[2] !== "alerts") {
+    return { kind: "unrelated" };
+  }
+  if (!isObject(data)) return { kind: "invalid" };
+  const forbidden = ["departDate", "returnDate", "adults", "children", "infants"];
+  const thresholdsValid = Array.isArray(data.selectedThresholds) && data.selectedThresholds.length > 0 &&
+    new Set(data.selectedThresholds).size === data.selectedThresholds.length &&
+    data.selectedThresholds.every(value => value === 15 || value === 30 || value === 45);
+  const origin = typeof data.originAirportCode === "string" ? data.originAirportCode : "";
+  const destination = typeof data.destinationAirportCode === "string" ? data.destinationAirportCode : "";
+  if (
+    data.schemaVersion !== 3 || forbidden.some(field => Object.prototype.hasOwnProperty.call(data, field)) ||
+    typeof data.active !== "boolean" || data.providerStatus !== "pending_provider" || data.currency !== "EUR" ||
+    data.monitoringMode !== "rolling_route" || data.monitoringWindowDays !== 365 ||
+    data.userId !== segments[1] || data.alertId !== segments[3] || data.alertId !== data.queryKey ||
+    typeof data.alertId !== "string" || !thresholdsValid || !/^[A-Z]{3}$/.test(origin) ||
+    !/^[A-Z]{3}$/.test(destination) || origin === destination ||
+    (data.tripType !== "round_trip" && data.tripType !== "one_way") ||
+    (data.tripClass !== "economy" && data.tripClass !== "business") || typeof data.directOnly !== "boolean"
+  ) return { kind: "invalid" };
+  if (!data.active) return { kind: "inactive" };
+  const query: RollingRouteFlightPriceQuery = {
+    originAirportCode: origin, destinationAirportCode: destination,
+    tripType: data.tripType, tripClass: data.tripClass, directOnly: data.directOnly,
+    currency: "EUR", monitoringMode: "rolling_route", monitoringWindowDays: 365,
+  };
+  const alert: RollingRouteFlightPriceAlertRecord = {
+    schemaVersion: 3, alertId: data.alertId, queryKey: data.queryKey as string, userId: data.userId as string,
+    ...query, selectedThresholds: [...data.selectedThresholds as FlightPriceThreshold[]].sort((a, b) => a - b),
+    active: true, providerStatus: "pending_provider",
+  };
+  return { kind: "active", query, alert };
+}
 
 export function classifyFlightPriceAlertDocument(path: string, data: unknown, today: string): AlertClassification {
   const segments = path.split("/");
@@ -148,7 +272,7 @@ export function classifyFlightPriceAlertDocument(path: string, data: unknown, to
 }
 
 export type FlightPriceAlertClassificationSummary = {
-  groups: GroupedProviderQuery[];
+  groups: CollectionProviderQueryGroup[];
   flightAlertDocumentCount: number;
   validActiveAlertCount: number;
   invalidAlertCount: number;
@@ -161,7 +285,7 @@ export function classifyFlightPriceAlerts(
   documents: Array<{ path: string; data: unknown }>,
   today: string,
 ): FlightPriceAlertClassificationSummary {
-  const groups = new Map<string, GroupedProviderQuery>();
+  const groups = new Map<string, CollectionProviderQueryGroup>();
   const counts = { active: 0, invalid: 0, inactive: 0, expired: 0, unrelated: 0 };
   if (!isDate(today)) {
     return {
@@ -171,13 +295,21 @@ export function classifyFlightPriceAlerts(
     };
   }
   for (const document of documents) {
-    const classification = classifyFlightPriceAlertDocument(document.path, document.data, today);
+    const classification = isObject(document.data) && document.data.schemaVersion === 3
+      ? classifyRollingRouteFlightPriceAlertDocument(document.path, document.data)
+      : classifyFlightPriceAlertDocument(document.path, document.data, today);
     counts[classification.kind] += 1;
     if (classification.kind !== "active") continue;
-    const providerQueryKey = buildProviderFlightPriceQueryKey(classification.query);
+    const providerQueryKey = "monitoringMode" in classification.query
+      ? buildRollingRouteProviderQueryKey(classification.query)
+      : buildProviderFlightPriceQueryKey(classification.query);
     const existing = groups.get(providerQueryKey);
     if (existing) existing.activeAlertCount += 1;
-    else groups.set(providerQueryKey, { providerQueryKey, query: classification.query, activeAlertCount: 1 });
+    else if ("monitoringMode" in classification.query) {
+      groups.set(providerQueryKey, { providerQueryKey, query: classification.query, activeAlertCount: 1, monitoringMode: "rolling_route" });
+    } else {
+      groups.set(providerQueryKey, { providerQueryKey, query: classification.query, activeAlertCount: 1 });
+    }
   }
   return {
     groups: [...groups.values()].sort((a, b) => a.providerQueryKey.localeCompare(b.providerQueryKey)),
@@ -194,7 +326,13 @@ export function groupActiveFlightPriceAlerts(
   documents: Array<{ path: string; data: unknown }>,
   today: string,
 ): GroupedProviderQuery[] {
-  return classifyFlightPriceAlerts(documents, today).groups;
+  return classifyFlightPriceAlerts(documents, today).groups.filter(
+    (group): group is GroupedProviderQuery => !("monitoringMode" in group),
+  );
+}
+
+function isRollingGroup(group: CollectionProviderQueryGroup): group is GroupedRollingRouteProviderQuery {
+  return "monitoringMode" in group && group.monitoringMode === "rolling_route";
 }
 
 function validSnapshot(value: unknown): value is Snapshot {
@@ -212,21 +350,47 @@ export function chooseDailyFlightPriceSnapshot(existing: unknown, incoming: unkn
   return incoming.status === "price_found" ? incoming : existing;
 }
 
+function validRollingSnapshot(value: unknown): value is Snapshot {
+  if (!validSnapshot(value)) return false;
+  if (value.status === "no_data") return true;
+  return isDate(value.departDate) && Number.isInteger(value.transfers) && (value.transfers as number) >= 0 &&
+    (value.returnDate === undefined || isDate(value.returnDate));
+}
+
+function compareRollingSnapshots(a: Snapshot, b: Snapshot): number {
+  return (a.price as number) - (b.price as number) ||
+    String(a.departDate).localeCompare(String(b.departDate)) ||
+    String(a.returnDate ?? "").localeCompare(String(b.returnDate ?? "")) ||
+    (a.transfers as number) - (b.transfers as number) ||
+    String(a.airline ?? "").localeCompare(String(b.airline ?? "")) ||
+    String(a.flightNumber ?? "").localeCompare(String(b.flightNumber ?? ""));
+}
+
+export function chooseDailyRollingRouteSnapshot(existing: unknown, incoming: unknown): unknown {
+  if (!validRollingSnapshot(incoming)) return existing;
+  if (!validRollingSnapshot(existing)) return incoming;
+  if (existing.status === "price_found") {
+    if (incoming.status === "no_data") return existing;
+    return compareRollingSnapshots(incoming, existing) < 0 ? incoming : existing;
+  }
+  return incoming.status === "price_found" ? incoming : existing;
+}
+
 type ProviderProcessingHandlers = {
-  fetchPrice: (group: GroupedProviderQuery) => Promise<AviasalesCachedPrice | null>;
-  persistSuccess: (group: GroupedProviderQuery, price: AviasalesCachedPrice | null) => Promise<void>;
-  persistProviderError: (group: GroupedProviderQuery, error: AviasalesProviderError) => Promise<void>;
-  logProviderError?: (group: GroupedProviderQuery, error: AviasalesProviderError) => void;
+  fetchPrice: (group: CollectionProviderQueryGroup) => Promise<AviasalesCachedPrice | null>;
+  persistSuccess: (group: CollectionProviderQueryGroup, price: AviasalesCachedPrice | null) => Promise<void>;
+  persistProviderError: (group: CollectionProviderQueryGroup, error: AviasalesProviderError) => Promise<void>;
+  logProviderError?: (group: CollectionProviderQueryGroup, error: AviasalesProviderError) => void;
 };
 
 export async function processFlightPriceQueryGroups(
-  groups: GroupedProviderQuery[],
+  groups: CollectionProviderQueryGroup[],
   handlers: ProviderProcessingHandlers,
   concurrency = 3,
 ): Promise<{ priceFoundCount: number; noDataCount: number; providerErrorCount: number }> {
   const counts = { priceFoundCount: 0, noDataCount: 0, providerErrorCount: 0 };
   let nextIndex = 0;
-  async function processGroup(group: GroupedProviderQuery) {
+  async function processGroup(group: CollectionProviderQueryGroup) {
     let price: AviasalesCachedPrice | null;
     try {
       price = await handlers.fetchPrice(group);
@@ -254,7 +418,15 @@ export async function processFlightPriceQueryGroups(
   return counts;
 }
 
-function baseState(group: GroupedProviderQuery) {
+function baseState(group: CollectionProviderQueryGroup) {
+  if (isRollingGroup(group)) return {
+    schemaVersion: 2, provider: "aviasales_data_api", sourceEndpoint: "aviasales_v3_get_latest_prices",
+    sourceMarket: "us", providerQueryKey: group.providerQueryKey, monitoringMode: "rolling_route",
+    monitoringWindowDays: 365, originAirportCode: group.query.originAirportCode,
+    destinationAirportCode: group.query.destinationAirportCode, tripType: group.query.tripType,
+    tripClass: group.query.tripClass, directOnly: group.query.directOnly, currency: "EUR",
+    priceScope: "cached_offer", passengerCountApplied: false, activeAlertCount: group.activeAlertCount,
+  };
   return {
     schemaVersion: 1,
     provider: "aviasales_data_api",
@@ -275,7 +447,13 @@ function baseState(group: GroupedProviderQuery) {
   };
 }
 
-function snapshotBase(group: GroupedProviderQuery, snapshotDate: string) {
+function snapshotBase(group: CollectionProviderQueryGroup, snapshotDate: string) {
+  if (isRollingGroup(group)) return {
+    schemaVersion: 2, provider: "aviasales_data_api", providerQueryKey: group.providerQueryKey,
+    snapshotDate, monitoringMode: "rolling_route", monitoringWindowDays: 365, currency: "EUR",
+    tripType: group.query.tripType, tripClass: group.query.tripClass, directOnly: group.query.directOnly,
+    priceScope: "cached_offer", passengerCountApplied: false, collectedAt: FieldValue.serverTimestamp(),
+  };
   return {
     schemaVersion: 1,
     provider: "aviasales_data_api",
@@ -310,6 +488,13 @@ export const collectFlightPriceSnapshots = onSchedule(
   },
   async (event) => {
     const startedAt = Date.now();
+    const invocationClockStart = performance.now();
+    const pacedFetch = createProviderRequestPacer({
+      fetchImplementation: fetch,
+      monotonicNow: () => performance.now(),
+      sleep,
+      deadline: invocationClockStart + PROVIDER_REQUEST_BUDGET_MS,
+    });
     const snapshotDate = utcDate(event.scheduleTime);
     const db = getFirestore();
     const runtime = await loadFlightPriceRuntimeConfig(db);
@@ -327,10 +512,11 @@ export const collectFlightPriceSnapshots = onSchedule(
       });
     const classification = classifyFlightPriceAlerts(documents, snapshotDate);
     const groups = classification.groups;
-    async function persistSuccess(group: GroupedProviderQuery, price: AviasalesCachedPrice | null) {
+    async function persistSuccess(group: CollectionProviderQueryGroup, price: AviasalesCachedPrice | null) {
       const stateRef = db.collection("flightPriceQueries").doc(group.providerQueryKey);
       const incoming = price
         ? { ...snapshotBase(group, snapshotDate), status: "price_found", price: price.price, transfers: price.transfers,
+          ...(isRollingGroup(group) ? { departDate: price.departDate, ...(price.returnDate ? { returnDate: price.returnDate } : {}) } : {}),
           ...(price.airline ? { airline: price.airline } : {}), ...(price.flightNumber ? { flightNumber: price.flightNumber } : {}),
           ...(price.sourceFoundAt ? { sourceFoundAt: price.sourceFoundAt } : {}) }
         : { ...snapshotBase(group, snapshotDate), status: "no_data" };
@@ -340,11 +526,15 @@ export const collectFlightPriceSnapshots = onSchedule(
           transaction.get(snapshotRef),
           transaction.get(stateRef),
         ]);
-        const chosen = chooseDailyFlightPriceSnapshot(existing.data(), incoming) as Snapshot;
+        const chosen = (isRollingGroup(group)
+          ? chooseDailyRollingRouteSnapshot(existing.data(), incoming)
+          : chooseDailyFlightPriceSnapshot(existing.data(), incoming)) as Snapshot;
         transaction.set(snapshotRef, chosen);
         const state: Record<string, unknown> = {
           ...baseState(group),
-          lastRunStatus: price ? "price_found" : "no_data",
+          ...(isRollingGroup(group)
+            ? { lastCollectionStatus: price ? "price_found" : "no_data" }
+            : { lastRunStatus: price ? "price_found" : "no_data" }),
           lastAttemptAt: FieldValue.serverTimestamp(),
           lastSuccessfulRequestAt: FieldValue.serverTimestamp(),
           firstSnapshotDate: isDate(existingState.data()?.firstSnapshotDate) && existingState.data()!.firstSnapshotDate <= snapshotDate
@@ -362,12 +552,14 @@ export const collectFlightPriceSnapshots = onSchedule(
       });
     }
     const counts = await processFlightPriceQueryGroups(groups, {
-      fetchPrice: (group) => fetchAviasalesCachedPrice(group.query, token),
+      fetchPrice: (group) => isRollingGroup(group)
+        ? fetchAviasalesRollingRoutePrice(group.query, snapshotDate, token, pacedFetch)
+        : fetchAviasalesCachedPrice(group.query, token, pacedFetch),
       persistSuccess,
       persistProviderError: async (group, error) => {
         await db.collection("flightPriceQueries").doc(group.providerQueryKey).set({
           ...baseState(group),
-          lastRunStatus: "provider_error",
+          ...(isRollingGroup(group) ? { lastCollectionStatus: "provider_error" } : { lastRunStatus: "provider_error" }),
           lastAttemptAt: FieldValue.serverTimestamp(),
           lastErrorCode: error.code,
           updatedAt: FieldValue.serverTimestamp(),
