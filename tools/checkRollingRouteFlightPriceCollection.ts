@@ -22,15 +22,16 @@ const query: RollingRouteFlightPriceQuery = {
   originAirportCode: "ESB", destinationAirportCode: "FRA", tripType: "one_way", tripClass: "economy",
   directOnly: false, currency: "EUR", monitoringMode: "rolling_route", monitoringWindowDays: 365,
 };
+const deterministicKey = buildRollingRouteProviderQueryKey(query);
 const alert = {
-  schemaVersion: 3, alertId: "route-alert", queryKey: "route-alert", userId: "user-1",
+  schemaVersion: 3, alertId: deterministicKey, queryKey: deterministicKey, userId: "user-1",
   originAirportCode: "ESB", destinationAirportCode: "FRA", tripType: "one_way", tripClass: "economy",
   directOnly: false, currency: "EUR", monitoringMode: "rolling_route", monitoringWindowDays: 365,
   selectedThresholds: [15, 30], active: true, providerStatus: "pending_provider",
 };
-const path = "flightDealPreferences/user-1/alerts/route-alert";
+const path = `flightDealPreferences/user-1/alerts/${deterministicKey}`;
 assert.equal(classifyRollingRouteFlightPriceAlertDocument(path, alert).kind, "active");
-assert.equal(classifyRollingRouteFlightPriceAlertDocument(path, { ...alert, tripType: "round_trip" }).kind, "active");
+assert.equal(classifyRollingRouteFlightPriceAlertDocument(path, { ...alert, tripType: "round_trip" }).kind, "invalid");
 assert.equal(classifyRollingRouteFlightPriceAlertDocument(path, { ...alert, active: false }).kind, "inactive");
 for (const malformed of [
   { ...alert, schemaVersion: 2 }, { ...alert, departDate: "2027-01-01" }, { ...alert, adults: 1 },
@@ -40,6 +41,7 @@ for (const malformed of [
 ]) assert.equal(classifyRollingRouteFlightPriceAlertDocument(path, malformed).kind, "invalid");
 assert.equal(classifyRollingRouteFlightPriceAlertDocument("flightDealPreferences/other/alerts/route-alert", alert).kind, "invalid");
 assert.equal(classifyRollingRouteFlightPriceAlertDocument("flightDealPreferences/user-1/alerts/other", alert).kind, "invalid");
+assert.equal(classifyRollingRouteFlightPriceAlertDocument("flightDealPreferences/user-1/alerts/route-alert", { ...alert, alertId: "route-alert", queryKey: "route-alert" }).kind, "invalid");
 
 const key = buildRollingRouteProviderQueryKey(query);
 assert.equal(key, "esb_fra_rolling_route_365_one_way_economy_any_eur");
@@ -50,7 +52,7 @@ assert.notEqual(buildRollingRouteProviderQueryKey({ ...query, directOnly: true }
 assert(!/(user|202\d|adult|threshold)/.test(key));
 const grouped = classifyFlightPriceAlerts([
   { path, data: alert },
-  { path: "flightDealPreferences/user-2/alerts/route-2", data: { ...alert, userId: "user-2", alertId: "route-2", queryKey: "route-2", selectedThresholds: [45] } },
+  { path: `flightDealPreferences/user-2/alerts/${deterministicKey}`, data: { ...alert, userId: "user-2", selectedThresholds: [45] } },
 ], "2026-08-02");
 assert.equal(grouped.groups.length, 1);
 assert.equal(grouped.groups[0].activeAlertCount, 2);
