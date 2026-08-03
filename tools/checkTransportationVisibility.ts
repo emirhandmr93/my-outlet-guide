@@ -161,21 +161,82 @@ const barberinoShuttle = display(
 );
 const barberinoRecommended = getRecommendedTransportationV2Option("barberino");
 const barberinoMaps = getOutletMapLinks("barberino");
-if (!barberinoShuttle || hasSourceBackedShuttleRouteDetail(barberinoShuttle))
-  errors.push("barberino: estimate-only shuttle was classified as source-backed");
-if (!barberinoShuttle || !isSafeEstimateOnlyShuttleOption(barberinoShuttle))
-  errors.push("barberino: generic shuttle is not a safe estimate-only option");
+if (!barberinoShuttle?.routeDetails.hasSourceBackedRouteDetail)
+  errors.push("barberino: official shuttle is not source-backed");
 if (!barberino.length || !barberinoRecommended || !barberinoMaps)
   errors.push("barberino: options, recommended route, or maps are missing");
-for (const language of ["tr", "en", "fr", "de"] as const) {
-  const localized = display(
-    "barberino",
-    "barberino-florence-smn-shuttle",
-    language,
+
+const italyBatchOneRoutes = [
+  ["barberino", "barberino-florence-smn-shuttle"],
+  ["castel-romano", "castel-romano-termini-shuttle"],
+  ["castel-romano", "castel-romano-eur-fermi-shuttle"],
+  ["fidenza-village", "fidenza-milan-shopping-express"],
+  ["la-reggia", "la-reggia-naples-public-transport"],
+] as const;
+for (const [outletId, guideId] of italyBatchOneRoutes) {
+  const fact = transportationRouteFacts.find(
+    (candidate) => candidate.guideId === guideId,
   );
-  if (!localized || !isSafeEstimateOnlyShuttleOption(localized))
-    errors.push(`barberino/${language}: localized safe shuttle is missing`);
+  if (!fact?.officialProviderUrl?.startsWith("https://"))
+    errors.push(`${guideId}: valid officialProviderUrl is missing`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail)
+      errors.push(`${guideId}/${language}: source-backed route is missing`);
+    if (!localized || !visibleText(localized).trim())
+      errors.push(`${guideId}/${language}: display model is empty`);
+    if (
+      language !== "en" &&
+      localized &&
+      longEnglishProse.test(visibleText(localized))
+    )
+      errors.push(`${guideId}/${language}: long English instructions leaked`);
+  }
 }
+
+for (const [outletId, expectedGuideId] of [
+  ["barberino", "barberino-florence-smn-shuttle"],
+  ["castel-romano", "castel-romano-termini-shuttle"],
+  ["fidenza-village", "fidenza-milan-shopping-express"],
+  ["la-reggia", "la-reggia-naples-public-transport"],
+] as const) {
+  if (getRecommendedTransportationV2Option(outletId)?.id !== expectedGuideId)
+    errors.push(`${outletId}: ${expectedGuideId} is not recommended`);
+}
+
+const laReggiaShuttle = display("la-reggia", "la-reggia-naples-shuttle");
+if (
+  laReggiaShuttle?.routeDetails.hasSourceBackedRouteDetail ||
+  laReggiaShuttle?.guide.recommended
+)
+  errors.push("la-reggia: generic Naples shuttle is source-backed or recommended");
+
+for (const [outletId, guideId, expectedFare] of [
+  ["castel-romano", "castel-romano-termini-shuttle", "€18"],
+  ["castel-romano", "castel-romano-eur-fermi-shuttle", "€13"],
+  ["fidenza-village", "fidenza-milan-shopping-express", "€10"],
+  ["la-reggia", "la-reggia-naples-public-transport", "€1.30"],
+] as const) {
+  const option = display(outletId, guideId);
+  if (!option?.estimatedFareLabel?.includes(expectedFare))
+    errors.push(`${guideId}: sourced EUR fare was not preserved`);
+}
+if (barberinoShuttle?.estimatedFareLabel)
+  errors.push("barberino: an unsupported shuttle fare was generated");
+const laReggiaPublic = display(
+  "la-reggia",
+  "la-reggia-naples-public-transport",
+);
+if (
+  laReggiaPublic?.routeFact?.estimatedFareMin != null ||
+  laReggiaPublic?.routeFact?.estimatedFareMax != null ||
+  laReggiaPublic?.routeFact?.estimatedDurationMin != null ||
+  laReggiaPublic?.routeFact?.estimatedDurationMax != null ||
+  /\d+\s*(?:–|-|to)?\s*\d*\s*(?:min|minutes|hr|hours)/i.test(
+    laReggiaPublic?.estimatedDurationLabel || "",
+  )
+)
+  errors.push("la-reggia: an unsupported total train fare or duration was generated");
 
 for (const guideId of [
   "factory-ursus-car-parking-guide",

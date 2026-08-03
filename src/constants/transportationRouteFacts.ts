@@ -155,6 +155,99 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
       "Confirm the combined Trenitalia train and Outlet Link bus timetable.",
     confidence: "partial",
   },
+  {
+    guideId: "barberino-florence-smn-shuttle",
+    outletId: "barberino",
+    originType: "shuttle",
+    mode: "shuttle",
+    provider: "Barberino Outlet shuttle service",
+    boardingPoint:
+      "Firenze Santa Maria Novella – Sightseeing Visitor Center",
+    destination: "Barberino Outlet",
+    sourceNote:
+      "The shuttle runs daily, and a combined train and shuttle ticket is available through Trenitalia.",
+    officialCheckNote:
+      "Check the official seasonal shuttle times before travel.",
+    confidence: "exact",
+    officialProviderUrl:
+      "https://www.barberinooutlet.com/en/news-and-events/shuttle-bus-service-florence-station-barberino-outlet/",
+  },
+  {
+    guideId: "castel-romano-termini-shuttle",
+    outletId: "castel-romano",
+    originType: "shuttle",
+    mode: "shuttle",
+    boardingPoint: "Via Giolitti 48, Roma Termini",
+    destination: "Castel Romano Designer Outlet",
+    estimatedFareMin: 18,
+    estimatedFareMax: 18,
+    currency: "EUR",
+    sourceNote: "Adult round trip €18; children under 10 travel free.",
+    officialCheckNote:
+      "Check current departure and return times on the official page.",
+    confidence: "exact",
+    officialProviderUrl:
+      "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/services/shuttle-bus-service/",
+  },
+  {
+    guideId: "castel-romano-eur-fermi-shuttle",
+    outletId: "castel-romano",
+    originType: "shuttle",
+    mode: "shuttle",
+    boardingPoint: "EUR Fermi Underground Station",
+    destination: "Castel Romano Designer Outlet",
+    estimatedFareMin: 13,
+    estimatedFareMax: 13,
+    currency: "EUR",
+    sourceNote: "Adult round trip €13; the published under-25 offer is free.",
+    officialCheckNote:
+      "Check current conditions and times on the official page.",
+    confidence: "exact",
+    officialProviderUrl:
+      "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/services/shuttle-bus-service/",
+  },
+  {
+    guideId: "fidenza-milan-shopping-express",
+    outletId: "fidenza-village",
+    originType: "shuttle",
+    mode: "shuttle",
+    provider: "Fidenza Village Shopping Express",
+    line: "Fidenza Village Shopping Express",
+    boardingPoint: "Piazza della Repubblica 5, Via Turati corner, Milan",
+    destination: "Fidenza Village",
+    estimatedDurationMin: 90,
+    estimatedDurationMax: 90,
+    estimatedFareMin: 10,
+    estimatedFareMax: 10,
+    currency: "EUR",
+    sourceNote:
+      "Adult €10; children ages 5–11 €5; ages 0–4 free. Arrive at least 15 minutes before departure.",
+    officialCheckNote:
+      "Confirm current times and fares when booking.",
+    confidence: "exact",
+    officialProviderUrl:
+      "https://www.thebicestercollection.com/fidenza-village/en/getting-here/shopping-express/",
+  },
+  {
+    guideId: "la-reggia-naples-public-transport",
+    outletId: "la-reggia",
+    originType: "cityCenter",
+    mode: "train",
+    provider: "Trenitalia / AIR Campania",
+    operator: "Trenitalia / AIR Campania",
+    line: "La Reggia Designer Outlet Link / AIR Campania 08-UC",
+    boardingPoint: "Napoli Centrale",
+    transferPoints: ["Caserta railway station"],
+    destination: "La Reggia Designer Outlet",
+    displayFare: "€1.30 bus supplement plus selected train fare",
+    sourceNote:
+      "The daily bus connection is coordinated with train times; combined tickets are available through Trenitalia channels.",
+    officialCheckNote:
+      "Check current train and Outlet Link times before travel.",
+    confidence: "exact",
+    officialProviderUrl:
+      "https://www.trenitalia.com/en/connections/la-reggia-designer-outlet-link.html",
+  },
 
   {
     guideId: "istanbul-to-viaport-asia-iett",
