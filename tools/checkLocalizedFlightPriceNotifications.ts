@@ -8,6 +8,7 @@ import {
   normalizeFlightPriceNotificationLocale,
 } from "../functions/src/flightPriceNotificationLocalization";
 import { buildFlightPricePushMessage } from "../functions/src/flightPriceNotificationDelivery";
+import { planNotificationLocaleSynchronization } from "../src/services/notificationLocaleSynchronization";
 
 const root = path.resolve(__dirname, "..");
 const read = (file: string) => fs.readFileSync(path.join(root, file), "utf8");
@@ -43,13 +44,59 @@ for (const malformed of ["2026-02-29", "2026-13-01", "10/09/2026", "2026-9-10", 
 }
 assert.match(buildLocalizedFlightPriceNotificationContent({ kind: "exact_date", ...common, currentPrice: 80.129, averagePrice: 100.5 }, "en").body, /€80\.13.*€100\.5/);
 
+const synchronizationInput = {
+  authenticatedUserId: "user-a",
+  loadedSettingsUserId: "user-a",
+  settingsDocumentExists: true,
+  storedNotificationLocale: "en" as const,
+  selectedLanguage: "tr" as const,
+  isLanguageResolved: true,
+  inFlightKey: null,
+};
+const synchronizationPlan = planNotificationLocaleSynchronization(synchronizationInput);
+assert.deepEqual(synchronizationPlan, {
+  kind: "synchronize", userId: "user-a", notificationLocale: "tr", synchronizationKey: "user-a:tr",
+});
+assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, storedNotificationLocale: "tr" }),
+  { kind: "skip", reason: "locale_matches" });
+assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, isLanguageResolved: false }),
+  { kind: "skip", reason: "language_unresolved" });
+assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, authenticatedUserId: null }),
+  { kind: "skip", reason: "missing_authenticated_user" });
+assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, settingsDocumentExists: false }),
+  { kind: "skip", reason: "settings_document_missing" });
+assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, authenticatedUserId: "user-b" }),
+  { kind: "skip", reason: "loaded_user_mismatch" });
+assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, loadedSettingsUserId: null }),
+  { kind: "skip", reason: "loaded_user_mismatch" });
+assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, inFlightKey: "user-a:tr" }),
+  { kind: "skip", reason: "synchronization_in_flight" });
+assert.equal(planNotificationLocaleSynchronization({ ...synchronizationInput, inFlightKey: null }).kind, "synchronize");
+assert.equal(planNotificationLocaleSynchronization({ ...synchronizationInput, storedNotificationLocale: null }).kind, "synchronize");
+
 const client = read("src/contexts/NotificationSettingsContext.tsx");
 assert.match(client, /useLanguage\(\)/);
-assert.ok(client.indexOf("registerPushToken(currentUser.userId)") < client.indexOf("saveSettingsPatch({ enabled: true })"));
-const syncBlock = client.slice(client.indexOf("if (!isLanguageResolved"), client.indexOf("async function refreshPermissionStatus"));
+assert.ok(client.indexOf("registerPushToken(targetUserId)") < client.indexOf("saveSettingsPatch({ enabled: true })"));
+assert.ok(client.indexOf("saveSettingsPatch({ enabled: false })") < client.indexOf("disableRegisteredTokens(targetUserId)"));
+const accountChangeBlock = client.slice(client.indexOf("const userId = currentUser?.userId ?? null"), client.indexOf("}, [currentUser?.userId])"));
+for (const reset of ["settingsRequestGeneration.current += 1", "setSettings(null)", "setSettingsDocumentExists(false)",
+  "setRegisteredToken(null)", 'setTokenRegistrationStatus("not_registered")', "localeSynchronizationKey.current = null"]) {
+  assert.ok(accountChangeBlock.includes(reset), `account change must reset ${reset}`);
+}
+const refreshBlock = client.slice(client.indexOf("async function loadSettingsForUser"), client.indexOf("async function refreshSettings"));
+assert.match(refreshBlock, /\+\+settingsRequestGeneration\.current/);
+assert.match(refreshBlock, /activeUserIdRef\.current !== requestedUserId \|\| settingsRequestGeneration\.current !== requestGeneration/);
+assert.ok(refreshBlock.indexOf("activeUserIdRef.current !== requestedUserId") < refreshBlock.indexOf("setSettingsDocumentExists(false)"));
+assert.ok(refreshBlock.indexOf("activeUserIdRef.current !== requestedUserId") < refreshBlock.indexOf("setSettings({"));
+assert.match(refreshBlock, /finally[\s\S]*activeUserIdRef\.current === requestedUserId && settingsRequestGeneration\.current === requestGeneration[\s\S]*setIsLoading\(false\)/);
+const syncBlock = client.slice(client.indexOf("const plan = planNotificationLocaleSynchronization"), client.indexOf("async function refreshPermissionStatus"));
+assert.match(syncBlock, /loadedSettingsUserId: settings\?\.userId/);
+assert.match(syncBlock, /await updateDoc/);
+assert.doesNotMatch(syncBlock, /setDoc/);
+assert.match(syncBlock, /finally[\s\S]*localeSynchronizationKey\.current = null/);
+assert.match(syncBlock, /activeUserIdRef\.current === plan\.userId[\s\S]*current\?\.userId === plan\.userId/);
 assert.doesNotMatch(syncBlock, /registerPushToken|enabled: true|requestPermissionsAsync/);
-assert.match(syncBlock, /!settingsDocumentExists/);
-assert.match(syncBlock, /setDoc[\s\S]*notificationLocale: language[\s\S]*\{ merge: true \}/);
+assert.deepEqual([...syncBlock.matchAll(/notificationLocale:/g)].length, 2);
 
 const rules = read("firestore.rules");
 const settingsRules = rules.slice(rules.indexOf("function hasValidNotificationSettingsData"), rules.indexOf("function hasValidNotificationTokenData"));
