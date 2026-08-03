@@ -8,7 +8,7 @@ import {
   normalizeFlightPriceNotificationLocale,
 } from "../functions/src/flightPriceNotificationLocalization";
 import { buildFlightPricePushMessage } from "../functions/src/flightPriceNotificationDelivery";
-import { planNotificationLocaleSynchronization } from "../src/services/notificationLocaleSynchronization";
+import { planNotificationTokenLocaleSynchronization } from "../src/services/notificationTokenLocaleSynchronization";
 
 const root = path.resolve(__dirname, "..");
 const read = (file: string) => fs.readFileSync(path.join(root, file), "utf8");
@@ -45,77 +45,83 @@ for (const malformed of ["2026-02-29", "2026-13-01", "10/09/2026", "2026-9-10", 
 assert.match(buildLocalizedFlightPriceNotificationContent({ kind: "exact_date", ...common, currentPrice: 80.129, averagePrice: 100.5 }, "en").body, /€80\.13.*€100\.5/);
 
 const synchronizationInput = {
-  authenticatedUserId: "user-a",
-  loadedSettingsUserId: "user-a",
-  settingsDocumentExists: true,
-  storedNotificationLocale: "en" as const,
-  selectedLanguage: "tr" as const,
-  isLanguageResolved: true,
-  inFlightKey: null,
+  authenticatedUserId: "user-a", loadedSettingsUserId: "user-a", notificationsEnabled: true,
+  isLanguageResolved: true, permissionGranted: true, tokenDocumentExists: true,
+  tokenDocumentUserId: "user-a", tokenDocumentToken: "ExponentPushToken[a]", tokenDocumentPlatform: "ios",
+  tokenDocumentDisabledAt: null, storedNotificationLocale: "en", currentExpoToken: "ExponentPushToken[a]",
+  currentPlatform: "ios", tokenId: "token-a", selectedLanguage: "tr" as const, synchronizationInFlight: false,
 };
-const synchronizationPlan = planNotificationLocaleSynchronization(synchronizationInput);
-assert.deepEqual(synchronizationPlan, {
-  kind: "synchronize", userId: "user-a", notificationLocale: "tr", synchronizationKey: "user-a:tr",
+assert.deepEqual(planNotificationTokenLocaleSynchronization(synchronizationInput), {
+  kind: "synchronize", userId: "user-a", tokenId: "token-a", notificationLocale: "tr",
+  synchronizationKey: "user-a:token-a:tr",
 });
-assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, storedNotificationLocale: "tr" }),
-  { kind: "skip", reason: "locale_matches" });
-assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, isLanguageResolved: false }),
-  { kind: "skip", reason: "language_unresolved" });
-assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, authenticatedUserId: null }),
-  { kind: "skip", reason: "missing_authenticated_user" });
-assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, settingsDocumentExists: false }),
-  { kind: "skip", reason: "settings_document_missing" });
-assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, authenticatedUserId: "user-b" }),
-  { kind: "skip", reason: "loaded_user_mismatch" });
-assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, loadedSettingsUserId: null }),
-  { kind: "skip", reason: "loaded_user_mismatch" });
-assert.deepEqual(planNotificationLocaleSynchronization({ ...synchronizationInput, inFlightKey: "user-a:tr" }),
-  { kind: "skip", reason: "synchronization_in_flight" });
-assert.equal(planNotificationLocaleSynchronization({ ...synchronizationInput, inFlightKey: null }).kind, "synchronize");
-assert.equal(planNotificationLocaleSynchronization({ ...synchronizationInput, storedNotificationLocale: null }).kind, "synchronize");
+for (const [change, reason] of [
+  [{ isLanguageResolved: false }, "language_unresolved"], [{ authenticatedUserId: null }, "missing_authenticated_user"],
+  [{ loadedSettingsUserId: "user-b" }, "loaded_user_mismatch"], [{ notificationsEnabled: false }, "notifications_disabled"],
+  [{ permissionGranted: false }, "permission_not_granted"], [{ tokenDocumentExists: false }, "token_document_missing"],
+  [{ tokenDocumentUserId: "user-b" }, "token_user_mismatch"], [{ tokenDocumentToken: "other" }, "token_value_mismatch"],
+  [{ tokenDocumentPlatform: "android" }, "token_platform_mismatch"], [{ tokenDocumentDisabledAt: "disabled" }, "token_disabled"],
+  [{ storedNotificationLocale: "tr" }, "locale_matches"], [{ synchronizationInFlight: true }, "synchronization_in_flight"],
+] as const) {
+  assert.deepEqual(planNotificationTokenLocaleSynchronization({ ...synchronizationInput, ...change }), { kind: "skip", reason });
+}
+assert.equal(planNotificationTokenLocaleSynchronization({ ...synchronizationInput, storedNotificationLocale: null }).kind, "synchronize");
+assert.equal(planNotificationTokenLocaleSynchronization({ ...synchronizationInput, synchronizationInFlight: false }).kind, "synchronize");
 
 const client = read("src/contexts/NotificationSettingsContext.tsx");
 assert.match(client, /useLanguage\(\)/);
+assert.doesNotMatch(client.slice(client.indexOf("export type NotificationSettings"), client.indexOf("type NotificationSettingsContextType")), /notificationLocale/);
 assert.ok(client.indexOf("registerPushToken(targetUserId)") < client.indexOf("saveSettingsPatch({ enabled: true })"));
 assert.ok(client.indexOf("saveSettingsPatch({ enabled: false })") < client.indexOf("disableRegisteredTokens(targetUserId)"));
 const accountChangeBlock = client.slice(client.indexOf("const userId = currentUser?.userId ?? null"), client.indexOf("}, [currentUser?.userId])"));
-for (const reset of ["settingsRequestGeneration.current += 1", "setSettings(null)", "setSettingsDocumentExists(false)",
-  "setRegisteredToken(null)", 'setTokenRegistrationStatus("not_registered")', "localeSynchronizationKey.current = null"]) {
-  assert.ok(accountChangeBlock.includes(reset), `account change must reset ${reset}`);
+for (const reset of ["settingsRequestGeneration.current += 1", "settingsOperationGeneration.current += 1", "setSettings(null)",
+  "setSettingsDocumentExists(false)", "setRegisteredToken(null)", 'setTokenRegistrationStatus("not_registered")',
+  "tokenLocaleSynchronizationOperation.current.valid = false", "setIsSaving(false)"]) {
+  assert.ok(accountChangeBlock.includes(reset), `account change must reset or invalidate ${reset}`);
 }
 const refreshBlock = client.slice(client.indexOf("async function loadSettingsForUser"), client.indexOf("async function refreshSettings"));
 assert.match(refreshBlock, /\+\+settingsRequestGeneration\.current/);
 assert.match(refreshBlock, /activeUserIdRef\.current !== requestedUserId \|\| settingsRequestGeneration\.current !== requestGeneration/);
-assert.ok(refreshBlock.indexOf("activeUserIdRef.current !== requestedUserId") < refreshBlock.indexOf("setSettingsDocumentExists(false)"));
-assert.ok(refreshBlock.indexOf("activeUserIdRef.current !== requestedUserId") < refreshBlock.indexOf("setSettings({"));
-assert.match(refreshBlock, /finally[\s\S]*activeUserIdRef\.current === requestedUserId && settingsRequestGeneration\.current === requestGeneration[\s\S]*setIsLoading\(false\)/);
-const syncBlock = client.slice(client.indexOf("const plan = planNotificationLocaleSynchronization"), client.indexOf("async function refreshPermissionStatus"));
-assert.match(syncBlock, /loadedSettingsUserId: settings\?\.userId/);
-assert.match(syncBlock, /await updateDoc/);
-assert.doesNotMatch(syncBlock, /setDoc/);
-assert.match(syncBlock, /finally[\s\S]*localeSynchronizationKey\.current = null/);
-assert.match(syncBlock, /activeUserIdRef\.current === plan\.userId[\s\S]*current\?\.userId === plan\.userId/);
-assert.doesNotMatch(syncBlock, /registerPushToken|enabled: true|requestPermissionsAsync/);
-assert.deepEqual([...syncBlock.matchAll(/notificationLocale:/g)].length, 2);
+assert.match(refreshBlock, /finally[\s\S]*settingsRequestGeneration\.current === requestGeneration[\s\S]*setIsLoading\(false\)/);
+const syncBlock = client.slice(client.indexOf("const userId = currentUser?.userId;"), client.indexOf("async function refreshPermissionStatus"));
+assert.match(syncBlock, /settings\?\.userId !== userId/);
+assert.match(syncBlock, /Notifications\.getPermissionsAsync\(\)/);
+assert.doesNotMatch(syncBlock, /requestPermissionsAsync|registerPushToken|setDoc|collection\(/);
+assert.match(syncBlock, /Notifications\.getExpoPushTokenAsync/);
+assert.match(syncBlock, /const tokenRef = doc\(db, "userNotificationSettings", userId, "tokens", tokenId\)/);
+assert.match(syncBlock, /await getDoc\(tokenRef\)/);
+assert.match(syncBlock, /await updateDoc\(tokenRef, \{[\s\S]*notificationLocale:[\s\S]*updatedAt:[\s\S]*firestoreUpdatedAt:/);
+assert.doesNotMatch(syncBlock.slice(syncBlock.indexOf("await updateDoc")), /disabledAt|userId:|token:|platform:|createdAt|firestoreCreatedAt/);
+assert.match(syncBlock, /tokenLocaleSynchronizationInFlight\.current/);
+assert.match(syncBlock, /finally[\s\S]*setTokenLocaleSynchronizationTick/);
+assert.match(syncBlock, /operationIsCurrent\(\)/);
+
+const registration = read("src/services/notificationTokenRegistration.ts");
+assert.match(registration, /notificationLocale: values\.notificationLocale/g);
+assert.match(client, /planNotificationTokenRegistration[\s\S]*notificationLocale: language/);
+const parentSaveBlock = client.slice(client.indexOf("async function saveSettingsPatch"), client.indexOf("async function setNotificationsEnabled"));
+assert.doesNotMatch(parentSaveBlock, /notificationLocale/);
 
 const rules = read("firestore.rules");
 const settingsRules = rules.slice(rules.indexOf("function hasValidNotificationSettingsData"), rules.indexOf("function hasValidNotificationTokenData"));
-assert.match(settingsRules, /'notificationLocale'/);
-assert.match(settingsRules, /\['en', 'tr', 'es', 'fr', 'de', 'ar', 'ru', 'zh'\]/);
-assert.match(settingsRules, /!request\.resource\.data\.keys\(\)\.hasAny\(\['notificationLocale'\]\)/);
-assert.match(rules, /keepsNotificationTokenOwnership/);
-assert.match(rules, /request\.resource\.data\.userId == request\.auth\.uid/);
+const tokenRules = rules.slice(rules.indexOf("function hasValidNotificationTokenData"), rules.indexOf("function keepsNotificationTokenOwnership"));
+assert.doesNotMatch(settingsRules, /notificationLocale/);
+assert.match(tokenRules, /'notificationLocale'/);
+assert.match(tokenRules, /!request\.resource\.data\.keys\(\)\.hasAny\(\['notificationLocale'\]\)/);
+assert.match(tokenRules, /\['en', 'tr', 'es', 'fr', 'de', 'ar', 'ru', 'zh'\]/);
+assert.match(rules, /request\.resource\.data\.createdAt == resource\.data\.createdAt/);
 
 const worker = read("functions/src/flightPriceNotificationDelivery.ts");
-assert.match(worker, /settings\.data\(\)\?\.notificationLocale/);
-assert.match(worker, /normalizeFlightPriceNotificationLocale/);
+const tokenLoading = worker.slice(worker.indexOf("const tokensForUser"), worker.indexOf("const eventsByUser"));
+assert.doesNotMatch(tokenLoading, /settings\.data\(\)\?\.notificationLocale/);
+assert.match(tokenLoading, /doc\.data\(\)\.notificationLocale/);
+assert.match(tokenLoading, /normalizeFlightPriceNotificationLocale/);
 assert.match(worker, /buildFlightPricePushMessage\(event, item\.token\.token, item\.token\.locale\)/);
 const payload = worker.match(/data: \{ type: "flightPriceAlert", eventId: event\.eventId \}/g);
 assert.equal(payload?.length, 1);
 assert.doesNotMatch(worker, /data: \{[^}]*locale/);
 for (const forbidden of ["flightPriceAlertEvents", "userFlightPriceDeals", "flightPriceAlertEvaluations", "pushDeliveries"]) {
-  const writes = [...worker.matchAll(new RegExp(`${forbidden}[^\\n]{0,300}notificationLocale`, "g"))];
-  assert.equal(writes.length, 0);
+  assert.equal([...worker.matchAll(new RegExp(`${forbidden}[^\\n]{0,300}notificationLocale`, "g"))].length, 0);
 }
 
 const eventId = "a".repeat(64);
@@ -127,4 +133,14 @@ const baseEvent = { schemaVersion: 1 as const, eventId, userId: "u", alertId: "a
   currency: "EUR" as const, priceScope: "cached_offer" as const, passengerCountApplied: false as const, status: "pending_delivery" as const };
 assert.equal(buildFlightPricePushMessage(baseEvent, "ExponentPushToken[test]").body, exact("en").body);
 assert.deepEqual(Object.keys(buildFlightPricePushMessage(baseEvent, "ExponentPushToken[test]", "tr").data).sort(), ["eventId", "type"]);
+for (const locale of locales) {
+  const message = buildFlightPricePushMessage(baseEvent, `ExponentPushToken[${locale}]`, locale);
+  assert.equal(message.body, exact(locale).body);
+  assert.deepEqual(Object.keys(message.data).sort(), ["eventId", "type"]);
+}
+for (const invalidLocale of [undefined, null, "invalid"] as const) {
+  assert.equal(buildFlightPricePushMessage(baseEvent, "ExponentPushToken[fallback]", invalidLocale as never).body, exact("en").body);
+}
+assert.notEqual(buildFlightPricePushMessage(baseEvent, "ExponentPushToken[a]", "tr").body,
+  buildFlightPricePushMessage(baseEvent, "ExponentPushToken[b]", "en").body);
 console.log("Localized flight-price notification checks passed.");

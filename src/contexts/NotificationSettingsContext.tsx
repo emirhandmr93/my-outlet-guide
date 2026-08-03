@@ -6,8 +6,7 @@ import { collection, doc, getDoc, getDocs, runTransaction, serverTimestamp, setD
 
 import { db } from "../firebase/config";
 import { planNotificationTokenRegistration } from "../services/notificationTokenRegistration";
-import { planNotificationLocaleSynchronization } from "../services/notificationLocaleSynchronization";
-import { isTranslationLanguage, TranslationLanguage } from "../translations/translations";
+import { planNotificationTokenLocaleSynchronization } from "../services/notificationTokenLocaleSynchronization";
 import { useLanguage } from "./LanguageContext";
 import { useUser } from "./UserContext";
 
@@ -21,7 +20,6 @@ export type NotificationSettings = {
   favoriteOutletUpdatesEnabled: boolean;
   reviewUpdatesEnabled: boolean;
   marketingEnabled: boolean;
-  notificationLocale: TranslationLanguage | null;
 };
 
 type NotificationSettingsContextType = {
@@ -48,7 +46,6 @@ const defaultSettingsForUser = (userId: string): NotificationSettings => ({
   favoriteOutletUpdatesEnabled: false,
   reviewUpdatesEnabled: false,
   marketingEnabled: false,
-  notificationLocale: null,
 });
 
 const tokenDocumentId = (token: string) => token.replace(/[^A-Za-z0-9_-]/g, "_").slice(0, 512);
@@ -72,10 +69,14 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
   const { language, isLanguageResolved } = useLanguage();
   const [settings, setSettings] = useState<NotificationSettings | null>(null);
   const [settingsDocumentExists, setSettingsDocumentExists] = useState(false);
-  const localeSynchronizationKey = useRef<string | null>(null);
-  const localeSynchronizationOperation = useRef(0);
   const activeUserIdRef = useRef<string | null>(currentUser?.userId ?? null);
   const settingsRequestGeneration = useRef(0);
+  const settingsOperationGeneration = useRef(0);
+  const tokenLocaleSynchronizationSequence = useRef(0);
+  const tokenLocaleSynchronizationOperation = useRef<{ id: number; userId: string; valid: boolean } | null>(null);
+  const tokenLocaleSynchronizationInFlight = useRef(false);
+  const lastTokenLocaleSynchronizationAttemptKey = useRef<string | null>(null);
+  const [tokenLocaleSynchronizationTick, setTokenLocaleSynchronizationTick] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [permissionStatus, setPermissionStatus] = useState<NotificationPermissionStatus>("unsupported");
@@ -89,14 +90,16 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     const userId = currentUser?.userId ?? null;
     activeUserIdRef.current = userId;
     settingsRequestGeneration.current += 1;
+    settingsOperationGeneration.current += 1;
     setSettings(null);
     setSettingsDocumentExists(false);
     setRegisteredToken(null);
     setTokenRegistrationStatus("not_registered");
     setRegistrationError(null);
-    localeSynchronizationKey.current = null;
-    localeSynchronizationOperation.current += 1;
+    if (tokenLocaleSynchronizationOperation.current) tokenLocaleSynchronizationOperation.current.valid = false;
+    lastTokenLocaleSynchronizationAttemptKey.current = null;
     setIsLoading(false);
+    setIsSaving(false);
     if (userId) void loadSettingsForUser(userId);
   }, [currentUser?.userId]);
 
@@ -105,41 +108,66 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
   }, [pushSupported]);
 
   useEffect(() => {
-    const plan = planNotificationLocaleSynchronization({
-      authenticatedUserId: currentUser?.userId,
-      loadedSettingsUserId: settings?.userId,
-      settingsDocumentExists,
-      storedNotificationLocale: settings?.notificationLocale ?? null,
-      selectedLanguage: language,
-      isLanguageResolved,
-      inFlightKey: localeSynchronizationKey.current,
-    });
-    if (plan.kind === "skip") return;
-    const synchronizationOperation = ++localeSynchronizationOperation.current;
-    localeSynchronizationKey.current = plan.synchronizationKey;
+    const userId = currentUser?.userId;
+    if (!isLanguageResolved || !userId || settings?.userId !== userId || !settings.enabled || !pushSupported ||
+      tokenLocaleSynchronizationInFlight.current) return;
+    const projectId = getProjectId();
+    if (!projectId) return;
+    const attemptKey = `${userId}:${language}:${settingsRequestGeneration.current}`;
+    if (lastTokenLocaleSynchronizationAttemptKey.current === attemptKey) return;
+    lastTokenLocaleSynchronizationAttemptKey.current = attemptKey;
+    const operation = { id: ++tokenLocaleSynchronizationSequence.current, userId, valid: true };
+    tokenLocaleSynchronizationOperation.current = operation;
+    tokenLocaleSynchronizationInFlight.current = true;
+    setTokenLocaleSynchronizationTick(value => value + 1);
+    const operationIsCurrent = () => tokenLocaleSynchronizationOperation.current?.id === operation.id && operation.valid &&
+      activeUserIdRef.current === userId;
     void (async () => {
       try {
-        const now = new Date().toISOString();
-        await updateDoc(doc(db, "userNotificationSettings", plan.userId), {
+        const permissions = await Notifications.getPermissionsAsync();
+        if (!operationIsCurrent() || permissions.status !== "granted") return;
+        const expoPushToken = (await Notifications.getExpoPushTokenAsync({ projectId })).data;
+        if (!operationIsCurrent()) return;
+        const tokenId = tokenDocumentId(expoPushToken);
+        const tokenRef = doc(db, "userNotificationSettings", userId, "tokens", tokenId);
+        const tokenSnapshot = await getDoc(tokenRef);
+        if (!operationIsCurrent()) return;
+        const tokenData = tokenSnapshot.exists() ? tokenSnapshot.data() : undefined;
+        const plan = planNotificationTokenLocaleSynchronization({
+          authenticatedUserId: userId,
+          loadedSettingsUserId: settings.userId,
+          notificationsEnabled: settings.enabled,
+          isLanguageResolved,
+          permissionGranted: true,
+          tokenDocumentExists: tokenSnapshot.exists(),
+          tokenDocumentUserId: tokenData?.userId,
+          tokenDocumentToken: tokenData?.token,
+          tokenDocumentPlatform: tokenData?.platform,
+          tokenDocumentDisabledAt: tokenData?.disabledAt,
+          storedNotificationLocale: tokenData?.notificationLocale,
+          currentExpoToken: expoPushToken,
+          currentPlatform: Platform.OS,
+          tokenId,
+          selectedLanguage: language,
+          synchronizationInFlight: false,
+        });
+        if (plan.kind === "skip" || !operationIsCurrent()) return;
+        await updateDoc(tokenRef, {
           notificationLocale: plan.notificationLocale,
-          updatedAt: now,
+          updatedAt: new Date().toISOString(),
           firestoreUpdatedAt: serverTimestamp(),
         });
-        if (localeSynchronizationOperation.current === synchronizationOperation && activeUserIdRef.current === plan.userId) {
-          setSettings(current => current?.userId === plan.userId
-            ? { ...current, notificationLocale: plan.notificationLocale }
-            : current);
-        }
       } catch (error) {
-        console.warn("Failed to synchronize notification locale.", error);
+        console.warn("Failed to synchronize notification token locale.", error);
       } finally {
-        if (localeSynchronizationOperation.current === synchronizationOperation &&
-          localeSynchronizationKey.current === plan.synchronizationKey) {
-          localeSynchronizationKey.current = null;
+        if (tokenLocaleSynchronizationOperation.current?.id === operation.id) {
+          tokenLocaleSynchronizationOperation.current = null;
+          tokenLocaleSynchronizationInFlight.current = false;
+          setTokenLocaleSynchronizationTick(value => value + 1);
         }
       }
     })();
-  }, [currentUser?.userId, isLanguageResolved, language, settings, settingsDocumentExists]);
+  }, [currentUser?.userId, isLanguageResolved, language, pushSupported, settings, tokenLocaleSynchronizationTick]);
 
   async function refreshPermissionStatus() {
     if (Platform.OS === "web") {
@@ -175,7 +203,6 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
         favoriteOutletUpdatesEnabled: data.favoriteOutletUpdatesEnabled === true,
         reviewUpdatesEnabled: data.reviewUpdatesEnabled === true,
         marketingEnabled: data.marketingEnabled === true,
-        notificationLocale: isTranslationLanguage(data.notificationLocale) ? data.notificationLocale : null,
       });
     } catch (error) {
       if (activeUserIdRef.current === requestedUserId && settingsRequestGeneration.current === requestGeneration) {
@@ -244,6 +271,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
         userId,
         token,
         platform: Platform.OS,
+        notificationLocale: language,
         now,
         firestoreNow: serverTimestamp(),
       });
@@ -303,7 +331,6 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
       ...(settings?.userId === targetUserId ? settings : defaultSettingsForUser(targetUserId)),
       ...patch,
       userId: targetUserId,
-      notificationLocale: language,
     };
 
     await setDoc(
@@ -331,6 +358,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     }
 
     const targetUserId = currentUser.userId;
+    const operationGeneration = ++settingsOperationGeneration.current;
     setIsSaving(true);
 
     try {
@@ -349,17 +377,24 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
         setRegistrationError(error instanceof Error ? error.message : "Push token registration failed.");
       }
     } finally {
-      setIsSaving(false);
+      if (activeUserIdRef.current === targetUserId && settingsOperationGeneration.current === operationGeneration) {
+        setIsSaving(false);
+      }
     }
   }
 
   async function setTripRemindersEnabled(enabled: boolean) {
+    const targetUserId = activeUserIdRef.current;
+    if (!targetUserId) return;
+    const operationGeneration = ++settingsOperationGeneration.current;
     setIsSaving(true);
 
     try {
       await saveSettingsPatch({ tripRemindersEnabled: enabled });
     } finally {
-      setIsSaving(false);
+      if (activeUserIdRef.current === targetUserId && settingsOperationGeneration.current === operationGeneration) {
+        setIsSaving(false);
+      }
     }
   }
 

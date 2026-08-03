@@ -582,11 +582,11 @@ export const processFlightPriceAlertNotifications = onSchedule(
       const loaded = (async () => {
         const parent = db.collection("userNotificationSettings").doc(userId); const [settings, tokens] = await Promise.all([parent.get(), parent.collection("tokens").get()]);
         if (settings.data()?.enabled !== true) return null;
-        const locale = normalizeFlightPriceNotificationLocale(settings.data()?.notificationLocale);
         return tokens.docs.filter(doc => { const data = doc.data(); return data.userId === userId && typeof data.token === "string" &&
           isExpoPushToken(data.token) && (data.disabledAt === undefined || data.disabledAt === null || data.disabledAt === "") &&
           (data.platform === "ios" || data.platform === "android"); }).sort((a, b) => a.id.localeCompare(b.id))
-          .map(doc => ({ tokenId: doc.id, token: doc.data().token as string, ref: doc.ref, locale }));
+          .map(doc => ({ tokenId: doc.id, token: doc.data().token as string, ref: doc.ref,
+            locale: normalizeFlightPriceNotificationLocale(doc.data().notificationLocale) }));
       })(); cache.set(userId, loaded); return loaded;
     };
     const eventsByUser = new Map<string, ValidFlightPriceAlertEvent[]>();
