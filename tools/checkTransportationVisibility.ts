@@ -1368,11 +1368,69 @@ for (const [outletId, guideId, expectedMode, boardingPoint] of ukBatchOneRoutes)
 }
 for (const guideId of ["ashford-international-to-ashford-designer-outlet-walk", "gosport-to-gunwharf-quays-ferry", "central-london-to-icon-outlet-at-the-o2-uber-boat"])
   if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended) errors.push(`${guideId}: secondary route must not be recommended`);
+
+const ukBatchTwoRoutes = [
+  ["bridgend-designer-outlet", "cardiff-to-bridgend-designer-outlet-public-transport", "train", "Cardiff Central", ["Transport for Wales", "Cardiff Central → Bridgend → Sainsbury's", "Cardiff Central", "Sainsbury's", "McArthurGlen Designer Outlet Bridgend"]],
+  ["caledonia-park", "gretna-to-caledonia-park-public-transport", "walking", "Gretna Green", ["Gretna Green", "Caledonia Park"]],
+  ["clarks-village", "street-to-clarks-village-car", "taxi", "Street", ["Street", "Clarks Village"]],
+  ["dalton-park", "durham-to-dalton-park-public-transport", "bus", "Durham", ["Go North East", "65", "Durham", "Dalton Park"]],
+  ["east-midlands-designer-outlet", "nottingham-to-east-midlands-designer-outlet-car", "taxi", "Nottingham", ["Nottingham", "Frasers Plus Designer Outlet East Midlands"]],
+  ["fleetwood-outlet", "blackpool-to-fleetwood-outlet-public-transport", "bus", "Blackpool", ["Blackpool Transport", "1", "Blackpool", "Affinity Lancashire", "Fleetwood Outlet"]],
+  ["livingston-designer-outlet", "edinburgh-glasgow-to-livingston-designer-outlet-public-transport", "bus", "Edinburgh", ["Lothian Country", "X27 / X28", "Edinburgh", "Livingston Bus Terminal", "Livingston Designer Outlet"]],
+  ["springfields-outlet", "spalding-to-springfields-outlet-public-transport", "bus", "Spalding", ["Stagecoach", "37", "Spalding", "Springfields", "Springfields Designer Outlet & Leisure"]],
+  ["the-boulevard-banbridge", "banbridge-to-the-boulevard-banbridge-public-transport", "bus", "Banbridge Town Centre", ["Translink", "330C", "Banbridge Town Centre", "Banbridge, Outlet Park (The Boulevard)", "The Boulevard Banbridge"]],
+  ["the-galleria-outlet", "hatfield-to-the-galleria-outlet-public-transport", "walking", "Hatfield Station", ["Hatfield Station", "The Galleria Outlet Shopping Centre"]],
+  ["braintree-village", "braintree-village-train-guide", "walking", "Braintree Freeport", ["Braintree Freeport", "Braintree Village"]],
+  ["affinity-sterling-mills", "affinity-sterling-mills-bus-guide", "bus", "Stirling Bus Station", ["Stirling Bus Station", "Affinity Sterling Mills"]],
+] as const;
+const ukBatchTwoSuppressedDurationRoutes = new Set(ukBatchTwoRoutes.map(([, guideId]) => guideId).filter((guideId) => guideId !== "hatfield-to-the-galleria-outlet-public-transport"));
+const ukBatchTwoFreeRoutes = new Set(["gretna-to-caledonia-park-public-transport", "hatfield-to-the-galleria-outlet-public-transport", "braintree-village-train-guide"]);
+const ukLocalStationRoutes = new Map([
+  ["gretna-to-caledonia-park-public-transport", "Gretna Green"],
+  ["hatfield-to-the-galleria-outlet-public-transport", "Hatfield Station"],
+  ["braintree-village-train-guide", "Braintree Freeport"],
+]);
+const ukLineValues = new Set(["Cardiff Central → Bridgend → Sainsbury's", "65", "1", "X27 / X28", "37", "330C"]);
+for (const [outletId, guideId, expectedMode, boardingPoint, visibleValues] of ukBatchTwoRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  if (!fact?.officialProviderUrl?.startsWith("https://") || fact.displayFare != null) errors.push(`${guideId}: source URL or fare provenance is invalid`);
+  if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode) errors.push(`${guideId}: guide or fact mode is invalid`);
+  if (getRecommendedTransportationV2Option(outletId)?.id !== guideId) errors.push(`${outletId}: ${guideId} is not recommended`);
+  const localStation = ukLocalStationRoutes.get(guideId);
+  if (localStation ? guide?.originType !== "station" || fact?.mode !== "walking" || fact.boardingPoint !== localStation : guide?.originType !== "city_center" || !["cityCenter", "taxiUber"].includes(fact?.originType ?? "") || fact?.boardingPoint !== boardingPoint)
+    errors.push(`${guideId}: origin safety is invalid`);
+  if (ukBatchTwoSuppressedDurationRoutes.has(guideId) && (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null)) errors.push(`${guideId}: unsupported duration provenance is present`);
+  if (guideId === "hatfield-to-the-galleria-outlet-public-transport" && (fact?.estimatedDurationMin !== 25 || fact.estimatedDurationMax !== 25)) errors.push(`${guideId}: exact duration provenance is invalid`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source" || !visibleText(localized).trim() || !rows.length) errors.push(`${guideId}/${language}: source-backed display or warning gating is invalid`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
+    for (const value of visibleValues) if (!rows.some((row) => row.value === value)) errors.push(`${guideId}/${language}: ${value} is not visible`);
+    if (ukBatchTwoSuppressedDurationRoutes.has(guideId) && localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
+    if (guideId === "hatfield-to-the-galleria-outlet-public-transport" && !localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: exact duration is not visible`);
+    const fare = localized?.estimatedFareLabel ?? "";
+    if (ukBatchTwoFreeRoutes.has(guideId) ? fare !== freeLabels[language] : Boolean(fare)) errors.push(`${guideId}/${language}: localized fare provenance is invalid`);
+    if (fact?.line) {
+      const lineRows = rows.filter((row) => row.value === fact.line);
+      const reference = display("la-vallee-village", "paris-to-la-vallee-rer-a", language);
+      const lineLabel = reference ? getTransportationRouteDetailRows(reference, language).find((row) => row.value === "RER A")?.label : undefined;
+      if (!ukLineValues.has(fact.line) || lineRows.length !== 1 || lineRows[0]?.label !== lineLabel) errors.push(`${guideId}/${language}: localized Line row is invalid`);
+    } else if (localized?.routeDetails.lineOrProviderLabel) errors.push(`${guideId}/${language}: artificial Line or Provider row is visible`);
+  }
+}
+for (const guideId of ["street-to-clarks-village-public-transport", "nottingham-to-east-midlands-designer-outlet-public-transport", "affinity-sterling-mills-train-bus-guide", "gretna-to-caledonia-park-car", "durham-to-dalton-park-car", "poulton-le-fylde-to-fleetwood-outlet-train-bus", "hatfield-to-the-galleria-outlet-car", "braintree-village-bus-guide"])
+  if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended) errors.push(`${guideId}: superseded or secondary guide remains recommended`);
+const ukBatchTwoData = JSON.stringify({ facts: transportationRouteFacts.filter((fact) => ukBatchTwoRoutes.some(([, guideId]) => guideId === fact.guideId)), guides: transportationGuides.filter((guide) => ukBatchTwoRoutes.some(([, guideId]) => guideId === guide.guideId)) });
+if (/September 2026|future (?:free )?shuttle|shuttle timetable|Castle Cary|Alfreton|Lord Street|replacement.service|Mountain Warehouse|\b(?:23|55)\b|\bhourly\b/i.test(ukBatchTwoData)) errors.push("UK Batch 2: unsupported or future service detail leaked");
 const activeUkOutlets = activeOutlets.filter((outlet) => outlet.countryId === "united-kingdom");
 const sourceBackedUkOutlets = activeUkOutlets.filter((outlet) => getTransportationV2Options(outlet.outletId).some((option) => getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail));
 const sourceBackedAndUrlUkOutlets = activeUkOutlets.filter((outlet) => transportationRouteFacts.some((fact) => fact.outletId === outlet.outletId && fact.officialProviderUrl?.startsWith("https://") && getTransportationV2Options(outlet.outletId).some((option) => option.id === fact.guideId && getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail)));
 const ukOutletsWithoutSourceBackedRoutes = activeUkOutlets.filter((outlet) => !sourceBackedUkOutlets.includes(outlet)).map((outlet) => outlet.outletId);
+const ukOutletsWithoutSourceBackedUrls = activeUkOutlets.filter((outlet) => !sourceBackedAndUrlUkOutlets.includes(outlet)).map((outlet) => outlet.outletId);
 if (ukBatchOneRoutes.some(([outletId]) => ukOutletsWithoutSourceBackedRoutes.includes(outletId))) errors.push(`UK Batch 1 completion is invalid: ${ukOutletsWithoutSourceBackedRoutes.join(", ")}`);
+if (ukOutletsWithoutSourceBackedRoutes.length || ukOutletsWithoutSourceBackedUrls.length) errors.push(`UK completion is invalid: ${ukOutletsWithoutSourceBackedRoutes.join(", ")} / ${ukOutletsWithoutSourceBackedUrls.join(", ")}`);
 
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
@@ -1417,6 +1475,7 @@ console.log(`UK active outlet count: ${activeUkOutlets.length}`);
 console.log(`UK source-backed outlet count: ${sourceBackedUkOutlets.length}`);
 console.log(`UK source-backed-and-URL outlet count: ${sourceBackedAndUrlUkOutlets.length}`);
 console.log(`UK outlets without source-backed routes: ${JSON.stringify(ukOutletsWithoutSourceBackedRoutes)}`);
+console.log(`UK outlets without source-backed URLs: ${JSON.stringify(ukOutletsWithoutSourceBackedUrls)}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
 );
