@@ -5,6 +5,7 @@ import {
   getTransportationDisplayFallbacks,
   getTransportationOptionDisplayModel,
   getTransportationCompactSummaryLabel,
+  getTransportationOriginLabel,
   isDisplayableShuttleOption,
   type TransportationV2Option,
 } from "../../services/transportationV2Service";
@@ -26,14 +27,18 @@ export type TransportationCardProps = {
 function getSummaryTitle(
   originGroup: TransportationV2Option["originGroup"],
   t: (key: string) => string,
+  language: Parameters<typeof getTransportationOriginLabel>[1],
 ) {
   if (originGroup === "airport") return t("transportation.v2.airportFrom");
   if (originGroup === "city") return t("transportation.v2.cityFrom");
+  if (originGroup === "station")
+    return getTransportationOriginLabel(originGroup, language);
   return t("transportation.v2.shuttle");
 }
 
 function getIcon(originGroup: TransportationV2Option["originGroup"]) {
   if (originGroup === "airport") return "✈️";
+  if (originGroup === "station") return "🚉";
   if (originGroup === "shuttle") return "🚌";
   return "🧭";
 }
@@ -67,7 +72,7 @@ export function TransportationCard({
               <Text style={styles.icon}>{getIcon(item.originGroup)}</Text>
               <View style={styles.summaryText}>
                 <Text style={styles.title}>
-                  {getSummaryTitle(item.originGroup, t)}
+                  {getSummaryTitle(item.originGroup, t, language)}
                 </Text>
                 <Text style={styles.meta} numberOfLines={2}>
                   {meta}

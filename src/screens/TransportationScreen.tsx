@@ -20,6 +20,7 @@ import {
   getRecommendedTransportationV2Option,
   getRouteDetailWarning,
   getTransportationOptionDisplayModel,
+  getTransportationStationSectionLabel,
   getTransportationRouteDetailRows,
   getTransportationV2Options,
   isDisplayableShuttleOption,
@@ -173,6 +174,11 @@ export function TransportationScreen() {
         item.estimatedDurationLabel ||
         item.estimatedFareLabel),
   );
+  const stationOptions = options.filter(
+    (item) =>
+      item.originGroup === "station" &&
+      item.routeDetails.hasSourceBackedRouteDetail,
+  );
   const shuttleOptions = dedupeShuttles(
     options.filter(
       (item) =>
@@ -247,6 +253,10 @@ export function TransportationScreen() {
         <Section
           title={t("transportation.v2.cityAccess")}
           items={cityOptions}
+        />
+        <Section
+          title={getTransportationStationSectionLabel(language)}
+          items={stationOptions}
         />
         <Section
           title={t("transportation.v2.shuttleSection")}

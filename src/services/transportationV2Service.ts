@@ -61,7 +61,7 @@ export type TransportationEstimateDisplayModel = {
 };
 
 export type TransportationV2Option = TransportationEstimateDisplayModel & {
-  originGroup: "airport" | "city" | "shuttle";
+  originGroup: "airport" | "city" | "station" | "shuttle";
   mode: TransportationType;
   duration?: string;
   fare?: string;
@@ -109,6 +109,8 @@ const I18N: Record<
     details: string;
     city: string;
     airport: string;
+    station: string;
+    stationSection: string;
     titles: Record<string, string>;
     modes: Record<string, string>;
     steps: Record<string, string[]>;
@@ -129,12 +131,16 @@ const I18N: Record<
     details: "See transport estimates in the guide",
     city: "From city center",
     airport: "From airport",
+    station: "From station",
+    stationSection: "Station access",
     titles: {
       cityTrain: "From city center by train",
       cityBus: "From city center by bus",
       cityPublic: "From city center by public transport",
       airportPublic: "From airport by public transport",
       airportTaxi: "From airport by taxi/Uber",
+      stationWalking: "From station on foot",
+      stationPublic: "From station by public transport",
       shuttle: "By shuttle",
       taxi: "By taxi / Uber",
     },
@@ -154,6 +160,12 @@ const I18N: Record<
         "Take the listed public transport connection toward the outlet area.",
         "Get off at the closest outlet stop or station.",
         "Walk to the outlet entrance and check the return time before shopping.",
+      ],
+      station: [
+        "Check the current connection to the station.",
+        "Alight at the station.",
+        "Follow the pedestrian access from the station to the outlet.",
+        "Check the return connection before shopping.",
       ],
       airportPublic: [
         "Follow airport signs to public transport.",
@@ -207,12 +219,16 @@ const I18N: Record<
     details: "Ulaşım tahminlerini rehberde gör",
     city: "Şehir merkezinden",
     airport: "Havalimanından",
+    station: "İstasyondan",
+    stationSection: "İstasyon erişimi",
     titles: {
       cityTrain: "Şehir merkezinden trenle",
       cityBus: "Şehir merkezinden otobüsle",
       cityPublic: "Şehir merkezinden toplu ulaşım ile",
       airportPublic: "Havalimanından toplu ulaşım ile",
       airportTaxi: "Havalimanından taksi/Uber ile",
+      stationWalking: "İstasyondan yürüyerek",
+      stationPublic: "İstasyondan toplu ulaşım ile",
       shuttle: "Shuttle ile",
       taxi: "Taksi / Uber ile",
     },
@@ -232,6 +248,12 @@ const I18N: Record<
         "Outlet yönündeki toplu ulaşım bağlantısına binin.",
         "Outlet’e en yakın durak veya istasyonda inin.",
         "Girişe yürüyün ve dönüş saatini alışverişten önce kontrol edin.",
+      ],
+      station: [
+        "İstasyona güncel bağlantıyı kontrol edin.",
+        "İstasyonda inin.",
+        "İstasyondan outlet’e yaya erişimini takip edin.",
+        "Alışverişten önce dönüş bağlantısını kontrol edin.",
       ],
       airportPublic: [
         "Havalimanında toplu ulaşım yönlendirmelerini izleyin.",
@@ -293,12 +315,16 @@ const I18N: Record<
     details: "Ver estimaciones de transporte en la guía",
     city: "Desde el centro",
     airport: "Desde el aeropuerto",
+    station: "Desde la estación",
+    stationSection: "Acceso desde la estación",
     titles: {
       cityTrain: "Desde el centro en tren",
       cityBus: "Desde el centro en autobús",
       cityPublic: "Desde el centro en transporte público",
       airportPublic: "Desde el aeropuerto en transporte público",
       airportTaxi: "Desde el aeropuerto en taxi/Uber",
+      stationWalking: "Desde la estación a pie",
+      stationPublic: "Desde la estación en transporte público",
       shuttle: "En shuttle",
       taxi: "En taxi / Uber",
     },
@@ -346,12 +372,16 @@ const I18N: Record<
     details: "Voir les estimations de transport dans le guide",
     city: "Depuis le centre-ville",
     airport: "Depuis l’aéroport",
+    station: "Depuis la gare",
+    stationSection: "Accès depuis la gare",
     titles: {
       cityTrain: "Depuis le centre-ville en train",
       cityBus: "Depuis le centre-ville en bus",
       cityPublic: "Depuis le centre-ville en transport public",
       airportPublic: "Depuis l’aéroport en transport public",
       airportTaxi: "Depuis l’aéroport en taxi/Uber",
+      stationWalking: "Depuis la gare à pied",
+      stationPublic: "Depuis la gare en transport public",
       shuttle: "En navette",
       taxi: "En taxi / Uber",
     },
@@ -400,12 +430,16 @@ const I18N: Record<
     details: "Verkehrsschätzungen im Guide ansehen",
     city: "Vom Stadtzentrum",
     airport: "Vom Flughafen",
+    station: "Vom Bahnhof",
+    stationSection: "Zugang vom Bahnhof",
     titles: {
       cityTrain: "Vom Stadtzentrum mit dem Zug",
       cityBus: "Vom Stadtzentrum mit dem Bus",
       cityPublic: "Vom Stadtzentrum mit ÖPNV",
       airportPublic: "Vom Flughafen mit ÖPNV",
       airportTaxi: "Vom Flughafen mit Taxi/Uber",
+      stationWalking: "Vom Bahnhof zu Fuß",
+      stationPublic: "Vom Bahnhof mit öffentlichen Verkehrsmitteln",
       shuttle: "Mit Shuttle",
       taxi: "Mit Taxi / Uber",
     },
@@ -453,12 +487,16 @@ const I18N: Record<
     details: "Смотрите оценки транспорта в путеводителе",
     city: "Из центра города",
     airport: "Из аэропорта",
+    station: "От станции",
+    stationSection: "Доступ от станции",
     titles: {
       cityTrain: "Из центра города на поезде",
       cityBus: "Из центра города на автобусе",
       cityPublic: "Из центра города на общественном транспорте",
       airportPublic: "Из аэропорта на общественном транспорте",
       airportTaxi: "Из аэропорта на такси/Uber",
+      stationWalking: "От станции пешком",
+      stationPublic: "От станции на общественном транспорте",
       shuttle: "На шаттле",
       taxi: "На такси / Uber",
     },
@@ -506,12 +544,16 @@ const I18N: Record<
     details: "اعرض تقديرات المواصلات في الدليل",
     city: "من وسط المدينة",
     airport: "من المطار",
+    station: "من المحطة",
+    stationSection: "الوصول من المحطة",
     titles: {
       cityTrain: "من وسط المدينة بالقطار",
       cityBus: "من وسط المدينة بالحافلة",
       cityPublic: "من وسط المدينة بالمواصلات العامة",
       airportPublic: "من المطار بالمواصلات العامة",
       airportTaxi: "من المطار بتاكسي/Uber",
+      stationWalking: "من المحطة سيرًا",
+      stationPublic: "من المحطة بالمواصلات العامة",
       shuttle: "بالشاتل",
       taxi: "بتاكسي / Uber",
     },
@@ -558,12 +600,16 @@ const I18N: Record<
     details: "在指南中查看交通估算",
     city: "从市中心",
     airport: "从机场",
+    station: "从车站出发",
+    stationSection: "车站接驳",
     titles: {
       cityTrain: "从市中心乘火车",
       cityBus: "从市中心乘公交",
       cityPublic: "从市中心乘公共交通",
       airportPublic: "从机场乘公共交通",
       airportTaxi: "从机场乘出租车/Uber",
+      stationWalking: "从车站步行",
+      stationPublic: "从车站乘公共交通",
       shuttle: "乘接驳车",
       taxi: "乘出租车 / Uber",
     },
@@ -605,36 +651,42 @@ const LOCALIZED_GENERIC_STEPS: Partial<
   Record<TranslationLanguage, Record<string, string[]>>
 > = {
   es: {
+    station: ["Comprueba la conexión actual hasta la estación.", "Baja en la estación.", "Sigue el acceso peatonal desde la estación hasta el outlet.", "Comprueba la conexión de regreso antes de comprar."],
     public: ["Ve a una parada céntrica adecuada.", "Toma el transporte público hacia el outlet.", "Baja en la parada más cercana.", "Comprueba el regreso antes de comprar."],
     airportPublic: ["Sigue las señales de transporte público del aeropuerto.", "Toma una conexión hacia la zona del outlet.", "Haz transbordo si es necesario.", "Comprueba el regreso antes de comprar."],
     taxi: ["Abre una aplicación de taxi.", "Selecciona el outlet como destino.", "Confirma el punto de recogida.", "Prevé más tiempo en hora punta."],
     shuttle: ["Comprueba el punto de salida de la lanzadera.", "Reserva si es necesario.", "Llega con antelación.", "Confirma la salida de regreso."],
   },
   fr: {
+    station: ["Vérifiez la liaison actuelle jusqu’à la gare.", "Descendez à la gare.", "Suivez l’accès piéton de la gare à l’outlet.", "Vérifiez la liaison retour avant vos achats."],
     public: ["Rejoignez un arrêt adapté en centre-ville.", "Prenez les transports publics vers l’outlet.", "Descendez à l’arrêt le plus proche.", "Vérifiez le retour avant vos achats."],
     airportPublic: ["Suivez les panneaux de transport public.", "Prenez une liaison vers l’outlet.", "Changez si nécessaire.", "Vérifiez le retour avant vos achats."],
     taxi: ["Ouvrez une application de taxi.", "Choisissez l’outlet comme destination.", "Confirmez le point de prise en charge.", "Prévoyez plus de temps aux heures de pointe."],
     shuttle: ["Vérifiez le départ de la navette.", "Réservez si nécessaire.", "Arrivez en avance.", "Confirmez le départ du retour."],
   },
   de: {
+    station: ["Prüfe die aktuelle Verbindung zum Bahnhof.", "Steige am Bahnhof aus.", "Folge dem Fußweg vom Bahnhof zum Outlet.", "Prüfe die Rückverbindung vor dem Einkauf."],
     public: ["Gehe zu einer passenden Haltestelle im Zentrum.", "Fahre mit öffentlichen Verkehrsmitteln Richtung Outlet.", "Steige an der nächsten Haltestelle aus.", "Prüfe die Rückfahrt vor dem Einkauf."],
     airportPublic: ["Folge den Schildern zum Nahverkehr.", "Nimm eine Verbindung Richtung Outlet.", "Steige bei Bedarf um.", "Prüfe die Rückfahrt vor dem Einkauf."],
     taxi: ["Öffne eine Taxi-App.", "Wähle das Outlet als Ziel.", "Bestätige den Abholpunkt.", "Plane zur Hauptverkehrszeit mehr Zeit ein."],
     shuttle: ["Prüfe den Shuttle-Abfahrtsort.", "Reserviere bei Bedarf.", "Sei frühzeitig vor Ort.", "Bestätige die Rückfahrt."],
   },
   ru: {
+    station: ["Проверьте актуальное сообщение до станции.", "Выйдите на станции.", "Следуйте по пешеходному маршруту от станции к аутлету.", "Проверьте обратное сообщение до покупок."],
     public: ["Пройдите к удобной остановке в центре.", "Сядьте на транспорт в сторону аутлета.", "Выйдите на ближайшей остановке.", "Проверьте обратный рейс до покупок."],
     airportPublic: ["Следуйте указателям к транспорту.", "Выберите маршрут в сторону аутлета.", "При необходимости сделайте пересадку.", "Проверьте обратный рейс."],
     taxi: ["Откройте приложение такси.", "Укажите аутлет как пункт назначения.", "Подтвердите место посадки.", "Учтите пробки в часы пик."],
     shuttle: ["Проверьте место отправления шаттла.", "При необходимости забронируйте билет.", "Приходите заранее.", "Подтвердите обратный рейс."],
   },
   ar: {
+    station: ["تحقق من وسيلة الوصول الحالية إلى المحطة.", "انزل في المحطة.", "اتبع مسار المشاة من المحطة إلى الأوتلت.", "تحقق من رحلة العودة قبل التسوق."],
     public: ["توجّه إلى موقف مناسب في وسط المدينة.", "استقل النقل العام باتجاه الأوتلت.", "انزل في أقرب موقف.", "تحقق من رحلة العودة قبل التسوق."],
     airportPublic: ["اتبع إشارات النقل العام.", "استقل وسيلة باتجاه الأوتلت.", "بدّل الخط عند الحاجة.", "تحقق من رحلة العودة."],
     taxi: ["افتح تطبيق سيارة أجرة.", "حدد الأوتلت كوجهة.", "أكد نقطة الالتقاء.", "اترك وقتاً إضافياً وقت الازدحام."],
     shuttle: ["تحقق من نقطة انطلاق الحافلة.", "احجز عند الحاجة.", "صل مبكراً.", "أكد موعد العودة."],
   },
   zh: {
+    station: ["确认前往车站的当前交通连接。", "在车站下车。", "沿车站至奥特莱斯的步行通道前行。", "购物前确认返程连接。"],
     public: ["前往市中心合适的交通站点。", "乘坐公共交通前往奥特莱斯方向。", "在最近的站点下车。", "购物前确认返程。"],
     airportPublic: ["跟随机场公共交通指示。", "乘车前往奥特莱斯方向。", "如有需要请换乘。", "确认返程安排。"],
     taxi: ["打开出租车应用。", "将奥特莱斯设为目的地。", "确认上车点。", "高峰时段预留更多时间。"],
@@ -742,6 +794,7 @@ function factOriginGroup(
   if (!fact) return undefined;
   if (fact.originType === "airport") return "airport";
   if (fact.originType === "shuttle") return "shuttle";
+  if (fact.originType === "station") return "station";
   return "city";
 }
 export function hasSourceBackedShuttleRouteDetail(
@@ -1033,7 +1086,7 @@ function rangeByKm(km: number, rows: [number, Estimate][]): Estimate {
   return rows.find(([max]) => km <= max)?.[1] || rows[rows.length - 1][1];
 }
 function estimateFor(
-  origin: "city" | "airport" | "shuttle",
+  origin: "city" | "airport" | "station" | "shuttle",
   mode: TransportationType,
   km?: number,
 ): Estimate | undefined {
@@ -1232,19 +1285,26 @@ function titleFor(
   if (["taxi", "uber"].includes(mode))
     return origin === "airport" ? t.airportTaxi : t.taxi;
   if (origin === "airport") return t.airportPublic;
+  if (origin === "station")
+    return mode === "walking" ? t.stationWalking : t.stationPublic;
   if (mode === "train") return t.cityTrain;
   if (mode === "bus") return t.cityBus;
   return t.cityPublic;
 }
-function originLabelFor(
+export function getTransportationOriginLabel(
   origin: TransportationV2Option["originGroup"],
-  l: TranslationLanguage,
+  language: TranslationLanguage,
 ) {
   return origin === "airport"
-    ? I18N[l].airport
+    ? I18N[language].airport
     : origin === "city"
-      ? I18N[l].city
-      : I18N[l].titles.shuttle;
+      ? I18N[language].city
+      : origin === "station"
+        ? I18N[language].station
+        : I18N[language].titles.shuttle;
+}
+export function getTransportationStationSectionLabel(language: TranslationLanguage) {
+  return I18N[language].stationSection;
 }
 function stepsFor(
   mode: TransportationType,
@@ -1266,14 +1326,17 @@ function stepsFor(
     if (origin === "shuttle" || mode === "shuttle")
       return I18N[l].steps.shuttle;
     if (origin === "airport") return I18N[l].steps.airportPublic;
+    if (origin === "station") return I18N[l].steps.station;
     return I18N[l].steps.public;
   }
   if (l !== "tr") {
     if (origin === "shuttle" || mode === "shuttle")
       return I18N[l].steps.shuttle;
     if (origin === "airport") return I18N[l].steps.airportPublic;
+    if (origin === "station") return I18N[l].steps.station;
     return I18N[l].steps.public;
   }
+  if (origin === "station") return I18N[l].steps.station;
   const route = details?.lineOrProviderLabel;
   const board = localizePoint(details?.boardingPointLabel, l);
   const alight = details?.alightingPointLabel;
@@ -1329,7 +1392,9 @@ function optionFromGuide(
       ? "shuttle"
       : guide.originType === "airport"
         ? "airport"
-        : "city";
+        : guide.originType === "station"
+          ? "station"
+          : "city";
   const routeFact = getTransportationRouteFact(guide.guideId);
   const effectiveOriginGroup = factOriginGroup(routeFact) || originGroup;
   const isSourceBacked =
@@ -1494,7 +1559,7 @@ export function getTransportationOptionDisplayModel(
       : I18N[language].modes[option.mode] || I18N[language].modes.metro;
   return {
     ...option,
-    originLabel: originLabelFor(option.originGroup, language),
+    originLabel: getTransportationOriginLabel(option.originGroup, language),
     modeLabel: I18N[language].modes[option.mode] || option.mode,
     title:
       language === "en" &&
@@ -1562,7 +1627,7 @@ function routePriority(option: TransportationV2Option) {
   )
     return 100;
   if (
-    option.originGroup === "city" &&
+    ["city", "station"].includes(option.originGroup) &&
     PUBLIC_TYPES.has(option.mode) &&
     detail.confidence === "exact"
   )
@@ -1579,7 +1644,7 @@ function routePriority(option: TransportationV2Option) {
   )
     return 90;
   if (
-    option.originGroup === "city" &&
+    ["city", "station"].includes(option.originGroup) &&
     PUBLIC_TYPES.has(option.mode) &&
     detail.hasSourceBackedRouteDetail
   )
@@ -1626,6 +1691,12 @@ export function getOutletTransportationV2Summary(
         o.estimatedDurationLabel ||
         o.estimatedFareLabel),
   );
+  const station = display.find(
+    (o) =>
+      o.originGroup === "station" &&
+      PUBLIC_TYPES.has(o.mode) &&
+      o.routeDetails.hasSourceBackedRouteDetail,
+  );
   const shuttle =
     display.find(
       (o) =>
@@ -1650,7 +1721,7 @@ export function getOutletTransportationV2Summary(
   const recommendedDisplay = recommended
     ? display.find((option) => option.id === recommended.id)
     : undefined;
-  return [city, shuttle, airport, recommendedDisplay, display[0]]
+  return [city, station, shuttle, airport, recommendedDisplay, display[0]]
     .filter(Boolean)
     .filter(
       (option, index, all) =>
