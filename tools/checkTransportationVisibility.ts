@@ -1077,6 +1077,66 @@ const spainCompletionRoutes = [
   ["coruna-the-style-outlets", "a-coruna-airport-to-coruna-style-outlets-ground-transport", "taxi", ["A Coruña (LCG)", "Coruña The Style Outlets"]],
   ["sambil-madrid", "sambil-madrid-metro-guide", "metro", ["Metro de Madrid / CRTM", "11", "Plaza Elíptica", "La Fortuna", "Sambil Madrid"]],
 ] as const;
+const lineLabelRegressionRoutes = [
+  ["designer-outlet-malaga", "malaga-centro-to-designer-outlet-train", "C1"],
+  ["sambil-madrid", "sambil-madrid-metro-guide", "11"],
+  ["las-rozas-village", "madrid-moncloa-to-las-rozas-bus", "625 / 628 / 629"],
+  ["viladecans-the-style-outlets", "barcelona-to-viladecans-style-outlets-train", "R2 / R2 Sud"],
+  ["mallorca-fashion-outlet", "palma-to-mallorca-fashion-outlet-train", "T1 / T2 / T3"],
+  ["designer-outlet-troyes", "troyes-station-to-designer-outlet-troyes-bus", "1"],
+  ["roubaix-designer-outlet", "lille-to-roubaix-designer-outlet-public-transport", "M2"],
+  ["designer-outlet-provence", "marseille-to-provence-train-bus", "TER → Miramas FS → Premium BAM"],
+  ["one-nation-paris", "paris-montparnasse-to-one-nation-paris-train-bus", "N → Villepreux-les-Clayes → 5101"],
+  ["valdichiana-village", "valdichiana-village-arezzo-train-bus", "LS5"],
+  ["franciacorta-designer-village", "brescia-station-to-franciacorta-designer-village-bus", "LS029"],
+  ["mantova-village", "mantova-station-to-mantova-village-bus", "31A"],
+  ["santangelo-outlet-village", "santangelo-outlet-village-bus-guide", "Pescara ↔ Città Sant’Angelo"],
+] as const;
+for (const language of supportedLanguageCodes) {
+  const rerReference = display("la-vallee-village", "paris-to-la-vallee-rer-a", language);
+  const rerRows = rerReference
+    ? getTransportationRouteDetailRows(rerReference, language)
+    : [];
+  const lineLabel = rerRows.find((row) => row.value === "RER A")?.label;
+  const operatorLabel = rerRows.find((row) => row.value === "RATP / SNCF")?.label;
+  if (!lineLabel || !operatorLabel)
+    errors.push(`route-labels/${language}: reference labels are missing`);
+  for (const [outletId, guideId, lineValue] of lineLabelRegressionRoutes) {
+    const localized = display(outletId, guideId, language);
+    const rows = localized
+      ? getTransportationRouteDetailRows(localized, language)
+      : [];
+    const matchingRows = rows.filter((row) => row.value === lineValue);
+    if (matchingRows.length !== 1 || matchingRows[0]?.label !== lineLabel)
+      errors.push(`${guideId}/${language}: ${lineValue} does not use the localized Line label exactly once`);
+  }
+  const providerReference = display(
+    "designer-outlet-parndorf",
+    "vienna-to-parndorf-train-bus",
+    language,
+  );
+  const providerRows = providerReference
+    ? getTransportationRouteDetailRows(providerReference, language)
+    : [];
+  const providerLabel = providerRows.find((row) => row.value === "ÖBB")?.label;
+  if (!providerLabel || providerLabel === lineLabel)
+    errors.push(`route-labels/${language}: ÖBB is not a localized Provider row`);
+  for (const [outletId, guideId, providerValue] of [
+    ["la-roca-village", "barcelona-to-la-roca-village-shopping-express", "Shopping Express / Catalunya Bus Turístic"],
+    ["brugnato-5terre-outlet-village", "brugnato-5terre-outlet-village-shuttle-guide", "Brugnato 5Terre Shuttle"],
+  ] as const) {
+    const localized = display(outletId, guideId, language);
+    const rows = localized
+      ? getTransportationRouteDetailRows(localized, language)
+      : [];
+    const matchingRows = rows.filter((row) => row.value === providerValue);
+    if (matchingRows.length !== 1 || matchingRows[0]?.label !== providerLabel)
+      errors.push(`${guideId}/${language}: shuttle provider label is invalid`);
+  }
+  if (rerRows.filter((row) => row.value === "RATP / SNCF").length !== 1 ||
+      rerRows.find((row) => row.value === "RATP / SNCF")?.label !== operatorLabel)
+    errors.push(`route-labels/${language}: operator row changed`);
+}
 const spainGenericRouteFragments = /Railway Station|Train Station|city centre|\bairport\b|(?:^|\s)or(?:\s|$)|Google Maps|promo(?:tional)? code/i;
 for (const [outletId, guideId, expectedMode, expectedClaims] of spainCompletionRoutes) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);

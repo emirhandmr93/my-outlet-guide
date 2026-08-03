@@ -849,8 +849,14 @@ function isRouteLineCode(value: string | undefined) {
   const knownProviderOnly =
     /^(?:ÖBB|Trenitalia|Shopping Express|Zani Viaggi|Frigerio Viaggi|Zani Viaggi \/ Frigerio Viaggi|Outlet Link|FlixBus|Obus)$/i;
   if (knownProviderOnly.test(normalized)) return false;
-  return /(?:^|\b)(?:RER|TGV|SNCF|RATP|RB|RE|S)\s*[A-Z0-9]+(?:\b|$)|\//i.test(
-    normalized,
+  return (
+    /(?:^|\b)(?:RER|TGV|SNCF|RATP|RB|RE|S)\s*[A-Z0-9]+(?:\b|$)|\//i.test(
+      normalized,
+    ) ||
+    /[→↔]/.test(normalized) ||
+    /^(?:Line|Bus|Tram|Metro)\s+\d+[A-Z]?$/i.test(normalized) ||
+    /^\d+$/.test(normalized) ||
+    /^(?=[A-Z0-9]*[A-Z])(?=[A-Z0-9]*\d)[A-Z0-9]+$/i.test(normalized)
   );
 }
 function extractRouteDetails(
