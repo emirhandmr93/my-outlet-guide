@@ -459,7 +459,8 @@ service cloud.firestore {
           'updatedAt',
           'disabledAt',
           'firestoreCreatedAt',
-          'firestoreUpdatedAt'
+          'firestoreUpdatedAt',
+          'notificationLocale'
         ])
         && userId == request.auth.uid
         && request.resource.data.userId == request.auth.uid
@@ -468,6 +469,8 @@ service cloud.firestore {
         && request.resource.data.platform in ['ios', 'android', 'web', 'windows', 'macos']
         && isNonEmptyString(request.resource.data.createdAt)
         && isNonEmptyString(request.resource.data.updatedAt)
+        && (!request.resource.data.keys().hasAny(['notificationLocale'])
+          || request.resource.data.notificationLocale in ['en', 'tr', 'es', 'fr', 'de', 'ar', 'ru', 'zh'])
         && (request.resource.data.disabledAt == null || isNonEmptyString(request.resource.data.disabledAt));
     }
 

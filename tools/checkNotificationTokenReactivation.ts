@@ -27,9 +27,10 @@ const extractBracedBlock = (source: string, anchor: string) => {
 };
 
 const identity = { userId: "user-1", token: "ExponentPushToken[test]", platform: "ios" };
-const values = { ...identity, now: "2026-08-02T10:00:00.000Z", firestoreNow: "server-time" };
+const values = { ...identity, notificationLocale: "tr" as const, now: "2026-08-02T10:00:00.000Z", firestoreNow: "server-time" };
 const created = planNotificationTokenRegistration(undefined, values);
 assert(created.kind === "create", "a missing token must produce a create plan");
+assert(created.data.notificationLocale === "tr", "create data must initialize notificationLocale");
 assert(created.data.createdAt === values.now, "create data must initialize createdAt");
 assert(created.data.firestoreCreatedAt === values.firestoreNow, "create data must initialize Firestore creation metadata");
 assert(created.data.firestoreUpdatedAt === values.firestoreNow, "create data must initialize Firestore update metadata");
@@ -37,18 +38,19 @@ assert(created.data.firestoreUpdatedAt === values.firestoreNow, "create data mus
 const existingDisabled = { ...identity, createdAt: "2026-07-01T00:00:00.000Z", disabledAt: "2026-07-20T00:00:00.000Z" };
 const reactivated = planNotificationTokenRegistration(existingDisabled, values);
 assert(reactivated.kind === "update", "a compatible disabled token must produce an update plan");
+assert(reactivated.data.notificationLocale === "tr", "reactivation must refresh notificationLocale");
 assert(reactivated.data.disabledAt === null, "reactivation must clear disabledAt");
 assert(reactivated.data.updatedAt === values.now, "reactivation must refresh updatedAt");
 assert(!("createdAt" in reactivated.data), "reactivation must not contain createdAt");
 assert(!("firestoreCreatedAt" in reactivated.data), "reactivation must not contain firestoreCreatedAt");
 assert(
-  keys(reactivated.data).join(",") === "disabledAt,firestoreUpdatedAt,updatedAt",
+  keys(reactivated.data).join(",") === "disabledAt,firestoreUpdatedAt,notificationLocale,updatedAt",
   "reactivation must update mutable fields only"
 );
 
 const refreshed = planNotificationTokenRegistration({ ...existingDisabled, disabledAt: null }, values);
 assert(refreshed.kind === "update", "a compatible active token must be refreshable");
-assert(keys(refreshed.data).join(",") === "disabledAt,firestoreUpdatedAt,updatedAt", "refresh must preserve immutable fields");
+assert(keys(refreshed.data).join(",") === "disabledAt,firestoreUpdatedAt,notificationLocale,updatedAt", "refresh must preserve immutable fields");
 
 for (const [field, changed] of [
   ["userId", "another-user"],
@@ -121,6 +123,13 @@ assert(
   eligibleDisabledAt(undefined) && eligibleDisabledAt(null) && eligibleDisabledAt("") && !eligibleDisabledAt("2026-08-02T10:00:00.000Z"),
   "a non-empty disabledAt value must not be eligible for flight-price delivery"
 );
+const localeSynchronization = context.slice(context.indexOf("const userId = currentUser?.userId;"), context.indexOf("async function refreshPermissionStatus"));
+assert(localeSynchronization.includes("await updateDoc(tokenRef"), "background locale synchronization must update the current token only");
+assert(!localeSynchronization.slice(localeSynchronization.indexOf("await updateDoc")).includes("disabledAt"),
+  "background locale synchronization must not clear disabledAt or reactivate a token");
+assert(!localeSynchronization.includes("registerPushToken") && !localeSynchronization.includes("requestPermissionsAsync"),
+  "background locale synchronization must neither reactivate tokens nor request permission");
+
 const startupEffects = [...context.matchAll(/useEffect\(\(\) => \{([\s\S]*?)\}, \[/g)].map((match) => match[1]).join("\n");
 assert(!startupEffects.includes("registerPushToken"), "startup effects must not register or reactivate push tokens");
 

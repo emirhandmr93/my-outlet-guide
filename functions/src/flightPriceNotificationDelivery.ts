@@ -11,6 +11,8 @@ import {
   sendExpoPushNotifications,
 } from "./expoPush";
 import { FlightPriceRuntimeConfig, isFlightPriceRuntimeUserEnabled, loadFlightPriceRuntimeConfig } from "./flightPriceRuntime";
+import { buildLocalizedFlightPriceNotificationContent, FlightPriceNotificationLocale,
+  normalizeFlightPriceNotificationLocale } from "./flightPriceNotificationLocalization";
 
 export type FlightPricePushThreshold = 15 | 30 | 45;
 export type ExactDateFlightPriceAlertEvent = {
@@ -36,7 +38,7 @@ export type RollingRouteFlightPriceAlertEvent = {
 export type ValidFlightPriceAlertEvent = ExactDateFlightPriceAlertEvent | RollingRouteFlightPriceAlertEvent;
 
 type DeliveryStatus = "reserved" | "retry_pending" | "ticket_accepted" | "ticket_error" | "receipt_ok" | "receipt_error" | "receipt_unavailable";
-type Token = { tokenId: string; token: string; ref: FirebaseFirestore.DocumentReference };
+type Token = { tokenId: string; token: string; ref: FirebaseFirestore.DocumentReference; locale?: FlightPriceNotificationLocale };
 type Summary = Record<"receiptDeliveryDocumentsRead" | "receiptsRequested" | "receiptOkCount" | "receiptErrorCount" |
   "receiptUnavailableCount" | "pendingEventsRead" | "validEventsProcessed" | "invalidEventsSkipped" |
   "exactPendingEventDocumentsRead" | "rollingPendingEventDocumentsRead" | "exactValidEventsProcessed" |
@@ -108,16 +110,18 @@ export function validatePendingFlightPriceAlertEvent(documentId: string, data: u
     : validateFlightPriceAlertEvent(documentId, data);
 }
 
-const money = (value: number) => Number(value.toFixed(2)).toString();
-export function buildFlightPricePushMessage(event: ValidFlightPriceAlertEvent, expoPushToken: string): ExpoPushMessage {
-  const rolling = event.schemaVersion === 2;
-  const travel = rolling ? ` Travel: ${event.offerDepartDate}${event.offerReturnDate ? ` → ${event.offerReturnDate}` : ""}.` : "";
+export function buildFlightPricePushMessage(event: ValidFlightPriceAlertEvent, expoPushToken: string,
+  locale: FlightPriceNotificationLocale = "en"): ExpoPushMessage {
+  const content = buildLocalizedFlightPriceNotificationContent(event.schemaVersion === 2
+    ? { kind: "rolling_route", originAirportCode: event.originAirportCode, destinationAirportCode: event.destinationAirportCode,
+      currentPrice: event.currentPrice, averagePrice: event.averagePrice, matchedThreshold: event.matchedThreshold,
+      historyWindowDays: event.historyWindowDays, offerDepartDate: event.offerDepartDate, offerReturnDate: event.offerReturnDate }
+    : { kind: "exact_date", originAirportCode: event.originAirportCode, destinationAirportCode: event.destinationAirportCode,
+      currentPrice: event.currentPrice, averagePrice: event.averagePrice, matchedThreshold: event.matchedThreshold,
+      historyWindowDays: event.historyWindowDays }, locale);
   return {
     to: expoPushToken, sound: "default", ttl: 21_600, priority: "high",
-    title: `${event.originAirportCode} → ${event.destinationAirportCode} · ${event.matchedThreshold}%`,
-    body: rolling
-      ? `Lowest tracked fare: €${money(event.currentPrice)}. Recent ${event.historyWindowDays}-day average: €${money(event.averagePrice)}.${travel}`
-      : `Tracked fare: €${money(event.currentPrice)}. Recent ${event.historyWindowDays}-day average: €${money(event.averagePrice)}.`,
+    ...content,
     data: { type: "flightPriceAlert", eventId: event.eventId },
   };
 }
@@ -513,7 +517,7 @@ async function processEvent(event: ValidFlightPriceAlertEvent, tokensForUser: (u
     }
     let tickets: ExpoPushTicket[];
     try {
-      tickets = await sendExpoPushNotifications(chunk.map(item => buildFlightPricePushMessage(event, item.token.token)));
+      tickets = await sendExpoPushNotifications(chunk.map(item => buildFlightPricePushMessage(event, item.token.token, item.token.locale)));
     } catch (error) {
       await Promise.all(chunk.map(item => updateExisting(item.ref, { status: "retry_pending", ticketErrorCode: requestCode(error),
         nextAttemptAt: Timestamp.fromMillis(sentAt.toMillis() + 900_000), updatedAt: FieldValue.serverTimestamp() })));
@@ -581,7 +585,8 @@ export const processFlightPriceAlertNotifications = onSchedule(
         return tokens.docs.filter(doc => { const data = doc.data(); return data.userId === userId && typeof data.token === "string" &&
           isExpoPushToken(data.token) && (data.disabledAt === undefined || data.disabledAt === null || data.disabledAt === "") &&
           (data.platform === "ios" || data.platform === "android"); }).sort((a, b) => a.id.localeCompare(b.id))
-          .map(doc => ({ tokenId: doc.id, token: doc.data().token as string, ref: doc.ref }));
+          .map(doc => ({ tokenId: doc.id, token: doc.data().token as string, ref: doc.ref,
+            locale: normalizeFlightPriceNotificationLocale(doc.data().notificationLocale) }));
       })(); cache.set(userId, loaded); return loaded;
     };
     const eventsByUser = new Map<string, ValidFlightPriceAlertEvent[]>();
