@@ -1,6 +1,9 @@
 import {
   AVIASALES_AFFILIATE_MARKER,
-  AVIASALES_SEARCH_BASE_URL,
+  AVIASALES_PROGRAM_ID,
+  AVIASALES_SEARCH_TARGET_URL,
+  TRAVELPAYOUTS_PROJECT_ID,
+  TRAVELPAYOUTS_REDIRECT_BASE_URL,
 } from "../constants/travelAffiliate";
 
 export type AviasalesTripClass = "economy" | "business";
@@ -72,6 +75,13 @@ function normalizeSubId(value: string | undefined) {
     .replace(/_+$/g, "");
 }
 
+const AVIASALES_LOCALES = new Set(["en", "es", "fr", "de", "ru"]);
+
+export function normalizeAviasalesLocale(value: string | undefined): string {
+  const locale = value?.trim().toLowerCase() ?? "";
+  return AVIASALES_LOCALES.has(locale) ? locale : "en";
+}
+
 export function buildAviasalesAffiliateSearchUrl(
   input: AviasalesAffiliateSearchInput,
 ): string {
@@ -111,14 +121,7 @@ export function buildAviasalesAffiliateSearchUrl(
     throw new Error("currency must be USD or EUR");
   }
 
-  const locale = input.locale ?? "en";
-  if (locale.trim() === "") {
-    throw new Error("locale must not be blank");
-  }
-
-  const subId = normalizeSubId(input.subId);
-  const marker = subId ? `${AVIASALES_AFFILIATE_MARKER}.${subId}` : AVIASALES_AFFILIATE_MARKER;
-  const parameters = new URLSearchParams({
+  const targetParameters = new URLSearchParams({
     origin_iata: originIata,
     destination_iata: destinationIata,
     depart_date: departDate,
@@ -127,15 +130,24 @@ export function buildAviasalesAffiliateSearchUrl(
     infants: String(infants),
     trip_class: tripClass === "economy" ? "0" : "1",
     currency,
-    locale: locale.trim(),
+    locale: normalizeAviasalesLocale(input.locale),
     oneway: returnDate === undefined ? "1" : "0",
-    marker,
   });
   if (returnDate !== undefined) {
-    parameters.set("return_date", returnDate);
+    targetParameters.set("return_date", returnDate);
   }
 
-  const url = new URL(AVIASALES_SEARCH_BASE_URL);
-  url.search = parameters.toString();
-  return url.toString();
+  const targetUrl = new URL(AVIASALES_SEARCH_TARGET_URL);
+  targetUrl.search = targetParameters.toString();
+
+  const subId = normalizeSubId(input.subId);
+  const marker = subId ? `${AVIASALES_AFFILIATE_MARKER}.${subId}` : AVIASALES_AFFILIATE_MARKER;
+  const redirectUrl = new URL(TRAVELPAYOUTS_REDIRECT_BASE_URL);
+  redirectUrl.search = new URLSearchParams({
+    marker,
+    trs: TRAVELPAYOUTS_PROJECT_ID,
+    p: AVIASALES_PROGRAM_ID,
+    u: targetUrl.toString(),
+  }).toString();
+  return redirectUrl.toString();
 }
