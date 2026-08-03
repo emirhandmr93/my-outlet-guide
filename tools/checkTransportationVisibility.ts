@@ -1465,11 +1465,11 @@ if (ukOutletsWithoutSourceBackedRoutes.length || ukOutletsWithoutSourceBackedUrl
 
 const netherlandsCompletionRoutes = [
   ["designer-outlet-roermond", "amsterdam-to-roermond-train", "Amsterdam Centraal", "Amsterdam Centraal → Roermond", ["NS", "Amsterdam Centraal → Roermond", "Amsterdam Centraal", "Roermond", "Designer Outlet Roermond"]],
-  ["designer-outlet-roosendaal", "rotterdam-to-roosendaal-train-bus", "Rotterdam Centraal", "Rotterdam Centraal → Roosendaal", ["NS / Bravo", "Rotterdam Centraal → Roosendaal", "Rotterdam Centraal", "Roosendaal", "161 / 164 → Designer Outlet Roosendaal", "Designer Outlet Roosendaal"]],
+  ["designer-outlet-roosendaal", "rotterdam-to-roosendaal-train-bus", "Rotterdam Centraal", "Rotterdam Centraal → Roosendaal", ["NS / Bravo", "Rotterdam Centraal → Roosendaal", "Rotterdam Centraal", "Roosendaal", "161 → Designer Outlet Roosendaal", "Designer Outlet Roosendaal"]],
   ["amsterdam-the-style-outlets", "amsterdam-centraal-to-amsterdam-style-outlets-train-walk", "Amsterdam Centraal", "Amsterdam Centraal → Halfweg-Zwanenburg", ["NS", "Amsterdam Centraal → Halfweg-Zwanenburg", "Amsterdam Centraal", "Halfweg-Zwanenburg", "Amsterdam The Style Outlets"]],
   ["batavia-stad-fashion-outlet", "amsterdam-to-batavia-stad-train-bus", "Amsterdam Centraal", "Amsterdam Centraal → Lelystad Centrum", ["NS / RRReis", "Amsterdam Centraal → Lelystad Centrum", "Amsterdam Centraal", "Lelystad Centrum", "13 → Batavia Stad", "Batavia Stad Fashion Outlet"]],
 ] as const;
-const netherlandsTransferValues = new Set(["161 / 164 → Designer Outlet Roosendaal", "13 → Batavia Stad"]);
+const netherlandsTransferValues = new Set(["161 → Designer Outlet Roosendaal", "13 → Batavia Stad"]);
 for (const [outletId, guideId, boardingPoint, lineValue, visibleValues] of netherlandsCompletionRoutes) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
   const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
@@ -1504,11 +1504,19 @@ for (const [outletId, guideId, boardingPoint, lineValue, visibleValues] of nethe
 for (const guideId of ["eindhoven-airport-to-roermond-car", "flixbus-to-roermond-outlet", "rotterdam-airport-to-roosendaal-car", "amsterdam-style-outlets-car-parking-guide", "amsterdam-to-batavia-stad-shuttle-bus", "batavia-stad-car-parking-guide"])
   if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended) errors.push(`${guideId}: secondary guide must not be recommended`);
 const roosendaalFact = transportationRouteFacts.find((fact) => fact.guideId === "rotterdam-to-roosendaal-train-bus");
-if (roosendaalFact?.line !== "Rotterdam Centraal → Roosendaal" || roosendaalFact.alightingPoint !== "Roosendaal" || roosendaalFact.transferPoints?.join() !== "161 / 164 → Designer Outlet Roosendaal") errors.push("Roosendaal: rail and bus leg ownership is invalid");
+if (roosendaalFact?.line !== "Rotterdam Centraal → Roosendaal" || roosendaalFact.alightingPoint !== "Roosendaal" || roosendaalFact.transferPoints?.join() !== "161 → Designer Outlet Roosendaal") errors.push("Roosendaal: rail and bus leg ownership is invalid");
 const bataviaFact = transportationRouteFacts.find((fact) => fact.guideId === "amsterdam-to-batavia-stad-train-bus");
 if (bataviaFact?.line !== "Amsterdam Centraal → Lelystad Centrum" || bataviaFact.alightingPoint !== "Lelystad Centrum" || bataviaFact.transferPoints?.join() !== "13 → Batavia Stad") errors.push("Batavia Stad: rail and bus leg ownership is invalid");
+const sourceBackedTurkishMultiLegFacts = transportationRouteFacts.filter((fact) => fact.guideId && fact.alightingPoint && fact.transferPoints?.length && ["exact", "partial"].includes(fact.confidence));
+for (const fact of sourceBackedTurkishMultiLegFacts) {
+  const localized = display(fact.outletId, fact.guideId!, "tr");
+  const alightingStepIndex = localized?.steps.findIndex((step) => step.includes(`${fact.alightingPoint} durağında in.`)) ?? -1;
+  const transferStepIndex = localized?.steps.findIndex((step) => step.includes("aktarmasını takip et") && fact.transferPoints!.every((transfer) => step.includes(transfer))) ?? -1;
+  if (alightingStepIndex < 0 || transferStepIndex < 0 || alightingStepIndex >= transferStepIndex)
+    errors.push(`${fact.guideId}/tr: primary-leg alighting must precede the transfer`);
+}
 const netherlandsCompletionData = JSON.stringify({ facts: transportationRouteFacts.filter((fact) => netherlandsCompletionRoutes.some(([, guideId]) => guideId === fact.guideId)), guides: transportationGuides.filter((guide) => netherlandsCompletionRoutes.some(([, guideId]) => guideId === guide.guideId)) });
-if (/2 hr 5|55-75|route 112|route 104|Arriva|9292|€22\.50|every Saturday|December|\b\d{1,2}:\d{2}\b/i.test(netherlandsCompletionData)) errors.push("Netherlands completion: stale route, timetable, or fare detail leaked");
+if (/2 hr 5|55-75|route 112|route 104|(?:Line\s+)?164|161\s*\/\s*164|Arriva|9292|€22\.50|every Saturday|December|\b\d{1,2}:\d{2}\b/i.test(netherlandsCompletionData)) errors.push("Netherlands completion: stale route, timetable, or fare detail leaked");
 const activeNetherlandsOutlets = activeOutlets.filter((outlet) => outlet.countryId === "netherlands");
 const sourceBackedNetherlandsOutlets = activeNetherlandsOutlets.filter((outlet) => getTransportationV2Options(outlet.outletId).some((option) => getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail));
 const sourceBackedAndUrlNetherlandsOutlets = activeNetherlandsOutlets.filter((outlet) => transportationRouteFacts.some((fact) => fact.outletId === outlet.outletId && fact.officialProviderUrl?.startsWith("https://") && getTransportationV2Options(outlet.outletId).some((option) => option.id === fact.guideId && getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail)));
@@ -1565,6 +1573,7 @@ console.log(`Netherlands source-backed outlet count: ${sourceBackedNetherlandsOu
 console.log(`Netherlands source-backed-and-URL outlet count: ${sourceBackedAndUrlNetherlandsOutlets.length}`);
 console.log(`Netherlands outlets without source-backed routes: ${JSON.stringify(netherlandsOutletsWithoutSourceBackedRoutes)}`);
 console.log(`Netherlands outlets without source-backed URLs: ${JSON.stringify(netherlandsOutletsWithoutSourceBackedUrls)}`);
+console.log(`Turkish source-backed multi-leg route count: ${sourceBackedTurkishMultiLegFacts.length}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
 );

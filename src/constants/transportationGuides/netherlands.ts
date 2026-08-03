@@ -70,7 +70,7 @@ export const netherlandsTransportationGuides: TransportationGuide[] = [
     steps: [
       { order: 1, description: "Check the Rotterdam Centraal–Roosendaal train with NS." },
       { order: 2, description: "Travel to Roosendaal with NS." },
-      { order: 3, description: "At Roosendaal, check the current Bravo 161 or 164 connection." },
+      { order: 3, description: "At Roosendaal, check the current Bravo Line 161 connection." },
       { order: 4, description: "Continue to the Designer Outlet Roosendaal stop." },
       { order: 5, description: "Check the return bus and train before shopping." },
     ],

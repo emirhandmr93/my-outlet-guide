@@ -1375,8 +1375,8 @@ function stepsFor(
   ];
   if (route)
     steps.push(`${route} ile ${alight || dest || "outlet yönüne"} git.`);
-  if (transfer) steps.push(`${transfer} aktarmasını takip et.`);
   if (alight) steps.push(`${alight} durağında in.`);
+  if (transfer) steps.push(`${transfer} aktarmasını takip et.`);
   steps.push(
     `${dest || "Outlet girişine"} yürüyerek veya yerel servisle devam et.`,
   );
