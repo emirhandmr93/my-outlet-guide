@@ -8,6 +8,7 @@ import {
   getOutletTransportationV2Summary,
   getRecommendedTransportationV2Option,
   getTransportationOptionDisplayModel,
+  getTransportationRouteDetailRows,
   getTransportationV2Options,
   hasSafeFareProvenance,
   hasSourceBackedShuttleRouteDetail,
@@ -271,6 +272,87 @@ if (
   theMallFact.estimatedDurationMax != null
 )
   errors.push("the-mall-firenze: structured fare or duration provenance is invalid");
+
+for (const [guideId, expectedBoardingPoint] of [
+  ["noventa-mestre-atvo-direct-bus", "Mestre FS"],
+  ["noventa-marco-polo-airport-atvo", "Venezia Marco Polo (VCE)"],
+  ["scalo-milano-train-bus-guide", "Milano S13"],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.boardingPoint !== expectedBoardingPoint)
+    errors.push(`${guideId}: locale-neutral boarding point is invalid`);
+}
+
+const torinoFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === "torino-outlet-village-public-transport-guide",
+);
+const expectedTorinoLine =
+  "Tram 4 / SFM 1, 2, 4, 6, 7 → Torino Stura → GTT SE1 / SE2";
+if (
+  torinoFact?.line !== expectedTorinoLine ||
+  torinoFact.boardingPoint !==
+    "Torino / Torino Lingotto / Torino Porta Susa / Torino Rebaudengo" ||
+  torinoFact.transferPoints != null ||
+  torinoFact.alightingPoint !== "Nervi" ||
+  torinoFact.destination !== "Torino Outlet Village"
+)
+  errors.push("torino-outlet-village: structured route order is invalid");
+
+const englishGenericRouteFragments =
+  /Railway Station|Venice Marco Polo Airport|Milan S13 network|Turin city centre|(?:^|\s)or(?:\s|$)/i;
+for (const [outletId, guideId] of italyBatchTwoRoutes) {
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized) continue;
+    const routeDetailsText = JSON.stringify(localized.routeDetails);
+    const detailRowsText = getTransportationRouteDetailRows(localized, language)
+      .map((row) => `${row.label}: ${row.value}`)
+      .join(" ");
+    if (englishGenericRouteFragments.test(`${routeDetailsText} ${detailRowsText}`))
+      errors.push(`${guideId}/${language}: English generic route value leaked`);
+  }
+}
+
+for (const language of supportedLanguageCodes) {
+  const localized = display(
+    "torino-outlet-village",
+    "torino-outlet-village-public-transport-guide",
+    language,
+  );
+  if (!localized) continue;
+  const routeText = `${JSON.stringify(localized.routeDetails)} ${getTransportationRouteDetailRows(localized, language)
+    .map((row) => `${row.label}: ${row.value}`)
+    .join(" ")}`;
+  const sturaIndex = routeText.indexOf("Torino Stura");
+  const se1Index = routeText.indexOf("GTT SE1");
+  const nerviIndex = routeText.indexOf("Nervi");
+  if (!(sturaIndex >= 0 && sturaIndex < se1Index && se1Index < nerviIndex))
+    errors.push(`torino-outlet-village/${language}: route detail order is invalid`);
+  if (localized.estimatedDurationLabel || localized.estimatedFareLabel)
+    errors.push(`torino-outlet-village/${language}: unsupported duration or fare is visible`);
+}
+
+const torinoTurkish = display(
+  "torino-outlet-village",
+  "torino-outlet-village-public-transport-guide",
+  "tr",
+);
+if (torinoTurkish) {
+  const steps = torinoTurkish.steps.join(" ");
+  const sturaIndex = steps.indexOf("Torino Stura");
+  const se1Index = steps.indexOf("GTT SE1");
+  const nerviIndex = steps.indexOf("Nervi");
+  const nerviStepIndex = torinoTurkish.steps.findIndex((step) =>
+    /Nervi durağında in\./i.test(step),
+  );
+  const firstNerviStepIndex = torinoTurkish.steps.findIndex((step) =>
+    step.includes("Nervi"),
+  );
+  if (!(sturaIndex >= 0 && sturaIndex < se1Index && se1Index < nerviIndex))
+    errors.push("torino-outlet-village/tr: generated step order is invalid");
+  if (nerviStepIndex < 0 || nerviStepIndex < firstNerviStepIndex)
+    errors.push("torino-outlet-village/tr: Nervi alighting instruction is missing");
+}
 
 for (const [outletId, guideId] of [
   ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
