@@ -28,6 +28,7 @@ export type TransportationRouteFact = {
   estimatedDurationMin?: number;
   estimatedDurationMax?: number;
   displayDuration?: string;
+  suppressDerivedDurationFallback?: boolean;
   estimatedFareMin?: number;
   estimatedFareMax?: number;
   currency?: string;
@@ -239,6 +240,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     boardingPoint: "Napoli Centrale",
     transferPoints: ["Caserta railway station"],
     destination: "La Reggia Designer Outlet",
+    suppressDerivedDurationFallback: true,
     estimatedFareMin: 1.3,
     estimatedFareMax: 1.3,
     currency: "EUR",

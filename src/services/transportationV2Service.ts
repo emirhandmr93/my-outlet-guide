@@ -1436,7 +1436,9 @@ export function getTransportationOptionDisplayModel(
       : undefined) ||
     (factEstimate ? formatDuration(factEstimate, language) : undefined) ||
     formatTransportDurationForDisplay(guide.estimatedDuration, language) ||
-    (estimate ? formatDuration(estimate, language) : undefined);
+    (fact?.suppressDerivedDurationFallback !== true && estimate
+      ? formatDuration(estimate, language)
+      : undefined);
   const fareLabel =
     (fact?.displayFare
       ? `${I18N[language].approx} ${fact.displayFare}`

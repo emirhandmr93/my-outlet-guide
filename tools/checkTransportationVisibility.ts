@@ -232,6 +232,8 @@ if (
   laReggiaPublic?.routeFact?.estimatedFareMax !== 1.3 ||
   laReggiaPublic?.routeFact?.currency !== "EUR" ||
   laReggiaPublic?.routeFact?.displayFare != null ||
+  laReggiaPublic?.routeFact?.displayDuration != null ||
+  laReggiaPublic?.routeFact?.suppressDerivedDurationFallback !== true ||
   laReggiaPublic?.routeFact?.estimatedDurationMin != null ||
   laReggiaPublic?.routeFact?.estimatedDurationMax != null
 )
@@ -250,6 +252,16 @@ for (const language of supportedLanguageCodes) {
   if (!localized?.estimatedFareLabel?.includes("€1.3"))
     errors.push(`la-reggia/${language}: structured €1.30 fare is missing`);
 }
+
+const unflaggedDerivedDuration = display(
+  "viaport-asia-outlet-shopping",
+  "istanbul-to-viaport-asia-iett",
+);
+if (
+  unflaggedDerivedDuration?.routeFact?.suppressDerivedDurationFallback === true ||
+  unflaggedDerivedDuration?.estimatedDurationLabel !== "Approx. 30–60 min"
+)
+  errors.push("duration fallback: unflagged route lost its derived duration");
 
 for (const guideId of [
   "factory-ursus-car-parking-guide",
