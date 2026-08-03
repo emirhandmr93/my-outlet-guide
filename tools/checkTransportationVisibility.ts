@@ -581,6 +581,174 @@ if (
 )
   errors.push("castel-guelfo-the-style-outlets: structured transfer point is invalid");
 
+const franceCompletionRoutes = [
+  ["designer-outlet-provence", "marseille-to-provence-train-bus", "train"],
+  ["designer-outlet-troyes", "troyes-station-to-designer-outlet-troyes-bus", "bus"],
+  ["the-village-outlet", "la-verpilliere-to-the-village-outlet-walk", "walking"],
+  ["roubaix-designer-outlet", "lille-to-roubaix-designer-outlet-public-transport", "metro"],
+  ["roppenheim-the-style-outlets", "strasbourg-to-roppenheim-official-shuttle", "shuttle"],
+  ["paris-giverny-designer-outlet", "paris-to-paris-giverny-designer-outlet-shuttle", "shuttle"],
+  ["one-nation-paris", "paris-montparnasse-to-one-nation-paris-train-bus", "train"],
+] as const;
+const franceGenericRouteFragments =
+  /Railway Station|Train Station|city centre|airport|(?:^|\s)or(?:\s|$)/i;
+for (const [outletId, guideId, expectedMode] of franceCompletionRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  if (!fact?.officialProviderUrl?.startsWith("https://"))
+    errors.push(`${guideId}: valid officialProviderUrl is missing`);
+  if (fact?.displayFare != null)
+    errors.push(`${guideId}: free-form displayFare must not be used`);
+  if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode)
+    errors.push(`${guideId}: guide or fact mode is invalid`);
+  const structuredRouteText = [
+    fact?.provider,
+    fact?.operator,
+    fact?.line,
+    fact?.boardingPoint,
+    ...(fact?.transferPoints || []),
+    fact?.alightingPoint,
+    fact?.destination,
+  ].filter(Boolean).join(" ");
+  if (franceGenericRouteFragments.test(structuredRouteText))
+    errors.push(`${guideId}: English generic structured route value leaked`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail)
+      errors.push(`${guideId}/${language}: source-backed route is missing`);
+    if (!localized || !visibleText(localized).trim())
+      errors.push(`${guideId}/${language}: display model is empty`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized)))
+      errors.push(`${guideId}/${language}: long English instructions leaked`);
+    const routeRows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+    if (!routeRows.length)
+      errors.push(`${guideId}/${language}: visible route rows are missing`);
+    if (franceGenericRouteFragments.test(routeRows.map((row) => row.value).join(" ")))
+      errors.push(`${guideId}/${language}: English generic visible route value leaked`);
+  }
+}
+
+for (const [outletId, guideId, claims] of [
+  ["designer-outlet-provence", "marseille-to-provence-train-bus", ["TER → Miramas FS → Premium BAM", "Marseille Saint-Charles", "Designer Outlet Provence"]],
+  ["designer-outlet-troyes", "troyes-station-to-designer-outlet-troyes-bus", ["TCAT", "1", "Gare Voltaire", "Magasins", "Designer Outlet Troyes"]],
+  ["the-village-outlet", "la-verpilliere-to-the-village-outlet-walk", ["La Verpillière", "The Village Outlet"]],
+  ["roubaix-designer-outlet", "lille-to-roubaix-designer-outlet-public-transport", ["Ilévia", "M2", "Gare Lille Flandres", "Roubaix Eurotéléport", "Roubaix Designer Outlet"]],
+  ["roppenheim-the-style-outlets", "strasbourg-to-roppenheim-official-shuttle", ["Roppenheim Strasbourg Shuttle", "Strasbourg – 3 Boulevard de Metz", "Roppenheim The Style Outlets"]],
+  ["paris-giverny-designer-outlet", "paris-to-paris-giverny-designer-outlet-shuttle", ["McArthurGlen Paris-Giverny Shuttle", "Pullman Paris Tour Eiffel", "Designer Outlet Paris-Giverny"]],
+  ["one-nation-paris", "paris-montparnasse-to-one-nation-paris-train-bus", ["N → Villepreux-les-Clayes → 5101", "Paris Montparnasse", "One Nation Paris Outlet", "One Nation Paris"]],
+] as const) {
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const routeText = localized
+      ? getTransportationRouteDetailRows(localized, language).map((row) => row.value).join(" ")
+      : "";
+    for (const claim of claims)
+      if (!routeText.includes(claim))
+        errors.push(`${guideId}/${language}: visible route detail lost ${claim}`);
+  }
+}
+
+for (const [outletId, expectedGuideId] of franceCompletionRoutes.map(
+  ([outletId, guideId]) => [outletId, guideId] as const,
+)) {
+  if (getRecommendedTransportationV2Option(outletId)?.id !== expectedGuideId)
+    errors.push(`${outletId}: ${expectedGuideId} is not recommended`);
+}
+for (const guideId of [
+  "marseille-airport-to-provence-car",
+  "paris-to-troyes-train",
+  "lyon-to-the-village-outlet-car-parking",
+  "lille-to-roubaix-designer-outlet-car-parking",
+  "villepreux-les-clayes-to-one-nation-paris-walk",
+]) {
+  if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended)
+    errors.push(`${guideId}: superseded guide remains recommended`);
+}
+
+for (const [outletId, guideId, duration] of [
+  ["designer-outlet-troyes", "troyes-station-to-designer-outlet-troyes-bus", 20],
+  ["the-village-outlet", "la-verpilliere-to-the-village-outlet-walk", 12],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.estimatedDurationMin !== duration || fact.estimatedDurationMax !== duration)
+    errors.push(`${guideId}: structured duration provenance is invalid`);
+  for (const language of supportedLanguageCodes)
+    if (!display(outletId, guideId, language)?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: localized duration is missing`);
+}
+for (const [outletId, guideId] of franceCompletionRoutes.filter(([, guideId]) =>
+  ["marseille-to-provence-train-bus", "lille-to-roubaix-designer-outlet-public-transport", "strasbourg-to-roppenheim-official-shuttle", "paris-to-paris-giverny-designer-outlet-shuttle", "paris-montparnasse-to-one-nation-paris-train-bus"].includes(guideId),
+)) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null)
+    errors.push(`${guideId}: unsupported duration provenance is present`);
+  for (const language of supportedLanguageCodes)
+    if (display(outletId, guideId, language)?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: unsupported duration is visible`);
+}
+for (const [outletId, guideId] of [
+  ["the-village-outlet", "la-verpilliere-to-the-village-outlet-walk"],
+  ["roppenheim-the-style-outlets", "strasbourg-to-roppenheim-official-shuttle"],
+] as const) {
+  for (const language of supportedLanguageCodes)
+    if (display(outletId, guideId, language)?.estimatedFareLabel !== freeLabels[language])
+      errors.push(`${guideId}/${language}: localized free fare is missing`);
+}
+for (const [outletId, guideId] of franceCompletionRoutes.filter(([, guideId]) =>
+  !["la-verpilliere-to-the-village-outlet-walk", "strasbourg-to-roppenheim-official-shuttle"].includes(guideId),
+)) {
+  for (const language of supportedLanguageCodes)
+    if (display(outletId, guideId, language)?.estimatedFareLabel)
+      errors.push(`${guideId}/${language}: unsupported fare is visible`);
+}
+
+const oneNationFact = transportationRouteFacts.find((fact) => fact.guideId === "paris-montparnasse-to-one-nation-paris-train-bus");
+if (oneNationFact?.transferPoints != null)
+  errors.push("one-nation-paris: transferPoints must not be used");
+for (const language of supportedLanguageCodes) {
+  const localized = display("one-nation-paris", oneNationFact?.guideId || "", language);
+  const text = localized ? JSON.stringify(localized) : "";
+  const station = text.indexOf("Villepreux-les-Clayes");
+  const bus = text.indexOf("5101", station + 1);
+  const stop = text.indexOf("One Nation Paris Outlet", bus + 1);
+  if (!(station >= 0 && station < bus && bus < stop))
+    errors.push(`one-nation-paris/${language}: route order is invalid`);
+}
+const givernyData = JSON.stringify({
+  fact: transportationRouteFacts.find((fact) => fact.guideId === "paris-to-paris-giverny-designer-outlet-shuttle"),
+  guide: transportationGuides.find((guide) => guide.guideId === "paris-to-paris-giverny-designer-outlet-shuttle"),
+  displays: supportedLanguageCodes.map((language) => display("paris-giverny-designer-outlet", "paris-to-paris-giverny-designer-outlet-shuttle", language)),
+});
+if (/MCARTHUR|€(?:1|12|25|65|85)\b/.test(givernyData))
+  errors.push("paris-giverny-designer-outlet: promotional fare leaked");
+const provenceShuttle = transportationGuides.find((guide) => guide.guideId === "provence-direct-shuttle-confirm");
+if (/€15|From €15/.test(JSON.stringify(provenceShuttle)))
+  errors.push("provence-direct-shuttle-confirm: obsolete promotional fare leaked");
+const roppenheimFact = transportationRouteFacts.find((fact) => fact.guideId === "strasbourg-to-roppenheim-official-shuttle");
+if (!roppenheimFact?.sourceNote?.includes("Daily service") || !roppenheimFact.sourceNote.includes("reservation required") || /\b(?:09:30|13:30|14:30|18:30)\b/.test(JSON.stringify(roppenheimFact)))
+  errors.push("roppenheim-the-style-outlets: service note or timetable provenance is invalid");
+const laValleeFact = transportationRouteFacts.find((fact) => fact.guideId === "paris-to-la-vallee-rer-a");
+if (!laValleeFact?.officialProviderUrl?.startsWith("https://"))
+  errors.push("paris-to-la-vallee-rer-a: valid officialProviderUrl is missing");
+
+const activeFranceOutlets = activeOutlets.filter((outlet) => outlet.countryId === "france");
+const sourceBackedFranceOutlets = activeFranceOutlets.filter((outlet) =>
+  getTransportationV2Options(outlet.outletId).some((option) =>
+    getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail,
+  ),
+);
+const sourceBackedAndUrlFranceOutlets = activeFranceOutlets.filter((outlet) =>
+  transportationRouteFacts.some((fact) =>
+    fact.outletId === outlet.outletId && fact.officialProviderUrl?.startsWith("https://") &&
+    getTransportationV2Options(outlet.outletId).some((option) => option.id === fact.guideId && getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail),
+  ),
+);
+const franceOutletsWithoutSourceBackedUrls = activeFranceOutlets
+  .filter((outlet) => !sourceBackedAndUrlFranceOutlets.some((candidate) => candidate.outletId === outlet.outletId))
+  .map((outlet) => outlet.outletId);
+if (activeFranceOutlets.length !== 8 || sourceBackedFranceOutlets.length !== 8 || sourceBackedAndUrlFranceOutlets.length !== 8 || franceOutletsWithoutSourceBackedUrls.length)
+  errors.push(`France completion is invalid: ${franceOutletsWithoutSourceBackedUrls.join(", ")}`);
+
 const italyFinalBatchRoutes = [
   ["palmanova-designer-village", "cervignano-station-to-palmanova-designer-village-local-transfer", "taxi"],
   ["mondovicino-outlet-village", "mondovicino-outlet-village-train-bus-guide", "bus"],
@@ -923,6 +1091,10 @@ console.log(`Italy source-backed outlet count: ${sourceBackedItalyOutlets.length
 console.log(
   `Italy outlets without source-backed routes: ${JSON.stringify(italyOutletsWithoutSourceBackedRoutes)}`,
 );
+console.log(`France active outlet count: ${activeFranceOutlets.length}`);
+console.log(`France source-backed outlet count: ${sourceBackedFranceOutlets.length}`);
+console.log(`France source-backed-and-URL outlet count: ${sourceBackedAndUrlFranceOutlets.length}`);
+console.log(`France outlets without source-backed URLs: ${JSON.stringify(franceOutletsWithoutSourceBackedUrls)}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
 );
