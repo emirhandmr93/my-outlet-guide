@@ -71,11 +71,15 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
   const [settingsDocumentExists, setSettingsDocumentExists] = useState(false);
   const activeUserIdRef = useRef<string | null>(currentUser?.userId ?? null);
   const settingsRequestGeneration = useRef(0);
+  const loadedSettingsGeneration = useRef(0);
   const settingsOperationGeneration = useRef(0);
   const tokenLocaleSynchronizationSequence = useRef(0);
-  const tokenLocaleSynchronizationOperation = useRef<{ id: number; userId: string; valid: boolean } | null>(null);
+  const tokenLocaleSynchronizationOperation = useRef<{
+    id: number; userId: string; language: typeof language; settingsGeneration: number; valid: boolean;
+  } | null>(null);
   const tokenLocaleSynchronizationInFlight = useRef(false);
-  const lastTokenLocaleSynchronizationAttemptKey = useRef<string | null>(null);
+  const tokenLocaleSynchronizationPending = useRef(false);
+  const stableTokenLocaleSynchronizationKey = useRef<string | null>(null);
   const [tokenLocaleSynchronizationTick, setTokenLocaleSynchronizationTick] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -90,6 +94,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     const userId = currentUser?.userId ?? null;
     activeUserIdRef.current = userId;
     settingsRequestGeneration.current += 1;
+    loadedSettingsGeneration.current = 0;
     settingsOperationGeneration.current += 1;
     setSettings(null);
     setSettingsDocumentExists(false);
@@ -97,7 +102,10 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     setTokenRegistrationStatus("not_registered");
     setRegistrationError(null);
     if (tokenLocaleSynchronizationOperation.current) tokenLocaleSynchronizationOperation.current.valid = false;
-    lastTokenLocaleSynchronizationAttemptKey.current = null;
+    tokenLocaleSynchronizationOperation.current = null;
+    tokenLocaleSynchronizationInFlight.current = false;
+    tokenLocaleSynchronizationPending.current = false;
+    stableTokenLocaleSynchronizationKey.current = null;
     setIsLoading(false);
     setIsSaving(false);
     if (userId) void loadSettingsForUser(userId);
@@ -109,23 +117,35 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
 
   useEffect(() => {
     const userId = currentUser?.userId;
-    if (!isLanguageResolved || !userId || settings?.userId !== userId || !settings.enabled || !pushSupported ||
-      tokenLocaleSynchronizationInFlight.current) return;
+    const settingsGeneration = settingsRequestGeneration.current;
+    if (tokenLocaleSynchronizationInFlight.current) {
+      const activeOperation = tokenLocaleSynchronizationOperation.current;
+      if (activeOperation && (activeOperation.userId !== userId || activeOperation.language !== language ||
+        activeOperation.settingsGeneration !== settingsGeneration)) {
+        tokenLocaleSynchronizationPending.current = true;
+      }
+      return;
+    }
+    if (!isLanguageResolved || !userId || settings?.userId !== userId || loadedSettingsGeneration.current !== settingsGeneration ||
+      !settings.enabled || !pushSupported) return;
     const projectId = getProjectId();
     if (!projectId) return;
-    const attemptKey = `${userId}:${language}:${settingsRequestGeneration.current}`;
-    if (lastTokenLocaleSynchronizationAttemptKey.current === attemptKey) return;
-    lastTokenLocaleSynchronizationAttemptKey.current = attemptKey;
-    const operation = { id: ++tokenLocaleSynchronizationSequence.current, userId, valid: true };
+    const synchronizationKey = `${userId}:${language}:${settingsGeneration}`;
+    if (stableTokenLocaleSynchronizationKey.current === synchronizationKey) return;
+    const operation = { id: ++tokenLocaleSynchronizationSequence.current, userId, language, settingsGeneration, valid: true };
     tokenLocaleSynchronizationOperation.current = operation;
     tokenLocaleSynchronizationInFlight.current = true;
-    setTokenLocaleSynchronizationTick(value => value + 1);
     const operationIsCurrent = () => tokenLocaleSynchronizationOperation.current?.id === operation.id && operation.valid &&
-      activeUserIdRef.current === userId;
+      tokenLocaleSynchronizationOperation.current.userId === operation.userId &&
+      tokenLocaleSynchronizationOperation.current.language === operation.language &&
+      tokenLocaleSynchronizationOperation.current.settingsGeneration === operation.settingsGeneration &&
+      activeUserIdRef.current === userId && settingsRequestGeneration.current === settingsGeneration;
     void (async () => {
+      let stableResult = false;
       try {
         const permissions = await Notifications.getPermissionsAsync();
-        if (!operationIsCurrent() || permissions.status !== "granted") return;
+        if (!operationIsCurrent()) return;
+        if (permissions.status !== "granted") { stableResult = true; return; }
         const expoPushToken = (await Notifications.getExpoPushTokenAsync({ projectId })).data;
         if (!operationIsCurrent()) return;
         const tokenId = tokenDocumentId(expoPushToken);
@@ -151,19 +171,25 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
           selectedLanguage: language,
           synchronizationInFlight: false,
         });
-        if (plan.kind === "skip" || !operationIsCurrent()) return;
+        if (!operationIsCurrent()) return;
+        if (plan.kind === "skip") { stableResult = true; return; }
         await updateDoc(tokenRef, {
           notificationLocale: plan.notificationLocale,
           updatedAt: new Date().toISOString(),
           firestoreUpdatedAt: serverTimestamp(),
         });
+        if (operationIsCurrent()) stableResult = true;
       } catch (error) {
-        console.warn("Failed to synchronize notification token locale.", error);
+        if (operationIsCurrent()) console.warn("Failed to synchronize notification token locale.", error);
       } finally {
         if (tokenLocaleSynchronizationOperation.current?.id === operation.id) {
+          if (stableResult) stableTokenLocaleSynchronizationKey.current = synchronizationKey;
           tokenLocaleSynchronizationOperation.current = null;
           tokenLocaleSynchronizationInFlight.current = false;
-          setTokenLocaleSynchronizationTick(value => value + 1);
+          if (tokenLocaleSynchronizationPending.current) {
+            tokenLocaleSynchronizationPending.current = false;
+            setTokenLocaleSynchronizationTick(value => value + 1);
+          }
         }
       }
     })();
@@ -189,12 +215,14 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
 
       if (!snapshot.exists()) {
         setSettingsDocumentExists(false);
+        loadedSettingsGeneration.current = requestGeneration;
         setSettings(fallback);
         return;
       }
 
       const data = snapshot.data();
       setSettingsDocumentExists(true);
+      loadedSettingsGeneration.current = requestGeneration;
 
       setSettings({
         userId: requestedUserId,
@@ -288,6 +316,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     });
 
     if (activeUserIdRef.current === userId) {
+      stableTokenLocaleSynchronizationKey.current = null;
       setRegisteredToken(token);
       setTokenRegistrationStatus("registered");
       setRegistrationError(null);

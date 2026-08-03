@@ -75,8 +75,11 @@ assert.ok(client.indexOf("registerPushToken(targetUserId)") < client.indexOf("sa
 assert.ok(client.indexOf("saveSettingsPatch({ enabled: false })") < client.indexOf("disableRegisteredTokens(targetUserId)"));
 const accountChangeBlock = client.slice(client.indexOf("const userId = currentUser?.userId ?? null"), client.indexOf("}, [currentUser?.userId])"));
 for (const reset of ["settingsRequestGeneration.current += 1", "settingsOperationGeneration.current += 1", "setSettings(null)",
+  "loadedSettingsGeneration.current = 0",
   "setSettingsDocumentExists(false)", "setRegisteredToken(null)", 'setTokenRegistrationStatus("not_registered")',
-  "tokenLocaleSynchronizationOperation.current.valid = false", "setIsSaving(false)"]) {
+  "tokenLocaleSynchronizationOperation.current.valid = false", "tokenLocaleSynchronizationOperation.current = null",
+  "tokenLocaleSynchronizationInFlight.current = false", "tokenLocaleSynchronizationPending.current = false",
+  "stableTokenLocaleSynchronizationKey.current = null", "setIsSaving(false)"]) {
   assert.ok(accountChangeBlock.includes(reset), `account change must reset or invalidate ${reset}`);
 }
 const refreshBlock = client.slice(client.indexOf("async function loadSettingsForUser"), client.indexOf("async function refreshSettings"));
@@ -85,6 +88,7 @@ assert.match(refreshBlock, /activeUserIdRef\.current !== requestedUserId \|\| se
 assert.match(refreshBlock, /finally[\s\S]*settingsRequestGeneration\.current === requestGeneration[\s\S]*setIsLoading\(false\)/);
 const syncBlock = client.slice(client.indexOf("const userId = currentUser?.userId;"), client.indexOf("async function refreshPermissionStatus"));
 assert.match(syncBlock, /settings\?\.userId !== userId/);
+assert.match(syncBlock, /loadedSettingsGeneration\.current !== settingsGeneration/);
 assert.match(syncBlock, /Notifications\.getPermissionsAsync\(\)/);
 assert.doesNotMatch(syncBlock, /requestPermissionsAsync|registerPushToken|setDoc|collection\(/);
 assert.match(syncBlock, /Notifications\.getExpoPushTokenAsync/);
@@ -93,12 +97,26 @@ assert.match(syncBlock, /await getDoc\(tokenRef\)/);
 assert.match(syncBlock, /await updateDoc\(tokenRef, \{[\s\S]*notificationLocale:[\s\S]*updatedAt:[\s\S]*firestoreUpdatedAt:/);
 assert.doesNotMatch(syncBlock.slice(syncBlock.indexOf("await updateDoc")), /disabledAt|userId:|token:|platform:|createdAt|firestoreCreatedAt/);
 assert.match(syncBlock, /tokenLocaleSynchronizationInFlight\.current/);
-assert.match(syncBlock, /finally[\s\S]*setTokenLocaleSynchronizationTick/);
+assert.doesNotMatch(syncBlock, /lastTokenLocaleSynchronizationAttemptKey/);
+const operationStart = syncBlock.slice(syncBlock.indexOf("const operation ="), syncBlock.indexOf("void (async () =>"));
+assert.doesNotMatch(operationStart, /setTokenLocaleSynchronizationTick/);
+assert.match(syncBlock, /operation = \{ id:[\s\S]*userId, language, settingsGeneration, valid: true \}/);
+assert.match(syncBlock, /tokenLocaleSynchronizationPending\.current = true/);
+assert.match(syncBlock, /if \(stableResult\) stableTokenLocaleSynchronizationKey\.current = synchronizationKey/);
+assert.ok(syncBlock.indexOf("await updateDoc") < syncBlock.indexOf("stableTokenLocaleSynchronizationKey.current = synchronizationKey"));
+const synchronizationCatch = syncBlock.slice(syncBlock.indexOf("} catch (error)"), syncBlock.indexOf("} finally"));
+assert.doesNotMatch(synchronizationCatch, /stableTokenLocaleSynchronizationKey|setTokenLocaleSynchronizationTick/);
+const synchronizationFinally = syncBlock.slice(syncBlock.indexOf("} finally"));
+assert.match(synchronizationFinally, /tokenLocaleSynchronizationOperation\.current\?\.id === operation\.id/);
+assert.match(synchronizationFinally, /if \(tokenLocaleSynchronizationPending\.current\)[\s\S]*setTokenLocaleSynchronizationTick/);
+assert.doesNotMatch(synchronizationFinally.slice(0, synchronizationFinally.indexOf("if (tokenLocaleSynchronizationPending.current)")),
+  /setTokenLocaleSynchronizationTick/);
 assert.match(syncBlock, /operationIsCurrent\(\)/);
 
 const registration = read("src/services/notificationTokenRegistration.ts");
 assert.match(registration, /notificationLocale: values\.notificationLocale/g);
 assert.match(client, /planNotificationTokenRegistration[\s\S]*notificationLocale: language/);
+assert.match(client, /if \(activeUserIdRef\.current === userId\) \{\s*stableTokenLocaleSynchronizationKey\.current = null/);
 const parentSaveBlock = client.slice(client.indexOf("async function saveSettingsPatch"), client.indexOf("async function setNotificationsEnabled"));
 assert.doesNotMatch(parentSaveBlock, /notificationLocale/);
 
