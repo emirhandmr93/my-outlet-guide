@@ -219,6 +219,8 @@ for (const outlet of outlets) {
       errors.push(`${outlet.outletId} repeats section/card fallback copy.`);
   }
   for (const option of displayOptions) {
+    const suppressesDerivedDuration =
+      option.routeFact?.suppressDerivedDurationFallback === true;
     const detailRows = getTransportationRouteDetailRows(option, "tr")
       .map((row) => `${row.label}: ${row.value}`)
       .join(" ");
@@ -234,8 +236,24 @@ for (const outlet of outlets) {
       .join(" ");
     if (titleDupes.test(option.title))
       errors.push(`${option.id} has duplicated title text: ${option.title}`);
-    if (!option.estimatedDurationLabel)
+    if (!option.estimatedDurationLabel && !suppressesDerivedDuration)
       errors.push(`${option.id} missing estimatedDurationLabel.`);
+    if (
+      suppressesDerivedDuration &&
+      !option.routeDetails.hasSourceBackedRouteDetail
+    )
+      errors.push(`${option.id} suppresses duration without source-backed route detail.`);
+    if (
+      suppressesDerivedDuration &&
+      ![
+        option.estimatedFareLabel,
+        option.routeDetails.lineOrProviderLabel,
+        option.routeDetails.boardingPointLabel,
+        option.routeDetails.transferLabel,
+        option.routeDetails.destinationLabel,
+      ].some(Boolean)
+    )
+      errors.push(`${option.id} suppresses duration but has no useful route information.`);
     if (!hasSafeFareProvenance(option))
       errors.push(`${option.id} has an unsafe fare provenance.`);
     if (
@@ -539,6 +557,34 @@ const serravalleFact = transportationRouteFacts.find(
 );
 if (!serravalleFact?.provider?.includes("Zani Viaggi") || !serravalleFact.provider.includes("Frigerio Viaggi") || !serravalleFact.boardingPoint?.includes("Milano Centrale"))
   errors.push("Serravalle shuttle fact must include Zani Viaggi / Frigerio Viaggi and Milano Centrale.");
+
+const laReggiaOption = getTransportationV2Options("la-reggia").find(
+  (option) => option.id === "la-reggia-naples-public-transport",
+);
+const laReggiaTurkish = laReggiaOption
+  ? getTransportationOptionDisplayModel(laReggiaOption, "tr")
+  : undefined;
+if (
+  laReggiaTurkish?.routeFact?.suppressDerivedDurationFallback !== true ||
+  !laReggiaTurkish.routeDetails.hasSourceBackedRouteDetail ||
+  Boolean(laReggiaTurkish.estimatedDurationLabel) ||
+  !laReggiaTurkish.estimatedFareLabel.includes("€1.3") ||
+  getRecommendedTransportationV2Option("la-reggia")?.id !==
+    "la-reggia-naples-public-transport"
+)
+  errors.push("La Reggia suppressed-duration route contract is not preserved.");
+
+const unflaggedDurationControl = getTransportationV2Options(
+  "viaport-asia-outlet-shopping",
+).find((option) => option.id === "istanbul-to-viaport-asia-iett");
+const unflaggedDurationDisplay = unflaggedDurationControl
+  ? getTransportationOptionDisplayModel(unflaggedDurationControl, "tr")
+  : undefined;
+if (
+  unflaggedDurationDisplay?.routeFact?.suppressDerivedDurationFallback === true ||
+  !unflaggedDurationDisplay?.estimatedDurationLabel
+)
+  errors.push("Unflagged duration control lost its derived duration label.");
 
 for (const guide of transportationGuides) {
   const descriptions = guide.steps
