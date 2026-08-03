@@ -581,6 +581,200 @@ if (
 )
   errors.push("castel-guelfo-the-style-outlets: structured transfer point is invalid");
 
+const italyFinalBatchRoutes = [
+  ["palmanova-designer-village", "cervignano-station-to-palmanova-designer-village-local-transfer", "taxi"],
+  ["mondovicino-outlet-village", "mondovicino-outlet-village-train-bus-guide", "bus"],
+  ["brugnato-5terre-outlet-village", "brugnato-5terre-outlet-village-shuttle-guide", "shuttle"],
+  ["cilento-outlet-village", "cilento-outlet-village-train-guide", "taxi"],
+  ["santangelo-outlet-village", "santangelo-outlet-village-train-guide", "taxi"],
+  ["santangelo-outlet-village", "santangelo-outlet-village-bus-guide", "bus"],
+] as const;
+const finalBatchGenericRouteFragments =
+  /Railway Station|Train Station|city centre|airport|dedicated shuttle|(?:^|\s)or(?:\s|$)/i;
+for (const [outletId, guideId, expectedMode] of italyFinalBatchRoutes) {
+  const fact = transportationRouteFacts.find(
+    (candidate) => candidate.guideId === guideId,
+  );
+  const guide = transportationGuides.find(
+    (candidate) => candidate.guideId === guideId,
+  );
+  if (!fact?.officialProviderUrl?.startsWith("https://"))
+    errors.push(`${guideId}: valid officialProviderUrl is missing`);
+  if (fact?.displayFare != null)
+    errors.push(`${guideId}: free-form displayFare must not be used`);
+  if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode)
+    errors.push(`${guideId}: guide or fact mode is invalid`);
+  const structuredRouteText = [
+    fact?.provider,
+    fact?.operator,
+    fact?.line,
+    fact?.boardingPoint,
+    ...(fact?.transferPoints || []),
+    fact?.alightingPoint,
+    fact?.destination,
+  ]
+    .filter(Boolean)
+    .join(" ");
+  if (finalBatchGenericRouteFragments.test(structuredRouteText))
+    errors.push(`${guideId}: English generic structured route value leaked`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail)
+      errors.push(`${guideId}/${language}: source-backed route is missing`);
+    if (!localized || !visibleText(localized).trim())
+      errors.push(`${guideId}/${language}: display model is empty`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized)))
+      errors.push(`${guideId}/${language}: long English instructions leaked`);
+    const routeRows = localized
+      ? getTransportationRouteDetailRows(localized, language)
+      : [];
+    if (!routeRows.length)
+      errors.push(`${guideId}/${language}: visible route rows are missing`);
+    const routeRowsText = routeRows.map((row) => row.value).join(" ");
+    if (finalBatchGenericRouteFragments.test(routeRowsText))
+      errors.push(`${guideId}/${language}: English generic visible route value leaked`);
+  }
+}
+for (const [outletId, guideId, expectedClaims] of [
+  ["palmanova-designer-village", "cervignano-station-to-palmanova-designer-village-local-transfer", ["Cervignano-Aquileia-Grado", "Palmanova Designer Village"]],
+  ["mondovicino-outlet-village", "mondovicino-outlet-village-train-bus-guide", ["Mondovì Circolare Urbana", "Mondovì FS", "Mondovicino Outlet Village"]],
+  ["brugnato-5terre-outlet-village", "brugnato-5terre-outlet-village-shuttle-guide", ["Brugnato 5Terre Shuttle", "Genova", "Rapallo", "Chiavari", "Sestri Levante", "Livorno", "Pisa", "Versilia", "Brugnato 5Terre Outlet Village"]],
+  ["cilento-outlet-village", "cilento-outlet-village-train-guide", ["Battipaglia FS", "Cilento Outlet"]],
+  ["santangelo-outlet-village", "santangelo-outlet-village-train-guide", ["Pescara Centrale", "Santangelo Outlet Village"]],
+  ["santangelo-outlet-village", "santangelo-outlet-village-bus-guide", ["TUA Abruzzo", "Pescara ↔ Città Sant’Angelo", "Santangelo Outlet Village"]],
+] as const) {
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const routeRowsText = localized
+      ? getTransportationRouteDetailRows(localized, language)
+          .map((row) => row.value)
+          .join(" ")
+      : "";
+    for (const claim of expectedClaims) {
+      if (!routeRowsText.includes(claim))
+        errors.push(`${guideId}/${language}: visible route detail lost ${claim}`);
+    }
+  }
+}
+
+for (const [outletId, expectedGuideId] of [
+  ["palmanova-designer-village", "cervignano-station-to-palmanova-designer-village-local-transfer"],
+  ["mondovicino-outlet-village", "mondovicino-outlet-village-train-bus-guide"],
+  ["brugnato-5terre-outlet-village", "brugnato-5terre-outlet-village-shuttle-guide"],
+  ["cilento-outlet-village", "cilento-outlet-village-train-guide"],
+  ["santangelo-outlet-village", "santangelo-outlet-village-train-guide"],
+] as const) {
+  if (getRecommendedTransportationV2Option(outletId)?.id !== expectedGuideId)
+    errors.push(`${outletId}: ${expectedGuideId} is not recommended`);
+}
+for (const guideId of [
+  "udine-to-palmanova-designer-village-car",
+  "brugnato-5terre-outlet-village-train-taxi-guide",
+  "santangelo-outlet-village-bus-guide",
+]) {
+  if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended)
+    errors.push(`${guideId}: superseded guide remains recommended`);
+}
+
+for (const [outletId, guideId, duration] of [
+  ["palmanova-designer-village", "cervignano-station-to-palmanova-designer-village-local-transfer", 13],
+  ["santangelo-outlet-village", "santangelo-outlet-village-train-guide", 15],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.estimatedDurationMin !== duration || fact.estimatedDurationMax !== duration)
+    errors.push(`${guideId}: structured duration provenance is invalid`);
+  for (const language of supportedLanguageCodes) {
+    if (!display(outletId, guideId, language)?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: localized duration is missing`);
+  }
+}
+
+for (const [outletId, guideId] of [
+  ["mondovicino-outlet-village", "mondovicino-outlet-village-train-bus-guide"],
+  ["brugnato-5terre-outlet-village", "brugnato-5terre-outlet-village-shuttle-guide"],
+  ["cilento-outlet-village", "cilento-outlet-village-train-guide"],
+  ["santangelo-outlet-village", "santangelo-outlet-village-bus-guide"],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (
+    fact?.suppressDerivedDurationFallback !== true ||
+    fact.displayDuration != null ||
+    fact.estimatedDurationMin != null ||
+    fact.estimatedDurationMax != null
+  )
+    errors.push(`${guideId}: unsupported duration provenance is present`);
+  for (const language of supportedLanguageCodes) {
+    if (display(outletId, guideId, language)?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: unsupported duration is visible`);
+  }
+}
+
+const brugnatoFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === "brugnato-5terre-outlet-village-shuttle-guide",
+);
+if (
+  brugnatoFact?.estimatedFareMin !== 5 ||
+  brugnatoFact.estimatedFareMax !== 5 ||
+  brugnatoFact.currency !== "EUR" ||
+  !brugnatoFact.sourceNote?.includes("reservation required") ||
+  /\b\d{1,2}[:.]\d{2}\b|\b20\d{2}\b/.test(brugnatoFact.sourceNote)
+)
+  errors.push("brugnato-5terre-outlet-village: fare, reservation, or timetable provenance is invalid");
+for (const language of supportedLanguageCodes) {
+  if (!display("brugnato-5terre-outlet-village", brugnatoFact.guideId!, language)?.estimatedFareLabel?.includes("€5"))
+    errors.push(`brugnato-5terre-outlet-village/${language}: structured €5 fare is missing`);
+}
+for (const [outletId, guideId] of italyFinalBatchRoutes.filter(
+  ([, guideId]) => guideId !== "brugnato-5terre-outlet-village-shuttle-guide",
+)) {
+  for (const language of supportedLanguageCodes) {
+    if (display(outletId, guideId, language)?.estimatedFareLabel)
+      errors.push(`${guideId}/${language}: unsupported fare is visible`);
+  }
+}
+
+const mondovicinoFacts = transportationRouteFacts.filter(
+  (fact) => fact.outletId === "mondovicino-outlet-village",
+);
+if (
+  mondovicinoFacts.some((fact) => fact.mode === "shuttle" || fact.estimatedFareMin === 13) ||
+  brugnatoFact == null
+)
+  errors.push("mondovicino-outlet-village: obsolete intercity shuttle data is present");
+const cilentoFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === "cilento-outlet-village-train-guide",
+);
+if (
+  !cilentoFact?.sourceNote?.includes("10 km") ||
+  cilentoFact.estimatedDurationMin != null ||
+  cilentoFact.estimatedDurationMax != null ||
+  cilentoFact.provider != null ||
+  cilentoFact.operator != null
+)
+  errors.push("cilento-outlet-village: partial last-mile provenance is invalid");
+
+const activeItalyOutlets = activeOutlets.filter(
+  (outlet) => outlet.countryId === "italy",
+);
+const sourceBackedItalyOutlets = activeItalyOutlets.filter((outlet) =>
+  getTransportationV2Options(outlet.outletId).some((option) =>
+    getTransportationOptionDisplayModel(option, "en").routeDetails
+      .hasSourceBackedRouteDetail,
+  ),
+);
+const italyOutletsWithoutSourceBackedRoutes = activeItalyOutlets
+  .filter(
+    (outlet) =>
+      !sourceBackedItalyOutlets.some(
+        (sourceBacked) => sourceBacked.outletId === outlet.outletId,
+      ),
+  )
+  .map((outlet) => outlet.outletId);
+if (italyOutletsWithoutSourceBackedRoutes.length)
+  errors.push(
+    `Italy: active outlets without source-backed routes: ${italyOutletsWithoutSourceBackedRoutes.join(", ")}`,
+  );
+
 for (const [outletId, guideId, expectedFare] of [
   ["castel-romano", "castel-romano-termini-shuttle", "€18"],
   ["castel-romano", "castel-romano-eur-fermi-shuttle", "€13"],
@@ -724,6 +918,11 @@ console.log(
 );
 console.log(`Unsafe fares: ${JSON.stringify([...unsafeFares])}`);
 console.log(`Road-only as taxi: ${JSON.stringify([...roadOnlyAsTaxi])}`);
+console.log(`Italy active outlet count: ${activeItalyOutlets.length}`);
+console.log(`Italy source-backed outlet count: ${sourceBackedItalyOutlets.length}`);
+console.log(
+  `Italy outlets without source-backed routes: ${JSON.stringify(italyOutletsWithoutSourceBackedRoutes)}`,
+);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
 );

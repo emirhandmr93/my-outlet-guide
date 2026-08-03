@@ -505,6 +505,99 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     officialProviderUrl:
       "https://www.valmontoneoutlet.com/en/news-events/valmontone-outlet-link-for-even-more-convenient-shopping/",
   },
+  {
+    guideId: "cervignano-station-to-palmanova-designer-village-local-transfer",
+    outletId: "palmanova-designer-village",
+    originType: "cityCenter",
+    mode: "taxi",
+    boardingPoint: "Cervignano-Aquileia-Grado",
+    destination: "Palmanova Designer Village",
+    estimatedDurationMin: 13,
+    estimatedDurationMax: 13,
+    sourceNote:
+      "Official outlet directions list Cervignano-Aquileia-Grado as the rail station, followed by a 12 km / 13-minute road transfer.",
+    confidence: "exact",
+    officialProviderUrl:
+      "https://www.palmanovadesignervillage.com/en/directions",
+  },
+  {
+    guideId: "mondovicino-outlet-village-train-bus-guide",
+    outletId: "mondovicino-outlet-village",
+    originType: "cityCenter",
+    mode: "bus",
+    provider: "Mondovì Circolare Urbana",
+    operator: "Mondovì Circolare Urbana",
+    boardingPoint: "Mondovì FS",
+    destination: "Mondovicino Outlet Village",
+    suppressDerivedDurationFallback: true,
+    sourceNote:
+      "The official outlet page links current weekday and holiday urban circular timetables from Mondovì FS.",
+    confidence: "exact",
+    officialProviderUrl: "https://mondovicino.it/en/come-visit/",
+  },
+  {
+    guideId: "brugnato-5terre-outlet-village-shuttle-guide",
+    outletId: "brugnato-5terre-outlet-village",
+    originType: "shuttle",
+    mode: "shuttle",
+    provider: "Brugnato 5Terre Shuttle",
+    boardingPoint:
+      "Genova / Rapallo / Chiavari / Sestri Levante / Livorno / Pisa / Versilia",
+    destination: "Brugnato 5Terre Outlet Village",
+    suppressDerivedDurationFallback: true,
+    estimatedFareMin: 5,
+    estimatedFareMax: 5,
+    currency: "EUR",
+    sourceNote:
+      "Official departure areas include Genova, Rapallo, Chiavari, Sestri Levante, Livorno, Pisa, Viareggio, Lido di Camaiore, Marina di Pietrasanta, Forte dei Marmi, Marina di Massa, and Marina di Carrara; €5 per person, cash at departure, reservation required.",
+    confidence: "partial",
+    officialProviderUrl:
+      "https://www.brugnato5terreoutletvillage.it/it/page/28/bus-navetta",
+  },
+  {
+    guideId: "cilento-outlet-village-train-guide",
+    outletId: "cilento-outlet-village",
+    originType: "cityCenter",
+    mode: "taxi",
+    boardingPoint: "Battipaglia FS",
+    destination: "Cilento Outlet",
+    suppressDerivedDurationFallback: true,
+    sourceNote:
+      "The official outlet page lists Battipaglia FS 10 km from the Village but does not publish a dedicated onward transport provider.",
+    confidence: "partial",
+    officialProviderUrl:
+      "https://www.cilentooutlet.com/how-to-reach-us/?lang=en",
+  },
+  {
+    guideId: "santangelo-outlet-village-train-guide",
+    outletId: "santangelo-outlet-village",
+    originType: "cityCenter",
+    mode: "taxi",
+    boardingPoint: "Pescara Centrale",
+    destination: "Santangelo Outlet Village",
+    estimatedDurationMin: 15,
+    estimatedDurationMax: 15,
+    sourceNote:
+      "The official outlet directions publish a 15-minute connection from Pescara Centrale without naming the onward provider.",
+    confidence: "partial",
+    officialProviderUrl: "https://santangeloutlet.com/en/how-to-get-there/",
+  },
+  {
+    guideId: "santangelo-outlet-village-bus-guide",
+    outletId: "santangelo-outlet-village",
+    originType: "cityCenter",
+    mode: "bus",
+    provider: "TUA Abruzzo",
+    operator: "TUA Abruzzo",
+    line: "Pescara ↔ Città Sant’Angelo",
+    boardingPoint: "Pescara",
+    destination: "Santangelo Outlet Village",
+    suppressDerivedDurationFallback: true,
+    sourceNote:
+      "The official outlet page links the TUA Abruzzo Pescara–Città Sant’Angelo timetable without publishing an exact outlet stop or total duration.",
+    confidence: "partial",
+    officialProviderUrl: "https://santangeloutlet.com/en/how-to-get-there/",
+  },
 
   {
     guideId: "istanbul-to-viaport-asia-iett",
