@@ -739,7 +739,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     originId: "mantova-station",
     transportationType: "bus",
     title: "Mantova Station to Mantova Village by Bus",
-    estimatedDuration: "20 min bus without traffic (official outlet estimate)",
+    estimatedDuration: "30 min total: 10 min walk plus 20 min bus",
     estimatedCost: "check official APAM fare",
     recommended: true,
     steps: [
@@ -870,10 +870,10 @@ export const italyTransportationGuides: TransportationGuide[] = [
     estimatedCost: "Free",
     recommended: true,
     steps: [
-      { order: 1, description: "Arrive at Castel San Pietro Terme station and check the official local bus or shuttle timetable to the Castel Guelfo outlet area." },
-      { order: 2, description: "Use the confirmed stop for Castel Guelfo industrial zone / The Style Outlets, checking the direction before boarding." },
-      { order: 3, description: "After alighting, follow marked paths and outlet signs to the entrance." },
-      { order: 4, description: "Check the return time to the station before shopping, especially on Sundays, holidays or evenings." },
+      { order: 1, description: "Check current shuttle times at Castel San Pietro Terme FS." },
+      { order: 2, description: "Board the free Castel Guelfo shuttle." },
+      { order: 3, description: "The route serves TPER Martiri Partigiani before continuing to the outlet." },
+      { order: 4, description: "Confirm the return shuttle time before shopping." },
     ],
     updatedAt: "2026-08-03",
   },

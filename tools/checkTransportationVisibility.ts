@@ -444,7 +444,7 @@ for (const [outletId, expectedGuideId] of italyBatchThreeRoutes) {
 for (const [outletId, guideId, duration] of [
   ["valdichiana-village", "valdichiana-village-arezzo-train-bus", 50],
   ["franciacorta-designer-village", "brescia-station-to-franciacorta-designer-village-bus", 25],
-  ["mantova-village", "mantova-station-to-mantova-village-bus", 20],
+  ["mantova-village", "mantova-station-to-mantova-village-bus", 30],
   ["castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile", 5],
 ] as const) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
@@ -454,6 +454,34 @@ for (const [outletId, guideId, duration] of [
     if (!display(outletId, guideId, language)?.estimatedDurationLabel)
       errors.push(`${guideId}/${language}: localized duration is missing`);
   }
+}
+
+const mantovaGuideId = "mantova-station-to-mantova-village-bus";
+const mantovaFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === mantovaGuideId,
+);
+if (
+  !mantovaFact?.sourceNote?.includes("10-minute walk") ||
+  !mantovaFact.sourceNote.includes("20-minute 31A bus section") ||
+  !mantovaFact.sourceNote.includes("30-minute combined journey estimate")
+)
+  errors.push("mantova-village: official walk and bus duration segments are missing");
+const localizedThirtyMinuteDurations = {
+  en: "Approx. 30 min",
+  tr: "Yaklaşık 30 dk",
+  es: "Aprox. 30 min",
+  fr: "Env. 30 min",
+  de: "Ca. 30 Min.",
+  ru: "Примерно 30 мин",
+  ar: "تقريبًا 30 دقيقة",
+  zh: "约 30 分钟",
+} as const;
+for (const language of supportedLanguageCodes) {
+  const localized = display("mantova-village", mantovaGuideId, language);
+  if (localized?.estimatedDurationLabel !== localizedThirtyMinuteDurations[language])
+    errors.push(`${mantovaGuideId}/${language}: localized 30-minute duration is invalid`);
+  if (localized?.estimatedDurationLabel?.includes("20"))
+    errors.push(`${mantovaGuideId}/${language}: bus-only duration is displayed as the total`);
 }
 
 for (const [outletId, guideId] of [
@@ -521,13 +549,37 @@ for (const language of supportedLanguageCodes) {
     "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile",
     language,
   );
-  const routeText = localized?.routeFact?.line || "";
+  const routeRows = localized
+    ? getTransportationRouteDetailRows(localized, language)
+    : [];
+  const routeText = routeRows.map((row) => row.value).join(" → ");
   const originIndex = routeText.indexOf("Castel San Pietro Terme FS");
   const transferIndex = routeText.indexOf("TPER Martiri Partigiani");
-  const destinationIndex = routeText.lastIndexOf("Castel Guelfo");
+  const destinationIndex = routeText.indexOf("Castel Guelfo The Style Outlets");
   if (!(originIndex >= 0 && originIndex < transferIndex && transferIndex < destinationIndex))
     errors.push(`castel-guelfo-the-style-outlets/${language}: route detail order is invalid`);
+  if (!routeRows.some((row) => row.value === "Castel San Pietro Terme FS"))
+    errors.push(`castel-guelfo-the-style-outlets/${language}: visible boarding point is missing`);
+  if (!routeRows.some((row) => row.value === "TPER Martiri Partigiani"))
+    errors.push(`castel-guelfo-the-style-outlets/${language}: visible transfer point is missing`);
+  if (!routeRows.some((row) => row.value === "Castel Guelfo The Style Outlets"))
+    errors.push(`castel-guelfo-the-style-outlets/${language}: visible destination is missing`);
+  const expectedDuration = localizedThirtyMinuteDurations[language].replace("30", "5");
+  if (localized?.estimatedDurationLabel !== expectedDuration)
+    errors.push(`castel-guelfo-the-style-outlets/${language}: localized duration is invalid`);
+  if (localized?.estimatedFareLabel !== freeLabels[language])
+    errors.push(`castel-guelfo-the-style-outlets/${language}: localized free fare is missing`);
 }
+const castelGuelfoFact = transportationRouteFacts.find(
+  (candidate) =>
+    candidate.guideId ===
+    "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile",
+);
+if (
+  JSON.stringify(castelGuelfoFact?.transferPoints) !==
+  JSON.stringify(["TPER Martiri Partigiani"])
+)
+  errors.push("castel-guelfo-the-style-outlets: structured transfer point is invalid");
 
 for (const [outletId, guideId, expectedFare] of [
   ["castel-romano", "castel-romano-termini-shuttle", "€18"],

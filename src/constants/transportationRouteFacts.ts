@@ -414,10 +414,10 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     line: "31A",
     boardingPoint: "Viale Piave 4A",
     destination: "Mantova Village",
-    estimatedDurationMin: 20,
-    estimatedDurationMax: 20,
+    estimatedDurationMin: 30,
+    estimatedDurationMax: 30,
     sourceNote:
-      "Viale Piave 4A is about 600 metres, or a published 10-minute walk, from Mantova FS; the 31A bus section takes about 20 minutes.",
+      "The official segments are a published 10-minute walk from Mantova FS to Viale Piave 4A and a published 20-minute 31A bus section, giving a 30-minute combined journey estimate.",
     officialCheckNote: "Check the current APAM 31A timetable before travel.",
     confidence: "exact",
     officialProviderUrl:
@@ -445,6 +445,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     provider: "Castel Guelfo Shuttle",
     line: "Castel San Pietro Terme FS → TPER Martiri Partigiani → Castel Guelfo",
     boardingPoint: "Castel San Pietro Terme FS",
+    transferPoints: ["TPER Martiri Partigiani"],
     destination: "Castel Guelfo The Style Outlets",
     estimatedDurationMin: 5,
     estimatedDurationMax: 5,
