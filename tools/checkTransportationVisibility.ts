@@ -211,6 +211,97 @@ if (
 )
   errors.push("la-reggia: generic Naples shuttle is source-backed or recommended");
 
+const italyBatchTwoRoutes = [
+  ["noventa", "noventa-venice-atvo-direct-bus"],
+  ["noventa", "noventa-mestre-atvo-direct-bus"],
+  ["noventa", "noventa-marco-polo-airport-atvo"],
+  ["the-mall-firenze", "the-mall-firenze-florence-direct-bus"],
+  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
+  ["scalo-milano-outlet-more", "scalo-milano-train-bus-guide"],
+  ["torino-outlet-village", "torino-outlet-village-public-transport-guide"],
+] as const;
+for (const [outletId, guideId] of italyBatchTwoRoutes) {
+  const fact = transportationRouteFacts.find(
+    (candidate) => candidate.guideId === guideId,
+  );
+  if (!fact?.officialProviderUrl?.startsWith("https://"))
+    errors.push(`${guideId}: valid officialProviderUrl is missing`);
+  if (fact?.displayFare != null)
+    errors.push(`${guideId}: free-form displayFare must not be used`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail)
+      errors.push(`${guideId}/${language}: source-backed route is missing`);
+    if (!localized || !visibleText(localized).trim())
+      errors.push(`${guideId}/${language}: display model is empty`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized)))
+      errors.push(`${guideId}/${language}: long English instructions leaked`);
+  }
+}
+
+for (const [outletId, expectedGuideId] of [
+  ["noventa", "noventa-venice-atvo-direct-bus"],
+  ["the-mall-firenze", "the-mall-firenze-florence-direct-bus"],
+  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
+  ["torino-outlet-village", "torino-outlet-village-public-transport-guide"],
+] as const) {
+  if (getRecommendedTransportationV2Option(outletId)?.id !== expectedGuideId)
+    errors.push(`${outletId}: ${expectedGuideId} is not recommended`);
+}
+
+for (const guideId of [
+  "noventa-venice-atvo-direct-bus",
+  "noventa-mestre-atvo-direct-bus",
+  "noventa-marco-polo-airport-atvo",
+]) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.estimatedFareMin !== 9.2 || fact.estimatedFareMax !== 9.2 || fact.currency !== "EUR")
+    errors.push(`${guideId}: structured EUR 9.20 fare is invalid`);
+  if (fact?.estimatedDurationMin != null || fact?.estimatedDurationMax != null)
+    errors.push(`${guideId}: unsupported structured duration is present`);
+}
+const theMallFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === "the-mall-firenze-florence-direct-bus",
+);
+if (
+  theMallFact?.estimatedFareMin !== 9.5 ||
+  theMallFact.estimatedFareMax !== 18 ||
+  theMallFact.currency !== "EUR" ||
+  theMallFact.estimatedDurationMin != null ||
+  theMallFact.estimatedDurationMax != null
+)
+  errors.push("the-mall-firenze: structured fare or duration provenance is invalid");
+
+for (const [outletId, guideId] of [
+  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
+  ["scalo-milano-outlet-more", "scalo-milano-train-bus-guide"],
+  ["torino-outlet-village", "torino-outlet-village-public-transport-guide"],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (
+    fact?.suppressDerivedDurationFallback !== true ||
+    fact.displayDuration != null ||
+    fact.estimatedDurationMin != null ||
+    fact.estimatedDurationMax != null ||
+    fact.displayFare != null ||
+    fact.estimatedFareMin != null ||
+    fact.estimatedFareMax != null
+  )
+    errors.push(`${guideId}: unsupported duration or fare provenance is present`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (localized?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: unsupported duration is visible`);
+    if (localized?.estimatedFareLabel)
+      errors.push(`${guideId}/${language}: unsupported fare is visible`);
+  }
+}
+const scaloText = JSON.stringify(
+  transportationGuides.filter((guide) => guide.outletId === "scalo-milano-outlet-more"),
+);
+if (/promo code|promo-code|free booking/i.test(scaloText))
+  errors.push("scalo-milano-outlet-more: expired promo or free-booking claim remains");
+
 for (const [outletId, guideId, expectedFare] of [
   ["castel-romano", "castel-romano-termini-shuttle", "€18"],
   ["castel-romano", "castel-romano-eur-fermi-shuttle", "€13"],
@@ -298,7 +389,6 @@ const freeLabels = {
 } as const;
 for (const [outletId, guideId] of [
   ["halle-leipzig-the-style-outlets", "halle-leipzig-style-outlets-saturday-shuttle"],
-  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
 ] as const) {
   for (const language of supportedLanguageCodes) {
     const option = display(outletId, guideId, language);
