@@ -8,6 +8,7 @@ import {
   getOutletTransportationV2Summary,
   getRecommendedTransportationV2Option,
   getTransportationOptionDisplayModel,
+  getTransportationRouteDetailRows,
   getTransportationV2Options,
   hasSafeFareProvenance,
   hasSourceBackedShuttleRouteDetail,
@@ -211,6 +212,178 @@ if (
 )
   errors.push("la-reggia: generic Naples shuttle is source-backed or recommended");
 
+const italyBatchTwoRoutes = [
+  ["noventa", "noventa-venice-atvo-direct-bus"],
+  ["noventa", "noventa-mestre-atvo-direct-bus"],
+  ["noventa", "noventa-marco-polo-airport-atvo"],
+  ["the-mall-firenze", "the-mall-firenze-florence-direct-bus"],
+  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
+  ["scalo-milano-outlet-more", "scalo-milano-train-bus-guide"],
+  ["torino-outlet-village", "torino-outlet-village-public-transport-guide"],
+] as const;
+for (const [outletId, guideId] of italyBatchTwoRoutes) {
+  const fact = transportationRouteFacts.find(
+    (candidate) => candidate.guideId === guideId,
+  );
+  if (!fact?.officialProviderUrl?.startsWith("https://"))
+    errors.push(`${guideId}: valid officialProviderUrl is missing`);
+  if (fact?.displayFare != null)
+    errors.push(`${guideId}: free-form displayFare must not be used`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail)
+      errors.push(`${guideId}/${language}: source-backed route is missing`);
+    if (!localized || !visibleText(localized).trim())
+      errors.push(`${guideId}/${language}: display model is empty`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized)))
+      errors.push(`${guideId}/${language}: long English instructions leaked`);
+  }
+}
+
+for (const [outletId, expectedGuideId] of [
+  ["noventa", "noventa-venice-atvo-direct-bus"],
+  ["the-mall-firenze", "the-mall-firenze-florence-direct-bus"],
+  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
+  ["torino-outlet-village", "torino-outlet-village-public-transport-guide"],
+] as const) {
+  if (getRecommendedTransportationV2Option(outletId)?.id !== expectedGuideId)
+    errors.push(`${outletId}: ${expectedGuideId} is not recommended`);
+}
+
+for (const guideId of [
+  "noventa-venice-atvo-direct-bus",
+  "noventa-mestre-atvo-direct-bus",
+  "noventa-marco-polo-airport-atvo",
+]) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.estimatedFareMin !== 9.2 || fact.estimatedFareMax !== 9.2 || fact.currency !== "EUR")
+    errors.push(`${guideId}: structured EUR 9.20 fare is invalid`);
+  if (fact?.estimatedDurationMin != null || fact?.estimatedDurationMax != null)
+    errors.push(`${guideId}: unsupported structured duration is present`);
+}
+const theMallFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === "the-mall-firenze-florence-direct-bus",
+);
+if (
+  theMallFact?.estimatedFareMin !== 9.5 ||
+  theMallFact.estimatedFareMax !== 18 ||
+  theMallFact.currency !== "EUR" ||
+  theMallFact.estimatedDurationMin != null ||
+  theMallFact.estimatedDurationMax != null
+)
+  errors.push("the-mall-firenze: structured fare or duration provenance is invalid");
+
+for (const [guideId, expectedBoardingPoint] of [
+  ["noventa-mestre-atvo-direct-bus", "Mestre FS"],
+  ["noventa-marco-polo-airport-atvo", "Venezia Marco Polo (VCE)"],
+  ["scalo-milano-train-bus-guide", "Milano S13"],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.boardingPoint !== expectedBoardingPoint)
+    errors.push(`${guideId}: locale-neutral boarding point is invalid`);
+}
+
+const torinoFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === "torino-outlet-village-public-transport-guide",
+);
+const expectedTorinoLine =
+  "Tram 4 / SFM 1, 2, 4, 6, 7 → Torino Stura → GTT SE1 / SE2";
+if (
+  torinoFact?.line !== expectedTorinoLine ||
+  torinoFact.boardingPoint !==
+    "Torino / Torino Lingotto / Torino Porta Susa / Torino Rebaudengo" ||
+  torinoFact.transferPoints != null ||
+  torinoFact.alightingPoint !== "Nervi" ||
+  torinoFact.destination !== "Torino Outlet Village"
+)
+  errors.push("torino-outlet-village: structured route order is invalid");
+
+const englishGenericRouteFragments =
+  /Railway Station|Venice Marco Polo Airport|Milan S13 network|Turin city centre|(?:^|\s)or(?:\s|$)/i;
+for (const [outletId, guideId] of italyBatchTwoRoutes) {
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized) continue;
+    const routeDetailsText = JSON.stringify(localized.routeDetails);
+    const detailRowsText = getTransportationRouteDetailRows(localized, language)
+      .map((row) => `${row.label}: ${row.value}`)
+      .join(" ");
+    if (englishGenericRouteFragments.test(`${routeDetailsText} ${detailRowsText}`))
+      errors.push(`${guideId}/${language}: English generic route value leaked`);
+  }
+}
+
+for (const language of supportedLanguageCodes) {
+  const localized = display(
+    "torino-outlet-village",
+    "torino-outlet-village-public-transport-guide",
+    language,
+  );
+  if (!localized) continue;
+  const routeText = `${JSON.stringify(localized.routeDetails)} ${getTransportationRouteDetailRows(localized, language)
+    .map((row) => `${row.label}: ${row.value}`)
+    .join(" ")}`;
+  const sturaIndex = routeText.indexOf("Torino Stura");
+  const se1Index = routeText.indexOf("GTT SE1");
+  const nerviIndex = routeText.indexOf("Nervi");
+  if (!(sturaIndex >= 0 && sturaIndex < se1Index && se1Index < nerviIndex))
+    errors.push(`torino-outlet-village/${language}: route detail order is invalid`);
+  if (localized.estimatedDurationLabel || localized.estimatedFareLabel)
+    errors.push(`torino-outlet-village/${language}: unsupported duration or fare is visible`);
+}
+
+const torinoTurkish = display(
+  "torino-outlet-village",
+  "torino-outlet-village-public-transport-guide",
+  "tr",
+);
+if (torinoTurkish) {
+  const steps = torinoTurkish.steps.join(" ");
+  const sturaIndex = steps.indexOf("Torino Stura");
+  const se1Index = steps.indexOf("GTT SE1");
+  const nerviIndex = steps.indexOf("Nervi");
+  const nerviStepIndex = torinoTurkish.steps.findIndex((step) =>
+    /Nervi durağında in\./i.test(step),
+  );
+  const firstNerviStepIndex = torinoTurkish.steps.findIndex((step) =>
+    step.includes("Nervi"),
+  );
+  if (!(sturaIndex >= 0 && sturaIndex < se1Index && se1Index < nerviIndex))
+    errors.push("torino-outlet-village/tr: generated step order is invalid");
+  if (nerviStepIndex < 0 || nerviStepIndex < firstNerviStepIndex)
+    errors.push("torino-outlet-village/tr: Nervi alighting instruction is missing");
+}
+
+for (const [outletId, guideId] of [
+  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
+  ["scalo-milano-outlet-more", "scalo-milano-train-bus-guide"],
+  ["torino-outlet-village", "torino-outlet-village-public-transport-guide"],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (
+    fact?.suppressDerivedDurationFallback !== true ||
+    fact.displayDuration != null ||
+    fact.estimatedDurationMin != null ||
+    fact.estimatedDurationMax != null ||
+    fact.displayFare != null ||
+    fact.estimatedFareMin != null ||
+    fact.estimatedFareMax != null
+  )
+    errors.push(`${guideId}: unsupported duration or fare provenance is present`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (localized?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: unsupported duration is visible`);
+    if (localized?.estimatedFareLabel)
+      errors.push(`${guideId}/${language}: unsupported fare is visible`);
+  }
+}
+const scaloText = JSON.stringify(
+  transportationGuides.filter((guide) => guide.outletId === "scalo-milano-outlet-more"),
+);
+if (/promo code|promo-code|free booking/i.test(scaloText))
+  errors.push("scalo-milano-outlet-more: expired promo or free-booking claim remains");
+
 for (const [outletId, guideId, expectedFare] of [
   ["castel-romano", "castel-romano-termini-shuttle", "€18"],
   ["castel-romano", "castel-romano-eur-fermi-shuttle", "€13"],
@@ -298,7 +471,6 @@ const freeLabels = {
 } as const;
 for (const [outletId, guideId] of [
   ["halle-leipzig-the-style-outlets", "halle-leipzig-style-outlets-saturday-shuttle"],
-  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
 ] as const) {
   for (const language of supportedLanguageCodes) {
     const option = display(outletId, guideId, language);

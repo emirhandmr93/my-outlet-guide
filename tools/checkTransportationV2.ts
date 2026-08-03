@@ -287,6 +287,7 @@ for (const outlet of outlets) {
     if (collapsedRangePattern.test(visible))
       errors.push(`${option.id} contains a collapsed duration/fare range.`);
     if (
+      !suppressesDerivedDuration &&
       !/Yaklaşık/.test(
         `${option.estimatedDurationLabel} ${option.estimatedFareLabel}`,
       )
@@ -639,7 +640,6 @@ if (
 
 for (const [outletId, guideId] of [
   ["halle-leipzig-the-style-outlets", "halle-leipzig-style-outlets-saturday-shuttle"],
-  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
 ]) {
   const option = getTransportationV2Options(outletId).find(
     (candidate) => candidate.id === guideId,
