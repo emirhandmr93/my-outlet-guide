@@ -537,7 +537,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     title: "Florence to Valdichiana Village by Car",
     estimatedDuration: "60 min from Florence",
     estimatedCost: "Parking complimentary; fuel/tolls/taxi costs vary",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Check Valdichiana Designer Village's official directions page for current access information and opening hours." },
       { order: 2, description: "Drive south from Florence toward Foiano della Chiana; the outlet states it is about a 60-minute drive from Florence." },
@@ -556,7 +556,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     title: "Arezzo Station to Valdichiana Village by Tiemme Bus LS5",
     estimatedDuration: "50 min by bus from Arezzo Terminal Tiemme",
     estimatedCost: "Check official Tiemme fare; rail fare check Trenitalia",
-    recommended: false,
+    recommended: true,
     steps: [
       { order: 1, description: "Use Trenitalia to reach Arezzo station, then confirm the current Tiemme Line LS5 timetable from Arezzo Terminal Tiemme." },
       { order: 2, description: "Walk from Arezzo station to the Tiemme bus terminal and board Line LS5 toward Foiano/Bettolle." },
@@ -564,7 +564,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
       { order: 4, description: "Follow the signed pedestrian route from the bus stop to the Village entrance." },
       { order: 5, description: "Before shopping, check the last LS5 return to Arezzo Terminal Tiemme and your onward Trenitalia connection." },
     ],
-    updatedAt: "2026-07-03",
+    updatedAt: "2026-08-03",
   },
   {
     guideId: "valdichiana-village-florence-airport-car",
@@ -676,7 +676,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Ride the confirmed bus toward Franciacorta Designer Village / Rodengo Saiano and get off at the outlet stop when served." },
       { order: 4, description: "Before shopping, check official LS029 return departures to Brescia because evening and holiday service may differ." },
     ],
-    updatedAt: "2026-07-04",
+    updatedAt: "2026-08-03",
   },
   {
     guideId: "milan-to-franciacorta-designer-village-train-bus",
@@ -748,7 +748,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Ride Line 31A to the Mantova Village / Fashion Outlet Village stop and follow the pedestrian route into the Village." },
       { order: 4, description: "Before shopping, check official APAM return departures to Mantova station." },
     ],
-    updatedAt: "2026-07-04",
+    updatedAt: "2026-08-03",
   },
   {
     guideId: "verona-to-mantova-village-train-bus",
@@ -794,8 +794,8 @@ export const italyTransportationGuides: TransportationGuide[] = [
     originId: "milan-centrale",
     transportationType: "shuttle",
     title: "Milan to Vicolungo The Style Outlets by Shuttle Bus",
-    estimatedDuration: "Check official shuttle timetable",
-    estimatedCost: "Check official shuttle fare before booking",
+    estimatedDuration: "",
+    estimatedCost: "Check current official fare and booking terms",
     recommended: true,
     steps: [
       { order: 1, description: "Open Vicolungo The Style Outlets' official Shuttle Service page and confirm the current Milan operating days, reservation rules, fare and return time." },
@@ -803,7 +803,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Ride the shuttle to Vicolungo The Style Outlets and note the return stop when you arrive." },
       { order: 4, description: "Before shopping, confirm the official return departure; seasonal promotions and timetables can change." },
     ],
-    updatedAt: "2026-07-04",
+    updatedAt: "2026-08-03",
   },
   {
     guideId: "turin-to-vicolungo-style-outlets-shuttle",
@@ -864,10 +864,10 @@ export const italyTransportationGuides: TransportationGuide[] = [
     outletId: "castel-guelfo-the-style-outlets",
     originType: "station",
     originId: "castel-san-pietro-terme-station",
-    transportationType: "bus",
+    transportationType: "shuttle",
     title: "Castel San Pietro Terme Station to Castel Guelfo The Style Outlets",
-    estimatedDuration: "Check official local shuttle or bus timetable",
-    estimatedCost: "Check official local fare before travel",
+    estimatedDuration: "5 min",
+    estimatedCost: "Free",
     recommended: true,
     steps: [
       { order: 1, description: "Arrive at Castel San Pietro Terme station and check the official local bus or shuttle timetable to the Castel Guelfo outlet area." },
@@ -875,7 +875,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "After alighting, follow marked paths and outlet signs to the entrance." },
       { order: 4, description: "Check the return time to the station before shopping, especially on Sundays, holidays or evenings." },
     ],
-    updatedAt: "2026-07-04",
+    updatedAt: "2026-08-03",
   },
   {
     guideId: "castel-guelfo-style-outlets-car-parking-guide",
@@ -902,8 +902,8 @@ export const italyTransportationGuides: TransportationGuide[] = [
     originId: "bari-city-center",
     transportationType: "shuttle",
     title: "Bari to Puglia Village by Official Shuttle Bus",
-    estimatedDuration: "Check official shuttle timetable",
-    estimatedCost: "Check official booking terms",
+    estimatedDuration: "",
+    estimatedCost: "Free",
     recommended: true,
     steps: [
       { order: 1, description: "Open the official Puglia Village shuttle information and confirm that the Bari shuttle is operating on your travel date." },
@@ -911,7 +911,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Board the shuttle to Puglia Village and keep any booking confirmation or ticket terms available." },
       { order: 4, description: "Before shopping, confirm the return shuttle time and pickup point from the current official timetable." },
     ],
-    updatedAt: "2026-07-05",
+    updatedAt: "2026-08-03",
   },
   {
     guideId: "puglia-village-molfetta-train-bus-guide",
@@ -956,8 +956,8 @@ export const italyTransportationGuides: TransportationGuide[] = [
     originId: "sicily-destinations",
     transportationType: "shuttle",
     title: "Sicily Destinations to Sicilia Outlet Village by Bus or Shuttle",
-    estimatedDuration: "Check official operator timetable; shuttle timetable varies by route",
-    estimatedCost: "Check official Interbus, Sais or route booking fare",
+    estimatedDuration: "",
+    estimatedCost: "Check the selected official route fare",
     recommended: true,
     steps: [
       { order: 1, description: "Use Sicilia Outlet Village's official bus links and check Interbus or Sais Autolinee for the current route, stop, and timetable." },
@@ -965,7 +965,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Book or buy tickets only through the official operator or route booking channel for the service you plan to use." },
       { order: 4, description: "Before shopping, confirm the return bus or shuttle time and stop with the same official operator." },
     ],
-    updatedAt: "2026-07-05",
+    updatedAt: "2026-08-03",
   },
   {
     guideId: "sicilia-outlet-village-car-transfer-airport-guide",
@@ -1173,8 +1173,8 @@ export const italyTransportationGuides: TransportationGuide[] = [
     originId: "valmontone-station",
     transportationType: "train",
     title: "Valmontone Station to Valmontone Outlet by Official Shuttle",
-    estimatedDuration: "Train to Valmontone station plus shuttle; shuttle times vary by direction",
-    estimatedCost: "Check Trenitalia fare plus €1.50 shuttle unless included in a combined ticket",
+    estimatedDuration: "",
+    estimatedCost: "€1.50 shuttle; selected train fare additional",
     recommended: true,
     steps: [
       { order: 1, description: "Use Trenitalia to plan a rail journey to Valmontone station and check Valmontone Outlet's official Link information before travel." },
@@ -1182,7 +1182,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "At Valmontone station, board the official outlet shuttle only after confirming the current departure time and fare." },
       { order: 4, description: "Before shopping, confirm the return shuttle from the outlet to Valmontone station and your onward train." },
     ],
-    updatedAt: "2026-07-06",
+    updatedAt: "2026-08-03",
   },
   {
     guideId: "cilento-outlet-village-train-guide",
