@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Platform } from "react-native";
 import Constants from "expo-constants";
 import * as Notifications from "expo-notifications";
@@ -6,6 +6,8 @@ import { collection, doc, getDoc, getDocs, runTransaction, serverTimestamp, setD
 
 import { db } from "../firebase/config";
 import { planNotificationTokenRegistration } from "../services/notificationTokenRegistration";
+import { isTranslationLanguage, TranslationLanguage } from "../translations/translations";
+import { useLanguage } from "./LanguageContext";
 import { useUser } from "./UserContext";
 
 export type NotificationPermissionStatus = "unsupported" | "not_requested" | "granted" | "denied";
@@ -18,6 +20,7 @@ export type NotificationSettings = {
   favoriteOutletUpdatesEnabled: boolean;
   reviewUpdatesEnabled: boolean;
   marketingEnabled: boolean;
+  notificationLocale: TranslationLanguage | null;
 };
 
 type NotificationSettingsContextType = {
@@ -44,6 +47,7 @@ const defaultSettingsForUser = (userId: string): NotificationSettings => ({
   favoriteOutletUpdatesEnabled: false,
   reviewUpdatesEnabled: false,
   marketingEnabled: false,
+  notificationLocale: null,
 });
 
 const tokenDocumentId = (token: string) => token.replace(/[^A-Za-z0-9_-]/g, "_").slice(0, 512);
@@ -64,7 +68,10 @@ const permissionStatusFromNative = (status: string | undefined): NotificationPer
 
 export function NotificationSettingsProvider({ children }: { children: ReactNode }) {
   const { currentUser, isLoggedIn } = useUser();
+  const { language, isLanguageResolved } = useLanguage();
   const [settings, setSettings] = useState<NotificationSettings | null>(null);
+  const [settingsDocumentExists, setSettingsDocumentExists] = useState(false);
+  const localeSynchronizationKey = useRef<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [permissionStatus, setPermissionStatus] = useState<NotificationPermissionStatus>("unsupported");
@@ -82,6 +89,28 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     refreshPermissionStatus();
   }, [pushSupported]);
 
+  useEffect(() => {
+    if (!isLanguageResolved || !currentUser?.userId || !settingsDocumentExists || !settings || settings.notificationLocale === language) return;
+    const userId = currentUser.userId;
+    const synchronizationKey = `${userId}:${language}`;
+    if (localeSynchronizationKey.current === synchronizationKey) return;
+    localeSynchronizationKey.current = synchronizationKey;
+    void (async () => {
+      try {
+        const now = new Date().toISOString();
+        await setDoc(doc(db, "userNotificationSettings", userId), {
+          notificationLocale: language,
+          updatedAt: now,
+          firestoreUpdatedAt: serverTimestamp(),
+        }, { merge: true });
+        setSettings(current => current?.userId === userId ? { ...current, notificationLocale: language } : current);
+      } catch (error) {
+        localeSynchronizationKey.current = null;
+        console.warn("Failed to synchronize notification locale.", error);
+      }
+    })();
+  }, [currentUser?.userId, isLanguageResolved, language, settings, settingsDocumentExists]);
+
   async function refreshPermissionStatus() {
     if (Platform.OS === "web") {
       setPermissionStatus("unsupported");
@@ -95,6 +124,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
   async function refreshSettings() {
     if (!currentUser?.userId) {
       setSettings(null);
+      setSettingsDocumentExists(false);
       setRegisteredToken(null);
       setTokenRegistrationStatus("not_registered");
       return;
@@ -107,11 +137,13 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
       const fallback = defaultSettingsForUser(currentUser.userId);
 
       if (!snapshot.exists()) {
+        setSettingsDocumentExists(false);
         setSettings(fallback);
         return;
       }
 
       const data = snapshot.data();
+      setSettingsDocumentExists(true);
 
       setSettings({
         userId: currentUser.userId,
@@ -120,6 +152,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
         favoriteOutletUpdatesEnabled: data.favoriteOutletUpdatesEnabled === true,
         reviewUpdatesEnabled: data.reviewUpdatesEnabled === true,
         marketingEnabled: data.marketingEnabled === true,
+        notificationLocale: isTranslationLanguage(data.notificationLocale) ? data.notificationLocale : null,
       });
     } finally {
       setIsLoading(false);
@@ -230,6 +263,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
       ...(settings ?? defaultSettingsForUser(currentUser.userId)),
       ...patch,
       userId: currentUser.userId,
+      notificationLocale: language,
     };
 
     await setDoc(
@@ -244,6 +278,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     );
 
     setSettings(nextSettings);
+    setSettingsDocumentExists(true);
 
     return nextSettings;
   }

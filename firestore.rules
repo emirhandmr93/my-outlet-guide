@@ -436,6 +436,7 @@ service cloud.firestore {
           'favoriteOutletUpdatesEnabled',
           'reviewUpdatesEnabled',
           'marketingEnabled',
+          'notificationLocale',
           'updatedAt',
           'firestoreUpdatedAt',
           'disabledAt'
@@ -447,6 +448,8 @@ service cloud.firestore {
         && request.resource.data.favoriteOutletUpdatesEnabled is bool
         && request.resource.data.reviewUpdatesEnabled is bool
         && request.resource.data.marketingEnabled is bool
+        && (!request.resource.data.keys().hasAny(['notificationLocale'])
+          || request.resource.data.notificationLocale in ['en', 'tr', 'es', 'fr', 'de', 'ar', 'ru', 'zh'])
         && isNonEmptyString(request.resource.data.updatedAt)
         && (request.resource.data.disabledAt == null || isNonEmptyString(request.resource.data.disabledAt));
     }
