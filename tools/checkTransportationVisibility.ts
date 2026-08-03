@@ -39,6 +39,16 @@ const excludedRoadOnlyGuideCount = transportationGuides.filter(
 const invalidText = /\b(?:NaN|Infinity|undefined|mock|placeholder)\b/i;
 const longEnglishProse =
   /\b(?:check the|take the|go to the|confirm the|before you travel|official timetable|board the)\b/i;
+const freeLabels = {
+  en: "Free",
+  tr: "Ücretsiz",
+  es: "Gratis",
+  fr: "Gratuit",
+  de: "Kostenlos",
+  ru: "Бесплатно",
+  ar: "مجانًا",
+  zh: "免费",
+} as const;
 
 function visibleText(option: TransportationV2Option) {
   return [
@@ -384,6 +394,193 @@ const scaloText = JSON.stringify(
 if (/promo code|promo-code|free booking/i.test(scaloText))
   errors.push("scalo-milano-outlet-more: expired promo or free-booking claim remains");
 
+const italyBatchThreeRoutes = [
+  ["valdichiana-village", "valdichiana-village-arezzo-train-bus"],
+  ["franciacorta-designer-village", "brescia-station-to-franciacorta-designer-village-bus"],
+  ["mantova-village", "mantova-station-to-mantova-village-bus"],
+  ["vicolungo-the-style-outlets", "milan-to-vicolungo-style-outlets-shuttle"],
+  ["castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile"],
+  ["puglia-village", "puglia-village-bari-shuttle-guide"],
+  ["sicilia-outlet-village", "sicilia-outlet-village-bus-shuttle-guide"],
+  ["valmontone-outlet", "valmontone-outlet-train-shuttle-guide"],
+] as const;
+for (const [outletId, guideId] of italyBatchThreeRoutes) {
+  const fact = transportationRouteFacts.find(
+    (candidate) => candidate.guideId === guideId,
+  );
+  if (!fact?.officialProviderUrl?.startsWith("https://"))
+    errors.push(`${guideId}: valid officialProviderUrl is missing`);
+  if (fact?.displayFare != null)
+    errors.push(`${guideId}: free-form displayFare must not be used`);
+  const structuredRouteText = [
+    fact?.provider,
+    fact?.operator,
+    fact?.line,
+    fact?.boardingPoint,
+    ...(fact?.transferPoints || []),
+    fact?.alightingPoint,
+    fact?.destination,
+  ]
+    .filter(Boolean)
+    .join(" ");
+  if (/Railway Station|Train Station|city centre|airport|(?:^|\s)or(?:\s|$)/i.test(structuredRouteText))
+    errors.push(`${guideId}: English generic structured route value leaked`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail)
+      errors.push(`${guideId}/${language}: source-backed route is missing`);
+    if (!localized || !visibleText(localized).trim())
+      errors.push(`${guideId}/${language}: display model is empty`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized)))
+      errors.push(`${guideId}/${language}: long English instructions leaked`);
+  }
+}
+
+for (const [outletId, expectedGuideId] of italyBatchThreeRoutes) {
+  if (getRecommendedTransportationV2Option(outletId)?.id !== expectedGuideId)
+    errors.push(`${outletId}: ${expectedGuideId} is not recommended`);
+}
+
+for (const [outletId, guideId, duration] of [
+  ["valdichiana-village", "valdichiana-village-arezzo-train-bus", 50],
+  ["franciacorta-designer-village", "brescia-station-to-franciacorta-designer-village-bus", 25],
+  ["mantova-village", "mantova-station-to-mantova-village-bus", 30],
+  ["castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile", 5],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.estimatedDurationMin !== duration || fact.estimatedDurationMax !== duration)
+    errors.push(`${guideId}: structured duration provenance is invalid`);
+  for (const language of supportedLanguageCodes) {
+    if (!display(outletId, guideId, language)?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: localized duration is missing`);
+  }
+}
+
+const mantovaGuideId = "mantova-station-to-mantova-village-bus";
+const mantovaFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === mantovaGuideId,
+);
+if (
+  !mantovaFact?.sourceNote?.includes("10-minute walk") ||
+  !mantovaFact.sourceNote.includes("20-minute 31A bus section") ||
+  !mantovaFact.sourceNote.includes("30-minute combined journey estimate")
+)
+  errors.push("mantova-village: official walk and bus duration segments are missing");
+const localizedThirtyMinuteDurations = {
+  en: "Approx. 30 min",
+  tr: "Yaklaşık 30 dk",
+  es: "Aprox. 30 min",
+  fr: "Env. 30 min",
+  de: "Ca. 30 Min.",
+  ru: "Примерно 30 мин",
+  ar: "تقريبًا 30 دقيقة",
+  zh: "约 30 分钟",
+} as const;
+for (const language of supportedLanguageCodes) {
+  const localized = display("mantova-village", mantovaGuideId, language);
+  if (localized?.estimatedDurationLabel !== localizedThirtyMinuteDurations[language])
+    errors.push(`${mantovaGuideId}/${language}: localized 30-minute duration is invalid`);
+  if (localized?.estimatedDurationLabel?.includes("20"))
+    errors.push(`${mantovaGuideId}/${language}: bus-only duration is displayed as the total`);
+}
+
+for (const [outletId, guideId] of [
+  ["vicolungo-the-style-outlets", "milan-to-vicolungo-style-outlets-shuttle"],
+  ["puglia-village", "puglia-village-bari-shuttle-guide"],
+  ["sicilia-outlet-village", "sicilia-outlet-village-bus-shuttle-guide"],
+  ["valmontone-outlet", "valmontone-outlet-train-shuttle-guide"],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (
+    fact?.suppressDerivedDurationFallback !== true ||
+    fact.displayDuration != null ||
+    fact.estimatedDurationMin != null ||
+    fact.estimatedDurationMax != null
+  )
+    errors.push(`${guideId}: unsupported duration provenance is present`);
+  for (const language of supportedLanguageCodes) {
+    if (display(outletId, guideId, language)?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: unsupported duration is visible`);
+  }
+}
+
+const batchThreeFreeRoutes = [
+  ["castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile"],
+  ["puglia-village", "puglia-village-bari-shuttle-guide"],
+] as const;
+for (const [outletId, guideId] of batchThreeFreeRoutes) {
+  for (const language of supportedLanguageCodes) {
+    if (display(outletId, guideId, language)?.estimatedFareLabel !== freeLabels[language])
+      errors.push(`${guideId}/${language}: localized free fare is missing`);
+  }
+}
+for (const [outletId, guideId] of [
+  ["vicolungo-the-style-outlets", "milan-to-vicolungo-style-outlets-shuttle"],
+  ["sicilia-outlet-village", "sicilia-outlet-village-bus-shuttle-guide"],
+  ["valdichiana-village", "valdichiana-village-arezzo-train-bus"],
+  ["franciacorta-designer-village", "brescia-station-to-franciacorta-designer-village-bus"],
+  ["mantova-village", "mantova-station-to-mantova-village-bus"],
+] as const) {
+  for (const language of supportedLanguageCodes) {
+    if (display(outletId, guideId, language)?.estimatedFareLabel)
+      errors.push(`${guideId}/${language}: unsupported fare is visible`);
+  }
+}
+
+const valmontoneFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === "valmontone-outlet-train-shuttle-guide",
+);
+if (
+  valmontoneFact?.estimatedFareMin !== 1.5 ||
+  valmontoneFact.estimatedFareMax !== 1.5 ||
+  valmontoneFact.currency !== "EUR"
+)
+  errors.push("valmontone-outlet: structured EUR 1.50 fare is invalid");
+
+const siciliaFact = transportationRouteFacts.find(
+  (candidate) => candidate.guideId === "sicilia-outlet-village-bus-shuttle-guide",
+);
+if (siciliaFact?.confidence !== "partial")
+  errors.push("sicilia-outlet-village: route family confidence is not partial");
+
+for (const language of supportedLanguageCodes) {
+  const localized = display(
+    "castel-guelfo-the-style-outlets",
+    "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile",
+    language,
+  );
+  const routeRows = localized
+    ? getTransportationRouteDetailRows(localized, language)
+    : [];
+  const routeText = routeRows.map((row) => row.value).join(" → ");
+  const originIndex = routeText.indexOf("Castel San Pietro Terme FS");
+  const transferIndex = routeText.indexOf("TPER Martiri Partigiani");
+  const destinationIndex = routeText.indexOf("Castel Guelfo The Style Outlets");
+  if (!(originIndex >= 0 && originIndex < transferIndex && transferIndex < destinationIndex))
+    errors.push(`castel-guelfo-the-style-outlets/${language}: route detail order is invalid`);
+  if (!routeRows.some((row) => row.value === "Castel San Pietro Terme FS"))
+    errors.push(`castel-guelfo-the-style-outlets/${language}: visible boarding point is missing`);
+  if (!routeRows.some((row) => row.value === "TPER Martiri Partigiani"))
+    errors.push(`castel-guelfo-the-style-outlets/${language}: visible transfer point is missing`);
+  if (!routeRows.some((row) => row.value === "Castel Guelfo The Style Outlets"))
+    errors.push(`castel-guelfo-the-style-outlets/${language}: visible destination is missing`);
+  const expectedDuration = localizedThirtyMinuteDurations[language].replace("30", "5");
+  if (localized?.estimatedDurationLabel !== expectedDuration)
+    errors.push(`castel-guelfo-the-style-outlets/${language}: localized duration is invalid`);
+  if (localized?.estimatedFareLabel !== freeLabels[language])
+    errors.push(`castel-guelfo-the-style-outlets/${language}: localized free fare is missing`);
+}
+const castelGuelfoFact = transportationRouteFacts.find(
+  (candidate) =>
+    candidate.guideId ===
+    "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile",
+);
+if (
+  JSON.stringify(castelGuelfoFact?.transferPoints) !==
+  JSON.stringify(["TPER Martiri Partigiani"])
+)
+  errors.push("castel-guelfo-the-style-outlets: structured transfer point is invalid");
+
 for (const [outletId, guideId, expectedFare] of [
   ["castel-romano", "castel-romano-termini-shuttle", "€18"],
   ["castel-romano", "castel-romano-eur-fermi-shuttle", "€13"],
@@ -459,16 +656,6 @@ for (const [outletId, expected] of [
     errors.push(`${outletId}: safe public route is not recommended`);
 }
 
-const freeLabels = {
-  en: "Free",
-  tr: "Ücretsiz",
-  es: "Gratis",
-  fr: "Gratuit",
-  de: "Kostenlos",
-  ru: "Бесплатно",
-  ar: "مجانًا",
-  zh: "免费",
-} as const;
 for (const [outletId, guideId] of [
   ["halle-leipzig-the-style-outlets", "halle-leipzig-style-outlets-saturday-shuttle"],
 ] as const) {
