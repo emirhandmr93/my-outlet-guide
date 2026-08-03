@@ -1235,13 +1235,13 @@ if (sourceBackedSpainOutlets.length !== activeSpainOutlets.length || sourceBacke
 const germanyCompletionRoutes = [
   ["city-outlet-bad-munstereifel", "cologne-city-center-to-city-outlet-bad-munstereifel", "train"],
   ["designer-outlet-berlin", "berlin-city-center-to-designer-outlet-berlin", "shuttle"],
-  ["designer-outlet-neumunster", "neumunster-station-to-designer-outlet-neumunster", "bus"],
-  ["designer-outlets-wolfsburg", "wolfsburg-hbf-to-designer-outlets-wolfsburg", "walking"],
-  ["ingolstadt-village", "ingolstadt-hbf-to-ingolstadt-village", "bus"],
-  ["montabaur-the-style-outlets", "montabaur-station-to-montabaur-the-style-outlets", "walking"],
+  ["designer-outlet-neumunster", "hamburg-city-center-to-designer-outlet-neumunster", "train"],
+  ["designer-outlets-wolfsburg", "hannover-city-center-to-designer-outlets-wolfsburg", "train"],
+  ["ingolstadt-village", "munich-city-center-to-ingolstadt-village-train-bus", "train"],
+  ["montabaur-the-style-outlets", "frankfurt-city-center-to-montabaur-the-style-outlets", "train"],
   ["outletcity-metzingen", "stuttgart-city-center-to-outletcity-metzingen", "train"],
   ["wertheim-village", "frankfurt-city-center-to-wertheim-village", "shuttle"],
-  ["zweibrucken-fashion-outlet", "zweibrucken-hbf-to-zweibrucken-fashion-outlet", "bus"],
+  ["zweibrucken-fashion-outlet", "saarbrucken-city-center-to-zweibrucken-fashion-outlet", "train"],
   ["halle-leipzig-the-style-outlets", "halle-leipzig-style-outlets-saturday-shuttle", "shuttle"],
   ["designer-outlet-ochtrup", "muenster-to-designer-outlet-ochtrup-train-walk", "train"],
 ] as const;
@@ -1260,19 +1260,43 @@ for (const [outletId, guideId, expectedMode] of germanyCompletionRoutes) {
     if (!localized || !getTransportationRouteDetailRows(localized, language).length) errors.push(`${guideId}/${language}: visible route rows are missing`);
   }
 }
+const correctedGermanyOrigins = [
+  ["designer-outlet-neumunster", "hamburg-city-center-to-designer-outlet-neumunster", "neumunster-station-to-designer-outlet-neumunster", "Hamburg Hbf", "Neumünster Bahnhof", "Hamburg Hbf → Neumünster Bahnhof → 7 / 77"],
+  ["designer-outlets-wolfsburg", "hannover-city-center-to-designer-outlets-wolfsburg", "wolfsburg-hbf-to-designer-outlets-wolfsburg", "Hannover Hbf", "Wolfsburg Hbf", "Hannover Hbf → Wolfsburg Hbf"],
+  ["ingolstadt-village", "munich-city-center-to-ingolstadt-village-train-bus", "ingolstadt-hbf-to-ingolstadt-village", "München Hbf", "Ingolstadt Hbf", "München Hbf → Ingolstadt Hbf → 22"],
+  ["montabaur-the-style-outlets", "frankfurt-city-center-to-montabaur-the-style-outlets", "montabaur-station-to-montabaur-the-style-outlets", "Frankfurt (Main) Hbf", "Montabaur ICE", "Frankfurt (Main) Hbf → Montabaur ICE"],
+  ["zweibrucken-fashion-outlet", "saarbrucken-city-center-to-zweibrucken-fashion-outlet", "zweibrucken-hbf-to-zweibrucken-fashion-outlet", "Saarbrücken Hbf", "Zweibrücken", "Saarbrücken Hbf → Zweibrücken → Stadtbus"],
+] as const;
+for (const [outletId, guideId, oldGuideId, boardingPoint, stationOnlyOrigin, line] of correctedGermanyOrigins) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  const oldGuide = transportationGuides.find((candidate) => candidate.guideId === oldGuideId);
+  if (fact?.originType !== "cityCenter" || guide?.originType !== "city_center" || fact.boardingPoint !== boardingPoint || fact.boardingPoint === stationOnlyOrigin)
+    errors.push(`${guideId}: recommended route does not begin at ${boardingPoint}`);
+  if (transportationRouteFacts.some((candidate) => candidate.guideId === oldGuideId) || oldGuide?.recommended)
+    errors.push(`${oldGuideId}: station-only fact remains source-backed or recommended`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+    if (!rows.some((row) => row.value === boardingPoint)) errors.push(`${guideId}/${language}: city-origin boarding point is not visible`);
+    const lineRows = rows.filter((row) => row.value === line);
+    const reference = display("la-vallee-village", "paris-to-la-vallee-rer-a", language);
+    const lineLabel = reference ? getTransportationRouteDetailRows(reference, language).find((row) => row.value === "RER A")?.label : undefined;
+    if (lineRows.length !== 1 || lineRows[0]?.label !== lineLabel) errors.push(`${guideId}/${language}: localized Line row is invalid`);
+  }
+}
 const germanySuppressedDurationRoutes = new Set([
-  "cologne-city-center-to-city-outlet-bad-munstereifel", "neumunster-station-to-designer-outlet-neumunster",
-  "montabaur-station-to-montabaur-the-style-outlets", "stuttgart-city-center-to-outletcity-metzingen",
-  "frankfurt-city-center-to-wertheim-village", "zweibrucken-hbf-to-zweibrucken-fashion-outlet",
+  "cologne-city-center-to-city-outlet-bad-munstereifel", "hamburg-city-center-to-designer-outlet-neumunster",
+  "hannover-city-center-to-designer-outlets-wolfsburg", "munich-city-center-to-ingolstadt-village-train-bus",
+  "frankfurt-city-center-to-montabaur-the-style-outlets", "stuttgart-city-center-to-outletcity-metzingen",
+  "frankfurt-city-center-to-wertheim-village", "saarbrucken-city-center-to-zweibrucken-fashion-outlet",
   "halle-leipzig-style-outlets-saturday-shuttle", "muenster-to-designer-outlet-ochtrup-train-walk",
 ]);
 const germanyExactDurations = new Map([
-  ["berlin-city-center-to-designer-outlet-berlin", 30], ["wolfsburg-hbf-to-designer-outlets-wolfsburg", 2],
-  ["ingolstadt-hbf-to-ingolstadt-village", 25],
+  ["berlin-city-center-to-designer-outlet-berlin", 30],
 ]);
 const germanyFreeRoutes = new Set([
-  "berlin-city-center-to-designer-outlet-berlin", "wolfsburg-hbf-to-designer-outlets-wolfsburg",
-  "montabaur-station-to-montabaur-the-style-outlets", "halle-leipzig-style-outlets-saturday-shuttle",
+  "berlin-city-center-to-designer-outlet-berlin", "halle-leipzig-style-outlets-saturday-shuttle",
 ]);
 for (const [outletId, guideId] of germanyCompletionRoutes) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
