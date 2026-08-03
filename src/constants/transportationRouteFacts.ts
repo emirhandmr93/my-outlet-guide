@@ -3,6 +3,7 @@ import type { TransportationType } from "./transportationGuides";
 export type TransportationRouteOriginType =
   | "airport"
   | "cityCenter"
+  | "station"
   | "shuttle"
   | "taxiUber";
 
@@ -41,10 +42,10 @@ export type TransportationRouteFact = {
 
 export const transportationRouteFacts: TransportationRouteFact[] = [
   {
-    guideId: "cardiff-to-bridgend-designer-outlet-public-transport", outletId: "bridgend-designer-outlet", originType: "cityCenter", mode: "train", provider: "Transport for Wales", operator: "Transport for Wales", line: "Cardiff Central → Bridgend → Sainsbury's", boardingPoint: "Cardiff Central", alightingPoint: "Sainsbury's", destination: "McArthurGlen Designer Outlet Bridgend", walkNote: "Sainsbury's is less than five minutes on foot from the outlet.", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes a sub-20-minute Cardiff–Bridgend rail segment and a separate local bus and walking connection; no total duration is published.", confidence: "partial", officialProviderUrl: "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/plan-your-visit/",
+    guideId: "cardiff-to-bridgend-designer-outlet-public-transport", outletId: "bridgend-designer-outlet", originType: "cityCenter", mode: "train", provider: "Transport for Wales", operator: "Transport for Wales", line: "Cardiff Central → Bridgend", boardingPoint: "Cardiff Central", transferPoints: ["Bridgend → Sainsbury's"], alightingPoint: "Bridgend", destination: "McArthurGlen Designer Outlet Bridgend", walkNote: "Sainsbury's is less than five minutes on foot from the outlet.", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes a sub-20-minute Cardiff–Bridgend rail segment and a separate local bus and walking connection; no total duration is published.", confidence: "partial", officialProviderUrl: "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-bridgend/plan-your-visit/",
   },
   {
-    guideId: "gretna-to-caledonia-park-public-transport", outletId: "caledonia-park", originType: "cityCenter", mode: "walking", boardingPoint: "Gretna Green", destination: "Caledonia Park", suppressDerivedDurationFallback: true, sourceNote: "The official centre page describes Gretna Green station as a short walk from Caledonia Park; no exact walking duration is published.", confidence: "exact", officialProviderUrl: "https://caledoniapark.com/getting-here/",
+    guideId: "gretna-to-caledonia-park-public-transport", outletId: "caledonia-park", originType: "station", mode: "walking", boardingPoint: "Gretna Green", destination: "Caledonia Park", suppressDerivedDurationFallback: true, sourceNote: "The official centre page describes Gretna Green station as a short walk from Caledonia Park; no exact walking duration is published.", confidence: "exact", officialProviderUrl: "https://caledoniapark.com/getting-here/",
   },
   {
     guideId: "street-to-clarks-village-car", outletId: "clarks-village", originType: "taxiUber", mode: "taxi", boardingPoint: "Street", destination: "Clarks Village", suppressDerivedDurationFallback: true, confidence: "partial", officialProviderUrl: "https://www.clarksvillage.co.uk/en/plan-my-visit/getting-here",
@@ -68,10 +69,10 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     guideId: "banbridge-to-the-boulevard-banbridge-public-transport", outletId: "the-boulevard-banbridge", originType: "cityCenter", mode: "bus", provider: "Translink", operator: "Translink", line: "330C", boardingPoint: "Banbridge Town Centre", alightingPoint: "Banbridge, Outlet Park (The Boulevard)", destination: "The Boulevard Banbridge", suppressDerivedDurationFallback: true, sourceNote: "The official centre page publishes Translink service 330C from Banbridge to Outlet Park; check the current timetable before travel.", confidence: "exact", officialProviderUrl: "https://the-boulevard.co.uk/",
   },
   {
-    guideId: "hatfield-to-the-galleria-outlet-public-transport", outletId: "the-galleria-outlet", originType: "cityCenter", mode: "walking", boardingPoint: "Hatfield Station", destination: "The Galleria Outlet Shopping Centre", estimatedDurationMin: 25, estimatedDurationMax: 25, confidence: "exact", officialProviderUrl: "https://thegalleria.co.uk/pages/about",
+    guideId: "hatfield-to-the-galleria-outlet-public-transport", outletId: "the-galleria-outlet", originType: "station", mode: "walking", boardingPoint: "Hatfield Station", destination: "The Galleria Outlet Shopping Centre", estimatedDurationMin: 25, estimatedDurationMax: 25, confidence: "exact", officialProviderUrl: "https://thegalleria.co.uk/pages/about",
   },
   {
-    guideId: "braintree-village-train-guide", outletId: "braintree-village", originType: "cityCenter", mode: "walking", boardingPoint: "Braintree Freeport", destination: "Braintree Village", suppressDerivedDurationFallback: true, sourceNote: "Greater Anglia identifies Braintree Freeport station as adjacent to Braintree Village; no exact walking duration is required.", confidence: "exact", officialProviderUrl: "https://www.greateranglia.co.uk/travel-information/station-information/btp",
+    guideId: "braintree-village-train-guide", outletId: "braintree-village", originType: "station", mode: "walking", boardingPoint: "Braintree Freeport", destination: "Braintree Village", suppressDerivedDurationFallback: true, sourceNote: "Greater Anglia identifies Braintree Freeport station as adjacent to Braintree Village; no exact walking duration is required.", confidence: "exact", officialProviderUrl: "https://www.greateranglia.co.uk/travel-information/station-information/btp",
   },
   {
     guideId: "affinity-sterling-mills-bus-guide", outletId: "affinity-sterling-mills", originType: "cityCenter", mode: "bus", boardingPoint: "Stirling Bus Station", destination: "Affinity Sterling Mills", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes regular bus connections to Tillicoultry and identifies Stirling Bus Station as the nearest major bus station; verify the current operator, route and stop before travel.", confidence: "partial", officialProviderUrl: "https://www.sterlingmills.com/find-us",

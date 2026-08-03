@@ -8,7 +8,9 @@ import {
   getOutletTransportationV2Summary,
   getRecommendedTransportationV2Option,
   getTransportationOptionDisplayModel,
+  getTransportationOriginLabel,
   getTransportationRouteDetailRows,
+  getTransportationStationSectionLabel,
   getTransportationV2Options,
   hasSafeFareProvenance,
   hasSourceBackedShuttleRouteDetail,
@@ -1370,7 +1372,7 @@ for (const guideId of ["ashford-international-to-ashford-designer-outlet-walk", 
   if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended) errors.push(`${guideId}: secondary route must not be recommended`);
 
 const ukBatchTwoRoutes = [
-  ["bridgend-designer-outlet", "cardiff-to-bridgend-designer-outlet-public-transport", "train", "Cardiff Central", ["Transport for Wales", "Cardiff Central → Bridgend → Sainsbury's", "Cardiff Central", "Sainsbury's", "McArthurGlen Designer Outlet Bridgend"]],
+  ["bridgend-designer-outlet", "cardiff-to-bridgend-designer-outlet-public-transport", "train", "Cardiff Central", ["Transport for Wales", "Cardiff Central → Bridgend", "Cardiff Central", "Bridgend", "Bridgend → Sainsbury's", "McArthurGlen Designer Outlet Bridgend"]],
   ["caledonia-park", "gretna-to-caledonia-park-public-transport", "walking", "Gretna Green", ["Gretna Green", "Caledonia Park"]],
   ["clarks-village", "street-to-clarks-village-car", "taxi", "Street", ["Street", "Clarks Village"]],
   ["dalton-park", "durham-to-dalton-park-public-transport", "bus", "Durham", ["Go North East", "65", "Durham", "Dalton Park"]],
@@ -1390,7 +1392,7 @@ const ukLocalStationRoutes = new Map([
   ["hatfield-to-the-galleria-outlet-public-transport", "Hatfield Station"],
   ["braintree-village-train-guide", "Braintree Freeport"],
 ]);
-const ukLineValues = new Set(["Cardiff Central → Bridgend → Sainsbury's", "65", "1", "X27 / X28", "37", "330C"]);
+const ukLineValues = new Set(["Cardiff Central → Bridgend", "65", "1", "X27 / X28", "37", "330C"]);
 for (const [outletId, guideId, expectedMode, boardingPoint, visibleValues] of ukBatchTwoRoutes) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
   const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
@@ -1398,7 +1400,7 @@ for (const [outletId, guideId, expectedMode, boardingPoint, visibleValues] of uk
   if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode) errors.push(`${guideId}: guide or fact mode is invalid`);
   if (getRecommendedTransportationV2Option(outletId)?.id !== guideId) errors.push(`${outletId}: ${guideId} is not recommended`);
   const localStation = ukLocalStationRoutes.get(guideId);
-  if (localStation ? guide?.originType !== "station" || fact?.mode !== "walking" || fact.boardingPoint !== localStation : guide?.originType !== "city_center" || !["cityCenter", "taxiUber"].includes(fact?.originType ?? "") || fact?.boardingPoint !== boardingPoint)
+  if (localStation ? guide?.originType !== "station" || fact?.originType !== "station" || fact.mode !== "walking" || fact.boardingPoint !== localStation : guide?.originType !== "city_center" || !["cityCenter", "taxiUber"].includes(fact?.originType ?? "") || fact?.boardingPoint !== boardingPoint)
     errors.push(`${guideId}: origin safety is invalid`);
   if (ukBatchTwoSuppressedDurationRoutes.has(guideId) && (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null)) errors.push(`${guideId}: unsupported duration provenance is present`);
   if (guideId === "hatfield-to-the-galleria-outlet-public-transport" && (fact?.estimatedDurationMin !== 25 || fact.estimatedDurationMax !== 25)) errors.push(`${guideId}: exact duration provenance is invalid`);
@@ -1406,6 +1408,18 @@ for (const [outletId, guideId, expectedMode, boardingPoint, visibleValues] of uk
     const localized = display(outletId, guideId, language);
     const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
     if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source" || !visibleText(localized).trim() || !rows.length) errors.push(`${guideId}/${language}: source-backed display or warning gating is invalid`);
+    if (localStation) {
+      const runtimeOption = getTransportationV2Options(outletId).find((option) => option.id === guideId);
+      const summary = getOutletTransportationV2Summary(outletId, language);
+      const stationLabel = getTransportationOriginLabel("station", language);
+      const cityLabel = getTransportationOriginLabel("city", language);
+      if (runtimeOption?.originGroup !== "station" || localized?.originGroup !== "station" || localized.originLabel !== stationLabel || !stationLabel || stationLabel === cityLabel)
+        errors.push(`${guideId}/${language}: localized station origin is invalid`);
+      if (!getTransportationStationSectionLabel(language) || !localized?.title || /city cent(?:er|re)|şehir merkez|centro|centre-ville|stadtzentrum|центр города|وسط المدينة|市中心/i.test([localized?.title, ...localized?.steps ?? []].join(" ")))
+        errors.push(`${guideId}/${language}: station title, section, or steps are invalid`);
+      if (!summary.some((option) => option.id === guideId && option.originGroup === "station") || new Set(summary.map((option) => option.id)).size !== summary.length)
+        errors.push(`${guideId}/${language}: compact station summary is invalid`);
+    }
     if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
     for (const value of visibleValues) if (!rows.some((row) => row.value === value)) errors.push(`${guideId}/${language}: ${value} is not visible`);
     if (ukBatchTwoSuppressedDurationRoutes.has(guideId) && localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
@@ -1419,6 +1433,23 @@ for (const [outletId, guideId, expectedMode, boardingPoint, visibleValues] of uk
       if (!ukLineValues.has(fact.line) || lineRows.length !== 1 || lineRows[0]?.label !== lineLabel) errors.push(`${guideId}/${language}: localized Line row is invalid`);
     } else if (localized?.routeDetails.lineOrProviderLabel) errors.push(`${guideId}/${language}: artificial Line or Provider row is visible`);
   }
+}
+const bridgendFact = transportationRouteFacts.find((fact) => fact.guideId === "cardiff-to-bridgend-designer-outlet-public-transport");
+if (bridgendFact?.line !== "Cardiff Central → Bridgend" || bridgendFact.alightingPoint !== "Bridgend" || bridgendFact.transferPoints?.length !== 1 || bridgendFact.transferPoints[0] !== "Bridgend → Sainsbury's" || bridgendFact.provider !== "Transport for Wales" || bridgendFact.operator !== "Transport for Wales")
+  errors.push("Bridgend: rail and local transfer ownership is invalid");
+for (const language of supportedLanguageCodes) {
+  const localized = display("bridgend-designer-outlet", "cardiff-to-bridgend-designer-outlet-public-transport", language);
+  const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+  const reference = display("la-vallee-village", "paris-to-la-vallee-rer-a", language);
+  const referenceRows = reference ? getTransportationRouteDetailRows(reference, language) : [];
+  const transferReference = display("castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile", language);
+  const transferLabel = transferReference ? getTransportationRouteDetailRows(transferReference, language).find((row) => row.value === "TPER Martiri Partigiani")?.label : undefined;
+  for (const [value, expectedLabel] of [["Cardiff Central → Bridgend", referenceRows[0]?.label], ["Transport for Wales", referenceRows[1]?.label], ["Cardiff Central", referenceRows[2]?.label], ["Bridgend", referenceRows[3]?.label], ["Bridgend → Sainsbury's", transferLabel]] as const) {
+    const matches = rows.filter((row) => row.value === value);
+    if (!expectedLabel || matches.length !== 1 || matches[0]?.label !== expectedLabel) errors.push(`Bridgend/${language}: ${value} row is invalid`);
+  }
+  if (rows.some((row) => row.label === referenceRows.find((candidate) => candidate.value === "RER A")?.label && row.value.includes("Sainsbury's")) || localized?.estimatedDurationLabel || localized?.estimatedFareLabel)
+    errors.push(`Bridgend/${language}: transfer ownership, duration, or fare leaked`);
 }
 for (const guideId of ["street-to-clarks-village-public-transport", "nottingham-to-east-midlands-designer-outlet-public-transport", "affinity-sterling-mills-train-bus-guide", "gretna-to-caledonia-park-car", "durham-to-dalton-park-car", "poulton-le-fylde-to-fleetwood-outlet-train-bus", "hatfield-to-the-galleria-outlet-car", "braintree-village-bus-guide"])
   if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended) errors.push(`${guideId}: superseded or secondary guide remains recommended`);
