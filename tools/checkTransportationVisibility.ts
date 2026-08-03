@@ -1463,6 +1463,67 @@ const ukOutletsWithoutSourceBackedUrls = activeUkOutlets.filter((outlet) => !sou
 if (ukBatchOneRoutes.some(([outletId]) => ukOutletsWithoutSourceBackedRoutes.includes(outletId))) errors.push(`UK Batch 1 completion is invalid: ${ukOutletsWithoutSourceBackedRoutes.join(", ")}`);
 if (ukOutletsWithoutSourceBackedRoutes.length || ukOutletsWithoutSourceBackedUrls.length) errors.push(`UK completion is invalid: ${ukOutletsWithoutSourceBackedRoutes.join(", ")} / ${ukOutletsWithoutSourceBackedUrls.join(", ")}`);
 
+const netherlandsCompletionRoutes = [
+  ["designer-outlet-roermond", "amsterdam-to-roermond-train", "Amsterdam Centraal", "Amsterdam Centraal → Roermond", ["NS", "Amsterdam Centraal → Roermond", "Amsterdam Centraal", "Roermond", "Designer Outlet Roermond"]],
+  ["designer-outlet-roosendaal", "rotterdam-to-roosendaal-train-bus", "Rotterdam Centraal", "Rotterdam Centraal → Roosendaal", ["NS / Bravo", "Rotterdam Centraal → Roosendaal", "Rotterdam Centraal", "Roosendaal", "161 → Designer Outlet Roosendaal", "Designer Outlet Roosendaal"]],
+  ["amsterdam-the-style-outlets", "amsterdam-centraal-to-amsterdam-style-outlets-train-walk", "Amsterdam Centraal", "Amsterdam Centraal → Halfweg-Zwanenburg", ["NS", "Amsterdam Centraal → Halfweg-Zwanenburg", "Amsterdam Centraal", "Halfweg-Zwanenburg", "Amsterdam The Style Outlets"]],
+  ["batavia-stad-fashion-outlet", "amsterdam-to-batavia-stad-train-bus", "Amsterdam Centraal", "Amsterdam Centraal → Lelystad Centrum", ["NS / RRReis", "Amsterdam Centraal → Lelystad Centrum", "Amsterdam Centraal", "Lelystad Centrum", "13 → Batavia Stad", "Batavia Stad Fashion Outlet"]],
+] as const;
+const netherlandsTransferValues = new Set(["161 → Designer Outlet Roosendaal", "13 → Batavia Stad"]);
+for (const [outletId, guideId, boardingPoint, lineValue, visibleValues] of netherlandsCompletionRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  const runtimeOption = getTransportationV2Options(outletId).find((option) => option.id === guideId);
+  if (!fact?.officialProviderUrl?.startsWith("https://") || fact.displayFare != null) errors.push(`${guideId}: source URL or fare provenance is invalid`);
+  if (fact?.mode !== "train" || guide?.transportationType !== "train") errors.push(`${guideId}: guide or fact mode is invalid`);
+  if (fact?.originType !== "cityCenter" || guide?.originType !== "city_center" || runtimeOption?.originGroup !== "city" || fact?.boardingPoint !== boardingPoint) errors.push(`${guideId}: full city origin is invalid`);
+  if (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null || guide?.estimatedDuration !== "") errors.push(`${guideId}: unsupported duration provenance is present`);
+  if (getRecommendedTransportationV2Option(outletId)?.id !== guideId || guide?.recommended !== true) errors.push(`${outletId}: ${guideId} is not recommended`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+    const lineReference = display("la-vallee-village", "paris-to-la-vallee-rer-a", language);
+    const lineReferenceRows = lineReference ? getTransportationRouteDetailRows(lineReference, language) : [];
+    const lineLabel = lineReferenceRows.find((row) => row.value === "RER A")?.label;
+    const operatorLabel = lineReferenceRows.find((row) => row.value === "RATP / SNCF")?.label;
+    const transferReference = display("castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile", language);
+    const transferLabel = transferReference ? getTransportationRouteDetailRows(transferReference, language).find((row) => row.value === "TPER Martiri Partigiani")?.label : undefined;
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source" || !visibleText(localized).trim() || !rows.length) errors.push(`${guideId}/${language}: source-backed display or warning gating is invalid`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
+    if (localized?.estimatedDurationLabel || localized?.estimatedFareLabel) errors.push(`${guideId}/${language}: unsupported duration or fare is visible`);
+    for (const value of visibleValues) if (rows.filter((row) => row.value === value).length !== 1) errors.push(`${guideId}/${language}: ${value} is not visible exactly once`);
+    const matchingLineRows = rows.filter((row) => row.value === lineValue);
+    if (!lineLabel || matchingLineRows.length !== 1 || matchingLineRows[0]?.label !== lineLabel) errors.push(`${guideId}/${language}: localized Line row is invalid`);
+    if (fact?.operator && (!operatorLabel || rows.filter((row) => row.value === fact.operator && row.label === operatorLabel).length !== 1)) errors.push(`${guideId}/${language}: localized Operator row is invalid`);
+    for (const transferValue of fact?.transferPoints ?? []) {
+      const matches = rows.filter((row) => row.value === transferValue);
+      if (!netherlandsTransferValues.has(transferValue) || !transferLabel || matches.length !== 1 || matches[0]?.label !== transferLabel || matches[0]?.label === lineLabel) errors.push(`${guideId}/${language}: localized Transfer row is invalid`);
+    }
+  }
+}
+for (const guideId of ["eindhoven-airport-to-roermond-car", "flixbus-to-roermond-outlet", "rotterdam-airport-to-roosendaal-car", "amsterdam-style-outlets-car-parking-guide", "amsterdam-to-batavia-stad-shuttle-bus", "batavia-stad-car-parking-guide"])
+  if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended) errors.push(`${guideId}: secondary guide must not be recommended`);
+const roosendaalFact = transportationRouteFacts.find((fact) => fact.guideId === "rotterdam-to-roosendaal-train-bus");
+if (roosendaalFact?.line !== "Rotterdam Centraal → Roosendaal" || roosendaalFact.alightingPoint !== "Roosendaal" || roosendaalFact.transferPoints?.join() !== "161 → Designer Outlet Roosendaal") errors.push("Roosendaal: rail and bus leg ownership is invalid");
+const bataviaFact = transportationRouteFacts.find((fact) => fact.guideId === "amsterdam-to-batavia-stad-train-bus");
+if (bataviaFact?.line !== "Amsterdam Centraal → Lelystad Centrum" || bataviaFact.alightingPoint !== "Lelystad Centrum" || bataviaFact.transferPoints?.join() !== "13 → Batavia Stad") errors.push("Batavia Stad: rail and bus leg ownership is invalid");
+const sourceBackedTurkishMultiLegFacts = transportationRouteFacts.filter((fact) => fact.guideId && fact.alightingPoint && fact.transferPoints?.length && ["exact", "partial"].includes(fact.confidence));
+for (const fact of sourceBackedTurkishMultiLegFacts) {
+  const localized = display(fact.outletId, fact.guideId!, "tr");
+  const alightingStepIndex = localized?.steps.findIndex((step) => step.includes(`${fact.alightingPoint} durağında in.`)) ?? -1;
+  const transferStepIndex = localized?.steps.findIndex((step) => step.includes("aktarmasını takip et") && fact.transferPoints!.every((transfer) => step.includes(transfer))) ?? -1;
+  if (alightingStepIndex < 0 || transferStepIndex < 0 || alightingStepIndex >= transferStepIndex)
+    errors.push(`${fact.guideId}/tr: primary-leg alighting must precede the transfer`);
+}
+const netherlandsCompletionData = JSON.stringify({ facts: transportationRouteFacts.filter((fact) => netherlandsCompletionRoutes.some(([, guideId]) => guideId === fact.guideId)), guides: transportationGuides.filter((guide) => netherlandsCompletionRoutes.some(([, guideId]) => guideId === guide.guideId)) });
+if (/2 hr 5|55-75|route 112|route 104|(?:Line\s+)?164|161\s*\/\s*164|Arriva|9292|€22\.50|every Saturday|December|\b\d{1,2}:\d{2}\b/i.test(netherlandsCompletionData)) errors.push("Netherlands completion: stale route, timetable, or fare detail leaked");
+const activeNetherlandsOutlets = activeOutlets.filter((outlet) => outlet.countryId === "netherlands");
+const sourceBackedNetherlandsOutlets = activeNetherlandsOutlets.filter((outlet) => getTransportationV2Options(outlet.outletId).some((option) => getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail));
+const sourceBackedAndUrlNetherlandsOutlets = activeNetherlandsOutlets.filter((outlet) => transportationRouteFacts.some((fact) => fact.outletId === outlet.outletId && fact.officialProviderUrl?.startsWith("https://") && getTransportationV2Options(outlet.outletId).some((option) => option.id === fact.guideId && getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail)));
+const netherlandsOutletsWithoutSourceBackedRoutes = activeNetherlandsOutlets.filter((outlet) => !sourceBackedNetherlandsOutlets.includes(outlet)).map((outlet) => outlet.outletId);
+const netherlandsOutletsWithoutSourceBackedUrls = activeNetherlandsOutlets.filter((outlet) => !sourceBackedAndUrlNetherlandsOutlets.includes(outlet)).map((outlet) => outlet.outletId);
+if (netherlandsOutletsWithoutSourceBackedRoutes.length || netherlandsOutletsWithoutSourceBackedUrls.length) errors.push(`Netherlands completion is invalid: ${netherlandsOutletsWithoutSourceBackedRoutes.join(", ")} / ${netherlandsOutletsWithoutSourceBackedUrls.join(", ")}`);
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
@@ -1507,6 +1568,12 @@ console.log(`UK source-backed outlet count: ${sourceBackedUkOutlets.length}`);
 console.log(`UK source-backed-and-URL outlet count: ${sourceBackedAndUrlUkOutlets.length}`);
 console.log(`UK outlets without source-backed routes: ${JSON.stringify(ukOutletsWithoutSourceBackedRoutes)}`);
 console.log(`UK outlets without source-backed URLs: ${JSON.stringify(ukOutletsWithoutSourceBackedUrls)}`);
+console.log(`Netherlands active outlet count: ${activeNetherlandsOutlets.length}`);
+console.log(`Netherlands source-backed outlet count: ${sourceBackedNetherlandsOutlets.length}`);
+console.log(`Netherlands source-backed-and-URL outlet count: ${sourceBackedAndUrlNetherlandsOutlets.length}`);
+console.log(`Netherlands outlets without source-backed routes: ${JSON.stringify(netherlandsOutletsWithoutSourceBackedRoutes)}`);
+console.log(`Netherlands outlets without source-backed URLs: ${JSON.stringify(netherlandsOutletsWithoutSourceBackedUrls)}`);
+console.log(`Turkish source-backed multi-leg route count: ${sourceBackedTurkishMultiLegFacts.length}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
 );
