@@ -55,6 +55,12 @@ function validateDate(value: string, fieldName: "departDate" | "returnDate") {
   return value;
 }
 
+function toPathDate(value: string) {
+  const match = DATE_PATTERN.exec(value);
+  if (!match) throw new Error("validated date must be in YYYY-MM-DD format");
+  return `${match[3]}${match[2]}`;
+}
+
 function validateIntegerInRange(value: number, fieldName: string, minimum: number, maximum: number) {
   if (!Number.isInteger(value) || value < minimum || value > maximum) {
     throw new Error(`${fieldName} must be an integer between ${minimum} and ${maximum}`);
@@ -121,23 +127,25 @@ export function buildAviasalesAffiliateSearchUrl(
     throw new Error("currency must be USD or EUR");
   }
 
+  const passengerCode = infants > 0
+    ? `${input.adults}${children}${infants}`
+    : children > 0
+      ? `${input.adults}${children}`
+      : String(input.adults);
+  const searchCode = [
+    originIata,
+    toPathDate(departDate),
+    destinationIata,
+    returnDate === undefined ? "" : toPathDate(returnDate),
+    tripClass === "business" ? "c" : "",
+    passengerCode,
+  ].join("");
   const targetParameters = new URLSearchParams({
-    origin_iata: originIata,
-    destination_iata: destinationIata,
-    depart_date: departDate,
-    adults: String(input.adults),
-    children: String(children),
-    infants: String(infants),
-    trip_class: tripClass === "economy" ? "0" : "1",
     currency,
     locale: normalizeAviasalesLocale(input.locale),
-    oneway: returnDate === undefined ? "1" : "0",
   });
-  if (returnDate !== undefined) {
-    targetParameters.set("return_date", returnDate);
-  }
 
-  const targetUrl = new URL(AVIASALES_SEARCH_TARGET_URL);
+  const targetUrl = new URL(searchCode, AVIASALES_SEARCH_TARGET_URL);
   targetUrl.search = targetParameters.toString();
 
   const subId = normalizeSubId(input.subId);
