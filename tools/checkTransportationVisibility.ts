@@ -1317,6 +1317,63 @@ const germanyOutletsWithoutSourceBackedRoutes = activeGermanyOutlets.filter((out
 const germanyOutletsWithoutSourceBackedUrls = activeGermanyOutlets.filter((outlet) => !sourceBackedAndUrlGermanyOutlets.includes(outlet)).map((outlet) => outlet.outletId);
 if (germanyOutletsWithoutSourceBackedRoutes.length || germanyOutletsWithoutSourceBackedUrls.length) errors.push(`Germany completion is invalid: ${germanyOutletsWithoutSourceBackedRoutes.join(", ")} / ${germanyOutletsWithoutSourceBackedUrls.join(", ")}`);
 
+const ukBatchOneRoutes = [
+  ["bicester-village", "london-marylebone-to-bicester-train", "train", "London Marylebone"],
+  ["cheshire-oaks", "liverpool-to-cheshire-oaks-train-bus", "bus", "Liverpool"],
+  ["ashford-designer-outlet", "london-to-ashford-designer-outlet-train", "train", "London St Pancras International"],
+  ["york-designer-outlet", "york-to-york-designer-outlet-public-transport", "bus", "York Railway Station"],
+  ["gloucester-quays", "gloucester-to-gloucester-quays-public-transport", "walking", "Gloucester"],
+  ["gunwharf-quays", "portsmouth-to-gunwharf-quays-public-transport", "walking", "Portsmouth"],
+  ["icon-outlet-at-the-o2", "london-to-icon-outlet-at-the-o2-public-transport", "metro", undefined],
+  ["london-designer-outlet", "london-to-london-designer-outlet-public-transport", "train", "London Marylebone"],
+  ["swindon-designer-outlet", "swindon-to-swindon-designer-outlet-public-transport", "walking", "Swindon"],
+  ["west-midlands-designer-outlet", "birmingham-to-west-midlands-designer-outlet-public-transport", "bus", "Birmingham"],
+  ["lakeside-village", "doncaster-to-lakeside-village-public-transport", "bus", "Doncaster Interchange"],
+  ["junction-32-outlet", "leeds-to-junction-32-outlet-public-transport", "bus", "Leeds City Bus Station"],
+] as const;
+const ukSuppressedDurationRoutes = new Set(ukBatchOneRoutes.map(([, guideId]) => guideId).filter((guideId) => ![
+  "gloucester-to-gloucester-quays-public-transport", "london-to-icon-outlet-at-the-o2-public-transport",
+  "swindon-to-swindon-designer-outlet-public-transport",
+].includes(guideId)));
+const ukExactDurations = new Map([
+  ["gloucester-to-gloucester-quays-public-transport", 10],
+  ["london-to-icon-outlet-at-the-o2-public-transport", 20],
+  ["swindon-to-swindon-designer-outlet-public-transport", 15],
+]);
+const ukFreeRoutes = new Set([
+  "gloucester-to-gloucester-quays-public-transport", "portsmouth-to-gunwharf-quays-public-transport",
+  "swindon-to-swindon-designer-outlet-public-transport",
+]);
+for (const [outletId, guideId, expectedMode, boardingPoint] of ukBatchOneRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  if (!fact?.officialProviderUrl?.startsWith("https://") || fact.displayFare != null) errors.push(`${guideId}: source URL or fare provenance is invalid`);
+  if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode) errors.push(`${guideId}: guide or fact mode is invalid`);
+  if (fact?.originType !== "cityCenter" || guide?.originType !== "city_center") errors.push(`${guideId}: full city origin is invalid`);
+  if (getRecommendedTransportationV2Option(outletId)?.id !== guideId) errors.push(`${outletId}: ${guideId} is not recommended`);
+  const exactDuration = ukExactDurations.get(guideId);
+  if (ukSuppressedDurationRoutes.has(guideId) && (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null)) errors.push(`${guideId}: unsupported duration provenance is present`);
+  if (exactDuration != null && (fact?.estimatedDurationMin !== exactDuration || fact.estimatedDurationMax !== exactDuration)) errors.push(`${guideId}: exact duration provenance is invalid`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail || !visibleText(localized).trim() || !rows.length) errors.push(`${guideId}/${language}: source-backed display is invalid`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
+    if (boardingPoint && !rows.some((row) => row.value === boardingPoint)) errors.push(`${guideId}/${language}: city-origin boarding point is not visible`);
+    if (ukSuppressedDurationRoutes.has(guideId) && localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
+    if (exactDuration != null && !localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: exact duration is not visible`);
+    const fare = localized?.estimatedFareLabel ?? "";
+    if (ukFreeRoutes.has(guideId) ? fare !== freeLabels[language] : Boolean(fare)) errors.push(`${guideId}/${language}: localized fare provenance is invalid`);
+  }
+}
+for (const guideId of ["ashford-international-to-ashford-designer-outlet-walk", "gosport-to-gunwharf-quays-ferry", "central-london-to-icon-outlet-at-the-o2-uber-boat"])
+  if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended) errors.push(`${guideId}: secondary route must not be recommended`);
+const activeUkOutlets = activeOutlets.filter((outlet) => outlet.countryId === "united-kingdom");
+const sourceBackedUkOutlets = activeUkOutlets.filter((outlet) => getTransportationV2Options(outlet.outletId).some((option) => getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail));
+const sourceBackedAndUrlUkOutlets = activeUkOutlets.filter((outlet) => transportationRouteFacts.some((fact) => fact.outletId === outlet.outletId && fact.officialProviderUrl?.startsWith("https://") && getTransportationV2Options(outlet.outletId).some((option) => option.id === fact.guideId && getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail)));
+const ukOutletsWithoutSourceBackedRoutes = activeUkOutlets.filter((outlet) => !sourceBackedUkOutlets.includes(outlet)).map((outlet) => outlet.outletId);
+if (ukBatchOneRoutes.some(([outletId]) => ukOutletsWithoutSourceBackedRoutes.includes(outletId))) errors.push(`UK Batch 1 completion is invalid: ${ukOutletsWithoutSourceBackedRoutes.join(", ")}`);
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
@@ -1356,6 +1413,10 @@ console.log(`Germany source-backed outlet count: ${sourceBackedGermanyOutlets.le
 console.log(`Germany source-backed-and-URL outlet count: ${sourceBackedAndUrlGermanyOutlets.length}`);
 console.log(`Germany outlets without source-backed routes: ${JSON.stringify(germanyOutletsWithoutSourceBackedRoutes)}`);
 console.log(`Germany outlets without source-backed URLs: ${JSON.stringify(germanyOutletsWithoutSourceBackedUrls)}`);
+console.log(`UK active outlet count: ${activeUkOutlets.length}`);
+console.log(`UK source-backed outlet count: ${sourceBackedUkOutlets.length}`);
+console.log(`UK source-backed-and-URL outlet count: ${sourceBackedAndUrlUkOutlets.length}`);
+console.log(`UK outlets without source-backed routes: ${JSON.stringify(ukOutletsWithoutSourceBackedRoutes)}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
 );

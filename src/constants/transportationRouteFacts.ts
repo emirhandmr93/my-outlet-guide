@@ -41,6 +41,42 @@ export type TransportationRouteFact = {
 
 export const transportationRouteFacts: TransportationRouteFact[] = [
   {
+    guideId: "london-marylebone-to-bicester-train", outletId: "bicester-village", originType: "cityCenter", mode: "train", provider: "Chiltern Railways", operator: "Chiltern Railways", line: "London Marylebone → Bicester Village", boardingPoint: "London Marylebone", alightingPoint: "Bicester Village", destination: "Bicester Village", suppressDerivedDurationFallback: true, sourceNote: "The official Village page publishes a direct journey from London Marylebone in less than one hour; check current Chiltern Railways times before travel.", confidence: "exact", officialProviderUrl: "https://www.thebicestercollection.com/bicester-village/en/getting-here/train/",
+  },
+  {
+    guideId: "liverpool-to-cheshire-oaks-train-bus", outletId: "cheshire-oaks", originType: "cityCenter", mode: "bus", provider: "Stagecoach", operator: "Stagecoach", line: "1 / X1", boardingPoint: "Liverpool", alightingPoint: "Cheshire Oaks", destination: "Cheshire Oaks Designer Outlet", suppressDerivedDurationFallback: true, sourceNote: "Official Stagecoach services 1 and X1 connect Liverpool and Chester and call at Cheshire Oaks; check the current timetable before travel.", confidence: "exact", officialProviderUrl: "https://www.stagecoachbus.com/promos-and-offers/merseyside-and-south-lancashire/stagecoach-service-1---x1",
+  },
+  {
+    guideId: "london-to-ashford-designer-outlet-train", outletId: "ashford-designer-outlet", originType: "cityCenter", mode: "train", provider: "Southeastern", operator: "Southeastern", line: "London St Pancras International → Ashford International", boardingPoint: "London St Pancras International", alightingPoint: "Ashford International", destination: "Ashford Designer Outlet", walkNote: "Ashford International is less than five minutes on foot from the outlet.", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes a 38-minute high-speed train segment from London St Pancras and a separate walk of less than five minutes; these must not be presented as one verified total duration.", confidence: "exact", officialProviderUrl: "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-ashford/plan-your-visit/",
+  },
+  {
+    guideId: "york-to-york-designer-outlet-public-transport", outletId: "york-designer-outlet", originType: "cityCenter", mode: "bus", provider: "First York", operator: "First York", line: "7", boardingPoint: "York Railway Station", alightingPoint: "Designer Outlet Park & Ride", destination: "York Designer Outlet", suppressDerivedDurationFallback: true, sourceNote: "First York service 7 links York Railway Station and York City Centre with Designer Outlet Park & Ride; the published 15-minute figure is a service indication and current timetable times must be checked.", confidence: "exact", officialProviderUrl: "https://www.firstbus.co.uk/york/routes-and-maps/york-park-ride/designer-outlet-park-ride",
+  },
+  {
+    guideId: "gloucester-to-gloucester-quays-public-transport", outletId: "gloucester-quays", originType: "cityCenter", mode: "walking", boardingPoint: "Gloucester", destination: "Gloucester Quays", estimatedDurationMin: 10, estimatedDurationMax: 10, confidence: "exact", officialProviderUrl: "https://gloucesterquays.co.uk/about-us/getting-here/",
+  },
+  {
+    guideId: "portsmouth-to-gunwharf-quays-public-transport", outletId: "gunwharf-quays", originType: "cityCenter", mode: "walking", boardingPoint: "Portsmouth", destination: "Gunwharf Quays", suppressDerivedDurationFallback: true, sourceNote: "Portsmouth Harbour and The Hard Interchange are the closest public transport connections for Gunwharf Quays; follow current signed pedestrian access.", confidence: "partial", officialProviderUrl: "https://www.gunwharf-quays.com/en/plan-my-visit/getting-here",
+  },
+  {
+    guideId: "london-to-icon-outlet-at-the-o2-public-transport", outletId: "icon-outlet-at-the-o2", originType: "cityCenter", mode: "metro", provider: "TfL", operator: "London Underground", line: "Jubilee → North Greenwich", alightingPoint: "North Greenwich", destination: "Outlet Shopping at The O2", estimatedDurationMin: 20, estimatedDurationMax: 20, sourceNote: "The current official O2 page publishes approximately 20 minutes from Central London to North Greenwich on the Jubilee line.", confidence: "exact", officialProviderUrl: "https://www.theo2.co.uk/visit-us/tube",
+  },
+  {
+    guideId: "london-to-london-designer-outlet-public-transport", outletId: "london-designer-outlet", originType: "cityCenter", mode: "train", provider: "Chiltern Railways", operator: "Chiltern Railways", line: "London Marylebone → Wembley Stadium", boardingPoint: "London Marylebone", alightingPoint: "Wembley Stadium", destination: "London Designer Outlet", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes a nine-minute train segment from London Marylebone to Wembley Stadium; final pedestrian access is separate.", confidence: "exact", officialProviderUrl: "https://www.londondesigneroutlet.com/getting-here/",
+  },
+  {
+    guideId: "swindon-to-swindon-designer-outlet-public-transport", outletId: "swindon-designer-outlet", originType: "cityCenter", mode: "walking", boardingPoint: "Swindon", destination: "Frasers Plus Designer Outlet Swindon", estimatedDurationMin: 15, estimatedDurationMax: 15, confidence: "exact", officialProviderUrl: "https://designeroutletswindon.com/plan-my-visit/",
+  },
+  {
+    guideId: "birmingham-to-west-midlands-designer-outlet-public-transport", outletId: "west-midlands-designer-outlet", originType: "cityCenter", mode: "bus", provider: "National Express West Midlands", operator: "National Express West Midlands", line: "X51", boardingPoint: "Birmingham", alightingPoint: "Designer Outlet West Midlands", destination: "Designer Outlet West Midlands", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes a daily X51 connection from Birmingham through Great Barr, Walsall and Bloxwich; check the current operator timetable.", confidence: "exact", officialProviderUrl: "https://prod-designer.mcarthurglen.com/en/outlets/uk/designer-outlet-west-midlands/plan-your-visit/",
+  },
+  {
+    guideId: "doncaster-to-lakeside-village-public-transport", outletId: "lakeside-village", originType: "cityCenter", mode: "bus", provider: "First South Yorkshire", operator: "First South Yorkshire", line: "372", boardingPoint: "Doncaster Interchange", alightingPoint: "Lakeside Village", destination: "Lakeside Village Outlet Shopping", suppressDerivedDurationFallback: true, sourceNote: "Current First South Yorkshire service 372 links Doncaster Interchange and Lakeside Village; check the current timetable before travel.", confidence: "exact", officialProviderUrl: "https://www.firstbus.co.uk/south-yorkshire/plan-journey/timetables?day=mf&service=371%2F372%2F373",
+  },
+  {
+    guideId: "leeds-to-junction-32-outlet-public-transport", outletId: "junction-32-outlet", originType: "cityCenter", mode: "bus", provider: "Arriva Yorkshire / West Yorkshire Metro", operator: "Arriva Yorkshire", line: "141", boardingPoint: "Leeds City Bus Station", alightingPoint: "Junction 32 Outlet Village", destination: "Frasers Plus Designer Outlet Leeds", suppressDerivedDurationFallback: true, sourceNote: "Current West Yorkshire Metro service 141 links Leeds City Bus Station and Junction 32 Outlet Village; check the current timetable before travel.", confidence: "exact", officialProviderUrl: "https://wymetro.com/buses/bus-timetables/timetable/?ServiceNumber=141",
+  },
+  {
     guideId: "cologne-city-center-to-city-outlet-bad-munstereifel", outletId: "city-outlet-bad-munstereifel", originType: "cityCenter", mode: "train", provider: "DB / VRS", operator: "DB / VRS", line: "RB24 → Euskirchen → S23", boardingPoint: "Köln Hbf", alightingPoint: "Bad Münstereifel", destination: "City Outlet Bad Münstereifel", walkNote: "Bad Münstereifel station is approximately 150 metres from the pedestrian shopping zone.", suppressDerivedDurationFallback: true, confidence: "exact", officialProviderUrl: "https://www.cityoutletbadmuenstereifel.com/en/plan-a-visit/approach/",
   },
   {
