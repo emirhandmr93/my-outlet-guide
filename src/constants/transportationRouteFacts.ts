@@ -41,6 +41,39 @@ export type TransportationRouteFact = {
 
 export const transportationRouteFacts: TransportationRouteFact[] = [
   {
+    guideId: "cologne-city-center-to-city-outlet-bad-munstereifel", outletId: "city-outlet-bad-munstereifel", originType: "cityCenter", mode: "train", provider: "DB / VRS", operator: "DB / VRS", line: "RB24 → Euskirchen → S23", boardingPoint: "Köln Hbf", alightingPoint: "Bad Münstereifel", destination: "City Outlet Bad Münstereifel", walkNote: "Bad Münstereifel station is approximately 150 metres from the pedestrian shopping zone.", suppressDerivedDurationFallback: true, confidence: "exact", officialProviderUrl: "https://www.cityoutletbadmuenstereifel.com/en/plan-a-visit/approach/",
+  },
+  {
+    guideId: "berlin-city-center-to-designer-outlet-berlin", outletId: "designer-outlet-berlin", originType: "shuttle", mode: "shuttle", provider: "Designer Outlet Berlin Shuttle", boardingPoint: "Kurfürstendamm 225 / Hard Rock Café", destination: "Designer Outlet Berlin", estimatedDurationMin: 30, estimatedDurationMax: 30, sourceNote: "Free direct shuttle on Fridays and Saturdays; event services may also be published.", confidence: "exact", officialProviderUrl: "https://www.designeroutletberlin.com/anfahrt/shuttle-bus",
+  },
+  {
+    guideId: "neumunster-station-to-designer-outlet-neumunster", outletId: "designer-outlet-neumunster", originType: "cityCenter", mode: "bus", provider: "Stadtwerke Neumünster", operator: "Stadtwerke Neumünster", line: "7 / 77", boardingPoint: "Neumünster Bahnhof", alightingPoint: "Designer Outlet Neumünster", destination: "Designer Outlet Neumünster", suppressDerivedDurationFallback: true, confidence: "exact", officialProviderUrl: "https://inte-outlets.mcarthurglen.com/en/outlets/de/designer-outlet-neumuenster/plan-your-visit/by-public-transport/",
+  },
+  {
+    guideId: "wolfsburg-hbf-to-designer-outlets-wolfsburg", outletId: "designer-outlets-wolfsburg", originType: "cityCenter", mode: "walking", boardingPoint: "Wolfsburg Hbf", destination: "Designer Outlets Wolfsburg", estimatedDurationMin: 2, estimatedDurationMax: 2, confidence: "exact", officialProviderUrl: "https://www.designeroutlets-wolfsburg.de/service/",
+  },
+  {
+    guideId: "ingolstadt-hbf-to-ingolstadt-village", outletId: "ingolstadt-village", originType: "cityCenter", mode: "bus", provider: "VGI", operator: "VGI", line: "22", boardingPoint: "Ingolstadt Hbf", alightingPoint: "Ingolstadt Village", destination: "Ingolstadt Village", estimatedDurationMin: 25, estimatedDurationMax: 25, confidence: "exact", officialProviderUrl: "https://www.thebicestercollection.com/ingolstadt-village/en/visit/getting-here/",
+  },
+  {
+    guideId: "montabaur-station-to-montabaur-the-style-outlets", outletId: "montabaur-the-style-outlets", originType: "cityCenter", mode: "walking", boardingPoint: "Montabaur ICE", destination: "Outlet Montabaur", suppressDerivedDurationFallback: true, confidence: "exact", officialProviderUrl: "https://www.montabaur.de/leben/einkaufen-in-montabaur/ice-park-montabaur/",
+  },
+  {
+    guideId: "stuttgart-city-center-to-outletcity-metzingen", outletId: "outletcity-metzingen", originType: "cityCenter", mode: "train", provider: "DB / bwegt", operator: "DB / bwegt", line: "RE6 / MEX12 / MEX18", boardingPoint: "Stuttgart Hbf", alightingPoint: "Metzingen (Württ)", destination: "Outletcity Metzingen", walkNote: "Outletcity is a few minutes on foot from Metzingen (Württ).", suppressDerivedDurationFallback: true, sourceNote: "The official page publishes a 30-minute RE6 segment or approximately 40 minutes on MEX12/MEX18, followed by a short walk.", confidence: "exact", officialProviderUrl: "https://www.outletcity.com/en/metzingen/getting-there/train-station-metzingen/",
+  },
+  {
+    guideId: "frankfurt-city-center-to-wertheim-village", outletId: "wertheim-village", originType: "shuttle", mode: "shuttle", provider: "Wertheim Village Shopping Express", boardingPoint: "Frankfurt", destination: "Wertheim Village", suppressDerivedDurationFallback: true, sourceNote: "Shopping Express operates from Frankfurt Monday through Saturday.", confidence: "exact", officialProviderUrl: "https://www.thebicestercollection.com/wertheim-village/en/services/shopping-express/",
+  },
+  {
+    guideId: "zweibrucken-hbf-to-zweibrucken-fashion-outlet", outletId: "zweibrucken-fashion-outlet", originType: "cityCenter", mode: "bus", provider: "Stadtbus Zweibrücken / VRN", operator: "Stadtbus Zweibrücken / VRN", boardingPoint: "Zweibrücken", destination: "Zweibrücken Fashion Outlet", suppressDerivedDurationFallback: true, sourceNote: "VIA Outlets publishes an hourly city bus connection Monday through Saturday; verify the current line and stop with VRN before travel.", confidence: "partial", officialProviderUrl: "https://www.viaoutlets.com/portfolio/zweibrucken-fashion-outlet",
+  },
+  {
+    guideId: "halle-leipzig-style-outlets-saturday-shuttle", outletId: "halle-leipzig-the-style-outlets", originType: "shuttle", mode: "shuttle", provider: "Halle Leipzig Free Shuttle", boardingPoint: "Leipzig Hbf – Bussteig O / Halle (Saale) Hbf – Bussteig 5", destination: "Halle Leipzig The Style Outlets", suppressDerivedDurationFallback: true, sourceNote: "Free Saturday service from Leipzig and Halle; reservation required.", confidence: "exact", officialProviderUrl: "https://halle.leipzig.thestyleoutlets.de/en/services/free-shuttle-bus-service",
+  },
+  {
+    guideId: "muenster-to-designer-outlet-ochtrup-train-walk", outletId: "designer-outlet-ochtrup", originType: "cityCenter", mode: "train", provider: "Deutsche Bahn", operator: "Deutsche Bahn", line: "Münster Hbf → Ochtrup Bahnhof", boardingPoint: "Münster Hbf", alightingPoint: "Ochtrup Bahnhof", destination: "Designer Outlet Ochtrup", walkNote: "The official outlet page publishes a 20-minute walk from Ochtrup Bahnhof.", suppressDerivedDurationFallback: true, confidence: "exact", officialProviderUrl: "https://prod-www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/plan-your-visit-/arrival/by-public-transport/",
+  },
+  {
     guideId: "madrid-moncloa-to-las-rozas-bus",
     outletId: "las-rozas-village",
     originType: "cityCenter",
