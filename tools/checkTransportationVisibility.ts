@@ -1065,6 +1065,113 @@ for (const [outletId, guideId, claims] of [
     if (!text.includes(claim)) errors.push(`${outletId}: lost ${claim}`);
 }
 
+const spainCompletionRoutes = [
+  ["las-rozas-village", "madrid-moncloa-to-las-rozas-bus", "bus", ["CRTM", "625 / 628 / 629", "Intercambiador de Moncloa", "Las Rozas Village"]],
+  ["designer-outlet-malaga", "malaga-centro-to-designer-outlet-train", "train", ["Renfe Cercanías", "C1", "Málaga Centro-Alameda", "Plaza Mayor", "Designer Outlet Málaga"]],
+  ["viladecans-the-style-outlets", "barcelona-to-viladecans-style-outlets-train", "train", ["R2 / R2 Sud", "Barcelona Sants", "Viladecans", "Viladecans The Style Outlets"]],
+  ["la-roca-village", "barcelona-to-la-roca-village-shopping-express", "shuttle", ["Shopping Express / Catalunya Bus Turístic", "Estació del Nord", "La Roca Village"]],
+  ["mallorca-fashion-outlet", "palma-to-mallorca-fashion-outlet-train", "train", ["T1 / T2 / T3", "Palma Estació Intermodal", "Es Caülls", "Mallorca Fashion Outlet"]],
+  ["sevilla-fashion-outlet", "seville-to-sevilla-fashion-outlet-car-parking", "taxi", ["Sevilla", "Sevilla Fashion Outlet"]],
+  ["getafe-the-style-outlets", "getafe-style-outlets-car-parking-guide", "taxi", ["Madrid / Getafe", "Getafe The Style Outlets"]],
+  ["san-sebastian-de-los-reyes-the-style-outlets", "san-sebastian-reyes-style-outlets-car-parking-guide", "taxi", ["Madrid / San Sebastián de los Reyes", "San Sebastián de los Reyes The Style Outlets"]],
+  ["coruna-the-style-outlets", "a-coruna-airport-to-coruna-style-outlets-ground-transport", "taxi", ["A Coruña (LCG)", "Coruña The Style Outlets"]],
+  ["sambil-madrid", "sambil-madrid-metro-guide", "metro", ["Metro de Madrid / CRTM", "11", "Plaza Elíptica", "La Fortuna", "Sambil Madrid"]],
+] as const;
+const spainGenericRouteFragments = /Railway Station|Train Station|city centre|\bairport\b|(?:^|\s)or(?:\s|$)|Google Maps|promo(?:tional)? code/i;
+for (const [outletId, guideId, expectedMode, expectedClaims] of spainCompletionRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  if (!fact?.officialProviderUrl?.startsWith("https://"))
+    errors.push(`${guideId}: valid officialProviderUrl is missing`);
+  if (fact?.displayFare != null)
+    errors.push(`${guideId}: displayFare must not be used`);
+  if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode)
+    errors.push(`${guideId}: guide or fact mode is invalid`);
+  const structuredText = [fact?.provider, fact?.operator, fact?.line, fact?.boardingPoint, ...(fact?.transferPoints || []), fact?.alightingPoint, fact?.destination].filter(Boolean).join(" ");
+  if (spainGenericRouteFragments.test(structuredText))
+    errors.push(`${guideId}: unsafe generic structured route value leaked`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail)
+      errors.push(`${guideId}/${language}: source-backed route is missing`);
+    if (!localized || !visibleText(localized).trim())
+      errors.push(`${guideId}/${language}: display model is empty`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized)))
+      errors.push(`${guideId}/${language}: long English instructions leaked`);
+    if (localized?.estimatedFareLabel)
+      errors.push(`${guideId}/${language}: unsupported fare is visible`);
+    const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+    if (!rows.length) errors.push(`${guideId}/${language}: visible route rows are missing`);
+    const rowsText = rows.map((row) => row.value).join(" ");
+    for (const claim of expectedClaims)
+      if (!rowsText.includes(claim)) errors.push(`${guideId}/${language}: visible route detail lost ${claim}`);
+  }
+}
+for (const [outletId, guideId] of spainCompletionRoutes)
+  if (getRecommendedTransportationV2Option(outletId)?.id !== guideId)
+    errors.push(`${outletId}: ${guideId} is not recommended`);
+for (const guideId of [
+  "malaga-airport-to-designer-outlet-train",
+  "barcelona-airport-to-viladecans-style-outlets-bus",
+  "sevilla-airport-to-sevilla-fashion-outlet-car-taxi",
+  "madrid-to-getafe-style-outlets-public-transport",
+  "madrid-to-san-sebastian-reyes-style-outlets-public-transport",
+  "coruna-the-style-outlets-car-parking-guide",
+])
+  if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended)
+    errors.push(`${guideId}: superseded guide remains recommended`);
+for (const [outletId, guideId, duration] of [
+  ["las-rozas-village", "madrid-moncloa-to-las-rozas-bus", 30],
+  ["designer-outlet-malaga", "malaga-centro-to-designer-outlet-train", 12],
+  ["la-roca-village", "barcelona-to-la-roca-village-shopping-express", 40],
+  ["sevilla-fashion-outlet", "seville-to-sevilla-fashion-outlet-car-parking", 15],
+] as const) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.estimatedDurationMin !== duration || fact.estimatedDurationMax !== duration)
+    errors.push(`${guideId}: structured duration provenance is invalid`);
+  for (const language of supportedLanguageCodes)
+    if (!display(outletId, guideId, language)?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: localized duration is missing`);
+}
+for (const [outletId, guideId] of spainCompletionRoutes.filter(([, guideId]) => [
+  "barcelona-to-viladecans-style-outlets-train", "palma-to-mallorca-fashion-outlet-train",
+  "getafe-style-outlets-car-parking-guide", "san-sebastian-reyes-style-outlets-car-parking-guide",
+  "a-coruna-airport-to-coruna-style-outlets-ground-transport", "sambil-madrid-metro-guide",
+].includes(guideId))) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null)
+    errors.push(`${guideId}: unsupported duration provenance is present`);
+  for (const language of supportedLanguageCodes)
+    if (display(outletId, guideId, language)?.estimatedDurationLabel)
+      errors.push(`${guideId}/${language}: unsupported duration is visible`);
+}
+const sevillaGuide = transportationGuides.find((guide) => guide.guideId === "seville-to-sevilla-fashion-outlet-car-parking");
+if (!sevillaGuide?.steps.some((step) => /bus transportation service is no longer available/i.test(step.description)) ||
+    transportationRouteFacts.some((fact) => fact.outletId === "sevilla-fashion-outlet" && ["bus", "shuttle"].includes(fact.mode)))
+  errors.push("sevilla-fashion-outlet: cancelled bus safety is invalid");
+const laRocaCompletionData = JSON.stringify({
+  fact: transportationRouteFacts.find((fact) => fact.guideId === "barcelona-to-la-roca-village-shopping-express"),
+  guide: transportationGuides.find((guide) => guide.guideId === "barcelona-to-la-roca-village-shopping-express"),
+  displays: supportedLanguageCodes.map((language) => display("la-roca-village", "barcelona-to-la-roca-village-shopping-express", language)),
+});
+if (/promo(?:tional)? code|\b\d{1,2}:\d{2}\b/i.test(laRocaCompletionData))
+  errors.push("la-roca-village: promotional code or fixed timetable leaked");
+const activeSpainOutlets = activeOutlets.filter((outlet) => outlet.countryId === "spain");
+const sourceBackedSpainOutlets = activeSpainOutlets.filter((outlet) =>
+  getTransportationV2Options(outlet.outletId).some((option) =>
+    getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail,
+  ),
+);
+const sourceBackedAndUrlSpainOutlets = activeSpainOutlets.filter((outlet) =>
+  transportationRouteFacts.some((fact) => fact.outletId === outlet.outletId && fact.officialProviderUrl?.startsWith("https://") &&
+    getTransportationV2Options(outlet.outletId).some((option) => option.id === fact.guideId && getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail)),
+);
+const spainOutletsWithoutSourceBackedUrls = activeSpainOutlets
+  .filter((outlet) => !sourceBackedAndUrlSpainOutlets.some((candidate) => candidate.outletId === outlet.outletId))
+  .map((outlet) => outlet.outletId);
+if (sourceBackedSpainOutlets.length !== activeSpainOutlets.length || sourceBackedAndUrlSpainOutlets.length !== activeSpainOutlets.length || spainOutletsWithoutSourceBackedUrls.length)
+  errors.push(`Spain completion is invalid: ${spainOutletsWithoutSourceBackedUrls.join(", ")}`);
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
@@ -1095,6 +1202,10 @@ console.log(`France active outlet count: ${activeFranceOutlets.length}`);
 console.log(`France source-backed outlet count: ${sourceBackedFranceOutlets.length}`);
 console.log(`France source-backed-and-URL outlet count: ${sourceBackedAndUrlFranceOutlets.length}`);
 console.log(`France outlets without source-backed URLs: ${JSON.stringify(franceOutletsWithoutSourceBackedUrls)}`);
+console.log(`Spain active outlet count: ${activeSpainOutlets.length}`);
+console.log(`Spain source-backed outlet count: ${sourceBackedSpainOutlets.length}`);
+console.log(`Spain source-backed-and-URL outlet count: ${sourceBackedAndUrlSpainOutlets.length}`);
+console.log(`Spain outlets without source-backed URLs: ${JSON.stringify(spainOutletsWithoutSourceBackedUrls)}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
 );
