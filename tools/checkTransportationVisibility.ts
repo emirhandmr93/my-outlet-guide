@@ -215,7 +215,7 @@ for (const [outletId, guideId, expectedFare] of [
   ["castel-romano", "castel-romano-termini-shuttle", "€18"],
   ["castel-romano", "castel-romano-eur-fermi-shuttle", "€13"],
   ["fidenza-village", "fidenza-milan-shopping-express", "€10"],
-  ["la-reggia", "la-reggia-naples-public-transport", "€1.30"],
+  ["la-reggia", "la-reggia-naples-public-transport", "€1.3"],
 ] as const) {
   const option = display(outletId, guideId);
   if (!option?.estimatedFareLabel?.includes(expectedFare))
@@ -228,15 +228,28 @@ const laReggiaPublic = display(
   "la-reggia-naples-public-transport",
 );
 if (
-  laReggiaPublic?.routeFact?.estimatedFareMin != null ||
-  laReggiaPublic?.routeFact?.estimatedFareMax != null ||
+  laReggiaPublic?.routeFact?.estimatedFareMin !== 1.3 ||
+  laReggiaPublic?.routeFact?.estimatedFareMax !== 1.3 ||
+  laReggiaPublic?.routeFact?.currency !== "EUR" ||
+  laReggiaPublic?.routeFact?.displayFare != null ||
   laReggiaPublic?.routeFact?.estimatedDurationMin != null ||
-  laReggiaPublic?.routeFact?.estimatedDurationMax != null ||
-  /\d+\s*(?:–|-|to)?\s*\d*\s*(?:min|minutes|hr|hours)/i.test(
-    laReggiaPublic?.estimatedDurationLabel || "",
-  )
+  laReggiaPublic?.routeFact?.estimatedDurationMax != null
 )
-  errors.push("la-reggia: an unsupported total train fare or duration was generated");
+  errors.push("la-reggia: structured bus fare or empty duration provenance is invalid");
+for (const language of supportedLanguageCodes) {
+  const localized = display(
+    "la-reggia",
+    "la-reggia-naples-public-transport",
+    language,
+  );
+  const visible = localized ? visibleText(localized) : "";
+  if (localized?.estimatedDurationLabel)
+    errors.push(`la-reggia/${language}: unsupported duration is visible`);
+  if (/\bVariable\b|bus supplement|selected train fare/i.test(visible))
+    errors.push(`la-reggia/${language}: English fare or duration prose leaked`);
+  if (!localized?.estimatedFareLabel?.includes("€1.3"))
+    errors.push(`la-reggia/${language}: structured €1.30 fare is missing`);
+}
 
 for (const guideId of [
   "factory-ursus-car-parking-guide",

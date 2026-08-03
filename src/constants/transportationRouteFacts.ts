@@ -239,7 +239,9 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     boardingPoint: "Napoli Centrale",
     transferPoints: ["Caserta railway station"],
     destination: "La Reggia Designer Outlet",
-    displayFare: "€1.30 bus supplement plus selected train fare",
+    estimatedFareMin: 1.3,
+    estimatedFareMax: 1.3,
+    currency: "EUR",
     sourceNote:
       "The daily bus connection is coordinated with train times; combined tickets are available through Trenitalia channels.",
     officialCheckNote:
