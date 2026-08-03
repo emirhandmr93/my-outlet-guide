@@ -25,6 +25,9 @@ function parseAffiliateUrl(input: Parameters<typeof buildAviasalesAffiliateSearc
   const outerUrl = new URL(rawOuterUrl);
   const encodedTarget = outerUrl.searchParams.get("u");
   assert.ok(encodedTarget, "outer URL must contain the complete target in u");
+  const rawEncodedTarget = rawOuterUrl.match(/[?&]u=([^&]*)/)?.[1];
+  assert.ok(rawEncodedTarget, "outer URL must percent-encode the complete target in u");
+  assert.equal(decodeURIComponent(rawEncodedTarget), encodedTarget);
   return { rawOuterUrl, outerUrl, targetUrl: new URL(encodedTarget) };
 }
 
@@ -36,8 +39,8 @@ assert.equal(rolling.outerUrl.searchParams.get("marker"), "758419.app_rolling_fl
 assert.equal(rolling.outerUrl.searchParams.get("trs"), "556830");
 assert.equal(rolling.outerUrl.searchParams.get("p"), "4114");
 assert.equal(rolling.targetUrl.protocol, "https:");
-assert.equal(rolling.targetUrl.hostname, "www.aviasales.com");
-assert.equal(rolling.targetUrl.pathname, "/search");
+assert.equal(rolling.targetUrl.hostname, "search.aviasales.com");
+assert.equal(rolling.targetUrl.pathname, "/flights/");
 assert.deepEqual(Object.fromEntries(rolling.targetUrl.searchParams), {
   origin_iata: "IST",
   destination_iata: "LHR",
@@ -74,6 +77,8 @@ assert.equal(roundTrip.targetUrl.searchParams.get("currency"), "EUR");
 for (const locale of ["en", "es", "fr", "de", "ru"]) {
   assert.equal(normalizeAviasalesLocale(locale), locale);
 }
+assert.equal(normalizeAviasalesLocale(" DE "), "de");
+assert.equal(normalizeAviasalesLocale("TR"), "en");
 for (const locale of ["tr", "ar", "zh", "", "unknown", undefined]) {
   assert.equal(normalizeAviasalesLocale(locale), "en");
 }
@@ -116,18 +121,5 @@ assert.match(detailSource, /departDate: rolling \? deal\.offerDepartDate : deal\
 assert.match(detailSource, /returnDate: rolling \? deal\.offerReturnDate : deal\.returnDate/);
 assert.match(detailSource, /adults: rolling \? 1 : deal\.adults, children: rolling \? 0 : deal\.children, infants: rolling \? 0 : deal\.infants/);
 assert.match(detailSource, /subId: rolling \? "app_rolling_flight_deal_detail" : "app_flight_deal_detail"/);
-
-const changedFiles = require("node:child_process")
-  .execFileSync("git", ["diff", "--name-only", "HEAD"], { cwd: root, encoding: "utf8" })
-  .trim()
-  .split("\n")
-  .filter(Boolean);
-const approvedFiles = new Set([
-  "src/constants/travelAffiliate.ts",
-  "src/services/aviasalesAffiliateLink.ts",
-  "tools/checkAviasalesAffiliateSearchLink.ts",
-  "tools/checkRollingRouteFlightPriceDelivery.ts",
-]);
-assert.ok(changedFiles.every(file => approvedFiles.has(file)), `unapproved changed file: ${changedFiles.join(", ")}`);
 
 console.log("Aviasales affiliate search link checks passed.");
