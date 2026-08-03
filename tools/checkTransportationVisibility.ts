@@ -1232,6 +1232,91 @@ const spainOutletsWithoutSourceBackedUrls = activeSpainOutlets
 if (sourceBackedSpainOutlets.length !== activeSpainOutlets.length || sourceBackedAndUrlSpainOutlets.length !== activeSpainOutlets.length || spainOutletsWithoutSourceBackedUrls.length)
   errors.push(`Spain completion is invalid: ${spainOutletsWithoutSourceBackedUrls.join(", ")}`);
 
+const germanyCompletionRoutes = [
+  ["city-outlet-bad-munstereifel", "cologne-city-center-to-city-outlet-bad-munstereifel", "train"],
+  ["designer-outlet-berlin", "berlin-city-center-to-designer-outlet-berlin", "shuttle"],
+  ["designer-outlet-neumunster", "hamburg-city-center-to-designer-outlet-neumunster", "train"],
+  ["designer-outlets-wolfsburg", "hannover-city-center-to-designer-outlets-wolfsburg", "train"],
+  ["ingolstadt-village", "munich-city-center-to-ingolstadt-village-train-bus", "train"],
+  ["montabaur-the-style-outlets", "frankfurt-city-center-to-montabaur-the-style-outlets", "train"],
+  ["outletcity-metzingen", "stuttgart-city-center-to-outletcity-metzingen", "train"],
+  ["wertheim-village", "frankfurt-city-center-to-wertheim-village", "shuttle"],
+  ["zweibrucken-fashion-outlet", "saarbrucken-city-center-to-zweibrucken-fashion-outlet", "train"],
+  ["halle-leipzig-the-style-outlets", "halle-leipzig-style-outlets-saturday-shuttle", "shuttle"],
+  ["designer-outlet-ochtrup", "muenster-to-designer-outlet-ochtrup-train-walk", "train"],
+] as const;
+for (const [outletId, guideId, expectedMode] of germanyCompletionRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  if (!fact?.officialProviderUrl?.startsWith("https://")) errors.push(`${guideId}: valid officialProviderUrl is missing`);
+  if (fact?.displayFare != null) errors.push(`${guideId}: displayFare must not be used`);
+  if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode) errors.push(`${guideId}: guide or fact mode is invalid`);
+  if (getRecommendedTransportationV2Option(outletId)?.id !== guideId) errors.push(`${outletId}: ${guideId} is not recommended`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail) errors.push(`${guideId}/${language}: source-backed route is missing`);
+    if (!localized || !visibleText(localized).trim()) errors.push(`${guideId}/${language}: display model is empty`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
+    if (!localized || !getTransportationRouteDetailRows(localized, language).length) errors.push(`${guideId}/${language}: visible route rows are missing`);
+  }
+}
+const correctedGermanyOrigins = [
+  ["designer-outlet-neumunster", "hamburg-city-center-to-designer-outlet-neumunster", "neumunster-station-to-designer-outlet-neumunster", "Hamburg Hbf", "Neumünster Bahnhof", "Hamburg Hbf → Neumünster Bahnhof → 7 / 77"],
+  ["designer-outlets-wolfsburg", "hannover-city-center-to-designer-outlets-wolfsburg", "wolfsburg-hbf-to-designer-outlets-wolfsburg", "Hannover Hbf", "Wolfsburg Hbf", "Hannover Hbf → Wolfsburg Hbf"],
+  ["ingolstadt-village", "munich-city-center-to-ingolstadt-village-train-bus", "ingolstadt-hbf-to-ingolstadt-village", "München Hbf", "Ingolstadt Hbf", "München Hbf → Ingolstadt Hbf → 22"],
+  ["montabaur-the-style-outlets", "frankfurt-city-center-to-montabaur-the-style-outlets", "montabaur-station-to-montabaur-the-style-outlets", "Frankfurt (Main) Hbf", "Montabaur ICE", "Frankfurt (Main) Hbf → Montabaur ICE"],
+  ["zweibrucken-fashion-outlet", "saarbrucken-city-center-to-zweibrucken-fashion-outlet", "zweibrucken-hbf-to-zweibrucken-fashion-outlet", "Saarbrücken Hbf", "Zweibrücken", "Saarbrücken Hbf → Zweibrücken → Stadtbus"],
+] as const;
+for (const [outletId, guideId, oldGuideId, boardingPoint, stationOnlyOrigin, line] of correctedGermanyOrigins) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  const oldGuide = transportationGuides.find((candidate) => candidate.guideId === oldGuideId);
+  if (fact?.originType !== "cityCenter" || guide?.originType !== "city_center" || fact.boardingPoint !== boardingPoint || fact.boardingPoint === stationOnlyOrigin)
+    errors.push(`${guideId}: recommended route does not begin at ${boardingPoint}`);
+  if (transportationRouteFacts.some((candidate) => candidate.guideId === oldGuideId) || oldGuide?.recommended)
+    errors.push(`${oldGuideId}: station-only fact remains source-backed or recommended`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+    if (!rows.some((row) => row.value === boardingPoint)) errors.push(`${guideId}/${language}: city-origin boarding point is not visible`);
+    const lineRows = rows.filter((row) => row.value === line);
+    const reference = display("la-vallee-village", "paris-to-la-vallee-rer-a", language);
+    const lineLabel = reference ? getTransportationRouteDetailRows(reference, language).find((row) => row.value === "RER A")?.label : undefined;
+    if (lineRows.length !== 1 || lineRows[0]?.label !== lineLabel) errors.push(`${guideId}/${language}: localized Line row is invalid`);
+  }
+}
+const germanySuppressedDurationRoutes = new Set([
+  "cologne-city-center-to-city-outlet-bad-munstereifel", "hamburg-city-center-to-designer-outlet-neumunster",
+  "hannover-city-center-to-designer-outlets-wolfsburg", "munich-city-center-to-ingolstadt-village-train-bus",
+  "frankfurt-city-center-to-montabaur-the-style-outlets", "stuttgart-city-center-to-outletcity-metzingen",
+  "frankfurt-city-center-to-wertheim-village", "saarbrucken-city-center-to-zweibrucken-fashion-outlet",
+  "halle-leipzig-style-outlets-saturday-shuttle", "muenster-to-designer-outlet-ochtrup-train-walk",
+]);
+const germanyExactDurations = new Map([
+  ["berlin-city-center-to-designer-outlet-berlin", 30],
+]);
+const germanyFreeRoutes = new Set([
+  "berlin-city-center-to-designer-outlet-berlin", "halle-leipzig-style-outlets-saturday-shuttle",
+]);
+for (const [outletId, guideId] of germanyCompletionRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const exactDuration = germanyExactDurations.get(guideId);
+  if (germanySuppressedDurationRoutes.has(guideId) && (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null)) errors.push(`${guideId}: unsupported duration provenance is present`);
+  if (exactDuration != null && (fact?.estimatedDurationMin !== exactDuration || fact.estimatedDurationMax !== exactDuration)) errors.push(`${guideId}: exact duration provenance is invalid`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    if (germanySuppressedDurationRoutes.has(guideId) && localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
+    const fare = localized?.estimatedFareLabel ?? "";
+    if (germanyFreeRoutes.has(guideId) ? fare !== freeLabels[language] : Boolean(fare)) errors.push(`${guideId}/${language}: localized fare provenance is invalid`);
+  }
+}
+const activeGermanyOutlets = activeOutlets.filter((outlet) => outlet.countryId === "germany");
+const sourceBackedGermanyOutlets = activeGermanyOutlets.filter((outlet) => getTransportationV2Options(outlet.outletId).some((option) => getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail));
+const sourceBackedAndUrlGermanyOutlets = activeGermanyOutlets.filter((outlet) => transportationRouteFacts.some((fact) => fact.outletId === outlet.outletId && fact.officialProviderUrl?.startsWith("https://") && getTransportationV2Options(outlet.outletId).some((option) => option.id === fact.guideId && getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail)));
+const germanyOutletsWithoutSourceBackedRoutes = activeGermanyOutlets.filter((outlet) => !sourceBackedGermanyOutlets.includes(outlet)).map((outlet) => outlet.outletId);
+const germanyOutletsWithoutSourceBackedUrls = activeGermanyOutlets.filter((outlet) => !sourceBackedAndUrlGermanyOutlets.includes(outlet)).map((outlet) => outlet.outletId);
+if (germanyOutletsWithoutSourceBackedRoutes.length || germanyOutletsWithoutSourceBackedUrls.length) errors.push(`Germany completion is invalid: ${germanyOutletsWithoutSourceBackedRoutes.join(", ")} / ${germanyOutletsWithoutSourceBackedUrls.join(", ")}`);
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
@@ -1266,6 +1351,11 @@ console.log(`Spain active outlet count: ${activeSpainOutlets.length}`);
 console.log(`Spain source-backed outlet count: ${sourceBackedSpainOutlets.length}`);
 console.log(`Spain source-backed-and-URL outlet count: ${sourceBackedAndUrlSpainOutlets.length}`);
 console.log(`Spain outlets without source-backed URLs: ${JSON.stringify(spainOutletsWithoutSourceBackedUrls)}`);
+console.log(`Germany active outlet count: ${activeGermanyOutlets.length}`);
+console.log(`Germany source-backed outlet count: ${sourceBackedGermanyOutlets.length}`);
+console.log(`Germany source-backed-and-URL outlet count: ${sourceBackedAndUrlGermanyOutlets.length}`);
+console.log(`Germany outlets without source-backed routes: ${JSON.stringify(germanyOutletsWithoutSourceBackedRoutes)}`);
+console.log(`Germany outlets without source-backed URLs: ${JSON.stringify(germanyOutletsWithoutSourceBackedUrls)}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
 );
