@@ -48,17 +48,17 @@ export const unitedArabEmiratesOutlets = [
     airports: [
       {
         code: "DXB",
-        name: "Dubai International Airport (approximate straight-line distance)",
+        name: "Dubai International Airport",
         distanceKm: 21
       },
       {
         code: "DWC",
-        name: "Al Maktoum International Airport (approximate straight-line distance)",
+        name: "Al Maktoum International Airport",
         distanceKm: 31
       }
     ],
     cityCenterInfo: {
-      name: "Downtown Dubai / Burj Khalifa (approximate straight-line distance)",
+      name: "Downtown Dubai / Burj Khalifa",
       distanceKm: 20
     },
     officialWebsite: "https://dubaioutletmall.com/",

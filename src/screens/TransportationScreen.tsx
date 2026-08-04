@@ -158,7 +158,17 @@ export function TransportationScreen() {
     ? getTransportationOptionDisplayModel(recommendedBase, language)
     : undefined;
   const maps = getOutletMapLinks(outletId);
-  const airportOptions = options
+  const showRecommended = Boolean(
+    recommended &&
+    (recommended.routeDetails.hasSourceBackedRouteDetail ||
+      recommended.estimatedDurationLabel ||
+      recommended.estimatedFareLabel),
+  );
+  const recommendedId = showRecommended ? recommended?.id : undefined;
+  const nonRecommendedOptions = recommendedId
+    ? options.filter((item) => item.id !== recommendedId)
+    : options;
+  const airportOptions = nonRecommendedOptions
     .filter(
       (item) =>
         item.originGroup === "airport" && item.isUsefulForPrimaryDisplay,
@@ -166,32 +176,26 @@ export function TransportationScreen() {
     .slice(0, 3);
   const nearbyAirports = airportOptions.length
     ? []
-    : getNearbyAirportDisplay(outletId);
-  const cityOptions = options.filter(
+    : getNearbyAirportDisplay(outletId, language);
+  const cityOptions = nonRecommendedOptions.filter(
     (item) =>
       item.originGroup === "city" &&
       (item.routeDetails.hasSourceBackedRouteDetail ||
         item.estimatedDurationLabel ||
         item.estimatedFareLabel),
   );
-  const stationOptions = options.filter(
+  const stationOptions = nonRecommendedOptions.filter(
     (item) =>
       item.originGroup === "station" &&
       item.routeDetails.hasSourceBackedRouteDetail,
   );
   const shuttleOptions = dedupeShuttles(
-    options.filter(
+    nonRecommendedOptions.filter(
       (item) =>
         item.originGroup === "shuttle" &&
         isDisplayableShuttleOption(item) &&
         item.estimatedDurationLabel,
     ),
-  );
-  const showRecommended = Boolean(
-    recommended &&
-    (recommended.routeDetails.hasSourceBackedRouteDetail ||
-      recommended.estimatedDurationLabel ||
-      recommended.estimatedFareLabel),
   );
   const steps = showRecommended ? (recommended?.steps.slice(0, 4) ?? []) : [];
 

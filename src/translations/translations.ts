@@ -18061,3 +18061,43 @@ const flightDealDetailTranslations: Record<TranslationLanguage, Record<string, s
   },
 };
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], flightDealDetailTranslations[locale]);
+
+const dubaiOutletDetailLocalizationTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "outlet.openingHours.caveat.ramadanFestive": "Ramadan and festive-season hours may vary; contact the mall for current timings.",
+    "transportation.v2.distanceBasis.straightLine": "approximate straight-line distance",
+  },
+  tr: {
+    "outlet.openingHours.caveat.ramadanFestive": "Ramazan ve bayram dönemlerinde saatler değişebilir; güncel saatler için alışveriş merkeziyle iletişime geçin.",
+    "transportation.v2.distanceBasis.straightLine": "yaklaşık kuş uçuşu mesafe",
+  },
+  es: {
+    "outlet.openingHours.caveat.ramadanFestive": "Los horarios durante Ramadán y temporadas festivas pueden variar; contacta con el centro comercial para conocer los horarios actuales.",
+    "transportation.v2.distanceBasis.straightLine": "distancia aproximada en línea recta",
+  },
+  fr: {
+    "outlet.openingHours.caveat.ramadanFestive": "Les horaires pendant le Ramadan et les périodes de fêtes peuvent varier ; contactez le centre commercial pour connaître les horaires actuels.",
+    "transportation.v2.distanceBasis.straightLine": "distance approximative à vol d’oiseau",
+  },
+  de: {
+    "outlet.openingHours.caveat.ramadanFestive": "Während Ramadan und Festzeiten können die Öffnungszeiten abweichen; kontaktiere das Center für aktuelle Zeiten.",
+    "transportation.v2.distanceBasis.straightLine": "ungefähre Luftlinienentfernung",
+  },
+  ar: {
+    "outlet.openingHours.caveat.ramadanFestive": "قد تختلف ساعات العمل خلال رمضان ومواسم الأعياد؛ تواصل مع المركز التجاري لمعرفة المواعيد الحالية.",
+    "transportation.v2.distanceBasis.straightLine": "مسافة تقريبية بخط مستقيم",
+  },
+  ru: {
+    "outlet.openingHours.caveat.ramadanFestive": "В Рамадан и праздничные периоды часы работы могут меняться; уточняйте актуальное расписание в торговом центре.",
+    "transportation.v2.distanceBasis.straightLine": "примерное расстояние по прямой",
+  },
+  zh: {
+    "outlet.openingHours.caveat.ramadanFestive": "斋月和节庆期间营业时间可能调整；请联系商场确认当前营业时间。",
+    "transportation.v2.distanceBasis.straightLine": "近似直线距离",
+  },
+};
+
+for (const locale of supportedLanguageCodes) Object.assign(translations[locale], dubaiOutletDetailLocalizationTranslations[locale]);

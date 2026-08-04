@@ -1,5 +1,5 @@
 import { outlets } from "../constants/outlets";
-import type { TranslationLanguage } from "../translations/translations";
+import { translations, type TranslationLanguage } from "../translations/translations";
 import {
   transportationGuides,
   type TransportationGuide,
@@ -34,8 +34,10 @@ type SourceConfidence = "source" | "derived" | "fallbackEstimate";
 type RouteFactConfidence = "exact" | "partial" | "estimateOnly";
 
 export type TransportationRouteDetailDisplayModel = {
-  lineOrProviderLabel?: string;
+  providerLabel?: string;
   operatorLabel?: string;
+  lineLabel?: string;
+  lineOrProviderLabel?: string;
   boardingPointLabel?: string;
   alightingPointLabel?: string;
   transferLabel?: string;
@@ -921,16 +923,25 @@ function extractRouteDetails(
   const isTaxi = ["taxi", "uber"].includes(mode);
   if (fact) {
     const isExactOrPartial = fact.confidence !== "estimateOnly";
-    const lineOrProviderLabel =
-      fact.mode === "shuttle" ? fact.provider : fact.line;
-    const operatorLabel =
-      fact.operator || (fact.mode === "shuttle" ? undefined : fact.provider);
+    const lineLooksLikeRoute = isRouteLineCode(fact.line);
+    const providerLabel = fact.operator && fact.operator !== fact.provider
+      ? fact.provider
+      : fact.mode === "shuttle"
+        ? fact.provider
+        : lineLooksLikeRoute
+          ? undefined
+          : fact.line;
+    const operatorLabel = fact.operator || (fact.mode === "shuttle" ? undefined : fact.provider);
+    const lineLabel = fact.operator || lineLooksLikeRoute ? fact.line : undefined;
+    const lineOrProviderLabel = fact.mode === "shuttle" ? providerLabel : lineLabel || providerLabel;
     return {
+      providerLabel,
       lineOrProviderLabel,
       operatorLabel:
-        operatorLabel && operatorLabel !== lineOrProviderLabel
+        operatorLabel && operatorLabel !== providerLabel && operatorLabel !== lineLabel
           ? operatorLabel
           : undefined,
+      lineLabel,
       boardingPointLabel: fact.boardingPoint,
       transferLabel: fact.transferPoints?.join(" / "),
       alightingPointLabel: fact.alightingPoint,
@@ -1033,18 +1044,23 @@ export function getTransportationRouteDetailRows(
     option.originGroup === "shuttle" || option.mode === "shuttle";
   const isTaxi = ["taxi", "uber"].includes(option.mode);
   return [
-    detail.lineOrProviderLabel
-      ? {
-          label:
-            isShuttle || !isRouteLineCode(detail.lineOrProviderLabel)
-              ? labels.provider
-              : labels.line,
-          value: detail.lineOrProviderLabel,
-        }
+    detail.providerLabel
+      ? { label: labels.provider, value: detail.providerLabel }
       : undefined,
     detail.operatorLabel
       ? { label: labels.operator, value: detail.operatorLabel }
       : undefined,
+    detail.lineLabel
+      ? { label: labels.line, value: detail.lineLabel }
+      : !detail.providerLabel && detail.lineOrProviderLabel
+        ? {
+            label:
+              isShuttle || !isRouteLineCode(detail.lineOrProviderLabel)
+                ? labels.provider
+                : labels.line,
+            value: detail.lineOrProviderLabel,
+          }
+        : undefined,
     originPointFor(option, language)
       ? {
           label: isTaxi ? labels.origin : labels.boarding,
@@ -1134,12 +1150,18 @@ function estimateFor(
     [Infinity, { duration: [90, 150], fare: [10, 30], confidence: "derived" }],
   ]);
 }
+function formatFareEndpoint(value: number) {
+  return Number.isInteger(value) ? `${value}` : value.toFixed(2);
+}
 function formatRange(min: number, max: number) {
+  return min === max ? formatFareEndpoint(min) : `${formatFareEndpoint(min)}–${formatFareEndpoint(max)}`;
+}
+function formatDurationRange(min: number, max: number) {
   return min === max ? `${min}` : `${min}–${max}`;
 }
 function formatDuration(e: Estimate, l: TranslationLanguage) {
   const x = I18N[l];
-  return `${x.approx} ${formatRange(e.duration[0], e.duration[1])} ${x.min}`;
+  return `${x.approx} ${formatDurationRange(e.duration[0], e.duration[1])} ${x.min}`;
 }
 function formatStructuredFare(
   min: number,
@@ -1149,7 +1171,7 @@ function formatStructuredFare(
   fareAccuracy?: TransportationRouteFact["fareAccuracy"],
 ) {
   if (!currency) return undefined;
-  const exactAmount = Number.isInteger(min) ? `${min}` : min.toFixed(2);
+  const exactAmount = formatFareEndpoint(min);
   const amount = fareAccuracy === "exact" ? exactAmount : formatRange(min, max);
   const value = currency === "EUR" ? `€${amount}` : currency === "GBP" ? `£${amount}` : `${currency} ${amount}`;
   return fareAccuracy === "exact" ? value : `${I18N[language].approx} ${value}`;
@@ -1771,13 +1793,16 @@ export function getUsefulTransportationV2DisplayOptions(
 }
 export function getNearbyAirportDisplay(
   outletId: string,
+  language: TranslationLanguage = "en",
 ): NearbyAirportDisplay[] {
   const outlet = outletFor(outletId);
   return (outlet?.airports || []).slice(0, 3).map((a) => ({
     code: a.code,
     name: a.name,
     distance:
-      typeof a.distanceKm === "number" ? `${a.distanceKm} km` : undefined,
+      typeof a.distanceKm === "number"
+        ? `${a.distanceKm} km · ${translations[language]["transportation.v2.distanceBasis.straightLine"]}`
+        : undefined,
   }));
 }
 export function getSectionProviderNote(language: TranslationLanguage): string {
