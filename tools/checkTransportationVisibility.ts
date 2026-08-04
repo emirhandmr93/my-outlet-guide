@@ -1964,7 +1964,7 @@ const northernEuropeBalticsIrelandRoutes = [
   ["denmark", "ringsted-outlet", "copenhagen-to-ringsted-outlet-train-bus", "DKK"],
   ["finland", "ideapark-lempaala-outlet", "tampere-to-ideapark-lempaala-outlet-bus", "EUR"],
   ["sweden", "hede-fashion-outlet", "gothenburg-to-hede-fashion-outlet-train-walk", "SEK"],
-  ["norway", "norwegian-outlet", "oslo-to-norwegian-outlet-train-bus", "NOK"],
+  ["norway", "norwegian-outlet", "oslo-to-norwegian-outlet-train-walk", "NOK"],
   ["estonia", "t1-tallinn-outlet", "tallinn-center-to-t1-outlet-tram", "EUR"],
   ["latvia", "via-jurmala-outlet-village", "riga-to-via-jurmala-outlet-village-bus", "EUR"],
   ["lithuania", "outlet-park-vilnius", "vilnius-center-to-outlet-park-vilnius-bus", "EUR"],
@@ -1992,6 +1992,14 @@ for (const [countryId, outletId, guideId, currency] of northernEuropeBalticsIrel
   if (!fact?.suppressDerivedDurationFallback) errors.push(`${guideId}: derived duration fallback is not suppressed`);
   if (!/exclude/i.test(`${fact?.sourceNote ?? ""} ${fact?.walkNote ?? ""}`) || !/final (?:walk|walking|pedestrian)/i.test(`${fact?.sourceNote ?? ""} ${fact?.walkNote ?? ""}`)) errors.push(`${guideId}: final walking or upstream fare scope is not explicit`);
   if (outletGuides.length < 2 || outletGuides.some((candidate) => candidate.guideId !== guideId && candidate.recommended)) errors.push(`${outletId}: secondary-guide recommendation state is invalid`);
+  const structuredClaims = [fact?.line, fact?.boardingPoint, fact?.alightingPoint, ...(fact?.transferPoints ?? [])].filter(Boolean).join(" ");
+  if (/(?:outlet area|current local bus|outlet-area bus)/i.test(structuredClaims)) errors.push(`${guideId}: generic or synthetic structured route value is present`);
+  if (countryId === "estonia" && (guide?.transportationType !== "metro" || fact?.mode !== "metro" || fact.line !== "Tram 4 toward Suur-Paala")) errors.push(`${guideId}: current Tram 4 mode or direction is invalid`);
+  if (countryId === "finland" && (fact?.operator !== "Koiviston Auto Tampere Oy" || fact.line !== "50 toward Lempäälä / Ideapark" || fact.estimatedFareMin !== 4.7 || fact.estimatedFareMax !== 5.5 || fact.fareAccuracy !== "estimated")) errors.push(`${guideId}: operator or official ABC fare products are invalid`);
+  if (countryId === "latvia" && (fact?.alightingPoint !== "Piņķi" || fact.estimatedFareMin !== 1.15 || fact.estimatedFareMax !== 1.15 || fact.fareAccuracy !== "exact")) errors.push(`${guideId}: real stop or one-trip fare basis is invalid`);
+  if (countryId === "ireland" && (fact?.confidence !== "partial" || !/when officially scheduled/i.test(`${fact.walkNote} ${fact.sourceNote}`) || Boolean(fact.transferPoints?.length))) errors.push(`${guideId}: conditional shuttle provenance is invalid`);
+  if (countryId === "norway" && (fact?.alightingPoint !== "Vestby station" || fact.line !== "R21 toward Moss" || fact.transferPoints?.length || /bus/i.test(structuredClaims))) errors.push(`${guideId}: permanent primary contains an unidentified bus or synthetic stop`);
+  if (countryId === "denmark" && (fact?.line != null || fact?.alightingPoint != null || fact?.transferPoints?.join(" ") !== "Ringsted Station")) errors.push(`${guideId}: unverified fixed local line or stop is stored`);
   for (const language of supportedLanguageCodes) {
     const localized = display(outletId, guideId, language);
     const fare = localized?.estimatedFareLabel ?? "";
@@ -2000,6 +2008,9 @@ for (const [countryId, outletId, guideId, currency] of northernEuropeBalticsIrel
     const approx = fare.startsWith((({ en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ar: "تقريبًا", ru: "Примерно", zh: "约" } as const)[language]));
     if (fact?.fareAccuracy === "estimated" && !approx) errors.push(`${guideId}/${language}: estimated fare lacks localized approximation`);
     if (fact?.fareAccuracy === "exact" && approx) errors.push(`${guideId}/${language}: exact fare is approximate`);
+    if (countryId === "estonia" && /^(?:Train|Tren)$/i.test(localized?.modeLabel ?? "")) errors.push(`${guideId}/${language}: tram renders as train`);
+    const expectedFareParts = [fact?.estimatedFareMin, fact?.estimatedFareMax].filter((value, index, values) => value != null && values.indexOf(value) === index).map(String);
+    if (expectedFareParts.some((value) => !fare.includes(value))) errors.push(`${guideId}/${language}: fare decimal or endpoint does not match the fact`);
     if (guideId !== "kildare-village-dublin-heuston-train-shuttle" && localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
   }
 }

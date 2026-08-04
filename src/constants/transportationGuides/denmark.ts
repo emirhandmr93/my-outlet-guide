@@ -14,7 +14,7 @@ export const denmarkTransportationGuides: TransportationGuide[] = [
     steps: [
       { order: 1, description: "Use DSB or Rejseplanen to choose a train from Copenhagen Central Station to Ringsted Station." },
       { order: 2, description: "The outlet's official directions state regional and InterCity trains reach Ringsted in around 35 minutes from Copenhagen Central, with 4-6 trains per hour." },
-      { order: 3, description: "At Ringsted Station, continue by one of the local buses listed by the outlet, such as 401A, 240, 540, 405, 408, 404 or 415, to the outlet area." },
+      { order: 3, description: "At Ringsted Station, use Rejseplanen to select the currently operating Movia local bus and its documented stop for Klosterparks Allé; do not assume one line applies at every service period." },
       { order: 4, description: "For the return trip, check Rejseplanen for the next bus back to Ringsted Station and your train onward to Copenhagen before shopping late." },
     ],
     updatedAt: "2026-07-03",

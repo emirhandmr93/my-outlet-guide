@@ -9,7 +9,7 @@ export const finlandTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Tampere City Centre to Ideapark Lempäälä Outlet by Bus",
     estimatedDuration: "",
-    estimatedCost: "Approx. €4–6",
+    estimatedCost: "Approx. €4.70–5.50",
     recommended: true,
     steps: [
       { order: 1, description: "Use the official Tampere regional transport planner and set the destination to Ideapark Lempäälä or Ideaparkinkatu 4." },

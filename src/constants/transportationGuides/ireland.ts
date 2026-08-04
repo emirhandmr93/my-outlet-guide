@@ -14,8 +14,8 @@ export const irelandTransportationGuides: TransportationGuide[] = [
     steps: [
       { order: 1, description: "Check the official Kildare Village train guidance and Irish Rail timetable for Dublin Heuston to Kildare on your shopping date." },
       { order: 2, description: "Travel from Dublin city centre to Dublin Heuston and board an Irish Rail service to Kildare; the Village notes the train journey takes 35 minutes from Heuston with frequent services." },
-      { order: 3, description: "At Kildare station, use the complimentary Kildare Village shuttle or follow the signed local last-mile option to the Village entrance." },
-      { order: 4, description: "On arrival, note the shuttle drop-off point and Guest Services location before shopping." },
+      { order: 3, description: "At Kildare Station, use the complimentary Village shuttle only when it is officially scheduled; otherwise confirm the walking route or use a licensed local taxi." },
+      { order: 4, description: "Check the Village shuttle page for your travel date rather than assuming a daily station transfer." },
       { order: 5, description: "For the return, confirm the last practical shuttle back to Kildare station and your Irish Rail departure to Dublin before leaving the shops." },
     ],
     updatedAt: "2026-07-03",
