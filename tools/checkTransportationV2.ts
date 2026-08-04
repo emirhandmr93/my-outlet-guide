@@ -587,10 +587,11 @@ const unflaggedDurationDisplay = unflaggedDurationControl
   ? getTransportationOptionDisplayModel(unflaggedDurationControl, "tr")
   : undefined;
 if (
-  unflaggedDurationDisplay?.routeFact?.suppressDerivedDurationFallback === true ||
-  !unflaggedDurationDisplay?.estimatedDurationLabel
+  unflaggedDurationDisplay?.routeFact?.suppressDerivedDurationFallback !==
+    true ||
+  unflaggedDurationDisplay?.estimatedDurationLabel
 )
-  errors.push("Unflagged duration control lost its derived duration label.");
+  errors.push("Turkey primary exposed an unsupported derived duration label.");
 
 for (const guide of transportationGuides) {
   const descriptions = guide.steps
