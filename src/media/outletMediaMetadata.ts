@@ -93,6 +93,46 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
     "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
   },
   {
+    "outletId": "dubai-outlet-mall",
+    "role": "hero",
+    "assetPath": "assets/outlet-images/dubai-outlet-mall/hero.webp",
+    "sourceStatus": "project-owned",
+    "credit": "My Outlet Guide project-owned manual media",
+    "license": "Project-owned",
+    "alt": "Dubai Outlet Mall hero photo",
+    "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    "outletId": "dubai-outlet-mall",
+    "role": "gallery",
+    "assetPath": "assets/outlet-images/dubai-outlet-mall/gallery1.webp",
+    "sourceStatus": "project-owned",
+    "credit": "My Outlet Guide project-owned manual media",
+    "license": "Project-owned",
+    "alt": "Dubai Outlet Mall gallery photo",
+    "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    "outletId": "dubai-outlet-mall",
+    "role": "gallery",
+    "assetPath": "assets/outlet-images/dubai-outlet-mall/gallery2.webp",
+    "sourceStatus": "project-owned",
+    "credit": "My Outlet Guide project-owned manual media",
+    "license": "Project-owned",
+    "alt": "Dubai Outlet Mall gallery photo",
+    "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    "outletId": "dubai-outlet-mall",
+    "role": "gallery",
+    "assetPath": "assets/outlet-images/dubai-outlet-mall/gallery3.webp",
+    "sourceStatus": "project-owned",
+    "credit": "My Outlet Guide project-owned manual media",
+    "license": "Project-owned",
+    "alt": "Dubai Outlet Mall gallery photo",
+    "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
     "outletId": "fidenza-village",
     "role": "hero",
     "assetPath": "assets/outlet-images/fidenza-village/hero.webp",
