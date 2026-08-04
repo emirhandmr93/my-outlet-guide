@@ -87,6 +87,19 @@ function hasValue(value: string | undefined): boolean {
 }
 
 function isAllowedOutletImageFilename(assetPath: string): boolean {
+  const filename = path.posix.basename(assetPath);
+
+  if (
+    assetPath.startsWith("assets/outlet-images/dubai-outlet-mall/")
+  ) {
+    return [
+      "hero.png",
+      "gallery1.png",
+      "gallery2.png",
+      "gallery3.png",
+    ].includes(filename);
+  }
+
   return [
     "official-hero.webp",
     "official-gallery1.webp",
@@ -95,7 +108,7 @@ function isAllowedOutletImageFilename(assetPath: string): boolean {
     "gallery1.webp",
     "gallery2.webp",
     "gallery3.webp",
-  ].includes(path.posix.basename(assetPath));
+  ].includes(filename);
 }
 
 for (const metadata of outletMediaMetadata) {
