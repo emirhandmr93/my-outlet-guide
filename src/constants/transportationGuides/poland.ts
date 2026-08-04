@@ -8,8 +8,8 @@ export const polandTransportationGuides: TransportationGuide[] = [
     originId: "warsaw-city-center",
     transportationType: "train",
     title: "Warsaw City Centre to Factory Ursus by Train and Walk",
-    estimatedDuration: "≈20-30 min by train plus ≈10 min walk (estimated)",
-    estimatedCost: "Check official ZTM/Koleje Mazowieckie fare",
+    estimatedDuration: "",
+    estimatedCost: "Approx. PLN 4.40-7 adult one-way (estimated)",
     recommended: true,
     steps: [
       { order: 1, description: "From Warszawa Centralna, Warszawa Śródmieście or another central stop, plan a suburban rail trip with the official Warsaw public transport or Koleje Mazowieckie planner toward Warszawa Ursus Północny or Warszawa Ursus." },
@@ -17,7 +17,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Walk from the station toward Factory Ursus at Plac Czerwca 1976 r. 6, following local pedestrian signs and map directions." },
       { order: 4, description: "For the return trip, check the next rail departure before leaving the shops because evening and weekend frequencies can differ." },
     ],
-    updatedAt: "2026-07-03",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "warsaw-chopin-airport-to-factory-ursus-car-public-transport",
@@ -64,7 +64,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
     title: "Driving and Parking at Factory Ursus",
     estimatedDuration: "≈20-30 min from central Warsaw (estimated)",
     estimatedCost: "Parking check centre signage; fuel/ride-hail costs vary",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Set navigation to Factory Ursus, Plac Czerwca 1976 r. 6, 02-495 Warszawa." },
       { order: 2, description: "Use the official outlet access page or Google Maps routing to compare S8, Aleje Jerozolimskie and local Ursus approaches." },
@@ -98,8 +98,8 @@ export const polandTransportationGuides: TransportationGuide[] = [
     originId: "warsaw-city-center",
     transportationType: "metro",
     title: "Warsaw City Centre to Factory Annopol by Metro, Tram or Walk",
-    estimatedDuration: "≈20 min by M2 to Bródno plus ≈8 min walk from Bródno (official outlet news)",
-    estimatedCost: "Check official ZTM fare",
+    estimatedDuration: "",
+    estimatedCost: "Approx. PLN 4.40-7 adult one-way (estimated)",
     recommended: true,
     steps: [
       { order: 1, description: "From central Warsaw, take Metro M2 toward Bródno using the official ZTM timetable or journey planner." },
@@ -107,7 +107,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "From Bródno, walk about 600 m to Factory Annopol or use a short ZTM tram/bus connection if it fits the timetable." },
       { order: 4, description: "For the return trip, check the M2 and any tram/bus connection times before leaving the centre." },
     ],
-    updatedAt: "2026-07-03",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "warsaw-chopin-airport-to-factory-annopol-taxi-transit",
@@ -154,7 +154,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
     title: "Driving and Parking at Factory Annopol",
     estimatedDuration: "≈20-35 min from central Warsaw (estimated)",
     estimatedCost: "Parking check centre signage; fuel/ride-hail costs vary",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Set navigation to Factory Annopol, Annopol 2, 03-236 Warszawa." },
       { order: 2, description: "Use the official outlet access page or Google Maps routing to choose between S8/Trasa Toruńska and local Warsaw approaches." },
@@ -189,8 +189,8 @@ export const polandTransportationGuides: TransportationGuide[] = [
     originId: "wroclaw-city-center",
     transportationType: "bus",
     title: "Wrocław City Centre to Wrocław Fashion Outlet by Public Transport",
-    estimatedDuration: "Check official MPK / city timetable",
-    estimatedCost: "Check official Wrocław public-transport fare before travel",
+    estimatedDuration: "",
+    estimatedCost: "Approx. PLN 4.60-6 adult one-way (estimated)",
     recommended: true,
     steps: [
       { order: 1, description: "Check Wrocław Fashion Outlet's official FAQ and the official Wrocław public-transport planner for current tram or bus routes to the outlet area." },
@@ -198,7 +198,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Alight at the official stop for Wrocław Fashion Outlet / Mińska area and follow signed pedestrian crossings to the entrance." },
       { order: 4, description: "Before shopping, check the return tram or bus departures and fare validity." },
     ],
-    updatedAt: "2026-07-04",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "wroclaw-airport-to-wroclaw-fashion-outlet-bus-taxi",
@@ -244,8 +244,8 @@ export const polandTransportationGuides: TransportationGuide[] = [
     originId: "gdansk-wrzeszcz-pkp",
     transportationType: "bus",
     title: "Gdańsk Wrzeszcz to Designer Outlet Gdańsk by Bus",
-    estimatedDuration: "check official ZTM Gdańsk timetable",
-    estimatedCost: "check official ZTM Gdańsk fare before travel",
+    estimatedDuration: "",
+    estimatedCost: "Approx. PLN 4.80-6 adult one-way (estimated)",
     recommended: true,
     steps: [
       { order: 1, description: "At Wrzeszcz PKP, check the official ZTM Gdańsk timetable for line 115 toward Jaworzniaków." },
@@ -253,7 +253,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Alight at Czermińskiego, the stop listed by Designer Outlet Gdańsk, and walk to the outlet entrance." },
       { order: 4, description: "Check the official return timetable before shopping; frequencies can vary by day and time." },
     ],
-    updatedAt: "2026-07-04",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "gdansk-to-designer-outlet-gdansk-public-transport",
@@ -298,8 +298,8 @@ export const polandTransportationGuides: TransportationGuide[] = [
     originId: "katowice-city-center",
     transportationType: "bus",
     title: "Katowice to Designer Outlet Sosnowiec by Bus",
-    estimatedDuration: "check official ZTM Metropolia timetable",
-    estimatedCost: "check official ZTM Metropolia fare before travel",
+    estimatedDuration: "",
+    estimatedCost: "Approx. PLN 5-7 adult one-way (estimated)",
     recommended: true,
     steps: [
       { order: 1, description: "From central Katowice, check the official ZTM Metropolia timetable for buses A, E or J toward Sosnowiec Jęzor Centrum Handlowe." },
@@ -307,7 +307,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Get off at Sosnowiec Jęzor Centrum Handlowe, the stop listed by Designer Outlet Sosnowiec, and walk to the entrance." },
       { order: 4, description: "Before shopping, check official return departures to Katowice." },
     ],
-    updatedAt: "2026-07-04",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "sosnowiec-to-designer-outlet-sosnowiec-train-walk",
@@ -352,8 +352,8 @@ export const polandTransportationGuides: TransportationGuide[] = [
     originId: "metro-wilanowska",
     transportationType: "bus",
     title: "Metro Wilanowska to Designer Outlet Warszawa by Bus",
-    estimatedDuration: "check official WTP/ZTM Warszawa timetable",
-    estimatedCost: "check official WTP/ZTM fare before travel",
+    estimatedDuration: "",
+    estimatedCost: "Approx. PLN 7-8 adult one-way (estimated)",
     recommended: true,
     steps: [
       { order: 1, description: "At Metro Wilanowska, check the official WTP/ZTM Warszawa timetable for bus 709 or 727 toward Piaseczno / Energetyczna." },
@@ -361,7 +361,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
       { order: 3, description: "Alight at Energetyczna, the stop listed by Designer Outlet Warszawa, and walk to Puławska 42E." },
       { order: 4, description: "Check the official return timetable to Metro Wilanowska before shopping." },
     ],
-    updatedAt: "2026-07-04",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "warsaw-chopin-airport-to-designer-outlet-warszawa-car",
