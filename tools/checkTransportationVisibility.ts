@@ -35,6 +35,11 @@ const explicitSourceFareOutlets = new Set<string>();
 const explicitFreeFareOutlets = new Set<string>();
 const unsafeFares = new Set<string>();
 const roadOnlyAsTaxi = new Set<string>();
+const paidStructuredFareFacts = transportationRouteFacts.filter((fact) => fact.estimatedFareMin !== undefined || fact.estimatedFareMax !== undefined || fact.currency !== undefined);
+const paidStructuredFareExact = paidStructuredFareFacts.filter((fact) => fact.fareAccuracy === "exact");
+const paidStructuredFareEstimated = paidStructuredFareFacts.filter((fact) => fact.fareAccuracy === "estimated");
+const paidStructuredFareMissing = paidStructuredFareFacts.filter((fact) => !fact.fareAccuracy);
+const paidStructuredFareCountrySummary = new Map<string, number>();
 let postFilterSyntheticFallbackCount = 0;
 const excludedRoadOnlyGuideCount = transportationGuides.filter(
   isDrivingParkingOnlyGuide,
@@ -66,6 +71,23 @@ function visibleText(option: TransportationV2Option) {
   ]
     .filter(Boolean)
     .join(" ");
+}
+
+
+for (const fact of paidStructuredFareFacts) {
+  const outlet = outlets.find((candidate) => candidate.outletId === fact.outletId);
+  const countryId = outlet?.countryId ?? "unknown";
+  paidStructuredFareCountrySummary.set(countryId, (paidStructuredFareCountrySummary.get(countryId) ?? 0) + 1);
+  const id = fact.guideId ?? fact.outletId;
+  if (fact.estimatedFareMin === undefined || fact.estimatedFareMax === undefined) errors.push(`${id}: guidance-only paid fare is missing a numeric fare`);
+  if (fact.estimatedFareMin !== undefined && fact.estimatedFareMin <= 0) errors.push(`${id}: paid structured fare has a fake zero or negative minimum`);
+  if (fact.estimatedFareMax !== undefined && fact.estimatedFareMax <= 0) errors.push(`${id}: paid structured fare has a fake zero or negative maximum`);
+  if (!fact.currency || !/^[A-Z]{3}$/.test(fact.currency)) errors.push(`${id}: paid structured fare has invalid currency`);
+  if (!fact.fareAccuracy) errors.push(`${id}: paid structured fare is missing fareAccuracy`);
+  if (fact.estimatedFareMin !== undefined && fact.estimatedFareMax !== undefined && fact.estimatedFareMin > fact.estimatedFareMax) errors.push(`${id}: paid structured fare minimum exceeds maximum`);
+  if (fact.fareAccuracy === "exact" && fact.estimatedFareMin !== fact.estimatedFareMax) errors.push(`${id}: exact fareAccuracy requires matching min/max`);
+  if (fact.confidence === "exact" && fact.fareAccuracy === undefined) errors.push(`${id}: fareAccuracy must be explicit instead of derived from exact confidence`);
+  if (fact.confidence !== "exact" && fact.fareAccuracy === "exact" && fact.estimatedFareMin !== fact.estimatedFareMax) errors.push(`${id}: exact fareAccuracy cannot depend on confidence`);
 }
 
 for (const outlet of activeOutlets) {
@@ -124,6 +146,15 @@ for (const outlet of activeOutlets) {
         if (/^(?:Free|Ücretsiz|Gratis|Gratuit|Kostenlos|Бесплатно|مجانًا|免费)$/.test(display.estimatedFareLabel))
           explicitFreeFareOutlets.add(outlet.outletId);
         else explicitSourceFareOutlets.add(outlet.outletId);
+      }
+      const routeFact = transportationRouteFacts.find((fact) => fact.guideId === display.id);
+      if (routeFact?.fareAccuracy && routeFact.estimatedFareMin !== undefined && routeFact.estimatedFareMax !== undefined && routeFact.currency) {
+        const approximateQualifier = ({ en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ar: "تقريبًا", ru: "Примерно", zh: "约" } as const)[language];
+        const fareLabel = display.estimatedFareLabel ?? "";
+        if (routeFact.fareAccuracy === "estimated" && !fareLabel.startsWith(approximateQualifier)) errors.push(`${display.id}/${language}: estimated fare rendered without localized approximation`);
+        if (routeFact.fareAccuracy === "exact" && fareLabel.startsWith(approximateQualifier)) errors.push(`${display.id}/${language}: exact fare rendered with approximation`);
+        if (routeFact.fareAccuracy === "exact" && !fareLabel) errors.push(`${display.id}/${language}: exact fare missing runtime label`);
+        if (routeFact.fareAccuracy === "exact" && !Number.isInteger(routeFact.estimatedFareMin) && !fareLabel.includes(routeFact.estimatedFareMin.toFixed(2))) errors.push(`${display.id}/${language}: exact decimal fare lost two-decimal formatting`);
       }
       if (isDrivingParkingOnlyGuide(display.guide))
         roadOnlyAsTaxi.add(`${display.id}/${language}`);
@@ -2413,6 +2444,11 @@ console.log(`Safe estimate-only outlet count: ${safeEstimateOnlyOutlets.size}`);
 console.log(`Duration-only fallback outlet count: ${durationOnlyFallbackOutlets.size}`);
 console.log(`Explicit source-fare outlet count: ${explicitSourceFareOutlets.size}`);
 console.log(`Explicit free-fare outlet count: ${explicitFreeFareOutlets.size}`);
+console.log(`Paid structured fare fact count: ${paidStructuredFareFacts.length}`);
+console.log(`Paid structured exact fare count: ${paidStructuredFareExact.length}`);
+console.log(`Paid structured estimated fare count: ${paidStructuredFareEstimated.length}`);
+console.log(`Paid structured missing fareAccuracy count: ${paidStructuredFareMissing.length}`);
+console.log(`Paid structured fare country summary: ${JSON.stringify(Object.fromEntries([...paidStructuredFareCountrySummary].sort()))}`);
 console.log(`Post-filter synthetic fallback count: ${postFilterSyntheticFallbackCount}`);
 console.log(`Excluded road-only guide count: ${excludedRoadOnlyGuideCount}`);
 console.log(`Empty options: ${JSON.stringify(emptyOptions)}`);
