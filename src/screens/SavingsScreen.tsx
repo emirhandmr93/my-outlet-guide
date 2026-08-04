@@ -72,6 +72,16 @@ export function SavingsScreen() {
       badge: t("savings.priceBadge"),
       highlight: t("savings.priceHighlight"),
     },
+
+    {
+      id: "tax-free-guide",
+      icon: "🛂",
+      title: t("savings.taxGuideTitle"),
+      description: t("savings.taxGuideDescription"),
+      routeName: "TaxFreeGuide",
+      badge: t("savings.taxGuideBadge"),
+      highlight: t("savings.taxGuideHighlight"),
+    },
     {
       id: "tax-free-calculator",
       icon: "🧾",
