@@ -33,6 +33,7 @@ export type TransportationRouteFact = {
   estimatedFareMin?: number;
   estimatedFareMax?: number;
   currency?: string;
+  fareAccuracy?: "exact" | "estimated";
   displayFare?: string;
   sourceNote?: string;
   officialCheckNote?: string;
@@ -571,12 +572,17 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     destination: "Serravalle Designer Outlet",
     estimatedDurationMin: 60,
     estimatedDurationMax: 90,
+    officialCheckNote:
+      "Book the official partner shuttle and confirm the return departure on your ticket.",
     estimatedFareMin: 25,
     estimatedFareMax: 35,
     currency: "EUR",
-    officialCheckNote:
-      "Book the official partner shuttle and confirm the return departure on your ticket.",
+    fareAccuracy: "estimated",
+    sourceNote:
+      "The estimated EUR 25–35 adult return range covers only the recommended official partner shuttles from Milan operated by Zani Viaggi or Frigerio Viaggi. Zani pricing starts from the repository-supported €25 return value; partner and selected departure prices can differ, so check the official booking conditions.",
     confidence: "exact",
+    officialProviderUrl:
+      "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/plan-your-visit/",
   },
   {
     guideId: "serravalle-train-bus",
@@ -605,10 +611,14 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     boardingPoint:
       "Firenze Santa Maria Novella – Sightseeing Visitor Center",
     destination: "Barberino Outlet",
-    sourceNote:
-      "The shuttle runs daily, and a combined train and shuttle ticket is available through Trenitalia.",
     officialCheckNote:
       "Check the official seasonal shuttle times before travel.",
+    estimatedFareMin: 13,
+    estimatedFareMax: 20,
+    currency: "EUR",
+    fareAccuracy: "estimated",
+    sourceNote:
+      "The estimated EUR 13–20 return range covers only the official Florence SMN–Barberino shuttle. The current exact fare could not be independently reverified, so check the official ticket price and conditions before travel; Bologna, taxi, fuel and toll costs are excluded.",
     confidence: "exact",
     officialProviderUrl:
       "https://www.barberinooutlet.com/en/news-and-events/shuttle-bus-service-florence-station-barberino-outlet/",
@@ -620,12 +630,14 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     mode: "shuttle",
     boardingPoint: "Via Giolitti 48, Roma Termini",
     destination: "Castel Romano Designer Outlet",
+    officialCheckNote:
+      "Check current departure and return times on the official page.",
     estimatedFareMin: 18,
     estimatedFareMax: 18,
     currency: "EUR",
-    sourceNote: "Adult round trip €18; children under 10 travel free.",
-    officialCheckNote:
-      "Check current departure and return times on the official page.",
+    fareAccuracy: "exact",
+    sourceNote:
+      "The official route-fact provenance supports the €18 adult round-trip fare for the Via Giolitti 48, Roma Termini shuttle. Child concessions are supplementary and do not make the adult route free; check current official ticket conditions.",
     confidence: "exact",
     officialProviderUrl:
       "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/services/shuttle-bus-service/",
@@ -658,13 +670,14 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     destination: "Fidenza Village",
     estimatedDurationMin: 90,
     estimatedDurationMax: 90,
+    officialCheckNote:
+      "Confirm current times and fares when booking.",
     estimatedFareMin: 10,
     estimatedFareMax: 10,
     currency: "EUR",
+    fareAccuracy: "exact",
     sourceNote:
-      "Adult €10; children ages 5–11 €5; ages 0–4 free. Arrive at least 15 minutes before departure.",
-    officialCheckNote:
-      "Confirm current times and fares when booking.",
+      "The official route-fact provenance supports the €10 paying-adult Shopping Express fare from Milan. Children ages 5–11 are €5 and ages 0–4 travel free as supplementary conditions; arrive at least 15 minutes before departure and confirm the current adult fare when booking.",
     confidence: "exact",
     officialProviderUrl:
       "https://www.thebicestercollection.com/fidenza-village/en/getting-here/shopping-express/",
@@ -681,13 +694,14 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     transferPoints: ["Caserta railway station"],
     destination: "La Reggia Designer Outlet",
     suppressDerivedDurationFallback: true,
-    estimatedFareMin: 1.3,
-    estimatedFareMax: 1.3,
-    currency: "EUR",
-    sourceNote:
-      "The daily bus connection is coordinated with train times; combined tickets are available through Trenitalia channels.",
     officialCheckNote:
       "Check current train and Outlet Link times before travel.",
+    estimatedFareMin: 5,
+    estimatedFareMax: 8,
+    currency: "EUR",
+    fareAccuracy: "estimated",
+    sourceNote:
+      "The estimated EUR 5–8 one-way total covers the Napoli Centrale–Caserta regional train and the La Reggia Outlet Link bus without double-counting a combined Trenitalia ticket. Existing authoritative provenance records the bus supplement as €1.30 each way; check the current through-ticket or component prices before travel.",
     confidence: "exact",
     officialProviderUrl:
       "https://www.trenitalia.com/en/connections/la-reggia-designer-outlet-link.html",
@@ -701,11 +715,13 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     operator: "ATVO",
     boardingPoint: "Venezia Piazzale Roma",
     destination: "Noventa di Piave Designer Outlet",
+    officialCheckNote: "Check current times and booking conditions on the official page.",
     estimatedFareMin: 9.2,
     estimatedFareMax: 9.2,
     currency: "EUR",
-    sourceNote: "Daily service via Mestre Bus Terminal / Railway Station, Venice Marco Polo Airport, and San Donà di Piave; return fare €9.20 and children under 6 travel free.",
-    officialCheckNote: "Check current times and booking conditions on the official page.",
+    fareAccuracy: "exact",
+    sourceNote:
+      "The official route-fact provenance supports the €9.20 adult return ticket from Venezia Piazzale Roma. Children under 6 travelling free is supplementary and does not replace the paying-adult fare; check current booking conditions.",
     confidence: "exact",
     officialProviderUrl: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/services/bus-connection/",
   },
@@ -753,11 +769,13 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     line: "The Mall by Bus",
     boardingPoint: "Piazzale Montelungo, Firenze",
     destination: "The Mall Firenze",
-    estimatedFareMin: 9.5,
+    officialCheckNote: "Check current outward and return times on the official Busitalia page.",
+    estimatedFareMin: 18,
     estimatedFareMax: 18,
     currency: "EUR",
-    sourceNote: "One way €9.50; same-day return €18; reduced one way €5 and return €9 for children under 12; children under 4 travel free with a paying adult.",
-    officialCheckNote: "Check current outward and return times on the official Busitalia page.",
+    fareAccuracy: "exact",
+    sourceNote:
+      "The primary paying-adult fare is the official €18 same-day return ticket; the official adult one-way fare is €9.50. Reduced fares are €5 one way and €9 return for children under 12, while children under 4 travel free with a paying adult; concessions are supplementary and do not make the primary route free.",
     confidence: "exact",
     officialProviderUrl: "https://www.fsbusitalia.it/eng/tourism/outlet-the-mall---florence-direct-bus.html",
   },
@@ -820,8 +838,13 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     destination: "Valdichiana Designer Village",
     estimatedDurationMin: 50,
     estimatedDurationMax: 50,
-    sourceNote: "LS5 follows the Arezzo–Foiano–Bettolle direction.",
     officialCheckNote: "Check the current LS5 timetable before travel.",
+    estimatedFareMin: 3,
+    estimatedFareMax: 6,
+    currency: "EUR",
+    fareAccuracy: "estimated",
+    sourceNote:
+      "The estimated EUR 3–6 one-way fare covers only Tiemme Line LS5 from Arezzo Terminal Tiemme to Valdichiana Designer Village. The walk from Arezzo station to the terminal and any upstream Trenitalia journey are excluded; check the current Tiemme fare.",
     confidence: "exact",
     officialProviderUrl:
       "https://www.valdichianadesignervillage.com/en/directions",
@@ -838,8 +861,13 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     destination: "Franciacorta Designer Village",
     estimatedDurationMin: 25,
     estimatedDurationMax: 25,
-    sourceNote: "LS029 follows the Brescia–Ome–Monticelli Brusati direction.",
     officialCheckNote: "Check the current LS029 timetable before travel.",
+    estimatedFareMin: 3,
+    estimatedFareMax: 5,
+    currency: "EUR",
+    fareAccuracy: "estimated",
+    sourceNote:
+      "The estimated EUR 3–5 one-way fare covers only the SIA/Arriva Line LS029 bus from the Brescia station bus area to Franciacorta Designer Village. Upstream rail and walking sections are excluded; check the current operator fare.",
     confidence: "exact",
     officialProviderUrl:
       "https://www.franciacortadesignervillage.com/en/directions",
@@ -856,9 +884,13 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     destination: "Mantova Village",
     estimatedDurationMin: 30,
     estimatedDurationMax: 30,
-    sourceNote:
-      "The official segments are a published 10-minute walk from Mantova FS to Viale Piave 4A and a published 20-minute 31A bus section, giving a 30-minute combined journey estimate.",
     officialCheckNote: "Check the current APAM 31A timetable before travel.",
+    estimatedFareMin: 3,
+    estimatedFareMax: 5,
+    currency: "EUR",
+    fareAccuracy: "estimated",
+    sourceNote:
+      "The estimated EUR 3–5 one-way fare covers only APAM Line 31A from Viale Piave 4A to Mantova Village. The official segments remain a free published 10-minute walk from Mantova FS followed by a published 20-minute bus ride; upstream rail is excluded.",
     confidence: "exact",
     officialProviderUrl:
       "https://www.mantovavillage.it/en/contact-and-information",
@@ -954,8 +986,12 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     destination: "Palmanova Designer Village",
     estimatedDurationMin: 13,
     estimatedDurationMax: 13,
+    estimatedFareMin: 25,
+    estimatedFareMax: 40,
+    currency: "EUR",
+    fareAccuracy: "estimated",
     sourceNote:
-      "Official outlet directions list Cervignano-Aquileia-Grado as the rail station, followed by a 12 km / 13-minute road transfer.",
+      "The estimated EUR 25–40 normal-daytime licensed taxi/verified transfer fare covers the documented approximately 12 km route from the stored Cervignano-Aquileia-Grado station origin to Palmanova Designer Village. It excludes the upstream train fare; traffic, supplements, luggage, night, weekend and booking conditions can change the total, so confirm with the licensed provider.",
     confidence: "exact",
     officialProviderUrl:
       "https://www.palmanovadesignervillage.com/en/directions",

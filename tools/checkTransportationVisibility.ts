@@ -278,7 +278,7 @@ const theMallFact = transportationRouteFacts.find(
   (candidate) => candidate.guideId === "the-mall-firenze-florence-direct-bus",
 );
 if (
-  theMallFact?.estimatedFareMin !== 9.5 ||
+  theMallFact?.estimatedFareMin !== 18 ||
   theMallFact.estimatedFareMax !== 18 ||
   theMallFact.currency !== "EUR" ||
   theMallFact.estimatedDurationMin != null ||
@@ -398,9 +398,6 @@ if (/promo code|promo-code|free booking/i.test(scaloText))
   errors.push("scalo-milano-outlet-more: expired promo or free-booking claim remains");
 
 const italyBatchThreeRoutes = [
-  ["valdichiana-village", "valdichiana-village-arezzo-train-bus"],
-  ["franciacorta-designer-village", "brescia-station-to-franciacorta-designer-village-bus"],
-  ["mantova-village", "mantova-station-to-mantova-village-bus"],
   ["vicolungo-the-style-outlets", "milan-to-vicolungo-style-outlets-shuttle"],
   ["castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile"],
   ["puglia-village", "puglia-village-bari-shuttle-guide"],
@@ -465,8 +462,9 @@ const mantovaFact = transportationRouteFacts.find(
 );
 if (
   !mantovaFact?.sourceNote?.includes("10-minute walk") ||
-  !mantovaFact.sourceNote.includes("20-minute 31A bus section") ||
-  !mantovaFact.sourceNote.includes("30-minute combined journey estimate")
+  !mantovaFact.sourceNote.includes("20-minute bus ride") ||
+  mantovaFact.estimatedDurationMin !== 30 ||
+  mantovaFact.estimatedDurationMax !== 30
 )
   errors.push("mantova-village: official walk and bus duration segments are missing");
 const localizedThirtyMinuteDurations = {
@@ -520,9 +518,6 @@ for (const [outletId, guideId] of batchThreeFreeRoutes) {
 for (const [outletId, guideId] of [
   ["vicolungo-the-style-outlets", "milan-to-vicolungo-style-outlets-shuttle"],
   ["sicilia-outlet-village", "sicilia-outlet-village-bus-shuttle-guide"],
-  ["valdichiana-village", "valdichiana-village-arezzo-train-bus"],
-  ["franciacorta-designer-village", "brescia-station-to-franciacorta-designer-village-bus"],
-  ["mantova-village", "mantova-station-to-mantova-village-bus"],
 ] as const) {
   for (const language of supportedLanguageCodes) {
     if (display(outletId, guideId, language)?.estimatedFareLabel)
@@ -888,7 +883,8 @@ for (const language of supportedLanguageCodes) {
     errors.push(`brugnato-5terre-outlet-village/${language}: structured €5 fare is missing`);
 }
 for (const [outletId, guideId] of italyFinalBatchRoutes.filter(
-  ([, guideId]) => guideId !== "brugnato-5terre-outlet-village-shuttle-guide",
+  ([, guideId]) => guideId !== "brugnato-5terre-outlet-village-shuttle-guide" &&
+    guideId !== "cervignano-station-to-palmanova-designer-village-local-transfer",
 )) {
   for (const language of supportedLanguageCodes) {
     if (display(outletId, guideId, language)?.estimatedFareLabel)
@@ -938,47 +934,60 @@ if (italyOutletsWithoutSourceBackedRoutes.length)
     `Italy: active outlets without source-backed routes: ${italyOutletsWithoutSourceBackedRoutes.join(", ")}`,
   );
 
-for (const [outletId, guideId, expectedFare] of [
-  ["castel-romano", "castel-romano-termini-shuttle", "€18"],
-  ["castel-romano", "castel-romano-eur-fermi-shuttle", "€13"],
-  ["fidenza-village", "fidenza-milan-shopping-express", "€10"],
-  ["la-reggia", "la-reggia-naples-public-transport", "€1.3"],
-] as const) {
-  const option = display(outletId, guideId);
-  if (!option?.estimatedFareLabel?.includes(expectedFare))
-    errors.push(`${guideId}: sourced EUR fare was not preserved`);
+const italyBatchOnePaidFareRoutes = [
+  ["barberino", "barberino-florence-smn-shuttle", 13, 20, ["return", "Florence SMN", "Bologna"]],
+  ["castel-romano", "castel-romano-termini-shuttle", 18, 18, ["adult round-trip", "Roma Termini", "Via Giolitti 48"]],
+  ["fidenza-village", "fidenza-milan-shopping-express", 10, 10, ["paying-adult", "supplementary", "Milan"]],
+  ["la-reggia", "la-reggia-naples-public-transport", 5, 8, ["one-way total", "Napoli Centrale", "Caserta", "Outlet Link", "€1.30", "without double-counting"]],
+  ["noventa", "noventa-venice-atvo-direct-bus", 9.2, 9.2, ["adult return", "Venezia Piazzale Roma", "supplementary"]],
+  ["serravalle-designer-outlet", "serravalle-milan-official-shuttle", 25, 35, ["adult return", "official partner", "Zani Viaggi", "Frigerio Viaggi"]],
+  ["the-mall-firenze", "the-mall-firenze-florence-direct-bus", 18, 18, ["paying-adult", "same-day return", "one-way fare is €9.50"]],
+  ["valdichiana-village", "valdichiana-village-arezzo-train-bus", 3, 6, ["only Tiemme Line LS5", "Arezzo Terminal Tiemme", "walk", "upstream Trenitalia", "excluded"]],
+  ["palmanova-designer-village", "cervignano-station-to-palmanova-designer-village-local-transfer", 25, 40, ["normal-daytime", "12 km", "Cervignano-Aquileia-Grado", "upstream train", "traffic", "supplements", "luggage", "night", "weekend", "booking"]],
+  ["franciacorta-designer-village", "brescia-station-to-franciacorta-designer-village-bus", 3, 5, ["only the SIA/Arriva Line LS029", "Brescia station", "Upstream rail", "walking", "excluded"]],
+  ["mantova-village", "mantova-station-to-mantova-village-bus", 3, 5, ["only APAM Line 31A", "10-minute walk", "20-minute bus", "upstream rail"]],
+] as const;
+const localizedFareApproximation = /Approx\.|Yaklaşık|Aprox\.|Env\.|Ca\.|Примерно|تقريبًا|约/;
+const italyBatchOneExactFareLabels = new Map([
+  ["castel-romano-termini-shuttle", "€18"],
+  ["fidenza-milan-shopping-express", "€10"],
+  ["noventa-venice-atvo-direct-bus", "€9.20"],
+  ["the-mall-firenze-florence-direct-bus", "€18"],
+] as const);
+for (const [outletId, guideId, expectedMin, expectedMax, provenanceClaims] of italyBatchOnePaidFareRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const exactFareLabel = italyBatchOneExactFareLabels.get(guideId as keyof typeof italyBatchOneExactFareLabels);
+  const expectedAccuracy = exactFareLabel ? "exact" : "estimated";
+  if (fact?.estimatedFareMin !== expectedMin || fact?.estimatedFareMax !== expectedMax ||
+      fact?.currency !== "EUR" || fact?.fareAccuracy !== expectedAccuracy || expectedMin <= 0 ||
+      expectedMax < expectedMin || (expectedAccuracy === "exact" && expectedMin !== expectedMax) ||
+      fact.displayFare != null)
+    errors.push(`${guideId}: Italy Batch 1 structured paid fare or accuracy is invalid`);
+  if (!fact?.officialProviderUrl?.startsWith("https://"))
+    errors.push(`${guideId}: Italy Batch 1 HTTPS provenance is missing`);
+  const provenance = JSON.stringify(fact || {});
+  for (const claim of provenanceClaims)
+    if (!provenance.includes(claim)) errors.push(`${guideId}: fare provenance lost ${claim}`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const fare = localized?.estimatedFareLabel || "";
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail || !fare.includes("€") || !/\d/.test(fare))
+      errors.push(`${guideId}/${language}: positive numeric source-backed EUR fare is missing`);
+    if (fare === freeLabels[language] || /(?:parking|child|infant)/i.test(fare))
+      errors.push(`${guideId}/${language}: free component or concession replaced the paid fare`);
+    const hasApproximation = localizedFareApproximation.test(fare);
+    if (expectedAccuracy === "exact") {
+      if (fare !== exactFareLabel || hasApproximation || /[–-]/.test(fare))
+        errors.push(`${guideId}/${language}: exact fare is approximate, ranged, or incorrect`);
+    } else if (!hasApproximation)
+      errors.push(`${guideId}/${language}: localized estimated-fare qualifier is missing`);
+  }
 }
-if (barberinoShuttle?.estimatedFareLabel)
-  errors.push("barberino: an unsupported shuttle fare was generated");
-const laReggiaPublic = display(
-  "la-reggia",
-  "la-reggia-naples-public-transport",
-);
-if (
-  laReggiaPublic?.routeFact?.estimatedFareMin !== 1.3 ||
-  laReggiaPublic?.routeFact?.estimatedFareMax !== 1.3 ||
-  laReggiaPublic?.routeFact?.currency !== "EUR" ||
-  laReggiaPublic?.routeFact?.displayFare != null ||
-  laReggiaPublic?.routeFact?.displayDuration != null ||
-  laReggiaPublic?.routeFact?.suppressDerivedDurationFallback !== true ||
-  laReggiaPublic?.routeFact?.estimatedDurationMin != null ||
-  laReggiaPublic?.routeFact?.estimatedDurationMax != null
-)
-  errors.push("la-reggia: structured bus fare or empty duration provenance is invalid");
-for (const language of supportedLanguageCodes) {
-  const localized = display(
-    "la-reggia",
-    "la-reggia-naples-public-transport",
-    language,
-  );
-  const visible = localized ? visibleText(localized) : "";
-  if (localized?.estimatedDurationLabel)
-    errors.push(`la-reggia/${language}: unsupported duration is visible`);
-  if (/\bVariable\b|bus supplement|selected train fare/i.test(visible))
-    errors.push(`la-reggia/${language}: English fare or duration prose leaked`);
-  if (!localized?.estimatedFareLabel?.includes("€1.3"))
-    errors.push(`la-reggia/${language}: structured €1.30 fare is missing`);
-}
+const laReggiaPublic = display("la-reggia", "la-reggia-naples-public-transport");
+if (laReggiaPublic?.routeFact?.suppressDerivedDurationFallback !== true ||
+    laReggiaPublic.routeFact.estimatedDurationMin != null || laReggiaPublic.routeFact.estimatedDurationMax != null ||
+    laReggiaPublic.estimatedDurationLabel)
+  errors.push("la-reggia: duration suppression was not preserved");
 
 const unflaggedDerivedDuration = display(
   "viaport-asia-outlet-shopping",

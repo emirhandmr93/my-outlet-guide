@@ -1146,11 +1146,13 @@ function formatStructuredFare(
   max: number,
   currency: string | undefined,
   language: TranslationLanguage,
+  fareAccuracy?: TransportationRouteFact["fareAccuracy"],
 ) {
   if (!currency) return undefined;
-  const amount = formatRange(min, max);
+  const exactAmount = Number.isInteger(min) ? `${min}` : min.toFixed(2);
+  const amount = fareAccuracy === "exact" ? exactAmount : formatRange(min, max);
   const value = currency === "EUR" ? `€${amount}` : `${currency} ${amount}`;
-  return `${I18N[language].approx} ${value}`;
+  return fareAccuracy === "exact" ? value : `${I18N[language].approx} ${value}`;
 }
 function localizedWalkNote(
   fact: TransportationRouteFact,
@@ -1520,6 +1522,7 @@ export function getTransportationOptionDisplayModel(
           fact.estimatedFareMax,
           fact.currency,
           language,
+          fact.fareAccuracy,
         )
       : undefined) ||
     formatTransportFareForDisplay(guide.estimatedCost, language);
