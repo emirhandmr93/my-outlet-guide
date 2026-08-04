@@ -230,9 +230,7 @@ const italyBatchTwoRoutes = [
   ["noventa", "noventa-mestre-atvo-direct-bus"],
   ["noventa", "noventa-marco-polo-airport-atvo"],
   ["the-mall-firenze", "the-mall-firenze-florence-direct-bus"],
-  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
   ["scalo-milano-outlet-more", "scalo-milano-train-bus-guide"],
-  ["torino-outlet-village", "torino-outlet-village-public-transport-guide"],
 ] as const;
 for (const [outletId, guideId] of italyBatchTwoRoutes) {
   const fact = transportationRouteFacts.find(
@@ -341,8 +339,8 @@ for (const language of supportedLanguageCodes) {
   const nerviIndex = routeText.indexOf("Nervi");
   if (!(sturaIndex >= 0 && sturaIndex < se1Index && se1Index < nerviIndex))
     errors.push(`torino-outlet-village/${language}: route detail order is invalid`);
-  if (localized.estimatedDurationLabel || localized.estimatedFareLabel)
-    errors.push(`torino-outlet-village/${language}: unsupported duration or fare is visible`);
+  if (localized.estimatedDurationLabel)
+    errors.push(`torino-outlet-village/${language}: unsupported duration is visible`);
 }
 
 const torinoTurkish = display(
@@ -368,9 +366,7 @@ if (torinoTurkish) {
 }
 
 for (const [outletId, guideId] of [
-  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide"],
   ["scalo-milano-outlet-more", "scalo-milano-train-bus-guide"],
-  ["torino-outlet-village", "torino-outlet-village-public-transport-guide"],
 ] as const) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
   if (
@@ -483,46 +479,6 @@ for (const language of supportedLanguageCodes) {
     errors.push(`${mantovaGuideId}/${language}: localized 30-minute duration is invalid`);
   if (localized?.estimatedDurationLabel?.includes("20"))
     errors.push(`${mantovaGuideId}/${language}: bus-only duration is displayed as the total`);
-}
-
-for (const [outletId, guideId] of [
-  ["vicolungo-the-style-outlets", "milan-to-vicolungo-style-outlets-shuttle"],
-  ["puglia-village", "puglia-village-bari-shuttle-guide"],
-  ["sicilia-outlet-village", "sicilia-outlet-village-bus-shuttle-guide"],
-  ["valmontone-outlet", "valmontone-outlet-train-shuttle-guide"],
-] as const) {
-  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
-  if (
-    fact?.suppressDerivedDurationFallback !== true ||
-    fact.displayDuration != null ||
-    fact.estimatedDurationMin != null ||
-    fact.estimatedDurationMax != null
-  )
-    errors.push(`${guideId}: unsupported duration provenance is present`);
-  for (const language of supportedLanguageCodes) {
-    if (display(outletId, guideId, language)?.estimatedDurationLabel)
-      errors.push(`${guideId}/${language}: unsupported duration is visible`);
-  }
-}
-
-const batchThreeFreeRoutes = [
-  ["castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile"],
-  ["puglia-village", "puglia-village-bari-shuttle-guide"],
-] as const;
-for (const [outletId, guideId] of batchThreeFreeRoutes) {
-  for (const language of supportedLanguageCodes) {
-    if (display(outletId, guideId, language)?.estimatedFareLabel !== freeLabels[language])
-      errors.push(`${guideId}/${language}: localized free fare is missing`);
-  }
-}
-for (const [outletId, guideId] of [
-  ["vicolungo-the-style-outlets", "milan-to-vicolungo-style-outlets-shuttle"],
-  ["sicilia-outlet-village", "sicilia-outlet-village-bus-shuttle-guide"],
-] as const) {
-  for (const language of supportedLanguageCodes) {
-    if (display(outletId, guideId, language)?.estimatedFareLabel)
-      errors.push(`${guideId}/${language}: unsupported fare is visible`);
-  }
 }
 
 const valmontoneFact = transportationRouteFacts.find(
@@ -883,8 +839,7 @@ for (const language of supportedLanguageCodes) {
     errors.push(`brugnato-5terre-outlet-village/${language}: structured €5 fare is missing`);
 }
 for (const [outletId, guideId] of italyFinalBatchRoutes.filter(
-  ([, guideId]) => guideId !== "brugnato-5terre-outlet-village-shuttle-guide" &&
-    guideId !== "cervignano-station-to-palmanova-designer-village-local-transfer",
+  ([, guideId]) => guideId === "santangelo-outlet-village-bus-guide",
 )) {
   for (const language of supportedLanguageCodes) {
     if (display(outletId, guideId, language)?.estimatedFareLabel)
@@ -983,6 +938,64 @@ for (const [outletId, guideId, expectedMin, expectedMax, provenanceClaims] of it
       errors.push(`${guideId}/${language}: localized estimated-fare qualifier is missing`);
   }
 }
+const italyBatchTwoFareRoutes = [
+  ["vicolungo-the-style-outlets", "milan-to-vicolungo-style-outlets-shuttle", "estimated", 20, 30],
+  ["castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile", "free", null, null],
+  ["puglia-village", "puglia-village-bari-shuttle-guide", "free", null, null],
+  ["sicilia-outlet-village", "sicilia-outlet-village-bus-shuttle-guide", "estimated", 10, 30],
+  ["scalo-milano-outlet-more", "scalo-milano-shuttle-guide", "estimated", 5, 10],
+  ["torino-outlet-village", "torino-outlet-village-public-transport-guide", "estimated", 3, 6],
+  ["mondovicino-outlet-village", "mondovicino-outlet-village-train-bus-guide", "estimated", 2, 3],
+  ["brugnato-5terre-outlet-village", "brugnato-5terre-outlet-village-shuttle-guide", "exact", 5, 5],
+  ["valmontone-outlet", "valmontone-outlet-train-shuttle-guide", "exact", 1.5, 1.5],
+  ["cilento-outlet-village", "cilento-outlet-village-train-guide", "estimated", 25, 40],
+  ["santangelo-outlet-village", "santangelo-outlet-village-train-guide", "estimated", 20, 35],
+] as const;
+const italyBatchTwoExactLabels = new Map([
+  ["brugnato-5terre-outlet-village-shuttle-guide", "€5"],
+  ["valmontone-outlet-train-shuttle-guide", "€1.50"],
+] as const);
+const italyBatchTwoProvenance: Record<string, string[]> = {
+  "milan-to-vicolungo-style-outlets-shuttle": ["paying-adult return", "Milano Centrale", "promotions", "train", "taxi", "private-transfer", "car costs"],
+  "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile": ["Castel San Pietro Terme FS", "upstream rail", "excluded"],
+  "puglia-village-bari-shuttle-guide": ["selected Bari pickup point", "local travel", "excluded"],
+  "sicilia-outlet-village-bus-shuttle-guide": ["adult one-way", "selected departure location and operator", "taxi", "private-car", "excluded"],
+  "scalo-milano-shuttle-guide": ["paying-adult return", "three stored Milan stops", "expired promotional free bookings", "discount campaigns"],
+  "torino-outlet-village-public-transport-guide": ["adult one-way total", "Torino Stura", "GTT SE1 or SE2", "double-counting", "high-speed", "final walk"],
+  "mondovicino-outlet-village-train-bus-guide": ["adult one-way", "Mondovì FS", "Upstream rail", "pedestrian connection", "excluded"],
+  "brugnato-5terre-outlet-village-shuttle-guide": ["€5 per person", "cash at departure", "reservation required"],
+  "valmontone-outlet-train-shuttle-guide": ["€1.50 paying-passenger", "Valmontone FS", "upstream Trenitalia rail", "excluded"],
+  "cilento-outlet-village-train-guide": ["normal-daytime", "10 km", "Battipaglia FS", "Upstream rail", "free parking", "traffic", "supplements", "luggage", "night", "weekend", "booking"],
+  "santangelo-outlet-village-train-guide": ["normal-daytime", "15-minute", "Pescara Centrale", "Upstream rail", "free parking", "traffic", "supplements", "luggage", "night", "weekend", "booking"],
+};
+for (const [outletId, guideId, classification, expectedMin, expectedMax] of italyBatchTwoFareRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  if (!fact || !guide) { errors.push(`${guideId}: Italy Batch 2 route is missing`); continue; }
+  const numericFarePresent = fact.estimatedFareMin != null || fact.estimatedFareMax != null;
+  if (!fact.officialProviderUrl?.startsWith("https://") || !fact.sourceNote) errors.push(`${guideId}: HTTPS fare provenance is missing`);
+  if (classification === "free") {
+    if (numericFarePresent || fact.currency != null || fact.fareAccuracy != null || !isExplicitFreeTransportFare(guide.estimatedCost)) errors.push(`${guideId}: structured Free status is invalid`);
+  } else if (fact.estimatedFareMin !== expectedMin || fact.estimatedFareMax !== expectedMax || fact.currency !== "EUR" || fact.fareAccuracy !== classification || expectedMin == null || expectedMax == null || expectedMin <= 0 || expectedMax < expectedMin || (classification === "exact" && expectedMin !== expectedMax) || fact.displayFare != null) errors.push(`${guideId}: structured paid fare is invalid`);
+  const provenance = JSON.stringify(fact);
+  for (const claim of italyBatchTwoProvenance[guideId]) if (!provenance.includes(claim)) errors.push(`${guideId}: fare provenance lost ${claim}`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const fare = localized?.estimatedFareLabel || "";
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail || !fare) errors.push(`${guideId}/${language}: source-backed fare is missing`);
+    if (classification === "free") {
+      if (fare !== freeLabels[language] || /\d|€|EUR/.test(fare)) errors.push(`${guideId}/${language}: localized structured Free fare is invalid`);
+      continue;
+    }
+    if (!/\d/.test(fare) || !fare.includes("€") || fare === freeLabels[language] || fare === fact.provider || fare === fact.operator || /(?:parking|child|infant)/i.test(fare)) errors.push(`${guideId}/${language}: positive adult EUR fare is invalid`);
+    const hasApproximation = localizedFareApproximation.test(fare);
+    if (classification === "exact") {
+      const exactLabel = italyBatchTwoExactLabels.get(guideId as keyof typeof italyBatchTwoExactLabels);
+      if (fare !== exactLabel || hasApproximation || /[–-]/.test(fare)) errors.push(`${guideId}/${language}: exact fare is approximate, ranged, or imprecise`);
+    } else if (!hasApproximation) errors.push(`${guideId}/${language}: estimated fare lacks a localized qualifier`);
+  }
+}
+
 const laReggiaPublic = display("la-reggia", "la-reggia-naples-public-transport");
 if (laReggiaPublic?.routeFact?.suppressDerivedDurationFallback !== true ||
     laReggiaPublic.routeFact.estimatedDurationMin != null || laReggiaPublic.routeFact.estimatedDurationMax != null ||

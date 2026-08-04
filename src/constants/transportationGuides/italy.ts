@@ -796,7 +796,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Milan to Vicolungo The Style Outlets by Shuttle Bus",
     estimatedDuration: "",
-    estimatedCost: "Check current official fare and booking terms",
+    estimatedCost: "Approx. €20–30 paying-adult return; check current official booking total",
     recommended: true,
     steps: [
       { order: 1, description: "Open Vicolungo The Style Outlets' official Shuttle Service page and confirm the current Milan operating days, reservation rules, fare and return time." },
@@ -958,7 +958,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Sicily Destinations to Sicilia Outlet Village by Bus or Shuttle",
     estimatedDuration: "",
-    estimatedCost: "Check the selected official route fare",
+    estimatedCost: "Approx. €10–30 adult one way; varies by departure and operator",
     recommended: true,
     steps: [
       { order: 1, description: "Use Sicilia Outlet Village's official bus links and check Interbus or Sais Autolinee for the current route, stop, and timetable." },
@@ -994,7 +994,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Milan to Scalo Milano by Official Shuttle Bus",
     estimatedDuration: "",
-    estimatedCost: "Check current official booking terms",
+    estimatedCost: "Approx. €5–10 paying-adult return; check current official booking total",
     recommended: true,
     steps: [
       { order: 1, description: "Check Scalo Milano's official shuttle information and linked booking channel for the current schedule and booking terms." },
@@ -1048,7 +1048,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Turin to Torino Outlet Village by Tram, Train, and GTT Bus",
     estimatedDuration: "",
-    estimatedCost: "Check official Trenitalia/Italo/SFM and GTT fares",
+    estimatedCost: "Approx. €3–6 adult one-way local transport total",
     recommended: true,
     steps: [
       { order: 1, description: "For the tram route, take Tram 4 toward Falchera to Stura Station, then GTT bus SE1 or SE2 from the terminus by the Stura GTT multi-storey car park to Nervi." },
@@ -1084,7 +1084,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Mondovì FS to Mondovicino Outlet Village by Urban Circular Bus",
     estimatedDuration: "",
-    estimatedCost: "Check the current urban bus fare",
+    estimatedCost: "Approx. €2–3 adult one-way urban bus fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current weekday or holiday urban circular timetable linked by Mondovicino." },
@@ -1176,7 +1176,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Valmontone Station to Valmontone Outlet by Official Shuttle",
     estimatedDuration: "",
-    estimatedCost: "€1.50 shuttle; selected train fare additional",
+    estimatedCost: "€1.50 outlet shuttle from Valmontone station; upstream train excluded",
     recommended: true,
     steps: [
       { order: 1, description: "Use Trenitalia to plan a rail journey to Valmontone station and check Valmontone Outlet's official Link information before travel." },
@@ -1194,7 +1194,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Battipaglia FS to Cilento Outlet by Taxi",
     estimatedDuration: "",
-    estimatedCost: "Confirm licensed taxi or pickup fare",
+    estimatedCost: "Approx. €25–40 daytime taxi from Battipaglia FS; upstream train excluded",
     recommended: true,
     steps: [
       { order: 1, description: "Travel by train to Battipaglia FS." },
@@ -1212,7 +1212,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Pescara Centrale to Santangelo Outlet Village by Taxi",
     estimatedDuration: "15 min",
-    estimatedCost: "Confirm licensed taxi or transfer fare",
+    estimatedCost: "Approx. €20–35 daytime taxi from Pescara Centrale; upstream train excluded",
     recommended: true,
     steps: [
       { order: 1, description: "Use Trenitalia to plan a rail journey to Pescara Centrale, the station listed by Santangelo Outlet Village." },
