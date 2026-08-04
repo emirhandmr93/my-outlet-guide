@@ -1293,16 +1293,42 @@ const germanyExactDurations = new Map([
 const germanyFreeRoutes = new Set([
   "berlin-city-center-to-designer-outlet-berlin", "halle-leipzig-style-outlets-saturday-shuttle",
 ]);
+const germanyApproximationPrefixes: Record<(typeof supportedLanguageCodes)[number], string> = {
+  en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ru: "Примерно", ar: "تقريبًا", zh: "约",
+};
 for (const [outletId, guideId] of germanyCompletionRoutes) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
   const exactDuration = germanyExactDurations.get(guideId);
+  const isFreeRoute = germanyFreeRoutes.has(guideId);
+  const hasAnyNumericFare = fact?.estimatedFareMin != null || fact?.estimatedFareMax != null;
   if (germanySuppressedDurationRoutes.has(guideId) && (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null)) errors.push(`${guideId}: unsupported duration provenance is present`);
   if (exactDuration != null && (fact?.estimatedDurationMin !== exactDuration || fact.estimatedDurationMax !== exactDuration)) errors.push(`${guideId}: exact duration provenance is invalid`);
+  if (isFreeRoute) {
+    if (hasAnyNumericFare || fact?.currency != null || fact?.displayFare != null || !guide || !isExplicitFreeTransportFare(guide.estimatedCost))
+      errors.push(`${guideId}: structured free fare status is invalid`);
+  } else {
+    if (!fact || fact.estimatedFareMin == null || fact.estimatedFareMax == null || fact.estimatedFareMin <= 0 || fact.estimatedFareMax < fact.estimatedFareMin || fact.currency !== "EUR" || fact.displayFare != null)
+      errors.push(`${guideId}: structured paid fare is invalid`);
+    if (!guide || !/\d/.test(guide.estimatedCost) || !/[€]|EUR/i.test(guide.estimatedCost) || !/(?:estimated|approx|≈)/i.test(guide.estimatedCost) ||
+      fact?.estimatedFareMin == null || fact.estimatedFareMax == null || !guide.estimatedCost.includes(String(fact.estimatedFareMin)) || !guide.estimatedCost.includes(String(fact.estimatedFareMax)))
+      errors.push(`${guideId}: guide fare does not mirror the practical structured estimate`);
+    if (/promotion|promo(?!tion)/i.test(guide?.estimatedCost ?? "") || /(?:€|EUR)\s*0(?:[.,]0+)?\s*[–-]\s*(?:€|EUR)?\s*0(?:[.,]0+)?/i.test(guide?.estimatedCost ?? ""))
+      errors.push(`${guideId}: obsolete promotion or fake zero range is present`);
+  }
   for (const language of supportedLanguageCodes) {
     const localized = display(outletId, guideId, language);
     if (germanySuppressedDurationRoutes.has(guideId) && localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
     const fare = localized?.estimatedFareLabel ?? "";
-    if (germanyFreeRoutes.has(guideId) ? fare !== freeLabels[language] : Boolean(fare)) errors.push(`${guideId}/${language}: localized fare provenance is invalid`);
+    if (isFreeRoute) {
+      if (fare !== freeLabels[language] || /\d/.test(fare) || fare === "Free" && language !== "en")
+        errors.push(`${guideId}/${language}: localized structured Free fare is invalid`);
+    } else {
+      if (!fare || !/\d/.test(fare) || !fare.includes("€") || !fare.startsWith(germanyApproximationPrefixes[language]))
+        errors.push(`${guideId}/${language}: numeric estimated EUR fare is missing or unqualified`);
+      if (/^(?:check|confirm)(?:\s+the)?\s+(?:current|official)?/i.test(fare) || fare === fact?.provider || fare === fact?.operator)
+        errors.push(`${guideId}/${language}: fare is only guidance or an operator name`);
+    }
   }
 }
 const activeGermanyOutlets = activeOutlets.filter((outlet) => outlet.countryId === "germany");
