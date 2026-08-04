@@ -9,7 +9,7 @@ export const hungaryTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Central Budapest to Premier Outlet via Kelenföld",
     estimatedDuration: "About 20 minutes for the Kelenföld-to-outlet bus segment",
-    estimatedCost: "HUF 900",
+    estimatedCost: "Approx. HUF 1,000–1,250",
     recommended: true,
     steps: [
       { order: 1, description: "From Kálvin tér in central Budapest, take BKK Metro M4 to Budapest-Kelenföld." },

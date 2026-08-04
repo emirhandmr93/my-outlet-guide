@@ -9,7 +9,7 @@ export const romaniaTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Bucharest City Center to Fashion House Outlet Centre Bucharest by Car or Taxi",
     estimatedDuration: "",
-    estimatedCost: "Approx. RON 55–90",
+    estimatedCost: "Approx. RON 55–74",
     recommended: true,
     steps: [
       { order: 1, description: "Board a licensed taxi at Piața Unirii and set the destination to Fashion House Outlet Centre Bucharest, Strada Comerțului 7-13, Domnești, Ilfov." },
@@ -83,7 +83,7 @@ export const romaniaTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Central Bucharest to Fashion House Outlet Centre Pallady by Licensed Taxi",
     estimatedDuration: "",
-    estimatedCost: "Approx. RON 65–110",
+    estimatedCost: "Approx. RON 70–96",
     recommended: true,
     steps: [
       { order: 1, description: "Board a licensed taxi at Piața Unirii and set the destination to Fashion House Outlet Centre Pallady, Intrarea pe A2, km 15, Cernica, Ilfov." },
