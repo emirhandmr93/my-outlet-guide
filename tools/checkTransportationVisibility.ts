@@ -15,6 +15,7 @@ import {
   hasSafeFareProvenance,
   hasSourceBackedShuttleRouteDetail,
   isDrivingParkingOnlyGuide,
+  isExplicitFreeTransportFare,
   isSafeEstimateOnlyShuttleOption,
   selectTransportationOptions,
   type TransportationV2Option,
@@ -696,14 +697,6 @@ for (const [outletId, guideId] of [
     if (display(outletId, guideId, language)?.estimatedFareLabel !== freeLabels[language])
       errors.push(`${guideId}/${language}: localized free fare is missing`);
 }
-for (const [outletId, guideId] of franceCompletionRoutes.filter(([, guideId]) =>
-  !["la-verpilliere-to-the-village-outlet-walk", "strasbourg-to-roppenheim-official-shuttle"].includes(guideId),
-)) {
-  for (const language of supportedLanguageCodes)
-    if (display(outletId, guideId, language)?.estimatedFareLabel)
-      errors.push(`${guideId}/${language}: unsupported fare is visible`);
-}
-
 const oneNationFact = transportationRouteFacts.find((fact) => fact.guideId === "paris-montparnasse-to-one-nation-paris-train-bus");
 if (oneNationFact?.transferPoints != null)
   errors.push("one-nation-paris: transferPoints must not be used");
@@ -1490,7 +1483,7 @@ for (const [outletId, guideId, boardingPoint, lineValue, visibleValues] of nethe
     const transferLabel = transferReference ? getTransportationRouteDetailRows(transferReference, language).find((row) => row.value === "TPER Martiri Partigiani")?.label : undefined;
     if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source" || !visibleText(localized).trim() || !rows.length) errors.push(`${guideId}/${language}: source-backed display or warning gating is invalid`);
     if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
-    if (localized?.estimatedDurationLabel || localized?.estimatedFareLabel) errors.push(`${guideId}/${language}: unsupported duration or fare is visible`);
+    if (localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
     for (const value of visibleValues) if (rows.filter((row) => row.value === value).length !== 1) errors.push(`${guideId}/${language}: ${value} is not visible exactly once`);
     const matchingLineRows = rows.filter((row) => row.value === lineValue);
     if (!lineLabel || matchingLineRows.length !== 1 || matchingLineRows[0]?.label !== lineLabel) errors.push(`${guideId}/${language}: localized Line row is invalid`);
@@ -1523,6 +1516,56 @@ const sourceBackedAndUrlNetherlandsOutlets = activeNetherlandsOutlets.filter((ou
 const netherlandsOutletsWithoutSourceBackedRoutes = activeNetherlandsOutlets.filter((outlet) => !sourceBackedNetherlandsOutlets.includes(outlet)).map((outlet) => outlet.outletId);
 const netherlandsOutletsWithoutSourceBackedUrls = activeNetherlandsOutlets.filter((outlet) => !sourceBackedAndUrlNetherlandsOutlets.includes(outlet)).map((outlet) => outlet.outletId);
 if (netherlandsOutletsWithoutSourceBackedRoutes.length || netherlandsOutletsWithoutSourceBackedUrls.length) errors.push(`Netherlands completion is invalid: ${netherlandsOutletsWithoutSourceBackedRoutes.join(", ")} / ${netherlandsOutletsWithoutSourceBackedUrls.join(", ")}`);
+
+const franceNetherlandsFareRoutes = [
+  ["la-vallee-village", "paris-to-la-vallee-rer-a", "paid"],
+  ["designer-outlet-provence", "marseille-to-provence-train-bus", "paid"],
+  ["designer-outlet-troyes", "troyes-station-to-designer-outlet-troyes-bus", "paid"],
+  ["the-village-outlet", "la-verpilliere-to-the-village-outlet-walk", "free"],
+  ["roubaix-designer-outlet", "lille-to-roubaix-designer-outlet-public-transport", "paid"],
+  ["roppenheim-the-style-outlets", "strasbourg-to-roppenheim-official-shuttle", "free"],
+  ["paris-giverny-designer-outlet", "paris-to-paris-giverny-designer-outlet-shuttle", "paid"],
+  ["one-nation-paris", "paris-montparnasse-to-one-nation-paris-train-bus", "paid"],
+  ["designer-outlet-roermond", "amsterdam-to-roermond-train", "paid"],
+  ["designer-outlet-roosendaal", "rotterdam-to-roosendaal-train-bus", "paid"],
+  ["amsterdam-the-style-outlets", "amsterdam-centraal-to-amsterdam-style-outlets-train-walk", "paid"],
+  ["batavia-stad-fashion-outlet", "amsterdam-to-batavia-stad-train-bus", "paid"],
+] as const;
+const localizedApproximationPrefixes: Record<(typeof supportedLanguageCodes)[number], string> = {
+  en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ru: "Примерно", ar: "تقريبًا", zh: "约",
+};
+for (const [outletId, guideId, fareType] of franceNetherlandsFareRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  if (!fact || !guide) {
+    errors.push(`${guideId}: fare route fact or guide is missing`);
+    continue;
+  }
+  const hasNumericFare = fact.estimatedFareMin != null || fact.estimatedFareMax != null;
+  if (fareType === "free") {
+    if (hasNumericFare || fact.currency != null || !isExplicitFreeTransportFare(guide.estimatedCost))
+      errors.push(`${guideId}: structured free fare status is invalid`);
+  } else if (
+    fact.estimatedFareMin == null || fact.estimatedFareMax == null ||
+    fact.estimatedFareMin <= 0 || fact.estimatedFareMax < fact.estimatedFareMin || !fact.currency
+  ) {
+    errors.push(`${guideId}: structured paid fare is invalid`);
+  }
+  for (const language of supportedLanguageCodes) {
+    const fare = display(outletId, guideId, language)?.estimatedFareLabel ?? "";
+    if (fareType === "free") {
+      if (fare !== freeLabels[language]) errors.push(`${guideId}/${language}: localized structured Free fare is invalid`);
+      if (/\d/.test(fare)) errors.push(`${guideId}/${language}: free fare must not expose a paid amount`);
+      continue;
+    }
+    if (!fare || !/\d/.test(fare) || !fare.includes("€"))
+      errors.push(`${guideId}/${language}: numeric EUR fare is missing`);
+    if (!fare.startsWith(localizedApproximationPrefixes[language]))
+      errors.push(`${guideId}/${language}: estimated fare qualifier is missing`);
+    if (/^(?:Check current fare|Check official timetable|Current prices apply)$/i.test(fare) || fare === fact.provider || fare === fact.operator)
+      errors.push(`${guideId}/${language}: fare is non-numeric guidance or a provider name`);
+  }
+}
 
 const westernEuropeCompletionRoutes = [
   ["belgium", "maasmechelen-village", "brussels-to-maasmechelen-train-bus", "train", ["NMBS/SNCB / De Lijn", "Brussels → Genk", "Brussels", "Genk", "45 → Maasmechelen Village", "Maasmechelen Village"]],

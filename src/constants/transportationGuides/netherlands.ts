@@ -9,7 +9,7 @@ export const netherlandsTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Amsterdam to Designer Outlet Roermond via Roermond",
     estimatedDuration: "",
-    estimatedCost: "Check current NS fare",
+    estimatedCost: "Estimated €25–35; check the current NS fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Amsterdam Centraal–Roermond connection with NS." },
@@ -65,7 +65,7 @@ export const netherlandsTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Rotterdam to Designer Outlet Roosendaal via Roosendaal",
     estimatedDuration: "",
-    estimatedCost: "Check current NS and Bravo fares",
+    estimatedCost: "Estimated €15–20 total; check current NS and Bravo fares",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Rotterdam Centraal–Roosendaal train with NS." },
@@ -104,7 +104,7 @@ export const netherlandsTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Amsterdam Centraal to Amsterdam The Style Outlets via Halfweg-Zwanenburg",
     estimatedDuration: "",
-    estimatedCost: "Check current NS fare",
+    estimatedCost: "Estimated €4–6; check the current NS fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Amsterdam Centraal–Halfweg-Zwanenburg train." },
@@ -159,7 +159,7 @@ export const netherlandsTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Amsterdam to Batavia Stad via Lelystad Centrum",
     estimatedDuration: "",
-    estimatedCost: "Check current NS and RRReis fares",
+    estimatedCost: "Estimated €15–20 total; check current NS and RRReis fares",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Amsterdam Centraal–Lelystad Centrum train with NS." },
