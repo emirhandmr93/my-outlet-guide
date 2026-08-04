@@ -27,8 +27,8 @@ export const croatiaTransportationGuides: TransportationGuide[] = [
     originId: "zagreb-main-square",
     transportationType: "taxi",
     title: "Zagreb Centre to Roses Designer Outlet by Licensed Taxi",
-    estimatedDuration: "Check current traffic",
-    estimatedCost: "EUR 45-75",
+    estimatedDuration: "",
+    estimatedCost: "Approx. EUR 55–75",
     recommended: true,
     steps: [
       { order: 1, description: "Board a licensed taxi or pre-booked private-hire vehicle at Ban Jelačić Square and confirm the metered or quoted fare." },

@@ -2021,7 +2021,7 @@ const centralSoutheastRoutes = [
   ["czech-republic", "fashion-arena-prague-outlet", "prague-centre-to-fashion-arena-metro-shuttle"],
   ["croatia", "ros-designer-outlet", "zagreb-centre-to-roses-designer-outlet-taxi"],
   ["hungary", "premier-outlet-budapest", "budapest-kelenfold-to-premier-outlet-bus"],
-  ["greece", "designer-outlet-athens", "designer-outlet-athens-city-center-car"],
+  ["greece", "designer-outlet-athens", "designer-outlet-athens-metro-bus"],
   ["romania", "fashion-house-outlet-centre-bucharest", "bucharest-center-to-fashion-house-militari-car"],
   ["romania", "fashion-house-outlet-centre-pallady", "bucharest-centre-to-fashion-house-pallady-licensed-taxi"],
 ] as const;
@@ -2049,7 +2049,17 @@ for (const [countryId, outletId, guideId] of centralSoutheastRoutes) {
     const localized = getTransportationOptionDisplayModel(runtime!, language);
     const fare = localized.estimatedFareLabel ?? "";
     const qualifier = ({ en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ar: "تقريبًا", ru: "Примерно", zh: "约" } as const)[language];
-    if (!localized.routeDetails.hasSourceBackedRouteDetail || !fare.startsWith(qualifier) || (localized.estimatedDurationLabel && guideId !== "budapest-kelenfold-to-premier-outlet-bus")) errors.push(`${guideId}/${language}: localized source, estimated fare, or duration safety failed`);
+    const approximationIsCorrect = fact?.fareAccuracy === "estimated" ? fare.startsWith(qualifier) : !fare.startsWith(qualifier);
+    if (!localized.routeDetails.hasSourceBackedRouteDetail || !approximationIsCorrect || (localized.estimatedDurationLabel && guideId !== "budapest-kelenfold-to-premier-outlet-bus")) errors.push(`${guideId}/${language}: localized source, fare classification, or duration safety failed`);
+  }
+  if (guideId === "prague-centre-to-fashion-arena-metro-shuttle" && (!fact?.operator?.includes("Vega Tour") || fact.line !== "Metro A → Bus 238 toward Fashion Arena Štěrboholy" || /Plynárna Satalice/i.test(JSON.stringify(fact)) || fact.estimatedFareMin !== 46 || fact.estimatedFareMax !== 50 || fact.fareAccuracy !== "estimated" || matchingGuides[0]?.estimatedDuration !== "")) errors.push(`${guideId}: Bus 238 operator, direction, 2026 fare, or duration is invalid`);
+  if (guideId === "designer-outlet-athens-metro-bus") {
+    const taxi = guides.find((guide) => guide.guideId === "designer-outlet-athens-city-center-car");
+    if (fact?.mode !== "metro" || matchingGuides[0]?.originType !== "city_center" || fact.line !== "Metro Line 3 → Bus 319" || fact.transferPoints?.join() !== "Doukissis Plakentias" || fact.alightingPoint !== "Εκπτωτικό Χωριό" || fact.estimatedFareMin !== 1.2 || fact.estimatedFareMax !== 2.4 || fact.fareAccuracy !== "estimated" || taxi?.recommended) errors.push(`${guideId}: official Line 3/319 route, stop, fare policy, or taxi demotion is invalid`);
+  }
+  if (guideId === "budapest-kelenfold-to-premier-outlet-bus" && (fact?.boardingPoint !== "Kálvin tér" || !fact.line?.includes("M4") || fact.transferPoints?.join() !== "Budapest-Kelenföld" || !/760.*762.*767/.test(fact.line ?? "") || fact.alightingPoint !== "Biatorbágy, Premier Outlet" || fact.estimatedFareMin !== 900 || fact.estimatedFareMax !== 900 || fact.fareAccuracy !== "exact" || /700|1,?200/.test(`${matchingGuides[0]?.estimatedCost} ${fact.sourceNote}`))) errors.push(`${guideId}: route or current HUF 900 fare components are invalid`);
+  if (["zagreb-centre-to-roses-designer-outlet-taxi", "bucharest-center-to-fashion-house-militari-car", "bucharest-centre-to-fashion-house-pallady-licensed-taxi"].includes(guideId)) {
+    if (matchingGuides[0]?.estimatedDuration !== "" || !/\b\d+(?:\.\d+)?\s*km\b/i.test(fact?.sourceNote ?? "") || !/(?:tariff|quote)/i.test(fact?.sourceNote ?? "") || !/toll/i.test(fact?.sourceNote ?? "") || !/minimum/i.test(fact?.sourceNote ?? "") || !/maximum|upper endpoint/i.test(fact?.sourceNote ?? "") || !/traffic.*waiting.*night.*weekend.*booking.*luggage/i.test(fact?.sourceNote ?? "") || !/parking is excluded/i.test(fact?.sourceNote ?? "")) errors.push(`${guideId}: measurable taxi distance, tariff/quote basis, range meaning, exclusions, or duration suppression is missing`);
   }
 }
 for (const countryId of ["czech-republic", "croatia", "hungary", "greece", "romania"] as const) {
