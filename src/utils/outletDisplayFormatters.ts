@@ -1,4 +1,4 @@
-import type { TranslationLanguage } from "../translations/translations";
+import { translations, type TranslationLanguage } from "../translations/translations";
 
 export function formatOutletStatusLabel(status: string, t: (key: string) => string) {
   const normalized = status.trim().toLowerCase();
@@ -140,8 +140,11 @@ export function formatOutletRetailCountCompactText(
 }
 
 export function formatOpeningHoursText(value: string, language: TranslationLanguage): string {
-  if (language !== "tr") return value;
-  return value
+  const caveat = "Ramadan and festive-season hours may vary; contact the mall for current timings.";
+  const localizedCaveat = translations[language]["outlet.openingHours.caveat.ramadanFestive"] || caveat;
+  const withLocalizedCaveat = value.replace(caveat, localizedCaveat);
+  if (language !== "tr") return withLocalizedCaveat;
+  return withLocalizedCaveat
     .replace(/Generally/gi, "Genellikle")
     .replace(/summer special openings may extend to (\d{1,2}:\d{2})/gi, "yaz dönemindeki özel açılışlarda $1'e kadar uzayabilir")
     .replace(/Thursday until (\d{1,2}:\d{2}) and selected summer dates until (\d{1,2}:\d{2})/gi, "Perşembe $1'e kadar, seçili yaz günlerinde $2'ye kadar")

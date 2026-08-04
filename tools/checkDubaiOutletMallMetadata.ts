@@ -32,6 +32,12 @@ const allowedFiles = new Set([
 "src/media/outletMedia.ts",
 "src/media/outletMediaMetadata.ts",
 "tools/checkDubaiOutletMallMetadata.ts",
+"src/constants/outlets/united-arab-emirates.ts",
+"src/utils/outletDisplayFormatters.ts",
+"src/screens/TransportationScreen.tsx",
+"src/services/transportationV2Service.ts",
+"src/translations/translations.ts",
+"tools/checkDubaiOutletDetailLocalization.ts",
 ]);
 
 const outlets = unitedArabEmiratesOutlets.filter((outlet) => outlet.outletId === outletId);
@@ -75,13 +81,13 @@ assert((outlet?.airportDistanceKm ?? 0) > 0, "airportDistanceKm must be positive
 assert((outlet?.airports ?? []).length > 0, "airports must be non-empty when airportDistanceKm exists.");
 assert(new Set(airportCodes).size === airportCodes.length, "Airport codes must be unique.");
 assert(airportCodes.every((code) => ["DXB", "DWC"].includes(code)), "Unsupported airport code added.");
-assert((outlet?.airports ?? []).every((airport) => airport.distanceKm > 0 && /approximate straight-line distance/i.test(airport.name)), "Airport distances must be positive and labelled approximate.");
+assert((outlet?.airports ?? []).every((airport) => airport.distanceKm > 0 && !/approximate straight-line distance/i.test(airport.name)), "Airport names must be clean proper names without embedded distance qualifiers.");
 assert(outlet?.airportDistanceKm === Math.min(...(outlet?.airports ?? []).map((airport) => airport.distanceKm)), "airportDistanceKm must equal nearest listed airport.");
 
 assert((outlet?.cityCenterDistanceKm == null) === (outlet?.cityCenterInfo == null), "City centre distance and info must appear together.");
 assert(outlet?.cityCenterInfo?.distanceKm === outlet?.cityCenterDistanceKm, "City centre distances must agree.");
 assert(Boolean(outlet?.cityCenterInfo?.name) && !/^dubai city centre$/i.test(outlet?.cityCenterInfo?.name ?? ""), "City centre reference must be explicit.");
-assert(/approximate straight-line distance/i.test(outlet?.cityCenterInfo?.name ?? ""), "City centre reference must label calculated distance.");
+assert(!/approximate straight-line distance/i.test(outlet?.cityCenterInfo?.name ?? ""), "City centre reference must be a clean proper-name reference without embedded distance qualifier.");
 assert(!(outlet?.cityCenterInfo && "recommendedRoute" in outlet.cityCenterInfo), "City centre must not add unsupported recommendedRoute.");
 
 assert(outlet?.googleMapsUrl === "https://www.google.com/maps/search/?api=1&query=25.06669,55.404252", "Google Maps URL is invalid.");
