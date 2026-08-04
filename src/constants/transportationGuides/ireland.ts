@@ -8,8 +8,8 @@ export const irelandTransportationGuides: TransportationGuide[] = [
     originId: "dublin-city-center",
     transportationType: "train",
     title: "Dublin Heuston to Kildare Village by Irish Rail and Complimentary Shuttle",
-    estimatedDuration: "35 min train from Dublin Heuston plus short complimentary shuttle",
-    estimatedCost: "Check official Irish Rail fare; Village station shuttle is complimentary",
+    estimatedDuration: "35 min rail segment",
+    estimatedCost: "Approx. €10–20",
     recommended: true,
     steps: [
       { order: 1, description: "Check the official Kildare Village train guidance and Irish Rail timetable for Dublin Heuston to Kildare on your shopping date." },

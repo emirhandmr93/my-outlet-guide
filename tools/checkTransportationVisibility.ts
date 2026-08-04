@@ -1960,6 +1960,52 @@ const fareAccuracyCompletePolandPrimaries = fareUsablePolandPrimaries.filter((op
 const expectedPolandOutletCount = polandCompletionRoutes.length;
 if (activePolandOutlets.length !== expectedPolandOutletCount || runtimePolandPrimaries.length !== expectedPolandOutletCount || sourceBackedPolandPrimaries.length !== expectedPolandOutletCount || sourceBackedHttpsPolandPrimaries.length !== expectedPolandOutletCount || fareUsablePolandPrimaries.length !== expectedPolandOutletCount || fareAccuracyCompletePolandPrimaries.length !== expectedPolandOutletCount) errors.push(`Poland completion is invalid: ${activePolandOutlets.length}/${runtimePolandPrimaries.length}/${sourceBackedPolandPrimaries.length}/${sourceBackedHttpsPolandPrimaries.length}/${fareUsablePolandPrimaries.length}/${fareAccuracyCompletePolandPrimaries.length}`);
 
+const northernEuropeBalticsIrelandRoutes = [
+  ["denmark", "ringsted-outlet", "copenhagen-to-ringsted-outlet-train-bus", "DKK"],
+  ["finland", "ideapark-lempaala-outlet", "tampere-to-ideapark-lempaala-outlet-bus", "EUR"],
+  ["sweden", "hede-fashion-outlet", "gothenburg-to-hede-fashion-outlet-train-walk", "SEK"],
+  ["norway", "norwegian-outlet", "oslo-to-norwegian-outlet-train-bus", "NOK"],
+  ["estonia", "t1-tallinn-outlet", "tallinn-center-to-t1-outlet-tram", "EUR"],
+  ["latvia", "via-jurmala-outlet-village", "riga-to-via-jurmala-outlet-village-bus", "EUR"],
+  ["lithuania", "outlet-park-vilnius", "vilnius-center-to-outlet-park-vilnius-bus", "EUR"],
+  ["ireland", "kildare-village", "kildare-village-dublin-heuston-train-shuttle", "EUR"],
+] as const;
+const northernEuropeBalticsIrelandCompletion: string[] = [];
+for (const [countryId, outletId, guideId, currency] of northernEuropeBalticsIrelandRoutes) {
+  const countryActive = activeOutlets.filter((outlet) => outlet.countryId === countryId);
+  const outletGuides = transportationGuides.filter((guide) => guide.outletId === outletId);
+  const recommendedGuides = outletGuides.filter((guide) => guide.recommended);
+  const facts = transportationRouteFacts.filter((fact) => fact.guideId === guideId && fact.outletId === outletId);
+  const fact = facts[0];
+  const guide = outletGuides.find((candidate) => candidate.guideId === guideId);
+  const runtime = getRecommendedTransportationV2Option(outletId);
+  const sourceBacked = runtime ? getTransportationOptionDisplayModel(runtime, "en").routeDetails.hasSourceBackedRouteDetail : false;
+  const httpsBacked = Boolean(fact?.officialProviderUrl?.startsWith("https://"));
+  const fareUsable = Boolean(fact && (fact.estimatedFareMin ?? 0) > 0 && (fact.estimatedFareMax ?? 0) >= (fact.estimatedFareMin ?? 0) && fact.currency === currency);
+  const fareComplete = fareUsable && Boolean(fact?.fareAccuracy);
+  const completion = `${countryActive.length}/${runtime ? 1 : 0}/${sourceBacked ? 1 : 0}/${httpsBacked ? 1 : 0}/${fareUsable ? 1 : 0}/${fareComplete ? 1 : 0}`;
+  northernEuropeBalticsIrelandCompletion.push(completion);
+  if (completion !== "1/1/1/1/1/1") errors.push(`${countryId} completion is invalid: ${completion}`);
+  if (recommendedGuides.length !== 1 || recommendedGuides[0]?.guideId !== guideId || runtime?.id !== guideId) errors.push(`${outletId}: exactly one expected runtime primary is required`);
+  if (facts.length !== 1 || !guide || guide.transportationType !== fact?.mode) errors.push(`${guideId}: exactly one matching guide/fact with mode agreement is required`);
+  if (!fact?.sourceNote || !fact.officialCheckNote || fact.confidence === "estimateOnly") errors.push(`${guideId}: route provenance is incomplete`);
+  if (!fact?.suppressDerivedDurationFallback) errors.push(`${guideId}: derived duration fallback is not suppressed`);
+  if (!/exclude/i.test(`${fact?.sourceNote ?? ""} ${fact?.walkNote ?? ""}`) || !/final (?:walk|walking|pedestrian)/i.test(`${fact?.sourceNote ?? ""} ${fact?.walkNote ?? ""}`)) errors.push(`${guideId}: final walking or upstream fare scope is not explicit`);
+  if (outletGuides.length < 2 || outletGuides.some((candidate) => candidate.guideId !== guideId && candidate.recommended)) errors.push(`${outletId}: secondary-guide recommendation state is invalid`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const fare = localized?.estimatedFareLabel ?? "";
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source") errors.push(`${guideId}/${language}: source-backed runtime detail is missing`);
+    if (!fare || fare === freeLabels[language] || !fare.includes(currency === "EUR" ? "€" : currency)) errors.push(`${guideId}/${language}: paid fare formatting is invalid`);
+    const approx = fare.startsWith((({ en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ar: "تقريبًا", ru: "Примерно", zh: "约" } as const)[language]));
+    if (fact?.fareAccuracy === "estimated" && !approx) errors.push(`${guideId}/${language}: estimated fare lacks localized approximation`);
+    if (fact?.fareAccuracy === "exact" && approx) errors.push(`${guideId}/${language}: exact fare is approximate`);
+    if (guideId !== "kildare-village-dublin-heuston-train-shuttle" && localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
+  }
+}
+const regionalCompletion = northernEuropeBalticsIrelandCompletion.reduce((parts, completion) => completion.split("/").map((value, index) => Number(value) + (parts[index] ?? 0)), [] as number[]).join("/");
+if (regionalCompletion !== "8/8/8/8/8/8") errors.push(`Northern Europe, Baltics and Ireland completion is invalid: ${regionalCompletion}`);
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
@@ -2014,6 +2060,8 @@ for (const completion of westernEuropeCountryCompletion) {
   console.log(`${completion.countryId} missing routes/URLs: ${JSON.stringify(completion.missingRoutes)} / ${JSON.stringify(completion.missingUrls)}`);
 }
 console.log(`Western Europe active/source-backed/source-backed-with-URL: ${westernEuropeCountryCompletion.reduce((total, completion) => total + completion.active.length, 0)}/${westernEuropeCountryCompletion.reduce((total, completion) => total + completion.sourceBacked.length, 0)}/${westernEuropeCountryCompletion.reduce((total, completion) => total + completion.sourceBackedWithUrl.length, 0)}`);
+for (const [[countryId], completion] of northernEuropeBalticsIrelandRoutes.map((route, index) => [route, northernEuropeBalticsIrelandCompletion[index]] as const)) console.log(`${countryId} active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${completion}`);
+console.log(`Northern Europe, Baltics and Ireland active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${regionalCompletion}`);
 console.log(`Poland active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${activePolandOutlets.length}/${runtimePolandPrimaries.length}/${sourceBackedPolandPrimaries.length}/${sourceBackedHttpsPolandPrimaries.length}/${fareUsablePolandPrimaries.length}/${fareAccuracyCompletePolandPrimaries.length}`);
 console.log(`Turkish source-backed multi-leg route count: ${sourceBackedTurkishMultiLegFacts.length}`);
 console.log(

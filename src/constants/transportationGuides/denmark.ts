@@ -8,8 +8,8 @@ export const denmarkTransportationGuides: TransportationGuide[] = [
     originId: "copenhagen-city-center",
     transportationType: "train",
     title: "Copenhagen City Centre to Ringsted Outlet by Train and Bus",
-    estimatedDuration: "≈35 min by train plus short bus ride",
-    estimatedCost: "Check official DSB/Rejseplanen fare",
+    estimatedDuration: "",
+    estimatedCost: "Approx. DKK 100–150",
     recommended: true,
     steps: [
       { order: 1, description: "Use DSB or Rejseplanen to choose a train from Copenhagen Central Station to Ringsted Station." },
@@ -46,7 +46,7 @@ export const denmarkTransportationGuides: TransportationGuide[] = [
     title: "Ringsted Station to Ringsted Outlet by Local Bus",
     estimatedDuration: "Short bus ride from Ringsted Station",
     estimatedCost: "Check official Rejseplanen / local bus fare",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "At Ringsted Station, check the official departure board, Rejseplanen, or the outlet's linked timetables for the next bus." },
       { order: 2, description: "Use one of the outlet-listed routes serving the area: 401A, 240, 540, 405, 408, 404 or 415." },
@@ -64,7 +64,7 @@ export const denmarkTransportationGuides: TransportationGuide[] = [
     title: "Driving and Parking at Ringsted Designer Outlet",
     estimatedDuration: "Minutes from E20 exit 36; ≈40-45 min from Copenhagen (estimated)",
     estimatedCost: "Free parking",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Set navigation to Ringsted Designer Outlet, Klosterparks Allé 1, DK-4100 Ringsted." },
       { order: 2, description: "Use the E20 and take exit 36 Ringsted N, as listed in the outlet's official driving directions." },
