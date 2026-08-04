@@ -746,7 +746,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Spalding to Springfields by Stagecoach 37",
     estimatedDuration: "",
-    estimatedCost: "Check current Stagecoach fare",
+    estimatedCost: "£2–5 one way",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current Service 37 from Spalding." },
@@ -800,7 +800,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Banbridge Town Centre to The Boulevard by Translink 330C",
     estimatedDuration: "",
-    estimatedCost: "Check current Translink fare",
+    estimatedCost: "£3–7 one way",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current 330C timetable from Banbridge Town Centre." },
@@ -854,7 +854,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Cardiff to Bridgend Designer Outlet via Bridgend",
     estimatedDuration: "",
-    estimatedCost: "Check current Transport for Wales and local bus fares",
+    estimatedCost: "£10–25 total one way",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current Cardiff Central–Bridgend train." },
@@ -891,7 +891,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Nottingham to Frasers Plus Designer Outlet East Midlands by Taxi",
     estimatedDuration: "",
-    estimatedCost: "Confirm licensed taxi or transfer fare",
+    estimatedCost: "£40–70 daytime taxi",
     recommended: true,
     steps: [
       { order: 1, description: "Confirm the current official outlet address." },
@@ -1014,7 +1014,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Birmingham to Designer Outlet West Midlands by X51",
     estimatedDuration: "",
-    estimatedCost: "Check current National Express West Midlands fare",
+    estimatedCost: "£3–6 one way",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current National Express West Midlands X51 timetable from Birmingham." },
@@ -1068,7 +1068,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "metro",
     title: "London to Outlet Shopping at The O2 via North Greenwich",
     estimatedDuration: "20 min",
-    estimatedCost: "Check current TfL fare",
+    estimatedCost: "£3–7 one way",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current TfL Jubilee line service to North Greenwich." },
@@ -1141,7 +1141,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Doncaster Interchange to Lakeside Village by Bus 372",
     estimatedDuration: "",
-    estimatedCost: "Check current First South Yorkshire fare",
+    estimatedCost: "£2–5 one way",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current First South Yorkshire 372 timetable from Doncaster Interchange." },
@@ -1195,7 +1195,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "London Marylebone to London Designer Outlet via Wembley Stadium",
     estimatedDuration: "",
-    estimatedCost: "Check current Chiltern Railways fare",
+    estimatedCost: "£4–10 one way",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current Chiltern Railways service from London Marylebone." },
@@ -1286,7 +1286,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Stirling Bus Station to Affinity Sterling Mills by Bus",
     estimatedDuration: "",
-    estimatedCost: "Check current operator fare",
+    estimatedCost: "£5–10 one way",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current connection from Stirling Bus Station towards Tillicoultry." },
