@@ -9,7 +9,7 @@ export const franceTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Paris City Center to La Vallée Village by RER A",
     estimatedDuration: "Less than 1 hour",
-    estimatedCost: "≈€5 (estimated)",
+    estimatedCost: "Estimated €3–5; check the current RER A fare",
     recommended: true,
     steps: [
       { order: 1, description: "Start at a central Paris RER A station served by RER A, such as Châtelet-Les Halles, Auber, Charles de Gaulle-Étoile, or Nation, and confirm live service on RATP, Île-de-France Mobilités, or SNCF before travelling." },
@@ -124,7 +124,7 @@ export const franceTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Troyes Station to Designer Outlet Troyes by TCAT Line 1",
     estimatedDuration: "20 min",
-    estimatedCost: "Check current TCAT fare",
+    estimatedCost: "Estimated €2–3; check the current TCAT fare",
     recommended: true,
     steps: [
       { order: 1, description: "Exit Troyes station and go to the Gare Voltaire stop." },
@@ -162,7 +162,7 @@ export const franceTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Marseille to Designer Outlet Provence by TER and Premium BAM",
     estimatedDuration: "",
-    estimatedCost: "Check current SNCF TER and Premium BAM fares",
+    estimatedCost: "Estimated €13–20 total; check current SNCF TER and Premium BAM fares",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Marseille Saint-Charles–Miramas TER timetable through the official SNCF channel." },
@@ -327,7 +327,7 @@ export const franceTransportationGuides: TransportationGuide[] = [
     transportationType: "metro",
     title: "Lille to Roubaix Designer Outlet via Roubaix Eurotéléport",
     estimatedDuration: "",
-    estimatedCost: "Check current Ilévia fare",
+    estimatedCost: "Estimated €2–3; check the current Ilévia fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current Ilévia M2 timetable from Gare Lille Flandres." },
@@ -439,7 +439,7 @@ export const franceTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Paris to Designer Outlet Paris-Giverny by Official Shuttle",
     estimatedDuration: "",
-    estimatedCost: "Check current official fare and booking terms",
+    estimatedCost: "Estimated €30–45 return; check the current official fare and booking terms",
     recommended: true,
     steps: [
       { order: 1, description: "Check the official Friday-through-Sunday shuttle availability and current booking terms." },
@@ -512,7 +512,7 @@ export const franceTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Paris Montparnasse to One Nation Paris by Train and Bus",
     estimatedDuration: "",
-    estimatedCost: "Check current Île-de-France Mobilités fare",
+    estimatedCost: "Estimated €3–6 total; check the current Île-de-France Mobilités fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Line N timetable from Paris Montparnasse." },
