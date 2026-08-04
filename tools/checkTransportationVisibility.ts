@@ -1553,10 +1553,22 @@ const ukFareApproximationPrefixes: Record<(typeof supportedLanguageCodes)[number
   en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.",
   ru: "Примерно", ar: "تقريبًا", zh: "约",
 };
+const ukFareRestorationRanges = new Map<string, readonly [number, number]>([
+  ["london-marylebone-to-bicester-train", [15, 45]],
+  ["liverpool-to-cheshire-oaks-train-bus", [3, 6]],
+  ["london-to-ashford-designer-outlet-train", [20, 50]],
+  ["york-to-york-designer-outlet-public-transport", [3, 5]],
+  ["street-to-clarks-village-car", [5, 10]],
+  ["durham-to-dalton-park-public-transport", [3, 6]],
+  ["blackpool-to-fleetwood-outlet-public-transport", [3, 6]],
+  ["edinburgh-glasgow-to-livingston-designer-outlet-public-transport", [3, 6]],
+  ["leeds-to-junction-32-outlet-public-transport", [3, 6]],
+]);
 for (const [outletId, guideId, expectedMode, boardingPoint, alightingPoint, operator, line] of ukFareRestorationRoutes) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
   const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
   const isFree = ukFareRestorationFreeRoutes.has(guideId);
+  const expectedFare = ukFareRestorationRanges.get(guideId);
   if (!fact || !guide) {
     errors.push(`${guideId}: UK fare-restoration guide or route fact is missing`);
     continue;
@@ -1571,12 +1583,11 @@ for (const [outletId, guideId, expectedMode, boardingPoint, alightingPoint, oper
     if (fact.estimatedFareMin != null || fact.estimatedFareMax != null || fact.currency != null || fact.fareAccuracy != null || !isExplicitFreeTransportFare(guide.estimatedCost))
       errors.push(`${guideId}: official walking route has fake numeric Free data`);
   } else {
-    if (!(fact.estimatedFareMin != null && fact.estimatedFareMin > 0) || !(fact.estimatedFareMax != null && fact.estimatedFareMax >= fact.estimatedFareMin) || fact.currency !== "GBP" || !["exact", "estimated"].includes(fact.fareAccuracy ?? ""))
+    if (!expectedFare || fact.estimatedFareMin !== expectedFare[0] || fact.estimatedFareMax !== expectedFare[1] || fact.estimatedFareMin <= 0 || fact.estimatedFareMax < fact.estimatedFareMin || fact.currency !== "GBP" || fact.fareAccuracy !== "estimated")
       errors.push(`${guideId}: positive structured adult GBP fare is invalid`);
-    if (fact.fareAccuracy === "exact" && fact.estimatedFareMin !== fact.estimatedFareMax)
-      errors.push(`${guideId}: exact fare is not a single fixed amount`);
-    if (!/\d/.test(guide.estimatedCost) || /free parking|child(?:ren)? free|concession/i.test(guide.estimatedCost))
-      errors.push(`${guideId}: guide fare is guidance-only or uses a non-adult substitute`);
+    const guideFare = guide.estimatedCost.match(/£(\d+(?:\.\d{2})?)[–-](\d+(?:\.\d{2})?)/);
+    if (!guideFare || Number(guideFare[1]) !== expectedFare?.[0] || Number(guideFare[2]) !== expectedFare?.[1] || /free parking|child(?:ren)? free|concession/i.test(guide.estimatedCost))
+      errors.push(`${guideId}: guide and structured fare amounts differ or use a non-adult substitute`);
   }
   for (const language of supportedLanguageCodes) {
     const localized = display(outletId, guideId, language);
@@ -1586,13 +1597,9 @@ for (const [outletId, guideId, expectedMode, boardingPoint, alightingPoint, oper
         errors.push(`${guideId}/${language}: localized structured Free fare is invalid`);
       continue;
     }
-    if (!fare || !/\d/.test(fare) || !fare.includes("GBP") || fare === freeLabels[language] || fare === fact.provider || fare === fact.operator || /parking|child|concession/i.test(fare))
-      errors.push(`${guideId}/${language}: paid adult GBP fare is missing, fake Free, or non-numeric guidance`);
-    const hasApproximation = fare.startsWith(ukFareApproximationPrefixes[language]);
-    if (fact.fareAccuracy === "estimated" && !hasApproximation)
-      errors.push(`${guideId}/${language}: estimated fare lacks its localized approximation qualifier`);
-    if (fact.fareAccuracy === "exact" && (hasApproximation || /[–-]/.test(fare)))
-      errors.push(`${guideId}/${language}: exact fare is approximate or rendered as a range`);
+    const expectedDisplay = expectedFare ? `${ukFareApproximationPrefixes[language]} £${expectedFare[0]}–${expectedFare[1]}` : "";
+    if (fare !== expectedDisplay || !/\d/.test(fare) || !fare.includes("£") || /GBP|£GBP|GBP£|parking|child|concession/i.test(fare) || fare === freeLabels[language] || fare === fact.provider || fare === fact.operator)
+      errors.push(`${guideId}/${language}: paid estimated GBP fare has the wrong symbol, range, or localized qualifier`);
   }
 }
 const restoredBicester = transportationRouteFacts.find((fact) => fact.guideId === "london-marylebone-to-bicester-train");

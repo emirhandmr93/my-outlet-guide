@@ -1151,7 +1151,7 @@ function formatStructuredFare(
   if (!currency) return undefined;
   const exactAmount = Number.isInteger(min) ? `${min}` : min.toFixed(2);
   const amount = fareAccuracy === "exact" ? exactAmount : formatRange(min, max);
-  const value = currency === "EUR" ? `€${amount}` : `${currency} ${amount}`;
+  const value = currency === "EUR" ? `€${amount}` : currency === "GBP" ? `£${amount}` : `${currency} ${amount}`;
   return fareAccuracy === "exact" ? value : `${I18N[language].approx} ${value}`;
 }
 function localizedWalkNote(
