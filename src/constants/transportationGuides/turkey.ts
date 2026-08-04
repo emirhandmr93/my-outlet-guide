@@ -7,18 +7,18 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     originType: "city_center",
     originId: "city-center",
     transportationType: "bus",
-    title: "Istanbul to Viaport Asia by İETT Bus",
+    title: "Istanbul to Viaport Asia by İETT 134 Bus",
     estimatedDuration: "",
-    estimatedCost: "TRY 46.20",
+    estimatedCost: "Approx. TRY 46.20–65",
     recommended: true,
     steps: [
       {
         order: 1,
-        description: "Board İETT line 132K at Kartal toward Yenişehir.",
+        description: "Board İETT line 134 at Kartal toward the Dedepaşa Bulvarı / Viaport corridor.",
       },
       {
         order: 2,
-        description: "Remain on the single 132K corridor toward Dedepaşa Caddesi.",
+        description: "Remain on the single 134 corridor to Dedepaşa Caddesi.",
       },
       {
         order: 3,

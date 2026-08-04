@@ -1769,7 +1769,7 @@ const turkeyPrimaryRoutes = [
     "bus",
     "Kartal",
     "Dedepaşa Caddesi",
-    "132K",
+    "134",
   ],
   [
     "olivium-outlet-center",
@@ -1829,7 +1829,7 @@ const turkeyPrimaryRoutes = [
   ],
 ] as const;
 const turkeyExpectedFares = new Map<string, [number, number, "exact" | "estimated"]>([
-  ["istanbul-to-viaport-asia-iett", [46.2, 46.2, "exact"]],
+  ["istanbul-to-viaport-asia-iett", [46.2, 65, "estimated"]],
   ["sirkeci-to-olivium-kazlicesme-rail", [37.4, 37.4, "exact"]],
   ["istanbul-to-starcity-m9", [92.4, 92.4, "exact"]],
   ["istanbul-to-venezia-t4", [92.4, 92.4, "exact"]],
@@ -1838,7 +1838,7 @@ const turkeyExpectedFares = new Map<string, [number, number, "exact" | "estimate
   ["izmir-to-optimum-izban-esbas", [40, 40, "exact"]],
   ["antalya-to-deepo-antray-t1", [42, 42, "exact"]],
 ]);
-const staleTurkeyFarePattern = /TRY 35(?:\D|$)|35–45|70–90|27–35|25–35|estimated TRY|contactless payment variation|after exit validation\/refund|receives.*refund|generic TRY 46\.20/i;
+const staleTurkeyFarePattern = /TRY 35(?:\D|$)|35–45|70–90|27–35|25–35|contactless payment variation|after exit validation\/refund|receives.*refund|generic TRY 46\.20/i;
 const activeTurkeyOutlets = activeOutlets.filter(
   (outlet) => outlet.countryId === "turkey",
 );
@@ -1933,7 +1933,7 @@ for (const [
   const scope = `${fact?.sourceNote} ${fact?.walkNote}`;
   if (
     !/[Tt]ravel to|Upstream travel/.test(scope) ||
-    !/card purchase cost|card cost|reusable card purchase cost|reusable İzmirim Kart purchase cost|AntalyaKart purchase cost/.test(
+    !/card purchase cost|card cost|İstanbulkart purchase cost|reusable card purchase cost|reusable İzmirim Kart purchase cost|AntalyaKart purchase cost/.test(
       scope,
     ) ||
     !/final walk|final walking|pedestrian connection/.test(scope)
@@ -1977,8 +1977,10 @@ for (const [
     if (guideId.includes("marmaray") || fact?.provider !== "Sirkeci–Kazlıçeşme Rail" || fact?.estimatedFareMin === 46.2 || /receives.*refund|after exit|Metro İstanbul/.test(fact?.sourceNote ?? ""))
       errors.push("Olivium: primary fare must use the current Sirkeci–Kazlıçeşme tariff authority, not Marmaray/Metro generic fare assumptions");
   }
-  if (guideId === "istanbul-to-viaport-asia-iett" && (fact?.boardingPoint !== "Kartal" || fact?.alightingPoint !== "Dedepaşa Caddesi" || !/stop code 228761|tek biletli|toward Yenişehir/.test(fact?.sourceNote ?? "")))
-    errors.push("Viaport: official 132K boarding/alighting stop provenance is invalid");
+  if (guideId === "istanbul-to-viaport-asia-iett" && (fact?.boardingPoint !== "Kartal" || fact?.alightingPoint !== "Dedepaşa Caddesi" || fact?.line !== "134 toward Dedepaşa Bulvarı / Viaport corridor" || fact?.fareAccuracy !== "estimated" || !/KADEMELİ TARİFE|Kartal-departure direction|Dedepaşa Bulvarı|TRY 46\.20–65|132K secondary/.test(fact?.sourceNote + " " + fact?.officialCheckNote)))
+    errors.push("Viaport: official 134 staged-route provenance is invalid");
+  if (guideId === "istanbul-to-viaport-asia-iett" && /132K toward Yenişehir/.test(`${fact?.line} ${fact?.sourceNote}`))
+    errors.push("Viaport: directionally impossible 132K Kartal to Dedepaşa Caddesi remains primary");
   if (guideId === "istanbul-to-viaport-asia-iett" && fact?.alightingPoint === "Viaport")
     errors.push("Viaport: synthetic Viaport stop remains primary");
   if (guides.length < 2)
@@ -1991,14 +1993,14 @@ const viaportPrimary = transportationRouteFacts.find(
   (fact) => fact.guideId === "istanbul-to-viaport-asia-iett",
 );
 if (
-  /KM25|KM27|16KH|134|130H|current stop|\/.*\//.test(
+  /KM25|KM27|16KH|130H|current stop|\/.*\//.test(
     viaportPrimary?.line ?? "",
   ) ||
   transportationGuides.find(
     (guide) => guide.guideId === "pendik-area-to-viaport-asia-minibus",
   )?.recommended
 )
-  errors.push("Viaport: synthetic multi-corridor minibus remains primary");
+  errors.push("Viaport: synthetic multi-corridor minibus or impossible 132K route remains primary");
 for (const guideId of [
   "istanbul-to-venezia-t4",
   "antalya-to-deepo-antray-t1",
