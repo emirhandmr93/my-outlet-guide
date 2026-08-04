@@ -2,12 +2,45 @@ import type { TransportationGuide } from "./index";
 
 export const turkeyTransportationGuides: TransportationGuide[] = [
   {
+    guideId: "saw-to-viaport-asia-licensed-taxi",
+    outletId: "viaport-asia-outlet-shopping",
+    originType: "airport",
+    originId: "sabiha-gokcen-airport",
+    transportationType: "taxi",
+    title: "Sabiha Gökçen Airport to Viaport Asia by Licensed Taxi",
+    estimatedDuration: "",
+    estimatedCost: "Approx. TRY 312–408",
+    recommended: true,
+    steps: [
+      {
+        order: 1,
+        description: "Use the official licensed taxi rank outside the airport arrivals exit.",
+      },
+      {
+        order: 2,
+        description:
+          "Set Viaport Asia Outlet Shopping, Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik as the exact destination.",
+      },
+      {
+        order: 3,
+        description: "Confirm that the taximeter is active or obtain a licensed app-based quote.",
+      },
+      {
+        order: 4,
+        description:
+          "Traffic, waiting, booking, luggage and other supplements may increase the final total.",
+      },
+      { order: 5, description: "Arrange the return pickup separately." },
+    ],
+    updatedAt: "2026-08-04",
+  },
+  {
     guideId: "istanbul-to-viaport-asia-iett",
     outletId: "viaport-asia-outlet-shopping",
     originType: "city_center",
-    originId: "istanbul-city-center",
+    originId: "city-center",
     transportationType: "bus",
-    title: "Istanbul to Viaport Asia by İETT Bus",
+    title: "Istanbul to Viaport Asia by Limited İETT 134 Bus",
     estimatedDuration: "",
     estimatedCost: "",
     recommended: false,
@@ -15,30 +48,20 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
       {
         order: 1,
         description:
-          "Identify the most convenient current boarding point through İETT before travelling.",
+          "Verify same-day İETT 134 operation before relying on this limited Kartal-departure alternative.",
       },
       {
         order: 2,
         description:
-          "Choose an officially listed Viaport line: 132K, KM25, KM27, 16KH, 134, or 130H.",
+          "If a useful 134 departure is running, board at Kartal toward the Dedepaşa Bulvarı / Viaport corridor.",
       },
       {
         order: 3,
         description:
-          "Board the chosen service toward the Viaport or Kurtköy area.",
-      },
-      {
-        order: 4,
-        description:
-          "Use the stop currently identified by İETT for Viaport Asia.",
-      },
-      {
-        order: 5,
-        description:
-          "Confirm the return route and last practical service before shopping.",
+          "Alight at Dedepaşa Caddesi and follow the free pedestrian connection along the outlet-address corridor to Viaport Asia.",
       },
     ],
-    updatedAt: "2026-07-22",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "pendik-area-to-viaport-asia-minibus",
@@ -49,7 +72,7 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     title: "Pendik Area to Viaport Asia by Public Minibus",
     estimatedDuration: "",
     estimatedCost: "",
-    recommended: true,
+    recommended: false,
     steps: [
       {
         order: 1,
@@ -113,34 +136,57 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     updatedAt: "2026-07-22",
   },
   {
+    guideId: "sirkeci-to-olivium-kazlicesme-rail",
+    outletId: "olivium-outlet-center",
+    originType: "city_center",
+    originId: "city-center",
+    transportationType: "train",
+    title: "Istanbul to Olivium by Sirkeci–Kazlıçeşme Rail",
+    estimatedDuration: "",
+    estimatedCost: "TRY 37.40",
+    recommended: true,
+    steps: [
+      {
+        order: 1,
+        description: "Board the Sirkeci–Kazlıçeşme rail service at Sirkeci.",
+      },
+      {
+        order: 2,
+        description:
+          "Travel directly to Kazlıçeşme using one ordinary adult İstanbulkart full-fare validation.",
+      },
+      {
+        order: 3,
+        description:
+          "Alight at Kazlıçeşme and follow the approximately five-minute free walk to Olivium.",
+      },
+    ],
+    updatedAt: "2026-08-04",
+  },
+  {
     guideId: "istanbul-to-olivium-marmaray",
     outletId: "olivium-outlet-center",
     originType: "city_center",
-    originId: "istanbul-city-center",
+    originId: "sirkeci-marmaray",
     transportationType: "train",
     title: "Istanbul to Olivium by Marmaray",
     estimatedDuration: "",
     estimatedCost: "",
-    recommended: true,
+    recommended: false,
     steps: [
-      { order: 1, description: "Reach a convenient Marmaray station." },
+      { order: 1, description: "Board Marmaray at Sirkeci toward Halkalı." },
       {
         order: 2,
-        description: "Confirm a current Marmaray service to Kazlıçeşme.",
-      },
-      { order: 3, description: "Alight at Kazlıçeşme station." },
-      { order: 4, description: "Follow pedestrian directions to Olivium." },
-      {
-        order: 5,
         description:
-          "The official Olivium page describes the final walk as approximately five minutes.",
+          "Check the current Marmaray/TCDD station-pair fare before travel.",
       },
       {
-        order: 6,
-        description: "Confirm the return Marmaray service before shopping.",
+        order: 3,
+        description:
+          "Alight at Kazlıçeşme and follow the approximately five-minute free walk to Olivium.",
       },
     ],
-    updatedAt: "2026-07-22",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "zeytinburnu-to-olivium-local-connection",
@@ -289,35 +335,28 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     guideId: "istanbul-to-starcity-m9",
     outletId: "starcity-outlet",
     originType: "city_center",
-    originId: "istanbul-city-center",
+    originId: "city-center",
     transportationType: "metro",
     title: "Istanbul to StarCity by M9 Metro",
     estimatedDuration: "",
-    estimatedCost: "",
+    estimatedCost: "TRY 92.40",
     recommended: true,
     steps: [
       {
         order: 1,
+        description: "Board M1A at Yenikapı toward Atatürk Havalimanı.",
+      },
+      {
+        order: 2,
+        description: "Transfer physically at Yenibosna to M9 toward Olimpiyat.",
+      },
+      {
+        order: 3,
         description:
-          "Reach the M9 Ataköy–Olimpiyat line through the current metro network.",
-      },
-      { order: 2, description: "Take M9 toward Doğu Sanayi." },
-      { order: 3, description: "Alight at Doğu Sanayi station." },
-      {
-        order: 4,
-        description: "Follow the current pedestrian route to StarCity.",
-      },
-      {
-        order: 5,
-        description:
-          "The official StarCity page places the outlet approximately 500 metres from the station.",
-      },
-      {
-        order: 6,
-        description: "Confirm the return M9 service before shopping.",
+          "Alight at Doğu Sanayi and follow the approximately 500-metre free walk to StarCity.",
       },
     ],
-    updatedAt: "2026-07-22",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "metrobus-to-starcity-local-connection",
@@ -456,27 +495,25 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     guideId: "istanbul-to-venezia-t4",
     outletId: "venezia-mega-outlet",
     originType: "city_center",
-    originId: "istanbul-city-center",
-    transportationType: "train",
+    originId: "city-center",
+    transportationType: "metro",
     title: "Istanbul to Venezia Mega Outlet by T4 Tram",
     estimatedDuration: "",
-    estimatedCost: "",
+    estimatedCost: "TRY 92.40",
     recommended: true,
     steps: [
+      { order: 1, description: "Board T1 at Eminönü toward Bağcılar." },
       {
-        order: 1,
-        description:
-          "Reach a convenient T4 Topkapı–Mescid-i Selam or Habipler tram stop.",
+        order: 2,
+        description: "Transfer at Topkapı to T4 toward Mescid-i Selam.",
       },
-      { order: 2, description: "Board T4 toward Kiptaş–Venezia." },
-      { order: 3, description: "Alight at Kiptaş–Venezia." },
-      { order: 4, description: "Follow current signs to the outlet entrance." },
       {
-        order: 5,
-        description: "Confirm the return T4 timetable before shopping.",
+        order: 3,
+        description:
+          "Alight at Kiptaş–Venezia and follow the free pedestrian connection to the outlet.",
       },
     ],
-    updatedAt: "2026-07-22",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "istanbul-to-venezia-m7",
@@ -625,21 +662,28 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     guideId: "istanbul-to-212-m9",
     outletId: "212-outlet",
     originType: "city_center",
-    originId: "istanbul-city-center",
+    originId: "city-center",
     transportationType: "metro",
     title: "Istanbul to 212 Outlet by M9 Metro",
     estimatedDuration: "",
-    estimatedCost: "",
+    estimatedCost: "TRY 92.40",
     recommended: true,
     steps: [
-      { order: 1, description: "Reach the M9 Ataköy–Olimpiyat Metro line through the current Istanbul rail network." },
-      { order: 2, description: "Board M9 toward 212 Outlet–Halkalı Caddesi." },
-      { order: 3, description: "Alight at 212 Outlet–Halkalı Caddesi station." },
-      { order: 4, description: "Use Exit 1 as identified by the official outlet guidance." },
-      { order: 5, description: "Follow current signs from the station to the 212 Outlet entrance." },
-      { order: 6, description: "Confirm the return M9 service before shopping." },
+      {
+        order: 1,
+        description: "Board M1A at Yenikapı toward Atatürk Havalimanı.",
+      },
+      {
+        order: 2,
+        description: "Transfer physically at Yenibosna to M9 toward Olimpiyat.",
+      },
+      {
+        order: 3,
+        description:
+          "Alight at 212 Outlet–Halkalı Caddesi and use Exit 1 for the free pedestrian access.",
+      },
     ],
-    updatedAt: "2026-07-23",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "atakoy-to-212-marmaray-m9",
@@ -762,20 +806,25 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     guideId: "istanbul-to-optimum-yenisahra-metro",
     outletId: "optimum-premium-outlet-istanbul",
     originType: "city_center",
-    originId: "istanbul-city-center",
+    originId: "city-center",
     transportationType: "metro",
     title: "Istanbul to Optimum Premium Outlet by Metro",
     estimatedDuration: "",
-    estimatedCost: "",
+    estimatedCost: "TRY 46.20",
     recommended: true,
     steps: [
-      { order: 1, description: "Connect to the Kadıköy–Sabiha Gökçen Metro line." },
-      { order: 2, description: "Travel by metro to Yenisahra station." },
-      { order: 3, description: "Alight at Yenisahra." },
-      { order: 4, description: "Follow the current pedestrian signs or outlet access directions." },
-      { order: 5, description: "Confirm the return metro service before shopping." },
+      {
+        order: 1,
+        description: "Board M4 at Kadıköy toward Sabiha Gökçen Havalimanı.",
+      },
+      { order: 2, description: "Travel directly on M4 to Yenisahra." },
+      {
+        order: 3,
+        description:
+          "Alight at Yenisahra and follow the free pedestrian connection to Optimum.",
+      },
     ],
-    updatedAt: "2026-07-23",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "yenisahra-to-optimum-bus-minibus",
@@ -819,20 +868,30 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     guideId: "izmir-to-optimum-izban-esbas",
     outletId: "izmir-optimum",
     originType: "city_center",
-    originId: "izmir-city-center",
+    originId: "city-center",
     transportationType: "train",
     title: "Izmir to İzmir Optimum by İZBAN",
     estimatedDuration: "",
-    estimatedCost: "",
+    estimatedCost: "TRY 40",
     recommended: true,
     steps: [
-      { order: 1, description: "Reach a convenient station on the Cumaovası–Aliağa İZBAN line." },
-      { order: 2, description: "Take an İZBAN service stopping at Esbaş." },
-      { order: 3, description: "Alight at Esbaş station." },
-      { order: 4, description: "Follow the current station or outlet access signs to İzmir Optimum." },
-      { order: 5, description: "Confirm the return İZBAN service before shopping." },
+      {
+        order: 1,
+        description:
+          "Board İZBAN at Alsancak on a southbound service toward Cumaovası or Tepeköy.",
+      },
+      {
+        order: 2,
+        description:
+          "Travel directly to Esbaş and complete any required distance-fare settlement.",
+      },
+      {
+        order: 3,
+        description:
+          "Alight at Esbaş and follow the free pedestrian connection to İzmir Optimum.",
+      },
     ],
-    updatedAt: "2026-07-23",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "izmir-metro-to-optimum-izban-transfer",
@@ -896,20 +955,25 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     guideId: "antalya-to-deepo-antray-t1",
     outletId: "deepo-outlet-center",
     originType: "city_center",
-    originId: "antalya-city-center",
-    transportationType: "train",
+    originId: "city-center",
+    transportationType: "metro",
     title: "Antalya to Deepo Outlet Center by Antray T1",
     estimatedDuration: "",
-    estimatedCost: "",
+    estimatedCost: "TRY 42",
     recommended: true,
     steps: [
-      { order: 1, description: "Connect to the Antray T1 Fatih–Havalimanı–Expo corridor." },
-      { order: 2, description: "Board a current T1 service stopping at Sinan." },
-      { order: 3, description: "Alight at Sinan." },
-      { order: 4, description: "Follow the current station or outlet access signs to Deepo Outlet Center." },
-      { order: 5, description: "Confirm the return Antray service before shopping." },
+      {
+        order: 1,
+        description: "Board Antray T1A at İsmetpaşa toward Havalimanı.",
+      },
+      { order: 2, description: "Remain on the airport branch to Sinan." },
+      {
+        order: 3,
+        description:
+          "Alight at Sinan and follow the free pedestrian connection to Deepo Outlet Center.",
+      },
     ],
-    updatedAt: "2026-07-23",
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "antalya-bus-station-airport-to-deepo-600",
