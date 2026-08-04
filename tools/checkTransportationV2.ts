@@ -571,7 +571,10 @@ if (
   laReggiaTurkish?.routeFact?.suppressDerivedDurationFallback !== true ||
   !laReggiaTurkish.routeDetails.hasSourceBackedRouteDetail ||
   Boolean(laReggiaTurkish.estimatedDurationLabel) ||
-  !laReggiaTurkish.estimatedFareLabel.includes("€1.3") ||
+  laReggiaTurkish.routeFact.estimatedFareMin !== 5 ||
+  laReggiaTurkish.routeFact.estimatedFareMax !== 8 ||
+  laReggiaTurkish.routeFact.currency !== "EUR" ||
+  !laReggiaTurkish.estimatedFareLabel.includes("€5–8") ||
   getRecommendedTransportationV2Option("la-reggia")?.id !==
     "la-reggia-naples-public-transport"
 )

@@ -9,7 +9,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Florence SMN to Barberino Outlet by Official Shuttle",
     estimatedDuration: "≈30–40 min (estimated); check official timetable",
-    estimatedCost: "Check official ticket details",
+    estimatedCost: "Estimated €13–20 return; check current official ticket details",
     recommended: true,
     steps: [
       { order: 1, description: "Open Barberino's official shuttle information and confirm the current Florence schedule, ticket rules, and return departures before you travel." },
@@ -84,7 +84,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Rome Termini to Castel Romano by Official Shuttle",
     estimatedDuration: "About 30 min by road; check official timetable",
-    estimatedCost: "€18 round trip adult; confirm official ticket details",
+    estimatedCost: "€18 adult return; check current official ticket conditions",
     recommended: true,
     steps: [
       { order: 1, description: "Check Castel Romano's official shuttle page for current Termini times, ticket conditions, and return departures." },
@@ -160,7 +160,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Milan to Fidenza Village by Official Shopping Express",
     estimatedDuration: "90 min each way",
-    estimatedCost: "Adults €10; children 5-11 €5; infants 0-4 free",
+    estimatedCost: "€10 adult fare; children 5–11 €5 and ages 0–4 free; check current booking conditions",
     recommended: true,
     steps: [
       { order: 1, description: "Book the official Fidenza Village Shopping Express and confirm the timetable; tickets must be purchased at least five minutes before departure." },
@@ -253,7 +253,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Napoli Centrale to La Reggia by Train and Outlet Link Bus",
     estimatedDuration: "",
-    estimatedCost: "€1.30 bus supplement each way plus selected train fare",
+    estimatedCost: "Estimated €5–8 one-way total for train and Outlet Link bus; check current through-ticket fare",
     recommended: true,
     steps: [
       { order: 1, description: "Take an official regional train from Napoli Centrale to Caserta railway station." },
@@ -308,7 +308,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Venice Piazzale Roma to Noventa di Piave by ATVO Direct Bus",
     estimatedDuration: "About 90 min; check official timetable",
-    estimatedCost: "Return ticket €9.20; children under 6 free",
+    estimatedCost: "€9.20 adult return; children under 6 free; check current booking conditions",
     recommended: true,
     steps: [
       { order: 1, description: "Check the official McArthurGlen/ATVO Noventa bus page and book if required; the outlet lists daily ATVO connections from Venice Piazzale Roma." },
@@ -383,7 +383,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Milan to Serravalle Designer Outlet by Official Partner Shuttle",
     estimatedDuration: "90 min from Milan by Zani Viaggi; McArthurGlen notes about 60 min by road",
-    estimatedCost: "Zani Viaggi from €25 return; confirm Frigerio fare with official partner",
+    estimatedCost: "Estimated €25–35 adult return with an official partner; check selected operator",
     recommended: true,
     steps: [
       { order: 1, description: "Check Serravalle's official bus connection page for current daily partner shuttles, pickup points, fares, and return times." },
@@ -459,7 +459,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Florence to The Mall Firenze by Official The Mall by Bus",
     estimatedDuration: "≈35–50 min (estimated); check official timetable",
-    estimatedCost: "One way €9.50; round trip €18; reduced one way €5 / round trip €9; under 4 free",
+    estimatedCost: "€18 adult return (€9.50 one way); reduced return €9; under 4 free with paying adult",
     recommended: true,
     steps: [
       { order: 1, description: "Open The Mall Firenze visit page and Busitalia's official The Mall by Bus page to confirm the current timetable and ticket rules for your shopping date." },
@@ -555,7 +555,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Arezzo Station to Valdichiana Village by Tiemme Bus LS5",
     estimatedDuration: "50 min by bus from Arezzo Terminal Tiemme",
-    estimatedCost: "Check official Tiemme fare; rail fare check Trenitalia",
+    estimatedCost: "Estimated €3–6 one way for Tiemme LS5 only; station walk free; upstream rail excluded",
     recommended: true,
     steps: [
       { order: 1, description: "Use Trenitalia to reach Arezzo station, then confirm the current Tiemme Line LS5 timetable from Arezzo Terminal Tiemme." },
@@ -648,7 +648,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Cervignano-Aquileia-Grado to Palmanova Designer Village by Taxi",
     estimatedDuration: "13 min",
-    estimatedCost: "Confirm licensed taxi or transfer fare",
+    estimatedCost: "Estimated €25–40 daytime station-to-outlet taxi; upstream rail excluded; confirm supplements",
     recommended: true,
     steps: [
       { order: 1, description: "Check the train time through the official Trenitalia channel." },
@@ -669,7 +669,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Brescia Station to Franciacorta Designer Village by Bus",
     estimatedDuration: "25 min bus (official outlet estimate)",
-    estimatedCost: "check official bus fare",
+    estimatedCost: "Estimated €3–5 one way for LS029 bus only; upstream rail and walking excluded",
     recommended: true,
     steps: [
       { order: 1, description: "Travel to Brescia railway station and walk to the SIA / Arriva bus area serving the Franciacorta routes." },
@@ -741,7 +741,7 @@ export const italyTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Mantova Station to Mantova Village by Bus",
     estimatedDuration: "30 min total: 10 min walk plus 20 min bus",
-    estimatedCost: "check official APAM fare",
+    estimatedCost: "Estimated €3–5 one way for APAM bus only; 10-minute walk free; upstream rail excluded",
     recommended: true,
     steps: [
       { order: 1, description: "Arrive at Mantova station and use the official outlet directions to walk about 600 m to the Line 31A stop at Viale Piave 4A." },
