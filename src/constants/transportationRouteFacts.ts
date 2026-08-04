@@ -1166,7 +1166,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     provider: "İETT",
     operator: "İETT",
     line: "132K toward Yenişehir",
-    boardingPoint: "Kartal Metro",
+    boardingPoint: "Kartal",
     alightingPoint: "Dedepaşa Caddesi",
     destination: "Viaport Asia Outlet Shopping",
     walkNote:
@@ -1177,7 +1177,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     currency: "TRY",
     fareAccuracy: "exact",
     sourceNote:
-      "Official İETT route and stop records support one actual 132K corridor from Kartal Metro toward Yenişehir to Dedepaşa Caddesi. The exact TRY 46.20 fare uses one anonymous İstanbulkart full validation; travel to Kartal Metro, card purchase cost and final walking are excluded.",
+      "Official İETT route and stop records support one normal tek biletli 132K corridor from the official Kartal boarding stop toward Yenişehir to Dedepaşa Caddesi, with Dedepaşa Caddesi stop code 228761 serving the outlet-address corridor. The exact TRY 46.20 fare uses one anonymous İstanbulkart full validation; travel to Kartal, card purchase cost and final walking are excluded.",
     officialCheckNote:
       "Confirm the line, direction, boarding and alighting points, adult payment product and fare on the official provider before travel.",
     confidence: "exact",
@@ -1208,29 +1208,29 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     confidence: "partial",
   },
   {
-    guideId: "istanbul-to-olivium-marmaray",
+    guideId: "sirkeci-to-olivium-kazlicesme-rail",
     outletId: "olivium-outlet-center",
     originType: "cityCenter",
     mode: "train",
-    provider: "Marmaray",
+    provider: "Sirkeci–Kazlıçeşme Rail",
     operator: "TCDD Taşımacılık",
-    line: "Marmaray toward Halkalı",
+    line: "Sirkeci–Kazlıçeşme rail service",
     boardingPoint: "Sirkeci",
     alightingPoint: "Kazlıçeşme",
     destination: "Olivium Outlet Center",
     walkNote:
       "The official approximately five-minute final walk is free and excluded.",
     suppressDerivedDurationFallback: true,
-    estimatedFareMin: 46.2,
-    estimatedFareMax: 46.2,
+    estimatedFareMin: 37.4,
+    estimatedFareMax: 37.4,
     currency: "TRY",
     fareAccuracy: "exact",
     sourceNote:
-      "Official Marmaray service supports the selected Sirkeci–Kazlıçeşme station pair. The exact TRY 46.20 fare uses one anonymous İstanbulkart full validation charged for this visitor product; no anonymous-card distance refund is claimed. Travel to Sirkeci, card purchase cost and final walking are excluded.",
+      "Official TCDD Sirkeci–Kazlıçeşme rail-service information supports the direct Sirkeci to Kazlıçeşme route. The current official İstanbul public-transport tariff category for Sirkeci–Kazlıçeşme Yüzeysel sets the ordinary adult first-boarding fare at TRY 37.40 for one visitor-compatible İstanbulkart full-fare validation; no Marmaray distance refund or standard metro fare is used. Travel to Sirkeci, card purchase cost and final walking are excluded.",
     officialCheckNote:
-      "Confirm the line, direction, boarding and alighting points, adult payment product and fare on the official provider before travel.",
+      "Confirm the Sirkeci–Kazlıçeşme service, Kazlıçeşme stop and current adult tariff on the official TCDD/Marmaray tariff page before travel.",
     confidence: "exact",
-    officialProviderUrl: "https://marmaray.gov.tr/",
+    officialProviderUrl: "https://www.tcddtasimacilik.gov.tr/marmaray/tr/sirkeci_kazlicesme_ucretlendirme",
   },
   {
     guideId: "zeytinburnu-to-olivium-local-connection",

@@ -14,7 +14,7 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     steps: [
       {
         order: 1,
-        description: "Board İETT line 132K at Kartal Metro toward Yenişehir.",
+        description: "Board İETT line 132K at Kartal toward Yenişehir.",
       },
       {
         order: 2,
@@ -101,21 +101,49 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     updatedAt: "2026-07-22",
   },
   {
-    guideId: "istanbul-to-olivium-marmaray",
+    guideId: "sirkeci-to-olivium-kazlicesme-rail",
     outletId: "olivium-outlet-center",
     originType: "city_center",
     originId: "city-center",
     transportationType: "train",
+    title: "Istanbul to Olivium by Sirkeci–Kazlıçeşme Rail",
+    estimatedDuration: "",
+    estimatedCost: "TRY 37.40",
+    recommended: true,
+    steps: [
+      {
+        order: 1,
+        description: "Board the Sirkeci–Kazlıçeşme rail service at Sirkeci.",
+      },
+      {
+        order: 2,
+        description:
+          "Travel directly to Kazlıçeşme using one ordinary adult İstanbulkart full-fare validation.",
+      },
+      {
+        order: 3,
+        description:
+          "Alight at Kazlıçeşme and follow the approximately five-minute free walk to Olivium.",
+      },
+    ],
+    updatedAt: "2026-08-04",
+  },
+  {
+    guideId: "istanbul-to-olivium-marmaray",
+    outletId: "olivium-outlet-center",
+    originType: "city_center",
+    originId: "sirkeci-marmaray",
+    transportationType: "train",
     title: "Istanbul to Olivium by Marmaray",
     estimatedDuration: "",
-    estimatedCost: "TRY 46.20",
-    recommended: true,
+    estimatedCost: "",
+    recommended: false,
     steps: [
       { order: 1, description: "Board Marmaray at Sirkeci toward Halkalı." },
       {
         order: 2,
         description:
-          "Travel directly to Kazlıçeşme using one anonymous İstanbulkart validation; no anonymous-card distance refund is assumed.",
+          "Check the current Marmaray/TCDD station-pair fare before travel.",
       },
       {
         order: 3,

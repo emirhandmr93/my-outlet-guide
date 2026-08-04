@@ -1767,17 +1767,17 @@ const turkeyPrimaryRoutes = [
     "viaport-asia-outlet-shopping",
     "istanbul-to-viaport-asia-iett",
     "bus",
-    "Kartal Metro",
+    "Kartal",
     "Dedepaşa Caddesi",
     "132K",
   ],
   [
     "olivium-outlet-center",
-    "istanbul-to-olivium-marmaray",
+    "sirkeci-to-olivium-kazlicesme-rail",
     "train",
     "Sirkeci",
     "Kazlıçeşme",
-    "Marmaray",
+    "Sirkeci–Kazlıçeşme",
   ],
   [
     "starcity-outlet",
@@ -1830,7 +1830,7 @@ const turkeyPrimaryRoutes = [
 ] as const;
 const turkeyExpectedFares = new Map<string, [number, number, "exact" | "estimated"]>([
   ["istanbul-to-viaport-asia-iett", [46.2, 46.2, "exact"]],
-  ["istanbul-to-olivium-marmaray", [46.2, 46.2, "exact"]],
+  ["sirkeci-to-olivium-kazlicesme-rail", [37.4, 37.4, "exact"]],
   ["istanbul-to-starcity-m9", [92.4, 92.4, "exact"]],
   ["istanbul-to-venezia-t4", [92.4, 92.4, "exact"]],
   ["istanbul-to-212-m9", [92.4, 92.4, "exact"]],
@@ -1838,7 +1838,7 @@ const turkeyExpectedFares = new Map<string, [number, number, "exact" | "estimate
   ["izmir-to-optimum-izban-esbas", [40, 40, "exact"]],
   ["antalya-to-deepo-antray-t1", [42, 42, "exact"]],
 ]);
-const staleTurkeyFarePattern = /TRY 35(?:\D|$)|35–45|70–90|27–35|25–35|estimated TRY|contactless payment variation|after exit validation\/refund|receives.*refund/i;
+const staleTurkeyFarePattern = /TRY 35(?:\D|$)|35–45|70–90|27–35|25–35|estimated TRY|contactless payment variation|after exit validation\/refund|receives.*refund|generic TRY 46\.20/i;
 const activeTurkeyOutlets = activeOutlets.filter(
   (outlet) => outlet.countryId === "turkey",
 );
@@ -1973,6 +1973,12 @@ for (const [
     errors.push(`${guideId}: exact fare rendered approximately`);
   if (guideId.startsWith("istanbul-to") && !/anonymous İstanbulkart/.test(fact?.sourceNote ?? ""))
     errors.push(`${guideId}: İstanbul fare product is not explicit`);
+  if (outletId === "olivium-outlet-center") {
+    if (guideId.includes("marmaray") || fact?.provider !== "Sirkeci–Kazlıçeşme Rail" || fact?.estimatedFareMin === 46.2 || /receives.*refund|after exit|Metro İstanbul/.test(fact?.sourceNote ?? ""))
+      errors.push("Olivium: primary fare must use the current Sirkeci–Kazlıçeşme tariff authority, not Marmaray/Metro generic fare assumptions");
+  }
+  if (guideId === "istanbul-to-viaport-asia-iett" && (fact?.boardingPoint !== "Kartal" || fact?.alightingPoint !== "Dedepaşa Caddesi" || !/stop code 228761|tek biletli|toward Yenişehir/.test(fact?.sourceNote ?? "")))
+    errors.push("Viaport: official 132K boarding/alighting stop provenance is invalid");
   if (guideId === "istanbul-to-viaport-asia-iett" && fact?.alightingPoint === "Viaport")
     errors.push("Viaport: synthetic Viaport stop remains primary");
   if (guides.length < 2)
