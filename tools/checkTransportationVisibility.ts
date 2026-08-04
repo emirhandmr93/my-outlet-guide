@@ -1418,6 +1418,17 @@ const ukBatchOneRoutes = [
   ["lakeside-village", "doncaster-to-lakeside-village-public-transport", "bus", "Doncaster Interchange"],
   ["junction-32-outlet", "leeds-to-junction-32-outlet-public-transport", "bus", "Leeds City Bus Station"],
 ] as const;
+const ukFareRestorationPaidRoutes = new Set([
+  "london-marylebone-to-bicester-train",
+  "liverpool-to-cheshire-oaks-train-bus",
+  "london-to-ashford-designer-outlet-train",
+  "york-to-york-designer-outlet-public-transport",
+  "street-to-clarks-village-car",
+  "durham-to-dalton-park-public-transport",
+  "blackpool-to-fleetwood-outlet-public-transport",
+  "edinburgh-glasgow-to-livingston-designer-outlet-public-transport",
+  "leeds-to-junction-32-outlet-public-transport",
+]);
 const ukSuppressedDurationRoutes = new Set(ukBatchOneRoutes.map(([, guideId]) => guideId).filter((guideId) => ![
   "gloucester-to-gloucester-quays-public-transport", "london-to-icon-outlet-at-the-o2-public-transport",
   "swindon-to-swindon-designer-outlet-public-transport",
@@ -1450,7 +1461,7 @@ for (const [outletId, guideId, expectedMode, boardingPoint] of ukBatchOneRoutes)
     if (ukSuppressedDurationRoutes.has(guideId) && localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
     if (exactDuration != null && !localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: exact duration is not visible`);
     const fare = localized?.estimatedFareLabel ?? "";
-    if (ukFreeRoutes.has(guideId) ? fare !== freeLabels[language] : Boolean(fare)) errors.push(`${guideId}/${language}: localized fare provenance is invalid`);
+    if (ukFreeRoutes.has(guideId) ? fare !== freeLabels[language] : ukFareRestorationPaidRoutes.has(guideId) ? !fare : Boolean(fare)) errors.push(`${guideId}/${language}: localized fare provenance is invalid`);
   }
 }
 for (const guideId of ["ashford-international-to-ashford-designer-outlet-walk", "gosport-to-gunwharf-quays-ferry", "central-london-to-icon-outlet-at-the-o2-uber-boat"])
@@ -1510,7 +1521,7 @@ for (const [outletId, guideId, expectedMode, boardingPoint, visibleValues] of uk
     if (ukBatchTwoSuppressedDurationRoutes.has(guideId) && localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
     if (guideId === "hatfield-to-the-galleria-outlet-public-transport" && !localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: exact duration is not visible`);
     const fare = localized?.estimatedFareLabel ?? "";
-    if (ukBatchTwoFreeRoutes.has(guideId) ? fare !== freeLabels[language] : Boolean(fare)) errors.push(`${guideId}/${language}: localized fare provenance is invalid`);
+    if (ukBatchTwoFreeRoutes.has(guideId) ? fare !== freeLabels[language] : ukFareRestorationPaidRoutes.has(guideId) ? !fare : Boolean(fare)) errors.push(`${guideId}/${language}: localized fare provenance is invalid`);
     if (fact?.line) {
       const lineRows = rows.filter((row) => row.value === fact.line);
       const reference = display("la-vallee-village", "paris-to-la-vallee-rer-a", language);
@@ -1519,6 +1530,87 @@ for (const [outletId, guideId, expectedMode, boardingPoint, visibleValues] of uk
     } else if (localized?.routeDetails.lineOrProviderLabel) errors.push(`${guideId}/${language}: artificial Line or Provider row is visible`);
   }
 }
+const ukFareRestorationRoutes = [
+  ["bicester-village", "london-marylebone-to-bicester-train", "train", "London Marylebone", "Bicester Village", "Chiltern Railways", "London Marylebone → Bicester Village"],
+  ["cheshire-oaks", "liverpool-to-cheshire-oaks-train-bus", "bus", "Liverpool", "Cheshire Oaks", "Stagecoach", "1 / X1"],
+  ["ashford-designer-outlet", "london-to-ashford-designer-outlet-train", "train", "London St Pancras International", "Ashford International", "Southeastern", "London St Pancras International → Ashford International"],
+  ["york-designer-outlet", "york-to-york-designer-outlet-public-transport", "bus", "York Railway Station", "Designer Outlet Park & Ride", "First York", "7"],
+  ["gloucester-quays", "gloucester-to-gloucester-quays-public-transport", "walking", "Gloucester", undefined, undefined, undefined],
+  ["clarks-village", "street-to-clarks-village-car", "taxi", "Street", undefined, undefined, undefined],
+  ["dalton-park", "durham-to-dalton-park-public-transport", "bus", "Durham", "Dalton Park", "Go North East", "65"],
+  ["fleetwood-outlet", "blackpool-to-fleetwood-outlet-public-transport", "bus", "Blackpool", "Affinity Lancashire", "Blackpool Transport", "1"],
+  ["livingston-designer-outlet", "edinburgh-glasgow-to-livingston-designer-outlet-public-transport", "bus", "Edinburgh", "Livingston Bus Terminal", "Lothian Country", "X27 / X28"],
+  ["junction-32-outlet", "leeds-to-junction-32-outlet-public-transport", "bus", "Leeds City Bus Station", "Junction 32 Outlet Village", "Arriva Yorkshire", "141"],
+  ["gunwharf-quays", "portsmouth-to-gunwharf-quays-public-transport", "walking", "Portsmouth", undefined, undefined, undefined],
+  ["the-galleria-outlet", "hatfield-to-the-galleria-outlet-public-transport", "walking", "Hatfield Station", undefined, undefined, undefined],
+] as const;
+const ukFareRestorationFreeRoutes = new Set([
+  "gloucester-to-gloucester-quays-public-transport",
+  "portsmouth-to-gunwharf-quays-public-transport",
+  "hatfield-to-the-galleria-outlet-public-transport",
+]);
+const ukFareApproximationPrefixes: Record<(typeof supportedLanguageCodes)[number], string> = {
+  en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.",
+  ru: "Примерно", ar: "تقريبًا", zh: "约",
+};
+for (const [outletId, guideId, expectedMode, boardingPoint, alightingPoint, operator, line] of ukFareRestorationRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  const isFree = ukFareRestorationFreeRoutes.has(guideId);
+  if (!fact || !guide) {
+    errors.push(`${guideId}: UK fare-restoration guide or route fact is missing`);
+    continue;
+  }
+  if (transportationRouteFacts.filter((candidate) => candidate.guideId === guideId).length !== 1 || transportationGuides.filter((candidate) => candidate.guideId === guideId).length !== 1)
+    errors.push(`${guideId}: duplicate UK fare-restoration guide or route fact`);
+  if (fact.mode !== expectedMode || guide.transportationType !== expectedMode || fact.boardingPoint !== boardingPoint || (alightingPoint && fact.alightingPoint !== alightingPoint) || (operator && fact.operator !== operator) || (line && fact.line !== line))
+    errors.push(`${guideId}: primary route ownership, mode, or stored origin changed`);
+  if (!fact.officialProviderUrl?.startsWith("https://") || fact.displayFare != null)
+    errors.push(`${guideId}: official URL or structured fare provenance is invalid`);
+  if (isFree) {
+    if (fact.estimatedFareMin != null || fact.estimatedFareMax != null || fact.currency != null || fact.fareAccuracy != null || !isExplicitFreeTransportFare(guide.estimatedCost))
+      errors.push(`${guideId}: official walking route has fake numeric Free data`);
+  } else {
+    if (!(fact.estimatedFareMin != null && fact.estimatedFareMin > 0) || !(fact.estimatedFareMax != null && fact.estimatedFareMax >= fact.estimatedFareMin) || fact.currency !== "GBP" || !["exact", "estimated"].includes(fact.fareAccuracy ?? ""))
+      errors.push(`${guideId}: positive structured adult GBP fare is invalid`);
+    if (fact.fareAccuracy === "exact" && fact.estimatedFareMin !== fact.estimatedFareMax)
+      errors.push(`${guideId}: exact fare is not a single fixed amount`);
+    if (!/\d/.test(guide.estimatedCost) || /free parking|child(?:ren)? free|concession/i.test(guide.estimatedCost))
+      errors.push(`${guideId}: guide fare is guidance-only or uses a non-adult substitute`);
+  }
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const fare = localized?.estimatedFareLabel ?? "";
+    if (isFree) {
+      if (fare !== freeLabels[language] || /\d|GBP|[£€]/.test(fare) || language !== "en" && fare === "Free")
+        errors.push(`${guideId}/${language}: localized structured Free fare is invalid`);
+      continue;
+    }
+    if (!fare || !/\d/.test(fare) || !fare.includes("GBP") || fare === freeLabels[language] || fare === fact.provider || fare === fact.operator || /parking|child|concession/i.test(fare))
+      errors.push(`${guideId}/${language}: paid adult GBP fare is missing, fake Free, or non-numeric guidance`);
+    const hasApproximation = fare.startsWith(ukFareApproximationPrefixes[language]);
+    if (fact.fareAccuracy === "estimated" && !hasApproximation)
+      errors.push(`${guideId}/${language}: estimated fare lacks its localized approximation qualifier`);
+    if (fact.fareAccuracy === "exact" && (hasApproximation || /[–-]/.test(fare)))
+      errors.push(`${guideId}/${language}: exact fare is approximate or rendered as a range`);
+  }
+}
+const restoredBicester = transportationRouteFacts.find((fact) => fact.guideId === "london-marylebone-to-bicester-train");
+const restoredAshford = transportationRouteFacts.find((fact) => fact.guideId === "london-to-ashford-designer-outlet-train");
+const restoredCheshire = transportationRouteFacts.find((fact) => fact.guideId === "liverpool-to-cheshire-oaks-train-bus");
+const restoredClarks = transportationRouteFacts.find((fact) => fact.guideId === "street-to-clarks-village-car");
+const restoredLivingston = transportationRouteFacts.find((fact) => fact.guideId === "edinburgh-glasgow-to-livingston-designer-outlet-public-transport");
+if (restoredBicester?.boardingPoint !== "London Marylebone" || restoredBicester.alightingPoint !== "Bicester Village" || restoredBicester.provider !== "Chiltern Railways") errors.push("Bicester: fare does not cover only the Marylebone–Bicester Village rail route");
+if (restoredAshford?.boardingPoint !== "London St Pancras International" || restoredAshford.alightingPoint !== "Ashford International" || restoredAshford.provider !== "Southeastern") errors.push("Ashford: fare does not cover only the St Pancras–Ashford International rail route");
+if (restoredCheshire?.mode !== "bus" || restoredCheshire.line !== "1 / X1" || restoredCheshire.provider !== "Stagecoach" || restoredCheshire.transferPoints?.length) errors.push("Cheshire Oaks: Stagecoach 1/X1 route gained a fabricated rail component");
+if (restoredClarks?.boardingPoint !== "Street" || restoredClarks.destination !== "Clarks Village" || restoredClarks.fareAccuracy !== "estimated" || !/normal daytime|traffic|minimum charge|waiting|luggage|night|weekend|booking/i.test(restoredClarks.sourceNote ?? "")) errors.push("Clarks Village: Street-origin local taxi estimate provenance is incomplete");
+if (restoredLivingston?.boardingPoint !== "Edinburgh" || restoredLivingston.alightingPoint !== "Livingston Bus Terminal") errors.push("Livingston: stored Edinburgh origin was replaced by Glasgow or another origin");
+const restoredGloucester = transportationRouteFacts.find((fact) => fact.guideId === "gloucester-to-gloucester-quays-public-transport");
+const restoredGunwharf = transportationRouteFacts.find((fact) => fact.guideId === "portsmouth-to-gunwharf-quays-public-transport");
+const restoredGalleria = transportationRouteFacts.find((fact) => fact.guideId === "hatfield-to-the-galleria-outlet-public-transport");
+if (restoredGloucester?.estimatedDurationMin !== 10 || restoredGloucester.estimatedDurationMax !== 10) errors.push("Gloucester: supported 10-minute walk changed");
+if (restoredGunwharf?.estimatedDurationMin != null || restoredGunwharf?.estimatedDurationMax != null || restoredGunwharf?.suppressDerivedDurationFallback !== true) errors.push("Gunwharf: unsupported walking duration was fabricated");
+if (restoredGalleria?.estimatedDurationMin !== 25 || restoredGalleria.estimatedDurationMax !== 25 || restoredGalleria.originType !== "station") errors.push("The Galleria: supported station-origin 25-minute walk changed or gained upstream rail");
 const bridgendFact = transportationRouteFacts.find((fact) => fact.guideId === "cardiff-to-bridgend-designer-outlet-public-transport");
 if (bridgendFact?.line !== "Cardiff Central → Bridgend" || bridgendFact.alightingPoint !== "Bridgend" || bridgendFact.transferPoints?.length !== 1 || bridgendFact.transferPoints[0] !== "Bridgend → Sainsbury's" || bridgendFact.provider !== "Transport for Wales" || bridgendFact.operator !== "Transport for Wales")
   errors.push("Bridgend: rail and local transfer ownership is invalid");

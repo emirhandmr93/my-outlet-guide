@@ -9,7 +9,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "London Marylebone to Bicester Village by Train",
     estimatedDuration: "",
-    estimatedCost: "Check current Chiltern Railways fare",
+    estimatedCost: "Estimated £15–45 adult one way; check current Chiltern Railways fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current Chiltern Railways timetable from London Marylebone." },
@@ -82,7 +82,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Liverpool to Cheshire Oaks by Stagecoach 1/X1",
     estimatedDuration: "",
-    estimatedCost: "Check current Stagecoach fare",
+    estimatedCost: "Estimated £3–6 adult one way; check current Stagecoach fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current 1/X1 timetable from Liverpool." },
@@ -137,7 +137,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "London to Ashford Designer Outlet via Ashford International",
     estimatedDuration: "",
-    estimatedCost: "Check current Southeastern fare",
+    estimatedCost: "Estimated £20–50 adult one way; check current Southeastern fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current Southeastern service from London St Pancras International." },
@@ -191,7 +191,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "York Railway Station to York Designer Outlet by First York 7",
     estimatedDuration: "",
-    estimatedCost: "Check current First York fare",
+    estimatedCost: "Estimated £3–5 adult one way; check current First York fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current First York 7 timetable from York Railway Station." },
@@ -280,7 +280,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Street to Clarks Village by Taxi",
     estimatedDuration: "",
-    estimatedCost: "Confirm licensed taxi fare",
+    estimatedCost: "Estimated £5–10 total daytime taxi fare; confirm when booking",
     recommended: true,
     steps: [
       { order: 1, description: "Confirm the official Clarks Village address." },
@@ -350,7 +350,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Durham to Dalton Park by Go North East 65",
     estimatedDuration: "",
-    estimatedCost: "Check current Go North East fare",
+    estimatedCost: "Estimated £3–6 adult one way; check current Go North East fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current Service 65 from Durham." },
@@ -386,7 +386,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Blackpool to Fleetwood Outlet by Blackpool Transport 1",
     estimatedDuration: "",
-    estimatedCost: "Check current Blackpool Transport fare",
+    estimatedCost: "Estimated £3–6 adult one way; check current Blackpool Transport fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current Service 1 from Blackpool." },
@@ -458,7 +458,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Edinburgh to Livingston Designer Outlet by X27/X28",
     estimatedDuration: "",
-    estimatedCost: "Check current Lothian Country fare",
+    estimatedCost: "Estimated £3–6 adult one way; check current Lothian Country fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current X27/X28 times from Edinburgh." },
@@ -513,7 +513,7 @@ export const ukTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Leeds to Frasers Plus Designer Outlet Leeds by Bus 141",
     estimatedDuration: "",
-    estimatedCost: "Check current Arriva Yorkshire fare",
+    estimatedCost: "Estimated £3–6 adult one way; check current Arriva Yorkshire fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current West Yorkshire Metro 141 timetable from Leeds City Bus Station." },
