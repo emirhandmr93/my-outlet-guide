@@ -1002,16 +1002,6 @@ if (laReggiaPublic?.routeFact?.suppressDerivedDurationFallback !== true ||
     laReggiaPublic.estimatedDurationLabel)
   errors.push("la-reggia: duration suppression was not preserved");
 
-const unflaggedDerivedDuration = display(
-  "viaport-asia-outlet-shopping",
-  "istanbul-to-viaport-asia-iett",
-);
-if (
-  unflaggedDerivedDuration?.routeFact?.suppressDerivedDurationFallback === true ||
-  unflaggedDerivedDuration?.estimatedDurationLabel !== "Approx. 30–60 min"
-)
-  errors.push("duration fallback: unflagged route lost its derived duration");
-
 for (const guideId of [
   "factory-ursus-car-parking-guide",
   "factory-annopol-car-parking-guide",
@@ -1772,6 +1762,232 @@ const roosendaalFact = transportationRouteFacts.find((fact) => fact.guideId === 
 if (roosendaalFact?.line !== "Rotterdam Centraal → Roosendaal" || roosendaalFact.alightingPoint !== "Roosendaal" || roosendaalFact.transferPoints?.join() !== "161 → Designer Outlet Roosendaal") errors.push("Roosendaal: rail and bus leg ownership is invalid");
 const bataviaFact = transportationRouteFacts.find((fact) => fact.guideId === "amsterdam-to-batavia-stad-train-bus");
 if (bataviaFact?.line !== "Amsterdam Centraal → Lelystad Centrum" || bataviaFact.alightingPoint !== "Lelystad Centrum" || bataviaFact.transferPoints?.join() !== "13 → Batavia Stad") errors.push("Batavia Stad: rail and bus leg ownership is invalid");
+const turkeyPrimaryRoutes = [
+  [
+    "viaport-asia-outlet-shopping",
+    "istanbul-to-viaport-asia-iett",
+    "bus",
+    "Kartal Metro",
+    "Viaport",
+    "132K",
+  ],
+  [
+    "olivium-outlet-center",
+    "istanbul-to-olivium-marmaray",
+    "train",
+    "Sirkeci",
+    "Kazlıçeşme",
+    "Marmaray",
+  ],
+  [
+    "starcity-outlet",
+    "istanbul-to-starcity-m9",
+    "metro",
+    "Yenikapı",
+    "Doğu Sanayi",
+    "M9",
+  ],
+  [
+    "venezia-mega-outlet",
+    "istanbul-to-venezia-t4",
+    "metro",
+    "Eminönü",
+    "Kiptaş–Venezia",
+    "T4",
+  ],
+  [
+    "212-outlet",
+    "istanbul-to-212-m9",
+    "metro",
+    "Yenikapı",
+    "212 Outlet–Halkalı Caddesi",
+    "M9",
+  ],
+  [
+    "optimum-premium-outlet-istanbul",
+    "istanbul-to-optimum-yenisahra-metro",
+    "metro",
+    "Kadıköy",
+    "Yenisahra",
+    "M4",
+  ],
+  [
+    "izmir-optimum",
+    "izmir-to-optimum-izban-esbas",
+    "train",
+    "Alsancak",
+    "Esbaş",
+    "İZBAN",
+  ],
+  [
+    "deepo-outlet-center",
+    "antalya-to-deepo-antray-t1",
+    "metro",
+    "İsmetpaşa",
+    "Sinan",
+    "T1A",
+  ],
+] as const;
+const activeTurkeyOutlets = activeOutlets.filter(
+  (outlet) => outlet.countryId === "turkey",
+);
+const turkeyRuntimePrimaries: TransportationV2Option[] = [];
+let turkeySourceBacked = 0;
+let turkeyHttpsBacked = 0;
+let turkeyFareUsable = 0;
+let turkeyFareAccuracyComplete = 0;
+if (activeTurkeyOutlets.length !== turkeyPrimaryRoutes.length)
+  errors.push(
+    `Turkey: active dataset differs from completion manifest (${activeTurkeyOutlets.length}/${turkeyPrimaryRoutes.length})`,
+  );
+for (const [
+  outletId,
+  guideId,
+  mode,
+  boarding,
+  alighting,
+  lineToken,
+] of turkeyPrimaryRoutes) {
+  const guides = transportationGuides.filter(
+    (guide) => guide.outletId === outletId,
+  );
+  const recommended = guides.filter((guide) => guide.recommended);
+  const matchingGuides = guides.filter((guide) => guide.guideId === guideId);
+  const matchingFacts = transportationRouteFacts.filter(
+    (fact) => fact.guideId === guideId && fact.outletId === outletId,
+  );
+  const fact = matchingFacts[0];
+  const runtime = getRecommendedTransportationV2Option(outletId);
+  if (
+    recommended.length !== 1 ||
+    matchingGuides.length !== 1 ||
+    matchingFacts.length !== 1 ||
+    runtime?.id !== guideId
+  )
+    errors.push(
+      `${outletId}: final primary/recommendation ownership is not exactly one`,
+    );
+  if (!runtime) continue;
+  turkeyRuntimePrimaries.push(runtime);
+  const guide = matchingGuides[0];
+  const sourceBacked = runtime.routeDetails.hasSourceBackedRouteDetail;
+  const httpsBacked =
+    fact?.officialProviderUrl?.startsWith("https://") === true;
+  const fareUsable = Boolean(
+    fact &&
+    fact.currency === "TRY" &&
+    (fact.estimatedFareMin ?? 0) > 0 &&
+    (fact.estimatedFareMax ?? 0) >= (fact.estimatedFareMin ?? 0),
+  );
+  const accuracyComplete =
+    fact?.fareAccuracy === "exact" || fact?.fareAccuracy === "estimated";
+  turkeySourceBacked += Number(sourceBacked);
+  turkeyHttpsBacked += Number(httpsBacked);
+  turkeyFareUsable += Number(fareUsable);
+  turkeyFareAccuracyComplete += Number(accuracyComplete);
+  if (
+    guide?.originType !== "city_center" ||
+    fact?.originType !== "cityCenter" ||
+    runtime.originGroup !== "city"
+  )
+    errors.push(`${guideId}: guide/fact/runtime origin mismatch`);
+  if (
+    guide?.transportationType !== mode ||
+    fact?.mode !== mode ||
+    fact.boardingPoint !== boarding ||
+    fact.alightingPoint !== alighting ||
+    !fact.line?.includes(lineToken)
+  )
+    errors.push(
+      `${guideId}: route-specific mode, boarding, line, or stop is invalid`,
+    );
+  if (
+    !sourceBacked ||
+    !httpsBacked ||
+    !fareUsable ||
+    !accuracyComplete ||
+    fact?.suppressDerivedDurationFallback !== true ||
+    guide?.estimatedDuration !== "" ||
+    runtime.estimatedDurationLabel
+  )
+    errors.push(
+      `${guideId}: provenance, fare, or duration completion is invalid`,
+    );
+  const scope = `${fact?.sourceNote} ${fact?.walkNote}`;
+  if (
+    !/Travel to|Upstream travel/.test(scope) ||
+    !/card purchase cost|card cost|reusable card purchase cost|AntalyaKart purchase cost/.test(
+      scope,
+    ) ||
+    !/final walk|final walking|pedestrian connection/.test(scope)
+  )
+    errors.push(
+      `${guideId}: upstream/card/final-walk exclusions are incomplete`,
+    );
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const fare = localized?.estimatedFareLabel ?? "";
+    const qualifier = (
+      {
+        en: "Approx.",
+        tr: "Yaklaşık",
+        es: "Aprox.",
+        fr: "Env.",
+        de: "Ca.",
+        ar: "تقريبًا",
+        ru: "Примерно",
+        zh: "约",
+      } as const
+    )[language];
+    if (
+      !localized?.routeDetails.hasSourceBackedRouteDetail ||
+      !fare.includes("TRY") ||
+      !/\d/.test(fare) ||
+      (fact?.fareAccuracy === "estimated"
+        ? !fare.startsWith(qualifier)
+        : fare.startsWith(qualifier)) ||
+      fare === freeLabels[language]
+    )
+      errors.push(
+        `${guideId}/${language}: localized positive TRY fare is invalid`,
+      );
+  }
+  if (guides.length < 2)
+    errors.push(`${outletId}: useful alternatives were not preserved`);
+}
+const turkeyCompletion = `${activeTurkeyOutlets.length}/${turkeyRuntimePrimaries.length}/${turkeySourceBacked}/${turkeyHttpsBacked}/${turkeyFareUsable}/${turkeyFareAccuracyComplete}`;
+if (turkeyCompletion !== "8/8/8/8/8/8")
+  errors.push(`Turkey completion is invalid: ${turkeyCompletion}`);
+const viaportPrimary = transportationRouteFacts.find(
+  (fact) => fact.guideId === "istanbul-to-viaport-asia-iett",
+);
+if (
+  /KM25|KM27|16KH|134|130H|current stop|\/.*\//.test(
+    viaportPrimary?.line ?? "",
+  ) ||
+  transportationGuides.find(
+    (guide) => guide.guideId === "pendik-area-to-viaport-asia-minibus",
+  )?.recommended
+)
+  errors.push("Viaport: synthetic multi-corridor minibus remains primary");
+for (const guideId of [
+  "istanbul-to-venezia-t4",
+  "antalya-to-deepo-antray-t1",
+]) {
+  for (const language of supportedLanguageCodes)
+    if (
+      /^(Train|Tren)$/.test(
+        display(
+          transportationRouteFacts.find((fact) => fact.guideId === guideId)!
+            .outletId,
+          guideId,
+          language,
+        )?.modeLabel ?? "",
+      )
+    )
+      errors.push(`${guideId}/${language}: tram renders as train`);
+}
+
 const sourceBackedTurkishMultiLegFacts = transportationRouteFacts.filter((fact) => fact.guideId && fact.alightingPoint && fact.transferPoints?.length && ["exact", "partial"].includes(fact.confidence));
 for (const fact of sourceBackedTurkishMultiLegFacts) {
   const localized = display(fact.outletId, fact.guideId!, "tr");
@@ -2134,6 +2350,7 @@ console.log(`Western Europe active/source-backed/source-backed-with-URL: ${weste
 for (const [[countryId], completion] of northernEuropeBalticsIrelandRoutes.map((route, index) => [route, northernEuropeBalticsIrelandCompletion[index]] as const)) console.log(`${countryId} active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${completion}`);
 console.log(`Northern Europe, Baltics and Ireland active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${regionalCompletion}`);
 console.log(`Poland active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${activePolandOutlets.length}/${runtimePolandPrimaries.length}/${sourceBackedPolandPrimaries.length}/${sourceBackedHttpsPolandPrimaries.length}/${fareUsablePolandPrimaries.length}/${fareAccuracyCompletePolandPrimaries.length}`);
+console.log(`Turkey active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${turkeyCompletion}`);
 console.log(`Turkish source-backed multi-leg route count: ${sourceBackedTurkishMultiLegFacts.length}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
