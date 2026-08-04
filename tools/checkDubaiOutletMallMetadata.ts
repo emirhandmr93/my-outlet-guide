@@ -1,3 +1,4 @@
+import fs from "node:fs";
 import { brands } from "../src/constants/brands";
 import { unitedArabEmiratesOutletBrands } from "../src/constants/outletBrands/united-arab-emirates";
 import { unitedArabEmiratesOutlets } from "../src/constants/outlets/united-arab-emirates";
@@ -5,6 +6,7 @@ import { unitedArabEmiratesRestaurants } from "../src/constants/restaurants/unit
 import { unitedArabEmiratesTransportation } from "../src/constants/transportation/united-arab-emirates";
 import { unitedArabEmiratesTransportationGuides } from "../src/constants/transportationGuides/united-arab-emirates";
 import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
+import { outletMediaMetadata } from "../src/media/outletMediaMetadata";
 import { getRecommendedTransportationV2Option, getTransportationV2Options } from "../src/services/transportationV2Service";
 
 const outletId = "dubai-outlet-mall";
@@ -22,7 +24,15 @@ const changedFiles = (process.env.CHECK_CHANGED_FILES ?? "")
   .split("\n")
   .map((file) => file.trim())
   .filter(Boolean);
-const allowedFiles = new Set(["src/constants/outlets/united-arab-emirates.ts", "tools/checkDubaiOutletMallMetadata.ts"]);
+const allowedFiles = new Set([
+"assets/outlet-images/dubai-outlet-mall/hero.png",
+"assets/outlet-images/dubai-outlet-mall/gallery1.png",
+"assets/outlet-images/dubai-outlet-mall/gallery2.png",
+"assets/outlet-images/dubai-outlet-mall/gallery3.png",
+"src/media/outletMedia.ts",
+"src/media/outletMediaMetadata.ts",
+"tools/checkDubaiOutletMallMetadata.ts",
+]);
 
 const outlets = unitedArabEmiratesOutlets.filter((outlet) => outlet.outletId === outletId);
 const outlet = outlets[0];
@@ -87,6 +97,78 @@ for (const website of [outlet?.officialWebsite, outlet?.websiteUrl]) {
 }
 assert(outlet?.heroImage === "", "heroImage must remain an empty deferred placeholder.");
 assert(Array.isArray(outlet?.galleryImages) && outlet.galleryImages.length === 0, "galleryImages must remain empty.");
+
+const repoRoot = process.cwd();
+const dubaiMediaPaths = [
+"assets/outlet-images/dubai-outlet-mall/hero.png",
+"assets/outlet-images/dubai-outlet-mall/gallery1.png",
+"assets/outlet-images/dubai-outlet-mall/gallery2.png",
+"assets/outlet-images/dubai-outlet-mall/gallery3.png",
+];
+
+const pngSignature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
+const outletMediaSource = fs.readFileSync(
+`${repoRoot}/src/media/outletMedia.ts`,
+"utf8",
+);
+
+let previousMediaIndex = -1;
+
+for (const assetPath of dubaiMediaPaths) {
+const absolutePath = `${repoRoot}/${assetPath}`;
+const requireText = `require("../../${assetPath}")`;
+const mediaIndex = outletMediaSource.indexOf(requireText);
+
+assert(mediaIndex > previousMediaIndex, `${assetPath}: registration is missing or out of order.`);
+previousMediaIndex = mediaIndex;
+
+assert(fs.existsSync(absolutePath), `${assetPath}: local asset is missing.`);
+
+if (fs.existsSync(absolutePath)) {
+const bytes = fs.readFileSync(absolutePath);
+assert(bytes.length > 8, `${assetPath}: file is empty or invalid.`);
+assert(bytes.subarray(0, 8).equals(pngSignature), `${assetPath}: file is not a valid PNG.`);
+}
+}
+
+const dubaiMediaStart = outletMediaSource.indexOf('"dubai-outlet-mall": [');
+const dubaiMediaEnd = outletMediaSource.indexOf("],", dubaiMediaStart);
+const dubaiMediaBlock = outletMediaSource.slice(dubaiMediaStart, dubaiMediaEnd + 2);
+
+assert(dubaiMediaStart >= 0, "Dubai media registry entry is missing.");
+assert(
+![".webp", ".jpg", ".jpeg", "http://", "https://"].some((token) =>
+dubaiMediaBlock.includes(token),
+),
+"Dubai media registry contains an invalid format or remote source.",
+);
+
+const dubaiMediaMetadata = outletMediaMetadata.filter(
+(item) => item.outletId === outletId,
+);
+
+assert(dubaiMediaMetadata.length === 4, `Dubai media metadata count changed: ${dubaiMediaMetadata.length}.`);
+assert(dubaiMediaMetadata.filter((item) => item.role === "hero").length === 1, "Dubai media metadata must contain one hero.");
+assert(dubaiMediaMetadata.filter((item) => item.role === "gallery").length === 3, "Dubai media metadata must contain three gallery records.");
+assert(
+dubaiMediaMetadata.map((item) => item.assetPath).join("|") === dubaiMediaPaths.join("|"),
+"Dubai media metadata ordering is invalid.",
+);
+assert(
+new Set(dubaiMediaMetadata.map((item) => item.assetPath)).size === 4,
+"Dubai media metadata asset paths must be unique.",
+);
+assert(
+dubaiMediaMetadata.every(
+(item) =>
+item.sourceStatus === "project-owned" &&
+item.assetPath.endsWith(".png") &&
+Boolean(item.credit?.trim()) &&
+Boolean(item.license?.trim()) &&
+Boolean(item.alt.trim()),
+),
+"Dubai media metadata is incomplete.",
+);
 assert(outlet?.rating === 0 && outlet?.reviewCount === 0, "Rating and review count must remain zero.");
 assert(outlet?.taxFreeAvailable === false, "Tax Free availability must remain false.");
 assert(!["vatRate", "estimatedRefundRate", "minimumTaxFreeSpend", "taxFreeOperator", "taxFreeOfficeInfo"].some((key) => key in (outlet ?? {})), "No new Tax Free fields may be introduced.");
@@ -126,7 +208,6 @@ assert(activeTransport.some((item) => item.transportType === "car" && /Parking/i
 assert(runtimeOptions.length === 1, "Only the source-backed runtime primary should be visible.");
 
 assert(changedFiles.every((file) => allowedFiles.has(file)), `Changed file outside allowed scope: ${changedFiles.filter((file) => !allowedFiles.has(file)).join(", ")}`);
-assert(!changedFiles.some((file) => /\.(png|jpe?g|webp|gif|avif|ico|pdf)$/i.test(file)), "Binary/image files must not change.");
 
 if (errors.length) {
   console.error(`Dubai Outlet Mall metadata validation failed (${errors.length}):`);
