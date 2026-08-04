@@ -33,6 +33,7 @@ export type TransportationRouteFact = {
   estimatedFareMin?: number;
   estimatedFareMax?: number;
   currency?: string;
+  fareAccuracy?: "exact" | "estimated";
   displayFare?: string;
   sourceNote?: string;
   officialCheckNote?: string;
@@ -576,6 +577,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 25,
     estimatedFareMax: 35,
     currency: "EUR",
+    fareAccuracy: "estimated",
     sourceNote:
       "The estimated EUR 25–35 adult return range covers only the recommended official partner shuttles from Milan operated by Zani Viaggi or Frigerio Viaggi. Zani pricing starts from the repository-supported €25 return value; partner and selected departure prices can differ, so check the official booking conditions.",
     confidence: "exact",
@@ -614,6 +616,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 13,
     estimatedFareMax: 20,
     currency: "EUR",
+    fareAccuracy: "estimated",
     sourceNote:
       "The estimated EUR 13–20 return range covers only the official Florence SMN–Barberino shuttle. The current exact fare could not be independently reverified, so check the official ticket price and conditions before travel; Bologna, taxi, fuel and toll costs are excluded.",
     confidence: "exact",
@@ -632,6 +635,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 18,
     estimatedFareMax: 18,
     currency: "EUR",
+    fareAccuracy: "exact",
     sourceNote:
       "The official route-fact provenance supports the €18 adult round-trip fare for the Via Giolitti 48, Roma Termini shuttle. Child concessions are supplementary and do not make the adult route free; check current official ticket conditions.",
     confidence: "exact",
@@ -671,6 +675,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 10,
     estimatedFareMax: 10,
     currency: "EUR",
+    fareAccuracy: "exact",
     sourceNote:
       "The official route-fact provenance supports the €10 paying-adult Shopping Express fare from Milan. Children ages 5–11 are €5 and ages 0–4 travel free as supplementary conditions; arrive at least 15 minutes before departure and confirm the current adult fare when booking.",
     confidence: "exact",
@@ -694,6 +699,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 5,
     estimatedFareMax: 8,
     currency: "EUR",
+    fareAccuracy: "estimated",
     sourceNote:
       "The estimated EUR 5–8 one-way total covers the Napoli Centrale–Caserta regional train and the La Reggia Outlet Link bus without double-counting a combined Trenitalia ticket. Existing authoritative provenance records the bus supplement as €1.30 each way; check the current through-ticket or component prices before travel.",
     confidence: "exact",
@@ -713,6 +719,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 9.2,
     estimatedFareMax: 9.2,
     currency: "EUR",
+    fareAccuracy: "exact",
     sourceNote:
       "The official route-fact provenance supports the €9.20 adult return ticket from Venezia Piazzale Roma. Children under 6 travelling free is supplementary and does not replace the paying-adult fare; check current booking conditions.",
     confidence: "exact",
@@ -766,6 +773,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 18,
     estimatedFareMax: 18,
     currency: "EUR",
+    fareAccuracy: "exact",
     sourceNote:
       "The primary paying-adult fare is the official €18 same-day return ticket; the official adult one-way fare is €9.50. Reduced fares are €5 one way and €9 return for children under 12, while children under 4 travel free with a paying adult; concessions are supplementary and do not make the primary route free.",
     confidence: "exact",
@@ -834,6 +842,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 3,
     estimatedFareMax: 6,
     currency: "EUR",
+    fareAccuracy: "estimated",
     sourceNote:
       "The estimated EUR 3–6 one-way fare covers only Tiemme Line LS5 from Arezzo Terminal Tiemme to Valdichiana Designer Village. The walk from Arezzo station to the terminal and any upstream Trenitalia journey are excluded; check the current Tiemme fare.",
     confidence: "exact",
@@ -856,6 +865,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 3,
     estimatedFareMax: 5,
     currency: "EUR",
+    fareAccuracy: "estimated",
     sourceNote:
       "The estimated EUR 3–5 one-way fare covers only the SIA/Arriva Line LS029 bus from the Brescia station bus area to Franciacorta Designer Village. Upstream rail and walking sections are excluded; check the current operator fare.",
     confidence: "exact",
@@ -878,6 +888,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 3,
     estimatedFareMax: 5,
     currency: "EUR",
+    fareAccuracy: "estimated",
     sourceNote:
       "The estimated EUR 3–5 one-way fare covers only APAM Line 31A from Viale Piave 4A to Mantova Village. The official segments remain a free published 10-minute walk from Mantova FS followed by a published 20-minute bus ride; upstream rail is excluded.",
     confidence: "exact",
@@ -978,6 +989,7 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     estimatedFareMin: 25,
     estimatedFareMax: 40,
     currency: "EUR",
+    fareAccuracy: "estimated",
     sourceNote:
       "The estimated EUR 25–40 normal-daytime licensed taxi/verified transfer fare covers the documented approximately 12 km route from the stored Cervignano-Aquileia-Grado station origin to Palmanova Designer Village. It excludes the upstream train fare; traffic, supplements, luggage, night, weekend and booking conditions can change the total, so confirm with the licensed provider.",
     confidence: "exact",

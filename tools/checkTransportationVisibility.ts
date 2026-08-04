@@ -948,11 +948,21 @@ const italyBatchOnePaidFareRoutes = [
   ["mantova-village", "mantova-station-to-mantova-village-bus", 3, 5, ["only APAM Line 31A", "10-minute walk", "20-minute bus", "upstream rail"]],
 ] as const;
 const localizedFareApproximation = /Approx\.|Yaklaşık|Aprox\.|Env\.|Ca\.|Примерно|تقريبًا|约/;
+const italyBatchOneExactFareLabels = new Map([
+  ["castel-romano-termini-shuttle", "€18"],
+  ["fidenza-milan-shopping-express", "€10"],
+  ["noventa-venice-atvo-direct-bus", "€9.20"],
+  ["the-mall-firenze-florence-direct-bus", "€18"],
+] as const);
 for (const [outletId, guideId, expectedMin, expectedMax, provenanceClaims] of italyBatchOnePaidFareRoutes) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const exactFareLabel = italyBatchOneExactFareLabels.get(guideId as keyof typeof italyBatchOneExactFareLabels);
+  const expectedAccuracy = exactFareLabel ? "exact" : "estimated";
   if (fact?.estimatedFareMin !== expectedMin || fact?.estimatedFareMax !== expectedMax ||
-      fact?.currency !== "EUR" || expectedMin <= 0 || expectedMax < expectedMin || fact.displayFare != null)
-    errors.push(`${guideId}: Italy Batch 1 structured paid fare is invalid`);
+      fact?.currency !== "EUR" || fact?.fareAccuracy !== expectedAccuracy || expectedMin <= 0 ||
+      expectedMax < expectedMin || (expectedAccuracy === "exact" && expectedMin !== expectedMax) ||
+      fact.displayFare != null)
+    errors.push(`${guideId}: Italy Batch 1 structured paid fare or accuracy is invalid`);
   if (!fact?.officialProviderUrl?.startsWith("https://"))
     errors.push(`${guideId}: Italy Batch 1 HTTPS provenance is missing`);
   const provenance = JSON.stringify(fact || {});
@@ -965,8 +975,12 @@ for (const [outletId, guideId, expectedMin, expectedMax, provenanceClaims] of it
       errors.push(`${guideId}/${language}: positive numeric source-backed EUR fare is missing`);
     if (fare === freeLabels[language] || /(?:parking|child|infant)/i.test(fare))
       errors.push(`${guideId}/${language}: free component or concession replaced the paid fare`);
-    if (!localizedFareApproximation.test(fare))
-      errors.push(`${guideId}/${language}: localized structured-fare qualifier is missing`);
+    const hasApproximation = localizedFareApproximation.test(fare);
+    if (expectedAccuracy === "exact") {
+      if (fare !== exactFareLabel || hasApproximation || /[–-]/.test(fare))
+        errors.push(`${guideId}/${language}: exact fare is approximate, ranged, or incorrect`);
+    } else if (!hasApproximation)
+      errors.push(`${guideId}/${language}: localized estimated-fare qualifier is missing`);
   }
 }
 const laReggiaPublic = display("la-reggia", "la-reggia-naples-public-transport");
