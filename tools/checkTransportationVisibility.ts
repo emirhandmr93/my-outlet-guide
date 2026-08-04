@@ -1524,6 +1524,62 @@ const netherlandsOutletsWithoutSourceBackedRoutes = activeNetherlandsOutlets.fil
 const netherlandsOutletsWithoutSourceBackedUrls = activeNetherlandsOutlets.filter((outlet) => !sourceBackedAndUrlNetherlandsOutlets.includes(outlet)).map((outlet) => outlet.outletId);
 if (netherlandsOutletsWithoutSourceBackedRoutes.length || netherlandsOutletsWithoutSourceBackedUrls.length) errors.push(`Netherlands completion is invalid: ${netherlandsOutletsWithoutSourceBackedRoutes.join(", ")} / ${netherlandsOutletsWithoutSourceBackedUrls.join(", ")}`);
 
+const westernEuropeCompletionRoutes = [
+  ["belgium", "maasmechelen-village", "brussels-to-maasmechelen-train-bus", "train", ["NMBS/SNCB / De Lijn", "Brussels → Genk", "Brussels", "Genk", "45 → Maasmechelen Village", "Maasmechelen Village"]],
+  ["belgium", "designer-outlet-luxembourg", "designer-outlet-luxembourg-train-bus", "train", ["CFL / SNCB / TEC", "Luxembourg → Arlon", "Luxembourg", "Arlon", "16 / 20 → Messancy Outlet", "Designer Outlet Luxembourg"]],
+  ["austria", "designer-outlet-parndorf", "vienna-to-parndorf-train-bus", "train", ["ÖBB", "Wien Hauptbahnhof → Parndorf Ort", "Wien Hauptbahnhof", "Parndorf Ort", "Parndorf Ort station bus → Designer Outlet Parndorf", "Designer Outlet Parndorf"]],
+  ["austria", "designer-outlet-salzburg", "salzburg-city-to-designer-outlet-salzburg-bus", "bus", ["Salzburg Verkehr", "2", "Salzburg Hauptbahnhof", "DOC Himmelreich", "Designer Outlet Salzburg"]],
+  ["switzerland", "foxtown-factory-stores", "foxtown-lugano-train", "train", ["SBB / TILO", "Lugano → Mendrisio S. Martino", "Lugano", "Mendrisio S. Martino", "FoxTown Factory Stores"]],
+  ["switzerland", "landquart-fashion-outlet", "landquart-zurich-train", "train", ["SBB", "Zürich HB → Landquart", "Zürich HB", "Landquart", "Landquart Fashion Outlet"]],
+  ["switzerland", "fashion-fish-factory-outlet", "fashion-fish-zurich-train", "train", ["SBB", "Zürich HB → Schönenwerd", "Zürich HB", "Schönenwerd", "FASHION FISH"]],
+  ["portugal", "freeport-lisboa-fashion-outlet", "lisbon-to-freeport-lisboa-shuttle", "shuttle", ["Freeport Outlet Shuttle", "Cityrama", "Marquês de Pombal", "Freeport Lisboa Fashion Outlet"]],
+  ["portugal", "vila-do-conde-porto-fashion-outlet", "porto-to-vila-do-conde-fashion-outlet-metro", "metro", ["Metro do Porto", "B", "Trindade", "VC Fashion Outlet–Modivas", "Vila do Conde Porto Fashion Outlet"]],
+] as const;
+const westernEuropeTransferValues = new Set(["45 → Maasmechelen Village", "16 / 20 → Messancy Outlet", "Parndorf Ort station bus → Designer Outlet Parndorf"]);
+for (const [, outletId, guideId, expectedMode, visibleValues] of westernEuropeCompletionRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  const runtimeOption = getTransportationV2Options(outletId).find((option) => option.id === guideId);
+  if (!fact?.officialProviderUrl?.startsWith("https://") || fact.displayFare != null || fact.estimatedFareMin != null || fact.estimatedFareMax != null) errors.push(`${guideId}: source URL or fare provenance is invalid`);
+  if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode) errors.push(`${guideId}: guide or fact mode is invalid`);
+  const isFreeport = guideId === "lisbon-to-freeport-lisboa-shuttle";
+  if (isFreeport ? fact?.originType !== "shuttle" || runtimeOption?.originGroup !== "shuttle" : fact?.originType !== "cityCenter" || guide?.originType !== "city_center" || runtimeOption?.originGroup !== "city") errors.push(`${guideId}: origin classification is invalid`);
+  if (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null || guide?.estimatedDuration !== "") errors.push(`${guideId}: unsupported duration provenance is present`);
+  if (getRecommendedTransportationV2Option(outletId)?.id !== guideId || guide?.recommended !== true) errors.push(`${outletId}: ${guideId} is not the sole primary recommendation`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source" || !visibleText(localized).trim() || !rows.length) errors.push(`${guideId}/${language}: source-backed display or warning gating is invalid`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
+    if (localized?.estimatedDurationLabel || localized?.estimatedFareLabel) errors.push(`${guideId}/${language}: unsupported duration or fare is visible`);
+    for (const value of visibleValues) if (rows.filter((row) => row.value === value).length !== 1) errors.push(`${guideId}/${language}: ${value} is not visible exactly once`);
+    const lineReference = display("la-vallee-village", "paris-to-la-vallee-rer-a", language);
+    const referenceRows = lineReference ? getTransportationRouteDetailRows(lineReference, language) : [];
+    const lineLabel = referenceRows.find((row) => row.value === "RER A")?.label;
+    const operatorLabel = referenceRows.find((row) => row.value === "RATP / SNCF")?.label;
+    const transferReference = display("castel-guelfo-the-style-outlets", "castel-san-pietro-to-castel-guelfo-style-outlets-last-mile", language);
+    const transferLabel = transferReference ? getTransportationRouteDetailRows(transferReference, language).find((row) => row.value === "TPER Martiri Partigiani")?.label : undefined;
+    const providerReference = display("freeport-lisboa-fashion-outlet", "lisbon-to-freeport-lisboa-shuttle", language);
+    const providerLabel = providerReference ? getTransportationRouteDetailRows(providerReference, language).find((row) => row.value === "Freeport Outlet Shuttle")?.label : undefined;
+    const expectedLineLabel = fact?.line === "B" ? providerLabel : lineLabel;
+    if (fact?.line && (!expectedLineLabel || rows.filter((row) => row.value === fact.line && row.label === expectedLineLabel).length !== 1)) errors.push(`${guideId}/${language}: localized Line/Provider row is invalid`);
+    if (!fact?.line && rows.some((row) => row.label === lineLabel)) errors.push(`${guideId}/${language}: artificial Line row is visible`);
+    if (fact?.operator && (!operatorLabel || rows.filter((row) => row.value === fact.operator && row.label === operatorLabel).length !== 1)) errors.push(`${guideId}/${language}: localized Operator row is invalid`);
+    for (const transfer of fact?.transferPoints ?? []) if (!westernEuropeTransferValues.has(transfer) || !transferLabel || rows.filter((row) => row.value === transfer && row.label === transferLabel).length !== 1) errors.push(`${guideId}/${language}: localized Transfer row is invalid`);
+  }
+}
+for (const guideId of ["brussels-to-maasmechelen-shopping-express", "maasmechelen-car-parking", "designer-outlet-luxembourg-city-car", "vienna-to-parndorf-shuttle", "foxtown-mendrisio-station-train", "landquart-zurich-airport-train", "landquart-station-walk", "fashion-fish-zurich-airport-train", "fashion-fish-schoenenwerd-station-walk", "freeport-lisboa-car-parking", "porto-to-vila-do-conde-fashion-outlet-public-transport", "vila-do-conde-fashion-outlet-car-parking"])
+  if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended) errors.push(`${guideId}: secondary guide must not be recommended`);
+const westernEuropeCountryCompletion = ["belgium", "austria", "switzerland", "portugal"].map((countryId) => {
+  const active = activeOutlets.filter((outlet) => outlet.countryId === countryId);
+  const sourceBacked = active.filter((outlet) => getTransportationV2Options(outlet.outletId).some((option) => getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail));
+  const sourceBackedWithUrl = active.filter((outlet) => transportationRouteFacts.some((fact) => fact.outletId === outlet.outletId && fact.officialProviderUrl?.startsWith("https://") && getTransportationV2Options(outlet.outletId).some((option) => option.id === fact.guideId && getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail)));
+  const missingRoutes = active.filter((outlet) => !sourceBacked.includes(outlet)).map((outlet) => outlet.outletId);
+  const missingUrls = active.filter((outlet) => !sourceBackedWithUrl.includes(outlet)).map((outlet) => outlet.outletId);
+  if (missingRoutes.length || missingUrls.length) errors.push(`${countryId} completion is invalid: ${missingRoutes.join(", ")} / ${missingUrls.join(", ")}`);
+  return { countryId, active, sourceBacked, sourceBackedWithUrl, missingRoutes, missingUrls };
+});
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
@@ -1573,6 +1629,11 @@ console.log(`Netherlands source-backed outlet count: ${sourceBackedNetherlandsOu
 console.log(`Netherlands source-backed-and-URL outlet count: ${sourceBackedAndUrlNetherlandsOutlets.length}`);
 console.log(`Netherlands outlets without source-backed routes: ${JSON.stringify(netherlandsOutletsWithoutSourceBackedRoutes)}`);
 console.log(`Netherlands outlets without source-backed URLs: ${JSON.stringify(netherlandsOutletsWithoutSourceBackedUrls)}`);
+for (const completion of westernEuropeCountryCompletion) {
+  console.log(`${completion.countryId} active/source-backed/source-backed-with-URL: ${completion.active.length}/${completion.sourceBacked.length}/${completion.sourceBackedWithUrl.length}`);
+  console.log(`${completion.countryId} missing routes/URLs: ${JSON.stringify(completion.missingRoutes)} / ${JSON.stringify(completion.missingUrls)}`);
+}
+console.log(`Western Europe active/source-backed/source-backed-with-URL: ${westernEuropeCountryCompletion.reduce((total, completion) => total + completion.active.length, 0)}/${westernEuropeCountryCompletion.reduce((total, completion) => total + completion.sourceBacked.length, 0)}/${westernEuropeCountryCompletion.reduce((total, completion) => total + completion.sourceBackedWithUrl.length, 0)}`);
 console.log(`Turkish source-backed multi-leg route count: ${sourceBackedTurkishMultiLegFacts.length}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,

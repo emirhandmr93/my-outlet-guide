@@ -42,6 +42,30 @@ export type TransportationRouteFact = {
 
 export const transportationRouteFacts: TransportationRouteFact[] = [
   {
+    guideId: "brussels-to-maasmechelen-train-bus", outletId: "maasmechelen-village", originType: "cityCenter", mode: "train", provider: "NMBS/SNCB / De Lijn", operator: "NMBS/SNCB / De Lijn", line: "Brussels → Genk", boardingPoint: "Brussels", alightingPoint: "Genk", transferPoints: ["45 → Maasmechelen Village"], destination: "Maasmechelen Village", suppressDerivedDurationFallback: true, sourceNote: "The official Village page directs visitors to Genk by rail and then De Lijn Line 45 to Maasmechelen Village; check current NMBS/SNCB and De Lijn connections before travel.", confidence: "partial", officialProviderUrl: "https://www.thebicestercollection.com/maasmechelen-village/en/visit/getting-here",
+  },
+  {
+    guideId: "designer-outlet-luxembourg-train-bus", outletId: "designer-outlet-luxembourg", originType: "cityCenter", mode: "train", provider: "CFL / SNCB / TEC", operator: "CFL / SNCB / TEC", line: "Luxembourg → Arlon", boardingPoint: "Luxembourg", alightingPoint: "Arlon", transferPoints: ["16 / 20 → Messancy Outlet"], destination: "Designer Outlet Luxembourg", suppressDerivedDurationFallback: true, sourceNote: "The official outlet directs visitors from Luxembourg to Arlon by train and then to the Messancy Outlet stop by TEC Lines 16 or 20; check current rail and TEC connections before travel.", confidence: "exact", officialProviderUrl: "https://www.designeroutletluxembourg.com/en/directions",
+  },
+  {
+    guideId: "salzburg-city-to-designer-outlet-salzburg-bus", outletId: "designer-outlet-salzburg", originType: "cityCenter", mode: "bus", provider: "Salzburg Verkehr", operator: "Salzburg Verkehr", line: "2", boardingPoint: "Salzburg Hauptbahnhof", alightingPoint: "DOC Himmelreich", destination: "Designer Outlet Salzburg", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes Bus Line 2 from Salzburg Hauptbahnhof via Mirabellplatz to its DOC Himmelreich stop; check the current Salzburg Verkehr timetable before travel.", confidence: "exact", officialProviderUrl: "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/services/",
+  },
+  {
+    guideId: "foxtown-lugano-train", outletId: "foxtown-factory-stores", originType: "cityCenter", mode: "train", provider: "SBB / TILO", operator: "SBB / TILO", line: "Lugano → Mendrisio S. Martino", boardingPoint: "Lugano", alightingPoint: "Mendrisio S. Martino", destination: "FoxTown Factory Stores", walkNote: "Mendrisio S. Martino station is directly connected to the FoxTown extension.", suppressDerivedDurationFallback: true, sourceNote: "Official Ticino tourism information publishes a direct station connection between Mendrisio S. Martino and FoxTown; check the current SBB/TILO journey from Lugano before travel.", confidence: "partial", officialProviderUrl: "https://www.ticino.ch/en/commons/details/FoxTown-Factory-Stores/87292.html",
+  },
+  {
+    guideId: "landquart-zurich-train", outletId: "landquart-fashion-outlet", originType: "cityCenter", mode: "train", provider: "SBB", operator: "SBB", line: "Zürich HB → Landquart", boardingPoint: "Zürich HB", alightingPoint: "Landquart", destination: "Landquart Fashion Outlet", walkNote: "Landquart Fashion Outlet is directly next to Landquart railway station.", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes direct station adjacency and approximately one rail hour from Zurich; check the current SBB journey and do not present the rail indication as a verified door-to-door duration.", confidence: "exact", officialProviderUrl: "https://www.landquartfashionoutlet.ch/en/neue-parkplatzsituation-beim-landquart-fashion-outlet",
+  },
+  {
+    guideId: "fashion-fish-zurich-train", outletId: "fashion-fish-factory-outlet", originType: "cityCenter", mode: "train", provider: "SBB", operator: "SBB", line: "Zürich HB → Schönenwerd", boardingPoint: "Zürich HB", alightingPoint: "Schönenwerd", destination: "FASHION FISH", walkNote: "FASHION FISH is directly next to Schönenwerd station.", suppressDerivedDurationFallback: true, sourceNote: "The official FASHION FISH journey page places the outlet directly next to Schönenwerd station; check the current SBB journey from Zürich HB before travel.", confidence: "partial", officialProviderUrl: "https://www.fashionfish.ch/en/outlet/how-to-find-us",
+  },
+  {
+    guideId: "lisbon-to-freeport-lisboa-shuttle", outletId: "freeport-lisboa-fashion-outlet", originType: "shuttle", mode: "shuttle", provider: "Freeport Outlet Shuttle", operator: "Cityrama", boardingPoint: "Marquês de Pombal", destination: "Freeport Lisboa Fashion Outlet", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes a daily return shuttle sold through the Cityrama kiosk at Marquês de Pombal and on board; check the current schedule, fare and return departure before travel.", confidence: "exact", officialProviderUrl: "https://www.freeportfashionoutlet.pt/en/news-next/shuttle-en",
+  },
+  {
+    guideId: "porto-to-vila-do-conde-fashion-outlet-metro", outletId: "vila-do-conde-porto-fashion-outlet", originType: "cityCenter", mode: "metro", provider: "Metro do Porto", operator: "Metro do Porto", line: "B", boardingPoint: "Trindade", alightingPoint: "VC Fashion Outlet–Modivas", destination: "Vila do Conde Porto Fashion Outlet", walkNote: "The outlet has direct pedestrian access from the VC Fashion Outlet–Modivas station.", suppressDerivedDurationFallback: true, sourceNote: "The official outlet publishes direct access from its VC Fashion Outlet–Modivas metro station, located on Metro do Porto Line B; check the current departure before travel.", confidence: "exact", officialProviderUrl: "https://www.viladocondefashionoutlet.pt/en/sustainable",
+  },
+  {
     guideId: "amsterdam-to-roermond-train", outletId: "designer-outlet-roermond", originType: "cityCenter", mode: "train", provider: "NS", operator: "NS", line: "Amsterdam Centraal → Roermond", boardingPoint: "Amsterdam Centraal", alightingPoint: "Roermond", destination: "Designer Outlet Roermond", walkNote: "Roermond station is approximately 15 minutes on foot from Designer Outlet Roermond.", suppressDerivedDurationFallback: true, sourceNote: "Check the current NS route and transfers before travel; the official outlet publishes a separate approximately 15-minute walk from Roermond station.", confidence: "exact", officialProviderUrl: "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/plan-your-visit/",
   },
   {
@@ -303,18 +327,15 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     mode: "train",
     provider: "ÖBB",
     operator: "ÖBB",
-    line: "ÖBB",
+    line: "Wien Hauptbahnhof → Parndorf Ort",
+    boardingPoint: "Wien Hauptbahnhof",
     alightingPoint: "Parndorf Ort",
+    transferPoints: ["Parndorf Ort station bus → Designer Outlet Parndorf"],
     destination: "Designer Outlet Parndorf",
-    walkNote:
-      "Use the official station bus from Parndorf Ort to Designer Outlet Parndorf when operating.",
-    estimatedDurationMin: 60,
-    estimatedDurationMax: 90,
-    estimatedFareMin: 5,
-    estimatedFareMax: 20,
-    currency: "EUR",
-    officialCheckNote: "Confirm ÖBB train and station-bus times before travel.",
-    confidence: "partial",
+    suppressDerivedDurationFallback: true,
+    sourceNote: "The official outlet and ÖBB publish rail access to Parndorf Ort followed by the official train-station bus to Designer Outlet Parndorf; check both current timetables before travel.",
+    confidence: "exact",
+    officialProviderUrl: "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/plan-your-visit/",
   },
   {
     guideId: "paris-to-la-vallee-rer-a",
