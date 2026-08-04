@@ -1428,6 +1428,15 @@ const ukFareRestorationPaidRoutes = new Set([
   "blackpool-to-fleetwood-outlet-public-transport",
   "edinburgh-glasgow-to-livingston-designer-outlet-public-transport",
   "leeds-to-junction-32-outlet-public-transport",
+  "london-to-icon-outlet-at-the-o2-public-transport",
+  "london-to-london-designer-outlet-public-transport",
+  "birmingham-to-west-midlands-designer-outlet-public-transport",
+  "doncaster-to-lakeside-village-public-transport",
+  "cardiff-to-bridgend-designer-outlet-public-transport",
+  "nottingham-to-east-midlands-designer-outlet-car",
+  "spalding-to-springfields-outlet-public-transport",
+  "banbridge-to-the-boulevard-banbridge-public-transport",
+  "affinity-sterling-mills-bus-guide",
 ]);
 const ukSuppressedDurationRoutes = new Set(ukBatchOneRoutes.map(([, guideId]) => guideId).filter((guideId) => ![
   "gloucester-to-gloucester-quays-public-transport", "london-to-icon-outlet-at-the-o2-public-transport",
@@ -1632,8 +1641,80 @@ for (const language of supportedLanguageCodes) {
     const matches = rows.filter((row) => row.value === value);
     if (!expectedLabel || matches.length !== 1 || matches[0]?.label !== expectedLabel) errors.push(`Bridgend/${language}: ${value} row is invalid`);
   }
-  if (rows.some((row) => row.label === referenceRows.find((candidate) => candidate.value === "RER A")?.label && row.value.includes("Sainsbury's")) || localized?.estimatedDurationLabel || localized?.estimatedFareLabel)
-    errors.push(`Bridgend/${language}: transfer ownership, duration, or fare leaked`);
+  if (rows.some((row) => row.label === referenceRows.find((candidate) => candidate.value === "RER A")?.label && row.value.includes("Sainsbury's")) || localized?.estimatedDurationLabel)
+    errors.push(`Bridgend/${language}: transfer ownership, duration, or fare provenance is invalid`);
+}
+const ukBatchTwoFareRestorationRoutes = [
+  ["icon-outlet-at-the-o2", "london-to-icon-outlet-at-the-o2-public-transport", 3, 7],
+  ["london-designer-outlet", "london-to-london-designer-outlet-public-transport", 4, 10],
+  ["swindon-designer-outlet", "swindon-to-swindon-designer-outlet-public-transport", undefined, undefined],
+  ["west-midlands-designer-outlet", "birmingham-to-west-midlands-designer-outlet-public-transport", 3, 6],
+  ["lakeside-village", "doncaster-to-lakeside-village-public-transport", 2, 5],
+  ["bridgend-designer-outlet", "cardiff-to-bridgend-designer-outlet-public-transport", 10, 25],
+  ["caledonia-park", "gretna-to-caledonia-park-public-transport", undefined, undefined],
+  ["east-midlands-designer-outlet", "nottingham-to-east-midlands-designer-outlet-car", 40, 70],
+  ["springfields-outlet", "spalding-to-springfields-outlet-public-transport", 2, 5],
+  ["the-boulevard-banbridge", "banbridge-to-the-boulevard-banbridge-public-transport", 3, 7],
+  ["braintree-village", "braintree-village-train-guide", undefined, undefined],
+  ["affinity-sterling-mills", "affinity-sterling-mills-bus-guide", 5, 10],
+] as const;
+const ukBatchTwoFareFreeRoutes = new Set([
+  "swindon-to-swindon-designer-outlet-public-transport",
+  "gretna-to-caledonia-park-public-transport",
+  "braintree-village-train-guide",
+]);
+for (const [outletId, guideId, minimum, maximum] of ukBatchTwoFareRestorationRoutes) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  const isFree = ukBatchTwoFareFreeRoutes.has(guideId);
+  if (!fact || !guide || transportationRouteFacts.filter((candidate) => candidate.guideId === guideId).length !== 1 || transportationGuides.filter((candidate) => candidate.guideId === guideId).length !== 1) {
+    errors.push(`${guideId}: UK Batch 2 fare route is missing or duplicated`);
+    continue;
+  }
+  if (isFree) {
+    if (fact.estimatedFareMin != null || fact.estimatedFareMax != null || fact.currency != null || fact.fareAccuracy != null || !isExplicitFreeTransportFare(guide.estimatedCost))
+      errors.push(`${guideId}: official Free route gained numeric fare data`);
+  } else {
+    if (minimum == null || maximum == null || fact.estimatedFareMin !== minimum || fact.estimatedFareMax !== maximum || minimum <= 0 || maximum < minimum || fact.currency !== "GBP" || fact.fareAccuracy !== "estimated" || fact.displayFare != null)
+      errors.push(`${guideId}: positive estimated structured GBP fare is invalid`);
+    const guideFare = guide.estimatedCost.match(/£(\d+(?:\.\d{2})?)[–-](\d+(?:\.\d{2})?)/);
+    if (!guideFare || Number(guideFare[1]) !== minimum || Number(guideFare[2]) !== maximum || /free parking|child(?:ren)? free|concession|railcard/i.test(guide.estimatedCost))
+      errors.push(`${guideId}: guide and fact fares disagree or use a non-adult substitute`);
+  }
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const fare = localized?.estimatedFareLabel ?? "";
+    if (isFree) {
+      if (fare !== freeLabels[language] || /\d|GBP|£0|£/.test(fare) || language !== "en" && fare === "Free")
+        errors.push(`${guideId}/${language}: localized structured Free fare is invalid`);
+    } else {
+      const expectedFare = `${ukFareApproximationPrefixes[language]} £${minimum}–${maximum}`;
+      if (fare !== expectedFare || !fare.includes("£") || /GBP|£0|free parking|child|concession|railcard/i.test(fare) || fare === freeLabels[language] || fare === fact.provider || fare === fact.operator || maximum! < minimum!)
+        errors.push(`${guideId}/${language}: estimated adult GBP fare symbol, range, or approximation is invalid`);
+    }
+  }
+}
+const restoredO2 = transportationRouteFacts.find((fact) => fact.guideId === "london-to-icon-outlet-at-the-o2-public-transport");
+const restoredLdo = transportationRouteFacts.find((fact) => fact.guideId === "london-to-london-designer-outlet-public-transport");
+const restoredWestMidlands = transportationRouteFacts.find((fact) => fact.guideId === "birmingham-to-west-midlands-designer-outlet-public-transport");
+const restoredLakeside = transportationRouteFacts.find((fact) => fact.guideId === "doncaster-to-lakeside-village-public-transport");
+const restoredEastMidlands = transportationRouteFacts.find((fact) => fact.guideId === "nottingham-to-east-midlands-designer-outlet-car");
+const restoredSpringfields = transportationRouteFacts.find((fact) => fact.guideId === "spalding-to-springfields-outlet-public-transport");
+const restoredBoulevard = transportationRouteFacts.find((fact) => fact.guideId === "banbridge-to-the-boulevard-banbridge-public-transport");
+const restoredAffinity = transportationRouteFacts.find((fact) => fact.guideId === "affinity-sterling-mills-bus-guide");
+if (restoredO2?.line !== "Jubilee → North Greenwich" || restoredO2.alightingPoint !== "North Greenwich" || !/generic stored London|final walk to The O2/i.test(restoredO2.sourceNote ?? "")) errors.push("O2: fare scope is not TfL/Jubilee travel to North Greenwich with the final walk excluded");
+if (restoredLdo?.boardingPoint !== "London Marylebone" || restoredLdo.alightingPoint !== "Wembley Stadium" || !/final walk/i.test(restoredLdo.sourceNote ?? "")) errors.push("London Designer Outlet: fare scope is not Marylebone–Wembley Stadium only");
+if (restoredWestMidlands?.line !== "X51" || restoredWestMidlands.boardingPoint !== "Birmingham" || !/final pedestrian/i.test(restoredWestMidlands.sourceNote ?? "")) errors.push("West Midlands: X51 Birmingham fare scope is invalid");
+if (restoredLakeside?.line !== "372" || restoredLakeside.boardingPoint !== "Doncaster Interchange" || !/upstream rail|final pedestrian/i.test(restoredLakeside.sourceNote ?? "")) errors.push("Lakeside: 372 Doncaster Interchange fare scope is invalid");
+if (!/train.*plus.*local bus|local bus.*train/i.test(bridgendFact?.sourceNote ?? "") || !/final walk/i.test(bridgendFact?.sourceNote ?? "")) errors.push("Bridgend: fare does not cover both paid components and exclude the final walk");
+if (restoredEastMidlands?.boardingPoint !== "Nottingham" || restoredEastMidlands.destination !== "Frasers Plus Designer Outlet East Midlands" || restoredEastMidlands.fareAccuracy !== "estimated" || !/normal daytime|distance|tariff|free outlet parking|traffic|waiting|luggage|minimum charge|night|weekend|booking/i.test(restoredEastMidlands.sourceNote ?? "")) errors.push("East Midlands: Nottingham-origin daytime taxi provenance is incomplete");
+if (restoredSpringfields?.line !== "37" || restoredSpringfields.boardingPoint !== "Spalding" || !/upstream rail|final walking/i.test(restoredSpringfields.sourceNote ?? "")) errors.push("Springfields: Stagecoach 37 Spalding fare scope is invalid");
+if (restoredBoulevard?.line !== "330C" || restoredBoulevard.boardingPoint !== "Banbridge Town Centre" || !/Belfast|Dublin|airport|final pedestrian/i.test(restoredBoulevard.sourceNote ?? "")) errors.push("The Boulevard: Translink 330C Banbridge fare scope is invalid");
+if (restoredAffinity?.provider != null || restoredAffinity?.operator != null || restoredAffinity?.line != null || !/Confirm the current operator, route, stop and fare/i.test(restoredAffinity?.sourceNote ?? "")) errors.push("Affinity Sterling Mills: unverified ownership was invented or confirmation note is missing");
+for (const guideId of ["swindon-to-swindon-designer-outlet-public-transport", "gretna-to-caledonia-park-public-transport", "braintree-village-train-guide"]) {
+  const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
+  if (guideId === "swindon-to-swindon-designer-outlet-public-transport" ? fact?.estimatedDurationMin !== 15 || fact.estimatedDurationMax !== 15 : fact?.suppressDerivedDurationFallback !== true || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null)
+    errors.push(`${guideId}: Free walking duration provenance changed`);
 }
 for (const guideId of ["street-to-clarks-village-public-transport", "nottingham-to-east-midlands-designer-outlet-public-transport", "affinity-sterling-mills-train-bus-guide", "gretna-to-caledonia-park-car", "durham-to-dalton-park-car", "poulton-le-fylde-to-fleetwood-outlet-train-bus", "hatfield-to-the-galleria-outlet-car", "braintree-village-bus-guide"])
   if (transportationGuides.find((guide) => guide.guideId === guideId)?.recommended) errors.push(`${guideId}: superseded or secondary guide remains recommended`);
