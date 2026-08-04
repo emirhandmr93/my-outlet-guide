@@ -2,6 +2,24 @@ import type { TransportationGuide } from "./index";
 
 export const norwayTransportationGuides: TransportationGuide[] = [
   {
+    guideId: "oslo-to-norwegian-outlet-train-bus",
+    outletId: "norwegian-outlet",
+    originType: "city_center",
+    originId: "oslo-city-center",
+    transportationType: "train",
+    title: "Oslo S to Oslo Fashion Outlet by Train and Local Bus",
+    estimatedDuration: "",
+    estimatedCost: "Approx. NOK 100–160",
+    recommended: true,
+    steps: [
+      { order: 1, description: "From Oslo S, use the official Ruter or Vy planner for a train to Vestby station." },
+      { order: 2, description: "At Vestby station, transfer to the current Ruter local bus serving Vestbyveien and Oslo Fashion Outlet." },
+      { order: 3, description: "Get off at the outlet-area stop and follow the signed pedestrian access to the entrance." },
+      { order: 4, description: "Confirm the return bus and Vestby-to-Oslo train connection before shopping." },
+    ],
+    updatedAt: "2026-08-04",
+  },
+  {
     guideId: "oslo-to-norwegian-outlet-shuttle",
     outletId: "norwegian-outlet",
     originType: "city_center",
@@ -10,7 +28,7 @@ export const norwayTransportationGuides: TransportationGuide[] = [
     title: "Oslo City Centre to Oslo Fashion Outlet by Official Shuttle",
     estimatedDuration: "≈25-35 min by road from Oslo S to Vestby (estimated)",
     estimatedCost: "Free official shuttle when operating; seats subject to availability",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Check the Oslo Fashion Outlet shuttle page for the current operating dates before planning around the direct bus." },
       { order: 2, description: "Go to Oslo Central Station and find the official Oslo Fashion Outlet bus at platform 40." },
@@ -46,7 +64,7 @@ export const norwayTransportationGuides: TransportationGuide[] = [
     title: "Vestby Station to Oslo Fashion Outlet by Local Bus, Taxi or Walk",
     estimatedDuration: "≈10-15 min local road transfer or ≈30-35 min walk (estimated)",
     estimatedCost: "Check official Ruter fare; taxi fare varies",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Plan the rail leg to Vestby station in the official Vy or Ruter planner." },
       { order: 2, description: "At Vestby station, check Ruter/Entur for current local bus departures toward the outlet area before choosing a taxi or walking route." },
@@ -64,7 +82,7 @@ export const norwayTransportationGuides: TransportationGuide[] = [
     title: "Driving and Parking at Oslo Fashion Outlet",
     estimatedDuration: "≈25-35 min from Oslo city centre; ≈60-75 min from Oslo Airport (estimated)",
     estimatedCost: "Free parking; road costs vary",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Set navigation to Oslo Fashion Outlet, Vestbyveien 155, 1543 Vestby." },
       { order: 2, description: "Drive south from Oslo toward Vestby and check live E6 traffic before departure, especially at weekends and sale periods." },

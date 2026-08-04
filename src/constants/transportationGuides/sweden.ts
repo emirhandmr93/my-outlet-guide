@@ -8,8 +8,8 @@ export const swedenTransportationGuides: TransportationGuide[] = [
     originId: "gothenburg-city-center",
     transportationType: "train",
     title: "Gothenburg City Centre to Hede Fashion Outlet by Train and Walk",
-    estimatedDuration: "≈20-25 min train to Hede plus ≈8-10 min walk (estimated)",
-    estimatedCost: "Check official Västtrafik fare",
+    estimatedDuration: "",
+    estimatedCost: "SEK 111",
     recommended: true,
     steps: [
       { order: 1, description: "From Göteborg Central, use the official Västtrafik planner for trains toward Kungsbacka and choose a service stopping at Hede station." },
@@ -46,7 +46,7 @@ export const swedenTransportationGuides: TransportationGuide[] = [
     title: "Västtrafik Public Transport to Hede Fashion Outlet",
     estimatedDuration: "≈20-25 min train plus walk; bus alternatives check official timetable (estimated)",
     estimatedCost: "Check official Västtrafik fare",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Plan the complete journey in the official Västtrafik app or website, selecting Hede station or the nearest Kungsbacka/Hede bus stop." },
       { order: 2, description: "Use the train when available for the most direct trip from Gothenburg; choose bus alternatives from Kungsbacka or nearby suburbs when the planner recommends them." },
@@ -64,7 +64,7 @@ export const swedenTransportationGuides: TransportationGuide[] = [
     title: "Driving and Parking at Hede Fashion Outlet",
     estimatedDuration: "30 min from Gothenburg city; 45 min from Gothenburg Landvetter Airport (official VIA Outlets)",
     estimatedCost: "Parking check centre signage; road costs vary",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Set navigation to Hede Fashion Outlet, Kungsparksvägen 80, 434 39 Kungsbacka." },
       { order: 2, description: "VIA Outlets lists Hede Fashion Outlet 30 minutes from Gothenburg city and 45 minutes from Gothenburg Landvetter Airport; check live E6 traffic before departure." },

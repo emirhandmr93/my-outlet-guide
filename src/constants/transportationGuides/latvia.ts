@@ -8,8 +8,8 @@ export const latviaTransportationGuides: TransportationGuide[] = [
     originId: "riga-city-center",
     transportationType: "bus",
     title: "Riga to Via Jurmala Outlet Village by Bus",
-    estimatedDuration: "check official timetable",
-    estimatedCost: "check official fare",
+    estimatedDuration: "",
+    estimatedCost: "€1.50",
     recommended: true,
     steps: [
       { order: 1, description: "From Riga, check the official Rīgas satiksme timetable for Bus Route 4 or Route 32 toward Piņķi / Via Jurmala Outlet Village." },

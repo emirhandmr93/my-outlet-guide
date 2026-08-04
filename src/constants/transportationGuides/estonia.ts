@@ -6,10 +6,10 @@ export const estoniaTransportationGuides: TransportationGuide[] = [
     outletId: "t1-tallinn-outlet",
     originType: "city_center",
     originId: "tallinn-city-center",
-    transportationType: "bus",
-    title: "Tallinn City Center to T1 Tallinn Outlet by Tram, Bus, or Train",
-    estimatedDuration: "≈10-20 min (estimated)",
-    estimatedCost: "Check official Tallinn public transport fare",
+    transportationType: "train",
+    title: "Tallinn City Center to T1 Tallinn Outlet by Tram",
+    estimatedDuration: "",
+    estimatedCost: "€2",
     recommended: true,
     steps: [
       { order: 1, description: "From central Tallinn, use the official Tallinn public transport planner for a tram toward Ülemiste / airport that stops at Ülemiste jaam or another T1-adjacent stop." },
@@ -29,7 +29,7 @@ export const estoniaTransportationGuides: TransportationGuide[] = [
     title: "Tallinn Airport to T1 Tallinn Outlet",
     estimatedDuration: "≈5-10 min by tram or taxi; ≈15-20 min walk (estimated)",
     estimatedCost: "Walk free; check official public transport fare",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "From Tallinn Airport terminal, choose the official tram connection toward Ülemiste / city center, a short taxi, or the signposted pedestrian route toward T1." },
       { order: 2, description: "If using tram, validate a ticket and ride one stop toward the T1 / Ülemiste area when service is operating." },

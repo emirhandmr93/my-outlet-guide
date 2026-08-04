@@ -8,8 +8,8 @@ export const lithuaniaTransportationGuides: TransportationGuide[] = [
     originId: "vilnius-city-center",
     transportationType: "bus",
     title: "Vilnius City Centre to Outlet Park by Public Bus",
-    estimatedDuration: "check official timetable",
-    estimatedCost: "check official fare",
+    estimatedDuration: "",
+    estimatedCost: "€1.25",
     recommended: true,
     steps: [
       { order: 1, description: "Open the official JUDU journey planner and set the destination near Outlet Park / Ogmios Miestas before leaving central Vilnius." },
