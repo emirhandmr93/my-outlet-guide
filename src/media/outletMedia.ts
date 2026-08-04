@@ -44,6 +44,12 @@ const outletLocalImages: Record<string, OutletMediaImage[]> = {
     require("../../assets/outlet-images/castel-romano/gallery1.webp"),
     require("../../assets/outlet-images/castel-romano/gallery2.webp"),
   ],
+  "dubai-outlet-mall": [
+    require("../../assets/outlet-images/dubai-outlet-mall/hero.webp"),
+    require("../../assets/outlet-images/dubai-outlet-mall/gallery1.webp"),
+    require("../../assets/outlet-images/dubai-outlet-mall/gallery2.webp"),
+    require("../../assets/outlet-images/dubai-outlet-mall/gallery3.webp"),
+  ],
   "fidenza-village": [
     require("../../assets/outlet-images/fidenza-village/hero.webp"),
     require("../../assets/outlet-images/fidenza-village/gallery1.webp"),

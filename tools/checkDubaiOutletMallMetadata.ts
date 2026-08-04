@@ -1,3 +1,6 @@
+import { existsSync, readFileSync } from "node:fs";
+import { extname } from "node:path";
+
 import { brands } from "../src/constants/brands";
 import { unitedArabEmiratesOutletBrands } from "../src/constants/outletBrands/united-arab-emirates";
 import { unitedArabEmiratesOutlets } from "../src/constants/outlets/united-arab-emirates";
@@ -5,7 +8,11 @@ import { unitedArabEmiratesRestaurants } from "../src/constants/restaurants/unit
 import { unitedArabEmiratesTransportation } from "../src/constants/transportation/united-arab-emirates";
 import { unitedArabEmiratesTransportationGuides } from "../src/constants/transportationGuides/united-arab-emirates";
 import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
+import { outletMediaMetadata } from "../src/media/outletMediaMetadata";
 import { getRecommendedTransportationV2Option, getTransportationV2Options } from "../src/services/transportationV2Service";
+
+require.extensions[".webp"] = (module: NodeJS.Module, filename: string) => { module.exports = filename; };
+const { getOutletCardHeroImage, getOutletHeroImage, getOutletLocalImages, getOutletMediaImages } = require("../src/media/outletMedia");
 
 const outletId = "dubai-outlet-mall";
 const errors: string[] = [];
@@ -22,7 +29,7 @@ const changedFiles = (process.env.CHECK_CHANGED_FILES ?? "")
   .split("\n")
   .map((file) => file.trim())
   .filter(Boolean);
-const allowedFiles = new Set(["src/constants/outlets/united-arab-emirates.ts", "tools/checkDubaiOutletMallMetadata.ts"]);
+const allowedFiles = new Set(["assets/outlet-images/dubai-outlet-mall/hero.webp", "assets/outlet-images/dubai-outlet-mall/gallery1.webp", "assets/outlet-images/dubai-outlet-mall/gallery2.webp", "assets/outlet-images/dubai-outlet-mall/gallery3.webp", "src/media/outletMedia.ts", "src/media/outletMediaMetadata.ts", "tools/checkDubaiOutletMallMetadata.ts"]);
 
 const outlets = unitedArabEmiratesOutlets.filter((outlet) => outlet.outletId === outletId);
 const outlet = outlets[0];
@@ -88,6 +95,39 @@ for (const website of [outlet?.officialWebsite, outlet?.websiteUrl]) {
 assert(outlet?.heroImage === "", "heroImage must remain an empty deferred placeholder.");
 assert(Array.isArray(outlet?.galleryImages) && outlet.galleryImages.length === 0, "galleryImages must remain empty.");
 assert(outlet?.rating === 0 && outlet?.reviewCount === 0, "Rating and review count must remain zero.");
+const expectedDubaiAssetPaths = ["assets/outlet-images/dubai-outlet-mall/hero.webp", "assets/outlet-images/dubai-outlet-mall/gallery1.webp", "assets/outlet-images/dubai-outlet-mall/gallery2.webp", "assets/outlet-images/dubai-outlet-mall/gallery3.webp"];
+const expectedDubaiLocalImageModules = expectedDubaiAssetPaths.map((assetPath) => require(`../${assetPath}`));
+const outletMediaSource = readFileSync("src/media/outletMedia.ts", "utf8");
+const dubaiRegistrationBlock = outletMediaSource.match(/"dubai-outlet-mall": \[([\s\S]*?)\n  \]/)?.[1] ?? "";
+const dubaiRegisteredPaths = [...dubaiRegistrationBlock.matchAll(/require\("\.\.\/\.\.\/(assets\/outlet-images\/dubai-outlet-mall\/[^)]+?)"\)/g)].map((match) => match[1]);
+const productionLocalImages = getOutletLocalImages(outletId, { mode: "production" });
+const productionMediaImages = getOutletMediaImages(outlet, { mode: "production" });
+const inventoryMediaImages = getOutletMediaImages(outlet);
+const heroImage = getOutletHeroImage(outlet, { mode: "production" });
+const cardHeroImage = getOutletCardHeroImage(outlet, { mode: "production" });
+const dubaiMetadata = outletMediaMetadata.filter((metadata) => metadata.outletId === outletId);
+const dubaiMetadataAssetPaths = dubaiMetadata.map((metadata) => metadata.assetPath);
+assert(dubaiRegisteredPaths.length === 4, `Dubai local-media registration count must be exactly four: ${dubaiRegisteredPaths.length}.`);
+assert(expectedDubaiAssetPaths.every((assetPath, index) => dubaiRegisteredPaths[index] === assetPath), "Dubai local-media registration must preserve hero/gallery order.");
+assert(productionLocalImages.length === 4, `Dubai production local-media image count must be exactly four: ${productionLocalImages.length}.`);
+assert(expectedDubaiLocalImageModules.every((image, index) => productionLocalImages[index] === image), "Dubai production local-media images must resolve in hero/gallery order.");
+assert(productionMediaImages.length === 4, `Production media resolution must return all four Dubai images: ${productionMediaImages.length}.`);
+assert(heroImage === expectedDubaiLocalImageModules[0], "getOutletHeroImage must resolve hero.webp.");
+assert(cardHeroImage === expectedDubaiLocalImageModules[0], "getOutletCardHeroImage must resolve hero.webp.");
+assert(expectedDubaiLocalImageModules.every((image, index) => productionMediaImages[index] === image), "getOutletMediaImages must resolve all four Dubai images in order.");
+assert(inventoryMediaImages.length === 4 && expectedDubaiLocalImageModules.every((image, index) => inventoryMediaImages[index] === image), "Dubai media must not use fallback images.");
+assert(dubaiMetadata.length === 4, `Dubai outletMediaMetadata records must total exactly four: ${dubaiMetadata.length}.`);
+assert(dubaiMetadata.filter((metadata) => metadata.role === "hero").length === 1, "Dubai metadata must contain exactly one hero role.");
+assert(dubaiMetadata.filter((metadata) => metadata.role === "gallery").length === 3, "Dubai metadata must contain exactly three gallery roles.");
+assert(new Set(dubaiMetadataAssetPaths).size === dubaiMetadataAssetPaths.length, "Dubai metadata asset paths must be unique.");
+assert(expectedDubaiAssetPaths.every((assetPath, index) => dubaiMetadataAssetPaths[index] === assetPath), "Dubai metadata asset paths must preserve hero/gallery ordering.");
+assert(dubaiMetadata.every((metadata) => extname(metadata.assetPath) === ".webp"), "All Dubai metadata assets must use .webp.");
+assert(expectedDubaiAssetPaths.every((assetPath) => existsSync(assetPath)), "All Dubai local media files must exist.");
+assert(dubaiMetadata.every((metadata) => metadata.sourceStatus === "project-owned"), "All Dubai metadata records must use project-owned sourceStatus.");
+assert(dubaiMetadata.every((metadata) => Boolean(metadata.credit?.trim()) && Boolean(metadata.license?.trim()) && Boolean(metadata.alt?.trim())), "All Dubai metadata records must have non-empty credit, license, and alt.");
+assert(dubaiMetadata.every((metadata) => !metadata.sourceUrl), "Dubai metadata must not include remote media URLs.");
+assert(!dubaiRegisteredPaths.some((assetPath) => /\.(?:jpe?g|png)$/i.test(assetPath)), "Dubai registration must not include JPG, JPEG, or PNG assets.");
+
 assert(outlet?.taxFreeAvailable === false, "Tax Free availability must remain false.");
 assert(!["vatRate", "estimatedRefundRate", "minimumTaxFreeSpend", "taxFreeOperator", "taxFreeOfficeInfo"].some((key) => key in (outlet ?? {})), "No new Tax Free fields may be introduced.");
 
@@ -126,7 +166,6 @@ assert(activeTransport.some((item) => item.transportType === "car" && /Parking/i
 assert(runtimeOptions.length === 1, "Only the source-backed runtime primary should be visible.");
 
 assert(changedFiles.every((file) => allowedFiles.has(file)), `Changed file outside allowed scope: ${changedFiles.filter((file) => !allowedFiles.has(file)).join(", ")}`);
-assert(!changedFiles.some((file) => /\.(png|jpe?g|webp|gif|avif|ico|pdf)$/i.test(file)), "Binary/image files must not change.");
 
 if (errors.length) {
   console.error(`Dubai Outlet Mall metadata validation failed (${errors.length}):`);
@@ -138,3 +177,4 @@ console.log("Dubai Outlet Mall metadata validation passed.");
 console.log(`Active outlet-brand relations: ${activeRelations.length}; orphan relations: ${orphanRelations.length}; non-active relations: ${nonActiveRelations.length}.`);
 console.log(`Active restaurants: ${activeRestaurants.length}; normalized duplicate restaurants: ${restaurants.length - new Set(normalizedRestaurantNames).size}; non-active restaurants: ${nonActiveRestaurants.length}.`);
 console.log(`Transportation completion: ${completion}; runtime primary: ${runtimePrimary?.id}.`);
+console.log(`Dubai production image count: ${productionMediaImages.length}; hero resolves: ${heroImage === expectedDubaiLocalImageModules[0] ? "hero.webp" : "unexpected"}.`);
