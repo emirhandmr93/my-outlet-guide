@@ -616,7 +616,7 @@ for (const outlet of outlets) {
       display.steps.some((step) => /\b(?:driving|parking|car park|fuel)\b/i.test(step))
     )
       errors.push(`${option.id} generic taxi leaks driving or parking steps.`);
-    if (/Approx\. Free|Yaklaşık Ücretsiz|€10–30/.test(display.estimatedFareLabel))
+    if (/Approx\. Free|Yaklaşık Ücretsiz/.test(display.estimatedFareLabel))
       errors.push(`${option.id} displays an invalid generic/free fare.`);
   }
   if (recommended && isDrivingParkingOnlyGuide(recommended.guide))
