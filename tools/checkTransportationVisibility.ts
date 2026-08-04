@@ -1,4 +1,5 @@
 import { outlets } from "../src/constants/outlets";
+import { transportation } from "../src/constants/transportation";
 import { transportationGuides } from "../src/constants/transportationGuides";
 import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
 import { supportedLanguageCodes } from "../src/translations/translations";
@@ -2350,6 +2351,57 @@ const centralSoutheastRegionalCompletion = centralSoutheastCompletion.reduce((su
 if (centralSoutheastRegionalCompletion !== "6/6/6/6/6/6") errors.push(`Central/Southeast regional completion is invalid: ${centralSoutheastRegionalCompletion}`);
 console.log(`Central/Southeast regional completion: ${centralSoutheastRegionalCompletion}`);
 
+
+const dubaiOutletId = "dubai-outlet-mall";
+const dubaiGuideId = "al-ghubaiba-to-dubai-outlet-mall-rta-bus-66";
+const activeUaeOutlets = activeOutlets.filter((outlet) => outlet.countryId === "united-arab-emirates");
+const dubaiOutlet = activeUaeOutlets.find((outlet) => outlet.outletId === dubaiOutletId);
+const dubaiGuides = transportationGuides.filter((guide) => guide.outletId === dubaiOutletId);
+const dubaiGuide = dubaiGuides.find((guide) => guide.guideId === dubaiGuideId);
+const dubaiRecommendedGuides = dubaiGuides.filter((guide) => guide.recommended);
+const dubaiFacts = transportationRouteFacts.filter((fact) => fact.guideId === dubaiGuideId && fact.outletId === dubaiOutletId);
+const dubaiFact = dubaiFacts[0];
+const dubaiRuntime = getRecommendedTransportationV2Option(dubaiOutletId);
+const dubaiRuntimeDisplay = dubaiRuntime ? getTransportationOptionDisplayModel(dubaiRuntime, "en") : undefined;
+const dubaiSourceBacked = Boolean(dubaiRuntimeDisplay?.routeDetails.hasSourceBackedRouteDetail && dubaiRuntimeDisplay.sourceConfidence === "source");
+const dubaiHttpsBacked = Boolean(dubaiFact?.officialProviderUrl?.startsWith("https://"));
+const dubaiFareUsable = Boolean(dubaiFact && dubaiFact.estimatedFareMin != null && dubaiFact.estimatedFareMin > 0 && dubaiFact.estimatedFareMax != null && dubaiFact.estimatedFareMax >= dubaiFact.estimatedFareMin && dubaiFact.currency === "AED");
+const dubaiFareAccuracyComplete = dubaiFareUsable && Boolean(dubaiFact?.fareAccuracy);
+const uaeCompletion = `${activeUaeOutlets.length}/${dubaiRuntime ? 1 : 0}/${dubaiSourceBacked ? 1 : 0}/${dubaiHttpsBacked ? 1 : 0}/${dubaiFareUsable ? 1 : 0}/${dubaiFareAccuracyComplete ? 1 : 0}`;
+if (activeUaeOutlets.length !== 1) errors.push(`United Arab Emirates active outlet count changed; review Dubai completion assumptions before editing data: ${activeUaeOutlets.length}`);
+if (uaeCompletion !== "1/1/1/1/1/1") errors.push(`United Arab Emirates completion is invalid: ${uaeCompletion}`);
+if (!dubaiOutlet) errors.push("Dubai Outlet Mall must remain active and runtime-visible");
+if (dubaiGuides.length !== 1 || !dubaiGuide) errors.push(`${dubaiOutletId}: exactly one final primary guide is required`);
+if (dubaiRecommendedGuides.length !== 1 || dubaiRecommendedGuides[0]?.guideId !== dubaiGuideId || dubaiRuntime?.id !== dubaiGuideId) errors.push(`${dubaiOutletId}: exactly one expected recommended runtime primary is required`);
+if (dubaiFacts.length !== 1 || !dubaiFact) errors.push(`${dubaiOutletId}: exactly one matching primary fact is required`);
+if (dubaiGuide?.originType !== "station" || dubaiFact?.originType !== "station" || dubaiRuntime?.originGroup !== "station") errors.push(`${dubaiGuideId}: station origin ownership is invalid`);
+if (dubaiGuide?.transportationType !== "bus" || dubaiFact?.mode !== "bus") errors.push(`${dubaiGuideId}: bus mode is required`);
+if (!dubaiFact?.line || /66\s*(?:\/|&|and)\s*67|67\s*(?:\/|&|and)\s*66/i.test(dubaiFact.line) || !/^66\b/.test(dubaiFact.line)) errors.push(`${dubaiGuideId}: one Bus 66 route number only is required`);
+if (dubaiFact?.boardingPoint !== "Al Ghubaiba Bus Station") errors.push(`${dubaiGuideId}: exact Al Ghubaiba boarding point is missing`);
+if (!/Faqa, Terminus/i.test(dubaiFact?.line ?? "")) errors.push(`${dubaiGuideId}: correct Bus 66 direction is missing`);
+if (dubaiFact?.alightingPoint !== "Dubai Outlet Mall 01" || dubaiFact.destination !== "Dubai Outlet Mall") errors.push(`${dubaiGuideId}: real Dubai Outlet Mall stop or destination is invalid`);
+if (!dubaiFact?.sourceNote || !/Silver Card/i.test(dubaiFact.sourceNote) || !/two adjacent zones|more than two zones/i.test(dubaiFact.sourceNote) || !/zone table|zone fare|zone/i.test(dubaiFact.sourceNote)) errors.push(`${dubaiGuideId}: official zone-fare provenance or one payment-product basis is missing`);
+if (!dubaiFact?.officialCheckNote || !/return/i.test(dubaiFact.officialCheckNote) || !/weekday|Friday|Saturday|Sunday|operating-day/i.test(`${dubaiFact.sourceNote} ${dubaiFact.officialCheckNote}`)) errors.push(`${dubaiGuideId}: operating-day and return-service confirmation is incomplete`);
+if (dubaiFact?.estimatedFareMin !== 5 || dubaiFact.estimatedFareMax !== 7.5 || dubaiFact.currency !== "AED" || dubaiFact.fareAccuracy !== "estimated" || dubaiFact.displayFare != null) errors.push(`${dubaiGuideId}: structured AED fare or fareAccuracy is invalid`);
+if (dubaiGuide && (!/AED 5.*7\.50/.test(dubaiGuide.estimatedCost) || !/Approx/i.test(dubaiGuide.estimatedCost))) errors.push(`${dubaiGuideId}: guide fare does not agree with estimated AED fact`);
+if (dubaiFact?.suppressDerivedDurationFallback !== true || dubaiFact.displayDuration != null || dubaiFact.estimatedDurationMin != null || dubaiFact.estimatedDurationMax != null || dubaiGuide?.estimatedDuration !== "") errors.push(`${dubaiGuideId}: unsupported duration must be suppressed`);
+const dubaiLegacy = transportation.filter((option) => option.outletId === dubaiOutletId);
+const dubaiData = JSON.stringify({ guide: dubaiGuide, fact: dubaiFact, legacy: dubaiLegacy });
+if (/current stop|nearest stop|synthetic stop|66\s*\/\s*67|66\s*&\s*67|take bus 66 or 67|choose whichever|Google Maps/i.test(dubaiData)) errors.push(`${dubaiGuideId}: rejected generic or combined-route wording is present`);
+if (/Red Ticket/i.test(dubaiFact?.sourceNote ?? "")) errors.push(`${dubaiGuideId}: mixed Silver and Red fare product basis is present`);
+if (/card purchase price|card included balance|AED 25|AED 19/i.test(dubaiFact?.sourceNote ?? "")) errors.push(`${dubaiGuideId}: card purchase price or included balance is used as fare basis`);
+if (!/final signed pedestrian access.*free and excluded/i.test(dubaiFact?.walkNote ?? "") || !/Travel to Al Ghubaiba.*excluded/i.test(dubaiFact?.sourceNote ?? "") || !/card purchase cost.*excluded/i.test(dubaiFact?.sourceNote ?? "")) errors.push(`${dubaiGuideId}: excluded upstream/card/walking components are incomplete`);
+if (!dubaiLegacy.some((option) => option.transportType === "shuttle" && /Free when confirmed/i.test(option.cost) && /participating hotels vary.*pickup point.*timetable.*reservation.*return service/is.test(option.tip)) || !dubaiLegacy.some((option) => option.transportType === "car" && /parking/i.test(`${option.title} ${option.tip}`)) || dubaiLegacy.some((option) => option.transportType === "shuttle" && option.cost === "Free")) errors.push(`${dubaiOutletId}: useful conditional shuttle and car legacy options are not preserved safely`);
+for (const language of supportedLanguageCodes) {
+  const localized = display(dubaiOutletId, dubaiGuideId, language);
+  const fare = localized?.estimatedFareLabel ?? "";
+  const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+  const qualifier = ({ en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ar: "تقريبًا", ru: "Примерно", zh: "约" } as const)[language];
+  if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source" || !rows.length) errors.push(`${dubaiGuideId}/${language}: source-backed runtime route detail is missing`);
+  if (!fare.startsWith(qualifier) || !fare.includes("AED") || !fare.includes("5") || !fare.includes("7.5") || !/[–-]/.test(fare)) errors.push(`${dubaiGuideId}/${language}: estimated AED fare lacks localized approximation or endpoints`);
+  if (localized?.estimatedDurationLabel) errors.push(`${dubaiGuideId}/${language}: derived duration is visible`);
+}
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
@@ -2408,6 +2460,7 @@ for (const [[countryId], completion] of northernEuropeBalticsIrelandRoutes.map((
 console.log(`Northern Europe, Baltics and Ireland active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${regionalCompletion}`);
 console.log(`Poland active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${activePolandOutlets.length}/${runtimePolandPrimaries.length}/${sourceBackedPolandPrimaries.length}/${sourceBackedHttpsPolandPrimaries.length}/${fareUsablePolandPrimaries.length}/${fareAccuracyCompletePolandPrimaries.length}`);
 console.log(`Turkey active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${turkeyCompletion}`);
+console.log(`United Arab Emirates active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${uaeCompletion}`);
 console.log(`Turkish source-backed multi-leg route count: ${sourceBackedTurkishMultiLegFacts.length}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
