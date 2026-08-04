@@ -1765,11 +1765,11 @@ if (bataviaFact?.line !== "Amsterdam Centraal → Lelystad Centrum" || bataviaFa
 const turkeyPrimaryRoutes = [
   [
     "viaport-asia-outlet-shopping",
-    "istanbul-to-viaport-asia-iett",
-    "bus",
-    "Kartal",
-    "Dedepaşa Caddesi",
-    "134",
+    "saw-to-viaport-asia-licensed-taxi",
+    "taxi",
+    "Sabiha Gökçen International Airport arrivals taxi rank",
+    "Viaport Asia Outlet Shopping, Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik",
+    "Licensed Istanbul taxi",
   ],
   [
     "olivium-outlet-center",
@@ -1829,7 +1829,7 @@ const turkeyPrimaryRoutes = [
   ],
 ] as const;
 const turkeyExpectedFares = new Map<string, [number, number, "exact" | "estimated"]>([
-  ["istanbul-to-viaport-asia-iett", [46.2, 65, "estimated"]],
+  ["saw-to-viaport-asia-licensed-taxi", [285, 371, "estimated"]],
   ["sirkeci-to-olivium-kazlicesme-rail", [37.4, 37.4, "exact"]],
   ["istanbul-to-starcity-m9", [92.4, 92.4, "exact"]],
   ["istanbul-to-venezia-t4", [92.4, 92.4, "exact"]],
@@ -1896,19 +1896,27 @@ for (const [
   turkeyHttpsBacked += Number(httpsBacked);
   turkeyFareUsable += Number(fareUsable);
   turkeyFareAccuracyComplete += Number(accuracyComplete);
+  const expectedGuideOrigin = outletId === "viaport-asia-outlet-shopping" ? "airport" : "city_center";
+  const expectedFactOrigin = outletId === "viaport-asia-outlet-shopping" ? "airport" : "cityCenter";
+  const expectedRuntimeOrigin = outletId === "viaport-asia-outlet-shopping" ? "airport" : "city";
   if (
-    guide?.originType !== "city_center" ||
-    fact?.originType !== "cityCenter" ||
-    runtime.originGroup !== "city"
+    guide?.originType !== expectedGuideOrigin ||
+    fact?.originType !== expectedFactOrigin ||
+    runtime.originGroup !== expectedRuntimeOrigin
   )
     errors.push(`${guideId}: guide/fact/runtime origin mismatch`);
-  if (
-    guide?.transportationType !== mode ||
-    fact?.mode !== mode ||
-    fact.boardingPoint !== boarding ||
-    fact.alightingPoint !== alighting ||
-    !fact.line?.includes(lineToken)
-  )
+  const routeMatches = outletId === "viaport-asia-outlet-shopping"
+    ? guide?.transportationType === mode &&
+      fact?.mode === mode &&
+      fact?.boardingPoint === boarding &&
+      fact?.destination === alighting &&
+      fact?.provider === lineToken
+    : guide?.transportationType === mode &&
+      fact?.mode === mode &&
+      fact.boardingPoint === boarding &&
+      fact.alightingPoint === alighting &&
+      !!fact.line?.includes(lineToken);
+  if (!routeMatches)
     errors.push(
       `${guideId}: route-specific mode, boarding, line, or stop is invalid`,
     );
@@ -1931,11 +1939,13 @@ for (const [
       `${guideId}: provenance, fare, or duration completion is invalid`,
     );
   const scope = `${fact?.sourceNote} ${fact?.walkNote}`;
+  const hasUpstreamExclusion = /[Tt]ravel to|Upstream travel|travel before/.test(scope);
+  const hasPaymentExclusion = fact?.mode === "taxi"
+    ? /parking|free transfer|optional taxi\/minibus/.test(scope)
+    : /card purchase cost|card cost|İstanbulkart purchase cost|reusable card purchase cost|reusable İzmirim Kart purchase cost|AntalyaKart purchase cost/.test(scope);
   if (
-    !/[Tt]ravel to|Upstream travel/.test(scope) ||
-    !/card purchase cost|card cost|İstanbulkart purchase cost|reusable card purchase cost|reusable İzmirim Kart purchase cost|AntalyaKart purchase cost/.test(
-      scope,
-    ) ||
+    !hasUpstreamExclusion ||
+    !hasPaymentExclusion ||
     !/final walk|final walking|pedestrian connection/.test(scope)
   )
     errors.push(
@@ -1977,12 +1987,28 @@ for (const [
     if (guideId.includes("marmaray") || fact?.provider !== "Sirkeci–Kazlıçeşme Rail" || fact?.estimatedFareMin === 46.2 || /receives.*refund|after exit|Metro İstanbul/.test(fact?.sourceNote ?? ""))
       errors.push("Olivium: primary fare must use the current Sirkeci–Kazlıçeşme tariff authority, not Marmaray/Metro generic fare assumptions");
   }
-  if (guideId === "istanbul-to-viaport-asia-iett" && (fact?.boardingPoint !== "Kartal" || fact?.alightingPoint !== "Dedepaşa Caddesi" || fact?.line !== "134 toward Dedepaşa Bulvarı / Viaport corridor" || fact?.fareAccuracy !== "estimated" || !/KADEMELİ TARİFE|Kartal-departure direction|Dedepaşa Bulvarı|TRY 46\.20–65|132K secondary/.test(fact?.sourceNote + " " + fact?.officialCheckNote)))
-    errors.push("Viaport: official 134 staged-route provenance is invalid");
-  if (guideId === "istanbul-to-viaport-asia-iett" && /132K toward Yenişehir/.test(`${fact?.line} ${fact?.sourceNote}`))
-    errors.push("Viaport: directionally impossible 132K Kartal to Dedepaşa Caddesi remains primary");
-  if (guideId === "istanbul-to-viaport-asia-iett" && fact?.alightingPoint === "Viaport")
-    errors.push("Viaport: synthetic Viaport stop remains primary");
+  if (outletId === "viaport-asia-outlet-shopping") {
+    const viaportGuides = transportationGuides.filter((guide) => guide.outletId === outletId);
+    const viaportPrimarySource = `${guide?.guideId} ${fact?.mode} ${fact?.provider} ${fact?.boardingPoint} ${fact?.destination} ${fact?.sourceNote} ${fact?.officialCheckNote} ${guide?.estimatedCost}`;
+    if (
+      guideId !== "saw-to-viaport-asia-licensed-taxi" ||
+      fact?.mode !== "taxi" ||
+      fact?.provider !== "Licensed Istanbul taxi" ||
+      fact?.boardingPoint !== "Sabiha Gökçen International Airport arrivals taxi rank" ||
+      fact?.destination !== "Viaport Asia Outlet Shopping, Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik" ||
+      fact?.fareAccuracy !== "estimated" ||
+      !/İBB\/UKOME 2026 taxi tariff|TRY 65\.40|TRY 43\.56\/km|5\.0 km|7\.0 km|TRY 283\.20|TRY 370\.32|minimum|toll|waiting/i.test(viaportPrimarySource) ||
+      !fact?.officialProviderUrl?.startsWith("https://www.sabihagokcen.aero/")
+    )
+      errors.push("Viaport: licensed airport taxi primary provenance is invalid");
+    if (viaportGuides.some((candidate) => candidate.recommended && /134|132K/.test(`${candidate.guideId} ${candidate.title}`)))
+      errors.push("Viaport: İETT 134 or 132K remains recommended");
+    const iett134Fact = transportationRouteFacts.find((candidate) => candidate.guideId === "istanbul-to-viaport-asia-iett");
+    if (/TRY 46\.20–65/.test(`${iett134Fact?.sourceNote} ${transportationGuides.find((candidate) => candidate.guideId === "istanbul-to-viaport-asia-iett")?.estimatedCost}`) || !/highly limited|08:05|08:10|secondary alternative/.test(`${iett134Fact?.sourceNote}`))
+      errors.push("Viaport: limited 134 secondary still has unsupported staged fare or regular-service wording");
+    if (/132K toward Yenişehir/.test(viaportPrimarySource) || /alightingPoint: "Viaport"/.test(viaportPrimarySource))
+      errors.push("Viaport: directionally impossible or synthetic stop remains primary");
+  }
   if (guides.length < 2)
     errors.push(`${outletId}: useful alternatives were not preserved`);
 }
@@ -1990,7 +2016,7 @@ const turkeyCompletion = `${activeTurkeyOutlets.length}/${turkeyRuntimePrimaries
 if (turkeyCompletion !== "8/8/8/8/8/8")
   errors.push(`Turkey completion is invalid: ${turkeyCompletion}`);
 const viaportPrimary = transportationRouteFacts.find(
-  (fact) => fact.guideId === "istanbul-to-viaport-asia-iett",
+  (fact) => fact.guideId === "saw-to-viaport-asia-licensed-taxi",
 );
 if (
   /KM25|KM27|16KH|130H|current stop|\/.*\//.test(

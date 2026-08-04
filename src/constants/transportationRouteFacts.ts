@@ -1159,6 +1159,28 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
   },
 
   {
+    guideId: "saw-to-viaport-asia-licensed-taxi",
+    outletId: "viaport-asia-outlet-shopping",
+    originType: "airport",
+    mode: "taxi",
+    provider: "Licensed Istanbul taxi",
+    boardingPoint: "Sabiha Gökçen International Airport arrivals taxi rank",
+    destination:
+      "Viaport Asia Outlet Shopping, Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik",
+    suppressDerivedDurationFallback: true,
+    estimatedFareMin: 285,
+    estimatedFareMax: 371,
+    currency: "TRY",
+    fareAccuracy: "estimated",
+    sourceNote:
+      "Official Sabiha Gökçen ground-transport information supports licensed taxis at the airport, and Viaport publishes the destination address at Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik plus approximately 10-minute airport proximity. The official İBB/UKOME 2026 taxi tariff effective 16.02.2026 sets yellow taxi opening at TRY 65.40, distance at TRY 43.56/km, waiting at TRY 544.45/hour and a short-trip minimum that is not binding here; no airport-specific flat fare or toll is expected for this local Pendik route. The estimated TRY 285–371 range calculates 65.40 + 43.56 × 5.0 km = TRY 283.20, displayed as TRY 285, through 65.40 + 43.56 × 7.0 km = TRY 370.32, displayed as TRY 371. Traffic, waiting, booking, luggage and other supplements may increase the final total; optional tolls, parking, free transfer, travel before the arrivals taxi rank and final walking are excluded.",
+    officialCheckNote:
+      "Confirm the licensed airport taxi rank, active taximeter or licensed app quote, current İBB/UKOME taxi tariff and Viaport address before travel.",
+    confidence: "partial",
+    officialProviderUrl:
+      "https://www.sabihagokcen.aero/kisisellestirilmis-giris-sayfasi/gelis/havalimanimizda/seyahatinizi-planlayin",
+  },
+  {
     guideId: "istanbul-to-viaport-asia-iett",
     outletId: "viaport-asia-outlet-shopping",
     originType: "cityCenter",
@@ -1172,14 +1194,10 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     walkNote:
       "The pedestrian connection from Dedepaşa Caddesi along the outlet-address corridor is free and excluded.",
     suppressDerivedDurationFallback: true,
-    estimatedFareMin: 46.2,
-    estimatedFareMax: 65,
-    currency: "TRY",
-    fareAccuracy: "estimated",
     sourceNote:
-      "Official İETT route information classifies 134 as KADEMELİ TARİFE and supports the Kartal-departure direction toward the Dedepaşa Bulvarı / Viaport corridor with Dedepaşa Caddesi serving the outlet-address corridor. Because the current public route page verifies the staged classification but not the exact Kartal-to-Dedepaşa Caddesi segment charge in machine-verifiable form, the estimated TRY 46.20–65 adult range is bounded by the current anonymous İstanbulkart full validation and the current one-pass electronic ticket. Travel to Kartal, İstanbulkart purchase cost, optional taxi/minibus travel and final walking are excluded.",
+      "Official İETT route information classifies 134 as KADEMELİ TARİFE and supports a Kartal-departure direction toward the Dedepaşa Bulvarı / Viaport corridor, but the currently published service is highly limited with isolated early-morning Kartal departures around 08:05–08:10 and no reliable post-shopping return matching 10:00–22:00 outlet hours. The staged fare is not stored because the exact Kartal-to-Dedepaşa Caddesi charge is not represented here; verify operation and fare before treating this as a secondary alternative.",
     officialCheckNote:
-      "Confirm İETT 134 operating that day, the Kartal departure, Dedepaşa Caddesi stop in the selected direction and the current staged adult fare before travel; keep 132K secondary because Kartal to Dedepaşa Caddesi is directionally unsupported on 132K.",
+      "Do not use this as the permanent primary. Confirm İETT 134 operating that day, the Kartal departure, Dedepaşa Caddesi stop in the selected direction and the current staged adult fare before travel.",
     confidence: "partial",
     officialProviderUrl: "https://iett.istanbul/RouteDetail?hkod=134",
   },

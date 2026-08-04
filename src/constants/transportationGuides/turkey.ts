@@ -2,23 +2,58 @@ import type { TransportationGuide } from "./index";
 
 export const turkeyTransportationGuides: TransportationGuide[] = [
   {
+    guideId: "saw-to-viaport-asia-licensed-taxi",
+    outletId: "viaport-asia-outlet-shopping",
+    originType: "airport",
+    originId: "sabiha-gokcen-airport",
+    transportationType: "taxi",
+    title: "Sabiha Gökçen Airport to Viaport Asia by Licensed Taxi",
+    estimatedDuration: "",
+    estimatedCost: "Approx. TRY 285–371",
+    recommended: true,
+    steps: [
+      {
+        order: 1,
+        description: "Use the official licensed taxi rank outside the airport arrivals exit.",
+      },
+      {
+        order: 2,
+        description:
+          "Set Viaport Asia Outlet Shopping, Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik as the exact destination.",
+      },
+      {
+        order: 3,
+        description: "Confirm that the taximeter is active or obtain a licensed app-based quote.",
+      },
+      {
+        order: 4,
+        description:
+          "Traffic, waiting, booking, luggage and other supplements may increase the final total.",
+      },
+      { order: 5, description: "Arrange the return pickup separately." },
+    ],
+    updatedAt: "2026-08-04",
+  },
+  {
     guideId: "istanbul-to-viaport-asia-iett",
     outletId: "viaport-asia-outlet-shopping",
     originType: "city_center",
     originId: "city-center",
     transportationType: "bus",
-    title: "Istanbul to Viaport Asia by İETT 134 Bus",
+    title: "Istanbul to Viaport Asia by Limited İETT 134 Bus",
     estimatedDuration: "",
-    estimatedCost: "Approx. TRY 46.20–65",
-    recommended: true,
+    estimatedCost: "",
+    recommended: false,
     steps: [
       {
         order: 1,
-        description: "Board İETT line 134 at Kartal toward the Dedepaşa Bulvarı / Viaport corridor.",
+        description:
+          "Verify same-day İETT 134 operation before relying on this limited Kartal-departure alternative.",
       },
       {
         order: 2,
-        description: "Remain on the single 134 corridor to Dedepaşa Caddesi.",
+        description:
+          "If a useful 134 departure is running, board at Kartal toward the Dedepaşa Bulvarı / Viaport corridor.",
       },
       {
         order: 3,
