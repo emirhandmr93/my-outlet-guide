@@ -10,7 +10,7 @@ export const croatiaTransportationGuides: TransportationGuide[] = [
     title: "Zagreb to Roses Designer Outlet by Official Weekend Bus",
     estimatedDuration: "Check official timetable",
     estimatedCost: "Check official outlet fare information",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Check the official Roses Designer Outlet Plan Your Visit page before travel because the Zagreb bus is listed for Saturdays and Sundays." },
       { order: 2, description: "Use an official Zagreb stop listed by the outlet; published departures include Zagreb to Roses at 10:00 and 15:30." },
@@ -19,6 +19,23 @@ export const croatiaTransportationGuides: TransportationGuide[] = [
       { order: 5, description: "For the return trip, use the outlet-listed Roses to Zagreb departures at 14:00 or 20:00 when operating." },
     ],
     updatedAt: "2026-07-03",
+  },
+  {
+    guideId: "zagreb-centre-to-roses-designer-outlet-taxi",
+    outletId: "ros-designer-outlet",
+    originType: "city_center",
+    originId: "zagreb-main-square",
+    transportationType: "taxi",
+    title: "Zagreb Centre to Roses Designer Outlet by Licensed Taxi",
+    estimatedDuration: "Check current traffic",
+    estimatedCost: "EUR 45-75",
+    recommended: true,
+    steps: [
+      { order: 1, description: "Board a licensed taxi or pre-booked private-hire vehicle at Ban Jelačić Square and confirm the metered or quoted fare." },
+      { order: 2, description: "Travel to Roses Designer Outlet, Ulica Vrankovec 1, Sveti Križ Začretje, using the A2/E59 and Exit 4." },
+      { order: 3, description: "Traffic, waiting, booking and motorway toll treatment can change the fare; free outlet parking is excluded." },
+    ],
+    updatedAt: "2026-08-04",
   },
   {
     guideId: "zagreb-airport-to-roses-car",
@@ -67,7 +84,7 @@ export const croatiaTransportationGuides: TransportationGuide[] = [
     title: "Zagreb to Roses Designer Outlet by Car and Free Parking",
     estimatedDuration: "About 35-45 minutes",
     estimatedCost: "More than 1,000 free parking spaces; toll, fuel or taxi costs vary",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Drive north from Zagreb toward the A2/E59 motorway for Krapina and Macelj." },
       { order: 2, description: "Leave at Exit 4, Sveti Križ Začretje; the official outlet page advises navigating by postal code or Sveti Križ Začretje because the centre is directly by the exit." },

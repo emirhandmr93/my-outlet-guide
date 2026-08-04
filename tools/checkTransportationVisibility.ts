@@ -2017,6 +2017,52 @@ for (const [countryId, outletId, guideId, currency] of northernEuropeBalticsIrel
 const regionalCompletion = northernEuropeBalticsIrelandCompletion.reduce((parts, completion) => completion.split("/").map((value, index) => Number(value) + (parts[index] ?? 0)), [] as number[]).join("/");
 if (regionalCompletion !== "8/8/8/8/8/8") errors.push(`Northern Europe, Baltics and Ireland completion is invalid: ${regionalCompletion}`);
 
+const centralSoutheastRoutes = [
+  ["czech-republic", "fashion-arena-prague-outlet", "prague-centre-to-fashion-arena-metro-shuttle"],
+  ["croatia", "ros-designer-outlet", "zagreb-centre-to-roses-designer-outlet-taxi"],
+  ["hungary", "premier-outlet-budapest", "budapest-kelenfold-to-premier-outlet-bus"],
+  ["greece", "designer-outlet-athens", "designer-outlet-athens-city-center-car"],
+  ["romania", "fashion-house-outlet-centre-bucharest", "bucharest-center-to-fashion-house-militari-car"],
+  ["romania", "fashion-house-outlet-centre-pallady", "bucharest-centre-to-fashion-house-pallady-licensed-taxi"],
+] as const;
+const centralSoutheastCompletion: string[] = [];
+for (const [countryId, outletId, guideId] of centralSoutheastRoutes) {
+  const guides = transportationGuides.filter((guide) => guide.outletId === outletId);
+  const matchingGuides = guides.filter((guide) => guide.guideId === guideId);
+  const recommended = guides.filter((guide) => guide.recommended);
+  const facts = transportationRouteFacts.filter((fact) => fact.guideId === guideId && fact.outletId === outletId);
+  const fact = facts[0];
+  const runtime = getRecommendedTransportationV2Option(outletId);
+  const sourceBacked = Boolean(runtime?.routeDetails.hasSourceBackedRouteDetail && runtime.sourceConfidence === "source");
+  const httpsBacked = Boolean(fact?.officialProviderUrl?.startsWith("https://"));
+  const fareUsable = Boolean(fact?.estimatedFareMin && fact.estimatedFareMin > 0 && fact.estimatedFareMax && fact.estimatedFareMax >= fact.estimatedFareMin && fact.currency);
+  const accuracyComplete = fareUsable && Boolean(fact?.fareAccuracy);
+  const completion = `1/${runtime?.id === guideId ? 1 : 0}/${sourceBacked ? 1 : 0}/${httpsBacked ? 1 : 0}/${fareUsable ? 1 : 0}/${accuracyComplete ? 1 : 0}`;
+  centralSoutheastCompletion.push(completion);
+  if (matchingGuides.length !== 1 || facts.length !== 1) errors.push(`${outletId}: exactly one matching guide and fact is required`);
+  if (recommended.length !== 1 || recommended[0]?.guideId !== guideId || runtime?.id !== guideId) errors.push(`${outletId}: exactly one expected recommended runtime primary is required`);
+  if (fact?.mode !== matchingGuides[0]?.transportationType || fact?.originType !== "cityCenter") errors.push(`${guideId}: route mode or origin ownership differs`);
+  if (!sourceBacked || !httpsBacked || !fareUsable || !accuracyComplete) errors.push(`${guideId}: source, HTTPS, fare or fareAccuracy completion failed`);
+  if (!fact?.sourceNote?.match(/exclude/i) || !fact.suppressDerivedDurationFallback) errors.push(`${guideId}: fare exclusions or duration suppression are missing`);
+  if (guides.length < 2) errors.push(`${outletId}: useful alternatives were not preserved`);
+  for (const language of supportedLanguageCodes) {
+    const localized = getTransportationOptionDisplayModel(runtime!, language);
+    const fare = localized.estimatedFareLabel ?? "";
+    const qualifier = ({ en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ar: "تقريبًا", ru: "Примерно", zh: "约" } as const)[language];
+    if (!localized.routeDetails.hasSourceBackedRouteDetail || !fare.startsWith(qualifier) || (localized.estimatedDurationLabel && guideId !== "budapest-kelenfold-to-premier-outlet-bus")) errors.push(`${guideId}/${language}: localized source, estimated fare, or duration safety failed`);
+  }
+}
+for (const countryId of ["czech-republic", "croatia", "hungary", "greece", "romania"] as const) {
+  const values = centralSoutheastRoutes.map((route, index) => route[0] === countryId ? centralSoutheastCompletion[index] : null).filter(Boolean) as string[];
+  const total = values.reduce((sum, value) => value.split("/").map((part, index) => Number(part) + (sum[index] ?? 0)), [] as number[]).join("/");
+  const expected = countryId === "romania" ? "2/2/2/2/2/2" : "1/1/1/1/1/1";
+  if (total !== expected) errors.push(`${countryId} Central/Southeast completion is invalid: ${total}`);
+  console.log(`${countryId} Central/Southeast completion: ${total}`);
+}
+const centralSoutheastRegionalCompletion = centralSoutheastCompletion.reduce((sum, value) => value.split("/").map((part, index) => Number(part) + (sum[index] ?? 0)), [] as number[]).join("/");
+if (centralSoutheastRegionalCompletion !== "6/6/6/6/6/6") errors.push(`Central/Southeast regional completion is invalid: ${centralSoutheastRegionalCompletion}`);
+console.log(`Central/Southeast regional completion: ${centralSoutheastRegionalCompletion}`);
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
