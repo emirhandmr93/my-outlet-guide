@@ -9,7 +9,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Málaga City Centre to Designer Outlet Málaga by Train",
     estimatedDuration: "12 min",
-    estimatedCost: "Check current Renfe Cercanías fare",
+    estimatedCost: "Estimated €2–4; check the current Renfe Cercanías fare",
     recommended: true,
     steps: [
       { order: 1, description: "Start at Málaga Centro-Alameda or Málaga-María Zambrano and check the official Renfe Cercanías C1 departures towards Fuengirola." },
@@ -63,7 +63,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Madrid Moncloa to Las Rozas Village by Bus",
     estimatedDuration: "30 min",
-    estimatedCost: "Check current CRTM fare",
+    estimatedCost: "Estimated €2–5; check the current CRTM fare",
     recommended: true,
     steps: [
       { order: 1, description: "At Madrid Moncloa Interchange, check the official CRTM timetable for interurban bus lines 625, 628, or 629 towards Las Rozas." },
@@ -118,7 +118,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Barcelona to Viladecans The Style Outlets by Train",
     estimatedDuration: "",
-    estimatedCost: "Check current Rodalies fare",
+    estimatedCost: "Estimated €3–6; check the current Rodalies fare",
     recommended: true,
     steps: [
       { order: 1, description: "From Barcelona Sants, Passeig de Gràcia or another served station, check the official Rodalies timetable for trains to Viladecans." },
@@ -191,7 +191,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Barcelona to La Roca Village by Shopping Express Coach",
     estimatedDuration: "40 min",
-    estimatedCost: "Check current official fare and booking terms",
+    estimatedCost: "Estimated €20–30 return; check the current official fare and booking terms",
     recommended: true,
     steps: [
       { order: 1, description: "Open La Roca Village's official Getting Here page or Catalunya Bus Turístic Shopping Express page and check current operating days, fare and reservation rules." },
@@ -228,7 +228,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Palma to Mallorca Fashion Outlet via Es Caülls",
     estimatedDuration: "",
-    estimatedCost: "Check current TIB fare",
+    estimatedCost: "Estimated €2–4; check the current TIB/SFM fare",
     recommended: true,
     steps: [
       { order: 1, description: "Start at Palma Intermodal Station and check the official TIB/SFM rail timetable for trains stopping at Es Caülls." },
@@ -300,7 +300,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Sevilla to Sevilla Fashion Outlet by Taxi",
     estimatedDuration: "15 min",
-    estimatedCost: "Confirm licensed taxi or transfer fare",
+    estimatedCost: "Estimated €20–30 taxi/private-transfer fare; confirm the current licensed-provider price",
     recommended: true,
     steps: [
       { order: 1, description: "Set navigation to Sevilla Fashion Outlet, Calle Finca los Espartales, San José de la Rinconada." },
@@ -355,7 +355,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "A Coruña (LCG) to Coruña The Style Outlets by Taxi",
     estimatedDuration: "",
-    estimatedCost: "Confirm licensed taxi fare",
+    estimatedCost: "Estimated €7–12 taxi fare; confirm the current licensed-provider price",
     recommended: true,
     steps: [
       { order: 1, description: "At A Coruña Airport, use official airport ground-transport information for taxi, public transport, or car access." },
@@ -391,7 +391,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Madrid or Getafe to Getafe The Style Outlets by Taxi",
     estimatedDuration: "",
-    estimatedCost: "Confirm licensed taxi fare",
+    estimatedCost: "Estimated €30–45 taxi/private-transfer fare from Madrid city centre; confirm the current licensed-provider price",
     recommended: true,
     steps: [
       { order: 1, description: "Set navigation to Getafe The Style Outlets, Avda. Río Guadalquivir, 15, 28906 Getafe." },
@@ -427,7 +427,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Madrid or San Sebastián de los Reyes to The Style Outlets by Taxi",
     estimatedDuration: "",
-    estimatedCost: "Confirm licensed taxi fare",
+    estimatedCost: "Estimated €30–45 taxi/private-transfer fare from Madrid city centre; confirm the current licensed-provider price",
     recommended: true,
     steps: [
       { order: 1, description: "Set navigation to San Sebastián de los Reyes The Style Outlets, C/ Salvador de Madariaga, s/n, 28702 San Sebastián de los Reyes." },
@@ -446,7 +446,7 @@ export const spainTransportationGuides: TransportationGuide[] = [
     transportationType: "metro",
     title: "Madrid to Sambil Madrid via Metro Line 11",
     estimatedDuration: "",
-    estimatedCost: "Check current CRTM fare",
+    estimatedCost: "Estimated €2–5; check the current CRTM fare",
     recommended: true,
     steps: [
       { order: 1, description: "Use the official CRTM or Metro planner to reach Metro Line 11 toward La Fortuna." },

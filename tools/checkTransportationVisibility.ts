@@ -1133,15 +1133,55 @@ for (const language of supportedLanguageCodes) {
     errors.push(`route-labels/${language}: operator row changed`);
 }
 const spainGenericRouteFragments = /Railway Station|Train Station|city centre|\bairport\b|(?:^|\s)or(?:\s|$)|Google Maps|promo(?:tional)? code/i;
+const spainFareRanges = new Map<string, readonly [number, number]>([
+  ["malaga-centro-to-designer-outlet-train", [2, 4]],
+  ["madrid-moncloa-to-las-rozas-bus", [2, 5]],
+  ["barcelona-to-viladecans-style-outlets-train", [3, 6]],
+  ["barcelona-to-la-roca-village-shopping-express", [20, 30]],
+  ["palma-to-mallorca-fashion-outlet-train", [2, 4]],
+  ["seville-to-sevilla-fashion-outlet-car-parking", [20, 30]],
+  ["a-coruna-airport-to-coruna-style-outlets-ground-transport", [7, 12]],
+  ["getafe-style-outlets-car-parking-guide", [30, 45]],
+  ["san-sebastian-reyes-style-outlets-car-parking-guide", [30, 45]],
+  ["sambil-madrid-metro-guide", [2, 5]],
+]);
+const spainApproximationPrefixes: Record<(typeof supportedLanguageCodes)[number], string> = {
+  en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.",
+  ru: "Примерно", ar: "تقريبًا", zh: "约",
+};
+const spainTaxiOrigins = new Map([
+  ["seville-to-sevilla-fashion-outlet-car-parking", "seville-city-center"],
+  ["a-coruna-airport-to-coruna-style-outlets-ground-transport", "a-coruna-airport"],
+  ["getafe-style-outlets-car-parking-guide", "madrid-city-center"],
+  ["san-sebastian-reyes-style-outlets-car-parking-guide", "madrid-city-center"],
+]);
 for (const [outletId, guideId, expectedMode, expectedClaims] of spainCompletionRoutes) {
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
   const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
+  const expectedFare = spainFareRanges.get(guideId);
   if (!fact?.officialProviderUrl?.startsWith("https://"))
     errors.push(`${guideId}: valid officialProviderUrl is missing`);
   if (fact?.displayFare != null)
     errors.push(`${guideId}: displayFare must not be used`);
   if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode)
     errors.push(`${guideId}: guide or fact mode is invalid`);
+  if (!fact || !expectedFare || fact.estimatedFareMin !== expectedFare[0] || fact.estimatedFareMax !== expectedFare[1] ||
+      fact.estimatedFareMin <= 0 || fact.estimatedFareMax < fact.estimatedFareMin || fact.currency !== "EUR")
+    errors.push(`${guideId}: positive structured EUR fare range is invalid`);
+  if (!guide || !expectedFare || !/[€]|EUR/i.test(guide.estimatedCost) || !/(?:estimated|approx|≈)/i.test(guide.estimatedCost) ||
+      !guide.estimatedCost.includes(String(expectedFare[0])) || !guide.estimatedCost.includes(String(expectedFare[1])))
+    errors.push(`${guideId}: guide fare does not mirror the structured estimate`);
+  if (/^(?:check|confirm)(?:\s+the)?\s+(?:current|official|licensed)?/i.test(guide?.estimatedCost ?? "") ||
+      /free parking/i.test(guide?.estimatedCost ?? "") || /(?:€|EUR)\s*0(?:[.,]0+)?\s*[–-]\s*(?:€|EUR)?\s*0/i.test(guide?.estimatedCost ?? "") ||
+      /promo(?:tion|tional)?|discount code/i.test(guide?.estimatedCost ?? ""))
+    errors.push(`${guideId}: guidance-only, parking, zero or obsolete promotional fare is present`);
+  const expectedTaxiOrigin = spainTaxiOrigins.get(guideId);
+  if (expectedTaxiOrigin && (guide?.originId !== expectedTaxiOrigin || !/normal daytime conditions/i.test(fact?.sourceNote ?? "") ||
+      !/traffic.*supplements.*luggage.*night.*weekend.*booking charges/i.test(fact?.sourceNote ?? "")))
+    errors.push(`${guideId}: taxi range is not tied to its stored origin and variable-charge policy`);
+  if (["getafe-style-outlets-car-parking-guide", "san-sebastian-reyes-style-outlets-car-parking-guide"].includes(guideId) &&
+      (!/Madrid city-centre origin/i.test(fact?.sourceNote ?? "") || !/not a short local/i.test(fact?.sourceNote ?? "")))
+    errors.push(`${guideId}: Madrid-origin taxi range was replaced by a local estimate`);
   const structuredText = [fact?.provider, fact?.operator, fact?.line, fact?.boardingPoint, ...(fact?.transferPoints || []), fact?.alightingPoint, fact?.destination].filter(Boolean).join(" ");
   if (spainGenericRouteFragments.test(structuredText))
     errors.push(`${guideId}: unsafe generic structured route value leaked`);
@@ -1153,8 +1193,12 @@ for (const [outletId, guideId, expectedMode, expectedClaims] of spainCompletionR
       errors.push(`${guideId}/${language}: display model is empty`);
     if (language !== "en" && localized && longEnglishProse.test(visibleText(localized)))
       errors.push(`${guideId}/${language}: long English instructions leaked`);
-    if (localized?.estimatedFareLabel)
-      errors.push(`${guideId}/${language}: unsupported fare is visible`);
+    const fare = localized?.estimatedFareLabel ?? "";
+    if (!fare || !/\d/.test(fare) || !fare.includes("€") || !fare.startsWith(spainApproximationPrefixes[language]))
+      errors.push(`${guideId}/${language}: numeric qualified EUR fare is missing`);
+    if (/^(?:check|confirm)(?:\s+the)?\s+(?:current|official|licensed)?/i.test(fare) ||
+        fare === fact?.provider || fare === fact?.operator || fare === freeLabels[language])
+      errors.push(`${guideId}/${language}: fare is only guidance, an operator name or fake Free`);
     const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
     if (!rows.length) errors.push(`${guideId}/${language}: visible route rows are missing`);
     const rowsText = rows.map((row) => row.value).join(" ");
