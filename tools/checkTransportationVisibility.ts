@@ -1540,7 +1540,8 @@ for (const [, outletId, guideId, expectedMode, visibleValues] of westernEuropeCo
   const fact = transportationRouteFacts.find((candidate) => candidate.guideId === guideId);
   const guide = transportationGuides.find((candidate) => candidate.guideId === guideId);
   const runtimeOption = getTransportationV2Options(outletId).find((option) => option.id === guideId);
-  if (!fact?.officialProviderUrl?.startsWith("https://") || fact.displayFare != null || fact.estimatedFareMin != null || fact.estimatedFareMax != null) errors.push(`${guideId}: source URL or fare provenance is invalid`);
+  if (!fact?.officialProviderUrl?.startsWith("https://")) errors.push(`${guideId}: source URL is invalid`);
+  if (fact?.estimatedFareMin == null || fact.estimatedFareMax == null || !fact.currency || fact.estimatedFareMin <= 0 || fact.estimatedFareMax < fact.estimatedFareMin) errors.push(`${guideId}: structured fare provenance is invalid`);
   if (fact?.mode !== expectedMode || guide?.transportationType !== expectedMode) errors.push(`${guideId}: guide or fact mode is invalid`);
   const isFreeport = guideId === "lisbon-to-freeport-lisboa-shuttle";
   if (isFreeport ? fact?.originType !== "shuttle" || runtimeOption?.originGroup !== "shuttle" : fact?.originType !== "cityCenter" || guide?.originType !== "city_center" || runtimeOption?.originGroup !== "city") errors.push(`${guideId}: origin classification is invalid`);
@@ -1551,7 +1552,10 @@ for (const [, outletId, guideId, expectedMode, visibleValues] of westernEuropeCo
     const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
     if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source" || !visibleText(localized).trim() || !rows.length) errors.push(`${guideId}/${language}: source-backed display or warning gating is invalid`);
     if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
-    if (localized?.estimatedDurationLabel || localized?.estimatedFareLabel) errors.push(`${guideId}/${language}: unsupported duration or fare is visible`);
+    if (localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
+    const fare = localized?.estimatedFareLabel || "";
+    if (!fare || !/\d/.test(fare) || !/(?:€|EUR|CHF)/i.test(fare) || !/[–-]/.test(fare)) errors.push(`${guideId}/${language}: numeric estimated fare range is missing`);
+    if (/^(?:check|confirm)(?:\s+the)?\s+(?:current|official)?\s*fare/i.test(fare)) errors.push(`${guideId}/${language}: fare contains only a current-fare warning`);
     for (const value of visibleValues) if (rows.filter((row) => row.value === value).length !== 1) errors.push(`${guideId}/${language}: ${value} is not visible exactly once`);
     const lineReference = display("la-vallee-village", "paris-to-la-vallee-rer-a", language);
     const referenceRows = lineReference ? getTransportationRouteDetailRows(lineReference, language) : [];

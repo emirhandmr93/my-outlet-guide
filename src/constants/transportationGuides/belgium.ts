@@ -45,7 +45,7 @@ export const belgiumTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Brussels to Maasmechelen Village via Genk",
     estimatedDuration: "",
-    estimatedCost: "Check current NMBS/SNCB and De Lijn fares",
+    estimatedCost: "Estimated €15–30 total; check current NMBS/SNCB and De Lijn fares",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Brussels–Genk connection with NMBS/SNCB." },
@@ -138,7 +138,7 @@ export const belgiumTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Luxembourg to Designer Outlet Luxembourg via Arlon",
     estimatedDuration: "",
-    estimatedCost: "Check current CFL, SNCB and TEC fares",
+    estimatedCost: "Estimated €8–15 total; check current CFL, SNCB and TEC fares",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Luxembourg–Arlon train connection with CFL/SNCB." },

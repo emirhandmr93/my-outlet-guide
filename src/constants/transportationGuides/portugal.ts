@@ -9,7 +9,7 @@ export const portugalTransportationGuides: TransportationGuide[] = [
     transportationType: "shuttle",
     title: "Lisbon to Freeport Lisboa Fashion Outlet by Official Shuttle",
     estimatedDuration: "",
-    estimatedCost: "Check current official shuttle fare",
+    estimatedCost: "Estimated €14–20 return; check current official shuttle fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the current shuttle time and Marquês de Pombal departure on the official page." },
@@ -100,7 +100,7 @@ export const portugalTransportationGuides: TransportationGuide[] = [
     transportationType: "metro",
     title: "Porto Trindade to Vila do Conde Porto Fashion Outlet by Metro B",
     estimatedDuration: "",
-    estimatedCost: "Check current Metro do Porto fare",
+    estimatedCost: "Estimated €3–5; check current Metro do Porto fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Line B service from Trindade." },

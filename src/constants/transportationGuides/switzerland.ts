@@ -9,7 +9,7 @@ export const switzerlandTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Lugano to FoxTown via Mendrisio S. Martino",
     estimatedDuration: "",
-    estimatedCost: "Check current SBB/TILO fare",
+    estimatedCost: "Estimated CHF 8–15; check current SBB/TILO fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Lugano–Mendrisio S. Martino connection with SBB." },
@@ -104,7 +104,7 @@ export const switzerlandTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Zürich HB to Landquart Fashion Outlet via Landquart",
     estimatedDuration: "",
-    estimatedCost: "Check current SBB fare",
+    estimatedCost: "Estimated CHF 20–45; check current SBB fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Zürich HB–Landquart connection with SBB." },
@@ -199,7 +199,7 @@ export const switzerlandTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Zürich HB to FASHION FISH via Schönenwerd",
     estimatedDuration: "",
-    estimatedCost: "Check current SBB fare",
+    estimatedCost: "Estimated CHF 15–35; check current SBB fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Zürich HB–Schönenwerd connection with SBB." },

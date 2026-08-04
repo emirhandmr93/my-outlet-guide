@@ -27,7 +27,7 @@ export const austriaTransportationGuides: TransportationGuide[] = [
     transportationType: "train",
     title: "Vienna to Designer Outlet Parndorf via Parndorf Ort",
     estimatedDuration: "",
-    estimatedCost: "Check current ÖBB and station-bus fares",
+    estimatedCost: "Estimated €5–20 total; check current ÖBB and station-bus fares",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Wien Hauptbahnhof–Parndorf Ort train with ÖBB." },
@@ -119,7 +119,7 @@ export const austriaTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Salzburg Hauptbahnhof to Designer Outlet Salzburg by Bus 2",
     estimatedDuration: "",
-    estimatedCost: "Check current Salzburg Verkehr fare",
+    estimatedCost: "Estimated €3–5; check current Salzburg Verkehr fare",
     recommended: true,
     steps: [
       { order: 1, description: "Check the Line 2 timetable from Salzburg Hauptbahnhof." },

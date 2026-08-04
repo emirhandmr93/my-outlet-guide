@@ -488,7 +488,7 @@ function assertTurkishDetailRows(guideId: string, requiredRows: string[], prohib
     if (rows.includes(row)) errors.push(`${guideId} Turkish detail rows must not render ${row}. Rows: ${rows}`);
 }
 
-assertTurkishDetailRows("vienna-to-parndorf-train-bus", ["Sağlayıcı: ÖBB"], ["Hat: ÖBB"]);
+assertTurkishDetailRows("vienna-to-parndorf-train-bus", ["Hat: Wien Hauptbahnhof → Parndorf Ort", "Operatör: ÖBB"], ["Hat: ÖBB", "Sağlayıcı: ÖBB"]);
 assertTurkishDetailRows("serravalle-train-bus", ["Sağlayıcı: Outlet Link", "Operatör: Trenitalia"], ["Hat: Outlet Link"]);
 assertTurkishDetailRows("paris-to-la-vallee-rer-a", ["Hat: RER A", "Operatör: RATP / SNCF"], []);
 assertTurkishDetailRows("cdg-to-la-vallee-tgv-rer", ["Hat: TGV / RER A", "Operatör: SNCF / RATP"], []);
@@ -531,11 +531,13 @@ for (const outletId of [
 ]) {
   const visible = getTransportationV2Options(outletId)
     .map((option) => getTransportationOptionDisplayModel(option, "tr"))
-    .filter(
-      (option) => option.estimatedDurationLabel && option.estimatedFareLabel,
+    .filter((option) =>
+      outletId === "designer-outlet-parndorf"
+        ? !option.estimatedDurationLabel && option.estimatedFareLabel
+        : option.estimatedDurationLabel && option.estimatedFareLabel,
     );
   if (!visible.length)
-    errors.push(`${outletId} no longer exposes estimated duration and fare.`);
+    errors.push(`${outletId} no longer exposes its supported duration/fare combination.`);
 }
 
 const parndorfFact = transportationRouteFacts.find(
