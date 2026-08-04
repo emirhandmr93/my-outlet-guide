@@ -1899,6 +1899,67 @@ const westernEuropeCountryCompletion = ["belgium", "austria", "switzerland", "po
   return { countryId, active, sourceBacked, sourceBackedWithUrl, missingRoutes, missingUrls };
 });
 
+const polandCompletionRoutes = [
+  ["factory-ursus", "warsaw-centre-to-factory-ursus-train-walk", "train", "city_center", "cityCenter", "city", 4.4, 7, "estimated", ["SKM Warszawa / Koleje Mazowieckie", "S1 / regional rail toward Ursus", "Warszawa Śródmieście", "Warszawa Ursus Północny / Warszawa Ursus", "Factory Ursus"]],
+  ["factory-annopol", "warsaw-centre-to-factory-annopol-metro-tram", "metro", "city_center", "cityCenter", "city", 4.4, 4.4, "exact", ["Metro Warszawskie", "M2 toward Bródno", "Świętokrzyska", "Bródno", "Factory Annopol"]],
+  ["wroclaw-fashion-outlet", "wroclaw-city-to-wroclaw-fashion-outlet-tram-bus", "bus", "city_center", "cityCenter", "city", 4.6, 7, "estimated", ["MPK Wrocław", "106 / 107 / 119 / 132 / 319", "Wrocław city centre / Wrocław Główny", "Mińska (Rondo Rotm. Pileckiego)", "Wrocław Fashion Outlet"]],
+  ["designer-outlet-gdansk", "gdansk-wrzeszcz-to-designer-outlet-gdansk-bus", "bus", "station", "station", "station", 4.8, 4.8, "exact", ["Gdańskie Autobusy i Tramwaje", "115 toward Jaworzniaków", "Wrzeszcz PKP", "Czermińskiego", "Designer Outlet Gdańsk"]],
+  ["designer-outlet-sosnowiec", "katowice-to-designer-outlet-sosnowiec-bus", "bus", "city_center", "cityCenter", "city", 4.6, 7, "estimated", ["A / E / J", "Katowice city centre", "Sosnowiec Jęzor Centrum Handlowe", "Designer Outlet Sosnowiec"]],
+  ["designer-outlet-warszawa", "warsaw-wilanowska-to-designer-outlet-warszawa-bus", "bus", "station", "station", "station", 7, 7, "exact", ["709 / 727 toward Piaseczno", "Metro Wilanowska", "Energetyczna", "Designer Outlet Warszawa"]],
+] as const;
+const polandApproximationPrefixes: Record<(typeof supportedLanguageCodes)[number], string> = {
+  en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ru: "Примерно", ar: "تقريبًا", zh: "约",
+};
+const polandExactFareLabels: ReadonlyMap<string, string> = new Map([
+  ["warsaw-centre-to-factory-annopol-metro-tram", "PLN 4.40"],
+  ["gdansk-wrzeszcz-to-designer-outlet-gdansk-bus", "PLN 4.80"],
+  ["warsaw-wilanowska-to-designer-outlet-warszawa-bus", "PLN 7"],
+] as const);
+for (const [outletId, guideId, mode, guideOrigin, factOrigin, runtimeOrigin, fareMin, fareMax, fareAccuracy, visibleValues] of polandCompletionRoutes) {
+  const matchingGuides = transportationGuides.filter((guide) => guide.guideId === guideId);
+  const matchingFacts = transportationRouteFacts.filter((fact) => fact.guideId === guideId);
+  const outletGuides = transportationGuides.filter((guide) => guide.outletId === outletId);
+  const recommendedGuides = outletGuides.filter((guide) => guide.recommended);
+  const guide = matchingGuides[0];
+  const fact = matchingFacts[0];
+  const runtime = getTransportationV2Options(outletId).find((option) => option.id === guideId);
+  if (matchingGuides.length !== 1 || matchingFacts.length !== 1) errors.push(`${guideId}: Poland guide and route fact must each exist exactly once`);
+  if (recommendedGuides.length !== 1 || recommendedGuides[0]?.guideId !== guideId || getRecommendedTransportationV2Option(outletId)?.id !== guideId) errors.push(`${outletId}: target is not the sole runtime-selected recommendation`);
+  if (guide?.transportationType !== mode || fact?.mode !== mode) errors.push(`${guideId}: guide and fact modes disagree`);
+  if (guide?.originType !== guideOrigin || fact?.originType !== factOrigin || runtime?.originGroup !== runtimeOrigin) errors.push(`${guideId}: guide, fact, or runtime origin ownership disagrees`);
+  if (!fact?.officialProviderUrl?.startsWith("https://") || !fact.sourceNote || !fact.officialCheckNote || fact.confidence === "estimateOnly") errors.push(`${guideId}: qualifying HTTPS source provenance is missing`);
+  if (guideId === "wroclaw-city-to-wroclaw-fashion-outlet-tram-bus" && (fact.line?.split(" / ").includes("148") || fact.alightingPoint !== "Mińska (Rondo Rotm. Pileckiego)" || fact.alightingPoint === fact.destination)) errors.push(`${guideId}: official stop or serving lines are invalid`);
+  if (fact?.estimatedFareMin !== fareMin || fact.estimatedFareMax !== fareMax || fact.currency !== "PLN" || fact.fareAccuracy !== fareAccuracy || fareMin <= 0 || fareMax < fareMin || fact.displayFare != null) errors.push(`${guideId}: positive structured PLN fare is invalid`);
+  if (!guide || !guide.estimatedCost.includes(String(fareMin)) || !guide.estimatedCost.includes(String(fareMax)) || !/PLN/i.test(guide.estimatedCost) || (fareAccuracy === "exact" ? /(?:estimated|approx)/i.test(guide.estimatedCost) : !/(?:estimated|approx)/i.test(guide.estimatedCost))) errors.push(`${guideId}: guide fare does not agree with the route fact`);
+  const fareBasis = `${fact?.sourceNote ?? ""} ${fact?.walkNote ?? ""}`;
+  if (!/final (?:walk|pedestrian)/i.test(fareBasis) || !/free/i.test(fareBasis) || !/exclude/i.test(fareBasis)) errors.push(`${guideId}: final free walking component is not explicitly excluded from the fare`);
+  if (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null) errors.push(`${guideId}: unsupported duration provenance is present`);
+  if (outletGuides.length < 2 || outletGuides.some((candidate) => candidate.guideId !== guideId && candidate.recommended)) errors.push(`${outletId}: valid secondary guides were lost or remain recommended`);
+  for (const language of supportedLanguageCodes) {
+    const localized = display(outletId, guideId, language);
+    const rows = localized ? getTransportationRouteDetailRows(localized, language) : [];
+    const fare = localized?.estimatedFareLabel ?? "";
+    if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source" || !rows.length) errors.push(`${guideId}/${language}: runtime source-backed route detail is missing`);
+    if (localized?.originLabel !== getTransportationOriginLabel(runtimeOrigin, language)) errors.push(`${guideId}/${language}: localized origin label is invalid`);
+    const isExactFare = fareAccuracy === "exact";
+    if (!fare.includes("PLN") || !fare.includes(String(fareMin)) || fare === freeLabels[language] || /parking/i.test(fare)) errors.push(`${guideId}/${language}: localized PLN fare is invalid`);
+    if (isExactFare && (fare.startsWith(polandApproximationPrefixes[language]) || /[–-]/.test(fare) || fareMin !== fareMax)) errors.push(`${guideId}/${language}: exact PLN fare is approximate or ranged`);
+    if (isExactFare && fare !== polandExactFareLabels.get(guideId)) errors.push(`${guideId}/${language}: exact PLN decimal rendering is invalid`);
+    if (!isExactFare && (!fare.startsWith(polandApproximationPrefixes[language]) || !fare.includes(String(fareMax)) || !/[–-]/.test(fare))) errors.push(`${guideId}/${language}: estimated PLN fare lacks its localized qualifier or range`);
+    if (localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
+    if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
+    for (const value of visibleValues) if (!rows.some((row) => row.value === value)) errors.push(`${guideId}/${language}: supported route value ${value} is not visible`);
+  }
+}
+const activePolandOutlets = activeOutlets.filter((outlet) => outlet.countryId === "poland");
+const runtimePolandPrimaries = activePolandOutlets.map((outlet) => getRecommendedTransportationV2Option(outlet.outletId)).filter(Boolean);
+const sourceBackedPolandPrimaries = runtimePolandPrimaries.filter((option) => option && getTransportationOptionDisplayModel(option, "en").routeDetails.hasSourceBackedRouteDetail);
+const sourceBackedHttpsPolandPrimaries = sourceBackedPolandPrimaries.filter((option) => option && transportationRouteFacts.some((fact) => fact.guideId === option.id && fact.officialProviderUrl?.startsWith("https://")));
+const fareUsablePolandPrimaries = sourceBackedPolandPrimaries.filter((option) => option && transportationRouteFacts.some((fact) => fact.guideId === option.id && fact.currency === "PLN" && (fact.estimatedFareMin ?? 0) > 0 && (fact.estimatedFareMax ?? 0) >= (fact.estimatedFareMin ?? 0)));
+const fareAccuracyCompletePolandPrimaries = fareUsablePolandPrimaries.filter((option) => option && transportationRouteFacts.some((fact) => fact.guideId === option.id && fact.fareAccuracy != null));
+const expectedPolandOutletCount = polandCompletionRoutes.length;
+if (activePolandOutlets.length !== expectedPolandOutletCount || runtimePolandPrimaries.length !== expectedPolandOutletCount || sourceBackedPolandPrimaries.length !== expectedPolandOutletCount || sourceBackedHttpsPolandPrimaries.length !== expectedPolandOutletCount || fareUsablePolandPrimaries.length !== expectedPolandOutletCount || fareAccuracyCompletePolandPrimaries.length !== expectedPolandOutletCount) errors.push(`Poland completion is invalid: ${activePolandOutlets.length}/${runtimePolandPrimaries.length}/${sourceBackedPolandPrimaries.length}/${sourceBackedHttpsPolandPrimaries.length}/${fareUsablePolandPrimaries.length}/${fareAccuracyCompletePolandPrimaries.length}`);
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
@@ -1953,6 +2014,7 @@ for (const completion of westernEuropeCountryCompletion) {
   console.log(`${completion.countryId} missing routes/URLs: ${JSON.stringify(completion.missingRoutes)} / ${JSON.stringify(completion.missingUrls)}`);
 }
 console.log(`Western Europe active/source-backed/source-backed-with-URL: ${westernEuropeCountryCompletion.reduce((total, completion) => total + completion.active.length, 0)}/${westernEuropeCountryCompletion.reduce((total, completion) => total + completion.sourceBacked.length, 0)}/${westernEuropeCountryCompletion.reduce((total, completion) => total + completion.sourceBackedWithUrl.length, 0)}`);
+console.log(`Poland active/runtime/source-backed/source-backed-with-URL/fare-usable/fareAccuracy-complete: ${activePolandOutlets.length}/${runtimePolandPrimaries.length}/${sourceBackedPolandPrimaries.length}/${sourceBackedHttpsPolandPrimaries.length}/${fareUsablePolandPrimaries.length}/${fareAccuracyCompletePolandPrimaries.length}`);
 console.log(`Turkish source-backed multi-leg route count: ${sourceBackedTurkishMultiLegFacts.length}`);
 console.log(
   `Barberino: options=${barberino.length}, recommended=${barberinoRecommended?.id ?? "none"}, summary=${getOutletTransportationV2Summary("barberino", "en").length}, safeShuttle=${Boolean(barberinoShuttle && isSafeEstimateOnlyShuttleOption(barberinoShuttle))}`,
