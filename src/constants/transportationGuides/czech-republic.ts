@@ -8,12 +8,12 @@ export const czechRepublicTransportationGuides: TransportationGuide[] = [
     originId: "prague-city-center",
     transportationType: "metro",
     title: "Prague City Centre to Fashion Arena by Metro A and Bus 238",
-    estimatedDuration: "≈30-45 min from central Prague (estimated)",
-    estimatedCost: "Check official PID/DPP fare",
+    estimatedDuration: "",
+    estimatedCost: "Approx. CZK 46–50",
     recommended: true,
     steps: [
       { order: 1, description: "From central Prague, take metro line A toward Depo Hostivař, the final station on line A." },
-      { order: 2, description: "At Depo Hostivař, follow signs to the official Fashion Arena shuttle/public bus 238 stop." },
+      { order: 2, description: "At Depo Hostivař, follow signs to the regular paid PID bus 238 toward Fashion Arena Štěrboholy; this is not an outlet shuttle." },
       { order: 3, description: "Ride bus 238 via Malešická továrna, Na Homoli and Průmyslová to Fashion Arena Štěrboholy, as listed by the outlet." },
       { order: 4, description: "For the return, use bus 238 back to Depo Hostivař and transfer to metro line A toward the city centre." },
     ],
@@ -46,7 +46,7 @@ export const czechRepublicTransportationGuides: TransportationGuide[] = [
     title: "Prague Main Station to Fashion Arena by Metro and Bus 238",
     estimatedDuration: "≈35-50 min from Praha hlavní nádraží (estimated)",
     estimatedCost: "Check official PID/DPP fare; rail fare separate if arriving from outside Prague",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Arrive at Praha hlavní nádraží and follow signs to the Prague metro network." },
       { order: 2, description: "Use the metro to connect to line A toward Depo Hostivař, validating the correct PID/DPP ticket for your journey." },
@@ -64,7 +64,7 @@ export const czechRepublicTransportationGuides: TransportationGuide[] = [
     title: "Driving and Free Parking at Fashion Arena Prague Outlet",
     estimatedDuration: "≈20-30 min from central Prague; ≈35-50 min from airport (estimated)",
     estimatedCost: "Free parking; road costs vary",
-    recommended: true,
+    recommended: false,
     steps: [
       { order: 1, description: "Set navigation to Fashion Arena Prague Outlet, Zamenhofova 440, Praha-Štěrboholy, 108 00." },
       { order: 2, description: "Drive toward Štěrboholy and check live Prague ring-road and city traffic before departure." },

@@ -2017,6 +2017,66 @@ for (const [countryId, outletId, guideId, currency] of northernEuropeBalticsIrel
 const regionalCompletion = northernEuropeBalticsIrelandCompletion.reduce((parts, completion) => completion.split("/").map((value, index) => Number(value) + (parts[index] ?? 0)), [] as number[]).join("/");
 if (regionalCompletion !== "8/8/8/8/8/8") errors.push(`Northern Europe, Baltics and Ireland completion is invalid: ${regionalCompletion}`);
 
+const centralSoutheastRoutes = [
+  ["czech-republic", "fashion-arena-prague-outlet", "prague-centre-to-fashion-arena-metro-shuttle"],
+  ["croatia", "ros-designer-outlet", "zagreb-centre-to-roses-designer-outlet-taxi"],
+  ["hungary", "premier-outlet-budapest", "budapest-kelenfold-to-premier-outlet-bus"],
+  ["greece", "designer-outlet-athens", "designer-outlet-athens-metro-bus"],
+  ["romania", "fashion-house-outlet-centre-bucharest", "bucharest-center-to-fashion-house-militari-car"],
+  ["romania", "fashion-house-outlet-centre-pallady", "bucharest-centre-to-fashion-house-pallady-licensed-taxi"],
+] as const;
+const centralSoutheastCompletion: string[] = [];
+for (const [countryId, outletId, guideId] of centralSoutheastRoutes) {
+  const guides = transportationGuides.filter((guide) => guide.outletId === outletId);
+  const matchingGuides = guides.filter((guide) => guide.guideId === guideId);
+  const recommended = guides.filter((guide) => guide.recommended);
+  const facts = transportationRouteFacts.filter((fact) => fact.guideId === guideId && fact.outletId === outletId);
+  const fact = facts[0];
+  const runtime = getRecommendedTransportationV2Option(outletId);
+  const sourceBacked = Boolean(runtime?.routeDetails.hasSourceBackedRouteDetail && runtime.sourceConfidence === "source");
+  const httpsBacked = Boolean(fact?.officialProviderUrl?.startsWith("https://"));
+  const fareUsable = Boolean(fact?.estimatedFareMin && fact.estimatedFareMin > 0 && fact.estimatedFareMax && fact.estimatedFareMax >= fact.estimatedFareMin && fact.currency);
+  const accuracyComplete = fareUsable && Boolean(fact?.fareAccuracy);
+  const completion = `1/${runtime?.id === guideId ? 1 : 0}/${sourceBacked ? 1 : 0}/${httpsBacked ? 1 : 0}/${fareUsable ? 1 : 0}/${accuracyComplete ? 1 : 0}`;
+  centralSoutheastCompletion.push(completion);
+  if (matchingGuides.length !== 1 || facts.length !== 1) errors.push(`${outletId}: exactly one matching guide and fact is required`);
+  if (recommended.length !== 1 || recommended[0]?.guideId !== guideId || runtime?.id !== guideId) errors.push(`${outletId}: exactly one expected recommended runtime primary is required`);
+  if (fact?.mode !== matchingGuides[0]?.transportationType || fact?.originType !== "cityCenter") errors.push(`${guideId}: route mode or origin ownership differs`);
+  if (!sourceBacked || !httpsBacked || !fareUsable || !accuracyComplete) errors.push(`${guideId}: source, HTTPS, fare or fareAccuracy completion failed`);
+  if (!fact?.sourceNote?.match(/exclude/i) || !fact.suppressDerivedDurationFallback) errors.push(`${guideId}: fare exclusions or duration suppression are missing`);
+  if (guides.length < 2) errors.push(`${outletId}: useful alternatives were not preserved`);
+  for (const language of supportedLanguageCodes) {
+    const localized = getTransportationOptionDisplayModel(runtime!, language);
+    const fare = localized.estimatedFareLabel ?? "";
+    const qualifier = ({ en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ar: "تقريبًا", ru: "Примерно", zh: "约" } as const)[language];
+    const approximationIsCorrect = fact?.fareAccuracy === "estimated" ? fare.startsWith(qualifier) : !fare.startsWith(qualifier);
+    if (!localized.routeDetails.hasSourceBackedRouteDetail || !approximationIsCorrect || (localized.estimatedDurationLabel && guideId !== "budapest-kelenfold-to-premier-outlet-bus")) errors.push(`${guideId}/${language}: localized source, fare classification, or duration safety failed`);
+  }
+  if (guideId === "prague-centre-to-fashion-arena-metro-shuttle" && (!fact?.operator?.includes("Vega Tour") || fact.line !== "Metro A → Bus 238 toward Fashion Arena Štěrboholy" || /Plynárna Satalice/i.test(JSON.stringify(fact)) || fact.estimatedFareMin !== 46 || fact.estimatedFareMax !== 50 || fact.fareAccuracy !== "estimated" || matchingGuides[0]?.estimatedDuration !== "")) errors.push(`${guideId}: Bus 238 operator, direction, 2026 fare, or duration is invalid`);
+  if (guideId === "designer-outlet-athens-metro-bus") {
+    const taxi = guides.find((guide) => guide.guideId === "designer-outlet-athens-city-center-car");
+    if (fact?.mode !== "metro" || matchingGuides[0]?.originType !== "city_center" || fact.line !== "Metro Line 3 → Bus 319" || fact.transferPoints?.join() !== "Doukissis Plakentias" || fact.alightingPoint !== "Εκπτωτικό Χωριό" || fact.estimatedFareMin !== 1.2 || fact.estimatedFareMax !== 2.4 || fact.fareAccuracy !== "estimated" || taxi?.recommended) errors.push(`${guideId}: official Line 3/319 route, stop, fare policy, or taxi demotion is invalid`);
+  }
+  if (guideId === "budapest-kelenfold-to-premier-outlet-bus") {
+    const provenance = `${matchingGuides[0]?.estimatedCost} ${fact?.sourceNote}`;
+    if (fact?.boardingPoint !== "Kálvin tér" || !fact.line?.includes("M4") || fact.transferPoints?.join() !== "Budapest-Kelenföld" || !/760.*762.*767/.test(fact.line ?? "") || fact.alightingPoint !== "Biatorbágy, Premier Outlet" || fact.estimatedFareMin !== 1000 || fact.estimatedFareMax !== 1250 || fact.fareAccuracy !== "estimated" || !/HUF 600.*30-minute.*HUF 850.*90-minute.*HUF 400/is.test(fact.sourceNote ?? "") || /exact HUF 900/i.test(provenance) || !/without treating a HUF 500 single ticket as transferable or the HUF 400 ticket as the complete bus fare/i.test(provenance)) errors.push(`${guideId}: route or official-product-based HUF 1,000–1,250 fare is invalid`);
+  }
+  if (["zagreb-centre-to-roses-designer-outlet-taxi", "bucharest-center-to-fashion-house-militari-car", "bucharest-centre-to-fashion-house-pallady-licensed-taxi"].includes(guideId) && (matchingGuides[0]?.estimatedDuration !== "" || !fact?.sourceNote?.includes(" km") || !fact.sourceNote.toLowerCase().includes("tariff") || !fact.sourceNote.toLowerCase().includes("parking is excluded"))) errors.push(`${guideId}: measurable taxi distance, tariff/quote basis, parking exclusion, or duration suppression is missing`);
+  if (guideId === "zagreb-centre-to-roses-designer-outlet-taxi" && (fact?.estimatedFareMin !== 90 || fact.estimatedFareMax !== 100 || fact.fareAccuracy !== "estimated" || !/EUR 2\.90 start.*EUR 1\.40\/km.*EUR 0\.22\/min/i.test(fact.sourceNote ?? "") || !/55 km.*45 minutes.*EUR 89\.80/i.test(fact.sourceNote ?? "") || !/A2 toll/i.test(fact.sourceNote ?? "") || !/outside the city area.*agreed in advance/i.test(fact.sourceNote ?? "") || /EUR 1\/km|Cammeo/i.test(fact.sourceNote ?? ""))) errors.push(`${guideId}: current Eko tariff calculation, out-of-city limitation, or toll treatment is invalid`);
+  if (guideId === "bucharest-center-to-fashion-house-militari-car" && (fact?.estimatedFareMin !== 55 || fact.estimatedFareMax !== 74 || !/21 × 2\.59.*23 × 3\.19/i.test(fact.sourceNote ?? "") || /3\.49/.test(fact.sourceNote ?? "") || !/may increase.*beyond.*none is included in the upper endpoint/is.test(fact.sourceNote ?? ""))) errors.push(`${guideId}: RON 2.59–3.19/km distance calculation or supplement scope is invalid`);
+  if (guideId === "bucharest-centre-to-fashion-house-pallady-licensed-taxi" && (fact?.estimatedFareMin !== 70 || fact.estimatedFareMax !== 96 || !/27 × 2\.59.*30 × 3\.19/i.test(fact.sourceNote ?? "") || /3\.49/.test(fact.sourceNote ?? "") || !/may increase.*beyond.*none is included in the upper endpoint/is.test(fact.sourceNote ?? ""))) errors.push(`${guideId}: RON 2.59–3.19/km distance calculation, minimum, or supplement scope is invalid`);
+}
+for (const countryId of ["czech-republic", "croatia", "hungary", "greece", "romania"] as const) {
+  const values = centralSoutheastRoutes.map((route, index) => route[0] === countryId ? centralSoutheastCompletion[index] : null).filter(Boolean) as string[];
+  const total = values.reduce((sum, value) => value.split("/").map((part, index) => Number(part) + (sum[index] ?? 0)), [] as number[]).join("/");
+  const expected = countryId === "romania" ? "2/2/2/2/2/2" : "1/1/1/1/1/1";
+  if (total !== expected) errors.push(`${countryId} Central/Southeast completion is invalid: ${total}`);
+  console.log(`${countryId} Central/Southeast completion: ${total}`);
+}
+const centralSoutheastRegionalCompletion = centralSoutheastCompletion.reduce((sum, value) => value.split("/").map((part, index) => Number(part) + (sum[index] ?? 0)), [] as number[]).join("/");
+if (centralSoutheastRegionalCompletion !== "6/6/6/6/6/6") errors.push(`Central/Southeast regional completion is invalid: ${centralSoutheastRegionalCompletion}`);
+console.log(`Central/Southeast regional completion: ${centralSoutheastRegionalCompletion}`);
+
 for (const unsafe of new Set(unsafeEstimateOnlyShuttles))
   errors.push(`${unsafe}: unsafe estimate-only shuttle`);
 for (const unsafe of unsafeFares) errors.push(unsafe);
