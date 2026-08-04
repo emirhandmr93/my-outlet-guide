@@ -1168,14 +1168,14 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     destination:
       "Viaport Asia Outlet Shopping, Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik",
     suppressDerivedDurationFallback: true,
-    estimatedFareMin: 285,
-    estimatedFareMax: 371,
+    estimatedFareMin: 312,
+    estimatedFareMax: 408,
     currency: "TRY",
     fareAccuracy: "estimated",
     sourceNote:
-      "Official Sabiha Gökçen ground-transport information supports licensed taxis at the airport, and Viaport publishes the destination address at Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik plus approximately 10-minute airport proximity. The official İBB/UKOME 2026 taxi tariff effective 16.02.2026 sets yellow taxi opening at TRY 65.40, distance at TRY 43.56/km, waiting at TRY 544.45/hour and a short-trip minimum that is not binding here; no airport-specific flat fare or toll is expected for this local Pendik route. The estimated TRY 285–371 range calculates 65.40 + 43.56 × 5.0 km = TRY 283.20, displayed as TRY 285, through 65.40 + 43.56 × 7.0 km = TRY 370.32, displayed as TRY 371. Traffic, waiting, booking, luggage and other supplements may increase the final total; optional tolls, parking, free transfer, travel before the arrivals taxi rank and final walking are excluded.",
+      "Official Sabiha Gökçen ground-transport information supports licensed taxis at the airport, and Viaport publishes the destination address at Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik plus approximately 10-minute airport proximity. The official İBB / UKOME / Toplu Ulaşım Hizmetleri yellow taxi tariff is effective 20.07.2026 under the 17.07.2026, Decision No. 813 tariff document: opening fee TRY 71.94, distance tariff TRY 47.92/km, waiting/time tariff TRY 598.90/hour, minimum fare TRY 230 and conversion speed 12.50 km/hour. The estimated TRY 312–408 range uses the retained 5.0–7.0 km local Pendik road-distance range: 71.94 + 47.92 × 5.0 km = TRY 311.54, displayed as TRY 312, through 71.94 + 47.92 × 7.0 km = TRY 407.38, displayed as TRY 408. The minimum fare does not bind because both calculated endpoints exceed TRY 230; no airport flat fare or toll is expected for this local Pendik route. Traffic or low-speed meter time may increase the actual fare; waiting is not included in the numeric range. Booking, luggage and other supplements are not included, and travel before the arrivals taxi rank, parking and final walking are excluded.",
     officialCheckNote:
-      "Confirm the licensed airport taxi rank, active taximeter or licensed app quote, current İBB/UKOME taxi tariff and Viaport address before travel.",
+      "Confirm the licensed airport taxi rank, active taximeter or licensed app quote, current İBB/TUHİM taxi tariff effective 20.07.2026 and Viaport address before travel.",
     confidence: "partial",
     officialProviderUrl:
       "https://www.sabihagokcen.aero/kisisellestirilmis-giris-sayfasi/gelis/havalimanimizda/seyahatinizi-planlayin",

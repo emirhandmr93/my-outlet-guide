@@ -1829,7 +1829,7 @@ const turkeyPrimaryRoutes = [
   ],
 ] as const;
 const turkeyExpectedFares = new Map<string, [number, number, "exact" | "estimated"]>([
-  ["saw-to-viaport-asia-licensed-taxi", [285, 371, "estimated"]],
+  ["saw-to-viaport-asia-licensed-taxi", [312, 408, "estimated"]],
   ["sirkeci-to-olivium-kazlicesme-rail", [37.4, 37.4, "exact"]],
   ["istanbul-to-starcity-m9", [92.4, 92.4, "exact"]],
   ["istanbul-to-venezia-t4", [92.4, 92.4, "exact"]],
@@ -1838,7 +1838,7 @@ const turkeyExpectedFares = new Map<string, [number, number, "exact" | "estimate
   ["izmir-to-optimum-izban-esbas", [40, 40, "exact"]],
   ["antalya-to-deepo-antray-t1", [42, 42, "exact"]],
 ]);
-const staleTurkeyFarePattern = /TRY 35(?:\D|$)|35–45|70–90|27–35|25–35|contactless payment variation|after exit validation\/refund|receives.*refund|generic TRY 46\.20/i;
+const staleTurkeyFarePattern = /TRY 35(?:\D|$)|35–45|70–90|27–35|25–35|285–371|TRY 65\.40|TRY 43\.56\/km|TRY 544\.45\/hour|16\.02\.2026|contactless payment variation|after exit validation\/refund|receives.*refund|generic TRY 46\.20/i;
 const activeTurkeyOutlets = activeOutlets.filter(
   (outlet) => outlet.countryId === "turkey",
 );
@@ -1997,7 +1997,7 @@ for (const [
       fact?.boardingPoint !== "Sabiha Gökçen International Airport arrivals taxi rank" ||
       fact?.destination !== "Viaport Asia Outlet Shopping, Yenişehir Mahallesi, Dedepaşa Caddesi No:19, Pendik" ||
       fact?.fareAccuracy !== "estimated" ||
-      !/İBB\/UKOME 2026 taxi tariff|TRY 65\.40|TRY 43\.56\/km|5\.0 km|7\.0 km|TRY 283\.20|TRY 370\.32|minimum|toll|waiting/i.test(viaportPrimarySource) ||
+      !/İBB \/ UKOME \/ Toplu Ulaşım Hizmetleri|20\.07\.2026|Decision No\. 813|TRY 71\.94|TRY 47\.92\/km|TRY 598\.90\/hour|TRY 230|12\.50 km\/hour|5\.0 km|7\.0 km|TRY 311\.54|TRY 407\.38|minimum fare does not bind|no airport flat fare|toll|waiting is not included/i.test(viaportPrimarySource) ||
       !fact?.officialProviderUrl?.startsWith("https://www.sabihagokcen.aero/")
     )
       errors.push("Viaport: licensed airport taxi primary provenance is invalid");

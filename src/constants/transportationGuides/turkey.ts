@@ -9,7 +9,7 @@ export const turkeyTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "Sabiha Gökçen Airport to Viaport Asia by Licensed Taxi",
     estimatedDuration: "",
-    estimatedCost: "Approx. TRY 285–371",
+    estimatedCost: "Approx. TRY 312–408",
     recommended: true,
     steps: [
       {
