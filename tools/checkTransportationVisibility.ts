@@ -1900,17 +1900,22 @@ const westernEuropeCountryCompletion = ["belgium", "austria", "switzerland", "po
 });
 
 const polandCompletionRoutes = [
-  ["factory-ursus", "warsaw-centre-to-factory-ursus-train-walk", "train", "city_center", "cityCenter", "city", 4.4, 7, ["SKM Warszawa / Koleje Mazowieckie", "S1 / regional rail toward Ursus", "Warszawa Śródmieście", "Warszawa Ursus Północny / Warszawa Ursus", "Factory Ursus"]],
-  ["factory-annopol", "warsaw-centre-to-factory-annopol-metro-tram", "metro", "city_center", "cityCenter", "city", 4.4, 7, ["Metro Warszawskie", "M2 toward Bródno", "Świętokrzyska", "Bródno", "Factory Annopol"]],
-  ["wroclaw-fashion-outlet", "wroclaw-city-to-wroclaw-fashion-outlet-tram-bus", "bus", "city_center", "cityCenter", "city", 4.6, 6, ["MPK Wrocław", "106 / 148", "Wrocław city centre / Wrocław Główny", "Wrocław Fashion Outlet"]],
-  ["designer-outlet-gdansk", "gdansk-wrzeszcz-to-designer-outlet-gdansk-bus", "bus", "station", "station", "station", 4.8, 6, ["Gdańskie Autobusy i Tramwaje", "115 toward Jaworzniaków", "Wrzeszcz PKP", "Czermińskiego", "Designer Outlet Gdańsk"]],
-  ["designer-outlet-sosnowiec", "katowice-to-designer-outlet-sosnowiec-bus", "bus", "city_center", "cityCenter", "city", 5, 7, ["A / E / J", "Katowice city centre", "Sosnowiec Jęzor Centrum Handlowe", "Designer Outlet Sosnowiec"]],
-  ["designer-outlet-warszawa", "warsaw-wilanowska-to-designer-outlet-warszawa-bus", "bus", "station", "station", "station", 7, 8, ["709 / 727 toward Piaseczno", "Metro Wilanowska", "Energetyczna", "Designer Outlet Warszawa"]],
+  ["factory-ursus", "warsaw-centre-to-factory-ursus-train-walk", "train", "city_center", "cityCenter", "city", 4.4, 7, "estimated", ["SKM Warszawa / Koleje Mazowieckie", "S1 / regional rail toward Ursus", "Warszawa Śródmieście", "Warszawa Ursus Północny / Warszawa Ursus", "Factory Ursus"]],
+  ["factory-annopol", "warsaw-centre-to-factory-annopol-metro-tram", "metro", "city_center", "cityCenter", "city", 4.4, 4.4, "exact", ["Metro Warszawskie", "M2 toward Bródno", "Świętokrzyska", "Bródno", "Factory Annopol"]],
+  ["wroclaw-fashion-outlet", "wroclaw-city-to-wroclaw-fashion-outlet-tram-bus", "bus", "city_center", "cityCenter", "city", 4.6, 7, "estimated", ["MPK Wrocław", "106 / 107 / 119 / 132 / 319", "Wrocław city centre / Wrocław Główny", "Mińska (Rondo Rotm. Pileckiego)", "Wrocław Fashion Outlet"]],
+  ["designer-outlet-gdansk", "gdansk-wrzeszcz-to-designer-outlet-gdansk-bus", "bus", "station", "station", "station", 4.8, 4.8, "exact", ["Gdańskie Autobusy i Tramwaje", "115 toward Jaworzniaków", "Wrzeszcz PKP", "Czermińskiego", "Designer Outlet Gdańsk"]],
+  ["designer-outlet-sosnowiec", "katowice-to-designer-outlet-sosnowiec-bus", "bus", "city_center", "cityCenter", "city", 4.6, 7, "estimated", ["A / E / J", "Katowice city centre", "Sosnowiec Jęzor Centrum Handlowe", "Designer Outlet Sosnowiec"]],
+  ["designer-outlet-warszawa", "warsaw-wilanowska-to-designer-outlet-warszawa-bus", "bus", "station", "station", "station", 7, 7, "exact", ["709 / 727 toward Piaseczno", "Metro Wilanowska", "Energetyczna", "Designer Outlet Warszawa"]],
 ] as const;
 const polandApproximationPrefixes: Record<(typeof supportedLanguageCodes)[number], string> = {
   en: "Approx.", tr: "Yaklaşık", es: "Aprox.", fr: "Env.", de: "Ca.", ru: "Примерно", ar: "تقريبًا", zh: "约",
 };
-for (const [outletId, guideId, mode, guideOrigin, factOrigin, runtimeOrigin, fareMin, fareMax, visibleValues] of polandCompletionRoutes) {
+const polandExactFareLabels: ReadonlyMap<string, string> = new Map([
+  ["warsaw-centre-to-factory-annopol-metro-tram", "PLN 4.40"],
+  ["gdansk-wrzeszcz-to-designer-outlet-gdansk-bus", "PLN 4.80"],
+  ["warsaw-wilanowska-to-designer-outlet-warszawa-bus", "PLN 7"],
+] as const);
+for (const [outletId, guideId, mode, guideOrigin, factOrigin, runtimeOrigin, fareMin, fareMax, fareAccuracy, visibleValues] of polandCompletionRoutes) {
   const matchingGuides = transportationGuides.filter((guide) => guide.guideId === guideId);
   const matchingFacts = transportationRouteFacts.filter((fact) => fact.guideId === guideId);
   const outletGuides = transportationGuides.filter((guide) => guide.outletId === outletId);
@@ -1923,8 +1928,9 @@ for (const [outletId, guideId, mode, guideOrigin, factOrigin, runtimeOrigin, far
   if (guide?.transportationType !== mode || fact?.mode !== mode) errors.push(`${guideId}: guide and fact modes disagree`);
   if (guide?.originType !== guideOrigin || fact?.originType !== factOrigin || runtime?.originGroup !== runtimeOrigin) errors.push(`${guideId}: guide, fact, or runtime origin ownership disagrees`);
   if (!fact?.officialProviderUrl?.startsWith("https://") || !fact.sourceNote || !fact.officialCheckNote || fact.confidence === "estimateOnly") errors.push(`${guideId}: qualifying HTTPS source provenance is missing`);
-  if (fact?.estimatedFareMin !== fareMin || fact.estimatedFareMax !== fareMax || fact.currency !== "PLN" || fact.fareAccuracy !== "estimated" || fareMin <= 0 || fareMax < fareMin || fact.displayFare != null) errors.push(`${guideId}: positive structured PLN fare is invalid`);
-  if (!guide || !guide.estimatedCost.includes(String(fareMin)) || !guide.estimatedCost.includes(String(fareMax)) || !/PLN/i.test(guide.estimatedCost) || !/(?:estimated|approx)/i.test(guide.estimatedCost)) errors.push(`${guideId}: guide fare does not agree with the route fact`);
+  if (guideId === "wroclaw-city-to-wroclaw-fashion-outlet-tram-bus" && (fact.line?.split(" / ").includes("148") || fact.alightingPoint !== "Mińska (Rondo Rotm. Pileckiego)" || fact.alightingPoint === fact.destination)) errors.push(`${guideId}: official stop or serving lines are invalid`);
+  if (fact?.estimatedFareMin !== fareMin || fact.estimatedFareMax !== fareMax || fact.currency !== "PLN" || fact.fareAccuracy !== fareAccuracy || fareMin <= 0 || fareMax < fareMin || fact.displayFare != null) errors.push(`${guideId}: positive structured PLN fare is invalid`);
+  if (!guide || !guide.estimatedCost.includes(String(fareMin)) || !guide.estimatedCost.includes(String(fareMax)) || !/PLN/i.test(guide.estimatedCost) || (fareAccuracy === "exact" ? /(?:estimated|approx)/i.test(guide.estimatedCost) : !/(?:estimated|approx)/i.test(guide.estimatedCost))) errors.push(`${guideId}: guide fare does not agree with the route fact`);
   const fareBasis = `${fact?.sourceNote ?? ""} ${fact?.walkNote ?? ""}`;
   if (!/final (?:walk|pedestrian)/i.test(fareBasis) || !/free/i.test(fareBasis) || !/exclude/i.test(fareBasis)) errors.push(`${guideId}: final free walking component is not explicitly excluded from the fare`);
   if (fact?.suppressDerivedDurationFallback !== true || fact.displayDuration != null || fact.estimatedDurationMin != null || fact.estimatedDurationMax != null) errors.push(`${guideId}: unsupported duration provenance is present`);
@@ -1935,7 +1941,11 @@ for (const [outletId, guideId, mode, guideOrigin, factOrigin, runtimeOrigin, far
     const fare = localized?.estimatedFareLabel ?? "";
     if (!localized?.routeDetails.hasSourceBackedRouteDetail || localized.sourceConfidence !== "source" || !rows.length) errors.push(`${guideId}/${language}: runtime source-backed route detail is missing`);
     if (localized?.originLabel !== getTransportationOriginLabel(runtimeOrigin, language)) errors.push(`${guideId}/${language}: localized origin label is invalid`);
-    if (!fare.startsWith(polandApproximationPrefixes[language]) || !fare.includes("PLN") || !fare.includes(String(fareMin)) || !fare.includes(String(fareMax)) || !/[–-]/.test(fare) || fare === freeLabels[language] || /parking/i.test(fare)) errors.push(`${guideId}/${language}: localized estimated PLN fare is invalid`);
+    const isExactFare = fareAccuracy === "exact";
+    if (!fare.includes("PLN") || !fare.includes(String(fareMin)) || fare === freeLabels[language] || /parking/i.test(fare)) errors.push(`${guideId}/${language}: localized PLN fare is invalid`);
+    if (isExactFare && (fare.startsWith(polandApproximationPrefixes[language]) || /[–-]/.test(fare) || fareMin !== fareMax)) errors.push(`${guideId}/${language}: exact PLN fare is approximate or ranged`);
+    if (isExactFare && fare !== polandExactFareLabels.get(guideId)) errors.push(`${guideId}/${language}: exact PLN decimal rendering is invalid`);
+    if (!isExactFare && (!fare.startsWith(polandApproximationPrefixes[language]) || !fare.includes(String(fareMax)) || !/[–-]/.test(fare))) errors.push(`${guideId}/${language}: estimated PLN fare lacks its localized qualifier or range`);
     if (localized?.estimatedDurationLabel) errors.push(`${guideId}/${language}: unsupported duration is visible`);
     if (language !== "en" && localized && longEnglishProse.test(visibleText(localized))) errors.push(`${guideId}/${language}: long English instructions leaked`);
     for (const value of visibleValues) if (!rows.some((row) => row.value === value)) errors.push(`${guideId}/${language}: supported route value ${value} is not visible`);

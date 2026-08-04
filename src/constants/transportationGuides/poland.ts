@@ -99,7 +99,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
     transportationType: "metro",
     title: "Warsaw City Centre to Factory Annopol by Metro, Tram or Walk",
     estimatedDuration: "",
-    estimatedCost: "Approx. PLN 4.40-7 adult one-way (estimated)",
+    estimatedCost: "PLN 4.40 adult one-way",
     recommended: true,
     steps: [
       { order: 1, description: "From central Warsaw, take Metro M2 toward Bródno using the official ZTM timetable or journey planner." },
@@ -190,12 +190,12 @@ export const polandTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Wrocław City Centre to Wrocław Fashion Outlet by Public Transport",
     estimatedDuration: "",
-    estimatedCost: "Approx. PLN 4.60-6 adult one-way (estimated)",
+    estimatedCost: "Approx. PLN 4.60-7 adult one-way (estimated)",
     recommended: true,
     steps: [
-      { order: 1, description: "Check Wrocław Fashion Outlet's official FAQ and the official Wrocław public-transport planner for current tram or bus routes to the outlet area." },
+      { order: 1, description: "Check Wrocław Fashion Outlet's official information and the official Wrocław public-transport planner for lines 106, 107, 119, 132 or 319 to Mińska (Rondo Rotm. Pileckiego)." },
       { order: 2, description: "From the city centre or main station, board only the route confirmed by the official planner for your date and direction." },
-      { order: 3, description: "Alight at the official stop for Wrocław Fashion Outlet / Mińska area and follow signed pedestrian crossings to the entrance." },
+      { order: 3, description: "Alight at Mińska (Rondo Rotm. Pileckiego) and follow signed pedestrian crossings to the outlet entrance." },
       { order: 4, description: "Before shopping, check the return tram or bus departures and fare validity." },
     ],
     updatedAt: "2026-08-04",
@@ -245,7 +245,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Gdańsk Wrzeszcz to Designer Outlet Gdańsk by Bus",
     estimatedDuration: "",
-    estimatedCost: "Approx. PLN 4.80-6 adult one-way (estimated)",
+    estimatedCost: "PLN 4.80 adult one-way",
     recommended: true,
     steps: [
       { order: 1, description: "At Wrzeszcz PKP, check the official ZTM Gdańsk timetable for line 115 toward Jaworzniaków." },
@@ -299,7 +299,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Katowice to Designer Outlet Sosnowiec by Bus",
     estimatedDuration: "",
-    estimatedCost: "Approx. PLN 5-7 adult one-way (estimated)",
+    estimatedCost: "Approx. PLN 4.60-7 adult one-way (estimated)",
     recommended: true,
     steps: [
       { order: 1, description: "From central Katowice, check the official ZTM Metropolia timetable for buses A, E or J toward Sosnowiec Jęzor Centrum Handlowe." },
@@ -353,7 +353,7 @@ export const polandTransportationGuides: TransportationGuide[] = [
     transportationType: "bus",
     title: "Metro Wilanowska to Designer Outlet Warszawa by Bus",
     estimatedDuration: "",
-    estimatedCost: "Approx. PLN 7-8 adult one-way (estimated)",
+    estimatedCost: "PLN 7 adult one-way",
     recommended: true,
     steps: [
       { order: 1, description: "At Metro Wilanowska, check the official WTP/ZTM Warszawa timetable for bus 709 or 727 toward Piaseczno / Energetyczna." },
