@@ -33,6 +33,12 @@ type OutletLocalImageEntry = {
 export const outletMediaFallbackImages: OutletMediaImage[] = [];
 
 const outletLocalImages: Record<string, OutletMediaImage[]> = {
+ "dubai-outlet-mall": [
+require("../../assets/outlet-images/dubai-outlet-mall/hero.png"),
+require("../../assets/outlet-images/dubai-outlet-mall/gallery1.png"),
+require("../../assets/outlet-images/dubai-outlet-mall/gallery2.png"),
+require("../../assets/outlet-images/dubai-outlet-mall/gallery3.png"),
+],
   "barberino": [
     require("../../assets/outlet-images/barberino/hero.webp"),
     require("../../assets/outlet-images/barberino/gallery1.webp"),
