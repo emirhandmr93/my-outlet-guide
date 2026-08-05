@@ -166,6 +166,10 @@ const expected: Array<
   ["czech-republic", "CZK", 2000, "gross", "greater_than", 21],
   ["hungary", "HUF", 68000, "gross", "greater_than", 27],
   ["croatia", "EUR", 100, "gross", "greater_than", 25],
+  ["denmark", "DKK", 300, "gross", "greater_than", 25],
+  ["finland", "EUR", 40, "gross", "at_least", 25.5],
+  ["sweden", "SEK", 200, "gross", "at_least", 25],
+  ["ireland", "EUR", 75, "gross", "at_least", 23],
   ["turkey", "TRY", 1000, "net", "greater_than", 20],
 ];
 for (const [id, currency, amount, basis, comparison, vat] of expected) {
@@ -181,6 +185,23 @@ for (const [id, currency, amount, basis, comparison, vat] of expected) {
   )
     fail(`snapshot ${id}`);
 }
+
+const norway = getRuleOrFail("norway");
+if (
+  norway.currency !== "NOK" ||
+  norway.vatRate !== 25 ||
+  norway.schemeSource.name !== "Norwegian Customs" ||
+  norway.schemeSource.url !== "https://www.toll.no/en/travelling-to-and-from-norway/reimbursement-of-vat-to-tourists" ||
+  norway.vatRateSource.name !== "Norwegian Tax Administration" ||
+  norway.vatRateSource.url !== "https://www.skatteetaten.no/en/rates/value-added-tax/" ||
+  norway.minimumPurchaseStatus !== "not_verified" ||
+  norway.minimumPurchaseAmount !== undefined ||
+  norway.minimumPurchaseBasis !== undefined ||
+  norway.minimumPurchaseComparison !== undefined ||
+  norway.minimumPurchaseSource !== undefined ||
+  !/conditional thresholds/i.test(norway.notes)
+)
+  fail("norway deliberately omits a universal minimum because official thresholds are conditional by residence");
 
 const romania = getRuleOrFail("romania");
 if (
