@@ -7,11 +7,11 @@ import { getTaxFreeGuideDisplayModel } from "../src/services/taxFreeGuideService
 import { getTaxFreePolicyDisplayModel } from "../src/utils/taxFreeDisplay";
 import { supportedLanguageCodes, translations, type TranslationLanguage } from "../src/translations/translations";
 
-const expected = ["france", "italy", "germany", "spain"];
+const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "switzerland"];
 const countryIds = new Set(countries.map((country) => country.countryId));
 const ids = taxFreeCountryGuides.map((guide) => guide.countryId);
 assert.equal(new Set(ids).size, ids.length, "No duplicate country guide");
-assert.deepEqual(ids, expected, "Published guide IDs are exactly France, Italy, Germany and Spain");
+assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected nine country guides");
 
 const sections = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 const originalText = readFileSync("src/constants/taxFreeGuides.ts", "utf8");
@@ -42,14 +42,43 @@ const ruleExpectations = {
   italy: { vatRate: 22, minimumPurchaseAmount: 70, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   germany: { vatRate: 19, minimumPurchaseAmount: 50, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   spain: { vatRate: 21, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "no_statutory_minimum" },
+  portugal: { vatRate: 23, minimumPurchaseAmount: 50, minimumPurchaseBasis: "net", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  austria: { vatRate: 20, minimumPurchaseAmount: 75, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  netherlands: { vatRate: 21, minimumPurchaseAmount: 50, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  belgium: { vatRate: 21, minimumPurchaseAmount: 125.01, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  switzerland: { vatRate: 8.1, minimumPurchaseAmount: 300, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
 } as const;
 for (const [countryId, expectedRule] of Object.entries(ruleExpectations)) {
   const rule = getTaxFreeRule(countryId)!;
-  assert.equal(rule.currency, "EUR", `${countryId} currency matches`);
+  assert.equal(rule.currency, countryId === "switzerland" ? "CHF" : "EUR", `${countryId} currency matches`);
   for (const [key, value] of Object.entries(expectedRule)) assert.equal((rule as any)[key], value, `${countryId} ${key} consistency passes`);
   assert.equal(rule.refundPolicy.mode, "provider_dependent_upper_bound", `${countryId} refund policy mode matches display`);
 }
 assert(!getTaxFreeRule("spain")!.minimumPurchaseAmount, "Spain no-minimum state is not represented by a fabricated positive threshold");
+const netherlandsRule = getTaxFreeRule("netherlands")!;
+assert.equal(netherlandsRule.minimumPurchaseStatus, "verified_amount", "Netherlands must not regress to no statutory minimum");
+assert.equal(netherlandsRule.minimumPurchaseAmount, 50, "Netherlands minimum purchase amount matches official tourist guidance");
+assert.equal(netherlandsRule.minimumPurchaseBasis, "gross", "Netherlands minimum is based on the amount including VAT");
+assert.equal(netherlandsRule.minimumPurchaseComparison, "at_least", "Netherlands minimum is an at-least threshold");
+assert.equal(netherlandsRule.minimumPurchaseSource?.url, "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/douane/reisbagage/btw-terugvragen-bij-uitvoer/", "Netherlands uses the tourist-facing Customs source");
+const netherlandsGuide = taxFreeCountryGuides.find((guide) => guide.countryId === "netherlands")!;
+assert(netherlandsGuide.processSections.customs_validation.includes("taxGuide.netherlands.step.customs.vatApp"), "Netherlands guide includes the NL Customs VAT app validation step");
+assert(netherlandsGuide.sources.filter((source) => source.url === netherlandsRule.minimumPurchaseSource?.url).length >= 3, "Netherlands scheme, customs and goods topics use the tourist-facing Customs source");
+const nlAppLocaleChecks: Record<TranslationLanguage, { app: RegExp; otherExit: RegExp; outside: RegExp }> = {
+  en: { app: /only when .*final EU departure.*Netherlands/i, otherExit: /another EU member state.*final EU exit country/i, outside: /outside the Netherlands/i },
+  tr: { app: /yalnızca.*son EU çıkış.*Hollanda/i, otherExit: /Başka bir EU üye ülkesine.*son EU çıkış ülkesinin/i, outside: /Hollanda dışındaki/i },
+  es: { app: /solo cuando.*salida final.*Países Bajos/i, otherExit: /otro Estado miembro.*país de salida final/i, outside: /fuera de Países Bajos/i },
+  fr: { app: /uniquement lorsque.*sortie finale.*Pays-Bas/i, otherExit: /autre État membre.*pays de sortie finale/i, outside: /hors des Pays-Bas/i },
+  de: { app: /nur, wenn.*endgültige EU-Ausreise.*Niederlanden/i, otherExit: /anderen EU-Mitgliedstaat.*endgültigen Ausreiselandes/i, outside: /außerhalb der Niederlande/i },
+  ar: { app: /فقط عندما.*خروجك النهائي.*هولندا/i, otherExit: /دولة عضو أخرى.*بلد الخروج النهائي/i, outside: /خارج هولندا/i },
+  ru: { app: /только если.*окончательный выезд.*Нидерландов/i, otherExit: /другое государство ЕС.*страны окончательного выезда/i, outside: /за пределами Нидерландов/i },
+  zh: { app: /只有最终从荷兰离开欧盟/, otherExit: /另一个欧盟成员国.*最终出境国家/, outside: /荷兰境外海关点/ },
+};
+for (const [language, checks] of Object.entries(nlAppLocaleChecks) as Array<[TranslationLanguage, typeof nlAppLocaleChecks[TranslationLanguage]]>) {
+  assert(checks.app.test(translations[language]["taxGuide.netherlands.step.customs.vatApp"]), `${language} Netherlands app copy limits app use to final EU departure from the Netherlands`);
+  assert(checks.otherExit.test(translations[language]["taxGuide.netherlands.step.customs.finalEuExit"]), `${language} Netherlands final-exit copy sends other-EU exits to that country's customs process`);
+  assert(checks.outside.test(translations[language]["taxGuide.netherlands.warning.finalEuExit"]), `${language} Netherlands warning says the Dutch app is not for customs points outside the Netherlands`);
+}
 
 const keysForGuide = (countryId: string) => {
   const guide = taxFreeCountryGuides.find((item) => item.countryId === countryId)!;
@@ -58,6 +87,74 @@ const keysForGuide = (countryId: string) => {
 const guideKeys = expected.flatMap(keysForGuide);
 const sharedKeys = ["nav.taxFreeGuide", "savings.taxGuideTitle", "savings.taxGuideDescription", "savings.taxGuideBadge", "savings.taxGuideHighlight", "taxGuide.countryStatus", "taxGuide.status.available", "taxGuide.status.limited", "taxGuide.status.not_available", "taxGuide.notYetAvailable", "taxGuide.quickFact.vatRate", "taxGuide.quickFact.minimumPurchase", "taxGuide.quickFact.estimatedRefund", "taxGuide.eligibility", "taxGuide.requiredDocuments", "taxGuide.numberedProcess", "taxGuide.process.before_shopping", "taxGuide.process.in_store", "taxGuide.process.before_departure", "taxGuide.process.customs_validation", "taxGuide.process.receive_refund", "taxGuide.refundMethods", "taxGuide.deadlinesWarnings", "taxGuide.estimateDisclaimerTitle", "taxGuide.estimateDisclaimer", "taxGuide.openCalculator", "taxGuide.officialSources", "taxGuide.verifiedAt", "taxGuide.openSource", "taxGuide.lastVerified", "taxGuide.sourceTopic.scheme_minimum", "taxGuide.sourceTopic.customs_validation", "taxGuide.sourceTopic.vat_rate", "taxGuide.sourceTopic.refund_process", "taxGuide.sourceTopic.goods_conditions"];
 const requiredGuideKeys = [...sharedKeys, ...guideKeys];
+
+const newGuideCountries = ["portugal", "austria", "netherlands", "belgium", "switzerland"] as const;
+const newGuideKeySet = new Set(newGuideCountries.flatMap(keysForGuide));
+const newGuideKeys = [...newGuideKeySet];
+const forbiddenNonEnglishFragments = [
+  /Tax Free applies/i,
+  /Passport or accepted/i,
+  /Keep documents ready/i,
+  /Keep the documents available/i,
+  /The minimum purchase requirement/i,
+  /departure preparation/i,
+  /Before departure/i,
+  /shared rule layer/i,
+  /official source data/i,
+  /visible refund/i,
+  /before fees/i,
+  /customs confirms export/i,
+];
+const forbiddenInternalIdPattern = /\b(portugal|austria|netherlands|belgium|switzerland)\b/;
+const forbiddenRepeatedBoilerplate = [
+  /Keep documents ready for customs/i,
+  /Belgeleri gümrük için hazır tutun/i,
+  /请备好文件供海关查验/,
+];
+const forbiddenRuleNumberPattern = /(?:€|\bCHF\b|\bEUR\b|\b(?:50|75|125\.01|125,01|300)\b|\b(?:8\.1|8,1|20|21|23)\s*%)/i;
+const chineseScriptPattern = /[\u3400-\u9FFF]/;
+const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; forbidden: RegExp[] }>> = {
+  tr: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
+  es: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
+  fr: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
+  de: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
+  ar: { required: /[\u0600-\u06FF]/, forbidden: [chineseScriptPattern, /[А-Яа-яЁё]/] },
+  ru: { required: /[А-Яа-яЁё]/, forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/] },
+};
+const generatedLocalePatterns: Partial<Record<TranslationLanguage, RegExp[]>> = {
+  fr: [/pour (?:Portugal|Autriche|Pays-Bas|Belgique|Suisse)/, /documents de (?:Autriche|Pays-Bas|Belgique|Suisse|Portugal)/, /en Pays-Bas/],
+  de: [/\bin die Niederlande\b/, /\baus die Niederlande\b/, /Unterlagen aus die Niederlande/],
+  ru: [/^(?:Португалии|Австрии|Нидерландах|Бельгии|Швейцарии)[:—]/],
+};
+for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
+  for (const key of newGuideKeys) {
+    const value = translations[language][key] ?? "";
+    for (const pattern of forbiddenNonEnglishFragments) assert(!pattern.test(value), `${language} ${key} contains English fallback text: ${value}`);
+    for (const pattern of forbiddenRepeatedBoilerplate) assert(!pattern.test(value), `${language} ${key} contains generated boilerplate: ${value}`);
+    for (const pattern of scriptChecks[language]?.forbidden ?? []) assert(!pattern.test(value), `${language} ${key} contains text from an unrelated script: ${value}`);
+    if (scriptChecks[language]?.required) assert(scriptChecks[language]!.required!.test(value), `${language} ${key} is missing the expected locale script: ${value}`);
+    for (const pattern of generatedLocalePatterns[language] ?? []) assert(!pattern.test(value), `${language} ${key} contains a generated locale template: ${value}`);
+    assert(!forbiddenInternalIdPattern.test(value), `${language} ${key} exposes an internal country id: ${value}`);
+    if (!key.includes("source.") && !key.endsWith("vatExplanation") && !key.endsWith("estimatedRefundExplanation")) assert(!/^[A-Z][a-z]+: [A-Z][a-z]+:/.test(value), `${language} ${key} has a generated prefix pattern`);
+  }
+}
+for (const key of newGuideKeys) {
+  const value = translations.en[key] ?? "";
+  assert(!forbiddenInternalIdPattern.test(value), `en ${key} exposes an internal country id: ${value}`);
+  assert(!/departure preparation/i.test(value), `en ${key} contains generated deadline suffix`);
+}
+for (const language of supportedLanguageCodes) for (const key of newGuideKeys) {
+  const value = translations[language][key] ?? "";
+  assert(!forbiddenRuleNumberPattern.test(value), `${language} ${key} hardcodes a rule amount or VAT value: ${value}`);
+}
+const translationSource = readFileSync("src/translations/translations.ts", "utf8");
+const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:portugal|austria|netherlands|belgium|switzerland)\.[^"]+)"\s*:/g)].map((match) => match[1]);
+for (const key of declaredNewGuideKeys) assert(newGuideKeySet.has(key), `new guide translation key is unused by taxFreeGuides: ${key}`);
+const batchMatch = translationSource.match(/const taxFreeGuideBatchTranslations[\s\S]*?for \(const locale of supportedLanguageCodes\) Object\.assign\(translations\[locale\], taxFreeGuideBatchTranslations\[locale\]\);/);
+assert(batchMatch, "taxFreeGuideBatchTranslations block exists");
+const batchSource = batchMatch![0];
+assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "taxFreeGuideBatchTranslations must not declare protected existing-country guide keys");
+for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `taxFreeGuideBatchTranslations overrides protected key ${key}`);
 const valuesFor = (language: TranslationLanguage, keys: string[]) => keys.map((key) => translations[language][key]?.trim() ?? "");
 const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => assert.equal(new Set(valuesFor(language, keys)).size, keys.length, `${language}: ${message}`);
 const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /[\u0600-\u06FF]/, ru: /[А-Яа-яЁё]/, zh: /[\u4E00-\u9FFF]/ };
