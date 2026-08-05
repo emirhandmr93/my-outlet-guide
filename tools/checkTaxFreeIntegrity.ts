@@ -162,6 +162,11 @@ const expected: Array<
   ["netherlands", "EUR", 50, "gross", "at_least", 21],
   ["portugal", "EUR", 50, "net", "greater_than", 23],
   ["switzerland", "CHF", 300, "gross", "at_least", 8.1],
+  ["poland", "PLN", 200, "gross", "at_least", 23],
+  ["czech-republic", "CZK", 2000, "gross", "greater_than", 21],
+  ["hungary", "HUF", 68000, "gross", "greater_than", 27],
+  ["croatia", "EUR", 100, "gross", "greater_than", 25],
+  ["romania", "RON", 889.35, "gross", "greater_than", 21],
   ["turkey", "TRY", 1000, "net", "greater_than", 20],
 ];
 for (const [id, currency, amount, basis, comparison, vat] of expected) {
