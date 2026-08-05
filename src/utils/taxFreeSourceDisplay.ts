@@ -25,6 +25,8 @@ export const taxFreeSourceTranslationKeys = {
   "European Commission — VAT rates": "taxCalc.sourceEuropeanCommissionVatRates",
   "European Commission — VAT refunds": "taxFreeSource.europeanCommissionVatRefunds",
   "French Customs": "taxFreeSource.frenchCustoms",
+  "German Customs / Zoll": "taxFreeSource.germanCustomsZoll",
+  "Agencia Tributaria / AEAT": "taxFreeSource.agenciaTributariaAeat",
   "Invest KOREA / KOTRA": "taxFreeSource.investKoreaKotra",
   "Japan National Tax Agency": "taxFreeSource.japanNationalTaxAgency",
   "Japan Tourism Agency": "taxFreeSource.japanTourismAgency",

@@ -54,7 +54,7 @@ for (const rule of taxFreeRules) for (const language of supportedLanguageCodes) 
 }
 
 const germanyRowsTr = getTaxFreeSourceDisplayRows(getTaxFreeRule("germany")!, "tr", tFor("tr"));
-if (!germanyRowsTr.some((row) => row.authorityName === "Avrupa Komisyonu — KDV iadeleri" && row.roles.includes("scheme")) || !germanyRowsTr.some((row) => row.authorityName === "Avrupa Komisyonu KDV oranları" && row.roles.includes("vat_rate"))) countryFallbackErrorList.push("Germany localized source rows");
+if (!germanyRowsTr.some((row) => row.authorityName === "Alman Gümrüğü / Zoll" && row.roles.includes("scheme") && row.roles.includes("minimum")) || !germanyRowsTr.some((row) => row.authorityName === "Avrupa Komisyonu KDV oranları" && row.roles.includes("vat_rate"))) countryFallbackErrorList.push("Germany localized source rows");
 const italyRowsTr = getTaxFreeSourceDisplayRows(getTaxFreeRule("italy")!, "tr", tFor("tr"));
 if (!italyRowsTr.some((row) => row.authorityName === "Agenzia delle Entrate") || !italyRowsTr.some((row) => row.authorityName === "Avrupa Komisyonu KDV oranları" && row.roles.includes("vat_rate"))) countryFallbackErrorList.push("Italy localized source rows");
 const turkeyRowsTr = getTaxFreeSourceDisplayRows(getTaxFreeRule("turkey")!, "tr", tFor("tr"));
