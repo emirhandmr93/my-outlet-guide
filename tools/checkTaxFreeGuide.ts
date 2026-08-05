@@ -7,11 +7,11 @@ import { getTaxFreeGuideDisplayModel } from "../src/services/taxFreeGuideService
 import { getTaxFreePolicyDisplayModel } from "../src/utils/taxFreeDisplay";
 import { supportedLanguageCodes, translations, type TranslationLanguage } from "../src/translations/translations";
 
-const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "poland", "czech-republic", "hungary", "croatia", "romania", "switzerland"];
+const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "poland", "czech-republic", "hungary", "croatia", "romania", "switzerland", "denmark", "finland", "sweden", "norway", "ireland"];
 const countryIds = new Set(countries.map((country) => country.countryId));
 const ids = taxFreeCountryGuides.map((guide) => guide.countryId);
 assert.equal(new Set(ids).size, ids.length, "No duplicate country guide");
-assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected fourteen country guides");
+assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected nineteen country guides");
 
 const sections = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 const originalText = readFileSync("src/constants/taxFreeGuides.ts", "utf8");
@@ -60,10 +60,15 @@ const ruleExpectations = {
   hungary: { vatRate: 27, minimumPurchaseAmount: 68000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   croatia: { vatRate: 25, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   romania: { vatRate: 21, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
+  denmark: { vatRate: 25, minimumPurchaseAmount: 300, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  finland: { vatRate: 25.5, minimumPurchaseAmount: 40, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  sweden: { vatRate: 25, minimumPurchaseAmount: 200, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  norway: { vatRate: 25, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
+  ireland: { vatRate: 23, minimumPurchaseAmount: 75, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
 } as const;
 for (const [countryId, expectedRule] of Object.entries(ruleExpectations)) {
   const rule = getTaxFreeRule(countryId)!;
-  const expectedCurrencies: Record<string, string> = { switzerland: "CHF", poland: "PLN", "czech-republic": "CZK", hungary: "HUF", croatia: "EUR", romania: "RON" };
+  const expectedCurrencies: Record<string, string> = { switzerland: "CHF", poland: "PLN", "czech-republic": "CZK", hungary: "HUF", croatia: "EUR", romania: "RON", denmark: "DKK", sweden: "SEK", norway: "NOK" };
   assert.equal(rule.currency, expectedCurrencies[countryId] ?? "EUR", `${countryId} currency matches`);
   for (const [key, value] of Object.entries(expectedRule)) assert.equal((rule as any)[key], value, `${countryId} ${key} consistency passes`);
   assert.equal(rule.refundPolicy.mode, "provider_dependent_upper_bound", `${countryId} refund policy mode matches display`);
@@ -102,7 +107,7 @@ const guideKeys = expected.flatMap(keysForGuide);
 const sharedKeys = ["nav.taxFreeGuide", "savings.taxGuideTitle", "savings.taxGuideDescription", "savings.taxGuideBadge", "savings.taxGuideHighlight", "taxGuide.countryStatus", "taxGuide.status.available", "taxGuide.status.limited", "taxGuide.status.not_available", "taxGuide.notYetAvailable", "taxGuide.quickFact.vatRate", "taxGuide.quickFact.minimumPurchase", "taxGuide.quickFact.estimatedRefund", "taxGuide.eligibility", "taxGuide.requiredDocuments", "taxGuide.numberedProcess", "taxGuide.process.before_shopping", "taxGuide.process.in_store", "taxGuide.process.before_departure", "taxGuide.process.customs_validation", "taxGuide.process.receive_refund", "taxGuide.refundMethods", "taxGuide.deadlinesWarnings", "taxGuide.estimateDisclaimerTitle", "taxGuide.estimateDisclaimer", "taxGuide.openCalculator", "taxGuide.officialSources", "taxGuide.verifiedAt", "taxGuide.openSource", "taxGuide.lastVerified", "taxGuide.sourceTopic.scheme_minimum", "taxGuide.sourceTopic.customs_validation", "taxGuide.sourceTopic.vat_rate", "taxGuide.sourceTopic.refund_process", "taxGuide.sourceTopic.goods_conditions"];
 const requiredGuideKeys = [...sharedKeys, ...guideKeys];
 
-const newGuideCountries = ["poland", "czech-republic", "hungary", "croatia", "romania"] as const;
+const newGuideCountries = ["denmark", "finland", "sweden", "norway", "ireland"] as const;
 const newGuideKeySet = new Set(newGuideCountries.flatMap(keysForGuide));
 const newGuideKeys = [...newGuideKeySet];
 const forbiddenNonEnglishFragments = [
@@ -119,13 +124,44 @@ const forbiddenNonEnglishFragments = [
   /before fees/i,
   /customs confirms export/i,
 ];
-const forbiddenInternalIdPattern = /\b(poland|czech-republic|hungary|croatia|romania)\b/;
+const forbiddenInternalIdPattern = /\b(denmark|finland|sweden|norway|ireland)\b/;
 const forbiddenRepeatedBoilerplate = [
   /Keep documents ready for customs/i,
   /Belgeleri gümrük için hazır tutun/i,
   /请备好文件供海关查验/,
 ];
-const forbiddenRuleNumberPattern = /(?:\b(?:PLN|CZK|HUF|RON)\b|(?:€|\bEUR\b)\s*(?:100|200|2[,.]?000|68[,.]?000|889[,.]35)|(?:100|200|2[,.]?000|68[,.]?000|889[,.]35)\s*(?:€|\bEUR\b)?|\b(?:21|23|25|27)\s*%)/i;
+const forbiddenRuleNumberPattern = /(?:\bDKK\s*300\b|\b300\s*DKK\b|\bSEK\s*200\b|\b200\s*SEK\b|\bEUR\s*(?:40|75)\b|€\s*(?:40|75)\b|\b(?:40|75)\s*EUR\b|\b(?:40|75)\s*€|\b(?:25(?:[.,]5)?|23)\s*%)/i;
+const forbiddenRuleNumberDetectedSamples = [
+  "DKK 300",
+  "300 DKK",
+  "EUR 40",
+  "€40",
+  "40 EUR",
+  "40 €",
+  "SEK 200",
+  "200 SEK",
+  "EUR 75",
+  "€75",
+  "75 EUR",
+  "75 €",
+  "25%",
+  "25 %",
+  "25.5%",
+  "25,5%",
+  "23%",
+  "23 %",
+];
+for (const sample of forbiddenRuleNumberDetectedSamples) assert(forbiddenRuleNumberPattern.test(sample), `primary shared rule sample is not blocked: ${sample}`);
+const allowedOperationalNumberSamples = [
+  "DKK 1,200 Norway/Åland route",
+  "1,200 DKK Norway/Åland route",
+  "residence-dependent NOK threshold",
+  "one-month export deadline",
+  "four-hour checked-baggage window",
+  "third-month export deadline",
+  "high-value goods procedure",
+];
+for (const sample of allowedOperationalNumberSamples) assert(!forbiddenRuleNumberPattern.test(sample), `special-route operational sample was blocked: ${sample}`);
 const chineseScriptPattern = /[\u3400-\u9FFF]/;
 const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; forbidden: RegExp[] }>> = {
   tr: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
@@ -136,13 +172,13 @@ const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; for
   ru: { required: /[А-Яа-яЁё]/, forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/] },
 };
 const generatedLocalePatterns: Partial<Record<TranslationLanguage, RegExp[]>> = {
-  tr: [/^(?:Polonya|Çekya|Macaristan|Hırvatistan|Romanya):/, /\bEU\b/, /koşullarını açıklar/i, /konu özeti/i],
-  es: [/^(?:Polonia|Chequia|Hungría|Croacia|Rumanía):/, /\bdescribe las condiciones\b/i, /resumen del tema/i],
-  fr: [/^(?:Pologne|Tchéquie|Hongrie|Croatie|Roumanie):/, /\bdécrit les conditions\b/i, /résumé du sujet/i, /pour (?:Portugal|Autriche|Pays-Bas|Belgique|Suisse)/, /documents de (?:Autriche|Pays-Bas|Belgique|Suisse|Portugal)/, /en Pays-Bas/],
-  de: [/^(?:Polen|Tschechien|Ungarn|Kroatien|Rumänien):/, /\bbeschreibt Wohnsitz/i, /Themenzusammenfassung/i, /\bin die Niederlande\b/, /\baus die Niederlande\b/, /Unterlagen aus die Niederlande/],
-  ar: [/^(?:بولندا|تشيكيا|المجر|كرواتيا|رومانيا):/, /يوضح شروط/i, /ملخص الموضوع/i],
-  ru: [/^(?:Польша|Чехия|Венгрия|Хорватия|Румыния):/, /\bописывает условия\b/i, /краткое описание темы/i, /^(?:Португалии|Австрии|Нидерландах|Бельгии|Швейцарии)[:—]/],
-  zh: [/^(?:波兰|捷克|匈牙利|克罗地亚|罗马尼亚)[:：]/, /说明合格旅客/, /主题摘要/, /[A-Za-z]+: [^"]+\./],
+  tr: [/^(?:Danimarka|Finlandiya|İsveç|Norveç|İrlanda):/, /\bEU\b/, /konu özeti/i],
+  es: [/^(?:Dinamarca|Finlandia|Suecia|Noruega|Irlanda):/, /resumen del tema/i],
+  fr: [/^(?:Danemark|Finlande|Suède|Norvège|Irlande):/, /résumé du sujet/i],
+  de: [/^(?:Dänemark|Finnland|Schweden|Norwegen|Irland):/, /Themenzusammenfassung/i],
+  ar: [/^(?:الدنمارك|فنلندا|السويد|النرويج|أيرلندا):/, /ملخص الموضوع/i],
+  ru: [/^(?:Дания|Финляндия|Швеция|Норвегия|Ирландия):/, /краткое описание темы/i],
+  zh: [/^(?:丹麦|芬兰|瑞典|挪威|爱尔兰)[:：]/, /主题摘要/],
 };
 for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
   for (const key of newGuideKeys) {
@@ -170,25 +206,25 @@ for (const language of supportedLanguageCodes) for (const key of newGuideKeys) {
   assert(!forbiddenRuleNumberPattern.test(value), `${language} ${key} hardcodes a rule amount or VAT value: ${value}`);
 }
 const translationSource = readFileSync("src/translations/translations.ts", "utf8");
-const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:poland|czech-republic|hungary|croatia|romania)\.[^"]+)"\s*:/g)].map((match) => match[1]);
+const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:denmark|finland|sweden|norway|ireland)\.[^"]+)"\s*:/g)].map((match) => match[1]);
 for (const key of declaredNewGuideKeys) assert(newGuideKeySet.has(key), `new guide translation key is unused by taxFreeGuides: ${key}`);
-const batchMatch = translationSource.match(/const taxFreeGuideBatchTranslations[\s\S]*?for \(const locale of supportedLanguageCodes\) Object\.assign\(translations\[locale\], taxFreeGuideBatchTranslations\[locale\]\);/);
-assert(batchMatch, "taxFreeGuideBatchTranslations block exists");
+const batchMatch = translationSource.match(/const northernEuropeIrelandTaxFreeGuideTranslations[\s\S]*?for \(const locale of supportedLanguageCodes\) Object\.assign\(translations\[locale\], northernEuropeIrelandTaxFreeGuideTranslations\[locale\]\);/);
+assert(batchMatch, "northernEuropeIrelandTaxFreeGuideTranslations block exists");
 const batchSource = batchMatch![0];
-assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "taxFreeGuideBatchTranslations must not declare protected existing-country guide keys");
+assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "northernEuropeIrelandTaxFreeGuideTranslations must not declare protected existing-country guide keys");
 assert(!/"taxGuide\.(?:france|italy|germany|spain|portugal|austria|netherlands|belgium|switzerland)\./.test(translationSource.slice(translationSource.indexOf("centralEasternEuropeTaxFreeGuideTranslations"))), "centralEasternEuropeTaxFreeGuideTranslations must not declare protected existing-country guide keys");
-for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `taxFreeGuideBatchTranslations overrides protected key ${key}`);
+for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `northernEuropeIrelandTaxFreeGuideTranslations overrides protected key ${key}`);
 const valuesFor = (language: TranslationLanguage, keys: string[]) => keys.map((key) => translations[language][key]?.trim() ?? "");
 const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => assert.equal(new Set(valuesFor(language, keys)).size, keys.length, `${language}: ${message}`);
 const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /[\u0600-\u06FF]/, ru: /[А-Яа-яЁё]/, zh: /[\u4E00-\u9FFF]/ };
 const localeWordChecks: Partial<Record<TranslationLanguage, RegExp>> = { tr: /(ikamet|gümrük|alışveriş|iade|belge)/i, es: /(aduan|reembolso|compra|document|bienes)/i, fr: /(douan|remboursement|achat|document|biens)/i, de: /(Zoll|Erstattung|Kauf|Dokument|Waren)/i };
 const tFor = (language: TranslationLanguage) => (key: string) => translations[language][key] ?? key;
 const targetConceptChecks: Record<string, RegExp[]> = {
-  poland: [/electronic TAX FREE|elektronic|elektronik|electr[oó]nic|électronique|elektronisch|إلكتروني|электрон|电子/i, /mTAX FREE PL/i],
-  "czech-republic": [/EvDPH/i, /fallback|paper|geçici|kağıt|papel|manual|papier|Fallback|ورقي|بديل|резерв|бумаж|纸质|后备/i],
-  hungary: [/90|retrospective|sonradan|geriye dönük|retrospectiva|rétroactive|nachträglich|بأثر رجعي|задним числом|追溯/i],
-  croatia: [/PDV-P/i],
-  romania: [/final EU|son EU|son AB|salida final|sortie finale|endgültig|الخروج النهائي|окончательн|最终/i, /checked baggage|hand baggage|kayıtlı bagaj|el bagaj|equipaje facturado|equipaje de mano|bagage enregistré|bagage à main|Aufgabegepäck|Handgepäck|الأمتعة المسجلة|أمتعة اليد|сдаваем|ручн|托运|手提/i],
+  denmark: [/Norway|Norveç|Noruega|Norvège|Norwegen|النرويج|Норвег|挪威/i, /Åland/i, /four-hour|dört saat|cuatro horas|quatre heures|Vier-Stunden|الأربع ساعات|четырехчас|四小时/i],
+  finland: [/Norway|Norveç|Noruega|Norvège|Norwegen|النرويج|Норвег|挪威/i, /seal|mühür|sello|sceau|Siegel|ختم|пломб|封条/i],
+  sweden: [/last country|son ülke|último país|dernier pays|letzte.*Land|آخر بلد|последней.*страной|最后一个国家/i, /Tax Free|Swedish Customs|İsveç Gümrüğü|Aduana sueca|douanes suédoises|schwedische Zoll|الجمارك السويدية|шведская таможня|瑞典海关/i],
+  norway: [/RD-0032 E/i, /must not be stamped|damgalanmaması|no debe.*sellado|ne doit pas.*tamponné|nicht.*gestempelt|يجب ألا تختم|не должен.*штамп|不得.*盖章/i, /does not pay|iade ödemez|no paga|ne paient pas|keine Erstattungen auszahlt|لا تدفع|не выплачивает|不支付/i],
+  ireland: [/Retail Export Scheme/i, /high-value|yüksek değerli|alto valor|grande valeur|hochwertige|عالية القيمة|высокой стоимости|高价值/i, /Northern Ireland|Kuzey İrlanda|Irlanda del Norte|Irlande du Nord|Nordirland|أيرلندا الشمالية|Северной Ирландии|北爱尔兰/i],
 };
 for (const [countryId, patterns] of Object.entries(targetConceptChecks)) {
   for (const language of supportedLanguageCodes) {
