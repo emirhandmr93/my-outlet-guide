@@ -37,6 +37,14 @@ for (const guide of taxFreeCountryGuides) {
   assert(guide.sources.some((source) => source.topic === "scheme_minimum"), `${guide.countryId} guide has a scheme/minimum source`);
 }
 
+const romaniaGuide = taxFreeCountryGuides.find((guide) => guide.countryId === "romania")!;
+const romaniaVatSources = romaniaGuide.sources.filter((source) => source.topic === "vat_rate");
+assert.equal(romaniaVatSources.length, 1, "Romania guide has exactly one VAT-rate source");
+assert.equal(romaniaVatSources[0].authority, "Romanian Legislative Portal — Law 141/2025", "Romania guide VAT source authority matches the current legislation source");
+assert.equal(romaniaVatSources[0].url, "https://legislatie.just.ro/Public/DetaliiDocument/305340", "Romania guide VAT source URL matches the current legislation source");
+assert.equal(romaniaVatSources[0].verifiesKey, "taxGuide.romania.source.vatRate", "Romania guide VAT source verifies the Romania VAT-rate copy");
+assert.notEqual(romaniaVatSources[0].url, "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en", "Romania guide VAT source must not use the European Commission VAT-rates URL");
+
 const ruleExpectations = {
   france: { vatRate: 20, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   italy: { vatRate: 22, minimumPurchaseAmount: 70, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },

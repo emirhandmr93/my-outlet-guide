@@ -33,7 +33,6 @@ export const taxFreeSourceTranslationKeys = {
   "Croatian Customs Administration": "taxFreeSource.croatianCustomsAdministration",
   "Czech Customs Administration": "taxFreeSource.czechCustomsAdministration",
   "Hungarian National Tax and Customs Administration": "taxFreeSource.hungarianNav",
-  "National Bank of Romania": "taxFreeSource.nationalBankRomania",
   "Polish Ministry of Finance / PUESC": "taxFreeSource.polishPuesc",
   "Romanian Customs Authority": "taxFreeSource.romanianCustomsAuthority",
   "Romanian Legislative Portal — Law 141/2025": "taxFreeSource.romanianLegislativePortalLaw141",
