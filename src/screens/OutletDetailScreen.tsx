@@ -30,6 +30,7 @@ import { ServicesCard } from "../components/cards/ServicesCard";
 import { TaxFreeCard } from "../components/cards/TaxFreeCard";
 import { countries } from "../constants/countries";
 import { getTaxFreeRule } from "../constants/taxFreeRules";
+import { isTaxFreeGuideAvailable } from "../services/taxFreeGuideService";
 import { getTaxFreePolicyDisplayModel, normalizeTaxFreeCountryStatus, resolveOutletTaxFreeDisplayStatus } from "../utils/taxFreeDisplay";
 import { TransportationCard } from "../components/cards/TransportationCard";
 import { WebsiteCard } from "../components/cards/WebsiteCard";
@@ -214,6 +215,7 @@ export function OutletDetailScreen() {
     ? getTaxFreePolicyDisplayModel(taxFreeRule, language, t)
     : undefined;
   const taxFreeSummary = taxFreeDisplay?.conciseSummary ?? taxFreeDisplay?.summary;
+  const hasTaxFreeGuide = isTaxFreeGuideAvailable(outlet.countryId);
 
   const outletReviews = getPublishedReviews(
     reviews.filter((review) => review.outletId === outlet.outletId),
@@ -614,6 +616,8 @@ export function OutletDetailScreen() {
             taxFreeStatus={taxFreeStatus}
             rule={taxFreeRule}
             officeInfo={outlet.taxFreeOfficeInfo}
+            guideButtonText={hasTaxFreeGuide ? t("taxGuide.openGuide") : undefined}
+            onPressGuide={hasTaxFreeGuide ? () => navigation.navigate("TaxFreeGuide", { countryId: outlet.countryId }) : undefined}
           />
         </View>
 
