@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { CountrySelector } from "../components/CountrySelector";
 import { formatCurrency } from "../services/exchangeRateService";
 import { getTaxFreeGuideDisplayModel } from "../services/taxFreeGuideService";
-import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, formatTaxFreeRate } from "../utils/taxFreeDisplay";
+import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey } from "../utils/taxFreeDisplay";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { formatCountryDisplayName } from "../utils/locationDisplay";
@@ -50,9 +50,8 @@ export function TaxFreeGuideScreen() {
       {isGuideAvailable && guide && rule && policyDisplay ? (
         <>
           <View style={styles.quickFactsGrid}>
-            <Fact label={t("taxGuide.quickFact.vatRate")} value={formatTaxFreeRate(rule.vatRate, language)} detail={t(guide.vatRateExplanationKey)} />
-            <Fact label={t("taxGuide.quickFact.minimumPurchase")} value={minimumText} detail={t(guide.minimumPurchaseExplanationKey)} />
             <Fact label={t("taxGuide.quickFact.estimatedRefund")} value={policyDisplay.rateText ?? taxFreeSummary ?? policyDisplay.summary} detail={t(guide.estimatedRefundExplanationKey)} />
+            <Fact label={t("taxGuide.quickFact.minimumPurchase")} value={minimumText} detail={t(guide.minimumPurchaseExplanationKey)} />
           </View>
 
           <Section title={t("taxGuide.eligibility")} items={[guide.travellerEligibilitySummaryKey, ...guide.goodsUseExportConditionKeys].map(t)} />

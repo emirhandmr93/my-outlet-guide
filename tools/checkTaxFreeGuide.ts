@@ -83,6 +83,8 @@ for (const language of supportedLanguageCodes) {
     assertDistinct(language, taxFreeCountryGuides.find((item) => item.countryId === countryId)!.sources.map((source) => source.verifiesKey), `${countryId} source-description values must be distinct`);
   }
   for (const key of requiredGuideKeys) assert(translations[language][key]?.trim(), `${language} missing ${key}`);
+  assert(translations[language]["taxGuide.quickFact.estimatedRefund"]?.trim(), `${language} estimated-refund wording exists`);
+  assert(!/VAT rate|KDV oranı|Tipo de IVA|Taux de TVA|Mehrwertsteuersatz|ставка НДС|معدل ضريبة|增值税率/i.test(translations[language]["taxGuide.quickFact.estimatedRefund"]), `${language} estimated-refund wording is not VAT-rate wording`);
   if (language !== "en") {
     for (const key of guideKeys) assert.notEqual(translations[language][key], translations.en[key], `${language} equals English source for ${key}`);
     assert.equal(valuesFor(language, guideKeys).filter((value, index, values) => values.indexOf(value) !== index).length, 0, `${language} repeats a long semantic translation`);
@@ -97,10 +99,18 @@ const navTypes = readFileSync("src/navigation/types.ts", "utf8");
 const savings = readFileSync("src/screens/SavingsScreen.tsx", "utf8");
 const search = readFileSync("src/services/searchFeatureIndex.ts", "utf8");
 const dubai = readFileSync("tools/checkDubaiOutletMallMetadata.ts", "utf8");
+const guideScreen = readFileSync("src/screens/TaxFreeGuideScreen.tsx", "utf8");
+const quickFactsBlock = guideScreen.slice(guideScreen.indexOf("<View style={styles.quickFactsGrid}>"), guideScreen.indexOf("</View>", guideScreen.indexOf("<View style={styles.quickFactsGrid}>")));
+assert(!quickFactsBlock.includes("taxGuide.quickFact.vatRate"), "Tax Free Guide screen must not render the VAT-rate quick fact");
+assert(quickFactsBlock.includes("taxGuide.quickFact.minimumPurchase"), "Tax Free Guide screen still renders the minimum-purchase quick fact");
+assert(quickFactsBlock.includes("taxGuide.quickFact.estimatedRefund"), "Tax Free Guide screen still renders the estimated-refund quick fact");
+assert.equal((quickFactsBlock.match(/<Fact /g) ?? []).length, 2, "Published guide quick-fact area contains exactly two cards");
+assert(!/formatTaxFreeRate\(rule\.vatRate/.test(guideScreen), "Guide screen does not present statutory VAT as a quick fact");
+assert(!guideScreen.includes("taxFreeAvailable: true"), "No outlet-specific verification is fabricated");
 assert(nav.includes('name="TaxFreeCalculator"') && navTypes.includes("TaxFreeCalculator:"), "Tax Free Calculator remains reachable");
 assert(nav.includes('name="TaxFreeGuide"') && navTypes.includes("TaxFreeGuide:"), "Tax Free Guide route is registered");
 assert.equal((savings.match(/routeName: "TaxFreeGuide"/g) ?? []).length, 1, "Savings contains exactly one Tax Free Guide entry");
 assert(search.includes('routeName: "TaxFreeGuide"'), "Search resolves Tax Free Guide correctly");
 assert(dubai.includes('taxFreeAvailable === false'), "Dubai Tax Free state remains unchanged");
-assert(!readFileSync("src/screens/TaxFreeGuideScreen.tsx", "utf8").includes("taxFreeAvailable: true"), "No outlet-specific verification is fabricated");
+
 console.log("Tax Free Guide checks passed.");
