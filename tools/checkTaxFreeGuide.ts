@@ -88,11 +88,28 @@ const forbiddenRepeatedBoilerplate = [
   /请备好文件供海关查验/,
 ];
 const forbiddenRuleNumberPattern = /(?:€|\bCHF\b|\bEUR\b|\b(?:50|75|125\.01|125,01|300)\b|\b(?:8\.1|8,1|20|21|23)\s*%)/i;
+const chineseScriptPattern = /[\u3400-\u9FFF]/;
+const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; forbidden: RegExp[] }>> = {
+  tr: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
+  es: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
+  fr: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
+  de: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
+  ar: { required: /[\u0600-\u06FF]/, forbidden: [chineseScriptPattern, /[А-Яа-яЁё]/] },
+  ru: { required: /[А-Яа-яЁё]/, forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/] },
+};
+const generatedLocalePatterns: Partial<Record<TranslationLanguage, RegExp[]>> = {
+  fr: [/pour (?:Portugal|Autriche|Pays-Bas|Belgique|Suisse)/, /documents de (?:Autriche|Pays-Bas|Belgique|Suisse|Portugal)/, /en Pays-Bas/],
+  de: [/\bin die Niederlande\b/, /\baus die Niederlande\b/, /Unterlagen aus die Niederlande/],
+  ru: [/^(?:Португалии|Австрии|Нидерландах|Бельгии|Швейцарии)[:—]/],
+};
 for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
   for (const key of newGuideKeys) {
     const value = translations[language][key] ?? "";
     for (const pattern of forbiddenNonEnglishFragments) assert(!pattern.test(value), `${language} ${key} contains English fallback text: ${value}`);
     for (const pattern of forbiddenRepeatedBoilerplate) assert(!pattern.test(value), `${language} ${key} contains generated boilerplate: ${value}`);
+    for (const pattern of scriptChecks[language]?.forbidden ?? []) assert(!pattern.test(value), `${language} ${key} contains text from an unrelated script: ${value}`);
+    if (scriptChecks[language]?.required) assert(scriptChecks[language]!.required!.test(value), `${language} ${key} is missing the expected locale script: ${value}`);
+    for (const pattern of generatedLocalePatterns[language] ?? []) assert(!pattern.test(value), `${language} ${key} contains a generated locale template: ${value}`);
     assert(!forbiddenInternalIdPattern.test(value), `${language} ${key} exposes an internal country id: ${value}`);
     if (!key.includes("source.") && !key.endsWith("vatExplanation") && !key.endsWith("estimatedRefundExplanation")) assert(!/^[A-Z][a-z]+: [A-Z][a-z]+:/.test(value), `${language} ${key} has a generated prefix pattern`);
   }
@@ -109,6 +126,11 @@ for (const language of supportedLanguageCodes) for (const key of newGuideKeys) {
 const translationSource = readFileSync("src/translations/translations.ts", "utf8");
 const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:portugal|austria|netherlands|belgium|switzerland)\.[^"]+)"\s*:/g)].map((match) => match[1]);
 for (const key of declaredNewGuideKeys) assert(newGuideKeySet.has(key), `new guide translation key is unused by taxFreeGuides: ${key}`);
+const batchMatch = translationSource.match(/const taxFreeGuideBatchTranslations[\s\S]*?for \(const locale of supportedLanguageCodes\) Object\.assign\(translations\[locale\], taxFreeGuideBatchTranslations\[locale\]\);/);
+assert(batchMatch, "taxFreeGuideBatchTranslations block exists");
+const batchSource = batchMatch![0];
+assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "taxFreeGuideBatchTranslations must not declare protected existing-country guide keys");
+for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `taxFreeGuideBatchTranslations overrides protected key ${key}`);
 const valuesFor = (language: TranslationLanguage, keys: string[]) => keys.map((key) => translations[language][key]?.trim() ?? "");
 const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => assert.equal(new Set(valuesFor(language, keys)).size, keys.length, `${language}: ${message}`);
 const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /[\u0600-\u06FF]/, ru: /[А-Яа-яЁё]/, zh: /[\u4E00-\u9FFF]/ };
