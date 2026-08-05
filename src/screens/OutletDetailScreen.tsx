@@ -49,6 +49,7 @@ import {
 import { getConfiguredOutletMediaMode } from "../media/outletMediaConfig";
 import { getBrandCategoryGroupsForOutlet } from "../services/brandService";
 import { getRestaurantsForOutlet } from "../services/restaurantService";
+import { isTaxFreeGuideAvailable } from "../services/taxFreeGuideService";
 import { getOutletTransportationV2Summary } from "../services/transportationV2Service";
 import { getOutletCurrentWeather, type OutletCurrentWeatherResult } from "../services/liveWeatherService";
 import {
@@ -214,6 +215,7 @@ export function OutletDetailScreen() {
     ? getTaxFreePolicyDisplayModel(taxFreeRule, language, t)
     : undefined;
   const taxFreeSummary = taxFreeDisplay?.conciseSummary ?? taxFreeDisplay?.summary;
+  const hasTaxFreeGuide = isTaxFreeGuideAvailable(outlet.countryId);
 
   const outletReviews = getPublishedReviews(
     reviews.filter((review) => review.outletId === outlet.outletId),
@@ -614,6 +616,8 @@ export function OutletDetailScreen() {
             taxFreeStatus={taxFreeStatus}
             rule={taxFreeRule}
             officeInfo={outlet.taxFreeOfficeInfo}
+            guideButtonText={hasTaxFreeGuide ? t("taxGuide.openGuide") : undefined}
+            onPressGuide={hasTaxFreeGuide ? () => navigation.navigate("TaxFreeGuide", { countryId: outlet.countryId }) : undefined}
           />
         </View>
 

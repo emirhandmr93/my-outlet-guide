@@ -1,7 +1,7 @@
 import { getTaxFreePolicySummaryKey, isPointOfSalePolicyActive, TaxFreeRule } from "../constants/taxFreeRules";
 
 type EstimateBase = { grossAmount: number; netAmount: number; vatPortion: number; sourceUrl: string };
-type FormulaAssumptionKey = "taxCalc.oneTagAssumption" | "taxCalc.standardRateProductAssumption";
+type FormulaAssumptionKey = "taxCalc.oneTransactionAssumption" | "taxCalc.standardRateProductAssumption";
 export type TaxFreeEstimate =
   | (EstimateBase & { kind: "upper_bound"; maximumRefundBeforeFees: number; bestCaseCostBeforeFees: number })
   | (EstimateBase & { kind: "net_estimate"; estimatedNetRefund: number; estimatedCostAfterRefund: number; assumptionKey?: FormulaAssumptionKey | string })
@@ -22,8 +22,8 @@ export function calculateTaxFreeEstimate(grossAmount: number, rule: TaxFreeRule,
   const policy = rule.refundPolicy;
   switch (policy.mode) {
     case "official_formula": {
-      const estimatedNetRefund = policy.formula === "uae_vat_85_minus_tag_fee"
-        ? Math.max(0, vatPortion * 0.85 - 4.8)
+      const estimatedNetRefund = policy.formula === "uae_vat_87_minus_transaction_fee"
+        ? Math.max(0, vatPortion * 0.87 - 3.6)
         : grossAmount * 0.09;
       return { ...base, kind: "net_estimate", estimatedNetRefund, estimatedCostAfterRefund: grossAmount - estimatedNetRefund, assumptionKey: policy.assumptionKey };
     }
@@ -51,7 +51,7 @@ export function isBelowMinimumPurchase(grossAmount: number, rule: TaxFreeRule) {
 export type TaxFreeDisplayPlan =
   | { kind: "below_minimum" }
   | { kind: "upper_bound"; benefitAmount: number; costAmount: number; benefitLabelKey: "taxCalc.maximumRefundBeforeFees"; costLabelKey: "taxCalc.bestCaseCostBeforeFees"; convertedBenefitLabelKey: "taxCalc.convertedMaximum"; convertedCostLabelKey: "taxCalc.convertedBestCaseCost"; disclaimerKey: "taxCalc.upperBoundDisclaimer" }
-  | { kind: "net_estimate"; benefitAmount: number; costAmount: number; benefitLabelKey: "taxCalc.estimatedNetRefund"; costLabelKey: "taxCalc.estimatedCostAfterRefund"; convertedBenefitLabelKey: "taxCalc.convertedRefund"; convertedCostLabelKey: "taxCalc.convertedCostAfterRefund"; disclaimerKey: "taxCalc.finalDisclaimer" }
+  | { kind: "net_estimate"; benefitAmount: number; costAmount: number; benefitLabelKey: "taxCalc.estimatedNetRefund"; costLabelKey: "taxCalc.estimatedCostAfterRefund"; convertedBenefitLabelKey: "taxCalc.convertedRefund"; convertedCostLabelKey: "taxCalc.convertedCostAfterRefund"; disclaimerKey: "taxCalc.finalDisclaimer"; assumptionKey?: string }
   | { kind: "point_of_sale_exemption"; benefitAmount: number; costAmount: number; benefitLabelKey: "taxCalc.estimatedTaxSaving"; costLabelKey: "taxCalc.costAfterExemption"; convertedBenefitLabelKey: "taxCalc.convertedTaxSaving"; convertedCostLabelKey: "taxCalc.convertedCostAfterExemption"; disclaimerKey: "taxCalc.pointOfSaleDisclaimer" }
   | { kind: "no_numeric_estimate"; messageKey: "taxCalc.futureRegimeNoEstimate" | "taxCalc.noSourcedNetRate" };
 
@@ -61,7 +61,7 @@ export function getTaxFreeDisplayPlan(grossAmount: number, rule: TaxFreeRule, ca
   if (isBelowMinimumPurchase(grossAmount, rule)) return { kind: "below_minimum" };
   switch (estimate.kind) {
     case "upper_bound": return { kind: estimate.kind, benefitAmount: estimate.maximumRefundBeforeFees, costAmount: estimate.bestCaseCostBeforeFees, benefitLabelKey: "taxCalc.maximumRefundBeforeFees", costLabelKey: "taxCalc.bestCaseCostBeforeFees", convertedBenefitLabelKey: "taxCalc.convertedMaximum", convertedCostLabelKey: "taxCalc.convertedBestCaseCost", disclaimerKey: "taxCalc.upperBoundDisclaimer" };
-    case "net_estimate": return { kind: estimate.kind, benefitAmount: estimate.estimatedNetRefund, costAmount: estimate.estimatedCostAfterRefund, benefitLabelKey: "taxCalc.estimatedNetRefund", costLabelKey: "taxCalc.estimatedCostAfterRefund", convertedBenefitLabelKey: "taxCalc.convertedRefund", convertedCostLabelKey: "taxCalc.convertedCostAfterRefund", disclaimerKey: "taxCalc.finalDisclaimer" };
+    case "net_estimate": return { kind: estimate.kind, benefitAmount: estimate.estimatedNetRefund, costAmount: estimate.estimatedCostAfterRefund, benefitLabelKey: "taxCalc.estimatedNetRefund", costLabelKey: "taxCalc.estimatedCostAfterRefund", convertedBenefitLabelKey: "taxCalc.convertedRefund", convertedCostLabelKey: "taxCalc.convertedCostAfterRefund", disclaimerKey: "taxCalc.finalDisclaimer", ...(estimate.assumptionKey ? { assumptionKey: estimate.assumptionKey } : {}) };
     case "point_of_sale_exemption": return { kind: estimate.kind, benefitAmount: estimate.estimatedTaxSaving, costAmount: estimate.estimatedCostAfterExemption, benefitLabelKey: "taxCalc.estimatedTaxSaving", costLabelKey: "taxCalc.costAfterExemption", convertedBenefitLabelKey: "taxCalc.convertedTaxSaving", convertedCostLabelKey: "taxCalc.convertedCostAfterExemption", disclaimerKey: "taxCalc.pointOfSaleDisclaimer" };
     case "no_numeric_estimate": return { kind: estimate.kind, messageKey: estimate.reason === "future_regime_unmodeled" ? "taxCalc.futureRegimeNoEstimate" : "taxCalc.noSourcedNetRate" };
   }

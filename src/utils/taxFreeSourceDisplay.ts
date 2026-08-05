@@ -60,6 +60,7 @@ export const taxFreeSourceTranslationKeys = {
   "Thailand Revenue Department": "taxFreeSource.thailandRevenueDepartment",
   "Turkish Revenue Administration": "taxFreeSource.turkishRevenueAdministration",
   "UAE Government Portal": "taxFreeSource.uaeGovernmentPortal",
+  "UAE Federal Tax Authority": "taxFreeSource.uaeFederalTaxAuthority",
 } as const;
 
 export function isMappedTaxFreeSourceName(name: string) {

@@ -1,5 +1,6 @@
+import { useEffect, useRef } from "react";
 import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 
 import { CountrySelector } from "../components/CountrySelector";
 import { formatCurrency } from "../services/exchangeRateService";
@@ -7,14 +8,27 @@ import { getTaxFreeGuideDisplayModel } from "../services/taxFreeGuideService";
 import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey } from "../utils/taxFreeDisplay";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
-import { formatCountryDisplayName } from "../utils/locationDisplay";
+import type { RootStackParamList } from "../navigation/types";
+
+type TaxFreeGuideRouteProp = RouteProp<RootStackParamList, "TaxFreeGuide">;
 
 const processOrder = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 
 export function TaxFreeGuideScreen() {
   const navigation = useNavigation<any>();
+  const route = useRoute<TaxFreeGuideRouteProp>();
+  const appliedRouteCountryIdRef = useRef<string | undefined>(undefined);
   const { selectedCountryId, setSelectedCountryId } = useSavings();
   const { t, language } = useTranslation();
+  const routeCountryId = route.params?.countryId;
+
+  useEffect(() => {
+    if (routeCountryId && appliedRouteCountryIdRef.current !== routeCountryId) {
+      appliedRouteCountryIdRef.current = routeCountryId;
+      setSelectedCountryId(routeCountryId);
+    }
+  }, [routeCountryId, setSelectedCountryId]);
+
   const { country, guide, rule, policyDisplay, countryStatus, isGuideAvailable } = getTaxFreeGuideDisplayModel(selectedCountryId, language, t);
   const taxFreeSummary = policyDisplay?.summary;
   const selectedCountryIdSafe = country?.countryId ?? selectedCountryId;
