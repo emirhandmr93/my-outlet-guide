@@ -31,15 +31,66 @@ assert(france.sources.some((source) => source.topic === "customs_validation"), "
 assert(france.sources.some((source) => source.topic === "scheme_minimum"), "France guide has a scheme/minimum source");
 assert.equal(franceRule.minimumPurchaseAmount, 100, "France minimum purchase agrees with the calculator rule");
 assert.equal(franceRule.minimumPurchaseBasis, "gross", "France minimum basis agrees with the calculator rule");
+
+const sharedKeys = [
+  "nav.taxFreeGuide", "savings.taxGuideTitle", "savings.taxGuideDescription", "savings.taxGuideBadge", "savings.taxGuideHighlight",
+  "taxGuide.countryStatus", "taxGuide.status.available", "taxGuide.status.limited", "taxGuide.status.not_available", "taxGuide.notYetAvailable",
+  "taxGuide.quickFact.vatRate", "taxGuide.quickFact.minimumPurchase", "taxGuide.quickFact.estimatedRefund", "taxGuide.eligibility", "taxGuide.requiredDocuments",
+  "taxGuide.numberedProcess", "taxGuide.process.before_shopping", "taxGuide.process.in_store", "taxGuide.process.before_departure", "taxGuide.process.customs_validation", "taxGuide.process.receive_refund",
+  "taxGuide.refundMethods", "taxGuide.deadlinesWarnings", "taxGuide.estimateDisclaimerTitle", "taxGuide.estimateDisclaimer", "taxGuide.openCalculator", "taxGuide.officialSources", "taxGuide.verifiedAt", "taxGuide.openSource", "taxGuide.lastVerified",
+  "taxGuide.sourceTopic.scheme_minimum", "taxGuide.sourceTopic.customs_validation", "taxGuide.sourceTopic.vat_rate", "taxGuide.sourceTopic.refund_process", "taxGuide.sourceTopic.goods_conditions",
+];
+const documentKeys = france.requiredDocumentKeys;
+const goodsKeys = france.goodsUseExportConditionKeys;
+const processKeys = Object.values(france.processSections).flat();
+const refundMethodKeys = france.supportedRefundMethodKeys;
+const warningKeys = france.warningKeys;
+const sourceDescriptionKeys = france.sources.map((source) => source.verifiesKey);
+const franceExplanationKeys = [france.travellerEligibilitySummaryKey, france.deadlineInformationKey, france.minimumPurchaseExplanationKey, france.vatRateExplanationKey, france.estimatedRefundExplanationKey, france.operatorFeeExplanationKey];
+const requiredGuideKeys = [...sharedKeys, ...documentKeys, ...goodsKeys, ...processKeys, ...refundMethodKeys, ...warningKeys, ...sourceDescriptionKeys, ...franceExplanationKeys];
+const unique = (values: string[], message: string) => assert.equal(new Set(values).size, values.length, message);
+const valuesFor = (language: TranslationLanguage, keys: string[]) => keys.map((key) => translations[language][key]?.trim() ?? "");
+const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => unique(valuesFor(language, keys), `${language}: ${message}`);
+const placeholderPatterns = [/^Tax Free rehberi$/, /^Fransa rehberi:/, /^Guía de Francia:/, /^Guide France :/, /^Frankreich-Leitfaden:/, /^دليل فرنسا:/, /^Франция:/, /^法国指南：/];
+const longFranceKeys = [...documentKeys, ...goodsKeys, ...processKeys, ...warningKeys, ...sourceDescriptionKeys, ...franceExplanationKeys];
+const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /[\u0600-\u06FF]/, ru: /[А-Яа-яЁё]/, zh: /[\u4E00-\u9FFF]/ };
+const localeWordChecks: Partial<Record<TranslationLanguage, RegExp>> = { tr: /(ikamet|gümrük|alışveriş|iade|belge)/i, es: /(aduan|reembolso|compra|document|bienes)/i, fr: /(douan|remboursement|achat|document|biens)/i, de: /(Zoll|Erstattung|Kauf|Dokument|Waren)/i };
+
 const tFor = (language: TranslationLanguage) => (key: string) => translations[language][key] ?? key;
 for (const language of supportedLanguageCodes) {
   const model = getTaxFreeGuideDisplayModel("france", language, tFor(language));
   assert(model.isGuideAvailable && model.policyDisplay, `${language} France guide display resolves`);
   const calculatorModel = getTaxFreePolicyDisplayModel(franceRule, language, tFor(language));
   assert.equal(model.policyDisplay!.summary, calculatorModel.summary, `${language} France guide refund display agrees with calculator display logic`);
-  const keys = ["taxGuide.openCalculator", "nav.taxFreeGuide", ...france.requiredDocumentKeys, ...Object.values(france.processSections).flat(), ...france.warningKeys];
-  for (const key of keys) assert(translations[language][key] && !translations[language][key].includes("%{"), `${language} missing or broken ${key}`);
-  if (language !== "en") assert(!/France Tax Free is for travellers/.test(translations[language]["taxGuide.france.eligibilitySummary"]), `${language} leaks long English guide prose`);
+  for (const key of requiredGuideKeys) {
+    const value = translations[language][key];
+    assert(value?.trim(), `${language} missing ${key}`);
+    assert(!/%\{[^}]*$|\{[^}]*%/.test(value), `${language} broken interpolation token in ${key}`);
+  }
+  assertDistinct(language, ["taxGuide.status.available", "taxGuide.status.limited", "taxGuide.status.not_available"], "status values must be pairwise distinct");
+  assertDistinct(language, ["taxGuide.quickFact.vatRate", "taxGuide.quickFact.minimumPurchase", "taxGuide.quickFact.estimatedRefund"], "quick facts must be pairwise distinct");
+  assertDistinct(language, ["taxGuide.process.before_shopping", "taxGuide.process.in_store", "taxGuide.process.before_departure", "taxGuide.process.customs_validation", "taxGuide.process.receive_refund"], "process labels must be pairwise distinct");
+  assertDistinct(language, ["taxGuide.sourceTopic.scheme_minimum", "taxGuide.sourceTopic.customs_validation", "taxGuide.sourceTopic.vat_rate", "taxGuide.sourceTopic.refund_process", "taxGuide.sourceTopic.goods_conditions"], "source-topic labels must be pairwise distinct");
+  assertDistinct(language, documentKeys, "France document values must be distinct");
+  assertDistinct(language, goodsKeys, "France goods-condition values must be distinct");
+  assertDistinct(language, processKeys, "France process-step values must be distinct");
+  assertDistinct(language, refundMethodKeys, "France refund-method values must be distinct");
+  assertDistinct(language, warningKeys, "France warning values must be distinct");
+  assertDistinct(language, sourceDescriptionKeys, "France source-description values must be distinct");
+
+  if (language !== "en") {
+    for (const key of requiredGuideKeys) assert.notEqual(translations[language][key], translations.en[key], `${language} equals English source for ${key}`);
+    for (const key of longFranceKeys) {
+      const value = translations[language][key].trim();
+      assert(!placeholderPatterns.some((pattern) => pattern.test(value)), `${language} placeholder value remains for ${key}`);
+      const minimumLength = language === "zh" ? 8 : language === "ar" ? 14 : 18;
+      assert(value.length >= minimumLength, `${language} ${key} is too short to be meaningful`);
+    }
+    const repeatedLongValues = valuesFor(language, longFranceKeys).filter((value, index, values) => values.indexOf(value) !== index);
+    assert.equal(repeatedLongValues.length, 0, `${language} repeats a long France semantic translation`);
+    if (localeScriptChecks[language]) assert(longFranceKeys.some((key) => localeScriptChecks[language]!.test(translations[language][key])), `${language} must contain its expected script`);
+    if (localeWordChecks[language]) assert(longFranceKeys.some((key) => localeWordChecks[language]!.test(translations[language][key])), `${language} must contain locale-appropriate non-placeholder wording`);
+  }
 }
 assert(translations.ar["taxGuide.france.eligibilitySummary"].trim().length > 0, "Arabic output remains non-empty and RTL-safe");
 
