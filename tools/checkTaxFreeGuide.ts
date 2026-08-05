@@ -7,11 +7,11 @@ import { getTaxFreeGuideDisplayModel } from "../src/services/taxFreeGuideService
 import { getTaxFreePolicyDisplayModel } from "../src/utils/taxFreeDisplay";
 import { supportedLanguageCodes, translations, type TranslationLanguage } from "../src/translations/translations";
 
-const expected = ["france", "italy", "germany", "spain"];
+const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "switzerland"];
 const countryIds = new Set(countries.map((country) => country.countryId));
 const ids = taxFreeCountryGuides.map((guide) => guide.countryId);
 assert.equal(new Set(ids).size, ids.length, "No duplicate country guide");
-assert.deepEqual(ids, expected, "Published guide IDs are exactly France, Italy, Germany and Spain");
+assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected nine country guides");
 
 const sections = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 const originalText = readFileSync("src/constants/taxFreeGuides.ts", "utf8");
@@ -42,10 +42,15 @@ const ruleExpectations = {
   italy: { vatRate: 22, minimumPurchaseAmount: 70, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   germany: { vatRate: 19, minimumPurchaseAmount: 50, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   spain: { vatRate: 21, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "no_statutory_minimum" },
+  portugal: { vatRate: 23, minimumPurchaseAmount: 50, minimumPurchaseBasis: "net", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  austria: { vatRate: 20, minimumPurchaseAmount: 75, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  netherlands: { vatRate: 21, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "no_statutory_minimum" },
+  belgium: { vatRate: 21, minimumPurchaseAmount: 125.01, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  switzerland: { vatRate: 8.1, minimumPurchaseAmount: 300, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
 } as const;
 for (const [countryId, expectedRule] of Object.entries(ruleExpectations)) {
   const rule = getTaxFreeRule(countryId)!;
-  assert.equal(rule.currency, "EUR", `${countryId} currency matches`);
+  assert.equal(rule.currency, countryId === "switzerland" ? "CHF" : "EUR", `${countryId} currency matches`);
   for (const [key, value] of Object.entries(expectedRule)) assert.equal((rule as any)[key], value, `${countryId} ${key} consistency passes`);
   assert.equal(rule.refundPolicy.mode, "provider_dependent_upper_bound", `${countryId} refund policy mode matches display`);
 }
