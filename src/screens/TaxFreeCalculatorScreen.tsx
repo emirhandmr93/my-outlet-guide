@@ -299,6 +299,9 @@ export function TaxFreeCalculatorScreen() {
             <View style={styles.highlightBox}>
               <Text style={styles.highlightValue}>{t(numericPlan.disclaimerKey)}</Text>
             </View>
+            {numericPlan.kind === "net_estimate" && numericPlan.assumptionKey ? (
+              <View style={styles.highlightBox}><Text style={styles.highlightValue}>{t(numericPlan.assumptionKey)}</Text></View>
+            ) : null}
             {policyDisplay?.kind === "maximum_rate" ? (
               <View style={styles.highlightBox}><Text style={styles.highlightValue}>{policyDisplay.summary}</Text></View>
             ) : null}

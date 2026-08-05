@@ -7,11 +7,11 @@ import { getTaxFreeGuideDisplayModel } from "../src/services/taxFreeGuideService
 import { getTaxFreePolicyDisplayModel } from "../src/utils/taxFreeDisplay";
 import { supportedLanguageCodes, translations, type TranslationLanguage } from "../src/translations/translations";
 
-const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "poland", "czech-republic", "hungary", "croatia", "romania", "switzerland", "denmark", "finland", "sweden", "norway", "ireland", "bulgaria", "estonia", "latvia", "lithuania", "greece", "slovakia"];
+const expected = ["austria", "belgium", "bulgaria", "china", "croatia", "czech-republic", "denmark", "estonia", "finland", "france", "germany", "greece", "hungary", "ireland", "italy", "japan", "latvia", "lithuania", "netherlands", "norway", "poland", "portugal", "romania", "slovakia", "south-korea", "spain", "sweden", "switzerland", "thailand", "turkey", "united-arab-emirates"];
 const countryIds = new Set(countries.map((country) => country.countryId));
 const ids = taxFreeCountryGuides.map((guide) => guide.countryId);
 assert.equal(new Set(ids).size, ids.length, "No duplicate country guide");
-assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected twenty-five country guides");
+assert.deepEqual([...ids].sort(), expected, "Published guide IDs are exactly the expected thirty-one country guides");
 
 const sections = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 const originalText = readFileSync("src/constants/taxFreeGuides.ts", "utf8");
