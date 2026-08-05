@@ -31,10 +31,10 @@ const japan = getTaxFreeRule("japan")!; assert.equal(japan.refundPolicy.mode, "p
 const source = readFileSync("src/translations/translations.ts", "utf8");
 const block = source.slice(source.indexOf("const finalAsiaMiddleEastTaxFreeGuideTranslations"));
 assert(!block.includes("taxGuide.openGuide"));
-assert(!/TaxFreeGuide:\s*\{ countryId\?: string \}/.test(readFileSync("src/navigation/types.ts", "utf8")));
-assert(!readFileSync("src/screens/OutletDetailScreen.tsx", "utf8").includes('navigation.navigate("TaxFreeGuide", { countryId: outlet.countryId })'));
-assert(!readFileSync("src/components/cards/TaxFreeCard.tsx", "utf8").includes("guideButtonText"));
-assert(!readFileSync("src/screens/TaxFreeGuideScreen.tsx", "utf8").includes("appliedRouteCountryIdRef"));
+assert(/TaxFreeGuide:\s*\{ countryId\?: string \} \| undefined/.test(readFileSync("src/navigation/types.ts", "utf8")));
+assert(readFileSync("src/screens/OutletDetailScreen.tsx", "utf8").includes('navigation.navigate("TaxFreeGuide", { countryId: outlet.countryId })'));
+assert(readFileSync("src/components/cards/TaxFreeCard.tsx", "utf8").includes("guideButtonText"));
+assert(readFileSync("src/screens/TaxFreeGuideScreen.tsx", "utf8").includes("lastAppliedRouteCountryIdRef"));
 
 const artificialTrailing = /(?:—|-)\s*(?:first|second|third|identity|residence|document|receipts|travel|goods|eligibilitySummary|conditions|refund|rate)\.?["']/i;
 assert(!artificialTrailing.test(block));

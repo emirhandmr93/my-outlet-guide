@@ -1,9 +1,10 @@
 import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
+import { useLayoutEffect, useRef } from "react";
 
 import { CountrySelector } from "../components/CountrySelector";
 import { formatCurrency } from "../services/exchangeRateService";
-import { getTaxFreeGuideDisplayModel } from "../services/taxFreeGuideService";
+import { getTaxFreeGuideDisplayModel, isTaxFreeGuideAvailable } from "../services/taxFreeGuideService";
 import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey } from "../utils/taxFreeDisplay";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -11,11 +12,35 @@ import { formatCountryDisplayName } from "../utils/locationDisplay";
 
 const processOrder = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 
+type TaxFreeGuideRouteParams = {
+  TaxFreeGuide: { countryId?: string } | undefined;
+};
+
 export function TaxFreeGuideScreen() {
   const navigation = useNavigation<any>();
+  const route = useRoute<RouteProp<TaxFreeGuideRouteParams, "TaxFreeGuide">>();
   const { selectedCountryId, setSelectedCountryId } = useSavings();
   const { t, language } = useTranslation();
-  const { country, guide, rule, policyDisplay, countryStatus, isGuideAvailable } = getTaxFreeGuideDisplayModel(selectedCountryId, language, t);
+  const normalizedRouteCountryId = typeof route.params?.countryId === "string"
+    ? route.params.countryId.trim().toLowerCase()
+    : undefined;
+  const validRouteCountryId = normalizedRouteCountryId && isTaxFreeGuideAvailable(normalizedRouteCountryId)
+    ? normalizedRouteCountryId
+    : undefined;
+  const lastAppliedRouteCountryIdRef = useRef<string | undefined>(undefined);
+  const shouldApplyRouteCountry = Boolean(
+    validRouteCountryId && validRouteCountryId !== lastAppliedRouteCountryIdRef.current,
+  );
+  const effectiveCountryId = shouldApplyRouteCountry ? validRouteCountryId! : selectedCountryId;
+
+  useLayoutEffect(() => {
+    if (!validRouteCountryId || validRouteCountryId === lastAppliedRouteCountryIdRef.current) return;
+
+    lastAppliedRouteCountryIdRef.current = validRouteCountryId;
+    if (selectedCountryId !== validRouteCountryId) setSelectedCountryId(validRouteCountryId);
+  }, [selectedCountryId, setSelectedCountryId, validRouteCountryId]);
+
+  const { country, guide, rule, policyDisplay, countryStatus, isGuideAvailable } = getTaxFreeGuideDisplayModel(effectiveCountryId, language, t);
   const taxFreeSummary = policyDisplay?.summary;
   const selectedCountryIdSafe = country?.countryId ?? selectedCountryId;
 

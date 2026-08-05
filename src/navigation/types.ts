@@ -25,7 +25,7 @@ export type RootStackParamList = {
   SmartShoppingCalculator: undefined;
   PriceAdvantageCalculator: undefined;
   TaxFreeCalculator: undefined;
-  TaxFreeGuide: undefined;
+  TaxFreeGuide: { countryId?: string } | undefined;
   LanguageSettings: undefined;
   CurrencySettings: undefined;
   NotificationSettings: undefined;
