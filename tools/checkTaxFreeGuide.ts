@@ -130,7 +130,38 @@ const forbiddenRepeatedBoilerplate = [
   /Belgeleri gümrük için hazır tutun/i,
   /请备好文件供海关查验/,
 ];
-const forbiddenRuleNumberPattern = /(?:\b(?:PLN|CZK|HUF|RON)\b|(?:€|\bEUR\b)\s*(?:100|200|2[,.]?000|68[,.]?000|889[,.]35)|(?:100|200|2[,.]?000|68[,.]?000|889[,.]35)\s*(?:€|\bEUR\b)?|\b(?:21|23|25|27)\s*%)/i;
+const forbiddenRuleNumberPattern = /(?:\bDKK\s*300\b|\b300\s*DKK\b|\bSEK\s*200\b|\b200\s*SEK\b|\bEUR\s*(?:40|75)\b|€\s*(?:40|75)\b|\b(?:40|75)\s*EUR\b|\b(?:40|75)\s*€|\b(?:25(?:[.,]5)?|23)\s*%)/i;
+const forbiddenRuleNumberDetectedSamples = [
+  "DKK 300",
+  "300 DKK",
+  "EUR 40",
+  "€40",
+  "40 EUR",
+  "40 €",
+  "SEK 200",
+  "200 SEK",
+  "EUR 75",
+  "€75",
+  "75 EUR",
+  "75 €",
+  "25%",
+  "25 %",
+  "25.5%",
+  "25,5%",
+  "23%",
+  "23 %",
+];
+for (const sample of forbiddenRuleNumberDetectedSamples) assert(forbiddenRuleNumberPattern.test(sample), `primary shared rule sample is not blocked: ${sample}`);
+const allowedOperationalNumberSamples = [
+  "DKK 1,200 Norway/Åland route",
+  "1,200 DKK Norway/Åland route",
+  "residence-dependent NOK threshold",
+  "one-month export deadline",
+  "four-hour checked-baggage window",
+  "third-month export deadline",
+  "high-value goods procedure",
+];
+for (const sample of allowedOperationalNumberSamples) assert(!forbiddenRuleNumberPattern.test(sample), `special-route operational sample was blocked: ${sample}`);
 const chineseScriptPattern = /[\u3400-\u9FFF]/;
 const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; forbidden: RegExp[] }>> = {
   tr: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
