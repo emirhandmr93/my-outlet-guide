@@ -64,6 +64,21 @@ assert.equal(netherlandsRule.minimumPurchaseSource?.url, "https://www.belastingd
 const netherlandsGuide = taxFreeCountryGuides.find((guide) => guide.countryId === "netherlands")!;
 assert(netherlandsGuide.processSections.customs_validation.includes("taxGuide.netherlands.step.customs.vatApp"), "Netherlands guide includes the NL Customs VAT app validation step");
 assert(netherlandsGuide.sources.filter((source) => source.url === netherlandsRule.minimumPurchaseSource?.url).length >= 3, "Netherlands scheme, customs and goods topics use the tourist-facing Customs source");
+const nlAppLocaleChecks: Record<TranslationLanguage, { app: RegExp; otherExit: RegExp; outside: RegExp }> = {
+  en: { app: /only when .*final EU departure.*Netherlands/i, otherExit: /another EU member state.*final EU exit country/i, outside: /outside the Netherlands/i },
+  tr: { app: /yalnızca.*son EU çıkış.*Hollanda/i, otherExit: /Başka bir EU üye ülkesine.*son EU çıkış ülkesinin/i, outside: /Hollanda dışındaki/i },
+  es: { app: /solo cuando.*salida final.*Países Bajos/i, otherExit: /otro Estado miembro.*país de salida final/i, outside: /fuera de Países Bajos/i },
+  fr: { app: /uniquement lorsque.*sortie finale.*Pays-Bas/i, otherExit: /autre État membre.*pays de sortie finale/i, outside: /hors des Pays-Bas/i },
+  de: { app: /nur, wenn.*endgültige EU-Ausreise.*Niederlanden/i, otherExit: /anderen EU-Mitgliedstaat.*endgültigen Ausreiselandes/i, outside: /außerhalb der Niederlande/i },
+  ar: { app: /فقط عندما.*خروجك النهائي.*هولندا/i, otherExit: /دولة عضو أخرى.*بلد الخروج النهائي/i, outside: /خارج هولندا/i },
+  ru: { app: /только если.*окончательный выезд.*Нидерландов/i, otherExit: /другое государство ЕС.*страны окончательного выезда/i, outside: /за пределами Нидерландов/i },
+  zh: { app: /只有最终从荷兰离开欧盟/, otherExit: /另一个欧盟成员国.*最终出境国家/, outside: /荷兰境外海关点/ },
+};
+for (const [language, checks] of Object.entries(nlAppLocaleChecks) as Array<[TranslationLanguage, typeof nlAppLocaleChecks[TranslationLanguage]]>) {
+  assert(checks.app.test(translations[language]["taxGuide.netherlands.step.customs.vatApp"]), `${language} Netherlands app copy limits app use to final EU departure from the Netherlands`);
+  assert(checks.otherExit.test(translations[language]["taxGuide.netherlands.step.customs.finalEuExit"]), `${language} Netherlands final-exit copy sends other-EU exits to that country's customs process`);
+  assert(checks.outside.test(translations[language]["taxGuide.netherlands.warning.finalEuExit"]), `${language} Netherlands warning says the Dutch app is not for customs points outside the Netherlands`);
+}
 
 const keysForGuide = (countryId: string) => {
   const guide = taxFreeCountryGuides.find((item) => item.countryId === countryId)!;
