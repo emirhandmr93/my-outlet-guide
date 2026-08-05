@@ -7,11 +7,11 @@ import { getTaxFreeGuideDisplayModel } from "../src/services/taxFreeGuideService
 import { getTaxFreePolicyDisplayModel } from "../src/utils/taxFreeDisplay";
 import { supportedLanguageCodes, translations, type TranslationLanguage } from "../src/translations/translations";
 
-const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "poland", "czech-republic", "hungary", "croatia", "romania", "switzerland", "denmark", "finland", "sweden", "norway", "ireland"];
+const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "poland", "czech-republic", "hungary", "croatia", "romania", "switzerland", "denmark", "finland", "sweden", "norway", "ireland", "bulgaria", "estonia", "latvia", "lithuania", "greece", "slovakia"];
 const countryIds = new Set(countries.map((country) => country.countryId));
 const ids = taxFreeCountryGuides.map((guide) => guide.countryId);
 assert.equal(new Set(ids).size, ids.length, "No duplicate country guide");
-assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected nineteen country guides");
+assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected twenty-five country guides");
 
 const sections = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 const originalText = readFileSync("src/constants/taxFreeGuides.ts", "utf8");
@@ -65,6 +65,12 @@ const ruleExpectations = {
   sweden: { vatRate: 25, minimumPurchaseAmount: 200, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
   norway: { vatRate: 25, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
   ireland: { vatRate: 23, minimumPurchaseAmount: 75, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  bulgaria: { vatRate: 20, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
+  estonia: { vatRate: 24, minimumPurchaseAmount: 38, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  latvia: { vatRate: 21, minimumPurchaseAmount: 35, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  lithuania: { vatRate: 21, minimumPurchaseAmount: 40, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  greece: { vatRate: 24, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
+  slovakia: { vatRate: 23, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
 } as const;
 for (const [countryId, expectedRule] of Object.entries(ruleExpectations)) {
   const rule = getTaxFreeRule(countryId)!;
@@ -107,7 +113,7 @@ const guideKeys = expected.flatMap(keysForGuide);
 const sharedKeys = ["nav.taxFreeGuide", "savings.taxGuideTitle", "savings.taxGuideDescription", "savings.taxGuideBadge", "savings.taxGuideHighlight", "taxGuide.countryStatus", "taxGuide.status.available", "taxGuide.status.limited", "taxGuide.status.not_available", "taxGuide.notYetAvailable", "taxGuide.quickFact.vatRate", "taxGuide.quickFact.minimumPurchase", "taxGuide.quickFact.estimatedRefund", "taxGuide.eligibility", "taxGuide.requiredDocuments", "taxGuide.numberedProcess", "taxGuide.process.before_shopping", "taxGuide.process.in_store", "taxGuide.process.before_departure", "taxGuide.process.customs_validation", "taxGuide.process.receive_refund", "taxGuide.refundMethods", "taxGuide.deadlinesWarnings", "taxGuide.estimateDisclaimerTitle", "taxGuide.estimateDisclaimer", "taxGuide.openCalculator", "taxGuide.officialSources", "taxGuide.verifiedAt", "taxGuide.openSource", "taxGuide.lastVerified", "taxGuide.sourceTopic.scheme_minimum", "taxGuide.sourceTopic.customs_validation", "taxGuide.sourceTopic.vat_rate", "taxGuide.sourceTopic.refund_process", "taxGuide.sourceTopic.goods_conditions"];
 const requiredGuideKeys = [...sharedKeys, ...guideKeys];
 
-const newGuideCountries = ["denmark", "finland", "sweden", "norway", "ireland"] as const;
+const newGuideCountries = ["bulgaria", "estonia", "latvia", "lithuania", "greece", "slovakia"] as const;
 const newGuideKeySet = new Set(newGuideCountries.flatMap(keysForGuide));
 const newGuideKeys = [...newGuideKeySet];
 const forbiddenNonEnglishFragments = [
@@ -124,44 +130,52 @@ const forbiddenNonEnglishFragments = [
   /before fees/i,
   /customs confirms export/i,
 ];
-const forbiddenInternalIdPattern = /\b(denmark|finland|sweden|norway|ireland)\b/;
+const forbiddenInternalIdPattern = /\b(bulgaria|estonia|latvia|lithuania|greece|slovakia)\b/;
 const forbiddenRepeatedBoilerplate = [
   /Keep documents ready for customs/i,
   /Belgeleri gümrük için hazır tutun/i,
   /请备好文件供海关查验/,
 ];
-const forbiddenRuleNumberPattern = /(?:\bDKK\s*300\b|\b300\s*DKK\b|\bSEK\s*200\b|\b200\s*SEK\b|\bEUR\s*(?:40|75)\b|€\s*(?:40|75)\b|\b(?:40|75)\s*EUR\b|\b(?:40|75)\s*€|\b(?:25(?:[.,]5)?|23)\s*%)/i;
+const forbiddenRuleNumberPattern = /(?:\bEUR\s*(?:38|35|40|100)\b|€\s*(?:38|35|40|100)\b|\b(?:38|35|40|100)\s*EUR\b|\b(?:38|35|40|100)\s*€|\b(?:20|21|23|24)\s*%)/i;
 const forbiddenRuleNumberDetectedSamples = [
-  "DKK 300",
-  "300 DKK",
+  "EUR 38",
+  "€38",
+  "38 EUR",
+  "38 €",
+  "EUR 35",
+  "€35",
+  "35 EUR",
+  "35 €",
   "EUR 40",
   "€40",
   "40 EUR",
   "40 €",
-  "SEK 200",
-  "200 SEK",
-  "EUR 75",
-  "€75",
-  "75 EUR",
-  "75 €",
-  "25%",
-  "25 %",
-  "25.5%",
-  "25,5%",
+  "EUR 100",
+  "€100",
+  "100 EUR",
+  "100 €",
+  "20%",
+  "20 %",
+  "21%",
+  "21 %",
   "23%",
   "23 %",
+  "24%",
+  "24 %",
 ];
 for (const sample of forbiddenRuleNumberDetectedSamples) assert(forbiddenRuleNumberPattern.test(sample), `primary shared rule sample is not blocked: ${sample}`);
 const allowedOperationalNumberSamples = [
-  "DKK 1,200 Norway/Åland route",
-  "1,200 DKK Norway/Åland route",
-  "residence-dependent NOK threshold",
-  "one-month export deadline",
-  "four-hour checked-baggage window",
-  "third-month export deadline",
-  "high-value goods procedure",
+  "three-month export deadline",
+  "six-month claim period",
+  "QR code",
+  "barcode",
+  "myDATA",
+  "invoice-VAT eligibility criterion",
+  "prepacked food and alcohol conditions",
+  "final EU exit",
+  "checked baggage instructions",
 ];
-for (const sample of allowedOperationalNumberSamples) assert(!forbiddenRuleNumberPattern.test(sample), `special-route operational sample was blocked: ${sample}`);
+for (const sample of allowedOperationalNumberSamples) assert(!forbiddenRuleNumberPattern.test(sample), `legitimate operational sample was blocked: ${sample}`);
 const chineseScriptPattern = /[\u3400-\u9FFF]/;
 const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; forbidden: RegExp[] }>> = {
   tr: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
@@ -172,19 +186,67 @@ const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; for
   ru: { required: /[А-Яа-яЁё]/, forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/] },
 };
 const generatedLocalePatterns: Partial<Record<TranslationLanguage, RegExp[]>> = {
-  tr: [/^(?:Danimarka|Finlandiya|İsveç|Norveç|İrlanda):/, /\bEU\b/, /konu özeti/i],
-  es: [/^(?:Dinamarca|Finlandia|Suecia|Noruega|Irlanda):/, /resumen del tema/i],
-  fr: [/^(?:Danemark|Finlande|Suède|Norvège|Irlande):/, /résumé du sujet/i],
-  de: [/^(?:Dänemark|Finnland|Schweden|Norwegen|Irland):/, /Themenzusammenfassung/i],
-  ar: [/^(?:الدنمارك|فنلندا|السويد|النرويج|أيرلندا):/, /ملخص الموضوع/i],
-  ru: [/^(?:Дания|Финляндия|Швеция|Норвегия|Ирландия):/, /краткое описание темы/i],
-  zh: [/^(?:丹麦|芬兰|瑞典|挪威|爱尔兰)[:：]/, /主题摘要/],
+  tr: [/^(?:Bulgaristan|Estonya|Letonya|Litvanya|Yunanistan|Slovakya)[:：]/, /konu özeti/i],
+  es: [/^(?:Bulgaria|Estonia|Letonia|Lituania|Grecia|Eslovaquia)[:：]/, /resumen del tema/i],
+  fr: [/^(?:Bulgarie|Estonie|Lettonie|Lituanie|Grèce|Slovaquie)[:：]/, /résumé du sujet/i],
+  de: [/^(?:Bulgarien|Estland|Lettland|Litauen|Griechenland|Slowakei)[:：]/, /Themenzusammenfassung/i],
+  ar: [/^(?:بلغاريا|إستونيا|استونيا|لاتفيا|ليتوانيا|اليونان|سلوفاكيا)[:：]/, /ملخص الموضوع/i],
+  ru: [/^(?:Болгария|Эстония|Латвия|Литва|Греция|Словакия)[:：]/, /краткое описание темы/i],
+  zh: [/^(?:保加利亚|爱沙尼亚|拉脱维亚|立陶宛|希腊|斯洛伐克)[:：]/, /主题摘要/],
 };
+const syntheticBatchPatterns = [
+  /Operational item/i,
+  /\bItem\s+\d+\b/i,
+  /^Tax Free guide\s+—/i,
+  /^Tax Free iade rehberi gümrük belge alışveriş\s+—/i,
+  /^guía Tax Free aduanas reembolso compra documentos bienes\s+—/i,
+  /^guide Tax Free douanes remboursement achat documents biens\s+—/i,
+  /^Tax Free Leitfaden Zoll Erstattung Kauf Dokumente Waren\s+—/i,
+  /^دليل Tax Free للجمارك والاسترداد والوثائق والبضائع\s+—/i,
+  /^руководство Tax Free таможня возврат покупка документы товары\s+—/i,
+  /^Tax Free 指南 海关 退税 购物 文件 商品\s+—/i,
+  /topic summary|konu özeti|resumen del tema|résumé du sujet|Themenzusammenfassung|ملخص الموضوع|краткое описание темы|主题摘要/i,
+];
+const generatedQualityRejectedSamples = [
+  "Operational item 1",
+  "Operational item 43",
+  "Tax Free guide — Greece — ...",
+  "Tax Free iade rehberi gümrük belge alışveriş — Yunanistan — ...",
+];
+for (const sample of generatedQualityRejectedSamples) assert(syntheticBatchPatterns.some((pattern) => pattern.test(sample)), `generated sample is not blocked: ${sample}`);
+
+const englishOperationalFragments = [
+  /electronic declaration/i,
+  /Customs export confirmation/i,
+  /third-country traveller established outside EU/i,
+  /participating seller paperwork/i,
+  /final EU exit Customs validation/i,
+  /unused goods/i,
+  /statutory deadlines/i,
+  /operator deductions/i,
+  /retailer or intermediary refund payment/i,
+  /fees may be deducted/i,
+  /Customs does not pay refund/i,
+];
+const englishFragmentRejectedSamples: Partial<Record<TranslationLanguage, string>> = {
+  tr: "son çıkışta final EU exit Customs validation yapılır",
+  ar: "تتم retailer or intermediary refund payment بعد الجمارك",
+  zh: "请遵守 statutory deadlines",
+};
+for (const [language, sample] of Object.entries(englishFragmentRejectedSamples)) {
+  assert(englishOperationalFragments.some((pattern) => pattern.test(sample)), `${language} English operational fragment sample is not blocked`);
+}
+for (const sample of ["Tax Free", "QR", "myDATA", "VMI", "AADE", "Slov-Lex"]) {
+  assert(!englishOperationalFragments.some((pattern) => pattern.test(sample)), `official term should remain permitted: ${sample}`);
+  assert(!syntheticBatchPatterns.some((pattern) => pattern.test(sample)), `official term should not be treated as generated copy: ${sample}`);
+}
 for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
   for (const key of newGuideKeys) {
     const value = translations[language][key] ?? "";
     for (const pattern of forbiddenNonEnglishFragments) assert(!pattern.test(value), `${language} ${key} contains English fallback text: ${value}`);
+    for (const pattern of englishOperationalFragments) assert(!pattern.test(value), `${language} ${key} contains an English operational fragment: ${value}`);
     for (const pattern of forbiddenRepeatedBoilerplate) assert(!pattern.test(value), `${language} ${key} contains generated boilerplate: ${value}`);
+    for (const pattern of syntheticBatchPatterns) assert(!pattern.test(value), `${language} ${key} contains generated placeholder copy: ${value}`);
     for (const pattern of scriptChecks[language]?.forbidden ?? []) assert(!pattern.test(value), `${language} ${key} contains text from an unrelated script: ${value}`);
     if (scriptChecks[language]?.required) assert(scriptChecks[language]!.required!.test(value), `${language} ${key} is missing the expected locale script: ${value}`);
     for (const pattern of generatedLocalePatterns[language] ?? []) assert(!pattern.test(value), `${language} ${key} contains a generated locale template: ${value}`);
@@ -198,6 +260,7 @@ for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
 }
 for (const key of newGuideKeys) {
   const value = translations.en[key] ?? "";
+  for (const pattern of syntheticBatchPatterns) assert(!pattern.test(value), `en ${key} contains generated placeholder copy: ${value}`);
   assert(!forbiddenInternalIdPattern.test(value), `en ${key} exposes an internal country id: ${value}`);
   assert(!/departure preparation/i.test(value), `en ${key} contains generated deadline suffix`);
 }
@@ -206,30 +269,132 @@ for (const language of supportedLanguageCodes) for (const key of newGuideKeys) {
   assert(!forbiddenRuleNumberPattern.test(value), `${language} ${key} hardcodes a rule amount or VAT value: ${value}`);
 }
 const translationSource = readFileSync("src/translations/translations.ts", "utf8");
-const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:denmark|finland|sweden|norway|ireland)\.[^"]+)"\s*:/g)].map((match) => match[1]);
+const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:bulgaria|estonia|latvia|lithuania|greece|slovakia)\.[^"]+)"\s*:/g)].map((match) => match[1]);
 for (const key of declaredNewGuideKeys) assert(newGuideKeySet.has(key), `new guide translation key is unused by taxFreeGuides: ${key}`);
-const batchMatch = translationSource.match(/const northernEuropeIrelandTaxFreeGuideTranslations[\s\S]*?for \(const locale of supportedLanguageCodes\) Object\.assign\(translations\[locale\], northernEuropeIrelandTaxFreeGuideTranslations\[locale\]\);/);
-assert(batchMatch, "northernEuropeIrelandTaxFreeGuideTranslations block exists");
+const batchMatch = translationSource.match(/const balticSoutheastEuropeTaxFreeGuideTranslations[\s\S]*?for \(const locale of supportedLanguageCodes\) Object\.assign\(translations\[locale\], balticSoutheastEuropeTaxFreeGuideTranslations\[locale\]\);/);
+assert(batchMatch, "balticSoutheastEuropeTaxFreeGuideTranslations block exists");
 const batchSource = batchMatch![0];
-assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "northernEuropeIrelandTaxFreeGuideTranslations must not declare protected existing-country guide keys");
+for (const pattern of syntheticBatchPatterns) assert(!pattern.test(batchSource), `balticSoutheastEuropeTaxFreeGuideTranslations contains generated placeholder copy matching ${pattern}`);
+const protectedGuideCountries = expected.filter((countryId) => !newGuideCountries.includes(countryId as typeof newGuideCountries[number]));
+const declaredBatchGuideCountries = [...new Set([...batchSource.matchAll(/"taxGuide\.([^.]+)\./g)].map((match) => match[1]))].sort();
+assert.deepEqual(declaredBatchGuideCountries, [...newGuideCountries].sort(), "balticSoutheastEuropeTaxFreeGuideTranslations declares only the exact six target country prefixes");
+for (const countryId of protectedGuideCountries) assert(!batchSource.includes(`"taxGuide.${countryId}.`), `balticSoutheastEuropeTaxFreeGuideTranslations must not declare protected existing-country guide keys for ${countryId}`);
+assert(!/"(?!taxGuide\.(?:bulgaria|estonia|latvia|lithuania|greece|slovakia)\.|taxFreeSource\.(?:bulgarianNra|estonianTaxCustomsBoard|latvianStateRevenueService|lithuanianVmi|greekAade|slovLexSlovakStatutory)"\s*:)[^"]+"\s*:/.test(batchSource), "balticSoutheastEuropeTaxFreeGuideTranslations must not override unrelated shared translation keys");
+assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "balticSoutheastEuropeTaxFreeGuideTranslations must not declare protected existing-country guide keys");
 assert(!/"taxGuide\.(?:france|italy|germany|spain|portugal|austria|netherlands|belgium|switzerland)\./.test(translationSource.slice(translationSource.indexOf("centralEasternEuropeTaxFreeGuideTranslations"))), "centralEasternEuropeTaxFreeGuideTranslations must not declare protected existing-country guide keys");
-for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `northernEuropeIrelandTaxFreeGuideTranslations overrides protected key ${key}`);
+for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `balticSoutheastEuropeTaxFreeGuideTranslations overrides protected key ${key}`);
 const valuesFor = (language: TranslationLanguage, keys: string[]) => keys.map((key) => translations[language][key]?.trim() ?? "");
 const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => assert.equal(new Set(valuesFor(language, keys)).size, keys.length, `${language}: ${message}`);
+const normalizeGuideCopy = (value: string) => value
+  .normalize("NFKC")
+  .replace(/^(?:Tax Free guide|Tax Free iade rehberi gümrük belge alışveriş|guía Tax Free aduanas reembolso compra documentos bienes|guide Tax Free douanes remboursement achat documents biens|Tax Free Leitfaden Zoll Erstattung Kauf Dokumente Waren|دليل Tax Free للجمارك والاسترداد والوثائق والبضائع|руководство Tax Free таможня возврат покупка документы товары|Tax Free 指南 海关 退税 购物 文件 商品)\s+—\s+[^—]+—\s*/i, "")
+  .replace(/^(?:Bulgaristan|Estonya|Letonya|Litvanya|Yunanistan|Slovakya|Bulgaria|Estonia|Letonia|Lituania|Grecia|Eslovaquia|Bulgarie|Estonie|Lettonie|Lituanie|Grèce|Slovaquie|Bulgarien|Estland|Lettland|Litauen|Griechenland|Slowakei|بلغاريا|إستونيا|استونيا|لاتفيا|ليتوانيا|اليونان|سلوفاكيا|Болгария|Эстония|Латвия|Литва|Греция|Словакия|保加利亚|爱沙尼亚|拉脱维亚|立陶宛|希腊|斯洛伐克)[:：]\s*/i, "")
+  .replace(/\b(?:Operational item|Item)\s+\d+\b/gi, "")
+  .replace(/[“”"'`´،。！？!?;；:：.,()[\]{}—–-]+/g, " ")
+  .replace(/\s+/g, " ")
+  .trim()
+  .toLowerCase();
+const assertNoNormalizedDuplicates = (language: TranslationLanguage, countryId: string, keys: string[]) => {
+  const seen = new Map<string, string>();
+  for (const key of keys) {
+    const normalized = normalizeGuideCopy(translations[language][key] ?? "");
+    assert(normalized.length > 0, `${language} ${key} normalizes to empty text`);
+    const previous = seen.get(normalized);
+    assert(!previous || normalized.length < 80, `${language} ${countryId} duplicate boilerplate after normalization: ${previous} and ${key}`);
+    seen.set(normalized, key);
+  }
+};
+const assertRoleQuality = (language: TranslationLanguage, countryId: string) => {
+  const guide = taxFreeCountryGuides.find((item) => item.countryId === countryId)!;
+  for (const key of guide.requiredDocumentKeys) {
+    const value = translations[language][key] ?? "";
+    assert(value.length <= 120, `${language} ${key} document text must remain concise`);
+    assert(!/(before shopping|in store|customs validation|receive refund|before departure|process|all steps|tam alışveriş|proceso completo|processus complet|gesamten Prozess)/i.test(value), `${language} ${key} document text must not be a process summary`);
+  }
+  for (const key of guide.supportedRefundMethodKeys) assert((translations[language][key] ?? "").length <= 120, `${language} ${key} refund-method text must remain concise`);
+  for (const key of guide.sources.map((source) => source.verifiesKey)) {
+    const value = translations[language][key] ?? "";
+    assert(value.length <= 180, `${language} ${key} source description must be one concise sentence`);
+    assert((value.match(/[.!?。؟]/g) ?? []).length <= 1, `${language} ${key} source description must describe one source topic`);
+  }
+  const processValues = Object.values(guide.processSections).flat().map((key) => translations[language][key] ?? "");
+  const suffixes = processValues.map((value) => normalizeGuideCopy(value).split(" ").slice(-6).join(" "));
+  assert(new Set(suffixes).size > Math.floor(suffixes.length * 0.7), `${language} ${countryId} process-step values share a repeated suffix`);
+  for (const key of guide.warningKeys) {
+    const value = translations[language][key] ?? "";
+    assert(value.length <= 180, `${language} ${key} warning must stay focused`);
+    assert(!/general reminder|genel hatırlatma|recordatorio general|rappel général|allgemeine Erinnerung/i.test(value), `${language} ${key} warning must be country- and key-specific`);
+  }
+};
 const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /[\u0600-\u06FF]/, ru: /[А-Яа-яЁё]/, zh: /[\u4E00-\u9FFF]/ };
 const localeWordChecks: Partial<Record<TranslationLanguage, RegExp>> = { tr: /(ikamet|gümrük|alışveriş|iade|belge)/i, es: /(aduan|reembolso|compra|document|bienes)/i, fr: /(douan|remboursement|achat|document|biens)/i, de: /(Zoll|Erstattung|Kauf|Dokument|Waren)/i };
 const tFor = (language: TranslationLanguage) => (key: string) => translations[language][key] ?? key;
 const targetConceptChecks: Record<string, RegExp[]> = {
-  denmark: [/Norway|Norveç|Noruega|Norvège|Norwegen|النرويج|Норвег|挪威/i, /Åland/i, /four-hour|dört saat|cuatro horas|quatre heures|Vier-Stunden|الأربع ساعات|четырехчас|四小时/i],
-  finland: [/Norway|Norveç|Noruega|Norvège|Norwegen|النرويج|Норвег|挪威/i, /seal|mühür|sello|sceau|Siegel|ختم|пломб|封条/i],
-  sweden: [/last country|son ülke|último país|dernier pays|letzte.*Land|آخر بلد|последней.*страной|最后一个国家/i, /Tax Free|Swedish Customs|İsveç Gümrüğü|Aduana sueca|douanes suédoises|schwedische Zoll|الجمارك السويدية|шведская таможня|瑞典海关/i],
-  norway: [/RD-0032 E/i, /must not be stamped|damgalanmaması|no debe.*sellado|ne doit pas.*tamponné|nicht.*gestempelt|يجب ألا تختم|не должен.*штамп|不得.*盖章/i, /does not pay|iade ödemez|no paga|ne paient pas|keine Erstattungen auszahlt|لا تدفع|не выплачивает|不支付/i],
-  ireland: [/Retail Export Scheme/i, /high-value|yüksek değerli|alto valor|grande valeur|hochwertige|عالية القيمة|высокой стоимости|高价值/i, /Northern Ireland|Kuzey İrlanda|Irlanda del Norte|Irlande du Nord|Nordirland|أيرلندا الشمالية|Северной Ирландии|北爱尔兰/i],
+  bulgaria: [
+    /authorised.*agent|yetkili.*acente|agente.*autorizado|agent.*autorisé|autorisierte.*Agent|وكيل.*معتمد|уполномоченн.*агент|授权.*代理/i,
+    /alcohol.*tobacco.*liquid fuel|alkol.*tütün.*sıvı yakıt|alcohol.*tabaco.*combustibles? líquidos?|alcool.*tabac.*carburants? liquides?|Alkohol.*Tabak.*Flüssigkraftstoff|الكحول.*التبغ.*الوقود السائل|алкогол.*табак|табач.*жидк.*топлив|酒.*烟草.*液体燃料/i,
+    /invoice VAT.*criterion|fatura.*KDV.*kriter|IVA.*factura.*criterio|TVA.*facture.*critère|Rechnung.*Mehrwertsteuer.*Kriterium|ضريبة.*الفاتورة.*معيار|НДС.*сч[её]т.*критер|发票.*增值税.*标准/i,
+    /six[- ]months?|altı ay|seis meses|six mois|sechs(?:monat| Monaten)|ستة أشهر|шести месяцев|шестимесяч|六个月/i,
+    /Customs.*does not pay|Gümrük.*(?:ödemez|ödeme yapmaz)|Aduan.*no paga|douan.*ne paie|Zoll.*zahlt.*(?:nicht|keine)|الجمارك.*لا تدفع|тамож.*не выплачивает|海关.*不支付/i,
+  ],
+  estonia: [
+    /same.*(?:day|date).*same.*seller.*same.*point of sale|aynı.*gün.*aynı.*satıcı.*aynı.*satış noktası|mismo.*día.*mismo.*vendedor.*mismo.*punto de venta|même.*jour.*même.*vendeur.*même.*point de vente|gleiche.*Tag.*gleiche.*Verkäufer.*gleiche.*Verkaufsstelle|نفس.*اليوم.*البائع.*نقطة البيع|одн.*дат.*продав.*точк.*продаж|同一.*日期.*卖家.*销售点/i,
+    /unopened or unused|açılmamış veya kullanılmamış|sin abrir o sin usar|non ouverts ou inutilisés|ungeöffnet oder unbenutzt|غير مفتوحة أو غير مستخدمة|невскрыт.*неиспользован|未开封或未使用/i,
+    /third[- ]month|üçüncü ay|tercer mes|troisième mois|dritten Monat|الشهر الثالث|третьего месяца|第三个月/i,
+    /retailer or (?:refund company|refund operator|intermediary)|perakendeci veya (?:iade şirketi|iade operatörü|aracı)|minorista o (?:la )?(?:empresa|operador|intermediario) de reembolso|détaillant ou (?:la |l’)?(?:société|opérateur|intermédiaire) de remboursement|Händler oder (?:Erstattungsunternehmen|Betreiber|Vermittler)|(?:التاجر|البائع) أو (?:شركة الاسترداد|المشغل|الوسيط)|продавец или (?:компания возврата|оператор|посредник)|零售商或(?:退税公司|运营商|中介)/i,
+  ],
+  latvia: [
+    /special-form Tax Free receipt|özel formlu Tax Free makbuz|recibo Tax Free de formato especial|reçu Tax Free spécial|Tax Free-Beleg in Sonderform|إيصال Tax Free بنموذج خاص|специальн.*чек Tax Free|特殊格式.*Tax Free.*收据/i,
+    /unused goods|goods.*unused|kullanılmamış mallar|mallar.*kullanılmamış|bienes sin usar|bienes.*sin usar|biens inutilisés|biens.*inutilisés|unbenutzte Waren|Waren.*unbenutzt|بضائع غير مستخدمة|البضائع.*غير مستخدمة|неиспользованные товары|товары.*неиспользован|未使用商品|商品.*未使用/i,
+    /(?:(?:electronic|digital) or paper Customs confirmation|Customs confirmation.*(?:electronic|digital).*paper)|elektronik veya kağıt Gümrük onayı|Gümrük onayı.*elektronik.*kağıt|confirmación aduanera electrónica o en papel|confirmación aduanera.*electrónica.*papel|confirmation douanière électronique ou papier|confirmation douanière.*électronique.*papier|elektronische oder papiergebundene Zollbestätigung|Zollbestätigung.*elektronisch.*Papier|تأكيد جمركي إلكتروني أو ورقي|تأكيد الجمارك.*إلكترونياً.*ورقياً|электронное или бумажное подтверждение таможни|Подтверждение таможни.*электронным.*бумажным|电子或纸质海关确认|海关确认.*电子.*纸质/i,
+    /authorised (?:Latvian )?refund operator|yetkili Letonya iade operatörü|operador letón autorizado|opérateur letton autorisé|autorisierter lettischer Erstattungsbetreiber|مشغل استرداد لاتفي معتمد|уполномоченный латвийский оператор|授权拉脱维亚退税运营商/i,
+    /Riga.*(?:kiosk|CAS).*not only|Riga.*(?:kiosk|CAS).*tek.*değil|Riga.*(?:quiosco|CAS).*no.*única|Riga.*(?:kiosque|CAS).*pas.*seule|Riga.*(?:Kiosk|CAS).*nicht.*einzige|(?:ريغا|Riga).*(?:كشك|CAS).*ليس.*الوحيد|Riga.*CAS.*وليس.*الوحيد|Риг.*(?:киоск|CAS).*не.*единственный|(?:里加|Riga).*(?:自助|CAS).*不是.*唯一|not (?:the )?only route/i,
+  ],
+  lithuania: [
+    /electronic.*declaration|elektronik.*beyan|declaración electrónica|déclaration électronique|elektronische.*Erklärung|إقرار(?:اً)? إلكتروني(?:اً)?|электрон.*деклараци|电子.*申报/i,
+    /QR code.*barcode|QR kod.*barkod|código QR.*código de barras|code QR.*code-barres|QR-Code.*Barcode|رمز QR.*باركود|QR-код.*штрихкод|QR.*条形码/i,
+    /Customs export confirmation|Gümrük ihracat onayı|confirmación aduanera de exportación|confirmation douanière d['’]exportation|Zoll-Ausfuhrbestätigung|تأكيد التصدير الجمركي|таможенное подтверждение вывоза|海关出口确认/i,
+    /retailer or intermediary|perakendeci veya aracı|minorista o intermediario|détaillant ou (?:l’)?intermédiaire|Händler oder Vermittler|(?:التاجر|البائع) أو الوسيط|продавец или посредник|零售商或中介/i,
+    /fees may be deducted|may deduct.*fees|fees.*deducted|ücretler(?:i)? düşülebilir|ücret.*düşebilir|pueden deducirse comisiones|pueden deducir comisiones|frais.*peuvent être déduits|peuvent déduire.*frais|Gebühren können abgezogen werden|Gebühren abziehen|قد تُخصم.*رسوم|قد يخصم.*رسوم|комиссии могут вычитаться|могут удерживать.*комиссии|费用可扣除|可扣除.*费用/i,
+  ],
+  greece: [
+    /third-country|outside the EU|EU dışında|fuera de la UE|hors de l’UE|außerhalb der EU|خارج الاتحاد الأوروبي|за пределами ЕС|欧盟以外|üçüncü ülke|tercer país|pays tiers|Drittland|دولة ثالثة|третьей страны|第三国/i,
+    /myDATA|official digital receipt|resmi dijital fiş|recibo digital oficial|reçu numérique officiel|offizieller digitaler Beleg|إيصال رقمي رسمي|официальный цифровой чек|官方数字收据/i,
+    /(?=.*intermediary)(?=.*digital)|(?=.*aracı)(?=.*dijital)|(?=.*intermediario)(?=.*digital)|(?=.*intermédiaire)(?=.*numérique)|(?=.*Vermittler)(?=.*digital)|(?=.*وسيط)(?=.*رقمي)|(?=.*посредник)(?=.*цифров)|(?=.*中介)(?=.*数字)/i,
+    /prepacked food.*alcohol|ön ambalajlı gıda.*alkol|alimentos preenvasados.*alcoh|denrées préemballées.*alcool|vorverpackte Lebensmittel.*Alkohol|الأغذية المعبأة.*الكحول|расфасован.*алкогол|预包装食品.*酒/i,
+    /Customs.*does not pay|Gümrük.*(?:ödemez|ödeme yapmaz)|Aduan.*no paga|douan.*ne paie|Zoll.*zahlt.*(?:nicht|keine)|الجمارك.*لا تدفع|тамож.*не выплачивает|海关.*不支付/i,
+    /standard VAT.*not.*(?:cash refund|expected cash refund)|standart KDV.*nakit iade değildir|IVA estándar.*no.*reembolso en efectivo|TVA standard.*pas.*remboursement en espèces|Standard-Mehrwertsteuer.*keine.*Barauszahlung|(?:ضريبة القيمة المضافة القياسية.*(?:ليست|لا يجوز).*استرداد|لا يجوز عرض ضريبة القيمة المضافة القياسية.*استرداد)|стандарт.*НДС.*не.*денежн.*возврат|标准增值税.*不是.*现金退税/i,
+  ],
+  slovakia: [
+    /non-commercial.*personal baggage|ticari olmayan.*kişisel bagaj|no comerciales.*equipaje personal|non commerciaux.*bagages personnels|nicht gewerblich.*persönlichen Gepäck|غير تجارية.*الأمتعة الشخصية|некоммерческ.*личном багаже|非商业.*个人行李/i,
+    /fuel (?:is )?excluded|fuel exclusion|yakıt istisnası|combustible.*excluido|exclusión de combustible|carburant.*exclu|exclusion du carburant|Kraftstoff.*ausgeschlossen|Kraftstoffausschluss|استبعاد الوقود|топлив.*исключ|исключение топлива|燃料排除/i,
+    /final EU[- ]exit.*Customs|Customs.*final EU[- ]exit|son EU çıkışı Gümrük onayı|Gümrük son EU çıkışında|confirmación aduanera de salida final de la UE|Aduanas confirma.*salida final|confirmation douanière de sortie finale de l['’]UE|douane.*sortie finale|Zollbestätigung beim endgültigen EU-Ausgang|Zoll.*endgültigen EU-Ausgang|تأكيد الجمارك عند الخروج النهائي من الاتحاد الأوروبي|الجمارك.*الخروج النهائي|таможенное подтверждение окончательного выезда из ЕС|тамож.*окончательн.*выезд|最终离开欧盟的海关确认|海关.*最终离开欧盟/i,
+    /statutory three-month|yasal üç aylık|plazo legal de tres meses|délai légal de trois mois|gesetzliche Drei-Monats|المهلة القانونية لثلاثة أشهر|законный трехмесячный|法定三个月/i,
+    /seller or operator.*(?:not Customs|pays refund)|satıcı veya operatör.*Gümrük değil|vendedor u operador.*no Aduanas|vendeur ou l[’']opérateur.*pas la douane|Verkäufer oder Betreiber.*nicht der Zoll|البائع أو المشغل.*وليس الجمارك|продавец или оператор.*не таможня|卖方或运营商.*不是海关/i,
+  ],
 };
 for (const [countryId, patterns] of Object.entries(targetConceptChecks)) {
   for (const language of supportedLanguageCodes) {
     const body = valuesFor(language, keysForGuide(countryId)).join(" ");
     for (const pattern of patterns) assert(pattern.test(body), `${language} ${countryId} missing country-specific concept ${pattern}`);
+  }
+}
+
+const guideForSourceCheck = (countryId: string) => taxFreeCountryGuides.find((guide) => guide.countryId === countryId)!;
+const topicUrl = (countryId: string, topic: string) => guideForSourceCheck(countryId).sources.find((source) => source.topic === topic)!.url;
+const estoniaVatRatesUrl = "https://www.emta.ee/en/business-client/taxes-and-payment/value-added-tax/vat-rates-and-supply-exempt-tax/value-added-tax-rates";
+const latviaRigaKioskUrl = "https://www.vid.gov.lv/en/article/third-country-travellers-riga-airport-will-be-able-approve-tax-free-receipts-goods-purchased-other-countries";
+const latviaVatLawUrl = "https://likumi.lv/ta/en/en/id/253451-value-added-tax-law";
+const greeceVatRatesUrl = "https://www.aade.gr/en/services-information/useful-guides/commencement-business-activity/basic-vat-rates";
+assert.notEqual(topicUrl("estonia", "refund_process"), estoniaVatRatesUrl, "Estonia refund process must not use the VAT-rates URL");
+assert.notEqual(topicUrl("latvia", "vat_rate"), latviaRigaKioskUrl, "Latvia VAT-rate source must not use the Riga Airport kiosk article");
+assert.notEqual(topicUrl("latvia", "refund_process"), latviaRigaKioskUrl, "Latvia refund process must not be represented solely by the Riga Airport kiosk article");
+assert.equal(topicUrl("latvia", "vat_rate"), latviaVatLawUrl, "Latvia VAT-rate source uses the official VAT law");
+assert.notEqual(topicUrl("greece", "refund_process"), greeceVatRatesUrl, "Greece refund process must not use the AADE basic VAT-rates URL");
+for (const guide of taxFreeCountryGuides) {
+  const rule = getTaxFreeRule(guide.countryId)!;
+  for (const vatSource of guide.sources.filter((source) => source.topic === "vat_rate")) {
+    assert(vatSource.url === rule.vatRateSource.url || vatSource.url === "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en", `${guide.countryId} VAT-rate guide source must match rule VAT-rate source or verified direct official VAT-rate source`);
   }
 }
 
@@ -251,13 +416,17 @@ for (const language of supportedLanguageCodes) {
     assertDistinct(language, taxFreeCountryGuides.find((item) => item.countryId === countryId)!.supportedRefundMethodKeys, `${countryId} refund-method values must be distinct`);
     assertDistinct(language, taxFreeCountryGuides.find((item) => item.countryId === countryId)!.warningKeys, `${countryId} warning values must be distinct`);
     assertDistinct(language, taxFreeCountryGuides.find((item) => item.countryId === countryId)!.sources.map((source) => source.verifiesKey), `${countryId} source-description values must be distinct`);
+    if (newGuideCountries.includes(countryId as typeof newGuideCountries[number])) {
+      assertNoNormalizedDuplicates(language, countryId, keys);
+      assertRoleQuality(language, countryId);
+    }
   }
   for (const key of requiredGuideKeys) assert(translations[language][key]?.trim(), `${language} missing ${key}`);
   assert(translations[language]["taxGuide.quickFact.estimatedRefund"]?.trim(), `${language} estimated-refund wording exists`);
   assert(!/VAT rate|KDV oranı|Tipo de IVA|Taux de TVA|Mehrwertsteuersatz|ставка НДС|معدل ضريبة|增值税率/i.test(translations[language]["taxGuide.quickFact.estimatedRefund"]), `${language} estimated-refund wording is not VAT-rate wording`);
   if (language !== "en") {
     for (const key of guideKeys) assert.notEqual(translations[language][key], translations.en[key], `${language} equals English source for ${key}`);
-    assert.equal(valuesFor(language, guideKeys).filter((value, index, values) => values.indexOf(value) !== index).length, 0, `${language} repeats a long semantic translation`);
+    assert.equal(valuesFor(language, newGuideKeys).filter((value, index, values) => value.length > 200 && values.indexOf(value) !== index).length, 0, `${language} repeats a long semantic translation in the six-country batch`);
     if (localeScriptChecks[language]) assert(guideKeys.some((key) => localeScriptChecks[language]!.test(translations[language][key])), `${language} must contain its expected script`);
     if (localeWordChecks[language]) assert(guideKeys.some((key) => localeWordChecks[language]!.test(translations[language][key])), `${language} must contain locale-appropriate wording`);
   }

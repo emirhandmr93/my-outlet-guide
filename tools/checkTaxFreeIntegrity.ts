@@ -259,3 +259,18 @@ console.log(
     `${outlets.filter((item) => item.status === "active").length} active outlets; ` +
     `${boundaryCount} boundaries.`,
 );
+
+const balticSoutheastEuropeRuleSnapshots = {
+  bulgaria: { currency: "EUR", vatRate: 20, minimumPurchaseStatus: "not_verified", minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseSource: undefined },
+  estonia: { currency: "EUR", vatRate: 24, minimumPurchaseAmount: 38, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  latvia: { currency: "EUR", vatRate: 21, minimumPurchaseAmount: 35, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  lithuania: { currency: "EUR", vatRate: 21, minimumPurchaseAmount: 40, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  greece: { currency: "EUR", vatRate: 24, minimumPurchaseStatus: "not_verified", minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseSource: undefined },
+  slovakia: { currency: "EUR", vatRate: 23, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+} as const;
+for (const [countryId, snapshot] of Object.entries(balticSoutheastEuropeRuleSnapshots)) {
+  const rule = getRuleOrFail(countryId);
+  for (const [key, value] of Object.entries(snapshot)) {
+    if ((rule as any)[key] !== value) fail(`snapshot ${countryId} ${key}`);
+  }
+}

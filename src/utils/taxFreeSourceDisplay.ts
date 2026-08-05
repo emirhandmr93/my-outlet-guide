@@ -22,6 +22,12 @@ const sourceRoleKeys: Record<TaxFreeSourceRole, string> = {
 
 export const taxFreeSourceTranslationKeys = {
   "Agenzia delle Entrate": "taxFreeSource.agenziaDelleEntrate",
+  "Bulgarian National Revenue Agency": "taxFreeSource.bulgarianNra",
+  "Estonian Tax and Customs Board": "taxFreeSource.estonianTaxCustomsBoard",
+  "Latvian State Revenue Service": "taxFreeSource.latvianStateRevenueService",
+  "Lithuanian State Tax Inspectorate / VMI": "taxFreeSource.lithuanianVmi",
+  "Greek Independent Authority for Public Revenue / AADE": "taxFreeSource.greekAade",
+  "Slov-Lex / Slovak statutory source": "taxFreeSource.slovLexSlovakStatutory",
   "European Commission — VAT rates": "taxCalc.sourceEuropeanCommissionVatRates",
   "European Commission — VAT refunds": "taxFreeSource.europeanCommissionVatRefunds",
   "French Customs": "taxFreeSource.frenchCustoms",
