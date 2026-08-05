@@ -38,6 +38,7 @@ import { ProfileScreen } from "../screens/ProfileScreen";
 import { SavingsScreen } from "../screens/SavingsScreen";
 import { SmartShoppingCalculatorScreen } from "../screens/SmartShoppingCalculatorScreen";
 import { TaxFreeCalculatorScreen } from "../screens/TaxFreeCalculatorScreen";
+import { TaxFreeGuideScreen } from "../screens/TaxFreeGuideScreen";
 import { TermsConditionsScreen } from "../screens/TermsConditionsScreen";
 import { TransportationScreen } from "../screens/TransportationScreen";
 import { TripDetailScreen } from "../screens/TripDetailScreen";
@@ -434,6 +435,7 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 <Stack.Screen name="SmartShoppingCalculator" component={SmartShoppingCalculatorScreen} options={{ title: t("nav.smartShopping") }} />
 <Stack.Screen name="PriceAdvantageCalculator" component={PriceAdvantageCalculatorScreen} options={{ title: t("nav.priceAdvantage") }} />
 <Stack.Screen name="TaxFreeCalculator" component={TaxFreeCalculatorScreen} options={{ title: t("nav.taxFreeCalculator") }} />
+<Stack.Screen name="TaxFreeGuide" component={TaxFreeGuideScreen} options={{ title: t("nav.taxFreeGuide") }} />
 <Stack.Screen name="LanguageSettings" component={LanguageSettingsScreen} options={{ title: t("nav.language") }} />
 <Stack.Screen name="CurrencySettings" component={CurrencySettingsScreen} options={{ title: t("nav.currency") }} />
 <Stack.Screen name="NotificationSettings" component={NotificationSettingsScreen} options={{ title: t("nav.notifications") }} />
