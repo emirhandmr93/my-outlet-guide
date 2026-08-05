@@ -7,11 +7,11 @@ import { getTaxFreeGuideDisplayModel } from "../src/services/taxFreeGuideService
 import { getTaxFreePolicyDisplayModel } from "../src/utils/taxFreeDisplay";
 import { supportedLanguageCodes, translations, type TranslationLanguage } from "../src/translations/translations";
 
-const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "switzerland"];
+const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "poland", "czech-republic", "hungary", "croatia", "romania", "switzerland"];
 const countryIds = new Set(countries.map((country) => country.countryId));
 const ids = taxFreeCountryGuides.map((guide) => guide.countryId);
 assert.equal(new Set(ids).size, ids.length, "No duplicate country guide");
-assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected nine country guides");
+assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected fourteen country guides");
 
 const sections = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 const originalText = readFileSync("src/constants/taxFreeGuides.ts", "utf8");
@@ -37,6 +37,14 @@ for (const guide of taxFreeCountryGuides) {
   assert(guide.sources.some((source) => source.topic === "scheme_minimum"), `${guide.countryId} guide has a scheme/minimum source`);
 }
 
+const romaniaGuide = taxFreeCountryGuides.find((guide) => guide.countryId === "romania")!;
+const romaniaVatSources = romaniaGuide.sources.filter((source) => source.topic === "vat_rate");
+assert.equal(romaniaVatSources.length, 1, "Romania guide has exactly one VAT-rate source");
+assert.equal(romaniaVatSources[0].authority, "Romanian Legislative Portal — Law 141/2025", "Romania guide VAT source authority matches the current legislation source");
+assert.equal(romaniaVatSources[0].url, "https://legislatie.just.ro/Public/DetaliiDocument/305340", "Romania guide VAT source URL matches the current legislation source");
+assert.equal(romaniaVatSources[0].verifiesKey, "taxGuide.romania.source.vatRate", "Romania guide VAT source verifies the Romania VAT-rate copy");
+assert.notEqual(romaniaVatSources[0].url, "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en", "Romania guide VAT source must not use the European Commission VAT-rates URL");
+
 const ruleExpectations = {
   france: { vatRate: 20, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   italy: { vatRate: 22, minimumPurchaseAmount: 70, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
@@ -47,10 +55,16 @@ const ruleExpectations = {
   netherlands: { vatRate: 21, minimumPurchaseAmount: 50, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
   belgium: { vatRate: 21, minimumPurchaseAmount: 125.01, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
   switzerland: { vatRate: 8.1, minimumPurchaseAmount: 300, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  poland: { vatRate: 23, minimumPurchaseAmount: 200, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  "czech-republic": { vatRate: 21, minimumPurchaseAmount: 2000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  hungary: { vatRate: 27, minimumPurchaseAmount: 68000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  croatia: { vatRate: 25, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  romania: { vatRate: 21, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
 } as const;
 for (const [countryId, expectedRule] of Object.entries(ruleExpectations)) {
   const rule = getTaxFreeRule(countryId)!;
-  assert.equal(rule.currency, countryId === "switzerland" ? "CHF" : "EUR", `${countryId} currency matches`);
+  const expectedCurrencies: Record<string, string> = { switzerland: "CHF", poland: "PLN", "czech-republic": "CZK", hungary: "HUF", croatia: "EUR", romania: "RON" };
+  assert.equal(rule.currency, expectedCurrencies[countryId] ?? "EUR", `${countryId} currency matches`);
   for (const [key, value] of Object.entries(expectedRule)) assert.equal((rule as any)[key], value, `${countryId} ${key} consistency passes`);
   assert.equal(rule.refundPolicy.mode, "provider_dependent_upper_bound", `${countryId} refund policy mode matches display`);
 }
@@ -88,7 +102,7 @@ const guideKeys = expected.flatMap(keysForGuide);
 const sharedKeys = ["nav.taxFreeGuide", "savings.taxGuideTitle", "savings.taxGuideDescription", "savings.taxGuideBadge", "savings.taxGuideHighlight", "taxGuide.countryStatus", "taxGuide.status.available", "taxGuide.status.limited", "taxGuide.status.not_available", "taxGuide.notYetAvailable", "taxGuide.quickFact.vatRate", "taxGuide.quickFact.minimumPurchase", "taxGuide.quickFact.estimatedRefund", "taxGuide.eligibility", "taxGuide.requiredDocuments", "taxGuide.numberedProcess", "taxGuide.process.before_shopping", "taxGuide.process.in_store", "taxGuide.process.before_departure", "taxGuide.process.customs_validation", "taxGuide.process.receive_refund", "taxGuide.refundMethods", "taxGuide.deadlinesWarnings", "taxGuide.estimateDisclaimerTitle", "taxGuide.estimateDisclaimer", "taxGuide.openCalculator", "taxGuide.officialSources", "taxGuide.verifiedAt", "taxGuide.openSource", "taxGuide.lastVerified", "taxGuide.sourceTopic.scheme_minimum", "taxGuide.sourceTopic.customs_validation", "taxGuide.sourceTopic.vat_rate", "taxGuide.sourceTopic.refund_process", "taxGuide.sourceTopic.goods_conditions"];
 const requiredGuideKeys = [...sharedKeys, ...guideKeys];
 
-const newGuideCountries = ["portugal", "austria", "netherlands", "belgium", "switzerland"] as const;
+const newGuideCountries = ["poland", "czech-republic", "hungary", "croatia", "romania"] as const;
 const newGuideKeySet = new Set(newGuideCountries.flatMap(keysForGuide));
 const newGuideKeys = [...newGuideKeySet];
 const forbiddenNonEnglishFragments = [
@@ -105,13 +119,13 @@ const forbiddenNonEnglishFragments = [
   /before fees/i,
   /customs confirms export/i,
 ];
-const forbiddenInternalIdPattern = /\b(portugal|austria|netherlands|belgium|switzerland)\b/;
+const forbiddenInternalIdPattern = /\b(poland|czech-republic|hungary|croatia|romania)\b/;
 const forbiddenRepeatedBoilerplate = [
   /Keep documents ready for customs/i,
   /Belgeleri gümrük için hazır tutun/i,
   /请备好文件供海关查验/,
 ];
-const forbiddenRuleNumberPattern = /(?:€|\bCHF\b|\bEUR\b|\b(?:50|75|125\.01|125,01|300)\b|\b(?:8\.1|8,1|20|21|23)\s*%)/i;
+const forbiddenRuleNumberPattern = /(?:\b(?:PLN|CZK|HUF|RON)\b|(?:€|\bEUR\b)\s*(?:100|200|2[,.]?000|68[,.]?000|889[,.]35)|(?:100|200|2[,.]?000|68[,.]?000|889[,.]35)\s*(?:€|\bEUR\b)?|\b(?:21|23|25|27)\s*%)/i;
 const chineseScriptPattern = /[\u3400-\u9FFF]/;
 const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; forbidden: RegExp[] }>> = {
   tr: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
@@ -122,9 +136,13 @@ const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; for
   ru: { required: /[А-Яа-яЁё]/, forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/] },
 };
 const generatedLocalePatterns: Partial<Record<TranslationLanguage, RegExp[]>> = {
-  fr: [/pour (?:Portugal|Autriche|Pays-Bas|Belgique|Suisse)/, /documents de (?:Autriche|Pays-Bas|Belgique|Suisse|Portugal)/, /en Pays-Bas/],
-  de: [/\bin die Niederlande\b/, /\baus die Niederlande\b/, /Unterlagen aus die Niederlande/],
-  ru: [/^(?:Португалии|Австрии|Нидерландах|Бельгии|Швейцарии)[:—]/],
+  tr: [/^(?:Polonya|Çekya|Macaristan|Hırvatistan|Romanya):/, /\bEU\b/, /koşullarını açıklar/i, /konu özeti/i],
+  es: [/^(?:Polonia|Chequia|Hungría|Croacia|Rumanía):/, /\bdescribe las condiciones\b/i, /resumen del tema/i],
+  fr: [/^(?:Pologne|Tchéquie|Hongrie|Croatie|Roumanie):/, /\bdécrit les conditions\b/i, /résumé du sujet/i, /pour (?:Portugal|Autriche|Pays-Bas|Belgique|Suisse)/, /documents de (?:Autriche|Pays-Bas|Belgique|Suisse|Portugal)/, /en Pays-Bas/],
+  de: [/^(?:Polen|Tschechien|Ungarn|Kroatien|Rumänien):/, /\bbeschreibt Wohnsitz/i, /Themenzusammenfassung/i, /\bin die Niederlande\b/, /\baus die Niederlande\b/, /Unterlagen aus die Niederlande/],
+  ar: [/^(?:بولندا|تشيكيا|المجر|كرواتيا|رومانيا):/, /يوضح شروط/i, /ملخص الموضوع/i],
+  ru: [/^(?:Польша|Чехия|Венгрия|Хорватия|Румыния):/, /\bописывает условия\b/i, /краткое описание темы/i, /^(?:Португалии|Австрии|Нидерландах|Бельгии|Швейцарии)[:—]/],
+  zh: [/^(?:波兰|捷克|匈牙利|克罗地亚|罗马尼亚)[:：]/, /说明合格旅客/, /主题摘要/, /[A-Za-z]+: [^"]+\./],
 };
 for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
   for (const key of newGuideKeys) {
@@ -136,6 +154,10 @@ for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
     for (const pattern of generatedLocalePatterns[language] ?? []) assert(!pattern.test(value), `${language} ${key} contains a generated locale template: ${value}`);
     assert(!forbiddenInternalIdPattern.test(value), `${language} ${key} exposes an internal country id: ${value}`);
     if (!key.includes("source.") && !key.endsWith("vatExplanation") && !key.endsWith("estimatedRefundExplanation")) assert(!/^[A-Z][a-z]+: [A-Z][a-z]+:/.test(value), `${language} ${key} has a generated prefix pattern`);
+    if (["tr", "es", "fr", "de", "ru"].includes(language) && key.startsWith("taxGuide.") && !key.includes(".source.")) {
+      const englishLength = translations.en[key]?.length ?? 0;
+      assert(value.length >= Math.floor(englishLength * 0.25), `${language} ${key} is materially shorter than the English operational copy`);
+    }
   }
 }
 for (const key of newGuideKeys) {
@@ -148,18 +170,33 @@ for (const language of supportedLanguageCodes) for (const key of newGuideKeys) {
   assert(!forbiddenRuleNumberPattern.test(value), `${language} ${key} hardcodes a rule amount or VAT value: ${value}`);
 }
 const translationSource = readFileSync("src/translations/translations.ts", "utf8");
-const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:portugal|austria|netherlands|belgium|switzerland)\.[^"]+)"\s*:/g)].map((match) => match[1]);
+const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:poland|czech-republic|hungary|croatia|romania)\.[^"]+)"\s*:/g)].map((match) => match[1]);
 for (const key of declaredNewGuideKeys) assert(newGuideKeySet.has(key), `new guide translation key is unused by taxFreeGuides: ${key}`);
 const batchMatch = translationSource.match(/const taxFreeGuideBatchTranslations[\s\S]*?for \(const locale of supportedLanguageCodes\) Object\.assign\(translations\[locale\], taxFreeGuideBatchTranslations\[locale\]\);/);
 assert(batchMatch, "taxFreeGuideBatchTranslations block exists");
 const batchSource = batchMatch![0];
 assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "taxFreeGuideBatchTranslations must not declare protected existing-country guide keys");
+assert(!/"taxGuide\.(?:france|italy|germany|spain|portugal|austria|netherlands|belgium|switzerland)\./.test(translationSource.slice(translationSource.indexOf("centralEasternEuropeTaxFreeGuideTranslations"))), "centralEasternEuropeTaxFreeGuideTranslations must not declare protected existing-country guide keys");
 for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `taxFreeGuideBatchTranslations overrides protected key ${key}`);
 const valuesFor = (language: TranslationLanguage, keys: string[]) => keys.map((key) => translations[language][key]?.trim() ?? "");
 const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => assert.equal(new Set(valuesFor(language, keys)).size, keys.length, `${language}: ${message}`);
 const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /[\u0600-\u06FF]/, ru: /[А-Яа-яЁё]/, zh: /[\u4E00-\u9FFF]/ };
 const localeWordChecks: Partial<Record<TranslationLanguage, RegExp>> = { tr: /(ikamet|gümrük|alışveriş|iade|belge)/i, es: /(aduan|reembolso|compra|document|bienes)/i, fr: /(douan|remboursement|achat|document|biens)/i, de: /(Zoll|Erstattung|Kauf|Dokument|Waren)/i };
 const tFor = (language: TranslationLanguage) => (key: string) => translations[language][key] ?? key;
+const targetConceptChecks: Record<string, RegExp[]> = {
+  poland: [/electronic TAX FREE|elektronic|elektronik|electr[oó]nic|électronique|elektronisch|إلكتروني|электрон|电子/i, /mTAX FREE PL/i],
+  "czech-republic": [/EvDPH/i, /fallback|paper|geçici|kağıt|papel|manual|papier|Fallback|ورقي|بديل|резерв|бумаж|纸质|后备/i],
+  hungary: [/90|retrospective|sonradan|geriye dönük|retrospectiva|rétroactive|nachträglich|بأثر رجعي|задним числом|追溯/i],
+  croatia: [/PDV-P/i],
+  romania: [/final EU|son EU|son AB|salida final|sortie finale|endgültig|الخروج النهائي|окончательн|最终/i, /checked baggage|hand baggage|kayıtlı bagaj|el bagaj|equipaje facturado|equipaje de mano|bagage enregistré|bagage à main|Aufgabegepäck|Handgepäck|الأمتعة المسجلة|أمتعة اليد|сдаваем|ручн|托运|手提/i],
+};
+for (const [countryId, patterns] of Object.entries(targetConceptChecks)) {
+  for (const language of supportedLanguageCodes) {
+    const body = valuesFor(language, keysForGuide(countryId)).join(" ");
+    for (const pattern of patterns) assert(pattern.test(body), `${language} ${countryId} missing country-specific concept ${pattern}`);
+  }
+}
+
 for (const language of supportedLanguageCodes) {
   for (const countryId of expected) {
     const model = getTaxFreeGuideDisplayModel(countryId, language, tFor(language));

@@ -162,6 +162,10 @@ const expected: Array<
   ["netherlands", "EUR", 50, "gross", "at_least", 21],
   ["portugal", "EUR", 50, "net", "greater_than", 23],
   ["switzerland", "CHF", 300, "gross", "at_least", 8.1],
+  ["poland", "PLN", 200, "gross", "at_least", 23],
+  ["czech-republic", "CZK", 2000, "gross", "greater_than", 21],
+  ["hungary", "HUF", 68000, "gross", "greater_than", 27],
+  ["croatia", "EUR", 100, "gross", "greater_than", 25],
   ["turkey", "TRY", 1000, "net", "greater_than", 20],
 ];
 for (const [id, currency, amount, basis, comparison, vat] of expected) {
@@ -177,6 +181,22 @@ for (const [id, currency, amount, basis, comparison, vat] of expected) {
   )
     fail(`snapshot ${id}`);
 }
+
+const romania = getRuleOrFail("romania");
+if (
+  romania.currency !== "RON" ||
+  romania.vatRate !== 21 ||
+  romania.minimumPurchaseStatus !== "not_verified" ||
+  romania.minimumPurchaseAmount !== undefined ||
+  romania.minimumPurchaseBasis !== undefined ||
+  romania.minimumPurchaseComparison !== undefined ||
+  romania.minimumPurchaseSource !== undefined ||
+  romania.vatRateSource.name !== "Romanian Legislative Portal — Law 141/2025" ||
+  romania.vatRateSource.url !== "https://legislatie.just.ro/Public/DetaliiDocument/305340" ||
+  romania.vatRateSource.url === "https://static.anaf.ro/static/10/Anaf/legislatie/L_227_2015.htm"
+)
+  fail("romania VAT/source and unresolved threshold status");
+
 const netherlands = getRuleOrFail("netherlands");
 if (
   netherlands.minimumPurchaseStatus === "no_statutory_minimum" ||
