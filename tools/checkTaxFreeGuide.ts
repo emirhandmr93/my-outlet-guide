@@ -51,7 +51,7 @@ const ruleExpectations = {
   "czech-republic": { vatRate: 21, minimumPurchaseAmount: 2000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   hungary: { vatRate: 27, minimumPurchaseAmount: 68000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   croatia: { vatRate: 25, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
-  romania: { vatRate: 21, minimumPurchaseAmount: 889.35, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  romania: { vatRate: 21, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
 } as const;
 for (const [countryId, expectedRule] of Object.entries(ruleExpectations)) {
   const rule = getTaxFreeRule(countryId)!;
@@ -111,13 +111,13 @@ const forbiddenNonEnglishFragments = [
   /before fees/i,
   /customs confirms export/i,
 ];
-const forbiddenInternalIdPattern = /\b(czech-republic)\b/;
+const forbiddenInternalIdPattern = /\b(poland|czech-republic|hungary|croatia|romania)\b/;
 const forbiddenRepeatedBoilerplate = [
   /Keep documents ready for customs/i,
   /Belgeleri gümrük için hazır tutun/i,
   /请备好文件供海关查验/,
 ];
-const forbiddenRuleNumberPattern = /(?:\b(?:PLN|CZK|HUF|RON)\b|\b(?:2000|68000|889\.35|889,35)\b|\b(?:25|27)\s*%)/i;
+const forbiddenRuleNumberPattern = /(?:\b(?:PLN|CZK|HUF|RON)\b|(?:€|\bEUR\b)\s*(?:100|200|2[,.]?000|68[,.]?000|889[,.]35)|(?:100|200|2[,.]?000|68[,.]?000|889[,.]35)\s*(?:€|\bEUR\b)?|\b(?:21|23|25|27)\s*%)/i;
 const chineseScriptPattern = /[\u3400-\u9FFF]/;
 const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; forbidden: RegExp[] }>> = {
   tr: { forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/, /[А-Яа-яЁё]/] },
@@ -163,10 +163,24 @@ assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "taxFre
 assert(!/"taxGuide\.(?:france|italy|germany|spain|portugal|austria|netherlands|belgium|switzerland)\./.test(translationSource.slice(translationSource.indexOf("centralEasternEuropeTaxFreeGuideTranslations"))), "centralEasternEuropeTaxFreeGuideTranslations must not declare protected existing-country guide keys");
 for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `taxFreeGuideBatchTranslations overrides protected key ${key}`);
 const valuesFor = (language: TranslationLanguage, keys: string[]) => keys.map((key) => translations[language][key]?.trim() ?? "");
-const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => assert(new Set(valuesFor(language, keys)).size > 0, `${language}: ${message}`);
+const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => assert.equal(new Set(valuesFor(language, keys)).size, keys.length, `${language}: ${message}`);
 const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /[\u0600-\u06FF]/, ru: /[А-Яа-яЁё]/, zh: /[\u4E00-\u9FFF]/ };
 const localeWordChecks: Partial<Record<TranslationLanguage, RegExp>> = { tr: /(ikamet|gümrük|alışveriş|iade|belge)/i, es: /(aduan|reembolso|compra|document|bienes)/i, fr: /(douan|remboursement|achat|document|biens)/i, de: /(Zoll|Erstattung|Kauf|Dokument|Waren)/i };
 const tFor = (language: TranslationLanguage) => (key: string) => translations[language][key] ?? key;
+const targetConceptChecks: Record<string, RegExp[]> = {
+  poland: [/electronic TAX FREE|elektronic|elektronik|electr[oó]nic|électronique|elektronisch|إلكتروني|электрон|电子/i, /mTAX FREE PL/i],
+  "czech-republic": [/EvDPH/i, /fallback|paper|geçici|kağıt|papel|manual|papier|Fallback|ورقي|بديل|резерв|бумаж|纸质|后备/i],
+  hungary: [/90|retrospective|sonradan|geriye dönük|retrospectiva|rétroactive|nachträglich|بأثر رجعي|задним числом|追溯/i],
+  croatia: [/PDV-P/i],
+  romania: [/final EU|son EU|salida final|sortie finale|endgültig|الخروج النهائي|окончательн|最终/i, /checked baggage|hand baggage|kayıtlı bagaj|el bagaj|equipaje facturado|equipaje de mano|bagage enregistré|bagage à main|Aufgabegepäck|Handgepäck|الأمتعة المسجلة|أمتعة اليد|сдаваем|ручн|托运|手提/i],
+};
+for (const [countryId, patterns] of Object.entries(targetConceptChecks)) {
+  for (const language of supportedLanguageCodes) {
+    const body = valuesFor(language, keysForGuide(countryId)).join(" ");
+    for (const pattern of patterns) assert(pattern.test(body), `${language} ${countryId} missing country-specific concept ${pattern}`);
+  }
+}
+
 for (const language of supportedLanguageCodes) {
   for (const countryId of expected) {
     const model = getTaxFreeGuideDisplayModel(countryId, language, tFor(language));
@@ -191,7 +205,7 @@ for (const language of supportedLanguageCodes) {
   assert(!/VAT rate|KDV oranı|Tipo de IVA|Taux de TVA|Mehrwertsteuersatz|ставка НДС|معدل ضريبة|增值税率/i.test(translations[language]["taxGuide.quickFact.estimatedRefund"]), `${language} estimated-refund wording is not VAT-rate wording`);
   if (language !== "en") {
     for (const key of guideKeys) assert.notEqual(translations[language][key], translations.en[key], `${language} equals English source for ${key}`);
-    assert(valuesFor(language, guideKeys).every((value) => value.trim()), `${language} guide translations are populated`);
+    assert.equal(valuesFor(language, guideKeys).filter((value, index, values) => values.indexOf(value) !== index).length, 0, `${language} repeats a long semantic translation`);
     if (localeScriptChecks[language]) assert(guideKeys.some((key) => localeScriptChecks[language]!.test(translations[language][key])), `${language} must contain its expected script`);
     if (localeWordChecks[language]) assert(guideKeys.some((key) => localeWordChecks[language]!.test(translations[language][key])), `${language} must contain locale-appropriate wording`);
   }

@@ -166,7 +166,6 @@ const expected: Array<
   ["czech-republic", "CZK", 2000, "gross", "greater_than", 21],
   ["hungary", "HUF", 68000, "gross", "greater_than", 27],
   ["croatia", "EUR", 100, "gross", "greater_than", 25],
-  ["romania", "RON", 889.35, "gross", "greater_than", 21],
   ["turkey", "TRY", 1000, "net", "greater_than", 20],
 ];
 for (const [id, currency, amount, basis, comparison, vat] of expected) {
@@ -182,6 +181,20 @@ for (const [id, currency, amount, basis, comparison, vat] of expected) {
   )
     fail(`snapshot ${id}`);
 }
+
+const romania = getRuleOrFail("romania");
+if (
+  romania.currency !== "RON" ||
+  romania.vatRate !== 21 ||
+  romania.minimumPurchaseStatus !== "not_verified" ||
+  romania.minimumPurchaseAmount !== undefined ||
+  romania.minimumPurchaseBasis !== undefined ||
+  romania.minimumPurchaseComparison !== undefined ||
+  romania.minimumPurchaseSource !== undefined ||
+  romania.vatRateSource.name !== "Romanian Ministry of Finance / ANAF"
+)
+  fail("romania VAT/source and unresolved threshold status");
+
 const netherlands = getRuleOrFail("netherlands");
 if (
   netherlands.minimumPurchaseStatus === "no_statutory_minimum" ||
