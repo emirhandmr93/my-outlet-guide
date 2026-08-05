@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
@@ -18,8 +18,6 @@ type TaxFreeCardProps = {
   taxFreeStatus: OutletTaxFreeDisplayStatus;
   rule?: TaxFreeRule;
   officeInfo?: string;
-  guideButtonText?: string;
-  onPressGuide?: () => void;
 };
 
 export function TaxFreeCard({
@@ -27,8 +25,6 @@ export function TaxFreeCard({
   taxFreeStatus,
   rule,
   officeInfo,
-  guideButtonText,
-  onPressGuide,
 }: TaxFreeCardProps) {
   const { t, language } = useTranslation();
   const policyDisplay = rule ? getTaxFreePolicyDisplayModel(rule, language, t) : undefined;
@@ -72,12 +68,6 @@ export function TaxFreeCard({
       {shouldShowOfficeInfo && taxFreeStatus === "outlet_verified" && policyDisplay?.kind !== "future_regime" ? (
         <Text style={styles.text}>{officeInfo}</Text>
       ) : null}
-
-      {guideButtonText?.trim() && onPressGuide ? (
-        <TouchableOpacity style={styles.guideButton} activeOpacity={0.86} onPress={onPressGuide}>
-          <Text style={styles.guideButtonText}>{guideButtonText}</Text>
-        </TouchableOpacity>
-      ) : null}
     </Card>
   );
 }
@@ -89,6 +79,4 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginBottom: 6,
   },
-  guideButton: { backgroundColor: "#0B1F3A", borderRadius: 16, paddingVertical: 12, paddingHorizontal: 14, alignItems: "center", marginTop: 10 },
-  guideButtonText: { color: "#C9A227", fontWeight: "900", fontSize: 14 },
 });
