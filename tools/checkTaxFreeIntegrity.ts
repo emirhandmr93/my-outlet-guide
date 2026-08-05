@@ -159,6 +159,7 @@ const expected: Array<
   ["italy", "EUR", 70, "gross", "greater_than", 22],
   ["austria", "EUR", 75, "gross", "greater_than", 20],
   ["belgium", "EUR", 125.01, "gross", "at_least", 21],
+  ["netherlands", "EUR", 50, "gross", "at_least", 21],
   ["portugal", "EUR", 50, "net", "greater_than", 23],
   ["switzerland", "CHF", 300, "gross", "at_least", 8.1],
   ["turkey", "TRY", 1000, "net", "greater_than", 20],
@@ -176,6 +177,16 @@ for (const [id, currency, amount, basis, comparison, vat] of expected) {
   )
     fail(`snapshot ${id}`);
 }
+const netherlands = getRuleOrFail("netherlands");
+if (
+  netherlands.minimumPurchaseStatus === "no_statutory_minimum" ||
+  netherlands.minimumPurchaseAmount !== 50 ||
+  netherlands.minimumPurchaseBasis !== "gross" ||
+  netherlands.minimumPurchaseComparison !== "at_least" ||
+  netherlands.minimumPurchaseSource?.url !==
+    "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/douane/reisbagage/btw-terugvragen-bij-uitvoer/"
+)
+  fail("netherlands tourist VAT-refund minimum/source");
 for (const id of [
   "freeport-lisboa-fashion-outlet",
   "vila-do-conde-porto-fashion-outlet",

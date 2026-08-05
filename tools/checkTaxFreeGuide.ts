@@ -44,7 +44,7 @@ const ruleExpectations = {
   spain: { vatRate: 21, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "no_statutory_minimum" },
   portugal: { vatRate: 23, minimumPurchaseAmount: 50, minimumPurchaseBasis: "net", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
   austria: { vatRate: 20, minimumPurchaseAmount: 75, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
-  netherlands: { vatRate: 21, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "no_statutory_minimum" },
+  netherlands: { vatRate: 21, minimumPurchaseAmount: 50, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
   belgium: { vatRate: 21, minimumPurchaseAmount: 125.01, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
   switzerland: { vatRate: 8.1, minimumPurchaseAmount: 300, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
 } as const;
@@ -55,6 +55,15 @@ for (const [countryId, expectedRule] of Object.entries(ruleExpectations)) {
   assert.equal(rule.refundPolicy.mode, "provider_dependent_upper_bound", `${countryId} refund policy mode matches display`);
 }
 assert(!getTaxFreeRule("spain")!.minimumPurchaseAmount, "Spain no-minimum state is not represented by a fabricated positive threshold");
+const netherlandsRule = getTaxFreeRule("netherlands")!;
+assert.equal(netherlandsRule.minimumPurchaseStatus, "verified_amount", "Netherlands must not regress to no statutory minimum");
+assert.equal(netherlandsRule.minimumPurchaseAmount, 50, "Netherlands minimum purchase amount matches official tourist guidance");
+assert.equal(netherlandsRule.minimumPurchaseBasis, "gross", "Netherlands minimum is based on the amount including VAT");
+assert.equal(netherlandsRule.minimumPurchaseComparison, "at_least", "Netherlands minimum is an at-least threshold");
+assert.equal(netherlandsRule.minimumPurchaseSource?.url, "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/douane/reisbagage/btw-terugvragen-bij-uitvoer/", "Netherlands uses the tourist-facing Customs source");
+const netherlandsGuide = taxFreeCountryGuides.find((guide) => guide.countryId === "netherlands")!;
+assert(netherlandsGuide.processSections.customs_validation.includes("taxGuide.netherlands.step.customs.vatApp"), "Netherlands guide includes the NL Customs VAT app validation step");
+assert(netherlandsGuide.sources.filter((source) => source.url === netherlandsRule.minimumPurchaseSource?.url).length >= 3, "Netherlands scheme, customs and goods topics use the tourist-facing Customs source");
 
 const keysForGuide = (countryId: string) => {
   const guide = taxFreeCountryGuides.find((item) => item.countryId === countryId)!;
