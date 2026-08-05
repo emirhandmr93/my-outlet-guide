@@ -191,7 +191,9 @@ if (
   romania.minimumPurchaseBasis !== undefined ||
   romania.minimumPurchaseComparison !== undefined ||
   romania.minimumPurchaseSource !== undefined ||
-  romania.vatRateSource.name !== "Romanian Ministry of Finance / ANAF"
+  romania.vatRateSource.name !== "Romanian Legislative Portal — Law 141/2025" ||
+  romania.vatRateSource.url !== "https://legislatie.just.ro/Public/DetaliiDocument/305340" ||
+  romania.vatRateSource.url === "https://static.anaf.ro/static/10/Anaf/legislatie/L_227_2015.htm"
 )
   fail("romania VAT/source and unresolved threshold status");
 

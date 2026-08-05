@@ -36,7 +36,7 @@ export const taxFreeSourceTranslationKeys = {
   "National Bank of Romania": "taxFreeSource.nationalBankRomania",
   "Polish Ministry of Finance / PUESC": "taxFreeSource.polishPuesc",
   "Romanian Customs Authority": "taxFreeSource.romanianCustomsAuthority",
-  "Romanian Ministry of Finance / ANAF": "taxFreeSource.romanianAnaf",
+  "Romanian Legislative Portal — Law 141/2025": "taxFreeSource.romanianLegislativePortalLaw141",
   "Invest KOREA / KOTRA": "taxFreeSource.investKoreaKotra",
   "Japan National Tax Agency": "taxFreeSource.japanNationalTaxAgency",
   "Japan Tourism Agency": "taxFreeSource.japanTourismAgency",
