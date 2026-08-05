@@ -136,9 +136,13 @@ const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; for
   ru: { required: /[А-Яа-яЁё]/, forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/] },
 };
 const generatedLocalePatterns: Partial<Record<TranslationLanguage, RegExp[]>> = {
-  fr: [/pour (?:Portugal|Autriche|Pays-Bas|Belgique|Suisse)/, /documents de (?:Autriche|Pays-Bas|Belgique|Suisse|Portugal)/, /en Pays-Bas/],
-  de: [/\bin die Niederlande\b/, /\baus die Niederlande\b/, /Unterlagen aus die Niederlande/],
-  ru: [/^(?:Португалии|Австрии|Нидерландах|Бельгии|Швейцарии)[:—]/],
+  tr: [/^(?:Polonya|Çekya|Macaristan|Hırvatistan|Romanya):/, /\bEU\b/, /koşullarını açıklar/i, /konu özeti/i],
+  es: [/^(?:Polonia|Chequia|Hungría|Croacia|Rumanía):/, /\bdescribe las condiciones\b/i, /resumen del tema/i],
+  fr: [/^(?:Pologne|Tchéquie|Hongrie|Croatie|Roumanie):/, /\bdécrit les conditions\b/i, /résumé du sujet/i, /pour (?:Portugal|Autriche|Pays-Bas|Belgique|Suisse)/, /documents de (?:Autriche|Pays-Bas|Belgique|Suisse|Portugal)/, /en Pays-Bas/],
+  de: [/^(?:Polen|Tschechien|Ungarn|Kroatien|Rumänien):/, /\bbeschreibt Wohnsitz/i, /Themenzusammenfassung/i, /\bin die Niederlande\b/, /\baus die Niederlande\b/, /Unterlagen aus die Niederlande/],
+  ar: [/^(?:بولندا|تشيكيا|المجر|كرواتيا|رومانيا):/, /يوضح شروط/i, /ملخص الموضوع/i],
+  ru: [/^(?:Польша|Чехия|Венгрия|Хорватия|Румыния):/, /\bописывает условия\b/i, /краткое описание темы/i, /^(?:Португалии|Австрии|Нидерландах|Бельгии|Швейцарии)[:—]/],
+  zh: [/^(?:波兰|捷克|匈牙利|克罗地亚|罗马尼亚)[:：]/, /说明合格旅客/, /主题摘要/, /[A-Za-z]+: [^"]+\./],
 };
 for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
   for (const key of newGuideKeys) {
@@ -150,6 +154,10 @@ for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
     for (const pattern of generatedLocalePatterns[language] ?? []) assert(!pattern.test(value), `${language} ${key} contains a generated locale template: ${value}`);
     assert(!forbiddenInternalIdPattern.test(value), `${language} ${key} exposes an internal country id: ${value}`);
     if (!key.includes("source.") && !key.endsWith("vatExplanation") && !key.endsWith("estimatedRefundExplanation")) assert(!/^[A-Z][a-z]+: [A-Z][a-z]+:/.test(value), `${language} ${key} has a generated prefix pattern`);
+    if (["tr", "es", "fr", "de", "ru"].includes(language) && key.startsWith("taxGuide.") && !key.includes(".source.")) {
+      const englishLength = translations.en[key]?.length ?? 0;
+      assert(value.length >= Math.floor(englishLength * 0.25), `${language} ${key} is materially shorter than the English operational copy`);
+    }
   }
 }
 for (const key of newGuideKeys) {
@@ -180,7 +188,7 @@ const targetConceptChecks: Record<string, RegExp[]> = {
   "czech-republic": [/EvDPH/i, /fallback|paper|geçici|kağıt|papel|manual|papier|Fallback|ورقي|بديل|резерв|бумаж|纸质|后备/i],
   hungary: [/90|retrospective|sonradan|geriye dönük|retrospectiva|rétroactive|nachträglich|بأثر رجعي|задним числом|追溯/i],
   croatia: [/PDV-P/i],
-  romania: [/final EU|son EU|salida final|sortie finale|endgültig|الخروج النهائي|окончательн|最终/i, /checked baggage|hand baggage|kayıtlı bagaj|el bagaj|equipaje facturado|equipaje de mano|bagage enregistré|bagage à main|Aufgabegepäck|Handgepäck|الأمتعة المسجلة|أمتعة اليد|сдаваем|ручн|托运|手提/i],
+  romania: [/final EU|son EU|son AB|salida final|sortie finale|endgültig|الخروج النهائي|окончательн|最终/i, /checked baggage|hand baggage|kayıtlı bagaj|el bagaj|equipaje facturado|equipaje de mano|bagage enregistré|bagage à main|Aufgabegepäck|Handgepäck|الأمتعة المسجلة|أمتعة اليد|сдаваем|ручн|托运|手提/i],
 };
 for (const [countryId, patterns] of Object.entries(targetConceptChecks)) {
   for (const language of supportedLanguageCodes) {
