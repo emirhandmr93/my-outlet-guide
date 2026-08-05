@@ -141,24 +141,28 @@ const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; for
   ru: { required: /[А-Яа-яЁё]/, forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/] },
 };
 const generatedLocalePatterns: Partial<Record<TranslationLanguage, RegExp[]>> = {
-  tr: [/^(?:Polonya|Çekya|Macaristan|Hırvatistan|Romanya):/, /\bEU\b/, /koşullarını açıklar/i, /konu özeti/i],
-  es: [/^(?:Polonia|Chequia|Hungría|Croacia|Rumanía):/, /\bdescribe las condiciones\b/i, /resumen del tema/i],
-  fr: [/^(?:Pologne|Tchéquie|Hongrie|Croatie|Roumanie):/, /\bdécrit les conditions\b/i, /résumé du sujet/i, /pour (?:Portugal|Autriche|Pays-Bas|Belgique|Suisse)/, /documents de (?:Autriche|Pays-Bas|Belgique|Suisse|Portugal)/, /en Pays-Bas/],
-  de: [/^(?:Polen|Tschechien|Ungarn|Kroatien|Rumänien):/, /\bbeschreibt Wohnsitz/i, /Themenzusammenfassung/i, /\bin die Niederlande\b/, /\baus die Niederlande\b/, /Unterlagen aus die Niederlande/],
-  ar: [/^(?:بولندا|تشيكيا|المجر|كرواتيا|رومانيا):/, /يوضح شروط/i, /ملخص الموضوع/i],
-  ru: [/^(?:Польша|Чехия|Венгрия|Хорватия|Румыния):/, /\bописывает условия\b/i, /краткое описание темы/i, /^(?:Португалии|Австрии|Нидерландах|Бельгии|Швейцарии)[:—]/],
-  zh: [/^(?:波兰|捷克|匈牙利|克罗地亚|罗马尼亚)[:：]/, /说明合格旅客/, /主题摘要/, /[A-Za-z]+: [^"]+\./],
+  tr: [/^(?:Danimarka|Finlandiya|İsveç|Norveç|İrlanda):/, /\bEU\b/, /konu özeti/i],
+  es: [/^(?:Dinamarca|Finlandia|Suecia|Noruega|Irlanda):/, /resumen del tema/i],
+  fr: [/^(?:Danemark|Finlande|Suède|Norvège|Irlande):/, /résumé du sujet/i],
+  de: [/^(?:Dänemark|Finnland|Schweden|Norwegen|Irland):/, /Themenzusammenfassung/i],
+  ar: [/^(?:الدنمارك|فنلندا|السويد|النرويج|أيرلندا):/, /ملخص الموضوع/i],
+  ru: [/^(?:Дания|Финляндия|Швеция|Норвегия|Ирландия):/, /краткое описание темы/i],
+  zh: [/^(?:丹麦|芬兰|瑞典|挪威|爱尔兰)[:：]/, /主题摘要/],
 };
 for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
   for (const key of newGuideKeys) {
     const value = translations[language][key] ?? "";
-    // English fallback bodies are audited by manual review for this isolated batch.
+    for (const pattern of forbiddenNonEnglishFragments) assert(!pattern.test(value), `${language} ${key} contains English fallback text: ${value}`);
     for (const pattern of forbiddenRepeatedBoilerplate) assert(!pattern.test(value), `${language} ${key} contains generated boilerplate: ${value}`);
     for (const pattern of scriptChecks[language]?.forbidden ?? []) assert(!pattern.test(value), `${language} ${key} contains text from an unrelated script: ${value}`);
     if (scriptChecks[language]?.required) assert(scriptChecks[language]!.required!.test(value), `${language} ${key} is missing the expected locale script: ${value}`);
+    for (const pattern of generatedLocalePatterns[language] ?? []) assert(!pattern.test(value), `${language} ${key} contains a generated locale template: ${value}`);
     assert(!forbiddenInternalIdPattern.test(value), `${language} ${key} exposes an internal country id: ${value}`);
     if (!key.includes("source.") && !key.endsWith("vatExplanation") && !key.endsWith("estimatedRefundExplanation")) assert(!/^[A-Z][a-z]+: [A-Z][a-z]+:/.test(value), `${language} ${key} has a generated prefix pattern`);
-
+    if (["tr", "es", "fr", "de", "ru"].includes(language) && key.startsWith("taxGuide.") && !key.includes(".source.")) {
+      const englishLength = translations.en[key]?.length ?? 0;
+      assert(value.length >= Math.floor(englishLength * 0.25), `${language} ${key} is materially shorter than the English operational copy`);
+    }
   }
 }
 for (const key of newGuideKeys) {
@@ -185,11 +189,11 @@ const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /
 const localeWordChecks: Partial<Record<TranslationLanguage, RegExp>> = { tr: /(ikamet|gümrük|alışveriş|iade|belge)/i, es: /(aduan|reembolso|compra|document|bienes)/i, fr: /(douan|remboursement|achat|document|biens)/i, de: /(Zoll|Erstattung|Kauf|Dokument|Waren)/i };
 const tFor = (language: TranslationLanguage) => (key: string) => translations[language][key] ?? key;
 const targetConceptChecks: Record<string, RegExp[]> = {
-  denmark: [/Norway.*Åland|Åland.*Norway/i, /four-hour|four\shour/i, /another member state|final exit customs/i],
-  finland: [/Norway/i, /seal/i, /authorised desk|Customs fallback/i],
-  sweden: [/last country|last.*leaving the EU/i, /Tax Free partner|Swedish Customs/i, /not payment/i],
-  norway: [/RD-0032 E/i, /must not be stamped|not.*stamped/i, /Norwegian Customs does not pay/i],
-  ireland: [/Retail Export Scheme/i, /high-value|High-value/i, /Northern Ireland/i],
+  denmark: [/Norway|Norveç|Noruega|Norvège|Norwegen|النرويج|Норвег|挪威/i, /Åland/i, /four-hour|dört saat|cuatro horas|quatre heures|Vier-Stunden|الأربع ساعات|четырехчас|四小时/i],
+  finland: [/Norway|Norveç|Noruega|Norvège|Norwegen|النرويج|Норвег|挪威/i, /seal|mühür|sello|sceau|Siegel|ختم|пломб|封条/i],
+  sweden: [/last country|son ülke|último país|dernier pays|letzte.*Land|آخر بلد|последней.*страной|最后一个国家/i, /Tax Free|Swedish Customs|İsveç Gümrüğü|Aduana sueca|douanes suédoises|schwedische Zoll|الجمارك السويدية|шведская таможня|瑞典海关/i],
+  norway: [/RD-0032 E/i, /must not be stamped|damgalanmaması|no debe.*sellado|ne doit pas.*tamponné|nicht.*gestempelt|يجب ألا تختم|не должен.*штамп|不得.*盖章/i, /does not pay|iade ödemez|no paga|ne paient pas|keine Erstattungen auszahlt|لا تدفع|не выплачивает|不支付/i],
+  ireland: [/Retail Export Scheme/i, /high-value|yüksek değerli|alto valor|grande valeur|hochwertige|عالية القيمة|высокой стоимости|高价值/i, /Northern Ireland|Kuzey İrlanda|Irlanda del Norte|Irlande du Nord|Nordirland|أيرلندا الشمالية|Северной Ирландии|北爱尔兰/i],
 };
 for (const [countryId, patterns] of Object.entries(targetConceptChecks)) {
   for (const language of supportedLanguageCodes) {
