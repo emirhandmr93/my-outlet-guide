@@ -63,6 +63,52 @@ const keysForGuide = (countryId: string) => {
 const guideKeys = expected.flatMap(keysForGuide);
 const sharedKeys = ["nav.taxFreeGuide", "savings.taxGuideTitle", "savings.taxGuideDescription", "savings.taxGuideBadge", "savings.taxGuideHighlight", "taxGuide.countryStatus", "taxGuide.status.available", "taxGuide.status.limited", "taxGuide.status.not_available", "taxGuide.notYetAvailable", "taxGuide.quickFact.vatRate", "taxGuide.quickFact.minimumPurchase", "taxGuide.quickFact.estimatedRefund", "taxGuide.eligibility", "taxGuide.requiredDocuments", "taxGuide.numberedProcess", "taxGuide.process.before_shopping", "taxGuide.process.in_store", "taxGuide.process.before_departure", "taxGuide.process.customs_validation", "taxGuide.process.receive_refund", "taxGuide.refundMethods", "taxGuide.deadlinesWarnings", "taxGuide.estimateDisclaimerTitle", "taxGuide.estimateDisclaimer", "taxGuide.openCalculator", "taxGuide.officialSources", "taxGuide.verifiedAt", "taxGuide.openSource", "taxGuide.lastVerified", "taxGuide.sourceTopic.scheme_minimum", "taxGuide.sourceTopic.customs_validation", "taxGuide.sourceTopic.vat_rate", "taxGuide.sourceTopic.refund_process", "taxGuide.sourceTopic.goods_conditions"];
 const requiredGuideKeys = [...sharedKeys, ...guideKeys];
+
+const newGuideCountries = ["portugal", "austria", "netherlands", "belgium", "switzerland"] as const;
+const newGuideKeySet = new Set(newGuideCountries.flatMap(keysForGuide));
+const newGuideKeys = [...newGuideKeySet];
+const forbiddenNonEnglishFragments = [
+  /Tax Free applies/i,
+  /Passport or accepted/i,
+  /Keep documents ready/i,
+  /Keep the documents available/i,
+  /The minimum purchase requirement/i,
+  /departure preparation/i,
+  /Before departure/i,
+  /shared rule layer/i,
+  /official source data/i,
+  /visible refund/i,
+  /before fees/i,
+  /customs confirms export/i,
+];
+const forbiddenInternalIdPattern = /\b(portugal|austria|netherlands|belgium|switzerland)\b/;
+const forbiddenRepeatedBoilerplate = [
+  /Keep documents ready for customs/i,
+  /Belgeleri gümrük için hazır tutun/i,
+  /请备好文件供海关查验/,
+];
+const forbiddenRuleNumberPattern = /(?:€|\bCHF\b|\bEUR\b|\b(?:50|75|125\.01|125,01|300)\b|\b(?:8\.1|8,1|20|21|23)\s*%)/i;
+for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
+  for (const key of newGuideKeys) {
+    const value = translations[language][key] ?? "";
+    for (const pattern of forbiddenNonEnglishFragments) assert(!pattern.test(value), `${language} ${key} contains English fallback text: ${value}`);
+    for (const pattern of forbiddenRepeatedBoilerplate) assert(!pattern.test(value), `${language} ${key} contains generated boilerplate: ${value}`);
+    assert(!forbiddenInternalIdPattern.test(value), `${language} ${key} exposes an internal country id: ${value}`);
+    if (!key.includes("source.") && !key.endsWith("vatExplanation") && !key.endsWith("estimatedRefundExplanation")) assert(!/^[A-Z][a-z]+: [A-Z][a-z]+:/.test(value), `${language} ${key} has a generated prefix pattern`);
+  }
+}
+for (const key of newGuideKeys) {
+  const value = translations.en[key] ?? "";
+  assert(!forbiddenInternalIdPattern.test(value), `en ${key} exposes an internal country id: ${value}`);
+  assert(!/departure preparation/i.test(value), `en ${key} contains generated deadline suffix`);
+}
+for (const language of supportedLanguageCodes) for (const key of newGuideKeys) {
+  const value = translations[language][key] ?? "";
+  assert(!forbiddenRuleNumberPattern.test(value), `${language} ${key} hardcodes a rule amount or VAT value: ${value}`);
+}
+const translationSource = readFileSync("src/translations/translations.ts", "utf8");
+const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:portugal|austria|netherlands|belgium|switzerland)\.[^"]+)"\s*:/g)].map((match) => match[1]);
+for (const key of declaredNewGuideKeys) assert(newGuideKeySet.has(key), `new guide translation key is unused by taxFreeGuides: ${key}`);
 const valuesFor = (language: TranslationLanguage, keys: string[]) => keys.map((key) => translations[language][key]?.trim() ?? "");
 const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => assert.equal(new Set(valuesFor(language, keys)).size, keys.length, `${language}: ${message}`);
 const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /[\u0600-\u06FF]/, ru: /[А-Яа-яЁё]/, zh: /[\u4E00-\u9FFF]/ };
