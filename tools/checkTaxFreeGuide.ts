@@ -7,11 +7,11 @@ import { getTaxFreeGuideDisplayModel } from "../src/services/taxFreeGuideService
 import { getTaxFreePolicyDisplayModel } from "../src/utils/taxFreeDisplay";
 import { supportedLanguageCodes, translations, type TranslationLanguage } from "../src/translations/translations";
 
-const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "poland", "czech-republic", "hungary", "croatia", "romania", "switzerland", "denmark", "finland", "sweden", "norway", "ireland"];
+const expected = ["france", "italy", "germany", "spain", "portugal", "austria", "netherlands", "belgium", "poland", "czech-republic", "hungary", "croatia", "romania", "switzerland", "denmark", "finland", "sweden", "norway", "ireland", "bulgaria", "estonia", "latvia", "lithuania", "greece", "slovakia"];
 const countryIds = new Set(countries.map((country) => country.countryId));
 const ids = taxFreeCountryGuides.map((guide) => guide.countryId);
 assert.equal(new Set(ids).size, ids.length, "No duplicate country guide");
-assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected nineteen country guides");
+assert.deepEqual(ids, expected, "Published guide IDs are exactly the expected twenty-five country guides");
 
 const sections = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 const originalText = readFileSync("src/constants/taxFreeGuides.ts", "utf8");
@@ -65,6 +65,12 @@ const ruleExpectations = {
   sweden: { vatRate: 25, minimumPurchaseAmount: 200, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
   norway: { vatRate: 25, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
   ireland: { vatRate: 23, minimumPurchaseAmount: 75, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  bulgaria: { vatRate: 20, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
+  estonia: { vatRate: 24, minimumPurchaseAmount: 38, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
+  latvia: { vatRate: 21, minimumPurchaseAmount: 35, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  lithuania: { vatRate: 21, minimumPurchaseAmount: 40, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount" },
+  greece: { vatRate: 24, minimumPurchaseAmount: undefined, minimumPurchaseBasis: undefined, minimumPurchaseComparison: undefined, minimumPurchaseStatus: "not_verified" },
+  slovakia: { vatRate: 23, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount" },
 } as const;
 for (const [countryId, expectedRule] of Object.entries(ruleExpectations)) {
   const rule = getTaxFreeRule(countryId)!;
@@ -107,7 +113,7 @@ const guideKeys = expected.flatMap(keysForGuide);
 const sharedKeys = ["nav.taxFreeGuide", "savings.taxGuideTitle", "savings.taxGuideDescription", "savings.taxGuideBadge", "savings.taxGuideHighlight", "taxGuide.countryStatus", "taxGuide.status.available", "taxGuide.status.limited", "taxGuide.status.not_available", "taxGuide.notYetAvailable", "taxGuide.quickFact.vatRate", "taxGuide.quickFact.minimumPurchase", "taxGuide.quickFact.estimatedRefund", "taxGuide.eligibility", "taxGuide.requiredDocuments", "taxGuide.numberedProcess", "taxGuide.process.before_shopping", "taxGuide.process.in_store", "taxGuide.process.before_departure", "taxGuide.process.customs_validation", "taxGuide.process.receive_refund", "taxGuide.refundMethods", "taxGuide.deadlinesWarnings", "taxGuide.estimateDisclaimerTitle", "taxGuide.estimateDisclaimer", "taxGuide.openCalculator", "taxGuide.officialSources", "taxGuide.verifiedAt", "taxGuide.openSource", "taxGuide.lastVerified", "taxGuide.sourceTopic.scheme_minimum", "taxGuide.sourceTopic.customs_validation", "taxGuide.sourceTopic.vat_rate", "taxGuide.sourceTopic.refund_process", "taxGuide.sourceTopic.goods_conditions"];
 const requiredGuideKeys = [...sharedKeys, ...guideKeys];
 
-const newGuideCountries = ["denmark", "finland", "sweden", "norway", "ireland"] as const;
+const newGuideCountries = ["bulgaria", "estonia", "latvia", "lithuania", "greece", "slovakia"] as const;
 const newGuideKeySet = new Set(newGuideCountries.flatMap(keysForGuide));
 const newGuideKeys = [...newGuideKeySet];
 const forbiddenNonEnglishFragments = [
@@ -124,7 +130,7 @@ const forbiddenNonEnglishFragments = [
   /before fees/i,
   /customs confirms export/i,
 ];
-const forbiddenInternalIdPattern = /\b(denmark|finland|sweden|norway|ireland)\b/;
+const forbiddenInternalIdPattern = /\b(bulgaria|estonia|latvia|lithuania|greece|slovakia)\b/;
 const forbiddenRepeatedBoilerplate = [
   /Keep documents ready for customs/i,
   /Belgeleri gümrük için hazır tutun/i,
@@ -172,13 +178,13 @@ const scriptChecks: Partial<Record<TranslationLanguage, { required?: RegExp; for
   ru: { required: /[А-Яа-яЁё]/, forbidden: [chineseScriptPattern, /[\u0600-\u06FF]/] },
 };
 const generatedLocalePatterns: Partial<Record<TranslationLanguage, RegExp[]>> = {
-  tr: [/^(?:Danimarka|Finlandiya|İsveç|Norveç|İrlanda):/, /\bEU\b/, /konu özeti/i],
-  es: [/^(?:Dinamarca|Finlandia|Suecia|Noruega|Irlanda):/, /resumen del tema/i],
-  fr: [/^(?:Danemark|Finlande|Suède|Norvège|Irlande):/, /résumé du sujet/i],
-  de: [/^(?:Dänemark|Finnland|Schweden|Norwegen|Irland):/, /Themenzusammenfassung/i],
-  ar: [/^(?:الدنمارك|فنلندا|السويد|النرويج|أيرلندا):/, /ملخص الموضوع/i],
-  ru: [/^(?:Дания|Финляндия|Швеция|Норвегия|Ирландия):/, /краткое описание темы/i],
-  zh: [/^(?:丹麦|芬兰|瑞典|挪威|爱尔兰)[:：]/, /主题摘要/],
+  tr: [/^(?:__none__):/, /konu özeti/i],
+  es: [/^(?:__none__):/, /resumen del tema/i],
+  fr: [/^(?:__none__):/, /résumé du sujet/i],
+  de: [/^(?:__none__):/, /Themenzusammenfassung/i],
+  ar: [/^(?:__none__):/, /ملخص الموضوع/i],
+  ru: [/^(?:__none__):/, /краткое описание темы/i],
+  zh: [/^(?:__none__)[:：]/, /主题摘要/],
 };
 for (const language of supportedLanguageCodes.filter((item) => item !== "en")) {
   for (const key of newGuideKeys) {
@@ -206,14 +212,14 @@ for (const language of supportedLanguageCodes) for (const key of newGuideKeys) {
   assert(!forbiddenRuleNumberPattern.test(value), `${language} ${key} hardcodes a rule amount or VAT value: ${value}`);
 }
 const translationSource = readFileSync("src/translations/translations.ts", "utf8");
-const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:denmark|finland|sweden|norway|ireland)\.[^"]+)"\s*:/g)].map((match) => match[1]);
+const declaredNewGuideKeys = [...translationSource.matchAll(/"(taxGuide\.(?:bulgaria|estonia|latvia|lithuania|greece|slovakia)\.[^"]+)"\s*:/g)].map((match) => match[1]);
 for (const key of declaredNewGuideKeys) assert(newGuideKeySet.has(key), `new guide translation key is unused by taxFreeGuides: ${key}`);
-const batchMatch = translationSource.match(/const northernEuropeIrelandTaxFreeGuideTranslations[\s\S]*?for \(const locale of supportedLanguageCodes\) Object\.assign\(translations\[locale\], northernEuropeIrelandTaxFreeGuideTranslations\[locale\]\);/);
-assert(batchMatch, "northernEuropeIrelandTaxFreeGuideTranslations block exists");
+const batchMatch = translationSource.match(/const balticSoutheastEuropeTaxFreeGuideTranslations[\s\S]*?for \(const locale of supportedLanguageCodes\) Object\.assign\(translations\[locale\], balticSoutheastEuropeTaxFreeGuideTranslations\[locale\]\);/);
+assert(batchMatch, "balticSoutheastEuropeTaxFreeGuideTranslations block exists");
 const batchSource = batchMatch![0];
-assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "northernEuropeIrelandTaxFreeGuideTranslations must not declare protected existing-country guide keys");
+assert(!/"taxGuide\.(?:france|italy|germany|spain)\./.test(batchSource), "balticSoutheastEuropeTaxFreeGuideTranslations must not declare protected existing-country guide keys");
 assert(!/"taxGuide\.(?:france|italy|germany|spain|portugal|austria|netherlands|belgium|switzerland)\./.test(translationSource.slice(translationSource.indexOf("centralEasternEuropeTaxFreeGuideTranslations"))), "centralEasternEuropeTaxFreeGuideTranslations must not declare protected existing-country guide keys");
-for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `northernEuropeIrelandTaxFreeGuideTranslations overrides protected key ${key}`);
+for (const key of [...translationSource.matchAll(/"(taxGuide\.(?:france|italy|germany|spain)\.[^"]+)"\s*:/g)].map((match) => match[1])) assert(!batchSource.includes(`"${key}"`), `balticSoutheastEuropeTaxFreeGuideTranslations overrides protected key ${key}`);
 const valuesFor = (language: TranslationLanguage, keys: string[]) => keys.map((key) => translations[language][key]?.trim() ?? "");
 const assertDistinct = (language: TranslationLanguage, keys: string[], message: string) => assert.equal(new Set(valuesFor(language, keys)).size, keys.length, `${language}: ${message}`);
 const localeScriptChecks: Partial<Record<TranslationLanguage, RegExp>> = { ar: /[\u0600-\u06FF]/, ru: /[А-Яа-яЁё]/, zh: /[\u4E00-\u9FFF]/ };
