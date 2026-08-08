@@ -34,6 +34,7 @@ import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
 import { outlets } from "../constants/outlets";
 import { brands } from "../constants/brands";
+import { outletBrands } from "../constants/outletBrands";
 import { CountryFlag } from "../components/CountryFlag";
 import { useTranslation } from "../hooks/useTranslation";
 import { useLayoutDirection } from "../hooks/useLayoutDirection";
@@ -48,6 +49,7 @@ import { heroAssets } from "../media/heroAssets";
 import { getPopularCityImage } from "../media/imageResolvers";
 import { loadRecentVisits, type RecentVisit } from "../services/recentVisitsService";
 import { trackWebEvent } from "../utils/webAnalytics";
+import { isWebSeoPublicOutlet } from "../constants/webSeo";
 
 type ExploreFilter = "country" | "city" | "outlet";
 type ResolvedRecentVisit = RecentVisit & { label: string };
@@ -77,6 +79,7 @@ const preferredCityOrder = [
 function outletCount(countryId?: string, cityId?: string) {
   return outlets.filter(
     (o) =>
+      (Platform.OS !== "web" || isWebSeoPublicOutlet(o)) &&
       (!countryId || o.countryId === countryId) &&
       (!cityId || o.cityId === cityId),
   ).length;
@@ -200,6 +203,12 @@ export function ExploreScreen() {
   const [countryFilter, setCountryFilter] = useState<string | null>(null);
   const [cityFilter, setCityFilter] = useState<string | null>(null);
   const [recentVisits, setRecentVisits] = useState<RecentVisit[]>([]);
+  const visibleOutlets = useMemo(
+    () => outlets.filter((outlet) => Platform.OS !== "web" || isWebSeoPublicOutlet(outlet)),
+    [],
+  );
+  const visibleOutletIds = useMemo(() => new Set(visibleOutlets.map((outlet) => outlet.outletId)), [visibleOutlets]);
+  const visibleBrandIds = useMemo(() => new Set(outletBrands.filter((relation) => relation.relationStatus === "active" && visibleOutletIds.has(relation.outletId)).map((relation) => relation.brandId)), [visibleOutletIds]);
 
   useFocusEffect(useCallback(() => {
     let cancelled = false;
@@ -219,12 +228,12 @@ export function ExploreScreen() {
     }
   }, [route.params?.initialQuery, route.params?.initialTab]);
   const availableCountryIds = useMemo(
-    () => Array.from(new Set(outlets.map((o) => o.countryId))),
-    [],
+    () => Array.from(new Set(visibleOutlets.map((o) => o.countryId))),
+    [visibleOutlets],
   );
   const availableCityIds = useMemo(
-    () => Array.from(new Set(outlets.map((o) => o.cityId))),
-    [],
+    () => Array.from(new Set(visibleOutlets.map((o) => o.cityId))),
+    [visibleOutlets],
   );
   const availableCountries = useMemo(
     () =>
@@ -252,12 +261,12 @@ export function ExploreScreen() {
       );
   }, [availableCityIds, language]);
   const resolvedRecentVisits = useMemo<ResolvedRecentVisit[]>(() => recentVisits.flatMap((visit) => {
-    if (visit.type === "country") { const country = countries.find((item) => item.countryId === visit.id); return country ? [{ ...visit, label: formatCountryDisplayName(country.countryId, language) }] : []; }
-    if (visit.type === "city") { const city = cities.find((item) => item.cityId === visit.id); return city ? [{ ...visit, label: formatCityDisplayName(city.cityId, language) }] : []; }
-    if (visit.type === "outlet") { const outlet = outlets.find((item) => item.outletId === visit.id); return outlet ? [{ ...visit, label: outlet.name }] : []; }
+    if (visit.type === "country") { const country = availableCountries.find((item) => item.countryId === visit.id); return country ? [{ ...visit, label: formatCountryDisplayName(country.countryId, language) }] : []; }
+    if (visit.type === "city") { const city = availableCities.find((item) => item.cityId === visit.id); return city ? [{ ...visit, label: formatCityDisplayName(city.cityId, language) }] : []; }
+    if (visit.type === "outlet") { const outlet = visibleOutlets.find((item) => item.outletId === visit.id); return outlet ? [{ ...visit, label: outlet.name }] : []; }
     const brand = brands.find((item) => item.brandId === visit.id);
-    return brand ? [{ ...visit, label: brand.brandName }] : [];
-  }), [language, recentVisits]);
+    return brand && (Platform.OS !== "web" || visibleBrandIds.has(brand.brandId)) ? [{ ...visit, label: brand.brandName }] : [];
+  }), [availableCities, availableCountries, language, recentVisits, visibleBrandIds, visibleOutlets]);
   function openRecentVisit(visit: ResolvedRecentVisit) {
     if (visit.type === "country") navigation.navigate("Country", { countryId: visit.id });
     else if (visit.type === "city") navigation.navigate("CityResults", { cityId: visit.id });
@@ -265,8 +274,12 @@ export function ExploreScreen() {
     else navigation.navigate("BrandResults", { brandId: visit.id, mode: "chooseCountry" });
   }
   const suggestions = useMemo(
-    () => getExploreVisibleSearchResults(search, activeTab ? [activeTab] : []),
-    [search, activeTab],
+    () => getExploreVisibleSearchResults(search, activeTab ? [activeTab] : []).filter(
+      (item) => item.type !== "outlet" || visibleOutlets.some((outlet) => outlet.outletId === item.id),
+    ).filter(
+      (item) => item.type !== "brand" || Platform.OS !== "web" || visibleBrandIds.has(item.id),
+    ),
+    [search, activeTab, visibleBrandIds, visibleOutlets],
   );
   const q = search.trim();
   const filteredCountries = availableCountries.filter(
@@ -292,6 +305,7 @@ export function ExploreScreen() {
     () =>
       searchOutlets(outletQuery).filter(
         (o) =>
+          (Platform.OS !== "web" || isWebSeoPublicOutlet(o)) &&
           (!countryFilter || o.countryId === countryFilter) &&
           (!cityFilter || o.cityId === cityFilter),
       ),

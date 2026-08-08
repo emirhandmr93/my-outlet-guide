@@ -32,6 +32,7 @@ import { formatRating } from "../services/reviewsRatingsService";
 import { requireAuth } from "../utils/requireAuth";
 import { recordRecentVisit } from "../services/recentVisitsService";
 import { cities } from "../constants/cities";
+import { isWebSeoPublicOutlet } from "../constants/webSeo";
 
 type RouteParams = {
   CityResults: {
@@ -175,7 +176,9 @@ export function CityResultsScreen() {
 
   const cityId = route.params?.cityId || "paris";
   const cityName = formatCityDisplayName(cityId, language) || cityNames[cityId] || cityId;
-  const cityOutlets = outlets.filter((outlet) => outlet.cityId === cityId);
+  const cityOutlets = outlets.filter((outlet) =>
+    outlet.cityId === cityId && (Platform.OS !== "web" || isWebSeoPublicOutlet(outlet))
+  );
   const visitedCity = cities.find((item) => item.cityId === route.params?.cityId);
 
   useEffect(() => {
