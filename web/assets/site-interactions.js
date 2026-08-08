@@ -2,6 +2,8 @@
   const doc = document;
   const body = doc.body;
   const normalize = (value) => String(value || "").toLocaleLowerCase("tr-TR").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ı/g, "i");
+  const mobileStore = /android/i.test(navigator.userAgent) ? "android" : /iPad|iPhone|iPod/i.test(navigator.userAgent) || (/Macintosh/i.test(navigator.userAgent) && navigator.maxTouchPoints > 1) ? "ios" : "";
+  if (mobileStore) doc.documentElement.dataset.mobileStore = mobileStore;
   const labels = { outlet: "OUTLET", city: "ŞEHİR", country: "ÜLKE", brand: "MARKA" };
   let index = [];
   let activeTypes = new Set();

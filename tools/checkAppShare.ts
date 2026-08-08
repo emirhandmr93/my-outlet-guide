@@ -5,6 +5,7 @@ import {
   appStoreDownloadUrl,
   appStoreId,
   httpsReviewFallbackUrl,
+  googlePlayDownloadUrl,
   nativeIosReviewUrl,
 } from "../src/constants/appLinks";
 import {
@@ -19,6 +20,7 @@ import {
 
 const expectedAppStoreId = "6791893523";
 const expectedAppStoreUrl = "https://apps.apple.com/app/id6791893523";
+const expectedGooglePlayUrl = "https://play.google.com/store/apps/details?id=com.myoutletguide.app";
 const platforms = ["ios", "android", "web"] as const;
 const homeSource = readFileSync("src/screens/HomeScreen.tsx", "utf8");
 const appLinksSource = readFileSync("src/constants/appLinks.ts", "utf8");
@@ -80,7 +82,8 @@ record(translationUrlContamination.length === 0, "Localized messages contain the
 record(missingLocalizedMessages.length === 0, "Localized share messages are missing or raw keys");
 record(duplicateUrls.length === 0, "Share messages contain duplicate App Store URLs");
 record(messageOnlyDeliveryFailures.length === 0, "Message-only consumers miss the App Store URL");
-record(googlePlayMatches.length === 0, "Google Play URL or placeholder found");
+record(googlePlayDownloadUrl === expectedGooglePlayUrl, `Unexpected Google Play URL: ${googlePlayDownloadUrl}`);
+record(googlePlayMatches.length > 0, "Google Play download destination is missing");
 
 record(homeSource.includes('import { getAppSharePayload } from "../utils/appShare";'), "HomeScreen does not import the central helper", homeScreenIntegrationErrors);
 record(homeSource.includes('Share.share(getAppSharePayload(Platform.OS, t("home.shareMessage")))'), "HomeScreen Share.share does not use the central helper", homeScreenIntegrationErrors);

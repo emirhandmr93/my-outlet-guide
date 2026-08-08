@@ -877,8 +877,9 @@ assert(home.includes("home/home-hero-premium.png"), "homepage hero uses home her
 assert(explore.includes("explore/explore-hero-premium.png") && !explore.includes("home/home-hero-premium.png"), "explore hero uses explore asset and not home hero asset");
 
 assert(/<a class="home-primary-cta" href="\/(explore|outlets)\/">Outletleri keşfet/.test(home), "hero primary CTA links to discovery route");
-for (const statusText of ["App Store incelemesi bekleniyor", "Google Play hazırlıkta"])
-  assert(styles.includes(".home-page .home-status-chip { display: none; }"), `hero app status chip is hidden on mobile: ${statusText}`);
+for (const [store, url] of [["ios", "https://apps.apple.com/app/id6791893523"], ["android", "https://play.google.com/store/apps/details?id=com.myoutletguide.app"]] as const)
+  assert(home.includes(`data-store="${store}" href="${url}"`), `hero includes live ${store} download destination`);
+assert(siteJs.includes("mobileStore") && styles.includes('html[data-mobile-store="android"] [data-store="ios"]'), "mobile store links are platform-aware");
 for (const [label, href] of [["Ana Sayfa", "/"], ["Keşfet", "/explore/"], ["Outletler", "/outlets/"], ["Tax Free", "/tax-free/"], ["Seyahat Planı", "/trip-planner/"], ["Uçuş Uyarıları", "/flight-deals/"], ["Uygulama", "/app/"]] as const)
   assert(home.includes(`<a href="${href}">${label}</a>`) || home.includes(`<a class="is-active" href="${href}" aria-current="page">${label}</a>`), `homepage top nav links ${label} to ${href}`);
 for (const [label, href] of [["Outletleri keşfet", "/explore/"], ["Outlet seyahatini planla", "/trip-planner/"], ["Tasarruf araçları", "/savings/"], ["Çevrimdışı rehber", "/offline-guide/"]] as const)
