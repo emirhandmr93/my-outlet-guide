@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
@@ -24,10 +24,12 @@ import {
 } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
+import { trackWebEvent } from "../utils/webAnalytics";
 
 
 export function TaxFreeCalculatorScreen() {
   const [amount, setAmount] = useState("");
+  const lastTrackedCalculation = useRef("");
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
 
@@ -70,6 +72,17 @@ export function TaxFreeCalculatorScreen() {
   const [convertedRefund, setConvertedRefund] = useState<number | null>(null);
   const [convertedCostAfterRefund, setConvertedCostAfterRefund] = useState<number | null>(null);
   const [conversionUnavailable, setConversionUnavailable] = useState(false);
+
+  useEffect(() => {
+    if (!numericPlan || estimateRefund === undefined || estimateCost === undefined || !rule) return;
+    const calculationKey = `${selectedCountryId}:${selectedCurrency}:${amount.trim()}`;
+    if (lastTrackedCalculation.current === calculationKey) return;
+    lastTrackedCalculation.current = calculationKey;
+    trackWebEvent("tax_free_calculator_use", {
+      country_id: selectedCountryId,
+      currency: selectedCurrency,
+    });
+  }, [amount, estimateCost, estimateRefund, numericPlan, rule, selectedCountryId, selectedCurrency]);
 
   useEffect(() => {
     let active = true;
