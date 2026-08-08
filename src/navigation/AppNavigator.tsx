@@ -59,6 +59,7 @@ import type { MainTabParamList, RootStackParamList } from "./types";
 import { useNavigationFonts } from "./useNavigationFonts";
 import { createWebLinking } from "./webLinking";
 import { syncWebSeo } from "../utils/webSeo";
+import { trackWebPageView } from "../utils/webAnalytics";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -323,6 +324,7 @@ if (Platform.OS !== "web" || !navigationRef.isReady()) return;
 const path = createWebLinking(language).getPathFromState?.(navigationRef.getRootState()) ?? `/${language}`;
 if (`${window.location.pathname}${window.location.search}` !== path) window.history.replaceState(window.history.state, "", path);
 syncWebSeo(language, path);
+trackWebPageView(path, document.title);
 }
 
 function handleNavigationReady() {
