@@ -16,6 +16,7 @@ function matches(html:string, pattern:RegExp) { return [...html.matchAll(pattern
 function fileFor(route:string) { return join(DIST,`${route}.html`); }
 async function exists(path:string) { try { await access(path); return true; } catch { return false; } }
 async function htmlFiles(directory:string):Promise<string[]> { const result:string[]=[]; for (const entry of await readdir(directory,{withFileTypes:true})) { const path=join(directory,entry.name); if (entry.isDirectory()) result.push(...await htmlFiles(path)); else if (entry.isFile()&&entry.name.endsWith(".html")) result.push(path); } return result; }
+async function filesNamed(directory:string, name:string):Promise<string[]> { const result:string[]=[]; for (const entry of await readdir(directory,{withFileTypes:true})) { const path=join(directory,entry.name); if (entry.isDirectory()) result.push(...await filesNamed(path,name)); else if (entry.isFile()&&entry.name===name) result.push(path); } return result; }
 
 async function check() {
   assert(new Set(WEB_SEO_LANGUAGES).size===8 && WEB_SEO_LANGUAGES.every(language => supportedLanguageCodes.includes(language)),"SEO languages must be the eight supported languages.");
@@ -65,7 +66,11 @@ async function check() {
   const diskIndexUrls:string[]=[]; for (const language of WEB_SEO_LANGUAGES) for (const file of [fileFor(language),...await htmlFiles(join(DIST,language))]) { const html=await readFile(file,"utf8"); if (/name="robots" content="index,follow"/.test(html)) { const route=relative(DIST,file).split(sep).join("/").replace(/\.html$/,""); diskIndexUrls.push(`${WEB_SEO_ORIGIN}/${route}`); } }
   assert(diskIndexUrls.length===actual.length&&diskIndexUrls.every(url=>actual.includes(url))&&actual.every(url=>diskIndexUrls.includes(url)),"Sitemap and localized index HTML files differ; stale or unexpected HTML remains.");
   assert(actual.every(url=>url.startsWith(`${WEB_SEO_ORIGIN}/`)&&!/[?#]/.test(url)&&!url.endsWith("/")),"Invalid sitemap URL");
-  const robots=await readFile(join(DIST,"robots.txt"),"utf8"); assert(robots===`User-agent: *\nAllow: /\n\nSitemap: ${WEB_SEO_ORIGIN}/sitemap.xml\n`,"robots.txt mismatch");
+  const robotsFiles=await filesNamed(DIST,"robots.txt"); assert(robotsFiles.length===1&&robotsFiles[0]===join(DIST,"robots.txt"),"Expected exactly one robots.txt at the deployment root");
+  const robots=await readFile(robotsFiles[0],"utf8");
+  assert(robots===`User-agent: *\nAllow: /\n\nSitemap: ${WEB_SEO_ORIGIN}/sitemap.xml\n`,"robots.txt must allow public routes and reference the canonical sitemap");
+  assert(!/^\s*Disallow:\s*\/?(?:\s*(?:#.*)?)?$/im.test(robots),"robots.txt must not block all crawling");
+  assert(WEB_SEO_LANGUAGES.every(language=>!new RegExp(`^\\s*Disallow:\\s*/${language}(?:/|\\s|$)`,`im`).test(robots)),"robots.txt must not block localized public routes");
   const counts=Object.fromEntries(["home","explore","savings","smart","price","tax","privacy","terms","contact","help","outlet","brand","country","city","transportation"].map(kind=>[kind,pages.filter(page=>page.kind===kind).length]));
   console.log(`checkWebSeo: ${actual.length} URLs validated (${pages.length} per language).`); console.log(`checkWebSeo categories: ${JSON.stringify(counts)}`); console.log(`checkWebSeo exclusions: ${EXPECTED_UNPUBLISHED_IDS.length}/${EXPECTED_UNPUBLISHED_IDS.length} unpublished outlets absent.`);
 }
