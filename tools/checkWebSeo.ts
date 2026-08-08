@@ -44,6 +44,8 @@ async function check() {
   const root=await readFile(join(DIST,"index.html"),"utf8"); assert(matches(root,/<meta\s+name="robots"\s+content="([^"]+)"/g)[0]==="noindex,follow","Root shell must be noindex,follow."); assert(!/rel="canonical"/.test(root),"Root shell must not have a canonical.");
   const baseAssets=matches(root,/(?:src|href)="([^"]+\.(?:js|css)[^"]*)"/g);
   assert(baseAssets.length>0,"Expo base HTML must contain at least one JS or CSS asset reference.");
+  const javascript=(await Promise.all(baseAssets.filter(asset=>/\.js(?:\?|$)/.test(asset)).map(asset=>readFile(join(DIST,asset.replace(/^\//,"").replace(/\?.*$/, "")),"utf8")))).join("\n");
+  assert(javascript.includes("G-E5LLLD6ZM8")&&javascript.includes("googletagmanager.com/gtag/js")&&javascript.includes("send_page_view"),"Production bundle is missing the GA4 bootstrap/configuration.");
   for (const language of WEB_SEO_LANGUAGES) for (const page of pages) {
     const route=`${language}${page.path ? `/${page.path}`:""}`; const url=`${WEB_SEO_ORIGIN}/${route}`; expected.push(url);
     const html=await readFile(fileFor(route),"utf8");
