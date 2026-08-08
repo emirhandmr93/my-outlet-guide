@@ -634,10 +634,10 @@ export function HomeScreen() {
               offset: carouselWidth * index,
               index,
             })}
-            initialNumToRender={5}
-            maxToRenderPerBatch={5}
-            windowSize={5}
-            removeClippedSubviews={false}
+            initialNumToRender={Platform.OS === "web" ? 1 : 5}
+            maxToRenderPerBatch={Platform.OS === "web" ? 1 : 5}
+            windowSize={Platform.OS === "web" ? 3 : 5}
+            removeClippedSubviews={Platform.OS === "web"}
             renderItem={({ item: slide }) => (
               <TouchableOpacity
                 activeOpacity={0.9}
@@ -742,10 +742,10 @@ export function HomeScreen() {
               offset: recommendedSnapInterval * index,
               index,
             })}
-            initialNumToRender={5}
-            maxToRenderPerBatch={5}
-            windowSize={5}
-            removeClippedSubviews={false}
+            initialNumToRender={Platform.OS === "web" ? 2 : 5}
+            maxToRenderPerBatch={Platform.OS === "web" ? 2 : 5}
+            windowSize={Platform.OS === "web" ? 3 : 5}
+            removeClippedSubviews={Platform.OS === "web"}
             renderItem={({ item: outlet }) => {
               const imageSource = getOutletCardImageSource(outlet.id);
 
