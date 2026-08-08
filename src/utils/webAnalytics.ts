@@ -23,16 +23,20 @@ function initializeWebAnalytics() {
 
   initialized = true;
   window.dataLayer = window.dataLayer ?? [];
-  window.gtag = window.gtag ?? function gtag(...args: unknown[]) { window.dataLayer?.push(args); } as Gtag;
-  window.gtag("js", new Date());
-  window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
+  window.gtag = window.gtag ?? function gtag() {
+    // gtag.js expects each queued command to be the function's Arguments object.
+    window.dataLayer?.push(arguments);
+  } as Gtag;
 
-  if (!document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"]`)) {
+  if (!document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
     const script = document.createElement("script");
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
     document.head.appendChild(script);
   }
+
+  window.gtag("js", new Date());
+  window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
   return true;
 }
 
