@@ -47,6 +47,7 @@ import type { TranslationLanguage } from "../translations/translations";
 import { heroAssets } from "../media/heroAssets";
 import { getPopularCityImage } from "../media/imageResolvers";
 import { loadRecentVisits, type RecentVisit } from "../services/recentVisitsService";
+import { trackWebEvent } from "../utils/webAnalytics";
 
 type ExploreFilter = "country" | "city" | "outlet";
 type ResolvedRecentVisit = RecentVisit & { label: string };
@@ -319,6 +320,16 @@ export function ExploreScreen() {
       navigation.navigate("Country", { countryId: item.id });
     else navigation.navigate("OutletDetail", { outletId: item.id });
   }
+  function submitSearch(query = search) {
+    const normalizedQuery = query.trim();
+    if (!normalizedQuery) return;
+    const results = getExploreVisibleSearchResults(normalizedQuery);
+    trackWebEvent("outlet_search", {
+      search_scope: "all",
+      result_count: results.length,
+    });
+    setSearch(normalizedQuery);
+  }
   function setTab(tab: ExploreFilter) {
     setActiveTab(activeTab === tab ? null : tab);
     setSearch("");
@@ -385,6 +396,7 @@ export function ExploreScreen() {
               returnKeyType="search"
               autoCorrect={false}
               autoCapitalize="none"
+              onSubmitEditing={() => submitSearch()}
             />
             {search ? (
               <TouchableOpacity onPress={() => setSearch("")}>
@@ -455,7 +467,7 @@ export function ExploreScreen() {
           <DefaultHub
             t={t}
             setTab={setActiveTab}
-            runSearch={setSearch}
+            runSearch={submitSearch}
             cities={compactCities}
             navigation={navigation}
             language={language}

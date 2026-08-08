@@ -53,6 +53,7 @@ import {
   getScrollIndicatorBottomInset,
 } from "../utils/safeAreaLayout";
 import { formatIsoDateOnly } from "../utils/dateOnly";
+import { trackWebEvent } from "../utils/webAnalytics";
 
 type PickerMode = "origin" | "destination" | null;
 type FlightDealSelectorFilter = "popular" | FlightDealAirportRegion;
@@ -142,10 +143,11 @@ export function FlightDealsScreen() {
 
   async function handleSaveAlert() {
     if (isSavingAlert) return;
+    const isCreatingAlert = !editingAlertId;
     setIsSavingAlert(true); setSaveFeedback(null);
     const result = await submitRollingRouteFlightDealAlert({ providerEnabled: FLIGHT_DEALS_PROVIDER_ENABLED, userId: currentUser?.uid, origin: selectedOrigin, destination: selectedDestination, thresholds: selectedThresholds, tripType, tripClass, directOnly, previousAlertId: editingAlertId, active: editingAlertId ? savedAlerts.find(item => item.schemaVersion === 3 && item.alertId === editingAlertId)?.active : true, save: saveRollingRouteFlightDealAlert });
     setIsSavingAlert(false);
-    if (result.status === "saved" || result.status === "saved_pending_provider") { const pending = result.status === "saved_pending_provider"; const title = editingAlertId ? t("flightDeals.updatedTitle") : pending ? t("flightDeals.savedPendingTitle") : t("flightDeals.saveSuccessTitle"); const message = editingAlertId ? t("flightDeals.updatedBody") : pending ? t("flightDeals.savedPendingBody") : t("flightDeals.saveSuccess"); setSaveFeedback(message); Alert.alert(title, message); resetForm(); await loadAlerts(); return; }
+    if (result.status === "saved" || result.status === "saved_pending_provider") { const pending = result.status === "saved_pending_provider"; const title = editingAlertId ? t("flightDeals.updatedTitle") : pending ? t("flightDeals.savedPendingTitle") : t("flightDeals.saveSuccessTitle"); const message = editingAlertId ? t("flightDeals.updatedBody") : pending ? t("flightDeals.savedPendingBody") : t("flightDeals.saveSuccess"); if (isCreatingAlert && selectedOrigin && selectedDestination) trackWebEvent("flight_alert_create", { origin_airport: selectedOrigin.airportCode, destination_airport: selectedDestination.airportCode, trip_type: tripType, cabin: tripClass, discount_threshold: selectedThresholds.join(","), direct_only: directOnly }); setSaveFeedback(message); Alert.alert(title, message); resetForm(); await loadAlerts(); return; }
     if (result.status === "sign_in_required") { setSaveFeedback(t("flightDeals.signInRequired")); navigation.navigate("Login"); return; }
     const key: Record<string, string> = { origin_required: "originRequired", destination_required: "destinationRequired", same_airport_error: "sameAirportError", trip_type_error: "tripTypeError", trip_class_error: "tripClassError", direct_only_error: "directOnlyError", threshold_required: "thresholdRequired", save_failed: "saveFailed" };
     const message = t(`flightDeals.${key[result.status] ?? result.status}`); setSaveFeedback(message); Alert.alert(t("flightDeals.saveErrorTitle"), message);

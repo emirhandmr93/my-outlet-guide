@@ -3,6 +3,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import { db } from "../firebase/config";
 import { requestAppRatingIfEligible } from "../services/appRatingPrompt";
+import { trackWebEvent } from "../utils/webAnalytics";
 import { useUser } from "./UserContext";
 
 type FavoritesContextType = {
@@ -117,6 +118,7 @@ const nextFavorites = isRemovingFavorite
 const didSave = await saveFavorites(nextFavorites);
 
 if (didSave && !isRemovingFavorite) {
+trackWebEvent("favorite_outlet", { outlet_id: outletId });
 void requestAppRatingIfEligible(nextFavorites.length);
 }
 }

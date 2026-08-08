@@ -55,6 +55,7 @@ import {
 } from "../utils/locationDisplay";
 import { getRecommendedCarouselLastIndex } from "../utils/recommendedCarousel";
 import { getAppSharePayload } from "../utils/appShare";
+import { trackWebEvent } from "../utils/webAnalytics";
 
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
@@ -484,6 +485,10 @@ export function HomeScreen() {
       return;
     }
 
+    trackWebEvent("outlet_search", {
+      search_scope: "all",
+      result_count: searchApp(normalizedQuery, 40).length,
+    });
     navigation.navigate("Explore", { initialQuery: normalizedQuery });
   }
 
