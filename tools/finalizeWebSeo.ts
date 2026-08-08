@@ -1,9 +1,10 @@
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { getIndexableWebSeoPages, getWebSeoBreadcrumbs, resolveWebSeo, WEB_SEO_LANGUAGES, WEB_SEO_NOINDEX_PATHS, WEB_SEO_ORIGIN, type WebSeoLogicalPage } from "../src/constants/webSeo";
+import { getIndexableWebSeoPages, getWebSeoBreadcrumbs, getWebSeoInternalLinks, resolveWebSeo, WEB_SEO_LANGUAGES, WEB_SEO_NOINDEX_PATHS, WEB_SEO_ORIGIN, type WebSeoLogicalPage } from "../src/constants/webSeo";
 
 const DIST = join(process.cwd(), "dist");
 const GENERATED_MARKER = '<meta name="generator" content="My Outlet Guide web SEO">';
+const FALLBACK_MARKER = "data-web-fallback";
 const managed = /\s*(?:<title>[\s\S]*?<\/title>|<meta\s+name=["'](?:description|robots|generator)["'][^>]*>|<link\s+rel=["'](?:canonical|alternate)["'][^>]*>)\s*/gi;
 export function escapeHtml(value: string) { return value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
 function outputPath(route: string) { return join(DIST, `${route}.html`); }
@@ -22,6 +23,13 @@ function structuredData(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeo
     ...(breadcrumbs.length ? [{"@type":"BreadcrumbList","@id":`${canonical}#breadcrumb`,itemListElement:breadcrumbs.map((item,index)=>({"@type":"ListItem",position:index+1,name:item.name,item:`${WEB_SEO_ORIGIN}/${language}${item.path ? `/${item.path}` : ""}`}))}] : []),
   ]};
 }
+function staticFallback(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeoLogicalPage, title: string, description: string) {
+  const breadcrumbs=getWebSeoBreadcrumbs(page,language);
+  const links=getWebSeoInternalLinks(page,language);
+  const href=(path:string)=>`${WEB_SEO_ORIGIN}/${language}${path ? `/${path}` : ""}`;
+  const breadcrumb=breadcrumbs.length ? `<nav aria-label="Breadcrumb"><ol>${breadcrumbs.map((item,index)=>`<li>${index===breadcrumbs.length-1 ? `<span aria-current="page">${escapeHtml(item.name)}</span>` : `<a href="${href(item.path)}">${escapeHtml(item.name)}</a>`}</li>`).join("")}</ol></nav>` : "";
+  return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>My Outlet Guide requires JavaScript for interactive maps, planning tools, and live application features.</p></main></noscript>`;
+}
 function render(base: string, language: typeof WEB_SEO_LANGUAGES[number], page?: WebSeoLogicalPage) {
   const meta = resolveWebSeo(language, page);
   const social = meta.canonical ? [
@@ -34,7 +42,11 @@ function render(base: string, language: typeof WEB_SEO_LANGUAGES[number], page?:
   ] : [];
   const head = [GENERATED_MARKER,`<title>${escapeHtml(meta.title)}</title>`,`<meta name="description" content="${escapeHtml(meta.description)}">`,`<meta name="robots" content="${meta.robots}">`,...(meta.canonical ? [`<link rel="canonical" href="${escapeHtml(meta.canonical)}">`] : []),...meta.alternates.map(item => `<link rel="alternate" hreflang="${item.language}" href="${escapeHtml(item.href)}">`),...social].join("\n    ");
   const shell=base.replace(managed,"\n").replace(/\s*<\/head>/i,"\n  </head>");
-  return shell.replace(/<html(?:\s[^>]*)?>/i, `<html lang="${language}" dir="${meta.direction}">`).replace(/<\/head>/i, `    ${head}\n  </head>`);
+  const localized= shell.replace(/<html(?:\s[^>]*)?>/i, `<html lang="${language}" dir="${meta.direction}">`).replace(/<\/head>/i, `    ${head}\n  </head>`);
+  if (!page) return localized;
+  // Expo uses createRoot (not hydration) on #root, so fallback content must not be
+  // placed inside that mount. A noscript sibling remains a genuine JS-failure UI.
+  return localized.replace(/(<div\s+id=["']root["'][^>]*>)/i, `${staticFallback(language,page,meta.title,meta.description)}$1`);
 }
 async function writeRoute(route: string, html: string) { const file = outputPath(route); await mkdir(dirname(file), {recursive:true}); await writeFile(file, html); }
 async function copyStaticNoindex(path: string) { const html=await readFile(join(process.cwd(),"public",path,"index.html"),"utf8"); const clean=html.replace(/\s*<meta\s+name=["']robots["'][^>]*>/gi,""); const directory=join(DIST,path); await mkdir(directory,{recursive:true}); await writeFile(join(directory,"index.html"),clean.replace(/<\/head>/i,'    <meta name="robots" content="noindex,follow">\n  </head>')); }

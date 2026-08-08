@@ -46,6 +46,19 @@ const webSeoUnpublishedOutletIds: ReadonlySet<string> = new Set(WEB_SEO_UNPUBLIS
 type WebSeoOutlet = (typeof outlets)[number];
 
 export function isWebSeoPublicOutlet(outlet: WebSeoOutlet) { return outlet.status === "active" && typeof outlet.outletId === "string" && !webSeoUnpublishedOutletIds.has(outlet.outletId); }
+let webSeoBrandAssignments: ReadonlyMap<string, string> | undefined;
+function getWebSeoBrandAssignments(publicOutletIds: ReadonlySet<string>) {
+  if (webSeoBrandAssignments) return webSeoBrandAssignments;
+  const activeRelations=outletBrands.filter((item)=>item.relationStatus==="active"&&publicOutletIds.has(item.outletId));
+  const relationsByBrand=new Map<string,string[]>();
+  for (const relation of activeRelations) relationsByBrand.set(relation.brandId,[...(relationsByBrand.get(relation.brandId)??[]),relation.outletId]);
+  const load=new Map<string,number>(); const assigned=new Map<string,string>();
+  for (const brand of brands.filter((item)=>item.brandStatus==="active")) {
+    const chosen=(relationsByBrand.get(brand.brandId)??[]).sort((a,b)=>(load.get(a)??0)-(load.get(b)??0)||a.localeCompare(b))[0];
+    if (chosen) { assigned.set(brand.brandId,chosen); load.set(chosen,(load.get(chosen)??0)+1); }
+  }
+  webSeoBrandAssignments=assigned; return assigned;
+}
 export function getIndexableWebSeoPages(): WebSeoLogicalPage[] {
   const visible = outlets.filter(isWebSeoPublicOutlet); const outletIds = new Set(visible.map(outlet => outlet.outletId));
   const pages = [...fixedPages];
@@ -57,6 +70,7 @@ export function getIndexableWebSeoPages(): WebSeoLogicalPage[] {
   return pages.sort((a,b) => a.path.localeCompare(b.path));
 }
 export type WebSeoBreadcrumb = { name: string; path: string };
+export type WebSeoInternalLink = { name: string; path: string; relationship: "breadcrumb" | "discovery" | "transportation" | "brand" };
 export function getWebSeoBreadcrumbs(page: WebSeoLogicalPage, language: TranslationLanguage): WebSeoBreadcrumb[] {
   if (!["country","city","outlet","transportation","brand"].includes(page.kind)) return [];
   const result: WebSeoBreadcrumb[] = [
@@ -71,6 +85,51 @@ export function getWebSeoBreadcrumbs(page: WebSeoLogicalPage, language: Translat
   result.push({name:page.entityName!,path:`outlet/${page.outletId}`});
   if (page.kind === "outlet") return result;
   return [...result,{name:translations[language]["transportation.title"],path:page.path}];
+}
+
+/**
+ * The small, deterministic link graph used by the no-JavaScript web fallback.
+ * Every entity is re-derived from the same publication policy as the sitemap.
+ */
+export function getWebSeoInternalLinks(page: WebSeoLogicalPage, language: TranslationLanguage): WebSeoInternalLink[] {
+  const publicOutlets = outlets.filter(isWebSeoPublicOutlet);
+  const publicOutletIds = new Set(publicOutlets.map((outlet) => outlet.outletId));
+  const links: WebSeoInternalLink[] = getWebSeoBreadcrumbs(page, language)
+    .slice(0, -1)
+    .map((item) => ({ ...item, relationship: "breadcrumb" as const }));
+  const add = (name: string, path: string, relationship: WebSeoInternalLink["relationship"] = "discovery") => {
+    if (path !== page.path && !links.some((item) => item.path === path)) links.push({ name, path, relationship });
+  };
+  if (page.kind === "home") add(translations[language]["nav.explore"], "explore");
+  if (page.kind === "explore") {
+    for (const country of countries.filter((item) => publicOutlets.some((outlet) => outlet.countryId === item.countryId)))
+      add(formatCountryDisplayName(country.countryId, language), `country/${country.countryId}`);
+  }
+  if (page.kind === "country") {
+    for (const city of cities.filter((item) => item.countryId === page.countryId && publicOutlets.some((outlet) => outlet.cityId === item.cityId)))
+      add(formatCityDisplayName(city.cityId, language), `city/${city.cityId}`);
+    for (const outlet of publicOutlets.filter((item) => item.countryId === page.countryId)) add(outlet.name, `outlet/${outlet.outletId}`);
+  }
+  if (page.kind === "city")
+    for (const outlet of publicOutlets.filter((item) => item.cityId === page.cityId)) add(outlet.name, `outlet/${outlet.outletId}`);
+  if (page.kind === "outlet") {
+    if (transportation.some((item) => item.outletId === page.outletId && item.status === "active" && (item.title.trim() || item.tip.trim())))
+      add(`${translations[language]["transportation.title"]}: ${page.entityName}`, `transportation/${page.outletId}`, "transportation");
+    // Keep the fallback compact. Assignment makes every public brand discoverable
+    // from at least one relevant outlet before remaining slots are filled.
+    const activeRelations = outletBrands.filter((item) => item.relationStatus === "active" && publicOutletIds.has(item.outletId));
+    const assigned = getWebSeoBrandAssignments(publicOutletIds);
+    const related = activeRelations.filter((item) => item.outletId === page.outletId).map((item) => item.brandId);
+    const selected = [...related.filter((id) => assigned.get(id) === page.outletId), ...related].filter((id, index, all) => all.indexOf(id) === index).slice(0, 40);
+    for (const brandId of selected) { const brand = brands.find((item) => item.brandId === brandId && item.brandStatus === "active"); if (brand) add(brand.brandName, `brand/${brand.brandId}`, "brand"); }
+  }
+  if (page.kind === "transportation") add(`${page.entityName} ${translations[language]["nav.outlet"]}`, `outlet/${page.outletId}`, "transportation");
+  if (page.kind === "brand") {
+    const relatedIds = new Set(outletBrands.filter((item) => item.brandId === page.path.slice("brand/".length) && item.relationStatus === "active").map((item) => item.outletId));
+    for (const outlet of publicOutlets.filter((item) => relatedIds.has(item.outletId))) add(outlet.name, `outlet/${outlet.outletId}`, "brand");
+  }
+  if (!links.length) add(translations[language]["nav.home"], "");
+  return links;
 }
 function localizedEntity(page: WebSeoLogicalPage, language: TranslationLanguage) { if (!page.entityName) return ""; if (page.kind === "country") return formatCountryDisplayName(page.entityName, language); if (page.kind === "city") return formatCityDisplayName(page.entityName, language); return page.entityName; }
 function interpolate(value: string, name: string, location: string) { return value.replaceAll("{name}", name).replaceAll("{location}", location); }

@@ -2,6 +2,7 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect } from "react";
 import {
   Image,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -33,6 +34,7 @@ import { requireAuth } from "../utils/requireAuth";
 import { recordRecentVisit } from "../services/recentVisitsService";
 import { formatCurrency } from "../services/exchangeRateService";
 import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey, getTaxFreePolicyDisplayModel, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
+import { isWebSeoPublicOutlet } from "../constants/webSeo";
 
 type RouteParams = {
   Country: {
@@ -162,7 +164,8 @@ export function CountryScreen() {
     if (visitedCountry) void recordRecentVisit("country", visitedCountry.countryId);
   }, [visitedCountry?.countryId]);
   const countryOutlets = outlets.filter(
-    (outlet) => outlet.countryId === country.countryId,
+    (outlet) => outlet.countryId === country.countryId &&
+      (Platform.OS !== "web" || isWebSeoPublicOutlet(outlet)),
   );
   const shoppingCities = Array.from(
     new Set(countryOutlets.map((outlet) => outlet.cityId)),
