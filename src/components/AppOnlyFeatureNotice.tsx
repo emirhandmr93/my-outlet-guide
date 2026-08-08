@@ -1,6 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { appStoreDownloadUrl, getAppDownloadStore, googlePlayDownloadUrl } from "../constants/appLinks";
+import { trackWebEvent } from "../utils/webAnalytics";
 
 type AppOnlyFeatureNoticeProps = { title: string; body: string; badge: string; ctaLabel: string; helperText?: string; compact?: boolean };
 
@@ -18,6 +19,7 @@ export function AppOnlyFeatureNotice({ title, body, badge, ctaLabel, helperText,
         ];
 
   function openStore(url: string) {
+    trackWebEvent(url === googlePlayDownloadUrl ? "google_play_click" : "app_store_click", { link_url: url });
     void Linking.openURL(url).catch(() => undefined);
   }
 

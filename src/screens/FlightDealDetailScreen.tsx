@@ -11,6 +11,7 @@ import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { heroAssets } from "../media/heroAssets";
 import { RootStackParamList } from "../navigation/types";
 import { buildAviasalesAffiliateSearchUrl } from "../services/aviasalesAffiliateLink";
+import { trackWebEvent } from "../utils/webAnalytics";
 import { getUserFlightPriceDeal, UserFlightPriceDeal, UserFlightPriceDealResult } from "../services/flightPriceDealDetailService";
 import colors from "../theme/colors";
 import { supportedLanguageCodes } from "../translations/translations";
@@ -73,6 +74,7 @@ export function FlightDealDetailScreen() {
         tripClass: deal.tripClass, currency: "EUR", locale,
         subId: rolling ? "app_rolling_flight_deal_detail" : "app_flight_deal_detail",
       });
+      trackWebEvent("outbound_affiliate_click", { affiliate: "aviasales", placement: "flight_deal_detail" });
       if (Platform.OS === "web") await Linking.openURL(url);
       else await WebBrowser.openBrowserAsync(url);
     } catch { Alert.alert(t("flightDealDetail.openFailedTitle"), t("flightDealDetail.openFailedBody")); }

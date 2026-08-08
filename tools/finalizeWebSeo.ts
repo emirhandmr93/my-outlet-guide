@@ -9,7 +9,15 @@ export function escapeHtml(value: string) { return value.replace(/&/g,"&amp;").r
 function outputPath(route: string) { return join(DIST, `${route}.html`); }
 function render(base: string, language: typeof WEB_SEO_LANGUAGES[number], page?: WebSeoLogicalPage) {
   const meta = resolveWebSeo(language, page);
-  const head = [GENERATED_MARKER,`<title>${escapeHtml(meta.title)}</title>`,`<meta name="description" content="${escapeHtml(meta.description)}">`,`<meta name="robots" content="${meta.robots}">`,...(meta.canonical ? [`<link rel="canonical" href="${escapeHtml(meta.canonical)}">`] : []),...meta.alternates.map(item => `<link rel="alternate" hreflang="${item.language}" href="${escapeHtml(item.href)}">`)].join("\n    ");
+  const social = meta.canonical ? [
+    `<meta property="og:type" content="website">`, `<meta property="og:site_name" content="My Outlet Guide">`,
+    `<meta property="og:title" content="${escapeHtml(meta.title)}">`, `<meta property="og:description" content="${escapeHtml(meta.description)}">`,
+    `<meta property="og:url" content="${escapeHtml(meta.canonical)}">`, `<meta property="og:locale" content="${meta.language}">`,
+    `<meta name="twitter:card" content="summary">`, `<meta name="twitter:title" content="${escapeHtml(meta.title)}">`,
+    `<meta name="twitter:description" content="${escapeHtml(meta.description)}">`,
+    `<script type="application/ld+json">${JSON.stringify({ "@context":"https://schema.org", "@type":page?.kind === "home" ? "WebSite" : "WebPage", name:meta.title, description:meta.description, url:meta.canonical, inLanguage:meta.language, ...(page?.kind === "home" ? {} : { isPartOf:{ "@type":"WebSite", name:"My Outlet Guide", url:`${WEB_SEO_ORIGIN}/${meta.language}` } }) }).replace(/</g,"\\u003c")}</script>`,
+  ] : [];
+  const head = [GENERATED_MARKER,`<title>${escapeHtml(meta.title)}</title>`,`<meta name="description" content="${escapeHtml(meta.description)}">`,`<meta name="robots" content="${meta.robots}">`,...(meta.canonical ? [`<link rel="canonical" href="${escapeHtml(meta.canonical)}">`] : []),...meta.alternates.map(item => `<link rel="alternate" hreflang="${item.language}" href="${escapeHtml(item.href)}">`),...social].join("\n    ");
   const shell=base.replace(managed,"\n").replace(/\s*<\/head>/i,"\n  </head>");
   return shell.replace(/<html(?:\s[^>]*)?>/i, `<html lang="${language}" dir="${meta.direction}">`).replace(/<\/head>/i, `    ${head}\n  </head>`);
 }

@@ -30,6 +30,7 @@ import { useTranslation } from "../hooks/useTranslation";
 import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import { heroAssets } from "../media/heroAssets";
 import { buildAviasalesAffiliateSearchUrl, AviasalesTripClass } from "../services/aviasalesAffiliateLink";
+import { trackWebEvent } from "../utils/webAnalytics";
 import colors from "../theme/colors";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
 import { formatIsoDateOnly, localDateToIso, parseIsoDateOnly } from "../utils/dateOnly";
@@ -136,6 +137,7 @@ export function FlightSearchScreen() {
         ...(tripType === "roundTrip" ? { returnDate } : {}),
         adults, children, infants, tripClass, subId: "app_flight_search", locale, currency: "EUR",
       });
+      trackWebEvent("outbound_affiliate_click", { affiliate: "aviasales", placement: "flight_search" });
       if (Platform.OS === "web") await Linking.openURL(url);
       else await WebBrowser.openBrowserAsync(url);
     } catch {
