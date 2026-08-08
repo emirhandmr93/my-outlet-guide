@@ -275,32 +275,50 @@ export function ExploreScreen() {
   }
   const suggestions = useMemo(
     () => getExploreVisibleSearchResults(search, activeTab ? [activeTab] : []).filter(
-      (item) => item.type !== "outlet" || visibleOutlets.some((outlet) => outlet.outletId === item.id),
+      (item) => item.type !== "outlet" || visibleOutletIds.has(item.id),
     ).filter(
       (item) => item.type !== "brand" || Platform.OS !== "web" || visibleBrandIds.has(item.id),
     ),
-    [search, activeTab, visibleBrandIds, visibleOutlets],
+    [search, activeTab, visibleBrandIds, visibleOutletIds],
   );
   const q = search.trim();
-  const filteredCountries = availableCountries.filter(
-    (c) =>
-      !countryQuery.trim() ||
-      normalizeSearchText(
+  const searchableCountries = useMemo(
+    () => availableCountries.map((country) => ({
+      country,
+      haystack: normalizeSearchText(
         [
-          c.countryName,
-          c.countryId,
-          formatCountryDisplayName(c.countryId, language),
-          ...expandSearchValues(c.countryName),
+          country.countryName,
+          country.countryId,
+          formatCountryDisplayName(country.countryId, language),
+          ...expandSearchValues(country.countryName),
         ].join(" "),
-      ).includes(normalizeSearchText(countryQuery)),
+      ),
+    })),
+    [availableCountries, language],
   );
-  const filteredCities = availableCities.filter((c) => {
-    const hay = citySearchHaystack(c, language);
-    return (
-      (!cityQuery.trim() || hay.includes(normalizeSearchText(cityQuery))) &&
-      (!countryFilter || c.countryId === countryFilter)
-    );
-  });
+  const searchableCities = useMemo(
+    () => availableCities.map((city) => ({
+      city,
+      haystack: citySearchHaystack(city, language),
+    })),
+    [availableCities, language],
+  );
+  const normalizedCountryQuery = useMemo(() => normalizeSearchText(countryQuery), [countryQuery]);
+  const normalizedCityQuery = useMemo(() => normalizeSearchText(cityQuery), [cityQuery]);
+  const filteredCountries = useMemo(
+    () => searchableCountries
+      .filter(({ haystack }) => !normalizedCountryQuery || haystack.includes(normalizedCountryQuery))
+      .map(({ country }) => country),
+    [normalizedCountryQuery, searchableCountries],
+  );
+  const filteredCities = useMemo(
+    () => searchableCities
+      .filter(({ city, haystack }) =>
+        (!normalizedCityQuery || haystack.includes(normalizedCityQuery)) &&
+        (!countryFilter || city.countryId === countryFilter))
+      .map(({ city }) => city),
+    [countryFilter, normalizedCityQuery, searchableCities],
+  );
   const outletResults = useMemo(
     () =>
       searchOutlets(outletQuery).filter(
