@@ -3238,3 +3238,12 @@ html, body { width: 100%; max-width: 100%; overflow-x: hidden; }
   .mobile-detail-topbar { position: sticky; top: 0; z-index: 20; }
   .transport-gold { color: #ad871d; font-weight: 900; }
 }
+
+/* Platform-aware app download destinations. */
+.store-links { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.store-link { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: 10px 16px; border: 1px solid #fff; border-radius: 10px; background: #050505; color: #fff !important; font-weight: 800; text-decoration: none; }
+.store-link:hover, .store-link:focus-visible { border-color: #f3cb57; outline: none; }
+@media (max-width: 720px) {
+  html[data-mobile-store="ios"] [data-store="android"],
+  html[data-mobile-store="android"] [data-store="ios"] { display: none !important; }
+}
