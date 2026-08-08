@@ -5,14 +5,14 @@ import { countries } from "./countries";
 import { outletBrands } from "./outletBrands";
 import { outlets } from "./outlets";
 import { transportation } from "./transportation";
-import { supportedLanguageCodes, type TranslationLanguage } from "../translations/translations";
+import { supportedLanguageCodes, translations, type TranslationLanguage } from "../translations/translations";
 import { formatCityDisplayName, formatCountryDisplayName, formatOutletLocationSubtitle } from "../utils/locationDisplay";
 import { WEB_ROUTE_DEFINITIONS } from "../navigation/webLinking";
 
 export const WEB_SEO_ORIGIN = WEBSITE_URL;
 export const WEB_SEO_LANGUAGES = supportedLanguageCodes;
 export type WebSeoRouteKind = "home" | "explore" | "savings" | "smart" | "price" | "tax" | "outlet" | "brand" | "country" | "city" | "transportation" | "privacy" | "terms" | "contact" | "help";
-export type WebSeoLogicalPage = { kind: WebSeoRouteKind; path: string; entityName?: string; entityLocation?: string };
+export type WebSeoLogicalPage = { kind: WebSeoRouteKind; path: string; entityName?: string; entityLocation?: string; countryId?: string; cityId?: string; outletId?: string };
 export type WebSeoMetadata = { title: string; description: string; robots: "index,follow" | "noindex,follow"; canonical?: string; alternates: readonly { language: TranslationLanguage | "x-default"; href: string }[]; language: TranslationLanguage; direction: "ltr" | "rtl" };
 
 type Copy = { home: [string, string]; explore: [string, string]; savings: [string, string]; smart: [string, string]; price: [string, string]; tax: [string, string]; privacy: [string, string]; terms: [string, string]; contact: [string, string]; help: [string, string]; outlet: [string, string]; brand: [string, string]; country: [string, string]; city: [string, string]; transportation: [string, string]; shell: [string, string] };
@@ -49,12 +49,28 @@ export function isWebSeoPublicOutlet(outlet: WebSeoOutlet) { return outlet.statu
 export function getIndexableWebSeoPages(): WebSeoLogicalPage[] {
   const visible = outlets.filter(isWebSeoPublicOutlet); const outletIds = new Set(visible.map(outlet => outlet.outletId));
   const pages = [...fixedPages];
-  for (const outlet of visible) pages.push({kind:"outlet",path:`outlet/${outlet.outletId}`,entityName:outlet.name,entityLocation:`${outlet.cityId}|${outlet.countryId}`});
+  for (const outlet of visible) pages.push({kind:"outlet",path:`outlet/${outlet.outletId}`,entityName:outlet.name,entityLocation:`${outlet.cityId}|${outlet.countryId}`,countryId:outlet.countryId,cityId:outlet.cityId,outletId:outlet.outletId});
   for (const brand of brands.filter(brand => brand.brandStatus === "active" && outletBrands.some(relation => relation.brandId === brand.brandId && relation.relationStatus === "active" && outletIds.has(relation.outletId)))) pages.push({kind:"brand",path:`brand/${brand.brandId}`,entityName:brand.brandName});
-  for (const country of countries.filter(country => visible.some(outlet => outlet.countryId === country.countryId))) pages.push({kind:"country",path:`country/${country.countryId}`,entityName:country.countryId});
-  for (const city of cities.filter(city => visible.some(outlet => outlet.cityId === city.cityId))) pages.push({kind:"city",path:`city/${city.cityId}`,entityName:city.cityId});
-  for (const outlet of visible.filter(item => transportation.some(transport => transport.outletId === item.outletId && transport.status === "active" && (transport.title.trim() || transport.tip.trim())))) pages.push({kind:"transportation",path:`transportation/${outlet.outletId}`,entityName:outlet.name});
+  for (const country of countries.filter(country => visible.some(outlet => outlet.countryId === country.countryId))) pages.push({kind:"country",path:`country/${country.countryId}`,entityName:country.countryId,countryId:country.countryId});
+  for (const city of cities.filter(city => visible.some(outlet => outlet.cityId === city.cityId))) pages.push({kind:"city",path:`city/${city.cityId}`,entityName:city.cityId,countryId:city.countryId,cityId:city.cityId});
+  for (const outlet of visible.filter(item => transportation.some(transport => transport.outletId === item.outletId && transport.status === "active" && (transport.title.trim() || transport.tip.trim())))) pages.push({kind:"transportation",path:`transportation/${outlet.outletId}`,entityName:outlet.name,countryId:outlet.countryId,cityId:outlet.cityId,outletId:outlet.outletId});
   return pages.sort((a,b) => a.path.localeCompare(b.path));
+}
+export type WebSeoBreadcrumb = { name: string; path: string };
+export function getWebSeoBreadcrumbs(page: WebSeoLogicalPage, language: TranslationLanguage): WebSeoBreadcrumb[] {
+  if (!["country","city","outlet","transportation","brand"].includes(page.kind)) return [];
+  const result: WebSeoBreadcrumb[] = [
+    {name:translations[language]["nav.home"],path:""},
+    {name:translations[language]["nav.explore"],path:"explore"},
+  ];
+  if (page.kind === "brand") return [...result,{name:page.entityName!,path:page.path}];
+  result.push({name:formatCountryDisplayName(page.countryId!,language),path:`country/${page.countryId}`});
+  if (page.kind === "country") return result;
+  result.push({name:formatCityDisplayName(page.cityId!,language),path:`city/${page.cityId}`});
+  if (page.kind === "city") return result;
+  result.push({name:page.entityName!,path:`outlet/${page.outletId}`});
+  if (page.kind === "outlet") return result;
+  return [...result,{name:translations[language]["transportation.title"],path:page.path}];
 }
 function localizedEntity(page: WebSeoLogicalPage, language: TranslationLanguage) { if (!page.entityName) return ""; if (page.kind === "country") return formatCountryDisplayName(page.entityName, language); if (page.kind === "city") return formatCityDisplayName(page.entityName, language); return page.entityName; }
 function interpolate(value: string, name: string, location: string) { return value.replaceAll("{name}", name).replaceAll("{location}", location); }
