@@ -1,6 +1,6 @@
 import type { CurrencyCode } from "../services/exchangeRateService";
 import { formatCountryDisplayName } from "./locationDisplay";
-import { isTranslationLanguage } from "../translations/translations";
+import { isTranslationLanguage } from "../translations/locale";
 
 const currencyNameOverrides: Record<string, Partial<Record<CurrencyCode, string>>> = {
   tr: { USD: "ABD Doları", EUR: "Euro", TRY: "Türk Lirası" },

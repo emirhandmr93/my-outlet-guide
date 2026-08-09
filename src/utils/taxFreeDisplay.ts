@@ -4,7 +4,7 @@ import {
   TaxFreeCountryStatus,
   TaxFreeRule,
 } from "../constants/taxFreeRules";
-import type { TranslationLanguage } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
 
 export type TaxFreePolicyDisplayKind =
   | "maximum_rate"

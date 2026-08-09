@@ -28,3 +28,5 @@ export function resolveTranslation(language: TranslationLanguage, key: string) {
     key
   );
 }
+
+export async function prepareTranslationLanguage(_language: TranslationLanguage) {}

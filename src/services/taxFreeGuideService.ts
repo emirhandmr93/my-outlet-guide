@@ -2,7 +2,7 @@ import { getTaxFreeRule } from "../constants/taxFreeRules";
 import type { TaxFreeCountryGuide } from "../constants/taxFreeGuides";
 import { countries } from "../constants/countries";
 import { getTaxFreePolicyDisplayModel, normalizeTaxFreeCountryStatus } from "../utils/taxFreeDisplay";
-import type { TranslationLanguage } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
 
 type Translate = (key: string) => string;
 

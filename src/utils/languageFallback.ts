@@ -1,7 +1,7 @@
 import {
   isTranslationLanguage,
   TranslationLanguage,
-} from "../translations/translations";
+} from "../translations/locale";
 
 export type DeviceLocaleSource = {
   languageTag?: string | null;

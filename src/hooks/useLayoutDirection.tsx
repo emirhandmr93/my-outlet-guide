@@ -2,7 +2,7 @@ import { Fragment, type ReactNode } from "react";
 import { Platform, View } from "react-native";
 
 import { useLanguage } from "../contexts/LanguageContext";
-import type { TranslationLanguage } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
 
 export type LayoutDirection = "ltr" | "rtl";
 

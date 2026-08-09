@@ -1,3 +1,4 @@
+import { resolveTranslation } from "../i18n/translationResolver";
 import { WEBSITE_URL } from "./externalLinks";
 import { brands } from "./brands";
 import { cities } from "./cities";
@@ -5,7 +6,7 @@ import { countries } from "./countries";
 import { outletBrands } from "./outletBrands";
 import { outlets } from "./outlets";
 import { hasWebSeoTransportation } from "./webSeoTransportation";
-import { supportedLanguageCodes, translations, type TranslationLanguage } from "../translations/translations";
+import { supportedLanguageCodes, type TranslationLanguage } from "../translations/locale";
 import { formatCityDisplayName, formatCountryDisplayName, formatOutletLocationSubtitle } from "../utils/locationDisplay";
 import { WEB_ROUTE_DEFINITIONS } from "../navigation/webLinking";
 
@@ -74,8 +75,8 @@ export type WebSeoInternalLink = { name: string; path: string; relationship: "br
 export function getWebSeoBreadcrumbs(page: WebSeoLogicalPage, language: TranslationLanguage): WebSeoBreadcrumb[] {
   if (!["country","city","outlet","transportation","brand"].includes(page.kind)) return [];
   const result: WebSeoBreadcrumb[] = [
-    {name:translations[language]["nav.home"],path:""},
-    {name:translations[language]["nav.explore"],path:"explore"},
+    {name:resolveTranslation(language, "nav.home"),path:""},
+    {name:resolveTranslation(language, "nav.explore"),path:"explore"},
   ];
   if (page.kind === "brand") return [...result,{name:page.entityName!,path:page.path}];
   result.push({name:formatCountryDisplayName(page.countryId!,language),path:`country/${page.countryId}`});
@@ -84,7 +85,7 @@ export function getWebSeoBreadcrumbs(page: WebSeoLogicalPage, language: Translat
   if (page.kind === "city") return result;
   result.push({name:page.entityName!,path:`outlet/${page.outletId}`});
   if (page.kind === "outlet") return result;
-  return [...result,{name:translations[language]["transportation.title"],path:page.path}];
+  return [...result,{name:resolveTranslation(language, "transportation.title"),path:page.path}];
 }
 
 /**
@@ -100,7 +101,7 @@ export function getWebSeoInternalLinks(page: WebSeoLogicalPage, language: Transl
   const add = (name: string, path: string, relationship: WebSeoInternalLink["relationship"] = "discovery") => {
     if (path !== page.path && !links.some((item) => item.path === path)) links.push({ name, path, relationship });
   };
-  if (page.kind === "home") add(translations[language]["nav.explore"], "explore");
+  if (page.kind === "home") add(resolveTranslation(language, "nav.explore"), "explore");
   if (page.kind === "explore") {
     for (const country of countries.filter((item) => publicOutlets.some((outlet) => outlet.countryId === item.countryId)))
       add(formatCountryDisplayName(country.countryId, language), `country/${country.countryId}`);
@@ -114,7 +115,7 @@ export function getWebSeoInternalLinks(page: WebSeoLogicalPage, language: Transl
     for (const outlet of publicOutlets.filter((item) => item.cityId === page.cityId)) add(outlet.name, `outlet/${outlet.outletId}`);
   if (page.kind === "outlet") {
     if (hasWebSeoTransportation(page.outletId!))
-      add(`${translations[language]["transportation.title"]}: ${page.entityName}`, `transportation/${page.outletId}`, "transportation");
+      add(`${resolveTranslation(language, "transportation.title")}: ${page.entityName}`, `transportation/${page.outletId}`, "transportation");
     // Keep the fallback compact. Assignment makes every public brand discoverable
     // from at least one relevant outlet before remaining slots are filled.
     const activeRelations = outletBrands.filter((item) => item.relationStatus === "active" && publicOutletIds.has(item.outletId));
@@ -123,12 +124,12 @@ export function getWebSeoInternalLinks(page: WebSeoLogicalPage, language: Transl
     const selected = [...related.filter((id) => assigned.get(id) === page.outletId), ...related].filter((id, index, all) => all.indexOf(id) === index).slice(0, 40);
     for (const brandId of selected) { const brand = brands.find((item) => item.brandId === brandId && item.brandStatus === "active"); if (brand) add(brand.brandName, `brand/${brand.brandId}`, "brand"); }
   }
-  if (page.kind === "transportation") add(`${page.entityName} ${translations[language]["nav.outlet"]}`, `outlet/${page.outletId}`, "transportation");
+  if (page.kind === "transportation") add(`${page.entityName} ${resolveTranslation(language, "nav.outlet")}`, `outlet/${page.outletId}`, "transportation");
   if (page.kind === "brand") {
     const relatedIds = new Set(outletBrands.filter((item) => item.brandId === page.path.slice("brand/".length) && item.relationStatus === "active").map((item) => item.outletId));
     for (const outlet of publicOutlets.filter((item) => relatedIds.has(item.outletId))) add(outlet.name, `outlet/${outlet.outletId}`, "brand");
   }
-  if (!links.length) add(translations[language]["nav.home"], "");
+  if (!links.length) add(resolveTranslation(language, "nav.home"), "");
   return links;
 }
 function localizedEntity(page: WebSeoLogicalPage, language: TranslationLanguage) { if (!page.entityName) return ""; if (page.kind === "country") return formatCountryDisplayName(page.entityName, language); if (page.kind === "city") return formatCityDisplayName(page.entityName, language); return page.entityName; }
