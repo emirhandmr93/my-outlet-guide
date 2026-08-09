@@ -1,4 +1,4 @@
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePicker from "../components/DateTimePickerAdapter";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { createElement, useMemo, useState } from "react";
 import {

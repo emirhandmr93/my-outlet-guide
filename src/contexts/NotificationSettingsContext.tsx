@@ -1,12 +1,12 @@
 import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Platform } from "react-native";
 import Constants from "expo-constants";
-import * as Notifications from "expo-notifications";
 import { collection, doc, getDoc, getDocs, runTransaction, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 
 import { db } from "../firebase/config";
 import { planNotificationTokenRegistration } from "../services/notificationTokenRegistration";
 import { planNotificationTokenLocaleSynchronization } from "../services/notificationTokenLocaleSynchronization";
+import { notificationApi as Notifications } from "../services/notificationApi";
 import { useLanguage } from "./LanguageContext";
 import { useUser } from "./UserContext";
 
