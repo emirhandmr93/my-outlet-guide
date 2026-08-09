@@ -78,7 +78,7 @@ export const unitedArabEmiratesOutlets = [
     address: "The Outlet Village, Jebel Ali, Dubai, United Arab Emirates",
     latitude: 24.95813,
     longitude: 55.0517,
-    openingHours: "Mon-Thu 10:00 - 22:00; Fri-Sun 10:00 - 00:00. Public-holiday and seasonal hours may vary; check the official website for current timings.",
+    openingHours: "Mon-Thu 10:00 - 22:00; Fri-Sun 10:00 - 23:00. Public-holiday and seasonal hours may vary; check the official website for current timings.",
     heroImage: "",
     galleryImages: [],
     storesCountText: "",
