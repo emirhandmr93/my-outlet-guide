@@ -44,7 +44,7 @@ import {
   formatCountryDisplayName,
   formatOutletLocationSubtitle,
 } from "../utils/locationDisplay";
-import type { TranslationLanguage } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
 import { heroAssets } from "../media/heroAssets";
 import { getPopularCityImage } from "../media/imageResolvers";
 import { loadRecentVisits, type RecentVisit } from "../services/recentVisitsService";

@@ -48,5 +48,8 @@ yarn-error.*
 # Expo Web POC export output
 dist-web-poc/
 
+# Deterministic web translation chunks generated from translations.ts.
+/src/translations/.generated-web/
+
 .env.local
 .secret.local

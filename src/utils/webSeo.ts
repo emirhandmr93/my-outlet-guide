@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import type { TranslationLanguage } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
 import { findWebSeoPage, resolveWebSeo } from "../constants/webSeo";
 
 function upsertMeta(name: string, content: string) {
