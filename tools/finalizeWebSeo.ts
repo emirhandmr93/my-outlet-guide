@@ -2,6 +2,15 @@ import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { getIndexableWebSeoPages, getWebSeoBreadcrumbs, getWebSeoInternalLinks, resolveWebSeo, WEB_SEO_LANGUAGES, WEB_SEO_NOINDEX_PATHS, WEB_SEO_ORIGIN, type WebSeoLogicalPage } from "../src/constants/webSeo";
 import { transportation } from "../src/constants/transportation";
+import { brands } from "../src/constants/brands";
+import { categories } from "../src/constants/categories";
+import { countries } from "../src/constants/countries";
+import { outletBrands } from "../src/constants/outletBrands";
+import { outlets } from "../src/constants/outlets";
+import { isWebSeoPublicOutlet } from "../src/constants/webSeo";
+import { resolveTranslation } from "../src/i18n/translationResolver";
+import { formatBrandCategoryLabel } from "../src/utils/brandCategoryLabelFormatter";
+import { formatCityDisplayName, formatCountryDisplayName } from "../src/utils/locationDisplay";
 
 const DIST = join(process.cwd(), "dist");
 const GENERATED_MARKER = '<meta name="generator" content="My Outlet Guide web SEO">';
@@ -15,6 +24,12 @@ const NO_SCRIPT_COPY: Record<typeof WEB_SEO_LANGUAGES[number], string> = {
   ar: "يتطلب My Outlet Guide تفعيل JavaScript للخرائط التفاعلية وأدوات التخطيط وميزات التطبيق المباشرة.",
   ru: "Для интерактивных карт, инструментов планирования и функций приложения, работающих в реальном времени, My Outlet Guide требует JavaScript.",
   zh: "My Outlet Guide 需要 JavaScript 才能使用互动地图、规划工具和实时应用功能。",
+};
+const BRAND_LOCATION_COPY: Record<typeof WEB_SEO_LANGUAGES[number], { heading:string; listed:[string,string]; category:string; origin:string }> = {
+  en:{heading:"Where to find",listed:["is listed at","in"],category:"Category",origin:"Origin"}, tr:{heading:"Nerede bulunur",listed:["şurada listeleniyor:","konum:"],category:"Kategori",origin:"Menşei"},
+  es:{heading:"Dónde encontrar",listed:["figura en","en"],category:"Categoría",origin:"Origen"}, fr:{heading:"Où trouver",listed:["est référencée à","à"],category:"Catégorie",origin:"Origine"},
+  de:{heading:"Wo zu finden",listed:["ist gelistet bei","in"],category:"Kategorie",origin:"Herkunft"}, ru:{heading:"Где найти",listed:["представлен в","в"],category:"Категория",origin:"Страна происхождения"},
+  ar:{heading:"أين تجد",listed:["مدرجة في","في"],category:"الفئة",origin:"المنشأ"}, zh:{heading:"在哪里找到",listed:["列于","位于"],category:"类别",origin:"原产地"},
 };
 const TRANSPORTATION_COPY: Record<typeof WEB_SEO_LANGUAGES[number], { heading: string; duration: string; modes: Record<string, string> }> = {
   en: { heading: "Transportation options", duration: "Duration", modes: { airport:"Airport access",bus:"Bus",car:"Car / parking",ferry:"Ferry",metro:"Metro",shuttle:"Shuttle",taxi:"Taxi",train:"Train",walking:"Walking" } },
@@ -52,7 +67,15 @@ function staticFallback(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeo
   const copy=TRANSPORTATION_COPY[language];
   const records=page.kind==="transportation" ? transportation.filter(item=>item.outletId===page.outletId&&item.status==="active"&&item.title.trim()).sort((a,b)=>Number(a.displayOrder)-Number(b.displayOrder)).slice(0,5) : [];
   const transportationSection=records.length ? `<section data-transportation-fallback="true"><h2>${escapeHtml(copy.heading)}</h2><ul>${records.map(item=>`<li data-transportation-id="${escapeHtml(item.transportationId)}"><strong>${escapeHtml(copy.modes[item.transportType] || item.transportType)}</strong>: <span>${escapeHtml(item.title.trim())}</span>${item.duration.trim() ? ` <span>(${escapeHtml(copy.duration)}: ${escapeHtml(item.duration.trim())})</span>` : ""}</li>`).join("")}</ul></section>` : "";
-  return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}${transportationSection}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>${escapeHtml(NO_SCRIPT_COPY[language])}</p></main></noscript>`;
+  const brandId=page.kind==="brand" ? page.path.slice("brand/".length) : ""; const brand=brands.find(item=>item.brandId===brandId&&item.brandStatus==="active");
+  const related=brand ? outletBrands.filter(item=>item.brandId===brandId&&item.relationStatus==="active").map(item=>outlets.find(outlet=>outlet.outletId===item.outletId&&isWebSeoPublicOutlet(outlet))).filter(Boolean) : [];
+  const outlet=related.length===1 ? related[0]! : undefined; const locationCopy=BRAND_LOCATION_COPY[language];
+  const category=brand ? categories.find(item=>item.categoryId===brand.categoryId) : undefined;
+  const categoryName=category ? formatBrandCategoryLabel(category.categoryName,key=>resolveTranslation(language,key)) : "";
+  const origin=brand?.originCountryId&&brand.originCountryId!=="unknown"&&countries.some(item=>item.countryId===brand.originCountryId) ? formatCountryDisplayName(brand.originCountryId,language) : "";
+  const facts=[categoryName ? `<dt>${escapeHtml(locationCopy.category)}</dt><dd data-brand-category="true">${escapeHtml(categoryName)}</dd>` : "",origin ? `<dt>${escapeHtml(locationCopy.origin)}</dt><dd data-brand-origin="true">${escapeHtml(origin)}</dd>` : ""].join("");
+  const brandSection=brand&&outlet ? `<section data-brand-location-fallback="true" data-outlet-id="${escapeHtml(outlet.outletId)}"><h2>${escapeHtml(locationCopy.heading)} ${escapeHtml(brand.brandName)}</h2><p>${escapeHtml(brand.brandName)} ${escapeHtml(locationCopy.listed[0])} <a href="${href(`outlet/${outlet.outletId}`)}">${escapeHtml(outlet.name)}</a> ${escapeHtml(locationCopy.listed[1])} ${escapeHtml(formatCityDisplayName(outlet.cityId,language))}, ${escapeHtml(formatCountryDisplayName(outlet.countryId,language))}.</p>${facts ? `<dl>${facts}</dl>` : ""}</section>` : "";
+  return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}${transportationSection}${brandSection}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>${escapeHtml(NO_SCRIPT_COPY[language])}</p></main></noscript>`;
 }
 function render(base: string, language: typeof WEB_SEO_LANGUAGES[number], page?: WebSeoLogicalPage) {
   const meta = resolveWebSeo(language, page);
