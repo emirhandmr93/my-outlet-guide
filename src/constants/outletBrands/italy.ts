@@ -161,7 +161,7 @@ const valmontoneOutletBrandIds = [
   "clarks",
   "cmp",
   "coccinelle",
-  "coin-casa",
+  "coincasa",
   "come-in-una-favola",
   "converse",
   "cotton-silk",

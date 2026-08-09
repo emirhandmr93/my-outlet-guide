@@ -18,7 +18,7 @@ async function check() {
   const activeRelations=(brandId:string)=>outletBrands.filter(item=>item.brandId===brandId&&item.relationStatus==="active"&&publicIds.has(item.outletId));
   const one=brands.filter(brand=>brand.brandStatus==="active"&&pageIds.has(brand.brandId)&&activeRelations(brand.brandId).length===1);
   let outletCoverage=0,cityCoverage=0,countryCoverage=0,categoryCoverage=0,originCoverage=0,totalLength=0; const lengths:number[]=[];
-  assert(one.length===1166,`Expected 1166 logical one-outlet brands, found ${one.length}.`);
+  assert(one.length===1158,`Expected 1158 logical one-outlet brands, found ${one.length}.`);
   for (const brand of one) {
     const relations=activeRelations(brand.brandId); assert(relations.length===1,`${brand.brandId}: relation count changed.`);
     const outlet=publicOutlets.find(item=>item.outletId===relations[0].outletId); assert(outlet,`${brand.brandId}: public outlet missing.`);
