@@ -1,6 +1,7 @@
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { getIndexableWebSeoPages, getWebSeoBreadcrumbs, getWebSeoInternalLinks, resolveWebSeo, WEB_SEO_LANGUAGES, WEB_SEO_NOINDEX_PATHS, WEB_SEO_ORIGIN, type WebSeoLogicalPage } from "../src/constants/webSeo";
+import { transportation } from "../src/constants/transportation";
 
 const DIST = join(process.cwd(), "dist");
 const GENERATED_MARKER = '<meta name="generator" content="My Outlet Guide web SEO">';
@@ -14,6 +15,16 @@ const NO_SCRIPT_COPY: Record<typeof WEB_SEO_LANGUAGES[number], string> = {
   ar: "يتطلب My Outlet Guide تفعيل JavaScript للخرائط التفاعلية وأدوات التخطيط وميزات التطبيق المباشرة.",
   ru: "Для интерактивных карт, инструментов планирования и функций приложения, работающих в реальном времени, My Outlet Guide требует JavaScript.",
   zh: "My Outlet Guide 需要 JavaScript 才能使用互动地图、规划工具和实时应用功能。",
+};
+const TRANSPORTATION_COPY: Record<typeof WEB_SEO_LANGUAGES[number], { heading: string; duration: string; modes: Record<string, string> }> = {
+  en: { heading: "Transportation options", duration: "Duration", modes: { airport:"Airport access",bus:"Bus",car:"Car / parking",ferry:"Ferry",metro:"Metro",shuttle:"Shuttle",taxi:"Taxi",train:"Train",walking:"Walking" } },
+  tr: { heading: "Ulaşım seçenekleri", duration: "Süre", modes: { airport:"Havalimanı ulaşımı",bus:"Otobüs",car:"Araç / otopark",ferry:"Feribot",metro:"Metro",shuttle:"Servis",taxi:"Taksi",train:"Tren",walking:"Yürüyüş" } },
+  es: { heading: "Opciones de transporte", duration: "Duración", modes: { airport:"Acceso al aeropuerto",bus:"Autobús",car:"Coche / aparcamiento",ferry:"Ferri",metro:"Metro",shuttle:"Lanzadera",taxi:"Taxi",train:"Tren",walking:"A pie" } },
+  fr: { heading: "Options de transport", duration: "Durée", modes: { airport:"Accès aéroport",bus:"Bus",car:"Voiture / parking",ferry:"Ferry",metro:"Métro",shuttle:"Navette",taxi:"Taxi",train:"Train",walking:"À pied" } },
+  de: { heading: "Verkehrsmöglichkeiten", duration: "Dauer", modes: { airport:"Flughafentransfer",bus:"Bus",car:"Auto / Parkplatz",ferry:"Fähre",metro:"U-Bahn",shuttle:"Shuttle",taxi:"Taxi",train:"Zug",walking:"Zu Fuß" } },
+  ru: { heading: "Варианты транспорта", duration: "Время в пути", modes: { airport:"Из аэропорта",bus:"Автобус",car:"Автомобиль / парковка",ferry:"Паром",metro:"Метро",shuttle:"Трансфер",taxi:"Такси",train:"Поезд",walking:"Пешком" } },
+  ar: { heading: "خيارات النقل", duration: "المدة", modes: { airport:"الوصول من المطار",bus:"حافلة",car:"السيارة / مواقف السيارات",ferry:"عبّارة",metro:"مترو",shuttle:"حافلة مكوكية",taxi:"سيارة أجرة",train:"قطار",walking:"المشي" } },
+  zh: { heading: "交通方式", duration: "时长", modes: { airport:"机场交通",bus:"巴士",car:"驾车 / 停车",ferry:"渡轮",metro:"地铁",shuttle:"接驳车",taxi:"出租车",train:"火车",walking:"步行" } },
 };
 const managed = /\s*(?:<title>[\s\S]*?<\/title>|<meta\s+name=["'](?:description|robots|generator)["'][^>]*>|<link\s+rel=["'](?:canonical|alternate)["'][^>]*>)\s*/gi;
 export function escapeHtml(value: string) { return value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
@@ -38,7 +49,10 @@ function staticFallback(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeo
   const links=getWebSeoInternalLinks(page,language);
   const href=(path:string)=>`${WEB_SEO_ORIGIN}/${language}${path ? `/${path}` : ""}`;
   const breadcrumb=breadcrumbs.length ? `<nav aria-label="Breadcrumb"><ol>${breadcrumbs.map((item,index)=>`<li>${index===breadcrumbs.length-1 ? `<span aria-current="page">${escapeHtml(item.name)}</span>` : `<a href="${href(item.path)}">${escapeHtml(item.name)}</a>`}</li>`).join("")}</ol></nav>` : "";
-  return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>${escapeHtml(NO_SCRIPT_COPY[language])}</p></main></noscript>`;
+  const copy=TRANSPORTATION_COPY[language];
+  const records=page.kind==="transportation" ? transportation.filter(item=>item.outletId===page.outletId&&item.status==="active"&&item.title.trim()).sort((a,b)=>Number(a.displayOrder)-Number(b.displayOrder)).slice(0,5) : [];
+  const transportationSection=records.length ? `<section data-transportation-fallback="true"><h2>${escapeHtml(copy.heading)}</h2><ul>${records.map(item=>`<li data-transportation-id="${escapeHtml(item.transportationId)}"><strong>${escapeHtml(copy.modes[item.transportType] || item.transportType)}</strong>: <span>${escapeHtml(item.title.trim())}</span>${item.duration.trim() ? ` <span>(${escapeHtml(copy.duration)}: ${escapeHtml(item.duration.trim())})</span>` : ""}</li>`).join("")}</ul></section>` : "";
+  return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}${transportationSection}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>${escapeHtml(NO_SCRIPT_COPY[language])}</p></main></noscript>`;
 }
 function render(base: string, language: typeof WEB_SEO_LANGUAGES[number], page?: WebSeoLogicalPage) {
   const meta = resolveWebSeo(language, page);
