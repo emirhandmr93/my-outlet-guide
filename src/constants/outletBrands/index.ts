@@ -25,6 +25,7 @@ import { switzerlandOutletBrands } from "./switzerland";
 import { ukOutletBrands } from "./uk";
 import { turkeyOutletBrands } from "./turkey";
 import { unitedArabEmiratesOutletBrands } from "./united-arab-emirates";
+import { kuwaitOutletBrands } from "./kuwait";
 
 export type OutletBrand = {
   outletId: string;
@@ -61,6 +62,7 @@ export {
   ukOutletBrands,
   turkeyOutletBrands,
   unitedArabEmiratesOutletBrands,
+  kuwaitOutletBrands,
 };
 
 export const outletBrands: OutletBrand[] = [
@@ -91,4 +93,5 @@ export const outletBrands: OutletBrand[] = [
   ...lithuaniaOutletBrands,
   ...turkeyOutletBrands,
   ...unitedArabEmiratesOutletBrands,
+  ...kuwaitOutletBrands,
 ];

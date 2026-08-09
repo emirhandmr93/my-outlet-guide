@@ -5953,4 +5953,15 @@ export const brandsQT: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "rodeo-drive",
+    brandName: "Rodeo Drive",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-arab-emirates",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
 ];

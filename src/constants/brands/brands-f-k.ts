@@ -6008,4 +6008,15 @@ export const brandsFK: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "etoile-outlet",
+    brandName: "Etoile Outlet",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-arab-emirates",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
 ];

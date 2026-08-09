@@ -9221,4 +9221,15 @@ export const brandsAE: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "brand-bazaar",
+    brandName: "Brand Bazaar",
+    aliases: [],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "united-arab-emirates",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
 ];

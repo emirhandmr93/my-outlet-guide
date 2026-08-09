@@ -32,4 +32,24 @@ export const unitedArabEmiratesTransportation = [
     status: "active",
     displayOrder: "3",
   },
+  {
+    transportationId: "the-outlet-village-car-parking", outletId: "the-outlet-village", transportType: "car",
+    title: "Car / Parking", duration: "", cost: "", tip: "Drive to Dubai Parks and Resorts in Jebel Ali and follow signs for The Outlet Village; parking is available at the destination.",
+    status: "active", displayOrder: "1",
+  },
+  {
+    transportationId: "the-outlet-village-taxi", outletId: "the-outlet-village", transportType: "taxi",
+    title: "Taxi / Ride-hailing", duration: "", cost: "Metered or app fare", tip: "Use the official destination pin and confirm the estimated fare before departure; journey time varies materially with Dubai traffic.",
+    status: "active", displayOrder: "2",
+  },
+  {
+    transportationId: "the-outlet-village-ibn-battuta-connection", outletId: "the-outlet-village", transportType: "bus",
+    title: "Ibn Battuta public-transport connection", duration: "", cost: "", tip: "The official mall FAQ identifies buses from Ibn Battuta Mall Metro Station. Verify the current RTA connection and timetable before travel because the mall does not publish a route number.",
+    status: "active", displayOrder: "3",
+  },
+  {
+    transportationId: "the-outlet-village-hotel-shuttle", outletId: "the-outlet-village", transportType: "shuttle",
+    title: "Participating hotel shuttle", duration: "", cost: "Confirm with hotel", tip: "Some hotels offer a shuttle to the destination. Confirm participation, booking, pickup and return directly with your hotel before relying on it.",
+    status: "active", displayOrder: "4",
+  },
 ];
