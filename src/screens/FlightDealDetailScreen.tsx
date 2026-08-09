@@ -14,7 +14,7 @@ import { buildAviasalesAffiliateSearchUrl } from "../services/aviasalesAffiliate
 import { trackWebEvent } from "../utils/webAnalytics";
 import { getUserFlightPriceDeal, UserFlightPriceDeal, UserFlightPriceDealResult } from "../services/flightPriceDealDetailService";
 import colors from "../theme/colors";
-import { supportedLanguageCodes } from "../translations/translations";
+import { supportedLanguageCodes } from "../translations/locale";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { formatIsoDateOnly } from "../utils/dateOnly";
 

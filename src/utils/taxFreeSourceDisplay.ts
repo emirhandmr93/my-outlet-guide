@@ -1,5 +1,5 @@
 import type { TaxFreeRule, TaxFreeSource } from "../constants/taxFreeRules";
-import type { TranslationLanguage } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
 
 type Translate = (key: string) => string;
 

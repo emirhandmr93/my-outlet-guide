@@ -1,7 +1,5 @@
-import {
-  type TranslationLanguage,
-  translations,
-} from "../translations/translations";
+import { translations } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
 
 const visibleLocalePrefixPattern =
   /^(?:[A-Z]{2}: |ترجمة عربية: |中文翻译：|[^:]{1,40}\s+(?:çeviri|translation|ترجمة|перевод|Übersetzung|Traducción|Traduction)\s*[:：]\s*)/i;
@@ -28,3 +26,6 @@ export function resolveTranslation(language: TranslationLanguage, key: string) {
     key
   );
 }
+
+/** Native dictionaries are synchronous and need no readiness work. */
+export async function prepareTranslationLanguage(_language: TranslationLanguage) {}

@@ -1,6 +1,6 @@
 import type { InitialState, LinkingOptions } from "@react-navigation/native";
 
-import { isTranslationLanguage, type TranslationLanguage } from "../translations/translations";
+import { isTranslationLanguage, type TranslationLanguage } from "../translations/locale";
 import type { RootStackParamList } from "./types";
 
 export type WebRouteDefinition = {

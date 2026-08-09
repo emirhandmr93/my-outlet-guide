@@ -32,7 +32,7 @@ import colors from "../theme/colors";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
 import { formatIsoDateOnly, localDateToIso, parseIsoDateOnly } from "../utils/dateOnly";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
-import { supportedLanguageCodes, TranslationLanguage } from "../translations/translations";
+import { supportedLanguageCodes, TranslationLanguage } from "../translations/locale";
 
 type TripType = "roundTrip" | "oneWay";
 type PickerMode = "origin" | "destination" | null;

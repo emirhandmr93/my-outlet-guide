@@ -1,4 +1,5 @@
-import { translations, type TranslationLanguage } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
+import { resolveTranslation } from "../i18n/translationResolver";
 
 export function formatOutletStatusLabel(status: string, t: (key: string) => string) {
   const normalized = status.trim().toLowerCase();
@@ -141,7 +142,7 @@ export function formatOutletRetailCountCompactText(
 
 export function formatOpeningHoursText(value: string, language: TranslationLanguage): string {
   const caveat = "Ramadan and festive-season hours may vary; contact the mall for current timings.";
-  const localizedCaveat = translations[language]["outlet.openingHours.caveat.ramadanFestive"] || caveat;
+  const localizedCaveat = resolveTranslation(language, "outlet.openingHours.caveat.ramadanFestive") || caveat;
   const withLocalizedCaveat = value.replace(caveat, localizedCaveat);
   if (language !== "tr") return withLocalizedCaveat;
   return withLocalizedCaveat

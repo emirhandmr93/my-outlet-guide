@@ -1,4 +1,4 @@
-import { TranslationLanguage, supportedLanguageCodes } from "../translations/translations";
+import { TranslationLanguage, supportedLanguageCodes } from "../translations/locale";
 
 export type AppLanguage = {
   languageCode: TranslationLanguage;

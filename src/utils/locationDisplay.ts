@@ -1,6 +1,6 @@
 import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
-import type { TranslationLanguage } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
 
 type LocaleMap = Partial<Record<TranslationLanguage, string>>;
 

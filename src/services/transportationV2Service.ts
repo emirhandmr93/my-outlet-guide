@@ -1,5 +1,6 @@
 import { outlets } from "../constants/outlets";
-import { translations, type TranslationLanguage } from "../translations/translations";
+import type { TranslationLanguage } from "../translations/locale";
+import { resolveTranslation } from "../i18n/translationResolver";
 import type { TransportationGuide, TransportationType } from "../constants/transportationGuides";
 import { getTransportationForOutlet } from "./transportationService";
 import type { TransportationRouteFact } from "../constants/transportationRouteFacts";
@@ -1807,7 +1808,7 @@ export function getNearbyAirportDisplay(
     name: a.name,
     distance:
       typeof a.distanceKm === "number"
-        ? `${a.distanceKm} km · ${translations[language]["transportation.v2.distanceBasis.straightLine"]}`
+        ? `${a.distanceKm} km · ${resolveTranslation(language, "transportation.v2.distanceBasis.straightLine")}`
         : undefined,
   }));
 }

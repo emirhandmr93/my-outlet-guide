@@ -8,7 +8,8 @@ import {
   useState,
 } from "react";
 
-import { TranslationLanguage } from "../translations/translations";
+import { TranslationLanguage } from "../translations/locale";
+import { prepareTranslationLanguage } from "../i18n/translationResolver";
 import {
   DEFAULT_LANGUAGE,
   DeviceLocaleSource,
@@ -72,19 +73,22 @@ export function LanguageProvider({
 
     try {
       const savedLanguage = await AsyncStorage.getItem(STORAGE_KEY);
-      setLanguageState(
-        urlLanguage ?? resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates())
-      );
+      const resolvedLanguage =
+        urlLanguage ?? resolveInitialLanguage(savedLanguage, getDeviceLocaleCandidates());
+      await prepareTranslationLanguage(resolvedLanguage);
+      setLanguageState(resolvedLanguage);
     } catch {
-      setLanguageState(
-        urlLanguage ?? resolveInitialLanguage(null, getDeviceLocaleCandidates())
-      );
+      const resolvedLanguage =
+        urlLanguage ?? resolveInitialLanguage(null, getDeviceLocaleCandidates());
+      await prepareTranslationLanguage(resolvedLanguage);
+      setLanguageState(resolvedLanguage);
     } finally {
       setIsLanguageResolved(true);
     }
   }
 
   async function setLanguage(languageCode: TranslationLanguage) {
+    await prepareTranslationLanguage(languageCode);
     setLanguageState(languageCode);
     await AsyncStorage.setItem(STORAGE_KEY, languageCode);
   }
