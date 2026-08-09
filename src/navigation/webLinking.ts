@@ -2,6 +2,7 @@ import type { InitialState, LinkingOptions } from "@react-navigation/native";
 
 import { isTranslationLanguage, type TranslationLanguage } from "../translations/locale";
 import type { RootStackParamList } from "./types";
+import { resolveBrandId } from "../constants/brandIdentityAliases";
 
 export type WebRouteDefinition = {
   name: keyof RootStackParamList | "Home" | "Explore" | "MyTrips" | "Savings" | "Profile";
@@ -76,7 +77,8 @@ export function createWebLinking(language: TranslationLanguage): LinkingOptions<
       if (isTranslationLanguage(segments[0])) segments.shift();
       const route = routeForSegments(segments) ?? WEB_ROUTE_DEFINITIONS[0];
       const parameterValue = route.parameter ? segments[route.path.split("/").findIndex((part) => part.startsWith(":"))] : undefined;
-      const params = route.parameter && parameterValue ? { [route.parameter]: parameterValue } : undefined;
+      const resolvedParameterValue = route.parameter === "brandId" && parameterValue ? resolveBrandId(parameterValue) : parameterValue;
+      const params = route.parameter && resolvedParameterValue ? { [route.parameter]: resolvedParameterValue } : undefined;
       if (tabRoutes.has(route.name)) {
         return { routes: [{ name: "MainTabs", state: { routes: [{ name: route.name, params }] } }] };
       }

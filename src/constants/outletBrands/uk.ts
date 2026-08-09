@@ -56,7 +56,7 @@ const braintreeVillageBrandIds = [
   "joules",
   "kate-spade",
   "kids-around",
-  "levi-s",
+  "levis",
   "lovisa",
   "m-and-s-outlet",
   "mint-velvet",
@@ -2863,7 +2863,7 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ashford-designer-outlet",
-    brandId: "jack-jones",
+    brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
@@ -7549,7 +7549,7 @@ export const ukOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "bicester-village",
-    brandId: "on-running",
+    brandId: "on",
     featured: false,
     relationStatus: "active",
   },

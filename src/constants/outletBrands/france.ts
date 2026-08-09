@@ -2075,7 +2075,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "roppenheim-the-style-outlets",
-    brandId: "jack-jones",
+    brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
@@ -2147,7 +2147,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "roppenheim-the-style-outlets",
-    brandId: "levi-s",
+    brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
@@ -2207,7 +2207,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "roppenheim-the-style-outlets",
-    brandId: "move",
+    brandId: "moeve",
     featured: false,
     relationStatus: "active",
   },
@@ -2459,7 +2459,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "paris-giverny-designer-outlet",
-    brandId: "baandsh",
+    brandId: "ba-and-sh",
     featured: false,
     relationStatus: "active",
   },
@@ -3131,7 +3131,7 @@ export const franceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "one-nation-paris",
-    brandId: "jack-jones",
+    brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
@@ -3637,7 +3637,7 @@ export const franceOutletBrands: OutletBrand[] = [
 
   {
     outletId: "roubaix-designer-outlet",
-    brandId: "l-oreal",
+    brandId: "loreal",
     featured: false,
     relationStatus: "active",
   },
@@ -3679,7 +3679,7 @@ export const franceOutletBrands: OutletBrand[] = [
 
   {
     outletId: "roubaix-designer-outlet",
-    brandId: "levi-s",
+    brandId: "levis",
     featured: false,
     relationStatus: "active",
   },

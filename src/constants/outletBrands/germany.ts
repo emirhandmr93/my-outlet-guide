@@ -3489,7 +3489,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "outletcity-metzingen",
-    brandId: "rosle",
+    brandId: "roesle",
     featured: false,
     relationStatus: "active",
   },
@@ -4113,7 +4113,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "wertheim-village",
-    brandId: "mac",
+    brandId: "mac-cosmetics",
     featured: false,
     relationStatus: "active",
   },
@@ -5044,7 +5044,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "halle-leipzig-the-style-outlets",
-    brandId: "move",
+    brandId: "moeve",
     featured: false,
     relationStatus: "active",
   },
@@ -5110,7 +5110,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "halle-leipzig-the-style-outlets",
-    brandId: "rosle",
+    brandId: "roesle",
     featured: false,
     relationStatus: "active",
   },
@@ -5266,7 +5266,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-ochtrup",
-    brandId: "levi-s",
+    brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
@@ -5386,7 +5386,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-ochtrup",
-    brandId: "jack-jones",
+    brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
@@ -5452,7 +5452,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-ochtrup",
-    brandId: "move",
+    brandId: "moeve",
     featured: false,
     relationStatus: "active",
   },
@@ -5518,7 +5518,7 @@ export const germanyOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-ochtrup",
-    brandId: "rosle",
+    brandId: "roesle",
     featured: false,
     relationStatus: "active",
   },

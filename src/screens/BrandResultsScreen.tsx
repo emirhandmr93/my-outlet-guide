@@ -18,6 +18,7 @@ import {
 } from "../utils/safeAreaLayout";
 
 import { brands } from "../constants/brands/index";
+import { resolveBrandId } from "../constants/brandIdentityAliases";
 import { outletBrands } from "../constants/outletBrands/index";
 import { outlets } from "../constants/outlets";
 import { countries } from "../constants/countries";
@@ -142,9 +143,9 @@ export function BrandResultsScreen() {
   const outletCardWidth =
     (contentWidth - 12 * (outletColumnCount - 1)) / outletColumnCount;
 
-  const brand =
-    brands.find((item) => item.brandId === route.params?.brandId) || brands[0];
-  const visitedBrand = brands.find((item) => item.brandId === route.params?.brandId);
+  const resolvedBrandId = resolveBrandId(route.params?.brandId ?? "");
+  const brand = brands.find((item) => item.brandId === resolvedBrandId) || brands[0];
+  const visitedBrand = brands.find((item) => item.brandId === resolvedBrandId);
 
   useEffect(() => {
     if (visitedBrand) void recordRecentVisit("brand", visitedBrand.brandId);

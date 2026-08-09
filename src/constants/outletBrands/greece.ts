@@ -579,7 +579,7 @@ export const greeceOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-athens",
-    brandId: "zadig-voltaire",
+    brandId: "zadig-and-voltaire",
     featured: false,
     relationStatus: "active",
   },

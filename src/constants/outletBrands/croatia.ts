@@ -261,7 +261,7 @@ export const croatiaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "ros-designer-outlet",
-    brandId: "jack-jones",
+    brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },

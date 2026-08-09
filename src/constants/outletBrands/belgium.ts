@@ -784,7 +784,7 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-luxembourg",
-    brandId: "l-oreal",
+    brandId: "loreal",
     featured: false,
     relationStatus: "active",
   },
@@ -856,7 +856,7 @@ export const belgiumOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-luxembourg",
-    brandId: "o-neill",
+    brandId: "oneill",
     featured: false,
     relationStatus: "active",
   },

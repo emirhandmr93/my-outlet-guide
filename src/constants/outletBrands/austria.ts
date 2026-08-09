@@ -333,7 +333,7 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
-    brandId: "jack-jones",
+    brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
@@ -669,7 +669,7 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-parndorf",
-    brandId: "rosle",
+    brandId: "roesle",
     featured: false,
     relationStatus: "active",
   },
@@ -1065,7 +1065,7 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-salzburg",
-    brandId: "jack-jones",
+    brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
@@ -1107,7 +1107,7 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-salzburg",
-    brandId: "levi-s",
+    brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
@@ -1209,7 +1209,7 @@ export const austriaOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-salzburg",
-    brandId: "rosle",
+    brandId: "roesle",
     featured: false,
     relationStatus: "active",
   },

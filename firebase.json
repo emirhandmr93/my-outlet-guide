@@ -39,6 +39,103 @@
         "headers": [{ "key": "Cache-Control", "value": "public,max-age=3600" }]
       }
     ],
+    "redirects": [
+      {
+        "source": "/:language/brand/ba-sh",
+        "destination": "/:language/brand/ba-and-sh",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/baandsh",
+        "destination": "/:language/brand/ba-and-sh",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/cp-company",
+        "destination": "/:language/brand/c-p-company",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/harmont-blaine",
+        "destination": "/:language/brand/harmont-and-blaine",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/harmont-e-blaine",
+        "destination": "/:language/brand/harmont-and-blaine",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/harmont-blaine-junior",
+        "destination": "/:language/brand/harmont-and-blaine-junior",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/harmont-e-blaine-junior",
+        "destination": "/:language/brand/harmont-and-blaine-junior",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/jack-jones",
+        "destination": "/:language/brand/jack-and-jones",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/l-oreal",
+        "destination": "/:language/brand/loreal",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/levi-s",
+        "destination": "/:language/brand/levis",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/lyle-scott",
+        "destination": "/:language/brand/lyle-and-scott",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/mac",
+        "destination": "/:language/brand/mac-cosmetics",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/move",
+        "destination": "/:language/brand/moeve",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/murphy-and-nye",
+        "destination": "/:language/brand/murphy-nye",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/o-neill",
+        "destination": "/:language/brand/oneill",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/on-running",
+        "destination": "/:language/brand/on",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/rosle",
+        "destination": "/:language/brand/roesle",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/suit-supply",
+        "destination": "/:language/brand/suitsupply",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/zadig-voltaire",
+        "destination": "/:language/brand/zadig-and-voltaire",
+        "type": 301
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
