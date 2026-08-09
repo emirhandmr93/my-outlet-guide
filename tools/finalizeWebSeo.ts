@@ -5,6 +5,16 @@ import { getIndexableWebSeoPages, getWebSeoBreadcrumbs, getWebSeoInternalLinks, 
 const DIST = join(process.cwd(), "dist");
 const GENERATED_MARKER = '<meta name="generator" content="My Outlet Guide web SEO">';
 const FALLBACK_MARKER = "data-web-fallback";
+const NO_SCRIPT_COPY: Record<typeof WEB_SEO_LANGUAGES[number], string> = {
+  en: "My Outlet Guide requires JavaScript for interactive maps, planning tools, and live application features.",
+  tr: "My Outlet Guide; etkileşimli haritalar, planlama araçları ve canlı uygulama özellikleri için JavaScript gerektirir.",
+  es: "My Outlet Guide requiere JavaScript para los mapas interactivos, las herramientas de planificación y las funciones de la aplicación en tiempo real.",
+  fr: "My Outlet Guide nécessite JavaScript pour les cartes interactives, les outils de planification et les fonctionnalités en direct de l’application.",
+  de: "My Outlet Guide benötigt JavaScript für interaktive Karten, Planungstools und Live-Funktionen der App.",
+  ar: "يتطلب My Outlet Guide تفعيل JavaScript للخرائط التفاعلية وأدوات التخطيط وميزات التطبيق المباشرة.",
+  ru: "Для интерактивных карт, инструментов планирования и функций приложения, работающих в реальном времени, My Outlet Guide требует JavaScript.",
+  zh: "My Outlet Guide 需要 JavaScript 才能使用互动地图、规划工具和实时应用功能。",
+};
 const managed = /\s*(?:<title>[\s\S]*?<\/title>|<meta\s+name=["'](?:description|robots|generator)["'][^>]*>|<link\s+rel=["'](?:canonical|alternate)["'][^>]*>)\s*/gi;
 export function escapeHtml(value: string) { return value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
 function outputPath(route: string) { return join(DIST, `${route}.html`); }
@@ -28,7 +38,7 @@ function staticFallback(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeo
   const links=getWebSeoInternalLinks(page,language);
   const href=(path:string)=>`${WEB_SEO_ORIGIN}/${language}${path ? `/${path}` : ""}`;
   const breadcrumb=breadcrumbs.length ? `<nav aria-label="Breadcrumb"><ol>${breadcrumbs.map((item,index)=>`<li>${index===breadcrumbs.length-1 ? `<span aria-current="page">${escapeHtml(item.name)}</span>` : `<a href="${href(item.path)}">${escapeHtml(item.name)}</a>`}</li>`).join("")}</ol></nav>` : "";
-  return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>My Outlet Guide requires JavaScript for interactive maps, planning tools, and live application features.</p></main></noscript>`;
+  return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>${escapeHtml(NO_SCRIPT_COPY[language])}</p></main></noscript>`;
 }
 function render(base: string, language: typeof WEB_SEO_LANGUAGES[number], page?: WebSeoLogicalPage) {
   const meta = resolveWebSeo(language, page);

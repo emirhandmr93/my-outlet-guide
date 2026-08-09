@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import { Card } from "../card";
 import { SectionTitle } from "../SectionTitle";
@@ -20,6 +20,7 @@ type TaxFreeCardProps = {
   officeInfo?: string;
   guideButtonText?: string;
   onPressGuide?: () => void;
+  guideButtonLoading?: boolean;
 };
 
 export function TaxFreeCard({
@@ -29,13 +30,14 @@ export function TaxFreeCard({
   officeInfo,
   guideButtonText,
   onPressGuide,
+  guideButtonLoading = false,
 }: TaxFreeCardProps) {
   const { t, language } = useTranslation();
   const policyDisplay = rule ? getTaxFreePolicyDisplayModel(rule, language, t) : undefined;
   const shouldShowOfficeInfo =
     hasDisplayValue(officeInfo) &&
     (language !== "tr" || (officeInfo?.length ?? 0) <= 90);
-  const shouldShowGuideButton = hasDisplayValue(guideButtonText) && Boolean(onPressGuide);
+  const shouldShowGuideButton = guideButtonLoading || (hasDisplayValue(guideButtonText) && Boolean(onPressGuide));
 
   return (
     <Card>
@@ -78,11 +80,17 @@ export function TaxFreeCard({
         <TouchableOpacity
           accessibilityRole="button"
           accessibilityLabel={guideButtonText}
+          accessibilityState={{ disabled: guideButtonLoading, busy: guideButtonLoading }}
           activeOpacity={0.86}
+          disabled={guideButtonLoading}
           onPress={onPressGuide}
-          style={styles.guideButton}
+          style={[styles.guideButton, guideButtonLoading && styles.guideButtonLoading]}
         >
-          <Text style={styles.guideButtonText}>{guideButtonText}</Text>
+          {guideButtonLoading ? (
+            <ActivityIndicator color="#FFFFFF" />
+          ) : (
+            <Text style={styles.guideButtonText}>{guideButtonText}</Text>
+          )}
         </TouchableOpacity>
       ) : null}
     </Card>
@@ -108,5 +116,8 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 15,
     fontWeight: "800",
+  },
+  guideButtonLoading: {
+    opacity: 0.65,
   },
 });
