@@ -236,7 +236,7 @@ export const polandOutletBrands: OutletBrand[] = [
     "le-creuset",
     "lee-cooper",
     "lee-wrangler",
-    "levi-s",
+    "levis",
     "made-in-m",
     "marc-o-polo",
     "mayoral",

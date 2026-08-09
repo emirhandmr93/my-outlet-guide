@@ -1359,7 +1359,7 @@ export const switzerlandOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "landquart-fashion-outlet",
-    brandId: "cp-company",
+    brandId: "c-p-company",
     featured: false,
     relationStatus: "active",
   },
@@ -1653,7 +1653,7 @@ export const switzerlandOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "landquart-fashion-outlet",
-    brandId: "levi-s",
+    brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
@@ -1779,7 +1779,7 @@ export const switzerlandOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "landquart-fashion-outlet",
-    brandId: "move",
+    brandId: "moeve",
     featured: false,
     relationStatus: "active",
   },

@@ -2,17 +2,6 @@ import type { Brand } from "../../types/brand";
 
 export const brandsUZ: Brand[] = [
   {
-    brandId: "baandsh",
-    brandName: "ba&sh",
-    aliases: ["baandsh", "baandsh"],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "unknown",
-    luxuryLevel: "fashion",
-    rankingWeight: 60,
-    brandStatus: "active",
-  },
-  {
     brandId: "bad-rhino",
     brandName: "BadRhino",
     aliases: [],
@@ -2249,17 +2238,6 @@ export const brandsUZ: Brand[] = [
     originCountryId: "france",
     luxuryLevel: "premium",
     rankingWeight: 84,
-    brandStatus: "active",
-  },
-  {
-    brandId: "zadig-voltaire",
-    brandName: "Zadig & Voltaire",
-    aliases: [],
-    categoryId: "fashion",
-    logo: "",
-    originCountryId: "france",
-    luxuryLevel: "fashion",
-    rankingWeight: 70,
     brandStatus: "active",
   },
   {

@@ -16,7 +16,7 @@ const sambilMadridBrandIds = [
   "fifty-factory",
   "fk-donna-uomo",
   "gold-princess",
-  "jack-jones",
+  "jack-and-jones",
   "joma",
   "outlet-el-corte-ingles",
   "outlet-sport",
@@ -671,7 +671,7 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "las-rozas-village",
-    brandId: "ba-sh",
+    brandId: "ba-and-sh",
     featured: false,
     relationStatus: "active",
   },
@@ -1619,7 +1619,7 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "la-roca-village",
-    brandId: "ba-sh",
+    brandId: "ba-and-sh",
     featured: false,
     relationStatus: "active",
   },
@@ -1973,7 +1973,7 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "la-roca-village",
-    brandId: "levi-s",
+    brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
@@ -3215,7 +3215,7 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "mallorca-fashion-outlet",
-    brandId: "jack-jones",
+    brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
@@ -3713,7 +3713,7 @@ export const spainOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "mallorca-fashion-outlet",
-    brandId: "levi-s",
+    brandId: "levis",
     featured: false,
     relationStatus: "active",
   },

@@ -41,7 +41,7 @@ const hedeFashionOutletBrandIds = [
   "lexington",
   "lindt",
   "lyko",
-  "lyle-scott",
+  "lyle-and-scott",
   "marc-opolo",
   "matinique",
   "michael-kors",

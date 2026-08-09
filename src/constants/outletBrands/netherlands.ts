@@ -51,7 +51,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
-    brandId: "ba-sh",
+    brandId: "ba-and-sh",
     featured: false,
     relationStatus: "active",
   },
@@ -574,7 +574,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
-    brandId: "move",
+    brandId: "moeve",
     featured: false,
     relationStatus: "active",
   },
@@ -754,7 +754,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roermond",
-    brandId: "rosle",
+    brandId: "roesle",
     featured: false,
     relationStatus: "active",
   },
@@ -1084,7 +1084,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
-    brandId: "ba-sh",
+    brandId: "ba-and-sh",
     featured: false,
     relationStatus: "active",
   },
@@ -1474,7 +1474,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
-    brandId: "rosle",
+    brandId: "roesle",
     featured: false,
     relationStatus: "active",
   },
@@ -1540,7 +1540,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "designer-outlet-roosendaal",
-    brandId: "suit-supply",
+    brandId: "suitsupply",
     featured: false,
     relationStatus: "active",
   },
@@ -1762,7 +1762,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "amsterdam-the-style-outlets",
-    brandId: "jack-jones",
+    brandId: "jack-and-jones",
     featured: false,
     relationStatus: "active",
   },
@@ -1786,7 +1786,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "amsterdam-the-style-outlets",
-    brandId: "levi-s",
+    brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
@@ -2050,7 +2050,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "batavia-stad-fashion-outlet",
-    brandId: "levi-s",
+    brandId: "levis",
     featured: false,
     relationStatus: "active",
   },
@@ -2362,7 +2362,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "batavia-stad-fashion-outlet",
-    brandId: "lyle-scott",
+    brandId: "lyle-and-scott",
     featured: false,
     relationStatus: "active",
   },
@@ -2536,7 +2536,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "batavia-stad-fashion-outlet",
-    brandId: "rosle",
+    brandId: "roesle",
     featured: false,
     relationStatus: "active",
   },
@@ -2728,7 +2728,7 @@ export const netherlandsOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "batavia-stad-fashion-outlet",
-    brandId: "zadig-voltaire",
+    brandId: "zadig-and-voltaire",
     featured: false,
     relationStatus: "active",
   },

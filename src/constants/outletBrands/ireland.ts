@@ -21,7 +21,7 @@ export const irelandOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "kildare-village",
-    brandId: "baandsh",
+    brandId: "ba-and-sh",
     featured: false,
     relationStatus: "active",
   },

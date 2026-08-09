@@ -42,7 +42,7 @@ const freeportBrandIds = [
   "tous",
   "under-armour",
   "vans",
-  "zadig-voltaire",
+  "zadig-and-voltaire",
 ];
 
 const vilaDoCondeBrandIds = [
