@@ -108,7 +108,7 @@ export function SmartShoppingCalculatorScreen() {
               <Text style={styles.settingsFlag}>
                 {selectedCountry.countryFlag}
               </Text>
-              <View>
+              <View style={styles.settingsSummaryText}>
                 <Text style={styles.settingsLabel}>{t("common.country")}</Text>
                 <Text style={styles.settingsValue}>
                   {getLocalizedCountryName(selectedCountry, language)}
@@ -122,7 +122,7 @@ export function SmartShoppingCalculatorScreen() {
               <Text style={styles.settingsFlag}>
                 {selectedCurrencyInfo.currencyFlag}
               </Text>
-              <View>
+              <View style={styles.settingsSummaryText}>
                 <Text style={styles.settingsLabel}>{t("common.currency")}</Text>
                 <Text style={styles.settingsValue}>{selectedCurrency}</Text>
                 <Text style={styles.settingsSubvalue}>
@@ -292,9 +292,11 @@ const styles = StyleSheet.create({
   },
   settingsSummaryItem: {
     flex: 1,
+    minWidth: 0,
     flexDirection: "row",
     alignItems: "center",
   },
+  settingsSummaryText: { flex: 1, minWidth: 0 },
   settingsSummaryDivider: {
     width: 1,
     height: 34,
@@ -304,8 +306,10 @@ const styles = StyleSheet.create({
   settingsFlag: {
     fontSize: 25,
     marginEnd: 9,
+    flexShrink: 0,
   },
   settingsLabel: {
+    flexShrink: 1,
     color: "#687386",
     fontSize: 10,
     fontWeight: "900",
@@ -313,12 +317,14 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   settingsValue: {
+    flexShrink: 1,
     color: "#0B1F3A",
     fontSize: 14,
     fontWeight: "900",
   },
 
   settingsSubvalue: {
+    flexShrink: 1,
     color: "#687386",
     fontSize: 10,
     fontWeight: "800",
