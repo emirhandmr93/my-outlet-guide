@@ -1,4 +1,4 @@
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePicker from "../components/DateTimePickerAdapter";
 import { useMemo, useState } from "react";
 import {
   Alert,

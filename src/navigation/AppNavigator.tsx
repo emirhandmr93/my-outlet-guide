@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator, Platform, Pressable, useWindowDimensions, View } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
-import * as Notifications from "expo-notifications";
 
 import { BrandResultsScreen } from "../screens/BrandResultsScreen";
 import { CityResultsScreen } from "../screens/CityResultsScreen";
@@ -60,12 +59,12 @@ import { useNavigationFonts } from "./useNavigationFonts";
 import { createWebLinking } from "./webLinking";
 import { syncWebSeo } from "../utils/webSeo";
 import { trackWebPageView } from "../utils/webAnalytics";
+import { notificationResponseApi } from "../services/notificationResponseApi";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const navigationRef = createNavigationContainerRef<RootStackParamList>();
 const MAX_HANDLED_NOTIFICATION_RESPONSES = 100;
-const notificationResponseApi = Notifications as unknown as typeof import("expo-notifications/build/NotificationsEmitter");
 
 type DesktopHomeStackParamList = {
 HomeRoot: undefined;
