@@ -1,25 +1,19 @@
 import type { TranslationLanguage } from "../translations/locale";
-import es from "../translations/.generated-web/es.generated.js";
-import fr from "../translations/.generated-web/fr.generated.js";
-import de from "../translations/.generated-web/de.generated.js";
-import ar from "../translations/.generated-web/ar.generated.js";
-import ru from "../translations/.generated-web/ru.generated.js";
-import zh from "../translations/.generated-web/zh.generated.js";
 
 type Dictionary = Record<string, string>;
 
-const dictionaries: Partial<Record<TranslationLanguage, Dictionary>> = {
-  es,
-  fr,
-  de,
-  ar,
-  ru,
-  zh,
-};
+const dictionaries: Partial<Record<TranslationLanguage, Dictionary>> = {};
+const inFlightLoads: Partial<Record<TranslationLanguage, Promise<void>>> = {};
 
-const loaders: Record<"en" | "tr", () => Promise<{ default: Dictionary }>> = {
+const loaders: Record<TranslationLanguage, () => Promise<{ default: Dictionary }>> = {
   en: () => import("../translations/.generated-web/en.generated.js"),
   tr: () => import("../translations/.generated-web/tr.generated.js"),
+  es: () => import("../translations/.generated-web/es.generated.js"),
+  fr: () => import("../translations/.generated-web/fr.generated.js"),
+  de: () => import("../translations/.generated-web/de.generated.js"),
+  ar: () => import("../translations/.generated-web/ar.generated.js"),
+  ru: () => import("../translations/.generated-web/ru.generated.js"),
+  zh: () => import("../translations/.generated-web/zh.generated.js"),
 };
 
 const visibleLocalePrefixPattern =
@@ -32,13 +26,24 @@ function cleanTranslationValue(key: string, value: string | undefined) {
   return cleanedValue === key || leakedKeyPattern.test(cleanedValue) ? undefined : cleanedValue;
 }
 
-async function loadDictionary(language: "en" | "tr") {
-  if (!dictionaries[language]) dictionaries[language] = (await loaders[language]()).default;
+function loadDictionary(language: TranslationLanguage) {
+  if (dictionaries[language]) return Promise.resolve();
+  if (inFlightLoads[language]) return inFlightLoads[language];
+
+  const load = loaders[language]().then(({ default: dictionary }) => {
+    dictionaries[language] = dictionary;
+    delete inFlightLoads[language];
+  }, (error) => {
+    delete inFlightLoads[language];
+    throw error;
+  });
+  inFlightLoads[language] = load;
+  return load;
 }
 
 export async function prepareTranslationLanguage(language: TranslationLanguage) {
   const required: Array<Promise<void>> = [loadDictionary("en")];
-  if (language === "tr") required.push(loadDictionary("tr"));
+  if (language !== "en") required.push(loadDictionary(language));
   await Promise.all(required);
 }
 
