@@ -48,16 +48,41 @@ type WebSeoOutlet = (typeof outlets)[number];
 
 export function isWebSeoPublicOutlet(outlet: WebSeoOutlet) { return outlet.status === "active" && typeof outlet.outletId === "string" && !webSeoUnpublishedOutletIds.has(outlet.outletId); }
 let webSeoBrandAssignments: ReadonlyMap<string, string> | undefined;
+const WEB_SEO_PROTECTED_BRAND_IDS: ReadonlySet<string> = new Set(["tissot", "yves-saint-laurent", "carters", "giordano", "umbro", "wilson"]);
 function getWebSeoBrandAssignments(publicOutletIds: ReadonlySet<string>) {
   if (webSeoBrandAssignments) return webSeoBrandAssignments;
   const activeRelations=outletBrands.filter((item)=>item.relationStatus==="active"&&publicOutletIds.has(item.outletId));
   const relationsByBrand=new Map<string,string[]>();
-  for (const relation of activeRelations) relationsByBrand.set(relation.brandId,[...(relationsByBrand.get(relation.brandId)??[]),relation.outletId]);
-  const load=new Map<string,number>(); const assigned=new Map<string,string>();
+  for (const relation of activeRelations) relationsByBrand.set(relation.brandId,[...new Set([...(relationsByBrand.get(relation.brandId)??[]),relation.outletId])].sort());
+  // Preserve the former balanced choice whenever capacity permits, then use an
+  // augmenting path to move multi-outlet brands only when it exposes another brand.
+  const legacyLoad=new Map<string,number>(); const legacy=new Map<string,string>();
   for (const brand of brands.filter((item)=>item.brandStatus==="active")) {
-    const chosen=(relationsByBrand.get(brand.brandId)??[]).sort((a,b)=>(load.get(a)??0)-(load.get(b)??0)||a.localeCompare(b))[0];
-    if (chosen) { assigned.set(brand.brandId,chosen); load.set(chosen,(load.get(chosen)??0)+1); }
+    const chosen=[...(relationsByBrand.get(brand.brandId)??[])].sort((a,b)=>(legacyLoad.get(a)??0)-(legacyLoad.get(b)??0)||a.localeCompare(b))[0];
+    if (chosen) { legacy.set(brand.brandId,chosen); legacyLoad.set(chosen,(legacyLoad.get(chosen)??0)+1); }
   }
+  const prioritized=brands.filter((item)=>item.brandStatus==="active"&&relationsByBrand.has(item.brandId)).sort((a,b)=>
+    Number(WEB_SEO_PROTECTED_BRAND_IDS.has(b.brandId))-Number(WEB_SEO_PROTECTED_BRAND_IDS.has(a.brandId))||
+    b.rankingWeight-a.rankingWeight||
+    (relationsByBrand.get(b.brandId)?.length??0)-(relationsByBrand.get(a.brandId)?.length??0)||
+    a.brandId.localeCompare(b.brandId));
+  const priority=new Map(prioritized.map((brand,index)=>[brand.brandId,index]));
+  const assigned=new Map<string,string>(); const occupants=new Map<string,string[]>();
+  const place=(brandId:string,seenBrands=new Set<string>(),seenOutlets=new Set<string>()):boolean=>{
+    if (seenBrands.has(brandId)) return false; seenBrands.add(brandId);
+    const candidates=[...(relationsByBrand.get(brandId)??[])].sort((a,b)=>Number(b===legacy.get(brandId))-Number(a===legacy.get(brandId))||a.localeCompare(b));
+    for (const outletId of candidates) {
+      if (seenOutlets.has(outletId)) continue; seenOutlets.add(outletId);
+      const current=occupants.get(outletId)??[];
+      if (current.length<40) { assigned.set(brandId,outletId); occupants.set(outletId,[...current,brandId]); return true; }
+      for (const moved of [...current].sort((a,b)=>(priority.get(b)??0)-(priority.get(a)??0)||b.localeCompare(a)))
+        if (place(moved,new Set(seenBrands),new Set(seenOutlets))) {
+          assigned.set(brandId,outletId); occupants.set(outletId,(occupants.get(outletId)??[]).filter((id)=>id!==moved&&id!==brandId).concat(brandId)); return true;
+        }
+    }
+    return false;
+  };
+  for (const brand of prioritized) place(brand.brandId);
   webSeoBrandAssignments=assigned; return assigned;
 }
 export function getIndexableWebSeoPages(): WebSeoLogicalPage[] {
@@ -101,7 +126,14 @@ export function getWebSeoInternalLinks(page: WebSeoLogicalPage, language: Transl
   const add = (name: string, path: string, relationship: WebSeoInternalLink["relationship"] = "discovery") => {
     if (path !== page.path && !links.some((item) => item.path === path)) links.push({ name, path, relationship });
   };
-  if (page.kind === "home") add(resolveTranslation(language, "nav.explore"), "explore");
+  if (page.kind === "home") {
+    add(resolveTranslation(language, "nav.explore"), "explore");
+    for (const [key,path] of [["nav.savings","savings"],["nav.helpFaq","help"],["nav.contactUs","contact"],["nav.privacyPolicy","privacy"],["nav.termsConditions","terms"]] as const)
+      add(resolveTranslation(language,key),path);
+  }
+  if (page.kind === "savings")
+    for (const [key,path] of [["nav.smartShopping","calculator/smart-shopping"],["nav.priceAdvantage","calculator/price-advantage"],["nav.taxFreeCalculator","calculator/tax-free"]] as const)
+      add(resolveTranslation(language,key),path);
   if (page.kind === "explore") {
     for (const country of countries.filter((item) => publicOutlets.some((outlet) => outlet.countryId === item.countryId)))
       add(formatCountryDisplayName(country.countryId, language), `country/${country.countryId}`);

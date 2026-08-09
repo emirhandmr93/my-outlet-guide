@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { outletBrands } from "../src/constants/outletBrands";
 import {
   getIndexableWebSeoPages,
   getWebSeoBreadcrumbs,
@@ -66,12 +67,32 @@ async function check() {
   const orphanAfter=Object.fromEntries(kinds.map((kind)=>[kind,WEB_SEO_LANGUAGES.reduce((count,language)=>count+pages.filter((page)=>group(page)===kind&&(inbound.get(canonical(language,page))??0)===0).length,0)]));
   const orphanBefore=Object.fromEntries(kinds.map((kind)=>[kind,WEB_SEO_LANGUAGES.length*pages.filter((page)=>group(page)===kind).length]));
   const depthCounts={"depth 1":0,"depth 2":0,"depth 3":0,"depth 4+":0,unreachable:0};
+  let maxDepth=0;
   for (const language of WEB_SEO_LANGUAGES) {
     const home=`${WEB_SEO_ORIGIN}/${language}`; const distance=new Map([[home,0]]); const queue=[home];
     while (queue.length) { const source=queue.shift()!; for (const target of graph.get(source)??[]) if (!distance.has(target)) { distance.set(target,distance.get(source)!+1); queue.push(target); } }
-    for (const page of pages) { const d=distance.get(canonical(language,page)); if (d===undefined) depthCounts.unreachable++; else if (d===1) depthCounts["depth 1"]++; else if (d===2) depthCounts["depth 2"]++; else if (d===3) depthCounts["depth 3"]++; else if (d>=4) depthCounts["depth 4+"]++; }
+    for (const page of pages) { const d=distance.get(canonical(language,page)); if (d===undefined) depthCounts.unreachable++; else { maxDepth=Math.max(maxDepth,d); if (d===1) depthCounts["depth 1"]++; else if (d===2) depthCounts["depth 2"]++; else if (d===3) depthCounts["depth 3"]++; else if (d>=4) depthCounts["depth 4+"]++; } }
   }
   const beforeDepth={"depth 1":0,"depth 2":0,"depth 3":0,"depth 4+":0,unreachable:WEB_SEO_LANGUAGES.length*(pages.length-1)};
+  const protectedBrands=["tissot","yves-saint-laurent","carters","giordano","umbro","wilson"];
+  for (const brandId of protectedBrands) for (const language of WEB_SEO_LANGUAGES)
+    assert((inbound.get(`${WEB_SEO_ORIGIN}/${language}/brand/${brandId}`)??0)>0,`${brandId}: protected brand is orphaned`);
+  for (const page of pages.filter((item)=>!["outlet","brand","country","city","transportation"].includes(item.kind))) for (const language of WEB_SEO_LANGUAGES)
+    assert(page.kind==="home"||(inbound.get(canonical(language,page))??0)>0,`${page.path}: fixed page is orphaned`);
+  const expectedFixed=["savings","help","contact","privacy","terms"];
+  const expectedCalculators=["calculator/smart-shopping","calculator/price-advantage","calculator/tax-free"];
+  for (const language of WEB_SEO_LANGUAGES) {
+    assert(expectedFixed.every((path)=>graph.get(`${WEB_SEO_ORIGIN}/${language}`)?.includes(`${WEB_SEO_ORIGIN}/${language}/${path}`)),`${language}: incomplete home fixed links`);
+    assert(expectedCalculators.every((path)=>graph.get(`${WEB_SEO_ORIGIN}/${language}/savings`)?.includes(`${WEB_SEO_ORIGIN}/${language}/${path}`)),`${language}: incomplete savings calculator links`);
+  }
+  for (const page of pages.filter((item)=>item.kind==="outlet")) {
+    const first=getWebSeoInternalLinks(page,"en").filter((item)=>item.relationship==="brand");
+    const second=getWebSeoInternalLinks(page,"en").filter((item)=>item.relationship==="brand");
+    assert(first.length<=40,`${page.outletId}: exceeds 40 brand links`);
+    assert(JSON.stringify(first)===JSON.stringify(second),`${page.outletId}: unstable brand assignment`);
+    for (const link of first) assert(outletBrands.some((item)=>item.outletId===page.outletId&&item.brandId===link.path.slice(6)&&item.relationStatus==="active"),`${page.outletId}: unrelated brand ${link.path}`);
+  }
+  assert(maxDepth<=4,"Maximum crawl depth exceeds 4");
   assert([...pageByPath].length===pages.length,"Duplicate logical page paths");
   console.log(`checkInternalLinks: ${anchorCount} crawlable anchors (${min}-${max} per localized page).`);
   console.log(`checkInternalLinks orphans before: ${JSON.stringify(orphanBefore)}`);
