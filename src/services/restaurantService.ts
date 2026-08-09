@@ -1,5 +1,3 @@
-import { restaurants } from "../constants/restaurants";
-
 export type RestaurantItem = {
   restaurantId: string;
   outletId: string;
@@ -10,6 +8,12 @@ export type RestaurantItem = {
   status: string;
   displayOrder: string;
 };
+
+let restaurants: unknown[] = [];
+
+export function setRestaurantRecords(records: unknown[]) {
+  restaurants = records;
+}
 
 function isRestaurantItem(item: unknown): item is RestaurantItem {
   return (

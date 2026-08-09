@@ -1,15 +1,21 @@
 import { outlets } from "../constants/outlets";
 import { translations, type TranslationLanguage } from "../translations/translations";
-import {
-  transportationGuides,
-  type TransportationGuide,
-  type TransportationType,
-} from "../constants/transportationGuides";
+import type { TransportationGuide, TransportationType } from "../constants/transportationGuides";
 import { getTransportationForOutlet } from "./transportationService";
-import {
-  getTransportationRouteFact,
-  type TransportationRouteFact,
-} from "../constants/transportationRouteFacts";
+import type { TransportationRouteFact } from "../constants/transportationRouteFacts";
+
+let transportationGuides: TransportationGuide[] = [];
+let transportationRouteFacts: TransportationRouteFact[] = [];
+const getTransportationRouteFact = (guideId: string) =>
+  transportationRouteFacts.find((fact) => fact.guideId === guideId);
+
+export function setTransportationV2Records(
+  guides: TransportationGuide[],
+  routeFacts: TransportationRouteFact[],
+) {
+  transportationGuides = guides;
+  transportationRouteFacts = routeFacts;
+}
 
 const UNSAFE_VALUE_PATTERN =
   /\b(confirm|check|varies|vary|provider|timetable|availability|unknown|not verified|kontrol et|sağlayıcıdan)\b/i;

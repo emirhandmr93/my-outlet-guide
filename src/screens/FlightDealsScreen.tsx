@@ -20,11 +20,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { heroAssets } from "../media/heroAssets";
-import {
-  FlightDealAirportRegion,
-  supportedFlightDealAirports,
-  SupportedFlightDealAirport,
-} from "../constants/flightDealAirports";
+import type { FlightDealAirportRegion, SupportedFlightDealAirport } from "../constants/flightDealAirports";
+import { useFlightAirportData } from "../hooks/useDetailData";
 import { useTrips } from "../contexts/TripsContext";
 import { useAuth } from "../contexts/AuthContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -68,6 +65,8 @@ const SELECTOR_FILTERS: FlightDealSelectorFilter[] = [
 ];
 
 export function FlightDealsScreen() {
+  const airportData = useFlightAirportData();
+  const supportedFlightDealAirports = airportData.data ?? [];
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
   const { isNativeRTL } = useLayoutDirection();
@@ -227,6 +226,8 @@ export function FlightDealsScreen() {
     }),
   ).slice(0, MAX_SELECTOR_RESULTS);
 
+  if (airportData.loading) return <View style={styles.container}><Text>{t("common.loading")}</Text></View>;
+  if (airportData.error) return <View style={styles.container}><Text>{t("trips.loadFailedTitle")}</Text><TouchableOpacity onPress={airportData.retry}><Text>{t("flightDealDetail.retry")}</Text></TouchableOpacity></View>;
   return (
     <>
       <ScrollView

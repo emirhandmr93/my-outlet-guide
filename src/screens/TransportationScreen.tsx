@@ -28,6 +28,7 @@ import {
   type TransportationV2Option,
 } from "../services/transportationV2Service";
 import { colors } from "../theme/colors";
+import { useTransportationDetailData } from "../hooks/useDetailData";
 
 type RouteParams = { Transportation: { outletId: string } };
 
@@ -146,10 +147,15 @@ function dedupeShuttles(items: TransportationV2Option[]) {
 }
 
 export function TransportationScreen() {
+  const detailData = useTransportationDetailData();
   const route = useRoute<RouteProp<RouteParams, "Transportation">>();
   const outletId = route.params?.outletId;
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
+  if (detailData.loading)
+    return <View style={styles.emptyContainer}><Text style={styles.emptyTitle}>{t("common.loading")}</Text></View>;
+  if (detailData.error)
+    return <View style={styles.emptyContainer}><Text style={styles.emptyTitle}>{t("trips.loadFailedTitle")}</Text><TouchableOpacity onPress={detailData.retry}><Text>{t("flightDealDetail.retry")}</Text></TouchableOpacity></View>;
   const options = getTransportationV2Options(outletId).map((option) =>
     getTransportationOptionDisplayModel(option, language),
   );
