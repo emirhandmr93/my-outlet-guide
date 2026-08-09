@@ -123,7 +123,7 @@ export function LoginScreen() {
           <View style={styles.emailCard}>
             <Text style={styles.label}>{t("auth.emailLabel")}</Text>
             <TextInput
-              style={[styles.input, styles.technicalInputLTR]}
+              style={[styles.input, Platform.OS === "web" && styles.inputWeb, styles.technicalInputLTR]}
               placeholder={t("auth.emailPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={email}
@@ -134,7 +134,7 @@ export function LoginScreen() {
 
             <Text style={styles.label}>{t("auth.passwordLabel")}</Text>
             <TextInput
-              style={[styles.input, styles.technicalInputLTR]}
+              style={[styles.input, Platform.OS === "web" && styles.inputWeb, styles.technicalInputLTR]}
               placeholder={t("auth.passwordPlaceholder")}
               placeholderTextColor="#8A8A8A"
               value={password}
@@ -243,6 +243,7 @@ const styles = StyleSheet.create({
     color: "#0B1F3A",
     fontWeight: "700",
   },
+  inputWeb: { fontSize: 16 },
   primaryButton: {
     backgroundColor: "#0B1F3A",
     borderRadius: 17,

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { heroAssets } from "../media/heroAssets";
@@ -74,7 +74,7 @@ export function CurrencySettingsScreen() {
 
         <Text style={styles.inputLabel}>{t("currency.amount")}</Text>
         <TextInput
-          style={[styles.input, styles.technicalInputLTR]}
+          style={[styles.input, Platform.OS === "web" && styles.inputWeb, styles.technicalInputLTR]}
           keyboardType="decimal-pad"
           placeholder="100"
           placeholderTextColor="#8A8A8A"
@@ -171,6 +171,7 @@ const styles = StyleSheet.create({
   converterCopy: { color: "#667085", lineHeight: 20, marginBottom: 12 },
   inputLabel: { color: "#0B1F3A", fontWeight: "900", marginTop: 10, marginBottom: 8 },
   input: { backgroundColor: "#F7F8FA", borderWidth: 1, borderColor: "#E5E7EB", borderRadius: 16, padding: 14, color: "#0B1F3A", fontWeight: "800" },
+  inputWeb: { fontSize: 16 },
   currencyGrid: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
   currencyPill: { paddingHorizontal: 12, paddingVertical: 9, borderRadius: 999, backgroundColor: "#F7F8FA", borderWidth: 1, borderColor: "#E5E7EB" },
   currencyPillActive: { backgroundColor: "#FFF8E1", borderColor: "#C9A227" },

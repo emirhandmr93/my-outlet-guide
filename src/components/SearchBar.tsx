@@ -1,10 +1,11 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
 import { shadows } from "../theme/shadows";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 import { useLayoutDirection } from "../hooks/useLayoutDirection";
+import { useTranslation } from "../hooks/useTranslation";
 
 type SearchBarProps = {
   value: string;
@@ -16,6 +17,7 @@ type SearchBarProps = {
 export function SearchBar({ value, placeholder, onChangeText, onSubmitEditing }: SearchBarProps) {
   const hasValue = value.trim().length > 0;
   const { isNativeRTL } = useLayoutDirection();
+  const { t } = useTranslation();
 
   return (
     <View style={[styles.container, isNativeRTL && styles.containerRTL]}>
@@ -24,7 +26,7 @@ export function SearchBar({ value, placeholder, onChangeText, onSubmitEditing }:
       </View>
 
       <TextInput
-        style={[styles.input, isNativeRTL && styles.inputRTL]}
+        style={[styles.input, Platform.OS === "web" && styles.inputWeb, isNativeRTL && styles.inputRTL]}
         value={value}
         placeholder={placeholder}
         placeholderTextColor={colors.textMuted}
@@ -40,6 +42,9 @@ export function SearchBar({ value, placeholder, onChangeText, onSubmitEditing }:
           style={[styles.clearButton, isNativeRTL && styles.clearButtonRTL]}
           activeOpacity={0.82}
           onPress={() => onChangeText("")}
+          hitSlop={5}
+          accessibilityRole="button"
+          accessibilityLabel={t("explore.clear")}
         >
           <Text style={styles.clearText}>×</Text>
         </TouchableOpacity>
@@ -100,6 +105,7 @@ const styles = StyleSheet.create({
     textAlign: "right",
     writingDirection: "rtl",
   },
+  inputWeb: { fontSize: 16 },
 
   clearButton: {
     width: 34,

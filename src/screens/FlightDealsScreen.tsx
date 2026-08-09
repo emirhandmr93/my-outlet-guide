@@ -470,7 +470,7 @@ export function FlightDealsScreen() {
                       : t("flightDeals.destinationSearchPlaceholder")
                   }
                   placeholderTextColor="#94A3B8"
-                  style={[styles.input, isNativeRTL && styles.proseInputRTL]}
+                  style={[styles.input, Platform.OS === "web" && styles.inputWeb, isNativeRTL && styles.proseInputRTL]}
                 />
               </View>
               {pickerMode === "origin" ? (
@@ -615,6 +615,7 @@ const styles = StyleSheet.create({
     color: "#0B1F3A",
     fontWeight: "700",
   },
+  inputWeb: { fontSize: 16 },
   selectorButton: {
     borderWidth: 1,
     borderColor: "#D1D5DB",

@@ -127,9 +127,9 @@ export function WriteReviewScreen() {
           <Text style={styles.derivedRatingValue}>⭐ {overallRating ? overallRating.toFixed(1).replace(/\.0$/, "") : "—"}</Text>
         </View>
         <Text style={styles.label}>{t("writeReview.titleLabel")}</Text>
-        <TextInput style={[styles.input, isNativeRTL && styles.proseInputRTL]} value={title} onChangeText={setTitle} maxLength={80} placeholder={t("writeReview.titlePlaceholder")} returnKeyType="next" onFocus={() => scrollFocusedInputIntoView(460)} />
+        <TextInput style={[styles.input, Platform.OS === "web" && styles.inputWeb, isNativeRTL && styles.proseInputRTL]} value={title} onChangeText={setTitle} maxLength={80} placeholder={t("writeReview.titlePlaceholder")} returnKeyType="next" onFocus={() => scrollFocusedInputIntoView(460)} />
         <Text style={styles.label}>{t("writeReview.commentLabel")}</Text>
-        <TextInput style={[styles.input, styles.commentInput, isNativeRTL && styles.proseInputRTL]} value={comment} onChangeText={setComment} multiline maxLength={1200} placeholder={t("writeReview.commentPlaceholder")} textAlignVertical="top" onFocus={() => scrollFocusedInputIntoView(640)} />
+        <TextInput style={[styles.input, styles.commentInput, Platform.OS === "web" && styles.inputWeb, isNativeRTL && styles.proseInputRTL]} value={comment} onChangeText={setComment} multiline maxLength={1200} placeholder={t("writeReview.commentPlaceholder")} textAlignVertical="top" onFocus={() => scrollFocusedInputIntoView(640)} />
         <TouchableOpacity style={styles.button} activeOpacity={0.86} onPress={saveReview} disabled={saving}>
           <Text style={styles.buttonText}>{saving ? t("common.loading") : t("writeReview.submit")}</Text>
         </TouchableOpacity>
@@ -174,6 +174,7 @@ const styles = StyleSheet.create({
   derivedRatingLabel: { color: colors.textSecondary, fontSize: typography.small, fontWeight: "900" },
   derivedRatingValue: { color: colors.textPrimary, fontSize: typography.h3, fontWeight: "900", marginTop: spacing.xs },
   input: { backgroundColor: colors.background, borderColor: colors.border, borderWidth: 1, borderRadius: radius.lg, padding: spacing.md, color: colors.textPrimary },
+  inputWeb: { fontSize: 16 },
   commentInput: { minHeight: 180, textAlignVertical: "top" },
   button: { backgroundColor: colors.primary, borderRadius: radius.pill, paddingHorizontal: spacing.lg, paddingVertical: spacing.md, marginTop: spacing.lg, alignItems: "center" },
   buttonText: { color: colors.textInverse, fontSize: typography.body, fontWeight: "900" },
