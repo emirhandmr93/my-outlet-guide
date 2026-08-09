@@ -1,8 +1,11 @@
 /** Explicit, reviewed legacy brand IDs. Keep this list narrow: no fuzzy matching. */
 export const BRAND_ID_ALIASES = {
+  alphatauri: "alpha-tauri",
   "ba-sh": "ba-and-sh",
   baandsh: "ba-and-sh",
   "cp-company": "c-p-company",
+  "camp-david-soccx": "camp-david-and-soccx",
+  "coin-casa": "coincasa",
   "harmont-blaine": "harmont-and-blaine",
   "harmont-e-blaine": "harmont-and-blaine",
   "harmont-blaine-junior": "harmont-and-blaine-junior",
@@ -12,6 +15,7 @@ export const BRAND_ID_ALIASES = {
   "levi-s": "levis",
   "lyle-scott": "lyle-and-scott",
   mac: "mac-cosmetics",
+  maxandco: "max-and-co",
   move: "moeve",
   "murphy-and-nye": "murphy-nye",
   "o-neill": "oneill",

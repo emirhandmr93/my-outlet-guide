@@ -2171,16 +2171,6 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
-    brandId: "maxandco",
-    brandName: "Max&Co",
-    aliases: ["Max&Co", "Max & Co", "MAX&Co."],
-    categoryId: "fashion",
-    logo: "",
-    luxuryLevel: "premium",
-    rankingWeight: 72,
-    brandStatus: "active",
-  },
-  {
     brandId: "max-and-co",
     brandName: "MAX&Co.",
     aliases: [
@@ -2190,6 +2180,7 @@ export const brandsLP: Brand[] = [
       "MAX Co",
       "MAXCo",
       "MAX & Co",
+      "Max & Co",
       "MAXandCo",
       "MaxandCo",
       "Max Co",

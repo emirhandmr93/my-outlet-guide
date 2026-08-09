@@ -57,7 +57,7 @@ const viaJurmalaBrandIds = [
   "marella",
   "marina-rinaldi",
   "marni",
-  "maxandco",
+  "max-and-co",
   "mayoral",
   "michael-kors",
   "molly-bracken",

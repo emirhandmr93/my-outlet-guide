@@ -57,7 +57,7 @@ export const switzerlandOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "fashion-fish-factory-outlet",
-    brandId: "camp-david-soccx",
+    brandId: "camp-david-and-soccx",
     featured: false,
     relationStatus: "active",
   },
@@ -1167,7 +1167,7 @@ export const switzerlandOutletBrands: OutletBrand[] = [
   },
   {
     outletId: "landquart-fashion-outlet",
-    brandId: "alphatauri",
+    brandId: "alpha-tauri",
     featured: false,
     relationStatus: "active",
   },

@@ -41,6 +41,11 @@
     ],
     "redirects": [
       {
+        "source": "/:language/brand/alphatauri",
+        "destination": "/:language/brand/alpha-tauri",
+        "type": 301
+      },
+      {
         "source": "/:language/brand/ba-sh",
         "destination": "/:language/brand/ba-and-sh",
         "type": 301
@@ -53,6 +58,16 @@
       {
         "source": "/:language/brand/cp-company",
         "destination": "/:language/brand/c-p-company",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/camp-david-soccx",
+        "destination": "/:language/brand/camp-david-and-soccx",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/coin-casa",
+        "destination": "/:language/brand/coincasa",
         "type": 301
       },
       {
@@ -98,6 +113,11 @@
       {
         "source": "/:language/brand/mac",
         "destination": "/:language/brand/mac-cosmetics",
+        "type": 301
+      },
+      {
+        "source": "/:language/brand/maxandco",
+        "destination": "/:language/brand/max-and-co",
         "type": 301
       },
       {
