@@ -4,7 +4,7 @@ import { cities } from "./cities";
 import { countries } from "./countries";
 import { outletBrands } from "./outletBrands";
 import { outlets } from "./outlets";
-import { transportation } from "./transportation";
+import { hasWebSeoTransportation } from "./webSeoTransportation";
 import { supportedLanguageCodes, translations, type TranslationLanguage } from "../translations/translations";
 import { formatCityDisplayName, formatCountryDisplayName, formatOutletLocationSubtitle } from "../utils/locationDisplay";
 import { WEB_ROUTE_DEFINITIONS } from "../navigation/webLinking";
@@ -66,7 +66,7 @@ export function getIndexableWebSeoPages(): WebSeoLogicalPage[] {
   for (const brand of brands.filter(brand => brand.brandStatus === "active" && outletBrands.some(relation => relation.brandId === brand.brandId && relation.relationStatus === "active" && outletIds.has(relation.outletId)))) pages.push({kind:"brand",path:`brand/${brand.brandId}`,entityName:brand.brandName});
   for (const country of countries.filter(country => visible.some(outlet => outlet.countryId === country.countryId))) pages.push({kind:"country",path:`country/${country.countryId}`,entityName:country.countryId,countryId:country.countryId});
   for (const city of cities.filter(city => visible.some(outlet => outlet.cityId === city.cityId))) pages.push({kind:"city",path:`city/${city.cityId}`,entityName:city.cityId,countryId:city.countryId,cityId:city.cityId});
-  for (const outlet of visible.filter(item => transportation.some(transport => transport.outletId === item.outletId && transport.status === "active" && (transport.title.trim() || transport.tip.trim())))) pages.push({kind:"transportation",path:`transportation/${outlet.outletId}`,entityName:outlet.name,countryId:outlet.countryId,cityId:outlet.cityId,outletId:outlet.outletId});
+  for (const outlet of visible.filter(item => hasWebSeoTransportation(item.outletId))) pages.push({kind:"transportation",path:`transportation/${outlet.outletId}`,entityName:outlet.name,countryId:outlet.countryId,cityId:outlet.cityId,outletId:outlet.outletId});
   return pages.sort((a,b) => a.path.localeCompare(b.path));
 }
 export type WebSeoBreadcrumb = { name: string; path: string };
@@ -113,7 +113,7 @@ export function getWebSeoInternalLinks(page: WebSeoLogicalPage, language: Transl
   if (page.kind === "city")
     for (const outlet of publicOutlets.filter((item) => item.cityId === page.cityId)) add(outlet.name, `outlet/${outlet.outletId}`);
   if (page.kind === "outlet") {
-    if (transportation.some((item) => item.outletId === page.outletId && item.status === "active" && (item.title.trim() || item.tip.trim())))
+    if (hasWebSeoTransportation(page.outletId!))
       add(`${translations[language]["transportation.title"]}: ${page.entityName}`, `transportation/${page.outletId}`, "transportation");
     // Keep the fallback compact. Assignment makes every public brand discoverable
     // from at least one relevant outlet before remaining slots are filled.

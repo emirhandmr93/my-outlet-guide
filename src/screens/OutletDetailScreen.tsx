@@ -2,6 +2,7 @@ import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
+  ActivityIndicator,
   Dimensions,
   Image,
   Linking,
@@ -69,6 +70,7 @@ import { typography } from "../theme/typography";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
 import { formatOpeningHoursText, formatOutletStatusLabel, formatReviewSummaryLabel, resolveOutletRetailCountDisplay } from "../utils/outletDisplayFormatters";
 import { recordRecentVisit } from "../services/recentVisitsService";
+import { useRestaurantDetailData, useTaxFreeGuideData, useTransportationDetailData } from "../hooks/useDetailData";
 
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
@@ -103,6 +105,9 @@ const countryNames: Record<string, string> = {
 };
 
 export function OutletDetailScreen() {
+  const transportationData = useTransportationDetailData();
+  const restaurantData = useRestaurantDetailData();
+  const taxGuideData = useTaxFreeGuideData();
   const { isNativeRTL } = useLayoutDirection();
   const route = useRoute<RouteProp<RouteParams, "OutletDetail">>();
   const navigation = useNavigation<any>();
@@ -193,11 +198,11 @@ export function OutletDetailScreen() {
     language,
     t,
   );
-  const transportationSummaryItems = getOutletTransportationV2Summary(
+  const transportationSummaryItems = transportationData.data ? getOutletTransportationV2Summary(
     outlet.outletId,
     language,
-  );
-  const restaurantItems = getRestaurantsForOutlet(outlet.outletId);
+  ) : [];
+  const restaurantItems = restaurantData.data ? getRestaurantsForOutlet(outlet.outletId) : [];
   const taxFreeCountry = countries.find((country) => country.countryId === outlet.countryId);
   const taxFreeRule = getTaxFreeRule(outlet.countryId);
   const taxFreeStatus = resolveOutletTaxFreeDisplayStatus(
@@ -215,7 +220,7 @@ export function OutletDetailScreen() {
     ? getTaxFreePolicyDisplayModel(taxFreeRule, language, t)
     : undefined;
   const taxFreeSummary = taxFreeDisplay?.conciseSummary ?? taxFreeDisplay?.summary;
-  const hasTaxFreeGuide = isTaxFreeGuideAvailable(outlet.countryId);
+  const hasTaxFreeGuide = taxGuideData.data ? isTaxFreeGuideAvailable(outlet.countryId, taxGuideData.data) : false;
 
   const outletReviews = getPublishedReviews(
     reviews.filter((review) => review.outletId === outlet.outletId),
@@ -641,7 +646,7 @@ export function OutletDetailScreen() {
             setSectionPosition("transport", event.nativeEvent.layout.y)
           }
         >
-          <TransportationCard
+          {transportationData.loading ? <ActivityIndicator color={colors.primary} /> : transportationData.error ? <TouchableOpacity onPress={transportationData.retry}><Text>{t("flightDealDetail.retry")}</Text></TouchableOpacity> : <TransportationCard
             title={t("outlet.transportation")}
             summaryItems={transportationSummaryItems}
             notAvailableText={t("common.notAvailable")}
@@ -651,7 +656,7 @@ export function OutletDetailScreen() {
                 outletId: outlet.outletId,
               })
             }
-          />
+          />}
         </View>
 
         <MapsCard
@@ -676,11 +681,11 @@ export function OutletDetailScreen() {
             setSectionPosition("food", event.nativeEvent.layout.y)
           }
         >
-          <RestaurantsCard
+          {restaurantData.loading ? <ActivityIndicator color={colors.primary} /> : restaurantData.error ? <TouchableOpacity onPress={restaurantData.retry}><Text>{t("flightDealDetail.retry")}</Text></TouchableOpacity> : <RestaurantsCard
             title={t("outlet.restaurantsCafes")}
             restaurants={restaurantItems}
             notAvailableText={t("common.notAvailable")}
-          />
+          />}
         </View>
 
         <ServicesCard

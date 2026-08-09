@@ -1,5 +1,3 @@
-import { transportation } from "../constants/transportation";
-
 export type TransportationItem = {
   transportationId: string;
   outletId: string;
@@ -11,6 +9,12 @@ export type TransportationItem = {
   status: string;
   displayOrder: string;
 };
+
+let transportation: TransportationItem[] = [];
+
+export function setTransportationRecords(records: TransportationItem[]) {
+  transportation = records;
+}
 
 export function getTransportationForOutlet(outletId: string): TransportationItem[] {
   return transportation

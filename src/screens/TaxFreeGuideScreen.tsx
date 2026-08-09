@@ -9,6 +9,7 @@ import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey } from ".
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { formatCountryDisplayName } from "../utils/locationDisplay";
+import { useTaxFreeGuideData } from "../hooks/useDetailData";
 
 const processOrder = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 
@@ -17,6 +18,7 @@ type TaxFreeGuideRouteParams = {
 };
 
 export function TaxFreeGuideScreen() {
+  const guideData = useTaxFreeGuideData();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<TaxFreeGuideRouteParams, "TaxFreeGuide">>();
   const { selectedCountryId, setSelectedCountryId } = useSavings();
@@ -24,7 +26,7 @@ export function TaxFreeGuideScreen() {
   const normalizedRouteCountryId = typeof route.params?.countryId === "string"
     ? route.params.countryId.trim().toLowerCase()
     : undefined;
-  const validRouteCountryId = normalizedRouteCountryId && isTaxFreeGuideAvailable(normalizedRouteCountryId)
+  const validRouteCountryId = normalizedRouteCountryId && guideData.data && isTaxFreeGuideAvailable(normalizedRouteCountryId, guideData.data)
     ? normalizedRouteCountryId
     : undefined;
   const lastAppliedRouteCountryIdRef = useRef<string | undefined>(undefined);
@@ -40,7 +42,9 @@ export function TaxFreeGuideScreen() {
     if (selectedCountryId !== validRouteCountryId) setSelectedCountryId(validRouteCountryId);
   }, [selectedCountryId, setSelectedCountryId, validRouteCountryId]);
 
-  const { country, guide, rule, policyDisplay, countryStatus, isGuideAvailable } = getTaxFreeGuideDisplayModel(effectiveCountryId, language, t);
+  if (guideData.loading) return <View style={styles.container}><Text style={styles.note}>{t("common.loading")}</Text></View>;
+  if (guideData.error || !guideData.data) return <View style={styles.container}><Text style={styles.note}>{t("trips.loadFailedTitle")}</Text><TouchableOpacity onPress={guideData.retry}><Text>{t("flightDealDetail.retry")}</Text></TouchableOpacity></View>;
+  const { country, guide, rule, policyDisplay, countryStatus, isGuideAvailable } = getTaxFreeGuideDisplayModel(effectiveCountryId, language, t, guideData.data);
   const taxFreeSummary = policyDisplay?.summary;
   const selectedCountryIdSafe = country?.countryId ?? selectedCountryId;
 

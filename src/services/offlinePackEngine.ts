@@ -1,8 +1,6 @@
 import { brands } from "../constants/brands";
 import { outlets } from "../constants/outlets";
-import { restaurants } from "../constants/restaurants";
 import { taxFreeRules } from "../constants/taxFreeRules";
-import { transportation } from "../constants/transportation";
 import { countProductionResolvedLocalImages } from "../media/outletMedia";
 
 export type OfflineAvailabilityItem = {
@@ -22,7 +20,7 @@ export type OfflineAvailabilitySummary = {
   requiresInternet: OfflineAvailabilityItem[];
 };
 
-export function getOfflineAvailabilitySummary(): OfflineAvailabilitySummary {
+export function getOfflineAvailabilitySummary(restaurantRecordCount: number, transportationRecordCount: number): OfflineAvailabilitySummary {
   const countryCount = new Set(outlets.map((outlet) => outlet.countryId)).size;
   const localMediaAssetCount = countProductionResolvedLocalImages();
 
@@ -30,8 +28,8 @@ export function getOfflineAvailabilitySummary(): OfflineAvailabilitySummary {
     outletCount: outlets.length,
     countryCount,
     brandCount: brands.length,
-    restaurantRecordCount: restaurants.length,
-    transportationRecordCount: transportation.length,
+    restaurantRecordCount,
+    transportationRecordCount,
     taxFreeRuleCount: taxFreeRules.length,
     localMediaAssetCount,
     availableOffline: [
@@ -45,7 +43,7 @@ export function getOfflineAvailabilitySummary(): OfflineAvailabilitySummary {
       },
       {
         title: "Restaurant and transportation notes",
-        description: `${restaurants.length} restaurant records and ${transportation.length} transportation records are bundled locally.`,
+        description: `${restaurantRecordCount} restaurant records and ${transportationRecordCount} transportation records are bundled locally.`,
       },
       {
         title: "Local outlet images",

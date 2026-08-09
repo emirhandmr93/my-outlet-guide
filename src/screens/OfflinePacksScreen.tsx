@@ -4,15 +4,18 @@ import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { heroAssets } from "../media/heroAssets";
 import { useTranslation } from "../hooks/useTranslation";
 import { getOfflineAvailabilitySummary } from "../services/offlinePackEngine";
+import { useRestaurantDetailData, useTransportationDetailData } from "../hooks/useDetailData";
 
 const availableOfflineKeys = ["guide", "brands", "notes", "media", "taxFree"] as const;
 const requiresInternetKeys = ["accountSync", "favoritesTrips", "reviewsNotifications", "flightAlerts", "currency", "accountDeletion"] as const;
 
 export function OfflinePacksScreen() {
+  const restaurants = useRestaurantDetailData();
+  const transportation = useTransportationDetailData();
   const { t } = useTranslation();
   const { width } = useWindowDimensions();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
-  const summary = getOfflineAvailabilitySummary();
+  const summary = getOfflineAvailabilitySummary(restaurants.data ?? 0, transportation.data ?? 0);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={[styles.content, isDesktopWeb && styles.desktopContent, isDesktopWeb && styles.desktopVerticalPadding]}>

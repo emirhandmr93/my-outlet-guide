@@ -21,11 +21,8 @@ import * as WebBrowser from "expo-web-browser";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { WebDatePickerButton } from "../components/WebDatePickerButton";
-import {
-  FlightDealAirportRegion,
-  supportedFlightDealAirports,
-  SupportedFlightDealAirport,
-} from "../constants/flightDealAirports";
+import type { FlightDealAirportRegion, SupportedFlightDealAirport } from "../constants/flightDealAirports";
+import { useFlightAirportData } from "../hooks/useDetailData";
 import { useTranslation } from "../hooks/useTranslation";
 import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import { heroAssets } from "../media/heroAssets";
@@ -46,6 +43,8 @@ const FILTERS: AirportFilter[] = ["popular", "TR", "EUROPE", "MIDDLE_EAST", "ASI
 function todayString() { return localDateToIso(new Date()); }
 
 export function FlightSearchScreen() {
+  const airportData = useFlightAirportData();
+  const supportedFlightDealAirports = airportData.data ?? [];
   const { t, language } = useTranslation();
   const { isNativeRTL } = useLayoutDirection();
   const insets = useSafeAreaInsets();
@@ -147,6 +146,8 @@ export function FlightSearchScreen() {
   const airportTitle = (airport: SupportedFlightDealAirport) => `${formatCityDisplayName(airport.cityName, language)} · ${airport.airportCode}`;
   const filterLabel = (value: AirportFilter) => t(`flightSearch.filter${value === "popular" ? "Popular" : value === "TR" ? "Turkey" : value === "EUROPE" ? "Europe" : value === "MIDDLE_EAST" ? "MiddleEast" : value === "ASIA" ? "Asia" : "Americas"}`);
 
+  if (airportData.loading) return <View style={styles.screen}><Text>{t("common.loading")}</Text></View>;
+  if (airportData.error) return <View style={styles.screen}><Text>{t("trips.loadFailedTitle")}</Text><TouchableOpacity onPress={airportData.retry}><Text>{t("flightDealDetail.retry")}</Text></TouchableOpacity></View>;
   return <>
     <ScrollView style={styles.screen} contentContainerStyle={[styles.content, desktop && styles.desktop, { paddingTop: desktop ? 32 : getScreenTopInset(insets.top), paddingBottom: desktop ? 32 : getFloatingTabClearance(insets.bottom) }]} scrollIndicatorInsets={{ bottom: getScrollIndicatorBottomInset(insets.bottom) }} keyboardShouldPersistTaps="handled">
       <LocalHeroImageCard imageSource={heroAssets.flightDeals} responsiveWeb style={styles.hero} contentStyle={styles.heroContent}>
