@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { NativeModules, Platform } from "react-native";
+import { Button, NativeModules, Platform, Text, View } from "react-native";
 import {
   createContext,
   ReactNode,
@@ -61,12 +61,14 @@ export function LanguageProvider({
     DEFAULT_LANGUAGE
   );
   const [isLanguageResolved, setIsLanguageResolved] = useState(false);
+  const [translationLoadFailed, setTranslationLoadFailed] = useState(false);
 
   useEffect(() => {
-    loadLanguage();
+    void loadLanguage();
   }, []);
 
   async function loadLanguage() {
+    setTranslationLoadFailed(false);
     const urlLanguage = Platform.OS === "web"
       ? getLanguageFromPath(window.location.pathname)
       : undefined;
@@ -79,15 +81,35 @@ export function LanguageProvider({
       resolvedLanguage = urlLanguage ?? resolveInitialLanguage(null, getDeviceLocaleCandidates());
     }
 
-    await prepareTranslationLanguage(resolvedLanguage);
-    setLanguageState(resolvedLanguage);
-    setIsLanguageResolved(true);
+    try {
+      await prepareTranslationLanguage(resolvedLanguage);
+      setLanguageState(resolvedLanguage);
+      setIsLanguageResolved(true);
+    } catch (error) {
+      console.error("Unable to prepare initial translation resources.", error);
+      setTranslationLoadFailed(true);
+    }
   }
 
   async function setLanguage(languageCode: TranslationLanguage) {
-    await prepareTranslationLanguage(languageCode);
-    setLanguageState(languageCode);
-    await AsyncStorage.setItem(STORAGE_KEY, languageCode);
+    try {
+      await prepareTranslationLanguage(languageCode);
+      setLanguageState(languageCode);
+      await AsyncStorage.setItem(STORAGE_KEY, languageCode);
+    } catch (error) {
+      console.error(`Unable to switch translation resources to ${languageCode}.`, error);
+    }
+  }
+
+  if (Platform.OS === "web" && !isLanguageResolved && translationLoadFailed) {
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", padding: 24 }}>
+        <Text accessibilityRole="alert" style={{ marginBottom: 12 }}>
+          Unable to load language resources.
+        </Text>
+        <Button title="Retry" onPress={() => void loadLanguage()} />
+      </View>
+    );
   }
 
   return (
