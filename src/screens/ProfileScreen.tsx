@@ -196,7 +196,7 @@ export function ProfileScreen() {
             </Text>
 
             <TextInput
-              style={[styles.displayNameInput, isNativeRTL && styles.displayNameInputRTL]}
+              style={[styles.displayNameInput, Platform.OS === "web" && styles.inputWeb, isNativeRTL && styles.displayNameInputRTL]}
               value={displayName}
               onChangeText={setDisplayName}
               placeholder={t("profile.displayNamePlaceholder")}
@@ -517,6 +517,7 @@ const styles = StyleSheet.create({
   },
 
   displayNameInputRTL: { textAlign: "right", writingDirection: "rtl" },
+  inputWeb: { fontSize: 16 },
 
   primaryButton: {
     backgroundColor: "#0B1F3A",

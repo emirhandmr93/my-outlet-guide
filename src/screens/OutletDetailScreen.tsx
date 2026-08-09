@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Alert,
   ActivityIndicator,
-  Dimensions,
   Image,
   Linking,
   Modal,
@@ -72,9 +71,6 @@ import { formatOpeningHoursText, formatOutletStatusLabel, formatReviewSummaryLab
 import { recordRecentVisit } from "../services/recentVisitsService";
 import { useRestaurantDetailData, useTaxFreeGuideData, useTransportationDetailData } from "../hooks/useDetailData";
 
-const screenWidth = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
-
 const outletMediaMode = getConfiguredOutletMediaMode();
 
 type RouteParams = {
@@ -113,7 +109,7 @@ export function OutletDetailScreen() {
   const navigation = useNavigation<any>();
   const { t, language } = useTranslation();
   const insets = useSafeAreaInsets();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const { reviews, deleteReview, reportReview, toggleHelpful, loadReviews } = useReviews();
   const { currentUser, isLoggedIn } = useUser();
@@ -441,7 +437,13 @@ export function OutletDetailScreen() {
           <NativeDirectionRoot>
           <View style={styles.galleryModal}>
             <TouchableOpacity
-              style={styles.galleryCloseButton}
+              style={[
+                styles.galleryCloseButton,
+                {
+                  top: Math.max(60, insets.top + spacing.xl),
+                  right: insets.right + spacing.xl,
+                },
+              ]}
               onPress={() => setIsGalleryOpen(false)}
             >
               <Text style={styles.galleryCloseText}>
@@ -451,14 +453,14 @@ export function OutletDetailScreen() {
 
             <View style={styles.galleryModalImageWrapper}>
               <TouchableOpacity
-                style={styles.galleryArrowLeft}
+                style={[styles.galleryArrowLeft, { left: insets.left + spacing.sm }]}
                 onPress={isNativeRTL ? showNextImage : showPreviousImage}
               >
                 <Text style={styles.galleryArrowText}>‹</Text>
               </TouchableOpacity>
 
               <ScrollView
-                style={styles.galleryZoomScroll}
+                style={{ width, height: height * 0.75 }}
                 contentContainerStyle={styles.galleryZoomContent}
                 maximumZoomScale={3}
                 minimumZoomScale={1}
@@ -468,18 +470,18 @@ export function OutletDetailScreen() {
                 {selectedImage ? (
                   <Image
                     source={getImageSource(selectedImage)}
-                    style={styles.galleryModalImage}
+                    style={{ width, height: height * 0.75 }}
                     resizeMode="contain"
                   />
                 ) : (
-                  <View style={styles.galleryNoImagePlaceholder}>
+                  <View style={[styles.galleryNoImagePlaceholder, { width, height: height * 0.75 }]}>
                     <Text style={styles.galleryNoImageIcon}>🛍️</Text>
                   </View>
                 )}
               </ScrollView>
 
               <TouchableOpacity
-                style={styles.galleryArrowRight}
+                style={[styles.galleryArrowRight, { right: insets.right + spacing.sm }]}
                 onPress={isNativeRTL ? showPreviousImage : showNextImage}
               >
                 <Text style={styles.galleryArrowText}>›</Text>
@@ -884,14 +886,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  galleryModalImage: {
-    width: screenWidth,
-    height: screenHeight * 0.75,
-  },
-
   galleryNoImagePlaceholder: {
-    width: screenWidth,
-    height: screenHeight * 0.75,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.primary,
@@ -903,8 +898,6 @@ const styles = StyleSheet.create({
 
   galleryCloseButton: {
     position: "absolute",
-    top: 60,
-    right: spacing.xl,
     zIndex: 10,
     backgroundColor: "rgba(255,255,255,0.14)",
     borderRadius: radius.pill,
@@ -920,14 +913,12 @@ const styles = StyleSheet.create({
 
   galleryArrowLeft: {
     position: "absolute",
-    left: spacing.sm,
     zIndex: 10,
     padding: spacing.lg,
   },
 
   galleryArrowRight: {
     position: "absolute",
-    right: spacing.sm,
     zIndex: 10,
     padding: spacing.lg,
   },
@@ -936,11 +927,6 @@ const styles = StyleSheet.create({
     color: colors.textInverse,
     fontSize: 54,
     fontWeight: "300",
-  },
-
-  galleryZoomScroll: {
-    width: screenWidth,
-    height: screenHeight * 0.75,
   },
 
   galleryZoomContent: {
