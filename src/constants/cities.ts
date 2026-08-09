@@ -60,6 +60,11 @@ export const cities = [
     "countryId": "united-arab-emirates"
   },
   {
+    "cityId": "al-khiran",
+    "cityName": "Al Khiran",
+    "countryId": "kuwait"
+  },
+  {
     "cityId": "fleetwood",
     "cityName": "Fleetwood",
     "countryId": "united-kingdom"

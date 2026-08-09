@@ -171,6 +171,15 @@ export const countries = [
     "taxFreeAvailable": "TRUE"
   },
   {
+    "countryId": "kuwait",
+    "taxFreeStatus": "not_available",
+    "countryName": "Kuwait",
+    "countryFlag": "🇰🇼",
+    "continent": "Asia",
+    "currency": "KWD",
+    "taxFreeAvailable": "FALSE"
+  },
+  {
     "countryId": "lithuania",
     "taxFreeStatus": "available",
     "countryName": "Lithuania",

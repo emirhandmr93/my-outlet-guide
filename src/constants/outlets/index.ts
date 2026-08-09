@@ -12,6 +12,7 @@ import { greeceOutlets } from "./greece";
 import { hungaryOutlets } from "./hungary";
 import { irelandOutlets } from "./ireland";
 import { latviaOutlets } from "./latvia";
+import { kuwaitOutlets } from "./kuwait";
 import { lithuaniaOutlets } from "./lithuania";
 import { italyOutlets } from "./italy";
 import { netherlandsOutlets } from "./netherlands";
@@ -42,6 +43,7 @@ export {
   hungaryOutlets,
   irelandOutlets,
   latviaOutlets,
+  kuwaitOutlets,
   lithuaniaOutlets,
   italyOutlets,
   netherlandsOutlets,
@@ -80,6 +82,7 @@ export const outlets: Outlet[] = [
   ...greeceOutlets,
   ...irelandOutlets,
   ...latviaOutlets,
+  ...kuwaitOutlets,
   ...lithuaniaOutlets,
   ...slovakiaOutlets,
   ...norwayOutlets,

@@ -67,5 +67,42 @@ export const unitedArabEmiratesOutlets = [
     appleMapsUrl: "https://maps.apple.com/?ll=25.06669,55.404252&q=Dubai%20Outlet%20Mall",
     yandexMapsUrl: "https://yandex.com/maps/?ll=55.404252,25.06669&z=16&text=Dubai%20Outlet%20Mall",
     status: "active"
+  },
+  {
+    outletId: "the-outlet-village",
+    outletName: "The Outlet Village",
+    name: "The Outlet Village",
+    slug: "the-outlet-village",
+    countryId: "united-arab-emirates",
+    cityId: "dubai",
+    address: "The Outlet Village, Jebel Ali, Dubai, United Arab Emirates",
+    latitude: 24.95813,
+    longitude: 55.0517,
+    openingHours: "Mon-Thu 10:00 - 22:00; Fri-Sun 10:00 - 23:00. Public-holiday and seasonal hours may vary; check the official website for current timings.",
+    heroImage: "",
+    galleryImages: [],
+    storesCountText: "",
+    rating: 0,
+    reviewCount: 0,
+    services: [
+      "ATM",
+      "Baby Changing Room",
+      "Customer Service",
+      "Free Wi-Fi",
+      "Lost & Found",
+      "Parking",
+      "Prayer Room",
+      "Valet Parking",
+      "Wheelchair"
+    ],
+    restaurants: [],
+    parking: "The official visitor information lists parking and valet parking among the destination's services.",
+    taxFreeAvailable: false,
+    officialWebsite: "https://theoutletvillage.ae/en",
+    websiteUrl: "https://theoutletvillage.ae/en",
+    googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=24.95813,55.0517",
+    appleMapsUrl: "https://maps.apple.com/?ll=24.95813,55.0517&q=The%20Outlet%20Village",
+    yandexMapsUrl: "https://yandex.com/maps/?ll=55.0517,24.95813&z=16&text=The%20Outlet%20Village",
+    status: "active"
   }
 ];
