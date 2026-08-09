@@ -621,6 +621,7 @@ export function OutletDetailScreen() {
             taxFreeStatus={taxFreeStatus}
             rule={taxFreeRule}
             officeInfo={outlet.taxFreeOfficeInfo}
+            guideButtonLoading={taxGuideData.loading}
             guideButtonText={hasTaxFreeGuide ? t("taxGuide.openGuide") : undefined}
             onPressGuide={hasTaxFreeGuide ? () => navigation.navigate("TaxFreeGuide", { countryId: outlet.countryId }) : undefined}
           />
