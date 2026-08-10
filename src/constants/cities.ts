@@ -514,5 +514,10 @@ export const cities = [
     "cityId": "citta-sant-angelo",
     "cityName": "Città Sant'Angelo",
     "countryId": "italy"
+  },
+  {
+    "cityId": "gotemba",
+    "cityName": "Gotemba",
+    "countryId": "japan"
   }
 ];

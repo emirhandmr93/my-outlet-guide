@@ -1,3 +1,4 @@
+import { japanTransportationGuides } from "./japan";
 import { austriaTransportationGuides } from "./austria";
 import { belgiumTransportationGuides } from "./belgium";
 import { denmarkTransportationGuides } from "./denmark";
@@ -57,6 +58,7 @@ export type TransportationGuide = {
 };
 
 export {
+  japanTransportationGuides,
   austriaTransportationGuides,
   belgiumTransportationGuides,
   denmarkTransportationGuides,
@@ -88,6 +90,7 @@ export {
 };
 
 export const transportationGuides: TransportationGuide[] = [
+  ...japanTransportationGuides,
   ...italyTransportationGuides,
   ...latviaTransportationGuides,
   ...lithuaniaTransportationGuides,

@@ -1,3 +1,4 @@
+import { japanOutlets } from "./japan";
 import { austriaOutlets } from "./austria";
 import { belgiumOutlets } from "./belgium";
 import { croatiaOutlets } from "./croatia";
@@ -29,6 +30,7 @@ import { unitedArabEmiratesOutlets } from "./united-arab-emirates";
 import { ukOutlets } from "./uk";
 
 export {
+  japanOutlets,
   austriaOutlets,
   belgiumOutlets,
   bulgariaOutlets,
@@ -64,6 +66,7 @@ type OutletAirport = { code: string; name: string; distanceKm: number };
 type Outlet = { airports?: OutletAirport[]; [key: string]: any };
 
 export const outlets: Outlet[] = [
+  ...japanOutlets,
   ...italyOutlets,
   ...germanyOutlets,
   ...franceOutlets,
