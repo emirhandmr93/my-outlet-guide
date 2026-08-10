@@ -8,7 +8,7 @@ Primary surfaces checked included Tamdeen's [Al Khiran portfolio page](https://w
 
 ## Al Khiran Retail
 
-**Original pre-PR baseline:** 21. **Previous PR value:** 39. **Final verified after first-party recheck:** 42.
+**Original pre-PR baseline:** 21. **Previous correction value:** 42. **Final verified after the reverse operator-locator scan:** 44.
 
 ### Newly verified and added
 
@@ -35,6 +35,8 @@ Primary surfaces checked included Tamdeen's [Al Khiran portfolio page](https://w
 | Beverly Hills Polo Club | `beverly-hills-polo-club` | Apparel Group's current official locator lists `KUWAIT | Al Khiran Mall` |
 | LC Waikiki / LC Waikiki Kids | `lc-waikiki` | Apparel Group's current official locator lists both `KUWAIT | Al Khiran Mall` and `KUWAIT | Kids Al Khiran Mall`; the repository models both through one LC Waikiki identity |
 | R&B | `r-and-b` | Apparel Group's current official R&B locator explicitly lists `Khiran, KUWAIT | Al Khiran Mall` |
+| Rituals | `rituals` | Apparel Group's current official Rituals locator explicitly lists `KUWAIT | Al Khiran Mall`; reused the existing beauty-category identity |
+| Off/Price | `off-price` | Apparel Group's current official Off/Price locator explicitly lists `KUWAIT | AL KHIRAN MALL`; kept distinct from Brand Bazaar and BBZ |
 
 ### Investigated but not added
 
@@ -51,6 +53,10 @@ Primary surfaces checked included Tamdeen's [Al Khiran portfolio page](https://w
 ### Apparel Group recheck disposition
 
 The complete Apparel Group Al Khiran opening list was rechecked rather than limiting the review to Daleeeel candidates. R&B, LC Waikiki (including its Kids shop through the same canonical identity) and Beverly Hills Polo Club now pass the current-location threshold and were added. Havaianas, Steve Madden, BBZ and XIMI Vogue retain documented historical first-party opening evidence but were not promoted to current production relationships without a current locator. The remaining names on the opening material were either already represented among the retained/previously added relationships or did not produce another current direct tenant relationship.
+
+### Reverse current-locator scan
+
+Because the third-party candidate capture was not exhaustive, current operator/store-locator surfaces were also searched in reverse for `Al Khiran Mall`, `AL KHIRAN MALL`, and `Khiran, KUWAIT` without starting from a supplied tenant name. This found two additional current direct retail tenants: Rituals and Off/Price. Rituals reused the repository's existing canonical identity. Off/Price had no global canonical identity, so one distinct `off-price` record was added; it is not Brand Bazaar, historical Big Brand Bazaar / BBZ, or another multi-brand outlet identity. The practical recheck of the other operator/franchise surfaces already cited in this audit did not establish another omitted current direct retail tenant. No additional restaurant passed the branch-specific current first-party threshold, so the verified restaurant count remains 21.
 
 ### Existing records retained
 

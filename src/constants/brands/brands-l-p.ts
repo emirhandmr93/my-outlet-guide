@@ -3965,6 +3965,14 @@ export const brandsLP: Brand[] = [
     brandStatus: "active",
   },
   {
+    brandId: "off-price",
+    brandName: "Off/Price",
+    aliases: ["Off Price"],
+    categoryId: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
+  {
     brandId: "off-broadway-shoe-warehouse",
     brandName: "Off Broadway Shoe Warehouse",
     aliases: [],
