@@ -71,7 +71,7 @@ export const unitedArabEmiratesTransportationGuides: TransportationGuide[] = [
   },
   {
     guideId: "ibn-battuta-to-the-outlet-village-connection", outletId: "the-outlet-village", originType: "station", originId: "ibn-battuta-metro-station",
-    transportationType: "bus", title: "Ibn Battuta Metro Station connection to The Outlet Village", estimatedDuration: "Approx. 35–55 min after boarding; verify current timetable", estimatedCost: "Approx. AED 5–10 with a nol card; confirm current fare", recommended: false,
+    transportationType: "bus", title: "Ibn Battuta Metro Station connection to The Outlet Village", estimatedDuration: "Approx. 35–55 min after boarding; verify current timetable", estimatedCost: "Approx. AED 5–7.50 with a standard nol card; confirm current zones/fare", recommended: false,
     steps: [
       { order: 1, description: "Travel on the Dubai Metro Red Line to Ibn Battuta Metro Station." },
       { order: 2, description: "At the station, check RTA journey planning or ask station staff for the current bus connection to The Outlet Village." },

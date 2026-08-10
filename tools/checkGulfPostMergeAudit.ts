@@ -27,6 +27,8 @@ outletBrands.forEach(({ brandId }) => assert(brandCounts.get(brandId) === 1, `${
 
 const countRelations = (outletId: string) => outletBrands.filter((row) => row.outletId === outletId).length;
 const countRestaurants = (outletId: string) => restaurants.filter((row) => row.outletId === outletId).length;
+assert(countRelations("al-khiran-hybrid-outlet-mall") === 42, "Al Khiran must have 42 verified brand mappings");
+assert(countRestaurants("al-khiran-hybrid-outlet-mall") === 21, "Al Khiran must have 21 verified restaurant rows");
 assert(countRelations("the-outlet-village") === 73, "The Outlet Village must retain 73 Retail mappings");
 assert(countRestaurants("the-outlet-village") === 10, "The Outlet Village must retain 10 restaurant rows");
 assert(outlets.filter((outlet) => outlet.status === "active").length === 119, "active outlet count must remain 119");

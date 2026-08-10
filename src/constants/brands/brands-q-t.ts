@@ -2,6 +2,16 @@ import type { Brand } from "../../types/brand";
 
 export const brandsQT: Brand[] = [
   {
+    brandId: "r-and-b",
+    brandName: "R&B",
+    aliases: ["R and B", "R&B Fashion"],
+    categoryId: "fashion",
+    logo: "",
+    luxuryLevel: "fashion",
+    rankingWeight: 60,
+    brandStatus: "active",
+  },
+  {
     brandId: "terraces",
     brandName: "Terraces",
     aliases: ["Terraces Outlet", "Terraces Menswear"],

@@ -16,7 +16,7 @@ export const kuwaitTransportation = [
     transportType: "taxi",
     title: "Taxi / Ride-hailing",
     duration: "Approx. 65–100 min, depending on origin and traffic",
-    cost: "Approx. KWD 22–35; metered/app quotes vary",
+    cost: "Approx. KWD 19–35 depending on origin/service; official KWI airport taxi fare to Al Khiran is KWD 19, while city/app quotes vary",
     tip: "Enter the full mall name and Al Khiran pin, not Khiran Square or Norma Mall. Arrange or confirm a return ride because no scheduled mall public-transport service was verified.",
     status: "active",
     displayOrder: "2",

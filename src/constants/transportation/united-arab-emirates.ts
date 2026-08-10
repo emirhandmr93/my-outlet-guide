@@ -44,7 +44,7 @@ export const unitedArabEmiratesTransportation = [
   },
   {
     transportationId: "the-outlet-village-ibn-battuta-connection", outletId: "the-outlet-village", transportType: "bus",
-    title: "Ibn Battuta public-transport connection", duration: "Approx. 35–55 min after boarding; verify current timetable", cost: "Approx. AED 5–10 with a nol card; confirm current fare", tip: "The official mall FAQ identifies buses from Ibn Battuta Mall Metro Station. Verify the current RTA connection and timetable before travel because the mall does not publish a route number.",
+    title: "Ibn Battuta public-transport connection", duration: "Approx. 35–55 min after boarding; verify current timetable", cost: "Approx. AED 5–7.50 with a standard nol card; confirm current zones/fare", tip: "The official mall FAQ identifies buses from Ibn Battuta Mall Metro Station. Verify the current RTA connection and timetable before travel because the mall does not publish a route number.",
     status: "active", displayOrder: "3",
   },
   {

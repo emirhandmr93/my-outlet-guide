@@ -18,6 +18,7 @@ const alKhiranRestaurants = [
   { name: "Starbucks", website: "https://locations.starbucks.com.kw/directory/al-ahmadi/al-khiran-hybrid-outlet-mall" },
   { name: "Subway", website: "https://restaurants.subway.com/kuwait" },
   { name: "Taco Bell", website: "https://www.tacobell.com.kw/" },
+  { name: "Tim Hortons", website: "https://timhortonsgcc.com/locations/" },
   { name: "Toby's Estate", website: "https://www.tobysestate.com.kw/" },
 ] as const;
 

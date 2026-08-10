@@ -26,7 +26,7 @@ export const kuwaitTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi",
     title: "KWI to Al Khiran Hybrid Outlet Mall by taxi",
     estimatedDuration: "Approx. 65–85 min; traffic varies",
-    estimatedCost: "Approx. KWD 22–32 by taxi; app quotes vary",
+    estimatedCost: "KWD 19 by official airport taxi; ride-hailing/app quotes may vary",
     recommended: true,
     steps: [
       { order: 1, description: "Follow terminal signs to an official Kuwait International Airport taxi or use a licensed ride-hailing pickup." },

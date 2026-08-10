@@ -8,7 +8,7 @@ Primary surfaces checked included Tamdeen's [Al Khiran portfolio page](https://w
 
 ## Al Khiran Retail
 
-**Previous:** 21. **Final verified:** 39.
+**Original pre-PR baseline:** 21. **Previous PR value:** 39. **Final verified after first-party recheck:** 42.
 
 ### Newly verified and added
 
@@ -32,14 +32,25 @@ Primary surfaces checked included Tamdeen's [Al Khiran portfolio page](https://w
 | Smiggle | `smiggle` | Alshaya/current official location surface |
 | The Children's Place | `the-childrens-place` | Apparel Group/current official Kuwait location surface |
 | Vilebrequin | `vilebrequin` | Current official brand/Kuwait location surface |
+| Beverly Hills Polo Club | `beverly-hills-polo-club` | Apparel Group's current official locator lists `KUWAIT | Al Khiran Mall` |
+| LC Waikiki / LC Waikiki Kids | `lc-waikiki` | Apparel Group's current official locator lists both `KUWAIT | Al Khiran Mall` and `KUWAIT | Kids Al Khiran Mall`; the repository models both through one LC Waikiki identity |
+| R&B | `r-and-b` | Apparel Group's current official R&B locator explicitly lists `Khiran, KUWAIT | Al Khiran Mall` |
 
 ### Investigated but not added
 
 | Candidate | Reason |
 |---|---|
 | Al Sirhan Shoes; Altitude; Beidoun; Deer & Dear; H & S Store; House of Soap; Korea Town; Mievic; Modish; Penti; Puff; Sundek; Telefonati; the midi; Trafalgar; UFFF | Daleeeel/discovery or generic social results were found, but no sufficiently stable current first-party Al Khiran branch evidence was established. |
-| Faces; Fantasy World; JYSK; R&B; True Value | Kuwait presence was identifiable, but the searched first-party surfaces did not establish the branch specifically inside Al Khiran strongly enough for a production relationship. |
+| Faces; Fantasy World; JYSK; True Value | Kuwait presence was identifiable, but the searched first-party surfaces did not establish the branch specifically inside Al Khiran strongly enough for a production relationship. |
+| Big Brand Bazaar / BBZ | Apparel Group opening material is first-party historical evidence for Al Khiran, but a current official locator/location surface could not be established; it is not conflated with the repository’s different `brand-bazaar` tenant. |
+| XIMI Vogue | Apparel Group opening material is first-party historical evidence for Al Khiran, but a current official locator/location surface could not be established. |
+| Havaianas | Apparel Group's Al Khiran opening material is first-party historical evidence, but the current recheck did not establish a current official Al Khiran locator entry strongly enough for an active relationship. |
+| Steve Madden | Apparel Group's Al Khiran opening material is first-party historical evidence, but the current recheck did not establish a current official Al Khiran locator entry strongly enough for an active relationship. |
 | Ooredoo; stc | Customer-facing telecom/service stores sit outside the repository's ordinary outlet-fashion/retail brand semantics; no relationship was forced. |
+
+### Apparel Group recheck disposition
+
+The complete Apparel Group Al Khiran opening list was rechecked rather than limiting the review to Daleeeel candidates. R&B, LC Waikiki (including its Kids shop through the same canonical identity) and Beverly Hills Polo Club now pass the current-location threshold and were added. Havaianas, Steve Madden, BBZ and XIMI Vogue retain documented historical first-party opening evidence but were not promoted to current production relationships without a current locator. The remaining names on the opening material were either already represented among the retained/previously added relationships or did not produce another current direct tenant relationship.
 
 ### Existing records retained
 
@@ -51,7 +62,7 @@ Financial, personal-service and leisure candidates Aafaq, Al Muzaini, NBK, Paint
 
 ## Al Khiran restaurants
 
-**Previous:** 8. **Final verified:** 20.
+**Original pre-PR baseline:** 8. **Previous PR value:** 20. **Final verified after first-party recheck:** 21.
 
 ### Newly verified and added
 
@@ -68,9 +79,10 @@ Financial, personal-service and leisure candidates Aafaq, Al Muzaini, NBK, Paint
 | Pret A Manger | [Official Kuwait finder](https://www.pret.com/en-KW/find-a-pret) |
 | Subway | [Official Kuwait restaurant finder](https://restaurants.subway.com/kuwait) |
 | Taco Bell | [Official Kuwait site](https://www.tacobell.com.kw/) |
+| Tim Hortons | [Official GCC location finder](https://timhortonsgcc.com/locations/) and current Apparel Group list (`KUWAIT | Al Khiran Mall 2`) |
 | Toby's Estate | [Official Kuwait site](https://www.tobysestate.com.kw/) |
 
-No category or price level was inferred.
+Tim Hortons was absent from the Daleeeel candidate capture but was found during the broader first-party operator recheck. No category or price level was inferred.
 
 ### Investigated but not added
 
@@ -83,15 +95,15 @@ Burger King, Five Guys, Hardee's, Jollibee, KFC, Papa John's, Pizza Hut and Star
 
 ## Transportation estimates and basis
 
-All values are planning ranges, not quotes. Road durations are distance-based routing ranges and explicitly traffic-sensitive. UAE fares use RTA's current [taxi fare structure](https://www.rta.ae/wps/portal/rta/ae/public-transport/taxi) together with route distance and airport flag-fall context; app prices can vary. The Ibn Battuta estimate uses the official mall [FAQ](https://theoutletvillage.ae/en/faqs) for the existence of the connection and RTA [nol fares](https://www.rta.ae/wps/portal/rta/ae/public-transport/Nol-Fares) for a deliberately broad conditional range; no route number is asserted. Kuwait estimates use route distance, current local metered/app fare context, and the mall/KWI pins; long-trip and app quotes vary.
+All values are planning ranges, not quotes. Road durations are distance-based routing ranges and explicitly traffic-sensitive. UAE fares use RTA's current [taxi fare structure](https://www.rta.ae/wps/portal/rta/ae/public-transport/taxi) together with route distance and airport flag-fall context; app prices can vary. The Ibn Battuta estimate uses the official mall [FAQ](https://theoutletvillage.ae/en/faqs) for the existence of the connection and RTA [nol fares](https://www.rta.ae/wps/portal/rta/ae/public-transport/Nol-Fares): standard Silver/Personal nol bands are AED 3, AED 5 and AED 7.50 by zone count, so the connection is conservatively shown as AED 5–7.50 pending confirmation of the current zones; no route number is asserted. Kuwait estimates use route distance, current local metered/app fare context, and the mall/KWI pins. The KWI route now uses Kuwait International Airport’s current published flat tariff of KWD 19 for Al Khiran / Al Khiran City and distinguishes variable ride-hailing/app quotes.
 
 | Outlet | Origin | Mode | estimatedDuration | estimatedCost | Basis |
 |---|---|---|---|---|---|
 | The Outlet Village | Downtown Dubai | Taxi | Approx. 40–55 min; traffic varies | Approx. AED 115–145 by taxi; app fares vary | Road distance/routing range plus RTA metered fare structure |
 | The Outlet Village | Dubai International Airport (DXB) | Airport taxi | Approx. 50–65 min; traffic varies | Approx. AED 150–190 by airport taxi | Road distance/routing range plus airport flag fall and RTA meter |
 | The Outlet Village | Al Maktoum International Airport (DWC) | Airport taxi | Approx. 25–35 min; traffic varies | Approx. AED 55–80 by airport taxi | Road distance/routing range plus airport flag fall and RTA meter |
-| The Outlet Village | Ibn Battuta Metro Station | Confirmed current public-transport connection | Approx. 35–55 min after boarding; verify current timetable | Approx. AED 5–10 with a nol card; confirm current fare | Mall FAQ plus RTA planner/fare bands; intentionally no unverified route number |
+| The Outlet Village | Ibn Battuta Metro Station | Confirmed current public-transport connection | Approx. 35–55 min after boarding; verify current timetable | Approx. AED 5–7.50 with a standard nol card; confirm current zones/fare | Mall FAQ plus RTA planner/fare bands; intentionally no unverified route number |
 | Al Khiran | Kuwait City / Kuwait Towers | Taxi/ride-hailing | Approx. 80–100 min; traffic varies | Approx. KWD 27–35 by taxi; app quotes vary | Approximate 100 km road journey and current Kuwait taxi/app context |
-| Al Khiran | Kuwait International Airport (KWI) | Taxi/ride-hailing | Approx. 65–85 min; traffic varies | Approx. KWD 22–32 by taxi; app quotes vary | Approximate 85–90 km road journey and current Kuwait taxi/app context |
+| Al Khiran | Kuwait International Airport (KWI) | Taxi/ride-hailing | Approx. 65–85 min; traffic varies | KWD 19 by official airport taxi; ride-hailing/app quotes may vary | Kuwait International Airport’s current official airport-taxi tariff lists Al Khiran / Al Khiran City at KWD 19 |
 
 Mode-level records also now carry useful ranges. The participating-hotel shuttle deliberately says duration depends on hotel/route/stops and cost must be confirmed with the participating hotel rather than inventing a universal estimate.
