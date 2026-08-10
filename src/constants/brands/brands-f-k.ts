@@ -6185,4 +6185,10 @@ export const brandsFK: Brand[] = [
   { brandId: "gente-di-mare", brandName: "Gente di Mare", aliases: [], categoryId: "fashion", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
   { brandId: "kisarazu-concept-store", brandName: "KISARAZU CONCEPT STORE", aliases: [], categoryId: "gifts", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
   { brandId: "kaldi-coffee-farm", brandName: "KALDI COFFEE FARM", aliases: [], categoryId: "food", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  { brandId: "g-fore", brandName: "G/Fore", aliases: [], categoryId: "lifestyle", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  { brandId: "huf", brandName: "Huf", aliases: [], categoryId: "lifestyle", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  { brandId: "in", brandName: "In", aliases: [], categoryId: "lifestyle", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  { brandId: "jeanasis", brandName: "Jeanasis", aliases: [], categoryId: "lifestyle", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  { brandId: "kastane", brandName: "Kastane", aliases: [], categoryId: "lifestyle", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  { brandId: "kitkat", brandName: "Kitkat", aliases: ["KitKat"], categoryId: "food", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
 ];
