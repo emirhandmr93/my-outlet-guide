@@ -28,7 +28,7 @@ export const kuwaitOutlets = [
     airportDistanceKm: 86,
     airports: [{ code: "KWI", name: "Kuwait International Airport", distanceKm: 86 }],
     cityCenterInfo: { name: "Kuwait City / Kuwait Towers", distanceKm: 98 },
-    nearby: ["Al Khiran waterfront", "Al Khiran marina"],
+    nearby: [],
     officialWebsite: "https://www.tamdeen.com/portfolio/al-khiran",
     websiteUrl: "https://www.tamdeen.com/portfolio/al-khiran",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=28.6618,48.3689",

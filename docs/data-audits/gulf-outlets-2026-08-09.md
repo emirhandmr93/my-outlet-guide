@@ -1,41 +1,159 @@
 # Gulf outlets production-data audit — 2026-08-09
 
-This audit records the evidence boundary used for The Outlet Village and Al Khiran Hybrid Outlet Mall. Directory membership is intentionally represented as a direct tenant relationship: labels stocked by a multi-brand shop are not expanded into tenant rows.
+This correction re-enumerates the full load-more directory instead of relying on its initial visible page. A relation represents the direct tenant only; inventory inside a multi-brand tenant is never expanded.
 
 ## The Outlet Village
 
-### Primary sources
+### Sources and result
 
-- Destination home: https://theoutletvillage.ae/en
-- Official typed directory: https://theoutletvillage.ae/en/directory
+- Official full directory: https://theoutletvillage.ae/en/directory
 - Official dining page: https://theoutletvillage.ae/en/discover/dine
-- Official FAQ (hours, destination scale, access and visitor services): https://theoutletvillage.ae/en/faqs
-- Dubai RTA journey planning: https://www.rta.ae/wps/portal/rta/ae/public-transport/journeyplanner
+- Official FAQ: https://theoutletvillage.ae/en/faqs
+- RTA journey planner: https://www.rta.ae/wps/portal/rta/ae/public-transport/journeyplanner
 
-The official directory audit yielded **50 current direct Retail entries**, all 50 of which are mapped. There are no Retail-directory exclusions. The Deal, Brand Bazaar, Etoile Outlet and Rodeo Drive are mapped as the tenant—not as every label they stock. The official typed directory yielded **8 F&B entries**; all eight are restaurant rows. Candy Hearts and Oakberry Açaí are two additional current F&B kiosks named by the official FAQ, producing 10 rows in total. No official F&B entry was excluded.
+The full directory has **91 entries: 83 Retail and 8 F&B**. All 83 Retail tenants map to one canonical brand identity; there are **zero Retail exclusions**. The four multi-brand retailers Brand Bazaar, Etoile Outlet, Rodeo Drive and The Deal map only as their store identities. Armani Outlet maps to `armani-outlet`, not Armani Exchange; Boss maps to `boss`; Nike Town maps to canonical Nike; the dedicated Diesel Kids entry maps to the existing distinct `diesel-kids` identity.
 
-The FAQ's “500+ brands” describes brands represented at the destination, not store count. Metadata therefore retains the separately stated “more than 100 premium labels and stores” context and does not claim 500 stores. No verified local hero/gallery asset or source-backed review total exists in the repository, so media remains empty and the project-native unrated values remain zero.
+### Full Retail enumeration
 
-RTA material reviewed did not establish a stable direct route number that could safely be stored. The data therefore preserves the official FAQ's Ibn Battuta connection without inventing a route, timetable or fare. Hotel shuttle availability is explicitly conditional.
+| Official displayed tenant | Type | Represented | Canonical brandId | Exclusion |
+|---|---|---:|---|---|
+| Adidas | Retail | yes | `adidas` | — |
+| Aigner | Retail | yes | `aigner` | — |
+| Al Jaber Optical | Retail | yes | `al-jaber-opticals` | — |
+| Alessandro Dell acqua | Retail | yes | `alessandro-dell-acqua` | — |
+| Allday Minimart | Retail | yes | `all-day-minimart` | — |
+| Aldo | Retail | yes | `aldo` | — |
+| Armani Outlet | Retail | yes | `armani-outlet` | — |
+| B1 | Retail | yes | `1b` | — |
+| Baldinini | Retail | yes | `baldinini` | — |
+| Balmain | Retail | yes | `balmain` | — |
+| Banana Republic | Retail | yes | `banana-republic` | — |
+| Bauhaus | Retail | yes | `bauhaus` | — |
+| Beverly Hills Polo Club | Retail | yes | `beverly-hills-polo-club` | — |
+| BinSina Pharmacy | Retail | yes | `binsina-pharmacy` | — |
+| Boss | Retail | yes | `boss` | — |
+| Brand Bazaar | Retail | yes | `brand-bazaar` | — |
+| Brooks Brothers | Retail | yes | `brooks-brothers` | — |
+| Calvin Klein | Retail | yes | `calvin-klein` | — |
+| Carter's | Retail | yes | `carters` | — |
+| Charles & Keith | Retail | yes | `charles-and-keith` | — |
+| Coach | Retail | yes | `coach` | — |
+| Cole Haan | Retail | yes | `cole-haan` | — |
+| Converse | Retail | yes | `converse` | — |
+| Crocs | Retail | yes | `crocs` | — |
+| Diesel | Retail | yes | `diesel` | — |
+| Diesel Kids | Retail | yes | `diesel-kids` | — |
+| DKNY | Retail | yes | `dkny` | — |
+| Dolce&Gabbana | Retail | yes | `dolceandgabbana` | — |
+| Dune London | Retail | yes | `dune-london` | — |
+| Ecco | Retail | yes | `ecco` | — |
+| Elisabetta Franchi | Retail | yes | `elisabetta-franchi` | — |
+| Etoile Outlet | Retail | yes | `etoile-outlet` | — |
+| Fabi | Retail | yes | `fabi` | — |
+| FERRE | Retail | yes | `gianfranco-ferre` | — |
+| First One Mobile | Retail | yes | `first-one-mobile` | — |
+| Fred Perry | Retail | yes | `fred-perry` | — |
+| Furla | Retail | yes | `furla` | — |
+| GANT | Retail | yes | `gant` | — |
+| Gap | Retail | yes | `gap` | — |
+| Geox | Retail | yes | `geox` | — |
+| Grand Bazaar | Retail | yes | `grand-bazaar` | — |
+| Guess | Retail | yes | `guess` | — |
+| HUGO | Retail | yes | `hugo` | — |
+| Jacadi | Retail | yes | `jacadi` | — |
+| Kate Spade New York | Retail | yes | `kate-spade-new-york` | — |
+| Kenneth Cole | Retail | yes | `kenneth-cole` | — |
+| Kiko Milano | Retail | yes | `kiko-milano` | — |
+| Lacoste | Retail | yes | `lacoste` | — |
+| Levi's | Retail | yes | `levis` | — |
+| Michael Kors | Retail | yes | `michael-kors` | — |
+| Montblanc | Retail | yes | `montblanc` | — |
+| Nike Town | Retail | yes | `nike` | — |
+| Nine West | Retail | yes | `nine-west` | — |
+| Opera Shoes | Retail | yes | `opera-shoes` | — |
+| PANDORA | Retail | yes | `pandora` | — |
+| Petra Cosmetics | Retail | yes | `petra-cosmetics` | — |
+| Pierre Cardin | Retail | yes | `pierre-cardin` | — |
+| Pinko | Retail | yes | `pinko` | — |
+| Polo Ralph Lauren | Retail | yes | `polo-ralph-lauren` | — |
+| Priceless | Retail | yes | `priceless` | — |
+| Puma | Retail | yes | `puma` | — |
+| Riva | Retail | yes | `riva` | — |
+| Rivoli | Retail | yes | `rivoli` | — |
+| Rodeo Drive | Retail | yes | `rodeo-drive` | — |
+| Sacoor Blue | Retail | yes | `sacoor-blue` | — |
+| Sacoor Brothers | Retail | yes | `sacoor-brothers` | — |
+| Sacoor One | Retail | yes | `sacoor-one` | — |
+| Samsonite | Retail | yes | `samsonite` | — |
+| Skechers | Retail | yes | `skechers` | — |
+| Superdry | Retail | yes | `superdry` | — |
+| Ted Baker | Retail | yes | `ted-baker` | — |
+| TEMPERLEY LONDON | Retail | yes | `temperley-london` | — |
+| The Deal | Retail | yes | `the-deal` | — |
+| Timberland | Retail | yes | `timberland` | — |
+| Time Flies | Retail | yes | `time-flies` | — |
+| Tommy Hilfiger | Retail | yes | `tommy-hilfiger` | — |
+| Tory Burch | Retail | yes | `tory-burch` | — |
+| TUMI | Retail | yes | `tumi` | — |
+| Under Armour | Retail | yes | `under-armour` | — |
+| Villeroy & Boch | Retail | yes | `villeroy-and-boch` | — |
+| V Perfumes | Retail | yes | `v-perfumes` | — |
+| Water Gold Perfumes | Retail | yes | `water-gold-perfumes` | — |
+| Zegna | Retail | yes | `zegna` | — |
+
+### Full F&B enumeration
+
+| Official displayed tenant | Type | Restaurant row |
+|---|---|---:|
+| Buffalitos Restaurant | F&B | yes |
+| Caffè Nero | F&B | yes |
+| Godiva | F&B | yes |
+| Operation Falafel | F&B | yes |
+| Project Pie & Papa Murphy's | F&B | yes |
+| Salties Restaurant | F&B | yes |
+| Starbucks | F&B | yes |
+| Urban Seafood | F&B | yes |
+
+The official directory contributes 8 F&B rows. Candy Hearts and Oakberry Açaí are two additional FAQ-verified food kiosks, for **10 restaurant rows**. There are no F&B omissions. The FAQ's “500+ brands” is not represented as 500 stores; `storesCountText` keeps the separately stated more-than-100 destination wording. Media/review snapshots remain unresolved because no repository asset or approved review snapshot exists. The Ibn Battuta connection remains deliberately route-number/fare/timetable neutral because a stable direct RTA service was not established.
 
 ## Al Khiran Hybrid Outlet Mall
 
-### Primary and operator sources searched
+### Operators and first-party surfaces searched
 
-- Tamdeen project page: https://www.tamdeen.com/portfolio/al-khiran
-- Alshaya store locator: https://locations.alshaya.com/
-- Apparel Group brands and locations: https://www.apparelgroup.com/en/brands/
-- GMG portfolio: https://www.gmg.com/brands/
-- Azadea store locator: https://www.azadeagroupholding.com/english/our-brands
-- Chalhoub Group portfolio: https://www.chalhoubgroup.com/our-brands
-- Al Tayer retail portfolio: https://www.altayer.com/retail/
-- Nike store directory: https://www.nike.com/retail/directory/kuwait
-- New Balance store locator: https://www.newbalance.com/stores/
-- The Body Shop store locator: https://www.thebodyshop.com/en-gb/store-finder
-- Starbucks Kuwait locator: https://locations.starbucks.com.kw/
+Tamdeen project page; Alshaya location pages; Apparel Group; Alghanim Industries and Xcite; GMG; Azadea; Chalhoub; Al Tayer; Nike; New Balance; The Body Shop; Starbucks Kuwait; and the official location surfaces of every mapped restaurant were checked under Al Khiran, Al Khairan, Khiran Hybrid Outlet and Al Khiran Hybrid Outlet Mall variants. Primary URLs include https://www.tamdeen.com/portfolio/al-khiran, https://locations.alshaya.com/, https://www.apparelgroup.com/en/brands/, https://www.gmg.com/brands/, https://www.azadeagroupholding.com/english/our-brands, https://www.chalhoubgroup.com/our-brands, https://www.altayer.com/retail/, https://www.alghanim.com/ and https://www.xcite.com/.
 
-Because Tamdeen does not publish a complete typed tenant directory, this is **complete currently verifiable coverage**, not a claim that every one of the project's 284 retail stores is represented. Twenty direct retail tenants and eight inside-mall F&B branches were corroborated strongly enough to map. Victoria's Secret PINK is associated with the canonical global `victoria-s-secret` identity rather than creating a duplicate PINK/Outlet brand.
+### Confirmed direct Retail coverage
 
-Candidates seen only in discovery results—Domino's and other uncorroborated delivery listings—were excluded. Khiran Square, Norma Mall and generic “Al Khiran” results were excluded as nearby but different destinations. No stale or explicitly closed branch is included. The mall-wide schedule is unresolved: consistent tenant locators show Sun–Wed 10:00–22:00 and Thu–Sat 10:00–23:00, but no mall-wide operator schedule was found; the metadata says exactly that instead of promoting tenant hours to official mall hours. No scheduled public transport to the mall was verified, so only car and licensed taxi/ride-hailing are represented and no bus route, stop, fare or timetable is invented.
+The pre-correction count was 20. The corrected **complete currently verifiable coverage is 21 direct tenants**:
 
-Tamdeen verifies 284 retail stores and 4,884 parking spaces. Map-linked road measurements use Kuwait Towers as the reproducible Kuwait City-centre reference and evaluate KWI as the relevant airport. Rating/review values and media remain at project-native empty/unrated defaults because no repository-backed media asset or project-approved review snapshot was available.
+- `adidas`
+- `aldo`
+- `american-eagle`
+- `bath-and-body-works`
+- `boots`
+- `calvin-klein`
+- `charles-and-keith`
+- `claires`
+- `crocs`
+- `dune-london`
+- `foot-locker`
+- `h-and-m`
+- `levis`
+- `mothercare`
+- `new-balance`
+- `nike`
+- `skechers`
+- `the-body-shop`
+- `tommy-hilfiger`
+- `victoria-s-secret`
+- `xcite`
+
+Xcite is the newly confirmed tenant. Evidence is the official Xcite/Alghanim store-opening announcement for its Al Khiran Hybrid Outlet Mall branch, cross-checked against Xcite's official retail surface (https://www.xcite.com/) and Alghanim Industries (https://www.alghanim.com/). The operator's figure of **284 retail stores describes mall capacity/tenant total; it does not imply 284 independently verified global brand mappings**.
+
+Discovery candidates Muy Mucho, lululemon, JYSK, True Value, Junaid Perfumes, Zara, Sephora, Pottery Barn and Marks & Spencer were rejected because the searched first-party surfaces did not establish a current direct branch specifically inside Al Khiran Hybrid Outlet Mall. Domino's and other delivery-only results were also rejected. Norma Mall, Khiran Square, and generic nearby Al Khiran results are different destinations and were excluded. No stale or expressly closed branch is included.
+
+Eight F&B branches remain verified: Burger King, Five Guys, Hardee's, Jollibee, KFC, Papa John's, Pizza Hut and Starbucks. No additional candidate passed the inside-this-mall evidence threshold. Restaurant rows now use official chain/location surfaces, including the branch-specific Starbucks locator, instead of assigning Tamdeen's portfolio page to every chain.
+
+## Metadata and transport boundary
+
+Both `nearby` values now use the mature outlet array shape and are empty because reliable attraction distances were not established; no distance is invented. Al Khiran's mall-wide opening hours remain unresolved: the data explicitly labels the Sun–Wed/Thu–Sat pattern as tenant-derived. No scheduled Al Khiran bus is claimed. UAE shuttle availability remains conditional, and the Ibn Battuta guide instructs visitors to confirm the current connection without asserting a route number, timetable, duration or fare.

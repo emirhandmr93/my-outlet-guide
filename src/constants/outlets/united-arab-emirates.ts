@@ -105,7 +105,7 @@ export const unitedArabEmiratesOutlets = [
       { code: "DWC", name: "Al Maktoum International Airport", distanceKm: 24 },
     ],
     cityCenterInfo: { name: "Downtown Dubai / Burj Khalifa", distanceKm: 48 },
-    nearby: ["Dubai Parks and Resorts", "Riverland Dubai"],
+    nearby: [],
     officialWebsite: "https://theoutletvillage.ae/en",
     websiteUrl: "https://theoutletvillage.ae/en",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=24.95813,55.0517",
