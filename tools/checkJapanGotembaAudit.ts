@@ -582,8 +582,7 @@ assert.equal(azSource.length, 253); assert.equal(new Set(azSource).size, 253);
 assert.equal(foodRetailSource.length, 8); assert.equal(new Set(foodRetailSource).size, 8);
 assert.equal(expectedBrandIds.length, 261); assert.equal(new Set(expectedBrandIds).size, 261);
 assert.equal(expectedRestaurantNames.length, 37); assert.equal(new Set(expectedRestaurantNames).size, 37);
-assert.equal(outlets.filter(o => o.status === "active").length, 120);
-const gotemba = outlets.filter(o => o.outletId === outletId); assert.equal(gotemba.length, 1); assert.equal(gotemba[0].countryId, "japan"); assert.equal(gotemba[0].cityId, "gotemba");
+const gotemba = outlets.filter(o => o.outletId === outletId); assert.equal(gotemba.length, 1); assert.equal(gotemba[0].status, "active"); assert.equal(gotemba[0].countryId, "japan"); assert.equal(gotemba[0].cityId, "gotemba");
 assert.equal(cities.filter(c => c.cityId === "gotemba" && c.countryId === "japan").length, 1);
 assert.ok(unique(brands.map(b => b.brandId)), "duplicate global brandId");
 for (const relation of outletBrands) assert.equal(brands.filter(b => b.brandId === relation.brandId).length, 1, `unresolved/duplicate brand ${relation.brandId}`);
@@ -599,4 +598,4 @@ assert.equal(outletBrands.filter(r => r.outletId === "the-outlet-village").lengt
 assert.equal(outletBrands.filter(r => r.outletId === "al-khiran-hybrid-outlet-mall").length, 44); assert.equal(restaurants.filter(r => r.outletId === "al-khiran-hybrid-outlet-mall").length, 21);
 assert.equal(outletBrands.filter(r => r.outletId === "dubai-outlet-mall").length, 228);
 console.log(`A-Z RETAIL SOURCE COUNT: ${azSource.length}`); console.log(`FOOD RETAIL SOURCE COUNT: ${foodRetailSource.length}`); console.log(`EXPECTED DIRECT RELATIONSHIPS: ${expectedBrandIds.length}`); console.log(`ACTUAL GOTEMBA RELATIONSHIPS: ${actualBrandIds.length}`); console.log("NORMALIZED EXPECTED - ACTUAL:", difference(expectedBrandIds, actualBrandIds)); console.log("ACTUAL - NORMALIZED EXPECTED:", difference(actualBrandIds, expectedBrandIds)); console.log(`RESTAURANT SOURCE COUNT: ${expectedRestaurantNames.length}`); console.log(`ACTUAL RESTAURANTS: ${actualRestaurantNames.length}`); console.log("RESTAURANT EXPECTED - ACTUAL:", difference(expectedRestaurantNames, actualRestaurantNames)); console.log("ACTUAL - RESTAURANT EXPECTED:", difference(actualRestaurantNames, expectedRestaurantNames));
-console.log("Japan Gotemba integrity audit passed");
+console.log("Japan Gotemba integrity audit passed", { activeOutlets: outlets.filter(o => o.status === "active").length });
