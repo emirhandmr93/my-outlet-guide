@@ -3182,4 +3182,7 @@ export const brandsUZ: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  { brandId: "xlarge-x-girl", brandName: "XLARGE/X-girl", aliases: [], categoryId: "fashion", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  { brandId: "vermicular-sustainable-store", brandName: "Vermicular Sustainable Store", aliases: [], categoryId: "fashion", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  { brandId: "yaccomaricard", brandName: "YACCOMARICARD", aliases: [], categoryId: "fashion", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
 ];

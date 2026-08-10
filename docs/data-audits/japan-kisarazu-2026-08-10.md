@@ -1,0 +1,424 @@
+# Mitsui Outlet Park Kisarazu data audit — 2026-08-10
+
+## Source and count model
+This package uses the independently extracted, first-party modern Mitsui directory snapshot dated **2026-08-10**, embedded in `tools/checkJapanKisarazuAudit.ts`; no live network lookup was required. The current reconciled directory contains **305 records**. The older English surface's 308 figure is stale. The official **330 stores** wording is the post-fourth-phase facility-wide marketing count, not the live directory-row count, so metadata intentionally says `330 stores` while reconciliation starts at 305.
+
+| Measure | Count |
+|---|---:|
+| Raw directory | 305 |
+| Gourmet & Food | 43 |
+| Services | 7 |
+| Limited Time tagged | 26 |
+| Raw non-Gourmet/non-Service retail | 255 |
+| Location collisions removed | 2 |
+| Direct non-food relationships | 253 |
+| Food-retail relationships | 9 |
+| **Final outletBrand relationships** | **262** |
+| **Restaurant rows** | **37** |
+
+## Classification decisions
+- Service exclusions: reparera, SEVEN-ELEVEN, Chiba-kun PLAZA - Chiba Prefecture Tourist Information Center -, ILIO, VALET PARKING UNITE, MITSUI OUTLET PARK KISARAZU, Dog run. Seven-Eleven follows this branch's Services classification and is not mapped.
+- Food-retail only: Meijiya OUTLET, Lupicia Bon Marche, Boso Shiki no Kura Shunsai, Patisserie Sadaharu AOKI Paris, KALDI COFFEE FARM, CANDY☆A☆GO☆GO!.
+- Dual food-retail/F&B: GODIVA, Venchi, Lindt Chocolat Boutique & Cafe.
+- Collision normalization: COACH positions 105/112 become one `coach` relationship; Tomica & Plarail Shops positions 58/59 become one `tomica-and-plarail-shops` relationship.
+- Combined stores remain single identities: BRIEFING / Felisi; Sylvanian Families morino ouchi / Jigsaw Puzzle Shop Masterpiece; madras / LANVIN COLLECTION; GLOBAL WORK / LOWRYS FARM; HAWKINS & VANS; Ropé Picnic / VIS; gelato pique/SNIDEL/FRAY I.D; AVIREX DEPOT / LHP; PAPAS/MADEMOISELLE NONNON; EDWIN/SOMETHING; earth music&ecology super prem store / AMERICAN HOLIC; Ciaopanic / DOUDOU; Mila Owen / CELFORD; lucien pellat-finet / Jacob coen; Spick & Span / JOURNAL STANDARD / ÉDIFICE / IÉNA OUTLET STORE; MANOLO BLAHNIK / FRAGRANCE OUTLET; THE NORTH FACE / HELLY HANSEN / Goldwin; ACTUS / SOHOLM CAFÉ; BLUE LABEL / BLACK LABEL CRESTBRIDGE.
+- BRIEFING / Felisi remains distinct from Felisi; madras / LANVIN COLLECTION remains distinct from LANVIN COLLECTION. All requested concept variants (New Balance Golf, ASICS Walking, Adidas Golf, Paul Smith concepts, Kate Spade Kids, Coach Mens, DEAN & DE LUCA, Samsonite Black Label, and Kisarazu Concept Store) remain distinct.
+- Limited Time set (all current/active): Meijiya OUTLET, GREGORY, EPOCA, GIVENCHY, Cassina ixc, BOTANIST Factory, Sghr Sugahara, HERNO, REPLAY, Champion, DUO, john masters organics select, GUESS, BALENCIAGA, B'2nd, COACH MENS, FENDI, BURBERRY, JIL SANDER, GARMIN, YACCOMARICARD, BoConcept, AMIRI, Pasand by ne Quittez pas, CANDY☆A☆GO☆GO!, MOMI&TOY'S. Twenty-five map to outlet brands; MOMI&TOY'S is restaurant-only. Meijiya and CANDY☆A☆GO☆GO! are retail-only.
+- TASAKI (opened Aug 8), HERNO (relocated/reopened Aug 8), and Sghr Sugahara (opened Aug 1) are current. Banana Republic remains current through its planned late-August relocation. Re-audit Vermicular Sustainable Store, YACCOMARICARD, and Pasand by ne Quittez pas after their known Aug 30 closure dates. TOPTOY, WOOLRICH, Yutori no Kukan Market by Harumi Kurihara, and Fukuske are absent and excluded.
+
+## Canonical brands
+### Reused identities and normalizations
+- new balance factory store → `new-balance`
+- BRIEFING / Felisi → `briefing-felisi`
+- Felisi → `felisi`
+- PEARLY GATES → `pearly-gates`
+- QUIKSILVER FACTORY OUTLET STORE → `quiksilver`
+- Shel'tter moussy → `sheltter-moussy`
+- TEMPUR → `tempur`
+- ACE OUTLET → `ace-bags-and-luggage`
+- TASAKI → `tasaki`
+- Sylvanian Families morino ouchi / Jigsaw Puzzle Shop Masterpiece → `sylvanian-families-morino-ouchi-jigsaw-puzzle-shop-masterpiece`
+- asics WALKING → `asics-walking`
+- ZWILLING → `zwilling`
+- anuans EIMY ISTOIRE → `anuans-eimy-istoire`
+- SHIPS OUTLET → `ships`
+- BABYLONE STOCK → `babylone-stock`
+- madras / LANVIN COLLECTION → `madras-lanvin-collection`
+- GLOBAL WORK / LOWRYS FARM → `global-work-lowrys-farm`
+- GUNZE OUTLET → `gunze-outlet`
+- AS KNOW AS outlet → `as-know-as`
+- HAWKINS & VANS → `hawkins-and-vans`
+- Celule → `celule`
+- niko and... → `niko-and`
+- Ropé Picnic / VIS → `rope-picnic-vis`
+- Levi's FACTORY OUTLET → `levis`
+- Callaway → `callaway-golf`
+- UNITED ARROWS LTD. OUTLET → `united-arrows`
+- crocs → `crocs`
+- TaylorMade → `taylormade`
+- NATURAL BEAUTY BASIC → `n-natural-beauty-basic`
+- XLARGE/X-girl → `xlarge-x-girl`
+- INGNI → `ingni`
+- PLAZA → `plaza`
+- gelato pique/SNIDEL/FRAY I.D → `gelato-pique-snidel-fray-i-d`
+- SHOWA NISHIKAWA → `showa-nishikawa`
+- Hat Shop OUTLET → `hat-shop-outlet`
+- DESCENTE OUTLET YOKOHAMA STORE GOLF → `descente-store-golf`
+- BEAMS OUTLET → `beams`
+- nano･universe → `nano-universe`
+- LEGO STORE → `lego`
+- Disney store → `disney-store`
+- Pokemon Store OUTLET → `pokemon-store`
+- SWAROVSKI → `swarovski`
+- Nihonbashi Kiya → `nihonbashi-kiya`
+- CITIZEN → `citizen`
+- HUNTING WORLD → `hunting-world`
+- GREGORY → `gregory`
+- Lunetterie → `lunetterie`
+- ZUCCa → `cabane-de-zucca`
+- Triumph → `triumph`
+- EMODA → `emoda`
+- Tomica & Plarail Shops → `tomica-and-plarail-shops`
+- mezzo piano → `mezzo-piano`
+- ANNA SUI mini → `anna-sui-mini`
+- LOVOT Store lab. → `lovot-store-lab`
+- ORiental TRaffic → `oriental-traffic`
+- New Balance golf → `new-balance-golf`
+- NICOLE → `nicole`
+- Matsumoto Kiyoshi OUTLET → `matsumoto-kiyoshi`
+- MAMMUT STORE OUTLET → `mammut`
+- ABAHOUSE → `abahouse`
+- PING → `ping`
+- AVIREX DEPOT / LHP → `avirex-depot-lhp`
+- BANANA REPUBLIC FACTORY STORE → `banana-republic`
+- EPOCA → `epoca`
+- GIVENCHY → `givenchy`
+- Cassina ixc → `cassina-ixc`
+- STELLA McCARTNEY → `stella-mccartney`
+- POLO RALPH LAUREN FACTORY STORE → `polo-ralph-lauren`
+- BARNEYS NEW YORK OUTLET → `barneys-new-york`
+- ARMANI OUTLET → `armani`
+- ETRO → `etro`
+- Paul Smith → `paul-smith`
+- Vivienne Westwood → `vivienne-westwood`
+- Brooks Brothers → `brooks-brothers`
+- Cole Haan → `cole-haan`
+- REGAL FACTORY STORE → `regal`
+- PAPAS/MADEMOISELLE NONNON → `papas-mademoiselle-nonnon`
+- LACOSTE OUTLET → `lacoste`
+- Gap Outlet → `gap`
+- JINS → `jins`
+- T-fal Outlet Store → `tefal`
+- EDWIN/SOMETHING → `edwin-something`
+- OAKLEY VAULT → `oakley-vault`
+- URBAN RESEARCH ware house → `urban-research`
+- Cosmetics & Designer Fragrances → `cosmetics-and-designer-fragrances`
+- NEW YORKER → `new-yorker`
+- ALLSAINTS → `allsaints`
+- PAL'LAS PALACE → `pallas-palace`
+- ASICS FACTORY OUTLET → `asics`
+- mont-bell/mont-bell factory outlet → `mont-bell-mont-bell-factory-outlet`
+- adidas Factory Outlet → `adidas`
+- BOTANIST Factory → `botanist-factory`
+- SEIKO OUTLET → `seiko`
+- RIEDEL/NACHTMANN → `riedel-nachtmann`
+- Sghr Sugahara → `sghr-sugahara`
+- COACH → `coach`
+- LeSportsac → `le-sportsac`
+- Le Creuset → `le-creuset`
+- HERNO → `herno`
+- CELINE → `celine`
+- THOM BROWNE → `thom-browne`
+- LOEWE → `loewe`
+- LONGCHAMP → `longchamp`
+- APC → `a-p-c`
+- Marimekko → `marimekko`
+- CA4LA → `ca4la`
+- ESTNATION → `estnation`
+- REPLAY → `replay`
+- Paul Smith UNDERWEAR → `paul-smith-underwear`
+- Champion → `champion`
+- NEW ERA → `new-era`
+- adidas Golf Factory Outlet → `adidas-golf`
+- Arpege story → `arpege-story`
+- earth music&ecology super prem store / AMERICAN HOLIC → `earth-music-and-ecology-super-prem-store-american-holic`
+- PUMA OUTLET → `puma`
+- Wacoal FACTORY STORE → `wacoal`
+- Ciaopanic / DOUDOU → `ciaopanic-doudou`
+- Mila Owen / CELFORD → `mila-owen-celford`
+- ZERO HALLIBURTON → `zero-halliburton`
+- Orobianco → `orobianco`
+- carcru stock → `carcru-stock`
+- FEILER Factory Outlet → `feiler`
+- AHKAH → `ahkah`
+- NOLLEY'S OUTLET → `nolleys`
+- BLUE LABEL / BLACK LABEL CRESTBRIDGE → `blue-label-black-label-crestbridge`
+- Dr.Ci:Labo → `dr-ci-labo`
+- DUO → `duo`
+- L'OCCITANE → `l-occitane`
+- IL BISONTE → `il-bisonte`
+- Vermicular Sustainable Store → `vermicular-sustainable-store`
+- john masters organics select → `john-masters-organics-select`
+- DENHAM → `denham`
+- Repetto → `repetto`
+- THERMOS STORE → `thermos-store`
+- Ray-Ban → `ray-ban`
+- Anker Store → `anker-store`
+- BALLY → `bally`
+- DSQUARED2 → `dsquared2`
+- DIESEL → `diesel`
+- BRUNELLO CUCINELLI → `brunello-cucinelli`
+- ARC'TERYX → `arcteryx`
+- De'Longhi → `delonghi`
+- BRIDGESTONE GOLF PLAZA → `bridgestone-golf-plaza`
+- GUESS → `guess`
+- Bebe Outlet → `bebe`
+- Dr.Martens → `dr-martens`
+- Francfranc BAZAR → `francfranc`
+- GALLARDAGALANTE → `gallardagalante`
+- 23ku → `23ku`
+- Bshop OUTLET → `bshop-outlet`
+- MACKINTOSH PHILOSOPHY → `mackintosh-philosophy`
+- JOSEPH → `joseph`
+- MACKINTOSH LONDON → `mackintosh-london`
+- BALENCIAGA → `balenciaga`
+- MARGARET HOWELL A.G.O. → `margaret-howell`
+- VALENTINO → `valentino`
+- B'2nd → `b2nd`
+- Mitsumine → `mitsumine`
+- Moda Claire Outlet → `moda-claire-outlet`
+- nishikawa → `nishikawa`
+- Paul Stuart → `paul-stuart`
+- Afternoon Tea LIVING → `afternoon-tea-living`
+- Columbia Sportswear → `columbia`
+- COACH MENS → `coach-mens`
+- UGG → `ugg`
+- Samsonite BLACK LABEL → `samsonite-black-label`
+- Max Mara → `max-mara`
+- Jimmy Choo → `jimmy-choo`
+- FENDI → `fendi`
+- lucien pellat-finet / Jacob coen → `lucien-pellat-finet-jacob-coen`
+- BURBERRY → `burberry`
+- TUMI → `tumi`
+- Chloé → `chloe`
+- MARNI → `marni`
+- SAINT LAURENT → `saint-laurent`
+- LANVIN COLLECTION → `lanvin-collection`
+- dunhill → `dunhill`
+- S.T. Dupont → `st-dupont`
+- ZEGNA → `zegna`
+- STRASBURGO → `strasburgo`
+- BILLABONG OUTLET → `billabong`
+- Saturdays NYC → `saturdays-nyc`
+- emmi → `emmi`
+- Staub Outlet → `staub`
+- UNDER ARMOUR FACTORY HOUSE → `under-armour`
+- Timberland → `timberland`
+- CAMPER → `camper`
+- CASIO WATCH OUTLET → `casio-watch`
+- J.PRESS → `j-press`
+- kate spade new york → `kate-spade-new-york`
+- MICHAEL KORS → `michael-kors`
+- Sergio Rossi → `sergio-rossi`
+- GUCCI → `gucci`
+- BONAVENTURA → `bonaventura`
+- Y-3 → `y-3`
+- Acne Studios → `acne-studios`
+- JIL SANDER → `jil-sander`
+- Mulberry → `mulberry`
+- TOMORROWLAND → `tomorrowland`
+- DEAN & DE LUCA → `dean-and-de-luca`
+- Mercedes-Benz → `mercedes-benz`
+- FURLA → `furla`
+- THE COSMETICS COMPANY STORE → `the-cosmetics-company-store`
+- STÜSSY → `stussy`
+- agnes b. → `agnes-b`
+- Spick & Span / JOURNAL STANDARD / ÉDIFICE / IÉNA OUTLET STORE → `spick-and-span-journal-standard-edifice-iena-outlet-store`
+- BIRKENSTOCK → `birkenstock`
+- kate spade new york kids → `kate-spade-new-york-kids`
+- SeeP EYEVAN → `seep-eyevan`
+- GARMIN → `garmin`
+- MANOLO BLAHNIK / FRAGRANCE OUTLET → `manolo-blahnik-fragrance-outlet`
+- BONPOINT → `bonpoint`
+- ALEXANDRE DE PARIS → `alexandre-de-paris`
+- TORY BURCH → `tory-burch`
+- Paul Smith BAG → `paul-smith-bag`
+- sanyoyamacho → `sanyoyamacho`
+- MARC JACOBS → `marc-jacobs`
+- KENZO → `kenzo`
+- VERSACE → `versace`
+- Onitsuka Tiger → `onitsuka-tiger`
+- YACCOMARICARD → `yaccomaricard`
+- AOURE → `aoure`
+- Psycho Bunny → `psycho-bunny`
+- TCG Patagonia → `tcg-patagonia`
+- BoConcept → `boconcept`
+- FRED PERRY OUTLET → `fred-perry`
+- ACTUS / SOHOLM CAFÉ → `actus-soholm-cafe`
+- SABON → `sabon`
+- DOLCE&GABBANA → `dolceandgabbana`
+- AMIRI → `amiri`
+- Ferragamo → `ferragamo`
+- Instant Skateboards → `instant-skateboards`
+- MAISON KITSUNÉ → `maison-kitsune`
+- Pasand by ne Quittez pas → `pasand-by-ne-quittez-pas`
+- Barbour → `barbour`
+- CONVERSE FACTORY STORE → `converse`
+- Gente di Mare → `gente-di-mare`
+- HUNTER → `hunter`
+- HOKA → `hoka`
+- SALOMON → `salomon`
+- KEEN Outlet → `keen`
+- Snow Peak → `snow-peak`
+- Nike → `nike`
+- lululemon → `lululemon`
+- Ron Herman → `ron-herman`
+- THE NORTH FACE / HELLY HANSEN / Goldwin → `the-north-face-helly-hansen-goldwin`
+- TOMMY HILFIGER → `tommy-hilfiger`
+- Calvin Klein → `calvin-klein`
+- Theory → `theory`
+- PXG → `pxg`
+- ReFa → `refa`
+- BOSS Outlet → `boss`
+- KISARAZU CONCEPT STORE → `kisarazu-concept-store`
+- Meijiya OUTLET → `meijiya-outlet`
+- Lupicia Bon Marche → `lupicia-bon-marche`
+- Boso Shiki no Kura Shunsai → `boso-shiki-no-kura-shunsai`
+- Patisserie Sadaharu AOKI Paris → `patisserie-sadaharu-aoki-paris`
+- KALDI COFFEE FARM → `kaldi-coffee-farm`
+- CANDY☆A☆GO☆GO! → `candy-a-go-go`
+- GODIVA → `godiva`
+- Venchi → `venchi`
+- Lindt Chocolat Boutique & Cafe → `lindt`
+
+### Newly created identities
+- `briefing-felisi` — BRIEFING / Felisi
+- `felisi` — Felisi
+- `sheltter-moussy` — Shel'tter moussy
+- `sylvanian-families-morino-ouchi-jigsaw-puzzle-shop-masterpiece` — Sylvanian Families morino ouchi / Jigsaw Puzzle Shop Masterpiece
+- `asics-walking` — asics WALKING
+- `anuans-eimy-istoire` — anuans EIMY ISTOIRE
+- `babylone-stock` — BABYLONE STOCK
+- `madras-lanvin-collection` — madras / LANVIN COLLECTION
+- `global-work-lowrys-farm` — GLOBAL WORK / LOWRYS FARM
+- `gunze-outlet` — GUNZE OUTLET
+- `hawkins-and-vans` — HAWKINS & VANS
+- `celule` — Celule
+- `niko-and` — niko and...
+- `rope-picnic-vis` — Ropé Picnic / VIS
+- `xlarge-x-girl` — XLARGE/X-girl
+- `gelato-pique-snidel-fray-i-d` — gelato pique/SNIDEL/FRAY I.D
+- `showa-nishikawa` — SHOWA NISHIKAWA
+- `hat-shop-outlet` — Hat Shop OUTLET
+- `disney-store` — Disney store
+- `nihonbashi-kiya` — Nihonbashi Kiya
+- `hunting-world` — HUNTING WORLD
+- `gregory` — GREGORY
+- `lunetterie` — Lunetterie
+- `emoda` — EMODA
+- `tomica-and-plarail-shops` — Tomica & Plarail Shops
+- `anna-sui-mini` — ANNA SUI mini
+- `lovot-store-lab` — LOVOT Store lab.
+- `oriental-traffic` — ORiental TRaffic
+- `nicole` — NICOLE
+- `matsumoto-kiyoshi` — Matsumoto Kiyoshi OUTLET
+- `avirex-depot-lhp` — AVIREX DEPOT / LHP
+- `epoca` — EPOCA
+- `cassina-ixc` — Cassina ixc
+- `papas-mademoiselle-nonnon` — PAPAS/MADEMOISELLE NONNON
+- `edwin-something` — EDWIN/SOMETHING
+- `pallas-palace` — PAL'LAS PALACE
+- `mont-bell-mont-bell-factory-outlet` — mont-bell/mont-bell factory outlet
+- `botanist-factory` — BOTANIST Factory
+- `riedel-nachtmann` — RIEDEL/NACHTMANN
+- `sghr-sugahara` — Sghr Sugahara
+- `ca4la` — CA4LA
+- `estnation` — ESTNATION
+- `paul-smith-underwear` — Paul Smith UNDERWEAR
+- `arpege-story` — Arpege story
+- `earth-music-and-ecology-super-prem-store-american-holic` — earth music&ecology super prem store / AMERICAN HOLIC
+- `ciaopanic-doudou` — Ciaopanic / DOUDOU
+- `mila-owen-celford` — Mila Owen / CELFORD
+- `carcru-stock` — carcru stock
+- `feiler` — FEILER Factory Outlet
+- `ahkah` — AHKAH
+- `nolleys` — NOLLEY'S OUTLET
+- `dr-ci-labo` — Dr.Ci:Labo
+- `duo` — DUO
+- `vermicular-sustainable-store` — Vermicular Sustainable Store
+- `john-masters-organics-select` — john masters organics select
+- `thermos-store` — THERMOS STORE
+- `anker-store` — Anker Store
+- `bridgestone-golf-plaza` — BRIDGESTONE GOLF PLAZA
+- `bshop-outlet` — Bshop OUTLET
+- `mackintosh-philosophy` — MACKINTOSH PHILOSOPHY
+- `mackintosh-london` — MACKINTOSH LONDON
+- `b2nd` — B'2nd
+- `moda-claire-outlet` — Moda Claire Outlet
+- `nishikawa` — nishikawa
+- `paul-stuart` — Paul Stuart
+- `afternoon-tea-living` — Afternoon Tea LIVING
+- `coach-mens` — COACH MENS
+- `samsonite-black-label` — Samsonite BLACK LABEL
+- `lucien-pellat-finet-jacob-coen` — lucien pellat-finet / Jacob coen
+- `lanvin-collection` — LANVIN COLLECTION
+- `strasburgo` — STRASBURGO
+- `saturdays-nyc` — Saturdays NYC
+- `dean-and-de-luca` — DEAN & DE LUCA
+- `mercedes-benz` — Mercedes-Benz
+- `stussy` — STÜSSY
+- `spick-and-span-journal-standard-edifice-iena-outlet-store` — Spick & Span / JOURNAL STANDARD / ÉDIFICE / IÉNA OUTLET STORE
+- `kate-spade-new-york-kids` — kate spade new york kids
+- `seep-eyevan` — SeeP EYEVAN
+- `garmin` — GARMIN
+- `manolo-blahnik-fragrance-outlet` — MANOLO BLAHNIK / FRAGRANCE OUTLET
+- `alexandre-de-paris` — ALEXANDRE DE PARIS
+- `paul-smith-bag` — Paul Smith BAG
+- `sanyoyamacho` — sanyoyamacho
+- `yaccomaricard` — YACCOMARICARD
+- `aoure` — AOURE
+- `tcg-patagonia` — TCG Patagonia
+- `boconcept` — BoConcept
+- `actus-soholm-cafe` — ACTUS / SOHOLM CAFÉ
+- `instant-skateboards` — Instant Skateboards
+- `pasand-by-ne-quittez-pas` — Pasand by ne Quittez pas
+- `gente-di-mare` — Gente di Mare
+- `the-north-face-helly-hansen-goldwin` — THE NORTH FACE / HELLY HANSEN / Goldwin
+- `pxg` — PXG
+- `kisarazu-concept-store` — KISARAZU CONCEPT STORE
+- `meijiya-outlet` — Meijiya OUTLET
+- `lupicia-bon-marche` — Lupicia Bon Marche
+- `boso-shiki-no-kura-shunsai` — Boso Shiki no Kura Shunsai
+- `patisserie-sadaharu-aoki-paris` — Patisserie Sadaharu AOKI Paris
+- `kaldi-coffee-farm` — KALDI COFFEE FARM
+- `candy-a-go-go` — CANDY☆A☆GO☆GO!
+
+New records use conservative blank logos, active status, ranking weight 50, and no unsupported origin country. Ambiguous direct combined concepts were resolved as their own canonical direct-store identities rather than exploded into component labels.
+
+## Metadata
+- Address: 3-1-1 Kaneda-Higashi, Kisarazu-shi, Chiba 292-0009, Japan; planning coordinate 35.43575, 139.93551.
+- Hours: shops 10:00–20:00; restaurants 11:00–21:00; food court 10:30–21:00; cafe 09:30–21:00; closure not fixed. Individual/special-date hours can vary.
+- Parking: approximately 6,200 spaces; general parking free, normally 09:30–21:30; valet is a separate paid service.
+- Services: General Information, Tourist Information, Tax-Free Counter, Free Wi-Fi, Foreign Currency Exchange, ATM, Free Coin Lockers, Free Baggage Storage, Delivery Service, AED, Wheelchair Rental, Accessible Toilets, Stroller Rental, Nursing Room, Baby Changing, Prayer Room, Parking, Valet Parking, EV Charging, Smoking Areas, Pet-Friendly Facilities.
+- Tax-free processing is available through Tourist Information / Tax-Free Counter for participating shops; this does not mean every shop participates.
+- City center: JR Kisarazu Station, about 6 km. Airport road-distance planning approximations: Haneda 22 km; Narita 67 km (not survey-grade precision).
+
+## Restaurants
+The final set has 37 unique physical rows. South Zone and West Zone Starbucks remain separate. GODIVA, Venchi, and Lindt are intentionally represented in both retail and restaurant data. ACTUS / SOHOLM CAFÉ is retail-only; Coach Coffee Shop and the DEAN & DE LUCA cafe lounge are restaurant-only concepts.
+
+## Transport
+- Tokyo direct bus: ~50 min; JPY 1,500 adult / 750 child.
+- Shinjuku direct bus: ~62 min; JPY 1,600 adult / 800 child.
+- Haneda direct bus: ~25–40 min; JPY 1,400 adult / 700 child.
+- Sodegaura local bus: ~10 min; JPY 200 cash / 199 IC adult.
+- Kisarazu Station local bus: ~20 min; JPY 360 cash / 356 IC adult.
+- Car: general parking free; tolls/fuel/rental vary.
+
+Tama Plaza / Center Kita is excluded because it is suspended. Ikebukuro is excluded as a normal guide because service is weekends/holidays only.
+
+Documentary first-party/operator references (not accessed by Codex):
+- https://mitsui-shopping-park.com/en/mop/kisarazu/access/
+- https://www.kominato-bus.com/highway/high/mop-kisaradu-f.html
+- https://www.kominato-bus.com/highway/high/kisarazu-shinjuku.html
+- https://www.nitto-kotsu.co.jp/ui-%E4%B8%89%E4%BA%95%E3%82%A2%E3%82%A6%E3%83%88%E3%83%AC%E3%83%83%E3%83%88%E3%83%91%E3%83%BC%E3%82%AF%E6%9C%A8%E6%9B%B4%E6%B4%A5%E2%87%94%E3%83%90%E3%82%B9%E3%82%BF%E3%83%BC%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A/
+- https://www.keikyu-bus.co.jp/en/airport/h-mitsuikisarazu/
