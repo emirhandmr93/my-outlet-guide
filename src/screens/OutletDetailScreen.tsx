@@ -68,6 +68,7 @@ import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
 import { formatOpeningHoursText, formatOutletStatusLabel, formatReviewSummaryLabel, resolveOutletRetailCountDisplay } from "../utils/outletDisplayFormatters";
+import { getTargetQuickInfo } from "../constants/targetOutletLocalization";
 import { recordRecentVisit } from "../services/recentVisitsService";
 import { useRestaurantDetailData, useTaxFreeGuideData, useTransportationDetailData } from "../hooks/useDetailData";
 
@@ -594,7 +595,7 @@ export function OutletDetailScreen() {
             weatherUnavailableText={t("weather.unavailable")}
             cityName={formatCityDisplayName(outlet.cityId, language)}
             openingHoursLabel={t("outlet.openingHours")}
-            openingHours={formatOpeningHoursText(outlet.openingHours, language)}
+            openingHours={getTargetQuickInfo(outlet.outletId, language)?.openingHours ?? formatOpeningHoursText(outlet.openingHours, language)}
             addressLabel={t("outlet.address")}
             address={outlet.address}
             retailCountDisplay={retailCountDisplay}
@@ -693,7 +694,7 @@ export function OutletDetailScreen() {
 
         <ServicesCard
           title={t("outlet.services")}
-          services={outlet.services}
+          services={getTargetQuickInfo(outlet.outletId, language)?.services ?? outlet.services}
           notAvailableText={t("common.notAvailable")}
         />
 

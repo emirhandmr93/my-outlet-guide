@@ -13,8 +13,8 @@ export const kuwaitTransportationGuides: TransportationGuide[] = [
     recommended: true,
     steps: [
       { order: 1, description: "Request a licensed taxi or ride-hailing pickup in Kuwait City." },
-      { order: 2, description: "Select Al Khiran Hybrid Outlet Mall and verify the waterfront mall pin, not Khiran Square or Norma Mall." },
-      { order: 3, description: "Confirm the quoted or app fare before the long trip and arrange the return journey." },
+      { order: 2, description: "Select Al Khiran Hybrid Outlet Mall, using the waterfront mall pin rather than Khiran Square or Norma Mall." },
+      { order: 3, description: "Use the quoted app fare or taxi meter and schedule a return pickup from the mall’s main taxi point." },
     ],
     updatedAt: "2026-08-10",
   },
@@ -30,8 +30,8 @@ export const kuwaitTransportationGuides: TransportationGuide[] = [
     recommended: true,
     steps: [
       { order: 1, description: "Follow terminal signs to an official Kuwait International Airport taxi or use a licensed ride-hailing pickup." },
-      { order: 2, description: "Select Al Khiran Hybrid Outlet Mall and verify the destination pin before leaving KWI." },
-      { order: 3, description: "Confirm the fare and arrange a return pickup because no scheduled direct public transport was verified." },
+      { order: 2, description: "Select Al Khiran Hybrid Outlet Mall, using the saved destination pin before leaving KWI." },
+      { order: 3, description: "Use the airport-taxi fare and schedule a return pickup from the mall’s main taxi point." },
     ],
     updatedAt: "2026-08-10",
   },

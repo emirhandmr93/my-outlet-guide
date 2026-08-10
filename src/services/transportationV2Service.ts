@@ -4,6 +4,7 @@ import { type TranslationLanguage } from "../translations/locale";
 import type { TransportationGuide, TransportationType } from "../constants/transportationGuides";
 import { getTransportationForOutlet } from "./transportationService";
 import type { TransportationRouteFact } from "../constants/transportationRouteFacts";
+import { localizeTargetGuide, targetContentLanguages, type TargetContentLanguage } from "../constants/targetOutletLocalization";
 
 let transportationGuides: TransportationGuide[] = [];
 let transportationRouteFacts: TransportationRouteFact[] = [];
@@ -1510,6 +1511,8 @@ export function getTransportationOptionDisplayModel(
   language: TranslationLanguage,
 ): TransportationV2Option {
   const guide = option.guide;
+  const targetLanguage = targetContentLanguages.includes(language as TargetContentLanguage) ? language as TargetContentLanguage : undefined;
+  const localizedTargetGuide = targetLanguage ? localizeTargetGuide(guide, targetLanguage) : undefined;
   const fact = option.routeFact || getTransportationRouteFact(guide.guideId);
   const sourceBacked =
     fact?.confidence === "exact" || fact?.confidence === "partial";
@@ -1574,7 +1577,7 @@ export function getTransportationOptionDisplayModel(
     );
     displayDetails.destinationLabel = localizePoint(fact.destination, language);
     displayDetails.walkNoteLabel = localizedWalkNote(fact, language);
-    displayDetails.officialCheckNoteLabel = localizedOfficialCheckNote(
+    displayDetails.officialCheckNoteLabel = localizedTargetGuide ? undefined : localizedOfficialCheckNote(
       fact,
       language,
     );
@@ -1593,12 +1596,9 @@ export function getTransportationOptionDisplayModel(
     ...option,
     originLabel: getTransportationOriginLabel(option.originGroup, language),
     modeLabel: I18N[language].modes[option.mode] || option.mode,
-    title:
-      language === "en" &&
-      sourceBacked &&
-      !PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)
+    title: localizedTargetGuide?.title ?? (language === "en" && sourceBacked && !PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)
         ? guide.title
-        : titleFor(option.mode, option.originGroup, language),
+        : titleFor(option.mode, option.originGroup, language)),
     duration: durationLabel,
     fare: fareLabel,
     durationLabel,
@@ -1606,10 +1606,10 @@ export function getTransportationOptionDisplayModel(
     estimatedDurationLabel: durationLabel || "",
     estimatedFareLabel: fareLabel || "",
     note: undefined,
-    noteLabel: fact ? localizedOfficialCheckNote(fact, language) : undefined,
+    noteLabel: localizedTargetGuide ? undefined : fact ? localizedOfficialCheckNote(fact, language) : undefined,
     providerNote: undefined,
     routeDetails: displayDetails,
-    steps: stepsFor(
+    steps: localizedTargetGuide?.steps ?? stepsFor(
       option.mode,
       option.originGroup,
       language,
