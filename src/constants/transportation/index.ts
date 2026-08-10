@@ -1,3 +1,4 @@
+import { japanTransportation } from "./japan";
 import { austriaTransportation } from "./austria";
 import { belgiumTransportation } from "./belgium";
 import { denmarkTransportation } from "./denmark";
@@ -28,6 +29,7 @@ import { unitedArabEmiratesTransportation } from "./united-arab-emirates";
 import { kuwaitTransportation } from "./kuwait";
 
 export {
+  japanTransportation,
   austriaTransportation,
   belgiumTransportation,
   czechRepublicTransportation,
@@ -59,6 +61,7 @@ export {
 };
 
 export const transportation = [
+  ...japanTransportation,
   ...italyTransportation,
   ...latviaTransportation,
   ...lithuaniaTransportation,
