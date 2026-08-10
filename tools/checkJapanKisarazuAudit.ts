@@ -1354,12 +1354,12 @@ export const expectedKisarazuBrandIds = [
   "bonpoint",
   "boso-shiki-no-kura-shunsai",
   "boss",
-  "botanist-factory",
+  "botanist",
   "bridgestone-golf-plaza",
   "briefing-felisi",
   "brooks-brothers",
   "brunello-cucinelli",
-  "bshop-outlet",
+  "bshop",
   "burberry",
   "ca4la",
   "cabane-de-zucca",
@@ -1420,7 +1420,7 @@ export const expectedKisarazuBrandIds = [
   "gregory",
   "gucci",
   "guess",
-  "gunze-outlet",
+  "gunze",
   "hat-shop-outlet",
   "hawkins-and-vans",
   "herno",
@@ -1469,14 +1469,14 @@ export const expectedKisarazuBrandIds = [
   "marni",
   "matsumoto-kiyoshi",
   "max-mara",
-  "meijiya-outlet",
+  "meijiya",
   "mercedes-benz",
   "mezzo-piano",
   "michael-kors",
   "mila-owen-celford",
   "mitsumine",
-  "moda-claire-outlet",
-  "mont-bell-mont-bell-factory-outlet",
+  "moda-claire",
+  "mont-bell",
   "mulberry",
   "n-natural-beauty-basic",
   "nano-universe",
@@ -1489,7 +1489,7 @@ export const expectedKisarazuBrandIds = [
   "nike",
   "niko-and",
   "nishikawa",
-  "nolleys",
+  "nolley-s",
   "oakley-vault",
   "onitsuka-tiger",
   "oriental-traffic",
@@ -1614,10 +1614,664 @@ export const expectedKisarazuRestaurantNames = [
   "THE OPEN CAFE",
   "MOMI&TOY'S"
 ];
+export const expectedNewKisarazuBrandMetadata = [
+  {
+    "brandId": "briefing-felisi",
+    "brandName": "BRIEFING / Felisi",
+    "categoryId": "shoes-bags",
+    "aliases": []
+  },
+  {
+    "brandId": "asics-walking",
+    "brandName": "asics WALKING",
+    "categoryId": "shoes-bags",
+    "aliases": []
+  },
+  {
+    "brandId": "anuans-eimy-istoire",
+    "brandName": "anuans EIMY ISTOIRE",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "babylone-stock",
+    "brandName": "BABYLONE STOCK",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "celule",
+    "brandName": "Celule",
+    "categoryId": "beauty",
+    "aliases": []
+  },
+  {
+    "brandId": "disney-store",
+    "brandName": "Disney store",
+    "categoryId": "gifts",
+    "aliases": []
+  },
+  {
+    "brandId": "emoda",
+    "brandName": "EMODA",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "anna-sui-mini",
+    "brandName": "ANNA SUI mini",
+    "categoryId": "children",
+    "aliases": []
+  },
+  {
+    "brandId": "avirex-depot-lhp",
+    "brandName": "AVIREX DEPOT / LHP",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "epoca",
+    "brandName": "EPOCA",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "cassina-ixc",
+    "brandName": "Cassina ixc",
+    "categoryId": "home",
+    "aliases": []
+  },
+  {
+    "brandId": "edwin-something",
+    "brandName": "EDWIN/SOMETHING",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "botanist",
+    "brandName": "BOTANIST",
+    "categoryId": "beauty",
+    "aliases": [
+      "BOTANIST Factory"
+    ]
+  },
+  {
+    "brandId": "ca4la",
+    "brandName": "CA4LA",
+    "categoryId": "accessories",
+    "aliases": []
+  },
+  {
+    "brandId": "estnation",
+    "brandName": "ESTNATION",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "arpege-story",
+    "brandName": "Arpege story",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "earth-music-and-ecology-super-prem-store-american-holic",
+    "brandName": "earth music&ecology super prem store / AMERICAN HOLIC",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "ciaopanic-doudou",
+    "brandName": "Ciaopanic / DOUDOU",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "carcru-stock",
+    "brandName": "carcru stock",
+    "categoryId": "accessories",
+    "aliases": []
+  },
+  {
+    "brandId": "ahkah",
+    "brandName": "AHKAH",
+    "categoryId": "jewelry-watches",
+    "aliases": []
+  },
+  {
+    "brandId": "dr-ci-labo",
+    "brandName": "Dr.Ci:Labo",
+    "categoryId": "beauty",
+    "aliases": []
+  },
+  {
+    "brandId": "duo",
+    "brandName": "DUO",
+    "categoryId": "beauty",
+    "aliases": []
+  },
+  {
+    "brandId": "anker-store",
+    "brandName": "Anker Store",
+    "categoryId": "electronics",
+    "aliases": []
+  },
+  {
+    "brandId": "bridgestone-golf-plaza",
+    "brandName": "BRIDGESTONE GOLF PLAZA",
+    "categoryId": "sportswear",
+    "aliases": []
+  },
+  {
+    "brandId": "bshop",
+    "brandName": "Bshop",
+    "categoryId": "fashion",
+    "aliases": [
+      "Bshop OUTLET"
+    ]
+  },
+  {
+    "brandId": "b2nd",
+    "brandName": "B'2nd",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "afternoon-tea-living",
+    "brandName": "Afternoon Tea LIVING",
+    "categoryId": "home",
+    "aliases": []
+  },
+  {
+    "brandId": "coach-mens",
+    "brandName": "COACH MENS",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "dean-and-de-luca",
+    "brandName": "DEAN & DE LUCA",
+    "categoryId": "food",
+    "aliases": []
+  },
+  {
+    "brandId": "alexandre-de-paris",
+    "brandName": "ALEXANDRE DE PARIS",
+    "categoryId": "accessories",
+    "aliases": []
+  },
+  {
+    "brandId": "aoure",
+    "brandName": "AOURE",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "boconcept",
+    "brandName": "BoConcept",
+    "categoryId": "home",
+    "aliases": []
+  },
+  {
+    "brandId": "actus-soholm-cafe",
+    "brandName": "ACTUS / SOHOLM CAFÉ",
+    "categoryId": "home",
+    "aliases": []
+  },
+  {
+    "brandId": "boso-shiki-no-kura-shunsai",
+    "brandName": "Boso Shiki no Kura Shunsai",
+    "categoryId": "food",
+    "aliases": []
+  },
+  {
+    "brandId": "candy-a-go-go",
+    "brandName": "CANDY☆A☆GO☆GO!",
+    "categoryId": "food-confectionery",
+    "aliases": []
+  },
+  {
+    "brandId": "felisi",
+    "brandName": "Felisi",
+    "categoryId": "shoes-bags",
+    "aliases": []
+  },
+  {
+    "brandId": "global-work-lowrys-farm",
+    "brandName": "GLOBAL WORK / LOWRYS FARM",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "gunze",
+    "brandName": "GUNZE",
+    "categoryId": "fashion",
+    "aliases": [
+      "GUNZE OUTLET"
+    ]
+  },
+  {
+    "brandId": "hawkins-and-vans",
+    "brandName": "HAWKINS & VANS",
+    "categoryId": "shoes-bags",
+    "aliases": []
+  },
+  {
+    "brandId": "gelato-pique-snidel-fray-i-d",
+    "brandName": "gelato pique/SNIDEL/FRAY I.D",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "hat-shop-outlet",
+    "brandName": "Hat Shop OUTLET",
+    "categoryId": "accessories",
+    "aliases": []
+  },
+  {
+    "brandId": "hunting-world",
+    "brandName": "HUNTING WORLD",
+    "categoryId": "shoes-bags",
+    "aliases": []
+  },
+  {
+    "brandId": "gregory",
+    "brandName": "GREGORY",
+    "categoryId": "outdoor",
+    "aliases": []
+  },
+  {
+    "brandId": "feiler",
+    "brandName": "FEILER Factory Outlet",
+    "categoryId": "accessories",
+    "aliases": []
+  },
+  {
+    "brandId": "john-masters-organics-select",
+    "brandName": "john masters organics select",
+    "categoryId": "beauty",
+    "aliases": []
+  },
+  {
+    "brandId": "kate-spade-new-york-kids",
+    "brandName": "kate spade new york kids",
+    "categoryId": "children",
+    "aliases": []
+  },
+  {
+    "brandId": "garmin",
+    "brandName": "GARMIN",
+    "categoryId": "electronics",
+    "aliases": []
+  },
+  {
+    "brandId": "instant-skateboards",
+    "brandName": "Instant Skateboards",
+    "categoryId": "sportswear",
+    "aliases": []
+  },
+  {
+    "brandId": "gente-di-mare",
+    "brandName": "Gente di Mare",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "kisarazu-concept-store",
+    "brandName": "KISARAZU CONCEPT STORE",
+    "categoryId": "gifts",
+    "aliases": []
+  },
+  {
+    "brandId": "kaldi-coffee-farm",
+    "brandName": "KALDI COFFEE FARM",
+    "categoryId": "food",
+    "aliases": []
+  },
+  {
+    "brandId": "madras-lanvin-collection",
+    "brandName": "madras / LANVIN COLLECTION",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "niko-and",
+    "brandName": "niko and...",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "nihonbashi-kiya",
+    "brandName": "Nihonbashi Kiya",
+    "categoryId": "homeware",
+    "aliases": []
+  },
+  {
+    "brandId": "lunetterie",
+    "brandName": "Lunetterie",
+    "categoryId": "eyewear",
+    "aliases": []
+  },
+  {
+    "brandId": "lovot-store-lab",
+    "brandName": "LOVOT Store lab.",
+    "categoryId": "electronics",
+    "aliases": []
+  },
+  {
+    "brandId": "oriental-traffic",
+    "brandName": "ORiental TRaffic",
+    "categoryId": "shoes-bags",
+    "aliases": []
+  },
+  {
+    "brandId": "nicole",
+    "brandName": "NICOLE",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "matsumoto-kiyoshi",
+    "brandName": "Matsumoto Kiyoshi OUTLET",
+    "categoryId": "health-beauty",
+    "aliases": []
+  },
+  {
+    "brandId": "papas-mademoiselle-nonnon",
+    "brandName": "PAPAS/MADEMOISELLE NONNON",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "pallas-palace",
+    "brandName": "PAL'LAS PALACE",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "mont-bell",
+    "brandName": "mont-bell",
+    "categoryId": "outdoor",
+    "aliases": [
+      "Montbell",
+      "mont-bell/mont-bell factory outlet"
+    ]
+  },
+  {
+    "brandId": "paul-smith-underwear",
+    "brandName": "Paul Smith UNDERWEAR",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "mila-owen-celford",
+    "brandName": "Mila Owen / CELFORD",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "mackintosh-philosophy",
+    "brandName": "MACKINTOSH PHILOSOPHY",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "mackintosh-london",
+    "brandName": "MACKINTOSH LONDON",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "moda-claire",
+    "brandName": "Moda Claire",
+    "categoryId": "fashion",
+    "aliases": [
+      "Moda Claire Outlet"
+    ]
+  },
+  {
+    "brandId": "nishikawa",
+    "brandName": "nishikawa",
+    "categoryId": "home",
+    "aliases": []
+  },
+  {
+    "brandId": "paul-stuart",
+    "brandName": "Paul Stuart",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "lucien-pellat-finet-jacob-coen",
+    "brandName": "lucien pellat-finet / Jacob coen",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "lanvin-collection",
+    "brandName": "LANVIN COLLECTION",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "mercedes-benz",
+    "brandName": "Mercedes-Benz",
+    "categoryId": "electronics",
+    "aliases": []
+  },
+  {
+    "brandId": "manolo-blahnik-fragrance-outlet",
+    "brandName": "MANOLO BLAHNIK / FRAGRANCE OUTLET",
+    "categoryId": "shoes-bags",
+    "aliases": []
+  },
+  {
+    "brandId": "paul-smith-bag",
+    "brandName": "Paul Smith BAG",
+    "categoryId": "shoes-bags",
+    "aliases": []
+  },
+  {
+    "brandId": "pasand-by-ne-quittez-pas",
+    "brandName": "Pasand by ne Quittez pas",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "pxg",
+    "brandName": "PXG",
+    "categoryId": "sportswear",
+    "aliases": []
+  },
+  {
+    "brandId": "meijiya",
+    "brandName": "Meijiya",
+    "categoryId": "food",
+    "aliases": [
+      "Meijiya OUTLET",
+      "Meidi-Ya"
+    ]
+  },
+  {
+    "brandId": "lupicia-bon-marche",
+    "brandName": "Lupicia Bon Marche",
+    "categoryId": "food",
+    "aliases": []
+  },
+  {
+    "brandId": "patisserie-sadaharu-aoki-paris",
+    "brandName": "Patisserie Sadaharu AOKI Paris",
+    "categoryId": "food-confectionery",
+    "aliases": []
+  },
+  {
+    "brandId": "sheltter-moussy",
+    "brandName": "Shel'tter moussy",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "sylvanian-families-morino-ouchi-jigsaw-puzzle-shop-masterpiece",
+    "brandName": "Sylvanian Families morino ouchi / Jigsaw Puzzle Shop Masterpiece",
+    "categoryId": "toys",
+    "aliases": []
+  },
+  {
+    "brandId": "rope-picnic-vis",
+    "brandName": "Ropé Picnic / VIS",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "showa-nishikawa",
+    "brandName": "SHOWA NISHIKAWA",
+    "categoryId": "home",
+    "aliases": []
+  },
+  {
+    "brandId": "tomica-and-plarail-shops",
+    "brandName": "Tomica & Plarail Shops",
+    "categoryId": "toys",
+    "aliases": []
+  },
+  {
+    "brandId": "riedel-nachtmann",
+    "brandName": "RIEDEL/NACHTMANN",
+    "categoryId": "homeware",
+    "aliases": []
+  },
+  {
+    "brandId": "sghr-sugahara",
+    "brandName": "Sghr Sugahara",
+    "categoryId": "homeware",
+    "aliases": []
+  },
+  {
+    "brandId": "thermos-store",
+    "brandName": "THERMOS STORE",
+    "categoryId": "home",
+    "aliases": []
+  },
+  {
+    "brandId": "samsonite-black-label",
+    "brandName": "Samsonite BLACK LABEL",
+    "categoryId": "shoes-bags",
+    "aliases": []
+  },
+  {
+    "brandId": "strasburgo",
+    "brandName": "STRASBURGO",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "saturdays-nyc",
+    "brandName": "Saturdays NYC",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "stussy",
+    "brandName": "STÜSSY",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "spick-and-span-journal-standard-edifice-iena-outlet-store",
+    "brandName": "Spick & Span / JOURNAL STANDARD / ÉDIFICE / IÉNA OUTLET STORE",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "seep-eyevan",
+    "brandName": "SeeP EYEVAN",
+    "categoryId": "eyewear",
+    "aliases": []
+  },
+  {
+    "brandId": "sanyoyamacho",
+    "brandName": "sanyoyamacho",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "tcg-patagonia",
+    "brandName": "TCG Patagonia",
+    "categoryId": "outdoor",
+    "aliases": []
+  },
+  {
+    "brandId": "the-north-face-helly-hansen-goldwin",
+    "brandName": "THE NORTH FACE / HELLY HANSEN / Goldwin",
+    "categoryId": "outdoor",
+    "aliases": []
+  },
+  {
+    "brandId": "xlarge-x-girl",
+    "brandName": "XLARGE/X-girl",
+    "categoryId": "fashion",
+    "aliases": []
+  },
+  {
+    "brandId": "vermicular-sustainable-store",
+    "brandName": "Vermicular Sustainable Store",
+    "categoryId": "home",
+    "aliases": []
+  },
+  {
+    "brandId": "yaccomaricard",
+    "brandName": "YACCOMARICARD",
+    "categoryId": "fashion",
+    "aliases": []
+  }
+] as const;
+const knownNonFashionKisarazuBrandIds = [
+  "asics-walking",
+  "celule",
+  "disney-store",
+  "anna-sui-mini",
+  "cassina-ixc",
+  "ahkah",
+  "dr-ci-labo",
+  "duo",
+  "anker-store",
+  "bridgestone-golf-plaza",
+  "afternoon-tea-living",
+  "dean-and-de-luca",
+  "boconcept",
+  "actus-soholm-cafe",
+  "felisi",
+  "hawkins-and-vans",
+  "hunting-world",
+  "gregory",
+  "john-masters-organics-select",
+  "kate-spade-new-york-kids",
+  "garmin",
+  "nihonbashi-kiya",
+  "lunetterie",
+  "lovot-store-lab",
+  "oriental-traffic",
+  "matsumoto-kiyoshi",
+  "mont-bell",
+  "nishikawa",
+  "pxg",
+  "sylvanian-families-morino-ouchi-jigsaw-puzzle-shop-masterpiece",
+  "showa-nishikawa",
+  "tomica-and-plarail-shops",
+  "riedel-nachtmann",
+  "sghr-sugahara",
+  "thermos-store",
+  "samsonite-black-label",
+  "seep-eyevan",
+  "the-north-face-helly-hansen-goldwin",
+  "vermicular-sustainable-store"
+];
 const outletId = "mitsui-outlet-park-kisarazu";
 const unique = <T>(rows: T[]) => new Set(rows).size === rows.length;
 const difference = (expected: string[], actual: string[]) => expected.filter((value) => !actual.includes(value));
-assert.equal(rawDirectorySource.length, 305); assert(unique(rawDirectorySource.map((row) => row.position)));
+assert.equal(rawDirectorySource.length, 305);
+assert.deepEqual(rawDirectorySource.map((row) => row.position), Array.from({ length: 305 }, (_, index) => index + 1));
+assert.equal(expectedKisarazuBrandIds.length, 262); assert.equal(new Set(expectedKisarazuBrandIds).size, 262);
+assert.equal(expectedKisarazuRestaurantNames.length, 37); assert.equal(new Set(expectedKisarazuRestaurantNames).size, 37);
 assert.equal(gourmetSource.length, 43); assert(unique(gourmetSource));
 assert.equal(serviceSource.length, 7); assert(unique(serviceSource));
 assert.equal(limitedTimeSource.length, 26); assert(unique(limitedTimeSource));
@@ -1635,6 +2289,47 @@ const matches = outlets.filter((row) => row.outletId === outletId); assert.equal
 assert.equal(matches[0].status, "active"); assert.equal(matches[0].countryId, "japan"); assert.equal(matches[0].cityId, "kisarazu");
 assert.equal(cities.filter((row) => row.cityId === "kisarazu").length, 1);
 const globalBrandIds = brands.map((row) => row.brandId); assert(unique(globalBrandIds), "duplicate global brandId");
+assert.equal(expectedNewKisarazuBrandMetadata.length, 99);
+assert.equal(new Set(expectedNewKisarazuBrandMetadata.map((brand) => brand.brandId)).size, 99);
+for (const expected of expectedNewKisarazuBrandMetadata) {
+  const matches = brands.filter((brand) => brand.brandId === expected.brandId);
+  assert.equal(matches.length, 1, `new Kisarazu brand must resolve once: ${expected.brandId}`);
+  assert.equal(matches[0].brandName, expected.brandName);
+  assert.equal(matches[0].categoryId, expected.categoryId);
+}
+for (const brandId of knownNonFashionKisarazuBrandIds) {
+  const brand = brands.find((row) => row.brandId === brandId);
+  assert(brand, `known non-fashion Kisarazu brand missing: ${brandId}`);
+  assert.notEqual(brand.categoryId, "fashion", `${brandId} must not use generic fashion metadata`);
+}
+assert.equal(brands.some((brand) => brand.brandId === "nolleys"), false);
+assert.equal(brands.filter((brand) => brand.brandId === "nolley-s").length, 1);
+assert.equal(brands.some((brand) => brand.brandId === "mont-bell-mont-bell-factory-outlet"), false);
+assert.equal(brands.filter((brand) => brand.brandId === "mont-bell").length, 1);
+const newBrandIds = new Set(expectedNewKisarazuBrandMetadata.map((brand) => brand.brandId));
+const normalizeBrandIdentity = (value: string, stripStoreQualifiers: boolean) => {
+  let normalized = value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/&/g, "and");
+  if (stripStoreQualifiers) {
+    normalized = normalized.replace(/\b(factory outlet|factory store|factory|outlet|store|stock|bazar)\b/g, " ");
+  }
+  return normalized.replace(/[^a-z0-9]/g, "");
+};
+const identityKeys = (brand: { brandId: string; brandName: string; aliases?: readonly string[] }) =>
+  [brand.brandId, brand.brandName, ...(brand.aliases ?? [])]
+    .flatMap((value) => [normalizeBrandIdentity(value, false), normalizeBrandIdentity(value, true)])
+    .filter(Boolean);
+const preExistingIdentityOwners = new Map<string, Set<string>>();
+for (const brand of brands.filter((row) => !newBrandIds.has(row.brandId))) {
+  for (const key of identityKeys(brand)) {
+    const owners = preExistingIdentityOwners.get(key) ?? new Set<string>();
+    owners.add(brand.brandId);
+    preExistingIdentityOwners.set(key, owners);
+  }
+}
+for (const brand of expectedNewKisarazuBrandMetadata) {
+  const semanticDuplicates = new Set(identityKeys(brand).flatMap((key) => [...(preExistingIdentityOwners.get(key) ?? [])]));
+  assert.deepEqual([...semanticDuplicates], [], `new Kisarazu brand adds a semantic duplicate: ${brand.brandId}`);
+}
 for (const brandId of actualBrands) assert.equal(brands.filter((row) => row.brandId === brandId).length, 1, `unresolved brand ${brandId}`);
 assert(unique(outletBrands.map((row) => `${row.outletId}|${row.brandId}`)), "duplicate outletId + brandId");
 assert(unique(restaurants.map((row) => row.restaurantId)), "duplicate restaurantId");

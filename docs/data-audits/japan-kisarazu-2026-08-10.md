@@ -26,374 +26,132 @@ This package uses the independently extracted, first-party modern Mitsui directo
 - Limited Time set (all current/active): Meijiya OUTLET, GREGORY, EPOCA, GIVENCHY, Cassina ixc, BOTANIST Factory, Sghr Sugahara, HERNO, REPLAY, Champion, DUO, john masters organics select, GUESS, BALENCIAGA, B'2nd, COACH MENS, FENDI, BURBERRY, JIL SANDER, GARMIN, YACCOMARICARD, BoConcept, AMIRI, Pasand by ne Quittez pas, CANDY☆A☆GO☆GO!, MOMI&TOY'S. Twenty-five map to outlet brands; MOMI&TOY'S is restaurant-only. Meijiya and CANDY☆A☆GO☆GO! are retail-only.
 - TASAKI (opened Aug 8), HERNO (relocated/reopened Aug 8), and Sghr Sugahara (opened Aug 1) are current. Banana Republic remains current through its planned late-August relocation. Re-audit Vermicular Sustainable Store, YACCOMARICARD, and Pasand by ne Quittez pas after their known Aug 30 closure dates. TOPTOY, WOOLRICH, Yutori no Kukan Market by Harumi Kurihara, and Fukuske are absent and excluded.
 
-## Canonical brands
-### Reused identities and normalizations
-- new balance factory store → `new-balance`
-- BRIEFING / Felisi → `briefing-felisi`
-- Felisi → `felisi`
-- PEARLY GATES → `pearly-gates`
-- QUIKSILVER FACTORY OUTLET STORE → `quiksilver`
-- Shel'tter moussy → `sheltter-moussy`
-- TEMPUR → `tempur`
-- ACE OUTLET → `ace-bags-and-luggage`
-- TASAKI → `tasaki`
-- Sylvanian Families morino ouchi / Jigsaw Puzzle Shop Masterpiece → `sylvanian-families-morino-ouchi-jigsaw-puzzle-shop-masterpiece`
-- asics WALKING → `asics-walking`
-- ZWILLING → `zwilling`
-- anuans EIMY ISTOIRE → `anuans-eimy-istoire`
-- SHIPS OUTLET → `ships`
-- BABYLONE STOCK → `babylone-stock`
-- madras / LANVIN COLLECTION → `madras-lanvin-collection`
-- GLOBAL WORK / LOWRYS FARM → `global-work-lowrys-farm`
-- GUNZE OUTLET → `gunze-outlet`
-- AS KNOW AS outlet → `as-know-as`
-- HAWKINS & VANS → `hawkins-and-vans`
-- Celule → `celule`
-- niko and... → `niko-and`
-- Ropé Picnic / VIS → `rope-picnic-vis`
-- Levi's FACTORY OUTLET → `levis`
-- Callaway → `callaway-golf`
-- UNITED ARROWS LTD. OUTLET → `united-arrows`
-- crocs → `crocs`
-- TaylorMade → `taylormade`
-- NATURAL BEAUTY BASIC → `n-natural-beauty-basic`
-- XLARGE/X-girl → `xlarge-x-girl`
-- INGNI → `ingni`
-- PLAZA → `plaza`
-- gelato pique/SNIDEL/FRAY I.D → `gelato-pique-snidel-fray-i-d`
-- SHOWA NISHIKAWA → `showa-nishikawa`
-- Hat Shop OUTLET → `hat-shop-outlet`
-- DESCENTE OUTLET YOKOHAMA STORE GOLF → `descente-store-golf`
-- BEAMS OUTLET → `beams`
-- nano･universe → `nano-universe`
-- LEGO STORE → `lego`
-- Disney store → `disney-store`
-- Pokemon Store OUTLET → `pokemon-store`
-- SWAROVSKI → `swarovski`
-- Nihonbashi Kiya → `nihonbashi-kiya`
-- CITIZEN → `citizen`
-- HUNTING WORLD → `hunting-world`
-- GREGORY → `gregory`
-- Lunetterie → `lunetterie`
-- ZUCCa → `cabane-de-zucca`
-- Triumph → `triumph`
-- EMODA → `emoda`
-- Tomica & Plarail Shops → `tomica-and-plarail-shops`
-- mezzo piano → `mezzo-piano`
-- ANNA SUI mini → `anna-sui-mini`
-- LOVOT Store lab. → `lovot-store-lab`
-- ORiental TRaffic → `oriental-traffic`
-- New Balance golf → `new-balance-golf`
-- NICOLE → `nicole`
-- Matsumoto Kiyoshi OUTLET → `matsumoto-kiyoshi`
-- MAMMUT STORE OUTLET → `mammut`
-- ABAHOUSE → `abahouse`
-- PING → `ping`
-- AVIREX DEPOT / LHP → `avirex-depot-lhp`
-- BANANA REPUBLIC FACTORY STORE → `banana-republic`
-- EPOCA → `epoca`
-- GIVENCHY → `givenchy`
-- Cassina ixc → `cassina-ixc`
-- STELLA McCARTNEY → `stella-mccartney`
-- POLO RALPH LAUREN FACTORY STORE → `polo-ralph-lauren`
-- BARNEYS NEW YORK OUTLET → `barneys-new-york`
-- ARMANI OUTLET → `armani`
-- ETRO → `etro`
-- Paul Smith → `paul-smith`
-- Vivienne Westwood → `vivienne-westwood`
-- Brooks Brothers → `brooks-brothers`
-- Cole Haan → `cole-haan`
-- REGAL FACTORY STORE → `regal`
-- PAPAS/MADEMOISELLE NONNON → `papas-mademoiselle-nonnon`
-- LACOSTE OUTLET → `lacoste`
-- Gap Outlet → `gap`
-- JINS → `jins`
-- T-fal Outlet Store → `tefal`
-- EDWIN/SOMETHING → `edwin-something`
-- OAKLEY VAULT → `oakley-vault`
-- URBAN RESEARCH ware house → `urban-research`
-- Cosmetics & Designer Fragrances → `cosmetics-and-designer-fragrances`
-- NEW YORKER → `new-yorker`
-- ALLSAINTS → `allsaints`
-- PAL'LAS PALACE → `pallas-palace`
-- ASICS FACTORY OUTLET → `asics`
-- mont-bell/mont-bell factory outlet → `mont-bell-mont-bell-factory-outlet`
-- adidas Factory Outlet → `adidas`
-- BOTANIST Factory → `botanist-factory`
-- SEIKO OUTLET → `seiko`
-- RIEDEL/NACHTMANN → `riedel-nachtmann`
-- Sghr Sugahara → `sghr-sugahara`
-- COACH → `coach`
-- LeSportsac → `le-sportsac`
-- Le Creuset → `le-creuset`
-- HERNO → `herno`
-- CELINE → `celine`
-- THOM BROWNE → `thom-browne`
-- LOEWE → `loewe`
-- LONGCHAMP → `longchamp`
-- APC → `a-p-c`
-- Marimekko → `marimekko`
-- CA4LA → `ca4la`
-- ESTNATION → `estnation`
-- REPLAY → `replay`
-- Paul Smith UNDERWEAR → `paul-smith-underwear`
-- Champion → `champion`
-- NEW ERA → `new-era`
-- adidas Golf Factory Outlet → `adidas-golf`
-- Arpege story → `arpege-story`
-- earth music&ecology super prem store / AMERICAN HOLIC → `earth-music-and-ecology-super-prem-store-american-holic`
-- PUMA OUTLET → `puma`
-- Wacoal FACTORY STORE → `wacoal`
-- Ciaopanic / DOUDOU → `ciaopanic-doudou`
-- Mila Owen / CELFORD → `mila-owen-celford`
-- ZERO HALLIBURTON → `zero-halliburton`
-- Orobianco → `orobianco`
-- carcru stock → `carcru-stock`
-- FEILER Factory Outlet → `feiler`
-- AHKAH → `ahkah`
-- NOLLEY'S OUTLET → `nolleys`
-- BLUE LABEL / BLACK LABEL CRESTBRIDGE → `blue-label-black-label-crestbridge`
-- Dr.Ci:Labo → `dr-ci-labo`
-- DUO → `duo`
-- L'OCCITANE → `l-occitane`
-- IL BISONTE → `il-bisonte`
-- Vermicular Sustainable Store → `vermicular-sustainable-store`
-- john masters organics select → `john-masters-organics-select`
-- DENHAM → `denham`
-- Repetto → `repetto`
-- THERMOS STORE → `thermos-store`
-- Ray-Ban → `ray-ban`
-- Anker Store → `anker-store`
-- BALLY → `bally`
-- DSQUARED2 → `dsquared2`
-- DIESEL → `diesel`
-- BRUNELLO CUCINELLI → `brunello-cucinelli`
-- ARC'TERYX → `arcteryx`
-- De'Longhi → `delonghi`
-- BRIDGESTONE GOLF PLAZA → `bridgestone-golf-plaza`
-- GUESS → `guess`
-- Bebe Outlet → `bebe`
-- Dr.Martens → `dr-martens`
-- Francfranc BAZAR → `francfranc`
-- GALLARDAGALANTE → `gallardagalante`
-- 23ku → `23ku`
-- Bshop OUTLET → `bshop-outlet`
-- MACKINTOSH PHILOSOPHY → `mackintosh-philosophy`
-- JOSEPH → `joseph`
-- MACKINTOSH LONDON → `mackintosh-london`
-- BALENCIAGA → `balenciaga`
-- MARGARET HOWELL A.G.O. → `margaret-howell`
-- VALENTINO → `valentino`
-- B'2nd → `b2nd`
-- Mitsumine → `mitsumine`
-- Moda Claire Outlet → `moda-claire-outlet`
-- nishikawa → `nishikawa`
-- Paul Stuart → `paul-stuart`
-- Afternoon Tea LIVING → `afternoon-tea-living`
-- Columbia Sportswear → `columbia`
-- COACH MENS → `coach-mens`
-- UGG → `ugg`
-- Samsonite BLACK LABEL → `samsonite-black-label`
-- Max Mara → `max-mara`
-- Jimmy Choo → `jimmy-choo`
-- FENDI → `fendi`
-- lucien pellat-finet / Jacob coen → `lucien-pellat-finet-jacob-coen`
-- BURBERRY → `burberry`
-- TUMI → `tumi`
-- Chloé → `chloe`
-- MARNI → `marni`
-- SAINT LAURENT → `saint-laurent`
-- LANVIN COLLECTION → `lanvin-collection`
-- dunhill → `dunhill`
-- S.T. Dupont → `st-dupont`
-- ZEGNA → `zegna`
-- STRASBURGO → `strasburgo`
-- BILLABONG OUTLET → `billabong`
-- Saturdays NYC → `saturdays-nyc`
-- emmi → `emmi`
-- Staub Outlet → `staub`
-- UNDER ARMOUR FACTORY HOUSE → `under-armour`
-- Timberland → `timberland`
-- CAMPER → `camper`
-- CASIO WATCH OUTLET → `casio-watch`
-- J.PRESS → `j-press`
-- kate spade new york → `kate-spade-new-york`
-- MICHAEL KORS → `michael-kors`
-- Sergio Rossi → `sergio-rossi`
-- GUCCI → `gucci`
-- BONAVENTURA → `bonaventura`
-- Y-3 → `y-3`
-- Acne Studios → `acne-studios`
-- JIL SANDER → `jil-sander`
-- Mulberry → `mulberry`
-- TOMORROWLAND → `tomorrowland`
-- DEAN & DE LUCA → `dean-and-de-luca`
-- Mercedes-Benz → `mercedes-benz`
-- FURLA → `furla`
-- THE COSMETICS COMPANY STORE → `the-cosmetics-company-store`
-- STÜSSY → `stussy`
-- agnes b. → `agnes-b`
-- Spick & Span / JOURNAL STANDARD / ÉDIFICE / IÉNA OUTLET STORE → `spick-and-span-journal-standard-edifice-iena-outlet-store`
-- BIRKENSTOCK → `birkenstock`
-- kate spade new york kids → `kate-spade-new-york-kids`
-- SeeP EYEVAN → `seep-eyevan`
-- GARMIN → `garmin`
-- MANOLO BLAHNIK / FRAGRANCE OUTLET → `manolo-blahnik-fragrance-outlet`
-- BONPOINT → `bonpoint`
-- ALEXANDRE DE PARIS → `alexandre-de-paris`
-- TORY BURCH → `tory-burch`
-- Paul Smith BAG → `paul-smith-bag`
-- sanyoyamacho → `sanyoyamacho`
-- MARC JACOBS → `marc-jacobs`
-- KENZO → `kenzo`
-- VERSACE → `versace`
-- Onitsuka Tiger → `onitsuka-tiger`
-- YACCOMARICARD → `yaccomaricard`
-- AOURE → `aoure`
-- Psycho Bunny → `psycho-bunny`
-- TCG Patagonia → `tcg-patagonia`
-- BoConcept → `boconcept`
-- FRED PERRY OUTLET → `fred-perry`
-- ACTUS / SOHOLM CAFÉ → `actus-soholm-cafe`
-- SABON → `sabon`
-- DOLCE&GABBANA → `dolceandgabbana`
-- AMIRI → `amiri`
-- Ferragamo → `ferragamo`
-- Instant Skateboards → `instant-skateboards`
-- MAISON KITSUNÉ → `maison-kitsune`
-- Pasand by ne Quittez pas → `pasand-by-ne-quittez-pas`
-- Barbour → `barbour`
-- CONVERSE FACTORY STORE → `converse`
-- Gente di Mare → `gente-di-mare`
-- HUNTER → `hunter`
-- HOKA → `hoka`
-- SALOMON → `salomon`
-- KEEN Outlet → `keen`
-- Snow Peak → `snow-peak`
-- Nike → `nike`
-- lululemon → `lululemon`
-- Ron Herman → `ron-herman`
-- THE NORTH FACE / HELLY HANSEN / Goldwin → `the-north-face-helly-hansen-goldwin`
-- TOMMY HILFIGER → `tommy-hilfiger`
-- Calvin Klein → `calvin-klein`
-- Theory → `theory`
-- PXG → `pxg`
-- ReFa → `refa`
-- BOSS Outlet → `boss`
-- KISARAZU CONCEPT STORE → `kisarazu-concept-store`
-- Meijiya OUTLET → `meijiya-outlet`
-- Lupicia Bon Marche → `lupicia-bon-marche`
-- Boso Shiki no Kura Shunsai → `boso-shiki-no-kura-shunsai`
-- Patisserie Sadaharu AOKI Paris → `patisserie-sadaharu-aoki-paris`
-- KALDI COFFEE FARM → `kaldi-coffee-farm`
-- CANDY☆A☆GO☆GO! → `candy-a-go-go`
-- GODIVA → `godiva`
-- Venchi → `venchi`
-- Lindt Chocolat Boutique & Cafe → `lindt`
+## Canonical-brand quality correction
 
-### Newly created identities
-- `briefing-felisi` — BRIEFING / Felisi
-- `felisi` — Felisi
-- `sheltter-moussy` — Shel'tter moussy
-- `sylvanian-families-morino-ouchi-jigsaw-puzzle-shop-masterpiece` — Sylvanian Families morino ouchi / Jigsaw Puzzle Shop Masterpiece
-- `asics-walking` — asics WALKING
-- `anuans-eimy-istoire` — anuans EIMY ISTOIRE
-- `babylone-stock` — BABYLONE STOCK
-- `madras-lanvin-collection` — madras / LANVIN COLLECTION
-- `global-work-lowrys-farm` — GLOBAL WORK / LOWRYS FARM
-- `gunze-outlet` — GUNZE OUTLET
-- `hawkins-and-vans` — HAWKINS & VANS
-- `celule` — Celule
-- `niko-and` — niko and...
-- `rope-picnic-vis` — Ropé Picnic / VIS
-- `xlarge-x-girl` — XLARGE/X-girl
-- `gelato-pique-snidel-fray-i-d` — gelato pique/SNIDEL/FRAY I.D
-- `showa-nishikawa` — SHOWA NISHIKAWA
-- `hat-shop-outlet` — Hat Shop OUTLET
-- `disney-store` — Disney store
-- `nihonbashi-kiya` — Nihonbashi Kiya
-- `hunting-world` — HUNTING WORLD
-- `gregory` — GREGORY
-- `lunetterie` — Lunetterie
-- `emoda` — EMODA
-- `tomica-and-plarail-shops` — Tomica & Plarail Shops
-- `anna-sui-mini` — ANNA SUI mini
-- `lovot-store-lab` — LOVOT Store lab.
-- `oriental-traffic` — ORiental TRaffic
-- `nicole` — NICOLE
-- `matsumoto-kiyoshi` — Matsumoto Kiyoshi OUTLET
-- `avirex-depot-lhp` — AVIREX DEPOT / LHP
-- `epoca` — EPOCA
-- `cassina-ixc` — Cassina ixc
-- `papas-mademoiselle-nonnon` — PAPAS/MADEMOISELLE NONNON
-- `edwin-something` — EDWIN/SOMETHING
-- `pallas-palace` — PAL'LAS PALACE
-- `mont-bell-mont-bell-factory-outlet` — mont-bell/mont-bell factory outlet
-- `botanist-factory` — BOTANIST Factory
-- `riedel-nachtmann` — RIEDEL/NACHTMANN
-- `sghr-sugahara` — Sghr Sugahara
-- `ca4la` — CA4LA
-- `estnation` — ESTNATION
-- `paul-smith-underwear` — Paul Smith UNDERWEAR
-- `arpege-story` — Arpege story
-- `earth-music-and-ecology-super-prem-store-american-holic` — earth music&ecology super prem store / AMERICAN HOLIC
-- `ciaopanic-doudou` — Ciaopanic / DOUDOU
-- `mila-owen-celford` — Mila Owen / CELFORD
-- `carcru-stock` — carcru stock
-- `feiler` — FEILER Factory Outlet
-- `ahkah` — AHKAH
-- `nolleys` — NOLLEY'S OUTLET
-- `dr-ci-labo` — Dr.Ci:Labo
-- `duo` — DUO
-- `vermicular-sustainable-store` — Vermicular Sustainable Store
-- `john-masters-organics-select` — john masters organics select
-- `thermos-store` — THERMOS STORE
-- `anker-store` — Anker Store
-- `bridgestone-golf-plaza` — BRIDGESTONE GOLF PLAZA
-- `bshop-outlet` — Bshop OUTLET
-- `mackintosh-philosophy` — MACKINTOSH PHILOSOPHY
-- `mackintosh-london` — MACKINTOSH LONDON
-- `b2nd` — B'2nd
-- `moda-claire-outlet` — Moda Claire Outlet
-- `nishikawa` — nishikawa
-- `paul-stuart` — Paul Stuart
-- `afternoon-tea-living` — Afternoon Tea LIVING
-- `coach-mens` — COACH MENS
-- `samsonite-black-label` — Samsonite BLACK LABEL
-- `lucien-pellat-finet-jacob-coen` — lucien pellat-finet / Jacob coen
-- `lanvin-collection` — LANVIN COLLECTION
-- `strasburgo` — STRASBURGO
-- `saturdays-nyc` — Saturdays NYC
-- `dean-and-de-luca` — DEAN & DE LUCA
-- `mercedes-benz` — Mercedes-Benz
-- `stussy` — STÜSSY
-- `spick-and-span-journal-standard-edifice-iena-outlet-store` — Spick & Span / JOURNAL STANDARD / ÉDIFICE / IÉNA OUTLET STORE
-- `kate-spade-new-york-kids` — kate spade new york kids
-- `seep-eyevan` — SeeP EYEVAN
-- `garmin` — GARMIN
-- `manolo-blahnik-fragrance-outlet` — MANOLO BLAHNIK / FRAGRANCE OUTLET
-- `alexandre-de-paris` — ALEXANDRE DE PARIS
-- `paul-smith-bag` — Paul Smith BAG
-- `sanyoyamacho` — sanyoyamacho
-- `yaccomaricard` — YACCOMARICARD
-- `aoure` — AOURE
-- `tcg-patagonia` — TCG Patagonia
-- `boconcept` — BoConcept
-- `actus-soholm-cafe` — ACTUS / SOHOLM CAFÉ
-- `instant-skateboards` — Instant Skateboards
-- `pasand-by-ne-quittez-pas` — Pasand by ne Quittez pas
-- `gente-di-mare` — Gente di Mare
-- `the-north-face-helly-hansen-goldwin` — THE NORTH FACE / HELLY HANSEN / Goldwin
-- `pxg` — PXG
-- `kisarazu-concept-store` — KISARAZU CONCEPT STORE
-- `meijiya-outlet` — Meijiya OUTLET
-- `lupicia-bon-marche` — Lupicia Bon Marche
-- `boso-shiki-no-kura-shunsai` — Boso Shiki no Kura Shunsai
-- `patisserie-sadaharu-aoki-paris` — Patisserie Sadaharu AOKI Paris
-- `kaldi-coffee-farm` — KALDI COFFEE FARM
-- `candy-a-go-go` — CANDY☆A☆GO☆GO!
+The corrected package introduces **99** global Brand records relative to the pre-PR catalog. Every introduced record was compared with the complete pre-existing catalog by brand name, aliases, case-, punctuation-, and whitespace-insensitive forms, and by outlet/factory/store/stock-suffix-stripped forms. No newly retained record duplicates a pre-existing canonical identity. Historical duplicates outside this PR are intentionally out of scope.
 
-New records use conservative blank logos, active status, ranking weight 50, and no unsupported origin country. Ambiguous direct combined concepts were resolved as their own canonical direct-store identities rather than exploded into component labels.
+### Removed duplicate and clean canonical replacements
+- `nolleys` was removed. `NOLLEY'S OUTLET` now maps to the one pre-existing `nolley-s` record (a variant of an existing canonical identity).
+- `mont-bell-mont-bell-factory-outlet` was replaced by clean new canonical `mont-bell`, with `Montbell` and the full directory wording as aliases and category `outdoor`.
+- Outlet/store qualifiers were removed from newly created global identities where they only described format: `gunze-outlet` → `gunze`, `bshop-outlet` → `bshop`, `botanist-factory` → `botanist`, `meijiya-outlet` → `meijiya`, `moda-claire-outlet` → `moda-claire`. Their source wording is retained as an alias.
+- No other semantic duplicate was found or removed.
+
+### Reviewed qualifier-bearing identities retained
+- `babylone-stock` and `carcru-stock` are retained because **STOCK** is the directory's named direct retail concept, not merely an incidental suffix, and no pre-existing clean canonical record exists.
+- `hat-shop-outlet` is retained because “Hat Shop OUTLET” is the complete generic direct-tenant identity; reducing it to “Hat Shop” would assert an unsupported global identity.
+- `disney-store`, `anker-store`, `thermos-store`, `kisarazu-concept-store`, and `lovot-store-lab` retain “store/lab” because it is part of the direct concept name rather than an outlet-format qualifier.
+- `vermicular-sustainable-store` is retained as the explicitly named sustainable-store concept, distinct from an unsupported generic merge.
+- The combined `earth-music-and-ecology-super-prem-store-american-holic`, `manolo-blahnik-fragrance-outlet`, and `spick-and-span-journal-standard-edifice-iena-outlet-store` identities retain those words because removing them would distort the approved combined direct-tenant concept.
+- `feiler` and `matsumoto-kiyoshi` already use clean IDs while keeping directory-format wording as their displayed source names.
+
+### Category corrections
+All 99 new records were reviewed. Non-fashion tenants now use repository-supported categories such as `shoes-bags`, `beauty`, `children`, `toys`, `gifts`, `home`, `homeware`, `electronics`, `outdoor`, `sportswear`, `eyewear`, `health-beauty`, `jewelry-watches`, `accessories`, `food`, and `food-confectionery`. Food retail is no longer blanket-classified as `food-chocolate`; GODIVA, Venchi, and Lindt retain their pre-existing metadata.
+
+### Complete corrected new-brand inventory
+
+| brandId | brandName | categoryId | assessment |
+|---|---|---|---|
+| `briefing-felisi` | BRIEFING / Felisi | `shoes-bags` | distinct direct combined-store concept |
+| `asics-walking` | asics WALKING | `shoes-bags` | genuinely new canonical brand |
+| `anuans-eimy-istoire` | anuans EIMY ISTOIRE | `fashion` | genuinely new canonical brand |
+| `babylone-stock` | BABYLONE STOCK | `fashion` | genuinely new canonical brand |
+| `celule` | Celule | `beauty` | genuinely new canonical brand |
+| `disney-store` | Disney store | `gifts` | genuinely new canonical brand |
+| `emoda` | EMODA | `fashion` | genuinely new canonical brand |
+| `anna-sui-mini` | ANNA SUI mini | `children` | genuinely new canonical brand |
+| `avirex-depot-lhp` | AVIREX DEPOT / LHP | `fashion` | distinct direct combined-store concept |
+| `epoca` | EPOCA | `fashion` | genuinely new canonical brand |
+| `cassina-ixc` | Cassina ixc | `home` | genuinely new canonical brand |
+| `edwin-something` | EDWIN/SOMETHING | `fashion` | distinct direct combined-store concept |
+| `botanist` | BOTANIST | `beauty` | genuinely new canonical brand |
+| `ca4la` | CA4LA | `accessories` | genuinely new canonical brand |
+| `estnation` | ESTNATION | `fashion` | genuinely new canonical brand |
+| `arpege-story` | Arpege story | `fashion` | genuinely new canonical brand |
+| `earth-music-and-ecology-super-prem-store-american-holic` | earth music&ecology super prem store / AMERICAN HOLIC | `fashion` | distinct direct combined-store concept |
+| `ciaopanic-doudou` | Ciaopanic / DOUDOU | `fashion` | distinct direct combined-store concept |
+| `carcru-stock` | carcru stock | `accessories` | genuinely new canonical brand |
+| `ahkah` | AHKAH | `jewelry-watches` | genuinely new canonical brand |
+| `dr-ci-labo` | Dr.Ci:Labo | `beauty` | genuinely new canonical brand |
+| `duo` | DUO | `beauty` | genuinely new canonical brand |
+| `anker-store` | Anker Store | `electronics` | genuinely new canonical brand |
+| `bridgestone-golf-plaza` | BRIDGESTONE GOLF PLAZA | `sportswear` | genuinely new canonical brand |
+| `bshop` | Bshop | `fashion` | genuinely new canonical brand |
+| `b2nd` | B'2nd | `fashion` | genuinely new canonical brand |
+| `afternoon-tea-living` | Afternoon Tea LIVING | `home` | genuinely new canonical brand |
+| `coach-mens` | COACH MENS | `fashion` | genuinely new canonical brand |
+| `dean-and-de-luca` | DEAN & DE LUCA | `food` | genuinely new canonical brand |
+| `alexandre-de-paris` | ALEXANDRE DE PARIS | `accessories` | genuinely new canonical brand |
+| `aoure` | AOURE | `fashion` | genuinely new canonical brand |
+| `boconcept` | BoConcept | `home` | genuinely new canonical brand |
+| `actus-soholm-cafe` | ACTUS / SOHOLM CAFÉ | `home` | distinct direct combined-store concept |
+| `boso-shiki-no-kura-shunsai` | Boso Shiki no Kura Shunsai | `food` | genuinely new canonical brand |
+| `candy-a-go-go` | CANDY☆A☆GO☆GO! | `food-confectionery` | genuinely new canonical brand |
+| `felisi` | Felisi | `shoes-bags` | genuinely new canonical brand |
+| `global-work-lowrys-farm` | GLOBAL WORK / LOWRYS FARM | `fashion` | distinct direct combined-store concept |
+| `gunze` | GUNZE | `fashion` | genuinely new canonical brand |
+| `hawkins-and-vans` | HAWKINS & VANS | `shoes-bags` | distinct direct combined-store concept |
+| `gelato-pique-snidel-fray-i-d` | gelato pique/SNIDEL/FRAY I.D | `fashion` | distinct direct combined-store concept |
+| `hat-shop-outlet` | Hat Shop OUTLET | `accessories` | genuinely new canonical brand |
+| `hunting-world` | HUNTING WORLD | `shoes-bags` | genuinely new canonical brand |
+| `gregory` | GREGORY | `outdoor` | genuinely new canonical brand |
+| `feiler` | FEILER Factory Outlet | `accessories` | genuinely new canonical brand |
+| `john-masters-organics-select` | john masters organics select | `beauty` | genuinely new canonical brand |
+| `kate-spade-new-york-kids` | kate spade new york kids | `children` | genuinely new canonical brand |
+| `garmin` | GARMIN | `electronics` | genuinely new canonical brand |
+| `instant-skateboards` | Instant Skateboards | `sportswear` | genuinely new canonical brand |
+| `gente-di-mare` | Gente di Mare | `fashion` | genuinely new canonical brand |
+| `kisarazu-concept-store` | KISARAZU CONCEPT STORE | `gifts` | genuinely new canonical brand |
+| `kaldi-coffee-farm` | KALDI COFFEE FARM | `food` | genuinely new canonical brand |
+| `madras-lanvin-collection` | madras / LANVIN COLLECTION | `fashion` | distinct direct combined-store concept |
+| `niko-and` | niko and... | `fashion` | genuinely new canonical brand |
+| `nihonbashi-kiya` | Nihonbashi Kiya | `homeware` | genuinely new canonical brand |
+| `lunetterie` | Lunetterie | `eyewear` | genuinely new canonical brand |
+| `lovot-store-lab` | LOVOT Store lab. | `electronics` | genuinely new canonical brand |
+| `oriental-traffic` | ORiental TRaffic | `shoes-bags` | genuinely new canonical brand |
+| `nicole` | NICOLE | `fashion` | genuinely new canonical brand |
+| `matsumoto-kiyoshi` | Matsumoto Kiyoshi OUTLET | `health-beauty` | genuinely new canonical brand |
+| `papas-mademoiselle-nonnon` | PAPAS/MADEMOISELLE NONNON | `fashion` | distinct direct combined-store concept |
+| `pallas-palace` | PAL'LAS PALACE | `fashion` | genuinely new canonical brand |
+| `mont-bell` | mont-bell | `outdoor` | genuinely new canonical brand |
+| `paul-smith-underwear` | Paul Smith UNDERWEAR | `fashion` | genuinely new canonical brand |
+| `mila-owen-celford` | Mila Owen / CELFORD | `fashion` | distinct direct combined-store concept |
+| `mackintosh-philosophy` | MACKINTOSH PHILOSOPHY | `fashion` | genuinely new canonical brand |
+| `mackintosh-london` | MACKINTOSH LONDON | `fashion` | genuinely new canonical brand |
+| `moda-claire` | Moda Claire | `fashion` | genuinely new canonical brand |
+| `nishikawa` | nishikawa | `home` | genuinely new canonical brand |
+| `paul-stuart` | Paul Stuart | `fashion` | genuinely new canonical brand |
+| `lucien-pellat-finet-jacob-coen` | lucien pellat-finet / Jacob coen | `fashion` | distinct direct combined-store concept |
+| `lanvin-collection` | LANVIN COLLECTION | `fashion` | genuinely new canonical brand |
+| `mercedes-benz` | Mercedes-Benz | `electronics` | genuinely new canonical brand |
+| `manolo-blahnik-fragrance-outlet` | MANOLO BLAHNIK / FRAGRANCE OUTLET | `shoes-bags` | distinct direct combined-store concept |
+| `paul-smith-bag` | Paul Smith BAG | `shoes-bags` | genuinely new canonical brand |
+| `pasand-by-ne-quittez-pas` | Pasand by ne Quittez pas | `fashion` | genuinely new canonical brand |
+| `pxg` | PXG | `sportswear` | genuinely new canonical brand |
+| `meijiya` | Meijiya | `food` | genuinely new canonical brand |
+| `lupicia-bon-marche` | Lupicia Bon Marche | `food` | genuinely new canonical brand |
+| `patisserie-sadaharu-aoki-paris` | Patisserie Sadaharu AOKI Paris | `food-confectionery` | genuinely new canonical brand |
+| `sheltter-moussy` | Shel'tter moussy | `fashion` | genuinely new canonical brand |
+| `sylvanian-families-morino-ouchi-jigsaw-puzzle-shop-masterpiece` | Sylvanian Families morino ouchi / Jigsaw Puzzle Shop Masterpiece | `toys` | distinct direct combined-store concept |
+| `rope-picnic-vis` | Ropé Picnic / VIS | `fashion` | distinct direct combined-store concept |
+| `showa-nishikawa` | SHOWA NISHIKAWA | `home` | genuinely new canonical brand |
+| `tomica-and-plarail-shops` | Tomica & Plarail Shops | `toys` | genuinely new canonical brand |
+| `riedel-nachtmann` | RIEDEL/NACHTMANN | `homeware` | genuinely new canonical brand |
+| `sghr-sugahara` | Sghr Sugahara | `homeware` | genuinely new canonical brand |
+| `thermos-store` | THERMOS STORE | `home` | genuinely new canonical brand |
+| `samsonite-black-label` | Samsonite BLACK LABEL | `shoes-bags` | genuinely new canonical brand |
+| `strasburgo` | STRASBURGO | `fashion` | genuinely new canonical brand |
+| `saturdays-nyc` | Saturdays NYC | `fashion` | genuinely new canonical brand |
+| `stussy` | STÜSSY | `fashion` | genuinely new canonical brand |
+| `spick-and-span-journal-standard-edifice-iena-outlet-store` | Spick & Span / JOURNAL STANDARD / ÉDIFICE / IÉNA OUTLET STORE | `fashion` | distinct direct combined-store concept |
+| `seep-eyevan` | SeeP EYEVAN | `eyewear` | genuinely new canonical brand |
+| `sanyoyamacho` | sanyoyamacho | `fashion` | genuinely new canonical brand |
+| `tcg-patagonia` | TCG Patagonia | `outdoor` | genuinely new canonical brand |
+| `the-north-face-helly-hansen-goldwin` | THE NORTH FACE / HELLY HANSEN / Goldwin | `outdoor` | distinct direct combined-store concept |
+| `xlarge-x-girl` | XLARGE/X-girl | `fashion` | genuinely new canonical brand |
+| `vermicular-sustainable-store` | Vermicular Sustainable Store | `home` | genuinely new canonical brand |
+| `yaccomaricard` | YACCOMARICARD | `fashion` | genuinely new canonical brand |
+
+“Variant of an existing canonical identity” has zero entries in the retained-new inventory: the only confirmed case was NOLLEY'S, and that erroneous new record was removed rather than retained. Ambiguous names were not guessed into pre-existing identities; the qualifier decisions above document the conservative resolutions.
 
 ## Metadata
 - Address: 3-1-1 Kaneda-Higashi, Kisarazu-shi, Chiba 292-0009, Japan; planning coordinate 35.43575, 139.93551.
