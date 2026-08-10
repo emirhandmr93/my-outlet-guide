@@ -3185,4 +3185,5 @@ export const brandsUZ: Brand[] = [
   { brandId: "xlarge-x-girl", brandName: "XLARGE/X-girl", aliases: [], categoryId: "fashion", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
   { brandId: "vermicular-sustainable-store", brandName: "Vermicular Sustainable Store", aliases: [], categoryId: "home", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
   { brandId: "yaccomaricard", brandName: "YACCOMARICARD", aliases: [], categoryId: "fashion", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  { brandId: "yogibo-store", brandName: "Yogibo Store", aliases: [], categoryId: "lifestyle", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
 ];
