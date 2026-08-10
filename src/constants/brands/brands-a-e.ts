@@ -9265,4 +9265,15 @@ export const brandsAE: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "aizone",
+    brandName: "Aizone",
+    aliases: ["Aïzone"],
+    categoryId: "fashion",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "fashion",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
 ];
