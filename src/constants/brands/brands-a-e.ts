@@ -9254,4 +9254,15 @@ export const brandsAE: Brand[] = [
     rankingWeight: 50,
     brandStatus: "active",
   },
+  {
+    brandId: "candy-hearts",
+    brandName: "Candy Hearts",
+    aliases: [],
+    categoryId: "food-confectionery",
+    logo: "",
+    originCountryId: "unknown",
+    luxuryLevel: "lifestyle",
+    rankingWeight: 50,
+    brandStatus: "active",
+  },
 ];

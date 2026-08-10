@@ -1,6 +1,6 @@
 # Gulf outlets production-data audit — 2026-08-09
 
-This correction re-enumerates the full load-more directory instead of relying on its initial visible page. A relation represents the direct tenant only; inventory inside a multi-brand tenant is never expanded.
+This correction accounts for the full load-more directory rather than relying on its initial visible page. A relation represents the direct tenant only; inventory inside a multi-brand tenant is never expanded.
 
 ## The Outlet Village
 
@@ -11,7 +11,7 @@ This correction re-enumerates the full load-more directory instead of relying on
 - Official FAQ: https://theoutletvillage.ae/en/faqs
 - RTA journey planner: https://www.rta.ae/wps/portal/rta/ae/public-transport/journeyplanner
 
-The full directory has **91 entries: 83 Retail and 8 F&B**. All 83 Retail tenants map to one canonical brand identity; there are **zero Retail exclusions**. The four multi-brand retailers Brand Bazaar, Etoile Outlet, Rodeo Drive and The Deal map only as their store identities. Armani Outlet maps to `armani-outlet`, not Armani Exchange; Boss maps to `boss`; Nike Town maps to canonical Nike; the dedicated Diesel Kids entry maps to the existing distinct `diesel-kids` identity.
+The current directory enumeration has **101 entries: 93 Retail and 8 F&B**. All 93 Retail tenants map to one canonical brand identity; there are **zero Retail exclusions**. The four multi-brand retailers Brand Bazaar, Etoile Outlet, Rodeo Drive and The Deal map only as their store identities. Armani Outlet maps to `armani-outlet`, not Armani Exchange; Boss maps to `boss`; Nike Town maps to canonical Nike; the dedicated Diesel Kids entry maps to the existing distinct `diesel-kids` identity.
 
 ### Full Retail enumeration
 
@@ -35,8 +35,13 @@ The full directory has **91 entries: 83 Retail and 8 F&B**. All 83 Retail tenant
 | Brand Bazaar | Retail | yes | `brand-bazaar` | — |
 | Brooks Brothers | Retail | yes | `brooks-brothers` | — |
 | Calvin Klein | Retail | yes | `calvin-klein` | — |
+| Candy Hearts | Retail | yes | `candy-hearts` | — |
+| Carducci Milano | Retail | yes | `carducci-milano` | — |
+| Carolina Herrera | Retail | yes | `carolina-herrera` | — |
 | Carter's | Retail | yes | `carters` | — |
 | Charles & Keith | Retail | yes | `charles-and-keith` | — |
+| Charriol | Retail | yes | `charriol` | — |
+| Choice | Retail | yes | `choice` | — |
 | Coach | Retail | yes | `coach` | — |
 | Cole Haan | Retail | yes | `cole-haan` | — |
 | Converse | Retail | yes | `converse` | — |
@@ -61,11 +66,15 @@ The full directory has **91 entries: 83 Retail and 8 F&B**. All 83 Retail tenant
 | Guess | Retail | yes | `guess` | — |
 | HUGO | Retail | yes | `hugo` | — |
 | Jacadi | Retail | yes | `jacadi` | — |
+| Jashanmal Fashion Outlet | Retail | yes | `jashanmal-fashion-outlet` | — |
 | Kate Spade New York | Retail | yes | `kate-spade-new-york` | — |
 | Kenneth Cole | Retail | yes | `kenneth-cole` | — |
 | Kiko Milano | Retail | yes | `kiko-milano` | — |
 | Lacoste | Retail | yes | `lacoste` | — |
 | Levi's | Retail | yes | `levis` | — |
+| Longchamp | Retail | yes | `longchamp` | — |
+| Louis Feraud | Retail | yes | `louis-feraud` | — |
+| Marc Cain | Retail | yes | `marc-cain` | — |
 | Michael Kors | Retail | yes | `michael-kors` | — |
 | Montblanc | Retail | yes | `montblanc` | — |
 | Nike Town | Retail | yes | `nike` | — |
@@ -87,6 +96,7 @@ The full directory has **91 entries: 83 Retail and 8 F&B**. All 83 Retail tenant
 | Samsonite | Retail | yes | `samsonite` | — |
 | Skechers | Retail | yes | `skechers` | — |
 | Superdry | Retail | yes | `superdry` | — |
+| Swarovski | Retail | yes | `swarovski` | — |
 | Ted Baker | Retail | yes | `ted-baker` | — |
 | TEMPERLEY LONDON | Retail | yes | `temperley-london` | — |
 | The Deal | Retail | yes | `the-deal` | — |
@@ -114,7 +124,7 @@ The full directory has **91 entries: 83 Retail and 8 F&B**. All 83 Retail tenant
 | Starbucks | F&B | yes |
 | Urban Seafood | F&B | yes |
 
-The official directory contributes 8 F&B rows. Candy Hearts and Oakberry Açaí are two additional FAQ-verified food kiosks, for **10 restaurant rows**. There are no F&B omissions. The FAQ's “500+ brands” is not represented as 500 stores; `storesCountText` keeps the separately stated more-than-100 destination wording. Media/review snapshots remain unresolved because no repository asset or approved review snapshot exists. The Ibn Battuta connection remains deliberately route-number/fare/timetable neutral because a stable direct RTA service was not established.
+The official directory contributes 8 F&B rows. Candy Hearts is officially classified Retail and maps to `candy-hearts`; because the FAQ also substantiates its food role, it remains dual-represented as a restaurant row. Oakberry Açaí is the additional FAQ-verified food kiosk. These produce **10 restaurant rows**. There are no F&B omissions. The FAQ's “500+ brands” is not represented as 500 stores; `storesCountText` keeps the separately stated more-than-100 destination wording. Media/review snapshots remain unresolved because no repository asset or approved review snapshot exists. The Ibn Battuta connection remains deliberately route-number/fare/timetable neutral because a stable direct RTA service was not established.
 
 ## Al Khiran Hybrid Outlet Mall
 
