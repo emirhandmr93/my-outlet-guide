@@ -3,6 +3,7 @@ import { outlets } from "../src/constants/outlets";
 import { outletBrands } from "../src/constants/outletBrands";
 import { brands } from "../src/constants/brands";
 import { transportationGuides } from "../src/constants/transportationGuides";
+import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
 import { localizeTargetGuide, targetContentLanguages, targetOutletQuickInfo } from "../src/constants/targetOutletLocalization";
 import { supportedLanguageCodes } from "../src/translations/locale";
 import { countries } from "../src/constants/countries";
@@ -11,9 +12,15 @@ import { taxFreeCountryGuides } from "../src/constants/taxFreeGuides";
 import { normalizeTaxFreeCountryStatus, resolveOutletTaxFreeDisplayStatus } from "../src/utils/taxFreeDisplay";
 import { resolveOutletRetailCountDisplay } from "../src/utils/outletDisplayFormatters";
 import { translations } from "../src/translations/translations";
+import {
+  getTransportationOptionDisplayModel,
+  getTransportationV2Options,
+  setTransportationV2Records,
+} from "../src/services/transportationV2Service";
 
 const targetOutletIds = ["al-khiran-hybrid-outlet-mall","dubai-outlet-mall","the-outlet-village","rinku-premium-outlets","gotemba-premium-outlets","mitsui-outlet-park-kisarazu"];
 const guides = transportationGuides.filter((guide) => targetOutletIds.includes(guide.outletId));
+setTransportationV2Records(transportationGuides, transportationRouteFacts);
 const prohibited = /check\s+(?:the\s+)?(?:official|current|timetable|fare|route|operator|provider|availability)|confirm\s+(?:the\s+)?(?:current|service|fare|timetable|operator)|ask\s+station\s+staff|journey\s+planner|verify\s+(?:the\s+)?(?:current|timetable|public transport)|resmi\s+sağlayıcı.*kontrol|güncel\s+(?:tarife|ücret).*doğrula|planificador\s+de\s+viajes|confirmez?\s+(?:les\s+)?horaires|fahrplan.*bestätigen|уточните.*расписан|مخطط\s+الرحلات|向.*确认.*时刻表/i;
 const properNameAllowlist = /Al Ghubaiba Bus Station|RTA Bus 66|Faqa, Terminus|nol Silver Card|Dubai Outlet Mall(?: 0[12])?|Dubai–Al Ain Road|Downtown Dubai|DXB|DWC|KWI|The Outlet Village|Dubai Parks and Resorts|Jebel Ali|Al Maktoum International Airport|Kuwait City|Al Khiran Hybrid Outlet Mall|Khiran Square|Norma Mall|Rinku Town Station|Rinku Premium Outlets|Kansai International Airport Station|JR Kansai Airport Rapid|Nankai Airport|Tokyo Station Yaesu South Exit|Gotemba Premium Outlets|Shinjuku Highway Bus Terminal|Busta Shinjuku|JR Bus|Odakyu Bus|JR Gotemba Station|Otomeguchi|Tomei Gotemba IC|Bus Terminal Tokyo Yaesu|Tokyo Midtown Yaesu|Mitsui Outlet Park Kisarazu|Tokyo Bay Aqua-Line|Haneda Airport|Keikyu|Kominato|JR Sodegaura Station|JR Kisarazu Station|AED|KWD|JPY|IC|ATM/gi;
 const genericEnglishOperational = /\b(?:anonymous|zone-count fare|official taxi rank|arrivals|ride-hailing|taxi drop-off|east entrance|pickup|direct highway bus|direct express bus|direct bus|no transfer|advance|same-day|onboard|same bus|adult|child|cash|supported payment method|local bus|pedestrian signs|extra time|luggage|farther entrance|free shuttle|each daytime hour|ticket facility|shuttle stop|airport bridge|destination pin|taxi meter|metered taxi|metered airport taxi)\b/i;
@@ -45,6 +52,12 @@ const explicitTitleGuides=["dxb-to-dubai-outlet-mall-taxi","dwc-to-the-outlet-vi
 for(const guideId of explicitTitleGuides){const guide=guides.find(candidate=>candidate.guideId===guideId)!;for(const language of targetContentLanguages){const title=localizeTargetGuide(guide,language)!.title;assert(title.trim()&&!title.includes("{{"),`${guideId}/${language}: explicit final title invalid`);}}
 const durationSteps={"jr-sodegaura-station-to-mitsui-outlet-park-kisarazu-bus":{en:"10 min",tr:"10 dk",es:"10 min",fr:"10 min",de:"10 Min.",ar:"10 دقائق",ru:"10 мин",zh:"10 分钟"},"jr-kisarazu-station-to-mitsui-outlet-park-kisarazu-bus":{en:"20 min",tr:"20 dk",es:"20 min",fr:"20 min",de:"20 Min.",ar:"20 دقيقة",ru:"20 мин",zh:"20 分钟"}} as const;
 for(const [guideId,expected] of Object.entries(durationSteps)){const guide=guides.find(candidate=>candidate.guideId===guideId)!;for(const language of targetContentLanguages)assert(localizeTargetGuide(guide,language)!.steps.some(step=>step.includes(expected[language])),`${guideId}/${language}: localized duration step missing ${expected[language]}`);}
+const gotembaTokyoGuide=guides.find(({guideId})=>guideId==="tokyo-station-to-gotemba-premium-outlets-bus")!;
+for(const language of targetContentLanguages){const option=getTransportationV2Options(gotembaTokyoGuide.outletId).find(({id})=>id===gotembaTokyoGuide.guideId);assert(option,`${gotembaTokyoGuide.guideId}/${language}: runtime option missing`);const display=getTransportationOptionDisplayModel(option,language);assert(display.estimatedDurationLabel.includes("100"),`${gotembaTokyoGuide.guideId}/${language}: 1 hr 40 min was not preserved as 100 localized minutes`);}
+const dubaiTaxiGuides=guides.filter(({outletId,transportationType,estimatedCost})=>["dubai-outlet-mall","the-outlet-village"].includes(outletId)&&transportationType==="taxi"&&/AED/i.test(estimatedCost));
+assert.equal(dubaiTaxiGuides.length,5,"approved Dubai AED taxi guide count changed");
+for(const guide of dubaiTaxiGuides){const expectedRange=guide.estimatedCost.match(/AED\s+(\d+(?:[.,]\d+)?)[–-](\d+(?:[.,]\d+)?)/i);assert(expectedRange,`${guide.guideId}: AED range missing`);for(const language of targetContentLanguages){const option=getTransportationV2Options(guide.outletId).find(({id})=>id===guide.guideId);assert(option,`${guide.guideId}/${language}: runtime option missing`);const display=getTransportationOptionDisplayModel(option,language);assert(display.estimatedFareLabel.includes(`AED ${expectedRange[1]}–${expectedRange[2]}`),`${guide.guideId}/${language}: AED fare not rendered`);}}
+
 for(const outletId of targetOutletIds){const outlet=outlets.find(candidate=>candidate.outletId===outletId)!;for(const language of targetContentLanguages){const copy=targetOutletQuickInfo[outletId]?.[language];assert(copy?.openingHours&&copy.parking&&copy.storesCountText&&copy.services.length&&copy.cityCenterName&&Object.values(copy.airportNames).every(Boolean),`${outletId}/${language}: incomplete Quick Information`);assert.equal(copy.services.length,outlet.services.length,`${outletId}/${language}: source services were dropped`);if(language==="en")assert.deepEqual(copy.services,outlet.services,`${outletId}: English service inventory/order changed`);if(language!=="en")assert(copy.airportNames.KWI!==targetOutletQuickInfo[outletId].en.airportNames.KWI,`${outletId}/${language}: airport display names fall back to English`);}}
 for(const language of targetContentLanguages){assert(/2027/.test(targetOutletQuickInfo["gotemba-premium-outlets"][language].openingHours),`Gotemba/${language}: scheduled 2027 closure was dropped`);assert(/25/.test(targetOutletQuickInfo["gotemba-premium-outlets"][language].openingHours),`Gotemba/${language}: February 25 closure date was dropped`);for(const outletId of ["al-khiran-hybrid-outlet-mall","dubai-outlet-mall","the-outlet-village"])assert(/[;.؛。]/.test(targetOutletQuickInfo[outletId][language].openingHours),`${outletId}/${language}: Gulf holiday/season caveat was dropped`);}
 const bus66=guides.find(({guideId})=>guideId==="al-ghubaiba-to-dubai-outlet-mall-rta-bus-66")!;
