@@ -1222,7 +1222,12 @@ export function formatTransportDurationForDisplay(
   value: string | undefined,
   language: TranslationLanguage,
 ): string | undefined {
-  const n = sanitizeTransportationDisplayValue(value, language);
+  // Parse source-backed numeric durations before sanitizing prose. For non-English
+  // locales the sanitizer intentionally rejects English operational caveats (for
+  // example, "traffic may affect travel time"), but that must not discard the
+  // approved numeric duration which precedes the caveat.
+  const raw = String(value || "").trim();
+  const n = sanitizeTransportationDisplayValue(value, language) || raw;
   if (!n) return undefined;
   if (/less than 1 hour/i.test(n))
     return `${I18N[language].approx} 60 ${I18N[language].min}`;
@@ -1455,7 +1460,10 @@ function optionFromGuide(
         guide.transportationType,
         distanceFor(guide),
       );
-  if (!isSourceBacked && !estimate) return undefined;
+  const hasStoredEstimate = Boolean(
+    guide.estimatedDuration?.trim() || guide.estimatedCost?.trim(),
+  );
+  if (!isSourceBacked && !estimate && !hasStoredEstimate) return undefined;
   const details = extractRouteDetails(
     guide,
     effectiveOriginGroup,
@@ -1476,7 +1484,9 @@ function optionFromGuide(
           .sort((a, b) => a.order - b.order)
           .map((step) => step.description)
       : [],
-    sourceConfidence: isSourceBacked ? "source" : estimate!.confidence,
+    sourceConfidence: isSourceBacked
+      ? "source"
+      : estimate?.confidence ?? "derived",
     hasOnlyFallbackMeta: !isSourceBacked,
     hasUsefulEstimate: Boolean(guide.estimatedDuration),
     hasUsefulFare: Boolean(guide.estimatedCost),
@@ -1797,10 +1807,10 @@ function dedupeOptions(
       sourcedPublicOrigins.has(option.originGroup)
     )
       return false;
-    const key =
-      option.routeDetails.confidence === "estimateOnly"
-        ? `${option.originGroup}|${PUBLIC_TYPES.has(option.mode) ? "public" : option.mode}`
-        : option.id;
+    // Curated guides can legitimately share an origin group and mode (for
+    // example DXB and DWC airport taxis) while remaining distinct routes.
+    // Their stable guide IDs are the correct deduplication identity.
+    const key = option.id;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;

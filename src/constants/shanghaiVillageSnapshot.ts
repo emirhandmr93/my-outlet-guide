@@ -227,3 +227,5 @@ export const canonicalShanghaiName = (raw: string): string[] => {
   if (raw === "HOGAN / TOD'S") return ["HOGAN", "TOD'S"];
   return [raw.replace(/[\u3400-\u9fff].*$/u, "").trim()];
 };
+
+export const shanghaiVillageNewBrandIds = ["aimer", "ami", "anine-bing", "apm-monaco", "bosideng", "chj-jewellery", "chloechen", "christofle", "croquis", "curiel", "dan-nong", "dazzle", "documents", "edition", "eland", "erdos", "exception", "fila-kids", "gentspace", "giada", "glasstique", "haixingmarket", "hechter", "hefang", "hilditch-key", "hoka-one-one", "jewelria", "jnby-by-jnby", "jnby", "kailas", "kolon-sports", "lanecrawford", "laurel", "lenscrafters", "less", "let-s-vintage", "maia-active", "marisfrolg", "mlb", "mo-co", "monologue", "moodytiger", "mugen-optical", "neiwai", "new-balance-kids", "nice-rice", "papito", "paw-in-paw", "ports", "rockfish-weatherwear", "s-beauty-method", "shanghai-tang", "staccato", "subdued", "tabio", "undefeated", "urban-exploration", "we11done", "zuczug", "13de-marzo", "1436"] as const;
