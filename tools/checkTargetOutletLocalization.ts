@@ -4,10 +4,12 @@ import { outletBrands } from "../src/constants/outletBrands";
 import { brands } from "../src/constants/brands";
 import { transportationGuides } from "../src/constants/transportationGuides";
 import { localizeTargetGuide, targetContentLanguages, targetOutletQuickInfo } from "../src/constants/targetOutletLocalization";
+import { supportedLanguageCodes } from "../src/translations/locale";
 
 const targetOutletIds = ["al-khiran-hybrid-outlet-mall","dubai-outlet-mall","the-outlet-village","rinku-premium-outlets","gotemba-premium-outlets","mitsui-outlet-park-kisarazu"];
 const guides = transportationGuides.filter((guide) => targetOutletIds.includes(guide.outletId));
-const prohibited = /check\s+(?:the\s+)?(?:official|current|timetable|fare|route|operator|provider|availability)|confirm\s+(?:the\s+)?(?:current|service|fare|timetable|operator)|ask\s+station\s+staff|journey\s+planner|verify\s+(?:the\s+)?(?:current|timetable|public transport)/i;
+const prohibited = /check\s+(?:the\s+)?(?:official|current|timetable|fare|route|operator|provider|availability)|confirm\s+(?:the\s+)?(?:current|service|fare|timetable|operator)|ask\s+station\s+staff|journey\s+planner|verify\s+(?:the\s+)?(?:current|timetable|public transport)|resmi\s+sağlayıcı.*kontrol|güncel\s+(?:tarife|ücret).*doğrula|planificador\s+de\s+viajes|confirmez?\s+(?:les\s+)?horaires|fahrplan.*bestätigen|уточните.*расписан|مخطط\s+الرحلات|向.*确认.*时刻表/i;
+assert.deepEqual([...targetContentLanguages], [...supportedLanguageCodes], "target locales must exactly match the configured production locales");
 assert.equal(new Set(guides.map(({guideId})=>guideId)).size,guides.length,"duplicate target guideId");
 for(const guide of guides){
  assert(targetOutletIds.includes(guide.outletId) && outlets.some(({outletId})=>outletId===guide.outletId),`${guide.guideId}: invalid outletId`);
@@ -17,7 +19,7 @@ for(const guide of guides){
  assert(!prohibited.test([guide.title,guide.estimatedDuration,guide.estimatedCost,...guide.steps.map(({description})=>description)].join(" ")),`${guide.guideId}: fallback wording`);
  for(const language of targetContentLanguages){const copy=localizeTargetGuide(guide,language);assert(copy,`${guide.guideId}/${language}: missing localization`);assert(copy!.title.trim()&&copy!.estimatedDuration.trim()&&copy!.estimatedCost.trim()&&copy!.steps.every(Boolean),`${guide.guideId}/${language}: incomplete localization`);}
 }
-for(const outletId of targetOutletIds){for(const language of targetContentLanguages){const copy=targetOutletQuickInfo[outletId]?.[language];assert(copy?.openingHours&&copy.parking&&copy.storesCountText&&copy.services.length&&copy.cityCenterName,`${outletId}/${language}: incomplete Quick Information`);}}
+for(const outletId of targetOutletIds){for(const language of targetContentLanguages){const copy=targetOutletQuickInfo[outletId]?.[language];assert(copy?.openingHours&&copy.parking&&copy.storesCountText&&copy.services.length&&copy.cityCenterName&&Object.values(copy.airportNames).every(Boolean),`${outletId}/${language}: incomplete Quick Information`);if(language!=="en")assert(copy.airportNames.KWI!==targetOutletQuickInfo[outletId].en.airportNames.KWI,`${outletId}/${language}: airport display names fall back to English`);}}
 const alKhiran=outletBrands.filter(({outletId})=>outletId==="al-khiran-hybrid-outlet-mall");
 assert.equal(alKhiran.length,44,"Al Khiran displayed/mapped brand count changed");
 assert.equal(new Set(alKhiran.map(({brandId})=>brandId)).size,44,"Al Khiran has duplicate brands");
