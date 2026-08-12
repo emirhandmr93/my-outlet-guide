@@ -1226,6 +1226,21 @@ export function formatTransportDurationForDisplay(
   if (!n) return undefined;
   if (/less than 1 hour/i.test(n))
     return `${I18N[language].approx} 60 ${I18N[language].min}`;
+  const hourRange = n.match(
+    /[≈~]?\s*(\d+)\s*(?:hr|hrs|hour|hours)\s*(?:(\d+)\s*(?:min|minutes))?\s*[–-]\s*(\d+)\s*(?:hr|hrs|hour|hours)\s*(?:(\d+)\s*(?:min|minutes))?/i,
+  );
+  if (hourRange) {
+    const startMinutes = Number(hourRange[1]) * 60 + Number(hourRange[2] || 0);
+    const endMinutes = Number(hourRange[3]) * 60 + Number(hourRange[4] || 0);
+    return `${I18N[language].approx} ${startMinutes}–${endMinutes} ${I18N[language].min}`;
+  }
+  const hourMinute = n.match(
+    /[≈~]?\s*(\d+)\s*(?:hr|hrs|hour|hours)(?:\s*(\d+)\s*(?:min|minutes))?/i,
+  );
+  if (hourMinute) {
+    const totalMinutes = Number(hourMinute[1]) * 60 + Number(hourMinute[2] || 0);
+    return `${I18N[language].approx} ${totalMinutes} ${I18N[language].min}`;
+  }
   const r = n.match(/[≈~]?\s*(\d+)\s*[–-]\s*(\d+)\s*(?:min|minutes|dk)/i);
   if (r)
     return `${I18N[language].approx} ${r[1]}–${r[2]} ${I18N[language].min}`;
@@ -1243,10 +1258,10 @@ export function formatTransportFareForDisplay(
     .replace(/^≈\s*/, "");
   if (!raw) return undefined;
   if (isExplicitFreeTransportFare(raw)) return I18N[language].free;
-  if (/parking|fuel|children|under\s+\d|provider|timetable|check|var(?:y|ies)/i.test(raw))
+  if (/parking|fuel|children|under\s+\d|provider|timetable|check/i.test(raw))
     return undefined;
   const numeric = raw.match(
-    /(?:\b(EUR|PLN|GBP|CHF|NOK|SEK|DKK|CZK|HUF|RON|TRY|USD)\s*|([€£$])\s*)(\d+(?:[.,]\d+)?)(?:\s*[–-]\s*(\d+(?:[.,]\d+)?))?/i,
+    /(?:\b(EUR|PLN|GBP|CHF|NOK|SEK|DKK|CZK|HUF|RON|TRY|USD|AED)\s*|([€£$])\s*)(\d+(?:[.,]\d+)?)(?:\s*[–-]\s*(\d+(?:[.,]\d+)?))?/i,
   );
   if (!numeric) return undefined;
   const currency =
