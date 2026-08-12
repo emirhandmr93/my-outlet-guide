@@ -83,6 +83,15 @@ assert.equal(getTaxFreeGuideDisplayModel("japan", "en", translate, taxFreeCountr
 assert.equal(getNextTaxFreeGuideTransitionDelay("japan", beforeDate), 1, "Japan refresh delay reaches the exact Asia/Tokyo boundary");
 assert.equal(getNextTaxFreeGuideTransitionDelay("japan", boundaryDate), null, "Japan has no transition refresh after the boundary");
 
+// Model a screen that mounted on another country before the boundary, then selected
+// Japan after it. The country-change effect must replace the stale mount date with
+// the same fresh `now` used by the delay helper, even when no transition remains.
+const staleOtherCountryMountDate = beforeDate;
+const japanSelectionDate = new Date("2026-10-31T15:00:01.000Z");
+assert.equal(getNextTaxFreeGuideTransitionDelay("japan", japanSelectionDate), null, "Japan selection after the boundary has no future transition");
+assert.equal(getTaxFreeGuideDisplayModel("japan", "en", translate, taxFreeCountryGuides, staleOtherCountryMountDate).concisePresentation?.processCard.variant, "japan_point_of_sale", "stale mount date would incorrectly retain Japan-before");
+assert.equal(getTaxFreeGuideDisplayModel("japan", "en", translate, taxFreeCountryGuides, japanSelectionDate).concisePresentation?.processCard.variant, "japan_post_export", "fresh country-selection date uses Japan-after in the no-future-transition branch");
+
 for (const language of languages) {
   const beforeCard = [before.processCard.titleKey, before.processCard.descriptionKey, before.processCard.actionKey].map((key) => translations[language][key]).join(" ");
   assert(!/Global Blue|Planet/i.test(beforeCard), `${language}: Japan-before names no operator`);
@@ -108,5 +117,12 @@ assert(screen.includes("taxGuide.process.${section}"), "Detailed rules renders e
 for (const required of ["useState(() => new Date())", "getTaxFreeGuideDisplayModel(effectiveCountryId, language, t, guideData.data, currentDate)", "getNextTaxFreeGuideTransitionDelay", "AppState.addEventListener", 'state === "active"', "clearTimeout(timer)", "subscription.remove()"] ) {
   assert(screen.includes(required), `screen lifecycle includes ${required}`);
 }
+const freshNowIndex = screen.indexOf("const now = new Date();");
+const synchronizeDateIndex = screen.indexOf("setCurrentDate(now);", freshNowIndex);
+const transitionDelayIndex = screen.indexOf("getNextTaxFreeGuideTransitionDelay(effectiveCountryId, now)", freshNowIndex);
+const nullReturnIndex = screen.indexOf("if (remaining === null) return;", transitionDelayIndex);
+assert(freshNowIndex >= 0 && synchronizeDateIndex > freshNowIndex, "country-change effect synchronizes currentDate from fresh now");
+assert(synchronizeDateIndex < transitionDelayIndex, "currentDate and transition delay use the same fresh now");
+assert(transitionDelayIndex < nullReturnIndex && synchronizeDateIndex < nullReturnIndex, "date synchronization occurs before the no-future-transition return");
 assert(!/outlet.*(?:Global Blue|Planet)|(?:Global Blue|Planet).*outlet/i.test(screen), "screen invents no outlet/operator relationship");
 console.log("Tax Free guide presentation validated: 31 guides, 5 steps, 8 languages, safe date-aware cards, grouped details, sources, and runtime Japan boundary.");

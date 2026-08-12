@@ -51,6 +51,7 @@ export function TaxFreeGuideScreen() {
     const scheduleTransitionRefresh = () => {
       if (disposed) return;
       const now = new Date();
+      setCurrentDate(now);
       const remaining = getNextTaxFreeGuideTransitionDelay(effectiveCountryId, now);
       if (remaining === null) return;
       timer = setTimeout(() => {
