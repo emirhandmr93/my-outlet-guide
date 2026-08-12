@@ -3,6 +3,19 @@ import type { TaxFreeCountryStatus } from "./taxFreeRules";
 export type TaxFreeGuideStatus = Extract<TaxFreeCountryStatus, "available" | "not_available"> | "limited";
 export type TaxFreeGuideSection = "before_shopping" | "in_store" | "before_departure" | "customs_validation" | "receive_refund";
 export type TaxFreeGuideSourceTopic = "scheme_minimum" | "customs_validation" | "vat_rate" | "refund_process" | "goods_conditions";
+export type TaxFreeConciseProcessFamily = "eu" | "standard" | "japan";
+
+const euTaxFreeGuideCountryIds = new Set([
+  "austria", "belgium", "bulgaria", "croatia", "czech-republic", "denmark", "estonia",
+  "finland", "france", "germany", "greece", "hungary", "ireland", "italy", "latvia",
+  "lithuania", "netherlands", "poland", "portugal", "romania", "slovakia", "slovenia",
+  "spain", "sweden",
+]);
+
+export function getTaxFreeConciseProcessFamily(countryId: string): TaxFreeConciseProcessFamily {
+  if (countryId === "japan") return "japan";
+  return euTaxFreeGuideCountryIds.has(countryId) ? "eu" : "standard";
+}
 
 export type TaxFreeGuideSource = {
   topic: TaxFreeGuideSourceTopic;
