@@ -1,10 +1,10 @@
-import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { AppState, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { CountrySelector } from "../components/CountrySelector";
 import { formatCurrency } from "../services/exchangeRateService";
-import { getTaxFreeGuideDisplayModel, isTaxFreeGuideAvailable } from "../services/taxFreeGuideService";
+import { getNextTaxFreeGuideTransitionDelay, getTaxFreeGuideDisplayModel, isTaxFreeGuideAvailable, MAX_SAFE_TIMER_DELAY_MS } from "../services/taxFreeGuideService";
 import { getMinimumPurchaseComparisonSymbol, getMinimumPurchaseTextKey } from "../utils/taxFreeDisplay";
 import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -20,6 +20,7 @@ type TaxFreeGuideRouteParams = {
 export function TaxFreeGuideScreen() {
   const [detailsExpanded, setDetailsExpanded] = useState(false);
   const [sourcesExpanded, setSourcesExpanded] = useState(false);
+  const [currentDate, setCurrentDate] = useState(() => new Date());
   const guideData = useTaxFreeGuideData();
   const navigation = useNavigation<any>();
   const route = useRoute<RouteProp<TaxFreeGuideRouteParams, "TaxFreeGuide">>();
@@ -44,9 +45,33 @@ export function TaxFreeGuideScreen() {
     if (selectedCountryId !== validRouteCountryId) setSelectedCountryId(validRouteCountryId);
   }, [selectedCountryId, setSelectedCountryId, validRouteCountryId]);
 
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let disposed = false;
+    const scheduleTransitionRefresh = () => {
+      if (disposed) return;
+      const now = new Date();
+      const remaining = getNextTaxFreeGuideTransitionDelay(effectiveCountryId, now);
+      if (remaining === null) return;
+      timer = setTimeout(() => {
+        if (remaining > MAX_SAFE_TIMER_DELAY_MS) scheduleTransitionRefresh();
+        else setCurrentDate(new Date());
+      }, Math.min(remaining, MAX_SAFE_TIMER_DELAY_MS));
+    };
+    scheduleTransitionRefresh();
+    const subscription = AppState.addEventListener("change", (state) => {
+      if (state === "active") setCurrentDate(new Date());
+    });
+    return () => {
+      disposed = true;
+      if (timer) clearTimeout(timer);
+      subscription.remove();
+    };
+  }, [effectiveCountryId]);
+
   if (guideData.loading) return <View style={styles.container}><Text style={styles.note}>{t("common.loading")}</Text></View>;
   if (guideData.error || !guideData.data) return <View style={styles.container}><Text style={styles.note}>{t("trips.loadFailedTitle")}</Text><TouchableOpacity onPress={guideData.retry}><Text>{t("flightDealDetail.retry")}</Text></TouchableOpacity></View>;
-  const { country, guide, rule, policyDisplay, countryStatus, isGuideAvailable, concisePresentation } = getTaxFreeGuideDisplayModel(effectiveCountryId, language, t, guideData.data);
+  const { country, guide, rule, policyDisplay, countryStatus, isGuideAvailable, concisePresentation } = getTaxFreeGuideDisplayModel(effectiveCountryId, language, t, guideData.data, currentDate);
   const taxFreeSummary = policyDisplay?.summary;
   const selectedCountryIdSafe = country?.countryId ?? selectedCountryId;
 
