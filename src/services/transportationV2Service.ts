@@ -893,6 +893,11 @@ export function hasSafeFareProvenance(option: TransportationV2Option) {
     return Object.values(I18N).some(
       (copy) => option.estimatedFareLabel === copy.free,
     );
+  const isValidatedTargetFare = targetContentLanguages.some((language) =>
+    localizeTargetGuide(option.guide, language)?.estimatedCost ===
+    option.estimatedFareLabel
+  );
+  if (isValidatedTargetFare) return true;
   return Boolean(
     formatTransportFareForDisplay(option.guide.estimatedCost, "en"),
   );
@@ -1565,11 +1570,22 @@ export function getTransportationOptionDisplayModel(
           confidence: option.sourceConfidence,
         }
       : undefined;
+  const localizedDurationLabel = localizedTargetGuide?.estimatedDuration
+    ? (/(?:hr|hour)/i.test(guide.estimatedDuration)
+        ? formatTransportDurationForDisplay(guide.estimatedDuration, language)
+        : undefined) ||
+      formatTransportDurationForDisplay(
+        localizedTargetGuide.estimatedDuration,
+        language,
+      ) ||
+      localizedTargetGuide.estimatedDuration
+    : undefined;
   const durationLabel =
     (fact?.displayDuration
       ? `${I18N[language].approx} ${fact.displayDuration}`
       : undefined) ||
     (factEstimate ? formatDuration(factEstimate, language) : undefined) ||
+    localizedDurationLabel ||
     formatTransportDurationForDisplay(guide.estimatedDuration, language) ||
     (fact?.suppressDerivedDurationFallback !== true && estimate
       ? formatDuration(estimate, language)
@@ -1587,6 +1603,7 @@ export function getTransportationOptionDisplayModel(
           fact.fareAccuracy,
         )
       : undefined) ||
+    localizedTargetGuide?.estimatedCost ||
     formatTransportFareForDisplay(guide.estimatedCost, language);
   const displayDetails = extractRouteDetails(
     guide,

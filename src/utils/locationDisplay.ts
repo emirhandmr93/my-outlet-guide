@@ -346,6 +346,16 @@ const countryDisplayNames: Record<string, LocaleMap> = {
 };
 
 const cityDisplayNames: Record<string, LocaleMap> = {
+  shanghai: {
+    en: "Shanghai",
+    tr: "Şanghay",
+    es: "Shanghái",
+    fr: "Shanghai",
+    de: "Shanghai",
+    ru: "Шанхай",
+    ar: "شنغهاي",
+    zh: "上海",
+  },
   istanbul: {
     en: "Istanbul",
     tr: "İstanbul",
