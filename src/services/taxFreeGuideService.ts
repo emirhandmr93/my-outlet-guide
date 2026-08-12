@@ -10,7 +10,22 @@ export type TaxFreeConcisePresentation = {
   family: "eu" | "standard" | "japan";
   stepKeys: [string, string, string, string, string];
   immediateWarningKey: string;
+  processCard: TaxFreeProcessCardPresentation;
 };
+
+export type TaxFreeProcessCardVariant = "conditional" | "japan_point_of_sale" | "japan_post_export";
+
+export type TaxFreeProcessCardPresentation = {
+  variant: TaxFreeProcessCardVariant;
+  titleKey: string;
+  descriptionKey: string;
+  actionKey: string;
+};
+
+function getProcessCardPresentation(variant: TaxFreeProcessCardVariant): TaxFreeProcessCardPresentation {
+  const prefix = `taxGuide.processCard.${variant}`;
+  return { variant, titleKey: `${prefix}.title`, descriptionKey: `${prefix}.description`, actionKey: `${prefix}.action` };
+}
 
 export function getTaxFreeConcisePresentation(countryId: string, date = new Date()): TaxFreeConcisePresentation {
   const family = getTaxFreeConciseProcessFamily(countryId);
@@ -23,12 +38,14 @@ export function getTaxFreeConcisePresentation(countryId: string, date = new Date
       family,
       stepKeys: [0, 1, 2, 3, 4].map((index) => `taxGuide.concise.japan.${period}.step${index + 1}`) as TaxFreeConcisePresentation["stepKeys"],
       immediateWarningKey: `taxGuide.concise.japan.${period}.warning`,
+      processCard: getProcessCardPresentation(period === "before" ? "japan_point_of_sale" : "japan_post_export"),
     };
   }
   return {
     family,
     stepKeys: [0, 1, 2, 3, 4].map((index) => `taxGuide.concise.${family}.step${index + 1}`) as TaxFreeConcisePresentation["stepKeys"],
     immediateWarningKey: `taxGuide.concise.${family}.warning`,
+    processCard: getProcessCardPresentation("conditional"),
   };
 }
 
@@ -54,10 +71,10 @@ export function isTaxFreeGuideAvailable(countryId: string, guides: TaxFreeCountr
   return resolveTaxFreeGuideAvailability(countryId, guides).isGuideAvailable;
 }
 
-export function getTaxFreeGuideDisplayModel(countryId: string, language: TranslationLanguage, t: Translate, guides: TaxFreeCountryGuide[]) {
+export function getTaxFreeGuideDisplayModel(countryId: string, language: TranslationLanguage, t: Translate, guides: TaxFreeCountryGuide[], date = new Date()) {
   const { country, rule, guide, countryStatus, isGuideAvailable } = resolveTaxFreeGuideAvailability(countryId, guides);
   const policyDisplay = rule ? getTaxFreePolicyDisplayModel(rule, language, t) : undefined;
-  const concisePresentation = guide ? getTaxFreeConcisePresentation(guide.countryId) : undefined;
+  const concisePresentation = guide ? getTaxFreeConcisePresentation(guide.countryId, date) : undefined;
 
   return {
     country,

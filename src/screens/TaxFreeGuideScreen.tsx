@@ -99,9 +99,9 @@ export function TaxFreeGuideScreen() {
           </View>
 
           <View style={styles.operatorCard}>
-            <Text style={styles.sectionTitle}>{t("taxGuide.operator.title")}</Text>
-            <Text style={styles.bodyText}>{t("taxGuide.operator.description")}</Text>
-            <Text style={styles.bodyText}>{t("taxGuide.operator.action")}</Text>
+            <Text style={styles.sectionTitle}>{t(concisePresentation!.processCard.titleKey)}</Text>
+            <Text style={styles.bodyText}>{t(concisePresentation!.processCard.descriptionKey)}</Text>
+            <Text style={styles.bodyText}>{t(concisePresentation!.processCard.actionKey)}</Text>
           </View>
 
           <View style={styles.noteCard}><Text style={styles.noteTitle}>{t("taxGuide.concise.warningTitle")}</Text><Text style={styles.note}>{t(concisePresentation!.immediateWarningKey)}</Text></View>
@@ -114,7 +114,18 @@ export function TaxFreeGuideScreen() {
             <Section title={t("taxGuide.eligibility")} items={[t(guide.travellerEligibilitySummaryKey)]} embedded />
             <Section title={t("taxGuide.requiredDocuments")} items={guide.requiredDocumentKeys.map(t)} embedded />
             <Section title={t("taxGuide.goodsConditions")} items={guide.goodsUseExportConditionKeys.map(t)} embedded />
-            <Section title={t("taxGuide.numberedProcess")} items={processOrder.flatMap((section) => guide.processSections[section].map(t))} embedded />
+            <View style={styles.embeddedSection}>
+              <Text style={styles.sectionTitle}>{t("taxGuide.numberedProcess")}</Text>
+              {processOrder.map((section, index) => (
+                <View key={section} style={styles.processBlock}>
+                  <View style={styles.stepNumberBox}><Text style={styles.stepNumber}>{index + 1}</Text></View>
+                  <View style={styles.stepBody}>
+                    <Text style={styles.stepTitle}>{t(`taxGuide.process.${section}`)}</Text>
+                    {guide.processSections[section].map((key) => <Text key={key} style={styles.bullet}>• {t(key)}</Text>)}
+                  </View>
+                </View>
+              ))}
+            </View>
             <Section title={t("taxGuide.refundMethods")} items={[...guide.supportedRefundMethodKeys.map(t), t(guide.operatorFeeExplanationKey)]} embedded />
             <Section title={t("taxGuide.deadlinesWarnings")} items={[t(guide.deadlineInformationKey), ...guide.warningKeys.map(t)]} embedded />
             <Section title={t("taxGuide.feesAndEstimates")} items={[t(guide.vatRateExplanationKey), t(guide.estimatedRefundExplanationKey), t(guide.minimumPurchaseExplanationKey), t("taxGuide.estimateDisclaimer")]} embedded />
