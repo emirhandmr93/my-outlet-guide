@@ -7,7 +7,9 @@ import { unitedArabEmiratesTransportation } from "../src/constants/transportatio
 import { unitedArabEmiratesTransportationGuides } from "../src/constants/transportationGuides/united-arab-emirates";
 import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
 import { outletMediaMetadata } from "../src/media/outletMediaMetadata";
-import { getRecommendedTransportationV2Option, getTransportationV2Options } from "../src/services/transportationV2Service";
+import { getRecommendedTransportationV2Option, getTransportationV2Options, setTransportationV2Records } from "../src/services/transportationV2Service";
+
+setTransportationV2Records(unitedArabEmiratesTransportationGuides, transportationRouteFacts);
 
 const outletId = "dubai-outlet-mall";
 const errors: string[] = [];
@@ -198,7 +200,7 @@ assert(activeRestaurants.length === 31, `Active restaurant count changed: ${acti
 assert(new Set(restaurantIds).size === restaurantIds.length, "Restaurant IDs must be unique.");
 assert(new Set(normalizedRestaurantNames).size === normalizedRestaurantNames.length, "Restaurant names must be normalized-unique.");
 assert(nonActiveRestaurants.length === 0, `Non-active restaurants found: ${nonActiveRestaurants.length}.`);
-assert(restaurants.length === unitedArabEmiratesRestaurants.length, "All UAE restaurant records must belong to Dubai Outlet Mall.");
+assert(unitedArabEmiratesRestaurants.filter((restaurant) => restaurant.outletId === "the-outlet-village").length === 10, "The Outlet Village restaurant baseline changed.");
 
 const recommendedGuides = unitedArabEmiratesTransportationGuides.filter((guide) => guide.outletId === outletId && guide.recommended);
 const runtimePrimary = getRecommendedTransportationV2Option(outletId);
@@ -211,7 +213,13 @@ assert(recommendedGuides.length === 1, "Exactly one transportation guide must be
 assert(completion === "1/1/1/1/1/1", `UAE transportation completion changed: ${completion}.`);
 assert(activeTransport.some((item) => item.transportType === "shuttle" && /Free Hotel Shuttle/i.test(item.title) && /various hotels|participating hotels/i.test(item.tip)), "Hotel shuttle conditional state changed.");
 assert(activeTransport.some((item) => item.transportType === "car" && /Parking/i.test(item.title) && item.displayOrder === "3"), "Car/parking must remain secondary.");
-assert(runtimeOptions.length === 1, "Only the source-backed runtime primary should be visible.");
+const expectedGuideIds = new Set([
+  "al-ghubaiba-to-dubai-outlet-mall-rta-bus-66",
+  "downtown-dubai-to-dubai-outlet-mall-taxi",
+  "dxb-to-dubai-outlet-mall-taxi",
+]);
+assert(runtimeOptions.length === expectedGuideIds.size && runtimeOptions.every((option) => expectedGuideIds.has(option.id)), "Runtime guide set must contain Bus 66 plus the Downtown and DXB taxi guides.");
+assert(new Set(runtimeOptions.map((option) => option.id)).size === runtimeOptions.length, "Runtime guide IDs must be unique.");
 
 assert(changedFiles.every((file) => allowedFiles.has(file)), `Changed file outside allowed scope: ${changedFiles.filter((file) => !allowedFiles.has(file)).join(", ")}`);
 

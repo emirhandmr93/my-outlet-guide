@@ -8,7 +8,7 @@ export const unitedArabEmiratesTransportationGuides: TransportationGuide[] = [
     originId: "al-ghubaiba-bus-station",
     transportationType: "bus",
     title: "Al Ghubaiba to Dubai Outlet Mall by RTA Bus 66",
-    estimatedDuration: "",
+    estimatedDuration: "Approx. 65–80 min",
     estimatedCost: "Approx. AED 5–7.50",
     recommended: true,
     steps: [
@@ -34,18 +34,36 @@ export const unitedArabEmiratesTransportationGuides: TransportationGuide[] = [
       },
       {
         order: 6,
-        description: "Confirm the Bus 66 return service toward Al Ghubaiba Bus Station before shopping.",
+        description: "For the return trip, board Bus 66 at Dubai Outlet Mall 02 in the Al Ghubaiba Bus Station direction.",
       },
     ],
     updatedAt: "2026-08-04",
+  },
+  {
+    guideId: "downtown-dubai-to-dubai-outlet-mall-taxi", outletId: "dubai-outlet-mall", originType: "city_center", originId: "downtown-dubai",
+    transportationType: "taxi", title: "Downtown Dubai to Dubai Outlet Mall by taxi", estimatedDuration: "Approx. 25–40 min; traffic may affect travel time", estimatedCost: "Approx. AED 65–90 by metered taxi", recommended: false,
+    steps: [
+      { order: 1, description: "Start at an official taxi rank in Downtown Dubai or request a licensed ride-hailing pickup." },
+      { order: 2, description: "Set Dubai Outlet Mall on Dubai–Al Ain Road as the destination." },
+      { order: 3, description: "Travel via Dubai–Al Ain Road and alight at the mall’s signed taxi drop-off." },
+    ], updatedAt: "2026-08-10",
+  },
+  {
+    guideId: "dxb-to-dubai-outlet-mall-taxi", outletId: "dubai-outlet-mall", originType: "airport", originId: "DXB",
+    transportationType: "taxi", title: "DXB to Dubai Outlet Mall by taxi", estimatedDuration: "Approx. 25–40 min; traffic may affect travel time", estimatedCost: "Approx. AED 75–100 by airport taxi", recommended: false,
+    steps: [
+      { order: 1, description: "Follow signs from arrivals to the official taxi rank at your DXB terminal." },
+      { order: 2, description: "Tell the dispatcher Dubai Outlet Mall on Dubai–Al Ain Road." },
+      { order: 3, description: "Use the metered airport taxi and alight at the mall’s signed taxi drop-off." },
+    ], updatedAt: "2026-08-10",
   },
   {
     guideId: "downtown-dubai-to-the-outlet-village-taxi", outletId: "the-outlet-village", originType: "city_center", originId: "downtown-dubai",
     transportationType: "taxi", title: "Downtown Dubai to The Outlet Village by taxi", estimatedDuration: "Approx. 40–55 min; traffic varies", estimatedCost: "Approx. AED 115–145 by taxi; app fares vary", recommended: true,
     steps: [
       { order: 1, description: "Request a licensed taxi or ride-hailing pickup in Downtown Dubai." },
-      { order: 2, description: "Set The Outlet Village at Dubai Parks and Resorts as the destination and verify the pin before departure." },
-      { order: 3, description: "Confirm the meter or app estimate, then follow the driver to the signed destination entrance." },
+      { order: 2, description: "Set The Outlet Village at Dubai Parks and Resorts as the destination." },
+      { order: 3, description: "Use the metered taxi or displayed app fare and alight at the signed destination entrance." },
     ],
     updatedAt: "2026-08-10",
   },
@@ -55,7 +73,7 @@ export const unitedArabEmiratesTransportationGuides: TransportationGuide[] = [
     steps: [
       { order: 1, description: "Follow signs to the official taxi rank at your DXB terminal." },
       { order: 2, description: "Tell the dispatcher The Outlet Village at Dubai Parks and Resorts in Jebel Ali." },
-      { order: 3, description: "Verify the destination pin and use the metered airport taxi service." },
+      { order: 3, description: "Use the metered airport taxi service to the mall’s signed drop-off." },
     ],
     updatedAt: "2026-08-10",
   },
@@ -64,19 +82,8 @@ export const unitedArabEmiratesTransportationGuides: TransportationGuide[] = [
     transportationType: "taxi", title: "DWC to The Outlet Village by taxi", estimatedDuration: "Approx. 25–35 min; traffic varies", estimatedCost: "Approx. AED 55–80 by airport taxi", recommended: true,
     steps: [
       { order: 1, description: "Follow signs to the official taxi rank at Al Maktoum International Airport." },
-      { order: 2, description: "Request The Outlet Village at Dubai Parks and Resorts and verify the map pin." },
+      { order: 2, description: "Request The Outlet Village at Dubai Parks and Resorts." },
       { order: 3, description: "Travel by metered taxi to the signed mall drop-off." },
-    ],
-    updatedAt: "2026-08-10",
-  },
-  {
-    guideId: "ibn-battuta-to-the-outlet-village-connection", outletId: "the-outlet-village", originType: "station", originId: "ibn-battuta-metro-station",
-    transportationType: "bus", title: "Ibn Battuta Metro Station connection to The Outlet Village", estimatedDuration: "Approx. 35–55 min after boarding; verify current timetable", estimatedCost: "Approx. AED 5–7.50 with a standard nol card; confirm current zones/fare", recommended: false,
-    steps: [
-      { order: 1, description: "Travel on the Dubai Metro Red Line to Ibn Battuta Metro Station." },
-      { order: 2, description: "At the station, check RTA journey planning or ask station staff for the current bus connection to The Outlet Village." },
-      { order: 3, description: "Board only after confirming the destination, timetable and return service; no route number is asserted because the mall FAQ does not publish one." },
-      { order: 4, description: "Alight at the confirmed destination stop and follow signs to The Outlet Village." },
     ],
     updatedAt: "2026-08-10",
   },

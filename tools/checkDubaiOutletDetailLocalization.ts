@@ -1,5 +1,7 @@
 import { unitedArabEmiratesOutlets } from "../src/constants/outlets/united-arab-emirates";
 import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
+import { transportationGuides } from "../src/constants/transportationGuides";
+import { localizeTargetGuide, targetOutletQuickInfo } from "../src/constants/targetOutletLocalization";
 import { translations, supportedLanguageCodes, type TranslationLanguage } from "../src/translations/translations";
 import { formatOpeningHoursText } from "../src/utils/outletDisplayFormatters";
 import {
@@ -8,7 +10,10 @@ import {
   getTransportationOptionDisplayModel,
   getTransportationRouteDetailRows,
   getTransportationV2Options,
+  setTransportationV2Records,
 } from "../src/services/transportationV2Service";
+
+setTransportationV2Records(transportationGuides, transportationRouteFacts);
 
 const outletId = "dubai-outlet-mall";
 const routeId = "al-ghubaiba-to-dubai-outlet-mall-rta-bus-66";
@@ -25,6 +30,8 @@ for (const language of supportedLanguageCodes) {
   const distanceBasis = translations[language]["transportation.v2.distanceBasis.straightLine"];
   assert(Boolean(caveat?.trim()), `${language}: Ramadan/festive caveat translation is missing.`);
   assert(Boolean(distanceBasis?.trim()), `${language}: distance-basis translation is missing.`);
+  const quickInfo = targetOutletQuickInfo[outletId]?.[language];
+  assert(Boolean(quickInfo?.openingHours && quickInfo.parking && quickInfo.storesCountText && quickInfo.services.length), `${language}: targeted Quick Information is incomplete.`);
   if (language !== "en") {
     assert(caveat !== rawEnglishCaveat, `${language}: caveat falls back to English.`);
     assert(distanceBasis !== rawEnglishQualifier, `${language}: distance basis falls back to English.`);
@@ -49,6 +56,21 @@ const recommendedBase = getRecommendedTransportationV2Option(outletId);
 const options = getTransportationV2Options(outletId).map((option) => getTransportationOptionDisplayModel(option, "tr"));
 const recommended = recommendedBase ? getTransportationOptionDisplayModel(recommendedBase, "tr") : undefined;
 assert(recommended?.id === routeId, "Dubai recommended route changed.");
+const expectedGuideIds = new Set([
+  routeId,
+  "downtown-dubai-to-dubai-outlet-mall-taxi",
+  "dxb-to-dubai-outlet-mall-taxi",
+]);
+const dubaiGuides = transportationGuides.filter((guide) => guide.outletId === outletId);
+assert(dubaiGuides.length === expectedGuideIds.size && dubaiGuides.every((guide) => expectedGuideIds.has(guide.guideId)), "Dubai guide set must contain Bus 66 plus the Downtown and DXB taxi guides.");
+assert(new Set(dubaiGuides.map((guide) => guide.guideId)).size === dubaiGuides.length, "Dubai guide IDs must be unique.");
+for (const guide of dubaiGuides) {
+  assert(Boolean(guide.estimatedDuration.trim()), `${guide.guideId}: duration is empty.`);
+  assert(Boolean(guide.estimatedCost.trim()), `${guide.guideId}: cost is empty.`);
+  assert(guide.steps.length > 0 && guide.steps.every((step) => Boolean(step.description.trim())), `${guide.guideId}: steps are empty.`);
+  for (const language of supportedLanguageCodes)
+    assert(Boolean(localizeTargetGuide(guide, language)), `${guide.guideId}/${language}: localized route copy is missing.`);
+}
 assert(recommended?.routeDetails.providerLabel === "Dubai RTA", "Runtime provider is wrong.");
 assert(recommended?.routeDetails.operatorLabel === "Dubai Bus", "Runtime operator is wrong.");
 assert(recommended?.routeDetails.lineLabel === "66 toward Faqa, Terminus", "Runtime line is wrong.");

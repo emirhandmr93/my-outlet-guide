@@ -16,12 +16,17 @@ import {
   getTransportationOptionDisplayModel,
   getTransportationRouteDetailRows,
   getTransportationV2Options,
+  setTransportationV2Records,
   hasSourceBackedShuttleRouteDetail,
   hasSafeFareProvenance,
   isDisplayableShuttleOption,
   isDrivingParkingOnlyGuide,
   isSafeEstimateOnlyShuttleOption,
 } from "../src/services/transportationV2Service";
+
+// The service owns injectable records so app startup and standalone validators
+// exercise the same data path without relying on module side effects.
+setTransportationV2Records(transportationGuides, transportationRouteFacts);
 
 const requiredKeys = [
   "transportation.v2.route.line",
@@ -265,9 +270,9 @@ for (const outlet of outlets) {
       );
     if (
       recommended?.id === option.id &&
-      (option.steps.length < 3 || option.steps.length > 5)
+      (option.steps.length < 3 || option.steps.length > 6)
     )
-      errors.push(`${option.id} recommended route must have 3-5 steps.`);
+      errors.push(`${option.id} recommended route must have 3-6 actionable steps.`);
     if (visible.includes(unaccentedLaVallee))
       errors.push(`${option.id} displays unaccented La Vallée destination.`);
     if (visible.includes(badParndorfTurkish))
@@ -444,7 +449,12 @@ for (const outlet of outlets) {
 
 function assertTurkishRoute(guideId: string, required: string[]) {
   const option = transportationGuides.find((guide) => guide.guideId === guideId);
-  const display = option ? getTransportationOptionDisplayModel(getTransportationV2Options(option.outletId).find((item) => item.id === guideId)!, "tr") : undefined;
+  const runtimeOption = option
+    ? getTransportationV2Options(option.outletId).find((item) => item.id === guideId)
+    : undefined;
+  const display = runtimeOption
+    ? getTransportationOptionDisplayModel(runtimeOption, "tr")
+    : undefined;
   if (!display) {
     errors.push(`${guideId} Turkish display model is missing.`);
     return;

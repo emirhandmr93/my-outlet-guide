@@ -4,6 +4,7 @@ import { type TranslationLanguage } from "../translations/locale";
 import type { TransportationGuide, TransportationType } from "../constants/transportationGuides";
 import { getTransportationForOutlet } from "./transportationService";
 import type { TransportationRouteFact } from "../constants/transportationRouteFacts";
+import { localizeTargetGuide, targetContentLanguages, type TargetContentLanguage } from "../constants/targetOutletLocalization";
 
 let transportationGuides: TransportationGuide[] = [];
 let transportationRouteFacts: TransportationRouteFact[] = [];
@@ -77,6 +78,8 @@ export type TransportationV2Option = TransportationEstimateDisplayModel & {
   durationLabel?: string;
   fareLabel?: string;
   note?: string;
+  officialProviderUrl?: string;
+  officialLinkLabel?: string;
   providerNote?: string;
   hasOnlyFallbackMeta: boolean;
   hasUsefulEstimate: boolean;
@@ -1223,6 +1226,21 @@ export function formatTransportDurationForDisplay(
   if (!n) return undefined;
   if (/less than 1 hour/i.test(n))
     return `${I18N[language].approx} 60 ${I18N[language].min}`;
+  const hourRange = n.match(
+    /[≈~]?\s*(\d+)\s*(?:hr|hrs|hour|hours)\s*(?:(\d+)\s*(?:min|minutes))?\s*[–-]\s*(\d+)\s*(?:hr|hrs|hour|hours)\s*(?:(\d+)\s*(?:min|minutes))?/i,
+  );
+  if (hourRange) {
+    const startMinutes = Number(hourRange[1]) * 60 + Number(hourRange[2] || 0);
+    const endMinutes = Number(hourRange[3]) * 60 + Number(hourRange[4] || 0);
+    return `${I18N[language].approx} ${startMinutes}–${endMinutes} ${I18N[language].min}`;
+  }
+  const hourMinute = n.match(
+    /[≈~]?\s*(\d+)\s*(?:hr|hrs|hour|hours)(?:\s*(\d+)\s*(?:min|minutes))?/i,
+  );
+  if (hourMinute) {
+    const totalMinutes = Number(hourMinute[1]) * 60 + Number(hourMinute[2] || 0);
+    return `${I18N[language].approx} ${totalMinutes} ${I18N[language].min}`;
+  }
   const r = n.match(/[≈~]?\s*(\d+)\s*[–-]\s*(\d+)\s*(?:min|minutes|dk)/i);
   if (r)
     return `${I18N[language].approx} ${r[1]}–${r[2]} ${I18N[language].min}`;
@@ -1240,10 +1258,10 @@ export function formatTransportFareForDisplay(
     .replace(/^≈\s*/, "");
   if (!raw) return undefined;
   if (isExplicitFreeTransportFare(raw)) return I18N[language].free;
-  if (/parking|fuel|children|under\s+\d|provider|timetable|check|var(?:y|ies)/i.test(raw))
+  if (/parking|fuel|children|under\s+\d|provider|timetable|check/i.test(raw))
     return undefined;
   const numeric = raw.match(
-    /(?:\b(EUR|PLN|GBP|CHF|NOK|SEK|DKK|CZK|HUF|RON|TRY|USD)\s*|([€£$])\s*)(\d+(?:[.,]\d+)?)(?:\s*[–-]\s*(\d+(?:[.,]\d+)?))?/i,
+    /(?:\b(EUR|PLN|GBP|CHF|NOK|SEK|DKK|CZK|HUF|RON|TRY|USD|AED)\s*|([€£$])\s*)(\d+(?:[.,]\d+)?)(?:\s*[–-]\s*(\d+(?:[.,]\d+)?))?/i,
   );
   if (!numeric) return undefined;
   const currency =
@@ -1510,6 +1528,8 @@ export function getTransportationOptionDisplayModel(
   language: TranslationLanguage,
 ): TransportationV2Option {
   const guide = option.guide;
+  const targetLanguage = targetContentLanguages.includes(language as TargetContentLanguage) ? language as TargetContentLanguage : undefined;
+  const localizedTargetGuide = targetLanguage ? localizeTargetGuide(guide, targetLanguage) : undefined;
   const fact = option.routeFact || getTransportationRouteFact(guide.guideId);
   const sourceBacked =
     fact?.confidence === "exact" || fact?.confidence === "partial";
@@ -1574,10 +1594,7 @@ export function getTransportationOptionDisplayModel(
     );
     displayDetails.destinationLabel = localizePoint(fact.destination, language);
     displayDetails.walkNoteLabel = localizedWalkNote(fact, language);
-    displayDetails.officialCheckNoteLabel = localizedOfficialCheckNote(
-      fact,
-      language,
-    );
+    displayDetails.officialCheckNoteLabel = localizedTargetGuide?.routeNote ?? localizedOfficialCheckNote(fact, language);
     displayDetails.routeHintLabel = compactJoin([
       displayDetails.lineOrProviderLabel || fact.provider || fact.operator,
       displayDetails.alightingPointLabel ||
@@ -1593,12 +1610,9 @@ export function getTransportationOptionDisplayModel(
     ...option,
     originLabel: getTransportationOriginLabel(option.originGroup, language),
     modeLabel: I18N[language].modes[option.mode] || option.mode,
-    title:
-      language === "en" &&
-      sourceBacked &&
-      !PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)
+    title: localizedTargetGuide?.title ?? (language === "en" && sourceBacked && !PROHIBITED_MAIN_LABEL_PATTERN.test(guide.title)
         ? guide.title
-        : titleFor(option.mode, option.originGroup, language),
+        : titleFor(option.mode, option.originGroup, language)),
     duration: durationLabel,
     fare: fareLabel,
     durationLabel,
@@ -1606,10 +1620,12 @@ export function getTransportationOptionDisplayModel(
     estimatedDurationLabel: durationLabel || "",
     estimatedFareLabel: fareLabel || "",
     note: undefined,
-    noteLabel: fact ? localizedOfficialCheckNote(fact, language) : undefined,
+    noteLabel: localizedTargetGuide?.routeNote ?? (fact ? localizedOfficialCheckNote(fact, language) : undefined),
+    officialProviderUrl: localizedTargetGuide?.officialLinkLabel ? fact?.officialProviderUrl : undefined,
+    officialLinkLabel: localizedTargetGuide?.officialLinkLabel,
     providerNote: undefined,
     routeDetails: displayDetails,
-    steps: stepsFor(
+    steps: localizedTargetGuide?.steps ?? stepsFor(
       option.mode,
       option.originGroup,
       language,
