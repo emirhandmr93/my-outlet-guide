@@ -1,3 +1,4 @@
+import { chinaBrands } from "./china";
 import { brandsAE } from "./brands-a-e";
 import { brandsFK } from "./brands-f-k";
 import { brandsLP } from "./brands-l-p";
@@ -13,6 +14,7 @@ export const brands: Brand[] = [
   ...brandsLP,
   ...brandsQT,
   ...brandsUZ,
+  ...chinaBrands,
 ];
 
 export type { Brand } from "../../types/brand";

@@ -1,4 +1,5 @@
 export const cities = [
+  { cityId: "shanghai", cityName: "Shanghai", countryId: "china" },
   { cityId: "kisarazu", cityName: "Kisarazu", countryId: "japan" },
   { cityId: "izumisano", cityName: "Izumisano", countryId: "japan" },
   {
