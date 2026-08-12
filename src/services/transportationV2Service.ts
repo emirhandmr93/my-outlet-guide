@@ -893,6 +893,11 @@ export function hasSafeFareProvenance(option: TransportationV2Option) {
     return Object.values(I18N).some(
       (copy) => option.estimatedFareLabel === copy.free,
     );
+  const isValidatedTargetFare = targetContentLanguages.some((language) =>
+    localizeTargetGuide(option.guide, language)?.estimatedCost ===
+    option.estimatedFareLabel
+  );
+  if (isValidatedTargetFare) return true;
   return Boolean(
     formatTransportFareForDisplay(option.guide.estimatedCost, "en"),
   );
@@ -1222,11 +1227,17 @@ export function formatTransportDurationForDisplay(
   value: string | undefined,
   language: TranslationLanguage,
 ): string | undefined {
-  const n = sanitizeTransportationDisplayValue(value, language);
-  if (!n) return undefined;
-  if (/less than 1 hour/i.test(n))
+  // Parse source-backed numeric durations before sanitizing prose. For non-English
+  // locales the sanitizer intentionally rejects English operational caveats (for
+  // example, "traffic may affect travel time"), but that must not discard the
+  // approved numeric duration which precedes the caveat.
+  const raw = String(value || "").trim();
+  const sanitized = sanitizeTransportationDisplayValue(value, language);
+  const numericSource = sanitized || raw;
+  if (!numericSource) return undefined;
+  if (/less than 1 hour/i.test(numericSource))
     return `${I18N[language].approx} 60 ${I18N[language].min}`;
-  const hourRange = n.match(
+  const hourRange = numericSource.match(
     /[≈~]?\s*(\d+)\s*(?:hr|hrs|hour|hours)\s*(?:(\d+)\s*(?:min|minutes))?\s*[–-]\s*(\d+)\s*(?:hr|hrs|hour|hours)\s*(?:(\d+)\s*(?:min|minutes))?/i,
   );
   if (hourRange) {
@@ -1234,19 +1245,21 @@ export function formatTransportDurationForDisplay(
     const endMinutes = Number(hourRange[3]) * 60 + Number(hourRange[4] || 0);
     return `${I18N[language].approx} ${startMinutes}–${endMinutes} ${I18N[language].min}`;
   }
-  const hourMinute = n.match(
+  const hourMinute = numericSource.match(
     /[≈~]?\s*(\d+)\s*(?:hr|hrs|hour|hours)(?:\s*(\d+)\s*(?:min|minutes))?/i,
   );
   if (hourMinute) {
     const totalMinutes = Number(hourMinute[1]) * 60 + Number(hourMinute[2] || 0);
     return `${I18N[language].approx} ${totalMinutes} ${I18N[language].min}`;
   }
-  const r = n.match(/[≈~]?\s*(\d+)\s*[–-]\s*(\d+)\s*(?:min|minutes|dk)/i);
+  const r = numericSource.match(/[≈~]?\s*(\d+)\s*[–-]\s*(\d+)\s*(?:min|minutes|dk)/i);
   if (r)
     return `${I18N[language].approx} ${r[1]}–${r[2]} ${I18N[language].min}`;
-  const m = n.match(/[≈~]?\s*(\d+)\s*(?:min|minutes|dk)/i);
+  const m = numericSource.match(/[≈~]?\s*(\d+)\s*(?:min|minutes|dk)/i);
   if (m) return `${I18N[language].approx} ${m[1]} ${I18N[language].min}`;
-  return n.length <= 22 ? `${I18N[language].approx} ${n}` : undefined;
+  return sanitized && sanitized.length <= 22
+    ? `${I18N[language].approx} ${sanitized}`
+    : undefined;
 }
 export function formatTransportFareForDisplay(
   value: string | undefined,
@@ -1455,7 +1468,10 @@ function optionFromGuide(
         guide.transportationType,
         distanceFor(guide),
       );
-  if (!isSourceBacked && !estimate) return undefined;
+  const hasStoredEstimate = Boolean(
+    guide.estimatedDuration?.trim() || guide.estimatedCost?.trim(),
+  );
+  if (!isSourceBacked && !estimate && !hasStoredEstimate) return undefined;
   const details = extractRouteDetails(
     guide,
     effectiveOriginGroup,
@@ -1476,7 +1492,9 @@ function optionFromGuide(
           .sort((a, b) => a.order - b.order)
           .map((step) => step.description)
       : [],
-    sourceConfidence: isSourceBacked ? "source" : estimate!.confidence,
+    sourceConfidence: isSourceBacked
+      ? "source"
+      : estimate?.confidence ?? "derived",
     hasOnlyFallbackMeta: !isSourceBacked,
     hasUsefulEstimate: Boolean(guide.estimatedDuration),
     hasUsefulFare: Boolean(guide.estimatedCost),
@@ -1552,11 +1570,22 @@ export function getTransportationOptionDisplayModel(
           confidence: option.sourceConfidence,
         }
       : undefined;
+  const localizedDurationLabel = localizedTargetGuide?.estimatedDuration
+    ? (/(?:hr|hour)/i.test(guide.estimatedDuration)
+        ? formatTransportDurationForDisplay(guide.estimatedDuration, language)
+        : undefined) ||
+      formatTransportDurationForDisplay(
+        localizedTargetGuide.estimatedDuration,
+        language,
+      ) ||
+      localizedTargetGuide.estimatedDuration
+    : undefined;
   const durationLabel =
     (fact?.displayDuration
       ? `${I18N[language].approx} ${fact.displayDuration}`
       : undefined) ||
     (factEstimate ? formatDuration(factEstimate, language) : undefined) ||
+    localizedDurationLabel ||
     formatTransportDurationForDisplay(guide.estimatedDuration, language) ||
     (fact?.suppressDerivedDurationFallback !== true && estimate
       ? formatDuration(estimate, language)
@@ -1574,6 +1603,7 @@ export function getTransportationOptionDisplayModel(
           fact.fareAccuracy,
         )
       : undefined) ||
+    localizedTargetGuide?.estimatedCost ||
     formatTransportFareForDisplay(guide.estimatedCost, language);
   const displayDetails = extractRouteDetails(
     guide,
@@ -1797,10 +1827,10 @@ function dedupeOptions(
       sourcedPublicOrigins.has(option.originGroup)
     )
       return false;
-    const key =
-      option.routeDetails.confidence === "estimateOnly"
-        ? `${option.originGroup}|${PUBLIC_TYPES.has(option.mode) ? "public" : option.mode}`
-        : option.id;
+    // Curated guides can legitimately share an origin group and mode (for
+    // example DXB and DWC airport taxis) while remaining distinct routes.
+    // Their stable guide IDs are the correct deduplication identity.
+    const key = option.id;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;

@@ -1,3 +1,4 @@
+import { chinaTransportation } from "./china";
 import { japanTransportation } from "./japan";
 import { austriaTransportation } from "./austria";
 import { belgiumTransportation } from "./belgium";
@@ -62,6 +63,7 @@ export {
 
 export const transportation = [
   ...japanTransportation,
+  ...chinaTransportation,
   ...italyTransportation,
   ...latviaTransportation,
   ...lithuaniaTransportation,

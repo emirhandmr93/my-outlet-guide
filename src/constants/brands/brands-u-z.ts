@@ -3186,4 +3186,8 @@ export const brandsUZ: Brand[] = [
   { brandId: "vermicular-sustainable-store", brandName: "Vermicular Sustainable Store", aliases: [], categoryId: "home", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
   { brandId: "yaccomaricard", brandName: "YACCOMARICARD", aliases: [], categoryId: "fashion", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
   { brandId: "yogibo-store", brandName: "Yogibo Store", aliases: [], categoryId: "lifestyle", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
+  {"brandId":"undefeated","brandName":"UNDEFEATED","aliases":[],"categoryId":"sportswear","logo":"","luxuryLevel":"sports","rankingWeight":60,"brandStatus":"active"},
+  {"brandId":"urban-exploration","brandName":"Urban Exploration","aliases":[],"categoryId":"outdoor","logo":"","luxuryLevel":"lifestyle","rankingWeight":60,"brandStatus":"active"},
+  {"brandId":"we11done","brandName":"WE11DONE","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
+  {"brandId":"zuczug","brandName":"ZUCZUG","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
 ];

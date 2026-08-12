@@ -22,6 +22,7 @@ import {
   isDisplayableShuttleOption,
   isDrivingParkingOnlyGuide,
   isSafeEstimateOnlyShuttleOption,
+  formatTransportDurationForDisplay,
 } from "../src/services/transportationV2Service";
 
 // The service owns injectable records so app startup and standalone validators
@@ -113,6 +114,17 @@ const files = [
   "src/translations/translations.ts",
 ];
 const errors: string[] = [];
+
+const durationLocales = { en: "Approx. 100 min", tr: "Yaklaşık 100 dk", es: "Aprox. 100 min", fr: "Env. 100 min", de: "Ca. 100 Min.", ar: "تقريبًا 100 دقيقة", ru: "Примерно 100 мин", zh: "约 100 分钟" } as const;
+for (const language of supportedLanguageCodes) {
+  const actual = formatTransportDurationForDisplay("1 hr 40 min; traffic may affect travel time", language);
+  if (actual !== durationLocales[language]) errors.push(`duration sanitizer/${language}: expected ${durationLocales[language]}, got ${actual}`);
+}
+if (formatTransportDurationForDisplay("traffic may vary", "tr") !== undefined) errors.push("duration sanitizer leaked rejected traffic prose into Turkish");
+if (formatTransportDurationForDisplay("check current timetable", "de") !== undefined) errors.push("duration sanitizer leaked rejected timetable prose into German");
+if (formatTransportDurationForDisplay("20 min", "tr") !== "Yaklaşık 20 dk") errors.push("safe short numeric duration behavior changed");
+
+
 
 for (const file of files) {
   const text = fs.readFileSync(file, "utf8");
