@@ -1227,11 +1227,12 @@ export function formatTransportDurationForDisplay(
   // example, "traffic may affect travel time"), but that must not discard the
   // approved numeric duration which precedes the caveat.
   const raw = String(value || "").trim();
-  const n = sanitizeTransportationDisplayValue(value, language) || raw;
-  if (!n) return undefined;
-  if (/less than 1 hour/i.test(n))
+  const sanitized = sanitizeTransportationDisplayValue(value, language);
+  const numericSource = sanitized || raw;
+  if (!numericSource) return undefined;
+  if (/less than 1 hour/i.test(numericSource))
     return `${I18N[language].approx} 60 ${I18N[language].min}`;
-  const hourRange = n.match(
+  const hourRange = numericSource.match(
     /[≈~]?\s*(\d+)\s*(?:hr|hrs|hour|hours)\s*(?:(\d+)\s*(?:min|minutes))?\s*[–-]\s*(\d+)\s*(?:hr|hrs|hour|hours)\s*(?:(\d+)\s*(?:min|minutes))?/i,
   );
   if (hourRange) {
@@ -1239,19 +1240,21 @@ export function formatTransportDurationForDisplay(
     const endMinutes = Number(hourRange[3]) * 60 + Number(hourRange[4] || 0);
     return `${I18N[language].approx} ${startMinutes}–${endMinutes} ${I18N[language].min}`;
   }
-  const hourMinute = n.match(
+  const hourMinute = numericSource.match(
     /[≈~]?\s*(\d+)\s*(?:hr|hrs|hour|hours)(?:\s*(\d+)\s*(?:min|minutes))?/i,
   );
   if (hourMinute) {
     const totalMinutes = Number(hourMinute[1]) * 60 + Number(hourMinute[2] || 0);
     return `${I18N[language].approx} ${totalMinutes} ${I18N[language].min}`;
   }
-  const r = n.match(/[≈~]?\s*(\d+)\s*[–-]\s*(\d+)\s*(?:min|minutes|dk)/i);
+  const r = numericSource.match(/[≈~]?\s*(\d+)\s*[–-]\s*(\d+)\s*(?:min|minutes|dk)/i);
   if (r)
     return `${I18N[language].approx} ${r[1]}–${r[2]} ${I18N[language].min}`;
-  const m = n.match(/[≈~]?\s*(\d+)\s*(?:min|minutes|dk)/i);
+  const m = numericSource.match(/[≈~]?\s*(\d+)\s*(?:min|minutes|dk)/i);
   if (m) return `${I18N[language].approx} ${m[1]} ${I18N[language].min}`;
-  return n.length <= 22 ? `${I18N[language].approx} ${n}` : undefined;
+  return sanitized && sanitized.length <= 22
+    ? `${I18N[language].approx} ${sanitized}`
+    : undefined;
 }
 export function formatTransportFareForDisplay(
   value: string | undefined,
