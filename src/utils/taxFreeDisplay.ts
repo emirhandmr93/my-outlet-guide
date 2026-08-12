@@ -102,7 +102,7 @@ export function resolveOutletTaxFreeDisplayStatus(
   countryStatus: TaxFreeCountryStatus,
 ): OutletTaxFreeDisplayStatus {
   const hasEvidence = outlet.taxFreeAvailable === true && (
-    outlet.services?.some((service) => /tax free/i.test(service)) ||
+    outlet.services?.some((service) => /tax[- ]free/i.test(service)) ||
     hasDisplayValue(outlet.taxFreeOfficeInfo) ||
     hasDisplayValue(outlet.taxFreeOperator)
   );

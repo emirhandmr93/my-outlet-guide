@@ -249,6 +249,11 @@ export function TransportationScreen() {
               {recommended.noteLabel ? (
                 <Text style={styles.notePlain}>{recommended.noteLabel}</Text>
               ) : null}
+              {recommended.officialProviderUrl && recommended.officialLinkLabel ? (
+                <TouchableOpacity onPress={() => Linking.openURL(recommended.officialProviderUrl!)}>
+                  <Text style={styles.linkText}>{recommended.officialLinkLabel}</Text>
+                </TouchableOpacity>
+              ) : null}
             </>
           ) : null}
         </View>
@@ -447,6 +452,12 @@ const styles = StyleSheet.create({
     padding: 14,
     borderWidth: 1,
     borderColor: colors.border,
+  },
+  linkText: {
+    color: colors.primary,
+    fontWeight: "900",
+    marginTop: 8,
+    textDecorationLine: "underline",
   },
   notePlain: { color: colors.textSecondary, lineHeight: 21, fontWeight: "700" },
   mapRow: { flexDirection: "row", flexWrap: "wrap", gap: 10 },

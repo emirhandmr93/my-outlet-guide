@@ -78,6 +78,8 @@ export type TransportationV2Option = TransportationEstimateDisplayModel & {
   durationLabel?: string;
   fareLabel?: string;
   note?: string;
+  officialProviderUrl?: string;
+  officialLinkLabel?: string;
   providerNote?: string;
   hasOnlyFallbackMeta: boolean;
   hasUsefulEstimate: boolean;
@@ -1577,10 +1579,7 @@ export function getTransportationOptionDisplayModel(
     );
     displayDetails.destinationLabel = localizePoint(fact.destination, language);
     displayDetails.walkNoteLabel = localizedWalkNote(fact, language);
-    displayDetails.officialCheckNoteLabel = localizedTargetGuide ? undefined : localizedOfficialCheckNote(
-      fact,
-      language,
-    );
+    displayDetails.officialCheckNoteLabel = localizedTargetGuide?.routeNote ?? localizedOfficialCheckNote(fact, language);
     displayDetails.routeHintLabel = compactJoin([
       displayDetails.lineOrProviderLabel || fact.provider || fact.operator,
       displayDetails.alightingPointLabel ||
@@ -1606,7 +1605,9 @@ export function getTransportationOptionDisplayModel(
     estimatedDurationLabel: durationLabel || "",
     estimatedFareLabel: fareLabel || "",
     note: undefined,
-    noteLabel: localizedTargetGuide ? undefined : fact ? localizedOfficialCheckNote(fact, language) : undefined,
+    noteLabel: localizedTargetGuide?.routeNote ?? (fact ? localizedOfficialCheckNote(fact, language) : undefined),
+    officialProviderUrl: localizedTargetGuide?.officialLinkLabel ? fact?.officialProviderUrl : undefined,
+    officialLinkLabel: localizedTargetGuide?.officialLinkLabel,
     providerNote: undefined,
     routeDetails: displayDetails,
     steps: localizedTargetGuide?.steps ?? stepsFor(

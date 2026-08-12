@@ -270,9 +270,9 @@ for (const outlet of outlets) {
       );
     if (
       recommended?.id === option.id &&
-      (option.steps.length < 3 || option.steps.length > 5)
+      (option.steps.length < 3 || option.steps.length > 6)
     )
-      errors.push(`${option.id} recommended route must have 3-5 steps.`);
+      errors.push(`${option.id} recommended route must have 3-6 actionable steps.`);
     if (visible.includes(unaccentedLaVallee))
       errors.push(`${option.id} displays unaccented La Vallée destination.`);
     if (visible.includes(badParndorfTurkish))

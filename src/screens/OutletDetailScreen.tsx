@@ -189,8 +189,9 @@ export function OutletDetailScreen() {
   const listedBrandCount = new Set(
     brandCategoryGroups.flatMap((group) => group.brands.map((brand) => brand.brandId)),
   ).size;
+  const targetQuickInfo = getTargetQuickInfo(outlet.outletId, language);
   const retailCountDisplay = resolveOutletRetailCountDisplay(
-    outlet.storesCountText,
+    targetQuickInfo?.storesCountText ?? outlet.storesCountText,
     listedBrandCount,
     language,
     t,
@@ -595,7 +596,7 @@ export function OutletDetailScreen() {
             weatherUnavailableText={t("weather.unavailable")}
             cityName={formatCityDisplayName(outlet.cityId, language)}
             openingHoursLabel={t("outlet.openingHours")}
-            openingHours={getTargetQuickInfo(outlet.outletId, language)?.openingHours ?? formatOpeningHoursText(outlet.openingHours, language)}
+            openingHours={targetQuickInfo?.openingHours ?? formatOpeningHoursText(outlet.openingHours, language)}
             addressLabel={t("outlet.address")}
             address={outlet.address}
             retailCountDisplay={retailCountDisplay}
@@ -694,7 +695,7 @@ export function OutletDetailScreen() {
 
         <ServicesCard
           title={t("outlet.services")}
-          services={getTargetQuickInfo(outlet.outletId, language)?.services ?? outlet.services}
+          services={targetQuickInfo?.services ?? outlet.services}
           notAvailableText={t("common.notAvailable")}
         />
 
