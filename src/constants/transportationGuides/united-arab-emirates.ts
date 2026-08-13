@@ -58,6 +58,26 @@ export const unitedArabEmiratesTransportationGuides: TransportationGuide[] = [
     ], updatedAt: "2026-08-10",
   },
   {
+   guideId: "ibn-battuta-to-the-outlet-village-dpr1-bus",
+   outletId: "the-outlet-village",
+   originType: "station",
+   originId: "ibn-battuta-metro-station",
+   transportationType: "bus",
+   title: "Ibn Battuta Metro Station to The Outlet Village by DPR1 bus",
+   estimatedDuration: "",
+   estimatedCost: "",
+   recommended: true,
+   steps: [
+     { order: 1, description: "Go to the bus stop at Ibn Battuta Metro Station." },
+     { order: 2, description: "Board RTA Bus DPR1 for Dubai Parks and Resorts." },
+     { order: 3, description: "Remain on DPR1 until Dubai Parks and Resorts." },
+     { order: 4, description: "Alight at the Dubai Parks and Resorts transport stop." },
+     { order: 5, description: "Follow the signed access to The Outlet Village." },
+     { order: 6, description: "Confirm the current DPR1 return timetable before shopping." },
+   ],
+   updatedAt: "2026-08-13",
+ },
+  {
     guideId: "downtown-dubai-to-the-outlet-village-taxi", outletId: "the-outlet-village", originType: "city_center", originId: "downtown-dubai",
     transportationType: "taxi", title: "Downtown Dubai to The Outlet Village by taxi", estimatedDuration: "Approx. 40–55 min; traffic varies", estimatedCost: "Approx. AED 115–145 by taxi; app fares vary", recommended: true,
     steps: [

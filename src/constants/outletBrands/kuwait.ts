@@ -46,6 +46,11 @@ const alKhiranBrandIds = [
   "victoria-s-secret",
   "vilebrequin",
   "xcite",
+  "big-brand-bazaar",
+  "havaianas",
+  "lc-waikiki-kids",
+  "steve-madden",
+  "ximi-vogue",
 ] as const;
 
 export const kuwaitOutletBrands: OutletBrand[] = alKhiranBrandIds.map((brandId) => ({

@@ -9558,4 +9558,14 @@ export const brandsAE: Brand[] = [
   {"brandId":"exception","brandName":"EXCEPTION","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"13de-marzo","brandName":"13DE MARZO","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"1436","brandName":"1436","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
+  {
+   brandId: "big-brand-bazaar",
+   brandName: "Big Brand Bazaar",
+   aliases: ["BBZ"],
+   categoryId: "fashion",
+   logo: "",
+    luxuryLevel: "lifestyle",
+   rankingWeight: 58,
+   brandStatus: "active",
+ },
 ];

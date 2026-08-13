@@ -12,7 +12,7 @@ export const japanOutlets = [
     openingHours: "Shops 10:00 - 20:00; restaurants 11:00 - 21:00; cafe 09:30 - 20:00. Individual store, seasonal and special-date hours may vary.",
     heroImage: "",
     galleryImages: [],
-    storesCountText: "213 retail stores",
+    storesCountText: "250 outlet stores",
     rating: 0,
     reviewCount: 0,
     services: ["Information Center", "Tax-Free Shopping", "Free Wi-Fi", "ATM", "Lockers", "Prayer Room", "Nursing Room", "Stroller Rental", "Wheelchair Rental", "Parking"],

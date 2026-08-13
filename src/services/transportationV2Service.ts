@@ -1274,7 +1274,7 @@ export function formatTransportFareForDisplay(
   if (/parking|fuel|children|under\s+\d|provider|timetable|check/i.test(raw))
     return undefined;
   const numeric = raw.match(
-    /(?:\b(EUR|PLN|GBP|CHF|NOK|SEK|DKK|CZK|HUF|RON|TRY|USD|AED)\s*|([€£$])\s*)(\d+(?:[.,]\d+)?)(?:\s*[–-]\s*(\d+(?:[.,]\d+)?))?/i,
+    /(?:\b(EUR|PLN|GBP|CHF|NOK|SEK|DKK|CZK|HUF|RON|TRY|USD|AED|JPY|KRW|KWD)\s*|([€£$])\s*)(\d+(?:[.,]\d+)?)(?:\s*[–-]\s*(\d+(?:[.,]\d+)?))?/i,
   );
   if (!numeric) return undefined;
   const currency =

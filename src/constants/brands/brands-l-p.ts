@@ -7611,4 +7611,15 @@ export const brandsLP: Brand[] = [
   {"brandId":"papito","brandName":"PAPITO","aliases":[],"categoryId":"kids","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"paw-in-paw","brandName":"Paw in Paw","aliases":[],"categoryId":"kids","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"ports","brandName":"PORTS","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
+  {
+   brandId: "lc-waikiki-kids",
+   brandName: "LC Waikiki Kids",
+   aliases: ["LC Waikiki Kids"],
+   categoryId: "kids",
+   logo: "",
+    originCountryId: "turkey",
+    luxuryLevel: "lifestyle",
+   rankingWeight: 65,
+   brandStatus: "active",
+ },
 ];

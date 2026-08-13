@@ -3190,4 +3190,14 @@ export const brandsUZ: Brand[] = [
   {"brandId":"urban-exploration","brandName":"Urban Exploration","aliases":[],"categoryId":"outdoor","logo":"","luxuryLevel":"lifestyle","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"we11done","brandName":"WE11DONE","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"zuczug","brandName":"ZUCZUG","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
+  {
+   brandId: "ximi-vogue",
+   brandName: "XIMI VOGUE",
+   aliases: ["XIMI Vogue","XIMIVOGUE"],
+   categoryId: "fashion",
+   logo: "",
+    luxuryLevel: "lifestyle",
+   rankingWeight: 58,
+   brandStatus: "active",
+ },
 ];

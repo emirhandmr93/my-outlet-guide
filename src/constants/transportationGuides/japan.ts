@@ -6,6 +6,13 @@ export const japanTransportationGuides: TransportationGuide[] = [
   { guideId: "kansai-airport-to-rinku-premium-outlets-train", outletId: "rinku-premium-outlets", originType: "airport", originId: "kansai-international-airport", transportationType: "train", title: "Kansai International Airport to Rinku Premium Outlets by train", estimatedDuration: "Approx. 15–20 min including the walk", estimatedCost: "Approx. JPY 370 one way", recommended: true, steps: [
     { order: 1, description: "At Kansai International Airport Station, board a JR Kansai Airport Rapid or Nankai Airport train that stops at Rinku Town." }, { order: 2, description: "Ride one stop across the airport bridge to Rinku Town Station." }, { order: 3, description: "Alight at Rinku Town Station." }, { order: 4, description: "Follow the pedestrian signs to Rinku Premium Outlets." },
   ], updatedAt: "2026-08-10" },
+  { guideId: "kansai-airport-to-rinku-premium-outlets-sky-shuttle", outletId: "rinku-premium-outlets", originType: "airport", originId: "kansai-international-airport", transportationType: "shuttle", title: "Kansai International Airport to Rinku Premium Outlets by Sky Shuttle", estimatedDuration: "Approx. 15 min", estimatedCost: "JPY 300 one way adult; JPY 150 child", recommended: true, steps: [
+   { order: 1, description: "At Kansai Airport Terminal 1, go to the 1F bus area and Bus Stop 12." },
+   { order: 2, description: "Board the direct Sky Shuttle for Rinku Premium Outlets." },
+   { order: 3, description: "Pay JPY 300 one way for an adult or JPY 150 for a child." },
+   { order: 4, description: "Ride approximately 15 minutes directly to Rinku Premium Outlets." },
+   { order: 5, description: "Confirm the current return timetable before shopping." },
+ ], updatedAt: "2026-08-13" },
   { guideId: "tokyo-station-to-gotemba-premium-outlets-bus", outletId: "gotemba-premium-outlets", originType: "station", originId: "tokyo-station", transportationType: "bus", title: "Tokyo Station to Gotemba Premium Outlets by direct highway bus", estimatedDuration: "Approx. 1 hr 40 min; traffic may affect travel time", estimatedCost: "JPY 1,900–2,200 one way when booked in advance; same-day purchase +JPY 100; onboard fare JPY 2,500", recommended: true, steps: [
     { order: 1, description: "Go to Tokyo Station Yaesu South Exit." }, { order: 2, description: "Board the direct highway bus signed for Gotemba Premium Outlets." }, { order: 3, description: "Use the reserved fare for the selected travel day; advance fares are JPY 1,900–2,200." }, { order: 4, description: "Keep the same bus for the entire journey." }, { order: 5, description: "Alight directly at Gotemba Premium Outlets." },
   ], updatedAt: "2026-08-10" },

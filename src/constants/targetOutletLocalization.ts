@@ -76,7 +76,7 @@ const targetServices: Record<string,string[]> = {
 const quickText: Record<TargetContentLanguage,{parking:string; stores:string}> = {
  en:{parking:"On-site parking is available.",stores:"stores"},tr:{parking:"Tesis bünyesinde otopark mevcuttur.",stores:"mağaza"},de:{parking:"Parkplätze sind vor Ort verfügbar.",stores:"Geschäfte"},fr:{parking:"Un parking est disponible sur place.",stores:"boutiques"},es:{parking:"Hay aparcamiento en el recinto.",stores:"tiendas"},ar:{parking:"تتوفر مواقف للسيارات في الموقع.",stores:"متجرًا"},ru:{parking:"На территории есть парковка.",stores:"магазинов"},zh:{parking:"设有场内停车场。",stores:"家门店"}
 };
-const counts:Record<string,number>={"al-khiran-hybrid-outlet-mall":284,"dubai-outlet-mall":340,"the-outlet-village":100,"rinku-premium-outlets":213,"gotemba-premium-outlets":290,"mitsui-outlet-park-kisarazu":330};
+const counts:Record<string,number>={"al-khiran-hybrid-outlet-mall":284,"dubai-outlet-mall":340,"the-outlet-village":100,"rinku-premium-outlets":250,"gotemba-premium-outlets":290,"mitsui-outlet-park-kisarazu":330};
 const airportNames: Record<TargetContentLanguage, Record<string, string>> = {
  en:{KWI:"Kuwait International Airport",DXB:"Dubai International Airport",DWC:"Al Maktoum International Airport",KIX:"Kansai International Airport",HND:"Haneda Airport",NRT:"Narita International Airport"},
  tr:{KWI:"Kuveyt Uluslararası Havalimanı",DXB:"Dubai Uluslararası Havalimanı",DWC:"Al Maktoum Uluslararası Havalimanı",KIX:"Kansai Uluslararası Havalimanı",HND:"Haneda Havalimanı",NRT:"Narita Uluslararası Havalimanı"},
@@ -88,7 +88,172 @@ const airportNames: Record<TargetContentLanguage, Record<string, string>> = {
  zh:{KWI:"科威特国际机场",DXB:"迪拜国际机场",DWC:"阿勒马克图姆国际机场",KIX:"关西国际机场",HND:"羽田机场",NRT:"成田国际机场"},
 };
 const outletOrder=Object.keys(targetServices);
-export const targetOutletQuickInfo: Record<string, OutletCopy> = Object.fromEntries(outletOrder.map((id,index)=>[id,Object.fromEntries(targetContentLanguages.map(language=>[language,{openingHours:openingCaveats[language][index],parking:quickText[language].parking,services:translateServices(language,targetServices[id]),storesCountText:id==="the-outlet-village"?"100+ stores":`${counts[id]} stores`,cityCenterName:id==="al-khiran-hybrid-outlet-mall"?"Kuwait City / Kuwait Towers":id.includes("dubai")||id==="the-outlet-village"?"Downtown Dubai / Burj Khalifa":id.startsWith("rinku")?"Rinku Town Station":id.startsWith("gotemba")?"JR Gotemba Station":"JR Kisarazu Station",airportNames:airportNames[language]}]))])) as unknown as Record<string,OutletCopy>;
+export const targetOutletQuickInfo: Record<string, OutletCopy> = Object.fromEntries(outletOrder.map((id,index)=>[id,Object.fromEntries(targetContentLanguages.map(language=>[language,{openingHours:openingCaveats[language][index],parking:quickText[language].parking,services:translateServices(language,targetServices[id]),storesCountText:id==="al-khiran-hybrid-outlet-mall"&&language==="tr"?"284 toplam mağaza":id==="the-outlet-village"?"100+ stores":`${counts[id]} stores`,cityCenterName:id==="al-khiran-hybrid-outlet-mall"?"Kuwait City / Kuwait Towers":id.includes("dubai")||id==="the-outlet-village"?"Downtown Dubai / Burj Khalifa":id.startsWith("rinku")?"Rinku Town Station":id.startsWith("gotemba")?"JR Gotemba Station":"JR Kisarazu Station",airportNames:airportNames[language]}]))])) as unknown as Record<string,OutletCopy>;
+
+
+const yeojuServices = [
+ "Information Center",
+ "Stroller Rental",
+ "Wheelchair Rental",
+ "Tax-Free Shopping",
+ "Payment Methods",
+ "Free Circular Bus",
+ "Shinsegae Gift Certificates",
+ "ATM",
+ "Free Wi-Fi",
+ "Lockers",
+ "Clothing Alteration Service",
+ "Mini Train",
+ "Children’s Playground",
+ "Merry-go-round",
+ "Bounce Spin",
+ "emart24",
+ "Nursing Room",
+ "Electric Car Charging Station",
+ "Tesla Electric Car Charging Station",
+ "Premium Lounge",
+ "Premium Parking Zone",
+ "Art Museum Ryeo",
+ "Mobile Phone Charging",
+ "Lost and Found",
+ "Pet-Friendly Areas",
+] as const;
+
+const yeojuServiceTr: Record<string,string> = {
+ "Information Center":"Danışma",
+ "Stroller Rental":"Bebek Arabası Kiralama",
+ "Wheelchair Rental":"Tekerlekli Sandalye Kiralama",
+ "Tax-Free Shopping":"Tax Free Alışveriş",
+ "Payment Methods":"Ödeme Yöntemleri",
+ "Free Circular Bus":"Ücretsiz Ring Servisi",
+ "Shinsegae Gift Certificates":"Shinsegae Hediye Çekleri",
+ "ATM":"ATM",
+ "Free Wi-Fi":"Ücretsiz Wi-Fi",
+ "Lockers":"Dolaplar",
+ "Clothing Alteration Service":"Tadilat Hizmeti",
+ "Mini Train":"Mini Tren",
+ "Children’s Playground":"Çocuk Oyun Alanı",
+ "Merry-go-round":"Atlıkarınca",
+ "Bounce Spin":"Bounce Spin",
+ "emart24":"emart24",
+ "Nursing Room":"Bebek Bakım Odası",
+ "Electric Car Charging Station":"Elektrikli Araç Şarj İstasyonu",
+ "Tesla Electric Car Charging Station":"Tesla Şarj İstasyonu",
+ "Premium Lounge":"Premium Lounge",
+ "Premium Parking Zone":"Premium Otopark Alanı",
+ "Art Museum Ryeo":"Ryeo Sanat Müzesi",
+ "Mobile Phone Charging":"Telefon Şarj Noktaları",
+ "Lost and Found":"Kayıp Eşya",
+ "Pet-Friendly Areas":"Evcil Hayvan Dostu Alanlar",
+};
+
+function getYeojuQuickInfo(language:TargetContentLanguage):QuickInfo {
+ const openingHours = language === "tr"
+   ? "Mayıs–Ekim: her gün 10:30–21:00; Kasım–Nisan: Pzt–Per 10:30–20:30, Cum–Paz ve resmî tatiller 10:30–21:00. Restoranlar her gün 11:00–21:00; son sipariş kapanıştan 30 dakika önce alınır. Bazı mağazalar 30 dakika erken kapanabilir."
+   : "May-Oct: daily 10:30 - 21:00; Nov-Apr: Mon-Thu 10:30 - 20:30, Fri-Sun and public holidays 10:30 - 21:00. Restaurants daily 11:00 - 21:00; restaurant last orders close 30 minutes before closing time. Some stores close 30 minutes early.";
+
+ return {
+   openingHours,
+   parking: language === "tr"
+     ? "Tesis bünyesinde otopark mevcuttur."
+     : "On-site parking is available.",
+   services: language === "tr"
+     ? yeojuServices.map((item) => yeojuServiceTr[item] || item)
+     : [...yeojuServices],
+   storesCountText: "",
+   cityCenterName: "Yeoju Station",
+   airportNames: {},
+ };
+}
+
+function localizeYeojuGuideTr(
+ guide:TransportationGuide
+):LocalizedGuideCopy|undefined {
+ if (guide.guideId === "myeongdong-to-yeoju-premium-outlets") {
+   return {
+     title:"Myeongdong Station’dan Yeoju Premium Outlets’a",
+     estimatedDuration:"Yaklaşık 2 saat; metro + otobüs alternatifi yaklaşık 2 saat 30 dakika",
+     estimatedCost:"Ekspres otobüs bölümü tek yön KRW 6.400",
+     steps:[
+       "Myeongdong Station’dan başlayın.",
+       "Line 4 ile Chungmuro Station’a gidin ve Line 3’e aktarma yapın.",
+       "Line 3 ile Express Bus Terminal Station’a gidin.",
+       "Seoul Express Bus Terminal 29 numaralı perondan Yeoju Premium Outlets direkt ekspres otobüsüne binin.",
+       "Direkt otobüs yolculuğu yaklaşık 1 saat 10 dakika sürer.",
+       "Alternatif olarak Gangnam–Pangyo–Yeoju Station güzergâhını kullanıp Yeoju Station’dan 912, 912-2 veya 912-5 numaralı otobüse binebilirsiniz.",
+       "Dönüş sefer saatlerini alışverişten önce kontrol edin."
+     ]
+   };
+ }
+
+ if (guide.guideId === "hongik-university-to-yeoju-premium-outlets") {
+   return {
+     title:"Hongik University Station’dan Yeoju Premium Outlets’a",
+     estimatedDuration:"Yaklaşık 1 saat 30 dakika; metro + otobüs alternatifi yaklaşık 2 saat 30 dakika",
+     estimatedCost:"Ekspres otobüs bölümü tek yön KRW 6.400",
+     steps:[
+       "Hongik University Station’dan başlayın.",
+       "Line 2 ile Dangsan Station’a gidin.",
+       "Line 9’a aktarma yaparak Express Bus Terminal Station’a ulaşın.",
+       "Seoul Express Bus Terminal 29 numaralı perondan Yeoju Premium Outlets direkt ekspres otobüsüne binin.",
+       "Alternatif olarak Wangsimni–Imae–Yeoju Station güzergâhını kullanabilirsiniz.",
+       "Yeoju Station’dan 912, 912-2 veya 912-5 numaralı otobüsle outlet’e devam edin.",
+       "Dönüş sefer saatlerini alışverişten önce kontrol edin."
+     ]
+   };
+ }
+
+ if (guide.guideId === "gangnam-to-yeoju-premium-outlets") {
+   return {
+     title:"Gangnam Station’dan Yeoju Premium Outlets’a",
+     estimatedDuration:"Yaklaşık 1 saat 50 dakika; metro + otobüs alternatifi yaklaşık 2 saat",
+     estimatedCost:"Ekspres otobüs bölümü tek yön KRW 6.400",
+     steps:[
+       "Gangnam Station’dan başlayın.",
+       "Ekspres otobüs için Seoul Express Bus Terminal’a gidin.",
+       "29 numaralı perondan Yeoju Premium Outlets direkt ekspres otobüsüne binin.",
+       "Alternatif olarak Shinbundang Line ile Pangyo Station’a gidin.",
+       "Pangyo’dan Gyeonggang Line ile Yeoju Station’a devam edin.",
+       "Yeoju Station Exit 4’ten çıktıktan sonra 912, 912-2 veya 912-5 numaralı otobüse binin.",
+       "Dönüş sefer saatlerini alışverişten önce kontrol edin."
+     ]
+   };
+ }
+
+ return undefined;
+}
+
+function localizeAlKhiranGuideTr(
+ guide: TransportationGuide
+): LocalizedGuideCopy | undefined {
+ if (guide.guideId === "kuwait-city-to-al-khiran-hybrid-outlet-mall-taxi") {
+   return {
+     title: "Kuwait City?den Al Khiran Hybrid Outlet Mall?a",
+     estimatedDuration: "Yakla??k 80?100 dk",
+     estimatedCost: "Yakla??k KWD 27?35",
+     steps: [
+       "Kuwait City?den lisansl? taksi veya ara? ?a??rma uygulamas?yla ba?lay?n.",
+       "Var?? noktas? olarak Al Khiran Hybrid Outlet Mall?un sahil taraf?ndaki do?ru konum pinini se?in; Khiran Square veya Norma Mall ile kar??t?rmay?n.",
+       "Uygulamadaki ?creti veya taksimetreyi kullan?n. D?n?? i?in outlet?in ana taksi noktas?ndan ara? planlay?n."
+     ]
+   };
+ }
+
+ if (guide.guideId === "kwi-to-al-khiran-hybrid-outlet-mall-taxi") {
+   return {
+     title: "Kuveyt Uluslararas? Havaliman??ndan Al Khiran Hybrid Outlet Mall?a",
+     estimatedDuration: "Yakla??k 65?85 dk",
+     estimatedCost: "Resm? havaliman? taksisi yakla??k KWD 19",
+     steps: [
+       "KWI geli? terminalindeki resm? taksi dura??na gidin veya lisansl? ara? ?a??rma hizmetini kullan?n.",
+       "Yola ??kmadan ?nce var?? noktas? olarak Al Khiran Hybrid Outlet Mall?un do?ru kay?tl? konum pinini se?in.",
+       "Resm? havaliman? taksisini kullan?yorsan?z yakla??k KWD 19 ?creti dikkate al?n. D?n?? i?in outlet?in ana taksi noktas?ndan ara? planlay?n."
+     ]
+   };
+ }
+
+ return undefined;
+}
 
 export type LocalizedGuideCopy={title:string;estimatedDuration:string;estimatedCost:string;steps:string[];routeNote?:string;officialLinkLabel?:string};
 type Route={title:string;start:string;service:string;end:string;walk:string};
@@ -198,5 +363,5 @@ const bus66Notes:Record<TargetContentLanguage,{note:string;link:string}>={
  ru:{note:"AED 5–7,50 — ориентировочная стоимость по анонимной карте nol Silver; применимый тариф зависит от числа зон поездки. Отправления по дням работы и последний обратный рейс различаются.",link:"Открыть официальный график RTA / центра"},
  zh:{note:"AED 5–7.50 是匿名 nol Silver 卡的估算票价；实际票价取决于行程跨越的分区数量。不同运营日的班次及末班返程时间会有变化。",link:"打开 RTA / 商场官方班次表"},
 };
-export function localizeTargetGuide(guide:TransportationGuide,language:TargetContentLanguage):LocalizedGuideCopy|undefined{if(guide.outletId==="shanghai-village")return localizeShanghaiGuide(guide,language);const route=routes[guide.guideId];if(!route)return;const busNote=guide.guideId==="al-ghubaiba-to-dubai-outlet-mall-rta-bus-66"?bus66Notes[language]:undefined;return{title:titleTemplates[language]({...route,start:localizeRouteOrigin(route.start,language)}),estimatedDuration:localizeEstimate(guide.estimatedDuration,language),estimatedCost:localizeEstimate(guide.estimatedCost,language),steps:language==="en"?[...guide.steps].sort((a,b)=>a.order-b.order).map(step=>step.description):localizeSteps(guide,language)??[],routeNote:busNote?.note,officialLinkLabel:busNote?.link}}
-export function getTargetQuickInfo(outletId:string,language:string){if(outletId==="shanghai-village")return shanghaiVillageQuickInfo(language as TargetContentLanguage);const copy=targetOutletQuickInfo[outletId];if(!copy)return;return copy[language as TargetContentLanguage] ?? copy.en;}
+export function localizeTargetGuide(guide:TransportationGuide,language:TargetContentLanguage):LocalizedGuideCopy|undefined{if(guide.outletId==="al-khiran-hybrid-outlet-mall"&&language==="tr")return localizeAlKhiranGuideTr(guide);if(guide.outletId==="yeoju-premium-outlets"&&language==="tr")return localizeYeojuGuideTr(guide);if(guide.outletId==="shanghai-village")return localizeShanghaiGuide(guide,language);const route=routes[guide.guideId];if(!route)return;const busNote=guide.guideId==="al-ghubaiba-to-dubai-outlet-mall-rta-bus-66"?bus66Notes[language]:undefined;return{title:titleTemplates[language]({...route,start:localizeRouteOrigin(route.start,language)}),estimatedDuration:localizeEstimate(guide.estimatedDuration,language),estimatedCost:localizeEstimate(guide.estimatedCost,language),steps:language==="en"?[...guide.steps].sort((a,b)=>a.order-b.order).map(step=>step.description):localizeSteps(guide,language)??[],routeNote:busNote?.note,officialLinkLabel:busNote?.link}}
+export function getTargetQuickInfo(outletId:string,language:string){if(outletId==="yeoju-premium-outlets")return getYeojuQuickInfo(language as TargetContentLanguage);if(outletId==="shanghai-village")return shanghaiVillageQuickInfo(language as TargetContentLanguage);const copy=targetOutletQuickInfo[outletId];if(!copy)return;return copy[language as TargetContentLanguage] ?? copy.en;}
