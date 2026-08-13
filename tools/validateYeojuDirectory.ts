@@ -53,51 +53,37 @@ const EXPECTED_RESTAURANT_SUMMARY = [...new Set(EXPECTED_RESTAURANTS.map(([, nam
 const OFFICIAL_DIRECTIONS_URL = "https://app.premiumoutlets.co.kr/rpage/en/map/index/01";
 const EXPECTED_TRANSPORTATION_GUIDES = [
   {
-    guideId: "seoul-express-bus-terminal-to-yeoju-premium-outlets",
-    originType: "station",
-    originId: "seoul-express-bus-terminal",
-    transportationType: "bus",
-    title: "Seoul Express Bus Terminal to Yeoju Premium Outlets by Direct Express Bus",
-    estimatedDuration: "Approx. 1h 10min",
-    estimatedCost: "KRW 6,400 one way",
-    recommended: true,
-    requiredFragments: [
-      "Seoul Express Bus Terminal Platform 29",
-      "Weekday departures from Gangnam: 09:00, 10:00, 11:00, 13:00, 14:00, 15:00, 17:00, 19:00",
-      "Weekday departures from Yeoju: 11:00, 12:00, 13:00, 15:00, 16:00, 17:00, 19:00, 21:00",
-      "Weekend and public-holiday departures from Gangnam: 09:00, 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 17:00, 18:00, 19:00",
-      "Weekend and public-holiday departures from Yeoju: 11:00, 12:00, 13:00, 14:00, 15:00, 16:00, 17:00, 19:00, 20:00, 21:00",
-      "KRW 6,400",
-    ],
-  },
-  {
-    guideId: "myeongdong-to-yeoju-premium-outlets-subway-bus",
+    guideId: "myeongdong-to-yeoju-premium-outlets",
     originType: "station",
     originId: "myeongdong-station",
     transportationType: "bus",
-    title: "Myeongdong Station to Yeoju Premium Outlets by Subway and Bus",
-    estimatedDuration: "Approx. 2h 30min",
-    estimatedCost: "",
+    title: "Myeongdong Station to Yeoju Premium Outlets",
+    estimatedDuration: "Approx. 2h by express bus route; 2h 30min by subway and bus",
+    estimatedCost: "Express bus segment: KRW 6,400 one way",
     recommended: false,
-    requiredFragments: [
-      "Bus 471 from Exit 3", "Line 4", "Sadang Station", "Line 2", "Gangnam Station",
-      "Shinbundang Line", "Pangyo Station", "Gyeonggang Line", "Yeoju Station through Exit 4",
-      "Bus 912, 912-2, or 912-5",
-    ],
+    requiredFragments: ["Myeongdong Station","Line 4","Chungmuro Station","Line 3","Platform 29","Bus 471 from Exit 3","Sadang Station","Line 2","Shinbundang Line","Pangyo Station","Gyeonggang Line","Exit 4","Bus 912, 912-2, or 912-5"],
   },
   {
-    guideId: "hongik-university-to-yeoju-premium-outlets-subway-bus",
+    guideId: "hongik-university-to-yeoju-premium-outlets",
     originType: "station",
     originId: "hongik-university-station",
     transportationType: "bus",
-    title: "Hongik University Station to Yeoju Premium Outlets by Subway and Bus",
-    estimatedDuration: "Approx. 2h 30min",
-    estimatedCost: "",
+    title: "Hongik University Station to Yeoju Premium Outlets",
+    estimatedDuration: "Approx. 1h 30min by express bus route; 2h 30min by subway and bus",
+    estimatedCost: "Express bus segment: KRW 6,400 one way",
     recommended: false,
-    requiredFragments: [
-      "Line 2", "Wangsimni Station", "Suin-Bundang Line", "Imae Station",
-      "Gyeonggang Line", "Yeoju Station through Exit 4", "Bus 912, 912-2, or 912-5",
-    ],
+    requiredFragments: ["Hongik University Station","Line 2","Dangsan Station","Line 9","Platform 29","Wangsimni Station","Suin-Bundang Line","Imae Station","Gyeonggang Line","Exit 4","Bus 912, 912-2, or 912-5"],
+  },
+  {
+    guideId: "gangnam-to-yeoju-premium-outlets",
+    originType: "station",
+    originId: "gangnam-station",
+    transportationType: "bus",
+    title: "Gangnam Station to Yeoju Premium Outlets",
+    estimatedDuration: "Approx. 1h 50min by express bus route; 2h by subway and bus",
+    estimatedCost: "Express bus segment: KRW 6,400 one way",
+    recommended: false,
+    requiredFragments: ["Gangnam Station","Line 2","Kyodae Station","National University of Education Station","Line 3","Platform 29","Shinbundang Line","Pangyo Station","Gyeonggang Line","Exit 4","Bus 912, 912-2, or 912-5"],
   },
 ] as const;
 const EXPECTED_SERVICES = [
@@ -274,7 +260,7 @@ invariant((restaurantIndexSource.match(/^  southKoreaRestaurants,$/gm) ?? []).le
 invariant((restaurantIndexSource.match(/^  \.\.\.southKoreaRestaurants,$/gm) ?? []).length === 1, "South Korea restaurant collection must be flattened exactly once");
 
 const yeojuTransportationGuides = transportationGuides.filter(({ outletId }) => outletId === "yeoju-premium-outlets");
-invariant(yeojuTransportationGuides.length === 3 && southKoreaTransportationGuides.length === 3, "Expected exactly three Yeoju transportation guides");
+invariant(yeojuTransportationGuides.length === 3 && southKoreaTransportationGuides.length === 3, "Expected exactly three Yeoju origin transportation guides");
 invariant(yeojuTransportationGuides.every((guide, index) => guide === southKoreaTransportationGuides[index]), "South Korea transportation collection must be included exactly once in the global index");
 assertUnique(transportationGuides.map(({ guideId }) => guideId), "global transportation guide ID");
 for (const [index, expected] of EXPECTED_TRANSPORTATION_GUIDES.entries()) {
@@ -289,9 +275,14 @@ for (const [index, expected] of EXPECTED_TRANSPORTATION_GUIDES.entries()) {
   invariant(guide.steps.every(({ order, description }, stepIndex) => order === stepIndex + 1 && description.length > 0), `Invalid step sequence: ${guide.guideId}`);
   const descriptions = guide.steps.map(({ description }) => description).join(" ");
   invariant(expected.requiredFragments.every((fragment) => descriptions.includes(fragment)), `Official route detail missing: ${guide.guideId}`);
+  invariant(descriptions.includes("KRW 6,400 one way"), `Express bus fare missing: ${guide.guideId}`);
   invariant(descriptions.includes(OFFICIAL_DIRECTIONS_URL), `Official source URL missing: ${guide.guideId}`);
 }
-invariant(yeojuTransportationGuides.slice(1).every(({ estimatedCost }) => estimatedCost === ""), "Unverified subway and bus fares must remain empty");
+const timetableText = yeojuTransportationGuides.flatMap(({ steps }) => steps.map(({ description }) => description)).join(" ");
+for (const timetableFragment of [
+  "weekday: from Gangnam 09:00, 10:00, 11:00, 13:00, 14:00, 15:00, 17:00, 19:00; from Yeoju 11:00, 12:00, 13:00, 15:00, 16:00, 17:00, 19:00, 21:00",
+  "weekend and public holiday: from Gangnam 09:00, 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 17:00, 18:00, 19:00; from Yeoju 11:00, 12:00, 13:00, 14:00, 15:00, 16:00, 17:00, 19:00, 20:00, 21:00",
+]) invariant(timetableText.includes(timetableFragment), "Complete official direct express bus timetable is missing");
 const csvYeojuTransportationGuides = parseCsv("TransportationGuides.csv").filter(({ outletId }) => outletId === "yeoju-premium-outlets");
 invariant(csvYeojuTransportationGuides.length === 3, "Expected exactly three CSV Yeoju transportation guides");
 const transportationFields = ["guideId", "outletId", "originType", "originId", "transportationType", "title", "estimatedDuration", "estimatedCost", "recommended", "steps", "updatedAt"] as const;
@@ -386,4 +377,4 @@ for (const [field, expectedValue] of Object.entries(metadataParity)) {
   invariant(csvOutlet[field] === expectedValue, `TypeScript/CSV Yeoju metadata mismatch: ${field}`);
 }
 
-console.log("Yeoju directory validation passed: 3 transportation guides, 30 restaurant memberships (28 unique names; categories 5/10/15), 262 brand memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (146 reused, 104 new), 250 relationships (217 eligible / 33 ineligible).");
+console.log("Yeoju directory validation passed: 3 origin transportation guides, 30 restaurant memberships (28 unique names; categories 5/10/15), 262 brand memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (146 reused, 104 new), 250 relationships (217 eligible / 33 ineligible).");
