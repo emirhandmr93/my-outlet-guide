@@ -13,7 +13,8 @@ const EXPECTED_REPEATED_NAMES = [
   "Rockport", "B&O/B&W",
 ];
 const OFFICIAL_ADDRESS = "360, Myeongpum-ro, Yeoju-si, Gyeonggi-do, Republic of Korea";
-const OFFICIAL_OPENING_HOURS = "May-Oct: daily 10:30 - 21:00; Nov-Apr: Mon-Thu 10:30 - 20:30, Fri-Sun and public holidays 10:30 - 21:00. Restaurants daily 11:00 - 21:00; some stores close 30 minutes early.";
+const OFFICIAL_OPENING_HOURS = "May-Oct: daily 10:30 - 21:00; Nov-Apr: Mon-Thu 10:30 - 20:30, Fri-Sun and public holidays 10:30 - 21:00. Restaurants daily 11:00 - 21:00; restaurant last orders close 30 minutes before closing time. Some stores close 30 minutes early.";
+const OFFICIAL_TAX_REFUND_INFO = "Tax Refund is available only at participating stores marked GLOBAL TAX FREE, GLOBAL BLUE, NICE TAX FREE, or another eligible Tax Refund operator. On-site kiosks are located at the East Bus Stop and West Information Center. Minimum purchase: KRW 15,000. Downtown refund limit: KRW 6,000,000; immediate refund limit per purchase: KRW 1,000,000; total immediate refund limit during the stay: KRW 5,000,000. Eligibility, documentation, customs validation and export-within-three-months requirements apply.";
 const EXPECTED_SERVICES = [
   "Information Center", "Stroller Rental", "Wheelchair Rental", "Tax-Free Shopping",
   "Payment Methods", "Free Circular Bus", "Shinsegae Gift Certificates", "ATM",
@@ -185,7 +186,8 @@ invariant(EXPECTED_SERVICES.every((service) => outlet.services.includes(service)
 invariant(outlet.taxFreeAvailable === true, "Yeoju must indicate that participating Tax Refund stores are available");
 invariant(outlet.vatRate === 10, "Yeoju VAT rate must be 10 percent");
 invariant(outlet.minimumTaxFreeSpend === "KRW 15,000", "Yeoju minimum Tax Refund spend must be KRW 15,000");
-invariant(outlet.taxFreeOfficeInfo?.includes("only at participating stores"), "Yeoju Tax Refund note must limit availability to participating stores");
+invariant(outlet.taxFreeOfficeInfo === OFFICIAL_TAX_REFUND_INFO, "Yeoju Tax Refund note differs from the verified official information");
+invariant(["GLOBAL TAX FREE", "GLOBAL BLUE", "NICE TAX FREE"].every((operator) => outlet.taxFreeOfficeInfo.includes(operator)), "Yeoju Tax Refund note must identify all three named official operators");
 invariant(outlet.taxFreeOfficeInfo?.includes("East Bus Stop") && outlet.taxFreeOfficeInfo.includes("West Information Center"), "Yeoju Tax Refund note must identify both kiosk locations");
 invariant(outlet.restaurants?.length === 0, "Yeoju must not contain restaurant records");
 invariant(outlet.heroImage === "" && outlet.galleryImages.length === 0, "Yeoju must not contain invented images");
