@@ -29911,3 +29911,53 @@ const taxFreeProcessCardTranslations: Record<TranslationLanguage, Record<string,
   },
 };
 for (const locale of supportedLanguageCodes) Object.assign(translations[locale], taxFreeProcessCardTranslations[locale]);
+
+const yeojuRestaurantCategoryTranslations: Record<
+  TranslationLanguage,
+  Record<string, string>
+> = {
+  en: {
+    "restaurant.category.specializedRestaurants": "Specialized Restaurants",
+    "restaurant.category.cafeAndSnack": "Café & Snacks",
+    "restaurant.category.tasteVillage": "Taste Village",
+  },
+  tr: {
+    "restaurant.category.specializedRestaurants": "Uzmanlık Restoranları",
+    "restaurant.category.cafeAndSnack": "Kafe ve Atıştırmalık",
+    "restaurant.category.tasteVillage": "Lezzet Köyü",
+  },
+  es: {
+    "restaurant.category.specializedRestaurants": "Restaurantes especializados",
+    "restaurant.category.cafeAndSnack": "Café y aperitivos",
+    "restaurant.category.tasteVillage": "Aldea gastronómica",
+  },
+  fr: {
+    "restaurant.category.specializedRestaurants": "Restaurants spécialisés",
+    "restaurant.category.cafeAndSnack": "Café et en-cas",
+    "restaurant.category.tasteVillage": "Village gourmand",
+  },
+  de: {
+    "restaurant.category.specializedRestaurants": "Spezialitätenrestaurants",
+    "restaurant.category.cafeAndSnack": "Café und Snacks",
+    "restaurant.category.tasteVillage": "Genussdorf",
+  },
+  ar: {
+    "restaurant.category.specializedRestaurants": "مطاعم متخصصة",
+    "restaurant.category.cafeAndSnack": "مقهى ووجبات خفيفة",
+    "restaurant.category.tasteVillage": "قرية المذاق",
+  },
+  ru: {
+    "restaurant.category.specializedRestaurants": "Специализированные рестораны",
+    "restaurant.category.cafeAndSnack": "Кафе и закуски",
+    "restaurant.category.tasteVillage": "Гастрономическая деревня",
+  },
+  zh: {
+    "restaurant.category.specializedRestaurants": "特色餐厅",
+    "restaurant.category.cafeAndSnack": "咖啡与小吃",
+    "restaurant.category.tasteVillage": "美食村",
+  },
+};
+
+for (const locale of supportedLanguageCodes) {
+  Object.assign(translations[locale], yeojuRestaurantCategoryTranslations[locale]);
+}

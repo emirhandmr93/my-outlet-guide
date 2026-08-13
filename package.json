@@ -50,7 +50,8 @@
     "web:preview": "npm run web:prepare && npm run web:generate && npx serve web",
     "web:poc:start": "tsx tools/startWebPoc.ts",
     "web:poc:export": "tsx tools/exportWebPoc.ts",
-    "validate:yeoju": "tsx tools/validateYeojuDirectory.ts"
+    "validate:yeoju": "tsx tools/validateYeojuDirectory.ts",
+    "test:restaurant-categories": "tsx tools/testRestaurantCategoryFormatter.ts"
   },
   "private": true,
   "devDependencies": {
