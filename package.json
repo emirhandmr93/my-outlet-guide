@@ -49,7 +49,8 @@
     "web:check": "tsx tools/checkMinimumWebSite.ts",
     "web:preview": "npm run web:prepare && npm run web:generate && npx serve web",
     "web:poc:start": "tsx tools/startWebPoc.ts",
-    "web:poc:export": "tsx tools/exportWebPoc.ts"
+    "web:poc:export": "tsx tools/exportWebPoc.ts",
+    "validate:yeoju": "tsx tools/validateYeojuDirectory.ts"
   },
   "private": true,
   "devDependencies": {

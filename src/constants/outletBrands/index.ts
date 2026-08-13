@@ -28,12 +28,14 @@ import { ukOutletBrands } from "./uk";
 import { turkeyOutletBrands } from "./turkey";
 import { unitedArabEmiratesOutletBrands } from "./united-arab-emirates";
 import { kuwaitOutletBrands } from "./kuwait";
+import { southKoreaOutletBrands } from "./south-korea";
 
 export type OutletBrand = {
   outletId: string;
   brandId: string;
   featured: boolean;
   relationStatus: string;
+  taxRefundEligible?: boolean;
 };
 
 export {
@@ -66,6 +68,7 @@ export {
   turkeyOutletBrands,
   unitedArabEmiratesOutletBrands,
   kuwaitOutletBrands,
+  southKoreaOutletBrands,
 };
 
 export const outletBrands: OutletBrand[] = [
@@ -99,4 +102,5 @@ export const outletBrands: OutletBrand[] = [
   ...turkeyOutletBrands,
   ...unitedArabEmiratesOutletBrands,
   ...kuwaitOutletBrands,
+  ...southKoreaOutletBrands,
 ];
