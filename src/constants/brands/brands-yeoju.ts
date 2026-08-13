@@ -93,15 +93,6 @@ export const yeojuBrands: Brand[] = [
     brandStatus: "active",
   },
   {
-    brandId: "the-ilma",
-    brandName: "The Ilma",
-    aliases: [],
-    categoryId: "fashion",
-    logo: "",
-    rankingWeight: 50,
-    brandStatus: "active",
-  },
-  {
     brandId: "tom-greyhound",
     brandName: "Tom Greyhound",
     aliases: [],
@@ -509,15 +500,6 @@ export const yeojuBrands: Brand[] = [
   {
     brandId: "lanvin-blanc",
     brandName: "Lanvin Blanc",
-    aliases: [],
-    categoryId: "sportswear",
-    logo: "",
-    rankingWeight: 50,
-    brandStatus: "active",
-  },
-  {
-    brandId: "masterbunny",
-    brandName: "Masterbunny",
     aliases: [],
     categoryId: "sportswear",
     logo: "",

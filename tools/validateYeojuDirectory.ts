@@ -5,7 +5,7 @@ import { cities } from "../src/constants/cities";
 import { categories } from "../src/constants/categories";
 import { outletBrands, southKoreaOutletBrands } from "../src/constants/outletBrands";
 import { outlets, southKoreaOutlets } from "../src/constants/outlets";
-import { yeojuDirectoryCategories } from "../src/constants/yeojuDirectory";
+import { yeojuDirectoryCategories, yeojuNormalizationMappings } from "../src/constants/yeojuDirectory";
 
 const EXPECTED_REPEATED_NAMES = [
   "Bean Pole", "Brooks Brothers", "Daks", "Hazzys", "Lacoste",
@@ -69,8 +69,8 @@ for (const membership of memberships) {
   taxByBrand.set(membership.brandId, membership.taxRefundEligible);
 }
 invariant(conflictingTaxValues === 0, "Expected no conflicting Tax Refund values among repeated memberships");
-invariant(yeojuBrands.length === 106, "Expected 106 new identities");
-invariant([...new Set(canonicalIds)].filter((id) => !yeojuBrands.some((brand) => brand.brandId === id)).length === 144, "Expected 144 reused identities");
+invariant(yeojuBrands.length === 104, "Expected 104 new identities");
+invariant([...new Set(canonicalIds)].filter((id) => !yeojuBrands.some((brand) => brand.brandId === id)).length === 146, "Expected 146 reused identities");
 
 const brandIds = brands.map(({ brandId }) => brandId);
 assertUnique(brandIds, "TypeScript brand ID");
@@ -100,11 +100,38 @@ for (const brand of yeojuBrands) {
   invariant(brand.luxuryLevel === undefined && csvBrand?.luxuryLevel === "", `Invented luxury level on ${brand.brandId}`);
 }
 const yeojuBrandsById = new Map(yeojuBrands.map((brand) => [brand.brandId, brand]));
+const normalizeIdentity = (value: string): string => value.toLocaleLowerCase("en-US").replace(/[^a-z0-9]+/g, "");
+const newYeojuBrandIds = new Set(yeojuBrands.map(({ brandId }) => brandId));
+const establishedIdentityNames = new Set(
+  brands
+    .filter(({ brandId }) => !newYeojuBrandIds.has(brandId))
+    .flatMap(({ brandName, aliases = [] }) => [brandName, ...aliases])
+    .map(normalizeIdentity)
+    .filter(Boolean),
+);
+for (const brand of yeojuBrands) {
+  invariant([brand.brandName, ...(brand.aliases ?? [])].map(normalizeIdentity).filter(Boolean).every((name) => !establishedIdentityNames.has(name)), `New Yeoju identity duplicates an established name or alias: ${brand.brandId}`);
+}
+invariant(yeojuNormalizationMappings.Masterbunny === "master-bunny-edition", "Masterbunny must map to master-bunny-edition");
+invariant(yeojuNormalizationMappings["The Ilma"] === "theilma", "The Ilma must map to theilma");
+invariant(!brandIds.includes("masterbunny") && !csvBrandIds.includes("masterbunny"), "Duplicate masterbunny identity must not exist");
+invariant(!brandIds.includes("the-ilma") && !csvBrandIds.includes("the-ilma"), "Duplicate the-ilma identity must not exist");
+for (const canonicalId of ["master-bunny-edition", "theilma"]) {
+  invariant(brandIds.includes(canonicalId) && csvBrandIds.includes(canonicalId), `Reused canonical identity is missing: ${canonicalId}`);
+}
+const canonicalCsvMetadata = {
+  "master-bunny-edition": { brandName: "Master Bunny Edition", aliases: "Master Bunny;MasterBunnyEdition;MasterBunny", categoryId: "sportswear", originCountryId: "japan", luxuryLevel: "premium", rankingWeight: "72" },
+  theilma: { brandName: "Theilma", aliases: "", categoryId: "fashion", originCountryId: "south-korea", luxuryLevel: "premium", rankingWeight: "68" },
+};
+for (const [brandId, expectedMetadata] of Object.entries(canonicalCsvMetadata)) {
+  const csvBrand = csvBrandsById.get(brandId);
+  invariant(Object.entries(expectedMetadata).every(([field, value]) => csvBrand?.[field] === value), `CSV metadata differs from established TypeScript identity: ${brandId}`);
+}
 invariant(yeojuBrandsById.get("twitzel")?.categoryId === "food-confectionery", "Twitzel must be food-confectionery");
 invariant(yeojuBrandsById.get("yeoju-market-place")?.categoryId === "food", "YEOJU MARKET PLACE must be food");
 const expectedCategoryDistribution: Record<string, number> = {
-  fashion: 36,
-  sportswear: 17,
+  fashion: 35,
+  sportswear: 16,
   kids: 13,
   "shoes-bags": 11,
   food: 7,
@@ -139,4 +166,4 @@ invariant(parseCsv("Cities.csv").some(({ cityId }) => cityId === "yeoju"), "Yeoj
 invariant(parseCsv("Outlets.csv").some(({ outletId }) => outletId === "yeoju-premium-outlets"), "Yeoju outlet is absent from Outlets.csv");
 invariant(parseCsv("Outlets.csv").find(({ outletId }) => outletId === "yeoju-premium-outlets")?.taxFreeAvailable === "TRUE", "CSV Yeoju Tax Refund availability must be TRUE");
 
-console.log("Yeoju directory validation passed: 262 memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (144 reused, 106 new), 250 relationships (217 eligible / 33 ineligible).");
+console.log("Yeoju directory validation passed: 262 memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (146 reused, 104 new), 250 relationships (217 eligible / 33 ineligible).");
