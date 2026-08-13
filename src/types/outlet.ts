@@ -25,6 +25,7 @@ export type Outlet = {
   cityCenterDistanceKm?: number;
   airportDistanceKm?: number;
   websiteUrl?: string;
+  centerMapUrl?: string;
   googleMapsUrl?: string;
   appleMapsUrl?: string;
   yandexMapsUrl?: string;

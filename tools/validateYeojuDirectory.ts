@@ -52,6 +52,7 @@ const EXPECTED_RESTAURANTS = [
 ] as const;
 const EXPECTED_RESTAURANT_SUMMARY = [...new Set(EXPECTED_RESTAURANTS.map(([, name]) => name))];
 const OFFICIAL_DIRECTIONS_URL = "https://app.premiumoutlets.co.kr/rpage/en/map/index/01";
+const OFFICIAL_CENTER_MAP_URL = "https://premiumoutlets.co.kr/assets/attach/download/store/1/map";
 const EXPECTED_TRANSPORTATION_GUIDES = [
   {
     guideId: "myeongdong-to-yeoju-premium-outlets",
@@ -368,6 +369,8 @@ invariant(outlet.cityCenterDistanceKm === undefined && outlet.airportDistanceKm 
 invariant(outlet.storesCountText === "", "Yeoju must not use directory audit totals as a store count");
 invariant((outlet.latitude === "") === (outlet.longitude === ""), "Yeoju coordinates must be either both present or both empty");
 invariant(outlet.latitude === "" && outlet.longitude === "", "Yeoju coordinates must remain empty without defensible official evidence");
+invariant(outlet.centerMapUrl === OFFICIAL_CENTER_MAP_URL, "Yeoju must expose the original official combined Outlets & Village center map");
+invariant(outlet.centerMapUrl !== outlet.heroImage && !outlet.galleryImages.includes(OFFICIAL_CENTER_MAP_URL), "The official center map must not be represented as outlet gallery media");
 
 const metadataParity: Record<string, string> = {
   address: outlet.address,
@@ -388,6 +391,7 @@ const metadataParity: Record<string, string> = {
   cityCenterDistanceKm: outlet.cityCenterDistanceKm === undefined ? "" : String(outlet.cityCenterDistanceKm),
   airportDistanceKm: outlet.airportDistanceKm === undefined ? "" : String(outlet.airportDistanceKm),
   websiteUrl: outlet.websiteUrl ?? "",
+  centerMapUrl: outlet.centerMapUrl ?? "",
   status: outlet.status,
   googleMapsUrl: outlet.googleMapsUrl ?? "",
   appleMapsUrl: outlet.appleMapsUrl ?? "",

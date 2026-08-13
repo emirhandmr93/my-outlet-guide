@@ -14,9 +14,11 @@ export type MapsCardProps = {
   googleText: string;
   appleText: string;
   yandexText: string;
+  centerMapText?: string;
   onPressGoogle: () => void;
   onPressApple: () => void;
   onPressYandex: () => void;
+  onPressCenterMap?: () => void;
 };
 
 export function MapsCard({
@@ -24,9 +26,11 @@ export function MapsCard({
   googleText,
   appleText,
   yandexText,
+  centerMapText,
   onPressGoogle,
   onPressApple,
   onPressYandex,
+  onPressCenterMap,
 }: MapsCardProps) {
   const { t } = useTranslation();
   const { isNativeRTL } = useLayoutDirection();
@@ -70,6 +74,18 @@ export function MapsCard({
             <Text style={styles.secondaryButtonText}>{yandexText}</Text>
           </TouchableOpacity>
         </View>
+
+        {centerMapText && onPressCenterMap ? (
+          <TouchableOpacity
+            style={styles.centerMapButton}
+            activeOpacity={motion.pressOpacity}
+            onPress={onPressCenterMap}
+          >
+            <Text style={styles.centerMapIcon}>🧭</Text>
+            <Text style={styles.centerMapButtonText}>{centerMapText}</Text>
+            <Text style={styles.centerMapArrow}>{isNativeRTL ? "←" : "→"}</Text>
+          </TouchableOpacity>
+        ) : null}
       </View>
     </Card>
   );
@@ -120,6 +136,35 @@ const styles = StyleSheet.create({
   primaryArrow: {
     color: colors.gold,
     fontSize: 22,
+    fontWeight: typography.weightBlack,
+  },
+
+  centerMapButton: {
+    backgroundColor: colors.surfaceSoft,
+    borderRadius: radius.lg,
+    borderWidth: 1,
+    borderColor: colors.border,
+    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.lg,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  centerMapIcon: {
+    fontSize: 18,
+    marginEnd: spacing.sm,
+  },
+
+  centerMapButtonText: {
+    flex: 1,
+    color: colors.textPrimary,
+    fontSize: typography.body,
+    fontWeight: typography.weightBlack,
+  },
+
+  centerMapArrow: {
+    color: colors.primary,
+    fontSize: 20,
     fontWeight: typography.weightBlack,
   },
 

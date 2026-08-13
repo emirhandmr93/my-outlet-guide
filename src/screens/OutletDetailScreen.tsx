@@ -669,9 +669,15 @@ export function OutletDetailScreen() {
           googleText={t("outlet.googleMaps")}
           appleText={t("outlet.appleMaps")}
           yandexText={t("outlet.yandexMaps")}
+          centerMapText={outlet.centerMapUrl ? "CENTER MAP" : undefined}
           onPressGoogle={() => Linking.openURL(outlet.googleMapsUrl)}
           onPressApple={() => Linking.openURL(outlet.appleMapsUrl)}
           onPressYandex={() => Linking.openURL(outlet.yandexMapsUrl)}
+          onPressCenterMap={
+            outlet.centerMapUrl
+              ? () => Linking.openURL(outlet.centerMapUrl as string)
+              : undefined
+          }
         />
 
         <WebsiteCard
