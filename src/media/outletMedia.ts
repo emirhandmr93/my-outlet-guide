@@ -675,6 +675,42 @@ require("../../assets/outlet-images/dubai-outlet-mall/gallery3.png"),
     require("../../assets/outlet-images/deepo-outlet-center/gallery2.webp"),
     require("../../assets/outlet-images/deepo-outlet-center/gallery3.webp"),
   ],
+  "al-khiran-hybrid-outlet-mall": [
+    require("../../assets/outlet-images/al-khiran-hybrid-outlet-mall/hero.webp"),
+    require("../../assets/outlet-images/al-khiran-hybrid-outlet-mall/gallery1.webp"),
+    require("../../assets/outlet-images/al-khiran-hybrid-outlet-mall/gallery2.webp"),
+    require("../../assets/outlet-images/al-khiran-hybrid-outlet-mall/gallery3.webp"),
+  ],
+  "gotemba-premium-outlets": [
+    require("../../assets/outlet-images/gotemba-premium-outlets/hero.webp"),
+    require("../../assets/outlet-images/gotemba-premium-outlets/gallery1.webp"),
+    require("../../assets/outlet-images/gotemba-premium-outlets/gallery2.webp"),
+    require("../../assets/outlet-images/gotemba-premium-outlets/gallery3.webp"),
+  ],
+  "rinku-premium-outlets": [
+    require("../../assets/outlet-images/rinku-premium-outlets/hero.webp"),
+    require("../../assets/outlet-images/rinku-premium-outlets/gallery1.webp"),
+    require("../../assets/outlet-images/rinku-premium-outlets/gallery2.webp"),
+    require("../../assets/outlet-images/rinku-premium-outlets/gallery3.webp"),
+  ],
+  "shanghai-village": [
+    require("../../assets/outlet-images/shanghai-village/hero.webp"),
+    require("../../assets/outlet-images/shanghai-village/gallery1.webp"),
+    require("../../assets/outlet-images/shanghai-village/gallery2.webp"),
+    require("../../assets/outlet-images/shanghai-village/gallery3.webp"),
+  ],
+  "the-outlet-village": [
+    require("../../assets/outlet-images/the-outlet-village/hero.webp"),
+    require("../../assets/outlet-images/the-outlet-village/gallery1.webp"),
+    require("../../assets/outlet-images/the-outlet-village/gallery2.webp"),
+    require("../../assets/outlet-images/the-outlet-village/gallery3.webp"),
+  ],
+  "yeoju-premium-outlets": [
+    require("../../assets/outlet-images/yeoju-premium-outlets/hero.webp"),
+    require("../../assets/outlet-images/yeoju-premium-outlets/gallery1.webp"),
+    require("../../assets/outlet-images/yeoju-premium-outlets/gallery2.webp"),
+    require("../../assets/outlet-images/yeoju-premium-outlets/gallery3.webp"),
+  ],
 };
 
 const productionClearedSourceStatuses = new Set<OutletMediaSourceStatus>([
