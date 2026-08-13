@@ -34,9 +34,7 @@ export function TaxFreeCard({
 }: TaxFreeCardProps) {
   const { t, language } = useTranslation();
   const policyDisplay = rule ? getTaxFreePolicyDisplayModel(rule, language, t) : undefined;
-  const shouldShowOfficeInfo =
-    hasDisplayValue(officeInfo) &&
-    (language !== "tr" || (officeInfo?.length ?? 0) <= 90);
+  const shouldShowOfficeInfo = hasDisplayValue(officeInfo);
   const shouldShowGuideButton = guideButtonLoading || (hasDisplayValue(guideButtonText) && Boolean(onPressGuide));
 
   return (
