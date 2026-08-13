@@ -67,7 +67,13 @@ import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
-import { formatOpeningHoursText, formatOutletStatusLabel, formatReviewSummaryLabel, resolveOutletRetailCountDisplay } from "../utils/outletDisplayFormatters";
+import {
+  formatOpeningHoursText,
+  formatOutletStatusLabel,
+  formatReviewSummaryLabel,
+  resolveOutletCoordinates,
+  resolveOutletRetailCountDisplay,
+} from "../utils/outletDisplayFormatters";
 import { getTargetQuickInfo } from "../constants/targetOutletLocalization";
 import { recordRecentVisit } from "../services/recentVisitsService";
 import { useRestaurantDetailData, useTaxFreeGuideData, useTransportationDetailData } from "../hooks/useDetailData";
@@ -131,6 +137,10 @@ export function OutletDetailScreen() {
     return getOutletMediaImages(outlet, { mode: outletMediaMode });
   }, [outlet.galleryImages, outlet.heroImage, outlet.outletId]);
 
+  const outletCoordinates = useMemo(
+    () => resolveOutletCoordinates(outlet.latitude, outlet.longitude),
+    [outlet.latitude, outlet.longitude],
+  );
   const [selectedImage, setSelectedImage] = useState<OutletMediaImage | null>(
     safeGalleryImages[0] ?? null,
   );
@@ -159,6 +169,13 @@ export function OutletDetailScreen() {
 
   useEffect(() => {
     async function loadWeather() {
+      if (!outletCoordinates) {
+        setWeather({ provider: "Open-Meteo", status: "missing_coordinates" });
+        setWeatherError(false);
+        setWeatherLoading(false);
+        return;
+      }
+
       try {
         setWeatherLoading(true);
         setWeatherError(false);
@@ -167,8 +184,8 @@ export function OutletDetailScreen() {
           {
             key: outlet.outletId,
             label: outlet.name,
-            latitude: Number(outlet.latitude),
-            longitude: Number(outlet.longitude),
+            latitude: outletCoordinates.latitude,
+            longitude: outletCoordinates.longitude,
           },
         );
 
@@ -182,7 +199,7 @@ export function OutletDetailScreen() {
     }
 
     loadWeather();
-  }, [outlet.latitude, outlet.longitude]);
+  }, [outlet.outletId, outlet.name, outletCoordinates?.latitude, outletCoordinates?.longitude]);
 
   const favorite = isFavorite(outlet.outletId);
   const brandCategoryGroups = getBrandCategoryGroupsForOutlet(outlet.outletId);
@@ -347,7 +364,7 @@ export function OutletDetailScreen() {
       ? outlet.airports
           .map((airport) => `${airport.code} • ${airport.distanceKm} km`)
           .join("\n")
-      : `${outlet.airportDistanceKm} km`;
+      : undefined;
 
   function setSectionPosition(section: string, y: number) {
     setSectionPositions((current) => ({ ...current, [section]: y }));
