@@ -7,6 +7,7 @@ import { outletBrands, southKoreaOutletBrands } from "../src/constants/outletBra
 import { outlets, southKoreaOutlets } from "../src/constants/outlets";
 import { restaurants, southKoreaRestaurants } from "../src/constants/restaurants";
 import { southKoreaTransportationGuides, transportationGuides } from "../src/constants/transportationGuides";
+import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
 import { yeojuDirectoryCategories, yeojuNormalizationMappings } from "../src/constants/yeojuDirectory";
 
 const EXPECTED_REPEATED_NAMES = [
@@ -58,7 +59,7 @@ const EXPECTED_TRANSPORTATION_GUIDES = [
     originId: "myeongdong-station",
     transportationType: "bus",
     title: "Myeongdong Station to Yeoju Premium Outlets",
-    estimatedDuration: "Approx. 2h by express bus route; 2h 30min by subway and bus",
+    estimatedDuration: "Approx. 2 hr by express bus route; 2 hr 30 min by subway and bus",
     estimatedCost: "Express bus segment: KRW 6,400 one way",
     recommended: false,
     requiredFragments: ["Myeongdong Station","Line 4","Chungmuro Station","Line 3","Platform 29","Bus 471 from Exit 3","Sadang Station","Line 2","Shinbundang Line","Pangyo Station","Gyeonggang Line","Exit 4","Bus 912, 912-2, or 912-5"],
@@ -69,7 +70,7 @@ const EXPECTED_TRANSPORTATION_GUIDES = [
     originId: "hongik-university-station",
     transportationType: "bus",
     title: "Hongik University Station to Yeoju Premium Outlets",
-    estimatedDuration: "Approx. 1h 30min by express bus route; 2h 30min by subway and bus",
+    estimatedDuration: "Approx. 1 hr 30 min by express bus route; 2 hr 30 min by subway and bus",
     estimatedCost: "Express bus segment: KRW 6,400 one way",
     recommended: false,
     requiredFragments: ["Hongik University Station","Line 2","Dangsan Station","Line 9","Platform 29","Wangsimni Station","Suin-Bundang Line","Imae Station","Gyeonggang Line","Exit 4","Bus 912, 912-2, or 912-5"],
@@ -80,7 +81,7 @@ const EXPECTED_TRANSPORTATION_GUIDES = [
     originId: "gangnam-station",
     transportationType: "bus",
     title: "Gangnam Station to Yeoju Premium Outlets",
-    estimatedDuration: "Approx. 1h 50min by express bus route; 2h by subway and bus",
+    estimatedDuration: "Approx. 1 hr 50 min by express bus route; 2 hr by subway and bus",
     estimatedCost: "Express bus segment: KRW 6,400 one way",
     recommended: false,
     requiredFragments: ["Gangnam Station","Line 2","Kyodae Station","National University of Education Station","Line 3","Platform 29","Shinbundang Line","Pangyo Station","Gyeonggang Line","Exit 4","Bus 912, 912-2, or 912-5"],
@@ -303,6 +304,25 @@ invariant(southKoreaTransportationGuides.every((guide, index) => {
   };
   return transportationFields.every((field) => csvGuide?.[field] === parity[field]);
 }), "TypeScript/CSV Yeoju transportation parity failure");
+const expectedTransportationDurations = new Map([
+  ["myeongdong-to-yeoju-premium-outlets", 120],
+  ["hongik-university-to-yeoju-premium-outlets", 90],
+  ["gangnam-to-yeoju-premium-outlets", 110],
+]);
+const yeojuTransportationRouteFacts = transportationRouteFacts.filter(({ outletId }) => outletId === "yeoju-premium-outlets");
+invariant(yeojuTransportationRouteFacts.length === 3, "Expected one source-backed display fact for every Yeoju transportation guide");
+assertUnique(transportationRouteFacts.flatMap(({ guideId }) => guideId ? [guideId] : []), "global transportation route fact guide ID");
+for (const guide of yeojuTransportationGuides) {
+  invariant(/\b(?:hr|hrs|hour|hours)\b/i.test(guide.estimatedDuration), `Yeoju duration must use a formatter-supported hour unit: ${guide.guideId}`);
+  const fact = yeojuTransportationRouteFacts.find(({ guideId }) => guideId === guide.guideId);
+  const expectedMinutes = expectedTransportationDurations.get(guide.guideId);
+  invariant(fact !== undefined && expectedMinutes !== undefined, `Missing Yeoju transportation display fact: ${guide.guideId}`);
+  invariant(fact.originType === "station" && fact.mode === "bus" && fact.confidence === "exact", `Invalid Yeoju transportation display classification: ${guide.guideId}`);
+  invariant(fact.estimatedDurationMin === expectedMinutes && fact.estimatedDurationMax === expectedMinutes, `Invalid Yeoju source-backed display duration: ${guide.guideId}`);
+  invariant(fact.boardingPoint === guide.steps[0]?.description.replace(/^Start at /, "").replace(/\.$/, ""), `Yeoju display boarding point differs from the guide origin: ${guide.guideId}`);
+  invariant(fact.transferPoints?.includes("Seoul Express Bus Terminal Platform 29") === true, `Platform 29 missing from Yeoju display facts: ${guide.guideId}`);
+  invariant(fact.destination === "Yeoju Premium Outlets" && fact.officialProviderUrl === OFFICIAL_DIRECTIONS_URL, `Yeoju display destination or source URL mismatch: ${guide.guideId}`);
+}
 const transportationIndexSource = fs.readFileSync(path.join(process.cwd(), "src", "constants", "transportationGuides", "index.ts"), "utf8");
 invariant((transportationIndexSource.match(/import \{ southKoreaTransportationGuides \} from "\.\/south-korea";/g) ?? []).length === 1, "South Korea transportation collection must be imported exactly once");
 invariant((transportationIndexSource.match(/^  southKoreaTransportationGuides,$/gm) ?? []).length === 1, "South Korea transportation collection must be exported exactly once");
