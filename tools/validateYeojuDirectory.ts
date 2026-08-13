@@ -99,6 +99,31 @@ for (const brand of yeojuBrands) {
   invariant(brand.originCountryId === undefined && csvBrand?.originCountryId === "", `Unverified origin metadata on ${brand.brandId}`);
   invariant(brand.luxuryLevel === undefined && csvBrand?.luxuryLevel === "", `Invented luxury level on ${brand.brandId}`);
 }
+const yeojuBrandsById = new Map(yeojuBrands.map((brand) => [brand.brandId, brand]));
+invariant(yeojuBrandsById.get("twitzel")?.categoryId === "food-confectionery", "Twitzel must be food-confectionery");
+invariant(yeojuBrandsById.get("yeoju-market-place")?.categoryId === "food", "YEOJU MARKET PLACE must be food");
+const expectedCategoryDistribution: Record<string, number> = {
+  fashion: 36,
+  sportswear: 17,
+  kids: 13,
+  "shoes-bags": 11,
+  food: 7,
+  "restaurants-cafes": 6,
+  accessories: 2,
+  beauty: 2,
+  "home-lifestyle": 2,
+  "jewelry-watches": 2,
+  luxury: 2,
+  services: 2,
+  "department-store": 1,
+  electronics: 1,
+  "food-confectionery": 1,
+  homeware: 1,
+  "food-chocolate": 0,
+};
+for (const [categoryId, expectedCount] of Object.entries(expectedCategoryDistribution)) {
+  invariant(yeojuBrands.filter((brand) => brand.categoryId === categoryId).length === expectedCount, `Expected ${expectedCount} new Yeoju brands in ${categoryId}`);
+}
 for (const group of ["Shoes & Bags", "Sports & Golf & Outdoor", "Kids", "Living"] as const) {
   const newIds = officialCategory.get(group)?.entries.map(({ brandId }) => brandId).filter((id) => yeojuBrands.some((brand) => brand.brandId === id)) ?? [];
   const fashionCount = newIds.filter((id) => yeojuBrands.find((brand) => brand.brandId === id)?.categoryId === "fashion").length;
