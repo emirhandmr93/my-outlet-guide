@@ -9,7 +9,10 @@ import { typography } from "../../theme/typography";
 import { useTranslation } from "../../hooks/useTranslation";
 import { formatReviewCount } from "../../services/reviewsRatingsService";
 import { hasDisplayValue, OutletTaxFreeDisplayStatus } from "../../utils/taxFreeDisplay";
-import type { OutletRetailCountDisplay } from "../../utils/outletDisplayFormatters";
+import {
+  formatOutletDistanceKm,
+  type OutletRetailCountDisplay,
+} from "../../utils/outletDisplayFormatters";
 
 export type QuickFactsCardProps = {
   title: string;
@@ -26,8 +29,8 @@ export type QuickFactsCardProps = {
   retailCountDisplay: OutletRetailCountDisplay;
   taxFreeStatus: OutletTaxFreeDisplayStatus;
   taxFreeSummary?: string;
-  cityCenterDistanceKm: number;
-  airportDistanceKm: number;
+  cityCenterDistanceKm?: number;
+  airportDistanceKm?: number;
   nearestAirportName?: string;
   airportSummary?: string;
   reviewCountLabel: string;
@@ -87,11 +90,13 @@ export function QuickFactsCard({
   onPressRating,
 }: QuickFactsCardProps) {
   const { t } = useTranslation();
-  const airportText =
-    airportSummary ||
-    (nearestAirportName
-      ? `${nearestAirportName} • ${airportDistanceKm} km`
-      : `${airportDistanceKm} km`);
+  const airportDistanceText = formatOutletDistanceKm(airportDistanceKm);
+  const airportText = hasDisplayValue(airportSummary)
+    ? airportSummary?.trim()
+    : hasDisplayValue(nearestAirportName)
+      ? [nearestAirportName, airportDistanceText].filter(Boolean).join(" • ")
+      : airportDistanceText;
+  const cityCenterText = formatOutletDistanceKm(cityCenterDistanceKm);
 
   const reviewCountText = formatReviewCount(reviewCount);
   const ratingText = rating ? `${rating}${reviewCountText ? ` (${reviewCountText})` : ""}` : t("sharedCards.quickFacts.noRating");
@@ -116,8 +121,12 @@ export function QuickFactsCard({
           value={`${t(`taxFree.${taxFreeStatus}`)}${taxFreeSummary ? `\n${taxFreeSummary}` : ""}`}
           onPress={onPressTaxFree}
         />
-        <FactTile icon="✈️" label={t("sharedCards.quickFacts.airports")} value={airportText} onPress={onPressAirport} />
-        <FactTile icon="🚗" label={t("sharedCards.quickFacts.cityCenter")} value={`${cityCenterDistanceKm} km`} />
+        {airportText ? (
+          <FactTile icon="✈️" label={t("sharedCards.quickFacts.airports")} value={airportText} onPress={onPressAirport} />
+        ) : null}
+        {cityCenterText ? (
+          <FactTile icon="🚗" label={t("sharedCards.quickFacts.cityCenter")} value={cityCenterText} />
+        ) : null}
         <FactTile icon="⭐" label={t("sharedCards.quickFacts.rating")} value={ratingText} onPress={onPressRating} />
       </View>
     </Card>
