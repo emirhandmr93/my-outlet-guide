@@ -46,7 +46,9 @@ export function RestaurantsCard({
               <View style={styles.restaurantContent}>
                 <Text style={styles.restaurantTitle}>{restaurant.restaurantName}</Text>
                 <Text style={styles.restaurantCategory}>{formatRestaurantCategoryLabel(restaurant.category, t)}</Text>
-                <Text style={styles.restaurantPrice}>{restaurant.priceLevel}</Text>
+                {restaurant.priceLevel.trim() ? (
+                  <Text style={styles.restaurantPrice}>{restaurant.priceLevel}</Text>
+                ) : null}
               </View>
             </View>
           ))}

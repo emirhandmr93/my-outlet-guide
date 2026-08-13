@@ -380,9 +380,14 @@ invariant(outlet.centerMapUrl !== outlet.heroImage && !outlet.galleryImages.incl
 
 const outletDetailSource = fs.readFileSync(path.join(process.cwd(), "src", "screens", "OutletDetailScreen.tsx"), "utf8");
 const quickFactsSource = fs.readFileSync(path.join(process.cwd(), "src", "components", "cards", "QuickFactsCard.tsx"), "utf8");
+const taxFreeCardSource = fs.readFileSync(path.join(process.cwd(), "src", "components", "cards", "TaxFreeCard.tsx"), "utf8");
+const restaurantsCardSource = fs.readFileSync(path.join(process.cwd(), "src", "components", "cards", "RestaurantsCard.tsx"), "utf8");
 invariant(outletDetailSource.includes("resolveOutletCoordinates(outlet.latitude, outlet.longitude)"), "Outlet detail must guard weather requests with verified coordinates");
 invariant(!outletDetailSource.includes("latitude: Number(outlet.latitude)") && !outletDetailSource.includes("longitude: Number(outlet.longitude)"), "Outlet detail must not coerce empty coordinates to 0,0");
 invariant(quickFactsSource.includes("formatOutletDistanceKm(airportDistanceKm)") && quickFactsSource.includes("formatOutletDistanceKm(cityCenterDistanceKm)"), "Quick facts must hide unverified distance metadata");
+invariant(taxFreeCardSource.includes("const shouldShowOfficeInfo = hasDisplayValue(officeInfo);"), "Verified Tax Refund office details must remain visible in every language");
+invariant(!taxFreeCardSource.includes("(officeInfo?.length ?? 0) <= 90"), "Tax Refund office details must not be hidden by text length");
+invariant(restaurantsCardSource.includes("restaurant.priceLevel.trim() ? ("), "Restaurant cards must hide unverified empty price levels");
 
 const metadataParity: Record<string, string> = {
   address: outlet.address,
