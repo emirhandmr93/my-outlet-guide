@@ -1,0 +1,10 @@
+import assert from "node:assert/strict";
+import { yeojuPremiumOutletsCategoryAudit as categories, yeojuPremiumOutletsDirectory as directory, yeojuPremiumOutletsDirectoryTotals as totals, yeojuPremiumOutletsTaxRefundEvidence as tax } from "../src/constants/yeojuPremiumOutletsSnapshot";
+import { southKoreaOutletBrands } from "../src/constants/outletBrands/south-korea";
+import { southKoreaOutlets } from "../src/constants/outlets/south-korea";
+assert.equal(categories.length, 11); assert.equal(totals.declaredMemberships, 261); assert.equal(totals.observedMemberships, 262); assert.equal(totals.uniqueDisplayNames, 251); assert.equal(totals.taxRefundEligible, 228); assert.equal(totals.taxRefundIneligible, 34);
+assert.deepEqual(categories.find(row => row.category === "Women’s Fashion"), { category: "Women’s Fashion", declaredCount: 26, observedCount: 27 });
+assert.equal(directory.filter(row => row.displayName === "Heritage Kumkang")[0]?.taxRefundAvailable, true); assert(directory.every(row => row.sourceScreenshot)); assert(directory.every(row => row.canonicalBrandId));
+assert.equal(new Set(southKoreaOutletBrands.map(row => row.brandId)).size, southKoreaOutletBrands.length); assert.deepEqual(new Set(southKoreaOutletBrands.map(row => row.brandId)), new Set(directory.map(row => row.canonicalBrandId)));
+const outlet=southKoreaOutlets[0]; assert.equal(outlet.address, "360, Myeongpum-ro, Yeoju-si, Gyeonggi-do, Republic of Korea"); assert.equal(outlet.latitude, ""); assert.equal(outlet.longitude, ""); assert(outlet.taxFreeAvailable); assert.equal(outlet.minimumTaxFreeSpend, "KRW 15,000"); assert.deepEqual(tax.participatingOperators, ["GLOBAL TAX FREE", "GLOBAL BLUE", "NICE TAX FREE"]);
+console.log(JSON.stringify({ ...totals, canonicalBrandCount: southKoreaOutletBrands.length, newBrandCount: 106 }, null, 2));
