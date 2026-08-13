@@ -1802,6 +1802,81 @@ export const transportationRouteFacts: TransportationRouteFact[] = [
     confidence: "partial",
     officialCheckNote: "Check traffic, taxi fare, taxi-stand availability, and return pickup before travel.",
   },
+  {
+    guideId: "myeongdong-to-yeoju-premium-outlets",
+    outletId: "yeoju-premium-outlets",
+    originType: "station",
+    mode: "bus",
+    provider: "Seoul Metro / direct Yeoju Premium Outlets express bus",
+    line: "Line 4 / Line 3 / Seoul Express Bus Terminal Platform 29",
+    boardingPoint: "Myeongdong Station",
+    transferPoints: [
+      "Chungmuro Station",
+      "Express Bus Terminal Station",
+      "Seoul Express Bus Terminal Platform 29",
+    ],
+    alightingPoint: "Yeoju Premium Outlets",
+    destination: "Yeoju Premium Outlets",
+    estimatedDurationMin: 120,
+    estimatedDurationMax: 120,
+    sourceNote:
+      "Official Yeoju Premium Outlets directions cover both the express-bus route and the subway/local-bus alternative from Myeongdong.",
+    officialCheckNote:
+      "Confirm the current route and timetable on the official Yeoju Premium Outlets directions page before travel.",
+    confidence: "exact",
+    officialProviderUrl:
+      "https://app.premiumoutlets.co.kr/rpage/en/map/index/01",
+  },
+  {
+    guideId: "hongik-university-to-yeoju-premium-outlets",
+    outletId: "yeoju-premium-outlets",
+    originType: "station",
+    mode: "bus",
+    provider: "Seoul Metro / direct Yeoju Premium Outlets express bus",
+    line: "Line 2 / Line 9 / Seoul Express Bus Terminal Platform 29",
+    boardingPoint: "Hongik University Station",
+    transferPoints: [
+      "Dangsan Station",
+      "Express Bus Terminal Station",
+      "Seoul Express Bus Terminal Platform 29",
+    ],
+    alightingPoint: "Yeoju Premium Outlets",
+    destination: "Yeoju Premium Outlets",
+    estimatedDurationMin: 90,
+    estimatedDurationMax: 90,
+    sourceNote:
+      "Official Yeoju Premium Outlets directions cover both the express-bus route and the subway/local-bus alternative from Hongik University.",
+    officialCheckNote:
+      "Confirm the current route and timetable on the official Yeoju Premium Outlets directions page before travel.",
+    confidence: "exact",
+    officialProviderUrl:
+      "https://app.premiumoutlets.co.kr/rpage/en/map/index/01",
+  },
+  {
+    guideId: "gangnam-to-yeoju-premium-outlets",
+    outletId: "yeoju-premium-outlets",
+    originType: "station",
+    mode: "bus",
+    provider: "Seoul Metro / direct Yeoju Premium Outlets express bus",
+    line: "Line 2 / Line 3 / Seoul Express Bus Terminal Platform 29",
+    boardingPoint: "Gangnam Station",
+    transferPoints: [
+      "Kyodae Station (National University of Education Station)",
+      "Express Bus Terminal Station",
+      "Seoul Express Bus Terminal Platform 29",
+    ],
+    alightingPoint: "Yeoju Premium Outlets",
+    destination: "Yeoju Premium Outlets",
+    estimatedDurationMin: 110,
+    estimatedDurationMax: 110,
+    sourceNote:
+      "Official Yeoju Premium Outlets directions cover both the express-bus route and the subway/local-bus alternative from Gangnam.",
+    officialCheckNote:
+      "Confirm the current route and timetable on the official Yeoju Premium Outlets directions page before travel.",
+    confidence: "exact",
+    officialProviderUrl:
+      "https://app.premiumoutlets.co.kr/rpage/en/map/index/01",
+  },
 ];
 
 export function getTransportationRouteFact(guideId: string | undefined) {
