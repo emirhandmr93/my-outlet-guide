@@ -156,6 +156,38 @@ export function formatOpeningHoursText(value: string, language: TranslationLangu
     .replace(/public holidays/gi, "resmî tatiller").replace(/bank holidays/gi, "resmî tatiller");
 }
 
+export type OutletCoordinates = { latitude: number; longitude: number };
+
+function parseFiniteNumber(value: unknown): number | null {
+  if (typeof value === "string" && value.trim() === "") return null;
+  const parsed = typeof value === "number" ? value : Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+export function resolveOutletCoordinates(
+  latitude: unknown,
+  longitude: unknown,
+): OutletCoordinates | null {
+  const parsedLatitude = parseFiniteNumber(latitude);
+  const parsedLongitude = parseFiniteNumber(longitude);
+  if (
+    parsedLatitude === null ||
+    parsedLongitude === null ||
+    parsedLatitude < -90 ||
+    parsedLatitude > 90 ||
+    parsedLongitude < -180 ||
+    parsedLongitude > 180
+  ) {
+    return null;
+  }
+  return { latitude: parsedLatitude, longitude: parsedLongitude };
+}
+
+export function formatOutletDistanceKm(value: unknown): string | undefined {
+  const distance = parseFiniteNumber(value);
+  return distance !== null && distance >= 0 ? `${distance} km` : undefined;
+}
+
 export function formatReviewCountLabel(count: number, t: (key: string) => string) {
   return `${count} ${t("review.countUnit")}`;
 }
