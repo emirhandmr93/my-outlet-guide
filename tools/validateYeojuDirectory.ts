@@ -6,6 +6,8 @@ import { categories } from "../src/constants/categories";
 import { outletBrands, southKoreaOutletBrands } from "../src/constants/outletBrands";
 import { outlets, southKoreaOutlets } from "../src/constants/outlets";
 import { restaurants, southKoreaRestaurants } from "../src/constants/restaurants";
+import { southKoreaTransportationGuides, transportationGuides } from "../src/constants/transportationGuides";
+import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
 import { yeojuDirectoryCategories, yeojuNormalizationMappings } from "../src/constants/yeojuDirectory";
 
 const EXPECTED_REPEATED_NAMES = [
@@ -49,6 +51,42 @@ const EXPECTED_RESTAURANTS = [
   ["hwasunbanjeom-yeoju", "Hwasunbanjeom", "Taste Village"],
 ] as const;
 const EXPECTED_RESTAURANT_SUMMARY = [...new Set(EXPECTED_RESTAURANTS.map(([, name]) => name))];
+const OFFICIAL_DIRECTIONS_URL = "https://app.premiumoutlets.co.kr/rpage/en/map/index/01";
+const EXPECTED_TRANSPORTATION_GUIDES = [
+  {
+    guideId: "myeongdong-to-yeoju-premium-outlets",
+    originType: "station",
+    originId: "myeongdong-station",
+    transportationType: "bus",
+    title: "Myeongdong Station to Yeoju Premium Outlets",
+    estimatedDuration: "Approx. 2 hr by express bus route; 2 hr 30 min by subway and bus",
+    estimatedCost: "Express bus segment: KRW 6,400 one way",
+    recommended: false,
+    requiredFragments: ["Myeongdong Station","Line 4","Chungmuro Station","Line 3","Platform 29","Bus 471 from Exit 3","Sadang Station","Line 2","Shinbundang Line","Pangyo Station","Gyeonggang Line","Exit 4","Bus 912, 912-2, or 912-5"],
+  },
+  {
+    guideId: "hongik-university-to-yeoju-premium-outlets",
+    originType: "station",
+    originId: "hongik-university-station",
+    transportationType: "bus",
+    title: "Hongik University Station to Yeoju Premium Outlets",
+    estimatedDuration: "Approx. 1 hr 30 min by express bus route; 2 hr 30 min by subway and bus",
+    estimatedCost: "Express bus segment: KRW 6,400 one way",
+    recommended: false,
+    requiredFragments: ["Hongik University Station","Line 2","Dangsan Station","Line 9","Platform 29","Wangsimni Station","Suin-Bundang Line","Imae Station","Gyeonggang Line","Exit 4","Bus 912, 912-2, or 912-5"],
+  },
+  {
+    guideId: "gangnam-to-yeoju-premium-outlets",
+    originType: "station",
+    originId: "gangnam-station",
+    transportationType: "bus",
+    title: "Gangnam Station to Yeoju Premium Outlets",
+    estimatedDuration: "Approx. 1 hr 50 min by express bus route; 2 hr by subway and bus",
+    estimatedCost: "Express bus segment: KRW 6,400 one way",
+    recommended: false,
+    requiredFragments: ["Gangnam Station","Line 2","Kyodae Station","National University of Education Station","Line 3","Platform 29","Shinbundang Line","Pangyo Station","Gyeonggang Line","Exit 4","Bus 912, 912-2, or 912-5"],
+  },
+] as const;
 const EXPECTED_SERVICES = [
   "Information Center", "Stroller Rental", "Wheelchair Rental", "Tax-Free Shopping",
   "Payment Methods", "Free Circular Bus", "Shinsegae Gift Certificates", "ATM",
@@ -222,6 +260,74 @@ invariant((restaurantIndexSource.match(/import \{ southKoreaRestaurants \} from 
 invariant((restaurantIndexSource.match(/^  southKoreaRestaurants,$/gm) ?? []).length === 1, "South Korea restaurant collection must be exported exactly once");
 invariant((restaurantIndexSource.match(/^  \.\.\.southKoreaRestaurants,$/gm) ?? []).length === 1, "South Korea restaurant collection must be flattened exactly once");
 
+const yeojuTransportationGuides = transportationGuides.filter(({ outletId }) => outletId === "yeoju-premium-outlets");
+invariant(yeojuTransportationGuides.length === 3 && southKoreaTransportationGuides.length === 3, "Expected exactly three Yeoju origin transportation guides");
+invariant(yeojuTransportationGuides.every((guide, index) => guide === southKoreaTransportationGuides[index]), "South Korea transportation collection must be included exactly once in the global index");
+assertUnique(transportationGuides.map(({ guideId }) => guideId), "global transportation guide ID");
+for (const [index, expected] of EXPECTED_TRANSPORTATION_GUIDES.entries()) {
+  const guide = yeojuTransportationGuides[index];
+  invariant(guide?.guideId === expected.guideId, `Unexpected Yeoju transportation guide at index ${index}`);
+  invariant(guide.outletId === "yeoju-premium-outlets", `Transportation outlet mismatch: ${guide.guideId}`);
+  invariant(guide.originType === expected.originType && guide.originId === expected.originId, `Transportation origin mismatch: ${guide.guideId}`);
+  invariant(guide.transportationType === expected.transportationType, `Transportation type mismatch: ${guide.guideId}`);
+  invariant(guide.title === expected.title && guide.estimatedDuration === expected.estimatedDuration, `Transportation title or duration mismatch: ${guide.guideId}`);
+  invariant(guide.estimatedCost === expected.estimatedCost && guide.recommended === expected.recommended, `Transportation cost or recommendation mismatch: ${guide.guideId}`);
+  invariant(guide.updatedAt === "2026-08-13", `Transportation update date mismatch: ${guide.guideId}`);
+  invariant(guide.steps.every(({ order, description }, stepIndex) => order === stepIndex + 1 && description.length > 0), `Invalid step sequence: ${guide.guideId}`);
+  const descriptions = guide.steps.map(({ description }) => description).join(" ");
+  invariant(expected.requiredFragments.every((fragment) => descriptions.includes(fragment)), `Official route detail missing: ${guide.guideId}`);
+  invariant(descriptions.includes("KRW 6,400 one way"), `Express bus fare missing: ${guide.guideId}`);
+  invariant(descriptions.includes(OFFICIAL_DIRECTIONS_URL), `Official source URL missing: ${guide.guideId}`);
+}
+const timetableText = yeojuTransportationGuides.flatMap(({ steps }) => steps.map(({ description }) => description)).join(" ");
+for (const timetableFragment of [
+  "weekday: from Gangnam 09:00, 10:00, 11:00, 13:00, 14:00, 15:00, 17:00, 19:00; from Yeoju 11:00, 12:00, 13:00, 15:00, 16:00, 17:00, 19:00, 21:00",
+  "weekend and public holiday: from Gangnam 09:00, 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 17:00, 18:00, 19:00; from Yeoju 11:00, 12:00, 13:00, 14:00, 15:00, 16:00, 17:00, 19:00, 20:00, 21:00",
+]) invariant(timetableText.includes(timetableFragment), "Complete official direct express bus timetable is missing");
+const csvYeojuTransportationGuides = parseCsv("TransportationGuides.csv").filter(({ outletId }) => outletId === "yeoju-premium-outlets");
+invariant(csvYeojuTransportationGuides.length === 3, "Expected exactly three CSV Yeoju transportation guides");
+const transportationFields = ["guideId", "outletId", "originType", "originId", "transportationType", "title", "estimatedDuration", "estimatedCost", "recommended", "steps", "updatedAt"] as const;
+invariant(southKoreaTransportationGuides.every((guide, index) => {
+  const csvGuide = csvYeojuTransportationGuides[index];
+  const parity = {
+    guideId: guide.guideId,
+    outletId: guide.outletId,
+    originType: guide.originType,
+    originId: guide.originId,
+    transportationType: guide.transportationType,
+    title: guide.title,
+    estimatedDuration: guide.estimatedDuration,
+    estimatedCost: guide.estimatedCost,
+    recommended: guide.recommended ? "TRUE" : "FALSE",
+    steps: guide.steps.map(({ order, description }) => `${order}:${description}`).join("|"),
+    updatedAt: guide.updatedAt,
+  };
+  return transportationFields.every((field) => csvGuide?.[field] === parity[field]);
+}), "TypeScript/CSV Yeoju transportation parity failure");
+const expectedTransportationDurations = new Map([
+  ["myeongdong-to-yeoju-premium-outlets", 120],
+  ["hongik-university-to-yeoju-premium-outlets", 90],
+  ["gangnam-to-yeoju-premium-outlets", 110],
+]);
+const yeojuTransportationRouteFacts = transportationRouteFacts.filter(({ outletId }) => outletId === "yeoju-premium-outlets");
+invariant(yeojuTransportationRouteFacts.length === 3, "Expected one source-backed display fact for every Yeoju transportation guide");
+assertUnique(transportationRouteFacts.flatMap(({ guideId }) => guideId ? [guideId] : []), "global transportation route fact guide ID");
+for (const guide of yeojuTransportationGuides) {
+  invariant(/\b(?:hr|hrs|hour|hours)\b/i.test(guide.estimatedDuration), `Yeoju duration must use a formatter-supported hour unit: ${guide.guideId}`);
+  const fact = yeojuTransportationRouteFacts.find(({ guideId }) => guideId === guide.guideId);
+  const expectedMinutes = expectedTransportationDurations.get(guide.guideId);
+  invariant(fact !== undefined && expectedMinutes !== undefined, `Missing Yeoju transportation display fact: ${guide.guideId}`);
+  invariant(fact.originType === "station" && fact.mode === "bus" && fact.confidence === "exact", `Invalid Yeoju transportation display classification: ${guide.guideId}`);
+  invariant(fact.estimatedDurationMin === expectedMinutes && fact.estimatedDurationMax === expectedMinutes, `Invalid Yeoju source-backed display duration: ${guide.guideId}`);
+  invariant(fact.boardingPoint === guide.steps[0]?.description.replace(/^Start at /, "").replace(/\.$/, ""), `Yeoju display boarding point differs from the guide origin: ${guide.guideId}`);
+  invariant(fact.transferPoints?.includes("Seoul Express Bus Terminal Platform 29") === true, `Platform 29 missing from Yeoju display facts: ${guide.guideId}`);
+  invariant(fact.destination === "Yeoju Premium Outlets" && fact.officialProviderUrl === OFFICIAL_DIRECTIONS_URL, `Yeoju display destination or source URL mismatch: ${guide.guideId}`);
+}
+const transportationIndexSource = fs.readFileSync(path.join(process.cwd(), "src", "constants", "transportationGuides", "index.ts"), "utf8");
+invariant((transportationIndexSource.match(/import \{ southKoreaTransportationGuides \} from "\.\/south-korea";/g) ?? []).length === 1, "South Korea transportation collection must be imported exactly once");
+invariant((transportationIndexSource.match(/^  southKoreaTransportationGuides,$/gm) ?? []).length === 1, "South Korea transportation collection must be exported exactly once");
+invariant((transportationIndexSource.match(/^  \.\.\.southKoreaTransportationGuides,$/gm) ?? []).length === 1, "South Korea transportation collection must be flattened exactly once");
+
 invariant(outlet.address === OFFICIAL_ADDRESS, "Yeoju address differs from the exact official English address");
 invariant(outlet.openingHours === OFFICIAL_OPENING_HOURS, "Yeoju seasonal opening hours differ from the verified schedule");
 invariant(outlet.services.length === EXPECTED_SERVICES.length, "Yeoju must have exactly 25 verified services and facilities");
@@ -291,4 +397,4 @@ for (const [field, expectedValue] of Object.entries(metadataParity)) {
   invariant(csvOutlet[field] === expectedValue, `TypeScript/CSV Yeoju metadata mismatch: ${field}`);
 }
 
-console.log("Yeoju directory validation passed: 30 restaurant memberships (28 unique names; categories 5/10/15), 262 brand memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (146 reused, 104 new), 250 relationships (217 eligible / 33 ineligible).");
+console.log("Yeoju directory validation passed: 3 origin transportation guides, 30 restaurant memberships (28 unique names; categories 5/10/15), 262 brand memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (146 reused, 104 new), 250 relationships (217 eligible / 33 ineligible).");
