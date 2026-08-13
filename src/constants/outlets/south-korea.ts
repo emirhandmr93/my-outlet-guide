@@ -78,6 +78,7 @@ export const southKoreaOutlets: Outlet[] = [
     minimumTaxFreeSpend: "KRW 15,000",
     taxFreeOfficeInfo: "Tax Refund is available only at participating stores marked GLOBAL TAX FREE, GLOBAL BLUE, NICE TAX FREE, or another eligible Tax Refund operator. On-site kiosks are located at the East Bus Stop and West Information Center. Minimum purchase: KRW 15,000. Downtown refund limit: KRW 6,000,000; immediate refund limit per purchase: KRW 1,000,000; total immediate refund limit during the stay: KRW 5,000,000. Eligibility, documentation, customs validation and export-within-three-months requirements apply.",
     websiteUrl: "https://premiumoutlets.co.kr/rpage/en/main/index/01",
+    centerMapUrl: "https://premiumoutlets.co.kr/assets/attach/download/store/1/map",
     googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Yeoju%20Premium%20Outlets%2C%20360%2C%20Myeongpum-ro%2C%20Yeoju-si%2C%20Gyeonggi-do%2C%20Republic%20of%20Korea",
     appleMapsUrl: "https://maps.apple.com/?q=Yeoju%20Premium%20Outlets&address=360%2C%20Myeongpum-ro%2C%20Yeoju-si%2C%20Gyeonggi-do%2C%20Republic%20of%20Korea",
     yandexMapsUrl: "https://yandex.com/maps/?text=Yeoju%20Premium%20Outlets%2C%20360%2C%20Myeongpum-ro%2C%20Yeoju-si%2C%20Gyeonggi-do%2C%20Republic%20of%20Korea",
