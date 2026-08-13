@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { brands, yeojuBrands } from "../src/constants/brands";
 import { cities } from "../src/constants/cities";
+import { categories } from "../src/constants/categories";
 import { outletBrands, southKoreaOutletBrands } from "../src/constants/outletBrands";
 import { outlets, southKoreaOutlets } from "../src/constants/outlets";
 import { yeojuDirectoryCategories } from "../src/constants/yeojuDirectory";
@@ -47,6 +48,7 @@ const memberships = yeojuDirectoryCategories.flatMap(({ categoryName, entries })
 const displayNames = memberships.map(({ displayName }) => displayName);
 const canonicalIds = memberships.map(({ brandId }) => brandId);
 const women = yeojuDirectoryCategories.find(({ categoryName }) => categoryName === "Women’s Fashion");
+const officialCategory = new Map(yeojuDirectoryCategories.map((category) => [category.categoryName, category]));
 
 invariant(yeojuDirectoryCategories.length === 11, "Expected 11 category headers");
 invariant(yeojuDirectoryCategories.reduce((sum, category) => sum + category.displayedCount, 0) === 261, "Expected displayed total 261");
@@ -60,11 +62,13 @@ invariant(women?.displayedCount === 26 && women.entries.length === 27, "Women’
 for (const name of EXPECTED_REPEATED_NAMES) invariant(displayNames.filter((value) => value === name).length === 2, `Missing repeated membership: ${name}`);
 
 const taxByBrand = new Map<string, boolean>();
+let conflictingTaxValues = 0;
 for (const membership of memberships) {
   const previous = taxByBrand.get(membership.brandId);
-  invariant(previous === undefined || previous === membership.taxRefundEligible, `Conflicting Tax Refund value: ${membership.brandId}`);
+  if (previous !== undefined && previous !== membership.taxRefundEligible) conflictingTaxValues += 1;
   taxByBrand.set(membership.brandId, membership.taxRefundEligible);
 }
+invariant(conflictingTaxValues === 0, "Expected no conflicting Tax Refund values among repeated memberships");
 invariant(yeojuBrands.length === 106, "Expected 106 new identities");
 invariant([...new Set(canonicalIds)].filter((id) => !yeojuBrands.some((brand) => brand.brandId === id)).length === 144, "Expected 144 reused identities");
 
@@ -73,19 +77,41 @@ assertUnique(brandIds, "TypeScript brand ID");
 invariant([...new Set(canonicalIds)].every((id) => brandIds.includes(id)), "A directory brand is absent from TypeScript");
 assertUnique(southKoreaOutletBrands.map(({ brandId }) => brandId), "Yeoju relationship");
 invariant(southKoreaOutletBrands.length === 250, "Expected 250 Yeoju relationships");
+invariant(southKoreaOutletBrands.filter(({ taxRefundEligible }) => taxRefundEligible).length === 217, "Expected 217 eligible Yeoju relationships");
+invariant(southKoreaOutletBrands.filter(({ taxRefundEligible }) => !taxRefundEligible).length === 33, "Expected 33 ineligible Yeoju relationships");
 invariant(southKoreaOutletBrands.every(({ brandId, taxRefundEligible }) => taxByBrand.get(brandId) === taxRefundEligible), "Relationship Tax Refund values differ from audit");
 invariant(outletBrands.includes(southKoreaOutletBrands[0]), "South Korea relationships are not registered in the index");
 invariant(outlets.includes(southKoreaOutlets[0]) && southKoreaOutlets[0]?.outletId === "yeoju-premium-outlets", "Yeoju outlet is not exported");
+invariant(southKoreaOutlets[0]?.taxFreeAvailable === true, "Yeoju must indicate that participating Tax Refund stores are available");
 invariant(cities.some(({ cityId }) => cityId === "yeoju"), "Yeoju city is not exported");
 
 const csvBrands = parseCsv("Brands.csv");
 const csvBrandIds = csvBrands.map(({ brandId }) => brandId);
 assertUnique(csvBrandIds, "CSV brand ID");
 invariant([...new Set(canonicalIds)].every((id) => csvBrandIds.includes(id)), "A directory brand is absent from Brands.csv");
+const categoryIds = new Set(categories.map(({ categoryId }) => categoryId));
+const csvBrandsById = new Map(csvBrands.map((brand) => [brand.brandId, brand]));
+for (const brand of yeojuBrands) {
+  const csvBrand = csvBrandsById.get(brand.brandId);
+  invariant(categoryIds.has(brand.categoryId), `Unknown category for ${brand.brandId}: ${brand.categoryId}`);
+  invariant(csvBrand?.categoryId === brand.categoryId, `TypeScript/CSV category mismatch: ${brand.brandId}`);
+  invariant(brand.originCountryId !== "unknown" && csvBrand?.originCountryId !== "unknown", `Placeholder origin on ${brand.brandId}`);
+  invariant(brand.originCountryId === undefined && csvBrand?.originCountryId === "", `Unverified origin metadata on ${brand.brandId}`);
+  invariant(brand.luxuryLevel === undefined && csvBrand?.luxuryLevel === "", `Invented luxury level on ${brand.brandId}`);
+}
+for (const group of ["Shoes & Bags", "Sports & Golf & Outdoor", "Kids", "Living"] as const) {
+  const newIds = officialCategory.get(group)?.entries.map(({ brandId }) => brandId).filter((id) => yeojuBrands.some((brand) => brand.brandId === id)) ?? [];
+  const fashionCount = newIds.filter((id) => yeojuBrands.find((brand) => brand.brandId === id)?.categoryId === "fashion").length;
+  invariant(fashionCount <= (group === "Shoes & Bags" ? 1 : 0), `${group} brands were mass-assigned to fashion`);
+}
 const csvRelationships = parseCsv("OutletBrands.csv").filter(({ outletId }) => outletId === "yeoju-premium-outlets");
 invariant(csvRelationships.length === 250, "Expected 250 CSV Yeoju relationships");
 assertUnique(csvRelationships.map(({ brandId }) => brandId), "CSV Yeoju relationship");
+invariant(csvRelationships.filter(({ taxRefundEligible }) => taxRefundEligible === "TRUE").length === 217, "Expected 217 eligible CSV Yeoju relationships");
+invariant(csvRelationships.filter(({ taxRefundEligible }) => taxRefundEligible === "FALSE").length === 33, "Expected 33 ineligible CSV Yeoju relationships");
+invariant(csvRelationships.every(({ brandId, taxRefundEligible }) => taxRefundEligible === (taxByBrand.get(brandId) ? "TRUE" : "FALSE")), "CSV relationship Tax Refund values differ from audit");
 invariant(parseCsv("Cities.csv").some(({ cityId }) => cityId === "yeoju"), "Yeoju city is absent from Cities.csv");
 invariant(parseCsv("Outlets.csv").some(({ outletId }) => outletId === "yeoju-premium-outlets"), "Yeoju outlet is absent from Outlets.csv");
+invariant(parseCsv("Outlets.csv").find(({ outletId }) => outletId === "yeoju-premium-outlets")?.taxFreeAvailable === "TRUE", "CSV Yeoju Tax Refund availability must be TRUE");
 
-console.log("Yeoju directory validation passed: 262 memberships, 251 display names, 250 identities (144 reused, 106 new), 228 eligible / 34 ineligible.");
+console.log("Yeoju directory validation passed: 262 memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (144 reused, 106 new), 250 relationships (217 eligible / 33 ineligible).");

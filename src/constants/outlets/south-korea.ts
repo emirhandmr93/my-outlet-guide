@@ -18,7 +18,7 @@ export const southKoreaOutlets: Outlet[] = [
     reviewCount: 0,
     services: [],
     restaurants: [],
-    taxFreeAvailable: false,
+    taxFreeAvailable: true,
     status: "active",
   },
 ];
