@@ -8,7 +8,7 @@ export const southKoreaTransportationGuides: TransportationGuide[] = [
     originId: "myeongdong-station",
     transportationType: "bus",
     title: "Myeongdong Station to Yeoju Premium Outlets",
-    estimatedDuration: "Approx. 2h by express bus route; 2h 30min by subway and bus",
+    estimatedDuration: "Approx. 2 hr by express bus route; 2 hr 30 min by subway and bus",
     estimatedCost: "Express bus segment: KRW 6,400 one way",
     recommended: false,
     steps: [
@@ -34,7 +34,7 @@ export const southKoreaTransportationGuides: TransportationGuide[] = [
     originId: "hongik-university-station",
     transportationType: "bus",
     title: "Hongik University Station to Yeoju Premium Outlets",
-    estimatedDuration: "Approx. 1h 30min by express bus route; 2h 30min by subway and bus",
+    estimatedDuration: "Approx. 1 hr 30 min by express bus route; 2 hr 30 min by subway and bus",
     estimatedCost: "Express bus segment: KRW 6,400 one way",
     recommended: false,
     steps: [
@@ -60,7 +60,7 @@ export const southKoreaTransportationGuides: TransportationGuide[] = [
     originId: "gangnam-station",
     transportationType: "bus",
     title: "Gangnam Station to Yeoju Premium Outlets",
-    estimatedDuration: "Approx. 1h 50min by express bus route; 2h by subway and bus",
+    estimatedDuration: "Approx. 1 hr 50 min by express bus route; 2 hr by subway and bus",
     estimatedCost: "Express bus segment: KRW 6,400 one way",
     recommended: false,
     steps: [
