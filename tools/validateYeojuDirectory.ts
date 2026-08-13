@@ -12,6 +12,17 @@ const EXPECTED_REPEATED_NAMES = [
   "Polo Ralph Lauren", "RECTO", "TOMMY HILFIGER", "Helen Kaminski",
   "Rockport", "B&O/B&W",
 ];
+const OFFICIAL_ADDRESS = "360, Myeongpum-ro, Yeoju-si, Gyeonggi-do, Republic of Korea";
+const OFFICIAL_OPENING_HOURS = "May-Oct: daily 10:30 - 21:00; Nov-Apr: Mon-Thu 10:30 - 20:30, Fri-Sun and public holidays 10:30 - 21:00. Restaurants daily 11:00 - 21:00; some stores close 30 minutes early.";
+const EXPECTED_SERVICES = [
+  "Information Center", "Stroller Rental", "Wheelchair Rental", "Tax-Free Shopping",
+  "Payment Methods", "Free Circular Bus", "Shinsegae Gift Certificates", "ATM",
+  "Free Wi-Fi", "Lockers", "Clothing Alteration Service", "Mini Train",
+  "Children’s Playground", "Merry-go-round", "Bounce Spin", "emart24", "Nursing Room",
+  "Electric Car Charging Station", "Tesla Electric Car Charging Station", "Premium Lounge",
+  "Premium Parking Zone", "Art Museum Ryeo", "Mobile Phone Charging", "Lost and Found",
+  "Pet-Friendly Areas",
+];
 
 function invariant(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -81,8 +92,8 @@ invariant(southKoreaOutletBrands.filter(({ taxRefundEligible }) => taxRefundElig
 invariant(southKoreaOutletBrands.filter(({ taxRefundEligible }) => !taxRefundEligible).length === 33, "Expected 33 ineligible Yeoju relationships");
 invariant(southKoreaOutletBrands.every(({ brandId, taxRefundEligible }) => taxByBrand.get(brandId) === taxRefundEligible), "Relationship Tax Refund values differ from audit");
 invariant(outletBrands.includes(southKoreaOutletBrands[0]), "South Korea relationships are not registered in the index");
-invariant(outlets.includes(southKoreaOutlets[0]) && southKoreaOutlets[0]?.outletId === "yeoju-premium-outlets", "Yeoju outlet is not exported");
-invariant(southKoreaOutlets[0]?.taxFreeAvailable === true, "Yeoju must indicate that participating Tax Refund stores are available");
+const outlet = southKoreaOutlets[0];
+invariant(outlets.includes(outlet) && outlet?.outletId === "yeoju-premium-outlets", "Yeoju outlet is not exported");
 invariant(cities.some(({ cityId }) => cityId === "yeoju"), "Yeoju city is not exported");
 
 const csvBrands = parseCsv("Brands.csv");
@@ -163,7 +174,53 @@ invariant(csvRelationships.filter(({ taxRefundEligible }) => taxRefundEligible =
 invariant(csvRelationships.filter(({ taxRefundEligible }) => taxRefundEligible === "FALSE").length === 33, "Expected 33 ineligible CSV Yeoju relationships");
 invariant(csvRelationships.every(({ brandId, taxRefundEligible }) => taxRefundEligible === (taxByBrand.get(brandId) ? "TRUE" : "FALSE")), "CSV relationship Tax Refund values differ from audit");
 invariant(parseCsv("Cities.csv").some(({ cityId }) => cityId === "yeoju"), "Yeoju city is absent from Cities.csv");
-invariant(parseCsv("Outlets.csv").some(({ outletId }) => outletId === "yeoju-premium-outlets"), "Yeoju outlet is absent from Outlets.csv");
-invariant(parseCsv("Outlets.csv").find(({ outletId }) => outletId === "yeoju-premium-outlets")?.taxFreeAvailable === "TRUE", "CSV Yeoju Tax Refund availability must be TRUE");
+const csvOutlet = parseCsv("Outlets.csv").find(({ outletId }) => outletId === "yeoju-premium-outlets");
+invariant(csvOutlet, "Yeoju outlet is absent from Outlets.csv");
+
+invariant(outlet.address === OFFICIAL_ADDRESS, "Yeoju address differs from the exact official English address");
+invariant(outlet.openingHours === OFFICIAL_OPENING_HOURS, "Yeoju seasonal opening hours differ from the verified schedule");
+invariant(outlet.services.length === EXPECTED_SERVICES.length, "Yeoju must have exactly 25 verified services and facilities");
+assertUnique(outlet.services, "Yeoju service or facility");
+invariant(EXPECTED_SERVICES.every((service) => outlet.services.includes(service)), "Yeoju services and facilities differ from the verified set");
+invariant(outlet.taxFreeAvailable === true, "Yeoju must indicate that participating Tax Refund stores are available");
+invariant(outlet.vatRate === 10, "Yeoju VAT rate must be 10 percent");
+invariant(outlet.minimumTaxFreeSpend === "KRW 15,000", "Yeoju minimum Tax Refund spend must be KRW 15,000");
+invariant(outlet.taxFreeOfficeInfo?.includes("only at participating stores"), "Yeoju Tax Refund note must limit availability to participating stores");
+invariant(outlet.taxFreeOfficeInfo?.includes("East Bus Stop") && outlet.taxFreeOfficeInfo.includes("West Information Center"), "Yeoju Tax Refund note must identify both kiosk locations");
+invariant(outlet.restaurants?.length === 0, "Yeoju must not contain restaurant records");
+invariant(outlet.heroImage === "" && outlet.galleryImages.length === 0, "Yeoju must not contain invented images");
+invariant(outlet.rating === 0 && outlet.reviewCount === 0, "Yeoju rating and review count must remain zero");
+invariant(outlet.cityCenterDistanceKm === undefined && outlet.airportDistanceKm === undefined, "Yeoju must not contain invented distance metadata");
+invariant(outlet.storesCountText === "", "Yeoju must not use directory audit totals as a store count");
+invariant((outlet.latitude === "") === (outlet.longitude === ""), "Yeoju coordinates must be either both present or both empty");
+invariant(outlet.latitude === "" && outlet.longitude === "", "Yeoju coordinates must remain empty without defensible official evidence");
+
+const metadataParity: Record<string, string> = {
+  address: outlet.address,
+  latitude: String(outlet.latitude),
+  longitude: String(outlet.longitude),
+  openingHours: outlet.openingHours,
+  heroImage: outlet.heroImage ?? "",
+  galleryImages: outlet.galleryImages.join(";"),
+  storesCountText: outlet.storesCountText,
+  rating: String(outlet.rating),
+  reviewCount: String(outlet.reviewCount),
+  services: outlet.services.join(";"),
+  restaurants: outlet.restaurants?.join(";") ?? "",
+  taxFreeAvailable: outlet.taxFreeAvailable ? "TRUE" : "FALSE",
+  vatRate: outlet.vatRate === undefined ? "" : String(outlet.vatRate),
+  minimumTaxFreeSpend: outlet.minimumTaxFreeSpend ?? "",
+  taxFreeOfficeInfo: outlet.taxFreeOfficeInfo ?? "",
+  cityCenterDistanceKm: outlet.cityCenterDistanceKm === undefined ? "" : String(outlet.cityCenterDistanceKm),
+  airportDistanceKm: outlet.airportDistanceKm === undefined ? "" : String(outlet.airportDistanceKm),
+  websiteUrl: outlet.websiteUrl ?? "",
+  status: outlet.status,
+  googleMapsUrl: outlet.googleMapsUrl ?? "",
+  appleMapsUrl: outlet.appleMapsUrl ?? "",
+  yandexMapsUrl: outlet.yandexMapsUrl ?? "",
+};
+for (const [field, expectedValue] of Object.entries(metadataParity)) {
+  invariant(csvOutlet[field] === expectedValue, `TypeScript/CSV Yeoju metadata mismatch: ${field}`);
+}
 
 console.log("Yeoju directory validation passed: 262 memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (146 reused, 104 new), 250 relationships (217 eligible / 33 ineligible).");
