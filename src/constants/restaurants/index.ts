@@ -28,6 +28,7 @@ import { ukRestaurants } from "./uk";
 import { turkeyRestaurants } from "./turkey";
 import { unitedArabEmiratesRestaurants } from "./united-arab-emirates";
 import { kuwaitRestaurants } from "./kuwait";
+import { southKoreaRestaurants } from "./south-korea";
 
 export {
   japanRestaurants,
@@ -59,6 +60,7 @@ export {
   turkeyRestaurants,
   unitedArabEmiratesRestaurants,
   kuwaitRestaurants,
+  southKoreaRestaurants,
 };
 
 export const restaurants = [
@@ -92,4 +94,5 @@ export const restaurants = [
   ...turkeyRestaurants,
   ...unitedArabEmiratesRestaurants,
   ...kuwaitRestaurants,
+  ...southKoreaRestaurants,
 ];

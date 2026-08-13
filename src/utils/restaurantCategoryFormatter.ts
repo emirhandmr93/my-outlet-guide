@@ -61,6 +61,12 @@ const restaurantCategoryKeys: Record<string, string> = {
   yogurt: "restaurant.category.yogurt",
 };
 
+const exactRestaurantCategoryKeys: Record<string, string> = {
+  "Specialized Restaurants": "restaurant.category.specializedRestaurants",
+  "Café&Snack": "restaurant.category.cafeAndSnack",
+  "Taste Village": "restaurant.category.tasteVillage",
+};
+
 function formatCategorySegment(segment: string, t: (key: string) => string) {
   const trimmedSegment = segment.trim();
   const normalizedSegment = trimmedSegment.toLowerCase();
@@ -86,6 +92,12 @@ export function formatRestaurantCategoryLabel(
   category: string,
   t: (key: string) => string,
 ) {
+  const exactKey = exactRestaurantCategoryKeys[category];
+
+  if (exactKey) {
+    return t(exactKey);
+  }
+
   return category
     .split(/(\s[•&]\s|,\s*)/)
     .map((part) => (part.trim().match(/^[•&,]$/) ? part : formatCategorySegment(part, t)))
