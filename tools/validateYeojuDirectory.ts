@@ -9,6 +9,7 @@ import { restaurants, southKoreaRestaurants } from "../src/constants/restaurants
 import { southKoreaTransportationGuides, transportationGuides } from "../src/constants/transportationGuides";
 import { transportationRouteFacts } from "../src/constants/transportationRouteFacts";
 import { yeojuDirectoryCategories, yeojuNormalizationMappings } from "../src/constants/yeojuDirectory";
+import { formatOutletDistanceKm, resolveOutletCoordinates } from "../src/utils/outletDisplayFormatters";
 
 const EXPECTED_REPEATED_NAMES = [
   "Bean Pole", "Brooks Brothers", "Daks", "Hazzys", "Lacoste",
@@ -369,8 +370,19 @@ invariant(outlet.cityCenterDistanceKm === undefined && outlet.airportDistanceKm 
 invariant(outlet.storesCountText === "", "Yeoju must not use directory audit totals as a store count");
 invariant((outlet.latitude === "") === (outlet.longitude === ""), "Yeoju coordinates must be either both present or both empty");
 invariant(outlet.latitude === "" && outlet.longitude === "", "Yeoju coordinates must remain empty without defensible official evidence");
+invariant(resolveOutletCoordinates(outlet.latitude, outlet.longitude) === null, "Empty Yeoju coordinates must not resolve to 0,0");
+invariant(resolveOutletCoordinates("37.295", "127.635")?.latitude === 37.295, "Verified coordinate strings must remain supported");
+invariant(resolveOutletCoordinates("91", "127.635") === null, "Out-of-range outlet coordinates must be rejected");
+invariant(formatOutletDistanceKm(outlet.cityCenterDistanceKm) === undefined && formatOutletDistanceKm(outlet.airportDistanceKm) === undefined, "Unverified Yeoju distances must not render as undefined km");
+invariant(formatOutletDistanceKm(0) === "0 km" && formatOutletDistanceKm(-1) === undefined, "Outlet distance formatting must accept zero and reject negative values");
 invariant(outlet.centerMapUrl === OFFICIAL_CENTER_MAP_URL, "Yeoju must expose the original official combined Outlets & Village center map");
 invariant(outlet.centerMapUrl !== outlet.heroImage && !outlet.galleryImages.includes(OFFICIAL_CENTER_MAP_URL), "The official center map must not be represented as outlet gallery media");
+
+const outletDetailSource = fs.readFileSync(path.join(process.cwd(), "src", "screens", "OutletDetailScreen.tsx"), "utf8");
+const quickFactsSource = fs.readFileSync(path.join(process.cwd(), "src", "components", "cards", "QuickFactsCard.tsx"), "utf8");
+invariant(outletDetailSource.includes("resolveOutletCoordinates(outlet.latitude, outlet.longitude)"), "Outlet detail must guard weather requests with verified coordinates");
+invariant(!outletDetailSource.includes("latitude: Number(outlet.latitude)") && !outletDetailSource.includes("longitude: Number(outlet.longitude)"), "Outlet detail must not coerce empty coordinates to 0,0");
+invariant(quickFactsSource.includes("formatOutletDistanceKm(airportDistanceKm)") && quickFactsSource.includes("formatOutletDistanceKm(cityCenterDistanceKm)"), "Quick facts must hide unverified distance metadata");
 
 const metadataParity: Record<string, string> = {
   address: outlet.address,
