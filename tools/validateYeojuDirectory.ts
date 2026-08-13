@@ -5,6 +5,7 @@ import { cities } from "../src/constants/cities";
 import { categories } from "../src/constants/categories";
 import { outletBrands, southKoreaOutletBrands } from "../src/constants/outletBrands";
 import { outlets, southKoreaOutlets } from "../src/constants/outlets";
+import { restaurants, southKoreaRestaurants } from "../src/constants/restaurants";
 import { yeojuDirectoryCategories, yeojuNormalizationMappings } from "../src/constants/yeojuDirectory";
 
 const EXPECTED_REPEATED_NAMES = [
@@ -15,6 +16,39 @@ const EXPECTED_REPEATED_NAMES = [
 const OFFICIAL_ADDRESS = "360, Myeongpum-ro, Yeoju-si, Gyeonggi-do, Republic of Korea";
 const OFFICIAL_OPENING_HOURS = "May-Oct: daily 10:30 - 21:00; Nov-Apr: Mon-Thu 10:30 - 20:30, Fri-Sun and public holidays 10:30 - 21:00. Restaurants daily 11:00 - 21:00; restaurant last orders close 30 minutes before closing time. Some stores close 30 minutes early.";
 const OFFICIAL_TAX_REFUND_INFO = "Tax Refund is available only at participating stores marked GLOBAL TAX FREE, GLOBAL BLUE, NICE TAX FREE, or another eligible Tax Refund operator. On-site kiosks are located at the East Bus Stop and West Information Center. Minimum purchase: KRW 15,000. Downtown refund limit: KRW 6,000,000; immediate refund limit per purchase: KRW 1,000,000; total immediate refund limit during the stay: KRW 5,000,000. Eligibility, documentation, customs validation and export-within-three-months requirements apply.";
+const EXPECTED_RESTAURANTS = [
+  ["damanegi-yeoju", "Damanegi", "Specialized Restaurants"],
+  ["asojeong-yeoju", "Asojeong", "Specialized Restaurants"],
+  ["outback-steakhouse-yeoju", "Outback Steakhouse", "Specialized Restaurants"],
+  ["yilyilhyang-yeoju", "Yilyilhyang", "Specialized Restaurants"],
+  ["five-guys-burgers-yeoju", "Five Guys Burgers", "Specialized Restaurants"],
+  ["gongcha-yeoju", "Gongcha", "Café&Snack"],
+  ["loro-a-nook-yeoju", "Loro a nook", "Café&Snack"],
+  ["bhc-pop-cafe-snack-yeoju", "BHC POP", "Café&Snack"],
+  ["starbucks-1-yeoju", "Starbucks", "Café&Snack"],
+  ["starbucks-2-yeoju", "Starbucks", "Café&Snack"],
+  ["streetchurros-yeoju", "Streetchurros", "Café&Snack"],
+  ["eggdrop-yeoju", "EGGDROP", "Café&Snack"],
+  ["jackson-pizza-yeoju", "Jackson Pizza", "Café&Snack"],
+  ["knotted-yeoju", "Knotted", "Café&Snack"],
+  ["twitzel-yeoju", "Twitzel", "Café&Snack"],
+  ["tin-tin-express-yeoju", "TIN TIN Express", "Taste Village"],
+  ["bongwoori-soban-yeoju", "Bongwoori Soban", "Taste Village"],
+  ["bhc-pop-taste-village-yeoju", "BHC POP", "Taste Village"],
+  ["saboten-yeoju", "Saboten", "Taste Village"],
+  ["solsot-yeoju", "Solsot", "Taste Village"],
+  ["shima-sushi-yeoju", "Shima Sushi", "Taste Village"],
+  ["onsen-tendon-yeoju", "Onsen Tendon", "Taste Village"],
+  ["leegane-yeoju", "LEEGANE", "Taste Village"],
+  ["taco-bell-yeoju", "Taco Bell", "Taste Village"],
+  ["original-paldang-kaljebi-yeoju", "The original Paldang kaljebi", "Taste Village"],
+  ["palseonsaeng-yeoju", "Palseonsaeng", "Taste Village"],
+  ["pizzeriao-yeoju", "Pizzeriao", "Taste Village"],
+  ["halff-coffee-yeoju", "HALFF COFFEE", "Taste Village"],
+  ["hwanee-bansang-yeoju", "Hwanee Bansang", "Taste Village"],
+  ["hwasunbanjeom-yeoju", "Hwasunbanjeom", "Taste Village"],
+] as const;
+const EXPECTED_RESTAURANT_SUMMARY = [...new Set(EXPECTED_RESTAURANTS.map(([, name]) => name))];
 const EXPECTED_SERVICES = [
   "Information Center", "Stroller Rental", "Wheelchair Rental", "Tax-Free Shopping",
   "Payment Methods", "Free Circular Bus", "Shinsegae Gift Certificates", "ATM",
@@ -177,6 +211,16 @@ invariant(csvRelationships.every(({ brandId, taxRefundEligible }) => taxRefundEl
 invariant(parseCsv("Cities.csv").some(({ cityId }) => cityId === "yeoju"), "Yeoju city is absent from Cities.csv");
 const csvOutlet = parseCsv("Outlets.csv").find(({ outletId }) => outletId === "yeoju-premium-outlets");
 invariant(csvOutlet, "Yeoju outlet is absent from Outlets.csv");
+const csvRestaurants = parseCsv("Restaurants.csv");
+const csvYeojuRestaurants = csvRestaurants.filter(({ outletId }) => outletId === "yeoju-premium-outlets");
+invariant(csvYeojuRestaurants.length === 30, "Expected exactly 30 CSV Yeoju restaurant memberships");
+const restaurantFields = ["restaurantId", "outletId", "restaurantName", "category", "priceLevel", "website", "status", "displayOrder"] as const;
+invariant(southKoreaRestaurants.every((restaurant, index) => restaurantFields.every((field) => String(restaurant[field]) === csvYeojuRestaurants[index]?.[field])), "TypeScript/CSV Yeoju restaurant parity failure");
+invariant(csvOutlet.restaurants === EXPECTED_RESTAURANT_SUMMARY.join(";"), "Yeoju CSV restaurant summary differs from TypeScript");
+const restaurantIndexSource = fs.readFileSync(path.join(process.cwd(), "src", "constants", "restaurants", "index.ts"), "utf8");
+invariant((restaurantIndexSource.match(/import \{ southKoreaRestaurants \} from "\.\/south-korea";/g) ?? []).length === 1, "South Korea restaurant collection must be imported exactly once");
+invariant((restaurantIndexSource.match(/^  southKoreaRestaurants,$/gm) ?? []).length === 1, "South Korea restaurant collection must be exported exactly once");
+invariant((restaurantIndexSource.match(/^  \.\.\.southKoreaRestaurants,$/gm) ?? []).length === 1, "South Korea restaurant collection must be flattened exactly once");
 
 invariant(outlet.address === OFFICIAL_ADDRESS, "Yeoju address differs from the exact official English address");
 invariant(outlet.openingHours === OFFICIAL_OPENING_HOURS, "Yeoju seasonal opening hours differ from the verified schedule");
@@ -189,7 +233,29 @@ invariant(outlet.minimumTaxFreeSpend === "KRW 15,000", "Yeoju minimum Tax Refund
 invariant(outlet.taxFreeOfficeInfo === OFFICIAL_TAX_REFUND_INFO, "Yeoju Tax Refund note differs from the verified official information");
 invariant(["GLOBAL TAX FREE", "GLOBAL BLUE", "NICE TAX FREE"].every((operator) => outlet.taxFreeOfficeInfo.includes(operator)), "Yeoju Tax Refund note must identify all three named official operators");
 invariant(outlet.taxFreeOfficeInfo?.includes("East Bus Stop") && outlet.taxFreeOfficeInfo.includes("West Information Center"), "Yeoju Tax Refund note must identify both kiosk locations");
-invariant(outlet.restaurants?.length === 0, "Yeoju must not contain restaurant records");
+const yeojuRestaurants = restaurants.filter(({ outletId }) => outletId === "yeoju-premium-outlets");
+invariant(yeojuRestaurants.length === 30 && southKoreaRestaurants.length === 30, "Expected exactly 30 Yeoju restaurant memberships");
+invariant(yeojuRestaurants.every((restaurant, index) => restaurant === southKoreaRestaurants[index]), "South Korea collection must be included exactly once in the global restaurant index");
+invariant(new Set(yeojuRestaurants.map(({ restaurantName }) => restaurantName)).size === 28, "Expected exactly 28 unique Yeoju restaurant display names");
+invariant(EXPECTED_RESTAURANTS.every(([restaurantId, restaurantName, category], index) => {
+  const restaurant = yeojuRestaurants[index];
+  return restaurant?.restaurantId === restaurantId && restaurant.restaurantName === restaurantName && restaurant.category === category;
+}), "Yeoju restaurant sequence differs from the official directory");
+invariant(yeojuRestaurants.every((restaurant, index) => restaurant.displayOrder === String(index + 1)), "Yeoju display orders must be the integers 1 through 30");
+invariant(yeojuRestaurants.every(({ outletId }) => outletId === "yeoju-premium-outlets"), "Yeoju restaurant outlet ID mismatch");
+invariant(yeojuRestaurants.every(({ status }) => status === "active"), "Every Yeoju restaurant must be active");
+invariant(yeojuRestaurants.every(({ priceLevel, website }) => priceLevel === "" && website === ""), "Unverified Yeoju price levels and websites must remain empty");
+const restaurantCategoryTotals = new Map<string, number>();
+for (const { category } of yeojuRestaurants) restaurantCategoryTotals.set(category, (restaurantCategoryTotals.get(category) ?? 0) + 1);
+invariant(restaurantCategoryTotals.get("Specialized Restaurants") === 5 && restaurantCategoryTotals.get("Café&Snack") === 10 && restaurantCategoryTotals.get("Taste Village") === 15 && restaurantCategoryTotals.size === 3, "Expected Yeoju category totals of 5/10/15");
+const restaurantNameCounts = new Map<string, number>();
+for (const { restaurantName } of yeojuRestaurants) restaurantNameCounts.set(restaurantName, (restaurantNameCounts.get(restaurantName) ?? 0) + 1);
+invariant(restaurantNameCounts.get("Starbucks") === 2, "Starbucks must occur exactly twice");
+invariant(restaurantNameCounts.get("BHC POP") === 2, "BHC POP must occur exactly twice");
+invariant(yeojuRestaurants.filter(({ restaurantName, category }) => restaurantName === "BHC POP" && category === "Café&Snack").length === 1 && yeojuRestaurants.filter(({ restaurantName, category }) => restaurantName === "BHC POP" && category === "Taste Village").length === 1, "BHC POP must occur once in each specified category");
+invariant([...restaurantNameCounts].every(([name, count]) => count === (name === "Starbucks" || name === "BHC POP" ? 2 : 1)), "No other Yeoju restaurant name may be repeated");
+assertUnique(restaurants.map(({ restaurantId }) => restaurantId), "global restaurant ID");
+invariant(outlet.restaurants?.length === 28 && outlet.restaurants.every((name, index) => name === EXPECTED_RESTAURANT_SUMMARY[index]), "Yeoju restaurant summary differs from the 28 unique names");
 invariant(outlet.heroImage === "" && outlet.galleryImages.length === 0, "Yeoju must not contain invented images");
 invariant(outlet.rating === 0 && outlet.reviewCount === 0, "Yeoju rating and review count must remain zero");
 invariant(outlet.cityCenterDistanceKm === undefined && outlet.airportDistanceKm === undefined, "Yeoju must not contain invented distance metadata");
@@ -225,4 +291,4 @@ for (const [field, expectedValue] of Object.entries(metadataParity)) {
   invariant(csvOutlet[field] === expectedValue, `TypeScript/CSV Yeoju metadata mismatch: ${field}`);
 }
 
-console.log("Yeoju directory validation passed: 262 memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (146 reused, 104 new), 250 relationships (217 eligible / 33 ineligible).");
+console.log("Yeoju directory validation passed: 30 restaurant memberships (28 unique names; categories 5/10/15), 262 brand memberships (228 eligible / 34 ineligible), 251 display names, 250 identities (146 reused, 104 new), 250 relationships (217 eligible / 33 ineligible).");
