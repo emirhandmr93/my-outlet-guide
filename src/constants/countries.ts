@@ -313,5 +313,23 @@ export const countries = [
     "continent": "North America",
     "currency": "USD",
     "taxFreeAvailable": "FALSE"
-  }
+  },
+ {
+ "countryId": "hong-kong",
+ "taxFreeStatus": "not_available",
+ "countryName": "Hong Kong",
+ "countryFlag": "\uD83C\uDDED\uD83C\uDDF0",
+ "continent": "Asia",
+ "currency": "HKD",
+ "taxFreeAvailable": "FALSE"
+ },
+ {
+ "countryId": "taiwan",
+ "taxFreeStatus": "available",
+ "countryName": "Taiwan",
+ "countryFlag": "\uD83C\uDDF9\uD83C\uDDFC",
+ "continent": "Asia",
+ "currency": "TWD",
+ "taxFreeAvailable": "TRUE"
+ }
 ];

@@ -3200,4 +3200,15 @@ export const brandsUZ: Brand[] = [
    rankingWeight: 58,
    brandStatus: "active",
  },
+ {
+ brandId: "uniqlo",
+ brandName: "UNIQLO",
+ aliases: ["Uniqlo"],
+ categoryId: "fashion",
+ logo: "",
+ originCountryId: "japan",
+ luxuryLevel: "fashion",
+ rankingWeight: 82,
+ brandStatus: "active",
+ },
 ];

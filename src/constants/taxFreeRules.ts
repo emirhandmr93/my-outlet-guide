@@ -46,6 +46,42 @@ const euVatSource: TaxFreeSource = { url: euVatRatesUrl, name: "European Commiss
 const euNotes = "European Commission VAT rate reference. Confirm tourist-retail eligibility and retailer participation before purchase; the estimate is the maximum VAT component before operator and administration fees.";
 
 export const taxFreeRules: TaxFreeRule[] = [
+{
+countryCode: "TW",
+countryName: "Taiwan",
+countryId: "taiwan",
+currency: "TWD",
+vatRate: 5,
+minimumPurchaseAmount: 2000,
+minimumPurchaseBasis: "gross",
+minimumPurchaseComparison: "at_least",
+minimumPurchaseStatus: "verified_amount",
+refundPolicy: {
+mode: "provider_dependent_upper_bound",
+source: {
+url: "https://www.taxrefund.net.tw/ttr/info/8a8c512c53c2138e0153c216df0f000a?lang=en_US",
+name: "Taiwan Foreign Travelers VAT Refund",
+checkedDate: "2026-08-14"
+}
+},
+schemeSource: {
+url: "https://www.taxrefund.net.tw/ttr/info/8a8c512c53c2138e0153c216df0f000a?lang=en_US",
+name: "Taiwan Foreign Travelers VAT Refund",
+checkedDate: "2026-08-14"
+},
+vatRateSource: {
+url: "https://www.taxrefund.net.tw/ttr/info/8a8c512c53c2138e0153c216df0f000a?lang=en_US",
+name: "Taiwan Foreign Travelers VAT Refund",
+checkedDate: "2026-08-14"
+},
+minimumPurchaseSource: {
+url: "https://www.taxrefund.net.tw/ttr/info/8a8c512c53c2138e0153c216df0f000a?lang=en_US",
+name: "Taiwan Foreign Travelers VAT Refund",
+checkedDate: "2026-08-14"
+},
+notes: "Eligible foreign travelers staying no more than 183 days may request VAT refund for eligible goods purchased at authorized TRS stores. The same-store, same-day VAT-inclusive minimum is TWD 2,000. The standard VAT rate is 5%; the official refund system applies an administration charge."
+},
+
   { countryCode: "JP", countryName: "Japan", countryId: "japan", currency: "JPY", vatRate: 10, minimumPurchaseAmount: 5000, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "point_of_sale_exemption", validThrough: "2026-10-31", refundRegimeStarts: "2026-11-01", timeZone: "Asia/Tokyo", source: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html", name: "Japan Tourism Agency — refund-system transition", checkedDate } }, schemeSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, vatRateSource: { url: "https://www.nta.go.jp/english/taxes/consumption_tax/01.htm", name: "Japan National Tax Agency", checkedDate }, minimumPurchaseSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, notes: "Eligible tourists may receive tax exemption at participating stores. The same-store, same-day minimum is JPY 5,000 excluding tax; store participation must be confirmed." },
   { countryCode: "KR", countryName: "South Korea", countryId: "south-korea", currency: "KRW", vatRate: 10, minimumPurchaseAmount: 15000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=489&vcontsId=140736", name: "Korea Tourism Organization / VISITKOREA", checkedDate } }, schemeSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=489&vcontsId=140736", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, vatRateSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=929&vcontsId=248767", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, minimumPurchaseSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=489&vcontsId=140736", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, notes: "Participating stores may provide immediate refunds from KRW 15,000; retailer participation and official eligibility conditions apply." },
   { countryCode: "TH", countryName: "Thailand", countryId: "thailand", currency: "THB", vatRate: 7, minimumPurchaseAmount: 2000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate } }, schemeSource: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate }, vatRateSource: { url: "https://www.rd.go.th/english/6043.html", name: "Thailand Revenue Department", checkedDate }, minimumPurchaseSource: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate }, notes: "VAT Refund for Tourists requires at least THB 2,000 including VAT from the same store on the same day and participating-store documentation." },

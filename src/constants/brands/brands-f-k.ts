@@ -6205,4 +6205,15 @@ export const brandsFK: Brand[] = [
   {"brandId":"jnby","brandName":"JNBY","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"kailas","brandName":"KAILAS","aliases":[],"categoryId":"outdoor","logo":"","luxuryLevel":"lifestyle","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"kolon-sports","brandName":"KOLON SPORTS","aliases":[],"categoryId":"outdoor","logo":"","luxuryLevel":"lifestyle","rankingWeight":60,"brandStatus":"active"},
+ {
+ brandId: "g2000",
+ brandName: "G2000",
+ aliases: [],
+ categoryId: "fashion",
+ logo: "",
+ originCountryId: "hong-kong",
+ luxuryLevel: "fashion",
+ rankingWeight: 70,
+ brandStatus: "active",
+ },
 ];

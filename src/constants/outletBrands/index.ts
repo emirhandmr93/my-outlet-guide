@@ -1,4 +1,6 @@
 import { chinaOutletBrands } from "./china";
+import { hongKongOutletBrands } from "./hong-kong";
+import { taiwanOutletBrands } from "./taiwan";
 import { japanOutletBrands } from "./japan";
 import { austriaOutletBrands } from "./austria";
 import { belgiumOutletBrands } from "./belgium";
@@ -74,6 +76,8 @@ export {
 export const outletBrands: OutletBrand[] = [
   ...japanOutletBrands,
   ...chinaOutletBrands,
+ ...hongKongOutletBrands,
+ ...taiwanOutletBrands,
   ...italyOutletBrands,
   ...germanyOutletBrands,
   ...franceOutletBrands,

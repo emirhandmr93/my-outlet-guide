@@ -1,3 +1,5 @@
+import { hongKongRestaurants } from "./hong-kong";
+import { taiwanRestaurants } from "./taiwan";
 import { chinaRestaurants } from "./china";
 import { japanRestaurants } from "./japan";
 import { austriaRestaurants } from "./austria";

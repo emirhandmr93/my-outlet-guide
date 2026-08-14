@@ -1,4 +1,6 @@
 import { chinaOutlets } from "./china";
+import { hongKongOutlets } from "./hong-kong";
+import { taiwanOutlets } from "./taiwan";
 import { japanOutlets } from "./japan";
 import { austriaOutlets } from "./austria";
 import { belgiumOutlets } from "./belgium";
@@ -71,6 +73,8 @@ type Outlet = { airports?: OutletAirport[]; [key: string]: any };
 export const outlets: Outlet[] = [
   ...japanOutlets,
   ...chinaOutlets,
+  ...hongKongOutlets,
+  ...taiwanOutlets,
   ...italyOutlets,
   ...germanyOutlets,
   ...franceOutlets,

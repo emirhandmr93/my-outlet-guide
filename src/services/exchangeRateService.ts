@@ -16,7 +16,8 @@ export type CurrencyCode =
   | "CAD"
   | "CNY"
   | "KRW"
-  | "THB";
+  | "THB"
+ | "TWD";
 
 export type ExchangeRateStatus = "ready" | "stale_cache" | "unavailable";
 
