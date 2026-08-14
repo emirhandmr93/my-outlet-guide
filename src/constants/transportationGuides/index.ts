@@ -31,6 +31,7 @@ import { turkeyTransportationGuides } from "./turkey";
 import { unitedArabEmiratesTransportationGuides } from "./united-arab-emirates";
 import { kuwaitTransportationGuides } from "./kuwait";
 import { southKoreaTransportationGuides } from "./south-korea";
+import { malaysiaTransportationGuides } from "./malaysia";
 
 export type TransportationType =
   | "train"
@@ -92,6 +93,7 @@ export {
   unitedArabEmiratesTransportationGuides,
   kuwaitTransportationGuides,
   southKoreaTransportationGuides,
+malaysiaTransportationGuides,
 };
 
 export const transportationGuides: TransportationGuide[] = [
@@ -128,4 +130,5 @@ export const transportationGuides: TransportationGuide[] = [
   ...unitedArabEmiratesTransportationGuides,
   ...kuwaitTransportationGuides,
   ...southKoreaTransportationGuides,
+...malaysiaTransportationGuides,
 ];

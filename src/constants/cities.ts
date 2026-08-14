@@ -265,7 +265,7 @@ export const cities = [
   },
   {
     "cityId": "schoenenwerd",
-    "cityName": "Schönenwerd",
+    "cityName": "SchÃ¶nenwerd",
     "countryId": "switzerland"
   },
   {
@@ -290,7 +290,7 @@ export const cities = [
   },
   {
     "cityId": "lempaala",
-    "cityName": "Lempäälä",
+    "cityName": "LempÃ¤Ã¤lÃ¤",
     "countryId": "finland"
   },
   {
@@ -360,7 +360,7 @@ export const cities = [
   },
   {
     "cityId": "pinki",
-    "cityName": "Piņķi",
+    "cityName": "PiÅ†Ä·i",
     "countryId": "latvia"
   },
   {
@@ -405,7 +405,7 @@ export const cities = [
   },
   {
     "cityId": "wroclaw",
-    "cityName": "Wrocław",
+    "cityName": "WrocÅ‚aw",
     "countryId": "poland"
   },
   {
@@ -415,7 +415,7 @@ export const cities = [
   },
   {
     "cityId": "marratxi",
-    "cityName": "Marratxí",
+    "cityName": "MarratxÃ­",
     "countryId": "spain"
   },
   {
@@ -430,12 +430,12 @@ export const cities = [
   },
   {
     "cityId": "san-sebastian-de-los-reyes",
-    "cityName": "San Sebastián de los Reyes",
+    "cityName": "San SebastiÃ¡n de los Reyes",
     "countryId": "spain"
   },
   {
     "cityId": "gdansk",
-    "cityName": "Gdańsk",
+    "cityName": "GdaÅ„sk",
     "countryId": "poland"
   },
   {
@@ -461,7 +461,7 @@ export const cities = [
   },
   {
     "cityId": "a-coruna",
-    "cityName": "A Coruña",
+    "cityName": "A CoruÃ±a",
     "countryId": "spain"
   },
   {
@@ -491,7 +491,7 @@ export const cities = [
   },
   {
     "cityId": "mondovi",
-    "cityName": "Mondovì",
+    "cityName": "MondovÃ¬",
     "countryId": "italy"
   },
   {
@@ -521,7 +521,7 @@ export const cities = [
   },
   {
     "cityId": "citta-sant-angelo",
-    "cityName": "Città Sant'Angelo",
+    "cityName": "CittÃ  Sant'Angelo",
     "countryId": "italy"
   },
   {
@@ -529,4 +529,19 @@ export const cities = [
     "cityName": "Gotemba",
     "countryId": "japan"
   }
+ ,{
+"cityId": "paju",
+"cityName": "Paju",
+"countryId": "south-korea"
+},
+ {
+"cityId": "busan",
+"cityName": "Busan",
+"countryId": "south-korea"
+},
+ {
+"cityId": "genting-highlands",
+"cityName": "Genting Highlands",
+"countryId": "malaysia"
+},
 ];

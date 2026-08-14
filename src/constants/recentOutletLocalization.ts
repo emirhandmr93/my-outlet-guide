@@ -804,6 +804,9 @@ language === "zh" ? "台湾桃园国际机场" :
 }
 
 const countOnly = new Set([
+"genting-highlands-premium-outlets",
+"busan-premium-outlets",
+"paju-premium-outlets",
 "al-khiran-hybrid-outlet-mall",
 "the-outlet-village",
 "rinku-premium-outlets",
@@ -1294,11 +1297,78 @@ ru:{narita:"Аэропорт Нарита",tokyo:"Станция Токио",dir
 zh:{narita:"成田机场",tokyo:"东京站",directBus:"直达巴士"},
 };
 
+
+const batchDGuideProfiles: Record<
+string,
+{ start:string; service:string; end:string }
+> = {
+"hongik-university-to-paju-premium-outlets":{
+start:"Hongik University Station",
+service:"Bus 2200",
+end:"Paju Premium Outlets",
+},
+"myeongdong-to-paju-premium-outlets":{
+start:"Myeongdong Station",
+service:"Line 2 → Hapjeong Station → Bus 2200",
+end:"Paju Premium Outlets",
+},
+"incheon-airport-to-paju-premium-outlets":{
+start:"Incheon International Airport",
+service:"Airport Bus 6002 → Hapjeong Station area → Bus 2200",
+end:"Paju Premium Outlets",
+},
+"bujeon-to-busan-premium-outlets":{
+start:"Bujeon Station",
+service:"Donghae Line → Jwacheon Station → Bus 302",
+end:"Busan Premium Outlets",
+},
+"haeundae-to-busan-premium-outlets":{
+start:"Haeundae",
+service:"Bus 1003 → Gijang Telephone Office → Bus 8",
+end:"Busan Premium Outlets",
+},
+"gimhae-airport-to-busan-premium-outlets":{
+start:"Gimhae International Airport",
+service:"Bus 307 → Dongnae Station → Bus 3008",
+end:"Busan Premium Outlets",
+},
+"kl-sentral-to-genting-highlands-premium-outlets":{
+start:"KL Sentral",
+service:"Genting Express Bus → Awana Bus Terminal",
+end:"Genting Highlands Premium Outlets",
+},
+"klia-to-genting-highlands-premium-outlets":{
+start:"KLIA / KLIA2",
+service:"Genting Express Bus → Awana Bus Terminal",
+end:"Genting Highlands Premium Outlets",
+},
+"kuala-lumpur-to-genting-highlands-premium-outlets-taxi":{
+start:"Kuala Lumpur",
+service:"Taxi / private hire",
+end:"Genting Highlands Premium Outlets",
+},
+};
+
 export function localizeRecentOutletGuide(
 guide:TransportationGuide,
 languageInput:string
 ):GuideCopy|undefined {
 const language=normalizeLanguage(languageInput);
+
+
+const batchDProfile =
+batchDGuideProfiles[guide.guideId];
+
+if(batchDProfile){
+return simpleGuide(
+guide,
+language,
+batchDProfile.start,
+batchDProfile.service,
+batchDProfile.end
+);
+}
+
 
 if(guide.outletId==="sano-premium-outlets"){
 return sanoGuide(guide,language);

@@ -3,7 +3,7 @@ export const countries = [
     "countryId": "austria",
     "taxFreeStatus": "available",
     "countryName": "Austria",
-    "countryFlag": "🇦🇹",
+    "countryFlag": "ğŸ‡¦ğŸ‡¹",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -12,7 +12,7 @@ export const countries = [
     "countryId": "belgium",
     "taxFreeStatus": "available",
     "countryName": "Belgium",
-    "countryFlag": "🇧🇪",
+    "countryFlag": "ğŸ‡§ğŸ‡ª",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -21,7 +21,7 @@ export const countries = [
     "countryId": "canada",
     "taxFreeStatus": "not_available",
     "countryName": "Canada",
-    "countryFlag": "🇨🇦",
+    "countryFlag": "ğŸ‡¨ğŸ‡¦",
     "continent": "North America",
     "currency": "CAD",
     "taxFreeAvailable": "FALSE"
@@ -30,7 +30,7 @@ export const countries = [
     "countryId": "china",
     "taxFreeStatus": "available",
     "countryName": "China",
-    "countryFlag": "🇨🇳",
+    "countryFlag": "ğŸ‡¨ğŸ‡³",
     "continent": "Asia",
     "currency": "CNY",
     "taxFreeAvailable": "TRUE"
@@ -39,7 +39,7 @@ export const countries = [
     "countryId": "croatia",
     "taxFreeStatus": "available",
     "countryName": "Croatia",
-    "countryFlag": "🇭🇷",
+    "countryFlag": "ğŸ‡­ğŸ‡·",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -48,7 +48,7 @@ export const countries = [
     "countryId": "czech-republic",
     "taxFreeStatus": "available",
     "countryName": "Czech Republic",
-    "countryFlag": "🇨🇿",
+    "countryFlag": "ğŸ‡¨ğŸ‡¿",
     "continent": "Europe",
     "currency": "CZK",
     "taxFreeAvailable": "TRUE"
@@ -57,7 +57,7 @@ export const countries = [
     "countryId": "denmark",
     "taxFreeStatus": "available",
     "countryName": "Denmark",
-    "countryFlag": "🇩🇰",
+    "countryFlag": "ğŸ‡©ğŸ‡°",
     "continent": "Europe",
     "currency": "DKK",
     "taxFreeAvailable": "TRUE"
@@ -66,7 +66,7 @@ export const countries = [
     "countryId": "finland",
     "taxFreeStatus": "available",
     "countryName": "Finland",
-    "countryFlag": "🇫🇮",
+    "countryFlag": "ğŸ‡«ğŸ‡®",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -75,7 +75,7 @@ export const countries = [
     "countryId": "bulgaria",
     "taxFreeStatus": "available",
     "countryName": "Bulgaria",
-    "countryFlag": "🇧🇬",
+    "countryFlag": "ğŸ‡§ğŸ‡¬",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -84,7 +84,7 @@ export const countries = [
     "countryId": "estonia",
     "taxFreeStatus": "available",
     "countryName": "Estonia",
-    "countryFlag": "🇪🇪",
+    "countryFlag": "ğŸ‡ªğŸ‡ª",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -93,7 +93,7 @@ export const countries = [
     "countryId": "romania",
     "taxFreeStatus": "available",
     "countryName": "Romania",
-    "countryFlag": "🇷🇴",
+    "countryFlag": "ğŸ‡·ğŸ‡´",
     "continent": "Europe",
     "currency": "RON",
     "taxFreeAvailable": "TRUE"
@@ -102,7 +102,7 @@ export const countries = [
     "countryId": "france",
     "taxFreeStatus": "available",
     "countryName": "France",
-    "countryFlag": "🇫🇷",
+    "countryFlag": "ğŸ‡«ğŸ‡·",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -111,7 +111,7 @@ export const countries = [
     "countryId": "germany",
     "taxFreeStatus": "available",
     "countryName": "Germany",
-    "countryFlag": "🇩🇪",
+    "countryFlag": "ğŸ‡©ğŸ‡ª",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -120,7 +120,7 @@ export const countries = [
     "countryId": "greece",
     "taxFreeStatus": "available",
     "countryName": "Greece",
-    "countryFlag": "🇬🇷",
+    "countryFlag": "ğŸ‡¬ğŸ‡·",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -129,7 +129,7 @@ export const countries = [
     "countryId": "hungary",
     "taxFreeStatus": "available",
     "countryName": "Hungary",
-    "countryFlag": "🇭🇺",
+    "countryFlag": "ğŸ‡­ğŸ‡º",
     "continent": "Europe",
     "currency": "HUF",
     "taxFreeAvailable": "TRUE"
@@ -138,7 +138,7 @@ export const countries = [
     "countryId": "ireland",
     "taxFreeStatus": "available",
     "countryName": "Ireland",
-    "countryFlag": "🇮🇪",
+    "countryFlag": "ğŸ‡®ğŸ‡ª",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -147,7 +147,7 @@ export const countries = [
     "countryId": "italy",
     "taxFreeStatus": "available",
     "countryName": "Italy",
-    "countryFlag": "🇮🇹",
+    "countryFlag": "ğŸ‡®ğŸ‡¹",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -156,7 +156,7 @@ export const countries = [
     "countryId": "japan",
     "taxFreeStatus": "available",
     "countryName": "Japan",
-    "countryFlag": "🇯🇵",
+    "countryFlag": "ğŸ‡¯ğŸ‡µ",
     "continent": "Asia",
     "currency": "JPY",
     "taxFreeAvailable": "TRUE"
@@ -165,7 +165,7 @@ export const countries = [
     "countryId": "latvia",
     "taxFreeStatus": "available",
     "countryName": "Latvia",
-    "countryFlag": "🇱🇻",
+    "countryFlag": "ğŸ‡±ğŸ‡»",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -174,7 +174,7 @@ export const countries = [
     "countryId": "kuwait",
     "taxFreeStatus": "not_available",
     "countryName": "Kuwait",
-    "countryFlag": "🇰🇼",
+    "countryFlag": "ğŸ‡°ğŸ‡¼",
     "continent": "Asia",
     "currency": "KWD",
     "taxFreeAvailable": "FALSE"
@@ -183,7 +183,7 @@ export const countries = [
     "countryId": "lithuania",
     "taxFreeStatus": "available",
     "countryName": "Lithuania",
-    "countryFlag": "🇱🇹",
+    "countryFlag": "ğŸ‡±ğŸ‡¹",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -192,7 +192,7 @@ export const countries = [
     "countryId": "netherlands",
     "taxFreeStatus": "available",
     "countryName": "Netherlands",
-    "countryFlag": "🇳🇱",
+    "countryFlag": "ğŸ‡³ğŸ‡±",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -201,7 +201,7 @@ export const countries = [
     "countryId": "norway",
     "taxFreeStatus": "available",
     "countryName": "Norway",
-    "countryFlag": "🇳🇴",
+    "countryFlag": "ğŸ‡³ğŸ‡´",
     "continent": "Europe",
     "currency": "NOK",
     "taxFreeAvailable": "TRUE"
@@ -210,7 +210,7 @@ export const countries = [
     "countryId": "poland",
     "taxFreeStatus": "available",
     "countryName": "Poland",
-    "countryFlag": "🇵🇱",
+    "countryFlag": "ğŸ‡µğŸ‡±",
     "continent": "Europe",
     "currency": "PLN",
     "taxFreeAvailable": "TRUE"
@@ -219,7 +219,7 @@ export const countries = [
     "countryId": "portugal",
     "taxFreeStatus": "available",
     "countryName": "Portugal",
-    "countryFlag": "🇵🇹",
+    "countryFlag": "ğŸ‡µğŸ‡¹",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -228,7 +228,7 @@ export const countries = [
     "countryId": "slovakia",
     "taxFreeStatus": "available",
     "countryName": "Slovakia",
-    "countryFlag": "🇸🇰",
+    "countryFlag": "ğŸ‡¸ğŸ‡°",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -237,7 +237,7 @@ export const countries = [
     "countryId": "south-korea",
     "taxFreeStatus": "available",
     "countryName": "South Korea",
-    "countryFlag": "🇰🇷",
+    "countryFlag": "ğŸ‡°ğŸ‡·",
     "continent": "Asia",
     "currency": "KRW",
     "taxFreeAvailable": "TRUE"
@@ -246,7 +246,7 @@ export const countries = [
     "countryId": "spain",
     "taxFreeStatus": "available",
     "countryName": "Spain",
-    "countryFlag": "🇪🇸",
+    "countryFlag": "ğŸ‡ªğŸ‡¸",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -255,7 +255,7 @@ export const countries = [
     "countryId": "sweden",
     "taxFreeStatus": "available",
     "countryName": "Sweden",
-    "countryFlag": "🇸🇪",
+    "countryFlag": "ğŸ‡¸ğŸ‡ª",
     "continent": "Europe",
     "currency": "SEK",
     "taxFreeAvailable": "TRUE"
@@ -264,7 +264,7 @@ export const countries = [
     "countryId": "switzerland",
     "taxFreeStatus": "available",
     "countryName": "Switzerland",
-    "countryFlag": "🇨🇭",
+    "countryFlag": "ğŸ‡¨ğŸ‡­",
     "continent": "Europe",
     "currency": "CHF",
     "taxFreeAvailable": "TRUE"
@@ -273,7 +273,7 @@ export const countries = [
     "countryId": "thailand",
     "taxFreeStatus": "available",
     "countryName": "Thailand",
-    "countryFlag": "🇹🇭",
+    "countryFlag": "ğŸ‡¹ğŸ‡­",
     "continent": "Asia",
     "currency": "THB",
     "taxFreeAvailable": "TRUE"
@@ -282,7 +282,7 @@ export const countries = [
     "countryId": "turkey",
     "taxFreeStatus": "available",
     "countryName": "Turkey",
-    "countryFlag": "🇹🇷",
+    "countryFlag": "ğŸ‡¹ğŸ‡·",
     "continent": "Europe",
     "currency": "TRY",
     "taxFreeAvailable": "TRUE"
@@ -291,7 +291,7 @@ export const countries = [
     "countryId": "united-arab-emirates",
     "taxFreeStatus": "available",
     "countryName": "United Arab Emirates",
-    "countryFlag": "🇦🇪",
+    "countryFlag": "ğŸ‡¦ğŸ‡ª",
     "continent": "Asia",
     "currency": "AED",
     "taxFreeAvailable": "TRUE"
@@ -300,7 +300,7 @@ export const countries = [
     "countryId": "united-kingdom",
     "taxFreeStatus": "not_available",
     "countryName": "United Kingdom",
-    "countryFlag": "🇬🇧",
+    "countryFlag": "ğŸ‡¬ğŸ‡§",
     "continent": "Europe",
     "currency": "GBP",
     "taxFreeAvailable": "FALSE"
@@ -309,7 +309,7 @@ export const countries = [
     "countryId": "united-states",
     "taxFreeStatus": "not_available",
     "countryName": "United States",
-    "countryFlag": "🇺🇸",
+    "countryFlag": "ğŸ‡ºğŸ‡¸",
     "continent": "North America",
     "currency": "USD",
     "taxFreeAvailable": "FALSE"
@@ -332,4 +332,13 @@ export const countries = [
  "currency": "TWD",
  "taxFreeAvailable": "TRUE"
  }
+ ,{
+"countryId": "malaysia",
+"taxFreeStatus": "not_available",
+"countryName": "Malaysia",
+"countryFlag": "\uD83C\uDDF2\uD83C\uDDFE",
+"continent": "Asia",
+"currency": "MYR",
+"taxFreeAvailable": "FALSE"
+},
 ];
