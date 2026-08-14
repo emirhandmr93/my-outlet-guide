@@ -711,6 +711,60 @@ require("../../assets/outlet-images/dubai-outlet-mall/gallery3.png"),
     require("../../assets/outlet-images/yeoju-premium-outlets/gallery2.webp"),
     require("../../assets/outlet-images/yeoju-premium-outlets/gallery3.webp"),
   ],
+ "busan-premium-outlets": [
+require("../../assets/outlet-images/busan-premium-outlets/hero.webp"),
+require("../../assets/outlet-images/busan-premium-outlets/gallery1.webp"),
+require("../../assets/outlet-images/busan-premium-outlets/gallery2.webp"),
+require("../../assets/outlet-images/busan-premium-outlets/gallery3.webp"),
+],
+ "citygate-outlets": [
+require("../../assets/outlet-images/citygate-outlets/hero.webp"),
+require("../../assets/outlet-images/citygate-outlets/gallery1.webp"),
+require("../../assets/outlet-images/citygate-outlets/gallery2.webp"),
+require("../../assets/outlet-images/citygate-outlets/gallery3.webp"),
+],
+ "genting-highlands-premium-outlets": [
+require("../../assets/outlet-images/genting-highlands-premium-outlets/hero.webp"),
+require("../../assets/outlet-images/genting-highlands-premium-outlets/gallery1.webp"),
+require("../../assets/outlet-images/genting-highlands-premium-outlets/gallery2.webp"),
+require("../../assets/outlet-images/genting-highlands-premium-outlets/gallery3.webp"),
+],
+ "kobe-sanda-premium-outlets": [
+require("../../assets/outlet-images/kobe-sanda-premium-outlets/hero.webp"),
+require("../../assets/outlet-images/kobe-sanda-premium-outlets/gallery1.webp"),
+require("../../assets/outlet-images/kobe-sanda-premium-outlets/gallery2.webp"),
+require("../../assets/outlet-images/kobe-sanda-premium-outlets/gallery3.webp"),
+],
+ "mitsui-outlet-park-kisarazu": [
+require("../../assets/outlet-images/mitsui-outlet-park-kisarazu/hero.webp"),
+require("../../assets/outlet-images/mitsui-outlet-park-kisarazu/gallery1.webp"),
+require("../../assets/outlet-images/mitsui-outlet-park-kisarazu/gallery2.webp"),
+require("../../assets/outlet-images/mitsui-outlet-park-kisarazu/gallery3.webp"),
+],
+ "mitsui-outlet-park-linkou": [
+require("../../assets/outlet-images/mitsui-outlet-park-linkou/hero.webp"),
+require("../../assets/outlet-images/mitsui-outlet-park-linkou/gallery1.webp"),
+require("../../assets/outlet-images/mitsui-outlet-park-linkou/gallery2.webp"),
+require("../../assets/outlet-images/mitsui-outlet-park-linkou/gallery3.webp"),
+],
+ "paju-premium-outlets": [
+require("../../assets/outlet-images/paju-premium-outlets/hero.webp"),
+require("../../assets/outlet-images/paju-premium-outlets/gallery1.webp"),
+require("../../assets/outlet-images/paju-premium-outlets/gallery2.webp"),
+require("../../assets/outlet-images/paju-premium-outlets/gallery3.webp"),
+],
+ "shisui-premium-outlets": [
+require("../../assets/outlet-images/shisui-premium-outlets/hero.webp"),
+require("../../assets/outlet-images/shisui-premium-outlets/gallery1.webp"),
+require("../../assets/outlet-images/shisui-premium-outlets/gallery2.webp"),
+require("../../assets/outlet-images/shisui-premium-outlets/gallery3.webp"),
+],
+ "siam-premium-outlet": [
+require("../../assets/outlet-images/siam-premium-outlet/hero.webp"),
+require("../../assets/outlet-images/siam-premium-outlet/gallery1.webp"),
+require("../../assets/outlet-images/siam-premium-outlet/gallery2.webp"),
+require("../../assets/outlet-images/siam-premium-outlet/gallery3.webp"),
+],
 };
 
 const productionClearedSourceStatuses = new Set<OutletMediaSourceStatus>([

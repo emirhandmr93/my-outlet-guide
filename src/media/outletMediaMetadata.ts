@@ -4342,4 +4342,365 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
   "license": "Project-owned",
   "alt": "Yeoju Premium Outlets gallery photo",
   "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
-}] as const;
+},
+{
+"outletId": "busan-premium-outlets",
+"role": "hero",
+"assetPath": "assets/outlet-images/busan-premium-outlets/hero.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Busan Premium Outlets hero photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "busan-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/busan-premium-outlets/gallery1.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Busan Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "busan-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/busan-premium-outlets/gallery2.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Busan Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "busan-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/busan-premium-outlets/gallery3.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Busan Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "citygate-outlets",
+"role": "hero",
+"assetPath": "assets/outlet-images/citygate-outlets/hero.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Citygate Outlets hero photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "citygate-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/citygate-outlets/gallery1.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Citygate Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "citygate-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/citygate-outlets/gallery2.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Citygate Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "citygate-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/citygate-outlets/gallery3.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Citygate Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "genting-highlands-premium-outlets",
+"role": "hero",
+"assetPath": "assets/outlet-images/genting-highlands-premium-outlets/hero.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Genting Highlands Premium Outlets hero photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "genting-highlands-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/genting-highlands-premium-outlets/gallery1.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Genting Highlands Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "genting-highlands-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/genting-highlands-premium-outlets/gallery2.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Genting Highlands Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "genting-highlands-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/genting-highlands-premium-outlets/gallery3.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Genting Highlands Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "kobe-sanda-premium-outlets",
+"role": "hero",
+"assetPath": "assets/outlet-images/kobe-sanda-premium-outlets/hero.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Kobe-Sanda Premium Outlets hero photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "kobe-sanda-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/kobe-sanda-premium-outlets/gallery1.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Kobe-Sanda Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "kobe-sanda-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/kobe-sanda-premium-outlets/gallery2.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Kobe-Sanda Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "kobe-sanda-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/kobe-sanda-premium-outlets/gallery3.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Kobe-Sanda Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "mitsui-outlet-park-kisarazu",
+"role": "hero",
+"assetPath": "assets/outlet-images/mitsui-outlet-park-kisarazu/hero.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Mitsui Outlet Park Kisarazu hero photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "mitsui-outlet-park-kisarazu",
+"role": "gallery",
+"assetPath": "assets/outlet-images/mitsui-outlet-park-kisarazu/gallery1.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Mitsui Outlet Park Kisarazu gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "mitsui-outlet-park-kisarazu",
+"role": "gallery",
+"assetPath": "assets/outlet-images/mitsui-outlet-park-kisarazu/gallery2.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Mitsui Outlet Park Kisarazu gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "mitsui-outlet-park-kisarazu",
+"role": "gallery",
+"assetPath": "assets/outlet-images/mitsui-outlet-park-kisarazu/gallery3.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Mitsui Outlet Park Kisarazu gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "mitsui-outlet-park-linkou",
+"role": "hero",
+"assetPath": "assets/outlet-images/mitsui-outlet-park-linkou/hero.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Mitsui Outlet Park Linkou hero photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "mitsui-outlet-park-linkou",
+"role": "gallery",
+"assetPath": "assets/outlet-images/mitsui-outlet-park-linkou/gallery1.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Mitsui Outlet Park Linkou gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "mitsui-outlet-park-linkou",
+"role": "gallery",
+"assetPath": "assets/outlet-images/mitsui-outlet-park-linkou/gallery2.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Mitsui Outlet Park Linkou gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "mitsui-outlet-park-linkou",
+"role": "gallery",
+"assetPath": "assets/outlet-images/mitsui-outlet-park-linkou/gallery3.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Mitsui Outlet Park Linkou gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "paju-premium-outlets",
+"role": "hero",
+"assetPath": "assets/outlet-images/paju-premium-outlets/hero.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Paju Premium Outlets hero photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "paju-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/paju-premium-outlets/gallery1.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Paju Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "paju-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/paju-premium-outlets/gallery2.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Paju Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "paju-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/paju-premium-outlets/gallery3.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Paju Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "shisui-premium-outlets",
+"role": "hero",
+"assetPath": "assets/outlet-images/shisui-premium-outlets/hero.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Shisui Premium Outlets hero photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "shisui-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/shisui-premium-outlets/gallery1.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Shisui Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "shisui-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/shisui-premium-outlets/gallery2.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Shisui Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "shisui-premium-outlets",
+"role": "gallery",
+"assetPath": "assets/outlet-images/shisui-premium-outlets/gallery3.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Shisui Premium Outlets gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "siam-premium-outlet",
+"role": "hero",
+"assetPath": "assets/outlet-images/siam-premium-outlet/hero.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Siam Premium Outlet hero photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "siam-premium-outlet",
+"role": "gallery",
+"assetPath": "assets/outlet-images/siam-premium-outlet/gallery1.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Siam Premium Outlet gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "siam-premium-outlet",
+"role": "gallery",
+"assetPath": "assets/outlet-images/siam-premium-outlet/gallery2.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Siam Premium Outlet gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+},
+{
+"outletId": "siam-premium-outlet",
+"role": "gallery",
+"assetPath": "assets/outlet-images/siam-premium-outlet/gallery3.webp",
+"sourceStatus": "project-owned",
+"credit": "My Outlet Guide project-owned manual media",
+"license": "Project-owned",
+"alt": "Siam Premium Outlet gallery photo",
+"notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+}
+] as const;
