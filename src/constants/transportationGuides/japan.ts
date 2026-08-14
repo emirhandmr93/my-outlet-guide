@@ -114,4 +114,44 @@ steps: [
 updatedAt: "2026-08-14"
 },
 
+
+{
+guideId: "tokyo-station-to-sano-premium-outlets-direct-bus",
+outletId: "sano-premium-outlets",
+originType: "station",
+originId: "tokyo-station",
+transportationType: "bus",
+title: "Tokyo Station to Sano Premium Outlets by direct Marronnier highway bus",
+estimatedDuration: "Approx. 90 min; traffic may affect travel time",
+estimatedCost: "JPY 1,600 one way adult",
+recommended: true,
+steps: [
+{ order: 1, description: "Go to the JR highway-bus boarding area at Tokyo Station Yaesu South Exit." },
+{ order: 2, description: "Board the Marronnier Tokyo highway bus for Sano Shintoshin Bus Terminal." },
+{ order: 3, description: "Pay JPY 1,600 one way adult fare." },
+{ order: 4, description: "Ride approximately 90 minutes to Sano Shintoshin Bus Terminal; traffic may affect travel time." },
+{ order: 5, description: "From the bus terminal, walk approximately 3 minutes to Sano Premium Outlets." }
+],
+updatedAt: "2026-08-14"
+},
+{
+guideId: "haneda-airport-to-sano-premium-outlets-direct-bus",
+outletId: "sano-premium-outlets",
+originType: "airport",
+originId: "haneda-airport",
+transportationType: "bus",
+title: "Haneda Airport to Sano Premium Outlets by direct Marronnier airport bus",
+estimatedDuration: "Approx. 2 hr; service, terminal and traffic conditions may vary",
+estimatedCost: "JPY 4,600 one way adult; JPY 2,300 child",
+recommended: true,
+steps: [
+{ order: 1, description: "At Haneda Airport, use the current Marronnier airport-bus boarding point for your terminal." },
+{ order: 2, description: "Board the direct Kanto Bus / Airport Limousine service for Sano Shintoshin Bus Terminal." },
+{ order: 3, description: "Pay JPY 4,600 one way for an adult or JPY 2,300 for a child." },
+{ order: 4, description: "Allow approximately 2 hours; scheduled journey time varies by terminal and service and traffic may cause delays." },
+{ order: 5, description: "Alight at Sano Shintoshin Bus Terminal and walk approximately 3 minutes to Sano Premium Outlets." }
+],
+updatedAt: "2026-08-14"
+},
+
 ];

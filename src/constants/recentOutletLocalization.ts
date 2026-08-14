@@ -588,12 +588,141 @@ zh: "成田国际机场",
 QUICK INFO FINALIZER
 ========================================================= */
 
+
+/* =========================================================
+SANO QUICK INFO
+========================================================= */
+
+const sanoHours: Record<RecentOutletLanguage, string> = {
+en: "March-January: daily 10:00-20:00; February: daily 10:00-19:00. Restaurants generally operate until 20:00. An annual closing day may apply.",
+tr: "Mart-Ocak: her gün 10:00-20:00; Şubat: her gün 10:00-19:00. Restoranlar genel olarak 20:00'ye kadar açıktır. Yıllık kapanış günü uygulanabilir.",
+es: "Marzo-enero: todos los días 10:00-20:00; febrero: todos los días 10:00-19:00. Los restaurantes suelen abrir hasta las 20:00. Puede haber un día de cierre anual.",
+fr: "Mars-janvier : tous les jours 10:00-20:00 ; février : tous les jours 10:00-19:00. Les restaurants sont généralement ouverts jusqu'à 20:00. Une journée de fermeture annuelle peut s'appliquer.",
+de: "März-Januar: täglich 10:00-20:00; Februar: täglich 10:00-19:00. Restaurants sind in der Regel bis 20:00 geöffnet. Ein jährlicher Schließtag ist möglich.",
+ar: "من مارس إلى يناير: يوميًا 10:00-20:00؛ فبراير: يوميًا 10:00-19:00. تعمل المطاعم عادة حتى 20:00. قد يكون هناك يوم إغلاق سنوي.",
+ru: "Март-январь: ежедневно 10:00-20:00; февраль: ежедневно 10:00-19:00. Рестораны обычно работают до 20:00. Возможен ежегодный день закрытия.",
+zh: "3月至1月：每天10:00-20:00；2月：每天10:00-19:00。餐厅通常营业至20:00。每年可能设有一个闭馆日。",
+};
+
+const sanoParking: Record<RecentOutletLanguage, string> = {
+en: "On-site parking is available. Accessible parking spaces are provided; arrangements and availability may vary during busy periods.",
+tr: "Tesis bünyesinde otopark mevcuttur. Engelsiz park alanları bulunur; yoğun dönemlerde düzen ve müsaitlik değişebilir.",
+es: "Hay aparcamiento en el recinto y plazas accesibles; la disponibilidad y la organización pueden variar en periodos de gran afluencia.",
+fr: "Un parking est disponible sur place avec des places accessibles ; l'organisation et la disponibilité peuvent varier en période d'affluence.",
+de: "Parkplätze sowie barrierefreie Stellplätze sind vor Ort verfügbar; bei hohem Besucheraufkommen können Verfügbarkeit und Regelungen abweichen.",
+ar: "تتوفر مواقف سيارات داخل الموقع ومواقف مخصصة لسهولة الوصول؛ وقد تختلف الترتيبات والتوافر في أوقات الازدحام.",
+ru: "На территории есть парковка и доступные парковочные места; в периоды высокой загрузки порядок и наличие мест могут меняться.",
+zh: "园区内设有停车场及无障碍车位；繁忙时段的停车安排和车位情况可能有所变化。",
+};
+
+const sanoServices: Record<RecentOutletLanguage, string[]> = {
+en: [
+"Information Center","Tax-Free Shopping","Free Wi-Fi","ATM",
+"Currency Exchange","Lockers","Clothing Alteration Service","Delivery Service",
+"Parking","Taxi","Local Bus","Public Telephone","First Aid / AED",
+"Mobile Phone Charging","Stroller Rental","Nursing / Baby Care Room",
+"Wheelchair Rental","Barrier-Free Access","EV Charging",
+"Pet-Friendly Areas","Smoking Areas"
+],
+tr: [
+"Danışma","Tax Free Alışveriş","Ücretsiz Wi-Fi","ATM",
+"Döviz Bürosu","Dolaplar","Kıyafet Tadilat Hizmeti","Teslimat Hizmeti",
+"Otopark","Taksi","Yerel Otobüs","Umumi Telefon","İlk Yardım / AED",
+"Telefon Şarj Noktaları","Bebek Arabası Kiralama","Bebek Bakım / Emzirme Odası",
+"Tekerlekli Sandalye Kiralama","Engelsiz Erişim","Elektrikli Araç Şarjı",
+"Evcil Hayvan Dostu Alanlar","Sigara İçme Alanları"
+],
+es: [
+"Información","Compras Tax Free","Wi-Fi gratis","Cajero automático",
+"Cambio de divisas","Taquillas","Arreglos de ropa","Servicio de entrega",
+"Aparcamiento","Taxi","Autobús local","Teléfono público","Primeros auxilios / DEA",
+"Carga de teléfonos","Alquiler de cochecitos","Sala de lactancia y cuidado del bebé",
+"Alquiler de sillas de ruedas","Acceso sin barreras","Carga de vehículos eléctricos",
+"Zonas para mascotas","Zonas para fumadores"
+],
+fr: [
+"Information","Achats Tax Free","Wi-Fi gratuit","Distributeur",
+"Bureau de change","Casiers","Retouches de vêtements","Service de livraison",
+"Parking","Taxi","Bus local","Téléphone public","Premiers secours / DAE",
+"Recharge de téléphone","Prêt de poussettes","Espace allaitement et bébé",
+"Prêt de fauteuils roulants","Accès sans obstacles","Recharge pour véhicules électriques",
+"Espaces acceptant les animaux","Espaces fumeurs"
+],
+de: [
+"Information","Tax-Free-Einkauf","Kostenloses WLAN","Geldautomat",
+"Geldwechsel","Schließfächer","Änderungsservice","Lieferservice",
+"Parkplatz","Taxi","Linienbus","Öffentliches Telefon","Erste Hilfe / AED",
+"Handy-Ladestation","Kinderwagenverleih","Still- und Babyraum",
+"Rollstuhlverleih","Barrierefreier Zugang","Ladestation für Elektrofahrzeuge",
+"Haustierfreundliche Bereiche","Raucherbereiche"
+],
+ar: [
+"مركز المعلومات","التسوق المعفى من الضرائب","واي فاي مجاني","جهاز صراف آلي",
+"صرف العملات","خزائن","خدمة تعديل الملابس","خدمة التوصيل",
+"مواقف السيارات","سيارة أجرة","حافلة محلية","هاتف عام","إسعافات أولية / AED",
+"شحن الهواتف","استعارة عربات الأطفال","غرفة الرضاعة والعناية بالطفل",
+"استعارة الكراسي المتحركة","وصول بلا عوائق","شحن المركبات الكهربائية",
+"مناطق صديقة للحيوانات","مناطق التدخين"
+],
+ru: [
+"Информационный центр","Покупки Tax Free","Бесплатный Wi-Fi","Банкомат",
+"Обмен валюты","Камеры хранения","Подгонка одежды","Доставка",
+"Парковка","Такси","Местный автобус","Общественный телефон","Первая помощь / AED",
+"Зарядка телефонов","Прокат детских колясок","Комната матери и ребёнка",
+"Прокат инвалидных колясок","Безбарьерный доступ","Зарядка электромобилей",
+"Зоны для посетителей с животными","Места для курения"
+],
+zh: [
+"服务中心","退税购物","免费Wi-Fi","自动取款机",
+"外币兑换","储物柜","服装修改服务","配送服务",
+"停车场","出租车","当地巴士","公共电话","急救 / AED",
+"手机充电","婴儿车租借","母婴室",
+"轮椅租借","无障碍设施","电动汽车充电",
+"宠物友好区域","吸烟区"
+],
+};
+
+const sanoCityCenter: Record<RecentOutletLanguage, string> = {
+en:"Sano Station",
+tr:"Sano İstasyonu",
+es:"Estación de Sano",
+fr:"Gare de Sano",
+de:"Bahnhof Sano",
+ar:"محطة سانو",
+ru:"Станция Сано",
+zh:"佐野站",
+};
+
+const sanoAirport: Record<RecentOutletLanguage, string> = {
+en:"Haneda Airport",
+tr:"Haneda Havalimanı",
+es:"Aeropuerto de Haneda",
+fr:"Aéroport de Haneda",
+de:"Flughafen Haneda",
+ar:"مطار هانيدا",
+ru:"Аэропорт Ханэда",
+zh:"羽田机场",
+};
+
 export function finalizeRecentQuickInfo(
 outletId: string,
 languageInput: string,
 base: QuickInfoLike | undefined
 ): QuickInfoLike | undefined {
 const language = normalizeLanguage(languageInput);
+
+if (outletId === "sano-premium-outlets") {
+return {
+openingHours: sanoHours[language],
+parking: sanoParking[language],
+services: sanoServices[language],
+storesCountText: countText(180, language),
+cityCenterName: sanoCityCenter[language],
+airportNames: {
+HND: sanoAirport[language],
+},
+};
+}
 
 if (outletId === "kobe-sanda-premium-outlets") {
 return {
@@ -789,6 +918,234 @@ p.confirm,
 };
 }
 
+
+const sanoGuideText: Record<
+RecentOutletLanguage,
+{
+tokyoOrigin:string;
+hanedaOrigin:string;
+terminal:string;
+tokyoDuration:string;
+hanedaDuration:string;
+tokyoCost:string;
+hanedaCost:string;
+tokyoSteps:string[];
+hanedaSteps:string[];
+}
+> = {
+en:{
+tokyoOrigin:"Tokyo Station Yaesu South Exit",
+hanedaOrigin:"Haneda Airport",
+terminal:"Sano Shintoshi Bus Terminal",
+tokyoDuration:"Approx. 90 min",
+hanedaDuration:"Approx. 2 hr",
+tokyoCost:"JPY 1,600 one way",
+hanedaCost:"JPY 4,600 adult; JPY 2,300 child",
+tokyoSteps:[
+"Start at Tokyo Station Yaesu South Exit, Bus Stop 6.",
+"Board the JR Bus Kanto Marronnier Tokyo highway bus.",
+"Ride directly to Sano Shintoshi Bus Terminal.",
+"Walk approximately 3 minutes from the terminal to Sano Premium Outlets.",
+"Check the current timetable and fare with the official operator before travel."
+],
+hanedaSteps:[
+"Go to the airport limousine bus stop at Haneda Airport.",
+"Board the Marronnier airport bus for Sano.",
+"Ride to Sano Shintoshi Bus Terminal.",
+"Walk approximately 3 minutes from the terminal to Sano Premium Outlets.",
+"Check the current terminal, timetable and fare with the official operator before travel."
+]
+},
+tr:{
+tokyoOrigin:"Tokyo İstasyonu Yaesu Güney Çıkışı",
+hanedaOrigin:"Haneda Havalimanı",
+terminal:"Sano Shintoshi Otobüs Terminali",
+tokyoDuration:"Yaklaşık 90 dk",
+hanedaDuration:"Yaklaşık 2 sa",
+tokyoCost:"JPY 1.600 tek yön",
+hanedaCost:"JPY 4.600 yetişkin; JPY 2.300 çocuk",
+tokyoSteps:[
+"Tokyo İstasyonu Yaesu Güney Çıkışı 6 numaralı duraktan başlayın.",
+"JR Bus Kanto Marronnier Tokyo otoyol otobüsüne binin.",
+"Doğrudan Sano Shintoshi Otobüs Terminali'ne gidin.",
+"Terminalden Sano Premium Outlets'a yaklaşık 3 dakika yürüyün.",
+"Yola çıkmadan önce güncel sefer saatini ve ücreti resmî operatörden kontrol edin."
+],
+hanedaSteps:[
+"Haneda Havalimanı'ndaki havalimanı otobüsü durağına gidin.",
+"Sano yönündeki Marronnier havalimanı otobüsüne binin.",
+"Sano Shintoshi Otobüs Terminali'ne kadar devam edin.",
+"Terminalden Sano Premium Outlets'a yaklaşık 3 dakika yürüyün.",
+"Yola çıkmadan önce güncel terminali, sefer saatini ve ücreti resmî operatörden kontrol edin."
+]
+},
+es:{
+tokyoOrigin:"Estación de Tokio, salida sur de Yaesu",
+hanedaOrigin:"Aeropuerto de Haneda",
+terminal:"Terminal de autobuses Sano Shintoshi",
+tokyoDuration:"Aprox. 90 min",
+hanedaDuration:"Aprox. 2 h",
+tokyoCost:"JPY 1.600 solo ida",
+hanedaCost:"JPY 4.600 adulto; JPY 2.300 niño",
+tokyoSteps:[
+"Comience en la salida sur de Yaesu de la Estación de Tokio, parada 6.",
+"Tome el autobús de carretera JR Bus Kanto Marronnier Tokyo.",
+"Continúe directamente hasta la Terminal de autobuses Sano Shintoshi.",
+"Camine aproximadamente 3 minutos hasta Sano Premium Outlets.",
+"Consulte el horario y la tarifa actuales con el operador oficial antes del viaje."
+],
+hanedaSteps:[
+"Diríjase a la parada del autobús del aeropuerto en Haneda.",
+"Tome el autobús Marronnier con destino a Sano.",
+"Continúe hasta la Terminal de autobuses Sano Shintoshi.",
+"Camine aproximadamente 3 minutos hasta Sano Premium Outlets.",
+"Confirme la terminal, el horario y la tarifa actuales antes del viaje."
+]
+},
+fr:{
+tokyoOrigin:"Gare de Tokyo, sortie sud Yaesu",
+hanedaOrigin:"Aéroport de Haneda",
+terminal:"Terminal de bus Sano Shintoshi",
+tokyoDuration:"Environ 90 min",
+hanedaDuration:"Environ 2 h",
+tokyoCost:"JPY 1 600 aller simple",
+hanedaCost:"JPY 4 600 adulte ; JPY 2 300 enfant",
+tokyoSteps:[
+"Partez de la sortie sud Yaesu de la gare de Tokyo, arrêt 6.",
+"Prenez le bus autoroutier JR Bus Kanto Marronnier Tokyo.",
+"Continuez directement jusqu'au terminal de bus Sano Shintoshi.",
+"Marchez environ 3 minutes jusqu'à Sano Premium Outlets.",
+"Vérifiez les horaires et le tarif actuels auprès de l'opérateur officiel avant le départ."
+],
+hanedaSteps:[
+"Rendez-vous à l'arrêt du bus aéroport à Haneda.",
+"Prenez le bus aéroport Marronnier à destination de Sano.",
+"Continuez jusqu'au terminal de bus Sano Shintoshi.",
+"Marchez environ 3 minutes jusqu'à Sano Premium Outlets.",
+"Vérifiez le terminal, les horaires et le tarif actuels avant le départ."
+]
+},
+de:{
+tokyoOrigin:"Bahnhof Tokio, Yaesu-Südausgang",
+hanedaOrigin:"Flughafen Haneda",
+terminal:"Busbahnhof Sano Shintoshi",
+tokyoDuration:"Ca. 90 Min.",
+hanedaDuration:"Ca. 2 Std.",
+tokyoCost:"JPY 1.600 einfache Fahrt",
+hanedaCost:"JPY 4.600 Erwachsene; JPY 2.300 Kinder",
+tokyoSteps:[
+"Starten Sie am Yaesu-Südausgang des Bahnhofs Tokio, Haltestelle 6.",
+"Nehmen Sie den JR Bus Kanto Marronnier Tokyo.",
+"Fahren Sie direkt zum Busbahnhof Sano Shintoshi.",
+"Gehen Sie etwa 3 Minuten zu Fuß bis Sano Premium Outlets.",
+"Prüfen Sie vor der Fahrt den aktuellen Fahrplan und Fahrpreis beim offiziellen Betreiber."
+],
+hanedaSteps:[
+"Gehen Sie zur Flughafenbus-Haltestelle am Flughafen Haneda.",
+"Nehmen Sie den Marronnier-Flughafenbus in Richtung Sano.",
+"Fahren Sie bis zum Busbahnhof Sano Shintoshi.",
+"Gehen Sie etwa 3 Minuten zu Fuß bis Sano Premium Outlets.",
+"Prüfen Sie vor der Fahrt Terminal, Fahrplan und Fahrpreis beim offiziellen Betreiber."
+]
+},
+ar:{
+tokyoOrigin:"محطة طوكيو - مخرج يايسو الجنوبي",
+hanedaOrigin:"مطار هانيدا",
+terminal:"محطة حافلات سانو شينتوشي",
+tokyoDuration:"حوالي 90 دقيقة",
+hanedaDuration:"حوالي ساعتين",
+tokyoCost:"JPY 1,600 اتجاه واحد",
+hanedaCost:"JPY 4,600 للبالغ؛ JPY 2,300 للطفل",
+tokyoSteps:[
+"ابدأ من المخرج الجنوبي يايسو في محطة طوكيو، موقف رقم 6.",
+"استقل حافلة JR Bus Kanto Marronnier Tokyo.",
+"تابع مباشرة إلى محطة حافلات سانو شينتوشي.",
+"امشِ حوالي 3 دقائق إلى Sano Premium Outlets.",
+"تحقق من الجدول والتعرفة الحاليين لدى المشغل الرسمي قبل السفر."
+],
+hanedaSteps:[
+"توجه إلى موقف حافلات المطار في مطار هانيدا.",
+"استقل حافلة Marronnier المتجهة إلى سانو.",
+"تابع إلى محطة حافلات سانو شينتوشي.",
+"امشِ حوالي 3 دقائق إلى Sano Premium Outlets.",
+"تحقق من المحطة والجدول والتعرفة الحالية لدى المشغل الرسمي قبل السفر."
+]
+},
+ru:{
+tokyoOrigin:"Станция Токио, южный выход Яэсу",
+hanedaOrigin:"Аэропорт Ханэда",
+terminal:"Автовокзал Сано Синтоси",
+tokyoDuration:"Около 90 мин",
+hanedaDuration:"Около 2 ч",
+tokyoCost:"JPY 1 600 в одну сторону",
+hanedaCost:"JPY 4 600 взрослый; JPY 2 300 ребёнок",
+tokyoSteps:[
+"Начните у южного выхода Яэсу станции Токио, остановка №6.",
+"Сядьте на автобус JR Bus Kanto Marronnier Tokyo.",
+"Следуйте без пересадок до автовокзала Сано Синтоси.",
+"Пройдите около 3 минут пешком до Sano Premium Outlets.",
+"Перед поездкой проверьте актуальное расписание и тариф у официального перевозчика."
+],
+hanedaSteps:[
+"Пройдите к остановке аэропортового автобуса в аэропорту Ханэда.",
+"Сядьте на автобус Marronnier в направлении Сано.",
+"Следуйте до автовокзала Сано Синтоси.",
+"Пройдите около 3 минут пешком до Sano Premium Outlets.",
+"Перед поездкой проверьте терминал, расписание и тариф у официального перевозчика."
+]
+},
+zh:{
+tokyoOrigin:"东京站八重洲南口",
+hanedaOrigin:"羽田机场",
+terminal:"佐野新都市巴士总站",
+tokyoDuration:"约90分钟",
+hanedaDuration:"约2小时",
+tokyoCost:"单程 JPY 1,600",
+hanedaCost:"成人 JPY 4,600；儿童 JPY 2,300",
+tokyoSteps:[
+"从东京站八重洲南口6号巴士站出发。",
+"乘坐JR Bus Kanto Marronnier Tokyo高速巴士。",
+"直达佐野新都市巴士总站。",
+"从巴士总站步行约3分钟即可到达Sano Premium Outlets。",
+"出发前请通过官方运营方确认最新时刻表和票价。"
+],
+hanedaSteps:[
+"前往羽田机场的机场巴士乘车点。",
+"乘坐前往佐野的Marronnier机场巴士。",
+"抵达佐野新都市巴士总站。",
+"从巴士总站步行约3分钟即可到达Sano Premium Outlets。",
+"出发前请通过官方运营方确认最新航站楼、时刻表和票价。"
+]
+},
+};
+
+function sanoGuide(
+guide: TransportationGuide,
+language: RecentOutletLanguage
+): GuideCopy | undefined {
+const r = sanoGuideText[language];
+
+if (guide.guideId === "tokyo-station-to-sano-premium-outlets-direct-bus") {
+return {
+title: titleFor(language, r.tokyoOrigin, "Sano Premium Outlets"),
+estimatedDuration: r.tokyoDuration,
+estimatedCost: r.tokyoCost,
+steps: r.tokyoSteps,
+};
+}
+
+if (guide.guideId === "haneda-airport-to-sano-premium-outlets-direct-bus") {
+return {
+title: titleFor(language, r.hanedaOrigin, "Sano Premium Outlets"),
+estimatedDuration: r.hanedaDuration,
+estimatedCost: r.hanedaCost,
+steps: r.hanedaSteps,
+};
+}
+
+return undefined;
+}
+
 const weekdayTimes =
 "Gangnam 09:00, 10:00, 11:00, 13:00, 14:00, 15:00, 17:00, 19:00; Yeoju 11:00, 12:00, 13:00, 15:00, 16:00, 17:00, 19:00, 21:00";
 
@@ -942,6 +1299,10 @@ guide:TransportationGuide,
 languageInput:string
 ):GuideCopy|undefined {
 const language=normalizeLanguage(languageInput);
+
+if(guide.outletId==="sano-premium-outlets"){
+return sanoGuide(guide,language);
+}
 
 if(guide.guideId==="sannomiya-to-kobe-sanda-premium-outlets-direct-bus"){
 const r=kobeSandaRouteNames[language];

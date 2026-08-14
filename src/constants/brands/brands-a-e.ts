@@ -9804,4 +9804,13 @@ luxuryLevel: "fashion",
 rankingWeight: 60,
 brandStatus: "active",
 },
+ {
+ brandId: "arknets",
+ brandName: "Arknets",
+ aliases: ["ARKnets"],
+ categoryId: "fashion",
+ logo: "",
+ rankingWeight: 60,
+ brandStatus: "active",
+ },
 ];

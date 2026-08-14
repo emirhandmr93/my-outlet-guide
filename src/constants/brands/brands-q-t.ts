@@ -6222,4 +6222,13 @@ luxuryLevel: "fashion",
 rankingWeight: 60,
 brandStatus: "active",
 },
+ {
+ brandId: "theory-luxe",
+ brandName: "Theory Luxe",
+ aliases: ["Theory luxe", "theory luxe"],
+ categoryId: "fashion",
+ logo: "",
+ rankingWeight: 60,
+ brandStatus: "active",
+ },
 ];
