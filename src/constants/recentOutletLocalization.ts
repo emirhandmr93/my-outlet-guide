@@ -260,6 +260,330 @@ ru:["Стойка обслуживания","Информация по этаж�
 zh:["服务台","楼层及活动指南","广播服务","急救","失物招领","收据及发票服务","退税发票盖章","停车优惠","顾客意见","A9林口站免费接驳车"],
 };
 
+
+/* =========================================================
+SHISUI QUICK INFO
+========================================================= */
+
+
+const kobeSandaHours: Record<RecentOutletLanguage, string> = {
+en: "Mar-Jan: daily 10:00-20:00; February: daily 10:00-19:00. Restaurants are generally open until 20:00. Individual store and special-date hours may vary.",
+tr: "Mart-Ocak: her gün 10:00-20:00; Şubat: her gün 10:00-19:00. Restoranlar genel olarak 20:00'ye kadar açıktır. Mağaza ve özel gün saatleri değişebilir.",
+es: "Marzo-enero: todos los días 10:00-20:00; febrero: todos los días 10:00-19:00. Los restaurantes suelen abrir hasta las 20:00. Los horarios de tiendas y fechas especiales pueden variar.",
+fr: "Mars-janvier : tous les jours 10:00-20:00 ; février : tous les jours 10:00-19:00. Les restaurants sont généralement ouverts jusqu'à 20:00. Les horaires des boutiques et jours spéciaux peuvent varier.",
+de: "März-Januar: täglich 10:00-20:00; Februar: täglich 10:00-19:00. Restaurants sind in der Regel bis 20:00 geöffnet. Öffnungszeiten einzelner Geschäfte und Sondertage können abweichen.",
+ar: "من مارس إلى يناير: يوميًا 10:00-20:00؛ فبراير: يوميًا 10:00-19:00. تعمل المطاعم عادةً حتى 20:00، وقد تختلف ساعات بعض المتاجر والأيام الخاصة.",
+ru: "Март-январь: ежедневно 10:00-20:00; февраль: ежедневно 10:00-19:00. Рестораны обычно работают до 20:00. Часы отдельных магазинов и особых дат могут отличаться.",
+zh: "3月至1月：每天10:00-20:00；2月：每天10:00-19:00。餐厅通常营业至20:00，各商店及特殊日期营业时间可能有所不同。",
+};
+
+const kobeSandaParking: Record<RecentOutletLanguage, string> = {
+en: "On-site parking is available. Accessible parking spaces are provided; availability may vary on busy days.",
+tr: "Tesis bünyesinde otopark mevcuttur. Erişilebilir park yerleri bulunur; yoğun günlerde müsaitlik değişebilir.",
+es: "Hay aparcamiento en el recinto. Se ofrecen plazas accesibles; la disponibilidad puede variar en días de mucha afluencia.",
+fr: "Un parking est disponible sur place. Des places accessibles sont prévues ; la disponibilité peut varier les jours de forte affluence.",
+de: "Parkplätze sind vor Ort verfügbar. Barrierefreie Stellplätze sind vorhanden; an stark frequentierten Tagen kann die Verfügbarkeit variieren.",
+ar: "تتوفر مواقف سيارات داخل الموقع، بما في ذلك مواقف ميسّرة؛ وقد تختلف السعة المتاحة في الأيام المزدحمة.",
+ru: "На территории имеется парковка, включая доступные места; в загруженные дни наличие мест может меняться.",
+zh: "园区内设有停车场，并提供无障碍车位；繁忙日期的车位情况可能有所变化。",
+};
+
+const kobeSandaServices: Record<RecentOutletLanguage, string[]> = {
+en: [
+"Information Center",
+"Tax-Free Shopping",
+"Free Wi-Fi",
+"ATM",
+"Currency Exchange",
+"Lockers",
+"Baggage Storage",
+"Portable Charger",
+"Telephone Interpreting",
+"Taxi",
+"Nursing Room",
+"Baby Changing",
+"First Aid / AED",
+"Stroller Rental",
+"Wheelchair Rental",
+"Barrier-Free Access",
+"EV Charging",
+"Pet-Friendly Areas",
+"Smoking Areas"
+],
+tr: [
+"Danışma",
+"Tax Free Alışveriş",
+"Ücretsiz Wi-Fi",
+"ATM",
+"Döviz Bürosu",
+"Dolaplar",
+"Bagaj Muhafazası",
+"Taşınabilir Şarj",
+"Telefonla Tercüme",
+"Taksi",
+"Bebek Bakım Odası",
+"Bebek Alt Değiştirme",
+"İlk Yardım / AED",
+"Bebek Arabası Kiralama",
+"Tekerlekli Sandalye Kiralama",
+"Engelsiz Erişim",
+"Elektrikli Araç Şarjı",
+"Evcil Hayvan Alanları",
+"Sigara İçme Alanları"
+],
+es: [
+"Información",
+"Compras Tax Free",
+"Wi-Fi gratis",
+"Cajero automático",
+"Cambio de divisas",
+"Taquillas",
+"Consigna de equipaje",
+"Cargador portátil",
+"Interpretación telefónica",
+"Taxi",
+"Sala de lactancia",
+"Cambiador para bebés",
+"Primeros auxilios / DEA",
+"Alquiler de cochecitos",
+"Alquiler de sillas de ruedas",
+"Acceso sin barreras",
+"Carga de vehículos eléctricos",
+"Zonas para mascotas",
+"Zonas para fumadores"
+],
+fr: [
+"Information",
+"Achats Tax Free",
+"Wi-Fi gratuit",
+"Distributeur",
+"Bureau de change",
+"Casiers",
+"Consigne à bagages",
+"Chargeur portable",
+"Interprétation téléphonique",
+"Taxi",
+"Espace allaitement",
+"Table à langer",
+"Premiers secours / DAE",
+"Prêt de poussettes",
+"Prêt de fauteuils roulants",
+"Accès sans obstacles",
+"Recharge de véhicules électriques",
+"Espaces pour animaux",
+"Espaces fumeurs"
+],
+de: [
+"Information",
+"Tax-Free-Einkauf",
+"Kostenloses WLAN",
+"Geldautomat",
+"Geldwechsel",
+"Schließfächer",
+"Gepäckaufbewahrung",
+"Mobiles Ladegerät",
+"Telefondolmetschen",
+"Taxi",
+"Stillraum",
+"Wickelbereich",
+"Erste Hilfe / AED",
+"Kinderwagenverleih",
+"Rollstuhlverleih",
+"Barrierefreier Zugang",
+"Ladestation für Elektrofahrzeuge",
+"Haustierbereiche",
+"Raucherbereiche"
+],
+ar: [
+"مركز المعلومات",
+"التسوق المعفى من الضرائب",
+"واي فاي مجاني",
+"جهاز صراف آلي",
+"صرف العملات",
+"خزائن الأمتعة",
+"حفظ الأمتعة",
+"شاحن محمول",
+"ترجمة عبر الهاتف",
+"سيارة أجرة",
+"غرفة الرضاعة",
+"منطقة تغيير حفاضات الأطفال",
+"إسعافات أولية / AED",
+"استعارة عربات الأطفال",
+"استعارة الكراسي المتحركة",
+"وصول بلا عوائق",
+"شحن المركبات الكهربائية",
+"مناطق للحيوانات الأليفة",
+"مناطق التدخين"
+],
+ru: [
+"Информационный центр",
+"Покупки Tax Free",
+"Бесплатный Wi-Fi",
+"Банкомат",
+"Обмен валюты",
+"Камеры хранения",
+"Хранение багажа",
+"Портативная зарядка",
+"Перевод по телефону",
+"Такси",
+"Комната матери и ребёнка",
+"Пеленальная зона",
+"Первая помощь / AED",
+"Прокат детских колясок",
+"Прокат инвалидных колясок",
+"Безбарьерный доступ",
+"Зарядка электромобилей",
+"Зоны для животных",
+"Места для курения"
+],
+zh: [
+"服务中心",
+"退税购物",
+"免费 Wi-Fi",
+"自动取款机",
+"外币兑换",
+"储物柜",
+"行李寄存",
+"移动充电",
+"电话口译",
+"出租车",
+"母婴室",
+"婴儿护理台",
+"急救 / AED",
+"婴儿车租借",
+"轮椅租借",
+"无障碍设施",
+"电动汽车充电",
+"宠物友好区域",
+"吸烟区"
+],
+};
+
+const kobeSandaCityCenter: Record<RecentOutletLanguage, string> = {
+en: "Sannomiya Station",
+tr: "Sannomiya İstasyonu",
+es: "Estación de Sannomiya",
+fr: "Gare de Sannomiya",
+de: "Bahnhof Sannomiya",
+ar: "محطة سانوميا",
+ru: "Станция Санномия",
+zh: "三宫站",
+};
+
+const kobeSandaAirport: Record<RecentOutletLanguage, string> = {
+en: "Kansai International Airport",
+tr: "Kansai Uluslararası Havalimanı",
+es: "Aeropuerto Internacional de Kansai",
+fr: "Aéroport international du Kansai",
+de: "Internationaler Flughafen Kansai",
+ar: "مطار كانساي الدولي",
+ru: "Международный аэропорт Кансай",
+zh: "关西国际机场",
+};
+
+const shisuiHours: Record<RecentOutletLanguage, string> = {
+en: "Mar-Jan: daily 10:00-20:00; February: daily 10:00-19:00. Restaurants are open until 20:00. The outlet closes once a year; individual store and special-date hours may vary.",
+tr: "Mart-Ocak: her gün 10:00-20:00; Şubat: her gün 10:00-19:00. Restoranlar 20:00'ye kadar açıktır. Outlet yılda bir kez kapanır; mağaza ve özel gün saatleri değişebilir.",
+es: "Marzo-enero: todos los días 10:00-20:00; febrero: todos los días 10:00-19:00. Los restaurantes abren hasta las 20:00. El outlet cierra una vez al año; los horarios de tiendas y fechas especiales pueden variar.",
+fr: "Mars-janvier : tous les jours 10:00-20:00 ; février : tous les jours 10:00-19:00. Les restaurants sont ouverts jusqu'à 20:00. Le centre ferme une fois par an ; les horaires des boutiques et jours spéciaux peuvent varier.",
+de: "März-Januar: täglich 10:00-20:00; Februar: täglich 10:00-19:00. Restaurants sind bis 20:00 geöffnet. Das Outlet schließt einmal pro Jahr; Öffnungszeiten einzelner Geschäfte und Sondertage können abweichen.",
+ar: "من مارس إلى يناير: يوميًا 10:00-20:00؛ فبراير: يوميًا 10:00-19:00. المطاعم مفتوحة حتى 20:00. يغلق الأوتلت مرة واحدة سنويًا، وقد تختلف ساعات بعض المتاجر والأيام الخاصة.",
+ru: "Март-январь: ежедневно 10:00-20:00; февраль: ежедневно 10:00-19:00. Рестораны работают до 20:00. Аутлет закрывается один раз в год; часы отдельных магазинов и особых дат могут отличаться.",
+zh: "3月至1月：每天10:00-20:00；2月：每天10:00-19:00。餐厅营业至20:00。奥特莱斯每年闭馆一次，各商店及特殊日期营业时间可能有所不同。",
+};
+
+const shisuiParking: Record<RecentOutletLanguage, string> = {
+en: "On-site parking is available. Priority accessible parking spaces are provided; availability may vary on busy days.",
+tr: "Tesis bünyesinde otopark mevcuttur. Erişilebilir öncelikli park yerleri bulunur; yoğun günlerde müsaitlik değişebilir.",
+es: "Hay aparcamiento en el recinto. Se ofrecen plazas prioritarias accesibles; la disponibilidad puede variar en días de mucha afluencia.",
+fr: "Un parking est disponible sur place. Des places prioritaires accessibles sont prévues ; la disponibilité peut varier les jours de forte affluence.",
+de: "Parkplätze sind vor Ort verfügbar. Barrierefreie Vorrangstellplätze sind vorhanden; an stark frequentierten Tagen kann die Verfügbarkeit variieren.",
+ar: "تتوفر مواقف سيارات داخل الموقع، بما في ذلك مواقف أولوية ميسّرة؛ وقد تختلف السعة المتاحة في الأيام المزدحمة.",
+ru: "На территории имеется парковка, включая приоритетные доступные места; в загруженные дни наличие мест может меняться.",
+zh: "园区内设有停车场，并提供无障碍优先车位；繁忙日期的车位情况可能有所变化。",
+};
+
+const shisuiServices: Record<RecentOutletLanguage, string[]> = {
+en: [
+"Information Center","Tax-Free Shopping","Free Wi-Fi","ATM",
+"Currency Exchange","Lockers","Prayer Room","Telephone Interpreting",
+"Flight Information","Nursing Room","First Aid / AED",
+"Stroller Rental","Wheelchair Rental","Barrier-Free Access",
+"Delivery Service","Taxi","Smoking Areas"
+],
+tr: [
+"Danışma","Tax Free Alışveriş","Ücretsiz Wi-Fi","ATM",
+"Döviz Bürosu","Dolaplar","Mescit","Telefonla Tercüme",
+"Uçuş Bilgisi","Bebek Bakım Odası","İlk Yardım / AED",
+"Bebek Arabası Kiralama","Tekerlekli Sandalye Kiralama",
+"Engelsiz Erişim","Teslimat Hizmeti","Taksi","Sigara İçme Alanları"
+],
+es: [
+"Información","Compras Tax Free","Wi-Fi gratis","Cajero automático",
+"Cambio de divisas","Taquillas","Sala de oración","Interpretación telefónica",
+"Información de vuelos","Sala de lactancia","Primeros auxilios / DEA",
+"Alquiler de cochecitos","Alquiler de sillas de ruedas",
+"Acceso sin barreras","Servicio de entrega","Taxi","Zonas para fumadores"
+],
+fr: [
+"Information","Achats Tax Free","Wi-Fi gratuit","Distributeur",
+"Bureau de change","Casiers","Salle de prière","Interprétation téléphonique",
+"Informations sur les vols","Espace allaitement","Premiers secours / DAE",
+"Prêt de poussettes","Prêt de fauteuils roulants",
+"Accès sans obstacles","Service de livraison","Taxi","Espaces fumeurs"
+],
+de: [
+"Information","Tax-Free-Einkauf","Kostenloses WLAN","Geldautomat",
+"Geldwechsel","Schließfächer","Gebetsraum","Telefondolmetschen",
+"Fluginformation","Stillraum","Erste Hilfe / AED",
+"Kinderwagenverleih","Rollstuhlverleih",
+"Barrierefreier Zugang","Lieferservice","Taxi","Raucherbereiche"
+],
+ar: [
+"مركز المعلومات","التسوق المعفى من الضرائب","واي فاي مجاني","جهاز صراف آلي",
+"صرف العملات","خزائن الأمتعة","غرفة الصلاة","ترجمة عبر الهاتف",
+"معلومات الرحلات","غرفة الرضاعة","إسعافات أولية / AED",
+"استعارة عربات الأطفال","استعارة الكراسي المتحركة",
+"وصول بلا عوائق","خدمة التوصيل","سيارة أجرة","مناطق التدخين"
+],
+ru: [
+"Информационный центр","Покупки Tax Free","Бесплатный Wi-Fi","Банкомат",
+"Обмен валюты","Камеры хранения","Молитвенная комната","Перевод по телефону",
+"Информация о рейсах","Комната матери и ребёнка","Первая помощь / AED",
+"Прокат детских колясок","Прокат инвалидных колясок",
+"Безбарьерный доступ","Доставка","Такси","Места для курения"
+],
+zh: [
+"服务中心","退税购物","免费 Wi-Fi","自动取款机",
+"外币兑换","储物柜","祈祷室","电话口译",
+"航班信息","母婴室","急救 / AED",
+"婴儿车租借","轮椅租借",
+"无障碍设施","配送服务","出租车","吸烟区"
+],
+};
+
+const shisuiCityCenter: Record<RecentOutletLanguage, string> = {
+en: "Tokyo Station",
+tr: "Tokyo İstasyonu",
+es: "Estación de Tokio",
+fr: "Gare de Tokyo",
+de: "Bahnhof Tokio",
+ar: "محطة طوكيو",
+ru: "Станция Токио",
+zh: "东京站",
+};
+
+const shisuiAirport: Record<RecentOutletLanguage, string> = {
+en: "Narita International Airport",
+tr: "Narita Uluslararası Havalimanı",
+es: "Aeropuerto Internacional de Narita",
+fr: "Aéroport international de Narita",
+de: "Internationaler Flughafen Narita",
+ar: "مطار ناريتا الدولي",
+ru: "Международный аэропорт Нарита",
+zh: "成田国际机场",
+};
+
 /* =========================================================
 QUICK INFO FINALIZER
 ========================================================= */
@@ -270,6 +594,32 @@ languageInput: string,
 base: QuickInfoLike | undefined
 ): QuickInfoLike | undefined {
 const language = normalizeLanguage(languageInput);
+
+if (outletId === "kobe-sanda-premium-outlets") {
+return {
+openingHours: kobeSandaHours[language],
+parking: kobeSandaParking[language],
+services: kobeSandaServices[language],
+storesCountText: countText(210, language),
+cityCenterName: kobeSandaCityCenter[language],
+airportNames: {
+KIX: kobeSandaAirport[language],
+},
+};
+}
+
+if (outletId === "shisui-premium-outlets") {
+return {
+openingHours: shisuiHours[language],
+parking: shisuiParking[language],
+services: shisuiServices[language],
+storesCountText: countText(192, language),
+cityCenterName: shisuiCityCenter[language],
+airportNames: {
+NRT: shisuiAirport[language],
+},
+};
+}
 
 if (outletId === "yeoju-premium-outlets") {
 return {
@@ -500,11 +850,149 @@ p.confirm,
 };
 }
 
+
+
+
+const kobeSandaKixDuration: Record<RecentOutletLanguage, string> = {
+en: "Approx. 2 hr - 2 hr 20 min",
+tr: "Yaklaşık 2 sa - 2 sa 20 dk",
+es: "Aprox. 2 h - 2 h 20 min",
+fr: "Environ 2 h - 2 h 20 min",
+de: "Ca. 2 Std. - 2 Std. 20 Min.",
+ar: "حوالي ساعتين إلى ساعتين و20 دقيقة",
+ru: "Около 2 ч - 2 ч 20 мин",
+zh: "约2小时至2小时20分钟",
+};
+
+const kobeSandaRouteNames: Record<
+RecentOutletLanguage,
+{
+sannomiya: string;
+kansaiAirport: string;
+directBus: string;
+airportBusTransfer: string;
+}
+> = {
+en: {
+sannomiya: "Sannomiya Station",
+kansaiAirport: "Kansai International Airport",
+directBus: "direct Shinki Bus",
+airportBusTransfer: "airport limousine bus and transfer",
+},
+tr: {
+sannomiya: "Sannomiya İstasyonu",
+kansaiAirport: "Kansai Uluslararası Havalimanı",
+directBus: "doğrudan Shinki otobüsü",
+airportBusTransfer: "havalimanı otobüsü ve aktarma",
+},
+es: {
+sannomiya: "Estación de Sannomiya",
+kansaiAirport: "Aeropuerto Internacional de Kansai",
+directBus: "autobús directo Shinki",
+airportBusTransfer: "autobús del aeropuerto y transbordo",
+},
+fr: {
+sannomiya: "Gare de Sannomiya",
+kansaiAirport: "Aéroport international du Kansai",
+directBus: "bus direct Shinki",
+airportBusTransfer: "bus aéroport et correspondance",
+},
+de: {
+sannomiya: "Bahnhof Sannomiya",
+kansaiAirport: "Internationaler Flughafen Kansai",
+directBus: "direkter Shinki-Bus",
+airportBusTransfer: "Flughafenbus und Umstieg",
+},
+ar: {
+sannomiya: "محطة سانوميا",
+kansaiAirport: "مطار كانساي الدولي",
+directBus: "حافلة شينكي مباشرة",
+airportBusTransfer: "حافلة المطار مع تبديل",
+},
+ru: {
+sannomiya: "Станция Санномия",
+kansaiAirport: "Международный аэропорт Кансай",
+directBus: "прямой автобус Shinki",
+airportBusTransfer: "аэропортовый автобус с пересадкой",
+},
+zh: {
+sannomiya: "三宫站",
+kansaiAirport: "关西国际机场",
+directBus: "神姬直达巴士",
+airportBusTransfer: "机场巴士及换乘",
+},
+};
+
+const shisuiRouteNames: Record<
+RecentOutletLanguage,
+{ narita:string; tokyo:string; directBus:string }
+> = {
+en:{narita:"Narita Airport",tokyo:"Tokyo Station",directBus:"direct bus"},
+tr:{narita:"Narita Havalimanı",tokyo:"Tokyo İstasyonu",directBus:"doğrudan otobüs"},
+es:{narita:"Aeropuerto de Narita",tokyo:"Estación de Tokio",directBus:"autobús directo"},
+fr:{narita:"Aéroport de Narita",tokyo:"Gare de Tokyo",directBus:"bus direct"},
+de:{narita:"Flughafen Narita",tokyo:"Bahnhof Tokio",directBus:"Direktbus"},
+ar:{narita:"مطار ناريتا",tokyo:"محطة طوكيو",directBus:"حافلة مباشرة"},
+ru:{narita:"Аэропорт Нарита",tokyo:"Станция Токио",directBus:"прямой автобус"},
+zh:{narita:"成田机场",tokyo:"东京站",directBus:"直达巴士"},
+};
+
 export function localizeRecentOutletGuide(
 guide:TransportationGuide,
 languageInput:string
 ):GuideCopy|undefined {
 const language=normalizeLanguage(languageInput);
+
+if(guide.guideId==="sannomiya-to-kobe-sanda-premium-outlets-direct-bus"){
+const r=kobeSandaRouteNames[language];
+
+return simpleGuide(
+guide,
+language,
+r.sannomiya,
+r.directBus,
+"Kobe-Sanda Premium Outlets"
+);
+}
+
+if(guide.guideId==="kansai-airport-to-kobe-sanda-premium-outlets-bus"){
+const r=kobeSandaRouteNames[language];
+
+const localized = simpleGuide(
+guide,
+language,
+r.kansaiAirport,
+r.airportBusTransfer,
+"Kobe-Sanda Premium Outlets"
+);
+
+return {
+...localized,
+estimatedDuration: kobeSandaKixDuration[language],
+};
+}
+
+if(guide.guideId==="narita-airport-to-shisui-premium-outlets-direct-bus"){
+const r=shisuiRouteNames[language];
+return simpleGuide(
+guide,
+language,
+r.narita,
+r.directBus,
+"Shisui Premium Outlets"
+);
+}
+
+if(guide.guideId==="tokyo-station-to-shisui-premium-outlets-direct-bus"){
+const r=shisuiRouteNames[language];
+return simpleGuide(
+guide,
+language,
+r.tokyo,
+r.directBus,
+"Shisui Premium Outlets"
+);
+}
 
 if(guide.outletId==="yeoju-premium-outlets"){
 return yeojuGuide(guide,language);

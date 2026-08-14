@@ -37,4 +37,81 @@ export const japanTransportationGuides: TransportationGuide[] = [
   { guideId: "jr-kisarazu-station-to-mitsui-outlet-park-kisarazu-bus", outletId: "mitsui-outlet-park-kisarazu", originType: "station", originId: "jr-kisarazu-station", transportationType: "bus", title: "JR Kisarazu Station to Mitsui Outlet Park Kisarazu by local bus", estimatedDuration: "Approx. 20 min; traffic varies", estimatedCost: "JPY 360 cash / JPY 356 IC one way adult", recommended: true, steps: [
     { order: 1, description: "Exit JR Kisarazu Station toward the West Exit." }, { order: 2, description: "Find the local Mitsui Outlet Park Kisarazu service." }, { order: 3, description: "Use cash or compatible transportation IC card." }, { order: 4, description: "Ride approximately 20 minutes." }, { order: 5, description: "Alight at the outlet." },
   ], updatedAt: "2026-08-10" },
+ {
+guideId: "narita-airport-to-shisui-premium-outlets-direct-bus",
+outletId: "shisui-premium-outlets",
+originType: "airport",
+originId: "narita-international-airport",
+transportationType: "bus",
+title: "Narita International Airport to Shisui Premium Outlets by direct bus",
+estimatedDuration: "Approx. 15–20 min",
+estimatedCost: "JPY 500 one way adult",
+recommended: true,
+steps: [
+{ order: 1, description: "At Narita Airport Terminal 2, use the 1F No.3 bus stop; at Terminal 1, use the 1F No.30 bus stop." },
+{ order: 2, description: "Board the direct bus for Shisui Premium Outlets." },
+{ order: 3, description: "Pay JPY 500 one way; contactless credit-card payment is available on the official service." },
+{ order: 4, description: "Ride approximately 20 minutes directly to Shisui Premium Outlets." },
+{ order: 5, description: "Confirm the current timetable before travel because seats cannot be reserved." },
+],
+updatedAt: "2026-08-14"
+},
+{
+guideId: "tokyo-station-to-shisui-premium-outlets-direct-bus",
+outletId: "shisui-premium-outlets",
+originType: "station",
+originId: "tokyo-station",
+transportationType: "bus",
+title: "Tokyo Station to Shisui Premium Outlets by direct bus",
+estimatedDuration: "Approx. 50 min; traffic may affect travel time",
+estimatedCost: "JPY 1,300 one way adult",
+recommended: true,
+steps: [
+{ order: 1, description: "Go to Bus Terminal Tokyo Yaesu, bus stop A02." },
+{ order: 2, description: "Board the direct bus for Shisui Premium Outlets." },
+{ order: 3, description: "Pay JPY 1,300 one way adult fare." },
+{ order: 4, description: "Ride approximately 50 minutes directly to the outlet." },
+{ order: 5, description: "Confirm the current timetable before travel because seats cannot be reserved." },
+],
+updatedAt: "2026-08-14"
+},
+{
+guideId: "sannomiya-to-kobe-sanda-premium-outlets-direct-bus",
+outletId: "kobe-sanda-premium-outlets",
+originType: "city_center",
+originId: "sannomiya-station",
+transportationType: "bus",
+title: "Sannomiya Station to Kobe-Sanda Premium Outlets by direct Shinki Bus",
+estimatedDuration: "Approx. 50 min; some services may take longer",
+estimatedCost: "JPY 700 one way adult; JPY 350 child",
+recommended: true,
+steps: [
+{ order: 1, description: "Go to Shinki Bus Kobe-Sannomiya Bus Terminal." },
+{ order: 2, description: "Board the direct Shinki Bus for Kobe-Sanda Premium Outlets." },
+{ order: 3, description: "Pay JPY 700 one way for an adult or JPY 350 for a child." },
+{ order: 4, description: "Ride approximately 50 minutes; some services may operate via intermediate points." },
+{ order: 5, description: "Alight at Kobe-Sanda Premium Outlets and confirm the current return timetable before shopping." },
+],
+updatedAt: "2026-08-14"
+},
+{
+guideId: "kansai-airport-to-kobe-sanda-premium-outlets-bus",
+outletId: "kobe-sanda-premium-outlets",
+originType: "airport",
+originId: "kansai-international-airport",
+transportationType: "bus",
+title: "Kansai International Airport to Kobe-Sanda Premium Outlets via Kobe Sannomiya",
+estimatedDuration: "Approx. 2 hr - 2 hr 20 min including transfer; traffic and connection time vary",
+estimatedCost: "Approx. JPY 2,900 one way adult",
+recommended: true,
+steps: [
+{ order: 1, description: "At Kansai International Airport, board the Airport Limousine Bus for Kobe Sannomiya." },
+{ order: 2, description: "The airport limousine segment takes approximately 65 minutes and costs JPY 2,200 one way adult." },
+{ order: 3, description: "At Kobe Sannomiya, transfer to the Shinki Bus for Kobe-Sanda Premium Outlets." },
+{ order: 4, description: "The outlet bus takes approximately 50 minutes and costs JPY 700 one way adult." },
+{ order: 5, description: "Allow transfer time and confirm both current timetables before travel." },
+],
+updatedAt: "2026-08-14"
+},
+
 ];

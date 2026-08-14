@@ -3211,4 +3211,14 @@ export const brandsUZ: Brand[] = [
  rankingWeight: 82,
  brandStatus: "active",
  },
+ {
+brandId: "vis",
+brandName: "Vis",
+aliases: [],
+categoryId: "fashion",
+logo: "",
+luxuryLevel: "fashion",
+rankingWeight: 60,
+brandStatus: "active",
+},
 ];
