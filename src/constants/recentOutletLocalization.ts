@@ -704,6 +704,140 @@ ru:"Аэропорт Ханэда",
 zh:"羽田机场",
 };
 
+
+/* =========================================================
+PAJU / BUSAN / GENTING QUICK INFO
+========================================================= */
+
+const koreaPremiumParking: Record<RecentOutletLanguage, string> = {
+en: "On-site parking and electric-vehicle charging stations are available.",
+tr: "Tesis bünyesinde otopark ve elektrikli araç şarj istasyonları mevcuttur.",
+es: "Hay aparcamiento y estaciones de carga para vehículos eléctricos en el recinto.",
+fr: "Un parking et des bornes de recharge pour véhicules électriques sont disponibles sur place.",
+de: "Parkplätze und Ladestationen für Elektrofahrzeuge sind vor Ort verfügbar.",
+ar: "تتوفر مواقف سيارات ومحطات شحن للسيارات الكهربائية داخل الموقع.",
+ru: "На территории доступны парковка и зарядные станции для электромобилей.",
+zh: "园区内设有停车场和电动汽车充电站。",
+};
+
+const pajuServiceIndexes = [
+0, 1, 2, 3, 4, 6, 7, 8, 10, 16, 17, 19, 20,
+] as const;
+
+const busanServiceIndexes = [
+0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 16, 17, 18, 19, 20,
+] as const;
+
+function selectYeojuServices(
+indexes: readonly number[],
+language: RecentOutletLanguage
+): string[] {
+return indexes.flatMap((index) => {
+const value = yeojuServices[language][index];
+return value ? [value] : [];
+});
+}
+
+const gentingHours: Record<RecentOutletLanguage, string> = {
+en: "Daily 10:00-22:00.",
+tr: "Her gün 10:00-22:00.",
+es: "Todos los días 10:00-22:00.",
+fr: "Tous les jours 10:00-22:00.",
+de: "Täglich 10:00-22:00.",
+ar: "يوميًا 10:00-22:00.",
+ru: "Ежедневно 10:00-22:00.",
+zh: "每天10:00-22:00。",
+};
+
+const gentingParking: Record<RecentOutletLanguage, string> = {
+en: "On-site multi-level parking is available on B1-B8.",
+tr: "B1-B8 katlarında tesis bünyesinde çok katlı otopark mevcuttur.",
+es: "Hay aparcamiento de varios niveles en el recinto, de B1 a B8.",
+fr: "Un parking à plusieurs niveaux est disponible sur place, de B1 à B8.",
+de: "Vor Ort steht ein mehrstöckiges Parkhaus auf den Ebenen B1-B8 zur Verfügung.",
+ar: "يتوفر موقف سيارات متعدد الطوابق داخل الموقع من B1 إلى B8.",
+ru: "На территории доступна многоуровневая парковка на уровнях B1-B8.",
+zh: "园区内设有B1至B8多层停车场。",
+};
+
+const gentingServices: Record<RecentOutletLanguage, string[]> = {
+en: [
+"Customer Service / Information Center",
+"Cash Machines",
+"Gift Cards",
+"Stroller Rentals",
+"Wheelchairs",
+"Multi-Lingual Services",
+],
+tr: [
+"Müşteri Hizmetleri / Danışma",
+"ATM'ler",
+"Hediye Kartları",
+"Bebek Arabası Kiralama",
+"Tekerlekli Sandalye",
+"Çok Dilli Hizmetler",
+],
+es: [
+"Atención al cliente / Información",
+"Cajeros automáticos",
+"Tarjetas regalo",
+"Alquiler de cochecitos",
+"Sillas de ruedas",
+"Servicios multilingües",
+],
+fr: [
+"Service clientèle / Information",
+"Distributeurs automatiques",
+"Cartes-cadeaux",
+"Location de poussettes",
+"Fauteuils roulants",
+"Services multilingues",
+],
+de: [
+"Kundenservice / Information",
+"Geldautomaten",
+"Geschenkkarten",
+"Kinderwagenverleih",
+"Rollstühle",
+"Mehrsprachige Services",
+],
+ar: [
+"خدمة العملاء / مركز المعلومات",
+"أجهزة الصراف الآلي",
+"بطاقات الهدايا",
+"تأجير عربات الأطفال",
+"الكراسي المتحركة",
+"خدمات متعددة اللغات",
+],
+ru: [
+"Служба поддержки / Информационный центр",
+"Банкоматы",
+"Подарочные карты",
+"Прокат детских колясок",
+"Инвалидные коляски",
+"Многоязычные услуги",
+],
+zh: [
+"客户服务 / 信息中心",
+"自动取款机",
+"礼品卡",
+"婴儿车租借",
+"轮椅",
+"多语言服务",
+],
+};
+
+const gentingStoresCount: Record<RecentOutletLanguage, string> = {
+en: "150 outlet stores",
+tr: "150 outlet mağazası",
+es: "150 tiendas outlet",
+fr: "150 boutiques outlet",
+de: "150 Outlet-Geschäfte",
+ar: "150 متجر أوتليت",
+ru: "150 аутлет-магазинов",
+zh: "150家奥特莱斯门店",
+};
+
 export function finalizeRecentQuickInfo(
 outletId: string,
 languageInput: string,
@@ -761,6 +895,37 @@ airportNames: {},
 };
 }
 
+
+if (outletId === "paju-premium-outlets" && base) {
+return {
+...base,
+openingHours: yeojuHours[language],
+parking: koreaPremiumParking[language],
+services: selectYeojuServices(pajuServiceIndexes, language),
+storesCountText: countText(236, language),
+};
+}
+
+if (outletId === "busan-premium-outlets" && base) {
+return {
+...base,
+openingHours: yeojuHours[language],
+parking: koreaPremiumParking[language],
+services: selectYeojuServices(busanServiceIndexes, language),
+storesCountText: countText(245, language),
+};
+}
+
+if (outletId === "genting-highlands-premium-outlets" && base) {
+return {
+...base,
+openingHours: gentingHours[language],
+parking: gentingParking[language],
+services: gentingServices[language],
+storesCountText: gentingStoresCount[language],
+};
+}
+
 if (outletId === "citygate-outlets") {
 return {
 openingHours: citygateHours[language],
@@ -804,9 +969,6 @@ language === "zh" ? "台湾桃园国际机场" :
 }
 
 const countOnly = new Set([
-"genting-highlands-premium-outlets",
-"busan-premium-outlets",
-"paju-premium-outlets",
 "al-khiran-hybrid-outlet-mall",
 "the-outlet-village",
 "rinku-premium-outlets",
