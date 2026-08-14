@@ -3,7 +3,7 @@ export const countries = [
     "countryId": "austria",
     "taxFreeStatus": "available",
     "countryName": "Austria",
-    "countryFlag": "ğŸ‡¦ğŸ‡¹",
+    "countryFlag": "\uD83C\uDDE6\uD83C\uDDF9",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -12,7 +12,7 @@ export const countries = [
     "countryId": "belgium",
     "taxFreeStatus": "available",
     "countryName": "Belgium",
-    "countryFlag": "ğŸ‡§ğŸ‡ª",
+    "countryFlag": "\uD83C\uDDE7\uD83C\uDDEA",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -21,7 +21,7 @@ export const countries = [
     "countryId": "canada",
     "taxFreeStatus": "not_available",
     "countryName": "Canada",
-    "countryFlag": "ğŸ‡¨ğŸ‡¦",
+    "countryFlag": "\uD83C\uDDE8\uD83C\uDDE6",
     "continent": "North America",
     "currency": "CAD",
     "taxFreeAvailable": "FALSE"
@@ -30,7 +30,7 @@ export const countries = [
     "countryId": "china",
     "taxFreeStatus": "available",
     "countryName": "China",
-    "countryFlag": "ğŸ‡¨ğŸ‡³",
+    "countryFlag": "\uD83C\uDDE8\uD83C\uDDF3",
     "continent": "Asia",
     "currency": "CNY",
     "taxFreeAvailable": "TRUE"
@@ -39,7 +39,7 @@ export const countries = [
     "countryId": "croatia",
     "taxFreeStatus": "available",
     "countryName": "Croatia",
-    "countryFlag": "ğŸ‡­ğŸ‡·",
+    "countryFlag": "\uD83C\uDDED\uD83C\uDDF7",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -48,7 +48,7 @@ export const countries = [
     "countryId": "czech-republic",
     "taxFreeStatus": "available",
     "countryName": "Czech Republic",
-    "countryFlag": "ğŸ‡¨ğŸ‡¿",
+    "countryFlag": "\uD83C\uDDE8\uD83C\uDDFF",
     "continent": "Europe",
     "currency": "CZK",
     "taxFreeAvailable": "TRUE"
@@ -57,7 +57,7 @@ export const countries = [
     "countryId": "denmark",
     "taxFreeStatus": "available",
     "countryName": "Denmark",
-    "countryFlag": "ğŸ‡©ğŸ‡°",
+    "countryFlag": "\uD83C\uDDE9\uD83C\uDDF0",
     "continent": "Europe",
     "currency": "DKK",
     "taxFreeAvailable": "TRUE"
@@ -66,7 +66,7 @@ export const countries = [
     "countryId": "finland",
     "taxFreeStatus": "available",
     "countryName": "Finland",
-    "countryFlag": "ğŸ‡«ğŸ‡®",
+    "countryFlag": "\uD83C\uDDEB\uD83C\uDDEE",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -75,7 +75,7 @@ export const countries = [
     "countryId": "bulgaria",
     "taxFreeStatus": "available",
     "countryName": "Bulgaria",
-    "countryFlag": "ğŸ‡§ğŸ‡¬",
+    "countryFlag": "\uD83C\uDDE7\uD83C\uDDEC",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -84,7 +84,7 @@ export const countries = [
     "countryId": "estonia",
     "taxFreeStatus": "available",
     "countryName": "Estonia",
-    "countryFlag": "ğŸ‡ªğŸ‡ª",
+    "countryFlag": "\uD83C\uDDEA\uD83C\uDDEA",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -93,7 +93,7 @@ export const countries = [
     "countryId": "romania",
     "taxFreeStatus": "available",
     "countryName": "Romania",
-    "countryFlag": "ğŸ‡·ğŸ‡´",
+    "countryFlag": "\uD83C\uDDF7\uD83C\uDDF4",
     "continent": "Europe",
     "currency": "RON",
     "taxFreeAvailable": "TRUE"
@@ -102,7 +102,7 @@ export const countries = [
     "countryId": "france",
     "taxFreeStatus": "available",
     "countryName": "France",
-    "countryFlag": "ğŸ‡«ğŸ‡·",
+    "countryFlag": "\uD83C\uDDEB\uD83C\uDDF7",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -111,7 +111,7 @@ export const countries = [
     "countryId": "germany",
     "taxFreeStatus": "available",
     "countryName": "Germany",
-    "countryFlag": "ğŸ‡©ğŸ‡ª",
+    "countryFlag": "\uD83C\uDDE9\uD83C\uDDEA",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -120,7 +120,7 @@ export const countries = [
     "countryId": "greece",
     "taxFreeStatus": "available",
     "countryName": "Greece",
-    "countryFlag": "ğŸ‡¬ğŸ‡·",
+    "countryFlag": "\uD83C\uDDEC\uD83C\uDDF7",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -129,7 +129,7 @@ export const countries = [
     "countryId": "hungary",
     "taxFreeStatus": "available",
     "countryName": "Hungary",
-    "countryFlag": "ğŸ‡­ğŸ‡º",
+    "countryFlag": "\uD83C\uDDED\uD83C\uDDFA",
     "continent": "Europe",
     "currency": "HUF",
     "taxFreeAvailable": "TRUE"
@@ -138,7 +138,7 @@ export const countries = [
     "countryId": "ireland",
     "taxFreeStatus": "available",
     "countryName": "Ireland",
-    "countryFlag": "ğŸ‡®ğŸ‡ª",
+    "countryFlag": "\uD83C\uDDEE\uD83C\uDDEA",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -147,7 +147,7 @@ export const countries = [
     "countryId": "italy",
     "taxFreeStatus": "available",
     "countryName": "Italy",
-    "countryFlag": "ğŸ‡®ğŸ‡¹",
+    "countryFlag": "\uD83C\uDDEE\uD83C\uDDF9",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -156,7 +156,7 @@ export const countries = [
     "countryId": "japan",
     "taxFreeStatus": "available",
     "countryName": "Japan",
-    "countryFlag": "ğŸ‡¯ğŸ‡µ",
+    "countryFlag": "\uD83C\uDDEF\uD83C\uDDF5",
     "continent": "Asia",
     "currency": "JPY",
     "taxFreeAvailable": "TRUE"
@@ -165,7 +165,7 @@ export const countries = [
     "countryId": "latvia",
     "taxFreeStatus": "available",
     "countryName": "Latvia",
-    "countryFlag": "ğŸ‡±ğŸ‡»",
+    "countryFlag": "\uD83C\uDDF1\uD83C\uDDFB",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -174,7 +174,7 @@ export const countries = [
     "countryId": "kuwait",
     "taxFreeStatus": "not_available",
     "countryName": "Kuwait",
-    "countryFlag": "ğŸ‡°ğŸ‡¼",
+    "countryFlag": "\uD83C\uDDF0\uD83C\uDDFC",
     "continent": "Asia",
     "currency": "KWD",
     "taxFreeAvailable": "FALSE"
@@ -183,7 +183,7 @@ export const countries = [
     "countryId": "lithuania",
     "taxFreeStatus": "available",
     "countryName": "Lithuania",
-    "countryFlag": "ğŸ‡±ğŸ‡¹",
+    "countryFlag": "\uD83C\uDDF1\uD83C\uDDF9",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -192,7 +192,7 @@ export const countries = [
     "countryId": "netherlands",
     "taxFreeStatus": "available",
     "countryName": "Netherlands",
-    "countryFlag": "ğŸ‡³ğŸ‡±",
+    "countryFlag": "\uD83C\uDDF3\uD83C\uDDF1",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -201,7 +201,7 @@ export const countries = [
     "countryId": "norway",
     "taxFreeStatus": "available",
     "countryName": "Norway",
-    "countryFlag": "ğŸ‡³ğŸ‡´",
+    "countryFlag": "\uD83C\uDDF3\uD83C\uDDF4",
     "continent": "Europe",
     "currency": "NOK",
     "taxFreeAvailable": "TRUE"
@@ -210,7 +210,7 @@ export const countries = [
     "countryId": "poland",
     "taxFreeStatus": "available",
     "countryName": "Poland",
-    "countryFlag": "ğŸ‡µğŸ‡±",
+    "countryFlag": "\uD83C\uDDF5\uD83C\uDDF1",
     "continent": "Europe",
     "currency": "PLN",
     "taxFreeAvailable": "TRUE"
@@ -219,7 +219,7 @@ export const countries = [
     "countryId": "portugal",
     "taxFreeStatus": "available",
     "countryName": "Portugal",
-    "countryFlag": "ğŸ‡µğŸ‡¹",
+    "countryFlag": "\uD83C\uDDF5\uD83C\uDDF9",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -228,7 +228,7 @@ export const countries = [
     "countryId": "slovakia",
     "taxFreeStatus": "available",
     "countryName": "Slovakia",
-    "countryFlag": "ğŸ‡¸ğŸ‡°",
+    "countryFlag": "\uD83C\uDDF8\uD83C\uDDF0",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -237,7 +237,7 @@ export const countries = [
     "countryId": "south-korea",
     "taxFreeStatus": "available",
     "countryName": "South Korea",
-    "countryFlag": "ğŸ‡°ğŸ‡·",
+    "countryFlag": "\uD83C\uDDF0\uD83C\uDDF7",
     "continent": "Asia",
     "currency": "KRW",
     "taxFreeAvailable": "TRUE"
@@ -246,7 +246,7 @@ export const countries = [
     "countryId": "spain",
     "taxFreeStatus": "available",
     "countryName": "Spain",
-    "countryFlag": "ğŸ‡ªğŸ‡¸",
+    "countryFlag": "\uD83C\uDDEA\uD83C\uDDF8",
     "continent": "Europe",
     "currency": "EUR",
     "taxFreeAvailable": "TRUE"
@@ -255,7 +255,7 @@ export const countries = [
     "countryId": "sweden",
     "taxFreeStatus": "available",
     "countryName": "Sweden",
-    "countryFlag": "ğŸ‡¸ğŸ‡ª",
+    "countryFlag": "\uD83C\uDDF8\uD83C\uDDEA",
     "continent": "Europe",
     "currency": "SEK",
     "taxFreeAvailable": "TRUE"
@@ -264,7 +264,7 @@ export const countries = [
     "countryId": "switzerland",
     "taxFreeStatus": "available",
     "countryName": "Switzerland",
-    "countryFlag": "ğŸ‡¨ğŸ‡­",
+    "countryFlag": "\uD83C\uDDE8\uD83C\uDDED",
     "continent": "Europe",
     "currency": "CHF",
     "taxFreeAvailable": "TRUE"
@@ -273,7 +273,7 @@ export const countries = [
     "countryId": "thailand",
     "taxFreeStatus": "available",
     "countryName": "Thailand",
-    "countryFlag": "ğŸ‡¹ğŸ‡­",
+    "countryFlag": "\uD83C\uDDF9\uD83C\uDDED",
     "continent": "Asia",
     "currency": "THB",
     "taxFreeAvailable": "TRUE"
@@ -282,7 +282,7 @@ export const countries = [
     "countryId": "turkey",
     "taxFreeStatus": "available",
     "countryName": "Turkey",
-    "countryFlag": "ğŸ‡¹ğŸ‡·",
+    "countryFlag": "\uD83C\uDDF9\uD83C\uDDF7",
     "continent": "Europe",
     "currency": "TRY",
     "taxFreeAvailable": "TRUE"
@@ -291,7 +291,7 @@ export const countries = [
     "countryId": "united-arab-emirates",
     "taxFreeStatus": "available",
     "countryName": "United Arab Emirates",
-    "countryFlag": "ğŸ‡¦ğŸ‡ª",
+    "countryFlag": "\uD83C\uDDE6\uD83C\uDDEA",
     "continent": "Asia",
     "currency": "AED",
     "taxFreeAvailable": "TRUE"
@@ -300,7 +300,7 @@ export const countries = [
     "countryId": "united-kingdom",
     "taxFreeStatus": "not_available",
     "countryName": "United Kingdom",
-    "countryFlag": "ğŸ‡¬ğŸ‡§",
+    "countryFlag": "\uD83C\uDDEC\uD83C\uDDE7",
     "continent": "Europe",
     "currency": "GBP",
     "taxFreeAvailable": "FALSE"
@@ -309,7 +309,7 @@ export const countries = [
     "countryId": "united-states",
     "taxFreeStatus": "not_available",
     "countryName": "United States",
-    "countryFlag": "ğŸ‡ºğŸ‡¸",
+    "countryFlag": "\uD83C\uDDFA\uD83C\uDDF8",
     "continent": "North America",
     "currency": "USD",
     "taxFreeAvailable": "FALSE"

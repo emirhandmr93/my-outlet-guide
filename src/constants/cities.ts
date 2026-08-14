@@ -265,7 +265,7 @@ export const cities = [
   },
   {
     "cityId": "schoenenwerd",
-    "cityName": "SchÃ¶nenwerd",
+    "cityName": "Schönenwerd",
     "countryId": "switzerland"
   },
   {
@@ -290,7 +290,7 @@ export const cities = [
   },
   {
     "cityId": "lempaala",
-    "cityName": "LempÃ¤Ã¤lÃ¤",
+    "cityName": "Lempäälä",
     "countryId": "finland"
   },
   {
@@ -360,7 +360,7 @@ export const cities = [
   },
   {
     "cityId": "pinki",
-    "cityName": "PiÅ†Ä·i",
+    "cityName": "Piņķi",
     "countryId": "latvia"
   },
   {
@@ -405,7 +405,7 @@ export const cities = [
   },
   {
     "cityId": "wroclaw",
-    "cityName": "WrocÅ‚aw",
+    "cityName": "Wrocław",
     "countryId": "poland"
   },
   {
@@ -415,7 +415,7 @@ export const cities = [
   },
   {
     "cityId": "marratxi",
-    "cityName": "MarratxÃ­",
+    "cityName": "Marratxí",
     "countryId": "spain"
   },
   {
@@ -430,12 +430,12 @@ export const cities = [
   },
   {
     "cityId": "san-sebastian-de-los-reyes",
-    "cityName": "San SebastiÃ¡n de los Reyes",
+    "cityName": "San Sebastián de los Reyes",
     "countryId": "spain"
   },
   {
     "cityId": "gdansk",
-    "cityName": "GdaÅ„sk",
+    "cityName": "Gdańsk",
     "countryId": "poland"
   },
   {
@@ -461,7 +461,7 @@ export const cities = [
   },
   {
     "cityId": "a-coruna",
-    "cityName": "A CoruÃ±a",
+    "cityName": "A Coruña",
     "countryId": "spain"
   },
   {
@@ -491,7 +491,7 @@ export const cities = [
   },
   {
     "cityId": "mondovi",
-    "cityName": "MondovÃ¬",
+    "cityName": "Mondovì",
     "countryId": "italy"
   },
   {
@@ -521,7 +521,7 @@ export const cities = [
   },
   {
     "cityId": "citta-sant-angelo",
-    "cityName": "CittÃ  Sant'Angelo",
+    "cityName": "Città Sant'Angelo",
     "countryId": "italy"
   },
   {
