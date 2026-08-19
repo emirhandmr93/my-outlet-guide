@@ -194,7 +194,7 @@ async function enhanceCountry(language: TranslationLanguage, rule: (typeof taxFr
   }
 
   const source = rule.schemeSource;
-  const section = `<section data-country-tax-free-seo="${rule.countryId}"><h2>${escapeHtml(heading)}</h2><p>${escapeHtml(intro)}</p><ul><li><strong>${escapeHtml(copy.vatLabel)}:</strong> ${escapeHtml(vat)}</li>${minimum}<li><strong>${escapeHtml(copy.sourceLabel)}:</strong> <a href="${escapeHtml(source.url)}">${escapeHtml(source.name)}</a> (${escapeHtml(copy.checkedLabel)}: ${escapeHtml(source.checkedDate)})</li></ul><p>${escapeHtml(copy.caveat)}</p><p><a href="${WEB_SEO_ORIGIN}/${language}/calculator/tax-free">${escapeHtml(copy.calculatorLabel)}</a></p></section>`;
+  const section = `<section data-country-tax-free-seo="${rule.countryId}"><h2>${escapeHtml(heading)}</h2><p>${escapeHtml(intro)}</p><ul><li><strong>${escapeHtml(copy.vatLabel)}:</strong> ${escapeHtml(vat)}</li>${minimum}<li><strong>${escapeHtml(copy.sourceLabel)}:</strong> ${escapeHtml(source.name)} (${escapeHtml(copy.checkedLabel)}: ${escapeHtml(source.checkedDate)})</li></ul><p>${escapeHtml(copy.caveat)}</p><p><a href="${WEB_SEO_ORIGIN}/${language}/calculator/tax-free">${escapeHtml(copy.calculatorLabel)}</a></p></section>`;
 
   const file = join(DIST, language, "country", `${rule.countryId}.html`);
   let html = await readFile(file, "utf8");
