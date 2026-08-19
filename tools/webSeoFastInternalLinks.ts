@@ -59,6 +59,25 @@ for (const brand of activeBrandById.values()) {
   legacyLoad.set(chosen, (legacyLoad.get(chosen) ?? 0) + 1);
 }
 
+const discoveryBrandIdsByCountryId = new Map<string, string[]>();
+for (const [brandId, outletId] of legacyOutletByBrandId) {
+  const countryId = publicOutletById.get(outletId)?.countryId;
+  if (!countryId) continue;
+  const brandIds = discoveryBrandIdsByCountryId.get(countryId) ?? [];
+  brandIds.push(brandId);
+  discoveryBrandIdsByCountryId.set(countryId, brandIds);
+}
+for (const [countryId, brandIds] of discoveryBrandIdsByCountryId) {
+  discoveryBrandIdsByCountryId.set(
+    countryId,
+    [...brandIds].sort((a, b) => {
+      const brandA = activeBrandById.get(a)!;
+      const brandB = activeBrandById.get(b)!;
+      return brandB.rankingWeight - brandA.rankingWeight || brandA.brandName.localeCompare(brandB.brandName);
+    }),
+  );
+}
+
 const prioritizedBrands = [...activeBrandById.values()]
   .filter((brand) => relationOutletsByBrandId.has(brand.brandId))
   .sort(
@@ -167,6 +186,15 @@ export function getFastWebSeoInternalLinks(
   page: WebSeoLogicalPage,
   language: TranslationLanguage,
 ): WebSeoInternalLink[] {
+  if (page.kind === "country") {
+    const links = getWebSeoInternalLinks(page, language);
+    for (const brandId of discoveryBrandIdsByCountryId.get(page.countryId!) ?? []) {
+      const brand = activeBrandById.get(brandId);
+      if (brand) addUnique(links, page, brand.brandName, `brand/${brandId}`, "brand");
+    }
+    return links;
+  }
+
   if (page.kind !== "outlet" && page.kind !== "brand") {
     return getWebSeoInternalLinks(page, language);
   }
