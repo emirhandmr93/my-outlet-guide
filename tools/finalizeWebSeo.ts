@@ -44,6 +44,8 @@ const TRANSPORTATION_COPY: Record<typeof WEB_SEO_LANGUAGES[number], { heading: s
 const managed = /\s*(?:<title>[\s\S]*?<\/title>|<meta\s+name=["'](?:description|robots|generator)["'][^>]*>|<link\s+rel=["'](?:canonical|alternate)["'][^>]*>)\s*/gi;
 export function escapeHtml(value: string) { return value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
 function outputPath(route: string) { return join(DIST, `${route}.html`); }
+function sitemapUrlSet(urls: readonly string[]) { return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${escapeHtml(url)}</loc></url>`).join("\n")}\n</urlset>\n`; }
+function sitemapIndex(files: readonly string[]) { return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${files.map(file => `  <sitemap><loc>${escapeHtml(`${WEB_SEO_ORIGIN}/${file}`)}</loc></sitemap>`).join("\n")}\n</sitemapindex>\n`; }
 const WEBSITE_ID = `${WEB_SEO_ORIGIN}/#website`;
 const ORGANIZATION_ID = `${WEB_SEO_ORIGIN}/#organization`;
 function structuredData(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeoLogicalPage, canonical: string, title: string, description: string) {
@@ -123,10 +125,23 @@ export async function finalizeWebSeo() {
     for (const path of WEB_SEO_NOINDEX_PATHS) await writeRoute(`${language}/${path}`,render(base,language));
   }
   await copyStaticNoindex("privacy-policy"); await copyStaticNoindex("delete-account");
-  const urls=WEB_SEO_LANGUAGES.flatMap(language => pages.map(page => `${WEB_SEO_ORIGIN}/${language}${page.path ? `/${page.path}` : ""}`)).sort();
-  await writeFile(join(DIST,"sitemap.xml"),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${escapeHtml(url)}</loc></url>`).join("\n")}\n</urlset>\n`);
+  const sitemapGroups: Record<string, WebSeoLogicalPage[]> = {
+    "sitemap-core.xml": pages.filter(page=>!["outlet","brand","country","city","transportation"].includes(page.kind)),
+    "sitemap-outlets.xml": pages.filter(page=>page.kind==="outlet"),
+    "sitemap-brands.xml": pages.filter(page=>page.kind==="brand"),
+    "sitemap-locations.xml": pages.filter(page=>page.kind==="country"||page.kind==="city"),
+    "sitemap-transportation.xml": pages.filter(page=>page.kind==="transportation"),
+  };
+  const sitemapFiles=Object.keys(sitemapGroups);
+  let urlCount=0;
+  for (const [file,groupPages] of Object.entries(sitemapGroups)) {
+    const urls=WEB_SEO_LANGUAGES.flatMap(language => groupPages.map(page => `${WEB_SEO_ORIGIN}/${language}${page.path ? `/${page.path}` : ""}`)).sort();
+    urlCount+=urls.length;
+    await writeFile(join(DIST,file),sitemapUrlSet(urls));
+  }
+  await writeFile(join(DIST,"sitemap.xml"),sitemapIndex(sitemapFiles));
   await writeFile(join(DIST,"robots.txt"),`User-agent: *\nAllow: /\n\nSitemap: ${WEB_SEO_ORIGIN}/sitemap.xml\n`);
-  console.log(`finalizeWebSeo: generated ${urls.length} indexable localized pages.`);
+  console.log(`finalizeWebSeo: generated ${urlCount} indexable localized pages across ${sitemapFiles.length} child sitemaps.`);
 }
 
 finalizeWebSeo().catch(error => { console.error(error instanceof Error ? error.message : error); process.exitCode=1; });
