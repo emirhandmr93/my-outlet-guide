@@ -92,16 +92,40 @@ async function check() {
   for (const id of EXPECTED_UNPUBLISHED_IDS) for (const language of WEB_SEO_LANGUAGES) { assert(!await exists(fileFor(`${language}/outlet/${id}`)),`${language}: unpublished outlet HTML exists for ${id}`); assert(!await exists(fileFor(`${language}/transportation/${id}`)),`${language}: unpublished transportation HTML exists for ${id}`); }
   for (const language of WEB_SEO_LANGUAGES) for (const path of ["country/turkey","city/istanbul","city/izmir","city/antalya"]) { const entityId=path.slice(path.indexOf("/")+1); const expected=path.startsWith("country/")?expectedCountryIds.has(entityId):expectedCityIds.has(entityId); assert(await exists(fileFor(`${language}/${path}`))===expected,`${language}/${path}: localized HTML presence does not match public data`); }
   for (const staticPath of ["privacy-policy","delete-account"]) { const html=await readFile(join(DIST,staticPath,"index.html"),"utf8"); assert(/name="robots" content="noindex,follow"/.test(html),`${staticPath}: static page must be noindex`); }
-  const sitemap=await readFile(join(DIST,"sitemap.xml"),"utf8"); assert(/^<\?xml[^>]+>\n<urlset[^>]+>[\s\S]*<\/urlset>\n$/.test(sitemap),"Invalid sitemap XML structure"); const actual=matches(sitemap,/<loc>([^<]+)<\/loc>/g); assert(actual.length===new Set(actual).size,"Duplicate sitemap URL"); assert(EXPECTED_UNPUBLISHED_IDS.every(id=>actual.every(url=>!url.includes(`/outlet/${id}`)&&!url.includes(`/transportation/${id}`))),"Sitemap exposes an unpublished outlet"); assert(expected.length===actual.length&&expected.every(url=>actual.includes(url)),"Sitemap and expected indexable pages differ");
+  const sitemapGroups:Array<{file:string;kinds:string[]}>= [
+    {file:"sitemap-core.xml",kinds:["home","explore","savings","smart","price","tax","privacy","terms","contact","help"]},
+    {file:"sitemap-outlets.xml",kinds:["outlet"]},
+    {file:"sitemap-brands.xml",kinds:["brand"]},
+    {file:"sitemap-locations.xml",kinds:["country","city"]},
+    {file:"sitemap-transportation.xml",kinds:["transportation"]},
+  ];
+  const sitemap=await readFile(join(DIST,"sitemap.xml"),"utf8");
+  assert(/^<\?xml[^>]+>\n<sitemapindex[^>]+>[\s\S]*<\/sitemapindex>\n$/.test(sitemap),"Invalid sitemap index XML structure");
+  const childSitemaps=matches(sitemap,/<loc>([^<]+)<\/loc>/g); const expectedChildren=sitemapGroups.map(group=>`${WEB_SEO_ORIGIN}/${group.file}`);
+  assert(childSitemaps.length===new Set(childSitemaps).size,"Duplicate child sitemap URL");
+  assert(childSitemaps.length===expectedChildren.length&&expectedChildren.every(url=>childSitemaps.includes(url)),"Sitemap index child list differs from expected groups");
+  const actual:string[]=[];
+  for (const group of sitemapGroups) {
+    const xml=await readFile(join(DIST,group.file),"utf8");
+    assert(/^<\?xml[^>]+>\n<urlset[^>]+>[\s\S]*<\/urlset>\n$/.test(xml),`${group.file}: invalid sitemap XML structure`);
+    const groupActual=matches(xml,/<loc>([^<]+)<\/loc>/g); const groupPages=pages.filter(page=>group.kinds.includes(page.kind));
+    const groupExpected=WEB_SEO_LANGUAGES.flatMap(language=>groupPages.map(page=>`${WEB_SEO_ORIGIN}/${language}${page.path?`/${page.path}`:""}`));
+    assert(groupActual.length===new Set(groupActual).size,`${group.file}: duplicate sitemap URL`);
+    assert(groupActual.length===groupExpected.length&&groupExpected.every(url=>groupActual.includes(url)),`${group.file}: URLs differ from expected page group`);
+    actual.push(...groupActual);
+  }
+  assert(actual.length===new Set(actual).size,"Duplicate URL across child sitemaps");
+  assert(EXPECTED_UNPUBLISHED_IDS.every(id=>actual.every(url=>!url.includes(`/outlet/${id}`)&&!url.includes(`/transportation/${id}`))),"Sitemap exposes an unpublished outlet");
+  assert(expected.length===actual.length&&expected.every(url=>actual.includes(url)),"Sitemaps and expected indexable pages differ");
   const diskIndexUrls:string[]=[]; for (const language of WEB_SEO_LANGUAGES) for (const file of [fileFor(language),...await htmlFiles(join(DIST,language))]) { const html=await readFile(file,"utf8"); if (/name="robots" content="index,follow"/.test(html)) { const route=relative(DIST,file).split(sep).join("/").replace(/\.html$/,""); diskIndexUrls.push(`${WEB_SEO_ORIGIN}/${route}`); } }
-  assert(diskIndexUrls.length===actual.length&&diskIndexUrls.every(url=>actual.includes(url))&&actual.every(url=>diskIndexUrls.includes(url)),"Sitemap and localized index HTML files differ; stale or unexpected HTML remains.");
+  assert(diskIndexUrls.length===actual.length&&diskIndexUrls.every(url=>actual.includes(url))&&actual.every(url=>diskIndexUrls.includes(url)),"Sitemaps and localized index HTML files differ; stale or unexpected HTML remains.");
   assert(actual.every(url=>url.startsWith(`${WEB_SEO_ORIGIN}/`)&&!/[?#]/.test(url)&&!url.endsWith("/")),"Invalid sitemap URL");
   const robotsFiles=await filesNamed(DIST,"robots.txt"); assert(robotsFiles.length===1&&robotsFiles[0]===join(DIST,"robots.txt"),"Expected exactly one robots.txt at the deployment root");
   const robots=await readFile(robotsFiles[0],"utf8");
-  assert(robots===`User-agent: *\nAllow: /\n\nSitemap: ${WEB_SEO_ORIGIN}/sitemap.xml\n`,"robots.txt must allow public routes and reference the canonical sitemap");
+  assert(robots===`User-agent: *\nAllow: /\n\nSitemap: ${WEB_SEO_ORIGIN}/sitemap.xml\n`,"robots.txt must allow public routes and reference the canonical sitemap index");
   assert(!/^\s*Disallow:\s*\/?(?:\s*(?:#.*)?)?$/im.test(robots),"robots.txt must not block all crawling");
   assert(WEB_SEO_LANGUAGES.every(language=>!new RegExp(`^\\s*Disallow:\\s*/${language}(?:/|\\s|$)`,`im`).test(robots)),"robots.txt must not block localized public routes");
   const counts=Object.fromEntries(["home","explore","savings","smart","price","tax","privacy","terms","contact","help","outlet","brand","country","city","transportation"].map(kind=>[kind,pages.filter(page=>page.kind===kind).length]));
-  console.log(`checkWebSeo: ${actual.length} URLs validated (${pages.length} per language).`); console.log(`checkWebSeo categories: ${JSON.stringify(counts)}`); console.log(`checkWebSeo exclusions: ${EXPECTED_UNPUBLISHED_IDS.length}/${EXPECTED_UNPUBLISHED_IDS.length} unpublished outlets absent.`);
+  console.log(`checkWebSeo: ${actual.length} URLs validated across ${sitemapGroups.length} child sitemaps (${pages.length} per language).`); console.log(`checkWebSeo categories: ${JSON.stringify(counts)}`); console.log(`checkWebSeo exclusions: ${EXPECTED_UNPUBLISHED_IDS.length}/${EXPECTED_UNPUBLISHED_IDS.length} unpublished outlets absent.`);
 }
 check().catch(error=>{console.error(error instanceof Error?error.message:error);process.exitCode=1;});
