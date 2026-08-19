@@ -27,14 +27,21 @@ jobs:
           node <<'NODE'
           const fs = require('fs');
           const path = 'src/constants/brands/brands-q-t.ts';
-          const duplicate = '  {"brandId":"shanghai-tang","brandName":"Shanghai Tang","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},';
-          let text = fs.readFileSync(path, 'utf8');
-          const occurrences = text.split(duplicate).length - 1;
-          if (occurrences !== 1) {
-            throw new Error(`Expected exactly one low-detail duplicate Shanghai Tang record, found ${occurrences}.`);
+          const text = fs.readFileSync(path, 'utf8');
+          const eol = text.includes('\r\n') ? '\r\n' : '\n';
+          const lines = text.split(/\r?\n/);
+          const matches = lines
+            .map((line, index) => ({ line, index }))
+            .filter(({ line }) =>
+              line.includes('"brandId":"shanghai-tang"') &&
+              line.includes('"rankingWeight":60') &&
+              line.includes('"luxuryLevel":"fashion"')
+            );
+          if (matches.length !== 1) {
+            throw new Error(`Expected exactly one low-detail duplicate Shanghai Tang record, found ${matches.length}.`);
           }
-          text = text.replace(`${duplicate}\r\n`, '').replace(`${duplicate}\n`, '');
-          fs.writeFileSync(path, text, 'utf8');
+          lines.splice(matches[0].index, 1);
+          fs.writeFileSync(path, lines.join(eol), 'utf8');
           NODE
 
       - name: Verify retained canonical record
