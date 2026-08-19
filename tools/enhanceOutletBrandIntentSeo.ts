@@ -1,6 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { brands } from "../src/constants/brands";
+import { outletBrands } from "../src/constants/outletBrands";
 import { outlets } from "../src/constants/outlets";
 import {
   isWebSeoPublicOutlet,
@@ -45,18 +46,20 @@ function fill(value: string, values: Record<string, string>) {
   );
 }
 
-async function inBatches<T>(items: readonly T[], run: (item: T) => Promise<void>) {
-  for (let index = 0; index < items.length; index += BATCH_SIZE) {
-    await Promise.all(items.slice(index, index + BATCH_SIZE).map(run));
-  }
-}
-
 const activeBrandById = new Map(
   brands
     .filter((brand) => brand.brandStatus === "active")
     .map((brand) => [brand.brandId, brand] as const),
 );
 const publicOutlets = outlets.filter(isWebSeoPublicOutlet);
+const outletsWithActiveBrands = new Set(
+  outletBrands
+    .filter(
+      (relation) =>
+        relation.relationStatus === "active" && activeBrandById.has(relation.brandId),
+    )
+    .map((relation) => relation.outletId),
+);
 
 async function enhanceOutlet(language: TranslationLanguage, outlet: (typeof outlets)[number]) {
   const file = join(DIST, language, "outlet", `${outlet.outletId}.html`);
@@ -86,8 +89,8 @@ async function enhanceOutlet(language: TranslationLanguage, outlet: (typeof outl
     return `<a href="${prefix}${brandId}">${escapeHtml(label)}</a>`;
   });
 
-  if (rewritten === 0) {
-    throw new Error(`${language} outlet ${outlet.outletId}: no active brand anchors were rewritten`);
+  if (outletsWithActiveBrands.has(outlet.outletId) && rewritten === 0) {
+    throw new Error(`${language} outlet ${outlet.outletId}: active brands exist but no brand anchors were rewritten`);
   }
 
   await writeFile(file, html);
