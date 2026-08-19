@@ -20,6 +20,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
+          sparse-checkout: |
+            src/constants/brands/brands-q-t.ts
+          sparse-checkout-cone-mode: false
 
       - name: Remove duplicate canonical Shanghai Tang record
         shell: bash
