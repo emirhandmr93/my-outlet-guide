@@ -1,0 +1,50 @@
+name: One-time Shanghai Tang dedupe
+
+on:
+  push:
+    branches:
+      - fix/remove-duplicate-shanghai-tang
+
+permissions:
+  contents: write
+
+jobs:
+  fix-duplicate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+
+      - name: Remove duplicate canonical Shanghai Tang record
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = 'src/constants/brands/brands-q-t.ts';
+          const duplicate = '  {"brandId":"shanghai-tang","brandName":"Shanghai Tang","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},';
+          let text = fs.readFileSync(path, 'utf8');
+          const occurrences = text.split(duplicate).length - 1;
+          if (occurrences !== 1) {
+            throw new Error(`Expected exactly one low-detail duplicate Shanghai Tang record, found ${occurrences}.`);
+          }
+          text = text.replace(`${duplicate}\r\n`, '').replace(`${duplicate}\n`, '');
+          fs.writeFileSync(path, text, 'utf8');
+          NODE
+
+      - name: Verify retained canonical record
+        shell: bash
+        run: |
+          grep -n 'brandId: "shanghai-tang"' src/constants/brands/brands-q-t.ts
+          test "$(grep -c 'brandId: "shanghai-tang"' src/constants/brands/brands-q-t.ts)" -eq 1
+          grep -A 8 'brandId: "shanghai-tang"' src/constants/brands/brands-q-t.ts | grep 'originCountryId: "hong-kong"'
+          git diff --check
+
+      - name: Commit source fix
+        shell: bash
+        run: |
+          git add src/constants/brands/brands-q-t.ts
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Fix duplicate Shanghai Tang brand identity"
+          git push origin HEAD:${{ github.ref_name }}
