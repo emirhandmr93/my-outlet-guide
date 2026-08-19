@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { brands } from "../src/constants/brands";
 import { outletBrands } from "../src/constants/outletBrands";
 import { outlets } from "../src/constants/outlets";
+import { taxFreeRules } from "../src/constants/taxFreeRules";
 import {
   isWebSeoPublicOutlet,
   WEB_SEO_LANGUAGES,
@@ -45,10 +46,14 @@ async function inBatches<T>(items: readonly T[], run: (item: T) => Promise<void>
 const publicOutlets = outlets.filter(isWebSeoPublicOutlet);
 const publicOutletIds = new Set(publicOutlets.map((outlet) => outlet.outletId));
 const countryIds = Array.from(new Set(publicOutlets.map((outlet) => outlet.countryId))).sort();
+const publicCountryIds = new Set(countryIds);
 const cityIds = Array.from(new Set(publicOutlets.map((outlet) => outlet.cityId))).sort();
 const transportationOutlets = publicOutlets
   .filter((outlet) => hasWebSeoTransportation(outlet.outletId))
   .sort((a, b) => a.outletId.localeCompare(b.outletId));
+const publicCountryTaxFreeRules = taxFreeRules
+  .filter((rule) => publicCountryIds.has(rule.countryId))
+  .sort((a, b) => a.countryId.localeCompare(b.countryId));
 
 const activePublicBrandIds = new Set(
   outletBrands
@@ -104,6 +109,17 @@ async function checkLanguage(language: TranslationLanguage) {
     );
   });
 
+  await inBatches(publicCountryTaxFreeRules, async (rule) => {
+    const file = join(DIST, language, "country", `${rule.countryId}.html`);
+    const html = await readFile(file, "utf8");
+    requireIncludes(
+      html,
+      `data-country-tax-free-seo="${rule.countryId}"`,
+      `${language} country Tax Free ${rule.countryId}`,
+    );
+    requireIncludes(html, rule.schemeSource.checkedDate, `${language} country Tax Free ${rule.countryId} checked date`);
+  });
+
   await inBatches(cityIds, async (cityId) => {
     const file = join(DIST, language, "city", `${cityId}.html`);
     const title = getTitle(await readFile(file, "utf8"));
@@ -142,7 +158,7 @@ async function checkLanguage(language: TranslationLanguage) {
   }
 
   console.log(
-    `checkSeoEnhancementCoverage: ${language} passed (${indexableBrands.length} brands, ${publicOutlets.length} outlets, ${countryIds.length} countries, ${cityIds.length} cities, ${transportationOutlets.length} transportation pages).`,
+    `checkSeoEnhancementCoverage: ${language} passed (${indexableBrands.length} brands, ${publicOutlets.length} outlets, ${countryIds.length} countries, ${publicCountryTaxFreeRules.length} country Tax Free rules, ${cityIds.length} cities, ${transportationOutlets.length} transportation pages).`,
   );
 }
 
