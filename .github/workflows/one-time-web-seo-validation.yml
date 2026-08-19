@@ -4,12 +4,16 @@ on:
   push:
     branches:
       - chore/one-time-web-seo-validation
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: read
 
 jobs:
   validate-web:
+    if: github.event_name != 'pull_request' || github.head_ref == 'chore/one-time-web-seo-validation'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
