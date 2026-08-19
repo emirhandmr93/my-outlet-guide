@@ -41,13 +41,46 @@ const TRANSPORTATION_COPY: Record<typeof WEB_SEO_LANGUAGES[number], { heading: s
   ar: { heading: "خيارات النقل", duration: "المدة", modes: { airport:"الوصول من المطار",bus:"حافلة",car:"السيارة / مواقف السيارات",ferry:"عبّارة",metro:"مترو",shuttle:"حافلة مكوكية",taxi:"سيارة أجرة",train:"قطار",walking:"المشي" } },
   zh: { heading: "交通方式", duration: "时长", modes: { airport:"机场交通",bus:"巴士",car:"驾车 / 停车",ferry:"渡轮",metro:"地铁",shuttle:"接驳车",taxi:"出租车",train:"火车",walking:"步行" } },
 };
+
 const managed = /\s*(?:<title>[\s\S]*?<\/title>|<meta\s+name=["'](?:description|robots|generator)["'][^>]*>|<link\s+rel=["'](?:canonical|alternate)["'][^>]*>)\s*/gi;
 export function escapeHtml(value: string) { return value.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
 function outputPath(route: string) { return join(DIST, `${route}.html`); }
 function sitemapUrlSet(urls: readonly string[]) { return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(url => `  <url><loc>${escapeHtml(url)}</loc></url>`).join("\n")}\n</urlset>\n`; }
 function sitemapIndex(files: readonly string[]) { return `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${files.map(file => `  <sitemap><loc>${escapeHtml(`${WEB_SEO_ORIGIN}/${file}`)}</loc></sitemap>`).join("\n")}\n</sitemapindex>\n`; }
+
 const WEBSITE_ID = `${WEB_SEO_ORIGIN}/#website`;
 const ORGANIZATION_ID = `${WEB_SEO_ORIGIN}/#organization`;
+type OutletRecord = (typeof outlets)[number];
+type TransportationRecord = (typeof transportation)[number];
+
+const activeBrandById = new Map(brands.filter(item=>item.brandStatus==="active").map(item=>[item.brandId,item] as const));
+const categoryById = new Map(categories.map(item=>[item.categoryId,item] as const));
+const knownCountryIds = new Set(countries.map(item=>item.countryId));
+const publicOutletById = new Map(outlets.filter(isWebSeoPublicOutlet).map(outlet=>[outlet.outletId,outlet] as const));
+const brandOutletIndex = new Map<string, Map<string, OutletRecord>>();
+for (const relation of outletBrands) {
+  if (relation.relationStatus!=="active") continue;
+  const outlet=publicOutletById.get(relation.outletId);
+  if (!outlet) continue;
+  let byOutlet=brandOutletIndex.get(relation.brandId);
+  if (!byOutlet) { byOutlet=new Map(); brandOutletIndex.set(relation.brandId,byOutlet); }
+  byOutlet.set(outlet.outletId,outlet);
+}
+const brandOutletsByBrandId = new Map<string, OutletRecord[]>([...brandOutletIndex.entries()].map(([brandId,byOutlet])=>[
+  brandId,
+  [...byOutlet.values()].sort((a,b)=>a.name.localeCompare(b.name)),
+]));
+const transportationByOutletId = new Map<string, TransportationRecord[]>();
+for (const item of transportation) {
+  if (item.status!=="active" || !item.title.trim()) continue;
+  const list=transportationByOutletId.get(item.outletId) ?? [];
+  list.push(item);
+  transportationByOutletId.set(item.outletId,list);
+}
+for (const [outletId,list] of transportationByOutletId) {
+  transportationByOutletId.set(outletId,list.sort((a,b)=>Number(a.displayOrder)-Number(b.displayOrder)).slice(0,5));
+}
+
 function structuredData(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeoLogicalPage, canonical: string, title: string, description: string) {
   const pageType = ["explore","brand","country","city"].includes(page.kind) ? "CollectionPage" : "WebPage";
   const webpage: Record<string, unknown> = {"@type":pageType,"@id":`${canonical}#webpage`,name:title,description,url:canonical,inLanguage:language,isPartOf:{"@id":WEBSITE_ID}};
@@ -61,26 +94,28 @@ function structuredData(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeo
     ...(breadcrumbs.length ? [{"@type":"BreadcrumbList","@id":`${canonical}#breadcrumb`,itemListElement:breadcrumbs.map((item,index)=>({"@type":"ListItem",position:index+1,name:item.name,item:`${WEB_SEO_ORIGIN}/${language}${item.path ? `/${item.path}` : ""}`}))}] : []),
   ]};
 }
+
 function staticFallback(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeoLogicalPage, title: string, description: string) {
   const breadcrumbs=getWebSeoBreadcrumbs(page,language);
   const links=getWebSeoInternalLinks(page,language);
   const href=(path:string)=>`${WEB_SEO_ORIGIN}/${language}${path ? `/${path}` : ""}`;
   const breadcrumb=breadcrumbs.length ? `<nav aria-label="Breadcrumb"><ol>${breadcrumbs.map((item,index)=>`<li>${index===breadcrumbs.length-1 ? `<span aria-current="page">${escapeHtml(item.name)}</span>` : `<a href="${href(item.path)}">${escapeHtml(item.name)}</a>`}</li>`).join("")}</ol></nav>` : "";
   const copy=TRANSPORTATION_COPY[language];
-  const records=page.kind==="transportation" ? transportation.filter(item=>item.outletId===page.outletId&&item.status==="active"&&item.title.trim()).sort((a,b)=>Number(a.displayOrder)-Number(b.displayOrder)).slice(0,5) : [];
+  const records=page.kind==="transportation" ? transportationByOutletId.get(page.outletId) ?? [] : [];
   const transportationSection=records.length ? `<section data-transportation-fallback="true"><h2>${escapeHtml(copy.heading)}</h2><ul>${records.map(item=>`<li data-transportation-id="${escapeHtml(item.transportationId)}"><strong>${escapeHtml(copy.modes[item.transportType] || item.transportType)}</strong>: <span>${escapeHtml(item.title.trim())}</span>${item.duration.trim() ? ` <span>(${escapeHtml(copy.duration)}: ${escapeHtml(item.duration.trim())})</span>` : ""}</li>`).join("")}</ul></section>` : "";
-  const brandId=page.kind==="brand" ? page.path.slice("brand/".length) : ""; const brand=brands.find(item=>item.brandId===brandId&&item.brandStatus==="active");
-  const related=brand ? outletBrands.filter(item=>item.brandId===brandId&&item.relationStatus==="active").map(item=>outlets.find(outlet=>outlet.outletId===item.outletId&&isWebSeoPublicOutlet(outlet))).filter((outlet): outlet is NonNullable<typeof outlet> => Boolean(outlet)) : [];
-  const uniqueRelated=[...new Map(related.map(outlet=>[outlet.outletId,outlet] as const)).values()].sort((a,b)=>a.name.localeCompare(b.name));
+  const brandId=page.kind==="brand" ? page.path.slice("brand/".length) : "";
+  const brand=brandId ? activeBrandById.get(brandId) : undefined;
+  const uniqueRelated=brand ? brandOutletsByBrandId.get(brandId) ?? [] : [];
   const locationCopy=BRAND_LOCATION_COPY[language];
-  const category=brand ? categories.find(item=>item.categoryId===brand.categoryId) : undefined;
+  const category=brand ? categoryById.get(brand.categoryId) : undefined;
   const categoryName=category ? formatBrandCategoryLabel(category.categoryName,key=>resolveTranslation(language,key)) : "";
-  const origin=brand?.originCountryId&&brand.originCountryId!=="unknown"&&countries.some(item=>item.countryId===brand.originCountryId) ? formatCountryDisplayName(brand.originCountryId,language) : "";
+  const origin=brand?.originCountryId&&brand.originCountryId!=="unknown"&&knownCountryIds.has(brand.originCountryId) ? formatCountryDisplayName(brand.originCountryId,language) : "";
   const facts=[categoryName ? `<dt>${escapeHtml(locationCopy.category)}</dt><dd data-brand-category="true">${escapeHtml(categoryName)}</dd>` : "",origin ? `<dt>${escapeHtml(locationCopy.origin)}</dt><dd data-brand-origin="true">${escapeHtml(origin)}</dd>` : ""].join("");
   const brandLocations=uniqueRelated.length ? `<ul data-brand-outlet-list="true">${uniqueRelated.map(outlet=>`<li data-brand-outlet-id="${escapeHtml(outlet.outletId)}"><a href="${href(`outlet/${outlet.outletId}`)}">${escapeHtml(outlet.name)}</a> — ${escapeHtml(formatCityDisplayName(outlet.cityId,language))}, ${escapeHtml(formatCountryDisplayName(outlet.countryId,language))}</li>`).join("")}</ul>` : "";
   const brandSection=brand&&uniqueRelated.length ? `<section data-brand-location-fallback="true" data-brand-outlet-count="${uniqueRelated.length}"><h2>${escapeHtml(locationCopy.heading)} ${escapeHtml(brand.brandName)}</h2>${facts ? `<dl>${facts}</dl>` : ""}${brandLocations}</section>` : "";
   return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}${transportationSection}${brandSection}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>${escapeHtml(NO_SCRIPT_COPY[language])}</p></main></noscript>`;
 }
+
 function render(base: string, language: typeof WEB_SEO_LANGUAGES[number], page?: WebSeoLogicalPage) {
   const meta = resolveWebSeo(language, page);
   const social = meta.canonical ? [
@@ -99,6 +134,7 @@ function render(base: string, language: typeof WEB_SEO_LANGUAGES[number], page?:
   // placed inside that mount. A noscript sibling remains a genuine JS-failure UI.
   return localized.replace(/(<div\s+id=["']root["'][^>]*>)/i, `${staticFallback(language,page,meta.title,meta.description)}$1`);
 }
+
 async function writeRoute(route: string, html: string) { const file = outputPath(route); await mkdir(dirname(file), {recursive:true}); await writeFile(file, html); }
 async function copyStaticNoindex(path: string) { const html=await readFile(join(process.cwd(),"public",path,"index.html"),"utf8"); const clean=html.replace(/\s*<meta\s+name=["']robots["'][^>]*>/gi,""); const directory=join(DIST,path); await mkdir(directory,{recursive:true}); await writeFile(join(directory,"index.html"),clean.replace(/<\/head>/i,'    <meta name="robots" content="noindex,follow">\n  </head>')); }
 async function removeManagedRouteHtml(directory: string): Promise<void> {
