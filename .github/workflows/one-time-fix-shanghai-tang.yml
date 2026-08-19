@@ -4,17 +4,22 @@ on:
   push:
     branches:
       - fix/remove-duplicate-shanghai-tang
+  pull_request:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   fix-duplicate:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'github-actions[bot]' && (github.event_name != 'pull_request' || github.head_ref == 'fix/remove-duplicate-shanghai-tang')
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout branch
+      - name: Checkout source branch
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }}
 
       - name: Remove duplicate canonical Shanghai Tang record
         shell: bash
@@ -43,8 +48,9 @@ jobs:
       - name: Commit source fix
         shell: bash
         run: |
+          BRANCH="${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}"
           git add src/constants/brands/brands-q-t.ts
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Fix duplicate Shanghai Tang brand identity"
-          git push origin HEAD:${{ github.ref_name }}
+          git push origin HEAD:"$BRANCH"
