@@ -9,10 +9,11 @@ import { hasWebSeoTransportation } from "./webSeoTransportation";
 import { supportedLanguageCodes, type TranslationLanguage } from "../translations/locale";
 import { formatCityDisplayName, formatCountryDisplayName, formatOutletLocationSubtitle } from "../utils/locationDisplay";
 import { WEB_ROUTE_DEFINITIONS } from "../navigation/webLinking";
+import { EUROPEAN_OUTLET_RESEARCH_COPY } from "./europeanOutletResearch";
 
 export const WEB_SEO_ORIGIN = WEBSITE_URL;
 export const WEB_SEO_LANGUAGES = supportedLanguageCodes;
-export type WebSeoRouteKind = "home" | "explore" | "savings" | "smart" | "price" | "tax" | "outlet" | "brand" | "country" | "city" | "transportation" | "privacy" | "terms" | "contact" | "help";
+export type WebSeoRouteKind = "home" | "explore" | "savings" | "smart" | "price" | "tax" | "outlet" | "brand" | "country" | "city" | "transportation" | "research" | "methodology" | "privacy" | "terms" | "contact" | "help";
 export type WebSeoLogicalPage = { kind: WebSeoRouteKind; path: string; entityName?: string; entityLocation?: string; countryId?: string; cityId?: string; outletId?: string };
 export type WebSeoMetadata = { title: string; description: string; robots: "index,follow" | "noindex,follow"; canonical?: string; alternates: readonly { language: TranslationLanguage | "x-default"; href: string }[]; language: TranslationLanguage; direction: "ltr" | "rtl" };
 
@@ -29,9 +30,9 @@ export const WEB_SEO_COPY: Record<TranslationLanguage, Copy> = {
 };
 
 const fixedPages: readonly WebSeoLogicalPage[] = [
-  {kind:"home",path:""},{kind:"explore",path:"explore"},{kind:"savings",path:"savings"},{kind:"smart",path:"calculator/smart-shopping"},{kind:"price",path:"calculator/price-advantage"},{kind:"tax",path:"calculator/tax-free"},{kind:"privacy",path:"privacy"},{kind:"terms",path:"terms"},{kind:"contact",path:"contact"},{kind:"help",path:"help"},
+  {kind:"home",path:""},{kind:"explore",path:"explore"},{kind:"savings",path:"savings"},{kind:"smart",path:"calculator/smart-shopping"},{kind:"price",path:"calculator/price-advantage"},{kind:"tax",path:"calculator/tax-free"},{kind:"privacy",path:"privacy"},{kind:"terms",path:"terms"},{kind:"contact",path:"contact"},{kind:"help",path:"help"},{kind:"research",path:"research/european-outlet-shopping-index"},{kind:"methodology",path:"methodology"},
 ];
-export const WEB_SEO_NOINDEX_PATHS = WEB_ROUTE_DEFINITIONS.filter(route => !["Home","Explore","Savings","SmartShoppingCalculator","PriceAdvantageCalculator","TaxFreeCalculator","OutletDetail","BrandResults","Country","CityResults","Transportation","PrivacyPolicy","TermsConditions","ContactUs","HelpFaq"].includes(route.name)).filter(route => !route.parameter).map(route => route.path);
+export const WEB_SEO_NOINDEX_PATHS = WEB_ROUTE_DEFINITIONS.filter(route => !["Home","Explore","Savings","SmartShoppingCalculator","PriceAdvantageCalculator","TaxFreeCalculator","OutletDetail","BrandResults","Country","CityResults","Transportation","PrivacyPolicy","TermsConditions","ContactUs","HelpFaq","OutletShoppingIndex","EditorialMethodology"].includes(route.name)).filter(route => !route.parameter).map(route => route.path);
 
 export const WEB_SEO_UNPUBLISHED_OUTLET_IDS = [
   "viaport-asia-outlet-shopping",
@@ -130,6 +131,8 @@ export function getWebSeoInternalLinks(page: WebSeoLogicalPage, language: Transl
     add(resolveTranslation(language, "nav.explore"), "explore");
     for (const [key,path] of [["nav.savings","savings"],["nav.helpFaq","help"],["nav.contactUs","contact"],["nav.privacyPolicy","privacy"],["nav.termsConditions","terms"]] as const)
       add(resolveTranslation(language,key),path);
+      add(EUROPEAN_OUTLET_RESEARCH_COPY[language].indexTitle, "research/european-outlet-shopping-index", "discovery");
+    add(EUROPEAN_OUTLET_RESEARCH_COPY[language].methodologyTitle, "methodology", "discovery");
   }
   if (page.kind === "savings")
     for (const [key,path] of [["nav.smartShopping","calculator/smart-shopping"],["nav.priceAdvantage","calculator/price-advantage"],["nav.taxFreeCalculator","calculator/tax-free"]] as const)
@@ -161,13 +164,27 @@ export function getWebSeoInternalLinks(page: WebSeoLogicalPage, language: Transl
     const relatedIds = new Set(outletBrands.filter((item) => item.brandId === page.path.slice("brand/".length) && item.relationStatus === "active").map((item) => item.outletId));
     for (const outlet of publicOutlets.filter((item) => relatedIds.has(item.outletId))) add(outlet.name, `outlet/${outlet.outletId}`, "brand");
   }
+  if (page.kind === "research") {
+    add(resolveTranslation(language, "nav.explore"), "explore");
+    add(EUROPEAN_OUTLET_RESEARCH_COPY[language].taxFreeCta, "calculator/tax-free");
+    add(EUROPEAN_OUTLET_RESEARCH_COPY[language].methodologyCta, "methodology");
+  }
+  if (page.kind === "methodology") {
+    add(EUROPEAN_OUTLET_RESEARCH_COPY[language].indexTitle, "research/european-outlet-shopping-index");
+    add(resolveTranslation(language, "nav.contactUs"), "contact");
+  }
   if (!links.length) add(resolveTranslation(language, "nav.home"), "");
   return links;
 }
 function localizedEntity(page: WebSeoLogicalPage, language: TranslationLanguage) { if (!page.entityName) return ""; if (page.kind === "country") return formatCountryDisplayName(page.entityName, language); if (page.kind === "city") return formatCityDisplayName(page.entityName, language); return page.entityName; }
 function interpolate(value: string, name: string, location: string) { return value.replaceAll("{name}", name).replaceAll("{location}", location); }
 export function resolveWebSeo(language: TranslationLanguage, page?: WebSeoLogicalPage): WebSeoMetadata {
-  const logical = page; const copy = WEB_SEO_COPY[language]; const values = logical ? copy[logical.kind] : copy.shell;
+  const logical = page; const copy = WEB_SEO_COPY[language]; const researchCopy = EUROPEAN_OUTLET_RESEARCH_COPY[language];
+  let values: [string, string];
+  if (!logical) values = copy.shell;
+  else if (logical.kind === "research") values = [`${researchCopy.indexTitle} | My Outlet Guide`, researchCopy.indexIntro];
+  else if (logical.kind === "methodology") values = [`${researchCopy.methodologyTitle} | My Outlet Guide`, researchCopy.methodologySubtitle];
+  else values = copy[logical.kind];
   const name = logical ? localizedEntity(logical, language) : "";
   const locationParts = logical?.entityLocation?.split("|"); const location = locationParts ? formatOutletLocationSubtitle(locationParts[0], locationParts[1], language) : "";
   const routePath = logical ? `${language}${logical.path ? `/${logical.path}` : ""}` : "";

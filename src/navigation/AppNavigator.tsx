@@ -19,6 +19,8 @@ import { FlightDealSettingsScreen } from "../screens/FlightDealSettingsScreen";
 import { FlightDealsScreen } from "../screens/FlightDealsScreen";
 import { FlightSearchScreen } from "../screens/FlightSearchScreen";
 import { HelpFaqScreen } from "../screens/HelpFaqScreen";
+import { OutletShoppingIndexScreen } from "../screens/OutletShoppingIndexScreen";
+import { EditorialMethodologyScreen } from "../screens/EditorialMethodologyScreen";
 import { HomeScreen } from "../screens/HomeScreen";
 import { LanguageSettingsScreen } from "../screens/LanguageSettingsScreen";
 import { LoginScreen } from "../screens/LoginScreen";
@@ -455,6 +457,8 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 <Stack.Screen name="TermsConditions" component={TermsConditionsScreen} options={{ title: t("nav.termsConditions") }} />
 <Stack.Screen name="ContactUs" component={ContactUsScreen} options={{ title: t("nav.contactUs") }} />
 <Stack.Screen name="HelpFaq" component={HelpFaqScreen} options={{ title: t("nav.helpFaq") }} />
+<Stack.Screen name="OutletShoppingIndex" component={OutletShoppingIndexScreen} options={{ title: "My Outlet Guide" }} />
+<Stack.Screen name="EditorialMethodology" component={EditorialMethodologyScreen} options={{ title: "My Outlet Guide" }} />
 <Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} options={{ title: t("nav.deleteAccount") }} />
 <Stack.Screen name="MediaCredits" component={MediaCreditsScreen} options={{ title: t("nav.mediaCredits") }} />
 </Stack.Navigator>

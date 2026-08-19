@@ -93,7 +93,7 @@ async function check() {
   for (const language of WEB_SEO_LANGUAGES) for (const path of ["country/turkey","city/istanbul","city/izmir","city/antalya"]) { const entityId=path.slice(path.indexOf("/")+1); const expected=path.startsWith("country/")?expectedCountryIds.has(entityId):expectedCityIds.has(entityId); assert(await exists(fileFor(`${language}/${path}`))===expected,`${language}/${path}: localized HTML presence does not match public data`); }
   for (const staticPath of ["privacy-policy","delete-account"]) { const html=await readFile(join(DIST,staticPath,"index.html"),"utf8"); assert(/name="robots" content="noindex,follow"/.test(html),`${staticPath}: static page must be noindex`); }
   const sitemapGroups:Array<{file:string;kinds:string[]}>= [
-    {file:"sitemap-core.xml",kinds:["home","explore","savings","smart","price","tax","privacy","terms","contact","help"]},
+    {file:"sitemap-core.xml",kinds:["home","explore","savings","smart","price","tax","privacy","terms","contact","help","research","methodology"]},
     {file:"sitemap-outlets.xml",kinds:["outlet"]},
     {file:"sitemap-brands.xml",kinds:["brand"]},
     {file:"sitemap-locations.xml",kinds:["country","city"]},
@@ -125,7 +125,7 @@ async function check() {
   assert(robots===`User-agent: *\nAllow: /\n\nSitemap: ${WEB_SEO_ORIGIN}/sitemap.xml\n`,"robots.txt must allow public routes and reference the canonical sitemap index");
   assert(!/^\s*Disallow:\s*\/?(?:\s*(?:#.*)?)?$/im.test(robots),"robots.txt must not block all crawling");
   assert(WEB_SEO_LANGUAGES.every(language=>!new RegExp(`^\\s*Disallow:\\s*/${language}(?:/|\\s|$)`,`im`).test(robots)),"robots.txt must not block localized public routes");
-  const counts=Object.fromEntries(["home","explore","savings","smart","price","tax","privacy","terms","contact","help","outlet","brand","country","city","transportation"].map(kind=>[kind,pages.filter(page=>page.kind===kind).length]));
+  const counts=Object.fromEntries(["home","explore","savings","smart","price","tax","privacy","terms","contact","help","research","methodology","outlet","brand","country","city","transportation"].map(kind=>[kind,pages.filter(page=>page.kind===kind).length]));
   console.log(`checkWebSeo: ${actual.length} URLs validated across ${sitemapGroups.length} child sitemaps (${pages.length} per language).`); console.log(`checkWebSeo categories: ${JSON.stringify(counts)}`); console.log(`checkWebSeo exclusions: ${EXPECTED_UNPUBLISHED_IDS.length}/${EXPECTED_UNPUBLISHED_IDS.length} unpublished outlets absent.`);
 }
 check().catch(error=>{console.error(error instanceof Error?error.message:error);process.exitCode=1;});
