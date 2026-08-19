@@ -6136,7 +6136,6 @@ export const brandsQT: Brand[] = [
   { brandId: "sorel", brandName: "Sorel", aliases: [], categoryId: "lifestyle", logo: "", luxuryLevel: "lifestyle", rankingWeight: 50, brandStatus: "active" },
   {"brandId":"rockfish-weatherwear","brandName":"Rockfish Weatherwear","aliases":[],"categoryId":"shoes-bags","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"s-beauty-method","brandName":"S-BEAUTY METHOD","aliases":[],"categoryId":"beauty","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
-  {"brandId":"shanghai-tang","brandName":"Shanghai Tang","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"staccato","brandName":"STACCATO","aliases":[],"categoryId":"shoes-bags","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"subdued","brandName":"Subdued","aliases":[],"categoryId":"fashion","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
   {"brandId":"tabio","brandName":"Tabio","aliases":[],"categoryId":"accessories","logo":"","luxuryLevel":"fashion","rankingWeight":60,"brandStatus":"active"},
