@@ -38,7 +38,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "npm run translations:web:prepare && expo start --web",
-    "web:build": "npm run translations:web:prepare && expo export --platform web --output-dir dist && tsx tools/finalizeWebSeo.ts && tsx tools/enhancePriorityCountrySeo.ts && tsx tools/enhancePriorityCitySeo.ts && tsx tools/enhanceUkSpainSeo.ts && tsx tools/enhanceGermanyNetherlandsSeo.ts && tsx tools/enhanceFlagshipOutletSeo.ts && tsx tools/checkWebSeo.ts && tsx tools/checkInternalLinksFast.ts && tsx tools/reportWebPerformance.ts",
+    "web:build": "npm run translations:web:prepare && expo export --platform web --output-dir dist && tsx tools/finalizeWebSeo.ts && tsx tools/enhancePriorityCountrySeo.ts && tsx tools/enhancePriorityCitySeo.ts && tsx tools/enhanceUkSpainSeo.ts && tsx tools/enhanceGermanyNetherlandsSeo.ts && tsx tools/enhanceFlagshipOutletSeo.ts && tsx tools/enhanceFlagshipOutletSeoBatch2.ts && tsx tools/checkWebSeo.ts && tsx tools/checkInternalLinksFast.ts && tsx tools/reportWebPerformance.ts",
     "translations:web:prepare": "tsx tools/generateWebTranslationModules.ts",
     "translations:web:check": "tsx tools/generateWebTranslationModules.ts --check",
     "web:perf": "tsx tools/reportWebPerformance.ts",
