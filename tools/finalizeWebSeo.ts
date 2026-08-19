@@ -1,6 +1,6 @@
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { getIndexableWebSeoPages, getWebSeoBreadcrumbs, getWebSeoInternalLinks, resolveWebSeo, WEB_SEO_LANGUAGES, WEB_SEO_NOINDEX_PATHS, WEB_SEO_ORIGIN, type WebSeoLogicalPage } from "../src/constants/webSeo";
+import { getIndexableWebSeoPages, getWebSeoBreadcrumbs, resolveWebSeo, WEB_SEO_LANGUAGES, WEB_SEO_NOINDEX_PATHS, WEB_SEO_ORIGIN, type WebSeoLogicalPage } from "../src/constants/webSeo";
 import { transportation } from "../src/constants/transportation";
 import { brands } from "../src/constants/brands";
 import { categories } from "../src/constants/categories";
@@ -11,6 +11,7 @@ import { isWebSeoPublicOutlet } from "../src/constants/webSeo";
 import { resolveTranslation } from "../src/i18n/translationResolver";
 import { formatBrandCategoryLabel } from "../src/utils/brandCategoryLabelFormatter";
 import { formatCityDisplayName, formatCountryDisplayName } from "../src/utils/locationDisplay";
+import { getFastWebSeoInternalLinks } from "./webSeoFastInternalLinks";
 
 const DIST = join(process.cwd(), "dist");
 const GENERATED_MARKER = '<meta name="generator" content="My Outlet Guide web SEO">';
@@ -97,7 +98,7 @@ function structuredData(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeo
 
 function staticFallback(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeoLogicalPage, title: string, description: string) {
   const breadcrumbs=getWebSeoBreadcrumbs(page,language);
-  const links=getWebSeoInternalLinks(page,language);
+  const links=getFastWebSeoInternalLinks(page,language);
   const href=(path:string)=>`${WEB_SEO_ORIGIN}/${language}${path ? `/${path}` : ""}`;
   const breadcrumb=breadcrumbs.length ? `<nav aria-label="Breadcrumb"><ol>${breadcrumbs.map((item,index)=>`<li>${index===breadcrumbs.length-1 ? `<span aria-current="page">${escapeHtml(item.name)}</span>` : `<a href="${href(item.path)}">${escapeHtml(item.name)}</a>`}</li>`).join("")}</ol></nav>` : "";
   const copy=TRANSPORTATION_COPY[language];
@@ -157,8 +158,10 @@ export async function finalizeWebSeo() {
   const pages=getIndexableWebSeoPages();
   for (const language of WEB_SEO_LANGUAGES) await removeManagedRouteHtml(join(DIST,language));
   for (const language of WEB_SEO_LANGUAGES) {
+    console.log(`finalizeWebSeo: generating ${language} (${pages.length} indexable pages)...`);
     for (const page of pages) await writeRoute(`${language}${page.path ? `/${page.path}` : ""}`,render(base,language,page));
     for (const path of WEB_SEO_NOINDEX_PATHS) await writeRoute(`${language}/${path}`,render(base,language));
+    console.log(`finalizeWebSeo: completed ${language}.`);
   }
   await copyStaticNoindex("privacy-policy"); await copyStaticNoindex("delete-account");
   const sitemapGroups: Record<string, WebSeoLogicalPage[]> = {
@@ -180,4 +183,4 @@ export async function finalizeWebSeo() {
   console.log(`finalizeWebSeo: generated ${urlCount} indexable localized pages across ${sitemapFiles.length} child sitemaps.`);
 }
 
-finalizeWebSeo().catch(error => { console.error(error instanceof Error ? error.message : error); process.exitCode=1; });
+finalizeWebSeo().catch(error => { console.error(error instanceof Error?error.message:error); process.exitCode=1; });
