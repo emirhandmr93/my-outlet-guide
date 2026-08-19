@@ -1,11 +1,25 @@
 import { brands } from "./brands";
 import { outletBrands } from "./outletBrands";
 import { outlets } from "./outlets";
-import { isWebSeoPublicOutlet } from "./webSeo";
 import { hasWebSeoTransportation } from "./webSeoTransportation";
 import type { TranslationLanguage } from "../translations/locale";
 
 export const EUROPEAN_OUTLET_INDEX_EDITION = "2026";
+
+export const EUROPEAN_RESEARCH_UNPUBLISHED_OUTLET_IDS = [
+  "viaport-asia-outlet-shopping",
+  "212-outlet",
+  "olivium-outlet-center",
+  "starcity-outlet",
+  "venezia-mega-outlet",
+  "optimum-premium-outlet-istanbul",
+  "izmir-optimum",
+  "deepo-outlet-center",
+] as const;
+const researchUnpublishedOutletIds = new Set<string>(EUROPEAN_RESEARCH_UNPUBLISHED_OUTLET_IDS);
+function isResearchPublicOutlet(outlet: (typeof outlets)[number]) {
+  return outlet.status === "active" && typeof outlet.outletId === "string" && !researchUnpublishedOutletIds.has(outlet.outletId);
+}
 
 const EUROPEAN_COUNTRY_IDS = [
   "austria",
@@ -49,7 +63,7 @@ export type EuropeanOutletCountryMetric = {
 
 export function getEuropeanOutletCountryMetrics(): EuropeanOutletCountryMetric[] {
   const activeBrandIds = new Set(brands.filter((brand) => brand.brandStatus === "active").map((brand) => brand.brandId));
-  const publicOutlets = outlets.filter(isWebSeoPublicOutlet);
+  const publicOutlets = outlets.filter(isResearchPublicOutlet);
   const publicOutletIds = new Set(publicOutlets.map((outlet) => outlet.outletId));
   const metrics = EUROPEAN_COUNTRY_IDS.map((countryId) => {
     const countryOutlets = publicOutlets.filter((outlet) => outlet.countryId === countryId);

@@ -42,6 +42,8 @@ export type RootStackParamList = {
   TermsConditions: undefined;
   ContactUs: undefined;
   HelpFaq: undefined;
+  OutletShoppingIndex: undefined;
+  EditorialMethodology: undefined;
   DeleteAccount: undefined;
   MediaCredits: undefined;
 };

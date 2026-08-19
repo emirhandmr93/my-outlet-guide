@@ -1,8 +1,8 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import { getEuropeanOutletCountryMetrics } from "../src/constants/europeanOutletResearch";
-import { WEB_SEO_LANGUAGES, WEB_SEO_ORIGIN } from "../src/constants/webSeo";
+import { EUROPEAN_RESEARCH_UNPUBLISHED_OUTLET_IDS, getEuropeanOutletCountryMetrics } from "../src/constants/europeanOutletResearch";
+import { WEB_SEO_LANGUAGES, WEB_SEO_ORIGIN, WEB_SEO_UNPUBLISHED_OUTLET_IDS } from "../src/constants/webSeo";
 
 const DIST = join(process.cwd(), "dist");
 const metrics = getEuropeanOutletCountryMetrics();
@@ -12,6 +12,7 @@ function assert(condition: boolean, message: string): asserts condition {
 }
 
 async function main() {
+  assert(EUROPEAN_RESEARCH_UNPUBLISHED_OUTLET_IDS.length === WEB_SEO_UNPUBLISHED_OUTLET_IDS.length && EUROPEAN_RESEARCH_UNPUBLISHED_OUTLET_IDS.every((id) => WEB_SEO_UNPUBLISHED_OUTLET_IDS.includes(id)), "Research publication exclusions differ from central web SEO policy");
   for (const language of WEB_SEO_LANGUAGES) {
     const indexRoute = `${language}/research/european-outlet-shopping-index`;
     const methodologyRoute = `${language}/methodology`;
