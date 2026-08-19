@@ -1,0 +1,29 @@
+name: Validate flagship outlet SEO batch 2
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-web:
+    if: github.head_ref == 'feat/seo-flagship-outlet-landings-2'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and validate web SEO
+        run: npm run web:build
