@@ -1,5 +1,6 @@
 import MapView, { Marker } from "react-native-maps";
 import { StyleSheet } from "react-native";
+import { useCallback, useEffect, useMemo, useRef } from "react";
 
 import type { NearbyOutlet, UserCoordinates } from "../services/nearbyOutlets";
 import { radius } from "../theme/radius";
@@ -12,8 +13,30 @@ type Props = {
 };
 
 export function NearbyOutletsMap({ userLocation, outlets, onSelect }: Props) {
+  const mapRef = useRef<MapView | null>(null);
+  const coordinates = useMemo(() => [
+    { latitude: userLocation.latitude, longitude: userLocation.longitude },
+    ...outlets.map((outlet) => ({
+      latitude: outlet.latitude,
+      longitude: outlet.longitude,
+    })),
+  ], [outlets, userLocation.latitude, userLocation.longitude]);
+
+  const fitCoordinates = useCallback((animated: boolean) => {
+    if (coordinates.length < 2) return;
+    mapRef.current?.fitToCoordinates(coordinates, {
+      animated,
+      edgePadding: { top: 52, right: 44, bottom: 52, left: 44 },
+    });
+  }, [coordinates]);
+
+  useEffect(() => {
+    fitCoordinates(false);
+  }, [fitCoordinates]);
+
   return (
     <MapView
+      ref={mapRef}
       style={styles.map}
       initialRegion={{
         latitude: userLocation.latitude,
@@ -23,6 +46,7 @@ export function NearbyOutletsMap({ userLocation, outlets, onSelect }: Props) {
       }}
       showsUserLocation
       showsMyLocationButton
+      onMapReady={() => fitCoordinates(false)}
     >
       {outlets.map((outlet) => (
         <Marker

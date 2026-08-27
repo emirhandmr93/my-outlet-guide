@@ -1,8 +1,9 @@
 import { useNavigation, useRoute, type RouteProp } from "@react-navigation/native";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
+  AppState,
   Platform,
   ScrollView,
   StyleSheet,
@@ -76,17 +77,69 @@ export function VisitModeScreen() {
   const [progress, setProgress] = useState<OutletVisitProgress | null>(null);
   const [search, setSearch] = useState("");
   const [storageError, setStorageError] = useState(false);
+  const progressRef = useRef<OutletVisitProgress | null>(null);
+  const savedNoteRef = useRef("");
+  const noteSaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mountedRef = useRef(true);
+
+  const flushPendingNote = useCallback(async () => {
+    const pending = progressRef.current;
+    if (!pending || pending.note === savedNoteRef.current) return;
+    try {
+      await saveOutletVisitProgress(pending);
+      savedNoteRef.current = pending.note;
+      if (mountedRef.current) setStorageError(false);
+    } catch {
+      if (mountedRef.current) setStorageError(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    const subscription = AppState.addEventListener("change", (state) => {
+      if (state !== "active") void flushPendingNote();
+    });
+    return () => {
+      mountedRef.current = false;
+      subscription.remove();
+      if (noteSaveTimerRef.current) clearTimeout(noteSaveTimerRef.current);
+      const pending = progressRef.current;
+      if (pending && pending.note !== savedNoteRef.current) {
+        void saveOutletVisitProgress(pending);
+      }
+    };
+  }, [flushPendingNote]);
 
   useEffect(() => {
     if (!outlet) return;
     let active = true;
     setProgress(null);
+    progressRef.current = null;
+    savedNoteRef.current = "";
     setStorageError(false);
     void loadOutletVisitProgress(outlet.outletId, allowedBrandIds)
-      .then((loaded) => { if (active) setProgress(loaded); })
+      .then((loaded) => {
+        if (active) {
+          progressRef.current = loaded;
+          savedNoteRef.current = loaded.note;
+          setProgress(loaded);
+        }
+      })
       .catch(() => { if (active) setStorageError(true); });
     return () => { active = false; };
   }, [outlet?.outletId, allowedBrandIds.join("|")]);
+
+  useEffect(() => {
+    if (!progress || progress.note === savedNoteRef.current) return;
+    if (noteSaveTimerRef.current) clearTimeout(noteSaveTimerRef.current);
+    noteSaveTimerRef.current = setTimeout(() => {
+      noteSaveTimerRef.current = null;
+      void flushPendingNote();
+    }, 350);
+    return () => {
+      if (noteSaveTimerRef.current) clearTimeout(noteSaveTimerRef.current);
+    };
+  }, [flushPendingNote, progress?.note, progress?.outletId]);
 
   const orderedVisitBrands = useMemo(() => {
     if (!progress) return visitBrands;
@@ -119,11 +172,14 @@ export function VisitModeScreen() {
   const outletId = outlet.outletId;
 
   async function persistTransition(next: OutletVisitProgress, previous: OutletVisitProgress) {
+    progressRef.current = next;
     setProgress(next);
     try {
       await saveOutletVisitProgress(next);
+      savedNoteRef.current = next.note;
       setStorageError(false);
     } catch {
+      progressRef.current = previous;
       setProgress(previous);
       setStorageError(true);
     }
@@ -151,14 +207,11 @@ export function VisitModeScreen() {
     );
   }
 
-  async function saveNote() {
+  function updateNote(note: string) {
     if (!progress) return;
-    try {
-      await saveOutletVisitProgress(progress);
-      setStorageError(false);
-    } catch {
-      setStorageError(true);
-    }
+    const next = setOutletVisitNote(progress, note, allowedBrandIds);
+    progressRef.current = next;
+    setProgress(next);
   }
 
   function confirmReset() {
@@ -170,7 +223,11 @@ export function VisitModeScreen() {
         onPress: () => {
           void resetOutletVisitProgress(outletId)
             .then(() => loadOutletVisitProgress(outletId, allowedBrandIds))
-            .then(setProgress)
+            .then((loaded) => {
+              progressRef.current = loaded;
+              savedNoteRef.current = loaded.note;
+              setProgress(loaded);
+            })
             .catch(() => setStorageError(true));
         },
       },
@@ -251,8 +308,8 @@ export function VisitModeScreen() {
               accessibilityLabel={t("visitMode.shoppingNote")}
               style={styles.noteInput}
               value={progress.note}
-              onChangeText={(note) => setProgress(setOutletVisitNote(progress, note, allowedBrandIds))}
-              onBlur={() => void saveNote()}
+              onChangeText={updateNote}
+              onBlur={() => void flushPendingNote()}
               placeholder={t("visitMode.shoppingNotePlaceholder")}
               placeholderTextColor={colors.textMuted}
               multiline
