@@ -38,6 +38,11 @@ export type RootStackParamList = {
   FlightDeals: undefined;
   FlightSearch: undefined;
   FlightDealDetail: { dealId: string };
+  TravelBasket: {
+    outletId?: string;
+    tripId?: string;
+    source?: "travel_basket_hub" | "outlet_detail" | "trip_detail";
+  } | undefined;
   Login: { authMessage?: string } | undefined;
   MyReviews: undefined;
   ReviewModeration: undefined;

@@ -11,8 +11,8 @@ import type { RootStackParamList } from "../navigation/types";
 import colors from "../theme/colors";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
-type ToolRoute = "FlightSearch" | "FlightDeals" | "MyTripsList" | "NearbyOutlets";
-type ToolIcon = "airplane-search" | "bell-ring-outline" | "bag-suitcase-outline" | "map-marker-radius";
+type ToolRoute = "FlightSearch" | "FlightDeals" | "MyTripsList" | "NearbyOutlets" | "TravelBasket";
+type ToolIcon = "airplane-search" | "bell-ring-outline" | "bag-suitcase-outline" | "map-marker-radius" | "basket-outline";
 
 export function TravelHubScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -23,6 +23,7 @@ export function TravelHubScreen() {
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const navigateToTool = navigation.navigate as (route: ToolRoute) => void;
   const tools: { route: ToolRoute; icon: ToolIcon; title: string; body: string; badge: string }[] = [
+    { route: "TravelBasket", icon: "basket-outline", title: t("travelHub.basketTitle"), body: t("travelHub.basketBody"), badge: t("travelHub.basketBadge") },
     { route: "FlightSearch", icon: "airplane-search", title: t("travelHub.flightSearchTitle"), body: t("travelHub.flightSearchBody"), badge: t("travelHub.flightSearchBadge") },
     { route: "FlightDeals", icon: "bell-ring-outline", title: t("travelHub.priceAlertsTitle"), body: t("travelHub.priceAlertsBody"), badge: t("travelHub.priceAlertsBadge") },
     { route: "MyTripsList", icon: "bag-suitcase-outline", title: t("travelHub.myTripsTitle"), body: t("travelHub.myTripsBody"), badge: t("travelHub.myTripsBadge") },

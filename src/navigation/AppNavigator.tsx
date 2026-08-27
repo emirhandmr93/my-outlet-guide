@@ -46,6 +46,7 @@ TaxFreeCalculatorScreen,
 TaxFreeGuideScreen,
 TermsConditionsScreen,
 TransportationScreen,
+TravelBasketScreen,
 TravelHubScreen,
 TripDetailScreen,
 TripSegmentEditorScreen,
@@ -468,6 +469,7 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 <Stack.Screen name="FlightDeals" component={FlightDealsScreen} options={{ title: t("nav.flightDeals") }} />
 <Stack.Screen name="FlightSearch" component={FlightSearchScreen} options={{ title: t("nav.flightSearch") }} />
 <Stack.Screen name="FlightDealDetail" component={FlightDealDetailScreen} options={{ title: t("nav.flightDeal") }} />
+<Stack.Screen name="TravelBasket" component={TravelBasketScreen} options={{ title: t("nav.travelBasket") }} />
 
 <Stack.Screen name="Login" component={LoginScreen} options={{ title: t("nav.signIn") }} />
 <Stack.Screen name="MyReviews" component={MyReviewsScreen} options={{ title: t("nav.myReviews") }} />

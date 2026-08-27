@@ -32,6 +32,7 @@ import { getTaxFreeRule } from "../constants/taxFreeRules";
 import { isTaxFreeGuideAvailable } from "../services/taxFreeGuideService";
 import { getTaxFreePolicyDisplayModel, normalizeTaxFreeCountryStatus, resolveOutletTaxFreeDisplayStatus } from "../utils/taxFreeDisplay";
 import { TransportationCard } from "../components/cards/TransportationCard";
+import { TravelBasketPromoCard } from "../components/TravelBasketPromoCard";
 import { WebsiteCard } from "../components/cards/WebsiteCard";
 import { OutletHero } from "../components/OutletHero";
 import { ReviewItem } from "../components/ReviewItem";
@@ -689,6 +690,13 @@ export function OutletDetailScreen() {
             }
           />}
         </View>
+
+        <TravelBasketPromoCard
+          onPress={() => navigation.navigate("TravelBasket", {
+            outletId: outlet.outletId,
+            source: "outlet_detail",
+          })}
+        />
 
         <MapsCard
           title={t("outlet.maps")}

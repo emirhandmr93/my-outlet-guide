@@ -38,6 +38,7 @@ export { TermsConditionsScreen } from "../screens/TermsConditionsScreen";
 export { TransportationScreen } from "../screens/TransportationScreen";
 export { VisitModeScreen } from "../screens/VisitModeScreen";
 export { TravelHubScreen } from "../screens/TravelHubScreen";
+export { TravelBasketScreen } from "../screens/TravelBasketScreen";
 export { TripDetailScreen } from "../screens/TripDetailScreen";
 export { TripSegmentEditorScreen } from "../screens/TripSegmentEditorScreen";
 export { WriteReviewScreen } from "../screens/WriteReviewScreen";
