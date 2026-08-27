@@ -58,7 +58,7 @@ const airport = (airportCode: string, cityName: string, countryCode: string, cou
   ({ airportCode, airportName: `${cityName} Airport`, cityName, countryCode, countryName, region: "EUROPE" });
 async function main() {
 let submitted: unknown;
-assert.deepEqual(await submitRollingRouteFlightDealAlert({ providerEnabled: false, userId: "user-1",
+assert.deepEqual(await submitRollingRouteFlightDealAlert({ monitoringPubliclyVerified: false, userId: "user-1",
   origin: airport("ESB", "Ankara", "TR", "Turkey"), destination: airport("FRA", "Frankfurt", "DE", "Germany"),
   thresholds: [45, 15], tripType: "one_way", tripClass: "economy", directOnly: false, active: true,
   save: async (_userId, input) => { submitted = input; return key; },

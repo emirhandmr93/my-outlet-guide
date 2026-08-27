@@ -1,5 +1,5 @@
 import DateTimePicker from "../components/DateTimePickerAdapter";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { NavigationProp, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { createElement, useEffect, useState } from "react";
 import {
@@ -15,6 +15,9 @@ import {
 } from "react-native";
 
 import { AppOnlyFeatureNotice } from "../components/AppOnlyFeatureNotice";
+import { cities } from "../constants/cities";
+import { countries } from "../constants/countries";
+import { outlets } from "../constants/outlets";
 import { useTrips } from "../contexts/TripsContext";
 import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
@@ -52,6 +55,7 @@ type TimeTarget = "returnTime";
 
 export function CreateTripScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const route = useRoute<RouteProp<RootStackParamList, "CreateTrip">>();
   const { isLoggedIn } = useUser();
   const { addTrip } = useTrips();
   const { t } = useTranslation();
@@ -85,6 +89,22 @@ export function CreateTripScreen() {
   >(null);
   const [returnFlightTouched, setReturnFlightTouched] = useState(false);
   const [flightOpen, setFlightOpen] = useState(false);
+  const initialOutlet = route.params?.outletId
+    ? outlets.find(
+        (outlet) =>
+          outlet.outletId === route.params?.outletId && outlet.status === "active",
+      )
+    : undefined;
+  const initialCity = initialOutlet
+    ? cities.find((city) => city.cityId === initialOutlet.cityId)
+    : undefined;
+  const initialCountry = initialOutlet
+    ? countries.find((country) => country.countryId === initialOutlet.countryId)
+    : undefined;
+
+  useEffect(() => {
+    if (initialOutlet && !tripName.trim()) setTripName(initialOutlet.name);
+  }, [initialOutlet?.outletId]);
 
   useEffect(() => {
     requireAuth({
@@ -232,8 +252,30 @@ export function CreateTripScreen() {
         tripName: tripName.trim(),
         startDate: formatDate(startDate),
         endDate: formatDate(endDate),
+        outletId: initialOutlet?.outletId,
+        outletName: initialOutlet?.name,
+        destination: initialCity?.cityName ?? initialOutlet?.cityId,
+        city: initialCity?.cityName ?? initialOutlet?.cityId,
+        country: initialCountry?.countryName ?? initialOutlet?.countryId,
+        visitDate: formatDate(startDate),
         notes: notes.trim() || undefined,
-        segments: [],
+        segments: initialOutlet
+          ? [
+              {
+                id: `segment-${Date.now()}`,
+                title: initialOutlet.name,
+                outletId: initialOutlet.outletId,
+                outletName: initialOutlet.name,
+                cityId: initialOutlet.cityId,
+                cityName: initialCity?.cityName ?? initialOutlet.cityId,
+                countryCode: initialOutlet.countryId,
+                countryName:
+                  initialCountry?.countryName ?? initialOutlet.countryId,
+                startDate: formatDate(startDate),
+                endDate: formatDate(endDate),
+              },
+            ]
+          : [],
         flightDetails: shouldSaveReturnFlight
           ? {
               return: {

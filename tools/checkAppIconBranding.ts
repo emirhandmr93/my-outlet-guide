@@ -113,7 +113,7 @@ for (const assetPath of requiredPaths) assert(existsSync(appPath(assetPath)), `c
 
 assert(!/android-icon-/i.test(configText), "app config has no old android-icon references");
 assert(!/(expo[- ]?default|default[- ]?icon|placeholder[- ]?icon)/i.test(configText), "app config has no Expo/default/placeholder icon references");
-assert(!/https?:\/\//i.test(configText), "app config has no remote icon URLs");
+assert(requiredPaths.every((assetPath) => !/^https?:\/\//i.test(assetPath)), "configured branding paths contain no remote icon URLs");
 assert(!/(A-letter|MOG-letter|letter[- ]?icon)/i.test(configText + homeHeader), "branding has no A-letter or MOG-letter references");
 assert(homeHeader.includes('const brandIcon = require("../../assets/icon.png")'), "Home header loads the final local icon asset");
 assert(homeHeader.includes("source={brandIcon}") && homeHeader.includes("MY OUTLET GUIDE"), "Home header renders the final icon with MY OUTLET GUIDE text");

@@ -70,8 +70,8 @@ for (const marker of [
 for (const forbidden of ["departDate", "returnDate", "adults", "children", "infants"]) {
   assert(!rollingSubmission.includes(forbidden), `rolling submission includes forbidden field: ${forbidden}`);
 }
-assert(rollingSubmission.indexOf("await save(userId") < rollingSubmission.indexOf('return { status: providerEnabled ? "saved" : "saved_pending_provider" }'));
-assert.match(rollingSubmission, /return \{ status: providerEnabled \? "saved" : "saved_pending_provider" \}/);
+assert(rollingSubmission.indexOf("await save(userId") < rollingSubmission.indexOf('return { status: monitoringPubliclyVerified ? "saved" : "saved_pending_provider" }'));
+assert.match(rollingSubmission, /return \{ status: monitoringPubliclyVerified \? "saved" : "saved_pending_provider" \}/);
 
 // The service owns deterministic schema-v3 identity and keeps schema versions isolated.
 assert.deepEqual(FLIGHT_DEAL_THRESHOLDS, [15, 30, 45]);

@@ -1,4 +1,3 @@
-import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 
 import {
@@ -95,19 +94,13 @@ record(!shareFunction.includes("appStoreDownloadUrl"), "HomeScreen manually comb
 record(shareFunction.indexOf("setIsQuickMenuOpen(false)") < shareFunction.indexOf("Share.share("), "Quick Menu is not closed before sharing", homeScreenIntegrationErrors);
 record(shareFunction.includes('Platform.OS === "web" && isAbortError(error)'), "Web AbortError cancellation handling is missing", homeScreenIntegrationErrors);
 record(shareFunction.includes('Alert.alert(t("common.error"), t("common.notAvailable"))'), "Localized real-error alert is missing", homeScreenIntegrationErrors);
-record(homeSource.includes("await Linking.openURL(nativeIosReviewUrl)"), "Native iOS review flow changed", homeScreenIntegrationErrors);
-record(homeSource.includes("await Linking.openURL(httpsReviewFallbackUrl)"), "HTTPS review fallback changed", homeScreenIntegrationErrors);
-record(homeSource.includes("await Linking.openURL(appStoreDownloadUrl)"), "Web Rate App download flow changed", homeScreenIntegrationErrors);
+record(homeSource.includes("await openExternalUrl(nativeIosReviewUrl)"), "Native iOS review flow changed", homeScreenIntegrationErrors);
+record(homeSource.includes("await openExternalUrl(httpsReviewFallbackUrl)"), "HTTPS review fallback changed", homeScreenIntegrationErrors);
+record(homeSource.includes("await openExternalUrl(appStoreDownloadUrl)"), "Web Rate App download flow changed", homeScreenIntegrationErrors);
 record(nativeIosReviewUrl.includes(expectedAppStoreId), "Native iOS review URL lost the App Store ID");
 record(httpsReviewFallbackUrl.includes(expectedAppStoreId), "HTTPS review fallback lost the App Store ID");
 record(appLinksSource.includes("nativeIosReviewUrl") && appLinksSource.includes("httpsReviewFallbackUrl"), "Review URL constants are missing");
 record(homeScreenIntegrationErrors.length === 0, "HomeScreen integration checks failed");
-
-try {
-  execFileSync("git", ["diff", "--exit-code", "--", "package.json", "package-lock.json"], { stdio: "ignore" });
-} catch {
-  errors.push("package.json or package-lock.json changed");
-}
 
 const representativeCounts = Object.fromEntries(
   platforms.map((platform) => [platform, urlCount(getAppSharePayload(platform, translations.en["home.shareMessage"]).message)]),

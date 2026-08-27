@@ -4,7 +4,6 @@ import {
   Alert,
   FlatList,
   KeyboardAvoidingView,
-  Linking,
   Modal,
   Platform,
   Pressable,
@@ -17,7 +16,6 @@ import {
   View,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as WebBrowser from "expo-web-browser";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { WebDatePickerButton } from "../components/WebDatePickerButton";
@@ -27,12 +25,13 @@ import { useTranslation } from "../hooks/useTranslation";
 import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import { heroAssets } from "../media/heroAssets";
 import { buildAviasalesAffiliateSearchUrl, AviasalesTripClass } from "../services/aviasalesAffiliateLink";
-import { trackWebEvent } from "../utils/webAnalytics";
+import { trackProductEvent } from "../utils/productAnalytics";
 import colors from "../theme/colors";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
 import { formatIsoDateOnly, localDateToIso, parseIsoDateOnly } from "../utils/dateOnly";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { supportedLanguageCodes, TranslationLanguage } from "../translations/locale";
+import { openExternalBrowserUrl } from "../utils/externalUrl";
 
 type TripType = "roundTrip" | "oneWay";
 type PickerMode = "origin" | "destination" | null;
@@ -137,9 +136,8 @@ export function FlightSearchScreen() {
         ...(tripType === "roundTrip" ? { returnDate } : {}),
         adults, children, infants, tripClass, subId: "app_flight_search", locale, currency: "EUR",
       });
-      trackWebEvent("outbound_affiliate_click", { affiliate: "aviasales", placement: "flight_search" });
-      if (Platform.OS === "web") await Linking.openURL(url);
-      else await WebBrowser.openBrowserAsync(url);
+      trackProductEvent("outbound_affiliate_click", { affiliate: "aviasales", placement: "flight_search" });
+      if (!(await openExternalBrowserUrl(url))) throw new Error("External URL rejected");
     } catch {
       Alert.alert(t("flightSearch.openFailedTitle"), t("flightSearch.openFailedBody"));
     } finally { setOpening(false); }

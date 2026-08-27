@@ -1,27 +1,27 @@
-# Flight Alerts Phase 1A Policy
+# Flight Alerts release policy
 
 Flight Alerts must not ship with mock fares, fake alerts, placeholder deal cards, or client-only polling.
 
-## Current production status
+## Current implementation status
 
-- No real flight pricing provider is configured in the app or Firebase Functions.
-- No trusted backend flight-price polling job exists.
-- No production Firestore path for per-user flight alerts is in use.
-- Existing notification token registration and trip reminder delivery are production-backed, but Flight Alerts cannot use them until real price checks exist.
+- Authenticated users can save owner-scoped route alert preferences.
+- Firebase Functions contain source-backed price collection, evaluation and notification-delivery infrastructure.
+- The client flight-deals gate is enabled and the production runtime was promoted to `all` after the controlled rollout.
+- Saved active alerts are eligible for scheduled collection, evaluation and notification delivery.
 
 ## Release-safe behavior
 
-Until a real provider and backend polling implementation are added:
+If production monitoring or delivery is deliberately disabled in a future release:
 
-- Active Flight Alerts entry points are hidden from Home, Savings, Profile, and feature search.
-- Flight deal arrays and engine helpers return no active deals.
-- Existing Flight Deals routes remain guarded and explain that alerts are unavailable because live fare monitoring is not connected.
-- No Firestore rules or indexes are added for unused flight alert paths.
+- The app may save alert preferences but labels them as pending monitoring.
+- The app must not claim that a saved preference is already being monitored.
+- No fare or deal is shown unless it comes from a source-backed backend record.
+- Booking calls to action require a safe, source-backed provider link.
 
-## Required before enabling Flight Alerts
+## Required for every Flight Alerts release
 
-1. Select and configure a real flight price API/provider.
-2. Add trusted Firebase Functions polling that checks enabled user alerts server-side.
-3. Persist authenticated user alerts under an owner-scoped path such as `userFlightAlerts/{userId}/items/{alertId}`.
-4. Send push notifications only when provider-backed live price checks match an enabled alert.
-5. Add owner-only Firestore rules for any production alert paths that are actually used.
+1. Configure and authorize the real flight-price provider in production.
+2. Deploy the required Functions, Firestore rules and indexes.
+3. Enable and observe scheduled collection, evaluation and delivery.
+4. Complete an authenticated end-to-end test with a provider-backed price record and notification.
+5. Keep `FLIGHT_PRICE_MONITORING_PUBLICLY_VERIFIED` enabled only while that production evidence remains valid.

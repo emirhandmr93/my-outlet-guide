@@ -7,7 +7,6 @@ import {
   FlatList,
   ImageBackground,
   ImageSourcePropType,
-  Linking,
   Modal,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -37,7 +36,6 @@ import {
   getPopularCityImage,
   getRecommendedOutletImage,
 } from "../media/imageResolvers";
-import { searchApp } from "../services/searchEngine";
 import type { SearchResult } from "../services/searchTypes";
 import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
@@ -55,7 +53,8 @@ import {
 } from "../utils/locationDisplay";
 import { getRecommendedCarouselLastIndex } from "../utils/recommendedCarousel";
 import { getAppSharePayload } from "../utils/appShare";
-import { trackWebEvent } from "../utils/webAnalytics";
+import { trackProductEvent } from "../utils/productAnalytics";
+import { openExternalUrl } from "../utils/externalUrl";
 
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
@@ -316,6 +315,7 @@ export function HomeScreen() {
   const { trips } = useTrips();
   const { favoriteIds } = useFavorites();
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState<SearchResult[]>([]);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [activeRecommendedIndex, setActiveRecommendedIndex] = useState(0);
   const [activeCityIndex, setActiveCityIndex] = useState(0);
@@ -360,14 +360,29 @@ export function HomeScreen() {
   );
   const firstFavorite = favoriteOutlets[0];
   const slides = useMemo(() => featuredSlides, []);
-  const searchSuggestions = useMemo(() => {
+  useEffect(() => {
     const normalizedQuery = searchQuery.trim();
 
     if (normalizedQuery.length < 2) {
-      return [];
+      setSearchSuggestions([]);
+      return;
     }
 
-    return searchApp(normalizedQuery, 6);
+    let active = true;
+    const debounce = setTimeout(() => {
+      void import("../services/searchEngine")
+        .then(({ searchApp }) => {
+          if (active) setSearchSuggestions(searchApp(normalizedQuery, 6));
+        })
+        .catch(() => {
+          if (active) setSearchSuggestions([]);
+        });
+    }, 120);
+
+    return () => {
+      active = false;
+      clearTimeout(debounce);
+    };
   }, [searchQuery]);
   const showSearchSuggestions = searchQuery.trim().length >= 2;
   const floatingTabBarFootprint = Math.max(
@@ -485,10 +500,12 @@ export function HomeScreen() {
       return;
     }
 
-    trackWebEvent("outlet_search", {
-      search_scope: "all",
-      result_count: searchApp(normalizedQuery, 40).length,
-    });
+    void import("../services/searchEngine")
+      .then(({ searchApp }) => trackProductEvent("outlet_search", {
+        search_scope: "all",
+        result_count: searchApp(normalizedQuery, 40).length,
+      }))
+      .catch(() => undefined);
     navigation.navigate("Explore", { initialQuery: normalizedQuery });
   }
 
@@ -520,7 +537,7 @@ export function HomeScreen() {
       setIsQuickMenuOpen(false);
 
       try {
-        await Linking.openURL(appStoreDownloadUrl);
+        if (!(await openExternalUrl(appStoreDownloadUrl))) throw new Error("External URL rejected");
       } catch {
         Alert.alert(t("common.error"), t("common.notAvailable"));
       }
@@ -532,10 +549,10 @@ export function HomeScreen() {
       setIsQuickMenuOpen(false);
 
       try {
-        await Linking.openURL(nativeIosReviewUrl);
+        if (!(await openExternalUrl(nativeIosReviewUrl))) throw new Error("External URL rejected");
       } catch {
         try {
-          await Linking.openURL(httpsReviewFallbackUrl);
+          if (!(await openExternalUrl(httpsReviewFallbackUrl))) throw new Error("External URL rejected");
         } catch {
           Alert.alert(t("common.error"), t("common.notAvailable"));
         }

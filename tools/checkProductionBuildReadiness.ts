@@ -71,7 +71,11 @@ assert(configuredAssets.length >= 4, "core icon/adaptive/favicon assets are conf
 assert(existsSync("assets/splash-icon.png"), "splash asset exists for native splash configuration review");
 
 const appJsonText = read("app.json");
-assert(!/NSCameraUsageDescription|NSMicrophoneUsageDescription|NSPhotoLibraryUsageDescription|ACCESS_FINE_LOCATION|ACCESS_COARSE_LOCATION|expo-location/i.test(appJsonText + read("package.json")), "no unused camera/microphone/photo/device GPS permissions are configured");
+assert(!/NSCameraUsageDescription|NSMicrophoneUsageDescription|NSPhotoLibraryUsageDescription/i.test(appJsonText), "no unused camera/microphone/photo permissions are configured");
+const nearbyOutletsSource = read("src/screens/NearbyOutletsScreen.tsx");
+assert(appJsonText.includes('"expo-location"') && Boolean(packageJson.dependencies?.["expo-location"]), "foreground location dependency/config is present for Nearby Outlets");
+assert(appJsonText.includes("locationWhenInUsePermission") && nearbyOutletsSource.includes("requestForegroundPermissionsAsync"), "Nearby Outlets has explicit foreground location permission copy and request flow");
+assert(!/ACCESS_BACKGROUND_LOCATION|requestBackgroundPermissionsAsync|startLocationUpdatesAsync|isIosBackgroundLocationEnabled|isAndroidBackgroundLocationEnabled/.test(appJsonText + nearbyOutletsSource), "no background location permission or tracking is configured");
 assert(appJsonText.includes("expo-notifications") && Boolean(packageJson.dependencies?.["expo-notifications"]), "notifications native dependency/config is present for trip reminders");
 
 for (const expected of [

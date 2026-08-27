@@ -1,8 +1,7 @@
 import { NavigationProp, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useMemo, useState } from "react";
-import { Alert, Linking, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
+import { Alert, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as WebBrowser from "expo-web-browser";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { useUser } from "../contexts/UserContext";
@@ -11,12 +10,13 @@ import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { heroAssets } from "../media/heroAssets";
 import { RootStackParamList } from "../navigation/types";
 import { buildAviasalesAffiliateSearchUrl } from "../services/aviasalesAffiliateLink";
-import { trackWebEvent } from "../utils/webAnalytics";
+import { trackProductEvent } from "../utils/productAnalytics";
 import { getUserFlightPriceDeal, UserFlightPriceDeal, UserFlightPriceDealResult } from "../services/flightPriceDealDetailService";
 import colors from "../theme/colors";
 import { supportedLanguageCodes } from "../translations/locale";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 import { formatIsoDateOnly } from "../utils/dateOnly";
+import { openExternalBrowserUrl } from "../utils/externalUrl";
 
 type ViewState = "loading" | "found" | "not_found" | "invalid" | "read_failed";
 
@@ -74,9 +74,8 @@ export function FlightDealDetailScreen() {
         tripClass: deal.tripClass, currency: "EUR", locale,
         subId: rolling ? "app_rolling_flight_deal_detail" : "app_flight_deal_detail",
       });
-      trackWebEvent("outbound_affiliate_click", { affiliate: "aviasales", placement: "flight_deal_detail" });
-      if (Platform.OS === "web") await Linking.openURL(url);
-      else await WebBrowser.openBrowserAsync(url);
+      trackProductEvent("outbound_affiliate_click", { affiliate: "aviasales", placement: "flight_deal_detail" });
+      if (!(await openExternalBrowserUrl(url))) throw new Error("External URL rejected");
     } catch { Alert.alert(t("flightDealDetail.openFailedTitle"), t("flightDealDetail.openFailedBody")); }
     finally { setOpening(false); }
   }

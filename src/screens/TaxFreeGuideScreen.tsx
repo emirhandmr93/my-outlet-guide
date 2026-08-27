@@ -1,4 +1,4 @@
-import { AppState, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { AppState, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
@@ -10,6 +10,7 @@ import { useSavings } from "../contexts/SavingsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { formatCountryDisplayName } from "../utils/locationDisplay";
 import { useTaxFreeGuideData } from "../hooks/useDetailData";
+import { openExternalUrl } from "../utils/externalUrl";
 
 const processOrder = ["before_shopping", "in_store", "before_departure", "customs_validation", "receive_refund"] as const;
 
@@ -76,7 +77,7 @@ export function TaxFreeGuideScreen() {
   const taxFreeSummary = policyDisplay?.summary;
   const selectedCountryIdSafe = country?.countryId ?? selectedCountryId;
 
-  const openSource = (url: string) => { if (/^https:\/\//.test(url)) Linking.openURL(url); };
+  const openSource = (url: string) => { void openExternalUrl(url); };
   const minimumText = rule?.minimumPurchaseStatus === "verified_amount" && typeof rule.minimumPurchaseAmount === "number"
     ? `${getMinimumPurchaseComparisonSymbol(rule)} ${formatCurrency(rule.minimumPurchaseAmount, rule.currency, language)}`
     : rule ? t(getMinimumPurchaseTextKey(rule)) : "—";

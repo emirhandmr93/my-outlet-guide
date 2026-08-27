@@ -9,11 +9,11 @@ function read(path: string) {
 }
 
 function runScreenshotPolishAudit() {
-  execFileSync("npx", ["tsx", "tools/checkFinalScreenshotPolish.ts"], { stdio: "inherit" });
+  execFileSync(process.execPath, ["--import", "tsx", "tools/checkFinalScreenshotPolish.ts"], { stdio: "inherit" });
 }
 
 function runHeroAssetAudit() {
-  execFileSync("npx", ["tsx", "tools/checkHeroAssets.ts"], { stdio: "inherit" });
+  execFileSync(process.execPath, ["--import", "tsx", "tools/checkHeroAssets.ts"], { stdio: "inherit" });
 }
 
 function assert(condition: unknown, message: string) {

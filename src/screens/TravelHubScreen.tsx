@@ -1,4 +1,4 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { Platform, ScrollView, StyleSheet, Text, TouchableOpacity, useWindowDimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -11,8 +11,8 @@ import type { RootStackParamList } from "../navigation/types";
 import colors from "../theme/colors";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
-type ToolRoute = "FlightSearch" | "FlightDeals" | "MyTripsList";
-type ToolIcon = "airplane-search" | "bell-ring-outline" | "bag-suitcase-outline";
+type ToolRoute = "FlightSearch" | "FlightDeals" | "MyTripsList" | "NearbyOutlets";
+type ToolIcon = "airplane-search" | "bell-ring-outline" | "bag-suitcase-outline" | "map-marker-radius";
 
 export function TravelHubScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -26,6 +26,7 @@ export function TravelHubScreen() {
     { route: "FlightSearch", icon: "airplane-search", title: t("travelHub.flightSearchTitle"), body: t("travelHub.flightSearchBody"), badge: t("travelHub.flightSearchBadge") },
     { route: "FlightDeals", icon: "bell-ring-outline", title: t("travelHub.priceAlertsTitle"), body: t("travelHub.priceAlertsBody"), badge: t("travelHub.priceAlertsBadge") },
     { route: "MyTripsList", icon: "bag-suitcase-outline", title: t("travelHub.myTripsTitle"), body: t("travelHub.myTripsBody"), badge: t("travelHub.myTripsBadge") },
+    { route: "NearbyOutlets", icon: "map-marker-radius", title: t("travelHub.nearbyTitle"), body: t("travelHub.nearbyBody"), badge: t("travelHub.nearbyBadge") },
   ];
 
   return (

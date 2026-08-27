@@ -496,12 +496,12 @@ assert(
   "404.html exists with user-facing copy",
 );
 assert(
-  firebaseJson.hosting?.public === "web",
-  "firebase.json hosting public is web",
+  firebaseJson.hosting?.public === "dist",
+  "firebase.json hosting public is the validated Expo web export",
 );
 assert(
   firebaseJson.hosting?.ignore?.includes("firebase.json") &&
-    firebaseJson.hosting?.ignore?.includes("**/node_modules/**"),
+    firebaseJson.hosting?.ignore?.includes("**/.*"),
   "firebase.json hosting ignore is configured",
 );
 
@@ -857,6 +857,7 @@ assert(
   "shopping tool cards include icon bubbles without extra arrow affordances",
 );
 assert(/<script src="\/assets\/site-interactions\.js" defer><\/script>/.test(home), "homepage only includes the allowed site interaction script tag");
+const siteJs = read("web/assets/site-interactions.js");
 assert(/data-home-inline-search/.test(home), "hero search uses app-style inline input");
 assert(home.includes("data-menu-overlay") && home.includes("Hızlı Menü"), "hamburger menu overlay markup exists");
 for (const row of ["🏬</i><span>Outletlere göz at", "💰</i><span>Tax Free Merkezi", "📥</i><span>Çevrimdışı erişim", "⭐</i><span>Uygulamayı değerlendir", "📤</i><span>Uygulamayı paylaş"])
@@ -918,7 +919,6 @@ assert(
 
 
 const explorePage = read("web/explore/index.html");
-const siteJs = read("web/assets/site-interactions.js");
 const barberinoDetail = read("web/outlets/barberino/index.html");
 const fidenza = read("web/outlets/fidenza-village/index.html");
 const barberinoTransportPath = "web/outlets/barberino/transport/index.html";

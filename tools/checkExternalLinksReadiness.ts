@@ -51,7 +51,7 @@ assert(externalLinks.includes('WEBSITE_URL: string = "https://myoutletguide.com"
 assert(externalLinks.includes('PRIVACY_POLICY_URL: string = "https://myoutletguide.com/privacy"'), "PRIVACY_POLICY_URL points to production privacy page");
 assert(externalLinks.includes('TERMS_URL: string = "https://myoutletguide.com/terms"'), "TERMS_URL points to production terms page");
 assert(externalLinks.includes('ACCOUNT_DELETION_URL: string = "https://myoutletguide.com/account-deletion"'), "ACCOUNT_DELETION_URL points to production account deletion page");
-assert(contact.includes("WEBSITE_URL ?") && contact.includes("Linking.openURL(WEBSITE_URL)") && !/https?:\/\/myoutletguide\.com/.test(contact), "Website row uses centralized WEBSITE_URL without hardcoding the production domain");
+assert(contact.includes("WEBSITE_URL ?") && contact.includes("openExternalUrl(WEBSITE_URL)") && !/https?:\/\/myoutletguide\.com/.test(contact), "Website row uses centralized WEBSITE_URL and URL policy without hardcoding the production domain");
 
 const visibleContactLegalSource = [contact, privacy, terms, deleteAccount].join("\n");
 assert(!/coming soon|broken|placeholder/i.test(visibleContactLegalSource), "No visible coming soon/broken/placeholder copy in Contact or Legal screens");

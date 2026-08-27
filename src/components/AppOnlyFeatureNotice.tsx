@@ -1,7 +1,8 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Linking, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { appStoreDownloadUrl, getAppDownloadStore, googlePlayDownloadUrl } from "../constants/appLinks";
-import { trackWebEvent } from "../utils/webAnalytics";
+import { trackProductEvent } from "../utils/productAnalytics";
+import { openExternalUrl } from "../utils/externalUrl";
 
 type AppOnlyFeatureNoticeProps = { title: string; body: string; badge: string; ctaLabel: string; helperText?: string; compact?: boolean };
 
@@ -19,8 +20,8 @@ export function AppOnlyFeatureNotice({ title, body, badge, ctaLabel, helperText,
         ];
 
   function openStore(url: string) {
-    trackWebEvent(url === googlePlayDownloadUrl ? "google_play_click" : "app_store_click", { link_url: url });
-    void Linking.openURL(url).catch(() => undefined);
+    trackProductEvent(url === googlePlayDownloadUrl ? "google_play_click" : "app_store_click", { link_url: url });
+    void openExternalUrl(url);
   }
 
   return <View style={[styles.card, compact && styles.compact]}>

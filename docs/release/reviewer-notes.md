@@ -10,7 +10,11 @@ The release expects these Firebase callable/backend services to be deployed and 
 
 ## Account features
 
-Signed-in users can use account-backed features including favorites, trips, reviews, notifications, and delete account. Account sync, reviews, notifications, live currency, and provider-backed services require network access.
+Signed-in users can use account-backed features including favorite outlets, Brand Wishlist, trips, reviews, notifications, and delete account. Account sync, reviews, notifications, live currency, and provider-backed services require network access.
+
+Visit Mode is available without an account. Its store checklist progress is saved only on the current device; directions, centre maps, and outlet websites open through validated external links.
+
+Nearby Outlets requests foreground location only after the user taps its button. The coordinates are processed on-device to rank active outlets by distance and are not saved to the account or sent to the My Outlet Guide backend. iOS renders the embedded Apple map; all platforms provide validated links to the device map application.
 
 ## Review and reporting
 
@@ -18,7 +22,7 @@ Users can write outlet reviews and report reviews. Admin/moderator moderation ex
 
 ## Flight deals
 
-Flight deal alerts are provider-backed/pending. The app must not show fake fares. It should not show a booking or ticket-purchase call to action unless a source-backed link is available.
+Signed-in users can save flight route alert preferences. Active alerts are processed by the provider-backed collection, evaluation and notification-delivery infrastructure. The app shows only source-backed fares, and booking calls to action require a validated provider link.
 
 ## Weather
 

@@ -1,5 +1,4 @@
 import {
-  Linking,
   ScrollView,
   StyleSheet,
   Text,
@@ -9,6 +8,7 @@ import {
 
 import { CONTACT_EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, WEBSITE_URL, mailtoUrl } from "../constants/externalLinks";
 import { useTranslation } from "../hooks/useTranslation";
+import { openExternalUrl } from "../utils/externalUrl";
 
 export function ContactUsScreen() {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ export function ContactUsScreen() {
 
         <TouchableOpacity
           style={styles.actionButton}
-          onPress={() => Linking.openURL(mailtoUrl(CONTACT_EMAIL))}
+          onPress={() => void openExternalUrl(mailtoUrl(CONTACT_EMAIL))}
         >
           <Text style={styles.actionButtonText}>{CONTACT_EMAIL}</Text>
         </TouchableOpacity>
@@ -38,7 +38,7 @@ export function ContactUsScreen() {
 
         <TouchableOpacity
           style={styles.actionButton}
-          onPress={() => Linking.openURL(INSTAGRAM_URL)}
+          onPress={() => void openExternalUrl(INSTAGRAM_URL)}
         >
           <Text style={styles.actionButtonText}>{INSTAGRAM_HANDLE}</Text>
         </TouchableOpacity>
@@ -52,7 +52,7 @@ export function ContactUsScreen() {
 
           <TouchableOpacity
             style={styles.actionButton}
-            onPress={() => Linking.openURL(WEBSITE_URL)}
+            onPress={() => void openExternalUrl(WEBSITE_URL)}
           >
             <Text style={styles.actionButtonText}>{WEBSITE_URL.replace(/^https?:\/\/(www\.)?/, "")}</Text>
           </TouchableOpacity>

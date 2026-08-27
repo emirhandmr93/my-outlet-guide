@@ -48,7 +48,7 @@ import type { TranslationLanguage } from "../translations/locale";
 import { heroAssets } from "../media/heroAssets";
 import { getPopularCityImage } from "../media/imageResolvers";
 import { loadRecentVisits, type RecentVisit } from "../services/recentVisitsService";
-import { trackWebEvent } from "../utils/webAnalytics";
+import { trackProductEvent } from "../utils/productAnalytics";
 import { isWebSeoPublicOutlet } from "../constants/webSeo";
 
 type ExploreFilter = "country" | "city" | "outlet";
@@ -356,7 +356,7 @@ export function ExploreScreen() {
     const normalizedQuery = query.trim();
     if (!normalizedQuery) return;
     const results = getExploreVisibleSearchResults(normalizedQuery);
-    trackWebEvent("outlet_search", {
+    trackProductEvent("outlet_search", {
       search_scope: "all",
       result_count: results.length,
     });

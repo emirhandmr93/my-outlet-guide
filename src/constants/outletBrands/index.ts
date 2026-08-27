@@ -113,5 +113,6 @@ export const outletBrands: OutletBrand[] = [
   ...kuwaitOutletBrands,
   ...southKoreaOutletBrands,
  ...malaysiaOutletBrands,
- ...thailandOutletBrands,
+ // Thailand relations remain available as source inventory, but are excluded
+ // until a matching source-backed outlet entity is part of the runtime catalog.
 ];

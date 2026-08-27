@@ -11,13 +11,16 @@ export type MainTabParamList = {
 export type RootStackParamList = {
   MainTabs: NavigatorScreenParams<MainTabParamList> | undefined;
   OutletDetail: { outletId: string };
+  VisitMode: { outletId: string };
   BrandResults: { brandId?: string; brandName?: string; mode?: "chooseCountry" };
   Transportation: { outletId: string };
   Country: { countryId: string };
   CityResults: { cityId: string };
   MyTrips: undefined;
   MyTripsList: undefined;
+  NearbyOutlets: undefined;
   Favorites: undefined;
+  BrandWishlist: undefined;
   CreateTrip: { outletId?: string } | undefined;
   TripDetail: { tripId: string };
   TripSegmentEditor: { tripId: string; segmentId?: string };

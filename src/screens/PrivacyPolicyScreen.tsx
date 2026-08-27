@@ -25,6 +25,11 @@ export function PrivacyPolicyScreen() {
       </View>
 
       <View style={styles.card}>
+        <Text style={styles.cardTitle}>{t("privacy.locationTitle")}</Text>
+        <Text style={styles.cardText}>{t("privacy.locationText")}</Text>
+      </View>
+
+      <View style={styles.card}>
         <Text style={styles.cardTitle}>{t("privacy.securityTitle")}</Text>
         <Text style={styles.cardText}>{t("privacy.securityText")}</Text>
       </View>

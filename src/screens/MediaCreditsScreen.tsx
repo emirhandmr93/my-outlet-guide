@@ -1,7 +1,8 @@
-import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import { getProductionMediaCredits } from "../media/outletMedia";
 import { useTranslation } from "../hooks/useTranslation";
+import { openExternalUrl } from "../utils/externalUrl";
 
 function CreditField({
   label,
@@ -19,7 +20,7 @@ function CreditField({
     return (
       <View style={styles.fieldRow}>
         <Text style={styles.fieldLabel}>{label}</Text>
-        <TouchableOpacity onPress={() => Linking.openURL(url)}>
+        <TouchableOpacity onPress={() => void openExternalUrl(url)}>
           <Text style={styles.linkValue}>{displayValue}</Text>
         </TouchableOpacity>
       </View>

@@ -14,8 +14,8 @@ function todayString() {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 }
 
-export async function submitFlightDealAlert({ providerEnabled, userId, origin, destination, thresholds, tripType, departDate, returnDate, adults, children, infants, tripClass, directOnly, previousAlertId, active = true, save }: {
-  providerEnabled: boolean; userId?: string; origin: SupportedFlightDealAirport | null; destination: SupportedFlightDealAirport | null; thresholds: FlightDealThreshold[]; tripType: FlightDealTripType; departDate: string; returnDate?: string; adults: number; children: number; infants: number; tripClass: FlightDealTripClass; directOnly: boolean; previousAlertId?: string; active?: boolean; save: SaveFlightDealAlert;
+export async function submitFlightDealAlert({ monitoringPubliclyVerified, userId, origin, destination, thresholds, tripType, departDate, returnDate, adults, children, infants, tripClass, directOnly, previousAlertId, active = true, save }: {
+  monitoringPubliclyVerified: boolean; userId?: string; origin: SupportedFlightDealAirport | null; destination: SupportedFlightDealAirport | null; thresholds: FlightDealThreshold[]; tripType: FlightDealTripType; departDate: string; returnDate?: string; adults: number; children: number; infants: number; tripClass: FlightDealTripClass; directOnly: boolean; previousAlertId?: string; active?: boolean; save: SaveFlightDealAlert;
 }): Promise<FlightDealAlertSubmissionResult> {
   if (!userId) return { status: "sign_in_required" };
   if (!origin) return { status: "origin_required" };
@@ -34,13 +34,13 @@ export async function submitFlightDealAlert({ providerEnabled, userId, origin, d
       destinationType: "airport", destinationKey: destination.airportCode, destinationAirportCode: destination.airportCode, destinationAirportName: destination.airportName, destinationCityName: destination.cityName, destinationCountryCode: destination.countryCode, destinationCountryName: destination.countryName, destinationLabel: `${destination.cityName} (${destination.airportCode})`,
       selectedThresholds: thresholds, active, tripType, departDate, ...(returnDate ? { returnDate } : {}), adults, children, infants, tripClass, directOnly, currency: "EUR",
     }, previousAlertId);
-    return { status: providerEnabled ? "saved" : "saved_pending_provider" };
+    return { status: monitoringPubliclyVerified ? "saved" : "saved_pending_provider" };
   } catch { return { status: "save_failed" }; }
 }
 
-export async function submitRollingRouteFlightDealAlert({ providerEnabled, userId, origin, destination, thresholds,
+export async function submitRollingRouteFlightDealAlert({ monitoringPubliclyVerified, userId, origin, destination, thresholds,
   tripType, tripClass, directOnly, previousAlertId, active = true, save }: {
-  providerEnabled: boolean;
+  monitoringPubliclyVerified: boolean;
   userId?: string;
   origin: SupportedFlightDealAirport | null;
   destination: SupportedFlightDealAirport | null;
@@ -73,6 +73,6 @@ export async function submitRollingRouteFlightDealAlert({ providerEnabled, userI
       destinationCountryName: destination.countryName, destinationLabel: `${destination.cityName} (${destination.airportCode})`,
       selectedThresholds: thresholds, active, tripType, tripClass, directOnly, currency: "EUR",
     }, previousAlertId);
-    return { status: providerEnabled ? "saved" : "saved_pending_provider" };
+    return { status: monitoringPubliclyVerified ? "saved" : "saved_pending_provider" };
   } catch { return { status: "save_failed" }; }
 }
