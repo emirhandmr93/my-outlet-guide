@@ -130,7 +130,7 @@ export function BrandResultsScreen() {
   const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp<RouteParams, "BrandResults">>();
   const { isLoggedIn } = useUser();
-  const { isFavorite, toggleFavorite } = useFavorites();
+  const { isFavorite, toggleFavorite, isFavoriteBrand, toggleFavoriteBrand } = useFavorites();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const desktopSidebarWidth = 216;
   const desktopHorizontalPadding = 68;
@@ -145,6 +145,7 @@ export function BrandResultsScreen() {
 
   const resolvedBrandId = resolveBrandId(route.params?.brandId ?? "");
   const brand = brands.find((item) => item.brandId === resolvedBrandId) || brands[0];
+  const brandWishlisted = isFavoriteBrand(brand.brandId);
   const visitedBrand = brands.find((item) => item.brandId === resolvedBrandId);
 
   useEffect(() => {
@@ -161,6 +162,7 @@ export function BrandResultsScreen() {
   const matchingOutlets = outlets.filter(
     (outlet) =>
       matchingOutletIds.includes(outlet.outletId) &&
+      outlet.status === "active" &&
       (Platform.OS !== "web" || isWebSeoPublicOutlet(outlet)),
   );
 
@@ -216,6 +218,18 @@ export function BrandResultsScreen() {
           <Text style={[styles.heroText, isDesktopWeb && styles.desktopHeroText]}>
             {t("brand.heroText")}
           </Text>
+          <TouchableOpacity
+            activeOpacity={0.86}
+            style={[styles.wishlistButton, brandWishlisted && styles.wishlistButtonActive]}
+            onPress={() => {
+              if (!requireAuth({ isLoggedIn, navigation })) return;
+              void toggleFavoriteBrand(brand.brandId);
+            }}
+          >
+            <Text style={[styles.wishlistButtonText, brandWishlisted && styles.wishlistButtonTextActive]}>
+              {brandWishlisted ? `♥ ${t("brand.removeWishlist")}` : `♡ ${t("brand.addWishlist")}`}
+            </Text>
+          </TouchableOpacity>
         </View>
 
         {!selectedCountryId ? (
@@ -374,6 +388,26 @@ const styles = StyleSheet.create({
     lineHeight: 22,
   },
   desktopHeroText: { maxWidth: 640 },
+  wishlistButton: {
+    alignSelf: "flex-start",
+    borderRadius: 999,
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.32)",
+    paddingHorizontal: 16,
+    paddingVertical: 11,
+    marginTop: 16,
+    backgroundColor: "rgba(255,255,255,0.08)",
+  },
+  wishlistButtonActive: {
+    backgroundColor: "#FFF8E1",
+    borderColor: "#C9A227",
+  },
+  wishlistButtonText: {
+    color: "#FFFFFF",
+    fontSize: 13,
+    fontWeight: "900",
+  },
+  wishlistButtonTextActive: { color: "#0B1F3A" },
 
   sectionBlock: { marginBottom: 18 },
   desktopGrid: { flexDirection: "row", flexWrap: "wrap", gap: 12 },

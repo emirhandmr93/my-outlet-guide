@@ -30,7 +30,8 @@ Working draft for App Store Connect privacy questionnaire. Not legal advice. Mus
 ### Location
 
 - User-selected trip, outlet, city, airport, and route metadata only. Weather provider processing applies only if provider-backed weather is configured and enabled.
-- No device precise GPS should be declared unless final code and permissions actually request it.
+- Nearby Outlets requests foreground device location after explicit user action. Coordinates are processed on-device to rank outlets and are not saved to the account or transmitted to the My Outlet Guide backend.
+- Verify the final App Store privacy response against Apple's current definition of “collected”; on-device-only processing is documented here and must not be presented as backend collection.
 
 ### Diagnostics
 

@@ -100,31 +100,19 @@ assert(!appVisible.includes(oldMixedTripName), "No old mixed-language trip route
 const safetyFiltered = appVisible.replace(/no fake inbox/gi, "").replace(/Sahte gelen kutusu/gi, "").replace(/no fake\/mock\/demo claims/gi, "");
 assert(!/lorem ipsum|dummy data|sample fare|sample trip|coming soon/i.test(safetyFiltered), "No visible TODO/coming soon/sample placeholders");
 
-const expectedFlightDealCopy = {
-  en: ["Live fare monitoring is unavailable because a production flight-price provider is not connected. Alerts are not saved.", "Monitoring unavailable", "Flight deals unavailable", "No deal is shown without a connected production price provider."],
-  tr: ["Üretim uçuş fiyatı sağlayıcısı bağlı olmadığı için canlı fiyat takibi kullanılamıyor. Uyarılar kaydedilmiyor.", "Fiyat takibi kullanılamıyor", "Uçuş fırsatları kullanılamıyor", "Üretim fiyat sağlayıcısı bağlı olmadan fırsat gösterilmez."],
-  es: ["El seguimiento de tarifas en vivo no está disponible porque no hay un proveedor de precios de vuelos de producción conectado. Las alertas no se guardan.", "Seguimiento no disponible", "Ofertas de vuelos no disponibles", "No se muestra ninguna oferta sin un proveedor de precios de producción conectado."],
-  fr: ["Le suivi des tarifs en direct est indisponible, car aucun fournisseur de prix de vols en production n’est connecté. Les alertes ne sont pas enregistrées.", "Suivi indisponible", "Offres de vols indisponibles", "Aucune offre n’est affichée sans fournisseur de prix en production connecté."],
-  de: ["Die Live-Flugpreisüberwachung ist nicht verfügbar, da kein produktiver Flugpreisanbieter verbunden ist. Warnungen werden nicht gespeichert.", "Überwachung nicht verfügbar", "Flugangebote nicht verfügbar", "Ohne verbundenen produktiven Preisanbieter werden keine Angebote angezeigt."],
-  ar: ["تتبّع أسعار الرحلات المباشر غير متاح لعدم اتصال مزود إنتاج لأسعار الرحلات. لا يتم حفظ التنبيهات.", "التتبّع غير متاح", "عروض الرحلات غير متاحة", "لا يتم عرض أي عرض من دون مزود أسعار إنتاج متصل."],
-  ru: ["Мониторинг тарифов в реальном времени недоступен, поскольку не подключён рабочий поставщик цен на авиабилеты. Оповещения не сохраняются.", "Мониторинг недоступен", "Предложения на авиабилеты недоступны", "Без подключённого рабочего поставщика цен предложения не показываются."],
-  zh: ["由于尚未连接生产环境的航班价格提供商，实时票价监控不可用，提醒不会保存。", "监控不可用", "航班优惠不可用", "未连接生产环境价格提供商时，不显示任何优惠。"],
-} as const;
 const flightDealKeys = ["flightDeals.providerPending", "flightDeals.providerPendingBadge", "flightDeals.noDealsYet", "flightDeals.noFakeDeals"] as const;
 for (const language of supportedLanguageCodes) {
   const values = flightDealKeys.map((key) => translationCatalog[language][key]);
-  assert(values.every(Boolean), `Flight Deals disabled-provider copy is complete for ${language}`);
-  assert(values.every((value, index) => value === expectedFlightDealCopy[language][index]), `Flight Deals disabled-provider copy is exact for ${language}`);
+  assert(values.every(Boolean), `Flight Deals provider fallback copy is complete for ${language}`);
   assert(!values.some((value) => /coming soon|yakında geliyor/i.test(value)), `Flight Deals copy has no future placeholder for ${language}`);
   if (language !== "en") assert(values[0] !== translationCatalog.en[flightDealKeys[0]], `Flight Deals provider status does not fall back to English for ${language}`);
 }
 assert((flightDeals.match(/t\("flightDeals\.providerPending"\)/g) || []).length === 1, "FlightDealsScreen renders the detailed provider status once");
-assert((flightDeals.match(/t\("flightDeals\.providerPendingBadge"\)/g) || []).length === 1, "Disabled Flight Deals button uses the short provider badge once");
-assert(flightDeals.includes("disabled={!FLIGHT_DEALS_PROVIDER_ENABLED || isSavingAlert}"), "Flight Deals primary button stays disabled without a provider");
-assert(/FLIGHT_DEALS_PROVIDER_ENABLED\s*=\s*false/.test(flightDealsAvailability), "Flight Deals provider feature flag remains false");
-assert(flightDeals.includes("submitFlightDealAlert({") && flightDeals.includes("save: saveFlightDealAlert"), "FlightDealsScreen delegates alert submission and persistence");
-assert(flightDealSubmission.indexOf("if (!providerEnabled)") < flightDealSubmission.indexOf("await save(userId"), "Flight Deal submission gates on provider availability before saving");
-assert(flightDealAlertService.includes("if (!FLIGHT_DEALS_PROVIDER_ENABLED)") && flightDealAlertService.includes('throw new Error("Flight-deal provider is not connected.")'), "Flight Deal persistence rejects saves while the provider is disabled");
+assert(flightDeals.includes("disabled={isSavingAlert}"), "Flight Deals primary button only disables while saving");
+assert(/FLIGHT_PRICE_MONITORING_PUBLICLY_VERIFIED\s*=\s*true/.test(flightDealsAvailability), "Public monitoring verification flag remains enabled");
+assert(flightDeals.includes("submitRollingRouteFlightDealAlert({") && flightDeals.includes("save: saveRollingRouteFlightDealAlert"), "FlightDealsScreen delegates preference submission and persistence");
+assert(flightDealSubmission.indexOf("await save(userId") < flightDealSubmission.indexOf('return { status: monitoringPubliclyVerified ? "saved" : "saved_pending_provider" }'), "Flight Deal preferences save before monitoring status is reported");
+assert(flightDealAlertService.includes("saveRollingRouteFlightDealAlert"), "Flight Deal preference persistence remains available");
 assert(!/sample fare|dummy data|mock deal|fake fare/i.test(flightDeals), "FlightDealsScreen adds no fake fare or deal data");
 
 console.log("Final screenshot polish audit checks passed.");

@@ -150,8 +150,12 @@ service cloud.firestore {
     }
 
     function hasValidFavoritesData() {
-      return request.resource.data.keys().hasOnly(['favoriteIds'])
-        && request.resource.data.favoriteIds is list;
+      return request.resource.data.keys().hasOnly(['favoriteIds', 'favoriteBrandIds'])
+        && request.resource.data.favoriteIds is list
+        && request.resource.data.favoriteIds.size() <= 1000
+        && (!request.resource.data.keys().hasAny(['favoriteBrandIds'])
+          || (request.resource.data.favoriteBrandIds is list
+            && request.resource.data.favoriteBrandIds.size() <= 1000));
     }
 
     function hasOnlyValidFlightDealThresholds(thresholds) {

@@ -8,7 +8,7 @@ This is a draft for manual Play Store and App Store privacy forms, not legal adv
 - **User-generated content:** reviews, ratings, review reports, and helpful votes.
 - **App activity/preferences:** favorites, saved trips, flight deal alert preferences, notification settings, and selected preferences.
 - **Device identifiers/tokens:** push notification token if the user registers for notifications.
-- **Approximate trip/location metadata:** user-selected trip cities, outlets, dates, and routes. This is not device GPS unless a submitted build adds and uses device-location permission.
+- **Location:** user-selected trip cities, outlets, dates, and routes may be account data. Nearby Outlets also requests foreground device location after explicit user action, but processes coordinates on-device only and does not save or transmit them to the My Outlet Guide backend. Verify store-form classification against the exact submitted binary and current definitions.
 - **Diagnostics:** declare only if the submitted app or configured providers actually collect diagnostics/crash analytics.
 
 ## Third-party/provider calls to verify

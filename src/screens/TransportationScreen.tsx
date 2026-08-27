@@ -1,6 +1,5 @@
 import { RouteProp, useRoute } from "@react-navigation/native";
 import {
-  Linking,
   ScrollView,
   StyleSheet,
   Text,
@@ -29,6 +28,7 @@ import {
 } from "../services/transportationV2Service";
 import { colors } from "../theme/colors";
 import { useTransportationDetailData } from "../hooks/useDetailData";
+import { openExternalUrl } from "../utils/externalUrl";
 
 type RouteParams = { Transportation: { outletId: string } };
 
@@ -250,7 +250,7 @@ export function TransportationScreen() {
                 <Text style={styles.notePlain}>{recommended.noteLabel}</Text>
               ) : null}
               {recommended.officialProviderUrl && recommended.officialLinkLabel ? (
-                <TouchableOpacity onPress={() => Linking.openURL(recommended.officialProviderUrl!)}>
+                <TouchableOpacity onPress={() => void openExternalUrl(recommended.officialProviderUrl)}>
                   <Text style={styles.linkText}>{recommended.officialLinkLabel}</Text>
                 </TouchableOpacity>
               ) : null}
@@ -305,7 +305,7 @@ export function TransportationScreen() {
                   <TouchableOpacity
                     key={link.label}
                     style={styles.mapButton}
-                    onPress={() => Linking.openURL(link.url)}
+                    onPress={() => void openExternalUrl(link.url)}
                   >
                     <Text style={styles.mapButtonText}>{link.label}</Text>
                   </TouchableOpacity>

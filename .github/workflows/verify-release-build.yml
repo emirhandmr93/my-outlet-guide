@@ -1,7 +1,19 @@
 name: Verify release build
 
 on:
+  pull_request:
+  push:
+    branches:
+      - main
   workflow_dispatch:
+
+concurrency:
+  group: verify-release-build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  EXPO_NO_TELEMETRY: "1"
+  NODE_OPTIONS: "--max-old-space-size=6144"
 
 permissions:
   contents: read
@@ -19,6 +31,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            functions/package-lock.json
 
       - name: Install root dependencies cleanly
         run: npm ci
@@ -29,20 +45,23 @@ jobs:
       - name: Build Functions
         run: npm --prefix functions run build
 
-      - name: Validate TypeScript
-        run: npx tsc --noEmit
+      - name: Validate release inputs
+        run: npm run validate:release
 
-      - name: Validate master data
-        run: npx tsx src/services/masterDataValidator.ts
+      - name: Export Android bundle
+        run: npx expo export --platform android --output-dir dist-android
 
-      - name: Validate translation keys
-        run: npx tsx tools/checkTranslationKeys.ts
+      - name: Export iOS bundle
+        run: npx expo export --platform ios --output-dir dist-ios
 
-      - name: Validate outlet media metadata
-        run: npx tsx tools/checkOutletMediaMetadata.ts
+      - name: Build and validate web export
+        run: npm run web:build
 
-      - name: Audit outlet media metadata resolver
-        run: npx tsx tools/checkOutletMediaMetadata.ts --resolver-audit
+      - name: Report export sizes
+        run: du -sh dist-android dist-ios dist
+
+      - name: Remove generated exports
+        run: rm -rf dist-android dist-ios dist
 
       - name: Confirm Functions build output is untracked
         run: |
@@ -53,6 +72,9 @@ jobs:
             exit 1
           fi
           echo "functions/lib is not tracked."
+
+      - name: Check patch whitespace
+        run: git diff --check
 
       - name: Confirm working tree has no uncommitted generated files
         run: |

@@ -16,10 +16,11 @@ This checklist is for App Store / Google Play production readiness. It does not 
 - Confirm final local branding assets are wired exactly: iOS `./assets/icon.png`; Android adaptive `./assets/adaptive-icon-foreground.png`, `./assets/adaptive-icon-background.png`, and `./assets/adaptive-icon-monochrome.png`; web `./assets/favicon.png`; and splash `./assets/splash-icon.png`.
 - Confirm no `android-icon-*`, Expo/default, placeholder, remote, or letter-only/MOG icon reference remains in app config or the Home header; the Home header must render `assets/icon.png` next to `MY OUTLET GUIDE`.
 - Run `npx tsx tools/checkAppIconBranding.ts` to validate PNG dimensions, iOS opacity, local paths, and that the task diff has not changed `assets/`.
-- Confirm no camera, microphone, photo library, or device GPS permissions are configured unless a release feature requires them.
+- Confirm no camera, microphone, or photo-library permission is configured. Confirm the foreground-only location permission is present for Nearby Outlets and no background-location permission is present.
 - Confirm notification permission is justified by notification settings, trip reminders, Tax Free reminders, and flight reminder preferences.
+- Confirm Nearby Outlets asks for location only after an explicit user action, does not persist coordinates, and safely handles denied/disabled states.
 - Confirm first-launch only onboarding appears after language resolution, does not require an account, does not request notification permission, and can be skipped or started without network access.
-- Confirm flight alerts remain provider-backed/provider-pending during onboarding and no fake fares or buy-ticket calls to action are shown.
+- Confirm flight alerts remain provider-backed and enabled, scheduled monitoring is healthy, and no fake fares or unsupported buy-ticket calls to action are shown.
 - Run the full validation suite listed in this document before requesting store review, including `npx tsx tools/checkOnboardingReadiness.ts`.
 - Do not run EAS build until the readiness checks pass.
 
@@ -59,6 +60,7 @@ Manual Firebase Console verification is required before store submission:
 
 - Hosting is live at `myoutletguide.com`.
 - Firestore rules are the latest approved production rules.
+- Confirm the deployed favorites rule accepts the optional `favoriteBrandIds` list before testing or releasing Brand Wishlist.
 - Firestore rules still protect account-owned collections, review moderation collections, notification settings/tokens, and provider fare route data.
 - Required collection group index for account deletion review anonymization exists:
   - Collection group: `items`
@@ -135,6 +137,7 @@ npx eas-cli build --platform android --profile production
 - Show bundled outlet guide discovery, detail, trip planning, savings/Tax Free, profile/support/legal, and account deletion access where appropriate.
 - Do not imply live fares, live booking, guaranteed refunds, fake exchange rates, or unsupported notification categories.
 - Confirm screenshots match `docs/release/store-screenshot-plan.md`.
+- If Nearby Outlets is shown, do not expose a real home/work location; use a neutral test location.
 
 ## 11. Known non-blocking notes
 
@@ -144,3 +147,4 @@ npx eas-cli build --platform android --profile production
 - `expo-dev-client` may remain installed for development builds, but production EAS profile must not enable `developmentClient`.
 - Production functions deployment and Firestore index/rules publication require manual verification; this audit does not deploy.
 - App store builds are needed later after readiness checks pass.
+- Android uses the distance-ranked outlet list and external map application until a restricted production Google Maps API key is supplied; iOS can use the embedded Apple map without that key.

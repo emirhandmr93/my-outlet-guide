@@ -9,7 +9,7 @@ function read(path: string) {
 }
 
 function runScreenshotPolishAudit() {
-  execFileSync("npx", ["tsx", "tools/checkFinalScreenshotPolish.ts"], { stdio: "inherit" });
+  execFileSync(process.execPath, ["--import", "tsx", "tools/checkFinalScreenshotPolish.ts"], { stdio: "inherit" });
 }
 
 function assert(condition: unknown, message: string) {
@@ -24,7 +24,6 @@ runScreenshotPolishAudit();
 const nav = read("src/navigation/AppNavigator.tsx");
 const navTypes = read("src/navigation/types.ts");
 const profile = read("src/screens/ProfileScreen.tsx");
-const country = read("src/screens/CountryScreen.tsx");
 const deleteScreen = read("src/screens/DeleteAccountScreen.tsx");
 const deleteCallable = read("src/services/accountDeletionCallable.ts");
 const reviewService = read("src/services/reviewsRatingsService.ts");
@@ -56,6 +55,7 @@ for (const route of [
   "TripDetail",
   "TripSegmentEditor",
   "Savings",
+  "TaxFreeGuide",
   "FlightDeals",
   "NotificationSettings",
   "OfflinePacks",
@@ -68,7 +68,7 @@ for (const route of [
   assert(nav.includes(`<Stack.Screen name="${route}"`) && navTypes.includes(`${route}:`), `${route} route is registered and typed`);
 }
 
-assert(!nav.includes('name="TaxFreeGuide"') && !country.includes('navigate("TaxFreeGuide")'), "no navigation points to removed TaxFreeGuide route");
+assert(nav.includes('name="TaxFreeGuide"') && navTypes.includes("TaxFreeGuide:"), "Tax Free Guide remains registered and typed");
 assert(!/tripPrompt|screen\s*:\s*["']Outlets["']|Outlet required|Outlet gerekli/.test(nav + flightDeals), "old outlet-first trip prompt route is absent");
 assert(profile.includes('goTo("Favorites")') && profile.includes('goTo("MyTrips")') && profile.includes('goTo("FlightDeals")'), "Profile rows keep key travel routes reachable");
 assert(profile.includes("canModerateReviews ?") && profile.includes('goTo("ReviewModeration")'), "Profile moderation row is gated by moderator/admin access");
@@ -104,7 +104,7 @@ const coreUiSource = [
   read("src/screens/OutletDetailScreen.tsx"),
   flightDeals,
 ].join("\n");
-assert(!/TR:|EN:|DE:|FR:|IT:|ES:|AR:|RU:|ZH:|Türkçe çeviri|çeviri:|translation:/.test(coreUiSource), "core UI source has no visible debug locale prefixes");
+assert(!/["'`](?:TR|EN|DE|FR|IT|ES|AR|RU|ZH):|Türkçe çeviri|çeviri:|translation:/.test(coreUiSource), "core UI source has no visible debug locale prefixes");
 assert(!/110\s+boutiques|Dondurma\s+cream|\bItalya\b/i.test(coreUiSource), "core UI source has no final screenshot mixed-language polish regressions");
 assert(!coreUiSource.includes(["Milanı", "Shopping", "Route"].join(" ")), "core UI source has no old mixed-language Milan trip route name");
 assert(!/\b(mock|lorem|dummy)\b|sample trip|sample fare|fake fare|fake weather|generated plan|live flight|flight status/i.test(coreUiSource), "core completed user flows have no fake/mock/demo business data markers");

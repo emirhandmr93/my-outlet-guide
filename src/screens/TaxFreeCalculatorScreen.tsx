@@ -24,7 +24,7 @@ import {
 } from "../services/taxFreeCalculatorService";
 import { useTranslation } from "../hooks/useTranslation";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
-import { trackWebEvent } from "../utils/webAnalytics";
+import { trackProductEvent } from "../utils/productAnalytics";
 
 
 export function TaxFreeCalculatorScreen() {
@@ -78,7 +78,7 @@ export function TaxFreeCalculatorScreen() {
     const calculationKey = `${selectedCountryId}:${selectedCurrency}:${amount.trim()}`;
     if (lastTrackedCalculation.current === calculationKey) return;
     lastTrackedCalculation.current = calculationKey;
-    trackWebEvent("tax_free_calculator_use", {
+    trackProductEvent("tax_free_calculator_use", {
       country_id: selectedCountryId,
       currency: selectedCurrency,
     });

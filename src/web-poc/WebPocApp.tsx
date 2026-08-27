@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import {
   Image,
   ImageBackground,
-  Linking,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,7 +10,8 @@ import {
   View,
 } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Feather, Ionicons } from "@expo/vector-icons";
+import Feather from "@expo/vector-icons/Feather";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { outlets } from "../constants/outlets";
 import { countries } from "../constants/countries";
 import { cities } from "../constants/cities";
@@ -43,6 +43,7 @@ import {
   formatCityDisplayName,
   formatCountryDisplayName,
 } from "../utils/locationDisplay";
+import { openExternalUrl } from "../utils/externalUrl";
 
 const logo = require("../../assets/brand/logo-horizontal.png");
 const homeHero = getHomeHeroImage();
@@ -648,7 +649,7 @@ function Detail({ outletId }: { outletId: string }) {
               key={x}
               style={s.action}
               onPress={() =>
-                i === 2 && o.googleMapsUrl && Linking.openURL(o.googleMapsUrl)
+                i === 2 && o.googleMapsUrl && void openExternalUrl(o.googleMapsUrl)
               }
             >
               <Text style={s.actionText}>{x}</Text>
@@ -799,7 +800,7 @@ function MapRows({ o }: { o: any }) {
   return (
     <View>
       <TouchableOpacity
-        onPress={() => o.googleMapsUrl && Linking.openURL(o.googleMapsUrl)}
+        onPress={() => o.googleMapsUrl && void openExternalUrl(o.googleMapsUrl)}
         style={[s.row, s.mapMain]}
       >
         <Text style={s.rowIcon}>🗺️</Text>
@@ -819,7 +820,7 @@ function MapRows({ o }: { o: any }) {
       ].map(([title, url]) => (
         <TouchableOpacity
           key={title}
-          onPress={() => url && Linking.openURL(String(url))}
+          onPress={() => url && void openExternalUrl(String(url))}
           style={s.row}
         >
           <Text style={s.rowIcon}>⌖</Text>

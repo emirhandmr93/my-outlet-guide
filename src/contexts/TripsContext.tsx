@@ -5,7 +5,7 @@ import { cancelTripReminderNotifications, syncTripReminderNotifications, type Tr
 import { useLanguage } from "./LanguageContext";
 import { useNotificationSettings } from "./NotificationSettingsContext";
 import { useUser } from "./UserContext";
-import { trackWebEvent } from "../utils/webAnalytics";
+import { trackProductEvent } from "../utils/productAnalytics";
 
 export type TripStatus = "upcoming" | "active" | "past";
 
@@ -157,7 +157,7 @@ export function TripsProvider({ children }: { children: ReactNode }) {
       ...(trip.outletId ? [trip.outletId] : []),
       ...(trip.segments ?? []).flatMap((segment) => segment.outletId ? [segment.outletId] : []),
     ]).size;
-    trackWebEvent("trip_create", { outlet_count: outletCount });
+    trackProductEvent("trip_create", { outlet_count: outletCount });
     await safelySyncTripReminders(tripId);
     await refreshTrips();
     return tripId;

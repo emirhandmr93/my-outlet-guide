@@ -186,10 +186,16 @@ export const categories = [
     "order": "31"
   },
   {
+    "categoryId": "lifestyle",
+    "categoryName": "Lifestyle",
+    "icon": "✨",
+    "order": "32"
+  },
+  {
     "categoryId": "watches-jewelry",
     "categoryName": "Watches & Jewelry",
     "icon": "⌚",
-    "order": "32"
+    "order": "33"
 
   }
 ];

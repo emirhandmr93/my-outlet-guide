@@ -60,13 +60,13 @@ assert.ok(convertCurrencyWithRates(100, "PLN", "TRY", rates).convertedAmount > 0
 const airport: SupportedFlightDealAirport = { airportCode: "IST", airportName: "Istanbul Airport", cityName: "Istanbul", countryCode: "TR", countryName: "Turkey", region: "TR" };
 let saveCalls = 0;
 assert.deepEqual(
-  await submitFlightDealAlert({ providerEnabled: false, userId: "user", origin: airport, destination: airport, thresholds: [15], save: async () => { saveCalls += 1; return "unexpected"; } }),
+  await submitFlightDealAlert({ monitoringPubliclyVerified: false, userId: "user", origin: airport, destination: airport, thresholds: [15], save: async () => { saveCalls += 1; return "unexpected"; } }),
   { status: "provider_pending" },
   "disabled providers must reject before persistence",
 );
 assert.equal(saveCalls, 0);
 assert.deepEqual(
-  await submitFlightDealAlert({ providerEnabled: true, userId: "user", origin: airport, destination: airport, thresholds: [15], save: async () => { saveCalls += 1; return "saved"; } }),
+  await submitFlightDealAlert({ monitoringPubliclyVerified: true, userId: "user", origin: airport, destination: airport, thresholds: [15], save: async () => { saveCalls += 1; return "saved"; } }),
   { status: "saved" },
   "enabled providers must use the persistence handler",
 );

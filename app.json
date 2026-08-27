@@ -3,7 +3,7 @@
     "name": "My Outlet Guide",
     "slug": "my-outlet-guide",
     "scheme": "myoutletguide",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -35,6 +35,12 @@
     "plugins": [
       "@react-native-community/datetimepicker",
       "expo-web-browser",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow My Outlet Guide to use your location to show nearby outlet centers."
+        }
+      ],
       [
         "expo-notifications",
         {

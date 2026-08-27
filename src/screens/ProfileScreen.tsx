@@ -33,6 +33,7 @@ type ProfileRouteName =
   | "Login"
   | "MyTrips"
   | "Favorites"
+  | "BrandWishlist"
   | "FlightDeals"
   | "LanguageSettings"
   | "CurrencySettings"
@@ -248,6 +249,12 @@ export function ProfileScreen() {
         title={t("profile.favorites")}
         subtitle={t("profile.subtitles.favorites")}
         onPress={() => goTo("Favorites")}
+      />
+      <ProfileRow
+        icon="🏷️"
+        title={t("profile.brandWishlist")}
+        subtitle={t("profile.subtitles.brandWishlist")}
+        onPress={() => goTo("BrandWishlist")}
       />
       <ProfileRow
         icon="✈️"

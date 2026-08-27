@@ -9,7 +9,7 @@ Do not create image files for this plan. Capture from the final release build us
 - Avoid admin/moderation screenshots in public store screenshots unless a safety/reporting explanation is intentionally included; the recommended public set avoids admin screens.
 - Avoid provider-pending, provider-not-configured, or unavailable states when they would imply broken functionality; weather is not a required screenshot element for this release.
 - Do not show unsupported purchase, booking, live fare, guaranteed Tax Free, or cheapest-price claims.
-- Onboarding screenshots, if used, must show that onboarding does not request notification permission, does not require an account, and frames flight alerts as provider-backed/provider-pending with no fake fares.
+- Onboarding screenshots, if used, must show that onboarding does not request notification permission, does not require an account, and frames flight alerts as provider-backed with no fake fares.
 
 ## Recommended sequence
 

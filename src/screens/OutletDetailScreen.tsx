@@ -4,7 +4,6 @@ import {
   Alert,
   ActivityIndicator,
   Image,
-  Linking,
   Modal,
   ScrollView,
   StyleSheet,
@@ -67,6 +66,7 @@ import { radius } from "../theme/radius";
 import { spacing } from "../theme/spacing";
 import { typography } from "../theme/typography";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
+import { openExternalUrl } from "../utils/externalUrl";
 import {
   formatOpeningHoursText,
   formatOutletStatusLabel,
@@ -559,10 +559,19 @@ export function OutletDetailScreen() {
           <TouchableOpacity
             activeOpacity={0.86}
             style={styles.ctaButton}
-            onPress={() => Linking.openURL(outlet.googleMapsUrl)}
+            onPress={() => void openExternalUrl(outlet.googleMapsUrl)}
           >
             <Text style={styles.ctaIcon}>📍</Text>
             <Text style={styles.ctaText}>{t("outlet.directions")}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.86}
+            style={[styles.ctaButton, styles.visitModeButton]}
+            onPress={() => navigation.navigate("VisitMode", { outletId: outlet.outletId })}
+          >
+            <Text style={styles.ctaIcon}>✓</Text>
+            <Text style={styles.ctaText}>{t("visitMode.open")}</Text>
           </TouchableOpacity>
         </View>
 
@@ -687,12 +696,12 @@ export function OutletDetailScreen() {
           appleText={t("outlet.appleMaps")}
           yandexText={t("outlet.yandexMaps")}
           centerMapText={outlet.centerMapUrl ? "CENTER MAP" : undefined}
-          onPressGoogle={() => Linking.openURL(outlet.googleMapsUrl)}
-          onPressApple={() => Linking.openURL(outlet.appleMapsUrl)}
-          onPressYandex={() => Linking.openURL(outlet.yandexMapsUrl)}
+          onPressGoogle={() => void openExternalUrl(outlet.googleMapsUrl)}
+          onPressApple={() => void openExternalUrl(outlet.appleMapsUrl)}
+          onPressYandex={() => void openExternalUrl(outlet.yandexMapsUrl)}
           onPressCenterMap={
             outlet.centerMapUrl
-              ? () => Linking.openURL(outlet.centerMapUrl as string)
+              ? () => void openExternalUrl(outlet.centerMapUrl)
               : undefined
           }
         />
@@ -701,7 +710,7 @@ export function OutletDetailScreen() {
           title={t("website.title")}
           description={t("website.description")}
           buttonText={t("website.visit")}
-          onPress={() => Linking.openURL(outlet.websiteUrl)}
+          onPress={() => void openExternalUrl(outlet.websiteUrl)}
         />
 
         <View
@@ -1003,6 +1012,10 @@ const styles = StyleSheet.create({
 
   ctaButtonActive: {
     backgroundColor: colors.gold,
+  },
+
+  visitModeButton: {
+    backgroundColor: colors.goldDark,
   },
 
   ctaIcon: {

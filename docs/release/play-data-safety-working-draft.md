@@ -28,10 +28,11 @@ Working draft for manual Play Console entry. Not legal advice. Must be verified 
 - Push notification token, if notifications are registered on the device.
 - Firebase auth UID or equivalent account identifier.
 
-### Approximate location / selected route metadata
+### Device location / selected route metadata
 
 - User-selected city, route, outlet, airport, and trip metadata may be processed for trip planning and flight deal alerts; weather provider processing applies only if provider-backed weather is configured in a future release.
-- Do not mark device GPS location unless final code and permissions actually request device GPS.
+- Nearby Outlets requests foreground device location after explicit user action. Coordinates are processed on-device to rank active outlets and are not saved to the account or transmitted to the My Outlet Guide backend.
+- Verify the final Play Data safety response against Google's current definition of “collected”; foreground location permission is present, but the coordinate processing described here stays on-device.
 
 ### Diagnostics
 

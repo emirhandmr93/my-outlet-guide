@@ -3,48 +3,55 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator, Platform, Pressable, useWindowDimensions, View } from "react-native";
 import { useEffect, useRef, useState } from "react";
-import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import Feather from "@expo/vector-icons/Feather";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-import { BrandResultsScreen } from "../screens/BrandResultsScreen";
-import { CityResultsScreen } from "../screens/CityResultsScreen";
-import { ContactUsScreen } from "../screens/ContactUsScreen";
-import { CountryScreen } from "../screens/CountryScreen";
-import { CreateTripScreen } from "../screens/CreateTripScreen";
-import { CurrencySettingsScreen } from "../screens/CurrencySettingsScreen";
-import { DeleteAccountScreen } from "../screens/DeleteAccountScreen";
-import { ExploreScreen } from "../screens/ExploreScreen";
-import { FavoritesScreen } from "../screens/FavoritesScreen";
-import { FlightDealDetailScreen } from "../screens/FlightDealDetailScreen";
-import { FlightDealSettingsScreen } from "../screens/FlightDealSettingsScreen";
-import { FlightDealsScreen } from "../screens/FlightDealsScreen";
-import { FlightSearchScreen } from "../screens/FlightSearchScreen";
-import { HelpFaqScreen } from "../screens/HelpFaqScreen";
-import { OutletShoppingIndexScreen } from "../screens/OutletShoppingIndexScreen";
-import { EditorialMethodologyScreen } from "../screens/EditorialMethodologyScreen";
-import { HomeScreen } from "../screens/HomeScreen";
-import { LanguageSettingsScreen } from "../screens/LanguageSettingsScreen";
-import { LoginScreen } from "../screens/LoginScreen";
-import { MediaCreditsScreen } from "../screens/MediaCreditsScreen";
-import { MyReviewsScreen } from "../screens/MyReviewsScreen";
-import { MyTripsScreen } from "../screens/MyTripsScreen";
-import { TravelHubScreen } from "../screens/TravelHubScreen";
-import { NotificationSettingsScreen } from "../screens/NotificationSettingsScreen";
-import { OfflinePacksScreen } from "../screens/OfflinePacksScreen";
-import { OnboardingScreen } from "../screens/OnboardingScreen";
-import { OutletDetailScreen } from "../screens/OutletDetailScreen";
-import { PriceAdvantageCalculatorScreen } from "../screens/PriceAdvantageCalculatorScreen";
-import { ReviewModerationScreen } from "../screens/ReviewModerationScreen";
-import { PrivacyPolicyScreen } from "../screens/PrivacyPolicyScreen";
-import { ProfileScreen } from "../screens/ProfileScreen";
-import { SavingsScreen } from "../screens/SavingsScreen";
-import { SmartShoppingCalculatorScreen } from "../screens/SmartShoppingCalculatorScreen";
-import { TaxFreeCalculatorScreen } from "../screens/TaxFreeCalculatorScreen";
-import { TaxFreeGuideScreen } from "../screens/TaxFreeGuideScreen";
-import { TermsConditionsScreen } from "../screens/TermsConditionsScreen";
-import { TransportationScreen } from "../screens/TransportationScreen";
-import { TripDetailScreen } from "../screens/TripDetailScreen";
-import { TripSegmentEditorScreen } from "../screens/TripSegmentEditorScreen";
-import { WriteReviewScreen } from "../screens/WriteReviewScreen";
+import {
+BrandResultsScreen,
+BrandWishlistScreen,
+CityResultsScreen,
+ContactUsScreen,
+CountryScreen,
+CreateTripScreen,
+CurrencySettingsScreen,
+DeleteAccountScreen,
+EditorialMethodologyScreen,
+ExploreScreen,
+FavoritesScreen,
+FlightDealDetailScreen,
+FlightDealSettingsScreen,
+FlightDealsScreen,
+FlightSearchScreen,
+HelpFaqScreen,
+HomeScreen,
+LanguageSettingsScreen,
+LoginScreen,
+MediaCreditsScreen,
+MyReviewsScreen,
+MyTripsScreen,
+NearbyOutletsScreen,
+NotificationSettingsScreen,
+OfflinePacksScreen,
+OnboardingScreen,
+OutletDetailScreen,
+OutletShoppingIndexScreen,
+PriceAdvantageCalculatorScreen,
+PrivacyPolicyScreen,
+ProfileScreen,
+ReviewModerationScreen,
+SavingsScreen,
+SmartShoppingCalculatorScreen,
+TaxFreeCalculatorScreen,
+TaxFreeGuideScreen,
+TermsConditionsScreen,
+TransportationScreen,
+TravelHubScreen,
+TripDetailScreen,
+TripSegmentEditorScreen,
+VisitModeScreen,
+WriteReviewScreen,
+} from "./screenRegistry";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
@@ -61,6 +68,7 @@ import { useNavigationFonts } from "./useNavigationFonts";
 import { createWebLinking } from "./webLinking";
 import { syncWebSeo } from "../utils/webSeo";
 import { trackWebPageView } from "../utils/webAnalytics";
+import { trackNativeScreen } from "../utils/productAnalytics";
 import { notificationResponseApi } from "../services/notificationResponseApi";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
@@ -75,6 +83,7 @@ BrandResults: RootStackParamList["BrandResults"] & { selectedCountryId?: string 
 Country: RootStackParamList["Country"];
 CityResults: RootStackParamList["CityResults"];
 Transportation: RootStackParamList["Transportation"];
+VisitMode: RootStackParamList["VisitMode"];
 CreateTrip: undefined;
 NotificationSettings: undefined;
 LanguageSettings: undefined;
@@ -87,6 +96,7 @@ BrandResults: RootStackParamList["BrandResults"] & { selectedCountryId?: string 
 Country: RootStackParamList["Country"];
 CityResults: RootStackParamList["CityResults"];
 Transportation: RootStackParamList["Transportation"];
+VisitMode: RootStackParamList["VisitMode"];
 CreateTrip: undefined;
 };
 
@@ -134,6 +144,7 @@ return (
 <DesktopHomeStack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: t("nav.outlet") }} />
 <DesktopHomeStack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: t("nav.brand") }} />
 <DesktopHomeStack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
+<DesktopHomeStack.Screen name="VisitMode" component={VisitModeScreen} options={{ title: t("visitMode.title") }} />
 <DesktopHomeStack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
 <DesktopHomeStack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
 <DesktopHomeStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
@@ -161,6 +172,7 @@ options={{ headerShown: false }}
 <DesktopExploreStack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: t("nav.outlet") }} />
 <DesktopExploreStack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: t("nav.brand") }} />
 <DesktopExploreStack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
+<DesktopExploreStack.Screen name="VisitMode" component={VisitModeScreen} options={{ title: t("visitMode.title") }} />
 <DesktopExploreStack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
 <DesktopExploreStack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
 <DesktopExploreStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
@@ -321,7 +333,11 @@ isMounted = false;
 const webLinking = Platform.OS === "web" ? createWebLinking(language) : undefined;
 
 function syncWebPath() {
-if (Platform.OS !== "web" || !navigationRef.isReady()) return;
+if (!navigationRef.isReady()) return;
+if (Platform.OS !== "web") {
+trackNativeScreen(navigationRef.getCurrentRoute()?.name);
+return;
+}
 const path = createWebLinking(language).getPathFromState?.(navigationRef.getRootState()) ?? `/${language}`;
 if (`${window.location.pathname}${window.location.search}` !== path) window.history.replaceState(window.history.state, "", path);
 syncWebSeo(language, path);
@@ -424,12 +440,15 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 <Stack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: t("nav.outlet") }} />
 <Stack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: t("nav.brand") }} />
 <Stack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
+<Stack.Screen name="VisitMode" component={VisitModeScreen} options={{ title: t("visitMode.title") }} />
 <Stack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
 <Stack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
 
 <Stack.Screen name="MyTrips" component={MyTripsScreen} options={{ title: t("nav.myTrips") }} />
 <Stack.Screen name="MyTripsList" component={MyTripsScreen} options={{ title: t("nav.myTrips") }} />
+<Stack.Screen name="NearbyOutlets" component={NearbyOutletsScreen} options={{ title: t("nav.nearbyOutlets") }} />
 <Stack.Screen name="Favorites" component={FavoritesScreen} options={{ title: t("nav.favorites") }} />
+<Stack.Screen name="BrandWishlist" component={BrandWishlistScreen} options={{ title: t("nav.brandWishlist") }} />
 <Stack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
 <Stack.Screen name="TripDetail" component={TripDetailScreen} options={{ title: t("nav.tripDetail") }} />
 <Stack.Screen name="TripSegmentEditor" component={TripSegmentEditorScreen} options={{ title: t("tripDetail.addRouteCta") }} />
