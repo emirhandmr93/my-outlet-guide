@@ -66,6 +66,7 @@ export const TermsConditionsScreen = deferredScreen(() => import("../screens/Ter
 export const TransportationScreen = deferredScreen(() => import("../screens/TransportationScreen"), "TransportationScreen");
 export const VisitModeScreen = deferredScreen(() => import("../screens/VisitModeScreen"), "VisitModeScreen");
 export const TravelHubScreen = deferredScreen(() => import("../screens/TravelHubScreen"), "TravelHubScreen");
+export const TravelBasketScreen = deferredScreen(() => import("../screens/TravelBasketScreen"), "TravelBasketScreen");
 export const TripDetailScreen = deferredScreen(() => import("../screens/TripDetailScreen"), "TripDetailScreen");
 export const TripSegmentEditorScreen = deferredScreen(() => import("../screens/TripSegmentEditorScreen"), "TripSegmentEditorScreen");
 export const WriteReviewScreen = deferredScreen(() => import("../screens/WriteReviewScreen"), "WriteReviewScreen");
