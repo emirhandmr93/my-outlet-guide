@@ -1,62 +1,72 @@
-# Campaign and event notification source model
+# Automatic official-source campaign model
 
 ## Decision
 
-My Outlet Guide must not publish or notify from unverified third-party campaign data. The authoritative record is an approved Firestore campaign document backed by an official outlet/operator URL.
+My Outlet Guide has no campaign approval queue. Scheduled Cloud Functions discover public campaign pages on an explicit outlet/operator allowlist, apply a strict verification gate, publish valid records automatically, and expire them automatically.
 
-There is no assumed universal API across all outlet operators. Official operator pages already publish offers, boutique openings and events, but availability and page structure vary. Examples:
+The app never publishes data from search results, coupon aggregators, social reposts, newsletters, or user-entered campaign records.
 
-- The Bicester Collection describes outlet-specific apps with offers, alerts, events and boutique openings: https://www.thebicestercollection.com/fidenza-village/en/visit/download-app/
-- McArthurGlen exposes official outlet “Offers” and “What's On” sections and dated event pages: https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/whats-on/boss-x-golf/
+## Strict publication gate
 
-## Phase 1: verified editorial ingestion
+A campaign is eligible only when all of these checks pass:
 
-Use a protected admin workflow to enter or import a record from an official source. A reviewer checks the dates, target outlet/brands and source URL before changing `status` to `approved`.
+1. The listing and detail page use HTTPS and remain on the source-specific official domain after redirects.
+2. The detail path belongs to the configured outlet and campaign section.
+3. The page states a brand, campaign headline, summary, and verifiable discount.
+4. Both start and end dates include an explicit year and form a valid window of at most 366 days.
+5. The campaign is not already expired.
+
+Missing or ambiguous data is rejected automatically. A previously published record is unpublished if the same official page later fails content verification, returns 404/410, redirects away from its approved campaign path, or stops serving HTML. Temporary network failures do not overwrite the last verified record; its fixed end date still controls expiry.
+
+## Pilot source allowlist
+
+| Outlet | Official operator domain |
+|---|---|
+| Bicester Village | thebicestercollection.com |
+| La Vallée Village | thebicestercollection.com |
+| Cheshire Oaks Designer Outlet | mcarthurglen.com |
+| Designer Outlet Roermond | mcarthurglen.com |
+| Designer Outlet Parndorf | mcarthurglen.com |
+| Serravalle Designer Outlet | mcarthurglen.com |
+| Batavia Stad Fashion Outlet | bataviastad.nl |
+| Franciacorta Designer Village | franciacortavillage.it / franciacortadesignervillage.com |
+
+The executable allowlist, listing URLs, outlet ids, path prefixes, time zones, and per-source safety limits live in `functions/src/outletCampaignSources.ts`.
+
+## Firestore record
 
 ```text
 outletCampaigns/{campaignId}
-  schemaVersion: 1
-  type: offer | event | new_opening
-  outletIds: string[]
-  brandIds?: string[]
-  title: { en: string, ...optional locales }
-  summary: { en: string, ...optional locales }
-  sourceUrl: https URL on the official outlet/operator domain
-  startsAt: timestamp
-  endsAt: timestamp
-  status: draft | approved | expired | rejected
-  verifiedAt: timestamp
-  verifiedBy: admin user id
-  lastCheckedAt: timestamp
-  sourceFingerprint: string
-  createdAt: timestamp
-  updatedAt: timestamp
+  schemaVersion: 2
+  type: offer
+  status: scheduled | published | expired | verification_failed
+  active: boolean
+  autoPublished: true
+  outletId, outletName, brandName
+  headline, summary, conditions, discountLabel, discountPercent?
+  startsOn, endsOn: YYYY-MM-DD
+  startsAt, endsAt: timestamp (outlet-local day boundaries converted to UTC)
+  timeZone, featuredPriority
+  sourceId, sourceUrl, sourceHost, sourceLocale
+  sourceFingerprint
+  verification: map
+  imagePolicy: local_outlet_asset
+  createdAt, updatedAt, lastCheckedAt, publishedAt?, expiredAt?
 ```
 
-Only admins write these documents. Clients may read only approved records whose validity window has not ended.
+Campaign ids and fingerprints are deterministic. Repeated crawls update the same document and cannot duplicate a campaign.
 
-## Notification flow
+## Lifecycle
 
-1. An admin approves a new or materially changed record.
-2. A backend job validates the official source, date window and deterministic fingerprint.
-3. The job matches `outletIds` against saved outlet favourites and `brandIds` against Brand Wishlist entries.
-4. It respects the user's global notification switch and future campaign/event category switch.
-5. It creates one deterministic delivery record per campaign and device token, then sends through the existing Expo push pipeline.
-6. A scheduled job expires ended records and never sends an expired campaign.
+- `collectOfficialOutletCampaigns` runs every six hours, refreshes official pages, verifies content, and writes `scheduled` or `published` records.
+- `reconcileOfficialOutletCampaigns` runs every fifteen minutes. It publishes at the outlet-local start boundary and sets ended campaigns to `expired` and `active: false`.
+- Firestore client writes are denied. Public reads expose only `published`, active, server-verified records; direct reads also enforce the date window.
+- Ingestion runs and scheduler locks are server-only.
 
-Repeated imports with the same `sourceFingerprint` must not create a second notification.
+## App behavior
 
-## Phase 2: operator adapters
+Active campaigns are delivered by a Firestore realtime subscription. They appear before the existing Home featured slides and use the app’s existing outlet imagery. No image is copied from an operator website. Campaign cards show discount, brand, outlet, end date, and a campaign CTA. The detail screen shows dates, conditions, outlet navigation, and the official source URL.
 
-Add one adapter per operator only when its official feed/API or website terms permit automated use. Each adapter writes `draft` records into the same review queue; it never publishes directly. Newsletter forwarding can be supported only from operator-owned mailing lists and still requires review.
+When no verified campaign is active—or when Firestore is unavailable—the bundled featured slides remain unchanged. When a campaign expires, local time filtering hides it immediately in the client and the scheduler removes its published state on the backend.
 
-## What not to do
-
-- Do not scrape search results, coupon aggregators or social reposts.
-- Do not infer a discount, end date or participating brand.
-- Do not notify from an inaccessible, missing or non-official source URL.
-- Do not send the same campaign again for formatting-only source changes.
-
-## Implementation gate
-
-Before building the public campaigns/events hub, define the initial official operator allowlist and assign who will perform approvals. This keeps the feature useful without presenting stale or invented campaigns as current.
+UI copy is maintained in the eight production languages: `en`, `tr`, `es`, `fr`, `de`, `ar`, `ru`, and `zh`. Official campaign text remains faithful to its source language rather than being machine-translated or invented.

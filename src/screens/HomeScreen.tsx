@@ -33,6 +33,7 @@ import {
 import { outlets } from "../constants/outlets";
 import {
   getHomeFeatureImage,
+  getOutletPrimaryImage,
   getPopularCityImage,
   getRecommendedOutletImage,
 } from "../media/imageResolvers";
@@ -55,6 +56,11 @@ import { getRecommendedCarouselLastIndex } from "../utils/recommendedCarousel";
 import { getAppSharePayload } from "../utils/appShare";
 import { trackProductEvent } from "../utils/productAnalytics";
 import { openExternalUrl } from "../utils/externalUrl";
+import {
+  formatCampaignDate,
+  subscribeActiveOutletCampaigns,
+  type OutletCampaign,
+} from "../services/outletCampaignService";
 
 const floatingTabBarHeight = 76;
 const floatingTabBarBottomOffset = Platform.OS === "ios" ? 18 : 12;
@@ -79,7 +85,8 @@ type HomeRouteItem = {
   params: Record<string, string>;
 };
 
-type FeaturedSlide = {
+type StaticFeaturedSlide = {
+  kind: "static";
   id: string;
   kickerKey: string;
   titleKey: string;
@@ -91,8 +98,18 @@ type FeaturedSlide = {
   params?: Record<string, string>;
 };
 
-const featuredSlides: FeaturedSlide[] = [
+type CampaignFeaturedSlide = {
+  kind: "campaign";
+  id: string;
+  image: ImageSourcePropType;
+  campaign: OutletCampaign;
+};
+
+type FeaturedSlide = StaticFeaturedSlide | CampaignFeaturedSlide;
+
+const featuredSlides: StaticFeaturedSlide[] = [
   {
+    kind: "static",
     id: "discover-outlets",
     kickerKey: "home.featured.discover.kicker",
     titleKey: "home.featured.discover.title",
@@ -103,6 +120,7 @@ const featuredSlides: FeaturedSlide[] = [
     route: "Explore",
   },
   {
+    kind: "static",
     id: "plan-trip",
     kickerKey: "home.featured.trip.kicker",
     titleKey: "home.featured.trip.title",
@@ -113,6 +131,7 @@ const featuredSlides: FeaturedSlide[] = [
     route: "CreateTrip",
   },
   {
+    kind: "static",
     id: "savings-guide",
     kickerKey: "home.featured.savings.kicker",
     titleKey: "home.featured.savings.title",
@@ -123,6 +142,7 @@ const featuredSlides: FeaturedSlide[] = [
     route: "Savings",
   },
   {
+    kind: "static",
     id: "flight-deals",
     kickerKey: "home.featured.flightDeals.kicker",
     titleKey: "home.featured.flightDeals.title",
@@ -133,6 +153,7 @@ const featuredSlides: FeaturedSlide[] = [
     route: "FlightDeals",
   },
   {
+    kind: "static",
     id: "offline-availability",
     kickerKey: "home.featured.offline.kicker",
     titleKey: "home.featured.offline.title",
@@ -304,6 +325,12 @@ function getOutletCardImageSource(
   return outlet ? getRecommendedOutletImage(outlet) : undefined;
 }
 
+function getCampaignImageSource(outletId: string): ImageSourcePropType {
+  const outlet = outlets.find((item) => item.outletId === outletId);
+  if (!outlet) return getHomeFeatureImage("discover-outlets");
+  try { return getOutletPrimaryImage(outlet); } catch { return getHomeFeatureImage("discover-outlets"); }
+}
+
 export function HomeScreen() {
   const navigation = useNavigation<any>();
   const { width } = useWindowDimensions();
@@ -319,6 +346,7 @@ export function HomeScreen() {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [activeRecommendedIndex, setActiveRecommendedIndex] = useState(0);
   const [activeCityIndex, setActiveCityIndex] = useState(0);
+  const [activeCampaigns, setActiveCampaigns] = useState<OutletCampaign[]>([]);
   const [isQuickMenuOpen, setIsQuickMenuOpen] = useState(false);
   const carouselRef = useRef<VirtualizedList<FeaturedSlide> | null>(null);
   const recommendedCarouselRef =
@@ -348,7 +376,6 @@ export function HomeScreen() {
   );
   const recommendedLastIndex = calculatedRecommendedLastIndex;
   const recommendedPageCount = recommendedLastIndex + 1;
-  const featuredPageCount = featuredSlides.length;
   const showCityPageIndicators = Platform.OS !== "web" || !isDesktopWeb;
   const toolCardWidth = isDesktopWeb
     ? Math.round((contentWidth - spacing.md * 3) / 4)
@@ -359,7 +386,26 @@ export function HomeScreen() {
     favoriteIds.includes(outlet.outletId),
   );
   const firstFavorite = favoriteOutlets[0];
-  const slides = useMemo(() => featuredSlides, []);
+  const slides = useMemo<FeaturedSlide[]>(() => [
+    ...activeCampaigns.map(campaign => ({
+      kind: "campaign" as const,
+      id: `campaign-${campaign.campaignId}`,
+      campaign,
+      image: getCampaignImageSource(campaign.outletId),
+    })),
+    ...featuredSlides,
+  ], [activeCampaigns]);
+  const featuredPageCount = slides.length;
+
+  useEffect(() => subscribeActiveOutletCampaigns(setActiveCampaigns, () => {
+    // Firestore is best-effort on Home; bundled feature slides remain available.
+  }), []);
+
+  useEffect(() => {
+    if (activeSlideIndex < slides.length) return;
+    setActiveSlideIndex(0);
+    carouselRef.current?.scrollToIndex({ index: 0, animated: false });
+  }, [activeSlideIndex, slides.length]);
   useEffect(() => {
     const normalizedQuery = searchQuery.trim();
 
@@ -510,6 +556,10 @@ export function HomeScreen() {
   }
 
   function openSlide(slide: FeaturedSlide) {
+    if (slide.kind === "campaign") {
+      navigateTo("CampaignDetail", { campaignId: slide.campaign.campaignId });
+      return;
+    }
     navigateTo(slide.route, slide.params);
   }
 
@@ -628,7 +678,9 @@ export function HomeScreen() {
 
         <DashboardSectionHeader
           title={t("home.sections.featured.title")}
-          subtitle={t("home.sections.featured.subtitle")}
+          subtitle={t(activeCampaigns.length > 0
+            ? "home.sections.featured.liveSubtitle"
+            : "home.sections.featured.subtitle")}
         />
 
         <View style={styles.carouselWrap}>
@@ -655,70 +707,63 @@ export function HomeScreen() {
             maxToRenderPerBatch={Platform.OS === "web" ? 1 : 5}
             windowSize={Platform.OS === "web" ? 3 : 5}
             removeClippedSubviews={Platform.OS === "web"}
-            renderItem={({ item: slide }) => (
-              <TouchableOpacity
-                activeOpacity={0.9}
-                style={[
-                  styles.slideOuter,
-                  { width: carouselWidth },
-                  Platform.OS !== "web" &&
-                    isNativeRTL &&
-                    styles.nativeCarouselRtlContent,
-                ]}
-                onPress={() => openSlide(slide)}
-              >
-                <ImageBackground
-                  source={slide.image}
-                  style={styles.slideImage}
-                  imageStyle={[
-                    styles.slideImageRadius,
-                    Platform.OS === "web" ? styles.slideImageWeb : null,
+            renderItem={({ item: slide }) => {
+              let kicker: string;
+              let title: string;
+              let subtitle: string;
+              let cta: string;
+              let icon: string;
+              if (slide.kind === "campaign") {
+                kicker = slide.campaign.discountLabel;
+                title = slide.campaign.brandName;
+                subtitle = `${slide.campaign.outletName} · ${t("campaign.ends")} ${formatCampaignDate(slide.campaign.endsOn, language)}`;
+                cta = t("campaign.viewCampaign");
+                icon = "%";
+              } else {
+                kicker = t(slide.kickerKey);
+                title = t(slide.titleKey);
+                subtitle = t(slide.subtitleKey);
+                cta = t(slide.ctaKey);
+                icon = slide.icon;
+              }
+              return (
+                <TouchableOpacity
+                  activeOpacity={0.9}
+                  style={[
+                    styles.slideOuter,
+                    { width: carouselWidth },
+                    Platform.OS !== "web" && isNativeRTL && styles.nativeCarouselRtlContent,
                   ]}
-                  resizeMode="cover"
+                  onPress={() => openSlide(slide)}
                 >
-                  <View style={styles.slideScrim} />
-                  <View
-                    style={[
-                      styles.slideGradientLeft,
-                      {
-                        left: -carouselWidth * 0.42,
-                        width: carouselWidth * 1.08,
-                      },
+                  <ImageBackground
+                    source={slide.image}
+                    style={styles.slideImage}
+                    imageStyle={[
+                      styles.slideImageRadius,
+                      Platform.OS === "web" ? styles.slideImageWeb : null,
                     ]}
-                  />
-                  <View style={styles.slideGradientBottom} />
-                  <View
-                    style={[
-                      styles.slideGradientAnchor,
-                      { width: carouselWidth * 0.82 },
-                    ]}
-                  />
-                  <View style={styles.slideGlow} />
-                  <View
-                    style={[
-                      styles.slideContent,
-                      { maxWidth: carouselWidth - spacing.lg },
-                    ]}
+                    resizeMode="cover"
                   >
-                    <Text style={styles.slideIcon}>{slide.icon}</Text>
-                    <Text style={styles.slideKicker}>{t(slide.kickerKey)}</Text>
-                    <Text style={styles.slideTitle}>{t(slide.titleKey)}</Text>
-                    <Text style={styles.slideSubtitle}>{t(slide.subtitleKey)}</Text>
-                    <View
-                      style={[
-                        styles.slideAction,
-                        { maxWidth: carouselWidth - spacing.xl * 2 },
-                      ]}
-                    >
-                      <Text style={styles.slideActionText}>{t(slide.ctaKey)}</Text>
-                      <Text style={styles.slideActionArrow}>
-                        {isNativeRTL ? "←" : "→"}
-                      </Text>
+                    <View style={styles.slideScrim} />
+                    <View style={[styles.slideGradientLeft, { left: -carouselWidth * 0.42, width: carouselWidth * 1.08 }]} />
+                    <View style={styles.slideGradientBottom} />
+                    <View style={[styles.slideGradientAnchor, { width: carouselWidth * 0.82 }]} />
+                    <View style={styles.slideGlow} />
+                    <View style={[styles.slideContent, { maxWidth: carouselWidth - spacing.lg }]}>
+                      <Text style={styles.slideIcon}>{icon}</Text>
+                      <Text style={styles.slideKicker}>{kicker}</Text>
+                      <Text style={styles.slideTitle}>{title}</Text>
+                      <Text style={styles.slideSubtitle}>{subtitle}</Text>
+                      <View style={[styles.slideAction, { maxWidth: carouselWidth - spacing.xl * 2 }]}>
+                        <Text style={styles.slideActionText}>{cta}</Text>
+                        <Text style={styles.slideActionArrow}>{isNativeRTL ? "←" : "→"}</Text>
+                      </View>
                     </View>
-                  </View>
-                </ImageBackground>
-              </TouchableOpacity>
-            )}
+                  </ImageBackground>
+                </TouchableOpacity>
+              );
+            }}
           />
 
           <View style={styles.dotsRow}>

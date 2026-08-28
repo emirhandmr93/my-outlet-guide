@@ -10,6 +10,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import {
 BrandResultsScreen,
 BrandWishlistScreen,
+CampaignDetailScreen,
 CityResultsScreen,
 ContactUsScreen,
 CountryScreen,
@@ -79,6 +80,7 @@ const MAX_HANDLED_NOTIFICATION_RESPONSES = 100;
 
 type DesktopHomeStackParamList = {
 HomeRoot: undefined;
+CampaignDetail: RootStackParamList["CampaignDetail"];
 OutletDetail: RootStackParamList["OutletDetail"] & { reviewsRefresh?: number };
 BrandResults: RootStackParamList["BrandResults"] & { selectedCountryId?: string };
 Country: RootStackParamList["Country"];
@@ -142,6 +144,7 @@ const { isNativeRTL } = useLayoutDirection();
 return (
 <DesktopHomeStack.Navigator screenOptions={navigationScreenOptions(t, isNativeRTL)}>
 <DesktopHomeStack.Screen name="HomeRoot" component={HomeScreen} options={{ headerShown: false }} />
+<DesktopHomeStack.Screen name="CampaignDetail" component={CampaignDetailScreen} options={{ title: t("nav.campaign") }} />
 <DesktopHomeStack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: t("nav.outlet") }} />
 <DesktopHomeStack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: t("nav.brand") }} />
 <DesktopHomeStack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
@@ -469,6 +472,7 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 <Stack.Screen name="FlightDeals" component={FlightDealsScreen} options={{ title: t("nav.flightDeals") }} />
 <Stack.Screen name="FlightSearch" component={FlightSearchScreen} options={{ title: t("nav.flightSearch") }} />
 <Stack.Screen name="FlightDealDetail" component={FlightDealDetailScreen} options={{ title: t("nav.flightDeal") }} />
+<Stack.Screen name="CampaignDetail" component={CampaignDetailScreen} options={{ title: t("nav.campaign") }} />
 <Stack.Screen name="TravelBasket" component={TravelBasketScreen} options={{ title: t("nav.travelBasket") }} />
 
 <Stack.Screen name="Login" component={LoginScreen} options={{ title: t("nav.signIn") }} />

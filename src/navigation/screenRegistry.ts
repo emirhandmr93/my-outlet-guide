@@ -1,5 +1,6 @@
 export { BrandResultsScreen } from "../screens/BrandResultsScreen";
 export { BrandWishlistScreen } from "../screens/BrandWishlistScreen";
+export { CampaignDetailScreen } from "../screens/CampaignDetailScreen";
 export { CityResultsScreen } from "../screens/CityResultsScreen";
 export { ContactUsScreen } from "../screens/ContactUsScreen";
 export { CountryScreen } from "../screens/CountryScreen";

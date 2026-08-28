@@ -2,6 +2,7 @@ import {
   type TranslationLanguage,
   translations,
 } from "../translations/translations";
+import { outletCampaignTranslations } from "../translations/outletCampaignTranslations";
 
 const visibleLocalePrefixPattern =
   /^(?:[A-Z]{2}: |ترجمة عربية: |中文翻译：|[^:]{1,40}\s+(?:çeviri|translation|ترجمة|перевод|Übersetzung|Traducción|Traduction)\s*[:：]\s*)/i;
@@ -23,6 +24,8 @@ function cleanTranslationValue(key: string, value: string | undefined) {
 
 export function resolveTranslation(language: TranslationLanguage, key: string) {
   return (
+    cleanTranslationValue(key, outletCampaignTranslations[language]?.[key]) ||
+    cleanTranslationValue(key, outletCampaignTranslations.en[key]) ||
     cleanTranslationValue(key, translations[language]?.[key]) ||
     cleanTranslationValue(key, translations.en[key]) ||
     key
