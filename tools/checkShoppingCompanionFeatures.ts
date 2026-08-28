@@ -79,8 +79,12 @@ assert(visitMode.includes("loadOutletVisitProgress") && visitMode.includes("save
 assert(visitMode.includes("openExternalUrl(outlet.googleMapsUrl)") && visitMode.includes('accessibilityRole="checkbox"'), "Visit Mode must expose safe directions and an accessible checklist.");
 assert(visitMode.includes("toggleOutletVisitPriority") && visitMode.includes("moveOutletVisitBrand") && visitMode.includes('navigation.navigate("CreateTrip", { outletId })'), "Visit Mode V2 must support priorities, ordering and trip creation.");
 assert(brandResults.includes("toggleFavoriteBrand(brand.brandId)"), "Brand pages must support Brand Wishlist toggling.");
+assert(brandResults.includes("useAuth()") && brandResults.includes("isLoggedIn: isAuthenticated"), "Brand pages must use the canonical Firebase authentication state.");
 assert(brandWishlist.includes("favoriteBrandIds") && brandWishlist.includes('navigation.navigate("BrandResults"'), "Brand Wishlist must resolve saved brands to brand results.");
-assert(favorites.includes("favoriteBrandIds: cleanFavoriteBrandIds") && favorites.includes('trackProductEvent("favorite_brand"'), "Brand Wishlist must sync through the favorites document and emit analytics.");
+assert(brandWishlist.includes("isAuthenticated") && brandWishlist.indexOf("!isAuthenticated") < brandWishlist.indexOf('favoritesError === "permission-denied"'), "Brand Wishlist must distinguish signed-out state from a signed-in sync error.");
+assert(brandWishlist.includes("favoritesLoading") && brandWishlist.includes("reloadFavorites"), "Brand Wishlist must expose loading and retry states.");
+assert(favorites.includes("writeFavoritesWithAuthRetry") && favorites.includes("favoriteBrandIds") && favorites.includes('trackProductEvent("favorite_brand"'), "Brand Wishlist must sync through the favorites document and emit analytics.");
+assert(favorites.includes("useAuth()") && favorites.includes("getIdToken(true)") && favorites.includes("readFavoritesWithAuthRetry"), "Favorites sync must use canonical auth and retry once after refreshing an expired token.");
 assert(navigation.includes('name="VisitMode"') && navigation.includes('name="BrandWishlist"'), "Both shopping companion screens must be registered.");
 assert(linking.includes('path: "visit/:outletId"') && linking.includes('path: "brand-wishlist"'), "Both shopping companion screens must have web routes.");
 assert(rules.includes("hasOnly(['favoriteIds', 'favoriteBrandIds'])") && rules.includes("favoriteBrandIds is list"), "Firestore rules must allow only validated Brand Wishlist data.");

@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import {
+  ActivityIndicator,
   Platform,
   ScrollView,
   StyleSheet,
@@ -12,8 +13,8 @@ import { brands } from "../constants/brands";
 import { outletBrands } from "../constants/outletBrands";
 import { outlets } from "../constants/outlets";
 import { isWebSeoPublicOutlet } from "../constants/webSeo";
+import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
-import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { colors } from "../theme/colors";
 import { radius } from "../theme/radius";
@@ -26,10 +27,12 @@ function interpolate(template: string, count: number) {
 export function BrandWishlistScreen() {
   const navigation = useNavigation<any>();
   const { t } = useTranslation();
-  const { isLoggedIn } = useUser();
+  const { isAuthenticated } = useAuth();
   const {
     favoriteBrandIds,
     favoritesError,
+    favoritesLoading,
+    reloadFavorites,
     toggleFavoriteBrand,
   } = useFavorites();
   const wishlistedBrands = brands
@@ -41,19 +44,29 @@ export function BrandWishlistScreen() {
       <Text style={styles.title}>{t("brandWishlist.title")}</Text>
       <Text style={styles.subtitle}>{t("brandWishlist.subtitle")}</Text>
 
-      {favoritesError === "permission-denied" ? (
-        <MessageCard
-          title={t("brandWishlist.signInTitle")}
-          text={t("brandWishlist.permissionDenied")}
-          buttonText={t("profile.signIn")}
-          onPress={() => navigation.navigate("Login")}
-        />
-      ) : !isLoggedIn ? (
+      {!isAuthenticated ? (
         <MessageCard
           title={t("brandWishlist.signInTitle")}
           text={t("brandWishlist.signInText")}
           buttonText={t("profile.signIn")}
           onPress={() => navigation.navigate("Login")}
+        />
+      ) : favoritesLoading ? (
+        <View style={styles.messageCard}>
+          <ActivityIndicator color={colors.primary} size="large" />
+          <Text style={[styles.messageTitle, styles.loadingTitle]}>
+            {t("brandWishlist.loadingTitle")}
+          </Text>
+          <Text style={[styles.messageText, styles.loadingText]}>
+            {t("brandWishlist.loadingText")}
+          </Text>
+        </View>
+      ) : favoritesError === "permission-denied" ? (
+        <MessageCard
+          title={t("brandWishlist.errorTitle")}
+          text={t("brandWishlist.permissionDenied")}
+          buttonText={t("brandWishlist.retry")}
+          onPress={() => void reloadFavorites()}
         />
       ) : wishlistedBrands.length === 0 ? (
         <MessageCard
@@ -133,6 +146,8 @@ const styles = StyleSheet.create({
   messageCard: { backgroundColor: colors.surface, borderRadius: radius.xl, borderWidth: 1, borderColor: colors.border, padding: spacing.xl },
   messageTitle: { color: colors.textPrimary, fontSize: 20, fontWeight: "900" },
   messageText: { color: colors.textSecondary, fontSize: 14, lineHeight: 21, marginTop: spacing.sm },
+  loadingTitle: { textAlign: "center", marginTop: spacing.md },
+  loadingText: { textAlign: "center" },
   primaryButton: { alignItems: "center", backgroundColor: colors.primary, borderRadius: radius.pill, paddingVertical: spacing.md, paddingHorizontal: spacing.lg, marginTop: spacing.lg },
   primaryButtonText: { color: colors.textInverse, fontWeight: "900" },
 });

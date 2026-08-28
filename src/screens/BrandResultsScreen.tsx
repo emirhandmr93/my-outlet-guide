@@ -24,8 +24,8 @@ import { outlets } from "../constants/outlets";
 import { countries } from "../constants/countries";
 import { isWebSeoPublicOutlet } from "../constants/webSeo";
 import { CountryFlag } from "../components/CountryFlag";
+import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
-import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { getImageSource, getOutletCardHeroImage } from "../media/outletMedia";
@@ -129,7 +129,7 @@ export function BrandResultsScreen() {
   const { width } = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp<RouteParams, "BrandResults">>();
-  const { isLoggedIn } = useUser();
+  const { isAuthenticated } = useAuth();
   const { isFavorite, toggleFavorite, isFavoriteBrand, toggleFavoriteBrand } = useFavorites();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const desktopSidebarWidth = 216;
@@ -222,7 +222,7 @@ export function BrandResultsScreen() {
             activeOpacity={0.86}
             style={[styles.wishlistButton, brandWishlisted && styles.wishlistButtonActive]}
             onPress={() => {
-              if (!requireAuth({ isLoggedIn, navigation })) return;
+              if (!requireAuth({ isLoggedIn: isAuthenticated, navigation })) return;
               void toggleFavoriteBrand(brand.brandId);
             }}
           >
@@ -307,7 +307,7 @@ export function BrandResultsScreen() {
                     })
                   }
                   onToggleFavorite={() => {
-                    if (requireAuth({ isLoggedIn, navigation })) {
+                    if (requireAuth({ isLoggedIn: isAuthenticated, navigation })) {
                       toggleFavorite(outlet.outletId);
                     }
                   }}
