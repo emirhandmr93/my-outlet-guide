@@ -31,8 +31,14 @@ export type ParsedOfficialCampaign = {
   discountPercent?: number;
   startsOn: string;
   endsOn: string;
+  dateEvidenceSource: "detail_page" | "official_listing";
   timeZone: string;
   featuredPriority: number;
+};
+
+export type OfficialCampaignCandidate = {
+  sourceUrl: string;
+  listingEvidence: string;
 };
 
 export type CampaignParseResult =
@@ -240,27 +246,44 @@ function isSaneDateWindow(startsOn: string, endsOn: string): boolean {
   return Number.isFinite(durationDays) && durationDays >= 0 && durationDays <= MAX_CAMPAIGN_DAYS;
 }
 
+export function extractOfficialCampaignCandidates(
+  html: string,
+  listingUrl: string,
+  source: OfficialCampaignSource,
+): OfficialCampaignCandidate[] {
+  const candidates = new Map<string, string>();
+  for (const match of html.matchAll(/<a\b[^>]*href\s*=\s*(["'])(.*?)\1[^>]*>([\s\S]*?)<\/a>/gi)) {
+    try {
+      const url = canonicalizeUrl(new URL(decodeHtml(match[2]), listingUrl).toString());
+      if (!isOfficialCampaignDetailUrl(source, url)) continue;
+      const listingEvidence = cleanText(match[3], 1_600);
+      const existing = candidates.get(url) ?? "";
+      candidates.set(url, existing && listingEvidence && existing !== listingEvidence
+        ? cleanText(`${existing}. ${listingEvidence}`, 2_000)
+        : existing || listingEvidence);
+    } catch {
+      // Invalid and non-HTTP href values are ignored.
+    }
+  }
+  return [...candidates]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .slice(0, source.maxCandidatePages)
+    .map(([sourceUrl, listingEvidence]) => ({ sourceUrl, listingEvidence }));
+}
+
 export function extractOfficialCampaignLinks(
   html: string,
   listingUrl: string,
   source: OfficialCampaignSource,
 ): string[] {
-  const links = new Set<string>();
-  for (const match of html.matchAll(/<a\b[^>]*href\s*=\s*(["'])(.*?)\1/gi)) {
-    try {
-      const url = canonicalizeUrl(new URL(decodeHtml(match[2]), listingUrl).toString());
-      if (isOfficialCampaignDetailUrl(source, url)) links.add(url);
-    } catch {
-      // Invalid and non-HTTP href values are ignored.
-    }
-  }
-  return [...links].sort().slice(0, source.maxCandidatePages);
+  return extractOfficialCampaignCandidates(html, listingUrl, source).map(candidate => candidate.sourceUrl);
 }
 
 export function parseOfficialCampaignPage(
   html: string,
   sourceUrl: string,
   source: OfficialCampaignSource,
+  officialListingEvidence = "",
 ): CampaignParseResult {
   const canonicalUrl = (() => {
     try { return canonicalizeUrl(sourceUrl); } catch { return sourceUrl; }
@@ -280,7 +303,11 @@ export function parseOfficialCampaignPage(
     500,
   );
   const brandName = extractBrand(objects, htmlTitle, source.outletName);
-  const dateRange = extractDateRange(objects, text);
+  const detailDateRange = extractDateRange(objects, text);
+  const listingDateRange = detailDateRange
+    ? null
+    : extractDateRange([], cleanText(officialListingEvidence, 2_000));
+  const dateRange = detailDateRange ?? listingDateRange;
   const discount = extractDiscount(`${headline}. ${description}. ${text}`);
 
   if (headline.length < 5) reasons.push("missing_headline");
@@ -322,6 +349,7 @@ export function parseOfficialCampaignPage(
       ...(discount.percent === undefined ? {} : { discountPercent: discount.percent }),
       startsOn: dateRange.startsOn,
       endsOn: dateRange.endsOn,
+      dateEvidenceSource: detailDateRange ? "detail_page" : "official_listing",
       timeZone: source.timeZone,
       featuredPriority: (discount.percent ?? 0) * 1_000 + 100,
     },
