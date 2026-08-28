@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 
 import {
+  extractOfficialCampaignCandidates,
   extractOfficialCampaignLinks,
   parseOfficialCampaignPage,
 } from "../functions/src/outletCampaignParser";
@@ -23,11 +24,16 @@ const cheshire = officialCampaignSources.find(source => source.outletId === "che
 assert(cheshire, "Cheshire Oaks official source is required for parser validation.");
 const verifiedUrl = "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/offers/nike-weekend/";
 const listingHtml = `
-  <a href="/en/outlets/uk/designer-outlet-cheshire-oaks/offers/nike-weekend/">Nike</a>
+  <a href="/en/outlets/uk/designer-outlet-cheshire-oaks/offers/nike-weekend/">
+    <span>29/08/2026 - 31/08/2026</span><strong>Nike</strong>
+  </a>
   <a href="https://coupon.example/offers/nike-weekend/">Untrusted</a>
   <a href="/en/outlets/uk/designer-outlet-cheshire-oaks/offers/">Listing</a>
 `;
 assert.deepEqual(extractOfficialCampaignLinks(listingHtml, cheshire.listingUrls[0], cheshire), [verifiedUrl]);
+const [candidate] = extractOfficialCampaignCandidates(listingHtml, cheshire.listingUrls[0], cheshire);
+assert.equal(candidate.sourceUrl, verifiedUrl);
+assert.match(candidate.listingEvidence, /29\/08\/2026 - 31\/08\/2026 Nike/);
 
 const validHtml = `
   <!doctype html><html><head>
@@ -55,6 +61,39 @@ const missingDates = parseOfficialCampaignPage(
 );
 assert.equal(missingDates.status, "rejected");
 if (missingDates.status === "rejected") assert(missingDates.reasons.includes("missing_explicit_date_range"));
+
+const listingDated = parseOfficialCampaignPage(
+  validHtml.replace("Valid from 29 August 2026 to 31 August 2026.", "Available for a limited time."),
+  verifiedUrl,
+  cheshire,
+  candidate.listingEvidence,
+);
+assert.equal(listingDated.status, "verified");
+if (listingDated.status === "verified") {
+  assert.equal(listingDated.campaign.startsOn, "2026-08-29");
+  assert.equal(listingDated.campaign.endsOn, "2026-08-31");
+  assert.equal(listingDated.campaign.dateEvidenceSource, "official_listing");
+}
+
+const flashSaleUrl = "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/whats-on/flash-sale/";
+const flashSale = parseOfficialCampaignPage(`
+  <!doctype html><html><head>
+    <title>The Quarter Flash Sale | Cheshire Oaks Designer Outlet</title>
+    <meta name="description" content="Shop limited-time reductions from participating brands in The Quarter.">
+  </head><body>
+    <h1>The Quarter Flash Sale Event</h1>
+    <p>Saturday 29 August, 9am - Monday 31 August, 9pm.</p>
+    <p>Enjoy an extra 30% off at participating stores. Terms and conditions apply.</p>
+  </body></html>
+`, flashSaleUrl, cheshire, "29/08/2026 - 31/08/2026 The Quarter Flash Sale Event");
+assert.equal(flashSale.status, "verified");
+if (flashSale.status === "verified") {
+  assert.equal(flashSale.campaign.brandName, "The Quarter Flash");
+  assert.equal(flashSale.campaign.startsOn, "2026-08-29");
+  assert.equal(flashSale.campaign.endsOn, "2026-08-31");
+  assert.equal(flashSale.campaign.discountPercent, 30);
+  assert.equal(flashSale.campaign.dateEvidenceSource, "official_listing");
+}
 
 const untrusted = parseOfficialCampaignPage(validHtml, "https://coupon.example/nike", cheshire);
 assert.equal(untrusted.status, "rejected");

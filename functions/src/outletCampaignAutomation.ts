@@ -6,7 +6,7 @@ import { onSchedule } from "firebase-functions/v2/scheduler";
 
 import {
   buildOfficialCampaignId,
-  extractOfficialCampaignLinks,
+  extractOfficialCampaignCandidates,
   parseOfficialCampaignPage,
   type ParsedOfficialCampaign,
 } from "./outletCampaignParser";
@@ -235,6 +235,7 @@ async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCa
       status: "verified",
       officialDomain: true,
       explicitDateRange: true,
+      explicitDateRangeSource: campaign.dateEvidenceSource,
       discountEvidence: true,
       approvalRequired: false,
       checkedAt: Timestamp.fromDate(now),
@@ -279,12 +280,17 @@ async function unpublishFailedVerification(
 }
 
 async function collectSource(db: Firestore, source: OfficialCampaignSource, now: Date, summary: CollectionSummary) {
-  const candidateLinks = new Set<string>();
+  const candidateEvidence = new Map<string, string>();
   for (const listingUrl of source.listingUrls) {
     try {
       const { html, finalUrl } = await fetchOfficialHtml(listingUrl, source, false);
       summary.listingsFetched += 1;
-      extractOfficialCampaignLinks(html, finalUrl, source).forEach(url => candidateLinks.add(url));
+      extractOfficialCampaignCandidates(html, finalUrl, source).forEach(candidate => {
+        const existing = candidateEvidence.get(candidate.sourceUrl) ?? "";
+        candidateEvidence.set(candidate.sourceUrl, existing && candidate.listingEvidence && existing !== candidate.listingEvidence
+          ? `${existing}. ${candidate.listingEvidence}`.slice(0, 2_000)
+          : existing || candidate.listingEvidence);
+      });
     } catch (error) {
       summary.listingFailures += 1;
       logger.warn("Official campaign listing fetch failed", {
@@ -294,13 +300,17 @@ async function collectSource(db: Firestore, source: OfficialCampaignSource, now:
       });
     }
   }
-  const selectedLinks = [...candidateLinks].sort().slice(0, source.maxCandidatePages);
-  summary.candidateLinks += selectedLinks.length;
-  await mapLimited(selectedLinks, FETCH_CONCURRENCY, async sourceUrl => {
+  const selectedCandidates = [...candidateEvidence]
+    .sort(([left], [right]) => left.localeCompare(right))
+    .slice(0, source.maxCandidatePages)
+    .map(([sourceUrl, listingEvidence]) => ({ sourceUrl, listingEvidence }));
+  summary.candidateLinks += selectedCandidates.length;
+  await mapLimited(selectedCandidates, FETCH_CONCURRENCY, async candidate => {
+    const { sourceUrl, listingEvidence } = candidate;
     try {
       const { html, finalUrl } = await fetchOfficialHtml(sourceUrl, source, true);
       summary.detailPagesFetched += 1;
-      const result = parseOfficialCampaignPage(html, finalUrl, source);
+      const result = parseOfficialCampaignPage(html, finalUrl, source, listingEvidence);
       if (result.status === "verified") {
         await persistVerifiedCampaign(db, result.campaign, now, summary);
         return;
