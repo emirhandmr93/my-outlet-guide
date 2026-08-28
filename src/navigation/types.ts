@@ -38,6 +38,7 @@ export type RootStackParamList = {
   FlightDeals: undefined;
   FlightSearch: undefined;
   FlightDealDetail: { dealId: string };
+  CampaignDetail: { campaignId: string };
   TravelBasket: {
     outletId?: string;
     tripId?: string;

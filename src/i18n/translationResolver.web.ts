@@ -1,4 +1,5 @@
 import type { TranslationLanguage } from "../translations/locale";
+import { outletCampaignTranslations } from "../translations/outletCampaignTranslations";
 
 type Dictionary = Record<string, string>;
 
@@ -49,6 +50,8 @@ export async function prepareTranslationLanguage(language: TranslationLanguage) 
 
 export function resolveTranslation(language: TranslationLanguage, key: string) {
   return (
+    cleanTranslationValue(key, outletCampaignTranslations[language]?.[key]) ||
+    cleanTranslationValue(key, outletCampaignTranslations.en[key]) ||
     cleanTranslationValue(key, dictionaries[language]?.[key]) ||
     cleanTranslationValue(key, dictionaries.en?.[key]) ||
     key

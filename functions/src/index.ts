@@ -417,3 +417,8 @@ export {
 export {
   processFlightPriceAlertNotifications,
 } from "./flightPriceNotificationDelivery";
+
+export {
+  collectOfficialOutletCampaigns,
+  reconcileOfficialOutletCampaigns,
+} from "./outletCampaignAutomation";

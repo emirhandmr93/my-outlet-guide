@@ -29,6 +29,7 @@ function deferredScreen(
 export { HomeScreen };
 export const BrandResultsScreen = deferredScreen(() => import("../screens/BrandResultsScreen"), "BrandResultsScreen");
 export const BrandWishlistScreen = deferredScreen(() => import("../screens/BrandWishlistScreen"), "BrandWishlistScreen");
+export const CampaignDetailScreen = deferredScreen(() => import("../screens/CampaignDetailScreen"), "CampaignDetailScreen");
 export const CityResultsScreen = deferredScreen(() => import("../screens/CityResultsScreen"), "CityResultsScreen");
 export const ContactUsScreen = deferredScreen(() => import("../screens/ContactUsScreen"), "ContactUsScreen");
 export const CountryScreen = deferredScreen(() => import("../screens/CountryScreen"), "CountryScreen");

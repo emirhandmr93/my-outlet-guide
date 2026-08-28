@@ -339,6 +339,20 @@ service cloud.firestore {
         && get(/databases/$(database)/documents/adminUsers/$(request.auth.uid)).data.role in ['admin', 'moderator'];
     }
 
+    function isPublishedOutletCampaign(campaignId) {
+      return resource.data.schemaVersion == 2
+        && resource.data.campaignId == campaignId
+        && resource.data.status == 'published'
+        && resource.data.active == true
+        && resource.data.autoPublished == true
+        && resource.data.verification is map
+        && resource.data.verification.status == 'verified'
+        && resource.data.startsAt is timestamp
+        && resource.data.endsAt is timestamp
+        && resource.data.sourceUrl is string
+        && resource.data.sourceUrl.matches('^https://.*$');
+    }
+
     function isValidRootReviewReportCreate(reportId) {
       let outletId = request.resource.data.outletId;
       let reviewId = request.resource.data.reviewId;
@@ -576,6 +590,26 @@ service cloud.firestore {
         allow read: if true;
         allow create, update, delete: if false;
       }
+    }
+
+    match /outletCampaigns/{campaignId} {
+      allow get: if isPublishedOutletCampaign(campaignId)
+        && resource.data.startsAt <= request.time
+        && resource.data.endsAt > request.time;
+      // Firestore rules are not filters. Keep list access aligned with the
+      // exact constraints required by the client query; only Admin SDK jobs
+      // can write these documents and the client validates the full schema.
+      allow list: if resource.data.status == 'published'
+        && resource.data.active == true;
+      allow create, update, delete: if false;
+    }
+
+    match /outletCampaignIngestionRuns/{runId} {
+      allow read, write: if false;
+    }
+
+    match /systemLocks/{lockId} {
+      allow read, write: if false;
     }
 
 

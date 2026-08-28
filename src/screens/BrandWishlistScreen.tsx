@@ -61,7 +61,7 @@ export function BrandWishlistScreen() {
             {t("brandWishlist.loadingText")}
           </Text>
         </View>
-      ) : favoritesError === "permission-denied" ? (
+      ) : favoritesError && wishlistedBrands.length === 0 ? (
         <MessageCard
           title={t("brandWishlist.errorTitle")}
           text={t("brandWishlist.permissionDenied")}
@@ -75,42 +75,62 @@ export function BrandWishlistScreen() {
           buttonText={t("brandWishlist.explore")}
           onPress={() => navigation.navigate("MainTabs", { screen: "Explore" })}
         />
-      ) : wishlistedBrands.map((brand) => {
-        const matchingOutletIds = new Set(outletBrands.filter(
-          (relation) => relation.brandId === brand.brandId && relation.relationStatus === "active",
-        ).map((relation) => relation.outletId));
-        const outletCount = outlets.filter((outlet) =>
-          matchingOutletIds.has(outlet.outletId) &&
-          outlet.status === "active" &&
-          (Platform.OS !== "web" || isWebSeoPublicOutlet(outlet)),
-        ).length;
-        return (
-          <TouchableOpacity
-            key={brand.brandId}
-            activeOpacity={0.86}
-            style={styles.brandCard}
-            onPress={() => navigation.navigate("BrandResults", { brandId: brand.brandId })}
-          >
-            <View style={styles.brandCopy}>
-              <Text style={styles.brandName}>{brand.brandName}</Text>
-              <Text style={styles.brandMeta}>
-                {interpolate(t("brandWishlist.outletCount"), outletCount)}
+      ) : (
+        <>
+          {favoritesError ? (
+            <View style={styles.syncWarning}>
+              <Text style={styles.syncWarningText}>
+                {t("brandWishlist.permissionDenied")}
               </Text>
+              <TouchableOpacity
+                accessibilityRole="button"
+                onPress={() => void reloadFavorites()}
+              >
+                <Text style={styles.syncWarningAction}>
+                  {t("brandWishlist.retry")}
+                </Text>
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity
-              accessibilityRole="button"
-              accessibilityLabel={t("brandWishlist.remove")}
-              style={styles.removeButton}
-              onPress={(event) => {
-                event.stopPropagation();
-                void toggleFavoriteBrand(brand.brandId);
-              }}
-            >
-              <Text style={styles.removeText}>♥</Text>
-            </TouchableOpacity>
-          </TouchableOpacity>
-        );
-      })}
+          ) : null}
+
+          {wishlistedBrands.map((brand) => {
+            const matchingOutletIds = new Set(outletBrands.filter(
+              (relation) => relation.brandId === brand.brandId && relation.relationStatus === "active",
+            ).map((relation) => relation.outletId));
+            const outletCount = outlets.filter((outlet) =>
+              matchingOutletIds.has(outlet.outletId) &&
+              outlet.status === "active" &&
+              (Platform.OS !== "web" || isWebSeoPublicOutlet(outlet)),
+            ).length;
+            return (
+              <TouchableOpacity
+                key={brand.brandId}
+                activeOpacity={0.86}
+                style={styles.brandCard}
+                onPress={() => navigation.navigate("BrandResults", { brandId: brand.brandId })}
+              >
+                <View style={styles.brandCopy}>
+                  <Text style={styles.brandName}>{brand.brandName}</Text>
+                  <Text style={styles.brandMeta}>
+                    {interpolate(t("brandWishlist.outletCount"), outletCount)}
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  accessibilityRole="button"
+                  accessibilityLabel={t("brandWishlist.remove")}
+                  style={styles.removeButton}
+                  onPress={(event) => {
+                    event.stopPropagation();
+                    void toggleFavoriteBrand(brand.brandId);
+                  }}
+                >
+                  <Text style={styles.removeText}>♥</Text>
+                </TouchableOpacity>
+              </TouchableOpacity>
+            );
+          })}
+        </>
+      )}
     </ScrollView>
   );
 }
@@ -148,6 +168,9 @@ const styles = StyleSheet.create({
   messageText: { color: colors.textSecondary, fontSize: 14, lineHeight: 21, marginTop: spacing.sm },
   loadingTitle: { textAlign: "center", marginTop: spacing.md },
   loadingText: { textAlign: "center" },
+  syncWarning: { flexDirection: "row", alignItems: "center", backgroundColor: colors.goldSoft, borderRadius: radius.lg, padding: spacing.md, marginBottom: spacing.md },
+  syncWarningText: { flex: 1, color: colors.textSecondary, fontSize: 13, lineHeight: 18 },
+  syncWarningAction: { color: colors.primary, fontSize: 13, fontWeight: "900", marginStart: spacing.md },
   primaryButton: { alignItems: "center", backgroundColor: colors.primary, borderRadius: radius.pill, paddingVertical: spacing.md, paddingHorizontal: spacing.lg, marginTop: spacing.lg },
   primaryButtonText: { color: colors.textInverse, fontWeight: "900" },
 });

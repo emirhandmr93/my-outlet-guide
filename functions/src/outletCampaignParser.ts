@@ -1,0 +1,329 @@
+import { createHash } from "node:crypto";
+
+import {
+  isOfficialCampaignDetailUrl,
+  type OfficialCampaignSource,
+} from "./outletCampaignSources";
+
+const MAX_CAMPAIGN_DAYS = 366;
+const DATE_ONLY = /^\d{4}-\d{2}-\d{2}$/;
+const MONTHS: Record<string, number> = {
+  january: 1, february: 2, march: 3, april: 4, may: 5, june: 6,
+  july: 7, august: 8, september: 9, october: 10, november: 11, december: 12,
+  jan: 1, feb: 2, mar: 3, apr: 4, jun: 6, jul: 7, aug: 8, sep: 9, sept: 9,
+  oct: 10, nov: 11, dec: 12,
+};
+
+export type ParsedOfficialCampaign = {
+  campaignId: string;
+  sourceId: string;
+  sourceUrl: string;
+  sourceHost: string;
+  sourceLocale: "en";
+  sourceFingerprint: string;
+  outletId: string;
+  outletName: string;
+  brandName: string;
+  headline: string;
+  summary: string;
+  conditions: string;
+  discountLabel: string;
+  discountPercent?: number;
+  startsOn: string;
+  endsOn: string;
+  timeZone: string;
+  featuredPriority: number;
+};
+
+export type CampaignParseResult =
+  | { status: "verified"; campaign: ParsedOfficialCampaign }
+  | { status: "rejected"; reasons: string[]; sourceUrl: string };
+
+function decodeHtml(value: string): string {
+  return value
+    .replace(/&#(\d+);/g, (_, value: string) => String.fromCodePoint(Number(value)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, value: string) => String.fromCodePoint(Number.parseInt(value, 16)))
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">");
+}
+
+function cleanText(value: string | undefined, maxLength: number): string {
+  if (!value) return "";
+  return decodeHtml(value)
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, maxLength);
+}
+
+function canonicalizeUrl(value: string): string {
+  const url = new URL(value);
+  url.hash = "";
+  for (const key of [...url.searchParams.keys()]) {
+    if (/^(?:utm_|fbclid$|gclid$)/i.test(key)) url.searchParams.delete(key);
+  }
+  return url.toString();
+}
+
+function parseAttributes(tag: string): Record<string, string> {
+  const attributes: Record<string, string> = {};
+  const pattern = /([:\w-]+)\s*=\s*(["'])(.*?)\2/gs;
+  for (const match of tag.matchAll(pattern)) attributes[match[1].toLowerCase()] = decodeHtml(match[3]);
+  return attributes;
+}
+
+function extractMeta(html: string, key: string): string {
+  const normalizedKey = key.toLowerCase();
+  for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
+    const attributes = parseAttributes(match[0]);
+    if ((attributes.property ?? attributes.name)?.toLowerCase() === normalizedKey) {
+      return cleanText(attributes.content, 800);
+    }
+  }
+  return "";
+}
+
+function extractTagText(html: string, tag: string): string {
+  const match = new RegExp(`<${tag}\\b[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i").exec(html);
+  return cleanText(match?.[1], 800);
+}
+
+function stripPageText(html: string): string {
+  return cleanText(
+    html
+      .replace(/<(?:script|style|svg|noscript|nav|footer)\b[\s\S]*?<\/(?:script|style|svg|noscript|nav|footer)>/gi, " ")
+      .replace(/<br\s*\/?>/gi, ". ")
+      .replace(/<\/p>|<\/li>|<\/h[1-6]>/gi, ". "),
+    40_000,
+  );
+}
+
+function jsonLdObjects(html: string): Record<string, unknown>[] {
+  const objects: Record<string, unknown>[] = [];
+  for (const match of html.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    try {
+      const parsed = JSON.parse(decodeHtml(match[1])) as unknown;
+      const visit = (value: unknown) => {
+        if (Array.isArray(value)) value.forEach(visit);
+        else if (value && typeof value === "object") {
+          const record = value as Record<string, unknown>;
+          objects.push(record);
+          if (Array.isArray(record["@graph"])) record["@graph"].forEach(visit);
+        }
+      };
+      visit(parsed);
+    } catch {
+      // Invalid structured data is ignored; strict visible-text checks still run.
+    }
+  }
+  return objects;
+}
+
+function readString(value: unknown): string {
+  return typeof value === "string" ? cleanText(value, 800) : "";
+}
+
+function extractBrand(objects: Record<string, unknown>[], htmlTitle: string, outletName: string): string {
+  for (const object of objects) {
+    const brand = object.brand;
+    if (typeof brand === "string") return cleanText(brand, 120);
+    if (brand && typeof brand === "object") {
+      const name = readString((brand as Record<string, unknown>).name);
+      if (name) return name;
+    }
+  }
+
+  const titleParts = htmlTitle.split(/\s+[|–—]\s+/).map(part => cleanText(part, 120));
+  const labelledBrand = /^(.*?)\s+(?:offers?|promotion|promo|sale)$/i.exec(titleParts[0])?.[1]?.trim();
+  const separatedBrand = /^(?:offers?|promotion|promo|sale)$/i.test(titleParts[1] ?? "")
+    ? titleParts[0]
+    : "";
+  const candidate = labelledBrand || separatedBrand;
+  if (candidate && !/\d\s*%|\b(?:black friday|crazy friday|shopping event)\b/i.test(candidate)
+    && !candidate.toLowerCase().includes(outletName.toLowerCase())) return candidate;
+  return "";
+}
+
+function dateOnly(value: string): string | null {
+  const normalized = value.slice(0, 10);
+  if (!DATE_ONLY.test(normalized)) return null;
+  const [year, month, day] = normalized.split("-").map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day
+    ? normalized
+    : null;
+}
+
+function toIsoDate(year: number, month: number, day: number): string | null {
+  return dateOnly(`${String(year).padStart(4, "0")}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`);
+}
+
+function extractDateRange(objects: Record<string, unknown>[], text: string): { startsOn: string; endsOn: string } | null {
+  for (const object of objects) {
+    const startsOn = dateOnly(readString(object.startDate));
+    const endsOn = dateOnly(readString(object.endDate));
+    if (startsOn && endsOn) return { startsOn, endsOn };
+    const validFrom = dateOnly(readString(object.validFrom));
+    const validThrough = dateOnly(readString(object.validThrough));
+    if (validFrom && validThrough) return { startsOn: validFrom, endsOn: validThrough };
+  }
+
+  const iso = /\b(?:from\s+)?(20\d{2}-\d{2}-\d{2})\s*(?:to|until|till|through|–|—|-)\s*(20\d{2}-\d{2}-\d{2})\b/i.exec(text);
+  if (iso) return { startsOn: iso[1], endsOn: iso[2] };
+
+  const numeric = /\b(\d{1,2})[./-](\d{1,2})[./-](20\d{2})\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})[./-](\d{1,2})[./-](20\d{2})\b/i.exec(text);
+  if (numeric) {
+    const startsOn = toIsoDate(Number(numeric[3]), Number(numeric[2]), Number(numeric[1]));
+    const endsOn = toIsoDate(Number(numeric[6]), Number(numeric[5]), Number(numeric[4]));
+    if (startsOn && endsOn) return { startsOn, endsOn };
+  }
+
+  const dayMonth = /\b(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
+  if (dayMonth) {
+    const startsOn = toIsoDate(Number(dayMonth[3]), MONTHS[dayMonth[2].toLowerCase()], Number(dayMonth[1]));
+    const endsOn = toIsoDate(Number(dayMonth[6]), MONTHS[dayMonth[5].toLowerCase()], Number(dayMonth[4]));
+    if (startsOn && endsOn) return { startsOn, endsOn };
+  }
+
+  const monthDay = /\b([a-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(20\d{2})\s*(?:to|until|till|through|–|—|-)\s*([a-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(20\d{2})\b/i.exec(text);
+  if (monthDay) {
+    const startsOn = toIsoDate(Number(monthDay[3]), MONTHS[monthDay[1].toLowerCase()], Number(monthDay[2]));
+    const endsOn = toIsoDate(Number(monthDay[6]), MONTHS[monthDay[4].toLowerCase()], Number(monthDay[5]));
+    if (startsOn && endsOn) return { startsOn, endsOn };
+  }
+  return null;
+}
+
+function extractDiscount(text: string): { label: string; percent?: number } | null {
+  const patterns = [
+    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?\d{1,3}\s*(?:-|–|to)\s*\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto)/i,
+    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto)/i,
+    /(?:buy|spend)\s+.{0,60}?\d{1,3}\s*%\s*off/i,
+  ];
+  for (const pattern of patterns) {
+    const match = pattern.exec(text);
+    if (!match || match.index === undefined) continue;
+    const sentenceStart = Math.max(0, text.lastIndexOf(". ", match.index) + 2);
+    const sentenceEndCandidate = text.indexOf(". ", match.index + match[0].length);
+    const sentenceEnd = sentenceEndCandidate < 0 ? match.index + match[0].length : sentenceEndCandidate;
+    const label = cleanText(text.slice(sentenceStart, sentenceEnd), 120) || cleanText(match[0], 120);
+    const percentages = [...match[0].matchAll(/(\d{1,3})\s*%/g)].map(value => Number(value[1]));
+    if (percentages.some(percent => percent < 1 || percent > 100)) return null;
+    return { label, ...(percentages.length ? { percent: Math.max(...percentages) } : {}) };
+  }
+  return null;
+}
+
+function extractConditions(text: string, description: string): string {
+  const sentences = text.split(/(?<=[.!?])\s+/).filter(sentence =>
+    /\b(?:terms?|conditions?|t&c|valid|participating|selected|excludes?|while stocks last|members? only)\b/i.test(sentence),
+  );
+  return cleanText([...new Set([description, ...sentences.slice(0, 3)])].filter(Boolean).join(" "), 700);
+}
+
+function hash(value: string, length = 32): string {
+  return createHash("sha256").update(value).digest("hex").slice(0, length);
+}
+
+export function buildOfficialCampaignId(source: OfficialCampaignSource, sourceUrl: string): string {
+  return `${source.sourceId}-${hash(canonicalizeUrl(sourceUrl), 20)}`;
+}
+
+function isSaneDateWindow(startsOn: string, endsOn: string): boolean {
+  const start = Date.parse(`${startsOn}T00:00:00Z`);
+  const end = Date.parse(`${endsOn}T00:00:00Z`);
+  const durationDays = (end - start) / 86_400_000;
+  return Number.isFinite(durationDays) && durationDays >= 0 && durationDays <= MAX_CAMPAIGN_DAYS;
+}
+
+export function extractOfficialCampaignLinks(
+  html: string,
+  listingUrl: string,
+  source: OfficialCampaignSource,
+): string[] {
+  const links = new Set<string>();
+  for (const match of html.matchAll(/<a\b[^>]*href\s*=\s*(["'])(.*?)\1/gi)) {
+    try {
+      const url = canonicalizeUrl(new URL(decodeHtml(match[2]), listingUrl).toString());
+      if (isOfficialCampaignDetailUrl(source, url)) links.add(url);
+    } catch {
+      // Invalid and non-HTTP href values are ignored.
+    }
+  }
+  return [...links].sort().slice(0, source.maxCandidatePages);
+}
+
+export function parseOfficialCampaignPage(
+  html: string,
+  sourceUrl: string,
+  source: OfficialCampaignSource,
+): CampaignParseResult {
+  const canonicalUrl = (() => {
+    try { return canonicalizeUrl(sourceUrl); } catch { return sourceUrl; }
+  })();
+  const reasons: string[] = [];
+  if (!isOfficialCampaignDetailUrl(source, canonicalUrl)) reasons.push("unapproved_source_url");
+
+  const objects = jsonLdObjects(html);
+  const text = stripPageText(html);
+  const htmlTitle = extractTagText(html, "title") || extractMeta(html, "og:title");
+  const structuredHeadline = objects.map(object => readString(object.headline) || readString(object.name)).find(Boolean) ?? "";
+  const headline = cleanText(extractTagText(html, "h1") || structuredHeadline || extractMeta(html, "og:title"), 180);
+  const description = cleanText(
+    objects.map(object => readString(object.description)).find(Boolean)
+      || extractMeta(html, "description")
+      || extractMeta(html, "og:description"),
+    500,
+  );
+  const brandName = extractBrand(objects, htmlTitle, source.outletName);
+  const dateRange = extractDateRange(objects, text);
+  const discount = extractDiscount(`${headline}. ${description}. ${text}`);
+
+  if (headline.length < 5) reasons.push("missing_headline");
+  if (description.length < 10) reasons.push("missing_summary");
+  if (!brandName || brandName.toLowerCase().includes(source.outletName.toLowerCase())) reasons.push("missing_brand");
+  if (!dateRange) reasons.push("missing_explicit_date_range");
+  else if (!isSaneDateWindow(dateRange.startsOn, dateRange.endsOn)) reasons.push("invalid_date_range");
+  if (!discount) reasons.push("missing_discount_evidence");
+  if (reasons.length || !dateRange || !discount) return { status: "rejected", reasons, sourceUrl: canonicalUrl };
+
+  const conditions = extractConditions(text, description);
+  const sourceFingerprint = hash(JSON.stringify({
+    sourceUrl: canonicalUrl,
+    headline,
+    description,
+    brandName,
+    startsOn: dateRange.startsOn,
+    endsOn: dateRange.endsOn,
+    discountLabel: discount.label,
+    conditions,
+  }), 64);
+
+  return {
+    status: "verified",
+    campaign: {
+      campaignId: buildOfficialCampaignId(source, canonicalUrl),
+      sourceId: source.sourceId,
+      sourceUrl: canonicalUrl,
+      sourceHost: new URL(canonicalUrl).hostname.toLowerCase(),
+      sourceLocale: source.sourceLocale,
+      sourceFingerprint,
+      outletId: source.outletId,
+      outletName: source.outletName,
+      brandName,
+      headline,
+      summary: description,
+      conditions,
+      discountLabel: discount.label,
+      ...(discount.percent === undefined ? {} : { discountPercent: discount.percent }),
+      startsOn: dateRange.startsOn,
+      endsOn: dateRange.endsOn,
+      timeZone: source.timeZone,
+      featuredPriority: (discount.percent ?? 0) * 1_000 + 100,
+    },
+  };
+}
