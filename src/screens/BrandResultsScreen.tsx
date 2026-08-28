@@ -130,7 +130,13 @@ export function BrandResultsScreen() {
   const insets = useSafeAreaInsets();
   const route = useRoute<RouteProp<RouteParams, "BrandResults">>();
   const { isAuthenticated } = useAuth();
-  const { isFavorite, toggleFavorite, isFavoriteBrand, toggleFavoriteBrand } = useFavorites();
+  const {
+    favoritesLoading,
+    isFavorite,
+    toggleFavorite,
+    isFavoriteBrand,
+    toggleFavoriteBrand,
+  } = useFavorites();
   const isDesktopWeb = Platform.OS === "web" && width >= 1024;
   const desktopSidebarWidth = 216;
   const desktopHorizontalPadding = 68;
@@ -220,7 +226,12 @@ export function BrandResultsScreen() {
           </Text>
           <TouchableOpacity
             activeOpacity={0.86}
-            style={[styles.wishlistButton, brandWishlisted && styles.wishlistButtonActive]}
+            disabled={favoritesLoading}
+            style={[
+              styles.wishlistButton,
+              brandWishlisted && styles.wishlistButtonActive,
+              favoritesLoading && styles.wishlistButtonDisabled,
+            ]}
             onPress={() => {
               if (!requireAuth({ isLoggedIn: isAuthenticated, navigation })) return;
               void toggleFavoriteBrand(brand.brandId);
@@ -402,6 +413,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF8E1",
     borderColor: "#C9A227",
   },
+  wishlistButtonDisabled: { opacity: 0.55 },
   wishlistButtonText: {
     color: "#FFFFFF",
     fontSize: 13,

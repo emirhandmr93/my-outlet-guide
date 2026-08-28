@@ -12,13 +12,21 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import { db } from "../firebase/config";
 import { requestAppRatingIfEligible } from "../services/appRatingPrompt";
+import {
+  cleanFavoriteSnapshot,
+  EMPTY_FAVORITE_SNAPSHOT,
+  FavoriteSnapshot,
+  readFavoriteCache,
+  toggleFavoriteId,
+  writeFavoriteCache,
+} from "../services/favoritesStorage";
 import { trackProductEvent } from "../utils/productAnalytics";
 import { useAuth } from "./AuthContext";
 
-type FavoritesContextType = {
-  favoriteIds: string[];
-  favoriteBrandIds: string[];
-  favoritesError: "permission-denied" | null;
+type FavoritesError = "permission-denied" | "sync-unavailable" | null;
+
+type FavoritesContextType = FavoriteSnapshot & {
+  favoritesError: FavoritesError;
   favoritesLoading: boolean;
   reloadFavorites: () => Promise<void>;
   toggleFavorite: (outletId: string) => Promise<void>;
@@ -31,54 +39,59 @@ const FavoritesContext = createContext<FavoritesContextType | undefined>(
   undefined,
 );
 
-function isFirestorePermissionDenied(error: unknown) {
-  return Boolean(
-    error &&
-      typeof error === "object" &&
-      "code" in error &&
-      (error as { code?: unknown }).code === "permission-denied",
-  );
-}
-
-function cleanIds(ids: unknown) {
-  if (!Array.isArray(ids)) {
-    return [];
+function getFirebaseErrorCode(error: unknown) {
+  if (!error || typeof error !== "object" || !("code" in error)) {
+    return null;
   }
 
-  return Array.from(
-    new Set(
-      ids.filter(
-        (id): id is string => typeof id === "string" && id.length > 0,
-      ),
-    ),
-  ).slice(0, 1000);
+  const code = (error as { code?: unknown }).code;
+  return typeof code === "string" ? code : null;
 }
 
-async function readFavoritesWithAuthRetry(user: User) {
+function isFirestorePermissionDenied(error: unknown) {
+  const code = getFirebaseErrorCode(error);
+  return code === "permission-denied" || code === "firestore/permission-denied";
+}
+
+function classifyFavoritesError(error: unknown): Exclude<FavoritesError, null> {
+  return isFirestorePermissionDenied(error)
+    ? "permission-denied"
+    : "sync-unavailable";
+}
+
+async function readFavoritesWithAuthRetry(
+  user: User,
+): Promise<FavoriteSnapshot> {
+  const read = async () => {
+    const snapshot = await getDoc(doc(db, "favorites", user.uid));
+
+    if (!snapshot.exists()) {
+      return EMPTY_FAVORITE_SNAPSHOT;
+    }
+
+    return cleanFavoriteSnapshot(snapshot.data());
+  };
+
   await user.getIdToken();
 
   try {
-    return await getDoc(doc(db, "favorites", user.uid));
+    return await read();
   } catch (error) {
     if (!isFirestorePermissionDenied(error)) {
       throw error;
     }
 
     await user.getIdToken(true);
-    return getDoc(doc(db, "favorites", user.uid));
+    return read();
   }
 }
 
 async function writeFavoritesWithAuthRetry(
   user: User,
-  favoriteIds: string[],
-  favoriteBrandIds: string[],
+  snapshot: FavoriteSnapshot,
 ) {
-  const write = () =>
-    setDoc(doc(db, "favorites", user.uid), {
-      favoriteIds,
-      favoriteBrandIds,
-    });
+  const cleanSnapshot = cleanFavoriteSnapshot(snapshot);
+  const write = () => setDoc(doc(db, "favorites", user.uid), cleanSnapshot);
 
   await user.getIdToken();
 
@@ -98,150 +111,250 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   const { currentUser } = useAuth();
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
   const [favoriteBrandIds, setFavoriteBrandIds] = useState<string[]>([]);
-  const [favoritesError, setFavoritesError] = useState<
-    "permission-denied" | null
-  >(null);
+  const [favoritesError, setFavoritesError] = useState<FavoritesError>(null);
   const [favoritesLoading, setFavoritesLoading] = useState(false);
-  const loadRequestId = useRef(0);
+  const activeUserIdRef = useRef<string | null>(null);
+  const snapshotRef = useRef<FavoriteSnapshot>(EMPTY_FAVORITE_SNAPSHOT);
+  const loadRequestIdRef = useRef(0);
+  const mutationRevisionRef = useRef(0);
+  const loadPromiseRef = useRef<Promise<void>>(Promise.resolve());
+  const cacheQueueRef = useRef<Promise<void>>(Promise.resolve());
+  const cloudQueueRef = useRef<Promise<void>>(Promise.resolve());
+
+  const applySnapshot = useCallback((snapshot: FavoriteSnapshot) => {
+    const cleanSnapshot = cleanFavoriteSnapshot(snapshot);
+    snapshotRef.current = cleanSnapshot;
+    setFavoriteIds(cleanSnapshot.favoriteIds);
+    setFavoriteBrandIds(cleanSnapshot.favoriteBrandIds);
+  }, []);
+
+  const enqueueCacheWrite = useCallback(
+    (userId: string, snapshot: FavoriteSnapshot, dirty: boolean) => {
+      const write = cacheQueueRef.current
+        .catch(() => undefined)
+        .then(() => writeFavoriteCache(userId, snapshot, dirty))
+        .catch((error) => {
+          console.warn("Favorites cache could not be updated.", error);
+        });
+
+      cacheQueueRef.current = write;
+      return write;
+    },
+    [],
+  );
+
+  const persistSnapshot = useCallback(
+    (user: User, snapshot: FavoriteSnapshot, revision: number) => {
+      const userId = user.uid;
+      const cleanSnapshot = cleanFavoriteSnapshot(snapshot);
+      const dirtyCacheWrite = enqueueCacheWrite(userId, cleanSnapshot, true);
+      let didSync = false;
+
+      const sync = cloudQueueRef.current
+        .catch(() => undefined)
+        .then(async () => {
+          await dirtyCacheWrite;
+
+          try {
+            await writeFavoritesWithAuthRetry(user, cleanSnapshot);
+            didSync = true;
+
+            if (
+              activeUserIdRef.current === userId &&
+              mutationRevisionRef.current === revision
+            ) {
+              setFavoritesError(null);
+              await enqueueCacheWrite(userId, cleanSnapshot, false);
+            }
+          } catch (error) {
+            console.warn("Favorites cloud sync failed; local copy retained.", error);
+
+            if (activeUserIdRef.current === userId) {
+              setFavoritesError(classifyFavoritesError(error));
+            }
+          }
+        });
+
+      cloudQueueRef.current = sync;
+      return sync.then(() => didSync);
+    },
+    [enqueueCacheWrite],
+  );
 
   const loadFavorites = useCallback(async () => {
     const user = currentUser;
-    const requestId = loadRequestId.current + 1;
-    loadRequestId.current = requestId;
+    const userId = user?.uid ?? null;
+    const requestId = loadRequestIdRef.current + 1;
+    loadRequestIdRef.current = requestId;
+
+    if (activeUserIdRef.current !== userId) {
+      activeUserIdRef.current = userId;
+      mutationRevisionRef.current = 0;
+      cacheQueueRef.current = Promise.resolve();
+      cloudQueueRef.current = Promise.resolve();
+      applySnapshot(EMPTY_FAVORITE_SNAPSHOT);
+    }
 
     if (!user) {
-      setFavoriteIds([]);
-      setFavoriteBrandIds([]);
       setFavoritesError(null);
       setFavoritesLoading(false);
       return;
     }
 
+    const authenticatedUserId = user.uid;
     setFavoritesLoading(true);
+    setFavoritesError(null);
+    const revisionAtLoadStart = mutationRevisionRef.current;
 
     try {
-      const snapshot = await readFavoritesWithAuthRetry(user);
+      const cached = await readFavoriteCache(authenticatedUserId);
 
-      if (loadRequestId.current !== requestId) {
+      if (
+        loadRequestIdRef.current !== requestId ||
+        activeUserIdRef.current !== authenticatedUserId
+      ) {
         return;
       }
 
+      if (cached) {
+        applySnapshot(cached);
+      }
+
+      if (cached?.dirty) {
+        await writeFavoritesWithAuthRetry(user, cached);
+
+        if (
+          loadRequestIdRef.current === requestId &&
+          activeUserIdRef.current === authenticatedUserId &&
+          mutationRevisionRef.current === revisionAtLoadStart
+        ) {
+          setFavoritesError(null);
+          await enqueueCacheWrite(authenticatedUserId, cached, false);
+        }
+
+        return;
+      }
+
+      const cloudSnapshot = await readFavoritesWithAuthRetry(user);
+
+      if (
+        loadRequestIdRef.current !== requestId ||
+        activeUserIdRef.current !== authenticatedUserId ||
+        mutationRevisionRef.current !== revisionAtLoadStart
+      ) {
+        return;
+      }
+
+      applySnapshot(cloudSnapshot);
       setFavoritesError(null);
-
-      if (snapshot.exists()) {
-        const data = snapshot.data();
-        setFavoriteIds(cleanIds(data.favoriteIds));
-        setFavoriteBrandIds(cleanIds(data.favoriteBrandIds));
-      } else {
-        setFavoriteIds([]);
-        setFavoriteBrandIds([]);
-      }
+      await enqueueCacheWrite(authenticatedUserId, cloudSnapshot, false);
     } catch (error) {
-      console.log("Firestore favorites load error", error);
+      console.warn("Favorites load failed; local copy retained.", error);
 
-      if (loadRequestId.current !== requestId) {
-        return;
+      if (
+        loadRequestIdRef.current === requestId &&
+        activeUserIdRef.current === authenticatedUserId &&
+        mutationRevisionRef.current === revisionAtLoadStart
+      ) {
+        setFavoritesError(classifyFavoritesError(error));
       }
-
-      setFavoriteIds([]);
-      setFavoriteBrandIds([]);
-      setFavoritesError(
-        isFirestorePermissionDenied(error) ? "permission-denied" : null,
-      );
     } finally {
-      if (loadRequestId.current === requestId) {
+      if (
+        loadRequestIdRef.current === requestId &&
+        activeUserIdRef.current === authenticatedUserId
+      ) {
         setFavoritesLoading(false);
       }
     }
-  }, [currentUser]);
+  }, [applySnapshot, currentUser, enqueueCacheWrite]);
 
-  useEffect(() => {
-    void loadFavorites();
-
-    return () => {
-      loadRequestId.current += 1;
-    };
+  const reloadFavorites = useCallback(() => {
+    const loadPromise = loadFavorites();
+    loadPromiseRef.current = loadPromise;
+    return loadPromise;
   }, [loadFavorites]);
 
-  async function saveFavorites(
-    nextFavorites: string[],
-    nextFavoriteBrands = favoriteBrandIds,
-  ) {
-    const user = currentUser;
-    const cleanFavoriteIds = cleanIds(nextFavorites);
-    const cleanFavoriteBrandIds = cleanIds(nextFavoriteBrands);
-    const previousFavoriteIds = favoriteIds;
-    const previousFavoriteBrandIds = favoriteBrandIds;
+  useEffect(() => {
+    void reloadFavorites();
 
-    setFavoriteIds(cleanFavoriteIds);
-    setFavoriteBrandIds(cleanFavoriteBrandIds);
-
-    if (!user) {
-      setFavoriteIds([]);
-      setFavoriteBrandIds([]);
-      setFavoritesError(null);
-      return false;
-    }
-
-    try {
-      await writeFavoritesWithAuthRetry(
-        user,
-        cleanFavoriteIds,
-        cleanFavoriteBrandIds,
-      );
-      setFavoritesError(null);
-      return true;
-    } catch (error) {
-      setFavoriteIds(previousFavoriteIds);
-      setFavoriteBrandIds(previousFavoriteBrandIds);
-      console.log("Firestore favorites save error", error);
-      if (isFirestorePermissionDenied(error)) {
-        setFavoritesError("permission-denied");
-      }
-      return false;
-    }
-  }
+    return () => {
+      loadRequestIdRef.current += 1;
+    };
+  }, [reloadFavorites]);
 
   async function toggleFavorite(outletId: string) {
-    if (!currentUser) {
-      setFavoriteIds([]);
+    const user = currentUser;
+
+    if (!user) {
+      applySnapshot(EMPTY_FAVORITE_SNAPSHOT);
       setFavoritesError(null);
       return;
     }
 
-    const isRemovingFavorite = favoriteIds.includes(outletId);
-    const nextFavorites = isRemovingFavorite
-      ? favoriteIds.filter((id) => id !== outletId)
-      : [...favoriteIds, outletId];
+    await loadPromiseRef.current;
 
-    const didSave = await saveFavorites(nextFavorites);
-
-    if (didSave && !isRemovingFavorite) {
-      trackProductEvent("favorite_outlet", { outlet_id: outletId });
-      void requestAppRatingIfEligible(nextFavorites.length);
+    if (activeUserIdRef.current !== user.uid) {
+      return;
     }
+
+    const previousSnapshot = snapshotRef.current;
+    const isRemovingFavorite = previousSnapshot.favoriteIds.includes(outletId);
+    const nextSnapshot = cleanFavoriteSnapshot({
+      ...previousSnapshot,
+      favoriteIds: toggleFavoriteId(previousSnapshot.favoriteIds, outletId),
+    });
+    const revision = mutationRevisionRef.current + 1;
+    mutationRevisionRef.current = revision;
+    applySnapshot(nextSnapshot);
+    setFavoritesError(null);
+
+    if (!isRemovingFavorite) {
+      trackProductEvent("favorite_outlet", { outlet_id: outletId });
+      void requestAppRatingIfEligible(nextSnapshot.favoriteIds.length);
+    }
+
+    await persistSnapshot(user, nextSnapshot, revision);
+  }
+
+  async function toggleFavoriteBrand(brandId: string) {
+    const user = currentUser;
+
+    if (!user) {
+      applySnapshot(EMPTY_FAVORITE_SNAPSHOT);
+      setFavoritesError(null);
+      return;
+    }
+
+    await loadPromiseRef.current;
+
+    if (activeUserIdRef.current !== user.uid) {
+      return;
+    }
+
+    const previousSnapshot = snapshotRef.current;
+    const isRemovingFavorite =
+      previousSnapshot.favoriteBrandIds.includes(brandId);
+    const nextSnapshot = cleanFavoriteSnapshot({
+      ...previousSnapshot,
+      favoriteBrandIds: toggleFavoriteId(
+        previousSnapshot.favoriteBrandIds,
+        brandId,
+      ),
+    });
+    const revision = mutationRevisionRef.current + 1;
+    mutationRevisionRef.current = revision;
+    applySnapshot(nextSnapshot);
+    setFavoritesError(null);
+
+    if (!isRemovingFavorite) {
+      trackProductEvent("favorite_brand", { brand_id: brandId });
+    }
+
+    await persistSnapshot(user, nextSnapshot, revision);
   }
 
   function isFavorite(outletId: string) {
     return favoriteIds.includes(outletId);
-  }
-
-  async function toggleFavoriteBrand(brandId: string) {
-    if (!currentUser) {
-      setFavoriteBrandIds([]);
-      setFavoritesError(null);
-      return;
-    }
-
-    const isRemovingFavorite = favoriteBrandIds.includes(brandId);
-    const nextFavoriteBrandIds = isRemovingFavorite
-      ? favoriteBrandIds.filter((id) => id !== brandId)
-      : [...favoriteBrandIds, brandId];
-
-    const didSave = await saveFavorites(favoriteIds, nextFavoriteBrandIds);
-    if (didSave && !isRemovingFavorite) {
-      trackProductEvent("favorite_brand", { brand_id: brandId });
-    }
   }
 
   function isFavoriteBrand(brandId: string) {
@@ -255,7 +368,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
         favoriteBrandIds,
         favoritesError,
         favoritesLoading,
-        reloadFavorites: loadFavorites,
+        reloadFavorites,
         toggleFavorite,
         toggleFavoriteBrand,
         isFavorite,

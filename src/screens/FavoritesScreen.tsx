@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   ScrollView,
   StyleSheet,
   Text,
@@ -8,8 +9,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 import { resolveVisibleFavoriteOutlets } from "../utils/favoriteOutlets";
+import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
-import { useUser } from "../contexts/UserContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import {
@@ -18,8 +19,13 @@ import {
 } from "../utils/locationDisplay";
 
 export function FavoritesScreen() {
-  const { favoriteIds, favoritesError } = useFavorites();
-  const { isLoggedIn } = useUser();
+  const {
+    favoriteIds,
+    favoritesError,
+    favoritesLoading,
+    reloadFavorites,
+  } = useFavorites();
+  const { isAuthenticated } = useAuth();
   const { t, language } = useTranslation();
   const { isNativeRTL } = useLayoutDirection();
   const navigation = useNavigation<any>();
@@ -31,22 +37,7 @@ export function FavoritesScreen() {
       <Text style={styles.pageTitle}>{t("favorites.title")}</Text>
       <Text style={styles.pageSubtitle}>{t("favorites.subtitle")}</Text>
 
-      {favoritesError === "permission-denied" ? (
-        <View style={styles.emptyCard}>
-          <Text style={styles.emptyTitle}>{t("favorites.signInTitle")}</Text>
-
-          <Text style={styles.emptyText}>
-            {t("favorites.permissionDenied")}
-          </Text>
-
-          <TouchableOpacity
-            style={styles.signInButton}
-            onPress={() => navigation.navigate("Login")}
-          >
-            <Text style={styles.signInButtonText}>{t("profile.signIn")}</Text>
-          </TouchableOpacity>
-        </View>
-      ) : !isLoggedIn ? (
+      {!isAuthenticated ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyTitle}>{t("favorites.signInTitle")}</Text>
 
@@ -59,6 +50,27 @@ export function FavoritesScreen() {
             <Text style={styles.signInButtonText}>{t("profile.signIn")}</Text>
           </TouchableOpacity>
         </View>
+      ) : favoritesLoading && favoriteOutlets.length === 0 ? (
+        <View style={styles.emptyCard}>
+          <ActivityIndicator color="#0B1F3A" size="large" />
+        </View>
+      ) : favoritesError && favoriteOutlets.length === 0 ? (
+        <View style={styles.emptyCard}>
+          <Text style={styles.emptyTitle}>{t("favorites.title")}</Text>
+
+          <Text style={styles.emptyText}>
+            {t("favorites.permissionDenied")}
+          </Text>
+
+          <TouchableOpacity
+            style={styles.signInButton}
+            onPress={() => void reloadFavorites()}
+          >
+            <Text style={styles.signInButtonText}>
+              {t("brandWishlist.retry")}
+            </Text>
+          </TouchableOpacity>
+        </View>
       ) : favoriteOutlets.length === 0 ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyTitle}>{t("favorites.emptyTitle")}</Text>
@@ -66,31 +78,52 @@ export function FavoritesScreen() {
           <Text style={styles.emptyText}>{t("favorites.emptyText")}</Text>
         </View>
       ) : (
-        favoriteOutlets.map((outlet) => (
-          <TouchableOpacity
-            key={outlet.outletId}
-            style={styles.card}
-            activeOpacity={0.86}
-            onPress={() =>
-              navigation.navigate("OutletDetail", { outletId: outlet.outletId })
-            }
-          >
-            <View style={styles.cardHeader}>
-              <View style={styles.cardCopy}>
-                <Text style={styles.cardLabel}>{t("favorites.cardLabel")}</Text>
+        <>
+          {favoritesError ? (
+            <View style={styles.syncWarning}>
+              <Text style={styles.syncWarningText}>
+                {t("favorites.permissionDenied")}
+              </Text>
+              <TouchableOpacity onPress={() => void reloadFavorites()}>
+                <Text style={styles.syncWarningAction}>
+                  {t("brandWishlist.retry")}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
 
-                <Text style={styles.cardTitle}>{outlet.name}</Text>
+          {favoriteOutlets.map((outlet) => (
+            <TouchableOpacity
+              key={outlet.outletId}
+              style={styles.card}
+              activeOpacity={0.86}
+              onPress={() =>
+                navigation.navigate("OutletDetail", {
+                  outletId: outlet.outletId,
+                })
+              }
+            >
+              <View style={styles.cardHeader}>
+                <View style={styles.cardCopy}>
+                  <Text style={styles.cardLabel}>
+                    {t("favorites.cardLabel")}
+                  </Text>
 
-                <Text style={styles.cardText}>
-                  {formatCityDisplayName(outlet.cityId, language)},{" "}
-                  {formatCountryDisplayName(outlet.countryId, language)}
+                  <Text style={styles.cardTitle}>{outlet.name}</Text>
+
+                  <Text style={styles.cardText}>
+                    {formatCityDisplayName(outlet.cityId, language)},{" "}
+                    {formatCountryDisplayName(outlet.countryId, language)}
+                  </Text>
+                </View>
+
+                <Text style={styles.cardArrow}>
+                  {isNativeRTL ? "‹" : "›"}
                 </Text>
               </View>
-
-              <Text style={styles.cardArrow}>{isNativeRTL ? "‹" : "›"}</Text>
-            </View>
-          </TouchableOpacity>
-        ))
+            </TouchableOpacity>
+          ))}
+        </>
       )}
     </ScrollView>
   );
@@ -177,6 +210,29 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#666666",
     lineHeight: 20,
+  },
+
+  syncWarning: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#FFF7DA",
+    borderRadius: 16,
+    padding: 14,
+    marginBottom: 14,
+  },
+
+  syncWarningText: {
+    flex: 1,
+    color: "#666666",
+    fontSize: 13,
+    lineHeight: 18,
+  },
+
+  syncWarningAction: {
+    color: "#0B1F3A",
+    fontSize: 13,
+    fontWeight: "900",
+    marginStart: 12,
   },
 
   signInButton: {

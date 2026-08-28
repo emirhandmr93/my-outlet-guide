@@ -9,6 +9,10 @@ import {
   toggleOutletVisitBrand,
   toggleOutletVisitPriority,
 } from "../src/services/visitModeState";
+import {
+  cleanFavoriteSnapshot,
+  toggleFavoriteId,
+} from "../src/services/favoritesStorage";
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
@@ -65,11 +69,22 @@ assert(reordered.orderedBrandIds.join(",") === "adidas,nike", "Visit Mode must r
 const noted = setOutletVisitNote(reordered, "Size 42", ["nike", "adidas"], 80);
 assert(noted.note === "Size 42", "Visit Mode must retain the shopping note.");
 
+const cleanFavorites = cleanFavoriteSnapshot({
+  favoriteIds: [" outlet-a ", "outlet-a", null],
+  favoriteBrandIds: ["nike", "nike", "adidas"],
+});
+assert(cleanFavorites.favoriteIds.join(",") === "outlet-a", "Favorites must normalize duplicate outlet IDs.");
+assert(cleanFavorites.favoriteBrandIds.join(",") === "nike,adidas", "Brand Wishlist must normalize duplicate brand IDs.");
+assert(toggleFavoriteId(cleanFavorites.favoriteBrandIds, "nike").join(",") === "adidas", "Brand Wishlist must remove an existing brand deterministically.");
+assert(toggleFavoriteId(cleanFavorites.favoriteBrandIds, "puma").join(",") === "nike,adidas,puma", "Brand Wishlist must add a new brand deterministically.");
+
 const outletDetail = read("src/screens/OutletDetailScreen.tsx");
 const visitMode = read("src/screens/VisitModeScreen.tsx");
 const brandResults = read("src/screens/BrandResultsScreen.tsx");
 const brandWishlist = read("src/screens/BrandWishlistScreen.tsx");
+const favoritesScreen = read("src/screens/FavoritesScreen.tsx");
 const favorites = read("src/contexts/FavoritesContext.tsx");
+const favoritesStorage = read("src/services/favoritesStorage.ts");
 const navigation = read("src/navigation/AppNavigator.tsx");
 const linking = read("src/navigation/webLinking.ts");
 const rules = read("firestore.rules");
@@ -81,10 +96,14 @@ assert(visitMode.includes("toggleOutletVisitPriority") && visitMode.includes("mo
 assert(brandResults.includes("toggleFavoriteBrand(brand.brandId)"), "Brand pages must support Brand Wishlist toggling.");
 assert(brandResults.includes("useAuth()") && brandResults.includes("isLoggedIn: isAuthenticated"), "Brand pages must use the canonical Firebase authentication state.");
 assert(brandWishlist.includes("favoriteBrandIds") && brandWishlist.includes('navigation.navigate("BrandResults"'), "Brand Wishlist must resolve saved brands to brand results.");
-assert(brandWishlist.includes("isAuthenticated") && brandWishlist.indexOf("!isAuthenticated") < brandWishlist.indexOf('favoritesError === "permission-denied"'), "Brand Wishlist must distinguish signed-out state from a signed-in sync error.");
+assert(brandWishlist.includes("isAuthenticated") && brandWishlist.indexOf("!isAuthenticated") < brandWishlist.indexOf("favoritesError &&"), "Brand Wishlist must distinguish signed-out state from a signed-in sync error.");
 assert(brandWishlist.includes("favoritesLoading") && brandWishlist.includes("reloadFavorites"), "Brand Wishlist must expose loading and retry states.");
+assert(favoritesScreen.includes("isAuthenticated") && favoritesScreen.includes("reloadFavorites") && favoritesScreen.includes("syncWarning"), "Outlet favorites must retain cached content and expose retry without misclassifying signed-in users.");
 assert(favorites.includes("writeFavoritesWithAuthRetry") && favorites.includes("favoriteBrandIds") && favorites.includes('trackProductEvent("favorite_brand"'), "Brand Wishlist must sync through the favorites document and emit analytics.");
 assert(favorites.includes("useAuth()") && favorites.includes("getIdToken(true)") && favorites.includes("readFavoritesWithAuthRetry"), "Favorites sync must use canonical auth and retry once after refreshing an expired token.");
+assert(favorites.includes("snapshotRef") && favorites.includes("cloudQueueRef") && favorites.includes("mutationRevisionRef"), "Favorites mutations must use the latest snapshot and serialize cloud writes.");
+assert(favorites.includes("readFavoriteCache") && favorites.includes("writeFavoriteCache") && favorites.includes("local copy retained"), "Favorites must retain a durable local copy when cloud sync is unavailable.");
+assert(favoritesStorage.includes("AsyncStorage.setItem") && favoritesStorage.includes("dirty"), "Favorites cache must persist pending sync state across app restarts.");
 assert(navigation.includes('name="VisitMode"') && navigation.includes('name="BrandWishlist"'), "Both shopping companion screens must be registered.");
 assert(linking.includes('path: "visit/:outletId"') && linking.includes('path: "brand-wishlist"'), "Both shopping companion screens must have web routes.");
 assert(rules.includes("hasOnly(['favoriteIds', 'favoriteBrandIds'])") && rules.includes("favoriteBrandIds is list"), "Firestore rules must allow only validated Brand Wishlist data.");
