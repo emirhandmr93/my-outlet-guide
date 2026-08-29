@@ -20,12 +20,12 @@ import { useTranslation } from "../hooks/useTranslation";
 import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import type { RootStackParamList } from "../navigation/types";
 import {
-  buildTravelBasketAffiliateUrl,
-  getTravelBasketProvider,
+  buildTravelBasketOutboundLink,
   type TravelBasketCategory,
   type TravelBasketPlacement,
 } from "../services/travelBasketAffiliateLinks";
 import colors from "../theme/colors";
+import { getTravelBasketEsimCopy } from "../translations/travelBasketEsimCopy";
 import { formatIsoDateOnly } from "../utils/dateOnly";
 import { openExternalBrowserUrl } from "../utils/externalUrl";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
@@ -39,13 +39,14 @@ type BasketItem = {
   titleKey: string;
   bodyKey: string;
   ctaKey: string;
+  showTurkeyAccessNotice?: boolean;
 };
 
 const BASKET_ITEMS: readonly BasketItem[] = [
   { category: "flight", provider: "Aviasales", icon: "airplane-search", titleKey: "travelBasket.flightTitle", bodyKey: "travelBasket.flightBody", ctaKey: "travelBasket.flightCta" },
   { category: "hotel", provider: "Agoda", icon: "bed-outline", titleKey: "travelBasket.hotelTitle", bodyKey: "travelBasket.hotelBody", ctaKey: "travelBasket.hotelCta" },
   { category: "transfer", provider: "Kiwitaxi", icon: "car-outline", titleKey: "travelBasket.transferTitle", bodyKey: "travelBasket.transferBody", ctaKey: "travelBasket.transferCta" },
-  { category: "esim", provider: "Airalo", icon: "sim-outline", titleKey: "travelBasket.esimTitle", bodyKey: "travelBasket.esimBody", ctaKey: "travelBasket.esimCta" },
+  { category: "esim", provider: "Yesim", icon: "sim-outline", titleKey: "travelBasket.esimTitle", bodyKey: "travelBasket.esimBody", ctaKey: "travelBasket.esimCta", showTurkeyAccessNotice: true },
   { category: "activities", provider: "Tiqets", icon: "ticket-confirmation-outline", titleKey: "travelBasket.activitiesTitle", bodyKey: "travelBasket.activitiesBody", ctaKey: "travelBasket.activitiesCta" },
 ] as const;
 
@@ -87,21 +88,21 @@ export function TravelBasketScreen() {
 
   const placement: TravelBasketPlacement = route.params?.source ?? "travel_basket_hub";
 
-  async function openAffiliate(category: TravelBasketCategory) {
+  async function openPartner(category: TravelBasketCategory) {
     if (openingCategory) return;
-    const provider = getTravelBasketProvider(category);
-    const affiliateUrl = buildTravelBasketAffiliateUrl({
+    const outboundLink = buildTravelBasketOutboundLink({
       category,
       placement,
       contextId: context.contextId,
     });
     trackProductEvent("outbound_affiliate_click", {
-      affiliate: provider,
+      affiliate: outboundLink.provider,
       category,
+      monetized: outboundLink.monetized,
       placement,
     });
     setOpeningCategory(category);
-    const opened = await openExternalBrowserUrl(affiliateUrl);
+    const opened = await openExternalBrowserUrl(outboundLink.url);
     setOpeningCategory(null);
     if (!opened) Alert.alert(t("travelBasket.openFailedTitle"), t("travelBasket.openFailedBody"));
   }
@@ -111,7 +112,7 @@ export function TravelBasketScreen() {
       navigation.navigate("FlightSearch");
       return;
     }
-    void openAffiliate(category);
+    void openPartner(category);
   }
 
   return (
@@ -142,6 +143,7 @@ export function TravelBasketScreen() {
       <View style={styles.grid}>
         {BASKET_ITEMS.map((item) => {
           const isOpening = item.category !== "flight" && openingCategory === item.category;
+          const esimCopy = item.category === "esim" ? getTravelBasketEsimCopy(language) : null;
           return (
             <View key={item.category} style={[styles.itemCard, isDesktopWeb && styles.desktopItemCard]}>
               <View style={[styles.itemHeader, isNativeRTL && styles.rowReverse]}>
@@ -151,7 +153,13 @@ export function TravelBasketScreen() {
                 <Text style={styles.provider}>{item.provider}</Text>
               </View>
               <Text style={[styles.itemTitle, isNativeRTL && styles.rtlText]}>{t(item.titleKey)}</Text>
-              <Text style={[styles.itemBody, isNativeRTL && styles.rtlText]}>{t(item.bodyKey)}</Text>
+              <Text style={[styles.itemBody, isNativeRTL && styles.rtlText]}>{esimCopy?.body ?? t(item.bodyKey)}</Text>
+              {item.showTurkeyAccessNotice && esimCopy ? (
+                <View style={[styles.itemNotice, isNativeRTL && styles.rowReverse]}>
+                  <MaterialCommunityIcons name="alert-circle-outline" size={17} color={colors.goldDark} />
+                  <Text style={[styles.itemNoticeText, isNativeRTL && styles.rtlText]}>{esimCopy.turkeyNotice}</Text>
+                </View>
+              ) : null}
               <TouchableOpacity
                 accessibilityRole={item.category === "flight" ? "button" : "link"}
                 accessibilityLabel={`${t(item.ctaKey)} · ${item.provider}`}
@@ -202,6 +210,8 @@ const styles = StyleSheet.create({
   provider: { backgroundColor: colors.surfaceMuted, borderRadius: 999, color: colors.textSecondary, fontSize: 11, fontWeight: "900", overflow: "hidden", paddingHorizontal: 10, paddingVertical: 5 },
   itemTitle: { color: colors.primary, fontSize: 20, fontWeight: "900", marginTop: 15 },
   itemBody: { color: colors.textSecondary, flexGrow: 1, fontSize: 14, lineHeight: 21, marginTop: 7 },
+  itemNotice: { alignItems: "flex-start", backgroundColor: colors.warningSoft, borderColor: "#E8CF88", borderRadius: 14, borderWidth: 1, flexDirection: "row", gap: 8, marginTop: 12, padding: 11 },
+  itemNoticeText: { color: colors.goldDark, flex: 1, fontSize: 12, fontWeight: "800", lineHeight: 17 },
   itemButton: { alignItems: "center", backgroundColor: colors.gold, borderRadius: 16, justifyContent: "center", marginTop: 16, minHeight: 48, paddingHorizontal: 14, paddingVertical: 13 },
   itemButtonText: { color: colors.primary, fontWeight: "900", textAlign: "center" },
   disabledButton: { opacity: 0.6 },
