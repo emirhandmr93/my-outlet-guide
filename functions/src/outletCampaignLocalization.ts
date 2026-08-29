@@ -113,7 +113,13 @@ function percentageTokens(value: string): number[] {
     .filter(zhe => Number.isFinite(zhe) && zhe >= 0 && zhe <= 10)
     .map(zhe => Math.round((100 - zhe * 10) * 1000) / 1000)
     .filter(discount => discount >= 0 && discount <= 100);
-  return zheDiscounts.sort((left, right) => left - right);
+  if (zheDiscounts.length > 0) return zheDiscounts.sort((left, right) => left - right);
+
+  // “50% off” is also commonly localized as 半价/半價 (half price), 对折/對折,
+  // or wording that the price is halved. These all preserve 50%-off evidence.
+  if (/(?:半价|半價|对折|對折|价格减半|價格減半|价钱减半|價錢減半)/.test(normalized)) return [50];
+
+  return [];
 }
 
 function preservesDiscountEvidence(source: string, translated: string): boolean {
@@ -153,7 +159,7 @@ function translationValidationFailure(value: CampaignLocalizedText, english: Cam
   const discountLabel = normalizeText(value.discountLabel, fieldLimits.discountLabel);
   if (!discountLabel) return "translation_validation_failed:discountLabel";
   if (!preservesDiscountEvidence(english.discountLabel, discountLabel)) {
-    return `translation_validation_failed:discountEvidence:${JSON.stringify(percentageTokens(english.discountLabel))}->${JSON.stringify(percentageTokens(discountLabel))}`;
+    return `translation_validation_failed:discountEvidence:${JSON.stringify(percentageTokens(english.discountLabel))}->${JSON.stringify(percentageTokens(discountLabel))}:value=${JSON.stringify(discountLabel)}`;
   }
   return "translation_validation_failed:unknown";
 }
