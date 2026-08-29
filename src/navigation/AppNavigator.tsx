@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ActivityIndicator, Platform, Pressable, useWindowDimensions, View } from "react-native";
 import { useEffect, useRef, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Feather from "@expo/vector-icons/Feather";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -72,6 +73,11 @@ import { syncWebSeo } from "../utils/webSeo";
 import { trackWebPageView } from "../utils/webAnalytics";
 import { trackNativeScreen } from "../utils/productAnalytics";
 import { notificationResponseApi } from "../services/notificationResponseApi";
+import {
+floatingTabBarHeight,
+floatingTabBarMinimumTouchTarget,
+getFloatingTabBarBottomOffset,
+} from "../utils/safeAreaLayout";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -217,7 +223,12 @@ return <Ionicons name={focused ? "person" : "person-outline"} size={size} color=
 function MainTabs() {
 const { t } = useTranslation();
 const { width } = useWindowDimensions();
+const insets = useSafeAreaInsets();
 const isDesktopWeb = Platform.OS === "web" && width >= 1024;
+const mobileTabBarBottomOffset = getFloatingTabBarBottomOffset(
+Platform.OS,
+insets.bottom,
+);
 
 const tabLabels: Record<string, string> = {
 Home: t("nav.home"),
@@ -245,6 +256,7 @@ marginTop: isDesktopWeb ? 0 : 2,
 },
 tabBarActiveBackgroundColor: isDesktopWeb ? "rgba(201,162,39,0.14)" : undefined,
 tabBarInactiveBackgroundColor: isDesktopWeb ? "transparent" : undefined,
+tabBarHideOnKeyboard: !isDesktopWeb,
 tabBarItemStyle: isDesktopWeb
 ? {
 height: 52,
@@ -252,7 +264,9 @@ marginHorizontal: 12,
 marginVertical: 4,
 borderRadius: 13,
 }
-: undefined,
+: {
+minHeight: floatingTabBarMinimumTouchTarget,
+},
 tabBarLabelPosition: isDesktopWeb ? "beside-icon" : "below-icon",
 tabBarPosition: isDesktopWeb ? "left" : "bottom",
 tabBarStyle: {
@@ -269,8 +283,8 @@ paddingBottom: 24,
 position: "absolute",
 left: 14,
 right: 14,
-bottom: Platform.OS === "ios" ? 18 : 12,
-height: 76,
+bottom: mobileTabBarBottomOffset,
+height: floatingTabBarHeight,
 backgroundColor: "#0B1F3A",
 borderTopWidth: 0,
 borderRadius: 28,
