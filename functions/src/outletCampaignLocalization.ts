@@ -1,3 +1,4 @@
+import { logger } from "firebase-functions";
 import { GoogleAuth } from "google-auth-library";
 
 import type { ParsedOfficialCampaign } from "./outletCampaignParser";
@@ -239,9 +240,15 @@ export async function buildCampaignLocalization(
       localizedText[language] = parsed;
       completeLocales.push(language);
     } catch (error) {
+      const failure = errorSummary(error);
       localizedText[language] = english;
       failedLocales.push(language);
-      failedLocaleErrors[language] = errorSummary(error);
+      failedLocaleErrors[language] = failure;
+      logger.warn("Official campaign translation locale failed; source-language fallback retained", {
+        campaignId: campaign.campaignId,
+        locale: language,
+        error: failure,
+      });
     }
   });
 
