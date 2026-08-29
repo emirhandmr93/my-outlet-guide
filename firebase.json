@@ -158,6 +158,27 @@
     ],
     "rewrites": [
       {
+        "source": "/:language/campaign/:campaignId",
+        "function": {
+          "functionId": "campaignLandingPage",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/campaign/:campaignId",
+        "function": {
+          "functionId": "campaignLandingPage",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/campaign-sitemap.xml",
+        "function": {
+          "functionId": "campaignSitemap",
+          "region": "us-central1"
+        }
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "providers": {
+    "agoda": {
+      "enabled": true,
+      "monetized": false,
+      "url": "https://www.agoda.com/"
+    },
+    "kiwitaxi": {
+      "enabled": true,
+      "monetized": true,
+      "url": "https://c1.travelpayouts.com/click?shmarker=758419.transfer_travel_basket_hub&promo_id=647&source_type=customlink&type=click&custom_url=https%3A%2F%2Fkiwitaxi.com%2F"
+    },
+    "yesim": {
+      "enabled": true,
+      "monetized": true,
+      "url": "https://yesim.tpo.lu/yYoCOrkF"
+    },
+    "tiqets": {
+      "enabled": true,
+      "monetized": true,
+      "url": "https://c89.travelpayouts.com/click?shmarker=758419.activities_travel_basket_hub&promo_id=2074&source_type=customlink&type=click&custom_url=https%3A%2F%2Fwww.tiqets.com%2F"
+    }
+  }
+}

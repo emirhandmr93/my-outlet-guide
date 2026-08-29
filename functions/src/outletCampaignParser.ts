@@ -34,6 +34,7 @@ export type ParsedOfficialCampaign = {
   dateEvidenceSource: "detail_page" | "official_listing";
   timeZone: string;
   featuredPriority: number;
+  type: "offer" | "event";
 };
 
 export type OfficialCampaignCandidate = {
@@ -234,6 +235,21 @@ function extractDiscount(text: string): { label: string; percent?: number } | nu
   return null;
 }
 
+function objectTypes(value: unknown): string[] {
+  if (typeof value === "string") return [value.toLowerCase()];
+  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === "string")
+    .map(item => item.toLowerCase());
+  return [];
+}
+
+function hasOfficialEventEvidence(objects: Record<string, unknown>[], headline: string, description: string): boolean {
+  if (objects.some(object => objectTypes(object["@type"]).some(type => type === "event" || type.endsWith("event")))) {
+    return true;
+  }
+  return /\b(?:event|festival|workshop|concert|celebration|family day|fashion show|late night shopping|shopping night)\b/i
+    .test(`${headline}. ${description}`);
+}
+
 function extractConditions(text: string, description: string): string {
   const sentences = text.split(/(?<=[.!?])\s+/).filter(sentence =>
     /\b(?:terms?|conditions?|t&c|valid|participating|selected|excludes?|while stocks last|members? only)\b/i.test(sentence),
@@ -319,24 +335,29 @@ export function parseOfficialCampaignPage(
     : extractDateRange([], cleanText(officialListingEvidence, 2_000));
   const dateRange = detailDateRange ?? listingDateRange;
   const discount = extractDiscount(`${headline}. ${description}. ${text}`);
+  const eventEvidence = hasOfficialEventEvidence(objects, headline, description);
+  const type: ParsedOfficialCampaign["type"] | null = discount ? "offer" : eventEvidence ? "event" : null;
+  const displayName = type === "event" ? source.outletName : brandName;
 
   if (headline.length < 5) reasons.push("missing_headline");
   if (description.length < 10) reasons.push("missing_summary");
-  if (!brandName || brandName.toLowerCase().includes(source.outletName.toLowerCase())) reasons.push("missing_brand");
+  if (type === "offer" && (!brandName || brandName.toLowerCase().includes(source.outletName.toLowerCase()))) reasons.push("missing_brand");
   if (!dateRange) reasons.push("missing_explicit_date_range");
   else if (!isSaneDateWindow(dateRange.startsOn, dateRange.endsOn)) reasons.push("invalid_date_range");
-  if (!discount) reasons.push("missing_discount_evidence");
-  if (reasons.length || !dateRange || !discount) return { status: "rejected", reasons, sourceUrl: canonicalUrl };
+  if (!type) reasons.push("missing_discount_or_event_evidence");
+  if (reasons.length || !dateRange || !type) return { status: "rejected", reasons, sourceUrl: canonicalUrl };
 
   const conditions = extractConditions(text, description);
+  const badgeLabel = discount?.label ?? "Official event";
   const sourceFingerprint = hash(JSON.stringify({
     sourceUrl: canonicalUrl,
+    type,
     headline,
     description,
-    brandName,
+    brandName: displayName,
     startsOn: dateRange.startsOn,
     endsOn: dateRange.endsOn,
-    discountLabel: discount.label,
+    discountLabel: badgeLabel,
     conditions,
   }), 64);
 
@@ -351,17 +372,18 @@ export function parseOfficialCampaignPage(
       sourceFingerprint,
       outletId: source.outletId,
       outletName: source.outletName,
-      brandName,
+      brandName: displayName,
       headline,
       summary: description,
       conditions,
-      discountLabel: discount.label,
-      ...(discount.percent === undefined ? {} : { discountPercent: discount.percent }),
+      discountLabel: badgeLabel,
+      ...(discount?.percent === undefined ? {} : { discountPercent: discount.percent }),
       startsOn: dateRange.startsOn,
       endsOn: dateRange.endsOn,
       dateEvidenceSource: detailDateRange ? "detail_page" : "official_listing",
       timeZone: source.timeZone,
-      featuredPriority: (discount.percent ?? 0) * 1_000 + 100,
+      featuredPriority: type === "offer" ? (discount?.percent ?? 0) * 1_000 + 100 : 50,
+      type,
     },
   };
 }

@@ -11,14 +11,18 @@ import {
 } from "../constants/travelAffiliate";
 
 export type TravelBasketCategory = "hotel" | "transfer" | "esim" | "activities";
-export type TravelBasketPlacement = "travel_basket_hub" | "outlet_detail" | "trip_detail";
+export type TravelBasketPlacement = "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail";
 export type TravelBasketProvider = "agoda" | "kiwitaxi" | "yesim" | "tiqets";
 
 type TravelBasketOutboundInput = {
   category: TravelBasketCategory;
   placement: TravelBasketPlacement;
   contextId?: string;
+  overrides?: TravelPartnerOverrides;
 };
+
+export type TravelPartnerOverride = { url: string; monetized: boolean };
+export type TravelPartnerOverrides = Partial<Record<TravelBasketProvider, TravelPartnerOverride>>;
 
 export type TravelBasketOutboundLink = {
   monetized: boolean;
@@ -39,6 +43,31 @@ const TRUSTED_TARGET_HOSTS = new Set([
   "yesim.tpo.lu",
   "www.tiqets.com",
 ]);
+
+function isTrustedOutboundUrl(value: string): boolean {
+  try {
+    const url = new URL(value);
+    const host = url.hostname.toLowerCase();
+    return url.protocol === "https:" && !url.username && !url.password && (
+      TRUSTED_TARGET_HOSTS.has(host) || host.endsWith(".travelpayouts.com")
+    );
+  } catch { return false; }
+}
+
+export function parseTravelPartnerOverrides(value: unknown): TravelPartnerOverrides {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return {};
+  const source = value as Record<string, unknown>;
+  const result: TravelPartnerOverrides = {};
+  for (const provider of ["agoda", "kiwitaxi", "yesim", "tiqets"] as const) {
+    const candidate = source[provider];
+    if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) continue;
+    const data = candidate as Record<string, unknown>;
+    if (data.enabled !== true || typeof data.url !== "string" || typeof data.monetized !== "boolean" ||
+      !isTrustedOutboundUrl(data.url)) continue;
+    result[provider] = { url: data.url, monetized: data.monetized };
+  }
+  return result;
+}
 
 export function normalizeTravelAffiliateSubId(value: string | undefined): string {
   if (!value) return "";
@@ -95,6 +124,14 @@ export function buildTravelBasketOutboundLink(input: TravelBasketOutboundInput):
   const subId = [input.category, input.placement, input.contextId]
     .filter(Boolean)
     .join("_");
+
+  const providerByCategory: Record<TravelBasketCategory, TravelBasketProvider> = {
+    hotel: "agoda", transfer: "kiwitaxi", esim: "yesim", activities: "tiqets",
+  };
+  const configured = input.overrides?.[providerByCategory[input.category]];
+  if (configured && isTrustedOutboundUrl(configured.url)) {
+    return { provider: providerByCategory[input.category], url: configured.url, monetized: configured.monetized };
+  }
 
   switch (input.category) {
     case "hotel":

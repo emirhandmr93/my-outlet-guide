@@ -85,11 +85,29 @@ const validHtml = `
 const verified = parseOfficialCampaignPage(validHtml, verifiedUrl, cheshire);
 assert.equal(verified.status, "verified");
 if (verified.status === "verified") {
+  assert.equal(verified.campaign.type, "offer");
   assert.equal(verified.campaign.brandName, "Nike");
   assert.equal(verified.campaign.startsOn, "2026-08-29");
   assert.equal(verified.campaign.endsOn, "2026-08-31");
   assert.equal(verified.campaign.discountPercent, 30);
   assert.equal(verified.campaign.sourceHost, "www.mcarthurglen.com");
+}
+
+const officialEvent = parseOfficialCampaignPage(`
+  <!doctype html><html><head>
+    <title>Family Fashion Festival | Cheshire Oaks Designer Outlet</title>
+    <meta name="description" content="Join the official family fashion festival with workshops and live entertainment.">
+    <script type="application/ld+json">{
+      "@context":"https://schema.org","@type":"Event","name":"Family Fashion Festival",
+      "startDate":"2026-09-05","endDate":"2026-09-06","description":"Workshops and live entertainment."
+    }</script>
+  </head><body><h1>Family Fashion Festival</h1><p>5 September 2026 to 6 September 2026.</p></body></html>
+`, "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/whats-on/family-fashion-festival/", cheshire);
+assert.equal(officialEvent.status, "verified");
+if (officialEvent.status === "verified") {
+  assert.equal(officialEvent.campaign.type, "event");
+  assert.equal(officialEvent.campaign.brandName, cheshire.outletName);
+  assert.equal(officialEvent.campaign.discountPercent, undefined);
 }
 
 const athens = officialCampaignSources.find(source => source.outletId === "designer-outlet-athens");
@@ -244,6 +262,7 @@ assert(clientService.includes("resolveCampaignDisplayText(data.localizedText, la
 "The client must resolve localized campaign content with field-level English and discount-integrity fallbacks.");
 assert(functionsIndex.includes("collectOfficialOutletCampaigns"), "Campaign collection function is not exported.");
 assert(functionsIndex.includes("reconcileOfficialOutletCampaigns"), "Campaign publication reconciler is not exported.");
+assert(functionsIndex.includes("processOutletCampaignNotifications"), "Campaign notification processor is not exported.");
 assert(automation.includes('schedule: "every 6 hours"'), "Official source collection schedule is missing.");
 assert(automation.includes('schedule: "every 15 minutes"'), "Automatic publish/expiry schedule is missing.");
 assert(automation.includes("SOURCE_CONCURRENCY = 2")

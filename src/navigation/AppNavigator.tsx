@@ -64,6 +64,10 @@ getNotificationResponseIdentity,
 isSameFlightDealRoute,
 parseFlightPriceNotificationResponse,
 } from "../services/flightPriceNotificationResponse";
+import {
+isSameCampaignRoute,
+parseOutletCampaignNotificationResponse,
+} from "../services/outletCampaignNotificationResponse";
 import colors from "../theme/colors";
 
 import type { MainTabParamList, RootStackParamList } from "./types";
@@ -71,7 +75,7 @@ import { useNavigationFonts } from "./useNavigationFonts";
 import { createWebLinking } from "./webLinking";
 import { syncWebSeo } from "../utils/webSeo";
 import { trackWebPageView } from "../utils/webAnalytics";
-import { trackNativeScreen } from "../utils/productAnalytics";
+import { trackNativeScreen, trackProductEvent } from "../utils/productAnalytics";
 import { notificationResponseApi } from "../services/notificationResponseApi";
 import {
 floatingTabBarHeight,
@@ -385,12 +389,21 @@ await notificationResponseApi.clearLastNotificationResponseAsync();
 }
 
 function enqueueResponse(response: unknown) {
-const result = parseFlightPriceNotificationResponse(response, notificationResponseApi.DEFAULT_ACTION_IDENTIFIER);
-if (result.status === "ignored") return;
+const flightResult = parseFlightPriceNotificationResponse(response, notificationResponseApi.DEFAULT_ACTION_IDENTIFIER);
+const campaignResult = flightResult.status === "ignored"
+? parseOutletCampaignNotificationResponse(response, notificationResponseApi.DEFAULT_ACTION_IDENTIFIER)
+: { status: "ignored" as const };
+if (flightResult.status === "ignored" && campaignResult.status === "ignored") return;
+
+const target = flightResult.status === "target"
+? { kind: "flight" as const, responseKey: flightResult.target.responseKey, responseIdentity: flightResult.target.responseIdentity, id: flightResult.target.eventId }
+: campaignResult.status === "target"
+? { kind: "campaign" as const, responseKey: campaignResult.target.responseKey, responseIdentity: campaignResult.target.responseIdentity, id: campaignResult.target.campaignId }
+: null;
 
 let shouldNavigate = false;
-if (result.status === "target" && !handledResponseKeys.current.has(result.target.responseKey)) {
-handledResponseKeys.current.set(result.target.responseKey, true);
+if (target && !handledResponseKeys.current.has(target.responseKey)) {
+handledResponseKeys.current.set(target.responseKey, true);
 shouldNavigate = true;
 while (handledResponseKeys.current.size > MAX_HANDLED_NOTIFICATION_RESPONSES) {
 const oldestKey = handledResponseKeys.current.keys().next().value;
@@ -399,13 +412,18 @@ handledResponseKeys.current.delete(oldestKey);
 }
 }
 
-const responseIdentity = result.status === "target" ? result.target.responseIdentity : result.responseIdentity;
+const responseIdentity = target?.responseIdentity ??
+(flightResult.status === "invalid_flight_price" ? flightResult.responseIdentity : undefined) ??
+(campaignResult.status === "invalid_outlet_campaign" ? campaignResult.responseIdentity : undefined);
 responseProcessingQueue.current = responseProcessingQueue.current.then(async () => {
 if (!active) return;
-if (result.status === "target" && shouldNavigate) {
+if (target && shouldNavigate) {
 if (!navigationRef.isReady()) return;
-if (!isSameFlightDealRoute(navigationRef.getCurrentRoute(), result.target.eventId)) {
-navigationRef.navigate("FlightDealDetail", { dealId: result.target.eventId });
+if (target.kind === "flight" && !isSameFlightDealRoute(navigationRef.getCurrentRoute(), target.id)) {
+navigationRef.navigate("FlightDealDetail", { dealId: target.id });
+} else if (target.kind === "campaign" && !isSameCampaignRoute(navigationRef.getCurrentRoute(), target.id)) {
+trackProductEvent("campaign_notification_open", { campaign_id: target.id });
+navigationRef.navigate("CampaignDetail", { campaignId: target.id });
 }
 }
 if (responseIdentity) await safelyClearMatchingLastResponse(responseIdentity);

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "appId": "com.myoutletguide.app",
+  "themes": [
+    {
+      "id": "outlet-deals",
+      "appleName": "Verified Outlet Deals",
+      "googleName": "Verified Outlet Deals",
+      "route": "/campaign/featured",
+      "screens": ["Home verified campaign carousel", "Campaign detail with official source", "Favorite outlet alerts"],
+      "locales": {
+        "en": { "title": "Verified outlet deals", "promo": "See current offers and events verified from official outlet sources." },
+        "tr": { "title": "Doğrulanmış outlet fırsatları", "promo": "Resmî outlet kaynaklarından doğrulanan güncel kampanya ve etkinlikleri gör." },
+        "es": { "title": "Ofertas de outlets verificadas", "promo": "Consulta ofertas y eventos actuales verificados en fuentes oficiales." },
+        "fr": { "title": "Offres outlet vérifiées", "promo": "Découvrez les offres et événements vérifiés auprès des sources officielles." },
+        "de": { "title": "Verifizierte Outlet-Angebote", "promo": "Aktuelle Angebote und Events aus offiziellen Outlet-Quellen entdecken." },
+        "ar": { "title": "عروض أوتلت موثقة", "promo": "اكتشف العروض والفعاليات الحالية الموثقة من المصادر الرسمية." },
+        "ru": { "title": "Проверенные акции аутлетов", "promo": "Актуальные акции и события из официальных источников аутлетов." },
+        "zh": { "title": "已验证奥莱优惠", "promo": "查看来自奥莱官方来源的最新优惠与活动。" }
+      }
+    },
+    {
+      "id": "trip-planner",
+      "appleName": "Outlet Trip Planner",
+      "googleName": "Outlet Trip Planner",
+      "route": "/trip-planner",
+      "screens": ["Create trip", "Trip detail", "Travel Basket"],
+      "locales": {
+        "en": { "title": "Plan your outlet trip", "promo": "Keep outlets, dates, transport and useful travel partners in one plan." },
+        "tr": { "title": "Outlet seyahatini planla", "promo": "Outletleri, tarihleri, ulaşımı ve seyahat servislerini tek planda tut." },
+        "es": { "title": "Planifica tu viaje de outlet", "promo": "Reúne outlets, fechas, transporte y servicios de viaje en un plan." },
+        "fr": { "title": "Planifiez votre voyage outlet", "promo": "Regroupez outlets, dates, transports et services de voyage." },
+        "de": { "title": "Outlet-Reise planen", "promo": "Outlets, Termine, Verkehr und Reisedienste in einem Plan." },
+        "ar": { "title": "خطط لرحلة الأوتلت", "promo": "اجمع الأوتلت والتواريخ والنقل وخدمات السفر في خطة واحدة." },
+        "ru": { "title": "Спланируйте поездку", "promo": "Аутлеты, даты, транспорт и сервисы путешествий в одном плане." },
+        "zh": { "title": "规划奥莱行程", "promo": "把奥莱、日期、交通和旅行服务集中到一个计划中。" }
+      }
+    },
+    {
+      "id": "tax-free",
+      "appleName": "Tax Free Shopping Guide",
+      "googleName": "Tax Free Shopping Guide",
+      "route": "/tax-free",
+      "screens": ["Tax Free guide", "Tax Free calculator", "Savings tools"],
+      "locales": {
+        "en": { "title": "Shop smarter with Tax Free", "promo": "Understand destination rules and estimate eligible shopping savings." },
+        "tr": { "title": "Tax Free ile akıllı alışveriş", "promo": "Ülke kurallarını öğren, uygun alışveriş tasarrufunu hesapla." },
+        "es": { "title": "Compra mejor con Tax Free", "promo": "Conoce las reglas del destino y estima el ahorro elegible." },
+        "fr": { "title": "Mieux acheter avec Tax Free", "promo": "Comprenez les règles locales et estimez les économies éligibles." },
+        "de": { "title": "Clever einkaufen mit Tax Free", "promo": "Regeln verstehen und mögliche Ersparnisse berechnen." },
+        "ar": { "title": "تسوق بذكاء مع Tax Free", "promo": "افهم قواعد الوجهة وقدّر التوفير المؤهل." },
+        "ru": { "title": "Выгоднее с Tax Free", "promo": "Узнайте правила страны и оцените доступную экономию." },
+        "zh": { "title": "用退税工具聪明购物", "promo": "了解目的地规则并估算符合条件的购物优惠。" }
+      }
+    },
+    {
+      "id": "flight-alerts",
+      "appleName": "Flight Price Alerts",
+      "googleName": "Flight Price Alerts",
+      "route": "/flight-deals",
+      "screens": ["Flight search", "Price alert settings", "Flight deal detail"],
+      "locales": {
+        "en": { "title": "Watch fares for outlet trips", "promo": "Track supported routes and receive measured flight-price alerts." },
+        "tr": { "title": "Outlet seyahati uçuşlarını izle", "promo": "Desteklenen rotaları takip et, ölçülü fiyat bildirimleri al." },
+        "es": { "title": "Vigila vuelos para tus outlets", "promo": "Sigue rutas compatibles y recibe alertas de precio controladas." },
+        "fr": { "title": "Suivez les vols vers les outlets", "promo": "Suivez les itinéraires compatibles et recevez des alertes mesurées." },
+        "de": { "title": "Flüge zur Outlet-Reise beobachten", "promo": "Unterstützte Routen verfolgen und dosierte Preisalarme erhalten." },
+        "ar": { "title": "تابع رحلات الأوتلت", "promo": "راقب المسارات المدعومة واحصل على تنبيهات أسعار محسوبة." },
+        "ru": { "title": "Следите за рейсами к аутлетам", "promo": "Отслеживайте маршруты и получайте умеренные уведомления о ценах." },
+        "zh": { "title": "关注奥莱行程机票", "promo": "跟踪支持的航线并接收适量的价格提醒。" }
+      }
+    }
+  ]
+}

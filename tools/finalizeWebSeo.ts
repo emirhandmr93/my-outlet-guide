@@ -171,7 +171,7 @@ export async function finalizeWebSeo() {
     "sitemap-locations.xml": pages.filter(page=>page.kind==="country"||page.kind==="city"),
     "sitemap-transportation.xml": pages.filter(page=>page.kind==="transportation"),
   };
-  const sitemapFiles=Object.keys(sitemapGroups);
+  const sitemapFiles=[...Object.keys(sitemapGroups), "campaign-sitemap.xml"];
   let urlCount=0;
   for (const [file,groupPages] of Object.entries(sitemapGroups)) {
     const urls=WEB_SEO_LANGUAGES.flatMap(language => groupPages.map(page => `${WEB_SEO_ORIGIN}/${language}${page.path ? `/${page.path}` : ""}`)).sort();
@@ -180,7 +180,7 @@ export async function finalizeWebSeo() {
   }
   await writeFile(join(DIST,"sitemap.xml"),sitemapIndex(sitemapFiles));
   await writeFile(join(DIST,"robots.txt"),`User-agent: *\nAllow: /\n\nSitemap: ${WEB_SEO_ORIGIN}/sitemap.xml\n`);
-  console.log(`finalizeWebSeo: generated ${urlCount} indexable localized pages across ${sitemapFiles.length} child sitemaps.`);
+  console.log(`finalizeWebSeo: generated ${urlCount} static indexable localized pages plus the live campaign sitemap across ${sitemapFiles.length} child sitemaps.`);
 }
 
 finalizeWebSeo().catch(error => { console.error(error instanceof Error?error.message:error); process.exitCode=1; });

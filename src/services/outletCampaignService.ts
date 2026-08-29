@@ -21,6 +21,7 @@ import { resolveCampaignDisplayText } from "./outletCampaignLocalization";
 export const OUTLET_CAMPAIGNS_COLLECTION = "outletCampaigns";
 
 export type OutletCampaign = {
+  type: "offer" | "event";
   campaignId: string;
   outletId: string;
   outletName: string;
@@ -94,12 +95,16 @@ export function parsePublishedOutletCampaign(
   const verification = data.verification && typeof data.verification === "object"
     ? data.verification as Record<string, unknown>
     : null;
+  const type = data.type === "event" ? "event" : data.type === "offer" ? "offer" : null;
+  const evidenceValid = type === "offer"
+    ? verification?.discountEvidence === true
+    : type === "event" && verification?.eventEvidence === true;
   if (data.schemaVersion !== 2 || data.status !== "published" || data.active !== true
     || data.autoPublished !== true || data.sourceLocale !== "en"
     || verification?.status !== "verified" || verification.officialDomain !== true
-    || verification.explicitDateRange !== true || verification.discountEvidence !== true
+    || verification.explicitDateRange !== true || !evidenceValid
     || verification.approvalRequired !== false
-    || campaignId !== snapshot.id || !outletId || !outletName
+    || !type || campaignId !== snapshot.id || !outletId || !outletName
     || !brandName || !headline || !summary || !discountLabel || !startsOn || !endsOn
     || !startsAt || !endsAt || !sourceUrl || !sourceHost || !timeZone
     || !/^\d{4}-\d{2}-\d{2}$/.test(startsOn) || !/^\d{4}-\d{2}-\d{2}$/.test(endsOn)
@@ -115,6 +120,7 @@ export function parsePublishedOutletCampaign(
   });
 
   return {
+    type,
     campaignId,
     outletId,
     outletName,

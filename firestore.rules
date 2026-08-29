@@ -478,7 +478,8 @@ service cloud.firestore {
           'disabledAt',
           'firestoreCreatedAt',
           'firestoreUpdatedAt',
-          'notificationLocale'
+          'notificationLocale',
+          'timeZone'
         ])
         && userId == request.auth.uid
         && request.resource.data.userId == request.auth.uid
@@ -489,6 +490,9 @@ service cloud.firestore {
         && isNonEmptyString(request.resource.data.updatedAt)
         && (!request.resource.data.keys().hasAny(['notificationLocale'])
           || request.resource.data.notificationLocale in ['en', 'tr', 'es', 'fr', 'de', 'ar', 'ru', 'zh'])
+        && (!request.resource.data.keys().hasAny(['timeZone'])
+          || (request.resource.data.timeZone is string && request.resource.data.timeZone.size() > 0
+            && request.resource.data.timeZone.size() <= 80))
         && (request.resource.data.disabledAt == null || isNonEmptyString(request.resource.data.disabledAt));
     }
 
@@ -601,6 +605,11 @@ service cloud.firestore {
       // can write these documents and the client validates the full schema.
       allow list: if resource.data.status == 'published'
         && resource.data.active == true;
+      allow create, update, delete: if false;
+    }
+
+    match /publicConfig/travelPartners {
+      allow read: if true;
       allow create, update, delete: if false;
     }
 

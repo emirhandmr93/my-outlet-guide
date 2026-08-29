@@ -25,6 +25,8 @@ export function NotificationSettingsScreen() {
     settings,
     setNotificationsEnabled,
     setTripRemindersEnabled,
+    setFavoriteOutletUpdatesEnabled,
+    setMarketingEnabled,
     tokenRegistrationStatus,
     registeredToken,
     registrationError,
@@ -132,9 +134,33 @@ export function NotificationSettingsScreen() {
             onPress={() => setTripRemindersEnabled(settings?.tripRemindersEnabled !== true)}
           />
 
+          <CategoryRow
+            icon="⭐"
+            title={t("notifications.favoriteCampaignsCategory")}
+            description={t("notifications.favoriteCampaignsCategoryDesc")}
+            status={t("notifications.categoryActive")}
+            enabled={settings?.favoriteOutletUpdatesEnabled === true}
+            disabled={isLoading || isSaving || !enabled}
+            onLabel={t("common.on")}
+            offLabel={t("common.off")}
+            onPress={() => setFavoriteOutletUpdatesEnabled(settings?.favoriteOutletUpdatesEnabled !== true)}
+          />
+
+          <CategoryRow
+            icon="🔥"
+            title={t("notifications.majorCampaignsCategory")}
+            description={t("notifications.majorCampaignsConsentDesc")}
+            status={t("notifications.explicitConsentStatus")}
+            enabled={settings?.marketingEnabled === true}
+            disabled={isLoading || isSaving || !enabled}
+            onLabel={t("common.on")}
+            offLabel={t("common.off")}
+            onPress={() => setMarketingEnabled(settings?.marketingEnabled !== true)}
+          />
+
           <View style={styles.infoBox}>
-            <Text style={styles.infoTitle}>{t("notifications.unsupportedCategoriesTitle")}</Text>
-            <Text style={styles.infoText}>{t("notifications.unsupportedCategoriesBody")}</Text>
+            <Text style={styles.infoTitle}>{t("notifications.deliveryRulesTitle")}</Text>
+            <Text style={styles.infoText}>{t("notifications.deliveryRulesBody")}</Text>
           </View>
 
         </>
