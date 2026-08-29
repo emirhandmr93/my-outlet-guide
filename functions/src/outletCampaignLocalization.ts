@@ -70,6 +70,19 @@ const TRANSLATION_CONCURRENCY = 4;
 const TRANSLATION_TIMEOUT_MS = 20_000;
 const TRANSLATION_MAX_ATTEMPTS = 3;
 const TRANSLATION_RETRY_BASE_DELAY_MS = 500;
+const chineseDiscountDigitValues: Record<string, number> = {
+  零: 0,
+  〇: 0,
+  一: 1,
+  二: 2,
+  三: 3,
+  四: 4,
+  五: 5,
+  六: 6,
+  七: 7,
+  八: 8,
+  九: 9,
+};
 
 type TranslationApiResponse = {
   translations?: Array<{ translatedText?: string | null }>;
@@ -114,6 +127,20 @@ function percentageTokens(value: string): number[] {
     .map(zhe => Math.round((100 - zhe * 10) * 1000) / 1000)
     .filter(discount => discount >= 0 && discount <= 100);
   if (zheDiscounts.length > 0) return zheDiscounts.sort((left, right) => left - right);
+
+  // Google can also spell 折 discounts with Chinese numerals. For example,
+  // “额外五折优惠” means an additional 50% discount. Two written digits such
+  // as 八五折 mean 8.5折 (the customer pays 85%, i.e. 15% off).
+  const writtenZheDiscounts = [...normalized.matchAll(/([零〇一二三四五六七八九])([零〇一二三四五六七八九])?\s*折/g)]
+    .map(match => {
+      const first = chineseDiscountDigitValues[match[1]];
+      const second = match[2] ? chineseDiscountDigitValues[match[2]] : undefined;
+      return second === undefined ? first : first + (second / 10);
+    })
+    .filter(zhe => Number.isFinite(zhe) && zhe >= 0 && zhe <= 10)
+    .map(zhe => Math.round((100 - zhe * 10) * 1000) / 1000)
+    .filter(discount => discount >= 0 && discount <= 100);
+  if (writtenZheDiscounts.length > 0) return writtenZheDiscounts.sort((left, right) => left - right);
 
   // “50% off” is also commonly localized as 半价/半價 (half price), 对折/對折,
   // or wording that the price is halved. These all preserve 50%-off evidence.
