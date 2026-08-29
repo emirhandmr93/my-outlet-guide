@@ -139,10 +139,20 @@ Before sending, the function creates the delivery document in a Firestore transa
    npm --prefix functions run build
    ```
 
-3. Deploy Firestore rules and Functions. Firebase deploy also runs `npm --prefix "$RESOURCE_DIR" run build` before deploying Functions:
+3. Deploy Firestore rules, indexes, Functions, and Hosting. The project wrapper also raises the
+   Firebase Functions source-discovery timeout to 60 seconds, which prevents the Firebase CLI's
+   default 10-second discovery limit from failing on slower Windows machines. Firebase deploy
+   still runs `npm --prefix "$RESOURCE_DIR" run build` before deploying Functions:
 
    ```sh
-   firebase deploy --only firestore:rules,firestore:indexes,functions
+   npm run deploy:firebase
+   ```
+
+   To deploy a narrower target with the same discovery-timeout protection, forward normal
+   Firebase deploy arguments after `--`, for example:
+
+   ```sh
+   npm run deploy:firebase -- --only functions --project my-outlet-guide
    ```
 
 4. Confirm the Firebase project has Cloud Scheduler/Cloud Functions permissions enabled and billing configured if required by the selected Firebase plan.
@@ -156,7 +166,7 @@ Notifications Phase 1F/1G release build verification must pass on Node 22 before
 This workflow is verification only: it does not commit, deploy, send notifications, add mock notifications, or simulate push delivery. After the workflow passes, Firebase deployment still requires:
 
 ```sh
-firebase deploy --only firestore:rules,firestore:indexes,functions
+npm run deploy:firebase
 ```
 
 ## Phase 1D build/deploy readiness status
