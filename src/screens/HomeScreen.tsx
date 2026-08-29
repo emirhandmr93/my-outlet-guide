@@ -57,6 +57,12 @@ import { getAppSharePayload } from "../utils/appShare";
 import { trackProductEvent } from "../utils/productAnalytics";
 import { openExternalUrl } from "../utils/externalUrl";
 import {
+  formatFeaturedCarouselPosition,
+  getNextFeaturedCarouselIndex,
+  normalizeFeaturedCarouselIndex,
+  shouldUseCompactCarouselIndicator,
+} from "../utils/featuredCarousel";
+import {
   formatCampaignDate,
   subscribeActiveOutletCampaigns,
   type OutletCampaign,
@@ -386,26 +392,73 @@ export function HomeScreen() {
     favoriteIds.includes(outlet.outletId),
   );
   const firstFavorite = favoriteOutlets[0];
-  const slides = useMemo<FeaturedSlide[]>(() => [
-    ...activeCampaigns.map(campaign => ({
-      kind: "campaign" as const,
-      id: `campaign-${campaign.campaignId}`,
-      campaign,
-      image: getCampaignImageSource(campaign.outletId),
-    })),
-    ...featuredSlides,
-  ], [activeCampaigns]);
+  const slides = useMemo<FeaturedSlide[]>(
+    () => [
+      ...activeCampaigns.map((campaign) => ({
+        kind: "campaign" as const,
+        id: `campaign-${campaign.campaignId}`,
+        campaign,
+        image: getCampaignImageSource(campaign.outletId),
+      })),
+      ...featuredSlides,
+    ],
+    [activeCampaigns],
+  );
+  const campaignIdsKey = useMemo(
+    () => activeCampaigns.map((campaign) => campaign.campaignId).join("|"),
+    [activeCampaigns],
+  );
+  const previousCampaignIdsRef = useRef(campaignIdsKey);
   const featuredPageCount = slides.length;
+  const useCompactFeaturedIndicator =
+    shouldUseCompactCarouselIndicator(featuredPageCount);
+  const featuredPosition = formatFeaturedCarouselPosition(
+    activeSlideIndex,
+    featuredPageCount,
+    language,
+  );
 
-  useEffect(() => subscribeActiveOutletCampaigns(setActiveCampaigns, () => {
-    // Firestore is best-effort on Home; bundled feature slides remain available.
-  }, language), [language]);
+  useEffect(
+    () =>
+      subscribeActiveOutletCampaigns(
+        setActiveCampaigns,
+        () => {
+          // Firestore is best-effort on Home; bundled feature slides remain available.
+        },
+        language,
+      ),
+    [language],
+  );
 
   useEffect(() => {
-    if (activeSlideIndex < slides.length) return;
+    const safeIndex = normalizeFeaturedCarouselIndex(
+      activeSlideIndex,
+      slides.length,
+    );
+    if (safeIndex === activeSlideIndex) return;
+    setActiveSlideIndex(safeIndex);
+    try {
+      carouselRef.current?.scrollToOffset({
+        offset: carouselWidth * safeIndex,
+        animated: false,
+      });
+    } catch {
+      // The next timer tick or user swipe will recover while bundled slides remain visible.
+    }
+  }, [activeSlideIndex, carouselWidth, slides.length]);
+
+  useEffect(() => {
+    if (previousCampaignIdsRef.current === campaignIdsKey) return;
+
+    previousCampaignIdsRef.current = campaignIdsKey;
     setActiveSlideIndex(0);
-    carouselRef.current?.scrollToIndex({ index: 0, animated: false });
-  }, [activeSlideIndex, slides.length]);
+    try {
+      carouselRef.current?.scrollToOffset({ offset: 0, animated: false });
+    } catch {
+      // The list may still be applying its new Firestore snapshot.
+    }
+  }, [campaignIdsKey]);
+
   useEffect(() => {
     const normalizedQuery = searchQuery.trim();
 
@@ -443,16 +496,27 @@ export function HomeScreen() {
   useEffect(() => {
     const interval = setInterval(() => {
       if (slides.length === 0 || !carouselRef.current) return;
-      const nextIndex = Math.min(
-        Math.max((activeSlideIndex + 1) % slides.length, 0),
-        slides.length - 1,
+      const nextIndex = getNextFeaturedCarouselIndex(
+        activeSlideIndex,
+        slides.length,
       );
-      carouselRef.current.scrollToIndex({ index: nextIndex, animated: true });
-      if (Platform.OS === "web") setActiveSlideIndex(nextIndex);
+      try {
+        carouselRef.current.scrollToIndex({ index: nextIndex, animated: true });
+      } catch {
+        try {
+          carouselRef.current.scrollToOffset({
+            offset: carouselWidth * nextIndex,
+            animated: false,
+          });
+        } catch {
+          // A subsequent interval retries after the list finishes measuring.
+        }
+      }
+      setActiveSlideIndex(nextIndex);
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [activeSlideIndex, slides.length]);
+  }, [activeSlideIndex, carouselWidth, slides.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -489,7 +553,7 @@ export function HomeScreen() {
       return;
 
     const logicalIndex = Math.round(offset / carouselWidth);
-    const nextIndex = Math.min(Math.max(logicalIndex, 0), slides.length - 1);
+    const nextIndex = normalizeFeaturedCarouselIndex(logicalIndex, slides.length);
     if (nextIndex !== activeSlideIndex) setActiveSlideIndex(nextIndex);
   }
 
@@ -698,6 +762,21 @@ export function HomeScreen() {
             decelerationRate={Platform.OS === "web" ? undefined : "fast"}
             disableIntervalMomentum={Platform.OS === "web" ? undefined : true}
             onMomentumScrollEnd={handleCarouselScroll}
+            onScrollToIndexFailed={({ index }) => {
+              const safeIndex = normalizeFeaturedCarouselIndex(
+                index,
+                slides.length,
+              );
+              try {
+                carouselRef.current?.scrollToOffset({
+                  offset: carouselWidth * safeIndex,
+                  animated: false,
+                });
+              } catch {
+                // Keep the currently rendered slide; the next interaction retries safely.
+              }
+              setActiveSlideIndex(safeIndex);
+            }}
             getItemLayout={(_, index) => ({
               length: carouselWidth,
               offset: carouselWidth * index,
@@ -767,12 +846,21 @@ export function HomeScreen() {
           />
 
           <View style={styles.dotsRow}>
-            {Array.from({ length: featuredPageCount }, (_, index) => (
-              <View
-                key={`featured-dot-${index}`}
-                style={[styles.dot, index === activeSlideIndex && styles.dotActive]}
-              />
-            ))}
+            {useCompactFeaturedIndicator ? (
+              <View style={styles.positionPill}>
+                <Text style={styles.positionText}>{featuredPosition}</Text>
+              </View>
+            ) : (
+              Array.from({ length: featuredPageCount }, (_, index) => (
+                <View
+                  key={`featured-dot-${index}`}
+                  style={[
+                    styles.dot,
+                    index === activeSlideIndex && styles.dotActive,
+                  ]}
+                />
+              ))
+            )}
           </View>
         </View>
 
@@ -1314,6 +1402,23 @@ const styles = StyleSheet.create({
   dotActive: {
     width: 22,
     backgroundColor: colors.gold,
+  },
+
+  positionPill: {
+    minWidth: 58,
+    minHeight: 28,
+    paddingHorizontal: spacing.sm,
+    borderRadius: radius.pill,
+    backgroundColor: colors.primary,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  positionText: {
+    color: colors.textInverse,
+    fontSize: typography.caption,
+    fontWeight: typography.weightBlack,
+    fontVariant: ["tabular-nums"],
   },
 
   toolsGrid: {
