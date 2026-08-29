@@ -18,6 +18,8 @@ export const CAMPAIGN_TRANSLATION_VERSION = 1;
 
 export type CampaignTranslationLanguage = (typeof campaignTranslationLanguages)[number];
 
+type TranslatedCampaignLanguage = Exclude<CampaignTranslationLanguage, "en">;
+
 export type CampaignLocalizedText = {
   brandName: string;
   headline: string;
@@ -30,11 +32,12 @@ export type CampaignLocalizationResult = {
   localizedText: Record<CampaignTranslationLanguage, CampaignLocalizedText>;
   completeLocales: CampaignTranslationLanguage[];
   failedLocales: CampaignTranslationLanguage[];
+  failedLocaleErrors: Partial<Record<TranslatedCampaignLanguage, string>>;
 };
 
 export type CampaignTranslationProvider = (
   contents: readonly string[],
-  targetLanguage: Exclude<CampaignTranslationLanguage, "en">,
+  targetLanguage: TranslatedCampaignLanguage,
 ) => Promise<readonly string[]>;
 
 type PreviousLocalization = {
@@ -43,7 +46,7 @@ type PreviousLocalization = {
 };
 
 const translatedLanguages = campaignTranslationLanguages.filter(
-  (language): language is Exclude<CampaignTranslationLanguage, "en"> => language !== "en",
+  (language): language is TranslatedCampaignLanguage => language !== "en",
 );
 const textFields = ["brandName", "headline", "summary", "conditions", "discountLabel"] as const;
 const fieldLimits: Record<(typeof textFields)[number], number> = {
@@ -53,7 +56,7 @@ const fieldLimits: Record<(typeof textFields)[number], number> = {
   conditions: 900,
   discountLabel: 160,
 };
-const googleLanguageCodes: Record<Exclude<CampaignTranslationLanguage, "en">, string> = {
+const googleLanguageCodes: Record<TranslatedCampaignLanguage, string> = {
   tr: "tr",
   es: "es",
   fr: "fr",
@@ -63,10 +66,17 @@ const googleLanguageCodes: Record<Exclude<CampaignTranslationLanguage, "en">, st
   zh: "zh-CN",
 };
 const TRANSLATION_CONCURRENCY = 4;
-const TRANSLATION_TIMEOUT_MS = 8_000;
+const TRANSLATION_TIMEOUT_MS = 20_000;
+const TRANSLATION_MAX_ATTEMPTS = 3;
+const TRANSLATION_RETRY_BASE_DELAY_MS = 500;
 
 type TranslationApiResponse = {
   translations?: Array<{ translatedText?: string | null }>;
+};
+
+type TranslationRequestError = Error & {
+  code?: unknown;
+  response?: { status?: unknown };
 };
 
 let googleAuth: GoogleAuth | undefined;
@@ -126,24 +136,66 @@ async function mapLimited<T>(items: readonly T[], limit: number, task: (item: T)
   await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
 }
 
+function errorSummary(error: unknown): string {
+  if (error instanceof Error) {
+    const requestError = error as TranslationRequestError;
+    const code = typeof requestError.code === "string" || typeof requestError.code === "number"
+      ? String(requestError.code)
+      : "";
+    const status = typeof requestError.response?.status === "number"
+      ? String(requestError.response.status)
+      : "";
+    return [status && `http_${status}`, code, error.message]
+      .filter(Boolean)
+      .join(": ")
+      .slice(0, 400) || "translation_error";
+  }
+  return typeof error === "string" ? error.slice(0, 400) : "unknown_translation_error";
+}
+
+function isRetryableTranslationError(error: unknown): boolean {
+  if (!(error instanceof Error)) return false;
+  const requestError = error as TranslationRequestError;
+  const status = typeof requestError.response?.status === "number" ? requestError.response.status : undefined;
+  const code = typeof requestError.code === "string" ? requestError.code.toUpperCase() : "";
+  if (status === 408 || status === 429 || (status !== undefined && status >= 500)) return true;
+  if (["ETIMEDOUT", "ECONNRESET", "ECONNABORTED", "EAI_AGAIN"].includes(code)) return true;
+  return /timeout|timed out|socket hang up/i.test(error.message);
+}
+
+function wait(milliseconds: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
 export const translateCampaignTextWithGoogle: CampaignTranslationProvider = async (contents, targetLanguage) => {
   googleAuth ??= new GoogleAuth({ scopes: ["https://www.googleapis.com/auth/cloud-platform"] });
   const [projectId, client] = await Promise.all([googleAuth.getProjectId(), googleAuth.getClient()]);
-  const response = await client.request<TranslationApiResponse>({
-    url: `https://translation.googleapis.com/v3/projects/${encodeURIComponent(projectId)}/locations/global:translateText`,
-    method: "POST",
-    timeout: TRANSLATION_TIMEOUT_MS,
-    data: {
-      parent: `projects/${projectId}/locations/global`,
-      contents,
-      mimeType: "text/plain",
-      sourceLanguageCode: "en",
-      targetLanguageCode: googleLanguageCodes[targetLanguage],
-    },
-  });
-  const translations = response.data.translations?.map(item => item.translatedText ?? "") ?? [];
-  if (translations.length !== contents.length) throw new Error("translation_response_length_mismatch");
-  return translations;
+
+  let lastError: unknown;
+  for (let attempt = 1; attempt <= TRANSLATION_MAX_ATTEMPTS; attempt += 1) {
+    try {
+      const response = await client.request<TranslationApiResponse>({
+        url: `https://translation.googleapis.com/v3/projects/${encodeURIComponent(projectId)}/locations/global:translateText`,
+        method: "POST",
+        timeout: TRANSLATION_TIMEOUT_MS,
+        data: {
+          parent: `projects/${projectId}/locations/global`,
+          contents,
+          mimeType: "text/plain",
+          sourceLanguageCode: "en",
+          targetLanguageCode: googleLanguageCodes[targetLanguage],
+        },
+      });
+      const translations = response.data.translations?.map(item => item.translatedText ?? "") ?? [];
+      if (translations.length !== contents.length) throw new Error("translation_response_length_mismatch");
+      return translations;
+    } catch (error) {
+      lastError = error;
+      if (attempt >= TRANSLATION_MAX_ATTEMPTS || !isRetryableTranslationError(error)) throw error;
+      await wait(TRANSLATION_RETRY_BASE_DELAY_MS * (2 ** (attempt - 1)));
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error("translation_request_failed");
 };
 
 export async function buildCampaignLocalization(
@@ -157,6 +209,7 @@ export async function buildCampaignLocalization(
   ) as Record<CampaignTranslationLanguage, CampaignLocalizedText>;
   const completeLocales: CampaignTranslationLanguage[] = ["en"];
   const failedLocales: CampaignTranslationLanguage[] = [];
+  const failedLocaleErrors: Partial<Record<TranslatedCampaignLanguage, string>> = {};
   const previousText = previous.localizedText && typeof previous.localizedText === "object"
     ? previous.localizedText as Record<string, unknown>
     : {};
@@ -185,13 +238,19 @@ export async function buildCampaignLocalization(
       if (!parsed) throw new Error("translation_validation_failed");
       localizedText[language] = parsed;
       completeLocales.push(language);
-    } catch {
+    } catch (error) {
       localizedText[language] = english;
       failedLocales.push(language);
+      failedLocaleErrors[language] = errorSummary(error);
     }
   });
 
   const orderedCompleteLocales = campaignTranslationLanguages.filter(language => completeLocales.includes(language));
   const orderedFailedLocales = campaignTranslationLanguages.filter(language => failedLocales.includes(language));
-  return { localizedText, completeLocales: orderedCompleteLocales, failedLocales: orderedFailedLocales };
+  return {
+    localizedText,
+    completeLocales: orderedCompleteLocales,
+    failedLocales: orderedFailedLocales,
+    failedLocaleErrors,
+  };
 }
