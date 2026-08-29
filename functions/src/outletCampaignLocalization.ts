@@ -89,9 +89,18 @@ function normalizeText(value: unknown, maxLength: number, allowEmpty = false): s
   return normalized;
 }
 
+function normalizePercentageCharacters(value: string): string {
+  return value
+    .replace(/[٠-٩]/g, digit => String(digit.charCodeAt(0) - 0x0660))
+    .replace(/[۰-۹]/g, digit => String(digit.charCodeAt(0) - 0x06f0))
+    .replace(/[０-９]/g, digit => String(digit.charCodeAt(0) - 0xff10))
+    .replace(/[％٪]/g, "%");
+}
+
 function percentageTokens(value: string): number[] {
-  return [...value.matchAll(/(\d{1,3})\s*%/g)]
-    .map(match => Number(match[1]))
+  const normalized = normalizePercentageCharacters(value);
+  return [...normalized.matchAll(/(?:(\d{1,3})\s*%|%\s*(\d{1,3}))/g)]
+    .map(match => Number(match[1] ?? match[2]))
     .filter(Number.isFinite)
     .sort((left, right) => left - right);
 }
