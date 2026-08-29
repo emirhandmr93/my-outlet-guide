@@ -94,15 +94,26 @@ function normalizePercentageCharacters(value: string): string {
     .replace(/[٠-٩]/g, digit => String(digit.charCodeAt(0) - 0x0660))
     .replace(/[۰-۹]/g, digit => String(digit.charCodeAt(0) - 0x06f0))
     .replace(/[０-９]/g, digit => String(digit.charCodeAt(0) - 0xff10))
-    .replace(/[％٪]/g, "%");
+    .replace(/[％٪]/g, "%")
+    .replace(/．/g, ".");
 }
 
 function percentageTokens(value: string): number[] {
   const normalized = normalizePercentageCharacters(value);
-  return [...normalized.matchAll(/(?:(\d{1,3})\s*%|%\s*(\d{1,3}))/g)]
+  const explicitPercentages = [...normalized.matchAll(/(?:(\d{1,3})\s*%|%\s*(\d{1,3}))/g)]
     .map(match => Number(match[1] ?? match[2]))
-    .filter(Number.isFinite)
-    .sort((left, right) => left - right);
+    .filter(Number.isFinite);
+  if (explicitPercentages.length > 0) return explicitPercentages.sort((left, right) => left - right);
+
+  // Simplified Chinese commonly renders “70% off” as “3折”, meaning the
+  // customer pays 30% of the original price. Convert 折 notation back to the
+  // equivalent percent-off evidence before comparing with the English source.
+  const zheDiscounts = [...normalized.matchAll(/(\d{1,2}(?:\.\d+)?)\s*折/g)]
+    .map(match => Number(match[1]))
+    .filter(zhe => Number.isFinite(zhe) && zhe >= 0 && zhe <= 10)
+    .map(zhe => Math.round((100 - zhe * 10) * 1000) / 1000)
+    .filter(discount => discount >= 0 && discount <= 100);
+  return zheDiscounts.sort((left, right) => left - right);
 }
 
 function preservesDiscountEvidence(source: string, translated: string): boolean {
@@ -132,6 +143,19 @@ function parseLocalizedText(value: unknown, english: CampaignLocalizedText): Cam
   if (!parsed.brandName || !parsed.headline || !parsed.summary || parsed.conditions === null
     || !parsed.discountLabel || !preservesDiscountEvidence(english.discountLabel, parsed.discountLabel)) return null;
   return parsed as CampaignLocalizedText;
+}
+
+function translationValidationFailure(value: CampaignLocalizedText, english: CampaignLocalizedText): string {
+  if (!normalizeText(value.brandName, fieldLimits.brandName)) return "translation_validation_failed:brandName";
+  if (!normalizeText(value.headline, fieldLimits.headline)) return "translation_validation_failed:headline";
+  if (!normalizeText(value.summary, fieldLimits.summary)) return "translation_validation_failed:summary";
+  if (normalizeText(value.conditions, fieldLimits.conditions, true) === null) return "translation_validation_failed:conditions";
+  const discountLabel = normalizeText(value.discountLabel, fieldLimits.discountLabel);
+  if (!discountLabel) return "translation_validation_failed:discountLabel";
+  if (!preservesDiscountEvidence(english.discountLabel, discountLabel)) {
+    return `translation_validation_failed:discountEvidence:${JSON.stringify(percentageTokens(english.discountLabel))}->${JSON.stringify(percentageTokens(discountLabel))}`;
+  }
+  return "translation_validation_failed:unknown";
 }
 
 async function mapLimited<T>(items: readonly T[], limit: number, task: (item: T) => Promise<void>) {
@@ -245,7 +269,7 @@ export async function buildCampaignLocalization(
       const candidate: CampaignLocalizedText = { ...english };
       populatedFields.forEach((field, index) => { candidate[field] = translatedValues[index] ?? ""; });
       const parsed = parseLocalizedText(candidate, english);
-      if (!parsed) throw new Error("translation_validation_failed");
+      if (!parsed) throw new Error(translationValidationFailure(candidate, english));
       localizedText[language] = parsed;
       completeLocales.push(language);
     } catch (error) {
