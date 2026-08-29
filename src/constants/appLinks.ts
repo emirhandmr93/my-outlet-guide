@@ -2,6 +2,7 @@ export const appStoreId = "6791893523";
 export const appStoreDownloadUrl = `https://apps.apple.com/app/id${appStoreId}`;
 export const googlePlayDownloadUrl =
   "https://play.google.com/store/apps/details?id=com.myoutletguide.app";
+export const googlePlayReviewUrl = `${googlePlayDownloadUrl}&showAllReviews=true`;
 
 export type AppDownloadStore = "app-store" | "google-play";
 

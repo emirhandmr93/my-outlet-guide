@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+import Constants from "expo-constants";
 import { useEffect, useState } from "react";
 import { updateProfile } from "firebase/auth";
 import {
@@ -47,6 +48,8 @@ type ProfileRouteName =
   | "DeleteAccount"
   | "MediaCredits"
   | "ReviewModeration";
+
+const appVersion = Constants.expoConfig?.version;
 
 function getInitials(value: string) {
   const cleanValue = value.trim();
@@ -353,7 +356,9 @@ export function ProfileScreen() {
         </>
       ) : null}
 
-      <Text style={styles.versionText}>My Outlet Guide v1.0</Text>
+      <Text style={styles.versionText}>
+        My Outlet Guide{appVersion ? ` v${appVersion}` : ""}
+      </Text>
     </ScrollView>
   );
 }

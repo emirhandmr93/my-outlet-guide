@@ -73,5 +73,5 @@ const lines = [
   "",
 ];
 
-writeFileSync("docs/home-localization-matrix.md", `${lines.join("\n")}\n`);
+writeFileSync("docs/home-localization-matrix.md", lines.join("\n"));
 console.log(summary.map((item) => `${item.locale}:${item.count}`).join(" "));
