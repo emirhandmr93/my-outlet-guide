@@ -29,6 +29,7 @@ const campaign: ParsedOfficialCampaign = {
   dateEvidenceSource: "official_listing",
   timeZone: "Europe/Rome",
   featuredPriority: 50_100,
+  type: "offer",
 };
 
 async function main() {

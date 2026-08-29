@@ -8,6 +8,7 @@ import {
   buildTravelBasketOutboundLink,
   buildTravelpayoutsCustomLink,
   normalizeTravelAffiliateSubId,
+  parseTravelPartnerOverrides,
   type TravelBasketCategory,
 } from "../src/services/travelBasketAffiliateLinks";
 import { getSafeExternalUrl } from "../src/utils/externalUrlPolicy";
@@ -74,6 +75,17 @@ assert.throws(() => buildTravelpayoutsCustomLink({
   targetUrl: "https://www.agoda.com/",
 }), /Travelpayouts HTTPS click host/);
 
+const remoteOverrides = parseTravelPartnerOverrides({
+  agoda: { enabled: true, monetized: false, url: "https://www.agoda.com/tr-tr/" },
+  yesim: { enabled: true, monetized: true, url: "https://yesim.tpo.lu/yYoCOrkF" },
+  malicious: { enabled: true, monetized: true, url: "https://evil.example/" },
+});
+assert.equal(remoteOverrides.agoda?.url, "https://www.agoda.com/tr-tr/");
+assert.equal(remoteOverrides.yesim?.monetized, true);
+assert.equal(Object.keys(remoteOverrides).length, 2, "Unknown or untrusted remote providers must be ignored.");
+assert.equal(buildTravelBasketOutboundLink({ category: "hotel", placement: "campaign_detail", overrides: remoteOverrides }).url,
+  "https://www.agoda.com/tr-tr/", "A validated central override must be usable without an app build.");
+
 const requiredTranslationKeys = [
   "nav.travelBasket",
   "travelHub.basketTitle",
@@ -109,6 +121,8 @@ const tripDetail = read("src/screens/TripDetailScreen.tsx");
 const basketScreen = read("src/screens/TravelBasketScreen.tsx");
 const navigation = read("src/navigation/AppNavigator.tsx");
 const webLinking = read("src/navigation/webLinking.ts");
+const campaignDetail = read("src/screens/CampaignDetailScreen.tsx");
+const partnerConfig = read("src/services/travelPartnerConfig.ts");
 
 assert(travelHub.includes('route: "TravelBasket"'), "Travel Hub must expose the Travel Basket.");
 assert(outletDetail.includes('source: "outlet_detail"'), "Outlet details must open a contextual Travel Basket.");
@@ -121,5 +135,11 @@ assert(basketScreen.includes('category: "esim"'), "The Travel Basket must expose
 assert(basketScreen.includes("getTravelBasketEsimCopy"), "The Yesim card must show the localized Türkiye access notice.");
 assert(navigation.includes('name="TravelBasket"'), "Travel Basket must be registered in the root navigator.");
 assert(webLinking.includes('path: "travel-basket"'), "Travel Basket must have a web route.");
+assert(campaignDetail.includes('source: "campaign_detail"') && campaignDetail.includes("campaign_travel_basket_open"),
+  "Campaign details must open a measured contextual Travel Basket.");
+assert(campaignDetail.includes("Share.share") && campaignDetail.includes("campaign_share"),
+  "Campaign details must provide a measured localized share handoff.");
+assert(partnerConfig.includes('doc(db, "publicConfig", "travelPartners")') && partnerConfig.includes("CACHE_MS"),
+  "Partner links must support a cached public central configuration.");
 
 console.log(`Travel Basket outbound checks passed for ${categories.length} services and ${supportedLanguageCodes.length} languages.`);

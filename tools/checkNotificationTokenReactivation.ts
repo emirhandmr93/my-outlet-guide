@@ -27,10 +27,11 @@ const extractBracedBlock = (source: string, anchor: string) => {
 };
 
 const identity = { userId: "user-1", token: "ExponentPushToken[test]", platform: "ios" };
-const values = { ...identity, notificationLocale: "tr" as const, now: "2026-08-02T10:00:00.000Z", firestoreNow: "server-time" };
+const values = { ...identity, notificationLocale: "tr" as const, timeZone: "Europe/Istanbul", now: "2026-08-02T10:00:00.000Z", firestoreNow: "server-time" };
 const created = planNotificationTokenRegistration(undefined, values);
 assert(created.kind === "create", "a missing token must produce a create plan");
 assert(created.data.notificationLocale === "tr", "create data must initialize notificationLocale");
+assert(created.data.timeZone === "Europe/Istanbul", "create data must initialize the device time zone");
 assert(created.data.createdAt === values.now, "create data must initialize createdAt");
 assert(created.data.firestoreCreatedAt === values.firestoreNow, "create data must initialize Firestore creation metadata");
 assert(created.data.firestoreUpdatedAt === values.firestoreNow, "create data must initialize Firestore update metadata");
@@ -44,13 +45,13 @@ assert(reactivated.data.updatedAt === values.now, "reactivation must refresh upd
 assert(!("createdAt" in reactivated.data), "reactivation must not contain createdAt");
 assert(!("firestoreCreatedAt" in reactivated.data), "reactivation must not contain firestoreCreatedAt");
 assert(
-  keys(reactivated.data).join(",") === "disabledAt,firestoreUpdatedAt,notificationLocale,updatedAt",
+  keys(reactivated.data).join(",") === "disabledAt,firestoreUpdatedAt,notificationLocale,timeZone,updatedAt",
   "reactivation must update mutable fields only"
 );
 
 const refreshed = planNotificationTokenRegistration({ ...existingDisabled, disabledAt: null }, values);
 assert(refreshed.kind === "update", "a compatible active token must be refreshable");
-assert(keys(refreshed.data).join(",") === "disabledAt,firestoreUpdatedAt,notificationLocale,updatedAt", "refresh must preserve immutable fields");
+assert(keys(refreshed.data).join(",") === "disabledAt,firestoreUpdatedAt,notificationLocale,timeZone,updatedAt", "refresh must preserve immutable fields");
 
 for (const [field, changed] of [
   ["userId", "another-user"],

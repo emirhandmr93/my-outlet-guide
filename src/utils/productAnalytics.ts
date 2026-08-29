@@ -12,7 +12,10 @@ export type ProductAnalyticsEvent =
   | "outbound_affiliate_click"
   | "outlet_search"
   | "tax_free_calculator_use"
-  | "trip_create";
+  | "trip_create"
+  | "campaign_share"
+  | "campaign_travel_basket_open"
+  | "campaign_notification_open";
 
 type ProductAnalyticsValue = string | number | boolean;
 type ProductAnalyticsParameters = Record<string, ProductAnalyticsValue | null | undefined>;

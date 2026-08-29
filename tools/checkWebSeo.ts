@@ -101,7 +101,7 @@ async function check() {
   ];
   const sitemap=await readFile(join(DIST,"sitemap.xml"),"utf8");
   assert(/^<\?xml[^>]+>\n<sitemapindex[^>]+>[\s\S]*<\/sitemapindex>\n$/.test(sitemap),"Invalid sitemap index XML structure");
-  const childSitemaps=matches(sitemap,/<loc>([^<]+)<\/loc>/g); const expectedChildren=sitemapGroups.map(group=>`${WEB_SEO_ORIGIN}/${group.file}`);
+  const childSitemaps=matches(sitemap,/<loc>([^<]+)<\/loc>/g); const expectedChildren=[...sitemapGroups.map(group=>`${WEB_SEO_ORIGIN}/${group.file}`), `${WEB_SEO_ORIGIN}/campaign-sitemap.xml`];
   assert(childSitemaps.length===new Set(childSitemaps).size,"Duplicate child sitemap URL");
   assert(childSitemaps.length===expectedChildren.length&&expectedChildren.every(url=>childSitemaps.includes(url)),"Sitemap index child list differs from expected groups");
   const actual:string[]=[];

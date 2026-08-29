@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   Alert,
   Platform,
+  Share,
   ScrollView,
   StyleSheet,
   Text,
@@ -25,6 +26,7 @@ import {
 } from "../services/outletCampaignService";
 import colors from "../theme/colors";
 import { openExternalBrowserUrl } from "../utils/externalUrl";
+import { trackProductEvent } from "../utils/productAnalytics";
 import { getFloatingTabClearance, getScreenTopInset, getScrollIndicatorBottomInset } from "../utils/safeAreaLayout";
 
 type ViewState = "loading" | "found" | "unavailable";
@@ -78,6 +80,23 @@ export function CampaignDetailScreen() {
     }
   }
 
+  async function shareCampaign() {
+    if (!campaign) return;
+    const url = `https://myoutletguide.com/${language}/campaign/${encodeURIComponent(campaign.campaignId)}`;
+    await Share.share({ message: `${campaign.headline}\n${campaign.outletName}\n${url}`, url, title: campaign.headline });
+    trackProductEvent("campaign_share", { campaign_id: campaign.campaignId, outlet_id: campaign.outletId });
+  }
+
+  function openTravelBasket() {
+    if (!campaign) return;
+    trackProductEvent("campaign_travel_basket_open", { campaign_id: campaign.campaignId, outlet_id: campaign.outletId });
+    navigation.navigate("TravelBasket", {
+      outletId: campaign.outletId,
+      campaignId: campaign.campaignId,
+      source: "campaign_detail",
+    });
+  }
+
   let body;
   if (state === "loading") {
     body = <StateCard title={t("campaign.loadingTitle")} body={t("campaign.loadingBody")} />;
@@ -120,6 +139,12 @@ export function CampaignDetailScreen() {
 
         <TouchableOpacity style={styles.outletButton} onPress={() => navigation.navigate("OutletDetail", { outletId: campaign.outletId })}>
           <Text style={styles.outletButtonText}>{t("campaign.viewOutlet")}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.travelButton} onPress={openTravelBasket}>
+          <Text style={styles.travelButtonText}>{t("campaign.planTrip")}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.shareButton} onPress={() => void shareCampaign()}>
+          <Text style={styles.shareButtonText}>{t("campaign.share")}</Text>
         </TouchableOpacity>
       </>
     );
@@ -174,6 +199,10 @@ const styles = StyleSheet.create({
   ctaText: { color: colors.primary, fontWeight: "900", fontSize: 15 },
   outletButton: { borderWidth: 1, borderColor: colors.primary, borderRadius: 15, padding: 15, alignItems: "center" },
   outletButtonText: { color: colors.primary, fontWeight: "900", fontSize: 15 },
+  travelButton: { backgroundColor: colors.primary, borderRadius: 15, padding: 15, alignItems: "center" },
+  travelButtonText: { color: colors.textInverse, fontWeight: "900", fontSize: 15 },
+  shareButton: { backgroundColor: colors.goldSoft, borderColor: colors.gold, borderWidth: 1, borderRadius: 15, padding: 15, alignItems: "center" },
+  shareButtonText: { color: colors.primary, fontWeight: "900", fontSize: 15 },
   disabled: { opacity: 0.6 },
   rtl: { textAlign: "right" },
 });

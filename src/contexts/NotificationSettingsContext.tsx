@@ -34,6 +34,8 @@ type NotificationSettingsContextType = {
   settings: NotificationSettings | null;
   setNotificationsEnabled: (enabled: boolean) => Promise<void>;
   setTripRemindersEnabled: (enabled: boolean) => Promise<void>;
+  setFavoriteOutletUpdatesEnabled: (enabled: boolean) => Promise<void>;
+  setMarketingEnabled: (enabled: boolean) => Promise<void>;
   refreshSettings: () => Promise<void>;
 };
 
@@ -51,6 +53,10 @@ const defaultSettingsForUser = (userId: string): NotificationSettings => ({
 const tokenDocumentId = (token: string) => token.replace(/[^A-Za-z0-9_-]/g, "_").slice(0, 512);
 
 const getProjectId = () => Constants.expoConfig?.extra?.eas?.projectId ?? Constants.easConfig?.projectId;
+
+const getDeviceTimeZone = () => {
+  try { return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"; } catch { return "UTC"; }
+};
 
 const permissionStatusFromNative = (status: string | undefined): NotificationPermissionStatus => {
   if (status === "granted") {
@@ -175,6 +181,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
         if (plan.kind === "skip") { stableResult = true; return; }
         await updateDoc(tokenRef, {
           notificationLocale: plan.notificationLocale,
+          timeZone: getDeviceTimeZone(),
           updatedAt: new Date().toISOString(),
           firestoreUpdatedAt: serverTimestamp(),
         });
@@ -262,6 +269,10 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
         name: "Default notifications",
         importance: Notifications.AndroidImportance.DEFAULT,
       });
+      await Notifications.setNotificationChannelAsync("outlet_updates", {
+        name: "Outlet campaigns and events",
+        importance: Notifications.AndroidImportance.DEFAULT,
+      });
     }
 
     const existingPermissions = await Notifications.getPermissionsAsync();
@@ -300,6 +311,7 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
         token,
         platform: Platform.OS,
         notificationLocale: language,
+        timeZone: getDeviceTimeZone(),
         now,
         firestoreNow: serverTimestamp(),
       });
@@ -427,6 +439,30 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     }
   }
 
+  async function setFavoriteOutletUpdatesEnabled(enabled: boolean) {
+    const targetUserId = activeUserIdRef.current;
+    if (!targetUserId) return;
+    const operationGeneration = ++settingsOperationGeneration.current;
+    setIsSaving(true);
+    try {
+      await saveSettingsPatch({ favoriteOutletUpdatesEnabled: enabled });
+    } finally {
+      if (activeUserIdRef.current === targetUserId && settingsOperationGeneration.current === operationGeneration) setIsSaving(false);
+    }
+  }
+
+  async function setMarketingEnabled(enabled: boolean) {
+    const targetUserId = activeUserIdRef.current;
+    if (!targetUserId) return;
+    const operationGeneration = ++settingsOperationGeneration.current;
+    setIsSaving(true);
+    try {
+      await saveSettingsPatch({ marketingEnabled: enabled });
+    } finally {
+      if (activeUserIdRef.current === targetUserId && settingsOperationGeneration.current === operationGeneration) setIsSaving(false);
+    }
+  }
+
   const value = useMemo(
     () => ({
       isLoggedIn,
@@ -440,6 +476,8 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
       settings,
       setNotificationsEnabled,
       setTripRemindersEnabled,
+      setFavoriteOutletUpdatesEnabled,
+      setMarketingEnabled,
       refreshSettings,
     }),
     [isLoggedIn, isLoading, isSaving, permissionStatus, pushSupported, tokenRegistrationStatus, registeredToken, registrationError, settings]

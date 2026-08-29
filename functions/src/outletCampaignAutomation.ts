@@ -245,7 +245,7 @@ async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCa
   await ref.set({
     schemaVersion: 2,
     campaignId: campaign.campaignId,
-    type: "offer",
+    type: campaign.type,
     status: state,
     active: state === "published",
     autoPublished: true,
@@ -285,7 +285,8 @@ async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCa
       officialDomain: true,
       explicitDateRange: true,
       explicitDateRangeSource: campaign.dateEvidenceSource,
-      discountEvidence: true,
+      discountEvidence: campaign.type === "offer",
+      eventEvidence: campaign.type === "event",
       approvalRequired: false,
       checkedAt: Timestamp.fromDate(now),
     },

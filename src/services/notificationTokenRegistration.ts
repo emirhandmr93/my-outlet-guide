@@ -8,6 +8,7 @@ export type NotificationTokenLocale = "en" | "tr" | "es" | "fr" | "de" | "ar" | 
 
 type RegistrationValues = NotificationTokenIdentity & {
   notificationLocale: NotificationTokenLocale;
+  timeZone: string;
   now: string;
   firestoreNow: unknown;
 };
@@ -20,6 +21,7 @@ export type NotificationTokenRegistrationPlan =
         updatedAt: string;
         disabledAt: null;
         notificationLocale: NotificationTokenLocale;
+        timeZone: string;
         firestoreCreatedAt: unknown;
         firestoreUpdatedAt: unknown;
       };
@@ -30,6 +32,7 @@ export type NotificationTokenRegistrationPlan =
         updatedAt: string;
         disabledAt: null;
         notificationLocale: NotificationTokenLocale;
+        timeZone: string;
         firestoreUpdatedAt: unknown;
       };
     }
@@ -53,6 +56,7 @@ export function planNotificationTokenRegistration(
         updatedAt: values.now,
         disabledAt: null,
         notificationLocale: values.notificationLocale,
+        timeZone: values.timeZone,
         firestoreCreatedAt: values.firestoreNow,
         firestoreUpdatedAt: values.firestoreNow,
       },
@@ -70,6 +74,7 @@ export function planNotificationTokenRegistration(
       updatedAt: values.now,
       disabledAt: null,
       notificationLocale: values.notificationLocale,
+      timeZone: values.timeZone,
       firestoreUpdatedAt: values.firestoreNow,
     },
   };

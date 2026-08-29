@@ -19,11 +19,8 @@ import { useTrips } from "../contexts/TripsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import type { RootStackParamList } from "../navigation/types";
-import {
-  buildTravelBasketOutboundLink,
-  type TravelBasketCategory,
-  type TravelBasketPlacement,
-} from "../services/travelBasketAffiliateLinks";
+import { type TravelBasketCategory, type TravelBasketPlacement } from "../services/travelBasketAffiliateLinks";
+import { getTravelBasketOutboundLink } from "../services/travelPartnerConfig";
 import colors from "../theme/colors";
 import { getTravelBasketEsimCopy } from "../translations/travelBasketEsimCopy";
 import { formatIsoDateOnly } from "../utils/dateOnly";
@@ -79,32 +76,36 @@ export function TravelBasketScreen() {
     const label = [destination, country].filter(Boolean).join(" · ");
     const dates = trip ? `${formatIsoDateOnly(trip.startDate)} – ${formatIsoDateOnly(trip.endDate)}` : "";
     return {
-      contextId: trip?.id ?? outlet?.outletId,
+      contextId: route.params?.campaignId ?? trip?.id ?? outlet?.outletId,
       dates,
       label,
       outletName: trip?.outletName ?? segment?.outletName ?? outlet?.outletName ?? "",
     };
-  }, [language, route.params?.outletId, route.params?.tripId, trips]);
+  }, [language, route.params?.campaignId, route.params?.outletId, route.params?.tripId, trips]);
 
   const placement: TravelBasketPlacement = route.params?.source ?? "travel_basket_hub";
 
   async function openPartner(category: TravelBasketCategory) {
     if (openingCategory) return;
-    const outboundLink = buildTravelBasketOutboundLink({
-      category,
-      placement,
-      contextId: context.contextId,
-    });
-    trackProductEvent("outbound_affiliate_click", {
-      affiliate: outboundLink.provider,
-      category,
-      monetized: outboundLink.monetized,
-      placement,
-    });
     setOpeningCategory(category);
-    const opened = await openExternalBrowserUrl(outboundLink.url);
-    setOpeningCategory(null);
-    if (!opened) Alert.alert(t("travelBasket.openFailedTitle"), t("travelBasket.openFailedBody"));
+    try {
+      const outboundLink = await getTravelBasketOutboundLink({
+        category,
+        placement,
+        contextId: context.contextId,
+      });
+      trackProductEvent("outbound_affiliate_click", {
+        affiliate: outboundLink.provider,
+        category,
+        monetized: outboundLink.monetized,
+        placement,
+      });
+      if (!(await openExternalBrowserUrl(outboundLink.url))) throw new Error("partner_open_failed");
+    } catch {
+      Alert.alert(t("travelBasket.openFailedTitle"), t("travelBasket.openFailedBody"));
+    } finally {
+      setOpeningCategory(null);
+    }
   }
 
   function openItem(category: BasketItem["category"]) {

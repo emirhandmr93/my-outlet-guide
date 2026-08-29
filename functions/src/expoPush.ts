@@ -6,6 +6,7 @@ export type ExpoPushMessage = {
   data?: Record<string, string | number | boolean | null>;
   ttl?: number;
   priority?: "default" | "normal" | "high";
+  channelId?: string;
 };
 
 export type ExpoPushTicket =
