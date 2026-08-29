@@ -125,7 +125,7 @@ const enTranslations = {
   "home.shareMessage":
     "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
   "home.rateApp.title": "Rate My Outlet Guide",
-  "home.rateApp.message": "App Store rating will be connected before launch.",
+  "home.rateApp.message": "The store review page could not be opened. Please try again.",
   "dashboard.card.deal.good": "Good Deal",
   "dashboard.card.deal.great": "Great Deal",
   "dashboard.card.deal.amazing": "Amazing Deal",
@@ -1742,7 +1742,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message": "App Store rating will be connected before launch.",
+    "home.rateApp.message": "The store review page could not be opened. Please try again.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -3189,7 +3189,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message": "App Store rating will be connected before launch.",
+    "home.rateApp.message": "The store review page could not be opened. Please try again.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -4540,7 +4540,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message": "App Store rating will be connected before launch.",
+    "home.rateApp.message": "The store review page could not be opened. Please try again.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -5906,7 +5906,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message": "App Store rating will be connected before launch.",
+    "home.rateApp.message": "The store review page could not be opened. Please try again.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -7223,7 +7223,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message": "App Store rating will be connected before launch.",
+    "home.rateApp.message": "The store review page could not be opened. Please try again.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -8492,7 +8492,7 @@ export const translations: Record<
     "home.shareMessage":
       "Discover premium outlets and plan smarter shopping trips with My Outlet Guide.",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message": "App Store rating will be connected before launch.",
+    "home.rateApp.message": "The store review page could not be opened. Please try again.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -9837,7 +9837,7 @@ export const translations: Record<
     "home.quick.shareApp": "Share App",
     "home.shareMessage": "home.shareMessage",
     "home.rateApp.title": "Rate My Outlet Guide",
-    "home.rateApp.message": "App Store rating will be connected before launch.",
+    "home.rateApp.message": "The store review page could not be opened. Please try again.",
     "dashboard.card.deal.good": "Good Deal",
     "dashboard.card.deal.great": "Great Deal",
     "dashboard.card.deal.amazing": "Amazing Deal",
@@ -11585,7 +11585,7 @@ const finalPhase1BHomeOverlays: Partial<
       "My Outlet Guide ile premium outletleri keşfedin ve alışveriş seyahatlerinizi daha akıllı planlayın.",
     "home.rateApp.title": "My Outlet Guide’ı değerlendir",
     "home.rateApp.message":
-      "App Store puanlama bağlantısı lansmandan önce eklenecek.",
+      "Mağaza değerlendirme sayfası açılamadı. Lütfen tekrar deneyin.",
   },
   es: {
     "home.title": "My Outlet Guide",
@@ -11628,7 +11628,7 @@ const finalPhase1BHomeOverlays: Partial<
       "Descubre outlets premium y planifica compras más inteligentes con My Outlet Guide.",
     "home.rateApp.title": "Valora My Outlet Guide",
     "home.rateApp.message":
-      "La valoración en App Store se conectará antes del lanzamiento.",
+      "No se pudo abrir la página de valoración de la tienda. Inténtalo de nuevo.",
   },
   fr: {
     "home.title": "My Outlet Guide",
@@ -11672,7 +11672,7 @@ const finalPhase1BHomeOverlays: Partial<
       "Découvrez des outlets premium et planifiez vos achats plus intelligemment avec My Outlet Guide.",
     "home.rateApp.title": "Noter My Outlet Guide",
     "home.rateApp.message":
-      "La note App Store sera connectée avant le lancement.",
+      "Impossible d’ouvrir la page d’évaluation de la boutique. Réessayez.",
   },
   de: {
     "home.title": "My Outlet Guide",
@@ -11714,7 +11714,7 @@ const finalPhase1BHomeOverlays: Partial<
       "Entdecke Premium-Outlets und plane smartere Shoppingtrips mit My Outlet Guide.",
     "home.rateApp.title": "My Outlet Guide bewerten",
     "home.rateApp.message":
-      "Die App-Store-Bewertung wird vor dem Launch verbunden.",
+      "Die Bewertungsseite im Store konnte nicht geöffnet werden. Bitte versuche es erneut.",
   },
   ru: {
     "home.title": "My Outlet Guide",
@@ -11757,7 +11757,7 @@ const finalPhase1BHomeOverlays: Partial<
       "Открывайте премиальные аутлеты и планируйте покупки умнее с My Outlet Guide.",
     "home.rateApp.title": "Оценить My Outlet Guide",
     "home.rateApp.message":
-      "Оценка в App Store будет подключена перед запуском.",
+      "Не удалось открыть страницу оценки в магазине. Повторите попытку.",
   },
   ar: {
     "home.title": "My Outlet Guide",
@@ -11794,7 +11794,7 @@ const finalPhase1BHomeOverlays: Partial<
     "home.shareMessage":
       "اكتشف أوتلت مميزة وخطط لتسوق أذكى مع My Outlet Guide.",
     "home.rateApp.title": "قيّم My Outlet Guide",
-    "home.rateApp.message": "سيتم ربط تقييم App Store قبل الإطلاق.",
+    "home.rateApp.message": "تعذر فتح صفحة التقييم في المتجر. يرجى المحاولة مرة أخرى.",
   },
   zh: {
     "home.title": "My Outlet Guide",
@@ -11831,7 +11831,7 @@ const finalPhase1BHomeOverlays: Partial<
     "home.shareMessage":
       "用 My Outlet Guide 发现高端奥特莱斯，规划更聪明的购物行程。",
     "home.rateApp.title": "评价 My Outlet Guide",
-    "home.rateApp.message": "App Store 评分将在发布前接入。",
+    "home.rateApp.message": "无法打开商店评价页面，请重试。",
   },
 };
 

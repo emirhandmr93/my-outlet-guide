@@ -5,6 +5,7 @@ import {
   appStoreId,
   httpsReviewFallbackUrl,
   googlePlayDownloadUrl,
+  googlePlayReviewUrl,
   nativeIosReviewUrl,
 } from "../src/constants/appLinks";
 import {
@@ -20,6 +21,7 @@ import {
 const expectedAppStoreId = "6791893523";
 const expectedAppStoreUrl = "https://apps.apple.com/app/id6791893523";
 const expectedGooglePlayUrl = "https://play.google.com/store/apps/details?id=com.myoutletguide.app";
+const expectedGooglePlayReviewUrl = `${expectedGooglePlayUrl}&showAllReviews=true`;
 const platforms = ["ios", "android", "web"] as const;
 const homeSource = readFileSync("src/screens/HomeScreen.tsx", "utf8");
 const appLinksSource = readFileSync("src/constants/appLinks.ts", "utf8");
@@ -82,6 +84,7 @@ record(missingLocalizedMessages.length === 0, "Localized share messages are miss
 record(duplicateUrls.length === 0, "Share messages contain duplicate App Store URLs");
 record(messageOnlyDeliveryFailures.length === 0, "Message-only consumers miss the App Store URL");
 record(googlePlayDownloadUrl === expectedGooglePlayUrl, `Unexpected Google Play URL: ${googlePlayDownloadUrl}`);
+record(googlePlayReviewUrl === expectedGooglePlayReviewUrl, `Unexpected Google Play review URL: ${googlePlayReviewUrl}`);
 record(googlePlayMatches.length > 0, "Google Play download destination is missing");
 
 record(homeSource.includes('import { getAppSharePayload } from "../utils/appShare";'), "HomeScreen does not import the central helper", homeScreenIntegrationErrors);
@@ -97,9 +100,11 @@ record(shareFunction.includes('Alert.alert(t("common.error"), t("common.notAvail
 record(homeSource.includes("await openExternalUrl(nativeIosReviewUrl)"), "Native iOS review flow changed", homeScreenIntegrationErrors);
 record(homeSource.includes("await openExternalUrl(httpsReviewFallbackUrl)"), "HTTPS review fallback changed", homeScreenIntegrationErrors);
 record(homeSource.includes("await openExternalUrl(appStoreDownloadUrl)"), "Web Rate App download flow changed", homeScreenIntegrationErrors);
+record(homeSource.includes("await openExternalUrl(googlePlayReviewUrl)"), "Android Play Store review flow is missing", homeScreenIntegrationErrors);
+record((homeSource.match(/Alert\.alert\(t\("home\.rateApp\.title"\), t\("home\.rateApp\.message"\)\)/g) ?? []).length === 3, "All Rate App fallbacks use localized store-review copy", homeScreenIntegrationErrors);
 record(nativeIosReviewUrl.includes(expectedAppStoreId), "Native iOS review URL lost the App Store ID");
 record(httpsReviewFallbackUrl.includes(expectedAppStoreId), "HTTPS review fallback lost the App Store ID");
-record(appLinksSource.includes("nativeIosReviewUrl") && appLinksSource.includes("httpsReviewFallbackUrl"), "Review URL constants are missing");
+record(appLinksSource.includes("nativeIosReviewUrl") && appLinksSource.includes("httpsReviewFallbackUrl") && appLinksSource.includes("googlePlayReviewUrl"), "Review URL constants are missing");
 record(homeScreenIntegrationErrors.length === 0, "HomeScreen integration checks failed");
 
 const representativeCounts = Object.fromEntries(

@@ -27,6 +27,7 @@ import { SearchBar } from "../components/SearchBar";
 import { SearchResultItem } from "../components/SearchResultItem";
 import {
   appStoreDownloadUrl,
+  googlePlayReviewUrl,
   httpsReviewFallbackUrl,
   nativeIosReviewUrl,
 } from "../constants/appLinks";
@@ -653,7 +654,7 @@ export function HomeScreen() {
       try {
         if (!(await openExternalUrl(appStoreDownloadUrl))) throw new Error("External URL rejected");
       } catch {
-        Alert.alert(t("common.error"), t("common.notAvailable"));
+        Alert.alert(t("home.rateApp.title"), t("home.rateApp.message"));
       }
 
       return;
@@ -668,14 +669,20 @@ export function HomeScreen() {
         try {
           if (!(await openExternalUrl(httpsReviewFallbackUrl))) throw new Error("External URL rejected");
         } catch {
-          Alert.alert(t("common.error"), t("common.notAvailable"));
+          Alert.alert(t("home.rateApp.title"), t("home.rateApp.message"));
         }
       }
 
       return;
     }
 
-    Alert.alert(t("home.rateApp.title"), t("home.rateApp.message"));
+    setIsQuickMenuOpen(false);
+
+    try {
+      if (!(await openExternalUrl(googlePlayReviewUrl))) throw new Error("External URL rejected");
+    } catch {
+      Alert.alert(t("home.rateApp.title"), t("home.rateApp.message"));
+    }
   }
 
   return (

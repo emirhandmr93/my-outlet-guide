@@ -13,21 +13,52 @@ tools/**
 MasterData/**
 .github/**
 functions/**
+web/**
 coverage/**
 .tmp/**
+assets.zip
+AGENTS.md
+CLAUDE.md
+firebase.json
+firestore.indexes.json
+firestore.rules
 
-# Local dependencies and repository/editor metadata
+# Generated outputs and native folders recreated by EAS Build
+.expo/**
+dist/**
+dist-android/**
+dist-ios/**
+dist-web-poc/**
+web-build/**
+android/**
+ios/**
+src/translations/.generated-web/**
+expo-env.d.ts
+*.tsbuildinfo
+
+# Local dependencies, secrets, signing material, and repository/editor metadata
 node_modules/**
 .git/**
 .vscode/**
 .idea/**
+.env*.local
+.secret.local
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.pem
 
 # Local temp files, caches, and logs
+.kotlin/**
+.metro-health-check*
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+*.orig.*
 *.tmp
 *.temp
 tmp/**
