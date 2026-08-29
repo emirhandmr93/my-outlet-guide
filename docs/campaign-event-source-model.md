@@ -18,20 +18,34 @@ A campaign is eligible only when all of these checks pass:
 
 Missing or ambiguous data is rejected automatically. A previously published record is unpublished if the same official page later fails content verification, returns 404/410, redirects away from its approved campaign path, or stops serving HTML. Temporary network failures do not overwrite the last verified record; its fixed end date still controls expiry.
 
-## Pilot source allowlist
+## Official source allowlist
 
 | Outlet | Official operator domain |
 |---|---|
 | Bicester Village | thebicestercollection.com |
 | La Vallée Village | thebicestercollection.com |
+| Fidenza Village | thebicestercollection.com |
+| Wertheim Village | thebicestercollection.com |
+| Ingolstadt Village | thebicestercollection.com |
+| La Roca Village | thebicestercollection.com |
+| Las Rozas Village | thebicestercollection.com |
+| Kildare Village | thebicestercollection.com |
+| Maasmechelen Village | thebicestercollection.com |
 | Cheshire Oaks Designer Outlet | mcarthurglen.com |
 | Designer Outlet Roermond | mcarthurglen.com |
 | Designer Outlet Parndorf | mcarthurglen.com |
 | Serravalle Designer Outlet | mcarthurglen.com |
+| Castel Romano Designer Outlet | mcarthurglen.com |
+| Noventa di Piave Designer Outlet | mcarthurglen.com |
+| McArthurGlen Designer Outlet Málaga | mcarthurglen.com |
+| York Designer Outlet | mcarthurglen.com |
+| Ashford Designer Outlet | mcarthurglen.com |
+| Designer Outlet Athens | designeroutletathens.gr |
 | Batavia Stad Fashion Outlet | bataviastad.nl |
 | Franciacorta Designer Village | franciacortavillage.it / franciacortadesignervillage.com |
 
 The executable allowlist, listing URLs, outlet ids, path prefixes, time zones, and per-source safety limits live in `functions/src/outletCampaignSources.ts`.
+The collector covers 21 outlets. It processes at most two outlet sources concurrently while preserving the per-source page limit and detail-fetch limit.
 
 ## Firestore record
 

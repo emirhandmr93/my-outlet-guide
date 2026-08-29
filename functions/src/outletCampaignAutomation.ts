@@ -30,6 +30,7 @@ const COLLECTION_LOCK_ID = "officialOutletCampaignCollection";
 const MAX_HTML_BYTES = 2_500_000;
 const FETCH_TIMEOUT_MS = 15_000;
 const FETCH_CONCURRENCY = 6;
+const SOURCE_CONCURRENCY = 2;
 const LEASE_MILLISECONDS = 9 * 60 * 1000;
 
 type CollectionSummary = {
@@ -439,7 +440,9 @@ export const collectOfficialOutletCampaigns = onSchedule(
     const runRef = db.collection(RUNS_COLLECTION).doc(runId);
     await runRef.set({ runId, status: "running", startedAt: Timestamp.fromDate(now), sourceCount: officialCampaignSources.length });
     try {
-      for (const source of officialCampaignSources) await collectSource(db, source, now, summary);
+      await mapLimited(officialCampaignSources, SOURCE_CONCURRENCY, async source => {
+        await collectSource(db, source, now, summary);
+      });
       const reconciliation = await reconcileOutletCampaigns(db, now);
       await runRef.set({
         status: "completed",
