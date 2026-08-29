@@ -42,6 +42,11 @@ assert(/request\.auth\?\.uid/.test(functionSource) && /request\.auth\?\.token\.e
 assert(!/request\.data\?\.email|data\.email/.test(functionSource), "Server must not accept arbitrary client email input.");
 assert(/resolveLocale\(request\.data\?\.locale\)/.test(functionSource), "Server must validate client locale before use.");
 assert(/Welcome email config missing; no email was sent\./.test(functionSource) && /skipped_missing_config/.test(functionSource), "Missing dev/test email config must skip real sending without claiming delivery.");
+assert(/defineSecret\("WELCOME_EMAIL_API_KEY"\)/.test(functionSource), "Welcome email API key must be stored in Firebase Secret Manager.");
+assert(/secrets:\s*\[WELCOME_EMAIL_API_KEY\]/.test(functionSource), "sendWelcomeEmail must bind the Firebase secret at runtime.");
+assert(!/process\.env\.WELCOME_EMAIL_API_KEY/.test(functionSource), "Welcome email API key must not use plaintext dotenv configuration.");
+assert(/https:\/\/api\.resend\.com\/emails/.test(functionSource), "Welcome email must use the approved Resend endpoint.");
+assert(/My Outlet Guide <welcome@myoutletguide\.com>/.test(functionSource), "Welcome email must use the verified-domain sender address.");
 assert(/httpsCallable\(functions, "sendWelcomeEmail"\)/.test(authSource), "Signup flow must call the welcome email function after account creation.");
 assert(/getFunctions\(app, "us-central1"\)/.test(firebaseSource), "Firebase functions client must be configured for the deployed region.");
 

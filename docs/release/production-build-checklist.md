@@ -51,7 +51,9 @@ Manual Firebase Console verification is required before store submission:
 - `moderateReviewAction` is deployed and access remains moderator/admin gated.
 - `getTripWeather` is deployed and safely returns provider-deferred/unavailable behavior when Open-Meteo is not configured; `OPEN_METEO_API_KEY` is optional/future and must not block this production build.
 - `sendTripReminderNotifications` scheduled function is deployed and has expected schedule/region.
-- `sendWelcomeEmail` is deployed with its production email provider configuration.
+- Resend shows `myoutletguide.com` as verified before welcome email activation.
+- Secret Manager contains `WELCOME_EMAIL_API_KEY`, and `sendWelcomeEmail` is deployed after the secret is set.
+- A neutral test signup produces a successful Resend delivery and a `mailEvents/welcome_<uid>` document with `status: sent`.
 - Do not deploy from this checklist; use the approved Firebase release process.
 
 ## 4. Required Firestore rules/index checks

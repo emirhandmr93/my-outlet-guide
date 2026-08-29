@@ -1,8 +1,11 @@
 import { FieldValue, Timestamp, getFirestore } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import { logger } from "firebase-functions";
+import { defineSecret } from "firebase-functions/params";
 
 const db = getFirestore();
+const WELCOME_EMAIL_API_KEY = defineSecret("WELCOME_EMAIL_API_KEY");
+const WELCOME_EMAIL_FROM = "My Outlet Guide <welcome@myoutletguide.com>";
 
 export const supportedWelcomeEmailLocales = ["en", "tr", "es", "fr", "de", "ru", "ar", "zh"] as const;
 type WelcomeEmailLocale = (typeof supportedWelcomeEmailLocales)[number];
@@ -92,42 +95,24 @@ function renderHtml(content: WelcomeEmailContent) {
   return `<!doctype html><html><body><span style="display:none">${htmlEscape(content.preview)}</span><h1>${htmlEscape(content.subject)}</h1><p>${htmlEscape(content.intro)}</p><p>${htmlEscape(content.body)}</p><p><strong>${htmlEscape(content.cta)}</strong></p></body></html>`;
 }
 
-type EmailConfig =
-  | { provider: "sendgrid"; apiKey: string; from: string }
-  | { provider: "resend"; apiKey: string; from: string }
-  | null;
+type EmailConfig = { provider: "resend"; apiKey: string; from: string } | null;
 
 function getEmailConfig(): EmailConfig {
-  const provider = process.env.WELCOME_EMAIL_PROVIDER?.toLowerCase();
-  const apiKey = process.env.WELCOME_EMAIL_API_KEY;
-  const from = process.env.WELCOME_EMAIL_FROM;
-  if (!provider || !apiKey || !from) return null;
-  if (provider === "sendgrid" || provider === "resend") return { provider, apiKey, from };
-  logger.warn("Welcome email provider is unsupported; skipping send.", { provider });
-  return null;
+  const apiKey = WELCOME_EMAIL_API_KEY.value().trim();
+  return apiKey ? { provider: "resend", apiKey, from: WELCOME_EMAIL_FROM } : null;
 }
 
 async function sendEmail(to: string, content: WelcomeEmailContent, config: Exclude<EmailConfig, null>) {
   const html = renderHtml(content);
   const text = renderText(content);
-  const request =
-    config.provider === "sendgrid"
-      ? {
-          url: "https://api.sendgrid.com/v3/mail/send",
-          init: {
-            method: "POST",
-            headers: { Authorization: `Bearer ${config.apiKey}`, "Content-Type": "application/json" },
-            body: JSON.stringify({ personalizations: [{ to: [{ email: to }] }], from: { email: config.from }, subject: content.subject, content: [{ type: "text/plain", value: text }, { type: "text/html", value: html }] }),
-          },
-        }
-      : {
-          url: "https://api.resend.com/emails",
-          init: {
-            method: "POST",
-            headers: { Authorization: `Bearer ${config.apiKey}`, "Content-Type": "application/json" },
-            body: JSON.stringify({ from: config.from, to: [to], subject: content.subject, html, text }),
-          },
-        };
+  const request = {
+    url: "https://api.resend.com/emails",
+    init: {
+      method: "POST",
+      headers: { Authorization: `Bearer ${config.apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from: config.from, to: [to], subject: content.subject, html, text }),
+    },
+  };
 
   const response = await fetch(request.url, request.init);
   if (!response.ok) throw new Error(`Welcome email provider returned ${response.status}.`);
@@ -152,7 +137,7 @@ function safeErrorMessage(error: unknown) {
   return error instanceof Error ? error.message.slice(0, 240) : "Welcome email send failed.";
 }
 
-export const sendWelcomeEmail = onCall({ region: "us-central1" }, async (request) => {
+export const sendWelcomeEmail = onCall({ region: "us-central1", secrets: [WELCOME_EMAIL_API_KEY] }, async (request) => {
   const uid = request.auth?.uid;
   const email = request.auth?.token.email;
   if (!uid || typeof email !== "string" || !email.trim()) {
