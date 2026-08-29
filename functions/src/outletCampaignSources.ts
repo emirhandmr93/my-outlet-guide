@@ -1,6 +1,6 @@
 export type OfficialCampaignSource = {
   sourceId: string;
-  operator: "the_bicester_collection" | "mcarthurglen" | "batavia_stad" | "land_of_fashion" | "designer_outlet_athens";
+  operator: "the_bicester_collection" | "mcarthurglen" | "batavia_stad" | "land_of_fashion" | "designer_outlet_athens" | "the_mall_firenze";
   outletId: string;
   outletName: string;
   sourceLocale: "en";
@@ -88,6 +88,18 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     timeZone: "Europe/Rome",
     maxCandidatePages: 140,
   }),
+  {
+    sourceId: "the-mall-firenze-official",
+    operator: "the_mall_firenze",
+    outletId: "the-mall-firenze",
+    outletName: "The Mall Firenze",
+    sourceLocale: "en",
+    timeZone: "Europe/Rome",
+    listingUrls: ["https://firenze.themall.it/en"],
+    allowedHosts: ["firenze.themall.it"],
+    candidatePathPrefixes: ["/en/events/"],
+    maxCandidatePages: 80,
+  },
   theBicesterCollectionSource({
     sourceId: "wertheim-village-official",
     villageSlug: "wertheim-village",

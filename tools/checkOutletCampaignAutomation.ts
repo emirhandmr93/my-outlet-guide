@@ -16,6 +16,7 @@ const expectedExpandedOutletIds = [
   "bicester-village",
   "la-vallee-village",
   "fidenza-village",
+  "the-mall-firenze",
   "wertheim-village",
   "ingolstadt-village",
   "la-roca-village",
@@ -110,6 +111,32 @@ if (athensCampaign.status === "verified") {
   assert.equal(athensCampaign.campaign.endsOn, "2026-08-31");
   assert.equal(athensCampaign.campaign.discountPercent, 50);
   assert.equal(athensCampaign.campaign.sourceHost, "designeroutletathens.gr");
+}
+
+const firenze = officialCampaignSources.find(source => source.outletId === "the-mall-firenze");
+assert(firenze, "The Mall Firenze official source is required for parser validation.");
+const firenzeUrl = "https://firenze.themall.it/en/events/gucci-summer-offer";
+assert.deepEqual(extractOfficialCampaignLinks(`
+  <a href="/en/events/gucci-summer-offer">Gucci summer offer</a>
+  <a href="https://example.com/en/events/untrusted">Untrusted event</a>
+  <a href="/en/brands">Non-event page</a>
+`, firenze.listingUrls[0], firenze), [firenzeUrl]);
+const firenzeCampaign = parseOfficialCampaignPage(`
+  <!doctype html><html><head>
+    <title>Gucci Offer | The Mall Firenze</title>
+    <meta name="description" content="Extra savings on selected Gucci outlet products during the official summer event.">
+  </head><body>
+    <h1>Extra 20% off outlet prices</h1>
+    <p>Valid from 1 September 2026 to 15 September 2026. Terms and conditions apply.</p>
+  </body></html>
+`, firenzeUrl, firenze);
+assert.equal(firenzeCampaign.status, "verified");
+if (firenzeCampaign.status === "verified") {
+  assert.equal(firenzeCampaign.campaign.brandName, "Gucci");
+  assert.equal(firenzeCampaign.campaign.startsOn, "2026-09-01");
+  assert.equal(firenzeCampaign.campaign.endsOn, "2026-09-15");
+  assert.equal(firenzeCampaign.campaign.discountPercent, 20);
+  assert.equal(firenzeCampaign.campaign.sourceHost, "firenze.themall.it");
 }
 
 const missingDates = parseOfficialCampaignPage(

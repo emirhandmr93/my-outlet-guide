@@ -25,6 +25,7 @@ Missing or ambiguous data is rejected automatically. A previously published reco
 | Bicester Village | thebicestercollection.com |
 | La Vallée Village | thebicestercollection.com |
 | Fidenza Village | thebicestercollection.com |
+| The Mall Firenze | firenze.themall.it |
 | Wertheim Village | thebicestercollection.com |
 | Ingolstadt Village | thebicestercollection.com |
 | La Roca Village | thebicestercollection.com |
@@ -45,7 +46,7 @@ Missing or ambiguous data is rejected automatically. A previously published reco
 | Franciacorta Designer Village | franciacortavillage.it / franciacortadesignervillage.com |
 
 The executable allowlist, listing URLs, outlet ids, path prefixes, time zones, and per-source safety limits live in `functions/src/outletCampaignSources.ts`.
-The collector covers 21 outlets. It processes at most two outlet sources concurrently while preserving the per-source page limit and detail-fetch limit.
+The collector covers 22 outlets. It processes at most two outlet sources concurrently while preserving the per-source page limit and detail-fetch limit.
 
 ## Firestore record
 
