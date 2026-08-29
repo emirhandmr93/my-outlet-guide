@@ -7,17 +7,54 @@ import {
   extractOfficialCampaignLinks,
   parseOfficialCampaignPage,
 } from "../functions/src/outletCampaignParser";
-import { officialCampaignSources } from "../functions/src/outletCampaignSources";
+import { isOfficialSourceUrl, officialCampaignSources } from "../functions/src/outletCampaignSources";
 import { outlets } from "../src/constants/outlets";
 import { outletCampaignTranslations } from "../src/translations/outletCampaignTranslations";
 import { supportedLanguageCodes } from "../src/translations/locale";
 
-assert.equal(officialCampaignSources.length, 8, "The official-source pilot must contain exactly eight outlets.");
-assert.equal(new Set(officialCampaignSources.map(source => source.outletId)).size, 8, "Pilot outlet ids must be unique.");
+const expectedExpandedOutletIds = [
+  "bicester-village",
+  "la-vallee-village",
+  "fidenza-village",
+  "wertheim-village",
+  "ingolstadt-village",
+  "la-roca-village",
+  "las-rozas-village",
+  "kildare-village",
+  "maasmechelen-village",
+  "cheshire-oaks",
+  "designer-outlet-roermond",
+  "designer-outlet-parndorf",
+  "serravalle-designer-outlet",
+  "castel-romano",
+  "noventa",
+  "designer-outlet-malaga",
+  "york-designer-outlet",
+  "ashford-designer-outlet",
+  "designer-outlet-athens",
+  "batavia-stad-fashion-outlet",
+  "franciacorta-designer-village",
+] as const;
+assert.equal(officialCampaignSources.length, expectedExpandedOutletIds.length,
+  "The official-source allowlist must contain the complete expanded outlet set.");
+assert.deepEqual(
+  new Set(officialCampaignSources.map(source => source.outletId)),
+  new Set(expectedExpandedOutletIds),
+  "The official-source allowlist does not match the approved expanded outlet set.",
+);
+assert.equal(new Set(officialCampaignSources.map(source => source.sourceId)).size, officialCampaignSources.length,
+  "Official source ids must be unique.");
+const allListingUrls = officialCampaignSources.flatMap(source => source.listingUrls);
+assert.equal(new Set(allListingUrls).size, allListingUrls.length, "Official listing URLs must be unique.");
 for (const source of officialCampaignSources) {
   assert(outlets.some(outlet => outlet.outletId === source.outletId), `${source.outletId}: missing app outlet record`);
   assert(source.listingUrls.length >= 1, `${source.sourceId}: missing listing URL`);
   assert(source.listingUrls.every(url => url.startsWith("https://")), `${source.sourceId}: listing URLs must use HTTPS`);
+  assert(source.listingUrls.every(url => isOfficialSourceUrl(source, url)), `${source.sourceId}: listing URL is outside its official host allowlist`);
+  assert(source.candidatePathPrefixes.every(prefix => prefix.startsWith("/") && prefix.endsWith("/")),
+    `${source.sourceId}: candidate path prefixes must be bounded URL paths`);
+  assert.doesNotThrow(() => new Intl.DateTimeFormat("en", { timeZone: source.timeZone }),
+    `${source.sourceId}: invalid IANA time zone`);
 }
 
 const cheshire = officialCampaignSources.find(source => source.outletId === "cheshire-oaks");
@@ -52,6 +89,27 @@ if (verified.status === "verified") {
   assert.equal(verified.campaign.endsOn, "2026-08-31");
   assert.equal(verified.campaign.discountPercent, 30);
   assert.equal(verified.campaign.sourceHost, "www.mcarthurglen.com");
+}
+
+const athens = officialCampaignSources.find(source => source.outletId === "designer-outlet-athens");
+assert(athens, "Designer Outlet Athens official source is required for parser validation.");
+const athensUrl = "https://designeroutletathens.gr/en/offers/17105-asics";
+const athensCampaign = parseOfficialCampaignPage(`
+  <!doctype html><html><head>
+    <title>Asics - Designer Outlet Athens</title>
+    <meta name="description" content="Extra savings on selected Asics outlet products for a limited period.">
+  </head><body>
+    <h1>up to -50% extra</h1>
+    <p>13.07.26 to 31.08.26. Up to -50% extra on outlet prices. Terms and conditions apply.</p>
+  </body></html>
+`, athensUrl, athens);
+assert.equal(athensCampaign.status, "verified");
+if (athensCampaign.status === "verified") {
+  assert.equal(athensCampaign.campaign.brandName, "Asics");
+  assert.equal(athensCampaign.campaign.startsOn, "2026-07-13");
+  assert.equal(athensCampaign.campaign.endsOn, "2026-08-31");
+  assert.equal(athensCampaign.campaign.discountPercent, 50);
+  assert.equal(athensCampaign.campaign.sourceHost, "designeroutletathens.gr");
 }
 
 const missingDates = parseOfficialCampaignPage(
@@ -156,6 +214,9 @@ assert(functionsIndex.includes("collectOfficialOutletCampaigns"), "Campaign coll
 assert(functionsIndex.includes("reconcileOfficialOutletCampaigns"), "Campaign publication reconciler is not exported.");
 assert(automation.includes('schedule: "every 6 hours"'), "Official source collection schedule is missing.");
 assert(automation.includes('schedule: "every 15 minutes"'), "Automatic publish/expiry schedule is missing.");
+assert(automation.includes("SOURCE_CONCURRENCY = 2")
+  && automation.includes("mapLimited(officialCampaignSources, SOURCE_CONCURRENCY"),
+"Expanded source collection must use bounded source-level concurrency.");
 assert(automation.includes("buildCampaignLocalization")
   && automation.includes("localizedText: localization.localizedText")
   && automation.includes("provider: CAMPAIGN_TRANSLATION_PROVIDER")

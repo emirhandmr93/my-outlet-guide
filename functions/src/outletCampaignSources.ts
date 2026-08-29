@@ -1,6 +1,6 @@
 export type OfficialCampaignSource = {
   sourceId: string;
-  operator: "the_bicester_collection" | "mcarthurglen" | "batavia_stad" | "land_of_fashion";
+  operator: "the_bicester_collection" | "mcarthurglen" | "batavia_stad" | "land_of_fashion" | "designer_outlet_athens";
   outletId: string;
   outletName: string;
   sourceLocale: "en";
@@ -10,6 +10,52 @@ export type OfficialCampaignSource = {
   candidatePathPrefixes: readonly string[];
   maxCandidatePages: number;
 };
+
+type SharedOperatorSourceInput = Pick<OfficialCampaignSource,
+  "sourceId" | "outletId" | "outletName" | "timeZone" | "maxCandidatePages"
+>;
+
+function theBicesterCollectionSource(
+  input: SharedOperatorSourceInput & { villageSlug: string },
+): OfficialCampaignSource {
+  const { villageSlug, ...source } = input;
+  const rootPath = `/${villageSlug}/en`;
+  return {
+    ...source,
+    operator: "the_bicester_collection",
+    sourceLocale: "en",
+    listingUrls: [
+      `https://www.thebicestercollection.com${rootPath}/offers/`,
+      `https://www.thebicestercollection.com${rootPath}/whats-on/`,
+    ],
+    allowedHosts: ["www.thebicestercollection.com"],
+    candidatePathPrefixes: [
+      `${rootPath}/offers/`,
+      `${rootPath}/whats-on/`,
+    ],
+  };
+}
+
+function mcArthurGlenSource(
+  input: SharedOperatorSourceInput & { countryCode: string; outletSlug: string },
+): OfficialCampaignSource {
+  const { countryCode, outletSlug, ...source } = input;
+  const rootPath = `/en/outlets/${countryCode}/${outletSlug}`;
+  return {
+    ...source,
+    operator: "mcarthurglen",
+    sourceLocale: "en",
+    listingUrls: [
+      `https://www.mcarthurglen.com${rootPath}/offers/`,
+      `https://www.mcarthurglen.com${rootPath}/whats-on/`,
+    ],
+    allowedHosts: ["www.mcarthurglen.com"],
+    candidatePathPrefixes: [
+      `${rootPath}/offers/`,
+      `${rootPath}/whats-on/`,
+    ],
+  };
+}
 
 /**
  * Public, operator-owned campaign pages only. The crawler rejects redirects,
@@ -34,6 +80,62 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     ],
     maxCandidatePages: 120,
   },
+  theBicesterCollectionSource({
+    sourceId: "fidenza-village-official",
+    villageSlug: "fidenza-village",
+    outletId: "fidenza-village",
+    outletName: "Fidenza Village",
+    timeZone: "Europe/Rome",
+    maxCandidatePages: 140,
+  }),
+  theBicesterCollectionSource({
+    sourceId: "wertheim-village-official",
+    villageSlug: "wertheim-village",
+    outletId: "wertheim-village",
+    outletName: "Wertheim Village",
+    timeZone: "Europe/Berlin",
+    maxCandidatePages: 140,
+  }),
+  theBicesterCollectionSource({
+    sourceId: "ingolstadt-village-official",
+    villageSlug: "ingolstadt-village",
+    outletId: "ingolstadt-village",
+    outletName: "Ingolstadt Village",
+    timeZone: "Europe/Berlin",
+    maxCandidatePages: 140,
+  }),
+  theBicesterCollectionSource({
+    sourceId: "la-roca-village-official",
+    villageSlug: "la-roca-village",
+    outletId: "la-roca-village",
+    outletName: "La Roca Village",
+    timeZone: "Europe/Madrid",
+    maxCandidatePages: 140,
+  }),
+  theBicesterCollectionSource({
+    sourceId: "las-rozas-village-official",
+    villageSlug: "las-rozas-village",
+    outletId: "las-rozas-village",
+    outletName: "Las Rozas Village",
+    timeZone: "Europe/Madrid",
+    maxCandidatePages: 140,
+  }),
+  theBicesterCollectionSource({
+    sourceId: "kildare-village-official",
+    villageSlug: "kildare-village",
+    outletId: "kildare-village",
+    outletName: "Kildare Village",
+    timeZone: "Europe/Dublin",
+    maxCandidatePages: 140,
+  }),
+  theBicesterCollectionSource({
+    sourceId: "maasmechelen-village-official",
+    villageSlug: "maasmechelen-village",
+    outletId: "maasmechelen-village",
+    outletName: "Maasmechelen Village",
+    timeZone: "Europe/Brussels",
+    maxCandidatePages: 140,
+  }),
   {
     sourceId: "la-vallee-village-official",
     operator: "the_bicester_collection",
@@ -123,6 +225,63 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
       "/en/outlets/it/designer-outlet-serravalle/whats-on/",
     ],
     maxCandidatePages: 180,
+  },
+  mcArthurGlenSource({
+    sourceId: "castel-romano-official",
+    countryCode: "it",
+    outletSlug: "designer-outlet-castel-romano",
+    outletId: "castel-romano",
+    outletName: "Castel Romano Designer Outlet",
+    timeZone: "Europe/Rome",
+    maxCandidatePages: 120,
+  }),
+  mcArthurGlenSource({
+    sourceId: "noventa-di-piave-official",
+    countryCode: "it",
+    outletSlug: "designer-outlet-noventa-di-piave",
+    outletId: "noventa",
+    outletName: "Noventa di Piave Designer Outlet",
+    timeZone: "Europe/Rome",
+    maxCandidatePages: 140,
+  }),
+  mcArthurGlenSource({
+    sourceId: "designer-outlet-malaga-official",
+    countryCode: "es",
+    outletSlug: "designer-outlet-malaga",
+    outletId: "designer-outlet-malaga",
+    outletName: "McArthurGlen Designer Outlet Málaga",
+    timeZone: "Europe/Madrid",
+    maxCandidatePages: 120,
+  }),
+  mcArthurGlenSource({
+    sourceId: "york-designer-outlet-official",
+    countryCode: "uk",
+    outletSlug: "designer-outlet-york",
+    outletId: "york-designer-outlet",
+    outletName: "York Designer Outlet",
+    timeZone: "Europe/London",
+    maxCandidatePages: 120,
+  }),
+  mcArthurGlenSource({
+    sourceId: "ashford-designer-outlet-official",
+    countryCode: "uk",
+    outletSlug: "designer-outlet-ashford",
+    outletId: "ashford-designer-outlet",
+    outletName: "Ashford Designer Outlet",
+    timeZone: "Europe/London",
+    maxCandidatePages: 120,
+  }),
+  {
+    sourceId: "designer-outlet-athens-official",
+    operator: "designer_outlet_athens",
+    outletId: "designer-outlet-athens",
+    outletName: "Designer Outlet Athens",
+    sourceLocale: "en",
+    timeZone: "Europe/Athens",
+    listingUrls: ["https://designeroutletathens.gr/en/offers"],
+    allowedHosts: ["designeroutletathens.gr", "www.designeroutletathens.gr"],
+    candidatePathPrefixes: ["/en/offers/"],
+    maxCandidatePages: 100,
   },
   {
     sourceId: "batavia-stad-official",

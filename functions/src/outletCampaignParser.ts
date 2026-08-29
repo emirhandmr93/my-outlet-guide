@@ -143,12 +143,15 @@ function extractBrand(objects: Record<string, unknown>[], htmlTitle: string, out
     }
   }
 
-  const titleParts = htmlTitle.split(/\s+[|–—]\s+/).map(part => cleanText(part, 120));
+  const titleParts = htmlTitle.split(/\s+(?:\||–|—|-)\s+/).map(part => cleanText(part, 120));
   const labelledBrand = /^(.*?)\s+(?:offers?|promotion|promo|sale)$/i.exec(titleParts[0])?.[1]?.trim();
   const separatedBrand = /^(?:offers?|promotion|promo|sale)$/i.test(titleParts[1] ?? "")
     ? titleParts[0]
     : "";
-  const candidate = labelledBrand || separatedBrand;
+  const outletSeparatedBrand = titleParts[1]?.toLowerCase().includes(outletName.toLowerCase())
+    ? titleParts[0]
+    : "";
+  const candidate = labelledBrand || separatedBrand || outletSeparatedBrand;
   if (candidate && !/\d\s*%|\b(?:black friday|crazy friday|shopping event)\b/i.test(candidate)
     && !candidate.toLowerCase().includes(outletName.toLowerCase())) return candidate;
   return "";
@@ -168,6 +171,11 @@ function toIsoDate(year: number, month: number, day: number): string | null {
   return dateOnly(`${String(year).padStart(4, "0")}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`);
 }
 
+function normalizeCampaignYear(value: string): number {
+  const year = Number(value);
+  return value.length === 2 ? 2_000 + year : year;
+}
+
 function extractDateRange(objects: Record<string, unknown>[], text: string): { startsOn: string; endsOn: string } | null {
   for (const object of objects) {
     const startsOn = dateOnly(readString(object.startDate));
@@ -181,10 +189,12 @@ function extractDateRange(objects: Record<string, unknown>[], text: string): { s
   const iso = /\b(?:from\s+)?(20\d{2}-\d{2}-\d{2})\s*(?:to|until|till|through|–|—|-)\s*(20\d{2}-\d{2}-\d{2})\b/i.exec(text);
   if (iso) return { startsOn: iso[1], endsOn: iso[2] };
 
-  const numeric = /\b(\d{1,2})[./-](\d{1,2})[./-](20\d{2})\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})[./-](\d{1,2})[./-](20\d{2})\b/i.exec(text);
+  // Some official operator pages use paired DD.MM.YY ranges. Two-digit years
+  // are deliberately accepted only here and normalized to the 2000s.
+  const numeric = /\b(\d{1,2})[./-](\d{1,2})[./-](20\d{2}|\d{2})\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})[./-](\d{1,2})[./-](20\d{2}|\d{2})\b/i.exec(text);
   if (numeric) {
-    const startsOn = toIsoDate(Number(numeric[3]), Number(numeric[2]), Number(numeric[1]));
-    const endsOn = toIsoDate(Number(numeric[6]), Number(numeric[5]), Number(numeric[4]));
+    const startsOn = toIsoDate(normalizeCampaignYear(numeric[3]), Number(numeric[2]), Number(numeric[1]));
+    const endsOn = toIsoDate(normalizeCampaignYear(numeric[6]), Number(numeric[5]), Number(numeric[4]));
     if (startsOn && endsOn) return { startsOn, endsOn };
   }
 
@@ -206,8 +216,8 @@ function extractDateRange(objects: Record<string, unknown>[], text: string): { s
 
 function extractDiscount(text: string): { label: string; percent?: number } | null {
   const patterns = [
-    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?\d{1,3}\s*(?:-|–|to)\s*\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto)/i,
-    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto)/i,
+    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?-?\d{1,3}\s*(?:-|–|to)\s*-?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto|extra)/i,
+    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?-?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto|extra)/i,
     /(?:buy|spend)\s+.{0,60}?\d{1,3}\s*%\s*off/i,
   ];
   for (const pattern of patterns) {
