@@ -14,24 +14,11 @@ import {
 } from "firebase/firestore";
 
 import { db } from "../firebase/config";
+import { officialCampaignHostsByOutlet } from "../constants/officialCampaignHosts";
 import type { TranslationLanguage } from "../translations/locale";
 import { resolveCampaignDisplayText } from "./outletCampaignLocalization";
 
 export const OUTLET_CAMPAIGNS_COLLECTION = "outletCampaigns";
-
-const officialCampaignHostsByOutlet: Readonly<Record<string, readonly string[]>> = {
-  "bicester-village": ["www.thebicestercollection.com"],
-  "la-vallee-village": ["www.thebicestercollection.com"],
-  "cheshire-oaks": ["www.mcarthurglen.com"],
-  "designer-outlet-roermond": ["www.mcarthurglen.com"],
-  "designer-outlet-parndorf": ["www.mcarthurglen.com"],
-  "serravalle-designer-outlet": ["www.mcarthurglen.com"],
-  "batavia-stad-fashion-outlet": ["www.bataviastad.nl"],
-  "franciacorta-designer-village": [
-    "www.franciacortavillage.it",
-    "www.franciacortadesignervillage.com",
-  ],
-};
 
 export type OutletCampaign = {
   campaignId: string;

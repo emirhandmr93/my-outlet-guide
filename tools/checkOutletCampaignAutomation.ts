@@ -219,17 +219,22 @@ assert.match(rules, /allow list: if resource\.data\.status == 'published'\s*&& r
 assert.match(rules, /allow create, update, delete: if false;/, "Clients must never write campaign records.");
 assert(indexes.includes('"collectionGroup": "outletCampaigns"'), "Campaign query index is missing.");
 assert(home.includes("subscribeActiveOutletCampaigns"), "Home must subscribe to live campaigns.");
-assert(home.includes("}, language), [language]")
+assert(/subscribeActiveOutletCampaigns\([\s\S]{0,500}language,\s*\),\s*\[language\]/.test(home)
   && campaignDetail.includes("getActiveOutletCampaign(campaignId, language)")
   && campaignDetail.includes("[campaignId, language, reload]"),
 "Home and campaign detail must refresh dynamic campaign text when the selected language changes.");
 assert(home.includes("...featuredSlides"), "Bundled Home slides must remain as the campaign fallback.");
 assert(home.includes("...activeCampaigns.map") && home.includes("id: `campaign-${campaign.campaignId}`"),
   "Live campaign slides must use stable, collision-safe carousel ids.");
-assert(home.includes("(activeSlideIndex + 1) % slides.length") && home.includes("activeSlideIndex < slides.length"),
-  "The carousel must continue looping and reset safely when campaigns expire.");
-assert(home.includes("getItemLayout") && home.includes("onMomentumScrollEnd={handleCarouselScroll}"),
+assert(/getNextFeaturedCarouselIndex\(\s*activeSlideIndex,\s*slides\.length,?\s*\)/.test(home)
+  && /normalizeFeaturedCarouselIndex\(\s*activeSlideIndex,\s*slides\.length,?\s*\)/.test(home),
+"The carousel must continue looping and reset safely when campaigns expire.");
+assert(home.includes("getItemLayout") && home.includes("onMomentumScrollEnd={handleCarouselScroll}")
+  && home.includes("onScrollToIndexFailed"),
   "The carousel must retain deterministic scrolling and active-page tracking.");
+assert(/shouldUseCompactCarouselIndicator\(featuredPageCount\)/.test(home)
+  && /formatFeaturedCarouselPosition\(\s*activeSlideIndex,\s*featuredPageCount,\s*language,?\s*\)/.test(home),
+"Large campaign sets must use a bounded carousel position indicator.");
 assert(clientService.includes('verification?.status !== "verified"')
   && clientService.includes('verification.approvalRequired !== false'),
 "The client must reject records that did not pass automatic official-source verification.");
