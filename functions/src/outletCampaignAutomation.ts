@@ -16,6 +16,12 @@ import {
   officialCampaignSources,
   type OfficialCampaignSource,
 } from "./outletCampaignSources";
+import {
+  buildCampaignLocalization,
+  CAMPAIGN_TRANSLATION_PROVIDER,
+  CAMPAIGN_TRANSLATION_VERSION,
+  campaignTranslationLanguages,
+} from "./outletCampaignLocalization";
 
 const CAMPAIGNS_COLLECTION = "outletCampaigns";
 const RUNS_COLLECTION = "outletCampaignIngestionRuns";
@@ -38,6 +44,9 @@ type CollectionSummary = {
   expiredSkipped: number;
   rejected: number;
   unpublishedAfterFailedVerification: number;
+  translationComplete: number;
+  translationPartial: number;
+  translationFailedLocales: Record<string, number>;
   rejectionReasons: Record<string, number>;
 };
 
@@ -54,6 +63,9 @@ function emptySummary(): CollectionSummary {
     expiredSkipped: 0,
     rejected: 0,
     unpublishedAfterFailedVerification: 0,
+    translationComplete: 0,
+    translationPartial: 0,
+    translationFailedLocales: {},
     rejectionReasons: {},
   };
 }
@@ -205,6 +217,30 @@ async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCa
   const ref = db.collection(CAMPAIGNS_COLLECTION).doc(campaign.campaignId);
   const existing = await ref.get();
   const existingData = existing.data();
+  const previousTranslation = existingData?.translation && typeof existingData.translation === "object"
+    ? existingData.translation as Record<string, unknown>
+    : {};
+  const canReuseTranslations = previousTranslation.sourceFingerprint === campaign.sourceFingerprint
+    && previousTranslation.provider === CAMPAIGN_TRANSLATION_PROVIDER
+    && previousTranslation.version === CAMPAIGN_TRANSLATION_VERSION;
+  const localization = await buildCampaignLocalization(campaign, undefined, canReuseTranslations ? {
+    localizedText: existingData?.localizedText,
+    completeLocales: Array.isArray(previousTranslation.completeLocales)
+      ? previousTranslation.completeLocales
+      : [],
+  } : {});
+  if (localization.failedLocales.length > 0) {
+    summary.translationPartial += 1;
+    localization.failedLocales.forEach(language => {
+      summary.translationFailedLocales[language] = (summary.translationFailedLocales[language] ?? 0) + 1;
+    });
+    logger.warn("Official campaign translation is partial; source-language fallback retained", {
+      campaignId: campaign.campaignId,
+      failedLocales: localization.failedLocales,
+    });
+  } else {
+    summary.translationComplete += 1;
+  }
   await ref.set({
     schemaVersion: 2,
     campaignId: campaign.campaignId,
@@ -231,6 +267,18 @@ async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCa
     sourceHost: campaign.sourceHost,
     sourceLocale: campaign.sourceLocale,
     sourceFingerprint: campaign.sourceFingerprint,
+    localizedText: localization.localizedText,
+    translation: {
+      status: localization.failedLocales.length === 0 ? "complete" : "partial",
+      provider: CAMPAIGN_TRANSLATION_PROVIDER,
+      version: CAMPAIGN_TRANSLATION_VERSION,
+      sourceLocale: campaign.sourceLocale,
+      supportedLocales: [...campaignTranslationLanguages],
+      completeLocales: localization.completeLocales,
+      failedLocales: localization.failedLocales,
+      sourceFingerprint: campaign.sourceFingerprint,
+      lastAttemptAt: Timestamp.fromDate(now),
+    },
     verification: {
       status: "verified",
       officialDomain: true,

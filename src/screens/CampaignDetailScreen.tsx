@@ -52,7 +52,7 @@ export function CampaignDetailScreen() {
   useEffect(() => {
     let active = true;
     setState("loading");
-    void getActiveOutletCampaign(campaignId)
+    void getActiveOutletCampaign(campaignId, language)
       .then(result => {
         if (!active) return;
         setCampaign(result);
@@ -62,7 +62,7 @@ export function CampaignDetailScreen() {
         if (active) setState("unavailable");
       });
     return () => { active = false; };
-  }, [campaignId, reload]);
+  }, [campaignId, language, reload]);
 
   const image = useMemo(() => campaignImage(campaign?.outletId ?? ""), [campaign?.outletId]);
 

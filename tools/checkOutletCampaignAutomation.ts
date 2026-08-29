@@ -121,15 +121,23 @@ const root = process.cwd();
 const rules = readFileSync(join(root, "firestore.rules"), "utf8");
 const indexes = readFileSync(join(root, "firestore.indexes.json"), "utf8");
 const home = readFileSync(join(root, "src/screens/HomeScreen.tsx"), "utf8");
+const campaignDetail = readFileSync(join(root, "src/screens/CampaignDetailScreen.tsx"), "utf8");
 const clientService = readFileSync(join(root, "src/services/outletCampaignService.ts"), "utf8");
+const clientLocalization = readFileSync(join(root, "src/services/outletCampaignLocalization.ts"), "utf8");
 const functionsIndex = readFileSync(join(root, "functions/src/index.ts"), "utf8");
 const automation = readFileSync(join(root, "functions/src/outletCampaignAutomation.ts"), "utf8");
+const serverLocalization = readFileSync(join(root, "functions/src/outletCampaignLocalization.ts"), "utf8");
+const functionsPackage = readFileSync(join(root, "functions/package.json"), "utf8");
 assert(rules.includes("match /outletCampaigns/{campaignId}"), "Firestore campaign rules are missing.");
 assert.match(rules, /allow list: if resource\.data\.status == 'published'\s*&& resource\.data\.active == true;/,
   "Campaign list rules must match the client query's published + active constraints.");
 assert.match(rules, /allow create, update, delete: if false;/, "Clients must never write campaign records.");
 assert(indexes.includes('"collectionGroup": "outletCampaigns"'), "Campaign query index is missing.");
 assert(home.includes("subscribeActiveOutletCampaigns"), "Home must subscribe to live campaigns.");
+assert(home.includes("}, language), [language]")
+  && campaignDetail.includes("getActiveOutletCampaign(campaignId, language)")
+  && campaignDetail.includes("[campaignId, language, reload]"),
+"Home and campaign detail must refresh dynamic campaign text when the selected language changes.");
 assert(home.includes("...featuredSlides"), "Bundled Home slides must remain as the campaign fallback.");
 assert(home.includes("...activeCampaigns.map") && home.includes("id: `campaign-${campaign.campaignId}`"),
   "Live campaign slides must use stable, collision-safe carousel ids.");
@@ -140,10 +148,28 @@ assert(home.includes("getItemLayout") && home.includes("onMomentumScrollEnd={han
 assert(clientService.includes('verification?.status !== "verified"')
   && clientService.includes('verification.approvalRequired !== false'),
 "The client must reject records that did not pass automatic official-source verification.");
+assert(clientService.includes("resolveCampaignDisplayText(data.localizedText, language")
+  && clientLocalization.includes("percentageTokens")
+  && clientLocalization.includes("return englishValue"),
+"The client must resolve localized campaign content with field-level English and discount-integrity fallbacks.");
 assert(functionsIndex.includes("collectOfficialOutletCampaigns"), "Campaign collection function is not exported.");
 assert(functionsIndex.includes("reconcileOfficialOutletCampaigns"), "Campaign publication reconciler is not exported.");
 assert(automation.includes('schedule: "every 6 hours"'), "Official source collection schedule is missing.");
 assert(automation.includes('schedule: "every 15 minutes"'), "Automatic publish/expiry schedule is missing.");
+assert(automation.includes("buildCampaignLocalization")
+  && automation.includes("localizedText: localization.localizedText")
+  && automation.includes("provider: CAMPAIGN_TRANSLATION_PROVIDER")
+  && automation.includes("version: CAMPAIGN_TRANSLATION_VERSION"),
+"Verified campaigns must generate and persist cached eight-language content.");
+assert(serverLocalization.includes('"en",') && serverLocalization.includes('"tr",')
+  && serverLocalization.includes('"es",') && serverLocalization.includes('"fr",')
+  && serverLocalization.includes('"de",') && serverLocalization.includes('"ar",')
+  && serverLocalization.includes('"ru",') && serverLocalization.includes('"zh",')
+  && serverLocalization.includes("previousCompleteLocales")
+  && serverLocalization.includes("translation.googleapis.com/v3"),
+"The translation worker must cover all eight production locales, reuse completed content, and use Cloud Translation v3.");
+assert(functionsPackage.includes('"google-auth-library": "^10.6.1"'),
+  "Functions must declare their Cloud Translation authentication dependency directly.");
 assert(automation.includes('status: "verification_failed"') && automation.includes('active: false'),
   "Failed verification must automatically remove a campaign from publication.");
 assert(automation.includes('"source_http_404"') && automation.includes('"source_http_410"'),

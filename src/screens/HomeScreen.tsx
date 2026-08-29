@@ -399,7 +399,7 @@ export function HomeScreen() {
 
   useEffect(() => subscribeActiveOutletCampaigns(setActiveCampaigns, () => {
     // Firestore is best-effort on Home; bundled feature slides remain available.
-  }), []);
+  }, language), [language]);
 
   useEffect(() => {
     if (activeSlideIndex < slides.length) return;

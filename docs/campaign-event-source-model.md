@@ -49,12 +49,22 @@ outletCampaigns/{campaignId}
   timeZone, featuredPriority
   sourceId, sourceUrl, sourceHost, sourceLocale
   sourceFingerprint
+  localizedText: en | tr | es | fr | de | ar | ru | zh
+  translation: provider, version, status, completeLocales, failedLocales, sourceFingerprint
   verification: map
   imagePolicy: local_outlet_asset
   createdAt, updatedAt, lastCheckedAt, publishedAt?, expiredAt?
 ```
 
 Campaign ids and fingerprints are deterministic. Repeated crawls update the same document and cannot duplicate a campaign.
+
+## Translation runtime
+
+- The Google Cloud Translation API (`translate.googleapis.com`) must be enabled in the Firebase project.
+- The Gen 2 Functions runtime service account needs the `roles/cloudtranslate.user` role.
+- Functions use Application Default Credentials; no API key or client-side translation credential is stored in the app.
+- Standard Cloud Translation v3 NMT translates only newly verified or materially changed source text. Successful locale results are cached by `sourceFingerprint`.
+- Simplified Chinese uses the supported `zh-CN` provider code and is stored under the app's `zh` locale.
 
 ## Lifecycle
 
@@ -69,4 +79,4 @@ Active campaigns are delivered by a Firestore realtime subscription. They appear
 
 When no verified campaign is active—or when Firestore is unavailable—the bundled featured slides remain unchanged. When a campaign expires, local time filtering hides it immediately in the client and the scheduler removes its published state on the backend.
 
-UI copy is maintained in the eight production languages: `en`, `tr`, `es`, `fr`, `de`, `ar`, `ru`, and `zh`. Official campaign text remains faithful to its source language rather than being machine-translated or invented.
+UI copy is maintained in the eight production languages: `en`, `tr`, `es`, `fr`, `de`, `ar`, `ru`, and `zh`. The exact official English source text remains in the top-level fields. Cloud Translation v3 creates a separate `localizedText` map when the source fingerprint changes; a matching completed translation is reused on later crawls. The client selects its active language and falls back field-by-field to the verified English source if a translation is missing, oversized, or changes percentage evidence. Translation failure never blocks publication or expiry and is retried on the next collection run.
