@@ -73,6 +73,25 @@ async function main() {
   const turkish = resolveCampaignDisplayText(complete.localizedText, "tr", complete.localizedText.en);
   assert.match(turkish.headline, /^\[tr\]/);
   assert.match(turkish.discountLabel, /50%/);
+
+  const turkishPrefixPercent = resolveCampaignDisplayText({
+    tr: { ...complete.localizedText.tr, discountLabel: "Ekstra %50 indirim" },
+  }, "tr", complete.localizedText.en);
+  assert.equal(turkishPrefixPercent.discountLabel, "Ekstra %50 indirim",
+    "The client must accept Turkish percent-before-number discount formatting.");
+
+  const chineseWrittenZhe = resolveCampaignDisplayText({
+    zh: { ...complete.localizedText.zh, discountLabel: "额外五折优惠" },
+  }, "zh", complete.localizedText.en);
+  assert.equal(chineseWrittenZhe.discountLabel, "额外五折优惠",
+    "The client must accept Chinese written-numeral 折 discounts already validated by ingestion.");
+
+  const chineseFullWidthPercent = resolveCampaignDisplayText({
+    zh: { ...complete.localizedText.zh, discountLabel: "额外优惠50％" },
+  }, "zh", complete.localizedText.en);
+  assert.equal(chineseFullWidthPercent.discountLabel, "额外优惠50％",
+    "The client must accept full-width localized percent characters.");
+
   const safeFallback = resolveCampaignDisplayText({
     tr: { ...complete.localizedText.tr, discountLabel: "Ekstra %40 indirim" },
   }, "tr", complete.localizedText.en);
@@ -82,7 +101,7 @@ async function main() {
   assert.deepEqual(resolveCampaignDisplayText({}, "ru", complete.localizedText.en), complete.localizedText.en,
     "Missing locale data must fall back to English field-for-field.");
 
-  console.log("Outlet campaign localization check passed: 8 locales, cache reuse, safe fallback, and discount integrity.");
+  console.log("Outlet campaign localization check passed: 8 locales, cache reuse, localized discount syntax, safe fallback, and discount integrity.");
 }
 
 void main().catch(error => {
