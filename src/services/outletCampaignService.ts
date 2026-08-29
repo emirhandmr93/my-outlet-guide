@@ -15,6 +15,7 @@ import {
 
 import { db } from "../firebase/config";
 import type { TranslationLanguage } from "../translations/locale";
+import { resolveCampaignDisplayText } from "./outletCampaignLocalization";
 
 export const OUTLET_CAMPAIGNS_COLLECTION = "outletCampaigns";
 
@@ -86,6 +87,7 @@ export function isOfficialCampaignSourceUrl(outletId: string, sourceUrl: string,
 export function parsePublishedOutletCampaign(
   snapshot: QueryDocumentSnapshot<DocumentData> | { id: string; data(): DocumentData },
   now = new Date(),
+  language: TranslationLanguage = "en",
 ): OutletCampaign | null {
   const data = snapshot.data();
   const campaignId = requiredString(data.campaignId, 180);
@@ -117,15 +119,23 @@ export function parsePublishedOutletCampaign(
     || now < startsAt || now >= endsAt
     || !isOfficialCampaignSourceUrl(outletId, sourceUrl, sourceHost)) return null;
 
-  return {
-    campaignId,
-    outletId,
-    outletName,
+  const displayText = resolveCampaignDisplayText(data.localizedText, language, {
     brandName,
     headline,
     summary,
     conditions: optionalString(data.conditions, 900),
     discountLabel,
+  });
+
+  return {
+    campaignId,
+    outletId,
+    outletName,
+    brandName: displayText.brandName,
+    headline: displayText.headline,
+    summary: displayText.summary,
+    conditions: displayText.conditions,
+    discountLabel: displayText.discountLabel,
     discountPercent: typeof data.discountPercent === "number" && Number.isFinite(data.discountPercent)
       ? data.discountPercent
       : null,
@@ -154,6 +164,7 @@ function sortCampaigns(campaigns: OutletCampaign[]): OutletCampaign[] {
 export function subscribeActiveOutletCampaigns(
   onCampaigns: (campaigns: OutletCampaign[]) => void,
   onError?: (error: unknown) => void,
+  language: TranslationLanguage = "en",
 ): Unsubscribe {
   const activeQuery = query(
     collection(db, OUTLET_CAMPAIGNS_COLLECTION),
@@ -165,7 +176,7 @@ export function subscribeActiveOutletCampaigns(
   return onSnapshot(activeQuery, snapshot => {
     const now = new Date();
     onCampaigns(sortCampaigns(snapshot.docs
-      .map(document => parsePublishedOutletCampaign(document, now))
+      .map(document => parsePublishedOutletCampaign(document, now, language))
       .filter((campaign): campaign is OutletCampaign => campaign !== null)));
   }, error => {
     onCampaigns([]);
@@ -173,10 +184,13 @@ export function subscribeActiveOutletCampaigns(
   });
 }
 
-export async function getActiveOutletCampaign(campaignId: string): Promise<OutletCampaign | null> {
+export async function getActiveOutletCampaign(
+  campaignId: string,
+  language: TranslationLanguage = "en",
+): Promise<OutletCampaign | null> {
   if (!/^[a-z0-9-]{8,180}$/.test(campaignId)) return null;
   const snapshot = await getDoc(doc(db, OUTLET_CAMPAIGNS_COLLECTION, campaignId));
-  return snapshot.exists() ? parsePublishedOutletCampaign(snapshot) : null;
+  return snapshot.exists() ? parsePublishedOutletCampaign(snapshot, new Date(), language) : null;
 }
 
 export function formatCampaignDate(dateOnly: string, language: TranslationLanguage): string {
