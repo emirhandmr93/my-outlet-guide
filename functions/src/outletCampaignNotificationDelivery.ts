@@ -9,6 +9,10 @@ import {
   buildLocalizedCampaignNotificationContent,
   normalizeCampaignNotificationLocale,
 } from "./outletCampaignNotificationLocalization";
+import {
+  cityCampaignTargetKey,
+  outletCampaignTargetKey,
+} from "./tripCampaignTargets";
 
 type TargetKind = "favorite" | "trip" | "global";
 type Target = { userId: string; kind: TargetKind };
@@ -77,6 +81,15 @@ export function tripMatchesCampaign(data: Record<string, unknown>, outletId: str
   });
 }
 
+function tripIsCurrent(data: Record<string, unknown>, today: string) {
+  const endDate = typeof data.endDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(data.endDate)
+    ? data.endDate
+    : typeof data.visitDate === "string" && /^\d{4}-\d{2}-\d{2}$/.test(data.visitDate)
+      ? data.visitDate
+      : null;
+  return endDate !== null && endDate >= today;
+}
+
 async function paged(query: Query, limit = MAX_USERS_PER_RUN) {
   const documents: FirebaseFirestore.QueryDocumentSnapshot[] = [];
   let cursor: FirebaseFirestore.QueryDocumentSnapshot | undefined;
@@ -97,7 +110,7 @@ function addTarget(targets: Map<string, TargetKind>, userId: unknown, kind: Targ
   if (!current || targetRank[kind] > targetRank[current]) targets.set(userId, kind);
 }
 
-async function resolveTargets(campaign: Record<string, unknown>): Promise<Target[]> {
+async function resolveTargets(campaign: Record<string, unknown>, now: Date): Promise<Target[]> {
   const db = getFirestore();
   const outletId = campaign.outletId;
   if (!safeSegment(outletId)) return [];
@@ -107,12 +120,23 @@ async function resolveTargets(campaign: Record<string, unknown>): Promise<Target
   const favorites = await paged(db.collection("favorites").where("favoriteIds", "array-contains", outletId));
   favorites.forEach(document => addTarget(targets, document.id, "favorite"));
 
-  const trips = await paged(db.collectionGroup("items").where("status", "in", ["upcoming", "active"]));
-  for (const document of trips) {
+  const targetKeys = [outletCampaignTargetKey(outletId), ...(cityId ? [cityCampaignTargetKey(cityId)] : [])];
+  const destinationQueries = targetKeys.map(targetKey => paged(db.collectionGroup("items")
+    .where("campaignTargetKeys", "array-contains", targetKey)
+    .where("status", "in", ["upcoming", "active"])));
+  // Preserve outlet matching for trips created before campaignTargetKeys was
+  // introduced. The one-time backfill covers legacy city/segment matches.
+  destinationQueries.push(paged(db.collectionGroup("items")
+    .where("outletId", "==", outletId)
+    .where("status", "in", ["upcoming", "active"])));
+  const tripDocuments = new Map<string, FirebaseFirestore.QueryDocumentSnapshot>();
+  (await Promise.all(destinationQueries)).flat().forEach(document => tripDocuments.set(document.ref.path, document));
+  const today = now.toISOString().slice(0, 10);
+  for (const document of tripDocuments.values()) {
     const parts = document.ref.path.split("/");
     const data = document.data();
     if (parts.length === 4 && parts[0] === "userTrips" && parts[2] === "items" &&
-      tripMatchesCampaign(data, outletId, cityId)) addTarget(targets, parts[1], "trip");
+      tripIsCurrent(data, today) && tripMatchesCampaign(data, outletId, cityId)) addTarget(targets, parts[1], "trip");
   }
 
   if (isMajorOutletCampaign(campaign)) {
@@ -245,7 +269,7 @@ export async function processPublishedOutletCampaignNotifications(now = new Date
     if (campaign.campaignId !== document.id || campaign.autoPublished !== true || verification.status !== "verified" ||
       !(campaign.publishedAt instanceof Timestamp) || now.getTime() - campaign.publishedAt.toMillis() > CAMPAIGN_AGE_MS ||
       !(campaign.endsAt instanceof Timestamp) || campaign.endsAt.toDate() <= now) continue;
-    const campaignTargets = await resolveTargets(campaign);
+    const campaignTargets = await resolveTargets(campaign, now);
     campaigns += 1;
     targets += campaignTargets.length;
     for (let offset = 0; offset < campaignTargets.length; offset += 20) {

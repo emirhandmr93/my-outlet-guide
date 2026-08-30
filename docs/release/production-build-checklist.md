@@ -48,12 +48,14 @@ Manual Firebase Console verification is required before store submission:
 - Functions list shows `sendTripReminderNotifications`.
 - Functions list shows `sendWelcomeEmail`.
 - Functions list shows `trackTravelPartnerClick`.
+- Functions list shows `syncTripCampaignTargets` and `backfillTripCampaignTargets`.
 - Functions list shows `weeklyCampaignDigest`, `campaignLandingPage`, and `campaignSitemap`.
 - Functions list shows `processOutletCampaignNotifications` and its schedule is healthy.
 - `deleteAccount` is deployed in the same Firebase project used by the production app.
 - `moderateReviewAction` is deployed and access remains moderator/admin gated.
 - `getTripWeather` is deployed and safely returns provider-deferred/unavailable behavior when Open-Meteo is not configured; `OPEN_METEO_API_KEY` is optional/future and must not block this production build.
 - `sendTripReminderNotifications` scheduled function is deployed and has expected schedule/region.
+- `backfillTripCampaignTargets` completed its bounded migration, and newly written trips receive `campaignTargetKeys` through `syncTripCampaignTargets`.
 - Resend shows `myoutletguide.com` as verified before welcome email activation.
 - Secret Manager contains `WELCOME_EMAIL_API_KEY`, and `sendWelcomeEmail` is deployed after the secret is set.
 - A neutral test signup produces a successful Resend delivery and a `mailEvents/welcome_<uid>` document with `status: sent`.
@@ -72,8 +74,8 @@ Manual Firebase Console verification is required before store submission:
   - Field: `userId`
   - Mode: ascending
 - Confirm existing query indexes used by notification/trip/review checks remain present.
-- Confirm the collection-group `items.status` index is deployed for upcoming/active trip campaign matching.
-- Confirm TTL is enabled for `travelPartnerClickEvents.expiresAt`.
+- Confirm the collection-group `items.campaignTargetKeys + status` and legacy `items.outletId + status` indexes are deployed for destination-scoped trip campaign matching.
+- Confirm TTL is enabled for `travelPartnerClickEvents.expiresAt` and `travelPartnerClickRateLimits.expiresAt`.
 
 ## 5. iOS build command
 

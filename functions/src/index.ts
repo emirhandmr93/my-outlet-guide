@@ -425,6 +425,8 @@ export {
 
 export { processOutletCampaignNotifications } from "./outletCampaignNotificationDelivery";
 
+export { backfillTripCampaignTargets, syncTripCampaignTargets } from "./tripCampaignTargets";
+
 export { campaignLandingPage, campaignSitemap, weeklyCampaignDigest } from "./campaignLandingPage";
 
 export { trackTravelPartnerClick } from "./travelPartnerAnalytics";

@@ -8,6 +8,7 @@ import {
   isMajorOutletCampaign,
   tripMatchesCampaign,
 } from "../functions/src/outletCampaignNotificationDelivery";
+import { buildTripCampaignTargetKeys } from "../functions/src/tripCampaignTargets";
 import { parseOutletCampaignNotificationResponse } from "../src/services/outletCampaignNotificationResponse";
 import { supportedLanguageCodes } from "../src/translations/locale";
 
@@ -18,6 +19,10 @@ assert.equal(campaignNotificationLocalWeekStart(new Date("2026-08-30T18:30:00Z")
 assert.equal(tripMatchesCampaign({ outletId: "other", segments: [{ cityId: "milan" }] }, "serravalle-designer-outlet", "milan"), true);
 assert.equal(tripMatchesCampaign({ segments: [{ outletId: "serravalle-designer-outlet" }] }, "serravalle-designer-outlet", "milan"), true);
 assert.equal(tripMatchesCampaign({ segments: [{ cityId: "rome" }] }, "serravalle-designer-outlet", "milan"), false);
+assert.deepEqual(buildTripCampaignTargetKeys({
+  outletId: "serravalle-designer-outlet",
+  segments: [{ cityId: "milan" }, { outletId: "serravalle-designer-outlet" }, { cityId: "rome" }],
+}), ["city:milan", "city:rome", "outlet:serravalle-designer-outlet"]);
 assert.equal(isMajorOutletCampaign({ type: "offer", discountPercent: 40 }), true);
 assert.equal(isMajorOutletCampaign({ type: "offer", headline: "Black Friday Weekend" }), true);
 assert.equal(isMajorOutletCampaign({ type: "event", headline: "VIP Shopping Day" }), true);
@@ -52,7 +57,11 @@ const navigator = readFileSync("src/navigation/AppNavigator.tsx", "utf8");
 assert(delivery.includes("RESERVATION_LEASE_MS") && delivery.includes("campaignNotificationDailyCaps") === false);
 assert(delivery.includes("userNotificationDailyCaps") && delivery.includes("userNotificationWeeklyCaps"));
 assert(delivery.includes('target.kind === "global" ? total >= 1 : total >= 4'));
-assert(delivery.includes('where("status", "in", ["upcoming", "active"])') && delivery.includes("tripMatchesCampaign"));
+assert(delivery.includes('where("campaignTargetKeys", "array-contains", targetKey)')
+  && delivery.includes('where("outletId", "==", outletId)')
+  && delivery.includes('where("status", "in", ["upcoming", "active"])')
+  && delivery.includes("tripMatchesCampaign"),
+"Trip notifications must use destination-scoped indexed queries instead of scanning every active trip.");
 assert(delivery.includes('channelId: "outlet_updates"') && delivery.includes("isQuietHour"));
 assert(context.includes('setNotificationChannelAsync("outlet_updates"') && context.includes("getDeviceTimeZone"));
 assert(screen.includes("setFavoriteOutletUpdatesEnabled") && screen.includes("setMarketingEnabled"));

@@ -124,6 +124,26 @@ function publicationState(startsAt: Date, endsAt: Date, now: Date): "scheduled" 
   return now >= startsAt ? "published" : "scheduled";
 }
 
+function canonicalCampaignUrl(value: string): string | null {
+  try {
+    const url = new URL(value);
+    url.hash = "";
+    [...url.searchParams.keys()].forEach(key => {
+      if (/^(?:utm_|fbclid$|gclid$)/i.test(key)) url.searchParams.delete(key);
+    });
+    url.searchParams.sort();
+    url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+    return url.toString();
+  } catch {
+    return null;
+  }
+}
+
+export function campaignUrlsCanonicallyEquivalent(left: string, right: string) {
+  const canonicalLeft = canonicalCampaignUrl(left);
+  return canonicalLeft !== null && canonicalLeft === canonicalCampaignUrl(right);
+}
+
 async function fetchOfficialHtml(url: string, source: OfficialCampaignSource, detailPage: boolean): Promise<{ html: string; finalUrl: string }> {
   if (!(detailPage ? isOfficialCampaignDetailUrl(source, url) : isOfficialSourceUrl(source, url))) {
     throw new Error("source_url_not_allowed");
@@ -209,16 +229,61 @@ async function releaseLease(db: Firestore, runId: string) {
   });
 }
 
-async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCampaign, now: Date, summary: CollectionSummary) {
+async function persistVerifiedCampaign(
+  db: Firestore,
+  campaign: ParsedOfficialCampaign,
+  discoveredSourceUrl: string,
+  now: Date,
+  summary: CollectionSummary,
+) {
   const { startsAt, endsAt } = campaignWindow(campaign);
   const state = publicationState(startsAt, endsAt, now);
+  let ref = db.collection(CAMPAIGNS_COLLECTION).doc(campaign.campaignId);
+  let existing = await ref.get();
+  if (!existing.exists && discoveredSourceUrl !== campaign.sourceUrl) {
+    const aliases = await db.collection(CAMPAIGNS_COLLECTION)
+      .where("sourceAliases", "array-contains", discoveredSourceUrl)
+      .limit(5)
+      .get();
+    const redirectedRecord = aliases.docs.find(document => document.data().sourceId === campaign.sourceId);
+    if (redirectedRecord) {
+      ref = redirectedRecord.ref;
+      existing = redirectedRecord;
+    }
+  }
+  const existingData = existing.data();
+  const previousAliases = Array.isArray(existingData?.sourceAliases)
+    ? existingData.sourceAliases.filter((value): value is string => typeof value === "string")
+    : [];
+  const sourceAliases = [...new Set([...previousAliases, campaign.sourceUrl, discoveredSourceUrl])].sort();
   if (state === "expired") {
+    if (existing.exists) {
+      const existingVerification = existingData?.verification && typeof existingData.verification === "object"
+        ? existingData.verification as Record<string, unknown>
+        : {};
+      await ref.set({
+        status: "expired",
+        active: false,
+        startsOn: campaign.startsOn,
+        endsOn: campaign.endsOn,
+        startsAt: Timestamp.fromDate(startsAt),
+        endsAt: Timestamp.fromDate(endsAt),
+        sourceUrl: campaign.sourceUrl,
+        sourceAliases,
+        sourceFingerprint: campaign.sourceFingerprint,
+        verification: {
+          ...existingVerification,
+          status: "verified",
+          checkedAt: Timestamp.fromDate(now),
+        },
+        expiredAt: existingData?.expiredAt ?? FieldValue.serverTimestamp(),
+        lastCheckedAt: Timestamp.fromDate(now),
+        updatedAt: FieldValue.serverTimestamp(),
+      }, { merge: true });
+    }
     summary.expiredSkipped += 1;
     return;
   }
-  const ref = db.collection(CAMPAIGNS_COLLECTION).doc(campaign.campaignId);
-  const existing = await ref.get();
-  const existingData = existing.data();
   const previousTranslation = existingData?.translation && typeof existingData.translation === "object"
     ? existingData.translation as Record<string, unknown>
     : {};
@@ -246,7 +311,7 @@ async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCa
   const destination = getOfficialCampaignDestination(campaign.outletId);
   await ref.set({
     schemaVersion: 2,
-    campaignId: campaign.campaignId,
+    campaignId: ref.id,
     type: campaign.type,
     status: state,
     active: state === "published",
@@ -269,6 +334,7 @@ async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCa
     featuredPriority: campaign.featuredPriority,
     sourceId: campaign.sourceId,
     sourceUrl: campaign.sourceUrl,
+    sourceAliases,
     sourceHost: campaign.sourceHost,
     sourceLocale: campaign.sourceLocale,
     sourceFingerprint: campaign.sourceFingerprint,
@@ -312,12 +378,21 @@ async function unpublishFailedVerification(
   now: Date,
   summary: CollectionSummary,
 ) {
-  let campaignId: string;
-  try { campaignId = buildOfficialCampaignId(source, sourceUrl); } catch { return; }
-  const ref = db.collection(CAMPAIGNS_COLLECTION).doc(campaignId);
-  const snapshot = await ref.get();
-  if (!snapshot.exists) return;
-  await ref.set({
+  const references = new Map<string, FirebaseFirestore.DocumentReference>();
+  try {
+    const directRef = db.collection(CAMPAIGNS_COLLECTION).doc(buildOfficialCampaignId(source, sourceUrl));
+    if ((await directRef.get()).exists) references.set(directRef.path, directRef);
+  } catch { /* The alias lookup below can still resolve a previously approved redirect. */ }
+  const aliases = await db.collection(CAMPAIGNS_COLLECTION)
+    .where("sourceAliases", "array-contains", sourceUrl)
+    .limit(5)
+    .get();
+  aliases.docs.forEach(document => {
+    if (document.data().sourceId === source.sourceId) references.set(document.ref.path, document.ref);
+  });
+  if (references.size === 0) return;
+  const batch = db.batch();
+  references.forEach(ref => batch.set(ref, {
     status: "verification_failed",
     active: false,
     verification: {
@@ -329,8 +404,9 @@ async function unpublishFailedVerification(
     lastCheckedAt: Timestamp.fromDate(now),
     updatedAt: FieldValue.serverTimestamp(),
     unpublishedAt: FieldValue.serverTimestamp(),
-  }, { merge: true });
-  summary.unpublishedAfterFailedVerification += 1;
+  }, { merge: true }));
+  await batch.commit();
+  summary.unpublishedAfterFailedVerification += references.size;
 }
 
 async function collectSource(db: Firestore, source: OfficialCampaignSource, now: Date, summary: CollectionSummary) {
@@ -364,9 +440,10 @@ async function collectSource(db: Firestore, source: OfficialCampaignSource, now:
     try {
       const { html, finalUrl } = await fetchOfficialHtml(sourceUrl, source, true);
       summary.detailPagesFetched += 1;
-      const result = parseOfficialCampaignPage(html, finalUrl, source, listingEvidence);
+      const safeListingEvidence = campaignUrlsCanonicallyEquivalent(sourceUrl, finalUrl) ? listingEvidence : "";
+      const result = parseOfficialCampaignPage(html, finalUrl, source, safeListingEvidence);
       if (result.status === "verified") {
-        await persistVerifiedCampaign(db, result.campaign, now, summary);
+        await persistVerifiedCampaign(db, result.campaign, sourceUrl, now, summary);
         return;
       }
       summary.rejected += 1;

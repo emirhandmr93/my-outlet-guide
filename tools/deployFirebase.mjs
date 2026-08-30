@@ -1,4 +1,4 @@
-import { spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 
 const DEFAULT_DISCOVERY_TIMEOUT_SECONDS = 60;
 const MINIMUM_DISCOVERY_TIMEOUT_SECONDS = 30;
@@ -16,17 +16,38 @@ function discoveryTimeoutSeconds(value) {
     : String(DEFAULT_DISCOVERY_TIMEOUT_SECONDS);
 }
 
+function includesHosting(args) {
+  const equalsArgument = args.find(argument => argument.startsWith("--only="));
+  const onlyIndex = args.indexOf("--only");
+  const targets = equalsArgument?.slice("--only=".length) ?? (onlyIndex >= 0 ? args[onlyIndex + 1] : "");
+  return targets.split(",").some(target => target.trim() === "hosting" || target.trim().startsWith("hosting:"));
+}
+
 const forwardedArgs = process.argv.slice(2);
 const deployArgs = forwardedArgs.length > 0 ? forwardedArgs : DEFAULT_DEPLOY_ARGS;
 const firebaseCommand = process.platform === "win32" ? "firebase.cmd" : "firebase";
-const discoveryTimeout = discoveryTimeoutSeconds(process.env.FUNCTIONS_DISCOVERY_TIMEOUT);
+const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+const discoveryTimeoutSecondsValue = discoveryTimeoutSeconds(process.env.FUNCTIONS_DISCOVERY_TIMEOUT);
+const discoveryTimeoutMilliseconds = String(Number(discoveryTimeoutSecondsValue) * 1_000);
 
-console.log(`Firebase Functions discovery timeout: ${discoveryTimeout}s`);
+console.log(`Firebase Functions discovery timeout: ${discoveryTimeoutSecondsValue}s (${discoveryTimeoutMilliseconds}ms)`);
+
+if (includesHosting(deployArgs)) {
+  console.log("Hosting is included; building and validating a fresh production web export first.");
+  const webBuild = spawnSync(npmCommand, ["run", "web:build"], {
+    shell: process.platform === "win32",
+    stdio: "inherit",
+  });
+  if (webBuild.status !== 0) {
+    console.error("Firebase deploy stopped because the production web build or its validations failed.");
+    process.exit(webBuild.status ?? 1);
+  }
+}
 
 const child = spawn(firebaseCommand, ["deploy", ...deployArgs], {
   env: {
     ...process.env,
-    FUNCTIONS_DISCOVERY_TIMEOUT: discoveryTimeout,
+    FUNCTIONS_DISCOVERY_TIMEOUT: discoveryTimeoutMilliseconds,
   },
   shell: process.platform === "win32",
   stdio: "inherit",

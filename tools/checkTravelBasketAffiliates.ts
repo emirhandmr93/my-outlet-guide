@@ -154,5 +154,9 @@ assert(partnerAnalyticsFunction.includes('collection("travelPartnerClickEvents")
   partnerAnalyticsFunction.includes("expiresAt") && !partnerAnalyticsFunction.includes("userId:") &&
   !partnerAnalyticsFunction.includes("tripId:"),
 "Partner analytics must be anonymous and retention limited.");
+assert(partnerAnalyticsFunction.includes("reserveAnalyticsEvent")
+  && partnerAnalyticsFunction.includes("RATE_LIMIT_MAX_EVENTS")
+  && partnerAnalyticsFunction.includes('collection("travelPartnerClickRateLimits")'),
+"Anonymous partner analytics must be protected by an abuse-resistant server-side rate limit.");
 
 console.log(`Travel Basket outbound checks passed for ${categories.length} services and ${supportedLanguageCodes.length} languages.`);

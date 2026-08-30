@@ -95,7 +95,10 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletName: "The Mall Firenze",
     sourceLocale: "en",
     timeZone: "Europe/Rome",
-    listingUrls: ["https://firenze.themall.it/en"],
+    listingUrls: [
+      "https://firenze.themall.it/en",
+      "https://firenze.themall.it/en/events/",
+    ],
     allowedHosts: ["firenze.themall.it"],
     candidatePathPrefixes: ["/en/events/"],
     maxCandidatePages: 80,

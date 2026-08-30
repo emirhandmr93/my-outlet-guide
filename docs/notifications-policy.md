@@ -1,22 +1,24 @@
 # Notifications Policy
 
-Notifications Phase 1C adds a trusted backend sender for the first supported remote push category: trip reminders. The app still does not show a fake notification inbox, placeholder notification cards, mock notification history, or simulated server-sent notifications.
+Notifications use trusted backend senders for trip reminders and verified outlet campaign alerts. The app does not show a fake notification inbox, placeholder notification cards, mock notification history, or simulated server-sent notifications.
 
 ## Active notification categories
 
 - Active: trip reminders for active trips with a valid `YYYY-MM-DD` `visitDate`.
-- Inactive: favorite outlet updates, review updates, and marketing messages. These categories remain stored preferences only until category-specific backend senders are implemented.
+- Active: verified campaigns and events for favorite outlets and destinations in saved trips.
+- Active after explicit opt-in: exceptional global campaign marketing alerts, capped at one per seven days.
+- Inactive: review updates. This category remains a stored preference until a category-specific backend sender is implemented.
 
 ## Client behavior
 
 - Logged-out users cannot save notification settings and cannot register cloud push tokens.
 - Signed-in users can enable or disable the account-level notification preference.
-- Signed-in users can enable or disable trip reminders separately when account notifications are enabled.
+- Signed-in users can independently enable or disable trip reminders, favorite-outlet campaign alerts, and marketing alerts when account notifications are enabled.
 - When a signed-in user enables notifications on a native build, the app requests OS notification permission with `expo-notifications`.
 - If permission is granted, the app registers a real Expo push token for the current EAS project and stores it in Firestore.
 - If permission is denied, the UI shows final copy telling the user that notification permission is denied and can be changed in system settings.
 - If notifications are disabled, the account setting is marked disabled and existing token documents are updated with `disabledAt`.
-- The app does not show notification history or pretend unsupported categories can deliver remotely.
+- The app does not show notification history or pretend review updates can deliver remotely.
 
 ## Firestore paths
 
@@ -139,7 +141,9 @@ Before sending, the function creates the delivery document in a Firestore transa
    npm --prefix functions run build
    ```
 
-3. Deploy Firestore rules, indexes, Functions, and Hosting. The project wrapper also raises the
+3. Deploy Firestore rules, indexes, Functions, and Hosting. When Hosting is included, the project
+   wrapper first builds and validates a fresh production web export, so stale Hosting output cannot
+   be deployed. The wrapper also raises the
    Firebase Functions source-discovery timeout to 60 seconds, which prevents the Firebase CLI's
    default 10-second discovery limit from failing on slower Windows machines. Firebase deploy
    still runs `npm --prefix "$RESOURCE_DIR" run build` before deploying Functions:
@@ -177,4 +181,4 @@ npm run deploy:firebase
 
 ## Remaining unsupported categories
 
-Favorite outlet updates, review updates, and marketing messages still need dedicated backend sender logic and delivery policy before they can be marked active. They must remain inactive in the UI until real production delivery exists.
+Review updates still need dedicated backend sender logic and a delivery policy before they can be marked active. They must remain inactive in the UI until real production delivery exists.

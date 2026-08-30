@@ -166,15 +166,42 @@ export function subscribeActiveOutletCampaigns(
     orderBy("featuredPriority", "desc"),
     limit(60),
   );
-  return onSnapshot(activeQuery, snapshot => {
+  let documents: QueryDocumentSnapshot<DocumentData>[] = [];
+  let expiryTimer: ReturnType<typeof setTimeout> | undefined;
+  const clearExpiryTimer = () => {
+    if (expiryTimer !== undefined) clearTimeout(expiryTimer);
+    expiryTimer = undefined;
+  };
+  const emitCurrentCampaigns = () => {
     const now = new Date();
-    onCampaigns(sortCampaigns(snapshot.docs
+    const campaigns = sortCampaigns(documents
       .map(document => parsePublishedOutletCampaign(document, now, language))
-      .filter((campaign): campaign is OutletCampaign => campaign !== null)));
+      .filter((campaign): campaign is OutletCampaign => campaign !== null));
+    onCampaigns(campaigns);
+    clearExpiryTimer();
+    const nearestExpiry = campaigns.reduce<number | null>((nearest, campaign) => {
+      const expiresAt = campaign.endsAt.getTime();
+      return nearest === null || expiresAt < nearest ? expiresAt : nearest;
+    }, null);
+    if (nearestExpiry !== null) {
+      const maximumDelay = 2_147_483_647;
+      const delay = Math.min(maximumDelay, Math.max(25, nearestExpiry - now.getTime() + 25));
+      expiryTimer = setTimeout(emitCurrentCampaigns, delay);
+    }
+  };
+  const unsubscribe = onSnapshot(activeQuery, snapshot => {
+    documents = [...snapshot.docs];
+    emitCurrentCampaigns();
   }, error => {
+    documents = [];
+    clearExpiryTimer();
     onCampaigns([]);
     onError?.(error);
   });
+  return () => {
+    clearExpiryTimer();
+    unsubscribe();
+  };
 }
 
 export async function getActiveOutletCampaign(

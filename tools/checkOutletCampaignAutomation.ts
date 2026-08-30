@@ -7,6 +7,7 @@ import {
   extractOfficialCampaignLinks,
   parseOfficialCampaignPage,
 } from "../functions/src/outletCampaignParser";
+import { campaignUrlsCanonicallyEquivalent } from "../functions/src/outletCampaignAutomation";
 import { isOfficialSourceUrl, officialCampaignSources } from "../functions/src/outletCampaignSources";
 import { officialCampaignDestinations } from "../functions/src/outletCampaignDestinations";
 import { outlets } from "../src/constants/outlets";
@@ -135,8 +136,21 @@ if (athensCampaign.status === "verified") {
   assert.equal(athensCampaign.campaign.sourceHost, "designeroutletathens.gr");
 }
 
+const bonusPoints = parseOfficialCampaignPage(`
+  <!doctype html><html><head>
+    <title>Member Rewards | Designer Outlet Athens</title>
+    <meta name="description" content="Members earn 50% extra points during the official rewards period.">
+  </head><body>
+    <h1>Earn 50% extra points</h1>
+    <p>13.07.26 to 31.08.26. Members earn 50% extra points on purchases.</p>
+  </body></html>
+`, athensUrl, athens);
+assert.equal(bonusPoints.status, "rejected", "Bonus points must never be auto-published as a price discount.");
+
 const firenze = officialCampaignSources.find(source => source.outletId === "the-mall-firenze");
 assert(firenze, "The Mall Firenze official source is required for parser validation.");
+assert(firenze.listingUrls.includes("https://firenze.themall.it/en/events/"),
+  "The Mall Firenze source must crawl the official events index, not only the homepage.");
 const firenzeUrl = "https://firenze.themall.it/en/events/gucci-summer-offer";
 assert.deepEqual(extractOfficialCampaignLinks(`
   <a href="/en/events/gucci-summer-offer">Gucci summer offer</a>
@@ -201,6 +215,13 @@ if (flashSale.status === "verified") {
   assert.equal(flashSale.campaign.discountPercent, 30);
   assert.equal(flashSale.campaign.dateEvidenceSource, "official_listing");
 }
+
+assert.equal(campaignUrlsCanonicallyEquivalent(
+  `${verifiedUrl}?utm_source=listing`,
+  verifiedUrl.replace(/\/$/, ""),
+), true);
+assert.equal(campaignUrlsCanonicallyEquivalent(verifiedUrl, flashSaleUrl), false,
+  "Listing evidence must not cross campaign identities after a redirect.");
 
 const untrusted = parseOfficialCampaignPage(validHtml, "https://coupon.example/nike", cheshire);
 assert.equal(untrusted.status, "rejected");
@@ -302,6 +323,13 @@ assert(functionsPackage.includes('"google-auth-library": "^10.6.1"'),
   "Functions must declare their Cloud Translation authentication dependency directly.");
 assert(automation.includes('status: "verification_failed"') && automation.includes('active: false'),
   "Failed verification must automatically remove a campaign from publication.");
+assert(automation.includes('status: "expired"') && automation.includes("sourceAliases"),
+  "Changed official dates and approved redirect aliases must update the existing campaign record safely.");
+assert(automation.includes('where("sourceAliases", "array-contains", discoveredSourceUrl)')
+  && automation.includes("campaignId: ref.id"),
+"A changed official redirect target must retain the existing campaign identity instead of creating a duplicate.");
+assert(clientService.includes("nearestExpiry") && clientService.includes("setTimeout(emitCurrentCampaigns"),
+  "The client must remove a campaign at its local end time without waiting for another Firestore snapshot.");
 assert(automation.includes('"source_http_404"') && automation.includes('"source_http_410"'),
   "Removed official pages must automatically unpublish their campaign.");
 assert(!automation.includes('status: "pending_approval"'), "The automatic lifecycle must not create an approval queue.");

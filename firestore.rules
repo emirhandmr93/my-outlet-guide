@@ -526,6 +526,8 @@ service cloud.firestore {
           'startDate',
           'endDate',
           'segments',
+          'campaignTargetKeys',
+          'campaignTargetsUpdatedAt',
           'flightDetails',
           'reminderPlan'
         ])
@@ -546,6 +548,11 @@ service cloud.firestore {
         && isOptionalStringOrNull(request.resource.data.startDate, 40)
         && isOptionalStringOrNull(request.resource.data.endDate, 40)
         && request.resource.data.segments is list
+        && (!('campaignTargetKeys' in request.resource.data)
+          || (request.resource.data.campaignTargetKeys is list
+            && request.resource.data.campaignTargetKeys.size() <= 200))
+        && (!('campaignTargetsUpdatedAt' in request.resource.data)
+          || request.resource.data.campaignTargetsUpdatedAt is timestamp)
         && (request.resource.data.flightDetails == null || request.resource.data.flightDetails is map)
         && request.resource.data.reminderPlan is list
         && isNonEmptyString(request.resource.data.createdAt)

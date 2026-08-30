@@ -26,7 +26,7 @@ Working draft for App Store Connect privacy questionnaire. Not legal advice. Mus
 - Flight deal alert preferences.
 - Notification settings.
 - Language, currency, and app preferences if Apple category mapping applies.
-- Anonymous travel-partner click context: provider, category, placement, campaign/outlet/destination identifiers when available, platform, locale, and whether the handoff is monetized. These events omit email, Firebase UID, trip identifier, and destination URL and expire automatically after 400 days.
+- Anonymous travel-partner click context: provider, category, placement, campaign/outlet/destination identifiers when available, platform, locale, and whether the handoff is monetized. These events omit email, Firebase UID, trip identifier, and destination URL and expire automatically after 400 days. A hashed account-or-network abuse-prevention key is stored separately for no more than 24 hours and is not joined to the event.
 
 ### Location
 
