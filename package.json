@@ -58,7 +58,7 @@
     "validate:travel-basket": "tsx tools/checkTravelBasketAffiliates.ts",
     "validate:campaigns": "node --import tsx tools/checkOutletCampaignAutomation.ts && node --import tsx tools/checkOutletCampaignLocalization.ts && node --import tsx tools/checkCampaignCarouselScale.ts && node --import tsx tools/checkOutletCampaignNotifications.ts",
     "validate:android-navigation": "tsx tools/checkAndroidBottomNavigation.ts",
-    "validate:readiness": "tsx tools/checkAppShare.ts && tsx tools/checkExternalLinksReadiness.ts && tsx tools/checkBetaReadiness.ts && tsx tools/checkEasArchiveReadiness.ts && tsx tools/checkWelcomeEmail.ts && npm run validate:android-navigation",
+    "validate:readiness": "tsx tools/checkAppShare.ts && tsx tools/checkExternalLinksReadiness.ts && tsx tools/checkBetaReadiness.ts && tsx tools/checkEasArchiveReadiness.ts && tsx tools/checkWelcomeEmail.ts && tsx tools/checkFirebaseDeployWrapper.ts && npm run validate:android-navigation",
     "validate:release": "npm run typecheck && npm run validate:master-data && npm run validate:translations && npm run translations:web:check && npm run validate:external-urls && npm run validate:flight-alerts && npm run validate:media && npm run validate:shopping-companion && npm run validate:nearby && npm run validate:travel-basket && npm run validate:campaigns && npm run validate:readiness",
     "web:perf": "tsx tools/reportWebPerformance.ts",
     "web:perf:check": "tsx tools/checkWebPerformanceBudget.ts",

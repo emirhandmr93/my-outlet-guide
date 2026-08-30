@@ -217,8 +217,10 @@ function extractDateRange(objects: Record<string, unknown>[], text: string): { s
 
 function extractDiscount(text: string): { label: string; percent?: number } | null {
   const patterns = [
-    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?-?\d{1,3}\s*(?:-|–|to)\s*-?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto|extra)/i,
-    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?-?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto|extra)/i,
+    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?-?\d{1,3}\s*(?:-|–|to)\s*-?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto)/i,
+    /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?-?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto)/i,
+    /(?:up\s+to\s+)?-\d{1,3}\s*(?:-|–|to)\s*-\d{1,3}\s*%\s*extra/i,
+    /(?:up\s+to\s+)?-\d{1,3}\s*%\s*extra/i,
     /(?:buy|spend)\s+.{0,60}?\d{1,3}\s*%\s*off/i,
   ];
   for (const pattern of patterns) {

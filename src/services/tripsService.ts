@@ -16,6 +16,19 @@ function normalizeOptionalString(value: unknown) {
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
 }
 
+function buildCampaignTargetKeys(outletId: unknown, segments: readonly TripSegment[]) {
+  const keys = new Set<string>();
+  const normalizedOutletId = normalizeOptionalString(outletId);
+  if (normalizedOutletId) keys.add(`outlet:${normalizedOutletId}`);
+  segments.forEach(segment => {
+    const segmentOutletId = normalizeOptionalString(segment.outletId);
+    const segmentCityId = normalizeOptionalString(segment.cityId);
+    if (segmentOutletId) keys.add(`outlet:${segmentOutletId}`);
+    if (segmentCityId) keys.add(`city:${segmentCityId}`);
+  });
+  return [...keys].sort().slice(0, 200);
+}
+
 function stripUndefined<T>(value: T): T {
   if (Array.isArray(value)) return value.map((item) => stripUndefined(item)).filter((item) => item !== undefined) as T;
   if (value && typeof value === "object") {
@@ -163,6 +176,7 @@ export async function createUserTrip(userId: string, trip: TripInput): Promise<s
     travelerCount: trip.travelerCount || null,
     notes: normalizeOptionalString(trip.notes) || null,
     segments,
+    campaignTargetKeys: buildCampaignTargetKeys(trip.outletId, segments),
     flightDetails: flightDetails || null,
     reminderPlan,
     status: getTripStatus(trip.startDate, trip.endDate),
@@ -194,6 +208,7 @@ export async function updateUserTrip(userId: string, tripId: string, trip: Parti
     endDate,
     visitDate: startDate,
     segments,
+    campaignTargetKeys: buildCampaignTargetKeys(trip.outletId ?? existing?.outletId, segments),
     flightDetails: flightDetails || null,
     reminderPlan,
     status: getTripStatus(startDate, endDate),

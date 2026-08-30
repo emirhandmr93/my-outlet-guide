@@ -22,7 +22,7 @@ Working draft for manual Play Console entry. Not legal advice. Must be verified 
 - Flight deal alert preferences.
 - Notification settings.
 - Language and currency preferences.
-- Anonymous travel-partner click context: provider, category, placement, campaign/outlet/destination identifiers when available, platform, locale, and monetization status. The event does not include email, Firebase UID, trip identifier, or the destination URL and is configured to expire after 400 days.
+- Anonymous travel-partner click context: provider, category, placement, campaign/outlet/destination identifiers when available, platform, locale, and monetization status. The event does not include email, Firebase UID, trip identifier, or the destination URL and is configured to expire after 400 days. A hashed account-or-network abuse-prevention key is stored separately for no more than 24 hours and is not joined to the event.
 
 ### Device or other IDs
 
