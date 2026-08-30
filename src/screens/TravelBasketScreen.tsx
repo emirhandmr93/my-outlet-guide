@@ -21,6 +21,7 @@ import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import type { RootStackParamList } from "../navigation/types";
 import { type TravelBasketCategory, type TravelBasketPlacement } from "../services/travelBasketAffiliateLinks";
 import { getTravelBasketOutboundLink } from "../services/travelPartnerConfig";
+import { recordTravelPartnerClick } from "../services/travelPartnerClickAnalytics";
 import colors from "../theme/colors";
 import { getTravelBasketEsimCopy } from "../translations/travelBasketEsimCopy";
 import { formatIsoDateOnly } from "../utils/dateOnly";
@@ -77,6 +78,10 @@ export function TravelBasketScreen() {
     const dates = trip ? `${formatIsoDateOnly(trip.startDate)} – ${formatIsoDateOnly(trip.endDate)}` : "";
     return {
       contextId: route.params?.campaignId ?? trip?.id ?? outlet?.outletId,
+      campaignId: route.params?.campaignId,
+      outletId,
+      countryId: outlet?.countryId,
+      cityId: outlet?.cityId ?? segment?.cityId,
       dates,
       label,
       outletName: trip?.outletName ?? segment?.outletName ?? outlet?.outletName ?? "",
@@ -100,6 +105,17 @@ export function TravelBasketScreen() {
         monetized: outboundLink.monetized,
         placement,
       });
+      void recordTravelPartnerClick({
+        provider: outboundLink.provider,
+        category,
+        monetized: outboundLink.monetized,
+        placement,
+        locale: language,
+        campaignId: context.campaignId,
+        outletId: context.outletId,
+        countryId: context.countryId,
+        cityId: context.cityId,
+      });
       if (!(await openExternalBrowserUrl(outboundLink.url))) throw new Error("partner_open_failed");
     } catch {
       Alert.alert(t("travelBasket.openFailedTitle"), t("travelBasket.openFailedBody"));
@@ -110,7 +126,13 @@ export function TravelBasketScreen() {
 
   function openItem(category: BasketItem["category"]) {
     if (category === "flight") {
-      navigation.navigate("FlightSearch");
+      navigation.navigate("FlightSearch", {
+        campaignId: context.campaignId,
+        outletId: context.outletId,
+        countryId: context.countryId,
+        cityId: context.cityId,
+        source: placement,
+      });
       return;
     }
     void openPartner(category);

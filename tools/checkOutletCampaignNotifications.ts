@@ -2,14 +2,26 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import { buildLocalizedCampaignNotificationContent, campaignNotificationLocales } from "../functions/src/outletCampaignNotificationLocalization";
-import { campaignNotificationLocalDateHour, isMajorOutletCampaign } from "../functions/src/outletCampaignNotificationDelivery";
+import {
+  campaignNotificationLocalDateHour,
+  campaignNotificationLocalWeekStart,
+  isMajorOutletCampaign,
+  tripMatchesCampaign,
+} from "../functions/src/outletCampaignNotificationDelivery";
 import { parseOutletCampaignNotificationResponse } from "../src/services/outletCampaignNotificationResponse";
 import { supportedLanguageCodes } from "../src/translations/locale";
 
 assert.deepEqual([...campaignNotificationLocales], [...supportedLanguageCodes]);
 assert.deepEqual(campaignNotificationLocalDateHour(new Date("2026-08-29T18:30:00Z"), "Europe/Istanbul"), { date: "2026-08-29", hour: 21 });
-assert.equal(isMajorOutletCampaign({ type: "offer", discountPercent: 50 }), true);
+assert.equal(campaignNotificationLocalWeekStart(new Date("2026-08-30T23:30:00Z"), "Europe/Istanbul"), "2026-08-31");
+assert.equal(campaignNotificationLocalWeekStart(new Date("2026-08-30T18:30:00Z"), "Europe/Istanbul"), "2026-08-24");
+assert.equal(tripMatchesCampaign({ outletId: "other", segments: [{ cityId: "milan" }] }, "serravalle-designer-outlet", "milan"), true);
+assert.equal(tripMatchesCampaign({ segments: [{ outletId: "serravalle-designer-outlet" }] }, "serravalle-designer-outlet", "milan"), true);
+assert.equal(tripMatchesCampaign({ segments: [{ cityId: "rome" }] }, "serravalle-designer-outlet", "milan"), false);
+assert.equal(isMajorOutletCampaign({ type: "offer", discountPercent: 40 }), true);
 assert.equal(isMajorOutletCampaign({ type: "offer", headline: "Black Friday Weekend" }), true);
+assert.equal(isMajorOutletCampaign({ type: "event", headline: "VIP Shopping Day" }), true);
+assert.equal(isMajorOutletCampaign({ type: "event", headline: "Late-night shopping concert" }), true);
 assert.equal(isMajorOutletCampaign({ type: "offer", discountPercent: 30, headline: "Member offer" }), false);
 
 for (const locale of campaignNotificationLocales) {
@@ -38,10 +50,12 @@ const context = readFileSync("src/contexts/NotificationSettingsContext.tsx", "ut
 const screen = readFileSync("src/screens/NotificationSettingsScreen.tsx", "utf8");
 const navigator = readFileSync("src/navigation/AppNavigator.tsx", "utf8");
 assert(delivery.includes("RESERVATION_LEASE_MS") && delivery.includes("campaignNotificationDailyCaps") === false);
-assert(delivery.includes("userNotificationDailyCaps") && delivery.includes("marketing >= 2") && delivery.includes("total >= 4"));
+assert(delivery.includes("userNotificationDailyCaps") && delivery.includes("userNotificationWeeklyCaps"));
+assert(delivery.includes('target.kind === "global" ? total >= 1 : total >= 4'));
+assert(delivery.includes('where("status", "in", ["upcoming", "active"])') && delivery.includes("tripMatchesCampaign"));
 assert(delivery.includes('channelId: "outlet_updates"') && delivery.includes("isQuietHour"));
 assert(context.includes('setNotificationChannelAsync("outlet_updates"') && context.includes("getDeviceTimeZone"));
 assert(screen.includes("setFavoriteOutletUpdatesEnabled") && screen.includes("setMarketingEnabled"));
 assert(navigator.includes("parseOutletCampaignNotificationResponse") && navigator.includes('navigate("CampaignDetail"'));
 
-console.log("Outlet campaign notification checks passed: 8 locales, consent gates, caps, quiet hours, lease recovery, Android channel, and deep link.");
+console.log("Outlet campaign notification checks passed: 8 locales, city/outlet trip matching, weekly global cap, consent gates, quiet hours, lease recovery, Android channel, and deep link.");

@@ -22,6 +22,7 @@ Working draft for manual Play Console entry. Not legal advice. Must be verified 
 - Flight deal alert preferences.
 - Notification settings.
 - Language and currency preferences.
+- Anonymous travel-partner click context: provider, category, placement, campaign/outlet/destination identifiers when available, platform, locale, and monetization status. The event does not include email, Firebase UID, trip identifier, or the destination URL and is configured to expire after 400 days.
 
 ### Device or other IDs
 
@@ -43,6 +44,7 @@ Working draft for manual Play Console entry. Not legal advice. Must be verified 
 - Firebase backend, storage, authentication, functions, and database services may process account and app data as service providers.
 - Frankfurter receives currency-rate requests or related request metadata for live currency exchange rates.
 - Open-Meteo is retained as future/provider-backed weather infrastructure; it should receive weather requests only if that provider is configured and enabled.
+- Travel providers receive the external browser request only after the user selects a partner. My Outlet Guide stores the anonymous context event described above separately from the destination URL.
 - Do not claim data is sold unless policy/legal review says otherwise.
 - Do not overclaim “no sharing” unless verified under Google Play Data Safety definitions, including service-provider exceptions and provider request metadata.
 

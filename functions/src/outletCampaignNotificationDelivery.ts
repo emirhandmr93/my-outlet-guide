@@ -40,15 +40,23 @@ export function campaignNotificationLocalDateHour(now: Date, timeZone: string) {
   return { date: `${values.year}-${values.month}-${values.day}`, hour: Number(values.hour) };
 }
 
+export function campaignNotificationLocalWeekStart(now: Date, timeZone: string) {
+  const { date } = campaignNotificationLocalDateHour(now, timeZone);
+  const localDate = new Date(`${date}T00:00:00.000Z`);
+  const daysSinceMonday = (localDate.getUTCDay() + 6) % 7;
+  localDate.setUTCDate(localDate.getUTCDate() - daysSinceMonday);
+  return localDate.toISOString().slice(0, 10);
+}
+
 function isQuietHour(now: Date, timeZone: string) {
   const { hour } = campaignNotificationLocalDateHour(now, timeZone);
   return hour >= QUIET_START_HOUR || hour < QUIET_END_HOUR;
 }
 
 export function isMajorOutletCampaign(data: Record<string, unknown>) {
-  if (data.type === "offer" && typeof data.discountPercent === "number" && data.discountPercent >= 50) return true;
+  if (data.type === "offer" && typeof data.discountPercent === "number" && data.discountPercent >= 40) return true;
   const text = `${data.headline ?? ""} ${data.summary ?? ""}`;
-  return /\b(?:black friday|cyber monday|boxing day|grand opening|anniversary|shopping festival|summer sale|winter sale)\b/i.test(text);
+  return /\b(?:black friday|cyber monday|boxing day|grand opening|anniversary|shopping festival|vip shopping|late[ -]?night shopping|shopping night|fashion show|concert|summer sale|winter sale)\b/i.test(text);
 }
 
 function deliveryId(campaignId: string, userId: string) {
@@ -57,6 +65,16 @@ function deliveryId(campaignId: string, userId: string) {
 
 function capId(userId: string, localDate: string) {
   return createHash("sha256").update(JSON.stringify([userId, localDate])).digest("hex");
+}
+
+export function tripMatchesCampaign(data: Record<string, unknown>, outletId: string, cityId?: string) {
+  if (data.outletId === outletId || cityId && data.cityId === cityId) return true;
+  if (!Array.isArray(data.segments)) return false;
+  return data.segments.some(segment => {
+    if (!segment || typeof segment !== "object" || Array.isArray(segment)) return false;
+    const value = segment as Record<string, unknown>;
+    return value.outletId === outletId || Boolean(cityId && value.cityId === cityId);
+  });
 }
 
 async function paged(query: Query, limit = MAX_USERS_PER_RUN) {
@@ -83,17 +101,18 @@ async function resolveTargets(campaign: Record<string, unknown>): Promise<Target
   const db = getFirestore();
   const outletId = campaign.outletId;
   if (!safeSegment(outletId)) return [];
+  const cityId = safeSegment(campaign.cityId) ? campaign.cityId : undefined;
   const targets = new Map<string, TargetKind>();
 
   const favorites = await paged(db.collection("favorites").where("favoriteIds", "array-contains", outletId));
   favorites.forEach(document => addTarget(targets, document.id, "favorite"));
 
-  const trips = await paged(db.collectionGroup("items").where("outletId", "==", outletId));
+  const trips = await paged(db.collectionGroup("items").where("status", "in", ["upcoming", "active"]));
   for (const document of trips) {
     const parts = document.ref.path.split("/");
     const data = document.data();
     if (parts.length === 4 && parts[0] === "userTrips" && parts[2] === "items" &&
-      (data.status === "upcoming" || data.status === "active")) addTarget(targets, parts[1], "trip");
+      tripMatchesCampaign(data, outletId, cityId)) addTarget(targets, parts[1], "trip");
   }
 
   if (isMajorOutletCampaign(campaign)) {
@@ -121,11 +140,13 @@ function preferenceEnabled(settings: Record<string, unknown>, kind: TargetKind) 
   return settings.marketingEnabled === true;
 }
 
-async function reserve(campaignId: string, target: Target, localDate: string, now: Date) {
+async function reserve(campaignId: string, target: Target, localDate: string, localWeekStart: string, now: Date) {
   const db = getFirestore();
   const settingsRef = db.collection("userNotificationSettings").doc(target.userId);
   const deliveryRef = db.collection("campaignNotificationDeliveries").doc(deliveryId(campaignId, target.userId));
-  const capRef = db.collection("userNotificationDailyCaps").doc(capId(target.userId, localDate));
+  const capRef = target.kind === "global"
+    ? db.collection("userNotificationWeeklyCaps").doc(capId(target.userId, localWeekStart))
+    : db.collection("userNotificationDailyCaps").doc(capId(target.userId, localDate));
   return db.runTransaction(async transaction => {
     const [settingsSnapshot, deliverySnapshot, capSnapshot] = await Promise.all([
       transaction.get(settingsRef), transaction.get(deliveryRef), transaction.get(capRef),
@@ -145,11 +166,11 @@ async function reserve(campaignId: string, target: Target, localDate: string, no
     if (!existing) {
       const cap = capSnapshot.data() ?? {};
       const total = typeof cap.total === "number" ? cap.total : 0;
-      const marketing = typeof cap.marketing === "number" ? cap.marketing : 0;
-      if (total >= 4 || target.kind === "global" && marketing >= 2) return false;
+      if (target.kind === "global" ? total >= 1 : total >= 4) return false;
       transaction.set(capRef, {
-        userId: target.userId, localDate, total: total + 1,
-        marketing: marketing + (target.kind === "global" ? 1 : 0), updatedAt: FieldValue.serverTimestamp(),
+        userId: target.userId,
+        ...(target.kind === "global" ? { localWeekStart, marketing: total + 1 } : { localDate }),
+        total: total + 1, updatedAt: FieldValue.serverTimestamp(),
       }, { merge: true });
     }
     transaction.set(deliveryRef, {
@@ -173,7 +194,8 @@ async function deliver(campaignId: string, campaign: Record<string, unknown>, ta
   const timeZone = tokens[0].timeZone;
   if (isQuietHour(now, timeZone)) return;
   const { date } = campaignNotificationLocalDateHour(now, timeZone);
-  if (!(await reserve(campaignId, target, date, now))) return;
+  const localWeekStart = campaignNotificationLocalWeekStart(now, timeZone);
+  if (!(await reserve(campaignId, target, date, localWeekStart, now))) return;
 
   const messages: ExpoPushMessage[] = tokens.map(token => ({
     to: token.token, sound: "default", ttl: 86_400, priority: target.kind === "global" ? "normal" : "high",

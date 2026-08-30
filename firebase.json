@@ -158,6 +158,20 @@
     ],
     "rewrites": [
       {
+        "source": "/:language/campaigns/weekly",
+        "function": {
+          "functionId": "weeklyCampaignDigest",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/campaigns/weekly",
+        "function": {
+          "functionId": "weeklyCampaignDigest",
+          "region": "us-central1"
+        }
+      },
+      {
         "source": "/:language/campaign/:campaignId",
         "function": {
           "functionId": "campaignLandingPage",

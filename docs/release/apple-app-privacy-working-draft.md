@@ -26,6 +26,7 @@ Working draft for App Store Connect privacy questionnaire. Not legal advice. Mus
 - Flight deal alert preferences.
 - Notification settings.
 - Language, currency, and app preferences if Apple category mapping applies.
+- Anonymous travel-partner click context: provider, category, placement, campaign/outlet/destination identifiers when available, platform, locale, and whether the handoff is monetized. These events omit email, Firebase UID, trip identifier, and destination URL and expire automatically after 400 days.
 
 ### Location
 
@@ -47,6 +48,7 @@ Likely purposes include:
 - Notifications.
 - Safety and moderation.
 - Personalization and saved preferences.
+- Product analytics for measuring which campaign and travel-planning handoffs are useful.
 
 ## Tracking
 

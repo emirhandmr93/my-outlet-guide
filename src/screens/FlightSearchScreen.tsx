@@ -1,5 +1,6 @@
 import DateTimePicker from "../components/DateTimePickerAdapter";
 import { useMemo, useState } from "react";
+import { type RouteProp, useRoute } from "@react-navigation/native";
 import {
   Alert,
   FlatList,
@@ -25,6 +26,8 @@ import { useTranslation } from "../hooks/useTranslation";
 import { NativeDirectionRoot, useLayoutDirection } from "../hooks/useLayoutDirection";
 import { heroAssets } from "../media/heroAssets";
 import { buildAviasalesAffiliateSearchUrl, AviasalesTripClass } from "../services/aviasalesAffiliateLink";
+import { recordTravelPartnerClick } from "../services/travelPartnerClickAnalytics";
+import type { RootStackParamList } from "../navigation/types";
 import { trackProductEvent } from "../utils/productAnalytics";
 import colors from "../theme/colors";
 import { formatCityDisplayName, formatCountryDisplayName } from "../utils/locationDisplay";
@@ -42,6 +45,7 @@ const FILTERS: AirportFilter[] = ["popular", "TR", "EUROPE", "MIDDLE_EAST", "ASI
 function todayString() { return localDateToIso(new Date()); }
 
 export function FlightSearchScreen() {
+  const route = useRoute<RouteProp<RootStackParamList, "FlightSearch">>();
   const airportData = useFlightAirportData();
   const supportedFlightDealAirports = airportData.data ?? [];
   const { t, language } = useTranslation();
@@ -137,6 +141,17 @@ export function FlightSearchScreen() {
         adults, children, infants, tripClass, subId: "app_flight_search", locale, currency: "EUR",
       });
       trackProductEvent("outbound_affiliate_click", { affiliate: "aviasales", placement: "flight_search" });
+      void recordTravelPartnerClick({
+        provider: "aviasales",
+        category: "flight",
+        monetized: true,
+        placement: "flight_search",
+        locale: language,
+        campaignId: route.params?.campaignId,
+        outletId: route.params?.outletId,
+        countryId: route.params?.countryId,
+        cityId: route.params?.cityId,
+      });
       if (!(await openExternalBrowserUrl(url))) throw new Error("External URL rejected");
     } catch {
       Alert.alert(t("flightSearch.openFailedTitle"), t("flightSearch.openFailedBody"));
