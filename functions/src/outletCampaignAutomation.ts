@@ -16,6 +16,7 @@ import {
   officialCampaignSources,
   type OfficialCampaignSource,
 } from "./outletCampaignSources";
+import { getOfficialCampaignDestination } from "./outletCampaignDestinations";
 import {
   buildCampaignLocalization,
   CAMPAIGN_TRANSLATION_PROVIDER,
@@ -242,6 +243,7 @@ async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCa
   } else {
     summary.translationComplete += 1;
   }
+  const destination = getOfficialCampaignDestination(campaign.outletId);
   await ref.set({
     schemaVersion: 2,
     campaignId: campaign.campaignId,
@@ -251,6 +253,8 @@ async function persistVerifiedCampaign(db: Firestore, campaign: ParsedOfficialCa
     autoPublished: true,
     outletId: campaign.outletId,
     outletName: campaign.outletName,
+    cityId: destination.cityId,
+    countryId: destination.countryId,
     brandName: campaign.brandName,
     headline: campaign.headline,
     summary: campaign.summary,

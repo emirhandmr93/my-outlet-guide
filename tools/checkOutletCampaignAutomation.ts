@@ -8,6 +8,7 @@ import {
   parseOfficialCampaignPage,
 } from "../functions/src/outletCampaignParser";
 import { isOfficialSourceUrl, officialCampaignSources } from "../functions/src/outletCampaignSources";
+import { officialCampaignDestinations } from "../functions/src/outletCampaignDestinations";
 import { outlets } from "../src/constants/outlets";
 import { outletCampaignTranslations } from "../src/translations/outletCampaignTranslations";
 import { supportedLanguageCodes } from "../src/translations/locale";
@@ -48,7 +49,10 @@ assert.equal(new Set(officialCampaignSources.map(source => source.sourceId)).siz
 const allListingUrls = officialCampaignSources.flatMap(source => source.listingUrls);
 assert.equal(new Set(allListingUrls).size, allListingUrls.length, "Official listing URLs must be unique.");
 for (const source of officialCampaignSources) {
-  assert(outlets.some(outlet => outlet.outletId === source.outletId), `${source.outletId}: missing app outlet record`);
+  const outlet = outlets.find(candidate => candidate.outletId === source.outletId);
+  assert(outlet, `${source.outletId}: missing app outlet record`);
+  assert.deepEqual(officialCampaignDestinations[source.outletId], { cityId: outlet.cityId, countryId: outlet.countryId },
+    `${source.outletId}: campaign destination must match canonical app data`);
   assert(source.listingUrls.length >= 1, `${source.sourceId}: missing listing URL`);
   assert(source.listingUrls.every(url => url.startsWith("https://")), `${source.sourceId}: listing URLs must use HTTPS`);
   assert(source.listingUrls.every(url => isOfficialSourceUrl(source, url)), `${source.sourceId}: listing URL is outside its official host allowlist`);
@@ -212,6 +216,12 @@ const requiredTranslationKeys = [
   "campaign.sourceTitle",
   "campaign.openSource",
   "campaign.viewOutlet",
+  "campaign.shareVisual",
+  "campaign.preparingVisual",
+  "campaign.shareVisualFailedTitle",
+  "campaign.shareVisualFailedBody",
+  "privacy.partnerAnalyticsTitle",
+  "privacy.partnerAnalyticsText",
 ] as const;
 assert.deepEqual([...supportedLanguageCodes], ["en", "tr", "es", "fr", "de", "ar", "ru", "zh"]);
 for (const locale of supportedLanguageCodes) {
@@ -231,7 +241,15 @@ const functionsIndex = readFileSync(join(root, "functions/src/index.ts"), "utf8"
 const automation = readFileSync(join(root, "functions/src/outletCampaignAutomation.ts"), "utf8");
 const serverLocalization = readFileSync(join(root, "functions/src/outletCampaignLocalization.ts"), "utf8");
 const functionsPackage = readFileSync(join(root, "functions/package.json"), "utf8");
+const firebaseConfig = readFileSync(join(root, "firebase.json"), "utf8");
+const packageJson = readFileSync(join(root, "package.json"), "utf8");
 assert(rules.includes("match /outletCampaigns/{campaignId}"), "Firestore campaign rules are missing.");
+assert(campaignDetail.includes("captureRef") && campaignDetail.includes("Sharing.shareAsync") && campaignDetail.includes("width: 1080"),
+  "Campaign details must provide a native 1080px share image.");
+assert(packageJson.includes('"expo-sharing": "~14.0.8"') && packageJson.includes('"react-native-view-shot": "4.0.3"'),
+  "Expo SDK 54 share-image dependencies must be pinned.");
+assert(functionsIndex.includes("weeklyCampaignDigest") && firebaseConfig.includes('"functionId": "weeklyCampaignDigest"'),
+  "The automatic localized weekly campaign page must be exported and hosted.");
 assert.match(rules, /allow list: if resource\.data\.status == 'published'\s*&& resource\.data\.active == true;/,
   "Campaign list rules must match the client query's published + active constraints.");
 assert.match(rules, /allow create, update, delete: if false;/, "Clients must never write campaign records.");

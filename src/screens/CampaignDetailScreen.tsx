@@ -1,5 +1,7 @@
 import { NavigationProp, RouteProp, useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import * as Sharing from "expo-sharing";
+import { captureRef } from "react-native-view-shot";
 import {
   Alert,
   Platform,
@@ -50,6 +52,8 @@ export function CampaignDetailScreen() {
   const [campaign, setCampaign] = useState<OutletCampaign | null>(null);
   const [reload, setReload] = useState(0);
   const [opening, setOpening] = useState(false);
+  const [sharingVisual, setSharingVisual] = useState(false);
+  const shareCardRef = useRef<View>(null);
 
   useEffect(() => {
     let active = true;
@@ -87,6 +91,32 @@ export function CampaignDetailScreen() {
     trackProductEvent("campaign_share", { campaign_id: campaign.campaignId, outlet_id: campaign.outletId });
   }
 
+  async function shareCampaignVisual() {
+    if (!campaign || sharingVisual) return;
+    if (Platform.OS === "web") { await shareCampaign(); return; }
+    setSharingVisual(true);
+    try {
+      if (!shareCardRef.current || !(await Sharing.isAvailableAsync())) throw new Error("sharing_unavailable");
+      const uri = await captureRef(shareCardRef.current, {
+        format: "png",
+        quality: 1,
+        result: "tmpfile",
+        width: 1080,
+        height: 1080,
+      });
+      await Sharing.shareAsync(uri, { mimeType: "image/png", UTI: "public.png", dialogTitle: campaign.headline });
+      trackProductEvent("campaign_share", {
+        campaign_id: campaign.campaignId,
+        outlet_id: campaign.outletId,
+        share_format: "image",
+      });
+    } catch {
+      Alert.alert(t("campaign.shareVisualFailedTitle"), t("campaign.shareVisualFailedBody"));
+    } finally {
+      setSharingVisual(false);
+    }
+  }
+
   function openTravelBasket() {
     if (!campaign) return;
     trackProductEvent("campaign_travel_basket_open", { campaign_id: campaign.campaignId, outlet_id: campaign.outletId });
@@ -109,11 +139,15 @@ export function CampaignDetailScreen() {
   } else {
     body = (
       <>
-        <LocalHeroImageCard imageSource={image} responsiveWeb style={styles.hero} contentStyle={styles.heroContent}>
-          <Text style={[styles.kicker, isNativeRTL && styles.rtl]}>{campaign.discountLabel}</Text>
-          <Text accessibilityRole="header" style={[styles.heroTitle, isNativeRTL && styles.rtl]}>{campaign.brandName}</Text>
-          <Text style={[styles.heroSubtitle, isNativeRTL && styles.rtl]}>{campaign.outletName}</Text>
-        </LocalHeroImageCard>
+        <View ref={shareCardRef} collapsable={false} style={styles.shareCaptureCard}>
+          <LocalHeroImageCard imageSource={image} responsiveWeb style={styles.hero} contentStyle={styles.heroContent}>
+            <Text style={[styles.kicker, isNativeRTL && styles.rtl]}>{campaign.discountLabel}</Text>
+            <Text accessibilityRole="header" style={[styles.heroTitle, isNativeRTL && styles.rtl]}>{campaign.headline}</Text>
+            <Text style={[styles.heroBrand, isNativeRTL && styles.rtl]}>{campaign.brandName}</Text>
+            <Text style={[styles.heroSubtitle, isNativeRTL && styles.rtl]}>{campaign.outletName}</Text>
+            <Text style={[styles.shareBrand, isNativeRTL && styles.rtl]}>MY OUTLET GUIDE</Text>
+          </LocalHeroImageCard>
+        </View>
 
         <View style={styles.card}>
           <Text accessibilityRole="header" style={[styles.sectionTitle, isNativeRTL && styles.rtl]}>{campaign.headline}</Text>
@@ -145,6 +179,9 @@ export function CampaignDetailScreen() {
         </TouchableOpacity>
         <TouchableOpacity style={styles.shareButton} onPress={() => void shareCampaign()}>
           <Text style={styles.shareButtonText}>{t("campaign.share")}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity disabled={sharingVisual} style={[styles.shareVisualButton, sharingVisual && styles.disabled]} onPress={() => void shareCampaignVisual()}>
+          <Text style={styles.shareVisualButtonText}>{t(sharingVisual ? "campaign.preparingVisual" : "campaign.shareVisual")}</Text>
         </TouchableOpacity>
       </>
     );
@@ -181,11 +218,14 @@ const styles = StyleSheet.create({
   screen: { flex: 1, backgroundColor: colors.background },
   content: { paddingHorizontal: 16, gap: 16 },
   desktop: { width: "100%", maxWidth: 920, alignSelf: "center" },
-  hero: { borderRadius: 24 },
-  heroContent: { padding: 24, minHeight: 230, justifyContent: "flex-end" },
+  shareCaptureCard: { aspectRatio: 1, alignSelf: "center", backgroundColor: colors.primary, borderRadius: 24, maxWidth: 560, overflow: "hidden", width: "100%" },
+  hero: { borderRadius: 24, flex: 1 },
+  heroContent: { flex: 1, padding: 24, justifyContent: "flex-end" },
   kicker: { color: colors.gold, fontSize: 15, fontWeight: "900", textTransform: "uppercase", letterSpacing: 0.8 },
   heroTitle: { color: colors.textInverse, fontSize: 30, lineHeight: 36, fontWeight: "900", marginTop: 7 },
+  heroBrand: { color: colors.gold, fontSize: 17, lineHeight: 23, fontWeight: "900", marginTop: 10 },
   heroSubtitle: { color: "rgba(255,255,255,.92)", fontSize: 16, lineHeight: 23, fontWeight: "700", marginTop: 5 },
+  shareBrand: { color: colors.textInverse, fontSize: 11, fontWeight: "900", letterSpacing: 1.4, marginTop: 16, opacity: 0.9 },
   card: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: 22, padding: 18, gap: 10 },
   sourceCard: { backgroundColor: colors.goldSoft, borderWidth: 1, borderColor: colors.gold, borderRadius: 22, padding: 18, gap: 10 },
   sectionTitle: { color: colors.textPrimary, fontSize: 19, lineHeight: 25, fontWeight: "900" },
@@ -203,6 +243,8 @@ const styles = StyleSheet.create({
   travelButtonText: { color: colors.textInverse, fontWeight: "900", fontSize: 15 },
   shareButton: { backgroundColor: colors.goldSoft, borderColor: colors.gold, borderWidth: 1, borderRadius: 15, padding: 15, alignItems: "center" },
   shareButtonText: { color: colors.primary, fontWeight: "900", fontSize: 15 },
+  shareVisualButton: { backgroundColor: colors.gold, borderRadius: 15, padding: 15, alignItems: "center" },
+  shareVisualButtonText: { color: colors.primary, fontWeight: "900", fontSize: 15 },
   disabled: { opacity: 0.6 },
   rtl: { textAlign: "right" },
 });

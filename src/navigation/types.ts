@@ -36,7 +36,13 @@ export type RootStackParamList = {
   WriteReview: { outletId: string; reviewId?: string };
   FlightDealSettings: undefined;
   FlightDeals: undefined;
-  FlightSearch: undefined;
+  FlightSearch: {
+    campaignId?: string;
+    outletId?: string;
+    countryId?: string;
+    cityId?: string;
+    source?: "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail";
+  } | undefined;
   FlightDealDetail: { dealId: string };
   CampaignDetail: { campaignId: string };
   TravelBasket: {

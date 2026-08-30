@@ -47,6 +47,9 @@ Manual Firebase Console verification is required before store submission:
 - Functions list shows `getTripWeather`.
 - Functions list shows `sendTripReminderNotifications`.
 - Functions list shows `sendWelcomeEmail`.
+- Functions list shows `trackTravelPartnerClick`.
+- Functions list shows `weeklyCampaignDigest`, `campaignLandingPage`, and `campaignSitemap`.
+- Functions list shows `processOutletCampaignNotifications` and its schedule is healthy.
 - `deleteAccount` is deployed in the same Firebase project used by the production app.
 - `moderateReviewAction` is deployed and access remains moderator/admin gated.
 - `getTripWeather` is deployed and safely returns provider-deferred/unavailable behavior when Open-Meteo is not configured; `OPEN_METEO_API_KEY` is optional/future and must not block this production build.
@@ -69,6 +72,8 @@ Manual Firebase Console verification is required before store submission:
   - Field: `userId`
   - Mode: ascending
 - Confirm existing query indexes used by notification/trip/review checks remain present.
+- Confirm the collection-group `items.status` index is deployed for upcoming/active trip campaign matching.
+- Confirm TTL is enabled for `travelPartnerClickEvents.expiresAt`.
 
 ## 5. iOS build command
 
@@ -130,6 +135,7 @@ npx eas-cli build --platform android --profile production
 - Apple app privacy working draft: `docs/release/apple-app-privacy-working-draft.md`
 - Minimum public website requirements: `docs/release/minimum-web-requirements.md`
 - Web deployment notes: `docs/release/web-deployment.md`
+- Campaign-focused custom product/store listing plan: `docs/release/store-custom-pages-plan.md`
 
 ## 10. Screenshot checklist
 

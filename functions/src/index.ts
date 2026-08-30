@@ -425,4 +425,6 @@ export {
 
 export { processOutletCampaignNotifications } from "./outletCampaignNotificationDelivery";
 
-export { campaignLandingPage, campaignSitemap } from "./campaignLandingPage";
+export { campaignLandingPage, campaignSitemap, weeklyCampaignDigest } from "./campaignLandingPage";
+
+export { trackTravelPartnerClick } from "./travelPartnerAnalytics";

@@ -10,6 +10,7 @@ import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { heroAssets } from "../media/heroAssets";
 import { RootStackParamList } from "../navigation/types";
 import { buildAviasalesAffiliateSearchUrl } from "../services/aviasalesAffiliateLink";
+import { recordTravelPartnerClick } from "../services/travelPartnerClickAnalytics";
 import { trackProductEvent } from "../utils/productAnalytics";
 import { getUserFlightPriceDeal, UserFlightPriceDeal, UserFlightPriceDealResult } from "../services/flightPriceDealDetailService";
 import colors from "../theme/colors";
@@ -75,6 +76,13 @@ export function FlightDealDetailScreen() {
         subId: rolling ? "app_rolling_flight_deal_detail" : "app_flight_deal_detail",
       });
       trackProductEvent("outbound_affiliate_click", { affiliate: "aviasales", placement: "flight_deal_detail" });
+      void recordTravelPartnerClick({
+        provider: "aviasales",
+        category: "flight",
+        monetized: true,
+        placement: "flight_deal_detail",
+        locale: language,
+      });
       if (!(await openExternalBrowserUrl(url))) throw new Error("External URL rejected");
     } catch { Alert.alert(t("flightDealDetail.openFailedTitle"), t("flightDealDetail.openFailedBody")); }
     finally { setOpening(false); }

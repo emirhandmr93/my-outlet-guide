@@ -123,12 +123,17 @@ const navigation = read("src/navigation/AppNavigator.tsx");
 const webLinking = read("src/navigation/webLinking.ts");
 const campaignDetail = read("src/screens/CampaignDetailScreen.tsx");
 const partnerConfig = read("src/services/travelPartnerConfig.ts");
+const partnerAnalytics = read("src/services/travelPartnerClickAnalytics.ts");
+const partnerAnalyticsFunction = read("functions/src/travelPartnerAnalytics.ts");
 
 assert(travelHub.includes('route: "TravelBasket"'), "Travel Hub must expose the Travel Basket.");
 assert(outletDetail.includes('source: "outlet_detail"'), "Outlet details must open a contextual Travel Basket.");
 assert(tripDetail.includes('source: "trip_detail"'), "Trip details must open a contextual Travel Basket.");
 assert(basketScreen.includes('trackProductEvent("outbound_affiliate_click"'), "Partner clicks must emit product analytics.");
 assert(basketScreen.includes("monetized: outboundLink.monetized"), "Partner analytics must distinguish direct and monetized handoffs.");
+assert(basketScreen.includes("recordTravelPartnerClick") && basketScreen.includes("campaignId: context.campaignId") &&
+  basketScreen.includes("countryId: context.countryId") && basketScreen.includes("cityId: context.cityId"),
+"Partner clicks must persist full anonymous campaign and destination context.");
 assert(basketScreen.includes("travelBasket.disclosureBody"), "The Travel Basket must show an affiliate disclosure.");
 assert(basketScreen.includes("openExternalBrowserUrl"), "Partner links must use the safe browser helper.");
 assert(basketScreen.includes('category: "esim"'), "The Travel Basket must expose the approved Yesim Mobile app link.");
@@ -141,5 +146,13 @@ assert(campaignDetail.includes("Share.share") && campaignDetail.includes("campai
   "Campaign details must provide a measured localized share handoff.");
 assert(partnerConfig.includes('doc(db, "publicConfig", "travelPartners")') && partnerConfig.includes("CACHE_MS"),
   "Partner links must support a cached public central configuration.");
+assert(partnerAnalytics.includes('"trackTravelPartnerClick"') && partnerAnalytics.includes("1_500"),
+  "Client partner analytics must use a bounded callable handoff.");
+assert(!basketScreen.includes("await recordTravelPartnerClick"),
+  "Partner analytics must not delay the external handoff.");
+assert(partnerAnalyticsFunction.includes('collection("travelPartnerClickEvents")') &&
+  partnerAnalyticsFunction.includes("expiresAt") && !partnerAnalyticsFunction.includes("userId:") &&
+  !partnerAnalyticsFunction.includes("tripId:"),
+"Partner analytics must be anonymous and retention limited.");
 
 console.log(`Travel Basket outbound checks passed for ${categories.length} services and ${supportedLanguageCodes.length} languages.`);
