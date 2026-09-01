@@ -7,7 +7,7 @@ import type { TranslationLanguage } from "../translations/locale";
 export type TravelPartnerClickContext = {
   provider: "aviasales" | "agoda" | "kiwitaxi" | "yesim" | "tiqets";
   category: "flight" | "hotel" | "transfer" | "esim" | "activities";
-  placement: "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail" | "flight_search" | "flight_deal_detail";
+  placement: "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail" | "outlet_match" | "flight_search" | "flight_deal_detail";
   monetized: boolean;
   locale: TranslationLanguage;
   campaignId?: string;

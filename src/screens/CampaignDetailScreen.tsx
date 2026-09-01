@@ -17,6 +17,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { LocalHeroImageCard } from "../components/LocalHeroImageCard";
 import { outlets } from "../constants/outlets";
+import { useAuth } from "../contexts/AuthContext";
+import { useFavorites } from "../contexts/FavoritesContext";
+import { useNotificationSettings } from "../contexts/NotificationSettingsContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { useLayoutDirection } from "../hooks/useLayoutDirection";
 import { getHomeFeatureImage, getOutletPrimaryImage } from "../media/imageResolvers";
@@ -43,6 +46,9 @@ export function CampaignDetailScreen() {
   const { t, language } = useTranslation();
   const { isNativeRTL } = useLayoutDirection();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { isAuthenticated } = useAuth();
+  const { isCampaignSaved, toggleSavedCampaign } = useFavorites();
+  const { permissionStatus, settings } = useNotificationSettings();
   const route = useRoute<RouteProp<RootStackParamList, "CampaignDetail">>();
   const { campaignId } = route.params;
   const insets = useSafeAreaInsets();
@@ -53,6 +59,7 @@ export function CampaignDetailScreen() {
   const [reload, setReload] = useState(0);
   const [opening, setOpening] = useState(false);
   const [sharingVisual, setSharingVisual] = useState(false);
+  const [savingCampaign, setSavingCampaign] = useState(false);
   const shareCardRef = useRef<View>(null);
 
   useEffect(() => {
@@ -123,8 +130,20 @@ export function CampaignDetailScreen() {
     navigation.navigate("TravelBasket", {
       outletId: campaign.outletId,
       campaignId: campaign.campaignId,
+      startDate: campaign.startsOn,
+      endDate: campaign.endsOn,
       source: "campaign_detail",
     });
+  }
+
+  async function toggleCampaignSave() {
+    if (!campaign || savingCampaign) return;
+    if (!isAuthenticated) {
+      navigation.navigate("Login", { authMessage: t("campaign.saveSignInMessage") });
+      return;
+    }
+    setSavingCampaign(true);
+    try { await toggleSavedCampaign(campaign.campaignId); } finally { setSavingCampaign(false); }
   }
 
   let body;
@@ -174,6 +193,29 @@ export function CampaignDetailScreen() {
         <TouchableOpacity style={styles.outletButton} onPress={() => navigation.navigate("OutletDetail", { outletId: campaign.outletId })}>
           <Text style={styles.outletButtonText}>{t("campaign.viewOutlet")}</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          disabled={savingCampaign}
+          style={[styles.saveButton, isCampaignSaved(campaign.campaignId) && styles.saveButtonActive, savingCampaign && styles.disabled]}
+          onPress={() => void toggleCampaignSave()}
+        >
+          <Text style={[styles.saveButtonText, isCampaignSaved(campaign.campaignId) && styles.saveButtonTextActive]}>
+            {t(savingCampaign ? "campaign.saving" : isCampaignSaved(campaign.campaignId) ? "campaign.saved" : "campaign.save")}
+          </Text>
+        </TouchableOpacity>
+        {isCampaignSaved(campaign.campaignId) ? (
+          <View style={styles.reminderCard}>
+            <Text style={[styles.reminderTitle, isNativeRTL && styles.rtl]}>
+              {t(settings?.enabled === true && settings.savedCampaignRemindersEnabled === true && permissionStatus === "granted"
+                ? "campaign.reminderActive"
+                : "campaign.reminderInactive")}
+            </Text>
+            {settings?.enabled !== true || settings.savedCampaignRemindersEnabled !== true || permissionStatus !== "granted" ? (
+              <TouchableOpacity onPress={() => navigation.navigate("NotificationSettings")}>
+                <Text style={styles.reminderAction}>{t("campaign.openNotificationSettings")}</Text>
+              </TouchableOpacity>
+            ) : null}
+          </View>
+        ) : null}
         <TouchableOpacity style={styles.travelButton} onPress={openTravelBasket}>
           <Text style={styles.travelButtonText}>{t("campaign.planTrip")}</Text>
         </TouchableOpacity>
@@ -241,6 +283,13 @@ const styles = StyleSheet.create({
   outletButtonText: { color: colors.primary, fontWeight: "900", fontSize: 15 },
   travelButton: { backgroundColor: colors.primary, borderRadius: 15, padding: 15, alignItems: "center" },
   travelButtonText: { color: colors.textInverse, fontWeight: "900", fontSize: 15 },
+  saveButton: { backgroundColor: colors.surface, borderColor: colors.gold, borderWidth: 1, borderRadius: 15, padding: 15, alignItems: "center" },
+  saveButtonActive: { backgroundColor: colors.gold },
+  saveButtonText: { color: colors.goldDark, fontWeight: "900", fontSize: 15 },
+  saveButtonTextActive: { color: colors.primary },
+  reminderCard: { backgroundColor: colors.goldSoft, borderColor: colors.border, borderWidth: 1, borderRadius: 15, padding: 13, gap: 7 },
+  reminderTitle: { color: colors.textSecondary, fontSize: 13, lineHeight: 19, fontWeight: "700" },
+  reminderAction: { color: colors.primary, fontSize: 13, fontWeight: "900" },
   shareButton: { backgroundColor: colors.goldSoft, borderColor: colors.gold, borderWidth: 1, borderRadius: 15, padding: 15, alignItems: "center" },
   shareButtonText: { color: colors.primary, fontWeight: "900", fontSize: 15 },
   shareVisualButton: { backgroundColor: colors.gold, borderRadius: 15, padding: 15, alignItems: "center" },

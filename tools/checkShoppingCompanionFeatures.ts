@@ -72,9 +72,12 @@ assert(noted.note === "Size 42", "Visit Mode must retain the shopping note.");
 const cleanFavorites = cleanFavoriteSnapshot({
   favoriteIds: [" outlet-a ", "outlet-a", null],
   favoriteBrandIds: ["nike", "nike", "adidas"],
+  savedCampaignIds: ["campaign-a", "campaign-a", "campaign-b"],
 });
 assert(cleanFavorites.favoriteIds.join(",") === "outlet-a", "Favorites must normalize duplicate outlet IDs.");
 assert(cleanFavorites.favoriteBrandIds.join(",") === "nike,adidas", "Brand Wishlist must normalize duplicate brand IDs.");
+assert(cleanFavorites.favoriteBrandKeys.includes("nike") && cleanFavorites.favoriteBrandKeys.includes("adidas"), "Brand Wishlist must derive campaign-safe brand keys.");
+assert(cleanFavorites.savedCampaignIds.join(",") === "campaign-a,campaign-b", "Saved campaigns must normalize duplicate IDs.");
 assert(toggleFavoriteId(cleanFavorites.favoriteBrandIds, "nike").join(",") === "adidas", "Brand Wishlist must remove an existing brand deterministically.");
 assert(toggleFavoriteId(cleanFavorites.favoriteBrandIds, "puma").join(",") === "nike,adidas,puma", "Brand Wishlist must add a new brand deterministically.");
 
@@ -106,6 +109,6 @@ assert(favorites.includes("readFavoriteCache") && favorites.includes("writeFavor
 assert(favoritesStorage.includes("AsyncStorage.setItem") && favoritesStorage.includes("dirty"), "Favorites cache must persist pending sync state across app restarts.");
 assert(navigation.includes('name="VisitMode"') && navigation.includes('name="BrandWishlist"'), "Both shopping companion screens must be registered.");
 assert(linking.includes('path: "visit/:outletId"') && linking.includes('path: "brand-wishlist"'), "Both shopping companion screens must have web routes.");
-assert(rules.includes("hasOnly(['favoriteIds', 'favoriteBrandIds'])") && rules.includes("favoriteBrandIds is list"), "Firestore rules must allow only validated Brand Wishlist data.");
+assert(rules.includes("'favoriteBrandIds'") && rules.includes("favoriteBrandIds is list") && rules.includes("hasValidFavoritesData"), "Firestore rules must allow validated Brand Wishlist data.");
 
 console.log(`Shopping companion checks passed for ${supportedLanguageCodes.length} languages.`);

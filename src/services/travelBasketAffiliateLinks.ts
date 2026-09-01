@@ -11,14 +11,22 @@ import {
 } from "../constants/travelAffiliate";
 
 export type TravelBasketCategory = "hotel" | "transfer" | "esim" | "activities";
-export type TravelBasketPlacement = "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail";
+export type TravelBasketPlacement = "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail" | "outlet_match";
 export type TravelBasketProvider = "agoda" | "kiwitaxi" | "yesim" | "tiqets";
 
 type TravelBasketOutboundInput = {
   category: TravelBasketCategory;
   placement: TravelBasketPlacement;
   contextId?: string;
+  searchContext?: TravelBasketSearchContext;
   overrides?: TravelPartnerOverrides;
+};
+
+export type TravelBasketSearchContext = {
+  destination?: string;
+  country?: string;
+  startDate?: string;
+  endDate?: string;
 };
 
 export type TravelPartnerOverride = { url: string; monetized: boolean };
@@ -103,6 +111,55 @@ function getAffiliateMarker(subId: string | undefined): string {
     : AVIASALES_AFFILIATE_MARKER;
 }
 
+function cleanSearchText(value: unknown) {
+  return typeof value === "string"
+    ? value.replace(/[\u0000-\u001f\u007f-\u009f]/g, " ").replace(/\s+/g, " ").trim().slice(0, 100)
+    : "";
+}
+
+function cleanIsoDate(value: unknown) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return "";
+  const date = new Date(`${value}T00:00:00.000Z`);
+  return Number.isNaN(date.getTime()) || date.toISOString().slice(0, 10) !== value ? "" : value;
+}
+
+export function addTravelBasketSearchContext(
+  provider: TravelBasketProvider,
+  rawUrl: string,
+  context?: TravelBasketSearchContext,
+) {
+  const parsed = new URL(rawUrl);
+  if (parsed.hostname.toLowerCase().endsWith(".travelpayouts.com")) return parsed.toString();
+  const url = getTrustedTargetUrl(rawUrl);
+  if (!context || provider === "yesim") return url.toString();
+  const destination = cleanSearchText(context.destination);
+  const country = cleanSearchText(context.country);
+  const startDate = cleanIsoDate(context.startDate);
+  const endDate = cleanIsoDate(context.endDate);
+  const validDateRange = startDate && endDate && endDate > startDate;
+
+  if (provider === "agoda" && (destination || validDateRange)) {
+    url.pathname = "/search";
+    url.search = "";
+    if (destination) url.searchParams.set("textToSearch", destination);
+    if (validDateRange) {
+      url.searchParams.set("checkIn", startDate);
+      url.searchParams.set("checkOut", endDate);
+    }
+  } else if (provider === "kiwitaxi" && (destination || country)) {
+    const parts = [
+      ...(country ? ["country", country] : []),
+      ...(destination ? ["to", destination] : []),
+    ];
+    url.hash = `#/${parts.map(encodeURIComponent).join("/")}`;
+  } else if (provider === "tiqets" && destination) {
+    url.pathname = "/en/search/";
+    url.search = "";
+    url.searchParams.set("q", destination);
+  }
+  return url.toString();
+}
+
 export function buildTravelpayoutsCustomLink(input: CustomLinkInput): string {
   const targetUrl = getTrustedTargetUrl(input.targetUrl);
   const affiliateUrl = new URL(input.clickBaseUrl);
@@ -130,14 +187,15 @@ export function buildTravelBasketOutboundLink(input: TravelBasketOutboundInput):
   };
   const configured = input.overrides?.[providerByCategory[input.category]];
   if (configured && isTrustedOutboundUrl(configured.url)) {
-    return { provider: providerByCategory[input.category], url: configured.url, monetized: configured.monetized };
+    const provider = providerByCategory[input.category];
+    return { provider, url: addTravelBasketSearchContext(provider, configured.url, input.searchContext), monetized: configured.monetized };
   }
 
   switch (input.category) {
     case "hotel":
       // Agoda does not accept the current Travelpayouts Mobile app project.
       // Keep accommodation useful without sending unsupported affiliate traffic.
-      return { monetized: false, provider: "agoda", url: getTrustedTargetUrl(AGODA_TARGET_URL).toString() };
+      return { monetized: false, provider: "agoda", url: addTravelBasketSearchContext("agoda", AGODA_TARGET_URL, input.searchContext) };
     case "transfer":
       return {
         monetized: true,
@@ -145,7 +203,7 @@ export function buildTravelBasketOutboundLink(input: TravelBasketOutboundInput):
         url: buildTravelpayoutsCustomLink({
           clickBaseUrl: KIWITAXI_AFFILIATE_CLICK_BASE_URL,
           promoId: KIWITAXI_PROMO_ID,
-          targetUrl: KIWITAXI_TARGET_URL,
+          targetUrl: addTravelBasketSearchContext("kiwitaxi", KIWITAXI_TARGET_URL, input.searchContext),
           subId,
         }),
       };
@@ -162,7 +220,7 @@ export function buildTravelBasketOutboundLink(input: TravelBasketOutboundInput):
         url: buildTravelpayoutsCustomLink({
           clickBaseUrl: TIQETS_AFFILIATE_CLICK_BASE_URL,
           promoId: TIQETS_PROMO_ID,
-          targetUrl: TIQETS_TARGET_URL,
+          targetUrl: addTravelBasketSearchContext("tiqets", TIQETS_TARGET_URL, input.searchContext),
           subId,
         }),
       };

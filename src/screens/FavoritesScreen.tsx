@@ -7,12 +7,18 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 
 import { resolveVisibleFavoriteOutlets } from "../utils/favoriteOutlets";
 import { useAuth } from "../contexts/AuthContext";
 import { useFavorites } from "../contexts/FavoritesContext";
 import { useTranslation } from "../hooks/useTranslation";
 import { useLayoutDirection } from "../hooks/useLayoutDirection";
+import {
+  formatCampaignDate,
+  getActiveOutletCampaign,
+  type OutletCampaign,
+} from "../services/outletCampaignService";
 import {
   formatCityDisplayName,
   formatCountryDisplayName,
@@ -21,6 +27,7 @@ import {
 export function FavoritesScreen() {
   const {
     favoriteIds,
+    savedCampaignIds,
     favoritesError,
     favoritesLoading,
     reloadFavorites,
@@ -29,8 +36,36 @@ export function FavoritesScreen() {
   const { t, language } = useTranslation();
   const { isNativeRTL } = useLayoutDirection();
   const navigation = useNavigation<any>();
+  const [savedCampaigns, setSavedCampaigns] = useState<OutletCampaign[]>([]);
+  const [campaignsLoading, setCampaignsLoading] = useState(false);
 
   const favoriteOutlets = resolveVisibleFavoriteOutlets(favoriteIds);
+  const savedCampaignKey = savedCampaignIds.join("|");
+
+  useEffect(() => {
+    let active = true;
+    if (!isAuthenticated || !savedCampaignIds.length) {
+      setSavedCampaigns([]);
+      setCampaignsLoading(false);
+      return () => { active = false; };
+    }
+    setCampaignsLoading(true);
+    void Promise.all(savedCampaignIds.slice(0, 50).map((campaignId) =>
+      getActiveOutletCampaign(campaignId, language).catch(() => null),
+    )).then((campaigns) => {
+      if (!active) return;
+      setSavedCampaigns(campaigns
+        .filter((campaign): campaign is OutletCampaign => campaign !== null)
+        .sort((left, right) => left.endsAt.getTime() - right.endsAt.getTime()));
+    }).finally(() => {
+      if (active) setCampaignsLoading(false);
+    });
+    return () => { active = false; };
+  }, [isAuthenticated, language, savedCampaignKey]);
+
+  function withDate(template: string, date: string) {
+    return template.replace("{date}", date);
+  }
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -50,11 +85,11 @@ export function FavoritesScreen() {
             <Text style={styles.signInButtonText}>{t("profile.signIn")}</Text>
           </TouchableOpacity>
         </View>
-      ) : favoritesLoading && favoriteOutlets.length === 0 ? (
+      ) : favoritesLoading && favoriteOutlets.length === 0 && savedCampaignIds.length === 0 ? (
         <View style={styles.emptyCard}>
           <ActivityIndicator color="#0B1F3A" size="large" />
         </View>
-      ) : favoritesError && favoriteOutlets.length === 0 ? (
+      ) : favoritesError && favoriteOutlets.length === 0 && savedCampaignIds.length === 0 ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyTitle}>{t("favorites.title")}</Text>
 
@@ -71,7 +106,7 @@ export function FavoritesScreen() {
             </Text>
           </TouchableOpacity>
         </View>
-      ) : favoriteOutlets.length === 0 ? (
+      ) : favoriteOutlets.length === 0 && savedCampaignIds.length === 0 ? (
         <View style={styles.emptyCard}>
           <Text style={styles.emptyTitle}>{t("favorites.emptyTitle")}</Text>
 
@@ -89,6 +124,32 @@ export function FavoritesScreen() {
                   {t("brandWishlist.retry")}
                 </Text>
               </TouchableOpacity>
+            </View>
+          ) : null}
+
+          {savedCampaignIds.length ? (
+            <View style={styles.savedSection}>
+              <Text style={[styles.groupHeading, isNativeRTL && styles.rtl]}>{t("favorites.savedCampaignsTitle")}</Text>
+              <Text style={[styles.groupSubtitle, isNativeRTL && styles.rtl]}>{t("favorites.savedCampaignsSubtitle")}</Text>
+              {campaignsLoading ? (
+                <View style={styles.campaignLoader}><ActivityIndicator color="#0B1F3A" /></View>
+              ) : savedCampaigns.length ? savedCampaigns.map((campaign) => (
+                <TouchableOpacity
+                  key={campaign.campaignId}
+                  style={styles.campaignCard}
+                  activeOpacity={0.86}
+                  onPress={() => navigation.navigate("CampaignDetail", { campaignId: campaign.campaignId })}
+                >
+                  <Text style={[styles.campaignLabel, isNativeRTL && styles.rtl]}>{t("favorites.savedCampaignLabel")}</Text>
+                  <Text style={[styles.cardTitle, isNativeRTL && styles.rtl]}>{campaign.headline}</Text>
+                  <Text style={[styles.cardText, isNativeRTL && styles.rtl]}>{campaign.outletName} · {campaign.brandName}</Text>
+                  <Text style={[styles.campaignMeta, isNativeRTL && styles.rtl]}>{withDate(t("favorites.savedCampaignEnds"), formatCampaignDate(campaign.endsOn, language))}</Text>
+                </TouchableOpacity>
+              )) : (
+                <View style={styles.unavailableCard}>
+                  <Text style={[styles.emptyText, isNativeRTL && styles.rtl]}>{t("favorites.savedCampaignsUnavailable")}</Text>
+                </View>
+              )}
             </View>
           ) : null}
 
@@ -145,6 +206,15 @@ const styles = StyleSheet.create({
     marginTop: 6,
     marginBottom: 22,
   },
+
+  savedSection: { marginBottom: 10 },
+  groupHeading: { color: "#0B1F3A", fontSize: 20, fontWeight: "900", marginBottom: 4 },
+  groupSubtitle: { color: "#666666", fontSize: 14, lineHeight: 20, marginBottom: 14 },
+  campaignLoader: { alignItems: "center", backgroundColor: "#FFFFFF", borderColor: "#E5E7EB", borderRadius: 20, borderWidth: 1, padding: 24 },
+  campaignCard: { backgroundColor: "#FFF7DA", borderColor: "#C9A227", borderRadius: 20, borderWidth: 1, marginBottom: 12, padding: 18 },
+  campaignLabel: { color: "#8A6A00", fontSize: 12, fontWeight: "900", marginBottom: 8, textTransform: "uppercase" },
+  campaignMeta: { color: "#8A6A00", fontSize: 13, fontWeight: "800", marginTop: 8 },
+  unavailableCard: { backgroundColor: "#FFFFFF", borderColor: "#E5E7EB", borderRadius: 20, borderWidth: 1, marginBottom: 12, padding: 18 },
 
   card: {
     backgroundColor: "#FFFFFF",
@@ -247,4 +317,5 @@ const styles = StyleSheet.create({
     color: "#C9A227",
     fontWeight: "900",
   },
+  rtl: { textAlign: "right" },
 });

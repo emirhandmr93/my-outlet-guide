@@ -6,7 +6,7 @@ import { HttpsError, onCall } from "firebase-functions/v2/https";
 const PROVIDERS = new Set(["aviasales", "agoda", "kiwitaxi", "yesim", "tiqets"]);
 const CATEGORIES = new Set(["flight", "hotel", "transfer", "esim", "activities"]);
 const PLACEMENTS = new Set([
-  "travel_basket_hub", "outlet_detail", "trip_detail", "campaign_detail", "flight_search", "flight_deal_detail",
+  "travel_basket_hub", "outlet_detail", "trip_detail", "campaign_detail", "outlet_match", "flight_search", "flight_deal_detail",
 ]);
 const PLATFORMS = new Set(["ios", "android", "web"]);
 const LOCALES = new Set(["en", "tr", "es", "fr", "de", "ru", "ar", "zh"]);

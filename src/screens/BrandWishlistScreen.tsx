@@ -77,6 +77,16 @@ export function BrandWishlistScreen() {
         />
       ) : (
         <>
+          <View style={styles.matchCard}>
+            <View style={styles.brandCopy}>
+              <Text style={styles.messageTitle}>{t("brandWishlist.matchTitle")}</Text>
+              <Text style={styles.messageText}>{t("brandWishlist.matchText")}</Text>
+            </View>
+            <TouchableOpacity style={styles.matchButton} onPress={() => navigation.navigate("OutletMatch", { selection: "start" })}>
+              <Text style={styles.matchButtonText}>{t("brandWishlist.matchCta")}</Text>
+            </TouchableOpacity>
+          </View>
+
           {favoritesError ? (
             <View style={styles.syncWarning}>
               <Text style={styles.syncWarningText}>
@@ -173,4 +183,7 @@ const styles = StyleSheet.create({
   syncWarningAction: { color: colors.primary, fontSize: 13, fontWeight: "900", marginStart: spacing.md },
   primaryButton: { alignItems: "center", backgroundColor: colors.primary, borderRadius: radius.pill, paddingVertical: spacing.md, paddingHorizontal: spacing.lg, marginTop: spacing.lg },
   primaryButtonText: { color: colors.textInverse, fontWeight: "900" },
+  matchCard: { backgroundColor: colors.goldSoft, borderRadius: radius.xl, borderWidth: 1, borderColor: colors.gold, padding: spacing.lg, marginBottom: spacing.lg, gap: spacing.md },
+  matchButton: { alignItems: "center", alignSelf: "flex-start", backgroundColor: colors.primary, borderRadius: radius.pill, paddingHorizontal: spacing.lg, paddingVertical: spacing.md },
+  matchButtonText: { color: colors.textInverse, fontWeight: "900" },
 });

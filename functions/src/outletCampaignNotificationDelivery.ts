@@ -13,8 +13,9 @@ import {
   cityCampaignTargetKey,
   outletCampaignTargetKey,
 } from "./tripCampaignTargets";
+import { normalizeFavoriteBrandCampaignKey } from "./favoriteBrandCampaignKeys";
 
-type TargetKind = "favorite" | "trip" | "global";
+type TargetKind = "favorite" | "brand" | "trip" | "global";
 type Target = { userId: string; kind: TargetKind };
 type Token = { id: string; token: string; locale: ReturnType<typeof normalizeCampaignNotificationLocale>; timeZone: string };
 
@@ -25,7 +26,7 @@ const QUIET_START_HOUR = 21;
 const QUIET_END_HOUR = 8;
 const RETRY_DELAYS_MS = [15 * 60_000, 60 * 60_000] as const;
 const RESERVATION_LEASE_MS = 10 * 60_000;
-const targetRank: Record<TargetKind, number> = { global: 1, trip: 2, favorite: 3 };
+const targetRank: Record<TargetKind, number> = { global: 1, trip: 2, brand: 3, favorite: 4 };
 
 function safeSegment(value: unknown): value is string {
   return typeof value === "string" && value.length > 0 && value === value.trim() && !value.includes("/") &&
@@ -120,6 +121,12 @@ async function resolveTargets(campaign: Record<string, unknown>, now: Date): Pro
   const favorites = await paged(db.collection("favorites").where("favoriteIds", "array-contains", outletId));
   favorites.forEach(document => addTarget(targets, document.id, "favorite"));
 
+  const brandKey = normalizeFavoriteBrandCampaignKey(campaign.brandName);
+  if (campaign.type === "offer" && brandKey) {
+    const brandFavorites = await paged(db.collection("favorites").where("favoriteBrandKeys", "array-contains", brandKey));
+    brandFavorites.forEach(document => addTarget(targets, document.id, "brand"));
+  }
+
   const targetKeys = [outletCampaignTargetKey(outletId), ...(cityId ? [cityCampaignTargetKey(cityId)] : [])];
   const destinationQueries = targetKeys.map(targetKey => paged(db.collectionGroup("items")
     .where("campaignTargetKeys", "array-contains", targetKey)
@@ -160,6 +167,7 @@ async function loadTokens(userId: string): Promise<Token[]> {
 function preferenceEnabled(settings: Record<string, unknown>, kind: TargetKind) {
   if (settings.enabled !== true) return false;
   if (kind === "favorite") return settings.favoriteOutletUpdatesEnabled === true;
+  if (kind === "brand") return settings.favoriteBrandCampaignsEnabled === true;
   if (kind === "trip") return settings.tripRemindersEnabled === true;
   return settings.marketingEnabled === true;
 }

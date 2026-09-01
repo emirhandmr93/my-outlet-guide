@@ -150,12 +150,23 @@ service cloud.firestore {
     }
 
     function hasValidFavoritesData() {
-      return request.resource.data.keys().hasOnly(['favoriteIds', 'favoriteBrandIds'])
+      return request.resource.data.keys().hasOnly([
+          'favoriteIds',
+          'favoriteBrandIds',
+          'favoriteBrandKeys',
+          'savedCampaignIds'
+        ])
         && request.resource.data.favoriteIds is list
         && request.resource.data.favoriteIds.size() <= 1000
         && (!request.resource.data.keys().hasAny(['favoriteBrandIds'])
           || (request.resource.data.favoriteBrandIds is list
-            && request.resource.data.favoriteBrandIds.size() <= 1000));
+            && request.resource.data.favoriteBrandIds.size() <= 1000))
+        && (!request.resource.data.keys().hasAny(['favoriteBrandKeys'])
+          || (request.resource.data.favoriteBrandKeys is list
+            && request.resource.data.favoriteBrandKeys.size() <= 1000))
+        && (!request.resource.data.keys().hasAny(['savedCampaignIds'])
+          || (request.resource.data.savedCampaignIds is list
+            && request.resource.data.savedCampaignIds.size() <= 50));
     }
 
     function hasOnlyValidFlightDealThresholds(thresholds) {
@@ -452,6 +463,8 @@ service cloud.firestore {
           'enabled',
           'tripRemindersEnabled',
           'favoriteOutletUpdatesEnabled',
+          'favoriteBrandCampaignsEnabled',
+          'savedCampaignRemindersEnabled',
           'reviewUpdatesEnabled',
           'marketingEnabled',
           'updatedAt',
@@ -463,6 +476,10 @@ service cloud.firestore {
         && request.resource.data.enabled is bool
         && request.resource.data.tripRemindersEnabled is bool
         && request.resource.data.favoriteOutletUpdatesEnabled is bool
+        && (!request.resource.data.keys().hasAny(['favoriteBrandCampaignsEnabled'])
+          || request.resource.data.favoriteBrandCampaignsEnabled is bool)
+        && (!request.resource.data.keys().hasAny(['savedCampaignRemindersEnabled'])
+          || request.resource.data.savedCampaignRemindersEnabled is bool)
         && request.resource.data.reviewUpdatesEnabled is bool
         && request.resource.data.marketingEnabled is bool
         && isNonEmptyString(request.resource.data.updatedAt)

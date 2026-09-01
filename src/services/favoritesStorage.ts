@@ -1,21 +1,28 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { getFavoriteBrandCampaignKeys } from "./favoriteBrandCampaignKeys";
+
 export type FavoriteSnapshot = {
   favoriteIds: string[];
   favoriteBrandIds: string[];
+  favoriteBrandKeys: string[];
+  savedCampaignIds: string[];
 };
 
 export type FavoriteCache = FavoriteSnapshot & {
   dirty: boolean;
 };
 
-const CACHE_SCHEMA_VERSION = 1;
+const CACHE_SCHEMA_VERSION = 2;
 const CACHE_KEY_PREFIX = "my-outlet-guide:favorites:v1:";
 const MAX_FAVORITES = 1000;
+const MAX_SAVED_CAMPAIGNS = 50;
 
 export const EMPTY_FAVORITE_SNAPSHOT: FavoriteSnapshot = {
   favoriteIds: [],
   favoriteBrandIds: [],
+  favoriteBrandKeys: [],
+  savedCampaignIds: [],
 };
 
 export function cleanFavoriteIds(ids: unknown) {
@@ -35,13 +42,16 @@ export function cleanFavoriteIds(ids: unknown) {
 
 export function cleanFavoriteSnapshot(
   snapshot:
-    | { favoriteIds?: unknown; favoriteBrandIds?: unknown }
+    | { favoriteIds?: unknown; favoriteBrandIds?: unknown; savedCampaignIds?: unknown }
     | null
     | undefined,
 ): FavoriteSnapshot {
+  const favoriteBrandIds = cleanFavoriteIds(snapshot?.favoriteBrandIds);
   return {
     favoriteIds: cleanFavoriteIds(snapshot?.favoriteIds),
-    favoriteBrandIds: cleanFavoriteIds(snapshot?.favoriteBrandIds),
+    favoriteBrandIds,
+    favoriteBrandKeys: getFavoriteBrandCampaignKeys(favoriteBrandIds),
+    savedCampaignIds: cleanFavoriteIds(snapshot?.savedCampaignIds).slice(0, MAX_SAVED_CAMPAIGNS),
   };
 }
 
@@ -76,10 +86,11 @@ export async function readFavoriteCache(
       schemaVersion?: unknown;
       favoriteIds?: unknown;
       favoriteBrandIds?: unknown;
+      savedCampaignIds?: unknown;
       dirty?: unknown;
     };
 
-    if (parsed.schemaVersion !== CACHE_SCHEMA_VERSION) {
+    if (parsed.schemaVersion !== 1 && parsed.schemaVersion !== CACHE_SCHEMA_VERSION) {
       return null;
     }
 

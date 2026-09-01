@@ -3,6 +3,7 @@ import {
   translations,
 } from "../translations/translations";
 import { outletCampaignTranslations } from "../translations/outletCampaignTranslations";
+import { growthFeatureTranslations } from "../translations/growthFeatureTranslations";
 
 const visibleLocalePrefixPattern =
   /^(?:[A-Z]{2}: |ترجمة عربية: |中文翻译：|[^:]{1,40}\s+(?:çeviri|translation|ترجمة|перевод|Übersetzung|Traducción|Traduction)\s*[:：]\s*)/i;
@@ -26,6 +27,8 @@ export function resolveTranslation(language: TranslationLanguage, key: string) {
   return (
     cleanTranslationValue(key, outletCampaignTranslations[language]?.[key]) ||
     cleanTranslationValue(key, outletCampaignTranslations.en[key]) ||
+    cleanTranslationValue(key, growthFeatureTranslations[language]?.[key]) ||
+    cleanTranslationValue(key, growthFeatureTranslations.en[key]) ||
     cleanTranslationValue(key, translations[language]?.[key]) ||
     cleanTranslationValue(key, translations.en[key]) ||
     key
