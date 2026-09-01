@@ -23,7 +23,7 @@ const expectedAppStoreUrl = "https://apps.apple.com/app/id6791893523";
 const expectedGooglePlayUrl = "https://play.google.com/store/apps/details?id=com.myoutletguide.app";
 const expectedGooglePlayReviewUrl = `${expectedGooglePlayUrl}&showAllReviews=true`;
 const platforms = ["ios", "android", "web"] as const;
-const homeSource = readFileSync("src/screens/HomeScreen.tsx", "utf8");
+const homeSource = readFileSync("src/screens/HomeScreen.tsx", "utf8").replace(/\r\n?/g, "\n");
 const appLinksSource = readFileSync("src/constants/appLinks.ts", "utf8");
 const helperSource = readFileSync("src/utils/appShare.ts", "utf8");
 const translationsSource = readFileSync("src/translations/translations.ts", "utf8");
