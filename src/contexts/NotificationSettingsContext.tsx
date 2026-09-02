@@ -18,6 +18,8 @@ export type NotificationSettings = {
   enabled: boolean;
   tripRemindersEnabled: boolean;
   favoriteOutletUpdatesEnabled: boolean;
+  favoriteBrandCampaignsEnabled: boolean;
+  savedCampaignRemindersEnabled: boolean;
   reviewUpdatesEnabled: boolean;
   marketingEnabled: boolean;
 };
@@ -35,6 +37,8 @@ type NotificationSettingsContextType = {
   setNotificationsEnabled: (enabled: boolean) => Promise<void>;
   setTripRemindersEnabled: (enabled: boolean) => Promise<void>;
   setFavoriteOutletUpdatesEnabled: (enabled: boolean) => Promise<void>;
+  setFavoriteBrandCampaignsEnabled: (enabled: boolean) => Promise<void>;
+  setSavedCampaignRemindersEnabled: (enabled: boolean) => Promise<void>;
   setMarketingEnabled: (enabled: boolean) => Promise<void>;
   refreshSettings: () => Promise<void>;
 };
@@ -46,6 +50,8 @@ const defaultSettingsForUser = (userId: string): NotificationSettings => ({
   enabled: false,
   tripRemindersEnabled: false,
   favoriteOutletUpdatesEnabled: false,
+  favoriteBrandCampaignsEnabled: false,
+  savedCampaignRemindersEnabled: false,
   reviewUpdatesEnabled: false,
   marketingEnabled: false,
 });
@@ -236,6 +242,8 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
         enabled: data.enabled === true,
         tripRemindersEnabled: data.tripRemindersEnabled === true,
         favoriteOutletUpdatesEnabled: data.favoriteOutletUpdatesEnabled === true,
+        favoriteBrandCampaignsEnabled: data.favoriteBrandCampaignsEnabled === true,
+        savedCampaignRemindersEnabled: data.savedCampaignRemindersEnabled === true,
         reviewUpdatesEnabled: data.reviewUpdatesEnabled === true,
         marketingEnabled: data.marketingEnabled === true,
       });
@@ -451,6 +459,30 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
     }
   }
 
+  async function setFavoriteBrandCampaignsEnabled(enabled: boolean) {
+    const targetUserId = activeUserIdRef.current;
+    if (!targetUserId) return;
+    const operationGeneration = ++settingsOperationGeneration.current;
+    setIsSaving(true);
+    try {
+      await saveSettingsPatch({ favoriteBrandCampaignsEnabled: enabled });
+    } finally {
+      if (activeUserIdRef.current === targetUserId && settingsOperationGeneration.current === operationGeneration) setIsSaving(false);
+    }
+  }
+
+  async function setSavedCampaignRemindersEnabled(enabled: boolean) {
+    const targetUserId = activeUserIdRef.current;
+    if (!targetUserId) return;
+    const operationGeneration = ++settingsOperationGeneration.current;
+    setIsSaving(true);
+    try {
+      await saveSettingsPatch({ savedCampaignRemindersEnabled: enabled });
+    } finally {
+      if (activeUserIdRef.current === targetUserId && settingsOperationGeneration.current === operationGeneration) setIsSaving(false);
+    }
+  }
+
   async function setMarketingEnabled(enabled: boolean) {
     const targetUserId = activeUserIdRef.current;
     if (!targetUserId) return;
@@ -477,6 +509,8 @@ export function NotificationSettingsProvider({ children }: { children: ReactNode
       setNotificationsEnabled,
       setTripRemindersEnabled,
       setFavoriteOutletUpdatesEnabled,
+      setFavoriteBrandCampaignsEnabled,
+      setSavedCampaignRemindersEnabled,
       setMarketingEnabled,
       refreshSettings,
     }),

@@ -117,6 +117,18 @@ type FeaturedSlide = StaticFeaturedSlide | CampaignFeaturedSlide;
 const featuredSlides: StaticFeaturedSlide[] = [
   {
     kind: "static",
+    id: "outlet-match",
+    kickerKey: "home.featured.outletMatch.kicker",
+    titleKey: "home.featured.outletMatch.title",
+    subtitleKey: "home.featured.outletMatch.subtitle",
+    ctaKey: "home.featured.outletMatch.cta",
+    icon: "✓",
+    image: getHomeFeatureImage("discover-outlets"),
+    route: "OutletMatch",
+    params: { selection: "start" },
+  },
+  {
+    kind: "static",
     id: "discover-outlets",
     kickerKey: "home.featured.discover.kicker",
     titleKey: "home.featured.discover.title",

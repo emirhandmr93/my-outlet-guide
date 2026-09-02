@@ -26,6 +26,8 @@ export function NotificationSettingsScreen() {
     setNotificationsEnabled,
     setTripRemindersEnabled,
     setFavoriteOutletUpdatesEnabled,
+    setFavoriteBrandCampaignsEnabled,
+    setSavedCampaignRemindersEnabled,
     setMarketingEnabled,
     tokenRegistrationStatus,
     registeredToken,
@@ -144,6 +146,30 @@ export function NotificationSettingsScreen() {
             onLabel={t("common.on")}
             offLabel={t("common.off")}
             onPress={() => setFavoriteOutletUpdatesEnabled(settings?.favoriteOutletUpdatesEnabled !== true)}
+          />
+
+          <CategoryRow
+            icon="♥"
+            title={t("notifications.favoriteBrandCampaignsCategory")}
+            description={t("notifications.favoriteBrandCampaignsCategoryDesc")}
+            status={t("notifications.categoryActive")}
+            enabled={settings?.favoriteBrandCampaignsEnabled === true}
+            disabled={isLoading || isSaving || !enabled}
+            onLabel={t("common.on")}
+            offLabel={t("common.off")}
+            onPress={() => setFavoriteBrandCampaignsEnabled(settings?.favoriteBrandCampaignsEnabled !== true)}
+          />
+
+          <CategoryRow
+            icon="⏳"
+            title={t("notifications.savedCampaignRemindersCategory")}
+            description={t("notifications.savedCampaignRemindersCategoryDesc")}
+            status={t("notifications.categoryActive")}
+            enabled={settings?.savedCampaignRemindersEnabled === true}
+            disabled={isLoading || isSaving || !enabled}
+            onLabel={t("common.on")}
+            offLabel={t("common.off")}
+            onPress={() => setSavedCampaignRemindersEnabled(settings?.savedCampaignRemindersEnabled !== true)}
           />
 
           <CategoryRow

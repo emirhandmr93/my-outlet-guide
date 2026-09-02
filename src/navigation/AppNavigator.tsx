@@ -37,6 +37,7 @@ NotificationSettingsScreen,
 OfflinePacksScreen,
 OnboardingScreen,
 OutletDetailScreen,
+OutletMatchScreen,
 OutletShoppingIndexScreen,
 PriceAdvantageCalculatorScreen,
 PrivacyPolicyScreen,
@@ -100,6 +101,7 @@ VisitMode: RootStackParamList["VisitMode"];
 CreateTrip: undefined;
 NotificationSettings: undefined;
 LanguageSettings: undefined;
+OutletMatch: RootStackParamList["OutletMatch"];
 };
 
 type DesktopExploreStackParamList = {
@@ -164,6 +166,7 @@ return (
 <DesktopHomeStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
 <DesktopHomeStack.Screen name="LanguageSettings" component={LanguageSettingsScreen} options={{ title: t("nav.language") }} />
 <DesktopHomeStack.Screen name="NotificationSettings" component={NotificationSettingsScreen} options={{ title: t("nav.notifications") }} />
+<DesktopHomeStack.Screen name="OutletMatch" component={OutletMatchScreen} options={{ title: t("nav.outletMatch") }} />
 </DesktopHomeStack.Navigator>
 );
 }
@@ -483,6 +486,7 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 <Stack.Screen name="MyTrips" component={MyTripsScreen} options={{ title: t("nav.myTrips") }} />
 <Stack.Screen name="MyTripsList" component={MyTripsScreen} options={{ title: t("nav.myTrips") }} />
 <Stack.Screen name="NearbyOutlets" component={NearbyOutletsScreen} options={{ title: t("nav.nearbyOutlets") }} />
+<Stack.Screen name="OutletMatch" component={OutletMatchScreen} options={{ title: t("nav.outletMatch") }} />
 <Stack.Screen name="Favorites" component={FavoritesScreen} options={{ title: t("nav.favorites") }} />
 <Stack.Screen name="BrandWishlist" component={BrandWishlistScreen} options={{ title: t("nav.brandWishlist") }} />
 <Stack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />

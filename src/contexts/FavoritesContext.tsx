@@ -31,8 +31,10 @@ type FavoritesContextType = FavoriteSnapshot & {
   reloadFavorites: () => Promise<void>;
   toggleFavorite: (outletId: string) => Promise<void>;
   toggleFavoriteBrand: (brandId: string) => Promise<void>;
+  toggleSavedCampaign: (campaignId: string) => Promise<void>;
   isFavorite: (outletId: string) => boolean;
   isFavoriteBrand: (brandId: string) => boolean;
+  isCampaignSaved: (campaignId: string) => boolean;
 };
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(
@@ -66,23 +68,33 @@ async function readFavoritesWithAuthRetry(
     const snapshot = await getDoc(doc(db, "favorites", user.uid));
 
     if (!snapshot.exists()) {
-      return EMPTY_FAVORITE_SNAPSHOT;
+      return { snapshot: EMPTY_FAVORITE_SNAPSHOT, needsUpgrade: false };
     }
 
-    return cleanFavoriteSnapshot(snapshot.data());
+    const data = snapshot.data();
+    const cleanSnapshot = cleanFavoriteSnapshot(data);
+    const storedBrandKeys = Array.isArray(data.favoriteBrandKeys) ? data.favoriteBrandKeys : [];
+    const needsUpgrade =
+      JSON.stringify(storedBrandKeys) !== JSON.stringify(cleanSnapshot.favoriteBrandKeys) ||
+      !Array.isArray(data.savedCampaignIds);
+    return { snapshot: cleanSnapshot, needsUpgrade };
   };
 
   await user.getIdToken();
 
   try {
-    return await read();
+    const result = await read();
+    if (result.needsUpgrade) await writeFavoritesWithAuthRetry(user, result.snapshot);
+    return result.snapshot;
   } catch (error) {
     if (!isFirestorePermissionDenied(error)) {
       throw error;
     }
 
     await user.getIdToken(true);
-    return read();
+    const result = await read();
+    if (result.needsUpgrade) await writeFavoritesWithAuthRetry(user, result.snapshot);
+    return result.snapshot;
   }
 }
 
@@ -111,6 +123,8 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   const { currentUser } = useAuth();
   const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
   const [favoriteBrandIds, setFavoriteBrandIds] = useState<string[]>([]);
+  const [favoriteBrandKeys, setFavoriteBrandKeys] = useState<string[]>([]);
+  const [savedCampaignIds, setSavedCampaignIds] = useState<string[]>([]);
   const [favoritesError, setFavoritesError] = useState<FavoritesError>(null);
   const [favoritesLoading, setFavoritesLoading] = useState(false);
   const activeUserIdRef = useRef<string | null>(null);
@@ -126,6 +140,8 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     snapshotRef.current = cleanSnapshot;
     setFavoriteIds(cleanSnapshot.favoriteIds);
     setFavoriteBrandIds(cleanSnapshot.favoriteBrandIds);
+    setFavoriteBrandKeys(cleanSnapshot.favoriteBrandKeys);
+    setSavedCampaignIds(cleanSnapshot.savedCampaignIds);
   }, []);
 
   const enqueueCacheWrite = useCallback(
@@ -353,6 +369,32 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     await persistSnapshot(user, nextSnapshot, revision);
   }
 
+  async function toggleSavedCampaign(campaignId: string) {
+    const user = currentUser;
+    if (!user) {
+      applySnapshot(EMPTY_FAVORITE_SNAPSHOT);
+      setFavoritesError(null);
+      return;
+    }
+
+    await loadPromiseRef.current;
+    if (activeUserIdRef.current !== user.uid) return;
+
+    const previousSnapshot = snapshotRef.current;
+    const isRemoving = previousSnapshot.savedCampaignIds.includes(campaignId);
+    const nextSnapshot = cleanFavoriteSnapshot({
+      ...previousSnapshot,
+      savedCampaignIds: toggleFavoriteId(previousSnapshot.savedCampaignIds, campaignId),
+    });
+    const revision = mutationRevisionRef.current + 1;
+    mutationRevisionRef.current = revision;
+    applySnapshot(nextSnapshot);
+    setFavoritesError(null);
+
+    trackProductEvent(isRemoving ? "campaign_unsave" : "campaign_save", { campaign_id: campaignId });
+    await persistSnapshot(user, nextSnapshot, revision);
+  }
+
   function isFavorite(outletId: string) {
     return favoriteIds.includes(outletId);
   }
@@ -361,18 +403,26 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     return favoriteBrandIds.includes(brandId);
   }
 
+  function isCampaignSaved(campaignId: string) {
+    return savedCampaignIds.includes(campaignId);
+  }
+
   return (
     <FavoritesContext.Provider
       value={{
         favoriteIds,
         favoriteBrandIds,
+        favoriteBrandKeys,
+        savedCampaignIds,
         favoritesError,
         favoritesLoading,
         reloadFavorites,
         toggleFavorite,
         toggleFavoriteBrand,
+        toggleSavedCampaign,
         isFavorite,
         isFavoriteBrand,
+        isCampaignSaved,
       }}
     >
       {children}

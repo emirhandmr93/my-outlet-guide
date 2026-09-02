@@ -1,5 +1,6 @@
 import type { TranslationLanguage } from "../translations/locale";
 import { outletCampaignTranslations } from "../translations/outletCampaignTranslations";
+import { growthFeatureTranslations } from "../translations/growthFeatureTranslations";
 
 type Dictionary = Record<string, string>;
 
@@ -52,6 +53,8 @@ export function resolveTranslation(language: TranslationLanguage, key: string) {
   return (
     cleanTranslationValue(key, outletCampaignTranslations[language]?.[key]) ||
     cleanTranslationValue(key, outletCampaignTranslations.en[key]) ||
+    cleanTranslationValue(key, growthFeatureTranslations[language]?.[key]) ||
+    cleanTranslationValue(key, growthFeatureTranslations.en[key]) ||
     cleanTranslationValue(key, dictionaries[language]?.[key]) ||
     cleanTranslationValue(key, dictionaries.en?.[key]) ||
     key

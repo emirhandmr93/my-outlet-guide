@@ -7,6 +7,7 @@ import {
   type TravelBasketCategory,
   type TravelBasketOutboundLink,
   type TravelBasketPlacement,
+  type TravelBasketSearchContext,
   type TravelPartnerOverrides,
 } from "./travelBasketAffiliateLinks";
 
@@ -31,6 +32,7 @@ export async function getTravelBasketOutboundLink(input: {
   category: TravelBasketCategory;
   placement: TravelBasketPlacement;
   contextId?: string;
+  searchContext?: TravelBasketSearchContext;
 }): Promise<TravelBasketOutboundLink> {
   return buildTravelBasketOutboundLink({ ...input, overrides: await loadOverrides() });
 }

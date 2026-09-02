@@ -76,6 +76,13 @@ export function TravelBasketScreen() {
       ?? (outlet?.countryId ? formatCountryDisplayName(outlet.countryId, language) : "");
     const label = [destination, country].filter(Boolean).join(" · ");
     const dates = trip ? `${formatIsoDateOnly(trip.startDate)} – ${formatIsoDateOnly(trip.endDate)}` : "";
+    const partnerDestination = trip?.city
+      ?? trip?.destination
+      ?? segment?.cityName
+      ?? (outlet?.cityId ? formatCityDisplayName(outlet.cityId, "en") : "");
+    const partnerCountry = trip?.country
+      ?? segment?.countryName
+      ?? (outlet?.countryId ? formatCountryDisplayName(outlet.countryId, "en") : "");
     return {
       contextId: route.params?.campaignId ?? trip?.id ?? outlet?.outletId,
       campaignId: route.params?.campaignId,
@@ -83,10 +90,14 @@ export function TravelBasketScreen() {
       countryId: outlet?.countryId,
       cityId: outlet?.cityId ?? segment?.cityId,
       dates,
+      startDate: trip?.startDate ?? route.params?.startDate,
+      endDate: trip?.endDate ?? route.params?.endDate,
+      partnerDestination,
+      partnerCountry,
       label,
       outletName: trip?.outletName ?? segment?.outletName ?? outlet?.outletName ?? "",
     };
-  }, [language, route.params?.campaignId, route.params?.outletId, route.params?.tripId, trips]);
+  }, [language, route.params?.campaignId, route.params?.endDate, route.params?.outletId, route.params?.startDate, route.params?.tripId, trips]);
 
   const placement: TravelBasketPlacement = route.params?.source ?? "travel_basket_hub";
 
@@ -98,12 +109,19 @@ export function TravelBasketScreen() {
         category,
         placement,
         contextId: context.contextId,
+        searchContext: {
+          destination: context.partnerDestination,
+          country: context.partnerCountry,
+          startDate: context.startDate,
+          endDate: context.endDate,
+        },
       });
       trackProductEvent("outbound_affiliate_click", {
         affiliate: outboundLink.provider,
         category,
         monetized: outboundLink.monetized,
         placement,
+        context_prefilled: Boolean(context.partnerDestination || context.startDate),
       });
       void recordTravelPartnerClick({
         provider: outboundLink.provider,
@@ -161,6 +179,12 @@ export function TravelBasketScreen() {
         </Text>
         {context.outletName && context.label ? <Text style={[styles.contextMeta, isNativeRTL && styles.rtlText]}>{context.outletName}</Text> : null}
         {context.dates ? <Text style={[styles.contextMeta, isNativeRTL && styles.rtlText]}>{context.dates}</Text> : null}
+        {context.partnerDestination || context.startDate ? (
+          <View style={styles.smartContextRow}>
+            <MaterialCommunityIcons name="auto-fix" size={16} color={colors.goldDark} />
+            <Text style={[styles.smartContextText, isNativeRTL && styles.rtlText]}>{t("travelBasket.smartContextApplied")}</Text>
+          </View>
+        ) : null}
       </View>
 
       <View style={styles.grid}>
@@ -224,6 +248,8 @@ const styles = StyleSheet.create({
   contextTitle: { color: colors.goldDark, fontSize: 12, fontWeight: "900", letterSpacing: 0.6, textTransform: "uppercase" },
   contextValue: { color: colors.primary, fontSize: 19, fontWeight: "900", marginTop: 7 },
   contextMeta: { color: colors.textSecondary, fontSize: 13, fontWeight: "700", marginTop: 5 },
+  smartContextRow: { alignItems: "center", flexDirection: "row", gap: 7, marginTop: 10 },
+  smartContextText: { color: colors.goldDark, flex: 1, fontSize: 12, fontWeight: "800", lineHeight: 17 },
   grid: { flexDirection: "row", flexWrap: "wrap", gap: 14 },
   itemCard: { backgroundColor: colors.surface, borderColor: colors.border, borderRadius: 24, borderWidth: 1, padding: 18, width: "100%" },
   desktopItemCard: { width: "48.8%" },

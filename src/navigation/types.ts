@@ -19,6 +19,7 @@ export type RootStackParamList = {
   MyTrips: undefined;
   MyTripsList: undefined;
   NearbyOutlets: undefined;
+  OutletMatch: { selection: string };
   Favorites: undefined;
   BrandWishlist: undefined;
   CreateTrip: { outletId?: string } | undefined;
@@ -41,7 +42,7 @@ export type RootStackParamList = {
     outletId?: string;
     countryId?: string;
     cityId?: string;
-    source?: "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail";
+    source?: "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail" | "outlet_match";
   } | undefined;
   FlightDealDetail: { dealId: string };
   CampaignDetail: { campaignId: string };
@@ -49,7 +50,9 @@ export type RootStackParamList = {
     outletId?: string;
     tripId?: string;
     campaignId?: string;
-    source?: "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail";
+    startDate?: string;
+    endDate?: string;
+    source?: "travel_basket_hub" | "outlet_detail" | "trip_detail" | "campaign_detail" | "outlet_match";
   } | undefined;
   Login: { authMessage?: string } | undefined;
   MyReviews: undefined;

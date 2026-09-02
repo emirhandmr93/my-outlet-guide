@@ -12,6 +12,7 @@ import { NotificationSettingsProvider } from "./src/contexts/NotificationSetting
 import { UserProvider } from "./src/contexts/UserContext";
 import { FlightDealPreferencesProvider } from "./src/contexts/FlightDealPreferencesContext";
 import { AuthProvider, useAuth } from "./src/contexts/AuthContext";
+import { CampaignReminderCoordinator } from "./src/components/CampaignReminderCoordinator";
 import { init as initSentry, wrap as wrapWithSentry } from "@sentry/react-native";
 
 initSentry({
@@ -37,6 +38,7 @@ function AuthLoadingGate() {
             <SavingsProvider>
               <FlightDealPreferencesProvider>
                 <ReviewsProvider>
+                  <CampaignReminderCoordinator />
                   <AppNavigator />
                   <StatusBar style="auto" />
                 </ReviewsProvider>

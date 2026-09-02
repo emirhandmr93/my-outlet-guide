@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import { buildLocalizedCampaignNotificationContent, campaignNotificationLocales } from "../functions/src/outletCampaignNotificationLocalization";
+import { normalizeFavoriteBrandCampaignKey } from "../functions/src/favoriteBrandCampaignKeys";
 import {
   campaignNotificationLocalDateHour,
   campaignNotificationLocalWeekStart,
@@ -28,6 +29,7 @@ assert.equal(isMajorOutletCampaign({ type: "offer", headline: "Black Friday Week
 assert.equal(isMajorOutletCampaign({ type: "event", headline: "VIP Shopping Day" }), true);
 assert.equal(isMajorOutletCampaign({ type: "event", headline: "Late-night shopping concert" }), true);
 assert.equal(isMajorOutletCampaign({ type: "offer", discountPercent: 30, headline: "Member offer" }), false);
+assert.equal(normalizeFavoriteBrandCampaignKey("Lévi's"), "levi s");
 
 for (const locale of campaignNotificationLocales) {
   const content = buildLocalizedCampaignNotificationContent({
@@ -65,6 +67,9 @@ assert(delivery.includes('where("campaignTargetKeys", "array-contains", targetKe
 assert(delivery.includes('channelId: "outlet_updates"') && delivery.includes("isQuietHour"));
 assert(context.includes('setNotificationChannelAsync("outlet_updates"') && context.includes("getDeviceTimeZone"));
 assert(screen.includes("setFavoriteOutletUpdatesEnabled") && screen.includes("setMarketingEnabled"));
+assert(screen.includes("setFavoriteBrandCampaignsEnabled")
+  && delivery.includes('kind === "brand"')
+  && delivery.includes("settings.favoriteBrandCampaignsEnabled === true"));
 assert(navigator.includes("parseOutletCampaignNotificationResponse") && navigator.includes('navigate("CampaignDetail"'));
 
 console.log("Outlet campaign notification checks passed: 8 locales, city/outlet trip matching, weekly global cap, consent gates, quiet hours, lease recovery, Android channel, and deep link.");
