@@ -67,7 +67,9 @@ assert(delivery.includes('where("campaignTargetKeys", "array-contains", targetKe
 assert(delivery.includes('channelId: "outlet_updates"') && delivery.includes("isQuietHour"));
 assert(context.includes('setNotificationChannelAsync("outlet_updates"') && context.includes("getDeviceTimeZone"));
 assert(screen.includes("setFavoriteOutletUpdatesEnabled") && screen.includes("setMarketingEnabled"));
-assert(screen.includes("setFavoriteBrandCampaignsEnabled") && delivery.includes('target.kind === "brand"'));
+assert(screen.includes("setFavoriteBrandCampaignsEnabled")
+  && delivery.includes('kind === "brand"')
+  && delivery.includes("settings.favoriteBrandCampaignsEnabled === true"));
 assert(navigator.includes("parseOutletCampaignNotificationResponse") && navigator.includes('navigate("CampaignDetail"'));
 
 console.log("Outlet campaign notification checks passed: 8 locales, city/outlet trip matching, weekly global cap, consent gates, quiet hours, lease recovery, Android channel, and deep link.");
