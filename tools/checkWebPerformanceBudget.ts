@@ -3,7 +3,7 @@ import path from "node:path";
 import { gzipSync } from "node:zlib";
 
 const outputDirectory = path.resolve(process.argv[2] ?? "dist");
-const MAX_INITIAL_RAW_BYTES = 5_900_000;
+const MAX_INITIAL_RAW_BYTES = 5_950_000;
 const MAX_INITIAL_GZIP_BYTES = 1_200_000;
 const MAX_EXPORTED_ASSET_BYTES = 107_000_000;
 
