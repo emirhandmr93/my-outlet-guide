@@ -14,8 +14,13 @@ export type ProductAnalyticsEvent =
   | "tax_free_calculator_use"
   | "trip_create"
   | "campaign_share"
+  | "campaign_save"
+  | "campaign_unsave"
   | "campaign_travel_basket_open"
-  | "campaign_notification_open";
+  | "campaign_notification_open"
+  | "outlet_match_brand_add"
+  | "outlet_match_location_rank"
+  | "outlet_match_share";
 
 type ProductAnalyticsValue = string | number | boolean;
 type ProductAnalyticsParameters = Record<string, ProductAnalyticsValue | null | undefined>;
