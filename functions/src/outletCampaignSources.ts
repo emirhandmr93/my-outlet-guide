@@ -36,19 +36,25 @@ function theBicesterCollectionSource(
   } = input;
   const rootPath = `/${villageSlug}/en`;
   const offersPath = `${rootPath}/offers/`;
+  const brandsPath = `${rootPath}/brands/`;
   const whatsOnPath = whatsOnListingPath ?? `${rootPath}/whats-on/`;
+  const offersUrl = `https://www.thebicestercollection.com${offersPath}`;
+  const brandsUrl = `https://www.thebicestercollection.com${brandsPath}`;
+  const whatsOnUrl = `https://www.thebicestercollection.com${whatsOnPath}`;
   const listingUrls = [
-    `https://www.thebicestercollection.com${offersPath}`,
-    ...(includeWhatsOn ? [`https://www.thebicestercollection.com${whatsOnPath}`] : []),
+    offersUrl,
+    brandsUrl,
+    ...(includeWhatsOn ? [whatsOnUrl] : []),
   ];
   const listingCandidatePathPrefixes: Record<string, readonly string[]> = {
-    [normalizedPathname(listingUrls[0])]: [
+    [normalizedPathname(offersUrl)]: [
       `${rootPath}/offers/`,
-      `${rootPath}/brands/`,
+      brandsPath,
     ],
+    [normalizedPathname(brandsUrl)]: [brandsPath],
   };
-  if (includeWhatsOn && listingUrls[1]) {
-    listingCandidatePathPrefixes[normalizedPathname(listingUrls[1])] = [
+  if (includeWhatsOn) {
+    listingCandidatePathPrefixes[normalizedPathname(whatsOnUrl)] = [
       `${rootPath}/whats-on/`,
     ];
   }
@@ -57,10 +63,10 @@ function theBicesterCollectionSource(
     operator: "the_bicester_collection",
     sourceLocale: "en",
     listingUrls,
-    allowedHosts: ["www.thebicestercollection.com"],
+    allowedHosts: ["www.thebicestercollection.com", "thebicestercollection.com"],
     candidatePathPrefixes: [
       `${rootPath}/offers/`,
-      `${rootPath}/brands/`,
+      brandsPath,
       `${rootPath}/whats-on/`,
     ],
     listingCandidatePathPrefixes,
@@ -83,7 +89,7 @@ function mcArthurGlenSource(
     operator: "mcarthurglen",
     sourceLocale: "en",
     listingUrls,
-    allowedHosts: ["www.mcarthurglen.com"],
+    allowedHosts: ["www.mcarthurglen.com", "mcarthurglen.com"],
     candidatePathPrefixes: [offersPath, whatsOnPath],
     listingCandidatePathPrefixes: {
       [offersPath]: [offersPath],
@@ -123,14 +129,16 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     listingUrls: [
       "https://firenze.themall.it/en",
       "https://firenze.themall.it/en/events/",
+      "https://firenze.themall.it/en/brands/",
     ],
     allowedHosts: ["firenze.themall.it"],
-    candidatePathPrefixes: ["/en/events/"],
+    candidatePathPrefixes: ["/en/events/", "/en/brands/"],
     listingCandidatePathPrefixes: {
-      "/en/": ["/en/events/"],
+      "/en/": ["/en/events/", "/en/brands/"],
       "/en/events/": ["/en/events/"],
+      "/en/brands/": ["/en/brands/"],
     },
-    maxCandidatePages: 80,
+    maxCandidatePages: 120,
   },
   theBicesterCollectionSource({
     sourceId: "wertheim-village-official",
@@ -139,6 +147,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletName: "Wertheim Village",
     timeZone: "Europe/Berlin",
     maxCandidatePages: 180,
+    whatsOnListingPath: "/wertheim-village/en/whats-on/news-wertheim-village/",
   }),
   theBicesterCollectionSource({
     sourceId: "ingolstadt-village-official",
@@ -348,9 +357,11 @@ export function isOfficialSourceUrl(source: OfficialCampaignSource, value: strin
 function detailUrlMatchesPrefixes(source: OfficialCampaignSource, value: string, prefixes: readonly string[]): boolean {
   if (!isOfficialSourceUrl(source, value)) return false;
   const url = new URL(value);
-  return prefixes.some(prefix =>
-    url.pathname.startsWith(prefix) && url.pathname.length > prefix.length,
-  );
+  const pathname = url.pathname.toLowerCase();
+  return prefixes.some(prefix => {
+    const normalizedPrefix = prefix.toLowerCase();
+    return pathname.startsWith(normalizedPrefix) && pathname.length > normalizedPrefix.length;
+  });
 }
 
 export function campaignCandidatePrefixesForListing(
