@@ -1,0 +1,67 @@
+name: Audit authorized vector PDF premium map import
+
+on:
+  push:
+    branches:
+      - feat/premium-map-exact-completion
+    paths:
+      - tools/auditAuthorizedPdfPremiumMapImport.ts
+      - docs/premium-map-pdf-evidence/**
+      - .github/workflows/audit-authorized-pdf-premium-map-import.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pdf-premium-map-import-audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit official vector plan labels
+        run: npx tsx tools/auditAuthorizedPdfPremiumMapImport.ts
+
+      - name: Validate audit
+        run: |
+          test -f docs/PREMIUM_MAP_PDF_IMPORT_AUDIT.json
+          node - <<'NODE'
+          const fs = require('fs');
+          const audit = JSON.parse(fs.readFileSync('docs/PREMIUM_MAP_PDF_IMPORT_AUDIT.json', 'utf8'));
+          if (audit.summary.outletCount !== 2) throw new Error(`Expected 2 vector-plan outlets, got ${audit.summary.outletCount}`);
+          for (const outlet of audit.results) {
+            if (!outlet.pages.length || !outlet.pages.every(page => page.width > 0 && page.height > 0)) throw new Error(`${outlet.outletId}: invalid page geometry`);
+          }
+          NODE
+
+      - name: Commit audit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/PREMIUM_MAP_PDF_IMPORT_AUDIT.json
+          if git diff --cached --quiet; then
+            echo "No PDF audit changes to commit."
+            exit 0
+          fi
+          git commit -m "Audit official vector PDF premium map import"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}
