@@ -101,8 +101,8 @@ export type PremiumOutletMap = {
 
 export type PremiumMapCampaign = {
   campaignId: string;
-  outletId: string;
-  brandId: string;
+  outletId?: string;
+  brandId?: string;
   brandName: string;
   endsOn: string;
   discountLabel: string;
