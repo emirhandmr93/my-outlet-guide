@@ -130,6 +130,16 @@ async function main() {
   assert.doesNotMatch(legacyClientCopy.summary, /Castel Romano/,
     "Client must defensively repair already-stored cross-outlet presentation text.");
 
+  const duplicateConditions = sanitizeCampaignPresentationText({
+    brandName: "ASICS",
+    headline: "Ekstra %50 indirim",
+    summary: "Seçili ürünlerde ikinci ürün %50 indirimli.",
+    conditions: "Seçili ürünlerde ikinci ürün %50 indirimli. Stoklarla sınırlıdır.",
+    discountLabel: "Ekstra %50 indirim",
+  }, noventa.outletId, noventa.outletName);
+  assert.equal(duplicateConditions.conditions, "Stoklarla sınırlıdır.",
+    "Campaign conditions must not repeat the summary before the actual condition text.");
+
   const root = process.cwd();
   const heroComponent = readFileSync(join(root, "src/components/LocalHeroImageCard.tsx"), "utf8");
   const campaignService = readFileSync(join(root, "src/services/outletCampaignService.ts"), "utf8");
@@ -140,7 +150,7 @@ async function main() {
     && campaignService.includes("outletName: canonicalOutletName"),
   "Client campaign parsing must use canonical outlet identity and sanitize display copy.");
 
-  console.log("Campaign integrity audit passed: 22 canonical outlet identities, host parity, 8-language proper nouns, monetary/quantity evidence, legacy repair, and full-height hero.");
+  console.log("Campaign integrity audit passed: 22 canonical outlet identities, host parity, 8-language proper nouns, monetary/quantity evidence, legacy repair, condition dedupe, and full-height hero.");
 }
 
 void main().catch(error => {
