@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "status": "fetch-failed",
+  "outletId": "fidenza-village",
+  "outletName": "Fidenza Village",
+  "center": [
+    10.0616,
+    44.8637
+  ],
+  "discoveryRadiusMeters": 900,
+  "collectedAt": "2026-09-03T17:02:45.723Z",
+  "source": {
+    "dataset": "OpenStreetMap",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "copyrightUrl": "https://www.openstreetmap.org/copyright",
+    "runtimeDependency": false
+  },
+  "releaseAssessment": {
+    "inferredGeometryUsed": false,
+    "automaticReleaseCandidate": false
+  },
+  "error": "https://maps.mail.ru/osm/tools/overpass/api/interpreter returned HTTP 504"
+}

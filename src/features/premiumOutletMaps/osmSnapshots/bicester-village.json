@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "status": "fetch-failed",
+  "outletId": "bicester-village",
+  "outletName": "Bicester Village",
+  "center": [
+    -1.1561,
+    51.8916
+  ],
+  "discoveryRadiusMeters": 900,
+  "collectedAt": "2026-09-03T16:59:32.527Z",
+  "source": {
+    "dataset": "OpenStreetMap",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "copyrightUrl": "https://www.openstreetmap.org/copyright",
+    "runtimeDependency": false
+  },
+  "releaseAssessment": {
+    "inferredGeometryUsed": false,
+    "automaticReleaseCandidate": false
+  },
+  "error": "https://maps.mail.ru/osm/tools/overpass/api/interpreter returned HTTP 504"
+}

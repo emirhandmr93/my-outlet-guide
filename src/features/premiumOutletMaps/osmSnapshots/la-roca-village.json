@@ -1,0 +1,7480 @@
+{
+  "schemaVersion": 2,
+  "status": "collected",
+  "outletId": "la-roca-village",
+  "outletName": "La Roca Village",
+  "center": [
+    2.3436,
+    41.6105
+  ],
+  "discoveryRadiusMeters": 950,
+  "collectedAt": "2026-09-03T16:59:46.648Z",
+  "osmBaseTimestamp": "2026-05-31T22:37:44Z",
+  "overpassEndpoint": "https://overpass.private.coffee/api/interpreter",
+  "source": {
+    "dataset": "OpenStreetMap",
+    "license": "ODbL-1.0",
+    "attribution": "© OpenStreetMap contributors",
+    "copyrightUrl": "https://www.openstreetmap.org/copyright",
+    "runtimeDependency": false
+  },
+  "releaseAssessment": {
+    "inferredGeometryUsed": false,
+    "exactAreaCoverageRequiredForAutomaticRelease": 100,
+    "uniqueExactSiteBoundaryRequired": true,
+    "automaticReleaseCandidate": false
+  },
+  "stats": {
+    "elementCount": 187,
+    "namedRetailElementCount": 92,
+    "appBrandCount": 111,
+    "exactAreaBrandCount": 0,
+    "exactPointBrandCount": 39,
+    "ambiguousBrandCount": 1,
+    "missingBrandCount": 71,
+    "exactSiteBoundaryCandidateCount": 1
+  },
+  "brandAudits": [
+    {
+      "brandId": "adidas",
+      "brandName": "Adidas",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199854538,
+          "version": 2,
+          "timestamp": "2022-11-18T19:15:23Z",
+          "names": [
+            "Adidas",
+            "Adidas"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.341897,
+            41.6085754
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "adolfo-dominguez",
+      "brandName": "Adolfo Domínguez",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199922982,
+          "version": 1,
+          "timestamp": "2022-11-18T16:11:11Z",
+          "names": [
+            "Adolfo Dominguez"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3430515,
+            41.6097402
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "armani",
+      "brandName": "Armani",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 6139362994,
+          "version": 1,
+          "timestamp": "2018-12-15T18:57:36Z",
+          "names": [
+            "Armani"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3446618,
+            41.6127273
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "asics",
+      "brandName": "ASICS",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590891,
+          "version": 5,
+          "timestamp": "2022-11-18T16:46:32Z",
+          "names": [
+            "Asics"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3446256,
+            41.6115254
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "ba-and-sh",
+      "brandName": "ba&sh",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "balenciaga",
+      "brandName": "Balenciaga",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199860870,
+          "version": 2,
+          "timestamp": "2022-11-18T19:15:23Z",
+          "names": [
+            "Balenciaga",
+            "Balenciaga"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3417068,
+            41.6081764
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "balmain",
+      "brandName": "Balmain",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "barca-store",
+      "brandName": "Barça Store",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "biking-point",
+      "brandName": "Biking Point",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "bimba-y-lola",
+      "brandName": "BIMBA Y LOLA",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199818528,
+          "version": 1,
+          "timestamp": "2022-11-18T15:17:36Z",
+          "names": [
+            "Bimba y Lola",
+            "Bimba y Lola"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.342275,
+            41.609051
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "birkenstock",
+      "brandName": "Birkenstock",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "boggi-milano",
+      "brandName": "Boggi Milano",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "boss",
+      "brandName": "BOSS",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "brownie",
+      "brandName": "Brownie",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199811015,
+          "version": 1,
+          "timestamp": "2022-11-18T15:12:05Z",
+          "names": [
+            "Brownie"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3425117,
+            41.6091819
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "brunello-cucinelli",
+      "brandName": "Brunello Cucinelli",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "burberry",
+      "brandName": "Burberry",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 6139374789,
+          "version": 1,
+          "timestamp": "2018-12-15T18:57:35Z",
+          "names": [
+            "Burberry"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3427065,
+            41.6096069
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "calvin-klein-jeans",
+      "brandName": "Calvin Klein Jeans",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "calvin-klein-underwear",
+      "brandName": "Calvin Klein Underwear",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "camper",
+      "brandName": "Camper",
+      "status": "ambiguous",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590887,
+          "version": 3,
+          "timestamp": "2022-11-18T12:35:58Z",
+          "names": [
+            "Camper"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3445453,
+            41.611404
+          ]
+        },
+        {
+          "type": "node",
+          "id": 10199818532,
+          "version": 1,
+          "timestamp": "2022-11-18T15:17:36Z",
+          "names": [
+            "Camper",
+            "Camper"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3424011,
+            41.6089028
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "carhartt-wip",
+      "brandName": "Carhartt WIP",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "castaner",
+      "brandName": "Castañer",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "ch-carolina-herrera",
+      "brandName": "CH Carolina Herrera",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590900,
+          "version": 3,
+          "timestamp": "2022-11-18T12:35:58Z",
+          "names": [
+            "Carolina Herrera"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3451568,
+            41.612902
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "clarins",
+      "brandName": "Clarins",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "claudie-pierlot",
+      "brandName": "Claudie Pierlot",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "cle-de-peau",
+      "brandName": "Clé de Peau",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "coach",
+      "brandName": "Coach",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590881,
+          "version": 2,
+          "timestamp": "2018-03-03T00:25:18Z",
+          "names": [
+            "Coach"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3443173,
+            41.6110791
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "cold-culture",
+      "brandName": "Cold Culture",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "cole-haan",
+      "brandName": "Cole Haan",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "columbia",
+      "brandName": "Columbia",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590886,
+          "version": 6,
+          "timestamp": "2025-11-01T08:49:07Z",
+          "names": [
+            "Columbia",
+            "Columbia Sportswear",
+            "Columbia"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3443495,
+            41.6113999
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "diesel",
+      "brandName": "Diesel",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 6139362996,
+          "version": 1,
+          "timestamp": "2018-12-15T18:57:37Z",
+          "names": [
+            "Diesel"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3451276,
+            41.6134822
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "dockers",
+      "brandName": "Dockers",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "dolceandgabbana",
+      "brandName": "Dolce&Gabbana",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "dr-martens",
+      "brandName": "Dr. Martens",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "dsquared2",
+      "brandName": "Dsquared2",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "dyson",
+      "brandName": "Dyson",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "ecoalf",
+      "brandName": "Ecoalf",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "eleventy",
+      "brandName": "Eleventy",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "eseoese",
+      "brandName": "eseOese",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "etnia-barcelona",
+      "brandName": "Etnia Barcelona",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "etro",
+      "brandName": "Etro",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590875,
+          "version": 3,
+          "timestamp": "2022-11-18T12:35:58Z",
+          "names": [
+            "Etro"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3442959,
+            41.6108114
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "ferragamo",
+      "brandName": "Ferragamo",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 11001768922,
+          "version": 2,
+          "timestamp": "2024-06-22T16:23:59Z",
+          "names": [
+            "Ferragamo"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3434808,
+            41.6106526
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "furla",
+      "brandName": "Furla",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "gant",
+      "brandName": "GANT",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "geox",
+      "brandName": "Geox",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "golden-goose",
+      "brandName": "Golden Goose",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "gucci",
+      "brandName": "Gucci",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590899,
+          "version": 3,
+          "timestamp": "2022-11-18T12:35:58Z",
+          "names": [
+            "Gucci"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3449986,
+            41.6127756
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "guess",
+      "brandName": "Guess",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199790685,
+          "version": 1,
+          "timestamp": "2022-11-18T15:04:51Z",
+          "names": [
+            "Guess",
+            "Guess"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.343074,
+            41.609883
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "guess-accessories",
+      "brandName": "Guess Accessories",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "hackett-london",
+      "brandName": "Hackett London",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "havaianas",
+      "brandName": "Havaianas",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "helly-hansen",
+      "brandName": "Helly Hansen",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199727526,
+          "version": 1,
+          "timestamp": "2022-11-18T14:40:06Z",
+          "names": [
+            "Helly Hansen"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3446881,
+            41.6118382
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "hoff",
+      "brandName": "HOFF",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 11001768919,
+          "version": 1,
+          "timestamp": "2023-06-23T14:33:58Z",
+          "names": [
+            "Hoff"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3419821,
+            41.6083499
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "hour-passion",
+      "brandName": "Hour Passion",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "inspira",
+      "brandName": "Inspira",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 11001768921,
+          "version": 1,
+          "timestamp": "2023-06-23T14:33:58Z",
+          "names": [
+            "Inspira"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3437179,
+            41.6106633
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "iro-paris",
+      "brandName": "IRO Paris",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "isabel-marant",
+      "brandName": "Isabel Marant",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "jimmy-choo",
+      "brandName": "Jimmy Choo",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 6139362991,
+          "version": 1,
+          "timestamp": "2018-12-15T18:57:33Z",
+          "names": [
+            "Jimmy Choo"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.342993,
+            41.6099934
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "karl-lagerfeld",
+      "brandName": "Karl Lagerfeld",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "kenzo",
+      "brandName": "Kenzo",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "kids-around",
+      "brandName": "Kids Around",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "l-occitane",
+      "brandName": "L'Occitane",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "lacoste",
+      "brandName": "Lacoste",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "le-creuset",
+      "brandName": "Le Creuset",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "levis",
+      "brandName": "Levi's",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199854539,
+          "version": 1,
+          "timestamp": "2022-11-18T15:34:13Z",
+          "names": [
+            "Levi's",
+            "Levi's"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.342095,
+            41.6088573
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "lindt",
+      "brandName": "Lindt",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "liujo",
+      "brandName": "Liu.Jo",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "loewe",
+      "brandName": "Loewe",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 6139362993,
+          "version": 1,
+          "timestamp": "2018-12-15T18:57:36Z",
+          "names": [
+            "Loewe"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3437505,
+            41.6109152
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "lola-casademunt",
+      "brandName": "Lola Casademunt",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "longchamp",
+      "brandName": "Longchamp",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199790686,
+          "version": 1,
+          "timestamp": "2022-11-18T15:04:51Z",
+          "names": [
+            "Longchamp",
+            "Longchamp"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3429294,
+            41.6098901
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "maje",
+      "brandName": "Maje",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199768038,
+          "version": 1,
+          "timestamp": "2022-11-18T14:57:46Z",
+          "names": [
+            "Maje"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3433949,
+            41.6105804
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "mandarina-duck",
+      "brandName": "Mandarina Duck",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "marc-jacobs",
+      "brandName": "Marc Jacobs",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "max-mara",
+      "brandName": "Max Mara",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590894,
+          "version": 3,
+          "timestamp": "2022-11-18T12:35:58Z",
+          "names": [
+            "Max Mara"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3454465,
+            41.6120717
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "michael-kors",
+      "brandName": "Michael Kors",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199818531,
+          "version": 1,
+          "timestamp": "2022-11-18T15:17:36Z",
+          "names": [
+            "Michael Kors"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3424768,
+            41.6093134
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "miu-miu",
+      "brandName": "Miu Miu",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "moncler",
+      "brandName": "Moncler",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199922983,
+          "version": 1,
+          "timestamp": "2022-11-18T16:11:11Z",
+          "names": [
+            "Moncler"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3426065,
+            41.6094192
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "montblanc",
+      "brandName": "Montblanc",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 11001994706,
+          "version": 1,
+          "timestamp": "2023-06-23T16:52:02Z",
+          "names": [
+            "Montblanc",
+            "Montblanc"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3451958,
+            41.6123309
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "moschino",
+      "brandName": "Moschino",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199846394,
+          "version": 2,
+          "timestamp": "2022-11-18T19:15:23Z",
+          "names": [
+            "Moschino"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3417443,
+            41.6083714
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "munich",
+      "brandName": "Munich",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 6139375785,
+          "version": 2,
+          "timestamp": "2022-09-26T12:37:51Z",
+          "names": [
+            "Munich",
+            "Munich"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.343312,
+            41.6102309
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "napapijri",
+      "brandName": "Napapijri",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "new-balance",
+      "brandName": "New Balance",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "nude-project",
+      "brandName": "Nude Project",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "old-ridel",
+      "brandName": "Old Ridel",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590884,
+          "version": 3,
+          "timestamp": "2022-11-18T12:35:58Z",
+          "names": [
+            "Old Ridel"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3442369,
+            41.6112756
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "pepe-jeans-london",
+      "brandName": "Pepe Jeans London",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "philipp-plein",
+      "brandName": "Philipp Plein",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "pinko",
+      "brandName": "Pinko",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "piquadro",
+      "brandName": "Piquadro / The Bridge",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "prada",
+      "brandName": "Prada",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "puma",
+      "brandName": "PUMA",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 6139362992,
+          "version": 1,
+          "timestamp": "2018-12-15T18:57:35Z",
+          "names": [
+            "Puma"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3433798,
+            41.6104987
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "purificacion-garcia",
+      "brandName": "Purificación García",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590901,
+          "version": 3,
+          "timestamp": "2022-11-18T12:35:58Z",
+          "names": [
+            "Purificación Garcia"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3453124,
+            41.6130363
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "quiksilver",
+      "brandName": "Quiksilver",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "ralph-lauren",
+      "brandName": "Ralph Lauren",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "replay",
+      "brandName": "Replay",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "sandro",
+      "brandName": "Sandro",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199955885,
+          "version": 1,
+          "timestamp": "2022-11-18T16:38:47Z",
+          "names": [
+            "Sandro"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.34443,
+            41.611485
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "sandro-kids",
+      "brandName": "Sandro Kids",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "sunglass-hut",
+      "brandName": "Sunglass Hut",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "swarovski",
+      "brandName": "Swarovski",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199790687,
+          "version": 1,
+          "timestamp": "2022-11-18T15:04:51Z",
+          "names": [
+            "Swarovski",
+            "Swarovski"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3433683,
+            41.6102809
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "tag-heuer",
+      "brandName": "TAG Heuer",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "the-north-face",
+      "brandName": "The North Face",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199818527,
+          "version": 1,
+          "timestamp": "2022-11-18T15:17:36Z",
+          "names": [
+            "The North Face",
+            "The North Face"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3423124,
+            41.6091376
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "timberland",
+      "brandName": "Timberland",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199768037,
+          "version": 1,
+          "timestamp": "2022-11-18T14:57:46Z",
+          "names": [
+            "Timberland",
+            "Timberland"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.343408,
+            41.6103551
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "tommy-hilfiger",
+      "brandName": "Tommy Hilfiger",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "twojeys",
+      "brandName": "Twojeys",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "ugg",
+      "brandName": "UGG",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "under-armour",
+      "brandName": "Under Armour",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "vans",
+      "brandName": "Vans",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590882,
+          "version": 3,
+          "timestamp": "2022-11-18T12:35:58Z",
+          "names": [
+            "Vans"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3442476,
+            41.6111653
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "versace",
+      "brandName": "Versace",
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 6139362989,
+          "version": 1,
+          "timestamp": "2018-12-15T18:57:32Z",
+          "names": [
+            "Versace"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3430799,
+            41.6101409
+          ]
+        }
+      ]
+    },
+    {
+      "brandId": "vilebrequin",
+      "brandName": "Vilebrequin",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "villeroy-and-boch",
+      "brandName": "Villeroy & Boch",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "zadigandvoltaire",
+      "brandName": "Zadig&Voltaire",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "zegna",
+      "brandName": "ZEGNA",
+      "status": "missing",
+      "candidates": []
+    },
+    {
+      "brandId": "zwilling",
+      "brandName": "Zwilling",
+      "status": "missing",
+      "candidates": []
+    }
+  ],
+  "exactSiteBoundaryCandidates": [
+    {
+      "type": "way",
+      "id": 128463311,
+      "version": 18,
+      "timestamp": "2023-08-22T01:47:19Z",
+      "names": [
+        "la Roca Village",
+        "La Roca"
+      ],
+      "geometry": [
+        {
+          "lat": 41.6085718,
+          "lon": 2.3415306
+        },
+        {
+          "lat": 41.6082145,
+          "lon": 2.3413671
+        },
+        {
+          "lat": 41.6078123,
+          "lon": 2.342054
+        },
+        {
+          "lat": 41.6078733,
+          "lon": 2.3421946
+        },
+        {
+          "lat": 41.6082672,
+          "lon": 2.3426365
+        },
+        {
+          "lat": 41.6085053,
+          "lon": 2.3422467
+        },
+        {
+          "lat": 41.6087336,
+          "lon": 2.3425093
+        },
+        {
+          "lat": 41.6087077,
+          "lon": 2.342566
+        },
+        {
+          "lat": 41.609025,
+          "lon": 2.3428999
+        },
+        {
+          "lat": 41.6090791,
+          "lon": 2.3428119
+        },
+        {
+          "lat": 41.6095601,
+          "lon": 2.343313
+        },
+        {
+          "lat": 41.6103564,
+          "lon": 2.3441753
+        },
+        {
+          "lat": 41.6105895,
+          "lon": 2.3444384
+        },
+        {
+          "lat": 41.6109224,
+          "lon": 2.3447334
+        },
+        {
+          "lat": 41.6115325,
+          "lon": 2.3450507
+        },
+        {
+          "lat": 41.6120085,
+          "lon": 2.3456528
+        },
+        {
+          "lat": 41.6120962,
+          "lon": 2.3457297
+        },
+        {
+          "lat": 41.6123126,
+          "lon": 2.3457116
+        },
+        {
+          "lat": 41.6126535,
+          "lon": 2.3452854
+        },
+        {
+          "lat": 41.6127768,
+          "lon": 2.3452513
+        },
+        {
+          "lat": 41.613193,
+          "lon": 2.3455702
+        },
+        {
+          "lat": 41.6133601,
+          "lon": 2.3455987
+        },
+        {
+          "lat": 41.6135297,
+          "lon": 2.3456067
+        },
+        {
+          "lat": 41.6136204,
+          "lon": 2.3449182
+        },
+        {
+          "lat": 41.612629,
+          "lon": 2.3442815
+        },
+        {
+          "lat": 41.6124035,
+          "lon": 2.3443286
+        },
+        {
+          "lat": 41.6122909,
+          "lon": 2.3443521
+        },
+        {
+          "lat": 41.6120241,
+          "lon": 2.3441247
+        },
+        {
+          "lat": 41.6116849,
+          "lon": 2.3438356
+        },
+        {
+          "lat": 41.6113699,
+          "lon": 2.3436167
+        },
+        {
+          "lat": 41.6112257,
+          "lon": 2.3435354
+        },
+        {
+          "lat": 41.6111621,
+          "lon": 2.3434745
+        },
+        {
+          "lat": 41.6110817,
+          "lon": 2.3433619
+        },
+        {
+          "lat": 41.6105474,
+          "lon": 2.3429889
+        },
+        {
+          "lat": 41.6104551,
+          "lon": 2.3429192
+        },
+        {
+          "lat": 41.6101303,
+          "lon": 2.3427261
+        },
+        {
+          "lat": 41.6097813,
+          "lon": 2.342474
+        },
+        {
+          "lat": 41.6094685,
+          "lon": 2.3422326
+        },
+        {
+          "lat": 41.609316,
+          "lon": 2.3420931
+        },
+        {
+          "lat": 41.6092037,
+          "lon": 2.3420126
+        },
+        {
+          "lat": 41.608947,
+          "lon": 2.3418356
+        },
+        {
+          "lat": 41.6087625,
+          "lon": 2.3417015
+        },
+        {
+          "lat": 41.6085718,
+          "lon": 2.3415306
+        }
+      ],
+      "tags": {
+        "name": "la Roca Village",
+        "operator": "Value Retail",
+        "shop": "mall",
+        "short_name": "La Roca",
+        "website": "https://www.larocavillage.com"
+      }
+    }
+  ],
+  "elements": [
+    {
+      "type": "node",
+      "id": 5448590874,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6107031,
+      "lon": 2.34432,
+      "tags": {
+        "name": "Ted's",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590875,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6108114,
+      "lon": 2.3442959,
+      "tags": {
+        "name": "Etro",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590876,
+      "version": 2,
+      "timestamp": "2018-03-03T00:25:18Z",
+      "lat": 41.6108876,
+      "lon": 2.3442073,
+      "tags": {
+        "name": "Petit Bateu",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590877,
+      "version": 2,
+      "timestamp": "2023-06-26T05:33:52Z",
+      "lat": 41.6108687,
+      "lon": 2.3441258,
+      "tags": {
+        "name": "Swatch",
+        "shop": "watches"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590878,
+      "version": 2,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6109397,
+      "lon": 2.3440571,
+      "tags": {
+        "name": "Ray-Ban",
+        "shop": "optician"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590879,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6109948,
+      "lon": 2.3441617,
+      "tags": {
+        "name": "Scalpers",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590880,
+      "version": 2,
+      "timestamp": "2018-03-03T00:25:18Z",
+      "lat": 41.6110851,
+      "lon": 2.344151,
+      "tags": {
+        "name": "Punto Blanco",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590881,
+      "version": 2,
+      "timestamp": "2018-03-03T00:25:18Z",
+      "lat": 41.6110791,
+      "lon": 2.3443173,
+      "tags": {
+        "name": "Coach",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590882,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6111653,
+      "lon": 2.3442476,
+      "tags": {
+        "name": "Vans",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590884,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6112756,
+      "lon": 2.3442369,
+      "tags": {
+        "name": "Old Ridel",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590885,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6112957,
+      "lon": 2.3444031,
+      "tags": {
+        "name": "El ganso",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590886,
+      "version": 6,
+      "timestamp": "2025-11-01T08:49:07Z",
+      "lat": 41.6113999,
+      "lon": 2.3443495,
+      "tags": {
+        "addr:unit": "10",
+        "brand": "Columbia",
+        "brand:wikidata": "Q1112588",
+        "name": "Columbia",
+        "official_name": "Columbia Sportswear",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590887,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.611404,
+      "lon": 2.3445453,
+      "tags": {
+        "name": "Camper",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590889,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6114962,
+      "lon": 2.3446794,
+      "tags": {
+        "name": "Bikkembergs",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590890,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6115864,
+      "lon": 2.3446445,
+      "tags": {
+        "name": "Quicksilver",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590891,
+      "version": 5,
+      "timestamp": "2022-11-18T16:46:32Z",
+      "lat": 41.6115254,
+      "lon": 2.3446256,
+      "tags": {
+        "name": "Asics",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590892,
+      "version": 2,
+      "timestamp": "2018-03-03T00:25:19Z",
+      "lat": 41.6117328,
+      "lon": 2.3448538,
+      "tags": {
+        "name": "Trussardi / Replay",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590893,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6118832,
+      "lon": 2.345071,
+      "tags": {
+        "name": "Polo Ralph Lauren Men",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590894,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6120717,
+      "lon": 2.3454465,
+      "tags": {
+        "name": "Max Mara",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139362988,
+      "version": 6,
+      "timestamp": "2023-04-08T14:27:44Z",
+      "lat": 41.6100761,
+      "lon": 2.3431994,
+      "tags": {
+        "amenity": "cafe",
+        "brand": "Starbucks",
+        "brand:wikidata": "Q37158",
+        "name": "Starbucks",
+        "official_name": "Starbucks Coffee"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139362989,
+      "version": 1,
+      "timestamp": "2018-12-15T18:57:32Z",
+      "lat": 41.6101409,
+      "lon": 2.3430799,
+      "tags": {
+        "name": "Versace",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139362991,
+      "version": 1,
+      "timestamp": "2018-12-15T18:57:33Z",
+      "lat": 41.6099934,
+      "lon": 2.342993,
+      "tags": {
+        "name": "Jimmy Choo",
+        "shop": "variety_store"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139362992,
+      "version": 1,
+      "timestamp": "2018-12-15T18:57:35Z",
+      "lat": 41.6104987,
+      "lon": 2.3433798,
+      "tags": {
+        "name": "Puma",
+        "shop": "outdoor"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139362993,
+      "version": 1,
+      "timestamp": "2018-12-15T18:57:36Z",
+      "lat": 41.6109152,
+      "lon": 2.3437505,
+      "tags": {
+        "name": "Loewe",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139374789,
+      "version": 1,
+      "timestamp": "2018-12-15T18:57:35Z",
+      "lat": 41.6096069,
+      "lon": 2.3427065,
+      "tags": {
+        "name": "Burberry",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139375785,
+      "version": 2,
+      "timestamp": "2022-09-26T12:37:51Z",
+      "lat": 41.6102309,
+      "lon": 2.343312,
+      "tags": {
+        "brand": "Munich",
+        "brand:wikidata": "Q2076935",
+        "name": "Munich",
+        "shop": "shoes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199727521,
+      "version": 1,
+      "timestamp": "2022-11-18T14:40:06Z",
+      "lat": 41.6105384,
+      "lon": 2.3442856,
+      "tags": {
+        "brand": "Samsonite",
+        "brand:wikidata": "Q1203426",
+        "name": "Samsonite",
+        "shop": "bag"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199727522,
+      "version": 1,
+      "timestamp": "2022-11-18T14:40:06Z",
+      "lat": 41.6119281,
+      "lon": 2.3448232,
+      "tags": {
+        "brand": "Gap",
+        "brand:wikidata": "Q420822",
+        "name": "Gap",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199727523,
+      "version": 1,
+      "timestamp": "2022-11-18T14:40:06Z",
+      "lat": 41.6118809,
+      "lon": 2.3447433,
+      "tags": {
+        "name": "Bally",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199727524,
+      "version": 1,
+      "timestamp": "2022-11-18T14:40:06Z",
+      "lat": 41.6118852,
+      "lon": 2.344547,
+      "tags": {
+        "amenity": "toilets"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199727525,
+      "version": 1,
+      "timestamp": "2022-11-18T14:40:06Z",
+      "lat": 41.6117787,
+      "lon": 2.344633,
+      "tags": {
+        "name": "Comptoir Des Cotoniers",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199727526,
+      "version": 1,
+      "timestamp": "2022-11-18T14:40:06Z",
+      "lat": 41.6118382,
+      "lon": 2.3446881,
+      "tags": {
+        "name": "Helly Hansen",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199732533,
+      "version": 1,
+      "timestamp": "2022-11-18T14:48:07Z",
+      "lat": 41.6114388,
+      "lon": 2.3441276,
+      "tags": {
+        "brand": "Calvin Klein",
+        "brand:wikidata": "Q1068628",
+        "name": "Calvin Klein",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199732534,
+      "version": 2,
+      "timestamp": "2022-11-18T16:39:20Z",
+      "lat": 41.6117543,
+      "lon": 2.3444527,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Pasarela"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199732535,
+      "version": 1,
+      "timestamp": "2022-11-18T14:48:07Z",
+      "lat": 41.611513,
+      "lon": 2.3441485,
+      "tags": {
+        "brand": "Nike",
+        "brand:wikidata": "Q483915",
+        "name": "Nike",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199768037,
+      "version": 1,
+      "timestamp": "2022-11-18T14:57:46Z",
+      "lat": 41.6103551,
+      "lon": 2.343408,
+      "tags": {
+        "brand": "Timberland",
+        "brand:wikidata": "Q1539185",
+        "name": "Timberland",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199768038,
+      "version": 1,
+      "timestamp": "2022-11-18T14:57:46Z",
+      "lat": 41.6105804,
+      "lon": 2.3433949,
+      "tags": {
+        "name": "Maje",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199768039,
+      "version": 1,
+      "timestamp": "2022-11-18T14:57:46Z",
+      "lat": 41.611396,
+      "lon": 2.344111,
+      "tags": {
+        "brand": "Pepe Jeans",
+        "brand:wikidata": "Q426992",
+        "name": "Pepe Jeans",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199790684,
+      "version": 1,
+      "timestamp": "2022-11-18T15:04:51Z",
+      "lat": 41.6100328,
+      "lon": 2.3431677,
+      "tags": {
+        "name": "Roberto Cavalli",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199790685,
+      "version": 1,
+      "timestamp": "2022-11-18T15:04:51Z",
+      "lat": 41.609883,
+      "lon": 2.343074,
+      "tags": {
+        "brand": "Guess",
+        "brand:wikidata": "Q2470307",
+        "name": "Guess",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199790686,
+      "version": 1,
+      "timestamp": "2022-11-18T15:04:51Z",
+      "lat": 41.6098901,
+      "lon": 2.3429294,
+      "tags": {
+        "brand": "Longchamp",
+        "brand:wikidata": "Q1869471",
+        "name": "Longchamp",
+        "shop": "fashion_accessories"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199790687,
+      "version": 1,
+      "timestamp": "2022-11-18T15:04:51Z",
+      "lat": 41.6102809,
+      "lon": 2.3433683,
+      "tags": {
+        "brand": "Swarovski",
+        "brand:wikidata": "Q611115",
+        "name": "Swarovski",
+        "shop": "jewelry"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199811014,
+      "version": 1,
+      "timestamp": "2022-11-18T15:12:05Z",
+      "lat": 41.6092512,
+      "lon": 2.3425977,
+      "tags": {
+        "brand": "Clarks",
+        "brand:wikidata": "Q1095857",
+        "name": "Clarks",
+        "shop": "shoes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199811015,
+      "version": 1,
+      "timestamp": "2022-11-18T15:12:05Z",
+      "lat": 41.6091819,
+      "lon": 2.3425117,
+      "tags": {
+        "name": "Brownie",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199818527,
+      "version": 1,
+      "timestamp": "2022-11-18T15:17:36Z",
+      "lat": 41.6091376,
+      "lon": 2.3423124,
+      "tags": {
+        "brand": "The North Face",
+        "brand:wikidata": "Q152784",
+        "name": "The North Face",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199818528,
+      "version": 1,
+      "timestamp": "2022-11-18T15:17:36Z",
+      "lat": 41.609051,
+      "lon": 2.342275,
+      "tags": {
+        "brand": "Bimba y Lola",
+        "brand:wikidata": "Q54869493",
+        "name": "Bimba y Lola",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199818529,
+      "version": 1,
+      "timestamp": "2022-11-18T15:17:36Z",
+      "lat": 41.6089922,
+      "lon": 2.342435,
+      "tags": {
+        "name": "Escada",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199818530,
+      "version": 1,
+      "timestamp": "2022-11-18T15:17:36Z",
+      "lat": 41.6089735,
+      "lon": 2.3422177,
+      "tags": {
+        "name": "Kipling",
+        "shop": "fashion_accessories"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199818531,
+      "version": 1,
+      "timestamp": "2022-11-18T15:17:36Z",
+      "lat": 41.6093134,
+      "lon": 2.3424768,
+      "tags": {
+        "name": "Michael Kors",
+        "shop": "fashion_accessories"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199818532,
+      "version": 1,
+      "timestamp": "2022-11-18T15:17:36Z",
+      "lat": 41.6089028,
+      "lon": 2.3424011,
+      "tags": {
+        "brand": "Camper",
+        "brand:wikidata": "Q1030922",
+        "name": "Camper",
+        "shop": "shoes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199846394,
+      "version": 2,
+      "timestamp": "2022-11-18T19:15:23Z",
+      "lat": 41.6083714,
+      "lon": 2.3417443,
+      "tags": {
+        "name": "Moschino",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199854538,
+      "version": 2,
+      "timestamp": "2022-11-18T19:15:23Z",
+      "lat": 41.6085754,
+      "lon": 2.341897,
+      "tags": {
+        "brand": "Adidas",
+        "brand:wikidata": "Q3895",
+        "name": "Adidas",
+        "shop": "sports"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199854539,
+      "version": 1,
+      "timestamp": "2022-11-18T15:34:13Z",
+      "lat": 41.6088573,
+      "lon": 2.342095,
+      "tags": {
+        "brand": "Levi's",
+        "brand:wikidata": "Q127962",
+        "name": "Levi's",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199854540,
+      "version": 2,
+      "timestamp": "2022-11-18T19:15:23Z",
+      "lat": 41.6084174,
+      "lon": 2.3417967,
+      "tags": {
+        "brand": "Rituals",
+        "brand:wikidata": "Q62874140",
+        "name": "Rituals",
+        "shop": "cosmetics"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199860870,
+      "version": 2,
+      "timestamp": "2022-11-18T19:15:23Z",
+      "lat": 41.6081764,
+      "lon": 2.3417068,
+      "tags": {
+        "brand": "Balenciaga",
+        "brand:wikidata": "Q1530892",
+        "name": "Balenciaga",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199870669,
+      "version": 1,
+      "timestamp": "2022-11-18T15:45:10Z",
+      "lat": 41.6088026,
+      "lon": 2.3423585,
+      "tags": {
+        "name": "Superdry",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199872219,
+      "version": 1,
+      "timestamp": "2022-11-18T15:45:38Z",
+      "lat": 41.6090738,
+      "lon": 2.3424654,
+      "tags": {
+        "name": "Ted Baker",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199894456,
+      "version": 1,
+      "timestamp": "2022-11-18T16:40:58Z",
+      "lat": 41.6114952,
+      "lon": 2.3444932,
+      "tags": {
+        "name": "Tod's",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199922981,
+      "version": 1,
+      "timestamp": "2022-11-18T16:11:11Z",
+      "lat": 41.6101477,
+      "lon": 2.3433976,
+      "tags": {
+        "amenity": "toilets"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199922982,
+      "version": 1,
+      "timestamp": "2022-11-18T16:11:11Z",
+      "lat": 41.6097402,
+      "lon": 2.3430515,
+      "tags": {
+        "name": "Adolfo Dominguez",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199922983,
+      "version": 1,
+      "timestamp": "2022-11-18T16:11:11Z",
+      "lat": 41.6094192,
+      "lon": 2.3426065,
+      "tags": {
+        "name": "Moncler",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199938549,
+      "version": 1,
+      "timestamp": "2022-11-18T16:28:20Z",
+      "lat": 41.6113472,
+      "lon": 2.344272,
+      "tags": {
+        "name": "Scalpers",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199938550,
+      "version": 1,
+      "timestamp": "2022-11-18T16:28:20Z",
+      "lat": 41.6113275,
+      "lon": 2.344239,
+      "tags": {
+        "brand": "DKNY",
+        "brand:wikidata": "Q938773",
+        "name": "DKNY",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199955885,
+      "version": 1,
+      "timestamp": "2022-11-18T16:38:47Z",
+      "lat": 41.611485,
+      "lon": 2.34443,
+      "tags": {
+        "name": "Sandro",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10199955886,
+      "version": 1,
+      "timestamp": "2022-11-18T16:38:47Z",
+      "lat": 41.6115723,
+      "lon": 2.3442213,
+      "tags": {
+        "name": "Hacket London",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10200212353,
+      "version": 1,
+      "timestamp": "2022-11-18T18:30:26Z",
+      "lat": 41.6101186,
+      "lon": 2.3433791,
+      "tags": {
+        "entrance": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10200212354,
+      "version": 1,
+      "timestamp": "2022-11-18T18:30:26Z",
+      "lat": 41.6100781,
+      "lon": 2.3433404,
+      "tags": {
+        "entrance": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10200212355,
+      "version": 1,
+      "timestamp": "2022-11-18T18:30:26Z",
+      "lat": 41.6100845,
+      "lon": 2.3431849,
+      "tags": {
+        "entrance": "main"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11001768919,
+      "version": 1,
+      "timestamp": "2023-06-23T14:33:58Z",
+      "lat": 41.6083499,
+      "lon": 2.3419821,
+      "tags": {
+        "name": "Hoff",
+        "shop": "bag"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11001768920,
+      "version": 1,
+      "timestamp": "2023-06-23T14:33:58Z",
+      "lat": 41.6106528,
+      "lon": 2.3440876,
+      "tags": {
+        "name": "Textura",
+        "shop": "houseware"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11001768921,
+      "version": 1,
+      "timestamp": "2023-06-23T14:33:58Z",
+      "lat": 41.6106633,
+      "lon": 2.3437179,
+      "tags": {
+        "name": "Inspira",
+        "shop": "perfumery"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11001768922,
+      "version": 2,
+      "timestamp": "2024-06-22T16:23:59Z",
+      "lat": 41.6106526,
+      "lon": 2.3434808,
+      "tags": {
+        "name": "Ferragamo",
+        "shop": "bag"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11001768923,
+      "version": 1,
+      "timestamp": "2023-06-23T14:33:58Z",
+      "lat": 41.6110169,
+      "lon": 2.3438832,
+      "tags": {
+        "brand": "Tous",
+        "brand:wikidata": "Q3815128",
+        "name": "Tous",
+        "shop": "jewelry"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11001994705,
+      "version": 1,
+      "timestamp": "2023-06-23T16:52:02Z",
+      "lat": 41.6086997,
+      "lon": 2.3422819,
+      "tags": {
+        "name": "Dsquare2d",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11332669111,
+      "version": 9,
+      "timestamp": "2026-03-29T19:57:51Z",
+      "lat": 41.607571,
+      "lon": 2.3408392,
+      "tags": {
+        "access": "yes",
+        "amenity": "charging_station",
+        "brand": "Tesla Supercharger",
+        "brand:wikidata": "Q17089620",
+        "capacity": "20",
+        "name": "La Roca Village Supercharger",
+        "operator": "Tesla",
+        "short_name": "Tesla",
+        "website": "https://www.tesla.com/findus/location/supercharger/300127"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12001006033,
+      "version": 1,
+      "timestamp": "2024-06-22T16:23:59Z",
+      "lat": 41.6107178,
+      "lon": 2.3435277,
+      "tags": {
+        "name": "The Cosmetics Company Store",
+        "shop": "cosmetics"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13398593589,
+      "version": 1,
+      "timestamp": "2025-12-23T21:51:21Z",
+      "lat": 41.6078707,
+      "lon": 2.3418016,
+      "tags": {
+        "access": "yes",
+        "amenity": "charging_station",
+        "capacity": "14",
+        "operator": "Endesa"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590895,
+      "version": 2,
+      "timestamp": "2018-03-03T00:25:19Z",
+      "lat": 41.6123565,
+      "lon": 2.345417,
+      "tags": {
+        "name": "Prada / Montblanc",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590896,
+      "version": 2,
+      "timestamp": "2018-03-03T00:25:19Z",
+      "lat": 41.6124528,
+      "lon": 2.3452293,
+      "tags": {
+        "name": "Baldinini / G. Zanotti",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590897,
+      "version": 2,
+      "timestamp": "2018-03-03T00:25:19Z",
+      "lat": 41.612549,
+      "lon": 2.3449718,
+      "tags": {
+        "name": "Zwilling / Hour Pasion / Orogold",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590899,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6127756,
+      "lon": 2.3449986,
+      "tags": {
+        "name": "Gucci",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590900,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.612902,
+      "lon": 2.3451568,
+      "tags": {
+        "name": "Carolina Herrera",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590901,
+      "version": 3,
+      "timestamp": "2022-11-18T12:35:58Z",
+      "lat": 41.6130363,
+      "lon": 2.3453124,
+      "tags": {
+        "name": "Purificación Garcia",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590902,
+      "version": 2,
+      "timestamp": "2018-03-03T00:25:19Z",
+      "lat": 41.6132148,
+      "lon": 2.3453339,
+      "tags": {
+        "name": "Tumi / la Martina / Twinset",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590903,
+      "version": 3,
+      "timestamp": "2022-11-18T12:36:24Z",
+      "lat": 41.6134274,
+      "lon": 2.3454063,
+      "tags": {
+        "name": "Bow-Tie / Polo Ralph Lauren Children",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590904,
+      "version": 1,
+      "timestamp": "2018-03-02T16:31:16Z",
+      "lat": 41.6125815,
+      "lon": 2.3445132,
+      "tags": {
+        "amenity": "toilets"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139362994,
+      "version": 1,
+      "timestamp": "2018-12-15T18:57:36Z",
+      "lat": 41.6127273,
+      "lon": 2.3446618,
+      "tags": {
+        "name": "Armani",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139362996,
+      "version": 1,
+      "timestamp": "2018-12-15T18:57:37Z",
+      "lat": 41.6134822,
+      "lon": 2.3451276,
+      "tags": {
+        "name": "Diesel",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6139362997,
+      "version": 1,
+      "timestamp": "2018-12-15T18:57:38Z",
+      "lat": 41.615497,
+      "lon": 2.3459409,
+      "tags": {
+        "name": "Mango Outlet",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7778052786,
+      "version": 1,
+      "timestamp": "2020-08-02T14:19:39Z",
+      "lat": 41.6130428,
+      "lon": 2.3448761,
+      "tags": {
+        "amenity": "restaurant"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9447718337,
+      "version": 1,
+      "timestamp": "2022-01-25T14:50:02Z",
+      "lat": 41.6136819,
+      "lon": 2.3454876,
+      "tags": {
+        "amenity": "charging_station"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11001994706,
+      "version": 1,
+      "timestamp": "2023-06-23T16:52:02Z",
+      "lat": 41.6123309,
+      "lon": 2.3451958,
+      "tags": {
+        "brand": "Montblanc",
+        "brand:wikidata": "Q142691",
+        "name": "Montblanc",
+        "shop": "fashion_accessories"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11001994707,
+      "version": 1,
+      "timestamp": "2023-06-23T16:52:02Z",
+      "lat": 41.6126252,
+      "lon": 2.3448298,
+      "tags": {
+        "brand": "Pandora",
+        "brand:wikidata": "Q2241604",
+        "name": "Pandora",
+        "shop": "jewelry"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11758867151,
+      "version": 1,
+      "timestamp": "2024-03-24T18:22:39Z",
+      "lat": 41.6157919,
+      "lon": 2.3460874,
+      "tags": {
+        "name": "Òptica Universitària",
+        "shop": "optician"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11758867153,
+      "version": 1,
+      "timestamp": "2024-03-24T18:22:39Z",
+      "lat": 41.6159536,
+      "lon": 2.3461447,
+      "tags": {
+        "name": "Drim",
+        "shop": "toys"
+      }
+    },
+    {
+      "type": "node",
+      "id": 13591095466,
+      "version": 1,
+      "timestamp": "2026-02-22T18:36:57Z",
+      "lat": 41.6170947,
+      "lon": 2.346105,
+      "tags": {
+        "amenity": "charging_station",
+        "capacity": "2"
+      }
+    },
+    {
+      "type": "node",
+      "id": 4737621546,
+      "version": 8,
+      "timestamp": "2023-12-01T20:02:00Z",
+      "lat": 41.6168848,
+      "lon": 2.3465192,
+      "tags": {
+        "amenity": "fast_food",
+        "brand": "McDonald's",
+        "brand:wikidata": "Q38076",
+        "name": "McDonald's"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11758867150,
+      "version": 1,
+      "timestamp": "2024-03-24T18:22:39Z",
+      "lat": 41.6166654,
+      "lon": 2.3464326,
+      "tags": {
+        "name": "Fifty",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11758867152,
+      "version": 1,
+      "timestamp": "2024-03-24T18:22:39Z",
+      "lat": 41.6162187,
+      "lon": 2.3462539,
+      "tags": {
+        "name": "10XDiez",
+        "shop": "household_linen"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11758867154,
+      "version": 1,
+      "timestamp": "2024-03-24T18:22:39Z",
+      "lat": 41.6165761,
+      "lon": 2.3463995,
+      "tags": {
+        "name": "Mercal Calçats",
+        "shop": "shoes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11758867155,
+      "version": 1,
+      "timestamp": "2024-03-24T18:22:39Z",
+      "lat": 41.6163514,
+      "lon": 2.3463122,
+      "tags": {
+        "name": "Don Dino",
+        "shop": "toys"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12329141530,
+      "version": 1,
+      "timestamp": "2024-11-10T18:43:36Z",
+      "lat": 41.616245,
+      "lon": 2.3463207,
+      "tags": {
+        "entrance": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12329141531,
+      "version": 1,
+      "timestamp": "2024-11-10T18:43:36Z",
+      "lat": 41.6163095,
+      "lon": 2.3463475,
+      "tags": {
+        "entrance": "yes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 185499459,
+      "version": 1,
+      "timestamp": "2012-10-12T17:29:45Z",
+      "bounds": {
+        "minlat": 41.6108703,
+        "minlon": 2.331043,
+        "maxlat": 41.6119615,
+        "maxlon": 2.3358951
+      },
+      "geometry": [
+        {
+          "lat": 41.6109366,
+          "lon": 2.3358951
+        },
+        {
+          "lat": 41.610906,
+          "lon": 2.3357231
+        },
+        {
+          "lat": 41.6108703,
+          "lon": 2.3354956
+        },
+        {
+          "lat": 41.6108783,
+          "lon": 2.3353347
+        },
+        {
+          "lat": 41.6110067,
+          "lon": 2.3347231
+        },
+        {
+          "lat": 41.6110307,
+          "lon": 2.3343584
+        },
+        {
+          "lat": 41.6110825,
+          "lon": 2.333867
+        },
+        {
+          "lat": 41.6112152,
+          "lon": 2.3335108
+        },
+        {
+          "lat": 41.6112152,
+          "lon": 2.3333842
+        },
+        {
+          "lat": 41.6112152,
+          "lon": 2.3333284
+        },
+        {
+          "lat": 41.6112349,
+          "lon": 2.3330194
+        },
+        {
+          "lat": 41.6113151,
+          "lon": 2.3327726
+        },
+        {
+          "lat": 41.6115597,
+          "lon": 2.3322662
+        },
+        {
+          "lat": 41.6116881,
+          "lon": 2.3320409
+        },
+        {
+          "lat": 41.6118967,
+          "lon": 2.3315152
+        },
+        {
+          "lat": 41.6119615,
+          "lon": 2.331043
+        }
+      ],
+      "tags": {
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 185499471,
+      "version": 1,
+      "timestamp": "2012-10-12T17:29:47Z",
+      "bounds": {
+        "minlat": 41.6108899,
+        "minlon": 2.3330623,
+        "maxlat": 41.6112152,
+        "maxlon": 2.3333842
+      },
+      "geometry": [
+        {
+          "lat": 41.6112152,
+          "lon": 2.3333842
+        },
+        {
+          "lat": 41.6111119,
+          "lon": 2.3333332
+        },
+        {
+          "lat": 41.6108899,
+          "lon": 2.3330623
+        }
+      ],
+      "tags": {
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 172678042,
+      "version": 2,
+      "timestamp": "2023-08-23T16:25:19Z",
+      "bounds": {
+        "minlat": 41.6052876,
+        "minlon": 2.3409464,
+        "maxlat": 41.605704,
+        "maxlon": 2.3414649
+      },
+      "geometry": [
+        {
+          "lat": 41.605704,
+          "lon": 2.3409464
+        },
+        {
+          "lat": 41.6052876,
+          "lon": 2.3414649
+        }
+      ],
+      "tags": {
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 185494542,
+      "version": 2,
+      "timestamp": "2018-05-02T16:57:42Z",
+      "bounds": {
+        "minlat": 41.6037788,
+        "minlon": 2.3422604,
+        "maxlat": 41.6069302,
+        "maxlon": 2.345335
+      },
+      "geometry": [
+        {
+          "lat": 41.6069302,
+          "lon": 2.345335
+        },
+        {
+          "lat": 41.6068513,
+          "lon": 2.3450767
+        },
+        {
+          "lat": 41.6066628,
+          "lon": 2.3450982
+        },
+        {
+          "lat": 41.6064582,
+          "lon": 2.3451197
+        },
+        {
+          "lat": 41.6061891,
+          "lon": 2.3450572
+        },
+        {
+          "lat": 41.6059729,
+          "lon": 2.3449695
+        },
+        {
+          "lat": 41.6056436,
+          "lon": 2.344805
+        },
+        {
+          "lat": 41.6055112,
+          "lon": 2.3447782
+        },
+        {
+          "lat": 41.6051422,
+          "lon": 2.3446924
+        },
+        {
+          "lat": 41.6048734,
+          "lon": 2.3445154
+        },
+        {
+          "lat": 41.6043764,
+          "lon": 2.3442453
+        },
+        {
+          "lat": 41.604011,
+          "lon": 2.3441023
+        },
+        {
+          "lat": 41.6038466,
+          "lon": 2.343995
+        },
+        {
+          "lat": 41.6038185,
+          "lon": 2.3437965
+        },
+        {
+          "lat": 41.6037788,
+          "lon": 2.3435801
+        },
+        {
+          "lat": 41.6037944,
+          "lon": 2.3434156
+        },
+        {
+          "lat": 41.6038546,
+          "lon": 2.3432815
+        },
+        {
+          "lat": 41.6041273,
+          "lon": 2.3429114
+        },
+        {
+          "lat": 41.6042444,
+          "lon": 2.3427475
+        },
+        {
+          "lat": 41.6044085,
+          "lon": 2.3425179
+        },
+        {
+          "lat": 41.604581,
+          "lon": 2.3422604
+        }
+      ],
+      "tags": {
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 185494543,
+      "version": 2,
+      "timestamp": "2017-03-16T08:13:06Z",
+      "bounds": {
+        "minlat": 41.6047214,
+        "minlon": 2.3419788,
+        "maxlat": 41.6047724,
+        "maxlon": 2.3420566
+      },
+      "geometry": [
+        {
+          "lat": 41.6047724,
+          "lon": 2.3419788
+        },
+        {
+          "lat": 41.6047214,
+          "lon": 2.3420566
+        }
+      ],
+      "tags": {
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480798701,
+      "version": 1,
+      "timestamp": "2017-03-16T08:13:05Z",
+      "bounds": {
+        "minlat": 41.604581,
+        "minlon": 2.3420566,
+        "maxlat": 41.6047214,
+        "maxlon": 2.3422604
+      },
+      "geometry": [
+        {
+          "lat": 41.6047214,
+          "lon": 2.3420566
+        },
+        {
+          "lat": 41.604581,
+          "lon": 2.3422604
+        }
+      ],
+      "tags": {
+        "highway": "path",
+        "layer": "-1"
+      }
+    },
+    {
+      "type": "way",
+      "id": 204571175,
+      "version": 2,
+      "timestamp": "2026-04-10T11:01:02Z",
+      "bounds": {
+        "minlat": 41.6050857,
+        "minlon": 2.3502049,
+        "maxlat": 41.6060287,
+        "maxlon": 2.3520343
+      },
+      "geometry": [
+        {
+          "lat": 41.6050857,
+          "lon": 2.3512036
+        },
+        {
+          "lat": 41.6052104,
+          "lon": 2.3512618
+        },
+        {
+          "lat": 41.6053468,
+          "lon": 2.3514335
+        },
+        {
+          "lat": 41.6054186,
+          "lon": 2.3515684
+        },
+        {
+          "lat": 41.6054912,
+          "lon": 2.3516963
+        },
+        {
+          "lat": 41.6055875,
+          "lon": 2.3517661
+        },
+        {
+          "lat": 41.6056878,
+          "lon": 2.3518573
+        },
+        {
+          "lat": 41.6057957,
+          "lon": 2.3519493
+        },
+        {
+          "lat": 41.6058643,
+          "lon": 2.3520075
+        },
+        {
+          "lat": 41.6059284,
+          "lon": 2.3520343
+        },
+        {
+          "lat": 41.6059846,
+          "lon": 2.3520236
+        },
+        {
+          "lat": 41.6060123,
+          "lon": 2.3520083
+        },
+        {
+          "lat": 41.6060287,
+          "lon": 2.3519646
+        },
+        {
+          "lat": 41.6060283,
+          "lon": 2.3518903
+        },
+        {
+          "lat": 41.6059966,
+          "lon": 2.3517875
+        },
+        {
+          "lat": 41.6059806,
+          "lon": 2.3517071
+        },
+        {
+          "lat": 41.6058723,
+          "lon": 2.3514979
+        },
+        {
+          "lat": 41.6057836,
+          "lon": 2.3513216
+        },
+        {
+          "lat": 41.6057114,
+          "lon": 2.3512626
+        },
+        {
+          "lat": 41.6055193,
+          "lon": 2.3511331
+        },
+        {
+          "lat": 41.6054708,
+          "lon": 2.3510746
+        },
+        {
+          "lat": 41.6054106,
+          "lon": 2.3508925
+        },
+        {
+          "lat": 41.6053384,
+          "lon": 2.3507369
+        },
+        {
+          "lat": 41.6052706,
+          "lon": 2.3505752
+        },
+        {
+          "lat": 41.60519,
+          "lon": 2.3504365
+        },
+        {
+          "lat": 41.6051021,
+          "lon": 2.3502801
+        },
+        {
+          "lat": 41.6051294,
+          "lon": 2.3502049
+        }
+      ],
+      "tags": {
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 50320647,
+      "version": 4,
+      "timestamp": "2022-01-09T16:44:46Z",
+      "bounds": {
+        "minlat": 41.6102826,
+        "minlon": 2.3438746,
+        "maxlat": 41.6108653,
+        "maxlon": 2.3448248
+      },
+      "geometry": [
+        {
+          "lat": 41.6108653,
+          "lon": 2.3438746
+        },
+        {
+          "lat": 41.6105367,
+          "lon": 2.3444104
+        },
+        {
+          "lat": 41.6104641,
+          "lon": 2.3445288
+        },
+        {
+          "lat": 41.6103874,
+          "lon": 2.344662
+        },
+        {
+          "lat": 41.6102826,
+          "lon": 2.3448248
+        }
+      ],
+      "tags": {
+        "highway": "pedestrian"
+      }
+    },
+    {
+      "type": "way",
+      "id": 50320649,
+      "version": 5,
+      "timestamp": "2023-06-26T05:33:52Z",
+      "bounds": {
+        "minlat": 41.6095296,
+        "minlon": 2.3428135,
+        "maxlat": 41.6120723,
+        "maxlon": 2.3451297
+      },
+      "geometry": [
+        {
+          "lat": 41.6095296,
+          "lon": 2.3428135
+        },
+        {
+          "lat": 41.6096638,
+          "lon": 2.342939
+        },
+        {
+          "lat": 41.6097156,
+          "lon": 2.3429874
+        },
+        {
+          "lat": 41.6099128,
+          "lon": 2.3430113
+        },
+        {
+          "lat": 41.6101235,
+          "lon": 2.3431552
+        },
+        {
+          "lat": 41.6102803,
+          "lon": 2.3432871
+        },
+        {
+          "lat": 41.6104798,
+          "lon": 2.343458
+        },
+        {
+          "lat": 41.6108653,
+          "lon": 2.3438746
+        },
+        {
+          "lat": 41.6110408,
+          "lon": 2.3440454
+        },
+        {
+          "lat": 41.6113516,
+          "lon": 2.3441833
+        },
+        {
+          "lat": 41.6115641,
+          "lon": 2.3443889
+        },
+        {
+          "lat": 41.6120723,
+          "lon": 2.3451297
+        }
+      ],
+      "tags": {
+        "highway": "pedestrian"
+      }
+    },
+    {
+      "type": "way",
+      "id": 50320653,
+      "version": 5,
+      "timestamp": "2023-08-08T05:34:18Z",
+      "bounds": {
+        "minlat": 41.6081106,
+        "minlon": 2.3417503,
+        "maxlat": 41.6095296,
+        "maxlon": 2.3428135
+      },
+      "geometry": [
+        {
+          "lat": 41.6085828,
+          "lon": 2.3425439
+        },
+        {
+          "lat": 41.6084779,
+          "lon": 2.3424379
+        },
+        {
+          "lat": 41.6081106,
+          "lon": 2.3420375
+        },
+        {
+          "lat": 41.6082107,
+          "lon": 2.3418753
+        },
+        {
+          "lat": 41.6082878,
+          "lon": 2.3417503
+        },
+        {
+          "lat": 41.6086511,
+          "lon": 2.3421031
+        },
+        {
+          "lat": 41.6088505,
+          "lon": 2.342277
+        },
+        {
+          "lat": 41.6091665,
+          "lon": 2.3424388
+        },
+        {
+          "lat": 41.6094225,
+          "lon": 2.342703
+        },
+        {
+          "lat": 41.6095296,
+          "lon": 2.3428135
+        }
+      ],
+      "tags": {
+        "highway": "pedestrian"
+      }
+    },
+    {
+      "type": "way",
+      "id": 50320655,
+      "version": 2,
+      "timestamp": "2023-06-26T05:33:52Z",
+      "bounds": {
+        "minlat": 41.6091063,
+        "minlon": 2.3428135,
+        "maxlat": 41.6095296,
+        "maxlon": 2.3435593
+      },
+      "geometry": [
+        {
+          "lat": 41.6095296,
+          "lon": 2.3428135
+        },
+        {
+          "lat": 41.6093753,
+          "lon": 2.343072
+        },
+        {
+          "lat": 41.6093346,
+          "lon": 2.3431402
+        },
+        {
+          "lat": 41.6092819,
+          "lon": 2.343241
+        },
+        {
+          "lat": 41.6092029,
+          "lon": 2.3433921
+        },
+        {
+          "lat": 41.6091063,
+          "lon": 2.3435593
+        }
+      ],
+      "tags": {
+        "highway": "pedestrian"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795871,
+      "version": 2,
+      "timestamp": "2025-05-20T18:22:16Z",
+      "bounds": {
+        "minlat": 41.6069764,
+        "minlon": 2.3413963,
+        "maxlat": 41.6070593,
+        "maxlon": 2.3414884
+      },
+      "geometry": [
+        {
+          "lat": 41.6070593,
+          "lon": 2.3413963
+        },
+        {
+          "lat": 41.607014,
+          "lon": 2.3414392
+        },
+        {
+          "lat": 41.6069764,
+          "lon": 2.3414884
+        }
+      ],
+      "tags": {
+        "highway": "footway"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795872,
+      "version": 2,
+      "timestamp": "2020-02-04T22:40:30Z",
+      "bounds": {
+        "minlat": 41.6118571,
+        "minlon": 2.3451297,
+        "maxlat": 41.6120723,
+        "maxlon": 2.3454081
+      },
+      "geometry": [
+        {
+          "lat": 41.6120723,
+          "lon": 2.3451297
+        },
+        {
+          "lat": 41.6118571,
+          "lon": 2.3454081
+        }
+      ],
+      "tags": {
+        "highway": "pedestrian"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796793,
+      "version": 4,
+      "timestamp": "2023-08-08T05:34:35Z",
+      "bounds": {
+        "minlat": 41.6073569,
+        "minlon": 2.340988,
+        "maxlat": 41.6082107,
+        "maxlon": 2.3418753
+      },
+      "geometry": [
+        {
+          "lat": 41.6073569,
+          "lon": 2.340988
+        },
+        {
+          "lat": 41.6075677,
+          "lon": 2.3412085
+        },
+        {
+          "lat": 41.6078203,
+          "lon": 2.3414801
+        },
+        {
+          "lat": 41.6079281,
+          "lon": 2.3415961
+        },
+        {
+          "lat": 41.6082107,
+          "lon": 2.3418753
+        }
+      ],
+      "tags": {
+        "highway": "footway"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796794,
+      "version": 5,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6085064,
+        "minlon": 2.3426628,
+        "maxlat": 41.6117972,
+        "maxlon": 2.3454727
+      },
+      "geometry": [
+        {
+          "lat": 41.6117972,
+          "lon": 2.3454453
+        },
+        {
+          "lat": 41.611702,
+          "lon": 2.3454727
+        },
+        {
+          "lat": 41.6116128,
+          "lon": 2.3454516
+        },
+        {
+          "lat": 41.6113365,
+          "lon": 2.3453765
+        },
+        {
+          "lat": 41.611002,
+          "lon": 2.3452037
+        },
+        {
+          "lat": 41.6107769,
+          "lon": 2.3450455
+        },
+        {
+          "lat": 41.6103874,
+          "lon": 2.344662
+        },
+        {
+          "lat": 41.6098634,
+          "lon": 2.3440985
+        },
+        {
+          "lat": 41.6098174,
+          "lon": 2.3440447
+        },
+        {
+          "lat": 41.6094591,
+          "lon": 2.3436661
+        },
+        {
+          "lat": 41.6092029,
+          "lon": 2.3433921
+        },
+        {
+          "lat": 41.6089684,
+          "lon": 2.3431436
+        },
+        {
+          "lat": 41.6085064,
+          "lon": 2.3426628
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796795,
+      "version": 3,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6077138,
+        "minlon": 2.3419775,
+        "maxlat": 41.6084074,
+        "maxlon": 2.3428122
+      },
+      "geometry": [
+        {
+          "lat": 41.6077138,
+          "lon": 2.3419775
+        },
+        {
+          "lat": 41.6078533,
+          "lon": 2.3421841
+        },
+        {
+          "lat": 41.6080633,
+          "lon": 2.3424266
+        },
+        {
+          "lat": 41.6082992,
+          "lon": 2.3426966
+        },
+        {
+          "lat": 41.6084074,
+          "lon": 2.3428122
+        }
+      ],
+      "tags": {
+        "access": "private",
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796796,
+      "version": 3,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6088693,
+        "minlon": 2.3429038,
+        "maxlat": 41.611935,
+        "maxlon": 2.3458828
+      },
+      "geometry": [
+        {
+          "lat": 41.6119172,
+          "lon": 2.3458828
+        },
+        {
+          "lat": 41.6119291,
+          "lon": 2.3457098
+        },
+        {
+          "lat": 41.611935,
+          "lon": 2.3456238
+        },
+        {
+          "lat": 41.6117972,
+          "lon": 2.3454453
+        },
+        {
+          "lat": 41.6116926,
+          "lon": 2.3453099
+        },
+        {
+          "lat": 41.6115293,
+          "lon": 2.3450985
+        },
+        {
+          "lat": 41.6111069,
+          "lon": 2.3448967
+        },
+        {
+          "lat": 41.6108747,
+          "lon": 2.3447482
+        },
+        {
+          "lat": 41.6105367,
+          "lon": 2.3444104
+        },
+        {
+          "lat": 41.6100047,
+          "lon": 2.3438437
+        },
+        {
+          "lat": 41.6093346,
+          "lon": 2.3431402
+        },
+        {
+          "lat": 41.6091093,
+          "lon": 2.3429038
+        },
+        {
+          "lat": 41.6090552,
+          "lon": 2.3429996
+        },
+        {
+          "lat": 41.6089684,
+          "lon": 2.3431436
+        },
+        {
+          "lat": 41.6088693,
+          "lon": 2.3433058
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796797,
+      "version": 6,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6086009,
+        "minlon": 2.3425158,
+        "maxlat": 41.6116926,
+        "maxlon": 2.3453099
+      },
+      "geometry": [
+        {
+          "lat": 41.6086009,
+          "lon": 2.3425158
+        },
+        {
+          "lat": 41.6090552,
+          "lon": 2.3429996
+        },
+        {
+          "lat": 41.6092819,
+          "lon": 2.343241
+        },
+        {
+          "lat": 41.6098438,
+          "lon": 2.3438419
+        },
+        {
+          "lat": 41.6099157,
+          "lon": 2.343914
+        },
+        {
+          "lat": 41.6099483,
+          "lon": 2.3439455
+        },
+        {
+          "lat": 41.6104641,
+          "lon": 2.3445288
+        },
+        {
+          "lat": 41.6107458,
+          "lon": 2.3448092
+        },
+        {
+          "lat": 41.610883,
+          "lon": 2.3449216
+        },
+        {
+          "lat": 41.6110166,
+          "lon": 2.3450146
+        },
+        {
+          "lat": 41.6110582,
+          "lon": 2.3450391
+        },
+        {
+          "lat": 41.6111133,
+          "lon": 2.3450678
+        },
+        {
+          "lat": 41.611387,
+          "lon": 2.3452102
+        },
+        {
+          "lat": 41.611608,
+          "lon": 2.3452853
+        },
+        {
+          "lat": 41.6116926,
+          "lon": 2.3453099
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796799,
+      "version": 4,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6071822,
+        "minlon": 2.3408342,
+        "maxlat": 41.6076634,
+        "maxlon": 2.3414735
+      },
+      "geometry": [
+        {
+          "lat": 41.6072582,
+          "lon": 2.341445
+        },
+        {
+          "lat": 41.6072346,
+          "lon": 2.3413623
+        },
+        {
+          "lat": 41.6071959,
+          "lon": 2.3412737
+        },
+        {
+          "lat": 41.6071822,
+          "lon": 2.3412113
+        },
+        {
+          "lat": 41.6071903,
+          "lon": 2.3411548
+        },
+        {
+          "lat": 41.6072656,
+          "lon": 2.3410924
+        },
+        {
+          "lat": 41.6073569,
+          "lon": 2.340988
+        },
+        {
+          "lat": 41.6075027,
+          "lon": 2.3408342
+        },
+        {
+          "lat": 41.6076634,
+          "lon": 2.3410486
+        },
+        {
+          "lat": 41.6076106,
+          "lon": 2.3411369
+        },
+        {
+          "lat": 41.6075677,
+          "lon": 2.3412085
+        },
+        {
+          "lat": 41.6075325,
+          "lon": 2.3412675
+        },
+        {
+          "lat": 41.6074872,
+          "lon": 2.3413434
+        },
+        {
+          "lat": 41.6074531,
+          "lon": 2.3414004
+        },
+        {
+          "lat": 41.6074095,
+          "lon": 2.3414735
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796800,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6096922,
+        "minlon": 2.3437236,
+        "maxlat": 41.6100676,
+        "maxlon": 2.3443981
+      },
+      "geometry": [
+        {
+          "lat": 41.6096922,
+          "lon": 2.3443981
+        },
+        {
+          "lat": 41.6097755,
+          "lon": 2.3442571
+        },
+        {
+          "lat": 41.6098634,
+          "lon": 2.3440985
+        },
+        {
+          "lat": 41.6099483,
+          "lon": 2.3439455
+        },
+        {
+          "lat": 41.6100047,
+          "lon": 2.3438437
+        },
+        {
+          "lat": 41.6100676,
+          "lon": 2.3437236
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796801,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6108826,
+        "minlon": 2.3448967,
+        "maxlat": 41.6111069,
+        "maxlon": 2.3455537
+      },
+      "geometry": [
+        {
+          "lat": 41.6111069,
+          "lon": 2.3448967
+        },
+        {
+          "lat": 41.6110582,
+          "lon": 2.3450391
+        },
+        {
+          "lat": 41.611002,
+          "lon": 2.3452037
+        },
+        {
+          "lat": 41.6109437,
+          "lon": 2.3453744
+        },
+        {
+          "lat": 41.6108826,
+          "lon": 2.3455537
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1115291917,
+      "version": 3,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6076634,
+        "minlon": 2.3410486,
+        "maxlat": 41.6079126,
+        "maxlon": 2.3413194
+      },
+      "geometry": [
+        {
+          "lat": 41.6076634,
+          "lon": 2.3410486
+        },
+        {
+          "lat": 41.6079126,
+          "lon": 2.3413194
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1115291918,
+      "version": 3,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6077138,
+        "minlon": 2.3413887,
+        "maxlat": 41.6080581,
+        "maxlon": 2.3419775
+      },
+      "geometry": [
+        {
+          "lat": 41.6077138,
+          "lon": 2.3419775
+        },
+        {
+          "lat": 41.6077689,
+          "lon": 2.3418755
+        },
+        {
+          "lat": 41.607849,
+          "lon": 2.341724
+        },
+        {
+          "lat": 41.6079281,
+          "lon": 2.3415961
+        },
+        {
+          "lat": 41.6080581,
+          "lon": 2.3413887
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1115291919,
+      "version": 3,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6072656,
+        "minlon": 2.3410924,
+        "maxlat": 41.6074872,
+        "maxlon": 2.3413434
+      },
+      "geometry": [
+        {
+          "lat": 41.6072656,
+          "lon": 2.3410924
+        },
+        {
+          "lat": 41.6074872,
+          "lon": 2.3413434
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1115291920,
+      "version": 3,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6085064,
+        "minlon": 2.3425158,
+        "maxlat": 41.6086009,
+        "maxlon": 2.3426628
+      },
+      "geometry": [
+        {
+          "lat": 41.6086009,
+          "lon": 2.3425158
+        },
+        {
+          "lat": 41.6085828,
+          "lon": 2.3425439
+        },
+        {
+          "lat": 41.6085064,
+          "lon": 2.3426628
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1195989110,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6084074,
+        "minlon": 2.3428122,
+        "maxlat": 41.6093643,
+        "maxlon": 2.3438283
+      },
+      "geometry": [
+        {
+          "lat": 41.6084074,
+          "lon": 2.3428122
+        },
+        {
+          "lat": 41.6088693,
+          "lon": 2.3433058
+        },
+        {
+          "lat": 41.6091063,
+          "lon": 2.3435593
+        },
+        {
+          "lat": 41.6093643,
+          "lon": 2.3438283
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1195989111,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6084074,
+        "minlon": 2.3426628,
+        "maxlat": 41.6085064,
+        "maxlon": 2.3428122
+      },
+      "geometry": [
+        {
+          "lat": 41.6085064,
+          "lon": 2.3426628
+        },
+        {
+          "lat": 41.6084074,
+          "lon": 2.3428122
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1195989112,
+      "version": 3,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6076144,
+        "minlon": 2.3413194,
+        "maxlat": 41.6079126,
+        "maxlon": 2.3419775
+      },
+      "geometry": [
+        {
+          "lat": 41.6079126,
+          "lon": 2.3413194
+        },
+        {
+          "lat": 41.6078203,
+          "lon": 2.3414801
+        },
+        {
+          "lat": 41.6077359,
+          "lon": 2.3416271
+        },
+        {
+          "lat": 41.6076508,
+          "lon": 2.3417718
+        },
+        {
+          "lat": 41.6076144,
+          "lon": 2.3418301
+        },
+        {
+          "lat": 41.6077138,
+          "lon": 2.3419775
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1195989113,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6093643,
+        "minlon": 2.3438283,
+        "maxlat": 41.6119291,
+        "maxlon": 2.3457098
+      },
+      "geometry": [
+        {
+          "lat": 41.6093643,
+          "lon": 2.3438283
+        },
+        {
+          "lat": 41.6097755,
+          "lon": 2.3442571
+        },
+        {
+          "lat": 41.6102826,
+          "lon": 2.3448248
+        },
+        {
+          "lat": 41.6107208,
+          "lon": 2.3452303
+        },
+        {
+          "lat": 41.6109437,
+          "lon": 2.3453744
+        },
+        {
+          "lat": 41.6113135,
+          "lon": 2.3455709
+        },
+        {
+          "lat": 41.611584,
+          "lon": 2.3456459
+        },
+        {
+          "lat": 41.6118243,
+          "lon": 2.3456921
+        },
+        {
+          "lat": 41.6119291,
+          "lon": 2.3457098
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1195989114,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6093643,
+        "minlon": 2.3436661,
+        "maxlat": 41.6094591,
+        "maxlon": 2.3438283
+      },
+      "geometry": [
+        {
+          "lat": 41.6093643,
+          "lon": 2.3438283
+        },
+        {
+          "lat": 41.6094591,
+          "lon": 2.3436661
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1195989115,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6079126,
+        "minlon": 2.3413194,
+        "maxlat": 41.6080581,
+        "maxlon": 2.3413887
+      },
+      "geometry": [
+        {
+          "lat": 41.6080581,
+          "lon": 2.3413887
+        },
+        {
+          "lat": 41.6079126,
+          "lon": 2.3413194
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1195989116,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6074872,
+        "minlon": 2.3413434,
+        "maxlat": 41.6077359,
+        "maxlon": 2.3416271
+      },
+      "geometry": [
+        {
+          "lat": 41.6074872,
+          "lon": 2.3413434
+        },
+        {
+          "lat": 41.6077359,
+          "lon": 2.3416271
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1295639158,
+      "version": 2,
+      "timestamp": "2024-11-17T23:23:43Z",
+      "bounds": {
+        "minlat": 41.6096726,
+        "minlon": 2.343779,
+        "maxlat": 41.6099157,
+        "maxlon": 2.343914
+      },
+      "geometry": [
+        {
+          "lat": 41.6099157,
+          "lon": 2.343914
+        },
+        {
+          "lat": 41.6098338,
+          "lon": 2.3439058
+        },
+        {
+          "lat": 41.6097556,
+          "lon": 2.3438379
+        },
+        {
+          "lat": 41.6096726,
+          "lon": 2.343779
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1295639159,
+      "version": 2,
+      "timestamp": "2024-11-17T23:23:43Z",
+      "bounds": {
+        "minlat": 41.6096726,
+        "minlon": 2.343779,
+        "maxlat": 41.6098174,
+        "maxlon": 2.3440447
+      },
+      "geometry": [
+        {
+          "lat": 41.6096726,
+          "lon": 2.343779
+        },
+        {
+          "lat": 41.6097241,
+          "lon": 2.3438568
+        },
+        {
+          "lat": 41.6097682,
+          "lon": 2.3439083
+        },
+        {
+          "lat": 41.6097981,
+          "lon": 2.3439512
+        },
+        {
+          "lat": 41.6098062,
+          "lon": 2.3439904
+        },
+        {
+          "lat": 41.6098174,
+          "lon": 2.3440447
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1295639160,
+      "version": 1,
+      "timestamp": "2024-06-24T08:54:17Z",
+      "bounds": {
+        "minlat": 41.6095105,
+        "minlon": 2.3436042,
+        "maxlat": 41.6096726,
+        "maxlon": 2.343779
+      },
+      "geometry": [
+        {
+          "lat": 41.6095105,
+          "lon": 2.3436042
+        },
+        {
+          "lat": 41.6096726,
+          "lon": 2.343779
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1334907564,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6075325,
+        "minlon": 2.3412675,
+        "maxlat": 41.607743,
+        "maxlon": 2.3414948
+      },
+      "geometry": [
+        {
+          "lat": 41.6075325,
+          "lon": 2.3412675
+        },
+        {
+          "lat": 41.607743,
+          "lon": 2.3414948
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1334907565,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6076106,
+        "minlon": 2.3411369,
+        "maxlat": 41.6078197,
+        "maxlon": 2.3413627
+      },
+      "geometry": [
+        {
+          "lat": 41.6078197,
+          "lon": 2.3413627
+        },
+        {
+          "lat": 41.6076106,
+          "lon": 2.3411369
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 128463311,
+      "version": 18,
+      "timestamp": "2023-08-22T01:47:19Z",
+      "bounds": {
+        "minlat": 41.6078123,
+        "minlon": 2.3413671,
+        "maxlat": 41.6136204,
+        "maxlon": 2.3457297
+      },
+      "geometry": [
+        {
+          "lat": 41.6085718,
+          "lon": 2.3415306
+        },
+        {
+          "lat": 41.6082145,
+          "lon": 2.3413671
+        },
+        {
+          "lat": 41.6078123,
+          "lon": 2.342054
+        },
+        {
+          "lat": 41.6078733,
+          "lon": 2.3421946
+        },
+        {
+          "lat": 41.6082672,
+          "lon": 2.3426365
+        },
+        {
+          "lat": 41.6085053,
+          "lon": 2.3422467
+        },
+        {
+          "lat": 41.6087336,
+          "lon": 2.3425093
+        },
+        {
+          "lat": 41.6087077,
+          "lon": 2.342566
+        },
+        {
+          "lat": 41.609025,
+          "lon": 2.3428999
+        },
+        {
+          "lat": 41.6090791,
+          "lon": 2.3428119
+        },
+        {
+          "lat": 41.6095601,
+          "lon": 2.343313
+        },
+        {
+          "lat": 41.6103564,
+          "lon": 2.3441753
+        },
+        {
+          "lat": 41.6105895,
+          "lon": 2.3444384
+        },
+        {
+          "lat": 41.6109224,
+          "lon": 2.3447334
+        },
+        {
+          "lat": 41.6115325,
+          "lon": 2.3450507
+        },
+        {
+          "lat": 41.6120085,
+          "lon": 2.3456528
+        },
+        {
+          "lat": 41.6120962,
+          "lon": 2.3457297
+        },
+        {
+          "lat": 41.6123126,
+          "lon": 2.3457116
+        },
+        {
+          "lat": 41.6126535,
+          "lon": 2.3452854
+        },
+        {
+          "lat": 41.6127768,
+          "lon": 2.3452513
+        },
+        {
+          "lat": 41.613193,
+          "lon": 2.3455702
+        },
+        {
+          "lat": 41.6133601,
+          "lon": 2.3455987
+        },
+        {
+          "lat": 41.6135297,
+          "lon": 2.3456067
+        },
+        {
+          "lat": 41.6136204,
+          "lon": 2.3449182
+        },
+        {
+          "lat": 41.612629,
+          "lon": 2.3442815
+        },
+        {
+          "lat": 41.6124035,
+          "lon": 2.3443286
+        },
+        {
+          "lat": 41.6122909,
+          "lon": 2.3443521
+        },
+        {
+          "lat": 41.6120241,
+          "lon": 2.3441247
+        },
+        {
+          "lat": 41.6116849,
+          "lon": 2.3438356
+        },
+        {
+          "lat": 41.6113699,
+          "lon": 2.3436167
+        },
+        {
+          "lat": 41.6112257,
+          "lon": 2.3435354
+        },
+        {
+          "lat": 41.6111621,
+          "lon": 2.3434745
+        },
+        {
+          "lat": 41.6110817,
+          "lon": 2.3433619
+        },
+        {
+          "lat": 41.6105474,
+          "lon": 2.3429889
+        },
+        {
+          "lat": 41.6104551,
+          "lon": 2.3429192
+        },
+        {
+          "lat": 41.6101303,
+          "lon": 2.3427261
+        },
+        {
+          "lat": 41.6097813,
+          "lon": 2.342474
+        },
+        {
+          "lat": 41.6094685,
+          "lon": 2.3422326
+        },
+        {
+          "lat": 41.609316,
+          "lon": 2.3420931
+        },
+        {
+          "lat": 41.6092037,
+          "lon": 2.3420126
+        },
+        {
+          "lat": 41.608947,
+          "lon": 2.3418356
+        },
+        {
+          "lat": 41.6087625,
+          "lon": 2.3417015
+        },
+        {
+          "lat": 41.6085718,
+          "lon": 2.3415306
+        }
+      ],
+      "tags": {
+        "name": "la Roca Village",
+        "operator": "Value Retail",
+        "shop": "mall",
+        "short_name": "La Roca",
+        "website": "https://www.larocavillage.com"
+      }
+    },
+    {
+      "type": "way",
+      "id": 180361526,
+      "version": 4,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6141671,
+        "minlon": 2.34591,
+        "maxlat": 41.6149009,
+        "maxlon": 2.3468255
+      },
+      "geometry": [
+        {
+          "lat": 41.6142025,
+          "lon": 2.34591
+        },
+        {
+          "lat": 41.6141952,
+          "lon": 2.3460047
+        },
+        {
+          "lat": 41.6141884,
+          "lon": 2.3460717
+        },
+        {
+          "lat": 41.6141671,
+          "lon": 2.3462836
+        },
+        {
+          "lat": 41.6142135,
+          "lon": 2.3464008
+        },
+        {
+          "lat": 41.6142555,
+          "lon": 2.3464312
+        },
+        {
+          "lat": 41.614774,
+          "lon": 2.3468064
+        },
+        {
+          "lat": 41.6148438,
+          "lon": 2.3468255
+        },
+        {
+          "lat": 41.6149009,
+          "lon": 2.3468255
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 193012268,
+      "version": 2,
+      "timestamp": "2020-03-14T16:25:14Z",
+      "bounds": {
+        "minlat": 41.6116219,
+        "minlon": 2.3359032,
+        "maxlat": 41.6131727,
+        "maxlon": 2.3390814
+      },
+      "geometry": [
+        {
+          "lat": 41.6116219,
+          "lon": 2.3390814
+        },
+        {
+          "lat": 41.6117014,
+          "lon": 2.3389698
+        },
+        {
+          "lat": 41.6118057,
+          "lon": 2.3388196
+        },
+        {
+          "lat": 41.6118779,
+          "lon": 2.3386211
+        },
+        {
+          "lat": 41.611938,
+          "lon": 2.3383154
+        },
+        {
+          "lat": 41.6120182,
+          "lon": 2.3379345
+        },
+        {
+          "lat": 41.6121185,
+          "lon": 2.3377092
+        },
+        {
+          "lat": 41.6122348,
+          "lon": 2.3375912
+        },
+        {
+          "lat": 41.6124301,
+          "lon": 2.3376097
+        },
+        {
+          "lat": 41.6126279,
+          "lon": 2.3376126
+        },
+        {
+          "lat": 41.6127581,
+          "lon": 2.3375656
+        },
+        {
+          "lat": 41.6127763,
+          "lon": 2.337559
+        },
+        {
+          "lat": 41.6127081,
+          "lon": 2.3373337
+        },
+        {
+          "lat": 41.6126748,
+          "lon": 2.3371054
+        },
+        {
+          "lat": 41.61266,
+          "lon": 2.3368562
+        },
+        {
+          "lat": 41.612692,
+          "lon": 2.3365725
+        },
+        {
+          "lat": 41.6128324,
+          "lon": 2.3363573
+        },
+        {
+          "lat": 41.6131727,
+          "lon": 2.3359032
+        }
+      ],
+      "tags": {
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 296636753,
+      "version": 6,
+      "timestamp": "2020-02-04T22:40:30Z",
+      "bounds": {
+        "minlat": 41.6120723,
+        "minlon": 2.3446999,
+        "maxlat": 41.6136478,
+        "maxlon": 2.3452816
+      },
+      "geometry": [
+        {
+          "lat": 41.6136478,
+          "lon": 2.3452816
+        },
+        {
+          "lat": 41.6134715,
+          "lon": 2.3452475
+        },
+        {
+          "lat": 41.6133251,
+          "lon": 2.3452014
+        },
+        {
+          "lat": 41.6126308,
+          "lon": 2.3446999
+        },
+        {
+          "lat": 41.6122364,
+          "lon": 2.3452377
+        },
+        {
+          "lat": 41.6120723,
+          "lon": 2.3451297
+        }
+      ],
+      "tags": {
+        "highway": "pedestrian"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796784,
+      "version": 2,
+      "timestamp": "2024-11-10T10:36:15Z",
+      "bounds": {
+        "minlat": 41.616877,
+        "minlon": 2.3457907,
+        "maxlat": 41.6172568,
+        "maxlon": 2.3464704
+      },
+      "geometry": [
+        {
+          "lat": 41.6171378,
+          "lon": 2.3464704
+        },
+        {
+          "lat": 41.6170483,
+          "lon": 2.346436
+        },
+        {
+          "lat": 41.6171126,
+          "lon": 2.3461363
+        },
+        {
+          "lat": 41.616877,
+          "lon": 2.3460459
+        },
+        {
+          "lat": 41.6169318,
+          "lon": 2.3457907
+        },
+        {
+          "lat": 41.6172568,
+          "lon": 2.3459154
+        },
+        {
+          "lat": 41.6171378,
+          "lon": 2.3464704
+        }
+      ],
+      "tags": {
+        "access": "customers",
+        "amenity": "parking",
+        "parking": "surface"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796786,
+      "version": 1,
+      "timestamp": "2017-03-16T07:57:24Z",
+      "bounds": {
+        "minlat": 41.616732,
+        "minlon": 2.3457693,
+        "maxlat": 41.6172311,
+        "maxlon": 2.3468715
+      },
+      "geometry": [
+        {
+          "lat": 41.6170165,
+          "lon": 2.3468715
+        },
+        {
+          "lat": 41.6170728,
+          "lon": 2.3465855
+        },
+        {
+          "lat": 41.6170642,
+          "lon": 2.3465008
+        },
+        {
+          "lat": 41.6171635,
+          "lon": 2.346064
+        },
+        {
+          "lat": 41.617198,
+          "lon": 2.3460409
+        },
+        {
+          "lat": 41.6172311,
+          "lon": 2.345885
+        },
+        {
+          "lat": 41.6169788,
+          "lon": 2.3457693
+        },
+        {
+          "lat": 41.616939,
+          "lon": 2.3459764
+        },
+        {
+          "lat": 41.6168988,
+          "lon": 2.3459976
+        },
+        {
+          "lat": 41.616732,
+          "lon": 2.3467587
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796791,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6119291,
+        "minlon": 2.3454063,
+        "maxlat": 41.6126182,
+        "maxlon": 2.3457609
+      },
+      "geometry": [
+        {
+          "lat": 41.6126182,
+          "lon": 2.3454063
+        },
+        {
+          "lat": 41.6125857,
+          "lon": 2.3454068
+        },
+        {
+          "lat": 41.6123454,
+          "lon": 2.3457282
+        },
+        {
+          "lat": 41.6123008,
+          "lon": 2.3457484
+        },
+        {
+          "lat": 41.6120663,
+          "lon": 2.3457609
+        },
+        {
+          "lat": 41.612016,
+          "lon": 2.3457061
+        },
+        {
+          "lat": 41.6119291,
+          "lon": 2.3457098
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480797641,
+      "version": 1,
+      "timestamp": "2017-03-16T08:05:21Z",
+      "bounds": {
+        "minlat": 41.61421,
+        "minlon": 2.3460303,
+        "maxlat": 41.6146563,
+        "maxlon": 2.3465759
+      },
+      "geometry": [
+        {
+          "lat": 41.6146563,
+          "lon": 2.3462489
+        },
+        {
+          "lat": 41.6146128,
+          "lon": 2.3461169
+        },
+        {
+          "lat": 41.6142416,
+          "lon": 2.3460303
+        },
+        {
+          "lat": 41.61421,
+          "lon": 2.346342
+        },
+        {
+          "lat": 41.6145766,
+          "lon": 2.3465759
+        },
+        {
+          "lat": 41.6146563,
+          "lon": 2.3462489
+        }
+      ],
+      "tags": {
+        "amenity": "parking",
+        "parking": "surface"
+      }
+    },
+    {
+      "type": "way",
+      "id": 993517022,
+      "version": 1,
+      "timestamp": "2021-10-17T21:54:17Z",
+      "bounds": {
+        "minlat": 41.6145155,
+        "minlon": 2.3377315,
+        "maxlat": 41.6209818,
+        "maxlon": 2.3429786
+      },
+      "geometry": [
+        {
+          "lat": 41.6209818,
+          "lon": 2.3429786
+        },
+        {
+          "lat": 41.6209416,
+          "lon": 2.3429465
+        },
+        {
+          "lat": 41.620875,
+          "lon": 2.3428666
+        },
+        {
+          "lat": 41.6208233,
+          "lon": 2.342776
+        },
+        {
+          "lat": 41.6207705,
+          "lon": 2.3426685
+        },
+        {
+          "lat": 41.6207154,
+          "lon": 2.342564
+        },
+        {
+          "lat": 41.6206557,
+          "lon": 2.3424611
+        },
+        {
+          "lat": 41.6206166,
+          "lon": 2.3423874
+        },
+        {
+          "lat": 41.6205983,
+          "lon": 2.3423167
+        },
+        {
+          "lat": 41.6206063,
+          "lon": 2.342223
+        },
+        {
+          "lat": 41.6206339,
+          "lon": 2.3421109
+        },
+        {
+          "lat": 41.6206614,
+          "lon": 2.3419726
+        },
+        {
+          "lat": 41.6206534,
+          "lon": 2.3418206
+        },
+        {
+          "lat": 41.6206362,
+          "lon": 2.3416593
+        },
+        {
+          "lat": 41.6206649,
+          "lon": 2.3415226
+        },
+        {
+          "lat": 41.6207051,
+          "lon": 2.3413889
+        },
+        {
+          "lat": 41.6207166,
+          "lon": 2.3413044
+        },
+        {
+          "lat": 41.6207016,
+          "lon": 2.3412215
+        },
+        {
+          "lat": 41.6206534,
+          "lon": 2.3411447
+        },
+        {
+          "lat": 41.6205891,
+          "lon": 2.3410971
+        },
+        {
+          "lat": 41.6205317,
+          "lon": 2.3410602
+        },
+        {
+          "lat": 41.6204593,
+          "lon": 2.340988
+        },
+        {
+          "lat": 41.6203652,
+          "lon": 2.3409204
+        },
+        {
+          "lat": 41.6202572,
+          "lon": 2.3408528
+        },
+        {
+          "lat": 41.620124,
+          "lon": 2.3407484
+        },
+        {
+          "lat": 41.6199977,
+          "lon": 2.3406501
+        },
+        {
+          "lat": 41.6199196,
+          "lon": 2.3405809
+        },
+        {
+          "lat": 41.6198461,
+          "lon": 2.3405103
+        },
+        {
+          "lat": 41.6197462,
+          "lon": 2.3404028
+        },
+        {
+          "lat": 41.619667,
+          "lon": 2.3402952
+        },
+        {
+          "lat": 41.6195832,
+          "lon": 2.3401908
+        },
+        {
+          "lat": 41.6195407,
+          "lon": 2.3401555
+        },
+        {
+          "lat": 41.6194546,
+          "lon": 2.3400986
+        },
+        {
+          "lat": 41.6194109,
+          "lon": 2.3400541
+        },
+        {
+          "lat": 41.6193455,
+          "lon": 2.3399481
+        },
+        {
+          "lat": 41.6192903,
+          "lon": 2.339816
+        },
+        {
+          "lat": 41.6192444,
+          "lon": 2.3396962
+        },
+        {
+          "lat": 41.6191985,
+          "lon": 2.3395149
+        },
+        {
+          "lat": 41.6191548,
+          "lon": 2.3393306
+        },
+        {
+          "lat": 41.6191296,
+          "lon": 2.3392123
+        },
+        {
+          "lat": 41.6190986,
+          "lon": 2.3390771
+        },
+        {
+          "lat": 41.6190584,
+          "lon": 2.3389435
+        },
+        {
+          "lat": 41.6190124,
+          "lon": 2.338859
+        },
+        {
+          "lat": 41.6189619,
+          "lon": 2.3388498
+        },
+        {
+          "lat": 41.6189298,
+          "lon": 2.3389036
+        },
+        {
+          "lat": 41.6188861,
+          "lon": 2.3390049
+        },
+        {
+          "lat": 41.6188471,
+          "lon": 2.3390526
+        },
+        {
+          "lat": 41.6187943,
+          "lon": 2.3391094
+        },
+        {
+          "lat": 41.6187345,
+          "lon": 2.3391724
+        },
+        {
+          "lat": 41.6186817,
+          "lon": 2.3392784
+        },
+        {
+          "lat": 41.6186519,
+          "lon": 2.3393859
+        },
+        {
+          "lat": 41.6186094,
+          "lon": 2.3395241
+        },
+        {
+          "lat": 41.6185853,
+          "lon": 2.3396562
+        },
+        {
+          "lat": 41.6185841,
+          "lon": 2.3397515
+        },
+        {
+          "lat": 41.6185933,
+          "lon": 2.3398498
+        },
+        {
+          "lat": 41.6186002,
+          "lon": 2.3399312
+        },
+        {
+          "lat": 41.6186025,
+          "lon": 2.3400418
+        },
+        {
+          "lat": 41.6186002,
+          "lon": 2.3401263
+        },
+        {
+          "lat": 41.6185646,
+          "lon": 2.3401078
+        },
+        {
+          "lat": 41.6185462,
+          "lon": 2.3400372
+        },
+        {
+          "lat": 41.6184854,
+          "lon": 2.339922
+        },
+        {
+          "lat": 41.6184463,
+          "lon": 2.3398191
+        },
+        {
+          "lat": 41.6184038,
+          "lon": 2.3396885
+        },
+        {
+          "lat": 41.6183751,
+          "lon": 2.3395871
+        },
+        {
+          "lat": 41.6183292,
+          "lon": 2.3394796
+        },
+        {
+          "lat": 41.6182821,
+          "lon": 2.3393982
+        },
+        {
+          "lat": 41.6181902,
+          "lon": 2.339263
+        },
+        {
+          "lat": 41.6180857,
+          "lon": 2.339114
+        },
+        {
+          "lat": 41.6179537,
+          "lon": 2.3389389
+        },
+        {
+          "lat": 41.6178021,
+          "lon": 2.3387131
+        },
+        {
+          "lat": 41.6177056,
+          "lon": 2.3385702
+        },
+        {
+          "lat": 41.6176402,
+          "lon": 2.3384658
+        },
+        {
+          "lat": 41.6175494,
+          "lon": 2.3383214
+        },
+        {
+          "lat": 41.6174323,
+          "lon": 2.338137
+        },
+        {
+          "lat": 41.6173335,
+          "lon": 2.3379804
+        },
+        {
+          "lat": 41.6172681,
+          "lon": 2.3379205
+        },
+        {
+          "lat": 41.6171682,
+          "lon": 2.3378606
+        },
+        {
+          "lat": 41.6170729,
+          "lon": 2.3377899
+        },
+        {
+          "lat": 41.6169764,
+          "lon": 2.3377423
+        },
+        {
+          "lat": 41.6169339,
+          "lon": 2.3377315
+        },
+        {
+          "lat": 41.6168903,
+          "lon": 2.3377453
+        },
+        {
+          "lat": 41.6168616,
+          "lon": 2.3377745
+        },
+        {
+          "lat": 41.6168558,
+          "lon": 2.3378235
+        },
+        {
+          "lat": 41.6168512,
+          "lon": 2.3378621
+        },
+        {
+          "lat": 41.6168466,
+          "lon": 2.3379435
+        },
+        {
+          "lat": 41.6168306,
+          "lon": 2.3380218
+        },
+        {
+          "lat": 41.6167904,
+          "lon": 2.3380572
+        },
+        {
+          "lat": 41.6167421,
+          "lon": 2.3380649
+        },
+        {
+          "lat": 41.6166721,
+          "lon": 2.3380341
+        },
+        {
+          "lat": 41.6165791,
+          "lon": 2.3380157
+        },
+        {
+          "lat": 41.6165148,
+          "lon": 2.3380218
+        },
+        {
+          "lat": 41.6164355,
+          "lon": 2.3380203
+        },
+        {
+          "lat": 41.6163195,
+          "lon": 2.3379957
+        },
+        {
+          "lat": 41.6162311,
+          "lon": 2.3379865
+        },
+        {
+          "lat": 41.61613,
+          "lon": 2.3379773
+        },
+        {
+          "lat": 41.6160347,
+          "lon": 2.3379573
+        },
+        {
+          "lat": 41.6159119,
+          "lon": 2.3379374
+        },
+        {
+          "lat": 41.6158372,
+          "lon": 2.3379235
+        },
+        {
+          "lat": 41.615743,
+          "lon": 2.3379189
+        },
+        {
+          "lat": 41.6156627,
+          "lon": 2.3378928
+        },
+        {
+          "lat": 41.6155708,
+          "lon": 2.3378513
+        },
+        {
+          "lat": 41.6154468,
+          "lon": 2.3378083
+        },
+        {
+          "lat": 41.6153308,
+          "lon": 2.3377838
+        },
+        {
+          "lat": 41.6152504,
+          "lon": 2.3377853
+        },
+        {
+          "lat": 41.6151378,
+          "lon": 2.3377976
+        },
+        {
+          "lat": 41.6150471,
+          "lon": 2.3378298
+        },
+        {
+          "lat": 41.6149472,
+          "lon": 2.337879
+        },
+        {
+          "lat": 41.614876,
+          "lon": 2.3379404
+        },
+        {
+          "lat": 41.6147945,
+          "lon": 2.3380249
+        },
+        {
+          "lat": 41.6146991,
+          "lon": 2.3381171
+        },
+        {
+          "lat": 41.6146302,
+          "lon": 2.3381785
+        },
+        {
+          "lat": 41.6145155,
+          "lon": 2.3382601
+        }
+      ],
+      "tags": {
+        "access": "no",
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1195989117,
+      "version": 1,
+      "timestamp": "2023-08-08T05:34:18Z",
+      "bounds": {
+        "minlat": 41.6080581,
+        "minlon": 2.3413564,
+        "maxlat": 41.6136637,
+        "maxlon": 2.3451719
+      },
+      "geometry": [
+        {
+          "lat": 41.6080581,
+          "lon": 2.3413887
+        },
+        {
+          "lat": 41.6081514,
+          "lon": 2.3413564
+        },
+        {
+          "lat": 41.6084724,
+          "lon": 2.3414943
+        },
+        {
+          "lat": 41.6086027,
+          "lon": 2.3415899
+        },
+        {
+          "lat": 41.6089476,
+          "lon": 2.3418748
+        },
+        {
+          "lat": 41.6091735,
+          "lon": 2.342047
+        },
+        {
+          "lat": 41.6093754,
+          "lon": 2.3422052
+        },
+        {
+          "lat": 41.6096156,
+          "lon": 2.3423865
+        },
+        {
+          "lat": 41.6098243,
+          "lon": 2.3425662
+        },
+        {
+          "lat": 41.6101128,
+          "lon": 2.342784
+        },
+        {
+          "lat": 41.6103344,
+          "lon": 2.3429182
+        },
+        {
+          "lat": 41.6106019,
+          "lon": 2.3431036
+        },
+        {
+          "lat": 41.6109647,
+          "lon": 2.3433521
+        },
+        {
+          "lat": 41.6111244,
+          "lon": 2.3435508
+        },
+        {
+          "lat": 41.6112928,
+          "lon": 2.3436452
+        },
+        {
+          "lat": 41.6115305,
+          "lon": 2.3437992
+        },
+        {
+          "lat": 41.6117212,
+          "lon": 2.3439665
+        },
+        {
+          "lat": 41.6119664,
+          "lon": 2.3442
+        },
+        {
+          "lat": 41.6120828,
+          "lon": 2.3442497
+        },
+        {
+          "lat": 41.6122982,
+          "lon": 2.3444633
+        },
+        {
+          "lat": 41.6125595,
+          "lon": 2.3443557
+        },
+        {
+          "lat": 41.6126524,
+          "lon": 2.344349
+        },
+        {
+          "lat": 41.6130894,
+          "lon": 2.3446339
+        },
+        {
+          "lat": 41.6135166,
+          "lon": 2.3449138
+        },
+        {
+          "lat": 41.6136429,
+          "lon": 2.3449717
+        },
+        {
+          "lat": 41.6136637,
+          "lon": 2.3451719
+        }
+      ],
+      "tags": {
+        "access": "private",
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1201623587,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6141884,
+        "minlon": 2.3460717,
+        "maxlat": 41.6145841,
+        "maxlon": 2.3464312
+      },
+      "geometry": [
+        {
+          "lat": 41.6142555,
+          "lon": 2.3464312
+        },
+        {
+          "lat": 41.6142669,
+          "lon": 2.3462951
+        },
+        {
+          "lat": 41.6145661,
+          "lon": 2.3463473
+        },
+        {
+          "lat": 41.6145841,
+          "lon": 2.3461613
+        },
+        {
+          "lat": 41.6141884,
+          "lon": 2.3460717
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1215226197,
+      "version": 1,
+      "timestamp": "2023-10-13T05:59:41Z",
+      "bounds": {
+        "minlat": 41.6171134,
+        "minlon": 2.3460424,
+        "maxlat": 41.6185163,
+        "maxlon": 2.3469099
+      },
+      "geometry": [
+        {
+          "lat": 41.6171134,
+          "lon": 2.3469099
+        },
+        {
+          "lat": 41.6171966,
+          "lon": 2.3465619
+        },
+        {
+          "lat": 41.6172395,
+          "lon": 2.3463824
+        },
+        {
+          "lat": 41.6172832,
+          "lon": 2.3461997
+        },
+        {
+          "lat": 41.6173092,
+          "lon": 2.3460907
+        },
+        {
+          "lat": 41.6173633,
+          "lon": 2.3460424
+        },
+        {
+          "lat": 41.6185063,
+          "lon": 2.3464528
+        },
+        {
+          "lat": 41.6185163,
+          "lon": 2.346501
+        },
+        {
+          "lat": 41.6185023,
+          "lon": 2.3466486
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1332669716,
+      "version": 1,
+      "timestamp": "2024-11-10T18:43:09Z",
+      "bounds": {
+        "minlat": 41.6160453,
+        "minlon": 2.346137,
+        "maxlat": 41.6167027,
+        "maxlon": 2.346636
+      },
+      "geometry": [
+        {
+          "lat": 41.6167027,
+          "lon": 2.3465259
+        },
+        {
+          "lat": 41.6166788,
+          "lon": 2.346636
+        },
+        {
+          "lat": 41.6160453,
+          "lon": 2.3463897
+        },
+        {
+          "lat": 41.6160692,
+          "lon": 2.3462796
+        },
+        {
+          "lat": 41.6164677,
+          "lon": 2.3464345
+        },
+        {
+          "lat": 41.6165324,
+          "lon": 2.346137
+        },
+        {
+          "lat": 41.6165783,
+          "lon": 2.3461548
+        },
+        {
+          "lat": 41.6165136,
+          "lon": 2.3464524
+        },
+        {
+          "lat": 41.6167027,
+          "lon": 2.3465259
+        }
+      ],
+      "tags": {
+        "amenity": "parking",
+        "parking": "surface"
+      }
+    },
+    {
+      "type": "way",
+      "id": 296636760,
+      "version": 7,
+      "timestamp": "2022-11-18T12:44:19Z",
+      "bounds": {
+        "minlat": 41.6136546,
+        "minlon": 2.3449753,
+        "maxlat": 41.6153839,
+        "maxlon": 2.3459855
+      },
+      "geometry": [
+        {
+          "lat": 41.6137203,
+          "lon": 2.3449753
+        },
+        {
+          "lat": 41.6136609,
+          "lon": 2.3456217
+        },
+        {
+          "lat": 41.6136546,
+          "lon": 2.3456897
+        },
+        {
+          "lat": 41.6142828,
+          "lon": 2.3457778
+        },
+        {
+          "lat": 41.6144444,
+          "lon": 2.3458289
+        },
+        {
+          "lat": 41.6146461,
+          "lon": 2.3458699
+        },
+        {
+          "lat": 41.6150395,
+          "lon": 2.3459855
+        },
+        {
+          "lat": 41.6150794,
+          "lon": 2.3459405
+        },
+        {
+          "lat": 41.6151102,
+          "lon": 2.3459379
+        },
+        {
+          "lat": 41.6151524,
+          "lon": 2.3459646
+        },
+        {
+          "lat": 41.6152725,
+          "lon": 2.3456216
+        },
+        {
+          "lat": 41.6152918,
+          "lon": 2.3455665
+        },
+        {
+          "lat": 41.6153839,
+          "lon": 2.3453033
+        },
+        {
+          "lat": 41.61448,
+          "lon": 2.3450682
+        },
+        {
+          "lat": 41.614466,
+          "lon": 2.3451019
+        },
+        {
+          "lat": 41.6141113,
+          "lon": 2.3450441
+        },
+        {
+          "lat": 41.6137968,
+          "lon": 2.3449888
+        },
+        {
+          "lat": 41.6137203,
+          "lon": 2.3449753
+        }
+      ],
+      "tags": {
+        "access": "yes",
+        "amenity": "parking",
+        "name": "Parking la Roca Village",
+        "parking": "surface"
+      }
+    },
+    {
+      "type": "way",
+      "id": 326378183,
+      "version": 4,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6126087,
+        "minlon": 2.3453322,
+        "maxlat": 41.6136181,
+        "maxlon": 2.3456843
+      },
+      "geometry": [
+        {
+          "lat": 41.6136181,
+          "lon": 2.3455779
+        },
+        {
+          "lat": 41.6135452,
+          "lon": 2.3456664
+        },
+        {
+          "lat": 41.6134781,
+          "lon": 2.3456843
+        },
+        {
+          "lat": 41.6134042,
+          "lon": 2.345678
+        },
+        {
+          "lat": 41.6132565,
+          "lon": 2.3456529
+        },
+        {
+          "lat": 41.6131705,
+          "lon": 2.345634
+        },
+        {
+          "lat": 41.6129099,
+          "lon": 2.3454391
+        },
+        {
+          "lat": 41.6127985,
+          "lon": 2.3453565
+        },
+        {
+          "lat": 41.6127326,
+          "lon": 2.3453322
+        },
+        {
+          "lat": 41.6126742,
+          "lon": 2.3453439
+        },
+        {
+          "lat": 41.6126383,
+          "lon": 2.3453614
+        },
+        {
+          "lat": 41.6126182,
+          "lon": 2.3454063
+        },
+        {
+          "lat": 41.6126087,
+          "lon": 2.34548
+        },
+        {
+          "lat": 41.6126315,
+          "lon": 2.345552
+        },
+        {
+          "lat": 41.612639,
+          "lon": 2.3455757
+        },
+        {
+          "lat": 41.612661,
+          "lon": 2.3456187
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795065,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6144682,
+        "minlon": 2.3453426,
+        "maxlat": 41.615216,
+        "maxlon": 2.3455496
+      },
+      "geometry": [
+        {
+          "lat": 41.615216,
+          "lon": 2.3455496
+        },
+        {
+          "lat": 41.6144682,
+          "lon": 2.3453426
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795066,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6136181,
+        "minlon": 2.3451719,
+        "maxlat": 41.6136637,
+        "maxlon": 2.3455779
+      },
+      "geometry": [
+        {
+          "lat": 41.6136637,
+          "lon": 2.3451719
+        },
+        {
+          "lat": 41.6136478,
+          "lon": 2.3452816
+        },
+        {
+          "lat": 41.6136386,
+          "lon": 2.3453955
+        },
+        {
+          "lat": 41.6136181,
+          "lon": 2.3455779
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795067,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6136637,
+        "minlon": 2.3451719,
+        "maxlat": 41.6144682,
+        "maxlon": 2.3453426
+      },
+      "geometry": [
+        {
+          "lat": 41.6144682,
+          "lon": 2.3453426
+        },
+        {
+          "lat": 41.6136637,
+          "lon": 2.3451719
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795068,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6136386,
+        "minlon": 2.3453955,
+        "maxlat": 41.6144407,
+        "maxlon": 2.34554
+      },
+      "geometry": [
+        {
+          "lat": 41.6136386,
+          "lon": 2.3453955
+        },
+        {
+          "lat": 41.6144407,
+          "lon": 2.34554
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795069,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6136181,
+        "minlon": 2.3455779,
+        "maxlat": 41.6144147,
+        "maxlon": 2.3457262
+      },
+      "geometry": [
+        {
+          "lat": 41.6136181,
+          "lon": 2.3455779
+        },
+        {
+          "lat": 41.6144147,
+          "lon": 2.3457262
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795070,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6144147,
+        "minlon": 2.3457262,
+        "maxlat": 41.6150928,
+        "maxlon": 2.3459084
+      },
+      "geometry": [
+        {
+          "lat": 41.6144147,
+          "lon": 2.3457262
+        },
+        {
+          "lat": 41.6150928,
+          "lon": 2.3459084
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795071,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6144407,
+        "minlon": 2.34554,
+        "maxlat": 41.61515,
+        "maxlon": 2.3457419
+      },
+      "geometry": [
+        {
+          "lat": 41.61515,
+          "lon": 2.3457419
+        },
+        {
+          "lat": 41.6144407,
+          "lon": 2.34554
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795072,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.615216,
+        "minlon": 2.3455496,
+        "maxlat": 41.6153567,
+        "maxlon": 2.3456319
+      },
+      "geometry": [
+        {
+          "lat": 41.615216,
+          "lon": 2.3455496
+        },
+        {
+          "lat": 41.6153567,
+          "lon": 2.3456319
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795073,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6144682,
+        "minlon": 2.3451629,
+        "maxlat": 41.615268,
+        "maxlon": 2.3459084
+      },
+      "geometry": [
+        {
+          "lat": 41.6150928,
+          "lon": 2.3459084
+        },
+        {
+          "lat": 41.61515,
+          "lon": 2.3457419
+        },
+        {
+          "lat": 41.615216,
+          "lon": 2.3455496
+        },
+        {
+          "lat": 41.615268,
+          "lon": 2.3453982
+        },
+        {
+          "lat": 41.6145166,
+          "lon": 2.3451629
+        },
+        {
+          "lat": 41.6144682,
+          "lon": 2.3453426
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480795074,
+      "version": 2,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6143847,
+        "minlon": 2.3453426,
+        "maxlat": 41.6144682,
+        "maxlon": 2.345945
+      },
+      "geometry": [
+        {
+          "lat": 41.6144682,
+          "lon": 2.3453426
+        },
+        {
+          "lat": 41.6144407,
+          "lon": 2.34554
+        },
+        {
+          "lat": 41.6144147,
+          "lon": 2.3457262
+        },
+        {
+          "lat": 41.6143847,
+          "lon": 2.345945
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 480796785,
+      "version": 1,
+      "timestamp": "2017-03-16T07:57:24Z",
+      "bounds": {
+        "minlat": 41.616939,
+        "minlon": 2.3459764,
+        "maxlat": 41.6171635,
+        "maxlon": 2.346064
+      },
+      "geometry": [
+        {
+          "lat": 41.616939,
+          "lon": 2.3459764
+        },
+        {
+          "lat": 41.6171635,
+          "lon": 2.346064
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 558397702,
+      "version": 2,
+      "timestamp": "2020-05-01T09:02:48Z",
+      "bounds": {
+        "minlat": 41.6129079,
+        "minlon": 2.3447126,
+        "maxlat": 41.6135437,
+        "maxlon": 2.3453383
+      },
+      "geometry": [
+        {
+          "lat": 41.6135437,
+          "lon": 2.3451851
+        },
+        {
+          "lat": 41.6135295,
+          "lon": 2.3453135
+        },
+        {
+          "lat": 41.613308,
+          "lon": 2.345276
+        },
+        {
+          "lat": 41.6131669,
+          "lon": 2.3451774
+        },
+        {
+          "lat": 41.613154,
+          "lon": 2.3452104
+        },
+        {
+          "lat": 41.6131325,
+          "lon": 2.3451888
+        },
+        {
+          "lat": 41.6130655,
+          "lon": 2.345141
+        },
+        {
+          "lat": 41.6129868,
+          "lon": 2.3453383
+        },
+        {
+          "lat": 41.6129082,
+          "lon": 2.3452788
+        },
+        {
+          "lat": 41.6129898,
+          "lon": 2.3450837
+        },
+        {
+          "lat": 41.6129253,
+          "lon": 2.3450355
+        },
+        {
+          "lat": 41.6129079,
+          "lon": 2.3450247
+        },
+        {
+          "lat": 41.6129308,
+          "lon": 2.3449694
+        },
+        {
+          "lat": 41.6129633,
+          "lon": 2.3448854
+        },
+        {
+          "lat": 41.6129795,
+          "lon": 2.3448439
+        },
+        {
+          "lat": 41.6129996,
+          "lon": 2.3448595
+        },
+        {
+          "lat": 41.613066,
+          "lon": 2.3449058
+        },
+        {
+          "lat": 41.6131412,
+          "lon": 2.3447126
+        },
+        {
+          "lat": 41.6132211,
+          "lon": 2.3447729
+        },
+        {
+          "lat": 41.6131392,
+          "lon": 2.3449554
+        },
+        {
+          "lat": 41.6132018,
+          "lon": 2.3450056
+        },
+        {
+          "lat": 41.6132268,
+          "lon": 2.345025
+        },
+        {
+          "lat": 41.6132094,
+          "lon": 2.3450614
+        },
+        {
+          "lat": 41.6133249,
+          "lon": 2.3451476
+        },
+        {
+          "lat": 41.6135437,
+          "lon": 2.3451851
+        }
+      ],
+      "tags": {
+        "area": "yes",
+        "highway": "pedestrian"
+      }
+    },
+    {
+      "type": "way",
+      "id": 172678073,
+      "version": 1,
+      "timestamp": "2012-07-23T17:52:27Z",
+      "bounds": {
+        "minlat": 41.6070345,
+        "minlon": 2.3463864,
+        "maxlat": 41.6077164,
+        "maxlon": 2.3470087
+      },
+      "geometry": [
+        {
+          "lat": 41.6077164,
+          "lon": 2.3463864
+        },
+        {
+          "lat": 41.6076374,
+          "lon": 2.3464068
+        },
+        {
+          "lat": 41.6070345,
+          "lon": 2.3470087
+        }
+      ],
+      "tags": {
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1498166842,
+      "version": 2,
+      "timestamp": "2026-04-10T10:52:55Z",
+      "bounds": {
+        "minlat": 41.6085916,
+        "minlon": 2.3519182,
+        "maxlat": 41.6087852,
+        "maxlon": 2.3519848
+      },
+      "geometry": [
+        {
+          "lat": 41.6085916,
+          "lon": 2.3519501
+        },
+        {
+          "lat": 41.6086361,
+          "lon": 2.3519848
+        },
+        {
+          "lat": 41.608687,
+          "lon": 2.3519784
+        },
+        {
+          "lat": 41.6087667,
+          "lon": 2.3519684
+        },
+        {
+          "lat": 41.6087852,
+          "lon": 2.3519182
+        }
+      ],
+      "tags": {
+        "access": "no",
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 224020238,
+      "version": 4,
+      "timestamp": "2024-05-08T09:44:13Z",
+      "bounds": {
+        "minlat": 41.6116409,
+        "minlon": 2.3516992,
+        "maxlat": 41.6131061,
+        "maxlon": 2.3526027
+      },
+      "geometry": [
+        {
+          "lat": 41.6131061,
+          "lon": 2.3522782
+        },
+        {
+          "lat": 41.613058,
+          "lon": 2.3523778
+        },
+        {
+          "lat": 41.6130319,
+          "lon": 2.3524043
+        },
+        {
+          "lat": 41.6129864,
+          "lon": 2.3524214
+        },
+        {
+          "lat": 41.6129377,
+          "lon": 2.3524186
+        },
+        {
+          "lat": 41.6129039,
+          "lon": 2.3524017
+        },
+        {
+          "lat": 41.6128674,
+          "lon": 2.3523765
+        },
+        {
+          "lat": 41.6128415,
+          "lon": 2.3523349
+        },
+        {
+          "lat": 41.6127859,
+          "lon": 2.3521236
+        },
+        {
+          "lat": 41.6127515,
+          "lon": 2.3520208
+        },
+        {
+          "lat": 41.6127126,
+          "lon": 2.3519402
+        },
+        {
+          "lat": 41.6126719,
+          "lon": 2.3518807
+        },
+        {
+          "lat": 41.6126351,
+          "lon": 2.3518464
+        },
+        {
+          "lat": 41.6125878,
+          "lon": 2.351812
+        },
+        {
+          "lat": 41.6125355,
+          "lon": 2.3517862
+        },
+        {
+          "lat": 41.6124745,
+          "lon": 2.3517663
+        },
+        {
+          "lat": 41.6123401,
+          "lon": 2.3517529
+        },
+        {
+          "lat": 41.6118448,
+          "lon": 2.3516992
+        },
+        {
+          "lat": 41.6117388,
+          "lon": 2.3517097
+        },
+        {
+          "lat": 41.6116409,
+          "lon": 2.3517385
+        },
+        {
+          "lat": 41.6121686,
+          "lon": 2.3526027
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 302518065,
+      "version": 1,
+      "timestamp": "2014-09-08T22:30:54Z",
+      "bounds": {
+        "minlat": 41.6121296,
+        "minlon": 2.3525702,
+        "maxlat": 41.6123377,
+        "maxlon": 2.3528474
+      },
+      "geometry": [
+        {
+          "lat": 41.6121833,
+          "lon": 2.3525867
+        },
+        {
+          "lat": 41.6121686,
+          "lon": 2.3526027
+        },
+        {
+          "lat": 41.6121552,
+          "lon": 2.3526171
+        },
+        {
+          "lat": 41.6121366,
+          "lon": 2.3526584
+        },
+        {
+          "lat": 41.6121296,
+          "lon": 2.3527057
+        },
+        {
+          "lat": 41.612135,
+          "lon": 2.3527535
+        },
+        {
+          "lat": 41.6121522,
+          "lon": 2.3527959
+        },
+        {
+          "lat": 41.6121792,
+          "lon": 2.3528279
+        },
+        {
+          "lat": 41.6122127,
+          "lon": 2.3528458
+        },
+        {
+          "lat": 41.6122487,
+          "lon": 2.3528474
+        },
+        {
+          "lat": 41.612283,
+          "lon": 2.3528325
+        },
+        {
+          "lat": 41.6123093,
+          "lon": 2.352806
+        },
+        {
+          "lat": 41.6123282,
+          "lon": 2.3527699
+        },
+        {
+          "lat": 41.6123377,
+          "lon": 2.3527278
+        },
+        {
+          "lat": 41.6123369,
+          "lon": 2.3526838
+        },
+        {
+          "lat": 41.612326,
+          "lon": 2.3526422
+        },
+        {
+          "lat": 41.6123059,
+          "lon": 2.3526073
+        },
+        {
+          "lat": 41.6122787,
+          "lon": 2.3525825
+        },
+        {
+          "lat": 41.6122471,
+          "lon": 2.3525702
+        },
+        {
+          "lat": 41.6122142,
+          "lon": 2.3525716
+        },
+        {
+          "lat": 41.6121833,
+          "lon": 2.3525867
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1030800335,
+      "version": 2,
+      "timestamp": "2026-04-10T10:50:15Z",
+      "bounds": {
+        "minlat": 41.6085195,
+        "minlon": 2.3504752,
+        "maxlat": 41.6110577,
+        "maxlon": 2.353964
+      },
+      "geometry": [
+        {
+          "lat": 41.6110577,
+          "lon": 2.353964
+        },
+        {
+          "lat": 41.6109932,
+          "lon": 2.3538529
+        },
+        {
+          "lat": 41.6108815,
+          "lon": 2.3537333
+        },
+        {
+          "lat": 41.6108217,
+          "lon": 2.3536704
+        },
+        {
+          "lat": 41.6107597,
+          "lon": 2.3535997
+        },
+        {
+          "lat": 41.6107057,
+          "lon": 2.3535137
+        },
+        {
+          "lat": 41.6106529,
+          "lon": 2.3534369
+        },
+        {
+          "lat": 41.6105748,
+          "lon": 2.3533539
+        },
+        {
+          "lat": 41.6105266,
+          "lon": 2.3532879
+        },
+        {
+          "lat": 41.6104783,
+          "lon": 2.3532049
+        },
+        {
+          "lat": 41.6104324,
+          "lon": 2.3531235
+        },
+        {
+          "lat": 41.6103819,
+          "lon": 2.3530406
+        },
+        {
+          "lat": 41.6103486,
+          "lon": 2.3529899
+        },
+        {
+          "lat": 41.6103284,
+          "lon": 2.3529551
+        },
+        {
+          "lat": 41.6103049,
+          "lon": 2.3529146
+        },
+        {
+          "lat": 41.6102865,
+          "lon": 2.3528378
+        },
+        {
+          "lat": 41.610259,
+          "lon": 2.3527671
+        },
+        {
+          "lat": 41.6102452,
+          "lon": 2.3527364
+        },
+        {
+          "lat": 41.6102291,
+          "lon": 2.3526627
+        },
+        {
+          "lat": 41.6101866,
+          "lon": 2.3526274
+        },
+        {
+          "lat": 41.6101453,
+          "lon": 2.3525936
+        },
+        {
+          "lat": 41.6101074,
+          "lon": 2.3525582
+        },
+        {
+          "lat": 41.6100764,
+          "lon": 2.3525122
+        },
+        {
+          "lat": 41.6100591,
+          "lon": 2.3524523
+        },
+        {
+          "lat": 41.6100488,
+          "lon": 2.3523693
+        },
+        {
+          "lat": 41.6100327,
+          "lon": 2.3522925
+        },
+        {
+          "lat": 41.6099994,
+          "lon": 2.3522249
+        },
+        {
+          "lat": 41.6099604,
+          "lon": 2.3521543
+        },
+        {
+          "lat": 41.6098938,
+          "lon": 2.352079
+        },
+        {
+          "lat": 41.6098409,
+          "lon": 2.3520099
+        },
+        {
+          "lat": 41.6098065,
+          "lon": 2.3519515
+        },
+        {
+          "lat": 41.6097789,
+          "lon": 2.3518947
+        },
+        {
+          "lat": 41.6097513,
+          "lon": 2.3518332
+        },
+        {
+          "lat": 41.6097215,
+          "lon": 2.351761
+        },
+        {
+          "lat": 41.6097088,
+          "lon": 2.3517395
+        },
+        {
+          "lat": 41.6096985,
+          "lon": 2.3516427
+        },
+        {
+          "lat": 41.6096882,
+          "lon": 2.3515567
+        },
+        {
+          "lat": 41.6096618,
+          "lon": 2.3515122
+        },
+        {
+          "lat": 41.6095917,
+          "lon": 2.3514907
+        },
+        {
+          "lat": 41.6095458,
+          "lon": 2.3514922
+        },
+        {
+          "lat": 41.6095056,
+          "lon": 2.3514615
+        },
+        {
+          "lat": 41.6094527,
+          "lon": 2.3514492
+        },
+        {
+          "lat": 41.6094033,
+          "lon": 2.3514323
+        },
+        {
+          "lat": 41.6093459,
+          "lon": 2.3514031
+        },
+        {
+          "lat": 41.6092908,
+          "lon": 2.351377
+        },
+        {
+          "lat": 41.6092276,
+          "lon": 2.3513171
+        },
+        {
+          "lat": 41.6091622,
+          "lon": 2.3512618
+        },
+        {
+          "lat": 41.6091001,
+          "lon": 2.3511957
+        },
+        {
+          "lat": 41.6090312,
+          "lon": 2.3511128
+        },
+        {
+          "lat": 41.6089669,
+          "lon": 2.3510268
+        },
+        {
+          "lat": 41.6088946,
+          "lon": 2.3509315
+        },
+        {
+          "lat": 41.6088233,
+          "lon": 2.3508363
+        },
+        {
+          "lat": 41.608728,
+          "lon": 2.3507242
+        },
+        {
+          "lat": 41.6086786,
+          "lon": 2.350655
+        },
+        {
+          "lat": 41.608635,
+          "lon": 2.3505982
+        },
+        {
+          "lat": 41.6086005,
+          "lon": 2.3505521
+        },
+        {
+          "lat": 41.6085592,
+          "lon": 2.3505045
+        },
+        {
+          "lat": 41.6085195,
+          "lon": 2.3504752
+        }
+      ],
+      "tags": {
+        "highway": "path"
+      }
+    },
+    {
+      "type": "way",
+      "id": 180361523,
+      "version": 4,
+      "timestamp": "2024-09-09T08:34:42Z",
+      "bounds": {
+        "minlat": 41.6145997,
+        "minlon": 2.3462356,
+        "maxlat": 41.6155544,
+        "maxlon": 2.3468661
+      },
+      "geometry": [
+        {
+          "lat": 41.6155544,
+          "lon": 2.346555
+        },
+        {
+          "lat": 41.6154878,
+          "lon": 2.3468661
+        },
+        {
+          "lat": 41.6145997,
+          "lon": 2.3465316
+        },
+        {
+          "lat": 41.6146642,
+          "lon": 2.3462356
+        },
+        {
+          "lat": 41.6155544,
+          "lon": 2.346555
+        }
+      ],
+      "tags": {
+        "brand": "Nike",
+        "brand:wikidata": "Q483915",
+        "building": "yes",
+        "name": "Nike Factory Store",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "way",
+      "id": 517339545,
+      "version": 3,
+      "timestamp": "2025-12-18T17:59:07Z",
+      "bounds": {
+        "minlat": 41.6127757,
+        "minlon": 2.3495512,
+        "maxlat": 41.613054,
+        "maxlon": 2.3506191
+      },
+      "geometry": [
+        {
+          "lat": 41.6127757,
+          "lon": 2.3495512
+        },
+        {
+          "lat": 41.6128328,
+          "lon": 2.3496181
+        },
+        {
+          "lat": 41.6128857,
+          "lon": 2.3496758
+        },
+        {
+          "lat": 41.6129324,
+          "lon": 2.3497324
+        },
+        {
+          "lat": 41.6129703,
+          "lon": 2.3497995
+        },
+        {
+          "lat": 41.6129994,
+          "lon": 2.3498667
+        },
+        {
+          "lat": 41.6130214,
+          "lon": 2.3499468
+        },
+        {
+          "lat": 41.6130452,
+          "lon": 2.3500835
+        },
+        {
+          "lat": 41.6130531,
+          "lon": 2.3501861
+        },
+        {
+          "lat": 41.613054,
+          "lon": 2.3502485
+        },
+        {
+          "lat": 41.6130469,
+          "lon": 2.3503063
+        },
+        {
+          "lat": 41.6130276,
+          "lon": 2.3503722
+        },
+        {
+          "lat": 41.6129994,
+          "lon": 2.3504453
+        },
+        {
+          "lat": 41.6129641,
+          "lon": 2.3505184
+        },
+        {
+          "lat": 41.6129409,
+          "lon": 2.3506191
+        }
+      ],
+      "tags": {
+        "access": "private",
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1201623584,
+      "version": 1,
+      "timestamp": "2023-08-24T08:49:02Z",
+      "bounds": {
+        "minlat": 41.6152048,
+        "minlon": 2.347483,
+        "maxlat": 41.6154558,
+        "maxlon": 2.3475624
+      },
+      "geometry": [
+        {
+          "lat": 41.6154558,
+          "lon": 2.3475624
+        },
+        {
+          "lat": 41.6152048,
+          "lon": 2.347483
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1201623585,
+      "version": 1,
+      "timestamp": "2023-08-24T08:49:02Z",
+      "bounds": {
+        "minlat": 41.6150978,
+        "minlon": 2.3470979,
+        "maxlat": 41.6154878,
+        "maxlon": 2.3474137
+      },
+      "geometry": [
+        {
+          "lat": 41.6154878,
+          "lon": 2.3474137
+        },
+        {
+          "lat": 41.6151575,
+          "lon": 2.3472932
+        },
+        {
+          "lat": 41.6150978,
+          "lon": 2.3470979
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1201623586,
+      "version": 2,
+      "timestamp": "2023-10-12T05:26:20Z",
+      "bounds": {
+        "minlat": 41.6153981,
+        "minlon": 2.3463555,
+        "maxlat": 41.6173108,
+        "maxlon": 2.3488213
+      },
+      "geometry": [
+        {
+          "lat": 41.6157153,
+          "lon": 2.3463555
+        },
+        {
+          "lat": 41.6156854,
+          "lon": 2.3464947
+        },
+        {
+          "lat": 41.6154878,
+          "lon": 2.3474137
+        },
+        {
+          "lat": 41.6154558,
+          "lon": 2.3475624
+        },
+        {
+          "lat": 41.6153981,
+          "lon": 2.347831
+        },
+        {
+          "lat": 41.6154886,
+          "lon": 2.3481198
+        },
+        {
+          "lat": 41.6156819,
+          "lon": 2.3482931
+        },
+        {
+          "lat": 41.6158876,
+          "lon": 2.3483619
+        },
+        {
+          "lat": 41.6173108,
+          "lon": 2.3488213
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1214960458,
+      "version": 1,
+      "timestamp": "2023-10-12T05:26:20Z",
+      "bounds": {
+        "minlat": 41.6156854,
+        "minlon": 2.3464947,
+        "maxlat": 41.6176732,
+        "maxlon": 2.3488213
+      },
+      "geometry": [
+        {
+          "lat": 41.6156854,
+          "lon": 2.3464947
+        },
+        {
+          "lat": 41.6176616,
+          "lon": 2.3472561
+        },
+        {
+          "lat": 41.6176716,
+          "lon": 2.3472749
+        },
+        {
+          "lat": 41.6176732,
+          "lon": 2.3473084
+        },
+        {
+          "lat": 41.6173588,
+          "lon": 2.348791
+        },
+        {
+          "lat": 41.6173458,
+          "lon": 2.3488091
+        },
+        {
+          "lat": 41.6173278,
+          "lon": 2.3488205
+        },
+        {
+          "lat": 41.6173108,
+          "lon": 2.3488213
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1215226193,
+      "version": 1,
+      "timestamp": "2023-10-13T05:59:41Z",
+      "bounds": {
+        "minlat": 41.618231,
+        "minlon": 2.3466486,
+        "maxlat": 41.6185023,
+        "maxlon": 2.3474687
+      },
+      "geometry": [
+        {
+          "lat": 41.6185023,
+          "lon": 2.3466486
+        },
+        {
+          "lat": 41.6184562,
+          "lon": 2.3468631
+        },
+        {
+          "lat": 41.618404,
+          "lon": 2.3470455
+        },
+        {
+          "lat": 41.618231,
+          "lon": 2.3474687
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1215226194,
+      "version": 1,
+      "timestamp": "2023-10-13T05:59:41Z",
+      "bounds": {
+        "minlat": 41.6171966,
+        "minlon": 2.3465619,
+        "maxlat": 41.618404,
+        "maxlon": 2.3470455
+      },
+      "geometry": [
+        {
+          "lat": 41.6171966,
+          "lon": 2.3465619
+        },
+        {
+          "lat": 41.618404,
+          "lon": 2.3470455
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1215226195,
+      "version": 1,
+      "timestamp": "2023-10-13T05:59:41Z",
+      "bounds": {
+        "minlat": 41.6172395,
+        "minlon": 2.3463824,
+        "maxlat": 41.6184562,
+        "maxlon": 2.3468631
+      },
+      "geometry": [
+        {
+          "lat": 41.6172395,
+          "lon": 2.3463824
+        },
+        {
+          "lat": 41.6184562,
+          "lon": 2.3468631
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1215226196,
+      "version": 1,
+      "timestamp": "2023-10-13T05:59:41Z",
+      "bounds": {
+        "minlat": 41.6172832,
+        "minlon": 2.3461997,
+        "maxlat": 41.6185023,
+        "maxlon": 2.3466486
+      },
+      "geometry": [
+        {
+          "lat": 41.6172832,
+          "lon": 2.3461997
+        },
+        {
+          "lat": 41.6185023,
+          "lon": 2.3466486
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1460862492,
+      "version": 1,
+      "timestamp": "2025-12-23T22:03:36Z",
+      "bounds": {
+        "minlat": 41.6144548,
+        "minlon": 2.3474235,
+        "maxlat": 41.615463,
+        "maxlon": 2.3495213
+      },
+      "geometry": [
+        {
+          "lat": 41.6150221,
+          "lon": 2.3482545
+        },
+        {
+          "lat": 41.6149385,
+          "lon": 2.3479631
+        },
+        {
+          "lat": 41.6148277,
+          "lon": 2.3476658
+        },
+        {
+          "lat": 41.6146173,
+          "lon": 2.3474235
+        },
+        {
+          "lat": 41.6145314,
+          "lon": 2.3474405
+        },
+        {
+          "lat": 41.6144969,
+          "lon": 2.3474474
+        },
+        {
+          "lat": 41.6144548,
+          "lon": 2.3478194
+        },
+        {
+          "lat": 41.6145566,
+          "lon": 2.348135
+        },
+        {
+          "lat": 41.6147227,
+          "lon": 2.3484519
+        },
+        {
+          "lat": 41.6147787,
+          "lon": 2.3486542
+        },
+        {
+          "lat": 41.6148929,
+          "lon": 2.348872
+        },
+        {
+          "lat": 41.6149969,
+          "lon": 2.3489379
+        },
+        {
+          "lat": 41.6150156,
+          "lon": 2.3489498
+        },
+        {
+          "lat": 41.6151066,
+          "lon": 2.349005
+        },
+        {
+          "lat": 41.615463,
+          "lon": 2.3495213
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1460862493,
+      "version": 1,
+      "timestamp": "2025-12-23T22:03:36Z",
+      "bounds": {
+        "minlat": 41.6145802,
+        "minlon": 2.3486542,
+        "maxlat": 41.6173113,
+        "maxlon": 2.3502312
+      },
+      "geometry": [
+        {
+          "lat": 41.6147787,
+          "lon": 2.3486542
+        },
+        {
+          "lat": 41.6145802,
+          "lon": 2.3489232
+        },
+        {
+          "lat": 41.6146793,
+          "lon": 2.3491525
+        },
+        {
+          "lat": 41.6152685,
+          "lon": 2.3499441
+        },
+        {
+          "lat": 41.6154235,
+          "lon": 2.3501395
+        },
+        {
+          "lat": 41.6155213,
+          "lon": 2.3502176
+        },
+        {
+          "lat": 41.6156343,
+          "lon": 2.3502312
+        },
+        {
+          "lat": 41.6169678,
+          "lon": 2.3501446
+        },
+        {
+          "lat": 41.6170884,
+          "lon": 2.350097
+        },
+        {
+          "lat": 41.617279,
+          "lon": 2.3500469
+        },
+        {
+          "lat": 41.6173113,
+          "lon": 2.3500891
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1460862495,
+      "version": 1,
+      "timestamp": "2025-12-23T22:03:36Z",
+      "bounds": {
+        "minlat": 41.6142431,
+        "minlon": 2.3469899,
+        "maxlat": 41.6145314,
+        "maxlon": 2.3474405
+      },
+      "geometry": [
+        {
+          "lat": 41.6142431,
+          "lon": 2.3469899
+        },
+        {
+          "lat": 41.6144309,
+          "lon": 2.3472175
+        },
+        {
+          "lat": 41.6145314,
+          "lon": 2.3474405
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1460862497,
+      "version": 1,
+      "timestamp": "2025-12-23T22:03:36Z",
+      "bounds": {
+        "minlat": 41.6173113,
+        "minlon": 2.3500891,
+        "maxlat": 41.6173286,
+        "maxlon": 2.3502845
+      },
+      "geometry": [
+        {
+          "lat": 41.6173113,
+          "lon": 2.3500891
+        },
+        {
+          "lat": 41.6173179,
+          "lon": 2.3501686
+        },
+        {
+          "lat": 41.6173286,
+          "lon": 2.3502845
+        }
+      ],
+      "tags": {
+        "highway": "service"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 14905799,
+      "version": 2,
+      "timestamp": "2023-06-26T05:33:52Z",
+      "bounds": {
+        "minlat": 41.6069199,
+        "minlon": 2.3405983,
+        "maxlat": 41.6120085,
+        "maxlon": 2.3457964
+      },
+      "tags": {
+        "amenity": "parking",
+        "capacity": "850",
+        "name": "Parking la Roca Village",
+        "parking": "surface"
+      }
+    }
+  ]
+}
