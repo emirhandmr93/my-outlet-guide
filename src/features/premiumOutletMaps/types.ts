@@ -7,6 +7,7 @@ export type SpatialAccuracy =
   | "schematic-reference"
   | "open-data-verified"
   | "licensed-exact"
+  | "licensed-plan-exact"
   | "surveyed-exact";
 export type PremiumMapVerificationStatus = "draft" | "verified";
 export type PremiumMapDataLicense =
@@ -15,6 +16,7 @@ export type PremiumMapDataLicense =
   | "commercial-license"
   | "self-surveyed";
 export type PremiumMapStoreGeometryKind = "area" | "point";
+export type PremiumMapCoordinateBasis = "wgs84" | "operator-plan-affine";
 
 export const premiumMapPoiKinds = [
   "parking",
@@ -82,6 +84,12 @@ export type PremiumMapSource = {
   redistributionStatus: "reference-only" | "open-data-licensed" | "commercially-licensed" | "owned-survey";
   dataLicense: PremiumMapDataLicense;
   commercialReuseAllowed: boolean;
+  /**
+   * WGS84 means the source geometry is natively georeferenced. operator-plan-affine means an
+   * authorized vector plan is rendered through one uniform affine projection around the outlet
+   * centre; relative plan geometry is exact but it is not advertised as surveyed GPS geometry.
+   */
+  coordinateBasis?: PremiumMapCoordinateBasis;
   attribution?: string;
 };
 
