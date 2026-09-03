@@ -32,11 +32,13 @@ export function LocalHeroImageCard({
   const { width } = useWindowDimensions();
   const isDesktopResponsiveWeb =
     Platform.OS === "web" && responsiveWeb && width >= 1024;
+  const flattenedStyle = StyleSheet.flatten(style) as ViewStyle | undefined;
+  const shouldFill = fill ?? (typeof flattenedStyle?.flex === "number" && flattenedStyle.flex > 0);
   const content = (
     <View
       style={[
         styles.overlay,
-        fill && styles.fillOverlay,
+        shouldFill && styles.fillOverlay,
         isDesktopResponsiveWeb && styles.responsiveWebOverlay,
         overlayStyle,
       ]}
@@ -61,7 +63,7 @@ export function LocalHeroImageCard({
         <ImageBackground
           source={imageSource}
           resizeMode="cover"
-          style={[styles.image, fill && styles.fillImage]}
+          style={[styles.image, shouldFill && styles.fillImage]}
           imageStyle={styles.imageRadius}
           accessibilityIgnoresInvertColors
         >
