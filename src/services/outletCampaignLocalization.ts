@@ -16,6 +16,13 @@ const fieldLimits: Record<keyof CampaignDisplayText, number> = {
   discountLabel: 160,
 };
 
+const translatableFields: Array<Exclude<keyof CampaignDisplayText, "brandName">> = [
+  "headline",
+  "summary",
+  "conditions",
+  "discountLabel",
+];
+
 const chineseDiscountDigitValues: Record<string, number> = {
   零: 0,
   〇: 0,
@@ -28,6 +35,12 @@ const chineseDiscountDigitValues: Record<string, number> = {
   七: 7,
   八: 8,
   九: 9,
+};
+
+type CampaignEvidenceSignature = {
+  percentages: number[];
+  money: string[];
+  quantityFree: string[];
 };
 
 function readText(value: unknown, maxLength: number, allowEmpty = false): string | null {
@@ -52,7 +65,8 @@ function normalizePercentageCharacters(value: string): string {
     .replace(/[۰-۹]/g, digit => String(digit.charCodeAt(0) - 0x06f0))
     .replace(/[０-９]/g, digit => String(digit.charCodeAt(0) - 0xff10))
     .replace(/[％٪]/g, "%")
-    .replace(/．/g, ".");
+    .replace(/．/g, ".")
+    .replace(/，/g, ",");
 }
 
 function percentageTokens(value: string): number[] {
@@ -84,6 +98,71 @@ function percentageTokens(value: string): number[] {
   return [];
 }
 
+function normalizedAmount(value: string): string | null {
+  let compact = normalizePercentageCharacters(value).replace(/\s+/g, "");
+  if (!/^\d[\d.,]*$/.test(compact)) return null;
+  const comma = compact.lastIndexOf(",");
+  const dot = compact.lastIndexOf(".");
+  const separator = Math.max(comma, dot);
+  if (comma >= 0 && dot >= 0) {
+    const decimal = separator === comma ? "," : ".";
+    const thousands = decimal === "," ? "." : ",";
+    compact = compact.replace(new RegExp(`\\${thousands}`, "g"), "").replace(decimal, ".");
+  } else if (separator >= 0) {
+    const digitsAfter = compact.length - separator - 1;
+    const separatorCharacter = compact[separator];
+    compact = digitsAfter >= 1 && digitsAfter <= 2
+      ? compact.replace(separatorCharacter, ".")
+      : compact.replace(new RegExp(`\\${separatorCharacter}`, "g"), "");
+  }
+  const amount = Number(compact);
+  return Number.isFinite(amount) ? String(Math.round(amount * 100) / 100) : null;
+}
+
+function currencyAmountTokens(value: string): string[] {
+  const normalized = normalizePercentageCharacters(value).replace(/\u00a0/g, " ");
+  const amount = "(\\d{1,6}(?:[.,]\\d{3})*(?:[.,]\\d{1,2})?)";
+  const currencies: Array<[string, string]> = [
+    ["EUR", "(?:€|EUR)"],
+    ["GBP", "(?:£|GBP)"],
+    ["USD", "(?:\\$|USD)"],
+  ];
+  const tokens = new Set<string>();
+  for (const [code, currency] of currencies) {
+    for (const pattern of [
+      new RegExp(`${currency}\\s*${amount}`, "gi"),
+      new RegExp(`${amount}\\s*${currency}`, "gi"),
+    ]) {
+      for (const match of normalized.matchAll(pattern)) {
+        const parsed = normalizedAmount(match[1]);
+        if (parsed !== null) tokens.add(`${code}:${parsed}`);
+      }
+    }
+  }
+  return [...tokens].sort();
+}
+
+function quantityFreeTokens(value: string): string[] {
+  const normalized = normalizePercentageCharacters(value);
+  const freeWord = "(?:free|ücretsiz|gratis|gratuit(?:e)?|kostenlos|مجانا|مجاني|бесплатно|免费|免費)";
+  const tokens = new Set<string>();
+  const plusPattern = new RegExp(`\\b(\\d{1,2})\\s*\\+\\s*(\\d{1,2})\\s*(?:for\\s+)?${freeWord}(?=\\s|[.,;!?]|$)`, "giu");
+  for (const match of normalized.matchAll(plusPattern)) tokens.add(`${Number(match[1])}+${Number(match[2])}`);
+  return [...tokens].sort();
+}
+
+function campaignEvidenceSignature(value: string): CampaignEvidenceSignature {
+  return {
+    percentages: percentageTokens(value),
+    money: currencyAmountTokens(value),
+    quantityFree: quantityFreeTokens(value),
+  };
+}
+
+function preservesCampaignEvidence(source: string, translated: string): boolean {
+  return JSON.stringify(campaignEvidenceSignature(source)) === JSON.stringify(campaignEvidenceSignature(translated));
+}
+
 function safeLocalizedField(
   localized: Record<string, unknown>,
   field: keyof CampaignDisplayText,
@@ -91,8 +170,7 @@ function safeLocalizedField(
 ): string {
   const translated = readText(localized[field], fieldLimits[field], field === "conditions");
   if (translated === null) return englishValue;
-  if (field === "discountLabel"
-    && JSON.stringify(percentageTokens(translated)) !== JSON.stringify(percentageTokens(englishValue))) return englishValue;
+  if (field !== "brandName" && !preservesCampaignEvidence(englishValue, translated)) return englishValue;
   return translated;
 }
 
@@ -107,7 +185,7 @@ export function resolveCampaignDisplayText(
   const localized = localeValue as Record<string, unknown>;
   const localizedBrand = readText(localized.brandName, fieldLimits.brandName);
 
-  return {
+  const resolved: CampaignDisplayText = {
     brandName: english.brandName,
     headline: restoreBrandProperNoun(
       safeLocalizedField(localized, "headline", english.headline),
@@ -130,4 +208,9 @@ export function resolveCampaignDisplayText(
       english.brandName,
     ),
   };
+
+  for (const field of translatableFields) {
+    if (!preservesCampaignEvidence(english[field], resolved[field])) resolved[field] = english[field];
+  }
+  return resolved;
 }
