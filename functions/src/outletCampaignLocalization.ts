@@ -15,10 +15,9 @@ export const campaignTranslationLanguages = [
 ] as const;
 
 export const CAMPAIGN_TRANSLATION_PROVIDER = "google_cloud_translation_v3_nmt";
-export const CAMPAIGN_TRANSLATION_VERSION = 1;
+export const CAMPAIGN_TRANSLATION_VERSION = 2;
 
 export type CampaignTranslationLanguage = (typeof campaignTranslationLanguages)[number];
-
 type TranslatedCampaignLanguage = Exclude<CampaignTranslationLanguage, "en">;
 
 export type CampaignLocalizedText = {
@@ -50,6 +49,7 @@ const translatedLanguages = campaignTranslationLanguages.filter(
   (language): language is TranslatedCampaignLanguage => language !== "en",
 );
 const textFields = ["brandName", "headline", "summary", "conditions", "discountLabel"] as const;
+const translatableFields = ["headline", "summary", "conditions", "discountLabel"] as const;
 const fieldLimits: Record<(typeof textFields)[number], number> = {
   brandName: 160,
   headline: 200,
@@ -102,6 +102,15 @@ function normalizeText(value: unknown, maxLength: number, allowEmpty = false): s
   return normalized;
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function restoreBrandProperNoun(value: string, translatedBrand: string, sourceBrand: string): string {
+  if (!value || !translatedBrand || translatedBrand === sourceBrand) return value;
+  return value.replace(new RegExp(escapeRegExp(translatedBrand), "gi"), sourceBrand);
+}
+
 function normalizePercentageCharacters(value: string): string {
   return value
     .replace(/[٠-٩]/g, digit => String(digit.charCodeAt(0) - 0x0660))
@@ -118,9 +127,6 @@ function percentageTokens(value: string): number[] {
     .filter(Number.isFinite);
   if (explicitPercentages.length > 0) return explicitPercentages.sort((left, right) => left - right);
 
-  // Simplified Chinese commonly renders “70% off” as “3折”, meaning the
-  // customer pays 30% of the original price. Convert 折 notation back to the
-  // equivalent percent-off evidence before comparing with the English source.
   const zheDiscounts = [...normalized.matchAll(/(\d{1,2}(?:\.\d+)?)\s*折/g)]
     .map(match => Number(match[1]))
     .filter(zhe => Number.isFinite(zhe) && zhe >= 0 && zhe <= 10)
@@ -128,9 +134,6 @@ function percentageTokens(value: string): number[] {
     .filter(discount => discount >= 0 && discount <= 100);
   if (zheDiscounts.length > 0) return zheDiscounts.sort((left, right) => left - right);
 
-  // Google can also spell 折 discounts with Chinese numerals. For example,
-  // “额外五折优惠” means an additional 50% discount. Two written digits such
-  // as 八五折 mean 8.5折 (the customer pays 85%, i.e. 15% off).
   const writtenZheDiscounts = [...normalized.matchAll(/([零〇一二三四五六七八九])([零〇一二三四五六七八九])?\s*折/g)]
     .map(match => {
       const first = chineseDiscountDigitValues[match[1]];
@@ -142,10 +145,7 @@ function percentageTokens(value: string): number[] {
     .filter(discount => discount >= 0 && discount <= 100);
   if (writtenZheDiscounts.length > 0) return writtenZheDiscounts.sort((left, right) => left - right);
 
-  // “50% off” is also commonly localized as 半价/半價 (half price), 对折/對折,
-  // or wording that the price is halved. These all preserve 50%-off evidence.
   if (/(?:半价|半價|对折|對折|价格减半|價格減半|价钱减半|價錢減半)/.test(normalized)) return [50];
-
   return [];
 }
 
@@ -173,13 +173,15 @@ function parseLocalizedText(value: unknown, english: CampaignLocalizedText): Cam
     conditions: normalizeText(record.conditions, fieldLimits.conditions, true),
     discountLabel: normalizeText(record.discountLabel, fieldLimits.discountLabel),
   };
-  if (!parsed.brandName || !parsed.headline || !parsed.summary || parsed.conditions === null
-    || !parsed.discountLabel || !preservesDiscountEvidence(english.discountLabel, parsed.discountLabel)) return null;
+  if (!parsed.brandName || parsed.brandName !== english.brandName || !parsed.headline || !parsed.summary
+    || parsed.conditions === null || !parsed.discountLabel
+    || !preservesDiscountEvidence(english.discountLabel, parsed.discountLabel)) return null;
   return parsed as CampaignLocalizedText;
 }
 
 function translationValidationFailure(value: CampaignLocalizedText, english: CampaignLocalizedText): string {
   if (!normalizeText(value.brandName, fieldLimits.brandName)) return "translation_validation_failed:brandName";
+  if (value.brandName !== english.brandName) return "translation_validation_failed:brandNameChanged";
   if (!normalizeText(value.headline, fieldLimits.headline)) return "translation_validation_failed:headline";
   if (!normalizeText(value.summary, fieldLimits.summary)) return "translation_validation_failed:summary";
   if (normalizeText(value.conditions, fieldLimits.conditions, true) === null) return "translation_validation_failed:conditions";
@@ -301,6 +303,15 @@ export async function buildCampaignLocalization(
       if (translatedValues.length !== populatedFields.length) throw new Error("translation_response_length_mismatch");
       const candidate: CampaignLocalizedText = { ...english };
       populatedFields.forEach((field, index) => { candidate[field] = translatedValues[index] ?? ""; });
+
+      const translatedBrand = candidate.brandName;
+      candidate.brandName = english.brandName;
+      if (translatedBrand && translatedBrand !== english.brandName) {
+        translatableFields.forEach(field => {
+          candidate[field] = restoreBrandProperNoun(candidate[field], translatedBrand, english.brandName);
+        });
+      }
+
       const parsed = parseLocalizedText(candidate, english);
       if (!parsed) throw new Error(translationValidationFailure(candidate, english));
       localizedText[language] = parsed;

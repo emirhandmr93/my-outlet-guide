@@ -18,6 +18,7 @@ export function LocalHeroImageCard({
   contentStyle,
   overlayStyle,
   responsiveWeb,
+  fill,
   style,
 }: {
   children: React.ReactNode;
@@ -25,15 +26,19 @@ export function LocalHeroImageCard({
   contentStyle?: StyleProp<ViewStyle>;
   overlayStyle?: StyleProp<ViewStyle>;
   responsiveWeb?: boolean;
+  fill?: boolean;
   style?: StyleProp<ViewStyle>;
 }) {
   const { width } = useWindowDimensions();
   const isDesktopResponsiveWeb =
     Platform.OS === "web" && responsiveWeb && width >= 1024;
+  const flattenedStyle = StyleSheet.flatten(style) as ViewStyle | undefined;
+  const shouldFill = fill ?? (typeof flattenedStyle?.flex === "number" && flattenedStyle.flex > 0);
   const content = (
     <View
       style={[
         styles.overlay,
+        shouldFill && styles.fillOverlay,
         isDesktopResponsiveWeb && styles.responsiveWebOverlay,
         overlayStyle,
       ]}
@@ -58,7 +63,7 @@ export function LocalHeroImageCard({
         <ImageBackground
           source={imageSource}
           resizeMode="cover"
-          style={styles.image}
+          style={[styles.image, shouldFill && styles.fillImage]}
           imageStyle={styles.imageRadius}
           accessibilityIgnoresInvertColors
         >
@@ -78,6 +83,9 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
   },
+  fillImage: {
+    flex: 1,
+  },
   imageRadius: {
     borderRadius: 30,
   },
@@ -88,6 +96,9 @@ const styles = StyleSheet.create({
   overlay: {
     backgroundColor: "rgba(11,31,58,0.68)",
     minHeight: 156,
+  },
+  fillOverlay: {
+    flex: 1,
   },
   responsiveWebOverlay: {
     backgroundColor: "rgba(11,31,58,0.61)",

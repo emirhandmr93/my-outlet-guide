@@ -37,6 +37,15 @@ function readText(value: unknown, maxLength: number, allowEmpty = false): string
   return normalized;
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function restoreBrandProperNoun(value: string, localizedBrand: string | null, sourceBrand: string): string {
+  if (!value || !localizedBrand || localizedBrand === sourceBrand) return value;
+  return value.replace(new RegExp(escapeRegExp(localizedBrand), "gi"), sourceBrand);
+}
+
 function normalizePercentageCharacters(value: string): string {
   return value
     .replace(/[٠-٩]/g, digit => String(digit.charCodeAt(0) - 0x0660))
@@ -72,7 +81,6 @@ function percentageTokens(value: string): number[] {
   if (writtenZheDiscounts.length > 0) return writtenZheDiscounts.sort((left, right) => left - right);
 
   if (/(?:半价|半價|对折|對折|价格减半|價格減半|价钱减半|價錢減半)/.test(normalized)) return [50];
-
   return [];
 }
 
@@ -97,11 +105,29 @@ export function resolveCampaignDisplayText(
   const localeValue = (localizedText as Record<string, unknown>)[language];
   if (!localeValue || typeof localeValue !== "object" || Array.isArray(localeValue)) return english;
   const localized = localeValue as Record<string, unknown>;
+  const localizedBrand = readText(localized.brandName, fieldLimits.brandName);
+
   return {
-    brandName: safeLocalizedField(localized, "brandName", english.brandName),
-    headline: safeLocalizedField(localized, "headline", english.headline),
-    summary: safeLocalizedField(localized, "summary", english.summary),
-    conditions: safeLocalizedField(localized, "conditions", english.conditions),
-    discountLabel: safeLocalizedField(localized, "discountLabel", english.discountLabel),
+    brandName: english.brandName,
+    headline: restoreBrandProperNoun(
+      safeLocalizedField(localized, "headline", english.headline),
+      localizedBrand,
+      english.brandName,
+    ),
+    summary: restoreBrandProperNoun(
+      safeLocalizedField(localized, "summary", english.summary),
+      localizedBrand,
+      english.brandName,
+    ),
+    conditions: restoreBrandProperNoun(
+      safeLocalizedField(localized, "conditions", english.conditions),
+      localizedBrand,
+      english.brandName,
+    ),
+    discountLabel: restoreBrandProperNoun(
+      safeLocalizedField(localized, "discountLabel", english.discountLabel),
+      localizedBrand,
+      english.brandName,
+    ),
   };
 }
