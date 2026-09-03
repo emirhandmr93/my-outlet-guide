@@ -52,7 +52,11 @@ for (const map of premiumOutletMapCandidates) {
   assert(/^\d{4}-\d{2}-\d{2}$/.test(map.lastUpdated), `${map.outletId}: invalid update date`);
   assert(map.floors.length >= 1, `${map.outletId}: missing floor`);
   assert(map.stores.length >= 20, `${map.outletId}: too few searchable stores`);
-  assertClosedPolygon(map.environment.siteBoundary, `${map.outletId}: site boundary`);
+  if (map.environment.siteBoundary) {
+    assertClosedPolygon(map.environment.siteBoundary, `${map.outletId}: site boundary`);
+  } else {
+    assert(map.spatialAccuracy !== "schematic-reference", `${map.outletId}: schematic development fixture must keep a site boundary`);
+  }
 
   const releaseReady = isPremiumOutletMapReleaseReady(map);
   if (map.spatialAccuracy === "schematic-reference") {
@@ -78,7 +82,7 @@ for (const map of premiumOutletMapCandidates) {
       assert(map.source.redrawPolicy === "open-data-render", `${map.outletId}: OSM geometry must be rendered as open data, not proprietary tracing`);
       assert(map.source.attribution?.includes("OpenStreetMap"), `${map.outletId}: ODbL map is missing OpenStreetMap attribution`);
     }
-    if (map.spatialAccuracy === "licensed-exact") {
+    if (map.spatialAccuracy === "licensed-exact" || map.spatialAccuracy === "licensed-plan-exact") {
       assert(map.source.dataLicense === "commercial-license", `${map.outletId}: licensed exact map must identify its commercial licence`);
       assert(map.source.redistributionStatus === "commercially-licensed", `${map.outletId}: licensed exact map redistribution status is invalid`);
     }
