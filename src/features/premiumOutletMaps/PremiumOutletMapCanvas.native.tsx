@@ -90,9 +90,15 @@ export function PremiumOutletMapCanvas({
   ), [areaStores, selectedStoreId]);
 
   const environment = map.environment;
-  const siteData = useMemo(() => featureCollection([{
-    type: "Feature", geometry: { type: "Polygon", coordinates: environment.siteBoundary }, properties: {},
-  } as GeoJSON.Feature]), [environment.siteBoundary]);
+  const siteData = useMemo(() => featureCollection(
+    environment.siteBoundary
+      ? [{
+          type: "Feature",
+          geometry: { type: "Polygon", coordinates: environment.siteBoundary },
+          properties: {},
+        } as GeoJSON.Feature]
+      : [],
+  ), [environment.siteBoundary]);
   const roadData = useMemo(() => featureCollection(environment.roads.map(coordinates => ({ type: "Feature", geometry: { type: "LineString", coordinates }, properties: {} } as GeoJSON.Feature))), [environment.roads]);
   const walkwayData = useMemo(() => featureCollection(environment.walkways.map(coordinates => ({ type: "Feature", geometry: { type: "LineString", coordinates }, properties: {} } as GeoJSON.Feature))), [environment.walkways]);
   const landscapeData = useMemo(() => featureCollection(environment.landscapeAreas.map(coordinates => ({ type: "Feature", geometry: { type: "Polygon", coordinates }, properties: {} } as GeoJSON.Feature))), [environment.landscapeAreas]);
