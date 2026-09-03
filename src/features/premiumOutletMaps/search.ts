@@ -1,3 +1,4 @@
+import { getBrandsForOutlet } from "../../services/brandService";
 import type { PremiumMapCampaign, PremiumMapStore } from "./types";
 
 export function normalizeMapSearch(value: string): string {
@@ -21,7 +22,21 @@ export function searchMapStores(stores: PremiumMapStore[], query: string, limit 
     .map(result => result.store);
 }
 
+export function resolveCampaignBrandIdForOutlet(outletId: string, campaignBrandName: string): string | undefined {
+  const normalizedCampaignName = normalizeMapSearch(campaignBrandName);
+  if (!normalizedCampaignName) return undefined;
+
+  const matches = getBrandsForOutlet(outletId).filter(brand =>
+    [brand.brandName, ...(brand.aliases ?? [])]
+      .map(normalizeMapSearch)
+      .some(candidate => candidate === normalizedCampaignName),
+  );
+
+  return matches.length === 1 ? matches[0]?.brandId : undefined;
+}
+
 export function campaignForStore(store: PremiumMapStore, campaigns: PremiumMapCampaign[]): PremiumMapCampaign | undefined {
-  const storeNames = [store.brandName, ...store.aliases].map(normalizeMapSearch);
-  return campaigns.find(campaign => storeNames.includes(normalizeMapSearch(campaign.brandName)));
+  return campaigns.find(campaign =>
+    campaign.outletId === store.outletId && campaign.brandId === store.brandId,
+  );
 }
