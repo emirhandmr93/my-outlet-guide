@@ -6,6 +6,7 @@ import { getBrandsForOutlet } from "../src/services/brandService";
 const root = process.cwd();
 const evidenceRoot = path.join(root, "docs", "premium-map-network-discovery");
 const outFile = path.join(root, "docs", "PREMIUM_MAP_MAPPEDIN_IMPORT_AUDIT.json");
+const unresolvedOutFile = path.join(root, "docs", "PREMIUM_MAP_MAPPEDIN_IMPORT_UNRESOLVED.json");
 
 const outletIds = [
   "bicester-village",
@@ -29,13 +30,13 @@ type LocationRecord = {
   nodes?: Array<{ map?: string; id?: string }>;
 };
 
-type SpaceFeature = {
+type MapFeature = {
   type?: string;
   geometry?: { type?: string; coordinates?: unknown };
   properties?: { id?: string; center?: [number, number] };
 };
 
-type SpaceCollection = { type?: string; features?: SpaceFeature[] };
+type MapCollection = { type?: string; features?: MapFeature[] };
 
 function normalize(value: string): string {
   return value
@@ -75,32 +76,40 @@ function findMvfRoot(outletId: string): string {
   return path.join(base, dirs[0]);
 }
 
+function loadFeatureIds(file: string): Set<string> {
+  const ids = new Set<string>();
+  const collection = readJson<MapCollection>(file);
+  for (const feature of collection.features ?? []) {
+    const id = feature.properties?.id;
+    if (id) ids.add(id);
+  }
+  return ids;
+}
+
 function loadSpaceIds(mvfRoot: string): Set<string> {
   const ids = new Set<string>();
   const dir = path.join(mvfRoot, "space");
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (!entry.isFile() || !entry.name.endsWith(".geojson")) continue;
-    const collection = readJson<SpaceCollection>(path.join(dir, entry.name));
-    for (const feature of collection.features ?? []) {
-      const id = feature.properties?.id;
-      if (id) ids.add(id);
-    }
+    for (const id of loadFeatureIds(path.join(dir, entry.name))) ids.add(id);
   }
   return ids;
 }
 
-function spatialIds(location: LocationRecord): string[] {
-  const values = [
+function spatialRefs(location: LocationRecord) {
+  const spaceIds = [
     ...(location.polygons ?? []).map(item => item.id),
     ...(location.spaces ?? []).map(item => item.id),
   ].filter((value): value is string => Boolean(value));
-  return [...new Set(values)];
+  const nodeIds = (location.nodes ?? []).map(item => item.id).filter((value): value is string => Boolean(value));
+  return { spaceIds: [...new Set(spaceIds)], nodeIds: [...new Set(nodeIds)] };
 }
 
 const results = outletIds.map(outletId => {
   const mvfRoot = findMvfRoot(outletId);
   const locations = readJson<LocationRecord[]>(path.join(mvfRoot, "enterprise", "locations.json"));
   const spaceIds = loadSpaceIds(mvfRoot);
+  const nodeIds = loadFeatureIds(path.join(mvfRoot, "node.geojson"));
   const brands = getBrandsForOutlet(outletId);
   const tenantLocations = locations.filter(location => {
     const type = normalize(location.type ?? "");
@@ -113,12 +122,16 @@ const results = outletIds.map(outletId => {
     const normalizedNames = new Set(names.map(normalize));
     const exact = tenantLocations.filter(location => normalizedNames.has(normalize(location.name ?? "")));
     const ranked = tenantLocations
-      .map(location => ({
-        id: location.id ?? null,
-        name: location.name ?? "",
-        score: Math.max(...names.map(name => jaccard(name, location.name ?? ""))),
-        spatialIds: spatialIds(location),
-      }))
+      .map(location => {
+        const refs = spatialRefs(location);
+        return {
+          id: location.id ?? null,
+          name: location.name ?? "",
+          score: Math.max(...names.map(name => jaccard(name, location.name ?? ""))),
+          spaceIds: refs.spaceIds,
+          nodeIds: refs.nodeIds,
+        };
+      })
       .filter(item => item.score > 0)
       .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name))
       .slice(0, 5);
@@ -129,17 +142,25 @@ const results = outletIds.map(outletId => {
       claims.push(brand.brandId);
       claimedLocationIds.set(resolved.id, claims);
     }
-    const resolvedSpatialIds = resolved ? spatialIds(resolved) : [];
-    const missingSpaceIds = resolvedSpatialIds.filter(id => !spaceIds.has(id));
+    const refs = resolved ? spatialRefs(resolved) : { spaceIds: [], nodeIds: [] };
+    const validSpaceIds = refs.spaceIds.filter(id => spaceIds.has(id));
+    const validNodeIds = refs.nodeIds.filter(id => nodeIds.has(id));
+    const hasSpatialEvidence = validSpaceIds.length > 0 || validNodeIds.length > 0;
 
     return {
       brandId: brand.brandId,
       brandName: brand.brandName,
       aliases: brand.aliases ?? [],
-      status: resolved ? (resolvedSpatialIds.length && !missingSpaceIds.length ? "resolved" : "resolved-without-valid-space") : exact.length > 1 ? "ambiguous-exact" : "unresolved",
-      exactMatches: exact.map(location => ({ id: location.id ?? null, name: location.name ?? "", spatialIds: spatialIds(location) })),
+      status: resolved
+        ? hasSpatialEvidence ? "resolved" : "resolved-without-valid-spatial-reference"
+        : exact.length > 1 ? "ambiguous-exact" : "unresolved",
+      exactMatches: exact.map(location => {
+        const matchRefs = spatialRefs(location);
+        return { id: location.id ?? null, name: location.name ?? "", ...matchRefs };
+      }),
       suggestions: ranked,
-      missingSpaceIds,
+      validSpaceIds,
+      validNodeIds,
     };
   });
 
@@ -155,6 +176,7 @@ const results = outletIds.map(outletId => {
     tenantLocationCount: tenantLocations.length,
     amenityLocationCount: locations.length - tenantLocations.length,
     spaceCount: spaceIds.size,
+    nodeCount: nodeIds.size,
     canonicalBrandCount: brands.length,
     resolvedBrandCount: resolved,
     unresolvedBrandCount: brands.length - resolved,
@@ -172,5 +194,25 @@ const summary = {
   unresolvedBrandCount: results.reduce((sum, result) => sum + result.unresolvedBrandCount, 0),
 };
 
-fs.writeFileSync(outFile, `${JSON.stringify({ schemaVersion: 1, generatedAt: new Date().toISOString(), summary, results }, null, 2)}\n`, "utf8");
+const unresolved = results.map(result => ({
+  outletId: result.outletId,
+  canonicalBrandCount: result.canonicalBrandCount,
+  resolvedBrandCount: result.resolvedBrandCount,
+  unresolvedBrandCount: result.unresolvedBrandCount,
+  brands: result.brands
+    .filter(item => item.status !== "resolved")
+    .map(item => ({
+      brandId: item.brandId,
+      brandName: item.brandName,
+      aliases: item.aliases,
+      status: item.status,
+      exactMatches: item.exactMatches,
+      suggestions: item.suggestions.slice(0, 3),
+      validSpaceIds: item.validSpaceIds,
+      validNodeIds: item.validNodeIds,
+    })),
+}));
+
+fs.writeFileSync(outFile, `${JSON.stringify({ schemaVersion: 2, generatedAt: new Date().toISOString(), summary, results }, null, 2)}\n`, "utf8");
+fs.writeFileSync(unresolvedOutFile, `${JSON.stringify({ schemaVersion: 1, generatedAt: new Date().toISOString(), summary, unresolved }, null, 2)}\n`, "utf8");
 console.log(JSON.stringify(summary, null, 2));
