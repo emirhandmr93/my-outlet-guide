@@ -120,18 +120,18 @@ function normalizedAmount(value: string): string | null {
 }
 
 function currencyAmountTokens(value: string): string[] {
-  const normalized = normalizePercentageCharacters(value).replace(/\u00a0/g, " ");
-  const amount = "(\\d{1,6}(?:[.,]\\d{3})*(?:[.,]\\d{1,2})?)";
+  const normalized = normalizePercentageCharacters(value).replace(/[\u00a0\u202f]/g, " ");
+  const amount = "(\\d{1,3}(?:[\\s.,]\\d{3})+(?:[.,]\\d{1,2})?|\\d{1,6}(?:[.,]\\d{1,2})?)";
   const currencies: Array<[string, string]> = [
-    ["EUR", "(?:€|EUR)"],
-    ["GBP", "(?:£|GBP)"],
-    ["USD", "(?:\\$|USD)"],
+    ["EUR", "(?:€|EUR|euros?|avro|يورو|евро|欧元|歐元)"],
+    ["GBP", "(?:£|GBP|pounds?(?:\\s+sterling)?|sterling|livres?\\s+sterling|libras?\\s+esterlinas?|Pfund|جنيه(?:ات)?\\s+إسترليني(?:ة)?|фунт(?:а|ов)?\\s+стерлингов|英镑|英鎊)"],
+    ["USD", "(?:US\\$|\\$|USD|dollars?|dólares?|dolares?|dolar|دولار(?:ات)?|доллар(?:а|ов)?|美元)"],
   ];
   const tokens = new Set<string>();
   for (const [code, currency] of currencies) {
     for (const pattern of [
-      new RegExp(`${currency}\\s*${amount}`, "gi"),
-      new RegExp(`${amount}\\s*${currency}`, "gi"),
+      new RegExp(`${currency}\\s*${amount}`, "giu"),
+      new RegExp(`${amount}\\s*${currency}`, "giu"),
     ]) {
       for (const match of normalized.matchAll(pattern)) {
         const parsed = normalizedAmount(match[1]);
