@@ -1,12 +1,38 @@
 import assert from "node:assert/strict";
 
-import { parseOfficialCampaignPage } from "../functions/src/outletCampaignParser";
-import { officialCampaignSources } from "../functions/src/outletCampaignSources";
+import {
+  extractOfficialCampaignCandidates,
+  parseOfficialCampaignPage,
+} from "../functions/src/outletCampaignParser";
+import {
+  campaignCandidatePrefixesForListing,
+  officialCampaignSources,
+} from "../functions/src/outletCampaignSources";
+
+assert.equal(officialCampaignSources.length, 22, "All 22 approved outlets must remain in campaign tracking.");
+for (const source of officialCampaignSources) {
+  assert(source.listingUrls.length > 0, `${source.outletId}: at least one official listing is required.`);
+  for (const listingUrl of source.listingUrls) {
+    assert(campaignCandidatePrefixesForListing(source, listingUrl).length > 0,
+      `${source.outletId}: every listing must have an explicit candidate discovery scope.`);
+  }
+}
 
 const parndorf = officialCampaignSources.find(source => source.outletId === "designer-outlet-parndorf");
 assert(parndorf, "Designer Outlet Parndorf campaign source is required.");
 
 const adidasUrl = "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/offers/_back-to_adidas/";
+const dynamicListing = String.raw`
+  <script type="application/json">
+    {"offers":[{"brand":"adidas","url":"\/en\/outlets\/at\/designer-outlet-parndorf\/offers\/_back-to_adidas\/","copy":"1 - 14 September 2026 Buy 4 items and get 30% off"}]}
+  </script>
+`;
+const dynamicCandidates = extractOfficialCampaignCandidates(dynamicListing, parndorf.listingUrls[0], parndorf);
+assert(dynamicCandidates.some(candidate => candidate.sourceUrl === adidasUrl),
+  "McArthurGlen campaigns embedded in hydration JSON must be discovered, not only server-rendered anchors.");
+assert(dynamicCandidates.find(candidate => candidate.sourceUrl === adidasUrl)?.listingEvidence.includes("14 September 2026"),
+  "Hydration discovery must retain nearby official listing evidence for validation.");
+
 const adidas = parseOfficialCampaignPage(`
   <!doctype html><html><head>
     <title>adidas | Offers | Designer Outlet Parndorf | McArthurGlen</title>
@@ -72,4 +98,61 @@ if (splitBoundaries.status === "verified") {
   assert.equal(splitBoundaries.campaign.endsOn, "2026-09-12");
 }
 
-console.log("Live campaign parser regression checks passed.");
+const maasmechelen = officialCampaignSources.find(source => source.outletId === "maasmechelen-village");
+assert(maasmechelen, "Maasmechelen Village campaign source is required.");
+const selectedBrandUrl = "https://www.thebicestercollection.com/maasmechelen-village/en/brands/selected/";
+const bicesterOffersListing = `
+  <a href="/maasmechelen-village/en/brands/selected/">
+    Selected · 1 June - 31 December 2026 · 3 selected t-shirts for €30
+  </a>
+  <a href="/maasmechelen-village/en/whats-on/unrelated-event/">Unrelated whats-on link</a>
+`;
+const bicesterCandidates = extractOfficialCampaignCandidates(
+  bicesterOffersListing,
+  maasmechelen.listingUrls[0],
+  maasmechelen,
+);
+assert.deepEqual(bicesterCandidates.map(candidate => candidate.sourceUrl), [selectedBrandUrl],
+  "A Bicester offers listing must discover brand offer pages without bleeding into unrelated whats-on pages.");
+
+const selectedOffer = parseOfficialCampaignPage(`
+  <!doctype html><html><head>
+    <title>Selected | Maasmechelen Village</title>
+    <meta name="description" content="Discover Selected at Maasmechelen Village and shop outlet collections.">
+  </head><body>
+    <h1>Selected - Maasmechelen Village</h1>
+    <p>Discover the boutique and current collections.</p>
+    <h2>Latest Offers</h2>
+    <p>1 June - 31 December 2026</p>
+    <p>3 selected t-shirts for €30</p>
+    <p>Terms and conditions apply while stocks last.</p>
+    <h2>Recently seen</h2>
+    <p>Unrelated product content.</p>
+  </body></html>
+`, selectedBrandUrl, maasmechelen,
+  "Selected 1 June - 31 December 2026 3 selected t-shirts for €30");
+assert.equal(selectedOffer.status, "verified",
+  "The Bicester Collection brand pages must publish a dated Latest Offers block as a campaign.");
+if (selectedOffer.status === "verified") {
+  assert.equal(selectedOffer.campaign.brandName, "Selected");
+  assert.equal(selectedOffer.campaign.startsOn, "2026-06-01");
+  assert.equal(selectedOffer.campaign.endsOn, "2026-12-31");
+  assert.match(selectedOffer.campaign.discountLabel, /3 selected t-shirts for €30/i);
+}
+
+const freeOffer = parseOfficialCampaignPage(`
+  <!doctype html><html><head>
+    <title>Rituals | Maasmechelen Village</title>
+    <meta name="description" content="Discover Rituals at Maasmechelen Village and shop outlet collections.">
+  </head><body>
+    <h1>Rituals - Maasmechelen Village</h1>
+    <h2>Latest Offers</h2>
+    <p>1 September - 30 September 2026</p>
+    <p>Buy 6 + 3 free on selected products.</p>
+    <p>Terms and conditions apply.</p>
+  </body></html>
+`, "https://www.thebicestercollection.com/maasmechelen-village/en/brands/rituals/", maasmechelen);
+assert.equal(freeOffer.status, "verified", "Explicit quantity-plus-free offers must be recognized safely.");
+if (freeOffer.status === "verified") assert.equal(freeOffer.campaign.brandName, "Rituals");
+
+console.log("Live campaign parser regression checks passed: 22-source coverage, hydration discovery, McArthurGlen dates, and Bicester brand offers.");
