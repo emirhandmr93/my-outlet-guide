@@ -11,10 +11,22 @@ import {
 } from "../src/features/premiumOutletMaps/catalog";
 import { getPremiumMapCopy, poiLabels } from "../src/features/premiumOutletMaps/copy";
 import { campaignForStore, searchMapStores } from "../src/features/premiumOutletMaps/search";
-import { premiumMapPoiKinds } from "../src/features/premiumOutletMaps/types";
+import { premiumMapPoiKinds, type Polygon } from "../src/features/premiumOutletMaps/types";
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
+}
+
+function assertClosedPolygon(polygon: Polygon, label: string) {
+  const ring = polygon[0];
+  assert(Array.isArray(ring) && ring.length >= 4, `${label}: polygon requires at least four coordinates including closure`);
+  const first = ring[0];
+  const last = ring[ring.length - 1];
+  assert(first[0] === last[0] && first[1] === last[1], `${label}: polygon is not closed`);
+  for (const coordinate of ring) {
+    assert(Number.isFinite(coordinate[0]) && Number.isFinite(coordinate[1]), `${label}: polygon contains invalid coordinates`);
+    assert(coordinate[0] >= -180 && coordinate[0] <= 180 && coordinate[1] >= -90 && coordinate[1] <= 90, `${label}: polygon coordinate is out of range`);
+  }
 }
 
 const expectedIds = [
@@ -38,11 +50,7 @@ for (const map of premiumOutletMapCandidates) {
   assert(/^\d{4}-\d{2}-\d{2}$/.test(map.lastUpdated), `${map.outletId}: invalid update date`);
   assert(map.floors.length >= 1, `${map.outletId}: missing floor`);
   assert(map.stores.length >= 20, `${map.outletId}: too few searchable stores`);
-  assert(map.pois.length === premiumMapPoiKinds.length, `${map.outletId}: every POI kind is required`);
-  assert(new Set(map.pois.map(poi => poi.kind)).size === premiumMapPoiKinds.length, `${map.outletId}: duplicated or missing POI kind`);
-  assert(map.environment.siteBoundary[0]?.length === 5, `${map.outletId}: invalid site boundary`);
-  assert(map.environment.roads.length > 0 && map.environment.walkways.length > 0, `${map.outletId}: roads and walkways are required`);
-  assert(map.environment.landscapeAreas.length >= 4 && map.environment.trees.length >= 20, `${map.outletId}: premium landscape layer incomplete`);
+  assertClosedPolygon(map.environment.siteBoundary, `${map.outletId}: site boundary`);
 
   const releaseReady = isPremiumOutletMapReleaseReady(map);
   if (map.spatialAccuracy === "schematic-reference") {
@@ -50,29 +58,52 @@ for (const map of premiumOutletMapCandidates) {
     assert(map.verificationStatus === "draft", `${map.outletId}: schematic geometry cannot be marked verified`);
     assert(!map.source.commercialReuseAllowed, `${map.outletId}: proprietary reference data cannot be marked reusable`);
     assert(map.source.dataLicense === "proprietary-reference-only", `${map.outletId}: schematic reference source must remain reference-only`);
+    assert(map.pois.length === premiumMapPoiKinds.length, `${map.outletId}: schematic development fixture lost a POI kind`);
+    assert(new Set(map.pois.map(poi => poi.kind)).size === premiumMapPoiKinds.length, `${map.outletId}: schematic development POIs changed unexpectedly`);
+    assert(map.environment.roads.length > 0 && map.environment.walkways.length > 0, `${map.outletId}: schematic development roads/walkways missing`);
+    assert(map.environment.landscapeAreas.length >= 4 && map.environment.trees.length >= 20, `${map.outletId}: schematic development landscape fixture incomplete`);
   }
   if (releaseReady) {
     assert(map.verificationStatus === "verified", `${map.outletId}: released map must be verified`);
     assert(map.spatialAccuracy !== "schematic-reference", `${map.outletId}: released map must use exact verified geometry`);
+    assert(map.source.purpose === "spatial-data" || map.source.purpose === "survey-evidence", `${map.outletId}: released map source must provide spatial evidence`);
     assert(map.source.commercialReuseAllowed, `${map.outletId}: released map requires commercial reuse rights`);
     assert(map.source.redistributionStatus !== "reference-only", `${map.outletId}: released map cannot use reference-only source data`);
     assert(map.source.dataLicense !== "proprietary-reference-only", `${map.outletId}: released map requires reusable source data`);
-    if (map.source.dataLicense === "ODbL-1.0") {
+    if (map.spatialAccuracy === "open-data-verified") {
+      assert(map.source.dataLicense === "ODbL-1.0", `${map.outletId}: open-data verified map must identify its ODbL source`);
+      assert(map.source.redistributionStatus === "open-data-licensed", `${map.outletId}: OSM map must be marked open-data licensed`);
+      assert(map.source.redrawPolicy === "open-data-render", `${map.outletId}: OSM geometry must be rendered as open data, not proprietary tracing`);
       assert(map.source.attribution?.includes("OpenStreetMap"), `${map.outletId}: ODbL map is missing OpenStreetMap attribution`);
+    }
+    if (map.spatialAccuracy === "licensed-exact") {
+      assert(map.source.dataLicense === "commercial-license", `${map.outletId}: licensed exact map must identify its commercial licence`);
+      assert(map.source.redistributionStatus === "commercially-licensed", `${map.outletId}: licensed exact map redistribution status is invalid`);
     }
   }
 
   const activeRelations = outletBrands.filter(relation => relation.outletId === map.outletId && relation.relationStatus === "active");
   const mappedBrandIds = new Set(map.stores.map(store => store.brandId));
   for (const relation of activeRelations) assert(mappedBrandIds.has(relation.brandId), `${map.outletId}: active brand is not mapped: ${relation.brandId}`);
+  if (releaseReady) {
+    assert(mappedBrandIds.size === activeRelations.length, `${map.outletId}: released map must cover the complete active canonical brand directory exactly once`);
+    assert(map.stores.length === mappedBrandIds.size, `${map.outletId}: released map contains duplicate canonical store identities`);
+  }
   for (const floor of map.floors) {
     for (const language of supportedLanguageCodes) assert(Boolean(floor.label[language]), `${map.outletId}: ${floor.id} missing ${language} label`);
+  }
+  const poiIds = new Set<string>();
+  for (const poi of map.pois) {
+    assert(!poiIds.has(poi.id), `${map.outletId}: duplicated POI id: ${poi.id}`);
+    poiIds.add(poi.id);
+    assert(premiumMapPoiKinds.includes(poi.kind), `${map.outletId}: invalid POI kind: ${poi.kind}`);
+    assert(map.floors.some(floor => floor.id === poi.floorId), `${map.outletId}: POI uses unknown floor: ${poi.id}`);
+    assert(Number.isFinite(poi.coordinate[0]) && Number.isFinite(poi.coordinate[1]), `${map.outletId}: POI has invalid coordinate: ${poi.id}`);
   }
   for (const store of map.stores) {
     assert(store.outletId === map.outletId, `${map.outletId}: store is bound to wrong outlet: ${store.id}`);
     assert(map.floors.some(floor => floor.id === store.floorId), `${map.outletId}: invalid store floor: ${store.id}`);
-    assert(store.polygon[0]?.length === 5, `${map.outletId}: unclosed store rectangle: ${store.id}`);
-    assert(store.polygon[0]?.[0]?.[0] === store.polygon[0]?.[4]?.[0] && store.polygon[0]?.[0]?.[1] === store.polygon[0]?.[4]?.[1], `${map.outletId}: store polygon is not closed: ${store.id}`);
+    assertClosedPolygon(store.polygon, `${map.outletId}: ${store.id}`);
     assert(Boolean(store.openingHours), `${map.outletId}: missing opening hours: ${store.id}`);
     const exact = searchMapStores(map.stores, store.brandName);
     assert(exact.some(result => result.brandName === store.brandName), `${map.outletId}: exact brand search failed: ${store.brandName}`);
@@ -120,8 +151,19 @@ assert(nativeCanvas.includes('type="fill-extrusion"'), "Premium 3D building laye
 assert(nativeCanvas.includes("ViewAnnotation"), "Offline-safe native labels missing");
 assert(!nativeCanvas.includes('type="symbol"'), "Native labels must not depend on remote glyphs");
 assert(nativeCanvas.includes("poiLabels[poi.kind][language]"), "Localized native POI labels missing");
-assert(webCanvas.includes("normalizedStorePosition") && webCanvas.includes("onSelectStore(store)"), "Stable interactive web map preview missing");
-assert(!webCanvas.includes("@maplibre/maplibre-react-native"), "Web premium map preview must not load the native MapLibre module");
+assert(
+  webCanvas.includes("createProjection")
+    && webCanvas.includes("polygonLayout")
+    && webCanvas.includes("store.polygon")
+    && webCanvas.includes("focusCoordinate")
+    && webCanvas.includes("bearing")
+    && webCanvas.includes("lineSegments")
+    && webCanvas.includes("onSelectStore(store)"),
+  "Web premium map must render and focus the same exact geometry model as native",
+);
+assert(!webCanvas.includes("roadHorizontal") && !webCanvas.includes("walkwayHorizontal"), "Web exact renderer must not contain invented fixed roads or walkways");
+assert(!webCanvas.includes("slice(0, 90)"), "Web exact renderer must not silently omit stores from premium mode");
+assert(!webCanvas.includes("@maplibre/maplibre-react-native"), "Web premium map must not load the native MapLibre module");
 assert(screen.includes("searchMapStores") && screen.includes("setFloorId(store.floorId)") && screen.includes("setFocusSequence"), "Search-to-floor focus flow missing");
 assert(screen.includes("focusCoordinate={selectedStore?.center}"), "Selected store must drive map camera focus");
 assert(
@@ -150,4 +192,4 @@ assert(appNavigator.includes('<Stack.Screen name="PremiumOutletMap"')
   "Premium map screen must remain registered in root and desktop web navigators.");
 assert(offline.includes('premium-outlet-map:v1:'), "Versioned offline map cache missing");
 
-console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages, ${premiumMapPoiKinds.length} POI types. Schematic or non-reusable maps are blocked from production; campaign highlights require canonical IDs; ODbL attribution is visible.`);
+console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages. Exact maps support arbitrary closed polygons; missing POIs are omitted rather than fabricated; campaign highlights require canonical IDs; ODbL attribution is visible.`);
