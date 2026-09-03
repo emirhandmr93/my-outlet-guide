@@ -1,0 +1,147 @@
+{
+  "f_5cfa6515d7f2fb5b7d7eb168": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.157859954645991,
+            51.89164858981792
+          ]
+        },
+        "properties": {
+          "rotation": 24.006596188970036,
+          "visible": true,
+          "text": "A41",
+          "color": "#313131",
+          "fontFamily": "Droid Sans",
+          "fontSize": 6.903521131084929,
+          "align": "center",
+          "verticalOffset": 1.1692794078425335
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.1544567921447473,
+            51.892383339264015
+          ]
+        },
+        "properties": {
+          "rotation": 24.006596188970036,
+          "visible": true,
+          "text": "Pingle Drive",
+          "color": "#313131",
+          "fontFamily": "Droid Sans",
+          "fontSize": 6.903521131084929,
+          "align": "center",
+          "verticalOffset": 1.1692794078425335
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.1610055602985858,
+            51.89368882226913
+          ]
+        },
+        "properties": {
+          "rotation": 310.00659618897,
+          "visible": true,
+          "text": "Oxford Road",
+          "color": "#313131",
+          "fontFamily": "Droid Sans",
+          "fontSize": 6.903521131084929,
+          "align": "center",
+          "verticalOffset": 1.1692794078425335
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.152928772546134,
+            51.89208303745259
+          ]
+        },
+        "properties": {
+          "rotation": 0.00659618897003611,
+          "visible": true,
+          "text": "Bridge",
+          "color": "#000000",
+          "fontFamily": "myriad pro",
+          "fontSize": 2.301173710361643,
+          "align": "left",
+          "verticalOffset": 1.1692794078425335
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.1551314452717825,
+            51.89219299882141
+          ]
+        },
+        "properties": {
+          "geometryId": "s_6177e34ee39aa27e7b00046f",
+          "rotation": 23.825956188970054,
+          "visible": true,
+          "text": "Disabled Parking",
+          "color": "#000000",
+          "fontFamily": "myriad pro",
+          "fontSize": 2.301173710361643,
+          "align": "left"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.1572524744020358,
+            51.89277079063557
+          ]
+        },
+        "properties": {
+          "geometryId": "s_6177e391e39aa27e7b000471",
+          "rotation": 24.643626188970018,
+          "visible": true,
+          "text": "Disabled Parking",
+          "color": "#000000",
+          "fontFamily": "Droid Sans",
+          "fontSize": 2.301173710361643,
+          "align": "center"
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -1.1579377749046733,
+            51.89295510462278
+          ]
+        },
+        "properties": {
+          "geometryId": "s_6177e3f3e39aa27e7b000473",
+          "rotation": 23.72311618897004,
+          "visible": true,
+          "text": "Disabled Parking",
+          "color": "#000000",
+          "fontFamily": "Droid Sans",
+          "fontSize": 1.1505868551808216,
+          "align": "center"
+        }
+      }
+    ]
+  }
+}

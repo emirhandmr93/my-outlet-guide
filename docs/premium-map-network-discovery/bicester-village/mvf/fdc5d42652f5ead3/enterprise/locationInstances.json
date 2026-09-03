@@ -1,0 +1,74 @@
+[
+  {
+    "id": "eli_1cf283e6a6afffac",
+    "parent": "el_5d4996abface6200122d7e6e",
+    "name": "Lease 143",
+    "spaces": [
+      {
+        "floor": "f_5cfa6515d7f2fb5b7d7eb168",
+        "id": "s_050367e6e4d97c22"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5cfa6515d7f2fb5b7d7eb168",
+        "id": "n_6646398ba7dd141a701d33b8"
+      }
+    ],
+    "polygons": []
+  },
+  {
+    "id": "eli_729d760e1985eaac",
+    "parent": "el_62dfcf0a3397214498b0ce9b",
+    "name": "Lease 142",
+    "spaces": [
+      {
+        "floor": "f_5cfa6515d7f2fb5b7d7eb168",
+        "id": "s_5e5961334ab2feea"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5cfa6515d7f2fb5b7d7eb168",
+        "id": "n_5cfa860a28e6b90a8f000367"
+      }
+    ],
+    "polygons": []
+  },
+  {
+    "id": "eli_4d6a4cd4adeeee2f",
+    "parent": "el_6710d0b9d706b4b9fa1f2cd9",
+    "name": "Lease 3a",
+    "spaces": [
+      {
+        "floor": "f_5cfa6515d7f2fb5b7d7eb168",
+        "id": "s_73ec4ac586de907c"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5cfa6515d7f2fb5b7d7eb168",
+        "id": "n_5cfa832228e6b90a8f0002dd"
+      }
+    ],
+    "polygons": []
+  },
+  {
+    "id": "eli_03f6a52533fc3c5f",
+    "parent": "el_6a6c4c881ed2e7439ca7280f",
+    "name": "Lease 64",
+    "spaces": [
+      {
+        "floor": "f_5cfa6515d7f2fb5b7d7eb168",
+        "id": "s_ad2bbb398784ede3"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5cfa6515d7f2fb5b7d7eb168",
+        "id": "n_5cfa83f628e6b90a8f000310"
+      }
+    ],
+    "polygons": []
+  }
+]

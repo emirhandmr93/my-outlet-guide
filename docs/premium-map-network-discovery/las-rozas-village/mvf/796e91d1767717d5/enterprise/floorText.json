@@ -1,0 +1,87 @@
+{
+  "f_5d67417131894200135e375d": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.902130561395868,
+            40.51947408832113
+          ]
+        },
+        "properties": {
+          "rotation": 351.8595842902213,
+          "visible": true,
+          "text": "Calle Ramón y Cajal",
+          "color": "#000000",
+          "fontFamily": "myriad pro",
+          "fontSize": 4.309199352080251,
+          "align": "left",
+          "verticalOffset": 1.0923399861160055
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.8993397419028377,
+            40.518221923645804
+          ]
+        },
+        "properties": {
+          "rotation": 36.85958429022128,
+          "visible": true,
+          "text": "Calle Juan Ramón Jiménez",
+          "color": "#000000",
+          "fontFamily": "myriad pro",
+          "fontSize": 4.309199352080251,
+          "align": "left",
+          "verticalOffset": 1.0923399861160055
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.899261803102681,
+            40.51678831996036
+          ]
+        },
+        "properties": {
+          "rotation": 126.85958429022128,
+          "visible": true,
+          "text": "Calle Camilo Jose Cela",
+          "color": "#000000",
+          "fontFamily": "myriad pro",
+          "fontSize": 4.309199352080251,
+          "align": "left",
+          "verticalOffset": 1.0923399861160055
+        }
+      },
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            -3.9024192557443818,
+            40.51724328917965
+          ]
+        },
+        "properties": {
+          "rotation": 34.85958429022128,
+          "visible": true,
+          "text": "Calle Tracia",
+          "color": "#000000",
+          "fontFamily": "myriad pro",
+          "fontSize": 4.924799259520286,
+          "align": "left",
+          "verticalOffset": 1.0923399861160055
+        }
+      }
+    ]
+  }
+}

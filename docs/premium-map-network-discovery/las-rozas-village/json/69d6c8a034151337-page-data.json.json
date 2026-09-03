@@ -1,0 +1,1576 @@
+{
+  "componentChunkName": "component---src-templates-generic-page-template-t-13-js",
+  "path": "/las-rozas-village/en/careers/",
+  "result": {
+    "data": {
+      "page": {
+        "locale": "en",
+        "jsonLdSchema": null,
+        "content": [
+          {
+            "__typename": "ContentfulCompHeroHer01",
+            "ctaLabel": null,
+            "ctaUrl": null,
+            "eyebrow": "Careers",
+            "headline": "Come and live your story with us.",
+            "media": [
+              {
+                "__typename": "ContentfulCompVideoVid01",
+                "name": null,
+                "opacity": null,
+                "videoPortrait": "6335408347112",
+                "videoLandscape": "6335408347112",
+                "videoPlaceholder": {
+                  "altText": null,
+                  "portrait": {
+                    "gatsbyImageData": {
+                      "images": {
+                        "sources": [
+                          {
+                            "srcSet": "https://media.thebicestercollection.com/3z73vs69pqez/albW4uDFox664CxiqKxMp/78f8dfd717d42e9be1a7d642cc578cb3/600b8fed-a662-481f-a544-ddd0daa32436.png?w=750&h=422&q=80&fm=webp 750w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/albW4uDFox664CxiqKxMp/78f8dfd717d42e9be1a7d642cc578cb3/600b8fed-a662-481f-a544-ddd0daa32436.png?w=800&h=450&q=80&fm=webp 800w",
+                            "sizes": "100vw",
+                            "type": "image/webp"
+                          }
+                        ]
+                      },
+                      "layout": "fullWidth",
+                      "width": 1,
+                      "height": 0.5626666666666666,
+                      "placeholder": {
+                        "fallback": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALBAMAAACNJ7BwAAAAIVBMVEX7+/b7/Pf8+/f7+/f6+/b6/Pb8+/b6/Pf8+vb7+vb7/PblHsNEAAAAWElEQVQIHQXBsQ3CQBAEwEFeHpMhaORKOCGLCijgi3FA6JSMUpnhXqTONaSXshUvqZNLWtqs2cJcLQ+bYEh7y3AMp5uffB3MbSFpK80MuULzGXtDq2F//gGvpgwzFY8+3gAAAABJRU5ErkJggg=="
+                      }
+                    }
+                  },
+                  "landscape": {
+                    "gatsbyImageData": {
+                      "images": {
+                        "sources": [
+                          {
+                            "srcSet": "https://media.thebicestercollection.com/3z73vs69pqez/albW4uDFox664CxiqKxMp/78f8dfd717d42e9be1a7d642cc578cb3/600b8fed-a662-481f-a544-ddd0daa32436.png?w=750&h=422&q=80&fm=webp 750w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/albW4uDFox664CxiqKxMp/78f8dfd717d42e9be1a7d642cc578cb3/600b8fed-a662-481f-a544-ddd0daa32436.png?w=800&h=450&q=80&fm=webp 800w",
+                            "sizes": "100vw",
+                            "type": "image/webp"
+                          }
+                        ]
+                      },
+                      "layout": "fullWidth",
+                      "width": 1,
+                      "height": 0.5624,
+                      "placeholder": {
+                        "fallback": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALBAMAAACNJ7BwAAAAIVBMVEX7+/b7/Pf8+/f7+/f6+/b6/Pb8+/b6/Pf8+vb7+vb7/PblHsNEAAAAWElEQVQIHQXBsQ3CQBAEwEFeHpMhaORKOCGLCijgi3FA6JSMUpnhXqTONaSXshUvqZNLWtqs2cJcLQ+bYEh7y3AMp5uffB3MbSFpK80MuULzGXtDq2F//gGvpgwzFY8+3gAAAABJRU5ErkJggg=="
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "ContentfulCompBlockTextCtaBlk01",
+            "bodyCopyTextCta": null,
+            "cta1Label": null,
+            "cta1Url": null,
+            "cta2Label": null,
+            "cta2Url": null,
+            "eyebrow": null,
+            "headline": "Here at Las Rozas Village, we are passionate about providing our guests with exceptional service, delightful experiences and incredible memories."
+          },
+          {
+            "__typename": "ContentfulCompBlockFreeTextBlk02",
+            "textType": "generic",
+            "textContent": {
+              "childMarkdownRemark": {
+                "html": "<p>Las Rozas Village offers you a luxurious experience where hospitality is the main feature. To achieve this, we look for people with great skills who can meet the needs of customers in their best way.</p>\n<p>Here at Las Rozas Village, we are always looking for dynamic and talented people, who have a mind focused on the international world, who share the same passion as us for fashion, who aspire to reach the best of the best. By providing a stimulating environment and supporting the entire team, we offer employees the opportunity to develop their skills and be part of our diverse team.</p>\n<p>In each of the retail and hospitality positions in Las Rozas Village, you will become the ambassador of both the brand you work for and the Village itself. Every day you will be creating unique and memorable experiences that will captivate and delight our customers.</p>\n<p>It's you? Here you have the opportunity to love what you do and do what you love in a career with a world full of opportunities.</p>\n<p>If you would like additional information do not hesitate to contact the Las Rozas Village team at <a href=\"villagecareers@lasrozasvillage.com\"><a href=\"mailto:villagecareers@lasrozasvillage.com\">villagecareers@lasrozasvillage.com</a></a>.</p>"
+              }
+            }
+          },
+          {
+            "__typename": "ContentfulCompBlockTextCtaBlk01",
+            "bodyCopyTextCta": "Discover available Village vacancies and find your perfect role or create your profile on our recruitment platform to be informed of recruitment events, new opportunities and be contacted directly by brands.",
+            "cta1Label": "Check current vacancies",
+            "cta1Url": "https://villagecareers.thebicestercollection.com/las-rozas-careers",
+            "cta2Label": "Create my profile",
+            "cta2Url": "https://careers-lasrozas.icims.com/connect?back=intro&hashed=-435652285",
+            "eyebrow": null,
+            "headline": "Careers in the Village"
+          },
+          {
+            "__typename": "ContentfulCompPromoCopyCtaPro01",
+            "image": {
+              "altText": "Bicester Village Village HQ Careers Image Main",
+              "landscape": {
+                "gatsbyImageData": {
+                  "images": {
+                    "sources": [
+                      {
+                        "srcSet": "https://media.thebicestercollection.com/3z73vs69pqez/6mPAM9jj2PAxae4QMh5TGy/6eb053b00bcb68aa8c06d55eedeff3c8/BV_Landscape_1920x1080_Careers_HQ_Roles.jpg?w=240&h=163&q=80&fm=webp 240w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/6mPAM9jj2PAxae4QMh5TGy/6eb053b00bcb68aa8c06d55eedeff3c8/BV_Landscape_1920x1080_Careers_HQ_Roles.jpg?w=480&h=325&q=80&fm=webp 480w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/6mPAM9jj2PAxae4QMh5TGy/6eb053b00bcb68aa8c06d55eedeff3c8/BV_Landscape_1920x1080_Careers_HQ_Roles.jpg?w=960&h=650&q=80&fm=webp 960w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/6mPAM9jj2PAxae4QMh5TGy/6eb053b00bcb68aa8c06d55eedeff3c8/BV_Landscape_1920x1080_Careers_HQ_Roles.jpg?w=1920&h=1300&q=80&fm=webp 1920w",
+                        "sizes": "(min-width: 960px) 960px, 100vw",
+                        "type": "image/webp"
+                      }
+                    ]
+                  },
+                  "layout": "constrained",
+                  "width": 960,
+                  "height": 650,
+                  "placeholder": {
+                    "fallback": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAcBBQb/xAAmEAABAgYBAwUBAAAAAAAAAAACAQMABAUGERIxIUFhBxMUInGB/8QAFQEBAQAAAAAAAAAAAAAAAAAAAwT/xAAcEQACAgIDAAAAAAAAAAAAAAAAAQIREiEiMUH/2gAMAwEAAhEDEQA/ANJI1+WpFq4bFPksNuOiyJbFn3VREx+dvETULzkikTIX5pk1YN3dBJEAkTCCq64Re+PEKu1Jh4rmkDVwlIjLK556rDN9V5h0bErOrhJmWNcpz2iCEE9MtnKuhZ3JeN9nVDKgyU09Jajg25FHU2xhftjnPX+wRaW5U5xilADT5CO5LwnOywQ3FaxCpv0//9k="
+                  }
+                }
+              }
+            },
+            "headline": "Careers across the Collection",
+            "bodyCopy": {
+              "bodyCopy": "Looking for a career in flagship retail?"
+            },
+            "ctaCopy": "Learn more",
+            "ctaUrl": "https://jobs.thebicestercollection.com"
+          },
+          {
+            "__typename": "ContentfulCompPromoCopyCtaPro01",
+            "image": {
+              "altText": null,
+              "landscape": {
+                "gatsbyImageData": {
+                  "images": {
+                    "sources": [
+                      {
+                        "srcSet": "https://media.thebicestercollection.com/3z73vs69pqez/4FgBdkj7keIv6oab8SpEcg/0d4863322d3779e071cc81783e5e145c/BV_Landscape_1920x1080_Careers_Multilinguial.jpg?w=240&h=163&q=80&fm=webp 240w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/4FgBdkj7keIv6oab8SpEcg/0d4863322d3779e071cc81783e5e145c/BV_Landscape_1920x1080_Careers_Multilinguial.jpg?w=480&h=325&q=80&fm=webp 480w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/4FgBdkj7keIv6oab8SpEcg/0d4863322d3779e071cc81783e5e145c/BV_Landscape_1920x1080_Careers_Multilinguial.jpg?w=960&h=650&q=80&fm=webp 960w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/4FgBdkj7keIv6oab8SpEcg/0d4863322d3779e071cc81783e5e145c/BV_Landscape_1920x1080_Careers_Multilinguial.jpg?w=1920&h=1300&q=80&fm=webp 1920w",
+                        "sizes": "(min-width: 960px) 960px, 100vw",
+                        "type": "image/webp"
+                      }
+                    ]
+                  },
+                  "layout": "constrained",
+                  "width": 960,
+                  "height": 650,
+                  "placeholder": {
+                    "fallback": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAALABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAYHAf/EACIQAAEEAgEFAQEAAAAAAAAAAAECAwQRAAUxBgcSEyEzsf/EABYBAQEBAAAAAAAAAAAAAAAAAAMAAf/EABkRAAMBAQEAAAAAAAAAAAAAAAABAiEDUf/aAAwDAQACEQMRAD8Ak+s6nYi69evRGjqd9XmZCrUpKibKUX8Sasf3GTvBrNN0/A08Z7X+UiVCW9dVQqmyVXzzxkyjtoMhIKQQbu/t8Y2dSRGXe1j2xe9js1vaNRUOuOKUUNeoq8BZoC/tDBXBLUynJc+k/jfiLwzGfzGGOYf/2Q=="
+                  }
+                }
+              }
+            },
+            "headline": "Utilise your language skills",
+            "bodyCopy": {
+              "bodyCopy": "We're looking for friendly, engaging multilingual speakers to join the boutique teams. Check out the roles and apply directly."
+            },
+            "ctaCopy": "Apply now",
+            "ctaUrl": "https://villagecareers.thebicestercollection.com/las-rozas-careers"
+          },
+          {
+            "__typename": "ContentfulCompQuoteQuo01",
+            "copy": "The Bicester Collection is blessed with great talent, a journey that is at its beginning and the flexibility to be agile in the global race for relevance.",
+            "authorName": "Scott Malkin",
+            "authorTitle": "Chairman"
+          }
+        ],
+        "village": {
+          "name": "Las Rozas Village",
+          "code": "LZV",
+          "villageSlug": "las-rozas-village",
+          "currency": "EUR",
+          "servicesHeader": {
+            "navigation": {
+              "navItems": [
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "label": "Shopping Express",
+                  "link": "bookings/shopping-express",
+                  "external": false
+                },
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "label": "Gift Card",
+                  "link": "bookings/gift-card",
+                  "external": false
+                },
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "label": "Chauffeur",
+                  "link": "bookings/chauffeur-service",
+                  "external": false
+                }
+              ]
+            },
+            "languageGroup": {
+              "languages": [
+                {
+                  "label": "English",
+                  "locale": "en"
+                },
+                {
+                  "label": "العربية",
+                  "locale": "ar"
+                },
+                {
+                  "label": "中文",
+                  "locale": "zh-CN"
+                },
+                {
+                  "label": "한국어",
+                  "locale": "ko"
+                }
+              ]
+            },
+            "signinGroup": null,
+            "logos": [
+              {
+                "id": "bf3afc6b-5961-55b1-8194-df305a2f3e53",
+                "code": {
+                  "code": "<svg width=\"180\" height=\"42\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" viewBox=\"0 0 184 42\" style=\"enable-background:new 0 0 184 42;\">\n<style type=\"text/css\">\n\t.st0{fill:#A70B2B;}\n\t.st1{fill:#FFFFFF;}\n\t.st2{fill:#80AA9F;}\n\t.st3{fill:#C79807;}\n\t.st4{fill:#0D5628;}\n\t.st5{fill:#FFD41F;}\n\t.st6{fill:#664D86;}\n\t.st7{fill:#D17400;}\n\t.st8{fill:#BA4307;}\n\t.st9{fill:#BD0C1D;}\n\t.st10{fill:#D70142;}\n\t.st11{fill:#00121E;}\n\t.st12{fill:#8A175A;}\n</style>\n<g>\n\t<g>\n\t\t<path d=\"M82.91,16.7c2.55,0.04,2.64-1.77,2.64-2.14c0-0.83-0.46-2.12-2.64-2.65V16.7L82.91,16.7z M82.91,11.7\n\t\t\tc1.19-0.31,2.17-0.96,2.17-2.24c0-1.25-0.97-1.78-2.17-1.89V11.7L82.91,11.7z M83.37,6.63c2.76,0,3.52,1.74,3.52,2.74\n\t\t\tc0,1.31-0.9,1.96-1.47,2.39c1.08,0.65,1.99,1.64,1.99,2.87c0,1.22-1,2.34-1.89,2.65c-0.62,0.22-1.44,0.41-2.17,0.4l-2.51-0.03\n\t\t\tc0.38-1.19,0.43-2.51,0.43-3.15V9.53c0-2-0.24-2.54-0.38-2.9H83.37L83.37,6.63z\"/>\n\t\t<path d=\"M92.41,6.63c-0.21,0.65-0.41,1.25-0.41,2.92v5.09c0,1.25,0.09,1.89,0.41,3.05h-2.49c0.22-0.69,0.43-1.33,0.43-3.17V9.25\n\t\t\tc0-1.25-0.15-1.95-0.43-2.62H92.41L92.41,6.63z\"/>\n\t\t<path d=\"M103.95,8.72c-0.65-0.34-1.56-0.8-2.87-0.8c-2.46,0-4.19,1.83-4.19,4.29c0,2.26,1.47,4.2,4.07,4.2\n\t\t\tc1.7,0,2.65-0.74,3.26-1.19l-0.09,1.71c-0.71,0.35-1.71,0.84-3.45,0.84c-4.29,0-5.54-3.39-5.54-5.38c0-2.95,2.48-5.87,6.44-5.87\n\t\t\tc1.15,0,1.83,0.24,2.37,0.43V8.72L103.95,8.72z\"/>\n\t\t<path d=\"M112.57,6.63l-0.84,1.71c-1.24-0.56-1.89-0.71-3.05-0.66v3.86h3.46l-0.94,1.55c-1.27-0.37-1.68-0.43-2.52-0.49v4.04\n\t\t\tc1.42,0,2.2,0,4.54-0.8l-0.81,1.84h-5.79c0.19-0.65,0.41-1.43,0.41-2.84V9.43c0-0.75-0.1-1.84-0.41-2.8H112.57L112.57,6.63z\"/>\n\t\t<path d=\"M120.68,8.75c-0.49-0.38-1.11-0.87-2.09-0.87c-0.96,0-1.71,0.62-1.71,1.49c0,1.05,0.93,1.59,2.31,2.39\n\t\t\tc1.59,0.91,2.03,1.78,2.03,2.84c0,1.83-1.43,3.15-3.74,3.15c-0.87,0-1.39-0.15-1.9-0.29v-2.34c0.5,0.58,1.15,1.34,2.17,1.34\n\t\t\tc0.96,0,1.65-0.77,1.65-1.55c0-0.77-0.6-1.25-0.93-1.46c-2.36-1.47-3.3-2.06-3.3-3.74c0-1.75,1.46-3.2,3.27-3.2\n\t\t\tc1,0,1.71,0.31,2.24,0.53V8.75L120.68,8.75z\"/>\n\t\t<path d=\"M131.98,6.64l-0.77,1.7c-1.21-0.49-1.61-0.59-2.89-0.59v7.3c0,0.88,0.07,1.78,0.31,2.64h-2.25\n\t\t\tc0.16-0.69,0.31-1.5,0.31-2.82V7.75c-0.74-0.01-1.39-0.01-3.52,0.75l0.59-1.86H131.98L131.98,6.64z\"/>\n\t\t<path d=\"M140.33,6.63l-0.84,1.71c-1.24-0.56-1.89-0.71-3.05-0.66v3.86h3.46l-0.94,1.55c-1.27-0.37-1.68-0.43-2.52-0.49v4.04\n\t\t\tc1.41,0,2.2,0,4.54-0.8l-0.81,1.84h-5.79c0.19-0.65,0.41-1.43,0.41-2.84V9.43c0-0.75-0.1-1.84-0.41-2.8H140.33L140.33,6.63z\"/>\n\t\t<path d=\"M145.49,12.41c1.05-0.29,2.73-0.77,2.73-2.46c0-0.83-0.52-2.15-2.73-2.37V12.41L145.49,12.41z M143.85,8.94\n\t\t\tc0-1.3-0.18-1.9-0.3-2.28l2.15-0.03c2.84-0.04,4.19,1.67,4.19,3.15c0,1.8-1.59,2.68-2.09,2.95c0.99,1.74,2.34,3.38,3.66,4.95\n\t\t\th-1.52c-1.49-1.28-2.17-2.08-4.45-5.11v2.73c0,0.86,0.02,1.21,0.31,2.39h-2.24c0.24-1.09,0.3-1.9,0.3-2.86V8.94L143.85,8.94z\"/>\n\t\t<path d=\"M82.91,24.32c-0.09,0.32-0.1,0.44-0.1,0.59c0,0.43,0.22,1.28,0.47,1.95l2.3,5.85l2.37-5.66c0.24-0.57,0.53-1.39,0.53-2\n\t\t\tc0-0.16-0.01-0.32-0.13-0.72l2.87,0.04c-0.63,0.74-1.08,1.58-1.46,2.49l-3.61,8.59H84.9l-3.11-7.99c-0.13-0.34-0.52-1.22-0.85-1.9\n\t\t\tc-0.34-0.68-0.47-0.85-0.81-1.24H82.91L82.91,24.32z\"/>\n\t\t<path d=\"M96.09,24.32c-0.21,0.65-0.41,1.25-0.41,2.92v5.09c0,1.25,0.09,1.89,0.41,3.05H93.6c0.22-0.69,0.43-1.33,0.43-3.17v-5.26\n\t\t\tc0-1.25-0.15-1.95-0.43-2.62H96.09L96.09,24.32z\"/>\n\t\t<path d=\"M104.7,35.37h-5.4c0.28-0.71,0.44-1.13,0.44-3.55v-4.88c0-1.59-0.21-2.12-0.38-2.61h2.48c-0.22,0.57-0.41,1.08-0.43,2.71\n\t\t\tl-0.06,7.21c1.98-0.18,3.08-0.49,4.26-0.96L104.7,35.37L104.7,35.37z\"/>\n\t\t<path d=\"M113.54,35.37h-5.4c0.28-0.71,0.44-1.13,0.44-3.55v-4.88c0-1.59-0.21-2.12-0.38-2.61h2.48c-0.22,0.57-0.41,1.08-0.43,2.71\n\t\t\tl-0.06,7.21c1.98-0.18,3.08-0.49,4.26-0.96L113.54,35.37L113.54,35.37z\"/>\n\t\t<path d=\"M120.63,30.64h2.68l-1.28-2.96L120.63,30.64L120.63,30.64z M125.9,32.35c0.8,1.72,1.31,2.46,1.73,3.02H125\n\t\t\tc0-0.49-0.06-1.05-0.46-1.95l-0.65-1.49h-3.88l-0.56,1.19c-0.19,0.41-0.62,1.37-0.56,2.24h-2.7c0.37-0.43,0.69-0.83,1.61-2.64\n\t\t\tl4.26-8.46h0.09L125.9,32.35L125.9,32.35z\"/>\n\t\t<path d=\"M138.16,26.41c-0.74-0.38-1.93-1-3.51-1c-1.87,0-3.98,1.37-3.98,4.33c0,2.42,1.64,4.36,4.48,4.36c1,0,1.43-0.18,1.95-0.38\n\t\t\tV32.5c0-1.71-0.32-2.15-0.74-2.71h2.7c-0.12,0.34-0.31,0.84-0.31,1.92v1.31c0,0.74,0,0.96,0.21,1.71\n\t\t\tc-0.75,0.29-1.84,0.72-3.88,0.72c-4.97,0-6.1-3.27-6.1-5.37c0-1.4,0.47-2.83,1.39-3.92c1.18-1.42,2.58-1.96,4.92-1.96\n\t\t\tc1.34,0,2.2,0.21,2.87,0.37V26.41L138.16,26.41z\"/>\n\t\t<path d=\"M147.89,24.32l-0.84,1.71c-1.24-0.56-1.89-0.71-3.05-0.66v3.86h3.46l-0.94,1.55c-1.27-0.37-1.68-0.43-2.52-0.49v4.04\n\t\t\tc1.42,0,2.2,0,4.54-0.8l-0.81,1.84h-5.79c0.19-0.65,0.41-1.43,0.41-2.84v-5.41c0-0.75-0.1-1.84-0.41-2.8H147.89L147.89,24.32z\"/>\n\t</g>\n\t<g>\n\t\t<path class=\"st0\" d=\"M53.04,0.5c-11.32,0-20.5,9.18-20.5,20.5c0,11.32,9.18,20.5,20.5,20.5c11.32,0,20.5-9.18,20.5-20.5\n\t\t\tC73.54,9.68,64.36,0.5,53.04,0.5L53.04,0.5z\"/>\n\t\t<path class=\"st1\" d=\"M53.04,39.68c-10.3,0-18.68-8.38-18.68-18.68c0-10.3,8.38-18.68,18.68-18.68c10.3,0,18.68,8.38,18.68,18.68\n\t\t\tC71.72,31.3,63.34,39.68,53.04,39.68L53.04,39.68z M53.04,1.56C42.32,1.56,33.6,10.28,33.6,21s8.72,19.44,19.44,19.44\n\t\t\tc10.72,0,19.44-8.72,19.44-19.44S63.76,1.56,53.04,1.56L53.04,1.56z\"/>\n\t\t<g>\n\t\t\t<path class=\"st1\" d=\"M45.96,16.75c1.66,1.74,2.77,2.47,4.59,2.97l0.03,1.45C48.37,20.42,46.74,19.15,45.96,16.75L45.96,16.75z\n\t\t\t\t M51.04,12.15c-2.15,0.67-3.91,1.58-5.59,3.16C46.23,12.78,48.48,11.57,51.04,12.15L51.04,12.15z M53.84,14.62\n\t\t\t\tc0.31,2.71-2.12,4.4-4.92,3.61c0.5-0.17,0.96-0.34,1.37-0.52c-1.17-0.55-2.09-1.33-2.54-2.38c1.11-0.56,2.51-0.77,4.09-0.39\n\t\t\t\tC50.62,15.03,49.56,15.52,49,16c0.67,0.49,1.26,0.84,2.63,1.08c0.69-0.39,1.2-0.81,1.56-1.27c-0.41-1.22-1.53-2.24-3.09-2.2\n\t\t\t\tC51.83,13.29,53.01,13.66,53.84,14.62L53.84,14.62z M54.57,18.24c0.84-3.05,0.63-4.51-1.34-6.51\n\t\t\t\tC55.98,12.76,57.45,15.07,54.57,18.24L54.57,18.24z M51.62,20.28c1.54-0.13,3.15-0.85,3.98-1.82\n\t\t\t\tC55.35,20.63,53.2,21.28,51.62,20.28L51.62,20.28z M42.9,23.57c0.36,0.26,0.91,0.63,1.69,0.93c0.77,0.29,0.43-0.82,0.56-1.3\n\t\t\t\tc0.51,1.08,1.36,1.97,2.36,2.78c0.94,0.75,2.04,0.68,2.8-0.29c0.65-0.84,1.62-1.53,2.65-1.69c0.66-0.1,0.65-0.75,0.36-0.96\n\t\t\t\tc-0.66-0.47-1.08-1.05-1.28-1.62c1.18,1.07,2.59,1.78,4.19,2.22c1.15,0.31,2.01-0.26,2.26-1.16c0.34-1.26,0.86-2.4,1.35-3.03\n\t\t\t\tc0.24-0.31,0.21-0.6,0.06-0.87c-0.15-0.27-0.79-0.61-1.08-0.78c-0.29-0.16-0.03-0.53,0.22-0.66c0.53-0.27,0.85-0.75,0.94-1.31\n\t\t\t\tc0.14-0.86-0.3-1.86-0.94-2.64c-0.64-0.78-1.83-0.32-3.22-0.27c0.44-0.24,0.81-0.42,1.29-0.69c0.83-0.48-0.41-1.97-2.19-2.25\n\t\t\t\tc-1.12-0.18-2.04-0.63-2.88-1.35c-0.66-0.56-2.09-0.48-2,0.85c0.52,0.24,0.97,0.44,1.47,0.71c-1.38-0.26-2.77-0.36-4.02-0.38\n\t\t\t\tc-1.12-0.01-1.76,0.51-2.29,1.18c-0.54,0.67-0.99,1.49-1.63,2.21c0.46-0.16,0.77-0.33,1.32-0.88c-0.58,1.34-1.28,2.2-2.01,2.72\n\t\t\t\tc-0.47,0.34-0.52,0.89-0.21,1.69c0.98,2.5,2.3,4.47,5.79,6.74c-2.11-0.61-3.52-1.47-4.92-2.89c0.05,0.51-0.29,1.08-0.79,1.56\n\t\t\t\tC42.2,22.64,42.35,23.18,42.9,23.57L42.9,23.57z\"/>\n\t\t\t<path class=\"st1\" d=\"M62.26,20.37c-1.43,0.27-2.04,1.24-2.53,2.58c2.54,0.06,4.24-1.16,4.89-3.34c-1.21,0.56-3.13-0.94-4.31,1.28\n\t\t\t\tC60.87,20.23,61.56,20.11,62.26,20.37L62.26,20.37z\"/>\n\t\t\t<path class=\"st1\" d=\"M47.68,27.74c-1.31-1.9-3.56-0.79-4.88-1.26c0.57,1.82,2.84,2.82,4.97,2.48c-0.26-1.1-0.79-1.58-2.22-1.84\n\t\t\t\tC46.57,27.01,47.09,27.22,47.68,27.74L47.68,27.74z\"/>\n\t\t\t<path class=\"st1\" d=\"M54.33,23.79c-0.19,7.86-12.04,9.72-15.45,0.69C42.14,37.11,56,32.49,54.33,23.79L54.33,23.79z\"/>\n\t\t\t<path class=\"st1\" d=\"M56.03,30.76c1.01,0.03,1.83,0.32,2.4,1.21c-1.64-0.81-2.61-0.73-3.6-0.14c1.2,1.69,3.64,2.21,5.44,0.88\n\t\t\t\tC59,32.3,58.63,29.84,56.03,30.76L56.03,30.76z\"/>\n\t\t\t<path class=\"st1\" d=\"M56.35,26.49c2.24-1.68,4.56-1.95,7.14-0.98c-3.77-0.31-9.32,1.35-10.15,6.62c0.67-1.47,1.6-2.54,2.7-3.35\n\t\t\t\tc2.87,1.29,5.23,1.14,7.87-0.51c1.34-0.84,1.96-1.41,3.31-1.4C63.35,23.04,58.68,23.04,56.35,26.49L56.35,26.49z\"/>\n\t\t</g>\n\t</g>\n</g>\n</svg>\n"
+                }
+              }
+            ],
+            "logoIcon": null,
+            "notification": null,
+            "hideLanguages": null
+          },
+          "home": [
+            {
+              "header": {
+                "navigation": {
+                  "navItems": [
+                    {
+                      "__typename": "ContentfulCompLinkLnk01",
+                      "label": "Boutiques",
+                      "link": "brands",
+                      "external": false
+                    },
+                    {
+                      "__typename": "ContentfulCompLinkLnk01",
+                      "label": "Offers",
+                      "link": "offers",
+                      "external": false
+                    },
+                    {
+                      "__typename": "ContentfulCompLinkLnk01",
+                      "label": "Membership",
+                      "link": "member",
+                      "external": false
+                    },
+                    {
+                      "__typename": "ContentfulCompLinkLnk01",
+                      "label": "The Thrill of discovering",
+                      "link": "products/summer-trends-2026/",
+                      "external": false
+                    },
+                    {
+                      "__typename": "ContentfulCompLinkLnk01",
+                      "label": "Visit & Services",
+                      "link": "visit",
+                      "external": false
+                    },
+                    {
+                      "__typename": "ContentfulCompLinkLnk01",
+                      "label": "Eat & Drink",
+                      "link": "dine",
+                      "external": false
+                    },
+                    {
+                      "__typename": "ContentfulCompLinkLnk01",
+                      "label": "Las Rozas Village from home",
+                      "link": "services/virtual-shopping/",
+                      "external": false
+                    },
+                    {
+                      "__typename": "ContentfulCompLinkLnk01",
+                      "label": "Gift Card",
+                      "link": "services/gift-card",
+                      "external": false
+                    }
+                  ]
+                },
+                "languageGroup": {
+                  "languages": [
+                    {
+                      "label": " Español",
+                      "locale": "es"
+                    },
+                    {
+                      "label": "English",
+                      "locale": "en"
+                    },
+                    {
+                      "label": "العربية",
+                      "locale": "ar"
+                    },
+                    {
+                      "label": "中文",
+                      "locale": "zh-CN"
+                    },
+                    {
+                      "label": " русский",
+                      "locale": "ru"
+                    },
+                    {
+                      "label": "Português Brasileiro",
+                      "locale": "pt-BR"
+                    },
+                    {
+                      "label": "한국어",
+                      "locale": "ko"
+                    }
+                  ]
+                },
+                "signinGroup": {
+                  "headline": "Mmebership",
+                  "signinLabel": "Sign in",
+                  "signinUrl": "https://www.lasrozasvillage.com/en/sign-in/",
+                  "signupLabel": "Sign up",
+                  "signupUrl": "https://www.lasrozasvillage.com/en/campaign/register/",
+                  "accountLabel": "Your Account",
+                  "accountUrl": "https://www.lasrozasvillage.com/en/dashboard",
+                  "logoutLabel": null,
+                  "logoutUrl": null
+                },
+                "logos": [
+                  {
+                    "id": "f375ffc3-79f6-589d-a18e-3bd43c0d5388",
+                    "code": {
+                      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg id=\"Layer_1\" class=\"logo-svg\" xmlns=\"http://www.w3.org/2000/svg\" width=\"382\" height=\"63\"  viewBox=\"0 0 382 63\">\n  <defs>\n    <style>\n      .cls1 {\n        fill: #f5f0e6;\n      }\n          .logo-svg {\n margin-right: 16px;\n        width: 226px; \n      height: 54px;\n    }\n  }\n    </style>\n  </defs>\n  <path class=\"cls1\" d=\"M94.34,32.43c-.81.5-1.65.87-2.5,1.1-.86.23-1.91.35-3.16.35h-6.46V10.89c0-1.59.04-2.86.12-3.82.08-.95.24-1.76.49-2.43.25-.67.62-1.38,1.12-2.13v-.05h-7.68v.05c.5.75.87,1.46,1.12,2.13.25.67.41,1.47.49,2.41.08.94.12,2.22.12,3.84v15.92c0,1.59-.04,2.86-.12,3.82-.08.95-.24,1.76-.49,2.43-.25.67-.62,1.38-1.12,2.13v.05h20.55l.42-4.78h-.05c-1.09.81-2.04,1.47-2.86,1.97Z\"/>\n  <path class=\"cls1\" d=\"M116.53,32.71c-.69,0-1.15-.2-1.38-.61-.23-.41-.35-.89-.35-1.45v-10.11c0-2.65-.65-4.67-1.94-6.06-1.3-1.39-3.1-2.08-5.41-2.08-1.65,0-3.01.32-4.07.96-1.06.64-1.85,1.4-2.36,2.29s-.79,1.74-.82,2.55c.53-.62,1.29-1.28,2.29-1.97,1-.69,2.26-1.03,3.79-1.03s2.63.42,3.49,1.26c.86.84,1.29,2.23,1.29,4.17v2.48c-1.53.31-3.01.66-4.45,1.03-1.44.37-2.72.84-3.84,1.4-1.12.56-2.01,1.27-2.67,2.13-.66.86-.98,1.91-.98,3.16,0,1.5.46,2.69,1.38,3.58.92.89,2.13,1.33,3.63,1.33s2.86-.41,3.98-1.24c1.12-.83,2.11-1.8,2.95-2.93v.05c0,1.34.3,2.36.91,3.07.61.7,1.44,1.05,2.5,1.05.97,0,1.76-.3,2.39-.89.62-.59,1.03-1.44,1.22-2.53-.22.09-.45.18-.7.26-.25.08-.53.12-.84.12ZM111.05,30.75c-.75.59-1.52,1.08-2.32,1.47-.8.39-1.65.59-2.55.59-1,0-1.81-.27-2.44-.8-.62-.53-.94-1.31-.94-2.34,0-1.56.76-2.72,2.27-3.49,1.51-.76,3.5-1.46,5.97-2.08v6.65Z\"/>\n  <path class=\"cls1\" d=\"M131.21,23.7c-.86-.64-1.96-1.33-3.3-2.08-1.44-.78-2.49-1.45-3.16-2.01-.67-.56-1.01-1.34-1.01-2.34,0-1.09.33-1.92.98-2.48.66-.56,1.51-.84,2.58-.84s2.09.29,3,.87c.91.58,1.76,1.37,2.58,2.36l.14-.05-.05-3.89c-.62-.19-1.33-.38-2.11-.58-.78-.2-1.65-.3-2.62-.3-2.47,0-4.4.58-5.81,1.76-1.4,1.17-2.11,2.74-2.11,4.71,0,1.09.22,2.01.66,2.74.44.73,1.06,1.38,1.87,1.94.81.56,1.78,1.17,2.9,1.83,1.03.59,1.86,1.11,2.5,1.54.64.44,1.12.91,1.43,1.4.31.5.47,1.16.47,1.97,0,1.16-.33,2.08-.98,2.79-.66.7-1.62,1.05-2.9,1.05s-2.43-.34-3.56-1.03c-1.12-.69-2.15-1.64-3.09-2.86h-.14l.23,3.98c.56.38,1.34.73,2.34,1.08,1,.34,2.2.51,3.6.51,2.4,0,4.35-.65,5.83-1.94,1.48-1.29,2.22-3.05,2.22-5.27,0-1.09-.2-2.01-.61-2.76-.41-.75-1.04-1.44-1.9-2.08Z\"/>\n  <path class=\"cls1\" d=\"M171.69,35.24v-.05c-.69-.53-1.23-1.03-1.64-1.5-.41-.47-.8-1.02-1.19-1.66-.39-.64-.87-1.49-1.43-2.55l-2.48-4.5c-.97-1.75-1.94-3.07-2.93-3.96s-2.04-1.49-3.16-1.8c3.03-.34,5.32-1.25,6.88-2.72,1.56-1.47,2.34-3.31,2.34-5.52,0-2.53-.91-4.58-2.74-6.16-1.83-1.58-4.67-2.36-8.54-2.36h-11v.05c.53.75.92,1.46,1.17,2.13.25.67.41,1.47.47,2.41.06.94.09,2.22.09,3.84v15.92c0,1.59-.03,2.86-.09,3.82-.06.95-.22,1.76-.47,2.43-.25.67-.64,1.38-1.17,2.13v.05h7.68v-.05c-.5-.75-.88-1.46-1.15-2.13-.27-.67-.43-1.48-.49-2.43-.06-.95-.09-2.22-.09-3.82v-7.35h1.22c1.4,0,2.73.46,3.98,1.38,1.25.92,2.5,2.55,3.75,4.89l5.06,9.5h5.95ZM156.24,18.06h-4.49V3.82h4.12c2.56,0,4.5.66,5.83,1.99,1.33,1.33,1.99,3.08,1.99,5.27,0,2.03-.63,3.7-1.9,5.01-1.26,1.31-3.11,1.97-5.55,1.97Z\"/>\n  <path class=\"cls1\" d=\"M188.75,13.73c-1.58-.92-3.4-1.38-5.46-1.38-2.25,0-4.25.52-5.99,1.57-1.75,1.05-3.12,2.49-4.12,4.33-1,1.84-1.5,3.96-1.5,6.37,0,2.25.47,4.21,1.4,5.9.94,1.69,2.21,2.99,3.82,3.91,1.61.92,3.43,1.38,5.45,1.38,2.28,0,4.28-.51,5.99-1.54,1.72-1.03,3.06-2.46,4.03-4.28s1.45-3.96,1.45-6.39c0-2.28-.45-4.26-1.36-5.95s-2.15-2.99-3.72-3.91ZM187.86,31.68c-1.2,1.72-2.83,2.58-4.89,2.58-1.47,0-2.73-.51-3.79-1.54-1.06-1.03-1.89-2.37-2.48-4.03-.59-1.65-.89-3.42-.89-5.29,0-2.87.62-5.17,1.87-6.88,1.25-1.72,2.92-2.58,5.01-2.58,1.47,0,2.72.51,3.75,1.54,1.03,1.03,1.83,2.37,2.39,4.03.56,1.66.84,3.42.84,5.29,0,2.87-.6,5.17-1.8,6.88Z\"/>\n  <path class=\"cls1\" d=\"M196.88,17.26h.05c.91-.87,1.83-1.62,2.76-2.25.94-.62,2.12-.94,3.56-.94h5.15l-12.74,20.69v.47h16.9l.37-4.26h-.05c-.91.84-1.83,1.57-2.79,2.18-.95.61-2.13.91-3.54.91h-5.99l12.83-20.74v-.42h-16.2l-.33,4.35Z\"/>\n  <path class=\"cls1\" d=\"M232.46,32.71c-.69,0-1.15-.2-1.38-.61-.23-.41-.35-.89-.35-1.45v-10.11c0-2.65-.65-4.67-1.94-6.06-1.3-1.39-3.1-2.08-5.41-2.08-1.65,0-3.01.32-4.07.96-1.06.64-1.85,1.4-2.36,2.29s-.79,1.74-.82,2.55c.53-.62,1.29-1.28,2.29-1.97,1-.69,2.26-1.03,3.79-1.03s2.63.42,3.49,1.26c.86.84,1.29,2.23,1.29,4.17v2.48c-1.53.31-3.01.66-4.45,1.03-1.44.37-2.71.84-3.84,1.4-1.12.56-2.01,1.27-2.67,2.13s-.98,1.91-.98,3.16c0,1.5.46,2.69,1.38,3.58.92.89,2.13,1.33,3.63,1.33s2.86-.41,3.98-1.24c1.12-.83,2.11-1.8,2.95-2.93v.05c0,1.34.3,2.36.91,3.07.61.7,1.44,1.05,2.5,1.05.97,0,1.76-.3,2.39-.89.62-.59,1.03-1.44,1.22-2.53-.22.09-.45.18-.7.26-.25.08-.53.12-.84.12ZM226.98,30.75c-.75.59-1.52,1.08-2.32,1.47-.8.39-1.65.59-2.55.59-1,0-1.81-.27-2.43-.8-.62-.53-.94-1.31-.94-2.34,0-1.56.76-2.72,2.27-3.49,1.51-.76,3.5-1.46,5.97-2.08v6.65Z\"/>\n  <path class=\"cls1\" d=\"M249.03,25.78c-.41-.75-1.04-1.44-1.9-2.08-.86-.64-1.96-1.33-3.3-2.08-1.44-.78-2.49-1.45-3.16-2.01-.67-.56-1.01-1.34-1.01-2.34,0-1.09.33-1.92.98-2.48.66-.56,1.51-.84,2.58-.84s2.09.29,3,.87c.91.58,1.76,1.37,2.58,2.36l.14-.05-.05-3.89c-.62-.19-1.33-.38-2.11-.58s-1.65-.3-2.62-.3c-2.47,0-4.4.58-5.81,1.76-1.4,1.17-2.11,2.74-2.11,4.71,0,1.09.22,2.01.66,2.74.44.73,1.06,1.38,1.87,1.94.81.56,1.78,1.17,2.9,1.83,1.03.59,1.87,1.11,2.51,1.54.64.44,1.12.91,1.43,1.4.31.5.47,1.16.47,1.97,0,1.16-.33,2.08-.98,2.79-.66.7-1.62,1.05-2.9,1.05s-2.43-.34-3.56-1.03c-1.12-.69-2.15-1.64-3.09-2.86h-.14l.23,3.98c.56.38,1.34.73,2.34,1.08,1,.34,2.2.51,3.61.51,2.4,0,4.35-.65,5.83-1.94,1.48-1.29,2.22-3.05,2.22-5.27,0-1.09-.2-2.01-.61-2.76Z\"/>\n  <path class=\"cls1\" d=\"M288.22,2.51v-.05h-5.67v.05c.62.97,1.03,1.86,1.22,2.67.19.81.16,1.77-.09,2.88-.25,1.11-.72,2.6-1.41,4.47l-6.37,17.6-6.7-17.65c-.72-1.87-1.22-3.36-1.5-4.47-.28-1.11-.34-2.06-.16-2.86.17-.8.57-1.68,1.19-2.64v-.05h-8.66v.05c.47.62.86,1.21,1.17,1.76.31.55.63,1.2.96,1.97.33.77.73,1.79,1.19,3.07l10.16,26.08h1.78l9.64-26.03c.47-1.31.86-2.35,1.17-3.11.31-.76.62-1.42.91-1.97.3-.55.68-1.13,1.15-1.76Z\"/>\n  <path class=\"cls1\" d=\"M292.01,19.55v9.55c0,1.16-.03,2.08-.09,2.76-.06.69-.18,1.28-.35,1.78-.17.5-.46,1.01-.87,1.54v.05h6.55v-.05c-.37-.53-.66-1.05-.84-1.54-.19-.5-.31-1.09-.37-1.78-.06-.69-.09-1.61-.09-2.76V12.34h-.05l-5.38,1.78v.05c.47.44.83,1.08,1.1,1.94.26.86.4,2.01.4,3.44Z\"/>\n  <path class=\"cls1\" d=\"M294.03,8.32c.69,0,1.28-.25,1.78-.75s.75-1.09.75-1.78-.25-1.28-.75-1.78c-.5-.5-1.09-.75-1.78-.75s-1.24.25-1.76.75c-.51.5-.77,1.09-.77,1.78s.26,1.28.77,1.78c.52.5,1.1.75,1.76.75Z\"/>\n  <path class=\"cls1\" d=\"M302.08,7.71v21.4c0,1.16-.03,2.08-.09,2.76-.06.69-.19,1.28-.38,1.78-.19.5-.47,1.01-.84,1.54v.05h6.51v-.05c-.38-.53-.66-1.05-.84-1.54-.19-.5-.31-1.09-.38-1.78s-.09-1.61-.09-2.76V.45h-.05l-5.34,1.78v.09c.47.44.83,1.08,1.1,1.92.26.84.4,2,.4,3.46Z\"/>\n  <path class=\"cls1\" d=\"M312.01,31.87c-.06.69-.19,1.28-.38,1.78-.19.5-.47,1.01-.84,1.54v.05h6.51v-.05c-.38-.53-.66-1.05-.84-1.54-.19-.5-.31-1.09-.38-1.78s-.09-1.61-.09-2.76V.45h-.05l-5.34,1.78v.09c.47.44.83,1.08,1.1,1.92.26.84.4,2,.4,3.46v21.4c0,1.16-.03,2.08-.09,2.76Z\"/>\n  <path class=\"cls1\" d=\"M337.48,32.71c-.69,0-1.15-.2-1.38-.61-.23-.41-.35-.89-.35-1.45v-10.11c0-2.65-.65-4.67-1.94-6.06-1.3-1.39-3.1-2.08-5.41-2.08-1.65,0-3.01.32-4.07.96-1.06.64-1.85,1.4-2.36,2.29s-.79,1.74-.82,2.55c.53-.62,1.29-1.28,2.29-1.97,1-.69,2.26-1.03,3.79-1.03s2.63.42,3.49,1.26c.86.84,1.29,2.23,1.29,4.17v2.48c-1.53.31-3.01.66-4.45,1.03-1.44.37-2.71.84-3.84,1.4-1.12.56-2.01,1.27-2.67,2.13s-.98,1.91-.98,3.16c0,1.5.46,2.69,1.38,3.58.92.89,2.13,1.33,3.63,1.33s2.86-.41,3.98-1.24c1.12-.83,2.11-1.8,2.95-2.93v.05c0,1.34.3,2.36.91,3.07.61.7,1.44,1.05,2.5,1.05.97,0,1.76-.3,2.39-.89.62-.59,1.03-1.44,1.22-2.53-.22.09-.45.18-.7.26-.25.08-.53.12-.84.12ZM332,30.75c-.75.59-1.52,1.08-2.32,1.47-.8.39-1.65.59-2.55.59-1,0-1.81-.27-2.43-.8-.62-.53-.94-1.31-.94-2.34,0-1.56.76-2.72,2.27-3.49,1.51-.76,3.5-1.46,5.97-2.08v6.65Z\"/>\n  <path class=\"cls1\" d=\"M360.7,14.26c.09-.28.14-.76.14-1.43s-.06-1.21-.19-1.62c-.59,0-1.44.19-2.53.56-1.09.37-2.12.98-3.09,1.83-.66-.41-1.38-.72-2.18-.94s-1.66-.33-2.6-.33c-1.78,0-3.32.38-4.63,1.12-1.31.75-2.33,1.74-3.07,2.97-.73,1.23-1.1,2.6-1.1,4.1,0,1.37.31,2.62.94,3.75.62,1.12,1.51,2.01,2.67,2.67-.84.47-1.66,1.08-2.46,1.83-.8.75-1.19,1.69-1.19,2.81,0,.81.25,1.54.75,2.2.5.66,1.26,1.16,2.29,1.5-.72.22-1.43.56-2.13,1.03-.7.47-1.28,1.07-1.73,1.8-.45.73-.68,1.58-.68,2.55,0,1.59.76,2.89,2.27,3.88,1.51,1,3.64,1.5,6.39,1.5,2.47,0,4.61-.38,6.44-1.15,1.83-.77,3.25-1.8,4.28-3.11,1.03-1.31,1.54-2.76,1.54-4.36,0-1.9-.62-3.27-1.87-4.1-1.25-.83-2.81-1.24-4.68-1.24h-6.18c-2.68,0-4.03-.78-4.03-2.34,0-1.03.56-1.86,1.69-2.48,1.19.56,2.53.84,4.03.84,1.78,0,3.32-.36,4.63-1.08,1.31-.72,2.33-1.69,3.04-2.9.72-1.22,1.08-2.58,1.08-4.07,0-1.15-.22-2.23-.66-3.23-.44-1-1.09-1.86-1.97-2.58.72-.03,1.57-.05,2.55-.05s1.72.02,2.22.05ZM345.2,35.47c.66.16,1.37.23,2.15.23h6.23c.56,0,1.17.07,1.83.21.66.14,1.22.45,1.69.94.47.48.7,1.24.7,2.27,0,1.53-.68,2.86-2.04,4-1.36,1.14-3.25,1.71-5.69,1.71s-4.11-.5-5.31-1.5c-1.2-1-1.8-2.26-1.8-3.79,0-.91.23-1.72.68-2.43.45-.72.98-1.26,1.57-1.64ZM353.61,24.96c-.8,1.2-1.96,1.8-3.49,1.8-1.06,0-1.96-.33-2.69-.98-.73-.66-1.28-1.51-1.64-2.55-.36-1.04-.54-2.18-.54-3.39,0-1.06.16-2.06.47-3,.31-.94.8-1.69,1.47-2.27.67-.58,1.55-.87,2.65-.87s1.96.34,2.69,1.01c.73.67,1.29,1.54,1.69,2.6.39,1.06.58,2.19.58,3.37,0,1.66-.4,3.08-1.19,4.28Z\"/>\n  <path class=\"cls1\" d=\"M379.75,21.19c.28,0,.57-.07.87-.21s.45-.65.45-1.52c0-.66-.13-1.39-.4-2.2-.27-.81-.7-1.59-1.31-2.34-.61-.75-1.42-1.37-2.43-1.85-1.02-.48-2.29-.73-3.82-.73-2.09,0-3.95.56-5.57,1.69-1.62,1.12-2.9,2.65-3.82,4.57-.92,1.92-1.38,4.03-1.38,6.34,0,1.9.39,3.68,1.17,5.34s1.92,2.99,3.42,4c1.5,1.01,3.32,1.52,5.48,1.52,1.65,0,3.07-.3,4.26-.89,1.19-.59,2.12-1.37,2.81-2.34.69-.97,1.09-2.03,1.22-3.18-.72.81-1.62,1.52-2.72,2.13s-2.53.91-4.31.91c-1.59,0-2.99-.41-4.19-1.24s-2.12-1.94-2.76-3.32c-.64-1.39-.96-2.96-.96-4.71,0-.69.05-1.34.14-1.97h13.86ZM368.4,15.65c1.11-1.11,2.43-1.66,3.96-1.66,1.19,0,2.15.28,2.9.84.75.56,1.29,1.24,1.64,2.04.34.8.51,1.54.51,2.22,0,.47-.1.75-.3.84s-.51.14-.91.14h-10.11c.44-1.84,1.21-3.32,2.32-4.42Z\"/>\n  <polygon class=\"cls1\" points=\"126.46 55.76 128.59 55.76 128.59 62.43 130.14 62.43 130.14 55.76 132.27 55.76 132.27 54.38 126.46 54.38 126.46 55.76\"/>\n  <polygon class=\"cls1\" points=\"141.53 57.43 137.5 57.43 137.5 54.38 135.95 54.38 135.95 62.43 137.5 62.43 137.5 58.81 141.53 58.81 141.53 62.43 143.08 62.43 143.08 54.38 141.53 54.38 141.53 57.43\"/>\n  <polygon class=\"cls1\" points=\"148.94 58.81 151.42 58.81 151.42 57.43 148.94 57.43 148.94 55.76 152.22 55.76 152.22 54.38 147.39 54.38 147.39 62.43 152.34 62.43 152.34 61.05 148.94 61.05 148.94 58.81\"/>\n  <path class=\"cls1\" d=\"M166.54,57.91c.26-.28.52-.82.52-1.35,0-.66-.3-1.23-.75-1.62-.39-.35-.9-.56-1.81-.56h-2.74v8.05h3.14c1.04,0,1.66-.28,2.11-.72.45-.44.74-1.06.74-1.74,0-.9-.5-1.7-1.21-2.06ZM163.32,55.76h1.09c.48,0,.7.12.86.29.14.15.23.36.23.58s-.09.43-.23.58c-.16.17-.38.29-.86.29h-1.09v-1.73ZM165.91,60.7c-.2.22-.5.36-1.04.36h-1.55v-2.19h1.55c.54,0,.84.14,1.04.36.18.2.29.45.29.74s-.1.54-.29.74Z\"/>\n  <rect class=\"cls1\" x=\"171.42\" y=\"54.38\" width=\"1.55\" height=\"8.05\"/>\n  <path class=\"cls1\" d=\"M181.02,61.17c-1.55,0-2.75-1.2-2.75-2.76s1.15-2.76,2.68-2.76c.79,0,1.47.35,1.96.83l1-1.06c-.72-.7-1.75-1.15-2.95-1.15-2.51,0-4.25,1.83-4.25,4.14s1.76,4.14,4.27,4.14c1.47,0,2.67-.63,3.38-1.54l-1.07-.95c-.47.61-1.23,1.12-2.28,1.12Z\"/>\n  <polygon class=\"cls1\" points=\"189.54 58.81 192.01 58.81 192.01 57.43 189.54 57.43 189.54 55.76 192.82 55.76 192.82 54.38 187.98 54.38 187.98 62.43 192.93 62.43 192.93 61.05 189.54 61.05 189.54 58.81\"/>\n  <path class=\"cls1\" d=\"M198.07,56.52c0-.62.66-.88,1.24-.88.53,0,1.07.23,1.39.53l.81-1.15c-.76-.56-1.52-.76-2.34-.76-1.33,0-2.66.83-2.66,2.27,0,.91.51,1.46,1.14,1.83,1.08.63,2.58.76,2.58,1.79,0,.59-.48,1.01-1.17,1.01-.74,0-1.44-.38-1.9-.89l-1.01,1.06c.83.76,1.83,1.21,2.91,1.21,1.45,0,2.73-.99,2.73-2.42,0-2.71-3.72-2.31-3.72-3.61Z\"/>\n  <polygon class=\"cls1\" points=\"204.66 55.76 206.79 55.76 206.79 62.43 208.34 62.43 208.34 55.76 210.47 55.76 210.47 54.38 204.66 54.38 204.66 55.76\"/>\n  <polygon class=\"cls1\" points=\"215.7 58.81 218.17 58.81 218.17 57.43 215.7 57.43 215.7 55.76 218.98 55.76 218.98 54.38 214.15 54.38 214.15 62.43 219.09 62.43 219.09 61.05 215.7 61.05 215.7 58.81\"/>\n  <path class=\"cls1\" d=\"M227.64,58.27c.44-.41.71-1,.71-1.64s-.28-1.23-.71-1.65c-.4-.37-.93-.6-1.76-.6h-2.93v8.05h1.55v-3.57h.56l2.86,3.57h1.92l-3.01-3.69c.32-.1.59-.26.81-.47ZM226.57,57.24c-.14.15-.33.24-.78.24h-1.29v-1.73h1.29c.45,0,.64.1.78.25s.23.38.23.62c0,.23-.09.46-.23.61Z\"/>\n  <path class=\"cls1\" d=\"M242.43,61.17c-1.55,0-2.75-1.2-2.75-2.76s1.15-2.76,2.68-2.76c.79,0,1.47.35,1.96.83l1-1.06c-.72-.7-1.75-1.15-2.95-1.15-2.51,0-4.25,1.83-4.25,4.14s1.76,4.14,4.27,4.14c1.47,0,2.67-.63,3.38-1.54l-1.07-.95c-.47.61-1.23,1.12-2.28,1.12Z\"/>\n  <path class=\"cls1\" d=\"M252.96,54.26c-2.49,0-4.2,1.85-4.2,4.14s1.71,4.14,4.2,4.14,4.2-1.85,4.2-4.14-1.71-4.14-4.2-4.14ZM252.96,61.17c-1.52,0-2.65-1.24-2.65-2.76s1.13-2.76,2.65-2.76,2.65,1.24,2.65,2.76-1.13,2.76-2.65,2.76Z\"/>\n  <polygon class=\"cls1\" points=\"262.45 54.38 260.89 54.38 260.89 62.43 265.84 62.43 265.84 61.05 262.45 61.05 262.45 54.38\"/>\n  <polygon class=\"cls1\" points=\"271.07 54.38 269.52 54.38 269.52 62.43 274.47 62.43 274.47 61.05 271.07 61.05 271.07 54.38\"/>\n  <polygon class=\"cls1\" points=\"279.7 58.81 282.17 58.81 282.17 57.43 279.7 57.43 279.7 55.76 282.98 55.76 282.98 54.38 278.14 54.38 278.14 62.43 283.09 62.43 283.09 61.05 279.7 61.05 279.7 58.81\"/>\n  <path class=\"cls1\" d=\"M290.5,61.17c-1.55,0-2.75-1.2-2.75-2.76s1.15-2.76,2.68-2.76c.79,0,1.47.35,1.96.83l1-1.06c-.73-.7-1.75-1.15-2.95-1.15-2.51,0-4.25,1.83-4.25,4.14s1.76,4.14,4.27,4.14c1.47,0,2.67-.63,3.38-1.54l-1.07-.95c-.47.61-1.23,1.12-2.28,1.12Z\"/>\n  <polygon class=\"cls1\" points=\"296.83 55.76 298.96 55.76 298.96 62.43 300.51 62.43 300.51 55.76 302.64 55.76 302.64 54.38 296.83 54.38 296.83 55.76\"/>\n  <rect class=\"cls1\" x=\"306.32\" y=\"54.38\" width=\"1.55\" height=\"8.05\"/>\n  <path class=\"cls1\" d=\"M315.81,54.26c-2.49,0-4.2,1.85-4.2,4.14s1.71,4.14,4.2,4.14,4.2-1.85,4.2-4.14-1.71-4.14-4.2-4.14ZM315.81,61.17c-1.52,0-2.65-1.24-2.65-2.76s1.13-2.76,2.65-2.76,2.65,1.24,2.65,2.76-1.13,2.76-2.65,2.76Z\"/>\n  <polygon class=\"cls1\" points=\"329.32 59.63 324.83 54.38 323.74 54.38 323.74 62.43 325.29 62.43 325.29 57.19 329.78 62.43 330.87 62.43 330.87 54.38 329.32 54.38 329.32 59.63\"/>\n  <path class=\"cls1\" d=\"M31.62,1.02C14.82,1.02,1.15,14.69,1.15,31.49s13.67,30.47,30.47,30.47,30.47-13.67,30.47-30.47S48.42,1.02,31.62,1.02ZM31.62,60.77c-16.14,0-29.28-13.13-29.28-29.28S15.48,2.21,31.62,2.21s29.28,13.13,29.28,29.28-13.13,29.28-29.28,29.28Z\"/>\n  <path class=\"cls1\" d=\"M25.17,11.62c-10.97,3.57-16.98,15.35-13.42,26.32,3.57,10.98,15.35,16.98,26.32,13.41,10.98-3.56,16.98-15.35,13.42-26.32-3.57-10.98-15.35-16.98-26.33-13.42ZM46.82,40.18c-1.58,2.44-4.54,3.65-7.43,2.91-2.84-.74-5-3.62-3.95-6.5,1.13-3.09,4.23-4.07,6.21-2.69,1.06.74,1.87,2.19.87,3.36,0-.39-.08-.78-.26-1.15-.63-1.32-2.4-1.99-3.7-1.28-3.4,1.83-1.69,6.16,1.84,6.53,2.85.31,5.11-1.94,5.51-4.62.38-2.6-.98-5.53-4.57-6.59-3.82-1.13-8.1,1.71-9.12,5.36-1.55,5.52,2.39,10.04,7,10.96.4.08.81.13,1.22.16-1.06.62-2.2,1.13-3.42,1.53-7.4,2.4-15.23-.38-19.57-6.35-.08-.13-.16-.27-.26-.41-1.78-2.69-1.47-6.24.81-8.56,2.06-2.09,5.64-2.52,7.6-.17,2.12,2.52,1.41,5.7-.77,6.72-1.17.56-2.83.53-3.33-.92.33.2.71.32,1.12.35,1.46.12,2.92-1.09,2.96-2.57.11-3.86-4.49-4.54-6.58-1.68-1.69,2.32-.88,5.4,1.25,7.09,2.06,1.63,5.28,1.91,8-.66,2.88-2.74,2.56-7.86-.09-10.58-4.01-4.1-9.89-2.95-12.99.59-.39.45-.74.93-1.04,1.45-.43-7.74,4.36-15.09,12.08-17.6,1.12-.36,2.24-.61,3.36-.74.22,0,.47,0,.72-.02,3.21-.2,6.14,1.85,7.01,4.98.79,2.83-.64,6.13-3.65,6.67-3.24.57-5.64-1.63-5.44-4.03.11-1.3.96-2.72,2.47-2.43-.34.19-.64.46-.87.8-.83,1.2-.52,3.07.74,3.84,3.29,2.02,6.17-1.62,4.74-4.86-1.16-2.62-4.23-3.45-6.76-2.46-2.44.96-4.3,3.62-3.43,7.25.93,3.87,5.53,6.15,9.21,5.21,5.56-1.42,7.5-7.09,5.99-11.55-.19-.57-.44-1.11-.74-1.62,4,2.03,7.21,5.59,8.71,10.19,1.59,4.89.91,9.96-1.45,14.1Z\"/>\n</svg>"
+                    }
+                  }
+                ],
+                "logoIcon": null,
+                "notification": null,
+                "hideLanguages": false
+              },
+              "footer": {
+                "navItems": [
+                  {
+                    "category": "About us",
+                    "links": [
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_link_Company_Contact_us",
+                        "label": "Contact us",
+                        "link": "company/contact",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "LZV_Comp_Footer_link_Contact_About-Las_Rozas_Village",
+                        "label": "About Las Rozas Village",
+                        "link": "company/about",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Footer_link_map",
+                        "label": "Village map",
+                        "link": "map",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_comp_Footer_link_Careers",
+                        "label": "Careers",
+                        "link": "careers",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_link_Download_app",
+                        "label": "Download app",
+                        "link": "visit/download-app",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "LZV_Comp_Footer_link_Gift_card",
+                        "label": "Gift Card",
+                        "link": "https://www.thebicestervillageshoppingcollection.com/e-commerce/bvsc/en/lzv/gift-card",
+                        "external": true
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_link_FAQs",
+                        "label": "FAQs",
+                        "link": "company/faq",
+                        "external": false
+                      }
+                    ]
+                  },
+                  {
+                    "category": "Partnerships",
+                    "links": [
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_Link_Our_Partners",
+                        "label": "Our partners",
+                        "link": "partners",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_Link_Become-a-Partner",
+                        "label": "Become a partner",
+                        "link": "partners",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_Link_Frequent_Flyer_Rewards",
+                        "label": "Frequent flyer rewards",
+                        "link": "partners/frequent-flyer-rewards",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_Link_Group_Booking_External",
+                        "label": "Group booking",
+                        "link": "https://www.thebicestervillageshoppingcollection.com/en/group-bookings-and-events/make-a-booking",
+                        "external": true
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_Link_Hotels-and-local-attractions",
+                        "label": "Hotels and local attractions",
+                        "link": "visit/hotels-and-local-attractions",
+                        "external": false
+                      }
+                    ]
+                  },
+                  {
+                    "category": "The small print",
+                    "links": [
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED__Comp_Footer_Link_Website_Terms&Conditions",
+                        "label": "Website terms and conditions",
+                        "link": "legal/website-terms-and-conditions",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "LZV_Comp_Footer_Link_Privilege_Terms_and_Conditions",
+                        "label": "Las Rozas Village Membership terms and conditions",
+                        "link": "https://www.thebicestercollection.com/en/legal/membership-terms-and-conditions-en",
+                        "external": true
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_link_LEGAL_Privacy_Notices_ALL",
+                        "label": "Privacy notices",
+                        "link": "legal/privacy-notices",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_Link_Accessibility",
+                        "label": "Accessibility",
+                        "link": "legal/accessibility",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "SHARED_Comp_Footer_link_Contact_Corporate Responsibility",
+                        "label": "Environmental, Social & Governance",
+                        "link": "https://www.thebicestervillageshoppingcollection.com/en/value-retail/who-we-are/about-value-retail/corporate-responsibility/",
+                        "external": true
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "LZV_Comp_Footer_Link_Energy_Saving_Decree ",
+                        "label": "Energy Saving Decree",
+                        "link": "legal/energy-saving-decree",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "LZV_Comp_link_whistleblowing",
+                        "label": "Whistleblowing",
+                        "link": "legal/corporate-compliante-policy-wording",
+                        "external": false
+                      },
+                      {
+                        "__typename": "ContentfulCompLinkLnk01",
+                        "title": "LRV_LZV_Comp_link_average_supplier_payment_period",
+                        "label": "Average supplier payment period",
+                        "link": "legal/average-supplier-payment-period",
+                        "external": false
+                      }
+                    ]
+                  }
+                ],
+                "copy": {
+                  "copy": "Las Rozas Village is part of The Bicester Collection"
+                },
+                "logos": [
+                  {
+                    "code": {
+                      "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg id=\"Layer_1\" data-name=\"Layer 1\" width=\"117\" height=\"31\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 117 30.39\">\n  <defs>\n    <style>\n      .cls-1 {\n        fill: #7e8a49;\n      }\n    </style>\n  </defs>\n  <g>\n    <path class=\"cls-1\" d=\"M42.26,4.55l-.57,1.26c-.9-.36-1.19-.44-2.14-.44v5.41c0,.66.05,1.32.23,1.96h-1.67c.12-.51.23-1.11.23-2.09v-5.28c-.55-.01-1.03-.01-2.61.56l.44-1.38h6.1Z\"/>\n    <path class=\"cls-1\" d=\"M45.97,4.52c-.14.38-.33.84-.33,1.88v1.66h3.51v-1.45c0-1.13-.17-1.65-.32-2.09h1.87c-.19.54-.32.93-.32,2.19v3.79c0,1.35.14,1.76.32,2.24h-1.87c.17-.5.32-.89.32-2.2v-1.44h-3.51v1.35c0,1.3.16,1.8.31,2.28h-1.86c.14-.38.32-.89.32-2.11v-4c0-1.17-.19-1.74-.32-2.11h1.88Z\"/>\n    <path class=\"cls-1\" d=\"M57.4,4.54l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls-1\" d=\"M66.24,4.54c2.04,0,2.61,1.29,2.61,2.03,0,.97-.67,1.45-1.09,1.77.8.48,1.48,1.21,1.48,2.13s-.74,1.74-1.4,1.97c-.46.16-1.07.31-1.61.29l-1.86-.02c.28-.89.32-1.86.32-2.34v-3.68c0-1.49-.17-1.88-.28-2.15h1.84ZM65.9,8.3c.89-.23,1.61-.71,1.61-1.66s-.72-1.32-1.61-1.4v3.06ZM65.9,12c1.89.03,1.96-1.31,1.96-1.58,0-.61-.34-1.57-1.96-1.97v3.55Z\"/>\n    <path class=\"cls-1\" d=\"M72.93,4.54c-.15.48-.31.93-.31,2.16v3.77c0,.93.07,1.4.31,2.26h-1.85c.16-.51.32-.98.32-2.35v-3.9c0-.93-.11-1.44-.32-1.94h1.85Z\"/>\n    <path class=\"cls-1\" d=\"M81.49,6.09c-.48-.25-1.16-.59-2.13-.59-1.82,0-3.1,1.35-3.1,3.18,0,1.67,1.09,3.11,3.02,3.11,1.26,0,1.97-.55,2.41-.88l-.07,1.27c-.52.26-1.27.62-2.56.62-3.18,0-4.11-2.51-4.11-3.99,0-2.19,1.84-4.35,4.77-4.35.85,0,1.35.17,1.76.32v1.31Z\"/>\n    <path class=\"cls-1\" d=\"M87.88,4.54l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls-1\" d=\"M93.89,6.12c-.36-.28-.82-.64-1.55-.64s-1.27.46-1.27,1.1c0,.78.69,1.18,1.72,1.77,1.18.68,1.51,1.32,1.51,2.11,0,1.35-1.06,2.34-2.77,2.34-.64,0-1.03-.11-1.41-.22v-1.74c.37.43.85.99,1.61.99.71,0,1.22-.57,1.22-1.15s-.45-.93-.69-1.08c-1.75-1.09-2.45-1.53-2.45-2.78s1.08-2.37,2.43-2.37c.74,0,1.27.23,1.66.39v1.27Z\"/>\n    <path class=\"cls-1\" d=\"M102.27,4.55l-.57,1.26c-.9-.36-1.19-.44-2.14-.44v5.41c0,.66.05,1.32.23,1.96h-1.67c.12-.51.23-1.11.23-2.09v-5.28c-.55-.01-1.03-.01-2.61.56l.44-1.38h6.1Z\"/>\n    <path class=\"cls-1\" d=\"M108.45,4.54l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls-1\" d=\"M111.07,6.26c0-.96-.13-1.41-.22-1.69l1.6-.02c2.11-.03,3.1,1.23,3.1,2.34,0,1.33-1.18,1.99-1.55,2.19.73,1.29,1.74,2.5,2.71,3.67h-1.13c-1.1-.95-1.61-1.54-3.3-3.79v2.02c0,.63.01.9.23,1.77h-1.66c.17-.81.22-1.41.22-2.12v-4.36ZM112.28,8.82c.78-.22,2.02-.57,2.02-1.82,0-.61-.38-1.6-2.02-1.76v3.58Z\"/>\n    <path class=\"cls-1\" d=\"M42.4,19.2c-.48-.25-1.16-.59-2.13-.59-1.82,0-3.1,1.35-3.1,3.18,0,1.67,1.09,3.11,3.02,3.11,1.26,0,1.97-.55,2.41-.88l-.07,1.27c-.52.26-1.27.62-2.56.62-3.18,0-4.11-2.51-4.11-3.99,0-2.19,1.84-4.35,4.77-4.35.85,0,1.35.17,1.76.32v1.31Z\"/>\n    <path class=\"cls-1\" d=\"M48.65,17.59c2.71,0,4.08,2.05,4.08,4.13,0,2.56-1.97,4.18-4.28,4.18-2.64,0-4.28-2.14-4.28-4.24,0-1.82,1.64-4.08,4.49-4.08ZM48.78,25.02c1.82,0,2.68-1.72,2.68-2.99,0-1.7-1.3-3.56-3.21-3.56-1.65,0-2.71,1.43-2.71,3.02,0,2.22,1.68,3.54,3.25,3.54Z\"/>\n    <path class=\"cls-1\" d=\"M58.8,25.85h-4c.21-.52.33-.84.33-2.63v-3.62c0-1.18-.15-1.57-.28-1.93h1.84c-.16.43-.31.8-.32,2.01l-.04,5.34c1.46-.13,2.28-.36,3.16-.71l-.68,1.54Z\"/>\n    <path class=\"cls-1\" d=\"M65.35,25.85h-4c.21-.52.33-.84.33-2.63v-3.62c0-1.18-.15-1.57-.28-1.93h1.84c-.16.43-.31.8-.32,2.01l-.04,5.34c1.46-.13,2.28-.36,3.16-.71l-.68,1.54Z\"/>\n    <path class=\"cls-1\" d=\"M72.21,17.65l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls-1\" d=\"M80.75,19.2c-.48-.25-1.16-.59-2.13-.59-1.82,0-3.1,1.35-3.1,3.18,0,1.67,1.09,3.11,3.02,3.11,1.26,0,1.97-.55,2.41-.88l-.07,1.27c-.52.26-1.27.62-2.56.62-3.18,0-4.11-2.51-4.11-3.99,0-2.19,1.84-4.35,4.77-4.35.85,0,1.35.17,1.76.32v1.31Z\"/>\n    <path class=\"cls-1\" d=\"M88.88,17.66l-.57,1.26c-.9-.36-1.19-.44-2.14-.44v5.41c0,.66.05,1.32.23,1.96h-1.67c.12-.51.23-1.11.23-2.09v-5.28c-.55-.01-1.03-.01-2.61.56l.44-1.38h6.1Z\"/>\n    <path class=\"cls-1\" d=\"M92.54,17.65c-.15.48-.31.93-.31,2.16v3.77c0,.93.07,1.4.31,2.26h-1.85c.16-.51.32-.98.32-2.35v-3.9c0-.93-.11-1.44-.32-1.94h1.85Z\"/>\n    <path class=\"cls-1\" d=\"M99.08,17.59c2.71,0,4.08,2.05,4.08,4.13,0,2.56-1.97,4.18-4.28,4.18-2.64,0-4.28-2.14-4.28-4.24,0-1.82,1.64-4.08,4.49-4.08ZM99.21,25.02c1.82,0,2.68-1.72,2.68-2.99,0-1.7-1.3-3.56-3.21-3.56-1.65,0-2.71,1.43-2.71,3.02,0,2.22,1.68,3.54,3.25,3.54Z\"/>\n    <path class=\"cls-1\" d=\"M106.58,17.65c.15.37.23.57.87,1.39l3.7,4.7v-3.73c0-1.51-.1-1.89-.23-2.36h1.57c-.11.44-.21.87-.21,1.75v4.4c0,1.27.15,1.7.27,2.04h-1.52c-.14-.44-.42-.82-.7-1.18l-3.49-4.46v3.23c0,.72.08,1.74.33,2.4h-1.74c.26-.85.27-2.01.27-2.16v-4.93c-.39-.5-.61-.71-1.1-1.1h1.96Z\"/>\n  </g>\n  <g>\n    <path class=\"cls-1\" d=\"M15.49,0C7.1,0,.3,6.8.3,15.19s6.8,15.2,15.2,15.2,15.19-6.8,15.19-15.2S23.88,0,15.49,0ZM15.49,29.61c-7.95,0-14.41-6.47-14.41-14.41S7.54.78,15.49.78s14.41,6.47,14.41,14.41-6.47,14.41-14.41,14.41Z\"/>\n    <path class=\"cls-1\" d=\"M15.49,1.35C7.86,1.35,1.64,7.56,1.64,15.2s6.21,13.85,13.85,13.85,13.85-6.21,13.85-13.85S23.13,1.35,15.49,1.35ZM15.43,25.73c-6.55,0-9.78-4.34-9.78-8.63,0-3.68,2.1-6.22,4.7-7.62,1.55-.83,3.28-1.25,4.84-1.25,2.6,0,4.72,1.17,4.72,3.54,0,1.08-.58,2.24-1.88,2.91,1.67.82,2.38,2.13,2.38,3.5,0,.4-.17.97-.35,1.26,2.1-1.46,3.03-3.86,3.03-6.16,0-3.8-2.64-7.46-7.27-7.46-2.04,0-4.31.78-5.83,2.74l-.13-1.1c1.66-1.35,4.07-2.1,5.98-2.1,5.44,0,8.24,3.92,8.24,7.9,0,3.46-2.13,6.93-6.51,7.79,1.03-.42,2-1.61,2-2.91-.01-1.64-1.13-3-2.93-3.45,1.53-.5,2.29-1.73,2.29-2.95,0-1.56-1.24-3.06-3.58-3.06-5.7,0-8.7,4.27-8.7,8.47s2.84,8.1,8.75,8.1c2.13,0,4.29-.8,5.9-1.95l.09.75c-1.72,1.19-3.84,1.68-5.96,1.68ZM20.28,21.15c-1.31.61-2.88.96-4.7.96h-3.27c.48-1.54.53-3.19.53-4v-6.54c0-1.21.86-1.94,1.34-2.24-4.09.8-6.24,4.51-6.24,7.85,0,3.75,2.63,7.37,7.46,7.37,2.31,0,4.4-1.02,5.74-2.69l.13,1.13c-1.59,1.17-3.79,2.03-5.87,2.03-5.65,0-8.47-3.9-8.47-7.86s2.51-7.61,7.21-8.17h.03s0,0,0,0c.38-.04.76-.07,1.17-.07,2.19,0,3.28,1.46,3.28,2.84,0,1.25-.93,2.66-2.8,2.9h-.08c0,.15.31.2.46.23,1.87.35,3.06,1.71,3.07,3.28.01,2.16-2.23,3.22-4.18,3.22h-1.42c.34-.83.4-1.62.4-2.86v-6.89c0-.71.09-1.44.34-1.8-.51.21-.64,1.15-.64,1.8v6.89c0,1.36-.08,2.22-.49,3.08h1.72c6.45,0,9.43-4.22,9.43-8.39s-2.95-8.08-8.57-8.08c-1.97,0-4.31.69-6.02,2.04l-.09-.79c1.37-1.01,4.04-1.72,6.14-1.72,6.34,0,9.46,4.25,9.46,8.56,0,3.17-1.7,6.38-5.06,7.93Z\"/>\n    <path class=\"cls-1\" d=\"M17.64,11.77c0-1.18-1-2.35-2.75-2.35v5.18c1.86-.48,2.75-1.7,2.75-2.84Z\"/>\n    <path class=\"cls-1\" d=\"M18.2,18.19c0-1.03-.59-2.73-3.31-3.33v6.01h.11c3.09,0,3.19-2.22,3.19-2.68Z\"/>\n  </g>\n</svg>"
+                    }
+                  }
+                ],
+                "copyright": "© Las Rozas Village",
+                "instagramLink": "https://www.instagram.com/lasrozasvillage/",
+                "facebookLink": "https://www.facebook.com/LasRozasVillage/",
+                "twitterLink": "https://twitter.com/lasrozasvillage",
+                "youTubeLink": "https://www.youtube.com/channel/UCaxNPcvY5ys1-HHjDwAun_w",
+                "pinterestLink": "https://es.pinterest.com/lasrozasvillagemadrid/",
+                "tripAdvisorLink": null,
+                "snapchatLink": null,
+                "buttonPromo": {
+                  "headline": "Join membership",
+                  "bodyCopy": {
+                    "bodyCopy": "Exclusive offers, secret shopping events, special access to Private Sales, insider tips and unmissable extras from your favourite boutiques."
+                  },
+                  "ctaCopy": "Sign up",
+                  "ctaUrl": "https://www.lasrozasvillage.com/en/campaign/footer/"
+                }
+              },
+              "locale": "en"
+            }
+          ],
+          "openingHours": {
+            "hero": {
+              "eyebrow": "VISIT",
+              "headline": "Village Opening Hours"
+            },
+            "pageType": {
+              "slug": "opening-hours"
+            },
+            "mondayOpeningTime": "10:00",
+            "mondayClosingTime": "21:00",
+            "mondayClosedFlag": false,
+            "mondayFootnoteFlag": false,
+            "tuesdayOpeningTime": "10:00",
+            "tuesdayClosingTime": "21:00",
+            "tuesdayClosedFlag": false,
+            "tuesdayFootnoteFlag": false,
+            "wednesdayOpeningTime": "10:00",
+            "wednesdayClosingTime": "22:00",
+            "wednesdayClosedFlag": false,
+            "wednesdayFootnoteFlag": false,
+            "thursdayOpeningTime": "10:00",
+            "thursdayClosingTime": "22:00",
+            "thursdayClosedFlag": false,
+            "thursdayFootnoteFlag": false,
+            "fridayOpeningTime": "10:00",
+            "fridayClosingTime": "22:00",
+            "fridayClosedFlag": false,
+            "fridayFootnoteFlag": false,
+            "saturdayOpeningTime": "10:00",
+            "saturdayClosingTime": "22:00",
+            "saturdayClosedFlag": false,
+            "saturdayFootnoteFlag": false,
+            "sundayOpeningTime": "10:00",
+            "sundayClosingTime": "21:00",
+            "sundayClosedFlag": false,
+            "sundayFootnoteFlag": false,
+            "footNoteCopy": {
+              "footNoteCopy": "Mentidero Sal y Brasas opens at 9:30a.m. Schedules susceptible to changes. Closing days: December 25, January 1 and 6. On December 24 and 31 the schedule will be from 10 a.m. to 6 p.m."
+            },
+            "exceptions": [
+              {
+                "date": "25-12-2025",
+                "openingTime": "00:00",
+                "closingTime": "00:00",
+                "closedFlag": true,
+                "label": "Chritsmas - closed"
+              },
+              {
+                "date": "01-01-2026",
+                "openingTime": "00:00",
+                "closingTime": "23:59",
+                "closedFlag": true,
+                "label": "New Year - closed"
+              },
+              {
+                "date": "06-01-2026",
+                "openingTime": "00:01",
+                "closingTime": "23:59",
+                "closedFlag": true,
+                "label": "Closed"
+              },
+              {
+                "date": "28-11-2025",
+                "openingTime": "09:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "24-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "18:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "31-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "18:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "05-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "06-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "07-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "19-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "20-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "21-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "22-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "23-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "26-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "27-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "28-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "29-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "30-12-2025",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "02-01-2026",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "03-01-2026",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "04-01-2026",
+                "openingTime": "10:00",
+                "closingTime": "22:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "05-01-2026",
+                "openingTime": "10:00",
+                "closingTime": "21:00",
+                "closedFlag": false,
+                "label": null
+              },
+              {
+                "date": "06-09-2026",
+                "openingTime": "10:00",
+                "closingTime": "21:00",
+                "closedFlag": false,
+                "label": null
+              }
+            ]
+          },
+          "labels": [
+            {
+              "readMoreLabel": "Read more",
+              "readLessLabel": "Read less",
+              "contactDetailsHeader": "Contact",
+              "onlineLabel": "Visit",
+              "viewOnMapLabel": "View on map"
+            }
+          ],
+          "defaultLocale": "es",
+          "openingStatusLabel": null
+        },
+        "pageTitle": "Careers",
+        "pageDescription": "Apply today for your chance to love what you do and a career with a world of opportunities.",
+        "hideFromSearchEngine": false
+      },
+      "openingHoursExceptions": {
+        "exceptions": [
+          {
+            "node": {
+              "date": "06-09-2026",
+              "openingTime": "10:00",
+              "closingTime": "21:00",
+              "closedFlag": false,
+              "label": null
+            }
+          }
+        ]
+      },
+      "openingHoursLabels": {
+        "edges": [
+          {
+            "node": {
+              "brandHeading": "Boutique Hours",
+              "villageHeading": "Village Hours",
+              "dineHeading": "Opening hours",
+              "thisWeekHeading": "This Week",
+              "nextWeekHeading": "Next Week",
+              "followingWeekHeading": "Following Week",
+              "mondayLabel": "Monday",
+              "tuesdayLabel": "Tuesday",
+              "wednesdayLabel": "Wednesday",
+              "thursdayLabel": "Thursday",
+              "fridayLabel": "Friday",
+              "saturdayLabel": "Saturday",
+              "sundayLabel": "Sunday",
+              "closedLabel": "Closed",
+              "brandRibbonLabel": "Boutique Hours",
+              "villageRibbonLabel": "Village hours",
+              "dineRibbonLabel": "Opening hours",
+              "moreOpeningHoursCtaCopy": "See more hours",
+              "januaryLabel": "Jan",
+              "februaryLabel": "Feb",
+              "marchLabel": "Mar",
+              "aprilLabel": "Apr",
+              "mayLabel": "May",
+              "juneLabel": "Jun",
+              "julyLabel": "Jul",
+              "augustLabel": "Aug",
+              "septemberLabel": "Sep",
+              "octoberLabel": "Oct",
+              "novemberLabel": "Nov",
+              "decemberLabel": "Dec",
+              "heroLabel": null
+            }
+          },
+          {
+            "node": {
+              "brandHeading": "Boutique Hours",
+              "villageHeading": "Village Hours",
+              "dineHeading": "Opening hours",
+              "thisWeekHeading": "This Week",
+              "nextWeekHeading": "Next Week",
+              "followingWeekHeading": "Following Week",
+              "mondayLabel": "Monday",
+              "tuesdayLabel": "Tuesday",
+              "wednesdayLabel": "Wednesday",
+              "thursdayLabel": "Thursday",
+              "fridayLabel": "Friday",
+              "saturdayLabel": "Saturday",
+              "sundayLabel": "Sunday",
+              "closedLabel": "Virtual Shopping Only",
+              "brandRibbonLabel": "Boutique Hours",
+              "villageRibbonLabel": "Village hours",
+              "dineRibbonLabel": "Opening hours",
+              "moreOpeningHoursCtaCopy": "See more hours",
+              "januaryLabel": "Jan",
+              "februaryLabel": "Feb",
+              "marchLabel": "Mar",
+              "aprilLabel": "Apr",
+              "mayLabel": "May",
+              "juneLabel": "Jun",
+              "julyLabel": "Jul",
+              "augustLabel": "Aug",
+              "septemberLabel": "Sep",
+              "octoberLabel": "Oct",
+              "novemberLabel": "Nov",
+              "decemberLabel": "Dec",
+              "heroLabel": null
+            }
+          }
+        ]
+      },
+      "collectionPage": {
+        "header": {
+          "navigation": {
+            "navItems": [
+              {
+                "__typename": "ContentfulCompLinkLnk01",
+                "label": "Destinations",
+                "link": "destinations",
+                "external": false
+              },
+              {
+                "__typename": "ContentfulCompLinkLnk01",
+                "label": "Experiences",
+                "link": "experiences",
+                "external": false
+              },
+              {
+                "__typename": "ContentfulCompLinkLnk01",
+                "label": "Partnerships",
+                "link": "partners",
+                "external": false
+              },
+              {
+                "__typename": "ContentfulCompLinkLnk01",
+                "label": "Do Good",
+                "link": "do-good/intro",
+                "external": false
+              }
+            ]
+          },
+          "languageGroup": {
+            "languages": [
+              {
+                "label": "English",
+                "locale": "en"
+              },
+              {
+                "label": "العربية",
+                "locale": "ar"
+              },
+              {
+                "label": " русский",
+                "locale": "ru"
+              },
+              {
+                "label": "中文",
+                "locale": "zh-CN"
+              },
+              {
+                "label": "한국어",
+                "locale": "ko"
+              }
+            ]
+          },
+          "signinGroup": null,
+          "logos": [
+            {
+              "id": "2243512b-a10b-53da-a90f-752071a48c99",
+              "code": {
+                "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg id=\"Layer_1\" data-name=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"236\" height=\"63\" viewBox=\"0 0 117.33 30.39\">\n  <defs>\n    <style>\n      .cls1 {\n        fill: #f5f0e6;\n      }\n    </style>\n  </defs>\n  <g>\n    <path class=\"cls1\" d=\"M15.64.65C7.61.65,1.09,7.17,1.09,15.2s6.53,14.55,14.55,14.55,14.55-6.53,14.55-14.55S23.66.65,15.64.65h0ZM15.64,30.34C7.29,30.34.49,23.55.49,15.2S7.29.05,15.64.05s15.14,6.79,15.14,15.14-6.79,15.14-15.14,15.14h0Z\"/>\n    <path class=\"cls1\" d=\"M21.74,23.71l.1.79c-1.8,1.25-4.03,1.76-6.26,1.76-6.89,0-10.27-4.56-10.27-9.07,0-3.87,2.21-6.54,4.93-8,1.63-.88,3.45-1.32,5.08-1.32,2.73,0,4.96,1.23,4.96,3.72,0,1.13-.61,2.36-1.97,3.06,1.75.86,2.5,2.24,2.5,3.68,0,.42-.18,1.02-.37,1.33,2.21-1.53,3.18-4.06,3.18-6.47,0-3.99-2.78-7.83-7.64-7.83-2.14,0-4.53.82-6.12,2.88l-.14-1.15c1.74-1.42,4.28-2.21,6.28-2.21,5.72,0,8.66,4.12,8.66,8.3,0,3.64-2.24,7.28-6.84,8.19,1.08-.44,2.1-1.69,2.1-3.05-.01-1.72-1.18-3.15-3.08-3.63,1.6-.53,2.4-1.82,2.4-3.1,0-1.64-1.31-3.22-3.77-3.22-5.99,0-9.14,4.48-9.14,8.9s2.98,8.51,9.2,8.51c2.24,0,4.51-.84,6.2-2.05h0ZM15.01,14.85c2.85.62,3.47,2.41,3.47,3.5,0,.49-.1,2.82-3.35,2.82h-.12v-6.31h0ZM15.01,9.13c1.83,0,2.88,1.23,2.88,2.46s-.93,2.47-2.88,2.98v-5.44h0ZM16.03,4.13c-2.21,0-5.01.74-6.45,1.81l.1.83c1.8-1.42,4.26-2.14,6.33-2.14,5.91,0,9.01,4.21,9.01,8.49s-3.13,8.81-9.91,8.81h-1.81c.43-.9.52-1.81.52-3.24v-7.24c0-.69.14-1.67.68-1.9-.26.38-.35,1.15-.35,1.9v7.24c0,1.3-.07,2.13-.42,3h1.5c2.05,0,4.4-1.12,4.39-3.39-.01-1.65-1.27-3.08-3.23-3.45-.16-.03-.48-.08-.48-.22h.09c1.97-.26,2.95-1.74,2.95-3.06,0-1.44-1.14-2.98-3.44-2.98-.42,0-.83.02-1.23.07h0s-.04,0-.04,0c-4.94.59-7.57,4.63-7.57,8.59,0,4.16,2.96,8.26,8.9,8.26,2.19,0,4.49-.91,6.16-2.13l-.14-1.18c-1.41,1.75-3.6,2.82-6.03,2.82-5.07,0-7.83-3.8-7.83-7.74,0-3.52,2.26-7.41,6.55-8.25-.51.32-1.41,1.08-1.41,2.36v6.87c0,.85-.05,2.58-.56,4.2h3.43c1.91,0,3.56-.37,4.94-1.01,3.53-1.63,5.31-5,5.31-8.33,0-4.53-3.28-9-9.94-9h0Z\"/>\n  </g>\n  <g>\n    <path class=\"cls1\" d=\"M42.4,4.51l-.57,1.26c-.9-.36-1.19-.44-2.14-.44v5.41c0,.66.05,1.32.23,1.96h-1.67c.12-.51.23-1.11.23-2.09v-5.28c-.55-.01-1.03-.01-2.61.56l.44-1.38h6.1Z\"/>\n    <path class=\"cls1\" d=\"M46.11,4.48c-.14.38-.33.84-.33,1.88v1.66h3.51v-1.45c0-1.13-.17-1.65-.32-2.09h1.87c-.19.54-.32.93-.32,2.19v3.79c0,1.35.14,1.76.32,2.24h-1.87c.17-.5.32-.89.32-2.2v-1.44h-3.51v1.35c0,1.3.16,1.8.31,2.28h-1.86c.14-.38.32-.89.32-2.11v-4c0-1.17-.19-1.74-.32-2.11h1.88Z\"/>\n    <path class=\"cls1\" d=\"M57.54,4.5l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls1\" d=\"M66.37,4.5c2.04,0,2.61,1.29,2.61,2.03,0,.97-.67,1.45-1.09,1.77.8.48,1.48,1.21,1.48,2.13s-.74,1.74-1.4,1.97c-.46.16-1.07.31-1.61.29l-1.86-.02c.28-.89.32-1.86.32-2.34v-3.68c0-1.49-.17-1.88-.28-2.15h1.84ZM66.04,8.26c.89-.23,1.61-.71,1.61-1.66s-.72-1.32-1.61-1.4v3.06ZM66.04,11.96c1.89.03,1.96-1.31,1.96-1.58,0-.61-.34-1.57-1.96-1.97v3.55Z\"/>\n    <path class=\"cls1\" d=\"M73.07,4.5c-.15.48-.31.93-.31,2.16v3.77c0,.93.07,1.4.31,2.26h-1.85c.16-.51.32-.98.32-2.35v-3.9c0-.93-.11-1.44-.32-1.94h1.85Z\"/>\n    <path class=\"cls1\" d=\"M81.63,6.05c-.48-.25-1.16-.59-2.13-.59-1.82,0-3.1,1.35-3.1,3.18,0,1.67,1.09,3.11,3.02,3.11,1.26,0,1.97-.55,2.41-.88l-.07,1.27c-.52.26-1.27.62-2.56.62-3.18,0-4.11-2.51-4.11-3.99,0-2.19,1.84-4.35,4.77-4.35.85,0,1.35.17,1.76.32v1.31Z\"/>\n    <path class=\"cls1\" d=\"M88.02,4.5l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls1\" d=\"M94.03,6.07c-.36-.28-.82-.64-1.55-.64s-1.27.46-1.27,1.1c0,.78.69,1.18,1.72,1.77,1.18.68,1.51,1.32,1.51,2.11,0,1.35-1.06,2.34-2.77,2.34-.64,0-1.03-.11-1.41-.22v-1.74c.37.43.85.99,1.61.99.71,0,1.22-.57,1.22-1.15s-.45-.93-.69-1.08c-1.75-1.09-2.45-1.53-2.45-2.78s1.08-2.37,2.43-2.37c.74,0,1.27.23,1.66.39v1.27Z\"/>\n    <path class=\"cls1\" d=\"M102.41,4.51l-.57,1.26c-.9-.36-1.19-.44-2.14-.44v5.41c0,.66.05,1.32.23,1.96h-1.67c.12-.51.23-1.11.23-2.09v-5.28c-.55-.01-1.03-.01-2.61.56l.44-1.38h6.1Z\"/>\n    <path class=\"cls1\" d=\"M108.59,4.5l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls1\" d=\"M111.2,6.22c0-.96-.13-1.41-.22-1.69l1.6-.02c2.11-.03,3.1,1.23,3.1,2.34,0,1.33-1.18,1.99-1.55,2.19.73,1.29,1.74,2.5,2.71,3.67h-1.13c-1.1-.95-1.61-1.54-3.3-3.79v2.02c0,.63.01.9.23,1.77h-1.66c.17-.81.22-1.41.22-2.12v-4.36ZM112.42,8.78c.78-.22,2.02-.57,2.02-1.82,0-.61-.38-1.6-2.02-1.76v3.58Z\"/>\n    <path class=\"cls1\" d=\"M42.53,19.16c-.48-.25-1.16-.59-2.13-.59-1.82,0-3.1,1.35-3.1,3.18,0,1.67,1.09,3.11,3.02,3.11,1.26,0,1.97-.55,2.41-.88l-.07,1.27c-.52.26-1.27.62-2.56.62-3.18,0-4.11-2.51-4.11-3.99,0-2.19,1.84-4.35,4.77-4.35.85,0,1.35.17,1.76.32v1.31Z\"/>\n    <path class=\"cls1\" d=\"M48.78,17.55c2.71,0,4.08,2.05,4.08,4.13,0,2.56-1.97,4.18-4.28,4.18-2.64,0-4.28-2.14-4.28-4.24,0-1.82,1.64-4.08,4.49-4.08ZM48.91,24.98c1.82,0,2.68-1.72,2.68-2.99,0-1.7-1.3-3.56-3.21-3.56-1.65,0-2.71,1.43-2.71,3.02,0,2.22,1.68,3.54,3.25,3.54Z\"/>\n    <path class=\"cls1\" d=\"M58.93,25.81h-4c.21-.52.33-.84.33-2.63v-3.62c0-1.18-.15-1.57-.28-1.93h1.84c-.16.43-.31.8-.32,2.01l-.04,5.34c1.46-.13,2.28-.36,3.16-.71l-.68,1.54Z\"/>\n    <path class=\"cls1\" d=\"M65.49,25.81h-4c.21-.52.33-.84.33-2.63v-3.62c0-1.18-.15-1.57-.28-1.93h1.84c-.16.43-.31.8-.32,2.01l-.04,5.34c1.46-.13,2.28-.36,3.16-.71l-.68,1.54Z\"/>\n    <path class=\"cls1\" d=\"M72.35,17.61l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls1\" d=\"M80.88,19.16c-.48-.25-1.16-.59-2.13-.59-1.82,0-3.1,1.35-3.1,3.18,0,1.67,1.09,3.11,3.02,3.11,1.26,0,1.97-.55,2.41-.88l-.07,1.27c-.52.26-1.27.62-2.56.62-3.18,0-4.11-2.51-4.11-3.99,0-2.19,1.84-4.35,4.77-4.35.85,0,1.35.17,1.76.32v1.31Z\"/>\n    <path class=\"cls1\" d=\"M89.01,17.62l-.57,1.26c-.9-.36-1.19-.44-2.14-.44v5.41c0,.66.05,1.32.23,1.96h-1.67c.12-.51.23-1.11.23-2.09v-5.28c-.55-.01-1.03-.01-2.61.56l.44-1.38h6.1Z\"/>\n    <path class=\"cls1\" d=\"M92.67,17.61c-.15.48-.31.93-.31,2.16v3.77c0,.93.07,1.4.31,2.26h-1.85c.16-.51.32-.98.32-2.35v-3.9c0-.93-.11-1.44-.32-1.94h1.85Z\"/>\n    <path class=\"cls1\" d=\"M99.22,17.55c2.71,0,4.08,2.05,4.08,4.13,0,2.56-1.97,4.18-4.28,4.18-2.64,0-4.28-2.14-4.28-4.24,0-1.82,1.64-4.08,4.49-4.08ZM99.35,24.98c1.82,0,2.68-1.72,2.68-2.99,0-1.7-1.3-3.56-3.21-3.56-1.65,0-2.71,1.43-2.71,3.02,0,2.22,1.68,3.54,3.25,3.54Z\"/>\n    <path class=\"cls1\" d=\"M106.71,17.61c.15.37.23.57.87,1.39l3.7,4.7v-3.73c0-1.51-.1-1.89-.23-2.36h1.57c-.11.44-.21.87-.21,1.75v4.4c0,1.27.15,1.7.27,2.04h-1.52c-.14-.44-.42-.82-.7-1.18l-3.49-4.46v3.23c0,.72.08,1.74.33,2.4h-1.74c.26-.85.27-2.01.27-2.16v-4.93c-.39-.5-.61-.71-1.1-1.1h1.96Z\"/>\n  </g>\n</svg>"
+              }
+            }
+          ],
+          "logoIcon": {
+            "__typename": "ContentfulCompSvgAssetSvg01",
+            "code": {
+              "childMarkdownRemark": {
+                "html": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!-- Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->\n<p><svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n  viewBox=\"0 0 16 16\" style=\"enable-background:new 0 0 16 16;\" xml:space=\"preserve\"></p>\n<style type=\"text/css\">\n\t.st0{fill:#FFFFFF;}\n\t.st1{fill:#033C6D;}\n\t.st2{fill:#A70B2B;}\n\t.st3{fill:#80AA9F;}\n\t.st4{fill:#C79807;}\n\t.st5{fill:#0D5628;}\n\t.st6{fill:#FFD41F;}\n\t.st7{fill:#664D86;}\n\t.st8{fill:#D17400;}\n\t.st9{fill:#BA4307;}\n\t.st10{fill:#BD0C1D;}\n\t.st11{fill:#D70142;}\n\t.st12{fill:#8A175A;}\n</style>\n<g>\n\t<g>\n\t\t<path d=\"M13.9,14L13.9,14l-0.2,0v0.5h0V14h-0.2v0H13.9z\"/>\n\t\t<path d=\"M14.3,14.4L14.3,14.4L14,14.1v0.4h0V14h0L14.3,14.4l0.2-0.4h0v0.5h0v-0.4L14.3,14.4z\"/>\n\t</g>\n\t<g>\n\t\t<path class=\"st0\" d=\"M8,0.6C3.9,0.6,0.6,3.9,0.6,8s3.3,7.4,7.4,7.4c4.1,0,7.4-3.3,7.4-7.4S12.1,0.6,8,0.6z M8,15.1\n\t\t\tc-3.9,0-7.1-3.2-7.1-7.1S4.1,0.9,8,0.9c3.9,0,7.1,3.2,7.1,7.1S11.9,15.1,8,15.1z\"/>\n\t\t<path class=\"st0\" d=\"M8,13.1c-3,0-4.5-2.1-4.5-4.1c0-2.1,1.5-4.3,4.4-4.3c1.2,0,1.8,0.8,1.8,1.6c0,0.6-0.4,1.2-1.2,1.5\n\t\t\tc0.9,0.2,1.5,0.9,1.5,1.8c0,0.7-0.5,1.3-1,1.5c2.2-0.4,3.3-2.2,3.3-4c0-2-1.4-4-4.2-4c-1,0-2.2,0.4-3,1.1l0.1,0.6\n\t\t\tc0.8-1,1.9-1.4,3-1.4c2.4,0,3.7,1.9,3.7,3.8c0,1.2-0.5,2.4-1.5,3.1c0.1-0.1,0.2-0.4,0.2-0.6c0-0.7-0.4-1.4-1.2-1.8\n\t\t\tc0.7-0.3,1-0.9,1-1.5c0-1.2-1.1-1.8-2.4-1.8c-0.8,0-1.7,0.2-2.5,0.6C4.1,5.8,3,7.1,3,9c0,2.2,1.6,4.4,5,4.4c1.1,0,2.2-0.3,3-0.9\n\t\t\tl0-0.4C10.1,12.7,9,13.1,8,13.1z\"/>\n\t\t<path class=\"st0\" d=\"M8.2,2.6C7.1,2.6,5.8,3,5.1,3.5l0,0.4c0.9-0.7,2.1-1,3.1-1c2.9,0,4.4,2,4.4,4.1c0,2.1-1.5,4.3-4.8,4.3H6.9\n\t\t\tc0.2-0.4,0.3-0.9,0.3-1.6V6.2c0-0.3,0.1-0.8,0.3-0.9C7.3,5.4,7.3,5.8,7.3,6.2v3.5c0,0.6,0,1-0.2,1.5h0.7c1,0,2.1-0.5,2.1-1.6\n\t\t\tc0-0.8-0.6-1.5-1.6-1.7c-0.1,0-0.2,0-0.2-0.1l0,0c1-0.1,1.4-0.8,1.4-1.5c0-0.7-0.6-1.4-1.7-1.4c-0.2,0-0.4,0-0.6,0l0,0l0,0\n\t\t\tC4.9,5.1,3.6,7.1,3.6,9c0,2,1.4,4,4.3,4c1.1,0,2.2-0.4,3-1l-0.1-0.6c-0.7,0.9-1.7,1.4-2.9,1.4c-2.5,0-3.8-1.8-3.8-3.8\n\t\t\tc0-1.7,1.1-3.6,3.2-4C7.1,5.2,6.6,5.5,6.6,6.2v3.3c0,0.4,0,1.3-0.3,2H8c0.9,0,1.7-0.2,2.4-0.5c1.7-0.8,2.6-2.4,2.6-4\n\t\t\tC13,4.8,11.4,2.6,8.2,2.6z M7.7,5.1c0.9,0,1.4,0.6,1.4,1.2c0,0.6-0.4,1.2-1.4,1.4V5.1z M7.7,7.8C9.1,8.1,9.4,9,9.4,9.5\n\t\t\tc0,0.2-0.1,1.4-1.6,1.4H7.7V7.8z\"/>\n\t\t<path class=\"st1\" d=\"M9.4,9.5c0-0.5-0.3-1.4-1.7-1.7v3.1h0.1C9.3,10.9,9.4,9.8,9.4,9.5z\"/>\n\t\t<path class=\"st1\" d=\"M9.1,6.3c0-0.6-0.5-1.2-1.4-1.2v2.6C8.6,7.5,9.1,6.8,9.1,6.3z\"/>\n\t\t<path class=\"st1\" d=\"M8,0.2C3.7,0.2,0.2,3.7,0.2,8c0,4.3,3.5,7.8,7.8,7.8c4.3,0,7.7-3.5,7.7-7.8C15.8,3.7,12.3,0.2,8,0.2z M0.6,8\n\t\t\tc0-4.1,3.3-7.4,7.4-7.4c4.1,0,7.4,3.3,7.4,7.4s-3.3,7.4-7.4,7.4C3.9,15.4,0.6,12.1,0.6,8z\"/>\n\t\t<path class=\"st1\" d=\"M8,0.9C4.1,0.9,0.9,4.1,0.9,8s3.2,7.1,7.1,7.1c3.9,0,7.1-3.2,7.1-7.1S11.9,0.9,8,0.9z M8,13.4\n\t\t\tc-3.3,0-5-2.2-5-4.4c0-1.9,1.1-3.2,2.4-3.9c0.8-0.4,1.7-0.6,2.5-0.6c1.3,0,2.4,0.6,2.4,1.8c0,0.5-0.3,1.1-1,1.5\n\t\t\tc0.9,0.4,1.2,1.1,1.2,1.8c0,0.2-0.1,0.5-0.2,0.6c1.1-0.7,1.5-2,1.5-3.1c0-1.9-1.3-3.8-3.7-3.8c-1,0-2.2,0.4-3,1.4L5.1,4.1\n\t\t\tC6,3.4,7.2,3,8.2,3c2.8,0,4.2,2,4.2,4c0,1.8-1.1,3.5-3.3,4c0.5-0.2,1-0.8,1-1.5c0-0.8-0.6-1.5-1.5-1.8c0.8-0.3,1.2-0.9,1.2-1.5\n\t\t\tc0-0.8-0.6-1.6-1.8-1.6C5,4.7,3.5,6.9,3.5,9c0,2.1,1.4,4.1,4.5,4.1c1.1,0,2.2-0.4,3-1l0,0.4C10.1,13.1,9.1,13.4,8,13.4z M10.4,11\n\t\t\tC9.8,11.3,9,11.5,8,11.5H6.4c0.2-0.8,0.3-1.6,0.3-2V6.2c0-0.6,0.4-1,0.7-1.1C5.2,5.4,4.1,7.3,4.1,9c0,1.9,1.3,3.8,3.8,3.8\n\t\t\tc1.2,0,2.2-0.5,2.9-1.4l0.1,0.6c-0.8,0.6-1.9,1-3,1c-2.9,0-4.3-2-4.3-4c0-1.9,1.3-3.9,3.7-4.2l0,0l0,0c0.2,0,0.4,0,0.6,0\n\t\t\tc1.1,0,1.7,0.7,1.7,1.4c0,0.6-0.5,1.4-1.4,1.5l0,0c0,0.1,0.2,0.1,0.2,0.1c1,0.2,1.6,0.9,1.6,1.7c0,1.1-1.1,1.6-2.1,1.6H7.1\n\t\t\tc0.2-0.4,0.2-0.8,0.2-1.5V6.2c0-0.4,0-0.7,0.2-0.9C7.2,5.4,7.1,5.8,7.1,6.2v3.5c0,0.7,0,1.1-0.3,1.6h0.9c3.3,0,4.8-2.2,4.8-4.3\n\t\t\tc0-2.1-1.5-4.1-4.4-4.1c-1,0-2.2,0.4-3.1,1l0-0.4C5.8,3,7.1,2.6,8.2,2.6C11.4,2.6,13,4.8,13,7C13,8.6,12.2,10.2,10.4,11z\"/>\n\t</g>\n</g>\n</svg>"
+              }
+            }
+          },
+          "notification": null,
+          "hideLanguages": null
+        },
+        "footer": {
+          "navItems": [
+            {
+              "category": "Our world",
+              "links": [
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "title": "TBC_Comp_Footer_Company_About_Us_TBC",
+                  "label": "About us",
+                  "link": "company/about-the-bicester-collection",
+                  "external": false
+                },
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "title": "TBVSC_Comp_Footer_Company_Press_Office",
+                  "label": "Press office",
+                  "link": "company/press-office",
+                  "external": false
+                },
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "title": "SHARED_Comp_Footer_link_Company_Contact_us",
+                  "label": "Contact us",
+                  "link": "company/contact",
+                  "external": false
+                }
+              ]
+            },
+            {
+              "category": "Join us",
+              "links": [
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "title": "TBVSC_comp_Footer_link_Careers",
+                  "label": "Careers",
+                  "link": "careers/boutique-restaurant-vr",
+                  "external": false
+                },
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "title": "TBVSC_Comp_Nav_Partnerships",
+                  "label": "Partnerships",
+                  "link": "partners",
+                  "external": false
+                },
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "title": "TBVSC_Temp_Comp_footer_link_Partnership_Enquiries",
+                  "label": "Partnership enquiries",
+                  "link": "https://www.thebicestercollection.com/bicester-village/en/travel-industry-registration/register",
+                  "external": true
+                }
+              ]
+            },
+            {
+              "category": "The small print",
+              "links": [
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "title": "SHARED_Comp_Footer_Link_Website_Privacy_Notice",
+                  "label": "Website privacy notice",
+                  "link": "legal/website-privacy-notice",
+                  "external": false
+                },
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "title": "SHARED__Comp_Footer_Link_Website_Terms&Conditions",
+                  "label": "Website terms and conditions",
+                  "link": "legal/website-terms-and-conditions",
+                  "external": false
+                },
+                {
+                  "__typename": "ContentfulCompLinkLnk01",
+                  "title": "SHARED_Comp_Footer_Link_Accessibility",
+                  "label": "Accessibility",
+                  "link": "legal/accessibility",
+                  "external": false
+                }
+              ]
+            }
+          ],
+          "copy": {
+            "copy": "All rights reserved"
+          },
+          "logos": [
+            {
+              "code": {
+                "code": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg id=\"Layer_1\" data-name=\"Layer 1\" width=\"117\" height=\"31\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 117 30.39\">\n  <defs>\n    <style>\n      .cls-1 {\n        fill: #7e8a49;\n      }\n    </style>\n  </defs>\n  <g>\n    <path class=\"cls-1\" d=\"M42.26,4.55l-.57,1.26c-.9-.36-1.19-.44-2.14-.44v5.41c0,.66.05,1.32.23,1.96h-1.67c.12-.51.23-1.11.23-2.09v-5.28c-.55-.01-1.03-.01-2.61.56l.44-1.38h6.1Z\"/>\n    <path class=\"cls-1\" d=\"M45.97,4.52c-.14.38-.33.84-.33,1.88v1.66h3.51v-1.45c0-1.13-.17-1.65-.32-2.09h1.87c-.19.54-.32.93-.32,2.19v3.79c0,1.35.14,1.76.32,2.24h-1.87c.17-.5.32-.89.32-2.2v-1.44h-3.51v1.35c0,1.3.16,1.8.31,2.28h-1.86c.14-.38.32-.89.32-2.11v-4c0-1.17-.19-1.74-.32-2.11h1.88Z\"/>\n    <path class=\"cls-1\" d=\"M57.4,4.54l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls-1\" d=\"M66.24,4.54c2.04,0,2.61,1.29,2.61,2.03,0,.97-.67,1.45-1.09,1.77.8.48,1.48,1.21,1.48,2.13s-.74,1.74-1.4,1.97c-.46.16-1.07.31-1.61.29l-1.86-.02c.28-.89.32-1.86.32-2.34v-3.68c0-1.49-.17-1.88-.28-2.15h1.84ZM65.9,8.3c.89-.23,1.61-.71,1.61-1.66s-.72-1.32-1.61-1.4v3.06ZM65.9,12c1.89.03,1.96-1.31,1.96-1.58,0-.61-.34-1.57-1.96-1.97v3.55Z\"/>\n    <path class=\"cls-1\" d=\"M72.93,4.54c-.15.48-.31.93-.31,2.16v3.77c0,.93.07,1.4.31,2.26h-1.85c.16-.51.32-.98.32-2.35v-3.9c0-.93-.11-1.44-.32-1.94h1.85Z\"/>\n    <path class=\"cls-1\" d=\"M81.49,6.09c-.48-.25-1.16-.59-2.13-.59-1.82,0-3.1,1.35-3.1,3.18,0,1.67,1.09,3.11,3.02,3.11,1.26,0,1.97-.55,2.41-.88l-.07,1.27c-.52.26-1.27.62-2.56.62-3.18,0-4.11-2.51-4.11-3.99,0-2.19,1.84-4.35,4.77-4.35.85,0,1.35.17,1.76.32v1.31Z\"/>\n    <path class=\"cls-1\" d=\"M87.88,4.54l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls-1\" d=\"M93.89,6.12c-.36-.28-.82-.64-1.55-.64s-1.27.46-1.27,1.1c0,.78.69,1.18,1.72,1.77,1.18.68,1.51,1.32,1.51,2.11,0,1.35-1.06,2.34-2.77,2.34-.64,0-1.03-.11-1.41-.22v-1.74c.37.43.85.99,1.61.99.71,0,1.22-.57,1.22-1.15s-.45-.93-.69-1.08c-1.75-1.09-2.45-1.53-2.45-2.78s1.08-2.37,2.43-2.37c.74,0,1.27.23,1.66.39v1.27Z\"/>\n    <path class=\"cls-1\" d=\"M102.27,4.55l-.57,1.26c-.9-.36-1.19-.44-2.14-.44v5.41c0,.66.05,1.32.23,1.96h-1.67c.12-.51.23-1.11.23-2.09v-5.28c-.55-.01-1.03-.01-2.61.56l.44-1.38h6.1Z\"/>\n    <path class=\"cls-1\" d=\"M108.45,4.54l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls-1\" d=\"M111.07,6.26c0-.96-.13-1.41-.22-1.69l1.6-.02c2.11-.03,3.1,1.23,3.1,2.34,0,1.33-1.18,1.99-1.55,2.19.73,1.29,1.74,2.5,2.71,3.67h-1.13c-1.1-.95-1.61-1.54-3.3-3.79v2.02c0,.63.01.9.23,1.77h-1.66c.17-.81.22-1.41.22-2.12v-4.36ZM112.28,8.82c.78-.22,2.02-.57,2.02-1.82,0-.61-.38-1.6-2.02-1.76v3.58Z\"/>\n    <path class=\"cls-1\" d=\"M42.4,19.2c-.48-.25-1.16-.59-2.13-.59-1.82,0-3.1,1.35-3.1,3.18,0,1.67,1.09,3.11,3.02,3.11,1.26,0,1.97-.55,2.41-.88l-.07,1.27c-.52.26-1.27.62-2.56.62-3.18,0-4.11-2.51-4.11-3.99,0-2.19,1.84-4.35,4.77-4.35.85,0,1.35.17,1.76.32v1.31Z\"/>\n    <path class=\"cls-1\" d=\"M48.65,17.59c2.71,0,4.08,2.05,4.08,4.13,0,2.56-1.97,4.18-4.28,4.18-2.64,0-4.28-2.14-4.28-4.24,0-1.82,1.64-4.08,4.49-4.08ZM48.78,25.02c1.82,0,2.68-1.72,2.68-2.99,0-1.7-1.3-3.56-3.21-3.56-1.65,0-2.71,1.43-2.71,3.02,0,2.22,1.68,3.54,3.25,3.54Z\"/>\n    <path class=\"cls-1\" d=\"M58.8,25.85h-4c.21-.52.33-.84.33-2.63v-3.62c0-1.18-.15-1.57-.28-1.93h1.84c-.16.43-.31.8-.32,2.01l-.04,5.34c1.46-.13,2.28-.36,3.16-.71l-.68,1.54Z\"/>\n    <path class=\"cls-1\" d=\"M65.35,25.85h-4c.21-.52.33-.84.33-2.63v-3.62c0-1.18-.15-1.57-.28-1.93h1.84c-.16.43-.31.8-.32,2.01l-.04,5.34c1.46-.13,2.28-.36,3.16-.71l-.68,1.54Z\"/>\n    <path class=\"cls-1\" d=\"M72.21,17.65l-.62,1.27c-.92-.42-1.4-.52-2.26-.49v2.86h2.57l-.7,1.15c-.94-.27-1.25-.32-1.87-.36v2.99c1.05,0,1.63,0,3.37-.59l-.6,1.37h-4.29c.14-.48.31-1.06.31-2.11v-4.01c0-.56-.08-1.37-.31-2.08h4.41Z\"/>\n    <path class=\"cls-1\" d=\"M80.75,19.2c-.48-.25-1.16-.59-2.13-.59-1.82,0-3.1,1.35-3.1,3.18,0,1.67,1.09,3.11,3.02,3.11,1.26,0,1.97-.55,2.41-.88l-.07,1.27c-.52.26-1.27.62-2.56.62-3.18,0-4.11-2.51-4.11-3.99,0-2.19,1.84-4.35,4.77-4.35.85,0,1.35.17,1.76.32v1.31Z\"/>\n    <path class=\"cls-1\" d=\"M88.88,17.66l-.57,1.26c-.9-.36-1.19-.44-2.14-.44v5.41c0,.66.05,1.32.23,1.96h-1.67c.12-.51.23-1.11.23-2.09v-5.28c-.55-.01-1.03-.01-2.61.56l.44-1.38h6.1Z\"/>\n    <path class=\"cls-1\" d=\"M92.54,17.65c-.15.48-.31.93-.31,2.16v3.77c0,.93.07,1.4.31,2.26h-1.85c.16-.51.32-.98.32-2.35v-3.9c0-.93-.11-1.44-.32-1.94h1.85Z\"/>\n    <path class=\"cls-1\" d=\"M99.08,17.59c2.71,0,4.08,2.05,4.08,4.13,0,2.56-1.97,4.18-4.28,4.18-2.64,0-4.28-2.14-4.28-4.24,0-1.82,1.64-4.08,4.49-4.08ZM99.21,25.02c1.82,0,2.68-1.72,2.68-2.99,0-1.7-1.3-3.56-3.21-3.56-1.65,0-2.71,1.43-2.71,3.02,0,2.22,1.68,3.54,3.25,3.54Z\"/>\n    <path class=\"cls-1\" d=\"M106.58,17.65c.15.37.23.57.87,1.39l3.7,4.7v-3.73c0-1.51-.1-1.89-.23-2.36h1.57c-.11.44-.21.87-.21,1.75v4.4c0,1.27.15,1.7.27,2.04h-1.52c-.14-.44-.42-.82-.7-1.18l-3.49-4.46v3.23c0,.72.08,1.74.33,2.4h-1.74c.26-.85.27-2.01.27-2.16v-4.93c-.39-.5-.61-.71-1.1-1.1h1.96Z\"/>\n  </g>\n  <g>\n    <path class=\"cls-1\" d=\"M15.49,0C7.1,0,.3,6.8.3,15.19s6.8,15.2,15.2,15.2,15.19-6.8,15.19-15.2S23.88,0,15.49,0ZM15.49,29.61c-7.95,0-14.41-6.47-14.41-14.41S7.54.78,15.49.78s14.41,6.47,14.41,14.41-6.47,14.41-14.41,14.41Z\"/>\n    <path class=\"cls-1\" d=\"M15.49,1.35C7.86,1.35,1.64,7.56,1.64,15.2s6.21,13.85,13.85,13.85,13.85-6.21,13.85-13.85S23.13,1.35,15.49,1.35ZM15.43,25.73c-6.55,0-9.78-4.34-9.78-8.63,0-3.68,2.1-6.22,4.7-7.62,1.55-.83,3.28-1.25,4.84-1.25,2.6,0,4.72,1.17,4.72,3.54,0,1.08-.58,2.24-1.88,2.91,1.67.82,2.38,2.13,2.38,3.5,0,.4-.17.97-.35,1.26,2.1-1.46,3.03-3.86,3.03-6.16,0-3.8-2.64-7.46-7.27-7.46-2.04,0-4.31.78-5.83,2.74l-.13-1.1c1.66-1.35,4.07-2.1,5.98-2.1,5.44,0,8.24,3.92,8.24,7.9,0,3.46-2.13,6.93-6.51,7.79,1.03-.42,2-1.61,2-2.91-.01-1.64-1.13-3-2.93-3.45,1.53-.5,2.29-1.73,2.29-2.95,0-1.56-1.24-3.06-3.58-3.06-5.7,0-8.7,4.27-8.7,8.47s2.84,8.1,8.75,8.1c2.13,0,4.29-.8,5.9-1.95l.09.75c-1.72,1.19-3.84,1.68-5.96,1.68ZM20.28,21.15c-1.31.61-2.88.96-4.7.96h-3.27c.48-1.54.53-3.19.53-4v-6.54c0-1.21.86-1.94,1.34-2.24-4.09.8-6.24,4.51-6.24,7.85,0,3.75,2.63,7.37,7.46,7.37,2.31,0,4.4-1.02,5.74-2.69l.13,1.13c-1.59,1.17-3.79,2.03-5.87,2.03-5.65,0-8.47-3.9-8.47-7.86s2.51-7.61,7.21-8.17h.03s0,0,0,0c.38-.04.76-.07,1.17-.07,2.19,0,3.28,1.46,3.28,2.84,0,1.25-.93,2.66-2.8,2.9h-.08c0,.15.31.2.46.23,1.87.35,3.06,1.71,3.07,3.28.01,2.16-2.23,3.22-4.18,3.22h-1.42c.34-.83.4-1.62.4-2.86v-6.89c0-.71.09-1.44.34-1.8-.51.21-.64,1.15-.64,1.8v6.89c0,1.36-.08,2.22-.49,3.08h1.72c6.45,0,9.43-4.22,9.43-8.39s-2.95-8.08-8.57-8.08c-1.97,0-4.31.69-6.02,2.04l-.09-.79c1.37-1.01,4.04-1.72,6.14-1.72,6.34,0,9.46,4.25,9.46,8.56,0,3.17-1.7,6.38-5.06,7.93Z\"/>\n    <path class=\"cls-1\" d=\"M17.64,11.77c0-1.18-1-2.35-2.75-2.35v5.18c1.86-.48,2.75-1.7,2.75-2.84Z\"/>\n    <path class=\"cls-1\" d=\"M18.2,18.19c0-1.03-.59-2.73-3.31-3.33v6.01h.11c3.09,0,3.19-2.22,3.19-2.68Z\"/>\n  </g>\n</svg>"
+              }
+            }
+          ],
+          "copyright": "© Copyright licensed to TBVSC LLC",
+          "instagramLink": "https://www.instagram.com/TheBicesterCollection",
+          "facebookLink": "https://www.facebook.com/TheBicesterCollection",
+          "twitterLink": "https://twitter.com/Bicester_Coll",
+          "youTubeLink": null,
+          "pinterestLink": null,
+          "tripAdvisorLink": null,
+          "snapchatLink": null,
+          "buttonPromo": {
+            "headline": "Discover the Villages",
+            "bodyCopy": {
+              "bodyCopy": "Located in Europe, China and the US, a Village is closer than you think"
+            },
+            "ctaCopy": "Find your nearest Village",
+            "ctaUrl": "https://www.thebicestercollection.com/en/destinations"
+          }
+        }
+      },
+      "labels": {
+        "edges": [
+          {
+            "node": {
+              "visitBoutiqueLabel": "Visit the boutique"
+            }
+          }
+        ]
+      },
+      "memDaysOnboarding": null,
+      "allMemorableDays": {
+        "edges": []
+      },
+      "allMembershipPopUps": {
+        "totalCount": 1,
+        "edges": [
+          {
+            "node": {
+              "hexCode": "#ffffff",
+              "headline": "Join Membership ",
+              "bodyCopy": {
+                "childMarkdownRemark": {
+                  "html": "<p>Enjoy exclusive offers, first access to events and entry to the Private Sale.</p>"
+                }
+              },
+              "primaryCta": {
+                "label": "REGISTER NOW",
+                "url": "https://www.lasrozasvillage.com/en/register/LZV-web-registration-overlay-en",
+                "title": "LZV_Comp_link_membership_registration_popup_Register"
+              },
+              "secondaryCopy": {
+                "childMarkdownRemark": {
+                  "html": "<p>Already a member?\n<a href=\"https://www.lasrozasvillage.com/en/sign-in?\" title=\"Sign in\">Sign in</a> to see your latest member offers.</p>"
+                }
+              },
+              "legalCopy": {
+                "childMarkdownRemark": {
+                  "html": "<p>*On selected items</p>"
+                }
+              },
+              "backgroundImage": {
+                "imageId": "1tYS0kqMR6ZgXDPIlnS5Fb",
+                "altText": null,
+                "caption": null,
+                "photoCredit": null,
+                "portrait": {
+                  "gatsbyImageData": {
+                    "images": {
+                      "sources": [
+                        {
+                          "srcSet": "https://media.thebicestercollection.com/3z73vs69pqez/10SZHUH1QhG6PKzkBo3LR2/cb2631a4732699cf86b7efde5740e41b/las-rozas-village-membership.png?w=750&h=1200&q=80&fm=webp 750w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/10SZHUH1QhG6PKzkBo3LR2/cb2631a4732699cf86b7efde5740e41b/las-rozas-village-membership.png?w=1080&h=1728&q=80&fm=webp 1080w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/10SZHUH1QhG6PKzkBo3LR2/cb2631a4732699cf86b7efde5740e41b/las-rozas-village-membership.png?w=1200&h=1920&q=80&fm=webp 1200w",
+                          "sizes": "100vw",
+                          "type": "image/webp"
+                        }
+                      ]
+                    },
+                    "layout": "fullWidth",
+                    "width": 1,
+                    "height": 1.6,
+                    "placeholder": {
+                      "fallback": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAgAQMAAAAorMr1AAAABGdBTUEAALGPC/xhBQAACilpQ0NQaWNjAABIiZ2Wd1RT2RaHz703vVCSEIqU0GtoUgJIDb1IkS4qMQkQSsCQACI2RFRwRFGRpggyKOCAo0ORsSKKhQFRsesEGUTUcXAUG5ZJZK0Z37x5782b3x/3fmufvc/dZ+991roAkPyDBcJMWAmADKFYFOHnxYiNi2dgBwEM8AADbADgcLOzQhb4RgKZAnzYjGyZE/gXvboOIPn7KtM/jMEA/5+UuVkiMQBQmIzn8vjZXBkXyTg9V5wlt0/JmLY0Tc4wSs4iWYIyVpNz8ixbfPaZZQ858zKEPBnLc87iZfDk3CfjjTkSvoyRYBkX5wj4uTK+JmODdEmGQMZv5LEZfE42ACiS3C7mc1NkbC1jkigygi3jeQDgSMlf8NIvWMzPE8sPxc7MWi4SJKeIGSZcU4aNkxOL4c/PTeeLxcwwDjeNI+Ix2JkZWRzhcgBmz/xZFHltGbIiO9g4OTgwbS1tvijUf138m5L3dpZehH/uGUQf+MP2V36ZDQCwpmW12fqHbWkVAF3rAVC7/YfNYC8AirK+dQ59cR66fF5SxOIsZyur3NxcSwGfaykv6O/6nw5/Q198z1K+3e/lYXjzkziSdDFDXjduZnqmRMTIzuJw+Qzmn4f4Hwf+dR4WEfwkvogvlEVEy6ZMIEyWtVvIE4gFmUKGQPifmvgPw/6k2bmWidr4EdCWWAKlIRpAfh4AKCoRIAl7ZCvQ730LxkcD+c2L0ZmYnfvPgv59V7hM/sgWJH+OY0dEMrgSUc7smvxaAjQgAEVAA+pAG+gDE8AEtsARuAAP4AMCQSiIBHFgMeCCFJABRCAXFIC1oBiUgq1gJ6gGdaARNIM2cBh0gWPgNDgHLoHLYATcAVIwDp6AKfAKzEAQhIXIEBVSh3QgQ8gcsoVYkBvkAwVDEVAclAglQ0JIAhVA66BSqByqhuqhZuhb6Ch0GroADUO3oFFoEvoVegcjMAmmwVqwEWwFs2BPOAiOhBfByfAyOB8ugrfAlXADfBDuhE/Dl+ARWAo/gacRgBAROqKLMBEWwkZCkXgkCREhq5ASpAJpQNqQHqQfuYpIkafIWxQGRUUxUEyUC8ofFYXiopahVqE2o6pRB1CdqD7UVdQoagr1EU1Ga6LN0c7oAHQsOhmdiy5GV6Cb0B3os+gR9Dj6FQaDoWOMMY4Yf0wcJhWzArMZsxvTjjmFGcaMYaaxWKw61hzrig3FcrBibDG2CnsQexJ7BTuOfYMj4nRwtjhfXDxOiCvEVeBacCdwV3ATuBm8Et4Q74wPxfPwy/Fl+EZ8D34IP46fISgTjAmuhEhCKmEtoZLQRjhLuEt4QSQS9YhOxHCigLiGWEk8RDxPHCW+JVFIZiQ2KYEkIW0h7SedIt0ivSCTyUZkD3I8WUzeQm4mnyHfJ79RoCpYKgQo8BRWK9QodCpcUXimiFc0VPRUXKyYr1iheERxSPGpEl7JSImtxFFapVSjdFTphtK0MlXZRjlUOUN5s3KL8gXlRxQsxYjiQ+FRiij7KGcoY1SEqk9lU7nUddRG6lnqOA1DM6YF0FJppbRvaIO0KRWKip1KtEqeSo3KcRUpHaEb0QPo6fQy+mH6dfo7VS1VT1W+6ibVNtUrqq/V5qh5qPHVStTa1UbU3qkz1H3U09S3qXep39NAaZhphGvkauzROKvxdA5tjssc7pySOYfn3NaENc00IzRXaO7THNCc1tLW8tPK0qrSOqP1VJuu7aGdqr1D+4T2pA5Vx01HoLND56TOY4YKw5ORzqhk9DGmdDV1/XUluvW6g7ozesZ6UXqFeu169/QJ+iz9JP0d+r36UwY6BiEGBQatBrcN8YYswxTDXYb9hq+NjI1ijDYYdRk9MlYzDjDON241vmtCNnE3WWbSYHLNFGPKMk0z3W162Qw2szdLMasxGzKHzR3MBea7zYct0BZOFkKLBosbTBLTk5nDbGWOWtItgy0LLbssn1kZWMVbbbPqt/pobW+dbt1ofceGYhNoU2jTY/OrrZkt17bG9tpc8lzfuavnds99bmdux7fbY3fTnmofYr/Bvtf+g4Ojg8ihzWHS0cAx0bHW8QaLxgpjbWadd0I7eTmtdjrm9NbZwVnsfNj5FxemS5pLi8ujecbz+PMa54256rlyXOtdpW4Mt0S3vW5Sd113jnuD+wMPfQ+eR5PHhKepZ6rnQc9nXtZeIq8Or9dsZ/ZK9ilvxNvPu8R70IfiE+VT7XPfV8832bfVd8rP3m+F3yl/tH+Q/zb/GwFaAdyA5oCpQMfAlYF9QaSgBUHVQQ+CzYJFwT0hcEhgyPaQu/MN5wvnd4WC0IDQ7aH3wozDloV9H44JDwuvCX8YYRNRENG/gLpgyYKWBa8ivSLLIu9EmURJonqjFaMTopujX8d4x5THSGOtYlfGXorTiBPEdcdj46Pjm+KnF/os3LlwPME+oTjh+iLjRXmLLizWWJy++PgSxSWcJUcS0YkxiS2J7zmhnAbO9NKApbVLp7hs7i7uE54Hbwdvku/KL+dPJLkmlSc9SnZN3p48meKeUpHyVMAWVAuep/qn1qW+TgtN25/2KT0mvT0Dl5GYcVRIEaYJ+zK1M/Myh7PMs4qzpMucl+1cNiUKEjVlQ9mLsrvFNNnP1IDERLJeMprjllOT8yY3OvdInnKeMG9gudnyTcsn8n3zv16BWsFd0VugW7C2YHSl58r6VdCqpat6V+uvLlo9vsZvzYG1hLVpa38otC4sL3y5LmZdT5FW0ZqisfV+61uLFYpFxTc2uGyo24jaKNg4uGnupqpNH0t4JRdLrUsrSt9v5m6++JXNV5VffdqStGWwzKFsz1bMVuHW69vctx0oVy7PLx/bHrK9cwdjR8mOlzuX7LxQYVdRt4uwS7JLWhlc2V1lULW16n11SvVIjVdNe61m7aba17t5u6/s8djTVqdVV1r3bq9g7816v/rOBqOGin2YfTn7HjZGN/Z/zfq6uUmjqbTpw37hfumBiAN9zY7NzS2aLWWtcKukdfJgwsHL33h/093GbKtvp7eXHgKHJIcef5v47fXDQYd7j7COtH1n+F1tB7WjpBPqXN451ZXSJe2O6x4+Gni0t8elp+N7y+/3H9M9VnNc5XjZCcKJohOfTuafnD6Vderp6eTTY71Leu+ciT1zrS+8b/Bs0Nnz53zPnen37D953vX8sQvOF45eZF3suuRwqXPAfqDjB/sfOgYdBjuHHIe6Lztd7hmeN3ziivuV01e9r567FnDt0sj8keHrUddv3ki4Ib3Ju/noVvqt57dzbs/cWXMXfbfkntK9ivua9xt+NP2xXeogPT7qPTrwYMGDO2PcsSc/Zf/0frzoIflhxYTORPMj20fHJn0nLz9e+Hj8SdaTmafFPyv/XPvM5Nl3v3j8MjAVOzX+XPT806+bX6i/2P/S7mXvdNj0/VcZr2Zel7xRf3PgLett/7uYdxMzue+x7ys/mH7o+Rj08e6njE+ffgP3hPP78QcZjQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAA1BMVEV+ikqucKDPAAAAC0lEQVQIHWMYYAAAAIAAAdOOJVMAAAA4dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IChjKSAxOTk4IEhld2xldHQtUGFja2FyZCBDb21wYW55+Vd5NwAAACF0RVh0aWNjOmRlc2NyaXB0aW9uAHNSR0IgSUVDNjE5NjYtMi4xV63aRwAAACZ0RVh0aWNjOm1hbnVmYWN0dXJlcgBJRUMgaHR0cDovL3d3dy5pZWMuY2gcfwBMAAAAN3RFWHRpY2M6bW9kZWwASUVDIDYxOTY2LTIuMSBEZWZhdWx0IFJHQiBjb2xvdXIgc3BhY2UgLSBzUkdCRFNIqQAAAABJRU5ErkJggg=="
+                    }
+                  }
+                },
+                "landscape": {
+                  "gatsbyImageData": {
+                    "images": {
+                      "sources": [
+                        {
+                          "srcSet": "https://media.thebicestercollection.com/3z73vs69pqez/10SZHUH1QhG6PKzkBo3LR2/cb2631a4732699cf86b7efde5740e41b/las-rozas-village-membership.png?w=750&h=1200&q=80&fm=webp 750w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/10SZHUH1QhG6PKzkBo3LR2/cb2631a4732699cf86b7efde5740e41b/las-rozas-village-membership.png?w=1080&h=1728&q=80&fm=webp 1080w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/10SZHUH1QhG6PKzkBo3LR2/cb2631a4732699cf86b7efde5740e41b/las-rozas-village-membership.png?w=1200&h=1920&q=80&fm=webp 1200w",
+                          "sizes": "100vw",
+                          "type": "image/webp"
+                        }
+                      ]
+                    },
+                    "layout": "fullWidth",
+                    "width": 1,
+                    "height": 1.6,
+                    "placeholder": {
+                      "fallback": "data:image/png;base64,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DwuvCX8YYRNRENG/gLpgyYKWBa8ivSLLIu9EmURJonqjFaMTopujX8d4x5THSGOtYlfGXorTiBPEdcdj46Pjm+KnF/os3LlwPME+oTjh+iLjRXmLLizWWJy++PgSxSWcJUcS0YkxiS2J7zmhnAbO9NKApbVLp7hs7i7uE54Hbwdvku/KL+dPJLkmlSc9SnZN3p48meKeUpHyVMAWVAuep/qn1qW+TgtN25/2KT0mvT0Dl5GYcVRIEaYJ+zK1M/Myh7PMs4qzpMucl+1cNiUKEjVlQ9mLsrvFNNnP1IDERLJeMprjllOT8yY3OvdInnKeMG9gudnyTcsn8n3zv16BWsFd0VugW7C2YHSl58r6VdCqpat6V+uvLlo9vsZvzYG1hLVpa38otC4sL3y5LmZdT5FW0ZqisfV+61uLFYpFxTc2uGyo24jaKNg4uGnupqpNH0t4JRdLrUsrSt9v5m6++JXNV5VffdqStGWwzKFsz1bMVuHW69vctx0oVy7PLx/bHrK9cwdjR8mOlzuX7LxQYVdRt4uwS7JLWhlc2V1lULW16n11SvVIjVdNe61m7aba17t5u6/s8djTVqdVV1r3bq9g7816v/rOBqOGin2YfTn7HjZGN/Z/zfq6uUmjqbTpw37hfumBiAN9zY7NzS2aLWWtcKukdfJgwsHL33h/093GbKtvp7eXHgKHJIcef5v47fXDQYd7j7COtH1n+F1tB7WjpBPqXN451ZXSJe2O6x4+Gni0t8elp+N7y+/3H9M9VnNc5XjZCcKJohOfTuafnD6Vderp6eTTY71Leu+ciT1zrS+8b/Bs0Nnz53zPnen37D953vX8sQvOF45eZF3suuRwqXPAfqDjB/sfOgYdBjuHHIe6Lztd7hmeN3ziivuV01e9r567FnDt0sj8keHrUddv3ki4Ib3Ju/noVvqt57dzbs/cWXMXfbfkntK9ivua9xt+NP2xXeogPT7qPTrwYMGDO2PcsSc/Zf/0frzoIflhxYTORPMj20fHJn0nLz9e+Hj8SdaTmafFPyv/XPvM5Nl3v3j8MjAVOzX+XPT806+bX6i/2P/S7mXvdNj0/VcZr2Zel7xRf3PgLett/7uYdxMzue+x7ys/mH7o+Rj08e6njE+ffgP3hPP78QcZjQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAA1BMVEV+ikqucKDPAAAAC0lEQVQIHWMYYAAAAIAAAdOOJVMAAAA4dEVYdGljYzpjb3B5cmlnaHQAQ29weXJpZ2h0IChjKSAxOTk4IEhld2xldHQtUGFja2FyZCBDb21wYW55+Vd5NwAAACF0RVh0aWNjOmRlc2NyaXB0aW9uAHNSR0IgSUVDNjE5NjYtMi4xV63aRwAAACZ0RVh0aWNjOm1hbnVmYWN0dXJlcgBJRUMgaHR0cDovL3d3dy5pZWMuY2gcfwBMAAAAN3RFWHRpY2M6bW9kZWwASUVDIDYxOTY2LTIuMSBEZWZhdWx0IFJHQiBjb2xvdXIgc3BhY2UgLSBzUkdCRFNIqQAAAABJRU5ErkJggg=="
+                    }
+                  }
+                }
+              },
+              "village": {
+                "name": "Las Rozas Village",
+                "code": "LZV",
+                "slug": "las-rozas-village"
+              },
+              "timer": 4,
+              "updatedAt": "2026-08-30T22:00:15.028Z",
+              "condensedVersion": false,
+              "active": true,
+              "cookieTimeout": 1500,
+              "pageTemplates": [
+                {
+                  "id": "e76ee1a6-bac9-5f82-bfb4-672bd0d563de"
+                },
+                {
+                  "id": "560e9cca-91ea-52af-bdaa-e29a424233cd"
+                },
+                {
+                  "id": "3ea2ff21-0f4d-5453-a103-8a7f581e7c25"
+                },
+                {
+                  "id": "98187e3e-b4e9-5957-a380-edbc44efcfcd"
+                },
+                {
+                  "id": "e1985c2c-b37a-578d-95dd-d88df728363c"
+                },
+                {
+                  "id": "20371201-7515-5f84-8fc7-f8a2d481d93d"
+                },
+                {
+                  "id": "52dd968f-ccc0-5f92-9677-0e126e724174"
+                },
+                {
+                  "id": "2c16bf93-9171-53b1-bc32-f2e50b8a4449"
+                },
+                {
+                  "id": "eaa45353-037f-57a5-95f5-ec4b254ff2c4"
+                },
+                {
+                  "id": "4450f2a4-a2bf-547d-b828-0cb84735c03b"
+                },
+                {
+                  "id": "c72c3373-2739-5cfb-8607-cbef86166eb5"
+                },
+                {
+                  "id": "4e04db95-4def-5e31-8a20-684b5e69ff7a"
+                },
+                {
+                  "id": "0f6ac807-3022-55eb-b918-80bee6a1d9f4"
+                },
+                {
+                  "id": "34ee00cf-1be1-58df-8877-94a78e222fc2"
+                },
+                {
+                  "id": "879d5e54-d7c8-5654-9f9b-a4989732cac0"
+                },
+                {
+                  "id": "e6f02c28-0d8d-5498-84bc-08524752f38f"
+                },
+                {
+                  "id": "a6280cea-28c5-5843-8a49-fc98ff21e8e2"
+                },
+                {
+                  "id": "a32cb5e7-ef55-5247-9732-5b201bc88c56"
+                },
+                {
+                  "id": "730b055f-2328-5ae2-9edf-2b8fb19369ea"
+                },
+                {
+                  "id": "aba442aa-3261-571e-b1c2-2df76f1aa04b"
+                },
+                {
+                  "id": "c41a0def-c78b-5b7c-ac94-619ca7bd14ca"
+                },
+                {
+                  "id": "49a87c64-ced9-534a-8999-52334854501b"
+                },
+                {
+                  "id": "ad4f9963-4643-59bc-a8ae-b34b88c30ff5"
+                },
+                {
+                  "id": "94db94e4-3964-520f-86da-72495d610137"
+                },
+                {
+                  "id": "dc540a97-86dc-5580-a11c-3835a992223d"
+                },
+                {
+                  "id": "2f8e5f69-6276-5949-a8af-f66f12844a2b"
+                },
+                {
+                  "id": "50a35de6-e7f3-5b24-997b-6b18996288b8"
+                },
+                {
+                  "id": "a7b6a76c-4b16-5821-b3db-2d4e068f6ae3"
+                },
+                {
+                  "id": "fba810d6-0f2c-5fdb-baec-1a90c0f67e9e"
+                },
+                {
+                  "id": "bcfebb5c-2640-5de0-ba08-50ccbeffd79e"
+                },
+                {
+                  "id": "ff60c3df-1bcb-538f-b6d9-6e271f60fd02"
+                },
+                {
+                  "id": "f8e7212e-ab4f-5323-8fe0-d1c959f42481"
+                },
+                {
+                  "id": "b30f5c7b-4040-59eb-a616-9460241d7101"
+                },
+                {
+                  "id": "a23ec45f-d928-5f1d-9d36-79f137311bea"
+                },
+                {
+                  "id": "152683bc-b7cb-5acd-a5aa-5d359fca1099"
+                },
+                {
+                  "id": "19499443-b161-5e5f-b9cb-fefd86bc27f2"
+                },
+                {
+                  "id": "bbdcd801-cbca-5bdb-bb1c-cec103966780"
+                },
+                {
+                  "id": "f56e2624-92ba-5ffb-8336-1b647fdc0c6d"
+                },
+                {
+                  "id": "5eb7d14b-1148-52be-adc1-d3daab8f2296"
+                },
+                {
+                  "id": "c25bafdf-8848-52b8-91d9-c689ad8e1725"
+                },
+                {
+                  "id": "e81b62bd-d036-5137-82d6-75d97a10fc4a"
+                },
+                {
+                  "id": "1dd9fc07-5154-5ec1-88ba-2671c7f4ab99"
+                },
+                {
+                  "id": "484f2876-a3f6-5f1d-8913-4d5a228e5ca3"
+                },
+                {
+                  "id": "dd9d709f-1e9a-50d4-ae0c-8ea2208493dd"
+                },
+                {
+                  "id": "e0d975a9-992d-5187-8c98-27206f741188"
+                },
+                {
+                  "id": "5243ecce-6ef3-5be6-a7a9-6c6baabfdfd6"
+                },
+                {
+                  "id": "ed7625f8-8092-5102-aa4a-7c779c80c25e"
+                },
+                {
+                  "id": "718cf809-4e1a-55a6-849c-fc43a83a6758"
+                },
+                {
+                  "id": "61a8aa57-e089-5a46-a826-f0d874830ae4"
+                },
+                {
+                  "id": "cce91e01-fe08-5764-b726-cf9fc7acb910"
+                },
+                {
+                  "id": "fa61f796-8345-5590-b241-89c6b3d63904"
+                },
+                {
+                  "id": "e8924a5d-3fb3-52ab-a3a8-1ee9592c5226"
+                },
+                {
+                  "id": "d8fd0f9b-9f9d-5edc-acd0-a8ec91a5fbba"
+                },
+                {
+                  "id": "dad5821c-b74b-5b9e-a665-627883ad58f6"
+                },
+                {
+                  "id": "7314e66e-1ed0-5374-b6f4-a360421f50ea"
+                },
+                {
+                  "id": "093da929-60c5-5049-bb5f-7bb98b8cd819"
+                },
+                {
+                  "id": "b2a7bca2-c26b-5d46-9e09-077fe61d7cd3"
+                },
+                {
+                  "id": "8d0cf660-96d3-5e41-a0b7-1ed907c349d4"
+                },
+                {
+                  "id": "d17433c3-9086-5b56-af24-d2b64d5a7702"
+                },
+                {
+                  "id": "ffc8c6e6-6445-5137-a9d6-4d8f6c9fc76e"
+                },
+                {
+                  "id": "4f9dbfe1-524c-5c42-9538-d8c9ee3051d0"
+                },
+                {
+                  "id": "891e20a7-fbb1-54ef-bf0a-a490768e4d70"
+                },
+                {
+                  "id": "d29cbd3f-980f-56a3-84ea-1275dde94641"
+                },
+                {
+                  "id": "2be8b31c-695a-5ecf-aefc-41d25c5cb053"
+                },
+                {
+                  "id": "1adfb579-b445-5180-bae6-e227302437d1"
+                },
+                {
+                  "id": "7bc169f7-d87e-5816-8cb8-35340a2a3785"
+                },
+                {
+                  "id": "8aa6ab5d-ed51-55af-9737-bfee388532c8"
+                },
+                {
+                  "id": "07bf07e8-ee60-5d68-bbdb-a43c12eb6fbf"
+                },
+                {
+                  "id": "5433754a-f606-576d-a424-bd20840430f8"
+                },
+                {
+                  "id": "0419b3fe-c74f-51c0-ac52-3fc576836ab7"
+                },
+                {
+                  "id": "acce03f6-f1ab-5a06-8b38-acb238b1e792"
+                },
+                {
+                  "id": "3b862a97-bfee-5fe3-9393-16de83ee4e18"
+                },
+                {
+                  "id": "4a28e320-f3ae-5dae-9812-bcd12e76fd82"
+                },
+                {
+                  "id": "690807e8-6df2-5de7-978d-34b8c6fcba9b"
+                },
+                {
+                  "id": "a709db1f-c1ac-5676-8f31-8b9ff7cdb83a"
+                },
+                {
+                  "id": "366f0a55-3d9e-5594-b1a2-53b60bdd97f2"
+                },
+                {
+                  "id": "46b064e1-7210-527a-83d6-f4988e2fd7dd"
+                },
+                {
+                  "id": "4bae9066-6f92-55f0-b055-b8f6c6decbd8"
+                },
+                {
+                  "id": "a700af88-fe64-57bf-a1ca-b4d642e43d5c"
+                },
+                {
+                  "id": "2211d07b-fb42-511c-abed-50cba6a6484c"
+                },
+                {
+                  "id": "cb75661e-17b4-58ad-a949-902484b9cb20"
+                },
+                {
+                  "id": "a5423e75-dc07-5f7f-ba37-9ffb9ba6d458"
+                },
+                {
+                  "id": "3746353e-d01b-544a-804e-dfdda29e5e8d"
+                },
+                {
+                  "id": "6ea88eae-8718-5778-ba4d-c817a5747065"
+                },
+                {
+                  "id": "fbcf97ea-6b2b-50b9-b7bd-3f836557a94a"
+                },
+                {
+                  "id": "226473ce-c1a5-56b3-84d4-5e1ea2a48d1b"
+                },
+                {
+                  "id": "1dc69025-a6e3-5ddd-9d65-cd10139e75c7"
+                },
+                {
+                  "id": "0a3ee18a-3d31-50ef-83ae-ad898bab27e9"
+                },
+                {
+                  "id": "012488df-1974-512c-b612-0d72b28fef59"
+                },
+                {
+                  "id": "7548764d-37f4-5a6e-9134-607b473fa605"
+                },
+                {
+                  "id": "271775c1-d560-5f4a-860b-ed0d1632e155"
+                },
+                {
+                  "id": "e6b56825-daad-5fb3-8134-312093a5a2ab"
+                },
+                {
+                  "id": "8d940a4e-27a5-5e49-abaf-b4ecd797b61d"
+                },
+                {
+                  "id": "55987566-83d5-5576-9d8b-1913fbc48cb0"
+                },
+                {
+                  "id": "5917c1f6-778b-527c-a3e2-a20a86773775"
+                },
+                {
+                  "id": "012b08ac-60a4-5cdc-9310-a828c09e502c"
+                },
+                {
+                  "id": "a613f29b-f498-5657-ae56-2988d7beb85c"
+                },
+                {
+                  "id": "4cd6ccf7-8fc0-5b61-a9e8-fb534de1eea6"
+                },
+                {
+                  "id": "7aab98b2-fb5c-55b1-b223-7a2dacd5e70a"
+                },
+                {
+                  "id": "194a5686-d08f-5e40-90d1-e7ad4a065005"
+                },
+                {
+                  "id": "c7c77c9b-305a-5ccc-a3f6-3ec27b98bc2f"
+                },
+                {
+                  "id": "96658f1e-0eaa-5429-b5fc-093408526b4e"
+                },
+                {
+                  "id": "9160fa88-6ad0-5478-ae60-5babe5f2ef38"
+                },
+                {
+                  "id": "f789c1ec-37c8-504f-95ba-80c94c9462f1"
+                },
+                {
+                  "id": "2004ad3a-b23b-5683-b0ae-2ae37f4c20e5"
+                },
+                {
+                  "id": "abe446c9-3f4f-5d01-a43b-fe82f3a4752b"
+                },
+                {
+                  "id": "1669dffd-c040-5ce4-82bc-4be95e9bd82d"
+                },
+                {
+                  "id": "4155f11e-7bfa-53c1-adbd-79e42bc4a49d"
+                },
+                {
+                  "id": "90ce24a2-a4f7-5f10-8405-e0a1ec6b9d94"
+                },
+                {
+                  "id": "692e4f81-b3d2-526c-8b40-69616936cd53"
+                },
+                {
+                  "id": "a957c917-1c4b-5096-8691-eb78538c499a"
+                },
+                {
+                  "id": "c9a9018d-5a7c-5187-b1ea-f48e42ed84ff"
+                },
+                {
+                  "id": "c2d6e337-bd61-51ff-aee7-593ea4284a04"
+                },
+                {
+                  "id": "fe315f5b-fa27-54a3-b263-11737f3e5790"
+                },
+                {
+                  "id": "91e7141c-fd05-5e70-bf20-90183bb00cc5"
+                },
+                {
+                  "id": "c9d8b362-5c69-5746-984f-b79cfbb180be"
+                },
+                {
+                  "id": "d5f730ea-75b9-5fe1-aafe-8ce39a468346"
+                },
+                {
+                  "id": "517a74ea-2e61-574f-84f8-0bbda78e1684"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "pageContext": {
+      "id": "a50b9579-8529-515e-8510-012263d3d214",
+      "collectionId": "d38f0d35-d83f-58c0-8ea9-c9b3e6f4958d",
+      "nodeLocale": "en",
+      "villageSlug": "las-rozas-village",
+      "villageId": "32egX51uMpafkjQ4qRHmus",
+      "pageLevel": "village",
+      "openingHoursId": "3275f808-4ccc-5d2e-a063-e9fb2423d4c8",
+      "pageTypeSlug": "careers",
+      "pageTypeId": "careers",
+      "translatedSlugs": {
+        "en": "careers/",
+        "es": "empleo/",
+        "fr": "emploi/",
+        "it": "lavora-con-noi/",
+        "ca": "treball/",
+        "de": "karriere/",
+        "nl": "carrieres/",
+        "pt-BR": "trabalhe-conosco/",
+        "ko": "careers/",
+        "zh-CN": "careers/",
+        "ar": "careers/",
+        "ru": "careers/"
+      },
+      "villageServicesEndPoint": "https://api.tbvsc.com/village",
+      "consentCookieScript": "function OptanonWrapper() { }",
+      "consentCookieSrc": "https://cdn-ukwest.onetrust.com/scripttemplates/otSDKStub.js",
+      "consentDataDomainKey": "<redacted>",
+      "needBrands": false,
+      "needContactIcons": false,
+      "translatedServices": null,
+      "chatbotUrl": "https://default8a865321d1064ddfa46ccda9f9dcea.f5.environment.api.powerplatform.com/powervirtualagents/botsbyschema/copilots_header_8d471/directline/token?api-version=2022-03-01-preview",
+      "allowedUrls": [
+        "/las-rozas-village/es/visita/",
+        "/las-rozas-village/en/visit/",
+        "/las-rozas-village/en/company/contact/",
+        "/las-rozas-village/es/empresa/contacto/",
+        "/las-rozas-village/es/marcas/*",
+        "/las-rozas-village/es/*",
+        "/las-rozas-village/en/*"
+      ],
+      "disallowedUrls": [],
+      "title": "Las Rozas Village Virtual Concierge",
+      "requiresCookieConsent": true,
+      "description": "Join Membership and enjoy exclusive offers, first access to events and entry to the Private Sale.",
+      "prompts": [
+        {
+          "ctaLabel": "How to become a member?",
+          "ctaPrompt": "How to become a member?"
+        },
+        {
+          "ctaLabel": "What are your opening hours?",
+          "ctaPrompt": "What are your opening hours?"
+        },
+        {
+          "ctaLabel": "What are the current offers?",
+          "ctaPrompt": "What are the current offers?"
+        }
+      ],
+      "messageOverride": "How can I help you today?",
+      "image": {
+        "__typename": "ContentfulEntityImageSingleEnt10",
+        "altText": null,
+        "portrait": {
+          "gatsbyImageData": {
+            "images": {
+              "sources": [
+                {
+                  "srcSet": "https://media.thebicestercollection.com/3z73vs69pqez/7DkVOQ1y8fKjZPf9lHqt7R/0ac1793d67449c4680834fbcfd691ec3/LZV_SENSE_OF_PLACE_SEPT_2024_024-RGB_EDIT__1_.jpg?w=750&h=1200&q=80&fm=webp 750w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/7DkVOQ1y8fKjZPf9lHqt7R/0ac1793d67449c4680834fbcfd691ec3/LZV_SENSE_OF_PLACE_SEPT_2024_024-RGB_EDIT__1_.jpg?w=1080&h=1728&q=80&fm=webp 1080w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/7DkVOQ1y8fKjZPf9lHqt7R/0ac1793d67449c4680834fbcfd691ec3/LZV_SENSE_OF_PLACE_SEPT_2024_024-RGB_EDIT__1_.jpg?w=1200&h=1920&q=80&fm=webp 1200w",
+                  "sizes": "100vw",
+                  "type": "image/webp"
+                }
+              ]
+            },
+            "layout": "fullWidth",
+            "width": 1,
+            "height": 1.6,
+            "placeholder": {
+              "fallback": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gxYSUNDX1BST0ZJTEUAAQEAAAxITGlubwIQAABtbnRyUkdCIFhZWiAHzgACAAkABgAxAABhY3NwTVNGVAAAAABJRUMgc1JHQgAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLUhQICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABFjcHJ0AAABUAAAADNkZXNjAAABhAAAAGx3dHB0AAAB8AAAABRia3B0AAACBAAAABRyWFlaAAACGAAAABRnWFlaAAACLAAAABRiWFlaAAACQAAAABRkbW5kAAACVAAAAHBkbWRkAAACxAAAAIh2dWVkAAADTAAAAIZ2aWV3AAAD1AAAACRsdW1pAAAD+AAAABRtZWFzAAAEDAAAACR0ZWNoAAAEMAAAAAxyVFJDAAAEPAAACAxnVFJDAAAEPAAACAxiVFJDAAAEPAAACAx0ZXh0AAAAAENvcHlyaWdodCAoYykgMTk5OCBIZXdsZXR0LVBhY2thcmQgQ29tcGFueQAAZGVzYwAAAAAAAAASc1JHQiBJRUM2MTk2Ni0yLjEAAAAAAAAAAAAAABJzUkdCIElFQzYxOTY2LTIuMQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWFlaIAAAAAAAAPNRAAEAAAABFsxYWVogAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z2Rlc2MAAAAAAAAAFklFQyBodHRwOi8vd3d3LmllYy5jaAAAAAAAAAAAAAAAFklFQyBodHRwOi8vd3d3LmllYy5jaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABkZXNjAAAAAAAAAC5JRUMgNjE5NjYtMi4xIERlZmF1bHQgUkdCIGNvbG91ciBzcGFjZSAtIHNSR0IAAAAAAAAAAAAAAC5JRUMgNjE5NjYtMi4xIERlZmF1bHQgUkdCIGNvbG91ciBzcGFjZSAtIHNSR0IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAZGVzYwAAAAAAAAAsUmVmZXJlbmNlIFZpZXdpbmcgQ29uZGl0aW9uIGluIElFQzYxOTY2LTIuMQAAAAAAAAAAAAAALFJlZmVyZW5jZSBWaWV3aW5nIENvbmRpdGlvbiBpbiBJRUM2MTk2Ni0yLjEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHZpZXcAAAAAABOk/gAUXy4AEM8UAAPtzAAEEwsAA1yeAAAAAVhZWiAAAAAAAEwJVgBQAAAAVx/nbWVhcwAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAo8AAAACc2lnIAAAAABDUlQgY3VydgAAAAAAAAQAAAAABQAKAA8AFAAZAB4AIwAoAC0AMgA3ADsAQABFAEoATwBUAFkAXgBjAGgAbQByAHcAfACBAIYAiwCQAJUAmgCfAKQAqQCuALIAtwC8AMEAxgDLANAA1QDbAOAA5QDrAPAA9gD7AQEBBwENARMBGQEfASUBKwEyATgBPgFFAUwBUgFZAWABZwFuAXUBfAGDAYsBkgGaAaEBqQGxAbkBwQHJAdEB2QHhAekB8gH6AgMCDAIUAh0CJgIvAjgCQQJLAlQCXQJnAnECegKEAo4CmAKiAqwCtgLBAssC1QLgAusC9QMAAwsDFgMhAy0DOANDA08DWgNmA3IDfgOKA5YDogOuA7oDxwPTA+AD7AP5BAYEEwQgBC0EOwRIBFUEYwRxBH4EjASaBKgEtgTEBNME4QTwBP4FDQUcBSsFOgVJBVgFZwV3BYYFlgWmBbUFxQXVBeUF9gYGBhYGJwY3BkgGWQZqBnsGjAadBq8GwAbRBuMG9QcHBxkHKwc9B08HYQd0B4YHmQesB78H0gflB/gICwgfCDIIRghaCG4IggiWCKoIvgjSCOcI+wkQCSUJOglPCWQJeQmPCaQJugnPCeUJ+woRCicKPQpUCmoKgQqYCq4KxQrcCvMLCwsiCzkLUQtpC4ALmAuwC8gL4Qv5DBIMKgxDDFwMdQyODKcMwAzZDPMNDQ0mDUANWg10DY4NqQ3DDd4N+A4TDi4OSQ5kDn8Omw62DtIO7g8JDyUPQQ9eD3oPlg+zD88P7BAJECYQQxBhEH4QmxC5ENcQ9RETETERTxFtEYwRqhHJEegSBxImEkUSZBKEEqMSwxLjEwMTIxNDE2MTgxOkE8UT5RQGFCcUSRRqFIsUrRTOFPAVEhU0FVYVeBWbFb0V4BYDFiYWSRZsFo8WshbWFvoXHRdBF2UXiReuF9IX9xgbGEAYZRiKGK8Y1Rj6GSAZRRlrGZEZtxndGgQaKhpRGncanhrFGuwbFBs7G2MbihuyG9ocAhwqHFIcexyjHMwc9R0eHUcdcB2ZHcMd7B4WHkAeah6UHr4e6R8THz4faR+UH78f6iAVIEEgbCCYIMQg8CEcIUghdSGhIc4h+yInIlUigiKvIt0jCiM4I2YjlCPCI/AkHyRNJHwkqyTaJQklOCVoJZclxyX3JicmVyaHJrcm6CcYJ0kneierJ9woDSg/KHEooijUKQYpOClrKZ0p0CoCKjUqaCqbKs8rAis2K2krnSvRLAUsOSxuLKIs1y0MLUEtdi2rLeEuFi5MLoIuty7uLyQvWi+RL8cv/jA1MGwwpDDbMRIxSjGCMbox8jIqMmMymzLUMw0zRjN/M7gz8TQrNGU0njTYNRM1TTWHNcI1/TY3NnI2rjbpNyQ3YDecN9c4FDhQOIw4yDkFOUI5fzm8Ofk6Njp0OrI67zstO2s7qjvoPCc8ZTykPOM9Ij1hPaE94D4gPmA+oD7gPyE/YT+iP+JAI0BkQKZA50EpQWpBrEHuQjBCckK1QvdDOkN9Q8BEA0RHRIpEzkUSRVVFmkXeRiJGZ0arRvBHNUd7R8BIBUhLSJFI10kdSWNJqUnwSjdKfUrESwxLU0uaS+JMKkxyTLpNAk1KTZNN3E4lTm5Ot08AT0lPk0/dUCdQcVC7UQZRUFGbUeZSMVJ8UsdTE1NfU6pT9lRCVI9U21UoVXVVwlYPVlxWqVb3V0RXklfgWC9YfVjLWRpZaVm4WgdaVlqmWvVbRVuVW+VcNVyGXNZdJ114XcleGl5sXr1fD19hX7NgBWBXYKpg/GFPYaJh9WJJYpxi8GNDY5dj62RAZJRk6WU9ZZJl52Y9ZpJm6Gc9Z5Nn6Wg/aJZo7GlDaZpp8WpIap9q92tPa6dr/2xXbK9tCG1gbbluEm5rbsRvHm94b9FwK3CGcOBxOnGVcfByS3KmcwFzXXO4dBR0cHTMdSh1hXXhdj52m3b4d1Z3s3gReG54zHkqeYl553pGeqV7BHtje8J8IXyBfOF9QX2hfgF+Yn7CfyN/hH/lgEeAqIEKgWuBzYIwgpKC9INXg7qEHYSAhOOFR4Wrhg6GcobXhzuHn4gEiGmIzokziZmJ/opkisqLMIuWi/yMY4zKjTGNmI3/jmaOzo82j56QBpBukNaRP5GokhGSepLjk02TtpQglIqU9JVflcmWNJaflwqXdZfgmEyYuJkkmZCZ/JpomtWbQpuvnByciZz3nWSd0p5Anq6fHZ+Ln/qgaaDYoUehtqImopajBqN2o+akVqTHpTilqaYapoum/adup+CoUqjEqTepqaocqo+rAqt1q+msXKzQrUStuK4trqGvFq+LsACwdbDqsWCx1rJLssKzOLOutCW0nLUTtYq2AbZ5tvC3aLfguFm40blKucK6O7q1uy67p7whvJu9Fb2Pvgq+hL7/v3q/9cBwwOzBZ8Hjwl/C28NYw9TEUcTOxUvFyMZGxsPHQce/yD3IvMk6ybnKOMq3yzbLtsw1zLXNNc21zjbOts83z7jQOdC60TzRvtI/0sHTRNPG1EnUy9VO1dHWVdbY11zX4Nhk2OjZbNnx2nba+9uA3AXcit0Q3ZbeHN6i3ynfr+A24L3hROHM4lPi2+Nj4+vkc+T85YTmDeaW5x/nqegy6LzpRunQ6lvq5etw6/vshu0R7ZzuKO6070DvzPBY8OXxcvH/8ozzGfOn9DT0wvVQ9d72bfb794r4Gfio+Tj5x/pX+uf7d/wH/Jj9Kf26/kv+3P9t////2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAgABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAUGBwP/xAAtEAABAwMCBAQGAwAAAAAAAAABAgMEAAURBiESEzFBFCJRcQcjMkJhgVKRwf/EABcBAQEBAQAAAAAAAAAAAAAAAAIEAQP/xAAcEQACAgMBAQAAAAAAAAAAAAABAgARAxJBIdH/2gAMAwEAAhEDEQA/AKKdOVarTEcciyblPjRWFPPFknqcFZUkYBIScj1SKy7XLrsC5SpT7ZTGd+aysJwFpV9IH4zV2zraNfrNIjylCJOdiIcfKM8BBU4E9u+M7+tQ2rZUOfbIT8qYwloNIiBKV8Skp5aFBWR0GfL71MmR0BEoyorUwmdOgSV80sstlW/CpX72x23opoxZULbCm1uOJP3IVkGijvBrOekLTfLxdHY1pbEmQwwVvEo8yAnOBjsSSQPemLkKfB0hbBc2HPBzmkvDooq5aiQB1IwMbH1qs+Cb0mNqDUTsnGW4adm8JWniXgZJ/BV/VK9V3l9zQOjvDPzGJAjc511kDGTseLsckk/qtO1qB35OigAG+SI1G5OE5CYSMtpaSClbYKkH+JIOCRtvRTGLOQGzzGJk1ZJJeUpnf2zg4/3NFIWPKhpT2f/Z"
+            }
+          }
+        }
+      },
+      "icon": {
+        "title": "LZV_Comp_SVG_Asset_ChatBot_Logo",
+        "html": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg id=\"logo\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 16 16\">\n  <defs>\n    <style>\n      .cls-1 {\n        fill: #7e8a4a;\n      }\n    </style>\n  </defs>\n  <path class=\"cls-1\" d=\"M8,.71C3.98.71.71,3.98.71,8s3.27,7.29,7.29,7.29,7.29-3.27,7.29-7.29S12.02.71,8,.71ZM9.61,12.95c-2.73.89-5.67-.61-6.55-3.34-.89-2.73.61-5.67,3.34-6.55,2.73-.89,5.67.61,6.56,3.34.89,2.73-.61,5.67-3.34,6.55Z\"/>\n  <path class=\"cls-1\" d=\"M9.98,4.11c.07.13.14.26.18.4.38,1.11-.11,2.52-1.49,2.88-.92.23-2.06-.33-2.29-1.3-.22-.9.25-1.57.85-1.81.63-.25,1.39-.04,1.68.61.36.81-.36,1.71-1.18,1.21-.31-.19-.39-.66-.18-.96.06-.08.13-.15.22-.2-.38-.07-.59.28-.61.61-.05.6.55,1.15,1.35,1,.75-.13,1.1-.96.91-1.66-.22-.78-.94-1.29-1.74-1.24-.06,0-.12,0-.18,0-.28.03-.56.09-.84.18-1.92.63-3.11,2.46-3.01,4.38.07-.13.16-.25.26-.36.77-.88,2.24-1.17,3.24-.15.66.68.74,1.95.02,2.63-.68.64-1.48.57-1.99.17-.53-.42-.73-1.19-.31-1.76.52-.71,1.66-.54,1.64.42-.01.37-.37.67-.74.64-.1,0-.2-.04-.28-.09.13.36.54.37.83.23.54-.25.72-1.05.19-1.67-.49-.58-1.38-.48-1.89.04-.57.58-.64,1.46-.2,2.13.02.03.04.07.06.1,1.08,1.49,3.03,2.18,4.87,1.58.3-.1.59-.23.85-.38-.1,0-.2-.02-.3-.04-1.15-.23-2.13-1.35-1.74-2.73.25-.91,1.32-1.62,2.27-1.34.89.26,1.23.99,1.14,1.64-.1.67-.66,1.23-1.37,1.15-.88-.09-1.3-1.17-.46-1.63.32-.18.77-.01.92.32.04.09.06.19.06.29.25-.29.05-.65-.22-.84-.49-.34-1.27-.1-1.55.67-.26.72.28,1.43.98,1.62.72.19,1.46-.12,1.85-.72.59-1.03.76-2.29.36-3.51-.37-1.15-1.17-2.03-2.17-2.54Z\"/>\n  <path class=\"cls-1\" d=\"M8,0C3.58,0,0,3.58,0,8s3.58,8,8,8,8-3.58,8-8S12.42,0,8,0ZM8,15.59C3.82,15.59.41,12.18.41,8S3.82.41,8,.41s7.59,3.4,7.59,7.59-3.4,7.59-7.59,7.59Z\"/>\n</svg>"
+      },
+      "mainicon": {
+        "html": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"72\" height=\"72\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" viewBox=\"0 0 56 56\">\n  <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->\n  <defs>\n    <style>\n      .st0 {\n      fill: #f5f0e6;\n      }\n\n      .st1 {\n        fill: #f5f0e6;\n      }\n\n      .st2, .st3, .st1 {\n        isolation: isolate;\n      }\n\n      .st3 {\n      fill: #f5f0e6;\n      }\n\n      .st4 {\n        fill: #7e8a4a;\n      }\n\n      .st5 {\n        fill: #f9f6f0;\n      }\n\n        .st6 {\n        fill: #7e8a4a;\n              isolation: isolate;\n\n      }\n    </style>\n  </defs>\n  <g id=\"Layer_2\">\n    <path class=\"st3\" d=\"M56,28c0,15.5-12.5,28-28,28S0,43.5,0,28,12.5,0,28,0s28,12.5,28,28ZM28,1.6C13.4,1.6,1.6,13.4,1.6,28s11.8,26.4,26.4,26.4,26.4-11.8,26.4-26.4S42.6,1.6,28,1.6Z\"/>\n    <circle class=\"st4\" cx=\"28\" cy=\"28\" r=\"25.4\"/>\n  </g>\n  <g id=\"Layer_1\">\n    <circle class=\"st1\" cx=\"28\" cy=\"28\" r=\"15\"/>\n    <polygon class=\"st0\" points=\"14.3 42.4 16.5 36.4 21.5 40.9 14.3 42.4\"/>\n    <circle class=\"st6\" cx=\"20\" cy=\"28.2\" r=\"1.9\"/>\n    <circle class=\"st6\" cx=\"28.3\" cy=\"28.2\" r=\"1.9\"/>\n    <circle class=\"st6\" cx=\"36.7\" cy=\"27.8\" r=\"1.9\"/>\n    <g class=\"st2\">\n      <path class=\"st4\" d=\"M17.2,21.8c-.6-1.6-2-3.7-4.1-4.3.7-.3,1.4-.6,2.1-1.1.8-.6,1.8-1.6,2.2-3,.6,1.6,2,3.6,4.1,4.3-1.6.6-3.7,2-4.3,4.1Z\"/>\n      <path class=\"st5\" d=\"M17.4,14.1c.6,1.4,1.8,2.8,3.3,3.5-.5.2-1,.5-1.5.9-.7.5-1.5,1.4-2,2.4-.6-1.4-1.8-2.8-3.3-3.5.5-.2,1-.5,1.5-.9.7-.5,1.5-1.4,2-2.4M17.3,11.8c.2,3.9-4.3,5.7-5.8,5.8,0,0,.1,0,.2,0,3.7,0,5.5,4.3,5.6,5.8-.2-3.9,4.3-5.7,5.8-5.8,0,0-.1,0-.2,0-3.7,0-5.5-4.3-5.6-5.8h0Z\"/>\n    </g>\n    <g class=\"st2\">\n      <path class=\"st4\" d=\"M23.5,15.2c-.4-.9-1.3-1.9-2.5-2.2.4-.2.7-.4,1.1-.7.4-.4.9-1,1.1-1.7.4.9,1.3,1.9,2.5,2.2-.4.2-.7.4-1.1.7-.4.4-.9,1-1.1,1.7Z\"/>\n      <path class=\"st5\" d=\"M23.3,11.1c.4.7,1.1,1.4,1.9,1.7-.2.1-.5.3-.7.5-.4.3-.8.8-1,1.4-.4-.7-1.1-1.4-1.9-1.7.2-.1.5-.3.7-.5.4-.3.8-.8,1-1.4M23.1,9.5c.3,2.3-2.2,3.6-3.1,3.7.1,0,.2,0,.4,0,2,0,3.2,2.3,3.3,3.1-.3-2.3,2.2-3.6,3.1-3.7-.1,0-.2,0-.4,0-2,0-3.2-2.3-3.3-3.1h0Z\"/>\n    </g>\n    <g class=\"st2\">\n      <path class=\"st4\" d=\"M26.6,17.2c-.2-.6-.7-1.3-1.4-1.5.6-.2,1.3-.7,1.5-1.4.2.6.7,1.3,1.4,1.6-.2,0-.5.2-.7.4-.3.2-.7.6-.8,1Z\"/>\n      <path class=\"st5\" d=\"M26.7,14.6c.2.5.6.9,1.1,1.2-.2,0-.3.2-.5.3-.3.2-.5.5-.7.8-.2-.5-.6-.9-1.1-1.2.2,0,.3-.2.5-.3.3-.2.5-.5.7-.8M26.7,13.6c0,1.5-1.7,2.1-2.2,2.1,0,0,0,0,0,0,1.4,0,2.1,1.7,2.1,2.2,0-1.5,1.7-2.1,2.2-2.1,0,0,0,0,0,0-1.4,0-2.1-1.7-2.1-2.2h0Z\"/>\n    </g>\n  </g>\n</svg>"
+      },
+      "revision": "3bc6a921a",
+      "dateNow": "2026-09-03",
+      "fullDateNow": "2026-09-03T18:02:28.918Z",
+      "dateStart": "2026-08-31",
+      "dateEnd": "2027-03-03"
+    }
+  },
+  "staticQueryHashes": [
+    "3833274987"
+  ],
+  "slicesMap": {}
+}

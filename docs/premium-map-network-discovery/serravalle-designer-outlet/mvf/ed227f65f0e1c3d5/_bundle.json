@@ -1,0 +1,21 @@
+{
+  "responseUrl": "https://cdn.mappedin.com/5ad8d3baf3ea2315ed000000/f494e466a9f48ad38118f06ae930c1e56613776b.zip",
+  "bundleHash": "ed227f65f0e1c3d5",
+  "fileCount": 14,
+  "files": [
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/space/f_5ad9fd551de18c4557000001.geojson",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/space/f_5afc563646495d1f70000004.geojson",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/floorImages/f_5ad9fd551de18c4557000001.json",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/floorImages/f_5afc563646495d1f70000004.json",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/textAreas/f_5ad9fd551de18c4557000001.json",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/enterprise/locations.json",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/enterprise/categories.json",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/enterprise/layers.json",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/enterprise/enterpriseStyles.json",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/manifest.geojson",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/floor.geojson",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/floorstack.json",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/node.geojson",
+    "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/styles.json"
+  ]
+}

@@ -1,0 +1,685 @@
+[
+  {
+    "group": "5d6401ace48bb31bfb000000",
+    "name": "Village",
+    "shortName": "Village",
+    "width": 8192,
+    "height": 4987,
+    "tiles": "https://cdn.mappedin.com/priv-5d370a669b0abf3e7f0c824e/maps/5d641bbe729f535f94c8003d_files/",
+    "georeference": [
+      {
+        "control": {
+          "x": 0,
+          "y": 0
+        },
+        "target": {
+          "x": 44.88983558629769,
+          "y": 10.07750231329417
+        }
+      },
+      {
+        "control": {
+          "x": 8192,
+          "y": 0
+        },
+        "target": {
+          "x": 44.88972879998327,
+          "y": 10.105035542531532
+        }
+      },
+      {
+        "control": {
+          "x": 8192,
+          "y": 4987
+        },
+        "target": {
+          "x": 44.8778544819334,
+          "y": 10.104939985973918
+        }
+      },
+      {
+        "control": {
+          "x": 0,
+          "y": 4987
+        },
+        "target": {
+          "x": 44.877961208788214,
+          "y": 10.077414422952979
+        }
+      }
+    ],
+    "layers": [
+      {
+        "layerId": "5d433de68d16c66fe6b747f2",
+        "type": "polygon",
+        "locked": false,
+        "visible": true,
+        "id": "Polygon"
+      },
+      {
+        "layerId": "5cfa656ed7f2fb5b7d7eb169",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Kiosks"
+      },
+      {
+        "layerId": "5cfa657263d0103c5422d4f8",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Washrooms"
+      },
+      {
+        "layerId": "5cfa6578011cbd5f3683f7c9",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Non-Public"
+      },
+      {
+        "layerId": "5d499307a81cc60011b89c2d",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Obstruction"
+      },
+      {
+        "layerId": "5cfa659563d0103c5422d4fb",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Infill"
+      },
+      {
+        "layerId": "5cfa659f011cbd5f3683f7ca",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Wall"
+      },
+      {
+        "layerId": "5cfa65a3011cbd5f3683f7cb",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Floor"
+      },
+      {
+        "layerId": "5cfa65be011cbd5f3683f7cd",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Tree Tops"
+      },
+      {
+        "layerId": "5cfa65c4d7f2fb5b7d7eb16a",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Tree Bottoms"
+      },
+      {
+        "layerId": "5cfa65dad7f2fb5b7d7eb16b",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Icons"
+      },
+      {
+        "layerId": "5cfa6f5dd7f2fb5b7d7eb16f",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Road Names"
+      },
+      {
+        "layerId": "5cfa65f463d0103c5422d4ff",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Lot"
+      },
+      {
+        "layerId": "5cfa65c9011cbd5f3683f7ce",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Sidewalk"
+      },
+      {
+        "layerId": "5cfa65f9d7f2fb5b7d7eb16d",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Landscape"
+      },
+      {
+        "layerId": "5cfa6603d7f2fb5b7d7eb16e",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Base"
+      },
+      {
+        "layerId": "5cfa656a63d0103c5422d4f7",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "snapLocked": false,
+        "id": "Anchors"
+      }
+    ],
+    "scene": {
+      "mtl": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/a6fd2859ec28211c748189b2d21fd701c853ca3e.mtl",
+      "obj": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/1f10f5a0321835ad73aec56ed80edfdadf11d826.obj",
+      "images": [
+        {
+          "filename": "dd24db111f5ab04955a42fbb327bd2901efbafaf.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/dd24db111f5ab04955a42fbb327bd2901efbafaf.png"
+        },
+        {
+          "filename": "dd24db111f5ab04955a42fbb327bd2901efbafaf.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/dd24db111f5ab04955a42fbb327bd2901efbafaf.png"
+        },
+        {
+          "filename": "dd24db111f5ab04955a42fbb327bd2901efbafaf.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/dd24db111f5ab04955a42fbb327bd2901efbafaf.png"
+        },
+        {
+          "filename": "dd24db111f5ab04955a42fbb327bd2901efbafaf.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/dd24db111f5ab04955a42fbb327bd2901efbafaf.png"
+        },
+        {
+          "filename": "4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png"
+        },
+        {
+          "filename": "4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png"
+        },
+        {
+          "filename": "4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png"
+        },
+        {
+          "filename": "25ed158fcc24402a2dcd2dc0cab14c6055edf64f.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/25ed158fcc24402a2dcd2dc0cab14c6055edf64f.png"
+        },
+        {
+          "filename": "0903fd087028bf05fc0e59e3580a96f9691c59c7.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/0903fd087028bf05fc0e59e3580a96f9691c59c7.png"
+        },
+        {
+          "filename": "f5defb0f391929e7ee09a6d1126f33995716c97d.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/f5defb0f391929e7ee09a6d1126f33995716c97d.png"
+        },
+        {
+          "filename": "db1604d71c7c8415be97c206de730f6fa8d36abf.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/db1604d71c7c8415be97c206de730f6fa8d36abf.png"
+        },
+        {
+          "filename": "6136277a0f74385e2b3585ee0575173bb4505db5.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/6136277a0f74385e2b3585ee0575173bb4505db5.png"
+        },
+        {
+          "filename": "14cdedfab5f28ee3ed620f7675bc068fa11aea9d.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/14cdedfab5f28ee3ed620f7675bc068fa11aea9d.png"
+        },
+        {
+          "filename": "300c4de242c6cececfdc08f8306c02d513cd9ce8.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/300c4de242c6cececfdc08f8306c02d513cd9ce8.png"
+        },
+        {
+          "filename": "8380fedf2dcc16c8cc76bfee7075e497e26d9428.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/8380fedf2dcc16c8cc76bfee7075e497e26d9428.png"
+        },
+        {
+          "filename": "53b5b0da795a9d9ae3f374e03f20527739ba24f9.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/53b5b0da795a9d9ae3f374e03f20527739ba24f9.png"
+        },
+        {
+          "filename": "7887c510a67f534c3cb65193cd3cce445980d485.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/7887c510a67f534c3cb65193cd3cce445980d485.png"
+        },
+        {
+          "filename": "38caa817db07c5057855d3ec368a6e6d947a26d9.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/38caa817db07c5057855d3ec368a6e6d947a26d9.png"
+        },
+        {
+          "filename": "6c5f43e9e87156d328d5ddde5dfafe22e24acf39.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/6c5f43e9e87156d328d5ddde5dfafe22e24acf39.png"
+        },
+        {
+          "filename": "df0b200b11b0cd3d8c71987ee8a4bd67d686c0ef.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/df0b200b11b0cd3d8c71987ee8a4bd67d686c0ef.png"
+        },
+        {
+          "filename": "5c2b822adf8b0c3be4a11e67cf247d52c31ad5b7.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/5c2b822adf8b0c3be4a11e67cf247d52c31ad5b7.png"
+        },
+        {
+          "filename": "2c7f87217a29b7c9bb10944c147a4dc5c21723ac.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/2c7f87217a29b7c9bb10944c147a4dc5c21723ac.png"
+        },
+        {
+          "filename": "aea251f1ee9c007f1d04ff6128267fe79cad5031.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/aea251f1ee9c007f1d04ff6128267fe79cad5031.png"
+        },
+        {
+          "filename": "6aa17643a51c50eb039ae8cf1a373b0d333910f2.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/6aa17643a51c50eb039ae8cf1a373b0d333910f2.png"
+        },
+        {
+          "filename": "0ad41dd0d3ad50fc1394872bd02fa132c8a48e12.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/0ad41dd0d3ad50fc1394872bd02fa132c8a48e12.png"
+        },
+        {
+          "filename": "ddc07118a6c5b3352b10e506f88449554166fbb8.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/ddc07118a6c5b3352b10e506f88449554166fbb8.png"
+        },
+        {
+          "filename": "1d5a52c6be5a4eda5768474a945274ed0e35e93c.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/1d5a52c6be5a4eda5768474a945274ed0e35e93c.png"
+        },
+        {
+          "filename": "51ea7db358feba3730b22ec6e544663367f60416.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/51ea7db358feba3730b22ec6e544663367f60416.png"
+        },
+        {
+          "filename": "a991b8ddfd440533ded770bbb9a4b98dcdbf0528.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/a991b8ddfd440533ded770bbb9a4b98dcdbf0528.png"
+        },
+        {
+          "filename": "856f0d8dd763fabcc866aea38f1fe3041adf8c9b.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/856f0d8dd763fabcc866aea38f1fe3041adf8c9b.png"
+        },
+        {
+          "filename": "edd3f0b88634493f8eb6e76212c5335a522b1536.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/edd3f0b88634493f8eb6e76212c5335a522b1536.png"
+        },
+        {
+          "filename": "25cf11870f5ac919e1088cdb2299bab94c92701d.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/25cf11870f5ac919e1088cdb2299bab94c92701d.png"
+        },
+        {
+          "filename": "b972da6579d5d55d29cfef6b70b89a2307a5f7bb.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/b972da6579d5d55d29cfef6b70b89a2307a5f7bb.png"
+        },
+        {
+          "filename": "588aca7ce7efd6dafdae054d39d7e5187a21f0b3.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/588aca7ce7efd6dafdae054d39d7e5187a21f0b3.png"
+        },
+        {
+          "filename": "f28ef02e30ea0af086fc28ddb705fe2808e4b913.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/f28ef02e30ea0af086fc28ddb705fe2808e4b913.png"
+        },
+        {
+          "filename": "2ff2da4fd9f90dae3d5e7006e644af2b90150c7c.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/2ff2da4fd9f90dae3d5e7006e644af2b90150c7c.png"
+        },
+        {
+          "filename": "9cd8d3ceb58f5e9ef0a0666086720f1ee51cb3ee.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/9cd8d3ceb58f5e9ef0a0666086720f1ee51cb3ee.png"
+        },
+        {
+          "filename": "534b713648305650e1ddd81cc32ef8c77cd6c635.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/534b713648305650e1ddd81cc32ef8c77cd6c635.png"
+        },
+        {
+          "filename": "523fe6017e2ece7ca0cb3d4e01f38b4932a0ddc4.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/523fe6017e2ece7ca0cb3d4e01f38b4932a0ddc4.png"
+        },
+        {
+          "filename": "2bb6b399e091092dc3505075359ff798ccc8b1ad.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/2bb6b399e091092dc3505075359ff798ccc8b1ad.png"
+        },
+        {
+          "filename": "8cdf12d485f22e42e90a2207618a1968da58d9fb.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/8cdf12d485f22e42e90a2207618a1968da58d9fb.png"
+        },
+        {
+          "filename": "63d0a55bd5d4d158bb4f5232fc3dfb18aeec7acb.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/63d0a55bd5d4d158bb4f5232fc3dfb18aeec7acb.png"
+        },
+        {
+          "filename": "cf777228626c2d7d2458c6d041b2641c47597cda.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/cf777228626c2d7d2458c6d041b2641c47597cda.png"
+        },
+        {
+          "filename": "fa098b6147d0335613a62514f89c39821b8e7a1f.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/fa098b6147d0335613a62514f89c39821b8e7a1f.png"
+        },
+        {
+          "filename": "209a209d531b2ecd4283e8329f10884a23546614.png",
+          "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/209a209d531b2ecd4283e8329f10884a23546614.png"
+        }
+      ],
+      "polygons": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/c7c095f6f92f44c75147030df0d9863ae009a638.json"
+    },
+    "x_scale": 0.26476579224524766,
+    "id": "5d6402089031f10012f04fdf",
+    "elevation": 0,
+    "perspective": {
+      "id": "5d641db5e48bb3709700038c",
+      "name": "Website",
+      "original": "https://resize-worker.mappedin.com/resize:fit:3500:3000:0/enlarge:1/ext:png/plain/https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/stitched/95e4a606bbbe4a9c8ced06c726613ff01a0ae361.png",
+      "width": 3500,
+      "height": 3000,
+      "extents": {
+        "x": 0,
+        "y": 0,
+        "width": 3500,
+        "height": 3000
+      },
+      "tiled": true,
+      "tiles": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/maps/98fbf872-7462-46f4-8a49-8b903b463840_files/",
+      "image": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/maps/98fbf872-7462-46f4-8a49-8b903b463840_files/",
+      "camera": {
+        "type": "orthographic",
+        "position": {
+          "x": -245.04030166261813,
+          "y": 49.18013672576535,
+          "z": 70.36140814429042
+        },
+        "rotation": {
+          "x": -0.31491503142824184,
+          "y": -1.184346929831623,
+          "z": -1.9089773558980263
+        },
+        "target": {
+          "x": 12.855997742530207,
+          "y": 16.67626069017006,
+          "z": -29.418581516404274
+        },
+        "zoom": 196.68199556430267
+      },
+      "lights": [
+        {
+          "type": "hemisphere",
+          "intensity": 0.7,
+          "position": {
+            "x": 1024,
+            "y": 623.375,
+            "z": -190
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "type": "directional",
+          "intensity": 0.33,
+          "position": {
+            "x": -175,
+            "y": 100,
+            "z": -190
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ],
+      "renderSampling": 2,
+      "extrusionScale": 1,
+      "layers": [
+        "Polygon",
+        "Kiosks",
+        "Washrooms",
+        "Non-Public",
+        "Obstruction",
+        "Infill",
+        "Wall",
+        "Floor",
+        "Tree Tops",
+        "Tree Bottoms",
+        "Parking Icons",
+        "Road Names",
+        "Parking Lot",
+        "Sidewalk",
+        "Landscape",
+        "Base",
+        "Anchors"
+      ],
+      "reference": [
+        {
+          "control": {
+            "x": 0,
+            "y": 0
+          },
+          "target": {
+            "x": -41779.18028413916,
+            "y": 34498.55992759472
+          }
+        },
+        {
+          "control": {
+            "x": 8192,
+            "y": 0
+          },
+          "target": {
+            "x": -66373.3649995119,
+            "y": -35432.5495277739
+          }
+        },
+        {
+          "control": {
+            "x": 0,
+            "y": 4987
+          },
+          "target": {
+            "x": 77014.08295143576,
+            "y": 29133.06380295619
+          }
+        },
+        {
+          "control": {
+            "x": 8192,
+            "y": 4987
+          },
+          "target": {
+            "x": 52419.898236063025,
+            "y": -40798.04565241243
+          }
+        }
+      ],
+      "updatedAt": "2026-08-12T11:41:05+02:00",
+      "scene": {
+        "mtl": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/a6fd2859ec28211c748189b2d21fd701c853ca3e.mtl",
+        "obj": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/1f10f5a0321835ad73aec56ed80edfdadf11d826.obj",
+        "images": [
+          {
+            "filename": "dd24db111f5ab04955a42fbb327bd2901efbafaf.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/dd24db111f5ab04955a42fbb327bd2901efbafaf.png"
+          },
+          {
+            "filename": "dd24db111f5ab04955a42fbb327bd2901efbafaf.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/dd24db111f5ab04955a42fbb327bd2901efbafaf.png"
+          },
+          {
+            "filename": "dd24db111f5ab04955a42fbb327bd2901efbafaf.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/dd24db111f5ab04955a42fbb327bd2901efbafaf.png"
+          },
+          {
+            "filename": "dd24db111f5ab04955a42fbb327bd2901efbafaf.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/dd24db111f5ab04955a42fbb327bd2901efbafaf.png"
+          },
+          {
+            "filename": "4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png"
+          },
+          {
+            "filename": "4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png"
+          },
+          {
+            "filename": "4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/4ad01d5b3f64589069c5dd986e6c58ef0e2172c9.png"
+          },
+          {
+            "filename": "25ed158fcc24402a2dcd2dc0cab14c6055edf64f.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/25ed158fcc24402a2dcd2dc0cab14c6055edf64f.png"
+          },
+          {
+            "filename": "0903fd087028bf05fc0e59e3580a96f9691c59c7.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/0903fd087028bf05fc0e59e3580a96f9691c59c7.png"
+          },
+          {
+            "filename": "f5defb0f391929e7ee09a6d1126f33995716c97d.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/f5defb0f391929e7ee09a6d1126f33995716c97d.png"
+          },
+          {
+            "filename": "db1604d71c7c8415be97c206de730f6fa8d36abf.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/db1604d71c7c8415be97c206de730f6fa8d36abf.png"
+          },
+          {
+            "filename": "6136277a0f74385e2b3585ee0575173bb4505db5.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/6136277a0f74385e2b3585ee0575173bb4505db5.png"
+          },
+          {
+            "filename": "14cdedfab5f28ee3ed620f7675bc068fa11aea9d.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/14cdedfab5f28ee3ed620f7675bc068fa11aea9d.png"
+          },
+          {
+            "filename": "300c4de242c6cececfdc08f8306c02d513cd9ce8.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/300c4de242c6cececfdc08f8306c02d513cd9ce8.png"
+          },
+          {
+            "filename": "8380fedf2dcc16c8cc76bfee7075e497e26d9428.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/8380fedf2dcc16c8cc76bfee7075e497e26d9428.png"
+          },
+          {
+            "filename": "53b5b0da795a9d9ae3f374e03f20527739ba24f9.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/53b5b0da795a9d9ae3f374e03f20527739ba24f9.png"
+          },
+          {
+            "filename": "7887c510a67f534c3cb65193cd3cce445980d485.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/7887c510a67f534c3cb65193cd3cce445980d485.png"
+          },
+          {
+            "filename": "38caa817db07c5057855d3ec368a6e6d947a26d9.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/38caa817db07c5057855d3ec368a6e6d947a26d9.png"
+          },
+          {
+            "filename": "6c5f43e9e87156d328d5ddde5dfafe22e24acf39.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/6c5f43e9e87156d328d5ddde5dfafe22e24acf39.png"
+          },
+          {
+            "filename": "df0b200b11b0cd3d8c71987ee8a4bd67d686c0ef.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/df0b200b11b0cd3d8c71987ee8a4bd67d686c0ef.png"
+          },
+          {
+            "filename": "5c2b822adf8b0c3be4a11e67cf247d52c31ad5b7.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/5c2b822adf8b0c3be4a11e67cf247d52c31ad5b7.png"
+          },
+          {
+            "filename": "2c7f87217a29b7c9bb10944c147a4dc5c21723ac.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/2c7f87217a29b7c9bb10944c147a4dc5c21723ac.png"
+          },
+          {
+            "filename": "aea251f1ee9c007f1d04ff6128267fe79cad5031.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/aea251f1ee9c007f1d04ff6128267fe79cad5031.png"
+          },
+          {
+            "filename": "6aa17643a51c50eb039ae8cf1a373b0d333910f2.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/6aa17643a51c50eb039ae8cf1a373b0d333910f2.png"
+          },
+          {
+            "filename": "0ad41dd0d3ad50fc1394872bd02fa132c8a48e12.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/0ad41dd0d3ad50fc1394872bd02fa132c8a48e12.png"
+          },
+          {
+            "filename": "ddc07118a6c5b3352b10e506f88449554166fbb8.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/ddc07118a6c5b3352b10e506f88449554166fbb8.png"
+          },
+          {
+            "filename": "1d5a52c6be5a4eda5768474a945274ed0e35e93c.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/1d5a52c6be5a4eda5768474a945274ed0e35e93c.png"
+          },
+          {
+            "filename": "51ea7db358feba3730b22ec6e544663367f60416.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/51ea7db358feba3730b22ec6e544663367f60416.png"
+          },
+          {
+            "filename": "a991b8ddfd440533ded770bbb9a4b98dcdbf0528.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/a991b8ddfd440533ded770bbb9a4b98dcdbf0528.png"
+          },
+          {
+            "filename": "856f0d8dd763fabcc866aea38f1fe3041adf8c9b.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/856f0d8dd763fabcc866aea38f1fe3041adf8c9b.png"
+          },
+          {
+            "filename": "edd3f0b88634493f8eb6e76212c5335a522b1536.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/edd3f0b88634493f8eb6e76212c5335a522b1536.png"
+          },
+          {
+            "filename": "25cf11870f5ac919e1088cdb2299bab94c92701d.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/25cf11870f5ac919e1088cdb2299bab94c92701d.png"
+          },
+          {
+            "filename": "b972da6579d5d55d29cfef6b70b89a2307a5f7bb.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/b972da6579d5d55d29cfef6b70b89a2307a5f7bb.png"
+          },
+          {
+            "filename": "588aca7ce7efd6dafdae054d39d7e5187a21f0b3.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/588aca7ce7efd6dafdae054d39d7e5187a21f0b3.png"
+          },
+          {
+            "filename": "f28ef02e30ea0af086fc28ddb705fe2808e4b913.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/f28ef02e30ea0af086fc28ddb705fe2808e4b913.png"
+          },
+          {
+            "filename": "2ff2da4fd9f90dae3d5e7006e644af2b90150c7c.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/2ff2da4fd9f90dae3d5e7006e644af2b90150c7c.png"
+          },
+          {
+            "filename": "9cd8d3ceb58f5e9ef0a0666086720f1ee51cb3ee.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/9cd8d3ceb58f5e9ef0a0666086720f1ee51cb3ee.png"
+          },
+          {
+            "filename": "534b713648305650e1ddd81cc32ef8c77cd6c635.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/534b713648305650e1ddd81cc32ef8c77cd6c635.png"
+          },
+          {
+            "filename": "523fe6017e2ece7ca0cb3d4e01f38b4932a0ddc4.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/523fe6017e2ece7ca0cb3d4e01f38b4932a0ddc4.png"
+          },
+          {
+            "filename": "2bb6b399e091092dc3505075359ff798ccc8b1ad.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/2bb6b399e091092dc3505075359ff798ccc8b1ad.png"
+          },
+          {
+            "filename": "8cdf12d485f22e42e90a2207618a1968da58d9fb.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/8cdf12d485f22e42e90a2207618a1968da58d9fb.png"
+          },
+          {
+            "filename": "63d0a55bd5d4d158bb4f5232fc3dfb18aeec7acb.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/63d0a55bd5d4d158bb4f5232fc3dfb18aeec7acb.png"
+          },
+          {
+            "filename": "cf777228626c2d7d2458c6d041b2641c47597cda.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/cf777228626c2d7d2458c6d041b2641c47597cda.png"
+          },
+          {
+            "filename": "fa098b6147d0335613a62514f89c39821b8e7a1f.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/fa098b6147d0335613a62514f89c39821b8e7a1f.png"
+          },
+          {
+            "filename": "209a209d531b2ecd4283e8329f10884a23546614.png",
+            "url": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/209a209d531b2ecd4283e8329f10884a23546614.png"
+          }
+        ],
+        "polygons": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/c7c095f6f92f44c75147030df0d9863ae009a638.json"
+      },
+      "size": {
+        "width": 3500,
+        "height": 3000
+      },
+      "x_generateBorders": false
+    }
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "responseUrl": "https://cdn.mappedin.com/5d370a669b0abf3e7f0c824e/45a7dec9778b3bc6cae9962f63df9ade05d516ad.zip",
+  "bundleHash": "cde8b7726e96462f",
+  "fileCount": 12,
+  "files": [
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/space/f_5d6402089031f10012f04fdf.geojson",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/floorImages/f_5d6402089031f10012f04fdf.json",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/textAreas/f_5d6402089031f10012f04fdf.json",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/enterprise/locations.json",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/enterprise/categories.json",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/enterprise/layers.json",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/enterprise/enterpriseStyles.json",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/manifest.geojson",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/floor.geojson",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/floorstack.json",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/node.geojson",
+    "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/styles.json"
+  ]
+}

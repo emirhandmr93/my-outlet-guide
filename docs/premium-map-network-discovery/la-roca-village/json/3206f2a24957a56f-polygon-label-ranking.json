@@ -1,0 +1,779 @@
+{
+  "polygons": [
+    {
+      "polygonId": "5d6c8935ce6c43616600012c",
+      "score": 1,
+      "entranceNodeId": "5d790b955d99b832ce000002"
+    },
+    {
+      "polygonId": "5d8d059ce48bb33a56000773",
+      "score": 0.9935483870967742,
+      "entranceNodeId": "5d924b4c5d99b80905000212"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000129",
+      "score": 0.9870967741935484,
+      "entranceNodeId": "5d790b9b5d99b832ce000006"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000127",
+      "score": 0.9806451612903225,
+      "entranceNodeId": "5d790ba15d99b832ce00000a"
+    },
+    {
+      "polygonId": "5d8e1e77e48bb33a56000d05",
+      "score": 0.9741935483870968,
+      "entranceNodeId": "5d974d755d99b84013000000"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000020",
+      "score": 0.967741935483871,
+      "entranceNodeId": "5d6c9916ce6c436166000371"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000008",
+      "score": 0.9612903225806452,
+      "entranceNodeId": "5d6c9834ce6c436166000332"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d6500000c",
+      "score": 0.9548387096774194,
+      "entranceNodeId": "602fe7b8edfe25725f000013"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000064",
+      "score": 0.9483870967741935,
+      "entranceNodeId": "5d6c9652ce6c4361660002b8"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000035",
+      "score": 0.9419354838709677,
+      "entranceNodeId": "5d6c975cce6c4361660002fd"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000128",
+      "score": 0.935483870967742,
+      "entranceNodeId": "5d790b9e5d99b832ce000008"
+    },
+    {
+      "polygonId": "6995ee8d65aab3fbee5bbc3d",
+      "score": 0.9290322580645162,
+      "entranceNodeId": "5d6c98acce6c43616600034d"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600012a",
+      "score": 0.9225806451612903,
+      "entranceNodeId": "5d790b975d99b832ce000004"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000040",
+      "score": 0.9161290322580645,
+      "entranceNodeId": "5d6c97d5ce6c436166000323"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600007f",
+      "score": 0.9096774193548387,
+      "entranceNodeId": "5d6c960dce6c4361660002a1"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600001e",
+      "score": 0.9032258064516129,
+      "entranceNodeId": "5d6c98c7ce6c436166000353"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000074",
+      "score": 0.896774193548387,
+      "entranceNodeId": "5d6c9602ce6c43616600029e"
+    },
+    {
+      "polygonId": "68beeae97e117765adc79896",
+      "score": 0.8903225806451613,
+      "entranceNodeId": "641af1a0409d138844159c16"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600000a",
+      "score": 0.8838709677419355,
+      "entranceNodeId": "5d6c98d8ce6c436166000359"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000029",
+      "score": 0.8774193548387097,
+      "entranceNodeId": "5d6c97dace6c436166000325"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600003b",
+      "score": 0.8709677419354839,
+      "entranceNodeId": "5d6c96b1ce6c4361660002d3"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000031",
+      "score": 0.864516129032258,
+      "entranceNodeId": "5d6c9792ce6c43616600030c"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000047",
+      "score": 0.8580645161290322,
+      "entranceNodeId": "5d6c969fce6c4361660002cd"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600001b",
+      "score": 0.8516129032258064,
+      "entranceNodeId": "5d6c98e2ce6c43616600035c"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000016",
+      "score": 0.8451612903225807,
+      "entranceNodeId": "5d6c9914ce6c436166000370"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000004",
+      "score": 0.8387096774193549,
+      "entranceNodeId": "5d6c981ace6c43616600032d"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000056",
+      "score": 0.832258064516129,
+      "entranceNodeId": "5d6c9755ce6c4361660002fa"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600002e",
+      "score": 0.8258064516129032,
+      "entranceNodeId": "5d6c97a8ce6c436166000311"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000037",
+      "score": 0.8193548387096774,
+      "entranceNodeId": "5d6c96cece6c4361660002dd"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000006",
+      "score": 0.8129032258064516,
+      "entranceNodeId": "602fe82cedfe25725f000026"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000063",
+      "score": 0.8064516129032258,
+      "entranceNodeId": "5d6c9560ce6c436166000274"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600003f",
+      "score": 0.8,
+      "entranceNodeId": "5d6c967ece6c4361660002c1"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000077",
+      "score": 0.7935483870967742,
+      "entranceNodeId": "5d6c95cdce6c436166000290"
+    },
+    {
+      "polygonId": "5d8cd369e48bb33a56000111",
+      "score": 0.7870967741935484,
+      "entranceNodeId": "5d6c97acce6c436166000313"
+    },
+    {
+      "polygonId": "5d8cd0c0e48bb33a56000000",
+      "score": 0.7806451612903226,
+      "entranceNodeId": "5d924bb65d99b80905000213"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600005b",
+      "score": 0.7741935483870968,
+      "entranceNodeId": "5d6c978cce6c43616600030b"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600003c",
+      "score": 0.7677419354838709,
+      "entranceNodeId": "5d6c969bce6c4361660002cc"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600004a",
+      "score": 0.7612903225806451,
+      "entranceNodeId": "5d6c96b9ce6c4361660002d5"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600005a",
+      "score": 0.7548387096774194,
+      "entranceNodeId": "5d6c977ace6c436166000306"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000085",
+      "score": 0.7483870967741936,
+      "entranceNodeId": "5d6c95a8ce6c436166000285"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000015",
+      "score": 0.7419354838709677,
+      "entranceNodeId": "602fe83cedfe25725f00002a"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000034",
+      "score": 0.7354838709677419,
+      "entranceNodeId": "5d6c976dce6c436166000302"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000039",
+      "score": 0.7290322580645161,
+      "entranceNodeId": "5d6c96c2ce6c4361660002d9"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000032",
+      "score": 0.7225806451612904,
+      "entranceNodeId": "5d6c979ece6c43616600030e"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000068",
+      "score": 0.7161290322580645,
+      "entranceNodeId": "5d6c95acce6c436166000287"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000007",
+      "score": 0.7096774193548387,
+      "entranceNodeId": "5d6c985dce6c436166000339"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000071",
+      "score": 0.7032258064516129,
+      "entranceNodeId": "5d6c9637ce6c4361660002af"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000083",
+      "score": 0.6967741935483871,
+      "entranceNodeId": "5d6c95c4ce6c43616600028e"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000076",
+      "score": 0.6903225806451613,
+      "entranceNodeId": "5d6c95e4ce6c436166000295"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600005f",
+      "score": 0.6838709677419355,
+      "entranceNodeId": "5d6c97b7ce6c436166000317"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600005e",
+      "score": 0.6774193548387097,
+      "entranceNodeId": "5d6c97b2ce6c436166000315"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000002",
+      "score": 0.6709677419354838,
+      "entranceNodeId": "602fe865edfe25725f000032"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600006a",
+      "score": 0.6645161290322581,
+      "entranceNodeId": "5d6c95a3ce6c436166000283"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000033",
+      "score": 0.6580645161290323,
+      "entranceNodeId": "5d6c9774ce6c436166000303"
+    },
+    {
+      "polygonId": "5d6c8ca2ce6c43616600025e",
+      "score": 0.6516129032258065,
+      "entranceNodeId": "5d6c9706ce6c4361660002e8"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000012",
+      "score": 0.6451612903225806,
+      "entranceNodeId": "602fe7e0edfe25725f00001b"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000046",
+      "score": 0.6387096774193548,
+      "entranceNodeId": "5d6c968ece6c4361660002c8"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000062",
+      "score": 0.6322580645161291,
+      "entranceNodeId": "5d6c970dce6c4361660002ed"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000075",
+      "score": 0.6258064516129032,
+      "entranceNodeId": "5d6c95e9ce6c436166000297"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600003a",
+      "score": 0.6193548387096774,
+      "entranceNodeId": "5d6c96bfce6c4361660002d7"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000084",
+      "score": 0.6129032258064516,
+      "entranceNodeId": "5d6c95c0ce6c43616600028c"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600007d",
+      "score": 0.6064516129032258,
+      "entranceNodeId": "5d6c964ece6c4361660002b7"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000045",
+      "score": 0.6,
+      "entranceNodeId": "5d6c968ace6c4361660002c6"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000010",
+      "score": 0.5935483870967742,
+      "entranceNodeId": "5d6c98dece6c43616600035b"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600003e",
+      "score": 0.5870967741935484,
+      "entranceNodeId": "5d6c9686ce6c4361660002c5"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000067",
+      "score": 0.5806451612903225,
+      "entranceNodeId": "5d6c9568ce6c436166000276"
+    },
+    {
+      "polygonId": "5d8e27b8e48bb33a560021bd",
+      "score": 0.5741935483870968,
+      "entranceNodeId": "5d6c9682ce6c4361660002c3"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000028",
+      "score": 0.567741935483871,
+      "entranceNodeId": "5d6c97dece6c436166000327"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000011",
+      "score": 0.5612903225806452,
+      "entranceNodeId": "5d6c98e9ce6c436166000360"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000087",
+      "score": 0.5548387096774193,
+      "entranceNodeId": "5d6c9585ce6c43616600027d"
+    },
+    {
+      "polygonId": "5d8e4428e48bb33a560024d3",
+      "score": 0.5483870967741935,
+      "entranceNodeId": "5d920f4ce48bb3164000052c"
+    },
+    {
+      "polygonId": "5d8cdda6e48bb33a5600076e",
+      "score": 0.5419354838709678,
+      "entranceNodeId": "5d920f79e48bb31640000533"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000038",
+      "score": 0.5354838709677419,
+      "entranceNodeId": "5d6c96c6ce6c4361660002db"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000011",
+      "score": 0.5290322580645161,
+      "entranceNodeId": "602fe7a6edfe25725f00000c"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000009",
+      "score": 0.5225806451612903,
+      "entranceNodeId": "5d6c9850ce6c436166000336"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000086",
+      "score": 0.5161290322580645,
+      "entranceNodeId": "5d6c9594ce6c436166000281"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000088",
+      "score": 0.5096774193548388,
+      "entranceNodeId": "5d6c95e1ce6c436166000294"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000036",
+      "score": 0.5032258064516129,
+      "entranceNodeId": "5d6c9753ce6c4361660002f9"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000081",
+      "score": 0.49677419354838714,
+      "entranceNodeId": "5d6c956cce6c436166000277"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000057",
+      "score": 0.4903225806451613,
+      "entranceNodeId": "5d6c9758ce6c4361660002fc"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000089",
+      "score": 0.4838709677419355,
+      "entranceNodeId": "5d6c95d8ce6c436166000292"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000009",
+      "score": 0.4774193548387097,
+      "entranceNodeId": "602fe7daedfe25725f000019"
+    },
+    {
+      "polygonId": "5e26f18c7e79207ae7000001",
+      "score": 0.47096774193548385,
+      "entranceNodeId": "5d6c9571ce6c436166000279"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000025",
+      "score": 0.46451612903225803,
+      "entranceNodeId": "5d6c9865ce6c43616600033c"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600004b",
+      "score": 0.4580645161290322,
+      "entranceNodeId": "5d6c970ace6c4361660002eb"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600003d",
+      "score": 0.4516129032258065,
+      "entranceNodeId": "5d6c9695ce6c4361660002ca"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000078",
+      "score": 0.44516129032258067,
+      "entranceNodeId": "5d6c962ace6c4361660002a9"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000014",
+      "score": 0.43870967741935485,
+      "entranceNodeId": "5d6c990ace6c43616600036b"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000010",
+      "score": 0.432258064516129,
+      "entranceNodeId": "602fe7d3edfe25725f000017"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000053",
+      "score": 0.4258064516129032,
+      "entranceNodeId": "5d6c96d2ce6c4361660002de"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000000",
+      "score": 0.4193548387096774,
+      "entranceNodeId": "602fe7bcedfe25725f000015"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000059",
+      "score": 0.41290322580645167,
+      "entranceNodeId": "5d6c9777ce6c436166000304"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000065",
+      "score": 0.40645161290322585,
+      "entranceNodeId": "5d6c9643ce6c4361660002b3"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600001a",
+      "score": 0.4,
+      "entranceNodeId": "5d6c98e7ce6c43616600035f"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000024",
+      "score": 0.3935483870967742,
+      "entranceNodeId": "5d6c9870ce6c43616600033f"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000049",
+      "score": 0.3870967741935484,
+      "entranceNodeId": "5d6c96aece6c4361660002d2"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000079",
+      "score": 0.38064516129032255,
+      "entranceNodeId": "5d6c9632ce6c4361660002ad"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000082",
+      "score": 0.37419354838709673,
+      "entranceNodeId": "5d6c957ece6c43616600027b"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000004",
+      "score": 0.367741935483871,
+      "entranceNodeId": "602fe886edfe25725f000037"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000021",
+      "score": 0.3612903225806452,
+      "entranceNodeId": "5d6c98a3ce6c43616600034c"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000060",
+      "score": 0.3548387096774194,
+      "entranceNodeId": "5d6c97bcce6c436166000319"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000022",
+      "score": 0.34838709677419355,
+      "entranceNodeId": "5d6c9893ce6c436166000348"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000066",
+      "score": 0.3419354838709677,
+      "entranceNodeId": "5d6c957ace6c43616600027a"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600002c",
+      "score": 0.3354838709677419,
+      "entranceNodeId": "5d6c97cbce6c43616600031e"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600002a",
+      "score": 0.3290322580645161,
+      "entranceNodeId": "5d6c97d2ce6c436166000322"
+    },
+    {
+      "polygonId": "5fd8a6787e79201c5e000002",
+      "score": 0.32258064516129037,
+      "entranceNodeId": "65f456c6539171e3d6e87503"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000023",
+      "score": 0.31612903225806455,
+      "entranceNodeId": "5d6c9881ce6c436166000343"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000017",
+      "score": 0.3096774193548387,
+      "entranceNodeId": "5d6c990fce6c43616600036d"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600002b",
+      "score": 0.3032258064516129,
+      "entranceNodeId": "5d6c97cfce6c436166000320"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000061",
+      "score": 0.2967741935483871,
+      "entranceNodeId": "5d6c97c6ce6c43616600031d"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000013",
+      "score": 0.29032258064516125,
+      "entranceNodeId": "5d6c9902ce6c436166000369"
+    },
+    {
+      "polygonId": "6031676a7e7920457300011a",
+      "score": 0.28387096774193543,
+      "entranceNodeId": "603f524f7e79204da0000004"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000005",
+      "score": 0.2774193548387097,
+      "entranceNodeId": "602fe7faedfe25725f000020"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600007a",
+      "score": 0.2709677419354839,
+      "entranceNodeId": "5d6c9639ce6c4361660002b0"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000003",
+      "score": 0.2645161290322581,
+      "entranceNodeId": "5d6c9831ce6c436166000331"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600007c",
+      "score": 0.25806451612903225,
+      "entranceNodeId": "5d6c9648ce6c4361660002b5"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000012",
+      "score": 0.25161290322580643,
+      "entranceNodeId": "5d6c98efce6c436166000364"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000069",
+      "score": 0.2451612903225806,
+      "entranceNodeId": "5d6c95bbce6c436166000289"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000054",
+      "score": 0.2387096774193549,
+      "entranceNodeId": "5d6c971bce6c4361660002f2"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600007b",
+      "score": 0.23225806451612907,
+      "entranceNodeId": "5d6c963ece6c4361660002b2"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600004c",
+      "score": 0.22580645161290325,
+      "entranceNodeId": "5d6c9708ce6c4361660002e9"
+    },
+    {
+      "polygonId": "62ac8d6fcba17019d7f6e335",
+      "score": 0.21935483870967742,
+      "entranceNodeId": "62ac8daccba17019d7f6e337"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000013",
+      "score": 0.2129032258064516,
+      "entranceNodeId": "602fe7acedfe25725f00000f"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000019",
+      "score": 0.20645161290322578,
+      "entranceNodeId": "5d6c98ecce6c436166000362"
+    },
+    {
+      "polygonId": "602fdfa5edfe257d65000014",
+      "score": 0.19999999999999996,
+      "entranceNodeId": "602fe78aedfe25725f00000a"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000015",
+      "score": 0.19354838709677424,
+      "entranceNodeId": "5d6c9911ce6c43616600036e"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600006b",
+      "score": 0.18709677419354842,
+      "entranceNodeId": "5d6c9657ce6c4361660002b9"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000030",
+      "score": 0.1806451612903226,
+      "entranceNodeId": "5d6c96a4ce6c4361660002cf"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000072",
+      "score": 0.17419354838709677,
+      "entranceNodeId": "5d6c962ece6c4361660002ab"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000018",
+      "score": 0.16774193548387095,
+      "entranceNodeId": "5d6c9907ce6c43616600036a"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600000d",
+      "score": 0.16129032258064513,
+      "entranceNodeId": "5d6c9890ce6c436166000347"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600000b",
+      "score": 0.1548387096774193,
+      "entranceNodeId": "5d6c98ccce6c436166000354"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000073",
+      "score": 0.1483870967741936,
+      "entranceNodeId": "5d6c9625ce6c4361660002a7"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000050",
+      "score": 0.14193548387096777,
+      "entranceNodeId": "5d6c96fdce6c4361660002e6"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600000e",
+      "score": 0.13548387096774195,
+      "entranceNodeId": "5d6c987cce6c436166000342"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000051",
+      "score": 0.12903225806451613,
+      "entranceNodeId": "5d6c96f3ce6c4361660002e4"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000026",
+      "score": 0.1225806451612903,
+      "entranceNodeId": "5d6c985ace6c436166000338"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000027",
+      "score": 0.11612903225806448,
+      "entranceNodeId": "5d6c984ece6c436166000335"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600000f",
+      "score": 0.10967741935483866,
+      "entranceNodeId": "5d6c986bce6c43616600033e"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000055",
+      "score": 0.10322580645161294,
+      "entranceNodeId": "5d6c9729ce6c4361660002f3"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600000c",
+      "score": 0.09677419354838712,
+      "entranceNodeId": "5d6c98b3ce6c43616600034f"
+    },
+    {
+      "polygonId": "60312ff27e79204ff6000006",
+      "score": 0.0903225806451613,
+      "entranceNodeId": "603134b27e79204ff600001b"
+    },
+    {
+      "polygonId": "60312fc17e79204ff6000004",
+      "score": 0.08387096774193548,
+      "entranceNodeId": "602fe7e7edfe25725f00001c"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600006f",
+      "score": 0.07741935483870965,
+      "entranceNodeId": "5d6c95f6ce6c43616600029a"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000006",
+      "score": 0.07096774193548383,
+      "entranceNodeId": "5d6c9860ce6c43616600033b"
+    },
+    {
+      "polygonId": "5d6c8935ce6c43616600006e",
+      "score": 0.06451612903225812,
+      "entranceNodeId": "5d6c95f0ce6c436166000298"
+    },
+    {
+      "polygonId": "5dd64eda7e79204052000003",
+      "score": 0.058064516129032295,
+      "entranceNodeId": "5d6c9713ce6c4361660002f0"
+    },
+    {
+      "polygonId": "5d6c8935ce6c436166000070",
+      "score": 0.05161290322580647,
+      "entranceNodeId": "5d6c95fbce6c43616600029c"
+    },
+    {
+      "polygonId": "6031319d7e79204ff600000e",
+      "score": 0.04516129032258065,
+      "entranceNodeId": "6081727f2d417e0392000000"
+    },
+    {
+      "polygonId": "5d8cd9b5e48bb33a5600032c",
+      "score": 0.03870967741935483,
+      "entranceNodeId": "5d920f41e48bb3164000052a"
+    },
+    {
+      "polygonId": "69ea2a9db1be529941c1c145",
+      "score": 0.032258064516129004,
+      "entranceNodeId": "69ea2ab8b1be529941c1c146"
+    },
+    {
+      "polygonId": "5dd64eda7e79204052000002",
+      "score": 0.02580645161290318,
+      "entranceNodeId": "5dde6ab17e79200ad3000324"
+    },
+    {
+      "polygonId": "6818a2c9e048630be02f74db",
+      "score": 0.01935483870967747,
+      "entranceNodeId": "6818a2dde048630be02f74dc"
+    },
+    {
+      "polygonId": "6448d500fff074478f6e5aa6",
+      "score": 0.012903225806451646,
+      "entranceNodeId": "6448d548fff074478f6e5aaa"
+    },
+    {
+      "polygonId": "6a4768a2380c4f105bde4184",
+      "score": 0.006451612903225823,
+      "entranceNodeId": "6a4768be380c4f105bde4185"
+    }
+  ]
+}

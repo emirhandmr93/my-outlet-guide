@@ -1,0 +1,6188 @@
+[
+  {
+    "id": "el_5d7906af76378c0f06378276",
+    "name": "Hour Passion",
+    "type": "tenant",
+    "externalId": "unit137",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600000e"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c987cce6c436166000342"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600000e",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Hour Passion is a specialist multi-brand watch boutique, housing some of the most exciting and globally revered Swiss Made brands.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/0a453f74637e150cec0a522eca099554dae96502.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [
+      "Hamilton",
+      "Longines",
+      "Mido",
+      "Tissot",
+      "Rado",
+      "Calvin Klein watches+ jewelry"
+    ],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/hour-passion"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906b176378c0f06378277",
+    "name": "WAFF",
+    "type": "tenant",
+    "externalId": "unit601",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_6448d500fff074478f6e5aa6"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_6448d548fff074478f6e5aaa"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_6448d500fff074478f6e5aa6",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Cool off during your shopping day at the Village's new pop-up.",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the restaurant",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/ice-pops"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906cd76378c0f0637828b",
+    "name": "Polo Ralph Lauren Men & Children",
+    "type": "tenant",
+    "externalId": "unit1",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000040"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97d5ce6c436166000323"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000040",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Authentic and iconic, Polo Ralph Lauren Men is the original symbol of the modern preppy lifestyle.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/e310a3b2a6d065f8d80b26c2f1dc65f7fa5fceb8.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/polo-ralph-lauren-men"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906ce76378c0f0637828c",
+    "name": "Replay",
+    "type": "tenant",
+    "externalId": "unit2",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000061"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97c6ce6c43616600031d"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000061",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Replay, the leading Italian denim and casualwear brand, creates garments that show off the wearer’s unique and distinctive personality.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/631b8781c67a73c58228f169e602cf8c407dcdea.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/replay"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906d176378c0f0637828e",
+    "name": "ASICS",
+    "type": "tenant",
+    "externalId": "unit4",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600005f"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97b7ce6c436166000317"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600005f",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in 1949, Japanese sports performance brand ASICS is renowned for high-quality running shoes, technical running clothing and knowledgeable staff who will advise on the correct shoe for your specific running style.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/3876986d64012d37fc4e6e95aec8368114369294.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/asics",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906d276378c0f0637828f",
+    "name": "TOD'S",
+    "type": "tenant",
+    "externalId": "unit6-7",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d8cd369e48bb33a56000111"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97acce6c436166000313"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d8cd369e48bb33a56000111",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Tod’s, synonymous for its refined, understated luxury, impeccable taste and enviable quality, symbolises the best that Made in Italy can offer.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/a4d25b7bfca9f563677ee18f3ccb95027ec46bf6.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/tods"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906d476378c0f06378290",
+    "name": "Columbia",
+    "type": "tenant",
+    "externalId": "unit9",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600005a"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c977ace6c436166000306"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600005a",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Columbia Sportswear Company has been making gear so that Pacific Northwesterners can enjoy the outdoors apparel.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/0c24c580934819399387920bb4dd1f04135553d6.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/columbia",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906d576378c0f06378291",
+    "name": "Andreu",
+    "type": "tenant",
+    "externalId": "unit120",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600001b"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98e2ce6c43616600035d"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600001b",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "An elegant and sophisticated family Delicatessen in which you will discover the true simplicity of a land rich in history and flavour.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f46d8831bec9f4edf47a6d57f42bb8287892e24c.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/andreu",
+        "label": "Visit the resteurant"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906d976378c0f06378294",
+    "name": "Bimba y Lola",
+    "type": "tenant",
+    "externalId": "unit105",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600002b"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97cfce6c436166000320"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600002b",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Contemporary label Bimba y Lola blends the essence of Spain with a cool, quirky aesthetic that speaks to stylish statement-makers around the world.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/0327f3db238728d4815b7e147af6c0738daed75d.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/bimba-y-lola",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906db76378c0f06378296",
+    "name": "Mandarina Duck",
+    "type": "tenant",
+    "externalId": "unit116B",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_6995ee8d65aab3fbee5bbc3d"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98acce6c43616600034d"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_6995ee8d65aab3fbee5bbc3d",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Its name inspired by a brightly plumed oriental duck symbolising happiness and loyalty, this Italian company sells an extensive range of top quality luggage and bags.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/bebdda03aa9754866a2a910368745ed92516bd85.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/mandarina-duck"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906dd76378c0f06378297",
+    "name": "Michael Kors",
+    "type": "tenant",
+    "externalId": "unit75-76",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000077"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95cdce6c436166000290"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000077",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Michael Kors is a world-renowned, award-winning designer of luxury accessories and ready-to-wear.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/0c61788fbed5ccada97670712ce1e7f4e4e0587c.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/michael-kors"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069476378c0f0637826f"
+  },
+  {
+    "id": "el_5d7906de76378c0f06378298",
+    "name": "Guess",
+    "type": "tenant",
+    "externalId": "unit77",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000076"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95e4ce6c436166000295"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000076",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Sexy, adventurous, trend-setting apparel and accessories for men and women from the American brand started by four entrepreneurial Moroccan brothers in 1981.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/3502feb1c3e3fb855d77079ae20de7a4a0549ba0.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/guess"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906df76378c0f06378299",
+    "name": "Moncler",
+    "type": "tenant",
+    "externalId": "unit163-164",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000006"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe82cedfe25725f000026"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000006",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Moncler is synonymous with quality outerwear and most famous for its celebrated down jackets.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/049bddc006f1735815595e2d71740d96c24fc2da.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/moncler"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906e376378c0f0637829c",
+    "name": "Max Mara",
+    "type": "tenant",
+    "externalId": "unit145",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000004"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c981ace6c43616600032d"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000004",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Max Mara was founded as a menswear business in post-war Italy by Achille Maramotti, who soon found himself making clothes for women who loved high fashion but couldn’t afford it.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/b6bd1d53da075739de4fabee746159b023573e4e.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/max-mara"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906e476378c0f0637829d",
+    "name": "Prada",
+    "type": "tenant",
+    "externalId": "unit142-143-144",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000008"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9834ce6c436166000332"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000008",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Discover Prada, Church's, Miu Miu & Car Shoe. Visit the Prada store at La Roca Village, near Barcelona, and discover ready-to-wear handbags, purses, footwear, accessories, eyewear, fragrances and leather goods.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/6af9c407543634fe141702b7c4b538c056435526.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/prada"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069576378c0f06378270"
+  },
+  {
+    "id": "el_5d7906e676378c0f0637829e",
+    "name": "Montblanc",
+    "type": "tenant",
+    "externalId": "unit141",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000009"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9850ce6c436166000336"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000009",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The iconic Montblanc emblem is a symbol of excellence – the pinnacle of luxury writing instruments, timepieces, leather, accessories, fragrances and sunglasses.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/c67d335aa636e432de29bd70d54ded2057a6b148.jpeg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/montblanc"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906ea76378c0f063782a1",
+    "name": "ZWILLING",
+    "type": "tenant",
+    "externalId": "unit138",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600000f"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c986bce6c43616600033e"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600000f",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "International tradition dating back more than 280 years. In 2011 ZWILLING celebrated 280 years of existence. The white and red ZWILLING logo has become a well-known emblem of a sophisticated lifestyle.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/c41ce7da738db2de7d455a252ad83f0747deff6f.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/zwilling"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906eb76378c0f063782a2",
+    "name": "Old Ridel",
+    "type": "tenant",
+    "externalId": "unit41",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600007b"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c963ece6c4361660002b2"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600007b",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Popular brand of casualwear for men and women from the Catalan family-owned label.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/8d94d29132f6fa0ea9f3445549029f290d94e632.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/old-ridel"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906ee76378c0f063782a4",
+    "name": "Pandora",
+    "type": "tenant",
+    "externalId": "unit135",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600000c"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98b3ce6c43616600034f"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600000c",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Pandora jewellery is genuine, contemporary and feminine and inspire women to express their individuality.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/7aea58322df7cedd16b2308585fc9c33d8b00d2c.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/pandora"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906f176378c0f063782a6",
+    "name": "Gucci",
+    "type": "tenant",
+    "externalId": "unit133",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600000a"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98d8ce6c436166000359"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600000a",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "A world-famous icon renowned for outstanding craftsmanship and luxurious materials, Gucci follows the vision of Creative Director, Alessandro Michele.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/ce98588386891b0a062ca6239b70d96877ddcc7c.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/gucci"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906f276378c0f063782a7",
+    "name": "CH Carolina Herrera",
+    "type": "tenant",
+    "externalId": "unit132",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000010"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98dece6c43616600035b"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000010",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The Venezuelan-born fashion designer launched this lifestyle brand in 2008, which includes womenswear, eyewear, handbags and jewellery.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/b01ce298acd64e3b3c6d67e4fe59c907fa754724.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/ch-carolina-herrera"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906f476378c0f063782a8",
+    "name": "Purificación García",
+    "type": "tenant",
+    "externalId": "unit131",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000011"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98e9ce6c436166000360"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000011",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "This Spanish fashion designer and gifted fabric expert creates subtle, understated, contemporary clothing.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/06936d1b2337d3743a825527e4ab71b2fe83cc96.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/purificacion-garcia"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906f576378c0f063782a9",
+    "name": "Tumi",
+    "type": "tenant",
+    "externalId": "unit61",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000082"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c957ece6c43616600027b"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000082",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "To be the leading global travel lifestyle brand, providing our customers with beautiful and world-class business and travel products designed to uncomplicated and upgrade all aspects of their life on the move.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/00299c95154d18353a5b867847d7e5bf70076267.jpeg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/tumi"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906f676378c0f063782aa",
+    "name": "Vans®",
+    "type": "tenant",
+    "externalId": "unit12",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000057"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9758ce6c4361660002fc"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000057",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Vans, makers of the original skate shoe since 1966, create authentic performance board shoes plus street-meets-beach attire.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/70a088f1aaee72a2444d2fbc8af3404aa20402c5.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/vans"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906f776378c0f063782ab",
+    "name": "Dockers",
+    "type": "tenant",
+    "externalId": "unit129",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000013"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9902ce6c436166000369"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000013",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "This American classic has been at the heart of the casual movement providing men with quality products for every occasion.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/0ad8523531027b46f92c90d7b01a97ebc11cf017.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/dockers",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906f976378c0f063782ac",
+    "name": "Kenzo",
+    "type": "tenant",
+    "externalId": "unit128",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000014"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c990ace6c43616600036b"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000014",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "With its abundant prints, vibrant color combinations and cultural influences from all over the world, Kenzo offers a luxuriant and versatile world where spontaneity takes control. Welcome to the urban jungle!",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/34ba7ec5a448eaa80f0d2d3ad1130a87bee7aed5.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/kenzo"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d7906fc76378c0f063782af",
+    "name": "Diesel",
+    "type": "tenant",
+    "externalId": "unit125",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000016"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9914ce6c436166000370"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000016",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Diesel is never just a pair of jeans. It’s a statement on individuality and self-expression, a battle cry for innovation, artistry and technical expertise, and a belief that passion is the greatest muse.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/eebe8ad8d788571d5d033f2d7b45d57b83417126.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/diesel"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79070076378c0f063782b2",
+    "name": "Vilebrequin",
+    "type": "tenant",
+    "externalId": "unit127",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000015"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9911ce6c43616600036e"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000015",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "A sharp-eyed observer of the privileged bathers on the French Riviera beach fashioned the first ever boxer short swimming trunks from the chequered cloth on his café table.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/43ed0c85f822718477ea76c834864cec6e5b105a.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/vilebrequin"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79070276378c0f063782b3",
+    "name": "Coach",
+    "type": "tenant",
+    "externalId": "unit13",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000056"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9755ce6c4361660002fa"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000056",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Coach is a modern American fashion brand with a rich heritage rooted in quality and craftsmanship.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/3f39d42ab55a281058280c56aae8874bc26d01d5.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/coach",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79070376378c0f063782b4",
+    "name": "Salomon",
+    "type": "tenant",
+    "externalId": "unit100",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000032"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c979ece6c43616600030e"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000032",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Salomon creates functional clothing and equipment for sports including skiing, trail running and hiking. The brand has a history of environmental responsibility and innovation in product design.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f16061a5ae75e30b53da271bd61c2d555dc9e3b8.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/salomon"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79070776378c0f063782b7",
+    "name": "PINKO",
+    "type": "tenant",
+    "externalId": "unit43",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000079"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9632ce6c4361660002ad"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000079",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Pinko started out as a workspace for a number of leading womenswear clothing firms but, the two entrepreneurs at the heart of the project decided to put their expertise to good use and launched a collection of their own.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/285c4115c0863bffde9cf8e8cd8be9d55cdf991d.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/pinko"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79070976378c0f063782b8",
+    "name": "Armani",
+    "type": "tenant",
+    "externalId": "unit126",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d920f4be48bb3164000052b"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_754a10d5e47bba22",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "A world leader in fashion and accessory design with his brands Emporio Armani and Armani Jeans. His style is synonymous with luxury and contemporary elegance, modernity and sophistication.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/a0d887587736a8a99441ccbfd489448a1df35b9a.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/armani",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79070b76378c0f063782ba",
+    "name": "Zadig&Voltaire",
+    "type": "tenant",
+    "externalId": "unit114",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000022"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9893ce6c436166000348"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000022",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Zadig & Voltaire is all about casual-chic: it is a state of mind, a musical inclination, fashion as a bold statement. With rock’n’roll in its blood and art as its inspiration, the brand has naturally become a “concept store” ahead of its time.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/81dac3835d1340538d2c77f92c464225552b6350.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/zadig-and-voltaire"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79070e76378c0f063782bb",
+    "name": "Punto Blanco",
+    "type": "tenant",
+    "externalId": "unit14",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000055"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9729ce6c4361660002f3"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000055",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "This Spanish underwear brand offers soft cotton boxers in a multitude of colours, bold swim shorts and women's lingerie and swimwear.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/9257d46ee8a557e64fd3831ade9748bd84e9dbe4.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/punto-blanco"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79071276378c0f063782bd",
+    "name": "Geox",
+    "type": "tenant",
+    "externalId": "unit112",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000024"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9870ce6c43616600033f"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000024",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Geox founder Italian wine-maker Mario Moretti Polegato got the idea for breathable shoes after a trek in the Nevada desert following a wine conference.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/a5792d606a9006191d9bf70c483e3624036c690b.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/geox"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79071376378c0f063782be",
+    "name": "TAG Heuer",
+    "type": "tenant",
+    "externalId": "unit110",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000026"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c985ace6c436166000338"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000026",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Leading the race of time since 1860 is the tradition and expertise of this swiss watchmaker. Tag Heuer has been the timekeeping brand for Formula 1 since 1959, due to the accuracy of its chronographs.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/a8938977931138b7a015b311d4a38bda819dbab8.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/tag-heuer"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79071476378c0f063782bf",
+    "name": "Piquadro",
+    "type": "tenant",
+    "externalId": "unit109b",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000027"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c984ece6c436166000335"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000027",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Formed in Bologna in 1987 by 23-year-old Marco Palmieri, Piquadro travel and business luggage is characterised by a blend of traditional Italian craftsmanship, innovation and technology.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/b7a39f3e9b06d7c022a092754583f1c383309b5a.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/piquadro"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79071676378c0f063782c0",
+    "name": "Mori Much More",
+    "type": "tenant",
+    "externalId": "unit109a",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000028"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97dece6c436166000327"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000028",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Don't miss the amazing menu specialised in sushi and sashimi, hot dishes, salads and desserts.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/a9495fff49e3c1da65f72ea49586d06b7dacf8bb.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visita el restaurant",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/mori"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79071776378c0f063782c1",
+    "name": "Scalpers",
+    "type": "tenant",
+    "externalId": "unit10",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000059"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9777ce6c436166000304"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000059",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Scalpers delivers strong and uncompromising style for men, giving them access to everything that makes them successful and unique.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/d330cd97ee02af4c9938877f8bdc47a7d28587d5.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/scalpers"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79071876378c0f063782c2",
+    "name": "Ray-Ban®",
+    "type": "tenant",
+    "externalId": "unit16",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600000b"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98ccce6c436166000354"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600000b",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The world's best-selling sunglasses brand was born in 1937 when Bausch & Lomb created anti-glare shades for the US Army Air Corps.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/13bbce7a4a36153e9e00dd81427046d00dad505d.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/sunglass-hut"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79071b76378c0f063782c4",
+    "name": "Le Creuset",
+    "type": "tenant",
+    "externalId": "unit19a",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000051"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96f3ce6c4361660002e4"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000051",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The durability of this iconic brand’s products means they are handed down from generation to generation, becoming part of a family’s domestic heritage.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/44d04fe94e498bea6ea11cf6aef0b2fe025a760c.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/le-creuset"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79071e76378c0f063782c6",
+    "name": "Etro",
+    "type": "tenant",
+    "externalId": "unit21",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8ca2ce6c43616600025e"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9706ce6c4361660002e8"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8ca2ce6c43616600025e",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Italian fashion house Etro was founded in 1968 by Gerolamo ‘Gimmo’ Etro, a traveller educated in economics, who formed his own textile company creating beautiful fabrics.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/9a427024fa515374caab73b34fa7663f220b618c.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/etro"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79072076378c0f063782c8",
+    "name": "KARL LAGERFELD",
+    "type": "tenant",
+    "externalId": "unit23-24",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d8cd0c0e48bb33a56000000"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d924bb65d99b80905000213"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d8cd0c0e48bb33a56000000",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The house of KARL LAGERFELD shares the iconic vision and design aesthetic of its founder, Karl Lagerfeld, fused with a contemporary, forward-looking spirit. The brand celebrates his colossal legacy and breathes his passion, intuition and inexhaustible creativity into the core of its DNA.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/aae0bf3d01cc0bd44b5dd6e736f073b1bfb3dcec.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/karl-lagerfeld"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79072176378c0f063782c9",
+    "name": "Samsonite",
+    "type": "tenant",
+    "externalId": "unit25",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000062"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c970dce6c4361660002ed"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000062",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Smart, hard-wearing luggage from a firm that began in 1910, when American Jesse Schwayder started producing trunks for turn-of-the-century travellers.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/bd549fdb93e8c0595fd44bfd673e7280ac0a6d03.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/samsonite"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79072376378c0f063782ca",
+    "name": "Villeroy & Boch",
+    "type": "tenant",
+    "externalId": "unit26",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600004c"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9708ce6c4361660002e9"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600004c",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Villeroy & Boch is a prestigious brand leader in the world in porcelain products. Since its creation in 1748, Villeroy & Boch has been a benchmark in table culture.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/9ddf31584eda383bb9ea6b40f9f7e151284cf5cc.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/villeroy-and-boch"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79072476378c0f063782cb",
+    "name": "Textura",
+    "type": "tenant",
+    "externalId": "unit171",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000014"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe78aedfe25725f00000a"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000014",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Since 1979 Textura has been filling homes with original, high quality furnishings. The Barcelona brand focuses on light, colour and fresh simplicity and prides itself on its very personal customer service.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/8e77d09dd189cda8d2ff3e5618babf3e43b909d5.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/textura"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79072676378c0f063782cc",
+    "name": "Atmósferas Mordisco",
+    "type": "tenant",
+    "externalId": "unit28",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600004a"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96b9ce6c4361660002d5"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96eece6c4361660002e2"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600004a",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Atmósferas Mordisco is a project that recovers the spirit of the first Mordisco, which opened its doors in Barcelona in 1987, and connects to the memory and culture of the city.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/e4c49b77cf45f234da45db6bed2a5dda7c158d26.jpeg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the restaurant",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/mordisco"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79072776378c0f063782cd",
+    "name": "Inspira",
+    "type": "tenant",
+    "externalId": "unit29",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000049"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96aece6c4361660002d2"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000049",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Inspira offers a wide range of fragrances and cosmetics from the finest international fashion houses: Paco Rabanne, Carolina Herrera, Nina Ricci, Prada, Valentino and Comme des Garçons.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/53514ca073244eca16991dbbca516ede10f64e71.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/inspira"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069776378c0f06378275"
+  },
+  {
+    "id": "el_5d79072876378c0f063782ce",
+    "name": "Lacoste",
+    "type": "tenant",
+    "externalId": "unit101",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000031"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000047"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9792ce6c43616600030c"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c969fce6c4361660002cd"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000031",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d6c8935ce6c436166000047",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Building on a strong heritage, every season sees Lacoste present its vision of French elegance inspired by sport: pieces worn on the courts and in the city for a thoroughly modern style.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/19554ad02b8d002282808fa9514f3fa8d43a9897.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/lacoste"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79072b76378c0f063782d0",
+    "name": "Philipp Plein",
+    "type": "tenant",
+    "externalId": "unit140",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000007"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c985dce6c436166000339"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000007",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "PHILIPP PLEIN creates beautiful clothing, accessories and interior design collections that embody a contemporary and cosmopolitan lifestyle.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/5d86ad460b01a557dce62cf053219f0c117745e5.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/philipp-plein"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79072c76378c0f063782d1",
+    "name": "Furla",
+    "type": "tenant",
+    "externalId": "unit33",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000045"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c968ace6c4361660002c6"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000045",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Furla is a premium accessories brand whose style codes are defined by an upbeat and inspiring Italian lifestyle. A fusion of contemporary design, top quality craftsmanship and an upbeat edge that make the difference.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/36f99bdf2b75dcc419459f1250cae9b7ff6dedfb.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/furla"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79072d76378c0f063782d2",
+    "name": "Timberland",
+    "type": "tenant",
+    "externalId": "unit168-169",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000002"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe865edfe25725f000032"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000002",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Rugged, environmentally conscious gear for men, women and children, with roots in 1950s New England. The company has expanded into clothing and accessories.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/95083b2bed181fa22ff7880e1177d2b2dfade199.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/timberland"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069676378c0f06378272"
+  },
+  {
+    "id": "el_5d79073076378c0f063782d4",
+    "name": "Puma",
+    "type": "tenant",
+    "externalId": "unit86",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600003e"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9686ce6c4361660002c5"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600003e",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Puma is one of the world’s leading sports brands, designing, developing, selling and marketing footwear, clothing and accessories.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/1f5fe624943b60a108268b63ab039ab4a92e2237.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/puma"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073176378c0f063782d5",
+    "name": "Maje",
+    "type": "tenant",
+    "externalId": "unit87",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600003d"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9695ce6c4361660002ca"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600003d",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Parisian girls love Maje, home of sleek leather leggings, romantic blouses, cashmere dresses and fitted silk t-shirts.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/8c26aacc3f46a0abf478553810912e25d37e52f1.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/maje"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073376378c0f063782d6",
+    "name": "Levi’s®",
+    "type": "tenant",
+    "externalId": "unit68",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000063"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9560ce6c436166000274"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000063",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Since 1873, Levi’s® jeans have been a blank canvas for self-expression. Always original, today the brand continues to evolve through its innovative spirit.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/58795a7d441a60dc1fa504cc6de550101332359f.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/levis"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073476378c0f063782d7",
+    "name": "Rituals",
+    "type": "tenant",
+    "externalId": "unit158",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000000"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe7bcedfe25725f000015"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000000",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Combines luxury home and body cosmetics. Made with natural ingredients, our products are inspired by authentic eastern rituals linked with nature and developed by the world’s best perfumers.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/e0d6a4243ccff4547803bf8973b93a5930954064.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/rituals"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073576378c0f063782d8",
+    "name": "Tommy Hilfiger",
+    "type": "tenant",
+    "externalId": "unit90",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600003b"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96b1ce6c4361660002d3"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600003b",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "A globally recognised lifestyle brand, Tommy Hilfiger’s signature flag logo symbolises high-end quality that customers worldwide associate with luxury and quintessential American prep.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/e25093c966174f6bb2ae8d117597c92da31e6f4d.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/tommy-hilfiger"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073876378c0f063782da",
+    "name": "Loewe",
+    "type": "tenant",
+    "externalId": "unit92",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000039"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96c2ce6c4361660002d9"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000039",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "LOEWE began as a cooperative of leather artisans in the center of Madrid in 1846 giving life to one of the world’s original luxury houses.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/17d2828ad4116c0426a5300c5067dc1b84270c28.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/loewe"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073a76378c0f063782db",
+    "name": "TOUS",
+    "type": "tenant",
+    "externalId": "unit93",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000038"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96c6ce6c4361660002db"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000038",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "TOUS is a happy go lucky brand for those that are young at heart. Its endearing icon, the bear, is loved the world over.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/b6e1929d4fb05ddabd4b4c4869d2692fec85b847.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/tous"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073b76378c0f063782dc",
+    "name": "Zegna",
+    "type": "tenant",
+    "externalId": "unit94",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000037"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96cece6c4361660002dd"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000037",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Zegna is an icon of Italian craftsmanship, combining world-leading fabrics with visionary design.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f786987256bd136b11979595215deaa1cecc8aef.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/ermenegildo-zegna"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073c76378c0f063782dd",
+    "name": "ba&sh",
+    "type": "tenant",
+    "externalId": "unit172",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000013"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe7acedfe25725f00000f"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000013",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The brainchild of childhood friends who were looking for unfussy, everyday, chic clothes. The simple, stylish wardrobe staples have attracted many fashion insiders who want to wear them too.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/90a4d63c282b6762c858a58d016efdb7159faa5f.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/ba-sh",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073e76378c0f063782de",
+    "name": "Barça Store",
+    "type": "tenant",
+    "externalId": "unit96",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000036"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9753ce6c4361660002f9"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000036",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Pick up official merchandise for one of the most adored soccer teams in the world, including the new, official Nike strips.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f3b39c012128f2018ff03704d92b40aaaf25f32e.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/barca-store",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79073f76378c0f063782df",
+    "name": "Calvin Klein Jeans",
+    "type": "tenant",
+    "externalId": "unit97",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000035"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c975cce6c4361660002fd"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000035",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The jeans brand known for both its innovative fit and ground-breaking advertising campaigns, which launched the international careers of the likes of Kate Moss and Mark Wahlberg.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/efb5fd9411af23a68914049a23c201f61e969caa.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/calvin-klein-jeans",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79074076378c0f063782e0",
+    "name": "Pepe Jeans",
+    "type": "tenant",
+    "externalId": "unit55",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000089"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95d8ce6c436166000292"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000089",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Set up in the 1970s by three Kenyan brothers who sold their jeans from a Saturday stall at the Portobello Road market, Pepe swiftly became the UK's most successful denim brand, sold in over 60 markets.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/e677152df13eac8dd7b58eba4148c48f3be4217e.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/pepe-jeans"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79074276378c0f063782e1",
+    "name": "Calvin Klein Underwear",
+    "type": "tenant",
+    "externalId": "unit99",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000033"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9774ce6c436166000303"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000033",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Bronx-born Klein started out with a coat shop in the York Hotel in New York City in the 1960s but by the early 70s, he was producing menswear, womenswear and award-winning underwear collections.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/b515783bdf22e286ea4fcc11e3cbc497efaa14ad.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/calvin-klein-underwear",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79074476378c0f063782e3",
+    "name": "Hackett London",
+    "type": "tenant",
+    "externalId": "unit98",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000034"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c976dce6c436166000302"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000034",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The home of British menswear, Hackett London collections are built around impeccable tailoring, complemented by luxurious casualwear.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/24e3821b0825e4882737d50bf97925a81b996650.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/hackett-london"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79074676378c0f063782e4",
+    "name": "Cèntric",
+    "type": "tenant",
+    "externalId": "LOC-Z93A4JEX",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600002e"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97a8ce6c436166000311"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600002e",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Cèntric is a traditional Catalan restaurant with a reputation for gastronomic excellence.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/e079e9efd304d4e04562783fe0f898364ab5f702.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the restaurant",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/pasarela"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79074c76378c0f063782e9",
+    "name": "Polo Ralph Lauren Women",
+    "type": "tenant",
+    "externalId": "unit107-108",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000029"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97dace6c436166000325"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000029",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Polo for women is the new symbol of personal expression for the young modern girl. A romantic bohemian with a cool spor tiness.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/e310a3b2a6d065f8d80b26c2f1dc65f7fa5fceb8.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/polo-ralph-lauren-women"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79074e76378c0f063782ea",
+    "name": "Swarovski",
+    "type": "tenant",
+    "externalId": "unit35-36-37",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5fd8a6787e79201c5e000002"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_65f456c6539171e3d6e87503"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5fd8a6787e79201c5e000002",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "This world-renowned luxury brand, founded by a young Czech glasscutter in 1895, offers collectable crystal in myriad forms, including jewellery, figurines and vases.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/0bd0f3d1ab0b811b3baf8bf4444f0b941f323d8b.jpeg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/swarovski"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79075076378c0f063782eb",
+    "name": "Munich",
+    "type": "tenant",
+    "externalId": "unit38",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600006b"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9657ce6c4361660002b9"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600006b",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Stylish, sporty footwear from the Barcelona-based brand, famous internationally for its X logo.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/889487b55bfc897e6b0ce79d672a0c42223e8522.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/munich"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069376378c0f0637826c"
+  },
+  {
+    "id": "el_5d79075176378c0f063782ec",
+    "name": "Starbucks",
+    "type": "tenant",
+    "externalId": "unit39",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600007d"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c964ece6c4361660002b7"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600007d",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Starbucks is the largest coffeehouse chain in the world, each store providing the perfect place to enjoy a coffee, hot or cold drink, and a light bite.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/a4bde28e308b7740eeb85a11169febbc0c2c2061.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the restaurant",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/starbucks"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79075576378c0f063782ef",
+    "name": "Guess Accessories",
+    "type": "tenant",
+    "externalId": "unit42",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600007a"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9639ce6c4361660002b0"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600007a",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Today GUESS designs, markets, distributes and licenses a lifestyle collection of contemporary apparel, denim, handbags, watches, footwear and other related consumer products.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/276c5cb1d7e2d519e005610e80e401b30b6f0e1b.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/guess-accessories"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79075676378c0f063782f0",
+    "name": "The Cosmetics Company Store",
+    "type": "tenant",
+    "externalId": "unit89",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000030"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96a4ce6c4361660002cf"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000030",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Official discount outlet for world-renowned brands like Aveda, Bobbi Brown, Clinique, DKNY, Estée Lauder, Lab Series, MAC Cosmetics or Origins, offering beauty products for men and women including make-up, skincare, brushes and fragrances.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/e967ee9512ba5cf65b59612d90c9bbcfa3838aa7.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/the-cosmetics-company-store"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79075876378c0f063782f1",
+    "name": "Adolfo Domínguez",
+    "type": "tenant",
+    "externalId": "unit44",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000078"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c962ace6c4361660002a9"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000078",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Now with a fully-fledged collection that spans womenswear, menswear, childrenswear and even perfume, Adolfo Domínguez is the epitome of refined elegance and quality.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/c4b3d784fd11f05289147aaf05e2fa5eb90753d6.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/adolfo-dominguez"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79075976378c0f063782f2",
+    "name": "BOSS",
+    "type": "tenant",
+    "externalId": "unit46-47-48",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_68beeae97e117765adc79896"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_641af1a0409d138844159c16"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_68beeae97e117765adc79896",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "BOSS epitomises authentic, understated luxury. The men’s collection offers modern, refined business eveningwear and premium leisurewear.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/48a29b6207b0e24eb1b0661a54c10ec3f1f4644e.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/boss",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79075c76378c0f063782f4",
+    "name": "Under Armour",
+    "type": "tenant",
+    "externalId": "unit126",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000020"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600007f"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9916ce6c436166000371"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c960dce6c4361660002a1"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000020",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d6c8935ce6c43616600007f",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Under Armour's mission is to make all athletes better through passion, design and the relentless pursuit of innovation.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/940ccdfbe34a6fb2c9b07c224af8e8bfc01c21be.jpeg",
+    "phone": {
+      "number": ""
+    },
+    "states": [
+      {
+        "type": "relocated"
+      }
+    ],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/under-armour"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069676378c0f06378272"
+  },
+  {
+    "id": "el_5d79076176378c0f063782f8",
+    "name": "L’Occitane en Provence",
+    "type": "tenant",
+    "externalId": "unit82a",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000072"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c962ece6c4361660002ab"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000072",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "\"The sun, the products of the soil and a love of nature are the essence of my Provence\". All produced using high quality, traceable, natural ingredients.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/b0e10fdd72a890c46c0a9a3e517c57a153a7e251.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/loccitane"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069776378c0f06378275"
+  },
+  {
+    "id": "el_5d79076476378c0f063782fa",
+    "name": "Longchamp",
+    "type": "tenant",
+    "externalId": "unit82b",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000071"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9637ce6c4361660002af"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000071",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Longchamp’s handbags, luggage and accessories have a worldwide reputation for craftsmanship and quality, which now extends to shoes and ready-to-wear collections.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/587c0bd1184973daa9bdc85dfb0d116fa15bb6bc.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [
+      {
+        "type": "relocated"
+      }
+    ],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/longchamp"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069476378c0f0637826f"
+  },
+  {
+    "id": "el_5d79076576378c0f063782fb",
+    "name": "Jimmy Choo",
+    "type": "tenant",
+    "externalId": "unit83",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000065"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9643ce6c4361660002b3"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000065",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in London in 1996, Jimmy Choo is an iconic luxury fashion brand defined by an empowered sense of glamour and a confident sense of style.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/c1124e1f8b7f5b30cda1f6916e0f8c1eb56a3972.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/jimmy-choo"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79076776378c0f063782fc",
+    "name": "Versace",
+    "type": "tenant",
+    "externalId": "unit84",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000064"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9652ce6c4361660002b8"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000064",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Versace designs, manufactures, distributes and retails fashion and lifestyle products including haute couture, woman and man ready-to-wear, jewellery, watches, accessories, fragances and furniture.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/ec50720e27471e85b7f61b3cd3f3799360b42e86.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/versace"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79076876378c0f063782fd",
+    "name": "Napapijri",
+    "type": "tenant",
+    "externalId": "unit54",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000088"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95e1ce6c436166000294"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000088",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Napapijri was born in 1987 in the shadow of Europe’s highest peak, Mont Blanc, where an Italian manufacturer of travel bags gave outdoor apparel a new meaning by combining innovative materials and close attention to style.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/6ba27772e2788e0f3e4ce737a1b8b64f92e3caf2.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/napapijri"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79076b76378c0f063782ff",
+    "name": "The North Face",
+    "type": "tenant",
+    "externalId": "unit73",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000068"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95acce6c436166000287"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000068",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The company offers the most technically advanced products in the market to accomplished climbers, mountaineers, snow-sport athletes, endurance athletes, and explorers.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/03e5dfd66df92243e69832b8c4a04c0dd30f4eec.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/the-north-face"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069676378c0f06378272"
+  },
+  {
+    "id": "el_5d79076c76378c0f06378300",
+    "name": "Sandro",
+    "type": "tenant",
+    "externalId": "unit8",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600005b"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c978cce6c43616600030b"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600005b",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Known for its clean lines and sophisticated aesthetic, Sandro is a leading Parisian brand featuring refined and versatile men’s and women’s collections.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/8fcf2c235677ef8e43c5977fbd7e44976b1b1ffa.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/sandro"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069576378c0f06378270"
+  },
+  {
+    "id": "el_5d79077076378c0f06378303",
+    "name": "Camper",
+    "type": "tenant",
+    "externalId": "unit60",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000087"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9585ce6c43616600027d"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000087",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Camper is a contemporary footwear brand from Mallorca, Spain. Founded in 1975, this family business builds on its rich shoemaking heritage to create unique designs.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/317f3d497be33c347c1b952708eea9773e27894e.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/camper",
+        "label": "Visit the boutique"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79077376378c0f06378305",
+    "name": "Dsquared2",
+    "type": "tenant",
+    "externalId": "unit62",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000081"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c956cce6c436166000277"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000081",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Over the past couple of years, the brand has grown and evolved its creative roots and the Dsquared2 aesthetic is continuously influenced by international inspirations and cultures.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/48f8fedbee91f517eb3069fde33d3ff3bb15a661.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/dsquared2"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79077676378c0f06378308",
+    "name": "UNOde50",
+    "type": "tenant",
+    "externalId": "unit52",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600006f"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95f6ce6c43616600029a"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600006f",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "UNOde50 was founded in the late 1990s by a group of designers who resolved to establish a brand of fashion jewellery and accessories that would break all existing moulds.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/6804d7e547ee95871d534bb2ce5a4249d9020574.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/unode50"
+      }
+    ],
+    "operationHours": [],
+    "primaryCategory": "ec_5d79069376378c0f0637826a"
+  },
+  {
+    "id": "el_5d79077c76378c0f0637830c",
+    "name": "Toilets",
+    "type": "amenities",
+    "externalId": "wc4",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d8e4428e48bb33a560024d3"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d8cdda6e48bb33a5600076e"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d920f4ce48bb3164000052c"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d920f79e48bb31640000533"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d8e4428e48bb33a560024d3",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d8cdda6e48bb33a5600076e",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/d1a02baa77d9dbc27c893229ebea65b58b02b618.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79078076378c0f0637830f",
+    "name": "Contemplation Room",
+    "type": "amenities",
+    "externalId": "x12",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d8cd9b5e48bb33a5600032c"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d920f41e48bb3164000052a"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d8cd9b5e48bb33a5600032c",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/272621aeb6567ea5afdbb194db217211a725e84b.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79078176378c0f06378310",
+    "name": "Concierge Services",
+    "type": "amenities",
+    "externalId": "x2",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5dd64eda7e79204052000003"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9713ce6c4361660002f0"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe846edfe25725f00002c"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5dd64eda7e79204052000003",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_6824948074c71107",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/ca5108f78cadf26816050e5d04d22af10fff4b14.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d79078576378c0f06378313",
+    "name": "Parking",
+    "type": "amenities",
+    "externalId": "x9",
+    "sortOrder": 0,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600012c"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600012a"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000129"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000128"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000127"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d8d059ce48bb33a56000773"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d8e1e77e48bb33a56000d05"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d790b955d99b832ce000002"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d790b975d99b832ce000004"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d790b9b5d99b832ce000006"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d790b9e5d99b832ce000008"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d790ba15d99b832ce00000a"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d924b4c5d99b80905000212"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d974d755d99b84013000000"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d974d8b5d99b84013000001"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600012c",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d6c8935ce6c43616600012a",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d6c8935ce6c436166000129",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d6c8935ce6c436166000128",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d6c8935ce6c436166000127",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d8d059ce48bb33a56000773",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d8e1e77e48bb33a56000d05",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_85b1a8ac5ee8cb2f",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/2574c5aef46ea0861a1ba3afbdb1fd2791d673d9.svg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "operationHours": []
+  },
+  {
+    "id": "el_5d9392c15d99b85636000004",
+    "name": "The Kooples",
+    "type": "tenant",
+    "externalId": "unit111",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000025"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9865ce6c43616600033c"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000025",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in 2008, The Kooples is a French fashion brand part of the MF Brands Group, offering accessible luxury collections to couples with strong personalities.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/622400d4f1f97021dc4683d96b29a8824c3a2d60.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/the-kooples"
+      }
+    ]
+  },
+  {
+    "id": "el_5dcc2ec804357e1b1f000000",
+    "name": "UGG®",
+    "type": "tenant",
+    "externalId": "unit122",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000019"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98ecce6c436166000362"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000019",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "UGG is recognised as a premium lifestyle brand that encompasses footwear, apparel, outerwear, accessories and handbags.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/11feacbab629afd50400eaf82ab08db542d9878e.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/ugg"
+      }
+    ],
+    "primaryCategory": "ec_5d79069376378c0f0637826c"
+  },
+  {
+    "id": "el_603135be7e79204ff6000020",
+    "name": "Etnia Barcelona",
+    "type": "tenant",
+    "externalId": "unit173b",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_60312ff27e79204ff6000006"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_603134b27e79204ff600001b"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_60312ff27e79204ff6000006",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Etnia Barcelona is much more than an eyewear brand. It stands for colour, art, culture, rebellion, tradition and, above all, the city in which it was born: Barcelona.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/8b7d03ba08759fc8beca38204272c07fc2194373.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/etnia-barcelona"
+      }
+    ]
+  },
+  {
+    "id": "el_603135f57e79204ff6000021",
+    "name": "adidas",
+    "type": "tenant",
+    "externalId": "unit155-156-157",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d6500000c"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe7b8edfe25725f000013"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d6500000c",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "If you’re looking for the perfect sports outfit, adidas will gear you up from head to toe with its high-technology performance products.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/e468378bf3367598ad59e193adc487eecb0003aa.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/adidas",
+        "label": "Visit the boutique"
+      }
+    ]
+  },
+  {
+    "id": "el_6033794d7e79201fa4000000",
+    "name": "Clarins",
+    "type": "tenant",
+    "externalId": "unit123",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000018"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9907ce6c43616600036a"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000018",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The Clarins brand was born in 1954, founded by Jacques Courtin-Clarins when he opened his first beauty spa on rue Tronchet in Paris. Jacques Courtin-Clarins formulated the first face and body oils, which are 100% natural, based on pure plant extracts.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/172db751a4682fa117e05b092dbc9315a1f98006.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visita la boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/clarins"
+      }
+    ]
+  },
+  {
+    "id": "el_603f51b27e79204da0000001",
+    "name": "Kids around",
+    "type": "tenant",
+    "externalId": "unit165",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000005"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe7faedfe25725f000020"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000005",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "KIDS AROUND is a store dedicated to famous brands from kids designers.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/71fd10abca28f479f811c70f8389de77a4f920f9.svg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/kids-around"
+      }
+    ],
+    "primaryCategory": "ec_5d79069576378c0f06378271"
+  },
+  {
+    "id": "el_605df63c7e792017d8000001",
+    "name": "Brunello Cucinelli",
+    "type": "tenant",
+    "externalId": "unit166",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000004"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe886edfe25725f000037"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000004",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in 1978 by the eponymous stylist and entrepreneur, Brunello Cucinelli’s success is rooted in the history and legacy of great craftsmanship as well as in modern design.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f66b74fb4b15f1b81e8d9997e8d4a12438a09f6d.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/brunello-cucinelli"
+      }
+    ]
+  },
+  {
+    "id": "el_6062f3d37e79206676000000",
+    "name": "Farggi",
+    "type": "tenant",
+    "externalId": "unit170b",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_6031319d7e79204ff600000e"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_6081727f2d417e0392000000"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_6031319d7e79204ff600000e",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Renowned ice cream expert FARGGI 1957 continuously delights with its traditional recipes passed down through generations.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/b0b58d242b85ed852730b048060d7d501f94e55a.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/farggi",
+        "label": "Visit the restaurant"
+      }
+    ]
+  },
+  {
+    "id": "el_60d039997e79204211000000",
+    "name": "Corso Iluzione",
+    "type": "tenant",
+    "externalId": "unit174-175",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000015"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe83cedfe25725f00002a"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000015",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "A unique place where good food, with top quality ingredients and proximity, all homemade, is the priority.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/832265d017fe7c2131bc0d5f066d85d2c09e6b03.svg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/iluzione"
+      }
+    ]
+  },
+  {
+    "id": "el_610ff6527e79203987000000",
+    "name": "Paul & Shark",
+    "type": "tenant",
+    "externalId": "unit160",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000009"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe7daedfe25725f000019"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000009",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Established in 1976 and originally inspired by the founder’s love of the sea.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/692b2dcdd33043796fbf624f14b399a1397a7e32.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/paulandshark"
+      }
+    ]
+  },
+  {
+    "id": "el_611e3b50145c8e2e02000468",
+    "name": "Lindt",
+    "type": "tenant",
+    "externalId": "unit19-20",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000050"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96fdce6c4361660002e6"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000050",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "A passion that began more than 170 years ago. The pastry chef David Sprüngli and his son Rudolf opened a small bakery in Zurich and began offering solid-shaped chocolate for the first time.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/b70034ac0a671eda1e935f642f2b8cb25008fdc1.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/lindt"
+      }
+    ]
+  },
+  {
+    "id": "el_6155eb207e79204555000000",
+    "name": "Saint Laurent",
+    "type": "tenant",
+    "externalId": "unit162",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000012"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe7e0edfe25725f00001b"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000012",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Under the creative direction of Anthony Vaccarello, appointed in April 2016, the House offers today a broad range of women’s and men’s ready-to-wear products, leather goods, shoes, jewellery and eyewear.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/505a2968d6e2cdd9702f632467bb71c1059ca5f9.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/saint-laurent"
+      }
+    ]
+  },
+  {
+    "id": "el_6156b822145c8e7559000000",
+    "name": "Helly Hansen",
+    "type": "tenant",
+    "externalId": "104",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600002c"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97cbce6c43616600031e"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600002c",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "From its base in Norway, Helly Hansen has been making professional grade gear to help people stay and feel alive for more than 140 years.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/6f2eee45839eaa88a64e517305773e6d655115fb.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/helly-hansen"
+      }
+    ]
+  },
+  {
+    "id": "el_615d8d58145c8e2a9d000000",
+    "name": "Brownie",
+    "type": "tenant",
+    "externalId": "unit56",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000083"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95c4ce6c43616600028e"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000083",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Designed for young, urban women, Brownie’s designs are infused with the essence of the Mediterranean.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f3e8375c1ff04e35b13cbafb0c2564ebeac199cf.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/brownie",
+        "label": "Visit the boutique"
+      }
+    ]
+  },
+  {
+    "id": "el_616988cf7e79200a51000001",
+    "name": "Lola Casademunt",
+    "type": "tenant",
+    "externalId": "unit5",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600005e"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97b2ce6c436166000315"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600005e",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "LOLA CASADEMUNT designs fashion for women with attitude. Her dream is to make them feel empowered with head-to-toe looks from her clothing, footwear, accessories and jewellery collections.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/0bd9c7d5e4832abdf7b0d3b9cffa5eea157cda68.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/lola-casademunt"
+      }
+    ],
+    "primaryCategory": "ec_5d79069576378c0f06378270"
+  },
+  {
+    "id": "el_619d232e7e79204a3b000000",
+    "name": "Burberry",
+    "type": "tenant",
+    "externalId": "unit79-80",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000074"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9602ce6c43616600029e"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000074",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Burberry is a British brand with a heritage of innovation, craftsmanship and design. The brand has a global reputation for functionality with a unique British sensibility.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/9637769a11667bdf46745396e757393f9d2611cb.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/burberry",
+        "label": "Visit the boutique"
+      }
+    ]
+  },
+  {
+    "id": "el_61b739aa145c8e1dcc000119",
+    "name": "Moschino",
+    "type": "tenant",
+    "externalId": "unit159",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000010"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe7d3edfe25725f000017"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000010",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Italian luxury brand Moschino was founded in 1983 by Franco Moschino and rose to the forefront of the international fashion scene through the ironic, tongue-in-cheek designs.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/624d6931164bfd5bc7da104e7204401263ff3f7c.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/moschino"
+      }
+    ]
+  },
+  {
+    "id": "el_6290db5887335364553c2232",
+    "name": "Balenciaga",
+    "type": "tenant",
+    "externalId": "unit161",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_602fdfa5edfe257d65000011"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe7a6edfe25725f00000c"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_602fdfa5edfe257d65000011",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Balenciaga defined the concept of modernity and elegance through the mastery of tailoring techniques and use of innovative fabrics.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/a292b00194a0cc53a78e49a5c13769a71d7d5557.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/balenciaga"
+      }
+    ]
+  },
+  {
+    "id": "el_62ac8e18cba17019d7f6e338",
+    "name": "Shopping Express®",
+    "type": "amenities",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_62ac8d6fcba17019d7f6e335"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_62ac8daccba17019d7f6e337"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_62ac8d6fcba17019d7f6e335",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/ac5497e5ca58e5c79546a340608c357fa3108213.jpeg",
+    "amenity": "shuttle",
+    "states": [],
+    "gallery": []
+  },
+  {
+    "id": "el_62b2e13352e47c68686ae1b7",
+    "name": "LIU·JO",
+    "type": "tenant",
+    "externalId": "unit113",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000023"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9881ce6c436166000343"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000023",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "LIU·JO's creative philosophy focuses on enhancing the femininity and natural beauty of every woman, with a refined, glamorous style that is always open to personal interpretation, with the brand offering a total look, from dresses to shoes and accessories.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/c588fe07e76031ec1c0f84be7fa7adda102fa9cd.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/liu-jo"
+      }
+    ]
+  },
+  {
+    "id": "el_62b9d5c0bc7484fdc954fbd5",
+    "name": "Ecoalf",
+    "type": "tenant",
+    "externalId": "unit81",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000073"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9625ce6c4361660002a7"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000073",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Ecoalf arose in 2009 from my frustration with the excessive use of the world’s natural resources and the amount of waste produced by industrialized countries.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/d84da985f41d3150ff926f7b933b8194fc3384f9.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/ecoalf"
+      }
+    ]
+  },
+  {
+    "id": "el_62e105c1c4446f30528a3818",
+    "name": "IRO Paris",
+    "type": "tenant",
+    "externalId": "unit115",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000021"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98a3ce6c43616600034c"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000021",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Not a wardrobe for the models in the magazine but for the everyday cool girls, those you can see in the streets, always moving.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/a6515c2195791043dd5a40c7dc38bb3fe9975cfa.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/iro-paris"
+      }
+    ]
+  },
+  {
+    "id": "el_63443c1f91f5390345f7e7a9",
+    "name": "New Balance",
+    "type": "tenant",
+    "externalId": "unit32",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000046"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c968ece6c4361660002c8"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000046",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "It is the sports brand of the moment. In addition to being the great reference in athletics, New Balance triumphs off the track with their shoes fresh foam collection, fuelcell and 800 series. Discover the new boutique in the Village.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/9e251c7c71418d7f1aee10b1efeadd788627ad2f.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/new-balance"
+      }
+    ]
+  },
+  {
+    "id": "el_6399c537d93c729599b8e83b",
+    "name": "Golden Goose",
+    "type": "tenant",
+    "externalId": "unit119",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000003"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9831ce6c436166000331"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000003",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Golden Goose is a collective founded on the passion for perfect imperfections, creations that are authentic and unique.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/2ab5b1a25cfc1eb2148dcdde30faca7a8678c506.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/golden-goose"
+      }
+    ]
+  },
+  {
+    "id": "el_63f489066e98d43c2cf38657",
+    "name": "HOFF",
+    "type": "tenant",
+    "externalId": "unit53",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600006e"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95f0ce6c436166000298"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600006e",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/09be6cf96716b6ce155d1e2d37647ed61d0556fa.png",
+    "states": [],
+    "social": {
+      "website": "https://thehoffbrand.com/en"
+    },
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/hoff"
+      }
+    ],
+    "primaryCategory": "ec_5d79069376378c0f0637826c"
+  },
+  {
+    "id": "el_6422d4f9d6dd56cd91b6983c",
+    "name": "Dolce & Gabbana",
+    "type": "tenant",
+    "externalId": "unit117",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600001e"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98c7ce6c436166000353"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600001e",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Dolce & Gabbana is authentic, unconventional and expressive.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f22424f047ff1fda9859baf0c1dccdaf65b8726f.svg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/dolce-and-gabbana"
+      }
+    ]
+  },
+  {
+    "id": "el_6448d7b8ecd8fb2bc39434ca",
+    "name": "PDPAOLA",
+    "type": "tenant",
+    "externalId": "unit51",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000070"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95fbce6c43616600029c"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000070",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/0b16b138cffba89a23f26c4a83990d31b1d98e04.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/pdpaola"
+      }
+    ],
+    "primaryCategory": "ec_5d79069376378c0f0637826a"
+  },
+  {
+    "id": "el_645a186b294656aefdfebc71",
+    "name": "Claudie Pierlot",
+    "type": "tenant",
+    "externalId": "unit124",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000017"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c990fce6c43616600036d"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000017",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Claudie Pierlot is more than just a look. It’s uninhibited, it’s natural, it’s spontaneous. Just like its founder. Claudie Pierlot means strong pieces, boyish details and an attitude to remember.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/ecd4f4173331f022527182a42c9670a3d39b9c9f.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/claudie-pierlot"
+      }
+    ]
+  },
+  {
+    "id": "el_6480ada6c26dd15984df23ea",
+    "name": "Ferragamo",
+    "type": "tenant",
+    "externalId": "unit88",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600003c"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c969bce6c4361660002cc"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600003c",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Salvatore Ferragamo, moved to America from Italy in 1914, eventually ending up in Hollywood where his repair and shoe-making business began to attract Hollywood stars and movie-makers.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/56fe5db953f85a68e93288d11ecdd3749395e2f5.svg",
+    "states": [
+      {
+        "type": "relocated"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/ferragamo"
+      }
+    ],
+    "primaryCategory": "ec_5d79069476378c0f0637826f"
+  },
+  {
+    "id": "el_64b93fecadfd5e79bab5d7f2",
+    "name": "Nude Project",
+    "type": "tenant",
+    "externalId": "unit106",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600002a"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97d2ce6c436166000322"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600002a",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "\"By artists, for artists\" is the motto of the streetwear brand that goes viral among Generation Z for its provocative designs and messages, which are a clear statement of intent.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/8438564e380812226ced0b8a528d65d7b513e65c.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Discover the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/nude-project"
+      }
+    ]
+  },
+  {
+    "id": "el_65607a432c706c733bf8fdb9",
+    "name": "Boggi Milano",
+    "type": "tenant",
+    "externalId": "unit59",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000086"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9594ce6c436166000281"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000086",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/265b2f7ba078c6a81fb0b3a2844405a075205c90.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/boggi-milano"
+      }
+    ]
+  },
+  {
+    "id": "el_65ce48e1ad608649ce5fa1f3",
+    "name": "GANT",
+    "type": "tenant",
+    "externalId": "unit72",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600006a"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95a3ce6c436166000283"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600006a",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in 1949, GANT has inspired the world with its iconic American East Coast style for over seven decades.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/34c55ca7eb5117fcf4534149f553d6e6db771cfc.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/gant"
+      }
+    ]
+  },
+  {
+    "id": "el_65e9e2e4dc15414a7d692e66",
+    "name": "Carhartt WIP",
+    "type": "tenant",
+    "externalId": "unit121",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600001a"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98e7ce6c43616600035f"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600001a",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in 1994, Carhartt Work In Progress (WIP) develops its own collections based on original Carhartt workwear.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/fa7032da7771afd6af5c492063236f87d5c70e14.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/carhartt"
+      }
+    ]
+  },
+  {
+    "id": "el_661e91e69c8b8d64283c3db4",
+    "name": "TWOJEYS",
+    "type": "tenant",
+    "externalId": "unit17",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600000d"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9890ce6c436166000347"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600000d",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/b833a4af1b0565998c19593f5b1276603d8bd1c9.webp",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/two-jeys"
+      }
+    ]
+  },
+  {
+    "id": "el_66df1b4927194643452fb894",
+    "name": "Tory Burch",
+    "type": "tenant",
+    "externalId": "unit58",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000085"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95a8ce6c436166000285"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000085",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in New York City in 2004, Tory Burch has redefined American luxury with a global point of view. The company’s purpose is to empower women and women entrepreneurs.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/0614625f7505679f1b9814fc4b97c87e9bbaaccf.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/tory-burch"
+      }
+    ],
+    "primaryCategory": "ec_5d79069576378c0f06378270"
+  },
+  {
+    "id": "el_66fbace6648e83197d03262c",
+    "name": "Scuffers",
+    "type": "tenant",
+    "externalId": "unit130",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000012"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98efce6c436166000364"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000012",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Discover the project made ‘from Madrid and with love’ that’s become a leading choice of streetwear for Gen Z fashion fans.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/6641e8aadf63ff9b90363493dcd2d17d35b4ee85.webp",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/scuffers"
+      }
+    ]
+  },
+  {
+    "id": "el_670d04b3380ee19a122352ac",
+    "name": "Sunglass Hut",
+    "type": "tenant",
+    "externalId": "unit134",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000053"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600000b"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96d2ce6c4361660002de"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c98ccce6c436166000354"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000053",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d6c8935ce6c43616600000b",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "The world's best-selling sunglasses brand was born in 1937 when Bausch & Lomb created anti-glare shades for the US Army Air Corps.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/13bbce7a4a36153e9e00dd81427046d00dad505d.png",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/sunglass-hut"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_67331e5bd1996e4071d21238",
+    "name": "Valentino",
+    "type": "tenant",
+    "externalId": "unit85",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600003f"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c967ece6c4361660002c1"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600003f",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Valentino is synonymous of inclusiveness, uniqueness and creativity.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/de002e4c1d19614c9c83b432480f9d2ae4422178.png",
+    "states": [
+      {
+        "type": "relocated"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "url": "Visit the boutique",
+        "label": "https://www.thebicestercollection.com/la-roca-village/en/brands/valentino-garavani/"
+      }
+    ],
+    "primaryCategory": "ec_5d79069576378c0f06378270"
+  },
+  {
+    "id": "el_6733407e76668e4f013013c8",
+    "name": "Isabel Marant",
+    "type": "tenant",
+    "externalId": "unit139",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000006"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9860ce6c43616600033b"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000006",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Discover the irreverent Parisian maison, created for spontaneous women who live and dress with instinctive creativity and bohemian sophistication.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/ae2de903530a735be357b343e8d13977e3f867f0.svg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "url": "Visit the boutique",
+        "label": "https://www.thebicestercollection.com/la-roca-village/en/brands/isabel-marant"
+      }
+    ]
+  },
+  {
+    "id": "el_677e651941b14e7fbe1d937a",
+    "name": "Philipp Plein Sport",
+    "type": "tenant",
+    "externalId": "unit31",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [],
+    "nodes": [],
+    "spaces": [],
+    "description": "PLEIN SPORT is a dynamic and revolutionary brand, constantly evolving, an essential aspect of its concept. In a world of constant transformation, PLEIN SPORT adapts and seizes every opportunity to offer an innovative shopping experience.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f8ffd0774deb8f6ffe7245c90e76d8efb4489225.jpeg",
+    "phone": {
+      "number": ""
+    },
+    "states": [],
+    "tags": [],
+    "social": {},
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/philipp-plein-sport"
+      }
+    ],
+    "operationHours": []
+  },
+  {
+    "id": "el_677e661741b14e7fbe1d937b",
+    "name": "Dr. Martens™",
+    "type": "tenant",
+    "externalId": "unit34",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d8e27b8e48bb33a560021bd"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9682ce6c4361660002c3"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d8e27b8e48bb33a560021bd",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Dr. Martens is a British footwear and accessories brand founded in Northamptonshire, England.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/a236d0451a8953b29402f75a87c41a26155856b6.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/dr-martens"
+      }
+    ]
+  },
+  {
+    "id": "el_67fd2db37d87b7c493765005",
+    "name": "Stone Island",
+    "type": "tenant",
+    "externalId": "unit78",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000075"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95e9ce6c436166000297"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000075",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in 1982, Stone Island is the symbol of extreme research in fibers and textiles, applied to an innovative design. The Italian man sportswear brand developed an unique capacity to work on the finished garment, via continuous experimentation with dyes and treatments.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/d0568b2211264e7d442d4a473544fd87c839ce77.svg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/stone-island"
+      }
+    ]
+  },
+  {
+    "id": "el_6818a3b8e048630be02f74de",
+    "name": "Gassó Artesans",
+    "type": "tenant",
+    "externalId": "unit543",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_6818a2c9e048630be02f74db"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_6818a2dde048630be02f74dc"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_6818a2c9e048630be02f74db",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Gassó Artesans is a family business with six generations of experience in the world of gourmet pastries. The mission is to maintain the tradition, quality and excellence of the products, while also taking care of innovation.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/6ba91041a28dfec9ffa84464a78c2bd5e8ab8894.jpeg",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the restaurant",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/gasso-artesans"
+      }
+    ]
+  },
+  {
+    "id": "el_684ffb41a85cfa8392f79384",
+    "name": "Marc Jacobs",
+    "type": "tenant",
+    "externalId": "unit63",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5e26f18c7e79207ae7000001"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9571ce6c436166000279"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5e26f18c7e79207ae7000001",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in 1984 in New York City, Marc Jacobs has been leading fashion for four decades. Beloved for icons like The Tote Bag and The Snapshot, the brand’s runway-to-reality fashion rooted in the self-expression and style credentials of its iconic founder.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/ab425f8fb4e65f886ca00e0f862e793193038f98.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/marc-jacobs/"
+      }
+    ]
+  },
+  {
+    "id": "el_68516a0af3a5f7723c534875",
+    "name": "Cold Culture",
+    "type": "tenant",
+    "externalId": "unit69",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000067"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9568ce6c436166000276"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000067",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "With its sights set on various cities around the world, the Spanish streetwear brand designs genderless garments with a nostalgic touch.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/7cbd5500d62af714a99f79c7bdb37094564ae51e.webp",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/cold-culture/"
+      }
+    ]
+  },
+  {
+    "id": "el_686e1dcb0bdd641ff719ce55",
+    "name": "Eme Studios",
+    "type": "tenant",
+    "externalId": "unit31",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [],
+    "nodes": [],
+    "spaces": [],
+    "description": "Eme Studios was born from a love of fashion, a desire to craft and a wish to do things differently. The brand’s collections feature unique pieces that reflect the personality and values of their wearers – people who aren’t afraid to stand out and value quality, style and original detailing.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/79b593b0510d13b0707120fbe1b6783ce095e659.png",
+    "states": [
+      {
+        "type": "coming-soon"
+      }
+    ],
+    "gallery": []
+  },
+  {
+    "id": "el_6878f98317348f6df5dc0ddb",
+    "name": "Ralph's Coffe",
+    "type": "tenant",
+    "externalId": "unit0085",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [],
+    "nodes": [],
+    "spaces": [],
+    "description": "Ralph's coffee, the global coffee concept from iconic designer and coffee devotee Ralph Lauren, is now available at la Roca Village. Find it in Ralph's Coffee truck outside the women’s & children’s boutique.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f04e2f2119de1fb782fe6867d031bf37da6fe80b.png",
+    "states": [],
+    "gallery": []
+  },
+  {
+    "id": "el_688098f48d15846e0336151d",
+    "name": "Shiseido",
+    "type": "tenant",
+    "externalId": "unit173a",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_60312fc17e79204ff6000004"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_602fe7e7edfe25725f00001c"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_60312fc17e79204ff6000004",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/160ba580c7850e10e83478c3f8359faac3265c65.png",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/las-rozas-village/en/brands/shiseido/"
+      }
+    ]
+  },
+  {
+    "id": "el_690223405a82f582d5d15a13",
+    "name": "Dino",
+    "type": "tenant",
+    "externalId": "p135",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_690221f95a82f582d5d15a12"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_2fea1ee50115f17f",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Ice creams to cool off with: Dino by Cèntric PLS",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/30b67b870449e82d1d0efc93c6ecc20d777a851e.png",
+    "states": [],
+    "gallery": [],
+    "links": [
+      {
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/dino/",
+        "label": "Discover the boutique"
+      }
+    ]
+  },
+  {
+    "id": "el_6971f471d83c8a15b872dee3",
+    "name": "Dyson",
+    "type": "tenant",
+    "externalId": "unit170a",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_6031676a7e7920457300011a"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_603f524f7e79204da0000004"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_6031676a7e7920457300011a",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/826c416187582c4c251bea06467221bbc7d29449.png",
+    "states": [
+      {
+        "type": "relocated"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/dyson/"
+      }
+    ]
+  },
+  {
+    "id": "el_6983334ba38d0138ec57b524",
+    "name": "Cole Haan",
+    "type": "tenant",
+    "externalId": "unit91",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600003a"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c96bfce6c4361660002d7"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600003a",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Cole Haan, the iconic American brand known for its innovative blend of style and comfort, is opening its first boutique at La Roca Village in Barcelona, offering timeless footwear, bags, and accessories crafted for modern living.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/eaa5e675866268f0f97bc7df984919e0b73b1acd.png",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "tags": [
+      "New"
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/cole-haan/"
+      }
+    ],
+    "primaryCategory": "ec_5d79069376378c0f0637826b"
+  },
+  {
+    "id": "el_698f319496487ae5ece44b24",
+    "name": "Underground parking",
+    "type": "amenities",
+    "externalId": "LOC-G4MGMR5E",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600012a"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600012c"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d790b975d99b832ce000004"
+      },
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d790b955d99b832ce000002"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600012a",
+        "floor": "f_5d6c88c031894200135e3777"
+      },
+      {
+        "id": "s_5d6c8935ce6c43616600012c",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/6bb4315f6b6cb9bc68cede41867c3be63470b523.svg",
+    "states": [],
+    "gallery": []
+  },
+  {
+    "id": "el_69ea124487a65f776d97cd96",
+    "name": "Birkenstock",
+    "type": "tenant",
+    "externalId": "unit70",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000066"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c957ace6c43616600027a"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000066",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/2092bcc0d4ef6e80e35ceb6ea437dd1f7c04f0a3.svg",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "tags": [
+      "2026 Collections"
+    ],
+    "gallery": [],
+    "primaryCategory": "ec_5d79069376378c0f0637826c"
+  },
+  {
+    "id": "el_69ea130787a65f776d97cd97",
+    "name": "eseOese",
+    "type": "tenant",
+    "externalId": "unit72",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000069"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95bbce6c436166000289"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000069",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Effortless femininity and an instantly recognisable Mediterranean spirit",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/cd0ee259883c39e14fef1887115c18fe9f9a9b2a.png",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "tags": [
+      "2026 Collections"
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/eseoese"
+      }
+    ],
+    "primaryCategory": "ec_5d79069576378c0f06378270"
+  },
+  {
+    "id": "el_69eb19ef798d9b670c397911",
+    "name": "Nomad Flow",
+    "type": "tenant",
+    "externalId": "LOC-28HVBQFA",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_69ea2a9db1be529941c1c145"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_69ea2ab8b1be529941c1c146"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_69ea2a9db1be529941c1c145",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Halal and cosmopolitan street food that reinterprets kebab culture from a contemporary perspective.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/c7ffd924bb03a575a76aacaa9e6a4d7a84b1d9a8.svg",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the restaurant",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/dine/nomad-flow/"
+      }
+    ]
+  },
+  {
+    "id": "el_69eb424a146c9aa868a859a4",
+    "name": "Eleventy",
+    "type": "tenant",
+    "externalId": "unit57",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000084"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c95c0ce6c43616600028c"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000084",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Italian ease, everyday elegance",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/ad7c947d0717d6a9ad12f65364a4524efd4dc817.png",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/eleventy/"
+      }
+    ]
+  },
+  {
+    "id": "el_6a2a7dc63349cd4115e9558a",
+    "name": "Stella McCartney",
+    "type": "tenant",
+    "externalId": "unit40",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600007c"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c9648ce6c4361660002b5"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600007c",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Luxury, femininity and sustainability",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/d9c837599c11221ce6f19608db3500476ce77983.png",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/stella-mccartney/"
+      }
+    ],
+    "primaryCategory": "ec_5d79069576378c0f06378270"
+  },
+  {
+    "id": "el_6a2a7fb03349cd4115e956a5",
+    "name": "Simorra",
+    "type": "tenant",
+    "externalId": "unit3",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000060"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c97bcce6c436166000319"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000060",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in Barcelona in 1978, SIMORRA is a fashion brand that uses materials as its source of inspiration.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/9e57045f85e790ec39a740bb58ec37b931e9c704.webp",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/simorra/"
+      }
+    ],
+    "primaryCategory": "ec_5d79069576378c0f06378270"
+  },
+  {
+    "id": "el_6a47669b380c4f105bde4064",
+    "name": "Castañer",
+    "type": "tenant",
+    "externalId": "unit15",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c436166000054"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c971bce6c4361660002f2"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c436166000054",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Since the founding of the first Castañer workshop in 1927, the company has focused its efforts on turning a humble, popular sandal into a sophisticated product intrinsically linked to design and fashion.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/d3e9bb5cc5d09e7dfa4c9f080d79833932974e8e.png",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/castaner/"
+      }
+    ],
+    "primaryCategory": "ec_5d79069376378c0f0637826c"
+  },
+  {
+    "id": "el_6a476752380c4f105bde4065",
+    "name": "Clé de Peau",
+    "type": "tenant",
+    "externalId": "unit11822",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_6a4768a2380c4f105bde4184"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_6a4768be380c4f105bde4185"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_6a4768a2380c4f105bde4184",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Beauty rituals inspired by the excellence of Japanese skincare, meticulously crafted to nurture the skin and reveal its most radiant luminosity",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/7940b75a25a8abe179d08dc147813b964eae3f55.png",
+    "states": [
+      {
+        "type": "pop-up"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/cle-de-peau/"
+      }
+    ],
+    "primaryCategory": "ec_5d79069776378c0f06378275"
+  },
+  {
+    "id": "el_6a609ab5e850063065280c1b",
+    "name": "TINY",
+    "type": "tenant",
+    "externalId": "unit27",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5d6c8935ce6c43616600004b"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5d6c970ace6c4361660002eb"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5d6c8935ce6c43616600004b",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "Founded in Barcelona, TINY creates premium childrenswear and womenswear with a contemporary, timeless spirit. Discover the world of TINY at La Roca Village.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/831e5085a64369d99c98240e000a296fa8deb585.svg",
+    "states": [
+      {
+        "type": "pop-up"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/tiny/"
+      }
+    ],
+    "primaryCategory": "ec_5d79069576378c0f06378271"
+  },
+  {
+    "id": "el_6a6b11c9794d2874ef3da45d",
+    "name": "Create",
+    "type": "tenant",
+    "externalId": "x00",
+    "sortOrder": 0,
+    "hidden": false,
+    "polygons": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "s_5dd64eda7e79204052000002"
+      }
+    ],
+    "nodes": [
+      {
+        "map": "f_5d6c88c031894200135e3777",
+        "id": "n_5dde6ab17e79200ad3000324"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "s_5dd64eda7e79204052000002",
+        "floor": "f_5d6c88c031894200135e3777"
+      }
+    ],
+    "description": "CREATE transforms home appliances into design pieces that truly belong in the home. Combining innovative technology, everyday functionality and contemporary design, each collection is created to blend seamlessly into modern interiors. From kitchen appliances to home essentials, CREATE proves that great design can elevate everyday living while bringing style and practicality to every space.",
+    "logo": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/7ab4096707b9a2789ffe5a0b9fa7355b47b3a6d1.webp",
+    "states": [
+      {
+        "type": "new"
+      }
+    ],
+    "gallery": [],
+    "links": [
+      {
+        "label": "Visit the boutique",
+        "url": "https://www.thebicestercollection.com/la-roca-village/en/brands/create/"
+      }
+    ]
+  }
+]

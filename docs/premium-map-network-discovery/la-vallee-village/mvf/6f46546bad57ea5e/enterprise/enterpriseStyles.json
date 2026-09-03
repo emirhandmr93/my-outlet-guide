@@ -1,0 +1,939 @@
+{
+  "style_1": {
+    "edgeOffset": -0.3481,
+    "geometryAnchors": [
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20000fc"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20000fe"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20000ff"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000100"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000101"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000102"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000103"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000104"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000106"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000107"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000108"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000109"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200010a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200010b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200010c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200010d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200010e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200010f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000110"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000111"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000112"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000113"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000114"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000115"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000116"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000117"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200011a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200011b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200011d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200011e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200011f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000120"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000121"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000122"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000123"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000124"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000125"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000126"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000127"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000128"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200012a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200012b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200012c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200012d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200012e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000130"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000131"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000132"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000133"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000134"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000135"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000136"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000137"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000138"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000139"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200013a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200013b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200013c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200013d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200013e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200013f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000140"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000141"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000142"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000143"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000144"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000145"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000146"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000147"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000148"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000149"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200014a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200014b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200014c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200014d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200014e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200014f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000150"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000151"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000152"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000153"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000154"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000155"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000156"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000157"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000158"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000159"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200015a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200015b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200015c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200015d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000160"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000161"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000162"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000163"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000165"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000167"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000168"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200016a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200016c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000174"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000175"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000176"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000177"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000178"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000179"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200017a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200017b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200017c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200017d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200017e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200017f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000180"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f91f7797f7a3e3400012d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d673ebace6c4366970001db"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d7fe5375d99b83950000003"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d7fe5375d99b83950000004"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d7fe6c65d99b83950000006"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d7fe7c45d99b83950000008"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5e42d8eb225606491f0001d5"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5e4bb5dade29677a800001d3"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_62a05853c270a3bf0f6f3f89"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_65734542140f1351eb6bb5e9"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_6980af75a510476ca171e535"
+      }
+    ]
+  },
+  "style_2": {
+    "edgeOffset": 0,
+    "geometryAnchors": [
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200016d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200016e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200016f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000170"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000171"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000172"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000181"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000182"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000183"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000184"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000185"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000186"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000187"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000188"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000189"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200018a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200018b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200018c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200018d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200018e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200018f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000190"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000191"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000192"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000193"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000194"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000195"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000196"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000197"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001af"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b0"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b1"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b2"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b3"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b4"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b5"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b6"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b7"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b8"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001b9"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001ba"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001bb"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001bc"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001bd"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001be"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001bf"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001c0"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001c1"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001c2"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001c3"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001c4"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001c5"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001c6"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001cd"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001ce"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001cf"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001d0"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001d1"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001d2"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f8478797f7a3e34000014"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f847e797f7a3e34000015"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f8487797f7a3e34000016"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f84a5797f7a3e34000017"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f86da797f7a3e34000018"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d601ecde90e1a08c100000c"
+      }
+    ]
+  },
+  "style_3": {
+    "edgeOffset": 0.3481,
+    "geometryAnchors": [
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000198"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d2000199"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200019a"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200019b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200019c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200019d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200019e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d200019f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a0"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a1"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a2"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a3"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a4"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a5"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a6"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a7"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a8"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001a9"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001aa"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001ab"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001ac"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001ad"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f71ee797f7a72d20001ae"
+      }
+    ]
+  },
+  "style_4": {
+    "edgeOffset": -0.5222,
+    "geometryAnchors": [
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f8469797f7a3e3400000d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f8469797f7a3e3400000e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f8469797f7a3e3400000f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f8469797f7a3e34000010"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f8469797f7a3e34000011"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f8469797f7a3e34000012"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d65f786ce6c433ef500007c"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d65f786ce6c433ef500007d"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d65f786ce6c433ef500007e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d65f786ce6c433ef500007f"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d65f786ce6c433ef5000080"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d65f786ce6c433ef5000081"
+      }
+    ]
+  },
+  "style_5": {
+    "edgeOffset": -0.2959,
+    "geometryAnchors": [
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_5d5f9233797f7a3e3400012e"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_655f743542646553f4311e8b"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_65dcbedd2fbadb2897ac40a3"
+      },
+      {
+        "floorId": "f_5d5f6fdf31894200135e3756",
+        "geometryId": "s_663e496dff8fd81b6b67f927"
+      }
+    ]
+  }
+}

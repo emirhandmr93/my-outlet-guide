@@ -1,0 +1,605 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-03T20:58:16.133Z",
+  "completeness": {
+    "outletCount": 10,
+    "withCapturedJson": 8,
+    "withFeatureCollections": 8,
+    "withAnchoredLocations": 0,
+    "withPdfEvidence": 2
+  },
+  "results": [
+    {
+      "outletId": "bicester-village",
+      "jsonFiles": 4,
+      "mvfJsonFiles": 4,
+      "featureCollections": 4,
+      "featureCount": 835,
+      "features": 835,
+      "floorFeatures": 1,
+      "geometryFeatures": 0,
+      "floorObjects": 2,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": {
+        "minX": -1.1615733042179952,
+        "minY": 51.889985957136155,
+        "maxX": -1.1491563393173296,
+        "maxY": 51.89447896530199,
+        "coordinatePairs": 31812
+      },
+      "floorSamples": [
+        {
+          "id": "f_5cfa6515d7f2fb5b7d7eb168",
+          "name": "Village Map",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/bicester-village/mvf/fdc5d42652f5ead3/floor.geojson"
+        },
+        {
+          "id": "f_5cfa6515d7f2fb5b7d7eb168",
+          "name": "Village Map",
+          "elevation": 0,
+          "source": "docs/premium-map-network-discovery/bicester-village/mvf/fdc5d42652f5ead3/floor.geojson"
+        }
+      ],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [
+        "docs/premium-map-network-discovery/bicester-village/mvf/fdc5d42652f5ead3/floor.geojson",
+        "docs/premium-map-network-discovery/bicester-village/mvf/fdc5d42652f5ead3/manifest.geojson",
+        "docs/premium-map-network-discovery/bicester-village/mvf/fdc5d42652f5ead3/node.geojson",
+        "docs/premium-map-network-discovery/bicester-village/mvf/fdc5d42652f5ead3/space/f_5cfa6515d7f2fb5b7d7eb168.geojson"
+      ],
+      "pdf": null
+    },
+    {
+      "outletId": "la-vallee-village",
+      "jsonFiles": 4,
+      "mvfJsonFiles": 4,
+      "featureCollections": 4,
+      "featureCount": 521,
+      "features": 521,
+      "floorFeatures": 1,
+      "geometryFeatures": 0,
+      "floorObjects": 2,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": {
+        "minX": 2.780378446343581,
+        "minY": 48.85178563080892,
+        "maxX": 2.7868301891204545,
+        "maxY": 48.85530183269766,
+        "coordinatePairs": 20295
+      },
+      "floorSamples": [
+        {
+          "id": "f_5d5f6fdf31894200135e3756",
+          "name": "Village Map",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/la-vallee-village/mvf/6f46546bad57ea5e/floor.geojson"
+        },
+        {
+          "id": "f_5d5f6fdf31894200135e3756",
+          "name": "Village Map",
+          "elevation": 0,
+          "source": "docs/premium-map-network-discovery/la-vallee-village/mvf/6f46546bad57ea5e/floor.geojson"
+        }
+      ],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [
+        "docs/premium-map-network-discovery/la-vallee-village/mvf/6f46546bad57ea5e/floor.geojson",
+        "docs/premium-map-network-discovery/la-vallee-village/mvf/6f46546bad57ea5e/manifest.geojson",
+        "docs/premium-map-network-discovery/la-vallee-village/mvf/6f46546bad57ea5e/node.geojson",
+        "docs/premium-map-network-discovery/la-vallee-village/mvf/6f46546bad57ea5e/space/f_5d5f6fdf31894200135e3756.geojson"
+      ],
+      "pdf": null
+    },
+    {
+      "outletId": "la-roca-village",
+      "jsonFiles": 4,
+      "mvfJsonFiles": 4,
+      "featureCollections": 4,
+      "featureCount": 627,
+      "features": 627,
+      "floorFeatures": 1,
+      "geometryFeatures": 0,
+      "floorObjects": 2,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": {
+        "minX": 2.3408927810054423,
+        "minY": 41.607126723471744,
+        "maxX": 2.3460457506829715,
+        "maxY": 41.615279080771245,
+        "coordinatePairs": 22917
+      },
+      "floorSamples": [
+        {
+          "id": "f_5d6c88c031894200135e3777",
+          "name": "Village Map",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/floor.geojson"
+        },
+        {
+          "id": "f_5d6c88c031894200135e3777",
+          "name": "Village Map",
+          "elevation": 0,
+          "source": "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/floor.geojson"
+        }
+      ],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [
+        "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/floor.geojson",
+        "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/manifest.geojson",
+        "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/node.geojson",
+        "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/space/f_5d6c88c031894200135e3777.geojson"
+      ],
+      "pdf": null
+    },
+    {
+      "outletId": "las-rozas-village",
+      "jsonFiles": 4,
+      "mvfJsonFiles": 4,
+      "featureCollections": 4,
+      "featureCount": 425,
+      "features": 425,
+      "floorFeatures": 1,
+      "geometryFeatures": 0,
+      "floorObjects": 2,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": {
+        "minX": -3.9043679138059098,
+        "minY": 40.51577014003799,
+        "maxX": -3.8983698473107844,
+        "maxY": 40.519714523476296,
+        "coordinatePairs": 27729
+      },
+      "floorSamples": [
+        {
+          "id": "f_5d67417131894200135e375d",
+          "name": "Village Map",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/floor.geojson"
+        },
+        {
+          "id": "f_5d67417131894200135e375d",
+          "name": "Village Map",
+          "elevation": 0,
+          "source": "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/floor.geojson"
+        }
+      ],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [
+        "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/floor.geojson",
+        "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/manifest.geojson",
+        "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/node.geojson",
+        "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/space/f_5d67417131894200135e375d.geojson"
+      ],
+      "pdf": null
+    },
+    {
+      "outletId": "fidenza-village",
+      "jsonFiles": 4,
+      "mvfJsonFiles": 4,
+      "featureCollections": 4,
+      "featureCount": 522,
+      "features": 522,
+      "floorFeatures": 1,
+      "geometryFeatures": 0,
+      "floorObjects": 2,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": {
+        "minX": 10.086839312292186,
+        "minY": 44.882067341752304,
+        "maxX": 10.09638556673576,
+        "maxY": 44.88636500327156,
+        "coordinatePairs": 21918
+      },
+      "floorSamples": [
+        {
+          "id": "f_5d6402089031f10012f04fdf",
+          "name": "Village",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/floor.geojson"
+        },
+        {
+          "id": "f_5d6402089031f10012f04fdf",
+          "name": "Village",
+          "elevation": 0,
+          "source": "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/floor.geojson"
+        }
+      ],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [
+        "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/floor.geojson",
+        "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/manifest.geojson",
+        "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/node.geojson",
+        "docs/premium-map-network-discovery/fidenza-village/mvf/cde8b7726e96462f/space/f_5d6402089031f10012f04fdf.geojson"
+      ],
+      "pdf": null
+    },
+    {
+      "outletId": "serravalle-designer-outlet",
+      "jsonFiles": 5,
+      "mvfJsonFiles": 5,
+      "featureCollections": 5,
+      "featureCount": 1778,
+      "features": 1778,
+      "floorFeatures": 2,
+      "geometryFeatures": 0,
+      "floorObjects": 4,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": {
+        "minX": 8.830204496117984,
+        "minY": 44.73054073884541,
+        "maxX": 8.842032617787556,
+        "maxY": 44.73866059981571,
+        "coordinatePairs": 130098
+      },
+      "floorSamples": [
+        {
+          "id": "f_5ad9fd551de18c4557000001",
+          "name": "Main",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/floor.geojson"
+        },
+        {
+          "id": "f_5ad9fd551de18c4557000001",
+          "name": "Main",
+          "elevation": 0,
+          "source": "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/floor.geojson"
+        },
+        {
+          "id": "f_5afc563646495d1f70000004",
+          "name": "Bridge",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/floor.geojson"
+        },
+        {
+          "id": "f_5afc563646495d1f70000004",
+          "name": "Bridge",
+          "elevation": 1,
+          "source": "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/floor.geojson"
+        }
+      ],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [
+        "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/floor.geojson",
+        "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/manifest.geojson",
+        "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/node.geojson",
+        "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/space/f_5ad9fd551de18c4557000001.geojson",
+        "docs/premium-map-network-discovery/serravalle-designer-outlet/mvf/ed227f65f0e1c3d5/space/f_5afc563646495d1f70000004.geojson"
+      ],
+      "pdf": null
+    },
+    {
+      "outletId": "designer-outlet-roermond",
+      "jsonFiles": 5,
+      "mvfJsonFiles": 5,
+      "featureCollections": 5,
+      "featureCount": 1481,
+      "features": 1481,
+      "floorFeatures": 2,
+      "geometryFeatures": 0,
+      "floorObjects": 4,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": {
+        "minX": 5.984025369398868,
+        "minY": 51.1975881014538,
+        "maxX": 5.995510323673751,
+        "maxY": 51.203484874172695,
+        "coordinatePairs": 120783
+      },
+      "floorSamples": [
+        {
+          "id": "f_59fa1587a10b6d1f6b000000",
+          "name": "Ground Level",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/floor.geojson"
+        },
+        {
+          "id": "f_59fa1587a10b6d1f6b000000",
+          "name": "Ground Level",
+          "elevation": 0,
+          "source": "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/floor.geojson"
+        },
+        {
+          "id": "f_5bcf35357eb6ef6703000006",
+          "name": "Level 1",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/floor.geojson"
+        },
+        {
+          "id": "f_5bcf35357eb6ef6703000006",
+          "name": "Level 1",
+          "elevation": 1,
+          "source": "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/floor.geojson"
+        }
+      ],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [
+        "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/floor.geojson",
+        "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/manifest.geojson",
+        "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/node.geojson",
+        "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/space/f_59fa1587a10b6d1f6b000000.geojson",
+        "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/space/f_5bcf35357eb6ef6703000006.geojson"
+      ],
+      "pdf": null
+    },
+    {
+      "outletId": "noventa",
+      "jsonFiles": 4,
+      "mvfJsonFiles": 4,
+      "featureCollections": 4,
+      "featureCount": 785,
+      "features": 785,
+      "floorFeatures": 1,
+      "geometryFeatures": 0,
+      "floorObjects": 2,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": {
+        "minX": 12.53083302221333,
+        "minY": 45.668287690530306,
+        "maxX": 12.540078680142235,
+        "maxY": 45.67445550305326,
+        "coordinatePairs": 24084
+      },
+      "floorSamples": [
+        {
+          "id": "f_5bcf767a5cfb9d2424000001",
+          "name": "Mall Map",
+          "elevation": null,
+          "source": "docs/premium-map-network-discovery/noventa/mvf/b5c5e2af0d24ab98/floor.geojson"
+        },
+        {
+          "id": "f_5bcf767a5cfb9d2424000001",
+          "name": "Mall Map",
+          "elevation": 0,
+          "source": "docs/premium-map-network-discovery/noventa/mvf/b5c5e2af0d24ab98/floor.geojson"
+        }
+      ],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [
+        "docs/premium-map-network-discovery/noventa/mvf/b5c5e2af0d24ab98/floor.geojson",
+        "docs/premium-map-network-discovery/noventa/mvf/b5c5e2af0d24ab98/manifest.geojson",
+        "docs/premium-map-network-discovery/noventa/mvf/b5c5e2af0d24ab98/node.geojson",
+        "docs/premium-map-network-discovery/noventa/mvf/b5c5e2af0d24ab98/space/f_5bcf767a5cfb9d2424000001.geojson"
+      ],
+      "pdf": null
+    },
+    {
+      "outletId": "outletcity-metzingen",
+      "jsonFiles": 0,
+      "mvfJsonFiles": 0,
+      "featureCollections": 0,
+      "featureCount": 0,
+      "features": 0,
+      "floorFeatures": 0,
+      "geometryFeatures": 0,
+      "floorObjects": 0,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": null,
+      "floorSamples": [],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [],
+      "pdf": {
+        "pageCount": 1,
+        "wordCount": 909,
+        "drawingCount": 3564,
+        "closedDrawingCount": 0,
+        "sampleWords": [
+          "Reutlinger",
+          "Straße",
+          "Wilhelmstraße",
+          "Ulmer",
+          "Lindenplatz",
+          "Noyon-Allee",
+          "500m",
+          "--->",
+          "Kids",
+          "Camp",
+          "Gebetsraum",
+          "Premium",
+          "0",
+          "Almresi",
+          "Restaurant",
+          "A",
+          "BOSS",
+          "Café",
+          "B",
+          "Nord",
+          "North",
+          "1",
+          "Süd",
+          "South",
+          "West",
+          "Moxy",
+          "Hotel",
+          "VIP",
+          "2",
+          "4",
+          "9",
+          "8",
+          "19",
+          "18",
+          "16",
+          "15",
+          "23",
+          "22",
+          "25",
+          "26",
+          "27",
+          "10",
+          "12",
+          "13",
+          "17",
+          "21",
+          "14",
+          "Burberry",
+          "11",
+          "Joop!",
+          "Max",
+          "Mara",
+          "32",
+          "34",
+          "Polo",
+          "Ralph",
+          "Lauren",
+          "Bollicine & Co.",
+          "Champagne",
+          "Bar",
+          "I",
+          "Bäckerei",
+          "Keim",
+          "G",
+          "40",
+          "Dolce & Gabbana",
+          "Tod’s",
+          "Hogan",
+          "36",
+          "37",
+          "38",
+          "39",
+          "41",
+          "42",
+          "50",
+          "48",
+          "63",
+          "35",
+          "Prada",
+          "62"
+        ]
+      }
+    },
+    {
+      "outletId": "the-mall-firenze",
+      "jsonFiles": 0,
+      "mvfJsonFiles": 0,
+      "featureCollections": 0,
+      "featureCount": 0,
+      "features": 0,
+      "floorFeatures": 0,
+      "geometryFeatures": 0,
+      "floorObjects": 0,
+      "geometryObjects": 0,
+      "locationAnchorObjects": 0,
+      "namedLocationLikeObjects": 0,
+      "bounds": null,
+      "floorSamples": [],
+      "locationSamples": [],
+      "nameSamples": [],
+      "sourceFiles": [],
+      "pdf": {
+        "pageCount": 1,
+        "wordCount": 111,
+        "drawingCount": 288,
+        "closedDrawingCount": 0,
+        "sampleWords": [
+          "DAE",
+          "Gucci",
+          "Alberta",
+          "Ferretti",
+          "Moschino",
+          "Ermanno",
+          "Scervino",
+          "Saint",
+          "Laurent",
+          "Maison",
+          "Margiela",
+          "Coach",
+          "Gianvito",
+          "Rossi",
+          "Givenchy",
+          "Dolce&Gabbana",
+          "Bottega",
+          "Veneta",
+          "Jimmy",
+          "Choo",
+          "Fendi",
+          "Fay",
+          "Hogan",
+          "Roger",
+          "Vivier",
+          "Tod’s",
+          "Ferragamo",
+          "Burberry",
+          "Loro",
+          "Piana",
+          "Armani",
+          "Balenciaga",
+          "Zegna",
+          "Jil",
+          "Sander",
+          "Tom",
+          "Ford",
+          "Marni",
+          "Versace",
+          "Corneliani",
+          "Roberto",
+          "Cavalli",
+          "Herno",
+          "Kids",
+          "around",
+          "Chloé",
+          "Alexander",
+          "McQueen",
+          "Celine",
+          "Etro",
+          "WELCOME",
+          "LOUNGE",
+          "BUS",
+          "STOP",
+          "TOILETTE",
+          "TOSCANINO",
+          "BISTRÒ",
+          "AUTOMATED",
+          "EXTERNAL",
+          "DEFIBRILLATOR",
+          "BOTTEGA",
+          "&",
+          "RESTAURANT",
+          "THE",
+          "MALL",
+          "PARKING",
+          "VIP",
+          "BY",
+          "POLTRONA",
+          "FRAU",
+          "PICK-UP",
+          "POINT",
+          "KIDS’",
+          "AREA",
+          "TAX",
+          "FREE",
+          "BISTRO",
+          "ELECTRIC",
+          "CAR",
+          "CHARGING"
+        ]
+      }
+    }
+  ]
+}

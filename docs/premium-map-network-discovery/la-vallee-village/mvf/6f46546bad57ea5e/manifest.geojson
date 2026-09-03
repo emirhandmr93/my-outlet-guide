@@ -1,0 +1,118 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.7830508118495354,
+          48.853224202267086
+        ]
+      },
+      "properties": {
+        "folder_struct": [
+          {
+            "type": "file",
+            "name": "floor.geojson"
+          },
+          {
+            "type": "file",
+            "name": "map.geojson"
+          },
+          {
+            "type": "file",
+            "name": "mapstack.geojson"
+          },
+          {
+            "type": "file",
+            "name": "floorstack.json"
+          },
+          {
+            "type": "file",
+            "name": "node.geojson"
+          },
+          {
+            "type": "file",
+            "name": "floorImages"
+          },
+          {
+            "type": "folder",
+            "name": "space",
+            "children": [
+              {
+                "type": "file",
+                "name": "f_5d5f6fdf31894200135e3756.geojson"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "styles.json"
+          },
+          {
+            "type": "file",
+            "name": "textAreas"
+          },
+          {
+            "type": "folder",
+            "name": "enterprise",
+            "children": [
+              {
+                "type": "file",
+                "name": "locations.json"
+              },
+              {
+                "type": "file",
+                "name": "categories.json"
+              },
+              {
+                "type": "file",
+                "name": "venue.json"
+              },
+              {
+                "type": "file",
+                "name": "locationInstances.json"
+              },
+              {
+                "type": "file",
+                "name": "layers.json"
+              },
+              {
+                "type": "file",
+                "name": "categoryPriorities.json"
+              },
+              {
+                "type": "file",
+                "name": "enterpriseStyles.json"
+              },
+              {
+                "type": "file",
+                "name": "textures.json"
+              },
+              {
+                "type": "file",
+                "name": "floorText.json"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "navigationFlags.json"
+          },
+          {
+            "type": "file",
+            "name": "tileset.json"
+          }
+        ],
+        "name": "La Vallée Village",
+        "time": "2026-08-05T14:38:27.348Z",
+        "version": "2.0.0",
+        "naturalBearing": 6.909050730894194,
+        "language": "en",
+        "map": "value-retail-la-vallee-village",
+        "org_id": "5cf7f722e703fb000f70f917"
+      }
+    }
+  ]
+}

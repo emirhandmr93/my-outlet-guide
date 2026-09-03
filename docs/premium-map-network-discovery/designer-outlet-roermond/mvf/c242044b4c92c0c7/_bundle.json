@@ -1,0 +1,22 @@
+{
+  "responseUrl": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/896036aa857dacfac7568349945f265cd43fe2b3.zip",
+  "bundleHash": "c242044b4c92c0c7",
+  "fileCount": 15,
+  "files": [
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/space/f_59fa1587a10b6d1f6b000000.geojson",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/space/f_5bcf35357eb6ef6703000006.geojson",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/floorImages/f_59fa1587a10b6d1f6b000000.json",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/floorImages/f_5bcf35357eb6ef6703000006.json",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/textAreas/f_59fa1587a10b6d1f6b000000.json",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/enterprise/locations.json",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/enterprise/categories.json",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/enterprise/layers.json",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/enterprise/enterpriseStyles.json",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/enterprise/floorText.json",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/manifest.geojson",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/floor.geojson",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/floorstack.json",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/node.geojson",
+    "docs/premium-map-network-discovery/designer-outlet-roermond/mvf/c242044b4c92c0c7/styles.json"
+  ]
+}

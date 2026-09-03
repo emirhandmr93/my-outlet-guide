@@ -1,0 +1,19 @@
+{
+  "responseUrl": "https://cdn.mappedin.com/5d370ae8da8c166f3647e3cf/7b77cb7d44501a57224f8320d97f5ef3c0682c36.zip",
+  "bundleHash": "796e91d1767717d5",
+  "fileCount": 12,
+  "files": [
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/space/f_5d67417131894200135e375d.geojson",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/floorImages/f_5d67417131894200135e375d.json",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/enterprise/locations.json",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/enterprise/categories.json",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/enterprise/layers.json",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/enterprise/enterpriseStyles.json",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/enterprise/floorText.json",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/manifest.geojson",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/floor.geojson",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/floorstack.json",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/node.geojson",
+    "docs/premium-map-network-discovery/las-rozas-village/mvf/796e91d1767717d5/styles.json"
+  ]
+}

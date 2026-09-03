@@ -1,0 +1,114 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.344374898821116,
+          41.61087685092744
+        ]
+      },
+      "properties": {
+        "folder_struct": [
+          {
+            "type": "file",
+            "name": "floor.geojson"
+          },
+          {
+            "type": "file",
+            "name": "map.geojson"
+          },
+          {
+            "type": "file",
+            "name": "mapstack.geojson"
+          },
+          {
+            "type": "file",
+            "name": "floorstack.json"
+          },
+          {
+            "type": "file",
+            "name": "node.geojson"
+          },
+          {
+            "type": "file",
+            "name": "floorImages"
+          },
+          {
+            "type": "folder",
+            "name": "space",
+            "children": [
+              {
+                "type": "file",
+                "name": "f_5d6c88c031894200135e3777.geojson"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "styles.json"
+          },
+          {
+            "type": "folder",
+            "name": "enterprise",
+            "children": [
+              {
+                "type": "file",
+                "name": "locations.json"
+              },
+              {
+                "type": "file",
+                "name": "categories.json"
+              },
+              {
+                "type": "file",
+                "name": "venue.json"
+              },
+              {
+                "type": "file",
+                "name": "locationInstances.json"
+              },
+              {
+                "type": "file",
+                "name": "layers.json"
+              },
+              {
+                "type": "file",
+                "name": "categoryPriorities.json"
+              },
+              {
+                "type": "file",
+                "name": "enterpriseStyles.json"
+              },
+              {
+                "type": "file",
+                "name": "textures.json"
+              },
+              {
+                "type": "file",
+                "name": "floorText.json"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "navigationFlags.json"
+          },
+          {
+            "type": "file",
+            "name": "tileset.json"
+          }
+        ],
+        "name": "La Roca Village",
+        "time": "2026-09-01T07:37:11.679Z",
+        "version": "2.0.0",
+        "naturalBearing": 308.3215602655691,
+        "language": "en",
+        "map": "value-retail-la-roca-village",
+        "org_id": "5cf7f722e703fb000f70f917"
+      }
+    }
+  ]
+}

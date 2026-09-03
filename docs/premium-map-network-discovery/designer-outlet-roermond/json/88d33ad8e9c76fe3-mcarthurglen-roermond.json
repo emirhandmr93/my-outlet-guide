@@ -1,0 +1,1260 @@
+[
+  {
+    "elevation": 0,
+    "name": "Ground Level",
+    "shortName": "GL",
+    "tiles": "https://cdn.mappedin.com/priv-59f9ca8af3ea230178000000/maps/5bbf6a2786c90b5d1ee75e0e_files/",
+    "width": 9792,
+    "height": 6336,
+    "group": "5ad76580338a4c6cb369dac7",
+    "georeference": [
+      {
+        "control": {
+          "x": 2592,
+          "y": 2181.5
+        },
+        "target": {
+          "x": 51.20105510725122,
+          "y": 5.984752707734407
+        }
+      },
+      {
+        "control": {
+          "x": 3476,
+          "y": 1702
+        },
+        "target": {
+          "x": 51.20190679904868,
+          "y": 5.9860502320246
+        }
+      },
+      {
+        "control": {
+          "x": 5374.125,
+          "y": 4018.75
+        },
+        "target": {
+          "x": 51.20000618535233,
+          "y": 5.990753319898226
+        }
+      },
+      {
+        "control": {
+          "x": 3345,
+          "y": 4241
+        },
+        "target": {
+          "x": 51.199030266641884,
+          "y": 5.987271814535221
+        }
+      }
+    ],
+    "layers": [
+      {
+        "layerId": "5bee3af753982fb408f553df",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Polygon"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e0",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Anchor"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e1",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Washroom"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e3",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Non Public"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e2",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Facility Corridor"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e5",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Entrance"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e6",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Wall"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e7",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Floor"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e8",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Tree Highlight"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e9",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Tree Base"
+      },
+      {
+        "layerId": "5bee3b1853982fb408f554e0",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Lot"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553eb",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Lines"
+      },
+      {
+        "layerId": "5bee3b1853982fb408f554e1",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Icon"
+      },
+      {
+        "layerId": "5bee3b3353982fb408f5558c",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Road Name"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553ee",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Sidewalk"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553ef",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Garage"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f0",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Landscape"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f1",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Water Bodies"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f2",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Base"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f3",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Arrows"
+      },
+      {
+        "layerId": "5bee3b1853982fb408f554e5",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "View Layer"
+      },
+      {
+        "layerId": "63b59f4d42a7d751c2991f41",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "snapLocked": false,
+        "id": "__AUTO_BORDER__"
+      }
+    ],
+    "scene": {
+      "mtl": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/0e302f26e107eea3edf602c246cf8a0b868f89c6.mtl",
+      "obj": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/d0a3521fb4b9fa4bf6340af6b609fea28b86e587.obj",
+      "images": [
+        {
+          "filename": "76253eb3a211706171437698a75cd0fb7cba8493.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/76253eb3a211706171437698a75cd0fb7cba8493.png"
+        },
+        {
+          "filename": "1aa37661ddd3a185790da4305358260c84ace08a.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1aa37661ddd3a185790da4305358260c84ace08a.png"
+        },
+        {
+          "filename": "84fb1f6e8235e1b37063dbccac26633a413e99f1.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/84fb1f6e8235e1b37063dbccac26633a413e99f1.png"
+        },
+        {
+          "filename": "75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png"
+        },
+        {
+          "filename": "75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png"
+        },
+        {
+          "filename": "75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png"
+        },
+        {
+          "filename": "75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png"
+        },
+        {
+          "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+        },
+        {
+          "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+        },
+        {
+          "filename": "bbe3082db26426d0f1d257b5347da98a1d5a599a.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/bbe3082db26426d0f1d257b5347da98a1d5a599a.png"
+        },
+        {
+          "filename": "527abe2881f8428fb0eff1c71c765ee976509f24.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/527abe2881f8428fb0eff1c71c765ee976509f24.png"
+        },
+        {
+          "filename": "002ec27de319c1be25f492f6fc3136c92c62bb80.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/002ec27de319c1be25f492f6fc3136c92c62bb80.png"
+        },
+        {
+          "filename": "152355c1a76efbf698cdc8077e13e7778d537bab.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/152355c1a76efbf698cdc8077e13e7778d537bab.png"
+        },
+        {
+          "filename": "152355c1a76efbf698cdc8077e13e7778d537bab.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/152355c1a76efbf698cdc8077e13e7778d537bab.png"
+        },
+        {
+          "filename": "a8dfb6ba5f574ebed7d6096f33a66007b43b8660.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/a8dfb6ba5f574ebed7d6096f33a66007b43b8660.png"
+        },
+        {
+          "filename": "529d657628243a3d6816043aac5058760751b389.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/529d657628243a3d6816043aac5058760751b389.png"
+        },
+        {
+          "filename": "9be02437461e2d7b35b795d407026259981c6b8c.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/9be02437461e2d7b35b795d407026259981c6b8c.png"
+        },
+        {
+          "filename": "f9d4b5d2a61008fb54abfadd887e1ecc2aef8ce0.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f9d4b5d2a61008fb54abfadd887e1ecc2aef8ce0.png"
+        },
+        {
+          "filename": "431db984e99987dd6401b0acb14243b8dd3e6d07.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/431db984e99987dd6401b0acb14243b8dd3e6d07.png"
+        },
+        {
+          "filename": "d11231295ec95d7d610391ea98817c2790c97e45.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/d11231295ec95d7d610391ea98817c2790c97e45.png"
+        },
+        {
+          "filename": "971858a3594214845db310b0365942f5a5f43d1a.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/971858a3594214845db310b0365942f5a5f43d1a.png"
+        },
+        {
+          "filename": "74be442ec0908e2e4d2707bd30ea90c0fcebb64f.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/74be442ec0908e2e4d2707bd30ea90c0fcebb64f.png"
+        },
+        {
+          "filename": "718e92d26e0dce5ee1c7c8699b14c83705027093.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/718e92d26e0dce5ee1c7c8699b14c83705027093.png"
+        },
+        {
+          "filename": "f850626c5674a85625abcb082579c98b68c1968b.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f850626c5674a85625abcb082579c98b68c1968b.png"
+        },
+        {
+          "filename": "6d43e06b06d84003e5b18fc86d986817aefe8ea0.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/6d43e06b06d84003e5b18fc86d986817aefe8ea0.png"
+        },
+        {
+          "filename": "98fe6af21566f5ecf3b5424f462e321672f668e2.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/98fe6af21566f5ecf3b5424f462e321672f668e2.png"
+        },
+        {
+          "filename": "022fc1626e0bf60f453ffdf672ddbcbc0e3bd4f0.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/022fc1626e0bf60f453ffdf672ddbcbc0e3bd4f0.png"
+        },
+        {
+          "filename": "f258b80b109dd50d8dbf81d722adb41d79df7789.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f258b80b109dd50d8dbf81d722adb41d79df7789.png"
+        },
+        {
+          "filename": "28888aba7551f654ca8876f9709bf63949c58ce3.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/28888aba7551f654ca8876f9709bf63949c58ce3.png"
+        },
+        {
+          "filename": "c2ff5ef02bfbd73f2059193c3585e345d3cb920b.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/c2ff5ef02bfbd73f2059193c3585e345d3cb920b.png"
+        },
+        {
+          "filename": "6138e63f40ffd90dc1521f21a8d2d7a3c1942189.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/6138e63f40ffd90dc1521f21a8d2d7a3c1942189.png"
+        },
+        {
+          "filename": "e3407b11e0c1a75505e6ec23c947df4849af8125.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/e3407b11e0c1a75505e6ec23c947df4849af8125.png"
+        },
+        {
+          "filename": "94b5f64958360ddd6397092973148f4d93ed9994.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/94b5f64958360ddd6397092973148f4d93ed9994.png"
+        },
+        {
+          "filename": "b45345b3824b46973d9ebb5d970a5725b441bd1b.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/b45345b3824b46973d9ebb5d970a5725b441bd1b.png"
+        },
+        {
+          "filename": "c49d15a09138289cf7ad55a786c932ec812cb71a.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/c49d15a09138289cf7ad55a786c932ec812cb71a.png"
+        },
+        {
+          "filename": "dd6db4509d87db3b2599518cfcad080bfdd51990.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/dd6db4509d87db3b2599518cfcad080bfdd51990.png"
+        },
+        {
+          "filename": "5c3b7505f24ab7d87999433452209a13ddfdeb15.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/5c3b7505f24ab7d87999433452209a13ddfdeb15.png"
+        },
+        {
+          "filename": "4b924332f253d742a71da5e985c4e71b3afaa58d.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/4b924332f253d742a71da5e985c4e71b3afaa58d.png"
+        },
+        {
+          "filename": "8bbeae4981ae0cb943ad0b50aed5b9d817948ecd.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/8bbeae4981ae0cb943ad0b50aed5b9d817948ecd.png"
+        },
+        {
+          "filename": "9a5ba4864645739da7899ec46a41dd06afac5607.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/9a5ba4864645739da7899ec46a41dd06afac5607.png"
+        },
+        {
+          "filename": "8fcd5501bd3a1ff60dbf7414a1210b8ade89562e.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/8fcd5501bd3a1ff60dbf7414a1210b8ade89562e.png"
+        },
+        {
+          "filename": "aa32902c90b935fe8737f105f6aace8a86f7cc8e.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/aa32902c90b935fe8737f105f6aace8a86f7cc8e.png"
+        },
+        {
+          "filename": "5d41ea4c4d2f89fac639a989b3c12937d8c0ffc0.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/5d41ea4c4d2f89fac639a989b3c12937d8c0ffc0.png"
+        },
+        {
+          "filename": "f850626c5674a85625abcb082579c98b68c1968b.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f850626c5674a85625abcb082579c98b68c1968b.png"
+        },
+        {
+          "filename": "f0849bfd1c4d829392fb47a106935fd466d5b802.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f0849bfd1c4d829392fb47a106935fd466d5b802.png"
+        },
+        {
+          "filename": "c291dbe3cad7ab19a0c3364dc8db0b76e08bb17b.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/c291dbe3cad7ab19a0c3364dc8db0b76e08bb17b.png"
+        },
+        {
+          "filename": "152355c1a76efbf698cdc8077e13e7778d537bab.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/152355c1a76efbf698cdc8077e13e7778d537bab.png"
+        },
+        {
+          "filename": "061f53611c2de5bae623c2541fc8af2bc4b95b4d.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/061f53611c2de5bae623c2541fc8af2bc4b95b4d.png"
+        },
+        {
+          "filename": "0a5ee0d3523093ca44d752bc3a6f7004e0bf00c2.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/0a5ee0d3523093ca44d752bc3a6f7004e0bf00c2.png"
+        },
+        {
+          "filename": "20c154ea1b1ae7aed2f27d11759760dca661dbd8.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/20c154ea1b1ae7aed2f27d11759760dca661dbd8.png"
+        },
+        {
+          "filename": "f0d84438a65aec7098593dcc11e52c259620c955.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f0d84438a65aec7098593dcc11e52c259620c955.png"
+        },
+        {
+          "filename": "0dd0af4ba933b052ab8fb814bd314aca77f18fb6.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/0dd0af4ba933b052ab8fb814bd314aca77f18fb6.png"
+        },
+        {
+          "filename": "7c214058a4db0188fb40c8374fab15bb4339c710.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/7c214058a4db0188fb40c8374fab15bb4339c710.png"
+        },
+        {
+          "filename": "817e441e1e362c8d80c5be0aef14d89b3034fd17.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/817e441e1e362c8d80c5be0aef14d89b3034fd17.png"
+        },
+        {
+          "filename": "91ea7ec0c8dbc3c5616ed36d17f417bb717dfd5a.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/91ea7ec0c8dbc3c5616ed36d17f417bb717dfd5a.png"
+        },
+        {
+          "filename": "0c7e97a763483f8c00d4471b023faaa398546ed9.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/0c7e97a763483f8c00d4471b023faaa398546ed9.png"
+        }
+      ],
+      "polygons": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/6accbe1b1d1bd3592175aa766086a2d3ebb6a8bb.json"
+    },
+    "x_scale": 0.13018829552514932,
+    "id": "59fa1587a10b6d1f6b000000",
+    "perspective": {
+      "id": "59fa15aea10b6d1f6b000001",
+      "name": "Website",
+      "width": 3500,
+      "height": 3000,
+      "camera": {
+        "type": "orthographic",
+        "position": {
+          "x": -96.51683284820695,
+          "y": 10.56013148726754,
+          "z": 560.4246577790966
+        },
+        "rotation": {
+          "x": 9.137216713867931e-7,
+          "y": 4.0634062950133035e-7,
+          "z": 0.4184455714760428
+        },
+        "target": {
+          "x": -96.51705312551094,
+          "y": 10.560626815895205,
+          "z": 18.324537823935543
+        },
+        "zoom": 10.021095420690562
+      },
+      "lights": [
+        {
+          "type": "hemisphere",
+          "intensity": 0.54,
+          "position": {
+            "x": 1224,
+            "y": 792,
+            "z": -190
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "type": "directional",
+          "intensity": 0.71,
+          "position": {
+            "x": -175,
+            "y": 100,
+            "z": -190
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ],
+      "extrusionScale": 0.96,
+      "renderSampling": 2,
+      "layers": [
+        "Polygon",
+        "Anchor",
+        "Washroom",
+        "Non Public",
+        "Facility Corridor",
+        "Entrance",
+        "Wall",
+        "Floor",
+        "Tree Highlight",
+        "Tree Base",
+        "Parking Lot",
+        "Parking Lines",
+        "Parking Icon",
+        "Road Name",
+        "Sidewalk",
+        "Parking Garage",
+        "Landscape",
+        "Water Bodies",
+        "Base",
+        "Arrows",
+        "View Layer",
+        "Parking Lots",
+        "Parking Icons",
+        "Road Names",
+        "Tree Top",
+        "__AUTO_BORDER__"
+      ],
+      "scene": {
+        "mtl": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/0e302f26e107eea3edf602c246cf8a0b868f89c6.mtl",
+        "obj": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/d0a3521fb4b9fa4bf6340af6b609fea28b86e587.obj",
+        "images": [
+          {
+            "filename": "76253eb3a211706171437698a75cd0fb7cba8493.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/76253eb3a211706171437698a75cd0fb7cba8493.png"
+          },
+          {
+            "filename": "1aa37661ddd3a185790da4305358260c84ace08a.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1aa37661ddd3a185790da4305358260c84ace08a.png"
+          },
+          {
+            "filename": "84fb1f6e8235e1b37063dbccac26633a413e99f1.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/84fb1f6e8235e1b37063dbccac26633a413e99f1.png"
+          },
+          {
+            "filename": "75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png"
+          },
+          {
+            "filename": "75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png"
+          },
+          {
+            "filename": "75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png"
+          },
+          {
+            "filename": "75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/75eb809c730bbfbdf9e6e581b205389fa3a72e3c.png"
+          },
+          {
+            "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+          },
+          {
+            "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+          },
+          {
+            "filename": "bbe3082db26426d0f1d257b5347da98a1d5a599a.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/bbe3082db26426d0f1d257b5347da98a1d5a599a.png"
+          },
+          {
+            "filename": "527abe2881f8428fb0eff1c71c765ee976509f24.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/527abe2881f8428fb0eff1c71c765ee976509f24.png"
+          },
+          {
+            "filename": "002ec27de319c1be25f492f6fc3136c92c62bb80.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/002ec27de319c1be25f492f6fc3136c92c62bb80.png"
+          },
+          {
+            "filename": "152355c1a76efbf698cdc8077e13e7778d537bab.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/152355c1a76efbf698cdc8077e13e7778d537bab.png"
+          },
+          {
+            "filename": "152355c1a76efbf698cdc8077e13e7778d537bab.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/152355c1a76efbf698cdc8077e13e7778d537bab.png"
+          },
+          {
+            "filename": "a8dfb6ba5f574ebed7d6096f33a66007b43b8660.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/a8dfb6ba5f574ebed7d6096f33a66007b43b8660.png"
+          },
+          {
+            "filename": "529d657628243a3d6816043aac5058760751b389.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/529d657628243a3d6816043aac5058760751b389.png"
+          },
+          {
+            "filename": "9be02437461e2d7b35b795d407026259981c6b8c.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/9be02437461e2d7b35b795d407026259981c6b8c.png"
+          },
+          {
+            "filename": "f9d4b5d2a61008fb54abfadd887e1ecc2aef8ce0.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f9d4b5d2a61008fb54abfadd887e1ecc2aef8ce0.png"
+          },
+          {
+            "filename": "431db984e99987dd6401b0acb14243b8dd3e6d07.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/431db984e99987dd6401b0acb14243b8dd3e6d07.png"
+          },
+          {
+            "filename": "d11231295ec95d7d610391ea98817c2790c97e45.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/d11231295ec95d7d610391ea98817c2790c97e45.png"
+          },
+          {
+            "filename": "971858a3594214845db310b0365942f5a5f43d1a.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/971858a3594214845db310b0365942f5a5f43d1a.png"
+          },
+          {
+            "filename": "74be442ec0908e2e4d2707bd30ea90c0fcebb64f.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/74be442ec0908e2e4d2707bd30ea90c0fcebb64f.png"
+          },
+          {
+            "filename": "718e92d26e0dce5ee1c7c8699b14c83705027093.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/718e92d26e0dce5ee1c7c8699b14c83705027093.png"
+          },
+          {
+            "filename": "f850626c5674a85625abcb082579c98b68c1968b.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f850626c5674a85625abcb082579c98b68c1968b.png"
+          },
+          {
+            "filename": "6d43e06b06d84003e5b18fc86d986817aefe8ea0.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/6d43e06b06d84003e5b18fc86d986817aefe8ea0.png"
+          },
+          {
+            "filename": "98fe6af21566f5ecf3b5424f462e321672f668e2.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/98fe6af21566f5ecf3b5424f462e321672f668e2.png"
+          },
+          {
+            "filename": "022fc1626e0bf60f453ffdf672ddbcbc0e3bd4f0.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/022fc1626e0bf60f453ffdf672ddbcbc0e3bd4f0.png"
+          },
+          {
+            "filename": "f258b80b109dd50d8dbf81d722adb41d79df7789.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f258b80b109dd50d8dbf81d722adb41d79df7789.png"
+          },
+          {
+            "filename": "28888aba7551f654ca8876f9709bf63949c58ce3.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/28888aba7551f654ca8876f9709bf63949c58ce3.png"
+          },
+          {
+            "filename": "c2ff5ef02bfbd73f2059193c3585e345d3cb920b.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/c2ff5ef02bfbd73f2059193c3585e345d3cb920b.png"
+          },
+          {
+            "filename": "6138e63f40ffd90dc1521f21a8d2d7a3c1942189.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/6138e63f40ffd90dc1521f21a8d2d7a3c1942189.png"
+          },
+          {
+            "filename": "e3407b11e0c1a75505e6ec23c947df4849af8125.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/e3407b11e0c1a75505e6ec23c947df4849af8125.png"
+          },
+          {
+            "filename": "94b5f64958360ddd6397092973148f4d93ed9994.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/94b5f64958360ddd6397092973148f4d93ed9994.png"
+          },
+          {
+            "filename": "b45345b3824b46973d9ebb5d970a5725b441bd1b.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/b45345b3824b46973d9ebb5d970a5725b441bd1b.png"
+          },
+          {
+            "filename": "c49d15a09138289cf7ad55a786c932ec812cb71a.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/c49d15a09138289cf7ad55a786c932ec812cb71a.png"
+          },
+          {
+            "filename": "dd6db4509d87db3b2599518cfcad080bfdd51990.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/dd6db4509d87db3b2599518cfcad080bfdd51990.png"
+          },
+          {
+            "filename": "5c3b7505f24ab7d87999433452209a13ddfdeb15.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/5c3b7505f24ab7d87999433452209a13ddfdeb15.png"
+          },
+          {
+            "filename": "4b924332f253d742a71da5e985c4e71b3afaa58d.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/4b924332f253d742a71da5e985c4e71b3afaa58d.png"
+          },
+          {
+            "filename": "8bbeae4981ae0cb943ad0b50aed5b9d817948ecd.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/8bbeae4981ae0cb943ad0b50aed5b9d817948ecd.png"
+          },
+          {
+            "filename": "9a5ba4864645739da7899ec46a41dd06afac5607.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/9a5ba4864645739da7899ec46a41dd06afac5607.png"
+          },
+          {
+            "filename": "8fcd5501bd3a1ff60dbf7414a1210b8ade89562e.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/8fcd5501bd3a1ff60dbf7414a1210b8ade89562e.png"
+          },
+          {
+            "filename": "aa32902c90b935fe8737f105f6aace8a86f7cc8e.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/aa32902c90b935fe8737f105f6aace8a86f7cc8e.png"
+          },
+          {
+            "filename": "5d41ea4c4d2f89fac639a989b3c12937d8c0ffc0.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/5d41ea4c4d2f89fac639a989b3c12937d8c0ffc0.png"
+          },
+          {
+            "filename": "f850626c5674a85625abcb082579c98b68c1968b.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f850626c5674a85625abcb082579c98b68c1968b.png"
+          },
+          {
+            "filename": "f0849bfd1c4d829392fb47a106935fd466d5b802.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f0849bfd1c4d829392fb47a106935fd466d5b802.png"
+          },
+          {
+            "filename": "c291dbe3cad7ab19a0c3364dc8db0b76e08bb17b.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/c291dbe3cad7ab19a0c3364dc8db0b76e08bb17b.png"
+          },
+          {
+            "filename": "152355c1a76efbf698cdc8077e13e7778d537bab.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/152355c1a76efbf698cdc8077e13e7778d537bab.png"
+          },
+          {
+            "filename": "061f53611c2de5bae623c2541fc8af2bc4b95b4d.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/061f53611c2de5bae623c2541fc8af2bc4b95b4d.png"
+          },
+          {
+            "filename": "0a5ee0d3523093ca44d752bc3a6f7004e0bf00c2.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/0a5ee0d3523093ca44d752bc3a6f7004e0bf00c2.png"
+          },
+          {
+            "filename": "20c154ea1b1ae7aed2f27d11759760dca661dbd8.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/20c154ea1b1ae7aed2f27d11759760dca661dbd8.png"
+          },
+          {
+            "filename": "f0d84438a65aec7098593dcc11e52c259620c955.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/f0d84438a65aec7098593dcc11e52c259620c955.png"
+          },
+          {
+            "filename": "0dd0af4ba933b052ab8fb814bd314aca77f18fb6.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/0dd0af4ba933b052ab8fb814bd314aca77f18fb6.png"
+          },
+          {
+            "filename": "7c214058a4db0188fb40c8374fab15bb4339c710.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/7c214058a4db0188fb40c8374fab15bb4339c710.png"
+          },
+          {
+            "filename": "817e441e1e362c8d80c5be0aef14d89b3034fd17.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/817e441e1e362c8d80c5be0aef14d89b3034fd17.png"
+          },
+          {
+            "filename": "91ea7ec0c8dbc3c5616ed36d17f417bb717dfd5a.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/91ea7ec0c8dbc3c5616ed36d17f417bb717dfd5a.png"
+          },
+          {
+            "filename": "0c7e97a763483f8c00d4471b023faaa398546ed9.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/0c7e97a763483f8c00d4471b023faaa398546ed9.png"
+          }
+        ],
+        "polygons": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/6accbe1b1d1bd3592175aa766086a2d3ebb6a8bb.json"
+      },
+      "size": {
+        "width": 3500,
+        "height": 3000
+      },
+      "mbtiles": null,
+      "original": "https://resize-worker.mappedin.com/resize:fit:3500:3000:0/enlarge:1/ext:png/plain/https://cdn.mappedin.com/59f9ca8af3ea230178000000/stitched/7f0f6d2a4ae13ab53b0bd4c922e1a4abbf0508ab.png",
+      "tiled": true,
+      "tiles": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/maps/7efb06b1-141d-4d26-ade5-7f1f7ef84d49_files/",
+      "updatedAt": "2026-08-11T18:17:13+08:00",
+      "extents": {
+        "x": 0,
+        "y": 0,
+        "width": 3500,
+        "height": 3000
+      },
+      "reference": [
+        {
+          "control": {
+            "x": 2592,
+            "y": 2181.5
+          },
+          "target": {
+            "x": 846.5197771331495,
+            "y": 109.1258644031895
+          }
+        },
+        {
+          "control": {
+            "x": 3476,
+            "y": 1702
+          },
+          "target": {
+            "x": 1872.5463841407206,
+            "y": 28.35490918714817
+          }
+        },
+        {
+          "control": {
+            "x": 5374.125,
+            "y": 4018.75
+          },
+          "target": {
+            "x": 2684.067109325739,
+            "y": 2984.0765835538627
+          }
+        },
+        {
+          "control": {
+            "x": 3345,
+            "y": 4241
+          },
+          "target": {
+            "x": 694.2117064187291,
+            "y": 2348.0959412649886
+          }
+        }
+      ],
+      "image": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/maps/7efb06b1-141d-4d26-ade5-7f1f7ef84d49_files/",
+      "saveObj": true,
+      "x_generateBorders": false
+    }
+  },
+  {
+    "elevation": 1,
+    "name": "Level 1",
+    "shortName": "L1",
+    "group": "5ad76580338a4c6cb369dac7",
+    "tiles": "https://cdn.mappedin.com/priv-59f9ca8af3ea230178000000/maps/5bcf34e7f4d8545d25c6b621_files/",
+    "width": 9792,
+    "height": 6336,
+    "georeference": [
+      {
+        "control": {
+          "x": 2593.5576171875,
+          "y": 2180.9384765625
+        },
+        "target": {
+          "x": 51.20105576209278,
+          "y": 5.984755130421626
+        }
+      },
+      {
+        "control": {
+          "x": 3476.528076171875,
+          "y": 1700.49462890625
+        },
+        "target": {
+          "x": 51.20190818485572,
+          "y": 5.986050202295254
+        }
+      },
+      {
+        "control": {
+          "x": 3191.517578125,
+          "y": 5088.0263671875
+        },
+        "target": {
+          "x": 51.198030906744414,
+          "y": 5.9874843282537284
+        }
+      },
+      {
+        "control": {
+          "x": 5376.945556640625,
+          "y": 4018.575927734375
+        },
+        "target": {
+          "x": 51.20000708521968,
+          "y": 5.99075831206914
+        }
+      }
+    ],
+    "layers": [
+      {
+        "layerId": "5bee3af753982fb408f553df",
+        "type": "polygon",
+        "locked": false,
+        "visible": true,
+        "id": "Polygon"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e2",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Facility Corridor"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e6",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Wall"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e7",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Floor"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f4",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Floor Shadow"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e8",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Tree Highlight"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e9",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Tree Base"
+      },
+      {
+        "layerId": "5bee3b1853982fb408f554e0",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Lot"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553eb",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Lines"
+      },
+      {
+        "layerId": "5bee3b1853982fb408f554e1",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Icon"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f1",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Water Bodies"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f0",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Landscape"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553ef",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Garage"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553ee",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Sidewalk"
+      },
+      {
+        "layerId": "5bee3b3353982fb408f5558c",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Road Name"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f3",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Arrows"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f2",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Base"
+      }
+    ],
+    "scene": {
+      "mtl": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/af88482aa5d1f00f22b183eda9b46da809af419b.mtl",
+      "obj": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/5b9ce51b4ce4761525d150b5f6d2f6d1c3f2b3b0.obj",
+      "images": [
+        {
+          "filename": "6e5d0a1d50425386ae3cb143735141ac58559697.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/6e5d0a1d50425386ae3cb143735141ac58559697.png"
+        },
+        {
+          "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+        },
+        {
+          "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+        },
+        {
+          "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+        },
+        {
+          "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+        },
+        {
+          "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+        },
+        {
+          "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+        },
+        {
+          "filename": "32718dcfa88746e37bbe2d723853377fdc69c3b0.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/32718dcfa88746e37bbe2d723853377fdc69c3b0.png"
+        },
+        {
+          "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+        },
+        {
+          "filename": "32718dcfa88746e37bbe2d723853377fdc69c3b0.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/32718dcfa88746e37bbe2d723853377fdc69c3b0.png"
+        },
+        {
+          "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+        },
+        {
+          "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+        },
+        {
+          "filename": "32718dcfa88746e37bbe2d723853377fdc69c3b0.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/32718dcfa88746e37bbe2d723853377fdc69c3b0.png"
+        },
+        {
+          "filename": "bc675e3dab6820f11e36109bd7dafbc9f53d4ba2.png",
+          "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/bc675e3dab6820f11e36109bd7dafbc9f53d4ba2.png"
+        }
+      ],
+      "polygons": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/a6c230bfa7ce96b1c8cb0e34620f168f8de908e7.json"
+    },
+    "x_scale": 0.13018833230432011,
+    "id": "5bcf35357eb6ef6703000006",
+    "perspective": {
+      "id": "59fa15aea10b6d1f6b000001",
+      "name": "Website",
+      "width": 3500,
+      "height": 3000,
+      "camera": {
+        "type": "orthographic",
+        "position": {
+          "x": 5.399733507974788,
+          "y": 14.133049595005467,
+          "z": 574.6519230353795
+        },
+        "rotation": {
+          "x": 9.999886792488044e-7,
+          "y": 4.758271867536739e-9,
+          "z": 0.004758289823707578
+        },
+        "target": {
+          "x": 5.399730744072196,
+          "y": 14.133630451118698,
+          "z": -6.210765997628869
+        },
+        "zoom": 5.720018325679633
+      },
+      "lights": [
+        {
+          "type": "hemisphere",
+          "intensity": 0.7,
+          "position": {
+            "x": 1224,
+            "y": 792,
+            "z": -190
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "type": "directional",
+          "intensity": 0.3,
+          "position": {
+            "x": -175,
+            "y": 100,
+            "z": -190
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ],
+      "extrusionScale": 0.96,
+      "renderSampling": 2,
+      "layers": [
+        "Polygon",
+        "Facility Corridor",
+        "Wall",
+        "Floor",
+        "Floor Shadow",
+        "Tree Highlight",
+        "Tree Base",
+        "Parking Lot",
+        "Parking Lines",
+        "Parking Icon",
+        "Water Bodies",
+        "Landscape",
+        "Parking Garage",
+        "Sidewalk",
+        "Road Name",
+        "Arrows",
+        "Base",
+        "Infill",
+        "Parking Lots",
+        "Parking Icons",
+        "Road Names",
+        "Non Public"
+      ],
+      "saveObj": true,
+      "scene": {
+        "mtl": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/af88482aa5d1f00f22b183eda9b46da809af419b.mtl",
+        "obj": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/5b9ce51b4ce4761525d150b5f6d2f6d1c3f2b3b0.obj",
+        "images": [
+          {
+            "filename": "6e5d0a1d50425386ae3cb143735141ac58559697.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/6e5d0a1d50425386ae3cb143735141ac58559697.png"
+          },
+          {
+            "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+          },
+          {
+            "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+          },
+          {
+            "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+          },
+          {
+            "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+          },
+          {
+            "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+          },
+          {
+            "filename": "1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/1094473b09aa4f3c1d40c440c7b7e432f6f6d8c4.png"
+          },
+          {
+            "filename": "32718dcfa88746e37bbe2d723853377fdc69c3b0.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/32718dcfa88746e37bbe2d723853377fdc69c3b0.png"
+          },
+          {
+            "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+          },
+          {
+            "filename": "32718dcfa88746e37bbe2d723853377fdc69c3b0.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/32718dcfa88746e37bbe2d723853377fdc69c3b0.png"
+          },
+          {
+            "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+          },
+          {
+            "filename": "2dc876e04d0ecf67659885f8cd9f89893f82212f.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/2dc876e04d0ecf67659885f8cd9f89893f82212f.png"
+          },
+          {
+            "filename": "32718dcfa88746e37bbe2d723853377fdc69c3b0.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/32718dcfa88746e37bbe2d723853377fdc69c3b0.png"
+          },
+          {
+            "filename": "bc675e3dab6820f11e36109bd7dafbc9f53d4ba2.png",
+            "url": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/bc675e3dab6820f11e36109bd7dafbc9f53d4ba2.png"
+          }
+        ],
+        "polygons": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/a6c230bfa7ce96b1c8cb0e34620f168f8de908e7.json"
+      },
+      "size": {
+        "width": 3500,
+        "height": 3000
+      },
+      "mbtiles": null,
+      "original": "https://resize-worker.mappedin.com/resize:fit:3500:3000:0/enlarge:1/ext:png/plain/https://cdn.mappedin.com/59f9ca8af3ea230178000000/stitched/37e9fa3212fe6fb56d1596c056ab9b4d82067937.png",
+      "tiled": true,
+      "tiles": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/maps/67f4f2d16946c55c352dacd7_files/",
+      "updatedAt": "2025-04-08T05:56:43-04:00",
+      "extents": {
+        "x": 0,
+        "y": 0,
+        "width": 3500,
+        "height": 3000
+      },
+      "reference": [
+        {
+          "control": {
+            "x": 2593.5576171875,
+            "y": 2180.9384765625
+          },
+          "target": {
+            "x": 376.5111485408574,
+            "y": 997.7093112829374
+          }
+        },
+        {
+          "control": {
+            "x": 3476.528076171875,
+            "y": 1700.49462890625
+          },
+          "target": {
+            "x": 893.6298642063608,
+            "y": 719.5144236117203
+          }
+        },
+        {
+          "control": {
+            "x": 3191.517578125,
+            "y": 5088.0263671875
+          },
+          "target": {
+            "x": 717.7264093183051,
+            "y": 2697.533931298359
+          }
+        },
+        {
+          "control": {
+            "x": 5376.945556640625,
+            "y": 4018.575927734375
+          },
+          "target": {
+            "x": 1997.3071112801415,
+            "y": 2078.893695581181
+          }
+        }
+      ],
+      "image": "https://cdn.mappedin.com/59f9ca8af3ea230178000000/maps/67f4f2d16946c55c352dacd7_files/",
+      "x_generateBorders": false
+    }
+  }
+]

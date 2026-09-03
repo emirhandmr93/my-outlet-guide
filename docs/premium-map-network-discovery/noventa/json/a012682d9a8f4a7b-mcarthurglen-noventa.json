@@ -1,0 +1,438 @@
+[
+  {
+    "elevation": 0,
+    "name": "Mall Map",
+    "shortName": "Map",
+    "group": "5bcf763b5cfb9d2424000000",
+    "tiles": "https://cdn.mappedin.com/priv-5bce119022348e1534e61004/maps/5bcf765ad935f65d1d62220e_files/",
+    "width": 6120,
+    "height": 3960,
+    "georeference": [
+      {
+        "control": {
+          "x": 2858.31640625,
+          "y": 2301.984375
+        },
+        "target": {
+          "x": 45.670586083551896,
+          "y": 12.53446469712792
+        }
+      },
+      {
+        "control": {
+          "x": 4140.16015625,
+          "y": 929.361328125
+        },
+        "target": {
+          "x": 45.67321851277897,
+          "y": 12.53776967280539
+        }
+      },
+      {
+        "control": {
+          "x": 3600.0087890625,
+          "y": 2752.14208984375
+        },
+        "target": {
+          "x": 45.6697901648992,
+          "y": 12.536480073674355
+        }
+      },
+      {
+        "control": {
+          "x": 4526.4130859375,
+          "y": 1425.0283203125
+        },
+        "target": {
+          "x": 45.672317090347406,
+          "y": 12.538840887273384
+        }
+      }
+    ],
+    "layers": [
+      {
+        "layerId": "5bee3af753982fb408f553df",
+        "type": "polygon",
+        "locked": false,
+        "visible": true,
+        "id": "Polygon"
+      },
+      {
+        "layerId": "5bee3b3453982fb408f5558d",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Kiosk"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e1",
+        "type": "polygon",
+        "locked": false,
+        "visible": true,
+        "id": "Washroom"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e6",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Wall"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e7",
+        "type": "polygon",
+        "locked": false,
+        "visible": true,
+        "id": "Floor"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e2",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Facility Corridor"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f3",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Arrows"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553ee",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Sidewalk"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e8",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Tree Highlight"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553e9",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Tree Base"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f0",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Landscape"
+      },
+      {
+        "layerId": "5bee3b1853982fb408f554e3",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Obstruction"
+      },
+      {
+        "layerId": "5bee3b1853982fb408f554e5",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "View Layer"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f1",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Water Bodies"
+      },
+      {
+        "layerId": "5bee3b3353982fb408f5558c",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Road Name"
+      },
+      {
+        "layerId": "5bee3b1853982fb408f554e1",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Icon"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553eb",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Lines"
+      },
+      {
+        "layerId": "5bee3b1853982fb408f554e0",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Parking Lot"
+      },
+      {
+        "layerId": "5bee3af753982fb408f553f2",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Base"
+      },
+      {
+        "layerId": "5dbc33b0114c6e0011d94623",
+        "type": "polygon",
+        "locked": true,
+        "visible": true,
+        "id": "Chess Board"
+      }
+    ],
+    "scene": {
+      "mtl": "https://cdn.mappedin.com/5bce119022348e1534e61004/1483644ee389b094aae5f981a81f554d8de32dac.mtl",
+      "obj": "https://cdn.mappedin.com/5bce119022348e1534e61004/fd027e6b8e8b51dc7bac0302f46ec4121e0e52a5.obj",
+      "images": [
+        {
+          "filename": "fdc1357e7f79a1c76b094d37681225f0da5a8bae.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/fdc1357e7f79a1c76b094d37681225f0da5a8bae.png"
+        },
+        {
+          "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+        },
+        {
+          "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+        },
+        {
+          "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+        },
+        {
+          "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+        },
+        {
+          "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+        },
+        {
+          "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+        },
+        {
+          "filename": "e9cb933e35847e7c61b5e767347073fec4dc7e2a.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/e9cb933e35847e7c61b5e767347073fec4dc7e2a.png"
+        },
+        {
+          "filename": "2e3ab42b6bb80c5aee7b5709173b85c5b2bb0192.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/2e3ab42b6bb80c5aee7b5709173b85c5b2bb0192.png"
+        },
+        {
+          "filename": "68e23ef6078ad21cb33b9ebd3cdd4638ffe871f4.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/68e23ef6078ad21cb33b9ebd3cdd4638ffe871f4.png"
+        },
+        {
+          "filename": "5728aa3ba57e3d62bb8f8ffb56b8aa93c5ffafe3.png",
+          "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/5728aa3ba57e3d62bb8f8ffb56b8aa93c5ffafe3.png"
+        }
+      ],
+      "polygons": "https://cdn.mappedin.com/5bce119022348e1534e61004/5d44c351785d18c5165017dc55bdb3f580b9ea81.json"
+    },
+    "x_scale": 0.20732723615455695,
+    "id": "5bcf767a5cfb9d2424000001",
+    "perspective": {
+      "id": "5bd07c055cfb9d2c11000045",
+      "name": "Website",
+      "width": 3500,
+      "height": 3000,
+      "camera": {
+        "type": "orthographic",
+        "position": {
+          "x": 23.733599434113135,
+          "y": 6.2189523822298565,
+          "z": -406.3353355240913
+        },
+        "rotation": {
+          "x": 3.1415917720674256,
+          "y": -4.721422618960605e-7,
+          "z": 0.49171938513050495
+        },
+        "target": {
+          "x": 23.733697272516434,
+          "y": 6.219135053318437,
+          "z": -199.11304005308065
+        },
+        "zoom": 28.052117945334267
+      },
+      "lights": [
+        {
+          "type": "hemisphere",
+          "intensity": 0.7,
+          "position": {
+            "x": 765,
+            "y": 495,
+            "z": -190
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        },
+        {
+          "type": "directional",
+          "intensity": 0.3,
+          "position": {
+            "x": -175,
+            "y": 100,
+            "z": -190
+          },
+          "rotation": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ],
+      "extrusionScale": 1.92,
+      "renderSampling": 2,
+      "layers": [
+        "Polygon",
+        "Kiosk",
+        "Washroom",
+        "Wall",
+        "Floor",
+        "Facility Corridor",
+        "Arrows",
+        "Sidewalk",
+        "Tree Highlight",
+        "Tree Base",
+        "Landscape",
+        "Obstruction",
+        "View Layer",
+        "Water Bodies",
+        "Road Name",
+        "Parking Icon",
+        "Parking Lines",
+        "Parking Lot",
+        "Base",
+        "Chess Board"
+      ],
+      "saveObj": true,
+      "scene": {
+        "mtl": "https://cdn.mappedin.com/5bce119022348e1534e61004/1483644ee389b094aae5f981a81f554d8de32dac.mtl",
+        "obj": "https://cdn.mappedin.com/5bce119022348e1534e61004/fd027e6b8e8b51dc7bac0302f46ec4121e0e52a5.obj",
+        "images": [
+          {
+            "filename": "fdc1357e7f79a1c76b094d37681225f0da5a8bae.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/fdc1357e7f79a1c76b094d37681225f0da5a8bae.png"
+          },
+          {
+            "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+          },
+          {
+            "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+          },
+          {
+            "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+          },
+          {
+            "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+          },
+          {
+            "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+          },
+          {
+            "filename": "44d67b3a6da34294f85809d8341c410ef2e6a2a5.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/44d67b3a6da34294f85809d8341c410ef2e6a2a5.png"
+          },
+          {
+            "filename": "e9cb933e35847e7c61b5e767347073fec4dc7e2a.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/e9cb933e35847e7c61b5e767347073fec4dc7e2a.png"
+          },
+          {
+            "filename": "2e3ab42b6bb80c5aee7b5709173b85c5b2bb0192.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/2e3ab42b6bb80c5aee7b5709173b85c5b2bb0192.png"
+          },
+          {
+            "filename": "68e23ef6078ad21cb33b9ebd3cdd4638ffe871f4.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/68e23ef6078ad21cb33b9ebd3cdd4638ffe871f4.png"
+          },
+          {
+            "filename": "5728aa3ba57e3d62bb8f8ffb56b8aa93c5ffafe3.png",
+            "url": "https://cdn.mappedin.com/5bce119022348e1534e61004/5728aa3ba57e3d62bb8f8ffb56b8aa93c5ffafe3.png"
+          }
+        ],
+        "polygons": "https://cdn.mappedin.com/5bce119022348e1534e61004/5d44c351785d18c5165017dc55bdb3f580b9ea81.json"
+      },
+      "size": {
+        "width": 3500,
+        "height": 3000
+      },
+      "mbtiles": null,
+      "original": "https://resize-worker.mappedin.com/resize:fit:3500:3000:0/enlarge:1/ext:png/plain/https://cdn.mappedin.com/5bce119022348e1534e61004/stitched/77277005161e749abfd13525bff5d3140dfa399b.png",
+      "tiled": true,
+      "tiles": "https://cdn.mappedin.com/5bce119022348e1534e61004/maps/9608af21-3720-4ac0-b03b-21604a52b044_files/",
+      "updatedAt": "2026-08-12T13:38:31+02:00",
+      "extents": {
+        "x": 0,
+        "y": 0,
+        "width": 3500,
+        "height": 3000
+      },
+      "reference": [
+        {
+          "control": {
+            "x": 2858.31640625,
+            "y": 2301.984375
+          },
+          "target": {
+            "x": 1127.3656620148602,
+            "y": -705.6274887917588
+          }
+        },
+        {
+          "control": {
+            "x": 4140.16015625,
+            "y": 929.361328125
+          },
+          "target": {
+            "x": 3336.2434597027705,
+            "y": 7614.71560873254
+          }
+        },
+        {
+          "control": {
+            "x": 3600.0087890625,
+            "y": 2752.14208984375
+          },
+          "target": {
+            "x": 5098.467972110625,
+            "y": -919.4092670223189
+          }
+        },
+        {
+          "control": {
+            "x": 4526.4130859375,
+            "y": 1425.0283203125
+          },
+          "target": {
+            "x": 5969.640303125358,
+            "y": 6447.824468128899
+          }
+        }
+      ],
+      "image": "https://cdn.mappedin.com/5bce119022348e1534e61004/maps/9608af21-3720-4ac0-b03b-21604a52b044_files/",
+      "x_generateBorders": false
+    }
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "responseUrl": "https://cdn.mappedin.com/5d370acd5f0d982c8a5241a6/f18a7519200dc2248fb5bd0131f5082a9d0ee895.zip",
+  "bundleHash": "d16ce494c665eed9",
+  "fileCount": 11,
+  "files": [
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/space/f_5d6c88c031894200135e3777.geojson",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/floorImages/f_5d6c88c031894200135e3777.json",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/enterprise/locations.json",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/enterprise/categories.json",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/enterprise/layers.json",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/enterprise/enterpriseStyles.json",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/manifest.geojson",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/floor.geojson",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/floorstack.json",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/node.geojson",
+    "docs/premium-map-network-discovery/la-roca-village/mvf/d16ce494c665eed9/styles.json"
+  ]
+}
