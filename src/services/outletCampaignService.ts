@@ -16,6 +16,10 @@ import {
 import { db } from "../firebase/config";
 import { officialCampaignHostsByOutlet } from "../constants/officialCampaignHosts";
 import type { TranslationLanguage } from "../translations/locale";
+import {
+  getCanonicalCampaignOutletName,
+  sanitizeCampaignPresentationText,
+} from "./outletCampaignDisplayIntegrity";
 import { resolveCampaignDisplayText } from "./outletCampaignLocalization";
 
 export const OUTLET_CAMPAIGNS_COLLECTION = "outletCampaigns";
@@ -80,7 +84,7 @@ export function parsePublishedOutletCampaign(
   const data = snapshot.data();
   const campaignId = requiredString(data.campaignId, 180);
   const outletId = requiredString(data.outletId, 160);
-  const outletName = requiredString(data.outletName, 240);
+  const storedOutletName = requiredString(data.outletName, 240);
   const brandName = requiredString(data.brandName, 160);
   const headline = requiredString(data.headline, 200);
   const summary = requiredString(data.summary, 700);
@@ -99,31 +103,34 @@ export function parsePublishedOutletCampaign(
   const evidenceValid = type === "offer"
     ? verification?.discountEvidence === true
     : type === "event" && verification?.eventEvidence === true;
+  const canonicalOutletName = outletId ? getCanonicalCampaignOutletName(outletId) : null;
   if (data.schemaVersion !== 2 || data.status !== "published" || data.active !== true
     || data.autoPublished !== true || data.sourceLocale !== "en"
     || verification?.status !== "verified" || verification.officialDomain !== true
     || verification.explicitDateRange !== true || !evidenceValid
     || verification.approvalRequired !== false
-    || !type || campaignId !== snapshot.id || !outletId || !outletName
+    || !type || campaignId !== snapshot.id || !outletId || !storedOutletName || !canonicalOutletName
     || !brandName || !headline || !summary || !discountLabel || !startsOn || !endsOn
     || !startsAt || !endsAt || !sourceUrl || !sourceHost || !timeZone
     || !/^\d{4}-\d{2}-\d{2}$/.test(startsOn) || !/^\d{4}-\d{2}-\d{2}$/.test(endsOn)
     || now < startsAt || now >= endsAt
     || !isOfficialCampaignSourceUrl(outletId, sourceUrl, sourceHost)) return null;
 
-  const displayText = resolveCampaignDisplayText(data.localizedText, language, {
+  const englishText = sanitizeCampaignPresentationText({
     brandName,
     headline,
     summary,
     conditions: optionalString(data.conditions, 900),
     discountLabel,
-  });
+  }, outletId, canonicalOutletName);
+  const localizedDisplayText = resolveCampaignDisplayText(data.localizedText, language, englishText);
+  const displayText = sanitizeCampaignPresentationText(localizedDisplayText, outletId, canonicalOutletName);
 
   return {
     type,
     campaignId,
     outletId,
-    outletName,
+    outletName: canonicalOutletName,
     brandName: displayText.brandName,
     headline: displayText.headline,
     summary: displayText.summary,
