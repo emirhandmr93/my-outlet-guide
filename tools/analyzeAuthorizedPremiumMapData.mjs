@@ -24,7 +24,7 @@ function walkFiles(dir, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) walkFiles(full, out);
-    else if (entry.isFile() && entry.name.endsWith('.json')) out.push(full);
+    else if (entry.isFile() && /\.geo?json$/i.test(entry.name)) out.push(full);
   }
   return out;
 }
@@ -75,7 +75,7 @@ function collectCoordinates(value, bounds) {
 
 function analyzeDocument(document, state, sourcePath) {
   const visited = new WeakSet();
-  function visit(value, key = '', parent = null) {
+  function visit(value, key = '') {
     if (!value || typeof value !== 'object') return;
     if (visited.has(value)) return;
     visited.add(value);
@@ -124,12 +124,12 @@ function analyzeDocument(document, state, sourcePath) {
     if (value.geometry?.coordinates) collectCoordinates(value.geometry.coordinates, state.bounds);
 
     if (Array.isArray(value)) {
-      for (const item of value) visit(item, key, value);
+      for (const item of value) visit(item, key);
     } else {
-      for (const [childKey, child] of Object.entries(value)) visit(child, childKey, value);
+      for (const [childKey, child] of Object.entries(value)) visit(child, childKey);
     }
   }
-  visit(document, 'root', null);
+  visit(document, 'root');
 }
 
 function compactBounds(bounds) {
