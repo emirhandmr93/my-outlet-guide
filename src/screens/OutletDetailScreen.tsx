@@ -660,6 +660,22 @@ export function OutletDetailScreen() {
           />
         </View>
 
+        {hasPremiumOutletMap(outlet.outletId) ? (
+          <TouchableOpacity
+            activeOpacity={0.86}
+            accessibilityRole="button"
+            style={styles.premiumMapButton}
+            onPress={() => navigation.navigate("PremiumOutletMap", { outletId: outlet.outletId })}
+          >
+            <View style={styles.premiumMapIcon}><Text style={styles.premiumMapIconText}>3D</Text></View>
+            <View style={styles.premiumMapCopy}>
+              <Text style={styles.premiumMapTitle}>{getPremiumMapCopy(language).openMap}</Text>
+              <Text style={styles.premiumMapSubtitle}>{getPremiumMapCopy(language).subtitle}</Text>
+            </View>
+            <Text style={styles.premiumMapArrow}>›</Text>
+          </TouchableOpacity>
+        ) : null}
+
         <View
           onLayout={(event) =>
             setSectionPosition("brands", event.nativeEvent.layout.y)
@@ -699,22 +715,6 @@ export function OutletDetailScreen() {
             source: "outlet_detail",
           })}
         />
-
-        {hasPremiumOutletMap(outlet.outletId) ? (
-          <TouchableOpacity
-            activeOpacity={0.86}
-            accessibilityRole="button"
-            style={styles.premiumMapButton}
-            onPress={() => navigation.navigate("PremiumOutletMap", { outletId: outlet.outletId })}
-          >
-            <View style={styles.premiumMapIcon}><Text style={styles.premiumMapIconText}>3D</Text></View>
-            <View style={styles.premiumMapCopy}>
-              <Text style={styles.premiumMapTitle}>{getPremiumMapCopy(language).openMap}</Text>
-              <Text style={styles.premiumMapSubtitle}>{getPremiumMapCopy(language).subtitle}</Text>
-            </View>
-            <Text style={styles.premiumMapArrow}>›</Text>
-          </TouchableOpacity>
-        ) : null}
 
         <MapsCard
           title={t("outlet.maps")}
