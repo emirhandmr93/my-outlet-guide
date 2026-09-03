@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - feat/premium-map-exact-completion
+    paths:
+      - tools/captureAuthorizedPremiumMapNetwork.mjs
+      - tools/extractAuthorizedPdfMapEvidence.py
+      - tools/analyzeAuthorizedPremiumMapData.mjs
+      - tools/checkAuthorizedPremiumMapEvidenceSafety.mjs
+      - .github/workflows/build-authorized-premium-map-evidence.yml
   workflow_dispatch:
 
 permissions:
@@ -65,7 +71,7 @@ jobs:
             const dir = path.join('docs','premium-map-network-discovery',id);
             if (!fs.existsSync(dir)) throw new Error(`Missing network evidence directory: ${id}`);
             const jsonFiles = [];
-            const walk = d => { for (const e of fs.readdirSync(d,{withFileTypes:true})) { const p=path.join(d,e.name); if(e.isDirectory()) walk(p); else if(e.isFile()&&e.name.endsWith('.json')) jsonFiles.push(p); } };
+            const walk = d => { for (const e of fs.readdirSync(d,{withFileTypes:true})) { const p=path.join(d,e.name); if(e.isDirectory()) walk(p); else if(e.isFile()&&(e.name.endsWith('.json')||e.name.endsWith('.geojson'))) jsonFiles.push(p); } };
             walk(dir);
             if (!jsonFiles.length) throw new Error(`No captured spatial JSON evidence: ${id}`);
           }
