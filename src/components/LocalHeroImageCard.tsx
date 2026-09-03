@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   },
   fillImage: {
     flex: 1,
+    height: "100%",
   },
   imageRadius: {
     borderRadius: 30,
