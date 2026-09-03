@@ -40,6 +40,22 @@ assert(
     enhancer.includes('document.addEventListener("click", handleClickCapture, true)'),
   "Drag threshold/click suppression is required so carousel dragging does not accidentally open a card.",
 );
+
+const pointerDownStart = enhancer.indexOf("function handlePointerDown");
+const pointerMoveStart = enhancer.indexOf("function handlePointerMove");
+const beginDragStart = enhancer.indexOf("function beginDrag");
+const setPointerCaptureIndex = enhancer.indexOf("setPointerCapture");
+assert(pointerDownStart >= 0 && pointerMoveStart > pointerDownStart && beginDragStart >= 0,
+  "Web carousel pointer handlers are incomplete.");
+assert(
+  setPointerCaptureIndex >= beginDragStart && setPointerCaptureIndex < pointerDownStart,
+  "Pointer capture must be armed by beginDrag, not during pointerdown, so normal buttons and links remain clickable.",
+);
+assert(
+  enhancer.indexOf("beginDrag(event);", pointerMoveStart) > pointerMoveStart,
+  "Carousel drag must begin only after pointer movement passes the drag threshold.",
+);
+
 assert(
   home.includes("<FlatList<FeaturedSlide>") &&
     home.includes("horizontal") &&
@@ -53,4 +69,4 @@ assert(
   "Outlet campaign carousel must remain horizontally swipeable and open campaign details.",
 );
 
-console.log("Web manual carousel controls passed: mouse drag is enabled globally on web while native swipe behavior remains unchanged.");
+console.log("Web manual carousel controls passed: mouse drag remains enabled on web without stealing ordinary button/link clicks; native swipe behavior is unchanged.");
