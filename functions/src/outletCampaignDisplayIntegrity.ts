@@ -61,6 +61,8 @@ export function sanitizeOfficialCampaignPresentationText(
 ): string {
   let normalized = clean(value, Math.max(maxLength * 2, maxLength));
   if (!normalized) return "";
+  const source = sourceByOutletId.get(outletId);
+  if (!source || source.outletName !== canonicalOutletName) return clean(normalized, maxLength);
 
   for (const { alias } of monitoredAliases) {
     normalized = normalized.replace(new RegExp(escapeRegExp(alias), "giu"), canonicalOutletName);
