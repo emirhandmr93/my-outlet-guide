@@ -22,7 +22,11 @@ import {
   removePremiumMapOffline,
   savePremiumMapOffline,
 } from "../features/premiumOutletMaps/offlinePackService";
-import { campaignForStore, searchMapStores } from "../features/premiumOutletMaps/search";
+import {
+  campaignForStore,
+  resolveCampaignBrandIdForOutlet,
+  searchMapStores,
+} from "../features/premiumOutletMaps/search";
 import type { MapDetailMode, PremiumMapCampaign, PremiumMapStore } from "../features/premiumOutletMaps/types";
 import { useTranslation } from "../hooks/useTranslation";
 import type { RootStackParamList } from "../navigation/types";
@@ -31,6 +35,8 @@ import { colors } from "../theme/colors";
 import { openExternalUrl } from "../utils/externalUrl";
 import { formatBrandCategoryLabel } from "../utils/brandCategoryLabelFormatter";
 import { trackProductEvent } from "../utils/productAnalytics";
+
+const OSM_COPYRIGHT_URL = "https://www.openstreetmap.org/copyright";
 
 export function PremiumOutletMapScreen() {
   const route = useRoute<RouteProp<RootStackParamList, "PremiumOutletMap">>();
@@ -54,12 +60,18 @@ export function PremiumOutletMapScreen() {
     trackProductEvent("premium_map_open", { outlet_id: map.outletId, map_accuracy: map.spatialAccuracy });
     void getPremiumMapOffline(map.outletId).then(cached => setOffline(Boolean(cached))).catch(() => setOffline(false));
     return subscribeActiveOutletCampaignsForOutlet(map.outletId, all => {
-      setCampaigns(all.map(campaign => ({
-        campaignId: campaign.campaignId,
-        brandName: campaign.brandName,
-        endsOn: campaign.endsOn,
-        discountLabel: campaign.discountLabel,
-      })));
+      setCampaigns(all.flatMap(campaign => {
+        const brandId = resolveCampaignBrandIdForOutlet(map.outletId, campaign.brandName);
+        if (!brandId) return [];
+        return [{
+          campaignId: campaign.campaignId,
+          outletId: map.outletId,
+          brandId,
+          brandName: campaign.brandName,
+          endsOn: campaign.endsOn,
+          discountLabel: campaign.discountLabel,
+        }];
+      }));
     }, () => setCampaigns([]), language);
   }, [language, map?.outletId]);
 
@@ -97,6 +109,7 @@ export function PremiumOutletMapScreen() {
   const categoryName = selectedStore
     ? categories.find(category => category.categoryId === selectedStore.categoryId)?.categoryName ?? selectedStore.categoryId.replace(/-/g, " ")
     : "";
+  const usesOpenStreetMap = map.source.dataLicense === "ODbL-1.0";
 
   return (
     <ScrollView style={styles.screen} contentContainerStyle={[styles.content, { paddingBottom: Math.max(30, insets.bottom + 18) }]} keyboardShouldPersistTaps="handled">
@@ -160,6 +173,16 @@ export function PremiumOutletMapScreen() {
           bearing={bearing}
           onSelectStore={selectStore}
         />
+        {usesOpenStreetMap ? (
+          <Pressable
+            accessibilityRole="link"
+            accessibilityLabel="OpenStreetMap copyright and ODbL licence"
+            onPress={() => void openExternalUrl(OSM_COPYRIGHT_URL)}
+            style={styles.osmAttribution}
+          >
+            <Text style={styles.osmAttributionText}>© OpenStreetMap contributors · ODbL 1.0</Text>
+          </Pressable>
+        ) : null}
       </View>
 
       <View style={styles.controls}>
@@ -212,6 +235,11 @@ export function PremiumOutletMapScreen() {
         </Pressable>
         <Text style={styles.sourceText}>{copy.sourceNote}</Text>
         <Text style={styles.sourceText}>{map.source.host} · {copy.lastUpdated}: {map.lastUpdated}</Text>
+        {usesOpenStreetMap ? (
+          <Pressable onPress={() => void openExternalUrl(OSM_COPYRIGHT_URL)} accessibilityRole="link">
+            <Text style={styles.sourceLink}>{map.source.attribution ?? "© OpenStreetMap contributors"} · ODbL 1.0 ↗</Text>
+          </Pressable>
+        ) : null}
         {Platform.OS === "web" ? <Text style={styles.webNote}>{copy.webNote}</Text> : null}
       </View>
     </ScrollView>
@@ -239,6 +267,8 @@ const styles = StyleSheet.create({
   noResultTitle: { color: colors.primary, fontWeight: "900" },
   noResultText: { color: "#5B6573", marginTop: 2, lineHeight: 18 },
   mapShell: { height: 520, minHeight: 420, overflow: "hidden", borderRadius: 22, borderWidth: 1, borderColor: "#D6DBE1", backgroundColor: "#EEF1F4" },
+  osmAttribution: { position: "absolute", right: 8, bottom: 8, zIndex: 20, maxWidth: "92%", paddingHorizontal: 7, paddingVertical: 5, borderRadius: 6, backgroundColor: "rgba(255,255,255,0.94)", borderWidth: 1, borderColor: "#CBD2DA" },
+  osmAttributionText: { color: "#344150", fontSize: 10, lineHeight: 12, fontWeight: "700", textDecorationLine: "underline" },
   controls: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
   controlButton: { minHeight: 52, flexGrow: 1, alignItems: "center", justifyContent: "center", borderRadius: 14, paddingHorizontal: 12, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#CED4DC" },
   controlButtonActive: { backgroundColor: "#FFF0AA", borderColor: "#C7A51F" },
@@ -260,7 +290,7 @@ const styles = StyleSheet.create({
   poiGrid: { flexDirection: "row", flexWrap: "wrap", gap: 7, marginTop: 10 },
   poiChip: { color: colors.primary, backgroundColor: "#EEF1F5", paddingHorizontal: 9, paddingVertical: 7, borderRadius: 999, fontSize: 12, overflow: "hidden" },
   sourceCard: { borderRadius: 16, padding: 14, backgroundColor: "#E9EDF2" },
-  sourceLink: { color: "#194F8C", fontWeight: "900", textDecorationLine: "underline" },
+  sourceLink: { color: "#194F8C", fontWeight: "900", textDecorationLine: "underline", marginTop: 6 },
   sourceText: { color: "#5F6875", fontSize: 12, lineHeight: 17, marginTop: 6 },
   webNote: { color: "#7B6110", fontSize: 12, lineHeight: 17, fontWeight: "800", marginTop: 8 },
 });

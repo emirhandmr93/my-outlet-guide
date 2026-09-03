@@ -37,6 +37,7 @@ export type LocalizedLabel = Record<TranslationLanguage, string>;
 
 export type PremiumMapStore = {
   id: string;
+  outletId: string;
   brandId: string;
   brandName: string;
   aliases: string[];
@@ -100,6 +101,8 @@ export type PremiumOutletMap = {
 
 export type PremiumMapCampaign = {
   campaignId: string;
+  outletId?: string;
+  brandId?: string;
   brandName: string;
   endsOn: string;
   discountLabel: string;
