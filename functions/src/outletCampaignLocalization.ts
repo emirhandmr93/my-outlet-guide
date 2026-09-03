@@ -206,7 +206,7 @@ function quantityFreeTokens(value: string): string[] {
   const normalized = normalizePercentageCharacters(value);
   const freeWord = "(?:free|ücretsiz|gratis|gratuit(?:e)?|kostenlos|مجانا|مجاني|бесплатно|免费|免費)";
   const tokens = new Set<string>();
-  const plusPattern = new RegExp(`\\b(\\d{1,2})\\s*\\+\\s*(\\d{1,2})\\s*(?:for\\s+)?${freeWord}\\b`, "giu");
+  const plusPattern = new RegExp(`\\b(\\d{1,2})\\s*\\+\\s*(\\d{1,2})\\s*(?:for\\s+)?${freeWord}(?=\\s|[.,;!?]|$)`, "giu");
   for (const match of normalized.matchAll(plusPattern)) tokens.add(`${Number(match[1])}+${Number(match[2])}`);
   return [...tokens].sort();
 }
@@ -247,10 +247,11 @@ function parseLocalizedText(value: unknown, english: CampaignLocalizedText): Cam
   };
   if (!parsed.brandName || parsed.brandName !== english.brandName || !parsed.headline || !parsed.summary
     || parsed.conditions === null || !parsed.discountLabel) return null;
+  const parsedText = parsed as CampaignLocalizedText;
   for (const field of translatableFields) {
-    if (!preservesCampaignEvidence(english[field], parsed[field])) return null;
+    if (!preservesCampaignEvidence(english[field], parsedText[field])) return null;
   }
-  return parsed as CampaignLocalizedText;
+  return parsedText;
 }
 
 function translationValidationFailure(value: CampaignLocalizedText, english: CampaignLocalizedText): string {
