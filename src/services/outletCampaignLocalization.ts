@@ -146,7 +146,7 @@ function quantityFreeTokens(value: string): string[] {
   const normalized = normalizePercentageCharacters(value);
   const freeWord = "(?:free|ücretsiz|gratis|gratuit(?:e)?|kostenlos|مجانا|مجاني|бесплатно|免费|免費)";
   const tokens = new Set<string>();
-  const plusPattern = new RegExp(`\\b(\\d{1,2})\\s*\\+\\s*(\\d{1,2})\\s*(?:for\\s+)?${freeWord}\\b`, "giu");
+  const plusPattern = new RegExp(`\\b(\\d{1,2})\\s*\\+\\s*(\\d{1,2})\\s*(?:for\\s+)?${freeWord}(?=\\s|[.,;!?]|$)`, "giu");
   for (const match of normalized.matchAll(plusPattern)) tokens.add(`${Number(match[1])}+${Number(match[2])}`);
   return [...tokens].sort();
 }
