@@ -46,6 +46,8 @@ async function main() {
   assert.deepEqual(complete.completeLocales, [...supportedLanguageCodes]);
   assert.deepEqual(complete.failedLocales, []);
   assert.equal(complete.localizedText.en.headline, campaign.headline, "English must remain exact source text.");
+  assert.equal(complete.localizedText.tr.brandName, campaign.brandName,
+    "Brand proper nouns must never be translated.");
   assert.match(complete.localizedText.tr.headline, /^\[tr\]/);
   assert.match(complete.localizedText.ar.discountLabel, /50%/);
   assert.match(complete.localizedText.zh.summary, /^\[zh\]/);
@@ -71,9 +73,55 @@ async function main() {
   assert.deepEqual(corruptedDiscount.failedLocales, ["tr", "es", "fr", "de", "ar", "ru", "zh"],
     "Translations that alter percentage evidence must be rejected.");
 
+  const commaCampaign: ParsedOfficialCampaign = {
+    ...campaign,
+    campaignId: "roermond-comma-test",
+    sourceId: "designer-outlet-roermond-official",
+    sourceUrl: "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/offers/comma/",
+    outletId: "designer-outlet-roermond",
+    outletName: "Designer Outlet Roermond",
+    brandName: "Comma",
+    headline: "Now for €89.99",
+    summary: "Discover special offers from Comma at Designer Outlet Roermond.",
+    conditions: "Comma offer valid while stocks last.",
+    discountLabel: "€50.00 extra saving on outlet price",
+    discountPercent: undefined,
+    startsOn: "2026-08-28",
+    endsOn: "2026-09-04",
+    timeZone: "Europe/Amsterdam",
+    featuredPriority: 100,
+  };
+  const commaLocalized = await buildCampaignLocalization(commaCampaign, async (contents, targetLanguage) =>
+    contents.map(content => targetLanguage === "tr" ? content.replaceAll("Comma", "Virgül") : content));
+  assert.equal(commaLocalized.localizedText.tr.brandName, "Comma");
+  assert.match(commaLocalized.localizedText.tr.summary, /Comma/);
+  assert.doesNotMatch(commaLocalized.localizedText.tr.summary, /Virgül/,
+    "Translated common-word meanings must be restored to the official brand proper noun.");
+
   const turkish = resolveCampaignDisplayText(complete.localizedText, "tr", complete.localizedText.en);
+  assert.equal(turkish.brandName, campaign.brandName);
   assert.match(turkish.headline, /^\[tr\]/);
   assert.match(turkish.discountLabel, /50%/);
+
+  const legacyComma = resolveCampaignDisplayText({
+    tr: {
+      brandName: "Virgül",
+      headline: "Şimdi sadece 89,99 €",
+      summary: "Designer Outlet Roermond'da Virgül fırsatlarını keşfedin.",
+      conditions: "Virgül fırsatı stoklarla sınırlıdır.",
+      discountLabel: "Outlet fiyatına göre 50,00 € ek tasarruf",
+    },
+  }, "tr", {
+    brandName: "Comma",
+    headline: "Now for €89.99",
+    summary: "Discover offers from Comma at Designer Outlet Roermond.",
+    conditions: "Comma offer while stocks last.",
+    discountLabel: "€50.00 extra saving on outlet price",
+  });
+  assert.equal(legacyComma.brandName, "Comma");
+  assert.match(legacyComma.summary, /Comma/);
+  assert.doesNotMatch(legacyComma.summary, /Virgül/,
+    "The client must repair already-stored localized brand mistranslations defensively.");
 
   const turkishPrefixPercent = resolveCampaignDisplayText({
     tr: { ...complete.localizedText.tr, discountLabel: "Ekstra %50 indirim" },
@@ -102,7 +150,7 @@ async function main() {
   assert.deepEqual(resolveCampaignDisplayText({}, "ru", complete.localizedText.en), complete.localizedText.en,
     "Missing locale data must fall back to English field-for-field.");
 
-  console.log("Outlet campaign localization check passed: 8 locales, cache reuse, localized discount syntax, safe fallback, and discount integrity.");
+  console.log("Outlet campaign localization check passed: 8 locales, proper-noun preservation, cache reuse, localized discount syntax, safe fallback, and discount integrity.");
 }
 
 void main().catch(error => {
