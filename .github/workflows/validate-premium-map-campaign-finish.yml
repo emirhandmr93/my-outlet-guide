@@ -1,0 +1,47 @@
+name: Validate premium map and campaign finish
+
+on:
+  push:
+    branches:
+      - feat/premium-map-exact-completion
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: premium-map-campaign-final-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release-validation:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate campaigns
+        run: npm run validate:campaigns
+
+      - name: Validate premium maps
+        run: npm run validate:premium-maps
+
+      - name: Full release gate
+        run: npm run validate:release
+
+      - name: Production web export
+        run: npm run web:build
