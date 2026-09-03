@@ -3,7 +3,17 @@ import type { TranslationLanguage } from "../../translations/locale";
 export type Coordinate = [longitude: number, latitude: number];
 export type Polygon = Coordinate[][];
 export type MapDetailMode = "premium" | "simple";
-export type SpatialAccuracy = "schematic-reference" | "licensed-exact" | "surveyed-exact";
+export type SpatialAccuracy =
+  | "schematic-reference"
+  | "open-data-verified"
+  | "licensed-exact"
+  | "surveyed-exact";
+export type PremiumMapVerificationStatus = "draft" | "verified";
+export type PremiumMapDataLicense =
+  | "proprietary-reference-only"
+  | "ODbL-1.0"
+  | "commercial-license"
+  | "self-surveyed";
 
 export const premiumMapPoiKinds = [
   "parking",
@@ -62,9 +72,12 @@ export type PremiumMapSource = {
   url: string;
   host: string;
   checkedOn: string;
-  purpose: "directory-reference";
-  redrawPolicy: "original-editorial-redraw";
-  redistributionStatus: "original-data-only";
+  purpose: "directory-reference" | "spatial-data" | "survey-evidence";
+  redrawPolicy: "original-editorial-redraw" | "open-data-render" | "licensed-render" | "survey-render";
+  redistributionStatus: "reference-only" | "open-data-licensed" | "commercially-licensed" | "owned-survey";
+  dataLicense: PremiumMapDataLicense;
+  commercialReuseAllowed: boolean;
+  attribution?: string;
 };
 
 export type PremiumOutletMap = {
@@ -76,6 +89,7 @@ export type PremiumOutletMap = {
   defaultPitch: number;
   defaultZoom: number;
   spatialAccuracy: SpatialAccuracy;
+  verificationStatus: PremiumMapVerificationStatus;
   lastUpdated: string;
   floors: PremiumMapFloor[];
   stores: PremiumMapStore[];
