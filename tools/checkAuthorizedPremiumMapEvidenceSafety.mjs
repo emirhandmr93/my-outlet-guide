@@ -11,24 +11,27 @@ const targets = [
 const sensitiveKey = /secret|token|authorization|password|credential|client.?secret|search.?key.?secret|key.?value|api.?key|signature|signed/i;
 const redacted = /^<redacted(?::[^>]*)?>$/i;
 
+function isJsonEvidence(pathname) {
+  return /\.geo?json$/i.test(pathname);
+}
+
 function filesIn(target, out = []) {
   if (!fs.existsSync(target)) return out;
   const stat = fs.statSync(target);
   if (stat.isFile()) {
-    if (target.endsWith('.json')) out.push(target);
+    if (isJsonEvidence(target)) out.push(target);
     return out;
   }
   for (const entry of fs.readdirSync(target, { withFileTypes: true })) {
     const full = path.join(target, entry.name);
     if (entry.isDirectory()) filesIn(full, out);
-    else if (entry.isFile() && entry.name.endsWith('.json')) out.push(full);
+    else if (entry.isFile() && isJsonEvidence(entry.name)) out.push(full);
   }
   return out;
 }
 
 function isRedactedValue(value) {
   if (typeof value === 'string') return redacted.test(value);
-  // jsonShape() represents a sanitized scalar as { type, value }.
   if (value && typeof value === 'object' && !Array.isArray(value) && typeof value.value === 'string') {
     return redacted.test(value.value);
   }
@@ -72,5 +75,5 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exitCode = 1;
 } else {
-  console.log(`Authorized premium map evidence safety check passed (${files.length} JSON files).`);
+  console.log(`Authorized premium map evidence safety check passed (${files.length} JSON/GeoJSON files).`);
 }
