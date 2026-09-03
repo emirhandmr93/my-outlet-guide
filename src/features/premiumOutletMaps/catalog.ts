@@ -1,6 +1,7 @@
 import { outlets } from "../../constants/outlets";
 import { getBrandsForOutlet } from "../../services/brandService";
 import type { TranslationLanguage } from "../../translations/locale";
+import { exactPremiumOutletMaps } from "./exactCatalog";
 import type {
   Coordinate,
   LocalizedLabel,
@@ -32,13 +33,13 @@ export type PremiumOutletMapId = (typeof premiumOutletMapIds)[number];
 const sourceUrls: Record<PremiumOutletMapId, string> = {
   "bicester-village": "https://www.thebicestercollection.com/bicester-village/en/map/",
   "la-vallee-village": "https://www.thebicestercollection.com/la-vallee-village/en/map/",
-  "serravalle-designer-outlet": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/plan-your-visit/map/",
+  "serravalle-designer-outlet": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/map/",
   "la-roca-village": "https://www.thebicestercollection.com/la-roca-village/en/map/",
   "las-rozas-village": "https://www.thebicestercollection.com/las-rozas-village/en/map/",
-  "designer-outlet-roermond": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/plan-your-visit/map/",
+  "designer-outlet-roermond": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/map/",
   "outletcity-metzingen": "https://www.outletcity.com/en/metzingen/map/",
   "the-mall-firenze": "https://firenze.themall.it/en/visit-us",
-  noventa: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/plan-your-visit/map/",
+  noventa: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/map/",
   "fidenza-village": "https://www.thebicestercollection.com/fidenza-village/en/map/",
 };
 
@@ -173,7 +174,7 @@ function buildMap(outletId: PremiumOutletMapId): PremiumOutletMap {
   };
 }
 
-const mapCache = new Map<PremiumOutletMapId, PremiumOutletMap>();
+const schematicMapCache = new Map<PremiumOutletMapId, PremiumOutletMap>();
 
 function isPremiumOutletMapCandidateId(outletId: string): outletId is PremiumOutletMapId {
   return premiumOutletMapIds.includes(outletId as PremiumOutletMapId);
@@ -195,10 +196,12 @@ function hasClosedPolygon(polygon: Polygon | undefined): boolean {
 
 export function getPremiumOutletMapCandidate(outletId: string): PremiumOutletMap | undefined {
   if (!isPremiumOutletMapCandidateId(outletId)) return undefined;
-  const cached = mapCache.get(outletId);
+  const exact = exactPremiumOutletMaps[outletId];
+  if (exact) return exact;
+  const cached = schematicMapCache.get(outletId);
   if (cached) return cached;
   const generated = buildMap(outletId);
-  mapCache.set(outletId, generated);
+  schematicMapCache.set(outletId, generated);
   return generated;
 }
 
