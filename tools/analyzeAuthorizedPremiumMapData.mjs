@@ -24,7 +24,7 @@ function walkFiles(dir, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) walkFiles(full, out);
-    else if (entry.isFile() && /\.geo?json$/i.test(entry.name)) out.push(full);
+    else if (entry.isFile() && /\.(?:geo)?json$/i.test(entry.name)) out.push(full);
   }
   return out;
 }
@@ -92,8 +92,10 @@ function spatialReferences(value, key = '') {
   const id = String(objectId(value) ?? '');
   const locationLike = /location|store|shop|tenant|boutique|poi|place/i.test(key)
     || id.startsWith('loc_')
+    || id.startsWith('el_')
     || value.type === 'tenant'
-    || value.type === 'amenity';
+    || value.type === 'amenity'
+    || value.type === 'amenities';
   if (!locationLike) return null;
 
   const candidates = [
@@ -131,7 +133,7 @@ function analyzeDocument(document, state, sourcePath) {
       state.features += 1;
       const id = String(objectId(value) ?? '');
       if (id.startsWith('f_')) state.floorFeatures += 1;
-      if (id.startsWith('g_')) state.geometryFeatures += 1;
+      if (id.startsWith('g_') || id.startsWith('s_')) state.geometryFeatures += 1;
       if (value.geometry?.coordinates) collectCoordinates(value.geometry.coordinates, state.bounds);
     }
 
@@ -144,7 +146,7 @@ function analyzeDocument(document, state, sourcePath) {
         if (state.floorSamples.length < 12) state.floorSamples.push({ id: id || null, name: stringName(value), elevation: value.elevation ?? value.level ?? null, source: sourcePath });
       }
     }
-    if (id.startsWith('g_') || /geometry/.test(lowerKey)) {
+    if (id.startsWith('g_') || id.startsWith('s_') || /geometry|space/.test(lowerKey)) {
       if (id) state.geometryObjects += 1;
     }
 
