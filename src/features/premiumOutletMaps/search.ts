@@ -36,7 +36,9 @@ export function resolveCampaignBrandIdForOutlet(outletId: string, campaignBrandN
 }
 
 export function campaignForStore(store: PremiumMapStore, campaigns: PremiumMapCampaign[]): PremiumMapCampaign | undefined {
-  return campaigns.find(campaign =>
-    campaign.outletId === store.outletId && campaign.brandId === store.brandId,
-  );
+  return campaigns.find(campaign => {
+    if (campaign.outletId && campaign.outletId !== store.outletId) return false;
+    const canonicalBrandId = campaign.brandId ?? resolveCampaignBrandIdForOutlet(store.outletId, campaign.brandName);
+    return canonicalBrandId === store.brandId;
+  });
 }
