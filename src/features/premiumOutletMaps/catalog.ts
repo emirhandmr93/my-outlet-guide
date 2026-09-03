@@ -88,6 +88,7 @@ function buildStores(outletId: string, center: Coordinate, openingHours: string)
     const polygon = rectangle(center, east, north, cellWidth, cellHeight);
     return {
       id: `${outletId}:${brand.brandId}`,
+      outletId,
       brandId: brand.brandId,
       brandName: brand.brandName,
       aliases: brand.aliases ?? [],
