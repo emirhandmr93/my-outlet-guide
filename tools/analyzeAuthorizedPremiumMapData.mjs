@@ -73,6 +73,49 @@ function collectCoordinates(value, bounds) {
   for (const child of value) collectCoordinates(child, bounds);
 }
 
+function asNonEmptyReference(value) {
+  if (Array.isArray(value)) return value.length ? value : null;
+  if (typeof value === 'string' && value.trim()) return [value.trim()];
+  if (value && typeof value === 'object' && Object.keys(value).length) return [value];
+  return null;
+}
+
+/**
+ * Mappedin has shipped multiple MVF generations. MVF v3 uses geometryAnchors / geometryAnchor;
+ * v2 location records can link through polygons or nodes; older exports can link locations through
+ * spaces. Treat all of those documented relations as legitimate spatial anchors instead of requiring
+ * one field spelling. This only proves that an official location is linked to official geometry; the
+ * exact-map importer still has to resolve and verify the referenced geometry before release.
+ */
+function spatialReferences(value, key = '') {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const id = String(objectId(value) ?? '');
+  const locationLike = /location|store|shop|tenant|boutique|poi|place/i.test(key)
+    || id.startsWith('loc_')
+    || value.type === 'tenant'
+    || value.type === 'amenity';
+  if (!locationLike) return null;
+
+  const candidates = [
+    value.geometryAnchors,
+    value.geometry_anchors,
+    value.geometryAnchor,
+    value.geometry_anchor,
+    value.polygons,
+    value.spaces,
+    value.nodes,
+    value.geometryIds,
+    value.geometry_ids,
+    value.geometryId,
+    value.geometry_id,
+  ];
+  for (const candidate of candidates) {
+    const references = asNonEmptyReference(candidate);
+    if (references) return references;
+  }
+  return null;
+}
+
 function analyzeDocument(document, state, sourcePath) {
   const visited = new WeakSet();
   function visit(value, key = '') {
@@ -105,17 +148,17 @@ function analyzeDocument(document, state, sourcePath) {
       if (id) state.geometryObjects += 1;
     }
 
-    const anchors = value.geometryAnchors ?? value.geometry_anchors ?? value.anchors;
-    if (Array.isArray(anchors) && anchors.length) {
+    const references = spatialReferences(value, key);
+    if (references) {
       state.locationAnchorObjects += 1;
       const name = stringName(value);
       if (name && state.locationSamples.length < 30) {
-        state.locationSamples.push({ id: id || null, name, anchors: anchors.slice(0, 4), source: sourcePath });
+        state.locationSamples.push({ id: id || null, name, anchors: references.slice(0, 4), source: sourcePath });
       }
     }
 
     const name = stringName(value);
-    if (name && (/location|store|shop|tenant|boutique|poi|place/.test(lowerKey) || keys.includes('geometryanchors'))) {
+    if (name && (/location|store|shop|tenant|boutique|poi|place/.test(lowerKey) || keys.includes('geometryanchors') || keys.includes('polygons') || keys.includes('spaces'))) {
       state.namedLocationLikeObjects += 1;
       if (state.nameSamples.length < 40 && !state.nameSamples.includes(name)) state.nameSamples.push(name);
     }
