@@ -8,9 +8,9 @@
     43.6936
   ],
   "discoveryRadiusMeters": 750,
-  "collectedAt": "2026-09-03T17:01:12.996Z",
-  "osmBaseTimestamp": "2026-05-31T22:37:44Z",
-  "overpassEndpoint": "https://overpass.private.coffee/api/interpreter",
+  "collectedAt": "2026-09-03T17:09:01.953Z",
+  "osmBaseTimestamp": "2026-09-03T17:06:51Z",
+  "overpassEndpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
   "source": {
     "dataset": "OpenStreetMap",
     "license": "ODbL-1.0",

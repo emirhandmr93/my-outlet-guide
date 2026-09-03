@@ -8,9 +8,9 @@
     41.6105
   ],
   "discoveryRadiusMeters": 950,
-  "collectedAt": "2026-09-03T16:59:46.648Z",
-  "osmBaseTimestamp": "2026-05-31T22:37:44Z",
-  "overpassEndpoint": "https://overpass.private.coffee/api/interpreter",
+  "collectedAt": "2026-09-03T17:06:35.967Z",
+  "osmBaseTimestamp": "2026-09-03T17:04:51Z",
+  "overpassEndpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
   "source": {
     "dataset": "OpenStreetMap",
     "license": "ODbL-1.0",
@@ -25,13 +25,13 @@
     "automaticReleaseCandidate": false
   },
   "stats": {
-    "elementCount": 187,
-    "namedRetailElementCount": 92,
+    "elementCount": 207,
+    "namedRetailElementCount": 111,
     "appBrandCount": 111,
     "exactAreaBrandCount": 0,
-    "exactPointBrandCount": 39,
-    "ambiguousBrandCount": 1,
-    "missingBrandCount": 71,
+    "exactPointBrandCount": 52,
+    "ambiguousBrandCount": 3,
+    "missingBrandCount": 56,
     "exactSiteBoundaryCandidateCount": 1
   },
   "brandAudits": [
@@ -88,16 +88,16 @@
         {
           "type": "node",
           "id": 6139362994,
-          "version": 1,
-          "timestamp": "2018-12-15T18:57:36Z",
+          "version": 2,
+          "timestamp": "2026-07-10T11:05:03Z",
           "names": [
             "Armani"
           ],
           "hasAreaGeometry": false,
           "level": null,
           "center": [
-            2.3446618,
-            41.6127273
+            2.3445721,
+            41.6126155
           ]
         }
       ]
@@ -110,16 +110,17 @@
         {
           "type": "node",
           "id": 5448590891,
-          "version": 5,
-          "timestamp": "2022-11-18T16:46:32Z",
+          "version": 6,
+          "timestamp": "2026-07-10T11:05:03Z",
           "names": [
-            "Asics"
+            "ASICS",
+            "ASICS"
           ],
           "hasAreaGeometry": false,
           "level": null,
           "center": [
-            2.3446256,
-            41.6115254
+            2.3447142,
+            41.6116233
           ]
         }
       ]
@@ -138,8 +139,8 @@
         {
           "type": "node",
           "id": 10199860870,
-          "version": 2,
-          "timestamp": "2022-11-18T19:15:23Z",
+          "version": 3,
+          "timestamp": "2026-07-10T11:05:03Z",
           "names": [
             "Balenciaga",
             "Balenciaga"
@@ -147,8 +148,8 @@
           "hasAreaGeometry": false,
           "level": null,
           "center": [
-            2.3417068,
-            41.6081764
+            2.3416471,
+            41.6082099
           ]
         }
       ]
@@ -209,8 +210,26 @@
     {
       "brandId": "boss",
       "brandName": "BOSS",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333765,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Hugo Boss",
+            "Hugo Boss",
+            "Boss"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3430221,
+            41.6095817
+          ]
+        }
+      ]
     },
     {
       "brandId": "brownie",
@@ -237,8 +256,25 @@
     {
       "brandId": "brunello-cucinelli",
       "brandName": "Brunello Cucinelli",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333750,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Brunello Cucinelli",
+            "Brunello Cucinelli"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3421847,
+            41.6080899
+          ]
+        }
+      ]
     },
     {
       "brandId": "burberry",
@@ -349,8 +385,24 @@
     {
       "brandId": "clarins",
       "brandName": "Clarins",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333755,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Clarins"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3450798,
+            41.6133042
+          ]
+        }
+      ]
     },
     {
       "brandId": "claudie-pierlot",
@@ -430,9 +482,10 @@
         {
           "type": "node",
           "id": 6139362996,
-          "version": 1,
-          "timestamp": "2018-12-15T18:57:37Z",
+          "version": 2,
+          "timestamp": "2026-07-10T11:05:03Z",
           "names": [
+            "Diesel",
             "Diesel"
           ],
           "hasAreaGeometry": false,
@@ -453,8 +506,25 @@
     {
       "brandId": "dolceandgabbana",
       "brandName": "Dolce&Gabbana",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333756,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Dolce & Gabbana",
+            "Dolce & Gabbana"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3447769,
+            41.6128933
+          ]
+        }
+      ]
     },
     {
       "brandId": "dr-martens",
@@ -471,8 +541,24 @@
     {
       "brandId": "dyson",
       "brandName": "Dyson",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333747,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Dyson"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3423779,
+            41.6082763
+          ]
+        }
+      ]
     },
     {
       "brandId": "ecoalf",
@@ -620,8 +706,25 @@
     {
       "brandId": "hackett-london",
       "brandName": "Hackett London",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 10199768039,
+          "version": 2,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Hackett London",
+            "Hackett London"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.34407,
+            41.6113386
+          ]
+        }
+      ]
     },
     {
       "brandId": "havaianas",
@@ -659,16 +762,16 @@
         {
           "type": "node",
           "id": 11001768919,
-          "version": 1,
-          "timestamp": "2023-06-23T14:33:58Z",
+          "version": 2,
+          "timestamp": "2026-07-10T11:05:03Z",
           "names": [
             "Hoff"
           ],
           "hasAreaGeometry": false,
           "level": null,
           "center": [
-            2.3419821,
-            41.6083499
+            2.341998,
+            41.6084118
           ]
         }
       ]
@@ -750,8 +853,24 @@
     {
       "brandId": "kids-around",
       "brandName": "Kids Around",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333751,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Kids around"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3421133,
+            41.6080306
+          ]
+        }
+      ]
     },
     {
       "brandId": "l-occitane",
@@ -762,8 +881,25 @@
     {
       "brandId": "lacoste",
       "brandName": "Lacoste",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333763,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Lacoste",
+            "Lacoste"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3436339,
+            41.6105556
+          ]
+        }
+      ]
     },
     {
       "brandId": "le-creuset",
@@ -779,8 +915,8 @@
         {
           "type": "node",
           "id": 10199854539,
-          "version": 1,
-          "timestamp": "2022-11-18T15:34:13Z",
+          "version": 2,
+          "timestamp": "2026-07-10T11:05:03Z",
           "names": [
             "Levi's",
             "Levi's"
@@ -788,8 +924,8 @@
           "hasAreaGeometry": false,
           "level": null,
           "center": [
-            2.342095,
-            41.6088573
+            2.3420362,
+            41.6088074
           ]
         }
       ]
@@ -797,8 +933,25 @@
     {
       "brandId": "lindt",
       "brandName": "Lindt",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333762,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Lindt",
+            "Lindt"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3442186,
+            41.6108387
+          ]
+        }
+      ]
     },
     {
       "brandId": "liujo",
@@ -882,8 +1035,24 @@
     {
       "brandId": "mandarina-duck",
       "brandName": "Mandarina Duck",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333757,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Mandarina Duck"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3446124,
+            41.6127167
+          ]
+        }
+      ]
     },
     {
       "brandId": "marc-jacobs",
@@ -944,7 +1113,7 @@
     {
       "brandId": "moncler",
       "brandName": "Moncler",
-      "status": "exact-point",
+      "status": "ambiguous",
       "candidates": [
         {
           "type": "node",
@@ -959,6 +1128,22 @@
           "center": [
             2.3426065,
             41.6094192
+          ]
+        },
+        {
+          "type": "node",
+          "id": 14002333752,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Moncler",
+            "Moncler"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3419003,
+            41.6080256
           ]
         }
       ]
@@ -994,16 +1179,16 @@
         {
           "type": "node",
           "id": 10199846394,
-          "version": 2,
-          "timestamp": "2022-11-18T19:15:23Z",
+          "version": 3,
+          "timestamp": "2026-07-10T11:05:03Z",
           "names": [
             "Moschino"
           ],
           "hasAreaGeometry": false,
           "level": null,
           "center": [
-            2.3417443,
-            41.6083714
+            2.3417364,
+            41.6083761
           ]
         }
       ]
@@ -1040,8 +1225,25 @@
     {
       "brandId": "new-balance",
       "brandName": "New Balance",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333764,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "New Balance",
+            "New Balance"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3435352,
+            41.6104669
+          ]
+        }
+      ]
     },
     {
       "brandId": "nude-project",
@@ -1098,8 +1300,25 @@
     {
       "brandId": "prada",
       "brandName": "Prada",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 5448590895,
+          "version": 3,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Prada",
+            "Prada"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3454328,
+            41.6123121
+          ]
+        }
+      ]
     },
     {
       "brandId": "puma",
@@ -1223,8 +1442,25 @@
     {
       "brandId": "tag-heuer",
       "brandName": "TAG Heuer",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333758,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "TAG Heuer",
+            "TAG Heuer"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3450408,
+            41.6122861
+          ]
+        }
+      ]
     },
     {
       "brandId": "the-north-face",
@@ -1252,7 +1488,7 @@
     {
       "brandId": "timberland",
       "brandName": "Timberland",
-      "status": "exact-point",
+      "status": "ambiguous",
       "candidates": [
         {
           "type": "node",
@@ -1268,6 +1504,22 @@
           "center": [
             2.343408,
             41.6103551
+          ]
+        },
+        {
+          "type": "node",
+          "id": 14002333748,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Timberland",
+            "Timberland"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3422986,
+            41.608199
           ]
         }
       ]
@@ -1287,14 +1539,48 @@
     {
       "brandId": "ugg",
       "brandName": "UGG",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333754,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "UGG",
+            "UGG"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3450481,
+            41.6132509
+          ]
+        }
+      ]
     },
     {
       "brandId": "under-armour",
       "brandName": "Under Armour",
-      "status": "missing",
-      "candidates": []
+      "status": "exact-point",
+      "candidates": [
+        {
+          "type": "node",
+          "id": 14002333766,
+          "version": 1,
+          "timestamp": "2026-07-10T11:05:03Z",
+          "names": [
+            "Under Armour",
+            "Under Armour"
+          ],
+          "hasAreaGeometry": false,
+          "level": null,
+          "center": [
+            2.3429176,
+            41.6093365
+          ]
+        }
+      ]
     },
     {
       "brandId": "vans",
@@ -1326,9 +1612,10 @@
         {
           "type": "node",
           "id": 6139362989,
-          "version": 1,
-          "timestamp": "2018-12-15T18:57:32Z",
+          "version": 2,
+          "timestamp": "2026-07-10T11:05:03Z",
           "names": [
+            "Versace",
             "Versace"
           ],
           "hasAreaGeometry": false,
@@ -1752,13 +2039,15 @@
     {
       "type": "node",
       "id": 5448590891,
-      "version": 5,
-      "timestamp": "2022-11-18T16:46:32Z",
-      "lat": 41.6115254,
-      "lon": 2.3446256,
+      "version": 6,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6116233,
+      "lon": 2.3447142,
       "tags": {
-        "name": "Asics",
-        "shop": "clothes"
+        "brand": "ASICS",
+        "brand:wikidata": "Q327247",
+        "name": "ASICS",
+        "shop": "shoes"
       }
     },
     {
@@ -1776,12 +2065,14 @@
     {
       "type": "node",
       "id": 5448590893,
-      "version": 3,
-      "timestamp": "2022-11-18T12:35:58Z",
+      "version": 4,
+      "timestamp": "2026-07-10T11:05:03Z",
       "lat": 41.6118832,
       "lon": 2.345071,
       "tags": {
-        "name": "Polo Ralph Lauren Men",
+        "brand": "Polo Ralph Lauren",
+        "brand:wikidata": "Q1641437",
+        "name": "Polo Ralph Lauren",
         "shop": "clothes"
       }
     },
@@ -1815,11 +2106,13 @@
     {
       "type": "node",
       "id": 6139362989,
-      "version": 1,
-      "timestamp": "2018-12-15T18:57:32Z",
+      "version": 2,
+      "timestamp": "2026-07-10T11:05:03Z",
       "lat": 41.6101409,
       "lon": 2.3430799,
       "tags": {
+        "brand": "Versace",
+        "brand:wikidata": "Q696376",
         "name": "Versace",
         "shop": "clothes"
       }
@@ -1964,10 +2257,10 @@
     {
       "type": "node",
       "id": 10199732533,
-      "version": 1,
-      "timestamp": "2022-11-18T14:48:07Z",
-      "lat": 41.6114388,
-      "lon": 2.3441276,
+      "version": 2,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6114121,
+      "lon": 2.3441038,
       "tags": {
         "brand": "Calvin Klein",
         "brand:wikidata": "Q1068628",
@@ -2030,14 +2323,14 @@
     {
       "type": "node",
       "id": 10199768039,
-      "version": 1,
-      "timestamp": "2022-11-18T14:57:46Z",
-      "lat": 41.611396,
-      "lon": 2.344111,
+      "version": 2,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6113386,
+      "lon": 2.34407,
       "tags": {
-        "brand": "Pepe Jeans",
-        "brand:wikidata": "Q426992",
-        "name": "Pepe Jeans",
+        "brand": "Hackett London",
+        "brand:wikidata": "Q1136426",
+        "name": "Hackett London",
         "shop": "clothes"
       }
     },
@@ -2202,10 +2495,10 @@
     {
       "type": "node",
       "id": 10199846394,
-      "version": 2,
-      "timestamp": "2022-11-18T19:15:23Z",
-      "lat": 41.6083714,
-      "lon": 2.3417443,
+      "version": 3,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6083761,
+      "lon": 2.3417364,
       "tags": {
         "name": "Moschino",
         "shop": "clothes"
@@ -2228,10 +2521,10 @@
     {
       "type": "node",
       "id": 10199854539,
-      "version": 1,
-      "timestamp": "2022-11-18T15:34:13Z",
-      "lat": 41.6088573,
-      "lon": 2.342095,
+      "version": 2,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6088074,
+      "lon": 2.3420362,
       "tags": {
         "brand": "Levi's",
         "brand:wikidata": "Q127962",
@@ -2242,10 +2535,10 @@
     {
       "type": "node",
       "id": 10199854540,
-      "version": 2,
-      "timestamp": "2022-11-18T19:15:23Z",
-      "lat": 41.6084174,
-      "lon": 2.3417967,
+      "version": 3,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6084199,
+      "lon": 2.3417893,
       "tags": {
         "brand": "Rituals",
         "brand:wikidata": "Q62874140",
@@ -2256,10 +2549,10 @@
     {
       "type": "node",
       "id": 10199860870,
-      "version": 2,
-      "timestamp": "2022-11-18T19:15:23Z",
-      "lat": 41.6081764,
-      "lon": 2.3417068,
+      "version": 3,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6082099,
+      "lon": 2.3416471,
       "tags": {
         "brand": "Balenciaga",
         "brand:wikidata": "Q1530892",
@@ -2294,13 +2587,15 @@
     {
       "type": "node",
       "id": 10199894456,
-      "version": 1,
-      "timestamp": "2022-11-18T16:40:58Z",
-      "lat": 41.6114952,
-      "lon": 2.3444932,
+      "version": 2,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6115147,
+      "lon": 2.344561,
       "tags": {
+        "brand": "Tod's",
+        "brand:wikidata": "Q1342350",
         "name": "Tod's",
-        "shop": "clothes"
+        "shop": "shoes"
       }
     },
     {
@@ -2424,10 +2719,10 @@
     {
       "type": "node",
       "id": 11001768919,
-      "version": 1,
-      "timestamp": "2023-06-23T14:33:58Z",
-      "lat": 41.6083499,
-      "lon": 2.3419821,
+      "version": 2,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6084118,
+      "lon": 2.341998,
       "tags": {
         "name": "Hoff",
         "shop": "bag"
@@ -2542,13 +2837,219 @@
     },
     {
       "type": "node",
-      "id": 5448590895,
-      "version": 2,
-      "timestamp": "2018-03-03T00:25:19Z",
-      "lat": 41.6123565,
-      "lon": 2.345417,
+      "id": 14002333747,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6082763,
+      "lon": 2.3423779,
       "tags": {
-        "name": "Prada / Montblanc",
+        "name": "Dyson",
+        "shop": "appliance"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333748,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.608199,
+      "lon": 2.3422986,
+      "tags": {
+        "brand": "Timberland",
+        "brand:wikidata": "Q1539185",
+        "name": "Timberland",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333749,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6081698,
+      "lon": 2.3417199,
+      "tags": {
+        "alt_name": "Yves Saint Laurent",
+        "brand": "Saint Laurent",
+        "brand:wikidata": "Q2282172",
+        "name": "Saint Laurent",
+        "shop": "clothes",
+        "short_name": "YSL"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333750,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6080899,
+      "lon": 2.3421847,
+      "tags": {
+        "brand": "Brunello Cucinelli",
+        "brand:wikidata": "Q3645582",
+        "name": "Brunello Cucinelli",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333751,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6080306,
+      "lon": 2.3421133,
+      "tags": {
+        "name": "Kids around",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333752,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6080256,
+      "lon": 2.3419003,
+      "tags": {
+        "brand": "Moncler",
+        "brand:wikidata": "Q1548951",
+        "name": "Moncler",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333753,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.608316,
+      "lon": 2.3416628,
+      "tags": {
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333759,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6120424,
+      "lon": 2.3449102,
+      "tags": {
+        "brand": "Polo Ralph Lauren",
+        "brand:wikidata": "Q1641437",
+        "name": "Polo Ralph Lauren",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333760,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.611194,
+      "lon": 2.3440211,
+      "tags": {
+        "brand": "Calvin Klein",
+        "brand:wikidata": "Q1068628",
+        "name": "Calvin Klein",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333761,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6111475,
+      "lon": 2.3440039,
+      "tags": {
+        "name": "FC Botiga",
+        "shop": "sports"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333762,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6108387,
+      "lon": 2.3442186,
+      "tags": {
+        "brand": "Lindt",
+        "brand:wikidata": "Q152822",
+        "name": "Lindt",
+        "shop": "chocolate"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333763,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6105556,
+      "lon": 2.3436339,
+      "tags": {
+        "brand": "Lacoste",
+        "brand:wikidata": "Q309031",
+        "name": "Lacoste",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333764,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6104669,
+      "lon": 2.3435352,
+      "tags": {
+        "brand": "New Balance",
+        "brand:wikidata": "Q742988",
+        "name": "New Balance",
+        "shop": "shoes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333765,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6095817,
+      "lon": 2.3430221,
+      "tags": {
+        "brand": "Hugo Boss",
+        "brand:wikidata": "Q491627",
+        "name": "Hugo Boss",
+        "shop": "clothes",
+        "short_name": "Boss"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333766,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6093365,
+      "lon": 2.3429176,
+      "tags": {
+        "brand": "Under Armour",
+        "brand:wikidata": "Q2031485",
+        "name": "Under Armour",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5448590895,
+      "version": 3,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6123121,
+      "lon": 2.3454328,
+      "tags": {
+        "brand": "Prada",
+        "brand:wikidata": "Q193136",
+        "name": "Prada",
         "shop": "clothes"
       }
     },
@@ -2567,10 +3068,10 @@
     {
       "type": "node",
       "id": 5448590897,
-      "version": 2,
-      "timestamp": "2018-03-03T00:25:19Z",
-      "lat": 41.612549,
-      "lon": 2.3449718,
+      "version": 3,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6125214,
+      "lon": 2.3450077,
       "tags": {
         "name": "Zwilling / Hour Pasion / Orogold",
         "shop": "clothes"
@@ -2650,10 +3151,10 @@
     {
       "type": "node",
       "id": 6139362994,
-      "version": 1,
-      "timestamp": "2018-12-15T18:57:36Z",
-      "lat": 41.6127273,
-      "lon": 2.3446618,
+      "version": 2,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6126155,
+      "lon": 2.3445721,
       "tags": {
         "name": "Armani",
         "shop": "clothes"
@@ -2662,11 +3163,13 @@
     {
       "type": "node",
       "id": 6139362996,
-      "version": 1,
-      "timestamp": "2018-12-15T18:57:37Z",
+      "version": 2,
+      "timestamp": "2026-07-10T11:05:03Z",
       "lat": 41.6134822,
       "lon": 2.3451276,
       "tags": {
+        "brand": "Diesel",
+        "brand:wikidata": "Q158285",
         "name": "Diesel",
         "shop": "clothes"
       }
@@ -2674,11 +3177,13 @@
     {
       "type": "node",
       "id": 6139362997,
-      "version": 1,
-      "timestamp": "2018-12-15T18:57:38Z",
+      "version": 2,
+      "timestamp": "2026-07-10T11:05:03Z",
       "lat": 41.615497,
       "lon": 2.3459409,
       "tags": {
+        "brand": "Mango",
+        "brand:wikidata": "Q136503",
         "name": "Mango Outlet",
         "shop": "clothes"
       }
@@ -2767,6 +3272,72 @@
       "tags": {
         "amenity": "charging_station",
         "capacity": "2"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333754,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6132509,
+      "lon": 2.3450481,
+      "tags": {
+        "brand": "UGG",
+        "brand:wikidata": "Q1138480",
+        "name": "UGG",
+        "shop": "shoes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333755,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6133042,
+      "lon": 2.3450798,
+      "tags": {
+        "name": "Clarins",
+        "shop": "cosmetics"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333756,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6128933,
+      "lon": 2.3447769,
+      "tags": {
+        "brand": "Dolce & Gabbana",
+        "brand:wikidata": "Q214480",
+        "name": "Dolce & Gabbana",
+        "shop": "clothes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333757,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6127167,
+      "lon": 2.3446124,
+      "tags": {
+        "name": "Mandarina Duck",
+        "shop": "bag"
+      }
+    },
+    {
+      "type": "node",
+      "id": 14002333758,
+      "version": 1,
+      "timestamp": "2026-07-10T11:05:03Z",
+      "lat": 41.6122861,
+      "lon": 2.3450408,
+      "tags": {
+        "brand": "TAG Heuer",
+        "brand:wikidata": "Q645984",
+        "name": "TAG Heuer",
+        "shop": "watches"
       }
     },
     {
@@ -6882,8 +7453,8 @@
     {
       "type": "way",
       "id": 180361523,
-      "version": 4,
-      "timestamp": "2024-09-09T08:34:42Z",
+      "version": 5,
+      "timestamp": "2026-07-10T11:05:03Z",
       "bounds": {
         "minlat": 41.6145997,
         "minlon": 2.3462356,
@@ -6913,7 +7484,7 @@
         }
       ],
       "tags": {
-        "brand": "Nike",
+        "brand": "Nike Factory Store",
         "brand:wikidata": "Q483915",
         "building": "yes",
         "name": "Nike Factory Store",

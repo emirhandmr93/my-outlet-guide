@@ -8,8 +8,8 @@
     48.5359
   ],
   "discoveryRadiusMeters": 1450,
-  "collectedAt": "2026-09-03T17:01:01.728Z",
-  "osmBaseTimestamp": "2026-09-03T16:58:51Z",
+  "collectedAt": "2026-09-03T17:08:45.583Z",
+  "osmBaseTimestamp": "2026-09-03T17:06:51Z",
   "overpassEndpoint": "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
   "source": {
     "dataset": "OpenStreetMap",
