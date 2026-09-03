@@ -26,6 +26,15 @@ function filesIn(target, out = []) {
   return out;
 }
 
+function isRedactedValue(value) {
+  if (typeof value === 'string') return redacted.test(value);
+  // jsonShape() represents a sanitized scalar as { type, value }.
+  if (value && typeof value === 'object' && !Array.isArray(value) && typeof value.value === 'string') {
+    return redacted.test(value.value);
+  }
+  return false;
+}
+
 const failures = [];
 function inspect(value, file, jsonPath = '$') {
   if (Array.isArray(value)) {
@@ -35,10 +44,8 @@ function inspect(value, file, jsonPath = '$') {
   if (!value || typeof value !== 'object') return;
   for (const [key, child] of Object.entries(value)) {
     const childPath = `${jsonPath}.${key}`;
-    if (sensitiveKey.test(key) && child !== null) {
-      if (typeof child !== 'string' || !redacted.test(child)) {
-        failures.push(`${path.relative(ROOT, file)} ${childPath}: sensitive value is not redacted`);
-      }
+    if (sensitiveKey.test(key) && child !== null && !isRedactedValue(child)) {
+      failures.push(`${path.relative(ROOT, file)} ${childPath}: sensitive value is not redacted`);
     }
     if (typeof child === 'string' && /^https?:\/\//i.test(child)) {
       try {
