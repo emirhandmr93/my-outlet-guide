@@ -147,6 +147,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletName: "Wertheim Village",
     timeZone: "Europe/Berlin",
     maxCandidatePages: 180,
+    whatsOnListingPath: "/wertheim-village/en/whats-on/news-wertheim-village/",
   }),
   theBicesterCollectionSource({
     sourceId: "ingolstadt-village-official",
