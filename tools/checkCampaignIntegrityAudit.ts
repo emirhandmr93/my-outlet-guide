@@ -20,8 +20,8 @@ import { resolveCampaignDisplayText } from "../src/services/outletCampaignLocali
 
 async function main() {
   assert.equal(officialCampaignSources.length, 22, "Campaign integrity audit requires all 22 approved outlets.");
-  assert.equal(CAMPAIGN_TRANSLATION_VERSION, 3,
-    "Campaign translation cache version must be bumped after display-integrity changes.");
+  assert.equal(CAMPAIGN_TRANSLATION_VERSION, 4,
+    "Campaign translation cache version must be bumped after localized-currency integrity changes.");
 
   for (const source of officialCampaignSources) {
     const outlet = outlets.find(candidate => candidate.outletId === source.outletId);
@@ -88,6 +88,36 @@ async function main() {
       `${locale}: wrong outlet metadata leaked through localization.`);
   }
 
+  const currencyWords: Record<string, [string, string]> = {
+    tr: ["89,99 avro", "50,00 avro"],
+    es: ["89,99 euros", "50,00 euros"],
+    fr: ["89,99 euros", "50,00 euros"],
+    de: ["89,99 Euro", "50,00 Euro"],
+    ar: ["89,99 يورو", "50,00 يورو"],
+    ru: ["89,99 евро", "50,00 евро"],
+    zh: ["89.99 欧元", "50.00 欧元"],
+  };
+  const localizedCurrencyWords = await buildCampaignLocalization(baseCampaign, async (contents, language) => {
+    const [price, saving] = currencyWords[language];
+    return contents.map(content => content.replaceAll("€89.99", price).replaceAll("€50.00", saving));
+  });
+  assert.deepEqual(localizedCurrencyWords.failedLocales, [],
+    "Localized EUR currency words must preserve verified campaign amounts in all seven translated locales.");
+
+  const groupedMoneyCampaign: ParsedOfficialCampaign = {
+    ...baseCampaign,
+    campaignId: "noventa-grouped-money-integrity-test",
+    headline: "Outlet price comparison",
+    conditions: "Normal outlet price: €1,350. Recommended retail price: €2,250.",
+    discountLabel: "Save €900",
+  };
+  const localizedGroupedMoney = await buildCampaignLocalization(groupedMoneyCampaign, async contents => contents.map(content => content
+    .replaceAll("€1,350", "1 350,00 euros")
+    .replaceAll("€2,250", "2 250,00 euros")
+    .replaceAll("€900", "900,00 euros")));
+  assert.deepEqual(localizedGroupedMoney.failedLocales, [],
+    "Space-grouped localized amounts must preserve the same verified EUR values.");
+
   const corruptMoney = await buildCampaignLocalization(baseCampaign, async contents => contents.map(content =>
     content.replace("€89.99", "€79.99")));
   assert.equal(corruptMoney.failedLocales.length, 7,
@@ -118,6 +148,12 @@ async function main() {
   }, "tr", english);
   assert.equal(defensiveClient.headline, english.headline,
     "Client must reject stored localized monetary evidence that changes the verified price.");
+  const localizedCurrencyClient = resolveCampaignDisplayText({
+    ru: { ...localized.localizedText.ru, headline: "Сейчас за 89,99 евро", discountLabel: "Экономия 50,00 евро" },
+  }, "ru", english);
+  assert.equal(localizedCurrencyClient.headline, "Сейчас за 89,99 евро",
+    "Client must accept localized currency words when the verified amount is unchanged.");
+  assert.equal(localizedCurrencyClient.discountLabel, "Экономия 50,00 евро");
 
   const legacyClientCopy = sanitizeCampaignPresentationText({
     brandName: "ASICS",
@@ -142,6 +178,7 @@ async function main() {
 
   const root = process.cwd();
   const heroComponent = readFileSync(join(root, "src/components/LocalHeroImageCard.tsx"), "utf8");
+  const outletHero = readFileSync(join(root, "src/components/OutletHero.tsx"), "utf8");
   const campaignService = readFileSync(join(root, "src/services/outletCampaignService.ts"), "utf8");
   assert.match(heroComponent, /fillImage:\s*\{[\s\S]{0,120}height:\s*["']100%["']/,
     "Native campaign detail hero must keep the outlet image at full card height.");
@@ -149,8 +186,12 @@ async function main() {
     && campaignService.includes("sanitizeCampaignPresentationText")
     && campaignService.includes("outletName: canonicalOutletName"),
   "Client campaign parsing must use canonical outlet identity and sanitize display copy.");
+  assert(outletHero.includes("subscribeActiveOutletCampaignsForOutlet")
+    && outletHero.includes("navigation.navigate(\"CampaignDetail\"")
+    && outletHero.includes("formatCampaignDate(campaign.endsOn, language)"),
+  "Outlet detail must surface its live verified campaigns and link every campaign to CampaignDetail.");
 
-  console.log("Campaign integrity audit passed: 22 canonical outlet identities, host parity, 8-language proper nouns, monetary/quantity evidence, legacy repair, condition dedupe, and full-height hero.");
+  console.log("Campaign integrity audit passed: 22 canonical outlet identities, host parity, outlet-detail live campaigns, 8-language proper nouns, localized monetary/quantity evidence, legacy repair, condition dedupe, and full-height hero.");
 }
 
 void main().catch(error => {
