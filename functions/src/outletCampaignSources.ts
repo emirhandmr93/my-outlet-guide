@@ -9,7 +9,6 @@ export type OfficialCampaignSource = {
   allowedHosts: readonly string[];
   candidatePathPrefixes: readonly string[];
   listingCandidatePathPrefixes?: Readonly<Record<string, readonly string[]>>;
-  brandDirectoryUrl?: string;
   maxCandidatePages: number;
 };
 
@@ -39,18 +38,23 @@ function theBicesterCollectionSource(
   const offersPath = `${rootPath}/offers/`;
   const brandsPath = `${rootPath}/brands/`;
   const whatsOnPath = whatsOnListingPath ?? `${rootPath}/whats-on/`;
+  const offersUrl = `https://www.thebicestercollection.com${offersPath}`;
+  const brandsUrl = `https://www.thebicestercollection.com${brandsPath}`;
+  const whatsOnUrl = `https://www.thebicestercollection.com${whatsOnPath}`;
   const listingUrls = [
-    `https://www.thebicestercollection.com${offersPath}`,
-    ...(includeWhatsOn ? [`https://www.thebicestercollection.com${whatsOnPath}`] : []),
+    offersUrl,
+    brandsUrl,
+    ...(includeWhatsOn ? [whatsOnUrl] : []),
   ];
   const listingCandidatePathPrefixes: Record<string, readonly string[]> = {
-    [normalizedPathname(listingUrls[0])]: [
+    [normalizedPathname(offersUrl)]: [
       `${rootPath}/offers/`,
       brandsPath,
     ],
+    [normalizedPathname(brandsUrl)]: [brandsPath],
   };
-  if (includeWhatsOn && listingUrls[1]) {
-    listingCandidatePathPrefixes[normalizedPathname(listingUrls[1])] = [
+  if (includeWhatsOn) {
+    listingCandidatePathPrefixes[normalizedPathname(whatsOnUrl)] = [
       `${rootPath}/whats-on/`,
     ];
   }
@@ -66,7 +70,6 @@ function theBicesterCollectionSource(
       `${rootPath}/whats-on/`,
     ],
     listingCandidatePathPrefixes,
-    brandDirectoryUrl: `https://www.thebicestercollection.com${brandsPath}`,
   };
 }
 
@@ -126,14 +129,15 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     listingUrls: [
       "https://firenze.themall.it/en",
       "https://firenze.themall.it/en/events/",
+      "https://firenze.themall.it/en/brands/",
     ],
     allowedHosts: ["firenze.themall.it"],
     candidatePathPrefixes: ["/en/events/", "/en/brands/"],
     listingCandidatePathPrefixes: {
       "/en/": ["/en/events/", "/en/brands/"],
       "/en/events/": ["/en/events/"],
+      "/en/brands/": ["/en/brands/"],
     },
-    brandDirectoryUrl: "https://firenze.themall.it/en/brands/",
     maxCandidatePages: 120,
   },
   theBicesterCollectionSource({
