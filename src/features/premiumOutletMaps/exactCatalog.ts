@@ -1,6 +1,7 @@
 import type { PremiumOutletMap } from "./types";
 import type { PremiumOutletMapId } from "./catalog";
 import { generatedMappedinExactMaps } from "./generatedMappedinExactMaps";
+import { generatedPdfExactMaps } from "./generatedPdfExactMaps";
 
 /**
  * Generated/verified exact maps are registered here. Keep the registry explicit so Metro, web bundling and
@@ -9,4 +10,5 @@ import { generatedMappedinExactMaps } from "./generatedMappedinExactMaps";
  */
 export const exactPremiumOutletMaps: Partial<Record<PremiumOutletMapId, PremiumOutletMap>> = {
   ...generatedMappedinExactMaps,
+  ...generatedPdfExactMaps,
 };
