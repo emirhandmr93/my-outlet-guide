@@ -50,12 +50,12 @@ jobs:
 
       - name: Commit versioned snapshots and coverage audit
         run: |
-          if git diff --quiet -- docs/PREMIUM_MAP_OSM_COVERAGE.md src/features/premiumOutletMaps/osmSnapshots; then
-            echo "No snapshot changes to commit."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/PREMIUM_MAP_OSM_COVERAGE.md src/features/premiumOutletMaps/osmSnapshots
+          if git diff --cached --quiet; then
+            echo "No snapshot changes to commit."
+            exit 0
+          fi
           git commit -m "Collect exact OSM premium map evidence"
           git push origin HEAD:${{ github.ref_name }}
