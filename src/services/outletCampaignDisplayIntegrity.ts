@@ -20,6 +20,10 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+function compact(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
 function outletAliases(name: string): string[] {
   const aliases = new Set<string>([name]);
   const withoutOperator = name.replace(/^McArthurGlen\s+/i, "").trim();
@@ -45,9 +49,14 @@ function outletAliases(name: string): string[] {
 const monitoredAliases = trackedOutlets.flatMap(outlet =>
   outletAliases(outlet.name).map(alias => ({ outletId: outlet.outletId, alias })),
 ).sort((left, right) => right.alias.length - left.alias.length || left.alias.localeCompare(right.alias));
+const normalizedMonitoredAliases = new Set(monitoredAliases.map(({ alias }) => compact(alias).toLocaleLowerCase("en-US")));
 
 export function getCanonicalCampaignOutletName(outletId: string): string | null {
   return trackedOutlets.find(outlet => outlet.outletId === outletId)?.name ?? null;
+}
+
+export function isTrackedCampaignOutletReference(value: string): boolean {
+  return normalizedMonitoredAliases.has(compact(value).toLocaleLowerCase("en-US"));
 }
 
 export function sanitizeCampaignPresentationValue(
@@ -56,13 +65,24 @@ export function sanitizeCampaignPresentationValue(
   canonicalOutletName: string,
   maxLength: number,
 ): string {
-  let normalized = value.replace(/\s+/g, " ").trim();
+  let normalized = compact(value);
   const canonical = getCanonicalCampaignOutletName(outletId);
   if (!canonical || canonical !== canonicalOutletName) return normalized.slice(0, maxLength);
   for (const { alias } of monitoredAliases) {
     normalized = normalized.replace(new RegExp(escapeRegExp(alias), "giu"), canonicalOutletName);
   }
-  return normalized.replace(/\s+/g, " ").trim().slice(0, maxLength);
+  return compact(normalized).slice(0, maxLength);
+}
+
+function dedupeConditions(summary: string, conditions: string): string {
+  const compactSummary = compact(summary);
+  const compactConditions = compact(conditions);
+  if (!compactConditions || !compactSummary) return compactConditions;
+  if (compactConditions.localeCompare(compactSummary, undefined, { sensitivity: "accent" }) === 0) return "";
+  if (compactConditions.toLocaleLowerCase().startsWith(compactSummary.toLocaleLowerCase())) {
+    return compact(compactConditions.slice(compactSummary.length).replace(/^[.。;:!?,，、\-–—]+\s*/, ""));
+  }
+  return compactConditions;
 }
 
 export function sanitizeCampaignPresentationText(
@@ -70,11 +90,13 @@ export function sanitizeCampaignPresentationText(
   outletId: string,
   canonicalOutletName: string,
 ): CampaignPresentationText {
+  const summary = sanitizeCampaignPresentationValue(text.summary, outletId, canonicalOutletName, 700);
+  const conditions = sanitizeCampaignPresentationValue(text.conditions, outletId, canonicalOutletName, 900);
   return {
     brandName: text.brandName,
     headline: sanitizeCampaignPresentationValue(text.headline, outletId, canonicalOutletName, 200),
-    summary: sanitizeCampaignPresentationValue(text.summary, outletId, canonicalOutletName, 700),
-    conditions: sanitizeCampaignPresentationValue(text.conditions, outletId, canonicalOutletName, 900),
+    summary,
+    conditions: dedupeConditions(summary, conditions),
     discountLabel: sanitizeCampaignPresentationValue(text.discountLabel, outletId, canonicalOutletName, 160),
   };
 }
