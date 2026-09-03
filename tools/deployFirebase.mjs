@@ -1,4 +1,6 @@
 import { spawn, spawnSync } from "node:child_process";
+import { rmSync } from "node:fs";
+import path from "node:path";
 
 const DEFAULT_DISCOVERY_TIMEOUT_SECONDS = 60;
 const MINIMUM_DISCOVERY_TIMEOUT_SECONDS = 30;
@@ -23,6 +25,17 @@ function includesHosting(args) {
   return targets.split(",").some(target => target.trim() === "hosting" || target.trim().startsWith("hosting:"));
 }
 
+function cleanWebExportDirectory() {
+  const distDirectory = path.resolve(process.cwd(), "dist");
+  console.log(`Removing stale web export before build: ${distDirectory}`);
+  rmSync(distDirectory, {
+    recursive: true,
+    force: true,
+    maxRetries: process.platform === "win32" ? 12 : 4,
+    retryDelay: process.platform === "win32" ? 250 : 100,
+  });
+}
+
 const forwardedArgs = process.argv.slice(2);
 const deployArgs = forwardedArgs.length > 0 ? forwardedArgs : DEFAULT_DEPLOY_ARGS;
 const firebaseCommand = process.platform === "win32" ? "firebase.cmd" : "firebase";
@@ -34,6 +47,15 @@ console.log(`Firebase Functions discovery timeout: ${discoveryTimeoutSecondsValu
 
 if (includesHosting(deployArgs)) {
   console.log("Hosting is included; building and validating a fresh production web export first.");
+  try {
+    cleanWebExportDirectory();
+  } catch (error) {
+    console.error(
+      `Firebase deploy stopped because the stale web export could not be removed: ${error instanceof Error ? error.message : String(error)}`,
+    );
+    process.exit(1);
+  }
+
   const webBuild = spawnSync(npmCommand, ["run", "web:build"], {
     shell: process.platform === "win32",
     stdio: "inherit",
