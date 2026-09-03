@@ -124,7 +124,13 @@ assert(webCanvas.includes("normalizedStorePosition") && webCanvas.includes("onSe
 assert(!webCanvas.includes("@maplibre/maplibre-react-native"), "Web premium map preview must not load the native MapLibre module");
 assert(screen.includes("searchMapStores") && screen.includes("setFloorId(store.floorId)") && screen.includes("setFocusSequence"), "Search-to-floor focus flow missing");
 assert(screen.includes("focusCoordinate={selectedStore?.center}"), "Selected store must drive map camera focus");
-assert(search.includes("resolveCampaignBrandIdForOutlet") && search.includes("campaign.outletId === store.outletId") && search.includes("campaign.brandId"), "Campaign highlight must resolve canonical outlet/brand identity");
+assert(
+  search.includes("resolveCampaignBrandIdForOutlet")
+    && search.includes("campaign.outletId !== store.outletId")
+    && search.includes("campaign.brandId ?? resolveCampaignBrandIdForOutlet")
+    && search.includes("canonicalBrandId === store.brandId"),
+  "Campaign highlight must resolve canonical outlet/brand identity",
+);
 assert(screen.includes("resolveCampaignBrandIdForOutlet") && screen.includes("outletId: map.outletId") && screen.includes("brandId,"), "Outlet-scoped campaigns must be canonicalized before map rendering");
 assert(screen.includes("campaignForStore") && nativeCanvas.includes("campaignForStore") && webCanvas.includes("campaignForStore"), "Campaign highlight flow missing");
 assert(screen.includes("© OpenStreetMap contributors · ODbL 1.0") && screen.includes("OSM_COPYRIGHT_URL"), "ODbL maps require visible linked OpenStreetMap attribution");
