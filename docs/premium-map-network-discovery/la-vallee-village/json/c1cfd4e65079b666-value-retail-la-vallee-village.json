@@ -4,7 +4,7 @@
     "name": "Amorino",
     "type": "tenant",
     "externalId": "p03",
-    "description": "To celebrate the arrival of spring, Amorino has collaborated with Nina Ricci perfumes to create a new sorbet with top notes that reflect those of Nina's fragrances. This fragrant sorbet surprises with a lively burst of acidity that comes from a combination of raspberry, Sicilian lemon and mandarin. This enchanting elixir is rounded off with intoxicating Arabian jasmine. Like a forbidden fruit, this limited-edition sorbet is adorned with a Nina Ricci chocolate apple, which is complimentary with any Macaron Al Gelato, and served in a waffle cone.\nThe sorbets are available at the Amorino boutique in La Vallée Village from 15 April to 30 June 2019",
+    "description": "Pour la venue du printemps, Amorino s’associe à la Maison de Parfums Nina Ricci et crée un sorbet inédit dont les notes de tête reprennent celles du parfum de Nina. Une variation olfactive qui surprend par la vivacité acidulée d’un éclat de framboise, de citron de Sicile et de Mandarine. Un élixir envoûtant, arrondi tout en douceur par un accord de jasmin d’Arabie enivrant. Tel un fruit défendu, ce sorbet éphémère est orné d’une pomme en chocolat Nina, offerte avec tout supplément Macaron Al Gelato, et d’un cache-cornet inédit.\nDisponible dans la boutique Amorino de La Vallée Village du 15 avril au 30 juin 2019",
     "categories": [
       "5d725437565fa907a85fb728",
       "69bd6405dac027d4c07eb5d3",
@@ -53,7 +53,7 @@
     "name": "Pierre Hermé Paris",
     "type": "tenant",
     "externalId": "unit121",
-    "description": "Heir to four generations of Alsatian bakery and pastry-making tradition, Pierre Hermé began his career at the age of 14 as an apprentice to Gaston Lenôtre. Famous in France, Japan and the United States, the man that Vogue called \"the Picasso of Pastry\" revolutionized pastry-making with regard to taste and modernity. With \"pleasure as his only guide\", Pierre Hermé has invented a totally original world of tastes, sensations and pleasures. With his original approach to the profession of pastry chef, he revolutionizes even the most firmly entrenched traditions. For example, he prefers discreet pastry decors and \"uses sugar like salt, in other words, as a seasoning to heighten other shades of flavour.\" Refusing to sit on his laurels, he is always revising his own work, exploring new taste territories andrevisiting his own recipes",
+    "description": "Héritier de quatre générations de boulangers pâtissiers alsaciens, Pierre Hermé a commencé sa carrière à l’âge de 14 ans, auprès de Gaston Lenôtre.\nCélébré en France, au Japon et aux États-Unis, celui que Vogue a surnommé « Picasso of Pastry » a apporté à la pâtisserie goût et modernité. Avec « Le plaisir pour seul guide », Pierre Hermé a inventé un univers de goûts, de sensations et de plaisirs. Son approche originale du métier de pâtissier l'a conduit à révolutionner les traditions les mieux établies. Par exemple, éliminer les décors excessifs ou inutiles qui encombrent les pâtisseries, ou encore « utiliser le sucre comme le sel, c’est-à-dire un assaisonnement qui permet de relever d’autres nuances de saveurs » et enfin remettre en question son propre travail, en explorant de nouveaux territoires du goût ou en revisitant régulièrement ses propres recettes.",
     "categories": [
       "5d725437565fa907a85fb728"
     ],
@@ -100,7 +100,7 @@
     "name": "Gucci",
     "type": "tenant",
     "externalId": "unit01a-01b-02",
-    "description": "Founded in Florence in 1921, Gucci is one of the world’s leading luxury fashion brands, with a renowned reputation for creativity, innovation and Italian craftsmanship.Gucci is part of the Kering Group, a world leader in apparel and accessories that owns a portfolio of powerful luxury brands.",
+    "description": "Icône reconnue dans le monde entier pour ses techniques artisanales d’exception et ses luxueux matériaux, Gucci poursuit la vision de son Directeur de la Création, Alessandro Michele. Cette marque emblématique est aujourd’hui la quintessence d’une créativité exceptionnelle et d’une approche créatrice innovante et élégante, et est reconnue dans le monde entier pour sa qualité irréprochable.",
     "categories": [
       "5d725436565fa907a85fb726",
       "5d725437565fa907a85fb727",
@@ -149,7 +149,7 @@
     "name": "Longchamp",
     "type": "tenant",
     "externalId": "unit06",
-    "description": "Longchamp’s handbags, luggage and accessories have a worldwide reputation for craftsmanship and quality, which now extends to shoes and ready-to-wear collections.",
+    "description": "Les sacs à main, bagages et accessoires Longchamp sont mondialement réputés pour le savoir-faire qu’ils mettent en œuvre et pour leur qualité.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -198,7 +198,7 @@
     "name": "Montblanc",
     "type": "tenant",
     "externalId": "unit104",
-    "description": "Guided by the pioneering spirit since 1906, Montblanc revolutionized the culture of writing with breakthrough innovations. Today, the Maison continues to push boundaries and evolve the expression of fine craftsmanship across each of its product categories: the pinnacle of luxury writing instruments, timepieces, leather goods, accessories, fragrances and eyewear. \nWith every innovation, Montblanc offers new functionalities and groundbreaking designs imbued with the Maison’s heritage of sophistication and crafted to the highest standards through the skills of its artisans in each of its manufactures whether Hamburg, Germany for its writing instruments, the Swiss Jura in Le Locle and Villeret for its timepieces or Florence, Italy for its leather goods.\nReflecting its ongoing mission to create fine lifetime companions born from the most pioneering ideas, the iconic Montblanc Emblem has become the ultimate seal of performance, innovation, quality and expression of style. With its origins deeply rooted in the culture of handwriting, Montblanc continues to assert its cultural commitment around the world with the creation of wide-ranging initiatives to promote arts and culture in many forms, while honouring the modern day patrons who support the advancement of the arts.",
+    "description": "Depuis plus d’un siècle, Montblanc s’appuie sur les traditions de valeur durable et de savoir-faire d’exception. Les principes intransigeants de la Maison en termes de design, de style, de qualité et de réalisation lui ont permis de créer des collections que ses clients ont à cœur de transmettre de génération en génération.\nSymbole d’excellence, le prestigieux emblème de Montblanc souligne la qualité exceptionnelle des instruments d’écriture, des montres, de la joaillerie, des articles de maroquinerie, des accessoires, des parfums et des lunettes de soleil de la Maison, qui a pris l’engagement durable d’encourager l’excellence par le biais du progrès culturel.\nMontblanc trouve ses origines dans la culture de l’écriture et se sent particulièrement lié à son engagement culturel. Au travers d’activités internationales variées, la Maison apporte une contribution créative à la vie culturelle moderne : Montblanc écrit à sa mesure un pan de notre histoire culturelle.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725438565fa907a85fb729",
@@ -255,7 +255,7 @@
     "name": "Gerard Darel",
     "type": "tenant",
     "externalId": "unit08a",
-    "description": "With its ultra-feminine, simple, chic style, Maison Darel has been the byword for French elegance for more than 40 years. Taking his inspiration from iconic figures such as Jackie Kennedy and Marilyn Monroe, Gerard Darel has breathed new life into off-the-peg clothes and joined a small circle of brands that really matter on the international scene. A true tradition of excellence lies behind the Gerard Darel style – every design is original and timeless, transcending fashion and time.",
+    "description": "Avec son style simple et chic, ultra féminin, la maison Darel incarne l’élégance française depuis plus de 40 ans. En s’inspirant de figures iconiques comme Jackie Kennedy ou Marilyn Monroe, Gerard Darel a su imposer une nouvelle vision du prêt-à-porter et entrer dans le petit cercle des marques qui comptent sur la scène internationale. Derrière le style Gerard Darel, il y a une véritable tradition de l’excellence. Sélection des tissus et des peaux, travail sur le tombé et la fluidité des coupes, soin apporté à la qualité des finitions ! Chaque création est originale et doit avoir cette dimension éternelle qui transcende les modes et les époques.",
     "categories": [
       "5d725435565fa907a85fb725",
       "68f1ec4265d692dfd55a9cf1",
@@ -311,7 +311,7 @@
     "name": "Figaret",
     "type": "tenant",
     "externalId": "unit08b",
-    "description": "Since 1968, Figaret Paris cultivates with passion elegance and the art of shirt-making, the pursuit of excellence is manifested in the tradition of its fabrications, the attention to the finest details and finishing, as well as the search for exceptional materials and original patterns.\nThe Figaret Paris boutiques propose collections of shirts and accessories for men and ladies.\nEmbroidery workshop at the Figaret Paris boutique.\nFigaret Paris, the French shirt maker, is offering a permanent embroidery workshop in the boutique. Personalise your Figaret Paris shirts, jackets and polo shirts with your initials (or any other embroidered message). Prices from €10.",
+    "description": "Les boutiques Figaret Paris proposent des collections de chemises et d’accessoires pour Homme et pour Femme.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -363,7 +363,7 @@
     "name": "Marc Jacobs",
     "type": "tenant",
     "externalId": "unit09",
-    "description": "Today renowned as the most desirable designer in New York, Marc Jacobs designed his first collection in 1984 with the Marc Jacobs label.\nMarc Jacobs's style stayed true to the description done by the designer himself following his first collection : Funk, quirky and sophisticated at the same time. Through his collections Marc Jacobs has explored different themes like retro and the 70's with the desire to showcase a casual women but chic. Marc Jacobs is and stayed the stylist of the chic and elegance. His collections are well known for being refined and feminine as well as unexpected.\nWith more than 200 freestanding stores across the globe, Marc Jacobs International now includes Women’s and men’s ready-to-wear and accessories, a Children’s line called Little Marc Jacobs, multiple award-winning fragrances, the bookstore Bookmarc and most recently Marc Jacobs Beauty.",
+    "description": "Aujourd'hui reconnu comme le Créateur phare de New York, Marc Jacobs a conçu sa première collection en 1984, sous le label éponyme.\nLe style Marc Jacobs reste fidèle à la description faite par le créateur lors de sa première collection : funk, trash, et chic à la fois. Il explore dans ses collections différents thèmes comme le rétro et les années soixante-dix, avec le désir de mettre en avant une femme décontractée, mais chic. Marc Jacobs est et reste un styliste du luxe et de l'élégance. Si ses créations sont reconnues pour leur finesse et leur féminité, c'est aussi le côté imprévu dont il sait faire preuve qui a fait sa renommée.    Avec plus de 200 boutiques à travers le monde, Marc Jacobs International comprend une gamme de prêt-à-porter et d’accessoires pour homme et femme, une ligne pour enfants baptisée Little Marc Jacobs, des parfums plusieurs fois primés, la librairie Bookmarc et, depuis plus récemment, Marc Jacobs Beauty.",
     "categories": [
       "5d725435565fa907a85fb725",
       "68f1ec4265d692dfd55a9cf1",
@@ -406,7 +406,7 @@
     "name": "Pret A Manger",
     "type": "tenant",
     "externalId": "unit101b-102",
-    "description": "The famous gourmet sandwich shop welcomes you throughout the day to eat in or takeaway. Pret offers delicious sandwiches, wraps and salads, all handmade in its kitchen with carefully sourced, natural ingredients, as well as hearty soups, desserts, fresh juices and pastries to be enjoyed with organic coffee prepared by an expert barista.",
+    "description": "Cette sandwicherie haut de gamme vous accueille tout au long de la journée pour une pause gourmande sur place ou à emporter. Au menu, de savoureux sandwiches, wraps et salades tous préparés sur place à partir d’ingrédients rigoureusement sélectionnés, des soupes du jour, des desserts, des jus frais et des viennoiseries, à accompagner d’une spécialité de café bio préparée d’une main experte par un Barista.",
     "categories": [
       "5d725437565fa907a85fb728",
       "69ae8c5ea685032b7698c04a",
@@ -457,7 +457,7 @@
     "name": "Kids around",
     "type": "tenant",
     "externalId": "unit105",
-    "description": "Kids around is a store dedicated to famous brands from kids designers.\nGIVENCHY, CHLOÉ, BOSS, DKNY, KARL LAGERFELD KIDS, LITTLE MARC JACOBS, TIMBERLAND, ZADIG & VOLTAIRE.\nBoys and Girls collections, from 0 to 16 years. Find Childrenswear, accessories and newborn at discounted prices all year long.\nFashion is also for the kids!",
+    "description": "Kids around est une boutique dédiée aux grandes marques de créateur pour enfants pour la dernière génération de Fashionistas. Collections prêt-à-porter et accessoires pour filles et garçons, du 0 au 16 ans.",
     "categories": [
       "5d725436565fa907a85fb726",
       "68f1ec4265d692dfd55a9cf1",
@@ -522,7 +522,7 @@
     "name": "Coach",
     "type": "tenant",
     "externalId": "unit106-107",
-    "description": "Coach is a modern American fashion brand with a rich heritage rooted in quality and craftsmanship. All over the world, the Coach name is synonymous with the ease and sophistication of New York style.",
+    "description": "Coach est une marque de luxe américaine moderne, dont le riche héritage tire ses racines de la qualité et l’artisanat. Dans le monde entier, le nom de Coach est le synonyme de l’aisance et de la sophistication du style new-yorkais.",
     "categories": [
       "5d725435565fa907a85fb725"
     ],
@@ -569,7 +569,7 @@
     "name": "ZEGNA",
     "type": "tenant",
     "externalId": "unit80",
-    "description": "Italian brand Ermenegildo Zegna provides sharp tailored suits, with cashmere knits, warm overcoats and leather accessories to complete the look. Experts in wool production since 1910, Zegna supplies fine fabrics to other luxury fashion houses. The family business, currently being run by the fourth generation of Zegnas, is famed for its fine wool made-to-measure suits, and since the 1960s also produces ready-to-wear tailoring.",
+    "description": "La marque italienne Ermenegildo Zegna conçoit des costumes aux coupes parfaites, ainsi que des produits en cachemire, des manteaux bien chauds et des accessoires en cuir complétant harmonieusement une silhouette. Expert dans le domaine de la laine depuis 1910, Zegna fournit des tissus raffinés à d’autres maisons de mode de luxe. L’entreprise familiale, actuellement gérée par la quatrième génération de Zegna, est reconnue pour ses élégants costumes sur-mesure en laine et, depuis les années 60, elle propose également une gamme de prêt-à-porter.",
     "categories": [
       "5d725437565fa907a85fb727"
     ],
@@ -616,7 +616,7 @@
     "name": "Fred Perry",
     "type": "tenant",
     "externalId": "unit109",
-    "description": "Formed in 1952 by the British tennis legend and table tennis champion Fred Perry; the brand has a unique association with British music and streetwear. It continues to create through its design attitude, associations and collaborations; styling that reflects a strong heritage with a contemporary twist.",
+    "description": "Fondée en 1952 par la légende du tennis et champion de tennis de table britannique Fred Perry, la marque présente une association unique entre la musique britannique et le streetwear. A travers son positionnement en termes de design, ses relations et ses collaborations, elle ne cesse de concevoir des lignes reflétant un héritage solide, empreint d’une touche contemporaine.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -673,7 +673,7 @@
     "name": "Charles Tyrwhitt",
     "type": "tenant",
     "externalId": "unit11",
-    "description": "Charles Tyrwhitt (think ‘Tyrwhitt’ like 'spirit') has one main philosophy: helping men look and feel good. Since 1986, the brand has been known as 'the shirt expert', and is loved for its craftsmanship, fine fabrics and exemplary customer service, to boot.  The brand’s elevated and versatile pieces are effortless staples for every man’s wardrobe - no matter your style.",
+    "description": "Charles Tyrwhitt (à prononcer comme « dixit ») a une philosophie principale : aider les hommes à avoir fière allure et à se sentir bien. Depuis 1986, la marque est reconnue comme l’« expert en chemises » et est appréciée pour son savoir-faire, ses tissus de qualité et son service client exemplaire. Les pièces de haute qualité et polyvalentes de la marque sont des basiques incontournables pour la garde-robe de chaque homme, quel que soit votre style.",
     "categories": [
       "5d725437565fa907a85fb727",
       "68f1ec4265d692dfd55a9cf1",
@@ -716,7 +716,7 @@
     },
     "tags": [],
     "social": {
-      "website": "https://www.tbvsc.com/la-vallee-village/en/brands/charles-tyrwhitt"
+      "website": "https://www.tbvsc.com/la-vallee-village/fr/marque/charles-tyrwhitt"
     },
     "contact": {},
     "id": "5d77a6ecb97238790bf503a2"
@@ -726,7 +726,7 @@
     "name": "Lacoste",
     "type": "tenant",
     "externalId": "unit110-111-112",
-    "description": "Life is a beautiful sport\nLacoste was born with a simple action. In 1933, tennis champion René Lacoste cut the sleeves off his shirt to gain ease of movement on the court. The polo came into being, the crocodile too. Behind the simplicity of the gesture is innovation. Ever since, Lacoste reinvents itself with each collection. Between technical performance, minimal style and French elegance: Silhouettes in perfect balance.",
+    "description": "Fort de son héritage, Lacoste présente chaque saison sa vision de l’élégance française inspirée du sport : des pièces qui se portent sur le court comme en ville pour une allure résolument moderne. Pour les femmes, les hommes ou les enfants, Lacoste innove pour le style et la liberté de mouvement.\nCollections : Femme, Homme, Enfant, Accessoires",
     "categories": [
       "5d725436565fa907a85fb726",
       "5d725437565fa907a85fb727",
@@ -782,7 +782,7 @@
     "name": "Baccarat",
     "type": "tenant",
     "externalId": "unit113",
-    "description": "Founded in 1764 and recognised by the prestigious 25 Best Artisans of France organisation, Baccarat is synonymous with a unique savoir-faire and a symbol of the French art of living. Technical innovations, stylistic audacity, exceptional collaborations with elite craftspeople glassblowers, carvers and engravers – Baccarat is a shining light in the world of tableware, lighting, decorative objects, jewellery and crystal. A world of dreams from heirloom treasures to one of a kind masterworks. From the simple to the precious. Forever innovative, always harmonious.",
+    "description": "Fondé en 1764 et épaulé par le talent de 25 Meilleurs Ouvriers de France, Baccarat est synonyme d’un savoir-faire unique et symbole de l’Art de Vivre à la Française. Innovations techniques, audaces stylistiques, collaborations exceptionnelles avec des artisans d’élite (souffleurs, tailleurs, graveurs), Baccarat met en lumière art de la table, luminaires, objets de décoration, bijoux et flaconnage. La féerie opère, des icônes du patrimoine maison aux commandes spéciales. Du simple au précieux. À jamais innovant. Toujours harmonieux.",
     "categories": [
       "5d72543a565fa907a85fb72e",
       "68f1ec4265d692dfd55a9cf1",
@@ -838,7 +838,7 @@
     "name": "Clarins",
     "type": "tenant",
     "externalId": "unit114",
-    "description": "Clarins and you. A story of love and trust for a life of beauty and well-being. The story of a French family experts in skin care and make-up. Inspired by the science of nature and respectful of the planet.\nListening to you, and offering the best personalized skin solutions for every moment of your life.\nClarins. It’s all about you.",
+    "description": "Clarins et vous. Une histoire d’amour, de confiance, de beauté et de bien-être. La passion d’une famille française, experte du soin et du maquillage, inspirée par la science de la nature et respectueuse de la planète.\nClarins vous écoute et vous propose les meilleurs soins personnalisés pour votre peau, pour chaque moment de votre vie.\nClarins. Vous, avant tout.",
     "categories": [
       "5d725438565fa907a85fb729",
       "68f1ec4265d692dfd55a9cf1",
@@ -885,7 +885,7 @@
     },
     "tags": [],
     "social": {
-      "website": "https://www.tbvsc.com/la-vallee-village/en/brands/clarins"
+      "website": "https://www.tbvsc.com/la-vallee-village/fr/marque/clarins"
     },
     "contact": {},
     "id": "5d77a6edb97238790bf503a5"
@@ -895,7 +895,7 @@
     "name": "Bompard",
     "type": "tenant",
     "externalId": "unit116",
-    "description": "Soft is the new strong.\nCashmere yarn has woven through the history of Eric Bompard for more than 30 years.\nAlways seeking excellence, the French maison has unique expertise, combining working with a noble and rare fabric with a constant search for more visual and graphic new knitting stitches.\nAt Eric Bompard, the colour is essential. More than 1,300 shades have already been created since the brand was created.\nDiscover women’s, men’s and children’s collections, rich in edgy pieces complementing the already extensive collection of timeless pieces.",
+    "description": "Retrouvez les collections Femme, Homme et Enfant, riches en pièces au style pointu complétant l’importante ligne d’intemporels Eric Bompard.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -943,7 +943,7 @@
     },
     "tags": [],
     "social": {
-      "website": "https://www.tbvsc.com/la-vallee-village/en/brands/eric-bompard"
+      "website": "https://www.tbvsc.com/la-vallee-village/fr/marque/eric-bompard"
     },
     "contact": {},
     "id": "5d77a6eeb97238790bf503a7"
@@ -953,7 +953,7 @@
     "name": "UGG",
     "type": "tenant",
     "externalId": "unit119",
-    "description": "Founded in 1978 on the coast of California by an Australian surfer, UGG® is a global lifestyle brand renowned for its iconic Classic boot.\nFirst worn by Hollywood royalty, fashion editors, and then the world, UGG® has since expanded beyond the icon to design footwear, apparel, accessories, and home decor with an uncompromising attitude toward creativity, quality and craftsmanship.\nBold, provocative, free-spirited, optimistic, and real, the brand has always celebrated unapologetic individuality and continues to be embraced globally by those who refuse to be defined by convention.",
+    "description": "Fondée en 1978 sur la côte californienne par un surfeur australien, UGG® est une marque mondiale lifestyle réputée pour ses bottes Classic emblématiques.\nD'abord portée par les stars d’Hollywood, les rédacteurs en chef de magazine de mode, la marque a ensuite conquis le monde entier.\nUGG® s’est depuis étendue au-delà de son icône pour proposer des chaussures, des vêtements, des accessoires et des collections pour la Maison en mettant toujours en avant créativité, qualité et savoir-faire.\nAudacieuse, provocante, libre d'esprit, optimiste et vraie, la marque célèbre la singularité et continue d'être adoptée aux quatre coins du monde par ceux qui refusent d'être définis par les conventions.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -1008,7 +1008,7 @@
     "name": "Ferragamo",
     "type": "tenant",
     "externalId": "unit12",
-    "description": "Remembered as the maker of exquisite hand-made shoes, Salvatore Ferragamo, moved to America from Italy in 1914, eventually ending up in Hollywood where his repair and shoe-making business began to attract Hollywood stars and movie-makers. His shoes featured on the stars on and off duty (he made Judy Garland’s red shoes for the Wizard of Oz). Returning to Italy in 1927, he set up his eponymous fashion house, which today produces menswear, womenswear, fragrances and eyewears.",
+    "description": "La maison Salvatore Ferragamo signe aujourd’hui des collections de prêt-à-porter masculin et féminin, des parfums et des lunettes.\nUne Histoire de Style vue par le magazine GQ",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -1063,7 +1063,7 @@
     "name": "Ladurée",
     "type": "tenant",
     "externalId": "unit52",
-    "description": "Discover the world-renowned macarons and other desserts at Ladurée in La Vallée Village",
+    "description": "Découvrez et redécouvrez les macarons de renommée mondiale Ladurée ainsi qu’un ensemble d’autres desserts signés par la marque au sein de leur boutique installée au cœur de La Vallée Village.",
     "categories": [
       "5d725437565fa907a85fb728",
       "69ae8c5ea685032b7698c04a"
@@ -1111,7 +1111,7 @@
     "name": "Burberry",
     "type": "tenant",
     "externalId": "unit122-123-124",
-    "description": "Burberry is a luxury British fashion brand. Established in 1856, its founder Thomas Burberry invented gabardine, the lightweight weatherproof fabric that revolutionised rainwear. Gabardine remains at the heart of the brand and is still used to make the iconic Heritage Trench Coat. Today the Burberry name is globally synonymous with design innovation, craftsmanship and a uniquely British sensibility.",
+    "description": "Créée en 1856,  Burberry est une marque britannique empreinte d'un fabuleux héritage: innovation, artisanat et design. Basée à Londres, sous la direction de son PDG et Directeur de la Création Christopher Bailey, la marque est mondialement réputée pour son aspect fonctionnel, agrémenté d'une sensibilité britannique unique. \nLes collections : Femme, Homme, Enfant, Accessoires et Parfums",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -1160,7 +1160,7 @@
     "name": "Bonpoint",
     "type": "tenant",
     "externalId": "unit44a",
-    "description": "Rich in the savoir-faire of a couture house, thanks to its artisan studio in Paris, Bonpoint cultivates the precision of beauty, the passion for quality and a meticulous attention to detail and finish. With more than 100 addresses in 27 countries (Paris, Moscow, Saint Petersburg, New York, Sao Paulo, Tokyo, Shanghai, Dubai...). Bonpoint is the French Fashion House for children, unique in its just-so style, poetic universe tinged with humor and magic, subtle delicacy, inspired shop windows and the warm atmosphere of its boutiques and “Maisons” in the heart of Saint-Germain-des-Prés in Paris and on Madison Avenue in New York.",
+    "description": "Riche du savoir-faire d’une maison de couture avec son atelier artisanal parisien, Bonpoint cultive merveilleusement l’exigence du beau, la passion de la qualité, le souci du détail et des finitions. Avec plus de 100 adresses dans 27 pays (Paris, New York, Tokyo, Londres, Moscou, Saint Petersburg, Sao Paulo, Shanghai, Dubaï). Bonpoint est la maison française pour enfants, unique par son style juste, son univers poétique empreint d’humour et de magie, sa délicatesse subtile, ses vitrines inspirées et l’atmosphère chaleureuse de ses boutiques et de ses deux emblématiques “Maisons” au cœur de Saint-Germain-des-Prés à Paris et sur Madison Avenue à New York.",
     "categories": [
       "5d725436565fa907a85fb726",
       "5d725435565fa907a85fb725",
@@ -1213,7 +1213,7 @@
     "name": "Calvin Klein",
     "type": "tenant",
     "externalId": "unit14",
-    "description": "The jeans brand known for both its innovative fit and ground-breaking advertising campaigns, which launched the international careers of the likes of Kate Moss and Mark Wahlberg. Klein could be credited with inventing the designer jeans craze in the 1970s by putting his name on the back pocket.",
+    "description": "Cette marque de jeans, célèbre pour ses coupes étroitement moulées innovantes et ses campagnes publicitaires provocantes, lance les carrières internationales de célébrités comme Kate Moss ou Mark Wahlberg. Calvin Klein invente le jean de créateur, qui fait fureur dans les années 1970.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -1261,7 +1261,7 @@
     },
     "tags": [],
     "social": {
-      "website": "https://www.tbvsc.com/la-vallee-village/en/brands/calvin-klein"
+      "website": "https://www.tbvsc.com/la-vallee-village/fr/marque/calvin-klein"
     },
     "contact": {},
     "id": "5d77a6f1b97238790bf503b0"
@@ -1271,7 +1271,7 @@
     "name": "Calvin Klein Underwear",
     "type": "tenant",
     "externalId": "unit15",
-    "description": "Bronx-born Klein started out with a coat shop in the York Hotel in New York City in the 1960s but by the early 70s, he was producing menswear, womenswear and award-winning underwear collections. A household name today, some would say you’re not properly dressed unless you’re wearing Calvin Klein underwear, sporting the distinctive logo.",
+    "description": "Originaire du Bronx, Calvin Klein fait ses premières armes en proposant des manteaux dans le magasin York Hotel à New York City dans les années 1960, mais dès le début des années 1970, il signe des collections de prêt-à-porter unisexe et une ligne de lingerie qui va lui attirer la gloire. Certains considèrent même que pour être bien habillé, il est indispensable de porter des sous-vêtements Calvin Klein, au logo distinctif.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -1312,7 +1312,7 @@
     },
     "tags": [],
     "social": {
-      "website": "https://www.tbvsc.com/la-vallee-village/en/brands/calvin-klein-underwear"
+      "website": "https://www.tbvsc.com/la-vallee-village/fr/marque/calvin-klein-underwear"
     },
     "contact": {},
     "id": "5d77a6f1b97238790bf503b1"
@@ -1322,7 +1322,7 @@
     "name": "Guess",
     "type": "tenant",
     "externalId": "unit16",
-    "description": "Known for its European styling, upscale image and glamorous collections, GUESS is one of the most widely recognizable brands across the globe with a style that dresses and accessorizes the world with fashionable clothing, handbags, watches, footwear and more. The GUESS collections are always fresh and striking with favourite jeans styles and new fits each season for both him and her, constantly affirming the brand’s Denim DNA. The sexy, young and adventurous image envisaged by founders Maurice and Paul Marciano when they founded the company in 1981 has been depicted for almost 30 years in the award-winning and inspirational advertising campaigns that have made GUESS a household name.",
+    "description": "Célèbre pour son style européen, son image haut de gamme et ses collections ultra glamour, GUESS est l'une des marques les plus largement reconnaissables à travers le globe grâce à un style qui habille et accessoirise le monde avec des vêtements tendance, des sacs, des montres, des chaussures et bien plus encore. \nL'image sexy, jeune et aventureuse pensée par les fondateurs Maurice et Paul Marciano lorsqu'ils ont créé leur entreprise en 1981 a été racontée pendant plus de 30 ans par les campagnes publicitaires primées et fascinantes qui ont fait de GUESS une marque connue de tous.",
     "categories": [
       "5d725436565fa907a85fb726",
       "5d725437565fa907a85fb727",
@@ -1380,7 +1380,7 @@
     "name": "Balenciaga",
     "type": "tenant",
     "externalId": "unit21",
-    "description": "Balenciaga offers women’s and men’s ready-to-wear, handbags, shoes, accessories and eyewear.",
+    "description": "Le prêt-à-porter féminin et masculin, la maroquinerie, les chaussures, les accessoires et les lunettes composent l’offre de Balenciaga.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727"
@@ -1428,7 +1428,7 @@
     "name": "Yves Salomon",
     "type": "tenant",
     "externalId": "unit22b",
-    "description": "With a long history of excellence and total control of every step from creation to production in his workshop in Paris, Yves Salomon is a major actor in the revival of fur. Now that his son is following in his footsteps, the company is sharing its tradition and savoir-faire across the world.\nCollections: Womenswear, Accessories, Menswear, Kidswear",
+    "description": "Avec un savoir-faire ancestral et une maîtrise parfaite de toutes les étapes de la création à la fabrication dans ses ateliers à Paris, Yves Salomon participe pleinement au renouveau de la fourrure.\nCollections : Femme, Accessoires, Homme, Enfant",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -1482,7 +1482,7 @@
     "name": "Samsonite",
     "type": "tenant",
     "externalId": "unit23",
-    "description": "Whether you're going on holiday, preparing for a business trip or simply shopping for something new, the Samsonite boutique has it all. Suitcases of all sizes, computer bags, roller bags, luggage for children and travel accessories – you will find the perfect item.",
+    "description": "Que vous partiez en vacances, en voyages d’affaires ou que vous alliez courir les magasins, la boutique  Samsonite  à ce qu’il vous faut.\nValises de toutes tailles, sacoches pour ordinateur, sacs à roulettes, bagages pour enfants et accessoires de voyage ! Vous trouverez forcément votre bonheur.\nOptez pour la résistance et la légèreté de Samsonite, leader mondial du bagage depuis plus de 100 ans.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -1535,7 +1535,7 @@
     "name": "Loro Piana",
     "type": "tenant",
     "externalId": "unit64",
-    "description": "Loro Piana is committed to quality, high-performance textile innovation and imbuing each of its designs with timeless Italian elegance.\n\nFounded in 1924, Loro Piana is one of the world’s leading manufacturers of fine fabrics, later adding luxurious clothing and quality accessories to its offering.",
+    "description": "Dans le nord de l'Italie, depuis six générations, Loro Piana fabrique produits de luxe et textiles d'exception à partir des matières premières les plus nobles.\n\nLoro Piana est aujourd’hui la référence en matière de tissus et de fils parmi les plus précieux au monde, grâce à ses investissements constants dans les matières premières et la fabrication et à ses innovations techniques permanentes.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725"
@@ -1583,7 +1583,7 @@
     "name": "Tory Burch",
     "type": "tenant",
     "externalId": "unit25",
-    "description": "Tory Burch is an American lifestyle brand that inspires people around the world to live in full color with character, beauty and confidence.  The collection embodies the personal style and sensibility of its Executive Chairman and Chief Creative Officer, Tory Burch. It includes ready-to-wear, shoes, handbags, accessories, watches, home and fragrance.",
+    "description": "Tory Burch est une marque américaine lifestyle qui incite les gens du monde entier à vivre en couleur, avec caractère, beauté et confiance. La collection incarne le style et la sensibilité de son fondateur et créateur Tory Burch. Il comprend le prêt-à-porter, les chaussures, les sacs à main, les accessoires, les montres, la maison et les parfums.",
     "categories": [
       "5d725435565fa907a85fb725",
       "69bd6405dac027d4c07eb5d3",
@@ -1633,7 +1633,7 @@
     "name": "Claudie Pierlot",
     "type": "tenant",
     "externalId": "unit45",
-    "description": "Claudie Pierlot has always expressed its vision of Parisian chic with stylistic risks and a sophisticated taste for beautiful materials and details. The schoolgirl collar, the striped shirt and the bow tie are all signatures of the brand's aesthetic and create instantly recognisable collections.\nThe brand's timeless classics are updated in step with trends for a feminine feel and an impertinent touch. All over the world, Claudie Pierlot represents the lightness and style of Paris that is subtle, strong, on-trend and always chic.",
+    "description": "Claudie Pierlot a toujours exprimé sa vision de la Parisienne à travers des partis pris stylistiques forts, autant qu’avec un goût marqué pour les jolies matières et les finitions soignées.\nLe col claudine, la marinière, le nœud papillon, codes incontournables de la marque, viennent également ponctuer les collections, contribuant à créer une signature reconnaissable.\nLes classiques intemporels de la marque sont revisités et se mêlent aux tendances pour une allure féminine, avec une touche d’impertinence dans les associations.  Partout dans le monde, Claudie Pierlot incarne avec légèreté et style la Parisienne d’aujourd’hui à la fois discrète et affirmée, branchée et bon chic bon genre.",
     "categories": [
       "5d725435565fa907a85fb725",
       "68f1ec4265d692dfd55a9cf1",
@@ -1679,7 +1679,7 @@
     },
     "tags": [],
     "social": {
-      "website": "https://www.tbvsc.com/la-vallee-village/en/brands/claudie-pierlot"
+      "website": "https://www.tbvsc.com/la-vallee-village/fr/marque/claudie-pierlot"
     },
     "contact": {},
     "id": "5d77a6f6b97238790bf503bd"
@@ -1689,7 +1689,7 @@
     "name": "Tissot",
     "type": "tenant",
     "externalId": "unit26b",
-    "description": "TISSOT has recently joined La Vallée Village, where it harmoniously expands the Village's varied selection. The brand's high-end watches are another reason why those of any taste or age can find something for them at the Village. Discover the pure and contemporary design of the label's first outlet boutique, where you'll be treated to an encounter with TISSOT's iconic timepieces. They deftly bring together luxury and high technology, as the brand has been at the avant-garde of innovation since its creation in 1853. Welcome to a world where elegant timekeeping in within reach, don't wait to explore it for yourself. Discover the collections at Tissot and Hour Passion.",
+    "description": "TISSOT vient harmonieusement compléter l’offre variée du Village – où tous les goûts et toutes les générations sont comblés – grâce à son univers horloger haut de gamme. Dans une atmosphère à l’ambiance épurée et au design contemporain – la première boutique outlet de l’enseigne - vous aurez le plaisir de découvrir des modèles emblématiques de TISSOT, qui conjuguent savemment matières luxueuses et haute technologie, la marque étant à l’avant-garde de l’innovation depuis sa création en 1853. Bienvenue dans un monde où l’horlogerie élégante se fait accessible, n’attendez pas pour venir y prendre votre temps !  Découvrez les collections chez Tissot et Hour Passion.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -1743,7 +1743,7 @@
     "name": "Vilebrequin",
     "type": "tenant",
     "externalId": "unit29",
-    "description": "A sharp-eyed observer of the privileged bathers on the French Riviera beach fashioned the first ever boxer short swimming trunks from the chequered cloth on his café table. When the inventor hit upon a quick-drying spinnaker canvas, the car enthusiast named the results of his innovation Vilebrequin, meaning “crankshaft“. His upmarket swimwear won the loyalty of the St Tropez set and can now be found on every exclusive beachside in the world.",
+    "description": "En 1971, sur une terrasse d’un café de Saint-Tropez, rendez-vous des happy few de la Côte, un jeune homme s’amuse à dessiner sur une nappe à carreaux un modèle original de boxer-short. Coupé dans une toile de spi, ce nouveau maillot de bain sèche plus vite au soleil et dans le vent. Clin d’œil à sa passion automobile, le créateur nomme son innovation Vilebrequin, nom repris de la pièce de moteur. Sur les plages tropéziennes, le nouveau boxer-short fait immédiatement sensation et a aujourd’hui conquis les plages du monde entier.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -1800,7 +1800,7 @@
     "name": "Max Mara",
     "type": "tenant",
     "externalId": "unit30",
-    "description": "Max Mara was founded as a menswear business in post-war Italy by Achille Maramotti, who soon found himself making clothes for women who loved high fashion but couldn’t afford it. His ethos - providing high quality, design-forward clothing at more reasonable prices - has culminated, a half-century later, with Max Mara’s reputation for classic clothes and luxurious materials, with a special talent for knitwear. Celebrity fans include Sandra Bullock, Daisy Fuentes and Joely Richardson.",
+    "description": "La griffe de prêt-à-porter – à l’origine masculin - Max Mara fut fondée dans l’Italie de l’après-guerre par Achille Maramotti, qui ne tarde pas à se lancer dans la création de vêtements de prêt-à-porter pour les femmes qui rêvent de haute couture sans pouvoir se l’offrir. Sa philosophie  – concevoir des vêtements de qualité irréprochable, dans un esprit couture, à des tarifs raisonnables  – se vérifie, un demi-siècle plus tard, à travers des modèles classiques et des étoffes de luxe qui font la réputation de la marque Max Mara, et un talent tout particulier pour la maille. Sandra Bullock, Daisy Fuentes et Joely Richardson sont des inconditionnelles !",
     "categories": [
       "5d725435565fa907a85fb725",
       "69bd6405dac027d4c07eb5d3",
@@ -1856,7 +1856,7 @@
     "name": "Isabel Marant",
     "type": "tenant",
     "externalId": "unit68",
-    "description": "Say Isabel Marant, think Parisian flow.\nHaving founded her label in ’94, she instantly became renowned for her pioneering and cosmopolitan spirit bringing self-affirmation and feel good effect to her dégaine..\nTo do so, ever since her launch, she has been trying on each garment before it leaves her studio to ensure everything works in the everyday life of a real woman.",
+    "description": "Qui dit Isabel Marant, dit esprit Parisien.\nAprès avoir fondé sa Maison en 1994, elle est devenue instantanément une référence, pour son style audacieux, cosmopolite et plein de personnalité. Un style feel good, une dégaine !\nAinsi, depuis son lancement, aucun modèle ne part en fabrication sans avoir été essayé par Isabel elle-même ! Une assurance que sa mode est faite pour la vraie vie des vraies femmes.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725438565fa907a85fb72a",
@@ -1912,7 +1912,7 @@
     "name": "Levi’s®",
     "type": "tenant",
     "externalId": "unit32",
-    "description": "A classic since right now. Meet the only jeans you’ll ever need! Since invented in 1873, the Levi’s® Jean has been a blank canvas for self-expression. Always original. Today, Levi’s® continues to evolve through a relentless innovative spirit. Visit the Levi’s® store now and find your new favorite pair of Levi’s® at special outlet prices. Express your personal style and show the world how you Live in Levi’s®.",
+    "description": "Depuis 1873, les jeans Levi’s® représentent une toile vierge permettant de s’exprimer librement. Toujours authentique, la marque poursuit aujourd’hui son évolution à travers son esprit novateur.\nExprimez votre style personnel et montrez au monde entier comment vous vivez en Levi’s®.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -1969,7 +1969,7 @@
     "name": "Polo Ralph Lauren Children",
     "type": "tenant",
     "externalId": "unit33",
-    "description": "Polo Ralph Lauren Children is designed to reflect the timeless heritage and modern spirit of Ralph Lauren’s collections for men and women. Signature classics, including iconic polo knit shirts and luxurious cashmere cable sweaters, are interpreted in the most sophisticated and vibrant colours.",
+    "description": "Polo Ralph Lauren Enfants est conçue pour refléter l’héritage intemporel et l’esprit moderne des lignes de vêtements de Ralph Lauren pour hommes et femmes. Les classiques de la marque, dont les emblématiques polos en coton piqué et pulls en cachemire, sont réinterprétés dans de superbes couleurs vibrantes et sophistiquées. Les styles tendance s’inspirent chaque saison de la vision unique de Ralph Lauren pour créer des vêtements de sport de style américain aux inspirations Preppy et équestre ainsi que des ensembles ajustés et élégants à porter pour les grandes occasions.",
     "categories": [
       "5d725436565fa907a85fb726",
       "68f1ec4265d692dfd55a9cf1",
@@ -2022,7 +2022,7 @@
     "name": "Tommy Hilfiger",
     "type": "tenant",
     "externalId": "unit34-35-36",
-    "description": "A globally recognised lifestyle brand, Tommy Hilfiger’s signature flag logo symbolises high-end quality that customers worldwide associate with luxury and quintessential American prep. The launch of their iconic men’s sportswear range in 1985 led to the expansion of the brand’s clothing range to encompass a complete premium collection for men, women, and kids. Today, in its 30th year, Tommy Hilfiger dresses the whole family and is a much-loved fashion brand.\nCollections: Women, Men, Children\nDiscover your favourite brands – including Tommy Hilfiger – at La Vallée Village, which offers more than 130 boutiques with exceptional savings.",
+    "description": "Le lancement de son emblématique collection sport pour homme en 1985 a conduit Tommy Hilfiger à l’expansion de l’offre de vêtements de la marque qui englobe désormais une collection premium complète pour homme, femme et enfant.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -2081,7 +2081,7 @@
     "name": "Versace",
     "type": "tenant",
     "externalId": "unit39",
-    "description": "Founded in 1978, Versace is one of the leading global fashion design houses. Under the artistic direction of Donatella Versace since 1997, Versace designs, manufactures, distributes and retails fashion and lifestyle products including haute couture, women's and men's ready-to-wear, jewellery, watches, accessories, fragrances and furniture.",
+    "description": "Fondée en 1978, Versace est l'une des plus grandes maisons de couture internationales. Sous la direction artistique de Donatella Versace depuis 1997, Versace conçoit, fabrique, distribue et vend des produits mode et lifestyle : haute couture, prêt-à-porter pour homme et femme, bijoux, montres, accessoires, parfums et mobilier.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -2130,7 +2130,7 @@
     "name": "Prada",
     "type": "tenant",
     "externalId": "unit40-41-42",
-    "description": "Since 1913, Prada is synonymous of an unmistakable style which has always anticipated, and often oriented, new trends in all fields. \nCollections: Womenswear, Menswear, Accessoiries, Miu Miu",
+    "description": "Depuis 1913, Prada est synonyme d’un style sans équivoque, qui a toujours su anticiper et souvent orienter de nouvelles tendances dans tous les domaines.\nCollections : Femme, Homme, Accessoires, Miu Miu",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727"
@@ -2226,7 +2226,7 @@
     "name": "Sunglass Hut",
     "type": "tenant",
     "externalId": "unit46b",
-    "description": "Sunglass Hut’s mission is to be the premier shopping and inspiration destination for top eyewear brands, offering the latest trends and exclusive styles. Discover collections from famous brands such as: Ray-Ban, Persol, Burberry, Bulgari, Dolce & Gabbana, Emporio Armani, Oakley and Vogue. Find the perfect pair at Sunglass Hut in La Vallée Village!",
+    "description": "Les lunettes de soleil, de très haute qualité, allient mode et performance. Découvrez les modèles des plus grandes marques tels que :  Ray-Ban, Persol, Burberry, Bvlgari, Dolce & Gabbana, Emporio Armani, Oakley, Vogue . Trouvez la paire de solaire parfaite chez Sunglass Hut à La Vallée Village !",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -2284,7 +2284,7 @@
     "name": "BOSS",
     "type": "tenant",
     "externalId": "unit47",
-    "description": "Hugo Boss offers sophisticated collections that are focused on quality and design, creating an impeccable look whether it’s for work or leisure.\nCollections: Menswaer, Womenswear, Accessories",
+    "description": "BOSS propose des collections sophistiquées axées sur la qualité et le design pour créer un look impeccable que ce soit pour le travail ou les loisirs.\nCollections : Homme, Femme, Accessoires, Parfums",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -2341,7 +2341,7 @@
     "name": "Berenice",
     "type": "tenant",
     "externalId": "unit13",
-    "description": "The high-end French ready-to-wear brand Berenice has been recognized as a benchmark for chic basics.\n\nFrédéric Krief founded the label in 2004. The label uses superior materials such as cashmere, silk and satin in a romantic palette but at an affordable price point. Shoes and accessories complete the girly look.",
+    "description": "Une marque française haut de gamme reconnue comme l’un des fleurons du « basique chic ».\n\nCréée par Frédéric Krief en 2004, Berenice est une marque de prêt-à-porter féminin haut de gamme reconnue comme l’un des fleurons du « basique chic ». Misant sur des matières nobles (cachemire, soie ou satin) qu’elle revisite dans un esprit romantique, elle propose un luxe abordable — sans oublier chaussures et accessoires.",
     "categories": [
       "5d725435565fa907a85fb725",
       "68f1ec4265d692dfd55a9cf1",
@@ -2397,7 +2397,7 @@
     "name": "L'Occitane en Provence",
     "type": "tenant",
     "externalId": "unit38b",
-    "description": "At L'Occitane, treat yourself with the best of Provence beauty, where every ingredient is synonymous with authenticity, respect and a sensorial experience.",
+    "description": "Chez L'OCCITANE, offrez-vous le meilleur de la Provence pour une beauté unique et lumineuse.",
     "categories": [
       "5d725438565fa907a85fb729",
       "68f1ec4265d692dfd55a9cf1",
@@ -2453,7 +2453,7 @@
     "name": "Diesel",
     "type": "tenant",
     "externalId": "unit63",
-    "description": "DON’T NEED TO REMOVE YOUR JOGGJEANS, IT SAYS THAT YOU CAN EVEN SLEEP WITH IT...\nUsually you take jeans off when you get home. JoggJeans give you extra comfort, don’t take them off just sleep in them.\nThe essence of Diesel’s revolutionary denim, soft and comfortable as a pair of sweatpants with the high quality and durability of denim provides dream-like comfort in any circumstances. JoggJeans are so comfortable that they really become “The jeans of your dreams”.\nDiesel is not just about a pair of jeans. It’s a statement on individuality and self-expression, a battle cry for innovation, artistry and technical expertise driven by the belief that passion is the greatest muse. Renzo Rosso founded Diesel in 1978, creating a lifestyle brand rooted in denim but forged by an unwavering visions for the future.",
+    "description": "INUTILE D’ENLEVER VOTRE JOGGJEANS, IL PARAIT MÊME QUE VOUS POUVEZ DORMIR AVEC...\nEn rentrant chez vous, la première chose que vous faites est de lâcher votre denim pour une tenue plus confortable, je me trompe ? Ne vous donnez pas autant de mal, le JoggJeans est si confortable que vous voudrez même le garder pour dormir ! L’essence même de ce denim Diesel révolutionnaire réside dans sa douceur. Alliant le confort du jersey à la qualité et durabilité inégalée du denim, vous avez enfin trouvé « le jeans de vos rêves » !\nDiesel n’est pas seulement une paire de jeans mais un cri de guerre pour l’innovation, l’expertise technique et le talent artistique. Renzo Rosso a utilisé la passion comme source d’inspiration afin de créer le style de vie Diesel qui est aussi bien ancrée dans le denim que dans sa vision du futur.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -2510,7 +2510,7 @@
     "name": "Timberland",
     "type": "tenant",
     "externalId": "unit54",
-    "description": "Today Timberland outfits consumers from toe-to-head, with versatile collections rooted into the brand’s rich heritage of utility, craftsmanship and style. Timberland’s dedication to making quality products is matched by an unwavering commitment to innovate and operate in a responsible manner – in terms of our products, the outdoors, and the communities around the globe where we live, work and explore.",
+    "description": "Aujourd’hui, Timberland habille ses clients de la tête aux pieds, grâce à des collections polyvalentes ancrées au cœur du riche héritage de la marque, empreint de fonctionnalité, de savoir-faire et de style.\n\nTimberland s’attache à concevoir des produits de qualité et s’engage de manière indéfectible à innover et à agir de manière responsable, que ce soit en lien avec ses produits ou vis-à-vis de l’extérieur comme des communautés à travers le monde où nous vivons, travaillons et étudions.",
     "categories": [
       "5d725436565fa907a85fb726",
       "5d725437565fa907a85fb727",
@@ -2567,7 +2567,7 @@
     "name": "Armani",
     "type": "tenant",
     "externalId": "unit58b",
-    "description": "In 1975 Giorgio Armani founded his company in Milan. Since then, he has established his name as a world leader in fashion and accessory design with his brands Emporio Armani and Armani Exchange . His style is synonymous with luxury and contemporary elegance, modernity, and sophistication.",
+    "description": "En 1975, Giorgio Armani a fondé sa société à Milan. Dès lors, il s'est imposé comme un leader mondial de la mode et de la création d'accessoires avec ses marques Emporio Armani et Armani Exchange . Son style est synonyme de luxe et d'élégance contemporaine, de modernité et de sophistication.",
     "categories": [
       "5d725436565fa907a85fb726",
       "5d725435565fa907a85fb725",
@@ -2625,7 +2625,7 @@
     "name": "Furla",
     "type": "tenant",
     "externalId": "unit61",
-    "description": "Furla is a premium accessories brand whose style codes are defined by an upbeat and inspiring Italian lifestyle. A fusion of contemporary design, top quality craftsmanship and an upbeat edge that make the difference.\nMade with the finest Italian leather, Furla’s pieces are unique and innovative offering contemporary designs injected with a playful, colourful and joyful edge. Since 1927, Furla engages and inspires women across the board.\n\nIt’s Love at first sight – Meet FURLA BELLA\nThese unique staples allow you to express yourself with fun designs that don’t go unnoticed. Both designs feature stitching on tone that outlines the playful message and a pretty closure that makes for a luxe detail. Versatile and functional, they can be both used as a shoulder bag and a crossbody.",
+    "description": "Furla est une enseigne proposant des accessoires de luxe. Ses codes vestimentaires sont tirés d'un art de vivre à l'italienne, optimiste et inspirant. Elle se démarque en mêlant design contemporain, artisanat haut de gamme ainsi qu'une pointe d'optimisme. \n Les modèles de Furla sont des pièces uniques et innovantes. Conçus avec le cuir italien le plus raffiné, ils proposent des designs contemporains dans une atmosphère légère, joyeuse et colorée. Depuis 1927, Furla inspire et engage les femmes sur tous les tableaux.\n \nUn vrai coup de foudre – Nous vous présentons les sacs BELLA de FURLA\nCes essentiels résolument uniques vous offrent l’opportunité de vous exprimer au travers de créations ludiques qui ne passent pas inaperçues. Les deux modèles proposent une couture ton-sur-ton qui vient renforcer un message espiègle et une jolie fermeture, véritable détail luxe. Pratiques et pour toute occasion, ils peuvent être portés à l'épaule comme en bandoulière.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -2682,7 +2682,7 @@
     "name": "Sandro",
     "type": "tenant",
     "externalId": "unit53",
-    "description": "This young label from France gives women and men effortless chic with fashion that manages to be ultra-hip, romantic and voluptuous all at once. Founded by Evelyne Chétrite in 2005, it opened its first boutique on rue Vieille du Temple, Paris, the brand now has outlets all over France, providing wearable, casual fashion and accessories with a bohemian air.\nCollections: Womenswear, Menswear and Accessories",
+    "description": "Evelyne Chetrite, fondatrice et directrice de création depuis 1984, a développé une nouvelle esthétique féminine : moderne et sophistiquée avec une pointe d'androgynie. En accord avec la sensibilité de Sandro, le fils d'Evelyne, Ilan, a lancé Sandro Homme en 2008 en se concentrant sur des classiques revisités avec une touche de modernité.\n\nDécouvrez les collections Homme, Femme et Accessoires dans la boutique Sandro à La Vallée Village.",
     "categories": [
       "5d725435565fa907a85fb725",
       "68f1ec4265d692dfd55a9cf1",
@@ -2739,7 +2739,7 @@
     "name": "Anne Fontaine",
     "type": "tenant",
     "externalId": "unit66",
-    "description": "French designer Anne Fontaine is the creator of the ultimate white shirt. A true tribute to femininity, she adapts her creations to suit all personalities and a multitude of occasions.",
+    "description": "Anne Fontaine est une Maison de prêt-à-porter et d’accessoires féminins de luxe essentiellement connue pour ses chemisiers blancs.",
     "categories": [
       "5d725435565fa907a85fb725",
       "68f1ec4265d692dfd55a9cf1",
@@ -2795,7 +2795,7 @@
     "name": "ba&sh",
     "type": "tenant",
     "externalId": "unit67",
-    "description": "The brainchild of childhood friends, Parisians Barbara Boccara and Sharon Krief, who were looking for unfussy, everyday, chic clothes – the clothes they would like to wear themselves. The simple, stylish wardrobe staples have attracted many fashion insiders who want to wear them too.",
+    "description": "Aboutissement d’un rêve de deux amies d’enfance parisiennes, Barbara Boccara et Sharon Krief, la griffe ba&sh propose une mode simple et chic – des vêtements que leurs créatrices aimeraient porter. Leurs collections raffinées et décontractées ont séduit nombre de fashionistas.",
     "categories": [
       "5d725435565fa907a85fb725",
       "68f1ec4265d692dfd55a9cf1",
@@ -2851,7 +2851,7 @@
     "name": "Polo Ralph Lauren Men and Women",
     "type": "tenant",
     "externalId": "unit69-70",
-    "description": "Authentic and iconic, Polo Ralph Lauren Men and Women is the original symbol of the modern preppy lifestyle. Combining Ivy League classics and time-honored English haberdashery with downtown styles and All-American sporting looks, Polo sportswear and tailored clothing present a one-of-a-kind vision.\nCollections: Womenswear, Menswear, Accessories",
+    "description": "Authentique et emblématique, la collection de Polo Ralph Lauren Men and Women est à l’origine du style moderne Preppy. Du classicisme « Ivy League » dans les collections Homme au luxe sophistiqué dans les collections Femme, découvrez les essentiels intemporels à la boutique dans La Vallée Village.\nCollections: Homme, Accessoires",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -2909,7 +2909,7 @@
     "name": "Tod's",
     "type": "tenant",
     "externalId": "unit71",
-    "description": "An Italian brand that produces shoes and other luxury leather goods like bags and accessories. Dorino Della Valle began a shoemaking business out of a basement in the twenties, and his son Diego made the Tod’s name when he developed its signature shoe, the Gommino moccasin-casual and handmade, with 133 rubber pebbles on the sole. Made in Italy, the artisanship behind the brand’s footwear and accessories guarantees quality and careful design.",
+    "description": "Une griffe italienne qui fabrique des chaussures et autres articles de maroquinerie de luxe comme les sacs et accessoires. Dorino Della Valle crée l’entreprise de chaussures dans les années vingt, mais c’est son fils Diego qui impose la marque Tod’s en créant le mocassin Gommino  – produit culte entièrement réalisé à la main, doté de 133 picots de caoutchouc sous la semelle. Cette marque adepte du « made in Italy » est un gage de qualité et de perfection.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725"
@@ -2957,7 +2957,7 @@
     "name": "Maje",
     "type": "tenant",
     "externalId": "unit90",
-    "description": "Parisian girls love Maje, home of sleek leather leggings, romantic blouses, cashmere dresses and fitted silk t-shirts. Since designer Judith Milgrom opened her first store in the fashionable Saint Germain district, her beautifully designed and cleverly tailored collections have inspired women all over the world. From ostrich feather skirts to delicate tiered ruffle blouses, Maje provides daring, chic womenswear.\nCollections: Womenswear, Accessories",
+    "description": "Les Parisiennes sont des inconditionnelles de Maje, et de ses leggings cuir, ses chemisiers romantiques, ses robes en cachemire et ses tee-shirts ajustés en soie. Depuis que sa créatrice Judith Milgrom a ouvert sa première boutique dans le quartier très branché de Saint-Germain, ses collections magnifiquement conçues et intelligemment ajustées inspirent les femmes du monde entier. Avec ses jupes en plumes d’autruche et ses délicats chemisiers à jabot, Maje habille la femme avec audace et élégance.\n Collections : Femme et Accessoires",
     "categories": [
       "5d725435565fa907a85fb725",
       "68f1ec4265d692dfd55a9cf1",
@@ -3012,7 +3012,7 @@
     "name": "Givenchy",
     "type": "tenant",
     "externalId": "unit77",
-    "description": "Since spring 2017, Clare Waight Keller has been the artistic director of Haute Couture and women’s and men’s ready-to-wear. With her debut show, on October 1st 2017, Clare Waight Keller established a forward-looking new signature for the house of Givenchy based on the idea of Light in darkness.",
+    "description": "Depuis sa création en 1952, Givenchy s'est imposée comme une Maison au chic sobre et racé d'une élégante modernité, qui déjoue les aléas de la mode et des saisons.\nCollections : Homme, Femme et Accessoires",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -3066,7 +3066,7 @@
     "name": "Valentino",
     "type": "tenant",
     "externalId": "unit74",
-    "description": "Vision, products, retail spaces share the same traits: from the one-of-a-kind Haute Couture creations to women’s and men’s ready-to-wear and accessories, from eyewear to fragrances to the boutiques, Valentino is synonymous of elegance, pureness, craftsmanship, uniqueness.",
+    "description": "Des créations Haute Couture uniques au prêt-à-porter et accessoires pour homme et femme, des lunettes aux parfums en passant par les boutiques, Valentino est synonyme d'élégance, de pureté , d’artisanat, d'unicité.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727"
@@ -3118,7 +3118,7 @@
     "name": "Zadig&Voltaire",
     "type": "tenant",
     "externalId": "unit75",
-    "description": "“THIS IS ROCK, THIS IS ZADIG !“\nZadig & Voltaire is all about casual-chic: it is a state of mind, a musical inclination, fashion as a bold statement. With rock’n’roll in its blood and art as its inspiration, the brand has naturally become a “concept store” ahead of its time. In stores, its collections are accompanied by music compilations from the brand’s label. It is art and luxury at an affordable price: this was Thierry Gillier’s vision.\nA best-seller, for comfort and an ultra-flattering attitude that accents the waist and enshrines the knit like a separate piece of clothing whose cut finally comes into play.",
+    "description": "« THIS IS ROCK, THIS IS ZADIG ! »\nZadig & Voltaire c’est le « casual-chic », un état d’esprit, une inclinaison musicale, la mode comme déclaration. Le rock dans le sang et l’art pour inspiration. Dans les boutiques, les collections côtoient des oeuvres, au son des compiles du label de la marque. Un best-seller, pour le confort et l’attitude ultra-flatteuse qui prend la taille et consacre la maille comme un vêtement à part entière dont la coupe entre enfin en jeu. L’art et le luxe, plus accessibles : telle est la vision de Thierry Gillier.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -3176,7 +3176,7 @@
     "name": "Jimmy Choo",
     "type": "tenant",
     "externalId": "unit76",
-    "description": "Jimmy Choo encompasses a complete collection of women’s shoes, handbags, small leather goods, sunglasses, eyewear, fragrance and men’s shoes and accessories.",
+    "description": "Jimmy Choo est une maison d’accessoires de luxe. Les chaussures pour femme restent au cœur de la gamme; à cela s’ajoutent les sacs à main, la petite maroquinerie, les foulards, les lunettes de soleil, les lunettes de vue, les ceintures, le parfum et les chaussures pour homme.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -3227,7 +3227,7 @@
     "name": "Villeroy & Boch",
     "type": "tenant",
     "externalId": "unit18",
-    "description": "With a 260-year ceramics heritage, Villeroy & Boch produces sleek, contemporary, home products. Founded in 1748 by François Boch in a small village in the Lorraine region of France, the pottery company crossed the border into Luxembourg before settling in Mettlach, Germany. There the brand merged with that of Nicolas Villeroy and made its name with the innovative design that characterises its collections to this day, from cutlery and tableware to wellness and bathroom accessories.",
+    "description": "Céramiste depuis plus de 260 ans, Villeroy & Boch signe des produits élégants et contemporains pour la maison. La faïencerie, fondée en 1748 par François Boch dans un petit village de Lorraine, est transférée au Luxembourg avant de s’implanter à Mettlach, en Allemagne. Là, les établissements Boch s’unissent à la fabrique de Nicolas Villeroy pour donner naissance à une marque incontournable en matière de design d’intérieur, dont l’innovation se décline en coutellerie, arts de la table, bien-être et accessoires pour le bain.",
     "categories": [
       "5d72543a565fa907a85fb72e",
       "68f1ec4265d692dfd55a9cf1",
@@ -3279,7 +3279,7 @@
     "name": "Hour Passion",
     "type": "tenant",
     "externalId": "unit78",
-    "description": "Hour Passion is a specialist watch boutique, housing some of the most exciting and globally revered « Swiss Made » brands to include LONGINES, RADO, TISSOT, BALMAIN, MIDO and HAMILTON. Hour Passion prominently houses each brand in its own individual retail space, allowing you a closer look at the brands’ unique features. Make time for Hour Passion and marvel at your next extraordinary timepiece.",
+    "description": "Hour Passion est une enseigne spécialisée dans l’horlogerie, qui propose des marques « Swiss Made » parmi les plus séduisantes, reconnues dans le monde entier, telles que LONGINES, RADO, TISSOT, BALMAIN, MIDO and HAMILTON.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -3339,7 +3339,7 @@
     "name": "Hackett London",
     "type": "tenant",
     "externalId": "unit79",
-    "description": "Founded by Jeremy Hackett in 1983, Hackett London has become a global leader in menswear, blending timeless British style with modern sophistication. \nCollections: Menswear, Accessories",
+    "description": "Fondée par Jeremy Hackett en 1983, Hackett London est devenue un leader mondial de la mode masculine, alliant style britannique intemporel et sophistication moderne. \nCollections : Homme et Accessoires",
     "categories": [
       "5d725437565fa907a85fb727",
       "68f1ec4265d692dfd55a9cf1",
@@ -3395,7 +3395,7 @@
     "name": "Lancel",
     "type": "tenant",
     "externalId": "unit81",
-    "description": "Since its creation, Lancel – which celebrated its 140th anniversary in 2016 – continues to surprise, predicting trends and creating iconic accessories such as supple luggage and the bucket bag.",
+    "description": "La maison Lancel fut fondée en 1876 par Angèle Lancel, femme visionnaire du Paris de la Belle Epoque. Depuis, la maison n’a cessé de surprendre en sachant anticiper l’air du temps et créer des accessoires emblématiques, comme les bagages souples et le sac seau.",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -3452,7 +3452,7 @@
     "name": "Dolce & Gabbana",
     "type": "tenant",
     "externalId": "unit83-84",
-    "description": "The quintessence of Italian glamour, Dolce&Gabbana has defined a new kind of luxury. The strong identity of the Dolce&Gabbana brand has evolved over the years without ever forgetting its roots; an unmistakable style, which, season after season, combines true innovation with the Mediterranean flavour of its origins. Modern yet classic, luxurious yet unconventional, the essence of Dolce&Gabbana is defined by its contrasting features.",
+    "description": "Dolce & Gabbana, quintessence du glamour italien, a réinventé les codes du luxe. L’identité inébranlable de la marque Dolce & Gabbana a évolué au cours des années, sans pour autant en oublier ses racines ; un style reconnaissable entre tous qui, saison après saison, sait mêler une réelle capacité d'innovation à une touche méditerranéenne liée à ses origines. Moderne et classique, luxueuse sans être conventionnelle, l’essence de Dolce & Gabbana se définit par son caractère tout en contraste.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -3501,7 +3501,7 @@
     "name": "Chloé",
     "type": "tenant",
     "externalId": "unit19",
-    "description": "French fashion house, Chloé was founded in 1952 by Gaby Aghion, an Egyptian-born Parisienne with a bohemian spirit. Rejecting the stiff formality of 1950s haute couture, she created soft, alluring clothes from the finest fabrics. The brand is both independent and bold, with an acute sense of beauty. Today, is Chloé’s Creative Director, bringing her unique vision to the forefront and embodying an elegant femininity with her designs.",
+    "description": "La maison de couture française Chloé a été fondée en 1952 par Gaby Aghion, une Parisienne originaire d’Égypte à l’esprit bohème. Rejetant la haute couture à la formalité rigide des années 50, elle a alors créé des vêtements souples et élégants, coupés dans des tissus raffinés. La marque est à la fois indépendante et audacieuse, dotée d’un sens aigu de la beauté. Aujourd’hui, Natacha Ramsay-Levi, la directrice de la création de Chloé, met en lumière sa vision unique et incarne à travers ses créations une féminité élégante.",
     "categories": [
       "5d725435565fa907a85fb725",
       "68f1ec4265d692dfd55a9cf1",
@@ -3541,7 +3541,7 @@
     },
     "tags": [],
     "social": {
-      "website": "https://www.tbvsc.com/la-vallee-village/en/brands/chloe"
+      "website": "https://www.tbvsc.com/la-vallee-village/fr/marque/chloe"
     },
     "contact": {},
     "id": "5d77a70ab97238790bf503f6"
@@ -3551,7 +3551,7 @@
     "name": "Michael Kors",
     "type": "tenant",
     "externalId": "unit88-89",
-    "description": "Michael Kors is a world-renowned, award-winning designer of luxury accessories and ready-to-wear. His namesake company, established in 1981, is an influential global presence with over 500 stores in more than 85 countries worldwide, as well as wholesale distribution to top department stores worldwide. The brand currently produces a range of products under the signature Michael Kors Collection and Michael Kors labels. These products include accessories, footwear, watches, jewelry, men's and women's ready-to-wear, swimwear, eyewear and a full line of fragrance products. With an innate sense of glamour, Michael Kors offers a luxury lifestyle for the consummate jet setter that is as sophisticated as it is indulgent and as iconic as it is modern. Capsule Collection\nGet ready for the new term with stylish new arrivals at the Michael Kors boutique, including Jet Set Totes from E129.",
+    "description": "Découvrez une gamme de produits sous les griffes Michael Kors Collection et Michael Kors. \nCollections : Accessoires Femme, Lunettes",
     "categories": [
       "5d725435565fa907a85fb725",
       "5d725437565fa907a85fb727",
@@ -3604,7 +3604,7 @@
     "name": "Moncler",
     "type": "tenant",
     "externalId": "unit85-86",
-    "description": "Moncler is synonymous with quality outerwear and most famous for its celebrated down jackets. The skiwear brand’s name comes from Monastier de Clermont, a mountain village near Grenoble, France where, in 1952, Réné Ramillon created the down jacket to keep his factory workers warm. Today, Moncler combines technical expertise and quality with style to produce clothes that are suited as much to the mountains as the city.",
+    "description": "Moncler est synonyme de vestes d’extérieur de qualité ; la griffe est réputée pour sa célèbre doudoune matelassée. Le nom de cette marque spécialisée dans les articles de montagne vient de l’abréviation de Monastier-de-Clermont, village de montagne situé à proximité de Grenoble où, en 1952, René Ramillon créa la doudoune en duvet pour protéger ses salariés du froid. Aujourd’hui, Moncler met son expertise technique et son souci de la qualité au service de la confection de vêtements chics aussi parfaitement adaptés sur les pistes qu’à la ville.",
     "categories": [
       "5d725436565fa907a85fb726",
       "5d725437565fa907a85fb727",
@@ -3654,7 +3654,7 @@
     "name": "KENZO",
     "type": "tenant",
     "externalId": "unit91",
-    "description": "The fashion house of KENZO was started in 1970 as Jungle Jap, a boutique in Paris at Galerie Vivienne where the founder Kenzo Takada, sold his handmade women's collection. The flagship KENZO store was opened at 3 Place des Victoires in 1976, and the brand expanded into a full Parisian fashion house. KENZO debuted its first men’s ready-to-wear collection in 1983, and its kids and home collections in 1987, followed by KENZO fragrances in 1988. In 1993, KENZO joined the LVMH Group. In 1999, KENZO marked its 30th anniversary and the retirement of its Artistic Director Kenzo Takada. In July 2011, Carol Lim & Humberto Leon, founders of the OPENING CEREMONY fashion retail stores and private label collection were appointed Creative Directors of KENZO. Using the brand’s DNA, the duo have given KENZO their take on the revolutionary spirit with which the brand was founded. In July 2012, Humberto and Carol reintroduced the jungle to the KENZO brand.",
+    "description": "Aujourd’hui avec la spontanéité et la joie de vivre qui caractérisent les Directeurs de la Création Leon et Lim, KENZO est une marque fraîche qui s’attache à respecter son héritage.\nCollections : Femme, Homme, Accessoires",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725",
@@ -3711,7 +3711,7 @@
     "name": "Concierge Services",
     "type": "tenant",
     "externalId": "unit126",
-    "description": "Hands-Free Shopping Collection Point",
+    "description": "Point Collecte Service Shopping Mains Libres",
     "categories": [],
     "polygons": [
       {
@@ -3809,7 +3809,7 @@
     "id": "5d77fc15d4cf9e92029de625"
   },
   {
-    "name": "Toilets",
+    "name": "Toilettes",
     "type": "amenities",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/d1a02baa77d9dbc27c893229ebea65b58b02b618.svg",
@@ -3876,7 +3876,7 @@
       "69d900faa4658e68ea29c8a7",
       "6a2fd1c702c83a8669f9d958"
     ],
-    "description": "Golden Goose was born in 2000 merging the creative spirit of Francesca Rinaldo and Alessandro Gallo: two young Venetian designers, outsiders until then to the world of fashion. Since the beginning, the company has distinguish itself with innovative but artisan spirited products, a low-key communication strategy and a highly selective placement in venues that share the brand's philosophy. \n\nGolden Goose has created a complete lifestyle for its customers, offering a collection that includes ready to wear, accessories and footwear, combining a refined and modern style with a vintage feeling, all supported by the strong Italian sartorial tradition.",
+    "description": "Golden Goose, fondée en 2000, est le fruit de l’esprit créatif de Francesca Rinaldo et Alessandro Gallo : ces deux jeunes créateurs vénitiens étaient jusque-là étrangers au monde de la mode. Depuis toujours, son objectif est de se distinguer avec des articles innovants et artisanaux, une communication non conventionnelle et un positionnement sélectif dans des lieux qui partagent la philosophie de la marque.\n\nGolden Goose a créé un mode de vie à part entière pour ses clients, offrant une collection qui comprend prêt-à-porter, accessoires et chaussures, associant un style raffiné et moderne à un esprit vintage, agrémenté d’une forte tradition couture italienne.",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/923f7d228d427900dc11d9953809d1ca406acedb.svg",
       "medium": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/c5cdbf83d29be296a5911648c0e148805fbd82ac.PjUxMng1MTI.png",
@@ -3939,7 +3939,7 @@
       "large": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/58835260d1d9a71ff51f20f4b455510588bf08d4.PjEwMjR4MTAyNA.png",
       "medium": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/58835260d1d9a71ff51f20f4b455510588bf08d4.PjUxMng1MTI.png"
     },
-    "description": "Repetto lends its unique imagination to a wide range of exclusive products, including shoes, leather goods, athleisure and classical dancewear. The brand’s collections play with colour and different materials to entice an elegant and modern female customer.\nIts products are designed in the Dordogne, in historical ateliers where Repetto’s expertise and desire for excellence are upheld.",
+    "description": "Repetto décline son imaginaire singulier sur une large gamme de produits exclusifs : chaussures, maroquinerie, athleisure, danse classique.\nLes collections jouent sur les couleurs et les matières pour séduire une clientèle féminine, élégante et moderne. Les produits sont conçus en Dordogne, dans des ateliers historiques qui perpétuent le savoir-faire et le souci d’excellence propres à la Maison Repetto.",
     "phone": {
       "number": "+33 (0)1 80 67 00 01"
     },
@@ -4006,7 +4006,7 @@
         "map": "5d5f6fdf31894200135e3756"
       }
     ],
-    "description": "The house of KARL LAGERFELD shares the iconic vision and design aesthetic of its founder, KARL LAGERFELD, fused with a contemporary, forward-looking spirit.\nThe brand celebrates his colossal legacy and breathes his passion, intuition and inexhaustible creativity into the core of its DNA.\nThe signature KARL LAGERFELD aesthetic combines Parisian classics with a rock-chic attitude and tailored silhouettes. Its portfolio of accessible, aspirational collections includes ready-to-wear for women, plus bags, small leather goods and footwear.",
+    "description": "KARL LAGERFELD est une maison de mode qui embrasse la vision et l’esthétique iconiques de son fondateur, KARL LAGERFELD, et les imprègne d’un esprit contemporain et avant-gardiste.",
     "phone": {
       "number": "+33 (0)1 84 13 50 10"
     },
@@ -4059,7 +4059,7 @@
       "6a2fd1c702c83a8669f9d958",
       "6a50aab02eab257164ddcf9e"
     ],
-    "description": "Its collections, which feature richly embroidered fabrics and nipped-in waists, are characterised by Balmain’s signature silhouette of the jolie madame – or ‘pretty lady’. While the house famously remains true to the trailblazing vision of its founder, today Creative Director Olivier Rousteing’s couture spirit – seen in his careful attention to detail – is balanced by the collections’ modernity.",
+    "description": "Directeur artistique âgé de seulement 34 ans, Olivier Rousteing est déterminé à concevoir des vêtements qui reflètent la façon dont les générations d’aujourd’hui souhaitent s'habiller. Le résultat est une silhouette, un style et une attitude uniques et reconnaissables qui s'appuient sur le savoir-faire singulier pour lequel les ateliers de la Maison sont célébrés depuis plus de 75 ans, ainsi que l'héritage de son fondateur, Pierre Balmain, un designer reconnu pour n'avoir jamais eu peur d'aller à l'encontre des conventions.\n\nConstamment inspiré par l'art, la musique et les voix puissantes et révolutionnaires de notre société, la Maison Balmain est reconnue pour sa façon innovante et inattendue d’aller à la rencontre de ses followers, rassemblant une communauté passionnée et engagée. Ses choix stratégiques surprenants et souvent peu orthodoxes en matière de marketing et communication manifestent le désir de la maison - et de son directeur artistique - de constamment repousser les limites sans jamais hésiter, pour démocratiser et moderniser un univers de la mode, trop souvent refermé sur lui-même.",
     "externalId": "unit120",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/b19a8de933799788ef06e47f0b3159da7986e443.svg",
@@ -4101,7 +4101,7 @@
       "medium": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/f7b53cd666048a52a9c6987b198c00f9c5894c57.PjUxMng1MTI.png"
     },
     "externalId": "unit108",
-    "description": "Founded in 1978 by the eponymous stylist and entrepreneur, Brunello Cucinelli’s success is rooted in the history and legacy of great craftsmanship as well as in modern design. A symbol of Italian lifestyle worldwide, Brunello Cucinelli is based in the medieval hamlet of Solomeo, on the outskirts of Perugia. Distributed internationally in more than 60 countries worldwide, the brand continues to convey both creativity and craftsmanship through its innovative collections.",
+    "description": "Fondée en 1978 par le styliste et entrepreneur éponyme, le succès de Brunello Cucinelli est enraciné dans l’histoire et l’héritage du grand savoir-faire ainsi que dans le design moderne. Symbole du style de vie italien dans le monde entier, Brunello Cucinelli est basé dans le hameau médiéval de Solomeo, à la périphérie de Pérouse. Distribuée à l'international dans plus de 60 pays à travers le monde, la marque continue de véhiculer à la fois créativité et savoir-faire à travers ses collections innovantes.",
     "venue": "value-retail-la-vallee-village",
     "states": [],
     "nodes": [
@@ -4163,14 +4163,14 @@
       "xxlarge": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/1dc2f5cf6c8a59ffd6976fd56c95171667332cdd.PjQwOTZ4NDA5Ng.jpeg",
       "large": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/1dc2f5cf6c8a59ffd6976fd56c95171667332cdd.PjEwMjR4MTAyNA.jpeg"
     },
-    "description": "J.M. Weston has been the benchmark in the world of French luxury footwear for men since 1891.\n\nIts traditional skills, passed down in the famous “Goodyear” welt, are practised by over 170 artisans at the J.M. Weston factory in Limoges. The House counts 39 stores around the world, and whether in France or abroad, it has always reflected a French elegance that intersects freely with a timeless spirit and contemporary influences. Olivier Saillard is Artistic, Image and Culture Director of J.M. Weston, and Thierry Oriez has been Chairman since 2014.",
+    "description": "J.M. Weston est la référence de la chaussure française de luxe pour homme depuis 1891. Des mocassins aux richelieus, vous trouverez chaussure à votre pied dans la boutique située à La Vallée Village.\n\nSon savoir-faire traditionnel, hérité du fameux cousu Goodyear, est exercé par plus de 170 artisans au sein de sa manufacture J.M. Weston située à Limoges. La maison J.M. Weston, qui compte 39 boutiques à travers le monde, reflète depuis toujours, en France et à l’international, une élégance française, où dialoguent librement esprit intemporel et influences contemporaines. Olivier Saillard est le Directeur artistique, Image et culture de J.M. Weston, Thierry Oriez en est le Président depuis 2014.\n\nRichelieus, derbies, bottines ou encor mocassins J.M. Weston, une large gamme de modèles aussi stylés que raffinés vous attend près de Paris, à La Vallée Village.",
     "social": {
       "website": ""
     },
     "id": "5f490f49c7fffb40f5000000"
   },
   {
-    "name": "The Apartment",
+    "name": "L’Appartement",
     "type": "tenant",
     "externalId": "unit125",
     "nodes": [
@@ -4226,7 +4226,7 @@
       "xxlarge": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/a444bd34ad60bde2968131df8ec7fecffc9648b5.PjQwOTZ4NDA5Ng.png",
       "xlarge": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/a444bd34ad60bde2968131df8ec7fecffc9648b5.PjIwNDh4MjA0OA.png"
     },
-    "description": "The house of Fendi was established by Adele and Edoardo Fendi in Rome in 1925. The opening of the first Fendi boutique, followed by a handbag shop and fur workshop, soon won the brand international acclaim, Fendi emerged as a name renowned for its elegance, craftsmanship, innovation and style. \n\nToday Fendi is synonymous with quality, tradition, experimentation and creativity.",
+    "description": "La marque est créée par Adele et Edoardo Fendi à Rome en 1925. Fendi apparait alors comme un symbole d’élégance, de savoir-faire, d’innovation et de style. La collaboration avec Karl Lagerfeld commence en 1965. Puis, Silvia Venturini lui succède en 1992. En 2000, le groupe LVMH acquiert Fendi, devenant ainsi en 2001 son actionnaire majoritaire. En 2019, Silvia Venturini Fendi devient la directrice artistique de Fendi. \n\nAujourd’hui encore, Fendi est synonyme de qualité, de tradition, d’innovation et de créativité.",
     "phone": {
       "number": "+33 (0)1 60 04 72 44"
     },
@@ -4264,7 +4264,7 @@
       "small": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/11273cad282a302ad48c71e4a9acfc0929af58c0.PjI1NngyNTY.png",
       "xxsmall": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/11273cad282a302ad48c71e4a9acfc0929af58c0.PjY0eDY0.png"
     },
-    "description": "Founded in 1982, Stone Island is the symbol of extreme research in fibers and textiles, applied to an innovative design. The Italian man sportswear brand developed an unique capacity to work on the finished garment, via continuous experimentation with dyes and treatments.",
+    "description": "Fondée en 1982, Stone Island est le symbole d’une recherche poussée à l’extrême autour des fibres et des textiles, et placée au service d’un design innovant. La marque italienne de sportswear pour homme a développé une capacité unique à travailler sur le vêtement fini, via une expérimentation permanente des teintures et des traitements.",
     "phone": {
       "number": "+33 (0)1 73 09 50 50"
     },
@@ -4325,7 +4325,7 @@
       "66x66": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/753b921da28d45ff6d07c3566b303d027b174d27.PjY2eDY2.png",
       "small": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/753b921da28d45ff6d07c3566b303d027b174d27.PjI1NngyNTY.png"
     },
-    "description": "Launched in 2014 after a trip to Bali, leather goods brand Claris Virot offers accessible luxury accessories collections crafted from premium materials, including vegetable-tanned and exotic leathers. \n\nColour is at the heart of the brand’s creative process, which has evolved and diversified over the years. With vibrant hues, practical sizes and exceptional craftsmanship, Claris Virot is a reflection of the contemporary, ever-evolving world of fashion.",
+    "description": "Lancée en 2014 au détour d’un voyage à Bali, la marque de maroquinerie Claris Virot propose un luxe accessible tout en privilégiant des matières précieuses tels que des cuirs au tannage végétal et des peaux exotiques. \n\nLes couleurs sont incontestablement au coeur du processus créatif de la marque, qui ne cesse de diversifier sa palette au fil des années. Des couleurs vives, des formats pratiques et une qualité sans pareil, Claris Virot est le reflet d’une mode contemporaine, évolutive et solaire.",
     "nodes": [
       {
         "node": "5d5f8ab2797f7a3e340000e0",
@@ -4343,7 +4343,7 @@
     "id": "60e2db9fd3304860c50000ea"
   },
   {
-    "name": "ATM",
+    "name": "Distributeurs",
     "type": "amenities",
     "nodes": [
       {
@@ -4460,7 +4460,7 @@
       "69fc91abdc0c397984c69ffa",
       "6a19a5696ea79a6b10763b9e"
     ],
-    "description": "Today it is one of the world’s leading outdoor brands, creating athlete-tested, expedition-proven items that help people explore and test the limits of human potential.",
+    "description": "Aujourd’hui devenue l’une des plus grandes marques d’outdoor, elle crée des pièces testées par les athlètes et approuvées en expédition, destinées à aider chacun et chacune à explorer et éprouver les limites du potentiel humain.",
     "externalId": "unit17",
     "id": "61bb22a4c7fffb7f4d000001"
   },
@@ -4565,11 +4565,11 @@
       }
     ],
     "categories": [],
-    "description": "The new home for the Village boutiques’ pop-up sales, where you’ll find a range of irresistible offers, exclusives and more from some of your favourite brands, each for a limited time only.",
+    "description": "Un lieu unique au décor raffiné, parfait écrin des Ventes Éphémères les plus exclusives, proposées en collaboration avec des marques emblématiques parmi les plus prisées, ainsi que des étoiles montantes de la mode et du lifestyle.",
     "id": "62d91e67a7e5fc4f65987409"
   },
   {
-    "name": "Hands-Free Shopping Collection Point",
+    "name": "Point Collecte Service Shopping Mains Libres",
     "type": "amenities",
     "venue": "value-retail-la-vallee-village",
     "states": [],
@@ -4618,7 +4618,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/dcba2e7d81be9c4d74d43d5fac54874ea90116a6.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/dcba2e7d81be9c4d74d43d5fac54874ea90116a6.svg"
     },
-    "description": "Born in Paris in 2011, inspired by Paris ever since - AMI offers stylish and comprehensive wardrobes for men and women, blurring the boundaries between casual and chic.\n\nThe name AMI, the French word for friend, plays with the initials of Alexandre Mattiussi, its founder and creative director. AMI captures a particular type of the French capital's nonchalance, one that is young, cool and carefree. Standing for a relaxed, authentic and friendly approach to fashion. AMI was awarded the prestigious ANDAM prize in 2013.",
+    "description": "Née à Paris, inspirée par Paris.\n\nAMI propose une garde-robe élégante et complète, pour l'homme et la femme, constituée d'essentiels qui brouillent les frontières entre chic et décontracté.\n\nLe nom AMI joue avec les initiales d'Alexandre Mattiussi, le directeur artistique et fondateur de la marque. Créée en 2011, AMI capture l'essence particulière de cette nonchalance parisienne, jeune et insouciante. Pour son approche authentique et conviviale de la mode, AMI s'est vu décerner le prestigieux prix de l'ANDAM en 2013.",
     "phone": {
       "number": "+33 (0)1 77 35 03 66"
     },
@@ -4669,7 +4669,7 @@
       "xlarge": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/95edfc6d6984c3123d7d6d107d99209617ca6f1b.PjIwNDh4MjA0OA.png",
       "xxlarge": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/95edfc6d6984c3123d7d6d107d99209617ca6f1b.PjQwOTZ4NDA5Ng.png"
     },
-    "description": "Since 1952, Fusalp conveys the idea of a dynamic silhouette, French elegance and the pledge of a sporty yet slender line, inspired by alpine skiing. \n\nIt is the idea that you can combine performance and comfort without sacrifying on style and cut.",
+    "description": "Depuis 1952, Fusalp c’est l’idée d’une silhouette dynamique, une élégance à la française, le gage d’une ligne aussi élancée que sportive, inspirée de l'univers du ski. \n\nC’est l’idée que l'on peut allier performance et confort sans sacrifier le style et la coupe.",
     "phone": {
       "number": "+33 (0)9 77 00 02 85"
     },
@@ -4717,7 +4717,7 @@
       "69fc91abdc0c397984c69ffa",
       "6a19a5696ea79a6b10763b9e"
     ],
-    "description": "As part of the Estée Lauder Companies, The Cosmetics Company Store offers award-winning premium skincare, make-up and fragrance products from a collection of prestigious brands including Estée Lauder, Clinique and Bobbi Brown.",
+    "description": "The Cosmetics Company Store vous propose des produits de soin, de maquillage et de parfum issus d'une collection de marques prestigieuses telles qu'Estée Lauder, Clinique ou encore Bobbi Brown.",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/0935ea2aaffe849ad52fc8dcf70e3fc038ebc044.svg",
       "xxlarge": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/8300be28605fffdb8221ae75680cccb021686c99.png",
@@ -4775,7 +4775,7 @@
       "66x66": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/3325c11fb791e75e3226084d549cc60083a0c41d.png",
       "140x140": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/5aaaa9e3ca071e1fac6823a1408a991014b9fea0.png"
     },
-    "description": "ZIMMERMANN, Founded in Sydney in 1991 by Sisters Nicky and Simone Zimmermann. ZIMMERMANN believes in a relaxed femininity, in nonchalant sophistication and a graceful joie de vivre. The collections are fresh, design-driven, sophisticated and feminine, optimistic with a casual sexiness. ZIMMERMANN remains proud of the Australian heritage and celebrates its new cultural dexterity but are not defined by it. The narrative is global, though the roots will always remain firmly embedded in Australia.",
+    "description": "Fondé à Sydney en 1991 par les sœurs Nicky et Simone, Zimmermann se fait l’écho d’une fémininité désinvolte à l’allure sophistiquée mais nonchalante, légère et optimiste. Les collections incarnent la joie de vivre, la fraîcheur, et le design jusqu’au moindre détail met en lumière une silhouette sexy et décomplexée. Fier de son héritage, ZIMMERMANN est une ode à l’évasion qui dépasse les frontières australiennes. Sa portée est globale, mais ses racines seront toujours ancrées en Australie.",
     "phone": {
       "number": "+33 (0)1 73 24 52 03"
     },
@@ -4816,7 +4816,7 @@
       "66x66": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/b3fdd10e6bfb672e3873bf09d27047a3821eaa70.png",
       "140x140": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/30202655eeb6704651f1f5e551d80c2d5826c00f.png"
     },
-    "description": "McQueen’s collections combine an in-depth working knowledge of bespoke British tailoring, fine workmanship and the impeccable finish of Italian manufacturing. \nAlexander McQueen shows are known for their emotional power and raw energy, as well as the romantic but determinedly contemporary nature of the collections. Integral to the McQueen culture is the juxtaposition between contrasting elements: fragility and strength, tradition and modernity, fluidity and severity. An openly emotional and even passionate viewpoint is realised with a profound respect and influence for the arts and crafts tradition.",
+    "description": "Les collections de McQueen émanent de l’alliance entre la confection sur mesure britannique et de la fabrication italienne au travail soigné et à la finition impeccable. \nLes défilés d'Alexander McQueen sont connus pour leur puissance émotionnelle et leur énergie brute, ainsi que pour la nature romantique mais résolument contemporaine des collections. La juxtaposition d'éléments contrastés fait partie intégrante de la culture McQueen : fragilité et force, tradition et modernité, fluidité et sévérité. Un point de vue ouvertement émotionnel et même passionné est réalisé avec un profond respect et une grande influence pour la tradition de l'art et du savoir-faire.",
     "phone": {
       "number": "+33 (0)1 57 95 14 30"
     },
@@ -4860,7 +4860,7 @@
       "69c6a18c408d053159f9aee5",
       "69d900faa4658e68ea29c8a7"
     ],
-    "description": "Wild & The Moon is a movement created by à tribe of life enthusiasts, nature lovers, and food enthusiasts, including chefs, nutritionists, and naturopaths.\n\nThey seek to share their way of life and believe that real food is the one that is good for oneself, good for the planet, and delicious.\n\nThe ambition of our Wild Tribe is to bring local, seasonal ingredients to our urban communities, sourced from responsible trade whenever possible, promoting biodiversity.\n\nWe aim to revive traditional food preparation techniques to protect their vitality, enhance their nutritional powers, and offer the benefits of raw foods and the unaltered taste of bioactive elements.\n\nWe embrace the benefits of Mother Nature, sourced entirely from the plant kingdom, free from hormones and cruelty. We tap into the healing power of nature and offer it to city dwellers, nourishing their souls and reigniting smiles through the powerful alchemy of plants.",
+    "description": "Wild & The Moon est un mouvement créé par une tribu d’amoureux de la vie, de la nature et de la bonne table, de chefs, de nutritionnistes et de naturopathes qui cherchent à partager leur mode de vie, et pensent avant tout que la vraie nourriture est celle qui est bonne pour soi, bonne pour la planète et délicieuse.\n\nL’ambition de notre Wild Tribe est d’apporter à nos communautés urbaines des ingrédients locaux, de saison, issus du commerce responsable autant que possible, promouvant la biodiversité.\n\nFaire revivre les techniques de savoir-faire traditionnel de préparation des aliments pour en protéger la vitalité, en accroître les pouvoirs nutritionnels, et ainsi offrir le bienfait des aliments crus et le goût inaltéré des éléments bioactifs.\n\nLes bienfaits de Mère Nature, entièrement issus du royaume végétal, sans hormones et sans cruauté.\n\nAccéder au pouvoir de guérison de la Nature et l’offrir aux citadins, pour nourrir les âmes et raviver les sourires à travers l’alchimie puissante des plantes.",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/81873ec0d05d57f73dd5db15c32124f598ff98f3.svg",
       "xxlarge": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/e598401a634088ec882f99badee283f0d40c09e9.png",
@@ -4905,7 +4905,7 @@
       "66x66": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/6decab3b0e3e142223d75a751e8f53184549cd36.png",
       "140x140": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/d3f814fa5c565f2885212d5ac798e73f0be50937.png"
     },
-    "description": "Axel Arigato was launched with one main objective: to embrace the now and always look for the tomorrow. Known for its breakdown and shattering of the traditional seasonal calendar, through its unique system of weekly drops; Axel Arigato serves a type of interest that's percussive, following a cultural cadence rather than an industry one. Founded in 2014, as a direct-to-consumer brand, Axel Arigato has physical stores in six countries across Europe and UAE and is present online in 134 territories worldwide. Harnessing the energy of the next generation through a multi directional lens, Axel Arigato exists to be a positive platform for all.",
+    "description": "Axel Arigato a été lancé dans un unique objectif : embrasser le présent et toujours chercher le lendemain. Connu pour sa rupture et son explosion du calendrier saisonnier traditionnel, grâce à son système unique de parutions hebdomadaires ; Axel Arigato sert un type d'intérêt percutant, suivant une cadence culturelle plutôt qu'une cadence industrielle. Fondée en 2014, en tant que marque de vente directe aux consommateurs, Axel Arigato compte des magasins physiques dans six pays d'Europe et des Émirats arabes unis en plus de sa présence en ligne dans 134 territoires à travers le monde. Exploitant l'énergie de la nouvelle génération à travers un objectif multidirectionnel, Axel Arigato existe pour être une plateforme positive pour tous.",
     "phone": {
       "number": "+33 (0)1 87 65 08 40"
     },
@@ -4931,7 +4931,7 @@
   },
   {
     "type": "amenities",
-    "name": "Valet Parking service",
+    "name": "Service voiturier",
     "nodes": [
       {
         "node": "5ec296b2f84c726259000001",
@@ -4958,7 +4958,7 @@
     "id": "65d61c657a59ab3e9039a029"
   },
   {
-    "name": "Luggage storage",
+    "name": "Consigne à bagages",
     "type": "amenities",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/c9dfc1c6023770d42f01d323b1f67bbf20097f43.svg",
@@ -5034,7 +5034,7 @@
       "69d900faa4658e68ea29c8a7"
     ],
     "externalId": "p02",
-    "description": "Delight in a celebration of coffee at Momus when you enjoy your beverage in the café or to take away. From rare Arabicas to designer editions and single-origin varieties, fine coffee connoisseurs can find joy in a symphony of aromatic notes and intensities.",
+    "description": "Découvrez cet espace qui fait la part belle au café, à consommer sur place ou à emporter. Arabicas les plus rares, éditions de créateurs ou variétés de pures origines, les amateurs de cafés fins trouveront leur bonheur au rythme de notes aromatiques et intensités variées.",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/7f83ee7af0d0ede92e002ee5570de4ae9ae0c2e0.svg",
       "xxlarge": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/d6f771ebc06c2e7b3739100b6d39551bdfdbddfa.png",
@@ -5074,7 +5074,7 @@
       "66x66": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/5396516e7ba3e08a1b9204b7476a44047287d2cb.png",
       "140x140": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/2572d2bc9eb815788912f06aeb10091d0cfc307b.png"
     },
-    "description": "Discover Acne Studios collections of men’s and women’s ready-to-wear, footwear, accessories and denim in boutique at La Vallée Village.",
+    "description": "Découvrez les collections Acne Studios de prêt-à-porter, chaussures, accessoires et denim pour homme et femme dans la boutique de La Vallée Village.",
     "nodes": [
       {
         "node": "5d5f890e797f7a3e3400008d",
@@ -5120,7 +5120,7 @@
       "66x66": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/80843989206a1fd7d1679daeaa97c547bea335da.png",
       "140x140": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/f276b7d182d1c35687fa7abe12d584aeb7235145.png"
     },
-    "description": "NARS, Shiseido, Narciso Rodriguez and many other leading cosmetics brands await you at the Beauté Prestige International boutique in La Vallée Village.",
+    "description": "NARS, Shiseido, Narciso Rodriguez et bien d'autres grandes marques de cosmétiques vous attendent dans la boutique Beauté Prestige International à La Vallée Village.",
     "nodes": [
       {
         "node": "5d5f890e797f7a3e340000c3",
@@ -5167,7 +5167,7 @@
       "66x66": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/ae99bbd6d38e7d2c28a81b79e6cf1ae54fbe6a04.png",
       "140x140": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/5ea06937051e1c9f21ce7b96655e4cb69055d6d9.png"
     },
-    "description": "K-Way embodies practical elegance, offering collections for men, women and children that combine style and functionality.  \n\nKnown for revolutionising rainwear since 1965, the brand is a key player in outdoor fashion, combining premium quality with innovation.",
+    "description": "K-Way incarne l'élégance pratique, offrant des collections pour homme, femme et enfant qui mêlent style et fonctionnalité.  \nConnue pour révolutionner les vêtements de pluie depuis 1965, la marque est un acteur incontournable de la mode et de l'outdoor, alliant qualité premium et innovation.",
     "nodes": [
       {
         "node": "5d5f890e797f7a3e340000c2",
@@ -5219,7 +5219,7 @@
       "6a2fd1c702c83a8669f9d958"
     ],
     "externalId": "unit115",
-    "description": "Discover Tumi collections at reduced prices in La Vallée Village. As the leading international brand of business, lifestyle and travel accessories, Tumi is committed to offering premium products created under founding principles of excellence in design.",
+    "description": "Achetez des bagages, sacs à dos, valises, accessoires et bien plus encore de luxe parmi les designers de renommée mondiale dans la boutique Tumi à La Vallée Village.",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/2d989377c8e749c6228066cb18e3525f1633dfb9.svg",
       "xxlarge": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/resized/455503094b2c551ac78dfd8cd8bd219c4e25edfc.png",
@@ -5265,7 +5265,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/97f31e52948ba47a9e5cb5553d02799175926c25.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/97f31e52948ba47a9e5cb5553d02799175926c25.svg"
     },
-    "description": "An innovative fashion house as singular today as when it was founded in 1966, Rabanne \nstands out for unifying an avant-garde vision with modern values. Since the earliest \ncollections through the 1960s and ‘70s, the Paris-based brand has explored ideas \nof radical craft—from the use of metal mesh as fabric that contours the body, \nto assemblages of unconventional materials that create kinetic silhouettess.",
+    "description": "Maison de mode innovante aussi singulière aujourd’hui qu’à sa création en 1966, \nRabanne s’illustre par sa capacité à marier une vision avant-gardiste à des valeurs \nmodernes. Depuis ses premières collections dans les années 60 et 70, la marque \nparisienne a exploré des concepts d’artisanat radical – de l’utilisation de mesh métal \nen guise de tissu qui épouse le corps, aux assemblages de matières peu \nconventionnelles pour créer des silhouettes cinétiques.",
     "venue": "value-retail-la-vallee-village",
     "states": [],
     "nodes": [
@@ -5306,7 +5306,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/3a9983c9d39a44b3ef45b21e5fbcc4db547aa664.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/3a9983c9d39a44b3ef45b21e5fbcc4db547aa664.svg"
     },
-    "description": "Founded in 1993, Miu Miu embodies the unconventional and heartfelt point of view of Miuccia Prada.\n\nMiu Miu celebrates and empowers women – celebrates and empowers humanity.\n\nShop Miu Miu's collections at the Prada boutique in La Vallée Village.",
+    "description": "Fondée en 1993, Miu Miu reflète la vision singulière et engagée de Miuccia Prada.\n\nMiu Miu célèbre et valorise les femmes - célèbre et valorise l’humanité.\n\nRetrouvez les collections Miu Miu dans la boutique Prada à La Vallée Village.",
     "phone": {
       "number": "+33 (0)1 60 42 54 70"
     },
@@ -5346,7 +5346,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/faceefa535724fed82fa1d24763bde10aa62f583.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/faceefa535724fed82fa1d24763bde10aa62f583.svg"
     },
-    "description": "Discover Church’s classic British designer shoes in Prada boutique at La Vallée Village.",
+    "description": "Les origines de la famille Church remontent à 1617, lorsque Anthony Church, arrière-grand-père du fondateur de l'entreprise, naît à Northampton, une ville réputée pour son industrie florissante du cuir et de la chaussure depuis T'époque de Cromwell. \n\nDécouvrez les collections de chaussures Church's dans la boutique Prada à La Vallée Village.",
     "phone": {
       "number": "+33 1 60 42 54 70"
     },
@@ -5382,7 +5382,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/9f80c5e612ab81b90b71ecca1d1bd59c0203e61d.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/9f80c5e612ab81b90b71ecca1d1bd59c0203e61d.svg"
     },
-    "description": "Sophisticated accessories and clothing, with an essential, innovative design and the perfect combination of function and informal elegance, made in top-quality materials.\n\nFind Hogan in the Tod's boutique at La Vallée Village.",
+    "description": "La marque de luxe décontracté Hogan incarne une vision novatrice, adaptée à toutes les circonstances, qui s'intègre harmonieusement dans un mode de vie actuel où la qualité et l'élégance sont toujours appréciées. Confectionnés avec des matériaux d'exception, les produits Hogan sont conçus pour devenir des pièces intemporelles, conservant leur valeur intacte d'une saison à l'autre.\n\nDécouvrez Hogan dans la boutique Tod's à La Vallée Village.",
     "categories": [
       "5d725437565fa907a85fb727",
       "5d725435565fa907a85fb725"
@@ -5432,7 +5432,7 @@
       }
     ],
     "externalId": "unit44b",
-    "description": "Discover the Swedish luxury brand BYREDO and its range of perfumes and make-up products at La Vallée Village.",
+    "description": "Découvrez la marque de luxe suédoise BYREDO et sa gamme de produits composée de parfums et de maquillage.",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/a472bd5e67676cb32ab743a4b0c3c1c7ce9ae90c.jpeg",
       "xxlarge": "https://resize-worker.mappedin.com/resize:fit:4096:4096:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/a472bd5e67676cb32ab743a4b0c3c1c7ce9ae90c.jpeg",
@@ -5477,7 +5477,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/d332a75ea9f57274191b73300007e0f21b52c852.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/d332a75ea9f57274191b73300007e0f21b52c852.svg"
     },
-    "description": "Discover the French luxury brand Jacquemus and its unique ready-to-wear collections and accessories at La Vallée Village.",
+    "description": "Découvrez la maison de luxe française Jacquemus et ses collections uniques de prêt-à-porter et accessoires à La Vallée Village.",
     "phone": {
       "number": "+33 (0)1 84 75 44 45"
     },
@@ -5522,7 +5522,7 @@
     "phone": {
       "number": "+33 (0)1 59 13 04 57"
     },
-    "description": "Watchfinder & Co. brings to La Vallée Village its wealth of expertise and experience in the luxury pre-owned watch sector.",
+    "description": "Watchfinder & Co. apporte à La Vallée Village toute son expertise et son expérience dans l’univers des montres de luxe d’occasion.",
     "nodes": [
       {
         "node": "5d5f890e797f7a3e340000af",
@@ -5560,7 +5560,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/632005bfe93878bad7441647601e46edc65d5419.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/632005bfe93878bad7441647601e46edc65d5419.svg"
     },
-    "description": "The Original BIRKENSTOCK Footbed is an ergonomic masterpiece, designed to replicate the mindful experience of walking barefoot. Shaped to follow the natural contours of the foot. For stability, arch support, and effortless motion with every step.",
+    "description": "Découvrez la boutique BIRKENSTOCK située à La Vallée Village : des chaussures haut de gamme pensées pour allier confort et design.",
     "venue": "value-retail-la-vallee-village",
     "states": [],
     "nodes": [
@@ -5582,17 +5582,17 @@
     "id": "6925a404bb35fcf1dbf826bd"
   },
   {
-    "name": "Hands-Free Shopping",
+    "name": "Shopping Mains Libres",
     "type": "tenant",
     "categories": [
       "697908e6d04e397047753e53"
     ],
-    "description": "Relax while we collect and pack your purchases, ready for you to pick up when you leave.",
+    "description": "Détendez-vous pendant que nous prenons soin de vos achats : vous n’avez plus qu’à les récupérer lors de votre départ.",
     "phone": {
       "number": "+33685255208"
     },
     "social": {
-      "website": "https://www.thebicestercollection.com/la-vallee-village/en/services/hands-free-shopping/"
+      "website": "https://www.thebicestercollection.com/la-vallee-village/fr/service/shopping-mains-libres/"
     },
     "venue": "value-retail-la-vallee-village",
     "states": [],
@@ -5662,7 +5662,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/d294a05b50610df563428b9adfb653a017fbf6c9.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/d294a05b50610df563428b9adfb653a017fbf6c9.svg"
     },
-    "description": "Discover L’Artisan Parfumeur, exceptional fragrances & French art de vivre, at La Vallée Village.",
+    "description": "Découvrez L’Artisan Parfumeur, fragrances d’exception & art de vivre à la française, en boutique à La Vallée Village.",
     "venue": "value-retail-la-vallee-village",
     "states": [],
     "nodes": [
@@ -5707,7 +5707,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/8ba510f6d3c5f70219c7e59411c2ce14db225738.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/8ba510f6d3c5f70219c7e59411c2ce14db225738.svg"
     },
-    "description": "lululemon is a Canadian performance apparel brand that puts feel at the heart of everything it does.",
+    "description": "lululemon est une marque canadienne de vêtements performants qui place la sensation au cœur de sa vision.",
     "venue": "value-retail-la-vallee-village",
     "states": [],
     "nodes": [
@@ -5747,7 +5747,7 @@
     ],
     "venue": "value-retail-la-vallee-village",
     "states": [],
-    "description": "Born in 1961 in the artistic effervescence of Paris’s Saint‑Germain-des-Prés district, Diptyque creates evocative personal and home fragrances, scented skincare and decorative objects. Blending reverie, nature and art, the Maison opens the doors to a vibrant universe where the imagination is free to roam.",
+    "description": "Né en 1961, dans l’effervescence artistique du quartier Saint Germain à Paris, Diptyque est un créateur de parfums évocateurs, pour soi et pour la maison, de soins parfumés et d’objets de décoration. Mêlant rêverie, nature et art, Diptyque ouvre les portes d’un univers foisonnant dont les créations libèrent l’imagination vagabonde.",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/72ebdd1c6369db4cac8a569bc2a15c239197e097.svg",
       "xxlarge": "https://resize-worker.mappedin.com/resize:fit:4096:4096:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/72ebdd1c6369db4cac8a569bc2a15c239197e097.svg",
@@ -5789,7 +5789,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/1e5df3587b7e8e34c578711b00107643a0af1865.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/1e5df3587b7e8e34c578711b00107643a0af1865.svg"
     },
-    "description": "Discover VEJA at La Vallée: eco-responsible sneakers since 2005, innovative materials, and ethical manufacturing in Brazil and Portugal.",
+    "description": "Découvrez VEJA à La Vallée : baskets éco-responsables depuis 2005, matières écologiques et fabrication respectueuse des travailleurs au Brésil et au Portugal.",
     "phone": {
       "number": "+33 (0)1 88 40 42 71"
     },
@@ -5820,7 +5820,7 @@
     "phone": {
       "number": "+33 (0)1 87 65 31 07"
     },
-    "description": "On was born in the Swiss Alps with one goal: to revolutionise the sensation of running by empowering all to run on clouds.",
+    "description": "Née dans les Alpes suisses, On s’est donné pour mission de transformer la sensation de course en offrant à chacun l’expérience unique de “courir sur les nuages”.",
     "logo": {
       "original": "https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/cfcb5051545ac304a3b74c4e40d1420a3e8a734a.svg",
       "xxlarge": "https://resize-worker.mappedin.com/resize:fit:4096:4096:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/cfcb5051545ac304a3b74c4e40d1420a3e8a734a.svg",
@@ -5868,7 +5868,7 @@
       "66x66": "https://resize-worker.mappedin.com/resize:fit:66:66:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/bd3c26f8ac0d9da6a98855428b2562f519d87b0c.svg",
       "140x140": "https://resize-worker.mappedin.com/resize:fit:140:140:0/enlarge:0/ext:png/plain/https://cdn.mappedin.com/5d370a26da8c166f3647e3ce/bd3c26f8ac0d9da6a98855428b2562f519d87b0c.svg"
     },
-    "description": "The French art of hospitality has found its new address at La Vallée Village. An exceptional setting in which to enjoy refined and flavourful French cuisine.",
+    "description": "L’art de recevoir à la française a sa nouvelle adresse à La Vallée Village. Un cadre d’exception pour profiter d’une cuisine française subtile et savoureuse.",
     "nodes": [
       {
         "node": "5d5f8b91797f7a3e34000100",

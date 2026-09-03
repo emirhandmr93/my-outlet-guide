@@ -1,58 +1,147 @@
 {
   "componentChunkName": "component---src-templates-generic-page-template-t-13-js",
-  "path": "/fidenza-village/en/company/contact/",
+  "path": "/fidenza-village/en/company/about-us/",
   "result": {
     "data": {
       "page": {
         "locale": "en",
         "jsonLdSchema": {
-          "jsonLdSchema": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"ContactPage\",\n  \"name\": \"Contact Us\",\n  \"url\": \"https://www.thebicestercollection.com/fidenza-village/en/company/contact/\",\n  \"description\": \"Find contact information for Fidenza Village via phone, email, and WhatsApp.\",\n  \"mainEntity\": {\n    \"@type\": \"Organization\",\n    \"name\": \"Fidenza Village\",\n    \"url\": \"https://www.thebicestercollection.com/fidenza-village/en/\",\n    \"contactPoint\": [\n      {\n        \"@type\": \"ContactPoint\",\n        \"contactType\": \"Visit-related enquires\",\n        \"telephone\": \"+39 0524 33551\",\n        \"email\": \"freception@fidenzavillage.com\"\n      },\n      {\n        \"@type\": \"ContactPoint\",\n        \"contactType\": \"General enquires\",\n        \"telephone\": \"+39 0524 33551\",\n        \"email\": \"freception@fidenzavillage.com\"\n      }\n    ],\n    \"address\": {\n      \"@type\": \"PostalAddress\",\n      \"streetAddress\": \"Fidenza Village, Via Federico Fellini, 1\",\n      \"addressLocality\": \"Fidenza\",\n      \"addressRegion\": \"Parma\",\n      \"postalCode\": \"43036\",\n      \"addressCountry\": \"IT\"\n    }\n  }\n}"
+          "jsonLdSchema": "{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"ShoppingCenter\",\n      \"name\": \"Fidenza Village\",\n      \"description\": \"Fidenza Village is home to over 120 boutiques of luxury fashion, beauty and lifestyle brands, with savings of up to 70% all year round, restaurants and exclusive guest services, about 105 km from Milan.\",\n      \"url\": \"https://www.thebicestercollection.com/fidenza-village/en/company/about-us/\",\n      \"image\": \"https://media.thebicestercollection.com/3z73vs69pqez/1B2u1s9SWXxhhBqszqa0RF/8a083bfdfe7db21b946ed7fecc45120f/SOP_Hero.jpg\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Via Federico Fellini, 1\",\n        \"addressLocality\": \"Fidenza\",\n        \"addressRegion\": \"PR\",\n        \"postalCode\": \"43036\",\n        \"addressCountry\": \"IT\"\n      },\n      \"geo\": {\n        \"@type\": \"GeoCoordinates\",\n        \"latitude\": 44.8841262,\n        \"longitude\": 10.0911159\n      },\n      \"openingHoursSpecification\": {\n        \"@type\": \"OpeningHoursSpecification\",\n        \"dayOfWeek\": [\n          \"Monday\",\n          \"Tuesday\",\n          \"Wednesday\",\n          \"Thursday\",\n          \"Friday\",\n          \"Saturday\",\n          \"Sunday\"\n        ],\n        \"opens\": \"10:00\",\n        \"closes\": \"20:00\"\n      },\n      \"parentOrganization\": {\n        \"@type\": \"Organization\",\n        \"name\": \"The Bicester Collection\",\n        \"url\": \"https://www.thebicestercollection.com/en/destinations\",\n        \"foundingDate\": \"1995-01-01\"\n      },\n      \"sameAs\": [\n        \"https://www.instagram.com/fidenzavillage/\",\n        \"https://www.facebook.com/FidenzaVillage\",\n        \"https://www.youtube.com/channel/UC9_OMbWNRfaMkyeQKx0c6ow\",\n        \"https://it.pinterest.com/fidenzavillage/\",\n        \"https://www.tripadvisor.it/Attraction_Review-g1069551-d1862461-Reviews-Fidenza_Village-Fidenza_Province_of_Parma_Emilia_Romagna.html\"\n      ]\n    },\n    {\n      \"@type\": \"FAQPage\",\n      \"mainEntity\": [\n        {\n          \"@type\": \"Question\",\n          \"name\": \"Where is Fidenza Village located?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"Fidenza Village is located about 105 km from Milan, reachable in under an hour by car or train, with the \\\"Fidenza-Salsomaggiore Terme\\\" motorway exit on the A1, just 2 minutes from the tollgate.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"How many boutiques are there at Fidenza Village?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"Fidenza Village is home to over 120 boutiques of luxury fashion, beauty and lifestyle brands.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What discounts can I find at Fidenza Village?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"Savings of up to 70% off the recommended retail price, available all year round.\"\n          }\n        },\n        {\n          \"@type\": \"Question\",\n          \"name\": \"What services are available for guests?\",\n          \"acceptedAnswer\": {\n            \"@type\": \"Answer\",\n            \"text\": \"Guests in the Village can enjoy The Concierge in multiple languages, Personal Shopping, Hands-free Shopping and the Fidenza Village from home service.\"\n          }\n        }\n      ]\n    }\n  ]\n}"
         },
         "content": [
           {
-            "__typename": "ContentfulCompContactDetailsCnt01",
-            "headline": "How to find us",
-            "addressIcon": null,
-            "addressText": {
-              "addressText": "Fidenza Village\nVia Federico Fellini, 1\nFidenza\n43036, Parma (PR)"
+            "__typename": "ContentfulCompHeroHer01",
+            "ctaLabel": null,
+            "ctaUrl": null,
+            "eyebrow": null,
+            "headline": "About Fidenza Village",
+            "media": [
+              {
+                "__typename": "ContentfulEntityImageEnt02",
+                "altText": null,
+                "portrait": {
+                  "gatsbyImageData": {
+                    "images": {
+                      "sources": [
+                        {
+                          "srcSet": "https://media.thebicestercollection.com/3z73vs69pqez/6qOmG9WKZiv0RaEOrcas28/9a4459744c2af5f486f1d55b220adea2/Pmax-FALL_foto-01_960x1200.jpg?w=750&h=938&q=80&fm=webp 750w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/6qOmG9WKZiv0RaEOrcas28/9a4459744c2af5f486f1d55b220adea2/Pmax-FALL_foto-01_960x1200.jpg?w=960&h=1200&q=80&fm=webp 960w",
+                          "sizes": "100vw",
+                          "type": "image/webp"
+                        }
+                      ]
+                    },
+                    "layout": "fullWidth",
+                    "width": 1,
+                    "height": 1.25,
+                    "placeholder": {
+                      "fallback": "data:image/jpeg;base64,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"
+                    }
+                  }
+                },
+                "landscape": {
+                  "gatsbyImageData": {
+                    "images": {
+                      "sources": [
+                        {
+                          "srcSet": "https://media.thebicestercollection.com/3z73vs69pqez/1KPtFnpVaiP5XNDQEaYqrT/0bf47889300cd2d9f316b926eb66a656/Pmax-FALL_foto-01_1200x628.jpg?w=750&h=392&q=80&fm=webp 750w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/1KPtFnpVaiP5XNDQEaYqrT/0bf47889300cd2d9f316b926eb66a656/Pmax-FALL_foto-01_1200x628.jpg?w=1080&h=565&q=80&fm=webp 1080w,\nhttps://media.thebicestercollection.com/3z73vs69pqez/1KPtFnpVaiP5XNDQEaYqrT/0bf47889300cd2d9f316b926eb66a656/Pmax-FALL_foto-01_1200x628.jpg?w=1200&h=628&q=80&fm=webp 1200w",
+                          "sizes": "100vw",
+                          "type": "image/webp"
+                        }
+                      ]
+                    },
+                    "layout": "fullWidth",
+                    "width": 1,
+                    "height": 0.5232,
+                    "placeholder": {
+                      "fallback": "data:image/jpeg;base64,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"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "__typename": "ContentfulCompBlockFreeTextBlk02",
+            "textType": "generic",
+            "textContent": {
+              "childMarkdownRemark": {
+                "html": "<h4>What is Fidenza Village</h4>\n<p>Located a short distance from the birthplace of Giuseppe Verdi, Fidenza Village is home to over 120 open-air boutiques, featuring luxury fashion, beauty and lifestyle brands, with savings of up to 70% off the recommended retail price, available all year round. In the Village, guests can also enjoy restaurants and bars serving renowned Emilia-Romagna cuisine, international dishes served all day, or a quick bite on the go. road and rail.</p>\n<h4>Getting here</h4>\n<p>Fidenza Village is open seven days a week and reachable in under an hour from Milan (about 105 km), whether by car or train, with the \"Fidenza-Salsomaggiore Terme\" motorway exit on the A1, just 2 minutes from the tollgate.</p>\n<h4>Guest services</h4>\n<p>To make every visit unforgettable, guests in the Village can enjoy The Concierge in multiple languages, Personal Shopping, Hands-free Shopping and the Fidenza Village from home service.</p>\n<h4>The Bicester Collection</h4>\n<p>Founded in 1995, The Bicester Collection has redefined the boundaries of luxury, hospitality, live music and sports entertainment. The group's 12 Villages, located across Europe, China and North America, are iconic open-air shopping destinations renowned worldwide. Discover more at TheBicesterCollection.com. Discover more at <a href=\"https://www.thebicestercollection.com\" title=\"The Bicester Collection\">TheBicesterCollection.com</a></p>"
+              }
+            }
+          },
+          {
+            "__typename": "ContentfulCompButtonPromoInPageBpr02",
+            "headline": "Explore the Villages",
+            "bodyCopy": {
+              "childMarkdownRemark": {
+                "html": "<p>The Bicester Collection Villages are a family of 12 distinctive destinations in Europe, China and the US, each within reach of some of the world’s most celebrated cities, including London, Dublin, Paris, Frankfurt, Brussels, Munich, Milan, Barcelona, Madrid, Shanghai, Suzhou and New York.</p>"
+              }
             },
-            "viewOnMapLabel": "Get Directions",
-            "viewOnMapUrl": "https://www.google.com/maps/dir//Fidenza+Village,+Via+Federico+Fellini,+1,+43036+Fidenza+PR,+Italy/@44.8842298,10.0889839,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x47805e6433d35e0d:0x9888788469e7489d!2m2!1d10.0911726!2d44.884226!3e0",
-            "contactHeadline": "Get in touch",
-            "whatsappLabel": "WhatsApp",
-            "whatsappContactLabels": null,
-            "whatsappContact": [
-              "+39 3402876455"
+            "ctaCopy": "Find your nearest Village",
+            "ctaUrl": "https://www.thebicestercollection.com/en/destinations",
+            "external": false,
+            "inPage": false,
+            "roundTopEdge": true,
+            "italicHeadline": false,
+            "background": "Grey",
+            "audiences": []
+          },
+          {
+            "__typename": "ContentfulCompAccordionAcc01",
+            "id": "3b2ead65-467b-51eb-ab5f-5490ce9b4ea0",
+            "contentful_id": "4V2zT0x8hNM2dFJBYyGS6n",
+            "heading": "Frequently Asked Questions",
+            "bgImage": null,
+            "bgPosition": "Right",
+            "items": [
+              {
+                "heading": "Where is Fidenza Village located?",
+                "copy": {
+                  "childMarkdownRemark": {
+                    "html": "<p>Fidenza Village is located about 105 km from Milan, reachable in under an hour by car or train, with the \"Fidenza-Salsomaggiore Terme\" motorway exit on the A1, just 2 minutes from the tollgate.</p>"
+                  }
+                },
+                "ctaLabel": "How to get here",
+                "ctaUrl": "visit/getting-here",
+                "isInternalCtaUrl": true
+              },
+              {
+                "heading": "How many boutiques are there at Fidenza Village?",
+                "copy": {
+                  "childMarkdownRemark": {
+                    "html": "<p>Fidenza Village is home to over 120 of luxury fashion, beauty and lifestyle brands.</p>"
+                  }
+                },
+                "ctaLabel": "Brands",
+                "ctaUrl": "brands/",
+                "isInternalCtaUrl": true
+              },
+              {
+                "heading": "What discounts can I find at Fidenza Village?",
+                "copy": {
+                  "childMarkdownRemark": {
+                    "html": "<p>Savings of up to 70% off the recommended retail price, available all year round.</p>"
+                  }
+                },
+                "ctaLabel": null,
+                "ctaUrl": "/en",
+                "isInternalCtaUrl": true
+              },
+              {
+                "heading": "What services are available for guests?",
+                "copy": {
+                  "childMarkdownRemark": {
+                    "html": "<p>Guests in the Village can enjoy The Concierge in multiple languages, Personal Shopping, Hands-free Shopping and the Fidenza Village from home service.</p>"
+                  }
+                },
+                "ctaLabel": "Guest services",
+                "ctaUrl": "visit/services",
+                "isInternalCtaUrl": true
+              }
             ],
-            "emailAddressLabel": "Email",
-            "emailContactLabels": [
-              "General enquiries",
-              "Book your tourism package",
-              "Provide feedback",
-              "Lost property"
-            ],
-            "emailContact": [
-              "freception@fidenzavillage.com",
-              "fv-tourism@fidenzavillage.com",
-              "Conciergeservices@FidenzaVillage.com",
-              "fvsecurity@fidenzavillage.com"
-            ],
-            "phoneNumberLabel": "Phone",
-            "phoneContactLabels": [
-              "Visit related enquiries",
-              "General enquiries",
-              "Lost property"
-            ],
-            "phoneContact": [
-              "+39 0524 33551",
-              "+39 0524 33551",
-              "+39 0524 335500"
-            ],
-            "bookingUrlLabel": null,
-            "bookingUrlContactLabels": null,
-            "bookingUrlContact": null,
-            "directionsFirst": false,
-            "greyBackground": true
+            "ctaLabel": "Frequently asked questions",
+            "ctaUrl": "company/faq",
+            "audiences": []
           }
         ],
         "village": {
@@ -754,9 +843,9 @@
           "defaultLocale": "it",
           "openingStatusLabel": null
         },
-        "pageTitle": "Contact Us | Company",
-        "pageDescription": null,
-        "hideFromSearchEngine": null
+        "pageTitle": "About Us | Fidenza Village – Luxury Outlet Shopping near Milan",
+        "pageDescription": "Discover Fidenza Village: over 120 luxury boutiques a short drive from Milan, savings of up to 70% all year round, restaurants and exclusive guest services.",
+        "hideFromSearchEngine": false
       },
       "openingHoursExceptions": {
         "exceptions": []
@@ -1669,7 +1758,7 @@
       }
     },
     "pageContext": {
-      "id": "21e776f2-2be2-54f2-9b8a-7d47b7877841",
+      "id": "d085be5e-5e6e-5584-be4a-53e0c46a05d3",
       "collectionId": "d38f0d35-d83f-58c0-8ea9-c9b3e6f4958d",
       "nodeLocale": "en",
       "villageSlug": "fidenza-village",
@@ -1679,18 +1768,18 @@
       "pageTypeSlug": "company",
       "pageTypeId": "company",
       "translatedSlugs": {
-        "en": "company/contact",
-        "es": "empresa/contact",
-        "fr": "entreprise/contact",
-        "it": "azienda/contattaci",
-        "ca": "empresa/contact",
-        "de": "unternehmen/contact",
-        "nl": "bedrijf/contact",
-        "pt-BR": "empresa/contact",
-        "ko": "company/contact",
-        "zh-CN": "company/contact",
-        "ar": "company/contact",
-        "ru": "company/contact"
+        "en": "company/about-us",
+        "es": "empresa/about-us",
+        "fr": "entreprise/about-us",
+        "it": "azienda/about-us",
+        "ca": "empresa/about-us",
+        "de": "unternehmen/about-us",
+        "nl": "bedrijf/about-us",
+        "pt-BR": "empresa/about-us",
+        "ko": "company/about-us",
+        "zh-CN": "company/about-us",
+        "ar": "company/about-us",
+        "ru": "company/about-us"
       },
       "villageServicesEndPoint": "https://api.tbvsc.com/village",
       "consentCookieScript": "function OptanonWrapper() { }",
