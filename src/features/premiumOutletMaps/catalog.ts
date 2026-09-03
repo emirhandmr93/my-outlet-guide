@@ -139,7 +139,9 @@ function buildSource(outletId: PremiumOutletMapId): PremiumMapSource {
     checkedOn: "2026-09-03",
     purpose: "directory-reference",
     redrawPolicy: "original-editorial-redraw",
-    redistributionStatus: "original-data-only",
+    redistributionStatus: "reference-only",
+    dataLicense: "proprietary-reference-only",
+    commercialReuseAllowed: false,
   };
 }
 
@@ -159,6 +161,7 @@ function buildMap(outletId: PremiumOutletMapId): PremiumOutletMap {
     defaultPitch: 52,
     defaultZoom: 17.25,
     spatialAccuracy: "schematic-reference",
+    verificationStatus: "draft",
     lastUpdated: "2026-09-03",
     floors: [floor],
     stores: buildStores(outletId, center, String(outlet.openingHours ?? "—")),
@@ -170,12 +173,12 @@ function buildMap(outletId: PremiumOutletMapId): PremiumOutletMap {
 
 const mapCache = new Map<PremiumOutletMapId, PremiumOutletMap>();
 
-export function hasPremiumOutletMap(outletId: string): outletId is PremiumOutletMapId {
+function isPremiumOutletMapCandidateId(outletId: string): outletId is PremiumOutletMapId {
   return premiumOutletMapIds.includes(outletId as PremiumOutletMapId);
 }
 
-export function getPremiumOutletMap(outletId: string): PremiumOutletMap | undefined {
-  if (!hasPremiumOutletMap(outletId)) return undefined;
+export function getPremiumOutletMapCandidate(outletId: string): PremiumOutletMap | undefined {
+  if (!isPremiumOutletMapCandidateId(outletId)) return undefined;
   const cached = mapCache.get(outletId);
   if (cached) return cached;
   const generated = buildMap(outletId);
@@ -183,6 +186,31 @@ export function getPremiumOutletMap(outletId: string): PremiumOutletMap | undefi
   return generated;
 }
 
+export function isPremiumOutletMapReleaseReady(map: PremiumOutletMap): boolean {
+  if (map.verificationStatus !== "verified") return false;
+  if (map.spatialAccuracy === "schematic-reference") return false;
+  if (!map.source.commercialReuseAllowed) return false;
+  if (map.source.redistributionStatus === "reference-only") return false;
+  if (map.source.dataLicense === "proprietary-reference-only") return false;
+  if (map.source.dataLicense === "ODbL-1.0" && !map.source.attribution?.includes("OpenStreetMap")) return false;
+  if (map.floors.length === 0 || map.stores.length === 0) return false;
+  return true;
+}
+
+export function hasPremiumOutletMap(outletId: string): outletId is PremiumOutletMapId {
+  const map = getPremiumOutletMapCandidate(outletId);
+  return Boolean(map && isPremiumOutletMapReleaseReady(map));
+}
+
+export function getPremiumOutletMap(outletId: string): PremiumOutletMap | undefined {
+  const map = getPremiumOutletMapCandidate(outletId);
+  return map && isPremiumOutletMapReleaseReady(map) ? map : undefined;
+}
+
+export function getAllPremiumOutletMapCandidates(): PremiumOutletMap[] {
+  return premiumOutletMapIds.map(outletId => getPremiumOutletMapCandidate(outletId) as PremiumOutletMap);
+}
+
 export function getAllPremiumOutletMaps(): PremiumOutletMap[] {
-  return premiumOutletMapIds.map(outletId => getPremiumOutletMap(outletId) as PremiumOutletMap);
+  return getAllPremiumOutletMapCandidates().filter(isPremiumOutletMapReleaseReady);
 }
