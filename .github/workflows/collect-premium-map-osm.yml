@@ -1,0 +1,57 @@
+name: Collect premium map OSM snapshots
+
+on:
+  push:
+    branches:
+      - feat/premium-map-osm-exact-data
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: premium-map-osm-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Collect fresh OpenStreetMap snapshots
+        run: npx tsx tools/collectPremiumMapOsmSnapshot.ts
+
+      - name: Validate generated data has ODbL attribution
+        run: |
+          test -f docs/PREMIUM_MAP_OSM_COVERAGE.md
+          grep -q "OpenStreetMap contributors" docs/PREMIUM_MAP_OSM_COVERAGE.md
+          test "$(find src/features/premiumOutletMaps/osmSnapshots -name '*.json' | wc -l)" -eq 10
+          grep -R -q '"license": "ODbL-1.0"' src/features/premiumOutletMaps/osmSnapshots
+
+      - name: Commit collected snapshots
+        run: |
+          if git diff --quiet -- docs/PREMIUM_MAP_OSM_COVERAGE.md src/features/premiumOutletMaps/osmSnapshots; then
+            echo "No snapshot changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/PREMIUM_MAP_OSM_COVERAGE.md src/features/premiumOutletMaps/osmSnapshots
+          git commit -m "Collect OSM premium map snapshots"
+          git push origin HEAD:${{ github.ref_name }}
