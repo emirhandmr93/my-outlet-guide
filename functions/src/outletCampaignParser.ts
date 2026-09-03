@@ -1,7 +1,9 @@
 import { createHash } from "node:crypto";
 
 import {
+  campaignCandidatePrefixesForListing,
   isOfficialCampaignDetailUrl,
+  isOfficialCampaignDetailUrlForListing,
   type OfficialCampaignSource,
 } from "./outletCampaignSources";
 
@@ -58,6 +60,16 @@ function decodeHtml(value: string): string {
     .replace(/&gt;/gi, ">");
 }
 
+function decodeEmbeddedUrlEscapes(value: string): string {
+  return decodeHtml(value)
+    .replace(/\\u002f/gi, "/")
+    .replace(/\\u003a/gi, ":")
+    .replace(/\\u003f/gi, "?")
+    .replace(/\\u003d/gi, "=")
+    .replace(/\\u0026/gi, "&")
+    .replace(/\\\//g, "/");
+}
+
 function cleanText(value: string | undefined, maxLength: number): string {
   if (!value) return "";
   return decodeHtml(value)
@@ -67,12 +79,24 @@ function cleanText(value: string | undefined, maxLength: number): string {
     .slice(0, maxLength);
 }
 
+function cleanEmbeddedEvidence(value: string): string {
+  return cleanText(
+    value
+      .replace(/[{}\[\]"]/g, " ")
+      .replace(/\\[nrt]/g, " ")
+      .replace(/\s+/g, " "),
+    2_000,
+  );
+}
+
 function canonicalizeUrl(value: string): string {
   const url = new URL(value);
   url.hash = "";
   for (const key of [...url.searchParams.keys()]) {
     if (/^(?:utm_|fbclid$|gclid$)/i.test(key)) url.searchParams.delete(key);
   }
+  url.searchParams.sort();
+  url.pathname = url.pathname.replace(/\/{2,}/g, "/");
   return url.toString();
 }
 
@@ -153,7 +177,7 @@ function extractBrandFromListingEvidence(listingEvidence: string, outletName: st
     .replace(/\s+/g, " ")
     .trim();
 
-  const cue = /(?:\b(?:buy|save|get|up\s+to|extra|now\s+for|special\s+price|only\s+for)\b|(?:€|£|\$)\s*\d|\d{1,3}\s*%)/i.exec(evidence);
+  const cue = /(?:\b(?:buy|save|get|up\s+to|extra|now\s+for|special\s+price|only\s+for|spend)\b|(?:€|£|\$)\s*\d|\d{1,3}\s*%)/i.exec(evidence);
   const prefix = cue?.index === undefined ? evidence : evidence.slice(0, cue.index);
   const compact = sanitizeBrandCandidate(prefix, outletName);
   if (!compact) return "";
@@ -164,6 +188,7 @@ function extractBrandFromListingEvidence(listingEvidence: string, outletName: st
 function extractBrand(
   objects: Record<string, unknown>[],
   htmlTitle: string,
+  pageHeadline: string,
   outletName: string,
   listingEvidence = "",
 ): string {
@@ -178,6 +203,10 @@ function extractBrand(
       if (candidate) return candidate;
     }
   }
+
+  const headlineBrand = /^(.+?)\s+-\s+.+(?:Village|Outlet)\b/i.exec(pageHeadline)?.[1]?.trim() ?? "";
+  const safeHeadlineBrand = sanitizeBrandCandidate(headlineBrand, outletName);
+  if (safeHeadlineBrand) return safeHeadlineBrand;
 
   const titleParts = htmlTitle
     .split(/\s*(?:\||–|—)\s*|\s+-\s+/)
@@ -232,8 +261,6 @@ function extractDateRange(objects: Record<string, unknown>[], text: string): { s
   const iso = /\b(?:from\s+)?(20\d{2}-\d{2}-\d{2})\s*(?:to|until|till|through|–|—|-)\s*(20\d{2}-\d{2}-\d{2})\b/i.exec(text);
   if (iso) return { startsOn: iso[1], endsOn: iso[2] };
 
-  // Some official operator pages use paired DD.MM.YY ranges. Two-digit years
-  // are deliberately accepted only here and normalized to the 2000s.
   const numeric = /\b(\d{1,2})[./-](\d{1,2})[./-](20\d{2}|\d{2})\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})[./-](\d{1,2})[./-](20\d{2}|\d{2})\b/i.exec(text);
   if (numeric) {
     const startsOn = toIsoDate(normalizeCampaignYear(numeric[3]), Number(numeric[2]), Number(numeric[1]));
@@ -255,8 +282,6 @@ function extractDateRange(objects: Record<string, unknown>[], text: string): { s
     if (startsOn && endsOn) return { startsOn, endsOn };
   }
 
-  // McArthurGlen and other official operators commonly shorten a same-month
-  // range to "1 - 14 September 2026". Both boundaries remain explicit.
   const sharedMonth = /\b(?:from\s+)?(\d{1,2})(?:st|nd|rd|th)?\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
   if (sharedMonth) {
     const month = monthNumber(sharedMonth[3]);
@@ -273,8 +298,6 @@ function extractDateRange(objects: Record<string, unknown>[], text: string): { s
     if (startsOn && endsOn) return { startsOn, endsOn };
   }
 
-  // A single trailing year is also common when a range crosses months:
-  // "29 August - 2 September 2026".
   const sharedYear = /\b(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
   if (sharedYear) {
     const year = Number(sharedYear[5]);
@@ -283,10 +306,8 @@ function extractDateRange(objects: Record<string, unknown>[], text: string): { s
     if (startsOn && endsOn) return { startsOn, endsOn };
   }
 
-  // Keep the strict two-boundary requirement while accepting pages that place
-  // the explicit "from" and "until" dates in separate sentences.
-  const explicitStart = /\b(?:valid\s+)?from\s+(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
-  const explicitEnd = /\b(?:valid\s+)?(?:until|till|through)\s+(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
+  const explicitStart = /\b(?:valid\s+)?from\s*:?[ ]*(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
+  const explicitEnd = /\b(?:valid\s+)?(?:until|till|through)\s*:?[ ]*(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
   if (explicitStart && explicitEnd) {
     const startsOn = toIsoDate(Number(explicitStart[3]), monthNumber(explicitStart[2]), Number(explicitStart[1]));
     const endsOn = toIsoDate(Number(explicitEnd[3]), monthNumber(explicitEnd[2]), Number(explicitEnd[1]));
@@ -311,7 +332,7 @@ function extractDiscount(text: string): { label: string; percent?: number } | nu
     /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?-?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto)/i,
     /(?:up\s+to\s+)?-\d{1,3}\s*(?:-|–|to)\s*-\d{1,3}\s*%\s*extra/i,
     /(?:up\s+to\s+)?-\d{1,3}\s*%\s*extra/i,
-    /(?:buy|spend)\s+.{0,60}?\d{1,3}\s*%\s*off/i,
+    /(?:buy|spend)\s+.{0,80}?\d{1,3}\s*%\s*off/i,
   ];
   for (const pattern of percentPatterns) {
     const match = pattern.exec(text);
@@ -329,11 +350,22 @@ function extractDiscount(text: string): { label: string; percent?: number } | nu
     new RegExp(`${currency}\\s*\\d{1,5}(?:[.,]\\d{1,2})?\\s*(?:extra\\s+)?saving(?:s)?(?:\\s+on\\s+(?:the\\s+)?outlet\\s+price)?`, "i"),
     new RegExp(`(?:save|discount(?:\\s+of)?|extra\\s+saving(?:s)?(?:\\s+of)?)\\s*${currency}\\s*\\d{1,5}(?:[.,]\\d{1,2})?`, "i"),
     new RegExp(`\\bnow\\s+for\\s+${currency}\\s*\\d{1,5}(?:[.,]\\d{1,2})?\\s*(?:\\||,|;|\\s)+\\s*(?:RRP|regular(?:\\s+outlet)?\\s+price|recommended\\s+price)\\s+${currency}\\s*\\d{1,5}(?:[.,]\\d{1,2})?`, "i"),
+    new RegExp(`\\b\\d{1,2}\\s+[^.]{1,70}?\\s+for\\s+${currency}\\s*\\d{1,5}(?:[.,]\\d{1,2})?`, "i"),
   ];
   for (const pattern of amountPatterns) {
     const match = pattern.exec(text);
     if (!match) continue;
     return { label: campaignEvidenceLabel(text, match) };
+  }
+
+  const valueOfferPatterns = [
+    /\b\d{1,2}\s*\+\s*\d{1,2}\s+(?:for\s+)?free\b/i,
+    /\b(?:receive|get)\s+(?:a\s+)?(?:free|complimentary)\s+.{1,80}?\b(?:when|with)\b/i,
+    /\b(?:free|complimentary)\s+.{1,80}?\bwhen\s+(?:you\s+)?(?:spend|buy|purchase)\b/i,
+  ];
+  for (const pattern of valueOfferPatterns) {
+    const match = pattern.exec(text);
+    if (match) return { label: campaignEvidenceLabel(text, match) };
   }
 
   return null;
@@ -361,6 +393,20 @@ function extractConditions(text: string, description: string): string {
   return cleanText([...new Set([description, ...sentences.slice(0, 3)])].filter(Boolean).join(" "), 700);
 }
 
+function extractBicesterBrandOfferSection(text: string): string {
+  const marker = /\bLatest Offers?\b/i.exec(text);
+  if (!marker) return "";
+  const after = text.slice((marker.index ?? 0) + marker[0].length);
+  const boundary = /\b(?:Recently seen|Recently viewed|20\d{2} Collection|Contact|Village hours|Read more|Back to Brands)\b/i.exec(after);
+  return cleanText(boundary ? after.slice(0, boundary.index) : after.slice(0, 3_000), 3_000);
+}
+
+function campaignSummaryFromOfferSection(section: string, fallback: string): string {
+  if (!section) return fallback;
+  const compact = cleanText(section, 700);
+  return compact.length >= 10 ? compact : fallback;
+}
+
 function hash(value: string, length = 32): string {
   return createHash("sha256").update(value).digest("hex").slice(0, length);
 }
@@ -382,19 +428,51 @@ export function extractOfficialCampaignCandidates(
   source: OfficialCampaignSource,
 ): OfficialCampaignCandidate[] {
   const candidates = new Map<string, string>();
-  for (const match of html.matchAll(/<a\b[^>]*href\s*=\s*(["'])(.*?)\1[^>]*>([\s\S]*?)<\/a>/gi)) {
+  const addCandidate = (rawUrl: string, listingEvidence: string) => {
     try {
-      const url = canonicalizeUrl(new URL(decodeHtml(match[2]), listingUrl).toString());
-      if (!isOfficialCampaignDetailUrl(source, url)) continue;
-      const listingEvidence = cleanText(match[3], 1_600);
+      const decodedUrl = decodeEmbeddedUrlEscapes(rawUrl).trim();
+      if (!decodedUrl || /^javascript:|^mailto:|^tel:/i.test(decodedUrl)) return;
+      const url = canonicalizeUrl(new URL(decodedUrl, listingUrl).toString());
+      if (!isOfficialCampaignDetailUrlForListing(source, listingUrl, url)) return;
+      const normalizedEvidence = cleanEmbeddedEvidence(listingEvidence);
       const existing = candidates.get(url) ?? "";
-      candidates.set(url, existing && listingEvidence && existing !== listingEvidence
-        ? cleanText(`${existing}. ${listingEvidence}`, 2_000)
-        : existing || listingEvidence);
+      candidates.set(url, existing && normalizedEvidence && existing !== normalizedEvidence
+        ? cleanText(`${existing}. ${normalizedEvidence}`, 2_000)
+        : existing || normalizedEvidence);
     } catch {
-      // Invalid and non-HTTP href values are ignored.
+      // Invalid and non-HTTP URL values are ignored.
+    }
+  };
+
+  for (const match of html.matchAll(/<a\b[^>]*href\s*=\s*(["'])(.*?)\1[^>]*>([\s\S]*?)<\/a>/gi)) {
+    addCandidate(match[2], match[3]);
+  }
+
+  // Modern operator pages often hydrate offer grids from JSON embedded in script
+  // tags instead of server-rendering every <a>. Scan quoted URL values after
+  // decoding JSON/JS slash escapes while retaining the same host/path allowlist.
+  const discoverySurface = decodeEmbeddedUrlEscapes(html);
+  const quotedUrlPattern = /(["'])(https?:\/\/[^"'<>\s]+|\/[^"'<>\s]+)\1/gi;
+  for (const match of discoverySurface.matchAll(quotedUrlPattern)) {
+    const index = match.index ?? 0;
+    const evidence = discoverySurface.slice(Math.max(0, index - 500), Math.min(discoverySurface.length, index + match[0].length + 900));
+    addCandidate(match[2], evidence);
+  }
+
+  // Some hydration payloads serialize paths without surrounding quotes after
+  // minification. Only accept paths that begin with an allowlisted prefix and
+  // resolve them against the already-approved listing host.
+  for (const prefix of campaignCandidatePrefixesForListing(source, listingUrl)) {
+    const escapedPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const pattern = new RegExp(`${escapedPrefix}[^\\s"'<>\\\\]{1,260}`, "gi");
+    for (const match of discoverySurface.matchAll(pattern)) {
+      const index = match.index ?? 0;
+      const rawPath = match[0].replace(/[),.;]+$/, "");
+      const evidence = discoverySurface.slice(Math.max(0, index - 500), Math.min(discoverySurface.length, index + rawPath.length + 900));
+      addCandidate(rawPath, evidence);
     }
   }
+
   return [...candidates]
     .sort(([left], [right]) => left.localeCompare(right))
     .slice(0, source.maxCandidatePages)
@@ -422,26 +500,34 @@ export function parseOfficialCampaignPage(
   if (!isOfficialCampaignDetailUrl(source, canonicalUrl)) reasons.push("unapproved_source_url");
 
   const objects = jsonLdObjects(html);
-  const text = stripPageText(html);
+  const pageText = stripPageText(html);
+  const isBicesterBrandPage = source.operator === "the_bicester_collection" && /\/brands\//i.test(canonicalUrl);
+  const bicesterOfferSection = isBicesterBrandPage ? extractBicesterBrandOfferSection(pageText) : "";
+  const text = bicesterOfferSection || pageText;
   const htmlTitle = extractTagText(html, "title") || extractMeta(html, "og:title");
+  const pageHeadline = cleanText(extractTagText(html, "h1"), 180);
   const structuredHeadline = objects.map(object => readString(object.headline) || readString(object.name)).find(Boolean) ?? "";
-  const headline = cleanText(extractTagText(html, "h1") || structuredHeadline || extractMeta(html, "og:title"), 180);
-  const description = cleanText(
+  const sourceHeadline = cleanText(pageHeadline || structuredHeadline || extractMeta(html, "og:title"), 180);
+  const fallbackDescription = cleanText(
     objects.map(object => readString(object.description)).find(Boolean)
       || extractMeta(html, "description")
       || extractMeta(html, "og:description"),
     500,
   );
-  const brandName = extractBrand(objects, htmlTitle, source.outletName, officialListingEvidence);
+  const brandName = extractBrand(objects, htmlTitle, pageHeadline, source.outletName, officialListingEvidence);
   const detailDateRange = extractDateRange(objects, text);
   const listingDateRange = detailDateRange
     ? null
     : extractDateRange([], cleanText(officialListingEvidence, 2_000));
   const dateRange = detailDateRange ?? listingDateRange;
-  const discount = extractDiscount(`${headline}. ${description}. ${text}`);
-  const eventEvidence = hasOfficialEventEvidence(objects, headline, description);
+  const discount = extractDiscount(`${sourceHeadline}. ${fallbackDescription}. ${text}`);
+  const eventEvidence = hasOfficialEventEvidence(objects, sourceHeadline, fallbackDescription);
   const type: ParsedOfficialCampaign["type"] | null = discount ? "offer" : eventEvidence ? "event" : null;
   const displayName = type === "event" ? source.outletName : brandName;
+  const headline = isBicesterBrandPage && discount ? cleanText(discount.label, 180) : sourceHeadline;
+  const description = isBicesterBrandPage
+    ? campaignSummaryFromOfferSection(bicesterOfferSection, fallbackDescription)
+    : fallbackDescription;
 
   if (headline.length < 5) reasons.push("missing_headline");
   if (description.length < 10) reasons.push("missing_summary");
