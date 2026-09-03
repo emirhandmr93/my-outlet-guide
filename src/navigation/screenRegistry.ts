@@ -27,6 +27,7 @@ export { OfflinePacksScreen } from "../screens/OfflinePacksScreen";
 export { OnboardingScreen } from "../screens/OnboardingScreen";
 export { OutletDetailScreen } from "../screens/OutletDetailScreen";
 export { OutletMatchScreen } from "../screens/OutletMatchScreen";
+export { PremiumOutletMapScreen } from "../screens/PremiumOutletMapScreen";
 export { OutletShoppingIndexScreen } from "../screens/OutletShoppingIndexScreen";
 export { PriceAdvantageCalculatorScreen } from "../screens/PriceAdvantageCalculatorScreen";
 export { PrivacyPolicyScreen } from "../screens/PrivacyPolicyScreen";

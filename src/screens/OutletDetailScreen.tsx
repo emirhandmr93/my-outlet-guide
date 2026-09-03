@@ -78,6 +78,8 @@ import {
 import { getTargetQuickInfo } from "../constants/targetOutletLocalization";
 import { recordRecentVisit } from "../services/recentVisitsService";
 import { useRestaurantDetailData, useTaxFreeGuideData, useTransportationDetailData } from "../hooks/useDetailData";
+import { hasPremiumOutletMap } from "../features/premiumOutletMaps/catalog";
+import { getPremiumMapCopy } from "../features/premiumOutletMaps/copy";
 
 const outletMediaMode = getConfiguredOutletMediaMode();
 
@@ -698,6 +700,22 @@ export function OutletDetailScreen() {
           })}
         />
 
+        {hasPremiumOutletMap(outlet.outletId) ? (
+          <TouchableOpacity
+            activeOpacity={0.86}
+            accessibilityRole="button"
+            style={styles.premiumMapButton}
+            onPress={() => navigation.navigate("PremiumOutletMap", { outletId: outlet.outletId })}
+          >
+            <View style={styles.premiumMapIcon}><Text style={styles.premiumMapIconText}>3D</Text></View>
+            <View style={styles.premiumMapCopy}>
+              <Text style={styles.premiumMapTitle}>{getPremiumMapCopy(language).openMap}</Text>
+              <Text style={styles.premiumMapSubtitle}>{getPremiumMapCopy(language).subtitle}</Text>
+            </View>
+            <Text style={styles.premiumMapArrow}>›</Text>
+          </TouchableOpacity>
+        ) : null}
+
         <MapsCard
           title={t("outlet.maps")}
           googleText={t("outlet.googleMaps")}
@@ -912,6 +930,13 @@ const styles = StyleSheet.create({
   },
   desktopContent: { paddingHorizontal: 0 },
   desktopInner: { width: "100%", maxWidth: 1180, alignSelf: "center", paddingHorizontal: 34 },
+  premiumMapButton: { minHeight: 76, flexDirection: "row", alignItems: "center", gap: 12, marginBottom: spacing.lg, padding: 14, borderRadius: 18, backgroundColor: colors.primary, borderWidth: 1, borderColor: colors.gold },
+  premiumMapIcon: { width: 48, height: 48, borderRadius: 14, alignItems: "center", justifyContent: "center", backgroundColor: colors.gold },
+  premiumMapIconText: { color: colors.primary, fontSize: 16, fontWeight: "900" },
+  premiumMapCopy: { flex: 1 },
+  premiumMapTitle: { color: "#FFFFFF", fontSize: 16, lineHeight: 21, fontWeight: "900" },
+  premiumMapSubtitle: { color: "#DCE4EE", fontSize: 12, lineHeight: 17, marginTop: 2 },
+  premiumMapArrow: { color: colors.gold, fontSize: 34, lineHeight: 38, fontWeight: "600" },
 
   galleryModal: {
     flex: 1,

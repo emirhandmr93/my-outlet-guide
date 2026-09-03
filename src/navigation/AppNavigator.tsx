@@ -38,6 +38,7 @@ OfflinePacksScreen,
 OnboardingScreen,
 OutletDetailScreen,
 OutletMatchScreen,
+PremiumOutletMapScreen,
 OutletShoppingIndexScreen,
 PriceAdvantageCalculatorScreen,
 PrivacyPolicyScreen,
@@ -78,6 +79,7 @@ import { syncWebSeo } from "../utils/webSeo";
 import { trackWebPageView } from "../utils/webAnalytics";
 import { trackNativeScreen, trackProductEvent } from "../utils/productAnalytics";
 import { notificationResponseApi } from "../services/notificationResponseApi";
+import { getPremiumMapCopy } from "../features/premiumOutletMaps/copy";
 import {
 floatingTabBarHeight,
 floatingTabBarMinimumTouchTarget,
@@ -102,6 +104,7 @@ CreateTrip: undefined;
 NotificationSettings: undefined;
 LanguageSettings: undefined;
 OutletMatch: RootStackParamList["OutletMatch"];
+PremiumOutletMap: RootStackParamList["PremiumOutletMap"];
 };
 
 type DesktopExploreStackParamList = {
@@ -113,6 +116,7 @@ CityResults: RootStackParamList["CityResults"];
 Transportation: RootStackParamList["Transportation"];
 VisitMode: RootStackParamList["VisitMode"];
 CreateTrip: undefined;
+PremiumOutletMap: RootStackParamList["PremiumOutletMap"];
 };
 
 const DesktopHomeStack = createNativeStackNavigator<DesktopHomeStackParamList>();
@@ -150,7 +154,7 @@ navigation.canGoBack() ? <HeaderBackIcon color={tintColor} label={t("nav.back")}
 }
 
 function DesktopHomeNavigator() {
-const { t } = useTranslation();
+const { t, language } = useTranslation();
 const { isNativeRTL } = useLayoutDirection();
 
 return (
@@ -167,12 +171,13 @@ return (
 <DesktopHomeStack.Screen name="LanguageSettings" component={LanguageSettingsScreen} options={{ title: t("nav.language") }} />
 <DesktopHomeStack.Screen name="NotificationSettings" component={NotificationSettingsScreen} options={{ title: t("nav.notifications") }} />
 <DesktopHomeStack.Screen name="OutletMatch" component={OutletMatchScreen} options={{ title: t("nav.outletMatch") }} />
+<DesktopHomeStack.Screen name="PremiumOutletMap" component={PremiumOutletMapScreen} options={{ title: getPremiumMapCopy(language).title }} />
 </DesktopHomeStack.Navigator>
 );
 }
 
 function DesktopExploreNavigator({ route }: { route: RouteProp<MainTabParamList, "Explore"> }) {
-const { t } = useTranslation();
+const { t, language } = useTranslation();
 const { isNativeRTL } = useLayoutDirection();
 const initialQuery = route.params?.initialQuery;
 const initialTab = route.params?.initialTab;
@@ -193,6 +198,7 @@ options={{ headerShown: false }}
 <DesktopExploreStack.Screen name="Country" component={CountryScreen} options={{ title: t("nav.country") }} />
 <DesktopExploreStack.Screen name="CityResults" component={CityResultsScreen} options={{ title: t("nav.city") }} />
 <DesktopExploreStack.Screen name="CreateTrip" component={CreateTripScreen} options={{ title: t("nav.createTrip") }} />
+<DesktopExploreStack.Screen name="PremiumOutletMap" component={PremiumOutletMapScreen} options={{ title: getPremiumMapCopy(language).title }} />
 </DesktopExploreStack.Navigator>
 );
 }
@@ -477,6 +483,7 @@ screenOptions={navigationScreenOptions(t, isNativeRTL)}
 <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }} />
 
 <Stack.Screen name="OutletDetail" component={OutletDetailScreen} options={{ title: t("nav.outlet") }} />
+<Stack.Screen name="PremiumOutletMap" component={PremiumOutletMapScreen} options={{ title: getPremiumMapCopy(language).title }} />
 <Stack.Screen name="BrandResults" component={BrandResultsScreen} options={{ title: t("nav.brand") }} />
 <Stack.Screen name="Transportation" component={TransportationScreen} options={{ title: t("nav.transportation") }} />
 <Stack.Screen name="VisitMode" component={VisitModeScreen} options={{ title: t("visitMode.title") }} />
