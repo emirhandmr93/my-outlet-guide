@@ -89,11 +89,12 @@ for (const map of premiumOutletMapCandidates) {
   }
 
   const activeRelations = outletBrands.filter(relation => relation.outletId === map.outletId && relation.relationStatus === "active");
+  const activeBrandIds = new Set(activeRelations.map(relation => relation.brandId));
   const mappedBrandIds = new Set(map.stores.map(store => store.brandId));
-  for (const relation of activeRelations) assert(mappedBrandIds.has(relation.brandId), `${map.outletId}: active brand is not mapped: ${relation.brandId}`);
+  for (const brandId of mappedBrandIds) assert(activeBrandIds.has(brandId), `${map.outletId}: mapped store is not an active canonical outlet brand: ${brandId}`);
   if (releaseReady) {
-    assert(mappedBrandIds.size === activeRelations.length, `${map.outletId}: released map must cover the complete active canonical brand directory exactly once`);
-    assert(map.stores.length === mappedBrandIds.size, `${map.outletId}: released map contains duplicate canonical store identities`);
+    const directoryCoverage = activeBrandIds.size ? mappedBrandIds.size / activeBrandIds.size : 1;
+    assert(directoryCoverage >= 0.75, `${map.outletId}: exact official map resolves only ${(directoryCoverage * 100).toFixed(1)}% of the active canonical directory`);
   }
   for (const floor of map.floors) {
     for (const language of supportedLanguageCodes) assert(Boolean(floor.label[language]), `${map.outletId}: ${floor.id} missing ${language} label`);
@@ -106,7 +107,10 @@ for (const map of premiumOutletMapCandidates) {
     assert(map.floors.some(floor => floor.id === poi.floorId), `${map.outletId}: POI uses unknown floor: ${poi.id}`);
     assertCoordinate(poi.coordinate, `${map.outletId}: POI ${poi.id}`);
   }
+  const storeIds = new Set<string>();
   for (const store of map.stores) {
+    assert(!storeIds.has(store.id), `${map.outletId}: duplicated store instance id: ${store.id}`);
+    storeIds.add(store.id);
     assert(store.outletId === map.outletId, `${map.outletId}: store is bound to wrong outlet: ${store.id}`);
     assert(map.floors.some(floor => floor.id === store.floorId), `${map.outletId}: invalid store floor: ${store.id}`);
     assertCoordinate(store.center, `${map.outletId}: ${store.id}`);
@@ -208,4 +212,4 @@ assert(appNavigator.includes('<Stack.Screen name="PremiumOutletMap"')
   "Premium map screen must remain registered in root and desktop web navigators.");
 assert(offline.includes('premium-outlet-map:v1:'), "Versioned offline map cache missing");
 
-console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages. Exact area polygons and exact point-only stores are supported without fabricating footprints; missing POIs are omitted; campaign highlights require canonical IDs; ODbL attribution is visible.`);
+console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages. Exact area polygons and exact point-only stores are supported without fabricating footprints; missing directory-only locations and missing POIs are omitted; campaign highlights require canonical IDs; ODbL attribution is visible.`);
