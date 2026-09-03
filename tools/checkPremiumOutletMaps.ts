@@ -69,6 +69,7 @@ for (const map of premiumOutletMapCandidates) {
     for (const language of supportedLanguageCodes) assert(Boolean(floor.label[language]), `${map.outletId}: ${floor.id} missing ${language} label`);
   }
   for (const store of map.stores) {
+    assert(store.outletId === map.outletId, `${map.outletId}: store is bound to wrong outlet: ${store.id}`);
     assert(map.floors.some(floor => floor.id === store.floorId), `${map.outletId}: invalid store floor: ${store.id}`);
     assert(store.polygon[0]?.length === 5, `${map.outletId}: unclosed store rectangle: ${store.id}`);
     assert(store.polygon[0]?.[0]?.[0] === store.polygon[0]?.[4]?.[0] && store.polygon[0]?.[0]?.[1] === store.polygon[0]?.[4]?.[1], `${map.outletId}: store polygon is not closed: ${store.id}`);
@@ -78,8 +79,17 @@ for (const map of premiumOutletMapCandidates) {
   }
   assert(searchMapStores(map.stores, "brand-that-does-not-exist-xyz").length === 0, `${map.outletId}: unknown search resolved to a false location`);
   const firstStore = map.stores[0];
-  const fakeCampaign = { campaignId: "validator", brandName: firstStore.brandName, endsOn: "2099-12-31", discountLabel: "Test" };
-  assert(campaignForStore(firstStore, [fakeCampaign])?.campaignId === "validator", `${map.outletId}: campaign highlight mapping failed`);
+  const fakeCampaign = {
+    campaignId: "validator",
+    outletId: map.outletId,
+    brandId: firstStore.brandId,
+    brandName: firstStore.brandName,
+    endsOn: "2099-12-31",
+    discountLabel: "Test",
+  };
+  assert(campaignForStore(firstStore, [fakeCampaign])?.campaignId === "validator", `${map.outletId}: canonical campaign highlight mapping failed`);
+  assert(!campaignForStore(firstStore, [{ ...fakeCampaign, outletId: "wrong-outlet" }]), `${map.outletId}: cross-outlet campaign must never highlight a store`);
+  assert(!campaignForStore(firstStore, [{ ...fakeCampaign, brandId: "wrong-brand" }]), `${map.outletId}: wrong canonical brand must never highlight a store`);
   storeCount += map.stores.length;
 }
 
@@ -95,6 +105,7 @@ const appJson = JSON.parse(fs.readFileSync(path.join(root, "app.json"), "utf8"))
 const nativeCanvas = fs.readFileSync(path.join(root, "src/features/premiumOutletMaps/PremiumOutletMapCanvas.native.tsx"), "utf8");
 const webCanvas = fs.readFileSync(path.join(root, "src/features/premiumOutletMaps/PremiumOutletMapCanvas.web.tsx"), "utf8");
 const screen = fs.readFileSync(path.join(root, "src/screens/PremiumOutletMapScreen.tsx"), "utf8");
+const search = fs.readFileSync(path.join(root, "src/features/premiumOutletMaps/search.ts"), "utf8");
 const detail = fs.readFileSync(path.join(root, "src/screens/OutletDetailScreen.tsx"), "utf8");
 const webLinking = fs.readFileSync(path.join(root, "src/navigation/webLinking.ts"), "utf8");
 const appNavigator = fs.readFileSync(path.join(root, "src/navigation/AppNavigator.tsx"), "utf8");
@@ -113,7 +124,10 @@ assert(webCanvas.includes("normalizedStorePosition") && webCanvas.includes("onSe
 assert(!webCanvas.includes("@maplibre/maplibre-react-native"), "Web premium map preview must not load the native MapLibre module");
 assert(screen.includes("searchMapStores") && screen.includes("setFloorId(store.floorId)") && screen.includes("setFocusSequence"), "Search-to-floor focus flow missing");
 assert(screen.includes("focusCoordinate={selectedStore?.center}"), "Selected store must drive map camera focus");
+assert(search.includes("resolveCampaignBrandIdForOutlet") && search.includes("campaign.outletId === store.outletId") && search.includes("campaign.brandId"), "Campaign highlight must resolve canonical outlet/brand identity");
+assert(screen.includes("resolveCampaignBrandIdForOutlet") && screen.includes("outletId: map.outletId") && screen.includes("brandId,"), "Outlet-scoped campaigns must be canonicalized before map rendering");
 assert(screen.includes("campaignForStore") && nativeCanvas.includes("campaignForStore") && webCanvas.includes("campaignForStore"), "Campaign highlight flow missing");
+assert(screen.includes("© OpenStreetMap contributors · ODbL 1.0") && screen.includes("OSM_COPYRIGHT_URL"), "ODbL maps require visible linked OpenStreetMap attribution");
 assert(screen.includes("subscribeActiveOutletCampaignsForOutlet"), "Map must not rely on the global campaign result cap");
 assert(campaignService.includes('where("outletId", "==", outletId)') && campaignService.includes("limit(100)"), "Outlet-scoped campaign listener missing");
 assert(firestoreIndexes.includes('"fieldPath": "outletId"') && firestoreIndexes.includes('"fieldPath": "featuredPriority"'), "Outlet campaign map index missing");
@@ -130,4 +144,4 @@ assert(appNavigator.includes('<Stack.Screen name="PremiumOutletMap"')
   "Premium map screen must remain registered in root and desktop web navigators.");
 assert(offline.includes('premium-outlet-map:v1:'), "Versioned offline map cache missing");
 
-console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages, ${premiumMapPoiKinds.length} POI types. Schematic or non-reusable maps are blocked from production.`);
+console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages, ${premiumMapPoiKinds.length} POI types. Schematic or non-reusable maps are blocked from production; campaign highlights require canonical IDs; ODbL attribution is visible.`);
