@@ -134,28 +134,66 @@ function readString(value: unknown): string {
   return typeof value === "string" ? cleanText(value, 800) : "";
 }
 
-function extractBrand(objects: Record<string, unknown>[], htmlTitle: string, outletName: string): string {
+function sanitizeBrandCandidate(value: string, outletName: string): string {
+  const candidate = cleanText(value, 120).replace(/^[|:;,.\s]+|[|:;,.\s]+$/g, "");
+  if (!candidate || candidate.length > 120) return "";
+  if (candidate.toLowerCase().includes(outletName.toLowerCase())) return "";
+  if (/\d\s*%/.test(candidate)) return "";
+  if (/^(?:offers?|promotions?|promo|sale|special offers?|discover our offers?|what'?s on|events?)$/i.test(candidate)) return "";
+  return candidate;
+}
+
+function extractBrandFromListingEvidence(listingEvidence: string, outletName: string): string {
+  let evidence = cleanText(listingEvidence, 1_000);
+  if (!evidence) return "";
+
+  evidence = evidence
+    .replace(/\b\d{1,2}[./-]\d{1,2}[./-](?:20\d{2}|\d{2})\s*(?:to|until|till|through|–|—|-)\s*\d{1,2}[./-]\d{1,2}[./-](?:20\d{2}|\d{2})\b/gi, " ")
+    .replace(/\b\d{1,2}(?:st|nd|rd|th)?\s*(?:-|–|—|to)\s*\d{1,2}(?:st|nd|rd|th)?\s+[a-z]+\s+20\d{2}\b/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const cue = /(?:\b(?:buy|save|get|up\s+to|extra|now\s+for|special\s+price|only\s+for)\b|(?:€|£|\$)\s*\d|\d{1,3}\s*%)/i.exec(evidence);
+  const prefix = cue?.index === undefined ? evidence : evidence.slice(0, cue.index);
+  const compact = sanitizeBrandCandidate(prefix, outletName);
+  if (!compact) return "";
+  const wordCount = compact.split(/\s+/).length;
+  return compact.length <= 80 && wordCount <= 8 ? compact : "";
+}
+
+function extractBrand(
+  objects: Record<string, unknown>[],
+  htmlTitle: string,
+  outletName: string,
+  listingEvidence = "",
+): string {
   for (const object of objects) {
     const brand = object.brand;
-    if (typeof brand === "string") return cleanText(brand, 120);
+    if (typeof brand === "string") {
+      const candidate = sanitizeBrandCandidate(brand, outletName);
+      if (candidate) return candidate;
+    }
     if (brand && typeof brand === "object") {
-      const name = readString((brand as Record<string, unknown>).name);
-      if (name) return name;
+      const candidate = sanitizeBrandCandidate(readString((brand as Record<string, unknown>).name), outletName);
+      if (candidate) return candidate;
     }
   }
 
-  const titleParts = htmlTitle.split(/\s+(?:\||–|—|-)\s+/).map(part => cleanText(part, 120));
-  const labelledBrand = /^(.*?)\s+(?:offers?|promotion|promo|sale)$/i.exec(titleParts[0])?.[1]?.trim();
+  const titleParts = htmlTitle
+    .split(/\s*(?:\||–|—)\s*|\s+-\s+/)
+    .map(part => cleanText(part, 120))
+    .filter(Boolean);
+  const labelledBrand = /^(.*?)\s+(?:offers?|promotion|promo|sale)$/i.exec(titleParts[0] ?? "")?.[1]?.trim() ?? "";
   const separatedBrand = /^(?:offers?|promotion|promo|sale)$/i.test(titleParts[1] ?? "")
     ? titleParts[0]
     : "";
   const outletSeparatedBrand = titleParts[1]?.toLowerCase().includes(outletName.toLowerCase())
     ? titleParts[0]
     : "";
-  const candidate = labelledBrand || separatedBrand || outletSeparatedBrand;
-  if (candidate && !/\d\s*%|\b(?:black friday|crazy friday|shopping event)\b/i.test(candidate)
-    && !candidate.toLowerCase().includes(outletName.toLowerCase())) return candidate;
-  return "";
+  const titleCandidate = sanitizeBrandCandidate(labelledBrand || separatedBrand || outletSeparatedBrand, outletName);
+  if (titleCandidate && !/\b(?:black friday|crazy friday|shopping event)\b/i.test(titleCandidate)) return titleCandidate;
+
+  return extractBrandFromListingEvidence(listingEvidence, outletName);
 }
 
 function dateOnly(value: string): string | null {
@@ -175,6 +213,10 @@ function toIsoDate(year: number, month: number, day: number): string | null {
 function normalizeCampaignYear(value: string): number {
   const year = Number(value);
   return value.length === 2 ? 2_000 + year : year;
+}
+
+function monthNumber(value: string): number {
+  return MONTHS[value.toLowerCase()] ?? 0;
 }
 
 function extractDateRange(objects: Record<string, unknown>[], text: string): { startsOn: string; endsOn: string } | null {
@@ -201,39 +243,99 @@ function extractDateRange(objects: Record<string, unknown>[], text: string): { s
 
   const dayMonth = /\b(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
   if (dayMonth) {
-    const startsOn = toIsoDate(Number(dayMonth[3]), MONTHS[dayMonth[2].toLowerCase()], Number(dayMonth[1]));
-    const endsOn = toIsoDate(Number(dayMonth[6]), MONTHS[dayMonth[5].toLowerCase()], Number(dayMonth[4]));
+    const startsOn = toIsoDate(Number(dayMonth[3]), monthNumber(dayMonth[2]), Number(dayMonth[1]));
+    const endsOn = toIsoDate(Number(dayMonth[6]), monthNumber(dayMonth[5]), Number(dayMonth[4]));
     if (startsOn && endsOn) return { startsOn, endsOn };
   }
 
   const monthDay = /\b([a-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(20\d{2})\s*(?:to|until|till|through|–|—|-)\s*([a-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(20\d{2})\b/i.exec(text);
   if (monthDay) {
-    const startsOn = toIsoDate(Number(monthDay[3]), MONTHS[monthDay[1].toLowerCase()], Number(monthDay[2]));
-    const endsOn = toIsoDate(Number(monthDay[6]), MONTHS[monthDay[4].toLowerCase()], Number(monthDay[5]));
+    const startsOn = toIsoDate(Number(monthDay[3]), monthNumber(monthDay[1]), Number(monthDay[2]));
+    const endsOn = toIsoDate(Number(monthDay[6]), monthNumber(monthDay[4]), Number(monthDay[5]));
     if (startsOn && endsOn) return { startsOn, endsOn };
   }
+
+  // McArthurGlen and other official operators commonly shorten a same-month
+  // range to "1 - 14 September 2026". Both boundaries remain explicit.
+  const sharedMonth = /\b(?:from\s+)?(\d{1,2})(?:st|nd|rd|th)?\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
+  if (sharedMonth) {
+    const month = monthNumber(sharedMonth[3]);
+    const startsOn = toIsoDate(Number(sharedMonth[4]), month, Number(sharedMonth[1]));
+    const endsOn = toIsoDate(Number(sharedMonth[4]), month, Number(sharedMonth[2]));
+    if (startsOn && endsOn) return { startsOn, endsOn };
+  }
+
+  const sharedMonthFirst = /\b([a-z]+)\s+(\d{1,2})(?:st|nd|rd|th)?\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})(?:st|nd|rd|th)?,?\s+(20\d{2})\b/i.exec(text);
+  if (sharedMonthFirst) {
+    const month = monthNumber(sharedMonthFirst[1]);
+    const startsOn = toIsoDate(Number(sharedMonthFirst[4]), month, Number(sharedMonthFirst[2]));
+    const endsOn = toIsoDate(Number(sharedMonthFirst[4]), month, Number(sharedMonthFirst[3]));
+    if (startsOn && endsOn) return { startsOn, endsOn };
+  }
+
+  // A single trailing year is also common when a range crosses months:
+  // "29 August - 2 September 2026".
+  const sharedYear = /\b(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s*(?:to|until|till|through|–|—|-)\s*(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
+  if (sharedYear) {
+    const year = Number(sharedYear[5]);
+    const startsOn = toIsoDate(year, monthNumber(sharedYear[2]), Number(sharedYear[1]));
+    const endsOn = toIsoDate(year, monthNumber(sharedYear[4]), Number(sharedYear[3]));
+    if (startsOn && endsOn) return { startsOn, endsOn };
+  }
+
+  // Keep the strict two-boundary requirement while accepting pages that place
+  // the explicit "from" and "until" dates in separate sentences.
+  const explicitStart = /\b(?:valid\s+)?from\s+(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
+  const explicitEnd = /\b(?:valid\s+)?(?:until|till|through)\s+(\d{1,2})(?:st|nd|rd|th)?\s+([a-z]+)\s+(20\d{2})\b/i.exec(text);
+  if (explicitStart && explicitEnd) {
+    const startsOn = toIsoDate(Number(explicitStart[3]), monthNumber(explicitStart[2]), Number(explicitStart[1]));
+    const endsOn = toIsoDate(Number(explicitEnd[3]), monthNumber(explicitEnd[2]), Number(explicitEnd[1]));
+    if (startsOn && endsOn) return { startsOn, endsOn };
+  }
+
   return null;
 }
 
+function campaignEvidenceLabel(text: string, match: RegExpExecArray): string {
+  const matchIndex = match.index ?? 0;
+  const previousBoundary = text.lastIndexOf(". ", matchIndex);
+  const sentenceStart = previousBoundary < 0 ? 0 : previousBoundary + 2;
+  const sentenceEndCandidate = text.indexOf(". ", matchIndex + match[0].length);
+  const sentenceEnd = sentenceEndCandidate < 0 ? matchIndex + match[0].length : sentenceEndCandidate;
+  return cleanText(text.slice(sentenceStart, sentenceEnd), 120) || cleanText(match[0], 120);
+}
+
 function extractDiscount(text: string): { label: string; percent?: number } | null {
-  const patterns = [
+  const percentPatterns = [
     /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?-?\d{1,3}\s*(?:-|–|to)\s*-?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto)/i,
     /(?:up\s+to\s+|extra\s+|save\s+|enjoy\s+)?-?\d{1,3}\s*%\s*(?:off|discount|saving|korting|rabatt|reduction|réduction|descuento|sconto)/i,
     /(?:up\s+to\s+)?-\d{1,3}\s*(?:-|–|to)\s*-\d{1,3}\s*%\s*extra/i,
     /(?:up\s+to\s+)?-\d{1,3}\s*%\s*extra/i,
     /(?:buy|spend)\s+.{0,60}?\d{1,3}\s*%\s*off/i,
   ];
-  for (const pattern of patterns) {
+  for (const pattern of percentPatterns) {
     const match = pattern.exec(text);
-    if (!match || match.index === undefined) continue;
-    const sentenceStart = Math.max(0, text.lastIndexOf(". ", match.index) + 2);
-    const sentenceEndCandidate = text.indexOf(". ", match.index + match[0].length);
-    const sentenceEnd = sentenceEndCandidate < 0 ? match.index + match[0].length : sentenceEndCandidate;
-    const label = cleanText(text.slice(sentenceStart, sentenceEnd), 120) || cleanText(match[0], 120);
+    if (!match) continue;
     const percentages = [...match[0].matchAll(/(\d{1,3})\s*%/g)].map(value => Number(value[1]));
     if (percentages.some(percent => percent < 1 || percent > 100)) return null;
-    return { label, ...(percentages.length ? { percent: Math.max(...percentages) } : {}) };
+    return {
+      label: campaignEvidenceLabel(text, match),
+      ...(percentages.length ? { percent: Math.max(...percentages) } : {}),
+    };
   }
+
+  const currency = "(?:€|£|\\$|EUR|GBP|USD)";
+  const amountPatterns = [
+    new RegExp(`${currency}\\s*\\d{1,5}(?:[.,]\\d{1,2})?\\s*(?:extra\\s+)?saving(?:s)?(?:\\s+on\\s+(?:the\\s+)?outlet\\s+price)?`, "i"),
+    new RegExp(`(?:save|discount(?:\\s+of)?|extra\\s+saving(?:s)?(?:\\s+of)?)\\s*${currency}\\s*\\d{1,5}(?:[.,]\\d{1,2})?`, "i"),
+    new RegExp(`\\bnow\\s+for\\s+${currency}\\s*\\d{1,5}(?:[.,]\\d{1,2})?\\s*(?:\\||,|;|\\s)+\\s*(?:RRP|regular(?:\\s+outlet)?\\s+price|recommended\\s+price)\\s+${currency}\\s*\\d{1,5}(?:[.,]\\d{1,2})?`, "i"),
+  ];
+  for (const pattern of amountPatterns) {
+    const match = pattern.exec(text);
+    if (!match) continue;
+    return { label: campaignEvidenceLabel(text, match) };
+  }
+
   return null;
 }
 
@@ -330,7 +432,7 @@ export function parseOfficialCampaignPage(
       || extractMeta(html, "og:description"),
     500,
   );
-  const brandName = extractBrand(objects, htmlTitle, source.outletName);
+  const brandName = extractBrand(objects, htmlTitle, source.outletName, officialListingEvidence);
   const detailDateRange = extractDateRange(objects, text);
   const listingDateRange = detailDateRange
     ? null
