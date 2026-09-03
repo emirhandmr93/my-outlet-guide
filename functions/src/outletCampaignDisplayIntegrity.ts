@@ -8,6 +8,10 @@ function clean(value: string, maxLength: number): string {
   return value.replace(/\s+/g, " ").trim().slice(0, maxLength);
 }
 
+function comparable(value: string): string {
+  return value.replace(/\s+/g, " ").trim().toLocaleLowerCase("en-US");
+}
+
 function mcarthurGlenCore(outletName: string): string {
   return outletName
     .replace(/^McArthurGlen\s+/i, "")
@@ -41,9 +45,14 @@ const sourceByOutletId = new Map(officialCampaignSources.map(source => [source.o
 const monitoredAliases = officialCampaignSources.flatMap(source =>
   campaignOutletAliases(source).map(alias => ({ outletId: source.outletId, alias })),
 ).sort((left, right) => right.alias.length - left.alias.length || left.alias.localeCompare(right.alias));
+const monitoredAliasSet = new Set(monitoredAliases.map(({ alias }) => comparable(alias)));
 
 export function canonicalCampaignOutletName(outletId: string, fallback = "Outlet"): string {
   return sourceByOutletId.get(outletId)?.outletName ?? fallback;
+}
+
+export function isMonitoredCampaignOutletReference(value: string): boolean {
+  return monitoredAliasSet.has(comparable(value));
 }
 
 /**
@@ -68,4 +77,15 @@ export function sanitizeOfficialCampaignPresentationText(
     normalized = normalized.replace(new RegExp(escapeRegExp(alias), "giu"), canonicalOutletName);
   }
   return clean(normalized, maxLength);
+}
+
+export function dedupeOfficialCampaignConditions(summary: string, conditions: string): string {
+  const compactSummary = clean(summary, 700);
+  const compactConditions = clean(conditions, 900);
+  if (!compactSummary || !compactConditions) return compactConditions;
+  if (comparable(compactSummary) === comparable(compactConditions)) return "";
+  if (comparable(compactConditions).startsWith(comparable(compactSummary))) {
+    return clean(compactConditions.slice(compactSummary.length).replace(/^[.。;:!?,，、\-–—]+\s*/, ""), 900);
+  }
+  return compactConditions;
 }
