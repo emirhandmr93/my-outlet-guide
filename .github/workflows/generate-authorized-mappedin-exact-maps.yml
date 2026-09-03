@@ -1,0 +1,79 @@
+name: Generate authorized Mappedin exact maps
+
+on:
+  push:
+    branches:
+      - feat/premium-map-exact-completion
+    paths:
+      - tools/generateAuthorizedMappedinExactMaps.ts
+      - tools/checkPremiumOutletMaps.ts
+      - src/features/premiumOutletMaps/exactCatalog.ts
+      - src/features/premiumOutletMaps/generatedMappedinExactMaps.ts
+      - src/features/premiumOutletMaps/types.ts
+      - src/features/premiumOutletMaps/authorizedSourceManifest.ts
+      - docs/premium-map-network-discovery/**
+      - .github/workflows/generate-authorized-mappedin-exact-maps.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generated-mappedin-exact-maps-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate-and-validate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate exact Mappedin maps
+        run: npx tsx tools/generateAuthorizedMappedinExactMaps.ts
+
+      - name: Validate generated coverage
+        run: |
+          test -f docs/PREMIUM_MAP_MAPPEDIN_GENERATION_REPORT.json
+          node - <<'NODE'
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('docs/PREMIUM_MAP_MAPPEDIN_GENERATION_REPORT.json', 'utf8'));
+          if (report.summary.exactMapCount !== 8) throw new Error(`Expected 8 generated exact maps, got ${report.summary.exactMapCount}`);
+          for (const outlet of report.results) {
+            if (outlet.canonicalCoverage < 0.75) throw new Error(`${outlet.outletId}: canonical coverage below 75% (${outlet.canonicalCoverage})`);
+            if (outlet.exactStoreInstanceCount < 20) throw new Error(`${outlet.outletId}: too few exact store instances`);
+          }
+          NODE
+
+      - name: Validate premium map release gate
+        run: npm run validate:premium-maps
+
+      - name: Typecheck generated snapshot
+        run: npm run typecheck
+
+      - name: Commit generated exact maps
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/features/premiumOutletMaps/generatedMappedinExactMaps.ts docs/PREMIUM_MAP_MAPPEDIN_GENERATION_REPORT.json
+          if git diff --cached --quiet; then
+            echo "No generated exact-map changes to commit."
+            exit 0
+          fi
+          git commit -m "Generate authorized exact Mappedin premium maps"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:${{ github.ref_name }}
