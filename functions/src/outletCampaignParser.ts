@@ -1,7 +1,6 @@
 import { createHash } from "node:crypto";
 
 import {
-  campaignCandidatePrefixesForListing,
   isOfficialCampaignDetailUrl,
   isOfficialCampaignDetailUrlForListing,
   type OfficialCampaignSource,
@@ -449,28 +448,16 @@ export function extractOfficialCampaignCandidates(
   }
 
   // Modern operator pages often hydrate offer grids from JSON embedded in script
-  // tags instead of server-rendering every <a>. Scan quoted URL values after
-  // decoding JSON/JS slash escapes while retaining the same host/path allowlist.
+  // tags instead of server-rendering every <a>. Scan only complete quoted URL
+  // values after decoding JSON/JS slash escapes. We deliberately do not scan
+  // arbitrary path substrings because a third-party absolute URL could contain
+  // an allowlisted-looking path and must never be rebased onto an official host.
   const discoverySurface = decodeEmbeddedUrlEscapes(html);
   const quotedUrlPattern = /(["'])(https?:\/\/[^"'<>\s]+|\/[^"'<>\s]+)\1/gi;
   for (const match of discoverySurface.matchAll(quotedUrlPattern)) {
     const index = match.index ?? 0;
     const evidence = discoverySurface.slice(Math.max(0, index - 500), Math.min(discoverySurface.length, index + match[0].length + 900));
     addCandidate(match[2], evidence);
-  }
-
-  // Some hydration payloads serialize paths without surrounding quotes after
-  // minification. Only accept paths that begin with an allowlisted prefix and
-  // resolve them against the already-approved listing host.
-  for (const prefix of campaignCandidatePrefixesForListing(source, listingUrl)) {
-    const escapedPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const pattern = new RegExp(`${escapedPrefix}[^\\s"'<>\\\\]{1,260}`, "gi");
-    for (const match of discoverySurface.matchAll(pattern)) {
-      const index = match.index ?? 0;
-      const rawPath = match[0].replace(/[),.;]+$/, "");
-      const evidence = discoverySurface.slice(Math.max(0, index - 500), Math.min(discoverySurface.length, index + rawPath.length + 900));
-      addCandidate(rawPath, evidence);
-    }
   }
 
   return [...candidates]
