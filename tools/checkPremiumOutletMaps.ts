@@ -11,10 +11,15 @@ import {
 } from "../src/features/premiumOutletMaps/catalog";
 import { getPremiumMapCopy, poiLabels } from "../src/features/premiumOutletMaps/copy";
 import { campaignForStore, searchMapStores } from "../src/features/premiumOutletMaps/search";
-import { premiumMapPoiKinds, type Polygon } from "../src/features/premiumOutletMaps/types";
+import { premiumMapPoiKinds, type Coordinate, type Polygon } from "../src/features/premiumOutletMaps/types";
 
 function assert(condition: unknown, message: string): asserts condition {
   if (!condition) throw new Error(message);
+}
+
+function assertCoordinate(coordinate: Coordinate, label: string) {
+  assert(Number.isFinite(coordinate[0]) && Number.isFinite(coordinate[1]), `${label}: invalid coordinate`);
+  assert(coordinate[0] >= -180 && coordinate[0] <= 180 && coordinate[1] >= -90 && coordinate[1] <= 90, `${label}: coordinate is out of range`);
 }
 
 function assertClosedPolygon(polygon: Polygon, label: string) {
@@ -23,10 +28,7 @@ function assertClosedPolygon(polygon: Polygon, label: string) {
   const first = ring[0];
   const last = ring[ring.length - 1];
   assert(first[0] === last[0] && first[1] === last[1], `${label}: polygon is not closed`);
-  for (const coordinate of ring) {
-    assert(Number.isFinite(coordinate[0]) && Number.isFinite(coordinate[1]), `${label}: polygon contains invalid coordinates`);
-    assert(coordinate[0] >= -180 && coordinate[0] <= 180 && coordinate[1] >= -90 && coordinate[1] <= 90, `${label}: polygon coordinate is out of range`);
-  }
+  for (const coordinate of ring) assertCoordinate(coordinate, label);
 }
 
 const expectedIds = [
@@ -98,12 +100,19 @@ for (const map of premiumOutletMapCandidates) {
     poiIds.add(poi.id);
     assert(premiumMapPoiKinds.includes(poi.kind), `${map.outletId}: invalid POI kind: ${poi.kind}`);
     assert(map.floors.some(floor => floor.id === poi.floorId), `${map.outletId}: POI uses unknown floor: ${poi.id}`);
-    assert(Number.isFinite(poi.coordinate[0]) && Number.isFinite(poi.coordinate[1]), `${map.outletId}: POI has invalid coordinate: ${poi.id}`);
+    assertCoordinate(poi.coordinate, `${map.outletId}: POI ${poi.id}`);
   }
   for (const store of map.stores) {
     assert(store.outletId === map.outletId, `${map.outletId}: store is bound to wrong outlet: ${store.id}`);
     assert(map.floors.some(floor => floor.id === store.floorId), `${map.outletId}: invalid store floor: ${store.id}`);
-    assertClosedPolygon(store.polygon, `${map.outletId}: ${store.id}`);
+    assertCoordinate(store.center, `${map.outletId}: ${store.id}`);
+    assert(store.geometryKind === "area" || store.geometryKind === "point", `${map.outletId}: invalid store geometry kind: ${store.id}`);
+    if (store.geometryKind === "area") {
+      assert(Boolean(store.polygon), `${map.outletId}: area store is missing a verified polygon: ${store.id}`);
+      assertClosedPolygon(store.polygon as Polygon, `${map.outletId}: ${store.id}`);
+    } else {
+      assert(!store.polygon, `${map.outletId}: point-only store must not carry a fabricated polygon: ${store.id}`);
+    }
     assert(Boolean(store.openingHours), `${map.outletId}: missing opening hours: ${store.id}`);
     const exact = searchMapStores(map.stores, store.brandName);
     assert(exact.some(result => result.brandName === store.brandName), `${map.outletId}: exact brand search failed: ${store.brandName}`);
@@ -148,6 +157,7 @@ assert(Boolean(packageJson.dependencies?.["@maplibre/maplibre-react-native"]), "
 assert(appJson.expo?.plugins?.some(plugin => plugin === "@maplibre/maplibre-react-native"), "MapLibre Expo plugin missing");
 assert(packageJson.scripts?.["validate:release"]?.includes("validate:premium-maps"), "Premium map validation is not in the release gate");
 assert(nativeCanvas.includes('type="fill-extrusion"'), "Premium 3D building layer missing");
+assert(nativeCanvas.includes('id="premium-store-points"') && nativeCanvas.includes('type="circle"'), "Native map must render exact point-only stores without invented polygons");
 assert(nativeCanvas.includes("ViewAnnotation"), "Offline-safe native labels missing");
 assert(!nativeCanvas.includes('type="symbol"'), "Native labels must not depend on remote glyphs");
 assert(nativeCanvas.includes("poiLabels[poi.kind][language]"), "Localized native POI labels missing");
@@ -155,11 +165,13 @@ assert(
   webCanvas.includes("createProjection")
     && webCanvas.includes("polygonLayout")
     && webCanvas.includes("store.polygon")
+    && webCanvas.includes('store.geometryKind === "point"')
+    && webCanvas.includes("styles.storePoint")
     && webCanvas.includes("focusCoordinate")
     && webCanvas.includes("bearing")
     && webCanvas.includes("lineSegments")
     && webCanvas.includes("onSelectStore(store)"),
-  "Web premium map must render and focus the same exact geometry model as native",
+  "Web premium map must render exact area and point geometry without fabrication",
 );
 assert(!webCanvas.includes("roadHorizontal") && !webCanvas.includes("walkwayHorizontal"), "Web exact renderer must not contain invented fixed roads or walkways");
 assert(!webCanvas.includes("slice(0, 90)"), "Web exact renderer must not silently omit stores from premium mode");
@@ -192,4 +204,4 @@ assert(appNavigator.includes('<Stack.Screen name="PremiumOutletMap"')
   "Premium map screen must remain registered in root and desktop web navigators.");
 assert(offline.includes('premium-outlet-map:v1:'), "Versioned offline map cache missing");
 
-console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages. Exact maps support arbitrary closed polygons; missing POIs are omitted rather than fabricated; campaign highlights require canonical IDs; ODbL attribution is visible.`);
+console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages. Exact area polygons and exact point-only stores are supported without fabricating footprints; missing POIs are omitted; campaign highlights require canonical IDs; ODbL attribution is visible.`);

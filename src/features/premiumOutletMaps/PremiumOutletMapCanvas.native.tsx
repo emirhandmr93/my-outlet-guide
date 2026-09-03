@@ -48,27 +48,46 @@ export function PremiumOutletMapCanvas({
   const camera = useRef<CameraRef>(null);
   const [zoomLevel, setZoomLevel] = useState(map.defaultZoom);
   const floorStores = useMemo(() => map.stores.filter(store => store.floorId === floorId), [floorId, map.stores]);
+  const areaStores = useMemo(() => floorStores.filter(store => store.geometryKind === "area" && Boolean(store.polygon)), [floorStores]);
+  const pointStores = useMemo(() => floorStores.filter(store => store.geometryKind === "point"), [floorStores]);
   const floorPois = useMemo(() => map.pois.filter(poi => poi.floorId === floorId), [floorId, map.pois]);
 
-  const storeData = useMemo(() => featureCollection(floorStores.map(store => {
+  const storeData = useMemo(() => featureCollection(areaStores.map(store => {
     const campaign = campaignForStore(store, campaigns);
     return {
       type: "Feature",
       id: store.id,
-      geometry: { type: "Polygon", coordinates: store.polygon },
+      geometry: { type: "Polygon", coordinates: store.polygon as GeoJSON.Position[][] },
       properties: {
         storeId: store.id,
         color: store.id === selectedStoreId ? "#F6C945" : campaign ? "#D4AF25" : "#FBFCFD",
         height: detailMode === "premium" ? (store.id === selectedStoreId ? 18 : campaign ? 14 : 10) : 1,
       },
     } as GeoJSON.Feature;
-  })), [campaigns, detailMode, floorStores, selectedStoreId]);
+  })), [areaStores, campaigns, detailMode, selectedStoreId]);
+
+  const pointStoreData = useMemo(() => featureCollection(pointStores.map(store => {
+    const campaign = campaignForStore(store, campaigns);
+    const selected = store.id === selectedStoreId;
+    return {
+      type: "Feature",
+      id: store.id,
+      geometry: { type: "Point", coordinates: store.center },
+      properties: {
+        storeId: store.id,
+        color: selected ? "#F6C945" : campaign ? "#D4AF25" : "#FFFFFF",
+        radius: selected ? 9 : campaign ? 8 : detailMode === "premium" ? 6 : 5,
+        stroke: selected ? "#0B1F3A" : campaign ? "#8A6800" : "#526170",
+        strokeWidth: selected ? 3 : 2,
+      },
+    } as GeoJSON.Feature;
+  })), [campaigns, detailMode, pointStores, selectedStoreId]);
 
   const selectedData = useMemo(() => featureCollection(
-    floorStores.filter(store => store.id === selectedStoreId).map(store => ({
-      type: "Feature", geometry: { type: "Polygon", coordinates: store.polygon }, properties: {},
+    areaStores.filter(store => store.id === selectedStoreId && store.polygon).map(store => ({
+      type: "Feature", geometry: { type: "Polygon", coordinates: store.polygon as GeoJSON.Position[][] }, properties: {},
     } as GeoJSON.Feature)),
-  ), [floorStores, selectedStoreId]);
+  ), [areaStores, selectedStoreId]);
 
   const environment = map.environment;
   const siteData = useMemo(() => featureCollection([{
@@ -136,6 +155,19 @@ export function PremiumOutletMapCanvas({
           <Layer id="premium-store-shapes" type="fill" source="premium-stores" paint={{ "fill-color": ["get", "color"], "fill-outline-color": "#8C96A3" }} />
         )}
       </GeoJSONSource>
+      <GeoJSONSource id="premium-store-points" data={pointStoreData} onPress={handleStorePress} hitbox={{ top: 12, right: 12, bottom: 12, left: 12 }}>
+        <Layer
+          id="premium-store-point-markers"
+          type="circle"
+          source="premium-store-points"
+          paint={{
+            "circle-color": ["get", "color"],
+            "circle-radius": ["get", "radius"],
+            "circle-stroke-color": ["get", "stroke"],
+            "circle-stroke-width": ["get", "strokeWidth"],
+          }}
+        />
+      </GeoJSONSource>
       <GeoJSONSource id="premium-selected" data={selectedData}>
         <Layer id="premium-selected-glow" type="line" source="premium-selected" paint={{ "line-color": "#FFCC22", "line-width": 8, "line-blur": 4, "line-opacity": 0.92 }} />
       </GeoJSONSource>
@@ -147,7 +179,7 @@ export function PremiumOutletMapCanvas({
         const selected = store.id === selectedStoreId;
         return (
           <ViewAnnotation key={store.id} id={`label-${store.id}`} lngLat={store.center} anchor="bottom" onPress={() => onSelectStore(store)}>
-            <View collapsable={false} style={[styles.storeLabel, campaign && styles.campaignLabel, selected && styles.selectedLabel]}>
+            <View collapsable={false} style={[styles.storeLabel, store.geometryKind === "point" && styles.pointStoreLabel, campaign && styles.campaignLabel, selected && styles.selectedLabel]}>
               <Text numberOfLines={1} style={styles.storeLabelText}>{store.brandName}</Text>
             </View>
           </ViewAnnotation>
@@ -167,6 +199,7 @@ export function PremiumOutletMapCanvas({
 const styles = StyleSheet.create({
   map: { flex: 1 },
   storeLabel: { maxWidth: 128, paddingHorizontal: 5, paddingVertical: 3, borderRadius: 5, backgroundColor: "rgba(255,255,255,0.94)", borderWidth: 1, borderColor: "#C8CED6" },
+  pointStoreLabel: { borderStyle: "dashed" },
   campaignLabel: { backgroundColor: "#FFF3B5", borderColor: "#D4AF25" },
   selectedLabel: { backgroundColor: "#F6C945", borderColor: "#0B1F3A", borderWidth: 2 },
   storeLabelText: { color: "#0B1F3A", fontSize: 10, lineHeight: 12, fontWeight: "800" },

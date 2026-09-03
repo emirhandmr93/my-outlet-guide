@@ -95,6 +95,7 @@ function buildStores(outletId: string, center: Coordinate, openingHours: string)
       categoryId: brand.categoryId,
       floorId: "ground",
       openingHours,
+      geometryKind: "area",
       polygon,
       center: offset(center, east, north),
     };
@@ -178,6 +179,20 @@ function isPremiumOutletMapCandidateId(outletId: string): outletId is PremiumOut
   return premiumOutletMapIds.includes(outletId as PremiumOutletMapId);
 }
 
+function isFiniteCoordinate(coordinate: Coordinate): boolean {
+  return Number.isFinite(coordinate[0]) && Number.isFinite(coordinate[1])
+    && coordinate[0] >= -180 && coordinate[0] <= 180
+    && coordinate[1] >= -90 && coordinate[1] <= 90;
+}
+
+function hasClosedPolygon(polygon: Polygon | undefined): boolean {
+  const ring = polygon?.[0];
+  if (!ring || ring.length < 4) return false;
+  const first = ring[0];
+  const last = ring[ring.length - 1];
+  return Boolean(first && last && first[0] === last[0] && first[1] === last[1] && ring.every(isFiniteCoordinate));
+}
+
 export function getPremiumOutletMapCandidate(outletId: string): PremiumOutletMap | undefined {
   if (!isPremiumOutletMapCandidateId(outletId)) return undefined;
   const cached = mapCache.get(outletId);
@@ -195,6 +210,11 @@ export function isPremiumOutletMapReleaseReady(map: PremiumOutletMap): boolean {
   if (map.source.dataLicense === "proprietary-reference-only") return false;
   if (map.source.dataLicense === "ODbL-1.0" && !map.source.attribution?.includes("OpenStreetMap")) return false;
   if (map.floors.length === 0 || map.stores.length === 0) return false;
+  for (const store of map.stores) {
+    if (!isFiniteCoordinate(store.center)) return false;
+    if (store.geometryKind === "area" && !hasClosedPolygon(store.polygon)) return false;
+    if (store.geometryKind === "point" && store.polygon) return false;
+  }
   return true;
 }
 

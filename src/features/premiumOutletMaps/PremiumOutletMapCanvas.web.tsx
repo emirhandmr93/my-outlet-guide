@@ -202,11 +202,36 @@ export function PremiumOutletMapCanvas({
         <View key={`tree-${index}`} pointerEvents="none" style={[styles.tree, projectedCenterStyle(coordinate, projection)]} />
       ))}
 
-      {stores.map(store => {
-        const layout = polygonLayout(store.polygon, projection);
-        if (!layout) return null;
+      {stores.map((store, index) => {
         const campaign = campaignForStore(store, campaigns);
         const selected = store.id === selectedStoreId;
+        const showLabel = selected || Boolean(campaign) || index % labelStride === 0;
+
+        if (store.geometryKind === "point") {
+          return (
+            <View key={store.id} style={StyleSheet.absoluteFill} pointerEvents="box-none">
+              <Pressable
+                onPress={() => onSelectStore(store)}
+                accessibilityRole="button"
+                accessibilityLabel={store.brandName}
+                style={[
+                  styles.storePoint,
+                  projectedCenterStyle(store.center, projection),
+                  campaign && styles.campaignPoint,
+                  selected && styles.selectedPoint,
+                ]}
+              />
+              {showLabel ? (
+                <View pointerEvents="none" style={[styles.storeLabel, styles.pointStoreLabel, projectedCenterStyle(store.center, projection), selected && styles.selectedLabel]}>
+                  <Text numberOfLines={2} style={styles.storeText}>{store.brandName}</Text>
+                </View>
+              ) : null}
+            </View>
+          );
+        }
+
+        const layout = store.polygon ? polygonLayout(store.polygon, projection) : undefined;
+        if (!layout) return null;
         return (
           <View key={store.id} style={StyleSheet.absoluteFill} pointerEvents="box-none">
             {detailMode === "premium" ? (
@@ -223,7 +248,7 @@ export function PremiumOutletMapCanvas({
                 selected && styles.selected,
               ]}
             />
-            {(selected || campaign || stores.indexOf(store) % labelStride === 0) ? (
+            {showLabel ? (
               <View pointerEvents="none" style={[styles.storeLabel, projectedCenterStyle(store.center, projection), selected && styles.selectedLabel]}>
                 <Text numberOfLines={2} style={styles.storeText}>{store.brandName}</Text>
               </View>
@@ -297,15 +322,42 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#929DAA",
   },
+  storePoint: {
+    position: "absolute",
+    width: 12,
+    height: 12,
+    marginLeft: -6,
+    marginTop: -6,
+    borderRadius: 6,
+    backgroundColor: "#FFFFFF",
+    borderWidth: 2,
+    borderColor: "#526170",
+    zIndex: 6,
+  },
   campaign: {
     backgroundColor: "#FFF0A4",
     borderColor: "#C9A31B",
+  },
+  campaignPoint: {
+    backgroundColor: "#D4AF25",
+    borderColor: "#8A6800",
   },
   selected: {
     backgroundColor: "#F6C945",
     borderColor: "#0B1F3A",
     borderWidth: 2,
     zIndex: 5,
+  },
+  selectedPoint: {
+    width: 18,
+    height: 18,
+    marginLeft: -9,
+    marginTop: -9,
+    borderRadius: 9,
+    backgroundColor: "#F6C945",
+    borderColor: "#0B1F3A",
+    borderWidth: 3,
+    zIndex: 7,
   },
   storeLabel: {
     position: "absolute",
@@ -317,6 +369,12 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "rgba(255,255,255,0.92)",
     zIndex: 8,
+  },
+  pointStoreLabel: {
+    marginTop: 7,
+    borderWidth: 1,
+    borderStyle: "dashed",
+    borderColor: "#7B8794",
   },
   selectedLabel: {
     backgroundColor: "#F6C945",
