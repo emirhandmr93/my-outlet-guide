@@ -53,6 +53,25 @@ export function WebHorizontalScrollEnhancer({ children }: PropsWithChildren) {
       if (scroller?.dataset) scroller.dataset.mogManualHorizontalScroll = "true";
     }
 
+    function beginDrag(event: any) {
+      if (!activeScroller || dragged) return;
+      dragged = true;
+
+      if (activeScroller.dataset) activeScroller.dataset.mogDragging = "true";
+      if (activeScroller.style) {
+        activeScroller.style.cursor = "grabbing";
+        activeScroller.style.userSelect = "none";
+      }
+
+      if (typeof activeScroller.setPointerCapture === "function") {
+        try {
+          activeScroller.setPointerCapture(event.pointerId);
+        } catch {
+          // Pointer capture is best-effort. Document listeners keep the drag working if capture is unavailable.
+        }
+      }
+    }
+
     function resetActiveScroller() {
       if (activeScroller) {
         if (activeScroller.dataset) delete activeScroller.dataset.mogDragging;
@@ -102,19 +121,8 @@ export function WebHorizontalScrollEnhancer({ children }: PropsWithChildren) {
       previousCursor = scroller.style?.cursor ?? "";
       previousUserSelect = scroller.style?.userSelect ?? "";
 
-      if (scroller.dataset) scroller.dataset.mogDragging = "true";
-      if (scroller.style) {
-        scroller.style.cursor = "grabbing";
-        scroller.style.userSelect = "none";
-      }
-
-      if (typeof scroller.setPointerCapture === "function") {
-        try {
-          scroller.setPointerCapture(event.pointerId);
-        } catch {
-          // Some browsers only allow capture on the original pointer target; document listeners still work.
-        }
-      }
+      // Do not capture the pointer here. A normal click must stay attached to its original
+      // button/link target. Capture and click suppression start only after a real horizontal drag.
     }
 
     function handlePointerMove(event: any) {
@@ -123,7 +131,7 @@ export function WebHorizontalScrollEnhancer({ children }: PropsWithChildren) {
       const deltaX = Number(event.clientX) - startClientX;
       if (!dragged && Math.abs(deltaX) < DRAG_THRESHOLD_PX) return;
 
-      dragged = true;
+      beginDrag(event);
       activeScroller.scrollLeft = startScrollLeft - deltaX;
       event.preventDefault?.();
     }
