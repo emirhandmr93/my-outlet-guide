@@ -31,8 +31,11 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      - name: Install app dependencies
         run: npm ci
+
+      - name: Install Functions dependencies
+        run: npm ci --prefix functions
 
       - name: Validate campaigns
         run: npm run validate:campaigns
