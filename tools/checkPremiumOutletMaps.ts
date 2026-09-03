@@ -72,8 +72,11 @@ const root = process.cwd();
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")) as { dependencies?: Record<string, string>; scripts?: Record<string, string> };
 const appJson = JSON.parse(fs.readFileSync(path.join(root, "app.json"), "utf8")) as { expo?: { plugins?: unknown[] } };
 const nativeCanvas = fs.readFileSync(path.join(root, "src/features/premiumOutletMaps/PremiumOutletMapCanvas.native.tsx"), "utf8");
+const webCanvas = fs.readFileSync(path.join(root, "src/features/premiumOutletMaps/PremiumOutletMapCanvas.web.tsx"), "utf8");
 const screen = fs.readFileSync(path.join(root, "src/screens/PremiumOutletMapScreen.tsx"), "utf8");
 const detail = fs.readFileSync(path.join(root, "src/screens/OutletDetailScreen.tsx"), "utf8");
+const webLinking = fs.readFileSync(path.join(root, "src/navigation/webLinking.ts"), "utf8");
+const appNavigator = fs.readFileSync(path.join(root, "src/navigation/AppNavigator.tsx"), "utf8");
 const offline = fs.readFileSync(path.join(root, "src/features/premiumOutletMaps/offlinePackService.ts"), "utf8");
 const campaignService = fs.readFileSync(path.join(root, "src/services/outletCampaignService.ts"), "utf8");
 const firestoreIndexes = fs.readFileSync(path.join(root, "firestore.indexes.json"), "utf8");
@@ -85,13 +88,24 @@ assert(nativeCanvas.includes('type="fill-extrusion"'), "Premium 3D building laye
 assert(nativeCanvas.includes("ViewAnnotation"), "Offline-safe native labels missing");
 assert(!nativeCanvas.includes('type="symbol"'), "Native labels must not depend on remote glyphs");
 assert(nativeCanvas.includes("poiLabels[poi.kind][language]"), "Localized native POI labels missing");
+assert(webCanvas.includes("normalizedStorePosition") && webCanvas.includes("onSelectStore(store)"), "Stable interactive web map preview missing");
+assert(!webCanvas.includes("@maplibre/maplibre-react-native"), "Web premium map preview must not load the native MapLibre module");
 assert(screen.includes("searchMapStores") && screen.includes("setFloorId(store.floorId)"), "Search-to-floor focus flow missing");
-assert(screen.includes("campaignForStore") && nativeCanvas.includes("campaignForStore"), "Campaign highlight flow missing");
+assert(screen.includes("campaignForStore") && nativeCanvas.includes("campaignForStore") && webCanvas.includes("campaignForStore"), "Campaign highlight flow missing");
 assert(screen.includes("subscribeActiveOutletCampaignsForOutlet"), "Map must not rely on the global campaign result cap");
 assert(campaignService.includes('where("outletId", "==", outletId)') && campaignService.includes("limit(100)"), "Outlet-scoped campaign listener missing");
 assert(firestoreIndexes.includes('"fieldPath": "outletId"') && firestoreIndexes.includes('"fieldPath": "featuredPriority"'), "Outlet campaign map index missing");
 assert(screen.includes("openExternalUrl(map.source.url)"), "Official source must use the safe external URL helper");
 assert(detail.includes("hasPremiumOutletMap") && detail.includes('navigate("PremiumOutletMap"'), "Outlet detail entry point missing");
+const premiumMapEntryIndex = detail.indexOf("hasPremiumOutletMap(outlet.outletId)");
+const brandsCardIndex = detail.indexOf("<BrandsCard");
+assert(premiumMapEntryIndex >= 0 && brandsCardIndex >= 0 && premiumMapEntryIndex < brandsCardIndex,
+  "Premium outlet map entry must appear above the Brands section.");
+assert(webLinking.includes('{ name: "PremiumOutletMap", path: "outlet/:outletId/3d-map"'), "Premium map web deep-link route missing");
+assert(appNavigator.includes('<Stack.Screen name="PremiumOutletMap"')
+  && appNavigator.includes('<DesktopHomeStack.Screen name="PremiumOutletMap"')
+  && appNavigator.includes('<DesktopExploreStack.Screen name="PremiumOutletMap"'),
+  "Premium map screen must remain registered in root and desktop web navigators.");
 assert(offline.includes('premium-outlet-map:v1:'), "Versioned offline map cache missing");
 
-console.log(`Premium outlet map checks passed: 10 maps, ${storeCount} searchable stores, 8 languages, ${premiumMapPoiKinds.length} POI types.`);
+console.log(`Premium outlet map checks passed: 10 maps, ${storeCount} searchable stores, 8 languages, ${premiumMapPoiKinds.length} POI types, web preview, web route, and above-brands outlet entry.`);
