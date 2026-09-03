@@ -8,6 +8,7 @@ export type OfficialCampaignSource = {
   listingUrls: readonly string[];
   allowedHosts: readonly string[];
   candidatePathPrefixes: readonly string[];
+  listingCandidatePathPrefixes?: Readonly<Record<string, readonly string[]>>;
   maxCandidatePages: number;
 };
 
@@ -15,24 +16,54 @@ type SharedOperatorSourceInput = Pick<OfficialCampaignSource,
   "sourceId" | "outletId" | "outletName" | "timeZone" | "maxCandidatePages"
 >;
 
+function normalizedPathname(value: string): string {
+  const pathname = new URL(value).pathname;
+  return pathname.endsWith("/") ? pathname : `${pathname}/`;
+}
+
 function theBicesterCollectionSource(
-  input: SharedOperatorSourceInput & { villageSlug: string },
+  input: SharedOperatorSourceInput & {
+    villageSlug: string;
+    includeWhatsOn?: boolean;
+    whatsOnListingPath?: string;
+  },
 ): OfficialCampaignSource {
-  const { villageSlug, ...source } = input;
+  const {
+    villageSlug,
+    includeWhatsOn = true,
+    whatsOnListingPath,
+    ...source
+  } = input;
   const rootPath = `/${villageSlug}/en`;
+  const offersPath = `${rootPath}/offers/`;
+  const whatsOnPath = whatsOnListingPath ?? `${rootPath}/whats-on/`;
+  const listingUrls = [
+    `https://www.thebicestercollection.com${offersPath}`,
+    ...(includeWhatsOn ? [`https://www.thebicestercollection.com${whatsOnPath}`] : []),
+  ];
+  const listingCandidatePathPrefixes: Record<string, readonly string[]> = {
+    [normalizedPathname(listingUrls[0])]: [
+      `${rootPath}/offers/`,
+      `${rootPath}/brands/`,
+    ],
+  };
+  if (includeWhatsOn && listingUrls[1]) {
+    listingCandidatePathPrefixes[normalizedPathname(listingUrls[1])] = [
+      `${rootPath}/whats-on/`,
+    ];
+  }
   return {
     ...source,
     operator: "the_bicester_collection",
     sourceLocale: "en",
-    listingUrls: [
-      `https://www.thebicestercollection.com${rootPath}/offers/`,
-      `https://www.thebicestercollection.com${rootPath}/whats-on/`,
-    ],
+    listingUrls,
     allowedHosts: ["www.thebicestercollection.com"],
     candidatePathPrefixes: [
       `${rootPath}/offers/`,
+      `${rootPath}/brands/`,
       `${rootPath}/whats-on/`,
     ],
+    listingCandidatePathPrefixes,
   };
 }
 
@@ -41,19 +72,23 @@ function mcArthurGlenSource(
 ): OfficialCampaignSource {
   const { countryCode, outletSlug, ...source } = input;
   const rootPath = `/en/outlets/${countryCode}/${outletSlug}`;
+  const offersPath = `${rootPath}/offers/`;
+  const whatsOnPath = `${rootPath}/whats-on/`;
+  const listingUrls = [
+    `https://www.mcarthurglen.com${offersPath}`,
+    `https://www.mcarthurglen.com${whatsOnPath}`,
+  ];
   return {
     ...source,
     operator: "mcarthurglen",
     sourceLocale: "en",
-    listingUrls: [
-      `https://www.mcarthurglen.com${rootPath}/offers/`,
-      `https://www.mcarthurglen.com${rootPath}/whats-on/`,
-    ],
+    listingUrls,
     allowedHosts: ["www.mcarthurglen.com"],
-    candidatePathPrefixes: [
-      `${rootPath}/offers/`,
-      `${rootPath}/whats-on/`,
-    ],
+    candidatePathPrefixes: [offersPath, whatsOnPath],
+    listingCandidatePathPrefixes: {
+      [offersPath]: [offersPath],
+      [whatsOnPath]: [whatsOnPath],
+    },
   };
 }
 
@@ -62,31 +97,21 @@ function mcArthurGlenSource(
  * links, and extracted documents that leave the source-specific allowlist.
  */
 export const officialCampaignSources: readonly OfficialCampaignSource[] = [
-  {
+  theBicesterCollectionSource({
     sourceId: "bicester-village-official",
-    operator: "the_bicester_collection",
+    villageSlug: "bicester-village",
     outletId: "bicester-village",
     outletName: "Bicester Village",
-    sourceLocale: "en",
     timeZone: "Europe/London",
-    listingUrls: [
-      "https://www.thebicestercollection.com/bicester-village/en/offers/",
-      "https://www.thebicestercollection.com/bicester-village/en/whats-on/",
-    ],
-    allowedHosts: ["www.thebicestercollection.com"],
-    candidatePathPrefixes: [
-      "/bicester-village/en/offers/",
-      "/bicester-village/en/whats-on/",
-    ],
-    maxCandidatePages: 120,
-  },
+    maxCandidatePages: 180,
+  }),
   theBicesterCollectionSource({
     sourceId: "fidenza-village-official",
     villageSlug: "fidenza-village",
     outletId: "fidenza-village",
     outletName: "Fidenza Village",
     timeZone: "Europe/Rome",
-    maxCandidatePages: 140,
+    maxCandidatePages: 180,
   }),
   {
     sourceId: "the-mall-firenze-official",
@@ -101,6 +126,10 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     ],
     allowedHosts: ["firenze.themall.it"],
     candidatePathPrefixes: ["/en/events/"],
+    listingCandidatePathPrefixes: {
+      "/en/": ["/en/events/"],
+      "/en/events/": ["/en/events/"],
+    },
     maxCandidatePages: 80,
   },
   theBicesterCollectionSource({
@@ -109,7 +138,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "wertheim-village",
     outletName: "Wertheim Village",
     timeZone: "Europe/Berlin",
-    maxCandidatePages: 140,
+    maxCandidatePages: 180,
   }),
   theBicesterCollectionSource({
     sourceId: "ingolstadt-village-official",
@@ -117,7 +146,8 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "ingolstadt-village",
     outletName: "Ingolstadt Village",
     timeZone: "Europe/Berlin",
-    maxCandidatePages: 140,
+    maxCandidatePages: 180,
+    whatsOnListingPath: "/ingolstadt-village/en/whats-on/news-ingolstadt-village/",
   }),
   theBicesterCollectionSource({
     sourceId: "la-roca-village-official",
@@ -125,7 +155,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "la-roca-village",
     outletName: "La Roca Village",
     timeZone: "Europe/Madrid",
-    maxCandidatePages: 140,
+    maxCandidatePages: 180,
   }),
   theBicesterCollectionSource({
     sourceId: "las-rozas-village-official",
@@ -133,7 +163,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "las-rozas-village",
     outletName: "Las Rozas Village",
     timeZone: "Europe/Madrid",
-    maxCandidatePages: 140,
+    maxCandidatePages: 180,
   }),
   theBicesterCollectionSource({
     sourceId: "kildare-village-official",
@@ -141,7 +171,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "kildare-village",
     outletName: "Kildare Village",
     timeZone: "Europe/Dublin",
-    maxCandidatePages: 140,
+    maxCandidatePages: 180,
   }),
   theBicesterCollectionSource({
     sourceId: "maasmechelen-village-official",
@@ -149,98 +179,53 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "maasmechelen-village",
     outletName: "Maasmechelen Village",
     timeZone: "Europe/Brussels",
-    maxCandidatePages: 140,
+    maxCandidatePages: 180,
+    includeWhatsOn: false,
   }),
-  {
+  theBicesterCollectionSource({
     sourceId: "la-vallee-village-official",
-    operator: "the_bicester_collection",
+    villageSlug: "la-vallee-village",
     outletId: "la-vallee-village",
     outletName: "La Vallée Village",
-    sourceLocale: "en",
     timeZone: "Europe/Paris",
-    listingUrls: [
-      "https://www.thebicestercollection.com/la-vallee-village/en/offers/",
-      "https://www.thebicestercollection.com/la-vallee-village/en/whats-on/",
-    ],
-    allowedHosts: ["www.thebicestercollection.com"],
-    candidatePathPrefixes: [
-      "/la-vallee-village/en/offers/",
-      "/la-vallee-village/en/whats-on/",
-    ],
-    maxCandidatePages: 120,
-  },
-  {
+    maxCandidatePages: 180,
+  }),
+  mcArthurGlenSource({
     sourceId: "cheshire-oaks-official",
-    operator: "mcarthurglen",
+    countryCode: "uk",
+    outletSlug: "designer-outlet-cheshire-oaks",
     outletId: "cheshire-oaks",
     outletName: "Cheshire Oaks Designer Outlet",
-    sourceLocale: "en",
     timeZone: "Europe/London",
-    listingUrls: [
-      "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/offers/",
-      "https://www.mcarthurglen.com/en/outlets/uk/designer-outlet-cheshire-oaks/whats-on/",
-    ],
-    allowedHosts: ["www.mcarthurglen.com"],
-    candidatePathPrefixes: [
-      "/en/outlets/uk/designer-outlet-cheshire-oaks/offers/",
-      "/en/outlets/uk/designer-outlet-cheshire-oaks/whats-on/",
-    ],
-    maxCandidatePages: 160,
-  },
-  {
+    maxCandidatePages: 220,
+  }),
+  mcArthurGlenSource({
     sourceId: "designer-outlet-roermond-official",
-    operator: "mcarthurglen",
+    countryCode: "nl",
+    outletSlug: "designer-outlet-roermond",
     outletId: "designer-outlet-roermond",
     outletName: "Designer Outlet Roermond",
-    sourceLocale: "en",
     timeZone: "Europe/Amsterdam",
-    listingUrls: [
-      "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/offers/",
-      "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roermond/whats-on/",
-    ],
-    allowedHosts: ["www.mcarthurglen.com"],
-    candidatePathPrefixes: [
-      "/en/outlets/nl/designer-outlet-roermond/offers/",
-      "/en/outlets/nl/designer-outlet-roermond/whats-on/",
-    ],
-    maxCandidatePages: 160,
-  },
-  {
+    maxCandidatePages: 420,
+  }),
+  mcArthurGlenSource({
     sourceId: "designer-outlet-parndorf-official",
-    operator: "mcarthurglen",
+    countryCode: "at",
+    outletSlug: "designer-outlet-parndorf",
     outletId: "designer-outlet-parndorf",
     outletName: "Designer Outlet Parndorf",
-    sourceLocale: "en",
     timeZone: "Europe/Vienna",
-    listingUrls: [
-      "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/offers/",
-      "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/whats-on/",
-    ],
-    allowedHosts: ["www.mcarthurglen.com"],
-    candidatePathPrefixes: [
-      "/en/outlets/at/designer-outlet-parndorf/offers/",
-      "/en/outlets/at/designer-outlet-parndorf/whats-on/",
-    ],
-    maxCandidatePages: 200,
-  },
-  {
+    maxCandidatePages: 260,
+  }),
+  mcArthurGlenSource({
     sourceId: "serravalle-designer-outlet-official",
-    operator: "mcarthurglen",
+    countryCode: "it",
+    outletSlug: "designer-outlet-serravalle",
     outletId: "serravalle-designer-outlet",
     outletName: "Serravalle Designer Outlet",
-    sourceLocale: "en",
     timeZone: "Europe/Rome",
-    listingUrls: [
-      "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/offers/",
-      "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-serravalle/whats-on/",
-    ],
-    allowedHosts: ["www.mcarthurglen.com"],
-    candidatePathPrefixes: [
-      "/en/outlets/it/designer-outlet-serravalle/offers/",
-      "/en/outlets/it/designer-outlet-serravalle/whats-on/",
-    ],
-    maxCandidatePages: 180,
-  },
+    maxCandidatePages: 260,
+  }),
   mcArthurGlenSource({
     sourceId: "castel-romano-official",
     countryCode: "it",
@@ -248,7 +233,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "castel-romano",
     outletName: "Castel Romano Designer Outlet",
     timeZone: "Europe/Rome",
-    maxCandidatePages: 120,
+    maxCandidatePages: 220,
   }),
   mcArthurGlenSource({
     sourceId: "noventa-di-piave-official",
@@ -257,7 +242,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "noventa",
     outletName: "Noventa di Piave Designer Outlet",
     timeZone: "Europe/Rome",
-    maxCandidatePages: 140,
+    maxCandidatePages: 220,
   }),
   mcArthurGlenSource({
     sourceId: "designer-outlet-malaga-official",
@@ -266,7 +251,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "designer-outlet-malaga",
     outletName: "McArthurGlen Designer Outlet Málaga",
     timeZone: "Europe/Madrid",
-    maxCandidatePages: 120,
+    maxCandidatePages: 220,
   }),
   mcArthurGlenSource({
     sourceId: "york-designer-outlet-official",
@@ -275,7 +260,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "york-designer-outlet",
     outletName: "York Designer Outlet",
     timeZone: "Europe/London",
-    maxCandidatePages: 120,
+    maxCandidatePages: 220,
   }),
   mcArthurGlenSource({
     sourceId: "ashford-designer-outlet-official",
@@ -284,7 +269,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     outletId: "ashford-designer-outlet",
     outletName: "Ashford Designer Outlet",
     timeZone: "Europe/London",
-    maxCandidatePages: 120,
+    maxCandidatePages: 220,
   }),
   {
     sourceId: "designer-outlet-athens-official",
@@ -296,7 +281,7 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
     listingUrls: ["https://designeroutletathens.gr/en/offers"],
     allowedHosts: ["designeroutletathens.gr", "www.designeroutletathens.gr"],
     candidatePathPrefixes: ["/en/offers/"],
-    maxCandidatePages: 100,
+    maxCandidatePages: 160,
   },
   {
     sourceId: "batavia-stad-official",
@@ -315,7 +300,11 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
       "/en/offers/",
       "/en/news-next/",
     ],
-    maxCandidatePages: 140,
+    listingCandidatePathPrefixes: {
+      "/en/latest-offers/": ["/en/latest-offers/", "/en/offers/"],
+      "/en/news-next/": ["/en/news-next/"],
+    },
+    maxCandidatePages: 180,
   },
   {
     sourceId: "franciacorta-village-official",
@@ -336,7 +325,11 @@ export const officialCampaignSources: readonly OfficialCampaignSource[] = [
       "/en/offers/",
       "/en/stories/",
     ],
-    maxCandidatePages: 140,
+    listingCandidatePathPrefixes: {
+      "/en/offers/": ["/en/offers/"],
+      "/en/stories/": ["/en/stories/"],
+    },
+    maxCandidatePages: 180,
   },
 ] as const;
 
@@ -352,10 +345,34 @@ export function isOfficialSourceUrl(source: OfficialCampaignSource, value: strin
   }
 }
 
-export function isOfficialCampaignDetailUrl(source: OfficialCampaignSource, value: string): boolean {
+function detailUrlMatchesPrefixes(source: OfficialCampaignSource, value: string, prefixes: readonly string[]): boolean {
   if (!isOfficialSourceUrl(source, value)) return false;
   const url = new URL(value);
-  return source.candidatePathPrefixes.some(prefix =>
+  return prefixes.some(prefix =>
     url.pathname.startsWith(prefix) && url.pathname.length > prefix.length,
   );
+}
+
+export function campaignCandidatePrefixesForListing(
+  source: OfficialCampaignSource,
+  listingUrl: string,
+): readonly string[] {
+  try {
+    const pathname = normalizedPathname(listingUrl);
+    return source.listingCandidatePathPrefixes?.[pathname] ?? source.candidatePathPrefixes;
+  } catch {
+    return source.candidatePathPrefixes;
+  }
+}
+
+export function isOfficialCampaignDetailUrlForListing(
+  source: OfficialCampaignSource,
+  listingUrl: string,
+  value: string,
+): boolean {
+  return detailUrlMatchesPrefixes(source, value, campaignCandidatePrefixesForListing(source, listingUrl));
+}
+
+export function isOfficialCampaignDetailUrl(source: OfficialCampaignSource, value: string): boolean {
+  return detailUrlMatchesPrefixes(source, value, source.candidatePathPrefixes);
 }

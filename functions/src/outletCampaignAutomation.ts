@@ -26,6 +26,7 @@ import {
 
 const CAMPAIGNS_COLLECTION = "outletCampaigns";
 const RUNS_COLLECTION = "outletCampaignIngestionRuns";
+const SOURCE_HEALTH_COLLECTION = "outletCampaignSourceHealth";
 const LOCKS_COLLECTION = "systemLocks";
 const COLLECTION_LOCK_ID = "officialOutletCampaignCollection";
 const MAX_HTML_BYTES = 2_500_000;
@@ -33,11 +34,15 @@ const FETCH_TIMEOUT_MS = 15_000;
 const FETCH_CONCURRENCY = 6;
 const SOURCE_CONCURRENCY = 2;
 const LEASE_MILLISECONDS = 9 * 60 * 1000;
+const KNOWN_CAMPAIGN_LOOKBACK_LIMIT = 500;
 
 type CollectionSummary = {
   listingsFetched: number;
   listingFailures: number;
+  discoveredCandidateLinks: number;
+  knownCandidatesRecovered: number;
   candidateLinks: number;
+  candidateCapTruncated: number;
   detailPagesFetched: number;
   detailFailures: number;
   verified: number;
@@ -52,11 +57,16 @@ type CollectionSummary = {
   rejectionReasons: Record<string, number>;
 };
 
+type SourceHealthStatus = "healthy" | "degraded" | "failed";
+
 function emptySummary(): CollectionSummary {
   return {
     listingsFetched: 0,
     listingFailures: 0,
+    discoveredCandidateLinks: 0,
+    knownCandidatesRecovered: 0,
     candidateLinks: 0,
+    candidateCapTruncated: 0,
     detailPagesFetched: 0,
     detailFailures: 0,
     verified: 0,
@@ -70,6 +80,33 @@ function emptySummary(): CollectionSummary {
     translationFailedLocales: {},
     rejectionReasons: {},
   };
+}
+
+function mergeCounter(target: Record<string, number>, source: Record<string, number>) {
+  Object.entries(source).forEach(([key, value]) => {
+    target[key] = (target[key] ?? 0) + value;
+  });
+}
+
+function mergeSummary(target: CollectionSummary, source: CollectionSummary) {
+  target.listingsFetched += source.listingsFetched;
+  target.listingFailures += source.listingFailures;
+  target.discoveredCandidateLinks += source.discoveredCandidateLinks;
+  target.knownCandidatesRecovered += source.knownCandidatesRecovered;
+  target.candidateLinks += source.candidateLinks;
+  target.candidateCapTruncated += source.candidateCapTruncated;
+  target.detailPagesFetched += source.detailPagesFetched;
+  target.detailFailures += source.detailFailures;
+  target.verified += source.verified;
+  target.published += source.published;
+  target.scheduled += source.scheduled;
+  target.expiredSkipped += source.expiredSkipped;
+  target.rejected += source.rejected;
+  target.unpublishedAfterFailedVerification += source.unpublishedAfterFailedVerification;
+  target.translationComplete += source.translationComplete;
+  target.translationPartial += source.translationPartial;
+  mergeCounter(target.translationFailedLocales, source.translationFailedLocales);
+  mergeCounter(target.rejectionReasons, source.rejectionReasons);
 }
 
 function addDays(isoDate: string, days: number): string {
@@ -157,7 +194,7 @@ async function fetchOfficialHtml(url: string, source: OfficialCampaignSource, de
       headers: {
         accept: "text/html,application/xhtml+xml",
         "accept-language": "en",
-        "user-agent": "MyOutletGuideCampaignVerifier/1.0 (+https://myoutletguide.com/contact)",
+        "user-agent": "MyOutletGuideCampaignVerifier/1.1 (+https://myoutletguide.com/contact)",
       },
     });
     const finalUrl = response.url || url;
@@ -409,7 +446,41 @@ async function unpublishFailedVerification(
   summary.unpublishedAfterFailedVerification += references.size;
 }
 
-async function collectSource(db: Firestore, source: OfficialCampaignSource, now: Date, summary: CollectionSummary) {
+function candidatePriority(sourceUrl: string, evidence: string, knownUrls: Set<string>): number {
+  let score = knownUrls.has(sourceUrl) ? 1_000_000 : 0;
+  if (/20\d{2}/.test(evidence)) score += 20_000;
+  if (/\b(?:valid|from|until|to)\b/i.test(evidence)) score += 5_000;
+  if (/(?:\d{1,3}\s*%|€|£|\$|\b(?:free|save|discount|offer|sale)\b)/i.test(evidence)) score += 2_000;
+  return score;
+}
+
+async function recoverKnownCampaignCandidates(
+  db: Firestore,
+  source: OfficialCampaignSource,
+  candidateEvidence: Map<string, string>,
+  summary: CollectionSummary,
+): Promise<Set<string>> {
+  const knownUrls = new Set<string>();
+  const snapshot = await db.collection(CAMPAIGNS_COLLECTION)
+    .where("sourceId", "==", source.sourceId)
+    .limit(KNOWN_CAMPAIGN_LOOKBACK_LIMIT)
+    .get();
+  snapshot.docs.forEach(document => {
+    const data = document.data();
+    if (!["published", "scheduled", "verification_failed"].includes(String(data.status ?? ""))) return;
+    if (typeof data.sourceUrl !== "string" || !isOfficialCampaignDetailUrl(source, data.sourceUrl)) return;
+    const canonical = canonicalCampaignUrl(data.sourceUrl);
+    if (!canonical) return;
+    knownUrls.add(canonical);
+    if (candidateEvidence.has(canonical)) return;
+    candidateEvidence.set(canonical, "");
+    summary.knownCandidatesRecovered += 1;
+  });
+  return knownUrls;
+}
+
+async function collectSource(db: Firestore, source: OfficialCampaignSource, now: Date): Promise<CollectionSummary> {
+  const summary = emptySummary();
   const candidateEvidence = new Map<string, string>();
   for (const listingUrl of source.listingUrls) {
     try {
@@ -430,11 +501,34 @@ async function collectSource(db: Firestore, source: OfficialCampaignSource, now:
       });
     }
   }
-  const selectedCandidates = [...candidateEvidence]
-    .sort(([left], [right]) => left.localeCompare(right))
+  summary.discoveredCandidateLinks = candidateEvidence.size;
+  const knownUrls = await recoverKnownCampaignCandidates(db, source, candidateEvidence, summary);
+  const allCandidates = [...candidateEvidence]
+    .sort(([leftUrl, leftEvidence], [rightUrl, rightEvidence]) =>
+      candidatePriority(rightUrl, rightEvidence, knownUrls) - candidatePriority(leftUrl, leftEvidence, knownUrls)
+        || leftUrl.localeCompare(rightUrl),
+    );
+  const selectedCandidates = allCandidates
     .slice(0, source.maxCandidatePages)
     .map(([sourceUrl, listingEvidence]) => ({ sourceUrl, listingEvidence }));
   summary.candidateLinks += selectedCandidates.length;
+  summary.candidateCapTruncated += Math.max(0, allCandidates.length - selectedCandidates.length);
+
+  if (summary.listingsFetched > 0 && summary.discoveredCandidateLinks === 0) {
+    logger.warn("Official campaign listing yielded zero fresh candidate URLs", {
+      sourceId: source.sourceId,
+      outletId: source.outletId,
+      knownCandidatesRecovered: summary.knownCandidatesRecovered,
+    });
+  }
+  if (summary.candidateCapTruncated > 0) {
+    logger.warn("Official campaign candidate cap truncated discovery", {
+      sourceId: source.sourceId,
+      selected: selectedCandidates.length,
+      truncated: summary.candidateCapTruncated,
+    });
+  }
+
   await mapLimited(selectedCandidates, FETCH_CONCURRENCY, async candidate => {
     const { sourceUrl, listingEvidence } = candidate;
     try {
@@ -463,6 +557,41 @@ async function collectSource(db: Firestore, source: OfficialCampaignSource, now:
       });
     }
   });
+  return summary;
+}
+
+function sourceHealthStatus(source: OfficialCampaignSource, summary: CollectionSummary): SourceHealthStatus {
+  if (summary.listingsFetched === 0) return "failed";
+  if (summary.listingFailures > 0 || summary.candidateCapTruncated > 0) return "degraded";
+  return "healthy";
+}
+
+async function persistSourceHealth(
+  db: Firestore,
+  source: OfficialCampaignSource,
+  summary: CollectionSummary,
+  runId: string,
+  now: Date,
+) {
+  const status = sourceHealthStatus(source, summary);
+  const payload: FirebaseFirestore.SetOptions = { merge: true };
+  await db.collection(SOURCE_HEALTH_COLLECTION).doc(source.sourceId).set({
+    sourceId: source.sourceId,
+    outletId: source.outletId,
+    outletName: source.outletName,
+    operator: source.operator,
+    status,
+    runId,
+    listingUrlCount: source.listingUrls.length,
+    checkedAt: Timestamp.fromDate(now),
+    emptyFreshDiscovery: summary.listingsFetched > 0 && summary.discoveredCandidateLinks === 0,
+    summary,
+    ...(summary.listingsFetched > 0 ? { lastSuccessfulListingAt: Timestamp.fromDate(now) } : {}),
+    ...(summary.discoveredCandidateLinks > 0 ? { lastFreshDiscoveryAt: Timestamp.fromDate(now) } : {}),
+    ...(summary.verified > 0 ? { lastVerifiedCampaignAt: Timestamp.fromDate(now) } : {}),
+    ...(summary.published > 0 ? { lastPublishedCampaignAt: Timestamp.fromDate(now) } : {}),
+    updatedAt: FieldValue.serverTimestamp(),
+  }, payload);
 }
 
 export async function reconcileOutletCampaigns(db: Firestore, now = new Date()) {
@@ -519,25 +648,43 @@ export const collectOfficialOutletCampaigns = onSchedule(
       return;
     }
     const summary = emptySummary();
+    const sourceHealth: Record<string, { status: SourceHealthStatus; summary: CollectionSummary }> = {};
     const runRef = db.collection(RUNS_COLLECTION).doc(runId);
     await runRef.set({ runId, status: "running", startedAt: Timestamp.fromDate(now), sourceCount: officialCampaignSources.length });
     try {
       await mapLimited(officialCampaignSources, SOURCE_CONCURRENCY, async source => {
-        await collectSource(db, source, now, summary);
+        const sourceSummary = await collectSource(db, source, now);
+        const status = sourceHealthStatus(source, sourceSummary);
+        sourceHealth[source.sourceId] = { status, summary: sourceSummary };
+        await persistSourceHealth(db, source, sourceSummary, runId, now);
       });
+      Object.values(sourceHealth).forEach(item => mergeSummary(summary, item.summary));
+      const healthCounts = Object.values(sourceHealth).reduce((counts, item) => {
+        counts[item.status] += 1;
+        return counts;
+      }, { healthy: 0, degraded: 0, failed: 0 } as Record<SourceHealthStatus, number>);
       const reconciliation = await reconcileOutletCampaigns(db, now);
       await runRef.set({
-        status: "completed",
+        status: healthCounts.failed > 0 ? "completed_with_source_failures" : "completed",
         summary,
+        sourceHealth,
+        healthCounts,
         reconciliation,
         completedAt: FieldValue.serverTimestamp(),
       }, { merge: true });
-      logger.info("Official outlet campaign collection completed", { runId, ...summary, reconciliation });
+      logger.info("Official outlet campaign collection completed", {
+        runId,
+        ...summary,
+        sourceCount: officialCampaignSources.length,
+        healthCounts,
+        reconciliation,
+      });
     } catch (error) {
       await runRef.set({
         status: "failed",
         error: error instanceof Error ? error.message.slice(0, 500) : "unknown_error",
         summary,
+        sourceHealth,
         completedAt: FieldValue.serverTimestamp(),
       }, { merge: true });
       throw error;
