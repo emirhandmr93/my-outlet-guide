@@ -62,6 +62,48 @@ function timestampDate(value: unknown): Date | null {
   return Number.isFinite(date.getTime()) ? date : null;
 }
 
+function normalizeCampaignIdentityText(value: string): string {
+  return value
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’‘`´]/g, "'")
+    .toLocaleLowerCase("en-US")
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function campaignSemanticKey(campaign: OutletCampaign): string {
+  return [
+    campaign.outletId,
+    campaign.type,
+    normalizeCampaignIdentityText(campaign.brandName),
+    normalizeCampaignIdentityText(campaign.headline),
+    normalizeCampaignIdentityText(campaign.discountLabel),
+    campaign.startsOn,
+    campaign.endsOn,
+  ].join("|");
+}
+
+/**
+ * Firestore document IDs are ingestion identities, not presentation identities. The same official
+ * campaign can occasionally be ingested twice under different campaignIds (for example after a
+ * source refresh). Keep only the highest-ranked instance of an otherwise identical visible offer so
+ * Home/Featured and outlet-level campaign surfaces never show adjacent duplicates.
+ */
+export function dedupeActiveOutletCampaigns(campaigns: readonly OutletCampaign[]): OutletCampaign[] {
+  const seen = new Set<string>();
+  const unique: OutletCampaign[] = [];
+  for (const campaign of campaigns) {
+    const key = campaignSemanticKey(campaign);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    unique.push(campaign);
+  }
+  return unique;
+}
+
 export function isOfficialCampaignSourceUrl(outletId: string, sourceUrl: string, declaredHost?: string): boolean {
   try {
     const parsed = new URL(sourceUrl);
@@ -153,12 +195,16 @@ export function parsePublishedOutletCampaign(
   };
 }
 
-function sortCampaigns(campaigns: OutletCampaign[]): OutletCampaign[] {
-  return campaigns.sort((left, right) =>
+function sortCampaigns(campaigns: readonly OutletCampaign[]): OutletCampaign[] {
+  return [...campaigns].sort((left, right) =>
     right.featuredPriority - left.featuredPriority
       || left.endsAt.getTime() - right.endsAt.getTime()
       || left.campaignId.localeCompare(right.campaignId),
   );
+}
+
+function prepareCampaignsForDisplay(campaigns: readonly OutletCampaign[]): OutletCampaign[] {
+  return dedupeActiveOutletCampaigns(sortCampaigns(campaigns));
 }
 
 export function subscribeActiveOutletCampaigns(
@@ -181,7 +227,7 @@ export function subscribeActiveOutletCampaigns(
   };
   const emitCurrentCampaigns = () => {
     const now = new Date();
-    const campaigns = sortCampaigns(documents
+    const campaigns = prepareCampaignsForDisplay(documents
       .map(document => parsePublishedOutletCampaign(document, now, language))
       .filter((campaign): campaign is OutletCampaign => campaign !== null));
     onCampaigns(campaigns);
@@ -237,7 +283,7 @@ export function subscribeActiveOutletCampaignsForOutlet(
   };
   const emitCurrentCampaigns = () => {
     const now = new Date();
-    const campaigns = sortCampaigns(documents
+    const campaigns = prepareCampaignsForDisplay(documents
       .map(document => parsePublishedOutletCampaign(document, now, language))
       .filter((campaign): campaign is OutletCampaign => campaign !== null));
     onCampaigns(campaigns);
