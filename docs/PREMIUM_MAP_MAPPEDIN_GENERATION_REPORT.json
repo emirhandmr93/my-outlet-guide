@@ -1,0 +1,410 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-03T21:10:46.701Z",
+  "summary": {
+    "outletCount": 8,
+    "exactMapCount": 8,
+    "canonicalBrandCount": 1128,
+    "mappedCanonicalBrandCount": 1055,
+    "exactStoreInstanceCount": 1062,
+    "poiCount": 135
+  },
+  "results": [
+    {
+      "outletId": "bicester-village",
+      "canonicalBrandCount": 152,
+      "mappedCanonicalBrandCount": 138,
+      "canonicalCoverage": 0.9079,
+      "exactStoreInstanceCount": 139,
+      "exactAreaStoreCount": 137,
+      "exactPointStoreCount": 2,
+      "floorCount": 1,
+      "poiCount": 25,
+      "unmatchedBrands": [
+        {
+          "brandId": "annoushka",
+          "brandName": "Annoushka"
+        },
+        {
+          "brandId": "beaute-prestige-international",
+          "brandName": "Beauté Prestige International"
+        },
+        {
+          "brandId": "boss",
+          "brandName": "BOSS"
+        },
+        {
+          "brandId": "byredo",
+          "brandName": "Byredo"
+        },
+        {
+          "brandId": "creed",
+          "brandName": "Creed"
+        },
+        {
+          "brandId": "golden-goose",
+          "brandName": "Golden Goose"
+        },
+        {
+          "brandId": "hogan",
+          "brandName": "Hogan"
+        },
+        {
+          "brandId": "jacob-cohen",
+          "brandName": "Jacob Cohën"
+        },
+        {
+          "brandId": "new-balance",
+          "brandName": "New Balance"
+        },
+        {
+          "brandId": "on",
+          "brandName": "On"
+        },
+        {
+          "brandId": "paige",
+          "brandName": "PAIGE"
+        },
+        {
+          "brandId": "shreeji-presents-the-village-news",
+          "brandName": "Shreeji Presents: The Village News"
+        },
+        {
+          "brandId": "swatch",
+          "brandName": "Swatch"
+        },
+        {
+          "brandId": "tommy-hilfiger-women-and-kids",
+          "brandName": "Tommy Hilfiger Women & Kids"
+        }
+      ]
+    },
+    {
+      "outletId": "la-vallee-village",
+      "canonicalBrandCount": 104,
+      "mappedCanonicalBrandCount": 96,
+      "canonicalCoverage": 0.9231,
+      "exactStoreInstanceCount": 97,
+      "exactAreaStoreCount": 97,
+      "exactPointStoreCount": 0,
+      "floorCount": 1,
+      "poiCount": 12,
+      "unmatchedBrands": [
+        {
+          "brandId": "lipault",
+          "brandName": "Lipault"
+        },
+        {
+          "brandId": "loewe",
+          "brandName": "Loewe"
+        },
+        {
+          "brandId": "marni",
+          "brandName": "Marni"
+        },
+        {
+          "brandId": "narciso-rodriguez",
+          "brandName": "Narciso Rodriguez"
+        },
+        {
+          "brandId": "nars",
+          "brandName": "NARS"
+        },
+        {
+          "brandId": "polo-ralph-lauren",
+          "brandName": "Polo Ralph Lauren"
+        },
+        {
+          "brandId": "shiseido",
+          "brandName": "Shiseido"
+        },
+        {
+          "brandId": "valentino-garavani",
+          "brandName": "Valentino Garavani"
+        }
+      ]
+    },
+    {
+      "outletId": "la-roca-village",
+      "canonicalBrandCount": 111,
+      "mappedCanonicalBrandCount": 101,
+      "canonicalCoverage": 0.9099,
+      "exactStoreInstanceCount": 104,
+      "exactAreaStoreCount": 103,
+      "exactPointStoreCount": 1,
+      "floorCount": 1,
+      "poiCount": 14,
+      "unmatchedBrands": [
+        {
+          "brandId": "balmain",
+          "brandName": "Balmain"
+        },
+        {
+          "brandId": "biking-point",
+          "brandName": "Biking Point"
+        },
+        {
+          "brandId": "dr-martens",
+          "brandName": "Dr. Martens"
+        },
+        {
+          "brandId": "havaianas",
+          "brandName": "Havaianas"
+        },
+        {
+          "brandId": "miu-miu",
+          "brandName": "Miu Miu"
+        },
+        {
+          "brandId": "pepe-jeans-london",
+          "brandName": "Pepe Jeans London"
+        },
+        {
+          "brandId": "piquadro",
+          "brandName": "Piquadro / The Bridge"
+        },
+        {
+          "brandId": "quiksilver",
+          "brandName": "Quiksilver"
+        },
+        {
+          "brandId": "ralph-lauren",
+          "brandName": "Ralph Lauren"
+        },
+        {
+          "brandId": "sandro-kids",
+          "brandName": "Sandro Kids"
+        }
+      ]
+    },
+    {
+      "outletId": "las-rozas-village",
+      "canonicalBrandCount": 93,
+      "mappedCanonicalBrandCount": 90,
+      "canonicalCoverage": 0.9677,
+      "exactStoreInstanceCount": 91,
+      "exactAreaStoreCount": 91,
+      "exactPointStoreCount": 0,
+      "floorCount": 1,
+      "poiCount": 9,
+      "unmatchedBrands": [
+        {
+          "brandId": "adidas",
+          "brandName": "Adidas"
+        },
+        {
+          "brandId": "miu-miu",
+          "brandName": "Miu Miu"
+        },
+        {
+          "brandId": "polo-ralph-lauren",
+          "brandName": "Polo Ralph Lauren"
+        }
+      ]
+    },
+    {
+      "outletId": "fidenza-village",
+      "canonicalBrandCount": 110,
+      "mappedCanonicalBrandCount": 104,
+      "canonicalCoverage": 0.9455,
+      "exactStoreInstanceCount": 104,
+      "exactAreaStoreCount": 104,
+      "exactPointStoreCount": 0,
+      "floorCount": 1,
+      "poiCount": 9,
+      "unmatchedBrands": [
+        {
+          "brandId": "churchs",
+          "brandName": "Church's"
+        },
+        {
+          "brandId": "fay",
+          "brandName": "Fay"
+        },
+        {
+          "brandId": "hogan",
+          "brandName": "Hogan"
+        },
+        {
+          "brandId": "miu-miu",
+          "brandName": "Miu Miu"
+        },
+        {
+          "brandId": "monnalisa",
+          "brandName": "Monnalisa"
+        },
+        {
+          "brandId": "piquadro",
+          "brandName": "Piquadro / The Bridge"
+        }
+      ]
+    },
+    {
+      "outletId": "serravalle-designer-outlet",
+      "canonicalBrandCount": 215,
+      "mappedCanonicalBrandCount": 205,
+      "canonicalCoverage": 0.9535,
+      "exactStoreInstanceCount": 206,
+      "exactAreaStoreCount": 206,
+      "exactPointStoreCount": 0,
+      "floorCount": 2,
+      "poiCount": 26,
+      "unmatchedBrands": [
+        {
+          "brandId": "bonpoint",
+          "brandName": "Bonpoint"
+        },
+        {
+          "brandId": "iceberg",
+          "brandName": "Iceberg"
+        },
+        {
+          "brandId": "jimmy-choo",
+          "brandName": "Jimmy Choo"
+        },
+        {
+          "brandId": "lanvin",
+          "brandName": "Lanvin"
+        },
+        {
+          "brandId": "marina-militare",
+          "brandName": "Marina Militare Sportswear"
+        },
+        {
+          "brandId": "mcs",
+          "brandName": "MCS"
+        },
+        {
+          "brandId": "milano-cortina-2026",
+          "brandName": "Milano Cortina 2026"
+        },
+        {
+          "brandId": "miu-miu",
+          "brandName": "Miu Miu"
+        },
+        {
+          "brandId": "piquadro",
+          "brandName": "Piquadro / The Bridge"
+        },
+        {
+          "brandId": "saint-laurent",
+          "brandName": "Saint Laurent"
+        }
+      ]
+    },
+    {
+      "outletId": "designer-outlet-roermond",
+      "canonicalBrandCount": 176,
+      "mappedCanonicalBrandCount": 168,
+      "canonicalCoverage": 0.9545,
+      "exactStoreInstanceCount": 168,
+      "exactAreaStoreCount": 168,
+      "exactPointStoreCount": 0,
+      "floorCount": 2,
+      "poiCount": 14,
+      "unmatchedBrands": [
+        {
+          "brandId": "balenciaga",
+          "brandName": "Balenciaga"
+        },
+        {
+          "brandId": "brax",
+          "brandName": "Brax"
+        },
+        {
+          "brandId": "longines",
+          "brandName": "Longines"
+        },
+        {
+          "brandId": "rado",
+          "brandName": "Rado"
+        },
+        {
+          "brandId": "roberto-cavalli",
+          "brandName": "Roberto Cavalli"
+        },
+        {
+          "brandId": "tissot",
+          "brandName": "Tissot"
+        },
+        {
+          "brandId": "vingino",
+          "brandName": "Vingino"
+        },
+        {
+          "brandId": "windsor",
+          "brandName": "Windsor"
+        }
+      ]
+    },
+    {
+      "outletId": "noventa",
+      "canonicalBrandCount": 167,
+      "mappedCanonicalBrandCount": 153,
+      "canonicalCoverage": 0.9162,
+      "exactStoreInstanceCount": 153,
+      "exactAreaStoreCount": 153,
+      "exactPointStoreCount": 0,
+      "floorCount": 1,
+      "poiCount": 26,
+      "unmatchedBrands": [
+        {
+          "brandId": "balenciaga",
+          "brandName": "Balenciaga"
+        },
+        {
+          "brandId": "boxeur-des-rues-malloy",
+          "brandName": "Boxeur des Rues Malloy"
+        },
+        {
+          "brandId": "cmp-campagnolo",
+          "brandName": "CMP Campagnolo"
+        },
+        {
+          "brandId": "colmar",
+          "brandName": "Colmar"
+        },
+        {
+          "brandId": "eredi-pisano",
+          "brandName": "Eredipisanò"
+        },
+        {
+          "brandId": "havaianas",
+          "brandName": "Havaianas"
+        },
+        {
+          "brandId": "liu-jo",
+          "brandName": "Liu Jo"
+        },
+        {
+          "brandId": "moncler",
+          "brandName": "Moncler"
+        },
+        {
+          "brandId": "msgm",
+          "brandName": "MSGM"
+        },
+        {
+          "brandId": "piquadro",
+          "brandName": "Piquadro / The Bridge"
+        },
+        {
+          "brandId": "rebel-queen",
+          "brandName": "Rebel Queen"
+        },
+        {
+          "brandId": "save-the-duck",
+          "brandName": "Save The Duck"
+        },
+        {
+          "brandId": "swatch",
+          "brandName": "Swatch"
+        },
+        {
+          "brandId": "under-armour",
+          "brandName": "Under Armour"
+        }
+      ]
+    }
+  ]
+}
