@@ -3,7 +3,12 @@ import path from "node:path";
 
 import { outletBrands } from "../src/constants/outletBrands";
 import { supportedLanguageCodes } from "../src/translations/locale";
-import { getAllPremiumOutletMaps, premiumOutletMapIds } from "../src/features/premiumOutletMaps/catalog";
+import {
+  getAllPremiumOutletMapCandidates,
+  getAllPremiumOutletMaps,
+  isPremiumOutletMapReleaseReady,
+  premiumOutletMapIds,
+} from "../src/features/premiumOutletMaps/catalog";
 import { getPremiumMapCopy, poiLabels } from "../src/features/premiumOutletMaps/copy";
 import { campaignForStore, searchMapStores } from "../src/features/premiumOutletMaps/search";
 import { premiumMapPoiKinds } from "../src/features/premiumOutletMaps/types";
@@ -17,21 +22,19 @@ const expectedIds = [
   "las-rozas-village", "designer-outlet-roermond", "outletcity-metzingen", "the-mall-firenze",
   "noventa", "fidenza-village",
 ];
-const premiumOutletMaps = getAllPremiumOutletMaps();
+const premiumOutletMapCandidates = getAllPremiumOutletMapCandidates();
+const releasedPremiumOutletMaps = getAllPremiumOutletMaps();
 
 assert(JSON.stringify(premiumOutletMapIds) === JSON.stringify(expectedIds), "Premium map pilot outlet list changed unexpectedly");
-assert(premiumOutletMaps.length === 10, `Expected 10 premium maps, found ${premiumOutletMaps.length}`);
-assert(new Set(premiumOutletMaps.map(map => map.outletId)).size === 10, "Premium map outlet IDs must be unique");
+assert(premiumOutletMapCandidates.length === 10, `Expected 10 premium map candidates, found ${premiumOutletMapCandidates.length}`);
+assert(new Set(premiumOutletMapCandidates.map(map => map.outletId)).size === 10, "Premium map candidate outlet IDs must be unique");
 assert(supportedLanguageCodes.length === 8, "Premium map release requires exactly 8 supported languages");
 
 let storeCount = 0;
-for (const map of premiumOutletMaps) {
+for (const map of premiumOutletMapCandidates) {
   assert(map.schemaVersion === 1, `${map.outletId}: unsupported schema`);
-  assert(map.spatialAccuracy === "schematic-reference", `${map.outletId}: must not claim exact spatial accuracy without a license or survey`);
   assert(map.source.url.startsWith("https://"), `${map.outletId}: source must be HTTPS`);
   assert(new URL(map.source.url).hostname === map.source.host, `${map.outletId}: source host mismatch`);
-  assert(map.source.redrawPolicy === "original-editorial-redraw", `${map.outletId}: redraw policy missing`);
-  assert(map.source.redistributionStatus === "original-data-only", `${map.outletId}: redistribution boundary missing`);
   assert(/^\d{4}-\d{2}-\d{2}$/.test(map.lastUpdated), `${map.outletId}: invalid update date`);
   assert(map.floors.length >= 1, `${map.outletId}: missing floor`);
   assert(map.stores.length >= 20, `${map.outletId}: too few searchable stores`);
@@ -40,6 +43,24 @@ for (const map of premiumOutletMaps) {
   assert(map.environment.siteBoundary[0]?.length === 5, `${map.outletId}: invalid site boundary`);
   assert(map.environment.roads.length > 0 && map.environment.walkways.length > 0, `${map.outletId}: roads and walkways are required`);
   assert(map.environment.landscapeAreas.length >= 4 && map.environment.trees.length >= 20, `${map.outletId}: premium landscape layer incomplete`);
+
+  const releaseReady = isPremiumOutletMapReleaseReady(map);
+  if (map.spatialAccuracy === "schematic-reference") {
+    assert(!releaseReady, `${map.outletId}: schematic geometry must never be user-facing`);
+    assert(map.verificationStatus === "draft", `${map.outletId}: schematic geometry cannot be marked verified`);
+    assert(!map.source.commercialReuseAllowed, `${map.outletId}: proprietary reference data cannot be marked reusable`);
+    assert(map.source.dataLicense === "proprietary-reference-only", `${map.outletId}: schematic reference source must remain reference-only`);
+  }
+  if (releaseReady) {
+    assert(map.verificationStatus === "verified", `${map.outletId}: released map must be verified`);
+    assert(map.spatialAccuracy !== "schematic-reference", `${map.outletId}: released map must use exact verified geometry`);
+    assert(map.source.commercialReuseAllowed, `${map.outletId}: released map requires commercial reuse rights`);
+    assert(map.source.redistributionStatus !== "reference-only", `${map.outletId}: released map cannot use reference-only source data`);
+    assert(map.source.dataLicense !== "proprietary-reference-only", `${map.outletId}: released map requires reusable source data`);
+    if (map.source.dataLicense === "ODbL-1.0") {
+      assert(map.source.attribution?.includes("OpenStreetMap"), `${map.outletId}: ODbL map is missing OpenStreetMap attribution`);
+    }
+  }
 
   const activeRelations = outletBrands.filter(relation => relation.outletId === map.outletId && relation.relationStatus === "active");
   const mappedBrandIds = new Set(map.stores.map(store => store.brandId));
@@ -90,7 +111,8 @@ assert(!nativeCanvas.includes('type="symbol"'), "Native labels must not depend o
 assert(nativeCanvas.includes("poiLabels[poi.kind][language]"), "Localized native POI labels missing");
 assert(webCanvas.includes("normalizedStorePosition") && webCanvas.includes("onSelectStore(store)"), "Stable interactive web map preview missing");
 assert(!webCanvas.includes("@maplibre/maplibre-react-native"), "Web premium map preview must not load the native MapLibre module");
-assert(screen.includes("searchMapStores") && screen.includes("setFloorId(store.floorId)"), "Search-to-floor focus flow missing");
+assert(screen.includes("searchMapStores") && screen.includes("setFloorId(store.floorId)") && screen.includes("setFocusSequence"), "Search-to-floor focus flow missing");
+assert(screen.includes("focusCoordinate={selectedStore?.center}"), "Selected store must drive map camera focus");
 assert(screen.includes("campaignForStore") && nativeCanvas.includes("campaignForStore") && webCanvas.includes("campaignForStore"), "Campaign highlight flow missing");
 assert(screen.includes("subscribeActiveOutletCampaignsForOutlet"), "Map must not rely on the global campaign result cap");
 assert(campaignService.includes('where("outletId", "==", outletId)') && campaignService.includes("limit(100)"), "Outlet-scoped campaign listener missing");
@@ -108,4 +130,4 @@ assert(appNavigator.includes('<Stack.Screen name="PremiumOutletMap"')
   "Premium map screen must remain registered in root and desktop web navigators.");
 assert(offline.includes('premium-outlet-map:v1:'), "Versioned offline map cache missing");
 
-console.log(`Premium outlet map checks passed: 10 maps, ${storeCount} searchable stores, 8 languages, ${premiumMapPoiKinds.length} POI types, web preview, web route, and above-brands outlet entry.`);
+console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages, ${premiumMapPoiKinds.length} POI types. Schematic or non-reusable maps are blocked from production.`);
