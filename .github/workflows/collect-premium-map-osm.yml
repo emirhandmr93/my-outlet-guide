@@ -1,0 +1,61 @@
+name: Collect premium map OSM snapshots
+
+on:
+  push:
+    branches:
+      - feat/premium-map-exact-open-data-v2
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: premium-map-osm-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  collect:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Collect bounded OpenStreetMap evidence
+        run: npx tsx tools/collectPremiumMapOsmSnapshot.ts
+
+      - name: Validate generated evidence
+        run: |
+          test -f docs/PREMIUM_MAP_OSM_COVERAGE.md
+          grep -q "OpenStreetMap contributors" docs/PREMIUM_MAP_OSM_COVERAGE.md
+          test "$(find src/features/premiumOutletMaps/osmSnapshots -name '*.json' | wc -l)" -eq 10
+          grep -R -q '"license": "ODbL-1.0"' src/features/premiumOutletMaps/osmSnapshots
+          if grep -R -q '"inferredGeometryUsed": true' src/features/premiumOutletMaps/osmSnapshots; then
+            echo "Inferred geometry is forbidden in exact premium-map snapshots."
+            exit 1
+          fi
+
+      - name: Commit versioned snapshots and coverage audit
+        run: |
+          if git diff --quiet -- docs/PREMIUM_MAP_OSM_COVERAGE.md src/features/premiumOutletMaps/osmSnapshots; then
+            echo "No snapshot changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/PREMIUM_MAP_OSM_COVERAGE.md src/features/premiumOutletMaps/osmSnapshots
+          git commit -m "Collect exact OSM premium map evidence"
+          git push origin HEAD:${{ github.ref_name }}
