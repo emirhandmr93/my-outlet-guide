@@ -14,6 +14,7 @@ export type PremiumMapDataLicense =
   | "ODbL-1.0"
   | "commercial-license"
   | "self-surveyed";
+export type PremiumMapStoreGeometryKind = "area" | "point";
 
 export const premiumMapPoiKinds = [
   "parking",
@@ -44,7 +45,10 @@ export type PremiumMapStore = {
   categoryId: string;
   floorId: string;
   openingHours: string;
-  polygon: Polygon;
+  /** `area` means the footprint itself is verified. `point` means only the store location/centroid is verified. */
+  geometryKind: PremiumMapStoreGeometryKind;
+  /** Never synthesize a polygon for a point-only store. */
+  polygon?: Polygon;
   center: Coordinate;
 };
 
