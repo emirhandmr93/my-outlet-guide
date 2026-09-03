@@ -57,6 +57,8 @@ export function sanitizeCampaignPresentationValue(
   maxLength: number,
 ): string {
   let normalized = value.replace(/\s+/g, " ").trim();
+  const canonical = getCanonicalCampaignOutletName(outletId);
+  if (!canonical || canonical !== canonicalOutletName) return normalized.slice(0, maxLength);
   for (const { alias } of monitoredAliases) {
     normalized = normalized.replace(new RegExp(escapeRegExp(alias), "giu"), canonicalOutletName);
   }
