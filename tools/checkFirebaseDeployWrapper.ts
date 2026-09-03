@@ -11,6 +11,14 @@ assert.match(source, /FUNCTIONS_DISCOVERY_TIMEOUT: discoveryTimeoutMilliseconds/
   "Firebase deploy must receive the discovery timeout in milliseconds");
 assert.match(source, /if \(includesHosting\(deployArgs\)\)/,
   "Hosting deploys must be detected before deployment");
+assert.match(source, /rmSync\(distDirectory, \{/,
+  "Hosting deploys must remove the previous dist export before Expo rebuilds it");
+assert.match(source, /recursive: true/,
+  "Dist cleanup must be recursive");
+assert.match(source, /maxRetries: process\.platform === "win32" \? 12 : 4/,
+  "Windows dist cleanup must tolerate transient ENOTEMPTY/EPERM filesystem races");
+assert.match(source, /retryDelay: process\.platform === "win32" \? 250 : 100/,
+  "Windows dist cleanup retries must include a delay");
 assert.match(source, /spawnSync\(npmCommand, \["run", "web:build"\]/,
   "Hosting deploys must build and validate a fresh production web export");
 
