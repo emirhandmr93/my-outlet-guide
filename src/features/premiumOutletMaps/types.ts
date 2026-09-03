@@ -68,7 +68,8 @@ export type PremiumMapFloor = {
 };
 
 export type PremiumMapEnvironment = {
-  siteBoundary: Polygon;
+  /** Omitted when an authorized plan proves tenant positions but does not define a true venue boundary. */
+  siteBoundary?: Polygon;
   roads: Coordinate[][];
   walkways: Coordinate[][];
   landscapeAreas: Polygon[];
