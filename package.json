@@ -57,7 +57,7 @@
     "validate:shopping-companion": "tsx tools/checkShoppingCompanionFeatures.ts",
     "validate:nearby": "tsx tools/checkNearbyOutlets.ts",
     "validate:travel-basket": "tsx tools/checkTravelBasketAffiliates.ts",
-    "validate:campaigns": "node --import tsx tools/checkOutletCampaignAutomation.ts && node --import tsx tools/checkOutletCampaignLocalization.ts && node --import tsx tools/checkCampaignCarouselScale.ts && node --import tsx tools/checkOutletCampaignNotifications.ts && node --import tsx tools/checkLiveCampaignParserRegression.ts",
+    "validate:campaigns": "node --import tsx tools/checkOutletCampaignAutomation.ts && node --import tsx tools/checkOutletCampaignLocalization.ts && node --import tsx tools/checkCampaignCarouselScale.ts && node --import tsx tools/checkOutletCampaignNotifications.ts && node --import tsx tools/checkLiveCampaignParserRegression.ts && node --import tsx tools/checkCampaignIntegrityAudit.ts",
     "validate:growth": "node --import tsx tools/checkGrowthFeatures.ts",
     "validate:premium-maps": "node --import tsx tools/checkPremiumOutletMaps.ts",
     "validate:android-navigation": "tsx tools/checkAndroidBottomNavigation.ts",
