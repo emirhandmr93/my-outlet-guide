@@ -79,6 +79,28 @@
       ]
     },
     {
+      "collectionGroup": "outletCampaigns",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "outletId",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "active",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "featuredPriority",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "userNotificationSettings",
       "queryScope": "COLLECTION",
       "fields": [

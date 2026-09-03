@@ -20,7 +20,11 @@ export type ProductAnalyticsEvent =
   | "campaign_notification_open"
   | "outlet_match_brand_add"
   | "outlet_match_location_rank"
-  | "outlet_match_share";
+  | "outlet_match_share"
+  | "premium_map_open"
+  | "premium_map_brand_select"
+  | "premium_map_offline_toggle"
+  | "premium_map_detail_toggle";
 
 type ProductAnalyticsValue = string | number | boolean;
 type ProductAnalyticsParameters = Record<string, ProductAnalyticsValue | null | undefined>;

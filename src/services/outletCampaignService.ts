@@ -204,6 +204,61 @@ export function subscribeActiveOutletCampaigns(
   };
 }
 
+export function subscribeActiveOutletCampaignsForOutlet(
+  outletId: string,
+  onCampaigns: (campaigns: OutletCampaign[]) => void,
+  onError?: (error: unknown) => void,
+  language: TranslationLanguage = "en",
+): Unsubscribe {
+  if (!/^[a-z0-9-]{2,160}$/.test(outletId)) {
+    onCampaigns([]);
+    return () => undefined;
+  }
+  const outletQuery = query(
+    collection(db, OUTLET_CAMPAIGNS_COLLECTION),
+    where("outletId", "==", outletId),
+    where("status", "==", "published"),
+    where("active", "==", true),
+    orderBy("featuredPriority", "desc"),
+    limit(100),
+  );
+  let documents: QueryDocumentSnapshot<DocumentData>[] = [];
+  let expiryTimer: ReturnType<typeof setTimeout> | undefined;
+  const clearExpiryTimer = () => {
+    if (expiryTimer !== undefined) clearTimeout(expiryTimer);
+    expiryTimer = undefined;
+  };
+  const emitCurrentCampaigns = () => {
+    const now = new Date();
+    const campaigns = sortCampaigns(documents
+      .map(document => parsePublishedOutletCampaign(document, now, language))
+      .filter((campaign): campaign is OutletCampaign => campaign !== null));
+    onCampaigns(campaigns);
+    clearExpiryTimer();
+    const nearestExpiry = campaigns.reduce<number | null>((nearest, campaign) => {
+      const expiresAt = campaign.endsAt.getTime();
+      return nearest === null || expiresAt < nearest ? expiresAt : nearest;
+    }, null);
+    if (nearestExpiry !== null) {
+      const delay = Math.min(2_147_483_647, Math.max(25, nearestExpiry - now.getTime() + 25));
+      expiryTimer = setTimeout(emitCurrentCampaigns, delay);
+    }
+  };
+  const unsubscribe = onSnapshot(outletQuery, snapshot => {
+    documents = [...snapshot.docs];
+    emitCurrentCampaigns();
+  }, error => {
+    documents = [];
+    clearExpiryTimer();
+    onCampaigns([]);
+    onError?.(error);
+  });
+  return () => {
+    clearExpiryTimer();
+    unsubscribe();
+  };
+}
+
 export async function getActiveOutletCampaign(
   campaignId: string,
   language: TranslationLanguage = "en",

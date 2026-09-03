@@ -4,8 +4,11 @@ const brandCategoryLabelKeys: Record<string, string> = {
   fashion: "explore.categories.fashion.title",
   "food & confectionery": "explore.categories.foodChocolate.title",
   "food & chocolate": "explore.categories.foodChocolate.title",
+  food: "explore.categories.foodChocolate.title",
+  "food-confectionery": "explore.categories.foodChocolate.title",
   home: "explore.categories.homeLifestyle.title",
   "home & lifestyle": "explore.categories.homeLifestyle.title",
+  homeware: "explore.categories.homeLifestyle.title",
   "jewelry & watches": "explore.categories.jewelryWatches.title",
   kids: "explore.categories.kids.title",
   luxury: "explore.categories.luxury.title",
@@ -14,6 +17,7 @@ const brandCategoryLabelKeys: Record<string, string> = {
   eyewear: "brandCategory.eyewear",
   accessories: "brandCategory.accessories",
   "books & toys": "brandCategory.booksToys",
+  toys: "explore.categories.kids.title",
 };
 
 export function formatBrandCategoryLabel(
