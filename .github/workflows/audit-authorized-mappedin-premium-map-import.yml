@@ -44,10 +44,12 @@ jobs:
       - name: Validate audit shape
         run: |
           test -f docs/PREMIUM_MAP_MAPPEDIN_IMPORT_AUDIT.json
+          test -f docs/PREMIUM_MAP_MAPPEDIN_IMPORT_UNRESOLVED.json
           node - <<'NODE'
           const fs = require('fs');
           const audit = JSON.parse(fs.readFileSync('docs/PREMIUM_MAP_MAPPEDIN_IMPORT_AUDIT.json', 'utf8'));
-          if (audit.summary.outletCount !== 8) throw new Error(`Expected 8 Mappedin outlets, got ${audit.summary.outletCount}`);
+          const unresolved = JSON.parse(fs.readFileSync('docs/PREMIUM_MAP_MAPPEDIN_IMPORT_UNRESOLVED.json', 'utf8'));
+          if (audit.summary.outletCount !== 8 || unresolved.summary.outletCount !== 8) throw new Error('Expected 8 Mappedin outlets');
           if (!Number.isFinite(audit.summary.canonicalBrandCount) || !Number.isFinite(audit.summary.resolvedBrandCount)) throw new Error('Invalid audit counts');
           NODE
 
@@ -55,7 +57,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/PREMIUM_MAP_MAPPEDIN_IMPORT_AUDIT.json
+          git add docs/PREMIUM_MAP_MAPPEDIN_IMPORT_AUDIT.json docs/PREMIUM_MAP_MAPPEDIN_IMPORT_UNRESOLVED.json
           if git diff --cached --quiet; then
             echo "No audit changes to commit."
             exit 0
