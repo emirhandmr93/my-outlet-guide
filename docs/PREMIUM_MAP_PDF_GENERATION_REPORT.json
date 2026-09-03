@@ -1,0 +1,1557 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-03T21:19:14.044Z",
+  "summary": {
+    "outletCount": 2,
+    "exactMapCount": 2,
+    "canonicalBrandCount": 162,
+    "mappedCanonicalBrandCount": 145,
+    "exactPointStoreCount": 145
+  },
+  "results": [
+    {
+      "outletId": "outletcity-metzingen",
+      "canonicalBrandCount": 130,
+      "mappedCanonicalBrandCount": 115,
+      "canonicalCoverage": 0.8846,
+      "exactPointStoreCount": 115,
+      "directLabelCount": 62,
+      "numberMarkerCount": 53,
+      "unmatchedBrands": [
+        {
+          "brandId": "alberta-ferretti",
+          "brandName": "Alberta Ferretti"
+        },
+        {
+          "brandId": "babor",
+          "brandName": "BABOR"
+        },
+        {
+          "brandId": "comma",
+          "brandName": "Comma"
+        },
+        {
+          "brandId": "diesel",
+          "brandName": "Diesel"
+        },
+        {
+          "brandId": "estella",
+          "brandName": "Estella"
+        },
+        {
+          "brandId": "falke",
+          "brandName": "FALKE"
+        },
+        {
+          "brandId": "fossil",
+          "brandName": "Fossil"
+        },
+        {
+          "brandId": "furla",
+          "brandName": "Furla"
+        },
+        {
+          "brandId": "gant",
+          "brandName": "GANT"
+        },
+        {
+          "brandId": "hackett",
+          "brandName": "Hackett"
+        },
+        {
+          "brandId": "jack-wolfskin",
+          "brandName": "Jack Wolfskin"
+        },
+        {
+          "brandId": "lee",
+          "brandName": "Lee"
+        },
+        {
+          "brandId": "moschino",
+          "brandName": "Moschino"
+        },
+        {
+          "brandId": "pandora",
+          "brandName": "Pandora"
+        },
+        {
+          "brandId": "roesle",
+          "brandName": "Rösle"
+        }
+      ],
+      "evidence": [
+        {
+          "brandId": "7-for-all-mankind",
+          "mode": "direct-label",
+          "evidenceText": "7",
+          "pageNumber": 1,
+          "planPoint": [
+            253.5513,
+            288.25235
+          ]
+        },
+        {
+          "brandId": "adidas",
+          "mode": "direct-label",
+          "evidenceText": "Adidas",
+          "pageNumber": 1,
+          "planPoint": [
+            714.2276999999999,
+            235.403
+          ]
+        },
+        {
+          "brandId": "aigner",
+          "mode": "direct-label",
+          "evidenceText": "Aigner",
+          "pageNumber": 1,
+          "planPoint": [
+            375.33455000000004,
+            593.086
+          ]
+        },
+        {
+          "brandId": "allsaints",
+          "mode": "number-marker",
+          "evidenceText": "48 → AllSaints",
+          "pageNumber": 1,
+          "planPoint": [
+            278.6529,
+            488.74075000000005
+          ]
+        },
+        {
+          "brandId": "armani",
+          "mode": "direct-label",
+          "evidenceText": "Armani",
+          "pageNumber": 1,
+          "planPoint": [
+            200.666,
+            591.1995999999999
+          ]
+        },
+        {
+          "brandId": "bahlsen",
+          "mode": "number-marker",
+          "evidenceText": "76 → Bahlsen",
+          "pageNumber": 1,
+          "planPoint": [
+            554.8566000000001,
+            431.88095
+          ]
+        },
+        {
+          "brandId": "balenciaga",
+          "mode": "number-marker",
+          "evidenceText": "32 → Balenciaga",
+          "pageNumber": 1,
+          "planPoint": [
+            156.47295,
+            602.771
+          ]
+        },
+        {
+          "brandId": "bally",
+          "mode": "direct-label",
+          "evidenceText": "Bally",
+          "pageNumber": 1,
+          "planPoint": [
+            193.6289,
+            536.114
+          ]
+        },
+        {
+          "brandId": "balmain",
+          "mode": "direct-label",
+          "evidenceText": "Balmain",
+          "pageNumber": 1,
+          "planPoint": [
+            181.86865,
+            350.75265
+          ]
+        },
+        {
+          "brandId": "belstaff",
+          "mode": "direct-label",
+          "evidenceText": "Belstaff",
+          "pageNumber": 1,
+          "planPoint": [
+            207.649,
+            297.06764999999996
+          ]
+        },
+        {
+          "brandId": "bogner",
+          "mode": "number-marker",
+          "evidenceText": "4 → Bogner",
+          "pageNumber": 1,
+          "planPoint": [
+            287.7626,
+            210.58285
+          ]
+        },
+        {
+          "brandId": "boss",
+          "mode": "direct-label",
+          "evidenceText": "BOSS",
+          "pageNumber": 1,
+          "planPoint": [
+            64.31145000000001,
+            217.50900000000001
+          ]
+        },
+        {
+          "brandId": "boss-sample-store",
+          "mode": "direct-label",
+          "evidenceText": "BOSS",
+          "pageNumber": 1,
+          "planPoint": [
+            64.31145000000001,
+            217.50900000000001
+          ]
+        },
+        {
+          "brandId": "bottega-veneta",
+          "mode": "direct-label",
+          "evidenceText": "Bottega Veneta",
+          "pageNumber": 1,
+          "planPoint": [
+            203.31415,
+            609.8516999999999
+          ]
+        },
+        {
+          "brandId": "breitling",
+          "mode": "number-marker",
+          "evidenceText": "15 → Breitling",
+          "pageNumber": 1,
+          "planPoint": [
+            235.6351,
+            356.76980000000003
+          ]
+        },
+        {
+          "brandId": "burberry",
+          "mode": "direct-label",
+          "evidenceText": "Burberry",
+          "pageNumber": 1,
+          "planPoint": [
+            291.557,
+            393.20925
+          ]
+        },
+        {
+          "brandId": "c-p-company",
+          "mode": "direct-label",
+          "evidenceText": "C",
+          "pageNumber": 1,
+          "planPoint": [
+            205.37815,
+            259.8262
+          ]
+        },
+        {
+          "brandId": "calvin-klein",
+          "mode": "direct-label",
+          "evidenceText": "Calvin Klein",
+          "pageNumber": 1,
+          "planPoint": [
+            464.41095,
+            443.1967
+          ]
+        },
+        {
+          "brandId": "coach",
+          "mode": "direct-label",
+          "evidenceText": "Coach",
+          "pageNumber": 1,
+          "planPoint": [
+            282.8334,
+            499.1515
+          ]
+        },
+        {
+          "brandId": "columbia",
+          "mode": "direct-label",
+          "evidenceText": "Columbia",
+          "pageNumber": 1,
+          "planPoint": [
+            696.9982,
+            219.463
+          ]
+        },
+        {
+          "brandId": "crocs",
+          "mode": "direct-label",
+          "evidenceText": "Crocs",
+          "pageNumber": 1,
+          "planPoint": [
+            389.0582,
+            540.86655
+          ]
+        },
+        {
+          "brandId": "dolce-and-gabbana",
+          "mode": "direct-label",
+          "evidenceText": "Dolce & Gabbana",
+          "pageNumber": 1,
+          "planPoint": [
+            301.9543,
+            614.6808000000001
+          ]
+        },
+        {
+          "brandId": "douglas",
+          "mode": "direct-label",
+          "evidenceText": "Douglas",
+          "pageNumber": 1,
+          "planPoint": [
+            667.30625,
+            328.3954
+          ]
+        },
+        {
+          "brandId": "dr-martens",
+          "mode": "direct-label",
+          "evidenceText": "Dr. Martens",
+          "pageNumber": 1,
+          "planPoint": [
+            457.7661,
+            239.6792
+          ]
+        },
+        {
+          "brandId": "dsquared2",
+          "mode": "number-marker",
+          "evidenceText": "26 → Dsquared2",
+          "pageNumber": 1,
+          "planPoint": [
+            218.8527,
+            412.8743
+          ]
+        },
+        {
+          "brandId": "ferragamo",
+          "mode": "number-marker",
+          "evidenceText": "37 → Ferragamo",
+          "pageNumber": 1,
+          "planPoint": [
+            190.31255,
+            687.51315
+          ]
+        },
+        {
+          "brandId": "g-star",
+          "mode": "direct-label",
+          "evidenceText": "G",
+          "pageNumber": 1,
+          "planPoint": [
+            350.52734999999996,
+            403.7059
+          ]
+        },
+        {
+          "brandId": "gucci",
+          "mode": "direct-label",
+          "evidenceText": "Gucci",
+          "pageNumber": 1,
+          "planPoint": [
+            186.7897,
+            571.3058000000001
+          ]
+        },
+        {
+          "brandId": "guess",
+          "mode": "direct-label",
+          "evidenceText": "Guess",
+          "pageNumber": 1,
+          "planPoint": [
+            591.5481,
+            391.52144999999996
+          ]
+        },
+        {
+          "brandId": "haribo",
+          "mode": "direct-label",
+          "evidenceText": "Haribo",
+          "pageNumber": 1,
+          "planPoint": [
+            566.74955,
+            414.2649
+          ]
+        },
+        {
+          "brandId": "hogan",
+          "mode": "direct-label",
+          "evidenceText": "Tod’s Hogan",
+          "pageNumber": 1,
+          "planPoint": [
+            209.8237,
+            703.9278999999999
+          ]
+        },
+        {
+          "brandId": "hour-passion",
+          "mode": "number-marker",
+          "evidenceText": "44 → Certina @Hour Passion",
+          "pageNumber": 1,
+          "planPoint": [
+            287.47665,
+            531.6444
+          ]
+        },
+        {
+          "brandId": "hugo",
+          "mode": "direct-label",
+          "evidenceText": "BOSS",
+          "pageNumber": 1,
+          "planPoint": [
+            64.31145000000001,
+            217.50900000000001
+          ]
+        },
+        {
+          "brandId": "hunkemoller",
+          "mode": "number-marker",
+          "evidenceText": "58 → Hunkemöller",
+          "pageNumber": 1,
+          "planPoint": [
+            359.70155,
+            487.0372
+          ]
+        },
+        {
+          "brandId": "jack-and-jones",
+          "mode": "direct-label",
+          "evidenceText": "Jack & Jones",
+          "pageNumber": 1,
+          "planPoint": [
+            857.5382,
+            299.9055
+          ]
+        },
+        {
+          "brandId": "jil-sander",
+          "mode": "number-marker",
+          "evidenceText": "114 → Jil Sander",
+          "pageNumber": 1,
+          "planPoint": [
+            684.7949,
+            246.87490000000003
+          ]
+        },
+        {
+          "brandId": "joop",
+          "mode": "direct-label",
+          "evidenceText": "Joop!",
+          "pageNumber": 1,
+          "planPoint": [
+            329.43405,
+            351.51855
+          ]
+        },
+        {
+          "brandId": "kapten-and-son",
+          "mode": "number-marker",
+          "evidenceText": "48 → Kapten & Son",
+          "pageNumber": 1,
+          "planPoint": [
+            278.6529,
+            488.74075000000005
+          ]
+        },
+        {
+          "brandId": "karl-lagerfeld",
+          "mode": "number-marker",
+          "evidenceText": "31 → Karl Lagerfeld",
+          "pageNumber": 1,
+          "planPoint": [
+            172.3766,
+            592.6048
+          ]
+        },
+        {
+          "brandId": "kennel-and-schmenger",
+          "mode": "number-marker",
+          "evidenceText": "67 → Kennel & Schmenger",
+          "pageNumber": 1,
+          "planPoint": [
+            361.49199999999996,
+            549.37765
+          ]
+        },
+        {
+          "brandId": "kjus",
+          "mode": "number-marker",
+          "evidenceText": "76 → Kjus",
+          "pageNumber": 1,
+          "planPoint": [
+            554.8566000000001,
+            431.88095
+          ]
+        },
+        {
+          "brandId": "kneipp",
+          "mode": "number-marker",
+          "evidenceText": "32 → Kneipp",
+          "pageNumber": 1,
+          "planPoint": [
+            156.47295,
+            602.771
+          ]
+        },
+        {
+          "brandId": "l-occitane",
+          "mode": "direct-label",
+          "evidenceText": "L",
+          "pageNumber": 1,
+          "planPoint": [
+            435.9698,
+            428.682
+          ]
+        },
+        {
+          "brandId": "lacoste",
+          "mode": "direct-label",
+          "evidenceText": "Lacoste",
+          "pageNumber": 1,
+          "planPoint": [
+            267.72885,
+            473.5161
+          ]
+        },
+        {
+          "brandId": "le-creuset",
+          "mode": "direct-label",
+          "evidenceText": "Le Creuset",
+          "pageNumber": 1,
+          "planPoint": [
+            769.1973,
+            328.0833
+          ]
+        },
+        {
+          "brandId": "levis",
+          "mode": "direct-label",
+          "evidenceText": "Levi’s",
+          "pageNumber": 1,
+          "planPoint": [
+            489.71410000000003,
+            322.0493
+          ]
+        },
+        {
+          "brandId": "liebeskind-berlin",
+          "mode": "number-marker",
+          "evidenceText": "20 → Liebeskind Berlin",
+          "pageNumber": 1,
+          "planPoint": [
+            77.64405,
+            205.1451
+          ]
+        },
+        {
+          "brandId": "lindt",
+          "mode": "direct-label",
+          "evidenceText": "Lindt",
+          "pageNumber": 1,
+          "planPoint": [
+            411.41835000000003,
+            481.70005000000003
+          ]
+        },
+        {
+          "brandId": "longchamp",
+          "mode": "number-marker",
+          "evidenceText": "15 → Longchamp",
+          "pageNumber": 1,
+          "planPoint": [
+            235.6351,
+            356.76980000000003
+          ]
+        },
+        {
+          "brandId": "lululemon",
+          "mode": "number-marker",
+          "evidenceText": "72 → Lululemon",
+          "pageNumber": 1,
+          "planPoint": [
+            441.50554999999997,
+            455.2917
+          ]
+        },
+        {
+          "brandId": "maison-margiela",
+          "mode": "direct-label",
+          "evidenceText": "Maison Margiela",
+          "pageNumber": 1,
+          "planPoint": [
+            288.00030000000004,
+            638.99515
+          ]
+        },
+        {
+          "brandId": "mammut",
+          "mode": "number-marker",
+          "evidenceText": "44 → Mammut",
+          "pageNumber": 1,
+          "planPoint": [
+            287.47665,
+            531.6444
+          ]
+        },
+        {
+          "brandId": "marc-o-polo",
+          "mode": "number-marker",
+          "evidenceText": "46 → Marc O’Polo",
+          "pageNumber": 1,
+          "planPoint": [
+            291.2648,
+            509.95590000000004
+          ]
+        },
+        {
+          "brandId": "max-mara",
+          "mode": "direct-label",
+          "evidenceText": "Max Mara",
+          "pageNumber": 1,
+          "planPoint": [
+            308.49365,
+            373.5908
+          ]
+        },
+        {
+          "brandId": "mcm",
+          "mode": "direct-label",
+          "evidenceText": "MCM",
+          "pageNumber": 1,
+          "planPoint": [
+            332.423,
+            547.5952500000001
+          ]
+        },
+        {
+          "brandId": "mey",
+          "mode": "number-marker",
+          "evidenceText": "64 → Mey",
+          "pageNumber": 1,
+          "planPoint": [
+            378.9006,
+            526.78195
+          ]
+        },
+        {
+          "brandId": "michael-kors",
+          "mode": "direct-label",
+          "evidenceText": "Michael Kors",
+          "pageNumber": 1,
+          "planPoint": [
+            270.9439,
+            458.8133
+          ]
+        },
+        {
+          "brandId": "missoni",
+          "mode": "direct-label",
+          "evidenceText": "Missoni",
+          "pageNumber": 1,
+          "planPoint": [
+            167.5222,
+            310.88530000000003
+          ]
+        },
+        {
+          "brandId": "miu-miu",
+          "mode": "number-marker",
+          "evidenceText": "124 → Miu Miu @Prada",
+          "pageNumber": 1,
+          "planPoint": [
+            500.8429,
+            249.83679999999998
+          ]
+        },
+        {
+          "brandId": "moncler",
+          "mode": "direct-label",
+          "evidenceText": "Moncler",
+          "pageNumber": 1,
+          "planPoint": [
+            151.0154,
+            391.2093
+          ]
+        },
+        {
+          "brandId": "moose-knuckles",
+          "mode": "direct-label",
+          "evidenceText": "Moose Knuckles",
+          "pageNumber": 1,
+          "planPoint": [
+            162.9485,
+            557.6587
+          ]
+        },
+        {
+          "brandId": "motel-a-miio",
+          "mode": "number-marker",
+          "evidenceText": "102 → Motel a Miio",
+          "pageNumber": 1,
+          "planPoint": [
+            710.52465,
+            357.41385
+          ]
+        },
+        {
+          "brandId": "moeve",
+          "mode": "number-marker",
+          "evidenceText": "53 → Möve",
+          "pageNumber": 1,
+          "planPoint": [
+            333.8575,
+            488.7278
+          ]
+        },
+        {
+          "brandId": "name-it",
+          "mode": "number-marker",
+          "evidenceText": "37 → Name it",
+          "pageNumber": 1,
+          "planPoint": [
+            190.31255,
+            687.51315
+          ]
+        },
+        {
+          "brandId": "new-balance",
+          "mode": "direct-label",
+          "evidenceText": "New Balance",
+          "pageNumber": 1,
+          "planPoint": [
+            558.1601,
+            362.56815
+          ]
+        },
+        {
+          "brandId": "nike",
+          "mode": "direct-label",
+          "evidenceText": "Nike",
+          "pageNumber": 1,
+          "planPoint": [
+            602.024,
+            188.85840000000002
+          ]
+        },
+        {
+          "brandId": "oakley",
+          "mode": "number-marker",
+          "evidenceText": "75 → Oakley",
+          "pageNumber": 1,
+          "planPoint": [
+            505.30425,
+            451.9308
+          ]
+        },
+        {
+          "brandId": "olymp",
+          "mode": "number-marker",
+          "evidenceText": "6 → Olymp",
+          "pageNumber": 1,
+          "planPoint": [
+            267.50244999999995,
+            286.66965000000005
+          ]
+        },
+        {
+          "brandId": "only",
+          "mode": "direct-label",
+          "evidenceText": "Only",
+          "pageNumber": 1,
+          "planPoint": [
+            497.26250000000005,
+            398.4506
+          ]
+        },
+        {
+          "brandId": "only-and-sons",
+          "mode": "direct-label",
+          "evidenceText": "Only",
+          "pageNumber": 1,
+          "planPoint": [
+            497.26250000000005,
+            398.4506
+          ]
+        },
+        {
+          "brandId": "paul-and-shark",
+          "mode": "number-marker",
+          "evidenceText": "44 → Paul & Shark",
+          "pageNumber": 1,
+          "planPoint": [
+            287.47665,
+            531.6444
+          ]
+        },
+        {
+          "brandId": "philipp-plein",
+          "mode": "number-marker",
+          "evidenceText": "77 → Philipp Plein",
+          "pageNumber": 1,
+          "planPoint": [
+            541.4920999999999,
+            430.07925
+          ]
+        },
+        {
+          "brandId": "playmobil",
+          "mode": "number-marker",
+          "evidenceText": "36 → Playmobil",
+          "pageNumber": 1,
+          "planPoint": [
+            176.44125,
+            691.0590500000001
+          ]
+        },
+        {
+          "brandId": "polo-ralph-lauren",
+          "mode": "direct-label",
+          "evidenceText": "Polo Ralph Lauren",
+          "pageNumber": 1,
+          "planPoint": [
+            158.2865,
+            630.3449
+          ]
+        },
+        {
+          "brandId": "porsche-design",
+          "mode": "number-marker",
+          "evidenceText": "58 → Porsche Design",
+          "pageNumber": 1,
+          "planPoint": [
+            359.70155,
+            487.0372
+          ]
+        },
+        {
+          "brandId": "prada",
+          "mode": "direct-label",
+          "evidenceText": "Prada",
+          "pageNumber": 1,
+          "planPoint": [
+            128.98770000000002,
+            693.7538
+          ]
+        },
+        {
+          "brandId": "puma",
+          "mode": "direct-label",
+          "evidenceText": "Puma",
+          "pageNumber": 1,
+          "planPoint": [
+            667.45525,
+            196.1086
+          ]
+        },
+        {
+          "brandId": "rag-and-bone",
+          "mode": "number-marker",
+          "evidenceText": "11 → Rag & Bone",
+          "pageNumber": 1,
+          "planPoint": [
+            309.8585,
+            350.83505
+          ]
+        },
+        {
+          "brandId": "ravensburger",
+          "mode": "direct-label",
+          "evidenceText": "Ravensburger",
+          "pageNumber": 1,
+          "planPoint": [
+            833.8615,
+            232.0446
+          ]
+        },
+        {
+          "brandId": "rituals",
+          "mode": "direct-label",
+          "evidenceText": "Rituals",
+          "pageNumber": 1,
+          "planPoint": [
+            359.8565,
+            564.7237
+          ]
+        },
+        {
+          "brandId": "s-oliver",
+          "mode": "direct-label",
+          "evidenceText": "S.Oliver",
+          "pageNumber": 1,
+          "planPoint": [
+            612.6265,
+            342.8141
+          ]
+        },
+        {
+          "brandId": "samsonite",
+          "mode": "number-marker",
+          "evidenceText": "50 → Samsonite",
+          "pageNumber": 1,
+          "planPoint": [
+            296.2328,
+            480.5385
+          ]
+        },
+        {
+          "brandId": "sandro",
+          "mode": "number-marker",
+          "evidenceText": "106 → Sandro",
+          "pageNumber": 1,
+          "planPoint": [
+            732.5359000000001,
+            338.4006
+          ]
+        },
+        {
+          "brandId": "schiesser",
+          "mode": "direct-label",
+          "evidenceText": "Schiesser",
+          "pageNumber": 1,
+          "planPoint": [
+            766.54395,
+            424.036
+          ]
+        },
+        {
+          "brandId": "seidensticker",
+          "mode": "number-marker",
+          "evidenceText": "87 → Seidensticker",
+          "pageNumber": 1,
+          "planPoint": [
+            497.4039,
+            338.00059999999996
+          ]
+        },
+        {
+          "brandId": "skechers",
+          "mode": "direct-label",
+          "evidenceText": "Skechers",
+          "pageNumber": 1,
+          "planPoint": [
+            467.6664,
+            368.0841
+          ]
+        },
+        {
+          "brandId": "storck",
+          "mode": "number-marker",
+          "evidenceText": "61 → Storck",
+          "pageNumber": 1,
+          "planPoint": [
+            404.25685,
+            470.01925
+          ]
+        },
+        {
+          "brandId": "strellson",
+          "mode": "direct-label",
+          "evidenceText": "Strellson",
+          "pageNumber": 1,
+          "planPoint": [
+            375.01485,
+            418.5625
+          ]
+        },
+        {
+          "brandId": "sunglass-hut",
+          "mode": "number-marker",
+          "evidenceText": "41 → Sunglass Hut",
+          "pageNumber": 1,
+          "planPoint": [
+            264.0685,
+            586.7519
+          ]
+        },
+        {
+          "brandId": "superdry",
+          "mode": "number-marker",
+          "evidenceText": "44 → Superdry",
+          "pageNumber": 1,
+          "planPoint": [
+            287.47665,
+            531.6444
+          ]
+        },
+        {
+          "brandId": "swarovski",
+          "mode": "direct-label",
+          "evidenceText": "Swarovski",
+          "pageNumber": 1,
+          "planPoint": [
+            360.53355,
+            500.888
+          ]
+        },
+        {
+          "brandId": "tefal",
+          "mode": "number-marker",
+          "evidenceText": "39 → Tefal",
+          "pageNumber": 1,
+          "planPoint": [
+            237.90249999999997,
+            646.4326
+          ]
+        },
+        {
+          "brandId": "the-cosmetics-company-store",
+          "mode": "direct-label",
+          "evidenceText": "The Cosmetics",
+          "pageNumber": 1,
+          "planPoint": [
+            379.1287,
+            449.6266
+          ]
+        },
+        {
+          "brandId": "the-north-face",
+          "mode": "direct-label",
+          "evidenceText": "North",
+          "pageNumber": 1,
+          "planPoint": [
+            220.82139999999998,
+            196.09885
+          ]
+        },
+        {
+          "brandId": "thomas-sabo",
+          "mode": "number-marker",
+          "evidenceText": "43 → Thomas Sabo",
+          "pageNumber": 1,
+          "planPoint": [
+            306.04375,
+            544.417
+          ]
+        },
+        {
+          "brandId": "timberland",
+          "mode": "direct-label",
+          "evidenceText": "Timberland",
+          "pageNumber": 1,
+          "planPoint": [
+            536.13895,
+            229.4331
+          ]
+        },
+        {
+          "brandId": "tods",
+          "mode": "direct-label",
+          "evidenceText": "Tod’s Hogan",
+          "pageNumber": 1,
+          "planPoint": [
+            209.8237,
+            703.9278999999999
+          ]
+        },
+        {
+          "brandId": "tom-tailor",
+          "mode": "number-marker",
+          "evidenceText": "18 → Tom Tailor",
+          "pageNumber": 1,
+          "planPoint": [
+            212.97865000000002,
+            316.6379
+          ]
+        },
+        {
+          "brandId": "tom-tailor-kids",
+          "mode": "number-marker",
+          "evidenceText": "18 → Tom Tailor",
+          "pageNumber": 1,
+          "planPoint": [
+            212.97865000000002,
+            316.6379
+          ]
+        },
+        {
+          "brandId": "tommy-hilfiger",
+          "mode": "direct-label",
+          "evidenceText": "Tommy Hilfiger",
+          "pageNumber": 1,
+          "planPoint": [
+            464.37375,
+            467.62080000000003
+          ]
+        },
+        {
+          "brandId": "tory-burch",
+          "mode": "number-marker",
+          "evidenceText": "29 → Tory Burch",
+          "pageNumber": 1,
+          "planPoint": [
+            231.2891,
+            557.5635
+          ]
+        },
+        {
+          "brandId": "tumi",
+          "mode": "number-marker",
+          "evidenceText": "97 → Tumi",
+          "pageNumber": 1,
+          "planPoint": [
+            655.80325,
+            380.66610000000003
+          ]
+        },
+        {
+          "brandId": "ugg",
+          "mode": "number-marker",
+          "evidenceText": "105 → UGG",
+          "pageNumber": 1,
+          "planPoint": [
+            707.80565,
+            327.19235000000003
+          ]
+        },
+        {
+          "brandId": "under-armour",
+          "mode": "number-marker",
+          "evidenceText": "112 → Under Armour",
+          "pageNumber": 1,
+          "planPoint": [
+            749.77385,
+            251.2917
+          ]
+        },
+        {
+          "brandId": "valentino-garavani",
+          "mode": "number-marker",
+          "evidenceText": "113 → Valentino Garavani",
+          "pageNumber": 1,
+          "planPoint": [
+            724.87625,
+            268.5235
+          ]
+        },
+        {
+          "brandId": "vero-moda",
+          "mode": "direct-label",
+          "evidenceText": "Vero Moda",
+          "pageNumber": 1,
+          "planPoint": [
+            852.87435,
+            290.2093
+          ]
+        },
+        {
+          "brandId": "versace",
+          "mode": "number-marker",
+          "evidenceText": "82 → Versace",
+          "pageNumber": 1,
+          "planPoint": [
+            478.2101,
+            396.9522
+          ]
+        },
+        {
+          "brandId": "vilebrequin",
+          "mode": "number-marker",
+          "evidenceText": "111 → Vilebrequin",
+          "pageNumber": 1,
+          "planPoint": [
+            767.8139,
+            248.2917
+          ]
+        },
+        {
+          "brandId": "villeroy-and-boch",
+          "mode": "direct-label",
+          "evidenceText": "Villeroy & Boch",
+          "pageNumber": 1,
+          "planPoint": [
+            712.93535,
+            380.045
+          ]
+        },
+        {
+          "brandId": "windsor",
+          "mode": "direct-label",
+          "evidenceText": "Windsor",
+          "pageNumber": 1,
+          "planPoint": [
+            320.5316,
+            202.1011
+          ]
+        },
+        {
+          "brandId": "wmf",
+          "mode": "direct-label",
+          "evidenceText": "WMF",
+          "pageNumber": 1,
+          "planPoint": [
+            632.2248,
+            306.24185
+          ]
+        },
+        {
+          "brandId": "woolrich",
+          "mode": "number-marker",
+          "evidenceText": "91 → Woolrich",
+          "pageNumber": 1,
+          "planPoint": [
+            617.09515,
+            368.7278
+          ]
+        },
+        {
+          "brandId": "worst-behavior",
+          "mode": "number-marker",
+          "evidenceText": "34 → Worst Behavior",
+          "pageNumber": 1,
+          "planPoint": [
+            125.05995,
+            649.8847000000001
+          ]
+        },
+        {
+          "brandId": "wrangler",
+          "mode": "number-marker",
+          "evidenceText": "8 → Lee/Wrangler",
+          "pageNumber": 1,
+          "planPoint": [
+            253.04105,
+            308.7665
+          ]
+        },
+        {
+          "brandId": "zwilling",
+          "mode": "number-marker",
+          "evidenceText": "27 → Zwilling",
+          "pageNumber": 1,
+          "planPoint": [
+            214.95184999999998,
+            443.3604
+          ]
+        }
+      ]
+    },
+    {
+      "outletId": "the-mall-firenze",
+      "canonicalBrandCount": 32,
+      "mappedCanonicalBrandCount": 30,
+      "canonicalCoverage": 0.9375,
+      "exactPointStoreCount": 30,
+      "directLabelCount": 30,
+      "numberMarkerCount": 0,
+      "unmatchedBrands": [
+        {
+          "brandId": "off-white",
+          "brandName": "Off-White"
+        },
+        {
+          "brandId": "prada",
+          "brandName": "Prada"
+        }
+      ],
+      "evidence": [
+        {
+          "brandId": "alberta-ferretti",
+          "mode": "direct-label",
+          "evidenceText": "Alberta Ferretti",
+          "pageNumber": 1,
+          "planPoint": [
+            633.2760499999999,
+            1839.8020999999999
+          ]
+        },
+        {
+          "brandId": "alexander-mcqueen",
+          "mode": "direct-label",
+          "evidenceText": "McQueen",
+          "pageNumber": 1,
+          "planPoint": [
+            4923.59375,
+            2368.5824000000002
+          ]
+        },
+        {
+          "brandId": "armani",
+          "mode": "direct-label",
+          "evidenceText": "Armani",
+          "pageNumber": 1,
+          "planPoint": [
+            4035.96985,
+            2622.7323
+          ]
+        },
+        {
+          "brandId": "balenciaga",
+          "mode": "direct-label",
+          "evidenceText": "Balenciaga",
+          "pageNumber": 1,
+          "planPoint": [
+            3357.4945,
+            2106.93225
+          ]
+        },
+        {
+          "brandId": "balmain",
+          "mode": "direct-label",
+          "evidenceText": "Balmain",
+          "pageNumber": 1,
+          "planPoint": [
+            2581.6216,
+            1193.4627
+          ]
+        },
+        {
+          "brandId": "bottega-veneta",
+          "mode": "direct-label",
+          "evidenceText": "Bottega Veneta",
+          "pageNumber": 1,
+          "planPoint": [
+            2454.81095,
+            659.2328
+          ]
+        },
+        {
+          "brandId": "burberry",
+          "mode": "direct-label",
+          "evidenceText": "Burberry",
+          "pageNumber": 1,
+          "planPoint": [
+            4029.9697,
+            1882.0321
+          ]
+        },
+        {
+          "brandId": "celine",
+          "mode": "direct-label",
+          "evidenceText": "Celine",
+          "pageNumber": 1,
+          "planPoint": [
+            4923.59395,
+            2492.0321
+          ]
+        },
+        {
+          "brandId": "coach",
+          "mode": "direct-label",
+          "evidenceText": "Coach",
+          "pageNumber": 1,
+          "planPoint": [
+            1026.9759999999999,
+            2380.5521
+          ]
+        },
+        {
+          "brandId": "corneliani",
+          "mode": "direct-label",
+          "evidenceText": "Corneliani",
+          "pageNumber": 1,
+          "planPoint": [
+            5324.49435,
+            1553.8324
+          ]
+        },
+        {
+          "brandId": "dolce-and-gabbana",
+          "mode": "direct-label",
+          "evidenceText": "Dolce&Gabbana",
+          "pageNumber": 1,
+          "planPoint": [
+            2132.11685,
+            601.4730500000001
+          ]
+        },
+        {
+          "brandId": "ermenegildo-zegna",
+          "mode": "direct-label",
+          "evidenceText": "Zegna",
+          "pageNumber": 1,
+          "planPoint": [
+            3357.5192500000003,
+            2405.5824000000002
+          ]
+        },
+        {
+          "brandId": "etro",
+          "mode": "direct-label",
+          "evidenceText": "Etro",
+          "pageNumber": 1,
+          "planPoint": [
+            4923.59395,
+            2158.08215
+          ]
+        },
+        {
+          "brandId": "fendi",
+          "mode": "direct-label",
+          "evidenceText": "Fendi",
+          "pageNumber": 1,
+          "planPoint": [
+            3301.54105,
+            822.6565499999999
+          ]
+        },
+        {
+          "brandId": "ferragamo",
+          "mode": "direct-label",
+          "evidenceText": "Ferragamo",
+          "pageNumber": 1,
+          "planPoint": [
+            3357.5199000000002,
+            1951.1322
+          ]
+        },
+        {
+          "brandId": "givenchy",
+          "mode": "direct-label",
+          "evidenceText": "Givenchy",
+          "pageNumber": 1,
+          "planPoint": [
+            2101.24235,
+            1535.6758
+          ]
+        },
+        {
+          "brandId": "gucci",
+          "mode": "direct-label",
+          "evidenceText": "Gucci",
+          "pageNumber": 1,
+          "planPoint": [
+            1064.9261,
+            1136.2020499999999
+          ]
+        },
+        {
+          "brandId": "hogan",
+          "mode": "direct-label",
+          "evidenceText": "Hogan",
+          "pageNumber": 1,
+          "planPoint": [
+            3678.7324,
+            907.8124
+          ]
+        },
+        {
+          "brandId": "jil-sander",
+          "mode": "direct-label",
+          "evidenceText": "Jil Sander",
+          "pageNumber": 1,
+          "planPoint": [
+            3357.5193,
+            2249.9823
+          ]
+        },
+        {
+          "brandId": "jimmy-choo",
+          "mode": "direct-label",
+          "evidenceText": "Jimmy Choo",
+          "pageNumber": 1,
+          "planPoint": [
+            3066.5729,
+            797.3330000000001
+          ]
+        },
+        {
+          "brandId": "kids-around",
+          "mode": "direct-label",
+          "evidenceText": "Kids around",
+          "pageNumber": 1,
+          "planPoint": [
+            5324.544400000001,
+            2139.2323
+          ]
+        },
+        {
+          "brandId": "loro-piana",
+          "mode": "direct-label",
+          "evidenceText": "Loro Piana",
+          "pageNumber": 1,
+          "planPoint": [
+            4032.9696000000004,
+            2317.33215
+          ]
+        },
+        {
+          "brandId": "marni",
+          "mode": "direct-label",
+          "evidenceText": "Marni",
+          "pageNumber": 1,
+          "planPoint": [
+            5324.4941,
+            1794.7323000000001
+          ]
+        },
+        {
+          "brandId": "moschino",
+          "mode": "direct-label",
+          "evidenceText": "Moschino",
+          "pageNumber": 1,
+          "planPoint": [
+            633.2011,
+            1891.8020999999999
+          ]
+        },
+        {
+          "brandId": "roberto-cavalli",
+          "mode": "direct-label",
+          "evidenceText": "Roberto Cavalli",
+          "pageNumber": 1,
+          "planPoint": [
+            3357.6195,
+            2859.9823
+          ]
+        },
+        {
+          "brandId": "saint-laurent",
+          "mode": "direct-label",
+          "evidenceText": "Laurent",
+          "pageNumber": 1,
+          "planPoint": [
+            2493.301,
+            2044.6522
+          ]
+        },
+        {
+          "brandId": "tods",
+          "mode": "direct-label",
+          "evidenceText": "Tod’s",
+          "pageNumber": 1,
+          "planPoint": [
+            3780.4691000000003,
+            929.3972
+          ]
+        },
+        {
+          "brandId": "tom-ford",
+          "mode": "direct-label",
+          "evidenceText": "Tom Ford",
+          "pageNumber": 1,
+          "planPoint": [
+            3357.5943500000003,
+            2542.18225
+          ]
+        },
+        {
+          "brandId": "valentino",
+          "mode": "direct-label",
+          "evidenceText": "Valentino",
+          "pageNumber": 1,
+          "planPoint": [
+            3361.09445,
+            2700.2323
+          ]
+        },
+        {
+          "brandId": "versace",
+          "mode": "direct-label",
+          "evidenceText": "Versace",
+          "pageNumber": 1,
+          "planPoint": [
+            4923.56905,
+            1761.28235
+          ]
+        }
+      ]
+    }
+  ]
+}
