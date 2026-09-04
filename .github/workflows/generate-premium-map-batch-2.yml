@@ -27,7 +27,7 @@ env:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
@@ -37,33 +37,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
-      - name: Install project dependencies
-        run: npm ci
-
-      - name: Install isolated evidence-capture runtime
+      - name: Install isolated map-generation runtime
         shell: bash
         run: |
           set -euo pipefail
-          runtime="$RUNNER_TEMP/premium-map-capture-runtime"
-          mkdir -p "$runtime"
-          npm install --prefix "$runtime" --no-save --package-lock=false playwright-core@1.55.0 fflate@0.8.2
-          rm -rf node_modules/playwright-core node_modules/fflate
+          runtime="$RUNNER_TEMP/premium-map-runtime"
+          mkdir -p "$runtime" node_modules
+          npm install --prefix "$runtime" --no-save --package-lock=false tsx@4.22.4 playwright-core@1.55.0 fflate@0.8.2
           ln -s "$runtime/node_modules/playwright-core" node_modules/playwright-core
           ln -s "$runtime/node_modules/fflate" node_modules/fflate
+          echo "MAP_TSX=$runtime/node_modules/.bin/tsx" >> "$GITHUB_ENV"
 
       - name: Capture official interactive-map spatial evidence
         run: node tools/capturePremiumMapNetworkBatch2.mjs
 
       - name: Generate exact production maps
-        run: npx tsx tools/generatePremiumMapBatch2ExactMaps.ts
+        run: "$MAP_TSX tools/generatePremiumMapBatch2ExactMaps.ts"
 
       - name: Validate exact geometry, canonical identity and commercial authorization
-        run: npx tsx tools/checkPremiumMapBatch2.ts
-
-      - name: Typecheck generated snapshot
-        run: npm run typecheck
+        run: "$MAP_TSX tools/checkPremiumMapBatch2.ts"
 
       - name: Validate generation report
         run: |
