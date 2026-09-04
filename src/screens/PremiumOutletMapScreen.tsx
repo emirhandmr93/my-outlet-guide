@@ -15,19 +15,24 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { categories } from "../constants/categories";
 import { PremiumOutletMapCanvas } from "../features/premiumOutletMaps/PremiumOutletMapCanvas";
-import { getPremiumOutletMap } from "../features/premiumOutletMaps/catalog";
 import { getPremiumMapCopy, poiLabels } from "../features/premiumOutletMaps/copy";
 import {
   getPremiumMapOffline,
   removePremiumMapOffline,
   savePremiumMapOffline,
 } from "../features/premiumOutletMaps/offlinePackService";
+import { loadPremiumOutletMap } from "../features/premiumOutletMaps/runtimeLoader";
 import {
   campaignForStore,
   resolveCampaignBrandIdForOutlet,
   searchMapStores,
 } from "../features/premiumOutletMaps/search";
-import type { MapDetailMode, PremiumMapCampaign, PremiumMapStore } from "../features/premiumOutletMaps/types";
+import type {
+  MapDetailMode,
+  PremiumMapCampaign,
+  PremiumMapStore,
+  PremiumOutletMap,
+} from "../features/premiumOutletMaps/types";
 import { useTranslation } from "../hooks/useTranslation";
 import type { RootStackParamList } from "../navigation/types";
 import { formatCampaignDate, subscribeActiveOutletCampaignsForOutlet } from "../services/outletCampaignService";
@@ -43,17 +48,49 @@ export function PremiumOutletMapScreen() {
   const { language, t } = useTranslation();
   const insets = useSafeAreaInsets();
   const copy = getPremiumMapCopy(language);
-  const map = getPremiumOutletMap(route.params.outletId);
-  const [floorId, setFloorId] = useState(map?.floors[0]?.id ?? "ground");
+  const [map, setMap] = useState<PremiumOutletMap | undefined>();
+  const [mapLoading, setMapLoading] = useState(true);
+  const [floorId, setFloorId] = useState("ground");
   const [query, setQuery] = useState("");
   const [selectedStore, setSelectedStore] = useState<PremiumMapStore | undefined>();
   const [detailMode, setDetailMode] = useState<MapDetailMode>("premium");
-  const [bearing, setBearing] = useState(map?.defaultBearing ?? 18);
+  const [bearing, setBearing] = useState(18);
   const [focusSequence, setFocusSequence] = useState(0);
   const [campaigns, setCampaigns] = useState<PremiumMapCampaign[]>([]);
   const [offline, setOffline] = useState(false);
   const [offlineBusy, setOfflineBusy] = useState(false);
   const [offlineError, setOfflineError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    setMap(undefined);
+    setMapLoading(true);
+    setQuery("");
+    setSelectedStore(undefined);
+    setCampaigns([]);
+    setOffline(false);
+    setOfflineError(false);
+
+    void loadPremiumOutletMap(route.params.outletId)
+      .then(loadedMap => {
+        if (cancelled) return;
+        setMap(loadedMap);
+        if (loadedMap) {
+          setFloorId(loadedMap.floors[0]?.id ?? "ground");
+          setBearing(loadedMap.defaultBearing);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setMap(undefined);
+      })
+      .finally(() => {
+        if (!cancelled) setMapLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [route.params.outletId]);
 
   useEffect(() => {
     if (!map) return;
@@ -100,6 +137,10 @@ export function PremiumOutletMapScreen() {
     } finally {
       setOfflineBusy(false);
     }
+  }
+
+  if (mapLoading) {
+    return <View style={styles.center}><ActivityIndicator size="large" color={colors.primary} /></View>;
   }
 
   if (!map) {

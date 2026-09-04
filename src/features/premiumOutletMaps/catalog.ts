@@ -1,7 +1,11 @@
 import { outlets } from "../../constants/outlets";
 import { getBrandsForOutlet } from "../../services/brandService";
 import type { TranslationLanguage } from "../../translations/locale";
-import { exactPremiumOutletMaps } from "./exactCatalog";
+import {
+  isPremiumOutletMapId,
+  premiumOutletMapIds,
+  type PremiumOutletMapId,
+} from "./availability";
 import type {
   Coordinate,
   LocalizedLabel,
@@ -15,30 +19,8 @@ import type {
   PremiumOutletMap,
 } from "./types";
 
-export const premiumOutletMapIds = [
-  "bicester-village",
-  "la-vallee-village",
-  "serravalle-designer-outlet",
-  "la-roca-village",
-  "las-rozas-village",
-  "designer-outlet-roermond",
-  "outletcity-metzingen",
-  "the-mall-firenze",
-  "noventa",
-  "fidenza-village",
-  "ingolstadt-village",
-  "wertheim-village",
-  "maasmechelen-village",
-  "kildare-village",
-  "designer-outlet-parndorf",
-  "designer-outlet-salzburg",
-  "designer-outlet-roosendaal",
-  "designer-outlet-neumunster",
-  "designer-outlet-ochtrup",
-  "castel-romano",
-] as const;
-
-export type PremiumOutletMapId = (typeof premiumOutletMapIds)[number];
+export { premiumOutletMapIds } from "./availability";
+export type { PremiumOutletMapId } from "./availability";
 
 const sourceUrls: Record<PremiumOutletMapId, string> = {
   "bicester-village": "https://www.thebicestercollection.com/bicester-village/en/map/",
@@ -195,9 +177,15 @@ function buildMap(outletId: PremiumOutletMapId): PremiumOutletMap {
 }
 
 const schematicMapCache = new Map<PremiumOutletMapId, PremiumOutletMap>();
+let exactCatalogCache: typeof import("./exactCatalog").exactPremiumOutletMaps | undefined;
 
-function isPremiumOutletMapCandidateId(outletId: string): outletId is PremiumOutletMapId {
-  return premiumOutletMapIds.includes(outletId as PremiumOutletMapId);
+function getExactCatalog() {
+  if (!exactCatalogCache) {
+    // Deliberately defer the 100k+ lines of generated geometry until a synchronous validation/tooling caller asks for it.
+    const module = require("./exactCatalog") as typeof import("./exactCatalog");
+    exactCatalogCache = module.exactPremiumOutletMaps;
+  }
+  return exactCatalogCache;
 }
 
 function isFiniteCoordinate(coordinate: Coordinate): boolean {
@@ -215,8 +203,8 @@ function hasClosedPolygon(polygon: Polygon | undefined): boolean {
 }
 
 export function getPremiumOutletMapCandidate(outletId: string): PremiumOutletMap | undefined {
-  if (!isPremiumOutletMapCandidateId(outletId)) return undefined;
-  const exact = exactPremiumOutletMaps[outletId];
+  if (!isPremiumOutletMapId(outletId)) return undefined;
+  const exact = getExactCatalog()[outletId];
   if (exact) return exact;
   const cached = schematicMapCache.get(outletId);
   if (cached) return cached;
@@ -241,9 +229,9 @@ export function isPremiumOutletMapReleaseReady(map: PremiumOutletMap): boolean {
   return true;
 }
 
+/** Lightweight UI availability check. It intentionally does not load generated geometry. */
 export function hasPremiumOutletMap(outletId: string): outletId is PremiumOutletMapId {
-  const map = getPremiumOutletMapCandidate(outletId);
-  return Boolean(map && isPremiumOutletMapReleaseReady(map));
+  return isPremiumOutletMapId(outletId);
 }
 
 export function getPremiumOutletMap(outletId: string): PremiumOutletMap | undefined {
