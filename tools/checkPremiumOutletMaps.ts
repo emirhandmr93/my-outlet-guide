@@ -210,7 +210,8 @@ assert(screen.includes("© OpenStreetMap contributors · ODbL 1.0") && screen.in
 assert(screen.includes("subscribeActiveOutletCampaignsForOutlet"), "Map must not rely on the global campaign result cap");
 assert(campaignService.includes('where("outletId", "==", outletId)') && campaignService.includes("limit(100)"), "Outlet-scoped campaign listener missing");
 assert(firestoreIndexes.includes('"fieldPath": "outletId"') && firestoreIndexes.includes('"fieldPath": "featuredPriority"'), "Outlet campaign map index missing");
-assert(screen.includes("openExternalUrl(map.source.url)"), "Official source must use the safe external URL helper");
+assert(!screen.includes("map.source.url") && !screen.includes("map.source.host") && !screen.includes("map.lastUpdated"), "Public premium map UI must not expose official source URL/hostname or last-updated metadata");
+assert(screen.includes("styles.sourceHeading") && screen.includes("copy.sourceNote"), "Compact verified-source explanation missing");
 assert(detail.includes("hasPremiumOutletMap") && detail.includes('navigate("PremiumOutletMap"'), "Outlet detail entry point missing");
 const premiumMapEntryIndex = detail.indexOf("hasPremiumOutletMap(outlet.outletId)");
 const brandsCardIndex = detail.indexOf("<BrandsCard");
@@ -223,4 +224,4 @@ assert(appNavigator.includes('<Stack.Screen name="PremiumOutletMap"')
   "Premium map screen must remain registered in root and desktop web navigators.");
 assert(offline.includes('premium-outlet-map:v1:'), "Versioned offline map cache missing");
 
-console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages. Exact area polygons and exact point-only stores are supported without fabricating footprints; missing directory-only locations and missing POIs are omitted; campaign highlights require canonical IDs; ODbL attribution is visible.`);
+console.log(`Premium outlet map checks passed: ${premiumOutletMapCandidates.length} candidates, ${releasedPremiumOutletMaps.length} release-ready exact maps, ${storeCount} searchable candidate stores, 8 languages. Exact area polygons and exact point-only stores are supported without fabricating footprints; missing directory-only locations and missing POIs are omitted; campaign highlights require canonical IDs; ODbL attribution is visible; public source URL/hostname/update metadata is hidden.`);

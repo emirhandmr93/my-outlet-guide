@@ -271,16 +271,8 @@ export function PremiumOutletMapScreen() {
       </View>
 
       <View style={styles.sourceCard}>
-        <Pressable onPress={() => void openExternalUrl(map.source.url)} accessibilityRole="link">
-          <Text style={styles.sourceLink}>{copy.source} ↗</Text>
-        </Pressable>
+        <Text style={styles.sourceHeading}>{copy.source}</Text>
         <Text style={styles.sourceText}>{copy.sourceNote}</Text>
-        <Text style={styles.sourceText}>{map.source.host} · {copy.lastUpdated}: {map.lastUpdated}</Text>
-        {usesOpenStreetMap ? (
-          <Pressable onPress={() => void openExternalUrl(OSM_COPYRIGHT_URL)} accessibilityRole="link">
-            <Text style={styles.sourceLink}>{map.source.attribution ?? "© OpenStreetMap contributors"} · ODbL 1.0 ↗</Text>
-          </Pressable>
-        ) : null}
         {Platform.OS === "web" ? <Text style={styles.webNote}>{copy.webNote}</Text> : null}
       </View>
     </ScrollView>
@@ -288,9 +280,9 @@ export function PremiumOutletMapScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: "#F5F6F8" },
-  content: { padding: 16, gap: 14, width: "100%", maxWidth: 980, alignSelf: "center" },
-  center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24, backgroundColor: "#F5F6F8" },
+  screen: { flex: 1, backgroundColor: "#F3F4F6" },
+  content: { padding: 16, gap: 14, width: "100%", maxWidth: 1120, alignSelf: "center" },
+  center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24, backgroundColor: "#F3F4F6" },
   emptyText: { color: colors.primary, fontSize: 17, fontWeight: "700", textAlign: "center" },
   headingRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12 },
   headingText: { flex: 1 },
@@ -299,7 +291,7 @@ const styles = StyleSheet.create({
   modeRow: { alignItems: "center", gap: 3 },
   modeText: { color: colors.primary, fontSize: 11, fontWeight: "800" },
   searchArea: { zIndex: 5 },
-  searchInput: { minHeight: 52, borderRadius: 16, borderWidth: 1, borderColor: "#D3D8DF", backgroundColor: "#FFFFFF", color: colors.primary, paddingHorizontal: 16, fontSize: 16, fontWeight: "600" },
+  searchInput: { minHeight: 52, borderRadius: 16, borderWidth: 1, borderColor: "#CFD5DD", backgroundColor: "#FFFFFF", color: colors.primary, paddingHorizontal: 16, fontSize: 16, fontWeight: "600" },
   results: { marginTop: 6, borderRadius: 14, borderWidth: 1, borderColor: "#D3D8DF", backgroundColor: "#FFFFFF", overflow: "hidden" },
   resultButton: { minHeight: 52, paddingHorizontal: 15, paddingVertical: 10, flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: 12, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: "#E2E5E9" },
   resultText: { flex: 1, color: colors.primary, fontSize: 15, fontWeight: "800" },
@@ -307,18 +299,18 @@ const styles = StyleSheet.create({
   noResult: { marginTop: 6, borderRadius: 12, padding: 12, backgroundColor: "#FFF6D3", borderWidth: 1, borderColor: "#E2C85E" },
   noResultTitle: { color: colors.primary, fontWeight: "900" },
   noResultText: { color: "#5B6573", marginTop: 2, lineHeight: 18 },
-  mapShell: { height: 520, minHeight: 420, overflow: "hidden", borderRadius: 22, borderWidth: 1, borderColor: "#D6DBE1", backgroundColor: "#EEF1F4" },
-  osmAttribution: { position: "absolute", right: 8, bottom: 8, zIndex: 20, maxWidth: "92%", paddingHorizontal: 7, paddingVertical: 5, borderRadius: 6, backgroundColor: "rgba(255,255,255,0.94)", borderWidth: 1, borderColor: "#CBD2DA" },
+  mapShell: { height: 590, minHeight: 460, overflow: "hidden", borderRadius: 24, borderWidth: 1, borderColor: "#C9D0D8", backgroundColor: "#E8ECEF" },
+  osmAttribution: { position: "absolute", right: 10, bottom: 10, zIndex: 20, maxWidth: "92%", paddingHorizontal: 8, paddingVertical: 5, borderRadius: 8, backgroundColor: "rgba(255,255,255,0.94)", borderWidth: 1, borderColor: "#CBD2DA" },
   osmAttributionText: { color: "#344150", fontSize: 10, lineHeight: 12, fontWeight: "700", textDecorationLine: "underline" },
   controls: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
-  controlButton: { minHeight: 52, flexGrow: 1, alignItems: "center", justifyContent: "center", borderRadius: 14, paddingHorizontal: 12, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#CED4DC" },
+  controlButton: { minHeight: 46, flexGrow: 1, flexBasis: 180, alignItems: "center", justifyContent: "center", borderRadius: 13, paddingHorizontal: 12, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#CED4DC" },
   controlButtonActive: { backgroundColor: "#FFF0AA", borderColor: "#C7A51F" },
   controlText: { color: colors.primary, fontSize: 13, fontWeight: "900", textAlign: "center" },
   offlineReady: { color: "#2E6A3E", fontSize: 13, fontWeight: "800" },
   offlineError: { color: "#9C2F25", fontSize: 13, fontWeight: "800" },
   floorRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "center", gap: 8 },
   sectionLabel: { color: colors.primary, fontSize: 14, fontWeight: "900", marginRight: 4 },
-  floorButton: { minHeight: 44, justifyContent: "center", paddingHorizontal: 14, borderRadius: 12, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#CBD1D9" },
+  floorButton: { minHeight: 42, justifyContent: "center", paddingHorizontal: 14, borderRadius: 12, backgroundColor: "#FFFFFF", borderWidth: 1, borderColor: "#CBD1D9" },
   floorButtonActive: { backgroundColor: colors.primary, borderColor: colors.primary },
   floorText: { color: colors.primary, fontWeight: "800" },
   floorTextActive: { color: "#FFFFFF" },
@@ -330,8 +322,8 @@ const styles = StyleSheet.create({
   campaignTitle: { color: "#8A6800", fontWeight: "900", lineHeight: 20 },
   poiGrid: { flexDirection: "row", flexWrap: "wrap", gap: 7, marginTop: 10 },
   poiChip: { color: colors.primary, backgroundColor: "#EEF1F5", paddingHorizontal: 9, paddingVertical: 7, borderRadius: 999, fontSize: 12, overflow: "hidden" },
-  sourceCard: { borderRadius: 16, padding: 14, backgroundColor: "#E9EDF2" },
-  sourceLink: { color: "#194F8C", fontWeight: "900", textDecorationLine: "underline", marginTop: 6 },
-  sourceText: { color: "#5F6875", fontSize: 12, lineHeight: 17, marginTop: 6 },
-  webNote: { color: "#7B6110", fontSize: 12, lineHeight: 17, fontWeight: "800", marginTop: 8 },
+  sourceCard: { borderRadius: 16, padding: 14, backgroundColor: "#E9EDF2", borderWidth: 1, borderColor: "#D7DDE4" },
+  sourceHeading: { color: colors.primary, fontSize: 13, lineHeight: 18, fontWeight: "900" },
+  sourceText: { color: "#5F6875", fontSize: 12, lineHeight: 17, marginTop: 5 },
+  webNote: { color: "#7B6110", fontSize: 12, lineHeight: 17, fontWeight: "800", marginTop: 7 },
 });
