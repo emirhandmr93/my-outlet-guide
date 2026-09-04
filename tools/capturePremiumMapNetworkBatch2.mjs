@@ -15,6 +15,7 @@ const targets = [
   ['maasmechelen-village', ['https://www.thebicestercollection.com/maasmechelen-village/en/map', 'https://www.thebicestercollection.com/maasmechelen-village/en/visit']],
   ['kildare-village', ['https://www.thebicestercollection.com/kildare-village/en/map']],
   ['designer-outlet-parndorf', [
+    'https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/centremap/',
     'https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/centre-map/',
     'https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/center-map/',
   ]],
