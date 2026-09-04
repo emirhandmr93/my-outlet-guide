@@ -1,0 +1,65 @@
+name: Capture premium map batch 2
+
+on:
+  push:
+    branches:
+      - feat/premium-map-batch-2
+    paths:
+      - tools/capturePremiumMapNetworkBatch2.mjs
+      - .github/workflows/capture-premium-map-batch-2.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: capture-premium-map-batch-2-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/premium-map-batch-2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install project dependencies
+        run: npm ci
+
+      - name: Install evidence-capture runtime without changing lockfile
+        run: npm install --no-save --package-lock=false playwright-core@1.55.0 fflate@0.8.2
+
+      - name: Confirm browser
+        run: google-chrome --version || google-chrome-stable --version || chromium --version
+
+      - name: Capture official interactive-map network evidence
+        run: node tools/capturePremiumMapNetworkBatch2.mjs
+
+      - name: Validate capture summary
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const report = JSON.parse(fs.readFileSync('docs/PREMIUM_MAP_BATCH2_NETWORK.json', 'utf8'));
+          if (report.results.length !== 10) throw new Error(`Expected 10 outlets, got ${report.results.length}`);
+          for (const result of report.results) {
+            if (!(result.mvfFileCount > 0 || result.spatialBodyCount > 0)) throw new Error(`${result.outletId}: no spatial evidence captured`);
+          }
+          console.log('All 10 batch-2 outlets produced spatial evidence.');
+          NODE
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: premium-map-batch-2-evidence
+          path: |
+            docs/PREMIUM_MAP_BATCH2_NETWORK.json
+            docs/premium-map-batch-2-evidence
+          retention-days: 3
+          if-no-files-found: warn
