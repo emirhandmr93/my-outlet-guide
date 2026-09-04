@@ -59,7 +59,7 @@
     "validate:travel-basket": "tsx tools/checkTravelBasketAffiliates.ts",
     "validate:campaigns": "node --import tsx tools/checkOutletCampaignAutomation.ts && node --import tsx tools/checkOutletCampaignLocalization.ts && node --import tsx tools/checkCampaignCarouselScale.ts && node --import tsx tools/checkOutletCampaignNotifications.ts && node --import tsx tools/checkLiveCampaignParserRegression.ts && node --import tsx tools/checkCampaignIntegrityAudit.ts",
     "validate:growth": "node --import tsx tools/checkGrowthFeatures.ts",
-    "validate:premium-maps": "node --import tsx tools/checkPremiumOutletMaps.ts",
+    "validate:premium-maps": "node --import tsx tools/checkPremiumOutletMaps.ts && node --import tsx tools/checkPremiumMapWebRuntime.ts",
     "validate:web-carousel-controls": "tsx tools/checkWebManualCarouselControls.ts",
     "validate:android-navigation": "tsx tools/checkAndroidBottomNavigation.ts",
     "validate:readiness": "tsx tools/checkAppShare.ts && tsx tools/checkExternalLinksReadiness.ts && tsx tools/checkBetaReadiness.ts && tsx tools/checkEasArchiveReadiness.ts && tsx tools/checkWelcomeEmail.ts && tsx tools/checkFirebaseDeployWrapper.ts && npm run validate:android-navigation",
