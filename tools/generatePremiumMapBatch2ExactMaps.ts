@@ -80,14 +80,23 @@ function normalize(value: string): string {
     .replace(/\s+/g, " ");
 }
 
+/** Comparison-only fold for German transliterations such as Möve/moeve and Rösle/roesle. */
+function foldGermanTransliteration(value: string): string {
+  return normalize(value)
+    .split(" ")
+    .map(token => token.replace(/ae/g, "a").replace(/oe/g, "o").replace(/ue/g, "u"))
+    .join(" ");
+}
+
 const harmlessQualifiers = new Set([
   "outlet", "store", "shop", "boutique", "men", "mens", "women", "womens", "woman", "kids", "kid", "children",
   "accessories", "accessory", "shoes", "footwear", "new", "pop", "up", "temporary", "fragrance", "beauty", "fashion",
+  "clearance", "sale",
 ]);
 
 function isSafeQualifiedEquivalent(a: string, b: string): boolean {
-  const aa = normalize(a).split(" ").filter(Boolean);
-  const bb = normalize(b).split(" ").filter(Boolean);
+  const aa = foldGermanTransliteration(a).split(" ").filter(Boolean);
+  const bb = foldGermanTransliteration(b).split(" ").filter(Boolean);
   if (!aa.length || !bb.length) return false;
   const shorter = aa.length <= bb.length ? aa : bb;
   const longer = aa.length <= bb.length ? bb : aa;
@@ -97,6 +106,89 @@ function isSafeQualifiedEquivalent(a: string, b: string): boolean {
     else if (!harmlessQualifiers.has(token)) return false;
   }
   return i === shorter.length && longer.length - shorter.length <= 3;
+}
+
+function normalizedSegments(value: string): string[] {
+  const rawSegments = value
+    .replace(/[’‘`´]/g, "'")
+    .split(/\s+(?:&|and|x)\s+|\s*\/\s*|\s*\|\s*/i)
+    .map(normalize)
+    .filter(Boolean);
+  return [...new Set(rawSegments)];
+}
+
+/**
+ * Source-specific, identity-safe equivalences. These do not invent coordinates: they only connect
+ * an existing canonical brand to a uniquely named official tenant record in the authorized map.
+ */
+const officialTenantAliases: Record<string, Record<string, string[]>> = {
+  "designer-outlet-salzburg": {
+    "g-k-mayer": ["GK Mayer Shoes"],
+    "guess-accessories": ["GUESS Accessories"],
+    "kids-around": ["Kids around"],
+    "the-cosmetics-company-store": ["The Cosmetics Company Store"],
+    "jack-and-jones-kids": ["Jack & Jones Kids & JJXX Kids"],
+    "jjxx": ["Jack & Jones Kids & JJXX Kids"],
+  },
+  "designer-outlet-ochtrup": {
+    "g-star-raw": ["G-Star"],
+    "liebeskind": ["Liebeskind Berlin"],
+    "liebeskind-berlin": ["Liebeskind Berlin"],
+    "u-s-polo-assn": ["U.S. Polo Assn."],
+    "us-polo-assn": ["U.S. Polo Assn."],
+  },
+  "wertheim-village": {
+    "guess-accessories": ["GUESS Accessoire"],
+    "l-occitane": ["L'Occitane en Provence"],
+    "the-cosmetics-company-store": ["The Cosmetics Company Store"],
+  },
+  "kildare-village": {
+    "kids-around": ["K.I.D.S Around"],
+    "l-occitane": ["L'Occitane"],
+    "the-cosmetics-company-store": ["The Cosmetics Company Store"],
+  },
+};
+
+function brandComparisonNames(outletId: string, brand: BrandLike): string[] {
+  return [
+    brand.brandName,
+    ...(brand.aliases ?? []),
+    ...(officialTenantAliases[outletId]?.[brand.brandId] ?? []),
+  ].filter(Boolean);
+}
+
+function matchScore(outletId: string, brand: BrandLike, officialName: string): number {
+  const names = brandComparisonNames(outletId, brand);
+  const officialNormalized = normalize(officialName);
+  const officialFolded = foldGermanTransliteration(officialName);
+
+  if (names.some(name => normalize(name) === officialNormalized)) return 100;
+  if (names.some(name => foldGermanTransliteration(name) === officialFolded)) return 96;
+  if (names.some(name => isSafeQualifiedEquivalent(name, officialName))) return 92;
+
+  const segments = normalizedSegments(officialName);
+  if (segments.length > 1) {
+    for (const name of names) {
+      const normalizedName = normalize(name);
+      const foldedName = foldGermanTransliteration(name);
+      if (segments.includes(normalizedName)) return 90;
+      if (segments.some(segment => foldGermanTransliteration(segment) === foldedName)) return 88;
+    }
+  }
+  return 0;
+}
+
+function locationsForBrand(outletId: string, brand: BrandLike, locations: LocationRecord[]): LocationRecord[] {
+  const scored = locations
+    .map(location => ({ location, score: matchScore(outletId, brand, location.name ?? "") }))
+    .filter(item => item.score > 0);
+  if (!scored.length) return [];
+  const bestScore = Math.max(...scored.map(item => item.score));
+  const best = scored.filter(item => item.score === bestScore).map(item => item.location);
+  // Exact official names can legitimately appear more than once for multi-unit tenants.
+  if (bestScore === 100) return best;
+  // Derived equivalences must resolve to one official tenant only; ambiguity is omitted, never guessed.
+  return best.length === 1 ? best : [];
 }
 
 function asCoordinate(value: unknown): Coordinate | null {
@@ -228,14 +320,6 @@ function locationNodeRefs(location: LocationRecord): LocationReference[] {
     seen.add(reference.id);
     return true;
   });
-}
-
-function locationsForBrand(brand: BrandLike, locations: LocationRecord[]): LocationRecord[] {
-  const names = [brand.brandName, ...(brand.aliases ?? [])].filter(Boolean);
-  const exact = locations.filter(location => names.some(name => normalize(name) === normalize(location.name ?? "")));
-  if (exact.length) return exact;
-  const qualified = locations.filter(location => names.some(name => isSafeQualifiedEquivalent(name, location.name ?? "")));
-  return qualified.length === 1 ? qualified : [];
 }
 
 function uniqueAliases(brand: BrandLike, officialName: string): string[] {
@@ -387,14 +471,16 @@ for (const outletId of batch2OutletIds) {
   const tenantLocations = locations.filter(location => !normalize(location.type ?? "").includes("amenit") && Boolean(location.name?.trim()));
 
   const mappedBrandIds = new Set<string>();
+  const matchedLocationIds = new Set<string>();
   const unmatchedBrands: Array<{ brandId: string; brandName: string }> = [];
   const stores: PremiumMapStore[] = [];
   for (const brand of brands) {
-    const matches = locationsForBrand(brand, tenantLocations);
+    const matches = locationsForBrand(outletId, brand, tenantLocations);
     const instances = matches.flatMap(location => buildStoreInstances(outletId, brand, location, openingHours, spaces, nodes));
     const validInstances = instances.filter(store => floorIds.has(store.floorId));
     if (validInstances.length) {
       mappedBrandIds.add(brand.brandId);
+      for (const match of matches) if (match.id) matchedLocationIds.add(match.id);
       stores.push(...validInstances);
     } else {
       unmatchedBrands.push({ brandId: brand.brandId, brandName: brand.brandName });
@@ -406,6 +492,9 @@ for (const outletId of batch2OutletIds) {
   const pois = buildPois(locations, spaces, nodes).filter(poi => floorIds.has(poi.floorId));
   const source = premiumMapBatch2Sources[outletId];
   if (!source) throw new Error(`${outletId}: batch-2 source metadata missing`);
+  if (!source.commercialReuseAllowed || source.authorizationStatus !== "project-owner-confirmed") {
+    throw new Error(`${outletId}: commercial authorization metadata is incomplete`);
+  }
   const center = mapCenter(exactStores, fallbackCenter);
   maps[outletId] = {
     schemaVersion: 1,
@@ -415,7 +504,7 @@ for (const outletId of batch2OutletIds) {
     defaultBearing: 18,
     defaultPitch: 52,
     defaultZoom: 17.25,
-    spatialAccuracy: "operator-exact-pending-authorization",
+    spatialAccuracy: "licensed-exact",
     verificationStatus: "verified",
     lastUpdated: "2026-09-04",
     floors,
@@ -427,14 +516,20 @@ for (const outletId of batch2OutletIds) {
       host: new URL(source.mapUrl).hostname,
       checkedOn: "2026-09-04",
       purpose: "spatial-data",
-      redrawPolicy: "original-editorial-redraw",
-      redistributionStatus: "reference-only",
-      dataLicense: "proprietary-reference-only",
-      commercialReuseAllowed: false,
+      redrawPolicy: "licensed-render",
+      redistributionStatus: "commercially-licensed",
+      dataLicense: "commercial-license",
+      commercialReuseAllowed: true,
       coordinateBasis: "wgs84",
-      attribution: `Official ${source.operator} interactive map; commercial reuse authorization pending`,
+      attribution: `Official ${source.operator} interactive map data`,
     },
   };
+
+  const unmatchedOfficialTenantNames = tenantLocations
+    .filter(location => location.id && !matchedLocationIds.has(location.id))
+    .map(location => String(location.name ?? ""))
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
 
   reportResults.push({
     outletId,
@@ -447,11 +542,13 @@ for (const outletId of batch2OutletIds) {
     floorCount: floors.length,
     poiCount: pois.length,
     authorizationStatus: source.authorizationStatus,
+    authorizationConfirmedOn: source.authorizationConfirmedOn,
     unmatchedBrands,
+    unmatchedOfficialTenantNames,
   });
 }
 
-const generated = `import type { PremiumOutletMap } from "./types";\n\n/**\n * AUTO-GENERATED technical exact-map snapshot for batch 2.\n * Geometry is verified from official interactive-map evidence, but commercial redistribution\n * remains release-gated until operator authorization is documented. Do not hand-edit.\n */\nexport const generatedMappedinExactMapsBatch2: Record<string, PremiumOutletMap> = ${JSON.stringify(maps, null, 2)};\n`;
+const generated = `import type { PremiumOutletMap } from "./types";\n\n/**\n * AUTO-GENERATED from authorized, sanitized official interactive-map evidence. Do not hand-edit.\n * Generated by tools/generatePremiumMapBatch2ExactMaps.ts.\n */\nexport const generatedMappedinExactMapsBatch2: Record<string, PremiumOutletMap> = ${JSON.stringify(maps, null, 2)};\n`;
 fs.writeFileSync(generatedFile, generated, "utf8");
 
 const summary = {
