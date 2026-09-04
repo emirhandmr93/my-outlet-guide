@@ -35,13 +35,16 @@ const expectedIds = [
   "bicester-village", "la-vallee-village", "serravalle-designer-outlet", "la-roca-village",
   "las-rozas-village", "designer-outlet-roermond", "outletcity-metzingen", "the-mall-firenze",
   "noventa", "fidenza-village",
+  "ingolstadt-village", "wertheim-village", "maasmechelen-village", "kildare-village",
+  "designer-outlet-parndorf", "designer-outlet-salzburg", "designer-outlet-roosendaal",
+  "designer-outlet-neumunster", "designer-outlet-ochtrup", "castel-romano",
 ];
 const premiumOutletMapCandidates = getAllPremiumOutletMapCandidates();
 const releasedPremiumOutletMaps = getAllPremiumOutletMaps();
 
 assert(JSON.stringify(premiumOutletMapIds) === JSON.stringify(expectedIds), "Premium map pilot outlet list changed unexpectedly");
-assert(premiumOutletMapCandidates.length === 10, `Expected 10 premium map candidates, found ${premiumOutletMapCandidates.length}`);
-assert(new Set(premiumOutletMapCandidates.map(map => map.outletId)).size === 10, "Premium map candidate outlet IDs must be unique");
+assert(premiumOutletMapCandidates.length === 20, `Expected 20 premium map candidates, found ${premiumOutletMapCandidates.length}`);
+assert(new Set(premiumOutletMapCandidates.map(map => map.outletId)).size === 20, "Premium map candidate outlet IDs must be unique");
 assert(supportedLanguageCodes.length === 8, "Premium map release requires exactly 8 supported languages");
 
 let storeCount = 0;
