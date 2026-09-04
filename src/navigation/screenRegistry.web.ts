@@ -55,6 +55,7 @@ export const OfflinePacksScreen = deferredScreen(() => import("../screens/Offlin
 export const OnboardingScreen = deferredScreen(() => import("../screens/OnboardingScreen"), "OnboardingScreen");
 export const OutletDetailScreen = deferredScreen(() => import("../screens/OutletDetailScreen"), "OutletDetailScreen");
 export const OutletMatchScreen = deferredScreen(() => import("../screens/OutletMatchScreen"), "OutletMatchScreen");
+export const PremiumOutletMapScreen = deferredScreen(() => import("../screens/PremiumOutletMapScreen"), "PremiumOutletMapScreen");
 export const OutletShoppingIndexScreen = deferredScreen(() => import("../screens/OutletShoppingIndexScreen"), "OutletShoppingIndexScreen");
 export const PriceAdvantageCalculatorScreen = deferredScreen(() => import("../screens/PriceAdvantageCalculatorScreen"), "PriceAdvantageCalculatorScreen");
 export const PrivacyPolicyScreen = deferredScreen(() => import("../screens/PrivacyPolicyScreen"), "PrivacyPolicyScreen");
