@@ -6,7 +6,6 @@ export type MapDetailMode = "premium" | "simple";
 export type SpatialAccuracy =
   | "schematic-reference"
   | "open-data-verified"
-  | "operator-exact-pending-authorization"
   | "licensed-exact"
   | "licensed-plan-exact"
   | "surveyed-exact";
