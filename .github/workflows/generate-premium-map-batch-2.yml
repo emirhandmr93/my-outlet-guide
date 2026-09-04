@@ -41,8 +41,16 @@ jobs:
       - name: Install project dependencies
         run: npm ci
 
-      - name: Install evidence-capture runtime without changing lockfile
-        run: npm install --no-save --package-lock=false playwright-core@1.55.0 fflate@0.8.2
+      - name: Install isolated evidence-capture runtime
+        shell: bash
+        run: |
+          set -euo pipefail
+          runtime="$RUNNER_TEMP/premium-map-capture-runtime"
+          mkdir -p "$runtime"
+          npm install --prefix "$runtime" --no-save --package-lock=false playwright-core@1.55.0 fflate@0.8.2
+          rm -rf node_modules/playwright-core node_modules/fflate
+          ln -s "$runtime/node_modules/playwright-core" node_modules/playwright-core
+          ln -s "$runtime/node_modules/fflate" node_modules/fflate
 
       - name: Capture official interactive-map spatial evidence
         run: node tools/capturePremiumMapNetworkBatch2.mjs
