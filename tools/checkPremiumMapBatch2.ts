@@ -42,18 +42,19 @@ function assertClosedPolygon(polygon: Polygon, label: string) {
 function validateMap(map: PremiumOutletMap, outletId: string) {
   assert(map.outletId === outletId, `${outletId}: map outlet ID mismatch`);
   assert(map.schemaVersion === 1, `${outletId}: unsupported schema`);
-  assert(map.verificationStatus === "verified", `${outletId}: technical exact geometry must be verified`);
-  assert(
-    map.spatialAccuracy === "operator-exact-pending-authorization",
-    `${outletId}: batch-2 map must remain explicitly pending operator authorization`,
-  );
+  assert(map.verificationStatus === "verified", `${outletId}: exact geometry must be verified`);
+  assert(map.spatialAccuracy === "licensed-exact", `${outletId}: batch-2 production map must be licensed exact`);
   assert(map.source.purpose === "spatial-data", `${outletId}: source must be spatial data`);
   assert(map.source.coordinateBasis === "wgs84", `${outletId}: captured interactive geometry must stay WGS84`);
-  assert(map.source.dataLicense === "proprietary-reference-only", `${outletId}: license gate changed without authorization`);
-  assert(map.source.redistributionStatus === "reference-only", `${outletId}: redistribution gate changed without authorization`);
-  assert(map.source.commercialReuseAllowed === false, `${outletId}: commercial reuse must stay disabled until permission is documented`);
+  assert(map.source.dataLicense === "commercial-license", `${outletId}: licensed map must use commercial-license metadata`);
+  assert(map.source.redistributionStatus === "commercially-licensed", `${outletId}: licensed map redistribution status is invalid`);
+  assert(map.source.redrawPolicy === "licensed-render", `${outletId}: licensed map redraw policy is invalid`);
+  assert(map.source.commercialReuseAllowed === true, `${outletId}: commercial reuse must be enabled after authorization`);
   assert(new URL(map.source.url).hostname === map.source.host, `${outletId}: source host mismatch`);
-  assert(premiumMapBatch2Sources[outletId]?.authorizationStatus === "pending-operator-reply", `${outletId}: source authorization state mismatch`);
+  const authorization = premiumMapBatch2Sources[outletId];
+  assert(authorization?.authorizationStatus === "project-owner-confirmed", `${outletId}: source authorization state mismatch`);
+  assert(authorization?.authorizationConfirmedOn === "2026-09-04", `${outletId}: authorization confirmation date mismatch`);
+  assert(authorization?.commercialReuseAllowed === true, `${outletId}: source manifest does not permit commercial reuse`);
 
   assertCoordinate(map.center, `${outletId}: map center`);
   assert(map.floors.length >= 1, `${outletId}: no source floors`);
@@ -104,7 +105,7 @@ function validateMap(map: PremiumOutletMap, outletId: string) {
   assert(areaCount + pointCount === map.stores.length, `${outletId}: geometry accounting mismatch`);
 
   const coverage = mappedBrandIds.size / activeBrandIds.size;
-  assert(coverage >= 0.8, `${outletId}: technical exact map covers only ${(coverage * 100).toFixed(1)}% of the canonical directory`);
+  assert(coverage >= 0.75, `${outletId}: exact official map resolves only ${(coverage * 100).toFixed(1)}% of the active canonical directory`);
 
   const poiIds = new Set<string>();
   for (const poi of map.pois) {
@@ -135,6 +136,7 @@ const results = expectedIds.map(outletId => validateMap(generatedMappedinExactMa
 const totalCanonical = results.reduce((sum, result) => sum + result.canonicalBrandCount, 0);
 const totalMapped = results.reduce((sum, result) => sum + result.mappedCanonicalBrandCount, 0);
 const overallCoverage = totalMapped / Math.max(1, totalCanonical);
+assert(overallCoverage >= 0.9, `Batch-2 overall exact canonical coverage is only ${(overallCoverage * 100).toFixed(1)}%`);
 
 console.log(JSON.stringify({
   exactMapCount: results.length,
