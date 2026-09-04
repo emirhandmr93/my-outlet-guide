@@ -78,7 +78,7 @@ import {
 import { getTargetQuickInfo } from "../constants/targetOutletLocalization";
 import { recordRecentVisit } from "../services/recentVisitsService";
 import { useRestaurantDetailData, useTaxFreeGuideData, useTransportationDetailData } from "../hooks/useDetailData";
-import { hasPremiumOutletMap } from "../features/premiumOutletMaps/catalog";
+import { hasPremiumOutletMap } from "../features/premiumOutletMaps/availability";
 import { getPremiumMapCopy } from "../features/premiumOutletMaps/copy";
 
 const outletMediaMode = getConfiguredOutletMediaMode();
