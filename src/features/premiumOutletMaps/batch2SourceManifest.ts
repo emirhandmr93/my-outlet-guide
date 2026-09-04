@@ -51,7 +51,7 @@ export const premiumMapBatch2Sources: Record<string, PremiumMapBatch2Source> = {
   "designer-outlet-parndorf": {
     outletId: "designer-outlet-parndorf",
     operator: "McArthurGlen",
-    mapUrl: "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/centre-map/",
+    mapUrl: "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/centremap/",
     authorizationStatus: "pending-operator-reply",
     technicalUse: "exact-spatial-validation",
     commercialReuseAllowed: false,
