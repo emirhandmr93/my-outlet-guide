@@ -1,0 +1,144 @@
+# One-time production release runner. Branch-scoped; not intended for main.
+name: Production release 2026-09-04
+
+on:
+  push:
+    branches:
+      - ops/release-2026-09-04
+    paths:
+      - .github/workflows/production-release-2026-09-04.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-release-2026-09-04
+  cancel-in-progress: true
+
+env:
+  EXPO_NO_TELEMETRY: "1"
+  NODE_OPTIONS: "--max-old-space-size=6144"
+
+jobs:
+  validate:
+    name: Final release validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout release commit
+        uses: actions/checkout@v4
+        with:
+          ref: ops/release-2026-09-04
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            functions/package-lock.json
+
+      - name: Install app dependencies
+        run: npm ci
+
+      - name: Install Functions dependencies
+        run: npm --prefix functions ci
+
+      - name: Build Functions
+        run: npm --prefix functions run build
+
+      - name: Validate production release
+        run: npm run validate:release
+
+  firebase-deploy:
+    name: Deploy Firebase production
+    needs: validate
+    runs-on: ubuntu-latest
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_MY_OUTLET_GUIDE }}
+    steps:
+      - name: Checkout release commit
+        uses: actions/checkout@v4
+        with:
+          ref: ops/release-2026-09-04
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            functions/package-lock.json
+
+      - name: Install app and Functions dependencies
+        run: |
+          npm ci
+          npm --prefix functions ci
+          npm install --global firebase-tools
+
+      - name: Configure Firebase authentication
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -n "${FIREBASE_SERVICE_ACCOUNT:-}" ]; then
+            credentials="$RUNNER_TEMP/firebase-service-account.json"
+            printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$credentials"
+            echo "GOOGLE_APPLICATION_CREDENTIALS=$credentials" >> "$GITHUB_ENV"
+            echo "Firebase service-account authentication configured."
+          elif [ -n "${FIREBASE_TOKEN:-}" ]; then
+            echo "Firebase token authentication configured."
+          else
+            echo "No Firebase CI credential is configured in GitHub Actions secrets."
+            exit 20
+          fi
+
+      - name: Deploy Firestore, Functions and Hosting
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=(--only firestore:rules,firestore:indexes,functions,hosting --project my-outlet-guide --non-interactive)
+          if [ -n "${FIREBASE_TOKEN:-}" ]; then
+            args+=(--token "$FIREBASE_TOKEN")
+          fi
+          npm run deploy:firebase -- "${args[@]}"
+
+  eas-build:
+    name: Start iOS and Android production builds
+    needs: validate
+    runs-on: ubuntu-latest
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      EAS_ACCESS_TOKEN: ${{ secrets.EAS_ACCESS_TOKEN }}
+    steps:
+      - name: Checkout release commit
+        uses: actions/checkout@v4
+        with:
+          ref: ops/release-2026-09-04
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install app dependencies
+        run: npm ci
+
+      - name: Configure Expo authentication
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${EXPO_TOKEN:-}" ] && [ -n "${EAS_ACCESS_TOKEN:-}" ]; then
+            echo "EXPO_TOKEN=$EAS_ACCESS_TOKEN" >> "$GITHUB_ENV"
+          elif [ -z "${EXPO_TOKEN:-}" ]; then
+            echo "No EXPO_TOKEN or EAS_ACCESS_TOKEN is configured in GitHub Actions secrets."
+            exit 21
+          fi
+
+      - name: Confirm Expo account access
+        run: npx eas-cli@latest whoami
+
+      - name: Start production builds
+        run: npx eas-cli@latest build --platform all --profile production --non-interactive --no-wait
