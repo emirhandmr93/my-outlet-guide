@@ -1,4 +1,5 @@
 # One-time production release runner. Branch-scoped; not intended for main.
+# Final runtime sync trigger: 2026-09-04
 name: Production release 2026-09-04
 
 on:
