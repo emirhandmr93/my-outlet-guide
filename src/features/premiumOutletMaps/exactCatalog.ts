@@ -1,6 +1,7 @@
 import type { PremiumOutletMap } from "./types";
 import type { PremiumOutletMapId } from "./catalog";
 import { generatedMappedinExactMaps } from "./generatedMappedinExactMaps";
+import { generatedMappedinExactMapsBatch2 } from "./generatedMappedinExactMapsBatch2";
 import { generatedPdfExactMaps } from "./generatedPdfExactMaps";
 
 /**
@@ -11,4 +12,5 @@ import { generatedPdfExactMaps } from "./generatedPdfExactMaps";
 export const exactPremiumOutletMaps: Partial<Record<PremiumOutletMapId, PremiumOutletMap>> = {
   ...generatedMappedinExactMaps,
   ...generatedPdfExactMaps,
+  ...generatedMappedinExactMapsBatch2,
 };

@@ -26,6 +26,16 @@ export const premiumOutletMapIds = [
   "the-mall-firenze",
   "noventa",
   "fidenza-village",
+  "ingolstadt-village",
+  "wertheim-village",
+  "maasmechelen-village",
+  "kildare-village",
+  "designer-outlet-parndorf",
+  "designer-outlet-salzburg",
+  "designer-outlet-roosendaal",
+  "designer-outlet-neumunster",
+  "designer-outlet-ochtrup",
+  "castel-romano",
 ] as const;
 
 export type PremiumOutletMapId = (typeof premiumOutletMapIds)[number];
@@ -41,6 +51,16 @@ const sourceUrls: Record<PremiumOutletMapId, string> = {
   "the-mall-firenze": "https://firenze.themall.it/en/visit-us",
   noventa: "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-noventa-di-piave/map/",
   "fidenza-village": "https://www.thebicestercollection.com/fidenza-village/en/map/",
+  "ingolstadt-village": "https://www.thebicestercollection.com/ingolstadt-village/en/map",
+  "wertheim-village": "https://www.thebicestercollection.com/wertheim-village/en/map/",
+  "maasmechelen-village": "https://www.thebicestercollection.com/maasmechelen-village/en/map",
+  "kildare-village": "https://www.thebicestercollection.com/kildare-village/en/map",
+  "designer-outlet-parndorf": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-parndorf/centremap/",
+  "designer-outlet-salzburg": "https://www.mcarthurglen.com/en/outlets/at/designer-outlet-salzburg/center-map/",
+  "designer-outlet-roosendaal": "https://www.mcarthurglen.com/en/outlets/nl/designer-outlet-roosendaal/centre-map/",
+  "designer-outlet-neumunster": "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-neumuenster/center-map/",
+  "designer-outlet-ochtrup": "https://www.mcarthurglen.com/en/outlets/de/designer-outlet-ochtrup/centre-map/",
+  "castel-romano": "https://www.mcarthurglen.com/en/outlets/it/designer-outlet-castel-romano/map/",
 };
 
 const floorLabels: Record<TranslationLanguage, string> = {
@@ -139,7 +159,7 @@ function buildSource(outletId: PremiumOutletMapId): PremiumMapSource {
   return {
     url,
     host: new URL(url).hostname,
-    checkedOn: "2026-09-03",
+    checkedOn: "2026-09-04",
     purpose: "directory-reference",
     redrawPolicy: "original-editorial-redraw",
     redistributionStatus: "reference-only",
@@ -165,7 +185,7 @@ function buildMap(outletId: PremiumOutletMapId): PremiumOutletMap {
     defaultZoom: 17.25,
     spatialAccuracy: "schematic-reference",
     verificationStatus: "draft",
-    lastUpdated: "2026-09-03",
+    lastUpdated: "2026-09-04",
     floors: [floor],
     stores: buildStores(outletId, center, String(outlet.openingHours ?? "—")),
     pois: buildPois(center),

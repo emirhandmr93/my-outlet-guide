@@ -68,7 +68,7 @@ export type PremiumMapFloor = {
 };
 
 export type PremiumMapEnvironment = {
-  /** Omitted when an authorized plan proves tenant positions but does not define a true venue boundary. */
+  /** Omitted when verified source evidence proves tenant positions but does not define a true venue boundary. */
   siteBoundary?: Polygon;
   roads: Coordinate[][];
   walkways: Coordinate[][];

@@ -1,0 +1,1094 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-04T06:28:13.528Z",
+  "summary": {
+    "outletCount": 10,
+    "exactMapCount": 10,
+    "canonicalBrandCount": 1043,
+    "mappedCanonicalBrandCount": 897,
+    "exactStoreInstanceCount": 909,
+    "poiCount": 158
+  },
+  "results": [
+    {
+      "outletId": "ingolstadt-village",
+      "canonicalBrandCount": 101,
+      "mappedCanonicalBrandCount": 95,
+      "canonicalCoverage": 0.9406,
+      "exactStoreInstanceCount": 99,
+      "exactAreaStoreCount": 98,
+      "exactPointStoreCount": 1,
+      "floorCount": 1,
+      "poiCount": 10,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "aerin",
+          "brandName": "AERIN"
+        },
+        {
+          "brandId": "aveda",
+          "brandName": "AVEDA"
+        },
+        {
+          "brandId": "geox",
+          "brandName": "Geox"
+        },
+        {
+          "brandId": "n-peal-cashmere",
+          "brandName": "N.Peal Cashmere"
+        },
+        {
+          "brandId": "philipp-plein",
+          "brandName": "Philipp Plein"
+        },
+        {
+          "brandId": "sunglass-hut-lux",
+          "brandName": "Sunglass Hut Lux"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "Bollicine&Co. Champagne Bar",
+        "Coffee Fellows",
+        "Crêpes Couture",
+        "Indochine",
+        "Ladurée Salon de Thé",
+        "Longchamp",
+        "Mancini",
+        "mes amis by mey",
+        "N.Peal",
+        "PHILLIP PLEIN",
+        "THE APARTMENT"
+      ]
+    },
+    {
+      "outletId": "wertheim-village",
+      "canonicalBrandCount": 127,
+      "mappedCanonicalBrandCount": 99,
+      "canonicalCoverage": 0.7795,
+      "exactStoreInstanceCount": 99,
+      "exactAreaStoreCount": 98,
+      "exactPointStoreCount": 1,
+      "floorCount": 1,
+      "poiCount": 6,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "aerin",
+          "brandName": "AERIN"
+        },
+        {
+          "brandId": "aveda",
+          "brandName": "AVEDA"
+        },
+        {
+          "brandId": "bobbi-brown",
+          "brandName": "BOBBI BROWN"
+        },
+        {
+          "brandId": "breitling",
+          "brandName": "Breitling"
+        },
+        {
+          "brandId": "bumble-and-bumble",
+          "brandName": "Bumble and bumble"
+        },
+        {
+          "brandId": "calvin-klein-underwear",
+          "brandName": "Calvin Klein Underwear"
+        },
+        {
+          "brandId": "clinique",
+          "brandName": "Clinique"
+        },
+        {
+          "brandId": "darphin-paris",
+          "brandName": "Darphin Paris"
+        },
+        {
+          "brandId": "dr-jart",
+          "brandName": "Dr. Jart+"
+        },
+        {
+          "brandId": "ebel",
+          "brandName": "Ebel"
+        },
+        {
+          "brandId": "estee-lauder",
+          "brandName": "Estée Lauder"
+        },
+        {
+          "brandId": "hamilton",
+          "brandName": "Hamilton"
+        },
+        {
+          "brandId": "hogan",
+          "brandName": "Hogan"
+        },
+        {
+          "brandId": "jo-malone-london",
+          "brandName": "Jo Malone London"
+        },
+        {
+          "brandId": "junghans",
+          "brandName": "Junghans"
+        },
+        {
+          "brandId": "la-mer",
+          "brandName": "La Mer"
+        },
+        {
+          "brandId": "mac-cosmetics",
+          "brandName": "MAC Cosmetics"
+        },
+        {
+          "brandId": "mcm",
+          "brandName": "MCM"
+        },
+        {
+          "brandId": "montblanc",
+          "brandName": "Montblanc"
+        },
+        {
+          "brandId": "origins",
+          "brandName": "ORIGINS"
+        },
+        {
+          "brandId": "smashbox",
+          "brandName": "smashbox"
+        },
+        {
+          "brandId": "tag-heuer",
+          "brandName": "TAG Heuer"
+        },
+        {
+          "brandId": "tissot",
+          "brandName": "Tissot"
+        },
+        {
+          "brandId": "tom-ford",
+          "brandName": "Tom Ford"
+        },
+        {
+          "brandId": "tom-tailor",
+          "brandName": "Tom Tailor"
+        },
+        {
+          "brandId": "tom-tailor-denim",
+          "brandName": "Tom Tailor Denim"
+        },
+        {
+          "brandId": "too-faced",
+          "brandName": "Too Faced"
+        },
+        {
+          "brandId": "union-glashutte",
+          "brandName": "Union Glashütte"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "Ecco",
+        "Elaine's TakeAway",
+        "La Piazza",
+        "Lindt Café",
+        "Marc O'Polo Clearance Sale",
+        "Mon Amour Bio Crêpes",
+        "Müller's roast & grill",
+        "OLYMP",
+        "Saigon Social Club",
+        "Seating Area",
+        "Selected",
+        "The Coffee Corner",
+        "The Waffle"
+      ]
+    },
+    {
+      "outletId": "maasmechelen-village",
+      "canonicalBrandCount": 103,
+      "mappedCanonicalBrandCount": 85,
+      "canonicalCoverage": 0.8252,
+      "exactStoreInstanceCount": 86,
+      "exactAreaStoreCount": 86,
+      "exactPointStoreCount": 0,
+      "floorCount": 1,
+      "poiCount": 10,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "biotherm",
+          "brandName": "Biotherm"
+        },
+        {
+          "brandId": "bobbi-brown",
+          "brandName": "BOBBI BROWN"
+        },
+        {
+          "brandId": "chloe",
+          "brandName": "Chloé"
+        },
+        {
+          "brandId": "clinique",
+          "brandName": "Clinique"
+        },
+        {
+          "brandId": "demeyere",
+          "brandName": "Demeyere"
+        },
+        {
+          "brandId": "dkny",
+          "brandName": "DKNY"
+        },
+        {
+          "brandId": "essentiel-antwerp",
+          "brandName": "Essentiel Antwerp"
+        },
+        {
+          "brandId": "estee-lauder",
+          "brandName": "Estée Lauder"
+        },
+        {
+          "brandId": "hackett-london",
+          "brandName": "Hackett London"
+        },
+        {
+          "brandId": "kenzo",
+          "brandName": "Kenzo"
+        },
+        {
+          "brandId": "kiehls",
+          "brandName": "Kiehl’s Since 1851"
+        },
+        {
+          "brandId": "lancome",
+          "brandName": "Lancôme"
+        },
+        {
+          "brandId": "mac-cosmetics",
+          "brandName": "MAC Cosmetics"
+        },
+        {
+          "brandId": "marc-jacobs",
+          "brandName": "Marc Jacobs"
+        },
+        {
+          "brandId": "nik-and-nik",
+          "brandName": "NIK&NIK"
+        },
+        {
+          "brandId": "selected",
+          "brandName": "Selected"
+        },
+        {
+          "brandId": "twinset",
+          "brandName": "Twinset"
+        },
+        {
+          "brandId": "zwilling",
+          "brandName": "Zwilling"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "CHASIN’",
+        "Cho Gao",
+        "Demeyere - Zwilling",
+        "El Verde",
+        "Essentiel",
+        "Giuliano",
+        "Hackett",
+        "Le Pain Quotidien",
+        "Le Petit Belge",
+        "Le Salon",
+        "Marc O'Polo Pop-Up",
+        "River Woods Junior",
+        "Sunglass Hut Lux",
+        "TWINSET Milano",
+        "What A Waffle",
+        "Wolford"
+      ]
+    },
+    {
+      "outletId": "kildare-village",
+      "canonicalBrandCount": 122,
+      "mappedCanonicalBrandCount": 98,
+      "canonicalCoverage": 0.8033,
+      "exactStoreInstanceCount": 101,
+      "exactAreaStoreCount": 100,
+      "exactPointStoreCount": 1,
+      "floorCount": 1,
+      "poiCount": 14,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "cambridge-satchel-company",
+          "brandName": "Cambridge Satchel Company"
+        },
+        {
+          "brandId": "certina",
+          "brandName": "Certina"
+        },
+        {
+          "brandId": "chloe-kids",
+          "brandName": "Chloé Kids"
+        },
+        {
+          "brandId": "currentbody",
+          "brandName": "CurrentBody"
+        },
+        {
+          "brandId": "denner-london",
+          "brandName": "Denner London"
+        },
+        {
+          "brandId": "flik-flak",
+          "brandName": "Flik Flak"
+        },
+        {
+          "brandId": "hamilton",
+          "brandName": "Hamilton"
+        },
+        {
+          "brandId": "havaianas",
+          "brandName": "Havaianas"
+        },
+        {
+          "brandId": "karl-lagerfeld-kids",
+          "brandName": "Karl Lagerfeld Kids"
+        },
+        {
+          "brandId": "kenzo-kids",
+          "brandName": "KENZO Kids"
+        },
+        {
+          "brandId": "loccitane-en-provence",
+          "brandName": "L'Occitane en Provence"
+        },
+        {
+          "brandId": "little-marc-jacobs",
+          "brandName": "LITTLE MARC JACOBS"
+        },
+        {
+          "brandId": "longines",
+          "brandName": "Longines"
+        },
+        {
+          "brandId": "mantra",
+          "brandName": "Mantra"
+        },
+        {
+          "brandId": "noa",
+          "brandName": "NOA"
+        },
+        {
+          "brandId": "nuxe",
+          "brandName": "Nuxe"
+        },
+        {
+          "brandId": "polo-ralph-lauren-children",
+          "brandName": "Polo Ralph Lauren Children"
+        },
+        {
+          "brandId": "pretty-lavish",
+          "brandName": "Pretty Lavish"
+        },
+        {
+          "brandId": "rado",
+          "brandName": "Rado"
+        },
+        {
+          "brandId": "skingredients",
+          "brandName": "Skingredients"
+        },
+        {
+          "brandId": "spell",
+          "brandName": "Spell"
+        },
+        {
+          "brandId": "swatch",
+          "brandName": "Swatch"
+        },
+        {
+          "brandId": "tissot",
+          "brandName": "Tissot"
+        },
+        {
+          "brandId": "wondercru",
+          "brandName": "WonderCru"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "7 For All Mankind",
+        "American Vintage",
+        "Armani",
+        "Asics",
+        "Astrid & Miyu",
+        "Avoca",
+        "Benefit",
+        "Biang Biang Noodle",
+        "Boggi Milano",
+        "Boss",
+        "Butlers Chocolate Cafe",
+        "Calvin Klein Pop-Up",
+        "Creed",
+        "Crêperie Angélie",
+        "Kildare Gallery",
+        "L'Occitane",
+        "Le Salon",
+        "Mani Pizza",
+        "Number 55 at Kildare Village",
+        "Oakberry",
+        "Oakberry",
+        "Polo Ralph Lauren Children",
+        "Polo Ralph Lauren Men",
+        "Pret A Manger",
+        "Saba",
+        "Sprout & Co.",
+        "Starbucks",
+        "Sun Fashion Lab",
+        "The Apartment",
+        "The Rolling Donut",
+        "Wright & Sons",
+        "Zadig&Voltaire",
+        "Zwilling"
+      ]
+    },
+    {
+      "outletId": "designer-outlet-parndorf",
+      "canonicalBrandCount": 146,
+      "mappedCanonicalBrandCount": 139,
+      "canonicalCoverage": 0.9521,
+      "exactStoreInstanceCount": 140,
+      "exactAreaStoreCount": 140,
+      "exactPointStoreCount": 0,
+      "floorCount": 2,
+      "poiCount": 41,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "calvin-klein-jeans",
+          "brandName": "Calvin Klein Jeans"
+        },
+        {
+          "brandId": "dinoland",
+          "brandName": "Dinoland"
+        },
+        {
+          "brandId": "hogan",
+          "brandName": "Hogan"
+        },
+        {
+          "brandId": "le-creuset-pop-up",
+          "brandName": "Le Creuset Pop Up"
+        },
+        {
+          "brandId": "mcqueen",
+          "brandName": "McQueen"
+        },
+        {
+          "brandId": "moncler-grenoble",
+          "brandName": "Moncler Grenoble"
+        },
+        {
+          "brandId": "roberto-cavalli",
+          "brandName": "Roberto Cavalli"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "adidas Kids",
+        "Amici Napoli",
+        "Artner",
+        "Asia Up",
+        "Bistrot Italiano",
+        "Burger King",
+        "Calvin Klein",
+        "Chaluk",
+        "Cioco Bar",
+        "Dinoland",
+        "Döner Bros",
+        "Gant",
+        "Green District Buns & Bowls",
+        "Guest Service",
+        "Interchange",
+        "Kapten & Son",
+        "Kennel & Schmenger",
+        "Le Burger",
+        "Le Creuset Pop Up",
+        "Lemon Bar",
+        "Leon Street Food",
+        "Lia's",
+        "Lia's Bistrot",
+        "Liska",
+        "Liska",
+        "McQueen",
+        "Moncler",
+        "myBurgenland Bistro",
+        "Nannuk",
+        "Nordsee",
+        "Original Salzburger",
+        "Pretzels Paradise",
+        "Puma Kids",
+        "Roberto Cavalli",
+        "Rossopomodoro",
+        "Sacher Café",
+        "Starbucks",
+        "Stone Island",
+        "Tailor Service",
+        "Tommy's Coffee",
+        "Tory Burch",
+        "Tourism Information Desk",
+        "Villeroy & Boch Pop Up Store",
+        "Wagamama",
+        "WRSTBHVR",
+        "Wurstliebe"
+      ]
+    },
+    {
+      "outletId": "designer-outlet-salzburg",
+      "canonicalBrandCount": 75,
+      "mappedCanonicalBrandCount": 49,
+      "canonicalCoverage": 0.6533,
+      "exactStoreInstanceCount": 50,
+      "exactAreaStoreCount": 50,
+      "exactPointStoreCount": 0,
+      "floorCount": 2,
+      "poiCount": 16,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "atomic",
+          "brandName": "ATOMIC"
+        },
+        {
+          "brandId": "camel-active",
+          "brandName": "Camel Active"
+        },
+        {
+          "brandId": "carhartt-wip",
+          "brandName": "Carhartt WIP"
+        },
+        {
+          "brandId": "columbia",
+          "brandName": "Columbia"
+        },
+        {
+          "brandId": "comma",
+          "brandName": "Comma"
+        },
+        {
+          "brandId": "crocs",
+          "brandName": "Crocs"
+        },
+        {
+          "brandId": "dyson",
+          "brandName": "Dyson"
+        },
+        {
+          "brandId": "fossil",
+          "brandName": "Fossil"
+        },
+        {
+          "brandId": "furla",
+          "brandName": "Furla"
+        },
+        {
+          "brandId": "gant",
+          "brandName": "GANT"
+        },
+        {
+          "brandId": "geox",
+          "brandName": "Geox"
+        },
+        {
+          "brandId": "home-and-cook",
+          "brandName": "Home & Cook"
+        },
+        {
+          "brandId": "jack-and-jones",
+          "brandName": "Jack & Jones"
+        },
+        {
+          "brandId": "lacoste",
+          "brandName": "Lacoste"
+        },
+        {
+          "brandId": "levis",
+          "brandName": "Levi's"
+        },
+        {
+          "brandId": "liebeskind",
+          "brandName": "Liebeskind"
+        },
+        {
+          "brandId": "marc-opolo",
+          "brandName": "Marc O’Polo"
+        },
+        {
+          "brandId": "pandora",
+          "brandName": "Pandora"
+        },
+        {
+          "brandId": "pepe-jeans",
+          "brandName": "Pepe Jeans"
+        },
+        {
+          "brandId": "superdry",
+          "brandName": "Superdry"
+        },
+        {
+          "brandId": "the-north-face",
+          "brandName": "The North Face"
+        },
+        {
+          "brandId": "tommy-hilfiger",
+          "brandName": "Tommy Hilfiger"
+        },
+        {
+          "brandId": "triumph",
+          "brandName": "Triumph"
+        },
+        {
+          "brandId": "vero-moda",
+          "brandName": "Vero Moda"
+        },
+        {
+          "brandId": "windsor",
+          "brandName": "Windsor"
+        },
+        {
+          "brandId": "wolford",
+          "brandName": "Wolford"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "Asia Cocos",
+        "Bruno Banani",
+        "Burger Lounge",
+        "Café Caprice",
+        "Calida & Aubade",
+        "Change Lingerie & Underwear",
+        "CINEPLEXX SALZBURG AIRPORT",
+        "Cinque",
+        "Coach",
+        "Coffee & Baar - powered by Yazzoon",
+        "ECCO",
+        "FALKE",
+        "Fellhof",
+        "Frozen Yoghurt",
+        "GK Mayer Shoes",
+        "Gössl",
+        "GUESS Accessories",
+        "Hechter Paris",
+        "Hunkemöller",
+        "Intrend",
+        "JDY",
+        "Kaiten Asia",
+        "Karl Lagerfeld",
+        "Le Creuset",
+        "Luis Trenker",
+        "Mama's Deli",
+        "Manner",
+        "Marc Cain",
+        "Marvelis",
+        "McDonald's",
+        "Mey",
+        "Möve",
+        "Name It",
+        "O'Neill",
+        "Odlo",
+        "Pepe Jeans",
+        "Phonever",
+        "Playmobil",
+        "Rossopomodoro",
+        "Salzburger Brezen Reisinger",
+        "sehen! Wutscher",
+        "Sportalm",
+        "Street One",
+        "Strellson",
+        "Strolz by Bründl Sports Pop-up Store - meet us in Unit 01.260",
+        "Tamaris",
+        "The Bakery",
+        "The Body Shop",
+        "Trafik Pliem",
+        "Trespass",
+        "UYN",
+        "Van Laack",
+        "Volcom",
+        "Waffle Station"
+      ]
+    },
+    {
+      "outletId": "designer-outlet-roosendaal",
+      "canonicalBrandCount": 99,
+      "mappedCanonicalBrandCount": 94,
+      "canonicalCoverage": 0.9495,
+      "exactStoreInstanceCount": 96,
+      "exactAreaStoreCount": 96,
+      "exactPointStoreCount": 0,
+      "floorCount": 1,
+      "poiCount": 6,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "phase-eight",
+          "brandName": "Phase Eight"
+        },
+        {
+          "brandId": "river-woods",
+          "brandName": "River Woods"
+        },
+        {
+          "brandId": "suitsupply",
+          "brandName": "Suitsupply"
+        },
+        {
+          "brandId": "tefal",
+          "brandName": "Tefal"
+        },
+        {
+          "brandId": "vingino",
+          "brandName": "Vingino"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "4funkyflavours",
+        "BALR.",
+        "Bonton",
+        "Casa del Caffè",
+        "Choco Strawberry",
+        "Converse",
+        "Daan's Churros",
+        "Daan's Churros",
+        "Daily Flowers",
+        "Dunkin'",
+        "Dunkin'",
+        "Fabienne Chapot",
+        "Frites Atelier",
+        "JACK & JONES Kids",
+        "La Place",
+        "Nubikk",
+        "Per Tutti",
+        "Phase Eight",
+        "River Woods",
+        "Sacha",
+        "Suit Supply",
+        "Vingino",
+        "Visbar"
+      ]
+    },
+    {
+      "outletId": "designer-outlet-neumunster",
+      "canonicalBrandCount": 120,
+      "mappedCanonicalBrandCount": 118,
+      "canonicalCoverage": 0.9833,
+      "exactStoreInstanceCount": 118,
+      "exactAreaStoreCount": 118,
+      "exactPointStoreCount": 0,
+      "floorCount": 1,
+      "poiCount": 19,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "bally",
+          "brandName": "Bally"
+        },
+        {
+          "brandId": "comma",
+          "brandName": "Comma"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "Asiagourmet",
+        "Bistrot",
+        "Comma",
+        "Five Guys",
+        "Frittenwerk",
+        "Giovanni L.",
+        "Marché Mövenpick",
+        "Nordsee",
+        "OACE",
+        "Starbucks",
+        "Tackmann's Coffee House"
+      ]
+    },
+    {
+      "outletId": "designer-outlet-ochtrup",
+      "canonicalBrandCount": 64,
+      "mappedCanonicalBrandCount": 44,
+      "canonicalCoverage": 0.6875,
+      "exactStoreInstanceCount": 44,
+      "exactAreaStoreCount": 44,
+      "exactPointStoreCount": 0,
+      "floorCount": 2,
+      "poiCount": 15,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "aigner",
+          "brandName": "Aigner"
+        },
+        {
+          "brandId": "camel-active",
+          "brandName": "Camel Active"
+        },
+        {
+          "brandId": "camp-david",
+          "brandName": "Camp David"
+        },
+        {
+          "brandId": "christ",
+          "brandName": "CHRIST"
+        },
+        {
+          "brandId": "cinque",
+          "brandName": "Cinque"
+        },
+        {
+          "brandId": "desigual",
+          "brandName": "Desigual"
+        },
+        {
+          "brandId": "esprit",
+          "brandName": "Esprit"
+        },
+        {
+          "brandId": "garcia",
+          "brandName": "Garcia"
+        },
+        {
+          "brandId": "geox",
+          "brandName": "Geox"
+        },
+        {
+          "brandId": "haribo",
+          "brandName": "HARIBO"
+        },
+        {
+          "brandId": "home-and-cook",
+          "brandName": "Home & Cook"
+        },
+        {
+          "brandId": "pandora",
+          "brandName": "Pandora"
+        },
+        {
+          "brandId": "pepe-jeans",
+          "brandName": "Pepe Jeans"
+        },
+        {
+          "brandId": "pierre-cardin",
+          "brandName": "Pierre Cardin"
+        },
+        {
+          "brandId": "rosenthal",
+          "brandName": "Rosenthal"
+        },
+        {
+          "brandId": "s-oliver",
+          "brandName": "s.Oliver"
+        },
+        {
+          "brandId": "sunglass-hut",
+          "brandName": "Sunglass Hut"
+        },
+        {
+          "brandId": "triumph",
+          "brandName": "Triumph"
+        },
+        {
+          "brandId": "under-armour",
+          "brandName": "Under Armour"
+        },
+        {
+          "brandId": "zero",
+          "brandName": "zero"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "Adenauer & Co.",
+        "Alice Premium Döner",
+        "Alina Cosmetics",
+        "Amor",
+        "Ara",
+        "Beltman's",
+        "BIANCA",
+        "Bugatti",
+        "Ceceba",
+        "Columbia",
+        "Copenhagen",
+        "Crocs",
+        "Frittenwerk",
+        "Frooters",
+        "G-Star",
+        "Gant",
+        "Hechter Paris",
+        "Hunkemöller",
+        "Jack Wolfskin",
+        "JDY",
+        "JOOP!",
+        "Karl Lagerfeld Men",
+        "La Passione",
+        "Opus",
+        "Petrol Industries",
+        "Pick Nick",
+        "PME Legend",
+        "Protest",
+        "Sigikid",
+        "Speidel",
+        "Starbucks",
+        "Steiff",
+        "Street One Men",
+        "Swarovski",
+        "Timberland",
+        "U.S. Polo Assn."
+      ]
+    },
+    {
+      "outletId": "castel-romano",
+      "canonicalBrandCount": 86,
+      "mappedCanonicalBrandCount": 76,
+      "canonicalCoverage": 0.8837,
+      "exactStoreInstanceCount": 76,
+      "exactAreaStoreCount": 76,
+      "exactPointStoreCount": 0,
+      "floorCount": 1,
+      "poiCount": 21,
+      "authorizationStatus": "project-owner-confirmed",
+      "authorizationConfirmedOn": "2026-09-04",
+      "unmatchedBrands": [
+        {
+          "brandId": "aquascutum",
+          "brandName": "Aquascutum"
+        },
+        {
+          "brandId": "benetton",
+          "brandName": "Benetton"
+        },
+        {
+          "brandId": "fratelli-rossetti",
+          "brandName": "Fratelli Rossetti"
+        },
+        {
+          "brandId": "gas",
+          "brandName": "Gas"
+        },
+        {
+          "brandId": "jack-and-jones",
+          "brandName": "Jack & Jones"
+        },
+        {
+          "brandId": "kappa",
+          "brandName": "Kappa"
+        },
+        {
+          "brandId": "kocca",
+          "brandName": "Kocca"
+        },
+        {
+          "brandId": "monnalisa",
+          "brandName": "Monnalisa"
+        },
+        {
+          "brandId": "polo-ralph-lauren",
+          "brandName": "Polo Ralph Lauren"
+        },
+        {
+          "brandId": "sisley",
+          "brandName": "Sisley"
+        }
+      ],
+      "unmatchedOfficialTenantNames": [
+        "120% Lino",
+        "Alcott",
+        "Amina Rubinacci",
+        "Aquascutum Active",
+        "Benetton",
+        "Bialetti",
+        "Bollicine&Co",
+        "Bonetti",
+        "Borsalino",
+        "Bottega del Sarto",
+        "Caleffi",
+        "Caractère",
+        "CHIARA BONI - LA PETITE ROBE",
+        "CK Underwear",
+        "Class",
+        "Columbia",
+        "Converse",
+        "Corneliani",
+        "Crocs",
+        "David Naman",
+        "David Saddler",
+        "Dondup",
+        "Dsquared2",
+        "Eat Artisti del Gusto - llly",
+        "Elena Mirò",
+        "Eredi Pisanò",
+        "Farinella",
+        "Flavio Castellani",
+        "Fratelli Rossetti",
+        "Gaëlle Paris",
+        "Gant",
+        "Guess Accessories",
+        "Ham Holy Burger",
+        "Harmont & Blaine Junior",
+        "Hour Passion",
+        "Igi&Co",
+        "Jimmy Choo",
+        "K-way",
+        "Kids around",
+        "L'Occitane",
+        "L'Oreal",
+        "La Casa Italiana",
+        "Lagostina&Rowenta",
+        "Le Creuset",
+        "Lindt",
+        "Liu Jo Kids",
+        "Liu Jo uomo",
+        "Liviana Conti",
+        "Luisa Spagnoli",
+        "Luxury Zone",
+        "Manuel Ritz",
+        "Marina Militare",
+        "Mastro Geppetto",
+        "McDonald's",
+        "Missoni",
+        "Momonì",
+        "Motivi",
+        "Naïma",
+        "Nespresso",
+        "Obicà",
+        "Oltre",
+        "Outly",
+        "Outly Luxury",
+        "Pal Zileri",
+        "Patrizia Pepe",
+        "Paul Taylor",
+        "Petit Bateau",
+        "Pinalli",
+        "Piquadro",
+        "Primigi",
+        "Pupa",
+        "Samsonite",
+        "Signorvino",
+        "Sisley",
+        "Starbucks",
+        "Sundek",
+        "Suns Boards",
+        "Tailor Club",
+        "Timberland",
+        "Twinset",
+        "Venchi",
+        "Vilebrequin",
+        "Yamamay"
+      ]
+    }
+  ]
+}
