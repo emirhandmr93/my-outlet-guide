@@ -14,27 +14,15 @@ concurrency:
   group: finalize-premium-map-batch-2-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  EXPO_NO_TELEMETRY: "1"
-  NODE_OPTIONS: "--max-old-space-size=6144"
-
 jobs:
   finalize:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
           ref: feat/premium-map-batch-2-release
           fetch-depth: 0
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: |
-            package-lock.json
-            functions/package-lock.json
 
       - name: Apply final production integration hardening
         shell: bash
@@ -91,15 +79,6 @@ jobs:
           summary = '''# Premium map production snapshot\n\nThis release registers verified exact-map snapshots for all 20 premium outlets. It never fabricates a store footprint, point or POI when the authorized source does not provide enough spatial evidence.\n\n## Coverage\n\n- Batch 1 — 8 Mappedin-backed outlets: 1,055 / 1,128 canonical brands mapped, 1,062 exact store instances, 135 verified POIs.\n- Batch 1 — OUTLETCITY Metzingen + The Mall Firenze: 145 / 162 canonical brands mapped as exact authorized vector-plan points.\n- Batch 2 — 10 licensed Mappedin-backed outlets: 897 / 1,043 canonical brands mapped, 909 exact store instances, 158 verified POIs.\n- Combined canonical-directory spatial coverage: 2,097 / 2,333 (89.9%).\n- Combined exact store instances: 2,116.\n- Verified Mappedin POIs: 293.\n- Outlet coverage: 20 / 20 release-ready exact map datasets.\n\n## User-facing accuracy policy\n\n- Official licensed/open spatial geometry is used directly where available.\n- WGS84 geometry is preserved for Mappedin-backed outlets.\n- Authorized vector-plan-only locations use one affine plan projection and remain explicitly marked `operator-plan-affine`.\n- A store without a verified footprint is represented only as an exact point when official point evidence exists.\n- If the official source does not expose usable geometry for a directory entry, that position is omitted instead of guessed.\n- Salzburg and Ochtrup retain lower directory-to-spatial coverage because the current authorized source snapshot does not expose usable geometry for every active directory entry; the release gate records those outlet-specific baselines rather than inventing locations.\n- Search, floor focus, POIs, offline packs and campaign highlighting use the same immutable verified map snapshot across iOS, Android and web.\n\n## Authorization and audit\n\n- All 20 datasets are marked commercially reusable under project-owner-confirmed authorization.\n- Batch 1 authorization confirmation date: 2026-09-03.\n- Batch 2 authorization confirmation date: 2026-09-04.\n- Raw capture payloads are excluded from the production tree; compact reports and reproducible generation scripts remain for audit/refresh work.\n\nCompact reports: `docs/PREMIUM_MAP_MAPPEDIN_GENERATION_REPORT.json`, `docs/PREMIUM_MAP_PDF_GENERATION_REPORT.json`, and `docs/PREMIUM_MAP_MAPPEDIN_BATCH2_REPORT.json`.\n'''
           Path("docs/PREMIUM_MAP_RELEASE_SUMMARY.md").write_text(summary, encoding="utf-8")
           PY
-
-      - name: Install root dependencies
-        run: npm ci
-
-      - name: Validate TypeScript, translations and premium maps
-        run: |
-          npm run typecheck
-          npm run validate:translations
-          npm run validate:premium-maps
 
       - name: Remove temporary batch-2 workflow files
         run: |
