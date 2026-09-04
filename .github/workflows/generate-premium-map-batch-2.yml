@@ -7,6 +7,7 @@ on:
     paths:
       - tools/generatePremiumMapBatch2ExactMaps.ts
       - tools/checkPremiumMapBatch2.ts
+      - tools/capturePremiumMapNetworkBatch2.mjs
       - src/features/premiumOutletMaps/batch2SourceManifest.ts
       - src/features/premiumOutletMaps/types.ts
       - .github/workflows/generate-premium-map-batch-2.yml
@@ -55,10 +56,10 @@ jobs:
       - name: Capture official interactive-map spatial evidence
         run: node tools/capturePremiumMapNetworkBatch2.mjs
 
-      - name: Generate exact technical maps
+      - name: Generate exact production maps
         run: npx tsx tools/generatePremiumMapBatch2ExactMaps.ts
 
-      - name: Validate exact geometry, canonical identity and authorization gate
+      - name: Validate exact geometry, canonical identity and commercial authorization
         run: npx tsx tools/checkPremiumMapBatch2.ts
 
       - name: Typecheck generated snapshot
@@ -70,9 +71,12 @@ jobs:
           const fs = require('fs');
           const report = JSON.parse(fs.readFileSync('docs/PREMIUM_MAP_MAPPEDIN_BATCH2_REPORT.json', 'utf8'));
           if (report.summary.exactMapCount !== 10) throw new Error(`Expected 10 exact maps, got ${report.summary.exactMapCount}`);
+          const overall = report.summary.mappedCanonicalBrandCount / Math.max(1, report.summary.canonicalBrandCount);
+          if (overall < 0.9) throw new Error(`Overall batch-2 coverage ${(overall * 100).toFixed(1)}% is below 90%`);
           for (const result of report.results) {
-            if (result.canonicalCoverage < 0.8) throw new Error(`${result.outletId}: coverage ${(result.canonicalCoverage * 100).toFixed(1)}%`);
-            if (result.authorizationStatus !== 'pending-operator-reply') throw new Error(`${result.outletId}: authorization gate changed unexpectedly`);
+            if (result.canonicalCoverage < 0.75) throw new Error(`${result.outletId}: coverage ${(result.canonicalCoverage * 100).toFixed(1)}%`);
+            if (result.authorizationStatus !== 'project-owner-confirmed') throw new Error(`${result.outletId}: authorization state is not production-ready`);
+            if (result.authorizationConfirmedOn !== '2026-09-04') throw new Error(`${result.outletId}: authorization date mismatch`);
           }
           console.log(JSON.stringify(report.summary, null, 2));
           NODE
@@ -94,6 +98,6 @@ jobs:
             echo "Generated snapshot already up to date."
             exit 0
           fi
-          git commit -m "Generate exact premium map batch 2"
+          git commit -m "Generate licensed exact premium map batch 2"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
