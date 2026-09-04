@@ -6,6 +6,7 @@ export type MapDetailMode = "premium" | "simple";
 export type SpatialAccuracy =
   | "schematic-reference"
   | "open-data-verified"
+  | "operator-exact-pending-authorization"
   | "licensed-exact"
   | "licensed-plan-exact"
   | "surveyed-exact";
@@ -68,7 +69,7 @@ export type PremiumMapFloor = {
 };
 
 export type PremiumMapEnvironment = {
-  /** Omitted when an authorized plan proves tenant positions but does not define a true venue boundary. */
+  /** Omitted when verified source evidence proves tenant positions but does not define a true venue boundary. */
   siteBoundary?: Polygon;
   roads: Coordinate[][];
   walkways: Coordinate[][];
