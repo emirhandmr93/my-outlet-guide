@@ -23,6 +23,13 @@ import {
   CAMPAIGN_TRANSLATION_VERSION,
   campaignTranslationLanguages,
 } from "./outletCampaignLocalization";
+import {
+  CAMPAIGN_COLLECTION_SCHEDULE,
+  CAMPAIGN_MAX_CANDIDATE_PAGES_PER_SOURCE_PER_RUN,
+  CAMPAIGN_RECONCILIATION_SCHEDULE,
+  CAMPAIGN_TRANSLATION_RUNTIME_MODE,
+  campaignTranslationCostGuardProvider,
+} from "./outletCampaignCostGuard";
 
 const CAMPAIGNS_COLLECTION = "outletCampaigns";
 const RUNS_COLLECTION = "outletCampaignIngestionRuns";
@@ -327,7 +334,7 @@ async function persistVerifiedCampaign(
   const canReuseTranslations = previousTranslation.sourceFingerprint === campaign.sourceFingerprint
     && previousTranslation.provider === CAMPAIGN_TRANSLATION_PROVIDER
     && previousTranslation.version === CAMPAIGN_TRANSLATION_VERSION;
-  const localization = await buildCampaignLocalization(campaign, undefined, canReuseTranslations ? {
+  const localization = await buildCampaignLocalization(campaign, campaignTranslationCostGuardProvider, canReuseTranslations ? {
     localizedText: existingData?.localizedText,
     completeLocales: Array.isArray(previousTranslation.completeLocales)
       ? previousTranslation.completeLocales
@@ -341,6 +348,7 @@ async function persistVerifiedCampaign(
     logger.warn("Official campaign translation is partial; source-language fallback retained", {
       campaignId: campaign.campaignId,
       failedLocales: localization.failedLocales,
+      runtimeMode: CAMPAIGN_TRANSLATION_RUNTIME_MODE,
     });
   } else {
     summary.translationComplete += 1;
@@ -380,6 +388,7 @@ async function persistVerifiedCampaign(
       status: localization.failedLocales.length === 0 ? "complete" : "partial",
       provider: CAMPAIGN_TRANSLATION_PROVIDER,
       version: CAMPAIGN_TRANSLATION_VERSION,
+      runtimeMode: CAMPAIGN_TRANSLATION_RUNTIME_MODE,
       sourceLocale: campaign.sourceLocale,
       supportedLocales: [...campaignTranslationLanguages],
       completeLocales: localization.completeLocales,
@@ -509,7 +518,7 @@ async function collectSource(db: Firestore, source: OfficialCampaignSource, now:
         || leftUrl.localeCompare(rightUrl),
     );
   const selectedCandidates = allCandidates
-    .slice(0, source.maxCandidatePages)
+    .slice(0, Math.min(source.maxCandidatePages, CAMPAIGN_MAX_CANDIDATE_PAGES_PER_SOURCE_PER_RUN))
     .map(([sourceUrl, listingEvidence]) => ({ sourceUrl, listingEvidence }));
   summary.candidateLinks += selectedCandidates.length;
   summary.candidateCapTruncated += Math.max(0, allCandidates.length - selectedCandidates.length);
@@ -632,7 +641,7 @@ export async function reconcileOutletCampaigns(db: Firestore, now = new Date()) 
 
 export const collectOfficialOutletCampaigns = onSchedule(
   {
-    schedule: "every 6 hours",
+    schedule: CAMPAIGN_COLLECTION_SCHEDULE,
     timeZone: "UTC",
     region: "us-central1",
     memory: "512MiB",
@@ -696,7 +705,7 @@ export const collectOfficialOutletCampaigns = onSchedule(
 
 export const reconcileOfficialOutletCampaigns = onSchedule(
   {
-    schedule: "every 15 minutes",
+    schedule: CAMPAIGN_RECONCILIATION_SCHEDULE,
     timeZone: "UTC",
     region: "us-central1",
     memory: "256MiB",
