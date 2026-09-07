@@ -260,6 +260,8 @@ const clientService = readFileSync(join(root, "src/services/outletCampaignServic
 const clientLocalization = readFileSync(join(root, "src/services/outletCampaignLocalization.ts"), "utf8");
 const functionsIndex = readFileSync(join(root, "functions/src/index.ts"), "utf8");
 const automation = readFileSync(join(root, "functions/src/outletCampaignAutomation.ts"), "utf8");
+const costGuard = readFileSync(join(root, "functions/src/outletCampaignCostGuard.ts"), "utf8");
+const notificationDelivery = readFileSync(join(root, "functions/src/outletCampaignNotificationDelivery.ts"), "utf8");
 const serverLocalization = readFileSync(join(root, "functions/src/outletCampaignLocalization.ts"), "utf8");
 const functionsPackage = readFileSync(join(root, "functions/package.json"), "utf8");
 const firebaseConfig = readFileSync(join(root, "firebase.json"), "utf8");
@@ -302,8 +304,23 @@ assert(clientService.includes("resolveCampaignDisplayText(data.localizedText, la
 assert(functionsIndex.includes("collectOfficialOutletCampaigns"), "Campaign collection function is not exported.");
 assert(functionsIndex.includes("reconcileOfficialOutletCampaigns"), "Campaign publication reconciler is not exported.");
 assert(functionsIndex.includes("processOutletCampaignNotifications"), "Campaign notification processor is not exported.");
-assert(automation.includes('schedule: "every 6 hours"'), "Official source collection schedule is missing.");
-assert(automation.includes('schedule: "every 15 minutes"'), "Automatic publish/expiry schedule is missing.");
+assert(costGuard.includes('CAMPAIGN_COLLECTION_SCHEDULE = "15 2 * * *"')
+  && automation.includes("schedule: CAMPAIGN_COLLECTION_SCHEDULE"),
+"Official source collection must run once daily under the production cost guard.");
+assert(costGuard.includes('CAMPAIGN_RECONCILIATION_SCHEDULE = "0 * * * *"')
+  && automation.includes("schedule: CAMPAIGN_RECONCILIATION_SCHEDULE"),
+"Automatic campaign publish/expiry reconciliation must run hourly under the production cost guard.");
+assert(costGuard.includes('CAMPAIGN_NOTIFICATION_SCHEDULE = "5 * * * *"')
+  && notificationDelivery.includes("schedule: CAMPAIGN_NOTIFICATION_SCHEDULE"),
+"Campaign notification processing must run hourly under the production cost guard.");
+assert(costGuard.includes("CAMPAIGN_MAX_CANDIDATE_PAGES_PER_SOURCE_PER_RUN = 60")
+  && automation.includes("Math.min(source.maxCandidatePages, CAMPAIGN_MAX_CANDIDATE_PAGES_PER_SOURCE_PER_RUN)"),
+"Campaign crawling must have a hard per-source candidate-page cap.");
+assert(costGuard.includes('CAMPAIGN_TRANSLATION_RUNTIME_MODE = "cached_only_cost_guard"')
+  && costGuard.includes("campaign_cloud_translation_disabled_cost_guard")
+  && automation.includes("campaignTranslationCostGuardProvider")
+  && automation.includes("runtimeMode: CAMPAIGN_TRANSLATION_RUNTIME_MODE"),
+"Automated campaign ingestion must reuse cached translations and block new Cloud Translation calls while the cost guard is active.");
 assert(automation.includes("SOURCE_CONCURRENCY = 2")
   && automation.includes("mapLimited(officialCampaignSources, SOURCE_CONCURRENCY"),
 "Expanded source collection must use bounded source-level concurrency.");
@@ -311,14 +328,14 @@ assert(automation.includes("buildCampaignLocalization")
   && automation.includes("localizedText: localization.localizedText")
   && automation.includes("provider: CAMPAIGN_TRANSLATION_PROVIDER")
   && automation.includes("version: CAMPAIGN_TRANSLATION_VERSION"),
-"Verified campaigns must generate and persist cached eight-language content.");
+"Verified campaigns must preserve cached eight-language content and safe locale fallbacks.");
 assert(serverLocalization.includes('"en",') && serverLocalization.includes('"tr",')
   && serverLocalization.includes('"es",') && serverLocalization.includes('"fr",')
   && serverLocalization.includes('"de",') && serverLocalization.includes('"ar",')
   && serverLocalization.includes('"ru",') && serverLocalization.includes('"zh",')
   && serverLocalization.includes("previousCompleteLocales")
   && serverLocalization.includes("translation.googleapis.com/v3"),
-"The translation worker must cover all eight production locales, reuse completed content, and use Cloud Translation v3.");
+"The localization worker must retain all eight production locales, cache reuse, and its validated Cloud Translation implementation for controlled future re-enablement.");
 assert(functionsPackage.includes('"google-auth-library": "^10.6.1"'),
   "Functions must declare their Cloud Translation authentication dependency directly.");
 assert(automation.includes('status: "verification_failed"') && automation.includes('active: false'),
@@ -334,4 +351,4 @@ assert(automation.includes('"source_http_404"') && automation.includes('"source_
   "Removed official pages must automatically unpublish their campaign.");
 assert(!automation.includes('status: "pending_approval"'), "The automatic lifecycle must not create an approval queue.");
 
-console.log("Official outlet campaign automation check passed: strict source gate, automatic lifecycle, Home fallback, and 8 locales.");
+console.log("Official outlet campaign automation check passed: strict source gate, automatic lifecycle, cloud cost guard, Home fallback, and 8 locales.");
