@@ -5,6 +5,7 @@ import { logger } from "firebase-functions";
 import { onSchedule } from "firebase-functions/v2/scheduler";
 
 import { isExpoPushToken, sendExpoPushNotifications, type ExpoPushMessage } from "./expoPush";
+import { CAMPAIGN_NOTIFICATION_SCHEDULE } from "./outletCampaignCostGuard";
 import {
   buildLocalizedCampaignNotificationContent,
   normalizeCampaignNotificationLocale,
@@ -288,7 +289,7 @@ export async function processPublishedOutletCampaignNotifications(now = new Date
 }
 
 export const processOutletCampaignNotifications = onSchedule({
-  schedule: "every 15 minutes", timeZone: "UTC", region: "us-central1", memory: "512MiB", timeoutSeconds: 540, maxInstances: 1,
+  schedule: CAMPAIGN_NOTIFICATION_SCHEDULE, timeZone: "UTC", region: "us-central1", memory: "512MiB", timeoutSeconds: 540, maxInstances: 1,
 }, async () => {
   const result = await processPublishedOutletCampaignNotifications();
   logger.info("Outlet campaign notifications processed", result);
