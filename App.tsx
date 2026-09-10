@@ -13,6 +13,7 @@ import { UserProvider } from "./src/contexts/UserContext";
 import { FlightDealPreferencesProvider } from "./src/contexts/FlightDealPreferencesContext";
 import { AuthProvider, useAuth } from "./src/contexts/AuthContext";
 import { CampaignReminderCoordinator } from "./src/components/CampaignReminderCoordinator";
+import { MobileWebDownloadBanner } from "./src/components/MobileWebDownloadBanner";
 import { WebHorizontalScrollEnhancer } from "./src/components/WebHorizontalScrollEnhancer";
 import { init as initSentry, wrap as wrapWithSentry } from "@sentry/react-native";
 
@@ -40,9 +41,12 @@ function AuthLoadingGate() {
               <FlightDealPreferencesProvider>
                 <ReviewsProvider>
                   <CampaignReminderCoordinator />
-                  <WebHorizontalScrollEnhancer>
-                    <AppNavigator />
-                  </WebHorizontalScrollEnhancer>
+                  <View style={{ flex: 1 }}>
+                    <MobileWebDownloadBanner />
+                    <WebHorizontalScrollEnhancer>
+                      <AppNavigator />
+                    </WebHorizontalScrollEnhancer>
+                  </View>
                   <StatusBar style="auto" />
                 </ReviewsProvider>
               </FlightDealPreferencesProvider>
