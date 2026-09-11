@@ -14,6 +14,7 @@ import { FlightDealPreferencesProvider } from "./src/contexts/FlightDealPreferen
 import { AuthProvider, useAuth } from "./src/contexts/AuthContext";
 import { CampaignReminderCoordinator } from "./src/components/CampaignReminderCoordinator";
 import { MobileWebDownloadBanner } from "./src/components/MobileWebDownloadBanner";
+import { WebSeoConversionStrip } from "./src/components/WebSeoConversionStrip";
 import { WebHorizontalScrollEnhancer } from "./src/components/WebHorizontalScrollEnhancer";
 import { init as initSentry, wrap as wrapWithSentry } from "@sentry/react-native";
 
@@ -43,6 +44,7 @@ function AuthLoadingGate() {
                   <CampaignReminderCoordinator />
                   <View style={{ flex: 1 }}>
                     <MobileWebDownloadBanner />
+                    <WebSeoConversionStrip />
                     <WebHorizontalScrollEnhancer>
                       <AppNavigator />
                     </WebHorizontalScrollEnhancer>
