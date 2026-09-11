@@ -64,4 +64,10 @@ export function trackWebPageView(path: string, title: string) {
             : localizedPath === "/flight-deals" ? "flight_deals_view"
               : undefined;
   if (viewEvent) window.gtag?.("event", viewEvent, { content_id: page?.path ?? path });
+  if (page?.kind === "outlet") {
+    window.gtag?.("event", "outlet_open", {
+      content_id: page.path,
+      source: "web_page_view",
+    });
+  }
 }

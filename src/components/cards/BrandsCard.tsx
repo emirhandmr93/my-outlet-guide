@@ -9,6 +9,7 @@ import { typography } from "../../theme/typography";
 import { useTranslation } from "../../hooks/useTranslation";
 import { useLayoutDirection } from "../../hooks/useLayoutDirection";
 import { formatBrandCategoryLabel } from "../../utils/brandCategoryLabelFormatter";
+import { trackProductEvent } from "../../utils/productAnalytics";
 
 type BrandsCardProps = {
   title: string;
@@ -18,7 +19,6 @@ type BrandsCardProps = {
   setOpenCategory: (value: string | null) => void;
   brandCategoryGroups: BrandCategoryGroup[];
 };
-
 
 const aliasMap: Record<string, string[]> = {
   "saint laurent": ["ysl", "yves saint laurent", "laurent"],
@@ -36,7 +36,6 @@ function normalize(value: string) {
 
 function brandMatchesSearch(brand: any, search: string) {
   const query = normalize(search);
-
   if (!query) return true;
 
   const brandName = normalize(brand.brandName || "");
@@ -63,6 +62,20 @@ export function BrandsCard({
     0
   );
 
+  function trackSubmittedSearch() {
+    const query = brandSearch.trim();
+    if (!query) return;
+    const resultCount = brandCategoryGroups.reduce(
+      (total, category) => total + category.brands.filter((brand) => brandMatchesSearch(brand, query)).length,
+      0,
+    );
+    trackProductEvent("brand_search", {
+      query_length: query.length,
+      result_count: resultCount,
+      source: "outlet_brand_card",
+    });
+  }
+
   return (
     <Card>
       <View style={styles.headerRow}>
@@ -76,6 +89,7 @@ export function BrandsCard({
         placeholderTextColor={colors.textMuted}
         value={brandSearch}
         onChangeText={setBrandSearch}
+        onSubmitEditing={trackSubmittedSearch}
         returnKeyType="search"
       />
 
@@ -84,9 +98,7 @@ export function BrandsCard({
           brandMatchesSearch(brand, brandSearch)
         );
 
-        if (brandSearch && filteredBrands.length === 0) {
-          return null;
-        }
+        if (brandSearch && filteredBrands.length === 0) return null;
 
         const isOpen = openCategory === category.categoryId || Boolean(brandSearch);
 
@@ -125,17 +137,13 @@ export function BrandsCard({
 }
 
 const styles = StyleSheet.create({
-  headerRow: {
-    marginBottom: spacing.sm,
-  },
-
+  headerRow: { marginBottom: spacing.sm },
   countText: {
     color: colors.textMuted,
     fontSize: typography.caption,
     fontWeight: typography.weightBold,
     marginTop: -spacing.xs,
   },
-
   searchInput: {
     backgroundColor: colors.surfaceSoft,
     borderRadius: radius.lg,
@@ -148,7 +156,6 @@ const styles = StyleSheet.create({
     fontSize: typography.bodyLarge,
     fontWeight: typography.weightBold,
   },
-
   categoryBox: {
     backgroundColor: colors.surfaceSoft,
     borderRadius: radius.xl,
@@ -157,7 +164,6 @@ const styles = StyleSheet.create({
     marginBottom: spacing.md,
     overflow: "hidden",
   },
-
   categoryButton: {
     minHeight: 70,
     paddingHorizontal: spacing.lg,
@@ -166,49 +172,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-
-  categoryTitleRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    flex: 1,
-  },
-
-  categoryIcon: {
-    fontSize: 26,
-    marginEnd: spacing.md,
-  },
-
-  categoryTextBlock: {
-    flex: 1,
-  },
-
+  categoryTitleRow: { flexDirection: "row", alignItems: "center", flex: 1 },
+  categoryIcon: { fontSize: 26, marginEnd: spacing.md },
+  categoryTextBlock: { flex: 1 },
   categoryTitle: {
     color: colors.textPrimary,
     fontSize: typography.bodyLarge,
     fontWeight: typography.weightBlack,
   },
-
   categoryMeta: {
     color: colors.textSecondary,
     fontSize: typography.caption,
     fontWeight: typography.weightBold,
     marginTop: spacing.xs,
   },
-
   chevron: {
     color: colors.primary,
     fontSize: typography.caption,
     fontWeight: typography.weightBlack,
     marginStart: spacing.sm,
   },
-
   brandGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.lg,
   },
-
   brandPill: {
     backgroundColor: colors.surface,
     borderRadius: radius.pill,
@@ -219,7 +208,6 @@ const styles = StyleSheet.create({
     marginEnd: spacing.sm,
     marginBottom: spacing.sm,
   },
-
   brandName: {
     color: colors.textPrimary,
     fontSize: typography.caption,

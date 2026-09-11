@@ -3,6 +3,7 @@ import { Image, Platform, Pressable, StyleSheet, Text, useWindowDimensions, View
 
 import { useLanguage } from "../contexts/LanguageContext";
 import { openExternalUrl } from "../utils/externalUrl";
+import { trackProductEvent } from "../utils/productAnalytics";
 
 const APP_STORE_URL = "https://apps.apple.com/app/id6791893523";
 const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.myoutletguide.app";
@@ -89,6 +90,18 @@ export function MobileWebDownloadBanner() {
 
   const rtl = language === "ar";
 
+  function openStore() {
+    if (!storePlatform) return;
+    trackProductEvent("app_download_click", {
+      source: "mobile_web_banner",
+      store_platform: storePlatform,
+    });
+    trackProductEvent(storePlatform === "ios" ? "app_store_click" : "google_play_click", {
+      source: "mobile_web_banner",
+    });
+    void openExternalUrl(storeUrl);
+  }
+
   return (
     <View style={[styles.banner, rtl && styles.bannerRtl]} accessibilityRole="summary">
       <Image source={require("../../assets/icon.png")} style={styles.icon} accessibilityIgnoresInvertColors />
@@ -100,7 +113,7 @@ export function MobileWebDownloadBanner() {
         accessibilityRole="link"
         accessibilityLabel={copy.action}
         hitSlop={8}
-        onPress={() => void openExternalUrl(storeUrl)}
+        onPress={openStore}
         style={({ pressed }) => [styles.downloadLink, pressed && styles.pressed]}
       >
         <Text style={styles.downloadLinkText}>{copy.action}</Text>
