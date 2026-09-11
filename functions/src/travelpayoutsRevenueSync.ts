@@ -24,6 +24,17 @@ const PLACEMENTS = [
   "outlet_match",
   "trip_detail",
 ] as const;
+const PROVIDER_BY_CATEGORY = {
+  flight: "aviasales",
+  hotel: "agoda",
+  transfer: "kiwitaxi",
+  esim: "yesim",
+  activities: "tiqets",
+} as const;
+
+type RevenueCategory = typeof CATEGORIES[number];
+type RevenuePlacement = typeof PLACEMENTS[number];
+type RevenueProvider = typeof PROVIDER_BY_CATEGORY[RevenueCategory];
 
 type FinanceAction = {
   action_id?: unknown;
@@ -38,6 +49,8 @@ type FinanceAction = {
 
 type FinanceActionsResponse = {
   actions?: unknown;
+  total_price?: unknown;
+  total_profit?: unknown;
   available_campaigns?: unknown;
   count?: unknown;
 };
@@ -49,6 +62,7 @@ type ActionDetailsResponse = {
   price?: unknown;
   profit?: unknown;
   booked_at?: unknown;
+  metadata?: unknown;
 };
 
 type BalanceResponse = { balance?: unknown };
@@ -66,10 +80,12 @@ type NormalizedAction = {
 
 type Attribution = {
   subId: string | null;
-  category: typeof CATEGORIES[number] | null;
-  placement: typeof PLACEMENTS[number] | null;
+  category: RevenueCategory | null;
+  placement: RevenuePlacement | null;
   contextId: string | null;
 };
+
+type Aggregate = { key: string; actionCount: number; profitUsd: number };
 
 function safeString(value: unknown, max = 500) {
   if (typeof value !== "string") return null;
@@ -139,6 +155,36 @@ export function parseTravelpayoutsAttribution(value: unknown): Attribution {
   return { subId, category: null, placement: null, contextId: null };
 }
 
+function detailMetadataValue(metadata: unknown, name: string) {
+  if (!Array.isArray(metadata)) return null;
+  for (const item of metadata) {
+    if (!item || typeof item !== "object" || Array.isArray(item)) continue;
+    const candidate = item as Record<string, unknown>;
+    if (candidate.name === name) return safeString(candidate.value, 120);
+  }
+  return null;
+}
+
+function providerForCategory(category: unknown): RevenueProvider | null {
+  return typeof category === "string" && Object.prototype.hasOwnProperty.call(PROVIDER_BY_CATEGORY, category)
+    ? PROVIDER_BY_CATEGORY[category as RevenueCategory]
+    : null;
+}
+
+function addAggregate(target: Map<string, { actionCount: number; profitUsd: number }>, key: string | null, profitUsd: number) {
+  if (!key) return;
+  const current = target.get(key) ?? { actionCount: 0, profitUsd: 0 };
+  current.actionCount += 1;
+  current.profitUsd += profitUsd;
+  target.set(key, current);
+}
+
+function serializeAggregate(target: Map<string, { actionCount: number; profitUsd: number }>): Aggregate[] {
+  return [...target.entries()]
+    .map(([key, value]) => ({ key, actionCount: value.actionCount, profitUsd: Number(value.profitUsd.toFixed(6)) }))
+    .sort((a, b) => b.profitUsd - a.profitUsd || b.actionCount - a.actionCount || a.key.localeCompare(b.key));
+}
+
 async function travelpayoutsJson<T>(path: string, token: string): Promise<T> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), HTTP_TIMEOUT_MS);
@@ -165,6 +211,8 @@ async function loadRecentActions(token: string) {
   const actions: NormalizedAction[] = [];
   let availableCampaigns: number[] = [];
   let reportedCount = 0;
+  let reportedWindowPriceUsd: number | null = null;
+  let reportedWindowProfitUsd: number | null = null;
 
   for (let page = 0; page < MAX_ACTION_PAGES; page += 1) {
     const offset = page * ACTION_PAGE_SIZE;
@@ -180,6 +228,8 @@ async function loadRecentActions(token: string) {
     }
     if (page === 0) {
       reportedCount = Math.max(0, Math.trunc(safeNumber(response.count) ?? 0));
+      reportedWindowPriceUsd = safeNumber(response.total_price);
+      reportedWindowProfitUsd = safeNumber(response.total_profit);
       availableCampaigns = Array.isArray(response.available_campaigns)
         ? response.available_campaigns.map(safeCampaignId).filter((value): value is number => value !== null)
         : [];
@@ -187,7 +237,14 @@ async function loadRecentActions(token: string) {
     if (rows.length < ACTION_PAGE_SIZE || actions.length >= reportedCount) break;
   }
 
-  return { actions, availableCampaigns, reportedCount, from };
+  return {
+    actions,
+    availableCampaigns,
+    reportedCount,
+    reportedWindowPriceUsd,
+    reportedWindowProfitUsd,
+    from,
+  };
 }
 
 async function loadActionDetails(token: string, actionId: string) {
@@ -224,7 +281,14 @@ export const syncTravelpayoutsRevenue = onSchedule({
 
   const db = getFirestore();
   const startedAt = new Date();
-  const [{ actions, availableCampaigns, reportedCount, from }, balanceResponse] = await Promise.all([
+  const [{
+    actions,
+    availableCampaigns,
+    reportedCount,
+    reportedWindowPriceUsd,
+    reportedWindowProfitUsd,
+    from,
+  }, balanceResponse] = await Promise.all([
     loadRecentActions(token),
     travelpayoutsJson<BalanceResponse>("/finance/v2/get_user_balance", token),
   ]);
@@ -261,35 +325,60 @@ export const syncTravelpayoutsRevenue = onSchedule({
   let cancelledCount = 0;
   let paidProfitUsd = 0;
   let processingProfitUsd = 0;
+  const paidByProvider = new Map<string, { actionCount: number; profitUsd: number }>();
+  const paidByCategory = new Map<string, { actionCount: number; profitUsd: number }>();
+  const paidByPlacement = new Map<string, { actionCount: number; profitUsd: number }>();
+  const paidByCountry = new Map<string, { actionCount: number; profitUsd: number }>();
 
   for (const action of actions) {
-    if (action.state === "paid") {
-      paidCount += 1;
-      paidProfitUsd += action.profitUsd ?? 0;
-    } else if (action.state === "processing") {
-      processingCount += 1;
-      processingProfitUsd += action.profitUsd ?? 0;
-    } else if (action.state === "cancelled") cancelledCount += 1;
-
     const detail = detailsByActionId.get(action.actionId);
-    const attribution = parseTravelpayoutsAttribution(detail?.sub_id);
     const ref = db.collection("travelPartnerRevenueActions").doc(actionDocumentId(action.actionId));
     const existing = existingById.get(ref.id)?.data() ?? {};
+    const parsedAttribution = parseTravelpayoutsAttribution(detail?.sub_id);
+    const category = detail ? parsedAttribution.category : safeString(existing.category, 40) as RevenueCategory | null;
+    const placement = detail ? parsedAttribution.placement : safeString(existing.placement, 80) as RevenuePlacement | null;
+    const contextId = detail ? parsedAttribution.contextId : safeString(existing.contextId, 180);
+    const subId = detail ? parsedAttribution.subId : safeString(existing.subId, 4096);
+    const provider = providerForCategory(category) ?? safeString(existing.provider, 40);
+    const userCountry = detail
+      ? detailMetadataValue(detail.metadata, "user_country")
+      : safeString(existing.userCountry, 120);
+    const userDeviceType = detail
+      ? detailMetadataValue(detail.metadata, "user_device_type")
+      : safeString(existing.userDeviceType, 80);
+    const state = normalizeState(detail?.action_state ?? action.state);
+    const profitUsd = safeNumber(detail?.profit) ?? action.profitUsd ?? 0;
+
+    if (state === "paid") {
+      paidCount += 1;
+      paidProfitUsd += profitUsd;
+      addAggregate(paidByProvider, provider, profitUsd);
+      addAggregate(paidByCategory, category, profitUsd);
+      addAggregate(paidByPlacement, placement, profitUsd);
+      addAggregate(paidByCountry, userCountry, profitUsd);
+    } else if (state === "processing") {
+      processingCount += 1;
+      processingProfitUsd += profitUsd;
+    } else if (state === "cancelled") cancelledCount += 1;
+
     batch.set(ref, {
       schemaVersion: 1,
       source: "travelpayouts",
       actionId: action.actionId,
       campaignId: safeCampaignId(detail?.campaign_id) ?? action.campaignId,
-      state: normalizeState(detail?.action_state ?? action.state),
+      state,
       priceUsd: safeNumber(detail?.price) ?? action.priceUsd,
-      profitUsd: safeNumber(detail?.profit) ?? action.profitUsd,
+      profitUsd,
       description: action.description,
       bookedAt: safeString(detail?.booked_at, 40) ?? action.bookedAt,
       updatedAt: action.updatedAt,
-      subId: detail ? attribution.subId : existing.subId ?? null,
-      category: detail ? attribution.category : existing.category ?? null,
-      placement: detail ? attribution.placement : existing.placement ?? null,
-      contextId: detail ? attribution.contextId : existing.contextId ?? null,
+      subId,
+      category,
+      placement,
+      contextId,
+      provider,
+      userCountry,
+      userDeviceType,
       detailsResolved: detail ? true : existing.detailsResolved === true,
       firstSyncedAt: existing.firstSyncedAt ?? FieldValue.serverTimestamp(),
       lastSyncedAt: FieldValue.serverTimestamp(),
@@ -311,13 +400,20 @@ export const syncTravelpayoutsRevenue = onSchedule({
     lookbackDays: LOOKBACK_DAYS,
     windowStart: from,
     windowEnd: new Date().toISOString().slice(0, 10),
+    windowComplete: actions.length >= reportedCount,
     actionCount: actions.length,
     reportedActionCount: reportedCount,
+    reportedWindowPriceUsd,
+    reportedWindowProfitUsd,
     paidCount,
     processingCount,
     cancelledCount,
     paidProfitUsd: Number(paidProfitUsd.toFixed(6)),
     processingProfitUsd: Number(processingProfitUsd.toFixed(6)),
+    paidByProvider: serializeAggregate(paidByProvider),
+    paidByCategory: serializeAggregate(paidByCategory),
+    paidByPlacement: serializeAggregate(paidByPlacement),
+    paidByCountry: serializeAggregate(paidByCountry),
     balance,
     availableCampaigns,
     detailBacklog: Math.max(0, detailsNeeded.length - detailCandidates.length),
@@ -327,6 +423,7 @@ export const syncTravelpayoutsRevenue = onSchedule({
 
   logger.info("Travelpayouts revenue sync completed", {
     actions: actions.length,
+    reportedCount,
     paidCount,
     paidProfitUsd: Number(paidProfitUsd.toFixed(2)),
     processingCount,
