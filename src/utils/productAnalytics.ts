@@ -4,13 +4,18 @@ import { Platform } from "react-native";
 import { trackWebEvent } from "./webAnalytics";
 
 export type ProductAnalyticsEvent =
+  | "app_download_click"
   | "app_store_click"
+  | "affiliate_click"
+  | "brand_search"
   | "favorite_outlet"
   | "favorite_brand"
   | "flight_alert_create"
   | "google_play_click"
   | "outbound_affiliate_click"
+  | "outlet_open"
   | "outlet_search"
+  | "tax_free_calculate"
   | "tax_free_calculator_use"
   | "trip_create"
   | "campaign_share"
@@ -46,10 +51,16 @@ function sanitizeParameters(parameters: ProductAnalyticsParameters): Record<stri
   return safe;
 }
 
+function trackWebAliases(event: ProductAnalyticsEvent, parameters: Record<string, ProductAnalyticsValue>) {
+  if (event === "tax_free_calculator_use") trackWebEvent("tax_free_calculate", parameters);
+  if (event === "outbound_affiliate_click") trackWebEvent("affiliate_click", parameters);
+}
+
 export function trackProductEvent(event: ProductAnalyticsEvent, parameters: ProductAnalyticsParameters = {}) {
   const safeParameters = sanitizeParameters(parameters);
   if (Platform.OS === "web") {
     trackWebEvent(event, safeParameters);
+    trackWebAliases(event, safeParameters);
     return;
   }
 
